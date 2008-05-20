@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_optionsdlg.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,7 +94,6 @@ private:
 
     enum NodeType{ NT_Group, NT_Page, NT_Option };
     void            ReadNode( const OUString& _rNode, NodeType _eType );
-    sal_Bool        IsHidden( const OUString& _rPath ) const;
 
 public:
                     SvtOptionsDlgOptions_Impl();
@@ -103,13 +102,6 @@ public:
     virtual void    Commit();
 
     static ::osl::Mutex & getInitMutex();
-
-    sal_Bool        IsGroupHidden   (   const OUString& _rGroup ) const;
-    sal_Bool        IsPageHidden    (   const OUString& _rPage,
-                                        const OUString& _rGroup ) const;
-    sal_Bool        IsOptionHidden  (   const OUString& _rOption,
-                                        const OUString& _rPage,
-                                        const OUString& _rGroup ) const;
 };
 
 ::osl::Mutex & SvtOptionsDlgOptions_Impl::getInitMutex()
@@ -218,54 +210,6 @@ void SvtOptionsDlgOptions_Impl::ReadNode( const OUString& _rNode, NodeType _eTyp
 
 // -----------------------------------------------------------------------
 
-OUString getGroupPath( const OUString& _rGroup )
-{
-    return OUString( ROOT_NODE + OUString('/') + _rGroup + OUString('/') );
-}
-OUString getPagePath( const OUString& _rPage )
-{
-    return OUString( PAGES_NODE + OUString('/') + _rPage + OUString('/') );
-}
-OUString getOptionPath( const OUString& _rOption )
-{
-    return OUString( OPTIONS_NODE + OUString('/') + _rOption + OUString('/') );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtOptionsDlgOptions_Impl::IsHidden( const OUString& _rPath ) const
-{
-    sal_Bool bRet = sal_False;
-    OptionNodeList::const_iterator pIter = m_aOptionNodeList.find( _rPath );
-    if ( pIter != m_aOptionNodeList.end() )
-        bRet = pIter->second;
-    return bRet;
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtOptionsDlgOptions_Impl::IsGroupHidden( const OUString& _rGroup ) const
-{
-    return IsHidden( getGroupPath( _rGroup ) );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtOptionsDlgOptions_Impl::IsPageHidden( const OUString& _rPage, const OUString& _rGroup ) const
-{
-    return IsHidden( getGroupPath( _rGroup  ) + getPagePath( _rPage ) );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtOptionsDlgOptions_Impl::IsOptionHidden(
-    const OUString& _rOption, const OUString& _rPage, const OUString& _rGroup ) const
-{
-    return IsHidden( getGroupPath( _rGroup  ) + getPagePath( _rPage ) + getOptionPath( _rOption ) );
-}
-
-// -----------------------------------------------------------------------
-
 SvtOptionsDialogOptions::SvtOptionsDialogOptions()
 {
     // Global access, must be guarded (multithreading)
@@ -292,22 +236,6 @@ SvtOptionsDialogOptions::~SvtOptionsDialogOptions()
             pOptions->Commit();
         DELETEZ( pOptions );
     }
-}
-
-sal_Bool SvtOptionsDialogOptions::IsGroupHidden( const String& _rGroup ) const
-{
-    return m_pImp->IsGroupHidden( _rGroup );
-}
-
-sal_Bool SvtOptionsDialogOptions::IsPageHidden( const String& _rPage, const String& _rGroup ) const
-{
-    return m_pImp->IsPageHidden( _rPage, _rGroup );
-}
-
-sal_Bool SvtOptionsDialogOptions::IsOptionHidden(
-    const String& _rOption, const String& _rPage, const String& _rGroup ) const
-{
-    return m_pImp->IsOptionHidden( _rOption, _rPage, _rGroup );
 }
 
 }
