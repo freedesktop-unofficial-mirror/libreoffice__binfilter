@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: zformat.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -121,14 +121,12 @@ class SvNumberNatNum
 public:
 
     static  BYTE    MapDBNumToNatNum( BYTE nDBNum, LanguageType eLang, BOOL bDate );
-    static  BYTE    MapNatNumToDBNum( BYTE nNatNum, LanguageType eLang, BOOL bDate );
 
                     SvNumberNatNum() : eLang( LANGUAGE_DONTKNOW ), nNum(0),
                                         bDBNum(0), bDate(0), bSet(0) {}
     BOOL            IsComplete() const  { return bSet && eLang != LANGUAGE_DONTKNOW; }
     BYTE            GetRawNum() const   { return nNum; }
     BYTE            GetNatNum() const   { return bDBNum ? MapDBNumToNatNum( nNum, eLang, bDate ) : nNum; }
-    BYTE            GetDBNum() const    { return bDBNum ? nNum : MapNatNumToDBNum( nNum, eLang, bDate ); }
     LanguageType    GetLang() const     { return eLang; }
     void            SetLang( LanguageType e ) { eLang = e; }
     void            SetNum( BYTE nNumber, BOOL bDBNumber )
@@ -203,7 +201,7 @@ public:
                    BOOL bStand = FALSE );
 
     // Copy ctor
-    SvNumberformat( SvNumberformat& rFormat );
+    SvNumberformat( const SvNumberformat& rFormat );
 
     // Copy ctor with exchange of format code string scanner (used in merge)
     SvNumberformat( SvNumberformat& rFormat, ImpSvNumberformatScan& rSc );
@@ -233,11 +231,6 @@ public:
     LanguageType GetLanguage() const            { return eLnge;}
 
     const String& GetFormatstring() const   { return sFormatstring; }
-
-    // Build a format string of application defined keywords
-    String GetMappedFormatstring( const NfKeywordTable& rKeywords,
-                                    const LocaleDataWrapper& rLoc,
-                                    BOOL bDontQuote = FALSE ) const;
 
     void SetUsed(const BOOL b)                  { bIsUsed = b; }
     BOOL GetUsed() const                        { return bIsUsed; }
@@ -380,19 +373,13 @@ public:
                 sal_Unicode cEscIn = '\0', sal_Unicode cEscOut = '\\' );
 
     void SetComment( const String& rStr )
-#if NF_COMMENT_IN_FORMATSTRING
-        { SetComment( rStr, sFormatstring, sComment ); }
-#else
-        { sComment = rStr; }
-#endif
+            { sComment = rStr; }
+
     const String& GetComment() const { return sComment; }
 
     // Erase "{ "..." }" from format subcode string to get the pure comment (old version)
     static void EraseCommentBraces( String& rStr );
     // Set comment rStr in format string rFormat and in rComment (old version)
-    static void SetComment( const String& rStr, String& rFormat, String& rComment );
-    // Erase comment at end of rStr to get pure format code string (old version)
-    static void EraseComment( String& rStr );
 
     /** Insert the number of blanks into the string that is needed to simulate
         the width of character c for underscore formats */
@@ -441,23 +428,6 @@ public:
         calling this method. */
     void SwitchToGregorianCalendar( const String& rOrgCalendar, double fOrgDateTime ) const;
 
-    /** Switches to the first specified calendar, if any, in subformat nNumFor
-        (0..3). Original calendar name and date/time returned, but only if
-        calendar switched and rOrgCalendar was empty.
-
-        @return
-            <TRUE/> if a calendar was specified and switched to,
-            <FALSE/> else.
-     */
-    BOOL SwitchToSpecifiedCalendar( String& rOrgCalendar, double& fOrgDateTime,
-            USHORT nNumFor ) const
-        {
-            if ( nNumFor < 4 )
-                return ImpSwitchToSpecifiedCalendar( rOrgCalendar,
-                        fOrgDateTime, NumFor[nNumFor] );
-            return FALSE;
-        }
-
 private:
     ImpSvNumFor NumFor[4];          // Array for the 4 subformats
     String sFormatstring;           // The format code string
@@ -477,9 +447,6 @@ private:
     USHORT ImpGetNumForStringElementCount( USHORT nNumFor ) const;
 
     BOOL ImpIsOtherCalendar( const ImpSvNumFor& rNumFor ) const;
-
-    BOOL ImpSwitchToSpecifiedCalendar( String& rOrgCalendar,
-            double& fOrgDateTime, const ImpSvNumFor& rNumFor ) const;
 
 #ifdef _ZFORMAT_CXX     // ----- private implementation methods -----
 
