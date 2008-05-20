@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unotext.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -201,12 +201,6 @@ void CheckSelection( struct ESelection& rSel, SvxTextForwarder* pForwarder ) thr
 // ====================================================================
 
 UNO3_GETIMPLEMENTATION_IMPL( SvxUnoTextRangeBase );
-
-SvxUnoTextBase::SvxUnoTextBase() throw()
-: SvxUnoTextRangeBase(NULL, aEmptyPropMap )
-{
-
-}
 
 SvxUnoTextRangeBase::SvxUnoTextRangeBase( const SfxItemPropertyMap* _pMap ) throw()
 : aPropSet(_pMap), pEditSource(NULL)
@@ -1380,17 +1374,6 @@ uno::Sequence< OUString > SAL_CALL SvxUnoTextRangeBase::getSupportedServiceNames
 
 uno::Sequence< uno::Type > SvxUnoTextRange::maTypeSequence;
 
-uno::Reference< uno::XInterface > SvxUnoTextRange_NewInstance()
-{
-    SvxUnoText aText;
-    uno::Reference< text::XTextRange > xRange( new SvxUnoTextRange( aText ) );
-#if (_MSC_VER < 1300)
-    return xRange;
-#else
-    return (uno::Reference< uno::XInterface >)xRange;
-#endif
-}
-
 SvxUnoTextRange::SvxUnoTextRange( const SvxUnoTextBase& rParent, sal_Bool bPortion /* = sal_False */ ) throw()
 :SvxUnoTextRangeBase( rParent.GetEditSource(), bPortion ? ImplGetSvxTextPortionPropertyMap() : rParent.getPropertyMap() ),
  mbPortion( bPortion )
@@ -1498,14 +1481,6 @@ uno::Sequence< uno::Type > SvxUnoTextBase::maTypeSequence;
 SvxUnoTextBase::SvxUnoTextBase( const SfxItemPropertyMap* _pMap  ) throw()
 : SvxUnoTextRangeBase( _pMap )
 {
-}
-
-SvxUnoTextBase::SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap  ) throw()
-: SvxUnoTextRangeBase( pSource, _pMap )
-{
-    ESelection aSelection;
-    ::binfilter::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );//STRIP008     ::GetSelection( aSelection, GetEditSource()->GetTextForwarder() );
-    SetSelection( aSelection );
 }
 
 SvxUnoTextBase::SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap, uno::Reference < text::XText > xParent ) throw()
@@ -1916,10 +1891,6 @@ sal_Int64 SAL_CALL SvxUnoTextBase::getSomething( const uno::Sequence< sal_Int8 >
 
 // --------------------------------------------------------------------
 
-SvxUnoText::SvxUnoText( ) throw()
-{
-}
-
 SvxUnoText::SvxUnoText( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap, uno::Reference < text::XText > xParent ) throw()
 : SvxUnoTextBase( pSource, _pMap, xParent )
 {
@@ -1932,11 +1903,6 @@ SvxUnoText::SvxUnoText( const SvxUnoText& rText ) throw()
 
 SvxUnoText::~SvxUnoText() throw()
 {
-}
-
-uno::Sequence< uno::Type > SAL_CALL getStaticTypes() throw()
-{
-    return SvxUnoTextBase::getStaticTypes();
 }
 
 // uno::XInterface
@@ -1979,15 +1945,6 @@ uno::Sequence< sal_Int8 > SAL_CALL SvxUnoText::getImplementationId(  ) throw( un
         rtl_createUuid( (sal_uInt8 *)aId.getArray(), 0, sal_True );
     }
     return aId;
-}
-
-SvxUnoText* SvxUnoText::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xInt, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (SvxUnoText*)xUT->getSomething( SvxUnoText::getUnoTunnelId() );
-    else
-        return NULL;
 }
 
 const uno::Sequence< sal_Int8 > & SvxUnoText::getUnoTunnelId() throw()
