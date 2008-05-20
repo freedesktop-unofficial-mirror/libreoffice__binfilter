@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_unoatrcn.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -133,15 +133,6 @@ const ::com::sun::star::uno::Sequence< sal_Int8 > & SvUnoAttributeContainer::get
         }
     }
     return *pSeq;
-}
-
-SvUnoAttributeContainer* SvUnoAttributeContainer::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
-{
-    ::com::sun::star::uno::Reference< ::com::sun::star::lang::XUnoTunnel > xUT( xInt, ::com::sun::star::uno::UNO_QUERY );
-    if( xUT.is() )
-        return (SvUnoAttributeContainer*)xUT->getSomething( SvUnoAttributeContainer::getUnoTunnelId() );
-    else
-        return NULL;
 }
 
 sal_Int64 SAL_CALL SvUnoAttributeContainer::getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& rId ) throw(::com::sun::star::uno::RuntimeException)
