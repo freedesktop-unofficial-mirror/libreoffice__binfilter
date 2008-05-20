@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: transprt.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -29,7 +29,7 @@
  ************************************************************************/
 
 #ifndef _TRANSPRT_HXX
-#define _TRANSPRT_HXX "$Revision: 1.4 $"
+#define _TRANSPRT_HXX "$Revision: 1.5 $"
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -84,14 +84,6 @@ public:
 
     virtual void Start (void) = 0;
     virtual void Abort (void) = 0;
-
-    static  BOOL HasTransport (
-        const String &rUrl);
-
-    static SvBindingTransport* CreateTransport (
-        const String               &rUrl,
-        SvBindingTransportContext  &rCtx,
-        SvBindingTransportCallback *pCallback);
 };
 
 /*========================================================================
@@ -165,7 +157,6 @@ class SO3_DLLPUBLIC SvBindingTransportContext
     SvLockBytesRef m_xPostLockBytes;
 
 public:
-    SvBindingTransportContext (void);
     virtual ~SvBindingTransportContext (void);
 
     /** BindAction.
@@ -232,7 +223,6 @@ class SO3_DLLPUBLIC SvLockBytesFactory
     SO3_DLLPRIVATE COPYCTOR_API(SvLockBytesFactory);
 
 public:
-    SvLockBytesFactory (const String & rWildcard);
     virtual ~SvLockBytesFactory (void);
 
     virtual SvLockBytesRef CreateLockBytes (
@@ -268,17 +258,6 @@ public:
     virtual ~SfxSimpleLockBytesFactory (void);
 
 public:
-    SfxSimpleLockBytesFactory (
-        SvLockBytes  *pLockBytes,
-        const String &rUrl,
-        const String &rMime);
-
-    SfxSimpleLockBytesFactory (
-        SvLockBytes  *pLockBytes,
-        const String &rMime);
-
-    static String TempURL (const String &rExtension);
-
     virtual SvLockBytesRef CreateLockBytes (
         const String &rUrl, String &rMime);
 };
