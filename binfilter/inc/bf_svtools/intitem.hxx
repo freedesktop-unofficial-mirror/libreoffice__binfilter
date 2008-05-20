@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: intitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,9 +50,6 @@ public:
 
     SfxByteItem(USHORT which = 0, BYTE nValue = 0):
         CntByteItem(which, nValue) {}
-
-    SfxByteItem(USHORT which, SvStream & rStream):
-        CntByteItem(which, rStream) {}
 
     virtual SfxPoolItem * Create(SvStream & rStream, USHORT) const;
 
