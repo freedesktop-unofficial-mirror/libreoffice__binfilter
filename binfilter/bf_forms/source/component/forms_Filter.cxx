@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: forms_Filter.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -727,31 +727,6 @@ namespace frm
         Reference< XTextComponent >  xText( getPeer(), UNO_QUERY );
         if (xText.is())
             xText->setMaxTextLen(nLength);
-    }
-
-    //---------------------------------------------------------------------
-    void OFilterControl::displayException( const ::com::sun::star::sdb::SQLContext& _rExcept )
-    {
-        try
-        {
-            Sequence< Any > aArgs(2);
-            aArgs[0] <<= PropertyValue(::rtl::OUString::createFromAscii("SQLException"), 0, makeAny( _rExcept ), PropertyState_DIRECT_VALUE);
-            aArgs[1] <<= PropertyValue(::rtl::OUString::createFromAscii("ParentWindow"), 0, makeAny( m_xMessageParent ), PropertyState_DIRECT_VALUE);
-
-            static ::rtl::OUString s_sDialogServiceName = ::rtl::OUString::createFromAscii( "com.sun.star.sdb.ErrorMessageDialog" );
-            Reference< XExecutableDialog > xErrorDialog( m_xORB->createInstanceWithArguments( s_sDialogServiceName, aArgs ), UNO_QUERY );
-            if ( xErrorDialog.is() )
-                xErrorDialog->execute();
-            else
-            {
-                Window* pMessageParent = VCLUnoHelper::GetWindow( m_xMessageParent );
-                ShowServiceNotAvailableError( pMessageParent, s_sDialogServiceName, sal_True );
-            }
-        }
-        catch( const Exception& )
-        {
-            OSL_ENSURE( sal_False, "displayException: could not display the error message!" );
-        }
     }
 
     //---------------------------------------------------------------------
