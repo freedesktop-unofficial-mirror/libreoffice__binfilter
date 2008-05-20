@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iodetect.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -231,16 +231,12 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
     const String &rFileName) const              \
 {                                                                           \
     int bRet = FALSE;                                                       \
-    if( sHTML == pName )                                                    \
-        bRet = HTMLParser::IsHTMLFormat( pHeader, TRUE, RTL_TEXTENCODING_DONTKNOW );\
-    else if( FILTER_SWG == pName )                                          \
+    if( FILTER_SWG == pName )                                          \
         bRet = 0 == strncmp( FILTER_SWG, pHeader, 3 ) &&                    \
                 '1' != *(pHeader + 3);                                      \
     else if( sSwg1 == pName )                                               \
         bRet = 0 == strncmp( FILTER_SWG, pHeader, 3 ) &&                    \
                 '1' == *(pHeader + 3);                                      \
-    else if( FILTER_RTF == pName )                                          \
-        bRet = 0 == strncmp( "{\\rtf", pHeader, 5 );                        \
     else if( sLotusD == pName )                                             \
         bRet = 0 == *pHeader++ && 0 == *pHeader++ &&                        \
                 2 == *pHeader++ && 0 == *pHeader++ &&                       \
