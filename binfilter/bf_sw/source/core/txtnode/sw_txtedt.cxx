@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_txtedt.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -413,85 +413,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/
 /*N*/     return TRUE;
 /*N*/ }
-
-
-/*M*/ BOOL SwScanner::NextWord( LanguageType aLang )
-/*M*/ {
-/*M*/     const XubString& rText = rNode.GetTxt();
-/*M*/   if( bReverse )
-/*M*/   {
-/*M*/       if( nBegin )
-/*M*/       {
-/*M*/           --nBegin;
-/*M*/             if( rNode.GetpSwpHints() )
-/*M*/           {
-/*M*/               while( CH_TXTATR_BREAKWORD == rText.GetChar( nBegin ) ||
-/*M*/                       CH_TXTATR_INWORD == rText.GetChar( nBegin ) )
-/*M*/               {
-/*M*/                     if( rNode.GetTxtAttr( nBegin ) )
-/*M*/                   {
-/*M*/                       if( nBegin )
-/*M*/                           --nBegin;
-/*M*/                       else
-/*M*/                           return FALSE;
-/*M*/                   }
-/*M*/                   else
-/*M*/                       break;
-/*M*/               }
-/*M*/           }
-/*M*/       }
-/*M*/       else
-/*M*/           return FALSE;
-/*M*/   }
-/*M*/   else if( nBegin + nLen >= rText.Len() )
-/*M*/       return FALSE;
-/*M*/
-/*M*/     if( pWrong )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*M*/   }
-/*M*/
-/*M*/   Boundary aBound;
-/*M*/     if( bStart )
-/*M*/   {
-/*M*/       aBound = pBreakIt->xBreak->getWordBoundary( rText, nBegin,
-/*M*/             pBreakIt->GetLocale( aLang ), nWordType, !bReverse );
-/*M*/         bStart = aBound.startPos != aBound.endPos;
-/*M*/   }
-/*M*/   if( !bStart )
-/*M*/   {
-/*M*/       if( bReverse )
-/*M*/           aBound = pBreakIt->xBreak->previousWord( rText, nBegin,
-/*M*/                     pBreakIt->GetLocale( aLang ), nWordType );
-/*M*/       else
-/*M*/           aBound = pBreakIt->xBreak->nextWord( rText, nBegin,
-/*M*/                     pBreakIt->GetLocale( aLang ), nWordType );
-/*M*/   }
-/*M*/   else
-/*M*/       bStart = FALSE;
-/*M*/
-/*M*/   nBegin = (xub_StrLen)aBound.startPos;
-/*N*/     nLen = (xub_StrLen)(aBound.endPos - nBegin);
-/*M*/   if( !nLen )
-/*M*/       return FALSE;
-/*M*/
-/*M*/     // only in online spelling mode we want to consider the last word
-/*M*/     // surrounding nEndPos
-/*M*/     if( bReverse )
-/*M*/   {
-/*M*/         if( nBegin + ( bIsOnlineSpell ? nLen : 0 ) < nEndPos )
-/*M*/           return FALSE;
-/*M*/   }
-/*M*/   else
-/*M*/   {
-/*M*/         if( nBegin + ( bIsOnlineSpell ? 0 : nLen ) > nEndPos )
-/*M*/           return FALSE;
-/*M*/   }
-/*M*/
-/*M*/     aWord = rText.Copy( nBegin, nLen );
-/*M*/
-/*M*/     return TRUE;
-/*M*/ }
-
 
 #ifdef LINGU_STATISTIK
 
