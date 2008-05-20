@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: poolcach.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,8 +55,6 @@ class  SfxItemPoolCache
     const SfxPoolItem       *pItemToPut;
 
 public:
-                            SfxItemPoolCache( SfxItemPool *pPool,
-                                              const SfxPoolItem *pPutItem );
                             SfxItemPoolCache( SfxItemPool *pPool,
                                               const SfxItemSet *pPutSet );
                             ~SfxItemPoolCache();
