@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unolingu.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -116,11 +116,7 @@ class LinguMgr
     static sal_Bool                                     bExiting;
 
     static ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XSpellChecker1 > GetSpell();
-    static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XHyphenator >    GetHyph();
-    static ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XThesaurus >     GetThes();
     static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XDictionaryList > GetDicList();
 
@@ -131,11 +127,7 @@ class LinguMgr
 public:
 
     static ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XSpellChecker1 > GetSpellChecker();
-    static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XHyphenator >    GetHyphenator();
-    static ::com::sun::star::uno::Reference<
-        ::com::sun::star::linguistic2::XThesaurus >     GetThesaurus();
     static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XDictionaryList > GetDictionaryList();
     static ::com::sun::star::uno::Reference<
