@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_column2.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -768,7 +768,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*?*/                       bAddMargin = FALSE;
 /*?*/                       //  nur nach rechts:
 /*?*/                       //! unterscheiden nach Ausrichtung oben/unten (nur Text/ganze Hoehe)
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         if ( pPattern->GetRotateDir( pCondSet ) == SC_ROTDIR_RIGHT )
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
 /*?*/                       nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
