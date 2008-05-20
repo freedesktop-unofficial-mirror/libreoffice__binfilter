@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -53,11 +53,8 @@ SLOFILES=\
     $(EXCEPTIONSFILES) \
     $(SLO)$/svt_adrparse.obj \
     $(SLO)$/svt_docpasswdrequest.obj \
-    $(SLO)$/svt_filenotation.obj \
     $(SLO)$/svt_inethist.obj \
     $(SLO)$/svt_inettype.obj \
-    $(SLO)$/svt_iniadrtk.obj \
-    $(SLO)$/svt_lngmisc.obj \
     $(SLO)$/svt_loginerr.obj \
     $(SLO)$/svt_PasswordHelper.obj
 
