@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lnkbase2.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,8 +50,6 @@ namespace binfilter
 {
 
 TYPEINIT0( SvBaseLink )
-
-static DdeTopic* FindTopic( const String &, USHORT* = 0 );
 
 class  ImplDdeItem;
 
@@ -120,20 +118,6 @@ public:
 |*    Beschreibung
 *************************************************************************/
 
-SvBaseLink::SvBaseLink()
-{
-    nObjType = OBJECT_CLIENT_SO;
-    pLinkMgr = 0;
-    pImplData = new ImplBaseLinkData;
-    bVisible = bSynchron = bUseCache = TRUE;
-}
-
-/************************************************************************
-|*    SvBaseLink::SvBaseLink()
-|*
-|*    Beschreibung
-*************************************************************************/
-
 SvBaseLink::SvBaseLink( USHORT nUpdateMode, ULONG nContentType )
 {
     nObjType = OBJECT_CLIENT_SO;
@@ -145,48 +129,6 @@ SvBaseLink::SvBaseLink( USHORT nUpdateMode, ULONG nContentType )
     pImplData->ClientType.nUpdateMode = nUpdateMode;
     pImplData->ClientType.nCntntType = nContentType;
     pImplData->ClientType.bIntrnlLnk = FALSE;
-}
-
-/************************************************************************
-|*    SvBaseLink::SvBaseLink()
-|*
-|*    Beschreibung
-*************************************************************************/
-
-SvBaseLink::SvBaseLink( const String& rLinkName, USHORT nObjectType,
-                        SvLinkSource* pObj )
-{
-    bVisible = bSynchron = bUseCache = TRUE;
-    aLinkName = rLinkName;
-    pImplData = new ImplBaseLinkData;
-    nObjType = nObjectType;
-
-    if( !pObj )
-    {
-        DBG_ASSERT( pObj, "Wo ist mein zu linkendes Object" );
-        return;
-    }
-
-    if( OBJECT_DDE_EXTERN == nObjType )
-    {
-        USHORT nItemStt = 0;
-        DdeTopic* pTopic = FindTopic( aLinkName, &nItemStt );
-        if( pTopic )
-        {
-            // dann haben wir alles zusammen
-            // MM hat gefummelt ???
-            // MM_TODO wie kriege ich den Namen
-            String aStr = aLinkName; // xLinkName->GetDisplayName();
-            aStr = aStr.Copy( nItemStt );
-            pImplData->DDEType.pItem = new ImplDdeItem( *this, aStr );
-            pTopic->InsertItem( pImplData->DDEType.pItem );
-
-            // dann koennen wir uns auch das Advise merken
-            xObj = pObj;
-        }
-    }
-    else if( pObj->Connect( this ) )
-        xObj = pObj;
 }
 
 /************************************************************************
@@ -233,32 +175,6 @@ void SvBaseLink::SetObjType( USHORT nObjTypeP )
 void SvBaseLink::SetName( const String & rNm )
 {
     aLinkName = rNm;
-}
-
-/************************************************************************
-|*    SvBaseLink::GetName()
-|*
-|*    Beschreibung
-*************************************************************************/
-
-String SvBaseLink::GetName() const
-{
-    return aLinkName;
-}
-
-/************************************************************************
-|*    SvBaseLink::SetObj()
-|*
-|*    Beschreibung
-*************************************************************************/
-
-void SvBaseLink::SetObj( SvLinkSource * pObj )
-{
-    DBG_ASSERT( (nObjType & OBJECT_CLIENT_SO &&
-                pImplData->ClientType.bIntrnlLnk) ||
-                nObjType == OBJECT_CLIENT_GRF,
-                "no intern link" )
-    xObj = pObj;
 }
 
 /************************************************************************
@@ -572,51 +488,6 @@ void ImplDdeItem::AdviseLoop( BOOL bOpen )
             aRef->Disconnect();
         }
     }
-}
-
-
-static DdeTopic* FindTopic( const String & rLinkName, USHORT* pItemStt )
-{
-    if( 0 == rLinkName.Len() )
-        return 0;
-
-    String sNm( rLinkName );
-    USHORT nTokenPos = 0;
-    String sService(
-        sNm.GetToken(
-            0, sal::static_int_cast< sal_Unicode >(cTokenSeperator),
-            nTokenPos ) );
-
-    DdeServices& rSvc = DdeService::GetServices();
-    for( DdeService* pService = rSvc.First(); pService;
-                                                pService = rSvc.Next() )
-        if( pService->GetName() == sService )
-        {
-            // dann suchen wir uns das Topic
-            String sTopic(
-                sNm.GetToken(
-                    0, sal::static_int_cast< sal_Unicode >(cTokenSeperator),
-                    nTokenPos ) );
-            if( pItemStt )
-                *pItemStt = nTokenPos;
-
-            DdeTopics& rTopics = pService->GetTopics();
-
-            for( int i = 0; i < 2; ++i )
-            {
-                for( DdeTopic* pTopic = rTopics.First(); pTopic;
-                                                pTopic = rTopics.Next() )
-                    if( pTopic->GetName() == sTopic )
-                        return pTopic;
-
-                // Topic nicht gefunden ?
-                // dann versuchen wir ihn mal anzulegen
-                if( i || !pService->MakeTopic( sTopic ) )
-                    break;  // hat nicht geklappt, also raus
-            }
-            break;
-        }
-    return 0;
 }
 
 }
