@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swmodul1.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -157,23 +157,6 @@ using namespace ::com::sun::star::view;
 using namespace ::com::sun::star::lang;
 #define C2U(char) ::rtl::OUString::createFromAscii(char)
 
-/*--------------------------------------------------------------------
-    Beschreibung:   Ueber Views iterieren - static
- --------------------------------------------------------------------*/
-
-/*N*/ SwView* SwModule::GetFirstView()
-/*N*/ {
-/*M*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return NULL;
-/*N*/ }
-
-
-/*N*/ SwView* SwModule::GetNextView(SwView* pView)
-/*N*/ {
-/*M*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return NULL;
-/*N*/ }
-
 /*------------------------------------------------------------------------
  Beschreibung:  Neuer Master fuer die Einstellungen wird gesetzt;
                 dieser wirkt sich auf die aktuelle Sicht und alle
@@ -305,34 +288,4 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
 /*N*/       GetUsrPref(sal_False);
 /*N*/   return (sal_uInt16)pUsrPref->GetFldUpdateFlags();
 /*N*/ }
-/* -----------------------------28.09.00 14:18--------------------------------
-
- ---------------------------------------------------------------------------*/
-/* -----------------------------28.09.00 14:18--------------------------------
-
- ---------------------------------------------------------------------------*/
-/* ---------------------------------------------------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ void SwModule::CheckSpellChanges( sal_Bool bOnlineSpelling,
-/*N*/       sal_Bool bIsSpellWrongAgain, sal_Bool bIsSpellAllAgain )
-/*N*/ {
-/*N*/   sal_Bool bOnlyWrong = bIsSpellWrongAgain && !bIsSpellAllAgain;
-/*N*/   sal_Bool bInvalid = bOnlyWrong || bIsSpellAllAgain;
-/*N*/   if( bOnlineSpelling || bInvalid )
-/*N*/   {
-/*N*/       TypeId aType = TYPE(SwDocShell);
-/*N*/       for( SwDocShell *pDocSh = (SwDocShell*)SfxObjectShell::GetFirst(&aType);
-/*N*/            pDocSh;
-/*N*/            pDocSh = (SwDocShell*)SfxObjectShell::GetNext( *pDocSh, &aType ) )
-/*N*/       {
-/*N*/           SwDoc* pTmp = pDocSh->GetDoc();
-/*N*/           if ( pTmp->GetRootFrm() )
-/*N*/               pTmp->SpellItAgainSam( bInvalid, bOnlyWrong );
-/*N*/       }
-/*N*/ //        pSpell->SetSpellWrongAgain( sal_False );
-/*N*/ //        pSpell->SetSpellAllAgain( sal_False );
-/*N*/   }
-/*N*/ }
-
 }
