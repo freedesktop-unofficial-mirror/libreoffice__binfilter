@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swlib.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -36,9 +36,6 @@
 #endif
 #ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _PARHTML_HXX //autogen
-#include <bf_svtools/parhtml.hxx>
 #endif
 
 #include <swdll0.hxx> // wird vom makefile generiert
