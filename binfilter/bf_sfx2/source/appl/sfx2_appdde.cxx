@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_appdde.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,7 +47,7 @@
 namespace binfilter {
 
 //========================================================================
-
+#ifdef DDE_AVAILABLE
 /*N*/ String SfxDdeServiceName_Impl( const String& sIn )
 /*N*/ {
 /*N*/   ByteString sTemp = U2S( sIn );
@@ -59,7 +59,7 @@ namespace binfilter {
 /*N*/
 /*N*/   return S2U( sReturn );
 /*N*/ }
-
+#endif
 
 class ImplDdeService : public DdeService
 {
@@ -183,7 +183,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 //========================================================================
-
+#ifdef DDE_AVAILABLE
 /*N*/ BOOL SfxApplication::InitializeDde()
 /*N*/ {
 /*N*/   DBG_ASSERT( !pAppData_Impl->pDdeService,
@@ -210,6 +210,7 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*N*/   }
 /*N*/   return !nError;
 /*N*/ }
+#endif
 
 /*N*/ void SfxAppData_Impl::DeInitDDE()
 /*N*/ {
@@ -229,13 +230,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*N*/   if( !pAppData_Impl->pDocTopics )
 /*N*/       return;
 /*N*/
-///*N*/     SfxDdeDocTopic_Impl* pTopic;
-///*N*/     for( USHORT n = pAppData_Impl->pDocTopics->Count(); n; )
-///*?*/         if( ( pTopic = (*pAppData_Impl->pDocTopics)[ --n ])->pSh == pSh )
-///*?*/         {
-///*?*/             pAppData_Impl->pDdeService->RemoveTopic( *pTopic );
-///*?*/             pAppData_Impl->pDocTopics->DeleteAndDestroy( n );
-///*?*/         }
 /*N*/ }
 
 
