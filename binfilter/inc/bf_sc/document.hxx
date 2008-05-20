@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: document.hxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -608,11 +608,6 @@ public:
                                     const String& aFileName,
                                     const String& aTabName );
 
-    BOOL            HasDdeLinks() const;
-    BOOL            HasAreaLinks() const;
-    void            UpdateDdeLinks();
-    void            UpdateAreaLinks();
-
                     // originating DDE links
     void            IncInDdeLinkUpdate() { if ( nInDdeLinkUpdate < 255 ) ++nInDdeLinkUpdate; }
     void            DecInDdeLinkUpdate() { if ( nInDdeLinkUpdate ) --nInDdeLinkUpdate; }
@@ -639,7 +634,6 @@ public:
     SfxBindings*    GetViewBindings();
     SfxObjectShell* GetDocumentShell() const    { return pShell; }
     ScDrawLayer*    GetDrawLayer()              { return pDrawLayer; }
-    void            BeginDrawUndo();
 
     BOOL            IsChart( SdrObject* pObject );
     void            UpdateAllCharts( BOOL bDoUpdate = TRUE );
@@ -648,11 +642,6 @@ public:
                                     USHORT nCol2, USHORT nRow2, USHORT nTab2,
                                     short nDx, short nDy, short nDz );
                     //! setzt nur die neue RangeList, keine ChartListener o.ae.
-
-    BOOL            HasControl( USHORT nTab, const Rectangle& rMMRect );
-
-
-    BOOL            HasBackgroundDraw( USHORT nTab, const Rectangle& rMMRect );
 
     ScOutlineTable* GetOutlineTable( USHORT nTab, BOOL bCreate = FALSE );
 
@@ -687,8 +676,6 @@ public:
                     /// number format of the formula cell is returned
     void            GetNumberFormatInfo( short& nType, ULONG& nIndex,
                         const ScAddress& rPos, const ScFormulaCell& rFCell ) const;
-    void            GetFormula( USHORT nCol, USHORT nRow, USHORT nTab, String& rFormula,
-                                BOOL bAsciiExport = FALSE ) const;
     BOOL            GetNote( USHORT nCol, USHORT nRow, USHORT nTab, ScPostIt& rNote);
     void            GetCellType( USHORT nCol, USHORT nRow, USHORT nTab, CellType& rCellType ) const;
     CellType        GetCellType( const ScAddress& rPos ) const;
@@ -843,15 +830,7 @@ public:
     void            GetClipArea(USHORT& nClipX, USHORT& nClipY, BOOL bIncludeFiltered);
 
 
-/*N*/   BOOL            IsClipboardSource() const;
-
-
-
-
-
     void            InitUndo( ScDocument* pSrcDoc, USHORT nTab1, USHORT nTab2,
-                                BOOL bColInfo = FALSE, BOOL bRowInfo = FALSE );
-    void            AddUndoTab( USHORT nTab1, USHORT nTab2,
                                 BOOL bColInfo = FALSE, BOOL bRowInfo = FALSE );
 
                     //  nicht mehr benutzen:
@@ -886,7 +865,6 @@ public:
 
     const SfxPoolItem*      GetAttr( USHORT nCol, USHORT nRow, USHORT nTab, USHORT nWhich ) const;
     const ScPatternAttr*    GetPattern( USHORT nCol, USHORT nRow, USHORT nTab ) const;
-    const ScPatternAttr*    GetSelectionPattern( const ScMarkData& rMark, BOOL bDeep = TRUE );
     ScPatternAttr*          CreateSelectionPattern( const ScMarkData& rMark, BOOL bDeep = TRUE );
 
     const ScConditionalFormat* GetCondFormat( USHORT nCol, USHORT nRow, USHORT nTab ) const;
@@ -948,7 +926,6 @@ public:
 
     void            ApplySelectionStyle( const ScStyleSheet& rStyle, const ScMarkData& rMark );
 
-    const ScStyleSheet* GetStyle( USHORT nCol, USHORT nRow, USHORT nTab ) const;
     const ScStyleSheet* GetSelectionStyle( const ScMarkData& rMark ) const;
 
     void            StyleSheetChanged( const SfxStyleSheetBase* pStyleSheet, BOOL bRemoved,
@@ -1039,9 +1016,6 @@ public:
     BOOL            UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, USHORT nTab, BOOL bShow );
     BOOL            UpdateOutlineRow( USHORT nStartRow, USHORT nEndRow, USHORT nTab, BOOL bShow );
 
-    void            StripHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2, USHORT nTab );
-    void            ExtendHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2, USHORT nTab );
-
     ScPatternAttr*      GetDefPattern() const;
     ScDocumentPool*     GetPool();
     ScStyleSheetPool*   GetStyleSheetPool() const;
@@ -1097,11 +1071,6 @@ public:
     friend SvStream& operator>>( SvStream& rStream, ScDocument& rDocument );
     friend SvStream& operator<<( SvStream& rStream, const ScDocument& rDocument );
 
-    USHORT          FillInfo( RowInfo* pRowInfo, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2,
-                        USHORT nTab, double nScaleX, double nScaleY,
-                        BOOL bPageMode, BOOL bFormulaMode,
-                        const ScMarkData* pMarkData = NULL );
-
     SvNumberFormatter*  GetFormatTable() const;
 
     void            Sort( USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery );
@@ -1109,8 +1078,6 @@ public:
     BOOL            CreateQueryParam( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                                         USHORT nTab, ScQueryParam& rQueryParam );
 
-
-    BOOL            HasAutoFilter( USHORT nCol, USHORT nRow, USHORT nTab );
 
     BOOL            HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                                     USHORT nTab );
@@ -1132,8 +1099,6 @@ public:
 
     BOOL            IsDetectiveDirty() const     { return bDetectiveDirty; }
     void            SetDetectiveDirty(BOOL bSet) { bDetectiveDirty = bSet; }
-
-    BOOL            SetVisibleSpellRange( const ScRange& rRange );  // TRUE = changed
 
     BYTE            GetMacroCallMode() const     { return nMacroCallMode; }
     void            SetMacroCallMode(BYTE nNew)  { nMacroCallMode = nNew; }
@@ -1187,9 +1152,6 @@ public:
 
 private:
     void                SetAutoFilterFlags();
-    void                FindMaxRotCol( USHORT nTab, RowInfo* pRowInfo, USHORT nArrCount,
-                                        USHORT nX1, USHORT nX2 ) const;
-
 
     DECL_LINK( TrackTimeHdl, Timer* );
 
