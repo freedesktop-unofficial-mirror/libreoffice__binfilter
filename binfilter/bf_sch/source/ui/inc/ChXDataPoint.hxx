@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ChXDataPoint.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,7 +80,6 @@ public:
     sal_Int32 GetRow() const        { return mnRow; }
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
-    static ChXDataPoint* getImplementation( ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ) throw();
 
     // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId()
