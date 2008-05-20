@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: rectitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,7 +61,6 @@ public:
                              TYPEINFO();
                              SfxRectangleItem();
                              SfxRectangleItem( USHORT nWhich, const Rectangle& rVal );
-                             SfxRectangleItem( USHORT nWhich, SvStream & );
                              SfxRectangleItem( const SfxRectangleItem& );
                              ~SfxRectangleItem() {
                                  DBG_DTOR(SfxRectangleItem, 0); }
