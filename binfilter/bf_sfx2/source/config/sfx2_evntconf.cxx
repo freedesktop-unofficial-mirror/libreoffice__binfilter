@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_evntconf.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -144,49 +144,6 @@ static const USHORT nVersion = 5;
 
 //==========================================================================
 
-/*?*/ String SfxEventConfiguration::GetEventName(USHORT nId) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return String();//STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ USHORT SfxEventConfiguration::GetEventId(const String& rName) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/     return SFX_NO_EVENT;
-/*?*/ }
-
-/*N*/ void SfxEventConfiguration::ConfigureEvent( USHORT nId, const SvxMacro& rMacro, SfxObjectShell *pDoc )
-/*N*/ {
-/*N*/     if ( bIgnoreConfigure )
-/*N*/         return;
-/*?*/
-/*?*/     SvxMacro *pMacro = NULL;
-/*?*/     if ( rMacro.GetMacName().Len() )
-/*?*/         pMacro = new SvxMacro( rMacro.GetMacName(), rMacro.GetLibName(), rMacro.GetScriptType() );
-/*?*/     if ( pDoc )
-/*?*/         PropagateEvent_Impl( pDoc, nId, pMacro );
-/*N*/ }
-
-//==========================================================================
-
-/*?*/ const SvxMacro* SfxEventConfiguration::GetMacroForEventId
-/*?*/ (
-/*?*/     USHORT          nId,
-/*?*/     SfxObjectShell* pDoc
-/*?*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-/*?*/ const SfxMacroInfo* SfxEventConfiguration::GetMacroInfo
-/*?*/ (
-/*?*/     USHORT          nId,
-/*?*/     SfxObjectShell* pDoc
-/*?*/ ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//==========================================================================
-
 /*N*/ SfxEventConfigItem_Impl::SfxEventConfigItem_Impl( USHORT nConfigId,
 /*N*/     SfxEventConfiguration *pCfg,
 /*N*/     SfxObjectShell *pObjSh)
@@ -268,20 +225,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     return SfxConfigItem::ERR_OK;
 /*N*/ }
 
-/*?*/ BOOL SfxEventConfigItem_Impl::LoadXML( SvStream& rInStream )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ BOOL SfxEventConfigItem_Impl::Store(SvStream& rStream)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-/*?*/ BOOL SfxEventConfigItem_Impl::StoreXML( SvStream& rOutStream )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
 //==========================================================================
 
 /*?*/ String SfxEventConfigItem_Impl::GetStreamName() const
@@ -331,27 +274,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/         aMacroTable.Insert( nId, pMacro );
 /*N*/     SetDefault(FALSE);
 /*N*/ }
-
-/*?*/ void SfxEventConfiguration::AddEvents( SfxMacroTabPage* pPage ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*N*/ SvxMacroTableDtor* SfxEventConfiguration::GetDocEventTable( SfxObjectShell*pDoc )
-/*N*/ {
-/*N*/     pDocEventConfig = pDoc ? pDoc->GetEventConfig_Impl() : NULL;
-/*N*/     if ( pDocEventConfig )
-/*N*/         return &pDocEventConfig->aMacroTable;
-/*?*/     return NULL;
-/*N*/ }
-
-/*?*/ void SfxEventConfiguration::SetAppEventTable( const SvxMacroTableDtor& rTable )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ void SfxEventConfiguration::SetDocEventTable( SfxObjectShell *pDoc,
-/*?*/     const SvxMacroTableDtor& rTable )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
 
 //--------------------------------------------------------------------------
 /*N*/ void SfxEventConfiguration::PropagateEvents_Impl( SfxObjectShell *pDoc,
@@ -433,13 +355,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ }
 
 //--------------------------------------------------------------------------
-/*?*/ void SfxEventConfiguration::PropagateEvent_Impl( SfxObjectShell *pDoc,
-/*?*/                                                  USHORT nId,
-/*?*/                                                  const SvxMacro* pMacro )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
 
-// -------------------------------------------------------------------------------------------------------
 /*N*/ ANY SfxEventConfiguration::CreateEventData_Impl( const SvxMacro *pMacro )
 /*N*/ {
 /*
@@ -448,9 +364,6 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
     values for EventType ar StarBasic, JavaScript, ...
     The Script property should contain the URL to the macro and looks
     like "macro://./standard.module1.main()"
-
-    If pMacro is NULL, we return an empty property sequence, so PropagateEvent_Impl
-    can delete an event binding.
 */
 /*N*/     ANY aEventData;
 /*N*/
