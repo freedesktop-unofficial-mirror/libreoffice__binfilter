@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_vnew.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -163,124 +163,6 @@ namespace binfilter {
 /*N*/       GetDoc()->SetRootFrm( pRoot = new SwRootFrm( pDoc->GetDfltFrmFmt(), this ) );
 /*N*/
 /*N*/   SizeChgNotify( pRoot->Frm().SSize() );
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  ViewShell::ViewShell()  CTor fuer die erste Shell.
-|*
-|*  Letzte Aenderung    MA 29. Aug. 95
-|*
-|*************************************************************************/
-
-/*N*/ ViewShell::ViewShell( SwDoc& rDocument, Window *pWindow,
-/*N*/                       const SwViewOption *pNewOpt, OutputDevice *pOutput,
-/*N*/                       long nFlags )
-/*N*/   : pDoc( &rDocument ),
-/*N*/   pOpt( 0 ),
-/*N*/     pAccOptions( new SwAccessibilityOptions ),
-/*N*/   pWin( pWindow ),
-/*N*/   pOut( pOutput ? pOutput
-/*N*/                 : pWindow ? (OutputDevice*)pWindow
-/*N*/                           : (OutputDevice*)rDocument.GetPrt(TRUE)),
-/*N*/     mpTmpRef( 0 ),
-/*N*/   nStartAction( 0 ),
-/*N*/   nLockPaint( 0 ),
-/*N*/   pSfxViewShell( 0 ),
-/*N*/   pImp( new SwViewImp( this ) ),
-/*N*/   aBrowseBorder()
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "ViewShell::SwViewShell" );
-/*N*/
-/*N*/   bPaintInProgress = bViewLocked = bInEndAction = bFrameView =
-/*N*/   bEndActionByVirDev = FALSE;
-/*N*/   bPaintWorks = bEnableSmooth = TRUE;
-/*N*/   bPreView = 0 !=( VSHELLFLAG_ISPREVIEW & nFlags );
-/*N*/
-/*N*/   pDoc->AddLink();
-/*N*/   pOutput = pOut;
-/*N*/   Init( pNewOpt );    //verstellt ggf. das Outdev (InitPrt())
-/*N*/   pOut = pOutput;
-/*N*/
-/*N*/     // OD 28.03.2003 #108470# - initialize print preview layout after layout
-/*N*/     // is created in <ViewShell::Init(..)> - called above.
-/*N*/     if ( bPreView )
-/*N*/     {
-/*N*/         // OD 12.12.2002 #103492# - init page preview layout
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->InitPagePreviewLayout();
-/*N*/     }
-/*N*/
-/*N*/   SET_CURR_SHELL( this );
-/*N*/
-/*N*/   ((SwHiddenTxtFieldType*)pDoc->GetSysFldType( RES_HIDDENTXTFLD ))->
-/*N*/       SetHiddenFlag( !pOpt->IsHidden() );
-/*N*/
-/*N*/   //In Init wird ein Standard-FrmFmt angelegt.
-/*N*/   if( !pDoc->IsUndoNoResetModified() )
-/*N*/       pDoc->ResetModified();
-/*N*/
-/*N*/   //Format-Cache erweitern.
-/*N*/   if ( SwTxtFrm::GetTxtCache()->GetCurMax() < 2550 )
-/*N*/       SwTxtFrm::GetTxtCache()->IncreaseMax( 100 );
-/*N*/   if( GetDoc()->GetDrawModel() || pOpt->IsGridVisible() )
-/*N*/       Imp()->MakeDrawView();
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  ViewShell::ViewShell()  CTor fuer weitere Shells auf ein Dokument.
-|*
-|*  Letzte Aenderung    MA 29. Aug. 95
-|*
-|*************************************************************************/
-
-/*N*/ ViewShell::ViewShell( ViewShell& rShell, Window *pWindow,
-/*N*/                       OutputDevice *pOutput, long nFlags ) :
-/*N*/   Ring( &rShell ),
-/*N*/   pDoc( rShell.GetDoc() ),
-/*N*/   pWin( pWindow ),
-/*N*/   pOut( pOutput ? pOutput
-/*N*/                 : pWindow ? (OutputDevice*)pWindow
-/*N*/                           : (OutputDevice*)rShell.GetDoc()->GetPrt(TRUE)),
-/*N*/     mpTmpRef( 0 ),
-/*N*/   pOpt( 0 ),
-/*N*/     pAccOptions( new SwAccessibilityOptions ),
-/*N*/     nStartAction( 0 ),
-/*N*/   nLockPaint( 0 ),
-/*N*/   pSfxViewShell( 0 ),
-/*N*/   pImp( new SwViewImp( this ) ),
-/*N*/   aBrowseBorder( rShell.GetBrowseBorder() )
-/*N*/ {
-/*N*/     RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "ViewShell::SwViewShell" );
-/*N*/   bPaintWorks = bEnableSmooth = TRUE;
-/*N*/   bPaintInProgress = bViewLocked = bInEndAction = bFrameView =
-/*N*/   bEndActionByVirDev = FALSE;
-/*N*/   bPreView = 0 !=( VSHELLFLAG_ISPREVIEW & nFlags );
-/*N*/     // OD 12.12.2002 #103492#
-/*N*/     if ( bPreView )
-/*?*/        {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pImp->InitPagePreviewLayout();
-/*N*/
-/*N*/   SET_CURR_SHELL( this );
-/*N*/
-/*N*/   pDoc->AddLink();
-/*N*/   BOOL bModified = pDoc->IsModified();
-/*N*/
-/*N*/   pOutput = pOut;
-/*N*/   Init( rShell.GetViewOptions() );    //verstellt ggf. das Outdev (InitPrt())
-/*N*/   pOut = pOutput;
-/*N*/
-/*N*/   ((SwHiddenTxtFieldType*)pDoc->GetSysFldType( RES_HIDDENTXTFLD ))->
-/*N*/           SetHiddenFlag( !pOpt->IsHidden() );
-/*N*/
-/*N*/   // in Init wird ein Standard-FrmFmt angelegt
-/*N*/   if( !bModified && !pDoc->IsUndoNoResetModified() )
-/*N*/       pDoc->ResetModified();
-/*N*/
-/*N*/   //Format-Cache erweitern.
-/*N*/   if ( SwTxtFrm::GetTxtCache()->GetCurMax() < 2550 )
-/*N*/       SwTxtFrm::GetTxtCache()->IncreaseMax( 100 );
-/*N*/   if( GetDoc()->GetDrawModel() || pOpt->IsGridVisible() )
-/*N*/       Imp()->MakeDrawView();
 /*N*/ }
 
 /******************************************************************************
