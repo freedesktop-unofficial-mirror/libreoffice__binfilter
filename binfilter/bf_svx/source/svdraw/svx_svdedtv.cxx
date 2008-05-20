@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdedtv.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -108,12 +108,6 @@ namespace binfilter {
 /*N*/   ImpClearVars();
 /*N*/ }
 
-/*?*/ SdrEditView::SdrEditView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrMarkView(pModel1,pXOut)
-/*?*/ {
-/*?*/   ImpClearVars();
-/*?*/ }
-
 /*N*/ SdrEditView::~SdrEditView()
 /*N*/ {
 /*N*/ }
@@ -122,16 +116,6 @@ namespace binfilter {
 
 } //namespace binfilter
 namespace binfilter {//STRIP009
-
-
-/*N*/ void SdrEditView::DeleteLayer(const XubString& rName)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -154,46 +138,6 @@ namespace binfilter {//STRIP009
 /*N*/   SdrMarkView::ModelHasChanged();
 /*N*/   bPossibilitiesDirty=TRUE;
 /*N*/ }
-
-
-
-/*N*/ BOOL SdrEditView::IsMirrorAllowed(BOOL b45Deg, BOOL b90Deg) const
-/*N*/ {
-/*N*/   ForcePossibilities();
-/*N*/   if (bMoveProtect) return FALSE;
-/*N*/   if (b90Deg) return bMirror90Allowed;
-/*N*/   if (b45Deg) return bMirror45Allowed;
-/*N*/   return bMirrorFreeAllowed && !bMoveProtect;
-/*N*/ }
-
-/*N*/ BOOL SdrEditView::IsTransparenceAllowed() const
-/*N*/ {
-/*N*/   ForcePossibilities();
-/*N*/   return bTransparenceAllowed;
-/*N*/ }
-/*N*/
-/*N*/ BOOL SdrEditView::IsGradientAllowed() const
-/*N*/ {
-/*N*/   ForcePossibilities();
-/*N*/   return bGradientAllowed;
-/*N*/ }
-
-
-
-/*N*/ BOOL SdrEditView::IsCrookAllowed(BOOL bNoContortion) const
-/*N*/ {
-/*N*/   // CrookMode fehlt hier (weil kein Rotate bei Shear ...)
-/*N*/   ForcePossibilities();
-/*N*/   if (bNoContortion) {
-/*?*/       if (!bRotateFreeAllowed) return FALSE; // Crook is nich
-/*?*/       return !bMoveProtect && bMoveAllowed;
-/*N*/   } else {
-/*N*/       return !bResizeProtect && bContortionPossible;
-/*N*/   }
-/*N*/ }
-
-
-
 
 /*N*/ void SdrEditView::CheckPossibilities()
 /*N*/ {
