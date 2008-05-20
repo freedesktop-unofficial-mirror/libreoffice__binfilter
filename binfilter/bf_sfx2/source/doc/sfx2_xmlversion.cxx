@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_xmlversion.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -97,80 +97,6 @@ using namespace ::rtl;
 
 sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 
-// ------------------------------------------------------------------------
-// #110680#
-/*?*/ SfxXMLVersListExport_Impl::SfxXMLVersListExport_Impl(
-/*?*/   const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-/*?*/   const SfxVersionTableDtor *pVersions,
-/*?*/     const OUString &rFileName,
-/*?*/     Reference< XDocumentHandler > &rHandler )
-/*?*/ : mpVersions( pVersions ),
-/*?*/     SvXMLExport( xServiceFactory, rFileName, rHandler )
-/*?*/ {
-/*?*/
-/*?*/     _GetNamespaceMap().AddAtIndex( XML_NAMESPACE_DC_IDX, sXML_np_dc,
-/*?*/                                    sXML_n_dc, XML_NAMESPACE_DC );
-/*?*/     _GetNamespaceMap().AddAtIndex( XML_NAMESPACE_FRAMEWORK_IDX, sXML_np_versions_list,
-/*?*/                                    sXML_n_versions_list, XML_NAMESPACE_FRAMEWORK );
-/*?*/ }
-
-// ------------------------------------------------------------------------
-/*?*/ sal_uInt32 SfxXMLVersListExport_Impl::exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass )
-/*?*/ {
-/*?*/     GetDocHandler()->startDocument();
-/*?*/
-/*?*/     sal_uInt16 nPos = _GetNamespaceMap().GetIndexByKey( XML_NAMESPACE_DC );
-/*?*/
-/*?*/     AddAttribute( XML_NAMESPACE_NONE, _GetNamespaceMap().GetAttrNameByIndex( nPos ),
-/*?*/                              _GetNamespaceMap().GetNameByIndex ( nPos ) );
-/*?*/
-/*?*/     nPos = _GetNamespaceMap().GetIndexByKey( XML_NAMESPACE_FRAMEWORK );
-/*?*/     AddAttribute( XML_NAMESPACE_NONE, _GetNamespaceMap().GetAttrNameByIndex( nPos ),
-/*?*/                              _GetNamespaceMap().GetNameByIndex ( nPos ) );
-/*?*/
-/*?*/     {
-/*?*/         // the following object will write all collected attributes in its dtor
-/*?*/         SvXMLElementExport aRoot( *this, XML_NAMESPACE_FRAMEWORK, sXML_version_list, sal_True, sal_True );
-/*?*/
-/*?*/         sal_uInt32 n=0;
-/*?*/         SfxVersionInfo* pInfo = mpVersions->GetObject(n++);
-/*?*/         while( pInfo )
-/*?*/         {
-/*?*/             AddAttribute( XML_NAMESPACE_FRAMEWORK,
-/*?*/                           sXML_title,
-/*?*/                           OUString( pInfo->aName ) );
-/*?*/             AddAttribute( XML_NAMESPACE_FRAMEWORK,
-/*?*/                           sXML_comment,
-/*?*/                           OUString( pInfo->aComment ) );
-/*?*/             AddAttribute( XML_NAMESPACE_FRAMEWORK,
-/*?*/                           sXML_creator,
-/*?*/                           OUString( pInfo->aCreateStamp.GetName() ) );
-/*?*/
-/*?*/             DateTime aDT = pInfo->aCreateStamp.GetTime();
-/*?*/             ::com::sun::star::util::DateTime aDate( aDT.Get100Sec(),
-/*?*/                                                     aDT.GetSec(),
-/*?*/                                                     aDT.GetMin(),
-/*?*/                                                     aDT.GetHour(),
-/*?*/                                                     aDT.GetDay(),
-/*?*/                                                     aDT.GetMonth(),
-/*?*/                                                     aDT.GetYear() );
-/*?*/
-/*?*/             OUString aDateStr = SfxXMLMetaExport::GetISODateTimeString( aDate );
-/*?*/
-/*?*/             AddAttribute( XML_NAMESPACE_DC, sXML_date_time, aDateStr );
-/*?*/
-/*?*/             pInfo = mpVersions->GetObject(n++);
-/*?*/
-/*?*/             // the following object will write all collected attributes in its dtor
-/*?*/             SvXMLElementExport aEntry( *this, XML_NAMESPACE_FRAMEWORK, sXML_version_entry, sal_True, sal_True );
-/*?*/
-/*?*/         }
-/*?*/     }
-/*?*/     GetDocHandler()->endDocument();
-/*?*/     return 0;
-/*?*/ }
-
-// ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
 
 // #110680#
@@ -399,61 +325,6 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/                               Time( nHour, nMin, nSec ) );
 /*?*/
 /*?*/     return bSuccess;
-/*?*/ }
-
-
-// ------------------------------------------------------------------------
-// ------------------------------------------------------------------------
-/*?*/ void SfxXMLVersList_Impl::WriteInfo( SvStorageRef xRoot, const SfxVersionTableDtor *pList )
-/*?*/ {
-/*?*/     // no storage, no version list!
-/*?*/     if ( xRoot.Is() )
-/*?*/     {
-/*?*/         // get the services needed for writing the xml data
-/*?*/         Reference< lang::XMultiServiceFactory > xServiceFactory =
-/*?*/                 ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*?*/         DBG_ASSERT( xServiceFactory.is(), "XMLReader::Read: got no service manager" );
-/*?*/
-/*?*/         Reference< XInterface > xWriter (xServiceFactory->createInstance(
-/*?*/                 OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer"))));
-/*?*/         DBG_ASSERT( xWriter.is(), "com.sun.star.xml.sax.Writer service missing" );
-/*?*/
-/*?*/         // check wether there's already a sub storage with the version info
-/*?*/         // and delete it
-/*?*/         OUString sVerName( RTL_CONSTASCII_USTRINGPARAM( XMLN_VERSIONSLIST ) );
-/*?*/
-/*?*/         // is this really needed, we set the size to zero before doing
-/*?*/         // anything with this stream?
-/*      if ( xRoot->IsContained( sVerName ) )
-        {
-            xRoot->Remove( sVerName );
-            xRoot->Commit();
-        }
-*/
-        // open (create) the sub storage with the version info
-/*?*/         SvStorageStreamRef xVerStream = xRoot->OpenStream( sVerName, STREAM_WRITE | STREAM_TRUNC );
-/*?*/
-/*?*/         // SetSize should not be neccessary because OpenStream( WRITE|TRUNC ) should already
-/*?*/         // have set the size to zero
-/*?*/ //      xVerStream->SetSize ( 0L );
-/*?*/         xVerStream->SetBufferSize( 16*1024 );
-/*?*/
-/*?*/         Reference< io::XOutputStream > xOut = new ::utl::OOutputStreamWrapper( *xVerStream );
-/*?*/         Reference< io::XActiveDataSource > xSrc( xWriter, uno::UNO_QUERY );
-/*?*/         xSrc->setOutputStream(xOut);
-/*?*/
-/*?*/         Reference< XDocumentHandler > xHandler( xWriter, uno::UNO_QUERY );
-/*?*/
-/*?*/       // #110680#
-/*?*/         // SfxXMLVersListExport_Impl aExp( pList, sVerName, xHandler );
-/*?*/         SfxXMLVersListExport_Impl aExp( xServiceFactory, pList, sVerName, xHandler );
-/*?*/
-/*?*/         aExp.exportDoc( ::binfilter::xmloff::token::XML_VERSION );
-/*?*/
-/*?*/         xVerStream->Commit();
-/*?*/         xVerStream.Clear();
-/*?*/ //      xRoot->Commit();
-/*?*/     }
 /*?*/ }
 
 // ------------------------------------------------------------------------
