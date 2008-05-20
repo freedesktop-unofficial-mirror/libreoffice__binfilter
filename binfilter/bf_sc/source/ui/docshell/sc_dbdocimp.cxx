@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_dbdocimp.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,103 +93,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 #define SC_DBPROP_COMMANDTYPE       "CommandType"
 #define SC_DBPROP_SELECTION         "Selection"
 #define SC_DBPROP_CURSOR            "Cursor"
-
-// -----------------------------------------------------------------
-
-// static
-
-// -----------------------------------------------------------------
-
-/*M*/ BOOL ScDBDocFunc::DoImportUno( const ScAddress& rPos,
-/*M*/                               const uno::Sequence<beans::PropertyValue>& aArgs )
-/*M*/ {
-/*M*/   BOOL bDone = FALSE;
-/*M*/
-/*M*/   ScImportParam aImParam;
-/*M*/   aImParam.nCol1 = aImParam.nCol2 = rPos.Col();
-/*M*/   aImParam.nRow1 = aImParam.nRow2 = rPos.Row();
-/*M*/   aImParam.bImport = TRUE;
-/*M*/
-/*M*/   uno::Reference<sdbc::XResultSet> xResSet;
-/*M*/   uno::Sequence<uno::Any> aSelection;
-/*M*/
-/*M*/   ::rtl::OUString aStrVal;
-/*M*/   const beans::PropertyValue* pPropArray = aArgs.getConstArray();
-/*M*/   long nPropCount = aArgs.getLength();
-/*M*/   long i;
-/*M*/   for (i = 0; i < nPropCount; i++)
-/*M*/   {
-/*M*/       const beans::PropertyValue& rProp = pPropArray[i];
-/*M*/       String aPropName = rProp.Name;
-/*M*/
-/*M*/       if ( aPropName.EqualsAscii( SC_DBPROP_DATASOURCENAME ))
-/*M*/       {
-/*M*/           if ( rProp.Value >>= aStrVal )
-/*M*/               aImParam.aDBName = aStrVal;
-/*M*/       }
-/*M*/       else if ( aPropName.EqualsAscii( SC_DBPROP_COMMAND ))
-/*M*/       {
-/*M*/           if ( rProp.Value >>= aStrVal )
-/*M*/               aImParam.aStatement = aStrVal;
-/*M*/       }
-/*M*/       else if ( aPropName.EqualsAscii( SC_DBPROP_COMMANDTYPE ))
-/*M*/       {
-/*M*/           sal_Int32 nType;
-/*M*/           if ( rProp.Value >>= nType )
-/*M*/           {
-/*M*/               aImParam.bSql = ( nType == sdb::CommandType::COMMAND );
-/*M*/               aImParam.nType = ( nType == sdb::CommandType::QUERY ) ? ScDbQuery : ScDbTable;
-/*M*/               // nType is ignored if bSql is set
-/*M*/           }
-/*M*/       }
-/*M*/       else if ( aPropName.EqualsAscii( SC_DBPROP_SELECTION ))
-/*M*/       {
-/*M*/           rProp.Value >>= aSelection;
-/*M*/       }
-/*M*/       else if ( aPropName.EqualsAscii( SC_DBPROP_CURSOR ))
-/*M*/       {
-/*M*/           rProp.Value >>= xResSet;
-/*M*/       }
-/*M*/   }
-/*M*/
-/*M*/   SbaSelectionList aList;
-/*M*/   long nSelLen = aSelection.getLength();
-/*M*/   for (i = 0; i < nSelLen; i++)
-/*M*/   {
-/*M*/       sal_Int32 nEntry;
-/*M*/       if ( aSelection[i] >>= nEntry )
-/*M*/           aList.Insert( (void*)nEntry, LIST_APPEND );
-/*M*/   }
-/*M*/
-/*M*/   BOOL bAddrInsert = FALSE;       //!???
-/*M*/   if ( bAddrInsert )
-/*M*/   {
-/*M*/       bDone = DoImport( rPos.Tab(), aImParam, xResSet, &aList, TRUE, bAddrInsert );
-/*M*/   }
-/*M*/   else
-/*M*/   {
-/*M*/       //  create database range
-/*M*/       //! merge this with SID_SBA_IMPORT execute in docsh4.cxx
-/*M*/
-/*M*/       ScDBData* pDBData = rDocShell.GetDBData( ScRange(rPos), SC_DB_IMPORT, FALSE );
-/*M*/       DBG_ASSERT(pDBData, "can't create DB data");
-/*M*/       String sTarget = pDBData->GetName();
-/*M*/
-/*M*/       //! change UpdateImport to use only one of rTableName, rStatement
-/*M*/
-/*M*/       String aTableName, aStatement;
-/*M*/       if ( aImParam.bSql )
-/*M*/           aStatement = aImParam.aStatement;
-/*M*/       else
-/*M*/           aTableName = aImParam.aStatement;
-/*M*/
-/*M*/         UpdateImport( sTarget, aImParam.aDBName, aTableName, aStatement,
-/*M*/                 aImParam.bNative, aImParam.nType, xResSet, &aList );
-/*M*/       bDone = TRUE;
-/*M*/   }
-/*M*/
-/*M*/   return bDone;
-/*M*/ }
 
 // -----------------------------------------------------------------
 
