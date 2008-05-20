@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: goodies_vector3d.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -203,27 +203,6 @@ void Vector3D::CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2)
         else
         {
             V[i] = (rOld1[i] + rOld2[i]) / 2.0;
-        }
-    }
-}
-
-/*************************************************************************
-|*
-|* Neue Position in der Mitte der drei Vektoren berechnen
-|*
-\************************************************************************/
-
-void Vector3D::CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2, Vector3D& rOld3)
-{
-    for(UINT16 i=0;i<3;i++)
-    {
-        if(rOld3[i] == rOld2[i] && rOld2[i] == rOld1[i])
-        {
-            V[i] = rOld1[i];
-        }
-        else
-        {
-            V[i] = (rOld1[i] + rOld2[i] + rOld3[i]) / 3.0;
         }
     }
 }
