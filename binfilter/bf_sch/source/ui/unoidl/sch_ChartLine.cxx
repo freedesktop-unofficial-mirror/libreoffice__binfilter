@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_ChartLine.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -121,14 +121,5 @@ const uno::Sequence< sal_Int8 > & ChartLine::getUnoTunnelId() throw()
         }
     }
     return *pSeq;
-}
-
-ChartLine* ChartLine::getImplementation( uno::Reference< uno::XInterface > xData ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xData, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (ChartLine*)xUT->getSomething( ChartLine::getUnoTunnelId() );
-    else
-        return NULL;
 }
 }
