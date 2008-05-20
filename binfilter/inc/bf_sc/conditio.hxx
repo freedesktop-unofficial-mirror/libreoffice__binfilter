@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: conditio.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -117,9 +117,6 @@ public:
                                 const String& rExpr1, const String& rExpr2,
                                 ScDocument* pDocument, const ScAddress& rPos,
                                 BOOL bCompileEnglish, BOOL bCompileXML );
-            ScConditionEntry( ScConditionMode eOper,
-                                const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-                                ScDocument* pDocument, const ScAddress& rPos );
             ScConditionEntry( const ScConditionEntry& r );  // flache Kopie der Formeln
             // echte Kopie der Formeln (fuer Ref-Undo):
             ScConditionEntry( ScDocument* pDocument, const ScConditionEntry& r );
@@ -167,10 +164,6 @@ public:
                                 ScDocument* pDocument, const ScAddress& rPos,
                                 const String& rStyle,
                                 BOOL bCompileEnglish = FALSE, BOOL bCompileXML = FALSE );
-            ScCondFormatEntry( ScConditionMode eOper,
-                                const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-                                ScDocument* pDocument, const ScAddress& rPos,
-                                const String& rStyle );
             ScCondFormatEntry( const ScCondFormatEntry& r );
             ScCondFormatEntry( ScDocument* pDocument, const ScCondFormatEntry& r );
             ScCondFormatEntry( SvStream& rStream, ScMultipleReadHeader& rHdr,
@@ -260,7 +253,6 @@ class ScConditionalFormatList : public ScConditionalFormats_Impl
 public:
         ScConditionalFormatList() {}
         ScConditionalFormatList(const ScConditionalFormatList& rList);
-        ScConditionalFormatList(ScDocument* pNewDoc, const ScConditionalFormatList& rList);
         ~ScConditionalFormatList() {}
 
     void    InsertNew( ScConditionalFormat* pNew )
