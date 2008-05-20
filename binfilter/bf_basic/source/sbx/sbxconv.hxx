@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxconv.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,9 +49,6 @@ extern void ImpCvtNum( double nNum, short nPrec, String& rRes, BOOL bCoreString=
 extern SbxError ImpScan
     ( const String& rSrc, double& nVal, SbxDataType& rType, USHORT* pLen,
       BOOL bAllowIntntl=FALSE, BOOL bOnlyIntntl=FALSE );
-
-// mit erweiterter Auswertung (International, "TRUE"/"FALSE")
-extern BOOL ImpConvStringExt( String& rSrc, SbxDataType eTargetType );
 
 // SBXINT.CXX
 
