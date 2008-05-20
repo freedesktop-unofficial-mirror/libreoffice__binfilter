@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: listeneriter.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,18 +67,10 @@ public:
           SvtBroadcaster& GetBroadcaster()          { return rRoot; }
 
     SvtListener* GoNext();          // to the next
-    SvtListener* GoPrev();          // to the previous
 
     SvtListener* GoStart();         // to the start of the list
-    SvtListener* GoEnd();           // to the end of the list
-
-    SvtListener* GoRoot();          // to the root
-    SvtListener* GetCurr() const;   // returns the current
 
     int IsChanged() const       { return pDelNext != pAkt; }
-
-    SvtListener* First( TypeId nType );
-    SvtListener* Next();
 };
 
 }
