@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_bitset.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -258,28 +258,6 @@ namespace binfilter {
 /*N*/   return *this;
 /*N*/ }
 
-//--------------------------------------------------------------------
-
-// determines if the bit is set (may be the only one)
-
-/*N*/ BOOL BitSet::Contains( USHORT nBit ) const
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   USHORT nBlock = nBit / 32;
-/*N*/   ULONG nBitVal = 1L << (nBit % 32);
-/*N*/
-/*N*/   if ( nBlock >= nBlocks )
-/*N*/       return FALSE;
-/*N*/   return ( nBitVal & *(pBitmap+nBlock) ) == nBitVal;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-// determines if the bitsets are equal
-
-
-//--------------------------------------------------------------------
-
 // counts the number of 1-bits in the parameter
 
 /*N*/ USHORT BitSet::CountBits( ULONG nBits )
@@ -293,20 +271,5 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return nCount;
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ USHORT IndexBitSet::GetFreeIndex()
-/*N*/ {
-/*N*/   for(USHORT i=0;i<USHRT_MAX;i++)
-/*N*/   if(!Contains(i))
-/*N*/     {
-/*N*/       *this|=i;
-/*N*/       return i;
-/*N*/     }
-/*N*/   DBG_ASSERT(FALSE, "IndexBitSet enthaelt mehr als USHRT_MAX Eintraege");
-/*N*/   return 0;
-/*N*/ }
-
 
 }
