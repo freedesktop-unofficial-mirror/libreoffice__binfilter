@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_extendedsecurityoptions.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -177,29 +177,6 @@ class SvtExtendedSecurityOptions_Impl : public ConfigItem
 
         virtual void Commit();
 
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      Access method to check for security problems
-            @descr      Different methods to check for security related problems.
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_Bool                                        IsSecureHyperlink( const rtl::OUString& aURL ) const;
-        Sequence< rtl::OUString >                       GetSecureExtensionList() const;
-
-        SvtExtendedSecurityOptions::OpenHyperlinkMode   GetOpenHyperlinkMode();
-        void                                            SetOpenHyperlinkMode( SvtExtendedSecurityOptions::OpenHyperlinkMode aMode );
-        sal_Bool                                        IsOpenHyperlinkModeReadOnly() const;
-
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------
@@ -347,64 +324,6 @@ void SvtExtendedSecurityOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtExtendedSecurityOptions_Impl::IsSecureHyperlink( const OUString& aURL ) const
-{
-    INetURLObject aURLObject( aURL );
-
-    String aExtension = aURLObject.getExtension();
-    aExtension.ToLowerAscii();
-
-    ExtensionHashMap::const_iterator pIter = m_aExtensionHashMap.find( aExtension );
-    if ( pIter != m_aExtensionHashMap.end() )
-        return sal_True;
-    else
-        return sal_False;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< OUString > SvtExtendedSecurityOptions_Impl::GetSecureExtensionList() const
-{
-    Sequence< OUString > aResult( m_aExtensionHashMap.size() );
-
-    sal_Int32 nIndex = 0;
-    for ( ExtensionHashMap::const_iterator pIter = m_aExtensionHashMap.begin();
-            pIter != m_aExtensionHashMap.end(); pIter++ )
-    {
-        aResult[nIndex++] = pIter->first;
-    }
-
-    return aResult;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-SvtExtendedSecurityOptions::OpenHyperlinkMode SvtExtendedSecurityOptions_Impl::GetOpenHyperlinkMode()
-{
-    return m_eOpenHyperlinkMode;
-}
-/* -----------------09.07.2003 11:26-----------------
-
- --------------------------------------------------*/
-sal_Bool SvtExtendedSecurityOptions_Impl::IsOpenHyperlinkModeReadOnly() const
-{
-    return m_bROOpenHyperlinkMode;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtExtendedSecurityOptions_Impl::SetOpenHyperlinkMode( SvtExtendedSecurityOptions::OpenHyperlinkMode eNewMode )
-{
-    m_eOpenHyperlinkMode = eNewMode;
-    SetModified();
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 void SvtExtendedSecurityOptions_Impl::FillExtensionHashMap( ExtensionHashMap& aHashMap )
@@ -498,49 +417,6 @@ SvtExtendedSecurityOptions::~SvtExtendedSecurityOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtExtendedSecurityOptions::IsSecureHyperlink( const rtl::OUString& aURL ) const
-{
-    MutexGuard aGuard( GetInitMutex() );
-    return m_pDataContainer->IsSecureHyperlink( aURL );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< rtl::OUString > SvtExtendedSecurityOptions::GetSecureExtensionList() const
-{
-    MutexGuard aGuard( GetInitMutex() );
-    return m_pDataContainer->GetSecureExtensionList();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-SvtExtendedSecurityOptions::OpenHyperlinkMode SvtExtendedSecurityOptions::GetOpenHyperlinkMode()
-{
-    MutexGuard aGuard( GetInitMutex() );
-    return m_pDataContainer->GetOpenHyperlinkMode();
-}
-/* -----------------09.07.2003 11:26-----------------
-
- --------------------------------------------------*/
-sal_Bool SvtExtendedSecurityOptions::IsOpenHyperlinkModeReadOnly() const
-{
-    return m_pDataContainer->IsOpenHyperlinkModeReadOnly();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtExtendedSecurityOptions::SetOpenHyperlinkMode( SvtExtendedSecurityOptions::OpenHyperlinkMode eMode )
-{
-    MutexGuard aGuard( GetInitMutex() );
-    m_pDataContainer->SetOpenHyperlinkMode( eMode );
 }
 
 //*****************************************************************************************************************
