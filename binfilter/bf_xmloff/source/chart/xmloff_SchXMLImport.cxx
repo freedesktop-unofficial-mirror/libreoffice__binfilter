@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_SchXMLImport.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -423,40 +423,6 @@ SchXMLImport::SchXMLImport(
 {
 }
 
-// #110680#
-SchXMLImport::SchXMLImport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    uno::Reference< frame::XModel > xModel,
-    uno::Reference< ::com::sun::star::document::XGraphicObjectResolver >& rGrfContainer,
-    sal_Bool bLoadDoc, sal_Bool bShowProgress )
-:   SvXMLImport( xServiceFactory, xModel, rGrfContainer )
-{
-    // get status indicator (if requested)
-    if( bShowProgress )
-    {
-        uno::Reference< frame::XController > xController( xModel->getCurrentController());
-        if( xController.is())
-        {
-            uno::Reference< frame::XFrame > xFrame( xController->getFrame());
-            if( xFrame.is())
-            {
-                uno::Reference< task::XStatusIndicatorSupplier > xFactory( xFrame, uno::UNO_QUERY );
-                if( xFactory.is())
-                {
-                    mxStatusIndicator = xFactory->getStatusIndicator();
-                }
-            }
-        }
-    }
-
-    // add progress view
-    if( mxStatusIndicator.is())
-    {
-        const ::rtl::OUString aText( RTL_CONSTASCII_USTRINGPARAM( "XML Import" ));
-        mxStatusIndicator->start( aText, 100 );     // use percentage as values
-    }
-}
-
 SchXMLImport::~SchXMLImport() throw ()
 {
     // stop progress view
@@ -574,23 +540,9 @@ uno::Reference< uno::XInterface > SAL_CALL SchXMLImport_Content_createInstance(c
 
 // ------------------------------------------------------------
 
-uno::Sequence< OUString > SAL_CALL SchXMLImport_Meta_getSupportedServiceNames() throw()
-{
-    const OUString aServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Chart.XMLMetaImporter" ) );
-    const uno::Sequence< OUString > aSeq( &aServiceName, 1 );
-    return aSeq;
-}
-
 OUString SAL_CALL SchXMLImport_Meta_getImplementationName() throw()
 {
     return OUString( RTL_CONSTASCII_USTRINGPARAM( "SchXMLImport.Meta" ) );
-}
-
-uno::Reference< uno::XInterface > SAL_CALL SchXMLImport_Meta_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
-{
-    // #110680#
-    // return (cppu::OWeakObject*)new SchXMLImport( IMPORT_META );
-    return (cppu::OWeakObject*)new SchXMLImport( rSMgr, IMPORT_META );
 }
 
 // XServiceInfo
