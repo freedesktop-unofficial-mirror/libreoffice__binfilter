@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: b3dentty.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,9 +124,6 @@ public:
         B3dEntity& rOld2, double t);
     void CalcMiddle(B3dEntity& rOld1,
         B3dEntity& rOld2);
-
-    // Eine beliebige Transformation auf die Geometrie anwenden
-    void Transform(const Matrix4D&);
 };
 
 /*************************************************************************
