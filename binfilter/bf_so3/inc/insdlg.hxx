@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: insdlg.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -78,7 +78,6 @@ public:
 class SO3_DLLPRIVATE SvObjectServerList
 {
     PRV_SV_DECL_OWNER_LIST(SvObjectServerList,SvObjectServer)
-    SO3_DLLPRIVATE const SvObjectServer *  Get( const String & rHumanName ) const;
     SO3_DLLPRIVATE const SvObjectServer *  Get( const SvGlobalName & ) const;
     SO3_DLLPRIVATE void                    Remove( const SvGlobalName & );
 
