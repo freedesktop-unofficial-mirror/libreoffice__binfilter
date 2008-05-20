@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_ddelink.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,20 +77,6 @@ namespace binfilter {
 /*N*/   // Verbindung aufheben
 /*N*/
 /*N*/   delete pResult;
-/*N*/ }
-
-/*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, const ScDdeLink& rOther ) :
-/*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
-/*N*/   pDoc    ( pD ),
-/*N*/   aAppl   ( rOther.aAppl ),
-/*N*/   aTopic  ( rOther.aTopic ),
-/*N*/   aItem   ( rOther.aItem ),
-/*N*/   nMode   ( rOther.nMode ),
-/*N*/   pResult ( NULL ),
-/*N*/   bNeedUpdate( FALSE )
-/*N*/ {
-/*N*/   if (rOther.pResult)
-/*N*/       pResult = rOther.pResult->Clone();
 /*N*/ }
 
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr ) :
