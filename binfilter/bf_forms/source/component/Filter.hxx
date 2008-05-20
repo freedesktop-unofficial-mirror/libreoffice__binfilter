@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: Filter.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -169,8 +169,6 @@ namespace frm
         virtual void ImplSetPeerProperty( const ::rtl::OUString& rPropName, const ::com::sun::star::uno::Any& rVal );
 
         sal_Bool ensureInitialized( );
-
-        void displayException( const ::com::sun::star::sdb::SQLContext& _rExcept );
     };
 //.........................................................................
 }   // namespace frm
