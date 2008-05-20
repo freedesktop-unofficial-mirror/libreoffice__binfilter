@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: useroptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,35 +109,8 @@ public:
     const String&   GetTelephoneWork() const;
     const String&   GetFax() const;
     const String&   GetEmail() const;
-    const String&   GetCustomerNumber() const;
-    const String&   GetFathersName() const;
-    const String&   GetApartment() const;
 
     const String&   GetFullName() const;
-    const String&   GetLocale() const;
-
-    // set the address token
-    void            SetCompany( const String& rNewToken );
-    void            SetFirstName( const String& rNewToken );
-    void            SetLastName( const String& rNewToken );
-    void            SetID( const String& rNewToken );
-    void            SetStreet( const String& rNewToken );
-    void            SetCity( const String& rNewToken );
-    void            SetState( const String& rNewToken );
-    void            SetZip( const String& rNewToken );
-    void            SetCountry( const String& rNewToken );
-    void            SetPosition( const String& rNewToken );
-    void            SetTitle( const String& rNewToken );
-    void            SetTelephoneHome( const String& rNewToken );
-    void            SetTelephoneWork( const String& rNewToken );
-    void            SetFax( const String& rNewToken );
-    void            SetEmail( const String& rNewToken );
-    void            SetCustomerNumber( const String& rNewToken );
-    void            SetFathersName( const String& rNewToken );
-    void            SetApartment( const String& rNewToken );
-
-    sal_Bool        IsTokenReadonly( USHORT nToken ) const;
-    const String&   GetToken(USHORT nToken) const;
 };
 
 }
