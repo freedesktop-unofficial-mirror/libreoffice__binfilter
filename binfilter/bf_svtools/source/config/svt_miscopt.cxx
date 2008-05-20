@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_miscopt.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -199,22 +199,17 @@ class SvtMiscOptions_Impl : public ConfigItem
         inline sal_Bool IsPluginsEnabled() const
         { return m_bPluginsEnabled; }
 
-        void SetPluginsEnabled( sal_Bool bEnable );
-
         inline sal_Bool IsPluginsEnabledReadOnly() const
         { return m_bIsPluginsEnabledRO; }
 
         inline sal_Int16 GetSymbolsSize()
         { return m_nSymbolsSize; }
 
-        void SetSymbolsSize( sal_Int16 nSet );
-
         inline sal_Bool IsGetSymbolsSizeReadOnly()
         { return m_bIsSymbolsSizeRO; }
 
         sal_Int16 GetSymbolsStyle() const;
         ::rtl::OUString GetSymbolsStyleName() const;
-        sal_Int16 GetCurrentSymbolsStyle() const;
 
         inline void SetSymbolsStyle( sal_Int16 nSet )
         { ImplSetSymbolsStyle( true, nSet, ::rtl::OUString() ); }
@@ -229,14 +224,9 @@ class SvtMiscOptions_Impl : public ConfigItem
         inline sal_Int16 GetToolboxStyle()
         { return m_nToolboxStyle ? VCL_TOOLBOX_STYLE_FLAT : 0; }
 
-        // translate from VCL settings
-        void SetToolboxStyle( sal_Int16 nStyle, bool _bSetModified );
-
         inline sal_Bool IsGetToolboxStyleReadOnly()
         { return m_bIsToolboxStyleRO; }
 
-        void AddListener( const Link& rLink );
-        void RemoveListener( const Link& rLink );
         void CallListeners();
 
     //-------------------------------------------------------------------------------------------------------------
@@ -486,42 +476,10 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
     }
 }
 
-void SvtMiscOptions_Impl::AddListener( const Link& rLink )
-{
-    aList.Insert( new Link( rLink ) );
-}
-
-void SvtMiscOptions_Impl::RemoveListener( const Link& rLink )
-{
-    for ( USHORT n=0; n<aList.Count(); n++ )
-    {
-        if ( (*aList.GetObject(n) ) == rLink )
-        {
-            delete aList.Remove(n);
-            break;
-        }
-    }
-}
-
 void SvtMiscOptions_Impl::CallListeners()
 {
     for ( USHORT n = 0; n < aList.Count(); ++n )
         aList.GetObject(n)->Call( this );
-}
-
-void SvtMiscOptions_Impl::SetToolboxStyle( sal_Int16 nStyle, bool _bSetModified )
-{
-    m_nToolboxStyle = nStyle ? 1 : 0;
-    if ( _bSetModified )
-        SetModified();
-    CallListeners();
-}
-
-void SvtMiscOptions_Impl::SetSymbolsSize( sal_Int16 nSet )
-{
-    m_nSymbolsSize = nSet;
-    SetModified();
-    CallListeners();
 }
 
 sal_Int16 SvtMiscOptions_Impl::GetSymbolsStyle() const
@@ -532,11 +490,6 @@ sal_Int16 SvtMiscOptions_Impl::GetSymbolsStyle() const
 ::rtl::OUString SvtMiscOptions_Impl::GetSymbolsStyleName() const
 {
     return Application::GetSettings().GetStyleSettings().GetSymbolsStyleName();
-}
-
-sal_Int16 SvtMiscOptions_Impl::GetCurrentSymbolsStyle() const
-{
-    return implSymbolsStyleFromVCL( Application::GetSettings().GetStyleSettings().GetCurrentSymbolsStyle() );
 }
 
 void SvtMiscOptions_Impl::ImplSetSymbolsStyle( bool bValue, sal_Int16 nSet, const ::rtl::OUString &rName )
@@ -559,13 +512,6 @@ void SvtMiscOptions_Impl::ImplSetSymbolsStyle( bool bValue, sal_Int16 nSet, cons
         SetModified();
         CallListeners();
     }
-}
-
-void SvtMiscOptions_Impl::SetPluginsEnabled( sal_Bool bEnable )
-{
-    m_bPluginsEnabled = bEnable;
-    SetModified();
-    CallListeners();
 }
 
 //*****************************************************************************************************************
@@ -695,114 +641,6 @@ SvtMiscOptions::~SvtMiscOptions()
     }
 }
 
-sal_Bool SvtMiscOptions::UseSystemFileDialog() const
-{
-    return m_pDataContainer->UseSystemFileDialog();
-}
-
-void SvtMiscOptions::SetUseSystemFileDialog( sal_Bool bEnable )
-{
-    m_pDataContainer->SetUseSystemFileDialog( bEnable );
-}
-
-sal_Bool SvtMiscOptions::IsUseSystemFileDialogReadOnly() const
-{
-    return m_pDataContainer->IsUseSystemFileDialogReadOnly();
-}
-
-sal_Bool SvtMiscOptions::IsPluginsEnabled() const
-{
-    return m_pDataContainer->IsPluginsEnabled();
-}
-
-void SvtMiscOptions::SetPluginsEnabled( sal_Bool bEnable )
-{
-    m_pDataContainer->SetPluginsEnabled( bEnable );
-}
-
-sal_Bool SvtMiscOptions::IsPluginsEnabledReadOnly() const
-{
-    return m_pDataContainer->IsPluginsEnabledReadOnly();
-}
-
-sal_Int16 SvtMiscOptions::GetSymbolsSize() const
-{
-    return m_pDataContainer->GetSymbolsSize();
-}
-
-void SvtMiscOptions::SetSymbolsSize( sal_Int16 nSet )
-{
-    m_pDataContainer->SetSymbolsSize( nSet );
-}
-
-sal_Int16 SvtMiscOptions::GetCurrentSymbolsSize() const
-{
-    sal_Int16 eOptSymbolsSize = m_pDataContainer->GetSymbolsSize();
-
-    if ( eOptSymbolsSize == SFX_SYMBOLS_SIZE_AUTO )
-    {
-        // Use system settings, we have to retrieve the toolbar icon size from the
-        // Application class
-        ULONG nStyleIconSize = Application::GetSettings().GetStyleSettings().GetToolbarIconSize();
-        if ( nStyleIconSize == STYLE_TOOLBAR_ICONSIZE_LARGE )
-            eOptSymbolsSize = SFX_SYMBOLS_SIZE_LARGE;
-        else
-            eOptSymbolsSize = SFX_SYMBOLS_SIZE_SMALL;
-    }
-
-    return eOptSymbolsSize;
-}
-
-bool SvtMiscOptions::AreCurrentSymbolsLarge() const
-{
-    return ( GetCurrentSymbolsSize() == SFX_SYMBOLS_SIZE_LARGE );
-}
-
-sal_Bool SvtMiscOptions::IsGetSymbolsSizeReadOnly() const
-{
-    return m_pDataContainer->IsGetSymbolsSizeReadOnly();
-}
-
-sal_Int16 SvtMiscOptions::GetSymbolsStyle() const
-{
-    return m_pDataContainer->GetSymbolsStyle();
-}
-
-sal_Int16 SvtMiscOptions::GetCurrentSymbolsStyle() const
-{
-    return m_pDataContainer->GetCurrentSymbolsStyle();
-}
-
-OUString SvtMiscOptions::GetCurrentSymbolsStyleName() const
-{
-    return Application::GetSettings().GetStyleSettings().GetCurrentSymbolsStyleName();
-}
-
-void SvtMiscOptions::SetSymbolsStyle( sal_Int16 nSet )
-{
-    m_pDataContainer->SetSymbolsStyle( nSet );
-}
-
-sal_Bool SvtMiscOptions::IsGetSymbolsStyleReadOnly() const
-{
-    return m_pDataContainer->IsGetSymbolsStyleReadOnly();
-}
-
-sal_Int16 SvtMiscOptions::GetToolboxStyle() const
-{
-    return m_pDataContainer->GetToolboxStyle();
-}
-
-void SvtMiscOptions::SetToolboxStyle( sal_Int16 nStyle )
-{
-    m_pDataContainer->SetToolboxStyle( nStyle, true );
-}
-
-sal_Bool SvtMiscOptions::IsGetToolboxStyleReadOnly() const
-{
-    return m_pDataContainer->IsGetToolboxStyleReadOnly();
-}
-
 //*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
@@ -826,16 +664,6 @@ Mutex & SvtMiscOptions::GetInitMutex()
     }
     // Return new created or already existing mutex object.
     return *pMutex;
-}
-
-void SvtMiscOptions::AddListener( const Link& rLink )
-{
-    m_pDataContainer->AddListener( rLink );
-}
-
-void SvtMiscOptions::RemoveListener( const Link& rLink )
-{
-    m_pDataContainer->RemoveListener( rLink );
 }
 
 }
