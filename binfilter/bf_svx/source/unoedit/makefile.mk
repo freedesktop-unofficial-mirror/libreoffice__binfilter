@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -53,7 +53,6 @@ SLOFILES =	\
         $(SLO)$/svx_UnoForbiddenCharsTable.obj \
         $(SLO)$/svx_unoedsrc.obj	\
         $(SLO)$/svx_unoedhlp.obj	\
-        $(SLO)$/svx_unopracc.obj	\
         $(SLO)$/svx_unoedprx.obj	\
         $(SLO)$/svx_unoviwed.obj	\
         $(SLO)$/svx_unoviwou.obj	\
