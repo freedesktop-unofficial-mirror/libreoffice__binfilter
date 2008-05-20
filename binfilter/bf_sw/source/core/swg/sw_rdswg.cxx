@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_rdswg.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -410,12 +410,7 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
     nDocStart  = r.tell();
 
     nErrno = 0;
-    BOOL bUndo = pDoc->DoesUndo();
-    // Kein Undo bei neuem Dokument!
     USHORT nInsFirstPara = 0;
-    if( bNew )
-        pDoc->DoUndo( FALSE );
-    else
     {
         SwTxtNode *pTxtNode=pDoc->GetNodes()[pPaM->GetPoint()->nNode]->GetTxtNode();
         // Ist das ein SwPaM auf einen TextNode?
@@ -593,7 +588,6 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
             pItem->GetCharSet() = eSysCharSet;
     }
     ClearFmtIds();
-    pDoc->DoUndo( bUndo );
     if( !IsError( nErrno ) )
     {
         pDoc->SetGlossDoc( BOOL( ( aFile.nFlags & SWGF_HAS_BLOCKS ) != 0 ) );
