@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: hintpost.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,12 +73,6 @@ private:
 protected:
     virtual         ~SfxHintPoster();
     virtual void    Event( SfxHint* pPostedHint );
-
-public:
-                    SfxHintPoster( const GenLink& rLink );
-
-    void            Post( SfxHint* pHint = 0 );
-    void            SetEventHdl( const GenLink& rLink );
 };
 
 //-------------------------------------------------------------------
