@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: column.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -211,8 +211,6 @@ public:
     void        GetString( USHORT nRow, String& rString ) const;
     void        GetInputString( USHORT nRow, String& rString ) const;
     double      GetValue( USHORT nRow ) const;
-    void        GetFormula( USHORT nRow, String& rFormula,
-                            BOOL bAsciiExport = FALSE ) const;
     BOOL        GetNote( USHORT nRow, ScPostIt& rNote ) const;
     CellType    GetCellType( USHORT nRow ) const;
     USHORT      GetCellCount() const { return nCount; }
@@ -258,7 +256,6 @@ public:
     void        ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, const ScStyleSheet& rStyle );
     void        ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark);
 
-    const ScStyleSheet* GetStyle( USHORT nRow ) const;
     const ScStyleSheet* GetSelectionStyle( const ScMarkData& rMark, BOOL& rFound ) const;
     const ScStyleSheet* GetAreaStyle( BOOL& rFound, USHORT nRow1, USHORT nRow2 ) const;
 
