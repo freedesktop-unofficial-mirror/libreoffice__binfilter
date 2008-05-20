@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: datalog.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,15 +64,7 @@ class SchDataLogBook
 public:
 
      void Reset();
-     SchDataLogBook(const SchMemChart& aMemChart);
     ~SchDataLogBook();
-
-
-
-
-
-
-    //Get*Id MUSS ..._ANY fuer nicht existierende Elemente zurueckgeben:
 };
 
 } //namespace binfilter
