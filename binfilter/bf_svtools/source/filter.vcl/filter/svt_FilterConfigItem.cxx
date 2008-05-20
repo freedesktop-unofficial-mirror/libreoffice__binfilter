@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_FilterConfigItem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -181,15 +181,6 @@ FilterConfigItem::FilterConfigItem( ::com::sun::star::uno::Sequence< ::com::sun:
         aFilterData = *pFilterData;
 }
 
-FilterConfigItem::FilterConfigItem( const OUString& rSubTree,
-    ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData )
-{
-    ImpInitTree( rSubTree );
-
-    if ( pFilterData )
-        aFilterData = *pFilterData;
-};
-
 FilterConfigItem::~FilterConfigItem()
 {
     if ( xUpdatableView.is() )
@@ -336,123 +327,6 @@ sal_Int32 FilterConfigItem::ReadInt32( const OUString& rKey, sal_Int32 nDefault 
     return nRetValue;
 }
 
-
-Size FilterConfigItem::ReadSize( const OUString& rKey, const Size& rDefault )
-{
-    Any aAny;
-    Size aRetValue( rDefault );
-
-    const OUString sWidth( RTL_CONSTASCII_USTRINGPARAM( "LogicalWidth" ) );
-    const OUString sHeight( RTL_CONSTASCII_USTRINGPARAM( "LogicalHeight" ) );
-
-    Reference< XPropertySet > aXPropSet;
-    try
-    {
-        PropertyValue* pPropWidth = GetPropertyValue( aFilterData, sWidth  );
-        PropertyValue* pPropHeight= GetPropertyValue( aFilterData, sHeight );
-        if ( pPropWidth && pPropHeight )
-        {
-            pPropWidth->Value >>= aRetValue.Width;
-            pPropHeight->Value >>= aRetValue.Height;
-        }
-        else if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-        {
-            if ( aAny >>= aXPropSet )
-            {
-                if ( ImplGetPropertyValue( aAny, aXPropSet, sWidth, sal_True ) )
-                    aAny >>= aRetValue.Width;
-                if ( ImplGetPropertyValue( aAny, aXPropSet, sHeight, sal_True ) )
-                    aAny >>= aRetValue.Height;
-            }
-        }
-    }
-    catch ( ::com::sun::star::uno::Exception& )
-    {
-        DBG_ERROR( "FilterConfigItem::ReadSize - could not read PropertyValue" );
-    }
-    PropertyValue aWidth;
-    aWidth.Name = sWidth;
-    aWidth.Value <<= aRetValue.Width;
-    WritePropertyValue( aFilterData, aWidth );
-    PropertyValue aHeight;
-    aHeight.Name = sHeight;
-    aHeight.Value <<= aRetValue.Height;
-    WritePropertyValue( aFilterData, aHeight );
-    return aRetValue;
-}
-
-OUString FilterConfigItem::ReadString( const OUString& rKey, const OUString& rDefault )
-{
-    Any aAny;
-    OUString aRetValue( rDefault );
-    PropertyValue* pPropVal = GetPropertyValue( aFilterData, rKey );
-    if ( pPropVal )
-    {
-        pPropVal->Value >>= aRetValue;
-    }
-    else if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-    {
-        aAny >>= aRetValue;
-    }
-    PropertyValue aString;
-    aString.Name = rKey;
-    aString.Value <<= aRetValue;
-    WritePropertyValue( aFilterData, aString );
-    return aRetValue;
-}
-
-Any FilterConfigItem::ReadAny( const ::rtl::OUString& rKey, const Any& rDefault )
-{
-    Any aAny, aRetValue( rDefault );
-    PropertyValue* pPropVal = GetPropertyValue( aFilterData, rKey );
-    if ( pPropVal )
-    {
-        aRetValue = pPropVal->Value;
-    }
-    else if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-    {
-        aRetValue = aAny;
-    }
-    PropertyValue aPropValue;
-    aPropValue.Name = rKey;
-    aPropValue.Value = aRetValue;
-    WritePropertyValue( aFilterData, aPropValue );
-    return aRetValue;
-}
-
-void FilterConfigItem::WriteBool( const OUString& rKey, sal_Bool bNewValue )
-{
-    PropertyValue aBool;
-    aBool.Name = rKey;
-    aBool.Value <<= bNewValue;
-    WritePropertyValue( aFilterData, aBool );
-
-    if ( xPropSet.is() )
-    {
-        Any aAny;
-        if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-        {
-            sal_Bool bOldValue;
-            if ( aAny >>= bOldValue )
-            {
-                if ( bOldValue != bNewValue )
-                {
-                    aAny <<= bNewValue;
-                    try
-                    {
-                        xPropSet->setPropertyValue( rKey, aAny );
-                        bModified = sal_True;
-                    }
-                    catch ( ::com::sun::star::uno::Exception& )
-                    {
-                        DBG_ERROR( "FilterConfigItem::WriteBool - could not set PropertyValue" );
-                    }
-                }
-            }
-        }
-    }
-}
-
 void FilterConfigItem::WriteInt32( const OUString& rKey, sal_Int32 nNewValue )
 {
     PropertyValue aInt32;
@@ -485,125 +359,6 @@ void FilterConfigItem::WriteInt32( const OUString& rKey, sal_Int32 nNewValue )
             }
         }
     }
-}
-
-void FilterConfigItem::WriteSize( const OUString& rKey, const Size& rNewValue )
-{
-    const OUString sWidth( RTL_CONSTASCII_USTRINGPARAM( "LogicalWidth" ) );
-    const OUString sHeight( RTL_CONSTASCII_USTRINGPARAM( "LogicalHeight" ) );
-
-    PropertyValue aWidth;
-    aWidth.Name = sWidth;
-    aWidth.Value <<= rNewValue.Width;
-    WritePropertyValue( aFilterData, aWidth );
-
-    PropertyValue aHeight;
-    aHeight.Name = sHeight;
-    aHeight.Value <<= rNewValue.Height;
-    WritePropertyValue( aFilterData, aHeight );
-
-    if ( xPropSet.is() )
-    {
-        Any aAny;
-        sal_Int32 nOldWidth = rNewValue.Width;
-        sal_Int32 nOldHeight = rNewValue.Height;
-
-        if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-        {
-            try
-            {
-                Reference< XPropertySet > aXPropSet;
-                if ( aAny >>= aXPropSet )
-                {
-                    if ( ImplGetPropertyValue( aAny, aXPropSet, sWidth, sal_True ) )
-                        aAny >>= nOldWidth;
-                    if ( ImplGetPropertyValue( aAny, aXPropSet, sHeight, sal_True ) )
-                        aAny >>= nOldHeight;
-                }
-                if ( ( nOldWidth != rNewValue.Width ) || ( nOldHeight != rNewValue.Height ) )
-                {
-                    aAny <<= rNewValue.Width;
-                    aXPropSet->setPropertyValue( sWidth, aAny );
-                    aAny <<= rNewValue.Height;
-                    aXPropSet->setPropertyValue( sHeight, aAny );
-                    bModified = sal_True;
-                }
-            }
-            catch ( ::com::sun::star::uno::Exception& )
-            {
-                DBG_ERROR( "FilterConfigItem::WriteSize - could not read PropertyValue" );
-            }
-        }
-    }
-}
-
-void FilterConfigItem::WriteString( const OUString& rKey, const OUString& rNewValue )
-{
-    PropertyValue aString;
-    aString.Name = rKey;
-    aString.Value <<= rNewValue;
-    WritePropertyValue( aFilterData, aString );
-
-    if ( xPropSet.is() )
-    {
-        Any aAny;
-
-        if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-        {
-            OUString aOldValue;
-            if ( aAny >>= aOldValue )
-            {
-                if ( aOldValue != rNewValue )
-                {
-                    aAny <<= rNewValue;
-                    try
-                    {
-                        xPropSet->setPropertyValue( rKey, aAny );
-                        bModified = sal_True;
-                    }
-                    catch ( ::com::sun::star::uno::Exception& )
-                    {
-                        DBG_ERROR( "FilterConfigItem::WriteInt32 - could not set PropertyValue" );
-                    }
-                }
-            }
-        }
-    }
-}
-
-void FilterConfigItem::WriteAny( const OUString& rKey, const Any& rNewAny )
-{
-    PropertyValue aPropValue;
-    aPropValue.Name = rKey;
-    aPropValue.Value = rNewAny;
-    WritePropertyValue( aFilterData, aPropValue );
-    if ( xPropSet.is() )
-    {
-        Any aAny;
-        if ( ImplGetPropertyValue( aAny, xPropSet, rKey, sal_True ) )
-        {
-            if ( aAny != rNewAny )
-            {
-                try
-                {
-                    xPropSet->setPropertyValue( rKey, rNewAny );
-                    bModified = sal_True;
-                }
-                catch ( com::sun::star::uno::Exception& )
-                {
-                    DBG_ERROR( "FilterConfigItem::WriteAny - could not set PropertyValue" );
-
-                }
-            }
-        }
-    }
-}
-
-// ------------------------------------------------------------------------
-
-Sequence< PropertyValue > FilterConfigItem::GetFilterData() const
-{
-    return aFilterData;
 }
 
 // ------------------------------------------------------------------------
