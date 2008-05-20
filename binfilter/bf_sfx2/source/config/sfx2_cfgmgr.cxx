@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_cfgmgr.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,37 +64,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/ DBG_NAME(SfxConfigManager)
 
 // ----------------------------------------------------------------------------
-
-/*N*/ SotStorage* GetStorage( const String& rName, StreamMode nMode )
-/*N*/ {
-/*N*/     try
-/*N*/   {
-/*N*/       ::ucbhelper::Content aContent( rName, uno::Reference < ::com::sun::star::ucb::XCommandEnvironment >() );
-/*N*/       uno::Any aAny;
-/*N*/       try
-/*N*/       {
-/*N*/           aAny = aContent.getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("IsDocument")) );
-/*N*/       }
-/*N*/       catch(::com::sun::star::ucb::InteractiveAugmentedIOException&)
-/*N*/       {
-/*N*/       }
-/*N*/       sal_Bool bIsDocument;
-/*N*/       if ( (aAny >>= bIsDocument) && bIsDocument )
-/*N*/           return new SotStorage( TRUE, rName, nMode, STORAGE_TRANSACTED );
-/*N*/       else
-/*N*/           return new SotStorage( aContent, rName, nMode, STORAGE_TRANSACTED );
-/*N*/   }
-/*N*/     catch( ::com::sun::star::uno::Exception& e)
-/*N*/     {
-/*N*/       // Fatal error, possible corrupted configuration
-/*N*/       ::com::sun::star::lang::WrappedTargetException wte;
-/*N*/       ::rtl::OUString ouName = rName;
-/*N*/       wte.Message = ::rtl::OUString::createFromAscii("GetStorage, name: '") + ouName +
-/*N*/           ::rtl::OUString::createFromAscii("'");
-/*N*/       wte.TargetException <<= e;
-/*N*/       throw wte;
-/*N*/   }
-/*N*/ }
 
 /*N*/ SfxConfigManager::SfxConfigManager( SotStorage* pStorage )
 /*N*/   : pObjShell( NULL )
@@ -192,17 +161,6 @@ static const char pStorageName[] = "Configurations";
 /*?*/ SotStorage* SfxConfigManager::GetConfigurationStorage( SotStorage* pDocStor )
 /*?*/ {
 /*?*/   return pDocStor->OpenSotStorage( String::CreateFromAscii(pStorageName), STREAM_STD_READWRITE );
-/*?*/ }
-
-/*?*/ String SfxConfigManager::GetURL()
-/*?*/ {
-/*?*/     if ( pObjShell )
-/*?*/         return pObjShell->GetMedium()->GetName();
-/*?*/     else if ( m_xStorage.Is() )
-/*?*/         return m_xStorage->GetName();
-/*?*/
-/*?*/     DBG_ERROR("No storage!")
-/*?*/     return String();
 /*?*/ }
 
 /*?*/ void SfxConfigManager::SetModified(BOOL bMod)
@@ -425,18 +383,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/     DBG_ERROR( "Item not registered!" );
 /*N*/ }
 
-/*N*/ BOOL SfxConfigManager::HasConfigItem( USHORT nType )
-/*N*/ {
-/*N*/     for( USHORT i = 0; i < pItemArr->Count(); ++i )
-/*N*/     {
-/*N*/         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
-/*N*/         if ( pItem->nType == nType )
-/*N*/             return TRUE;
-/*N*/     }
-/*N*/
-/*N*/     return FALSE;
-/*N*/ }
-
 /*N*/ BOOL SfxConfigManager::LoadConfigItem( SfxConfigItem& rCItem )
 /*N*/ {
 /*N*/     DBG_ASSERT( m_xStorage.Is(), "No storage for configurations!" );
@@ -489,32 +435,6 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& rCItem )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;//STRIP001
-/*?*/ }
-
-
-/*?*/ void SfxConfigManager::CopyConfigItem( SfxConfigManager& rMgr, USHORT nType )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ void SfxConfigManager::RemovePersistentConfigItem( USHORT nType )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ void SfxConfigManager::ReInitialize( USHORT nType )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-
-/*?*/ void SfxConfigManager::ReInitialize( SfxConfigItem* pCItem )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ void SfxConfigManager::ResetConfigItem( USHORT nType )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*?*/ void SfxConfigManager::ReConnect( USHORT nType, SfxConfigManager* pOther )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
 
 /*N*/ static const char pHeader[] = "Star Framework Config File";
@@ -649,15 +569,6 @@ static const char pStorageName[] = "Configurations";
 
 /*?*/ USHORT SfxConfigManagerImExport_Impl::Export( SotStorage* pStor, SotStorage *pOut )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-/*?*/ BOOL SfxConfigManagerImExport_Impl::ExportItem( SfxConfigItem_Impl *pItem, SotStorage* pStor, SvStream* pStream )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-/*?*/ String SfxConfigManagerImExport_Impl::GetItemName( USHORT nType )
-/*?*/ {
-/*?*/     return String();
 /*?*/ }
 
 /*N*/ String SfxConfigManagerImExport_Impl::GetStreamName( USHORT nType )
