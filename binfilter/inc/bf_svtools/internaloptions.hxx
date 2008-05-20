@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: internaloptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -119,38 +119,6 @@ class  SvtInternalOptions: public Options
 
          SvtInternalOptions();
         virtual ~SvtInternalOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Internal/..."
-            @descr      These options describe internal states to enable/disable features of installed office.
-                        The values are fixed at runtime - and implemented as readonly!
-
-                        SlotCFGEnabled()    =>  If this option is set (true), StarOffice is searching for the slot.cfg.
-                                                If the slot.cfg cannot be found, the start is aborted.
-                                                If this option is not set (false), the slot.cfg must not be available,
-                                                otherwise the start is also aborted.
-
-                        CrashMailEnabled()  =>  Crash-Mail-Feature to document program crashes. After a crash,
-                                                an e-mail with information about the system used is generated
-                                                automatically when starting StarOffice.
-
-            @seealso    configuration package "org.openoffice.Office.Common/Internal"
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    SlotCFGEnabled      () const;
-        sal_Bool    CrashMailEnabled    () const;
-        sal_Bool    MailUIEnabled      () const;
-        sal_Bool    IsRemoveMenuEntryClose() const;
-        sal_Bool    IsRemoveMenuEntryBackToWebtop() const;
-        sal_Bool    IsRemoveMenuEntryNewWebtop() const;
-        sal_Bool    IsRemoveMenuEntryLogout() const;
-
-        OUSTRING    GetCurrentTempURL() const;
-        void        SetCurrentTempURL( const OUSTRING& aNewCurrentTempURL );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
