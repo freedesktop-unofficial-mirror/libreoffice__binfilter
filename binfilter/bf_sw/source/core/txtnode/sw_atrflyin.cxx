@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_atrflyin.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,8 +124,6 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   // und der Inhalt dupliziert.
 /*N*/
 /*N*/   // fuers kopieren vom Attribut das Undo immer abschalten
-/*N*/   BOOL bUndo = pDoc->DoesUndo();
-/*N*/   pDoc->DoUndo( FALSE );
 /*N*/   SwFmtAnchor aAnchor( pFmt->GetAnchor() );
 /*N*/   if( FLY_PAGE != aAnchor.GetAnchorId() &&
 /*N*/       pDoc != pFmt->GetDoc() )        // Unterschiedliche Docs?
@@ -150,7 +148,6 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   }
 /*N*/
 /*N*/   SwFrmFmt* pNew = pDoc->CopyLayoutFmt( *pFmt, aAnchor, FALSE, FALSE );
-/*N*/   pDoc->DoUndo( bUndo );
 /*N*/   ((SwFmtFlyCnt&)GetFlyCnt()).SetFlyFmt( pNew );
 /*N*/ }
 
@@ -166,8 +163,6 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 
 /*N*/ void SwTxtFlyCnt::SetAnchor( const SwTxtNode *pNode )
 /*N*/ {
-/*N*/   // fuers Undo muss der neue Anker schon bekannt sein !
-/*N*/
 /*N*/   // Wir ermitteln den Index im Nodesarray zum Node
 /*N*/
 /*N*/   SwDoc* pDoc = (SwDoc*)pNode->GetDoc();
@@ -197,16 +192,9 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   // stehen wir noch im falschen Dokument ?
 /*N*/   if( pDoc != pFmt->GetDoc() )
 /*N*/   {
-/*N*/       // fuers kopieren vom Attribut das Undo immer abschalten
-/*?*/       BOOL bUndo = pDoc->DoesUndo();
-/*?*/       pDoc->DoUndo( FALSE );
 /*?*/       SwFrmFmt* pNew = pDoc->CopyLayoutFmt( *pFmt, aAnchor, FALSE, FALSE );
-/*?*/       pDoc->DoUndo( bUndo );
 /*?*/
-/*?*/       bUndo = pFmt->GetDoc()->DoesUndo();
-/*?*/       pFmt->GetDoc()->DoUndo( FALSE );
 /*?*/       pFmt->GetDoc()->DelLayoutFmt( pFmt );
-/*?*/       pFmt->GetDoc()->DoUndo( bUndo );
 /*?*/       ((SwFmtFlyCnt&)GetFlyCnt()).SetFlyFmt( pNew );
 /*N*/   }
 /*N*/   else if( pNode->GetpSwpHints() &&
