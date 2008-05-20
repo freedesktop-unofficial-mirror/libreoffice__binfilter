@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: editdoc.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -302,8 +302,6 @@ struct ExtraPortionInfo
 
     long*    pOrgDXArray;
 
-
-            ExtraPortionInfo();
             ~ExtraPortionInfo();
 
 };
