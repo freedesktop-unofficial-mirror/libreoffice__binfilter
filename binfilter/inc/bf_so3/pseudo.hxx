@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: pseudo.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -147,17 +147,10 @@ public:
                                String * pShortTypeName,
                                long nFileFormat = SOFFICE_FILEFORMAT_CURRENT ) const;
     SvGlobalName    GetClassName() const;
-    String          GetAppName() const;
-    String          GetFullTypeName() const;
-    String          GetShortTypeName() const;
 
                     // Befehle
     void            SetVerbList( SvVerbList * pVerbsP, BOOL bDeleteVerbs=FALSE );
     virtual const SvVerbList & GetVerbList() const;
-    const SvVerb *  GetVerb( USHORT nMenuId ) const;
-    ErrCode         DoVerb( long nVerbPos, SvEmbeddedClient * pCallerClient,
-                            Window * pWin, const Rectangle * pWorkAreaPixel );
-    void            AppendVerbs( Menu & rMenu );
 
     virtual ULONG   GetMiscStatus() const;
 
