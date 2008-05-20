@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unomodel.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -169,7 +169,6 @@ private:
     void initializeDocument();
 public:
     SdXImpressDocument( SdDrawDocShell* pShell ) throw();
-    SdXImpressDocument( SdDrawDocument* pDoc, sal_Bool bClipBoard = sal_False ) throw();
     virtual ~SdXImpressDocument() throw();
 
     // intern
