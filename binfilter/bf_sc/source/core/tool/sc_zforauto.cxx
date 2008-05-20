@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_zforauto.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,12 +64,6 @@ static const sal_Char __FAR_DATA pStandardName[] = "Standard";
 /*N*/   sFormatstring   (aFormat.sFormatstring)
 /*N*/ {
 /*N*/ }
-
-/*N*/ ScNumFormatAbbrev::ScNumFormatAbbrev(SvStream& rStream)
-/*N*/ {
-/*N*/   Load(rStream);
-/*N*/ }
-
 
 /*N*/ void ScNumFormatAbbrev::Load( SvStream& rStream )
 /*N*/ {
