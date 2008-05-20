@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_imestatuswindow.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -75,53 +75,6 @@ void ImeStatusWindow::init()
             // Degrade gracefully and use the VCL-supplied default if no
             // configuration is available.
         }
-}
-
-bool ImeStatusWindow::isShowing()
-{
-    try
-    {
-        sal_Bool bShow;
-        if (getConfig()->getPropertyValue(
-                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")))
-            >>= bShow)
-            return bShow;
-    }
-    catch (css::uno::Exception &)
-    {
-        OSL_ENSURE(false, "com.sun.star.uno.Exception");
-        // Degrade gracefully and use the VCL-supplied default if no
-        // configuration is available.
-    }
-    return Application::GetShowImeStatusWindowDefault();
-}
-
-void ImeStatusWindow::show(bool bShow)
-{
-    try
-    {
-        css::uno::Reference< css::beans::XPropertySet > xConfig(getConfig());
-        xConfig->setPropertyValue(
-            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ShowStatusWindow")),
-            css::uno::makeAny(static_cast< sal_Bool >(bShow)));
-        css::uno::Reference< css::util::XChangesBatch > xCommit(
-            xConfig, css::uno::UNO_QUERY);
-        // Degrade gracefully by not saving the settings permanently:
-        if (xCommit.is())
-            xCommit->commitChanges();
-        // Alternatively, setting the VCL status could be done even if updating
-        // the configuration failed:
-        Application::ShowImeStatusWindow(bShow);
-    }
-    catch (css::uno::Exception &)
-    {
-        OSL_ENSURE(false, "com.sun.star.uno.Exception");
-    }
-}
-
-bool ImeStatusWindow::canToggle() const
-{
-    return Application::CanToggleImeStatusWindow();
 }
 
 ImeStatusWindow::~ImeStatusWindow()
