@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdorect.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -105,17 +105,6 @@ namespace binfilter {
 /*N*/              "SdrRectObj::SdrRectObj(SdrObjKind,...) ist nur fuer Textrahmen gedacht");
 /*N*/   bClosedObj=TRUE;
 /*N*/ }
-
-/*?*/ SdrRectObj::SdrRectObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect, SvStream& rInput, USHORT eFormat):
-/*?*/   SdrTextObj(eNewTextKind,rNewRect,rInput,eFormat),
-/*?*/   pXPoly(NULL),
-/*?*/   bXPolyIsLine(FALSE)
-/*?*/ {
-/*?*/   DBG_ASSERT(eTextKind==OBJ_TEXT || eTextKind==OBJ_TEXTEXT ||
-/*?*/              eTextKind==OBJ_OUTLINETEXT || eTextKind==OBJ_TITLETEXT,
-/*?*/              "SdrRectObj::SdrRectObj(SdrObjKind,...) ist nur fuer Textrahmen gedacht");
-/*?*/   bClosedObj=TRUE;
-/*?*/ }
 
 /*N*/ SdrRectObj::~SdrRectObj()
 /*N*/ {
