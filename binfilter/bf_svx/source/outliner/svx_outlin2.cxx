@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_outlin2.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -211,10 +211,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   return pEditEngine->GetStyleSheet( (USHORT)nPara );
-/*N*/ }
-
-/*N*/ BOOL Outliner::IsInSelectionMode() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 /*N*/ }
 
 /*N*/ void Outliner::SetControlWord( ULONG nWord )
