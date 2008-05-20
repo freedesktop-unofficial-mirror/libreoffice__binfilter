@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fltrcfg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -36,65 +36,4 @@
 #include <unotools/configitem.hxx>
 #endif
 
-namespace binfilter
-{
-
-struct SvtFilterOptions_Impl;
-class  SvtFilterOptions : public utl::ConfigItem
-{
-    SvtFilterOptions_Impl* pImp;
-
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
-public:
-                    SvtFilterOptions();
-    virtual        ~SvtFilterOptions();
-
-    virtual void            Notify( const com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames);
-    virtual void            Commit();
-    void                    Load();
-
-    void SetLoadWordBasicCode( sal_Bool bFlag );
-    sal_Bool IsLoadWordBasicCode() const;
-    void SetLoadWordBasicStorage( sal_Bool bFlag );
-    sal_Bool IsLoadWordBasicStorage() const;
-
-    void SetLoadExcelBasicCode( sal_Bool bFlag );
-    sal_Bool IsLoadExcelBasicCode() const;
-    void SetLoadExcelBasicStorage( sal_Bool bFlag );
-    sal_Bool IsLoadExcelBasicStorage() const;
-
-    void SetLoadPPointBasicCode( sal_Bool bFlag );
-    sal_Bool IsLoadPPointBasicCode() const;
-    void SetLoadPPointBasicStorage( sal_Bool bFlag );
-    sal_Bool IsLoadPPointBasicStorage() const;
-
-    sal_Bool IsMathType2Math() const;
-    void SetMathType2Math( sal_Bool bFlag );
-    sal_Bool IsMath2MathType() const;
-    void SetMath2MathType( sal_Bool bFlag );
-
-    sal_Bool IsWinWord2Writer() const;
-    void SetWinWord2Writer( sal_Bool bFlag );
-    sal_Bool IsWriter2WinWord() const;
-    void SetWriter2WinWord( sal_Bool bFlag );
-
-    sal_Bool IsExcel2Calc() const;
-    void SetExcel2Calc( sal_Bool bFlag );
-    sal_Bool IsCalc2Excel() const;
-    void SetCalc2Excel( sal_Bool bFlag );
-
-    sal_Bool IsPowerPoint2Impress() const;
-    void SetPowerPoint2Impress( sal_Bool bFlag );
-    sal_Bool IsImpress2PowerPoint() const;
-    void SetImpress2PowerPoint( sal_Bool bFlag );
-
-    static SvtFilterOptions* Get();
-};
-
-}
-
 #endif
-
-
-
-
