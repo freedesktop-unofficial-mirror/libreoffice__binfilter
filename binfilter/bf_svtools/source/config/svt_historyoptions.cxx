@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_historyoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -206,34 +206,6 @@ class SvtHistoryOptions_Impl : public ConfigItem
 
         virtual void Commit();
 
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      base implementation of public interface for "SvtHistoryOptions"!
-            @descr      These class is used as static member of "SvtHistoryOptions" ...
-                        => The code exist only for one time and isn't duplicated for every instance!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_uInt32                              GetSize     (           EHistoryType    eHistory    );
-        void                                    SetSize     (           EHistoryType    eHistory    ,
-                                                                        sal_uInt32      nSize       );
-        void                                    Clear       (           EHistoryType    eHistory    );
-        Sequence< Sequence< PropertyValue > >   GetList     (           EHistoryType    eHistory    );
-        void                                    AppendItem  (           EHistoryType    eHistory    ,
-                                                                const   OUString&       sURL        ,
-                                                                const   OUString&       sFilter     ,
-                                                                const   OUString&       sTitle      ,
-                                                                const   OUString&       sPassword   );
-
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------
@@ -256,41 +228,6 @@ class SvtHistoryOptions_Impl : public ConfigItem
         Sequence< OUString > impl_GetPropertyNames( sal_uInt32& nPicklistCount     ,
                                                     sal_uInt32& nHistoryCount      ,
                                                     sal_uInt32& nHelpBookmarkCount );
-
-        /*-****************************************************************************************************//**
-            @short      convert routine
-            @descr      Intern we hold ouer values in a deque. Sometimes we need his content as a return sequence.
-                        Then we must convert ouer internal format to extern.
-                        That is the reason for these method!
-
-            @seealso    -
-
-            @param      "aList" list in deque format.
-            @return     A list which right format is returned.
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        Sequence< Sequence< PropertyValue > > impl_GetSequenceFromList( const deque< IMPL_THistoryItem >& aList );
-
-        /*-****************************************************************************************************//**
-            @short      helper
-            @descr      Some code is the same for different internal history list. So we can get a pointer as an access to
-                        right internal member list by calling this method with right enum value.
-                        Returned pointer can be used to implement some functionality on this list then.
-                        By the way - we return max size of these list too ...
-
-            @seealso    using!
-
-            @param      "eType" describe, which list should be returned as pointer
-            @return     A pointer to one of our internal member lists.
-
-            @onerror    We return NULL.
-        *//*-*****************************************************************************************************/
-
-        void impl_GetListInfo( EHistoryType                 eType     ,
-                               deque< IMPL_THistoryItem >** ppList    ,
-                               sal_uInt32**                 ppMaxSize );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private member
@@ -542,133 +479,6 @@ void SvtHistoryOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_uInt32 SvtHistoryOptions_Impl::GetSize( EHistoryType eHistory )
-{
-    // Attention: We return the max. size of our internal lists - That is the capacity not the size!
-
-    // Set default return value if method failed!
-    sal_uInt32 nSize = 0;
-    // Get size of searched history list.
-    switch( eHistory )
-    {
-        case ePICKLIST      :   nSize = m_nPicklistSize;
-                                break;
-        case eHISTORY       :   nSize = m_nHistorySize;
-                                break;
-        case eHELPBOOKMARKS :   nSize = m_nHistorySize;
-                                break;
-    }
-    // Return result of operation.
-    return nSize;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions_Impl::SetSize( EHistoryType eHistory, sal_uInt32 nSize )
-{
-    // Attention: We set the max. size of our internal lists - That is the capacity not the size!
-    // Set size of searched history list.
-    deque< IMPL_THistoryItem >* pList    = NULL;
-    sal_uInt32*                 pMaxSize = NULL;
-    impl_GetListInfo( eHistory, &pList, &pMaxSize );
-
-    if( pList!=NULL && pMaxSize!=NULL )
-    {
-        // If to much items in current list ...
-        // truncate the oldest items BEFORE you set the new one.
-        if( nSize<pList->size() )
-        {
-            sal_uInt32 nOldItemCount = pList->size()-nSize;
-            while( nOldItemCount>0 )
-            {
-                pList->pop_back();
-                --nOldItemCount;
-            }
-        }
-        *pMaxSize = nSize;
-        Commit();
-    }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions_Impl::Clear( EHistoryType eHistory )
-{
-    // Clear specified history list.
-    deque< IMPL_THistoryItem >* pList    = NULL;
-    sal_uInt32*                 pMaxSize = NULL;
-    impl_GetListInfo( eHistory, &pList, &pMaxSize );
-
-    if( pList!=NULL && pMaxSize!=NULL )
-    {
-        pList->clear();
-        Commit();
-    }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtHistoryOptions_Impl::GetList( EHistoryType eHistory )
-{
-    // Set default return value.
-    Sequence< Sequence< PropertyValue > > seqReturn;
-
-    deque< IMPL_THistoryItem >* pList    = NULL;
-    sal_uInt32*                 pMaxSize = NULL;
-    impl_GetListInfo( eHistory, &pList, &pMaxSize );
-
-    if( pList!=NULL && pMaxSize!=NULL )
-        seqReturn = impl_GetSequenceFromList( *pList );
-
-    return seqReturn;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions_Impl::AppendItem(            EHistoryType    eHistory    ,
-                                            const   OUString&       sURL        ,
-                                            const   OUString&       sFilter     ,
-                                            const   OUString&       sTitle      ,
-                                            const   OUString&       sPassword   )
-{
-    // create new list item with given values
-    IMPL_THistoryItem aItem( sURL, sFilter, sTitle, sPassword );
-
-    // search for right internal list by given enum
-    deque< IMPL_THistoryItem >* pList    = NULL;
-    sal_uInt32*                 pMaxSize = NULL;
-    impl_GetListInfo( eHistory, &pList, &pMaxSize );
-
-    // work on these list
-    if( pList!=NULL && pMaxSize!=NULL )
-    {
-        deque< IMPL_THistoryItem >::iterator pItem = ::std::find( pList->begin(), pList->end(), sURL );
-        if( pItem == pList->end() )
-        {
-            // If current list full ... delete the oldest item.
-            if( pList->size() >= *pMaxSize )
-                pList->pop_back();
-            // Append new item to list.
-            pList->push_front( aItem );
-            Commit();
-        }
-        else if (pItem != pList->begin())
-        {
-            IMPL_THistoryItem aTempItem = *pItem;
-            pList->erase(pItem);
-            pList->push_front(aTempItem);
-            Commit();
-        }
-    }
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtHistoryOptions_Impl::impl_GetPropertyNames( sal_uInt32& nPicklistCount     ,
@@ -755,60 +565,6 @@ Sequence< OUString > SvtHistoryOptions_Impl::impl_GetPropertyNames( sal_uInt32& 
 }
 
 //*****************************************************************************************************************
-//  private method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtHistoryOptions_Impl::impl_GetSequenceFromList( const deque< IMPL_THistoryItem >& aList )
-{
-    // Initialize return sequence with right size.
-    sal_uInt32 nCount = aList.size();
-    Sequence< Sequence< PropertyValue > >   seqResult( nCount );
-    Sequence< PropertyValue >               seqProperties( 4 );
-    // Copy items from given to return list.
-    for( sal_uInt32 nItem=0; nItem<nCount; ++nItem )
-    {
-        seqProperties[OFFSET_URL        ].Name  =   HISTORY_PROPERTYNAME_URL        ;
-        seqProperties[OFFSET_FILTER     ].Name  =   HISTORY_PROPERTYNAME_FILTER     ;
-        seqProperties[OFFSET_TITLE      ].Name  =   HISTORY_PROPERTYNAME_TITLE      ;
-        seqProperties[OFFSET_PASSWORD   ].Name  =   HISTORY_PROPERTYNAME_PASSWORD   ;
-        seqProperties[OFFSET_URL        ].Value <<= aList[nItem].sURL               ;
-        seqProperties[OFFSET_FILTER     ].Value <<= aList[nItem].sFilter            ;
-        seqProperties[OFFSET_TITLE      ].Value <<= aList[nItem].sTitle             ;
-        seqProperties[OFFSET_PASSWORD   ].Value <<= aList[nItem].sPassword          ;
-        seqResult[nItem] = seqProperties;
-    }
-    return seqResult;
-}
-
-//*****************************************************************************************************************
-//  private method
-//*****************************************************************************************************************
-void SvtHistoryOptions_Impl::impl_GetListInfo( EHistoryType                 eType     ,
-                                               deque< IMPL_THistoryItem >** ppList    ,
-                                               sal_uInt32**                 ppMaxSize )
-{
-    *ppList    = NULL ;
-    *ppMaxSize = NULL ;
-    switch( eType )
-    {
-        case ePICKLIST      :   {
-                                    *ppList    = &m_aPicklist    ;
-                                    *ppMaxSize = &m_nPicklistSize;
-                                }
-                                break;
-        case eHISTORY       :   {
-                                    *ppList    = &m_aHistory    ;
-                                    *ppMaxSize = &m_nHistorySize;
-                                }
-                                break;
-        case eHELPBOOKMARKS :   {
-                                    *ppList    = &m_aHelpBookmarks   ;
-                                    *ppMaxSize = &m_nHelpBookmarkSize;
-                                }
-                                break;
-    }
-}
-
-//*****************************************************************************************************************
 //  initialize static member
 //  DON'T DO IT IN YOUR HEADER!
 //  see definition for further informations
@@ -853,54 +609,6 @@ SvtHistoryOptions::~SvtHistoryOptions()
     }
 }
 
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_uInt32 SvtHistoryOptions::GetSize( EHistoryType eHistory ) const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetSize( eHistory );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions::SetSize( EHistoryType eHistory, sal_uInt32 nSize )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetSize( eHistory, nSize );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions::Clear( EHistoryType eHistory )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->Clear( eHistory );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtHistoryOptions::GetList( EHistoryType eHistory ) const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetList( eHistory );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtHistoryOptions::AppendItem(         EHistoryType    eHistory    ,
-                                    const   OUString&       sURL        ,
-                                    const   OUString&       sFilter     ,
-                                    const   OUString&       sTitle      ,
-                                    const   OUString&       sPassword   )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->AppendItem( eHistory, sURL, sFilter, sTitle, sPassword );
-}
 
 //*****************************************************************************************************************
 //  private method
