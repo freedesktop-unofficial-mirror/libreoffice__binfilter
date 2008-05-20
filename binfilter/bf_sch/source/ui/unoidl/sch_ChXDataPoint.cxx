@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_ChXDataPoint.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,17 +124,6 @@ const uno::Sequence< sal_Int8 > & ChXDataPoint::getUnoTunnelId() throw()
         }
     }
     return *pSeq;
-}
-
-// Note: this method is provided by WeakAggImplHelper, but as ChXDataRow has the same template parameters
-// for both classes the same Id is returned here, so this makes it unique
-ChXDataPoint* ChXDataPoint::getImplementation( uno::Reference< uno::XInterface > xData ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xData, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (ChXDataPoint*)xUT->getSomething( ChXDataPoint::getUnoTunnelId() );
-    else
-        return NULL;
 }
 
 // XTypeProvider
