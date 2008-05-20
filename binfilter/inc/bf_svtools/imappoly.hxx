@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imappoly.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -92,16 +92,11 @@ public:
 
     BOOL                HasExtraEllipse() const { return bEllipse; }
     const Rectangle&    GetExtraEllipse() const { return aEllipse; }
-    void                SetExtraEllipse( const Rectangle& rEllipse );
 
     void                Scale( const Fraction& rFractX, const Fraction& rFracY );
 
     using IMapObject::IsEqual;
     BOOL                IsEqual( const IMapPolygonObject& rEqObj );
-
-    // Im-/Export
-    void                WriteCERN( SvStream& rOStm, const String& rBaseURL  ) const;
-    void                WriteNCSA( SvStream& rOStm, const String& rBaseURL  ) const;
 };
 
 }
