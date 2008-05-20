@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swtypes.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,9 +58,6 @@
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
@@ -122,8 +119,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( SwAttrSet, 25, 25 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwStartNode, 20, 20 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwEndNode,   20, 20 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwTableBox, 50, 50 )
-IMPL_FIXEDMEMPOOL_NEWDEL( SwUndoDelete, 10, 10 )
-IMPL_FIXEDMEMPOOL_NEWDEL( SwUndoInsert, 10, 10 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwPaM, 10, 10 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwCursor, 10, 10 )
 IMPL_FIXEDMEMPOOL_NEWDEL( SwShellCrsr, 10, 10 )
@@ -177,12 +172,6 @@ IMPL_FIXEDMEMPOOL_NEWDEL( _SwCursor_SavePos, 20, 20 )
 /*N*/ Locale CreateLocale( LanguageType eLanguage )
 /*N*/ {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); Locale temp; return temp;//STRIP001  String aLangStr, aCtryStr;
-/*N*/ }
-
-
-/*N*/ Reference< XSpellChecker1 >  GetSpellChecker()
-/*N*/ {
-/*N*/   return LinguMgr::GetSpellChecker();
 /*N*/ }
 
 
