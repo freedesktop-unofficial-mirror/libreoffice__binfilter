@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_chtmode7.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -491,30 +491,6 @@ UINT32& ChartModel::Percent DescrF ormat ()
 /*N*/ {
 /*N*/   return pScene;
 /*N*/ }
-
-
-/*N*/ const SchMemChart *ChartModel::GetMemChart () const
-/*N*/ {
-/*N*/   return pChartData;
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ SvNumberFormatter* ChartModel::GetNumFormatter() const
 /*N*/ {
