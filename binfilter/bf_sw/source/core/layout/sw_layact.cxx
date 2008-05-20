@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_layact.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2430,66 +2430,6 @@ namespace binfilter {
 /*N*/       bResult = pImp->IsStopPrt();
 /*N*/
 /*N*/   return bResult;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwLayAction::FormatSpelling(), _FormatSpelling()
-|*
-|*  Ersterstellung      AMA 01. Feb. 96
-|*  Letzte Aenderung    AMA 01. Feb. 96
-|*
-|*************************************************************************/
-
-/*N*/ BOOL SwLayIdle::FormatSpelling( BOOL bVisAreaOnly )
-/*N*/ {
-/*N*/   //Spellchecken aller Inhalte der Seiten. Entweder nur der sichtbaren
-/*N*/   //Seiten oder eben aller. Nach dem Checken jedes Absatzes wird abgebrochen
-/*N*/   //wenn ein Input anliegt.
-/*N*/   if( !pImp->GetShell()->GetViewOptions()->IsOnlineSpell() )
-/*N*/       return FALSE;
-/*?*/   SwPageFrm *pPage;
-/*?*/   if ( bVisAreaOnly )
-/*?*/       pPage = pImp->GetFirstVisPage();
-/*?*/   else
-/*?*/       pPage = (SwPageFrm*)pRoot->Lower();
-/*?*/
-/*?*/   pCntntNode = NULL;
-/*?*/   nTxtPos = STRING_LEN;
-/*?*/
-/*?*/   while ( pPage )
-/*?*/   {
-/*?*/       bPageValid = TRUE;
-/*?*/       const SwCntntFrm *pCnt = pPage->ContainsCntnt();
-/*?*/       while( pCnt && pPage->IsAnLower( pCnt ) )
-/*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( _FormatSpelling( pCnt ) )
-/*?*/       }
-/*?*/       if ( pPage->GetSortedObjs() )
-/*?*/       {
-/*?*/           for ( USHORT i = 0; pPage->GetSortedObjs() &&
-/*?*/                               i < pPage->GetSortedObjs()->Count(); ++i )
-/*?*/           {
-/*?*/               SdrObject *pO = (*pPage->GetSortedObjs())[i];
-/*?*/               if ( pO->IsWriterFlyFrame() )
-/*?*/               {
-/*?*/                   const SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-/*?*/                   const SwCntntFrm *pC = pFly->ContainsCntnt();
-/*?*/                   while( pC )
-/*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pC->IsTxtFrm() && _FormatSpelling( pC ) )
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*?*/       }
-/*?*/       if( bPageValid )
-/*?*/           pPage->ValidateSpelling();
-/*?*/       pPage = (SwPageFrm*)pPage->GetNext();
-/*?*/       if ( pPage && bVisAreaOnly &&
-/*?*/            !pPage->Frm().IsOver( pImp->GetShell()->VisArea()))
-/*?*/           return  FALSE;
-/*?*/   }
-/*?*/   return FALSE;
 /*N*/ }
 
 /*N*/ #ifndef PRODUCT
