@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unoobj.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,9 +73,6 @@
 #endif
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _ROOTFRM_HXX //autogen
 #include <rootfrm.hxx>
@@ -557,11 +554,9 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
     {
         SwTxtFmtColl *pLocal = pStyle->GetCollection();
         UnoActionContext aAction(pDoc);
-        pDoc->StartUndo( UNDO_START );
         FOREACHUNOPAM_START(&rPaM)
             pDoc->SetTxtFmtColl(*PUNOPAM, pLocal);
         FOREACHUNOPAM_END()
-        pDoc->EndUndo( UNDO_END );
     }
     else
     {
@@ -628,12 +623,10 @@ void lcl_SetNodeNumStart( SwPaM& rCrsr, uno::Any aValue )
 
     if( rCrsr.GetNext() != &rCrsr )         // Mehrfachselektion ?
     {
-        pDoc->StartUndo( UNDO_START );
         SwPamRanges aRangeArr( rCrsr );
         SwPaM aPam( *rCrsr.GetPoint() );
         for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
             pDoc->SetNodeNumStart( *aRangeArr.SetPam( n, aPam ).GetPoint(), nStt );
-        pDoc->EndUndo( UNDO_END );
     }
     else
         pDoc->SetNodeNumStart( *rCrsr.GetPoint(), nStt );
@@ -694,14 +687,12 @@ sal_Bool lcl_setCrsrPropertyValue(const SfxItemPropertyMap* pMap,
                     for(sal_Int32 nStyle = 0; nStyle < aCharStyles.getLength(); nStyle++)
                     {
                         Any aStyle;
-                        rPam.GetDoc()->StartUndo( UNDO_START );
                         aStyle <<= aCharStyles.getConstArray()[nStyle];
                         //create a local set and apply each format directly
                         SfxItemSet aSet(rPam.GetDoc()->GetAttrPool(), RES_TXTATR_CHARFMT, RES_TXTATR_CHARFMT );
                         lcl_setCharStyle(rPam.GetDoc(), aStyle, aSet );
                         //the first style should replace the current attributes, all other have to be added
                         SwXTextCursor::SetCrsrAttr(rPam, aSet, nStyle ? CRSR_ATTR_MODE_DONTREPLACE : 0);
-                        rPam.GetDoc()->EndUndo( UNDO_START );
                     }
                 }
                 else
@@ -856,8 +847,6 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
     static const sal_uInt16 nMaxLookup = 1000;
     SwFmtColl *pFmt = 0;
 
-//  if ( GetCrsrCnt() > nMaxLookup )
-//      return 0;
     sal_Bool bError = sal_False;
     FOREACHUNOPAM_START(&rPam)
 
@@ -942,13 +931,6 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
 /******************************************************************
  * SwXTextCursor
  ******************************************************************/
-/*-----------------24.03.98 14:49-------------------
-
---------------------------------------------------*/
-uno::Reference< uno::XInterface >  SwXTextCursor_NewInstance_Impl()
-{
-    return (cppu::OWeakObject*)new SwXTextCursor();
-};
 /*-- 09.12.98 14:19:19---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -1007,18 +989,6 @@ SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition&
     }
     pUnoCrsr->Add(this);
 }
-/*-- 09.12.98 14:19:19---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-SwXTextCursor::SwXTextCursor(SwXText* pParent) :
-    xParentText(pParent),
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    pLastSortOptions(0),
-    eType(CURSOR_INVALID),
-    aLstnrCntnr( (util::XSortable*)this)
-{
-
-}
 /* -----------------04.03.99 09:02-------------------
  *
  * --------------------------------------------------*/
@@ -1060,7 +1030,6 @@ void SwXTextCursor::DeleteAndInsert(const String& rText)
         SwDoc* pDoc = pUnoCrsr->GetDoc();
         UnoActionContext aAction(pDoc);
         xub_StrLen nTxtLen = rText.Len();
-        pDoc->StartUndo(UNDO_INSERT);
         SwCursor *_pStartCrsr = pUnoCrsr;
         do
         {
@@ -1079,7 +1048,6 @@ void SwXTextCursor::DeleteAndInsert(const String& rText)
                 _pStartCrsr->Left(rText.Len(), CRSR_SKIP_CHARS);
             }
         } while( (_pStartCrsr=(SwCursor*)_pStartCrsr->GetNext()) != pUnoCrsr );
-        pDoc->EndUndo(UNDO_INSERT);
     }
 }
 /* -----------------------------10.03.00 18:02--------------------------------
