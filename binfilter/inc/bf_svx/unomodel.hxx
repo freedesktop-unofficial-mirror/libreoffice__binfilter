@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unomodel.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -87,7 +87,6 @@ private:
     ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
-    SvxUnoDrawingModel( SdrModel* pDoc ) throw();
     virtual ~SvxUnoDrawingModel() throw();
 
     SdrModel* GetDoc() const { return mpDoc; }
@@ -121,11 +120,6 @@ public:
     // XAnyCompareFactory
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL createAnyCompareByName( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::uno::RuntimeException);
 };
-
-extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xOut, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent );
-extern sal_Bool SvxDrawingLayerExport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XOutputStream> xOut, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent, const char* pExportService  );
-extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream> xInputStream, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent  );
-extern sal_Bool SvxDrawingLayerImport( SdrModel* pModel, ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream> xInputStream, ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > xComponent, const char* pImportService );
 }//end of namespace binfilter
 #endif
 
