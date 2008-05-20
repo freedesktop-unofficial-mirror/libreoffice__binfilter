@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_misc.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -40,33 +40,5 @@ namespace binfilter {
 #if defined(DBG_UTIL) && ( defined(WNT) || defined(OS2) )
 unsigned SfxStack::nLevel = 0;
 #endif
-
-//--------------------------------------------------------------------
-
-
-/*N*/ String SfxStringEncode( const String &rSource, const char *pKey  )
-/*N*/ {
-/*N*/   String aRet;
-/*N*/   String aCoded(rSource);
-/*ASMUSS
-    // codieren
-    USHORT nCode = 0;
-    for ( USHORT n1 = 0; n1 < aCoded.Len(); ++n1 )
-    {
-        aCoded[n1] ^= pKey[nCode];
-        if ( !pKey[++nCode] )
-            nCode = 0;
-    }
-
-    // als reine Buchstabenfolge darstellen
-    for ( USHORT n2 = 0; n2 < aCoded.Len(); ++n2 )
-    {
-        aRet += (char) ( 'a' + ((aCoded[n2] & 0xF0) >> 4) );
-        aRet += (char) ( 'a' +  (aCoded[n2] & 0xF) );
-    }
-*/
-/*N*/   return aRet;
-/*N*/ }
-
 
 }
