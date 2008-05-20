@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: evntconf.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -107,23 +107,12 @@ public:
                             ~SfxEventConfiguration();
 
     void                    RegisterEvent(USHORT nId, const String& rName);
-    String                  GetEventName(USHORT nId) const;
-    USHORT                  GetEventId(const String& rName) const;
     USHORT                  GetEventCount() const
                             { return pEventArr->Count()-1; }
-    const SvxMacro*         GetMacroForEventId( USHORT nEventId, SfxObjectShell *pObjSh );
-    void                    ConfigureEvent(USHORT nId, const SvxMacro&,
-                                SfxObjectShell* pObjSh);
     void                    ConfigureEvent(USHORT nId, const String& rMacro,
                                 SfxObjectShell* pObjSh);
 
-    const SfxMacroInfo*     GetMacroInfo(USHORT nEventId, SfxObjectShell* pObjSh) const;
-
-    void                    AddEvents( SfxMacroTabPage* ) const;
     SvxMacroTableDtor*      GetAppEventTable();
-    SvxMacroTableDtor*      GetDocEventTable(SfxObjectShell*);
-    void                    SetAppEventTable( const SvxMacroTableDtor& );
-    void                    SetDocEventTable( SfxObjectShell*, const SvxMacroTableDtor& );
 
     static void             RegisterEvent( USHORT nId, const String& rName,
                                            const String& rMacroName );
@@ -138,9 +127,6 @@ public:
     BOOL                        Warn_Impl( SfxObjectShell *pDoc, const SvxMacro* pMacro );
     void                        PropagateEvents_Impl( SfxObjectShell *pDoc,
                                                       const SvxMacroTableDtor& rTable );
-    void                        PropagateEvent_Impl( SfxObjectShell *pDoc,
-                                                     USHORT nId,
-                                                     const SvxMacro* pMacro );
     static ::rtl::OUString      GetEventName_Impl( ULONG nID );
     static ULONG                GetEventId_Impl( const ::rtl::OUString& rEventName );
     ::com::sun::star::uno::Any  CreateEventData_Impl( const SvxMacro *pMacro );
@@ -164,9 +150,6 @@ friend class SfxEventConfiguration;
 
     void                    ConstructMacroTable();
     int                     Load(SvStream&);
-    BOOL                    Store(SvStream&);
-    BOOL                    LoadXML(SvStream&);
-    BOOL                    StoreXML(SvStream&);
 
 public:
                             SfxEventConfigItem_Impl( USHORT,
