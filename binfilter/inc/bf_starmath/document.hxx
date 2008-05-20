@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: document.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -214,15 +214,12 @@ public:
     void            SetFormulaTree(SmNode *&rTree) { pTree = rTree; }
 
 
-    EditEngine &    GetEditEngine();
-
     SmSymSetManager &       GetSymSetManager();
     const SmSymSetManager & GetSymSetManager() const
     {
         return ((SmDocShell *) this)->GetSymSetManager();
     }
 
-    void        Draw(OutputDevice &rDev, Point &rPosition);
     Size        GetSize();
 
     void        Resize();
