@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.12 $
+# $Revision: 1.13 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -104,8 +104,7 @@ SLOFILES=\
          $(SLO)$/svx_svdview.obj         \
          $(SLO)$/svx_svdviter.obj        \
          $(SLO)$/svx_svdvmark.obj        \
-         $(SLO)$/svx_svdxcgv.obj		 \
-         $(SLO)$/svx_clonelist.obj
+         $(SLO)$/svx_svdxcgv.obj
 
 .IF "$(OS)$(CPU)"=="LINUXI"
 NOOPTFILES=$(SLO)$/svx_svdattr.obj
