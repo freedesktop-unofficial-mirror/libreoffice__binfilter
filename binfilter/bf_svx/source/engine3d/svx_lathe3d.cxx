@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_lathe3d.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -88,85 +88,6 @@ namespace binfilter {
 /*N*/   // Geometrie erzeugen
 /*N*/   CreateGeometry();
 /*N*/ }
-
-/*************************************************************************
-|*
-|* wie voriger Konstruktor, nur mit XPolygon; das XPolygon wird
-|* jedoch nicht Bezier-konvertiert, sondern es werden nur seine
-|* Punktkoordinaten uebernommen
-|*
-\************************************************************************/
-
-/*?*/ E3dLatheObj::E3dLatheObj(E3dDefaultAttributes& rDefault, const XPolyPolygon& rXPoly)
-/*?*/ : E3dCompoundObject(rDefault),
-/*?*/   aPolyPoly3D (PolyPolygon3D(rXPoly, rDefault.GetDefaultLatheScale()))
-/*?*/ {
-/*?*/   // Defaults setzen
-/*?*/   SetDefaultAttributes(rDefault);
-/*?*/
-/*?*/   // Ueberfluessige Punkte entfernen, insbesondere doppelte
-/*?*/   // Start- und Endpunkte verhindern
-/*?*/   aPolyPoly3D.RemoveDoublePoints();
-/*?*/   const Polygon3D rPoly = aPolyPoly3D[0];
-/*?*/   sal_uInt32 nSegCnt((sal_uInt32)rPoly.GetPointCount());
-/*?*/   if(nSegCnt && !rPoly.IsClosed())
-/*?*/       nSegCnt -= 1;
-/*?*/   mpObjectItemSet->Put(Svx3DVerticalSegmentsItem(nSegCnt));
-/*?*/
-/*?*/   // Geometrie erzeugen
-/*?*/   CreateGeometry();
-/*?*/ }
-
-/*************************************************************************
-|*
-\************************************************************************/
-
-/*?*/ E3dLatheObj::E3dLatheObj(E3dDefaultAttributes& rDefault, const XPolygon& rXPoly)
-/*?*/ : E3dCompoundObject(rDefault),
-/*?*/   aPolyPoly3D (PolyPolygon3D(rXPoly, rDefault.GetDefaultLatheScale()))
-/*?*/ {
-/*?*/   // Defaults setzen
-/*?*/   SetDefaultAttributes(rDefault);
-/*?*/
-/*?*/   // Ueberfluessige Punkte entfernen, insbesondere doppelte
-/*?*/   // Start- und Endpunkte verhindern
-/*?*/   aPolyPoly3D.RemoveDoublePoints();
-/*?*/   const Polygon3D rPoly = aPolyPoly3D[0];
-/*?*/   sal_uInt32 nSegCnt((sal_uInt32)rPoly.GetPointCount());
-/*?*/   if(nSegCnt && !rPoly.IsClosed())
-/*?*/       nSegCnt -= 1;
-/*?*/   mpObjectItemSet->Put(Svx3DVerticalSegmentsItem(nSegCnt));
-/*?*/
-/*?*/   // Geometrie erzeugen
-/*?*/   CreateGeometry();
-/*?*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor aus 3D-Polygon, Scale gibt den Umrechnungsfaktor fuer
-|* die Koordinaten an
-|*
-\************************************************************************/
-
-/*?*/ E3dLatheObj::E3dLatheObj (E3dDefaultAttributes& rDefault, const PolyPolygon3D rPoly3D)
-/*?*/ : E3dCompoundObject(rDefault),
-/*?*/   aPolyPoly3D(rPoly3D)
-/*?*/ {
-/*?*/   // Defaults setzen
-/*?*/   SetDefaultAttributes(rDefault);
-/*?*/
-/*?*/   // Ueberfluessige Punkte entfernen, insbesondere doppelte
-/*?*/   // Start- und Endpunkte verhindern
-/*?*/   aPolyPoly3D.RemoveDoublePoints();
-/*?*/   const Polygon3D rPoly = aPolyPoly3D[0];
-/*?*/   sal_uInt32 nSegCnt((sal_uInt32)rPoly.GetPointCount());
-/*?*/   if(nSegCnt && !rPoly.IsClosed())
-/*?*/       nSegCnt -= 1;
-/*?*/   mpObjectItemSet->Put(Svx3DVerticalSegmentsItem(nSegCnt));
-/*?*/
-/*?*/   // Geometrie erzeugen
-/*?*/   CreateGeometry();
-/*?*/ }
 
 /*************************************************************************
 |*
