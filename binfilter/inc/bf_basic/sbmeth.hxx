@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbmeth.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,13 +69,10 @@ public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_BASICMETHOD,2);
     TYPEINFO();
     virtual SbxInfo* GetInfo();
-    SbxArray* GetLocals();
-    SbxArray* GetStatics();
     SbModule* GetModule()                { return pMod;        }
     UINT32    GetId() const              { return nStart;      }
     USHORT    GetDebugFlags()            { return nDebugFlags; }
     void      SetDebugFlags( USHORT n )  { nDebugFlags = n;    }
-    void      GetLineRange( USHORT&, USHORT& );
 
     // Schnittstelle zum Ausfuehren einer Methode aus den Applikationen
     virtual ErrCode Call( SbxValue* pRet = NULL );
