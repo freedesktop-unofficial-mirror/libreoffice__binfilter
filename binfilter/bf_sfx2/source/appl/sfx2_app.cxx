@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_app.cxx,v $
- * $Revision: 1.17 $
+ * $Revision: 1.18 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -175,13 +175,6 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/ {
 /*N*/     String aMgrName = String::CreateFromAscii( pPrefix );
 /*N*/     return ResMgr::CreateResMgr(U2S(aMgrName));
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ sal_uInt16 SfxApplication::GetFreeIndex()
-/*N*/ {
-/*N*/     return pAppData_Impl->aIndexBitSet.GetFreeIndex()+1;
 /*N*/ }
 
 //------------------------------------------------------------------------
