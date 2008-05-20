@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.7 $
+# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -63,7 +63,6 @@ SUBLIBS1= \
         $(SLB)$/sw_ole.lib \
         $(SLB)$/sw_fields.lib \
         $(SLB)$/sw_tox.lib \
-        $(SLB)$/sw_undo.lib \
         $(SLB)$/sw_bastyp.lib
 
 SUBLIBS2= \
