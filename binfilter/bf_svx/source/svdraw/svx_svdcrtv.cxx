@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdcrtv.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,13 +109,6 @@ namespace binfilter {
 /*N*/   ImpClearVars();
 /*N*/   ImpMakeCreateAttr();
 /*N*/ }
-
-/*?*/ SdrCreateView::SdrCreateView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrDragView(pModel1,pXOut)
-/*?*/ {
-/*?*/   ImpClearVars();
-/*?*/   ImpMakeCreateAttr();
-/*?*/ }
 
 /*N*/ SdrCreateView::~SdrCreateView()
 /*N*/ {
