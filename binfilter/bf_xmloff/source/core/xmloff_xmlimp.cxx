@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_xmlimp.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -322,64 +322,6 @@ SvXMLImport::SvXMLImport(
     pEventListener( NULL ),
     pXMLErrors( NULL ),
     mnImportFlags( nImportFlags ),
-    mbIsFormsSupported( sal_True )
-{
-    DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
-    _InitCtor();
-}
-
-// #110680#
-SvXMLImport::SvXMLImport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    const Reference< XModel > & rModel ) throw ()
-:   pImpl( new SvXMLImport_Impl() ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) ),
-
-    pContexts( new SvXMLImportContexts_Impl ),
-    pNumImport( NULL ),
-    xModel( rModel ),
-    xNumberFormatsSupplier (rModel, uno::UNO_QUERY),
-    pProgressBarHelper( NULL ),
-    pEventImportHelper( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    mnImportFlags( IMPORT_ALL ),
-    mbIsFormsSupported( sal_True )
-{
-    DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
-    _InitCtor();
-}
-
-// #110680#
-SvXMLImport::SvXMLImport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    const Reference< XModel > & rModel,
-    const ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver > & rGraphicObjects ) throw ()
-:   pImpl( new SvXMLImport_Impl() ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) ),
-
-    pContexts( new SvXMLImportContexts_Impl ),
-    pNumImport( NULL ),
-    xModel( rModel ),
-    xGraphicResolver( rGraphicObjects ),
-    xNumberFormatsSupplier (rModel, uno::UNO_QUERY),
-    pProgressBarHelper( NULL ),
-    pEventImportHelper( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    mnImportFlags( IMPORT_ALL ),
     mbIsFormsSupported( sal_True )
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
