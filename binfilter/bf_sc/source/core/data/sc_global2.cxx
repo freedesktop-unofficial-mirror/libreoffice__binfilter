@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_global2.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -854,17 +854,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-/*N*/ ScSolveParam::ScSolveParam( const ScAddress& rFormulaCell,
-/*N*/                           const ScAddress& rVariableCell,
-/*N*/                           const String&   rTargetValStr )
-/*N*/   :   aRefFormulaCell ( rFormulaCell ),
-/*N*/       aRefVariableCell( rVariableCell ),
-/*N*/       pStrTargetVal   ( new String(rTargetValStr) )
-/*N*/ {
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ ScSolveParam::~ScSolveParam()
 /*N*/ {
 /*N*/   delete pStrTargetVal;
@@ -891,38 +880,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-/*N*/ ScTabOpParam::ScTabOpParam( const ScRefTripel& rFormulaCell,
-/*N*/                           const ScRefTripel& rFormulaEnd,
-/*N*/                           const ScRefTripel& rRowCell,
-/*N*/                           const ScRefTripel& rColCell,
-/*N*/                                 BYTE       nMd)
-/*N*/   :   aRefFormulaCell ( rFormulaCell ),
-/*N*/       aRefFormulaEnd  ( rFormulaEnd ),
-/*N*/       aRefRowCell     ( rRowCell ),
-/*N*/       aRefColCell     ( rColCell ),
-/*N*/       nMode           ( nMd )
-/*N*/ {
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-
 //========================================================================
 // class ScPostIt
 //========================================================================
 
 /*N*/ ScPostIt::ScPostIt()
 /*N*/ {
-/*N*/   bShown = FALSE;
-/*N*/ }
-
-/*N*/ ScPostIt::ScPostIt( const String& rText )
-/*N*/ {
-/*N*/   AutoSetText( rText );
 /*N*/   bShown = FALSE;
 /*N*/ }
 
