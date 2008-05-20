@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxbase.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -54,13 +54,6 @@ SbxAppData* GetSbxData_Impl()
     static SbxAppData* pAppData = new SbxAppData;
     return pAppData;
 }
-
-SbxAppData::~SbxAppData()
-{
-    if( pBasicFormater )
-        delete pBasicFormater;
-}
-
 
 //////////////////////////////// SbxBase /////////////////////////////////
 
@@ -246,11 +239,6 @@ SbxObject* SbxBase::CreateObject( const XubString& rClass )
 static BOOL bStaticEnableBroadcasting = TRUE;
 
 // Sbx-Loesung als Ersatz fuer SfxBroadcaster::Enable()
-void SbxBase::StaticEnableBroadcasting( BOOL bEnable )
-{
-    bStaticEnableBroadcasting = bEnable;
-}
-
 BOOL SbxBase::StaticIsEnabledBroadcasting( void )
 {
     return bStaticEnableBroadcasting;
@@ -396,21 +384,6 @@ void SbxInfo::AddParam
 {
     const SbxParamInfo* p = new SbxParamInfo( rName, eType, nFlags );
     aParams.Insert( p, aParams.Count() );
-}
-
-void SbxInfo::AddParam( const SbxParamInfo& r )
-{
-    const SbxParamInfo* p = new SbxParamInfo
-        ( r.aName, r.eType, r.nFlags, r.aTypeRef );
-    aParams.Insert( p, aParams.Count() );
-}
-
-const SbxParamInfo* SbxInfo::GetParam( USHORT n ) const
-{
-    if( n < 1 || n > aParams.Count() )
-        return NULL;
-    else
-        return aParams.GetObject( n-1 );
 }
 
 BOOL SbxInfo::LoadData( SvStream& rStrm, USHORT nVer )
