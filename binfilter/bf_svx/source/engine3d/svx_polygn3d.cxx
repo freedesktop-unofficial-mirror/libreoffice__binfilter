@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_polygn3d.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -91,29 +91,6 @@ namespace binfilter {
 /*?*/
 /*?*/   // Default-Texturkoordinaten erzeugen
 /*?*/   CreateDefaultTexture();
-/*?*/
-/*?*/   // Geometrie erzeugen
-/*?*/   CreateGeometry();
-/*?*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor
-|*
-\************************************************************************/
-
-/*?*/ E3dPolygonObj::E3dPolygonObj(
-/*?*/   E3dDefaultAttributes& rDefault,
-/*?*/   const PolyPolygon3D& rPolyPoly3D,
-/*?*/   const PolyPolygon3D& rPolyNormals3D,
-/*?*/   const PolyPolygon3D& rPolyTexture3D,
-/*?*/   BOOL bLinOnly)
-/*?*/ : E3dCompoundObject(rDefault),
-/*?*/   bLineOnly(bLinOnly)
-/*?*/ {
-/*?*/   SetPolyPolygon3D(rPolyPoly3D);
-/*?*/   SetPolyNormals3D(rPolyNormals3D);
-/*?*/   SetPolyTexture3D(rPolyTexture3D);
 /*?*/
 /*?*/   // Geometrie erzeugen
 /*?*/   CreateGeometry();
