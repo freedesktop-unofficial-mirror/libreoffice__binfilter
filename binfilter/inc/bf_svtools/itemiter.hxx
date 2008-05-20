@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: itemiter.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,7 +65,6 @@ public:
     const SfxPoolItem* GetCurItem()
                        { return _rSet._nCount ? *(_rSet._aItems+_nAkt) : 0; }
     const SfxPoolItem* NextItem();
-    const SfxPoolItem* PrevItem();
 
     BOOL               IsAtStart() const { return _nAkt == _nStt; }
     BOOL               IsAtEnd() const   { return _nAkt == _nEnd; }
