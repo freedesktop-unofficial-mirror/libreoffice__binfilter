@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_miscuno.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -248,10 +248,6 @@ sal_Bool SAL_CALL ScIndexEnumeration::supportsService( const ::rtl::OUString& Se
 
 //------------------------------------------------------------------------
 
-ScEmptyEnumerationAccess::ScEmptyEnumerationAccess()
-{
-}
-
 ScEmptyEnumerationAccess::~ScEmptyEnumerationAccess()
 {
 }
@@ -353,10 +349,6 @@ sal_Bool SAL_CALL ScNameToIndexAccess::hasElements(  ) throw(::com::sun::star::u
 }
 
 //------------------------------------------------------------------------
-
-ScPrintSettingsObj::ScPrintSettingsObj()
-{
-}
 
 ScPrintSettingsObj::~ScPrintSettingsObj()
 {
