@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_localisationoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -143,28 +143,6 @@ class SvtLocalisationOptions_Impl : public ConfigItem
         *//*-*****************************************************************************************************/
 
         virtual void Commit();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      access method to get internal values
-            @descr      These method give us a chance to regulate acces to ouer internal values.
-                        It's not used in the moment - but it's possible for the feature!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsAutoMnemonic  (                   ) const ;
-        void        SetAutoMnemonic ( sal_Bool  bState  )       ;
-        sal_Int32   GetDialogScale  (                   ) const ;
-        void        SetDialogScale  ( sal_Int32 nScale  )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
@@ -320,40 +298,6 @@ void SvtLocalisationOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtLocalisationOptions_Impl::IsAutoMnemonic() const
-{
-    return m_bAutoMnemonic;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtLocalisationOptions_Impl::SetAutoMnemonic( sal_Bool bState )
-{
-    m_bAutoMnemonic = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtLocalisationOptions_Impl::GetDialogScale() const
-{
-    return m_nDialogScale;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtLocalisationOptions_Impl::SetDialogScale( sal_Int32 nScale )
-{
-    m_nDialogScale = nScale;
-    SetModified();
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtLocalisationOptions_Impl::GetPropertyNames()
@@ -413,42 +357,6 @@ SvtLocalisationOptions::~SvtLocalisationOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtLocalisationOptions::IsAutoMnemonic() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsAutoMnemonic();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtLocalisationOptions::SetAutoMnemonic( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetAutoMnemonic( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtLocalisationOptions::GetDialogScale() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetDialogScale();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtLocalisationOptions::SetDialogScale( sal_Int32 nScale )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetDialogScale( nScale );
 }
 
 //*****************************************************************************************************************
