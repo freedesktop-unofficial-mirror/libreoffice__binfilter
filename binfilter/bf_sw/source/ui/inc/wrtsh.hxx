@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: wrtsh.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -126,13 +126,6 @@ public:
     //in der Regel in MB-Up gerufen.
     BOOL    IsExtSel() const { return bSelWrd || bSelLn; }
 
-    // erfrage, ob der akt. fnDrag - Pointer auf BeginDrag gesetzt ist
-    // Wird fuer MouseMove gebraucht, um die Bugs 55592/55931 zu umgehen.
-
-    //Basisabfragen
-
-    //Word bzw. Satz selektieren.
-
     //Basiscursortravelling
 typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
 
@@ -210,7 +203,6 @@ typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
     inline BOOL IsInClickToEdit() const ;
 
     SwWrtShell(SwDoc&, Window*, SwView&, SwRootFrm*, SwViewOption const*);
-
     virtual ~SwWrtShell();
 
 private:
@@ -289,21 +281,12 @@ private:
     //setzt den Cursorstack nach dem Bewegen mit PageUp/-Down zurueck.
 
     void    SttDragDrop(Timer *);
-    long    SetCrsr(const Point *, BOOL bProp=FALSE );
 
     long    StdSelect(const Point *, BOOL bProp=FALSE );
-    long    BeginDrag(const Point *, BOOL bProp=FALSE );
-     long   EndDrag(const Point *, BOOL bProp=FALSE );
 
 
     //Verschieben von Text aus Drag and Drop; Point ist
     //Destination fuer alle Selektionen.
-
-
-    //nach SSize/Move eines Frames Update; Point ist Destination.
-
-    long    SttLeaveSelect(const Point *, BOOL bProp=FALSE );
-    long    Ignore(const Point *, BOOL bProp=FALSE );
 
     void    LeaveExtSel() { bSelWrd = bSelLn = FALSE;}
 
