@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: basmgr.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -86,7 +86,6 @@ private:
     String  aErrStr;
 
 public:
-            BasicError();
             BasicError( const BasicError& rErr );
             BasicError( ULONG nId, USHORT nR, const String& rErrStr );
 
@@ -216,24 +215,11 @@ public:
         to the BasicManager.
     */
     void            SetLibraryContainerInfo( LibraryContainerInfo* pInfo );
-    const LibraryContainerInfo&
-                    GetLibraryContainerInfo() const;
 
-    BOOL            LoadLib( USHORT nLib );
     BOOL            RemoveLib( USHORT nLib, BOOL bDelBasicFromStorage );
-
-    // Modify-Flag wird nur beim Speichern zurueckgesetzt.
-    BOOL            IsModified() const;
-    BOOL            IsBasicModified() const;
 
     BOOL            HasErrors();
     void            ClearErrors();
-    BasicError*     GetFirstError();
-    BasicError*     GetNextError();
-
-    /** inserts a global constant into the basic library, referring to some UNO object
-    */
-    void            InsertGlobalUNOConstant( const sal_Char* _pAsciiName, const ::com::sun::star::uno::Any& _rValue );
 
 private:
     BOOL            IsReference( USHORT nLib );
