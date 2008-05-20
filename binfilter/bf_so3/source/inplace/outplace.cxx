@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: outplace.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -409,6 +409,7 @@ SvOutPlaceObject::~SvOutPlaceObject()
     delete pImpl;
 }
 
+#ifdef WNT
 void SvOutPlaceObject::ClearCache()
 {
     delete pImpl->pOP;
@@ -419,7 +420,7 @@ SotStorage * SvOutPlaceObject::GetWorkingStorage()
 {
     return pImpl->xWorkingStg;
 }
-
+#endif
 
 //=========================================================================
 const SvVerbList & SvOutPlaceObject::GetVerbList() const
@@ -748,218 +749,9 @@ const ::binfilter::SvObjectServer* SvOutPlaceObject::GetInternalServer_Impl( con
 
     return pObjServ;
 }
-//=========================================================================
-SvInPlaceObjectRef SvOutPlaceObject::InsertObject
-(
-    Window *,
-    SvStorage * pIStorage,
-    BOOL & bOk,
-    String & rTypeName,
-    String & rFileName,
-    BOOL & bIsInternal,
-    SvGlobalName & rInternalClassName
-)
-{
-    SvOutPlaceObjectRef xRet;
-    bOk = TRUE;
-    bIsInternal = FALSE;
-    rTypeName.Erase();
-    rFileName.Erase();
+
 #ifdef WNT
-    InitOle();
-    OLEUIINSERTOBJECT   io;
-    DWORD               dwData=0;
-    TCHAR               szFile[CCHPATHMAX];
-    UINT                uTemp;
 
-    memset(&io, 0, sizeof(io));
-
-    io.cbStruct=sizeof(io);
-    io.hWndOwner=GetActiveWindow();
-
-    szFile[0]=0;
-    io.lpszFile=szFile;
-    io.cchFile=CCHPATHMAX;
-
-    io.dwFlags=IOF_SELECTCREATENEW | IOF_DISABLELINK;
-
-
-    OModule aOleDlgLib;
-    if( !aOleDlgLib.load( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "oledlg" ) ) ) )
-        return &xRet;
-
-#ifdef UNICODE
-    OleUIInsertObjectW_Type * pInsertFct = (OleUIInsertObjectW_Type *)
-                                aOleDlgLib.getSymbol( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "OleUIInsertObjectW" ) ) );
-#else
-    OleUIInsertObjectA_Type * pInsertFct = (OleUIInsertObjectA_Type *)
-                                aOleDlgLib.getSymbol( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "OleUIInsertObjectA" ) ) );
-#endif
-    if( !pInsertFct )
-        return &xRet;
-
-    uTemp=pInsertFct(&io);
-    //uTemp=OleUIInsertObject(&io);
-
-    if (OLEUI_OK==uTemp)
-    {
-        TENANTTYPE      tType;
-        LPVOID          pv;
-        FORMATETC       fe;
-
-        SETDefFormatEtc(fe, 0, TYMED_NULL);
-
-        if (io.dwFlags & IOF_SELECTCREATENEW)
-        {
-            const ::binfilter::SvObjectServer* pInternalServer = GetInternalServer_Impl( SvGlobalName( io.clsid ) );
-            if ( pInternalServer )
-            {
-                // this is actually an embedded object
-                // for one of our own native formats
-                // so it will be inserted without actuall OLE embedding
-
-                bIsInternal = TRUE;
-                rTypeName = pInternalServer->GetHumanName();
-                rInternalClassName = pInternalServer->GetClassName();
-                return &xRet;
-            }
-
-            tType=TENANTTYPE_EMBEDDEDOBJECT;
-            pv=&io.clsid;
-            LPOLESTR pszUserType = NULL;
-            OleRegGetUserType( io.clsid, USERCLASSTYPE_FULL, &pszUserType );
-            if( pszUserType )
-            {
-                OLECHAR * p = pszUserType;
-                while( *p )
-#ifdef __MINGW32__
-                    rTypeName += reinterpret_cast<const sal_Unicode*>(*p++);
-#else
-                    rTypeName += *p++;
-#endif
-                CoTaskMemFree( pszUserType );
-            }
-        }
-        else
-        {
-            tType=TENANTTYPE_EMBEDDEDFILE;
-            pv=szFile;
-            rFileName.Assign( String( szFile, gsl_getSystemTextEncoding() ) );
-
-            SvGlobalName aOLECLSID = SvOutPlaceObject::GetCLSID( rFileName );
-            if( aOLECLSID == SvGlobalName() && UCBStorage::IsStorageFile( rFileName ) )
-            {
-                // this is actually an embedded object
-                // for one of our own native formats
-                // so it will be inserted without actuall OLE embedding
-
-                bIsInternal = TRUE;
-                return &xRet;
-            }
-        }
-
-        if ((io.dwFlags & IOF_CHECKDISPLAYASICON)
-            && NULL!=io.hMetaPict)
-        {
-            fe.dwAspect=DVASPECT_ICON;
-            dwData=(DWORD)(UINT)io.hMetaPict;
-        }
-
-        xRet = new SvOutPlaceObject();
-        xRet->DoInitNew( pIStorage );
-
-        xRet->pImpl->pSO_Cont = new CSO_Cont( 1, NULL, xRet );
-        xRet->pImpl->pSO_Cont->AddRef();
-
-        POINTL      ptl;
-        SIZEL       szl;
-        UINT uRet = xRet->pImpl->pSO_Cont->Create(tType, pv, &fe, &ptl, &szl, pIStorage, NULL, dwData);
-        if (CREATE_FAILED==uRet)
-        {
-            xRet = SvOutPlaceObjectRef();
-            bOk = FALSE;
-        }
-        else
-        {
-            xRet->pImpl->pSO_Cont->Invalidate();
-            if( tType == TENANTTYPE_EMBEDDEDFILE )
-                xRet->pImpl->pSO_Cont->Update();
-
-            //RECTL rcl;
-            //SETRECTL(rcl, 0, 0, szl.cx, szl.cy);
-            //xRet->pImpl->pSO_Cont->RectSet(&rcl, FALSE, TRUE);
-            xRet->SetVisAreaSize( Size( szl.cx, szl.cy ) );
-            WIN_BOOL fSetExtent;
-            xRet->pImpl->pSO_Cont->GetInfo( xRet->pImpl->dwAspect, fSetExtent );
-            xRet->pImpl->bSetExtent = fSetExtent;
-
-            //Free this regardless of what we do with it.
-            StarObject_MetafilePictIconFree(io.hMetaPict);
-        }
-    }
-#else
-    (void)pIStorage;
-    (void)rInternalClassName;
-#endif
-    return &xRet;
-}
-
-//=========================================================================
-SvInPlaceObjectRef SvOutPlaceObject::CreateFromClipboard( SvStorage * pIStorage )
-{
-    SvOutPlaceObjectRef xRet;
-#ifdef WNT
-    InitOle();
-    IDataObject * pDO = NULL;
-    OleGetClipboard( &pDO );
-    if( pDO )
-    {
-        TENANTTYPE tType;
-        HRESULT hr = OleQueryCreateFromData( pDO );
-        if( S_OK == GetScode( hr ) )
-            tType=TENANTTYPE_EMBEDDEDOBJECTFROMDATA;
-        else if( OLE_S_STATIC == GetScode( hr ) )
-            tType=TENANTTYPE_STATIC;
-        else
-        {
-            pDO->Release();
-            return &xRet;
-        }
-
-
-        xRet = new SvOutPlaceObject();
-        xRet->DoInitNew( pIStorage );
-
-        xRet->pImpl->pSO_Cont = new CSO_Cont( 1, NULL, xRet );
-        xRet->pImpl->pSO_Cont->AddRef();
-
-        POINTL          ptl;
-        SIZEL           szl;
-        FORMATETC       fe;
-        SETDefFormatEtc(fe, 0, TYMED_NULL);
-        UINT uRet = xRet->pImpl->pSO_Cont->Create(tType, pDO, &fe, &ptl, &szl, pIStorage, NULL, 0 );
-
-        if (CREATE_FAILED==uRet)
-            xRet = SvOutPlaceObjectRef();
-        else
-        {
-            xRet->pImpl->pSO_Cont->Update();
-            xRet->pImpl->pSO_Cont->Invalidate();
-            //RECTL rcl;
-            //SETRECTL(rcl, 0, 0, szl.cx, szl.cy);
-            //xRet->pImpl->pSO_Cont->RectSet(&rcl, FALSE, TRUE);
-            xRet->SetVisAreaSize( Size( szl.cx, szl.cy ) );
-            WIN_BOOL fSetExtent;
-            xRet->pImpl->pSO_Cont->GetInfo( xRet->pImpl->dwAspect, fSetExtent );
-            xRet->pImpl->bSetExtent = fSetExtent;
-        }
-        pDO->Release();
-    }
-#else
-    (void)pIStorage;
-#endif
-    return &xRet;
-}
 /* The function creates an wrapper for an MS Ole object. The argument xTrans provides the data
    needed for the creation of the MS OLE object.
 */
@@ -967,7 +759,6 @@ SvInPlaceObjectRef   SvOutPlaceObject::CreateFromData( const Reference<XTransfer
                                                 SvStorage* pIStorage)
 {
     SvOutPlaceObjectRef xRet;
-#ifdef WNT
     InitOle();
     IDataObject * pDO = NULL;
     Reference<XSystemTransferable> xSys( xTrans, UNO_QUERY);
@@ -1021,10 +812,6 @@ SvInPlaceObjectRef   SvOutPlaceObject::CreateFromData( const Reference<XTransfer
             pDO->Release();
         }
     }
-#else
-    (void)xTrans;
-    (void)pIStorage;
-#endif
     return &xRet;
 
 }
@@ -1033,7 +820,6 @@ SvInPlaceObjectRef   SvOutPlaceObject::CreateFromData( const Reference<XTransfer
 SvGlobalName    SvOutPlaceObject::GetCLSID( const String & rFileName )
 {
     SvGlobalName aCLSID;
-#ifdef WNT
     InitOle();
     OLECHAR               szFile[CCHPATHMAX];
 
@@ -1054,62 +840,8 @@ SvGlobalName    SvOutPlaceObject::GetCLSID( const String & rFileName )
         if ( !GetInternalServer_Impl( aFromWin ) )
             aCLSID = SvGlobalName( aClsId );
     }
-#else
-    (void)rFileName;
-#endif
-    return aCLSID;
 }
-
-//=========================================================================
-SvInPlaceObjectRef SvOutPlaceObject::CreateFromFile
-(
-    SvStorage * pIStorage,
-    const String & rFileName
-)
-{
-    SvOutPlaceObjectRef xRet;
-#ifdef WNT
-    FORMATETC           fe;
-
-    SETDefFormatEtc(fe, 0, TYMED_NULL);
-
-    if( rFileName.Len() >= CCHPATHMAX )
-        return &xRet;
-
-    ByteString aFileName( rFileName, gsl_getSystemTextEncoding() );
-    const TCHAR * pStr = aFileName.GetBuffer();
-
-    xRet = new SvOutPlaceObject();
-    xRet->DoInitNew( pIStorage );
-
-    InitOle();
-    xRet->pImpl->pSO_Cont = new CSO_Cont( 1, NULL, xRet );
-    xRet->pImpl->pSO_Cont->AddRef();
-
-    POINTL      ptl;
-    SIZEL       szl;
-    UINT uRet = xRet->pImpl->pSO_Cont->Create(TENANTTYPE_EMBEDDEDFILE, (void *)pStr, &fe,
-                                            &ptl, &szl, pIStorage, NULL, 0 );
-    if (CREATE_FAILED==uRet)
-    {
-        xRet = SvOutPlaceObjectRef();
-    }
-    else
-    {
-        xRet->pImpl->pSO_Cont->Invalidate();
-        xRet->pImpl->pSO_Cont->Update();
-
-        xRet->SetVisAreaSize( Size( szl.cx, szl.cy ) );
-        WIN_BOOL fSetExtent;
-        xRet->pImpl->pSO_Cont->GetInfo( xRet->pImpl->dwAspect, fSetExtent );
-        xRet->pImpl->bSetExtent = fSetExtent;
-    }
-#else
-    (void)pIStorage;
-    (void)rFileName;
 #endif
-    return &xRet;
-}
 
 //=========================================================================
 void SvOutPlaceObject::Open( BOOL bOpen )
