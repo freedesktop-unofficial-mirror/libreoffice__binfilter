@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdcrtv.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -104,7 +104,6 @@ protected:
 
 public:
     SdrCreateView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrCreateView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrCreateView();
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
@@ -116,13 +115,6 @@ public:
     const String& GetActiveLayer() const { return aAktLayer; }
     void SetMeasureLayer(const String& rName) { aMeasureLayer=rName; }
     const String& GetMeasureLayer() const { return aMeasureLayer; }
-
-    // Ist der MeasureLayer nicht gesetzt (Leerstring), so
-    // wird der ActiveLayer auch fuer Bemassung verwendet.
-    void SetEditMode(SdrViewEditMode eMode) { SdrDragView::SetEditMode(eMode); CheckEdgeMode(); }
-    void SetEditMode(BOOL bOn=TRUE) { SdrDragView::SetEditMode(bOn); CheckEdgeMode(); }
-    void SetCreateMode(BOOL bOn=TRUE) { SdrDragView::SetCreateMode(bOn); CheckEdgeMode(); }
-    void SetGluePointEditMode(BOOL bOn=TRUE) { SdrDragView::SetGluePointEditMode(bOn); CheckEdgeMode(); }
 
     // Feststellen, ob Textwerkzeug aktiviert
     BOOL IsTextTool() const;
