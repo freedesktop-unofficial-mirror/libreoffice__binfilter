@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: drawfont.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,7 +94,6 @@ public:
     // It should currently _not_ be used for spell checking, and works only for
     // ! bReverse
     BOOL NextWord();
-    BOOL NextWord( LanguageType aLang );
 
     const XubString& GetWord() const    { return aWord; }
 
