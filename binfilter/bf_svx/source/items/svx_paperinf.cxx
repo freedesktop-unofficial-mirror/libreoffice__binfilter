@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_paperinf.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -115,55 +115,6 @@ static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
 /*N*/   return rSize;
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ long HundMMToTwips( long nIn )
-/*N*/ {
-/*N*/   long nRet = OutputDevice::LogicToLogic( nIn, MAP_100TH_MM, MAP_TWIP );
-/*N*/   return nRet;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ Size ConvertToTwips( Size& rSize )
-/*N*/ {
-/*N*/   // Convert form TWIPS to 100TH_MM
-/*N*/   long nW = HundMMToTwips( rSize.Width() );
-/*N*/   long nH = HundMMToTwips( rSize.Height() );
-/*N*/
-/*N*/   rSize.Width() = nW;
-/*N*/   rSize.Height() = nH;
-/*N*/   return rSize;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvxPaper GetPaper_Impl( const Size &rSize, MapUnit eUnit, BOOL bSloppy )
-/*N*/ {
-/*N*/   DBG_ASSERT( eUnit == MAP_TWIP || eUnit == MAP_100TH_MM,
-/*N*/               "map unit not supported" );
-/*N*/   Size aSize = rSize;
-/*N*/
-/*N*/   if ( eUnit == MAP_100TH_MM )
-/*N*/       ConvertToTwips( aSize );
-/*N*/
-/*N*/   for ( USHORT i = 0; i < nTabSize; i++ )
-/*N*/   {
-/*N*/       if ( aDinTab[i] == aSize )
-/*N*/           return (SvxPaper)i;
-/*N*/       else if ( bSloppy )
-/*N*/       {
-/*N*/           long lDiffW = Abs(aDinTab[i].Width () - aSize.Width ()),
-/*N*/                lDiffH = Abs(aDinTab[i].Height() - aSize.Height());
-/*N*/
-/*N*/           if ( lDiffW < 6 && lDiffH < 6 )
-/*N*/               return (SvxPaper)i;
-/*N*/       }
-/*N*/   }
-/*N*/   return SVX_PAPER_USER;
-/*N*/ }
-
-
 /*--------------------------------------------------------------------
     Beschreibung:   Ist der Printer gueltig
  --------------------------------------------------------------------*/
@@ -229,29 +180,4 @@ static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
 /*?*/       Swap( aSize );
 /*N*/   return aSize;
 /*N*/ }
-
-/*------------------------------------------------------------------------
- Beschreibung:  Konvertierung einer Papiergroesse in Twips in das
-                SV-Define. Ist bSloppy TRUE, so wird nur auf 1/10 mm genau
-                verglichen.
-------------------------------------------------------------------------*/
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvxPaper SvxPaperInfo::GetSvxPaper( const Size &rSize, MapUnit eUnit, BOOL bSloppy )
-/*N*/ {
-/*N*/   return GetPaper_Impl( rSize, eUnit, bSloppy );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  String Repr"asentation f"ur die SV-Defines f"ur
-                Papiergroessen.
-------------------------------------------------------------------------*/
-
-
-
 }
