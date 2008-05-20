@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bintitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,7 +64,6 @@ class SfxBigIntItem: public SfxPoolItem
 public:
     TYPEINFO();
     SfxBigIntItem();
-    SfxBigIntItem(USHORT nWhich, const BigInt& rValue);
     SfxBigIntItem(USHORT nWhich, SvStream &);
     SfxBigIntItem(const SfxBigIntItem&);
     ~SfxBigIntItem() { DBG_DTOR(SfxBigIntItem, 0); }
