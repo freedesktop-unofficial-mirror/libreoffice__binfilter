@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_defaultoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -131,8 +131,6 @@ public:
     String          m_aWorkPath;
 
                     SvtDefaultOptions_Impl();
-
-    String          GetDefaultPath( USHORT nId ) const;
 };
 
 // global ----------------------------------------------------------------
@@ -211,37 +209,6 @@ Sequence< OUString > GetDefaultPropertyNames()
         pNames[i] = OUString::createFromAscii( aPropNames[i] );
 
     return aNames;
-}
-
-// class SvtDefaultOptions_Impl ------------------------------------------
-
-String SvtDefaultOptions_Impl::GetDefaultPath( USHORT nId ) const
-{
-    String aRet;
-    USHORT nIdx = 0;
-
-    while ( PathMap_Impl[nIdx]._ePath <= SvtPathOptions::PATH_WORK )
-    {
-        if ( nId == PathMap_Impl[nIdx]._ePath && PathMap_Impl[nIdx]._pDefaultPath )
-        {
-            aRet = this->*(PathMap_Impl[nIdx]._pDefaultPath);
-            if ( nId == SvtPathOptions::PATH_ADDIN ||
-                 nId == SvtPathOptions::PATH_FILTER ||
-                 nId == SvtPathOptions::PATH_HELP ||
-                 nId == SvtPathOptions::PATH_MODULE ||
-                 nId == SvtPathOptions::PATH_PLUGIN )
-            {
-                String aTmp;
-                ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aRet, aTmp );
-                aRet = aTmp;
-            }
-
-            break;
-        }
-        ++nIdx;
-    }
-
-    return aRet;
 }
 
 // -----------------------------------------------------------------------
@@ -367,13 +334,6 @@ SvtDefaultOptions::~SvtDefaultOptions()
             pOptions->Commit();
         DELETEZ( pOptions );
     }
-}
-
-// -----------------------------------------------------------------------
-
-String SvtDefaultOptions::GetDefaultPath( USHORT nId ) const
-{
-    return pImp->GetDefaultPath( nId );
 }
 
 }
