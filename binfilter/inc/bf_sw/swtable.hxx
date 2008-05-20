@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swtable.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,10 +76,7 @@ struct SwPosition;
 class SwNodeIndex;
 
 class SchMemChart;
-class SwUndoTblMerge;
-class SwUndo;
 class SwTableBox_Impl;
-class SwUndoTblCpyTbl;
 
 #ifndef SW_DECL_SWSERVEROBJECT_DEFINED
 #define SW_DECL_SWSERVEROBJECT_DEFINED
@@ -145,11 +142,11 @@ public:
     void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
                      FASTBOOL bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
 
-    BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes, SwUndo* pUndo = 0,
+    BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
                             const BOOL bDelMakeFrms = TRUE,
                             const BOOL bCorrBorder = TRUE );
             BOOL Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
-                SwTableBox* pMergeBox, SwUndoTblMerge* = 0 );
+                SwTableBox* pMergeBox );
 
           SwTableSortBoxes& GetTabSortBoxes()       { return aSortCntBoxes; }
     const SwTableSortBoxes& GetTabSortBoxes() const { return aSortCntBoxes; }
@@ -196,7 +193,6 @@ public:
     SwTableNode* GetTableNode() const;
 
         // Daten Server-Methoden
-     void SetRefObject( SwServerObject* );
     const SwServerObject* GetObject() const     {  return &refObj; }
       SwServerObject* GetObject()           {  return &refObj; }
 
