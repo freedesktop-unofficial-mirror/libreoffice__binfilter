@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipclient.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,26 +73,6 @@ SvInPlaceClient::SvInPlaceClient()
     hat oder wenn man einen Client zu einem Objekt erstellen will.
 */
 {
-}
-
-//=========================================================================
-SvInPlaceClient::SvInPlaceClient
-(
-    WorkWindow * pTopWin,   /* i. a. das Applikationsfenster */
-    WorkWindow * pDocWin,   /* das Dokumentfenster          */
-    Window * pEditWin       /* Das Fenster in dem das Objekt angezeigt
-                               wird */
-)
-    : INIT_CLIENT_CTOR
-/*  [Beschreibung]
-
-    Dieser Konstruktor wird verwendet, wenn der Aufrufer kein eigenes
-    SvContainerEnvironment verwenden muss.
-*/
-{
-    SetViewData( new SvContainerEnvironment( this, pTopWin,
-                                             pDocWin, pEditWin ) );
-    bDeleteData = TRUE;
 }
 
 //=========================================================================
