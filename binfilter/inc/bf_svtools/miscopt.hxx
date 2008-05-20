@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: miscopt.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -123,36 +123,9 @@ class  SvtMiscOptions: public Options
          SvtMiscOptions();
         virtual ~SvtMiscOptions();
 
-        void AddListener( const Link& rLink );
-        void RemoveListener( const Link& rLink );
-
         //---------------------------------------------------------------------------------------------------------
         //  interface
         //---------------------------------------------------------------------------------------------------------
-
-        sal_Bool    UseSystemFileDialog() const;
-        void        SetUseSystemFileDialog( sal_Bool bSet );
-        sal_Bool    IsUseSystemFileDialogReadOnly() const;
-
-        sal_Bool    IsPluginsEnabled() const;
-        void        SetPluginsEnabled( sal_Bool bEnable );
-        sal_Bool    IsPluginsEnabledReadOnly() const;
-
-        sal_Int16   GetSymbolsSize() const;
-        void        SetSymbolsSize( sal_Int16 eSet );
-        sal_Int16   GetCurrentSymbolsSize() const;
-        bool        AreCurrentSymbolsLarge() const;
-        sal_Bool    IsGetSymbolsSizeReadOnly() const;
-
-        sal_Int16   GetSymbolsStyle() const;
-        void        SetSymbolsStyle( sal_Int16 eSet );
-        sal_Int16   GetCurrentSymbolsStyle() const;
-        ::rtl::OUString GetCurrentSymbolsStyleName() const;
-        sal_Bool    IsGetSymbolsStyleReadOnly() const;
-
-        sal_Int16   GetToolboxStyle() const;
-        void        SetToolboxStyle( sal_Int16 nStyle );
-        sal_Bool    IsGetToolboxStyleReadOnly() const;
 
         sal_Bool    IsModifyByPrinting() const;
         void        SetModifyByPrinting(sal_Bool bSet );
