@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imapobj.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -97,12 +97,6 @@ protected:
     virtual void        WriteIMapObject( SvStream& rOStm ) const = 0;
     virtual void        ReadIMapObject(  SvStream& rIStm ) = 0;
 
-    // Hilfsmethoden
-    void                AppendCERNCoords( const Point& rPoint100, ByteString& rStr ) const;
-    void                AppendCERNURL( ByteString& rStr, const String& rBaseURL ) const;
-    void                AppendNCSACoords( const Point& rPoint100, ByteString& rStr ) const;
-    void                AppendNCSAURL( ByteString& rStr, const String& rBaseURL ) const;
-
 public:
 
     static rtl_TextEncoding nActualTextEncoding;
@@ -142,9 +136,6 @@ public:
 
     BOOL                IsActive() const { return bActive; }
     void                SetActive( BOOL bSetActive = TRUE ) { bActive = bSetActive; }
-
-    static Point        GetPixelPoint( const Point& rLogPoint );
-    static Point        GetLogPoint( const Point& rPixelPoint );
 
     BOOL                IsEqual( const IMapObject& rEqObj );
 
