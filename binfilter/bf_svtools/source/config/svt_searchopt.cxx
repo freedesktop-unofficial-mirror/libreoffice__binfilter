@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_searchopt.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -289,63 +289,9 @@ SvtSearchOptions::~SvtSearchOptions()
     delete pImpl;
 }
 
-
-INT32 SvtSearchOptions::GetTransliterationFlags() const
-{
-    INT32 nRes = 0;
-
-    if (!IsMatchCase()) // 'IsMatchCase' means act case sensitive
-        nRes |= TransliterationModules_IGNORE_CASE;
-    if ( IsMatchFullHalfWidthForms())
-        nRes |= TransliterationModules_IGNORE_WIDTH;
-    if ( IsMatchHiraganaKatakana())
-        nRes |= TransliterationModules_IGNORE_KANA;
-    if ( IsMatchContractions())
-        nRes |= TransliterationModules_ignoreSize_ja_JP;
-    if ( IsMatchMinusDashChoon())
-        nRes |= TransliterationModules_ignoreMinusSign_ja_JP;
-    if ( IsMatchRepeatCharMarks())
-        nRes |= TransliterationModules_ignoreIterationMark_ja_JP;
-    if ( IsMatchVariantFormKanji())
-        nRes |= TransliterationModules_ignoreTraditionalKanji_ja_JP;
-    if ( IsMatchOldKanaForms())
-        nRes |= TransliterationModules_ignoreTraditionalKana_ja_JP;
-    if ( IsMatchDiziDuzu())
-        nRes |= TransliterationModules_ignoreZiZu_ja_JP;
-    if ( IsMatchBavaHafa())
-        nRes |= TransliterationModules_ignoreBaFa_ja_JP;
-    if ( IsMatchTsithichiDhizi())
-        nRes |= TransliterationModules_ignoreTiJi_ja_JP;
-    if ( IsMatchHyuiyuByuvyu())
-        nRes |= TransliterationModules_ignoreHyuByu_ja_JP;
-    if ( IsMatchSesheZeje())
-        nRes |= TransliterationModules_ignoreSeZe_ja_JP;
-    if ( IsMatchIaiya())
-        nRes |= TransliterationModules_ignoreIandEfollowedByYa_ja_JP;
-    if ( IsMatchKiku())
-        nRes |= TransliterationModules_ignoreKiKuFollowedBySa_ja_JP;
-    if ( IsIgnorePunctuation())
-        nRes |= TransliterationModules_ignoreSeparator_ja_JP;
-    if ( IsIgnoreWhitespace())
-        nRes |= TransliterationModules_ignoreSpace_ja_JP;
-    if ( IsIgnoreProlongedSoundMark())
-        nRes |= TransliterationModules_ignoreProlongedSoundMark_ja_JP;
-    if ( IsIgnoreMiddleDot())
-        nRes |= TransliterationModules_ignoreMiddleDot_ja_JP;
-
-    return nRes;
-}
-
-
 BOOL SvtSearchOptions::IsWholeWordsOnly() const
 {
     return pImpl->GetFlag( 0 );
-}
-
-
-void SvtSearchOptions::SetWholeWordsOnly( BOOL bVal )
-{
-    pImpl->SetFlag( 0, bVal );
 }
 
 
@@ -354,118 +300,44 @@ BOOL SvtSearchOptions::IsBackwards() const
     return pImpl->GetFlag( 1 );
 }
 
-
-void SvtSearchOptions::SetBackwards( BOOL bVal )
-{
-    pImpl->SetFlag( 1, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsUseRegularExpression() const
 {
     return pImpl->GetFlag( 2 );
 }
-
-
-void SvtSearchOptions::SetUseRegularExpression( BOOL bVal )
-{
-    pImpl->SetFlag( 2, bVal );
-}
-
-
-BOOL SvtSearchOptions::IsSearchForStyles() const
-{
-    return pImpl->GetFlag( 3 );
-}
-
-
-void SvtSearchOptions::SetSearchForStyles( BOOL bVal )
-{
-    pImpl->SetFlag( 3, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsSimilaritySearch() const
 {
     return pImpl->GetFlag( 4 );
 }
 
-
-void SvtSearchOptions::SetSimilaritySearch( BOOL bVal )
-{
-    pImpl->SetFlag( 4, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsUseAsianOptions() const
 {
     return pImpl->GetFlag( 5 );
 }
-
-
-void SvtSearchOptions::SetUseAsianOptions( BOOL bVal )
-{
-    pImpl->SetFlag( 5, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsMatchCase() const
 {
     return pImpl->GetFlag( 6 );
 }
 
-
-void SvtSearchOptions::SetMatchCase( BOOL bVal )
-{
-    pImpl->SetFlag( 6, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchFullHalfWidthForms() const
 {
     return pImpl->GetFlag( 7 );
 }
-
-
-void SvtSearchOptions::SetMatchFullHalfWidthForms( BOOL bVal )
-{
-    pImpl->SetFlag( 7, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsMatchHiraganaKatakana() const
 {
     return pImpl->GetFlag( 8 );
 }
 
-
-void SvtSearchOptions::SetMatchHiraganaKatakana( BOOL bVal )
-{
-    pImpl->SetFlag( 8, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchContractions() const
 {
     return pImpl->GetFlag( 9 );
 }
 
-
-void SvtSearchOptions::SetMatchContractions( BOOL bVal )
-{
-    pImpl->SetFlag( 9, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchMinusDashChoon() const
 {
     return pImpl->GetFlag( 10 );
-}
-
-
-void SvtSearchOptions::SetMatchMinusDashChoon( BOOL bVal )
-{
-    pImpl->SetFlag( 10, bVal );
 }
 
 
@@ -474,34 +346,14 @@ BOOL SvtSearchOptions::IsMatchRepeatCharMarks() const
     return pImpl->GetFlag( 11 );
 }
 
-
-void SvtSearchOptions::SetMatchRepeatCharMarks( BOOL bVal )
-{
-    pImpl->SetFlag( 11, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchVariantFormKanji() const
 {
     return pImpl->GetFlag( 12 );
 }
 
-
-void SvtSearchOptions::SetMatchVariantFormKanji( BOOL bVal )
-{
-    pImpl->SetFlag( 12, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchOldKanaForms() const
 {
     return pImpl->GetFlag( 13 );
-}
-
-
-void SvtSearchOptions::SetMatchOldKanaForms( BOOL bVal )
-{
-    pImpl->SetFlag( 13, bVal );
 }
 
 
@@ -510,134 +362,54 @@ BOOL SvtSearchOptions::IsMatchDiziDuzu() const
     return pImpl->GetFlag( 14 );
 }
 
-
-void SvtSearchOptions::SetMatchDiziDuzu( BOOL bVal )
-{
-    pImpl->SetFlag( 14, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchBavaHafa() const
 {
     return pImpl->GetFlag( 15 );
 }
-
-
-void SvtSearchOptions::SetMatchBavaHafa( BOOL bVal )
-{
-    pImpl->SetFlag( 15, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsMatchTsithichiDhizi() const
 {
     return pImpl->GetFlag( 16 );
 }
 
-
-void SvtSearchOptions::SetMatchTsithichiDhizi( BOOL bVal )
-{
-    pImpl->SetFlag( 16, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchHyuiyuByuvyu() const
 {
     return pImpl->GetFlag( 17 );
 }
-
-
-void SvtSearchOptions::SetMatchHyuiyuByuvyu( BOOL bVal )
-{
-    pImpl->SetFlag( 17, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsMatchSesheZeje() const
 {
     return pImpl->GetFlag( 18 );
 }
 
-
-void SvtSearchOptions::SetMatchSesheZeje( BOOL bVal )
-{
-    pImpl->SetFlag( 18, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsMatchIaiya() const
 {
     return pImpl->GetFlag( 19 );
 }
-
-
-void SvtSearchOptions::SetMatchIaiya( BOOL bVal )
-{
-    pImpl->SetFlag( 19, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsMatchKiku() const
 {
     return pImpl->GetFlag( 20 );
 }
 
-
-void SvtSearchOptions::SetMatchKiku( BOOL bVal )
-{
-    pImpl->SetFlag( 20, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsIgnorePunctuation() const
 {
     return pImpl->GetFlag( 21 );
 }
-
-
-void SvtSearchOptions::SetIgnorePunctuation( BOOL bVal )
-{
-    pImpl->SetFlag( 21, bVal );
-}
-
 
 BOOL SvtSearchOptions::IsIgnoreWhitespace() const
 {
     return pImpl->GetFlag( 22 );
 }
 
-
-void SvtSearchOptions::SetIgnoreWhitespace( BOOL bVal )
-{
-    pImpl->SetFlag( 22, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsIgnoreProlongedSoundMark() const
 {
     return pImpl->GetFlag( 23 );
 }
 
-
-void SvtSearchOptions::SetIgnoreProlongedSoundMark( BOOL bVal )
-{
-    pImpl->SetFlag( 23, bVal );
-}
-
-
 BOOL SvtSearchOptions::IsIgnoreMiddleDot() const
 {
     return pImpl->GetFlag( 24 );
 }
-
-
-void SvtSearchOptions::SetIgnoreMiddleDot( BOOL bVal )
-{
-    pImpl->SetFlag( 24, bVal );
-}
-
-
-
-//////////////////////////////////////////////////////////////////////
 
 }
