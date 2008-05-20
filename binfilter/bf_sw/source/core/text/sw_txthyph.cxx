@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_txthyph.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -359,27 +359,5 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   return sal_False;
 /*N*/ }
-
-/*************************************************************************
- *              virtual SwSoftHyphPortion::HandlePortion()
- *************************************************************************/
-
-
-/*************************************************************************
- *                      SwSoftHyphStrPortion::Paint
- *************************************************************************/
-
-/*N*/ void SwSoftHyphStrPortion::Paint( const SwTxtPaintInfo &rInf ) const
-/*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    // Bug oder feature?:
-/*N*/ }
-
-/*N*/ SwSoftHyphStrPortion::SwSoftHyphStrPortion( const XubString &rStr )
-/*N*/   : SwHyphStrPortion( rStr )
-/*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SetLen( 1 );
-/*N*/ }
-
-
 
 }
