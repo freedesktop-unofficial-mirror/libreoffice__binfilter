@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: securityoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -171,105 +171,6 @@ class  SvtSecurityOptions: public Options
 
          SvtSecurityOptions();
         virtual ~SvtSecurityOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      returns readonly state
-            @descr      It can be called to get information about the readonly state of a provided item.
-            @seealso    -
-
-            @param      "eOption", specify, which item is queried
-            @return     <TRUE/> if item is readonly; <FALSE/> otherwhise
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool IsReadOnly( EOption eOption ) const ;
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Security/Scripting/SecureURL"
-            @descr      These value displays the list of all trustworthy URLs.
-                        zB.:    file:/                  => All scripts from the local file system including a LAN;
-                                private:explorer        => Scripts from the Explorer;
-                                private:help            => Scripts in the help system;
-                                private:newmenu         => Scripts that are executed by the commands File-New and AutoPilot;
-                                private:schedule        => Scripts of  the scheduler;
-                                private:searchfolder    => Scripts of the searchfolder;
-                                private:user            => Scripts that are entered in the URL field.
-            @seealso    -
-
-            @param      "seqURLList", new values to set it in configuration.
-            @return     The values which represent current state of internal variable.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetSecureURLs(                                                                      ) const ;
-        void                                                SetSecureURLs( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& seqURLList )       ;
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Security/Scripting/StarOfficeBasic"
-            @descr      These value determines how StarOffice Basic scripts should be handled.
-                        It exist 3 different modes:
-                            0 = never execute
-                            1 = from list
-                            2 = always execute
-
-            @ATTENTION  These methods don't check for valid or invalid values!
-                        Our configuration server can do it ... but these implementation don't get any notifications
-                        about wrong commits ...!
-                        => If you set an invalid value - nothing will be changed. The information will lost.
-
-            @seealso    enum EBasicSecurityMode
-
-            @param      "eMode" to set new mode ... Value must defined as an enum of type EBasicSecurityMode!
-            @return     An enum value, which present current mode.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Int32           GetMacroSecurityLevel       (                   ) const ;
-        void                SetMacroSecurityLevel       ( sal_Int32 _nLevel )       ;
-
-        sal_Bool            IsMacroDisabled             (                   ) const ;
-
-        /*-****************************************************************************************************//**
-            @short      special method to check an URL and his referer corresponding to ouer internal security cessation
-            @descr      Give us an URL and his referer and we will say you if these url can be scripted or not!
-
-            @seealso    -
-
-            @param      "sURL" reference to URL for checking
-            @param      "sReferer" reference to referer which whish to run script by given URL
-            @return     sal_True if URL is secure or security is obsolete(!) or sal_False otherwise.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool IsSecureURL(   const   ::rtl::OUString&    sURL        ,
-                                const   ::rtl::OUString&    sReferer    ) const ;
-
-        ::com::sun::star::uno::Sequence< Certificate >  GetTrustedAuthors       (                                                                   ) const ;
-        void                                            SetTrustedAuthors       ( const ::com::sun::star::uno::Sequence< Certificate >& rAuthors    )       ;
-        sal_Bool                                        IsTrustedAuthorsEnabled (                                                                   )       ;
-
-        // for bool options only!
-        bool        IsOptionSet     ( EOption eOption                   ) const ;
-        bool        SetOption       ( EOption eOption, bool bValue      )       ;
-        bool        IsOptionEnabled ( EOption eOption                   ) const ;
-
-        // xmlsec05 depricated methods
-        sal_Bool    IsExecutePlugins() const;
-        void        SetExecutePlugins( sal_Bool bSet );
-        EBasicSecurityMode  GetBasicMode(                           ) const ;
-        void                SetBasicMode( EBasicSecurityMode eMode  )       ;
-        sal_Bool IsWarningEnabled() const;
-        void SetWarningEnabled( sal_Bool bSet );
-        sal_Bool IsConfirmationEnabled() const;
-        void SetConfirmationEnabled( sal_Bool bSet );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
