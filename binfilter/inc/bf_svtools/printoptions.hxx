@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: printoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,33 +71,6 @@ public:
 
                 SvtBasePrintOptions();
                 virtual ~SvtBasePrintOptions();
-
-    sal_Bool    IsReduceTransparency() const;
-    sal_Int16   GetReducedTransparencyMode() const;
-    sal_Bool    IsReduceGradients() const;
-    sal_Int16   GetReducedGradientMode() const;
-    sal_Int16   GetReducedGradientStepCount() const;
-    sal_Bool    IsReduceBitmaps() const;
-    sal_Int16   GetReducedBitmapMode() const;
-    sal_Int16   GetReducedBitmapResolution() const;
-    sal_Bool    IsReducedBitmapIncludesTransparency() const;
-       sal_Bool IsConvertToGreyscales() const;
-
-    void        SetReduceTransparency( sal_Bool bState );
-    void        SetReducedTransparencyMode( sal_Int16 nMode );
-    void        SetReduceGradients( sal_Bool bState );
-    void        SetReducedGradientMode( sal_Int16 nMode );
-    void        SetReducedGradientStepCount( sal_Int16 nStepCount );
-    void        SetReduceBitmaps( sal_Bool bState );
-    void        SetReducedBitmapMode( sal_Int16   bState );
-    void        SetReducedBitmapResolution( sal_Int16 nResolution );
-    void        SetReducedBitmapIncludesTransparency( sal_Bool bState );
-       void        SetConvertToGreyscales( sal_Bool bState );
-
-public:
-
-    void        GetPrinterOptions( PrinterOptions& rOptions ) const;
-    void        SetPrinterOptions( const PrinterOptions& rOptions );
 };
 
 // ---------------------
