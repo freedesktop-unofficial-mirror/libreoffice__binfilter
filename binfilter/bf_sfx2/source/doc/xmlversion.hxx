@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlversion.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,26 +53,6 @@ class DateTime;
 namespace binfilter {
 
 class SfxVersionTableDtor;
-
-// ------------------------------------------------------------------------
-class SfxXMLVersListExport_Impl : public SvXMLExport
-{
-private:
-    const SfxVersionTableDtor *mpVersions;
-public:
-    // #110680#
-    SfxXMLVersListExport_Impl(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        const SfxVersionTableDtor *pVersions,
-        const ::rtl::OUString &rFileName,
-        ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > &rHandler );
-    virtual     ~SfxXMLVersListExport_Impl() {}
-
-    sal_uInt32  exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass );
-    void        _ExportAutoStyles() {}
-    void        _ExportMasterStyles () {}
-    void        _ExportContent() {}
-};
 
 // ------------------------------------------------------------------------
 class SfxXMLVersListImport_Impl : public SvXMLImport
@@ -149,8 +129,6 @@ public:
 class SfxXMLVersList_Impl
 {
 public:
-    static void     WriteInfo( SvStorageRef xRoot,
-                               const SfxVersionTableDtor *mpVersions );
     static sal_Bool ReadInfo( SvStorageRef xRoot, SfxVersionTableDtor *pList );
 };
 
