@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: objsh.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -218,10 +218,6 @@ protected:
     virtual void                ModifyChanged();
     virtual sal_Bool            Close();
 
-#if _SOLAR__PRIVATE
-    void                        StartLoading_Impl();
-#endif
-
     // add optional to the storage the XML format as a zip stream
     void                        AddXMLAsZipToTheStorage( SvStorage& rRoot );
 
@@ -230,10 +226,6 @@ public:
 
     SfxObjectFactory*           _pFactory;          // um im Dtor daranzukommen
 
-    /* Stampit #111050# allow writer to set this event id here hardly!
-       Please replace ith by a better solution! */
-    void                        Stamp_SetActivateEvent(sal_uInt16);
-
     // Document-Shell Iterator
     static SfxObjectShell*      GetFirst( const TypeId* pType = 0,
                                           sal_Bool bOnlyVisible = sal_True );
@@ -241,16 +233,9 @@ public:
                                          const TypeId* pType = 0,
                                          sal_Bool bOnlyVisible = sal_True );
     static SfxObjectShell*      Current();
-    static sal_uInt16               Count();
     static SfxObjectShell*      GetWorkingDocument();
-    static void                 SetWorkingDocument( SfxObjectShell* pDoc );
 
     virtual void                Invalidate(USHORT nId = 0);
-
-    void                        SetFlags( SfxObjectShellFlags eFlags );
-    SfxObjectShellFlags         GetFlags( ) const ;
-
-    SfxModule*                  GetModule() const;
 
     virtual SfxObjectFactory&   GetFactory() const;
     SfxInPlaceObject*           GetInPlaceObject() const;
@@ -265,14 +250,8 @@ public:
     sal_Bool                    IsReadOnly() const;
     sal_Bool                    IsReadOnlyMedium() const;
     sal_Bool                    IsReadOnlyUI() const;
-    void                        SetNoName();
     sal_Bool                    IsInModalMode() const;
     sal_Bool                    HasModalViews() const;
-    sal_Bool                    IsInPrepareClose() const;
-    sal_Bool                    IsHelpDocument() const;
-#if _SOLAR__PRIVATE
-    void                        SetMacroMode_Impl(sal_Bool bModal=sal_True);
-#endif
 
     void                        ResetError();
     sal_uInt32                  GetError() const;
@@ -293,41 +272,22 @@ public:
 
     virtual sal_Bool            DoLoad( SfxMedium * pMedium );
     virtual sal_Bool            DoSave();
-    sal_Bool                    DoSaveAs( SfxMedium &rNewStor );
     virtual sal_Bool            DoSaveAs( SvStorage * pNewStor );
     virtual sal_Bool            DoSaveCompleted( SvStorage * pNewStor = NULL );
     virtual sal_Bool            DoSaveCompleted( SfxMedium * pNewStor);
 
     virtual sal_Bool            ConvertFrom( SfxMedium &rMedium );
-    sal_Bool                    ImportFrom( SfxMedium &rMedium );
-    sal_Bool                    ExportTo( SfxMedium &rMedium );
     virtual sal_Bool            ConvertTo( SfxMedium &rMedium );
 
     virtual String              QueryTitle( SfxTitleQuery ) const;
 
-    sal_Bool                    IsBasic( const String & rCode, SbxObject * pVCtrl = NULL );
-
     ErrCode                     CallBasic( const String& rMacro, const String& rBasicName,
                                     SbxObject* pVCtrl, SbxArray* pArgs = 0, SbxValue* pRet = 0 );
-    ErrCode                     Call( const String & rCode, sal_Bool bIsBasicReturn, SbxObject * pVCtrl = NULL );
-
-    ErrCode                     CallScript(
-        const String & rScriptType, const String & rCode, ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  & rSource,
-        void* pArgs = NULL, void* pRet = NULL );
-
-    ErrCode                     CallStarBasicScript(
-        const String& _rMacroName,
-        const String& _rLocation,
-        void* _pArguments = NULL,
-        void* _pReturn = NULL
-    );
 
     BOOL                        DoMacroQuery( const String& rScriptType );
     void                        AdjustMacroMode( const String& rScriptType );
 
     SvKeyValueIterator*         GetHeaderAttributes();
-    void                        ClearHeaderAttributesForSourceViewHack();
-    void                        SetHeaderAttributesForSourceViewHack();
     SbMethod*                   GetMethod_Impl( const String& rMacro );
 
     SvEmbeddedInfoObject*       InsertObject( SvEmbeddedObject * pObj,
@@ -338,7 +298,6 @@ public:
     sal_Bool                    HasTemplateConfig() const;
 
     sal_Bool                    IsTemplate() const;
-    void                        SetTemplate(sal_Bool bIs);
 
     static sal_uInt32           HandleFilter( SfxMedium* pMedium, SfxObjectShell* pDoc );
 
@@ -361,10 +320,7 @@ public:
     void                        FinishedLoading( sal_uInt16 nWhich = SFX_LOADED_ALL );
     sal_Bool                    IsLoading() const;
     void                        SetAutoLoad( const INetURLObject&, sal_uInt32 nTime, sal_Bool bReload = sal_True );
-    void                        LockAutoLoad( sal_Bool bLock );
-    sal_Bool                    IsAutoLoadLocked() const;
     void                        NotifyReloadAvailable();
-    sal_Bool                    IsSecure();
 
     // Misc
     sal_Bool                    IsPreview() const;
@@ -379,11 +335,6 @@ public:
     void                        SetTitle( const String& rTitle );
     String                      GetTitle( sal_uInt16 nMaxLen = 0 ) const;
     void                        InvalidateName();   // Zuruecksetzen auf unbenannt
-#if _SOLAR__PRIVATE
-    void                        SetLastMark_Impl( const String & );
-    const String&               GetLastMark_Impl() const;
-    sal_Bool                    DoInitNew_Impl( const String& rName );
-#endif
 
     // DDE-Interface
     virtual long                DdeExecute( const String& rCmd );
@@ -448,10 +399,6 @@ public:
 
                                 // F"ur Docs, die zum Formatieren die Viewgr"o\se
                                 // ben"otigen
-    Size                        GetActualSize() const;
-    void                        SetActualSize( const Size& rSize );
-    sal_Bool                    IsInFrame() const;
-    void                        SetInFrame( sal_Bool );
     virtual SfxObjectShell*     GetObjectShell();
     void                        SetBaseURL( const String& rURL );
     const String&               GetBaseURL() const;
@@ -464,10 +411,6 @@ public:
     // Nur uebergangsweise fuer die Applikationen !!!
 
     virtual SEQUENCE< OUSTRING >    GetEventNames();
-    SotStorageStreamRef         GetConfigurationStream( const String& rName, BOOL bCreate=FALSE );
-    SvStorageRef                GetConfigurationStorage( SotStorage* pStor=NULL );
-
-    String                      UpdateTitle( SfxMedium* pMed=NULL, USHORT nDocViewNo=0 );
 
 #if _SOLAR__PRIVATE
     static SEQUENCE< OUSTRING > GetEventNames_Impl();
@@ -478,11 +421,7 @@ public:
     SfxEventConfigItem_Impl*    GetEventConfig_Impl( sal_Bool bForce=sal_False );
 
     // Laden-speichern public internals
-    void                        PositionView_Impl();
-    void                        UpdateFromTemplate_Impl();
     void                        Reload_Impl();
-    sal_Bool                    CanReload_Impl();
-    void                        SetNamedVisibility_Impl();
     sal_Bool                    DoSave_Impl( const SfxItemSet* pSet=0 );
     sal_Bool                    Save_Impl( const SfxItemSet* pSet=0 );
     void                        UpdatePickList_Impl();
@@ -491,10 +430,8 @@ public:
     sal_Bool                    CommonSaveAs_Impl ( const INetURLObject& aURL, const String& aFilterName, SfxItemSet* aParams );
 
     // public-internals
-    IndexBitSet&                GetNoSet_Impl();
     void                        SetProgress_Impl( SfxProgress *pProgress );
     sal_uInt16&                 GetAktViewNo() { return nViewNo; }
-    void                        PostActivateEvent_Impl();
     void                        SetActivateEvent_Impl(sal_uInt16 );
     FASTBOOL                    SaveWindows_Impl( SvStorage &rStor ) const;
 #endif
