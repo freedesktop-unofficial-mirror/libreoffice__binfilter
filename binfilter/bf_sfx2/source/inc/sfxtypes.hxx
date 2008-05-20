@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfxtypes.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -142,8 +142,6 @@ String SearchAndReplace( const String &rSource,
                          const String &rReplacement );
 
 #define SFX_PASSWORD_CODE "_:;*?()/&[&"
-String SfxStringEncode( const String &rSource,
-                       const char *pKey = SFX_PASSWORD_CODE );
 String SfxStringDecode( const String &rSource,
                         const char *pKey = SFX_PASSWORD_CODE );
 
