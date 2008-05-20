@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_dpoutput.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -97,23 +97,6 @@ struct ScDPOutLevelData
 
     //! bug (73840) in uno::Sequence - copy and then assign doesn't work!
 };
-
-ScDPOutput::ScDPOutput( ScDocument* pD, const uno::Reference<sheet::XDimensionsSupplier>& xSrc,
-                                const ScAddress& rPos, BOOL bFilter ) :
-    pDoc( pD ),
-    xSource( xSrc ),
-    aStartPos( rPos ),
-    bDoFilter( bFilter ),
-    bSizesValid( FALSE ),
-    bSizeOverflow( FALSE ),
-    bResultsError( FALSE ),
-    pColNumFmt( NULL ),
-    pRowNumFmt( NULL ),
-    nColFmtCount( 0 ),
-    nRowFmtCount( 0 )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nTabStartCol = nTabStartRow = nMemberStartCol = nMemberStartRow =
-}
 
 ScDPOutput::~ScDPOutput()
 {
