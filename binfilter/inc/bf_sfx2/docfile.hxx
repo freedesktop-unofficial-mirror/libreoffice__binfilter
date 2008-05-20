@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docfile.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -172,7 +172,6 @@ public:
 
     void                    DelDtor();
     SvStream&               Read( SvStream & );
-    SvStream&               Write( SvStream & ) const;
 };
 
 class SfxMedium : public SvRefBase
@@ -214,7 +213,6 @@ public:
                                    const SfxFilter *pFilter = 0,
                                    SfxItemSet *pSet = 0 );
                         SfxMedium( SvStorage *pTheStorage, sal_Bool bRoot = sal_False );
-                        SfxMedium( const SfxMedium &rMedium, sal_Bool bCreateTemporary = sal_False );
                         ~SfxMedium();
 
     void                UseInteractionHandler( BOOL );
@@ -227,11 +225,9 @@ public:
 
     void                SetReferer( const String& rRefer );
     void                SetTransferPriority( sal_uInt16 nPrio );
-    sal_Bool            Exists( sal_Bool bForceSession = sal_True );
     void                SetFilter( const SfxObjectFactory &rFact, const String & rFilter );
     void                SetFilter(const SfxFilter *pFlt, sal_Bool bResetOrig = sal_False);
     const SfxFilter *   GetFilter() const { return pFilter; }
-    const SfxFilter *   GetOrigFilter( sal_Bool bNotCurrent = sal_False ) const;
     const String&       GetOrigURL() const;
     SfxItemSet  *       GetItemSet() const;
     void                Close();
@@ -250,11 +246,7 @@ public:
     void                StartDownload();
     void                DownLoad( const Link& aLink = Link());
     void                SetDoneLink( const Link& rLink );
-    Link                GetDoneLink( ) const;
     void                SetDataAvailableLink( const Link& rLink );
-    Link                GetDataAvailableLink( ) const;
-
-    void                SetClassFilter( const SvGlobalName & rFilterClass );
 
     sal_uInt32          GetMIMEAndRedirect( String& );
     sal_uInt32          GetErrorCode() const;
@@ -277,14 +269,11 @@ public:
     SvStream*           GetInStream();
     SvStream*           GetOutStream();
 
-     SvEaMgr*           GetEaMgr();
-
     sal_Bool            Commit();
     sal_Bool            TryStorage();
     sal_Bool            IsStorage();
     SvStorage*          GetStorage();
     SvStorage*          GetOutputStorage( BOOL bUCBStorage = FALSE );
-    const SvGlobalName& GetClassFilter();
     void                ResetError();
     sal_Bool            UsesCache() const;
     void                SetUsesCache( sal_Bool );
@@ -314,7 +303,6 @@ public:
     void                SetCancelManager_Impl( SfxPoolCancelManager* pMgr );
 
     SvKeyValueIterator* GetHeaderAttributes_Impl();
-    void                SetOrigFilter_Impl( const SfxFilter* pFilter );
     void                SetLoadEnvironment_Impl( LoadEnvironment_Impl* pEnv );
     LoadEnvironment_Impl* GetLoadEnvironment_Impl() const;
 
@@ -328,9 +316,7 @@ public:
     void                Transfer_Impl();
     void                CreateFileStream();
     void                SetUpdatePickList(sal_Bool);
-    sal_Bool            IsUpdatePickList() const;
 
-    void                SetStorage_Impl( SvStorage* pStor );
     void                SetLongName(const String &rName)
                         { aLongName = rName; }
     const String &      GetLongName() const { return aLongName; }
@@ -342,7 +328,6 @@ public:
     void                Cancel_Impl();
     void                SetPhysicalName_Impl(const String& rName);
 
-    void                DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent );
     void                DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent,
                                                 const String& aPrefix,
                                                 const String& aExtension,
