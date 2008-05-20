@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: localisationoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -106,46 +106,6 @@ class  SvtLocalisationOptions: public Options
 
          SvtLocalisationOptions();
         virtual ~SvtLocalisationOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/View/Localisation/AutoMnemonic"
-            @descr      These value specifies if shortcuts should be assigned automatically.
-
-            @seealso    -
-
-            @param      "bState", new value to set it in configuration.
-            @return     The value which represent current state of internal variable.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsAutoMnemonic  (                   ) const ;
-        void        SetAutoMnemonic ( sal_Bool bState   )       ;
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/View/Localisation/DialogScale"
-            @descr      These value specifies the factor for increasing controls.
-                        Value from [0..100] are allowed.
-
-            @ATTENTION  These methods don't check for valid or invalid values!
-                        Our configuration server can do it ... but these implementation don't get any notifications
-                        about wrong commits ...!
-                        => If you set an invalid value - nothing will be changed. The information will lost.
-
-            @seealso    baseclass ConfigItem
-
-            @param      "nScale" new value to set it in configuration.
-            @return     The value which represent current state of internal variable.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Int32   GetDialogScale(                     ) const ;
-        void        SetDialogScale( sal_Int32 nScale    )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
