@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: transbnd.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -29,7 +29,7 @@
  ************************************************************************/
 
 #ifndef _TRANSBND_HXX
-#define _TRANSBND_HXX "$Revision: 1.4 $"
+#define _TRANSBND_HXX "$Revision: 1.5 $"
 
 #ifndef _SOLAR_H
 #include <tools/solar.h>
@@ -117,10 +117,6 @@ class SO3_DLLPUBLIC SvBinding : public SvBindingTransportCallback, public SvRefB
     BOOL                       m_bErrorDoc  : 1;
     BOOL                       m_bMimeAvail : 1;
 
-    /** StartTransport.
-    */
-    SO3_DLLPRIVATE void StartTransport (void);
-
     /** SvBindingTransportCallback implementation.
     */
     SO3_DLLPRIVATE virtual void OnStart (void);
@@ -158,14 +154,6 @@ protected:
     SO3_DLLPRIVATE virtual ~SvBinding (void);
 
 public:
-    /** Construction.
-    */
-    SvBinding (
-        const String         &rUrl,
-        SvBindMode            eBindMode,
-        StreamMode            eStrmMode,
-        SvBindStatusCallback *pCallback);
-
     /** Callback.
     */
     SvBindStatusCallback* GetCallback (void) const
@@ -186,24 +174,6 @@ public:
     BOOL    IsComplete    (void) const { return m_bComplete; }
     BOOL    IsErrorOutput (void) const { return m_bErrorDoc; }
 
-    /** Up/Download manipulation.
-    */
-    void    SetCancelManager (SfxCancelManager *pMgr);
-
-    void    Abort   (void);
-    void    Suspend (void);
-    void    Resume  (void);
-
-    /** Initiate Up/Download.
-    */
-    ErrCode GetMimeType (String &rMime);
-
-    ErrCode GetStream (SvStream *&rpStrm);
-    ErrCode PutStream (SvStream *pStrm);
-
-    ErrCode GetLockBytes (SvLockBytesRef &rxLockBytes);
-    ErrCode PutLockBytes (SvLockBytesRef &rxLockBytes);
-
     /** RedirectedURL.
     */
     String GetRedirectedURL (void) const
@@ -217,16 +187,6 @@ public:
     {
         return m_aExpires;
     }
-
-    /** Cookie (HTTP).
-    */
-    String  GetCookie (void) const;
-    void    SetCookie (const String &rCookieField);
-
-    /** Headers (HTTP).
-    */
-    SvKeyValueIteratorRef GetHeaders (void) const;
-    void SetHeaders (SvKeyValueIteratorRef &rxHeadIter);
 
     /** Priority.
     */
@@ -304,7 +264,6 @@ class SO3_DLLPUBLIC SvBindStatusCallback : public SvRefBase
     BOOL  m_bPartPending     : 1;
 
 public:
-    SvBindStatusCallback (void);
     virtual ~SvBindStatusCallback (void);
 
     static void SetProgressCallback (const Link &rLink);
@@ -413,27 +372,6 @@ public:
 };
 
 SV_IMPL_REF(SvKeyValueIterator);
-
-/*========================================================================
- *
- * SvRemoteStream.
- *
- *======================================================================*/
-class SO3_DLLPUBLIC SvRemoteStream : public SvStream
-{
-    SvBindingRef m_xBinding;
-    String       m_aUrl;
-    StreamMode   m_eMode;
-
-public:
-    SvRemoteStream (const String &rUrl, StreamMode eMode);
-    virtual ~SvRemoteStream (void);
-
-    void SetDataAvailableLink (const Link &rLink);
-    void SetDoneLink (const Link &rLink);
-
-    ErrCode Commit (void);
-};
 
 }
 
