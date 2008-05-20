@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_xmlexp.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -317,87 +317,6 @@ SvXMLExport::SvXMLExport(
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
     _InitCtor();
-}
-
-// #110680#
-SvXMLExport::SvXMLExport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    const OUString &rFileName,
-    const uno::Reference< xml::sax::XDocumentHandler > & rHandler,
-    MapUnit eDfltUnit   )
-:   pImpl( 0 ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    meClass( XML_TOKEN_INVALID ),
-    sWS( GetXMLToken(XML_WS) ),
-    sOrigFileName( rFileName ),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit, getServiceFactory() ) ),
-
-    pAttrList( new SvXMLAttributeList ),
-    bExtended( sal_False ),
-    xHandler( rHandler ),
-    xExtHandler( rHandler, uno::UNO_QUERY ),
-    pNumExport(0L),
-    pProgressBarHelper( NULL ),
-    pEventExport( NULL ),
-    pImageMapExport( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    bSaveLinkedSections(sal_True),
-    mnExportFlags( EXPORT_ALL ),
-    mnErrorFlags( ERROR_NO )
-{
-    DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
-    _InitCtor();
-
-    if (xNumberFormatsSupplier.is())
-        pNumExport = new SvXMLNumFmtExport(*this, xNumberFormatsSupplier);
-}
-
-// #110680#
-SvXMLExport::SvXMLExport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-    const OUString &rFileName,
-    const uno::Reference< xml::sax::XDocumentHandler > & rHandler,
-    const Reference< XModel >& rModel,
-    sal_Int16 eDfltUnit )
-:   pImpl( 0 ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    meClass( XML_TOKEN_INVALID ),
-    sWS( GetXMLToken(XML_WS) ),
-    sOrigFileName( rFileName ),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, SvXMLUnitConverter::GetMapUnit(eDfltUnit) ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, SvXMLUnitConverter::GetMapUnit(eDfltUnit), getServiceFactory() ) ),
-
-    pAttrList( new SvXMLAttributeList ),
-    bExtended( sal_False ),
-    xHandler( rHandler ),
-    xExtHandler( rHandler, uno::UNO_QUERY ),
-    xModel( rModel ),
-    pNumExport(0L),
-    xNumberFormatsSupplier (rModel, uno::UNO_QUERY),
-    pProgressBarHelper( NULL ),
-    pEventExport( NULL ),
-    pImageMapExport( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    bSaveLinkedSections(sal_True),
-    mnExportFlags( EXPORT_ALL ),
-    mnErrorFlags( ERROR_NO )
-{
-    DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
-    _InitCtor();
-
-    if (xNumberFormatsSupplier.is())
-        pNumExport = new SvXMLNumFmtExport(*this, xNumberFormatsSupplier);
 }
 
 SvXMLExport::~SvXMLExport()
@@ -1870,37 +1789,6 @@ SvXMLElementExport::SvXMLElementExport( SvXMLExport& rExp,
     bDoSomething( sal_True )
 {
     StartElement( rExp, nPrefixKey, GetXMLToken(eLName), bIWSOutside );
-}
-
-SvXMLElementExport::SvXMLElementExport( SvXMLExport& rExp,
-                                        sal_Bool bDoSth,
-                                        sal_uInt16 nPrefixKey,
-                                        const sal_Char *pLName,
-                                        sal_Bool bIWSOutside,
-                                        sal_Bool bIWSInside ) :
-    rExport( rExp ),
-    bIgnWS( bIWSInside ),
-    bDoSomething( bDoSth )
-{
-    if( bDoSomething )
-    {
-        OUString sLName( OUString::createFromAscii(pLName) );
-        StartElement( rExp, nPrefixKey, sLName, bIWSOutside );
-    }
-}
-
-SvXMLElementExport::SvXMLElementExport( SvXMLExport& rExp,
-                                        sal_Bool bDoSth,
-                                        sal_uInt16 nPrefixKey,
-                                        const OUString& rLName,
-                                        sal_Bool bIWSOutside,
-                                        sal_Bool bIWSInside ) :
-    rExport( rExp ),
-    bIgnWS( bIWSInside ),
-    bDoSomething( bDoSth )
-{
-    if( bDoSomething )
-        StartElement( rExp, nPrefixKey, rLName, bIWSOutside );
 }
 
 SvXMLElementExport::SvXMLElementExport( SvXMLExport& rExp,
