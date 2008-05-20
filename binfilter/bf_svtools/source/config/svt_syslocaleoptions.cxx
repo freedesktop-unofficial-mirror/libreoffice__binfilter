@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_syslocaleoptions.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -129,21 +129,16 @@ public:
 
             const OUString&     GetLocaleString() const
                                     { return m_aLocaleString; }
-            void                SetLocaleString( const OUString& rStr );
             LanguageType        GetLocaleLanguageType() const
                                     { return m_eLocaleLanguageType; }
 
             const OUString&     GetCurrencyString() const
                                     { return m_aCurrencyString; }
-            void                SetCurrencyString( const OUString& rStr );
 
             sal_Bool            IsDecimalSeparatorAsLocale() const { return m_bDecimalSeparator;}
-            void                SetDecimalSeparatorAsLocale( sal_Bool bSet);
 
             SvtBroadcaster&     GetBroadcaster()
                                     { return m_aBroadcaster; }
-            void                BlockBroadcasts( BOOL bBlock );
-            sal_Bool            IsReadOnly( SvtSysLocaleOptions::EOption eOption ) const;
 };
 
 
@@ -260,37 +255,6 @@ SvtSysLocaleOptions_Impl::~SvtSysLocaleOptions_Impl()
 }
 
 
-void SvtSysLocaleOptions_Impl::BlockBroadcasts( BOOL bBlock )
-{
-    if ( bBlock )
-        ++m_nBroadcastBlocked;
-    else if ( m_nBroadcastBlocked )
-    {
-        if ( --m_nBroadcastBlocked == 0 )
-            Broadcast( 0 );
-    }
-}
-
-sal_Bool SvtSysLocaleOptions_Impl::IsReadOnly( SvtSysLocaleOptions::EOption eOption ) const
-{
-    sal_Bool bReadOnly = CFG_READONLY_DEFAULT;
-    switch(eOption)
-    {
-        case SvtSysLocaleOptions::E_LOCALE :
-            {
-                bReadOnly = m_bROLocale;
-                break;
-            }
-        case SvtSysLocaleOptions::E_CURRENCY :
-            {
-                bReadOnly = m_bROCurrency;
-                break;
-            }
-    }
-    return bReadOnly;
-}
-
-
 void SvtSysLocaleOptions_Impl::Broadcast( ULONG nHint )
 {
     if ( m_nBroadcastBlocked )
@@ -365,19 +329,6 @@ void SvtSysLocaleOptions_Impl::Commit()
 }
 
 
-void SvtSysLocaleOptions_Impl::SetLocaleString( const OUString& rStr )
-{
-    if (!m_bROLocale && rStr != m_aLocaleString )
-    {
-        m_aLocaleString = rStr;
-        SetModified();
-        ULONG nHint = SYSLOCALEOPTIONS_HINT_LOCALE;
-        nHint |= ChangeLocaleSettings();
-        Broadcast( nHint );
-    }
-}
-
-
 ULONG SvtSysLocaleOptions_Impl::ChangeLocaleSettings()
 {
     // An empty config value denotes SYSTEM locale
@@ -390,27 +341,6 @@ ULONG SvtSysLocaleOptions_Impl::ChangeLocaleSettings()
     if ( !m_aCurrencyString.getLength() )
         nHint |= SYSLOCALEOPTIONS_HINT_CURRENCY;
     return nHint;
-}
-
-
-void SvtSysLocaleOptions_Impl::SetCurrencyString( const OUString& rStr )
-{
-    if (!m_bROCurrency && rStr != m_aCurrencyString )
-    {
-        m_aCurrencyString = rStr;
-        SetModified();
-        Broadcast( SYSLOCALEOPTIONS_HINT_CURRENCY );
-    }
-}
-
-void SvtSysLocaleOptions_Impl::SetDecimalSeparatorAsLocale( sal_Bool bSet)
-{
-    if(bSet != m_bDecimalSeparator)
-    {
-        m_bDecimalSeparator = bSet;
-        SetModified();
-        UpdateMiscSettings_Impl();
-    }
 }
 
 
@@ -512,21 +442,6 @@ Mutex& SvtSysLocaleOptions::GetMutex()
     return *pMutex;
 }
 
-
-sal_Bool SvtSysLocaleOptions::IsModified()
-{
-    MutexGuard aGuard( GetMutex() );
-    return pOptions->IsModified();
-}
-
-
-void SvtSysLocaleOptions::Commit()
-{
-    MutexGuard aGuard( GetMutex() );
-    pOptions->Commit();
-}
-
-
 BOOL SvtSysLocaleOptions::AddListener( SvtListener& rLst )
 {
     MutexGuard aGuard( GetMutex() );
@@ -541,70 +456,15 @@ BOOL SvtSysLocaleOptions::RemoveListener( SvtListener& rLst )
 }
 
 
-void SvtSysLocaleOptions::BlockBroadcasts( BOOL bBlock )
-{
-    MutexGuard aGuard( GetMutex() );
-    pOptions->BlockBroadcasts( bBlock );
-}
-
-
-const OUString& SvtSysLocaleOptions::GetLocaleConfigString() const
-{
-    MutexGuard aGuard( GetMutex() );
-    return pOptions->GetLocaleString();
-}
-
-
-void SvtSysLocaleOptions::SetLocaleConfigString( const OUString& rStr )
-{
-    MutexGuard aGuard( GetMutex() );
-    pOptions->SetLocaleString( rStr );
-}
-
-
 const OUString& SvtSysLocaleOptions::GetCurrencyConfigString() const
 {
     MutexGuard aGuard( GetMutex() );
     return pOptions->GetCurrencyString();
 }
 
-
-void SvtSysLocaleOptions::SetCurrencyConfigString( const OUString& rStr )
-{
-    MutexGuard aGuard( GetMutex() );
-    pOptions->SetCurrencyString( rStr );
-}
-
-
-LanguageType SvtSysLocaleOptions::GetLocaleLanguageType() const
-{
-    MutexGuard aGuard( GetMutex() );
-    return pOptions->GetLocaleLanguageType();
-}
-
 /*-- 11.02.2004 13:31:41---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-sal_Bool SvtSysLocaleOptions::IsDecimalSeparatorAsLocale() const
-{
-    MutexGuard aGuard( GetMutex() );
-    return pOptions->IsDecimalSeparatorAsLocale();
-}
-/*-- 11.02.2004 13:31:41---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SvtSysLocaleOptions::SetDecimalSeparatorAsLocale( sal_Bool bSet)
-{
-    MutexGuard aGuard( GetMutex() );
-    pOptions->SetDecimalSeparatorAsLocale(bSet);
-}
-
-
-sal_Bool SvtSysLocaleOptions::IsReadOnly( EOption eOption ) const
-{
-    MutexGuard aGuard( GetMutex() );
-    return pOptions->IsReadOnly( eOption );
-}
 
 // static
 void SvtSysLocaleOptions::GetCurrencyAbbrevAndLanguage( String& rAbbrev,
@@ -622,24 +482,6 @@ void SvtSysLocaleOptions::GetCurrencyAbbrevAndLanguage( String& rAbbrev,
         rAbbrev = rConfigString;
         eLang = (rAbbrev.Len() ? LANGUAGE_NONE : LANGUAGE_SYSTEM);
     }
-}
-
-
-// static
-::rtl::OUString SvtSysLocaleOptions::CreateCurrencyConfigString(
-        const String& rAbbrev, LanguageType eLang )
-{
-    String aIsoStr( MsLangId::convertLanguageToIsoString( eLang ) );
-    if ( aIsoStr.Len() )
-    {
-        ::rtl::OUStringBuffer aStr( rAbbrev.Len() + 1 + aIsoStr.Len() );
-        aStr.append( rAbbrev.GetBuffer(), rAbbrev.Len() );
-        aStr.append( sal_Unicode('-') );
-        aStr.append( aIsoStr.GetBuffer(), aIsoStr.Len() );
-        return aStr.makeStringAndClear();
-    }
-    else
-        return rAbbrev;
 }
 
 
