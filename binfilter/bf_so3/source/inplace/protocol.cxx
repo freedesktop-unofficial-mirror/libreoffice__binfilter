@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: protocol.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,8 +98,8 @@ public:
                         ImplSvEditObjectProtocol();
 #ifdef DBG_UTIL
                         ~ImplSvEditObjectProtocol();
-#endif
     void                ClassInvariant() const;
+#endif
 
     void                MakeVisible();
                         // Protokolle
@@ -180,6 +180,7 @@ ImplSvEditObjectProtocol::~ImplSvEditObjectProtocol()
 #define IS_ALL_UIACTIVE()       \
     (bUIActive && bCliUIActive && bSvrUIActive )
 
+#ifdef DBG_UTIL
 void ImplSvEditObjectProtocol::ClassInvariant() const
 {
     DBG_ASSERT( IS_ALL_CONNECT() ||
@@ -217,7 +218,6 @@ void ImplSvEditObjectProtocol::ClassInvariant() const
                 (IS_ALL_OPEN() && IS_ALL_CONNECT()),
                 "plugin, without full lower status" )
 }
-#ifdef DBG_UTIL
 #define CLASS_INVARIANT ClassInvariant();
 #else
 #define CLASS_INVARIANT
@@ -255,22 +255,6 @@ SvEditObjectProtocol::SvEditObjectProtocol()
 */
     pImp = new ImplSvEditObjectProtocol();
     pImp->nRefCount = 1;
-}
-
-SvEditObjectProtocol::SvEditObjectProtocol( SvEmbeddedObject * pObj,
-                                            SvEmbeddedClient * pCl )
-{
-    pImp = new ImplSvEditObjectProtocol();
-    pImp->aObj      = pObj;
-    pImp->aClient   = pCl;
-    pImp->aIPObj    = pObj; // automatischer Typecast
-    pImp->aIPClient = pCl;  // automatischer Typecast
-    pImp->nRefCount = 1;
-    // Bestehende Verbindungen abbauen
-    if( pObj->GetProtocol().IsConnect() )
-        pObj->GetProtocol().Reset();
-    if( pCl && pCl->GetProtocol().IsConnect() )
-        pCl->GetProtocol().Reset();
 }
 
 SvEditObjectProtocol::SvEditObjectProtocol( const SvEditObjectProtocol & rObj )
@@ -370,14 +354,6 @@ BOOL SvEditObjectProtocol::IsInPlaceActive() const
 BOOL SvEditObjectProtocol::IsUIActive() const
 {
     return pImp->bUIActive;
-}
-BOOL SvEditObjectProtocol::IsTopWinActive() const
-{
-    return pImp->bTopWinActive;
-}
-BOOL SvEditObjectProtocol::IsDocWinActive() const
-{
-    return pImp->bDocWinActive;
 }
 
 //=========================================================================
@@ -590,44 +566,6 @@ ErrCode SvEditObjectProtocol::UIProtocol()
     // Schutz gegen Zuweisungsoperator und delete
     SvEditObjectProtocol aThis( *this );
     return pImp->UIProtocol();
-}
-
-//=========================================================================
-BOOL SvEditObjectProtocol::CanEmbedProtocol() const
-{
-    return TRUE;
-}
-
-//=========================================================================
-BOOL SvEditObjectProtocol::CanPlugInProtocol() const
-/*  [Beschreibung]
-
-    Unterst"utzt der Client das PlugIn-Protokol, dann wird TRUE
-    sonst FALSE zur"uckgegeben.
-
-    [R"uckgabewert]
-
-    BOOL
-
-    [Querverweise]
-
-    <SvEmbeddedClient::CanPlugIn()>
-*/
-{
-    return pImp->aClient.Is() && pImp->aClient->CanPlugIn();
-}
-
-//=========================================================================
-BOOL SvEditObjectProtocol::CanInPlaceProtocol() const
-{
-    return pImp->aIPObj.Is() && pImp->aIPClient.Is()
-           && pImp->aIPClient->CanInPlaceActivate();
-}
-
-//=========================================================================
-BOOL SvEditObjectProtocol::CanUIProtocol() const
-{
-    return CanInPlaceProtocol();
 }
 
 /************************************************************************
@@ -871,13 +809,6 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
          aIPClient.Clear();
     }
     CLASS_INVARIANT
-}
-
-void SvEditObjectProtocol::Connected( BOOL bConnect )
-{
-    // Schutz gegen Zuweisungsoperator und delete
-    SvEditObjectProtocol aThis( *this );
-    pImp->Connected( bConnect );
 }
 
 /************************************************************************
@@ -1330,18 +1261,6 @@ void SvEditObjectProtocol::UIActivate( BOOL bUIActive )
     pImp->UIActivate( bUIActive );
 }
 
-/************************************************************************
-|*    SvEditObjectProtocol::TopWinActivate()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvEditObjectProtocol::TopWinActivate( BOOL bActive )
-{
-    // Schutz gegen Zuweisungsoperator und delete
-    SvEditObjectProtocol aThis( *this );
-    pImp->TopWinActivate( bActive );
-}
-
 void ImplSvEditObjectProtocol::TopWinActivate( BOOL bActive )
 {
     CLASS_INVARIANT
@@ -1366,18 +1285,6 @@ void ImplSvEditObjectProtocol::SetTopUIActiveClient( BOOL /*bTopWinActive*/,
 {
 }
 
-/************************************************************************
-|*    SvEditObjectProtocol::DocWinActivate()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvEditObjectProtocol::DocWinActivate( BOOL bActive )
-{
-    // Schutz gegen Zuweisungsoperator und delete
-    SvEditObjectProtocol aThis( *this );
-    pImp->DocWinActivate( bActive );
-}
-
 void ImplSvEditObjectProtocol::DocWinActivate( BOOL bActive )
 {
     CLASS_INVARIANT
@@ -1394,18 +1301,6 @@ void ImplSvEditObjectProtocol::DocWinActivate( BOOL bActive )
     CLASS_INVARIANT
 }
 
-
-
-/************************************************************************
-|*    SvEditObjectProtocol::IsInClosed()
-|*
-|*    Beschreibung
-*************************************************************************/
-BOOL SvEditObjectProtocol::IsInClosed() const
-{
-    return pImp->bInClosed;
-}
-
 /************************************************************************
 |*    SvEditObjectProtocol::SetInClosed()
 |*
@@ -1415,17 +1310,6 @@ void SvEditObjectProtocol::SetInClosed( BOOL bInClosed )
 {
     DBG_ASSERT( bInClosed != pImp->bInClosed, "bInClosed == pImp->bInClosed" )
     pImp->bInClosed = bInClosed;
-}
-
-/************************************************************************
-|*    SvEditObjectProtocol::DocNameChanged()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvEditObjectProtocol::DocNameChanged( const String & rName )
-{
-    if( pImp->bSvrEmbed )
-        pImp->aObj->DocumentNameChanged( rName );
 }
 
 }
