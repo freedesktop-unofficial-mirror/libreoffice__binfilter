@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unosect.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,9 +98,6 @@
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _HINTS_HXX //autogen
 #include <hints.hxx>
@@ -330,7 +327,6 @@ void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xT
         //das muss jetzt sal_True liefern
         SwXTextRange::XTextRangeToSwPaM(aPam, xTextRange);
         UnoActionContext aCont(pDoc);
-        pDoc->StartUndo( UNDO_INSSECTION );
 
         sal_Bool bRet = sal_False;
 
@@ -431,8 +427,6 @@ void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xT
                                 ::binfilter::LINKUPDATE_ONCALL);
         }
 
-        // Undo-Klammerung hier beenden
-        pDoc->EndUndo( UNDO_INSSECTION );
         DELETEZ(pProps);
         m_bIsDescriptor = sal_False;
     }
