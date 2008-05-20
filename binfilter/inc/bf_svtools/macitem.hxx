@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: macitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,7 +109,6 @@ public:
 
     const String &GetLibName() const        { return aLibName; }
     const String &GetMacName() const        { return aMacName; }
-    String GetLanguage()const;
 
     ScriptType GetScriptType() const        { return eType; }
 
