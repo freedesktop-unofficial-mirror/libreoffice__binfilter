@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: addinhelpid.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,7 +49,6 @@ private:
     sal_uInt32                  nArrayCount;        /// Count of array entries.
 
 public:
-                                ScUnoAddInHelpIdGenerator();
                                 ScUnoAddInHelpIdGenerator( const ::rtl::OUString& rServiceName );
 
     /** Sets service name of the AddIn. Has to be done before requesting help IDs. */
