@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: image.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -121,11 +121,6 @@ void SbiCloseRecord( SvStream& r, ULONG nOff )
 // Falls die Versionsnummer nicht passt, werden die binaeren Teile
 // nicht geladen, wohl aber Source, Kommentar und Name.
 
-BOOL SbiImage::Load( SvStream& r )
-{
-    UINT32 nVersion = 0;            // Versionsnummer
-    return Load( r, nVersion );
-}
 BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
 {
 
@@ -416,115 +411,11 @@ void SbiImage::MakeStrings( short nSize )
         bError = TRUE;
 }
 
-// Hinzufuegen eines Strings an den StringPool. Der String-Puffer
-// waechst dynamisch in 1K-Schritten
-
-
-
-void SbiImage::AddString( const String& r )
-{
-    if( nStringIdx >= nStrings )
-        bError = TRUE;
-    if( !bError )
-    {
-        xub_StrLen  len = r.Len() + 1;
-        UINT32 needed = nStringOff + len;
-        if( needed > 0xFFFFFF00L )
-            bError = TRUE;  // out of mem!
-        else if( needed > nStringSize )
-        {
-            UINT32 nNewLen = needed + 1024;
-            nNewLen &= 0xFFFFFC00;  // trim to 1K border
-            if( nNewLen > 0xFFFFFF00L )
-                nNewLen = 0xFFFFFF00L;
-            sal_Unicode* p = NULL;
-            if( (p = new sal_Unicode[ nNewLen ]) != NULL )
-            {
-                memcpy( p, pStrings, nStringSize * sizeof( sal_Unicode ) );
-                delete[] pStrings;
-                pStrings = p;
-                nStringSize = sal::static_int_cast< UINT16 >(nNewLen);
-            }
-            else
-                bError = TRUE;
-        }
-        if( !bError )
-        {
-            pStringOff[ nStringIdx++ ] = nStringOff;
-            //ByteString aByteStr( r, eCharSet );
-            memcpy( pStrings + nStringOff, r.GetBuffer(), len * sizeof( sal_Unicode ) );
-            nStringOff = nStringOff + len;
-            // war das der letzte String? Dann die Groesse
-            // des Puffers aktualisieren
-            if( nStringIdx >= nStrings )
-                nStringSize = nStringOff;
-        }
-    }
-}
-
-// Codeblock hinzufuegen
-// Der Block wurde vom Compiler aus der Klasse SbBuffer herausgeholt
-// und ist bereits per new angelegt. Ausserdem enthaelt er alle Integers
-// im Big Endian-Format, kann also direkt gelesen/geschrieben werden.
-
-void SbiImage::AddCode( char* p, UINT32 s )
-{
-    pCode = p;
-    nCodeSize = s;
-}
-
-void SbiImage::AddType(SbxObject* pObject) // User-Type mit aufnehmen
-{
-    if( !rTypes.Is() )
-        rTypes = new SbxArray;
-    SbxObject *pCopyObject = new SbxObject(*pObject);
-    rTypes->Insert (pCopyObject,rTypes->Count());
-}
-
-void SbiImage::AddEnum(SbxObject* pObject) // Register enum type
-{
-    if( !rEnums.Is() )
-        rEnums = new SbxArray;
-    rEnums->Insert( pObject, rEnums->Count() );
-}
-
-
 /**************************************************************************
 *
 *   Zugriffe auf das Image
 *
 **************************************************************************/
-
-// IDs zaehlen ab 1!!
-
-String SbiImage::GetString( short nId ) const
-{
-    if( nId && nId <= nStrings )
-    {
-        UINT32 nOff = pStringOff[ nId - 1 ];
-        sal_Unicode* pStr = pStrings + nOff;
-
-        // #i42467: Special treatment for vbNullChar
-        if( *pStr == 0 )
-        {
-            UINT32 nNextOff = (nId < nStrings) ? pStringOff[ nId ] : nStringOff;
-            UINT32 nLen = nNextOff - nOff - 1;
-            if( nLen == 1 )
-            {
-                // Force length 1 and make char 0 afterwards
-                String aNullCharStr( String::CreateFromAscii( " " ) );
-                aNullCharStr.SetChar( 0, 0 );
-                return aNullCharStr;
-            }
-        }
-        else
-        {
-            String aStr( pStr );
-            return aStr;
-        }
-    }
-    return String();
-}
 
 const SbxObject* SbiImage::FindType (String aTypeName) const
 {
