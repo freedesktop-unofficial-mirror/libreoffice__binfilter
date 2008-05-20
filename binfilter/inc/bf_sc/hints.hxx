@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: hints.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,7 +51,6 @@ class ScPaintHint : public SfxHint
 
 public:
                     TYPEINFO();
-                    ScPaintHint();
                     ScPaintHint( const ScRange& rRng, USHORT nPaint = PAINT_ALL );
                     ~ScPaintHint();
 
