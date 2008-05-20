@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: indexmap.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,8 +53,6 @@ public:
                                 ~ScIndexMap();
 
             void                SetPair( USHORT nEntry, USHORT nIndex1, USHORT nIndex2 );
-                                /// returns nIndex2 if found, else nIndex1
-             USHORT             Find( USHORT nIndex1 ) const;
 };
 
 
