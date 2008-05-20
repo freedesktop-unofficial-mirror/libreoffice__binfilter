@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_frmdescr.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,21 +70,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ };
 
-/*N*/ SfxFrameSetDescriptor::SfxFrameSetDescriptor(SfxFrameDescriptor *pFrame) :
-/*N*/   pParentFrame( pFrame ),
-/*N*/   nFrameSpacing( SPACING_NOT_SET ),
-/*N*/   bIsRoot( pParentFrame ? (pParentFrame->pParentFrameSet == 0) : TRUE ),
-/*N*/   bRowSet( FALSE ),
-/*N*/   nMaxId( 0 ),
-/*N*/   nHasBorder( BORDER_YES )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ BOOL SfxFrameSetDescriptor::HasFrameBorder() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
-/*N*/ }
-
-
 /*N*/ SfxFrameDescriptor::SfxFrameDescriptor( SfxFrameSetDescriptor *pParSet ) :
 /*N*/   aMargin( -1, -1 ),
 /*N*/   nWidth( 0L ),
@@ -117,83 +102,13 @@ namespace binfilter {
 /*N*/   delete pImp;
 /*N*/ }
 
-/*N*/ SfxItemSet* SfxFrameDescriptor::GetArgs()
-/*N*/ {
-/*N*/   if( !pImp->pArgs )
-/*N*/       pImp->pArgs = new SfxAllItemSet( SFX_APP()->GetPool() );
-/*N*/   return pImp->pArgs;
-/*N*/ }
-
 /*?*/ void SfxFrameDescriptor::SetURL( const String& rURL )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
 
-/*N*/ void SfxFrameDescriptor::SetActualURL( const String& rURL )
-/*N*/ {
-/*N*/   aActualURL = INetURLObject(rURL);
-/*N*/   if ( pImp->pArgs )
-/*?*/       pImp->pArgs->ClearItem();
-/*N*/ }
-
-/*?*/ void SfxFrameDescriptor::SetActualURL( const INetURLObject& rURL )
-/*?*/ {
-/*?*/   SetActualURL(String(rURL.GetMainURL( INetURLObject::DECODE_TO_IURI )));
-/*?*/ }
-
-/*N*/ void SfxFrameDescriptor::SetEditable( BOOL bSet )
-/*N*/ {
-/*N*/   pImp->bEditable = bSet;
-/*N*/ }
-
-/*N*/ BOOL SfxFrameDescriptor::IsEditable() const
-/*N*/ {
-/*N*/   return pImp->bEditable;
-/*N*/ }
-
-
-/*N*/ BOOL SfxFrameDescriptor::Store( SvStream& rStream ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ BOOL SfxFrameDescriptor::Load( SvStream& rStream, USHORT nVersion )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ SfxFrameDescriptor* SfxFrameDescriptor::Clone(
 /*N*/   SfxFrameSetDescriptor *pSet, BOOL bWithIds ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*N*/ }
-
-
-
-/*N*/ BOOL SfxFrameDescriptor::HasFrameBorder() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
-/*N*/ }
-
-
-/*N*/ SfxFrameProperties::SfxFrameProperties( const SfxFrameDescriptor *pD )
-/*N*/   : aURL( pD->GetURL().GetMainURL( INetURLObject::DECODE_TO_IURI ) )
-/*N*/   , aName( pD->GetName() )
-/*N*/   , lMarginWidth( pD->GetMargin().Width() )
-/*N*/   , lMarginHeight( pD->GetMargin().Height() )
-/*N*/   , lSize( pD->GetWidth() )
-/*N*/   , lSetSize( SIZE_NOT_SET )
-/*N*/   , lFrameSpacing( SPACING_NOT_SET )
-/*N*/   , lInheritedFrameSpacing( SPACING_NOT_SET )
-/*N*/   , eScroll( pD->GetScrollingMode() )
-/*N*/   , eSizeSelector( pD->GetSizeSelector() )
-/*N*/   , eSetSizeSelector( SIZE_REL )
-/*N*/   , bHasBorder( pD->HasFrameBorder() )
-/*N*/   , bHasBorderInherited( FALSE )
-/*N*/   , bBorderSet( pD->IsFrameBorderSet() )
-/*N*/   , bResizable( pD->IsResizable() )
-/*N*/   , bIsInColSet( FALSE )
-/*N*/   , bSetResizable( FALSE )
-/*N*/   , bIsRootSet( FALSE )
-/*N*/   , pFrame( pD->Clone() )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 /*N*/ SfxFrameProperties&   SfxFrameProperties::operator =(
