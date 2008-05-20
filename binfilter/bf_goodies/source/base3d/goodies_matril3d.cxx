@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: goodies_matril3d.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -87,14 +87,6 @@ BOOL B3dMaterial::operator==(const B3dMaterial& rMat)
          return TRUE;
      return FALSE;
 }
-
-/*************************************************************************
-|*
-|* Bucket fuer geometrische Daten
-|*
-\************************************************************************/
-
-BASE3D_IMPL_BUCKET(B3dMaterial, Bucket)
 
 }//end of namespace binfilter
 
