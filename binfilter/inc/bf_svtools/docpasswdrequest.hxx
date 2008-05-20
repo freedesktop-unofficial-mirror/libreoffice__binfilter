@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docpasswdrequest.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,7 +65,6 @@ class  RequestDocumentPassword : public ::cppu::WeakImplHelper1< ::com::sun::sta
 public:
     RequestDocumentPassword( ::com::sun::star::task::PasswordRequestMode nMode, ::rtl::OUString aName );
 
-    sal_Bool isAbort();
     sal_Bool isPassword();
 
     ::rtl::OUString getPassword();
