@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lckbitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,8 +58,6 @@ class  SfxLockBytesItem : public SfxPoolItem
 public:
                             TYPEINFO();
                             SfxLockBytesItem();
-                            SfxLockBytesItem( USHORT nWhich,
-                                              SvLockBytes *pLockBytes );
                             SfxLockBytesItem( USHORT nWhich, SvStream & );
                             SfxLockBytesItem( const SfxLockBytesItem& );
                             ~SfxLockBytesItem();
