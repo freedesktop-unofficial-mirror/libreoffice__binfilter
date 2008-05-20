@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: embobj.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -120,8 +120,6 @@ public:
                                long nFileFormat = SOFFICE_FILEFORMAT_CURRENT ) const;
     SvGlobalName    GetClassName() const
                     { return SvPseudoObject::GetClassName(); }
-    String          GetFullTypeName() const
-                    { return SvPseudoObject::GetFullTypeName(); }
 
     void            SetAutoSave( BOOL bAutoSaveP )
                     { bAutoSave = bAutoSaveP; }
@@ -148,16 +146,11 @@ public:
     virtual ULONG   GetMiscStatus() const;
 
     // Robuste Protokollsteuerung
-    ErrCode         DoConnect( SvEmbeddedClient * );
     ErrCode         DoEmbed( BOOL bEmbedded );
     ErrCode         DoPlugIn( BOOL bPLugIn );
     ErrCode         DoOpen( BOOL bOpen );
-    ErrCode         DoVerb( long nVerbPos = 0L );
-    ErrCode         DoVerb( long nVerbPos, SvEmbeddedClient * pCallerClient,
-                            Window * pWin, const Rectangle * pWorkAreaPixel );
 
     const String &  GetDocumentName() const { return aDocName; }
-    void            SetDocumentName( const String & rName );
 
     SvEditObjectProtocol & GetProtocol() { return aProt; }
     const SvEditObjectProtocol & GetProtocol() const { return aProt; }
@@ -204,9 +197,6 @@ public:
     virtual void            OnDocumentPrinterChanged( Printer * pNewPrinter );
 
     virtual UINT32          GetViewAspect() const;
-
-    static BOOL ConvertToOle2( SvStream& rStm, UINT32 nLen, const GDIMetaFile*,
-                                const SotStorageRef & rDest );
 };
 #ifndef SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
 #define SO2_DECL_SVEMBEDDEDOBJECT_DEFINED
@@ -226,7 +216,6 @@ protected:
 public:
                     SV_DECL_PERSIST1(SvEmbeddedObject,SvInfoObject,2)
                     SvEmbeddedInfoObject();
-                    SvEmbeddedInfoObject( SvEmbeddedObject * );
                     SvEmbeddedInfoObject( SvEmbeddedObject *, const String & rObjName );
                     SvEmbeddedInfoObject( const String& rObjName,
                                      const SvGlobalName& rClassName );
