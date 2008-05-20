@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_hints.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,13 +49,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 //      ScPaintHint - Angabe, was neu gezeichnet werden muss
 // -----------------------------------------------------------------------
-
-/*N*/ ScPaintHint::ScPaintHint() :
-/*N*/   aRange( 0,0,0, MAXCOL,MAXROW,MAXTAB ),
-/*N*/   nParts( PAINT_ALL ),
-/*N*/   bPrint( TRUE )
-/*N*/ {
-/*N*/ }
 
 /*N*/ ScPaintHint::ScPaintHint( const ScRange& rRng, USHORT nPaint ) :
 /*N*/   aRange( rRng ),
