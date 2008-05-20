@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_poolcach.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,19 +58,6 @@ struct SfxItemModifyImpl
 
 SV_DECL_VARARR( SfxItemModifyArr_Impl, SfxItemModifyImpl, 8, 8 )
 SV_IMPL_VARARR( SfxItemModifyArr_Impl, SfxItemModifyImpl);
-
-//------------------------------------------------------------------------
-
-SfxItemPoolCache::SfxItemPoolCache( SfxItemPool *pItemPool,
-                                    const SfxPoolItem *pPutItem ):
-    pPool(pItemPool),
-    pCache(new SfxItemModifyArr_Impl),
-    pSetToPut( 0 ),
-    pItemToPut( &pItemPool->Put(*pPutItem) )
-{
-    DBG_CTOR(SfxItemPoolCache, 0);
-    DBG_ASSERT(pItemPool, "kein Pool angegeben");
-}
 
 //------------------------------------------------------------------------
 
