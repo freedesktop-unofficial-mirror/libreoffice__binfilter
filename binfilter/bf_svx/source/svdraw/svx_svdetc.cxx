@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdetc.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -653,52 +653,4 @@ namespace binfilter {
 /*N*/
 /*N*/   return rGlobalData.pResMgr;
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ const XubString& ImpGetResStr(USHORT nResID)
-/*N*/ {
-/*N*/   SdrGlobalData& rGlobalData=GetSdrGlobalData();
-/*N*/   if (rGlobalData.pStrCache==NULL) {
-/*N*/       USHORT nAnz=SDR_StringCacheEnd-SDR_StringCacheBegin+1;
-/*N*/       rGlobalData.pStrCache=new XubString[nAnz];
-/*N*/       XubString* pStr=rGlobalData.pStrCache;
-/*N*/       ResMgr* pResMgr=ImpGetResMgr();
-/*N*/       for (USHORT i=0; i<nAnz; i++) {
-/*N*/           USHORT nResNum=SDR_StringCacheBegin+i;
-/*N*/           {
-/*N*/               pStr[i]=XubString(ResId(nResNum,*pResMgr));
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   if (nResID>=SDR_StringCacheBegin && nResID<=SDR_StringCacheEnd) {
-/*N*/       return rGlobalData.pStrCache[nResID-SDR_StringCacheBegin];
-/*N*/   } else {
-/*N*/ #ifdef DBG_UTIL
-/*N*/       DBG_ERROR("ImpGetResStr(): ResourceID outside of cache range!");
-/*N*/ #endif
-/*N*/       static String aEmpty;
-/*N*/       return aEmpty;
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 }
