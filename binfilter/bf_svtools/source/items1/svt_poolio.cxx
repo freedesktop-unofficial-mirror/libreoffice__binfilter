@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_poolio.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1323,7 +1323,6 @@ void SfxItemPool::SetVersionMap
 
     <SfxItemPool::IsLoadingVersionCurrent()const>
     <SfxItemPool::GetNewWhich(USHORT)>
-    <SfxItemPool::GetVersion()const>
     <SfxItemPool::GetLoadingVersion()const>
 */
 
@@ -1380,7 +1379,6 @@ USHORT SfxItemPool::GetNewWhich
 
     <SfxItemPool::IsLoadingVersionCurrent()const>
     <SfxItemPool::SetVersionMap(USHORT,USHORT,USHORT,USHORT*)>
-    <SfxItemPool::GetVersion()const>
     <SfxItemPool::GetLoadingVersion()const>
 */
 
@@ -1469,45 +1467,12 @@ FASTBOOL SfxItemPool::IsCurrentVersionLoading() const
 
     <SfxItemPool::SetVersionMap(USHORT,USHORT,USHORT,USHORT*)>
     <SfxItemPool::GetNewWhich(USHORT)const>
-    <SfxItemPool::GetVersion()const>
     <SfxItemPool::GetLoadingVersion()const>
 */
 
 {
     return ( pImp->nVersion == pImp->nLoadingVersion ) &&
            ( !pSecondary || pSecondary->IsCurrentVersionLoading() );
-}
-
-// -----------------------------------------------------------------------
-
-USHORT SfxItemPool::GetVersion() const
-
-/*  [Beschreibung]
-
-    Diese Methode liefert die aktuelle Versionsnummer des SfxItemPool-Aufbaus
-    (also des Which-Bereichs).
-
-    Precondition:   keine
-    Postcondition:  unver"andert
-    Laufzeit:       2
-
-
-    [Anmerkung]
-
-    Achtung: Es mu\s ggf. die Versionsnummer von Sekund"arpools
-    ber"ucksichtigt werden.
-
-
-    [Querverweise]
-
-    <SfxItemPool::IsLoadingVersionCurrent()const>
-    <SfxItemPool::SetVersionMap(USHORT,USHORT,USHORT,USHORT*)>
-    <SfxItemPool::GetNewWhich(USHORT)const>
-    <SfxItemPool::GetLoadingVersion()const>
-*/
-
-{
-    return pImp->nVersion;
 }
 
 // -----------------------------------------------------------------------
@@ -1535,7 +1500,6 @@ USHORT SfxItemPool::GetLoadingVersion() const
     <SfxItemPool::IsLoadingVersionCurrent()const>
     <SfxItemPool::SetVersionMap(USHORT,USHORT,USHORT,USHORT*)>
     <SfxItemPool::GetNewWhich(USHORT)const>
-    <SfxItemPool::GetVersion()const>
 */
 
 {
