@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ndsect.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,9 +63,6 @@
 #endif
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>
@@ -147,15 +144,6 @@ namespace binfilter {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
 /*N*/   }
 /*N*/
-/*N*/   SwUndoInsSection* pUndoInsSect = 0;
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       pUndoInsSect = new SwUndoInsSection( rRange, rNew, pAttr );
-/*N*/       AppendUndo( pUndoInsSect );
-/*N*/       DoUndo( FALSE );
-/*N*/   }
-/*N*/
 /*N*/   SwSectionFmt* pFmt = MakeSectionFmt( 0 );
 /*N*/   if( pAttr )
 /*N*/       pFmt->SetAttr( *pAttr );
@@ -183,20 +171,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           if( pUndoInsSect )
-/*N*/           {
-/*N*/               SwTxtNode* pTNd;
-/*N*/               if( !( pPrvNd && 1 == nRegionRet ) &&
-/*N*/                   pSttPos->nContent.GetIndex() &&
-/*N*/                   0 != ( pTNd = pSttPos->nNode.GetNode().GetTxtNode() ))
-/*?*/                   pUndoInsSect->SaveSplitNode( pTNd, TRUE );
-/*N*/
-/*N*/               if( !( pPrvNd && 2 == nRegionRet ) &&
-/*N*/                   0 != ( pTNd = pEndPos->nNode.GetNode().GetTxtNode() ) &&
-/*N*/                   pTNd->GetTxt().Len() != pEndPos->nContent.GetIndex() )
-/*?*/                   pUndoInsSect->SaveSplitNode( pTNd, FALSE );
-/*N*/           }
-/*N*/
 /*N*/           const SwCntntNode* pCNd;
 /*N*/           if( pPrvNd && 1 == nRegionRet )
 /*N*/           {
@@ -255,8 +229,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           if( pUndoInsSect && pCNd->IsTxtNode() )
-/*?*/               pUndoInsSect->SaveSplitNode( (SwTxtNode*)pCNd, TRUE );
 /*?*/           SplitNode( *pPos );
 /*?*/           pNewSectNode = GetNodes().InsertSection( pPos->nNode, *pFmt, rNew, 0, TRUE );
 /*N*/       }
@@ -291,13 +263,6 @@ namespace binfilter {
 /*?*/                           pAttr->Get( RES_END_AT_TXTEND )).GetValue() ) ||
 /*?*/             FTNEND_ATTXTEND_OWNNUMANDFMT == nVal ))
 /*?*/           bUpdateFtn = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   if( pUndoInsSect )
-/*N*/   {
-/*N*/       pUndoInsSect->SetSectNdPos( pNewSectNode->GetIndex() );
-/*N*/       pUndoInsSect->SetUpdtFtnFlag( bUpdateFtn );
-/*N*/       DoUndo( TRUE );
 /*N*/   }
 /*N*/
 /*N*/   if( rNew.IsLinkType() )
@@ -457,11 +422,7 @@ namespace binfilter {
 /*N*/
 /*N*/       const SwSectionNode* pSectNd;
 /*N*/
-/*N*/       if( DoesUndo() )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
-/*N*/       }
-/*N*/       else if( bDelNodes && pIdx && &GetNodes() == &pIdx->GetNodes() &&
+/*N*/       if( bDelNodes && pIdx && &GetNodes() == &pIdx->GetNodes() &&
 /*N*/               0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 /*N*/       {
 /*?*/           SwNodeIndex aUpdIdx( *pIdx );
@@ -544,11 +505,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if( bOnlyAttrChg )
 /*N*/       {
-/*N*/           if( DoesUndo() )
-/*N*/           {
-/*N*/               ClearRedo();
-/*N*/               AppendUndo( new SwUndoChgSection( *pFmt, TRUE ) );
-/*N*/           }
 /*N*/           pFmt->SetAttr( *pAttr );
 /*N*/           SetModified();
 /*N*/       }
@@ -567,12 +523,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoChgSection( *pFmt, FALSE ) );
-/*N*/   }
 /*N*/
 /*N*/   // #56167# Der LinkFileName koennte auch nur aus Separatoren bestehen
 /*N*/     String sCompareString = ::binfilter::cTokenSeperator;
@@ -882,12 +832,7 @@ namespace binfilter {
 /*N*/       pFmt->UnlockModify();
 /*N*/   }
 /*N*/
-/*N*/   BOOL bUndo = pDoc->DoesUndo();
-/*N*/   // verhinder beim Loeschen aus der Undo/Redo-History einen rekursiven Aufruf
-/*N*/   if( bUndo && &pDoc->GetNodes() != &GetNodes() )
-/*?*/       pDoc->DoUndo( FALSE );
 /*N*/   DELETEZ( pSection );
-/*N*/   pDoc->DoUndo( bUndo );
 /*N*/ }
 
 // setze ein neues SectionObject. Erstmal nur gedacht fuer die
