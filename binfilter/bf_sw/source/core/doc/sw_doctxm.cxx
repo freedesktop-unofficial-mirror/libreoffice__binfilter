@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_doctxm.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -75,9 +75,6 @@
 #ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
 #endif
@@ -133,7 +130,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/                                               const SfxItemSet* pSet,
 /*N*/                                               BOOL bExpand )
 /*N*/ {
-/*N*/   StartUndo( UNDO_INSTOX );
 /*N*/
 /*N*/   SwTOXBaseSection* pNew = new SwTOXBaseSection( rTOX );
 /*N*/   String sSectNm( rTOX.GetTOXName() );
@@ -176,7 +172,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/   else
 /*?*/       delete pNew, pNew = 0;
 
-/*N*/   EndUndo( UNDO_INSTOX );
 /*N*/
 /*N*/   return pNew;
 /*N*/ }
