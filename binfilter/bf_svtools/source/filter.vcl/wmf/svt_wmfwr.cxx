@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_wmfwr.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -800,13 +800,6 @@ void WMFWriter::WMFRecord_SelectObject(USHORT nObjectHandle)
 {
     WriteRecordHeader(0x00000004,W_META_SELECTOBJECT);
     *pWMF << nObjectHandle;
-}
-
-
-void WMFWriter::WMFRecord_SetBkColor(const Color & rColor)
-{
-    WriteRecordHeader(0x00000005,W_META_SETBKCOLOR);
-    WriteColor(rColor);
 }
 
 
