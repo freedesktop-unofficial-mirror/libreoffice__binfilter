@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_sdxmlexp.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -771,85 +771,7 @@ __EXPORT SdXMLExport::~SdXMLExport()
 //  }
 }
 
-//////////////////////////////////////////////////////////////////////////////
-// to get default values in XPropertySet use this wrapper class
 
-class ImpDefaultMapper : public ::cppu::WeakAggImplHelper1< beans::XPropertySet >
-{
-    uno::Reference< beans::XPropertyState >     mxState;
-    uno::Reference< beans::XPropertySet >       mxSet;
-
-public:
-    ImpDefaultMapper( uno::Reference< beans::XPropertyState >& rxState );
-
-    // Methods
-    virtual uno::Reference< beans::XPropertySetInfo > SAL_CALL getPropertySetInfo() throw(uno::RuntimeException);
-    virtual void SAL_CALL setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue ) throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException);
-    virtual uno::Any SAL_CALL getPropertyValue( const OUString& PropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException);
-
-    // empty implementations
-    virtual void SAL_CALL addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException);
-    virtual void SAL_CALL removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException);
-    virtual void SAL_CALL addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException);
-    virtual void SAL_CALL removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException);
-};
-
-ImpDefaultMapper::ImpDefaultMapper( uno::Reference< beans::XPropertyState >& rxState )
-:   mxState( rxState ),
-    mxSet( rxState, uno::UNO_QUERY )
-{
-}
-
-uno::Reference< beans::XPropertySetInfo > SAL_CALL ImpDefaultMapper::getPropertySetInfo() throw(uno::RuntimeException)
-{
-    return mxSet->getPropertySetInfo();
-}
-
-void SAL_CALL ImpDefaultMapper::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue ) throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
-{
-    mxState->setPropertyToDefault( aPropertyName /*, aValue */ );
-}
-
-uno::Any SAL_CALL ImpDefaultMapper::getPropertyValue( const OUString& PropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
-{
-    return mxState->getPropertyDefault(  PropertyName  );
-}
-
-// empty implementations
-void SAL_CALL ImpDefaultMapper::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL ImpDefaultMapper::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL ImpDefaultMapper::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL ImpDefaultMapper::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-
-//////////////////////////////////////////////////////////////////////////////
-
-/* moved to shapeexport.cxx
-void SdXMLExport::ImpWriteObjGraphicStyleInfos()
-{
-    XMLStyleExport aStEx(*this, OUString(), GetAutoStylePool().get());
-    const UniReference< SvXMLExportPropertyMapper > aMapperRef( GetPropertySetMapper() );
-
-    // write graphic family default style
-    uno::Reference< lang::XMultiServiceFactory > xFact( GetModel(), uno::UNO_QUERY );
-    if( xFact.is() )
-    {
-        try
-        {
-            uno::Reference< beans::XPropertySet > xDefaults( xFact->createInstance( OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.Defaults") ) ), uno::UNO_QUERY );
-            if( xDefaults.is() )
-            {
-                aStEx.exportDefaultStyle( xDefaults, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), aMapperRef );
-
-                // write graphic family styles
-                aStEx.exportStyleFamily(XML_STYLE_FAMILY_SD_GRAPHICS_NAME, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), aMapperRef, FALSE, XML_STYLE_FAMILY_SD_GRAPHICS_ID);
-            }
-        }
-        catch( lang::ServiceNotRegisteredException& )
-        {
-        }
-    }
-}
-*/
 //////////////////////////////////////////////////////////////////////////////
 
 void SdXMLExport::ImpPrepAutoLayoutInfos()
