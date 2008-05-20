@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: misccfg.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -57,18 +57,12 @@ public:
     virtual void            Commit();
 
     BOOL        IsNotFoundWarning()     const {return bNotFound;}
-    void        SetNotFoundWarning( BOOL bSet);
 
     BOOL        IsPaperSizeWarning()    const {return bPaperSize;}
-    void        SetPaperSizeWarning(BOOL bSet);
 
     BOOL        IsPaperOrientationWarning()     const {return bPaperOrientation;}
-    void        SetPaperOrientationWarning( BOOL bSet);
-
                 // 0 ... 99
     sal_Int32   GetYear2000()           const { return nYear2000; }
-    void        SetYear2000( sal_Int32 nSet );
-
 };
 
 }//end of namespace binfilter
