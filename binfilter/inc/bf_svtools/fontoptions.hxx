@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fontoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -110,37 +110,6 @@ class  SvtFontOptions: public Options
         //---------------------------------------------------------------------------------------------------------
         //  interface
         //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Font"
-            @descr      These values defines different states of font handling.
-
-                        ..ReplacementTable..()  =>  Determines if the list of font replacements is applied or not.
-
-                        ..FontHistory..()       =>  The last 5 fonts will be shown and the last one will be the
-                                                    first name on the list. These will be displayed in the Font name
-                                                    combo box on the Object bar.
-
-                        ..FontWYSIWYG..()       =>  With this option the names of the selectable fonts
-                                                    (for example, the fonts in the Font field in the object bar)
-                                                    will be formatted as the current font.
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsReplacementTableEnabled   (                   ) const ;
-        void        EnableReplacementTable      ( sal_Bool bState   )       ;
-
-        sal_Bool    IsFontHistoryEnabled        (                   ) const ;
-        void        EnableFontHistory           ( sal_Bool bState   )       ;
-
-        sal_Bool    IsFontWYSIWYGEnabled        (                   ) const ;
-        void        EnableFontWYSIWYG           ( sal_Bool bState   )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
