@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_indexmap.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,18 +67,5 @@ namespace binfilter {
 /*N*/       pMap[nOff+1] = nIndex2;
 /*N*/   }
 /*N*/ }
-
-
-/*N*/  USHORT ScIndexMap::Find( USHORT nIndex1 ) const
-/*N*/  {
-/*N*/   USHORT* pStop = pMap + (ULONG) nCount * 2;
-/*N*/   for ( USHORT* pOff = pMap; pOff < pStop; pOff += 2 )
-/*N*/   {
-/*N*/       if ( *pOff == nIndex1 )
-/*N*/           return *(pOff+1);
-/*N*/   }
-/*N*/   return nIndex1;
-/*N*/  }
-
 
 }
