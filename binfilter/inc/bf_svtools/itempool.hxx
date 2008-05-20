@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: itempool.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -172,8 +172,6 @@ public:
                                                  FASTBOOL bLoadRefCounts = TRUE );
     virtual                         ~SfxItemPool();
 
-    SfxBroadcaster&                 BC();
-
     void                            SetPoolDefaultItem( const SfxPoolItem& );
     const SfxPoolItem*              GetPoolDefaultItem( USHORT nWhich ) const;
     void                            ResetPoolDefaultItem( USHORT nWhich );
@@ -234,7 +232,6 @@ public:
                                         return pMaster; }
     void                            FreezeIdRanges();
 
-    void                            Cleanup();
     void                            Delete();
 
 #ifdef TF_POOLABLE
@@ -257,7 +254,6 @@ public:
                                                    USHORT nOldStart, USHORT nOldEnd,
                                                    USHORT *pWhichIdTab );
     USHORT                          GetNewWhich( USHORT nOldWhich ) const;
-    USHORT                          GetVersion() const;
     USHORT                          GetFileFormatVersion() const
                                     { return _nFileFormatVersion; }
     void                            SetFileFormatVersion( USHORT nFileFormatVersion );
