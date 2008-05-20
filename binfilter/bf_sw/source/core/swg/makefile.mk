@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.10 $
+# $Revision: 1.11 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -67,7 +67,6 @@ SLOFILES =  \
         $(SLO)$/sw_rdtox.obj \
         $(SLO)$/sw_swgpar.obj \
         $(SLO)$/sw_swgstr.obj \
-        $(SLO)$/sw_swblocks.obj	\
         $(SLO)$/sw_SwXMLSectionList.obj
 
 EXCEPTIONSFILES = \
