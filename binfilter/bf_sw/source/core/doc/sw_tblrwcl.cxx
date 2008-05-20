@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_tblrwcl.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,14 +64,8 @@
 #ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
 #endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
-#endif
 #ifndef _ROWFRM_HXX
 #include <rowfrm.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
@@ -200,7 +194,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
     }
 }
 
- void _DeleteBox( SwTable& rTbl, SwTableBox* pBox, SwUndo* pUndo,
+ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
                 BOOL bCalcNewSize, const BOOL bCorrBorder,
                 SwShareBoxFmts* pShareFmts )
  {
@@ -276,10 +270,6 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
 
         if( pSttNd )
         {
-            // ist das UndoObject zum speichern der Section vorbereitet?
-            if( pUndo && UNDO_TABLE_DELBOX == pUndo->GetId() )
-                ((SwUndoTblNdsChg*)pUndo)->SaveSection( pSttNd );
-            else
                 pSttNd->GetDoc()->DeleteSection( pSttNd );
         }
 
@@ -461,7 +451,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
  }
 
 
- BOOL SwTable::DeleteSel( SwDoc* pDoc, const SwSelBoxes& rBoxes, SwUndo* pUndo,
+ BOOL SwTable::DeleteSel( SwDoc* pDoc, const SwSelBoxes& rBoxes,
                          const BOOL bDelMakeFrms, const BOOL bCorrBorder )
  {
     ASSERT( pDoc && rBoxes.Count(), "keine gueltigen Werte" );
@@ -500,7 +490,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
     }
 
     for( USHORT n = 0; n < rBoxes.Count(); ++n )
-        _DeleteBox( *this, rBoxes[n], pUndo, TRUE, bCorrBorder, &aShareFmts );
+        _DeleteBox( *this, rBoxes[n], TRUE, bCorrBorder, &aShareFmts );
 
     // dann raeume die Struktur aller Lines auf
     GCLines();
@@ -851,7 +841,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
 
 
  BOOL SwTable::Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
-                    SwTableBox* pMergeBox, SwUndoTblMerge* pUndo )
+                    SwTableBox* pMergeBox )
  {
     ASSERT( pDoc && rBoxes.Count() && pMergeBox, "keine gueltigen Werte" );
     SwTableNode* pTblNd = (SwTableNode*)rBoxes[0]->GetSttNd()->FindTableNode();
@@ -868,9 +858,6 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
         return FALSE;
 
     SetHTMLTableLayout( 0 );    // MIB 9.7.97: HTML-Layout loeschen
-
-    if( pUndo )
-        pUndo->SetSelBoxes( rBoxes );
 
     //Lines fuer das Layout-Update herausuchen.
     aFndBox.SetTableLines( *this );
@@ -928,19 +915,15 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
     else
     {
         lcl_CalcWidth( pLeft );     // bereche die Breite der Box
-        if( pUndo && pLeft->GetSttNd() )
-            pUndo->AddNewBox( pLeft->GetSttIdx() );
     }
     if( !pRight->GetTabLines().Count() )
         _DeleteBox( *this, pRight, 0, FALSE, FALSE );
     else
     {
         lcl_CalcWidth( pRight );        // bereche die Breite der Box
-        if( pUndo && pRight->GetSttNd() )
-            pUndo->AddNewBox( pRight->GetSttIdx() );
     }
 
-    DeleteSel( pDoc, rBoxes, 0, FALSE, FALSE );
+    DeleteSel( pDoc, rBoxes, FALSE, FALSE );
 
     // dann raeume die Struktur dieser Line noch mal auf:
     // generell alle Aufraeumen
