@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_objxtor.cxx,v $
- * $Revision: 1.19 $
+ * $Revision: 1.20 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -357,19 +357,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   return 0;
 /*N*/ }
 
-//-------------------------------------------------------------------------
-
-/*?*/ sal_Bool SfxObjectShell::IsInPrepareClose() const
-
-/*  [Beschreibung]
-
-    Diese Methode liefert sal_True, falls gerade ein PrepareClose laeuft.
-*/
-
-/*?*/ {
-/*?*/   return pImp->bInPrepareClose;
-/*?*/ }
-
 //------------------------------------------------------------------------
 
 /*N*/ struct BoolEnv_Impl
@@ -576,30 +563,9 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 
 //--------------------------------------------------------------------
 
-/*?*/ sal_uInt16 SfxObjectShell::Count()
-/*?*/ {
-/*?*/   return SFX_APP()->GetObjectShells_Impl().Count();
-/*?*/ }
-
-//--------------------------------------------------------------------
-
 /*?*/ sal_Bool SfxObjectShell::DoClose()
 /*?*/ {
 /*?*/   return Close();
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ void SfxObjectShell::SetLastMark_Impl( const String &rMark )
-/*?*/ {
-/*?*/   pImp->aMark = rMark;
-/*?*/ }
-
-//--------------------------------------------------------------------
-
-/*?*/ const String& SfxObjectShell::GetLastMark_Impl() const
-/*?*/ {
-/*?*/   return pImp->aMark;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -676,11 +642,6 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/ void SfxObjectShell::SetAutoStyleFilterIndex(sal_uInt16 nSet)
 /*N*/ {
 /*N*/     pImp->nStyleFilter = nSet;
-/*N*/ }
-
-/*N*/ void SfxObjectShell::SetWorkingDocument( SfxObjectShell* pDoc )
-/*N*/ {
-        DBG_ERROR( "SfxObjectShell::SetWorkingDocument: dead code!" );
 /*N*/ }
 
 }
