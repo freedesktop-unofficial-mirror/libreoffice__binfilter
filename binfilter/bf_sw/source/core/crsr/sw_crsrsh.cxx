@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_crsrsh.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -710,119 +710,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/   }
 /*N*/ }
 
-// returne den am akt.Cursor selektierten Text eines Nodes.
-
-
-
-// gebe nur den Text ab der akt. Cursor Position zurueck (bis zum NodeEnde)
-
-
-
-// retrurne die Anzahl der selektierten Zeichen.
-// Falls keine Selektion vorliegt entscheided nType was selektiert wird
-// bIntrnlChar besagt ob interne Zeichen erhalten bleiben (TRUE) oder
-// ob sie expandiert werden (z.B Felder/...)
-
-
-// hole vom Start/Ende der akt. SSelection das nte Zeichen
-
-// erweiter die akt. SSelection am Anfang/Ende um n Zeichen
-
-
-
-// setze nur den sichtbaren Cursor an die angegebene Dokument-Pos.
-// returnt FALSE: wenn der SPoint vom Layout korrigiert wurde.
-
-
-
-
-    // returne die Anzahl der Cursor im Ring (Flag besagt ob man nur
-    // aufgepspannte haben will - sprich etwas selektiert ist (Basic))
-/*N*/ USHORT SwCrsrShell::GetCrsrCnt( BOOL bAll ) const
-/*N*/ {
-/*N*/   Ring* pTmp = GetCrsr()->GetNext();
-/*N*/   USHORT n = (bAll || ( pCurCrsr->HasMark() &&
-/*N*/                   *pCurCrsr->GetPoint() != *pCurCrsr->GetMark())) ? 1 : 0;
-/*N*/   while( pTmp != pCurCrsr )
-/*N*/   {
-/*?*/       if( bAll || ( ((SwPaM*)pTmp)->HasMark() &&
-/*?*/               *((SwPaM*)pTmp)->GetPoint() != *((SwPaM*)pTmp)->GetMark()))
-/*?*/           ++n;
-/*?*/       pTmp = pTmp->GetNext();
-/*N*/   }
-/*N*/   return n;
-/*N*/ }
-
-
-
-
-
-
 // loesche alle erzeugten Crsr, setze den Tabellen-Crsr und den letzten
 // Cursor auf seinen TextNode (oder StartNode?).
 // Beim naechsten ::GetCrsr werden sie wieder alle erzeugt
 // Wird fuers Drag&Drop / ClipBorad-Paste in Tabellen benoetigt.
-
-/***********************************************************************
-#*  Class       :  SwCrsrShell
-#*  Methode     :  ParkCrsr
-#*  Beschreibung:  Vernichtet Selektionen und zus. Crsr aller Shell der
-#*                 verbleibende Crsr der Shell wird geparkt.
-#*  Datum       :  MA 05. Nov. 92
-#*  Update      :  JP 19.09.97
-#***********************************************************************/
-
-
-/*
- * der normale Constructor
- */
-
-/*N*/ SwCrsrShell::SwCrsrShell( SwDoc& rDoc, Window *pWin, SwRootFrm *pRoot,
-/*N*/                           const SwViewOption *pOpt )
-/*N*/   : ViewShell( rDoc, pWin, pOpt ),
-/*N*/   SwModify( 0 )
-/*N*/ {
-/*N*/   SET_CURR_SHELL( this );
-    /*
-      * Erzeugen des initialen Cursors, wird auf die erste
-     * Inhaltsposition gesetzt
-     */
-/*N*/   SwNodes& rNds = rDoc.GetNodes();
-/*N*/
-/*N*/   SwNodeIndex aNodeIdx( *rNds.GetEndOfContent().StartOfSectionNode() );
-/*N*/   SwCntntNode* pCNd = rNds.GoNext( &aNodeIdx ); // gehe zum 1. ContentNode
-/*N*/
-/*N*/   pCurCrsr = new SwShellCrsr( *this, SwPosition( aNodeIdx, SwIndex( pCNd, 0 )));
-/*N*/   pCrsrStk = 0;
-/*N*/   pTblCrsr = 0;
-/*N*/
-/*N*/   nBasicActionCnt = 0;
-/*N*/
-/*N*/   pBoxIdx = 0;
-/*N*/   pBoxPtr = 0;
-/*N*/
-/*N*/   // melde die Shell beim akt. Node als abhaengig an, dadurch koennen alle
-/*N*/   // Attribut-Aenderungen ueber den Link weiter gemeldet werden.
-/*N*/   pCNd->Add( this );
-/*N*/
-     /*
-      * setze die initiale Spalten-Position fuer Up / Down
-     */
-/*N*/   nCrsrMove = 0;
-/*N*/   bAllProtect = bVisPortChgd = bChgCallFlag = bInCMvVisportChgd =
-/*N*/   bGCAttr = bIgnoreReadonly = bSelTblCells = bBasicHideCrsr =
-/*N*/   bOverwriteCrsr = FALSE;
-/*N*/   bCallChgLnk = bHasFocus = bSVCrsrVis = bAutoUpdateCells = TRUE;
-/*N*/   bSetCrsrInReadOnly = TRUE;
-/*N*/   eMvState = MV_NONE;     // Status fuers Crsr-Travelling - GetCrsrOfst
-/*N*/
-/*N*/   pVisCrsr = new SwVisCrsr( this );
-/*N*/ //    UpdateCrsr( 0 );
-/*N*/     // OD 11.02.2003 #100556#
-/*N*/     mbMacroExecAllowed = true;
-/*N*/ }
-
-
 
 /*N*/ SwCrsrShell::~SwCrsrShell()
 /*N*/ {
