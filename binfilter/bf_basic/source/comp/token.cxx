@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: token.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -375,33 +375,6 @@ SbiTokenizer::SbiTokenizer( const ::rtl::OUString& rSrc, StarBASIC* pb )
 SbiTokenizer::~SbiTokenizer()
 {}
 
-// Wiederablage (Pushback) eines Tokens. (Bis zu 2 Tokens)
-
-void SbiTokenizer::Push( SbiToken t )
-{
-    if( ePush != NIL )
-        Error( SbERR_INTERNAL_ERROR, "PUSH" );
-    else ePush = t;
-}
-
-void SbiTokenizer::Error( SbError code, const char* pMsg )
-{
-    aError = String::CreateFromAscii( pMsg );
-    Error( code );
-}
-
-void SbiTokenizer::Error( SbError code, String aMsg )
-{
-    aError = aMsg;
-    Error( code );
-}
-
-void SbiTokenizer::Error( SbError code, SbiToken tok )
-{
-    aError = Symbol( tok );
-    Error( code );
-}
-
 // Einlesen des naechsten Tokens, ohne dass das Token geschluckt wird
 
 SbiToken SbiTokenizer::Peek()
@@ -417,38 +390,6 @@ SbiToken SbiTokenizer::Peek()
         nPCol2 = nCol2; nCol2 = nOldCol2;
     }
     return eCurTok = ePush;
-}
-
-// Dies ist fuer die Decompilation.
-// Zahlen und Symbole liefern einen Leerstring zurueck.
-
-const String& SbiTokenizer::Symbol( SbiToken t )
-{
-    // Zeichen-Token?
-    if( t < FIRSTKWD )
-    {
-        aSym = (char) t;
-        return aSym;
-    }
-    switch( t )
-    {
-        case NEG   : aSym = '-'; return aSym;
-        case EOS   : aSym = String::CreateFromAscii( ":/CRLF" ); return aSym;
-        case EOLN  : aSym = String::CreateFromAscii( "CRLF" ); return aSym;
-        default: break;
-    }
-    TokenTable* tp = pTokTable;
-    for( short i = 0; i < nToken; i++, tp++ )
-    {
-        if( tp->t == t )
-        {
-            aSym = String::CreateFromAscii( tp->s );
-            return aSym;
-        }
-    }
-    const sal_Unicode *p = aSym.GetBuffer();
-    if (*p <= ' ') aSym = String::CreateFromAscii( "???" );
-    return aSym;
 }
 
 // Einlesen des naechsten Tokens und Ablage desselben
@@ -632,70 +573,4 @@ special:
     bEos = IsEoln( eCurTok );
     return eCurTok;
 }
-
-#ifdef _MSC_VER
-#pragma optimize("",off)
-#endif
-
-// Kann das aktuell eingelesene Token ein Label sein?
-
-BOOL SbiTokenizer::MayBeLabel( BOOL bNeedsColon )
-{
-    if( eCurTok == SYMBOL )
-        return bNeedsColon ? DoesColonFollow() : TRUE;
-    else
-        return BOOL( eCurTok == NUMBER
-                  && eScanType == SbxINTEGER
-                  && nVal >= 0 );
-}
-
-#ifdef _MSC_VER
-#pragma optimize("",off)
-#endif
-
-
-void SbiTokenizer::Hilite( SbTextPortions& rList )
-{
-    bErrors = FALSE;
-    bUsedForHilite = TRUE;
-    SbiToken eLastTok = NIL;
-    for( ;; )
-    {
-        Next();
-        if( IsEof() )
-            break;
-        SbTextPortion aRes;
-        aRes.nLine = nLine;
-        aRes.nStart = nCol1;
-        aRes.nEnd = nCol2;
-        switch( eCurTok )
-        {
-            case REM:
-                aRes.eType = SB_COMMENT; break;
-            case SYMBOL:
-                aRes.eType = SB_SYMBOL; break;
-            case FIXSTRING:
-                aRes.eType = SB_STRING; break;
-            case NUMBER:
-                aRes.eType = SB_NUMBER; break;
-            default:
-                if( ( eCurTok >= FIRSTKWD && eCurTok <= LASTKWD )
-                 || (eCurTok >= _CDECL_ ) )
-                    aRes.eType = SB_KEYWORD;
-                else
-                    aRes.eType = SB_PUNCTUATION;
-        }
-        // Die Folge xxx.Keyword sollte nicht als Kwd geflagt werden
-        if( aRes.eType == SB_KEYWORD
-         && ( eLastTok == DOT|| eLastTok == EXCLAM ) )
-            aRes.eType = SB_SYMBOL;
-        if( eCurTok != EOLN && aRes.nStart <= aRes.nEnd )
-            rList.Insert( aRes, rList.Count() );
-        if( aRes.eType == SB_COMMENT )
-            break;
-        eLastTok = eCurTok;
-    }
-    bUsedForHilite = FALSE;
-}
-
 }
