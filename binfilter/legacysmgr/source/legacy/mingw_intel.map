@@ -3,7 +3,6 @@ UDK_3_0_0 {
         legacysmgr_component_writeInfo;
         legacysmgr_component_getFactory;
         _ZN17legacy_binfilters30getLegacyProcessServiceFactoryEv;
-        legcy_getBinfilterInitState;
         legcy_setBinfilterInitState;
     local:
     *;
