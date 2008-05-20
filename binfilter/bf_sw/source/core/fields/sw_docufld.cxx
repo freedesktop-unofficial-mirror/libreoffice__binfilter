@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docufld.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1237,17 +1237,6 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ SwFieldType* SwHiddenTxtFieldType::Copy() const
 /*N*/ {
         return new SwHiddenTxtFieldType( bHidden );
-/*N*/ }
-/* ---------------------------------------------------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ void SwHiddenTxtFieldType::SetHiddenFlag( sal_Bool bSetHidden )
-/*N*/ {
-/*N*/   if( bHidden != bSetHidden )
-/*N*/   {
-/*?*/       bHidden = bSetHidden;
-/*?*/       UpdateFlds();       // alle HiddenText benachrichtigen
-/*N*/   }
 /*N*/ }
 /* ---------------------------------------------------------------------------
 
