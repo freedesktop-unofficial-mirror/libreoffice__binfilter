@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbcomp.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -110,63 +110,7 @@ namespace binfilter {
 BOOL SbModule::Compile()
 {
     DBG_ERROR( "SbModule::Compile: dead code!" );
-/*?*/ //    if( pImage )
-/*?*/ //        return TRUE;
-/*?*/ //    StarBASIC* pBasic = PTR_CAST(StarBASIC,GetParent());
-/*?*/ //    if( !pBasic )
-/*?*/ //        return FALSE;
-/*?*/ //    SbxBase::ResetError();
-/*?*/ //    // Aktuelles Modul!
-/*?*/ //    SbModule* pOld = pCMOD;
-/*?*/ //    pCMOD = this;
-/*?*/ //
-/*?*/ //    SbiParser* pParser = new SbiParser( (StarBASIC*) GetParent(), this );
-/*?*/ //    while( pParser->Parse() ) {}
-/*?*/ //    if( !pParser->GetErrors() )
-/*?*/ //        pParser->aGen.Save();
-/*?*/ //    delete pParser;
-/*?*/ //    // fuer den Disassembler
-/*?*/ //    if( pImage )
-/*?*/ //        pImage->aOUSource = aOUSource;
-/*?*/ //
-/*?*/ //    pCMOD = pOld;
-/*?*/ //
-/*?*/ //    // Beim Compilieren eines Moduls werden die Modul-globalen
-/*?*/ //    // Variablen aller Module ungueltig
-/*?*/ //    BOOL bRet = IsCompiled();
-/*?*/ //    if( bRet )
-/*?*/ //    {
-/*?*/ //        pBasic->ClearAllModuleVars();
-/*?*/ //
-/*?*/ //        // #i31510 Init other libs only if Basic isn't running
-/*?*/ //        if( pINST == NULL )
-/*?*/ //        {
-/*?*/ //            SbxObject* pParent_ = pBasic->GetParent();
-/*?*/ //            if( pParent_ )
-/*?*/ //                pBasic = PTR_CAST(StarBASIC,pParent_);
-/*?*/ //            if( pBasic )
-/*?*/ //                pBasic->ClearAllModuleVars();
-/*?*/ //        }
-/*?*/ //    }
-/*?*/ //
-/*?*/ // #ifdef DBG_SAVE_DISASSEMBLY
-/*?*/ //    dbg_SaveDisassembly( this );
-/*?*/ // #endif
-/*?*/ //
-/*?*/ //    return bRet;
     return FALSE;
 }
-
-/**************************************************************************
-*
-*   Syntax-Highlighting
-*
-**************************************************************************/
-
-/*?*/ // void StarBASIC::Highlight( const String& rSrc, SbTextPortions& rList )
-/*?*/ // {
-/*?*/ //    SbiTokenizer aTok( rSrc );
-/*?*/ //    aTok.Hilite( rList );
-/*?*/ // }
 
 }
