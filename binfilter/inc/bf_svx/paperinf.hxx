@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: paperinf.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,10 +58,6 @@ public:
     static Size         GetPaperSize( const Printer* );
     static Size         GetPaperSize( SvxPaper ePaper,
                                       MapUnit eUnit = MAP_TWIP );
-    // entfaellt demnaechst
-    // dann nur noch diese beiden
-    static SvxPaper     GetSvxPaper( const Size&, MapUnit eUnit = MAP_TWIP,
-                                     BOOL bSloppy = FALSE );
 };
 
 // INLINE -----------------------------------------------------------------
