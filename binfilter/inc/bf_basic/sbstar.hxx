@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbstar.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,8 +55,6 @@ class SbiInstance;                  // Laufzeit-Instanz
 class SbiRuntime;                   // aktuell laufende Prozedur
 class SbiImage;                     // compiliertes Image
 class BasicLibInfo;                 // Infoblock fuer Basic-Manager
-class SbiBreakpoints;
-class SbTextPortions;
 class SbMethod;
 class BasicManager;
 
@@ -87,8 +85,6 @@ private:
 #if _SOLAR__PRIVATE
     BOOL            RTError( SbError, xub_StrLen, xub_StrLen, xub_StrLen );
     BOOL            RTError( SbError, const String& rMsg, xub_StrLen, xub_StrLen, xub_StrLen );
-    USHORT          BreakPoint( xub_StrLen nLine, xub_StrLen nCol1, xub_StrLen nCol2 );
-    USHORT          StepPoint( xub_StrLen nLine, xub_StrLen nCol1, xub_StrLen nCol2 );
 #endif
     virtual BOOL LoadData( SvStream&, USHORT );
     virtual BOOL StoreData( SvStream& ) const;
@@ -122,21 +118,13 @@ public:
     void            SetLibInfo( BasicLibInfo* p )   { pLibInfo = p;     }
 
     // Compiler-Interface
-    SbModule*       MakeModule( const String& rName, const String& rSrc );
     SbModule*       MakeModule32( const String& rName, const ::rtl::OUString& rSrc );
     BOOL            Compile( SbModule* );
-    BOOL            Disassemble( SbModule*, String& rText );
     static void     Stop();
     static void     Error( SbError );
     static void     Error( SbError, const String& rMsg );
     static void     FatalError( SbError );
     static BOOL     IsRunning();
-    static SbError  GetErrBasic();
-    // #66536 Zusatz-Message fuer RTL-Funktion Error zugreifbar machen
-    static String   GetErrorMsg();
-    static xub_StrLen GetErl();
-    // Highlighting
-    void            Highlight( const String& rSrc, SbTextPortions& rList );
 
     virtual SbxVariable* Find( const String&, SbxClassType );
     virtual BOOL Call( const String&, SbxArray* = NULL );
@@ -147,57 +135,27 @@ public:
     // Init-Code aller Module ausfuehren (auch in inserteten Doc-Basics)
     void            InitAllModules( StarBASIC* pBasicNotToInit = NULL );
     void            DeInitAllModules( void );
-    void            ClearAllModuleVars( void );
-    void            ActivateObject( const String*, BOOL );
-    BOOL            LoadOldModules( SvStream& );
-
-    // #43011 Fuer das TestTool, um globale Variablen loeschen zu koennen
-    void            ClearGlobalVars( void );
 
     // Abfragen fuer den Error-Handler und den Break-Handler:
-    static USHORT   GetLine();
-    static USHORT   GetCol1();
-    static USHORT   GetCol2();
     static void     SetErrorData( SbError nCode, USHORT nLine,
                                   USHORT nCol1, USHORT nCol2 );
 
     // Spezifisch fuer den Error-Handler:
     static void     MakeErrorText( SbError, const String& aMsg );
-    static const    String& GetErrorText();
-    static SbError  GetErrorCode();
-    static BOOL     IsCompilerError();
     static USHORT   GetVBErrorCode( SbError nError );
     static SbError  GetSfxFromVBError( USHORT nError );
-    static void     SetGlobalLanguageMode( SbLanguageMode eLangMode );
-    static SbLanguageMode GetGlobalLanguageMode();
     // Lokale Einstellung
     void SetLanguageMode( SbLanguageMode eLangMode )
         { eLanguageMode = eLangMode; }
-    SbLanguageMode GetLanguageMode();
 
     // Spezifisch fuer den Break-Handler:
     BOOL            IsBreak() const             { return bBreak; }
 
-    static Link     GetGlobalErrorHdl();
-    static void     SetGlobalErrorHdl( const Link& rNewHdl );
     Link            GetErrorHdl() const { return aErrorHdl; }
     void            SetErrorHdl( const Link& r ) { aErrorHdl = r; }
 
-    static Link     GetGlobalBreakHdl();
-    static void     SetGlobalBreakHdl( const Link& rNewHdl );
     Link            GetBreakHdl() const { return aBreakHdl; }
     void            SetBreakHdl( const Link& r ) { aBreakHdl = r; }
-
-    SbxArrayRef     getUnoListeners( void );
-
-    static SbxBase* FindSBXInCurrentScope( const String& rName );
-    static SbxVariable* FindVarInCurrentScopy
-                    ( const String& rName, USHORT& rStatus );
-    static SbMethod* GetActiveMethod( USHORT nLevel = 0 );
-    static SbModule* GetActiveModule();
-
-    // #60175 TRUE: SFX-Resource wird bei Basic-Fehlern nicht angezogen
-    static void StaticSuppressSfxResource( BOOL bSuppress );
 
     // #91147 TRUE: Reschedule is enabled (default>, FALSE: No reschedule
     static void StaticEnableReschedule( BOOL bReschedule );
