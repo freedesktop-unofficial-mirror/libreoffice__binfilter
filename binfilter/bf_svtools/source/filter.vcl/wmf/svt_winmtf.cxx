@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_winmtf.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -679,13 +679,6 @@ void WinMtfOutput::SelectObject( INT32 nIndex )
 
 //-----------------------------------------------------------------------------------
 
-void WinMtfOutput::SetFont( const Font& rFont )
-{
-    maFont = rFont;
-}
-
-//-----------------------------------------------------------------------------------
-
 const Font& WinMtfOutput::GetFont() const
 {
     return maFont;
@@ -696,13 +689,6 @@ const Font& WinMtfOutput::GetFont() const
 void WinMtfOutput::SetTextLayoutMode( const sal_uInt32 nTextLayoutMode )
 {
     mnTextLayoutMode = nTextLayoutMode;
-}
-
-//-----------------------------------------------------------------------------------
-
-sal_uInt32 WinMtfOutput::GetTextLayoutMode() const
-{
-    return mnTextLayoutMode;
 }
 
 //-----------------------------------------------------------------------------------
