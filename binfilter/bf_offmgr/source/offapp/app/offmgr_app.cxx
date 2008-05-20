@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: offmgr_app.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -160,13 +160,6 @@ public:
 /*N*/   aName.getArray()[0] = ::rtl::OUString::createFromAscii("com.sun.star.drawing.ShapeCollection");
 /*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("ShapeCollection"), SvxShapeCollection_CreateInstance, aName );
 /*N*/   xSet->insert( makeAny(xFact) );
-/*N*/ }
-
-/*N*/ ResMgr* OfficeApplication::GetOffResManager()
-/*N*/ {
-/*N*/   if ( !pDataImpl->pResMgr )
-/*N*/       pDataImpl->pResMgr = CreateResManager( "bf_ofa"); //STRIP005
-/*N*/   return pDataImpl->pResMgr;
 /*N*/ }
 
 /*N*/ XColorTable* OfficeApplication::GetStdColorTable()
