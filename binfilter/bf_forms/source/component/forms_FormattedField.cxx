@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: forms_FormattedField.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -341,12 +341,6 @@ void OFormattedControl::setDesignMode(sal_Bool bOn) throw ( ::com::sun::star::un
 
 /*************************************************************************/
 DBG_NAME(OFormattedModel)
-//------------------------------------------------------------------
-InterfaceRef SAL_CALL OFormattedModel_CreateInstance(const Reference<XMultiServiceFactory>& _rxFactory)
-{
-    return *(new OFormattedModel(_rxFactory));
-}
-
 //------------------------------------------------------------------
 void OFormattedModel::implConstruct()
 {
@@ -1101,23 +1095,6 @@ sal_Int16 OFormattedModel::getPersistenceFlags() const
 }
 
 //------------------------------------------------------------------------------
-namespace
-{
-    static void lcl_replaceAscii( ::rtl::OUString& _rText, const sal_Char* _pAscii, const ::rtl::OUString& _rReplace )
-    {
-        ::rtl::OUString sFind = ::rtl::OUString::createFromAscii( _pAscii );
-        sal_Int32 nPos = _rText.indexOf( sFind );
-        if ( 0 <= nPos )
-        {
-            ::rtl::OUString sNew = _rText.copy( 0, nPos );
-            sNew += _rReplace;
-            sNew += _rText.copy( nPos + sFind.getLength() );
-            _rText = sNew;
-        }
-    }
-}
-
-//------------------------------------------------------------------------------
 sal_Bool OFormattedModel::_commit()
 {
     Any aNewValue = m_xAggregateFastSet->getFastPropertyValue( OFormattedModel::nValueHandle );
@@ -1138,49 +1115,6 @@ sal_Bool OFormattedModel::_commit()
             {
                 if (aNewValue.getValueType().getTypeClass() == TypeClass_DOUBLE)
                 {
-/*                  // some plausibility checks
-                    // 74241 - 28.08.2001 - frank.schoenheit@sun.com
-                    double nValue = getDouble( aNewValue );
-                    double nLimitMin = 0;
-                    double nLimitMax = 0;
-                    sal_Bool bLargeInt = sal_False;
-                    switch ( m_nFieldType )
-                    {
-                    case DataType::TINYINT:
-                        nLimitMin = -128; nLimitMax = 127;
-                        break;  // no specification if TINYINT is signed, thus this odd numbers ....
-
-                    case DataType::SMALLINT:
-                        nLimitMin = -32768; nLimitMax = 32767;
-                        break;
-
-                    case DataType::INTEGER:
-                        nLimitMin = ((double)-2147483647) - 1; nLimitMax = 2147483647;
-                        bLargeInt = sal_True;
-                        break;
-                    }
-                    if ( nLimitMin && nLimitMax )
-                    {
-                        if ( ( nValue < nLimitMin ) || ( nValue > nLimitMax ) )
-                        {
-                            ::rtl::OUString sMessage = FRM_RES_STRING( RID_STR_INVALID_FIELD_VALUE );
-                            lcl_replaceAscii( sMessage, "$min$", bLargeInt ? ::rtl::OUString::createFromAscii( "-2147483648" ) : ::rtl::OUString::valueOf( (sal_Int32)nLimitMin ) );
-                            lcl_replaceAscii( sMessage, "$max$", ::rtl::OUString::valueOf( (sal_Int32)nLimitMax ) );
-
-                            SQLException aError;
-                            aError.Message = sMessage;
-
-                            onError( aError, FRM_RES_STRING( RID_STR_COULD_NOT_COMMIT ) );
-                            return sal_False;
-                        }
-                    }
-                    // Do not do this checks. This would make sense if a min and max for the control are defined,
-                    // but not with such implicit restrictions as got from the field type. This is way too dependent
-                    // on the type of database we're working with (e.g., for a TINYINT, it is not defined if this is
-                    // signed or unsigned. There may be databases which treat it as signed, and databases which don't.
-                    // And we have no chance to know this, but we would need to to use the correct limits ....
-*/
-
                     DBTypeConversion::setValue(m_xColumnUpdate, m_aNullDate, getDouble(aNewValue), m_nKeyType);
                 }
                 else
