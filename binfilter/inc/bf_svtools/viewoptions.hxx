@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: viewoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -203,129 +203,6 @@ class  SvtViewOptions: public Options
          SvtViewOptions(       EViewType        eType     ,
                          const ::rtl::OUString& sViewName );
         virtual ~SvtViewOptions();
-
-        /*-****************************************************************************************************//**
-            @short      support preload of these config item
-            @descr      Sometimes we need preloading of these configuration data without real using of it.
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        static void AcquireOptions();
-        static void ReleaseOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      use it to get information about existing entries in configuration
-            @descr      The methods to set/get the position or size will create a new entry automaticly if
-                        it not already exist and work with default values!
-                        If this a problem for you - you MUST call these method before and
-                        you must make up your own mind about that.
-
-            @seealso    -
-
-            @onerror    No error should occure.
-        *//*-*****************************************************************************************************/
-
-        sal_Bool Exists() const;
-
-        /*-****************************************************************************************************//**
-            @short      use it to delete an entry of dynamic view set
-            @descr      You can use this method to delete anexisting node in configuration.
-                        But if you call a Set- or Get- method again on this instance
-                        the item is created again! If you do nothing after this call
-                        your view will die relay in configuration ...
-
-            @seealso    method Exist()
-
-            @return     True if delete OK, False otherwise.
-
-            @onerror    We return sal_False.
-        *//*-*****************************************************************************************************/
-
-        sal_Bool Delete();
-
-        /*-****************************************************************************************************//**
-            @short      use it to set/get the window state of your view
-            @descr      These value describe position/size and some other states of a window.
-                        Use it with right vcl methods directly. Normaly it's not neccessary to
-                        parse given string!
-
-            @seealso    vcl methods
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        ::rtl::OUString GetWindowState(                               ) const;
-        void            SetWindowState( const ::rtl::OUString& sState );
-
-        /*-****************************************************************************************************//**
-            @short      use it to set/get the page number which was the last active one
-            @descr      It's only supported for:    - tab-dialogs
-                        If you call it for other ones you will get an assertion in debug version.
-                        In a product version we do nothing!
-
-            @seealso    -
-
-            @onerror    An assertion is thrown in debug version. Otherwise we do nothing!
-        *//*-*****************************************************************************************************/
-
-        sal_Int32 GetPageID(               ) const;
-        void      SetPageID( sal_Int32 nID );
-
-        /*-****************************************************************************************************//**
-            @short      use it to set/get the visual state of a window
-            @descr      It's only supported for:    - windows
-                        If you call it for other ones you will get an assertion in debug version.
-                        In a product version we do nothing!
-
-            @seealso    -
-
-            @onerror    An assertion is thrown in debug version. Otherwise we do nothing!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool IsVisible (                 ) const;
-        void     SetVisible( sal_Bool bState );
-
-        /*-****************************************************************************************************//**
-            @short      use it to set/get the extended user data (consisting of a set of named scalar values)
-            @descr      It's supported for ALL types!
-                        Every view can handle its own user defined data set.
-
-            @seealso    -
-
-            @onerror    In the non-product version, an assertion is made. In a product version, errors are silently ignored.
-        *//*-*****************************************************************************************************/
-/*
-#ifdef TF_OLDVIEW
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::NamedValue > GetUserData( sal_Bool bMakeItDifferent ) const;
-#else
-*/
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::NamedValue > GetUserData(                                                                                     ) const;
-//#endif
-        void                                                                   SetUserData( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::NamedValue >& lData );
-
-        /*-****************************************************************************************************//**
-            @short      use it to set/get ONE special user data item directly
-            @descr      Normaly you can work on full user data list by using "Set/GetUserData()".
-                        With this function you have an access on special list entries directly without any
-
-            @seealso    -
-
-            @onerror    In the non-product version, an assertion is made. In a product version, errors are silently ignored.
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Any GetUserItem( const ::rtl::OUString&            sName  ) const;
-        void                       SetUserItem( const ::rtl::OUString&            sName  ,
-                                                const ::com::sun::star::uno::Any& aValue );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
