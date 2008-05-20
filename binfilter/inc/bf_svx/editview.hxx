@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: editview.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -92,7 +92,6 @@ private:
                     EditView( const EditView& );
 
 public:
-                    EditView( EditEngine* pEng, Window* pWindow );
     virtual         ~EditView();
 
     EditEngine*     GetEditEngine() const;
@@ -103,31 +102,18 @@ public:
     void            ShowCursor( BOOL bGotoCursor = TRUE, BOOL bForceVisCursor = TRUE );
     void            HideCursor();
 
-    void            SetSelectionMode( EESelectionMode eMode );
-
     BOOL            HasSelection() const;
     ESelection      GetSelection() const;
     void            SetSelection( const ESelection& rNewSel );
 
 
-                        // Position der VisArea im Ausgabefenster.
-                        // Eine Groessenaenderung betrifft auch die VisArea
-    void                SetOutputArea( const Rectangle& rRec );
     const Rectangle&    GetOutputArea() const;
 
-                        // Dokumentposition.
-                        // Eine Groessenaenderung betrifft auch die VisArea
-    void                SetVisArea( const Rectangle& rRec );
     const Rectangle&    GetVisArea() const;
 
     void            Cut();
     void            Copy();
     void            Paste();
-
-    const SvxFieldItem* GetField( const Point& rPos, USHORT* pnPara = NULL, xub_StrLen* pnPos = NULL ) const;
-
-
-
 };
 
 }//end of namespace binfilter
