@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: poolitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -163,7 +163,6 @@ typedef USHORT SfxItemState;
 
 DBG_NAMEEX_VISIBILITY(SfxPoolItem, )
 DBG_NAMEEX(SfxVoidItem)
-DBG_NAMEEX(SfxItemHandle)
 
 class SvXMLUnitConverter;
 class SfxItemPool;
@@ -174,7 +173,6 @@ class SfxItemSet;
 class  SfxPoolItem
 {
 friend class SfxItemPool;
-friend class SfxItemDesruptor_Impl;
 friend class SfxItemPoolCache;
 friend class SfxItemSet;
 friend class SfxVoidItem;
@@ -400,54 +398,6 @@ public:
                             { return *pSet; }
     SfxItemSet&             GetItemSet()
                             { return *pSet; }
-};
-
-// -----------------------------------------------------------------------
-
-#if 0  /* @@@ NOT USED @@@ */
-class SfxInvalidItem: public SfxPoolItem
-{
-friend class SfxItemSet;
-
-    const SfxPoolItem*      pDefaultItem;
-
-private:
-                            TYPEINFO();
-                            SfxInvalidItem( USHORT nWhich, const SfxPoolItem &rDefault );
-                            SfxInvalidItem( const SfxInvalidItem& );
-    virtual                 ~SfxInvalidItem();
-
-public:
-    virtual int             operator==( const SfxPoolItem& ) const;
-
-    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-                                    SfxMapUnit eCoreMetric,
-                                    SfxMapUnit ePresMetric,
-                                    XubString &rText,
-                                    const ::IntlWrapper * = 0 ) const;
-    const SfxPoolItem*      GetDefaultItem() const { return pDefaultItem; }
-
-    // von sich selbst eine Kopie erzeugen
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-    virtual SfxPoolItem*    Create(SvStream &, USHORT nVersion) const;
-    virtual SvStream&       Store(SvStream &, USHORT nVer ) const;
-};
-#endif /* @@@ NOT USED @@@ */
-
-// -----------------------------------------------------------------------
-// Handle Klasse fuer PoolItems
-
-class  SfxItemHandle
-{
-    USHORT      *pRef;
-    SfxPoolItem *pItem;
-public:
-    SfxItemHandle( SfxPoolItem& );
-    SfxItemHandle( const SfxItemHandle& );
-    ~SfxItemHandle();
-
-    const SfxItemHandle &operator=(const SfxItemHandle &);
-    const SfxPoolItem &GetItem() const { return *pItem; }
 };
 
 // -----------------------------------------------------------------------
