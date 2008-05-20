@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlxtexp.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,28 +45,6 @@ namespace com { namespace sun { namespace star {
     namespace xml { namespace sax { class XDocumentHandler; } }
 } } }
 namespace binfilter {
-
-class SvxXMLXTableExportComponent : public SvXMLExport
-{
-public:
-    // #110680#
-    SvxXMLXTableExportComponent(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        const ::rtl::OUString& rFileName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & xHandler,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & xTable,
-        ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver >& xGrfResolver);
-
-    ~SvxXMLXTableExportComponent();
-
-    // methods without content:
-    virtual void _ExportAutoStyles();
-    virtual void _ExportMasterStyles();
-    virtual void _ExportContent();
-
-private:
-    const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer > & mxTable;
-};
 
 }//end of namespace binfilter
 #endif
