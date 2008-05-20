@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: moduleoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -165,95 +165,16 @@ class  SvtModuleOptions: public Options
         //  interface
         //---------------------------------------------------------------------------------------------------------
         sal_Bool        IsModuleInstalled         (       EModule          eModule    ) const;
-        ::rtl::OUString GetModuleName             (       EModule          eModule    ) const;
-        ::rtl::OUString GetModuleName             (       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryName            (       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryShortName       (       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryStandardTemplate(       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryWindowAttributes(       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryEmptyDocumentURL(       EFactory         eFactory   ) const;
-        ::rtl::OUString GetFactoryDefaultFilter   (       EFactory         eFactory   ) const;
-        sal_Bool        IsDefaultFilterReadonly   (       EFactory         eFactory   ) const;
-        sal_Int32       GetFactoryIcon            (       EFactory         eFactory   ) const;
-        static sal_Bool ClassifyFactoryByName     ( const ::rtl::OUString& sName      ,
-                                                          EFactory&        eFactory   );
-        void            SetFactoryStandardTemplate(       EFactory         eFactory   ,
-                                                    const ::rtl::OUString& sTemplate  );
-        void            SetFactoryWindowAttributes(       EFactory         eFactory   ,
-                                                    const ::rtl::OUString& sAttributes);
-        void            SetFactoryDefaultFilter   (       EFactory         eFactory   ,
-                                                    const ::rtl::OUString& sFilter    );
-
-        //_______________________________________
-
-        /** @short  return the corresponding application ID for the given
-                    document service name.
-         */
-        static EFactory ClassifyFactoryByServiceName(const ::rtl::OUString& sName);
-
-        //_______________________________________
-
-        /** @short  return the corresponding application ID for the given
-                    short name.
-         */
-        static EFactory ClassifyFactoryByShortName(const ::rtl::OUString& sName);
-
-        //_______________________________________
-
-        /** @short  return the corresponding application ID for the given properties.
-
-            @descr  Because this search base on filters currently (till we have a better solution)
-                    a result is not guaranteed everytimes. May a filter does not exists for the specified
-                    content (but a FrameLoader which is not bound to any application!) ... or
-                    the given properties describe a stream (and we make no deep detection inside here!).
-
-            @attention  The module BASIC cant be detected here. Because it does not
-                        has an own URL schema.
-
-            @param  sURL
-                    the complete URL!
-
-            @param  lMediaDescriptor
-                    additional informations
-
-            @return A suitable enum value. See EFactory above.
-         */
-        static EFactory ClassifyFactoryByURL(const ::rtl::OUString&                                                           sURL            ,
-                                             const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lMediaDescriptor);
-
-        //_______________________________________
-
-        /** @short  return the corresponding application ID for the given properties.
-
-            @descr  Here we try to use the list of supported service names of the given model
-                    to find out the right application module.
-
-            @attention  The module BASIC cant be detected here. Because it does not
-                        support any model/ctrl/view paradigm.
-
-            @param  xModel
-                    the document model
-
-            @return A suitable enum value. See EFactory above.
-         */
-        static EFactory ClassifyFactoryByModel(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >& xModel);
-
-        ::rtl::OUString GetDefaultModuleName();
 
         //---------------------------------------------------------------------------------------------------------
         //  old interface ...
         //---------------------------------------------------------------------------------------------------------
         sal_Bool   IsMath     () const;
         sal_Bool   IsChart    () const;
-        sal_Bool   IsCalc     () const;
         sal_Bool   IsDraw     () const;
         sal_Bool   IsWriter   () const;
         sal_Bool   IsImpress  () const;
-        sal_Bool   IsBasicIDE () const;
-        sal_Bool   IsDataBase () const;
         sal_uInt32 GetFeatures() const;
-
-        ::com::sun::star::uno::Sequence < ::rtl::OUString > GetAllServiceNames();
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
