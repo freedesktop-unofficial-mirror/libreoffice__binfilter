@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_sdlib.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -387,100 +387,5 @@ SfxModule* SdModuleDummy::Load()
 {
     return (LoadLibSd() ? SD_MOD() : NULL);
 }
-
-
-
-
-/*************************************************************************
-|*
-|* GetID(), ID zu einer Fileformat-Version liefern
-|*
-\************************************************************************/
-
-SvGlobalName SdModuleDummy::GetID(USHORT nFileFormat)
-{
-    SvGlobalName aName;
-
-    switch (nFileFormat)
-    {
-        case SOFFICE_FILEFORMAT_60:
-        {
-            aName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_60);
-        }
-        break;
-
-        case SOFFICE_FILEFORMAT_50:
-        {
-            aName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_50);
-        }
-        break;
-
-        case SOFFICE_FILEFORMAT_40:
-        {
-            aName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_40);
-        }
-        break;
-
-        case SOFFICE_FILEFORMAT_31:
-        {
-            aName = SvGlobalName(BF_SO3_SIMPRESS_CLASSID_30);
-        }
-        break;
-
-        default:
-        {
-            DBG_ASSERT(FALSE, "Unbekanntes Fileformat!");
-        }
-        break;
-    }
-
-    return aName;
-}
-
-
-/*************************************************************************
-|*
-|* HasID(), zu einer ID die Fileformat-Version liefern
-|*
-\************************************************************************/
-
-USHORT SdModuleDummy::HasID(const SvGlobalName& rName)
-{
-    USHORT nRet = 0;
-
-    if (GetID(SOFFICE_FILEFORMAT_31) == rName)
-    {
-        // Draw 3.1
-        nRet = SOFFICE_FILEFORMAT_31;
-    }
-    else if (GetID(SOFFICE_FILEFORMAT_40) == rName)
-    {
-        // Impress 4.0
-        nRet = SOFFICE_FILEFORMAT_40;
-    }
-    else if (GetID(SOFFICE_FILEFORMAT_50) == rName)
-    {
-        // Impress 5.0
-        nRet = SOFFICE_FILEFORMAT_50;
-    }
-    else if (SvGlobalName(BF_SO3_SDRAW_CLASSID_50) == rName)
-    {
-        // Draw 5.0
-        nRet = SOFFICE_FILEFORMAT_50;
-    }
-    else if (GetID(SOFFICE_FILEFORMAT_60) == rName)
-    {
-        // Impress 6.0
-        nRet = SOFFICE_FILEFORMAT_60;
-    }
-    else if (SvGlobalName(BF_SO3_SDRAW_CLASSID_60) == rName)
-    {
-        // Draw 6.0
-        nRet = SOFFICE_FILEFORMAT_60;
-    }
-
-    return(nRet);
-}
-
 
 }
