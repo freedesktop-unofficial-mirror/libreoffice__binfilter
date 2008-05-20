@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_useroptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,7 +113,6 @@ private:
 
     typedef String SvtUserOptions_Impl:: *StrPtr;
 
-    void            SetToken( StrPtr pPtr, const String& rNewToken );
     void            InitFullName();
     void            Load();
 
@@ -147,48 +146,6 @@ public:
 
     const String&   GetFullName();
     const String&   GetLocale() const { return m_aLocale; }
-
-    // set the address token
-    void            SetCompany( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aCompany, rNewToken ); }
-    void            SetFirstName( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aFirstName, rNewToken ); InitFullName();}
-    void            SetLastName( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aLastName, rNewToken ); InitFullName();}
-    void            SetID( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aID, rNewToken ); }
-    void            SetStreet( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aStreet, rNewToken ); }
-    void            SetCity( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aCity, rNewToken ); }
-    void            SetState( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aState, rNewToken ); }
-    void            SetZip( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aZip, rNewToken ); }
-    void            SetCountry( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aCountry, rNewToken ); }
-    void            SetPosition( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aPosition, rNewToken ); }
-    void            SetTitle( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aTitle, rNewToken ); }
-    void            SetTelephoneHome( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aTelephoneHome, rNewToken ); }
-    void            SetTelephoneWork( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aTelephoneWork, rNewToken ); }
-    void            SetFax( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aFax, rNewToken ); }
-    void            SetEmail( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aEmail, rNewToken ); }
-    void            SetCustomerNumber( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aCustomerNumber, rNewToken ); }
-    void            SetFathersName( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aFathersName, rNewToken ); }
-    void            SetApartment( const String& rNewToken )
-                        { SetToken( &SvtUserOptions_Impl::m_aApartment, rNewToken ); }
-
-
-    sal_Bool        IsTokenReadonly( USHORT nToken ) const;
-    const String&   GetToken(USHORT nToken) const;
 };
 
 // global ----------------------------------------------------------------
@@ -236,14 +193,6 @@ void SvtUserOptions_Impl::InitUserPropertyNames()
     OUString* pNames = rPropertyNames.getArray();
     for ( int i = 0; i < nCount; i++ )
         pNames[i] = OUString::createFromAscii( aPropNames[i] );
-}
-
-// class SvtUserOptions_Impl ---------------------------------------------
-
-void SvtUserOptions_Impl::SetToken( StrPtr pPtr, const String& rNewToken )
-{
-    this->*pPtr = rNewToken;
-    SetModified();
 }
 
 // -----------------------------------------------------------------------
@@ -465,65 +414,6 @@ void SvtUserOptions_Impl::Notify( const Sequence<rtl::OUString>& )
     Broadcast(SfxSimpleHint(SFX_HINT_USER_OPTIONS_CHANGED));
 }
 
-// -----------------------------------------------------------------------
-
-sal_Bool SvtUserOptions_Impl::IsTokenReadonly( USHORT nToken ) const
-{
-    sal_Bool bRet = sal_False;
-
-    switch ( nToken )
-    {
-        case USER_OPT_COMPANY:          bRet = m_bIsROCompany;          break;
-        case USER_OPT_FIRSTNAME:        bRet = m_bIsROFirstName;        break;
-        case USER_OPT_LASTNAME:         bRet = m_bIsROLastName;         break;
-        case USER_OPT_ID:               bRet = m_bIsROID;               break;
-        case USER_OPT_STREET:           bRet = m_bIsROStreet;           break;
-        case USER_OPT_CITY:             bRet = m_bIsROCity;             break;
-        case USER_OPT_STATE:            bRet = m_bIsROState;            break;
-        case USER_OPT_ZIP:              bRet = m_bIsROZip;              break;
-        case USER_OPT_COUNTRY:          bRet = m_bIsROCountry;          break;
-        case USER_OPT_POSITION:         bRet = m_bIsROPosition;         break;
-        case USER_OPT_TITLE:            bRet = m_bIsROTitle;            break;
-        case USER_OPT_TELEPHONEHOME:    bRet = m_bIsROTelephoneHome;    break;
-        case USER_OPT_TELEPHONEWORK:    bRet = m_bIsROTelephoneWork;    break;
-        case USER_OPT_FAX:              bRet = m_bIsROFax;              break;
-        case USER_OPT_EMAIL:            bRet = m_bIsROEmail;            break;
-        default:
-            DBG_ERRORFILE( "SvtUserOptions_Impl::IsTokenReadonly(): invalid token" );
-    }
-
-    return bRet;
-}
-
-//------------------------------------------------------------------------
-const String&   SvtUserOptions_Impl::GetToken(USHORT nToken) const
-{
-    const String* pRet = 0;
-    switch(nToken)
-    {
-        case USER_OPT_COMPANY:        pRet = &m_aCompany;     break;
-        case USER_OPT_FIRSTNAME:      pRet = &m_aFirstName;   break;
-        case USER_OPT_LASTNAME:       pRet = &m_aLastName;    break;
-        case USER_OPT_ID:             pRet = &m_aID;          break;
-        case USER_OPT_STREET:         pRet = &m_aStreet;      break;
-        case USER_OPT_CITY:           pRet = &m_aCity;        break;
-        case USER_OPT_STATE:          pRet = &m_aState;       break;
-        case USER_OPT_ZIP:            pRet = &m_aZip;         break;
-        case USER_OPT_COUNTRY:        pRet = &m_aCountry;     break;
-        case USER_OPT_POSITION:       pRet = &m_aPosition;    break;
-        case USER_OPT_TITLE:          pRet = &m_aTitle;       break;
-        case USER_OPT_TELEPHONEHOME:  pRet = &m_aTelephoneHome; break;
-        case USER_OPT_TELEPHONEWORK:  pRet = &m_aTelephoneWork; break;
-        case USER_OPT_FAX:            pRet = &m_aFax;           break;
-        case USER_OPT_EMAIL:          pRet = &m_aEmail;         break;
-        case USER_OPT_FATHERSNAME:    pRet = &m_aFathersName;   break;
-        case USER_OPT_APARTMENT:      pRet = &m_aApartment;     break;
-        default:
-            DBG_ERRORFILE( "SvtUserOptions_Impl::GetToken(): invalid token" );
-    }
-    return *pRet;
-}
-
 // class SvtUserOptions --------------------------------------------------
 
 SvtUserOptions::SvtUserOptions()
@@ -705,199 +595,12 @@ const String& SvtUserOptions::GetEmail() const
 
 // -----------------------------------------------------------------------
 
-const String& SvtUserOptions::GetCustomerNumber() const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->GetCustomerNumber();
-}
-// -----------------------------------------------------------------------
-
-const String& SvtUserOptions::GetFathersName() const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->GetFathersName() ;
-}
-
-// -----------------------------------------------------------------------
-
-const String& SvtUserOptions::GetApartment() const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->GetApartment();
-}
-
-// -----------------------------------------------------------------------
-
 const String& SvtUserOptions::GetFullName() const
 {
     ::osl::MutexGuard aGuard( GetInitMutex() );
     return pImp->GetFullName();
 }
 
-// -----------------------------------------------------------------------
-
-const String& SvtUserOptions::GetLocale() const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->GetLocale();
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetCompany( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetCompany( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetFirstName( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetFirstName( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetLastName( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetLastName( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetID( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetID( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetStreet( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetStreet( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetCity( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetCity( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetState( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetState( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetZip( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetZip( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetCountry( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetCountry( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetPosition( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetPosition( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetTitle( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetTitle( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetTelephoneHome( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetTelephoneHome( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetTelephoneWork( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetTelephoneWork( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetFax( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetFax( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetEmail( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetEmail( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetCustomerNumber( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetCustomerNumber( rNewToken );
-}
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetFathersName( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetFathersName( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtUserOptions::SetApartment( const String& rNewToken )
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    pImp->SetApartment( rNewToken );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtUserOptions::IsTokenReadonly( USHORT nToken ) const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->IsTokenReadonly( nToken );
-}
-//------------------------------------------------------------------------
-const String&   SvtUserOptions::GetToken(USHORT nToken) const
-{
-    ::osl::MutexGuard aGuard( GetInitMutex() );
-    return pImp->GetToken( nToken );
-}
 /* -----------------07.07.2003 09:30-----------------
 
  --------------------------------------------------*/
