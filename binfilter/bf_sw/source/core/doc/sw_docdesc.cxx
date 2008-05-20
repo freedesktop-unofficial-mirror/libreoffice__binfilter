@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docdesc.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -350,19 +350,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //Header abgleichen.
 /*N*/   const SwFmtHeader &rHead = rChged.GetMaster().GetHeader();
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       // hat sich an den Nodes etwas veraendert ?
-/*N*/       //JP erstmal ein Hack, solange keine Headers/Footers Undofaehig sind
-/*N*/       const SwFmtHeader &rOldHead = pDesc->GetMaster().GetHeader();
-/*N*/       if( rHead.IsActive() != rOldHead.IsActive() ||
-/*N*/           rChged.IsHeaderShared() != pDesc->IsHeaderShared() )
-/*N*/       {
-/*N*/           // erstmal werden alle Undo - Objecte geloescht.
-/*N*/           ClearRedo();
-/*N*/           DelAllUndoObj();
-/*N*/       }
-/*N*/   }
 /*N*/   pDesc->GetMaster().SetAttr( rHead );
 /*N*/   if ( rChged.IsHeaderShared() || !rHead.IsActive() )
 /*N*/   {
@@ -416,19 +403,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //Footer abgleichen.
 /*N*/   const SwFmtFooter &rFoot = rChged.GetMaster().GetFooter();
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       // hat sich an den Nodes etwas veraendert ?
-/*N*/       //JP erstmal ein Hack, solange keine Headers/Footers Undofaehig sind
-/*N*/       const SwFmtFooter &rOldFoot = pDesc->GetMaster().GetFooter();
-/*N*/       if( rFoot.IsActive() != rOldFoot.IsActive() ||
-/*N*/           rChged.IsFooterShared() != pDesc->IsFooterShared() )
-/*N*/       {
-/*N*/           // erstmal werden alle Undo - Objecte geloescht.
-/*N*/           ClearRedo();
-/*N*/           DelAllUndoObj();
-/*N*/       }
-/*N*/   }
 /*N*/   pDesc->GetMaster().SetAttr( rFoot );
 /*N*/   if ( rChged.IsFooterShared() || !rFoot.IsActive() )
 /*N*/       //Left teilt sich den Header mit dem Master.
