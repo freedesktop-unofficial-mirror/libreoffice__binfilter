@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: optsitem.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -573,7 +573,6 @@ class SdOptionsPrintItem : public SfxPoolItem, public SdOptionsPrint
 {
 public:
 
-                            SdOptionsPrintItem( USHORT nWhich);
                             SdOptionsPrintItem( USHORT nWhich, SdOptions* pOpts, FrameView* pView = NULL );
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
