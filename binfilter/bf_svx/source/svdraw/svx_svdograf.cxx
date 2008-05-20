@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdograf.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -205,20 +205,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*?*/ SdrGrafObj::SdrGrafObj(const Graphic& rGrf, const Rectangle& rRect):
-/*?*/   SdrRectObj      ( rRect ),
-/*?*/   bMirrored       ( FALSE ),
-/*?*/   pGraphicLink    ( NULL )
-/*?*/ {
-/*?*/   pGraphic = new BfGraphicObject( rGrf );
-/*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
-/*?*/   nGrafStreamPos = GRAFSTREAMPOS_INVALID;
-/*?*/   bNoShear = TRUE;
-/*?*/   bCopyToPoolOnAfterRead = FALSE;
-/*?*/ }
-
-// -----------------------------------------------------------------------------
-
 /*?*/ SdrGrafObj::SdrGrafObj( const Graphic& rGrf ):
 /*?*/   bMirrored       ( FALSE ),
 /*?*/   pGraphicLink    ( NULL )
@@ -279,31 +265,10 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ Graphic SdrGrafObj::GetTransformedGraphic( ULONG nTransformFlags ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); Graphic           aTransGraphic( GetGraphic() );return aTransGraphic;//STRIP001
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
 /*N*/ GraphicType SdrGrafObj::GetGraphicType() const
 /*N*/ {
 /*N*/   return pGraphic->GetType();
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------------
 
