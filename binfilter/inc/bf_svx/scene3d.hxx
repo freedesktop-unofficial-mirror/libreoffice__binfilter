@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: scene3d.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -147,7 +147,6 @@ protected:
 public:
     TYPEINFO();
     E3dScene();
-    E3dScene(E3dDefaultAttributes& rDefault);
     virtual ~E3dScene();
 
     // Perspective: enum ProjectionType { PR_PARALLEL, PR_PERSPECTIVE }
