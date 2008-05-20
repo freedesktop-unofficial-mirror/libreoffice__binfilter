@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_atrfrm.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -320,17 +320,10 @@ using namespace ::rtl;
 /*?*/
 /*?*/           // beim Loeschen von Header/Footer-Formaten IMMER das Undo
 /*?*/           // abschalten! (Bug 31069)
-/*?*/           sal_Bool bDoesUndo = pDoc->DoesUndo();
-/*?*/           pDoc->DoUndo( sal_False );
 /*?*/
 /*?*/           ASSERT( pNode, "Ein grosses Problem." );
 /*?*/           pDoc->DeleteSection( pNode );
 /*?*/
-/*?*/           if( bDoesUndo )
-/*?*/           {
-/*?*/               pDoc->DelAllUndoObj();
-/*?*/               pDoc->DoUndo( sal_True );
-/*?*/           }
 /*?*/       }
 /*?*/       delete pFmt;
 /*N*/   }
