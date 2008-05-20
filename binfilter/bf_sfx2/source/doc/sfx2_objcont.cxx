@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_objcont.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -516,29 +516,6 @@ using namespace ::com::sun::star::uno;
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::UpdateFromTemplate_Impl(  )
-
-/*  [Beschreibung]
-
-    Diese interne Methode pr"uft, ob das Dokument aus einem Template
-    erzeugt wurde, und ob dieses neuer ist als das Dokument. Ist dies
-    der Fall, wird der Benutzer gefragt, ob die Vorlagen (StyleSheets)
-    updated werden sollen. Wird dies positiv beantwortet, werden die
-    StyleSheets updated.
-*/
-
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ SvStorageRef SfxObjectShell::GetConfigurationStorage( SotStorage* pStor )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SvStorageRef();//STRIP001
-/*N*/ }
-
-/*N*/ SotStorageStreamRef SfxObjectShell::GetConfigurationStream( const String& rName, BOOL bCreate )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return SotStorageStreamRef();//STRIP001
-/*N*/ }
-
 /*N*/ SfxEventConfigItem_Impl* SfxObjectShell::GetEventConfig_Impl( BOOL bForce )
 /*N*/ {
 /*N*/     if ( bForce && !pImp->pEventConfig )
@@ -553,10 +530,4 @@ using namespace ::com::sun::star::uno;
 /*N*/   return pImp->pEventConfig;
 /*N*/ }
 
-
-/*N*/ sal_Bool SfxObjectShell::IsHelpDocument() const
-/*N*/ {
-/*N*/     const SfxFilter* pFilter = GetMedium()->GetFilter();
-/*N*/     return ( pFilter && pFilter->GetFilterName().CompareToAscii("writer_web_HTML_help") == COMPARE_EQUAL );
-/*N*/ }
 }
