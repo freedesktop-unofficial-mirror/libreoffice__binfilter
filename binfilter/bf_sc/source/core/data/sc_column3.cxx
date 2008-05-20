@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_column3.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1003,23 +1003,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormul
 /*N*/   }
 /*N*/   return 0.0;
 /*N*/ }
-
-
-/*N*/ void ScColumn::GetFormula( USHORT nRow, String& rFormula, BOOL ) const
-/*N*/ {
-/*N*/   USHORT  nIndex;
-/*N*/   if (Search(nRow, nIndex))
-/*N*/   {
-/*N*/       ScBaseCell* pCell = pItems[nIndex].pCell;
-/*N*/       if (pCell->GetCellType() == CELLTYPE_FORMULA)
-/*N*/           ((ScFormulaCell*)pCell)->GetFormula( rFormula );
-/*N*/       else
-/*N*/           rFormula.Erase();
-/*N*/   }
-/*N*/   else
-/*N*/       rFormula.Erase();
-/*N*/ }
-
 
 /*N*/ BOOL ScColumn::GetNote( USHORT nRow, ScPostIt& rNote) const
 /*N*/ {
