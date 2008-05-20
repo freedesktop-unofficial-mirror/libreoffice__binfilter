@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docsh.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -231,13 +231,10 @@ public:
     void            DoHardRecalc( BOOL bApi );
 
 
-    BOOL            IsOle();
-
     void            DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 );
     ScDBData*       GetDBData( const ScRange& rMarked, ScGetDBMode eMode, BOOL bForceMark );
 
     void            UpdateLinks();          // Link-Eintraege aktuallisieren
-    BOOL            ReloadTabLinks();       // Links ausfuehren (Inhalt aktualisieren)
 
 
     void            PostPaint( USHORT nStartCol, USHORT nStartRow, USHORT nStartTab,
@@ -264,9 +261,6 @@ public:
 
 
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
-
-    BOOL            IsEmpty() const;
-    void            ResetEmpty();
 
     BOOL            IsInUndo() const                { return bIsInUndo; }
 
