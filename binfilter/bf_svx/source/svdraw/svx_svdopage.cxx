@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdopage.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,15 +51,6 @@ namespace binfilter {
 /*N*/   bNotifying(FALSE)
 /*N*/ {
 /*N*/ }
-
-/*?*/ SdrPageObj::SdrPageObj(const Rectangle& rRect, USHORT nNewPageNum):
-/*?*/   mpPageItemSet(0L),
-/*?*/   nPageNum(nNewPageNum),
-/*?*/   bPainting(FALSE),
-/*?*/   bNotifying(FALSE)
-/*?*/ {
-/*?*/   aOutRect=rRect;
-/*?*/ }
 
 /*N*/ SdrPageObj::~SdrPageObj()
 /*N*/ {
