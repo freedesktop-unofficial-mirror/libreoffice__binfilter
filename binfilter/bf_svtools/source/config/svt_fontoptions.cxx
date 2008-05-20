@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_fontoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -143,32 +143,6 @@ class SvtFontOptions_Impl : public ConfigItem
         *//*-*****************************************************************************************************/
 
         virtual void Commit();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      access method to get internal values
-            @descr      These method give us a chance to regulate acces to ouer internal values.
-                        It's not used in the moment - but it's possible for the feature!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsReplacementTableEnabled   (                   ) const ;
-        void        EnableReplacementTable      ( sal_Bool bState   )       ;
-
-        sal_Bool    IsFontHistoryEnabled        (                   ) const ;
-        void        EnableFontHistory           ( sal_Bool bState   )       ;
-
-        sal_Bool    IsFontWYSIWYGEnabled        (                   ) const ;
-        void        EnableFontWYSIWYG           ( sal_Bool bState   )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
@@ -339,57 +313,6 @@ void SvtFontOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions_Impl::IsReplacementTableEnabled() const
-{
-    return m_bReplacementTable;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions_Impl::EnableReplacementTable( sal_Bool bState )
-{
-    m_bReplacementTable = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions_Impl::IsFontHistoryEnabled() const
-{
-    return m_bFontHistory;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions_Impl::EnableFontHistory( sal_Bool bState )
-{
-    m_bFontHistory = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions_Impl::IsFontWYSIWYGEnabled() const
-{
-    return m_bFontWYSIWYG;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions_Impl::EnableFontWYSIWYG( sal_Bool bState )
-{
-    m_bFontWYSIWYG = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtFontOptions_Impl::impl_GetPropertyNames()
@@ -450,60 +373,6 @@ SvtFontOptions::~SvtFontOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions::IsReplacementTableEnabled() const
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    return m_pDataContainer->IsReplacementTableEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions::EnableReplacementTable( sal_Bool bState )
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    m_pDataContainer->EnableReplacementTable( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions::IsFontHistoryEnabled() const
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    return m_pDataContainer->IsFontHistoryEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions::EnableFontHistory( sal_Bool bState )
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    m_pDataContainer->EnableFontHistory( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtFontOptions::IsFontWYSIWYGEnabled() const
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    return m_pDataContainer->IsFontWYSIWYGEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtFontOptions::EnableFontWYSIWYG( sal_Bool bState )
-{
-    MutexGuard aGuard( impl_GetOwnStaticMutex() );
-    m_pDataContainer->EnableFontWYSIWYG( bState );
 }
 
 //*****************************************************************************************************************
