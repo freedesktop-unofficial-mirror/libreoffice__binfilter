@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_colorcfg.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,25 +93,12 @@ public:
 
     const ColorConfigValue&         GetColorConfigValue(ColorConfigEntry eValue)
                                                             {return m_aConfigValues[eValue];}
-    void                            SetColorConfigValue(ColorConfigEntry eValue,
-                                                            const ColorConfigValue& rValue );
 
     const rtl::OUString&            GetLoadedScheme() const {return m_sLoadedScheme;}
 
-    uno::Sequence< ::rtl::OUString> GetSchemeNames();
-
-    sal_Bool                        AddScheme(const rtl::OUString& rNode);
-    sal_Bool                        RemoveScheme(const rtl::OUString& rNode);
     void                            SetModified(){ConfigItem::SetModified();}
     void                            ClearModified(){ConfigItem::ClearModified();}
     void                            SettingsChanged();
-
-    static void                     DisableBroadcast();
-    static void                     EnableBroadcast();
-    static sal_Bool                 IsEnableBroadcast();
-
-    static void                     LockBroadcast();
-    static void                     UnlockBroadcast();
 
     // #100822#
     DECL_LINK( DataChangedEventListener, VclWindowEvent* );
@@ -231,23 +218,6 @@ ColorConfig_Impl::~ColorConfig_Impl()
     // #100822#
     ::Application::RemoveEventListener( LINK(this, ColorConfig_Impl, DataChangedEventListener) );
 }
-// -----------------------------------------------------------------------------
-void ColorConfig_Impl::DisableBroadcast()
-{
-    if ( ColorConfig::m_pImpl )
-        ColorConfig::m_pImpl->m_bIsBroadcastEnabled = sal_False;
-}
-// -----------------------------------------------------------------------------
-void ColorConfig_Impl::EnableBroadcast()
-{
-    if ( ColorConfig::m_pImpl )
-        ColorConfig::m_pImpl->m_bIsBroadcastEnabled = sal_True;
-}
-// -----------------------------------------------------------------------------
-sal_Bool ColorConfig_Impl::IsEnableBroadcast()
-{
-    return ColorConfig::m_pImpl ? ColorConfig::m_pImpl->m_bIsBroadcastEnabled : sal_False;
-}
 /* -----------------------------22.03.2002 14:38------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -347,46 +317,6 @@ void ColorConfig_Impl::CommitCurrentSchemeName()
     aCurrentVal.getArray()[0] <<= m_sLoadedScheme;
     PutProperties(aCurrent, aCurrentVal);
 }
-/* -----------------------------25.03.2002 12:19------------------------------
-
- ---------------------------------------------------------------------------*/
-void ColorConfig_Impl::SetColorConfigValue(ColorConfigEntry eValue, const ColorConfigValue& rValue )
-{
-    if(rValue != m_aConfigValues[eValue])
-    {
-        m_aConfigValues[eValue] = rValue;
-        SetModified();
-    }
-}
-/* -----------------------------25.03.2002 15:22------------------------------
-
- ---------------------------------------------------------------------------*/
-uno::Sequence< ::rtl::OUString> ColorConfig_Impl::GetSchemeNames()
-{
-    return GetNodeNames(C2U("ColorSchemes"));
-}
-/* -----------------------------09.04.2002 17:19------------------------------
-
- ---------------------------------------------------------------------------*/
-sal_Bool ColorConfig_Impl::AddScheme(const rtl::OUString& rScheme)
-{
-    if(ConfigItem::AddNode(C2U("ColorSchemes"), rScheme))
-    {
-        m_sLoadedScheme = rScheme;
-        Commit();
-        return sal_True;
-    }
-    return sal_False;
-}
-/* -----------------------------09.04.2002 17:19------------------------------
-
- ---------------------------------------------------------------------------*/
-sal_Bool ColorConfig_Impl::RemoveScheme(const rtl::OUString& rScheme)
-{
-    uno::Sequence< rtl::OUString > aElements(1);
-    aElements.getArray()[0] = rScheme;
-    return ClearNodeElements(C2U("ColorSchemes"), aElements);
-}
 /* -----------------------------2002/06/20 13:03------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -397,33 +327,6 @@ void ColorConfig_Impl::SettingsChanged()
     ImplUpdateApplicationSettings();
 
     Broadcast( SfxSimpleHint( SFX_HINT_COLORS_CHANGED ) );
-}
-/* -----------------11.12.2002 09:21-----------------
- *
- * --------------------------------------------------*/
-void ColorConfig_Impl::LockBroadcast()
-{
-    m_bLockBroadcast = sal_True;
-}
-/* -----------------11.12.2002 09:21-----------------
- *
- * --------------------------------------------------*/
-void ColorConfig_Impl::UnlockBroadcast()
-{
-    if ( m_bBroadcastWhenUnlocked )
-    {
-        m_bBroadcastWhenUnlocked = ColorConfig::m_pImpl != NULL;
-        if ( m_bBroadcastWhenUnlocked )
-        {
-            ColorConfig::m_pImpl->ImplUpdateApplicationSettings();
-            if ( ColorConfig::m_pImpl->IsEnableBroadcast() )
-            {
-                m_bBroadcastWhenUnlocked = sal_False;
-                ColorConfig::m_pImpl->Broadcast(SfxSimpleHint(SFX_HINT_COLORS_CHANGED));
-            }
-        }
-    }
-    m_bLockBroadcast = sal_False;
 }
 /* -----------------------------2002/08/16 12:07 -----------------------------
    #100822#
@@ -613,125 +516,5 @@ void ColorConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 
     Broadcast( rHint );
 }
-/* -----------------------------25.03.2002 12:01------------------------------
-
- ---------------------------------------------------------------------------*/
-EditableColorConfig::EditableColorConfig() :
-    m_pImpl(new ColorConfig_Impl),
-    m_bModified(sal_False)
-{
-    m_pImpl->LockBroadcast();
-}
-/*-- 25.03.2002 12:03:08---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-EditableColorConfig::~EditableColorConfig()
-{
-    m_pImpl->UnlockBroadcast();
-    if(m_bModified)
-        m_pImpl->SetModified();
-    if(m_pImpl->IsModified())
-        m_pImpl->Commit();
-    delete m_pImpl;
-}
-
-/*-- 25.03.2002 12:03:15---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-uno::Sequence< ::rtl::OUString >  EditableColorConfig::GetSchemeNames() const
-{
-    return m_pImpl->GetSchemeNames();
-}
-/*-- 25.03.2002 12:03:16---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void EditableColorConfig::DeleteScheme(const ::rtl::OUString& rScheme )
-{
-    m_pImpl->RemoveScheme(rScheme);
-}
-/*-- 25.03.2002 12:03:16---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void EditableColorConfig::AddScheme(const ::rtl::OUString& rScheme )
-{
-    m_pImpl->AddScheme(rScheme);
-}
-/*-- 25.03.2002 12:03:16---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Bool EditableColorConfig::LoadScheme(const ::rtl::OUString& rScheme )
-{
-    if(m_bModified)
-        m_pImpl->SetModified();
-    if(m_pImpl->IsModified())
-        m_pImpl->Commit();
-    m_bModified = sal_False;
-    m_pImpl->Load(rScheme);
-    //the name of the loaded scheme has to be committed separately
-    m_pImpl->CommitCurrentSchemeName();
-    return sal_True;
-}
-/*-- 25.03.2002 12:03:16---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-const ::rtl::OUString& EditableColorConfig::GetCurrentSchemeName()const
-{
-    return m_pImpl->GetLoadedScheme();
-}
-/* -----------------11.12.2002 10:56-----------------
- *  changes the name of the current scheme but doesn't load it!
- * --------------------------------------------------*/
-void EditableColorConfig::SetCurrentSchemeName(const ::rtl::OUString& rScheme)
-{
-    m_pImpl->SetCurrentSchemeName(rScheme);
-    m_pImpl->CommitCurrentSchemeName();
-}
-/*-- 25.03.2002 12:03:17---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-const ColorConfigValue& EditableColorConfig::GetColorValue(
-    ColorConfigEntry eEntry)const
-{
-    return m_pImpl->GetColorConfigValue(eEntry);
-}
-/*-- 25.03.2002 12:03:17---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void EditableColorConfig::SetColorValue(
-    ColorConfigEntry eEntry, const ColorConfigValue& rValue)
-{
-    m_pImpl->SetColorConfigValue(eEntry, rValue);
-    m_pImpl->ClearModified();
-    m_bModified = sal_True;
-}
-/* -----------------------------10.04.2002 13:22------------------------------
-
- ---------------------------------------------------------------------------*/
-void EditableColorConfig::SetModified()
-{
-    m_bModified = sal_True;
-}
-/* -----------------15.10.2002 14:51-----------------
- *
- * --------------------------------------------------*/
-void EditableColorConfig::Commit()
-{
-    if(m_bModified)
-        m_pImpl->SetModified();
-    if(m_pImpl->IsModified())
-        m_pImpl->Commit();
-    m_bModified = sal_False;
-}
-// -----------------------------------------------------------------------------
-void EditableColorConfig::DisableBroadcast()
-{
-    m_pImpl->DisableBroadcast();
-}
-// -----------------------------------------------------------------------------
-void EditableColorConfig::EnableBroadcast()
-{
-    m_pImpl->EnableBroadcast();
-}
-// -----------------------------------------------------------------------------
 
 }
