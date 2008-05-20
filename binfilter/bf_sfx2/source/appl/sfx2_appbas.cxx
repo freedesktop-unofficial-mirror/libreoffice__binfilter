@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_appbas.cxx,v $
- * $Revision: 1.16 $
+ * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -105,35 +105,6 @@ StarBASIC* SfxApplication::GetBasic_Impl() const
 }
 
 //=========================================================================
-/*N*/ sal_uInt16 SfxApplication::SaveBasicManager() const
-/*N*/ {
-/*N*/   return 0;
-/*N*/ }
-
-//--------------------------------------------------------------------
-/*N*/ sal_uInt16 SfxApplication::SaveDialogContainer() const
-/*N*/ {
-/*N*/   // Save Dialog Container
-/*N*/   sal_Bool bComplete = sal_False;
-/*N*/   if( pImp->pDialogLibContainer )
-/*N*/       pImp->pDialogLibContainer->storeLibraries( bComplete );
-/*N*/   return 0;
-/*N*/ }
-
-//--------------------------------------------------------------------
-/*N*/ sal_uInt16 SfxApplication::SaveBasicContainer() const
-/*N*/ {
-/*N*/   // Save Dialog Container
-/*N*/   sal_Bool bComplete = sal_False;
-/*N*/   if( pImp->pBasicLibContainer )
-/*N*/       pImp->pBasicLibContainer->storeLibraries( bComplete );
-/*N*/   return 0;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
 
 BasicManager* SfxApplication::GetBasicManager()
 {
@@ -171,17 +142,6 @@ BasicManager* SfxApplication::GetBasicManager()
         StarBASIC *pBas = pBasMgr->GetLib(0);
         sal_Bool bBasicWasModified = pBas->IsModified();
 
-/*
-        Reference< ::com::sun::star::lang::XMultiServiceFactory > xSMgr = ::comphelper::getProcessServiceFactory();
-        Any aDesktop;
-        Reference< XDesktop > xDesktop( xSMgr->createInstance(::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop")), UNO_QUERY );
-        aDesktop <<= xDesktop ;
-        SbxObjectRef xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("StarDesktop"), aDesktop );
-        xUnoObj->SetFlag( SBX_DONTSTORE );
-        pBas->Insert( xUnoObj );
-        //pBas->setRoot( xDesktop );
-*/
-
         // Basic container
         SfxScriptLibraryContainer* pBasicCont = new SfxScriptLibraryContainer
             ( DEFINE_CONST_UNICODE( "StarBasic" ), pBasMgr );
@@ -200,30 +160,6 @@ BasicManager* SfxApplication::GetBasicManager()
             ( xBasicCont, xDialogCont, static_cast< OldBasicPassword* >( pBasicCont ) );
         pBasMgr->SetLibraryContainerInfo( pInfo );
 
-/*      Any aBasicCont;
-        aBasicCont <<= xBasicCont;
-        xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("BasicLibraries"), aBasicCont );
-        pBas->Insert( xUnoObj );
-
-        Any aDialogCont;
-        aDialogCont <<= xDialogCont;
-        xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("DialogLibraries"), aDialogCont );
-        pBas->Insert( xUnoObj );
-
-        Any aAny;
-        SfxObjectShell* pDoc = SfxObjectShell::Current();
-        if ( pDoc )
-        {
-            Reference< XInterface > xInterface ( pDoc->GetModel(), UNO_QUERY );
-            aAny <<= xInterface;
-        }
-
-        SFX_APP()->Get_Impl()->pThisDocument = pDoc;
-        xUnoObj = GetSbUnoObject( DEFINE_CONST_UNICODE("ThisComponent"), aAny );
-        xUnoObj->SetFlag( SBX_DONTSTORE );
-        pBas->Insert( xUnoObj );
-*/
-
         // Konstanten
 //ASDBG     RegisterBasicConstants( "so", aConstants, sizeof(aConstants)/sizeof(SfxConstant) );
 
@@ -234,15 +170,6 @@ BasicManager* SfxApplication::GetBasicManager()
 
     return pBasMgr;
 }
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-/*?*/ Reference< XLibraryContainer > SfxApplication::GetBasicContainer()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");   Reference< XLibraryContainer > xRet; return xRet;//STRIP001
-/*?*/ }
 
 //--------------------------------------------------------------------
 
