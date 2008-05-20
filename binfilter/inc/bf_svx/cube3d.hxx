@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cube3d.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,7 +71,6 @@ protected:
 
 public:
     TYPEINFO();
-    E3dCubeObj(E3dDefaultAttributes& rDefault, Vector3D aPos, const Vector3D& r3DSize);
     E3dCubeObj();
 
     virtual UINT16 GetObjIdentifier() const;
