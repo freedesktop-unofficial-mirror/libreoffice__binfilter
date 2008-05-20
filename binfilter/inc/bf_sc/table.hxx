@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: table.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -243,8 +243,6 @@ public:
     double      GetValue( const ScAddress& rPos ) const
                     { return aCol[rPos.Col()].GetValue( rPos.Row() ); }
     double      GetValue( USHORT nCol, USHORT nRow );
-    void        GetFormula( USHORT nCol, USHORT nRow, String& rFormula,
-                            BOOL bAsciiExport = FALSE );
     BOOL        GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote);
 
     CellType    GetCellType( const ScAddress& rPos ) const
@@ -343,9 +341,6 @@ public:
                         USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
                         const ScMarkData& rMark );
 
-
-    void        FindMaxRotCol( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2 ) const;
-
     void        GetBorderLines( USHORT nCol, USHORT nRow,
                                 const SvxBorderLine** ppLeft, const SvxBorderLine** ppTop,
                                 const SvxBorderLine** ppRight, const SvxBorderLine** ppBottom ) const;
@@ -378,7 +373,6 @@ public:
     void        ApplyStyleArea( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow, const ScStyleSheet& rStyle );
     void        ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark);
 
-    const ScStyleSheet* GetStyle( USHORT nCol, USHORT nRow ) const;
     const ScStyleSheet* GetSelectionStyle( const ScMarkData& rMark, BOOL& rFound ) const;
     const ScStyleSheet* GetAreaStyle( BOOL& rFound, USHORT nCol1, USHORT nRow1,
                                                     USHORT nCol2, USHORT nRow2 ) const;
@@ -457,9 +451,6 @@ public:
     void        UpdatePageBreaks( const ScRange* pUserArea );
     void        RemoveManualBreaks();
 
-    void        StripHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 );
-    void        ExtendHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 );
-
     BOOL        Load( SvStream& rStream, USHORT nVersion, ScProgress* pProgress );
     BOOL        Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const;
 
@@ -500,10 +491,6 @@ private:
     void        StartAllListeners();
 /*N*/    void        StartNameListeners( BOOL bOnlyRelNames );
 /*N*/   void        SetRelNameDirty();
-
-    USHORT      FillMaxRot( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2,
-                            USHORT nCol, USHORT nAttrRow1, USHORT nAttrRow2, USHORT nArrY,
-                            const ScPatternAttr* pPattern, const SfxItemSet* pCondSet ) const;
 
     // Idleberechnung der OutputDevice-Zelltextbreite
     void            InvalidateTextWidth( const ScAddress* pAdrFrom = NULL,
