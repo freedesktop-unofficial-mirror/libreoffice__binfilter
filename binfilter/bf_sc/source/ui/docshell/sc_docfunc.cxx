@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_docfunc.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -406,11 +406,6 @@ using namespace ::com::sun::star;
 /*N*/       if (pDoc->HasAttrib( aMarkRange, HASATTR_PAINTEXT ))
 /*N*/           nExtFlags |= SC_PF_LINES;
 /*N*/
-/*N*/   //  Reihenfolge:
-/*N*/   //  1) BeginDrawUndo
-/*N*/   //  2) Objekte loeschen (DrawUndo wird gefuellt)
-/*N*/   //  3) Inhalte fuer Undo kopieren und Undo-Aktion anlegen
-/*N*/   //  4) Inhalte loeschen
 /*N*/
 /*N*/   if (bObjects)
 /*N*/   {
