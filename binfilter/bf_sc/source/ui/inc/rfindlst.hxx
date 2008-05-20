@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: rfindlst.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,7 +60,6 @@ class ScRangeFindList
     BOOL        bHidden;
 
 public:
-            ScRangeFindList(const String& rName);
             ~ScRangeFindList();
 
     ULONG   Count() const                       { return aEntries.Count(); }
