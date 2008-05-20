@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unoobj.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -102,7 +102,6 @@ private:
     ::com::sun::star::uno::Sequence< sal_Int8 >* mpImplementationId;
 
 public:
-    SdXShape() throw();
     SdXShape(SvxShape* pShape, SdXImpressDocument* pModel) throw();
     virtual ~SdXShape() throw();
 
