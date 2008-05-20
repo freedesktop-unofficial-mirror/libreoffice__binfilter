@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_compatibility.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -307,35 +307,6 @@ class SvtCompatibilityOptions_Impl : public ConfigItem
         //  public interface
         //---------------------------------------------------------------------------------------------------------
 
-        /*-****************************************************************************************************//**
-            @short      base implementation of public interface for "SvtCompatibilityOptions"!
-            @descr      These class is used as static member of "SvtCompatibilityOptions" ...
-                        => The code exist only for one time and isn't duplicated for every instance!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void                                    Clear();
-        Sequence< Sequence< PropertyValue > >   GetList() const;
-        void                                    AppendItem( const ::rtl::OUString& _sName,
-                                                            const ::rtl::OUString& _sModule,
-                                                            bool _bUsePrtMetrics,
-                                                            bool _bAddSpacing,
-                                                            bool _bAddSpacingAtPages,
-                                                            bool _bUseOurTabStops,
-                                                            bool _bNoExtLeading,
-                                                            bool _bUseLineSpacing,
-                                                            bool _bAddTableSpacing,
-                                                            bool _bUseObjPos,
-                                                            bool _bUseOurTextWrapping,
-                                                            bool _bConsiderWrappingStyle,
-                                                            bool _bExpandWordSpace );
-
         inline bool IsUsePrtDevice() const { return m_aDefOptions.bUsePrtMetrics; }
         inline bool IsAddSpacing() const { return m_aDefOptions.bAddSpacing; }
         inline bool IsAddSpacingAtPages() const { return m_aDefOptions.bAddSpacingAtPages; }
@@ -522,64 +493,6 @@ void SvtCompatibilityOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCompatibilityOptions_Impl::Clear()
-{
-    m_aOptions.Clear();
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtCompatibilityOptions_Impl::GetList() const
-{
-    Sequence< Sequence< PropertyValue > > lReturn;
-    lReturn = m_aOptions.GetList();
-    return lReturn;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-
-void SvtCompatibilityOptions_Impl::AppendItem(  const ::rtl::OUString& _sName,
-                                                const ::rtl::OUString& _sModule,
-                                                bool _bUsePrtMetrics,
-                                                bool _bAddSpacing,
-                                                bool _bAddSpacingAtPages,
-                                                bool _bUseOurTabStops,
-                                                bool _bNoExtLeading,
-                                                bool _bUseLineSpacing,
-                                                bool _bAddTableSpacing,
-                                                bool _bUseObjPos,
-                                                bool _bUseOurTextWrapping,
-                                                bool _bConsiderWrappingStyle,
-                                                bool _bExpandWordSpace )
-{
-    SvtCompatibilityEntry aItem( _sName, _sModule );
-    aItem.SetUsePrtMetrics( _bUsePrtMetrics );
-    aItem.SetAddSpacing( _bAddSpacing );
-    aItem.SetAddSpacingAtPages( _bAddSpacingAtPages );
-    aItem.SetUseOurTabStops( _bUseOurTabStops );
-    aItem.SetNoExtLeading( _bNoExtLeading );
-    aItem.SetUseLineSpacing( _bUseLineSpacing );
-    aItem.SetAddTableSpacing( _bAddTableSpacing );
-    aItem.SetUseObjPos( _bUseObjPos );
-    aItem.SetUseOurTextWrapping( _bUseOurTextWrapping );
-    aItem.SetConsiderWrappingStyle( _bConsiderWrappingStyle );
-    aItem.SetExpandWordSpace( _bExpandWordSpace );
-    m_aOptions.AppendEntry( aItem );
-
-    // default item reset?
-    if ( _sName.equals( COMPATIBILITY_DEFAULT_NAME ) != sal_False )
-        m_aDefOptions = aItem;
-
-    SetModified();
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtCompatibilityOptions_Impl::impl_GetPropertyNames( Sequence< OUString >& rItems )
@@ -690,112 +603,6 @@ SvtCompatibilityOptions::~SvtCompatibilityOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCompatibilityOptions::Clear()
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->Clear();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCompatibilityOptions::AppendItem( const ::rtl::OUString& sName,
-                                          const ::rtl::OUString& sModule,
-                                          bool bUsePrtMetrics,
-                                          bool bAddSpacing,
-                                          bool bAddSpacingAtPages,
-                                          bool bUseOurTabStops,
-                                          bool bNoExtLeading,
-                                          bool bUseLineSpacing,
-                                          bool bAddTableSpacing,
-                                          bool bUseObjPos,
-                                          bool bUseOurTextWrapping,
-                                          bool bConsiderWrappingStyle,
-                                          bool bExpandWordSpace )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->AppendItem(
-        sName, sModule, bUsePrtMetrics, bAddSpacing,
-        bAddSpacingAtPages, bUseOurTabStops, bNoExtLeading,
-        bUseLineSpacing, bAddTableSpacing, bUseObjPos,
-        bUseOurTextWrapping, bConsiderWrappingStyle, bExpandWordSpace );
-}
-
-bool SvtCompatibilityOptions::IsUsePrtDevice() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsUsePrtDevice();
-}
-
-bool SvtCompatibilityOptions::IsAddSpacing() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsAddSpacing();
-}
-
-bool SvtCompatibilityOptions::IsAddSpacingAtPages() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsAddSpacingAtPages();
-}
-
-bool SvtCompatibilityOptions::IsUseOurTabStops() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsUseOurTabStops();
-}
-
-bool SvtCompatibilityOptions::IsNoExtLeading() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsNoExtLeading();
-}
-
-bool SvtCompatibilityOptions::IsUseLineSpacing() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsUseLineSpacing();
-}
-
-bool SvtCompatibilityOptions::IsAddTableSpacing() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsAddTableSpacing();
-}
-
-bool SvtCompatibilityOptions::IsUseObjectPositioning() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsUseObjPos();
-}
-
-bool SvtCompatibilityOptions::IsUseOurTextWrapping() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsUseOurTextWrapping();
-}
-
-bool SvtCompatibilityOptions::IsConsiderWrappingStyle() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsConsiderWrappingStyle();
-}
-
-bool SvtCompatibilityOptions::IsExpandWordSpace() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsExpandWordSpace();
-}
-
-Sequence< Sequence< PropertyValue > > SvtCompatibilityOptions::GetList() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetList();
 }
 
 //*****************************************************************************************************************
