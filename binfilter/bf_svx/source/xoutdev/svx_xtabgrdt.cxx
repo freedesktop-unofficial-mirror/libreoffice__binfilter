@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xtabgrdt.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,20 +77,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 // ---------------------
 // class XGradientTable
 // ---------------------
-
-/*************************************************************************
-|*
-|* XGradientTable::XGradientTable()
-|*
-*************************************************************************/
-
-/*N*/ XGradientTable::XGradientTable( const String& rPath,
-/*N*/                           XOutdevItemPool* pInPool,
-/*N*/                           USHORT nInitSize, USHORT nReSize ) :
-/*N*/               XPropertyTable( rPath, pInPool, nInitSize, nReSize)
-/*N*/ {
-/*N*/   pBmpTable = new Table( nInitSize, nReSize );
-/*N*/ }
 
 /************************************************************************/
 
