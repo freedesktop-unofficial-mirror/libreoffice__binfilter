@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: winmtf.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -663,10 +663,8 @@ class WinMtfOutput
         void                DeleteObject( INT32 nIndex );
         void                SelectObject( INT32 nIndex );
         CharSet             GetCharSet(){ return maFont.GetCharSet(); };
-        void                SetFont( const Font& rFont );
         const Font&         GetFont() const;
         void                SetTextLayoutMode( const sal_uInt32 nLayoutMode );
-        sal_uInt32          GetTextLayoutMode() const;
 
         void                ClearPath(){ aPathObj.Init(); };
         void                ClosePath(){ aPathObj.ClosePath(); };
