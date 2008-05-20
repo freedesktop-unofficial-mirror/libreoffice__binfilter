@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_writer.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -198,10 +198,9 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 
 // suche die naechste Bookmark-Position aus der Bookmark-Tabelle
 
- SwPaM* Writer::NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx,
-                        BOOL bNodesArray ) const
+ SwPaM* Writer::NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx ) const
  {
-    SwNodes* pNds = bNodesArray ? &rDoc.GetNodes() : (SwNodes*)rDoc.GetUndoNds();
+    SwNodes* pNds = &rDoc.GetNodes();
 
     SwNodeIndex aStt( *pNds, nStartIdx );
     SwCntntNode* pCNode = aStt.GetNode().GetCntntNode();
