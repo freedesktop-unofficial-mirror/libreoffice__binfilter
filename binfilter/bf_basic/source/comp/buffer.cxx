@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: buffer.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -102,72 +102,6 @@ BOOL SbiBuffer::Check( USHORT n )
     return TRUE;
 }
 
-// Angleich des Puffers auf die uebergebene Byte-Grenze
-
-void SbiBuffer::Align( INT32 n )
-{
-    if( nOff % n ) {
-        UINT32 nn =( ( nOff + n ) / n ) * n;
-        if( nn <= UP_LIMIT )
-        {
-            nn = nn - nOff;
-            if( Check( static_cast<USHORT>(nn) ) )
-            {
-                memset( pCur, 0, nn );
-                pCur += nn;
-                nOff = nOff + nn;
-            }
-        }
-    }
-}
-
-// Patch einer Location
-
-void SbiBuffer::Patch( UINT32 off, UINT32 val )
-{
-    if( ( off + sizeof( UINT32 ) ) < nOff )
-    {
-        UINT16 val1 = static_cast<UINT16>( val & 0xFFFF );
-        UINT16 val2 = static_cast<UINT16>( val >> 16 );
-        BYTE* p = (BYTE*) pBuf + off;
-        *p++ = (char) ( val1 & 0xFF );
-        *p++ = (char) ( val1 >> 8 );
-        *p++ = (char) ( val2 & 0xFF );
-        *p   = (char) ( val2 >> 8 );
-    }
-}
-
-// Forward References auf Labels und Prozeduren
-// bauen eine Kette auf. Der Anfang der Kette ist beim uebergebenen
-// Parameter, das Ende der Kette ist 0.
-
-void SbiBuffer::Chain( UINT32 off )
-{
-    if( off && pBuf )
-    {
-        BYTE *ip;
-        UINT32 i = off;
-        UINT32 val1 = (nOff & 0xFFFF);
-        UINT32 val2 = (nOff >> 16);
-        do
-        {
-            ip = (BYTE*) pBuf + i;
-            BYTE* pTmp = ip;
-                     i =  *pTmp++; i |= *pTmp++ << 8; i |= *pTmp++ << 16; i |= *pTmp++ << 24;
-
-            if( i >= nOff )
-            {
-/*?*/ //                pParser->Error( SbERR_INTERNAL_ERROR, "BACKCHAIN" );
-                break;
-            }
-            *ip++ = (char) ( val1 & 0xFF );
-            *ip++ = (char) ( val1 >> 8 );
-            *ip++ = (char) ( val2 & 0xFF );
-            *ip   = (char) ( val2 >> 8 );
-        } while( i );
-    }
-}
-
 BOOL SbiBuffer::operator +=( INT8 n )
 {
     if( Check( 1 ) )
@@ -236,17 +170,5 @@ BOOL SbiBuffer::operator +=( const String& n )
     }
     else return FALSE;
 }
-
-BOOL SbiBuffer::Add( const void* p, USHORT len )
-{
-    if( Check( len ) )
-    {
-        memcpy( pCur, p, len );
-        pCur += len;
-        nOff = nOff + len;
-        return TRUE;
-    } else return FALSE;
-}
-
 
 }
