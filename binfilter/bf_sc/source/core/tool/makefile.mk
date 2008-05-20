@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -92,7 +92,6 @@ SLOFILES =  \
         $(SLO)$/sc_zforauto.obj \
         $(SLO)$/sc_hints.obj \
         $(SLO)$/sc_prnsave.obj \
-        $(SLO)$/sc_navicfg.obj \
         $(SLO)$/sc_addincol.obj \
         $(SLO)$/sc_addinlis.obj \
         $(SLO)$/sc_addinhelpid.obj \
