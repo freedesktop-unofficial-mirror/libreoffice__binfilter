@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_dbmgr.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -121,9 +121,6 @@
 #endif
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
 #endif
 #ifndef _FLDDAT_HXX
 #include <flddat.hxx>
