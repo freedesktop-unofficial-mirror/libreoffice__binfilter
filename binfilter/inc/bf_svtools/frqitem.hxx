@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: frqitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -143,12 +143,10 @@ private:
             BOOL                bMissingDate;
             DateTime            aMissingDate;
 
-            Time                _CalcTime( BOOL bForToday ) const;
 public:
             TYPEINFO();
 
             SfxFrequencyItem( const SfxFrequencyItem& rCpy );
-            SfxFrequencyItem( USHORT nWhich );
             SfxFrequencyItem( USHORT nWhich, FrequencyMode eMode, FrequencyTimeMode eTMode,
                               USHORT nDI1, USHORT nDI2, USHORT nDI3, USHORT nTI1,
                               const Time& rT1, const Time& rT2 );
@@ -163,8 +161,6 @@ public:
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
                                 SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString &rText,
                                 const ::IntlWrapper * = 0 ) const;
-
-    DateTime                CalcNextTick( const DateTime& rNow, BOOL bFirst = FALSE );
 
     BOOL                    HasMissingDate() const              { return bMissingDate; }
     DateTime                GetMissingDate() const              { return aMissingDate; }
