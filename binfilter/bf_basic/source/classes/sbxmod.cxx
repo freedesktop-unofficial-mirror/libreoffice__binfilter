@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxmod.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -82,143 +82,6 @@ TYPEINIT1(SbJScriptMethod,SbMethod)
 
 SV_DECL_VARARR(SbiBreakpoints,USHORT,4,4)
 SV_IMPL_VARARR(SbiBreakpoints,USHORT)
-
-
-/*?*/ // SV_IMPL_VARARR(HighlightPortions, HighlightPortion)
-
-// ##########################################################################
-// ACHTUNG!!!  Alle Woerter dieser Tabelle müssen KLEIN geschrieben werden!!!
-// ##########################################################################
-/*?*/ // static const char* strListBasicKeyWords[] = {
-/*?*/ //    "access",
-/*?*/ //    "alias",
-/*?*/ //    "and",
-/*?*/ //    "any",
-/*?*/ //    "append",
-/*?*/ //    "as",
-/*?*/ //    "base",
-/*?*/ //    "binary",
-/*?*/ //    "boolean",
-/*?*/ //    "byref",
-/*?*/ //    "byte",
-/*?*/ //    "byval",
-/*?*/ //    "call",
-/*?*/ //    "case",
-/*?*/ //    "cdecl",
-/*?*/ //    "classmodule",
-/*?*/ //    "close",
-/*?*/ //    "compare",
-/*?*/ //    "compatible",
-/*?*/ //    "const",
-/*?*/ //    "currency",
-/*?*/ //    "date",
-/*?*/ //    "declare",
-/*?*/ //    "defbool",
-/*?*/ //    "defcur",
-/*?*/ //    "defdate",
-/*?*/ //    "defdbl",
-/*?*/ //    "deferr",
-/*?*/ //    "defint",
-/*?*/ //    "deflng",
-/*?*/ //    "defobj",
-/*?*/ //    "defsng",
-/*?*/ //    "defstr",
-/*?*/ //    "defvar",
-/*?*/ //    "dim",
-/*?*/ //    "do",
-/*?*/ //    "double",
-/*?*/ //    "each",
-/*?*/ //    "else",
-/*?*/ //    "elseif",
-/*?*/ //    "end",
-/*?*/ //    "end enum",
-/*?*/ //    "end function",
-/*?*/ //    "end if",
-/*?*/ //    "end select",
-/*?*/ //    "end sub",
-/*?*/ //    "end type",
-/*?*/ //    "endif",
-/*?*/ //    "enum",
-/*?*/ //    "eqv",
-/*?*/ //    "erase",
-/*?*/ //    "error",
-/*?*/ //    "exit",
-/*?*/ //    "explicit",
-/*?*/ //    "for",
-/*?*/ //    "function",
-/*?*/ //    "get",
-/*?*/ //    "global",
-/*?*/ //    "gosub",
-/*?*/ //    "goto",
-/*?*/ //    "if",
-/*?*/ //    "imp",
-/*?*/ //    "implements",
-/*?*/ //    "in",
-/*?*/ //    "input",
-/*?*/ //    "integer",
-/*?*/ //    "is",
-/*?*/ //    "let",
-/*?*/ //    "lib"
-/*?*/ //    "line",
-/*?*/ //    "line input",
-/*?*/ //    "local",
-/*?*/ //    "lock",
-/*?*/ //    "long",
-/*?*/ //    "loop",
-/*?*/ //    "lprint",
-/*?*/ //    "lset",
-/*?*/ //    "mod",
-/*?*/ //    "name",
-/*?*/ //    "new",
-/*?*/ //    "next",
-/*?*/ //    "not",
-/*?*/ //    "object",
-/*?*/ //    "on",
-/*?*/ //    "open",
-/*?*/ //    "option",
-/*?*/ //    "optional",
-/*?*/ //    "or",
-/*?*/ //    "output",
-/*?*/ //    "preserve",
-/*?*/ //    "print",
-/*?*/ //    "private",
-/*?*/ //    "property",
-/*?*/ //    "public",
-/*?*/ //    "random",
-/*?*/ //    "read",
-/*?*/ //    "redim",
-/*?*/ //    "rem",
-/*?*/ //    "resume",
-/*?*/ //    "return",
-/*?*/ //    "rset",
-/*?*/ //    "select",
-/*?*/ //    "set",
-/*?*/ //    "shared",
-/*?*/ //    "single",
-/*?*/ //    "static",
-/*?*/ //    "step",
-/*?*/ //    "stop",
-/*?*/ //    "string",
-/*?*/ //    "sub",
-/*?*/ //    "system",
-/*?*/ //    "text",
-/*?*/ //    "then",
-/*?*/ //    "to",
-/*?*/ //    "type",
-/*?*/ //    "typeof",
-/*?*/ //    "until",
-/*?*/ //    "variant",
-/*?*/ //    "wend",
-/*?*/ //    "while",
-/*?*/ //    "with",
-/*?*/ //    "write",
-/*?*/ //    "xor"
-/*?*/ // };
-/*?*/ //
-/*?*/ // extern "C" int CDECL compare_strings( const void *arg1, const void *arg2 )
-/*?*/ // {
-/*?*/ //    return strcmp( (char *)arg1, *(char **)arg2 );
-/*?*/ // }
 
 /////////////////////////////////////////////////////////////////////////////
 
@@ -310,59 +173,6 @@ SbMethod* SbModule::GetMethod( const String& rName, SbxDataType t )
 }
 
 // Property anfordern/anlegen
-
-SbProperty* SbModule::GetProperty( const String& rName, SbxDataType t )
-{
-    SbxVariable* p = pProps->Find( rName, SbxCLASS_PROPERTY );
-    SbProperty* pProp = p ? PTR_CAST(SbProperty,p) : NULL;
-    if( p && !pProp )
-        pProps->Remove( p );
-    if( !pProp )
-    {
-        pProp = new SbProperty( rName, t, this );
-        pProp->SetFlag( SBX_READWRITE );
-        pProp->SetParent( this );
-        pProps->Put( pProp, pProps->Count() );
-        StartListening( pProp->GetBroadcaster(), TRUE );
-    }
-    return pProp;
-}
-
-SbProcedureProperty* SbModule::GetProcedureProperty
-    ( const String& rName, SbxDataType t )
-{
-    SbxVariable* p = pProps->Find( rName, SbxCLASS_PROPERTY );
-    SbProcedureProperty* pProp = p ? PTR_CAST(SbProcedureProperty,p) : NULL;
-    if( p && !pProp )
-        pProps->Remove( p );
-    if( !pProp )
-    {
-        pProp = new SbProcedureProperty( rName, t );
-        pProp->SetFlag( SBX_READWRITE );
-        pProp->SetParent( this );
-        pProps->Put( pProp, pProps->Count() );
-        StartListening( pProp->GetBroadcaster(), TRUE );
-    }
-    return pProp;
-}
-
-SbIfaceMapperMethod* SbModule::GetIfaceMapperMethod
-    ( const String& rName, SbMethod* pImplMeth )
-{
-    SbxVariable* p = pMethods->Find( rName, SbxCLASS_METHOD );
-    SbIfaceMapperMethod* pMapperMethod = p ? PTR_CAST(SbIfaceMapperMethod,p) : NULL;
-    if( p && !pMapperMethod )
-        pMethods->Remove( p );
-    if( !pMapperMethod )
-    {
-        pMapperMethod = new SbIfaceMapperMethod( rName, pImplMeth );
-        pMapperMethod->SetParent( this );
-        pMapperMethod->SetFlags( SBX_READ );
-        pMethods->Put( pMapperMethod, pMethods->Count() );
-    }
-    pMapperMethod->bInvalid = FALSE;
-    return pMapperMethod;
-}
 
 SbIfaceMapperMethod::~SbIfaceMapperMethod()
 {
@@ -577,12 +387,6 @@ void SbModule::SetSource32( const ::rtl::OUString& r )
     EndDefinitions( TRUE );
 }
 
-void SbModule::SetComment( const String& r )
-{
-    aComment = r;
-    SetModified( TRUE );
-}
-
 SbMethod* SbModule::GetFunctionForLine( USHORT nLine )
 {
     for( USHORT i = 0; i < pMethods->Count(); i++ )
@@ -661,317 +465,11 @@ void ClearUnoObjectsInRTL_Impl_Rek( StarBASIC* pBasic )
     }
 }
 
-void ClearUnoObjectsInRTL_Impl( StarBASIC* pBasic )
-{
-    // #67781 Rueckgabewerte der Uno-Methoden loeschen
-    clearUnoMethods();
-
-    ClearUnoObjectsInRTL_Impl_Rek( pBasic );
-
-    // Oberstes Basic suchen
-    SbxObject* p = pBasic;
-    while( p->GetParent() )
-        p = p->GetParent();
-    if( ((StarBASIC*)p) != pBasic )
-        ClearUnoObjectsInRTL_Impl_Rek( (StarBASIC*)p );
-}
-
 // Ausfuehren eines BASIC-Unterprogramms
 USHORT SbModule::Run( SbMethod* /*pMeth*/ )
 {
     DBG_ERROR( "SbModule::Run: dead code!" );
-/*?*/ //    static USHORT nMaxCallLevel = 0;
-/*?*/ //
-/*?*/ //    USHORT nRes = 0;
-/*?*/ //    BOOL bDelInst = BOOL( pINST == NULL );
-/*?*/ //    StarBASICRef xBasic;
-/*?*/ //    if( bDelInst )
-/*?*/ //    {
-/*?*/ //        // #32779: Basic waehrend der Ausfuehrung festhalten
-/*?*/ //        xBasic = (StarBASIC*) GetParent();
-/*?*/ //
-/*?*/ //        pINST = new SbiInstance( (StarBASIC*) GetParent() );
-/*?*/ //
-/*?*/ //        // Error-Stack loeschen
-/*?*/ //        SbErrorStack*& rErrStack = GetSbData()->pErrStack;
-/*?*/ //        delete rErrStack;
-/*?*/ //        rErrStack = NULL;
-/*?*/ //
-/*?*/ //        if( nMaxCallLevel == 0 )
-/*?*/ //        {
-/*?*/ // #ifdef UNX
-/*?*/ //          struct rlimit rl;
-/*?*/ //          getrlimit ( RLIMIT_STACK, &rl );
-/*?*/ //          // printf( "RLIMIT_STACK = %ld\n", rl.rlim_cur );
-/*?*/ // #endif
-/*?*/ // #if defined LINUX
-/*?*/ //          // Empiric value, 900 = needed bytes/Basic call level
-/*?*/ //          // for Linux including 10% safety margin
-/*?*/ //          nMaxCallLevel = rl.rlim_cur / 900;
-/*?*/ // #elif defined SOLARIS
-/*?*/ //          // Empiric value, 1650 = needed bytes/Basic call level
-/*?*/ //          // for Solaris including 10% safety margin
-/*?*/ //          nMaxCallLevel = rl.rlim_cur / 1650;
-/*?*/ // #elif defined WIN32
-/*?*/ //          nMaxCallLevel = 5800;
-/*?*/ // #else
-/*?*/ //          nMaxCallLevel = MAXRECURSION;
-/*?*/ // #endif
-/*?*/ //        }
-/*?*/ //    }
-/*?*/ //
-/*?*/ //    // Rekursion zu tief?
-/*?*/ //    if( ++pINST->nCallLvl <= nMaxCallLevel )
-/*?*/ //    {
-/*?*/ //        // Globale Variable in allen Mods definieren
-/*?*/ //        GlobalRunInit( /* bBasicStart = */ bDelInst );
-/*?*/ //
-/*?*/ //        // Trat ein Compiler-Fehler auf? Dann starten wir nicht
-/*?*/ //        if( GetSbData()->bGlobalInitErr == FALSE )
-/*?*/ //        {
-/*?*/ //            if( bDelInst )
-/*?*/ //            {
-/*?*/ //                SendHint( GetParent(), SBX_HINT_BASICSTART, pMeth );
-/*?*/ //
-/*?*/ //                // 16.10.96: #31460 Neues Konzept fuer StepInto/Over/Out
-/*?*/ //                // Erklaerung siehe runtime.cxx bei SbiInstance::CalcBreakCallLevel()
-/*?*/ //                // BreakCallLevel ermitteln
-/*?*/ //                pINST->CalcBreakCallLevel( pMeth->GetDebugFlags() );
-/*?*/ //            }
-/*?*/ //
-/*?*/ //            SbModule* pOldMod = pMOD;
-/*?*/ //            pMOD = this;
-/*?*/ //            SbiRuntime* pRt = new SbiRuntime( this, pMeth, pMeth->nStart );
-/*?*/ //            pRt->pNext = pINST->pRun;
-/*?*/ //            if( pRt->pNext )
-/*?*/ //                pRt->pNext->block();
-/*?*/ //            pINST->pRun = pRt;
-/*?*/ //            if ( SbiRuntime ::isVBAEnabled() )
-/*?*/ //                pINST->EnableCompatibility( TRUE );
-/*?*/ //            while( pRt->Step() ) {}
-/*?*/ //            if( pRt->pNext )
-/*?*/ //                pRt->pNext->unblock();
-/*?*/ //
-/*?*/ //            // #63710 Durch ein anderes Thread-Handling bei Events kann es passieren,
-/*?*/ //            // dass show-Aufruf an einem Dialog zurueckkehrt (durch schliessen des
-/*?*/ //            // Dialogs per UI), BEVOR ein per Event ausgeloester weitergehender Call,
-/*?*/ //            // der in Basic weiter oben im Stack steht und auf einen Basic-Breakpoint
-/*?*/ //            // gelaufen ist, zurueckkehrt. Dann wird unten die Instanz zerstoert und
-/*?*/ //            // wenn das noch im Call stehende Basic weiterlaeuft, gibt es einen GPF.
-/*?*/ //            // Daher muss hier gewartet werden, bis andere Call zurueckkehrt.
-/*?*/ //            if( bDelInst )
-/*?*/ //            {
-/*?*/ //                // Hier mit 1 statt 0 vergleichen, da vor nCallLvl--
-/*?*/ //                while( pINST->nCallLvl != 1 )
-/*?*/ //                    GetpApp()->Yield();
-/*?*/ //            }
-/*?*/ //
-/*?*/ //            nRes = TRUE;
-/*?*/ //            pINST->pRun = pRt->pNext;
-/*?*/ //            pINST->nCallLvl--;          // Call-Level wieder runter
-/*?*/ //
-/*?*/ //            // Gibt es eine uebergeordnete Runtime-Instanz?
-/*?*/ //            // Dann SbDEBUG_BREAK uebernehmen, wenn gesetzt
-/*?*/ //            SbiRuntime* pRtNext = pRt->pNext;
-/*?*/ //            if( pRtNext && (pRt->GetDebugFlags() & SbDEBUG_BREAK) )
-/*?*/ //                pRtNext->SetDebugFlags( SbDEBUG_BREAK );
-/*?*/ //
-/*?*/ //            delete pRt;
-/*?*/ //            pMOD = pOldMod;
-/*?*/ //            if( bDelInst )
-/*?*/ //            {
-/*?*/ //                // #57841 Uno-Objekte, die in RTL-Funktionen gehalten werden,
-/*?*/ //                // beim Programm-Ende freigeben, damit nichts gehalten wird.
-/*?*/ //                ClearUnoObjectsInRTL_Impl( xBasic );
-/*?*/ //
-/*?*/ //                DBG_ASSERT(pINST->nCallLvl==0,"BASIC-Call-Level > 0")
-/*?*/ //                delete pINST, pINST = NULL, bDelInst = FALSE;
-/*?*/ //
-/*?*/ //                // #i30690
-/*?*/ //                vos::OGuard aSolarGuard( Application::GetSolarMutex() );
-/*?*/ //                SendHint( GetParent(), SBX_HINT_BASICSTOP, pMeth );
-/*?*/ //
-/*?*/ //                GlobalRunDeInit();
-/*?*/ //            }
-/*?*/ //         }
-/*?*/ //         else
-/*?*/ //                pINST->nCallLvl--;          // Call-Level wieder runter
-/*?*/ //    }
-/*?*/ //    else
-/*?*/ //     {
-/*?*/ //        pINST->nCallLvl--;          // Call-Level wieder runter
-/*?*/ //        StarBASIC::FatalError( SbERR_STACK_OVERFLOW );
-/*?*/ //     }
-/*?*/ //    if( bDelInst )
-/*?*/ //    {
-/*?*/ //        // #57841 Uno-Objekte, die in RTL-Funktionen gehalten werden,
-/*?*/ //        // beim Programm-Ende freigeben, damit nichts gehalten wird.
-/*?*/ //        ClearUnoObjectsInRTL_Impl( xBasic );
-/*?*/ //
-/*?*/ //        delete pINST;
-/*?*/ //        pINST = NULL;
-/*?*/ //    }
-/*?*/ //    return nRes;
     return 0;
-}
-
-// Ausfuehren der Init-Methode eines Moduls nach dem Laden
-// oder der Compilation
-
-void SbModule::RunInit()
-{
-    DBG_ERROR( "SbModule::RunInit: dead code!" );
-/*?*/ //    if( pImage
-/*?*/ //     && !pImage->bInit
-/*?*/ //     && pImage->GetFlag( SBIMG_INITCODE ) )
-/*?*/ //    {
-/*?*/ //        // Flag setzen, dass RunInit aktiv ist (Testtool)
-/*?*/ //        GetSbData()->bRunInit = TRUE;
-/*?*/ //
-/*?*/ //        // BOOL bDelInst = BOOL( pINST == NULL );
-/*?*/ //        // if( bDelInst )
-/*?*/ //            // pINST = new SbiInstance( (StarBASIC*) GetParent() );
-/*?*/ //        SbModule* pOldMod = pMOD;
-/*?*/ //        pMOD = this;
-/*?*/ //        // Der Init-Code beginnt immer hier
-/*?*/ //        SbiRuntime* pRt = new SbiRuntime( this, NULL, 0 );
-/*?*/ //        pRt->pNext = pINST->pRun;
-/*?*/ //        pINST->pRun = pRt;
-/*?*/ //        while( pRt->Step() ) {}
-/*?*/ //        pINST->pRun = pRt->pNext;
-/*?*/ //        delete pRt;
-/*?*/ //        pMOD = pOldMod;
-/*?*/ //        // if( bDelInst )
-/*?*/ //            // delete pINST, pINST = NULL;
-/*?*/ //        pImage->bInit = TRUE;
-/*?*/ //         pImage->bFirstInit = FALSE;
-/*?*/ //
-/*?*/ //        // RunInit ist nicht mehr aktiv
-/*?*/ //        GetSbData()->bRunInit = FALSE;
-/*?*/ //    }
-}
-
-// Mit private/dim deklarierte Variablen loeschen
-void SbModule::ClearPrivateVars()
-{
-    for( USHORT i = 0 ; i < pProps->Count() ; i++ )
-    {
-        SbProperty* p = PTR_CAST(SbProperty,pProps->Get( i ) );
-        if( p )
-        {
-            // Arrays nicht loeschen, sondern nur deren Inhalt
-            if( p->GetType() & SbxARRAY )
-            {
-                SbxArray* pArray = PTR_CAST(SbxArray,p->GetObject());
-                if( pArray )
-                {
-                    for( USHORT j = 0 ; j < pArray->Count() ; j++ )
-                    {
-                        SbxVariable* pj = PTR_CAST(SbxVariable,pArray->Get( j ));
-                        pj->SbxValue::Clear();
-                        /*
-                        USHORT nFlags = pj->GetFlags();
-                        pj->SetFlags( (nFlags | SBX_WRITE) & (~SBX_FIXED) );
-                        pj->PutEmpty();
-                        pj->SetFlags( nFlags );
-                        */
-                    }
-                }
-            }
-            else
-            {
-                p->SbxValue::Clear();
-                /*
-                USHORT nFlags = p->GetFlags();
-                p->SetFlags( (nFlags | SBX_WRITE) & (~SBX_FIXED) );
-                p->PutEmpty();
-                p->SetFlags( nFlags );
-                */
-            }
-        }
-    }
-}
-
-// Zunaechst in dieses Modul, um 358-faehig zu bleiben
-// (Branch in sb.cxx vermeiden)
-void StarBASIC::ClearAllModuleVars( void )
-{
-    // Eigene Module initialisieren
-    for ( USHORT nMod = 0; nMod < pModules->Count(); nMod++ )
-    {
-        SbModule* pModule = (SbModule*)pModules->Get( nMod );
-        // Nur initialisieren, wenn der Startcode schon ausgefuehrt wurde
-        if( pModule->pImage && pModule->pImage->bInit )
-            pModule->ClearPrivateVars();
-    }
-
-    /* #88042 This code can delete already used public vars during runtime!
-    // Alle Objekte ueberpruefen, ob es sich um ein Basic handelt
-    // Wenn ja, auch dort initialisieren
-    for ( USHORT nObj = 0; nObj < pObjs->Count(); nObj++ )
-    {
-        SbxVariable* pVar = pObjs->Get( nObj );
-        StarBASIC* pBasic = PTR_CAST(StarBASIC,pVar);
-        if( pBasic )
-            pBasic->ClearAllModuleVars();
-    }
-    */
-}
-
-// Ausfuehren des Init-Codes aller Module
-void SbModule::GlobalRunInit( BOOL bBasicStart )
-{
-    // Wenn kein Basic-Start, nur initialisieren, wenn Modul uninitialisiert
-    if( !bBasicStart )
-        if( !(pImage && !pImage->bInit) )
-            return;
-
-    // GlobalInitErr-Flag fuer Compiler-Error initialisieren
-    // Anhand dieses Flags kann in SbModule::Run() nach dem Aufruf
-    // von GlobalRunInit festgestellt werden, ob beim initialisieren
-    // der Module ein Fehler auftrat. Dann wird nicht gestartet.
-    GetSbData()->bGlobalInitErr = FALSE;
-
-    // Parent vom Modul ist ein Basic
-    StarBASIC *pBasic = PTR_CAST(StarBASIC,GetParent());
-    if( pBasic )
-    {
-        pBasic->InitAllModules();
-
-        SbxObject* pParent_ = pBasic->GetParent();
-        if( pParent_ )
-        {
-            StarBASIC * pParentBasic = PTR_CAST(StarBASIC,pParent_);
-            if( pParentBasic )
-            {
-                pParentBasic->InitAllModules( pBasic );
-
-                // #109018 Parent can also have a parent (library in doc)
-                SbxObject* pParentParent = pParentBasic->GetParent();
-                if( pParentParent )
-                {
-                    StarBASIC * pParentParentBasic = PTR_CAST(StarBASIC,pParentParent);
-                    if( pParentParentBasic )
-                        pParentParentBasic->InitAllModules( pParentBasic );
-                }
-            }
-        }
-    }
-}
-
-void SbModule::GlobalRunDeInit( void )
-{
-    StarBASIC *pBasic = PTR_CAST(StarBASIC,GetParent());
-    if( pBasic )
-    {
-        pBasic->DeInitAllModules();
-
-        SbxObject* pParent_ = pBasic->GetParent();
-        if( pParent_ )
-            pBasic = PTR_CAST(StarBASIC,pParent_);
-        if( pBasic )
-            pBasic->DeInitAllModules();
-    }
 }
 
 // Suche nach dem naechsten STMNT-Befehl im Code. Wird vom STMNT-
@@ -1069,28 +567,6 @@ BOOL SbModule::IsBP( USHORT nLine ) const
 BOOL SbModule::SetBP( USHORT /*nLine*/ )
 {
     DBG_ERROR( "SbModule::SetBP: dead code!" );
-/*?*/ //    if( !IsBreakable( nLine ) )
-/*?*/ //        return FALSE;
-/*?*/ //    if( !pBreaks )
-/*?*/ //        pBreaks = new SbiBreakpoints;
-/*?*/ //    const USHORT* p = pBreaks->GetData();
-/*?*/ //    USHORT n = pBreaks->Count();
-/*?*/ //    USHORT i;
-/*?*/ //    for( i = 0; i < n; i++, p++ )
-/*?*/ //    {
-/*?*/ //        USHORT b = *p;
-/*?*/ //        if( b == nLine )
-/*?*/ //            return TRUE;
-/*?*/ //        if( b < nLine )
-/*?*/ //            break;
-/*?*/ //    }
-/*?*/ //    pBreaks->Insert( &nLine, 1, i );
-/*?*/ //
-/*?*/ //    // #38568: Zur Laufzeit auch hier SbDEBUG_BREAK setzen
-/*?*/ //    if( pINST && pINST->pRun )
-/*?*/ //        pINST->pRun->SetDebugFlags( SbDEBUG_BREAK );
-/*?*/ //
-/*?*/ //    return IsBreakable( nLine );
     return FALSE;
 }
 
@@ -1226,64 +702,8 @@ BOOL SbModule::StoreData( SvStream& rStrm ) const
     }
 }
 
-BOOL SbModule::ExceedsLegacyModuleSize()
-{
-    if ( !IsCompiled() )
-        Compile();
-    if ( pImage && pImage->ExceedsLegacyLimits() )
-        return true;
-    return false;
-}
-
-
-// Store only image, no source
-BOOL SbModule::StoreBinaryData( SvStream& rStrm )
-{
-    return StoreBinaryData( rStrm, 0 );
-}
-
-BOOL SbModule::StoreBinaryData( SvStream& rStrm, USHORT nVer )
-{
-    BOOL bRet = Compile();
-    if( bRet )
-    {
-        BOOL bFixup = ( !nVer && !pImage->ExceedsLegacyLimits() );// save in old image format, fix up method starts
-
-        if ( bFixup ) // save in old image format, fix up method starts
-            fixUpMethodStart( true );
-         bRet = SbxObject::StoreData( rStrm );
-        if( bRet )
-        {
-            pImage->aOUSource = OUString();
-            pImage->aComment = aComment;
-            pImage->aName = GetName();
-
-            rStrm << (BYTE) 1;
-                    if ( nVer )
-                        bRet = pImage->Save( rStrm, B_EXT_IMG_VERSION );
-                    else
-                        bRet = pImage->Save( rStrm, B_LEGACYVERSION );
-                    if ( bFixup )
-                        fixUpMethodStart( false ); // restore method starts
-
-            pImage->aOUSource = aOUSource;
-        }
-    }
-    return bRet;
-}
-
 // Called for >= OO 1.0 passwd protected libraries only
 //
-
-BOOL SbModule::LoadBinaryData( SvStream& rStrm )
-{
-    OUString aKeepSource = aOUSource;
-    bool bRet = LoadData( rStrm, 2 );
-    LoadCompleted();
-    aOUSource = aKeepSource;
-    return bRet;
-}
-
 
 BOOL SbModule::LoadCompleted()
 {
@@ -1927,20 +1347,6 @@ SbMethod::~SbMethod()
 {
 }
 
-SbxArray* SbMethod::GetLocals()
-{
-/*?*/ //    if( pINST )
-/*?*/ //        return pINST->GetLocals( this );
-/*?*/ //    else
-        return NULL;
-}
-
-SbxArray* SbMethod::GetStatics()
-{
-    DBG_ERROR( "SbMethod::GetStatics() invalid, AB fragen" )
-    return NULL;
-}
-
 BOOL SbMethod::LoadData( SvStream& rStrm, USHORT nVer )
 {
     if( !SbxMethod::LoadData( rStrm, 1 ) )
@@ -1967,11 +1373,6 @@ BOOL SbMethod::StoreData( SvStream& rStrm ) const
           << (INT16) nStart
           << (BYTE)  bInvalid;
     return TRUE;
-}
-
-void SbMethod::GetLineRange( USHORT& l1, USHORT& l2 )
-{
-    l1 = nLine1; l2 = nLine2;
 }
 
 // Kann spaeter mal weg
