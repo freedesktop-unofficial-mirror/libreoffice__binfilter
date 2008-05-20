@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imageitm.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -40,33 +40,5 @@
 #endif
 
 class String;
-
-namespace binfilter
-{
-
-struct SfxImageItem_Impl;
-class  SfxImageItem : public SfxInt16Item
-{
-    SfxImageItem_Impl*      pImp;
-public:
-                            TYPEINFO();
-                            SfxImageItem( USHORT nWhich = 0, UINT16 nImage = 0 );
-                            SfxImageItem( USHORT nWhich, const String& rURL );
-                            SfxImageItem( const SfxImageItem& );
-    virtual                 ~SfxImageItem();
-
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
-    virtual int             operator==( const SfxPoolItem& ) const;
-    virtual BOOL            QueryValue( com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-
-    void                    SetRotation( long nValue );
-    long                    GetRotation() const;
-    void                    SetMirrored( BOOL bSet );
-    BOOL                    IsMirrored() const;
-    String                  GetURL() const;
-};
-
-}
 
 #endif // _SFX_IMAGEITM_HXX
