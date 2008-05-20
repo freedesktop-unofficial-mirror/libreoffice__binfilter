@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlexpit.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -96,21 +96,8 @@ public:
     SvXMLExportItemMapper( SvXMLItemMapEntriesRef rMapEntries );
     virtual ~SvXMLExportItemMapper();
 
-    /** fills the given attribute list with the items in the given set */
-    void exportXML( SvXMLAttributeList& rAttrList,
-                    const SfxItemSet& rSet,
-                    const SvXMLUnitConverter& rUnitConverter,
-                    const SvXMLNamespaceMap& rNamespaceMap,
-                    sal_uInt16 nFlags = 0 ) const;
-
     /** fills the given attribute list with the representation of one
         item */
-    void exportXML( SvXMLAttributeList& rAttrList,
-                    const SfxPoolItem& rItem,
-                    const SvXMLUnitConverter& rUnitConverter,
-                    const SvXMLNamespaceMap& rNamespaceMap,
-                    sal_uInt16 nFlags = 0 ) const;
-
     void exportXML( SvXMLExport& rExport,
                     const SfxItemSet& rSet,
                     const SvXMLUnitConverter& rUnitConverter,
