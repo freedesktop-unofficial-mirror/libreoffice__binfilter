@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdedxv.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,12 +83,6 @@ namespace binfilter {
 /*N*/     ImpClearVars();
 /*N*/ }
 
-/*?*/ SdrObjEditView::SdrObjEditView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/     SdrGlueEditView(pModel1,pXOut)
-/*?*/ {
-/*?*/     ImpClearVars();
-/*?*/ }
-
 /*N*/ SdrObjEditView::~SdrObjEditView()
 /*N*/ {
 /*N*/   pTextEditWin = NULL;            // Damit es in EndTextEdit kein ShowCursor gibt
@@ -132,7 +126,7 @@ namespace binfilter {
 /*?*/             // ...
 /*?*/         }
 /*?*/         if (eKind==HINT_MODELSAVED) { // #43095#
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTextEditOutliner->ClearModifyFlag();
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/         }
 /*N*/     }
 /*N*/ }
@@ -170,38 +164,9 @@ namespace binfilter {
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
-
 /*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL bDontDeleteReally)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
 /*N*/ }
-
-
-
-/*N*/ BOOL SdrObjEditView::IsTextEditHit(const Point& rHit, short nTol) const
-/*N*/ {
-/*N*/     BOOL bOk=FALSE;
-/*N*/     if (pTextEditObj!=NULL) {
-/*?*/         nTol=ImpGetHitTolLogic(nTol,NULL);
-/*?*/         // nur drittel Toleranz hier, damit die Handles
-/*?*/         // noch vernuenftig getroffen werden koennen
-/*?*/         nTol=nTol/3;
-/*?*/         nTol=0; // Joe am 6.3.1997: Keine Hittoleranz mehr hier
-/*?*/         if (!bOk) {
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Rectangle aEditArea;
-/*?*/         }
-/*N*/     }
-/*N*/     return bOk;
-/*N*/ }
-
-/*N*/ BOOL SdrObjEditView::IsTextEditFrameHit(const Point& rHit) const
-/*N*/ {
-/*N*/     BOOL bOk=FALSE;
-/*N*/     if (pTextEditObj!=NULL) {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrTextObj* pText=PTR_CAST(SdrTextObj,pTextEditObj);
-/*N*/     }
-/*N*/     return bOk;
-/*N*/ }
-
 
 /*N*/ void SdrObjEditView::DelWin(OutputDevice* pWin1)
 /*N*/ {
@@ -209,11 +174,6 @@ namespace binfilter {
 /*N*/     if (pTextEditObj!=NULL && !bTextEditOnlyOneView && pWin1->GetOutDevType()==OUTDEV_WINDOW) {
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (ULONG i=pTextEditOutliner->GetViewCount(); i>0;) {
 /*N*/     }
-/*N*/ }
-
-/*N*/ BOOL SdrObjEditView::IsTextEditInSelectionMode() const
-/*N*/ {
-/*N*/     return pTextEditOutliner!=NULL && pTextEditOutliner->IsInSelectionMode();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
