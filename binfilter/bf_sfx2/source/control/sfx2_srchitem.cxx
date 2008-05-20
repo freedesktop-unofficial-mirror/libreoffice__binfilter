@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_srchitem.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -266,58 +266,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 
-/*N*/ void SvxSearchItem::GetFromDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor >& rDescr )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ void SvxSearchItem::SetToDescriptor( ::com::sun::star::uno::Reference< ::com::sun::star::util::XSearchDescriptor > & rDescr )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
 /*N*/ void SvxSearchItem::Notify( const Sequence< OUString > &rPropertyNames )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetMatchFullHalfWidthForms( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetWordOnly( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetExact( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetSelection( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetRegExp( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetLEVRelaxed( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetLevenshtein( sal_Bool bVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
-/*N*/ void SvxSearchItem::SetTransliterationFlags( sal_Int32 nFlags )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   aSearchOpt.transliterateFlags = nFlags;
 /*N*/ }
 
 /*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
