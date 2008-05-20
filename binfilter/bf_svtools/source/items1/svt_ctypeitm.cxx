@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_ctypeitm.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,14 +73,6 @@ CntContentTypeItem::CntContentTypeItem()
 CntContentTypeItem::CntContentTypeItem( USHORT which, const XubString& rType )
 : CntUnencodedStringItem( which, rType ),
   _eType( CONTENT_TYPE_NOT_INIT )
-{
-}
-
-//----------------------------------------------------------------------------
-CntContentTypeItem::CntContentTypeItem( USHORT which,
-                                        const INetContentType eType )
-: CntUnencodedStringItem( which, INetContentTypes::GetContentType( eType ) ),
-  _eType( eType )
 {
 }
 
@@ -162,12 +154,6 @@ void CntContentTypeItem::SetValue( const XubString& rNewVal )
     _aPresentation.Erase();
 
     CntUnencodedStringItem::SetValue( rNewVal );
-}
-
-//----------------------------------------------------------------------------
-void CntContentTypeItem::SetPresentation( const XubString& rNewVal )
-{
-    _aPresentation = rNewVal;
 }
 
 //----------------------------------------------------------------------------
