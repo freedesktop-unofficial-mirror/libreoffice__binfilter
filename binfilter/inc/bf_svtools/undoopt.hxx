@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: undoopt.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,9 +62,6 @@ public:
                             virtual ~SvtUndoOptions();
 
     virtual void            Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-
-    void                    SetUndoCount( sal_Int32 n );
-    sal_Int32               GetUndoCount() const;
 };
 
 }
