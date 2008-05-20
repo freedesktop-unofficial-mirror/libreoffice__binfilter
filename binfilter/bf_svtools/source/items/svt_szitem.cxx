@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_szitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,15 +76,6 @@ SfxSizeItem::SfxSizeItem( USHORT nW, const Size& rVal ) :
     aVal( rVal )
 {
     DBG_CTOR(SfxSizeItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-SfxSizeItem::SfxSizeItem( USHORT nW, SvStream &rStream ) :
-    SfxPoolItem( nW )
-{
-    DBG_CTOR(SfxSizeItem, 0);
-    rStream >> aVal;
 }
 
 // -----------------------------------------------------------------------
