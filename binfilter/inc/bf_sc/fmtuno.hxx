@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fmtuno.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,7 +101,6 @@ private:
                                     const ScAddress& rPos, const String& rStyle );
 
 public:
-                            ScTableConditionalFormat();
                             ScTableConditionalFormat(ScDocument* pDoc, ULONG nKey,
                                                         BOOL bEnglish, BOOL bCompileXML);
     virtual                 ~ScTableConditionalFormat();
@@ -178,7 +177,6 @@ private:
     String                      aStyle;     // display name as stored in ScStyleSheet
 
 public:
-                            ScTableConditionalEntry();
                             ScTableConditionalEntry( ScTableConditionalFormat* pPar,
                                                      USHORT nM, const String& rEx1,
                                                      const String& rEx2, const ScAddress& rPos,
@@ -245,7 +243,6 @@ private:
     void                    ClearData_Impl();
 
 public:
-                            ScTableValidationObj();
                             ScTableValidationObj(ScDocument* pDoc, ULONG nKey,
                                                 BOOL bEnglish, BOOL bCompileXML);
     virtual                 ~ScTableValidationObj();
