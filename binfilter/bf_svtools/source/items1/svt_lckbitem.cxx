@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_lckbitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,14 +62,6 @@ TYPEINIT1_AUTOFACTORY(SfxLockBytesItem, SfxPoolItem);
 // -----------------------------------------------------------------------
 
 SfxLockBytesItem::SfxLockBytesItem()
-{
-}
-
-// -----------------------------------------------------------------------
-
-SfxLockBytesItem::SfxLockBytesItem( USHORT nW, SvLockBytes *pLockBytes )
-:   SfxPoolItem( nW ),
-    _xVal( pLockBytes )
 {
 }
 
