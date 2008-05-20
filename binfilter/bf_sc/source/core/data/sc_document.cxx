@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_document.cxx,v $
- * $Revision: 1.16 $
+ * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -868,28 +868,6 @@ namespace binfilter {
 /*N*/       DBG_ERROR("InitUndo");
 /*N*/ }
 
-
-/*N*/ void ScDocument::AddUndoTab( USHORT nTab1, USHORT nTab2, BOOL bColInfo, BOOL bRowInfo )
-/*N*/ {
-/*N*/   if (bIsUndo)
-/*N*/   {
-/*N*/       String aString;
-/*N*/       for (USHORT nTab = nTab1; nTab <= nTab2; nTab++)
-/*N*/           if (!pTab[nTab])
-/*N*/               pTab[nTab] = new ScTable(this, nTab, aString, bColInfo, bRowInfo);
-/*N*/
-/*N*/       if ( nMaxTableNumber <= nTab2 )
-/*N*/           nMaxTableNumber = nTab2 + 1;
-/*N*/   }
-/*N*/   else
-/*N*/       DBG_ERROR("InitUndo");
-/*N*/ }
-
-
-
-
-
-
 /*N*/ void ScDocument::CopyToDocument(USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                           USHORT nCol2, USHORT nRow2, USHORT nTab2,
 /*N*/                           USHORT nFlags, BOOL bOnlyMarked, ScDocument* pDestDoc,
@@ -999,17 +977,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aO
 /*N*/       pClipDoc->bCutMode = bCut;
 /*N*/   }
 /*N*/ }
-
-
-
-
-
-
-BOOL ScDocument::IsClipboardSource() const
-{
-    return FALSE;
-}
-
 
 void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark, USHORT nInsFlag )
 {
@@ -1412,16 +1379,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       nType = NUMBERFORMAT_UNDEFINED;
 /*N*/       nIndex = 0;
 /*N*/   }
-/*N*/ }
-
-
-/*N*/ void ScDocument::GetFormula( USHORT nCol, USHORT nRow, USHORT nTab, String& rFormula,
-/*N*/                            BOOL bAsciiExport ) const
-/*N*/ {
-/*N*/   if ( VALIDTAB(nTab) && pTab[nTab] )
-/*N*/           pTab[nTab]->GetFormula( nCol, nRow, rFormula, bAsciiExport );
-/*N*/   else
-/*N*/       rFormula.Erase();
 /*N*/ }
 
 
@@ -1894,19 +1851,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ void ScDocument::StripHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2, USHORT nTab )
-/*N*/ {
-/*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
-/*N*/       pTab[nTab]->StripHidden( rX1, rY1, rX2, rY2 );
-/*N*/ }
-
-
-/*N*/ void ScDocument::ExtendHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2, USHORT nTab )
-/*N*/ {
-/*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
-/*N*/       pTab[nTab]->ExtendHidden( rX1, rY1, rX2, rY2 );
-/*N*/ }
-
 //
 //  Attribute   ----------------------------------------------------------
 //
@@ -2004,18 +1948,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/                   pTab[i]->ApplySelectionStyle( rStyle, rMark );
 /*N*/   }
 /*N*/ }
-
-
-
-
-/*N*/ const ScStyleSheet*   ScDocument::GetStyle( USHORT nCol, USHORT nRow, USHORT nTab ) const
-/*N*/ {
-/*N*/   if ( VALIDTAB(nTab) && pTab[nTab] )
-/*N*/       return pTab[nTab]->GetStyle(nCol, nRow);
-/*N*/   else
-/*N*/       return NULL;
-/*N*/ }
-
 
 /*N*/ const ScStyleSheet*   ScDocument::GetSelectionStyle( const ScMarkData& rMark ) const
 /*N*/ {
@@ -2144,14 +2076,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ }
 
 
-/*N*/ const ScPatternAttr* ScDocument::GetSelectionPattern( const ScMarkData& rMark, BOOL bDeep )
-/*N*/ {
-/*N*/   delete pSelectionAttr;
-/*N*/   pSelectionAttr = CreateSelectionPattern( rMark, bDeep );
-/*N*/   return pSelectionAttr;
-/*N*/ }
-
-
 /*N*/ void ScDocument::GetSelectionFrame( const ScMarkData& rMark,
 /*N*/                                   SvxBoxItem&     rLineOuter,
 /*N*/                                   SvxBoxInfoItem& rLineInner )
@@ -2262,17 +2186,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/                     rRange.aEnd.Col(),   rRange.aEnd.Row(),   rRange.aEnd.Tab(),
 /*N*/                     nMask );
 /*N*/ }
-
-/*N*/ void ScDocument::FindMaxRotCol( USHORT nTab, RowInfo* pRowInfo, USHORT nArrCount,
-/*N*/                               USHORT nX1, USHORT nX2 ) const
-/*N*/ {
-/*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
-/*N*/       pTab[nTab]->FindMaxRotCol( pRowInfo, nArrCount, nX1, nX2 );
-/*N*/   else
-/*N*/       DBG_ERRORFILE("FindMaxRotCol: falsche Tabelle");
-/*N*/ }
-
-
 
 /*N*/ BOOL ScDocument::IsBlockEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
 /*N*/                                       USHORT nEndCol, USHORT nEndRow ) const
