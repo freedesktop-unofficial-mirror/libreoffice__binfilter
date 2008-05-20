@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_helpopt.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -116,11 +116,6 @@ public:
     sal_Int32       GetHelpAgentTimeoutPeriod( ) const      { return nHelpAgentTimeoutPeriod; }
     void            SetHelpAgentRetryLimit( sal_Int32 _nTrials )        { nHelpAgentRetryLimit = _nTrials; SetModified(); }
     sal_Int32       GetHelpAgentRetryLimit( ) const         { return nHelpAgentRetryLimit; }
-
-    sal_Int32       getAgentIgnoreURLCounter( const ::rtl::OUString& _rURL );
-    void            decAgentIgnoreURLCounter( const ::rtl::OUString& _rURL );
-    void            resetAgentIgnoreURLCounter( const ::rtl::OUString& _rURL );
-    void            resetAgentIgnoreURLCounter();
 
     void            SetWelcomeScreen( sal_Bool b )          { bWelcomeScreen = b; SetModified(); }
     sal_Bool        IsWelcomeScreen() const                 { return bWelcomeScreen; }
@@ -582,60 +577,6 @@ SvtHelpOptions::SvtHelpOptions()
 
 // -----------------------------------------------------------------------
 
-sal_Int32 SvtHelpOptions_Impl::getAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    ::osl::MutexGuard aGuard(aIgnoreCounterSafety);
-    ConstMapString2IntIterator aMapPos = aURLIgnoreCounters.find(_rURL);
-    if (aURLIgnoreCounters.end() == aMapPos)
-        return GetHelpAgentRetryLimit();
-    return aMapPos->second;
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions_Impl::decAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    ::osl::MutexGuard aGuard(aIgnoreCounterSafety);
-    MapString2IntIterator aMapPos = aURLIgnoreCounters.find(_rURL);
-    if (aURLIgnoreCounters.end() == aMapPos)
-    {   // nothing known about this URL 'til now
-        sal_Int32 nLimit = GetHelpAgentRetryLimit();
-        sal_Int32 nIgnoreAgain = nLimit > 0 ? nLimit - 1 : 0;
-        aURLIgnoreCounters[_rURL] = nIgnoreAgain;
-    }
-    else
-    {
-        sal_Int32& rCounter = aMapPos->second;
-        if (rCounter)
-            --rCounter;
-    }
-    SetModified();
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions_Impl::resetAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    ::osl::MutexGuard aGuard(aIgnoreCounterSafety);
-    MapString2IntIterator aMapPos = aURLIgnoreCounters.find(_rURL);
-    if (aURLIgnoreCounters.end() != aMapPos)
-    {
-        aURLIgnoreCounters.erase(aMapPos);
-        SetModified();
-    }
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions_Impl::resetAgentIgnoreURLCounter()
-{
-    ::osl::MutexGuard aGuard(aIgnoreCounterSafety);
-    aURLIgnoreCounters.clear();
-    SetModified();
-}
-
-// -----------------------------------------------------------------------
-
 SvtHelpOptions::~SvtHelpOptions()
 {
     // Global access, must be guarded (multithreading)
@@ -646,141 +587,6 @@ SvtHelpOptions::~SvtHelpOptions()
             pOptions->Commit();
         DELETEZ( pOptions );
     }
-}
-
-void SvtHelpOptions::SetExtendedHelp( sal_Bool b )
-{
-    pImp->SetExtendedHelp( b );
-}
-
-sal_Bool SvtHelpOptions::IsExtendedHelp() const
-{
-    return pImp->IsExtendedHelp();
-}
-
-void SvtHelpOptions::SetHelpTips( sal_Bool b )
-{
-    pImp->SetHelpTips( b );
-}
-
-sal_Bool SvtHelpOptions::IsHelpTips() const
-{
-    return pImp->IsHelpTips();
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::SetHelpAgentRetryLimit( sal_Int32 _nTrials )
-{
-    pImp->SetHelpAgentRetryLimit( _nTrials );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Int32 SvtHelpOptions::GetHelpAgentRetryLimit( ) const
-{
-    return pImp->GetHelpAgentRetryLimit( );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::SetHelpAgentTimeoutPeriod( sal_Int32 _nSeconds )
-{
-    pImp->SetHelpAgentTimeoutPeriod( _nSeconds );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Int32 SvtHelpOptions::GetHelpAgentTimeoutPeriod( ) const
-{
-    return pImp->GetHelpAgentTimeoutPeriod( );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::SetHelpAgentAutoStartMode( sal_Bool b )
-{
-    pImp->SetHelpAgentEnabled( b );
-}
-
-// -----------------------------------------------------------------------
-
-sal_Bool SvtHelpOptions::IsHelpAgentAutoStartMode() const
-{
-    return pImp->IsHelpAgentEnabled();
-}
-
-// -----------------------------------------------------------------------
-
-sal_Int32 SvtHelpOptions::getAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    return pImp->getAgentIgnoreURLCounter( _rURL );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::decAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    pImp->decAgentIgnoreURLCounter( _rURL );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::resetAgentIgnoreURLCounter( const ::rtl::OUString& _rURL )
-{
-    pImp->resetAgentIgnoreURLCounter( _rURL );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::resetAgentIgnoreURLCounter()
-{
-    pImp->resetAgentIgnoreURLCounter();
-}
-
-// -----------------------------------------------------------------------
-
-void SvtHelpOptions::SetWelcomeScreen( sal_Bool b )
-{
-    pImp->SetWelcomeScreen( b );
-}
-
-sal_Bool SvtHelpOptions::IsWelcomeScreen() const
-{
-    return pImp->IsWelcomeScreen();
-}
-
-IdList* SvtHelpOptions::GetPIStarterList()
-{
-    return pImp->GetPIStarterList();
-}
-
-void SvtHelpOptions::AddToPIStarterList( sal_Int32 )
-{
-}
-
-void SvtHelpOptions::RemoveFromPIStarterList( sal_Int32 )
-{
-}
-
-String SvtHelpOptions::GetLocale() const
-{
-    return pImp->GetLocale();
-}
-
-String SvtHelpOptions::GetSystem() const
-{
-    return pImp->GetSystem();
-}
-
-const String&   SvtHelpOptions::GetHelpStyleSheet()const
-{
-    return pImp->GetHelpStyleSheet();
-}
-
-void  SvtHelpOptions::SetHelpStyleSheet(const String& rStyleSheet)
-{
-    pImp->SetHelpStyleSheet(rStyleSheet);
 }
 
 }
