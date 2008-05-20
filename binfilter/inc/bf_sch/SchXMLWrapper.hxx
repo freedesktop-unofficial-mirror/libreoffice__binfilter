@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: SchXMLWrapper.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -88,13 +88,6 @@ class SchXMLWrapper
 
     sal_Bool mbIsDraw : 1;
     sal_Bool mbShowProgress : 1;
-
-    sal_Int32 ImportStream(
-        const ::rtl::OUString& rsStreamName,
-        const ::rtl::OUString& rsServiceName,
-        ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XParser >& xParser,
-        ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& xServiceFactory,
-        ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver >& xGraphObjResolver );
 
     sal_Bool ExportStream(
         const ::rtl::OUString& rsStreamName,
