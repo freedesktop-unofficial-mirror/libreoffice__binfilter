@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_thints.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -117,9 +117,6 @@
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>           // fuer SwRegHistory
 #endif
 #ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
@@ -429,11 +426,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       SwIndex aTmpIdx( this, *pAttr->GetStart() );
 /*?*/                       Update( aTmpIdx, 1, TRUE );
 /*?*/                       }
-/*?*/                   // Format loeschen nicht ins Undo aufnehmen!!
-/*?*/                   BOOL bUndo = pDoc->DoesUndo();
-/*?*/                   pDoc->DoUndo( FALSE );
 /*?*/                   DestroyAttr( pAttr );
-/*?*/                   pDoc->DoUndo( bUndo );
 /*?*/                   return FALSE;
 /*N*/                   }
 /*N*/               }
@@ -1169,11 +1162,6 @@ using namespace ::com::sun::star::i18n;
 
 
 /*************************************************************************
- *                      SwpHints::NoteInHistory()
- *************************************************************************/
-
-
-/*************************************************************************
  *                      SwpHints::ClearDummies()
  *************************************************************************/
 
@@ -1209,9 +1197,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       ( pOther->Which() == nWhich ||
 /*?*/                         lcl_Included( nWhich, pOther ) ) )
 /*?*/                   {
-/*?*/                       // Vorsicht: Geloeschte Dummies wuerden bei einer
-/*?*/                       // Undo-Aktion die Macht an sich reissen ...
-/*?*/                       // if( pHistory ) pHistory->Add( pHt );
 /*?*/                       rNode.DestroyAttr( Cut( --i ) );
 /*?*/                       break;
 /*?*/                   }
@@ -1368,26 +1353,14 @@ using namespace ::com::sun::star::i18n;
 /*N*/                     if ( pPrev == pNext )
 /*N*/                         pPrev = NULL;
 /*N*/
-/*?*/                     if( pHistory )
-/*?*/                     {
-/*?*/                         pHistory->Add( pAttr );
-/*?*/                         pHistory->Add( pNext );
-/*?*/                     }
 /*?*/                     *pAttr->GetEnd() = *pNext->GetEnd();
 /*?*/                     pAttr->SetDontExpand( FALSE );
-/*?*/                     if( pHistory ) pHistory->Add( pAttr, TRUE );
 /*?*/                     rNode.DestroyAttr( Cut( j - 1 ) );
 /*N*/                 }
 /*N*/                 if( pPrev )
 /*N*/                 {
-/*N*/                     if( pHistory )
-/*N*/                     {
-/*N*/                         pHistory->Add( pPrev );
-/*N*/                         pHistory->Add( pAttr );
-/*N*/                     }
 /*N*/                     *pPrev->GetEnd() = *pAttr->GetEnd();
 /*N*/                     pPrev->SetDontExpand( FALSE );
-/*N*/                     if( pHistory ) pHistory->Add( pPrev, TRUE );
 /*N*/                     rNode.DestroyAttr( Cut( i ) );
 /*N*/                 }
 /*N*/                 return TRUE;
@@ -1442,17 +1415,8 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       }
 /*?*/                       if ( bMerge )
 /*?*/                       {
-/*?*/                           // Auch Verschmelzen muss der History mitgeteilt
-/*?*/                           // werden, da sonst ein Delete sein Attribut nicht
-/*?*/                           // mehr findet, wenn es verschmolzen wurde!
-/*?*/                           if( pHistory )
-/*?*/                           {
-/*?*/                               pHistory->Add( pHt );
-/*?*/                               pHistory->Add( pOther );
-/*?*/                           }
 /*?*/                           *pHt->GetEnd() = *pOther->GetEnd();
 /*?*/                           pHt->SetDontExpand( FALSE );
-/*?*/                           if( pHistory ) pHistory->Add( pHt, TRUE );
 /*?*/                           rNode.DestroyAttr( Cut( j ) );
 /*?*/                           --i;
 /*?*/                           bMerged = TRUE;
@@ -1760,8 +1724,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           pOther->GetAttr() == pHint->GetAttr() )
 /*?*/                       {
 /*?*/                           // Gibts schon, alten raus.
-/*?*/                           if( pHistory )
-/*?*/                               pHistory->Add( pOther );
 /*?*/                           rNode.DestroyAttr( Cut(i) );
 /*?*/                       }
 /*?*/                       else
@@ -1810,7 +1772,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   if( !bCheckInclude ||
 /*N*/                                       lcl_Included( nOtherWhich, pHint ) )
 /*N*/                                   {
-/*N*/                                       if( pHistory ) pHistory->Add( pOther );
 /*N*/                                       rNode.DestroyAttr( Cut(i) );
 /*N*/                                   }
 /*N*/                                   else
@@ -1833,10 +1794,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   {
 /*N*/                                       if( nMaxEnd == nHtStart )
 /*N*/                                           bForgetAttr = FALSE;
-/*N*/                                       if( pHistory ) pHistory->Add( pOther );
 /*N*/                                       *pOther->GetEnd() = nHtStart;
 /*N*/                                         bResort = TRUE;
-/*N*/                                       if( pHistory ) pHistory->Add( pOther, TRUE );
 /*N*/                                       // ChainDelEnd( pOther );
 /*N*/                                       // ChainEnds( pOther );
 /*N*/                                   }
@@ -1849,7 +1808,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   // ten. Es wird beiseite gestellt und in
 /*N*/                                   // einem spaeteren Durchgang eingefuegt.
 /*N*/                                   // Beim Einfuegen spaltet es sich selbst.
-/*?*/                                       if( pHistory ) pHistory->Add( pOther );
 /*?*/                                       if( !pTmpHints )
 /*?*/                                           pTmpHints = new ::binfilter::SwpHtStart_SAR();
 /*?*/                                       pTmpHints->C40_INSERT( SwTxtAttr, pOther,
@@ -1871,21 +1829,13 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                         lcl_Included( nOtherWhich, pHint ) ) ||
 /*N*/                                       ( !bCheckInclude && !bOtherCharFmt ) )
 /*N*/                                   {
-/*N*/                                       if( pHistory ) pHistory->Add( pOther );
 /*N*/
 /*N*/                                       *pOther->GetStart() = nHtEnd;
 /*N*/
-/*N*/                                       if( pHistory ) pHistory->Add( pOther, TRUE );
 /*N*/                                       // ChainDelStart( pOther );
 /*N*/                                       // ChainStarts( pOther );
 /*N*/
-/*N*/                                       // nehme die History weg, damit beim Resort
-/*N*/                                       // nicht doppelt eingetragen wird!
-/*N*/
-/*N*/                                       SwRegHistory * pSave = pHistory;
-/*N*/                                       pHistory = 0;
 /*N*/                                       const BOOL bOk = Resort(i);
-/*N*/                                       pHistory = pSave;
 /*N*/                                       if( bOk )
 /*N*/                                           continue;
 /*N*/                                   }
@@ -1898,7 +1848,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/                                   // ten. Es wird beiseite gestellt und in
 /*?*/                                   // einem spaeteren Durchgang eingefuegt.
 /*?*/                                   // Beim Einfuegen spaltet es sich selbst.
-/*?*/                                       if( pHistory ) pHistory->Add( pOther );
 /*?*/                                       if( !pTmpHints )
 /*?*/                                           pTmpHints = new ::binfilter::SwpHtStart_SAR();
 /*?*/                                       pTmpHints->C40_INSERT( SwTxtAttr, pOther,
@@ -1927,8 +1876,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/           else
 /*N*/           {
 /*N*/               SwpHintsArr::Insert( pHint );
-/*N*/               if ( pHistory )
-/*N*/                   pHistory->Add( pHint, TRUE );
 /*N*/                 bResort = FALSE;
 /*N*/           }
 /*N*/           // InsertChain( pHint );
@@ -1970,8 +1917,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   else
 /*N*/   {
 /*N*/       SwpHintsArr::Insert( pHint );
-/*N*/       if ( pHistory )
-/*N*/           pHistory->Add( pHint, TRUE );
 /*N*/       // InsertChain( pHint );
 /*N*/
 /*N*/       // ... und die Abhaengigen benachrichtigen
@@ -1996,7 +1941,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/ {
 /*N*/   SwTxtAttr *pHint = GetHt(nPos);
 /*N*/   // ChainDelete( pHint );
-/*N*/   if( pHistory ) pHistory->Add( pHint );
 /*N*/   SwpHintsArr::DeleteAtPos( nPos );
 /*N*/
 /*N*/   if( RES_TXTATR_FIELD == pHint->Which() )
