@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dateitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -57,7 +57,6 @@ private:
 public:
                             TYPEINFO();
 
-                            SfxDateTimeItem( USHORT nWhich );
                             SfxDateTimeItem( USHORT nWhich,
                                              const DateTime& rDT );
                             SfxDateTimeItem( const SfxDateTimeItem& rCpy );
@@ -90,16 +89,11 @@ public:
     virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
 };
-
+/*
 class SfxColumnDateTimeItem : public SfxDateTimeItem
 {
 public:
                             TYPEINFO();
-
-                            SfxColumnDateTimeItem( USHORT nWhich );
-                            SfxColumnDateTimeItem( USHORT nWhich,
-                                             const DateTime& rDT );
-                            SfxColumnDateTimeItem( const SfxDateTimeItem& rCpy );
 
                             ~SfxColumnDateTimeItem() {}
 
@@ -112,7 +106,7 @@ public:
                                     const ::IntlWrapper * pIntlWrapper = 0 )
         const;
 };
-
+*/
 }
 
 #endif
