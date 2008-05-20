@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_cube3d.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -46,28 +46,6 @@
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dCubeObj, E3dCompoundObject);
-
-/*************************************************************************
-|*
-|* Konstruktor:                                                 |
-|* 3D-Quader erzeugen; aPos: Zentrum oder links, unten, hinten  |__
-|*                           (abhaengig von bPosIsCenter)      /
-|*
-\************************************************************************/
-
-/*N*/ E3dCubeObj::E3dCubeObj(E3dDefaultAttributes& rDefault, Vector3D aPos, const Vector3D& r3DSize)
-/*N*/ : E3dCompoundObject(rDefault)
-/*N*/ {
-/*N*/   // Defaults setzen
-/*N*/   SetDefaultAttributes(rDefault);
-/*N*/
-/*N*/   // uebergebene drueberbuegeln
-/*N*/   aCubePos = aPos;
-/*N*/   aCubeSize = r3DSize;
-/*N*/
-/*N*/   // Geometrie erzeugen
-/*N*/   CreateGeometry();
-/*N*/ }
 
 /*N*/ E3dCubeObj::E3dCubeObj()
 /*N*/ : E3dCompoundObject()
