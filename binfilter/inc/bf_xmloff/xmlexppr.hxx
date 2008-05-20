@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlexppr.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -141,31 +141,7 @@ public:
     sal_Bool Equals( const ::std::vector< XMLPropertyState >& aProperties1,
                      const ::std::vector< XMLPropertyState >& aProperties2 ) const;
 
-    /** fills the given attribute list with the items in the given set */
-    void exportXML(
-           SvXMLAttributeList& rAttrList,
-           const ::std::vector< XMLPropertyState >& rProperties,
-           const SvXMLUnitConverter& rUnitConverter,
-           const SvXMLNamespaceMap& rNamespaceMap,
-           sal_uInt16 nFlags = 0 ) const;
-    /** like above but only properties whose property map index is within the
-        specified range are exported */
-    void exportXML(
-           SvXMLAttributeList& rAttrList,
-           const ::std::vector< XMLPropertyState >& rProperties,
-           const SvXMLUnitConverter& rUnitConverter,
-           const SvXMLNamespaceMap& rNamespaceMap,
-           sal_Int32 nPropMapStartIdx, sal_Int32 nPropMapEndIdx,
-           sal_uInt16 nFlags = 0 ) const;
-
     /** fills the given attribute list with the representation of one item */
-    void exportXML(
-           SvXMLAttributeList& rAttrList,
-           const XMLPropertyState& rProperty,
-           const SvXMLUnitConverter& rUnitConverter,
-           const SvXMLNamespaceMap& rNamespaceMap,
-           sal_uInt16 nFlags = 0 ) const;
-
     void exportXML(
             SvXMLExport& rExport,
             const ::std::vector< XMLPropertyState >& rProperties,
