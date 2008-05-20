@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_unolayer.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -373,7 +373,31 @@ SdLayerManager::~SdLayerManager() throw()
 }
 
 // uno helper
-UNO3_GETIMPLEMENTATION_IMPL( SdLayerManager );
+const ::com::sun::star::uno::Sequence< sal_Int8 > & SdLayerManager::getUnoTunnelId() throw()
+{
+        static ::com::sun::star::uno::Sequence< sal_Int8 > * pSeq = 0;
+        if( !pSeq )
+        {
+                ::osl::Guard< ::osl::Mutex > aGuard( ::osl::Mutex::getGlobalMutex() );
+                if( !pSeq )
+                {
+                        static ::com::sun::star::uno::Sequence< sal_Int8 > aSeq( 16 );
+                        rtl_createUuid( (sal_uInt8*)aSeq.getArray(), 0, sal_True );
+                        pSeq = &aSeq;
+                }
+        }
+        return *pSeq;
+}
+
+sal_Int64 SAL_CALL SdLayerManager::getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& rId ) throw(::com::sun::star::uno::RuntimeException)
+{
+        if( rId.getLength() == 16 && 0 == rtl_compareMemory( getUnoTunnelId().getConstArray(),
+        rId.getConstArray(), 16 ) )
+        {
+                return sal::static_int_cast<sal_Int64>(reinterpret_cast<sal_IntPtr>(this));
+        }
+        return 0;
+}
 
 // XServiceInfo
 OUString SAL_CALL SdLayerManager::getImplementationName()
