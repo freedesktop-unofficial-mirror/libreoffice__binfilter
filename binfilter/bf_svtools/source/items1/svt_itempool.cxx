@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itempool.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,14 +93,6 @@ FASTBOOL SfxItemPool::IsItemFlag( USHORT nWhich, USHORT nFlag ) const
 }
 
 // -----------------------------------------------------------------------
-
-SfxBroadcaster& SfxItemPool::BC()
-{
-    return pImp->aBC;
-}
-
-// -----------------------------------------------------------------------
-
 
 SfxItemPool::SfxItemPool
 (
@@ -602,57 +594,6 @@ void SfxItemPool::Delete()
 
     pImp->DeleteItems();
     delete[] ppPoolDefaults; ppPoolDefaults = 0;
-}
-
-// ----------------------------------------------------------------------
-
-void SfxItemPool::Cleanup()
-{
-    DBG_CHKTHIS(SfxItemPool, 0);
-
-    //MA 16. Apr. 97: siehe ::Delete()
-
-    SfxPoolItemArray_Impl** ppItemArr = pImp->ppPoolItems;
-    SfxPoolItem** ppDefaultItem = ppPoolDefaults;
-    SfxPoolItem** ppStaticDefaultItem = ppStaticDefaults;
-    USHORT nArrCnt;
-
-    HACK( "fuer Image, dort gibt es derzeit keine Statics - Bug" )
-    if ( ppStaticDefaults ) //HACK fuer Image, dort gibt es keine Statics!!
-    {
-        for ( nArrCnt = GetSize_Impl();
-                nArrCnt;
-                --nArrCnt, ++ppItemArr, ++ppDefaultItem, ++ppStaticDefaultItem )
-        {
-            //Fuer jedes Item gibt es entweder ein Default oder ein static Default!
-            if ( *ppItemArr &&
-                 ((*ppDefaultItem && (*ppDefaultItem)->ISA(SfxSetItem)) ||
-                  (*ppStaticDefaultItem)->ISA(SfxSetItem)) )
-            {
-                SfxPoolItem** ppHtArr = (SfxPoolItem**)(*ppItemArr)->GetData();
-                for ( USHORT n = (*ppItemArr)->Count(); n; --n, ++ppHtArr )
-                    if ( *ppHtArr && !(*ppHtArr)->GetRefCount() )
-                    {
-                         DELETEZ(*ppHtArr);
-                    }
-            }
-        }
-    }
-
-    ppItemArr = pImp->ppPoolItems;
-
-    for ( nArrCnt = GetSize_Impl();
-          nArrCnt;
-          --nArrCnt, ++ppItemArr )
-    {
-        if ( *ppItemArr )
-        {
-            SfxPoolItem** ppHtArr = (SfxPoolItem**)(*ppItemArr)->GetData();
-            for ( USHORT n = (*ppItemArr)->Count(); n; --n, ++ppHtArr )
-                if ( *ppHtArr && !(*ppHtArr)->GetRefCount() )
-                    DELETEZ( *ppHtArr );
-        }
-    }
 }
 
 // ----------------------------------------------------------------------
