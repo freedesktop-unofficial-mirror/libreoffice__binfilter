@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: insdlg.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,21 +83,6 @@ namespace binfilter
 /********************** SvObjectServerList ********************************
 **************************************************************************/
 PRV_SV_IMPL_OWNER_LIST( SvObjectServerList, SvObjectServer )
-
-/*************************************************************************
-|*    SvObjectServerList::SvObjectServerList()
-|*
-|*    Beschreibung
-*************************************************************************/
-const SvObjectServer * SvObjectServerList::Get( const String & rHumanName ) const
-{
-    for( ULONG i = 0; i < Count(); i++ )
-    {
-        if( rHumanName == GetObject( i ).GetHumanName() )
-            return &GetObject( i );
-    }
-    return NULL;
-}
 
 /*************************************************************************
 |*    SvObjectServerList::SvObjectServerList()
