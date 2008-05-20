@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_internaloptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -247,16 +247,6 @@ class SvtInternalOptions_Impl : public ConfigItem
         sal_Bool    MailUIEnabled       () const { return m_bUseMailUI; }
 
         OUString    GetCurrentTempURL() const { return m_aCurrentTempURL; }
-        void        SetCurrentTempURL( const OUString& aNewCurrentTempURL );
-/*
-        void        PushRecoveryItem    (   const   OUString&   sURL        ,
-                                            const   OUString&   sFilter     ,
-                                             const  OUString&   sTempName   );
-        void        PopRecoveryItem     (           OUString&   sURL        ,
-                                                    OUString&   sFilter     ,
-                                                    OUString&   sTempName   );
-        sal_Bool    IsRecoveryListEmpty (                                   ) const;
-*/
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------
@@ -426,53 +416,6 @@ void SvtInternalOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtInternalOptions_Impl::SetCurrentTempURL( const OUString& aNewCurrentTempURL )
-{
-    m_aCurrentTempURL = aNewCurrentTempURL;
-    SetModified();
-    Commit();
-}
-
-#if 0
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtInternalOptions_Impl::PushRecoveryItem( const   OUString&   sURL        ,
-                                                const   OUString&   sFilter     ,
-                                                const   OUString&   sTempName   )
-{
-    tIMPL_RecoveryEntry aEntry( sURL, sFilter, sTempName );
-    m_aRecoveryList.push_front( aEntry );
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtInternalOptions_Impl::PopRecoveryItem(  OUString&   sURL        ,
-                                                OUString&   sFilter     ,
-                                                OUString&   sTempName   )
-{
-    tIMPL_RecoveryEntry aEntry = m_aRecoveryList.front();
-    m_aRecoveryList.pop_front();
-    SetModified();  // Don't forget it - we delete an entry here!
-    sURL        = aEntry.sURL       ;
-    sFilter     = aEntry.sFilter    ;
-    sTempName   = aEntry.sTempName  ;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtInternalOptions_Impl::IsRecoveryListEmpty() const
-{
-    return ( m_aRecoveryList.empty() );
-}
-#endif
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtInternalOptions_Impl::impl_GetPropertyNames()
@@ -558,72 +501,6 @@ SvtInternalOptions::~SvtInternalOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtInternalOptions::SlotCFGEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->SlotCFGEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtInternalOptions::CrashMailEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->CrashMailEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtInternalOptions::MailUIEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->MailUIEnabled();
-}
-
-//*****************************************************************************************************************
-//  public methods
-//*****************************************************************************************************************
-sal_Bool SvtInternalOptions::IsRemoveMenuEntryClose() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsRemoveMenuEntryClose();
-}
-
-sal_Bool SvtInternalOptions::IsRemoveMenuEntryBackToWebtop() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsRemoveMenuEntryBackToWebtop();
-}
-
-sal_Bool SvtInternalOptions::IsRemoveMenuEntryNewWebtop() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsRemoveMenuEntryNewWebtop();
-}
-
-sal_Bool SvtInternalOptions::IsRemoveMenuEntryLogout() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsRemoveMenuEntryLogout();
-}
-
-OUString SvtInternalOptions::GetCurrentTempURL() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetCurrentTempURL();
-}
-
-void SvtInternalOptions::SetCurrentTempURL( const OUString& aNewCurrentTempURL )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetCurrentTempURL( aNewCurrentTempURL );
 }
 
 //*****************************************************************************************************************
