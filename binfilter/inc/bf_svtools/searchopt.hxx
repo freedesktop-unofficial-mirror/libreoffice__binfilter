@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: searchopt.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -54,8 +54,6 @@ public:
     SvtSearchOptions();
     ~SvtSearchOptions();
 
-    INT32   GetTransliterationFlags() const;
-
     //
     // General Options
     //
@@ -63,18 +61,9 @@ public:
     BOOL    IsWholeWordsOnly() const;
     BOOL    IsBackwards() const;
     BOOL    IsUseRegularExpression() const;
-    BOOL    IsSearchForStyles() const;
     BOOL    IsSimilaritySearch() const;
     BOOL    IsUseAsianOptions() const;
     BOOL    IsMatchCase() const;            // also Japanese search option
-
-    void    SetWholeWordsOnly( BOOL bVal );
-    void    SetBackwards( BOOL bVal );
-    void    SetUseRegularExpression( BOOL bVal );
-    void    SetSearchForStyles( BOOL bVal );
-    void    SetSimilaritySearch( BOOL bVal );
-    void    SetUseAsianOptions( BOOL bVal );
-    void    SetMatchCase( BOOL bVal );      // also Japanese search option
 
     //
     // Japanese search options
@@ -98,25 +87,6 @@ public:
     BOOL    IsIgnoreWhitespace() const;
     BOOL    IsIgnoreProlongedSoundMark() const;
     BOOL    IsIgnoreMiddleDot() const;
-
-    void    SetMatchFullHalfWidthForms( BOOL bVal );
-    void    SetMatchHiraganaKatakana( BOOL bVal );
-    void    SetMatchContractions( BOOL bVal );
-    void    SetMatchMinusDashChoon( BOOL bVal );
-    void    SetMatchRepeatCharMarks( BOOL bVal );
-    void    SetMatchVariantFormKanji( BOOL bVal );
-    void    SetMatchOldKanaForms( BOOL bVal );
-    void    SetMatchDiziDuzu( BOOL bVal );
-    void    SetMatchBavaHafa( BOOL bVal );
-    void    SetMatchTsithichiDhizi( BOOL bVal );
-    void    SetMatchHyuiyuByuvyu( BOOL bVal );
-    void    SetMatchSesheZeje( BOOL bVal );
-    void    SetMatchIaiya( BOOL bVal );
-    void    SetMatchKiku( BOOL bVal );
-    void    SetIgnorePunctuation( BOOL bVal );
-    void    SetIgnoreWhitespace( BOOL bVal );
-    void    SetIgnoreProlongedSoundMark( BOOL bVal );
-    void    SetIgnoreMiddleDot( BOOL bVal );
 };
 
 }
