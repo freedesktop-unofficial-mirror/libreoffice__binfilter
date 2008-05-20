@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_docinf.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -171,7 +171,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/         nEncoding = RTL_TEXTENCODING_UTF8;
 /*N*/     }
 /*N*/
-/*N*/     void SetCodePage( UINT16 nCodePage );
 /*N*/     void SetIsUniCode() { bIsUniCode = TRUE; }
 /*N*/
 /*N*/   virtual ULONG   Save( SvStream& rStream );
@@ -180,14 +179,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/
 /*N*/   const String&   GetString() { return aString; }
 /*N*/ };
-
-
-/*N*/ void SfxPSStringProperty_Impl::SetCodePage( UINT16 nCodePage )
-/*N*/ {
-/*N*/     rtl_TextEncoding nEnc = rtl_getTextEncodingFromWindowsCodePage(nCodePage);
-/*N*/     if (nEnc != RTL_TEXTENCODING_DONTKNOW)
-/*N*/         nEncoding = nEnc;
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -416,7 +407,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   SvGlobalName aId;
 /*N*/   SfxPSPropertyArr_Impl aProperties;
 /*N*/   ULONG Save(SvStream &rStream);
-/*N*/   ULONG Load( SvStream& rStream );
 /*N*/ };
 
 //=========================================================================
@@ -430,10 +420,8 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/
 /*N*/   void   SetSectionName(const SvGlobalName& aIdP);
 /*N*/   void   AddProperty( SfxPSProperty_Impl* pProp);
-/*N*/   SfxPSProperty_Impl* GetProperty( UINT32 nId );
 /*N*/
 /*N*/   ULONG Save(SvStream &rStream);
-/*N*/   ULONG Load( SvStream& rStream );
 /*N*/ };
 
 
@@ -486,102 +474,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return aSection.Save(rStream);
 /*N*/ }
 
-
-/*N*/ ULONG SfxPS_Impl::Load( SvStream& rStream )
-/*N*/ {
-/*N*/   SvGlobalName aName;
-/*N*/   UINT16 nByteOrder;
-/*N*/   UINT16 nVersion;
-/*N*/   UINT16 nOsMinor;
-/*N*/   UINT16 nOsType;
-/*N*/   UINT32 nSections;
-/*N*/
-/*N*/   rStream >> nByteOrder >> nVersion >> nOsMinor >> nOsType >> aName >> nSections;
-/*N*/
-/*N*/   if( nSections != 1 )
-/*N*/   {
-/*N*/       DBG_WARNINGFILE( "DocInfo contains more than one section" );
-/*N*/       return ERRCODE_IO_GENERAL;
-/*N*/   }
-/*N*/   SetSectionName( aName );
-/*N*/
-/*    if ( nOsMinor == 5 )
-        rStream.SetStreamCharSet( RTL_TEXTENCODING_UTF8 );*/
-
-/*N*/   return aSection.Load( rStream );
-/*N*/ }
-
-/*N*/ ULONG SfxPSSection_Impl::Load( SvStream& rStream )
-/*N*/ {
-//Nur eine Section laden: ( Use of more than 1 section is discouraged
-//and will not be supported in future windows apis).
-
-/*N*/   UINT16 nCodePage = 0;
-/*N*/
-/*N*/   UINT32 nPos;
-/*N*/   rStream >> aId;
-/*N*/   rStream >> nPos;
-/*N*/
-/*N*/   rStream.Seek( nPos ); // SectionHeader
-/*N*/   UINT32 nLen;
-/*N*/   UINT32 nCount;
-/*N*/   rStream >> nLen;
-/*N*/   rStream >> nCount;
-/*N*/   UINT32 *pKeyIds = new UINT32[ nCount ];
-/*N*/   UINT32 *pPositions = new UINT32[ nCount ];
-/*N*/   USHORT n;
-/*N*/   ULONG nErr = 0;
-/*N*/   for( n = 0; n < nCount && !rStream.GetErrorCode(); n++ )
-/*N*/   {
-/*N*/       rStream >> pKeyIds[ n ];
-/*N*/       rStream >> pPositions[ n ];
-/*N*/   }
-/*N*/   for( n = 0; n < nCount && !nErr; n++ )
-/*N*/   {
-/*N*/       rStream.Seek( nPos + pPositions[ n ] );
-/*N*/       UINT32 nId;
-/*N*/       rStream >> nId;
-/*N*/       SfxPSProperty_Impl* pProp = 0;
-/*N*/       switch( nId )
-/*N*/       {
-/*N*/           case VT_LPSTR:
-/*N*/           {
-/*N*/                 pProp = new SfxPSStringProperty_Impl( pKeyIds[ n ] );
-/*N*/                 ((SfxPSStringProperty_Impl*)pProp)->SetCodePage( nCodePage );
-/*N*/               break;
-/*N*/           }
-/*N*/           case VT_FILETIME:
-/*N*/           {
-/*N*/               pProp = new SfxPSDateTimeProperty_Impl( pKeyIds[ n ] );
-/*N*/               break;
-/*N*/           }
-/*N*/             case VT_LPWSTR:
-/*N*/             {
-/*N*/                 pProp = new SfxPSStringProperty_Impl( pKeyIds[ n ] );
-/*N*/                 ((SfxPSStringProperty_Impl*)pProp)->SetIsUniCode();
-/*N*/                 break;
-/*N*/             }
-/*N*/             case VT_I2:
-/*N*/             {
-/*N*/                 if( pKeyIds[ n ] == 1 )
-/*N*/                 {
-/*N*/                     rStream >> nCodePage;
-/*N*/                 }
-/*N*/                 break;
-/*N*/             }
-/*N*/       }
-/*N*/
-/*N*/       if( pProp )
-/*N*/       {
-/*N*/           nErr = pProp->Load( rStream );
-/*N*/           aProperties.Insert( pProp, 0 );
-/*N*/       }
-/*N*/   }
-/*N*/   delete[] pKeyIds;
-/*N*/   delete[] pPositions;
-/*N*/   return nErr;
-/*N*/ }
-
 //-------------------------------------------------------------------------
 
 /*N*/ ULONG SfxPSSection_Impl::Save(SvStream &rStream)
@@ -624,15 +516,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return rStream.GetErrorCode();
 /*N*/ }
 
-
-/*N*/ SfxPSProperty_Impl* SfxPS_Impl::GetProperty( UINT32 nId )
-/*N*/ {
-/*N*/   USHORT nPos = GetPos( nId );
-/*N*/   return nPos == USHRT_MAX ? 0 : aSection.aProperties.GetObject( nPos );
-/*N*/ }
-
 //========================================================================
-
 
 /*N*/ SvStream& PaddWithBlanks_Impl(SvStream &rStream, USHORT nCount)
 /*N*/ {
@@ -692,14 +576,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 
 //-------------------------------------------------------------------------
 
-/*?*/ void SfxDocUserKey::AdjustTitle_Impl()
-/*?*/ {
-/*?*/   if ( aTitle.Len() > SFXDOCUSERKEY_LENMAX )
-/*?*/       aTitle.Erase( SFXDOCUSERKEY_LENMAX );
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ BOOL SfxDocUserKey::Load(SvStream &rStream)
 /*N*/ {
 /*N*/     rStream.ReadByteString( aTitle );
@@ -736,14 +612,12 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ SfxDocUserKey::SfxDocUserKey( const String& rTitle, const String& rWord ) :
 /*N*/       aTitle( rTitle ), aWord( rWord )
 /*N*/ {
-/*N*/   //!AdjustTitle_Impl();
 /*N*/ }
 //------------------------------------------------------------------------
 /*N*/ const SfxDocUserKey& SfxDocUserKey::operator=(const SfxDocUserKey &rCopy)
 /*N*/ {
 /*N*/   aTitle = rCopy.aTitle;
 /*N*/   aWord = rCopy.aWord;
-/*N*/   //!AdjustTitle_Impl();
 /*N*/   return *this;
 /*N*/ }
 // SfxDocumentInfo -------------------------------------------------------
@@ -892,98 +766,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   }
 /*N*/   return bOK;
 /*N*/ }
-
-/*N*/ #ifdef _MSC_VER
-/*N*/ #pragma optimize ( "", off )
-/*N*/ #endif
-
-/*N*/ ULONG SfxDocumentInfo::LoadPropertySet( SvStorage* pStorage )
-/*N*/ {
-/*N*/   SvStorageStreamRef aStrPropSet = pStorage->OpenStream(
-/*N*/       String::CreateFromAscii( pPropSlot ), STREAM_STD_READ );
-/*N*/   if ( !aStrPropSet.Is() )
-/*N*/       return ERRCODE_IO_ACCESSDENIED;
-/*N*/   aStrPropSet->SetBufferSize( STREAM_BUFFER_SIZE );
-/*N*/   SfxPS_Impl* pPS = new SfxPS_Impl;
-/*N*/   ULONG nErr = pPS->Load( *aStrPropSet );
-/*N*/
-/*N*/   UINT32 aStrArr[] =  { PID_TITLE, PID_SUBJECT, PID_KEYWORDS, PID_TEMPLATE, PID_COMMENTS, 0 };
-/*N*/   UINT32 aLens[] =    { SFXDOCINFO_TITLELENMAX, SFXDOCINFO_THEMELENMAX,
-/*N*/                         SFXDOCINFO_KEYWORDLENMAX, USHRT_MAX, SFXDOCINFO_COMMENTLENMAX };
-/*N*/
-/*N*/ #if ( __GNUC__ == 2 ) && ( __GNUC_MINOR__ == 95 )
-/*N*/   void ( SfxDocumentInfo::*pStrFuncs[] )( String& ) =
-/*N*/ #else
-/*N*/   void ( SfxDocumentInfo::*pStrFuncs[] )( const String& ) =
-/*N*/ #endif
-/*N*/   {
-/*N*/       &SfxDocumentInfo::SetTitle,
-/*N*/       &SfxDocumentInfo::SetTheme,
-/*N*/       &SfxDocumentInfo::SetKeywords,
-/*N*/       &SfxDocumentInfo::SetTemplateName,
-/*N*/       &SfxDocumentInfo::SetComment
-/*N*/   };
-/*N*/
-/*N*/   for( USHORT n = 0; aStrArr[ n ]; n++ )
-/*N*/   {
-/*N*/       SfxPSStringProperty_Impl* pStr = ( SfxPSStringProperty_Impl* )pPS->GetProperty( aStrArr[ n ] );
-/*N*/       if( pStr )
-/*N*/       {
-/*N*/           USHORT nLen = (USHORT)aLens[ n ];
-/*N*/           ( this->*pStrFuncs[ n ] )( pStr->GetString().Copy( 0, nLen ) );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   String aName;
-/*N*/   DateTime aTime;
-/*N*/   SfxPSStringProperty_Impl* pStr;
-/*N*/   SfxPSDateTimeProperty_Impl* pDate;
-/*N*/
-/*N*/   pStr = (SfxPSStringProperty_Impl*)  pPS->GetProperty( PID_AUTHOR );
-/*N*/   if( pStr ) aName = pStr->GetString();
-/*N*/   else aName.Erase();
-/*N*/   pDate = (SfxPSDateTimeProperty_Impl*) pPS->GetProperty( PID_CREATE_DTM );
-/*N*/   if( pDate ) aTime = pDate->GetDateTime();
-/*N*/   else aTime = DateTime();
-/*N*/   SetCreated( SfxStamp( aName.Copy(0, TIMESTAMP_MAXLENGTH ), aTime ) );
-/*N*/
-/*N*/   pStr = (SfxPSStringProperty_Impl*)  pPS->GetProperty( PID_LASTAUTHOR );
-/*N*/   if( pStr ) aName = pStr->GetString();
-/*N*/   else aName.Erase();
-/*N*/   pDate = (SfxPSDateTimeProperty_Impl*) pPS->GetProperty( PID_LASTSAVED_DTM );
-/*N*/   if( pDate ) aTime = pDate->GetDateTime();
-/*N*/   else aTime = DateTime();
-/*N*/   SetChanged( SfxStamp( aName.Copy(0, TIMESTAMP_MAXLENGTH ), aTime ) );
-/*N*/
-/*N*/   pDate = (SfxPSDateTimeProperty_Impl*) pPS->GetProperty( PID_LASTPRINTED_DTM );
-/*N*/   if( pDate ) aTime = pDate->GetDateTime();
-/*N*/   else aTime = DateTime();
-/*N*/   DateTime aTmpTime = aTime;
-/*N*/   aTmpTime.ConvertToUTC();
-/*N*/   if( aTmpTime != DateTime( Date( 1, 1, 1601 ), Time( 0, 0, 0 ) ) )
-/*N*/       SetPrinted( SfxStamp( String(), aTime ) );
-/*N*/   else
-/*N*/       SetPrinted( SfxStamp( TIMESTAMP_INVALID_DATETIME ));
-/*N*/
-/*N*/   pStr = (SfxPSStringProperty_Impl*) pPS->GetProperty( PID_REVNUMBER );
-/*N*/   if( pStr )
-/*N*/       SetDocumentNumber( (USHORT)pStr->GetString().ToInt32() );
-/*N*/
-/*N*/   pDate = (SfxPSDateTimeProperty_Impl*) pPS->GetProperty( PID_EDITTIME );
-/*N*/   if( pDate )
-/*N*/   {
-/*N*/       DateTime aDateTime = pDate->GetDateTime();
-/*N*/       aDateTime.ConvertToUTC();
-/*N*/       SetTime( aDateTime.GetTime() );
-/*N*/   }
-/*N*/
-/*N*/   delete pPS;
-/*N*/   return ERRCODE_NONE;
-/*N*/ }
-/*N*/
-/*N*/ #ifdef _MSC_VER
-/*N*/ #pragma optimize ( "", on )
-/*N*/ #endif
 
 //-------------------------------------------------------------------------
 /*N*/ BOOL SfxDocumentInfo::SavePropertySet( SvStorage *pStorage) const
@@ -1233,20 +1015,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ }
 
 //-------------------------------------------------------------------------
-/*N*/ void SfxDocumentInfo::Clear()
-/*N*/ {
-/*N*/   BOOL _bReadOnly           = bReadOnly;
-/*N*/   BOOL _bPortableGraphics   = bPortableGraphics;
-/*N*/   BOOL _bSaveGraphicsCompressed = bSaveGraphicsCompressed;
-/*N*/   BOOL _bSaveOriginalGraphics = bSaveOriginalGraphics;
-/*N*/
-/*N*/   (*this) = SfxDocumentInfo();
-/*N*/
-/*N*/   bReadOnly           = _bReadOnly;
-/*N*/   bPortableGraphics   = _bPortableGraphics;
-/*N*/   bSaveGraphicsCompressed = _bSaveGraphicsCompressed;
-/*N*/   bSaveOriginalGraphics = _bSaveOriginalGraphics;
-/*N*/ }
 
 /*N*/ const SfxDocumentInfo& SfxDocumentInfo::operator=( const SfxDocumentInfo& rInf)
 /*N*/ {
@@ -1357,56 +1125,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*?*/       return FALSE;
 /*?*/
 /*?*/   return TRUE;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
-/*?*/ const SfxDocumentInfo &SfxDocumentInfo::CopyUserData(const SfxDocumentInfo &rSource)
-/*?*/ {
-/*?*/   bQueryTemplate = rSource.bQueryTemplate;
-/*?*/   bTemplateConfig = rSource.bTemplateConfig;
-/*?*/
-/*?*/   SetReloadDelay( rSource.GetReloadDelay() );
-/*?*/   SetReloadURL( rSource.GetReloadURL() );
-/*?*/   EnableReload( rSource.IsReloadEnabled() );
-/*?*/   SetDefaultTarget( rSource.GetDefaultTarget() );
-/*?*/
-/*?*/   aTitle = rSource.aTitle;
-/*?*/   aTheme = rSource.aTheme;
-/*?*/   aComment = rSource.aComment;
-/*?*/   aKeywords = rSource.aKeywords;
-/*?*/
-/*?*/   aTemplateName     = rSource.aTemplateName;
-/*?*/   aTemplateFileName = rSource.aTemplateFileName;
-/*?*/   aTemplateDate     = rSource.aTemplateDate;
-/*?*/
-/*?*/   for(USHORT i = 0; i < MAXDOCUSERKEYS; ++i)
-/*?*/       aUserKeys[i] = rSource.aUserKeys[i];
-/*?*/
-/*?*/   if(pUserData)
-/*?*/   {
-/*?*/       delete []pUserData;
-/*?*/       pUserData = 0;
-/*?*/   }
-/*?*/   nUserDataSize = rSource.nUserDataSize;
-/*?*/   if(nUserDataSize) {
-/*?*/       pUserData = new char[nUserDataSize];
-/*?*/       memcpy(pUserData, rSource.pUserData, nUserDataSize);
-/*?*/   }
-/*?*/
-/*?*/   pImp->aCopiesTo         = rSource.pImp->aCopiesTo;
-/*?*/   pImp->aOriginal         = rSource.pImp->aOriginal;
-/*?*/   pImp->aReferences       = rSource.pImp->aReferences;
-/*?*/   pImp->aRecipient        = rSource.pImp->aRecipient;
-/*?*/   pImp->aReplyTo          = rSource.pImp->aReplyTo;
-/*?*/   pImp->aBlindCopies      = rSource.pImp->aBlindCopies;
-/*?*/   pImp->aInReplyTo        = rSource.pImp->aInReplyTo;
-/*?*/   pImp->aNewsgroups       = rSource.pImp->aNewsgroups;
-/*?*/   pImp->aSpecialMimeType  = rSource.pImp->aSpecialMimeType;
-/*?*/   pImp->nPriority         = rSource.pImp->nPriority;
-/*?*/   pImp->bUseUserData      = rSource.pImp->bUseUserData;
-/*?*/
-/*?*/   return *this;
 /*?*/ }
 
 //-------------------------------------------------------------------------
@@ -1555,11 +1273,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*?*/   return pImp->aSpecialMimeType;
 /*?*/ }
 
-/*?*/ void SfxDocumentInfo::SetSpecialMimeType( const String& rStr )
-/*?*/ {
-/*?*/   pImp->aSpecialMimeType = rStr;
-/*?*/ }
-
 /*N*/ USHORT SfxDocumentInfo::GetPriority() const
 /*N*/ {
 /*N*/   return pImp->nPriority;
@@ -1582,27 +1295,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 
 //-----------------------------------------------------------------------------
 
-/*N*/ ErrCode SfxDocumentInfo::Load(const String& rName)
-/*N*/ {
-/*N*/   SfxMedium aMedium( rName, SFX_STREAM_READONLY_MAKECOPY, TRUE );
-/*N*/     if ( !aMedium.GetStorage() || SVSTREAM_OK != aMedium.GetError() )
-/*N*/       // Datei existiert nicht oder ist kein Storage
-/*N*/       return ERRCODE_IO_CANTREAD;
-/*N*/
-/*N*/   // Filter-Detection wegen FileFormat-Version
-/*N*/   const SfxFilter *pFilter = 0;
-/*N*/   if ( 0 != SFX_APP()->GetFilterMatcher().GuessFilter( aMedium, &pFilter ) || !pFilter )
-/*N*/       // unbekanntes Dateiformat
-/*N*/       return ERRCODE_IO_CANTREAD;
-/*N*/
-/*N*/   // Storage "offnen
-/*N*/   SvStorageRef xStor = aMedium.GetStorage();
-/*N*/   xStor->SetVersion( pFilter->GetVersion() );
-/*N*/   return Load( xStor ) ? ERRCODE_NONE : ERRCODE_IO_CANTREAD;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ void SfxDocumentInfo::SetTitle( const String& rVal )
 /*N*/ {
 /*N*/   aTitle = AdjustTextLen_Impl( rVal, SFXDOCINFO_TITLELENMAX );
@@ -1624,18 +1316,5 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ void SfxDocumentInfo::SetKeywords( const String& rVal )
 /*N*/ {
 /*N*/   aKeywords = AdjustTextLen_Impl( rVal, SFXDOCINFO_KEYWORDLENMAX );
-/*N*/ }
-
-/*N*/ void SfxDocumentInfo::DeleteUserData( BOOL bUseAuthor )
-/*N*/ {
-/*N*/   SfxStamp aCreated;
-/*N*/   if ( bUseAuthor  )
-/*N*/       aCreated.SetName( SvtUserOptions().GetFullName() );
-/*N*/   SetCreated( aCreated );
-/*N*/   SfxStamp aInvalid( TIMESTAMP_INVALID_DATETIME );
-/*N*/   SetChanged( aInvalid );
-/*N*/   SetPrinted( aInvalid );
-/*N*/   SetTime( 0L );
-/*N*/   SetDocumentNumber( 1 );
 /*N*/ }
 }
