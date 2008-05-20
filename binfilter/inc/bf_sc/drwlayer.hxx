@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: drwlayer.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,7 +61,6 @@ private:
     USHORT  nTab;
 public:
             TYPEINFO();
-            ScTabDeletedHint( USHORT nTabNo = USHRT_MAX );
     virtual ~ScTabDeletedHint();
 
     USHORT  GetTab()    { return nTab; }
@@ -127,8 +126,6 @@ public:
 
     void            EnableAdjust( BOOL bSet = TRUE )    { bAdjustEnabled = bSet; }
 
-    void            BeginCalcUndo();
-    SdrUndoGroup*   GetCalcUndo();
     BOOL            IsRecording()           { return bRecording; }
     void            AddCalcUndo( SdrUndoAction* pUndo );
 
