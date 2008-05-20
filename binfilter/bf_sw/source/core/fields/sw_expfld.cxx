@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_expfld.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -125,11 +125,34 @@
 #endif
 namespace binfilter {
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
-extern void InsertSort( SvUShorts& rArr, USHORT nIdx, USHORT* pInsPos = 0 ); //STRIP008
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::rtl;
 
+/*N*/ void InsertSort( SvUShorts& rArr, USHORT nIdx )
+/*N*/ {
+/*N*/   register USHORT nO  = rArr.Count(), nM, nU = 0;
+/*N*/   if( nO > 0 )
+/*N*/   {
+/*N*/       nO--;
+/*N*/       while( nU <= nO )
+/*N*/       {
+/*N*/           nM = nU + ( nO - nU ) / 2;
+/*N*/           if( *(rArr.GetData() + nM) == nIdx )
+/*N*/           {
+/*N*/               ASSERT( FALSE, "Index ist schon vorhanden, darf nie sein!" );
+/*N*/               return;
+/*N*/           }
+/*N*/           if( *(rArr.GetData() + nM) < nIdx )
+/*N*/               nU = nM + 1;
+/*N*/           else if( nM == 0 )
+/*N*/               break;
+/*N*/           else
+/*N*/               nO = nM - 1;
+/*N*/       }
+/*N*/   }
+/*N*/   rArr.Insert( nIdx, nU );
+/*N*/ }
 
 //-----------------------------------------------------------------------------
 /*N*/ sal_Int16 lcl_SubTypeToAPI(USHORT nSubType)
@@ -543,7 +566,6 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/   if( !GetDepends() || !(GSE_SEQ & nType) )
 /*?*/       return USHRT_MAX;
 /*N*/
-/*N*/ extern void InsertSort( SvUShorts& rArr, USHORT nIdx, USHORT* pInsPos = 0 );
 /*N*/   SvUShorts aArr( 64 );
 /*N*/
 /*N*/   USHORT n;
