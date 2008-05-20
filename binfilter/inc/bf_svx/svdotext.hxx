@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdotext.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -238,8 +238,6 @@ protected:
     SdrTextObj(SdrObjKind eNewTextKind);
     SdrTextObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect);
 
-    // der USHORT eFormat nimmt Werte des enum EETextFormat entgegen
-    SdrTextObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect, SvStream& rInput, USHORT eFormat);
     virtual ~SdrTextObj();
 
 public:
@@ -275,7 +273,6 @@ public:
 
     void SetDisableAutoWidthOnDragging(FASTBOOL bOn) { bDisableAutoWidthOnDragging=bOn; }
     FASTBOOL IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
-    void NbcSetText(SvStream& rInput, USHORT eFormat);
 
     // FitToSize und Fontwork wird bei GetTextSize() nicht berueksichtigt!
     virtual const Size& GetTextSize() const;
