@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: viewdata.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -195,17 +195,7 @@ public:
 
 
     ScDocShell*     GetDocShell() const     { return pDocShell; }
-//  ScDBFunc*       GetView() const         { return pView; }
-//  ScTabViewShell* GetViewShell() const    { return pViewShell; }
-
-    SfxObjectShell* GetSfxDocShell() const;
     ScMarkData&     GetMarkData()           { return aMarkData; }
-
-//  Window*         GetDialogParent();          // von tabvwsh weitergeleitet
-//  Window*         GetActiveWin();             // von View
-//  ScDrawView*     GetScDrawView();            // von View
-//  BOOL            IsMinimized();              // von View
-
 
     void            WriteUserData(String& rData);
     void            ReadUserData(const String& rData);      // #116578#
@@ -217,10 +207,6 @@ public:
 
     BOOL            IsActive() const            { return bActive; }
     void            Activate(BOOL bActivate)    { bActive = bActivate; }
-
-    void            UpdateThis();
-
-    void            InsertTab( USHORT nTab );
 
     USHORT          GetRefTabNo() const                     { return nRefTabNo; }
     void            SetRefTabNo( USHORT nNewTab )           { nRefTabNo = nNewTab; }
@@ -250,13 +236,8 @@ public:
     void            SetFixPosY( USHORT nPos )                       { pThisTab->nFixPosY = nPos; }
     void            SetPagebreakMode( BOOL bSet );      // #116578#
 
-    void            SetZoom( const Fraction& rNewX, const Fraction& rNewY );
-
     const Fraction& GetZoomX() const        { return bPagebreak ? aPageZoomX : aZoomX; }
     const Fraction& GetZoomY() const        { return bPagebreak ? aPageZoomY : aZoomY; }
-
-    const MapMode&  GetLogicMode( ScSplitPos eWhich );
-    const MapMode&  GetLogicMode();                     // Offset 0
 
     long            GetTPosX( ScHSplitPos eWhich ) const        { return pThisTab->nTPosX[eWhich]; }
     long            GetTPosY( ScVSplitPos eWhich ) const        { return pThisTab->nTPosY[eWhich]; }
@@ -264,13 +245,8 @@ public:
     double          GetPPTX() const { return nPPTX; }
     double          GetPPTY() const { return nPPTY; }
 
-    BOOL            GetSimpleArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rStartTab,
-                                    USHORT& rEndCol, USHORT& rEndRow, USHORT& rEndTab );
-    BOOL            GetSimpleArea( ScRange& rRange );
     void            GetMultiArea( ScRangeListRef& rRange ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void          GetMultiArea( ScRangeListRef& rRange );
 
-
-    BOOL            IsMultiMarked();
 
     BOOL            IsAnyFillMode()             { return nFillMode != SC_FILL_NONE; }
     BOOL            IsFillMode()                { return nFillMode == SC_FILL_FILL; }
@@ -309,8 +285,6 @@ public:
     inline void     GetMoveCursor( USHORT& rCurX, USHORT& rCurY );
 
     const ScViewOptions&    GetOptions() const { return *pOptions; }
-    void                    SetOptions( const ScViewOptions& rOpt );
-
     BOOL    IsGridMode      () const            { return pOptions->GetOption( VOPT_GRID ); }
     void    SetGridMode     ( BOOL bNewMode )   { pOptions->SetOption( VOPT_GRID, bNewMode ); }
     BOOL    IsSyntaxMode    () const            { return pOptions->GetOption( VOPT_SYNTAX ); }
@@ -327,7 +301,6 @@ public:
     void    SetOutlineMode  ( BOOL bNewMode )   { pOptions->SetOption( VOPT_OUTLINER, bNewMode ); }
 
     void            KillEditView();
-    void            ResetEditView();
     BOOL            HasEditView( ScSplitPos eWhich ) const
                                         { return pEditView[eWhich] && bEditActive[eWhich]; }
     EditView*       GetEditView( ScSplitPos eWhich ) const
