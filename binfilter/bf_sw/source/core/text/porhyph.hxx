@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: porhyph.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,25 +93,9 @@ public:
  *                      class SwSoftHyphStrPortion
  *************************************************************************/
 
-class SwSoftHyphStrPortion : public SwHyphStrPortion
-{
-public:
-    SwSoftHyphStrPortion( const XubString &rStr );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const;
-    OUTPUT_OPERATOR
-};
-
-inline  SwHyphStrPortion::SwHyphStrPortion( const XubString &rStr )
-        : aExpand( rStr )
-{
-    aExpand += '-';
-    SetWhichPor( POR_HYPHSTR );
-}
-
 CLASSIO( SwHyphPortion )
 CLASSIO( SwHyphStrPortion )
 CLASSIO( SwSoftHyphPortion )
-CLASSIO( SwSoftHyphStrPortion )
 
 
 } //namespace binfilter
