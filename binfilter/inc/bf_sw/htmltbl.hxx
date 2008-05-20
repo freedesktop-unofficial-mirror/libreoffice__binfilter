@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: htmltbl.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,17 +66,7 @@ class SwHTMLTableLayout
 {
 
 public:
-
-    SwHTMLTableLayout( const SwTable *pSwTbl,
-                       USHORT nRows, USHORT nCols, BOOL bColsOpt, BOOL ColTgs,
-                       USHORT nWidth, BOOL bPrcWidth, USHORT nBorderOpt,
-                       USHORT nCellPad, USHORT nCellSp, SvxAdjust eAdjust,
-                       USHORT nLMargin, USHORT nRMargin, USHORT nBWidth,
-                       USHORT nLeftBWidth, USHORT nRightBWidth,
-                       USHORT nInhLeftBWidth, USHORT nInhRightBWidth );
-
     ~SwHTMLTableLayout();
-
 };
 
 /*  */
