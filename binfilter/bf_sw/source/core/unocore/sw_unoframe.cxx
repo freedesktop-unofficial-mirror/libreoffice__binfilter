@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unoframe.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -135,9 +135,6 @@
 #endif
 #ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef SW_UNOMID_HXX
 #include <unomid.h>
@@ -2175,7 +2172,6 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                     xIPObj->OnDocumentPrinterChanged( pDoc->GetPrt() );
 
                 UnoActionContext aAction(pDoc);
-                pDoc->StartUndo(UNDO_INSERT);
                 ULONG lDummy;
                 String aDummy;
                 // determine source CLSID
@@ -2203,7 +2199,6 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 pFmt = pDoc->Insert(aPam, &xIPObj, &aFrmSet );
                 ASSERT( pFmt, "Doc->Insert(notxt) failed." );
 
-                pDoc->EndUndo(UNDO_INSERT);
                 pFmt->Add(this);
                 if(sName.Len())
                     pDoc->SetFlyName((SwFlyFrmFmt&)*pFmt, sName);
