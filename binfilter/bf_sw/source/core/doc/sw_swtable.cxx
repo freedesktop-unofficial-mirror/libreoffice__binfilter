@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swtable.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -890,15 +890,6 @@ namespace binfilter {
 /*N*/       ? (SwTableNode*)GetTabSortBoxes()[ 0 ]->GetSttNd()->FindTableNode()
 /*N*/       : 0;
 /*N*/ }
-
-/*N*/ void SwTable::SetRefObject( SwServerObject* pObj )
-/*N*/ {
-/*N*/   if( refObj.Is() )
-/*N*/       refObj->Closed();
-/*N*/
-/*N*/   refObj = pObj;
-/*N*/ }
-
 
  void SwTable::SetHTMLTableLayout( SwHTMLTableLayout *p )
  {
