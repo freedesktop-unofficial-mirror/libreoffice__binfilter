@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_sdfilter.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,37 +77,6 @@ SdFilter::SdFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bSho
 SdFilter::~SdFilter()
 {
     delete mpProgress;
-}
-
-// -----------------------------------------------------------------------------
-
-::rtl::OUString SdFilter::ImplGetFullLibraryName( const ::rtl::OUString& rLibraryName ) const
-{
-    String aTemp( ::rtl::OUString::createFromAscii( SVLIBRARY( "?" ) ) );
-    xub_StrLen nIndex = aTemp.Search( (sal_Unicode)'?' );
-    aTemp.Replace( nIndex, 1, rLibraryName );
-    ::rtl::OUString aLibraryName( aTemp );
-    return aLibraryName;
-}
-
-// -----------------------------------------------------------------------------
-
-::vos::OModule* SdFilter::OpenLibrary( const ::rtl::OUString& rLibraryName ) const
-{
-    ::rtl::OUString aDest;
-    ::rtl::OUString aNormalizedPath;
-    ::vos::OModule* pRet;
-
-    if ( ::osl::FileBase::getFileURLFromSystemPath( SvtPathOptions().GetFilterPath(), aDest ) != ::osl::FileBase::E_None )
-        aDest = SvtPathOptions().GetFilterPath();
-    aDest += ::rtl::OUString( sal_Unicode( '/' ) );
-    aDest += ::rtl::OUString( ImplGetFullLibraryName( rLibraryName ) );
-    ::osl::FileBase::getSystemPathFromFileURL( aDest, aNormalizedPath );
-
-    if( !( pRet = new ::vos::OModule( aNormalizedPath ) )->isLoaded() )
-        delete pRet, pRet = NULL;
-
-    return pRet;
 }
 
 // -----------------------------------------------------------------------------
