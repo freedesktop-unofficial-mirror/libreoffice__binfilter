@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: embobj.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,12 +69,6 @@ SV_IMPL_PERSIST1(SvEmbeddedInfoObject,SvInfoObject)
 |*    Beschreibung
 *************************************************************************/
 SvEmbeddedInfoObject::SvEmbeddedInfoObject() :
-    nViewAspect( ASPECT_CONTENT )
-{
-}
-
-SvEmbeddedInfoObject::SvEmbeddedInfoObject( SvEmbeddedObject * pObj )
-    : SvInfoObject( pObj ),
     nViewAspect( ASPECT_CONTENT )
 {
 }
@@ -487,46 +481,6 @@ ULONG SvEmbeddedObject::GetMiscStatus() const
     return SvPseudoObject::GetMiscStatus();
 }
 
-//=========================================================================
-ErrCode SvEmbeddedObject::DoConnect
-(
-    SvEmbeddedClient * pClient_ /* Der Client, mit das Objekt verbunden
-                                   wird. Darf nicht NULL sein. */
-)
-/*  [Beschreibung]
-
-    Das Objekt wird mit dem uebergebenen Client verbunden. Die Verbindung
-    des Objektes und des Clients wird vorher abgebrochen. Ist der
-    uebergebene Client gleich dem Client, der mit dem Objekt verbunden
-    ist passiert nichts.
-
-    [Rueckgabewert]
-
-    BOOL        TRUE, Objekt und Client konnten verbunden werden.
-                FALSE, beim verbinden wurde DoClose gerufen.
-
-    [Querverweise]
-
-    <SvPseudoObject::DoClose>
-*/
-{
-    DBG_ASSERT( pClient_, "DoConnect( NULL ) not allowed" )
-
-    if( aProt.GetClient() == pClient_ )
-        return ERRCODE_NONE;
-
-    SvObjectRef xHoldAlive( this );
-    SvObjectRef xHoldAlive1( pClient_ );
-    // Client freigeben
-    pClient_->aProt.Reset();
-    aProt.Reset();
-
-    aProt = SvEditObjectProtocol( this, pClient_ );
-    pClient_->aProt = aProt;
-    aProt.Connected( TRUE );
-    return aProt.IsConnect() ? ERRCODE_NONE : ERRCODE_SO_GENERALERROR;
-}
-
 /*************************************************************************
 |*    SvEmbeddedObject::DoOpen()
 |*
@@ -648,46 +602,6 @@ void SvEmbeddedObject::PlugIn( BOOL )
 }
 
 /*************************************************************************
-|*    SvEmbeddedObject::DoVerb()
-|*
-|*    Beschreibung
-*************************************************************************/
-ErrCode SvEmbeddedObject::DoVerb( long nVerb )
-{
-    SvEmbeddedClient * pCl = GetClient();
-    if( !pCl )
-        return DoVerb( nVerb, NULL, NULL, NULL );
-    else
-    {
-        Rectangle aRect, * pRect = NULL;
-        SvClientData * pData = pCl->GetClientData();
-        Window * pWin = NULL;
-        if( pData )
-        {
-            aRect = pData->GetObjAreaPixel();
-            pWin = pData->GetEditWin();
-        }
-        // nur bei sinnvollen Groessen TRUE
-        if( aRect.GetWidth() > 0 && aRect.GetHeight() > 0 )
-            pRect = &aRect;
-
-        return DoVerb( nVerb, pCl, pWin, pRect );
-    }
-}
-
-ErrCode SvEmbeddedObject::DoVerb
-(
-    long nVerb,
-    SvEmbeddedClient * pCallerClient,
-    Window * pWin,
-    const Rectangle * pWorkRectPixel
-)
-{
-    return SvPseudoObject::DoVerb( nVerb, pCallerClient,
-                                    pWin, pWorkRectPixel );
-}
-
-/*************************************************************************
 |*    SvEmbeddedObject::Verb()
 |*
 |*    Beschreibung
@@ -713,17 +627,6 @@ ErrCode SvEmbeddedObject::Verb
         nRet = SvPseudoObject::Verb( nVerb, pCl, pWin, pWorkRectPixel );
     }
     return nRet;
-}
-
-/*************************************************************************
-|*    SvEmbeddedObject::SetDocumentName()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvEmbeddedObject::SetDocumentName( const String & rName )
-{
-    aDocName = rName;
-    GetProtocol().DocNameChanged( rName );
 }
 
 /*************************************************************************
@@ -759,7 +662,7 @@ void SvEmbeddedObject::Connect
 
     [Querverweise]
 
-    <SvPseudoObject::DoClose>, <SvEmbeddedObject::DoConnect>
+    <SvPseudoObject::DoClose>
 */
 {
     if( Owner() )
@@ -1078,305 +981,9 @@ struct ClsIDs {
     const sal_Char* pSvrName;
     const sal_Char* pDspName;
 };
-static ClsIDs aClsIDs[] = {
 
-    { 0x000212F0, "MSWordArt",          "Microsoft Word Art"            },
-    { 0x000212F0, "MSWordArt.2",        "Microsoft Word Art 2.0"        },
-
-    // MS Apps
-    { 0x00030000, "ExcelWorksheet",     "Microsoft Excel Worksheet"     },
-    { 0x00030001, "ExcelChart",         "Microsoft Excel Chart"         },
-    { 0x00030002, "ExcelMacrosheet",    "Microsoft Excel Macro"         },
-    { 0x00030003, "WordDocument",       "Microsoft Word Document"       },
-    { 0x00030004, "MSPowerPoint",       "Microsoft PowerPoint"          },
-    { 0x00030005, "MSPowerPointSho",    "Microsoft PowerPoint Slide Show"},
-    { 0x00030006, "MSGraph",            "Microsoft Graph"               },
-    { 0x00030007, "MSDraw",             "Microsoft Draw"                },
-    { 0x00030008, "Note-It",            "Microsoft Note-It"             },
-    { 0x00030009, "WordArt",            "Microsoft Word Art"            },
-    { 0x0003000a, "PBrush",             "Microsoft PaintBrush Picture"  },
-    { 0x0003000b, "Equation",           "Microsoft Equation Editor"     },
-    { 0x0003000c, "Package",            "Package"                       },
-    { 0x0003000d, "SoundRec",           "Sound"                         },
-    { 0x0003000e, "MPlayer",            "Media Player"                  },
-    // MS Demos
-    { 0x0003000f, "ServerDemo",         "OLE 1.0 Server Demo"           },
-    { 0x00030010, "Srtest",             "OLE 1.0 Test Demo"             },
-    { 0x00030011, "SrtInv",             "OLE 1.0 Inv Demo"              },
-    { 0x00030012, "OleDemo",            "OLE 1.0 Demo"                  },
-
-    // Coromandel / Dorai Swamy / 718-793-7963
-    { 0x00030013, "CoromandelIntegra",  "Coromandel Integra"            },
-    { 0x00030014, "CoromandelObjServer","Coromandel Object Server"      },
-
-    // 3-d Visions Corp / Peter Hirsch / 310-325-1339
-    { 0x00030015, "StanfordGraphics",   "Stanford Graphics"             },
-
-    // Deltapoint / Nigel Hearne / 408-648-4000
-    { 0x00030016, "DGraphCHART",        "DeltaPoint Graph Chart"        },
-    { 0x00030017, "DGraphDATA",         "DeltaPoint Graph Data"         },
-
-    // Corel / Richard V. Woodend / 613-728-8200 x1153
-    { 0x00030018, "PhotoPaint",         "Corel PhotoPaint"              },
-    { 0x00030019, "CShow",              "Corel Show"                    },
-    { 0x0003001a, "CorelChart",         "Corel Chart"                   },
-    { 0x0003001b, "CDraw",              "Corel Draw"                    },
-
-    // Inset Systems / Mark Skiba / 203-740-2400
-    { 0x0003001c, "HJWIN1.0",           "Inset Systems"                 },
-
-    // Mark V Systems / Mark McGraw / 818-995-7671
-    { 0x0003001d, "ObjMakerOLE",        "MarkV Systems Object Maker"    },
-
-    // IdentiTech / Mike Gilger / 407-951-9503
-    { 0x0003001e, "FYI",                "IdentiTech FYI"                },
-    { 0x0003001f, "FYIView",            "IdentiTech FYI Viewer"         },
-
-    // Inventa Corporation / Balaji Varadarajan / 408-987-0220
-    { 0x00030020, "Stickynote",         "Inventa Sticky Note"           },
-
-    // ShapeWare Corp. / Lori Pearce / 206-467-6723
-    { 0x00030021, "ShapewareVISIO10",   "Shapeware Visio 1.0"           },
-    { 0x00030022, "ImportServer",       "Spaheware Import Server"       },
-
-    // test app SrTest
-    { 0x00030023, "SrvrTest",           "OLE 1.0 Server Test"           },
-
-    // test app ClTest.  Doesn't really work as a server but is in reg db
-    { 0x00030025, "Cltest",             "OLE 1.0 Client Test"           },
-
-    // Microsoft ClipArt Gallery   Sherry Larsen-Holmes
-    { 0x00030026, "MS_ClipArt_Gallery", "Microsoft ClipArt Gallery"     },
-    // Microsoft Project  Cory Reina
-    { 0x00030027, "MSProject",          "Microsoft Project"             },
-
-    // Microsoft Works Chart
-    { 0x00030028, "MSWorksChart",       "Microsoft Works Chart"         },
-
-    // Microsoft Works Spreadsheet
-    { 0x00030029, "MSWorksSpreadsheet", "Microsoft Works Spreadsheet"   },
-
-    // AFX apps - Dean McCrory
-    { 0x0003002A, "MinSvr",             "AFX Mini Server"               },
-    { 0x0003002B, "HierarchyList",      "AFX Hierarchy List"            },
-    { 0x0003002C, "BibRef",             "AFX BibRef"                    },
-    { 0x0003002D, "MinSvrMI",           "AFX Mini Server MI"            },
-    { 0x0003002E, "TestServ",           "AFX Test Server"               },
-
-    // Ami Pro
-    { 0x0003002F, "AmiProDocument",     "Ami Pro Document"              },
-
-    // WordPerfect Presentations For Windows
-    { 0x00030030, "WPGraphics",         "WordPerfect Presentation"      },
-    { 0x00030031, "WPCharts",           "WordPerfect Chart"             },
-
-    // MicroGrafx Charisma
-    { 0x00030032, "Charisma",           "MicroGrafx Charisma"           },
-    { 0x00030033, "Charisma_30",        "MicroGrafx Charisma 3.0"       },
-    { 0x00030034, "CharPres_30",        "MicroGrafx Charisma 3.0 Pres"  },
-    // MicroGrafx Draw
-    { 0x00030035, "Draw",               "MicroGrafx Draw"               },
-    // MicroGrafx Designer
-    { 0x00030036, "Designer_40",        "MicroGrafx Designer 4.0"       },
-
-    // STAR DIVISION
-//  { 0x000424CA, "StarMath",           "StarMath 1.0"                  },
-    { 0x00043AD2, "FontWork",           "Star FontWork"                 },
-//  { 0x000456EE, "StarMath2",          "StarMath 2.0"                  },
-
-    { 0, "", "" } };
-
-/*
-class Ole1Convert
-{
-    virtual DWORD FAR PASCAL Ole1_Get( void * pBuf, DWORD nSize );
-    virtual DWORD FAR PASCAL Ole1_Put( const void * pBuf, DWORD nSize );
-    SvStream &  rStm;
-public:
-    Ole1Convert( SvStream & rStmPar )
-        : rStm( rStmPar )
-    {
-    }
-};
-
-DWORD Ole1Convert::Ole1_Get( void * pBuf, DWORD nSize )
-{
-    return rStm.Read( pBuf, nSize );
-}
-
-DWORD Ole1Convert::Ole1_Put( const void * pBuf, DWORD nSize )
-{
-    return rStm.Write( pBuf, nSize );
-}
-*/
-BOOL SvEmbeddedObject::ConvertToOle2( SvStream& rStm, UINT32 nReadLen,
-                    const GDIMetaFile * pMtf, const SotStorageRef& rDest )
-{
-    BOOL bMtfRead = FALSE;
-    SotStorageStreamRef xOle10Stm = rDest->OpenSotStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "\1Ole10Native" ) ),
-                                                    STREAM_WRITE| STREAM_SHARE_DENYALL );
-    if( xOle10Stm->GetError() )
-        return FALSE;
-
-    UINT32 nType;
-    UINT32 nRecType;
-    UINT32 nStrLen;
-    String aSvrName;
-    UINT32 nDummy0;
-    UINT32 nDummy1;
-    UINT32 nDataLen;
-    BYTE*  pData;
-    UINT32 nBytesRead = 0;
-    do
-    {
-        rStm >> nType;
-        rStm >> nRecType;
-        rStm >> nStrLen;
-        if( nStrLen )
-        {
-            if( 0x10000L > nStrLen )
-            {
-                sal_Char * pBuf = new sal_Char[ nStrLen ];
-                rStm.Read( pBuf, nStrLen );
-                aSvrName.Assign( String( pBuf, sal::static_int_cast< xub_StrLen >(nStrLen-1), gsl_getSystemTextEncoding() ) );
-                delete[] pBuf;
-            }
-            else
-                break;
-        }
-        rStm >> nDummy0;
-        rStm >> nDummy1;
-        rStm >> nDataLen;
-
-        nBytesRead += 6 * sizeof( UINT32 ) + nStrLen + nDataLen;
-
-        if( !rStm.IsEof() && nReadLen > nBytesRead && nDataLen )
-        {
-            if( xOle10Stm.Is() )
-            {
-                pData = new BYTE[ nDataLen ];
-                if( !pData )
-                    return FALSE;
-
-                rStm.Read( pData, nDataLen );
-
-                // write to ole10 stream
-                *xOle10Stm << nDataLen;
-                xOle10Stm->Write( pData, nDataLen );
-                xOle10Stm = SotStorageStreamRef();
-
-                // set the compobj stream
-                ClsIDs* pIds;
-                for( pIds = aClsIDs; pIds->nId; pIds++ )
-                {
-                    if( COMPARE_EQUAL == aSvrName.CompareToAscii( pIds->pSvrName ) )
-                        break;
-                }
-                String aShort, aFull;
-                if( pIds->nId )
-                {
-                    // gefunden!
-                    ULONG nCbFmt = SotExchange::RegisterFormatName( aSvrName );
-                    rDest->SetClass( SvGlobalName( pIds->nId, 0, 0, 0xc0,0,0,0,0,0,0,0x46 ), nCbFmt,
-                                    String( pIds->pDspName, RTL_TEXTENCODING_ASCII_US ) );
-                }
-                else
-                {
-                    ULONG nCbFmt = SotExchange::RegisterFormatName( aSvrName );
-                    rDest->SetClass( SvGlobalName(), nCbFmt, aSvrName );
-                }
-
-                delete[] pData;
-            }
-            else if( nRecType == 5 && !pMtf )
-            {
-                ULONG nPos = rStm.Tell();
-                UINT16 sz[4];
-                rStm.Read( sz, 8 );
-                //rStm.SeekRel( 8 );
-                Graphic aGraphic;
-                if( ERRCODE_NONE == GraphicConverter::Import( rStm, aGraphic ) && aGraphic.GetType() )
-                {
-                    const GDIMetaFile& rMtf = aGraphic.GetGDIMetaFile();
-                    MakeContentStream( rDest, rMtf );
-                    bMtfRead = TRUE;
-                }
-                // set behind the data
-                rStm.Seek( nPos + nDataLen );
-            }
-            else
-                rStm.SeekRel( nDataLen );
-        }
-    } while( !rStm.IsEof() && nReadLen >= nBytesRead );
-
-    if( !bMtfRead && pMtf )
-    {
-        MakeContentStream( rDest, *pMtf );
-        return TRUE;
-    }
-    return FALSE;
-}
-
-/*************************************************************************
-|*    SvEmbeddedObject::OnDocumentPrinterChanged()
-|*
-|*    Beschreibung: An allen Child-Objekten sollte diese Methode gerufen
-                    werden, wenn im Dokument der Drucker gewechselt wird und
-                    sie das Flag SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE ueber die
-                    Methode GetMiscStatus() liefern.
-                    Bevor der Container am Child diese Methode ruft,
-                    muss er einen Client angemeldet und geoeffnet haben.
-                    Dies tut er mit dem folgenden Codefragment.
-
-                    if( xChildObj->GetMiscStatus() & SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE )
-                    {
-                        // Client erzeugen
-                        SvEmbeddedClientRef xClient = new MyClient( ... );
-                        // Client und ChildObj verbinden
-                        xChildObj->DoConnect( xClient );
-                        // Verbindung oeffnen, es wird ein ViewAdvise angemeldet
-                        xChildObj->DoOpen( TRUE );
-                        // Die Druckeraenderung melden
-                        xChildObj->OnDocumentPrinterChanged( pNewPrinter );
-                        ...
-
-                    Wenn die VisArea aufgrund der Printer-Aenderung
-                    angepasst wird, dann muss das ChildObj diese Aenderung melden. Da
-                    sich sowohl seine Daten (VisArea), als auch seine Darstellung
-                    geaendert hat, muessen folgen Methoden gerufen werden.
-
-                    SvData aData;
-                    // Alle anliegenden Aenderungen der Daten werden sofort (synchron) abgeschickt
-                    SendDataChanged( aData );
-                    // Alle Aenderungen der View werden synchron an den Client gemeldet.
-                    SendViewChanged();
-
-                    Auf der Client-Seite ist die ViewChanged-Benachrichtigung ueberladen,
-                    sodass die Groesse angepasst wird.
-
-|*      Anmerkung:  SendDataChanged und SendViewChanged senden nur, wenn vorher die Methoden
-|*                  ViewChanged und DataChanged Aenderungen angemeldet haben. Dies sollte aber
-|*                  durch umsetzen der VisArea und den dadurch notwendigen Aenderungen
-|*                  automatisch passieren. In so3 passiert in dieser Hinsicht nichts
-|*                  automatisch!!!
-|*
-*************************************************************************/
 void SvEmbeddedObject::OnDocumentPrinterChanged( Printer * )
 {
-    /*
-    const SvInfoObjectMemberList * pChildList = GetObjectList();
-    if( pChildList )
-    {
-        ULONG nCount = pChildList->Count();
-        for( ULONG i = 0; i < nCount; i++ )
-        {
-            SvInfoObject * pIO = pChildList->GetObject( i );
-            SvEmbeddedObjectRef xEO( pIO->GetPersist() );
-            if( xEO.Is() && (xEO->GetMiscStatus() & SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE) )
-                xEO->OnDocumentPrinterChanged( pPrt );
-        }
-    }
-    */
 }
 
 }
