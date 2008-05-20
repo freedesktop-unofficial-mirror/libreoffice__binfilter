@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_unomodel.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -229,25 +229,6 @@ SdXImpressDocument::SdXImpressDocument( SdDrawDocShell* pShell ) throw()
     else
     {
         DBG_ERROR("DocShell is invalid");
-    }
-
-    mbImpressDoc = pDoc && pDoc->GetDocumentType() == DOCUMENT_TYPE_IMPRESS;
-}
-
-SdXImpressDocument::SdXImpressDocument( SdDrawDocument* _pDoc, sal_Bool bClipBoard ) throw()
-:   SfxBaseModel( NULL ),
-    pDocShell( NULL ),
-    aPropSet( ImplGetDrawModelPropertyMap() ),
-    pDoc( _pDoc ),
-    mbClipBoard( bClipBoard )
-{
-    if( pDoc )
-    {
-        StartListening( *pDoc );
-    }
-    else
-    {
-        DBG_ERROR("SdDrawDocument is invalid");
     }
 
     mbImpressDoc = pDoc && pDoc->GetDocumentType() == DOCUMENT_TYPE_IMPRESS;
