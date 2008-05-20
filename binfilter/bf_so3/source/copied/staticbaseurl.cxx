@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: staticbaseurl.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,10 +50,6 @@ namespace {
 
 struct BaseURIRef: public rtl::Static< INetURLObject, BaseURIRef > {};
 
-String extend(ByteString const & rOctets) {
-    return String(rOctets, RTL_TEXTENCODING_ISO_8859_1);
-}
-
 com::sun::star::uno::Any GetCasePreservedURL(INetURLObject const & aObj) {
     DBG_ASSERT( aObj.GetProtocol() != INET_PROT_NOT_VALID, "Invalid URL!" );
     if (aObj.GetProtocol() == INET_PROT_FILE) {
@@ -79,23 +75,6 @@ com::sun::star::uno::Any GetCasePreservedURL(INetURLObject const & aObj) {
 namespace binfilter { namespace StaticBaseUrl {
 
 String RelToAbs(
-    ByteString const & rTheRelURIRef, bool bIgnoreFragment,
-    INetURLObject::EncodeMechanism eEncodeMechanism,
-    INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
-    INetURLObject::FSysStyle eStyle)
-{
-    // Backwards compatibility:
-    if (rTheRelURIRef.Len() == 0 || rTheRelURIRef.GetChar(0) == '#') {
-        return extend(rTheRelURIRef);
-    }
-    INetURLObject aTheAbsURIRef;
-    BaseURIRef::get().GetNewAbsURL(
-        rTheRelURIRef, &aTheAbsURIRef, eEncodeMechanism, eCharset, eStyle,
-        bIgnoreFragment);
-    return aTheAbsURIRef.GetMainURL(eDecodeMechanism, eCharset);
-}
-
-String RelToAbs(
     String const & rTheRelURIRef, bool bIgnoreFragment,
     INetURLObject::EncodeMechanism eEncodeMechanism,
     INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
@@ -114,40 +93,6 @@ String RelToAbs(
             || eCharset != RTL_TEXTENCODING_UTF8)
         ? String(aTheAbsURIRef.GetMainURL(eDecodeMechanism, eCharset))
         : rTheRelURIRef;
-}
-
-String AbsToRel(
-    ByteString const & rTheAbsURIRef,
-    INetURLObject::EncodeMechanism eEncodeMechanism,
-    INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
-    INetURLObject::FSysStyle eStyle)
-{
-    INetURLObject const & rINetURLObject = BaseURIRef::get();
-    com::sun::star::uno::Any aAny;
-    if ( rINetURLObject.GetProtocol() != INET_PROT_NOT_VALID )
-        aAny = GetCasePreservedURL(rINetURLObject);
-    rtl::OUString aBaseURL;
-    sal_Bool success = (aAny >>= aBaseURL);
-    if (success) {
-        INetURLObject aAbsURIRef(rTheAbsURIRef, eEncodeMechanism, eCharset);
-        com::sun::star::uno::Any aAny2(GetCasePreservedURL(aAbsURIRef));
-        rtl::OUString aAbsURL;
-        success = (aAny2 >>= aAbsURL);
-        if (success) {
-            return INetURLObject::GetRelURL(
-                aBaseURL, aAbsURL, INetURLObject::WAS_ENCODED, eDecodeMechanism,
-                RTL_TEXTENCODING_UTF8, eStyle);
-        } else {
-            return INetURLObject::GetRelURL(
-                aBaseURL, extend(rTheAbsURIRef), eEncodeMechanism,
-                eDecodeMechanism, eCharset, eStyle);
-        }
-    } else {
-        return INetURLObject::GetRelURL(
-            rINetURLObject.GetMainURL(INetURLObject::NO_DECODE),
-            extend(rTheAbsURIRef), eEncodeMechanism, eDecodeMechanism, eCharset,
-            eStyle);
-    }
 }
 
 String AbsToRel(
@@ -184,13 +129,6 @@ String AbsToRel(
 }
 
 bool SetBaseURL(
-    ByteString const & rTheBaseURIRef,
-    INetURLObject::EncodeMechanism eMechanism, rtl_TextEncoding eCharset)
-{
-    return BaseURIRef::get().SetURL(rTheBaseURIRef, eMechanism, eCharset);
-}
-
-bool SetBaseURL(
     String const & rTheBaseURIRef, INetURLObject::EncodeMechanism eMechanism,
     rtl_TextEncoding eCharset)
 {
@@ -201,18 +139,6 @@ String GetBaseURL(
     INetURLObject::DecodeMechanism eMechanism, rtl_TextEncoding eCharset)
 {
     return BaseURIRef::get().GetMainURL(eMechanism, eCharset);
-}
-
-String SmartRelToAbs(
-    ByteString const & rTheRelURIRef, bool bIgnoreFragment,
-    INetURLObject::EncodeMechanism eEncodeMechanism,
-    INetURLObject::DecodeMechanism eDecodeMechanism, rtl_TextEncoding eCharset,
-    INetURLObject::FSysStyle eStyle)
-{
-    return ::binfilter::SmartRel2Abs(
-        INetURLObject(GetBaseURL()), rTheRelURIRef,
-        ::binfilter::GetMaybeFileHdl(), true, bIgnoreFragment, eEncodeMechanism,
-        eDecodeMechanism, eCharset, false, eStyle);
 }
 
 String SmartRelToAbs(
