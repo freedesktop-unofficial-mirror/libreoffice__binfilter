@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: FilterConfigCache.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,7 +68,6 @@ class  FilterConfigCache
             sal_Bool        bIsInternalFilter   : 1;
             sal_Bool        bIsPixelFormat      : 1;
 
-            sal_Bool        IsValid();
             sal_Bool        CreateFilterName( const ::rtl::OUString& rUserDataEntry );
             String          GetShortName( );
 
@@ -118,7 +117,6 @@ class  FilterConfigCache
 
         sal_Bool    IsImportInternalFilter( sal_uInt16 nFormat );
         sal_Bool    IsImportPixelFormat( sal_uInt16 nFormat );
-        sal_Bool    IsImportDialog( sal_uInt16 nFormat );
 
         sal_uInt16  GetExportFormatCount() const
         { return sal::static_int_cast< sal_uInt16 >(aExport.size()); };
@@ -133,11 +131,9 @@ class  FilterConfigCache
         String      GetExportFormatShortName( sal_uInt16 nFormat );
         String      GetExportWildcard( sal_uInt16 nFormat, sal_Int32 nEntry );
         String      GetExportFilterTypeName( sal_uInt16 nFormat );
-        String      GetExportInternalFilterName( sal_uInt16 nFormat );
 
         sal_Bool    IsExportInternalFilter( sal_uInt16 nFormat );
         sal_Bool    IsExportPixelFormat( sal_uInt16 nFormat );
-        sal_Bool    IsExportDialog( sal_uInt16 nFormat );
 
                     FilterConfigCache( sal_Bool bUseConfig );
                     ~FilterConfigCache();
