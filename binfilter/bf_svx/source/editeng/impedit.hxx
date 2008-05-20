@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: impedit.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -129,10 +129,6 @@ struct ImplIMEInfos
     sal_uInt16  nLen;
     sal_Bool    bCursor;
     sal_Bool    bWasCursorOverwrite;
-
-            ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos );
-            ~ImplIMEInfos();
-
 };
 
 
@@ -186,7 +182,6 @@ protected:
 
 
 public:
-                    ImpEditView( EditView* pView, EditEngine* pEng, Window* pWindow );
                     ~ImpEditView();
 
     EditView*       GetEditViewPtr() { return pEditView; }
@@ -201,7 +196,6 @@ public:
     Point           GetWindowPos( const Point& rDocPos ) const;
     Rectangle       GetWindowPos( const Rectangle& rDocPos ) const;
 
-    void                SetOutputArea( const Rectangle& rRec );
     const Rectangle&    GetOutputArea() const   { return aOutArea; }
 
     BOOL            IsVertical() const;
@@ -225,7 +219,6 @@ public:
     Window*         GetWindow() const           { return pOutWin; }
 
     EESelectionMode GetSelectionMode() const    { return eSelectionMode; }
-    void            SetSelectionMode( EESelectionMode eMode );
 
     inline void     SetPointer( const Pointer& rPointer );
     inline const Pointer&   GetPointer();
@@ -235,8 +228,6 @@ public:
 
 
     EVAnchorMode    GetAnchorMode() const           { return eAnchorMode; }
-    void            CalcAnchorPoint();
-
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, BOOL test );
     void            ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags = 0 );
 
@@ -255,9 +246,6 @@ public:
 
     const Color&    GetBackgroundColor() const {
                         return ( pBackgroundColor ? *pBackgroundColor : pOutWin->GetBackground().GetColor() ); }
-
-
-    const SvxFieldItem* GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const;
 
     // Ggf. mehr als OutputArea invalidieren, fuer den DrawingEngine-Textrahmen...
     void            SetInvalidateMore( sal_uInt16 nPixel ) { nInvMore = nPixel; }
@@ -279,7 +267,6 @@ class ImpEditEngine : public SfxListener
     friend class EditUndoRemoveChars;
     friend class EditUndoDelContent;
     friend class EditUndoConnectParas;
-    friend class EditUndoSplitPara;
     friend class EditUndoInsertFeature;
     friend class EditUndoMoveParagraphs;
 
