@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imageresourceaccess.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,15 +76,6 @@ namespace binfilter
             when you know that the image is small enough.
         */
          static  SvStream*   getImageStream(
-                    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB,
-                    const ::rtl::OUString& _rImageResourceURL
-                );
-
-        /** for a given URL of an image within a resource, this method retrieves
-            an <type scope="com::sun::star::io">XInputStream</type> for this image.
-        */
-         static  ::com::sun::star::uno::Reference< ::com::sun::star::io::XInputStream >
-                getImageXStream(
                     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB,
                     const ::rtl::OUString& _rImageResourceURL
                 );
