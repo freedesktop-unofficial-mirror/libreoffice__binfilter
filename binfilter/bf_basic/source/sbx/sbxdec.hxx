@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxdec.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,28 +69,27 @@ class SbxDecimal
     INT32       mnRefCount;
 
 public:
-    SbxDecimal( void );
+    SbxDecimal();
     SbxDecimal( const SbxDecimal& rDec );
-    SbxDecimal( const com::sun::star::bridge::oleautomation::Decimal& rAutomationDec );
 
     ~SbxDecimal();
 
     void addRef( void )
         { mnRefCount++; }
 
-    void fillAutomationDecimal( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec );
-
     void setChar( sal_Unicode val );
     void setByte( BYTE val );
+#ifdef WIN32
     void setShort( INT16 val );
-    void setLong( INT32 val );
+    bool setString( String* pString );
     void setUShort( UINT16 val );
+#endif
+    void setLong( INT32 val );
     void setULong( UINT32 val );
     bool setSingle( float val );
     bool setDouble( double val );
     void setInt( int val );
     void setUInt( unsigned int val );
-    bool setString( String* pString );
     void setDecimal( SbxDecimal* pDecimal )
     {
 #ifdef WIN32
@@ -101,17 +100,17 @@ public:
 #endif
     }
 
-    bool getChar( sal_Unicode& rVal );
-    bool getByte( BYTE& rVal );
+#ifdef WIN32
     bool getShort( INT16& rVal );
+    bool getChar( sal_Unicode& rVal );
     bool getLong( INT32& rVal );
-    bool getUShort( UINT16& rVal );
+    bool getString( String& rString );
+    bool getUInt( unsigned int& rVal );
     bool getULong( UINT32& rVal );
+    bool getUShort( UINT16& rVal );
+#endif
     bool getSingle( float& rVal );
     bool getDouble( double& rVal );
-    bool getInt( int& rVal );
-    bool getUInt( unsigned int& rVal );
-    bool getString( String& rString );
 
     bool operator -= ( const SbxDecimal &r );
     bool operator += ( const SbxDecimal &r );
