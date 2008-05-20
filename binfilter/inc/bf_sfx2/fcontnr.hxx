@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fcontnr.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -121,7 +121,6 @@ public:
     SfxFilterContainerFlags GetFlags() const;
     void SetFlags( SfxFilterContainerFlags eFlags );
 
-    const SfxFilter*    GetAnyFilter( SfxFilterFlags nMust, SfxFilterFlags nDont ) const;
     virtual const SfxFilter* GetFilter4Mime(
         const String& rMime, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     virtual const SfxFilter* GetFilter4ClipBoardId(
@@ -272,8 +271,8 @@ public:
     SfxFilterMatcher(BOOL bDeleteContainers);
     ~SfxFilterMatcher();
 
+        SfxFilterContainer*       GetContainer( const String& rName ) const;
     void                      AddContainer( SfxFilterContainer* );
-    SfxFilterContainer*       GetContainer( const String& rName ) const;
     ULONG                     GuessFilterIgnoringContent(
         SfxMedium& rMedium, const SfxFilter **,
         SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
@@ -282,8 +281,6 @@ public:
         SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     const SfxFilter*          GetFilter4ClipBoardId(
         ULONG nId, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
-    const SfxFilter*          GetFilter4EA(
-        const String& rEA, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     const SfxFilter*          GetFilter4Extension(
         const String& rExt, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
 
@@ -291,8 +288,6 @@ public:
 /*STRIP003*/        SfxMedium& rMedium, const SfxFilter**, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED, BOOL bOnlyGoodOnes=FALSE ) const ;
     const SfxFilter*          GetFilter4Protocol(
         SfxMedium& rMed, SfxFilterFlags nMust = SFX_FILTER_IMPORT, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
-    const SfxFilter*          GetFilter(
-        const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
     const SfxFilter*          GetFilter4FilterName(
         const String& rName, SfxFilterFlags nMust = 0, SfxFilterFlags nDont = SFX_FILTER_NOTINSTALLED ) const;
 
@@ -315,17 +310,6 @@ class SfxFilterMatcherIter
     int nAktContainer;
     SfxFilterContainer* pCont;
     const SfxFilterMatcher_Impl *pMatch;
-
-#if _SOLAR__PRIVATE
-    const SfxFilter* Forward_Impl();
-    const SfxFilter* First_Impl();
-    const SfxFilter* Next_Impl();
-#endif
-
-public:
-    SfxFilterMatcherIter( const SfxFilterMatcher* pMatchP, SfxFilterFlags nMask = 0, SfxFilterFlags nNotMask = SFX_FILTER_NOTINSTALLED );
-    const SfxFilter* First();
-    const SfxFilter* Next();
 };
 
 }//end of namespace binfilter
