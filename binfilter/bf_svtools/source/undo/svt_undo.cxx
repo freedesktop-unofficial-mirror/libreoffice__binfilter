@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_undo.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -267,39 +267,6 @@ USHORT SfxUndoManager::GetUndoActionId( USHORT nNo ) const
 
 //------------------------------------------------------------------------
 
-SfxUndoAction* SfxUndoManager::GetUndoAction( USHORT nNo ) const
-{
-    if( nNo < pActUndoArray->nCurUndoAction )
-    {
-        return pActUndoArray->aUndoActions[pActUndoArray->nCurUndoAction-1-nNo]; //!
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-//------------------------------------------------------------------------
-
-void SfxUndoManager::RemoveLastUndoAction()
-{
-    if( pActUndoArray->nCurUndoAction )
-    {
-        pActUndoArray->nCurUndoAction--;
-
-        // delete redo-actions and top action
-        USHORT nPos;
-        for ( nPos = pActUndoArray->aUndoActions.Count(); nPos > pActUndoArray->nCurUndoAction; --nPos )
-            delete pActUndoArray->aUndoActions[nPos-1];
-
-        pActUndoArray->aUndoActions.Remove(
-            pActUndoArray->nCurUndoAction,
-            pActUndoArray->aUndoActions.Count() - pActUndoArray->nCurUndoAction );
-    }
-}
-
-//------------------------------------------------------------------------
-
 BOOL SfxUndoManager::Undo( USHORT )
 {
     if ( pActUndoArray->nCurUndoAction )
@@ -554,21 +521,6 @@ BOOL SfxListUndoAction::CanRepeat(SfxRepeatTarget&r)  const
 BOOL SfxListUndoAction::Merge( SfxUndoAction *pNextAction )
 {
     return aUndoActions.Count() && aUndoActions[aUndoActions.Count()-1]->Merge( pNextAction );
-}
-
-//------------------------------------------------------------------------
-
-SfxLinkUndoAction::SfxLinkUndoAction(SfxUndoManager *pManager)
-{
-    pUndoManager = pManager;
-    if ( pManager->GetMaxUndoActionCount() )
-    {
-        USHORT nPos = pManager->GetUndoActionCount()-1;
-        pAction = pManager->pActUndoArray->aUndoActions[nPos];
-        pAction->SetLinked();
-    }
-    else
-        pAction = 0;
 }
 
 //------------------------------------------------------------------------
