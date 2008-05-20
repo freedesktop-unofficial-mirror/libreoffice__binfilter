@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: applet.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,14 +101,6 @@ public:
     virtual ULONG   GetMiscStatus() const;
     virtual BOOL    IsLink() const;
 
-#ifdef MRJ_JAVA
-    SdApplet_MRJ *  GetApplet() const;
-#elif defined( REMOTE_VERSION )
-    RmAppletObject *GetApplet() const;
-#else
-    SjApplet *      GetApplet() const;
-#endif
-
                     // spezielle Internet Methoden
     void            SetCommandList( const SvCommandList & rList );
     const SvCommandList & GetCommandList() const;
@@ -116,8 +108,6 @@ public:
     const String &  GetClass()const;
     void            SetName( const XubString & rClass );
     const XubString &GetName() const;
-    void            SetDocBase( const INetURLObject & );
-    void            SetCodeBase( const INetURLObject & );
     void            SetCodeBase( const XubString & );
     const XubString & GetCodeBase() const;
     void            SetMayScript( BOOL bMayScript );
