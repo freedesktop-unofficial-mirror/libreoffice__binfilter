@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_sgfbram.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -612,21 +612,6 @@ BOOL SgfVectFilter(SvStream& rInp, GDIMetaFile& rMtf)
         }
     }
     return(bRet);
-}
-
-
-/*************************************************************************
-|*
-|*    SgfFilterPScr()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
-*************************************************************************/
-BOOL SgfFilterPScr(SvStream&, SgfHeader&, SgfEntry&)
-{
-    return FALSE;  // PostSrcipt wird noch nicht unterstuetzt !
 }
 
 
