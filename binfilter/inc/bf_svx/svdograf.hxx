@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdograf.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,7 +124,6 @@ public:
 
                             SdrGrafObj();
                             SdrGrafObj(const Graphic& rGrf);
-                            SdrGrafObj(const Graphic& rGrf, const Rectangle& rRect);
     virtual                 ~SdrGrafObj();
 
     void                    SetGraphicObject( const BfGraphicObject& rGrfObj );
@@ -132,8 +131,6 @@ public:
 
     void                    SetGraphic(const Graphic& rGrf);
     const Graphic&          GetGraphic() const;
-
-    Graphic                 GetTransformedGraphic( ULONG nTransformFlags = SDRGRAFOBJ_TRANSFORMATTR_ALL ) const;
 
     GraphicType             GetGraphicType() const;
 
