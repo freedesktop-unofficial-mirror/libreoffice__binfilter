@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iniadrtk.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,13 +53,6 @@ enum AddressToken
     ADDRESS_STATE,
     ADDRESS_FATHERSNAME,
     ADDRESS_APARTMENT
-};
-
-//============================================================================
-class SfxIniManagerAddressEntry
-{
-public:
-    static String get(const String & rAddress, AddressToken eToken);
 };
 
 }
