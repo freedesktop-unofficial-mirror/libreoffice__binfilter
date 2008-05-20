@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docnew.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -208,7 +208,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ SwDoc::SwDoc() :
 /*N*/   aAttrPool( this ),
 /*N*/   aNodes( this ),
-/*N*/   aUndoNodes( this ),
 /*N*/   pFrmFmtTbl( new SwFrmFmts() ),
 /*N*/   pCharFmtTbl( new SwCharFmts() ),
 /*N*/   pSpzFrmFmtTbl( new SwSpzFrmFmts() ),
@@ -228,15 +227,10 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   pDefTOXBases( new SwDefTOXBase_Impl() ),
 /*N*/   nLinkCt( 0 ),
 /*N*/   pGlossaryDoc( 0 ),
-/*N*/   nUndoPos( 0 ),
-/*N*/   nUndoSavePos( 0 ),
-/*N*/   nUndoCnt( 0 ),
-/*N*/   nUndoSttEnd( 0 ),
 /*N*/   pOutlineRule( 0 ),
 /*N*/   pLayout( 0 ),                   // Rootframe des spezifischen Layouts.
 /*N*/   pPrt( 0 ),
 /*N*/     pPrtData( 0 ),
-/*N*/   pUndos( new SwUndos( 0, 20 ) ),
 /*N*/   pExtInputRing( 0 ),
 /*N*/   pLayouter( 0 ),
 /*N*/     pLayoutCache( 0 ),
@@ -274,13 +268,11 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   bGlossDoc =
 /*N*/   bModified =
 /*N*/   bDtor =
-/*N*/   bUndo =
 /*N*/   bPageNums =
 /*N*/   bLoaded =
 /*N*/   bUpdateExpFld =
 /*N*/   bNewDoc =
 /*N*/   bCopyIsMove =
-/*N*/   bNoDrawUndoObj =
 /*N*/   bBrowseMode =
 /*N*/   bInReading =
 /*N*/   bUpdateTOX =
@@ -304,7 +296,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ #endif
 /*N*/                               FALSE;
 /*N*/
-/*N*/   bGroupUndo =
 /*N*/   bNewFldLst =
 /*N*/   bVisibleLinks =
 /*N*/   bFrmBeepEnabled =
@@ -355,7 +346,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/                                       SwNumRule::GetOutlineRuleName() ),
 /*N*/                                   OUTLINE_RULE );
 /*N*/
-/*N*/   new SwTxtNode( SwNodeIndex( aUndoNodes.GetEndOfContent() ), pDfltTxtFmtColl );
+/*N*/   // new SwTxtNode( SwNodeIndex( aUndoNodes.GetEndOfContent() ), pDfltTxtFmtColl );
 /*N*/   new SwTxtNode( SwNodeIndex( aNodes.GetEndOfContent() ),
 /*N*/                   GetTxtCollFromPool( RES_POOLCOLL_STANDARD ));
 /*N*/
@@ -425,13 +416,11 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   // Undo-Benachrichtigung vom Draw abschalten
 /*N*/   if( pDrawModel )
 /*N*/   {
-/*N*/       DrawNotifyUndoHdl();
 /*N*/       ClrContourCache();
 /*N*/   }
 /*N*/
 /*N*/   delete pPgPViewPrtData;
 /*N*/
-/*N*/   bUndo = FALSE;          // immer das Undo abschalten !!
 /*N*/   // damit die Fussnotenattribute die Fussnotennodes in Frieden lassen.
 /*N*/   bDtor = TRUE;
 /*N*/
@@ -457,12 +446,9 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   // die KapitelNummern / Nummern muessen vor den Vorlage geloescht werden
 /*N*/   // ansonsten wird noch staendig geupdatet !!!
 /*N*/   aNodes.pOutlineNds->Remove( USHORT(0), aNodes.pOutlineNds->Count() );
-/*N*/   aUndoNodes.pOutlineNds->Remove( USHORT(0), aUndoNodes.pOutlineNds->Count() );
+/*N*/   // aUndoNodes.pOutlineNds->Remove( USHORT(0), aUndoNodes.pOutlineNds->Count() );
 /*N*/
 /*N*/   pFtnIdxs->Remove( USHORT(0), pFtnIdxs->Count() );
-/*N*/
-/*N*/   pUndos->DeleteAndDestroy( 0, pUndos->Count() ); //Es koennen in den Attributen noch
-/*N*/                                                   //noch indizes angemeldet sein.
 /*N*/
 /*N*/   // in den BookMarks sind Indizies auf den Content. Diese muessen vorm
 /*N*/   // loesche der Nodes geloescht werden.
@@ -506,7 +492,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   // nicht erst durch den SwNodes-DTOR, damit Formate
 /*N*/   // keine Abhaengigen mehr haben.
 /*N*/   aNodes.DelNodes( SwNodeIndex( aNodes ), aNodes.Count() );
-/*N*/   aUndoNodes.DelNodes( SwNodeIndex( aUndoNodes ), aUndoNodes.Count() );
+/*N*/   // aUndoNodes.DelNodes( SwNodeIndex( aUndoNodes ), aUndoNodes.Count() );
 /*N*/
 /*N*/   // Formate loeschen, spaeter mal permanent machen.
 /*N*/
@@ -583,7 +569,6 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   delete pFtnIdxs;
 /*N*/   delete pFldTypes;
 /*N*/   delete pTOXTypes;
-/*N*/   delete pUndos;
 /*N*/   delete pDocStat;
 /*N*/   delete pEmptyPageFmt;
 /*N*/   delete pColumnContFmt;
