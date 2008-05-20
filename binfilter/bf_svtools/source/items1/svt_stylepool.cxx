@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_stylepool.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -255,8 +255,6 @@ IStylePoolIteratorAccess* StylePoolImpl::createIterator()
 { return new Iterator( aRoot ); }
 
 // Ctor, Dtor and redirected methods of class StylePool, nearly inline ;-)
-
-StylePool::StylePool() : pImpl( new StylePoolImpl() ) {}
 
 StylePool::SfxItemSet_Pointer_t StylePool::insertItemSet( const SfxItemSet& rSet )
 { return pImpl->insertItemSet( rSet ); }
