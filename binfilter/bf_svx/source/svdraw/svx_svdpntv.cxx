@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdpntv.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -363,33 +363,6 @@ using namespace ::com::sun::star;
 /*N*/   onChangeColorConfig();
 /*N*/ }
 
-/*?*/ SdrPaintView::SdrPaintView(SdrModel* pModel1, ExtOutputDevice* pExtOut):
-/*?*/   aPagV(1024,16,16),
-/*?*/   aPagHide(1024,16,16),
-/*?*/   aAni(*(SdrView*)this),
-/*?*/   aDefaultAttr(pModel1->GetItemPool()),
-/*?*/   aUserMarkers(1024,16,16)
-/*?*/ {
-/*?*/   DBG_CTOR(SdrPaintView,NULL);
-/*?*/   pMod=pModel1;
-/*?*/   ImpClearVars();
-/*?*/   pMod=pModel1;
-/*?*/   if (pExtOut!=NULL) {
-/*?*/       bForeignXOut=TRUE;
-/*?*/       pXOut=pExtOut;
-/*?*/       OutputDevice* pO=pXOut->GetOutDev();
-/*?*/       if (pO!=NULL) AddWin(pO);
-/*?*/   } else {
-/*?*/       pXOut=new ExtOutputDevice(NULL);
-/*?*/   }
-/*?*/
-/*?*/   // Flag zur Visualisierung von Gruppen
-/*?*/   bVisualizeEnteredGroup = TRUE;
-/*?*/
-/*?*/   StartListening( maColorConfig );
-/*?*/   onChangeColorConfig();
-/*?*/ }
-
 /*N*/ SdrPaintView::~SdrPaintView()
 /*N*/ {
 /*N*/   DBG_DTOR(SdrPaintView,NULL);
@@ -495,15 +468,6 @@ using namespace ::com::sun::star;
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void SdrPaintView::FlushComeBackTimer() const
-/*N*/ {
-/*N*/   if (bSomeObjChgdFlag) {
-/*N*/       // casting auf nonconst
-/*N*/       ((SdrPaintView*)this)->ImpComeBackHdl(&((SdrPaintView*)this)->aComeBackTimer);
-/*N*/       ((SdrPaintView*)this)->aComeBackTimer.Stop();
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrPaintView::ModelHasChanged()
 /*N*/ {
 /*N*/   // Auch alle PageViews benachrichtigen
@@ -598,37 +562,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/*N*/ USHORT SdrPaintView::ImpGetHitTolLogic(short nHitTol, const OutputDevice* pOut) const
-/*N*/ {
-/*N*/   if (nHitTol>=0) return USHORT(nHitTol);
-/*?*/   if (pOut==NULL) pOut=GetWin(0);
-/*?*/   if (pOut!=NULL) {
-/*?*/       return short(-pOut->PixelToLogic(Size(nHitTol,0)).Width());
-/*?*/   } else {
-/*?*/       return 0;
-/*?*/   }
-/*N*/ }
-
-/*N*/ void SdrPaintView::TheresNewMapMode()
-/*N*/ {
-/*N*/   if (pActualOutDev!=NULL) {
-/*N*/       nHitTolLog=(USHORT)((OutputDevice*)pActualOutDev)->PixelToLogic(Size(nHitTolPix,0)).Width();
-/*N*/       nMinMovLog=(USHORT)((OutputDevice*)pActualOutDev)->PixelToLogic(Size(nMinMovPix,0)).Width();
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrPaintView::SetActualWin(const OutputDevice* pWin)
-/*N*/ {
-/*N*/   pActualOutDev=pWin;
-/*N*/   TheresNewMapMode();
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 /*N*/ void SdrPaintView::BrkEncirclement()
 /*N*/ {
@@ -734,12 +667,6 @@ using namespace ::com::sun::star;
 /*N*/   return pPV;
 /*N*/ }
 
-/*N*/ SdrPageView* SdrPaintView::ShowPagePgNum(USHORT nPgNum, const Point& rOffs)
-/*N*/ {
-/*N*/   return ShowPage(pMod->GetPage(nPgNum),rOffs);
-/*N*/ }
-
-
 /*N*/ void SdrPaintView::HidePage(SdrPageView* pPV)
 /*N*/ {
 /*N*/   if (pPV!=NULL) {
@@ -829,68 +756,9 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-
-/*N*/ void SdrPaintView::SetLayerLocked(const XubString& rName, BOOL bLock)
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<GetPageViewCount(); i++) {
-/*N*/       SdrPageView* pPV=GetPageViewPvNum(i);
-/*N*/       pPV->SetLayerLocked(rName,bLock);
-/*N*/   }
-/*N*/ }
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ void SdrPaintView::InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-
-
-//STRIP012/*N*/ void SdrPaintView::RefreshAllIAOManagers()
-//STRIP012/*N*/ {
-//STRIP012/*N*/     for(UINT16 a=0;a<aWinList.GetCount();a++)
-//STRIP012/*N*/     {
-//STRIP012/*N*/         if(aWinList[a].pIAOManager)
-//STRIP012/*N*/         {
-//STRIP012/*N*/             aWinList[a].pIAOManager->UpdateDisplay();
-//STRIP012/*N*/         }
-//STRIP012/*N*/     }
-//STRIP012/*N*/ }
-
-//STRIP012#ifdef TEST_IAO
-//STRIP012static UINT16 nStepWidthForMove = 100;
-//STRIP012static UINT32 nDirectObjectNum = 0L;
-//STRIP012static UINT32 nInsertXPos = 4000;
-//STRIP012static UINT32 nInsertYPos = 4000;
-//STRIP012static UINT32 nInsertIncrement = 100;
-//STRIP012#endif
-
-
-
-/*N*/ void SdrPaintView::PostPaint()
-/*N*/ {
-/*N*/   // refresh with Paint-functionality
-//STRIP012/*N*/     RefreshAllIAOManagers();
-/*N*/ }
-
-/*N*/ void SdrPaintView::RestartAfterPaintTimer()
-/*N*/ {
-/*N*/   // start timer for ImpAfterPaint()
-/*N*/   aAfterPaintTimer.Start();
-/*N*/ }
-
-
-
 
 /*N*/ void SdrPaintView::GlueInvalidate() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
@@ -948,17 +816,6 @@ using namespace ::com::sun::star;
 /*N*/       SdrPageView* pPV=GetPageViewPvNum(nv);
 /*N*/       pPV->LeaveAllGroup();
 /*N*/   }
-/*N*/ }
-
-/*N*/ BOOL SdrPaintView::IsGroupEntered() const
-/*N*/ {
-/*N*/   BOOL bRet=FALSE;
-/*N*/   USHORT nPVAnz=GetPageViewCount();
-/*N*/   for (USHORT nv=0; nv<nPVAnz && !bRet; nv++) {
-/*N*/       SdrPageView* pPV=GetPageViewPvNum(nv);
-/*N*/       if (pPV->GetEnteredLevel()!=0) bRet=TRUE;
-/*N*/   }
-/*N*/   return bRet;
 /*N*/ }
 
 /*N*/ void SdrPaintView::SetMasterPagePaintCaching( BOOL bOn, ULONG nCacheMode )
@@ -1120,75 +977,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-
-
-
-/*N*/ void SdrPaintView::VisAreaChanged(const OutputDevice* pOut)
-/*N*/ {
-/*N*/   USHORT nCount = GetPageViewCount();
-/*N*/
-/*N*/   for (USHORT i = 0; i < nCount; i++)
-/*N*/   {
-/*N*/       SdrPageView* pPV = GetPageViewPvNum(i);
-/*N*/
-/*N*/       if (pOut)
-/*N*/       {
-/*N*/           // Nur dieses eine OutDev
-/*N*/           USHORT nPos = pPV->GetWinList().Find((OutputDevice*) pOut);
-/*N*/
-/*N*/           if (nPos != SDRPAGEVIEWWIN_NOTFOUND)
-/*N*/           {
-/*N*/               VisAreaChanged(pPV->GetWinList()[nPos]);
-/*N*/           }
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // Alle OutDevs
-/*N*/           USHORT nWinAnz = pPV->GetWinList().GetCount();
-/*N*/
-/*N*/           for (USHORT nWinNum = 0; nWinNum < nWinAnz; nWinNum++)
-/*N*/           {
-/*N*/               VisAreaChanged(pPV->GetWinList()[nWinNum]);
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrPaintView::VisAreaChanged(const SdrPageViewWinRec& rPVWR)
-/*N*/ {
-/*N*/     // notify SfxListener
-/*N*/     Broadcast( SvxViewHint(SVX_HINT_VIEWCHANGED) );
-/*N*/
-/*N*/     // notify UNO objects
-/*N*/   if (rPVWR.GetControlContainerRef().is())
-/*N*/   {
-/*N*/       const SdrUnoControlList& rCList = rPVWR.GetControlList();
-/*N*/
-/*N*/       for (ULONG i = 0; i < rCList.GetCount(); i++)
-/*N*/       {
-/*N*/           const SdrUnoControlRec& rControlRec = rCList[ (sal_uInt16) i];
-/*N*/           uno::Reference< awt::XControl > xUnoControl = rControlRec.GetControl();
-/*N*/
-/*N*/           if (xUnoControl.is())
-/*N*/           {
-/*N*/               uno::Reference< awt::XWindow > xVclComponent( xUnoControl, uno::UNO_QUERY );
-/*N*/
-/*N*/               if (xVclComponent.is() && rControlRec.GetUnoObj())
-/*N*/               {
-/*N*/                   Rectangle aRect = rControlRec.GetUnoObj()->GetLogicRect();
-/*N*/                   OutputDevice* pOut = rPVWR.GetOutputDevice();
-/*N*/                   Point aPixPos(pOut->LogicToPixel(aRect.TopLeft()));
-/*N*/                   Size aPixSize(pOut->LogicToPixel(aRect.GetSize()));
-/*N*/
-/*N*/                   xVclComponent->setPosSize(aPixPos.X(), aPixPos.Y(),
-/*N*/                       aPixSize.Width(), aPixSize.Height(), awt::PosSize::POSSIZE);
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-
 
 /*N*/ void SdrPaintView::onChangeColorConfig()
 /*N*/ {
