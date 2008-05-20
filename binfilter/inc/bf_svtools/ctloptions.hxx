@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ctloptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,25 +68,15 @@ public:
 
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 
-    void            SetCTLFontEnabled( sal_Bool _bEnabled );
     sal_Bool        IsCTLFontEnabled() const;
 
-    void            SetCTLSequenceChecking( sal_Bool _bEnabled );
     sal_Bool        IsCTLSequenceChecking() const;
-
-    void            SetCTLSequenceCheckingRestricted( sal_Bool _bEnable );
-    sal_Bool        IsCTLSequenceCheckingRestricted( void ) const;
-
-    void            SetCTLSequenceCheckingTypeAndReplace( sal_Bool _bEnable );
-    sal_Bool        IsCTLSequenceCheckingTypeAndReplace() const;
 
     enum CursorMovement
     {
         MOVEMENT_LOGICAL = 0,
         MOVEMENT_VISUAL
     };
-    void            SetCTLCursorMovement( CursorMovement _eMovement );
-    CursorMovement  GetCTLCursorMovement() const;
 
     enum TextNumerals
     {
@@ -94,7 +84,6 @@ public:
         NUMERALS_HINDI,
         NUMERALS_SYSTEM
     };
-    void            SetCTLTextNumerals( TextNumerals _eNumerals );
     TextNumerals    GetCTLTextNumerals() const;
 
     enum EOption
@@ -106,7 +95,6 @@ public:
         E_CTLSEQUENCECHECKINGRESTRICTED,
         E_CTLSEQUENCECHECKINGTYPEANDREPLACE
     };
-    sal_Bool IsReadOnly(EOption eOption) const;
 };
 
 }
