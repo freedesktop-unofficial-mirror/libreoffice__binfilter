@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdsnpv.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -122,7 +122,6 @@ protected:
     virtual BOOL ReadRecord(const SdrIOHeader& rViewHead, const SdrNamedSubRecord& rSubHead,SvStream& rIn);
 public:
     SdrSnapView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrSnapView(SdrModel* pModel1, ExtOutputDevice* pXOut);
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
@@ -144,7 +143,6 @@ public:
     // RecalcLogicSnapMagnetic muss bei jedem Wechsel des OutputDevices
     // sowie bei jedem Wechsel des MapModes gerufen werden!
     void RecalcLogicSnapMagnetic(const OutputDevice& rOut) { SetSnapMagnetic(rOut.PixelToLogic(Size(nMagnSizPix,nMagnSizPix))); }
-    void SetActualWin(const OutputDevice* pWin) { SdrPaintView::SetActualWin(pWin); if (pWin!=NULL) RecalcLogicSnapMagnetic(*pWin); }
 
     // Auf die View bezogene Koordinaten!
     // Rueckgabewerte sind SDRSNAP_NOTSNAPPED,SDRSNAP_XSNAPPED,
@@ -191,13 +189,6 @@ public:
 
     void BrkSetPageOrg();
     BOOL IsSetPageOrg() const { return bSetPageOrg; }
-
-    // HitTest. Bei TRUE steht in rnHelpLineNum die Nummer der Hilfslinie und in rpPV
-    // die zugehoerige PageView.
-    BOOL PickHelpLine(const Point& rPnt, short nTol, const OutputDevice& rOut, USHORT& rnHelpLineNum, SdrPageView*& rpPV) const;
-    BOOL PickHelpLine(const Point& rPnt, const OutputDevice& rOut, USHORT& rnHelpLineNum, SdrPageView*& rpPV) const { return PickHelpLine(rPnt,-2,rOut,rnHelpLineNum,rpPV); }
-
-    // Verschieben einer vorhandenen Hilfslinie. nHelpLineNum und pPV von PickHelpLine verwenden.
 
     // Interaktives einfuegen einer neuen Hilfslinie
     const SdrHelpLine& GetDraggedHelpLine() const { return aDragHelpLine; }
