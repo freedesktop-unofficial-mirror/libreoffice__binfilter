@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: validat.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -84,9 +84,6 @@ public:
                                 const String& rExpr1, const String& rExpr2,
                                 ScDocument* pDocument, const ScAddress& rPos,
                                 BOOL bCompileEnglish = FALSE, BOOL bCompileXML = FALSE );
-            ScValidationData( ScValidationMode eMode, ScConditionMode eOper,
-                                const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-                                ScDocument* pDocument, const ScAddress& rPos );
             ScValidationData( const ScValidationData& r );
             ScValidationData( ScDocument* pDocument, const ScValidationData& r );
             ScValidationData( SvStream& rStream, ScMultipleReadHeader& rHdr,
@@ -148,7 +145,6 @@ class ScValidationDataList : public ScValidationEntries_Impl
 public:
         ScValidationDataList() {}
         ScValidationDataList(const ScValidationDataList& rList);
-        ScValidationDataList(ScDocument* pNewDoc, const ScValidationDataList& rList);
         ~ScValidationDataList() {}
 
     void    InsertNew( ScValidationData* pNew )
