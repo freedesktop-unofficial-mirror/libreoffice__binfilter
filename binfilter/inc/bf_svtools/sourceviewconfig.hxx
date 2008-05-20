@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sourceviewconfig.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,15 +62,6 @@ namespace binfilter
         public:
             SourceViewConfig();
             virtual ~SourceViewConfig();
-
-            const rtl::OUString&    GetFontName() const;
-            void                    SetFontName(const rtl::OUString& rName);
-
-            sal_Int16               GetFontHeight() const;
-            void                    SetFontHeight(sal_Int16 nHeight);
-
-            sal_Bool                IsShowProportionalFontsOnly() const;
-            void                    SetShowProportionalFontsOnly(sal_Bool bSet);
 
             //SfxListener:
             virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
