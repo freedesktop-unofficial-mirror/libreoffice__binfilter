@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_fstathelper.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,21 +94,6 @@ sal_Bool IsDocument( const UniString& rURL )
         ::ucbhelper::Content aTestContent( rURL,
                                 uno::Reference< XCommandEnvironment > ());
         bExist = aTestContent.isDocument();
-    }
-    catch(...)
-    {
-    }
-    return bExist;
-}
-
-sal_Bool IsFolder( const UniString& rURL )
-{
-    BOOL bExist = FALSE;
-    try
-    {
-        ::ucbhelper::Content aTestContent( rURL,
-                                uno::Reference< XCommandEnvironment > ());
-        bExist = aTestContent.isFolder();
     }
     catch(...)
     {
