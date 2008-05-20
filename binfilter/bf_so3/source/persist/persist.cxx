@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: persist.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,14 +76,6 @@ SvInfoObject::SvInfoObject()
     : pImp( new SvInfoObject_Impl )
     , bDeleted( FALSE )
 {
-}
-
-SvInfoObject::SvInfoObject( SvPersist * pObj )
-    : pImp( new SvInfoObject_Impl )
-    , bDeleted( FALSE )
-{
-    SetObj( pObj );
-    aObjName = pObj->GetStorage()->GetName();
 }
 
 SvInfoObject::SvInfoObject( SvPersist * pObj, const String & rName )
@@ -429,7 +421,7 @@ SvPersist::~SvPersist()
     dtorClear();
 }
 
-
+#ifdef DBG_UTIL
 /*************************************************************************
 |*    SvPersist::AssertInit()
 |*
@@ -439,6 +431,7 @@ void SvPersist::AssertInit() const
 {
     DBG_ASSERT( bIsInit, "super class SvPersist: call InitNew or Load bevor other calls" );
 }
+#endif
 
 //=========================================================================
 void SvPersist::FillClass
@@ -479,11 +472,6 @@ void SvPersist::FillClass
         *pFullTypeName  = "StarDivison Calc 3.0 Tabelle";
         *pShortTypeName = "Tabelle";
     }
-
-    [Querverweise]
-
-    <SvPersist::GetClassName>, <SvPersist::GetFileFormat>,
-    <SvPersist::GetFullTypeName>, <SvPseudoObject::FillClass>
 */
 {
     *pFormat        = 0;
@@ -492,66 +480,6 @@ void SvPersist::FillClass
 
     if( Owner() )
         *pClassName = *GetSvFactory();
-}
-
-//=========================================================================
-SvGlobalName SvPersist::GetClassName() const
-/*  [Beschreibung]
-
-    Ruft <SvPersist::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return aName;
-}
-
-//=========================================================================
-ULONG SvPersist::GetFileFormat() const
-/*  [Beschreibung]
-
-    Ruft <SvPersist::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return nFormat;
-}
-
-//=========================================================================
-String SvPersist::GetFullTypeName() const
-/*  [Beschreibung]
-
-    Ruft <SvPersist::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return aFullTypeName;
 }
 
 /*************************************************************************
@@ -1048,17 +976,6 @@ void SvPersist::dtorClear()
     }
 }
 
-void SvPersist::Clear()
-{
-    if( pChildList )
-    {
-        ULONG nCount = pChildList->Count();
-        dtorClear();
-        if( nCount )
-            SetModified( TRUE ); // nicht im dtor
-    }
-}
-
 SvInfoObject * SvPersist::Find( const String & rName ) const
 {
     if( pChildList )
@@ -1096,8 +1013,6 @@ SvInfoObject * SvPersist::Find( const SvPersist * pObj_ ) const
 |*    SvPersist::HasObject()
 |*    SvPersist::CanRunObject()
 |*    SvPersist::GetObject()
-|*    SvPersist::GetObjectStorage()
-|*    SvPersist::IsRoot()
 |*
 |*    Beschreibung
 *************************************************************************/
@@ -1179,21 +1094,6 @@ SvStorageRef SvPersist::GetObjectStorage( SvInfoObject* pEle )
     }
 
     return xRet;
-}
-
-SvStorageRef SvPersist::GetObjectStorage( const String& rObjName )
-{
-    SvStorageRef xRet;
-    // Befindet sich das Objekt in der aktuellen Liste
-    SvInfoObject * pEle = Find( rObjName );
-    if( pEle )
-        xRet = GetObjectStorage( pEle );
-    return xRet;
-}
-
-BOOL SvPersist::IsRoot() const
-{
-    return bCreateTempStor || aStorage->IsRoot();
 }
 
 /*************************************************************************
@@ -1291,27 +1191,6 @@ BOOL SvPersist::IsModified()
         }
     }
     return FALSE;
-}
-
-/*************************************************************************
-|*    SvPersist::CopyObject()
-|*
-|*    Beschreibung
-*************************************************************************/
-SvPersistRef SvPersist::CopyObject( SvStorage * pStor )
-{
-    // Kopieren durch Speichern und Laden
-    if( DoSaveAs( pStor ) )
-    {
-        DoSaveCompleted();
-        const SvFactory * pFact = PTR_CAST( SvFactory, GetSvFactory() );
-        SvPersistRef xObj( pFact->CreateAndLoad( pStor ) );
-        DBG_ASSERT( xObj.Is(), "not from class SvPersist" )
-        return xObj;
-    }
-    else
-        DoSaveCompleted();
-    return SvPersistRef();
 }
 
 /*************************************************************************
@@ -1769,29 +1648,6 @@ void SvPersist::SaveContent( SvStream & rStm, BOOL bOwner_ )
     // nichts tun bei Fremd-Format
 }
 
-
-/*************************************************************************
-|*    SvPersist::LoadChilds()
-|*
-|*    Beschreibung
-*************************************************************************/
-BOOL SvPersist::LoadChilds()
-{
-    BOOL bRet = TRUE;
-    const SvInfoObjectMemberList * pList = GetObjectList();
-    if( pList )
-    {
-        SvPersistRef aPersist;
-        for( UINT32 i = 0; i < pList->Count(); i++ )
-        {
-            if( !GetObject( pList->GetObject( i )->GetObjName() ).Is() )
-                bRet = FALSE;
-        }
-    }
-
-    return bRet;
-}
-
 /*************************************************************************
 |*    SvPersist::SaveChilds()
 |*
@@ -2103,43 +1959,4 @@ void SvPersist::CleanUp( BOOL bRecurse)
         }
     }
 }
-
-void SvPersist::StartActivation( SvPersist* pObj_ )
-{
-    // every internal object that is edited, must have an UCBStorage
-    SvOutPlaceObjectRef xPO( pObj_ );
-    if ( !pObj_->GetStorage()->IsOLEStorage() || xPO.Is() )
-        return;
-
-    SvInfoObject* pEle = Find( pObj_ );
-    DBG_ASSERT( pEle, "Object not found!" );
-    if ( pEle )
-    {
-        // try to save object into new temporary UCBStorage
-        SvStorageRef aStor = pObj_->GetStorage();
-        String aRealName = ::utl::TempFile().GetURL();
-        BOOL bKill = TRUE;
-        SvStorageRef aNewStor = new SvStorage( aRealName, STREAM_STD_READWRITE, 0 );
-        if( aNewStor->GetError() == SVSTREAM_OK )
-        {
-            if( pObj_->DoSaveAs( aNewStor ) )
-                aNewStor->Commit();
-            if( pObj_->DoSaveCompleted( aNewStor ) )
-            {
-                pEle->pImp->SetRealStorageName( aNewStor->GetName() );
-                bKill = FALSE;
-            }
-            else
-                pObj_->DoSaveCompleted();
-
-            pObj_->SetModified( FALSE );
-        }
-
-        if ( bKill )
-            ::utl::UCBContentHelper::Kill( aRealName );
-    }
-}
-
-
-
 }
