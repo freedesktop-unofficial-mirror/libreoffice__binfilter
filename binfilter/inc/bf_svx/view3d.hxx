@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: view3d.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -104,8 +104,6 @@ public:
     TYPEINFO();
 
     E3dView(SdrModel* pModel, OutputDevice* pOut);
-    E3dView(SdrModel* pModel, ExtOutputDevice* pExtOut);
-    E3dView(SdrModel* pModel);
     virtual ~E3dView();
 
     // Alle markierten Objekte auf dem angegebenen OutputDevice ausgeben.
@@ -118,17 +116,6 @@ public:
     void SetMouseEvent(const MouseEvent& rNew) { aMouseEvent = rNew; }
     const MouseEvent& GetMouseEvent() { return aMouseEvent; }
 
-    // Model holen ueberladen, da bei einzelnen 3D Objekten noch eine Szene
-    // untergeschoben werden muss
-
-    // Bei Paste muss - falls in eine Scene eingefuegt wird - die
-    // Objekte der Szene eingefuegt werden, die Szene selbst aber nicht
-
-    // #83403# Service routine used from local Clone() and from SdrCreateView::EndCreateObj(...)
-
-
-    BOOL IsConvertTo3DObjPossible() const;
-
     // Nachtraeglichhe Korrekturmoeglichkeit um alle Extrudes in einer
     // bestimmten Tiefensortierung anzulegen
     void DoDepthArrange(E3dScene* pScene, double fDepth);
@@ -137,8 +124,6 @@ public:
     void Set3DDragDetail(E3dDragDetail eDetail) { eDragDetail = eDetail; }
     E3dDragDetail Get3DDragDetail() { return eDragDetail; }
     BOOL IsCreationActive() const { return b3dCreationActive; }
-    void ResetCreationActive();
-    void ShowMirrored();
 
     const Vector3D &DefaultTranslation () const
     {
