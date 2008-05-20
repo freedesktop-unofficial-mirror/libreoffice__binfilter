@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: editundo.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -44,32 +44,6 @@ namespace binfilter {
 
 class ImpEditEngine;
 class EditView;
-
-// -----------------------------------------------------------------------
-// EditUndoDelContent
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoConnectParas
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoSplitPara
-// ------------------------------------------------------------------------
-class EditUndoSplitPara : public EditUndo
-{
-private:
-    USHORT          nNode;
-    USHORT          nSepPos;
-
-public:
-                    EditUndoSplitPara( ImpEditEngine* pImpEE, USHORT nNode, USHORT nSepPos );
-                    ~EditUndoSplitPara();
-
-    virtual void    Undo();
-    virtual void    Redo();
-    virtual void    Repeat();
-};
 
 // -----------------------------------------------------------------------
 // EditUndoInsertChars
