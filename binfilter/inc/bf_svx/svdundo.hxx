@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdundo.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -115,7 +115,6 @@ protected:
 
 public:
     SdrUndoGroup(SdrModel& rNewMod);
-    SdrUndoGroup(SdrModel& rNewMod,const String& rStr);
     virtual ~SdrUndoGroup();
 
     void Clear();
