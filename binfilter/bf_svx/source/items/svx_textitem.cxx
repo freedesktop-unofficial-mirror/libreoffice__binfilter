@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_textitem.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -922,44 +922,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   nProp = nNewProp;
 /*N*/   ePropUnit = eUnit;
 /*N*/ }
-
-
-// class SvxFontWidthItem -----------------------------------------------
-
-/*N*/ SvxFontWidthItem::SvxFontWidthItem( const USHORT nSz, const USHORT nPrp, const USHORT nId ) :
-/*N*/   SfxPoolItem( nId )
-/*N*/ {
-/*N*/   nWidth = nSz;
-/*N*/   nProp = nPrp;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-/*-----------------13.03.98 16:03-------------------
-
---------------------------------------------------*/
-/*-----------------13.03.98 16:03-------------------
-
---------------------------------------------------*/
-
-//------------------------------------------------------------------------
-
 
 // class SvxUnderlineItem ------------------------------------------------
 
@@ -2616,23 +2578,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 |*    class SvxScriptSetItem
 *************************************************************************/
 
-/*N*/ SvxScriptSetItem::SvxScriptSetItem( USHORT nSlotId, SfxItemPool& rPool )
-/*N*/   : SfxSetItem( nSlotId, new SfxItemSet( rPool,
-/*N*/                       SID_ATTR_CHAR_FONT, SID_ATTR_CHAR_FONT ))
-/*N*/ {
-/*N*/   USHORT nLatin, nAsian, nComplex;
-/*N*/   GetWhichIds( nLatin, nAsian, nComplex );
-/*N*/
-/*N*/   USHORT aIds[ 9 ] = { 0 };
-/*N*/   aIds[ 0 ] = aIds[ 1 ] = nLatin;
-/*N*/   aIds[ 2 ] = aIds[ 3 ] = nAsian;
-/*N*/   aIds[ 4 ] = aIds[ 5 ] = nComplex;
-/*N*/   aIds[ 6 ] = aIds[ 7 ] = SID_ATTR_CHAR_SCRIPTTYPE;
-/*N*/   aIds[ 8 ] = 0;
-/*N*/
-/*N*/   GetItemSet().SetRanges( aIds );
-/*N*/ }
-
 /*N*/ SfxPoolItem* SvxScriptSetItem::Clone( SfxItemPool *pPool ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 /*N*/ }
@@ -2640,118 +2585,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ SfxPoolItem* SvxScriptSetItem::Create( SvStream &, USHORT ) const
 /*N*/ {
 /*N*/   return 0;
-/*N*/ }
-
-/*N*/ const SfxPoolItem* SvxScriptSetItem::GetItemOfScriptSet(
-/*N*/                           const SfxItemSet& rSet, USHORT nId )
-/*N*/ {
-/*N*/   const SfxPoolItem* pI;
-/*N*/   SfxItemState eSt = rSet.GetItemState( nId, FALSE, &pI );
-/*N*/   if( SFX_ITEM_SET != eSt )
-/*N*/       pI = SFX_ITEM_DEFAULT == eSt ? &rSet.Get( nId ) : 0;
-/*N*/   return pI;
-/*N*/ }
-
-/*N*/ const SfxPoolItem* SvxScriptSetItem::GetItemOfScript( USHORT nScript ) const
-/*N*/ {
-/*N*/   USHORT nLatin, nAsian, nComplex;
-/*N*/   GetWhichIds( nLatin, nAsian, nComplex );
-/*N*/
-/*N*/   const SfxItemSet& rSet = GetItemSet();
-/*N*/   const SfxPoolItem *pRet, *pAsn, *pCmplx;
-/*N*/   switch( nScript )
-/*N*/   {
-/*N*/   default:                //no one valid -> match to latin
-/*N*/   //  case SCRIPTTYPE_LATIN:
-/*N*/       pRet = GetItemOfScriptSet( rSet, nLatin );
-/*N*/       break;
-/*N*/   case SCRIPTTYPE_ASIAN:
-/*?*/       pRet = GetItemOfScriptSet( rSet, nAsian );
-/*?*/       break;
-/*?*/   case SCRIPTTYPE_COMPLEX:
-/*?*/       pRet = GetItemOfScriptSet( rSet, nComplex );
-/*?*/       break;
-/*?*/
-/*?*/   case SCRIPTTYPE_LATIN|SCRIPTTYPE_ASIAN:
-/*?*/       if( 0 == (pRet = GetItemOfScriptSet( rSet, nLatin )) ||
-/*?*/           0 == (pAsn = GetItemOfScriptSet( rSet, nAsian )) ||
-/*?*/           *pRet != *pAsn )
-/*?*/           pRet = 0;
-/*?*/       break;
-/*?*/       break;
-/*?*/
-/*?*/   case SCRIPTTYPE_LATIN|SCRIPTTYPE_COMPLEX:
-/*?*/       if( 0 == (pRet = GetItemOfScriptSet( rSet, nLatin )) ||
-/*?*/           0 == (pCmplx = GetItemOfScriptSet( rSet, nComplex )) ||
-/*?*/           *pRet != *pCmplx )
-/*?*/           pRet = 0;
-/*?*/       break;
-/*?*/
-/*?*/   case SCRIPTTYPE_ASIAN|SCRIPTTYPE_COMPLEX:
-/*?*/       if( 0 == (pRet = GetItemOfScriptSet( rSet, nAsian )) ||
-/*?*/           0 == (pCmplx = GetItemOfScriptSet( rSet, nComplex )) ||
-/*?*/           *pRet != *pCmplx )
-/*?*/           pRet = 0;
-/*?*/       break;
-/*?*/
-/*?*/   case SCRIPTTYPE_LATIN|SCRIPTTYPE_ASIAN|SCRIPTTYPE_COMPLEX:
-/*?*/       if( 0 == (pRet = GetItemOfScriptSet( rSet, nLatin )) ||
-/*?*/           0 == (pAsn = GetItemOfScriptSet( rSet, nAsian )) ||
-/*?*/           0 == (pCmplx = GetItemOfScriptSet( rSet, nComplex )) ||
-/*?*/           *pRet != *pAsn || *pRet != *pCmplx )
-/*N*/           pRet = 0;
-/*N*/       break;
-/*N*/   }
-/*N*/   return pRet;
-/*N*/ }
-
-
-
-/*N*/ void SvxScriptSetItem::GetWhichIds( USHORT& rLatin, USHORT& rAsian,
-/*N*/                                   USHORT& rComplex ) const
-/*N*/ {
-/*N*/   const SfxItemPool& rPool = *GetItemSet().GetPool();
-/*N*/   GetSlotIds( Which(), rLatin, rAsian, rComplex );
-/*N*/   rLatin = rPool.GetWhich( rLatin );
-/*N*/   rAsian = rPool.GetWhich( rAsian );
-/*N*/   rComplex = rPool.GetWhich( rComplex );
-/*N*/ }
-
-/*N*/ void SvxScriptSetItem::GetSlotIds( USHORT nSlotId, USHORT& rLatin,
-/*N*/                                   USHORT& rAsian, USHORT& rComplex )
-/*N*/ {
-/*N*/   switch( nSlotId )
-/*N*/   {
-/*N*/   default:
-/*N*/       DBG_ASSERT( FALSE, "wrong SlotId for class SvxScriptSetItem" );
-/*N*/       // no break - default to font - Id Range !!
-/*N*/
-/*N*/   case SID_ATTR_CHAR_FONT:
-/*N*/       rLatin = SID_ATTR_CHAR_FONT;
-/*N*/       rAsian = SID_ATTR_CHAR_CJK_FONT;
-/*N*/       rComplex = SID_ATTR_CHAR_CTL_FONT;
-/*N*/       break;
-/*N*/   case SID_ATTR_CHAR_FONTHEIGHT:
-/*N*/       rLatin = SID_ATTR_CHAR_FONTHEIGHT;
-/*N*/       rAsian = SID_ATTR_CHAR_CJK_FONTHEIGHT;
-/*N*/       rComplex = SID_ATTR_CHAR_CTL_FONTHEIGHT;
-/*N*/       break;
-/*N*/   case SID_ATTR_CHAR_WEIGHT:
-/*N*/       rLatin = SID_ATTR_CHAR_WEIGHT;
-/*N*/       rAsian = SID_ATTR_CHAR_CJK_WEIGHT;
-/*N*/       rComplex = SID_ATTR_CHAR_CTL_WEIGHT;
-/*N*/       break;
-/*N*/   case SID_ATTR_CHAR_POSTURE:
-/*N*/       rLatin = SID_ATTR_CHAR_POSTURE;
-/*N*/       rAsian = SID_ATTR_CHAR_CJK_POSTURE;
-/*N*/       rComplex = SID_ATTR_CHAR_CTL_POSTURE;
-/*N*/       break;
-/*N*/   case SID_ATTR_CHAR_LANGUAGE:
-/*N*/       rLatin = SID_ATTR_CHAR_LANGUAGE;
-/*N*/       rAsian = SID_ATTR_CHAR_CJK_LANGUAGE;
-/*N*/       rComplex = SID_ATTR_CHAR_CTL_LANGUAGE;
-/*N*/       break;
-/*N*/   }
 /*N*/ }
 
 /*N*/ void GetDefaultFonts( SvxFontItem& rLatin, SvxFontItem& rAsian, SvxFontItem& rComplex )
