@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: restrictedpaths.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,19 +73,6 @@ namespace binfilter
             <p>If no "access restriction" is effective, this method always returns <TRUE/>.</p>
         */
         virtual bool                isUrlAllowed( const String& _rURL ) const;
-
-        /** checks URL access permissions
-
-            <p>with the "restriction" feature we have in the file dialog, it's possible that
-            only certain URLs can be browsed. This method checks whether a given URL belongs
-            to this set of permitted URLs.</p>
-
-            <p>Default behavior allows access to parent folder of a restricted folder (but not to its siblings).
-            If allowParents is set to <FALSE/> parent folders will be treated as forbidden.
-
-            <p>If no "access restriction" is effective, this method always returns <TRUE/>.</p>
-        */
-        bool                        isUrlAllowed( const String& _rURL, bool allowParents ) const;
     };
 
 }
