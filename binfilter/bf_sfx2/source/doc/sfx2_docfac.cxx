@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_docfac.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -127,21 +127,6 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   pImpl->pInitFactory = pFunc;
 /*N*/     DoInitFactory();
 /*N*/ }
-
-/*?*/ void SfxObjectFactory::RegisterFilter
-/*?*/ (
-/*?*/   const String&       rName,          // Klartext-Name f"ur Anzeige im Dialog
-/*?*/   const String&       rWildcard,      // Default-Wildcards
-/*?*/   SfxFilterFlags      eType,          // SFX_FILTER_...
-/*?*/   ULONG lFormat,        // Clipboard-Format
-/*?*/   const String&       rMacType,       // 4-Byte-Type f"ur Apple Macintosh
-/*?*/   const String&       rTypeName,      // String-Type f"ur OS/2
-/*?*/   sal_uInt16              nIconId,        // Resource-Id f"ur Icon
-/*?*/   const String&       rMimeType,
-/*?*/   const String&       rUserData       // zum Wiedererkennen oder (frei verwendbar)
-/*?*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
 
 //--------------------------------------------------------------------
 
@@ -271,36 +256,9 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 
 //--------------------------------------------------------------------
 
-
-
-/*N*/ SfxModule* SfxObjectFactory::GetModule() const
-/*N*/ {
-/*N*/   return pImpl->pModule;
-/*N*/ }
-
-
 /*N*/ void SfxObjectFactory::SetModule_Impl( SfxModule *pMod )
 /*N*/ {
 /*N*/   pImpl->pModule = pMod;
-/*N*/ }
-
-
-/*?*/ void SfxObjectFactory::SetStandardTemplate( const String& rFactoryURL, const String& rTemplate )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*N*/ const String& SfxObjectFactory::GetStandardTemplate() const
-/*N*/ {
-/*N*/   if ( !pImpl->bTemplateInitialized )
-/*N*/   {
-/*N*/       pImpl->bTemplateInitialized = sal_True;
-/*N*/       SvtModuleOptions aModOpt;
-/*N*/       SvtModuleOptions::EFactory eFac = SvtModuleOptions::E_WRITER;
-/*N*/       if ( SvtModuleOptions::ClassifyFactoryByName( GetDocumentServiceName(), eFac ) )
-/*N*/           pImpl->aStandardTemplate = aModOpt.GetFactoryStandardTemplate( eFac );
-/*N*/   }
-/*N*/
-/*N*/   return pImpl->aStandardTemplate;
 /*N*/ }
 
 /*?*/ const SfxObjectFactory* SfxObjectFactory::GetFactory( const String& rFactoryURL )
@@ -332,25 +290,9 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   return pFactory;
 /*?*/ }
 
-/*?*/ const SfxFilter* SfxObjectFactory::GetTemplateFilter() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*?*/ }
-
-/*N*/ void SfxObjectFactory::SetCreateNewSlotId( sal_uInt16 nId )
-/*N*/ {
-/*N*/   pImpl->nCreateNewSlotId = nId;
-/*N*/ }
-
-/*N*/ sal_uInt16 SfxObjectFactory::GetCreateNewSlotId() const
-/*N*/ {
-/*N*/   return pImpl->nCreateNewSlotId;
-/*N*/ }
-
-
-
 /*N*/ void SfxObjectFactory::SetDocumentServiceName( const ::rtl::OUString& rServiceName )
 /*N*/ {
-/*N*/   pImpl->aServiceName = rServiceName;
+/*N*/  pImpl->aServiceName = rServiceName;
 /*N*/ }
 
 /*N*/ const ::rtl::OUString& SfxObjectFactory::GetDocumentServiceName() const
@@ -384,20 +326,10 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   return rFactory;
 /*N*/ }
 
-/*?*/ sal_Bool SfxObjectFactory::HasObjectFactories()
-/*?*/ {
-/*?*/     return ( GetObjFacArray_Impl().Count() != 0 );
-/*?*/ }
-
 /*N*/ SfxObjectFactoryArr_Impl&   SfxObjectFactory::GetObjFacArray_Impl()
 /*N*/ {
 /*N*/     if ( !pObjFac )
 /*N*/         pObjFac = new SfxObjectFactoryArr_Impl;
 /*N*/     return *pObjFac;
 /*N*/ }
-
-/*?*/ String SfxObjectFactory::GetModuleName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/         return String();
-/*?*/ }
 }
