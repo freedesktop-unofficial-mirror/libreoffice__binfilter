@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: mathml.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,12 +124,6 @@ public:
     SmXMLImport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         sal_uInt16 nImportFlags=IMPORT_ALL);
-
-    // #110680#
-    SmXMLImport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rModel,
-        const ::rtl::OUString &rFileName);
 
     // XServiceInfo (override parent method)
     ::rtl::OUString SAL_CALL getImplementationName()
@@ -393,13 +387,6 @@ public:
     SmXMLExport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
         sal_uInt16 nExportFlags=EXPORT_ALL);
-
-    // #110680#
-    SmXMLExport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-        const SmNode *pIn,
-        const ::rtl::OUString &rFileName,
-        ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler> &rHandler);
 
     virtual ~SmXMLExport() {};
 
