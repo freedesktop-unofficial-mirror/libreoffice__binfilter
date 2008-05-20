@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxdec.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -40,13 +40,11 @@
 namespace binfilter {
 
 // int GnDecCounter = 0;
-
-// Implementation SbxDecimal
 SbxDecimal::SbxDecimal( void )
 {
-    setInt( 0 );
-    mnRefCount = 0;
-    // GnDecCounter++;
+      setInt( 0 );
+      mnRefCount = 0;
+      // GnDecCounter++;
 }
 
 SbxDecimal::SbxDecimal( const SbxDecimal& rDec )
@@ -58,36 +56,6 @@ SbxDecimal::SbxDecimal( const SbxDecimal& rDec )
 #endif
     mnRefCount = 0;
     // GnDecCounter++;
-}
-
-SbxDecimal::SbxDecimal
-    ( const com::sun::star::bridge::oleautomation::Decimal& rAutomationDec )
-{
-#ifdef WIN32
-    maDec.scale = rAutomationDec.Scale;
-    maDec.sign  = rAutomationDec.Sign;
-    maDec.Lo32 = rAutomationDec.LowValue;
-    maDec.Mid32 = rAutomationDec.MiddleValue;
-    maDec.Hi32 = rAutomationDec.HighValue;
-#else
-    (void)rAutomationDec;
-#endif
-    mnRefCount = 0;
-    // GnDecCounter++;
-}
-
-void SbxDecimal::fillAutomationDecimal
-    ( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec )
-{
-#ifdef WIN32
-    rAutomationDec.Scale = maDec.scale;
-    rAutomationDec.Sign = maDec.sign;
-    rAutomationDec.LowValue = maDec.Lo32;
-    rAutomationDec.MiddleValue = maDec.Mid32;
-    rAutomationDec.HighValue = maDec.Hi32;
-#else
-    (void)rAutomationDec;
-#endif
 }
 
 SbxDecimal::~SbxDecimal()
@@ -265,12 +233,6 @@ bool SbxDecimal::getChar( sal_Unicode& rVal )
     return bRet;
 }
 
-bool SbxDecimal::getByte( BYTE& rVal )
-{
-    bool bRet = ( VarUI1FromDec( &maDec, &rVal ) == S_OK );
-    return bRet;
-}
-
 bool SbxDecimal::getShort( INT16& rVal )
 {
     bool bRet = ( VarI2FromDec( &maDec, &rVal ) == S_OK );
@@ -304,14 +266,6 @@ bool SbxDecimal::getSingle( float& rVal )
 bool SbxDecimal::getDouble( double& rVal )
 {
     bool bRet = ( VarR8FromDec( &maDec, &rVal ) == S_OK );
-    return bRet;
-}
-
-bool SbxDecimal::getInt( int& rVal )
-{
-    INT32 TmpVal;
-    bool bRet = getLong( TmpVal );
-    rVal = TmpVal;
     return bRet;
 }
 
@@ -369,32 +323,21 @@ SbxDecimal::CmpResult compare( const SbxDecimal &rLeft, const SbxDecimal &rRight
 
 void SbxDecimal::setChar( sal_Unicode val )     { (void)val; }
 void SbxDecimal::setByte( BYTE val )            { (void)val; }
-void SbxDecimal::setShort( INT16 val )          { (void)val; }
 void SbxDecimal::setLong( INT32 val )           { (void)val; }
-void SbxDecimal::setUShort( UINT16 val )        { (void)val; }
 void SbxDecimal::setULong( UINT32 val )         { (void)val; }
 bool SbxDecimal::setSingle( float val )         { (void)val; return false; }
 bool SbxDecimal::setDouble( double val )        { (void)val; return false; }
 void SbxDecimal::setInt( int val )              { (void)val; }
 void SbxDecimal::setUInt( unsigned int val )    { (void)val; }
-bool SbxDecimal::setString( String* pString )   { (void)pString;  return false; }
 
-bool SbxDecimal::getChar( sal_Unicode& rVal )   { (void)rVal; return false; }
-bool SbxDecimal::getByte( BYTE& rVal )          { (void)rVal; return false; }
-bool SbxDecimal::getShort( INT16& rVal )        { (void)rVal; return false; }
-bool SbxDecimal::getLong( INT32& rVal )         { (void)rVal; return false; }
-bool SbxDecimal::getUShort( UINT16& rVal )      { (void)rVal; return false; }
-bool SbxDecimal::getULong( UINT32& rVal )       { (void)rVal; return false; }
 bool SbxDecimal::getSingle( float& rVal )       { (void)rVal; return false; }
 bool SbxDecimal::getDouble( double& rVal )      { (void)rVal; return false; }
-bool SbxDecimal::getInt( int& rVal )            { (void)rVal; return false; }
-bool SbxDecimal::getUInt( unsigned int& rVal )  { (void)rVal; return false; }
 
 #endif
 
+#ifdef WIN32
 bool SbxDecimal::getString( String& rString )
 {
-#ifdef WIN32
     static LCID nLANGID = MAKELANGID( LANG_ENGLISH, SUBLANG_ENGLISH_US );
 
     bool bRet = false;
@@ -431,11 +374,8 @@ bool SbxDecimal::getString( String& rString )
         SysFreeString( aBStr );
     }
     return bRet;
-#else
-    (void)rString;
-    return false;
-#endif
 }
+#endif
 
 SbxDecimal* ImpCreateDecimal( SbxValues* p )
 {
