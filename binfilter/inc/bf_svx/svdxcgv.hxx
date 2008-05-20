@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdxcgv.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,7 +71,6 @@ protected:
 public:
 
     SdrExchangeView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrExchangeView(SdrModel* pModel1, ExtOutputDevice* pXOut);
 
     // Alle markierten Objekte auf dem angegebenen OutputDevice ausgeben.
 
