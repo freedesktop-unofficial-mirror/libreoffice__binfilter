@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_numpara.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -146,9 +146,6 @@ void _NumPara::_Init()
 {
     bOverTbl = FALSE;
     SwDoc* pDoc = aNdIdx.GetNodes().GetDoc();
-    bWasUndo = pDoc->DoesUndo();
-    pDoc->DoUndo( FALSE );
-
 
     if( !bInitNum )     // hole vom Vorgaenger die aktuelle Nummerierung
     {
@@ -181,7 +178,6 @@ void _NumPara::_Init()
 _NumPara::~_NumPara()
 {
     SwDoc* pDoc = aNdIdx.GetNodes().GetDoc();
-    pDoc->DoUndo( bWasUndo );
 }
 
 
