@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sddll.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -105,9 +105,6 @@ public:
                {}
 
     virtual SfxModule*  Load();
-
-    static SvGlobalName GetID(USHORT nFileFormat);
-    static USHORT       HasID(const SvGlobalName& rName);
 };
 
 #ifndef _SD_DLL                      // Das define muss im Draw gesetzt werden
