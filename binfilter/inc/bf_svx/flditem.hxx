@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: flditem.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -152,10 +152,6 @@ public:
                             // deprecated, to be removed
     String                  GetFormatted( LanguageType eLanguage, LanguageType eFormat ) const;
                             // use this instead
-                            // If eLanguage==LANGUAGE_DONTKNOW the language/country
-                            // used in number formatter initialization is taken.
-    String                  GetFormatted( SvNumberFormatter& rFormatter,
-                                LanguageType eLanguage ) const;
 
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
@@ -283,8 +279,6 @@ public:
     SvxTimeFormat           GetFormat() const { return eFormat; }
     void                    SetFormat( SvxTimeFormat eFmt ) { eFormat = eFmt; }
 
-    // deprecated, to be removed
-     XubString              GetFormatted( LanguageType eLanguage, LanguageType eFormat ) const;
                              // use this instead
                              // If eLanguage==LANGUAGE_DONTKNOW the language/country
                              // used in number formatter initialization is taken.
@@ -325,8 +319,6 @@ public:
 
     SvxFileFormat           GetFormat() const { return eFormat; }
     void                    SetFormat( SvxFileFormat eFmt ) { eFormat = eFmt; }
-
-    XubString               GetFormatted() const;
 
     virtual SvxFieldData*   Clone() const;
     virtual int             operator==( const SvxFieldData& ) const;
