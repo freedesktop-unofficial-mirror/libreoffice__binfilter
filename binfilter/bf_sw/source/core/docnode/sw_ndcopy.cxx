@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ndcopy.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -473,11 +473,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #endif
 /*N*/
-/*N*/   // Undo abschalten
-/*N*/   BOOL bUndo = pDest->DoesUndo();
-/*N*/   pDest->DoUndo( FALSE );
 /*N*/   _CopyFlyInFly( rRg, aSavePos, bCopyFlyAtFly );
-/*N*/   pDest->DoUndo( bUndo );
 /*N*/
 /*N*/   SwNodeRange aCpyRange( aSavePos, rInsPos );
 /*N*/
