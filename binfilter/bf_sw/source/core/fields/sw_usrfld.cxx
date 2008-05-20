@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_usrfld.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -314,8 +314,6 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/
 /*N*/       sal_Bool bModified = GetDoc()->IsModified();
 /*N*/       GetDoc()->SetModified();
-/*N*/       if( !bModified )    // Bug 57028
-/*?*/           GetDoc()->SetUndoNoResetModified();
 /*N*/   }
 /*N*/ }
 
