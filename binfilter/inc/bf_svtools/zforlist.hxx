@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: zforlist.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -278,7 +278,6 @@ private:
 
 public:
 
-                        NfCurrencyEntry();
                         NfCurrencyEntry( const LocaleDataWrapper& rLocaleData,
                             LanguageType eLang );
                         NfCurrencyEntry(
@@ -289,14 +288,6 @@ public:
 
                         /// Symbols and language identical
     BOOL                operator==( const NfCurrencyEntry& r ) const;
-
-                        /// Set this format to be the EURo entry, overwrite other settings
-    void                SetEuro();
-    BOOL                IsEuro() const;
-
-                        /** Apply format information (nPositiveFormat,
-                             nNegativeFormat, nDigits, cZeroChar) of another format. */
-    void                ApplyVariableInformation( const NfCurrencyEntry& );
 
     const String&       GetSymbol() const           { return aSymbol; }
     const String&       GetBankSymbol() const       { return aBankSymbol; }
@@ -364,9 +355,6 @@ public:
         LanguageType eLang
         );
 
-    /// Depricated ctor without service manager
-    SvNumberFormatter( LanguageType eLang );
-
     ~SvNumberFormatter();
 
     /// Set CallBack to ColorTable
@@ -405,12 +393,6 @@ public:
                                   sal_uInt32& FIndex,
                                   LanguageType eLnge);
 
-    /** Get table of formats of the same type as FIndex; eType and rLnge are
-        set accordingly. An unknown format is set to Standard/General */
-    SvNumberFormatTable& GetFirstEntryTable(short& eType,
-                                            sal_uInt32& FIndex,
-                                            LanguageType& rLnge);
-
     /// Delete an entry including the format it is refering to
     void DeleteEntry(sal_uInt32 nKey);
 
@@ -444,48 +426,6 @@ public:
     BOOL PutandConvertEntrySystem( String& rString, xub_StrLen& nCheckPos,
                              short& nType, sal_uInt32& nKey,
                              LanguageType eLnge, LanguageType eNewLnge );
-
-    /** Similar to <method>PutEntry</method> and
-        <method>PutandConvertEntry</method> or
-        <method>PutandConvertEntrySystem</method>, the format code string
-        passed is considered to be of language/country eLnge. If
-        eLnge==LANGUAGE_SYSTEM the format code has to match eSysLnge, and if
-        eSysLnge is not the current application locale the format code is
-        converted to the current locale. Additionally, if the format code
-        represents an old "automatic" currency format, it is converted to the
-        new default currency format of the eLnge locale. The rString format
-        code passed as an argument may get adapted in case eLnge was used (or
-        is LANGUAGE_SYSTEM and eSysLnge is identical); in case it wasn't the
-        method works on a copy instead, otherwise the resulting string would
-        not match eSysLnge anymore.
-
-        <p> This method was introduced to handle the legacy currency formats of
-        the "autotbl.fmt" file used by Calc and Writer and convert them to
-        fixed currency codes of the actual currency. Note that in the case of
-        legacy currency formats no special attribution is converted, only the
-        default currency format of the locale is chosen, and that new fixed
-        currency codes are of course not converted to other currencies. The
-        method may also be used as a general method taking, converting and
-        inserting almost arbitrary format codes. To insert or use, for example,
-        the default currency format code matching the current locale, the
-        method could be called with<br/>
-
-        <code>
-        GetIndexPuttingAndConverting( "0 $", LANGUAGE_SYSTEM, LANGUAGE_ENGLISH_US, ...);
-        </code>
-
-        @return
-            The index key of the resulting number format. If the format code
-            was empty, could not be converted or has errors, the eLnge locale's
-            standard number format is chosen instead. The index key is
-            guaranteed to represent some valid number format. If
-            rNewInserted==FALSE and rCheckPos>0 the format code has errors
-            and/or could not be converted.
-     */
-    sal_uInt32 GetIndexPuttingAndConverting( String & rString, LanguageType eLnge,
-                                        LanguageType eSysLnge, short & rType,
-                                        BOOL & rNewInserted,
-                                        xub_StrLen & rCheckPos );
 
     /** Create a format code string using format nIndex as a template and
         applying other settings (passed from the dialog) */
@@ -533,27 +473,13 @@ public:
                           String& sOutString, Color** ppColor,
                           LanguageType eLnge = LANGUAGE_DONTKNOW );
 
-    /** Test whether the format code string is already present in container
-        @return
-            NUMBERFORMAT_ENTRY_NOT_FOUND if not found, else the format index.
-     */
-    sal_uInt32 TestNewString( const String& sFormatString,
-                        LanguageType eLnge = LANGUAGE_DONTKNOW );
-
     /// Whether format index nFIndex is of type text or not
     BOOL IsTextFormat(sal_uInt32 nFIndex) const;
-    /// Whether the 4th string subcode of format index nFIndex is present
-    BOOL HasTextFormat(sal_uInt32 nFIndex) const;
 
     /// Load all formats from a stream
     BOOL Load( SvStream& rStream );
     /// Save all formats to a stream
     BOOL Save( SvStream& rStream ) const;
-    /// Reset of "Used" flags
-    void PrepareSave();
-
-    /// Flag format index as used
-    void SetFormatUsed(sal_uInt32 nFIndex);
 
     /// Get additional info of a format index, e.g. for dialog box
     void GetFormatSpecialInfo(sal_uInt32 nFormat, BOOL& bThousand, BOOL& IsRed,
@@ -561,20 +487,6 @@ public:
 
     /// Count of decimals
     USHORT GetFormatPrecision( sal_uInt32 nFormat ) const;
-
-    /** Get additional info of a format code string, e.g. for dialog box.
-        Uses a temporary parse, if possible use only if format code is not
-        present in container yet, otherwise ineffective.
-        @return
-            0 if format code string parsed without errors, otherwise error
-            position (like nCheckPos on <method>PutEntry</method>)
-     */
-    sal_uInt32 GetFormatSpecialInfo( const String&, BOOL& bThousand, BOOL& IsRed,
-                              USHORT& nPrecision, USHORT& nAnzLeading,
-                              LanguageType eLnge = LANGUAGE_DONTKNOW );
-
-    /// Check if format code string may be deleted by user
-    BOOL IsUserDefined( const String& sStr, LanguageType eLnge = LANGUAGE_DONTKNOW );
 
     /** Return the format index of the format code string for language/country,
         or NUMBERFORMAT_ENTRY_NOT_FOUND */
@@ -670,9 +582,6 @@ public:
     /// Return the decimal separator of the current language/country
     String GetDecimalSep() const { return GetNumDecimalSep(); }
 
-    /// Return the decimal separator matching the locale of the given format
-    String GetFormatDecimalSep( sal_uInt32 nFormat ) const;
-
     /// Return a <type>SvPtrArr</type> with pointers to <type>NfCurrencyEntry</type> entries
     static const NfCurrencyTable& GetTheCurrencyTable();
 
@@ -690,28 +599,6 @@ public:
         language/country is not present the entry for LANGUAGE_SYSTEM is returned.
      */
     static const NfCurrencyEntry&  GetCurrencyEntry( LanguageType );
-
-    /** Return a <type>NfCurrencyEntry</type> pointer matching a language/country
-        and currency abbreviation (AKA banking symbol).
-        This method is meant for the configuration of the default currency.
-        @return
-            <NULL/> if not found
-            else pointer to <type>NfCurrencyEntry</type>
-     */
-    static const NfCurrencyEntry*  GetCurrencyEntry( const String& rAbbrev,
-                LanguageType eLang );
-
-    /** Return a <type>NfCurrencyEntry</type> pointer matching the symbol
-        combination of a LegacyOnly currency. Note that this means only that
-        the currency matching both symbols was once used in the Office, but is
-        not offered in dialogs anymore. It doesn't even mean that the currency
-        symbol combination is valid, since the reason for removing it may have
-        been just that. #i61657#
-        @return
-            A matching entry, or else <NULL/>.
-     */
-    static const NfCurrencyEntry* GetLegacyOnlyCurrencyEntry(
-            const String& rSymbol, const String& rAbbrev );
 
     /** Set the default system currency. The combination of abbreviation and
         language must match an existent element of theCurrencyTable. If not,
@@ -784,9 +671,6 @@ public:
 
     /// Fill rList with the language/country codes that have been allocated
     void    GetUsedLanguages( SvUShorts& rList );
-
-    /// Fill a <type>NfKeywordIndex</type> table with keywords of a language/country
-    void    FillKeywordTable( NfKeywordTable& rKeywords, LanguageType eLang );
 
     /** Return a keyword for a language/country and <type>NfKeywordIndex</type>
         for XML import, to generate number format strings. */
