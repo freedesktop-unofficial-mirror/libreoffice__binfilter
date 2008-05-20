@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_inettype.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,10 +124,6 @@ public:
     static INetContentType GetContentType(UniString const & rTypeName);
 
     static UniString GetContentType(INetContentType eTypeID);
-
-    static UniString GetPresentation(INetContentType eTypeID);
-
-    static UniString GetExtension(const UniString & rTypeName);
 
     static INetContentType GetContentType4Extension(UniString const &
                                                         rExtension);
@@ -612,37 +608,6 @@ UniString Registration::GetContentType(INetContentType eTypeID)
 
 //============================================================================
 // static
-UniString Registration::GetPresentation(INetContentType eTypeID)
-{
-    if (!m_pRegistration)
-        m_pRegistration = new Registration;
-
-    TypeIDMapEntry * pEntry
-        = static_cast< TypeIDMapEntry * >(m_pRegistration->
-                                              m_aTypeIDMap.Get(eTypeID));
-    return pEntry ? pEntry->m_aPresentation : UniString();
-}
-
-//============================================================================
-// static
-UniString Registration::GetExtension(UniString const & rTypeName)
-{
-    if (!m_pRegistration)
-        m_pRegistration = new Registration;
-
-    UniString aTheTypeName = rTypeName;
-    aTheTypeName.ToLowerAscii();
-    USHORT nPos;
-    return m_pRegistration->m_aTypeNameMap.Seek_Entry(&aTheTypeName, &nPos) ?
-               static_cast< TypeNameMapEntry * >(m_pRegistration->
-                                                     m_aTypeNameMap.
-                                                         GetObject(nPos))->
-                   m_aExtension :
-               UniString();
-}
-
-//============================================================================
-// static
 INetContentType Registration::GetContentType4Extension(UniString const &
                                                            rExtension)
 {
@@ -702,18 +667,6 @@ MediaTypeEntry const * seekEntry(UniString const & rTypeName,
         }
     }
     return 0;
-}
-
-//============================================================================
-//
-//  INetContentTypes
-//
-//============================================================================
-
-//static
-void INetContentTypes::Uninitialize()
-{
-    Registration::deinitialize();
 }
 
 //============================================================================
@@ -815,25 +768,6 @@ UniString INetContentTypes::GetPresentation(INetContentType, const ::com::sun::s
 
 //============================================================================
 //static
-UniString INetContentTypes::GetExtension(UniString const & rTypeName)
-{
-    MediaTypeEntry const * pEntry = seekEntry(rTypeName, aStaticTypeNameMap,
-                                              CONTENT_TYPE_LAST + 1);
-    if (pEntry)
-        return UniString::CreateFromAscii(pEntry->m_pExtension);
-
-    UniString aExtension = Registration::GetExtension(rTypeName);
-    if (aExtension.Len() != 0)
-        return aExtension;
-    // special handling of text types, which come in uncounted variations:
-    return rTypeName.EqualsIgnoreCaseAscii("text", 0,
-                                           RTL_CONSTASCII_LENGTH("text")) ?
-               UniString::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("txt")) :
-               UniString::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("tmp"));
-}
-
-//============================================================================
-//static
 INetContentType INetContentTypes::GetContentType4Extension(UniString const &
                                                                rExtension)
 {
@@ -846,148 +780,6 @@ INetContentType INetContentTypes::GetContentType4Extension(UniString const &
         = Registration::GetContentType4Extension(rExtension);
     return eTypeID == CONTENT_TYPE_UNKNOWN ? CONTENT_TYPE_APP_OCTSTREAM :
                                              eTypeID;
-}
-
-//============================================================================
-//static
-INetContentType INetContentTypes::GetContentTypeFromURL(UniString const &
-                                                            rURL)
-{
-    INetContentType eTypeID = CONTENT_TYPE_UNKNOWN;
-    UniString aToken = rURL.GetToken(0, ':');
-    if (aToken.Len() != 0)
-        if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_FILE))
-            if (rURL.GetChar(rURL.Len() - 1) == '/') // folder
-                if (rURL.Len() > RTL_CONSTASCII_LENGTH("file:///"))
-                    if (WildCard(UniString(RTL_CONSTASCII_USTRINGPARAM(
-                                               "*/{*}/"))).
-                            Matches(rURL)) // special folder
-                        eTypeID = CONTENT_TYPE_X_CNT_FSYSSPECIALFOLDER;
-                    else
-                        // drive? -> "file:///?|/"
-                        if (rURL.Len() == 11
-                            && rURL.GetChar(rURL.Len() - 2) == '|')
-                        {
-                            // Drives need further processing, because of
-                            // dynamic type according to underlying volume,
-                            // which cannot be determined here.
-                        }
-                        else // normal folder
-                            eTypeID = CONTENT_TYPE_X_CNT_FSYSFOLDER;
-                else // file system root
-                    eTypeID = CONTENT_TYPE_X_CNT_FSYSBOX;
-            else // file
-            {
-                //@@@
-            }
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_HTTP)
-                 || aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_HTTPS))
-            eTypeID = CONTENT_TYPE_TEXT_HTML;
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_PRIVATE))
-        {
-            UniString aSecondPart = rURL.GetToken(1, ':');
-            aToken = aSecondPart.GetToken(0, '/');
-            if (aToken.EqualsAscii(INETTYPE_URL_SUB_FACTORY))
-            {
-                aToken = aSecondPart.GetToken(1, '/');
-                if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SWRITER))
-                {
-                    aToken = aSecondPart.GetToken(2, '/');
-                    eTypeID = aToken.EqualsAscii(INETTYPE_URL_SSSUB_WEB) ?
-                                  CONTENT_TYPE_APP_VND_WRITER_WEB :
-                              aToken.EqualsAscii(INETTYPE_URL_SSSUB_GLOB) ?
-                                  CONTENT_TYPE_APP_VND_WRITER_GLOBAL :
-                                  CONTENT_TYPE_APP_VND_WRITER;
-                }
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SCALC))
-                    eTypeID = CONTENT_TYPE_APP_VND_CALC;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SDRAW))
-                    eTypeID = CONTENT_TYPE_APP_VND_DRAW;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SIMPRESS))
-                    eTypeID = CONTENT_TYPE_APP_VND_IMPRESS;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SCHART))
-                    eTypeID = CONTENT_TYPE_APP_VND_CHART;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SIMAGE))
-                    eTypeID = CONTENT_TYPE_APP_VND_IMAGE;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SMATH))
-                    eTypeID = CONTENT_TYPE_APP_VND_MATH;
-                else if (aToken.EqualsAscii(INETTYPE_URL_SSUB_FRAMESET))
-                    eTypeID = CONTENT_TYPE_APP_FRAMESET;
-            }
-            else if (aToken.EqualsAscii(INETTYPE_URL_SUB_HELPID))
-                eTypeID = CONTENT_TYPE_APP_STARHELP;
-        }
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_COMPONENT))
-        {
-            aToken = rURL.GetToken(1, ':'); // aToken now equals ss / *
-            aToken = aToken.GetToken(0, '/');
-              if (aToken.EqualsAscii(INETTYPE_URL_SSUB_SS))
-                  eTypeID = rURL.SearchAscii(INETTYPE_URL_SCHED_CMB)
-                              == STRING_NOTFOUND
-                          && rURL.SearchAscii(INETTYPE_URL_SCHED_FORM)
-                                 == STRING_NOTFOUND ?
-                              CONTENT_TYPE_APP_SCHEDULE :
-                          rURL.SearchAscii(INETTYPE_URL_SCHED_TASK)
-                                  == STRING_NOTFOUND ?
-                              CONTENT_TYPE_APP_SCHEDULE_EVT :
-                              CONTENT_TYPE_APP_SCHEDULE_TASK;
-        }
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_MAILTO))
-            eTypeID = CONTENT_TYPE_APP_VND_OUTTRAY;
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_MACRO))
-            eTypeID = CONTENT_TYPE_APP_MACRO;
-        else if (aToken.EqualsIgnoreCaseAscii(INETTYPE_URL_PROT_DATA))
-        {
-            UniString aSecondPart = rURL.GetToken(1, ':');
-            aToken = aSecondPart.GetToken(0, ',');
-            eTypeID = GetContentType(aToken);
-        }
-    if (eTypeID == CONTENT_TYPE_UNKNOWN)
-    {
-        UniString aExtension;
-        if (GetExtensionFromURL(rURL, aExtension))
-            eTypeID = GetContentType4Extension(aExtension);
-    }
-    return eTypeID;
-}
-
-//============================================================================
-//static
-bool INetContentTypes::GetExtensionFromURL(UniString const & rURL,
-                                           UniString & rExtension)
-{
-    xub_StrLen nSlashPos = 0;
-    xub_StrLen i = 0;
-    while (i != STRING_NOTFOUND)
-    {
-        nSlashPos = i;
-        i = rURL.Search('/', i + 1);
-    }
-    if (nSlashPos != 0)
-    {
-        xub_StrLen nLastDotPos = i = rURL.Search('.', nSlashPos);
-        while (i != STRING_NOTFOUND)
-        {
-            nLastDotPos = i;
-            i = rURL.Search('.', i + 1);
-        }
-        if (nLastDotPos != STRING_NOTFOUND)
-            rExtension = rURL.Copy(nLastDotPos + 1);
-        return true;
-    }
-    return false;
-}
-
-//============================================================================
-//static
-INetContentType INetContentTypes::MapStringToContentType(UniString const &
-                                                             rPresentation)
-{
-    MediaTypeEntry const * pEntry = seekEntry(rPresentation,
-                                              aStaticPresentationMap,
-                                              sizeof aStaticPresentationMap
-                                                  / sizeof (MediaTypeEntry));
-    return pEntry ? pEntry->m_eTypeID : CONTENT_TYPE_UNKNOWN;
 }
 
 //============================================================================
@@ -1078,118 +870,6 @@ bool INetContentTypes::parse(UniString const & rMediaType,
         rSubType.ToLowerAscii();
 
     return INetMIME::scanParameters(p, pEnd, pParameters) == pEnd;
-}
-
-//============================================================================
-// static
-ByteString INetContentTypes::appendUSASCIIParameter(ByteString const &
-                                                        rMediaType,
-                                                    ByteString const &
-                                                        rAttribute,
-                                                    ByteString const & rValue)
-{
-    ByteString aResult = rMediaType;
-    aResult.Append(RTL_CONSTASCII_STRINGPARAM("; "));
-    aResult += rAttribute;
-    aResult += '=';
-    bool bQuote = false;
-    for (xub_StrLen i = 0; i < rValue.Len(); ++i)
-    {
-        // When the value contains any ' characters, use a quoted string
-        // instead of a token, in order to avoid confusion with RFC 2231
-        // extensions:
-        sal_uInt32 nChar = sal_uChar(rValue.GetChar(i));
-        DBG_ASSERT(INetMIME::isUSASCII(nChar),
-                   "INetContentTypes::appendUSASCIIParameter(): Bad value");
-        if (!INetMIME::isTokenChar(nChar) || nChar == '\'')
-        {
-            bQuote = true;
-            break;
-        }
-    }
-    if (bQuote)
-    {
-        aResult += '"';
-        for (xub_StrLen i = 0; i < rValue.Len(); ++i)
-        {
-            // Escape LF as well as CR to avoid confusion with line folding:
-            sal_uInt32 nChar = sal_uChar(rValue.GetChar(i));
-            DBG_ASSERT(INetMIME::isUSASCII(nChar),
-                       "INetContentTypes::appendUSASCIIParameter():"
-                           " Bad value");
-            switch (nChar)
-            {
-                case 0x0A: // LF
-                case 0x0D: // CR
-                case '"':
-                case '\\':
-                    aResult += '\\';
-                default:
-                    aResult += static_cast< char >(nChar);
-                    break;
-            }
-        }
-        aResult += '"';
-    }
-    else
-        aResult += rValue;
-    return aResult;
-}
-
-//============================================================================
-// static
-UniString INetContentTypes::appendUSASCIIParameter(UniString const &
-                                                       rMediaType,
-                                                   UniString const &
-                                                       rAttribute,
-                                                   UniString const & rValue)
-{
-    UniString aResult = rMediaType;
-    aResult.AppendAscii(RTL_CONSTASCII_STRINGPARAM("; "));
-    aResult += rAttribute;
-    aResult += '=';
-    bool bQuote = false;
-    for (xub_StrLen i = 0; i < rValue.Len(); ++i)
-    {
-        // When the value contains any ' characters, use a quoted string
-        // instead of a token, in order to avoid confusion with RFC 2231
-        // extensions:
-        sal_uInt32 nChar = rValue.GetChar(i);
-        DBG_ASSERT(INetMIME::isUSASCII(nChar),
-                   "INetContentTypes::appendUSASCIIParameter(): Bad value");
-        if (!INetMIME::isTokenChar(nChar) || nChar == '\'')
-        {
-            bQuote = true;
-            break;
-        }
-    }
-    if (bQuote)
-    {
-        aResult += '"';
-        for (xub_StrLen i = 0; i < rValue.Len(); ++i)
-        {
-            // Escape LF as well as CR to avoid confusion with line folding:
-            sal_uInt32 nChar = rValue.GetChar(i);
-            DBG_ASSERT(INetMIME::isUSASCII(nChar),
-                       "INetContentTypes::appendUSASCIIParameter():"
-                           " Bad value");
-            switch (nChar)
-            {
-                case 0x0A: // LF
-                case 0x0D: // CR
-                case '"':
-                case '\\':
-                    aResult += '\\';
-                default:
-                    aResult += sal_Unicode(nChar);
-                    break;
-            }
-        }
-        aResult += '"';
-    }
-    else
-        aResult += rValue;
-    return aResult;
 }
 
 }
