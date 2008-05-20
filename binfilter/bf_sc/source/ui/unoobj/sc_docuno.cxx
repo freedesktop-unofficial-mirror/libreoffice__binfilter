@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_docuno.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -460,20 +460,6 @@ uno::Reference<container::XNameAccess> SAL_CALL ScModelObj::getStyleFamilies()
 
 // XRenderable
 
-OutputDevice* lcl_GetRenderDevice( const uno::Sequence<beans::PropertyValue>& rOptions )
-{
-    DBG_ERROR("Strip!");
-    return 0;
-}
-
-BOOL ScModelObj::FillRenderMarkData( const uno::Any& aSelection, ScMarkData& rMark,
-                                     ScPrintSelectionStatus& rStatus ) const
-{
-    DBG_ERROR("Strip!");
-    return FALSE;
-}
-
-
 sal_Int32 SAL_CALL ScModelObj::getRendererCount( const uno::Any& aSelection,
                                     const uno::Sequence<beans::PropertyValue>& xOptions )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
@@ -665,61 +651,6 @@ uno::Reference<drawing::XDrawPages> SAL_CALL ScModelObj::getDrawPages() throw(un
     DBG_ERROR("keine DocShell");        //! Exception oder so?
     return NULL;
 }
-
-#if 0
-// XPrintable
-
-::rtl::OUString ScModelObj::getPrinterName(void) const
-{
-    ScUnoGuard aGuard;
-    if (pDocShell)
-    {
-        SfxPrinter* pPrinter = pDocShell->GetPrinter();
-        if (pPrinter)
-            return pPrinter->GetName();
-    }
-
-    DBG_ERROR("getPrinterName: keine DocShell oder kein Printer");
-    return ::rtl::OUString();
-}
-
-void ScModelObj::setPrinterName(const ::rtl::OUString& PrinterName)
-{
-    ScUnoGuard aGuard;
-    //  Drucker setzen - wie in SfxViewShell::ExecPrint_Impl
-
-    if (pDocShell)
-    {
-        SfxPrinter* pPrinter = pDocShell->GetPrinter();
-        if (pPrinter)
-        {
-            String aString = PrinterName;
-            SfxPrinter* pNewPrinter = new SfxPrinter( pPrinter->GetOptions().Clone(), aString );
-            if (pNewPrinter->IsKnown())
-                pDocShell->SetPrinter( pNewPrinter, SFX_PRINTER_PRINTER );
-            else
-                delete pNewPrinter;
-        }
-    }
-}
-
-XPropertySetRef ScModelObj::createPrintOptions(void)
-{
-    ScUnoGuard aGuard;
-    return new ScPrintSettingsObj;      //! ScPrintSettingsObj implementieren!
-}
-
-void ScModelObj::print(const XPropertySetRef& xOptions)
-{
-    ScUnoGuard aGuard;
-    if (pDocShell)
-    {
-        //! xOptions auswerten (wie denn?)
-
-        //! muss noch
-    }
-}
-#endif
 
 // XGoalSeek
 
@@ -2208,12 +2139,6 @@ uno::Any SAL_CALL ScTableRowsObj::getPropertyValue( const ::rtl::OUString& aProp
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScTableRowsObj )
 
 //------------------------------------------------------------------------
-
-ScSpreadsheetSettingsObj::ScSpreadsheetSettingsObj(ScDocShell* pDocSh) :
-    pDocShell( pDocSh )
-{
-    pDocShell->GetDocument()->AddUnoObject(*this);
-}
 
 ScSpreadsheetSettingsObj::~ScSpreadsheetSettingsObj()
 {
