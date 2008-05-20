@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_column.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -358,15 +358,6 @@ namespace binfilter {
 /*N*/           pAttrArray->ApplyStyleArea(nTop, nBottom, (ScStyleSheet*)&rStyle);
 /*N*/   }
 /*N*/ }
-
-
-
-
-/*N*/ const ScStyleSheet* ScColumn::GetStyle( USHORT nRow ) const
-/*N*/ {
-/*N*/   return pAttrArray->GetPattern( nRow )->GetStyleSheet();
-/*N*/ }
-
 
 /*N*/ const ScStyleSheet* ScColumn::GetSelectionStyle( const ScMarkData& rMark, BOOL& rFound ) const
 /*N*/ {
