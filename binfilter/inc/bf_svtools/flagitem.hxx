@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: flagitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,7 +63,6 @@ public:
                              TYPEINFO();
 
                              SfxFlagItem( USHORT nWhich = 0, USHORT nValue = 0 );
-                             SfxFlagItem( USHORT nWhich, SvStream & );
                              SfxFlagItem( const SfxFlagItem& );
 
                              ~SfxFlagItem() {
@@ -89,7 +88,6 @@ public:
                              }
             int              GetFlag( BYTE nFlag ) const {
                                  return ( (nVal & nSfxFlagVal[nFlag]) != 0 ); }
-            void             SetFlag( BYTE nFlag, int bVal );
 };
 
 }
