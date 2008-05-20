@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_drwlayer.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,17 +101,6 @@ SvPersist* ScDrawLayer::pGlobalDrawPersist = NULL;
 BOOL bDrawIsInUndo = FALSE;         //! Member
 
 // -----------------------------------------------------------------------
-
-
-
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ ScTabDeletedHint::ScTabDeletedHint( USHORT nTabNo ) :
-/*N*/   nTab( nTabNo )
-/*N*/ {
-/*N*/ }
 
 /*N*/ __EXPORT ScTabDeletedHint::~ScTabDeletedHint()
 /*N*/ {
@@ -528,24 +517,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 /*N*/   }
 /*N*/   else
 /*N*/       delete pUndo;
-/*N*/ }
-
-/*N*/ void ScDrawLayer::BeginCalcUndo()
-/*N*/ {
-/*N*/ //! DBG_ASSERT( !bRecording, "BeginCalcUndo ohne GetCalcUndo" );
-/*N*/
-/*N*/   DELETEZ(pUndoGroup);
-/*N*/   bRecording = TRUE;
-/*N*/ }
-
-/*N*/ SdrUndoGroup* ScDrawLayer::GetCalcUndo()
-/*N*/ {
-/*N*/ //! DBG_ASSERT( bRecording, "GetCalcUndo ohne BeginCalcUndo" );
-/*N*/
-/*N*/   SdrUndoGroup* pRet = pUndoGroup;
-/*N*/   pUndoGroup = NULL;
-/*N*/   bRecording = FALSE;
-/*N*/   return pRet;
 /*N*/ }
 
 //  MoveAreaTwips: all measures are kept in twips
