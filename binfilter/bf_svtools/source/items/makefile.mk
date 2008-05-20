@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -46,9 +46,7 @@ SLOFILES=\
     $(SLO)$/svt_eitem.obj	\
     $(SLO)$/svt_flagitem.obj	\
     $(SLO)$/svt_globalnameitem.obj	\
-    $(SLO)$/svt_imageitm.obj    \
     $(SLO)$/svt_intitem.obj	\
-    $(SLO)$/svt_itemdel.obj	\
     $(SLO)$/svt_macitem.obj	\
     $(SLO)$/svt_poolcach.obj	\
     $(SLO)$/svt_ptitem.obj	\
@@ -56,8 +54,7 @@ SLOFILES=\
     $(SLO)$/svt_rngitem.obj	\
     $(SLO)$/svt_stritem.obj	\
     $(SLO)$/svt_style.obj	\
-    $(SLO)$/svt_szitem.obj	\
-    $(SLO)$/svt_wallitem.obj
+    $(SLO)$/svt_szitem.obj
 
 # --- Targets -------------------------------------------------------
 
