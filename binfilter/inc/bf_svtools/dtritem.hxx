@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dtritem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,7 +59,6 @@ public:
             TYPEINFO();
 
             SfxDateTimeRangeItem( const SfxDateTimeRangeItem& rCpy );
-            SfxDateTimeRangeItem( USHORT nWhich );
             SfxDateTimeRangeItem( USHORT nWhich, const DateTime& rStartDT,
                                   const DateTime& rEndDT );
 
