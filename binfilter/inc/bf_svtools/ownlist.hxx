@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ownlist.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -103,11 +103,6 @@ class SvCommandList
 {
                     PRV_SV_DECL_OWNER_LIST(SvCommandList,SvCommand);
     SvCommand &     Append( const String & rCommand, const String & rArg );
-    BOOL            AppendCommands( const String & rCmd, USHORT * pEaten );
-    String          GetCommands() const;
-
-    BOOL FillFromSequence( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& );
-    void FillSequence( ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& );
 
      friend SvStream& operator >> ( SvStream& rStm, SvCommandList & );
      friend SvStream& operator << ( SvStream&, const SvCommandList & );
