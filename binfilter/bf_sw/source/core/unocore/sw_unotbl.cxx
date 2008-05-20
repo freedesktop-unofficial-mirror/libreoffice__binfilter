@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unotbl.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -207,9 +207,6 @@
 #endif
 #ifndef _FMTTSPLT_HXX
 #include <fmtlsplt.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
 #endif
 #ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
@@ -2425,7 +2422,6 @@ void SwXTextTable::attachToRange(const uno::Reference< XTextRange > & xTextRange
         {
             UnoActionContext aCont( pDoc );
 
-            pDoc->StartUndo();
             const SwTable *pTable = 0;
             if( 0 != aPam.Start()->nContent.GetIndex() )
             {
@@ -2485,7 +2481,6 @@ void SwXTextTable::attachToRange(const uno::Reference< XTextRange > & xTextRange
                 bIsDescriptor = sal_False;
                 DELETEZ(pTableProps);
             }
-            pDoc->EndUndo( UNDO_END );
         }
         else
         {
