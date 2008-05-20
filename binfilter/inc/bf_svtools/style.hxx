@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: style.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -362,7 +362,6 @@ class  SfxStyleSheetHint: public SfxHint
 public:
                         TYPEINFO();
 
-                        SfxStyleSheetHint( USHORT );
                         SfxStyleSheetHint( USHORT, SfxStyleSheetBase& );
     SfxStyleSheetBase*  GetStyleSheet() const
                         { return pStyleSh; }
@@ -377,8 +376,6 @@ class  SfxStyleSheetHintExtended: public SfxStyleSheetHint
 public:
                         TYPEINFO();
 
-                        SfxStyleSheetHintExtended(
-                            USHORT, const String& rOld );
                         SfxStyleSheetHintExtended(
                             USHORT, const String& rOld,
                             SfxStyleSheetBase& );
