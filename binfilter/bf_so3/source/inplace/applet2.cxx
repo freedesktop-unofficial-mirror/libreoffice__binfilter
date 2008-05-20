@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: applet2.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -266,8 +266,6 @@ void SvAppletEnvironment::showDocument
 //=========================================================================
 void SvAppletEnvironment::appletResize( const Size & )
 {
-    //pAppletObj->GetApplet()->SetSizePixel( Size( nWidth, nHeight ) );
-    //pApplet->SetSizePixel( Size( nWidth, nHeight ) );
 }
 
 
@@ -836,21 +834,6 @@ BOOL SvAppletObject::IsLink() const
 }
 
 //=========================================================================
-SjApplet * SvAppletObject::GetApplet() const
-/*  [Beschreibung]
-
-    F"ur ein aktiviertes Applet, kann ein Wrapper das Java-Applet
-    geholt werden.
-
-    [R"uckgabewert]
-
-    SjApplet *          Das Wrapper Objekt des aktiven Applets.
-*/
-{
-    return NULL;
-}
-
-//=========================================================================
 void SvAppletObject::SetCommandList
 (
     const SvCommandList & rList /* Die Liste der Kommnados */
@@ -947,39 +930,6 @@ const XubString & SvAppletObject::GetName() const
 */
 {
     return pImpl->aName;
-}
-
-//=========================================================================
-void SvAppletObject::SetDocBase
-(
-    const INetURLObject & rURL  /* Der Verweis auf das Dokument in dem
-                                   das Applet steht Appletklasse */
-)
-/*  [Beschreibung]
-
-    Es wird eine andere Dukument-Basis-URL, als das f"ur den Container,
-    am Applet eingestellt.
-
-*/
-{
-    if( pImpl->pDocBase )
-        *pImpl->pDocBase = rURL;
-    else
-        pImpl->pDocBase = new INetURLObject( rURL );
-}
-
-//=========================================================================
-void SvAppletObject::SetCodeBase
-(
-    const INetURLObject & rURL  /* Der Verweis auf den Code
-                                       Appletklasse */
-)
-{
-    pImpl->aCodeBase = rURL.GetMainURL( INetURLObject::NO_DECODE );
-    if( rURL.GetProtocol() == INET_PROT_FILE
-        && pImpl->aCodeBase.GetChar( 9 ) == INET_ENC_DELIM_TOKEN )
-        // Laufwerksbuchstabe auf ':' patchen
-        pImpl->aCodeBase.SetChar( 9, INET_DELIM_TOKEN );
 }
 
 //=========================================================================
