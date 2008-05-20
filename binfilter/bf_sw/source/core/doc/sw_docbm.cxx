@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docbm.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,9 +64,6 @@
 #endif
 #ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
@@ -138,11 +135,6 @@ namespace binfilter {
 /*?*/       delete pBM, pBM = 0;
 /*N*/   else
 /*N*/   {
-/*N*/       if( BOOKMARK == eMark && DoesUndo() )
-/*N*/       {
-/*N*/           ClearRedo();
-/*N*/           AppendUndo( new SwUndoInsBookmark( *pBM ));
-/*N*/       }
 /*N*/       if(UNO_BOOKMARK != eMark)
 /*N*/           SetModified();
 /*N*/   }
@@ -152,10 +144,6 @@ namespace binfilter {
 /*N*/ void SwDoc::DelBookmark(USHORT nPos)
 /*N*/ {
 /*N*/   SwBookmark *pBM = (*pBookmarkTbl)[nPos];
-/*N*/   if( DoesUndo() && !pBM->IsUNOMark())
-/*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-/*N*/   }
 /*N*/
 /*N*/     // #108964# UNO bookmark don't contribute to the document state,
 /*N*/     // and hence changing them shouldn't set the document modified
