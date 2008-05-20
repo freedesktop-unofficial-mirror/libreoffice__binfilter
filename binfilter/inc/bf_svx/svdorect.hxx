@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdorect.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,8 +98,6 @@ public:
     // Konstruktion eines Textrahmens
     SdrRectObj(SdrObjKind eNewTextKind);
     SdrRectObj(SdrObjKind eNewTextKind, const Rectangle& rRect);
-    // der USHORT eFormat nimmt Werte des enum EETextFormat entgegen
-    SdrRectObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect, SvStream& rInput, USHORT eFormat);
     virtual ~SdrRectObj();
 
     virtual UINT16 GetObjIdentifier() const;
