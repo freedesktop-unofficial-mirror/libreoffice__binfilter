@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: aeitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,16 +58,11 @@ public:
     TYPEINFO();
                             SfxAllEnumItem();
                             SfxAllEnumItem( USHORT nWhich);
-                            SfxAllEnumItem( USHORT nWhich, USHORT nVal );
-                            SfxAllEnumItem( USHORT nWhich, USHORT nVal, const XubString &rText );
                             SfxAllEnumItem( USHORT nWhich, SvStream &rStream );
                             SfxAllEnumItem( const SfxAllEnumItem & );
                             ~SfxAllEnumItem();
 
     void                    InsertValue( USHORT nValue );
-    void                    InsertValue( USHORT nValue, const XubString &rText );
-    void                    RemoveValue( USHORT nValue );
-    void                    RemoveAllValues();
 
     USHORT                  GetPosByValue( USHORT nValue ) const;
 
@@ -77,7 +72,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVersion) const;
     virtual BOOL            IsEnabled( USHORT ) const;
-    void                    DisableValue( USHORT );
 };
 
 }
