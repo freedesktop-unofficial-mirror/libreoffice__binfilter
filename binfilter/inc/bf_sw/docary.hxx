@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docary.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -36,7 +36,6 @@ class SwFrmFmt;
 class SwCharFmt;
 class SwBookmark;
 class SwTOXType;
-class SwUndo;
 class SwSectionFmt;
 class SwNumRule;
 class SwRedline;
@@ -86,13 +85,6 @@ SV_DECL_PTRARR_SORT(SwBookmarks, SwBookmarkPtr,0,1)
 
 typedef SwTOXType* SwTOXTypePtr;
 SV_DECL_PTRARR_DEL( SwTOXTypes, SwTOXTypePtr, 0, 1 )
-
-// Undo
-#define INIT_UNDOS 5
-#define GROW_UNDOS 5
-// Das Array der Undo-History
-typedef SwUndo* SwUndoPtr;
-SV_DECL_PTRARR_DEL( SwUndos, SwUndoPtr, INIT_UNDOS, GROW_UNDOS )
 
 typedef SwSectionFmt* SwSectionFmtPtr;
 SV_DECL_PTRARR_DEL(SwSectionFmts,SwSectionFmtPtr,0,4)
