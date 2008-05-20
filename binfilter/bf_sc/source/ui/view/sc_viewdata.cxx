@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_viewdata.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -303,73 +303,6 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 /*N*/   delete pOptions;
 /*N*/ }
 
-/*N*/ void ScViewData::UpdateThis()
-/*N*/ {
-/*N*/   do
-/*N*/   {
-/*N*/       pThisTab = pTabData[nTabNo];
-/*N*/       if (!pThisTab)
-/*N*/       {
-/*N*/           if (nTabNo>0)
-/*N*/               --nTabNo;
-/*N*/           else
-/*?*/               pThisTab = pTabData[0] = new ScViewDataTable;
-/*N*/
-/*N*/               // hier keine Assertion, weil sonst Paints kommen, bevor alles initialisiert ist!
-/*N*/       }
-/*N*/   }
-/*N*/   while (!pThisTab);
-/*N*/ }
-
-/*N*/ void ScViewData::InsertTab( USHORT nTab )
-/*N*/ {
-/*N*/   delete pTabData[MAXTAB];
-/*N*/
-/*N*/   for (USHORT i=MAXTAB; i>nTab; i--)
-/*N*/       pTabData[i] = pTabData[i-1];
-/*N*/
-/*N*/   pTabData[nTab] = new ScViewDataTable;
-/*N*/
-/*N*/   UpdateThis();
-/*N*/   aMarkData.InsertTab( nTab );
-/*N*/ }
-
-
-
-
-
-
-/*N*/ void ScViewData::SetZoom( const Fraction& rNewX, const Fraction& rNewY )
-/*N*/ {
-/*N*/   Fraction aFrac20( 1,5 );
-/*N*/   Fraction aFrac400( 4,1 );
-/*N*/
-/*N*/   Fraction aValidX = rNewX;
-/*N*/   if (aValidX<aFrac20) aValidX = aFrac20;
-/*N*/   if (aValidX>aFrac400) aValidX = aFrac400;
-/*N*/
-/*N*/   Fraction aValidY = rNewY;
-/*N*/   if (aValidY<aFrac20) aValidY = aFrac20;
-/*N*/   if (aValidY>aFrac400) aValidY = aFrac400;
-/*N*/
-/*N*/   if ( bPagebreak )
-/*N*/   {
-/*N*/       aPageZoomX = aValidX;
-/*N*/       aPageZoomY = aValidY;
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       aZoomX = aValidX;
-/*N*/       aZoomY = aValidY;
-/*N*/   }
-/*N*/
-/*N*/   CalcPPT();
-/*N*/   RecalcPixPos();
-/*N*/   aScenButSize = Size(0,0);
-/*N*/   aLogicMode.SetScaleX( aValidX );
-/*N*/   aLogicMode.SetScaleY( aValidY );
-/*N*/ }
-
 // #116578#
 void ScViewData::SetPagebreakMode( BOOL bSet )
 {
@@ -381,120 +314,6 @@ void ScViewData::SetPagebreakMode( BOOL bSet )
     aLogicMode.SetScaleX( GetZoomX() );
     aLogicMode.SetScaleY( GetZoomY() );
 }
-
-/*M*/ BOOL ScViewData::GetSimpleArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rStartTab,
-/*N*/                               USHORT& rEndCol, USHORT& rEndRow, USHORT& rEndTab )
-/*N*/ {
-/*N*/   //  parameter bMergeMark is no longer needed: The view's selection is never modified
-/*N*/   //  (a local copy is used), and a multi selection that adds to a single range can always
-/*N*/   //  be treated like a single selection (#108266# - GetSimpleArea isn't used in selection
-/*N*/   //  handling itself)
-/*N*/
-/*N*/   ScMarkData aNewMark( aMarkData );       // use a local copy for MarkToSimple
-/*N*/
-/*N*/   if ( aNewMark.IsMarked() || aNewMark.IsMultiMarked() )
-/*N*/   {
-/*N*/       if ( aNewMark.IsMultiMarked() )
-/*N*/           aNewMark.MarkToSimple();
-/*M*/
-/*M*/       if ( aNewMark.IsMarked() && !aNewMark.IsMultiMarked() )
-/*M*/       {
-/*M*/           ScRange aMarkRange;
-/*M*/           aNewMark.GetMarkArea( aMarkRange );
-/*M*/           rStartCol = aMarkRange.aStart.Col();
-/*M*/           rStartRow = aMarkRange.aStart.Row();
-/*M*/           rStartTab = aMarkRange.aStart.Tab();
-/*M*/           rEndCol = aMarkRange.aEnd.Col();
-/*M*/           rEndRow = aMarkRange.aEnd.Row();
-/*M*/           rEndTab = aMarkRange.aEnd.Tab();
-/*M*/       }
-/*M*/       else
-/*M*/       {
-/*M*/           rStartCol = rEndCol = GetCurX();
-/*M*/           rStartRow = rEndRow = GetCurY();
-/*M*/           rStartTab = rEndTab = GetTabNo();
-/*M*/           return FALSE;
-/*M*/       }
-/*M*/   }
-/*M*/   else
-/*M*/   {
-/*M*/       rStartCol = rEndCol = GetCurX();
-/*M*/       rStartRow = rEndRow = GetCurY();
-/*M*/       rStartTab = rEndTab = GetTabNo();
-/*M*/   }
-/*M*/   return TRUE;
-/*M*/ }
-
-/*N*/ BOOL ScViewData::GetSimpleArea( ScRange& rRange )
-/*N*/ {
-/*N*/   //  parameter bMergeMark is no longer needed, see above
-/*N*/
-/*N*/   ScMarkData aNewMark( aMarkData );       // use a local copy for MarkToSimple
-/*N*/
-/*N*/   if ( aNewMark.IsMarked() || aNewMark.IsMultiMarked() )
-/*N*/   {
-/*?*/       if ( aNewMark.IsMultiMarked() )
-/*?*/           aNewMark.MarkToSimple();
-/*?*/
-/*?*/       if ( aNewMark.IsMarked() && !aNewMark.IsMultiMarked() )
-/*?*/           aNewMark.GetMarkArea( rRange );
-/*?*/       else
-/*?*/       {
-/*?*/           rRange = ScRange( GetCurX(), GetCurY(), GetTabNo() );
-/*?*/           return FALSE;
-/*?*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rRange = ScRange( GetCurX(), GetCurY(), GetTabNo() );
-/*N*/   }
-/*N*/   return TRUE;
-/*N*/ }
-
-
-
-
-/*M*/ BOOL ScViewData::IsMultiMarked()
-/*M*/ {
-/*M*/   // test for "real" multi selection, calling MarkToSimple on a local copy
-/*M*/
-/*M*/   if ( aMarkData.IsMultiMarked() )
-/*M*/   {
-/*M*/       ScMarkData aNewMark( aMarkData );       // use a local copy for MarkToSimple
-/*M*/       aNewMark.MarkToSimple();
-/*M*/       if ( aNewMark.IsMultiMarked() )
-/*M*/           return TRUE;
-/*M*/   }
-/*M*/   return FALSE;
-/*M*/ }
-
-
-
-
-
-
-
-
-
-
-/*N*/ void ScViewData::ResetEditView()
-/*N*/ {
-/*N*/   EditEngine* pEngine = NULL;
-/*N*/   for (USHORT i=0; i<4; i++)
-/*N*/       if (pEditView[i])
-/*N*/       {
-/*?*/           if (bEditActive[i])
-/*?*/           {
-/*?*/               pEngine = pEditView[i]->GetEditEngine();
-/*?*/               pEngine->RemoveView(pEditView[i]);
-/*?*/               pEditView[i]->SetOutputArea( Rectangle() );
-/*?*/           }
-/*?*/           bEditActive[i] = FALSE;
-/*N*/       }
-/*N*/
-/*N*/   if (pEngine)
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pEngine->SetStatusEventHdl( LINK( this, ScViewData, EmptyEditHdl ) );
-/*N*/ }
 
 /*N*/ void ScViewData::KillEditView()
 /*N*/ {
@@ -549,29 +368,6 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 /*N*/       pThisTab->nPixPosY[eWhich] = nPixPosY;
 /*N*/   }
 /*N*/ }
-
-/*N*/ const MapMode& ScViewData::GetLogicMode( ScSplitPos eWhich )
-/*N*/ {
-/*N*/   aLogicMode.SetOrigin( Point( pThisTab->nMPosX[WhichH(eWhich)],
-/*N*/                                   pThisTab->nMPosY[WhichV(eWhich)] ) );
-/*N*/   return aLogicMode;
-/*N*/ }
-
-/*N*/ const MapMode& ScViewData::GetLogicMode()
-/*N*/ {
-/*N*/   aLogicMode.SetOrigin( Point() );
-/*N*/   return aLogicMode;
-/*N*/ }
-
-
-
-
-/*N*/ SfxObjectShell* ScViewData::GetSfxDocShell() const
-/*N*/ {
-/*N*/   return pDocShell;
-/*N*/ }
-
-
 
 /*N*/ void ScViewData::CalcPPT()
 /*N*/ {
@@ -1024,28 +820,5 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
     if (nCount)
         SetPagebreakMode( bPageMode );
 }
-
-/*N*/ void ScViewData::SetOptions( const ScViewOptions& rOpt )
-/*N*/ {
-/*N*/   //  if visibility of horiz. ScrollBar is changed, TabBar may have to be resized...
-/*N*/   BOOL bHScrollChanged = ( rOpt.GetOption(VOPT_HSCROLL) != pOptions->GetOption(VOPT_HSCROLL) );
-/*N*/
-/*N*/   //  if graphics are turned on or off, animation has to be started or stopped
-/*N*/   //  graphics are controlled by VOBJ_TYPE_OLE
-/*N*/   BOOL bGraphicsChanged = ( pOptions->GetObjMode(VOBJ_TYPE_OLE) !=
-/*N*/                                  rOpt.GetObjMode(VOBJ_TYPE_OLE) );
-/*N*/
-/*N*/   *pOptions = rOpt;
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
 
 }
