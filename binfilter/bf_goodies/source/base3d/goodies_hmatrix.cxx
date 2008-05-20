@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: goodies_hmatrix.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -947,31 +947,6 @@ Vector3D operator* (const Matrix4D& rMatrix, const Vector3D& rVec)
         aNewVec[2] /= fZwi;
     }
     return aNewVec;
-}
-
-/*************************************************************************
-|*
-|* NUR die Rotation und Skalierung auf den Vektor anwenden!
-|*
-\************************************************************************/
-
-void Matrix4D::RotateAndNormalize(Vector3D& rVec) const
-{
-    Vector3D aNewVec;
-    UINT16 i,j;
-    double fZwi;
-
-    for(i=0;i<3;i++)
-    {
-        fZwi = 0.0;
-        for(j=0;j<3;j++)
-        {
-            fZwi += M[i][j] * rVec[j];
-        }
-        aNewVec[i] = fZwi;
-    }
-    aNewVec.Normalize();
-    rVec = aNewVec;
 }
 
 /*************************************************************************
