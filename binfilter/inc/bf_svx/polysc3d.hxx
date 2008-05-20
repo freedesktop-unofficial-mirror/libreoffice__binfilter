@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: polysc3d.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,7 +55,6 @@ class E3dPolyScene : public E3dScene
 public:
     TYPEINFO();
     E3dPolyScene();
-    E3dPolyScene(E3dDefaultAttributes& rDefault);
 
     virtual UINT16 GetObjIdentifier() const;
 
