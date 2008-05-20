@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: apearcfg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,73 +67,6 @@ typedef enum { // MUST match the order chosen in ListBox LB_DRAG_MODE in optgdlg
     DragFrame,
     DragSystemDep
 } DragMode;
-
-
-class  SvtTabAppearanceCfg : public utl::ConfigItem
-{
-    short           nLookNFeel          ;
-    short           nDragMode           ;
-    short           nScaleFactor        ;
-    short           nSnapMode           ;
-    short           nMiddleMouse;
-#if defined( UNX ) || defined ( FS_PRIV_DEBUG )
-    short           nAAMinPixelHeight   ;
-#endif
-
-    BOOL            bMenuMouseFollow        ;
-    BOOL            bSingleLineTabCtrl      ;
-    BOOL            bColoredTabCtrl         ;
-#if defined( UNX ) || defined ( FS_PRIV_DEBUG )
-    BOOL            bFontAntialiasing       ;
-#endif
-
-    static sal_Bool  bInitialized ;
-
-    const com::sun::star::uno::Sequence<rtl::OUString>& GetPropertyNames();
-
-public:
-    SvtTabAppearanceCfg( );
-    ~SvtTabAppearanceCfg( );
-
-    virtual void    Commit();
-
-    USHORT      GetLookNFeel () const { return nLookNFeel; }
-    void        SetLookNFeel ( USHORT nSet );
-
-    USHORT      GetDragMode  () const { return nDragMode; }
-    void        SetDragMode  ( USHORT nSet );
-
-    USHORT      GetScaleFactor () const { return nScaleFactor; }
-    void        SetScaleFactor ( USHORT nSet );
-
-    USHORT      GetSnapMode () const { return nSnapMode; }
-    void        SetSnapMode ( USHORT nSet );
-
-    USHORT      GetMiddleMouseButton () const { return nMiddleMouse; }
-    void        SetMiddleMouseButton ( USHORT nSet );
-
-    void        SetApplicationDefaults ( Application* pApp );
-
-    void        SetMenuMouseFollow(BOOL bSet) {bMenuMouseFollow = bSet; SetModified();}
-    BOOL        IsMenuMouseFollow() const{return bMenuMouseFollow;}
-
-    void        SetSingleLineTabCtrl(BOOL bSet) {bSingleLineTabCtrl = bSet; SetModified();}
-    BOOL        IsSingleLineTabCtrl()const {return   bSingleLineTabCtrl;}
-
-#if defined( UNX ) || defined ( FS_PRIV_DEBUG )
-    void        SetFontAntiAliasing( BOOL bSet )    { bFontAntialiasing = bSet; SetModified(); }
-    BOOL        IsFontAntiAliasing() const { return bFontAntialiasing; }
-
-    USHORT      GetFontAntialiasingMinPixelHeight( ) const { return nAAMinPixelHeight; }
-    void        SetFontAntialiasingMinPixelHeight( USHORT _nMinHeight ) { nAAMinPixelHeight = _nMinHeight; SetModified(); }
-#endif
-
-    void        SetColoredTabCtrl(BOOL bSet)   {bColoredTabCtrl = bSet; SetModified();};
-    BOOL        IsColoredTabCtrl()const {return     bColoredTabCtrl;}
-
-    static sal_Bool IsInitialized()  { return bInitialized; }
-    static void    SetInitialized() { bInitialized = sal_True; }
-};
 
 }
 
