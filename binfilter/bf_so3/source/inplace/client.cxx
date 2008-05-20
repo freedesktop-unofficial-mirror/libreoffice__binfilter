@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: client.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -250,64 +250,6 @@ Rectangle SvClientData::LogicObjAreaToPixel
     return aR;
 }
 
-/************** class SvAreaConstrain ***********************************/
-/*************************************************************************
-|*    SvAreaConstrain::ComputeConstrain()
-|*
-|*    Beschreibung:
-*************************************************************************/
-Size SvAreaConstrain::ComputeConstrain( const Size & rSize,
-                            Fraction * pWidthScale /*OutParam*/,
-                            Fraction * pHeightScale /*OutParam*/ ) const
-{
-    Size aSize( rSize );
-    // Wenn die Schrittweite eingeschraenkt ist
-    if( aStepSize.Width() )
-    {
-        // Breite runden
-        aSize.Width() += aStepSize.Width() / 2;
-        aSize.Width() /= aStepSize.Width();
-        aSize.Width() *= aStepSize.Width();
-    }
-    if( aStepSize.Height() )
-    {
-        // Hoehe runden
-        aSize.Height() += aStepSize.Height() / 2;
-        aSize.Height() /= aStepSize.Height();
-        aSize.Height() *= aStepSize.Height();
-    }
-
-    // Breite Anpassen
-    if( aSize.Width() < aMinSize.Width() )
-    {
-        if( pWidthScale )
-            *pWidthScale = Fraction( aMinSize.Width(), aSize.Width() );
-        aSize.Width() = aMinSize.Width();
-    }
-    else if( aSize.Width() > aMaxSize.Width() )
-    {
-        if( pWidthScale )
-            *pWidthScale = Fraction( aMaxSize.Width(), aSize.Width() );
-        aSize.Width() = aMaxSize.Width();
-    }
-
-    // Hoehe Anpassen
-    if( aSize.Height() < aMinSize.Height() )
-    {
-        if( pHeightScale )
-            *pHeightScale = Fraction( aMinSize.Height(), aSize.Height() );
-        aSize.Height() = aMinSize.Height();
-    }
-    else if( aSize.Height() > aMaxSize.Height() )
-    {
-        if( pHeightScale )
-            *pHeightScale = Fraction( aMaxSize.Height(), aSize.Height() );
-        aSize.Height() = aMaxSize.Height();
-    }
-    return aSize;
-}
-
-
 /************** class SvEmbeddedClient **************************************/
 SV_IMPL_FACTORY(SvEmbeddedClientFactory)
     {
@@ -377,14 +319,6 @@ SvEmbeddedClient::SvEmbeddedClient()
     : pData( NULL )
     , INIT_CTOR
 {
-}
-
-//=========================================================================
-SvEmbeddedClient::SvEmbeddedClient( Window * pWin )
-    : INIT_CTOR
-{
-    pData = new SvClientData( this, pWin );
-    bDeleteData = TRUE;
 }
 
 //=========================================================================
@@ -520,25 +454,6 @@ ErrCode SvEmbeddedClient::GetContURL
     (void)rURL;
     ULONG nRet = ERRCODE_SO_GENERALERROR;
     return nRet;
-}
-
-/*************************************************************************
-|*    SvEmbeddedClient::SetAspect()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvEmbeddedClient::SetAspect( USHORT nAspectP, BOOL bInvalidate )
-{
-    if( nAspect != nAspectP )
-    {
-        nAspect = nAspectP;
-        if( bInvalidate )
-        {
-            SvClientData * pD = GetClientData();
-            if( pD )
-                pD->Invalidate();
-        }
-   }
 }
 
 /*************************************************************************
