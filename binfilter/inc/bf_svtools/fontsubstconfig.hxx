@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fontsubstconfig.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -40,37 +40,6 @@
 
 namespace binfilter
 {
-
-struct SvtFontSubstConfig_Impl;
-
-//-----------------------------------------------------------------------------
-struct SubstitutionStruct
-{
-    rtl::OUString   sFont;
-    rtl::OUString   sReplaceBy;
-    sal_Bool        bReplaceAlways;
-    sal_Bool        bReplaceOnScreenOnly;
-};
-//-----------------------------------------------------------------------------
-class  SvtFontSubstConfig : public utl::ConfigItem
-{
-    sal_Bool                    bIsEnabled;
-    SvtFontSubstConfig_Impl*    pImpl;
-public:
-    SvtFontSubstConfig();
-    virtual ~SvtFontSubstConfig();
-
-    virtual void            Commit();
-
-    sal_Bool                IsEnabled() const {return bIsEnabled;}
-    void                    Enable(sal_Bool bSet)  {bIsEnabled = bSet; SetModified();}
-
-    sal_Int32                   SubstitutionCount() const;
-    void                        ClearSubstitutions();
-    const SubstitutionStruct*   GetSubstitution(sal_Int32 nPos);
-    void                        AddSubstitution(const SubstitutionStruct&   rToAdd);
-    void                        Apply();
-};
 
 }
 
