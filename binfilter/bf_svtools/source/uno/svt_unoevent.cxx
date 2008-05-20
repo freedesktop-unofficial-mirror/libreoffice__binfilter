@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_unoevent.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -192,21 +192,6 @@ sal_uInt16 SvBaseEventDescriptor::mapNameToEventID(const OUString& rName) const
 
     // not found -> return zero
     return 0;
-}
-
-OUString SvBaseEventDescriptor::mapEventIDToName(sal_uInt16 nPoolID) const
-{
-    // iterate over known event IDs
-    for(sal_Int16 i = 0; i < mnMacroItems; i++)
-    {
-        if (nPoolID == mpSupportedMacroItems[i].mnEvent)
-        {
-            return OUString::createFromAscii(mpSupportedMacroItems[i].mpEventName);
-        }
-    }
-
-    // not found -> return empty string
-    return OUString();
 }
 
 sal_uInt16 SvBaseEventDescriptor::getMacroID(const OUString& rName) const
