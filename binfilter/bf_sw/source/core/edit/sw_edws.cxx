@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_edws.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,14 +58,6 @@ namespace binfilter {
  ********************************************************/
 
 // ctor/dtor
-
-
-/*N*/ SwEditShell::SwEditShell( SwDoc& rDoc, Window *pWin, SwRootFrm *pRootFrm,
-/*N*/                           const SwViewOption *pOpt )
-/*N*/   : SwCrsrShell( rDoc, pWin, pRootFrm, pOpt)
-/*N*/ {
-/*N*/   GetDoc()->DoUndo();
-/*N*/ }
 
 
 /*N*/ SwEditShell::~SwEditShell() // USED
