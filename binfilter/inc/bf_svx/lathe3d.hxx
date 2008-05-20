@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lathe3d.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -75,11 +75,6 @@ class E3dLatheObj : public E3dCompoundObject
  public:
     TYPEINFO();
     E3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon& rPoly);
-    // es wird keine Bezier-Konvertierung des XPolygon durchgefuehrt,
-    // sondern es werden nur die Punkte uebernommen!
-    E3dLatheObj(E3dDefaultAttributes& rDefault, const XPolyPolygon& rXPoly);
-    E3dLatheObj(E3dDefaultAttributes& rDefault, const XPolygon& rXPoly);
-    E3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D rPoly3D);
     E3dLatheObj();
 
     // HorizontalSegments:
