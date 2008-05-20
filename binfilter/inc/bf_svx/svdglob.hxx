@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdglob.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,13 +61,6 @@ class SdrResId: ResId {
 public:
     SdrResId(USHORT nId): ResId(nId,*ImpGetResMgr()) {}
 };
-
-// ResourceCache fuer haeuffig benoetigte Strings
-// gecachet werden globale String-Resourcen mit den
-// IDs von SDR_StringCacheBegin (256) bis
-// SDR_StringCacheEnd (weiss ich grad' nicht).
-// Hierzu siehe auch SvdStr.Hrc
-const String& ImpGetResStr(USHORT nResID);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
