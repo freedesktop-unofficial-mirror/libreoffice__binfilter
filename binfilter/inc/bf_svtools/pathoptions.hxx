@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: pathoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -140,7 +140,6 @@ public:
     String          SubstituteVariable( const String& rVar );
     String          UseVariable( const String& rVar );
     sal_Bool        SearchFile( String& rIniFile, Pathes ePath = PATH_USERCONFIG );
-    ::com::sun::star::lang::Locale GetLocale() const;
     sal_Bool        IsReadonly() const;
 };
 
