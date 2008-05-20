@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_flagitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,15 +68,6 @@ SfxFlagItem::SfxFlagItem( USHORT nW, USHORT nV ) :
     nVal(nV)
 {
     DBG_CTOR(SfxFlagItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-SfxFlagItem::SfxFlagItem( USHORT nW, SvStream &rStream) :
-    SfxPoolItem( nW )
-{
-    DBG_CTOR(SfxFlagItem, 0);
-    rStream >> nVal;
 }
 
 // -----------------------------------------------------------------------
@@ -149,16 +140,6 @@ int SfxFlagItem::operator==( const SfxPoolItem& rItem ) const
     DBG_CHKTHIS(SfxFlagItem, 0);
     DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
     return (((SfxFlagItem&)rItem).nVal == nVal);
-}
-
-// -----------------------------------------------------------------------
-
-void SfxFlagItem::SetFlag( BYTE nFlag, int bVal )
-{
-    if ( bVal )
-        nVal |= nSfxFlagVal[nFlag];
-    else
-        nVal &= ~nSfxFlagVal[nFlag];
 }
 
 // -----------------------------------------------------------------------
