@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipenv.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,7 +73,6 @@ protected:
     SO3_DLLPRIVATE      ~SvAppFrame();
 public:
                         SO2_DECL_INTERFACE()
-                        SvAppFrame( SvContainerEnvironment * );
     IOleInPlaceFrame *  GetInPlaceFrame() const;
 };
 SV_DECL_IMPL_REF(SvAppFrame)
@@ -91,7 +90,6 @@ protected:
     SO3_DLLPRIVATE      ~SvDocFrame();
 public:
                         SO2_DECL_INTERFACE()
-                        SvDocFrame( SvContainerEnvironment * );
     IOleInPlaceUIWindow * GetOleInPlaceUIWindow() const;
 };
 SV_DECL_IMPL_REF(SvDocFrame)
@@ -146,10 +144,8 @@ private:
 protected:
     virtual void    ShowUIByChildDeactivate();
 
-    SO3_DLLPRIVATE MenuBar *        DoQueryMenu( USHORT * p0, USHORT * p1, USHORT * p2 );
     SO3_DLLPRIVATE virtual MenuBar * QueryMenu( USHORT *, USHORT *, USHORT * );
     SO3_DLLPRIVATE virtual void    SetInPlaceMenu( MenuBar * pIPMenu, BOOL bSet );
-    SO3_DLLPRIVATE void         DoMenuReleased( MenuBar * pMenu );
     SO3_DLLPRIVATE virtual void    MenuReleased();
     SO3_DLLPRIVATE virtual void     UIToolsShown( BOOL bShow );
     SO3_DLLPRIVATE void         RemoveDocWin() { pDocWin = NULL; }
@@ -165,8 +161,6 @@ public:
                                             WorkWindow * pTopWin = NULL,
                                             WorkWindow * pDocWin = NULL,
                                             Window * pObjWin = NULL );
-                    SvContainerEnvironment( SvInPlaceClient *,
-                                            SvContainerEnvironment * pParent );
     virtual         ~SvContainerEnvironment();
 
     IOleInPlaceFrame *      GetInPlaceFrame() const;
@@ -194,7 +188,6 @@ public:
 
 
     // Accelerator Verwaltung
-    void                    SetAccel( const Accelerator & );
     virtual                 BOOL DispatchAccel( const KeyCode & );
     virtual Accelerator *   GetAccel();
 
@@ -202,7 +195,6 @@ public:
     virtual void    SetSizeScale( const Fraction & rScaleWidth,
                                   const Fraction & rScaleHeight );
     void            OutDevScaleChanged();
-    void            SetClipAreaPixel( const Rectangle & );
     const Rectangle & GetClipAreaPixel() const
                     { return aClipAreaPixel; }
     virtual BOOL    SetObjArea( const Rectangle & );
@@ -282,10 +274,8 @@ protected:
     SO3_DLLPRIVATE void         DeleteWindows();
     SO3_DLLPRIVATE void         SetClipWin( SvInPlaceClipWindow * pWin )
                     { pClipWin = pWin; }
-    SO3_DLLPRIVATE void         DeleteClipWin();
     SO3_DLLPRIVATE void         SetBorderWin( SvInPlaceWindow * pWin )
                     { pBorderWin = pWin; }
-    SO3_DLLPRIVATE void         DeleteBorderWin();
 
 public:
                     SvInPlaceEnvironment( SvContainerEnvironment *, SvInPlaceObject * );
@@ -297,10 +287,6 @@ public:
     void            DoShowIPObj( BOOL bShow );
     void            DoShowUITools( BOOL bShow );
     BOOL            IsShowUITools() const { return bShowUITools; }
-    void            MakeUI( BOOL bMake );
-    void            MakeScale( const Size & rVisAreaSize,
-                             MapUnit nVisAreaUnit,
-                             const Size & rObjSizePixel );
 
     const Rectangle & GetOldObjAreaPixel() const
                     { return aOldObjAreaPixel; }
@@ -310,7 +296,6 @@ public:
     SvInPlaceWindow *       GetBorderWin() const { return pBorderWin; }
     void                    SetEditWin( Window * pWin )
                             { pEditWin = pWin; }
-    void                    DeleteEditWin();
     Window *                GetEditWin();
     SvContainerEnvironment* GetContainerEnv() const { return pContEnv; }
 
