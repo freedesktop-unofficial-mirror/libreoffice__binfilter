@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_xmlscripti.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,7 +101,6 @@ public:
                             const Reference<XAttributeList>& xAttrList,
                             XMLScriptContext& rParentContext,
                             Reference<XStarBasicAccess> xBasicAccess );
-
     virtual ~XMLScriptElementContext();
 
     virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
@@ -113,66 +112,6 @@ public:
 
 
 //-------------------------------------------------------------------------
-
-XMLScriptElementContext::XMLScriptElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
-                                    const OUString& rLName,
-                                    const Reference<XAttributeList>& xAttrList,
-                                    XMLScriptContext& rParentContext,
-                                    Reference<XStarBasicAccess> xBasicAccess )
-    : SvXMLImportContext( rImport, nPrfx, rLName )
-    , msLName( rLName )
-    , mrParent( rParentContext )
-    , mxBasicAccess( xBasicAccess )
-{
-    mrParent.AddRef();
-
-    OUString sPassword;
-    OUString sExternalSourceURL;
-    OUString sLinkTargetURL;
-
-    sal_Bool bEmbedded = sal_False;
-    sal_Bool bLinked = sal_False;
-    if( IsXMLToken( msLName, XML_LIBRARY_EMBEDDED ) )
-        bEmbedded = sal_True;
-    else if( IsXMLToken( msLName, XML_LIBRARY_LINKED ) )
-        bLinked = sal_True;
-
-    if( bEmbedded || bLinked )
-    {
-        sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
-        for( sal_Int16 i = 0 ; i < nAttrCount ; i++ )
-        {
-            OUString sFullAttrName = xAttrList->getNameByIndex( i );
-            OUString sAttrName;
-            sal_Int16 nAttrPrefix =
-                GetImport().GetNamespaceMap().GetKeyByAttrName( sFullAttrName,
-                                                                &sAttrName );
-
-            if( (XML_NAMESPACE_SCRIPT == nAttrPrefix) &&
-                IsXMLToken( sAttrName, XML_NAME ) )
-            {
-                msLibName = xAttrList->getValueByIndex( i );
-            }
-            else if( (XML_NAMESPACE_SCRIPT == nAttrPrefix) &&
-                     IsXMLToken( sAttrName, XML_PASSWORD ) )
-            {
-                sPassword = xAttrList->getValueByIndex( i );
-            }
-            else if( (XML_NAMESPACE_XLINK == nAttrPrefix) && bLinked &&
-                     IsXMLToken( sAttrName, XML_HREF ) )
-            {
-                sLinkTargetURL = GetImport().GetAbsoluteReference(xAttrList->getValueByIndex( i ));
-            }
-            //else if( IsXMLToken(msLName, XML_EXTERNAL_SOURCE_URL) )
-            //{
-                //sLinkTargetURL = xAttrList->getValueByIndex( i );
-            //}
-        }
-    }
-
-    if( msLibName.getLength() )
-        mxBasicAccess->createLibrary( msLibName, sPassword, sExternalSourceURL, sLinkTargetURL );
-}
 
 XMLScriptElementContext::~XMLScriptElementContext()
 {
