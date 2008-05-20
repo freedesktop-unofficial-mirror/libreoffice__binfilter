@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swdll.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,7 +77,6 @@ public:
                     // static-init/exit-code must be linked to the application
     static void     LibInit();  // called from SfxApplication-subclass::Init()
     static void     LibExit();  // called from SfxApplication-subclass::Exit()
-    static void     PreExit();  // muss vor LibExit gerufen werden
 
                     // DLL-init/exit-code must be linked to the DLL only
     static void     Init();     // called directly after loading the DLL
@@ -127,9 +126,6 @@ public:
                     {}
 
     virtual SfxModule* Load();
-
-    static SvGlobalName GetID(USHORT nFileFormat);
-    static USHORT       HasID(const SvGlobalName& rName);
 };
 
 //-------------------------------------------------------------------------
