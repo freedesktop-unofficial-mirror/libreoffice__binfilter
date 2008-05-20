@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_uiitems.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,15 +69,6 @@ namespace binfilter {
 /*N*/ }
 
 
-// -----------------------------------------------------------------------
-//  ScIndexHint
-// -----------------------------------------------------------------------
-
-/*N*/ ScIndexHint::ScIndexHint(USHORT nNewId, USHORT nIdx) :
-/*N*/   nId( nNewId ),
-/*N*/   nIndex( nIdx )
-/*N*/ {
-/*N*/ }
 
 /*N*/ ScIndexHint::~ScIndexHint()
 /*N*/ {
@@ -88,18 +79,6 @@ namespace binfilter {
 //      ScEditViewHint - neue EditView fuer Cursorposition anlegen
 // -----------------------------------------------------------------------
 
-/*N*/ ScEditViewHint::ScEditViewHint() :
-/*N*/   aCursorPos( 0,0,0 ),
-/*N*/   pEditEngine( NULL )
-/*N*/ {
-/*N*/ }
-
-/*N*/ ScEditViewHint::ScEditViewHint( ScEditEngineDefaulter* pEngine, const ScAddress& rCurPos ) :
-/*N*/   aCursorPos( rCurPos ),
-/*N*/   pEditEngine( pEngine )
-/*N*/ {
-/*N*/ }
-
 /*N*/ ScEditViewHint::~ScEditViewHint()
 /*N*/ {
 /*N*/ }
@@ -107,17 +86,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 //      ScSortItem - Daten fuer den Sortierdialog
 // -----------------------------------------------------------------------
-
-/*N*/ ScSortItem::ScSortItem( USHORT              nWhich,
-/*N*/                       ScViewData*         ptrViewData,
-/*N*/                       const ScSortParam*  pSortData ) :
-/*N*/       SfxPoolItem ( nWhich ),
-/*N*/       pViewData   ( ptrViewData )
-/*N*/ {
-/*N*/   if ( pSortData ) theSortData = *pSortData;
-/*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ ScSortItem::ScSortItem( USHORT              nWhich,
 /*N*/                       const ScSortParam*  pSortData ) :
@@ -165,17 +133,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ ScQueryItem::ScQueryItem( USHORT                nWhich,
-/*N*/                         const ScQueryParam*   pQueryData ) :
-/*N*/       SfxPoolItem ( nWhich ),
-/*N*/       bIsAdvanced ( FALSE ),
-/*N*/       pViewData   ( NULL )
-/*N*/ {
-/*N*/   if ( pQueryData ) theQueryData = *pQueryData;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ ScQueryItem::ScQueryItem( const ScQueryItem& rItem ) :
 /*N*/       SfxPoolItem ( rItem ),
 /*N*/       bIsAdvanced ( rItem.bIsAdvanced ),
@@ -211,16 +168,6 @@ namespace binfilter {
 /*N*/                               const ScSubTotalParam*  pSubTotalData ) :
 /*N*/       SfxPoolItem ( nWhich ),
 /*N*/       pViewData   ( ptrViewData )
-/*N*/ {
-/*N*/   if ( pSubTotalData ) theSubTotalData = *pSubTotalData;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-/*N*/ ScSubTotalItem::ScSubTotalItem( USHORT                nWhich,
-/*N*/                               const ScSubTotalParam*  pSubTotalData ) :
-/*N*/       SfxPoolItem ( nWhich ),
-/*N*/       pViewData   ( NULL )
 /*N*/ {
 /*N*/   if ( pSubTotalData ) theSubTotalData = *pSubTotalData;
 /*N*/ }
