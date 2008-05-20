@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: scanner.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -126,18 +126,6 @@ void SbiScanner::GenError( SbError code )
     }
     if( bErrors )
         nErrors++;
-}
-
-// Falls sofort ein Doppelpunkt folgt, wird TRUE zurueckgeliefert.
-// Wird von SbiTokenizer::MayBeLabel() verwendet, um einen Label zu erkennen
-
-BOOL SbiScanner::DoesColonFollow()
-{
-    if( pLine && *pLine == ':' )
-    {
-        pLine++; nCol++; return TRUE;
-    }
-    else return FALSE;
 }
 
 // Testen auf ein legales Suffix
