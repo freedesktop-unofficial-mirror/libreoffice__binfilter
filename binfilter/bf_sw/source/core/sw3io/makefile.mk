@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -55,7 +55,6 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 CXXFILES = \
     sw_sw3io.cxx		\
     sw_sw3attr.cxx 	\
-    sw_swacorr.cxx 	\
     sw_sw3block.cxx	\
     sw_sw3doc.cxx		\
     sw_sw3field.cxx	\
@@ -70,7 +69,6 @@ CXXFILES = \
     sw_sw3sectn.cxx	\
     sw_sw3style.cxx	\
     sw_sw3table.cxx	\
-    sw_swacorr.cxx 	\
     sw_crypter.cxx
 
 SLOFILES = \
