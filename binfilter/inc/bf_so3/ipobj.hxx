@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipobj.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -119,7 +119,6 @@ public:
     virtual void    SetVisArea( const Rectangle & rVisArea );
     BOOL            IsUndoable() const { return bIsUndoable; }
     virtual BOOL    ReactivateAndUndo();
-    static SvInPlaceObjectRef CreateObject( const SvGlobalName & rName );
 };
 
 DECLARE_LIST(SvInPlaceObjectList,SvInPlaceObject*)
