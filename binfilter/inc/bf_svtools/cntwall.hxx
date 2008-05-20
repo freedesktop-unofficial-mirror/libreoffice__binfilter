@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cntwall.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,7 +58,6 @@ private:
 public:
                             TYPEINFO();
 
-                            CntWallpaperItem( USHORT nWhich );
                             CntWallpaperItem( USHORT nWhich, SvStream& rStream, USHORT nVersion );
                             CntWallpaperItem( const CntWallpaperItem& rCpy );
                             ~CntWallpaperItem();
