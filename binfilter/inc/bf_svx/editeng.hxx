@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: editeng.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -170,7 +170,6 @@ public:
 
     String          GetText( LineEnd eEnd = LINEEND_LF ) const;
     String          GetText( const ESelection& rSelection, const LineEnd eEnd = LINEEND_LF ) const;
-    sal_uInt32      GetTextLen() const;
     sal_uInt32      GetTextHeight() const;
     sal_uInt32      CalcTextWidth();
 
@@ -225,11 +224,9 @@ public:
     void            EnableUndo( BOOL bEnable );
     BOOL            IsUndoEnabled();
 
-    void            ClearModifyFlag();
     void            SetModified();
     BOOL            IsModified() const;
 
-    void            SetModifyHdl( const Link& rLink );
     Link            GetModifyHdl() const;
 
 
@@ -326,7 +323,6 @@ public:
     virtual String  CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, xub_StrLen nPos, Color*& rTxtColor, Color*& rFldColor );
     virtual Rectangle GetBulletArea( USHORT nPara );
 
-    static void     SetGetAutoCorrectHdl( const Link& rHdl );
     static SfxItemPool* CreatePool( BOOL bLoadRefCounts = TRUE );
     static Font     CreateFontFromItemSet( const SfxItemSet& rItemSet, USHORT nScriptType );
     static SvxFont  CreateSvxFontFromItemSet( const SfxItemSet& rItemSet );
