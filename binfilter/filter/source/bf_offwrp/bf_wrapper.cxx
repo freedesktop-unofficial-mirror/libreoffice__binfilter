@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bf_wrapper.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,29 +61,6 @@ static ScDLL*               pScDLL = 0L;
 static SchDLL*              pSchDLL = 0L;
 static SmDLL*               pSmDLL = 0L;
 static bf_OfficeWrapper*    pOfficeWrapper = 0L;
-
-static SotFactory * SotFactory_Find( const SvGlobalName & rFactName )
-{
-    SvGlobalName aEmpty;
-    SotData_Impl* pSotData = SOTDATA();
-
-    if( rFactName != aEmpty && pSotData->pFactoryList )
-    {
-        SotFactory * pFact = pSotData->pFactoryList->First();
-
-        while( pFact )
-        {
-            if( *pFact == rFactName )
-            {
-                return pFact;
-            }
-
-            pFact = pSotData->pFactoryList->Next();
-        }
-    }
-
-    return NULL;
-}
 
 SFX_IMPL_XSERVICEINFO( bf_OfficeWrapper, "com.sun.star.office.OfficeWrapper", "com.sun.star.comp.desktop.OfficeWrapper" )
 
