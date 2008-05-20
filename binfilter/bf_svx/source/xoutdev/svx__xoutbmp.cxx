@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx__xoutbmp.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -33,33 +33,6 @@
 #include "xoutbmp.hxx"
 namespace binfilter {
 
-// -----------
-// - Defines -
-// -----------
-
-#define FORMAT_BMP  String(RTL_CONSTASCII_USTRINGPARAM("bmp"))
-#define FORMAT_GIF  String(RTL_CONSTASCII_USTRINGPARAM("gif"))
-#define FORMAT_JPG  String(RTL_CONSTASCII_USTRINGPARAM("jpg"))
-#define FORMAT_PNG  String(RTL_CONSTASCII_USTRINGPARAM("png"))
-
-// --------------
-// - XOutBitmap -
-// --------------
-
 GraphicFilter* XOutBitmap::pGrfFilter = NULL;
 
-// -----------------------------------------------------------------------------
-
-/*N*/ #ifdef _MSC_VER
-/*N*/ #pragma optimize ( "", off )
-/*N*/ #endif
-/*N*/
-/*N*/ // SJ: bIgnoreOptions is not used anymore
-/*N*/
-/*N*/ USHORT XOutBitmap::ExportGraphic( const Graphic& rGraphic, const INetURLObject& rURL,
-/*N*/                                 GraphicFilter& rFilter, const USHORT nFormat,
-/*N*/                                 BOOL bIgnoreOptions,
-/*N*/                                 const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*N*/ }
 }
