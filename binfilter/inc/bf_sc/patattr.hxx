@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: patattr.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -152,9 +152,6 @@ public:
     ULONG                   GetNumberFormat( SvNumberFormatter* ) const;
     ULONG                   GetNumberFormat( SvNumberFormatter* pFormatter,
                                                 const SfxItemSet* pCondSet ) const;
-
-    long                    GetRotateVal( const SfxItemSet* pCondSet ) const;
-    BYTE                    GetRotateDir( const SfxItemSet* pCondSet ) const;
 };
 
 
