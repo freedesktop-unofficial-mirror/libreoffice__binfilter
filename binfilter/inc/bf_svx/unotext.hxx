@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unotext.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -446,9 +446,7 @@ protected:
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
-        SvxUnoTextBase( ) throw();
     SvxUnoTextBase( const SfxItemPropertyMap* _pMap ) throw();
-    SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap ) throw();
     SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap, ::com::sun::star::uno::Reference < ::com::sun::star::text::XText > xParent ) throw();
     SvxUnoTextBase( const SvxUnoTextBase& rText ) throw();
     virtual ~SvxUnoTextBase() throw();
@@ -503,13 +501,13 @@ class SvxUnoText  : public SvxUnoTextBase,
                     public ::cppu::OWeakAggObject
 {
 public:
-    SvxUnoText( ) throw();
     SvxUnoText( const SvxEditSource* pSource, const SfxItemPropertyMap* _pMap, ::com::sun::star::uno::Reference < ::com::sun::star::text::XText > xParent ) throw();
     SvxUnoText( const SvxUnoText& rText ) throw();
     virtual ~SvxUnoText() throw();
 
     // Internal
-    UNO3_GETIMPLEMENTATION_DECL( SvxUnoText )
+        static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+    virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw(::com::sun::star::uno::RuntimeException);
 
     // ::com::sun::star::uno::XInterface
     virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException);
@@ -570,7 +568,6 @@ protected:
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:
-    SvxUnoTextContent() throw();
     SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nPara ) throw();
     SvxUnoTextContent( const SvxUnoTextContent& rContent ) throw();
     virtual ~SvxUnoTextContent() throw();
