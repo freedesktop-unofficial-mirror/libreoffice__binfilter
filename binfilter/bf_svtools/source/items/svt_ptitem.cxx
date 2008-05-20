@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_ptitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -78,15 +78,6 @@ SfxPointItem::SfxPointItem( USHORT nW, const Point& rVal ) :
     aVal( rVal )
 {
     DBG_CTOR(SfxPointItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-SfxPointItem::SfxPointItem( USHORT nW, SvStream &rStream ) :
-    SfxPoolItem( nW )
-{
-    DBG_CTOR(SfxPointItem, 0);
-    rStream >> aVal;
 }
 
 // -----------------------------------------------------------------------
