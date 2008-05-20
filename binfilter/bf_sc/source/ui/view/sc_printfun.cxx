@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_printfun.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -187,32 +187,6 @@ namespace binfilter {
 /*N*/   Construct( pOptions );
 /*N*/ }
 
-/*N*/ ScPrintFunc::ScPrintFunc( OutputDevice* pOutDev, ScDocShell* pShell, USHORT nTab,
-/*N*/                           long nPage, long nDocP, const ScRange* pArea,
-/*N*/                           const ScPrintOptions* pOptions )
-/*N*/   :   pDocShell           ( pShell ),
-/*N*/       pPrinter            ( NULL ),
-/*N*/       pDrawView           ( NULL ),
-/*N*/       nPrintTab           ( nTab ),
-/*N*/       nPageStart          ( nPage ),
-/*N*/       nDocPages           ( nDocP ),
-/*N*/       pUserArea           ( pArea ),
-/*N*/       pPageData           ( NULL ),
-/*N*/       nTotalPages         ( 0 ),
-/*N*/       nTabPages           ( 0 ),
-/*N*/       bState              ( FALSE ),
-/*N*/       bPrintCurrentTable  ( FALSE ),
-/*N*/       bMultiArea          ( FALSE ),
-/*N*/       bSourceRangeValid   ( FALSE )
-/*N*/ {
-/*N*/   pDev = pOutDev;
-/*N*/   Construct( pOptions );
-/*N*/ }
-
-
-
-
-
 /*N*/ ScPrintFunc::~ScPrintFunc()
 /*N*/ {
 /*N*/   ScTripel* pTripel = (ScTripel*) aNotePosList.First();
@@ -236,25 +210,6 @@ namespace binfilter {
 /*N*/   if (pDocPrinter)
 /*N*/       pDocPrinter->SetMapMode(aOldPrinterMode);
 /*N*/ }
-
-/*N*/ void ScPrintFunc::SetDrawView( FmFormView* pNew )
-/*N*/ {
-/*N*/   pDrawView = pNew;
-/*N*/ }
-
-
-//
-//          Ausgabe auf Device (static)
-//
-//      wird benutzt fuer:
-//      -   Clipboard/Bitmap
-//      -   Ole-Object (DocShell::Draw)
-//      -   Vorschau bei Vorlagen
-
-
-/*  if (!bMetaFile)
-        pDev->SetMapMode(MAP_PIXEL);
-*/
 
 //
 //          Drucken
@@ -670,7 +625,6 @@ namespace binfilter {
 /*N*/   else
 /*N*/       aFieldData.aShortDocName = aFieldData.aLongDocName = aFieldData.aTitle;
 /*N*/
-/*N*/   //  Druckereinstellungen (Orientation, Paper) jetzt erst bei DoPrint
 /*N*/ }
 
 
@@ -734,20 +688,6 @@ namespace binfilter {
 /*N*/
 /*N*/   pEditEngine->SetData( aFieldData );     // Seitennummer etc. setzen
 /*N*/ }
-
-//  nStartY = logic
-
-
-
-
-
-
-
-
-/*M*/ void ScPrintFunc::SetRenderFlag( BOOL bFlag )
-/*M*/ {
-/*M*/   bIsRender = bFlag;      // set when using XRenderable (PDF)
-/*M*/ }
 
 //
 //  UpdatePages wird nur von aussen gerufen, um die Umbrueche fuer die Anzeige
@@ -946,21 +886,6 @@ namespace binfilter {
 /*N*/   aTwipMode = MapMode( MAP_TWIP, aTwipsOfs, aHorFract, aZoomFract );
 /*N*/ }
 
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-//  rPageRanges   = Range fuer alle Tabellen
-//  nStartPage    = in rPageRanges beginnen bei nStartPage
-//  nDisplayStart = lfd. Nummer fuer Anzeige der Seitennummer
-
-/*N*/ long ScPrintFunc::DoPrint( const MultiSelection& rPageRanges,
-/*N*/                               long nStartPage, long nDisplayStart, BOOL bDoPrint,
-/*N*/                               SfxProgress* pProgress, ScPreviewLocationData* pLocationData )
-/*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 DBG_ASSERT(pDev,"Device == NULL");
-/*N*/ }
-
 /*N*/ void ScPrintFunc::CalcZoom( USHORT nRangeNo )                     // Zoom berechnen
 /*N*/ {
 /*N*/   USHORT nRCount = pDoc->GetPrintRangeCount( nPrintTab );
@@ -1153,18 +1078,5 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-//------------------------------------------------------------------------
-//  class ScJobSetup
-//------------------------------------------------------------------------
-
-/*N*/ ScJobSetup::ScJobSetup( SfxPrinter* pPrinter )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 eOrientation = pPrinter->GetOrientation();
-/*N*/ };
-
-
-
-
 
 }
