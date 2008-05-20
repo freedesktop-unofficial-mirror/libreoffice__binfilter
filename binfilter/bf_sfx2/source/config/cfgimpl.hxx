@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cfgimpl.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,7 +70,6 @@ class SfxConfigManagerImExport_Impl
     SfxIFConfig_Impl*       pIFaceConfig;
 
     BOOL            ImportItem( SfxConfigItem_Impl* pItem, SvStream* pStream, SotStorage* pStor );
-    BOOL            ExportItem( SfxConfigItem_Impl *pItem, SotStorage* pStor, SvStream* pStream );
 
 public:
                     SfxConfigManagerImExport_Impl( SfxObjectShell* pDoc, SfxConfigItemArr_Impl* pArr )
@@ -82,7 +81,6 @@ public:
     USHORT          Import( SotStorage* pIn, SotStorage* pStor );
     USHORT          Export( SotStorage* pStor, SotStorage* pOut );
 
-    static String   GetItemName( USHORT );
     static String   GetStreamName( USHORT nType );
     static USHORT   GetType( const String& rStreamName );
     static BOOL     HasConfiguration( SotStorage& rStorage );
