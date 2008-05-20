@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxobj.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,8 +53,6 @@ class SbxObject : public SbxVariable, public SfxListener
     SbxObjectImpl* mpSbxObjectImpl; // Impl data
 
     SbxArray* FindVar( SbxVariable*, USHORT& );
-    // AB 23.3.1997, Spezial-Methode fuer VCPtrRemove (s.u.)
-    SbxArray* VCPtrFindVar( SbxVariable*, USHORT& );
 protected:
     SbxArrayRef  pMethods;          // Methoden
     SbxArrayRef  pProps;            // Properties
@@ -82,8 +80,6 @@ public:
     void          SetClassName( const String &rNew ) { aClassName = rNew; }
     // Default-Property
     SbxProperty* GetDfltProperty();
-    void SetDfltProperty( const String& r );
-    void SetDfltProperty( SbxProperty* );
     // Suchen eines Elements
     virtual SbxVariable* FindUserData( UINT32 nUserData );
     virtual SbxVariable* Find( const String&, SbxClassType );
@@ -100,13 +96,8 @@ public:
     // AB 23.4.1997, Optimierung, Einfuegen ohne Ueberpruefung auf doppelte
     // Eintraege und ohne Broadcasts, wird nur in SO2/auto.cxx genutzt
     void QuickInsert( SbxVariable* );
-    // AB 23.3.1997, Spezial-Methode, gleichnamige Controls zulassen
-    void VCPtrInsert( SbxVariable* );
     virtual void Remove( const String&, SbxClassType );
     virtual void Remove( SbxVariable* );
-    // AB 23.3.1997, Loeschen per Pointer fuer Controls (doppelte Namen!)
-    void VCPtrRemove( SbxVariable* );
-    void SetPos( SbxVariable*, USHORT );
 
     // Makro-Recording
     virtual String GenerateSource( const String &rLinePrefix,
@@ -119,8 +110,6 @@ public:
     virtual SvDispatch* GetSvDispatch();
     // Debugging
     void Dump( SvStream&, BOOL bDumpAll=FALSE );
-
-    static void GarbageCollection( ULONG nObjects = 0 /* ::= all */ );
 };
 
 #ifndef __SBX_SBXOBJECTREF_HXX
