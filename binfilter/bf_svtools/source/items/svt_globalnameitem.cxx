@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_globalnameitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,14 +60,6 @@ TYPEINIT1_AUTOFACTORY(SfxGlobalNameItem, SfxPoolItem);
 // -----------------------------------------------------------------------
 
 SfxGlobalNameItem::SfxGlobalNameItem()
-{
-}
-
-// -----------------------------------------------------------------------
-
-SfxGlobalNameItem::SfxGlobalNameItem( USHORT nW, const SvGlobalName& rName )
-:   SfxPoolItem( nW ),
-    m_aName( rName )
 {
 }
 
