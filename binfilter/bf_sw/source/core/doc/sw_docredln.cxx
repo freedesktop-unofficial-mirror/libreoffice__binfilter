@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docredln.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -206,11 +206,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/       return FALSE;
 /*N*/
 /*N*/   BOOL bChg = FALSE;
-/*N*/
-/*N*/   if( bSaveInUndo && DoesUndo() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwUndoRedline* pUndo = new SwUndoRedline( UNDO_REDLINE, rRange );
-/*N*/   }
 /*N*/
 /*N*/   const SwPosition* pStt = rRange.Start(),
 /*N*/                   * pEnd = pStt == rRange.GetPoint() ? rRange.GetMark()
