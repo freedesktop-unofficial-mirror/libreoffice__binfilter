@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fesh.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,7 +73,6 @@ class SdrMarkList;
 
 enum FrmType
 {
-    //Fuer GetFrmType() und GetSelFrmType(). Der Return-Wert ist eine
     //Veroderung.
     FRMTYPE_NONE    = 0,
     FRMTYPE_PAGE    = 1,
@@ -132,7 +131,6 @@ enum ObjCntType     //Fuer das Ermitteln des Cntnts per Positon (D&D)
     OBJCNT_DONTCARE     // nicht bestimmbar - unterschiedliche Objecte selektiert
 };
 
-//fuer GetAnyCurRect
 enum CurRectType
 {
     RECT_PAGE,                  //Rect der aktuellen Seite.
@@ -182,7 +180,6 @@ class SwFEShell : public SwEditShell
     BOOL bCheckForOLEInCaption;
 
     SwFlyFrm *FindFlyFrm() const;
-    SwFlyFrm *FindFlyFrm( const SvEmbeddedObject *pObj ) const;
 
 public:
     TYPEINFO();
@@ -196,23 +193,6 @@ public:
     // the draw object.
     sal_Bool ShouldObjectBeSelected(const Point& rPt);
 
-    //Returnwerte siehe oben FrmType.
-    //pPt: Crsr bzw. DocPos; bStopAtFly: Bei Flys anhalten oder ueber den Anchor weitergehen
-    // Obgleich (0,TRUE) eine Art Standard ist, sind die Parameter nicht defaultet, damit
-    // bei jeder Benutzung insbesondere das bStopAtFly bewusst genutzt wird.
-    USHORT GetFrmType( const Point *pPt, BOOL bStopAtFly ) const;
-
-    //Zum Anpassen der PosAttr bei Ankerwechseln.
-    //Zum Verschieben von Flys mit der Tastatur
-
-    // Groesse von Drawobjekten setzen
-
-
-    //Methoden fuer die Statuszeile.
-
-    //SS fuer die BriefUmschlaege: hole alle Seitengebundenen Objekte
-    //und setze diese auf eine neue Seite.
-
     // zeige die aktuelle Selektion an ( ggfs. den Rahmen/DrawObject)
     virtual void MakeSelVisible();
 
@@ -223,16 +203,9 @@ public:
 
     BOOL IsFrmSelected() const;
 
-    SwFrmFmt* GetCurFrmFmt() const; //Wenn Rahmen, dann Rahmenvorlage, sonst 0
 #ifdef ACCESSIBLE_LAYOUT
     const SwFlyFrm *GetCurrFlyFrm() const { return FindFlyFrm(); }
 #endif
-
-    //OLE, Server fordert neue Groesse an, die gewuenschten Werte werden
-    //als Rahmenattribute eingestellt. Wenn die Werte nicht erlaubt sind,
-    //so wird von der Formatierung geclippt und eine Scalierung eingestellt.
-    //siehe CalcAndSetScale().
-    void RequestObjectResize( const SwRect &rRect, SvEmbeddedObject *pIPObj );
 
     //Der Client fuer das OleObject muss bezueglich der Scalierung auf dem
     //neuesten Stand gehalten werden. Impl in der WrtShell.
@@ -314,19 +287,6 @@ public:
 
     //convert document position into position relative to the current page
     Point GetRelativePagePosition(const Point& rDocPos);
-
-    //PageDescriptor-Schnittstelle
-    USHORT GetCurPageDesc( const BOOL bCalcFrm = TRUE ) const;
-    USHORT GetPageDescCnt() const;
-
-    const SwPageDesc& GetPageDesc( USHORT i ) const;
-    // if inside all selection only one PageDesc, return this.
-    // Otherwise return 0 pointer
-
-    const SwRect& GetAnyCurRect( CurRectType eType,
-                                 const Point* pPt = 0,
-                                 const SvEmbeddedObject *pObj = 0 ) const;
-
 
     //Ausgleich der Zellenbreiten, mit bTstOnly feststellen, ob mehr als
     //eine Zelle markiert ist.
