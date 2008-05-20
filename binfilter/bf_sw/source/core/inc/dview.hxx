@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dview.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,23 +64,6 @@ public:
 
     const SwViewImp &Imp() const { return rImp; }
           SwViewImp &Imp()       { return rImp; }
-
-    // Innerhalb eines des sichtbaren Ankers?
-
-    //Anker und Xor fuer das Draggen.
-
-
-    // temp. Fix fuer Bug 57153 - nach Undo kann in der MarkListe nicht
-    //  immer ein Writer-Draw-Object stehen ( SdrObject ohne User-Call)
-    // Dann muss die Markliste aktualisiert werden.
-    // JP 02.10.98: hat aber Nebenwirkungen,wie Bug 57475
-    //const SdrMarkList& GetMarkList() const;
-    //JP 06.10.98: 2. Versuch
-    inline void ValidateMarkList() { FlushComeBackTimer(); }
-
-    // OD 18.06.2003 #108784# - method to replace marked/selected <SwDrawVirtObj>
-    // by its reference object for delete of selection and group selection
-
 };
 
 
