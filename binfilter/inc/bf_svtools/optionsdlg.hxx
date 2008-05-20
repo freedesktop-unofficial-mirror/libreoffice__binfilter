@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: optionsdlg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,13 +50,6 @@ private:
 public:
                     SvtOptionsDialogOptions();
                     virtual ~SvtOptionsDialogOptions();
-
-    sal_Bool        IsGroupHidden   (   const String& _rGroup ) const;
-    sal_Bool        IsPageHidden    (   const String& _rPage,
-                                        const String& _rGroup ) const;
-    sal_Bool        IsOptionHidden  (   const String& _rOption,
-                                        const String& _rPage,
-                                        const String& _rGroup ) const;
 };
 
 }
