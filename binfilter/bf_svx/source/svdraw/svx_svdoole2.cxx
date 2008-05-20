@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdoole2.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -118,15 +118,6 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/
 /*N*/   ppObjRef=new SvInPlaceObjectRef;
 /*N*/   bFrame=bFrame_;
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------------
-
-/*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, FASTBOOL bFrame_)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 // -----------------------------------------------------------------------------
