@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: buffer.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,10 +53,6 @@ class SbiBuffer {                   // Code/Konstanten-Puffer:
 public:
     SbiBuffer( SbiParser*, short ); // Inkrement
    ~SbiBuffer();
-    void Patch( UINT32, UINT32 );   // Patchen
-    void Chain( UINT32 );           // Back-Chain
-    void Align( INT32 );            // Alignment
-    BOOL Add( const void*, USHORT );// Element anfuegen
     BOOL operator += (const String&);// Basic-String speichern
     BOOL operator += (INT8);        // Zeichen speichern
     BOOL operator += (INT16);       // Integer speichern
