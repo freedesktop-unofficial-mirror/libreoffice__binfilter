@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: navicfg.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,8 +49,6 @@ private:
     USHORT  nRootType;
 
 public:
-            ScNavipiCfg();
-
     USHORT  GetListMode() const         { return nListMode; }
     USHORT  GetDragMode() const         { return nDragMode; }
     USHORT  GetRootType() const         { return nRootType; }
