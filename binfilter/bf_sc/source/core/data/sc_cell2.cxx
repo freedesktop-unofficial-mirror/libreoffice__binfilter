@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_cell2.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,14 +70,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 #endif
 
 // -----------------------------------------------------------------------
-
-/*N*/ ScEditCell::ScEditCell( ScDocument* pDocP ) :
-/*N*/       ScBaseCell( CELLTYPE_EDIT ),
-/*N*/       pData( NULL ),
-/*N*/       pString( NULL ),
-/*N*/       pDoc( pDocP )
-/*N*/ {
-/*N*/ }
 
 /*N*/ ScEditCell::ScEditCell( const EditTextObject* pObject, ScDocument* pDocP,
 /*N*/           const SfxItemPool* pFromPool )  :
