@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: linksrc.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -193,11 +193,6 @@ void  SvLinkSource::Closed()
     for( SvLinkSource_Entry_Impl* p = aIter.Curr(); p; p = aIter.Next() )
         if( !p->bIsDataSink )
             p->xSink->Closed();
-}
-
-ULONG SvLinkSource::GetUpdateTimeout() const
-{
-    return pImpl->nTimeout;
 }
 
 void SvLinkSource::SetUpdateTimeout( ULONG nTimeout )
