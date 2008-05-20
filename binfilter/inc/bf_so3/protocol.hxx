@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: protocol.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@ private:
     SO3_DLLPRIVATE BOOL                Release();
 public:
     SvEditObjectProtocol();
-    SvEditObjectProtocol( SvEmbeddedObject *, SvEmbeddedClient * );
     SvEditObjectProtocol( const SvEditObjectProtocol & );
     SO3_DLLPRIVATE SvEditObjectProtocol & operator = ( const SvEditObjectProtocol & );
     ~SvEditObjectProtocol();
@@ -85,21 +84,12 @@ public:
     BOOL IsPlugIn() const;
     BOOL IsInPlaceActive() const;
     BOOL IsUIActive() const;
-    BOOL IsTopWinActive() const;
-    BOOL IsDocWinActive() const;
-    BOOL IsInClosed() const;
 
     // Protokolle
     ErrCode EmbedProtocol();
     ErrCode PlugInProtocol();
     ErrCode IPProtocol();
     ErrCode UIProtocol();
-
-    // Welche Protokolle werden unterstuetzt
-    BOOL CanEmbedProtocol() const;
-    BOOL CanPlugInProtocol() const;
-    BOOL CanInPlaceProtocol() const;
-    BOOL CanUIProtocol() const;
 
     // Protokoll zurueckfahren
     BOOL Reset();
@@ -111,16 +101,12 @@ public:
     BOOL Reset2UIActive();
 
     // Einzelschritte der Protokolle
-    void Connected( BOOL bOpen );
     void Opened( BOOL bOpen );
     void Embedded( BOOL bEmbed );
     void PlugIn( BOOL bPlugIn );
     void InPlaceActivate( BOOL bActivate );
     void UIActivate( BOOL bActivate );
-    void TopWinActivate( BOOL bActivate );
-    void DocWinActivate( BOOL bActivate );
     void SetInClosed( BOOL bInClosed );
-    void DocNameChanged( const String & rName );
 };
 
 }
