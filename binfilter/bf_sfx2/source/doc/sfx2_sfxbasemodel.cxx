@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_sfxbasemodel.cxx,v $
- * $Revision: 1.17 $
+ * $Revision: 1.18 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -283,26 +283,6 @@ struct IMPL_SfxBaseModel_DataContainer
     {
     }
 } ;
-
-/*?*/ SIZE impl_Size_Object2Struct( const Size& aSize )
-/*?*/ {
-/*?*/   SIZE aReturnValue;
-/*?*/
-/*?*/   aReturnValue.Width  = aSize.Width()  ;
-/*?*/   aReturnValue.Height = aSize.Height() ;
-/*?*/
-/*?*/   return aReturnValue ;
-/*?*/ }
-
-/*?*/ Size impl_Size_Struct2Object( const SIZE& aSize )
-/*?*/ {
-/*?*/   Size aReturnValue;
-/*?*/
-/*?*/   aReturnValue.Width()  = aSize.Width  ;
-/*?*/   aReturnValue.Height() = aSize.Height ;
-/*?*/
-/*?*/   return aReturnValue ;
-/*?*/ }
 
 extern void* getEnhMetaFileFromGDI_Impl( const GDIMetaFile* pGDIMeta );
 extern void* getWinMetaFileFromGDI_Impl( const GDIMetaFile* pGDIMeta, const Size& aMetaSize );
@@ -1595,32 +1575,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   }
 /*N*/ }
 
-/*?*/ void SfxBaseModel::impl_change()
-/*?*/ {
-/*?*/   // object already disposed?
-/*?*/   if ( impl_isDisposed() )
-/*?*/       return;
-/*?*/
-/*?*/   OINTERFACECONTAINERHELPER* pIC = m_pData->m_aInterfaceContainer.getContainer( ::getCppuType((const REFERENCE< XMODIFYLISTENER >*)0) );
-/*?*/   if( pIC )
-/*?*/
-/*?*/   {
-/*?*/       EVENTOBJECT aEvent( (XMODEL *)this );
-/*?*/       OINTERFACEITERATORHELPER aIt( *pIC );
-/*?*/       while( aIt.hasMoreElements() )
-/*?*/         {
-/*?*/             try
-/*?*/             {
-/*?*/                 ((XMODIFYLISTENER *)aIt.next())->modified( aEvent );
-/*?*/             }
-/*?*/             catch( RUNTIMEEXCEPTION& )
-/*?*/             {
-/*?*/                 aIt.remove();
-/*?*/             }
-/*?*/         }
-/*?*/   }
-/*?*/ }
-
 //________________________________________________________________________________________________________
 //  public impl.
 //________________________________________________________________________________________________________
@@ -1630,19 +1584,9 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   return m_pData ? (SfxObjectShell*) m_pData->m_pObjectShell : 0;
 /*N*/ }
 
-/*N*/ SfxObjectShell* SfxBaseModel::impl_getObjectShell() const
-/*N*/ {
-/*N*/   return m_pData ? (SfxObjectShell*) m_pData->m_pObjectShell : 0;
-/*N*/ }
-
 //________________________________________________________________________________________________________
 //  public impl.
 //________________________________________________________________________________________________________
-
-/*N*/ sal_Bool SfxBaseModel::IsDisposed() const
-/*N*/ {
-/*N*/   return ( m_pData == NULL ) ;
-/*N*/ }
 
 /*N*/ sal_Bool SfxBaseModel::impl_isDisposed() const
 /*N*/ {
