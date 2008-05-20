@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbintern.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,7 +58,6 @@ struct SbClassData
 {
     SbxArrayRef     mxIfaces;
 
-    SbClassData( void );
     ~SbClassData( void )
         { clear(); }
     void clear( void );
@@ -74,13 +73,8 @@ public:
     SbClassFactory( void );
     virtual ~SbClassFactory();
 
-    void AddClassModule( SbModule* pClassModule );
-    void RemoveClassModule( SbModule* pClassModule );
-
     virtual SbxBase* Create( UINT16 nSbxId, UINT32 = SBXCR_SBX );
     virtual SbxObject* CreateObject( const String& );
-
-    SbModule* FindClass( const String& rClassName );
 };
 
 // Stack fuer die im Fehlerfall abgebaute SbiRuntime Kette
