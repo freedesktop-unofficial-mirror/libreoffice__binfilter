@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_cellatr.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,9 +59,6 @@
 #endif
 #ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
 #endif
 namespace binfilter {
 
@@ -227,8 +224,6 @@ void SwTblBoxFormula::ChangeState( const SfxPoolItem* pItem )
                 {
                     // und dann in der externen Darstellung
                     aCopy.PtrToBoxNm( &pTblNd->GetTable() );
-                    pUpdtFld->pHistory->Add( &aCopy, &aCopy,
-                                pNd->FindTableBoxStartNode()->GetIndex() );
                 }
             }
             else
