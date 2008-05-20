@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_documen9.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,15 +71,6 @@ namespace binfilter {
 
 
 // -----------------------------------------------------------------------
-
-
-
-
-/*N*/ void ScDocument::BeginDrawUndo()
-/*N*/ {
-/*N*/   if (pDrawLayer)
-/*N*/       pDrawLayer->BeginCalcUndo();
-/*N*/ }
 
 /*N*/ XColorTable* ScDocument::GetColorTable()
 /*N*/ {
@@ -382,37 +373,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocument::HasBackgroundDraw( USHORT nTab, const Rectangle& rMMRect )
-/*N*/ {
-/*N*/   //  Gibt es Objekte auf dem Hintergrund-Layer, die (teilweise) von rMMRect
-/*N*/   //  betroffen sind?
-/*N*/   //  (fuer Drawing-Optimierung, vor dem Hintergrund braucht dann nicht geloescht
-/*N*/   //   zu werden)
-/*N*/
-/*N*/   if (!pDrawLayer)
-/*N*/       return FALSE;
-/*N*/   SdrPage* pPage = pDrawLayer->GetPage(nTab);
-/*N*/   DBG_ASSERT(pPage,"Page ?");
-/*N*/   if (!pPage)
-/*N*/       return FALSE;
-/*N*/
-/*N*/   BOOL bFound = FALSE;
-/*N*/
-/*N*/   SdrObjListIter aIter( *pPage, IM_FLAT );
-/*N*/   SdrObject* pObject = aIter.Next();
-/*N*/   while (pObject && !bFound)
-/*N*/   {
-/*N*/       if ( pObject->GetLayer() == SC_LAYER_BACK && pObject->GetBoundRect().IsOver( rMMRect ) )
-/*N*/           bFound = TRUE;
-/*N*/       pObject = aIter.Next();
-/*N*/   }
-/*N*/
-/*N*/   return bFound;
-/*N*/ }
-
-
-
-
 /*N*/ BOOL ScDocument::IsPrintEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
 /*N*/                               USHORT nEndCol, USHORT nEndRow, BOOL bLeftIsEmpty,
 /*N*/                               ScRange* pLastRange, Rectangle* pLastMM ) const
@@ -435,36 +395,6 @@ namespace binfilter {
 /*N*/   if (pDrawLayer)
 /*N*/       pDrawLayer->Clear();
 /*N*/ }
-
-/*N*/ BOOL ScDocument::HasControl( USHORT nTab, const Rectangle& rMMRect )
-/*N*/ {
-/*N*/   BOOL bFound = FALSE;
-/*N*/
-/*N*/   if (pDrawLayer)
-/*N*/   {
-/*N*/       SdrPage* pPage = pDrawLayer->GetPage(nTab);
-/*N*/       DBG_ASSERT(pPage,"Page ?");
-/*N*/       if (pPage)
-/*N*/       {
-/*N*/           SdrObjListIter aIter( *pPage, IM_DEEPNOGROUPS );
-/*N*/           SdrObject* pObject = aIter.Next();
-/*N*/           while (pObject && !bFound)
-/*N*/           {
-/*N*/               if (pObject->ISA(SdrUnoObj))
-/*N*/               {
-/*N*/                   Rectangle aObjRect = pObject->GetLogicRect();
-/*N*/                   if ( aObjRect.IsOver( rMMRect ) )
-/*N*/                       bFound = TRUE;
-/*N*/               }
-/*N*/
-/*N*/               pObject = aIter.Next();
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return bFound;
-/*N*/ }
-
 
 /*N*/ BOOL ScDocument::HasDetectiveObjects(USHORT nTab) const
 /*N*/ {
