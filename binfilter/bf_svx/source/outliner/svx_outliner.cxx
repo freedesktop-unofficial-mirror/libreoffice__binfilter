@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_outliner.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -692,13 +692,6 @@ namespace binfilter {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ ULONG Outliner::Read( SvStream& rInput, USHORT eFormat, SvKeyValueIterator* pHTTPHeaderAttrs )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
-/*N*/ }
-
-
 
 /*N*/ #ifndef SVX_LIGHT
 /*N*/ SfxUndoManager&   Outliner::GetUndoManager()
