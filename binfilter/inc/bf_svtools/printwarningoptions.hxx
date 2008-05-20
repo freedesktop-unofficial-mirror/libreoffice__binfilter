@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: printwarningoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -111,29 +111,6 @@ class  SvtPrintWarningOptions: public Options
 
          SvtPrintWarningOptions();
         virtual ~SvtPrintWarningOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Print/Warning..."
-            @descr      These options describe internal states to enable/disable features of installed office.
-
-            @seealso    configuration package "org.openoffice.Office.Common/_3D-Engine"
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsPaperSize() const;
-        sal_Bool    IsPaperOrientation() const;
-        sal_Bool    IsNotFound() const;
-        sal_Bool    IsTransparency() const;
-        sal_Bool    IsModifyDocumentOnPrintingAllowed() const;
-
-        void        SetPaperSize( sal_Bool bState );
-        void        SetPaperOrientation( sal_Bool bState );
-        void        SetNotFound( sal_Bool bState );
-        void        SetTransparency( sal_Bool bState );
-        void        SetModifyDocumentOnPrintingAllowed( sal_Bool bState );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
