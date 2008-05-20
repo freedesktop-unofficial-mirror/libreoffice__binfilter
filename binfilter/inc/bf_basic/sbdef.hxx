@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbdef.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,10 +70,6 @@ struct SbTextPortion
     xub_StrLen nStart, nEnd;            // 1. und letzte Spalte
     SbTextType eType;               // Type der Portion
 };
-
-SV_DECL_VARARR(SbTextPortions, SbTextPortion,16,16)
-#else
-class SbTextPortions;
 #endif
 
 // Returns type name for Basic type, array flag is ignored
@@ -84,7 +80,6 @@ String getBasicTypeName( SbxDataType eType );
 // important for SbUnoObj instances
 // implementation: basic/source/classes/sbunoobj.cxx
 class SbxObject;
-String getBasicObjectTypeName( SbxObject* pObj );
 
 // Allows Basic IDE to set watch mode to suppress errors
 // implementation: basic/source/runtime/runtime.cxx
