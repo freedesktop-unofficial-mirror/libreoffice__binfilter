@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_ilstitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,14 +52,6 @@ TYPEINIT1_AUTOFACTORY(SfxIntegerListItem, SfxPoolItem);
 
 SfxIntegerListItem::SfxIntegerListItem()
 {
-}
-
-SfxIntegerListItem::SfxIntegerListItem( USHORT which, const SvULongs& rList )
-    : SfxPoolItem( which )
-{
-    m_aList.realloc( rList.Count() );
-    for ( USHORT n=0; n<rList.Count(); n++ )
-        m_aList[n] = rList[n];
 }
 
 SfxIntegerListItem::SfxIntegerListItem( const SfxIntegerListItem& rItem )
@@ -107,9 +99,4 @@ BOOL SfxIntegerListItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE ) cons
     return TRUE;
 }
 
-void SfxIntegerListItem::GetList( SvULongs& rList ) const
-{
-    for ( sal_Int32 n=0; n<m_aList.getLength(); n++ )
-        rList.Insert( m_aList[n], sal::static_int_cast< USHORT >(n) );
-}
 }
