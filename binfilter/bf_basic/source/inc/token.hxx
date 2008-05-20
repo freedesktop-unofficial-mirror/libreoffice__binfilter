@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: token.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -144,19 +144,9 @@ public:
     inline BOOL IsEof()             { return bEof; }
     inline BOOL IsEos()             { return bEos; }
 
-    void  Push( SbiToken );             // Pushback eines Tokens
-    const String& Symbol( SbiToken );// Rueckumwandlung
-
     SbiToken Peek();                    // das naechste Token lesen
     SbiToken Next();                    // Ein Token lesen
-    BOOL MayBeLabel( BOOL= FALSE ); // Kann es ein Label sein?
-
-    void Hilite( SbTextPortions& ); // Syntax-Highlighting
-
     void Error( SbError c ) { GenError( c ); }
-    void Error( SbError, SbiToken );
-    void Error( SbError, const char* );
-    void Error( SbError, String );
 
     void Keywords( BOOL b ) { bKeywords = b; }
 
