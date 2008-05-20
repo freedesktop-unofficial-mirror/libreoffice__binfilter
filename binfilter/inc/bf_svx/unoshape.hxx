@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unoshape.hxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -197,7 +197,6 @@ class SvxShape : public cppu::WeakAggImplHelper11<
  public:
     SvxShape( SdrObject* pObj ) throw ();
     SvxShape( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ();
-    SvxShape() throw ();
     virtual ~SvxShape() throw ();
 
     // Internals
@@ -313,7 +312,6 @@ virtual void lock();
 virtual void unlock();
 
 public:
-SvxShapeText() throw ();
 SvxShapeText( SdrObject* pObj ) throw ();
 SvxShapeText( SdrObject* pObject, const SfxItemPropertyMap* pPropertySet ) throw ();
 virtual ~SvxShapeText() throw ();
