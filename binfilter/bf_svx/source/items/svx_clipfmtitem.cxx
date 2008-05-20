@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_clipfmtitem.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,11 +68,6 @@ String SvxClipboardFmtItem_Impl::sEmptyStr;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SvxClipboardFmtItem::SvxClipboardFmtItem( USHORT nId )
-/*N*/   : SfxPoolItem( nId ), pImpl( new SvxClipboardFmtItem_Impl )
-/*N*/ {
-/*N*/ }
-
 /*N*/ SvxClipboardFmtItem::SvxClipboardFmtItem( const SvxClipboardFmtItem& rCpy )
 /*N*/   : SfxPoolItem( rCpy.Which() ),
 /*N*/   pImpl( new SvxClipboardFmtItem_Impl( *rCpy.pImpl ) )
@@ -111,24 +106,4 @@ String SvxClipboardFmtItem_Impl::sEmptyStr;
 /*N*/ {
 /*N*/   return new SvxClipboardFmtItem( *this );
 /*N*/ }
-
-/*N*/ void SvxClipboardFmtItem::AddClipbrdFormat( ULONG nId, USHORT nPos )
-/*N*/ {
-/*N*/   if( nPos > pImpl->aFmtNms.Count() )
-/*N*/       nPos = pImpl->aFmtNms.Count();
-/*N*/   String* pStr = 0;
-/*N*/   pImpl->aFmtNms.Insert( pStr, nPos );
-/*N*/   pImpl->aFmtIds.Insert( nId, nPos );
-/*N*/ }
-
-/*N*/ void SvxClipboardFmtItem::AddClipbrdFormat( ULONG nId, const String& rName,
-/*N*/                           USHORT nPos )
-/*N*/ {
-/*N*/   if( nPos > pImpl->aFmtNms.Count() )
-/*N*/       nPos = pImpl->aFmtNms.Count();
-/*N*/   String* pStr = new String( rName );
-/*N*/   pImpl->aFmtNms.Insert( pStr, nPos );
-/*N*/   pImpl->aFmtIds.Insert( nId, nPos );
-/*N*/ }
-
 }
