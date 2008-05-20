@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bitset.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,6 @@ public:
     BOOL IsRealSubSet( const BitSet& rSet ) const;
     BOOL IsSubSet( const BitSet& rSet ) const;
     BOOL IsRealSuperSet( const BitSet& rSet ) const;
-    BOOL Contains( USHORT nBit ) const;
     BOOL IsSuperSet( const BitSet& rSet ) const;
     BOOL operator==( USHORT nBit ) const;
     BOOL operator!=( USHORT nBit ) const;
@@ -243,7 +242,6 @@ inline BOOL BitSet::operator!=( USHORT nBit ) const
 class IndexBitSet : BitSet
 {
 public:
-  USHORT GetFreeIndex();
   void ReleaseIndex(USHORT i){*this-=i;}
 };
 
