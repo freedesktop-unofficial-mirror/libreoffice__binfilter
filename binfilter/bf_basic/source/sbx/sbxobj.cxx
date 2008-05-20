@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxobj.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -324,28 +324,6 @@ SbxProperty* SbxObject::GetDfltProperty()
     }
     return pDfltProp;
 }
-void SbxObject::SetDfltProperty( const XubString& rName )
-{
-    if ( rName != aDfltPropName )
-        pDfltProp = NULL;
-    aDfltPropName = rName;
-    SetModified( TRUE );
-}
-
-void SbxObject::SetDfltProperty( SbxProperty* p )
-{
-    if( p )
-    {
-        USHORT n;
-        SbxArray* pArray = FindVar( p, n );
-        pArray->Put( p, n );
-        if( p->GetParent() != this )
-            p->SetParent( this );
-        Broadcast( SBX_HINT_OBJECTCHANGED );
-    }
-    pDfltProp = p;
-    SetModified( TRUE );
-}
 
 // Suchen einer bereits vorhandenen Variablen. Falls sie gefunden wurde,
 // wird der Index gesetzt, sonst wird der Count des Arrays geliefert.
@@ -590,33 +568,6 @@ void SbxObject::QuickInsert( SbxVariable* pVar )
     }
 }
 
-// AB 23.3.1997, Spezial-Methode, gleichnamige Controls zulassen
-void SbxObject::VCPtrInsert( SbxVariable* pVar )
-{
-    SbxArray* pArray = NULL;
-    if( pVar )
-    {
-        switch( pVar->GetClass() )
-        {
-            case SbxCLASS_VARIABLE:
-            case SbxCLASS_PROPERTY: pArray = pProps;    break;
-            case SbxCLASS_METHOD:   pArray = pMethods;  break;
-            case SbxCLASS_OBJECT:   pArray = pObjs;     break;
-            default:
-                DBG_ASSERT( !this, "Ungueltige SBX-Klasse" );
-        }
-    }
-    if( pArray )
-    {
-        StartListening( pVar->GetBroadcaster(), TRUE );
-        pArray->Put( pVar, pArray->Count() );
-        if( pVar->GetParent() != this )
-            pVar->SetParent( this );
-        SetModified( TRUE );
-        Broadcast( SBX_HINT_OBJECTCHANGED );
-    }
-}
-
 void SbxObject::Remove( const XubString& rName, SbxClassType t )
 {
     Remove( SbxObject::Find( rName, t ) );
@@ -646,76 +597,6 @@ void SbxObject::Remove( SbxVariable* pVar )
         SetModified( TRUE );
         Broadcast( SBX_HINT_OBJECTCHANGED );
     }
-}
-
-// AB 23.3.1997, Loeschen per Pointer fuer Controls (doppelte Namen!)
-void SbxObject::VCPtrRemove( SbxVariable* pVar )
-{
-    USHORT nIdx;
-    // Neu FindVar-Methode, sonst identisch mit normaler Methode
-    SbxArray* pArray = VCPtrFindVar( pVar, nIdx );
-    if( pArray && nIdx < pArray->Count() )
-    {
-        SbxVariableRef xVar = pArray->Get( nIdx );
-        if( xVar->IsBroadcaster() )
-            EndListening( xVar->GetBroadcaster(), TRUE );
-        if( (SbxVariable*) xVar == pDfltProp )
-            pDfltProp = NULL;
-        pArray->Remove( nIdx );
-        if( xVar->GetParent() == this )
-            xVar->SetParent( NULL );
-        SetModified( TRUE );
-        Broadcast( SBX_HINT_OBJECTCHANGED );
-    }
-}
-
-// AB 23.3.1997, Zugehoerige Spezial-Methode, nur ueber Pointer suchen
-SbxArray* SbxObject::VCPtrFindVar( SbxVariable* pVar, USHORT& nArrayIdx )
-{
-    SbxArray* pArray = NULL;
-    if( pVar ) switch( pVar->GetClass() )
-    {
-        case SbxCLASS_VARIABLE:
-        case SbxCLASS_PROPERTY: pArray = pProps;    break;
-        case SbxCLASS_METHOD:   pArray = pMethods;  break;
-        case SbxCLASS_OBJECT:   pArray = pObjs;     break;
-        default:
-            DBG_ASSERT( !this, "Ungueltige SBX-Klasse" );
-    }
-    if( pArray )
-    {
-        nArrayIdx = pArray->Count();
-        for( USHORT i = 0; i < pArray->Count(); i++ )
-        {
-            SbxVariableRef& rRef = pArray->GetRef( i );
-            if( (SbxVariable*) rRef == pVar )
-            {
-                nArrayIdx = i; break;
-            }
-        }
-    }
-    return pArray;
-}
-
-
-
-void SbxObject::SetPos( SbxVariable* pVar, USHORT nPos )
-{
-    USHORT nIdx;
-    SbxArray* pArray = FindVar( pVar, nIdx );
-    if( pArray )
-    {
-        if( nPos >= pArray->Count() )
-            nPos = pArray->Count() - 1;
-        if( nIdx < ( pArray->Count() - 1 ) )
-        {
-            SbxVariableRef refVar = pArray->Get( nIdx );
-            pArray->Remove( nIdx );
-            pArray->Insert( refVar, nPos );
-        }
-    }
-//  SetModified( TRUE );
-//  Broadcast( SBX_HINT_OBJECTCHANGED );
 }
 
 static BOOL LoadArray( SvStream& rStrm, SbxObject* pThis, SbxArray* pArray )
@@ -1037,15 +918,6 @@ SvDispatch* SbxObject::GetSvDispatch()
     return NULL;
 }
 
-BOOL SbxMethod::Run( SbxValues* pValues )
-{
-    SbxValues aRes;
-    if( !pValues )
-        pValues = &aRes;
-    pValues->eType = SbxVARIANT;
-    return Get( *pValues );
-}
-
 SbxClassType SbxMethod::GetClass() const
 {
     return SbxCLASS_METHOD;
@@ -1055,100 +927,4 @@ SbxClassType SbxProperty::GetClass() const
 {
     return SbxCLASS_PROPERTY;
 }
-
-void SbxObject::GarbageCollection( ULONG nObjects )
-
-/*  [Beschreibung]
-
-    Diese statische Methode durchsucht die n"achsten 'nObjects' der zur Zeit
-    existierenden <SbxObject>-Instanzen nach zyklischen Referenzen, die sich
-    nur noch selbst am Leben erhalten. Ist 'nObjects==0', dann werden
-    alle existierenden durchsucht.
-
-    zur Zeit nur implementiert: Object -> Parent-Property -> Parent -> Object
-*/
-
-{
-    (void)nObjects;
-
-    static BOOL bInGarbageCollection = FALSE;
-    if ( bInGarbageCollection )
-        return;
-    bInGarbageCollection = TRUE;
-
-#if 0
-    // erstes Object dieser Runde anspringen
-    BOOL bAll = !nObjects;
-    if ( bAll )
-        rObjects.First();
-    SbxObject *pObj = rObjects.GetCurObject();
-    if ( !pObj )
-        pObj = rObjects.First();
-
-    while ( pObj && 0 != nObjects-- )
-    {
-        // hat der Parent nur noch 1 Ref-Count?
-        SbxObject *pParent = PTR_CAST( SbxObject, pObj->GetParent() );
-        if ( pParent && 1 == pParent->GetRefCount() )
-        {
-            // dann alle Properies des Objects durchsuchen
-            SbxArray *pProps = pObj->GetProperties();
-            for ( USHORT n = 0; n < pProps->Count(); ++n )
-            {
-                // verweist die Property auf den Parent des Object?
-                SbxVariable *pProp = pProps->Get(n);
-                const SbxValues &rValues = pProp->GetValues_Impl();
-                if ( SbxOBJECT == rValues.eType &&
-                     pParent == rValues.pObj )
-                {
-#ifdef DBG_UTIL
-                    DbgOutf( "SBX: %s.%s with Object %s was garbage",
-                             pObj->GetName().GetStr(),
-                             pProp->GetName().GetStr(),
-                             pParent->GetName().GetStr() );
-#endif
-                    // dann freigeben
-                    pProp->SbxValue::Clear();
-                    Sound::Beep();
-                    break;
-                }
-            }
-        }
-
-        // zum n"achsten
-        pObj = rObjects.Next();
-        if ( !bAll && !pObj )
-            pObj = rObjects.First();
-    }
-#endif
-
-// AB 28.10. Zur 507a vorerst raus, da SfxBroadcaster::Enable() wegfaellt
-#if 0
-#ifdef DBG_UTIL
-    SbxVarList_Impl &rVars = GetSbxData_Impl()->aVars;
-    DbgOutf( "SBX: garbage collector done, %lu objects remainding",
-             rVars.Count() );
-    if ( rVars.Count() > 200 && rVars.Count() < 210 )
-    {
-        SvFileStream aStream( "d:\\tmp\\dump.sbx", STREAM_STD_WRITE );
-        SfxBroadcaster::Enable(FALSE);
-        for ( ULONG n = 0; n < rVars.Count(); ++n )
-        {
-            SbxVariable *pVar = rVars.GetObject(n);
-            SbxObject *pObj = PTR_CAST(SbxObject, pVar);
-            USHORT nFlags = pVar->GetFlags();
-            pVar->SetFlag(SBX_NO_BROADCAST);
-            if ( pObj )
-                pObj->Dump(aStream);
-            else if ( !pVar->GetParent() || !pVar->GetParent()->ISA(SbxObject) )
-                pVar->Dump(aStream);
-            pVar->SetFlags(nFlags);
-        }
-        SfxBroadcaster::Enable(TRUE);
-    }
-#endif
-#endif
-    bInGarbageCollection = FALSE;
-}
-
 }
