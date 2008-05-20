@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: schdll.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -84,33 +84,17 @@ public:
     static void     LibInit();
     static void     LibExit();
 
-    static ULONG DetectFilter( SfxMedium& rMedium, const SfxFilter **pFilter,
-                               SfxFilterFlags nMust, SfxFilterFlags nDont );
-
     static void     Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut=NULL);
-    static void     Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData,
-                            const SfxItemSet& rAttr, OutputDevice* pOut = NULL );
 
     static SchMemChart*  GetChartData( SvInPlaceObjectRef aIPObj );
 
-    static SchMemChart* NewMemChart();
     static SchMemChart* NewMemChart( short nCols, short nRows );
-    static SchMemChart* NewMemChart( const SchMemChart &rMemChart );
-    static ChartModel*  GetModel( SvInPlaceObjectRef aIPObj );
 
-    static void SetTransparentBackground( SvInPlaceObjectRef aIPObj, BOOL bTransp = TRUE );
     static void GetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult );
     static void GetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult );
 
     static void ConvertChartRangeForWriter( SchMemChart& rMemChart,
                                             BOOL bOldToNew );
-    static void ConvertChartRangeForCalc( SchMemChart& rMemChart,
-                                            BOOL bOldToNew );
-
-    static void MemChartResetTranslation( SchMemChart& rMemChart,
-                                            long *pTable,long nCnt );
-    static void MemChartUpdateTranslation( SchMemChart& rMemChart,
-                                               long *pTable,long nCnt );
 
     static void MemChartInsertCols( SchMemChart& rMemChart,
                                     short nAtCol, short nCount);
@@ -121,12 +105,6 @@ public:
                                     short nAtRow, short nCount);
     static void MemChartRemoveRows( SchMemChart& rMemChart,
                                     short nAtRow, short nCount);
-
-    static void MemChartSwapCols( SchMemChart& rMemChart,
-                                  int nAtCol1, int nAtCol2);
-    static void MemChartSwapRows( SchMemChart& rMemChart,
-                                  int nAtRow1,int nAtRow2);
-
 };
 
 /*-------------------------------------------------------------------------
