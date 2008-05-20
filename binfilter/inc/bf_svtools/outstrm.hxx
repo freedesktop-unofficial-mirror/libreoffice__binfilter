@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: outstrm.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,37 +45,6 @@
 namespace com { namespace sun { namespace star { namespace io {
     class XOutputStream;
 } } } }
-
-namespace binfilter
-{
-
-//============================================================================
-class  SvOutputStream: public SvStream
-{
-    com::sun::star::uno::Reference< com::sun::star::io::XOutputStream >
-        m_xStream;
-
-     virtual ULONG GetData(void *, ULONG);
-
-     virtual ULONG PutData(void const * pData, ULONG nSize);
-
-     virtual ULONG SeekPos(ULONG);
-
-     virtual void FlushData();
-
-     virtual void SetSize(ULONG);
-
-public:
-    SvOutputStream(com::sun::star::uno::Reference<
-                           com::sun::star::io::XOutputStream > const &
-                       rTheStream);
-
-    virtual ~SvOutputStream();
-
-    virtual USHORT IsA() const;
-};
-
-}
 
 #endif // SVTOOLS_OUTSTRM_HXX
 
