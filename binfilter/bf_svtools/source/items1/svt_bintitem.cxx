@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_bintitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,14 +62,6 @@ TYPEINIT1_AUTOFACTORY(SfxBigIntItem, SfxPoolItem);
 SfxBigIntItem::SfxBigIntItem()
     : SfxPoolItem(0),
         aVal(0)
-{
-    DBG_CTOR(SfxBigIntItem, 0);
-}
-
-//============================================================================
-SfxBigIntItem::SfxBigIntItem(USHORT which, const BigInt& rValue)
-    : SfxPoolItem(which),
-        aVal(rValue)
 {
     DBG_CTOR(SfxBigIntItem, 0);
 }
