@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_imap.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -162,31 +162,6 @@ void IMapObject::Read( SvStream& rIStm, const String& rBaseURL )
 
     delete pCompat;
 }
-
-
-/******************************************************************************
-|*
-|* Konvertierung der logischen Koordianten in Pixel
-|*
-\******************************************************************************/
-
-Point IMapObject::GetPixelPoint( const Point& rLogPoint )
-{
-    return Application::GetDefaultDevice()->LogicToPixel( rLogPoint, MapMode( MAP_100TH_MM ) );
-}
-
-
-/******************************************************************************
-|*
-|* Konvertierung der logischen Koordianten in Pixel
-|*
-\******************************************************************************/
-
-Point IMapObject::GetLogPoint( const Point& rPixelPoint )
-{
-    return Application::GetDefaultDevice()->PixelToLogic( rPixelPoint, MapMode( MAP_100TH_MM ) );
-}
-
 
 /******************************************************************************
 |*
@@ -648,22 +623,6 @@ Polygon IMapPolygonObject::GetPolygon( BOOL bPixelCoords ) const
 |*
 \******************************************************************************/
 
-void IMapPolygonObject::SetExtraEllipse( const Rectangle& rEllipse )
-{
-    if ( aPoly.GetSize() )
-    {
-        bEllipse = TRUE;
-        aEllipse = rEllipse;
-    }
-}
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
 void IMapPolygonObject::Scale( const Fraction& rFracX, const Fraction& rFracY )
 {
     USHORT nCount = aPoly.GetSize();
@@ -736,19 +695,6 @@ BOOL IMapPolygonObject::IsEqual( const IMapPolygonObject& rEqObj )
 /******************************************************************************/
 /******************************************************************************/
 /******************************************************************************/
-
-
-/******************************************************************************
-|*
-|* Ctor
-|*
-\******************************************************************************/
-
-ImageMap::ImageMap( const String& rName ) :
-            aName   ( rName )
-{
-}
-
 
 /******************************************************************************
 |*
@@ -978,64 +924,6 @@ void ImageMap::InsertIMapObject( const IMapObject& rIMapObject )
         break;
     }
 }
-
-
-/******************************************************************************
-|*
-|* Hit-Test
-|*
-\******************************************************************************/
-
-IMapObject* ImageMap::GetHitIMapObject( const Size& rTotalSize,
-                                        const Size& rDisplaySize,
-                                        const Point& rRelHitPoint,
-                                        ULONG nFlags )
-{
-    Point aRelPoint( rTotalSize.Width() * rRelHitPoint.X() / rDisplaySize.Width(),
-                     rTotalSize.Height() * rRelHitPoint.Y() / rDisplaySize.Height() );
-
-    // Falls Flags zur Spiegelung etc. angegeben sind, wird
-    // der zu pruefende Punkt vor der Pruefung entspr. transformiert
-    if ( nFlags )
-    {
-        if ( nFlags & IMAP_MIRROR_HORZ )
-            aRelPoint.X() = rTotalSize.Width() - aRelPoint.X();
-
-        if ( nFlags & IMAP_MIRROR_VERT )
-            aRelPoint.Y() = rTotalSize.Height() - aRelPoint.Y();
-    }
-
-    // Alle Objekte durchlaufen und HitTest ausfuehren
-    IMapObject* pObj = (IMapObject*) maList.First();
-    while ( pObj )
-    {
-        if ( pObj->IsHit( aRelPoint ) )
-            break;
-
-        pObj = (IMapObject*) maList.Next();
-    }
-
-    return( pObj ? ( pObj->IsActive() ? pObj : NULL ) : NULL );
-}
-
-
-/******************************************************************************
-|*
-|*
-|*
-\******************************************************************************/
-
-Rectangle ImageMap::GetBoundRect() const
-{
-    Rectangle   aBoundRect;
-    ULONG       nCount = maList.Count();
-
-    for ( ULONG i = 0; i < nCount; i++ )
-        aBoundRect.Union( ( (IMapObject*) maList.GetObject( i ) )->GetBoundRect() );
-
-    return aBoundRect;
-}
-
 
 /******************************************************************************
 |*
