@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_documen3.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -573,40 +573,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   DBG_ERROR("missing tab");
 /*N*/   return FALSE;
-/*N*/ }
-
-/*N*/ BOOL ScDocument::HasAutoFilter( USHORT nCurCol, USHORT nCurRow, USHORT nCurTab )
-/*N*/ {
-/*N*/   ScDBData*       pDBData         = GetDBAtCursor( nCurCol, nCurRow, nCurTab );
-/*N*/   BOOL            bHasAutoFilter  = ( pDBData != NULL );
-/*N*/
-/*N*/   if ( pDBData )
-/*N*/   {
-/*?*/       if ( pDBData->HasHeader() )
-/*?*/       {
-/*?*/           USHORT nCol;
-/*?*/           USHORT nRow;
-/*?*/           INT16  nFlag;
-/*?*/
-/*?*/           ScQueryParam aParam;
-/*?*/           pDBData->GetQueryParam( aParam );
-/*?*/           nRow = aParam.nRow1;
-/*?*/
-/*?*/           for ( nCol=aParam.nCol1; nCol<=aParam.nCol2 && bHasAutoFilter; nCol++ )
-/*?*/           {
-/*?*/               nFlag = ((ScMergeFlagAttr*)
-/*?*/                           GetAttr( nCol, nRow, nCurTab, ATTR_MERGE_FLAG ))->
-/*?*/                               GetValue();
-/*?*/
-/*?*/               if ( (nFlag & SC_MF_AUTO) == 0 )
-/*?*/                   bHasAutoFilter = FALSE;
-/*?*/           }
-/*?*/       }
-/*?*/       else
-/*?*/           bHasAutoFilter = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   return bHasAutoFilter;
 /*N*/ }
 
 /*N*/ BOOL ScDocument::HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
