@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: starmath_mathml.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -409,25 +409,6 @@ SmXMLImport::SmXMLImport(
 {
 }
 
-SmXMLImport::SmXMLImport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-    ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rModel,
-    const ::rtl::OUString &rFileName)
-:   SvXMLImport( xServiceFactory, rModel ) ,
-    pMathElemTokenMap(0),
-    pPresLayoutElemTokenMap(0),
-    pPresElemTokenMap(0),
-    pPresScriptEmptyElemTokenMap(0),
-    pPresTableElemTokenMap(0),
-    pPresLayoutAttrTokenMap(0),
-    pFencedAttrTokenMap(0),
-    pOperatorAttrTokenMap(0),
-    pColorTokenMap(0),
-    pAnnotationAttrTokenMap(0),
-    bSuccess(sal_False)
-{
-}
-
 const uno::Sequence< sal_Int8 > & SmXMLImport::getUnoTunnelId() throw()
 {
     static uno::Sequence< sal_Int8 > * pSeq = 0;
@@ -450,18 +431,6 @@ SmXMLExport::SmXMLExport(
     sal_uInt16 nExportFlags)
 :   SvXMLExport( xServiceFactory, MAP_INCH, XML_MATH, nExportFlags ) ,
     pTree(0) ,
-    bSuccess(sal_False)
-{
-}
-
-// #110680#
-SmXMLExport::SmXMLExport(
-    const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
-    const SmNode *pIn,
-    const ::rtl::OUString &rFileName,
-    ::com::sun::star::uno::Reference<   ::com::sun::star::xml::sax::XDocumentHandler> &rHandler)
-:   SvXMLExport( xServiceFactory, rFileName, rHandler ),
-    pTree(pIn),
     bSuccess(sal_False)
 {
 }
