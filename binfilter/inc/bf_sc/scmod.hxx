@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: scmod.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -187,13 +187,10 @@ public:
 
     ScInputHandler*     GetRefInputHdl();
 
-    void                ViewShellGone(ScTabViewShell* pViewSh);
     // Kommunikation mit Funktionsautopilot
 
     ScFormEditData*     GetFormEditData()       { return pFormEditData; }
 
-    //  Referenzeingabe:
-    BOOL                IsFormulaMode();
     void                SetTeamDlg( ScTeamDlg* pDlg )           { pTeamDlg = pDlg; }
     ScTeamDlg*          GetTeamDlg() const                      { return pTeamDlg; }
     USHORT              GetCurRefDlgId() const                  { return nCurRefDlgId; }
