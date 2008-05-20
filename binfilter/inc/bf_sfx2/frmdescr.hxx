@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: frmdescr.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -108,10 +108,6 @@ friend class SfxFrameDescriptor;
     BOOL                    bRowSet;
     SvStrings*              pScripts;
     SvStrings*              pComments;
-
-public:
-                            SfxFrameSetDescriptor(SfxFrameDescriptor *pFrame=NULL);
-    BOOL                    HasFrameBorder() const;
 };
 
 struct SfxFrameProperties;
@@ -147,18 +143,13 @@ public:
                             // Eigenschaften
 
                             // FileName/URL
-    SfxItemSet*             GetArgs();
     const INetURLObject&    GetURL() const
                             { return aURL; }
     void                    SetURL( const String& rURL );
     const INetURLObject&    GetActualURL() const
                             { return aActualURL; }
-    void                    SetActualURL( const INetURLObject& rURL );
-    void                    SetActualURL( const String& rURL );
     void                    SetReadOnly( BOOL bSet ) { bReadOnly = bSet;}
     BOOL                    IsReadOnly(  ) const { return bReadOnly;}
-    void                    SetEditable( BOOL bSet );
-    BOOL                    IsEditable() const;
 
                             // Size
     void                    SetWidth( long n )
@@ -193,9 +184,6 @@ public:
                             { return eScroll; }
     void                    SetScrollingMode( ScrollingMode eMode )
                             { eScroll = eMode; }
-
-                            // FrameBorder
-    BOOL                    HasFrameBorder() const;
 
     BOOL                    IsFrameBorderOn() const
                             { return ( nHasBorder & BORDER_YES ) != 0; }
@@ -239,11 +227,6 @@ public:
                             // Kopie z.B. f"ur die Views
     SfxFrameDescriptor*     Clone(SfxFrameSetDescriptor *pFrame=NULL, BOOL bWithIds = TRUE ) const;
 
-                            // Aufsplitten eines Frames
-
-                            // Persistenz
-    BOOL                    Store( SvStream& rStream ) const;
-    BOOL                    Load( SvStream& rStream, USHORT nVersion );
 };
 
 // Kein Bock, einen operator= zu implementieren...
@@ -291,7 +274,6 @@ public:
                                               bIsRootSet( FALSE ),
                                               bIsInColSet( FALSE ) {}
 
-                                        SfxFrameProperties( const SfxFrameDescriptor *pD );
                                         ~SfxFrameProperties() { delete pFrame; }
 
     int                                 operator ==( const SfxFrameProperties& ) const;
@@ -303,11 +285,6 @@ class SfxFrameDescriptorItem : public SfxPoolItem
     SfxFrameProperties                  aProperties;
 public:
                                         TYPEINFO();
-
-                                        SfxFrameDescriptorItem ( const SfxFrameDescriptor *pD, const USHORT nId = SID_FRAMEDESCRIPTOR )
-                                            : SfxPoolItem( nId )
-                                            , aProperties( pD )
-                                        {}
 
                                         SfxFrameDescriptorItem ( const USHORT nId = SID_FRAMEDESCRIPTOR )
                                             : SfxPoolItem( nId )
