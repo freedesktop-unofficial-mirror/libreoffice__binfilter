@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_macrconf.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,10 +45,6 @@ static const sal_uInt16 nVersion = 3;
 // Static member
 SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
-/*N*/ SfxMacroConfig* SfxMacroConfig::GetOrCreate()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*N*/ }
-
 /*N*/ void SfxMacroConfig::Release_Impl()
 /*N*/ {
 /*N*/   ::osl::MutexGuard aGuard( ::osl::Mutex::getGlobalMutex() );
@@ -71,69 +67,9 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 //==========================================================================
 
-/*?*/ SbMethod* SfxQueryMacro_Impl( BasicManager* pMgr , const String& rMacro,
-/*?*/   const String &rLibName, const String& rModule )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/   return 0;
-/*?*/ }
-
-/*?*/ SbMethod* SfxQueryMacro( BasicManager* pMgr , const String& rMacro )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*?*/ }
-
-/*?*/ ErrCode SfxCallMacro( BasicManager* pMgr, const String& rCode,
-/*?*/                     SbxArray *pArgs, SbxValue *pRet )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ SfxMacroInfo::SfxMacroInfo( const String& rURL ) :
-/*?*/     bAppBasic(TRUE),
-/*?*/   nSlotId(0),
-/*?*/   nRefCnt(0),
-/*?*/   pHelpText(0)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
 /*?*/ SfxMacroInfo::SfxMacroInfo( SfxObjectShell *pDoc ) :
 /*?*/   bAppBasic(pDoc == NULL),
 /*?*/   nSlotId(0),
-/*?*/   nRefCnt(0),
-/*?*/   pHelpText(0)
-/*?*/ {}
-
-//==========================================================================
-
-/*?*/ SfxMacroInfo::SfxMacroInfo(SfxObjectShell *pDoc, const String& rLibName,
-/*?*/       const String& rModuleName, const String& rMethodName) :
-/*?*/   aLibName(rLibName),
-/*?*/   aModuleName(rModuleName),
-/*?*/   aMethodName(rMethodName),
-/*?*/   nSlotId(0),
-/*?*/   nRefCnt(0),
-/*?*/   pHelpText(0)
-/*?*/ {
-/*?*/   bAppBasic = (pDoc == 0);
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ SfxMacroInfo::SfxMacroInfo(SfxObjectShell *pDoc, const String& rQualifiedName )
-/*?*/ : nSlotId(0),
-/*?*/   nRefCnt(0),
-/*?*/   pHelpText(0)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ SfxMacroInfo::SfxMacroInfo(SfxMacroInfo& rOther) :
-/*?*/   bAppBasic(rOther.bAppBasic),
-/*?*/   aLibName(rOther.aLibName),
-/*?*/   aModuleName(rOther.aModuleName),
-/*?*/   aMethodName(rOther.aMethodName),
-/*?*/   nSlotId(rOther.nSlotId),
 /*?*/   nRefCnt(0),
 /*?*/   pHelpText(0)
 /*?*/ {}
@@ -153,47 +89,14 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 //==========================================================================
 
-/*?*/ String SfxMacroInfo::GetMacroName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String(); //STRIP001
-/*?*/ }
-
-//==========================================================================
-
 /*?*/ String SfxMacroInfo::GetQualifiedName() const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-/*?*/ String SfxMacroInfo::GetFullQualifiedName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-/*?*/ String SfxMacroInfo::GetURL() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ BasicManager* SfxMacroInfo::GetBasicManager() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
 /*?*/ }
 
 //==========================================================================
 
 /*?*/ String SfxMacroInfo::GetBasicName() const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();//STRIP001
-/*?*/ }
-
-/*?*/ String SfxMacroInfo::GetHelpText() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-    //STRIP001 if ( pHelpText )
-/*?*/ }
-
-/*?*/ String SfxMacroConfig::RequestHelp( sal_uInt16 nId )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
-/*?*/ }
-
-/*?*/ void SfxMacroInfo::SetHelpText( const String& rName )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
 
 //==========================================================================
@@ -240,13 +143,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   return rStream;
 /*?*/ }
 
-/*?*/ int SfxMacroInfo::Load( SvStream& rStream )
-/*?*/ {
-/*?*/     rStream >> (*this);
-/*?*/     nSlotId = SfxMacroConfig::GetOrCreate()->GetSlotId(this);
-/*?*/     return 0;
-/*?*/ }
-
 //==========================================================================
 
 /*?*/ SvStream& operator << (SvStream& rStream, const SfxMacroInfo& rInfo)
@@ -273,23 +169,6 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 /*?*/   return rStream;
 /*?*/ }
 
-/*?*/ sal_Bool SfxMacroInfo::Compare( const SvxMacro& rMacro ) const
-/*?*/ {
-/*?*/   String aName = rMacro.GetLibName();
-/*?*/   aName += '.';
-/*?*/   aName += rMacro.GetMacName();
-/*?*/   if ( GetFullQualifiedName() == aName )
-/*?*/       return sal_True;
-/*?*/   return sal_False;
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ SfxMacroConfig::SfxMacroConfig()
-/*?*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
-/*?*/ }
-
 //==========================================================================
 
 /*?*/ SfxMacroConfig::~SfxMacroConfig()
@@ -297,58 +176,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
 /*?*/   if ( pImp->nEventId )
 /*?*/       Application::RemoveUserEvent( pImp->nEventId );
 /*?*/   delete pImp;
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ sal_uInt16 SfxMacroConfig::GetSlotId(SfxMacroInfoPtr pInfo)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ void SfxMacroConfig::ReleaseSlotId(sal_uInt16 nId)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ void SfxMacroConfig::RegisterSlotId(sal_uInt16 nId)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ const SfxMacroInfoPtr SfxMacroConfig::GetMacroInfo(sal_uInt16 nId) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/   return 0;
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ const SfxMacroInfoPtr SfxMacroConfig::GetMacroInfo_Impl( const SvxMacro *pMacro ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/   return 0;
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ sal_Bool SfxMacroConfig::ExecuteMacro( sal_uInt16 nId, const String& rArgs ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-/*?*/ sal_Bool SfxMacroConfig::ExecuteMacro( SfxObjectShell *pSh, const SvxMacro* pMacro, const String& rArgs ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-/*?*/ sal_Bool SfxMacroConfig::CheckMacro( SfxObjectShell *pSh, const SvxMacro* pMacro ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
-//==========================================================================
-
-/*?*/ sal_Bool SfxMacroConfig::CheckMacro( sal_uInt16 nId ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 /*?*/ }
 
 //==========================================================================
@@ -365,19 +192,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pImp = new SfxMacroConfig_Impl;
 /*?*/   return 0;
 /*?*/ }
 
-/*?*/ sal_Bool SfxMacroConfig::IsBasic( SbxObject* pVCtrl, const String& rCode, BasicManager* pMgr )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
-/*?*/ }
-
 /*?*/ ErrCode SfxMacroConfig::Call( SbxObject* pVCtrl,
 /*?*/   const String& rCode, BasicManager* pMgr, SbxArray *pArgs, SbxValue *pRet )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*?*/ }
-
-/*N*/ sal_Bool SfxMacroConfig::IsMacroSlot( sal_uInt16 nId )
-/*N*/ {
-/*N*/   return ( nId >= SID_MACRO_START && nId <= SID_MACRO_END );
-/*N*/ }
-
-
 }
