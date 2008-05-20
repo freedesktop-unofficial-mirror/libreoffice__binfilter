@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unodraw.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -79,9 +79,6 @@
 #endif
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
@@ -717,7 +714,6 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
                 if( !bFlyInCnt )
                 {
                     UnoActionContext aContext(pDoc);
-                    pDoc->StartUndo( UNDO_START );
 
                     SwDrawContact* pContact = pDoc->GroupSelection( *pPage->GetDrawView() );
                     pDoc->ChgAnchor( pPage->GetDrawView()->GetMarkList(), FLY_AT_CNTNT/*int eAnchorId*/,
@@ -729,7 +725,6 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
                         uno::Reference< uno::XInterface >  xInt = pPage->GetInterface( pContact->GetMaster() );
                         xRet = uno::Reference< drawing::XShapeGroup >(xInt, UNO_QUERY);
                     }
-                    pDoc->EndUndo( UNDO_END );
                 }
             }
             pPage->RemovePageView();
@@ -752,12 +747,10 @@ void SwXDrawPage::ungroup(const uno::Reference< drawing::XShapeGroup > & xShapeG
         {
             pPage->PreUnGroup(xShapeGroup);
             UnoActionContext aContext(pDoc);
-            pDoc->StartUndo( UNDO_START );
 
             pDoc->UnGroupSelection( *pPage->GetDrawView() );
             pDoc->ChgAnchor( pPage->GetDrawView()->GetMarkList(), FLY_AT_CNTNT/*int eAnchorId*/,
                         sal_True, sal_False );
-            pDoc->EndUndo( UNDO_END );
         }
         pPage->RemovePageView();
     }
