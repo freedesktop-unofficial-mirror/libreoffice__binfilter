@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: hmatrix.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -158,9 +158,6 @@ public:
     friend Vector3D     operator*   (const Matrix4D&, const Vector3D&);
     friend Vector3D&    operator*=  (Vector3D& rVec, const Matrix4D& rMat)
         { return (rVec = rMat * rVec); }
-
-    // NUR die Rotation und Skalierung auf den Vektor anwenden!
-    void RotateAndNormalize(Vector3D& rVec) const;
 
     // Streamoperatoren
     friend SvStream& operator>>(SvStream& rIStream, Matrix4D&);
