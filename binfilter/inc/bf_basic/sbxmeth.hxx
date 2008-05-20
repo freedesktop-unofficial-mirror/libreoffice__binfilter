@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxmeth.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,7 +52,6 @@ public:
     SbxMethod( const SbxMethod& r ) : SvRefBase( r ), SbxVariable( r ) {}
     SbxMethod& operator=( const SbxMethod& r )
     { SbxVariable::operator=( r ); return *this; }
-    BOOL Run( SbxValues* pValues = NULL );
     virtual SbxClassType GetClass() const;
 };
 
