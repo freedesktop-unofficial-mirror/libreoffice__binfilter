@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lngmisc.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -70,12 +70,6 @@ inline BOOL HasHyphens( const rtl::OUString &rTxt )
     return  rTxt.indexOf( SVT_SOFT_HYPHEN ) != -1  ||
             rTxt.indexOf( SVT_HARD_HYPHEN ) != -1;
 }
-
- INT32  GetNumControlChars( const rtl::OUString &rTxt );
- BOOL   RemoveHyphens( rtl::OUString &rTxt );
- BOOL   RemoveControlChars( rtl::OUString &rTxt );
-
- BOOL  ReplaceControlChars( rtl::OUString &rTxt, sal_Char aRplcChar = ' ' );
 
 }
 
