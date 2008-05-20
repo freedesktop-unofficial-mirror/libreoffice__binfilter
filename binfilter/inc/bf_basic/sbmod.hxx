@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbmod.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -39,11 +39,10 @@
 #endif
 
 namespace binfilter {
-
+class SbiBreakpoints;
 class SbMethod;
 class SbProperty;
 class SbiRuntime;
-class SbiBreakpoints;
 class SbiImage;
 class SbProcedureProperty;
 class SbIfaceMapperMethod;
@@ -66,20 +65,13 @@ protected:
     ::rtl::OUString aOUSource;
     String          aComment;
     SbiImage*       pImage;             // das Image
-    SbiBreakpoints* pBreaks;            // Breakpoints
+    SbiBreakpoints* pBreaks;                        // Breakpoints
     SbClassData*    pClassData;
 
     void            StartDefinitions();
     SbMethod*       GetMethod( const String&, SbxDataType );
-    SbProperty*     GetProperty( const String&, SbxDataType );
-    SbProcedureProperty* GetProcedureProperty( const String&, SbxDataType );
-    SbIfaceMapperMethod* GetIfaceMapperMethod( const String&, SbMethod* );
     void            EndDefinitions( BOOL=FALSE );
     USHORT          Run( SbMethod* );
-    void            RunInit();
-    void            ClearPrivateVars();
-    void            GlobalRunInit( BOOL bBasicStart );  // fuer alle Module
-    void            GlobalRunDeInit( void );
     const BYTE*     FindNextStmnt( const BYTE*, USHORT&, USHORT& ) const;
     const BYTE*     FindNextStmnt( const BYTE*, USHORT&, USHORT&,
                         BOOL bFollowJumps, const SbiImage* pImg=NULL ) const;
@@ -103,7 +95,6 @@ public:
     const String&   GetComment() const            { return aComment; }
     virtual void    SetSource( const String& r );
     void            SetSource32( const ::rtl::OUString& r );
-    void            SetComment( const String& r );
 
     virtual BOOL    Compile();
     BOOL            Disassemble( String& rText );
@@ -121,12 +112,7 @@ public:
     // Zeilenbereiche von Subs
     virtual SbMethod*   GetFunctionForLine( USHORT );
 
-    // Store only image, no source (needed for new password protection)
-       BOOL StoreBinaryData( SvStream& );
-       BOOL StoreBinaryData( SvStream&, USHORT nVer );
     BOOL LoadBinaryData( SvStream&, USHORT nVer );
-    BOOL LoadBinaryData( SvStream& );
-    BOOL ExceedsLegacyModuleSize();
     void fixUpMethodStart( bool bCvtToLegacy, SbiImage* pImg = NULL ) const;
 };
 
