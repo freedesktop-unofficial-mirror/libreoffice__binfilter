@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: app.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,7 +63,6 @@ public:
                                 OfficeApplication();
                                 ~OfficeApplication();
 
-    ResMgr*                     GetOffResManager();
     XColorTable*                GetStdColorTable();
 };
 
