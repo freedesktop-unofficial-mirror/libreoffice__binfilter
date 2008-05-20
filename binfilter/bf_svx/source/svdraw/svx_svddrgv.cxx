@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svddrgv.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,13 +98,6 @@ namespace binfilter {
 /*N*/   ImpMakeDragAttr();
 /*N*/ }
 
-/*?*/ SdrDragView::SdrDragView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrExchangeView(pModel1,pXOut)
-/*?*/ {
-/*?*/   ImpClearVars();
-/*?*/   ImpMakeDragAttr();
-/*?*/ }
-
 /*N*/ SdrDragView::~SdrDragView()
 /*N*/ {
 /*N*/   ImpDelDragAttr();
@@ -143,44 +136,11 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
-/*N*/ BOOL SdrDragView::IsInsObjPointPossible() const
-/*N*/ {
-/*N*/   return pMarkedObj!=NULL && pMarkedObj->IsPolyObj();
-/*N*/ }
-
-
-
-/*N*/ BOOL SdrDragView::IsInsGluePointPossible() const
-/*N*/ {
-/*N*/   BOOL bRet=FALSE;
-/*N*/   if (IsInsGluePointMode() && HasMarkedObj()) {
-/*N*/       if (aMark.GetMarkCount()==1) {
-/*N*/           // FALSE liefern, wenn 1 Objekt und dieses ein Verbinder ist.
-/*N*/           const SdrObject* pObj=aMark.GetMark(0)->GetObj();
-/*N*/           if (!HAS_BASE(SdrEdgeObj,pObj)) {
-/*N*/              bRet=TRUE;
-/*N*/           }
-/*N*/       } else {
-/*N*/           bRet=TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-
-
-
 /*N*/ void SdrDragView::BrkDragObj()
 /*N*/ {
 /*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/ }
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
