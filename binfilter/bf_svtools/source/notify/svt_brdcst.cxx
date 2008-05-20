@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_brdcst.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -85,25 +85,6 @@ void SfxBroadcaster::Broadcast( const SfxHint &rHint )
     }
 }
 
-//--------------------------------------------------------------------
-
-// broadcast after a timeout
-
-
-void SfxBroadcaster::BroadcastDelayed( const SfxHint& rHint )
-{
-    DBG_WARNING( "not implemented" );
-    Broadcast(rHint);
-}
-//--------------------------------------------------------------------
-
-// broadcast in idle-handler
-
-void SfxBroadcaster::BroadcastInIdle( const SfxHint& rHint )
-{
-    DBG_WARNING( "not implemented" );
-    Broadcast(rHint);
-}
 //--------------------------------------------------------------------
 
 // unregister all listeners
