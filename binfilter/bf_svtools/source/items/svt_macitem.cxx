@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_macitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,29 +71,6 @@ SvxMacro::~SvxMacro()
 {
     delete pFunctionObject;
 }
-
-String SvxMacro::GetLanguage()const
-{
-    if(eType==STARBASIC)
-    {
-        return UniString::CreateFromAscii(
-                   RTL_CONSTASCII_STRINGPARAM(SVX_MACRO_LANGUAGE_STARBASIC));
-    }
-    else if(eType==JAVASCRIPT)
-    {
-        return UniString::CreateFromAscii(
-                   RTL_CONSTASCII_STRINGPARAM(SVX_MACRO_LANGUAGE_JAVASCRIPT));
-    }
-    else if(eType==EXTENDED_STYPE)
-    {
-        return UniString::CreateFromAscii(
-                   RTL_CONSTASCII_STRINGPARAM(SVX_MACRO_LANGUAGE_SF));
-
-    }
-    return aLibName;
-}
-
-
 
 SvxMacro& SvxMacro::operator=( const SvxMacro& rBase )
 {
