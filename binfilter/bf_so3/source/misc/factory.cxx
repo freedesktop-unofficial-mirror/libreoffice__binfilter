@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: factory.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,11 +94,6 @@ SoDll* SoDll::GetOrCreate()
     if ( !pDll )
         pDll = new SoDll;
     return pDll;
-}
-
-void SoDll::Delete()
-{
-    DELETEZ( pDll );
 }
 
 SoDll::SoDll()
@@ -212,44 +207,6 @@ BOOL SvFactory::Init()
     }
 
     return pSoApp->bInit;
-}
-
-void SvFactory::DeInit()
-{
-    SoDll * pSoApp = SOAPP;
-    const SotFactoryList * pFL = GetFactoryList();
-    if( pFL )
-        for( ULONG i = 0; i < pFL->Count(); i++ )
-        {
-            SvFactory * pF = PTR_CAST( SvFactory, pFL->GetObject( i ) );
-            if( pF )
-                pF->Revoke();
-        }
-
-    SvBindingData::Delete();
-
-    SotFactory::DeInit();
-    if( GetSvObjectCount() )
-        return;
-
-    pSoApp->bInit = pSoApp->bSelfInit = FALSE;
-    SoDll::Delete();
-}
-
-/*************************************************************************
-|*    SvFactory::GetConfigFileName()
-|*
-|*    Beschreibung
-*************************************************************************/
-String SvFactory::GetConfigFileName()
-{
-#if defined WNT
-    String aIniName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "so.ini") ) );
-    // so sollten es alle machen
-#else
-    String aIniName = Config::GetConfigName( Config::GetDefDirectory(), String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "so" ) ) );
-#endif
-    return aIniName;
 }
 
 String SvFactory::GetServiceName( const SvGlobalName& rClassName )
@@ -410,86 +367,8 @@ SvObjectRef SvFactory::CreateAndInit( const SvGlobalName & rClassName,
     return SvObjectRef();
 }
 
-SvObjectRef SvFactory::CreateAndInit( const ::com::sun::star::uno::Reference<
-                               ::com::sun::star::datatransfer::XTransferable>& xTrans,
-                               SvStorage* pStor, BOOL bLink, BOOL bStorFilled) const
-{
-    (void)bLink;
-    (void)bStorFilled;
-    return CreateAndInit( xTrans, pStor);
-}
-
-/*
-  param  xTrans - the data object, from which the object is to create
-  param pStor -   Diesen Storage bekommt das Objekt mit der
-                             Methode <SvPersist::DoInitNew> "ubergeben
- */
-
-SvObjectRef SvFactory::CreateAndInit( const ::com::sun::star::uno::Reference<
-                               ::com::sun::star::datatransfer::XTransferable>& xTrans,
-                               SvStorage* pStor) const
-
-{
-#ifdef WNT
-    if( !Find( GetAutoConvertTo( pStor->GetClassName() ) ) )
-    {
-        return &SvOutPlaceObject::CreateFromData( xTrans, pStor );
-    }
-#else
-    (void)xTrans;
-    (void)pStor;
-#endif
-    return SvObjectRef();
-}
-
-
-
-/*************************************************************************
-|*    SvFactory::SvObjectRef()
-|*
-|*    Beschreibung
-*************************************************************************/
-SvObjectRef SvFactory::CreateAndInit( const String & rFileNameP,
-                                      SvStorage * pStor, BOOL bLink ) const
-{
-    //if( SvStorage::IsStorageFile( rFileName ) )
-    // Storage sichern
-    SvObjectRef xObj;
-
-    if( !rFileNameP.Len() )
-        return xObj;
-
-    String aAbsFileName = rFileNameP;
-
-    SvStorageRef aStor = pStor;
-    if ( pStor->IsOLEStorage() )
-    {
-        SvGlobalName aOLECLSID = SvOutPlaceObject::GetCLSID( aAbsFileName );
-        if( aOLECLSID == SvGlobalName() || !Find( GetAutoConvertTo( aOLECLSID ) ) )
-        {
-            //keine eigenes Objekt
-            xObj = SvOutPlaceObject::CreateFromFile( pStor, aAbsFileName );
-            if( xObj.Is() )
-                return xObj;
-        }
-    }
-
-    SvStorageRef xFileStor( new SvStorage( aAbsFileName, STREAM_STD_READ ) );
-    if( xFileStor->GetError() == SVSTREAM_OK )
-    {
-        if( xFileStor->CopyTo( pStor ) )
-        {
-            xObj = CreateAndLoad( pStor, bLink );
-            return xObj;
-        }
-    }
-    return xObj;
-}
-
-
 /*************************************************************************
 |*    SvFactory::Register()
-|*    SvFactory::Revoke()
 |*
 |*    Beschreibung
 *************************************************************************/
@@ -501,116 +380,6 @@ void SvFactory::Register()
         nRegisterId = 1; // Wert ist unwichtig, aber != 0
         DBG_ASSERT( IsRegistered(), "SvFactory::Register: cannot register" )
     }
-}
-
-
-void SvFactory::Revoke()
-{
-    if( IsRegistered() )
-    {
-        nRegisterId = 0;
-    }
-}
-
-
-//=========================================================================
-void SvFactory::SetAutoTreatAs
-(
-    const SvGlobalName & rOldClass,     /* alte KlassenId   */
-    const String & rOldFullUserTypeName,/* alter TypName    */
-    const SvGlobalName & rNewClass      /* neue KlassenId   */
-)
-/*  [Beschreibung]
-
-    Diese Methode installiert f"ur das gesammte System (User) eine
-    Emulation der Klasse rOldClass durch die Klasse rNewClass. Diese
-    Installation ist permanent.
-    Diese Methode wirkt nur auf noch nicht im Server geladenen
-    Objekte.
-
-    [Beispiel]
-    // StarWriter 3.0 durch 3.1 emulieren
-    SvFactory::SetAutoTreatAs( OldGlobalName,
-                                "StarDivision Writer 3.0 Dokument",
-                               NeuerGlobalName );
-
-    [Querverweise]
-
-    <SvFactory::Find>, <SvPersist::Load>, <SvFactory::GetAutoTreatAs>,
-    <SvFactory::SetAutoConvertTo>
-*/
-{
-    (void)rOldClass;
-    (void)rOldFullUserTypeName;
-    (void)rNewClass;
-
-    // Wenn RegDb geht
-    // aClass += "\\TreatAs";
-    // pClass.GetEntry( "TreatAs", TRUE, rNewClass.GetRegDbName() );
-    DBG_WARNING( "SvFactory::SetAutoTreatAs not implemented" )
-}
-
-//=========================================================================
-SvGlobalName SvFactory::GetAutoTreatAs
-(
-    const SvGlobalName & rClass
-)
-/*  [Beschreibung]
-
-    Ist f"ur diese KlassenId eine Emulation installiert, dann wird
-    die emulierende Klasse zur"uckgegeben. Ansonsten wird rClass
-    zur"ueckgegeben.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Die KlassenId, die statt der "ubergebenen benutzt
-                    werden soll.
-
-    [Querverweise]
-
-    <SvFactory::SetAutoConvertTo>,
-*/
-{
-    SvGlobalName aRet = rClass;
-    DBG_WARNING( "SvFactory::GetAutoTreatAs not implemented" )
-    return aRet;
-}
-
-//=========================================================================
-void SvFactory::SetAutoConvertTo
-(
-    const SvGlobalName & rOldClass,     /* alte KlassenId   */
-    const String & rOldFullUserTypeName,/* alter TypName    */
-    const SvGlobalName & rNewClass      /* neue KlassenId   */
-)
-/*  [Beschreibung]
-
-    Diese Methode installiert f"ur das gesammte System (User) eine
-    Konvertierund der Klasse rOldClass durch die Klasse rNewClass. Diese
-    Installation ist permanent.
-    Diese Methode wirkt nur auf noch nicht im Server geladenen
-    Objekte.
-
-    [Beispiel]
-    // StarWriter 3.0 durch 3.1 emulieren
-    SvFactory::SetAutoConvertTo( OldGlobalName,
-                                "StarDivision Writer 3.0 Dokument",
-                                NeuerGlobalName );
-
-    [Querverweise]
-
-    <SvFactory::Find>, <SvPersist::Load>, <SvFactory::GetAutoConvertTo>,
-    <SvFactory::SetAutoTreatAs>
-*/
-{
-    (void)rOldClass;
-    (void)rOldFullUserTypeName;
-    (void)rNewClass;
-
-    // Wenn RegDb geht
-    // aClass += "\\AutoConvertTo";
-    // pClass.GetEntry( "AutoConvertTo", TRUE, rNewClass.GetRegDbName() );
-    DBG_WARNING( "SvFactory::SetAutoConvertTo not implemented" )
 }
 
 //=========================================================================
@@ -976,28 +745,6 @@ SvGlobalName SvFactory::GetSvClass
 }
 
 //=========================================================================
-SvGlobalName SvFactory::GetSvClass31
-(
-    const SvGlobalName & rClass
-)
-/*  [Beschreibung]
-
-    Die So2 Klasse die dieses Objekt in der 3.1 serven soll.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Die KlassenId, die statt der "ubergebenen benutzt
-                    werden soll.
-
-    [Querverweise]
-
-    <SvFactory::SetAutoConvertTo>,
-*/
-{
-    return GetSvClass( SOFFICE_FILEFORMAT_31, rClass );
-}
-
-//=========================================================================
 BOOL SvFactory::IsIntern31
 (
     const SvGlobalName & rClass
@@ -1011,8 +758,6 @@ BOOL SvFactory::IsIntern31
     BOOL            TRUE, es ist 31 intern.
 
     [Querverweise]
-
-    <SvFactory::SetAutoConvertTo>,
 */
 {
     SvGlobalName aRet = rClass;
@@ -1046,7 +791,6 @@ BOOL SvFactory::IsIntern
 
     [Cross reference]
 
-    <SvFactory::SetAutoConvertTo>,
 */
 {
     SvGlobalName aRet = rClass;
