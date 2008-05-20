@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdmodel.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -423,19 +423,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
 /*N*/   ImpCtor(pPool,pPers,FALSE, (FASTBOOL)bLoadRefCounts);
-/*N*/ }
-
-/*N*/ SdrModel::SdrModel(SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts):
-/*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
-/*N*/   aMaPag(1024,32,32)
-/*N*/ {
-/*N*/ #ifdef TIMELOG
-/*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "svx", "aw93748", "SdrModel::SdrModel(...)" );
-/*N*/ #endif
-/*N*/
-/*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (FASTBOOL)bLoadRefCounts);
 /*N*/ }
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts):
@@ -2037,32 +2024,6 @@ using namespace ::com::sun::star;
 /*N*/   rMod.DoProgress(0xFFFFFFFF);
 /*N*/   return rIn;
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// #48289#
-
-
-/*N*/ void SdrModel::SetStarDrawPreviewMode(BOOL bPreview)
-/*N*/ {
-/*N*/   if (!bPreview && bStarDrawPreviewMode && GetPageCount())
-/*N*/   {
-/*N*/       // Das Zuruecksetzen ist nicht erlaubt, da das Model ev. nicht vollstaendig geladen wurde
-/*N*/       DBG_ASSERT(FALSE,"SdrModel::SetStarDrawPreviewMode(): Zuruecksetzen nicht erlaubt, da Model ev. nicht vollstaendig");
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       bStarDrawPreviewMode = bPreview;
-/*N*/   }
-/*N*/ }
-
-
 
 /*N*/ void SdrModel::PreSave()
 /*N*/ {
