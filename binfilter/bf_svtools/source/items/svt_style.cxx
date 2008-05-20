@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_style.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -82,14 +82,6 @@ TYPEINIT1(SfxStyleSheetPoolHint, SfxHint);
 SfxStyleSheetHintExtended::SfxStyleSheetHintExtended
 (
     USHORT              nAction,        // SFX_STYLESHEET_... (s.o.)
-    const String&       rOldName
-)
-:   SfxStyleSheetHint( nAction ),
-    aName( rOldName )
-{}
-SfxStyleSheetHintExtended::SfxStyleSheetHintExtended
-(
-    USHORT              nAction,        // SFX_STYLESHEET_... (s.o.)
     const String&       rOldName,
     SfxStyleSheetBase&  rStyleSheet     // geh"ort weiterhin dem Aufrufer
 )
@@ -105,14 +97,6 @@ SfxStyleSheetHint::SfxStyleSheetHint
     SfxStyleSheetBase&  rStyleSheet     // geh"ort weiterhin dem Aufrufer
 )
 :   pStyleSh( &rStyleSheet ),
-    nHint( nAction )
-{}
-
-SfxStyleSheetHint::SfxStyleSheetHint
-(
-    USHORT              nAction     // SFX_STYLESHEET_... (s.o.)
-)
-:   pStyleSh( NULL ),
     nHint( nAction )
 {}
 
