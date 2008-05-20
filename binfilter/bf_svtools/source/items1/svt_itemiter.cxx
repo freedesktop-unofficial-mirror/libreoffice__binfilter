@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itemiter.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,25 +101,5 @@ const SfxPoolItem* SfxItemIter::NextItem()
     }
     return 0;
 }
-
-// --------------------------------------------------------------------------
-
-
-const SfxPoolItem* SfxItemIter::PrevItem()
-{
-    DBG_CHKTHIS(SfxItemIter, 0);
-    SfxItemArray ppFnd = _rSet._aItems;
-
-    if ( _nAkt > _nStt )
-    {
-        do {
-            --_nAkt;
-        } while( _nAkt && !*(ppFnd + _nAkt ));
-        return *(ppFnd+_nAkt);
-    }
-    return 0;
-}
-
-
 
 }
