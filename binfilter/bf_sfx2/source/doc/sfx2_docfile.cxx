@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_docfile.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -493,17 +493,6 @@ namespace binfilter {
 /*?*/      pOutStream( 0 )
 
 //------------------------------------------------------------------
-/*N*/ const SvGlobalName&  SfxMedium::GetClassFilter()
-/*N*/ {
-/*N*/     GetMedium_Impl();
-/*N*/     if( GetError() )
-/*N*/         return aFilterClass;
-/*N*/     if( !bSetFilter && GetStorage() )
-/*N*/         SetClassFilter( GetStorage()->GetClassName() );
-/*N*/     return aFilterClass;
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ void SfxMedium::ResetError()
 /*N*/ {
 /*N*/     eError = SVSTREAM_OK;
@@ -783,20 +772,6 @@ namespace binfilter {
 /*N*/
 /*N*/     return pImp->bIsStorage;
 /*N*/ }
-
-//------------------------------------------------------------------
-/*N*/ Link SfxMedium::GetDataAvailableLink() const
-/*N*/ {
-/*N*/     return pImp->aAvailableLink.GetLink();
-/*N*/ }
-
-//------------------------------------------------------------------
-/*N*/ Link SfxMedium::GetDoneLink() const
-/*N*/ {
-/*N*/     return pImp->aDoneLink.GetLink();
-/*N*/ }
-
-//------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::TryStorage()
@@ -1134,16 +1109,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
-//------------------------------------------------------------------
-/*?*/ void SfxMedium::DoInternalBackup_Impl( const ::ucbhelper::Content& aOriginalContent )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-/*?*/ }
-
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
 /*N*/ void SfxMedium::ClearBackup_Impl()
 /*N*/ {
 /*N*/   if( pImp->m_bRemoveBackup )
@@ -1332,12 +1297,6 @@ namespace binfilter {
 /*N*/ }
 //------------------------------------------------------------------
 
-/*N*/ sal_Bool SfxMedium::IsUpdatePickList() const
-/*N*/ {
-/*N*/     return pImp? pImp->bUpdatePickList: sal_True;
-/*N*/ }
-//----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetDoneLink( const Link& rLink )
 /*N*/ {
 /*N*/     pImp->aDoneLink = rLink;
@@ -1430,30 +1389,6 @@ namespace binfilter {
 /*N*/ }
 //------------------------------------------------------------------
 
-/*?*/ SfxMedium::SfxMedium( const SfxMedium& rMedium, sal_Bool bTemporary )
-/*?*/ :   IMPL_CTOR(),
-/*?*/     bRoot(sal_True),
-/*?*/     pURLObj( rMedium.pURLObj ? new INetURLObject(*rMedium.pURLObj) : 0 ),
-/*?*/     pImp(new SfxMedium_Impl( this ))
-/*?*/ {
-/*?*/     bDirect       = rMedium.IsDirect();
-/*?*/     nStorOpenMode = rMedium.GetOpenMode();
-/*?*/     if ( !bTemporary )
-/*?*/         aName = rMedium.aName;
-/*?*/
-/*?*/     pImp->bIsTemp = bTemporary;
-/*?*/     DBG_ASSERT( ! rMedium.pImp->bIsTemp, "Temporaeres Medium darf nicht kopiert werden" );
-/*?*/     aLogicName = rMedium.aLogicName;
-/*?*/     pSet =  rMedium.GetItemSet() ? new SfxItemSet(*rMedium.GetItemSet()) : 0;
-/*?*/     pFilter = rMedium.pFilter;
-/*?*/     Init_Impl();
-/*?*/     if( bTemporary )
-/*?*/         CreateTempFile();
-/*?*/
-/*?*/ }
-
-//------------------------------------------------------------------
-
 /*N*/ void SfxMedium::UseInteractionHandler( BOOL bUse )
 /*N*/ {
 /*N*/     pImp->bAllowDefaultIntHdl = bUse;
@@ -1510,18 +1445,6 @@ namespace binfilter {
 /*N*/     pImp->nFileVersion = 0;
 /*N*/ }
 //----------------------------------------------------------------
-
-/*N*/ const SfxFilter* SfxMedium::GetOrigFilter( sal_Bool bNotCurrent ) const
-/*N*/ {
-/*N*/     return ( pImp->pOrigFilter || bNotCurrent ) ? pImp->pOrigFilter : pFilter;
-/*N*/ }
-//----------------------------------------------------------------
-
-/*?*/ void SfxMedium::SetOrigFilter_Impl( const SfxFilter* pFilter )
-/*?*/ {
-/*?*/     pImp->pOrigFilter = pFilter;
-/*?*/ }
-//------------------------------------------------------------------
 
 /*N*/ void SfxMedium::Close()
 /*N*/ {
@@ -1613,14 +1536,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/     return pImp->bIsTemp;
 /*N*/ }
-
-//------------------------------------------------------------------
-
-/*?*/ sal_Bool SfxMedium::Exists( sal_Bool bForceSession )
-/*?*/ {
-/*?*/     DBG_ERROR( "Not implemented!" );
-/*?*/     return sal_True;
-/*?*/ }
 
 //------------------------------------------------------------------
 
@@ -1730,15 +1645,6 @@ namespace binfilter {
 /*N*/     delete pImp;
 /*N*/ }
 //------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-/*N*/ void SfxMedium::SetClassFilter( const SvGlobalName & rFilterClass )
-/*N*/ {
-/*N*/     bSetFilter = sal_True;
-/*N*/     aFilterClass = rFilterClass;
-/*N*/ }
-//----------------------------------------------------------------
 
 /*N*/ const INetURLObject& SfxMedium::GetURLObject() const
 /*N*/ {
@@ -1865,12 +1771,6 @@ namespace binfilter {
 
 //----------------------------------------------------------------
 
-/*?*/ void SfxMedium::SetStorage_Impl( SvStorage* pStor )
-/*?*/ {
-/*?*/     aStorage = pStor;
-/*?*/ }
-//----------------------------------------------------------------
-
 /*N*/ SfxItemSet* SfxMedium::GetItemSet() const
 /*N*/ {
 /*N*/     if( !pSet ) ((SfxMedium*)this)->pSet =
@@ -1914,10 +1814,6 @@ namespace binfilter {
 /*N*/ sal_Bool SfxMedium::IsDownloadDone_Impl()
 /*N*/ {
 /*N*/     return pImp->bDownloadDone;
-/*N*/ }
-
-/*N*/ SvEaMgr* SfxMedium::GetEaMgr()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*N*/ }
 
 //----------------------------------------------------------------
@@ -2082,23 +1978,6 @@ namespace binfilter {
 /*?*/     }
 /*?*/
 /*?*/     return rStrm;
-/*?*/ }
-
-/*?*/ SvStream& SfxVersionTableDtor::Write( SvStream& rStream ) const
-/*?*/ {
-/*?*/     rStream << (sal_uInt16) nActVersion;
-/*?*/     rStream << (sal_uInt16) Count();
-/*?*/
-/*?*/     SfxVersionInfo* pInfo = ((SfxVersionTableDtor*)this)->First();
-/*?*/     while( pInfo && rStream.GetError() == SVSTREAM_OK )
-/*?*/     {
-/*?*/         rStream.WriteByteString( pInfo->aComment, RTL_TEXTENCODING_UTF8 );
-/*?*/         rStream.WriteByteString( pInfo->aName, RTL_TEXTENCODING_UTF8 );
-/*?*/         pInfo->aCreateStamp.Save( rStream );
-/*?*/         pInfo = ((SfxVersionTableDtor*)this)->Next();
-/*?*/     }
-/*?*/
-/*?*/     return rStream;
 /*?*/ }
 
 /*N*/ void SfxVersionTableDtor::DelDtor()
