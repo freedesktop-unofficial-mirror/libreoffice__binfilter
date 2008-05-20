@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_filter.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1148,14 +1148,6 @@ String GraphicFilter::GetImportFormatShortName( USHORT nFormat )
 
 // ------------------------------------------------------------------------
 
-String GraphicFilter::GetImportOSFileType( USHORT )
-{
-    String aOSFileType;
-    return aOSFileType;
-}
-
-// ------------------------------------------------------------------------
-
 String GraphicFilter::GetImportWildcard( USHORT nFormat, sal_Int32 nEntry )
 {
     return pConfig->GetImportWildcard( nFormat, nEntry );
@@ -1233,24 +1225,9 @@ String GraphicFilter::GetExportFormatShortName( USHORT nFormat )
 
 // ------------------------------------------------------------------------
 
-String GraphicFilter::GetExportOSFileType( USHORT )
-{
-    String aOSFileType;
-    return aOSFileType;
-}
-
-// ------------------------------------------------------------------------
-
 String GraphicFilter::GetExportWildcard( USHORT nFormat, sal_Int32 nEntry )
 {
     return pConfig->GetExportWildcard( nFormat, nEntry );
-}
-
-// ------------------------------------------------------------------------
-
-BOOL GraphicFilter::IsExportPixelFormat( USHORT nFormat )
-{
-    return pConfig->IsExportPixelFormat( nFormat );
 }
 
 // ------------------------------------------------------------------------
@@ -2016,31 +1993,9 @@ USHORT GraphicFilter::ExportGraphic( const Graphic& rGraphic, const String& rPat
 
 // ------------------------------------------------------------------------
 
-BOOL GraphicFilter::Setup( USHORT )
-{
-    return FALSE;
-}
-
-// ------------------------------------------------------------------------
-
-const FilterErrorEx& GraphicFilter::GetLastError() const
-{
-    return *pErrorEx;
-}
-
-// ------------------------------------------------------------------------
-
 void GraphicFilter::ResetLastError()
 {
     pErrorEx->nFilterError = pErrorEx->nStreamError = 0UL;
-}
-
-// ------------------------------------------------------------------------
-
-const Link GraphicFilter::GetFilterCallback() const
-{
-    const Link aLink( LINK( this, GraphicFilter, FilterCallback ) );
-    return aLink;
 }
 
 // ------------------------------------------------------------------------
