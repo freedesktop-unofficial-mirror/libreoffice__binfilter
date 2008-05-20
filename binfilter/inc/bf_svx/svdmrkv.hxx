@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdmrkv.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -202,7 +202,6 @@ protected:
 
 
     // Macht aus einer Winkelangabe in 1/100deg einen String inkl. Grad-Zeichen
-    BOOL MarkPoints(const Rectangle* pRect, BOOL bUnmark);
     BOOL MarkGluePoints(const Rectangle* pRect, BOOL bUnmark);
 
     virtual void WriteRecords(SvStream& rOut) const;
@@ -214,7 +213,6 @@ protected:
 public:
 
     SdrMarkView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrMarkView(SdrModel* pModel1, ExtOutputDevice* pXOut);
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
     virtual BOOL IsAction() const;
@@ -241,7 +239,6 @@ public:
     // DragModes: SDRDRAG_CREATE,SDRDRAG_MOVE,SDRDRAG_RESIZE,SDRDRAG_ROTATE,SDRDRAG_MIRROR,SDRDRAG_SHEAR,SDRDRAG_CROOK
     // Move==Resize
     // Das Interface wird hier evtl noch geaendert wg. Ortho-Drag
-    void SetDragMode(SdrDragMode eMode);
     SdrDragMode GetDragMode() const { return eDragMode; }
     BOOL ChkDragMode(SdrDragMode eMode) const;
     void SetFrameHandles(BOOL bOn);
@@ -251,14 +248,10 @@ public:
     void SetFrameHandlesLimit(USHORT nAnz) { nFrameHandlesLimit=nAnz; }
     USHORT GetFrameHandlesLimit() const { return nFrameHandlesLimit; }
 
-    void SetEditMode(SdrViewEditMode eMode);
     SdrViewEditMode GetEditMode() const { return eEditMode; }
 
-    void SetEditMode(BOOL bOn=TRUE) { SetEditMode(bOn?SDREDITMODE_EDIT:SDREDITMODE_CREATE); }
     BOOL IsEditMode() const { return eEditMode==SDREDITMODE_EDIT; }
-    void SetCreateMode(BOOL bOn=TRUE) { SetEditMode(bOn?SDREDITMODE_CREATE:SDREDITMODE_EDIT); }
     BOOL IsCreateMode() const { return eEditMode==SDREDITMODE_CREATE; }
-    void SetGluePointEditMode(BOOL bOn=TRUE) { SetEditMode(bOn?SDREDITMODE_GLUEPOINTEDIT:eEditMode0); }
     BOOL IsGluePointEditMode() const { return eEditMode==SDREDITMODE_GLUEPOINTEDIT;; }
 
     void SetDesignMode(BOOL bOn=TRUE);
@@ -282,21 +275,6 @@ public:
     // abgefragt werden kann), Painted jedoch die Handles nicht.
     void SetMarkHdlHidden(BOOL bOn);
     BOOL IsMarkHdlHidden() const { return bHdlHidden; }
-//    void SetMarkHdlBackgroundInvalid(BOOL bOn) { bSolidHdlBackgroundInvalid=bOn; }
-//    BOOL IsMarkHdlBackgroundInvalid() const { return bSolidHdlBackgroundInvalid && bHdlShown && !bHdlHidden && aHdl.IsSolidHdl(); }
-    SdrHdl* HitHandle(const Point& rPnt, const OutputDevice& rOut) const { return PickHandle(rPnt,rOut,0,NULL); }
-
-    // Pick: Unterstuetzte Optionen fuer nOptions sind SEARCH_NEXT, SEARCH_BACKWARD (ni)
-    SdrHdl* PickHandle(const Point& rPnt, const OutputDevice& rOut, ULONG nOptions=0, SdrHdl* pHdl0=NULL) const;
-    SdrHdl* PickHandle(const Point& rPnt, ULONG nOptions=0, SdrHdl* pHdl0=NULL) const { return PickHandle(rPnt,*(const OutputDevice*)pActualOutDev,nOptions,pHdl0); }
-
-    // Pick: Unterstuetzte Optionen fuer nOptions sind:
-    // SDRSEARCH_DEEP SDRSEARCH_ALSOONMASTER SDRSEARCH_TESTMARKABLE SDRSEARCH_TESTTEXTEDIT
-    // SDRSEARCH_WITHTEXT SDRSEARCH_TESTTEXTAREA SDRSEARCH_BACKWARD SDRSEARCH_MARKED
-    // SDRSEARCH_WHOLEPAGE
-    BOOL PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions, SdrObject** ppRootObj, ULONG* pnMarkNum=NULL, USHORT* pnPassNum=NULL) const;
-    BOOL PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions=0) const;
-    BOOL PickObj(const Point& rPnt, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions=0) const { return PickObj(rPnt,nHitTolLog,rpObj,rpPV,nOptions); }
 
     // Pick: Unterstuetzte Optionen fuer nOptions sind SDRSEARCH_PASS2BOUND und SDRSEARCH_PASS3NEAREST
 
@@ -322,19 +300,6 @@ public:
     const SdrMarkList& GetMarkList() const { return aMark; }
     void SortMarkList() { aMark.ForceSort(); }
 
-    // Eine Liste aller an markierten Knoten gebundenen Kanten holen,
-    // die selbst jedoch nicht markiert sind.
-
-    // Eine Beschreibung der z.Zt. markierten Objekte abholen.
-    // Z.B. "3 Rechtecke" oder "252 Objekte" oder "Bitmap", ...
-
-    // Groesse der Markierungs-Handles abfragen/setzen. Angabe in Pixel.
-    // Der Wert ist als Kantenlaenge zu betrachten. Gerade Werte werden
-    // auf Ungerade aufgerundet: 3->3, 4->5, 5->5, 6->7, 7->7, ...
-    // Defaultwert ist 7, Mindestwert 3 Pixel.
-    USHORT GetMarkHdlSizePixel() const;
-    void SetMarkHdlSizePixel(USHORT nSiz);
-
     // Die Groesse der Markierungs-Handles wird ueber die jeweilige Aufloesung
     // und die Groesse des Bereichs der markierten Objekte so angepasst, dass
     // sie sich bei einer Frame-Selektion moeglichst nicht ueberschneiden.
@@ -344,16 +309,10 @@ public:
     BOOL IsSolidMarkHdl() const { return aHdl.IsFineHdl(); }
     void SetSolidMarkHdl(BOOL bOn);
 
-    BOOL HasMarkablePoints() const;
     BOOL HasMarkedPoints() const;
 
     // Nicht alle Punkte lassen sich markieren:
     BOOL MarkPoint(SdrHdl& rHdl, BOOL bUnmark=FALSE);
-
-    // alle Punkte innerhalb dieses Rechtecks markieren (Viewkoordinaten)
-    BOOL MarkPoints(const Rectangle& rRect, BOOL bUnmark=FALSE) { return MarkPoints(&rRect,bUnmark); }
-    BOOL UnmarkAllPoints() { return MarkPoints(NULL,TRUE); }
-    BOOL UnMarkAllPoints() { return MarkPoints(NULL,TRUE); }
 
     // Sucht sich den ersten markierten Punkt (P1) und sucht von dort
     // aus in den ersten nichtmarkierte Punkt (P2).
@@ -387,20 +346,6 @@ public:
     BOOL IsMarkHdlWhenTextEdit() const { return bMarkHdlWhenTextEdit; }
 
     BOOL HasMarkedGluePoints() const;
-
-    // Ein Klebepunkt wird eindeutig identifiziert durch das SdrObject
-    // (dem er zugehoert) sowie einem USHORT nId (da jedes SdrObject je
-    // mehrere Klebepunkte haben kann. Hier an der View kommt zudem noch
-    // eine SdrPageView, die stets korrekt gesetzt sein sollte.
-    // Alternativ kann ein Klebepunkt durch ein SdrHdl bezeichnet werden.
-    // Die SdrHdl-Instanz beinhaltet dann aller erforderlichen Informationen.
-    // Der Klebepunkt ist in diesem Fall dann zwangslaeufig markiert (nur auf
-    // markierten Klebepunkten sitzen Anfasser).
-    // Achtung: Bei jeder Aenderung des Klebepunktmarkierungsstatus wird die
-    // Handleliste erneut berechnet. Alle vorher gemerkten SdrHdl* sind
-    // damit ungueltig, ebenso die Punkt-Id's!
-    // Pick: Unterstuetzte Optionen fuer nOptions sind SEARCH_NEXT, SEARCH_BACKWARD
-    BOOL PickGluePoint(const Point& rPnt, SdrObject*& rpObj, USHORT& rnId, SdrPageView*& rpPV, ULONG nOptions=0) const;
 
     // Hdl eines markierten GluePoints holen. Nicht markierte
     // GluePoints haben keine Handles
