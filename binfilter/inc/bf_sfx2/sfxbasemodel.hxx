@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfxbasemodel.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1114,7 +1114,6 @@ public:
     */
 
     void changing() ;
-    void impl_change() ;
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -1130,7 +1129,6 @@ public:
     */
 
     SfxObjectShell* GetObjectShell() const ;
-    SfxObjectShell* impl_getObjectShell() const ;
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -1146,7 +1144,6 @@ public:
     */
 
     sal_Bool impl_isDisposed() const ;
-    sal_Bool IsDisposed() const ;
 
     ::com::sun::star::uno::Reference < ::com::sun::star::container::XIndexAccess > SAL_CALL getViewData() throw (::com::sun::star::uno::RuntimeException);
     void SAL_CALL setViewData( const ::com::sun::star::uno::Reference < ::com::sun::star::container::XIndexAccess >& aData ) throw (::com::sun::star::uno::RuntimeException);
