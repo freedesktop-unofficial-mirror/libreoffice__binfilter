@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipwin.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -84,7 +84,6 @@ public:
     void        Draw( OutputDevice * );
     void        InvalidateBorder( Window * );
     BOOL        SelectBegin( Window *, const Point & rPos );
-    void        SelectBegin( Window *, short nGrab );
     short       SelectMove( Window * pWin, const Point & rPos );
     Point       GetTrackPosPixel( const Rectangle & rRect ) const;
     Rectangle   GetTrackRectPixel( const Point & rTrackPos ) const;
@@ -121,7 +120,6 @@ public:
     const Size & GetHatchBorderPixel() const
             { return aResizer.GetBorderPixel(); }
 
-    void    SetBorderPixel( const SvBorder & rNewBorder );
     const SvBorder & GetBorderPixel() const
             { return aBorder; }
 
@@ -137,7 +135,6 @@ public:
             { return aPosCorrection; }
 
     Rectangle CalcInnerRectPixel( const Point & rPos, const Size & rSize ) const;
-    Rectangle CalcOuterRectPixel( const Point & rPos, const Size & rSize ) const;
     Rectangle GetInnerRectPixel() const;
 
     void    SetInnerPosSizePixel( const Point &, const Size & );
@@ -186,7 +183,6 @@ public:
 
     void    SetRectsPixel( const Rectangle & rObjRect,
                            const Rectangle & rInPlaceWinMaxRect );
-    void    SetBorderPixel( const SvBorder & rNewBorder );
 };
 
 }
