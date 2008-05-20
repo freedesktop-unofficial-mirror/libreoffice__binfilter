@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: chgtrack.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -410,10 +410,7 @@ public:
 /*N*/                               // ob Action anfassbar ist
 /*N*/           BOOL                IsTouchable() const;
 /*N*/
-/*N*/                               // ob Action akzeptiert/selektiert/abgelehnt
-/*N*/                               // werden kann
-/*N*/           BOOL                IsClickable() const;
-/*N*/
+
             const ScBigRange&   GetBigRange() const { return aBigRange; }
              const DateTime&        GetDateTimeUTC() const      // UTC time
                                      { return aDateTime; }
