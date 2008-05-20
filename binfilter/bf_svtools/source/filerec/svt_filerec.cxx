@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_filerec.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -153,121 +153,6 @@ UINT32 SfxMiniRecordWriter::Close
 
 //=========================================================================
 
-USHORT SfxMiniRecordReader::ScanRecordType
-(
-    SvStream*   pStream         /*  <SvStream> an dessen aktueller Position
-                                    ein Record liegt, dessen Typ erkannt werden
-                                    soll.
-                                */
-)
-
-/*  [Beschreibung]
-
-    Mit dieser statischen Methode kann ermittelt werden, ob sich an der
-    aktuellen Position in einem Stream ein Record befindet, und der Typ
-    des Records kann ermittelt werden.
-
-    Die Position im Stream ist nach dem Aufruf aufver"andert.
-
-
-    [Anmerkung]
-
-    Die Record-Typen k"onnen zwar (abgesehen vom Drawing-Enginge-Record)
-    untereinander eindeutig erkannt werden, es besteht jedoch die Gefahr
-    der Verwechslung von Records mit normalen Daten. File-Formate sollten
-    darauf R"ucksicht nehmen. Handelt es sich um keinen Record, wird
-    am wahrscheinlichsten SFX_REC_TYPE_MINI zur"uckgeliefert, da dieser
-    Typ sich aufgrund seines sparsam kurzen Headers durch die k"urzeste
-    Kennung auszeichnet.
-
-
-    [R"uckgabewert]
-
-    USHORT                          SFX_REC_TYPE_EOR
-                                    An der aktuellen Position des Streams
-                                    steht eine End-Of-Records-Kennung.
-
-                                    SFX_REC_TYPE_MINI
-                                    Es handelt sich um einen SW3 kompatiblen
-                                    Mini-Record, dessen einzige Kennung sein
-                                    'Mini-Tag' ist.
-
-                                    SFX_REC_TYPE_SINGLE
-                                    Es handelt sich um einen Extended-Record
-                                    mit einem einzigen Content, der durch eine
-                                    Version und ein Tag n"aher gekennzeichnet
-                                    ist.
-
-                                    SFX_REC_TYPE_FIXSIZE
-                                    Es handelt sich um einen Extended-Record
-                                    mit mehreren Contents gleicher Gr"o\se,
-                                    die gemeinsam durch eine einzige Version
-                                    und ein einziges gemeinsames Tag n"aher
-                                    gekennzeichnet sind.
-
-                                    SFX_REC_TYPE_VARSIZE
-                                    Es handelt sich um einen Extended-Record
-                                    mit mehreren Contents variabler Gr"o\se,
-                                    die gemeinsam durch eine einzige Version
-                                    und ein einziges gemeinsames Tag n"aher
-                                    gekennzeichnet sind.
-
-                                    SFX_REC_TYPE_MIXTAGS
-                                    Es handelt sich um einen Extended-Record
-                                    mit mehreren Contents variabler Gr"o\se,
-                                    die jeweils durch ein eignes Tag und
-                                    eine eigene Versions-Nummer n"aher
-                                    gekennzeichnet sind.
-
-                                    SFX_REC_TYPE_DRAWENG
-                                    Es handelt sich wahrscheinlich um einen
-                                    Drawing-Engine-Record. Dieser Record-Typ
-                                    kann von den Klassen dieser Gruppe nicht
-                                    interpretiert werden.
-*/
-
-{
-    // die ersten 4 Bytes als Mini-Header lesen
-    sal_uInt32 nHeader;
-    *pStream >> nHeader;
-
-    // k"onnte es sich um einen extended-Record handeln?
-    USHORT nPreTag = sal::static_int_cast< USHORT >(SFX_REC_PRE(nHeader));
-    if ( SFX_REC_PRETAG_EXT == nPreTag )
-    {
-        // die n"achsten 4 Bytes als extended-Header lesen
-        *pStream >> nHeader;
-
-        // Stream-Position restaurieren
-        pStream->SeekRel(-8);
-
-        // liegt eine g"ultige Record-Kennung vor?
-        USHORT nType = sal::static_int_cast< USHORT >(SFX_REC_TYP(nHeader));
-        if ( nType >= SFX_REC_TYPE_FIRST && nType <= SFX_REC_TYPE_LAST )
-            // entsprechenden extended-Record-Typ zur"uckliefern
-            return nType;
-
-        // sonst ist der Record-Typ unbekannt
-        return SFX_REC_TYPE_NONE;
-    }
-
-    // Stream-Position restaurieren
-    pStream->SeekRel(-4);
-
-    // liegt eine End-Of-Record-Kennung vor?
-    if ( SFX_REC_PRETAG_EOR == nPreTag )
-        return nPreTag;
-
-    // liegt ein Drawin-Engine-Record vor?
-    if ( nHeader == UINT32(*"DRMD") || nHeader == UINT32(*"DRVW") )
-        return SFX_REC_TYPE_DRAWENG;
-
-    // alle anderen sind grunds"atzlich g"ultige Mini-Records
-    return SFX_REC_TYPE_MINI;
-}
-
-//-------------------------------------------------------------------------
-
 FASTBOOL SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
 
 /*  [Beschreibung]
@@ -293,48 +178,6 @@ FASTBOOL SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
         bRet = FALSE;
     }
     return bRet;
-}
-
-//-------------------------------------------------------------------------
-
-SfxMiniRecordReader::SfxMiniRecordReader
-(
-    SvStream*       pStream         /*  <SvStream>, an dessen aktueller
-                                        Position sich ein <SfxMiniRecord>
-                                        befindet.
-                                    */
-)
-
-/*  [Beschreibung]
-
-    Dieser Ctor liest den Header eines <SfxMiniRecord> ab der aktuellen
-    Position von 'pStream'. Da grunds"atzlich fast 4-Byte Kombination ein
-    g"ultiger SfxMiniRecord-Header ist, bleiben die einzig m"oglichen
-    Fehler der EOF-Status des Streams, und ein SFX_REC_PRETAG_EOR
-    als Pre-Tag. Ein entsprechender Error-Code (ERRCODE_IO_EOF bzw.
-    ERRCODE_IO_WRONGFORMAT) ist dann am Stream gesetzt, dessen Position
-    dann au\serdem unver"andert ist.
-*/
-
-:   _pStream( pStream ),
-    _bSkipped( FALSE )
-{
-    // Header einlesen
-    UINT32 nStartPos = pStream->Tell(); // um im Fehlerfall zur"uck zu-seeken
-    DBG( DbgOutf( "SfxFileRec: reading record at %ul", nStartPos ) );
-    UINT32 nHeader;
-    *pStream >> nHeader;
-
-    // Headerdaten extrahieren
-    SetHeader_Impl( nHeader );
-
-    // Fehlerbehandlung
-    if ( pStream->IsEof() )
-        _nPreTag = SFX_REC_PRETAG_EOR;
-    else if ( _nPreTag == SFX_REC_PRETAG_EOR )
-        pStream->SetError( ERRCODE_IO_WRONGFORMAT );
-    if ( !IsValid() )
-        pStream->Seek( nStartPos );
 }
 
 //-------------------------------------------------------------------------
@@ -470,29 +313,6 @@ SfxSingleRecordWriter::SfxSingleRecordWriter
     *pStream << SFX_REC_HEADER( SFX_REC_TYPE_SINGLE, nContentTag, nContentVer);
 }
 
-//-------------------------------------------------------------------------
-
-SfxSingleRecordWriter::SfxSingleRecordWriter
-(
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nContentTag,    // Inhalts-Art-Kennung
-    BYTE            nContentVer,    // Inhalts-Versions-Kennung
-    UINT32          nContentSize    // Gr"o\se des Inhalts in Bytes
-)
-
-/*  [Beschreibung]
-
-    Legt in 'pStream' einen 'SfxSingleRecord' an, dessen Content-Gr"o\se
-    von vornherein bekannt ist.
-*/
-
-:   SfxMiniRecordWriter( pStream, SFX_REC_PRETAG_EXT,
-                         nContentSize + SFX_REC_HEADERSIZE_SINGLE )
-{
-    // Erweiterten Header hinter den des SfxMiniRec schreiben
-    *pStream << SFX_REC_HEADER( SFX_REC_TYPE_SINGLE, nContentTag, nContentVer);
-}
-
 //=========================================================================
 
 inline FASTBOOL SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
@@ -525,29 +345,6 @@ inline FASTBOOL SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
         bRet = 0 != ( nTypes & _nRecordType);
     }
     return bRet;
-}
-
-//-------------------------------------------------------------------------
-
-SfxSingleRecordReader::SfxSingleRecordReader( SvStream *pStream )
-:   SfxMiniRecordReader()
-{
-    // Startposition merken, um im Fehlerfall zur"uck-seeken zu k"onnen
-    #ifdef DBG_UTIL
-    UINT32 nStartPos = pStream->Tell();
-    DBG( DbgOutf( "SfxFileRec: reading record at %ul", nStartPos ) );
-    #endif
-
-    // Basisklasse initialisieren (nicht via Ctor, da der nur MiniRecs akzept.)
-    Construct_Impl( pStream );
-
-    // nur Header mit korrektem Record-Type akzeptieren
-    if ( !ReadHeader_Impl( SFX_REC_TYPE_SINGLE ) )
-    {
-        // Error-Code setzen und zur"uck-seeken
-        pStream->SeekRel( - SFX_REC_HEADERSIZE_SINGLE );
-        pStream->SetError( ERRCODE_IO_WRONGFORMAT );
-    }
 }
 
 //-------------------------------------------------------------------------
@@ -633,54 +430,28 @@ FASTBOOL SfxSingleRecordReader::FindHeader_Impl
     return FALSE;
 }
 
-//=========================================================================
-
 SfxMultiFixRecordWriter::SfxMultiFixRecordWriter
 (
-    BYTE            nRecordType,    // Subklassen Record-Kennung
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nContentTag,    // Content-Art-Kennung
-    BYTE            nContentVer,    // Content-Versions-Kennung
-    UINT32                          // Gr"o\se jedes einzelnen Contents in Bytes
+       BYTE                    nRecordType,    // Subklassen Record-Kennung
+       SvStream*               pStream,                // Stream, in dem der Record angelegt wird
+       UINT16                  nContentTag,    // Content-Art-Kennung
+       BYTE                    nContentVer,    // Content-Versions-Kennung
+       UINT32                                  // Gr"o\se jedes einzelnen Contents in Bytes
 )
 
 /*  [Beschreibung]
 
-    Interne Methode f"ur Subklassen.
+       Interne Methode f"ur Subklassen.
 */
 
 :   SfxSingleRecordWriter( nRecordType, pStream, nContentTag, nContentVer ),
-    _nContentCount( 0 )
+       _nContentCount( 0 )
 {
-    // Platz f"ur eigenen Header
-    pStream->SeekRel( + SFX_REC_HEADERSIZE_MULTI );
+       // Platz f"ur eigenen Header
+       pStream->SeekRel( + SFX_REC_HEADERSIZE_MULTI );
 }
 
-//------------------------------------------------------------------------
-
-SfxMultiFixRecordWriter::SfxMultiFixRecordWriter
-(
-    SvStream*       pStream,        // Stream, in dem der Record angelegt wird
-    UINT16          nContentTag,    // Content-Art-Kennung
-    BYTE            nContentVer,    // Content-Versions-Kennung
-    UINT32                          // Gr"o\se jedes einzelnen Contents in Bytes
-)
-
-/*  [Beschreibung]
-
-    Legt in 'pStream' einen 'SfxMultiFixRecord' an, dessen Content-Gr"o\se
-    konstant und von vornherein bekannt ist.
-*/
-
-:   SfxSingleRecordWriter( SFX_REC_TYPE_FIXSIZE,
-                           pStream, nContentTag, nContentVer ),
-    _nContentCount( 0 )
-{
-    // Platz f"ur eigenen Header
-    pStream->SeekRel( + SFX_REC_HEADERSIZE_MULTI );
-}
-
-//------------------------------------------------------------------------
+//=========================================================================
 
 UINT32 SfxMultiFixRecordWriter::Close( FASTBOOL bSeekToEndOfRec )
 
@@ -918,26 +689,6 @@ FASTBOOL SfxMultiRecordReader::ReadHeader_Impl()
 
     // Header konnte gelesen werden, wenn am Stream kein Error gesetzt ist
     return !_pStream->GetError();
-}
-
-//-------------------------------------------------------------------------
-
-SfxMultiRecordReader::SfxMultiRecordReader( SvStream *pStream )
-:   _pContentOfs( NULL ), _nContentNo(0)
-{
-    // Position im Stream merken, um im Fehlerfall zur"uck-seeken zu k"onnen
-    _nStartPos = pStream->Tell();
-
-    // Basisklasse konstruieren (normaler Ctor w"urde nur SingleRecs lesen)
-    SfxSingleRecordReader::Construct_Impl( pStream );
-
-    // Header der Basisklasse lesen
-    if ( !SfxSingleRecordReader::ReadHeader_Impl( SFX_REC_TYPE_FIXSIZE |
-                SFX_REC_TYPE_VARSIZE | SFX_REC_TYPE_VARSIZE_RELOC |
-                SFX_REC_TYPE_MIXTAGS | SFX_REC_TYPE_MIXTAGS_RELOC ) ||
-         !ReadHeader_Impl() )
-        // als ung"ultig markieren und zur"uck-seeken
-        SetInvalid_Impl( _nStartPos );
 }
 
 //-------------------------------------------------------------------------
