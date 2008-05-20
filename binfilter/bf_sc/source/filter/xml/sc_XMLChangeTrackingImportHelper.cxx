@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_XMLChangeTrackingImportHelper.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -48,19 +48,6 @@
 namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
-
-ScMyCellInfo::ScMyCellInfo()
-    : pCell(NULL),
-    sFormulaAddress(),
-    sFormula(),
-    sResult(),
-    fValue(0.0),
-    nType(NUMBERFORMAT_ALL),
-    nMatrixFlag(MM_NONE),
-    nMatrixCols(0),
-    nMatrixRows(0)
-{
-}
 
 ScMyCellInfo::ScMyCellInfo(ScBaseCell* pTempCell, const ::rtl::OUString& rFormulaAddress, const ::rtl::OUString& rFormula,
             const double& rValue, const sal_uInt16 nTempType, const sal_uInt8 nTempMatrixFlag, const sal_Int32 nTempMatrixCols,
@@ -154,10 +141,6 @@ ScMyInsAction::ScMyInsAction(const ScChangeActionType nActionType)
 {
 }
 
-ScMyInsAction::~ScMyInsAction()
-{
-}
-
 ScMyDelAction::ScMyDelAction(const ScChangeActionType nActionType)
     : ScMyBaseAction(nActionType),
     pInsCutOff(NULL),
@@ -201,10 +184,6 @@ ScMyContentAction::~ScMyContentAction()
 
 ScMyRejAction::ScMyRejAction()
     : ScMyBaseAction(SC_CAT_REJECT)
-{
-}
-
-ScMyRejAction::~ScMyRejAction()
 {
 }
 
