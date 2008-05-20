@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: crsrsh.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -499,13 +499,6 @@ public:
     // returnt FALSE: wenn der ob der SPoint vom Layout korrigiert wurde.
     // (wird zum Anzeigen von Drag&Drop/Copy-Cursor benoetigt)
     CRSR_INLINE void UnSetVisCrsr();
-
-    // springe zum nachsten/vorherigen Feld des entsprechenden Types
-    // springe genau zu diesem Feld
-
-    // returne die Anzahl der Cursor im Ring (Flag besagt ob man nur
-    // aufgepspannte haben will - sprich etwas selektiert ist (Basic))
-    USHORT GetCrsrCnt( BOOL bAll = TRUE ) const;
 
     // Char Travelling - Methoden (in crstrvl1.cxx)
 
