@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_newfrm.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -420,15 +420,6 @@ namespace binfilter {
 /*?*/           pRoot->pWaitingCurrShell = 0;
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void SetShell( ViewShell *pSh )
-/*N*/ {
-/*N*/   SwRootFrm *pRoot = pSh->GetLayout();
-/*N*/   if ( !pRoot->pCurrShells->Count() )
-/*N*/       pRoot->pCurrShell = pSh;
-/*N*/   else
-/*?*/       pRoot->pWaitingCurrShell = pSh;
 /*N*/ }
 
 /*N*/ void SwRootFrm::DeRegisterShell( ViewShell *pSh )
