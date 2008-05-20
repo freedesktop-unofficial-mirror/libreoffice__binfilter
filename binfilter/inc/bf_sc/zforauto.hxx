@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: zforauto.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,7 +51,6 @@ class ScNumFormatAbbrev
 public:
     ScNumFormatAbbrev();
     ScNumFormatAbbrev(const ScNumFormatAbbrev& aFormat);
-    ScNumFormatAbbrev(SvStream& rStream);
     ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_BF_ASSERT(0, "STRIP"); } //STRIP001    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
     void Load( SvStream& rStream );         // Laden der Zahlenformate
     void Save( SvStream& rStream ) const;   // Speichern der Zahlenformate
