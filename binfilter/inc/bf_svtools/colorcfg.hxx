@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: colorcfg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -134,34 +134,6 @@ public:
     ColorConfigValue        GetColorValue(ColorConfigEntry eEntry, sal_Bool bSmart = sal_True)const;
 
     static Color            GetDefaultColor(ColorConfigEntry eEntry);
-};
-/* -----------------------------22.03.2002 15:31------------------------------
-
- ---------------------------------------------------------------------------*/
-class  EditableColorConfig
-{
-    ColorConfig_Impl*   m_pImpl;
-    sal_Bool            m_bModified;
-public:
-    EditableColorConfig();
-    ~EditableColorConfig();
-
-    ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetSchemeNames() const;
-    void                                                DeleteScheme(const ::rtl::OUString& rScheme );
-    void                                                AddScheme(const ::rtl::OUString& rScheme );
-    sal_Bool                                            LoadScheme(const ::rtl::OUString& rScheme );
-    const ::rtl::OUString&                              GetCurrentSchemeName()const;
-    void                        SetCurrentSchemeName(const ::rtl::OUString& rScheme);
-
-    const ColorConfigValue&     GetColorValue(ColorConfigEntry eEntry)const;
-    void                        SetColorValue(ColorConfigEntry eEntry, const ColorConfigValue& rValue);
-    void                        SetModified();
-    void                        ClearModified(){m_bModified = sal_False;}
-    sal_Bool                    IsModified()const{return m_bModified;}
-    void                        Commit();
-
-    void                        DisableBroadcast();
-    void                        EnableBroadcast();
 };
 }
 #endif
