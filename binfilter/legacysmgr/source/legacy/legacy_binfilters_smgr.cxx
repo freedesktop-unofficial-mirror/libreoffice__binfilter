@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: legacy_binfilters_smgr.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2190,7 +2190,6 @@ void * SAL_CALL legacysmgr_component_getFactory(
 
 // added by jmeng for i31251 begin
 static sal_Bool  IsBinfilterInit =  sal_False;
-sal_Bool legcy_getBinfilterInitState(void){return IsBinfilterInit;}
 void legcy_setBinfilterInitState(void){IsBinfilterInit =  sal_True;}
 //added by jmeng for i31251 end
 }
