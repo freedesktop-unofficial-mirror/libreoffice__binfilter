@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swmodule.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -164,10 +164,6 @@ public:
     ColorConfig&        GetColorConfig();
     SvtCTLOptions&      GetCTLOptions();
 
-    // Ueber Sichten iterieren
-    static SwView*      GetFirstView();
-    static SwView*      GetNextView(SwView*);
-
     sal_Bool IsEmbeddedLoadSave() const         { return bEmbeddedLoadSave; }
     void SetEmbeddedLoadSave( sal_Bool bFlag )  { bEmbeddedLoadSave = bFlag; }
 
@@ -192,10 +188,6 @@ public:
     void    InitAttrPool();
     //Pool loeschen bevor es zu spaet ist
     void    RemoveAttrPool();
-
-    // Invalidiert ggf. OnlineSpell-WrongListen
-    void    CheckSpellChanges( sal_Bool bOnlineSpelling,
-                    sal_Bool bIsSpellWrongAgain, sal_Bool bIsSpellAllAgain );
 
     inline ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XLinguServiceEventListener >
