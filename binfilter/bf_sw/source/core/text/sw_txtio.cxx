@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_txtio.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -376,7 +376,6 @@ namespace binfilter {//STRIP009
 /*N*/ IMPL_OUTOP( SwIsoToxPortion )
 /*N*/ IMPL_OUTOP( SwIsoRefPortion )
 /*N*/ IMPL_OUTOP( SwSoftHyphPortion )
-/*N*/ IMPL_OUTOP( SwSoftHyphStrPortion )
 /*N*/ IMPL_OUTOP( SwTabPortion )
 /*N*/ IMPL_OUTOP( SwTabLeftPortion )
 /*N*/ IMPL_OUTOP( SwTabRightPortion )
@@ -932,15 +931,6 @@ namespace binfilter {//STRIP009
 /*N*/   rOs << pTxt;
 /*N*/   SwHyphPortion::operator<<( rOs );
 /*N*/   rOs << (IsExpand() ? " on" : " off");
-/*N*/   rOs << pClose;
-/*N*/   return rOs;
-/*N*/ }
-/*N*/
-/*N*/ SvStream &SwSoftHyphStrPortion::operator<<( SvStream &rOs ) const //$ ostream
-/*N*/ {
-/*N*/   CONSTCHAR( pTxt, " {SOFTHYPHSTR:" );
-/*N*/   rOs << pTxt;
-/*N*/   SwHyphStrPortion::operator<<( rOs );
 /*N*/   rOs << pClose;
 /*N*/   return rOs;
 /*N*/ }
