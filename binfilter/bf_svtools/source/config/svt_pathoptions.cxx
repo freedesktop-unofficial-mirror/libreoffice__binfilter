@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_pathoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1092,12 +1092,6 @@ sal_Bool SvtPathOptions::SearchFile( String& rIniFile, Pathes ePath )
     return bRet;
 }
 
-// -----------------------------------------------------------------------
-
-::com::sun::star::lang::Locale SvtPathOptions::GetLocale() const
-{
-    return pImp->GetLocale();
-}
 // -----------------------------------------------------------------------
 BOOL SvtPathOptions::IsPathReadonly(Pathes ePath)const
 {
