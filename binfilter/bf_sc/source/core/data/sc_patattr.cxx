@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_patattr.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1175,64 +1175,4 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/
 /*N*/   return GetItemSet().Get(nWhich);
 /*N*/ }
-
-//  GetRotateVal testet vorher ATTR_ORIENTATION
-
-/*N*/ long ScPatternAttr::GetRotateVal( const SfxItemSet* pCondSet ) const
-/*N*/ {
-/*N*/   long nAttrRotate = 0;
-/*N*/
-/*N*/   SvxCellOrientation eOrient;
-/*N*/   const SfxPoolItem* pCondItem;
-/*N*/   if ( pCondSet && pCondSet->GetItemState( ATTR_ORIENTATION, TRUE, &pCondItem ) == SFX_ITEM_SET )
-/*N*/       eOrient = (SvxCellOrientation)((const SvxOrientationItem*)pCondItem)->GetValue();
-/*N*/   else
-/*N*/       eOrient = (SvxCellOrientation)((const SvxOrientationItem&)
-/*N*/                                           GetItem(ATTR_ORIENTATION)).GetValue();
-/*N*/
-/*N*/   if ( eOrient == SVX_ORIENTATION_STANDARD )
-/*N*/   {
-/*N*/       if ( pCondSet && pCondSet->GetItemState(
-/*N*/                                       ATTR_ROTATE_VALUE, TRUE, &pCondItem ) == SFX_ITEM_SET )
-/*N*/           nAttrRotate = ((const SfxInt32Item*)pCondItem)->GetValue();
-/*N*/       else
-/*N*/           nAttrRotate = ((const SfxInt32Item&)GetItem(ATTR_ROTATE_VALUE)).GetValue();
-/*N*/   }
-/*N*/
-/*N*/   return nAttrRotate;
-/*N*/ }
-
-/*N*/ BYTE ScPatternAttr::GetRotateDir( const SfxItemSet* pCondSet ) const
-/*N*/ {
-/*N*/   BYTE nRet = SC_ROTDIR_NONE;
-/*N*/
-/*N*/   long nAttrRotate = GetRotateVal( pCondSet );
-/*N*/   if ( nAttrRotate )
-/*N*/   {
-/*N*/       SvxRotateMode eRotMode = (SvxRotateMode)((const SvxRotateModeItem&)
-/*N*/                                   GetItem(ATTR_ROTATE_MODE, pCondSet)).GetValue();
-/*N*/
-/*N*/       if ( eRotMode == SVX_ROTATE_MODE_STANDARD || nAttrRotate == 18000 )
-/*N*/           nRet = SC_ROTDIR_STANDARD;
-/*N*/       else if ( eRotMode == SVX_ROTATE_MODE_CENTER )
-/*N*/           nRet = SC_ROTDIR_CENTER;
-/*N*/       else if ( eRotMode == SVX_ROTATE_MODE_TOP || eRotMode == SVX_ROTATE_MODE_BOTTOM )
-/*N*/       {
-/*N*/           long nRot180 = nAttrRotate % 18000;     // 1/100 Grad
-/*N*/           if ( nRot180 == 9000 )
-/*N*/               nRet = SC_ROTDIR_CENTER;
-/*N*/           else if ( ( eRotMode == SVX_ROTATE_MODE_TOP && nRot180 < 9000 ) ||
-/*N*/                     ( eRotMode == SVX_ROTATE_MODE_BOTTOM && nRot180 > 9000 ) )
-/*N*/               nRet = SC_ROTDIR_LEFT;
-/*N*/           else
-/*N*/               nRet = SC_ROTDIR_RIGHT;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return nRet;
-/*N*/ }
-
-
-
-
 }
