@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: chmod3d.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,12 +66,6 @@ class SchE3dLatheObj : public E3dLatheObj
 public:
     SchE3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon& rPP)
         :E3dLatheObj(rDefault,rPP){};
-    SchE3dLatheObj(E3dDefaultAttributes& rDefault, const XPolyPolygon& rXPP)
-        :E3dLatheObj(rDefault,rXPP){};
-    SchE3dLatheObj(E3dDefaultAttributes& rDefault, const XPolygon& rXPoly)
-        :E3dLatheObj(rDefault,rXPoly){};
-    SchE3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D rPoly3D)
-        :E3dLatheObj(rDefault,rPoly3D){};
     SchE3dLatheObj()
         :E3dLatheObj(){};
 
@@ -107,10 +101,6 @@ public:
     SchE3dPolygonObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D& rPoly3D,
         const PolyPolygon3D& rVector3D, BOOL bLinOnly=FALSE)
         :E3dPolygonObj(rDefault,rPoly3D,rVector3D,bLinOnly){};
-
-    SchE3dPolygonObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D& rPoly3D,
-        const PolyPolygon3D& rVector3D, const PolyPolygon3D& rNormal3D, BOOL bLinOnly=FALSE)
-        :E3dPolygonObj(rDefault,rPoly3D,rVector3D,rNormal3D,bLinOnly){};
 
     SchE3dPolygonObj(E3dDefaultAttributes& rDefault, const Vector3D& rP1,
         const Vector3D& rP2, BOOL bLinOnly=TRUE)
