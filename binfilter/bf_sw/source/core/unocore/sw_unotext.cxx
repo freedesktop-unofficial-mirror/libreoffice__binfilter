@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unotext.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -100,9 +100,6 @@
 #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _SECTION_HXX //autogen
 #include <section.hxx>
@@ -315,11 +312,8 @@ void SwXText::insertString(const uno::Reference< XTextRange > & xTextRange,
                 UnoActionContext aContext(GetDoc());
                 const SwPosition* pPos = pCursor ? pCursor->GetPaM()->Start() : &pRange->GetBookmark()->GetPos();
                 SwPaM aInsertPam(*pPos);
-                sal_Bool bGroupUndo = GetDoc()->DoesGroupUndo();
-                GetDoc()->DoGroupUndo(sal_False);
                 if(!GetDoc()->Insert(aInsertPam, aString ))
                     DBG_ERROR("Text wurde nicht eingefuegt");
-                GetDoc()->DoGroupUndo(bGroupUndo);
             }
         }
         else
@@ -976,7 +970,6 @@ void SwXText::setString(const OUString& aString) throw( uno::RuntimeException )
     if(!pStartNode)
         throw uno::RuntimeException();
 
-    GetDoc()->StartUndo(UNDO_START);
     //insert an empty paragraph at the start and at the end to ensure that
     //all tables and sections can be removed by the selecting XTextCursor
     {
@@ -1013,7 +1006,6 @@ void SwXText::setString(const OUString& aString) throw( uno::RuntimeException )
     uno::Reference< XTextCursor >  xRet = createCursor();
     if(!xRet.is())
     {
-        GetDoc()->EndUndo(UNDO_END);
         RuntimeException aRuntime;
         aRuntime.Message = C2U(cInvalidObject);
         throw aRuntime;
@@ -1023,7 +1015,6 @@ void SwXText::setString(const OUString& aString) throw( uno::RuntimeException )
         xRet->gotoEnd(sal_True);
     }
     xRet->setString(aString);
-    GetDoc()->EndUndo(UNDO_END);
 }
 /* -----------------------------28.03.00 11:12--------------------------------
     Description: Checks if pRange/pCursor are member of the same text interface.
