@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: viewsh.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -178,8 +178,6 @@ public:
           SwViewImp *Imp() { return pImp; }
     const SwViewImp *Imp() const { return pImp; }
 
-    const SwNodes& GetNodes() const;
-
     //Nach Druckerwechsel, vom Doc
     //pPDFOut != NULL is used for PDF export.
     void            InitPrt( SfxPrinter * , OutputDevice *pPDFOut = NULL );
@@ -342,12 +340,6 @@ public:
 
     const Size& GetBrowseBorder() const{ return aBrowseBorder; }
 
-
-    ViewShell( ViewShell&, Window *pWin = 0, OutputDevice *pOut = 0,
-                long nFlags = 0 );
-    ViewShell( SwDoc& rDoc, Window *pWin,
-               const SwViewOption *pOpt = 0, OutputDevice *pOut = 0,
-               long nFlags = 0 );
     virtual ~ViewShell();
 
 };
