@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: b3dgeom.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -152,7 +152,6 @@ public:
 
     // Zugriff auf beide Buckets um die Geometrie zu lesen
     B3dEntityBucket& GetEntityBucket() { return aEntityBucket; }
-    GeometryIndexValueBucket& GetIndexBucket() { return aIndexBucket; }
 
     // Hittest auf Geometrie
     sal_Bool CheckHit(const Vector3D &rFront, const Vector3D &rBack, sal_uInt16 nTol);
