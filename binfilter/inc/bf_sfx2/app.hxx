@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: app.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -122,7 +122,6 @@ class SfxEventConfiguration;
 class SfxEventHint;
 class SfxFilter;
 class SfxInterface;
-class SfxItemHandle;
 class SfxMacroConfig;
 class SfxMedium;
 class SfxMediumList;
@@ -188,8 +187,6 @@ public:
 #define SFX_APP() SfxGetpApp()
 
 //====================================================================
-
-DECL_OBJHINT( SfxStringHint, String );
 
 #ifndef SFX_DECL_OBJECTSHELL_DEFINED
 #define SFX_DECL_OBJECTSHELL_DEFINED
@@ -264,8 +261,9 @@ public:
 
     String&                     GetSaveAsTargetURLHack();
     SfxFilterMatcher&           GetFilterMatcher();
-
+#ifdef DDE_AVAILABLE
     BOOL                        InitializeDde();
+#endif
     DdeService*                 GetDdeService();
     void                        RemoveDdeTopic( SfxObjectShell* );
 
@@ -273,12 +271,7 @@ public:
                                 { return *pResMgr; }
 
     BasicManager*               GetBasicManager();
-    ::com::sun::star::uno::Reference< ::com::sun::star::script::XLibraryContainer >
-                                GetBasicContainer();
     StarBASIC*                  GetBasic();
-    USHORT                      SaveBasicManager() const;
-    USHORT                      SaveBasicContainer() const;
-    USHORT                      SaveDialogContainer() const;
     void                        EnterBasicCall();
     void                        LeaveBasicCall();
     SfxCancelManager*           GetCancelManager() const;
@@ -302,13 +295,10 @@ public:
     BOOL                        GetOptions(SfxItemSet &);
     void                        SetOptions(const SfxItemSet &);
 
-    USHORT                      GetFreeIndex();
     void                        ReleaseIndex(USHORT i);
 
     void                        NotifyEvent(const SfxEventHint& rEvent, FASTBOOL bSynchron = TRUE );
     SfxEventConfiguration*      GetEventConfig() const;
-
-    void                        SaveConfiguration() const;
 
     SfxMiscCfg*                 GetMiscConfig();
     void                        Deinitialize();
