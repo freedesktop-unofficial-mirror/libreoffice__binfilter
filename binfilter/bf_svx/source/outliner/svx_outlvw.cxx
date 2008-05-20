@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_outlvw.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,58 +63,11 @@ namespace binfilter {
 
 /*N*/ DBG_NAME(OutlinerView)
 
-
-/*N*/ OutlinerView::OutlinerView( Outliner* pOut, Window* pWin )
-/*N*/ {
-/*N*/   DBG_CTOR( OutlinerView, 0 );
-/*N*/
-/*N*/   pOwner                      = pOut;
-/*N*/   bDDCursorVisible            = FALSE;
-/*N*/   bInDragMode                 = FALSE;
-/*N*/   nDDScrollLRBorderWidthWin   = 0;
-/*N*/   nDDScrollTBBorderWidthWin   = 0;
-/*N*/   pHorTabArrDoc               = 0;
-/*N*/
-/*N*/   pEditView = new EditView( pOut->pEditEngine, pWin );
-/*N*/   pEditView->SetSelectionMode( EE_SELMODE_TXTONLY );
-/*N*/ }
-
 /*N*/ OutlinerView::~OutlinerView()
 /*N*/ {
 /*N*/   DBG_DTOR(OutlinerView,0);
 /*N*/   delete pEditView;
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Berechnet, ueber welchem Absatz eingefuegt werden muss
-
-
-
-
-
-
-
-
-
-
-
-// MT: Name sollte mal geaendert werden!
-
-
-
-
-
 
 
 /*N*/ Rectangle OutlinerView::GetVisArea() const
