@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -60,7 +60,6 @@ SRC1FILES =  \
 
 SLOFILES =  \
                 $(SLO)$/sw_attrdesc.obj \
-                $(SLO)$/sw_gloslst.obj \
                 $(SLO)$/sw_uiitems.obj \
                 $(SLO)$/sw_uitool.obj \
                 $(SLO)$/sw_initui.obj
