@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdpagv.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -355,7 +355,6 @@ protected:
     void AddWin(OutputDevice* pOutDev1);
     void DelWin(OutputDevice* pOutDev1);
 
-    void SetLayer(const String& rName, SetOfByte& rBS, FASTBOOL bJa);
     FASTBOOL IsLayer(const String& rName, const SetOfByte& rBS) const;
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
@@ -365,8 +364,6 @@ protected:
     void CheckAktGroup();
     // Wird von der PaintView gerufen, wenn Modelaenderungen abgeschlossen sind
     void ModelHasChanged();
-    void AdjHdl();
-    void LayerVisibilityChanged(const SdrLayerID _nLayerId, bool _bNewVisibility);
 public:
     TYPEINFO();
     SdrPageView(SdrPage* pPage1, const Point& rOffs, SdrView& rNewView);
@@ -411,13 +408,10 @@ public:
     Rectangle&       MarkSnap()                                 { return aMarkSnap; }
 
 
-    void SetLayerVisible(const String& rName, FASTBOOL bShow=TRUE)  { SetLayer(rName,aLayerVisi,bShow); if (!bShow) AdjHdl(); InvalidateAllWin(); }
     FASTBOOL IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
 
-    void SetLayerLocked(const String& rName, FASTBOOL bLock=TRUE)   { SetLayer(rName,aLayerLock,bLock); if (bLock) AdjHdl(); }
     FASTBOOL IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
 
-    void SetLayerPrintable(const String& rName, FASTBOOL bPrn=TRUE) { SetLayer(rName,aLayerPrn,bPrn); }
     FASTBOOL IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
@@ -437,8 +431,6 @@ public:
     const SetOfByte& GetLockedLayers() const                    { return aLayerLock; }
 
     const SdrHelpLineList& GetHelpLines() const                 { return aHelpLines; }
-    void SetHelpLines(const SdrHelpLineList& rHLL);
-    //void SetHelpLinePos(USHORT nNum, const Point& rNewPos);
     void SetHelpLine(USHORT nNum, const SdrHelpLine& rNewHelpLine);
     void MoveHelpLine(USHORT nNum, USHORT nNewNum)              { aHelpLines.Move(nNum,nNewNum); }
 
@@ -454,8 +446,6 @@ public:
     // Verlassen einer betretenen Objektgruppe. (wie MsDos chdir ..)
     // Verlassen aller betretenen Objektgruppen. (wie MsDos chdir \)
     void LeaveAllGroup();
-    // Feststellen, wie weit hinabgestiegen wurde (0=Root(Page))
-    USHORT GetEnteredLevel() const;
     // Name der aktuellen Objektgruppe
     // Die Namen aller z.Zt. betretenen Gruppen
 
