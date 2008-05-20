@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ndtxt.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1287,7 +1287,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/   }
 /*N*/
 /*N*/
-/*N*/   const BOOL bUndoNodes = !pOtherDoc && GetDoc()->GetUndoNds() == &GetNodes();
+/*N*/   const BOOL bUndoNodes = FALSE; // !pOtherDoc && GetDoc()->GetUndoNds() == &GetNodes();
 /*N*/
 /*N*/   // Ende erst jetzt holen, weil beim Kopieren in sich selbst der
 /*N*/   // Start-Index und alle Attribute vorher aktualisiert werden.
@@ -1807,7 +1807,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       SwDoc* pOtherDoc = pDest->GetDoc();
 /*N*/       if( pOtherDoc == GetDoc() )
 /*N*/           pOtherDoc = 0;
-/*N*/       const BOOL bUndoNodes = !pOtherDoc && GetDoc()->GetUndoNds() == &GetNodes();
+/*N*/       const BOOL bUndoNodes = FALSE; // !pOtherDoc && GetDoc()->GetUndoNds() == &GetNodes();
 /*N*/
 /*N*/       // harte Absatz umspannende Attribute kopieren
 /*N*/       if( GetpSwAttrSet() )
