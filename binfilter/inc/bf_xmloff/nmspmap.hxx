@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: nmspmap.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -142,10 +142,6 @@ public:
                              ::rtl::OUString *pLocalName,
                              ::rtl::OUString *pNamespace = 0 ) const;
 
-    /* This will replace the version with the unused 3rd default parameter */
-    sal_uInt16 _GetKeyByAttrName( const ::rtl::OUString& rAttrName,
-                             ::rtl::OUString *pLocalName = 0 ) const;
-
     sal_uInt16 GetFirstKey() const;
     sal_uInt16 GetNextKey( sal_uInt16 nOldKey ) const;
 
@@ -153,7 +149,6 @@ public:
                      const ::rtl::OUString& rName, sal_uInt16 nKey = XML_NAMESPACE_UNKNOWN );
 /* deprecated */ sal_Bool AddAtIndex( sal_uInt16 nIdx, const sal_Char *pPrefix,
                      const sal_Char *pName, sal_uInt16 nKey = XML_NAMESPACE_UNKNOWN );
-/* deprecated */ sal_uInt16 GetIndexByKey( sal_uInt16 nKey ) const;
 /* deprecated */ sal_uInt16 GetIndexByPrefix( const ::rtl::OUString& rPrefix ) const;
 /* deprecated */ const ::rtl::OUString& GetPrefixByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ const ::rtl::OUString& GetNameByIndex( sal_uInt16 nIdx ) const;
