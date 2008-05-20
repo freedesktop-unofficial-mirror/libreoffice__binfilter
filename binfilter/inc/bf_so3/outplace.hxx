@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: outplace.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -95,20 +95,15 @@ protected:
     SO3_DLLPRIVATE              ~SvOutPlaceObject();
 public:
                     SO2_DECL_BASIC_CLASS(SvOutPlaceObject)
-//                  SO2_DECL_BASIC_CLASS_DLL(SvOutPlaceObject,SOAPP)
                     SvOutPlaceObject();
     static SvInPlaceObjectRef   InsertObject( Window *, SvStorage * pIStorage,
-                                                BOOL & bOut, String & rTypeName, String & rFileName,
-                                                BOOL & bInternal, SvGlobalName & rInternalClassName );
-    static SvInPlaceObjectRef   InsertObject( Window *, SvStorage * pIStorage,
                                             BOOL & bOut, const SvGlobalName & rName, String & rFileName );
-    static SvInPlaceObjectRef   CreateFromClipboard( SvStorage * );
+#ifdef WNT
     static SvInPlaceObjectRef   CreateFromData( const ::com::sun::star::uno::Reference<
                                                 ::com::sun::star::datatransfer::XTransferable>&,
                                                 SvStorage*);
     static SvGlobalName         GetCLSID( const String & rFileName );
-    static SvInPlaceObjectRef   CreateFromFile( SvStorage * pStor, const String & rFileName );
-
+#endif
     static const ::binfilter::SvObjectServer* GetInternalServer_Impl( const SvGlobalName& aGlobName );
 
     void            ClearCache();
