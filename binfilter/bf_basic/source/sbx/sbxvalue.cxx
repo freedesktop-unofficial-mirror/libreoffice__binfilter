@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxvalue.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -647,15 +647,6 @@ BOOL SbxValue::Get( SbxValues& rRes ) const
     return bRes;
 }
 
-BOOL SbxValue::GetNoBroadcast( SbxValues& rRes )
-{
-    USHORT nFlags_ = GetFlags();
-    SetFlag( SBX_NO_BROADCAST );
-    BOOL bRes = Get( rRes );
-    SetFlags( nFlags_ );
-    return bRes;
-}
-
 const XubString& SbxValue::GetString() const
 {
     SbxValues aRes;
@@ -684,16 +675,6 @@ const XubString& SbxValue::GetCoreString() const
     }
 }
 
-BOOL SbxValue::HasObject() const
-{
-    ErrCode eErr = GetError();
-    SbxValues aRes;
-    aRes.eType = SbxOBJECT;
-    Get( aRes );
-    SetError( eErr );
-    return 0 != aRes.pObj;
-}
-
 BOOL SbxValue::GetBool() const
 {
     SbxValues aRes;
@@ -709,22 +690,16 @@ GET( GetByte,     SbxBYTE,       BYTE,             nByte )
 GET( GetChar,     SbxCHAR,       xub_Unicode,           nChar )
 GET( GetCurrency, SbxCURRENCY,   SbxINT64,         nLong64 )
 GET( GetDate,     SbxDATE,       double,           nDouble )
-GET( GetData,     SbxDATAOBJECT, void*,            pData )
 GET( GetDouble,   SbxDOUBLE,     double,           nDouble )
-GET( GetErr,      SbxERROR,      UINT16,           nUShort )
-GET( GetInt,      SbxINT,        int,              nInt )
 GET( GetInteger,  SbxINTEGER,    INT16,            nInteger )
 GET( GetLong,     SbxLONG,       INT32,            nLong )
-GET( GetLong64,   SbxLONG64,     SbxINT64,         nLong64 )
 GET( GetObject,   SbxOBJECT,     SbxBase*,         pObj )
 GET( GetSingle,   SbxSINGLE,     float,            nSingle )
 GET( GetULong,    SbxULONG,      UINT32,           nULong )
-GET( GetULong64,  SbxULONG64,    SbxUINT64,        nULong64 )
 GET( GetUShort,   SbxUSHORT,     UINT16,           nUShort )
 GET( GetInt64,    SbxSALINT64,   sal_Int64,        nInt64 )
 GET( GetUInt64,   SbxSALUINT64,  sal_uInt64,       uInt64 )
 GET( GetDecimal,  SbxDECIMAL,    SbxDecimal*,      pDecimal )
-
 
 //////////////////////////// Daten schreiben /////////////////////////////
 
@@ -839,69 +814,6 @@ BOOL SbxValue::Put( const SbxValues& rVal )
     return bRes;
 }
 
-// AB, 28.3.96:
-// Methode, um bei speziellen Typen eine Vorbehandlung des Strings
-// durchzufuehren. Insbesondere erforderlich fuer BASIC-IDE, damit
-// die Ausgaben im Watch-Fenster mit PutStringExt zurueckgeschrieben
-// werden koennen, wenn Floats mit ',' als Dezimaltrenner oder BOOLs
-// explizit mit "TRUE" oder "FALSE" angegeben werden.
-// Implementierung in ImpConvStringExt (SBXSCAN.CXX)
-BOOL SbxValue::PutStringExt( const XubString& r )
-{
-    // Kopieren, bei Unicode gleich konvertieren
-    String aStr( r );
-
-    // Eigenen Typ bestimmen (nicht wie in Put() mit TheRealValue(),
-    // Objekte werden sowieso nicht behandelt)
-    SbxDataType eTargetType = SbxDataType( aData.eType & 0x0FFF );
-
-    // Source-Value basteln
-    SbxValues aRes;
-    aRes.eType = SbxSTRING;
-
-    // Nur, wenn wirklich was konvertiert wurde, Kopie nehmen,
-    // sonst Original (Unicode bleibt erhalten)
-    BOOL bRet;
-    if( ImpConvStringExt( aStr, eTargetType ) )
-        aRes.pString = (XubString*)&aStr;
-    else
-        aRes.pString = (XubString*)&r;
-
-    // #34939: Bei Strings. die eine Zahl enthalten und wenn this einen
-    // Num-Typ hat, Fixed-Flag setzen, damit der Typ nicht veraendert wird
-    USHORT nFlags_ = GetFlags();
-    if( ( eTargetType >= SbxINTEGER && eTargetType <= SbxCURRENCY ) ||
-        ( eTargetType >= SbxCHAR && eTargetType <= SbxUINT ) ||
-        eTargetType == SbxBOOL )
-    {
-        SbxValue aVal;
-        aVal.Put( aRes );
-        if( aVal.IsNumeric() )
-            SetFlag( SBX_FIXED );
-    }
-
-    Put( aRes );
-    bRet = BOOL( !IsError() );
-
-    // Falls das mit dem FIXED einen Error gegeben hat, zuruecksetzen
-    // (UI-Aktion sollte keinen Error ergeben, sondern nur scheitern)
-    if( !bRet )
-        ResetError();
-
-    SetFlags( nFlags_ );
-    return bRet;
-}
-
-BOOL SbxValue::PutString( const xub_Unicode* p )
-{
-    XubString aVal( p );
-    SbxValues aRes;
-    aRes.eType = SbxSTRING;
-    aRes.pString = &aVal;
-    Put( aRes );
-    return BOOL( !IsError() );
-}
-
 BOOL SbxValue::PutBool( BOOL b )
 {
     SbxValues aRes;
@@ -918,48 +830,6 @@ BOOL SbxValue::PutEmpty()
     return bRet;
 }
 
-BOOL SbxValue::PutNull()
-{
-    BOOL bRet = SetType( SbxNULL );
-    if( bRet )
-        SetModified( TRUE );
-    return bRet;
-}
-
-
-// Special decimal methods
-BOOL SbxValue::PutDecimal( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec )
-{
-    SbxValue::Clear();
-    aData.pDecimal = new SbxDecimal( rAutomationDec );
-    aData.pDecimal->addRef();
-    aData.eType = SbxDECIMAL;
-    return TRUE;
-}
-
-BOOL SbxValue::fillAutomationDecimal
-    ( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec )
-{
-    SbxDecimal* pDecimal = GetDecimal();
-    if( pDecimal != NULL )
-    {
-        pDecimal->fillAutomationDecimal( rAutomationDec );
-        return TRUE;
-    }
-    return FALSE;
-}
-
-
-BOOL SbxValue::PutpChar( const xub_Unicode* p )
-{
-    XubString aVal( p );
-    SbxValues aRes;
-    aRes.eType = SbxLPSTR;
-    aRes.pString = &aVal;
-    Put( aRes );
-    return BOOL( !IsError() );
-}
-
 BOOL SbxValue::PutString( const XubString& r )
 {
     SbxValues aRes;
@@ -969,7 +839,6 @@ BOOL SbxValue::PutString( const XubString& r )
     return BOOL( !IsError() );
 }
 
-
 #define PUT( p, e, t, m ) \
 BOOL SbxValue::p( t n ) \
 { SbxValues aRes(e); aRes.m = n; Put( aRes ); return BOOL( !IsError() ); }
@@ -978,22 +847,16 @@ PUT( PutByte,     SbxBYTE,       BYTE,             nByte )
 PUT( PutChar,     SbxCHAR,       xub_Unicode,      nChar )
 PUT( PutCurrency, SbxCURRENCY,   const SbxINT64&,  nLong64 )
 PUT( PutDate,     SbxDATE,       double,           nDouble )
-PUT( PutData,     SbxDATAOBJECT, void*,            pData )
 PUT( PutDouble,   SbxDOUBLE,     double,           nDouble )
-PUT( PutErr,      SbxERROR,      UINT16,           nUShort )
-PUT( PutInt,      SbxINT,        int,              nInt )
 PUT( PutInteger,  SbxINTEGER,    INT16,            nInteger )
 PUT( PutLong,     SbxLONG,       INT32,            nLong )
-PUT( PutLong64,   SbxLONG64,     const SbxINT64&,  nLong64 )
 PUT( PutObject,   SbxOBJECT,     SbxBase*,         pObj )
 PUT( PutSingle,   SbxSINGLE,     float,            nSingle )
 PUT( PutULong,    SbxULONG,      UINT32,           nULong )
-PUT( PutULong64,  SbxULONG64,    const SbxUINT64&, nULong64 )
 PUT( PutUShort,   SbxUSHORT,     UINT16,           nUShort )
 PUT( PutInt64,    SbxSALINT64,   sal_Int64,        nInt64 )
 PUT( PutUInt64,   SbxSALUINT64,  sal_uInt64,       uInt64 )
 PUT( PutDecimal,  SbxDECIMAL,    SbxDecimal*,      pDecimal )
-
 
 ////////////////////////// Setzen des Datentyps ///////////////////////////
 
@@ -1009,11 +872,6 @@ BOOL SbxValue::IsFixed() const
 BOOL SbxValue::IsNumeric() const
 {
     return ImpIsNumeric( /*bOnlyIntntl*/FALSE );
-}
-
-BOOL SbxValue::IsNumericRTL() const
-{
-    return ImpIsNumeric( /*bOnlyIntntl*/TRUE );
 }
 
 BOOL SbxValue::ImpIsNumeric( BOOL bOnlyIntntl ) const
