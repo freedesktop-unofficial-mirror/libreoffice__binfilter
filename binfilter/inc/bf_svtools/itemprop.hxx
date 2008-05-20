@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: itemprop.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,9 +55,6 @@ struct SfxItemPropertyMap
     BYTE                                nMemberId;
 
      static const SfxItemPropertyMap*   GetByName(
-        const SfxItemPropertyMap *pMap,
-        const ::rtl::OUString &rName );
-     static const SfxItemPropertyMap*   GetTolerantByName(
         const SfxItemPropertyMap *pMap,
         const ::rtl::OUString &rName );
 };
