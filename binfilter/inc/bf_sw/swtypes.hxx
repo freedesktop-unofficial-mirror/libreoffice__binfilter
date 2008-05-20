@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swtypes.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -105,9 +105,6 @@ const SwTwips lMinBorder = 1134;
 //Die halbe Wiesenbreite ist der Abstand zwischen den Seiten.
 #define DOCUMENTBORDER 568L
 
-//initiale UndoActionCount
-#define UNDO_ACTION_COUNT 20
-
 // Konstante Strings
 extern UniString aEmptyStr;         // ""
 extern ByteString aEmptyByteStr;    // ""
@@ -196,8 +193,6 @@ extern ResMgr* pSwResMgr;           // steht in swapp0.cxx
 
 com::sun::star::lang::Locale    CreateLocale( LanguageType eLanguage );
 
-::com::sun::star::uno::Reference<
-    ::com::sun::star::linguistic2::XSpellChecker1 > GetSpellChecker();
 ::com::sun::star::uno::Reference<
     ::com::sun::star::linguistic2::XHyphenator >    GetHyphenator();
 ::com::sun::star::uno::Reference<
