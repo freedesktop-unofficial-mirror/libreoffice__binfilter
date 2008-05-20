@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_markdata.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -179,16 +179,6 @@ namespace binfilter {
 /*N*/   return nCount;
 /*N*/ }
 
-/*N*/ USHORT ScMarkData::GetFirstSelected() const
-/*N*/ {
-/*N*/   for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/       if (bTabMarked[i])
-/*N*/           return i;
-/*N*/
-/*N*/   DBG_ERROR("GetFirstSelected: keine markiert");
-/*N*/   return 0;
-/*N*/ }
-
 /*N*/ void ScMarkData::MarkToMulti()
 /*N*/ {
 /*N*/   if ( bMarked && !bMarking )
@@ -336,30 +326,6 @@ namespace binfilter {
 /*?*/       pList->Append( aMarkRange );
 /*N*/ }
 
-/*N*/ void ScMarkData::ExtendRangeListTables( ScRangeList* pList ) const
-/*N*/ {
-/*N*/   if (!pList)
-/*N*/       return;
-/*N*/
-/*N*/   ScRangeList aOldList(*pList);
-/*N*/   pList->RemoveAll();                 //! oder die vorhandenen unten weglassen
-/*N*/
-/*N*/   for (USHORT nTab=0; nTab<=MAXTAB; nTab++)
-/*N*/       if (bTabMarked[nTab])
-/*N*/       {
-/*N*/           ULONG nCount = aOldList.Count();
-/*N*/           for (ULONG i=0; i<nCount; i++)
-/*N*/           {
-/*N*/               ScRange aRange = *aOldList.GetObject(i);
-/*N*/               aRange.aStart.SetTab(nTab);
-/*N*/               aRange.aEnd.SetTab(nTab);
-/*N*/               pList->Append( aRange );
-/*N*/           }
-/*N*/       }
-/*N*/ }
-
-
-
 /*N*/ BOOL ScMarkData::IsAllMarked( const ScRange& rRange ) const
 /*N*/ {
 /*N*/   if ( !bMultiMarked )
@@ -403,17 +369,4 @@ namespace binfilter {
 /*N*/
 /*N*/   return FALSE;       // nix
 /*N*/ }
-
-/*N*/ void ScMarkData::InsertTab( USHORT nTab )
-/*N*/ {
-/*N*/   for (USHORT i=MAXTAB; i>nTab; i--)
-/*N*/       bTabMarked[i] = bTabMarked[i-1];
-/*N*/   bTabMarked[nTab] = FALSE;
-/*N*/ }
-
-
-
-
-
-
 }
