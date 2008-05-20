@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: matril3d.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -99,14 +99,6 @@ public:
     BOOL operator!=(const B3dMaterial& rMat) { return (!((*this) == rMat)); }
 protected:
 };
-
-/*************************************************************************
-|*
-|* Bucket fuer Materialeigenschaften
-|*
-\************************************************************************/
-
-BASE3D_DECL_BUCKET(B3dMaterial, Bucket)
 
 }//end of namespace binfilter
 
