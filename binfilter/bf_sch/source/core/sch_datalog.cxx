@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_datalog.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -30,25 +30,8 @@
 #include "datalog.hxx"
 namespace binfilter {
 
-#define SCHLOGBOOK_DEFOVERHEAD 20
-
-#define MAX(a,b)   ((a>b)?(a):(b))
-
-
-/*N*/ SchDataLogBook::SchDataLogBook(const SchMemChart& aMemChart)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
 /*N*/ SchDataLogBook::~SchDataLogBook()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-
-
-
-
-
-
-
-
 
 }
