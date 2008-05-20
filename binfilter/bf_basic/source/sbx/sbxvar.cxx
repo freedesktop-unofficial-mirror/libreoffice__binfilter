@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxvar.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -166,11 +166,6 @@ SbxInfo* SbxVariable::GetInfo()
             SetModified( TRUE );
     }
     return pInfo;
-}
-
-void SbxVariable::SetInfo( SbxInfo* p )
-{
-    pInfo = p;
 }
 
 void SbxVariable::SetParameters( SbxArray* p )
@@ -494,21 +489,7 @@ BOOL SbxVariable::StoreData( SvStream& rStrm ) const
 SbxInfo::SbxInfo() : aHelpFile(), nHelpId( 0 ), aParams()
 {}
 
-SbxInfo::SbxInfo( const String& r, UINT32 n )
-       : aHelpFile( r ), nHelpId( n ), aParams()
-{}
-
 ////////////////////////////// SbxAlias //////////////////////////////////
-
-SbxAlias::SbxAlias( const XubString& rName, SbxVariable* p )
-        : SbxVariable(), xAlias( p )
-{
-    SetName( rName );
-    SetFlags( p->GetFlags() );
-    SetFlag( SBX_DONTSTORE );
-    aData.eType = p->GetType();
-    StartListening( p->GetBroadcaster() );
-}
 
 SbxAlias::SbxAlias( const SbxAlias& r )
         : SvRefBase( r ), SbxVariable( r ),
