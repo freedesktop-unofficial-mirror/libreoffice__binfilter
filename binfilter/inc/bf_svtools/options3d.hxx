@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: options3d.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -111,39 +111,6 @@ class  SvtOptions3D: public Options
 
          SvtOptions3D();
         virtual ~SvtOptions3D();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/_3D-Engine/..."
-            @descr      These options describe internal states to enable/disable features of installed office.
-
-                        IsDithering()
-                        SetDithering()          =>  Activate this field for dithering of 3D objects
-
-                        IsOpenGL()
-                        SetOpenGL()             =>  Activate this field for using OpenGL library
-
-                        IsOpenGL_Faster()
-                        SetOpenGL_Faster()      =>  Activate this field for optimized OpenGL calls
-
-                        IsShowFull()
-                        SetShowFull()           =>  Activate this field for fully shown 3D objects while construction
-
-            @seealso    configuration package "org.openoffice.Office.Common/_3D-Engine"
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsDithering() const;
-        sal_Bool    IsOpenGL() const;
-        sal_Bool    IsOpenGL_Faster() const;
-        sal_Bool    IsShowFull() const;
-
-        void        SetDithering( sal_Bool bState );
-        void        SetOpenGL( sal_Bool bState );
-        void        SetOpenGL_Faster( sal_Bool bState );
-        void        SetShowFull( sal_Bool bState );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
