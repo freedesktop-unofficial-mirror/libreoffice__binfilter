@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_impedit5.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -564,15 +564,5 @@ namespace binfilter {
 /*N*/
 /*N*/     return pNode->GetContentAttribs().GetItem( nWhich );
 /*N*/ }
-
-/*N*/ ImplIMEInfos::ImplIMEInfos( const EditPaM& rPos, const String& rOldTextAfterStartPos )
-/*N*/  : aOldTextAfterStartPos( rOldTextAfterStartPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ ImplIMEInfos::~ImplIMEInfos()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 
 }
