@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: filerec.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -313,9 +313,6 @@ protected:
                         }
 
 public:
-    static USHORT       ScanRecordType( SvStream *pStream );
-
-                        SfxMiniRecordReader( SvStream *pStream );
                         SfxMiniRecordReader( SvStream *pStream, BYTE nTag );
     inline              ~SfxMiniRecordReader();
 
@@ -379,9 +376,6 @@ protected:
 public:
                     SfxSingleRecordWriter( SvStream *pStream,
                                            UINT16 nTag, BYTE nCurVer );
-                    SfxSingleRecordWriter( SvStream *pStream,
-                                           UINT16 nTag, BYTE nCurVer,
-                                           UINT32 nSize );
 
     inline void     Reset();
 
@@ -435,7 +429,6 @@ protected:
     FASTBOOL            ReadHeader_Impl( USHORT nTypes );
 
 public:
-                        SfxSingleRecordReader( SvStream *pStream );
                         SfxSingleRecordReader( SvStream *pStream, USHORT nTag );
 
     inline UINT16       GetTag() const;
@@ -507,9 +500,6 @@ protected:
                                              UINT32 nContentSize );
 
 public:
-                    SfxMultiFixRecordWriter( SvStream *pStream,
-                                             UINT16 nTag, BYTE nCurVer,
-                                             UINT32 nContentSize );
     inline          ~SfxMultiFixRecordWriter();
 
     inline void     NewContent();
@@ -690,7 +680,6 @@ class  SfxMultiRecordReader: public SfxSingleRecordReader
     FASTBOOL            ReadHeader_Impl();
 
 public:
-                        SfxMultiRecordReader( SvStream *pStream );
                         SfxMultiRecordReader( SvStream *pStream, UINT16 nTag );
                         ~SfxMultiRecordReader();
 
