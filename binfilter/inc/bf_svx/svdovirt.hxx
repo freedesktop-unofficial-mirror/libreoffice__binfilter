@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdovirt.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,7 +63,6 @@ protected:
 public:
     TYPEINFO();
     SdrVirtObj(SdrObject& rNewObj);
-    SdrVirtObj(SdrObject& rNewObj, const Point& rAnchorPos);
     virtual ~SdrVirtObj();
     virtual SdrObject& ReferencedObj();
     virtual const SdrObject& GetReferencedObj() const;
