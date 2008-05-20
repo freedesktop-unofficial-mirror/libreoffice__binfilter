@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docdde.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,16 +93,6 @@ struct _FindItem
     _FindItem( const String& rS )
         : rItem( rS ), pBkmk( 0 ), pTblNd( 0 ), pSectNd( 0 )
     {}
-
-    void ClearObj()
-    {
-        if( pBkmk )
-            pBkmk->SetRefObject( 0 );
-        else if( pSectNd )
-            pSectNd->GetSection().SetRefObject( 0 );
-        else if( pTblNd )
-            pTblNd->GetTable().SetRefObject( 0 );
-    }
 };
 
 
