@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unocrsr.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,13 +64,6 @@ namespace binfilter {
 /*N*/   bSkipOverProtectSections( FALSE )
 /*N*/
 /*N*/ {}
-
-/*?*/ SwUnoCrsr::SwUnoCrsr( SwUnoCrsr& rICrsr )
-/*?*/   : SwCursor( rICrsr ), SwModify( 0 ),
-/*?*/   bRemainInSection( rICrsr.bRemainInSection ),
-/*?*/   bSkipOverHiddenSections( rICrsr.bSkipOverHiddenSections ),
-/*?*/   bSkipOverProtectSections( rICrsr.bSkipOverProtectSections )
-/*?*/ {}
 
 /*N*/ SwUnoCrsr::~SwUnoCrsr()
 /*N*/ {
@@ -196,13 +189,6 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 
 
 /*  */
-
-/*N*/ SwUnoTableCrsr::SwUnoTableCrsr( const SwPosition& rPos )
-/*N*/   : SwTableCursor( rPos ), SwUnoCrsr( rPos ), SwCursor( rPos ),
-/*N*/   aTblSel( rPos )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRemainInSection( FALSE );
-/*N*/ }
 
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
