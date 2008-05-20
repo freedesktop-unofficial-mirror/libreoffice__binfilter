@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: goodies_b3dentty.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -149,19 +149,6 @@ void B3dEntity::CalcMiddle(B3dEntity& rOld1, B3dEntity& rOld2)
 
     // Farbe berechnen
     aColor.CalcMiddle(rOld1.Color(), rOld2.Color());
-}
-
-/*************************************************************************
-|*
-|* Eine beliebige Transformation auf die Geometrie anwenden
-|*
-\************************************************************************/
-
-void B3dEntity::Transform(const Matrix4D& rMat)
-{
-    aPoint *= rMat;
-    if(bNormalUsed)
-        rMat.RotateAndNormalize(aNormal);
 }
 
 /*************************************************************************
