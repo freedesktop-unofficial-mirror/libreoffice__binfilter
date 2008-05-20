@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbunoobj.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,7 +83,6 @@ class SbUnoObject: public SbxObject
     void implCreateAll( void );
 
 public:
-    static bool getDefaultPropName( SbUnoObject* pUnoObj, String& sDfltProp );
     TYPEINFO();
     SbUnoObject( const String& aName_, const Any& aUnoObj_ );
     ~SbUnoObject();
@@ -108,13 +107,9 @@ public:
 SV_DECL_IMPL_REF(SbUnoObject);
 
 
-// #67781 Rueckgabewerte der Uno-Methoden loeschen
-void clearUnoMethods( void );
-
 class SbUnoMethod : public SbxMethod
 {
     friend class SbUnoObject;
-    friend void clearUnoMethods( void );
 
     Reference< XIdlMethod > m_xUnoMethod;
     Sequence<ParamInfo>* pParamInfoSeq;
@@ -236,17 +231,6 @@ public:
 
 
 class StarBASIC;
-
-// Impl-Methoden fuer RTL
-void RTL_Impl_CreateUnoStruct( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_CreateUnoService( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_CreateUnoValue( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_GetProcessServiceManager( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_HasInterfaces( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_IsUnoStruct( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_EqualUnoObjects( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-void RTL_Impl_GetDefaultContext( StarBASIC* pBasic, SbxArray& rPar, BOOL bWrite );
-
 
 //========================================================================
 // #118116 Collection object
