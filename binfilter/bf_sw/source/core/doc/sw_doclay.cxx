@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_doclay.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -116,9 +116,6 @@
 #ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
 #endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
 #ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // PoolVorlagen-Id's
 #endif
@@ -196,9 +193,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   case RND_STD_FOOTERR:
 /*N*/       {
 /*N*/
-/*N*/ //JP erstmal ein Hack, solange keine Flys/Headers/Footers Undofaehig sind
-/*N*/ if( DoesUndo() )
-/*N*/   DelAllUndoObj();
 /*N*/
 /*N*/           pFmt = new SwFrmFmt( GetAttrPool(),
 /*N*/                               (bHeader ? "Header" : "Footer"),
@@ -283,7 +277,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   }
 
 /*N*/   const SwNodeIndex* pCntIdx = pFmt->GetCntnt().GetCntntIdx();
-/*N*/   if( pCntIdx && !DoesUndo() )
+/*N*/   if( pCntIdx )
 /*N*/   {
 /*N*/       //Verbindung abbauen, falls es sich um ein OLE-Objekt handelt.
 /*N*/       SwOLENode* pOLENd = GetNodes()[ pCntIdx->GetIndex()+1 ]->GetOLENode();
@@ -309,21 +303,12 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   //Frms vernichten.
 /*N*/   pFmt->DelFrms();
 
-    // erstmal sind nur Fly's Undofaehig
 /*N*/   const sal_uInt16 nWh = pFmt->Which();
-/*N*/   if( DoesUndo() && (RES_FLYFRMFMT == nWh || RES_DRAWFRMFMT == nWh) )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // erstmal werden alle Undo - Objecte geloescht.
-/*N*/   }
-/*N*/   else
 /*N*/   {
 /*N*/       //Inhalt Loeschen.
 /*N*/       if( pCntIdx )
 /*N*/       {
 /*N*/
-/*N*/ //JP erstmal ein Hack, solange keine Headers/Footers Undofaehig sind
-/*N*/ if( DoesUndo() )
-/*?*/   DelAllUndoObj();
 /*N*/
 /*N*/           SwNode *pNode = &pCntIdx->GetNode();
 /*N*/           ((SwFmtCntnt&)pFmt->GetAttr( RES_CNTNT )).SetNewCntntIdx( 0 );
@@ -473,9 +458,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           }
 /*N*/       }
 /*N*/
-/*N*/       if( DoesUndo() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       }
 /*N*/
 /*N*/       // sorge dafuer das auch Fly's in Fly's kopiert werden
 /*N*/       aIdx = *pSttNd->EndOfSectionNode();
@@ -502,9 +484,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       else
 /*N*/           pDest->SetAttr( rNewAnchor );
 /*N*/
-/*N*/       if( DoesUndo() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if( bSetTxtFlyAtt && FLY_IN_CNTNT == rNewAnchor.GetAnchorId() )
@@ -679,12 +658,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   if( GetRootFrm() )
 /*N*/       pFmt->MakeFrms();           // ???
 /*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoInsLayFmt( pFmt ));
-/*N*/   }
-/*N*/
 /*N*/   SetModified();
 /*N*/   return pFmt;
 /*N*/ }
@@ -824,12 +797,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   // ggfs. Frames anlegen
 /*N*/   if( GetRootFrm() )
 /*N*/       pFmt->MakeFrms();
-/*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoInsLayFmt( pFmt ));
-/*N*/   }
 /*N*/
 /*N*/   SetModified();
 /*N*/   return pFmt;
