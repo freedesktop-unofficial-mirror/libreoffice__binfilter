@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bf_migratefilter.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -141,6 +141,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
 
     sal_Bool bRetval(sal_True);
     sal_Bool bStrippedDocumentCreated(sal_False);
+    sal_Bool bInserting(sal_False);
 
     for(sal_Int32 a(0); a < nLength; a++)
     {
@@ -157,6 +158,9 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
 
         else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InteractionHandler")))
             pValue[a].Value >>= xInteractionHandler;
+
+        else if(pValue[a].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("InsertMode")))
+            pValue[a].Value >>= bInserting;
     }
 
     if(bRetval)
@@ -341,7 +345,7 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Math)");
         }
 */
-        if ( aFilterName.getLength() )
+        if ( aFilterName.getLength() && !bInserting )
         {
             uno::Reference < io::XStream > xTempFile(
                 mxMSF->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.io.TempFile" ) ),
