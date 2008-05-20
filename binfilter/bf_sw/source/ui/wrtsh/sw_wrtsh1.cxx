@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_wrtsh1.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,64 +80,11 @@
 #endif
 namespace binfilter {
 
-#define COMMON_INI_LIST \
-        rView(rShell),\
-        ePageMove(MV_NO),\
-        pCrsrStack(0),  \
-        fnLeaveSelect(&SwWrtShell::SttLeaveSelect),\
-        fnDrag(&SwWrtShell::BeginDrag),\
-        fnEndDrag(&SwWrtShell::EndDrag),\
-        fnSetCrsr(&SwWrtShell::SetCrsr),\
-        fnKillSel(&SwWrtShell::Ignore),\
-        bDestOnStack(FALSE),\
-        pModeStack(0)
-
-#define BITFLD_INI_LIST \
-        bClearMark = \
-        bIns = TRUE;\
-        bAddMode = \
-        bExtMode = \
-        bInSelect = \
-        bCopy = \
-        bLayoutMode = \
-        bNoEdit = \
-        bSelWrd = \
-        bSelLn = \
-        bIsInClickToEdit = FALSE;
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:   Object in die Core einfuegen.
-                 Vom ClipBoard oder Insert
-------------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------------
-    Beschreibung: Das aktuelle selektierte OLE-Objekt wird mit dem
-                  Verb in den Server geladen.
-------------------------------------------------------------------------*/
-
-
-
-
-
 /*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef xObj,
 /*N*/                            const SwRect *pFlyPrtRect,
 /*N*/                            const SwRect *pFlyFrmRect )
 /*N*/ {
             DBG_ERROR("Split!");
-/*N*/ }
-
-/*N*/ SwWrtShell::SwWrtShell( SwDoc& rDoc, Window *pWin, SwView &rShell,
-/*N*/                                          SwRootFrm *pRoot, const SwViewOption *pViewOpt )
-/*N*/  : SwFEShell( rDoc, pWin, pRoot, pViewOpt),
-/*N*/    COMMON_INI_LIST
-/*N*/ {
-/*N*/  BITFLD_INI_LIST
-/*N*/  SET_CURR_SHELL( this );
-/*N*/  SetSfxViewShell( (SfxViewShell *)&rShell );
-/*N*/  SetFlyMacroLnk( LINK(this, SwWrtShell, ExecFlyMac) );
 /*N*/ }
 
     void SwWrtShell::ConnectObj( SvInPlaceObjectRef, const SwRect &, const SwRect & )
