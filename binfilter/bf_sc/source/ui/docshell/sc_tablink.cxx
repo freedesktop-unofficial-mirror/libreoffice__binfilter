@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_tablink.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -408,19 +408,6 @@ namespace binfilter {
 /*N*/       aRef->DoClose();
 /*N*/   else if ( pMedium )
 /*N*/       delete pMedium;
-/*N*/ }
-
-/*N*/ void ScDocumentLoader::ReleaseDocRef()
-/*N*/ {
-/*N*/   if ( aRef.Is() )
-/*N*/   {
-/*N*/       //  release reference without calling DoClose - caller must
-/*N*/       //  have another reference to the doc and call DoClose later
-/*N*/
-/*N*/       pDocShell = NULL;
-/*N*/       pMedium = NULL;
-/*N*/       aRef.Clear();
-/*N*/   }
 /*N*/ }
 
 /*N*/ ScDocument* ScDocumentLoader::GetDocument()
