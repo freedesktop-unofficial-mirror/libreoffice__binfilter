@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: brokenpackageint.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -38,53 +38,5 @@ using namespace ::framework;
 typedef ContinuationBase< ::com::sun::star::task::XInteractionApprove > SfxContinuationApprove;
 typedef ContinuationBase< ::com::sun::star::task::XInteractionDisapprove > SfxContinuationDisapprove;
 
-class RequestPackageReparation : public ::cppu::WeakImplHelper1< ::com::sun::star::task::XInteractionRequest >
-{
-    ::com::sun::star::uno::Any m_aRequest;
-
-    ::com::sun::star::uno::Sequence<
-                    ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >
-                > m_lContinuations;
-
-    SfxContinuationApprove* m_pApprove;
-    SfxContinuationDisapprove*  m_pDisapprove;
-
-public:
-    RequestPackageReparation( ::rtl::OUString aName );
-
-    sal_Bool    isApproved() { return m_pApprove->isSelected(); }
-
-    virtual ::com::sun::star::uno::Any SAL_CALL getRequest()
-        throw( ::com::sun::star::uno::RuntimeException );
-
-    virtual ::com::sun::star::uno::Sequence<
-                ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >
-            > SAL_CALL getContinuations()
-        throw( ::com::sun::star::uno::RuntimeException );
-};
-
-class NotifyBrokenPackage : public ::cppu::WeakImplHelper1< ::com::sun::star::task::XInteractionRequest >
-{
-    ::com::sun::star::uno::Any m_aRequest;
-
-    ::com::sun::star::uno::Sequence<
-                    ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >
-                > m_lContinuations;
-
-    ContinuationAbort*  m_pAbort;
-
-public:
-    NotifyBrokenPackage( ::rtl::OUString aName );
-
-    sal_Bool    isAborted() { return m_pAbort->isSelected(); }
-
-    virtual ::com::sun::star::uno::Any SAL_CALL getRequest()
-        throw( ::com::sun::star::uno::RuntimeException );
-
-    virtual ::com::sun::star::uno::Sequence<
-                ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >
-            > SAL_CALL getContinuations()
-        throw( ::com::sun::star::uno::RuntimeException );
-};
 }//end of namespace binfilter
 
