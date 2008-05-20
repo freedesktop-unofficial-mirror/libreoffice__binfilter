@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unolingu.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,127 +113,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/                   "com.sun.star.linguistic2.LinguServiceManager" ) ) ), UNO_QUERY ) ;
 /*N*/   }
 /*N*/   return xRes;
-/*N*/ }
-
-///////////////////////////////////////////////////////////////////////////
-
-/*N*/ BOOL lcl_FindEntry( const OUString &rEntry, const Sequence< OUString > &rCfgSvcs )
-/*N*/ {
-/*N*/     INT32 nRes = -1;
-/*N*/     INT32 nEntries = rCfgSvcs.getLength();
-/*N*/     const OUString *pEntry = rCfgSvcs.getConstArray();
-/*N*/     for (INT32 i = 0;  i < nEntries && nRes == -1;  ++i)
-/*N*/     {
-/*?*/         if (rEntry == pEntry[i])
-/*?*/             nRes = i;
-/*N*/     }
-/*N*/     return nRes != -1;
-/*N*/ }
-
-
-/*N*/ Sequence< OUString > lcl_RemoveMissingEntries(
-/*N*/         const Sequence< OUString > &rCfgSvcs,
-/*N*/         const Sequence< OUString > &rAvailSvcs )
-/*N*/ {
-/*N*/     Sequence< OUString > aRes( rCfgSvcs.getLength() );
-/*N*/     OUString *pRes = aRes.getArray();
-/*N*/     INT32 nCnt = 0;
-/*N*/
-/*N*/     INT32 nEntries = rCfgSvcs.getLength();
-/*N*/     const OUString *pEntry = rCfgSvcs.getConstArray();
-/*N*/     for (INT32 i = 0;  i < nEntries;  ++i)
-/*N*/     {
-/*N*/         if (pEntry[i].getLength() && lcl_FindEntry( pEntry[i], rAvailSvcs ))
-/*N*/             pRes[ nCnt++ ] = pEntry[i];
-/*N*/     }
-/*N*/
-/*N*/     aRes.realloc( nCnt );
-/*N*/     return aRes;
-/*N*/ }
-
-
-/*N*/ Sequence< OUString > lcl_GetLastFoundSvcs(
-/*N*/         SvtLinguConfig &rCfg,
-/*N*/         const OUString &rLastFoundList ,
-/*N*/         const Locale &rAvailLocale )
-/*N*/ {
-/*N*/     Sequence< OUString > aRes;
-/*N*/
-/*N*/     OUString aCfgLocaleStr( MsLangId::convertLanguageToIsoString(
-/*N*/                                 SvxLocaleToLanguage( rAvailLocale ) ) );
-/*N*/
-/*N*/     Sequence< OUString > aNodeNames( rCfg.GetNodeNames(rLastFoundList) );
-/*N*/     BOOL bFound = lcl_FindEntry( aCfgLocaleStr, aNodeNames);
-/*N*/
-/*N*/     if (bFound)
-/*N*/     {
-/*N*/         Sequence< OUString > aNames(1);
-/*N*/         OUString &rNodeName = aNames.getArray()[0];
-/*N*/         rNodeName = rLastFoundList;
-/*N*/         rNodeName += OUString::valueOf( (sal_Unicode)'/' );
-/*N*/         rNodeName += aCfgLocaleStr;
-/*N*/         Sequence< Any > aValues( rCfg.GetProperties( aNames ) );
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/         const Any *pValue = aValues.getConstArray();
-/*N*/ #endif
-/*N*/         if (aValues.getLength())
-/*N*/         {
-/*N*/             DBG_ASSERT( aValues.getLength() == 1, "unexpected length of sequence" );
-/*N*/             Sequence< OUString > aSvcImplNames;
-/*N*/             if (aValues.getConstArray()[0] >>= aSvcImplNames)
-/*N*/                 aRes = aSvcImplNames;
-/*N*/             else
-/*N*/                 DBG_ERROR( "type mismatch" );
-/*N*/         }
-/*N*/     }
-/*N*/
-/*N*/     return aRes;
-/*N*/ }
-
-
-/*N*/ Sequence< OUString > lcl_GetNewEntries(
-/*N*/         const Sequence< OUString > &rLastFoundSvcs,
-/*N*/         const Sequence< OUString > &rAvailSvcs )
-/*N*/ {
-/*N*/     INT32 nLen = rAvailSvcs.getLength();
-/*N*/     Sequence< OUString > aRes( nLen );
-/*N*/     OUString *pRes = aRes.getArray();
-/*N*/     INT32 nCnt = 0;
-/*N*/
-/*N*/     const OUString *pEntry = rAvailSvcs.getConstArray();
-/*N*/     for (INT32 i = 0;  i < nLen;  ++i)
-/*N*/     {
-/*N*/         if (pEntry[i].getLength() && !lcl_FindEntry( pEntry[i], rLastFoundSvcs ))
-/*N*/             pRes[ nCnt++ ] = pEntry[i];
-/*N*/     }
-/*N*/
-/*N*/     aRes.realloc( nCnt );
-/*N*/     return aRes;
-/*N*/ }
-
-
-/*N*/ Sequence< OUString > lcl_MergeSeq(
-/*N*/         const Sequence< OUString > &rCfgSvcs,
-/*N*/         const Sequence< OUString > &rNewSvcs )
-/*N*/ {
-/*N*/     Sequence< OUString > aRes( rCfgSvcs.getLength() + rNewSvcs.getLength() );
-/*N*/     OUString *pRes = aRes.getArray();
-/*N*/     INT32 nCnt = 0;
-/*N*/
-/*N*/     for (INT32 k = 0;  k < 2;  ++k)
-/*N*/     {
-/*N*/         const Sequence< OUString > &rSeq = k == 0 ? rCfgSvcs : rNewSvcs;
-/*N*/         INT32 nLen = rSeq.getLength();
-/*N*/         const OUString *pEntry = rSeq.getConstArray();
-/*N*/         for (INT32 i = 0;  i < nLen;  ++i)
-/*N*/         {
-/*N*/             if (pEntry[i].getLength() && !lcl_FindEntry( pEntry[i], aRes ))
-/*N*/                 pRes[ nCnt++ ] = pEntry[i];
-/*N*/         }
-/*N*/     }
-/*N*/
-/*N*/     aRes.realloc( nCnt );
-/*N*/     return aRes;
 /*N*/ }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -693,54 +572,14 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ Reference< XDictionary1 >         LinguMgr::xIgnoreAll    = 0;
 /*N*/ Reference< XDictionary1 >         LinguMgr::xChangeAll    = 0;
 
-
-
-
-/*N*/ Reference< XSpellChecker1 > LinguMgr::GetSpellChecker()
-/*N*/ {
-/*N*/   return xSpell.is() ? xSpell : GetSpell();
-/*N*/ }
-
 /*N*/ Reference< XHyphenator > LinguMgr::GetHyphenator()
 /*N*/ {
 /*N*/   return xHyph.is() ? xHyph : GetHyph();
 /*N*/ }
 
-/*N*/ Reference< XThesaurus > LinguMgr::GetThesaurus()
-/*N*/ {
-/*N*/   return xThes.is() ? xThes : GetThes();
-/*N*/ }
-
 /*N*/ Reference< XDictionaryList > LinguMgr::GetDictionaryList()
 /*N*/ {
 /*N*/   return xDicList.is() ? xDicList : GetDicList();
-/*N*/ }
-
-
-
-
-
-/*N*/ Reference< XSpellChecker1 > LinguMgr::GetSpell()
-/*N*/ {
-/*N*/   if (bExiting)
-/*N*/       return 0;
-/*N*/
-/*N*/   if (!pExitLstnr)
-/*N*/       pExitLstnr = new LinguMgrExitLstnr;
-/*N*/
-/*N*/     //! use dummy implementation in order to avoid loading of lingu DLL
-/*N*/     xSpell = new SpellDummy_Impl;
-/*N*/
-/*    if (!xLngSvcMgr.is())
-        xLngSvcMgr = GetLngSvcMgr_Impl();
-
-    if (xLngSvcMgr.is())
-    {
-        xSpell = Reference< XSpellChecker1 > (
-                        xLngSvcMgr->getSpellChecker(), UNO_QUERY );
-    }
-*/
-/*N*/   return xSpell;
 /*N*/ }
 
 /*N*/ Reference< XHyphenator > LinguMgr::GetHyph()
@@ -765,34 +604,6 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 */
 /*N*/   return xHyph;
 /*N*/ }
-
-/*N*/ Reference< XThesaurus > LinguMgr::GetThes()
-/*N*/ {
-/*N*/   if (bExiting)
-/*N*/       return 0;
-/*N*/
-/*N*/   if (!pExitLstnr)
-/*N*/       pExitLstnr = new LinguMgrExitLstnr;
-/*N*/
-/*N*/     //! use dummy implementation in order to avoid loading of lingu DLL
-/*N*/     //! when only the XSupportedLocales interface is used.
-/*N*/     //! The dummy accesses the real implementation (and thus loading the DLL)
-/*N*/     //! when "real" work needs to be done only.
-/*N*/     xThes = new ThesDummy_Impl;
-/*
-    if (!xLngSvcMgr.is())
-        xLngSvcMgr = GetLngSvcMgr_Impl();
-
-    if (xLngSvcMgr.is())
-    {
-        xThes = xLngSvcMgr->getThesaurus();
-    }
-*/
-/*N*/   return xThes;
-/*N*/ }
-
-
-
 
 /*N*/ Reference< XDictionaryList > LinguMgr::GetDicList()
 /*N*/ {
