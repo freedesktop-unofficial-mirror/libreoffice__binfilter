@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: htmltokn.h,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,13 +51,7 @@ namespace binfilter
 sal_Unicode GetHTMLCharName( const String& rName );
 
 // suche die TokenID zu dem Token
- int GetHTMLToken( const String& rName );
-
-// suche die TokenId zu einemm Attribut-Token
-int GetHTMLOption( const String& rName );
-
-// suche die 24-bit-Farbe zu einem Farbnamen (nicht gefunden = ULONG_MAX)
- ULONG GetHTMLColor( const String& rName );
+int GetHTMLToken( const String& rName );
 
 // beginnen immer ab 256, groesser als ein char
 const int HTML_TOKEN_START      = 0x100;
