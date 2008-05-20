@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_cntwall.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -48,12 +48,6 @@ namespace binfilter
 {
 
 TYPEINIT1( CntWallpaperItem, SfxPoolItem );
-
-// -----------------------------------------------------------------------
-CntWallpaperItem::CntWallpaperItem( USHORT which )
-    : SfxPoolItem( which ), _nColor( COL_TRANSPARENT ), _nStyle( 0 )
-{
-}
 
 // -----------------------------------------------------------------------
 CntWallpaperItem::CntWallpaperItem( USHORT which, SvStream& rStream, USHORT nVersion )
