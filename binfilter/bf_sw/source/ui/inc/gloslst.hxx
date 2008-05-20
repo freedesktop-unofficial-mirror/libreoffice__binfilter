@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: gloslst.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,17 +69,6 @@ class SwGlossaryList : public AutoTimer
     AutoTextGroups  aGroupArr;
     String          sPath;
     BOOL            bFilled;
-
-
-public:
-        SwGlossaryList();
-        ~SwGlossaryList();
-
-
-
-
-
-    void            ClearGroups();
 };
 
 } //namespace binfilter
