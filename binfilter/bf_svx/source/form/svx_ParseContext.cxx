@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_ParseContext.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -143,14 +143,4 @@ namespace
 /*N*/           delete getSharedContext(NULL,sal_True);
 /*N*/   }
 /*N*/ }
-// -----------------------------------------------------------------------------
-/*N*/ const OSystemParseContext* OParseContextClient::getParseContext() const
-/*N*/ { DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*N*/ }
-// -----------------------------------------------------------------------------
-
-
-
-
-
 }
