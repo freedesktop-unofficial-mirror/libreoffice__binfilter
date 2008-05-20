@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unolayer.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,7 +124,8 @@ public:
     virtual ~SdLayerManager() throw();
 
     // uno helper
-    UNO3_GETIMPLEMENTATION_DECL( SdLayerManager )
+        static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
+        virtual sal_Int64 SAL_CALL getSomething( const ::com::sun::star::uno::Sequence< sal_Int8 >& aIdentifier ) throw(::com::sun::star::uno::RuntimeException);
 
     // XServiceInfo
     virtual ::rtl::OUString SAL_CALL getImplementationName() throw(::com::sun::star::uno::RuntimeException);
