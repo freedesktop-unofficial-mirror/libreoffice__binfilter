@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docufld.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -341,7 +341,6 @@ public:
 
      virtual SwFieldType*    Copy() const;
 
-    void                    SetHiddenFlag( BOOL bSetHidden = TRUE );
     inline BOOL             GetHiddenFlag() const { return bHidden; }
 };
 
