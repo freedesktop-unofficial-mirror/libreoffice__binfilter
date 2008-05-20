@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itemholder2.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -171,7 +171,6 @@ void ItemHolder2::impl_newItem(TItemInfo& rItem)
     switch(rItem.eItem)
     {
         case E_APEARCFG :
-// no ref count            rItem.pItem = new SvtTabAppearanceCfg();
             break;
 
         case E_CJKOPTIONS :
@@ -187,7 +186,6 @@ void ItemHolder2::impl_newItem(TItemInfo& rItem)
             break;
 
         case E_FONTSUBSTCONFIG :
-// no ref count            rItem.pItem = new SvtFontSubstConfig();
             break;
 
         case E_HELPOPTIONS :
