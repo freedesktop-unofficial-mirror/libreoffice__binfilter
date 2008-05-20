@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: startoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -111,38 +111,6 @@ class  SvtStartOptions: public Options
 
          SvtStartOptions();
         virtual ~SvtStartOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/Start/..."
-            @descr      These options describe internal states to enable/disable features of installed office.
-                        The values are fixed at runtime - and implemented as readonly!
-
-                        IsIntroEnabled()    :   Setting, if the StarOffice Logo is displayed when starting StarOffice.
-                                                Default = true
-
-                        EnableIntro()       :   Use it to enable/disable the logo at startup.
-
-            @seealso    configuration package "org.openoffice.Office.Common/Start"
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsIntroEnabled  (                   ) const ;
-        void        EnableIntro     ( sal_Bool bState   )       ;
-
-        /*-****************************************************************************************************//**
-            @short      returns or set the connection URL of an office
-            @descr      Specifies the URL for an UNO connection.
-                        No default is given, the URL has to be entered manually by the admin/user.
-                        zB.: "socket,host=pc1.test.de,port=6001;iiop;"
-
-            @seealso    configuration package "org.openoffice.Office.Common/Start"
-        *//*-*****************************************************************************************************/
-
-        ::rtl::OUString GetConnectionURL(                               ) const ;
-        void            SetConnectionURL( const ::rtl::OUString& sURL   )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
