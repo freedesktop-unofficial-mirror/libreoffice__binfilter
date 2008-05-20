@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_viewcontext.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,11 +50,6 @@ using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_EMBEDDED_VISIBLE_AREA;
 
 //------------------------------------------------------------------
-
-SdXMLViewSettingsContext::SdXMLViewSettingsContext( SdXMLImport& rImport, USHORT nPrfx, const OUString& rLName, const uno::Reference<xml::sax::XAttributeList>& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
-{
-}
 
 SdXMLViewSettingsContext::~SdXMLViewSettingsContext()
 {
