@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxcore.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -146,7 +146,6 @@ public:
     static SbxBase* Create( UINT16, UINT32=SBXCR_SBX );
     static SbxObject* CreateObject( const String& );
     // Sbx-Loesung als Ersatz fuer SfxBroadcaster::Enable()
-    static void StaticEnableBroadcasting( BOOL bEnable );
     static BOOL StaticIsEnabledBroadcasting( void );
 };
 
