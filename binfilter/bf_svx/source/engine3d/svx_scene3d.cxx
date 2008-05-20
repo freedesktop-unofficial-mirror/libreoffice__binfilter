@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_scene3d.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,22 +98,6 @@ namespace binfilter {
 /*N*/   E3dDefaultAttributes aDefault;
 /*N*/   SetDefaultAttributes(aDefault);
 /*N*/ }
-
-/*?*/ E3dScene::E3dScene(E3dDefaultAttributes& rDefault)
-/*?*/ : E3dObject(),
-/*?*/   aCamera(Vector3D(0,0,4), Vector3D()),
-/*?*/   bDoubleBuffered(FALSE),
-/*?*/   bClipping(FALSE),
-/*?*/   nSaveStatus (0),
-/*?*/   nRestStatus (0),
-/*?*/   bFitInSnapRect(TRUE),
-/*?*/   aPaintTime(),
-/*?*/   nDisplayQuality(255),
-/*?*/   bDrawOnlySelected(FALSE)
-/*?*/ {
-/*?*/   // Defaults setzen
-/*?*/   SetDefaultAttributes(rDefault);
-/*?*/ }
 
 /*N*/ void E3dScene::SetDefaultAttributes(E3dDefaultAttributes& rDefault)
 /*N*/ {
