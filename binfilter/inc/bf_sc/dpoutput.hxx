@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dpoutput.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -108,10 +108,6 @@ private:
 
 
 public:
-                     ScDPOutput( ScDocument* pD,
-                                const ::com::sun::star::uno::Reference<
-                                     ::com::sun::star::sheet::XDimensionsSupplier>& xSrc,
-                                 const ScAddress& rPos, BOOL bFilter );
                      ~ScDPOutput();
 
     void            SetPosition( const ScAddress& rPos );
