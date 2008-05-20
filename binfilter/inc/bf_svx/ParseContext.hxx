@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ParseContext.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -84,8 +84,6 @@ namespace svxform
     protected:
         OParseContextClient();
         virtual ~OParseContextClient();
-
-        const OSystemParseContext* getParseContext() const;
     };
 }
 }//end of namespace binfilter
