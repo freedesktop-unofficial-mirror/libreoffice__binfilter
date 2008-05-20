@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: flbytes.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -40,35 +40,6 @@
 
 namespace binfilter
 {
-
-//============================================================================
-class SvFillLockBytes : public SvLockBytes
-{
-    SvLockBytesRef xLockBytes;
-    ULONG nFilledSize;
-    BOOL bTerminated;
-    BOOL bSync;
-public:
-    TYPEINFO();
-
-    SvFillLockBytes( SvLockBytes* pLockBytes );
-    virtual ErrCode ReadAt(
-        ULONG nPos, void* pBuffer, ULONG nCount, ULONG* pRead ) const;
-    virtual ErrCode WriteAt(
-        ULONG nPos, const void* pBuffer, ULONG nCount, ULONG* pWritten );
-    virtual ErrCode Flush() const;
-    virtual ErrCode SetSize( ULONG nSize );
-    virtual ErrCode LockRegion( ULONG nPos, ULONG nCount, LockType );
-    virtual ErrCode UnlockRegion( ULONG nPos, ULONG nCount, LockType );
-    virtual ErrCode Stat( SvLockBytesStat*, SvLockBytesStatFlag ) const;
-    ErrCode FillAppend( const void* pBuffer, ULONG nCount, ULONG *pWritten );
-    ULONG   Tell() const { return nFilledSize; }
-    void    Seek( ULONG nPos ) { nFilledSize = nPos; }
-
-    void Terminate();
-};
-
-SV_DECL_IMPL_REF( SvFillLockBytes )
 
 //============================================================================
 class SvSyncLockBytes: public SvOpenLockBytes
@@ -147,36 +118,6 @@ inline SvSyncLockBytes::SvSyncLockBytes(SvAsyncLockBytes *
 }
 
 SV_DECL_IMPL_REF(SvSyncLockBytes);
-
-//============================================================================
-struct SvCompositeLockBytes_Impl;
-class SvCompositeLockBytes : public SvLockBytes
-{
-    SvCompositeLockBytes_Impl* pImpl;
-public:
-    TYPEINFO();
-
-    SvCompositeLockBytes( );
-    ~SvCompositeLockBytes();
-
-    void Append( SvLockBytes* pLockBytes, ULONG nPos, ULONG nOffset );
-    ULONG RelativeOffset( ULONG nPos ) const;
-    void  SetIsPending( BOOL bSet );
-    SvLockBytes*    GetLastLockBytes() const;
-
-    virtual ErrCode ReadAt(
-        ULONG nPos, void* pBuffer, ULONG nCount, ULONG* pRead ) const;
-    virtual ErrCode WriteAt(
-        ULONG nPos, const void* pBuffer, ULONG nCount, ULONG* pWritten );
-    virtual ErrCode Flush() const;
-    virtual ErrCode SetSize( ULONG nSize );
-    virtual ErrCode LockRegion( ULONG nPos, ULONG nCount, LockType );
-    virtual ErrCode UnlockRegion( ULONG nPos, ULONG nCount, LockType );
-    virtual ErrCode Stat( SvLockBytesStat*, SvLockBytesStatFlag ) const;
-};
-
-SV_DECL_IMPL_REF( SvCompositeLockBytes )
-
 }
 
 #endif
