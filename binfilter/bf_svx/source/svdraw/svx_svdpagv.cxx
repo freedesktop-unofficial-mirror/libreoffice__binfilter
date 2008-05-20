@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdpagv.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -736,61 +736,9 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #ifdef OS2
 #define RGBCOLOR(r,g,b) ((ULONG)(((BYTE)(b) | ((USHORT)(g)<<8)) | (((ULONG)(BYTE)(r))<<16)))
 #endif
-
-
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/*N*/ void SdrPageView::AdjHdl()
-/*N*/ {
-/*N*/   rView.AdjustMarkHdl();
-/*N*/ }
-
-
-/*N*/ void SdrPageView::SetLayer(const XubString& rName, SetOfByte& rBS, FASTBOOL bJa)
-/*N*/ {
-/*N*/   if (pPage==NULL) return;
-/*N*/   SdrLayerID nID=pPage->GetLayerAdmin().GetLayerID(rName,TRUE);
-/*N*/   if (nID!=SDRLAYER_NOTFOUND) {
-/*N*/       rBS.Set(nID,bJa);
-/*N*/         if (&rBS == &aLayerVisi)
-/*N*/             LayerVisibilityChanged(nID, bJa);
-/*N*/   }
-/*N*/ }
-
 
 /*N*/ FASTBOOL SdrPageView::IsLayer(const XubString& rName, const SetOfByte& rBS) const
 /*N*/ {
@@ -811,17 +759,6 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-
-
-
-/*?*/ void SdrPageView::LayerVisibilityChanged( const SdrLayerID _nLayerId, bool _bNewVisibility )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-/*?*/ }
-
-
-
-
-
 /*N*/ FASTBOOL SdrPageView::IsObjMarkable(SdrObject* pObj) const
 /*N*/ {
 /*N*/   if(pObj)
@@ -836,27 +773,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-/*N*/ void SdrPageView::SetHelpLines(const SdrHelpLineList& rHLL)
-/*N*/ {
-/*N*/   aHelpLines=rHLL;
-/*N*/   InvalidateAllWin();
-/*N*/ }
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -915,23 +831,6 @@ using namespace ::com::sun::star;
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ USHORT SdrPageView::GetEnteredLevel() const
-/*N*/ {
-/*N*/   USHORT nAnz=0;
-/*N*/   SdrObject* pGrp=GetAktGroup();
-/*N*/   while (pGrp!=NULL) {
-/*?*/       nAnz++;
-/*?*/       pGrp=pGrp->GetUpGroup();
-/*N*/   }
-/*N*/   return nAnz;
-/*N*/ }
-
-
-
-
-
 
 /*N*/ void SdrPageView::CheckAktGroup()
 /*N*/ {
