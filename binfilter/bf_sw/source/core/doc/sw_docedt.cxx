@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docedt.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,12 +77,6 @@
 #endif
 #ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>       // fuer die UndoIds
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #include "comcore.hrc"
 #ifndef _VISCRS_HXX
@@ -251,9 +245,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 
 /*N*/ sal_Bool SwDoc::Insert( const SwPaM &rRg, sal_Unicode c )
 /*N*/ {
-/*N*/   if( DoesUndo() )
-/*N*/       ClearRedo();
-/*N*/
 /*N*/   const SwPosition & rPos = *rRg.GetPoint();
 /*N*/
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
@@ -269,21 +260,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   pNode->Insert( c, rPos.nContent );
 /*N*/
-/*N*/   if ( DoesUndo() )
-/*N*/   {
-/*N*/       sal_uInt16 nUndoSize = pUndos->Count();
-/*N*/       SwUndo * pUndo;
-/*N*/       if( DoesGroupUndo() && bInsOneChar && nUndoSize-- &&
-/*N*/           UNDO_INSERT == ( pUndo = (*pUndos)[ nUndoSize ])->GetId() &&
-/*N*/           ((SwUndoInsert*)pUndo)->CanGrouping( rPos, c ))
-/*N*/           ; // wenn CanGrouping() sal_True returnt, ist schon alles erledigt
-/*N*/       else
-/*N*/           AppendUndo( new SwUndoInsert( rPos.nNode,
-/*N*/                                       rPos.nContent.GetIndex(), 1,
-/*N*/                                       !GetAppCharClass().isLetterNumeric(
-/*N*/                                           pNode->GetTxt(),
-/*N*/                                           rPos.nContent.GetIndex() - 1 )));
-/*N*/   }
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
@@ -344,11 +320,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/       if( bJoinPrev )
 /*N*/       {
 /*N*/           {
-/*N*/               // falls PageBreaks geloescht / gesetzt werden, darf das
-/*N*/               // nicht in die Undo-History aufgenommen werden !!
-/*N*/               // (das loeschen vom Node geht auch am Undo vorbei !!!)
-/*N*/               sal_Bool bDoUndo = pDoc->DoesUndo();
-/*N*/               pDoc->DoUndo( sal_False );
 /*N*/
 /*N*/               /* PageBreaks, PageDesc, ColumnBreaks */
 /*N*/               // Sollte an der Logik zum Kopieren der PageBreak's ...
@@ -399,8 +370,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               // verschiebe noch alle Bookmarks/TOXMarks
 /*N*/               if( aBkmkArr.Count() )
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ::_RestoreCntntIdx( pDoc, aBkmkArr, aIdx.GetIndex() );
-/*N*/
-/*N*/               pDoc->DoUndo( bDoUndo );
 /*N*/
 /*N*/               // falls der uebergebene PaM nicht im Crsr-Ring steht,
 /*N*/               // gesondert behandeln (z.B. Aufruf aus dem Auto-Format)
@@ -489,22 +458,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/   }
 /*N*/
 /*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       sal_uInt16 nUndoSize = pUndos->Count();
-/*N*/       SwUndo * pUndo;
-/*N*/       if( DoesGroupUndo() && nUndoSize-- &&
-/*N*/           UNDO_DELETE == ( pUndo = (*pUndos)[ nUndoSize ])->GetId() &&
-/*N*/           ((SwUndoDelete*)pUndo)->CanGrouping( this, rPam ))
-/*N*/           ;// wenn CanGrouping() sal_True returnt, ist schon alles erledigt
-/*N*/       else
-/*N*/           AppendUndo( new SwUndoDelete( rPam ) );
-/*N*/
-/*N*/       SetModified();
-/*N*/
-/*N*/       return sal_True;
-/*N*/   }
 /*N*/
 /*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
 /*?*/       DeleteRedline( rPam );
@@ -664,24 +617,6 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*?*/       }
 /*N*/   }
 /*N*/
-/*N*/   sal_Bool bDoesUndo = DoesUndo();
-/*N*/   if( bDoesUndo )
-/*N*/   {
-/*N*/       if( !rPam.HasMark() )
-/*N*/           rPam.SetMark();
-/*N*/       else if( rPam.GetPoint() == &rStt )
-/*?*/           rPam.Exchange();
-/*N*/       rPam.GetPoint()->nNode++;
-/*N*/
-/*N*/       rPam.GetPoint()->nContent.Assign( 0, 0 );
-/*N*/       rPam.GetMark()->nContent.Assign( 0, 0 );
-/*N*/
-/*N*/       ClearRedo();
-/*N*/       SwUndoDelete* pUndo = new SwUndoDelete( rPam, sal_True );
-/*N*/       pUndo->SetPgBrkFlags( bSavePageBreak, bSavePageDesc );
-/*N*/       AppendUndo( pUndo );
-/*N*/   }
-/*N*/   else
 /*N*/   {
 /*N*/       SwNodeRange aRg( rStt.nNode, rEnd.nNode );
 /*N*/       if( rPam.GetPoint() != &rEnd )
