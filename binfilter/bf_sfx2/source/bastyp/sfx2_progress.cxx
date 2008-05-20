@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_progress.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -406,48 +406,6 @@ static ULONG nLastTime = 0;
 /*N*/
 /*N*/   }
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxProgress::Lock()
-/*N*/ {
-/*N*/   if( pImp->pActiveProgress ) return;
-/*N*/   // kein Reschedule bei Embedded-Objekten,
-/*N*/   // da wir gegen das OLE Protokoll wehrlos sind
-/*N*/   if ( !pImp->xObjSh.Is() )
-/*N*/   {
-/*?*/       for ( SfxObjectShell *pDocSh = SfxObjectShell::GetFirst();
-/*?*/             pDocSh;
-/*?*/             pDocSh = SfxObjectShell::GetNext(*pDocSh) )
-/*?*/       {
-/*?*/           SfxObjectCreateMode eMode = pDocSh->GetCreateMode();
-/*?*/           if ( ( eMode == SFX_CREATE_MODE_EMBEDDED ) ||
-/*?*/                ( eMode == SFX_CREATE_MODE_PREVIEW ) )
-/*?*/           {
-/*?*/               DBG( DbgOutf( "SfxProgress: not locked because EMBEDDED/PREVIEW found" ) );
-/*?*/               pImp->bAllowRescheduling = FALSE;
-/*?*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SfxObjectCreateMode eMode = pImp->xObjSh->GetCreateMode();
-/*N*/       if ( ( eMode == SFX_CREATE_MODE_EMBEDDED ) ||
-/*N*/            ( eMode == SFX_CREATE_MODE_PREVIEW ) )
-/*N*/       {
-/*N*/           DBG( DbgOutf( "SfxProgress: not locked because ObjectShell is EMBEDDED/PREVIEW" ) );
-/*?*/           pImp->bAllowRescheduling = FALSE;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/     pImp->Enable_Impl( FALSE );
-/*N*/
-/*N*/   DBG( DbgOutf( "SfxProgress: locked" ) );
-/*N*/   pImp->bLocked = TRUE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
