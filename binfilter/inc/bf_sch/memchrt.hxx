@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: memchrt.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -240,9 +240,6 @@ public:
 
     // transfer chart selection to calc or writer
     const ChartSelectionInfo& GetSelectionInfo() const { return aSelectionInfo; }
-    // calc/writer have to set this link
-    long SubmitSelection(const ChartSelectionInfo& aInfo);
-
     // methods for translation of data
     inline void ResetTranslation(sal_Int32 *pTable,long nCnt);
 #if OSL_DEBUG_LEVEL > 0
