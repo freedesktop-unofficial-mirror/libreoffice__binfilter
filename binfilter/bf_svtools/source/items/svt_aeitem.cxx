@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_aeitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,26 +67,6 @@ SfxAllEnumItem::SfxAllEnumItem() :
     pValues( 0 ),
     pDisabledValues( 0 )
 {
-}
-
-SfxAllEnumItem::SfxAllEnumItem( USHORT which, USHORT nVal, const XubString &rText ):
-    SfxEnumItem(which, nVal),
-    pValues( 0 ),
-    pDisabledValues( 0 )
-{
-    DBG_CTOR(SfxAllEnumItem, 0);
-    InsertValue( nVal, rText );
-}
-
-// -----------------------------------------------------------------------
-
-SfxAllEnumItem::SfxAllEnumItem(USHORT which, USHORT nVal):
-    SfxEnumItem(which, nVal),
-    pValues( 0 ),
-    pDisabledValues( 0 )
-{
-    DBG_CTOR(SfxAllEnumItem, 0);
-    InsertValue( nVal );
 }
 
 // -----------------------------------------------------------------------
@@ -244,24 +224,6 @@ USHORT SfxAllEnumItem::GetPosByValue( USHORT nValue ) const
 
 // -----------------------------------------------------------------------
 
-void SfxAllEnumItem::InsertValue( USHORT nValue, const XubString &rValue )
-{
-    DBG_CHKTHIS(SfxAllEnumItem, 0);
-    SfxAllEnumValue_Impl *pVal = new SfxAllEnumValue_Impl;
-    pVal->nValue = nValue;
-    pVal->aText = rValue;
-    const SfxAllEnumValue_Impl *pTemp = pVal;
-    if ( !pValues )
-        pValues = new SfxAllEnumValueArr;
-    else if ( GetPosByValue( nValue ) != USHRT_MAX )
-        // remove when exists
-        RemoveValue( nValue );
-    // then insert
-    pValues->Insert( pTemp, _GetPosByValue(nValue) ); //! doppelte?!
-}
-
-// -----------------------------------------------------------------------
-
 void SfxAllEnumItem::InsertValue( USHORT nValue )
 {
     DBG_CHKTHIS(SfxAllEnumItem, 0);
@@ -275,15 +237,6 @@ void SfxAllEnumItem::InsertValue( USHORT nValue )
     pValues->Insert( pTemp, _GetPosByValue(nValue) ); //! doppelte?!
 }
 
-void SfxAllEnumItem::DisableValue( USHORT nValue )
-{
-    DBG_CHKTHIS(SfxAllEnumItem, 0);
-    if ( !pDisabledValues )
-        pDisabledValues = new SvUShorts;
-
-    pDisabledValues->Insert( nValue, pDisabledValues->Count() );
-}
-
 BOOL SfxAllEnumItem::IsEnabled( USHORT nValue ) const
 {
     if ( pDisabledValues )
@@ -294,26 +247,6 @@ BOOL SfxAllEnumItem::IsEnabled( USHORT nValue ) const
     }
 
     return TRUE;
-}
-
-// -----------------------------------------------------------------------
-
-void SfxAllEnumItem::RemoveValue( USHORT nValue )
-{
-    DBG_CHKTHIS(SfxAllEnumItem, 0);
-    USHORT nPos = GetPosByValue(nValue);
-    DBG_ASSERT( nPos != USHRT_MAX, "removing value not in enum" );
-    pValues->Remove( nPos );
-}
-
-// -----------------------------------------------------------------------
-
-
-void SfxAllEnumItem::RemoveAllValues()
-{
-    DBG_CHKTHIS(SfxAllEnumItem, 0);
-    if ( pValues )
-        pValues->DeleteAndDestroy( 0, pValues->Count() );
 }
 
 }
