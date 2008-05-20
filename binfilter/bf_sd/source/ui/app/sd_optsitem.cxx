@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_optsitem.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1042,12 +1042,6 @@ using namespace ::com::sun::star::uno;
 |* SdOptionsPrintItem
 |*
 \************************************************************************/
-
-/*N*/ SdOptionsPrintItem::SdOptionsPrintItem( USHORT nWhich ) :
-/*N*/   SfxPoolItem     ( nWhich ),
-/*N*/   SdOptionsPrint  ( 0, FALSE )
-/*N*/ {
-/*N*/ }
 
 // ----------------------------------------------------------------------
 
