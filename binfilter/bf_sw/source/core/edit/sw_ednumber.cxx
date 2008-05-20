@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ednumber.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -58,14 +58,6 @@
 #endif
 namespace binfilter {
 
-
-
 /*N*/ SV_IMPL_VARARR_SORT( _SwPamRanges, SwPamRange )
-
-
-/*N*/ const SwNumRule* SwEditShell::GetCurNumRule() const
-/*N*/ {
-/*N*/   return GetDoc()->GetCurrNumRule( *GetCrsr()->GetPoint() );
-/*N*/ }
 
 }
