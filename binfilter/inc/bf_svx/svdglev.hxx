@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdglev.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -72,7 +72,6 @@ class SdrGlueEditView: public SdrPolyEditView
 
 public:
     SdrGlueEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrGlueEditView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrGlueEditView();
 
     // Durch den Parameter nThisEsc uebergibt man die Richtung, die man
