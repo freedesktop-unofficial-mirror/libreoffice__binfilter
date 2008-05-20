@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: shellio.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,7 +66,6 @@ class SwCntntNode;
 class SwCrsrShell;
 class SwDoc;
 class SwPaM;
-class SwTextBlocks;
 struct SwPosition;
 struct Writer_Impl;
 
@@ -333,42 +332,9 @@ class SwTextBlocks
     ULONG        nErr;
 
 public:
-    SwTextBlocks( const String& );
-    ~SwTextBlocks();
-
     void Flush(){}
 
-    SwDoc* GetDoc();
-    void   ClearDoc();                  // Doc-Inhalt loeschen
-    const  String& GetName();
-    void   SetName( const String& );
     ULONG GetError() const { return nErr; }
-
-    BOOL   IsOld() const;
-    ULONG  ConvertToNew();              // Textbausteine konvertieren
-
-    USHORT GetCount() const;                        // Anzahl Textbausteine ermitteln
-    USHORT GetIndex( const String& ) const;         // Index fuer Kurznamen ermitteln
-    USHORT GetLongIndex( const String& ) const;     //Index fuer Langnamen ermitteln
-    const  String& GetShortName( USHORT ) const;    // Kurzname fuer Index zurueck
-    const  String& GetLongName( USHORT ) const;     // Langname fuer Index zurueck
-
-    BOOL   Delete( USHORT );            // Loeschen
-    USHORT Rename( USHORT, const String*, const String* ); // Umbenennen
-
-
-    BOOL   BeginPutDoc( const String&, const String& ); // Speichern Beginn
-    USHORT PutDoc();                                // Speichern Ende
-
-    USHORT PutText( const String&, const String&, const String& ); // Speichern( Kurzn., Text)
-
-
-    const String& GetFileName() const;      // Dateiname von pImp
-
-    BOOL GetMacroTable( USHORT nIdx, SvxMacroTableDtor& rMacroTbl );
-    BOOL SetMacroTable( USHORT nIdx, const SvxMacroTableDtor& rMacroTbl );
-
-
 };
 
 
@@ -448,8 +414,7 @@ public:
     // OtherPos of the bookmarks also inserted.
     // search alle Bookmarks in the range and return it in the Array
     // lege einen neuen PaM an der Position an
-    SwPaM* NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx,
-                                    BOOL bNodesArray = TRUE ) const;
+    SwPaM* NewSwPaM( SwDoc & rDoc, ULONG nStartIdx, ULONG nEndIdx ) const;
 
     // kopiere ggfs. eine lokale Datei ins Internet
 
