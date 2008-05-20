@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_xmlexppr.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -710,43 +710,6 @@ sal_Bool SvXMLExportPropertyMapper::Equals(
         bRet = sal_False;
 
     return bRet;
-}
-
-
-/** fills the given attribute list with the items in the given set */
-void SvXMLExportPropertyMapper::exportXML( SvXMLAttributeList& rAttrList,
-        const ::std::vector< XMLPropertyState >& rProperties,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
-        sal_uInt16 nFlags ) const
-{
-    _exportXML( rAttrList, rProperties, rUnitConverter, rNamespaceMap,
-                nFlags, 0, -1, -1 );
-}
-
-
-void SvXMLExportPropertyMapper::exportXML( SvXMLAttributeList& rAttrList,
-        const ::std::vector< XMLPropertyState >& rProperties,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
-        sal_Int32 nPropMapStartIdx, sal_Int32 nPropMapEndIdx,
-        sal_uInt16 nFlags ) const
-{
-    _exportXML( rAttrList, rProperties, rUnitConverter, rNamespaceMap,
-                nFlags, 0, nPropMapStartIdx, nPropMapEndIdx );
-}
-
-
-void SvXMLExportPropertyMapper::exportXML( SvXMLAttributeList& rAttrList,
-        const XMLPropertyState& rProperty,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
-        sal_uInt16 nFlags ) const
-{
-    if( ( maPropMapper->GetEntryFlags( rProperty.mnIndex ) &
-                MID_FLAG_ELEMENT_ITEM_EXPORT ) == 0 )
-        _exportXML( rAttrList, rProperty, rUnitConverter, rNamespaceMap,
-                    nFlags );
 }
 
 void SvXMLExportPropertyMapper::exportXML(
