@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_chtmode5.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -103,29 +103,6 @@ namespace binfilter {
 /*N*/                   : pChartData->GetTransDataInPercent(nCol,nRow,bRowData);
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Datenreihen-Objekt ermitteln
-|*
-\************************************************************************/
-
-/*N*/ SdrObject* ChartModel::GetDataRowObj(long nRow)
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 SdrPage* pPage = GetPage(0);
-/*N*/ }
-/*************************************************************************
-|*
-|* Datenreihen-Objekt eines PieChart ermitteln (Col,Row sind vertauscht
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* Datenreihengruppe (Liste der Datenreihen)
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
