@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unoshape.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -223,21 +223,6 @@ SvxShape::SvxShape( SdrObject* pObject, const SfxItemPropertyMap* pPropertyMap )
 :   aPropSet(pPropertyMap),
     bDisposing( sal_False ),
     pObj    (pObject),
-    pModel(NULL),
-    aSize(100,100),
-    mnLockCount(0),
-    aDisposeListeners( maMutex ),
-    mpImpl(NULL)
-
-{
-    Init();
-}
-
-//----------------------------------------------------------------------
-SvxShape::SvxShape() throw()
-:   aPropSet(aSvxMapProvider.GetMap(SVXMAP_SHAPE)),
-    bDisposing( sal_False ),
-    pObj    (NULL),
     pModel(NULL),
     aSize(100,100),
     mnLockCount(0),
@@ -856,14 +841,6 @@ uno::Sequence< sal_Int8 > SAL_CALL SvxShape::getImplementationId()
     }
 
     return pID->getImplementationId() ;
-}
-
-//----------------------------------------------------------------------
-
-Reference< uno::XInterface > SvxShape_NewInstance()
-{
-    uno::Reference< drawing::XShape > xShape( (OWeakObject*)new SvxShape(), UNO_QUERY );
-    return xShape;
 }
 
 // SfxListener
@@ -3693,12 +3670,6 @@ void SvxShape::updateShapeKind()
 /***********************************************************************
 * class SvxShapeText                                                   *
 ***********************************************************************/
-SvxShapeText::SvxShapeText() throw ()
-: SvxShape(NULL, aSvxMapProvider.GetMap(SVXMAP_TEXT) ), SvxUnoTextBase( ImplGetSvxUnoOutlinerTextCursorPropertyMap() )
-{
-}
-
-//----------------------------------------------------------------------
 SvxShapeText::SvxShapeText( SdrObject* pObject ) throw ()
 : SvxShape( pObject, aSvxMapProvider.GetMap(SVXMAP_TEXT) ), SvxUnoTextBase( ImplGetSvxUnoOutlinerTextCursorPropertyMap() )
 {
