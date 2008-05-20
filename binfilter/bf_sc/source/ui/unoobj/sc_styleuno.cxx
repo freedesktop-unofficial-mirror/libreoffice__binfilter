@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_styleuno.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1001,15 +1001,6 @@ sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
 }
 
 //------------------------------------------------------------------------
-
-//  Default-ctor wird fuer die Reflection gebraucht
-
-ScStyleObj::ScStyleObj() :
-    pDocShell( NULL ),
-    eFamily( SFX_STYLE_FAMILY_PARA ),
-    aPropSet( lcl_GetCellStyleMap() )
-{
-}
 
 ScStyleObj::ScStyleObj(ScDocShell* pDocSh, SfxStyleFamily eFam, const String& rName) :
     pDocShell( pDocSh ),
