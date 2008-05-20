@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_memchrt.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -304,29 +304,6 @@ namespace binfilter {
 /*N*/
 /*N*/     // copy chart range
 /*N*/     SetChartRange( rMemChart.GetChartRange());
-/*N*/ }
-
-/*N*/ long SchMemChart::SubmitSelection(const ChartSelectionInfo& aInfo)
-/*N*/ {
-/*N*/   ChartSelectionInfo aNewInfo=aInfo;
-/*N*/
-/*N*/   //aNewInfo der Translationstabelle anpassen
-/*N*/   if(nTranslated == TRANS_ROW)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aNewInfo.nRow=GetTableIndexRow(aInfo.nRow);
-/*N*/   else if(nTranslated == TRANS_COL)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 aNewInfo.nCol=GetTableIndexCol(aInfo.nCol);
-/*N*/
-/*N*/   if(aNewInfo == aSelectionInfo || aNewInfo.nSelection==0)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 return nLastSelInfoReturn; //reduzieren doppelter Selektionen bzw. speziell der Deselektion!
-/*N*/   aSelectionInfo = aNewInfo;
-/*N*/   if(aAppLink.IsSet())
-/*N*/   {
-/*?*/       return nLastSelInfoReturn=aAppLink.Call(&aSelectionInfo);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       return nLastSelInfoReturn=0;
-/*N*/   }
 /*N*/ }
 
 //Überprüft, ob die Umordnung/Translation OK ist, Fehlerfall, wenn :
