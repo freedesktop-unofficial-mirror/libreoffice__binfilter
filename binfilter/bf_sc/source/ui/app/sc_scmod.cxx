@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_scmod.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -106,7 +106,6 @@
 #include "tpusrlst.hxx"
 #include "tpcalc.hxx"
 #include "tpprint.hxx"
-#include "transobj.hxx"
 #include "detfunc.hxx"
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -379,25 +378,6 @@ static USHORT nIdleCount = 0;
 /*N*/   return ( eNumerals == SvtCTLOptions::NUMERALS_ARABIC ) ? LANGUAGE_ENGLISH_US :
 /*N*/          ( eNumerals == SvtCTLOptions::NUMERALS_HINDI)   ? LANGUAGE_ARABIC :
 /*N*/                                                            LANGUAGE_SYSTEM;
-/*N*/ }
-
-//------------------------------------------------------------------
-//
-//                      Input-Handler
-//
-//------------------------------------------------------------------
-
-
-/*N*/ void ScModule::ViewShellGone( ScTabViewShell* )
-/*N*/ {
-/*N*/ }
-
-
-/*N*/ BOOL ScModule::IsFormulaMode()
-/*N*/ {
-/*N*/   BOOL bIsFormula = FALSE;
-/*?*/   DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return bIsFormula;
 /*N*/ }
 
 //------------------------------------------------------------------
