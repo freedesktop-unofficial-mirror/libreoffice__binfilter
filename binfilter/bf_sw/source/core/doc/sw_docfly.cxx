@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docfly.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -99,14 +99,8 @@
 #ifndef _PAM_HXX //autogen
 #include <pam.hxx>
 #endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
-#endif
 #ifndef _CRSTATE_HXX
 #include <crstate.hxx>
-#endif
-#ifndef _UNDOBJ_HXX //autogen
-#include <undobj.hxx>
 #endif
 namespace binfilter {
 
@@ -418,13 +412,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/   if( !rSet.Count() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   _UndoFmtAttr* pSaveUndo = 0;
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       pSaveUndo = new _UndoFmtAttr( rFlyFmt );
-/*N*/   }
-/*N*/
 /*N*/   //Ist das Ankerattribut dabei? Falls ja ueberlassen wir die Verarbeitung
 /*N*/   //desselben einer Spezialmethode. Sie Returnt TRUE wenn der Fly neu
 /*N*/   //erzeugt werden muss (z.B. weil ein Wechsel des FlyTyps vorliegt).
@@ -471,12 +458,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/     if( MAKEFRMS == nMakeFrms )
 /*N*/       rFlyFmt.MakeFrms();
 /*N*/
-/*N*/   if( pSaveUndo )
-/*N*/   {
-/*N*/       if( pSaveUndo->pUndo )
-/*N*/           AppendUndo( pSaveUndo->pUndo );
-/*N*/       delete pSaveUndo;
-/*N*/   }
 /*N*/
 /*N*/   SetModified();
 /*N*/
@@ -500,12 +481,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/   const SwFmtVertOrient aVert( rFmt.GetVertOrient() );
 /*M*/   const SwFmtHoriOrient aHori( rFmt.GetHoriOrient() );
 /*M*/
-/*M*/   SwUndoSetFlyFmt* pUndo = 0;
-/*M*/   if( DoesUndo() )
-/*M*/   {
-/*M*/       ClearRedo();
-/*M*/       AppendUndo( pUndo = new SwUndoSetFlyFmt( rFmt, rNewFmt ) );
-/*M*/   }
 /*M*/
 /*M*/   //Erstmal die Spalten setzen, sonst gibts nix als Aerger mit dem
 /*M*/   //Set/Reset/Abgleich usw.
@@ -531,8 +506,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/           && ((SwFmtAnchor*)pItem)->GetAnchorId() !=
 /*M*/               rFmt.GetAnchor().GetAnchorId() )
 /*M*/       {
-/*M*/           if( pUndo )
-/*M*/               DoUndo( FALSE );
 /*M*/
 /*M*/           if( pSet )
 /*M*/                 bChgAnchor = MAKEFRMS == SetFlyFrmAnchor( rFmt, *pSet, FALSE );
@@ -546,8 +519,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/                 bChgAnchor = MAKEFRMS == SetFlyFrmAnchor( rFmt, aFlySet, FALSE);
 /*M*/           }
 /*M*/
-/*M*/           if( pUndo )
-/*M*/               DoUndo( TRUE );
 /*M*/       }
 /*M*/   }
 /*M*/
@@ -577,8 +548,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/   if( bChgAnchor )
 /*M*/       rFmt.MakeFrms();
 /*M*/
-/*M*/   if( pUndo )
-/*M*/       rFmt.Remove( pUndo );
 /*M*/
 /*M*/   SetModified();
 /*M*/   return bChgAnchor;
@@ -610,8 +579,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/   if( !rMrkList.GetMarkCount() ||
 /*?*/       rMrkList.GetMark( 0 )->GetObj()->GetUpGroup() )
 /*?*/       return FALSE;           // Kein Ankerwechsel innerhalb von Gruppen
-/*?*/
-/*?*/   StartUndo( UNDO_INSATTR );
 /*?*/
 /*?*/   BOOL bUnmark = FALSE;
 /*?*/   for ( USHORT i = 0; i < rMrkList.GetMarkCount(); ++i )
@@ -888,7 +855,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/       }
 /*?*/   }
 /*?*/
-/*?*/   EndUndo( UNDO_END );
 /*?*/   SetModified();
 /*?*/
 /*?*/   return bUnmark;
