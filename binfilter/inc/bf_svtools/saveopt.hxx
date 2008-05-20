@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: saveopt.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,55 +64,19 @@ public:
                             SvtSaveOptions();
                             virtual ~SvtSaveOptions();
 
-    void                    SetAutoSaveTime( sal_Int32 n );
-    sal_Int32               GetAutoSaveTime() const;
-
-    void                    SetUseUserData( sal_Bool b );
-    sal_Bool                IsUseUserData() const;
-
-    void                    SetBackup( sal_Bool b );
     sal_Bool                IsBackup() const;
 
-    void                    SetAutoSave( sal_Bool b );
-    sal_Bool                IsAutoSave() const;
-
-    void                    SetAutoSavePrompt( sal_Bool b );
-    sal_Bool                IsAutoSavePrompt() const;
-
-    void                    SetDocInfoSave(sal_Bool b);
-    sal_Bool                IsDocInfoSave() const;
-
-    void                    SetSaveWorkingSet( sal_Bool b );
-    sal_Bool                IsSaveWorkingSet() const;
-
-    void                    SetSaveDocWins( sal_Bool b );
-    sal_Bool                IsSaveDocWins() const;
-
-    void                    SetSaveDocView( sal_Bool b );
     sal_Bool                IsSaveDocView() const;
 
-    void                    SetSaveRelINet( sal_Bool b );
     sal_Bool                IsSaveRelINet() const;
 
-    void                    SetSaveRelFSys( sal_Bool b );
     sal_Bool                IsSaveRelFSys() const;
 
-    void                    SetSaveUnpacked( sal_Bool b );
     sal_Bool                IsSaveUnpacked() const;
 
-    void                    SetLoadUserSettings(sal_Bool b);
     sal_Bool                IsLoadUserSettings() const;
 
-    void                    SetPrettyPrinting( sal_Bool _bEnable );
     sal_Bool                IsPrettyPrinting( ) const;
-
-    void                    SetWarnAlienFormat( sal_Bool _bEnable );
-    sal_Bool                IsWarnAlienFormat( ) const;
-
-    void                    SetLoadDocumentPrinter( sal_Bool _bEnable );
-    sal_Bool                IsLoadDocumentPrinter( ) const;
-
-    sal_Bool                IsReadOnly( EOption eOption ) const;
 };
 
 }
