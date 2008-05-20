@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_asynclink.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -105,12 +105,6 @@ IMPL_STATIC_LINK( AsynchronLink, HandleCall, void*, EMPTYARG )
     if( pThis->_pMutex ) pThis->_pMutex->release();
     pThis->Call_Impl( pThis->_pArg );
     return 0;
-}
-
-void AsynchronLink::ForcePendingCall()
-{
-    ClearPendingCall();
-    Call_Impl( _pArg );
 }
 
 void AsynchronLink::ClearPendingCall()
