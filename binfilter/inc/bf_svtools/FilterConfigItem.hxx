@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: FilterConfigItem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -92,7 +92,6 @@ class  FilterConfigItem
 
         FilterConfigItem( const ::rtl::OUString& rSubTree );
         FilterConfigItem( ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData );
-        FilterConfigItem( const ::rtl::OUString& rSubTree, ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >* pFilterData );
         ~FilterConfigItem();
 
         // all read methods are trying to return values in following order:
@@ -101,22 +100,10 @@ class  FilterConfigItem
         // 3. given default
         sal_Bool    ReadBool( const ::rtl::OUString& rKey, sal_Bool bDefault );
         sal_Int32   ReadInt32( const ::rtl::OUString& rKey, sal_Int32 nDefault );
-        ::com::sun::star::awt::Size
-                    ReadSize( const ::rtl::OUString& rKey, const ::com::sun::star::awt::Size& rDefault );
-        ::rtl::OUString
-                    ReadString( const ::rtl::OUString& rKey, const ::rtl::OUString& rDefault );
-        ::com::sun::star::uno::Any
-                    ReadAny( const ::rtl::OUString& rKey, const ::com::sun::star::uno::Any& rDefault );
 
         // try to store to configuration
         // and always stores into the FilterData sequence
-        void        WriteBool( const ::rtl::OUString& rKey, sal_Bool bValue );
         void        WriteInt32( const ::rtl::OUString& rKey, sal_Int32 nValue );
-        void        WriteSize( const ::rtl::OUString& rKey, const ::com::sun::star::awt::Size& rSize );
-        void        WriteString( const ::rtl::OUString& rKey, const ::rtl::OUString& rString );
-        void        WriteAny( const rtl::OUString& rKey, const ::com::sun::star::uno::Any& rAny );
-
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > GetFilterData() const;
 
         // GetStatusIndicator is returning the "StatusIndicator" property of the FilterData sequence
         ::com::sun::star::uno::Reference< ::com::sun::star::task::XStatusIndicator > GetStatusIndicator() const;
