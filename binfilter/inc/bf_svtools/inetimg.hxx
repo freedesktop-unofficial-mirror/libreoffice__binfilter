@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: inetimg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -85,10 +85,6 @@ public:
     const String&   GetTargetFrame() const { return aTargetFrame; }
     const String&   GetAlternateText() const { return aAlternateText; }
     const Size&     GetSizePixel() const { return aSizePixel; }
-
-    // Im-/Export
-    sal_Bool Write( SvStream& rOStm, ULONG nFormat ) const;
-    sal_Bool Read( SvStream& rIStm, ULONG nFormat );
 };
 
 }
