@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lingucfg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -179,31 +179,8 @@ public:
     //
     com::sun::star::uno::Sequence< rtl::OUString >
         GetNodeNames( const rtl::OUString &rNode );
-    //
-    com::sun::star::uno::Sequence< com::sun::star::uno::Any >
-        GetProperties(
-            const com::sun::star::uno::Sequence< rtl::OUString > &rNames );
-    //
-    sal_Bool
-        ReplaceSetProperties(
-            const rtl::OUString &rNode,
-            com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue > rValues );
-
-    com::sun::star::uno::Any
-            GetProperty( const rtl::OUString &rPropertyName ) const;
-    com::sun::star::uno::Any
-            GetProperty( INT32 nPropertyHandle ) const;
-
-    BOOL    SetProperty( const rtl::OUString &rPropertyName,
-                         const com::sun::star::uno::Any &rValue );
-    BOOL    SetProperty( INT32 nPropertyHandle,
-                         const com::sun::star::uno::Any &rValue );
 
     BOOL    GetOptions( SvtLinguOptions &rOptions ) const;
-    BOOL    SetOptions( const SvtLinguOptions &rOptions );
-
-    BOOL    IsReadOnly( const rtl::OUString &rPropertyName ) const;
-    BOOL    IsReadOnly( INT32 nPropertyHandle ) const;
 };
 
 //////////////////////////////////////////////////////////////////////
