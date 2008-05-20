@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_tfrmitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,32 +67,9 @@ SfxTargetFrameItem::SfxTargetFrameItem( const SfxTargetFrameItem& rItem ) :
 
 // -----------------------------------------------------------------------
 
-SfxTargetFrameItem::SfxTargetFrameItem( USHORT which,
-    const String& rOpenSelectFrame, const String& rOpenOpenFrame,
-    const String& rOpenAddTaskFrame ) : SfxPoolItem( which )
-{
-    DBG_CTOR( SfxTargetFrameItem, 0 );
-    _aFrames[ (USHORT)SfxOpenSelect ]  = rOpenSelectFrame;
-    _aFrames[ (USHORT)SfxOpenOpen ]    = rOpenOpenFrame;
-    _aFrames[ (USHORT)SfxOpenAddTask ] = rOpenAddTaskFrame;
-}
-
-// -----------------------------------------------------------------------
-
 SfxTargetFrameItem::~SfxTargetFrameItem()
 {
     DBG_DTOR(SfxTargetFrameItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-String SfxTargetFrameItem::GetTargetFrame( SfxOpenMode eMode ) const
-{
-    DBG_CHKTHIS( SfxTargetFrameItem, 0 );
-    if( eMode <= SfxOpenModeLast )
-        return _aFrames[ (USHORT)eMode ];
-    String aResult;
-    return aResult;
 }
 
 // -----------------------------------------------------------------------
