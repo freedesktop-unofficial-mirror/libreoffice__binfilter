@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: broadcast.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,8 +52,6 @@ friend class SvtListenerIter;
     const SvtBroadcaster&   operator=(const SvtBroadcaster &); // verboten
 
 protected:
-    void                    Forward( SvtBroadcaster& rBC,
-                                     const SfxHint& rHint );
     virtual void            ListenersGone();
 
 public:
