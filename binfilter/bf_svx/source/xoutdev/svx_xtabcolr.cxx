@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xtabcolr.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -629,79 +629,6 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       }
 /*N*/   }
 /*N*/   return( rIn );
-/*N*/ }
-
-// --------------------
-// class XColorList
-// --------------------
-
-/*************************************************************************
-|*
-|* XColorList::XColorList()
-|*
-*************************************************************************/
-
-/*N*/ XColorList::XColorList( const String& rPath,
-/*N*/                           XOutdevItemPool* pInPool,
-/*N*/                           USHORT nInitSize, USHORT nReSize ) :
-/*N*/               XPropertyList( rPath, pInPool, nInitSize, nReSize)
-/*N*/ {
-/*N*/   // pBmpList = new List( nInitSize, nReSize );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XColorList::~XColorList()
-/*N*/ {
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XColorEntry* XColorList::Replace(XColorEntry* pEntry, long nIndex )
-/*N*/ {
-/*N*/   return (XColorEntry*) XPropertyList::Replace(pEntry, nIndex);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ XColorEntry* XColorList::Remove(long nIndex)
-/*N*/ {
-/*N*/   return (XColorEntry*) XPropertyList::Remove(nIndex, 0);
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XColorList::Load()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XColorList::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XColorList::Create()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ BOOL XColorList::CreateBitmapsForUI()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
-/*N*/ Bitmap* XColorList::CreateBitmapForUI( long nIndex, BOOL bDelete )
-/*N*/ {
-/*N*/   return( NULL );
 /*N*/ }
 
 }
