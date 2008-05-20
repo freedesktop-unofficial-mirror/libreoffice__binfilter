@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_ChartArea.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -124,12 +124,4 @@ const uno::Sequence< sal_Int8 > & ChartArea::getUnoTunnelId() throw()
     return *pSeq;
 }
 
-ChartArea* ChartArea::getImplementation( uno::Reference< uno::XInterface > xData ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xData, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (ChartArea*)xUT->getSomething( ChartArea::getUnoTunnelId() );
-    else
-        return NULL;
-}
 }
