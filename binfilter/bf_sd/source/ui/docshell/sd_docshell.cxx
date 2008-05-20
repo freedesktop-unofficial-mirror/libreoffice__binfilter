@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_docshell.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -90,20 +90,6 @@ SdDrawDocShell::SdDrawDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, Docu
     SfxObjectShell(eMode),
     pPrinter(NULL),
     pDoc(NULL),
-    bUIActive(FALSE),
-    pProgress(NULL),
-    bSdDataObj(bDataObject),
-    bOwnPrinter(FALSE),
-    eDocType(eDocumentType),
-    mbNewDocument( sal_True )
-{
-    Construct();
-}
-
-SdDrawDocShell::SdDrawDocShell(SdDrawDocument* pDoc, SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocumentType) :
-    SfxObjectShell(eMode),
-    pPrinter(NULL),
-    pDoc(pDoc),
     bUIActive(FALSE),
     pProgress(NULL),
     bSdDataObj(bDataObject),
