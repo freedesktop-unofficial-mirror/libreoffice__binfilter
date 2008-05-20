@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: clipfmtitem.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,13 +50,8 @@ protected:
 
 public:
     TYPEINFO();
-    SvxClipboardFmtItem( USHORT nId );
     SvxClipboardFmtItem( const SvxClipboardFmtItem& );
     virtual ~SvxClipboardFmtItem();
-
-    void AddClipbrdFormat( ULONG nId, USHORT nPos = USHRT_MAX );
-    void AddClipbrdFormat( ULONG nId, const String& rName,
-                            USHORT nPos = USHRT_MAX );
 };
 
 }//end of namespace binfilter
