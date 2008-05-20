@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_select.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,111 +67,6 @@ using namespace ::com::sun::star::util;
 static long nStartDragX = 0, nStartDragY = 0;
 static BOOL  bStartDrag = FALSE;
 
-
-
-
-
-/*
-BOOL SwWrtShell::SelSentence(const Point *pPt, BOOL )
-{
-    {
-        MV_KONTEXT(this);
-        ClearMark();
-        if(!_BwdSentence()) {
-            return FALSE;
-        }
-        SttSelect();
-        if(!_FwdSentence()) {
-            EndSelect();
-            return FALSE;
-        }
-    }
-    EndSelect();
-    return TRUE;
-}
-
-*/
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Textsuche
-------------------------------------------------------------------------*/
-
-
-/*------------------------------------------------------------------------
- Beschreibung:  Suche nach Vorlagen
-------------------------------------------------------------------------*/
-
-
-
-
-// Suche nach Attributen ----------------------------------------------------
-
-
-
-
-// ---------- Selektionsmodi ----------
-
-
-
-
-
-
-
-/*
- * Zwei Methoden fuer das Cursorsetzen; die erste mappt auf die
- * gleichnamige Methoden an der CursorShell, die zweite hebt
- * zuerst alle Selektionen auf.
- */
-
-
-
-/*N*/ long SwWrtShell::SetCrsr(const Point *pPt, BOOL bTextOnly)
-/*N*/ {
-        /*
-        * eine gfs.  bestehende Selektion an der Position des
-        * Mausklicks aufheben
-        */
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   if(!IsInSelect() && ChgCurrPam(*pPt)) {
-/*N*/ }
-
-
-
-/*
- * Aufheben aller Selektionen
- */
-
-
-
-
-
-
-/*
- * tue nichts
- */
-/*N*/ long SwWrtShell::Ignore(const Point *, BOOL ) {
-/*N*/   return 1;
-/*N*/ }
-
-
-/*
- * Ende einer Selektion; falls die Selektion leer ist,
- * ClearMark().
- */
-
-
-
-/*N*/ long SwWrtShell::SttLeaveSelect(const Point *, BOOL )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if(SwCrsrShell::HasSelection() && !IsSelTblCells() && bClearMark) {
-/*N*/   return 1;
-/*N*/ }
-
 /*------------------------------------------------------------------------
  Beschreibung:  Rahmengebundenes Macro ausfuehren
 ------------------------------------------------------------------------*/
@@ -181,75 +76,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if(SwCrsrShell::HasSelection() && !IsSel
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)pFlyFmt : GetFlyFrmFmt();
 /*N*/   return 0;
 /*N*/ }
-
-
-
-
-/*
- * Handler fuer das Togglen der Modi. Liefern alten Mode zurueck.
- */
-
-
-
-
-
-
-/*
- * Draggen im Standard Modus (Selektieren von Inhalt)
- */
-
-
-
-/*N*/ long SwWrtShell::BeginDrag(const Point *pPt, BOOL )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   if(bSelWrd)
-/*N*/ }
-
-
-
-
-
-
-/*N*/ long SwWrtShell::EndDrag(const Point *pPt, BOOL )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001   fnDrag = &SwWrtShell::BeginDrag;
-/*N*/ }
-/*------------------------------------------------------------------------
- Beschreibung:  Selektion einer Tabellenzeile / Spalte
-------------------------------------------------------------------------*/
-
-
-
-
-
-
-
-/*------------------------------------------------------------------------
- Beschreibung:    Prueft, ob eine Wortselektion vorliegt.
-                  Gemaess den Regeln fuer intelligentes Cut / Paste
-                  werden umgebende Spaces rausgeschnitten.
- Return:          Liefert Art der Wortselektion zurueck.
-------------------------------------------------------------------------*/
-
-
-
-
-
-
-    // jump to the next / previous hyperlink - inside text and also
-    // on graphics
-
-
-/* fuer den Erhalt der Selektion wird nach SetMark() der Cursor
- * nach links bewegt, damit er durch das Einfuegen von Text nicht
- * verschoben wird.  Da auf der CORE-Seite am aktuellen Cursor
- * eine bestehende Selektion aufgehoben wird, wird der Cursor auf
- * den Stack gepushed. Nach dem Verschieben werden sie wieder
- * zusammengefasst. */
-
-
-
-#if 0
-#endif
 
 }
