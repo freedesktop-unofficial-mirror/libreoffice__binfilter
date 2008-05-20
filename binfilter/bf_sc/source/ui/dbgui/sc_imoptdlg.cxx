@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_imoptdlg.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,25 +66,6 @@ private:
     xub_StrLen          nIter;
 };
 
-//------------------------------------------------------------------------
-
-/*N*/ ScImportOptions::ScImportOptions( const String& rStr )
-/*N*/ {
-/*N*/     bFixedWidth = FALSE;
-/*N*/     nFieldSepCode = 0;
-/*N*/   if ( rStr.GetTokenCount(',') >= 3 )
-/*N*/   {
-/*N*/         String aToken( rStr.GetToken( 0, ',' ) );
-/*N*/         if( aToken.EqualsIgnoreCaseAscii( pStrFix ) )
-/*N*/             bFixedWidth = TRUE;
-/*N*/         else
-/*N*/             nFieldSepCode = (sal_Unicode) aToken.ToInt32();
-/*N*/       nTextSepCode  = (sal_Unicode) rStr.GetToken(1,',').ToInt32();
-/*N*/       aStrFont      = rStr.GetToken(2,',');
-/*N*/       eCharSet      = ScGlobal::GetCharsetValue(aStrFont);
-/*N*/   }
-/*N*/ }
-/*N*/
 //------------------------------------------------------------------------
 
 /*N*/ void ScImportOptions::SetTextEncoding( rtl_TextEncoding nEnc )
