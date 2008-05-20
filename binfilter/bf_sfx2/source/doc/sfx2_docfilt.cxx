@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_docfilt.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -79,38 +79,6 @@ namespace binfilter {
 /*N*/   aMimeType = rMimeType;
 /*N*/ }
 
-
-/*?*/ SfxFilter::SfxFilter(  const char* pName, const String &rWildCard,
-/*?*/                      SfxFilterFlags nType,
-/*?*/                      const SfxFilterContainer* pContainerP )
-/*?*/   : lFormat(0),
-/*?*/     nFormatType(nType),
-/*?*/     aWildCard(rWildCard, ';'),
-/*?*/     nDocIcon(0),
-/*?*/     pContainer( pContainerP )
-/*?*/ {
-/*?*/   aName = String::CreateFromAscii( pName );
-/*?*/   aFilterName = String::CreateFromAscii( pName );
-/*?*/   InitMembers_Impl();
-/*?*/   pContainer = pContainerP;
-/*?*/ }
-
-/*?*/ SfxFilter::SfxFilter(  const char* pName, const String &rWildCard,
-/*?*/                      SfxFilterFlags nType, const String &rTypeName,
-/*?*/                      const SfxFilterContainer* pContainerP )
-/*?*/   : lFormat(0),
-/*?*/     nFormatType(nType),
-/*?*/     aWildCard(rWildCard, ';'),
-/*?*/     aTypeName( rTypeName ),
-/*?*/     nDocIcon(0),
-/*?*/     pContainer( pContainerP )
-/*?*/ {
-/*?*/   aName = String::CreateFromAscii( pName );
-/*?*/   aFilterName = String::CreateFromAscii( pName );
-/*?*/   InitMembers_Impl();
-/*?*/   pContainer = pContainerP;
-/*?*/ }
-
 /*N*/ void SfxFilter::InitMembers_Impl()
 /*N*/ {
 /*N*/   String aExts = GetWildcard()();
@@ -167,30 +135,6 @@ namespace binfilter {
 /*N*/   aTypeName;
 /*N*/ #endif
 /*N*/ }
-
-/*?*/ const ::com::sun::star::plugin::PluginDescription* SfxFilter::GetPlugData()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*?*/ }
-
-/*?*/ sal_Bool SfxFilter::IsFirstPlugin() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/   return sal_False;
-/*?*/ }
-
-
-/*?*/ String SfxFilter::GetDefaultExtension() const
-/*?*/ {
-/*?*/   return GetWildcard()().GetToken( 0, ';' );
-/*?*/ }
-
-
-/*?*/ String SfxFilter::GetSuffixes() const
-/*?*/ {
-/*?*/   String aRet = GetWildcard()();
-/*?*/   while( aRet.SearchAndReplaceAscii( "*.", String() ) != STRING_NOTFOUND );
-/*?*/   while( aRet.SearchAndReplace( ';', ',' ) != STRING_NOTFOUND );
-/*?*/   return aRet;
-/*?*/ }
 
 /*N*/ String SfxFilter::GetFilterNameWithPrefix() const
 /*N*/ {
