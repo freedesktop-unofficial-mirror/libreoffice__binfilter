@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_editview.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -72,15 +72,6 @@ using namespace ::com::sun::star::linguistic2;
 
 // From SW => Create common method
 
-
-// ----------------------------------------------------------------------
-// class EditView
-// ----------------------------------------------------------------------
-/*N*/ EditView::EditView( EditEngine* pEng, Window* pWindow )
-/*N*/ {
-/*N*/   DBG_CTOR( EditView, 0 );
-/*N*/   pImpEditView = new ImpEditView( this, pEng, pWindow );
-/*N*/ }
 
 /*N*/ EditView::~EditView()
 /*N*/ {
@@ -162,10 +153,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pImpEditView->pOutWin;
 /*N*/ }
 
-/*N*/ void EditView::SetVisArea( const Rectangle& rRec )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 /*N*/ const Rectangle& EditView::GetVisArea() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditView, 0 );
@@ -173,18 +160,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   static Rectangle aRect;
 /*N*/   aRect = pImpEditView->GetVisDocArea();
 /*N*/   return aRect;
-/*N*/ }
-
-/*N*/ void EditView::SetOutputArea( const Rectangle& rRec )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   pImpEditView->SetOutputArea( rRec );
-/*N*/
-/*N*/   // Rest nur hier, wenn API-Aufruf:
-/*N*/   pImpEditView->CalcAnchorPoint();
-/*N*/   if ( PIMPEE->GetStatus().AutoPageSize() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pImpEditView->RecalcOutputArea();
-/*N*/   pImpEditView->ShowCursor( sal_False, sal_False );
 /*N*/ }
 
 /*N*/ const Rectangle& EditView::GetOutputArea() const
@@ -242,33 +217,4 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ void EditView::Paste()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-
-
-
-
-
-
-
-
-/*N*/ void EditView::SetSelectionMode( EESelectionMode eMode )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   pImpEditView->SetSelectionMode( eMode );
-/*N*/ }
-
-/*N*/ const SvxFieldItem* EditView::GetField( const Point& rPos, sal_uInt16* pPara, sal_uInt16* pPos ) const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditView, 0 );
-/*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
-/*N*/   return pImpEditView->GetField( rPos, pPara, pPos );
-/*N*/ }
-
-
-
-
-
-
-
-
 }
