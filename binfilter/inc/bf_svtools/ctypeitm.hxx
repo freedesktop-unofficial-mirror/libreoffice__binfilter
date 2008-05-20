@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ctypeitm.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,7 +52,6 @@ public:
 
     CntContentTypeItem();
     CntContentTypeItem( USHORT nWhich, const XubString& rType );
-    CntContentTypeItem( USHORT nWhich, const INetContentType eType );
     CntContentTypeItem( const CntContentTypeItem& rOrig );
 
     virtual SfxPoolItem* Create( SvStream& rStream,
@@ -66,7 +65,6 @@ public:
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = NULL ) const;
 
     void SetValue( const XubString& rNewVal );
-    void SetPresentation( const XubString& rNewVal );
 
     using SfxPoolItem::Compare;
     virtual int Compare( const SfxPoolItem &rWith, const ::IntlWrapper& rIntlWrapper ) const;
