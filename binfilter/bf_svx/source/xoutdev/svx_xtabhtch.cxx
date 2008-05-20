@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xtabhtch.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,20 +83,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 // ------------------
 // class XHatchTable
 // ------------------
-
-/*************************************************************************
-|*
-|* XHatchTable::XHatchTable()
-|*
-*************************************************************************/
-
-/*N*/ XHatchTable::XHatchTable( const String& rPath,
-/*N*/                           XOutdevItemPool* pInPool,
-/*N*/                           USHORT nInitSize, USHORT nReSize ) :
-/*N*/               XPropertyTable( rPath, pInPool, nInitSize, nReSize)
-/*N*/ {
-/*N*/   pBmpTable = new Table( nInitSize, nReSize );
-/*N*/ }
 
 /************************************************************************/
 
