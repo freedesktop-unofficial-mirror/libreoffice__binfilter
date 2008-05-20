@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_dbdocfun.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -996,59 +996,4 @@ namespace binfilter {
 /*N*/
 /*N*/   return bDone;
 /*N*/ }
-
-//==================================================================
-//
-//      Datenbank-Import...
-
-/*M*/ void ScDBDocFunc::UpdateImport( const String& rTarget, const String& rDBName,
-/*M*/         const String& rTableName, const String& rStatement, BOOL bNative,
-/*M*/         BYTE nType, const ::com::sun::star::uno::Reference<
-/*M*/         ::com::sun::star::sdbc::XResultSet >& xResultSet,
-/*M*/         const SbaSelectionList* pSelection )
-/*M*/ {
-/*M*/   //  Target ist jetzt einfach der Bereichsname
-/*M*/
-/*M*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*M*/   ScDBCollection& rDBColl = *pDoc->GetDBCollection();
-/*M*/   ScDBData* pData;
-/*M*/   ScImportParam aImportParam;
-/*M*/   BOOL bFound = FALSE;
-/*M*/   USHORT nCount = rDBColl.GetCount();
-/*M*/   for (USHORT i=0; i<nCount && !bFound; i++)
-/*M*/   {
-/*M*/       pData = rDBColl[i];
-/*M*/       if (pData->GetName() == rTarget)
-/*M*/           bFound = TRUE;
-/*M*/   }
-/*M*/   if (!bFound)
-/*M*/   {
-/*M*/       InfoBox aInfoBox(rDocShell.GetDialogParent(),
-/*M*/                   ScGlobal::GetRscString( STR_TARGETNOTFOUND ) );
-/*M*/       aInfoBox.Execute();
-/*M*/       return;
-/*M*/   }
-/*M*/
-/*M*/   USHORT nTab;
-/*M*/   USHORT nDummy;
-/*M*/   pData->GetArea( nTab, nDummy,nDummy,nDummy,nDummy );
-/*M*/   pData->GetImportParam( aImportParam );
-/*M*/
-/*M*/   BOOL bSql = ( rStatement.Len() != 0 );
-/*M*/
-/*M*/   aImportParam.aDBName    = rDBName;
-/*M*/   aImportParam.bSql       = bSql;
-/*M*/   aImportParam.aStatement = bSql ? rStatement : rTableName;
-/*M*/   aImportParam.bNative    = bNative;
-/*M*/   aImportParam.nType      = nType;
-/*M*/   aImportParam.bImport    = TRUE;
-/*M*/   BOOL bContinue = DoImport( nTab, aImportParam, xResultSet, pSelection, TRUE );
-/*M*/
-/*M*/   //  DB-Operationen wiederholen
-/*M*/
-/*M*/ }
-
-
-
-
 }
