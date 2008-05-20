@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cjkoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,26 +65,12 @@ public:
         E_DOUBLELINES,
         E_EMPHASISMARKS,
         E_VERTICALCALLOUT,
-        E_ALL               // special one for IsAnyEnabled()/SetAll() functionality
+        E_ALL
     };
 
     // bDontLoad is for referencing purposes only
     SvtCJKOptions(sal_Bool bDontLoad = sal_False);
     virtual ~SvtCJKOptions();
-
-    sal_Bool IsCJKFontEnabled() const;
-    sal_Bool IsVerticalTextEnabled() const;
-    sal_Bool IsAsianTypographyEnabled() const;
-    sal_Bool IsJapaneseFindEnabled() const;
-    sal_Bool IsRubyEnabled() const;
-    sal_Bool IsChangeCaseMapEnabled() const;
-    sal_Bool IsDoubleLinesEnabled() const;
-    sal_Bool IsEmphasisMarksEnabled() const;
-    sal_Bool IsVerticalCallOutEnabled() const;
-
-    void        SetAll(sal_Bool bSet);
-    sal_Bool    IsAnyEnabled() const;
-    sal_Bool    IsReadOnly(EOption eOption) const;
 };
 
 }
