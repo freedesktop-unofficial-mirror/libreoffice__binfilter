@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_misccfg.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,35 +69,6 @@ using namespace ::com::sun::star::uno;
 /*N*/ SfxMiscCfg::~SfxMiscCfg()
 /*N*/ {
 /*N*/ }
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ void SfxMiscCfg::SetNotFoundWarning( BOOL bSet)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ void SfxMiscCfg::SetPaperSizeWarning( BOOL bSet)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-/*?*/ void SfxMiscCfg::SetPaperOrientationWarning( BOOL bSet)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ void SfxMiscCfg::SetYear2000( sal_Int32 nSet )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/ }
 /* -----------------------------02.03.01 15:31--------------------------------
 
  ---------------------------------------------------------------------------*/
