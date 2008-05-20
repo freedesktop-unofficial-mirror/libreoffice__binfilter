@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sdbinfilter.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,7 +47,6 @@ private:
 public:
 
                             SdBINFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress );
-                            ~SdBINFilter();
 
     virtual sal_Bool        Import();
     virtual sal_Bool        Export();
