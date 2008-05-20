@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_lstner.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -138,19 +138,6 @@ BOOL SfxListener::EndListening( SfxBroadcaster& rBroadcaster, BOOL bAllDups )
     }
     while ( bAllDups && IsListening( rBroadcaster ) );
     return TRUE;
-}
-
-//--------------------------------------------------------------------
-
-// unregisteres at a specific SfxBroadcaster by index
-
-void SfxListener::EndListening( USHORT nNo )
-{
-    DBG_CHKTHIS(SfxListener, 0);
-
-    SfxBroadcaster *pBC = aBCs.GetObject(nNo);
-    pBC->RemoveListener(*this);
-    aBCs.Remove( nNo, 1 );
 }
 
 //--------------------------------------------------------------------
