@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: forms_InterfaceContainer.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -96,11 +96,6 @@ using namespace ::std;
 
     //---------------------------------------------------------------------
     static void lcl_throwIllegalArgumentException()
-    {
-        throw IllegalArgumentException();
-    }
-
-    static void lcl_throwIllegalArgumentException( const ::rtl::OUString& _rMessage, const Reference< XInterface >& _rxObject, sal_Int32 _nArgPos )
     {
         throw IllegalArgumentException();
     }
