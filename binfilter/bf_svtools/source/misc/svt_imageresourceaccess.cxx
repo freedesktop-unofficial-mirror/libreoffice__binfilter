@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_imageresourceaccess.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -213,13 +213,6 @@ namespace binfilter
         return pReturn;
     }
 
-    //--------------------------------------------------------------------
-    Reference< XInputStream > ImageResourceAccess::getImageXStream( const Reference< XMultiServiceFactory >& _rxORB, const ::rtl::OUString& _rImageResourceURL )
-    {
-        return new OSeekableInputStreamWrapper( getImageStream( _rxORB, _rImageResourceURL ), sal_True );   // take ownership
-    }
-
-//........................................................................
 }
 //........................................................................
 
