@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: extcolorcfg.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -98,14 +98,6 @@ public:
     ~ExtendedColorConfig();
 
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
-
-    // get the configured value
-    ExtendedColorConfigValue        GetColorValue(const ::rtl::OUString& _sComponentName,const ::rtl::OUString& _sName)const;
-    sal_Int32                       GetComponentCount() const;
-    ::rtl::OUString                 GetComponentName(sal_uInt32 _nPos) const;
-    ::rtl::OUString                 GetComponentDisplayName(const ::rtl::OUString& _sComponentName) const;
-    sal_Int32                       GetComponentColorCount(const ::rtl::OUString& _sName) const;
-    ExtendedColorConfigValue        GetComponentColorConfigValue(const ::rtl::OUString& _sComponentName,sal_uInt32 _nPos) const;
 };
 /* -----------------------------22.03.2002 15:31------------------------------
 
@@ -118,27 +110,9 @@ public:
     EditableExtendedColorConfig();
     ~EditableExtendedColorConfig();
 
-    ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetSchemeNames() const;
-    void                                                DeleteScheme(const ::rtl::OUString& rScheme );
-    void                                                AddScheme(const ::rtl::OUString& rScheme );
     sal_Bool                                            LoadScheme(const ::rtl::OUString& rScheme );
-    const ::rtl::OUString&                              GetCurrentSchemeName()const;
-    void                        SetCurrentSchemeName(const ::rtl::OUString& rScheme);
-
-    ExtendedColorConfigValue    GetColorValue(const ::rtl::OUString& _sComponentName,const ::rtl::OUString& _sName)const;
-    sal_Int32                   GetComponentCount() const;
-    ::rtl::OUString             GetComponentName(sal_uInt32 _nPos) const;
-    ::rtl::OUString             GetComponentDisplayName(const ::rtl::OUString& _sComponentName) const;
-    sal_Int32                   GetComponentColorCount(const ::rtl::OUString& _sName) const;
-    ExtendedColorConfigValue    GetComponentColorConfigValue(const ::rtl::OUString& _sName,sal_uInt32 _nPos) const;
-    void                        SetColorValue(const ::rtl::OUString& _sComponentName, const ExtendedColorConfigValue& rValue);
-    void                        SetModified();
     void                        ClearModified(){m_bModified = sal_False;}
     sal_Bool                    IsModified()const{return m_bModified;}
-    void                        Commit();
-
-    void                        DisableBroadcast();
-    void                        EnableBroadcast();
 };
 }
 #endif
