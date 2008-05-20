@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: global.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -587,7 +587,6 @@ public:
 
     static void             InitTextHeight(SfxItemPool* pPool);
     static SvxBrushItem*    GetEmptyBrushItem() { return pEmptyBrushItem; }
-    static SvxBrushItem*    GetButtonBrushItem();
     static SvxBrushItem*    GetEmbeddedBrushItem()  { return pEmbeddedBrushItem; }
     static SvxBrushItem*    GetProtectedBrushItem() { return pProtectedBrushItem; }
        static const String& GetEmptyString();
@@ -1102,7 +1101,6 @@ String  ColToAlpha( const USHORT nCol );
 class ScFuncDesc
 {
 public:
-                ScFuncDesc();
                 ~ScFuncDesc();
 
 
@@ -1122,7 +1120,6 @@ public:
 class ScFunctionMgr
 {
 public:
-                ScFunctionMgr();
                 ~ScFunctionMgr();
 
 private:
@@ -1172,7 +1169,6 @@ private:
 
 public:
         ScPostIt();
-        ScPostIt( const String& rText );
         ScPostIt( const String& rText, const String& rDate, const String& rAuthor );
         ScPostIt( const ScPostIt& rCpy );
         ~ScPostIt();
@@ -1522,9 +1518,6 @@ struct ScSolveParam
 
     ScSolveParam();
     ScSolveParam( const ScSolveParam& r );
-    ScSolveParam( const ScAddress&  rFormulaCell,
-                  const ScAddress&  rVariableCell,
-                  const String& rTargetValStr );
     ~ScSolveParam();
 
 };
@@ -1539,11 +1532,6 @@ struct ScTabOpParam
 
     ScTabOpParam() {};
     ScTabOpParam( const ScTabOpParam& r );
-    ScTabOpParam( const ScRefTripel& rFormulaCell,
-                  const ScRefTripel& rFormulaEnd,
-                  const ScRefTripel& rRowCell,
-                  const ScRefTripel& rColCell,
-                        BYTE         nMd);
     ~ScTabOpParam() {};
 };
 
