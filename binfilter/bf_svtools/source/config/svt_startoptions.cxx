@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_startoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -147,28 +147,6 @@ class SvtStartOptions_Impl : public ConfigItem
         *//*-*****************************************************************************************************/
 
         virtual void Commit();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      access method to get internal values
-            @descr      These method give us a chance to regulate acces to ouer internal values.
-                        It's not used in the moment - but it's possible for the feature!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_Bool    IsIntroEnabled  (                       ) const ;
-        void        EnableIntro     ( sal_Bool bState       )       ;
-        OUString    GetConnectionURL(                       ) const ;
-        void        SetConnectionURL( const OUString& sURL  )       ;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
@@ -323,40 +301,6 @@ void SvtStartOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtStartOptions_Impl::IsIntroEnabled() const
-{
-    return m_bShowIntro;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtStartOptions_Impl::EnableIntro( sal_Bool bState )
-{
-    m_bShowIntro = bState;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-OUString SvtStartOptions_Impl::GetConnectionURL() const
-{
-    return m_sConnectionURL;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtStartOptions_Impl::SetConnectionURL( const OUString& sURL )
-{
-    m_sConnectionURL = sURL;
-    SetModified();
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtStartOptions_Impl::impl_GetPropertyNames()
@@ -416,42 +360,6 @@ SvtStartOptions::~SvtStartOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtStartOptions::IsIntroEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsIntroEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtStartOptions::EnableIntro( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->EnableIntro( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-OUString SvtStartOptions::GetConnectionURL() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetConnectionURL();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtStartOptions::SetConnectionURL( const OUString& sURL )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetConnectionURL( sURL );
 }
 
 //*****************************************************************************************************************
