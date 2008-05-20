@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_editdoc2.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -130,22 +130,9 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*?*/   return ( Count() - 1 );
 /*N*/ }
 
-
-
-// -------------------------------------------------------------------------
-// class ExtraPortionInfo
-// -------------------------------------------------------------------------
-
-/*N*/ ExtraPortionInfo::ExtraPortionInfo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 /*N*/ ExtraPortionInfo::~ExtraPortionInfo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-
-
 
 // -------------------------------------------------------------------------
 // class ParaPortion
