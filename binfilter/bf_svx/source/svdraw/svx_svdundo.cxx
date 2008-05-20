@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdundo.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -56,13 +56,6 @@ namespace binfilter {
 /*N*/   aBuf(1024,32,32),
 /*N*/   eFunction(SDRREPFUNC_OBJ_NONE)      /*#72642#*/
 /*N*/ {}
-
-/*?*/ SdrUndoGroup::SdrUndoGroup(SdrModel& rNewMod,const String& rStr)
-/*?*/ : SdrUndoAction(rNewMod),
-/*?*/   aBuf(1024,32,32),
-/*?*/   aComment(rStr),
-/*?*/   eFunction(SDRREPFUNC_OBJ_NONE)
-/*?*/ {}
 
 /*N*/ SdrUndoGroup::~SdrUndoGroup()
 /*N*/ {
