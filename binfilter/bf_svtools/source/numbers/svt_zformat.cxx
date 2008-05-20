@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_zformat.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -265,86 +265,6 @@ BYTE SvNumberNatNum::MapDBNumToNatNum( BYTE nDBNum, LanguageType eLang, BOOL bDa
     return nNatNum;
 }
 
-
-// static
-BYTE SvNumberNatNum::MapNatNumToDBNum( BYTE nNatNum, LanguageType eLang, BOOL bDate )
-{
-    BYTE nDBNum = 0;
-    eLang = MsLangId::getRealLanguage( eLang );  // resolve SYSTEM etc.
-    eLang &= 0x03FF;    // 10 bit primary language
-    if ( bDate )
-    {
-        if ( nNatNum == 9 && eLang == LANGUAGE_KOREAN )
-            nDBNum = 4;
-        else if ( nNatNum <= 3 )
-            nDBNum = nNatNum;   // known to be good for: zh,ja,ko / 1,2,3
-    }
-    else
-    {
-        switch ( nNatNum )
-        {
-            case 1:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_JAPANESE & 0x03FF) : nDBNum = 1; break;
-                    case (LANGUAGE_KOREAN   & 0x03FF) : nDBNum = 1; break;
-                }
-                break;
-            case 2:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_KOREAN   & 0x03FF) : nDBNum = 2; break;
-                }
-                break;
-            case 3:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_KOREAN   & 0x03FF) : nDBNum = 3; break;
-                }
-                break;
-            case 4:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_CHINESE  & 0x03FF) : nDBNum = 1; break;
-                    case (LANGUAGE_JAPANESE & 0x03FF) : nDBNum = 2; break;
-                }
-                break;
-            case 5:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_CHINESE  & 0x03FF) : nDBNum = 2; break;
-                    case (LANGUAGE_JAPANESE & 0x03FF) : nDBNum = 3; break;
-                }
-                break;
-            case 6:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_CHINESE  & 0x03FF) : nDBNum = 3; break;
-                }
-                break;
-            case 7:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_JAPANESE & 0x03FF) : nDBNum = 4; break;
-                }
-                break;
-            case 8:
-                break;
-            case 9:
-                switch ( eLang )
-                {
-                    case (LANGUAGE_KOREAN   & 0x03FF) : nDBNum = 4; break;
-                }
-                break;
-            case 10:
-                break;
-            case 11:
-                break;
-        }
-    }
-    return nDBNum;
-}
-
 /***********************Funktionen SvNumFor******************************/
 
 ImpSvNumFor::ImpSvNumFor()
@@ -568,7 +488,7 @@ void SvNumberformat::ImpCopyNumberformat( const SvNumberformat& rFormat )
         NumFor[i].Copy(rFormat.NumFor[i], pColorSc);
 }
 
-SvNumberformat::SvNumberformat( SvNumberformat& rFormat )
+SvNumberformat::SvNumberformat( const SvNumberformat& rFormat )
     : rScan(rFormat.rScan), bStarFlag( rFormat.bStarFlag )
 {
     ImpCopyNumberformat( rFormat );
@@ -2765,31 +2685,6 @@ BOOL SvNumberformat::ImpFallBackToGregorianCalendar( String& rOrgCalendar, doubl
     return FALSE;
 }
 
-
-BOOL SvNumberformat::ImpSwitchToSpecifiedCalendar( String& rOrgCalendar,
-        double& fOrgDateTime, const ImpSvNumFor& rNumFor ) const
-{
-    const ImpSvNumberformatInfo& rInfo = rNumFor.Info();
-    const USHORT nAnz = rNumFor.GetnAnz();
-    for ( USHORT i = 0; i < nAnz; i++ )
-    {
-        if ( rInfo.nTypeArray[i] == NF_SYMBOLTYPE_CALENDAR )
-        {
-            CalendarWrapper& rCal = GetCal();
-            if ( !rOrgCalendar.Len() )
-            {
-                rOrgCalendar = rCal.getUniqueID();
-                fOrgDateTime = rCal.getDateTime();
-            }
-            rCal.loadCalendar( rInfo.sStrArray[i], rLoc().getLocale() );
-            rCal.setDateTime( fOrgDateTime );
-            return TRUE;
-        }
-    }
-    return FALSE;
-}
-
-
 // static
 void SvNumberformat::ImpAppendEraG( String& OutString,
         const CalendarWrapper& rCal, sal_Int16 nNatNum )
@@ -4004,206 +3899,6 @@ Color* SvNumberformat::GetColor( USHORT nNumFor ) const
     return NumFor[nNumFor].GetColor();
 }
 
-
-void lcl_SvNumberformat_AddLimitStringImpl( String& rStr,
-            SvNumberformatLimitOps eOp, double fLimit, const String& rDecSep )
-{
-    if ( eOp != NUMBERFORMAT_OP_NO )
-    {
-        switch ( eOp )
-        {
-            case NUMBERFORMAT_OP_EQ :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[=" ) );
-            break;
-            case NUMBERFORMAT_OP_NE :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[<>" ) );
-            break;
-            case NUMBERFORMAT_OP_LT :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[<" ) );
-            break;
-            case NUMBERFORMAT_OP_LE :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[<=" ) );
-            break;
-            case NUMBERFORMAT_OP_GT :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[>" ) );
-            break;
-            case NUMBERFORMAT_OP_GE :
-                rStr.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "[>=" ) );
-            break;
-            default:
-                OSL_ASSERT( "unsupported number format" );
-                break;
-        }
-        rStr += String( ::rtl::math::doubleToUString( fLimit,
-                rtl_math_StringFormat_Automatic, rtl_math_DecimalPlaces_Max,
-                rDecSep.GetChar(0), sal_True));
-        rStr += ']';
-    }
-}
-
-
-String SvNumberformat::GetMappedFormatstring(
-        const NfKeywordTable& rKeywords, const LocaleDataWrapper& rLocWrp,
-        BOOL bDontQuote ) const
-{
-    String aStr;
-    BOOL bDefault[4];
-    // 1 subformat matches all if no condition specified,
-    bDefault[0] = ( NumFor[1].GetnAnz() == 0 && eOp1 == NUMBERFORMAT_OP_NO );
-    // with 2 subformats [>=0];[<0] is implied if no condition specified
-    bDefault[1] = ( !bDefault[0] && NumFor[2].GetnAnz() == 0 &&
-        eOp1 == NUMBERFORMAT_OP_GE && fLimit1 == 0.0 &&
-        eOp2 == NUMBERFORMAT_OP_NO && fLimit2 == 0.0 );
-    // with 3 or more subformats [>0];[<0];[=0] is implied if no condition specified,
-    // note that subformats may be empty (;;;) and NumFor[2].GetnAnz()>0 is not checked.
-    bDefault[2] = ( !bDefault[0] && !bDefault[1] &&
-        eOp1 == NUMBERFORMAT_OP_GT && fLimit1 == 0.0 &&
-        eOp2 == NUMBERFORMAT_OP_LT && fLimit2 == 0.0 );
-    BOOL bDefaults = bDefault[0] || bDefault[1] || bDefault[2];
-    // from now on bDefault[] values are used to append empty subformats at the end
-    bDefault[3] = FALSE;
-    if ( !bDefaults )
-    {   // conditions specified
-        if ( eOp1 != NUMBERFORMAT_OP_NO && eOp2 == NUMBERFORMAT_OP_NO )
-            bDefault[0] = bDefault[1] = TRUE;                               // [];x
-        else if ( eOp1 != NUMBERFORMAT_OP_NO && eOp2 != NUMBERFORMAT_OP_NO &&
-                NumFor[2].GetnAnz() == 0 )
-            bDefault[0] = bDefault[1] = bDefault[2] = bDefault[3] = TRUE;   // [];[];;
-        // nothing to do if conditions specified for every subformat
-    }
-    else if ( bDefault[0] )
-        bDefault[0] = FALSE;    // a single unconditional subformat is never delimited
-    else
-    {
-        if ( bDefault[2] && NumFor[2].GetnAnz() == 0 && NumFor[1].GetnAnz() > 0 )
-            bDefault[3] = TRUE;     // special cases x;x;; and ;x;;
-        for ( int i=0; i<3 && !bDefault[i]; ++i )
-            bDefault[i] = TRUE;
-    }
-    int nSem = 0;       // needed ';' delimiters
-    int nSub = 0;       // subformats delimited so far
-    for ( int n=0; n<4; n++ )
-    {
-        if ( n > 0 )
-            nSem++;
-
-        String aPrefix;
-
-        if ( !bDefaults )
-        {
-            switch ( n )
-            {
-                case 0 :
-                    lcl_SvNumberformat_AddLimitStringImpl( aPrefix, eOp1,
-                        fLimit1, rLocWrp.getNumDecimalSep() );
-                break;
-                case 1 :
-                    lcl_SvNumberformat_AddLimitStringImpl( aPrefix, eOp2,
-                        fLimit2, rLocWrp.getNumDecimalSep() );
-                break;
-            }
-        }
-
-        const String& rColorName = NumFor[n].GetColorName();
-        if ( rColorName.Len() )
-        {
-            const String* pKey = rScan.GetKeywords() + NF_KEY_FIRSTCOLOR;
-            for ( int j=NF_KEY_FIRSTCOLOR; j<=NF_KEY_LASTCOLOR; j++, pKey++ )
-            {
-                if ( *pKey == rColorName )
-                {
-                    aPrefix += '[';
-                    aPrefix += rKeywords[j];
-                    aPrefix += ']';
-                    break;  // for
-                }
-            }
-        }
-
-        const SvNumberNatNum& rNum = NumFor[n].GetNatNum();
-        // The Thai T NatNum modifier during Xcl export.
-        if (rNum.IsSet() && rNum.GetNatNum() == 1 &&
-                rKeywords[NF_KEY_THAI_T].EqualsAscii( "T") &&
-                MsLangId::getRealLanguage( rNum.GetLang()) ==
-                LANGUAGE_THAI)
-        {
-            aPrefix += 't';     // must be lowercase, otherwise taken as literal
-        }
-
-        USHORT nAnz = NumFor[n].GetnAnz();
-        if ( nSem && (nAnz || aPrefix.Len()) )
-        {
-            for ( ; nSem; --nSem )
-                aStr += ';';
-            for ( ; nSub <= n; ++nSub )
-                bDefault[nSub] = FALSE;
-        }
-
-        if ( aPrefix.Len() )
-            aStr += aPrefix;
-
-        if ( nAnz )
-        {
-            const short* pType = NumFor[n].Info().nTypeArray;
-            const String* pStr = NumFor[n].Info().sStrArray;
-            for ( USHORT j=0; j<nAnz; j++ )
-            {
-                if ( 0 <= pType[j] && pType[j] < NF_KEYWORD_ENTRIES_COUNT )
-                {
-                    aStr += rKeywords[pType[j]];
-                    if( NF_KEY_NNNN == pType[j] )
-                        aStr += rLocWrp.getLongDateDayOfWeekSep();
-                }
-                else
-                {
-                    switch ( pType[j] )
-                    {
-                        case NF_SYMBOLTYPE_DECSEP :
-                            aStr += rLocWrp.getNumDecimalSep();
-                        break;
-                        case NF_SYMBOLTYPE_THSEP :
-                            aStr += rLocWrp.getNumThousandSep();
-                        break;
-                        case NF_SYMBOLTYPE_DATESEP :
-                            aStr += rLocWrp.getDateSep();
-                        break;
-                        case NF_SYMBOLTYPE_TIMESEP :
-                            aStr += rLocWrp.getTimeSep();
-                        break;
-                        case NF_SYMBOLTYPE_TIME100SECSEP :
-                            aStr += rLocWrp.getTime100SecSep();
-                        break;
-                        case NF_SYMBOLTYPE_STRING :
-                            if( bDontQuote )
-                                aStr += pStr[j];
-                            else if ( pStr[j].Len() == 1 )
-                            {
-                                aStr += '\\';
-                                aStr += pStr[j];
-                            }
-                            else
-                            {
-                                aStr += '"';
-                                aStr += pStr[j];
-                                aStr += '"';
-                            }
-                            break;
-                        default:
-                            aStr += pStr[j];
-                    }
-
-                }
-            }
-        }
-    }
-    for ( ; nSub<4 && bDefault[nSub]; ++nSub )
-    {   // append empty subformats
-        aStr += ';';
-    }
-    return aStr;
-}
-
-
 String SvNumberformat::ImpGetNatNumString( const SvNumberNatNum& rNum,
         sal_Int32 nVal, USHORT nMinDigits ) const
 {
@@ -4295,39 +3990,6 @@ BOOL SvNumberformat::HasStringNegativeSign( const String& rStr )
     return FALSE;
 }
 
-
-// static
-void SvNumberformat::SetComment( const String& rStr, String& rFormat,
-        String& rComment )
-{
-    if ( rComment.Len() )
-    {   // alten Kommentar aus Formatstring loeschen
-        //! nicht per EraseComment, der Kommentar muss matchen
-        String aTmp( '{' );
-        aTmp += ' ';
-        aTmp += rComment;
-        aTmp += ' ';
-        aTmp += '}';
-        xub_StrLen nCom = 0;
-        do
-        {
-            nCom = rFormat.Search( aTmp, nCom );
-        } while ( (nCom != STRING_NOTFOUND) && (nCom + aTmp.Len() != rFormat.Len()) );
-        if ( nCom != STRING_NOTFOUND )
-            rFormat.Erase( nCom );
-    }
-    if ( rStr.Len() )
-    {   // neuen Kommentar setzen
-        rFormat += '{';
-        rFormat += ' ';
-        rFormat += rStr;
-        rFormat += ' ';
-        rFormat += '}';
-        rComment = rStr;
-    }
-}
-
-
 // static
 void SvNumberformat::EraseCommentBraces( String& rStr )
 {
@@ -4346,43 +4008,6 @@ void SvNumberformat::EraseCommentBraces( String& rStr )
         rStr.Erase( --nLen, 1 );
     if ( nLen && rStr.GetChar( nLen-1 ) == ' ' )
         rStr.Erase( --nLen, 1 );
-}
-
-
-// static
-void SvNumberformat::EraseComment( String& rStr )
-{
-    register const sal_Unicode* p = rStr.GetBuffer();
-    BOOL bInString = FALSE;
-    BOOL bEscaped = FALSE;
-    BOOL bFound = FALSE;
-    xub_StrLen nPos = 0;
-    while ( !bFound && *p )
-    {
-        switch ( *p )
-        {
-            case '\\' :
-                bEscaped = !bEscaped;
-            break;
-            case '\"' :
-                if ( !bEscaped )
-                    bInString = !bInString;
-            break;
-            case '{' :
-                if ( !bEscaped && !bInString )
-                {
-                    bFound = TRUE;
-                    nPos = sal::static_int_cast< xub_StrLen >(
-                        p - rStr.GetBuffer());
-                }
-            break;
-        }
-        if ( bEscaped && *p != '\\' )
-            bEscaped = FALSE;
-        ++p;
-    }
-    if ( bFound )
-        rStr.Erase( nPos );
 }
 
 
