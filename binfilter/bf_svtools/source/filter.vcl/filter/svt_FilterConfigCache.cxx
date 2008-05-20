@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_FilterConfigCache.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -75,11 +75,6 @@ const char* FilterConfigCache::FilterConfigCacheEntry::ExternalPixelFilterNameLi
     "egi", "icd", "ipd", "ipx", "ipb", "epb", "epg",
     "epp", "ira", "era", "itg", "iti", "eti", "exp", NULL
 };
-
-sal_Bool FilterConfigCache::FilterConfigCacheEntry::IsValid()
-{
-    return sFilterName.Len() != 0;
-}
 
 sal_Bool FilterConfigCache::bInitialized = sal_False;
 sal_Int32 FilterConfigCache::nIndType = -1;
@@ -493,12 +488,6 @@ sal_Bool FilterConfigCache::IsImportPixelFormat( sal_uInt16 nFormat )
     return ( aIter < aImport.end() ) ? aIter->bIsPixelFormat != 0 : sal_False;
 }
 
-sal_Bool FilterConfigCache::IsImportDialog( sal_uInt16 nFormat )
-{
-    CacheVector::iterator aIter( aImport.begin() + nFormat );
-    return ( aIter < aImport.end() ) ? aIter->bHasDialog != 0: sal_False;
-}
-
 // ------------------------------------------------------------------------
 
 String FilterConfigCache::GetExportFilterName( sal_uInt16 nFormat )
@@ -604,15 +593,6 @@ String FilterConfigCache::GetExportFilterTypeName( sal_uInt16 nFormat )
     return aFilterType;
 }
 
-String FilterConfigCache::GetExportInternalFilterName( sal_uInt16 nFormat )
-{
-    CacheVector::iterator aIter( aExport.begin() + nFormat );
-    String aInternalFilterName;
-    if ( aIter < aExport.end() )
-        aInternalFilterName = aIter->sInternalFilterName;
-    return aInternalFilterName;
-}
-
 String FilterConfigCache::GetExportWildcard( sal_uInt16 nFormat, sal_Int32 nEntry )
 {
     String aWildcard( GetExportFormatExtension( nFormat, nEntry ) );
@@ -633,11 +613,6 @@ sal_Bool FilterConfigCache::IsExportPixelFormat( sal_uInt16 nFormat )
     return ( aIter < aExport.end() ) ? aIter->bIsPixelFormat != 0 : sal_False;
 }
 
-sal_Bool FilterConfigCache::IsExportDialog( sal_uInt16 nFormat )
-{
-    CacheVector::iterator aIter( aExport.begin() + nFormat );
-    return ( aIter < aExport.end() ) ? aIter->bHasDialog != 0: sal_False;
-}
 
 // ------------------------------------------------------------------------
 }
