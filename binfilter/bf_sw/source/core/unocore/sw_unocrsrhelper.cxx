@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unocrsrhelper.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,9 +113,6 @@
 #endif
 #ifndef _EDIMP_HXX //autogen
 #include <edimp.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _CNTFRM_HXX //autogen
 #include <cntfrm.hxx>
@@ -651,12 +648,10 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 
                 if( rPam.GetNext() != &rPam )           // Mehrfachselektion ?
                 {
-                    pDoc->StartUndo( UNDO_START );
                     SwPamRanges aRangeArr( rPam );
                     SwPaM aPam( *rPam.GetPoint() );
                     for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
                         pDoc->SetNumRule( aRangeArr.SetPam( n, aPam ), aRule );
-                    pDoc->EndUndo( UNDO_END );
                 }
                 else
                     pDoc->SetNumRule( rPam, aRule );
@@ -725,12 +720,10 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
 
             if( rPam.GetNext() != &rPam )           // Mehrfachselektion ?
             {
-                pDoc->StartUndo( UNDO_START );
                 SwPamRanges aRangeArr( rPam );
                 SwPaM aPam( *rPam.GetPoint() );
                 for( sal_uInt16 n = 0; n < aRangeArr.Count(); ++n )
                     pDoc->SetNodeNumStart( *aRangeArr.SetPam( n, aPam ).GetPoint(), 1 );
-                pDoc->EndUndo( UNDO_END );
             }
             else
                 pDoc->SetNodeNumStart( *rPam.GetPoint(), 0 );
