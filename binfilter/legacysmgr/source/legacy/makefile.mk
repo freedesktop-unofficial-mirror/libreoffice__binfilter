@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -60,16 +60,10 @@ SHL1STDLIBS = \
 SHL1VERSIONMAP=msci.map
 .ELIF "$(COMNAME)"=="sunpro5"
 SHL1VERSIONMAP=sols.map
-.ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXIgcc2"
-SHL1VERSIONMAP=lngi.map
-.ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXIgcc3"
-SHL1VERSIONMAP=gcc3_linux_intel.map
-.ELIF "$(OS)$(CPU)$(COMNAME)"=="LINUXSgcc3"
-SHL1VERSIONMAP=gcc3_linux_intel.map
-.ELIF "$(OS)$(CPU)$(COMNAME)"=="MACOSXIgcc3"
-SHL1VERSIONMAP=gcc3_linux_intel.map
 .ELIF "$(GUI)$(COM)"=="WNTGCC"
 SHL1VERSIONMAP=mingw_intel.map
+.ELIF "$(COMNAME)"=="gcc3"
+SHL1VERSIONMAP=gcc3.map
 .ENDIF
 
 SHL1DEPN =
