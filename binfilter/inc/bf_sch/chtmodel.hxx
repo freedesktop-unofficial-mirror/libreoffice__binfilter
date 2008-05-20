@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: chtmodel.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -245,7 +245,6 @@ public:
     void                SetChartData( SchMemChart &  rData,
                                       BOOL           bNewTitles = TRUE );
     SchMemChart *       GetChartData()  const;
-    const SchMemChart * GetMemChart () const;
     /// @descr avoid BuildChart invocation during edit. remember changes in data for later change (SP2) #61907#
     void                SetChartDataBuffered( SchMemChart &  rData,
                                               BOOL           bNewTitles = TRUE );
@@ -445,57 +444,35 @@ public:
 
     ProjectionType      GetProjection()           { return eProjection; }
 
+        SdrObject*          GetDataPointObj( long nCol, long nRow );
 
 
-    SdrObject*          GetDataRowObj( long nRow );
-    SdrObject*          GetDataPointObj( long nCol, long nRow );
+        BOOL                HasAxis( long nObjectId = CHOBJID_ANY ) const;
 
-
-    BOOL                HasAxis( long nObjectId = CHOBJID_ANY ) const;
-
-
-    const SfxItemSet &  GetLegendAttr() const;
-
+        const SfxItemSet &  GetLegendAttr() const;
 
     SfxItemSet          GetFullLegendAttr() const;
 
-    SfxItemSet          GetFullAxisAttr( const SdrObjGroup * pAxisObj, bool bOnlyInserted = false ) const;
-
-    BOOL                ChangeAxisAttr( const SfxItemSet &  rAttr,
+       BOOL                ChangeAxisAttr( const SfxItemSet &  rAttr,
                                        SdrObjGroup       *  pAxisObj,
                                         BOOL                bMerge = TRUE );
 
+    SfxItemSet          GetFullAxisAttr( const SdrObjGroup * pAxisObj, bool bOnlyInserted = false ) const;
 
-
-
-
-
-
-
-
-
-
-    void                PutDataRowAttrAll( const SfxItemSet &  rAttr,
-                                           BOOL                bMerge = TRUE,
-                                           BOOL                bClearPoints = TRUE );
-    void                PutDataRowAttr( long                nRow,
-                                        const SfxItemSet &  rAttr,
-                                        BOOL                bMerge = TRUE,
-                                        BOOL                bClearPoints = TRUE );
+        void                PutDataRowAttrAll( const SfxItemSet &  rAttr,
+                                            BOOL                bMerge = TRUE,
+                                            BOOL                bClearPoints = TRUE );
+        void                PutDataRowAttr( long                nRow,
+                                         const SfxItemSet &  rAttr,
+                                         BOOL                bMerge = TRUE,
+                                         BOOL                bClearPoints = TRUE );
 
     const SfxItemSet &  GetDataRowAttr( long nRow ) const;
 
-
-
-
-
-    void                PutDataPointAttr( long                nCol,
-                                          long                nRow,
-                                          const SfxItemSet &  rAttr,
-                                          BOOL                bMerge = TRUE );
-
-    /** @descr this method exists in analogy to GetFullDataPointAttr
-               it is necessary for API (=>XML) and pie charts */
+        void                PutDataPointAttr( long                nCol,
+                                           long                nRow,
+                                           const SfxItemSet &  rAttr,
+                                           BOOL                bMerge = TRUE );
 
     const SfxItemSet &  GetDataPointAttr( long nCol,long nRow ) const;
     void                ClearDataPointAttr( long nCol, long nRow, const SfxItemSet & rAttr );
