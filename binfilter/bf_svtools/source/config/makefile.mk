@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -42,12 +42,10 @@ INC+= -I$(PRJ)$/inc$/bf_svtools
 # --- Files --------------------------------------------------------
 
 SLOFILES = \
-    $(SLO)$/svt_fltrcfg.obj				\
     $(SLO)$/svt_moduleoptions.obj           \
     $(SLO)$/svt_pathoptions.obj             \
     $(SLO)$/svt_saveopt.obj					\
     $(SLO)$/svt_lingucfg.obj                \
-    $(SLO)$/svt_javaoptions.obj             \
     $(SLO)$/svt_securityoptions.obj			\
     $(SLO)$/svt_localisationoptions.obj		\
     $(SLO)$/svt_workingsetoptions.obj		\
@@ -59,14 +57,12 @@ SLOFILES = \
     $(SLO)$/svt_menuoptions.obj				\
     $(SLO)$/svt_dynamicmenuoptions.obj		\
     $(SLO)$/svt_options3d.obj				\
-    $(SLO)$/svt_optionsdrawinglayer.obj		\
     $(SLO)$/svt_fontoptions.obj				\
     $(SLO)$/svt_addxmltostorageoptions.obj	\
     $(SLO)$/svt_defaultoptions.obj			\
     $(SLO)$/svt_searchopt.obj				\
     $(SLO)$/svt_printwarningoptions.obj		\
     $(SLO)$/svt_cacheoptions.obj            \
-    $(SLO)$/svt_regoptions.obj				\
     $(SLO)$/svt_cmdoptions.obj				\
     $(SLO)$/svt_extendedsecurityoptions.obj \
     $(SLO)$/svt_sourceviewconfig.obj		\
@@ -75,9 +71,7 @@ SLOFILES = \
     $(SLO)$/svt_optionsdlg.obj              \
     $(SLO)$/svt_itemholder1.obj \
     $(SLO)$/svt_options.obj \
-    $(SLO)$/svt_fontsubstconfig.obj				\
     $(SLO)$/svt_misccfg.obj				\
-    $(SLO)$/svt_apearcfg.obj				\
     $(SLO)$/svt_helpopt.obj                 \
     $(SLO)$/svt_printoptions.obj			\
     $(SLO)$/svt_languageoptions.obj     \
