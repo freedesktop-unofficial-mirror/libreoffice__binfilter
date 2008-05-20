@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bookmrk.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,7 +113,6 @@ public:
     const SvxMacro& GetEndMacro()               { return aEndMacro; }
 
         // Daten Server-Methoden
-    void SetRefObject( SwServerObject* pObj );
     const SwServerObject* GetObject() const     {  return &refObj; }
           SwServerObject* GetObject()           {  return &refObj; }
 
