@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_textuno.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -127,14 +127,6 @@ SC_SIMPLE_SERVICE_INFO( ScHeaderFooterContentObj, "ScHeaderFooterContentObj", "c
 SC_SIMPLE_SERVICE_INFO( ScHeaderFooterTextObj, "ScHeaderFooterTextObj", "stardiv.one.Text.Text" )
 
 //------------------------------------------------------------------------
-
-ScHeaderFooterContentObj::ScHeaderFooterContentObj() :
-    pLeftText   ( NULL ),
-    pCenterText ( NULL ),
-    pRightText  ( NULL )
-{
-    //  fuer getReflection
-}
 
 ScHeaderFooterContentObj::ScHeaderFooterContentObj( const EditTextObject* pLeft,
                                                     const EditTextObject* pCenter,
