@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_listeneriter.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -110,18 +110,6 @@ SvtListener* SvtListenerIter::GoNext()
     return pAkt ? pAkt->GetListener() : 0;
 }
 
-
-SvtListener* SvtListenerIter::GoPrev()
-{
-    if( pDelNext == pAkt )
-        pAkt = pAkt->GetLeft();
-    else
-        pAkt = pDelNext->GetLeft();
-    pDelNext = pAkt;
-    return pAkt ? pAkt->GetListener() : 0;
-}
-
-
 SvtListener* SvtListenerIter::GoStart()         // zum Anfang des Baums
 {
     pAkt = rRoot.pRoot;
@@ -130,73 +118,6 @@ SvtListener* SvtListenerIter::GoStart()         // zum Anfang des Baums
             pAkt = pAkt->GetLeft();
     pDelNext = pAkt;
     return pAkt ? pAkt->GetListener() : 0;
-}
-
-
-SvtListener* SvtListenerIter::GoEnd()           // zum End des Baums
-{
-    pAkt = pDelNext;
-    if( !pAkt )
-        pAkt = rRoot.pRoot;
-    if( pAkt )
-        while( pAkt->GetRight() )
-            pAkt = pAkt->GetRight();
-    pDelNext = pAkt;
-    return pAkt ? pAkt->GetListener() : 0;
-}
-
-
-
-SvtListener* SvtListenerIter::First( TypeId nType )
-{
-    aSrchId = nType;
-    GoStart();
-    if( pAkt )
-        do {
-            if( pAkt->GetListener()->IsA( aSrchId ) )
-                break;
-
-            if( pDelNext == pAkt )
-            {
-                pAkt = pAkt->GetRight();
-                pDelNext = pAkt;
-            }
-            else
-                pAkt = pDelNext;
-
-        } while( pAkt );
-    return pAkt ? pAkt->GetListener() : 0;
-}
-
-
-SvtListener* SvtListenerIter::Next()
-{
-    do {
-        // erstmal zum naechsten
-        if( pDelNext == pAkt )
-        {
-            pAkt = pAkt->GetRight();
-            pDelNext = pAkt;
-        }
-        else
-            pAkt = pDelNext;
-
-        if( pAkt && pAkt->GetListener()->IsA( aSrchId ) )
-            break;
-    } while( pAkt );
-    return pAkt ? pAkt->GetListener() : 0;
-}
-
-
-SvtListener* SvtListenerIter::GoRoot()      // wieder ab Root anfangen
-{
-    pDelNext = pAkt = rRoot.pRoot;
-    return pAkt ? pAkt->GetListener() : 0;
-}
-
-SvtListener* SvtListenerIter::GetCurr() const   // returns the current
-{
-    return pDelNext ? pDelNext->GetListener() : 0;
 }
 
 }
