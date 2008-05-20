@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: wallitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,7 +64,6 @@ public:
     virtual CreateSvxBrushTabPage GetBackgroundTabpageCreateFunc() = 0;
     virtual GetSvxBrushTabPageRanges GetBackgroundTabpageRanges() = 0;
     static SfxBrushItemLink* Get() { return *(SfxBrushItemLink**)GetAppData(SHL_BRUSHITEM); }
-    static void Set( SfxBrushItemLink* pLink );
 };
 
 }
