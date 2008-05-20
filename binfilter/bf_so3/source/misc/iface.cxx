@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iface.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -205,11 +205,6 @@ UINT32 SvObject::AddExtRef()
     return AddRef();
 }
 
-/*************************************************************************
-|*    void TestInSendMessage()
-|*
-|*    Beschreibung
-*************************************************************************/
 #if defined (_INC_WINDOWS) || defined (_WINDOWS_)
 RECT GetSysRect( const Rectangle & rRect )
 {
@@ -239,17 +234,4 @@ Rectangle GetSvRect( const RECT & rRect )
 }
 #endif
 
-/*************************************************************************
-|*    void TestInSendMessage()
-|*
-|*    Beschreibung
-*************************************************************************/
-void TestInSendMessage()
-{
 }
-
-
-IMPL_PTRHINT(SvObjectDyingHint, SvObject);
-
-}
-
