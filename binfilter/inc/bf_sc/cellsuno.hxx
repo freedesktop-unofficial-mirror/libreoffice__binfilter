@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cellsuno.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -334,7 +334,6 @@ public:
     void                    SetNewRange(const ScRange& rNew);   // fuer Cursor
     void                    SetNewRanges(const ScRangeList& rNew);
 
-    void                    SetCursorOnly(BOOL bSet);
     BOOL                    IsCursorOnly() const            { return bCursorOnly; }
 
                             // XSheetOperation
