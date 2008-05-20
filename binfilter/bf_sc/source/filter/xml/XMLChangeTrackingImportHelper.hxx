@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: XMLChangeTrackingImportHelper.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,6 @@ struct ScMyCellInfo
     sal_uInt16      nType;
     sal_uInt8       nMatrixFlag;
 
-    ScMyCellInfo();
     ScMyCellInfo(ScBaseCell* pCell, const ::rtl::OUString& sFormulaAddress, const ::rtl::OUString& sFormula,
                 const double& fValue, const sal_uInt16 nType, const sal_uInt8 nMatrixFlag, const sal_Int32 nMatrixCols,
                 const sal_Int32 nMatrixRows);
@@ -152,7 +151,6 @@ struct ScMyBaseAction
 struct ScMyInsAction : public ScMyBaseAction
 {
     ScMyInsAction(const ScChangeActionType nActionType);
-    ~ScMyInsAction();
 };
 
 struct ScMyDelAction : public ScMyBaseAction
@@ -186,7 +184,6 @@ struct ScMyContentAction : public ScMyBaseAction
 struct ScMyRejAction : public ScMyBaseAction
 {
     ScMyRejAction();
-    ~ScMyRejAction();
 };
 
 typedef std::list<ScMyBaseAction*> ScMyActions;
