@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_swafopt.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -42,67 +42,6 @@ namespace binfilter {
 /*------------------------------------------------------------------------
  Beschreibung:
 ------------------------------------------------------------------------*/
-
-/*N*/ SvxSwAutoFmtFlags::SvxSwAutoFmtFlags()
-/*N*/   : aBulletFont( String::CreateFromAscii(
-/*N*/                       RTL_CONSTASCII_STRINGPARAM( "StarSymbol" )),
-/*N*/                   Size( 0, 14 ) )
-/*N*/ {
-/*N*/   bReplaceQuote =
-/*N*/   bAutoCorrect =
-/*N*/   bCptlSttSntnc =
-/*N*/   bCptlSttWrd =
-/*N*/   bChkFontAttr =
-/*N*/   bChgUserColl =
-/*N*/   bChgEnumNum =
-/*N*/   bChgFracionSymbol =
-/*N*/   bChgOrdinalNumber =
-/*N*/   bChgToEnEmDash =
-/*N*/   bChgWeightUnderl =
-/*N*/   bSetINetAttr =
-/*N*/   bAFmtDelSpacesAtSttEnd =
-/*N*/   bAFmtDelSpacesBetweenLines =
-/*N*/   bAFmtByInpDelSpacesAtSttEnd =
-/*N*/   bAFmtByInpDelSpacesBetweenLines =
-/*N*/   bDummy = TRUE;
-/*N*/
-/*N*/   bReplaceStyles =
-/*N*/   bDelEmptyNode =
-/*N*/   bWithRedlining =
-/*N*/   bAutoCmpltEndless =
-/*N*/   bAutoCmpltAppendBlanc =
-/*N*/   bAutoCmpltShowAsTip = FALSE;
-/*N*/
-/*N*/   bSetBorder =
-/*N*/   bCreateTable =
-/*N*/   bSetNumRule =
-/*N*/   bAFmtByInput =
-/*N*/   bRightMargin =
-/*N*/   bAutoCompleteWords =
-/*N*/     bAutoCmpltCollectWords =
-/*N*/     bAutoCmpltKeepList = TRUE;
-/*N*/
-/*N*/     bDummy5 = bDummy6 = bDummy7 = bDummy8 =
-/*N*/        FALSE;
-/*N*/
-/*N*/   nRightMargin = 50;      // dflt. 50 %
-/*N*/   nAutoCmpltExpandKey = KEY_RETURN;
-/*N*/
-/*N*/   aBulletFont.SetCharSet( RTL_TEXTENCODING_SYMBOL );
-/*N*/   aBulletFont.SetFamily( FAMILY_DONTKNOW );
-/*N*/   aBulletFont.SetPitch( PITCH_DONTKNOW );
-/*N*/   aBulletFont.SetWeight( WEIGHT_DONTKNOW );
-/*N*/   aBulletFont.SetTransparent( TRUE );
-/*N*/
-/*N*/   cBullet = 0x2022;
-/*N*/   cByInputBullet = cBullet;
-/*N*/   aByInputBulletFont = aBulletFont;
-/*N*/
-/*N*/   nAutoCmpltWordLen = 10;
-/*N*/   nAutoCmpltListLen = 500;
-/*N*/   pAutoCmpltList = 0;
-/*N*/ }
-
 
 /*N*/ SvxSwAutoFmtFlags& SvxSwAutoFmtFlags::operator=( const SvxSwAutoFmtFlags& rAFFlags )
 /*N*/ {
