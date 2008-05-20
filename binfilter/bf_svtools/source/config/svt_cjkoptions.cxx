@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_cjkoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -115,7 +115,6 @@ public:
         return  bCJKFont||bVerticalText||bAsianTypography||bJapaneseFind||
                 bRuby||bChangeCaseMap||bDoubleLines||bEmphasisMarks||bVerticalCallOut;   }
     void    SetAll(sal_Bool bSet);
-    sal_Bool IsReadOnly(SvtCJKOptions::EOption eOption) const;
 };
 /*-- 10.04.01 12:41:57---------------------------------------------------
 
@@ -382,29 +381,6 @@ void    SvtCJKOptions_Impl::Commit()
     aValues.realloc(nRealCount);
     PutProperties(aNames, aValues);
 }
-/*-- 13.02.2003 12:12---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Bool SvtCJKOptions_Impl::IsReadOnly(SvtCJKOptions::EOption eOption) const
-{
-    sal_Bool bReadOnly = CFG_READONLY_DEFAULT;
-    switch(eOption)
-    {
-        case SvtCJKOptions::E_CJKFONT : bReadOnly = bROCJKFont; break;
-        case SvtCJKOptions::E_VERTICALTEXT : bReadOnly = bROVerticalText; break;
-        case SvtCJKOptions::E_ASIANTYPOGRAPHY : bReadOnly = bROAsianTypography; break;
-        case SvtCJKOptions::E_JAPANESEFIND : bReadOnly = bROJapaneseFind; break;
-        case SvtCJKOptions::E_RUBY : bReadOnly = bRORuby; break;
-        case SvtCJKOptions::E_CHANGECASEMAP : bReadOnly = bROChangeCaseMap; break;
-        case SvtCJKOptions::E_DOUBLELINES : bReadOnly = bRODoubleLines; break;
-        case SvtCJKOptions::E_EMPHASISMARKS : bReadOnly = bROEmphasisMarks; break;
-        case SvtCJKOptions::E_VERTICALCALLOUT : bReadOnly = bROVerticalCallOut; break;
-        case SvtCJKOptions::E_ALL : if (bROCJKFont || bROVerticalText || bROAsianTypography || bROJapaneseFind || bRORuby || bROChangeCaseMap || bRODoubleLines || bROEmphasisMarks || bROVerticalCallOut)
-                                        bReadOnly = sal_True;
-                                break;
-    }
-    return bReadOnly;
-}
 
 // global ----------------------------------------------------------------
 
@@ -439,84 +415,6 @@ SvtCJKOptions::~SvtCJKOptions()
     ::osl::MutexGuard aGuard( CJKMutex::get() );
     if ( !--nCJKRefCount )
         DELETEZ( pCJKOptions );
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsCJKFontEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsCJKFontEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsVerticalTextEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsVerticalTextEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsAsianTypographyEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsAsianTypographyEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsJapaneseFindEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsJapaneseFindEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsRubyEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsRubyEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsChangeCaseMapEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsChangeCaseMapEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsDoubleLinesEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsDoubleLinesEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsEmphasisMarksEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsEmphasisMarksEnabled();
-}
-// -----------------------------------------------------------------------
-sal_Bool SvtCJKOptions::IsVerticalCallOutEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsVerticalCallOutEnabled();
-}
-/*-- 20.04.01 14:32:04---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void        SvtCJKOptions::SetAll(sal_Bool bSet)
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    pCJKOptions->SetAll(bSet);
-}
-/*-- 20.04.01 14:32:06---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Bool    SvtCJKOptions::IsAnyEnabled() const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsAnyEnabled();
-}
-/*-- 13.02.2003 12:11---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Bool    SvtCJKOptions::IsReadOnly(EOption eOption) const
-{
-    DBG_ASSERT(pCJKOptions->IsLoaded(), "CJK options not loaded")
-    return pCJKOptions->IsReadOnly(eOption);
 }
 
 }
