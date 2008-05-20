@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: itemdel.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -33,17 +33,6 @@
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif
-
-namespace binfilter
-{
-
-class SfxPoolItem;
-
- SfxPoolItem* DeleteItemOnIdle( SfxPoolItem* pItem );
-
-void DeleteOnIdleItems();
-
-}
 
 #endif
 
