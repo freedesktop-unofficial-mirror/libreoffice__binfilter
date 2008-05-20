@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: tblrwcl.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -86,7 +86,7 @@ void _InsTblBox( SwDoc* pDoc, SwTableNode* pTblNd,
                 SwTableLine* pLine, SwTableBoxFmt* pBoxFrmFmt,
                 SwTableBox* pBox, USHORT nInsPos, USHORT nCnt = 1 );
 
-void _DeleteBox( SwTable& rTbl, SwTableBox* pBox, SwUndo* pUndo = 0,
+void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
                 BOOL bCalcNewSize = TRUE, const BOOL bCorrBorder = TRUE,
                 SwShareBoxFmts* pShareFmts = 0 );
 
