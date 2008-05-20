@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docdraw.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -297,32 +297,12 @@ namespace binfilter {//STRIP009
 /*N*/       OutputDevice* pRefDev = _GetRefDev();
 /*N*/     if ( pRefDev )
 /*N*/         pDrawModel->SetRefDevice( pRefDev );
-/*N*/   pDrawModel->SetNotifyUndoActionHdl( LINK( this, SwDoc, AddDrawUndo ));
 /*N*/   if ( pLayout )
 /*N*/   {
 /*N*/       pLayout->SetDrawPage( pDrawModel->GetPage( 0 ) );
 /*N*/       pLayout->GetDrawPage()->SetSize( pLayout->Frm().SSize() );
 /*N*/   }
 /*N*/ }
-
-/** method to notify drawing page view about the invisible layers
-
-    OD 26.06.2003 #108784#
-
-    @author OD
-*/
-void SwDoc::NotifyInvisibleLayers( SdrPageView& _rSdrPageView )
-{
-    String sLayerNm;
-    sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("InvisibleHell" ));
-    _rSdrPageView.SetLayerVisible( sLayerNm, FALSE );
-
-    sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("InvisibleHeaven" ));
-    _rSdrPageView.SetLayerVisible( sLayerNm, FALSE );
-
-    sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("InvisibleControls" ));
-    _rSdrPageView.SetLayerVisible( sLayerNm, FALSE );
-}
 
 /** method to determine, if a layer ID belongs to the visible ones.
 
@@ -486,12 +466,6 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/   return pDrawModel;
 /*N*/ }
 
-/*************************************************************************/
-
-/*N*/ void SwDoc::DrawNotifyUndoHdl()
-/*N*/ {
-/*N*/   pDrawModel->SetNotifyUndoActionHdl( Link() );
-/*N*/ }
 
 /*************************************************************************/
 /*
