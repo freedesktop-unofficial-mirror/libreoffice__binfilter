@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbx.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,10 +47,6 @@
 
 #ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
-
-#ifndef _SBXFORM_HXX
-#include "sbxform.hxx"
 #endif
 
 #ifndef __SBX_SBXOBJECT_HXX
@@ -134,11 +130,8 @@ protected:
     virtual ~SbxInfo();
 public:
     SbxInfo();
-    SbxInfo( const String&, UINT32 );
 
     void                AddParam( const String&, SbxDataType, USHORT=SBX_READ );
-    void                AddParam( const SbxParamInfo& );
-    const SbxParamInfo* GetParam( USHORT n ) const; // ab 1!
     const String&       GetComment() const              { return aComment; }
     const String&       GetHelpFile() const             { return aHelpFile; }
     UINT32              GetHelpId() const               { return nHelpId;   }
@@ -177,7 +170,6 @@ class SbxAlias : public SbxVariable, public SfxListener
     virtual void SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                              const SfxHint& rHint, const TypeId& rHintType );
 public:
-    SbxAlias( const String& rName, SbxVariable* pOriginal );
     SbxAlias( const SbxAlias& );
     SbxAlias& operator=( const SbxAlias& );
 };
@@ -231,8 +223,6 @@ public:
     void Remove( USHORT );
     void Remove( SbxVariable* );
     void Merge( SbxArray* );
-    const String& GetAlias( USHORT );
-    void PutAlias( const String&, USHORT );
     SbxVariable* FindUserData( UINT32 nUserData );
     virtual SbxVariable* Find( const String&, SbxClassType );
 
@@ -267,7 +257,6 @@ class SbxDimArray : public SbxArray
 protected:
     USHORT  Offset( const short* );
     UINT32  Offset32( const INT32* );
-    USHORT  Offset( SbxArray* );
     UINT32  Offset32( SbxArray* );
     virtual BOOL LoadData( SvStream&, USHORT );
     virtual BOOL StoreData( SvStream& ) const;
@@ -280,14 +269,10 @@ public:
     SbxDimArray& operator=( const SbxDimArray& );
     virtual void Clear();
     using SbxArray::GetRef;
-    SbxVariableRef& GetRef( const short* );
     using SbxArray::Get;
     SbxVariable* Get( const short* );
     using SbxArray::Put;
-    void Put( SbxVariable*, const short* );
-    SbxVariableRef& GetRef( SbxArray* );
     SbxVariable* Get( SbxArray* );
-    void Put( SbxVariable*, SbxArray* );
 
     short  GetDims() const { return nDim;  }
     void   AddDim( short, short );
@@ -295,7 +280,6 @@ public:
     BOOL   GetDim( short, short&, short& ) const;
 
     using SbxArray::GetRef32;
-    SbxVariableRef& GetRef32( const INT32* );
     using SbxArray::Get32;
     SbxVariable* Get32( const INT32* );
     using SbxArray::Put32;
