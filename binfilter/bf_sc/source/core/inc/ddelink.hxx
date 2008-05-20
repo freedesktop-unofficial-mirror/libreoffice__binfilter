@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ddelink.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@ public:
                          const String& rA, const String& rT, const String& rI,
                         BYTE nM );
             ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr );
-            ScDdeLink( ScDocument* pD, const ScDdeLink& rOther );
     virtual ~ScDdeLink();
 
     void            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
