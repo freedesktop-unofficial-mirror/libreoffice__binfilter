@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_htmltbl.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,51 +53,9 @@ namespace binfilter {
 #define COLFUZZY 20
 #define MAX_TABWIDTH (USHRT_MAX - 2001)
 
-
-/*  */
-
-
-/*  */
-
-
-
-
-
-/*  */
-
-
-
-/*  */
-
-
-
-/*  */
-
-
-
-
-/*  */
-
-
-/*N*/ SwHTMLTableLayout::SwHTMLTableLayout(
-/*N*/                       const SwTable * pSwTbl,
-/*N*/                       USHORT nRws, USHORT nCls, BOOL bColsOpt, BOOL bColTgs,
-/*N*/                       USHORT nWdth, BOOL bPrcWdth, USHORT nBorderOpt,
-/*N*/                       USHORT nCellPad, USHORT nCellSp, SvxAdjust eAdjust,
-/*N*/                       USHORT nLMargin, USHORT nRMargin,
-/*N*/                       USHORT nBWidth, USHORT nLeftBWidth,
-/*N*/                       USHORT nRightBWidth,
-/*N*/                       USHORT nInhLeftBWidth, USHORT nInhRightBWidth ) //STRIP001 :
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 /*N*/ SwHTMLTableLayout::~SwHTMLTableLayout()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
-
-#ifdef USED
-
-#endif
 
 // Die Breiten der Umrandung werden zunaechst wie in Netscape berechnet:
 // Aussere Umrandung: BORDER + CELLSPACING + CELLPADDING
