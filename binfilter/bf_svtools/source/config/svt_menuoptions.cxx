@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_menuoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -126,9 +126,6 @@ class SvtMenuOptions_Impl : public ConfigItem
 
          SvtMenuOptions_Impl();
         ~SvtMenuOptions_Impl();
-
-        void AddListener( const Link& rLink );
-        void RemoveListener( const Link& rLink );
 
         //---------------------------------------------------------------------------------------------------------
         //  overloaded methods of baseclass
@@ -401,23 +398,6 @@ Sequence< OUString > SvtMenuOptions_Impl::impl_GetPropertyNames()
     return seqPropertyNames;
 }
 
-void SvtMenuOptions_Impl::AddListener( const Link& rLink )
-{
-    aList.Insert( new Link( rLink ) );
-}
-
-void SvtMenuOptions_Impl::RemoveListener( const Link& rLink )
-{
-    for ( USHORT n=0; n<aList.Count(); n++ )
-    {
-        if ( (*aList.GetObject(n) ) == rLink )
-        {
-            delete aList.Remove(n);
-            break;
-        }
-    }
-}
-
 //*****************************************************************************************************************
 //  initialize static member
 //  DON'T DO IT IN YOUR HEADER!
@@ -464,60 +444,6 @@ SvtMenuOptions::~SvtMenuOptions()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtMenuOptions::IsEntryHidingEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsEntryHidingEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtMenuOptions::IsFollowMouseEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsFollowMouseEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtMenuOptions::SetEntryHidingState( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetEntryHidingState( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtMenuOptions::SetFollowMouseState( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetFollowMouseState( bState );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtMenuOptions::IsMenuIconsEnabled() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsMenuIconsEnabled();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtMenuOptions::SetMenuIconsState( sal_Bool bState )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetMenuIconsState( bState );
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Mutex& SvtMenuOptions::GetOwnStaticMutex()
@@ -540,16 +466,6 @@ Mutex& SvtMenuOptions::GetOwnStaticMutex()
     }
     // Return new created or already existing mutex object.
     return *pMutex;
-}
-
-void SvtMenuOptions::AddListener( const Link& rLink )
-{
-    m_pDataContainer->AddListener( rLink );
-}
-
-void SvtMenuOptions::RemoveListener( const Link& rLink )
-{
-    m_pDataContainer->RemoveListener( rLink );
 }
 
 }
