@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_interpr4.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2371,24 +2371,6 @@ void ScInterpreter::ScMissing()
 /*N*/      pDok->DecInterpreterTableOpLevel();
 /*N*/  }
 
-
-/*
-
-void ScInterpreter::ScErrCell()
-{
-    double fErrNum = GetDouble();
-    SetError((USHORT) fErrNum);
-    PushInt(0);
-}
-*/
-
-
-void ScInterpreter::ScDefPar()
-{
-    PushInt(0);
-}
-
-
 void ScInterpreter::ScDBArea()
 {
     ScDBData* pDBData = pDok->GetDBCollection()->FindIndex( pCur->GetIndex());
@@ -2753,7 +2735,6 @@ void ScInterpreter::ScTTT()
                 case ocNeg              : ScNeg();                      break;
                 case ocPercentSign      : ScPercentSign();              break;
 /*N*/                 case ocPi               : ScPi();                       break;
-//              case ocDefPar           : ScDefPar();                   break;
                 case ocRandom           : ScRandom();                   break;
                 case ocTrue             : ScTrue();                     break;
                 case ocFalse            : ScFalse();                    break;
