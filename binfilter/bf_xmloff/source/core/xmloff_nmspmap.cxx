@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_nmspmap.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -239,13 +239,6 @@ OUString SvXMLNamespaceMap::GetQNameByKey( sal_uInt16 nKey,
     }
 }
 
-sal_uInt16 SvXMLNamespaceMap::_GetKeyByAttrName(
-                            const OUString& rAttrName,
-                            OUString *pLocalName ) const
-{
-    return GetKeyByAttrName( rAttrName, 0, pLocalName, 0 );
-}
-
 sal_uInt16 SvXMLNamespaceMap::_GetKeyByAttrName( const OUString& rAttrName,
                                             OUString *pPrefix,
                                             OUString *pLocalName,
@@ -324,11 +317,6 @@ sal_uInt16 SvXMLNamespaceMap::GetNextKey( sal_uInt16 nLastKey ) const
 
 
 // All methods after this are deprecated...
-
-sal_uInt16 SvXMLNamespaceMap::GetIndexByKey( sal_uInt16 nKey ) const
-{
-       return nKey;
-}
 
 sal_Bool SvXMLNamespaceMap::AddAtIndex( sal_uInt16 nIdx, const OUString& rPrefix,
                                     const OUString& rName, sal_uInt16 nKey )
