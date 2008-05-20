@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdhdl.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -159,8 +159,6 @@ class SdrHdl
 {
     friend class                SdrMarkView; // fuer den Zugriff auf nObjHdlNum
 public:
-    SdrHdl();
-    SdrHdl(const Point& rPnt, SdrHdlKind eNewKind=HDL_MOVE);
     virtual ~SdrHdl();
 
     SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }//STRIP001    SdrHdlKind GetKind() const { return eKind; }
@@ -228,7 +226,6 @@ public:
 
     // #97016# II
     SdrHdl* GetFocusHdl() const;
-    void ResetFocusHdl();
 
     // Access to View
     // #97016# II: moved implementation to cxx
@@ -248,13 +245,6 @@ public:
     BOOL IsDistortShear() const                    { return bDistortShear; }
     void     SetFineHdl(BOOL bOn);
     BOOL IsFineHdl() const                        { return bFineHandles; }
-
-    // AddHdl uebernimmt das Handle in sein Eigentum. Es muss
-    // also auf dem Heap stehen, da Clear() ein delete macht.
-
-    // Zuletzt eingefuegte Handles werden am ehesten getroffen
-    // (wenn Handles uebereinander liegen).
-    SdrHdl* HitTest(const Point& rPnt, const OutputDevice& rOut, BOOL bBack=FALSE, BOOL bNext=FALSE, SdrHdl* pHdl0=NULL) const;
 };
 
 }//end of namespace binfilter
