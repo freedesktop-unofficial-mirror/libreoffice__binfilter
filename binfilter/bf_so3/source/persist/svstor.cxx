@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svstor.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -82,14 +82,6 @@ void SvStorageStream::TestMemberInvariant( BOOL /*bPrint*/ )
 |*
 |*    Beschreibung
 *************************************************************************/
-SvStorageStream::SvStorageStream( const String & rName, StreamMode nMode,
-                                  StorageMode nStorageMode)
-    : SotStorageStream( rName, nMode, nStorageMode )
-    , pObjI( NULL )
-    , pRelease( NULL )
-{
-}
-
 SvStorageStream::SvStorageStream( BaseStorageStream * pStm )
     : SotStorageStream( pStm )
     , pObjI( NULL )
