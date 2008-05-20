@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxvar.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -300,7 +300,6 @@ public:
     BOOL IsUInt()    const { return BOOL( GetType() == SbxUINT     ); }
     BOOL IspChar()   const { return BOOL( GetType() == SbxLPSTR    ); }
     BOOL IsNumeric() const;
-    BOOL IsNumericRTL() const;  // #41692 Schnittstelle fuer Basic
     BOOL ImpIsNumeric( BOOL bOnlyIntntl ) const;    // Implementation
 
     virtual SbxClassType GetClass() const;
@@ -309,13 +308,10 @@ public:
     BOOL SetType( SbxDataType );
 
     virtual BOOL Get( SbxValues& ) const;
-    BOOL GetNoBroadcast( SbxValues& );
     const SbxValues& GetValues_Impl() const { return aData; }
     virtual BOOL Put( const SbxValues& );
 
     SbxINT64 GetCurrency() const;
-    SbxINT64 GetLong64() const;
-    SbxUINT64 GetULong64() const;
     sal_Int64  GetInt64() const;
     sal_uInt64 GetUInt64() const;
     INT16  GetInteger() const;
@@ -324,22 +320,16 @@ public:
     double GetDouble() const;
     double GetDate() const;
     BOOL   GetBool() const;
-    UINT16 GetErr() const;
     const  String& GetString() const;
     const  String& GetCoreString() const;
     SbxDecimal* GetDecimal() const;
     SbxBase* GetObject() const;
-    BOOL     HasObject() const;
-    void*  GetData() const;
     sal_Unicode GetChar() const;
     BYTE   GetByte() const;
     UINT16 GetUShort() const;
     UINT32 GetULong() const;
-    int    GetInt() const;
 
     BOOL PutCurrency( const SbxINT64& );
-    BOOL PutLong64( const SbxINT64& );
-    BOOL PutULong64( const SbxUINT64& );
     BOOL PutInt64( sal_Int64 );
     BOOL PutUInt64( sal_uInt64 );
     BOOL PutInteger( INT16 );
@@ -348,34 +338,19 @@ public:
     BOOL PutDouble( double );
     BOOL PutDate( double );
     BOOL PutBool( BOOL );
-    BOOL PutErr( USHORT );
-    BOOL PutStringExt( const String& ); // mit erweiterter Auswertung (International, "TRUE"/"FALSE")
     BOOL PutString( const String& );
-    BOOL PutString( const sal_Unicode* );   // Typ = SbxSTRING
-    BOOL PutpChar( const sal_Unicode* );    // Typ = SbxLPSTR
-    BOOL PutDecimal( SbxDecimal* pDecimal );
     BOOL PutObject( SbxBase* );
-    BOOL PutData( void* );
     BOOL PutChar( sal_Unicode );
+    BOOL PutDecimal( SbxDecimal* pDecimal );
     BOOL PutByte( BYTE );
     BOOL PutUShort( UINT16 );
     BOOL PutULong( UINT32 );
-    BOOL PutInt( int );
     BOOL PutEmpty();
-    BOOL PutNull();
-
-    // Special decimal methods
-    BOOL PutDecimal( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec );
-    BOOL fillAutomationDecimal( com::sun::star::bridge::oleautomation::Decimal& rAutomationDec );
 
     virtual BOOL Convert( SbxDataType );
     virtual BOOL Compute( SbxOperator, const SbxValue& );
     virtual BOOL Compare( SbxOperator, const SbxValue& ) const;
     BOOL Scan( const String&, USHORT* = NULL );
-    void Format( String&, const String* = NULL ) const;
-
-    // Schnittstelle fuer CDbl im Basic
-    static SbxError ScanNumIntnl( const String& rSrc, double& nVal, BOOL bSingle=FALSE );
 
     // Die folgenden Operatoren sind zwecks einfacherem
     // Zugriff definiert. Fehlerkonditionen wie Ueberlauf
@@ -504,7 +479,6 @@ public:
 
     // Das Parameter-Interface
     virtual SbxInfo* GetInfo();
-    void SetInfo( SbxInfo* p );
     void SetParameters( SbxArray* p );
     SbxArray* GetParameters() const     { return mpPar; }
 
