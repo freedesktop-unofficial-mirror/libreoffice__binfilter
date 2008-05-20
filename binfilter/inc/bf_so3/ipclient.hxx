@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipclient.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,9 +80,6 @@ protected:
     virtual void        MakeViewData();
 public:
                         SvInPlaceClient();
-                        SvInPlaceClient( WorkWindow * pTopWin,
-                                         WorkWindow * pDocWin,
-                                         Window * pEditWin );
                         SO2_DECL_STANDARD_CLASS_DLL(SvInPlaceClient,SOAPP)
 
     IOleInPlaceSite *           GetInPlaceSite() const;
