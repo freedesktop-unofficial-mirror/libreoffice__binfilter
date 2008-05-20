@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: extendedsecurityoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -119,17 +119,6 @@ class  SvtExtendedSecurityOptions: public Options
 
          SvtExtendedSecurityOptions();
         virtual ~SvtExtendedSecurityOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        sal_Bool                                        IsSecureHyperlink( const rtl::OUString& aURL ) const;
-        com::sun::star::uno::Sequence< rtl::OUString >  GetSecureExtensionList() const;
-
-        OpenHyperlinkMode                               GetOpenHyperlinkMode();
-        void                                            SetOpenHyperlinkMode( OpenHyperlinkMode aMode );
-        sal_Bool                                        IsOpenHyperlinkModeReadOnly() const;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
