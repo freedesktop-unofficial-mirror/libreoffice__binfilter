@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_wmf.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -103,13 +103,6 @@ BOOL ConvertGDIMetaFileToEMF( const GDIMetaFile & rMTF, SvStream & rTargetStream
 {
     EMFWriter aEMFWriter;
     return aEMFWriter.WriteEMF( rMTF, rTargetStream, pConfigItem );
-}
-
-// -----------------------------------------------------------------------------
-
-BOOL WriteWindowMetafile( SvStream& rStream, const GDIMetaFile& rMTF )
-{
-    return WMFWriter().WriteWMF( rMTF, rStream, NULL );
 }
 
 // -----------------------------------------------------------------------------
