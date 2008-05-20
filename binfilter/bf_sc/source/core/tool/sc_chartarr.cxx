@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_chartarr.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,23 +76,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ ScChartArray::ScChartArray( ScDocument* pDoc, USHORT nTab,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-/*N*/                   const String& rChartName ) :
-/*N*/       aName( rChartName ),
-/*N*/       pDocument( pDoc ),
-/*N*/       pPositionMap( NULL ),
-/*N*/       eGlue( SC_CHARTGLUE_NA ),
-/*N*/       nStartCol(0),
-/*N*/       nStartRow(0),
-/*N*/       bColHeaders( FALSE ),
-/*N*/       bRowHeaders( FALSE ),
-/*N*/       bDummyUpperLeft( FALSE ),
-/*N*/       bValid( TRUE )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRangeList( ScRange( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab ) );
-/*N*/ }
-/*N*/
 /*N*/ ScChartArray::ScChartArray( ScDocument* pDoc, const ScRangeListRef& rRangeList,
 /*N*/                   const String& rChartName ) :
 /*N*/       aRangeListRef( rRangeList ),
