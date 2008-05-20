@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: syslocaleoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -90,9 +90,6 @@ public:
 
     // ConfigItem methods
 
-            sal_Bool            IsModified();
-            void                Commit();
-
                                 /** Add a listener to react on config changes
                                     which are broadcasted in a SfxSimpleHint
                                     @return
@@ -102,46 +99,12 @@ public:
             BOOL                AddListener( SvtListener& );
             BOOL                RemoveListener( SvtListener& );
 
-    /** Block broadcasts and accumulate hints. This may be useful if, for
-        example, the locale and currency are changed and the currency was
-        empty before, since changing the locale with an empty currency does
-        also broadcast a change hint for the currency which would result in
-        two currency changes broadcasted.
-
-        @param bBlock
-            <TRUE/>: broadcasts are blocked until reversed.
-            <FALSE/>: broadcasts are not blocked anymore. Pending hints are
-            broadcasted if no other instance blocks the broadcast.
-
-        @ATTENTION
-        All SvtSysLocaleOptions instances point to exactly one refcounted
-        internal representation instance and broadcast blocks are counted.
-        Thus if you issue a BlockBroadcasts(TRUE) you MUST issue a matching
-        BlockBroadcasts(FALSE) or otherwise pending hints would never be
-        broadcasted again.
-     */
-            void                BlockBroadcasts( BOOL bBlock );
-
     // config value access methods
-
-    /// The config string may be empty to denote the SYSTEM locale
-            const ::rtl::OUString&  GetLocaleConfigString() const;
-            void                SetLocaleConfigString( const ::rtl::OUString& rStr );
 
     /// The config string may be empty to denote the default currency of the locale
             const ::rtl::OUString&  GetCurrencyConfigString() const;
-            void                SetCurrencyConfigString( const ::rtl::OUString& rStr );
-    // determine whether the decimal separator defined in the keyboard layout is used
-    // or the one approriate to the locale
-            sal_Bool            IsDecimalSeparatorAsLocale() const;
-            void                SetDecimalSeparatorAsLocale( sal_Bool bSet);
 
     // convenience methods
-
-    /** Get the LanguageType of the current locale, may be LANGUAGE_SYSTEM if
-        LocaleConfigString is empty. If you need the real locale used in the
-        application, call Application::GetSettings().GetLanguage() instead */
-            LanguageType        GetLocaleLanguageType() const;
 
     /// Get currency abbreviation and locale from an USD-en-US or EUR-de-DE string
     static  void                GetCurrencyAbbrevAndLanguage(
@@ -149,26 +112,12 @@ public:
                                     LanguageType& eLang,
                                     const ::rtl::OUString& rConfigString );
 
-    /// Create an USD-en-US or EUR-de-DE string
-    static  ::rtl::OUString     CreateCurrencyConfigString(
-                                    const String& rAbbrev,
-                                    LanguageType eLang );
-
             void                GetCurrencyAbbrevAndLanguage(
                                         String& rAbbrev,
                                         LanguageType& eLang ) const
                                     {
                                         GetCurrencyAbbrevAndLanguage( rAbbrev,
                                             eLang, GetCurrencyConfigString() );
-                                    }
-
-            void                SetCurrencyAbbrevAndLanguage(
-                                        const String& rAbbrev,
-                                        LanguageType eLang )
-                                    {
-                                        SetCurrencyConfigString(
-                                            CreateCurrencyConfigString(
-                                            rAbbrev, eLang ) );
                                     }
 
     /** Set a link to a method to be called whenever the default currency
@@ -179,9 +128,6 @@ public:
      */
     static  void                SetCurrencyChangeLink( const Link& rLink );
     static  const Link&         GetCurrencyChangeLink();
-
-    /** return the readonly state of the queried option. */
-            sal_Bool            IsReadOnly( EOption eOption ) const;
 };
 
 }
