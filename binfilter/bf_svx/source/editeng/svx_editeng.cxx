@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_editeng.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -386,12 +386,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetSelected( aSel, eEnd );
 /*N*/ }
 
-/*N*/ sal_uInt32 EditEngine::GetTextLen() const
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   return pImpEditEngine->GetEditDoc().GetTextLen();
-/*N*/ }
-
 /*N*/ sal_uInt16 EditEngine::GetParagraphCount() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -580,21 +574,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/       aStr = pImpEditEngine->GetEditDoc().GetParaAsString( nPara );
 /*N*/   return aStr;
 /*N*/ }
-
-/*N*/ void EditEngine::SetModifyHdl( const Link& rLink )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->SetModifyHdl( rLink );
-/*N*/ }
-
-
-
-/*N*/ void EditEngine::ClearModifyFlag()
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/   pImpEditEngine->SetModifyFlag( sal_False );
-/*N*/ }
-
 
 /*N*/ sal_Bool EditEngine::IsModified() const
 /*N*/ {
@@ -1252,14 +1231,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   SfxItemPool* pPool = new EditEngineItemPool( bPersistentRefCounts );
 /*N*/   return pPool;
 /*N*/ }
-
-
-/*N*/ void EditEngine::SetGetAutoCorrectHdl( const Link& rHdl )
-/*N*/ {
-/*N*/   EE_DLL()->GetGlobalData()->SetGetAutoCorrectHdl( rHdl );
-/*N*/ }
-
-
 
 
 /*N*/ Font EditEngine::CreateFontFromItemSet( const SfxItemSet& rItemSet, USHORT nScriptType )
