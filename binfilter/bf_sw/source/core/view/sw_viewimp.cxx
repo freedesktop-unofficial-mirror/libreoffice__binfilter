@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_viewimp.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,91 +68,6 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::Init( const SwViewOption *pNewOpt )
 /*N*/ {
-#if 0
-/*N*/   ASSERT( pDrawView, "SwViewImp::Init without DrawView" );
-/*N*/   //Jetzt die PageView erzeugen wenn sie noch nicht existiert.
-/*N*/   SwRootFrm *pRoot = pSh->GetDoc()->GetRootFrm();
-/*N*/   if ( !pSdrPageView )
-/*N*/   {
-/*N*/       if ( !pRoot->GetDrawPage() )
-/*?*/           pRoot->SetDrawPage( pSh->GetDoc()->GetDrawModel()->GetPage( 0 ) );
-/*N*/
-/*N*/       pRoot->GetDrawPage()->SetSize( pRoot->Frm().SSize() );
-/*N*/       pSdrPageView = pDrawView->ShowPage( pRoot->GetDrawPage(), Point());
-/*N*/         // OD 26.06.2003 #108784# - notify drawing page view about invisible
-/*N*/         // layers.
-/*N*/         pSh->GetDoc()->NotifyInvisibleLayers( *pSdrPageView );
-/*N*/   }
-/*N*/   pDrawView->SetDragStripes( pNewOpt->IsCrossHair() );
-/*N*/   pDrawView->SetGridSnap( pNewOpt->IsSnap() );
-/*N*/   pDrawView->SetGridVisible( pNewOpt->IsGridVisible() );
-/*N*/   const Size &rSz = pNewOpt->GetSnapSize();
-/*N*/   pDrawView->SetGridCoarse( rSz );
-/*N*/   const Size aFSize
-/*N*/           ( rSz.Width() ? rSz.Width() /Max(short(1),pNewOpt->GetDivisionX()):0,
-/*N*/             rSz.Height()? rSz.Height()/Max(short(1),pNewOpt->GetDivisionY()):0);
-/*N*/   pDrawView->SetGridFine( aFSize );
-/*N*/   pDrawView->SetSnapGrid( aFSize );
-/*N*/   Fraction aSnGrWdtX(rSz.Width(), pNewOpt->GetDivisionX() + 1);
-/*N*/   Fraction aSnGrWdtY(rSz.Height(), pNewOpt->GetDivisionY() + 1);
-/*N*/   pDrawView->SetSnapGridWidth( aSnGrWdtX, aSnGrWdtY );
-/*N*/
-/*N*/   //Ersatzdarstellung
-/*N*/   FASTBOOL bDraw = !pNewOpt->IsDraw();
-/*N*/   pDrawView->SetLineDraft( bDraw );
-/*N*/   pDrawView->SetFillDraft( bDraw );
-/*N*/   pDrawView->SetGrafDraft( bDraw );
-/*N*/   pDrawView->SetTextDraft( bDraw );
-/*N*/
-/*N*/   if ( pRoot->Frm().HasArea() )
-/*N*/       pDrawView->SetWorkArea( pRoot->Frm().SVRect() );
-/*N*/
-/*N*/   if ( GetShell()->IsPreView() )
-/*?*/       pDrawView->SetAnimationEnabled( FALSE );
-/*N*/
-/*N*/   pDrawView->SetUseIncompatiblePathCreateInterface( FALSE );
-/*N*/   pDrawView->SetSolidMarkHdl(pNewOpt->IsSolidMarkHdl());
-/*N*/
-/*N*/   // it's a JOE interface !
-/*N*/   pDrawView->SetMarkHdlSizePixel(pNewOpt->IsBigMarkHdl() ? 9 : 7);
-#endif
-        DBG_ERROR("Strip!");
-/*N*/ }
-
-/*************************************************************************
-|*
-|*  SwViewImp::SwViewImp()  CTor fuer die Core-Internas
-|*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 06. Sep. 96
-|*
-|*************************************************************************/
-
-/*N*/ SwViewImp::SwViewImp( ViewShell *pParent ) :
-/*N*/   pSh( pParent ),
-/*N*/   pFirstVisPage( 0 ),
-/*N*/   pRegion( 0 ),
-/*N*/   pScrollRects( 0 ),
-/*N*/   pScrolledArea( 0 ),
-/*N*/   pLayAct( 0 ),
-/*N*/   pIdleAct( 0 ),
-/*N*/   pSdrPageView( 0 ),
-/*N*/   pDrawView( 0 ),
-/*N*/     nRestoreActions( 0 ) //STRIP001 ,
-/*N*/     // OD 12.12.2002 #103492#
-/*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/ #endif
-/*N*/ {
-#if 0
-/*N*/   bResetXorVisibility = bShowHdlPaint =
-/*N*/   bResetHdlHiddenPaint = bScrolled =
-/*N*/   bPaintInScroll = bSmoothUpdate = bStopSmooth = bStopPrt = FALSE;
-/*N*/   bFirstPageInvalid = bScroll = bNextScroll = TRUE;
-/*N*/
-/*N*/   aScrollTimer.SetTimeout( 1500 );
-/*N*/   aScrollTimer.SetTimeoutHdl( LINK( this, SwViewImp, RefreshScrolledHdl));
-/*N*/   aScrollTimer.Stop();
-#endif
         DBG_ERROR("Strip!");
 /*N*/ }
 
