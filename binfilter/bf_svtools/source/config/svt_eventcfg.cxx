@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_eventcfg.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -235,13 +235,6 @@ void GlobalEventConfig_Impl::initBindingInfo()
             }
         }
     }
-}
-
-Reference< container::XNameReplace > SAL_CALL GlobalEventConfig_Impl::getEvents() throw (::com::sun::star::uno::RuntimeException)
-{
-    //how to return this object as an XNameReplace?
-    Reference< container::XNameReplace > ret;
-    return ret;
 }
 
 void SAL_CALL GlobalEventConfig_Impl::replaceByName( const OUString& aName, const Any& aElement ) throw (lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, RuntimeException)
