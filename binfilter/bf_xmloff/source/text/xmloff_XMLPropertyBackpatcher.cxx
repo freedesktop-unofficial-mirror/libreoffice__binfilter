@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmloff_XMLPropertyBackpatcher.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,52 +65,6 @@ XMLPropertyBackpatcher<A>::XMLPropertyBackpatcher(
         bPreserveProperty(sal_False),
         sPreservePropertyName()
 {
-}
-
-template<class A>
-XMLPropertyBackpatcher<A>::XMLPropertyBackpatcher(
-    const OUString& sPropName,
-    const OUString& sPreserveName,
-    sal_Bool bDefault,
-    A aDef) :
-        sPropertyName(sPropName),
-        bDefaultHandling(bDefault),
-        aDefault(aDef),
-        sPreservePropertyName(sPreserveName),
-        bPreserveProperty(sPreserveName.getLength()>0)
-{
-}
-
-template<class A>
-XMLPropertyBackpatcher<A>::XMLPropertyBackpatcher(
-    const sal_Char* pPropName) :
-        sPropertyName(),
-        bDefaultHandling(sal_False),
-        bPreserveProperty(sal_False),
-        sPreservePropertyName()
-{
-    DBG_ASSERT(pPropName != NULL, "need property name");
-    sPropertyName = OUString::createFromAscii(pPropName);
-}
-
-template<class A>
-XMLPropertyBackpatcher<A>::XMLPropertyBackpatcher(
-    const sal_Char* pPropName,
-    const sal_Char* pPreservePropName,
-    sal_Bool bDefault,
-    A aDef) :
-        sPropertyName(),
-        sPreservePropertyName(),
-        bDefaultHandling(bDefault),
-        bPreserveProperty(pPreservePropName != NULL),
-        aDefault(aDef)
-{
-    DBG_ASSERT(pPropName != NULL, "need property name");
-    sPropertyName = OUString::createFromAscii(pPropName);
-    if (pPreservePropName != NULL)
-    {
-        sPreservePropertyName = OUString::createFromAscii(pPreservePropName);
-    }
 }
 
 template<class A>
