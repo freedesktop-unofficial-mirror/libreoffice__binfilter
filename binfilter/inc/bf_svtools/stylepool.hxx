@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: stylepool.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,8 +50,6 @@ private:
     StylePoolImpl *pImpl;
 public:
     typedef boost::shared_ptr<SfxItemSet> SfxItemSet_Pointer_t;
-
-    StylePool();
 
     /** Insert a SfxItemSet into the style pool.
 
