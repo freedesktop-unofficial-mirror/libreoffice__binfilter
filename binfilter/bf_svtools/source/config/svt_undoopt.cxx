@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_undoopt.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -216,16 +216,6 @@ SvtUndoOptions::~SvtUndoOptions()
             pOptions->Commit();
         DELETEZ( pOptions );
     }
-}
-
-void SvtUndoOptions::SetUndoCount( sal_Int32 n )
-{
-    pImp->SetUndoCount( n );
-}
-
-sal_Int32 SvtUndoOptions::GetUndoCount() const
-{
-    return pImp->GetUndoCount();
 }
 
 void SvtUndoOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
