@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdedtv.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -193,7 +193,6 @@ protected:
 
 public:
     SdrEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrEditView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrEditView();
 
     // Jeder Aufruf einer undofaehigen Methode an der View generiert eine
@@ -210,9 +209,6 @@ public:
     // nur nach dem 1. BegUndo oder vor dem letzten EndUndo:
 #endif
 
-    // Layerverwaltung. Mit Undo.
-    // Loeschen eines Layer inkl. aller darauf befindlichen Objekte
-    void      DeleteLayer(const String& rName);
     // Verschieben eines Layer (Layerreihenfolge aendern)
 
     // Markierte Objekte die ausserhalb ihrer Page liegen
@@ -230,52 +226,6 @@ public:
 
     // Markierte Objekte kopieren und anstelle der alten markieren
     BOOL IsMoveAllowed() const { ForcePossibilities(); return bMoveAllowed && !bMoveProtect; }
-    BOOL IsMirrorAllowed(BOOL b45Deg=FALSE, BOOL b90Deg=FALSE) const;
-    BOOL IsTransparenceAllowed() const;
-    BOOL IsGradientAllowed() const;
-    BOOL IsCrookAllowed(BOOL bNoContortion=FALSE) const;
-
-    // Vereinigen mehrerer Objekte zu einem PolyPolygon:
-    // - Rechtecke/Kreise/Text... werden implizit gewandelt.
-    // - Polylines werden automatisch geschlossen.
-    // - Die Attribute und der Layer werden vom Ersten der markierten Objekte
-    //   uebernommen (also vom untersten der Z-Order).
-    // - Gruppenobjekte werden miteinbezogen, wenn alle! Memberobjekte der
-    //   Gruppe wandelbar sind. Beinhaltet eine Gruppe also beispielsweise
-    //   eine Bitmap oder ein OLE-Objekt, wird die gesamte Gruppe nicht
-    //   beruecksichtigt.
-    // bNoPolyPoly=TRUE: Alles wird zu einem einzigen Polygon zusammengefasst
-    BOOL CombineMarkedObjects(BOOL bNoPolyPoly = FALSE);
-
-    // for combining multiple polygons, with direct support of the modes
-    // SID_POLY_MERGE, SID_POLY_SUBSTRACT, SID_POLY_INTERSECT
-
-    // for distribution dialog function
-
-    // Markierte Polypolygonobjekte in Polygone zerlegen
-    // Gruppenobjekte werden durchsucht und zerlegt, wenn es sich bei allen
-    // Memberobjekten um PathObjs handelt.
-    // bMakeLines=TRUE: alle Polygone werden in einzelne Linien bzw.
-    //                  Beziersegmente zerlegt
-    void DismantleMarkedObjects(BOOL bMakeLines=FALSE);
-
-    // Ein neues bereits fertig konstruiertes Obj einfuegen. Das Obj gehoert
-    // anschliessend dem Model. Nach dem Einfuegen wird das neue Objekt
-    // markiert (wenn dies nicht via nOptions unterbunden wird).
-    // U.U. wird das Obj jedoch nicht eingefuegt, sondern deleted, naemlich
-    // wenn der Ziel-Layer gesperrt oder nicht sichtbar ist. In diesem Fall
-    // returniert die Methode mit FALSE.
-    // Die Methode generiert u.a. auch eine Undo-Action.
-
-    // Ein Zeichenobjekt durch ein neues ersetzen. *pNewObj gehoert
-    // anschliessend mir, *pOldObj wandert ins Undo.
-    // Sollte in jedem Fall mit einer Undo-Klammerung versehen werden, z.B.:
-    // String aStr(pView->GetMarkDescription());
-    // aStr+=" ersetzen";
-    // BegUndo(aStr);
-    // ReplaceObject(...);
-    // ...
-    // EndUndo();
 
 
     // Geometrische Attribute (Position, Groesse, Drehwinkel)
