@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_docsh6.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -231,12 +231,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocShell::IsOle()
-/*N*/ {
-/*N*/   return (GetCreateMode() == SFX_CREATE_MODE_EMBEDDED);
-/*N*/ }
-
-
 //
 //  Style-Krempel fuer Organizer etc.
 //
@@ -386,39 +380,4 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/ }
-
-/*N*/ BOOL ScDocShell::ReloadTabLinks()
-/*N*/ {
-/*N*/   SvxLinkManager* pLinkManager = aDocument.GetLinkManager();
-/*N*/
-/*N*/   BOOL bAny = FALSE;
-/*N*/   USHORT nCount = pLinkManager->GetLinks().Count();
-/*N*/   for (USHORT i=0; i<nCount; i++ )
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
-/*N*/       if (pBase->ISA(ScTableLink))
-/*N*/       {
-/*N*/           ScTableLink* pTabLink = (ScTableLink*)pBase;
-/*N*/ //            pTabLink->SetAddUndo(FALSE);        //! Undo's zusammenfassen
-/*N*/           pTabLink->SetPaint(FALSE);          //  Paint nur einmal am Ende
-/*N*/           pTabLink->Update();
-/*N*/           pTabLink->SetPaint(TRUE);
-/*N*/ //            pTabLink->SetAddUndo(TRUE);
-/*N*/           bAny = TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if ( bAny )
-/*N*/   {
-/*N*/       //  Paint nur einmal
-/*N*/       PostPaint( ScRange(0,0,0,MAXCOL,MAXROW,MAXTAB),
-/*N*/                                   PAINT_GRID | PAINT_TOP | PAINT_LEFT );
-/*N*/
-/*N*/       SetDocumentModified();
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;        //! Fehler erkennen
-/*N*/ }
-
-
 }
