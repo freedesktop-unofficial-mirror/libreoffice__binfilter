@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cstitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@ public:
             TYPEINFO();
 
             SfxCrawlStatusItem( const SfxCrawlStatusItem& rCpy );
-            SfxCrawlStatusItem( USHORT nWhich );
             SfxCrawlStatusItem( USHORT nWhich, CrawlStatus eStat );
             ~SfxCrawlStatusItem() { DBG_DTOR(SfxCrawlStatusItem, 0); }
 
