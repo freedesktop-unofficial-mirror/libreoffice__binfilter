@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdmodel.hxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -382,7 +382,6 @@ public:
     // Wahl des Pools.
     SdrModel(SfxItemPool* pPool=NULL, SvPersist* pPers=NULL, INT32 bLoadRefCounts = LOADREFCOUNTS);
     SdrModel(const String& rPath, SfxItemPool* pPool=NULL, SvPersist* pPers=NULL, INT32 bLoadRefCounts = LOADREFCOUNTS);
-    SdrModel(SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts = LOADREFCOUNTS);
     SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts = LOADREFCOUNTS);
     virtual ~SdrModel();
     void    Clear();
@@ -734,7 +733,6 @@ public:
     // Dieser Check steht nur zur Verfuegung, wenn die Engine mit DBG_UTIL
     // uebersetzt wurde. Andernfalls liefert die Methode immer TRUE. (ni)
 
-    void    SetStarDrawPreviewMode(BOOL bPreview);
     BOOL    IsStarDrawPreviewMode() { return bStarDrawPreviewMode; }
 
     SotStorage* GetModelStorage() const { return pModelStorage; }
