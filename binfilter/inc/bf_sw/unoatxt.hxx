@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unoatxt.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +67,6 @@
 #include <bf_svtools/unoevent.hxx>
 #endif
 namespace binfilter {//STRIP009
-class SwTextBlocks;
 class SwGlossaries;
 class SwDoc;
 class SwDocShell;
@@ -153,7 +152,7 @@ protected:
     virtual ~SwXAutoTextGroup();    // ref-counted objects are not to be deleted from outside -> protected dtor
 
 public:
-        SwXAutoTextGroup(const ::rtl::OUString& rName, SwGlossaries*    pGloss/*SwTextBlocks* pGroup*/);
+        SwXAutoTextGroup(const ::rtl::OUString& rName, SwGlossaries*    pGloss);
 
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId();
