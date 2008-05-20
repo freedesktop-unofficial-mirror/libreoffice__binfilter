@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ndtbl.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,9 +80,6 @@
 #ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
 #endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
 #ifndef _TBLAFMT_HXX
 #include <tblafmt.hxx>
 #endif
@@ -97,9 +94,6 @@
 #endif
 #ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
 #endif
 #ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
@@ -179,15 +173,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
     return bResult;
 }
 
-static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
-{
-    bool bResult = false;
-
-    if (SFX_ITEM_SET == rFmt.GetAttrSet().GetItemState(which))
-        bResult = true;
-
-    return bResult;
-}
 /* <-- #109161# */
 
 /*N*/ SwTableBoxFmt *lcl_CreateDfltBoxFmt( SwDoc &rDoc, SvPtrarr &rBoxFmtArr,
@@ -335,13 +320,6 @@ static bool lcl_IsItemSet(const SwFmt & rFmt, USHORT which)
 /*N*/       if( pColArr &&
 /*N*/           (nCols + ( HORI_NONE == eAdjust ? 2 : 1 )) != pColArr->Count() )
 /*?*/           pColArr = 0;
-/*N*/   }
-/*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoInsTbl( rPos, nCols, nRows, eAdjust,
-/*N*/                                       nInsTblFlags, pTAFmt, pColArr ));
 /*N*/   }
 /*N*/
 /*N*/   // fuege erstmal die Nodes ein
@@ -711,8 +689,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
 
 void SwCollectTblLineBoxes::AddToUndoHistory( const SwCntntNode& rNd )
 {
-    if( pHst )
-        pHst->Add( rNd.GetFmtColl(), rNd.GetIndex(), ND_TEXTNODE );
 }
 
 void SwCollectTblLineBoxes::AddBox( const SwTableBox& rBox )
@@ -837,7 +813,6 @@ USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
                 if( 2 == pDNd->EndOfSectionIndex() -
                         pDNd->StartOfSectionIndex() )
                 {
-                    pSplPara->AddToUndoHistory( *pDNd );
                     pDNd->ChgFmtColl( pCNd->GetFmtColl() );
                 }
             }
@@ -954,11 +929,6 @@ USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
 /*N*/           SFX_ITEM_SET == rSet.GetItemState( RES_BOXATR_FORMULA, FALSE ) ||
 /*N*/           SFX_ITEM_SET == rSet.GetItemState( RES_BOXATR_VALUE, FALSE ))
 /*N*/       {
-/*?*/           if( DoesUndo() )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearRedo();
-/*?*/           }
-/*?*/
 /*?*/           SwFrmFmt* pBoxFmt = pBox->ClaimFrmFmt();
 /*?*/
 /*?*/           //JP 01.09.97: TextFormate bleiben erhalten!
