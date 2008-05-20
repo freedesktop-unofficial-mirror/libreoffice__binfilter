@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: doc.hxx,v $
- * $Revision: 1.16 $
+ * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -126,7 +126,6 @@ class EditFieldInfo;
 class Outliner;
 class SdrModel;
 class SdrObject;
-class SdrUndoAction;
 class SfxDocumentInfo;
 
 class SfxPrinter;
@@ -207,10 +206,6 @@ class SwTxtFld;
 class SwTxtFmtColl;
 class SwTxtFmtColls;
 class SwURLStateChanged;
-class SwUndo;
-class SwUndoIds;
-class SwUndoIter;
-class SwUndos;
 class SwUnoCrsr;
 class SwUnoCrsrTbl;
 class ViewShell;
@@ -289,16 +284,11 @@ class SwDoc
     //Implementierung und Benutzung in frmatr.cxx
     friend void DelHFFormat( SwClient *, SwFrmFmt * );
 
-#if !( defined(PRODUCT) || defined(PM2) )
-    friend class SwUndoWriter;  // fuers Schreiben der Undo/Redo-History
-#endif
-
     //---------------- private Member --------------------------------
 
     // -------------------------------------------------------------------
     // die Objecte
     SwNodes     aNodes;                 // Inhalt des Dokumentes
-    SwNodes     aUndoNodes;             // Inhalt fuer das Undo
     SwAttrPool  aAttrPool;              // der Attribut Pool
     SwPageDescs aPageDescs;             // PageDescriptoren
     Link        aOle2Link;              // OLE 2.0-Benachrichtigung
@@ -336,8 +326,6 @@ class SwDoc
 
     SwRootFrm       *pLayout;           // Rootframe des spezifischen Layouts.
     SdrModel        *pDrawModel;        // StarView Drawing
-
-    SwUndos         *pUndos;            // Undo/Redo History
 
     SwDocUpdtFld    *pUpdtFlds;         // Struktur zum Field-Update
     SwFldTypes      *pFldTypes;         // Feldtypen
@@ -393,12 +381,6 @@ class SwDoc
 
     // -------------------------------------------------------------------
     // sonstige
-    sal_uInt16  nUndoPos;           // akt. Undo-InsertPosition (fuers Redo!)
-    sal_uInt16  nUndoSavePos;       // Position im Undo-Array, ab der das Doc
-                                    // nicht als modifiziert gilt
-    sal_uInt16  nUndoCnt;           // Anzahl von Undo Aktionen
-    sal_uInt16  nUndoSttEnd;        // != 0 -> innerhalb einer Klammerung
-
     sal_uInt16 nAutoFmtRedlnCommentNo;  // SeqNo fuers UI-seitige zusammenfassen
                                     // von AutoFmt-Redlines. Wird vom SwAutoFmt
                                     // verwaltet!
@@ -429,15 +411,12 @@ class SwDoc
                                         // leider auch temporaer von
                                         // SwSwgReader::InLayout(), wenn fehlerhafte
                                         //Frames geloescht werden muessen
-    sal_Bool    bUndo           : 1;    // TRUE: Undo eingeschaltet
-    sal_Bool    bGroupUndo      : 1;    // TRUE: Undos werden gruppiert
     sal_Bool    bPageNums       : 1;    // TRUE: es gibt virtuelle Seitennummern
     sal_Bool    bLoaded         : 1;    // TRUE: ein geladenes Doc
     sal_Bool    bUpdateExpFld   : 1;    // TRUE: Expression-Felder updaten
     sal_Bool    bNewDoc         : 1;    // TRUE: neues Doc
     sal_Bool    bNewFldLst      : 1;    // TRUE: Felder-Liste neu aufbauen
     sal_Bool    bCopyIsMove     : 1;    // TRUE: Copy ist ein verstecktes Move
-    sal_Bool    bNoDrawUndoObj  : 1;    // TRUE: keine DrawUndoObjecte speichern
     sal_Bool    bVisibleLinks   : 1;    // TRUE: Links werden sichtbar eingefuegt
     sal_Bool    bBrowseMode     : 1;    // TRUE: Dokument im BrowseModus anzeigen
     sal_Bool    bInReading      : 1;    // TRUE: Dokument wird gerade gelesen
@@ -468,8 +447,6 @@ class SwDoc
 
     // -------------------------------------------------------------------
 
-    static sal_uInt16 nUndoActions;     // anzahl von Undo ::com::sun::star::chaos::Action
-
     // -------------------------------------------------------------------
     // Dummies Members fuers FileFormat
     String sDummy1;             // Dummy-Member.
@@ -482,15 +459,6 @@ class SwDoc
 
     //---------------- private Methoden ------------------------------
     void checkRedlining(SwRedlineMode& _rReadlineMode);
-
-    void AppendUndo(SwUndo*);   // interne Verkuerzung fuer Insert am Ende
-    void ClearRedo();           // loescht alle UndoObjecte von nUndoPos
-                                // bis zum Ende des Undo-Arrays
-    sal_Bool DelUndoObj( sal_uInt16 nEnde  );   // loescht alle UndoObjecte vom Anfang
-                                        // bis zum angegebenen Ende
-    DECL_LINK( AddDrawUndo, SdrUndoAction * );
-                                        // DrawModel
-    void DrawNotifyUndoHdl();   // wegen CLOOKs
 
         // nur fuer den internen Gebrauch deshalb privat.
         // Kopieren eines Bereiches im oder in ein anderes Dokument !
@@ -641,14 +609,6 @@ public:
     inline SdrLayerID GetInvisibleHellId() const      { return nInvisibleHell; }
     inline SdrLayerID GetInvisibleControlsId() const  { return nInvisibleControls; }
 
-    /** method to notify drawing page view about the invisible layers
-
-        OD 26.06.2003 #108784#
-
-        @author OD
-    */
-    void NotifyInvisibleLayers( SdrPageView& _rSdrPageView );
-
     /** method to determine, if a layer ID belongs to the visible ones.
 
         OD 25.06.2003 #108784#
@@ -759,8 +719,6 @@ public:
     sal_Bool IsModified() const { return bModified; }   //Dokumentaenderungen?
 
     sal_Bool IsInCallModified() const       { return bInCallModified; }
-    void SetUndoNoResetModified()       { nUndoSavePos = USHRT_MAX; }
-    sal_Bool IsUndoNoResetModified() const  { return USHRT_MAX == nUndoSavePos; }
 
         //Die neuen (hoffentlich bestaendigen) Schnittstellen fuer alles,
         //was mit dem Layout zu tun hat.
@@ -811,43 +769,6 @@ public:
     sal_Int8 AddLink()                  { return nLinkCt++; }
     sal_Int8 RemoveLink()               { return nLinkCt ? --nLinkCt : nLinkCt; }
     sal_Int8 GetLinkCnt() const         { return nLinkCt; }
-
-        // UndoHistory am Dokument pflegen
-        // bei Save, SaveAs, Create wird UndoHistory zurueckgesetzt ???
-    void DoUndo(sal_Bool bUn = sal_True) { bUndo = bUn; }
-    sal_Bool DoesUndo() const { return bUndo; }
-        // Zusammenfassen von Kontinuierlichen Insert/Delete/Overwrite von
-        // Charaktern. Default ist ::com::sun::star::sdbcx::Group-Undo.
-    void DoGroupUndo(sal_Bool bUn = sal_True) { bGroupUndo = bUn; }
-    sal_Bool DoesGroupUndo() const { return bGroupUndo; }
-
-        // macht rueckgaengig:
-        // 0 letzte Aktion, sonst Aktionen bis zum Start der Klammerung nUndoId
-        // In rUndoRange wird der restaurierte Bereich gesetzt.
-        // setzt Undoklammerung auf, nUndoId kommt von der UI-Seite
-    sal_uInt16 StartUndo( sal_uInt16 nUndoId = 0 );
-        // schliesst Klammerung der nUndoId
-    sal_uInt16 EndUndo( sal_uInt16 nUndoId = 0 );
-        // loescht die gesamten UndoObjecte ( fuer Methoden die am Nodes
-        // Array drehen ohne entsprechendes Undo !!)
-    void DelAllUndoObj();
-
-        // gibt es Klammerung mit der Id?
-        // die drei folgenden Methoden werden beim Undo und nur dort
-        // benoetigt. Sollten sonst nicht aufgerufen werden.
-    const SwNodes* GetUndoNds() const { return &aUndoNodes; }
-
-        // bei einstufigem Undo muss die History und das Undo-Array geloescht
-        // werden. Dabei ist aber zu beachten, das nur vollstaendige Gruppen
-        // geloescht werden koennen.
-        // Sind beide FLAGS auf sal_False, kann erfragt werden, ob sich in der
-        // History eine offene Gruppe befindet. ( return = sal_True )
-        // bDelHisory = sal_True:   loesche die Undo-History
-        // bDelUndoNds = sal_True: loesche das Undo-Nodes-Arary
-
-        // abfragen/setzen der Anzahl von wiederherstellbaren Undo-Actions
-    static sal_uInt16 GetUndoActionCount()              { return nUndoActions; }
-    static void SetUndoActionCount( sal_uInt16 nNew )   { nUndoActions = nNew; }
 
     /* Felder */
     const SwFldTypes *GetFldTypes() const { return pFldTypes; }
@@ -1183,11 +1104,6 @@ public:
     SwDoc* GetGlossaryDoc() const { return pGlossaryDoc; }
         // jetzt mit einem verkappten Reader/Writer/Dokument
 
-    // travel over PaM Ring
-    sal_Bool InsertGlossary( SwTextBlocks& rBlock, const String& rEntry,
-                        SwPaM& rPaM, SwCrsrShell* pShell = 0);
-
-
     //  JobSetup und Freunde
 
     OutputDevice& GetRefDev() const;
@@ -1515,14 +1431,8 @@ public:
     sal_Bool IsCopyIsMove() const               { return bCopyIsMove; }
     void SetCopyIsMove( sal_Bool bFlag )        { bCopyIsMove = bFlag; }
 
-    // fuers Draw-Undo: Aktionen auf Flys wollen wir selbst behandeln
-    sal_Bool IsNoDrawUndoObj() const            { return bNoDrawUndoObj; }
-    void SetNoDrawUndoObj( sal_Bool bFlag )     { bNoDrawUndoObj = bFlag; }
      SwDrawContact* GroupSelection( SdrView& );
     void UnGroupSelection( SdrView& );
-
-    // Invalidiert OnlineSpell-WrongListen
-    void SpellItAgainSam( sal_Bool bInvalid, sal_Bool bOnlyWrong );
 
     SdrModel* _MakeDrawModel();
     inline SdrModel* MakeDrawModel()
