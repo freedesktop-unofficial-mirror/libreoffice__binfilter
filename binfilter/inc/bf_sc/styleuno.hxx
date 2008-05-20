@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: styleuno.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -256,7 +256,6 @@ private:
                                                     ::com::sun::star::uno::RuntimeException);
 
 public:
-                            ScStyleObj();
                             ScStyleObj(ScDocShell* pDocSh, SfxStyleFamily eFam, const String& rName);
     virtual                 ~ScStyleObj();
 
