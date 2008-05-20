@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cacheoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,32 +109,12 @@ class  SvtCacheOptions
             @short      interface methods to get and set value of config key "org.openoffice.Office.Common/_3D-Engine/..."
             @descr      These options describe internal states to enable/disable features of installed office.
 
-                        GetWriterOLE_Objects()
-                        SetWriterOLE_Objects()              =>  set the number of Writer OLE objects to be cached
-
                         GetDrawingEngineOLE_Objects()
-                        SetDrawingEngineOLE_Objects()       =>  set the number of DrawingEngine OLE objects to be cached
-
-                        GetGraphicManagerTotalCacheSize()
-                        SetGraphicManagerTotalCacheSize()   =>  set the maximum cache size used by GraphicManager to cache graphic objects
-
-                        GetGraphicManagerObjectCacheSize()
-                        SetGraphicManagerObjectCacheSize()  =>  set the maximum cache size for one GraphicObject to be cached by GraphicManager
 
             @seealso    configuration package "org.openoffice.Office.Common/_3D-Engine"
         *//*-*****************************************************************************************************/
 
-        sal_Int32   GetWriterOLE_Objects() const;
         sal_Int32   GetDrawingEngineOLE_Objects() const;
-        sal_Int32   GetGraphicManagerTotalCacheSize() const;
-        sal_Int32   GetGraphicManagerObjectCacheSize() const;
-        sal_Int32   GetGraphicManagerObjectReleaseTime() const;
-
-        void        SetWriterOLE_Objects( sal_Int32 nObjects );
-        void        SetDrawingEngineOLE_Objects( sal_Int32 nObjects );
-        void        SetGraphicManagerTotalCacheSize( sal_Int32 nTotalCacheSize );
-        void        SetGraphicManagerObjectCacheSize( sal_Int32 nObjectCacheSize );
-        void        SetGraphicManagerObjectReleaseTime( sal_Int32 nReleaseTimeSeconds );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
