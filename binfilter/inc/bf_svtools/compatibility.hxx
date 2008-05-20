@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: compatibility.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -148,79 +148,6 @@ class  SvtCompatibilityOptions: public Options
 
          SvtCompatibilityOptions();
         virtual ~SvtCompatibilityOptions();
-
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      clear complete specified list
-            @descr      Call this methods to clear the whole list.
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void Clear();
-
-        /*-****************************************************************************************************//**
-            @short      return complete specified list
-            @descr      Call it to get all entries of compatibility options.
-                        We return a list of all nodes with its names and properties.
-
-            @seealso    -
-
-            @param      -
-            @return     A list of compatibility options is returned.
-
-            @onerror    We return an empty list.
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > > GetList() const;
-
-        /*-****************************************************************************************************//**
-            @short      append a new item
-            @descr
-
-            @seealso    method Clear()
-
-            @param      "sName"             Name
-            @param      "sModule"           Module
-
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void AppendItem( const ::rtl::OUString& sName,
-                         const ::rtl::OUString& sModule,
-                         bool bUsePrtMetrics,
-                         bool bAddSpacing,
-                         bool bAddSpacingAtPages,
-                         bool bUseOurTabStops,
-                         bool bNoExtLeading,
-                         bool bUseLineSpacing,
-                         bool bAddTableSpacing,
-                         bool bUseObjectPositioning,
-                         bool bUseOurTextWrapping,
-                         bool bConsiderWrappingStyle,
-                         bool bExpandWordSpace );
-
-        bool        IsUsePrtDevice() const;
-        bool        IsAddSpacing() const;
-        bool        IsAddSpacingAtPages() const;
-        bool        IsUseOurTabStops() const;
-        bool        IsNoExtLeading() const;
-        bool        IsUseLineSpacing() const;
-        bool        IsAddTableSpacing() const;
-        bool        IsUseObjectPositioning() const;
-        bool        IsUseOurTextWrapping() const;
-        bool        IsConsiderWrappingStyle() const;
-        bool        IsExpandWordSpace() const;
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
