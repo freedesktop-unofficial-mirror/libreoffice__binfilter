@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docfilt.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,13 +109,6 @@ public:
                                const String &rMimeType,
                                const SfxFilterContainer* pFactoryP,
                                const String &rUserData );// Daten der Anwendung
-                    SfxFilter( const char* pName, const String &rWildCard,
-                               SfxFilterFlags nFormatType,
-                               const SfxFilterContainer* pFactoryP );
-                    SfxFilter( const char* pName, const String &rWildCard,
-                               SfxFilterFlags nFormatType, const String &rTypeName,
-                               const SfxFilterContainer* pFactoryP );
-                               // Daten der Anwendung
                     ~SfxFilter();
 
     const SfxFilterContainer* GetFilterContainer( ) const { return pContainer; }
@@ -160,13 +153,9 @@ public:
     void            SetUIName( const String& rName ) { aUIName = rName; }
     void            SetVersion( ULONG nVersionP ) { nVersion = nVersionP; }
     ULONG           GetVersion() const { return nVersion; }
-    String          GetSuffixes() const;
-    String          GetDefaultExtension() const;
     const ::com::sun::star::plugin::PluginDescription* GetPlugData() const {
         return ((SfxFilter*)this)->GetPlugData();   }
 
-    const ::com::sun::star::plugin::PluginDescription* GetPlugData();
-    BOOL            IsFirstPlugin() const;
 #if _SOLAR__PRIVATE
     void            InitMembers_Impl();
 #endif
