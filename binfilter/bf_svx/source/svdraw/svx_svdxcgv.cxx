@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdxcgv.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -43,10 +43,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*?*/ SdrExchangeView::SdrExchangeView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrObjEditView(pModel1,pXOut)
-/*?*/ {
-/*?*/ }
 /*?*/ GDIMetaFile SdrExchangeView::GetMarkedObjMetaFile( BOOL bNoVDevIfOneMtfMarked ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); GDIMetaFile aMtf; return aMtf;//STRIP001
 /*?*/ }
