@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_sw3style.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -713,6 +713,11 @@ const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 // Ggf. werden die StyleSheets neu erzeugt
 
 sal_Bool lcl_sw3io_isStarSymbolFontItem( const SvxFontItem& rFontItem );
+extern sal_Char const SW_CONSTASCII_DECL( sHTML_xmp, "XMP" );
+extern sal_Char const SW_CONSTASCII_DECL( sHTML_listing, "LISTING" );
+
+sal_Char const SW_CONSTASCII_DEF( sHTML_xmp, "XMP" );
+sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 /*N*/ void SwStyleSheetPool::CopyToDoc( BOOL bOverwrite, USHORT eMask )
 /*N*/ {
