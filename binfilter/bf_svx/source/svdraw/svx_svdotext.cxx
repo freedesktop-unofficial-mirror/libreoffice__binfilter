@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdotext.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -197,31 +197,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   maTextEditOffset = Point(0, 0);
 /*N*/ }
 
-/*?*/ SdrTextObj::SdrTextObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect, SvStream& rInput, USHORT eFormat):
-/*?*/   aRect(rNewRect),
-/*?*/   eTextKind(eNewTextKind),
-/*?*/   pOutlinerParaObject(NULL),
-/*?*/   pEdtOutl(NULL),
-/*?*/   pFormTextBoundRect(NULL)
-/*?*/ {
-/*?*/   bTextSizeDirty=FALSE;
-/*?*/   bTextFrame=TRUE;
-/*?*/   bNoShear=TRUE;
-/*?*/   bNoRotate=FALSE;
-/*?*/   bNoMirror=TRUE;
-/*?*/   bPortionInfoChecked=FALSE;
-/*?*/   bDisableAutoWidthOnDragging=FALSE;
-/*?*/   ImpJustifyRect(aRect);
-/*?*/
-/*?*/   NbcSetText(rInput,eFormat);
-/*?*/
-/*?*/   // #101684#
-/*?*/   mbInEditMode = FALSE;
-/*?*/
-/*?*/   // #108784#
-/*?*/   maTextEditOffset = Point(0, 0);
-/*?*/ }
-
 /*N*/ SdrTextObj::~SdrTextObj()
 /*N*/ {
 /*N*/   if( pModel )
@@ -239,22 +214,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/   ImpLinkAbmeldung();
 /*N*/ }
-
-
-/*?*/ void SdrTextObj::NbcSetText(SvStream& rInput, USHORT eFormat)
-/*?*/ {
-/*?*/   SdrOutliner& rOutliner=ImpGetDrawOutliner();
-/*?*/   rOutliner.SetStyleSheet( 0, GetStyleSheet());
-/*?*/   rOutliner.Read(rInput,eFormat);
-/*?*/   OutlinerParaObject* pNewText=rOutliner.CreateParaObject();
-/*?*/   rOutliner.SetUpdateMode(TRUE);
-/*?*/   Size aSiz(rOutliner.CalcTextSize());
-/*?*/   rOutliner.Clear();
-/*?*/   NbcSetOutlinerParaObject(pNewText);
-/*?*/   aTextSize=aSiz;
-/*?*/   bTextSizeDirty=FALSE;
-/*?*/ }
-
 
 /*N*/ const Size& SdrTextObj::GetTextSize() const
 /*N*/ {
