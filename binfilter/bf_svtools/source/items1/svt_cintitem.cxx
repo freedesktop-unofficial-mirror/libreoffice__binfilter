@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_cintitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -56,14 +56,6 @@ DBG_NAME(CntByteItem)
 
 //============================================================================
 TYPEINIT1_AUTOFACTORY(CntByteItem, SfxPoolItem);
-
-//============================================================================
-CntByteItem::CntByteItem(USHORT which, SvStream & rStream):
-    SfxPoolItem(which)
-{
-    DBG_CTOR(CntByteItem, 0);
-    rStream >> m_nValue;
-}
 
 //============================================================================
 // virtual
