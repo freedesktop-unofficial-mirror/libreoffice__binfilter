@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ndarr.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -74,8 +74,6 @@ class SwTableNode;
 class SwTblToTxtSaves;
 class SwTxtFmtColl;
 class SwTxtNode;
-class SwUndoInsNum;
-class SwUndoTblToTxt;
 struct SwPosition;
 
 
@@ -271,11 +269,6 @@ public:
                         USHORT nBoxes, SwTxtFmtColl* pCntntTxtColl,
                         USHORT nLines=0, SwTxtFmtColl* pHeadlineTxtColl=0,
                               const SwAttrSet * pAttrSet = 0);
-        // erzeuge aus dem makierten Bereich eine ausgeglichene Tabelle
-        // erzeuge aus der Tabelle wieder normalen Text
-        // steht im untbl.cxx und darf nur vom Undoobject gerufen werden
-    SwTableNode* UndoTableToText( ULONG nStt, ULONG nEnd,
-                        const SwTblToTxtSaves& rSavedData );
 
         // fuege in der Line, vor der InsPos eine neue Box ein. Das Format
         // wird von der nachfolgenden (vorhergenden;wenn an Ende) genommen
