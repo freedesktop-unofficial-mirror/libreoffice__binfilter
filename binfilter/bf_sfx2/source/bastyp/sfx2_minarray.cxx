@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_minarray.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -75,36 +75,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DBG_MEMTEST();
 /*N*/   delete [] pData;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ void SfxPtrArr::Append( void* aElem )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   DBG_ASSERT( (nUsed+1) < ( USHRT_MAX / sizeof(void*) ), "array too large" );
-/*N*/   // musz das Array umkopiert werden?
-/*N*/   if ( nUnused == 0 )
-/*N*/   {
-/*N*/       USHORT nNewSize = (nUsed == 1) ? (nGrow==1 ? 2 : nGrow) : nUsed+nGrow;
-/*N*/       void** pNewData = new void*[nNewSize];
-/*N*/       if ( pData )
-/*N*/       {
-/*N*/           DBG_ASSERT( nUsed <= nNewSize, "" );
-/*N*/           memmove( pNewData, pData, sizeof(void*)*nUsed );
-/*N*/           delete [] pData;
-/*N*/       }
-/*N*/       nUnused = nNewSize-nUsed;
-/*N*/       pData = pNewData;
-/*N*/   }
-/*N*/
-/*N*/   // jetzt hinten in den freien Raum schreiben
-/*N*/   pData[nUsed] = aElem;
-/*N*/   ++nUsed;
-/*N*/   --nUnused;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -189,24 +159,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ BOOL SfxPtrArr::Contains( const void* rItem ) const
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   if ( !nUsed )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   for ( USHORT n = 0; n < nUsed; ++n )
-/*N*/   {
-/*N*/       void* p = GetObject(n);
-/*N*/       if ( p == rItem )
-/*N*/           return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ void SfxPtrArr::Insert( USHORT nPos, void* rElem )
 /*N*/ {
 /*N*/   DBG_MEMTEST();
@@ -237,176 +189,4 @@ namespace binfilter {
 /*N*/   nUsed += 1;
 /*N*/   nUnused -= 1;
 /*N*/ }
-
-// class ByteArr ---------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// class WordArr ---------------------------------------------------------
-
-/*N*/ WordArr::WordArr( BYTE nInitSize, BYTE nGrowSize ):
-/*N*/   nUsed( 0 ),
-/*N*/   nGrow( nGrowSize ? nGrowSize : 1 ),
-/*N*/   nUnused( nInitSize )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   USHORT nMSCBug = nInitSize;
-/*N*/
-/*N*/   if ( nInitSize > 0 )
-/*N*/       pData = new short[nMSCBug];
-/*N*/   else
-/*N*/       pData = 0;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ WordArr::~WordArr()
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   delete [] pData;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ void WordArr::Append( short aElem )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   // musz das Array umkopiert werden?
-/*N*/   if ( nUnused == 0 )
-/*N*/   {
-/*N*/       USHORT nNewSize = (nUsed == 1) ? (nGrow==1 ? 2 : nGrow) : nUsed+nGrow;
-/*N*/       short* pNewData = new short[nNewSize];
-/*N*/       if ( pData )
-/*N*/       {
-/*N*/           DBG_ASSERT( nUsed <= nNewSize, " " );
-/*N*/           memmove( pNewData, pData, sizeof(short)*nUsed );
-/*N*/           delete [] pData;
-/*N*/       }
-/*N*/       nUnused = nNewSize-nUsed;
-/*N*/       pData = pNewData;
-/*N*/   }
-/*N*/
-/*N*/   // jetzt hinten in den freien Raum schreiben
-/*N*/   pData[nUsed] = aElem;
-/*N*/   ++nUsed;
-/*N*/   --nUnused;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ USHORT WordArr::Remove( USHORT nPos, USHORT nLen )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ BOOL WordArr::Remove( short aElem )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return FALSE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ BOOL WordArr::Contains( const short rItem ) const
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   if ( !nUsed )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   for ( USHORT n = 0; n < nUsed; ++n )
-/*N*/   {
-/*N*/       short p = GetObject(n);
-/*N*/       if ( p == rItem )
-/*N*/           return TRUE;
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ void WordArr::Insert( USHORT nPos, short rElem )
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   // musz das Array umkopiert werden?
-/*N*/   if ( nUnused == 0 )
-/*N*/   {
-/*N*/       // auf die naechste Grow-Grenze aufgerundet vergroeszern
-/*?*/       USHORT nNewSize = nUsed+nGrow;
-/*?*/       short* pNewData = new short[nNewSize];
-/*?*/
-/*?*/       if ( pData )
-/*?*/       {
-/*?*/           DBG_ASSERT( nUsed < nNewSize, "" );
-/*?*/           memmove( pNewData, pData, sizeof(short)*nUsed );
-/*?*/           delete [] pData;
-/*?*/       }
-/*?*/       nUnused = nNewSize-nUsed;
-/*?*/       pData = pNewData;
-/*N*/   }
-/*N*/
-/*N*/   // jetzt den hinteren Teil verschieben
-/*N*/   if ( nPos < nUsed )
-/*N*/       memmove( pData+nPos+1, pData+nPos, (nUsed-nPos)*sizeof(short) );
-/*N*/
-/*N*/   // jetzt in den freien Raum schreiben
-/*N*/   memmove( pData+nPos, &rElem, sizeof(short) );
-/*N*/   nUsed += 1;
-/*N*/   nUnused -= 1;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ short WordArr::operator[]( USHORT nPos ) const
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   DBG_ASSERT( nPos < nUsed, "" );
-/*N*/   return *(pData+nPos);
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ short& WordArr::operator [] (USHORT nPos)
-/*N*/ {
-/*N*/   DBG_MEMTEST();
-/*N*/   DBG_ASSERT( nPos < nUsed, "" );
-/*N*/   return *(pData+nPos);
-/*N*/ }
-
-
 }
