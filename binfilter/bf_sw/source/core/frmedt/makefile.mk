@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -53,9 +53,7 @@ CDEFS+=-Dmydebug
 # --- Files --------------------------------------------------------
 
 SLOFILES =  \
-        $(SLO)$/sw_fedesc.obj \
         $(SLO)$/sw_fefly1.obj \
-        $(SLO)$/sw_feflyole.obj \
         $(SLO)$/sw_feshview.obj \
         $(SLO)$/sw_fetab.obj \
         $(SLO)$/sw_fews.obj \
