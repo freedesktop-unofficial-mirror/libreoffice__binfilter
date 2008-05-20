@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svstor.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -74,9 +74,6 @@ public:
     static void         Ole2SvStreamMode( ULONG nOleMode,
                                         StreamMode *, StorageMode * );
     static ULONG        Sv2OleStreamMode( StreamMode, StorageMode );
-                        SvStorageStream( const String &,
-                                     StreamMode = STREAM_STD_READWRITE,
-                                     StorageMode = 0 );
                         SvStorageStream( BaseStorageStream *pStm );
                         SvStorageStream();
                         SO2_DECL_STANDARD_CLASS_DLL(SvStorageStream,SOAPP)
