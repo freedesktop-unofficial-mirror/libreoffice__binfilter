@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cfgmgr.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,6 @@ public:
 
     static String   GetStorageName();
     static BOOL     HasConfiguration( SotStorage& rStorage );
-    String          GetURL();
 
                     // construct a configmanager from a storage
                     // pStor == NULL means default config manager ( soffice.cfg )
@@ -83,11 +82,7 @@ public:
 
     void            AddConfigItem( SfxConfigItem& rCItem );
     void            RemoveConfigItem( SfxConfigItem& rCItem );
-    void            CopyConfigItem( SfxConfigManager& rMgr, USHORT nId );
-    void            RemovePersistentConfigItem( USHORT nType );
     SfxConfigItem*  GetNextItem( SfxConfigItem& rCItem );
-    BOOL            HasConfigItem( USHORT nType );
-    void            ResetConfigItem( USHORT nType );
     USHORT          GetErrorCode()
                     { return nErrno; }
 
@@ -99,15 +94,8 @@ public:
     BOOL            StoreConfigItem( SfxConfigItem& );
     BOOL            StoreAlwaysConfigItem( SfxConfigItem& );
 
-                    // Reload all items of given type
-    void            ReInitialize( USHORT nType );
-    void            ReConnect( USHORT nType, SfxConfigManager* );
-
                     // Reload all items using a special stream
     void            ReInitialize( const String& rStreamName );
-
-                    // Reload all items of given type except one
-    void            ReInitialize( SfxConfigItem* );
 
     void            SetModified(BOOL);
     BOOL            IsModified()
