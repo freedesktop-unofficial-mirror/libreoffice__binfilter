@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: tfrmitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,11 +65,6 @@ public:
 
             SfxTargetFrameItem( const SfxTargetFrameItem& rCpy );
             SfxTargetFrameItem( USHORT nWhich );
-            SfxTargetFrameItem(
-                USHORT nWhich,
-                const String& rOpenSelectFrame,
-                const String& rOpenOpenFrame,
-                const String& rOpenAddTaskFrame );
             ~SfxTargetFrameItem();
 
     virtual int             operator==( const SfxPoolItem& ) const;
@@ -81,14 +76,6 @@ public:
                                          BYTE nMemberId = 0 ) const;
     virtual BOOL            PutValue  ( const com::sun::star::uno::Any& rVal,
                                          BYTE nMemberId = 0 );
-    /*
-        Framebezeichner im Sfx:
-        _browser : Beamerview
-        _document : Desktopview
-        _blank : new task
-        "" : do nothing
-    */
-    String                  GetTargetFrame( SfxOpenMode eMode ) const;
 };
 
 }
