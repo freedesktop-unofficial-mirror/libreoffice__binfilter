@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_findattr.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -56,9 +56,6 @@
 #endif
 #ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>
 #endif
 namespace binfilter {
 
@@ -180,9 +177,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOp
 /*M*/   BOOL bReplace = ( pSearchOpt && ( pSearchOpt->replaceString.getLength() ||
 /*M*/                                   !rSet.Count() ) ) ||
 /*M*/                   (pReplSet && pReplSet->Count());
-/*M*/   BOOL bSttUndo = pDoc->DoesUndo() && bReplace;
-/*M*/   if( bSttUndo )
-/*M*/       pDoc->StartUndo( UNDO_REPLACE );
 /*M*/
 /*M*/   SwFindParaAttr aSwFindParaAttr( rSet, bNoCollections, pSearchOpt,
 /*M*/                                   pReplSet, *this );
@@ -191,9 +185,6 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOp
 /*M*/   pDoc->SetOle2Link( aLnk );
 /*M*/   if( nRet && bReplace )
 /*M*/       pDoc->SetModified();
-/*M*/
-/*M*/   if( bSttUndo )
-/*M*/       pDoc->EndUndo( UNDO_REPLACE );
 /*M*/
 /*M*/   return nRet;
 /*M*/ }
