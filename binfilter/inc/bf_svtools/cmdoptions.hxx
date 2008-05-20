@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cmdoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -150,21 +150,6 @@ class  SvtCommandOptions: public Options
         *//*-*****************************************************************************************************/
 
         void Clear( CmdOption eOption );
-
-        /*-****************************************************************************************************//**
-            @short      return complete specified list
-            @descr      Call it to get all entries of an dynamic menu.
-                        We return a list of all nodes with his names and properties.
-
-            @seealso    -
-
-            @param      "eOption" select the list to retrieve.
-            @return     A list of command strings is returned.
-
-            @onerror    We return an empty list.
-        *//*-*****************************************************************************************************/
-
-        sal_Bool HasEntries( CmdOption eOption ) const;
 
         /*-****************************************************************************************************//**
             @short      Lookup if a command URL is inside a given list
