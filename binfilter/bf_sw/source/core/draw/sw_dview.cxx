@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_dview.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -238,33 +238,5 @@ public:
 /*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/ }
-
-
-/** replace marked <SwDrawVirtObj>-objects by its reference object for delete
-    marked objects.
-
-    OD 18.06.2003 #108784#
-
-    @author OD
-*/
-
-
-/********
-JP 02.10.98: sollte als Fix fuer 57153 gelten, hatte aber Nebenwirkungen,
-            wie Bug 57475
-const SdrMarkList& SwDrawView::GetMarkList() const
-{
-    FlushComeBackTimer();
-    return FmFormView::GetMarkList();
-}
-*************/
-
-
-
-
-
-
-
-
 
 }
