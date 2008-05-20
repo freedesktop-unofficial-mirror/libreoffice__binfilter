@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipobj.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -442,29 +442,6 @@ void SvInPlaceObject::SetVisArea( const Rectangle & rVisArea )
 {
     SvEmbeddedObject::SetVisArea( rVisArea );
 }
-
-SvInPlaceObjectRef SvInPlaceObject::CreateObject( const SvGlobalName& rName )
-{
-    SvInPlaceObjectRef xIPObj;
-    String aServiceName = SvFactory::GetServiceName( rName );
-    const SvFactory * pFact = PTR_CAST( SvFactory, SvFactory::Find( rName ) );
-    if ( aServiceName.Len() || pFact && pFact != (SvFactory *) SvOutPlaceObject::ClassFactory() )
-    {
-        // document objects, applets etc.
-        xIPObj = &((SvFactory*)SvInPlaceObject::ClassFactory())->CreateAndInit( rName, NULL );
-    }
-    else
-    {
-        // real OLE objects
-        SvStorageRef aStor = new SvStorage( FALSE, String() );
-        String aFileName;
-        BOOL bOk;
-        xIPObj = SvOutPlaceObject::InsertObject( NULL, &aStor, bOk, rName, aFileName );
-    }
-
-    return xIPObj;
-}
-
 
 /*************************************************************************
 |*    SvInPlaceObject::ReactivateAndUndo()
