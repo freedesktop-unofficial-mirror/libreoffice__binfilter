@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: progress.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,6 @@ public:
     void                    Suspend();
     BOOL                    IsSuspended() const { return bSuspended; }
 
-    void                    Lock();
     void                    Reschedule();
 
     void                    Stop();
