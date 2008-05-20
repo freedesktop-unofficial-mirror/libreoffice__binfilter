@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sdresid.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -41,7 +41,6 @@ class SdResId : public ResId
 {
 public:
     SdResId(USHORT nId);
-    SdResId(USHORT nId, ResMgr* pMgr);   // kann entfallen
 };
 
 
