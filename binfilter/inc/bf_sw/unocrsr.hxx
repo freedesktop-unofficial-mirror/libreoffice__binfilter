@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unocrsr.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,7 +47,6 @@ class SwUnoCrsr : public virtual SwCursor, public SwModify
 
 public:
     SwUnoCrsr( const SwPosition &rPos, SwPaM* pRing = 0 );
-    SwUnoCrsr( SwUnoCrsr& );
     virtual ~SwUnoCrsr();
 
     virtual operator SwUnoCrsr* ();
