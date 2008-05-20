@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipwin.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -177,18 +177,6 @@ BOOL SvResizeHelper::SelectBegin( Window * pWin, const Point & rPos )
         }
     }
     return FALSE;
-}
-
-/*************************************************************************
-|*    SvResizeHelper::SelectBegin()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvResizeHelper::SelectBegin( Window * pWin, short nGrabP )
-{
-    nGrab = nGrabP;
-    aSelPos = GetInnerRectPixel().TopLeft(); // Start-Position merken
-    pWin->CaptureMouse();
 }
 
 /*************************************************************************
@@ -508,17 +496,6 @@ void SvResizeWindow::SetObjWin( Window * pNewWin )
 }
 
 /*************************************************************************
-|*    SvResizeWindow::SetBorderPixel()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvResizeWindow::SetBorderPixel( const SvBorder & rNew )
-{
-    aBorder = rNew;
-    AdjustObjWin();
-}
-
-/*************************************************************************
 |*    SvResizeWindow::CalcInnerRectPixel()
 |*
 |*    Beschreibung
@@ -528,18 +505,6 @@ Rectangle SvResizeWindow::CalcInnerRectPixel( const Point & rPos,
 {
     Rectangle aInner( rPos, rSize );
     return aInner -= GetAllBorderPixel();
-}
-
-/*************************************************************************
-|*    SvResizeWindow::CalcOuterRectPixel()
-|*
-|*    Beschreibung
-*************************************************************************/
-Rectangle SvResizeWindow::CalcOuterRectPixel( const Point & rPos,
-                                              const Size & rSize ) const
-{
-    Rectangle aOuter( rPos, rSize );
-    return aOuter += GetAllBorderPixel();
 }
 
 /*************************************************************************
@@ -837,27 +802,6 @@ void SvInPlaceClipWindow::SetRectsPixel( const Rectangle & rObjRect,
     // Resize-Window relativ zu Clip-Window berechnen
     pResizeWin->SetInnerPosSizePixel( rObjRect.TopLeft() - aClip.TopLeft(),
                                       rObjRect.GetSize() );
-}
-
-/*************************************************************************
-|*    SvInPlaceClipWindow::SetBorderPixel()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvInPlaceClipWindow::SetBorderPixel( const SvBorder & rNew )
-{
-    if( pResizeWin->GetBorderPixel() != rNew )
-    {
-        Rectangle aOuter = pResizeWin->GetInnerRectPixel();
-        // Fuer SetRectsPixel zurueckrechnen
-        aOuter.SetPos( aOuter.TopLeft()
-                          + pResizeWin->GetPosCorrectionPixel() );
-
-        // neue Border wird fuer nachfolgende Berechnung gueltig
-        pResizeWin->SetBorderPixel( rNew );
-
-        SetRectsPixel( aOuter, aMaxClip );
-    }
 }
 
 }
