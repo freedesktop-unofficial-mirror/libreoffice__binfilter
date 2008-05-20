@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: viscrs.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,6 @@ class SwVisCrsr
     void _SetPosAndShow();
 
 public:
-    SwVisCrsr( const SwCrsrShell * pCShell );
     ~SwVisCrsr();
 
     void Show();
@@ -101,17 +100,12 @@ class SwSelPaintRects : public SwRects
     virtual void FillRects() = 0;
 
 public:
-    SwSelPaintRects( const SwCrsrShell& rCSh );
     ~SwSelPaintRects();
 
     void Show();
     void Hide();
 
     const SwCrsrShell* GetShell() const { return pCShell; }
-    // check current MapMode of the shell and set possibly the static members.
-    // Optional set the parameters pX, pY
-    static void Get1PixelInLogic( const ViewShell& rSh,
-                                    long* pX = 0, long* pY = 0 );
 };
 
 
