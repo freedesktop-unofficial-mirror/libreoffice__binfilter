@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docsh2.cxx,v $
- * $Revision: 1.17 $
+ * $Revision: 1.18 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -348,8 +348,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/       {
 /*N*/           BOOL bOld = pDoc->IsModified();
 /*N*/           pDoc->SetModified();
-/*N*/           if( !bOld )
-/*?*/               pDoc->SetUndoNoResetModified();
 /*N*/       }
 /*N*/       else
 /*N*/           pDoc->ResetModified();
