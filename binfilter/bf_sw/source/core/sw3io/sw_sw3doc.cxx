@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_sw3doc.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -147,11 +147,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*?*/       Error( ERR_SWG_READ_ERROR );
 /*?*/       return;
 /*N*/   }
-/*N*/
-/*N*/   BOOL bUndo = pDoc->DoesUndo();
-/*N*/   // Kein Undo bei neuem Dokument!
-/*N*/   if( !bInsert )
-/*N*/       pDoc->DoUndo( FALSE );
 /*N*/
 /*N*/   // Auf gehts:
 /*N*/   BOOL bNode1 = TRUE;
@@ -365,7 +360,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/   if( bInsert && !IsVersion( SWG_MULTIDB, SWG_EXPORT31, SWG_DESKTOP40 ) )
 /*?*/       pDoc->ChgDBData( aOldData );
 /*N*/
-/*N*/   pDoc->DoUndo( bUndo );
 /*N*/   if( !nRes )
 /*N*/   {
 /*N*/       if( bNormal )
