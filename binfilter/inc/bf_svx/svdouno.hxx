@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdouno.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,11 +76,7 @@ private:
 public:
     TYPEINFO();
 
-//  UNICODE: SdrUnoObj(BOOL bOwnsModel = TRUE, const String& rModelName = "");
     SdrUnoObj(const String& rModelName, BOOL bOwnsModel = TRUE);
-    SdrUnoObj(const String& rModelName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& rxSFac,
-        BOOL bOwnsModel = TRUE);
     virtual ~SdrUnoObj();
 
     virtual void SetPage(SdrPage* pNewPage);
@@ -99,7 +95,6 @@ public:
 
 
     ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > GetUnoControlModel() const {return xUnoControlModel;}
-    ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > GetUnoControl(const OutputDevice* pOut) const;
 
     const String& GetUnoControlModelTypeName() const { return aUnoControlTypeName; }
     const String& GetUnoControlTypeName() const { return aUnoControlTypeName; }
