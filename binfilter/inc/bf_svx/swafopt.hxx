@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: swafopt.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -101,7 +101,6 @@ struct SvxSwAutoFmtFlags
          bDummy8 : 1
          ;
 
-    SvxSwAutoFmtFlags();
     SvxSwAutoFmtFlags( const SvxSwAutoFmtFlags& rAFFlags ) { *this = rAFFlags; }
     SvxSwAutoFmtFlags& operator=( const SvxSwAutoFmtFlags& );
 };
