@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_frmview.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -141,24 +141,6 @@ FrameView::FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView )
 
 FrameView::~FrameView()
 {
-}
-
-void FrameView::Connect()
-{
-    nRefCount++;
-}
-
-void FrameView::Disconnect()
-{
-    if (nRefCount > 0)
-    {
-        nRefCount--;
-    }
-
-    if (nRefCount == 0)
-    {
-        delete this;
-    }
 }
 
 SvStream& operator << (SvStream& rOut, const FrameView& rView)
