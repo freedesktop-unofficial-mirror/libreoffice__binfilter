@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_viewsh.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -593,7 +593,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*************************************************************************
 |*
 |*    ViewShell::GetLayout()
-|*    ViewShell::GetNodes()
 |*
 |*    Ersterstellung    OK 26. May. 92
 |*    Letzte Aenderung  MA 16. Sep. 93
@@ -624,12 +623,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/
 /*N*/     return *pTmpOut;
 /*N*/ }
-
-/*N*/ const SwNodes& ViewShell::GetNodes() const
-/*N*/ {
-/*N*/     return pDoc->GetNodes();
-/*N*/ }
-
 
 /*N*/ void ViewShell::DrawSelChanged(SdrView*)
 /*N*/ {
