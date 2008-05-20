@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: viewimp.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -171,7 +171,6 @@ class SwViewImp
 #endif
 
 public:
-    SwViewImp( ViewShell * );
     ~SwViewImp();
     void Init( const SwViewOption * );          //nur fuer ViewShell::Init()
 
