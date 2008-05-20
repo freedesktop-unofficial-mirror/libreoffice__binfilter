@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_misccfg.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -73,47 +73,7 @@ SfxMiscCfg::SfxMiscCfg() :
 SfxMiscCfg::~SfxMiscCfg()
 {
 }
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
 
-void SfxMiscCfg::SetNotFoundWarning( BOOL bSet)
-{
-    if(bNotFound != bSet)
-        SetModified();
-    bNotFound = bSet;
-}
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-void SfxMiscCfg::SetPaperSizeWarning( BOOL bSet)
-{
-    if(bPaperSize != bSet)
-        SetModified();
-    bPaperSize = bSet;
-}
-
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-void SfxMiscCfg::SetPaperOrientationWarning( BOOL bSet)
-{
-    if(bPaperOrientation != bSet)
-        SetModified();
-    bPaperOrientation = bSet;
-}
-/*--------------------------------------------------------------------
-     Beschreibung:
- --------------------------------------------------------------------*/
-
-void SfxMiscCfg::SetYear2000( sal_Int32 nSet )
-{
-    if(nYear2000 != nSet)
-        SetModified();
-    nYear2000 = nSet;
-}
 /* -----------------------------02.03.01 15:31--------------------------------
 
  ---------------------------------------------------------------------------*/
