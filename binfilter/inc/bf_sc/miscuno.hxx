@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: miscuno.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -145,7 +145,6 @@ class ScEmptyEnumerationAccess : public cppu::WeakImplHelper2<
                                 ::com::sun::star::lang::XServiceInfo >
 {
 public:
-                            ScEmptyEnumerationAccess();
     virtual                 ~ScEmptyEnumerationAccess();
 
                             // XEnumerationAccess
@@ -232,7 +231,6 @@ class ScPrintSettingsObj : public cppu::WeakImplHelper2<
                                 ::com::sun::star::lang::XServiceInfo >
 {
 public:
-                            ScPrintSettingsObj();
     virtual                 ~ScPrintSettingsObj();
 
                             // XPropertySet
