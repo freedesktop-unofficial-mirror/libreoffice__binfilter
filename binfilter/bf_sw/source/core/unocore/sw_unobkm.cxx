@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unobkm.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -66,9 +66,6 @@
 #endif
 #ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 namespace binfilter {
 
@@ -267,14 +264,12 @@ void SwXBookmark::setName(const OUString& rName) throw( uno::RuntimeException )
             aPam.SetMark();
             *aPam.GetMark() = *pBkm->GetOtherPos();
         }
-        pDoc->StartUndo(UNDO_INSERT);
 
         SwBookmark* pMark = pDoc->MakeBookmark(aPam, aCode,
                     sBkName, sShortName, BOOKMARK);
         pMark->Add(this);
         GetDoc()->DelBookmark( sOldName );
 
-        pDoc->EndUndo(UNDO_INSERT);
     }
     else if(bIsDescriptor)
         m_aName = sBkName;
