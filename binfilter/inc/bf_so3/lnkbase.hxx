@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: lnkbase.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -96,12 +96,9 @@ protected:
 
                     // setzen des LinkSourceName ohne aktion
     SO3_DLLPRIVATE void         SetName( const String & rLn );
-                    // LinkSourceName der im SvLinkBase steht
-    SO3_DLLPRIVATE String           GetName() const;
 
     ImplBaseLinkData* pImplData;
 
-    SO3_DLLPRIVATE              SvBaseLink();
                     SvBaseLink( USHORT nLinkType, ULONG nContentType = FORMAT_STRING );
     virtual         ~SvBaseLink();
 
@@ -118,12 +115,9 @@ public:
                     TYPEINFO();
                     // ask JP
     virtual void    Closed();
-                    SvBaseLink( const String& rNm, USHORT nObjectType,
-                                 SvLinkSource* );
 
     USHORT          GetObjType() const { return nObjType; }
 
-    void            SetObj( SvLinkSource * pObj );
     SvLinkSource*   GetObj() const  { return xObj; }
 
     void            SetLinkSourceName( const String & rName );
