@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_zforlist.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -227,12 +227,6 @@ SvNumberFormatter::SvNumberFormatter(
             LanguageType eLang )
         :
         xServiceManager( xSMgr )
-{
-    ImpConstruct( eLang );
-}
-
-
-SvNumberFormatter::SvNumberFormatter( LanguageType eLang )
 {
     ImpConstruct( eLang );
 }
@@ -508,15 +502,6 @@ BOOL SvNumberFormatter::IsTextFormat(sal_uInt32 F_Index) const
         return pFormat->IsTextFormat();
 }
 
-BOOL SvNumberFormatter::HasTextFormat(sal_uInt32 F_Index) const
-{
-    SvNumberformat* pFormat = (SvNumberformat*) aFTable.Get(F_Index);
-    if (!pFormat)
-        return FALSE;
-    else
-        return pFormat->HasTextFormat();
-}
-
 BOOL SvNumberFormatter::PutEntry(String& rString,
                                  xub_StrLen& nCheckPos,
                                  short& nType,
@@ -619,98 +604,10 @@ BOOL SvNumberFormatter::PutandConvertEntrySystem(String& rString,
     return bRes;
 }
 
-
-sal_uInt32 SvNumberFormatter::GetIndexPuttingAndConverting( String & rString,
-        LanguageType eLnge, LanguageType eSysLnge, short & rType,
-        BOOL & rNewInserted, xub_StrLen & rCheckPos )
-{
-    sal_uInt32 nKey = NUMBERFORMAT_ENTRY_NOT_FOUND;
-    rNewInserted = FALSE;
-    rCheckPos = 0;
-
-    // #62389# empty format string (of Writer) => General standard format
-    if (!rString.Len())
-        ;   // nothing
-    else if (eLnge == LANGUAGE_SYSTEM && eSysLnge !=
-            Application::GetSettings().GetLanguage())
-    {
-        sal_uInt32 nOrig = GetEntryKey( rString, eSysLnge );
-        if (nOrig == NUMBERFORMAT_ENTRY_NOT_FOUND)
-            nKey = nOrig;   // none avaliable, maybe user-defined
-        else
-            nKey = GetFormatForLanguageIfBuiltIn( nOrig,
-                    Application::GetSettings().GetLanguage());
-        if (nKey == nOrig)
-        {
-            // Not a builtin format, convert.
-            // The format code string may get modified and adapted to the real
-            // language and wouldn't match eSysLnge anymore, do that on a copy.
-            String aTmp( rString);
-            rNewInserted = PutandConvertEntrySystem( aTmp, rCheckPos, rType,
-                    nKey, eLnge, Application::GetSettings().GetLanguage());
-            if (rCheckPos > 0)
-            {
-                DBG_ERRORFILE("SvNumberFormatter::GetIndexPuttingAndConverting: bad format code string for current locale");
-                nKey = NUMBERFORMAT_ENTRY_NOT_FOUND;
-            }
-        }
-    }
-    else
-    {
-        nKey = GetEntryKey( rString, eLnge);
-        if (nKey == NUMBERFORMAT_ENTRY_NOT_FOUND)
-        {
-            rNewInserted = PutEntry( rString, rCheckPos, rType, nKey, eLnge);
-            if (rCheckPos > 0)
-            {
-                DBG_ERRORFILE("SvNumberFormatter::GetIndexPuttingAndConverting: bad format code string for specified locale");
-                nKey = NUMBERFORMAT_ENTRY_NOT_FOUND;
-            }
-        }
-    }
-    if (nKey == NUMBERFORMAT_ENTRY_NOT_FOUND)
-        nKey = GetStandardIndex( eLnge);
-    rType = GetType( nKey);
-    // Convert any (!) old "automatic" currency format to new fixed currency
-    // default format.
-    if ((rType & NUMBERFORMAT_CURRENCY) != 0)
-    {
-        const SvNumberformat* pFormat = GetEntry( nKey);
-        if (!pFormat->HasNewCurrency())
-        {
-            if (rNewInserted)
-            {
-                DeleteEntry( nKey);     // don't leave trails of rubbish
-                rNewInserted = FALSE;
-            }
-            nKey = GetStandardFormat( NUMBERFORMAT_CURRENCY, eLnge);
-        }
-    }
-    return nKey;
-}
-
-
 void SvNumberFormatter::DeleteEntry(sal_uInt32 nKey)
 {
     SvNumberformat* pEntry = aFTable.Remove(nKey);
     delete pEntry;
-}
-
-void SvNumberFormatter::PrepareSave()
-{
-     SvNumberformat* pFormat = aFTable.First();
-     while (pFormat)
-     {
-        pFormat->SetUsed(FALSE);
-        pFormat = aFTable.Next();
-     }
-}
-
-void SvNumberFormatter::SetFormatUsed(sal_uInt32 nFIndex)
-{
-    SvNumberformat* pFormat = (SvNumberformat*) aFTable.Get(nFIndex);
-    if (pFormat)
-        pFormat->SetUsed(TRUE);
 }
 
 BOOL SvNumberFormatter::Load( SvStream& rStream )
@@ -977,18 +874,6 @@ void SvNumberFormatter::GetUsedLanguages( SvUShorts& rList )
 }
 
 
-void SvNumberFormatter::FillKeywordTable( NfKeywordTable& rKeywords,
-        LanguageType eLang )
-{
-    ChangeIntl( eLang );
-    const String* pTable = pFormatScanner->GetKeywords();
-    for ( USHORT i = 0; i < NF_KEYWORD_ENTRIES_COUNT; ++i )
-    {
-        rKeywords[i] = pTable[i];
-    }
-}
-
-
 String SvNumberFormatter::GetKeyword( LanguageType eLnge, USHORT nIndex )
 {
     ChangeIntl(eLnge);
@@ -1064,47 +949,6 @@ sal_uInt32 SvNumberFormatter::ImpIsEntry(const String& rString,
 #endif
     }
     return res;
-}
-
-
-SvNumberFormatTable& SvNumberFormatter::GetFirstEntryTable(
-                                                      short& eType,
-                                                      sal_uInt32& FIndex,
-                                                      LanguageType& rLnge)
-{
-    short eTypetmp = eType;
-    if (eType == NUMBERFORMAT_ALL)                  // Leere Zelle oder don't care
-        rLnge = IniLnge;
-    else
-    {
-        SvNumberformat* pFormat = (SvNumberformat*) aFTable.Get(FIndex);
-        if (!pFormat)
-        {
-//          DBG_ERROR("SvNumberFormatter:: Unbekanntes altes Zahlformat (1)");
-            rLnge = IniLnge;
-            eType = NUMBERFORMAT_ALL;
-            eTypetmp = eType;
-        }
-        else
-        {
-            rLnge = pFormat->GetLanguage();
-            eType = pFormat->GetType()&~NUMBERFORMAT_DEFINED;
-            if (eType == 0)
-            {
-                eType = NUMBERFORMAT_DEFINED;
-                eTypetmp = eType;
-            }
-            else if (eType == NUMBERFORMAT_DATETIME)
-            {
-                eTypetmp = eType;
-                eType = NUMBERFORMAT_DATE;
-            }
-            else
-                eTypetmp = eType;
-        }
-    }
-    ChangeIntl(rLnge);
-    return GetEntryTable(eTypetmp, FIndex, rLnge);
 }
 
 sal_uInt32 SvNumberFormatter::ImpGenerateCL( LanguageType eLnge, BOOL bLoadingSO5 )
@@ -1739,37 +1583,6 @@ BOOL SvNumberFormatter::GetPreviewStringGuess( const String& sFormatString,
     return FALSE;
 }
 
-sal_uInt32 SvNumberFormatter::TestNewString(const String& sFormatString,
-                                      LanguageType eLnge)
-{
-    if (sFormatString.Len() == 0)                       // keinen Leerstring
-        return NUMBERFORMAT_ENTRY_NOT_FOUND;
-
-    xub_StrLen nCheckPos = STRING_NOTFOUND;
-    if (eLnge == LANGUAGE_DONTKNOW)
-        eLnge = IniLnge;
-    ChangeIntl(eLnge);                                  // ggfs. austauschen
-    eLnge = ActLnge;
-    sal_uInt32 nRes;
-    String sTmpString = sFormatString;
-    SvNumberformat* pEntry = new SvNumberformat(sTmpString,
-                                                pFormatScanner,
-                                                pStringScanner,
-                                                nCheckPos,
-                                                eLnge);
-    if (nCheckPos == 0)                                 // String ok
-    {
-        sal_uInt32 CLOffset = ImpGenerateCL(eLnge);             // ggfs. neu Standard-
-                                                        // formate anlegen
-        nRes = ImpIsEntry(pEntry->GetFormatstring(),CLOffset, eLnge);
-                                                        // schon vorhanden ?
-    }
-    else
-        nRes = NUMBERFORMAT_ENTRY_NOT_FOUND;
-    delete pEntry;
-    return nRes;
-}
-
 SvNumberformat* SvNumberFormatter::ImpInsertFormat(
             const ::com::sun::star::i18n::NumberFormatCode& rCode,
             sal_uInt32 nPos, BOOL bAfterLoadingSO5, sal_Int16 nOrgIndex )
@@ -1931,55 +1744,6 @@ USHORT SvNumberFormatter::GetFormatPrecision( sal_uInt32 nFormat ) const
         return pFormat->GetFormatPrecision();
     else
         return pFormatScanner->GetStandardPrec();
-}
-
-
-String SvNumberFormatter::GetFormatDecimalSep( sal_uInt32 nFormat ) const
-{
-    const SvNumberformat* pFormat = aFTable.Get( nFormat );
-    if ( !pFormat || pFormat->GetLanguage() == ActLnge )
-        return GetNumDecimalSep();
-
-    String aRet;
-    LanguageType eSaveLang = xLocaleData.getCurrentLanguage();
-    if ( pFormat->GetLanguage() == eSaveLang )
-        aRet = xLocaleData->getNumDecimalSep();
-    else
-    {
-        ::com::sun::star::lang::Locale aSaveLocale( xLocaleData->getLocale() );
-        ::com::sun::star::lang::Locale aTmpLocale(MsLangId::convertLanguageToLocale(pFormat->GetLanguage()));
-        ((SvNumberFormatter*)this)->xLocaleData.changeLocale(aTmpLocale, pFormat->GetLanguage() );
-        aRet = xLocaleData->getNumDecimalSep();
-        ((SvNumberFormatter*)this)->xLocaleData.changeLocale( aSaveLocale, eSaveLang );
-    }
-    return aRet;
-}
-
-
-sal_uInt32 SvNumberFormatter::GetFormatSpecialInfo( const String& rFormatString,
-            BOOL& bThousand, BOOL& IsRed, USHORT& nPrecision,
-            USHORT& nAnzLeading, LanguageType eLnge )
-
-{
-    xub_StrLen nCheckPos = 0;
-    if (eLnge == LANGUAGE_DONTKNOW)
-        eLnge = IniLnge;
-    ChangeIntl(eLnge);                                  // ggfs. austauschen
-    eLnge = ActLnge;
-    String aTmpStr( rFormatString );
-    SvNumberformat* pFormat = new SvNumberformat( aTmpStr,
-        pFormatScanner, pStringScanner, nCheckPos, eLnge );
-    if ( nCheckPos == 0 )
-        pFormat->GetFormatSpecialInfo( bThousand, IsRed, nPrecision, nAnzLeading );
-    else
-    {
-        bThousand = FALSE;
-        IsRed = FALSE;
-        nPrecision = pFormatScanner->GetStandardPrec();
-        nAnzLeading = 0;
-    }
-    delete pFormat;
-    return nCheckPos;
 }
 
 
@@ -2803,23 +2567,6 @@ void SvNumberFormatter::GenerateFormat(String& sString,
     }
 }
 
-BOOL SvNumberFormatter::IsUserDefined(const String& sStr,
-                                      LanguageType eLnge)
-{
-    if (eLnge == LANGUAGE_DONTKNOW)
-        eLnge = IniLnge;
-    sal_uInt32 CLOffset = ImpGenerateCL(eLnge);             // ggfs. neu Standard-
-                                                    // formate anlegen
-    eLnge = ActLnge;
-    sal_uInt32 nKey = ImpIsEntry(sStr, CLOffset, eLnge);
-    if (nKey == NUMBERFORMAT_ENTRY_NOT_FOUND)
-        return TRUE;
-    SvNumberformat* pEntry = aFTable.Get(nKey);
-    if ( pEntry && ((pEntry->GetType() & NUMBERFORMAT_DEFINED) != 0) )
-        return TRUE;
-    return FALSE;
-}
-
 sal_uInt32 SvNumberFormatter::GetEntryKey(const String& sStr,
                                      LanguageType eLnge)
 {
@@ -3051,43 +2798,6 @@ const NfCurrencyEntry& SvNumberFormatter::GetCurrencyEntry( LanguageType eLang )
         }
         return *(rTable[0]);
     }
-}
-
-
-// static
-const NfCurrencyEntry* SvNumberFormatter::GetCurrencyEntry(
-        const String& rAbbrev, LanguageType eLang )
-{
-    eLang = MsLangId::getRealLanguage( eLang );
-    const NfCurrencyTable& rTable = GetTheCurrencyTable();
-    USHORT nCount = rTable.Count();
-    const NfCurrencyEntryPtr* ppData = rTable.GetData();
-    for ( USHORT j = 0; j < nCount; j++, ppData++ )
-    {
-        if ( (*ppData)->GetLanguage() == eLang &&
-                (*ppData)->GetBankSymbol() == rAbbrev )
-            return *ppData;
-    }
-    return NULL;
-}
-
-
-// static
-const NfCurrencyEntry* SvNumberFormatter::GetLegacyOnlyCurrencyEntry(
-        const String& rSymbol, const String& rAbbrev )
-{
-    if (!bCurrencyTableInitialized)
-        GetTheCurrencyTable();      // just for initialization
-    const NfCurrencyTable& rTable = theLegacyOnlyCurrencyTable::get();
-    USHORT nCount = rTable.Count();
-    const NfCurrencyEntryPtr* ppData = rTable.GetData();
-    for ( USHORT j = 0; j < nCount; j++, ppData++ )
-    {
-        if ( (*ppData)->GetSymbol() == rSymbol &&
-                (*ppData)->GetBankSymbol() == rAbbrev )
-            return *ppData;
-    }
-    return NULL;
 }
 
 
@@ -3776,16 +3486,6 @@ USHORT SvNumberFormatter::GetCurrencyFormatStrings( NfWSStringsDtor& rStrArr,
 
 //--- NfCurrencyEntry ----------------------------------------------------
 
-NfCurrencyEntry::NfCurrencyEntry()
-    :   eLanguage( LANGUAGE_DONTKNOW ),
-        nPositiveFormat(3),
-        nNegativeFormat(8),
-        nDigits(2),
-        cZeroChar('0')
-{
-}
-
-
 NfCurrencyEntry::NfCurrencyEntry( const LocaleDataWrapper& rLocaleData, LanguageType eLang )
 {
     aSymbol         = rLocaleData.getCurrSymbol();
@@ -3817,35 +3517,6 @@ BOOL NfCurrencyEntry::operator==( const NfCurrencyEntry& r ) const
         && aBankSymbol  == r.aBankSymbol
         && eLanguage    == r.eLanguage
         ;
-}
-
-
-void NfCurrencyEntry::SetEuro()
-{
-    aSymbol = NfCurrencyEntry::GetEuroSymbol();
-    aBankSymbol.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "EUR" ) );
-    eLanguage       = LANGUAGE_DONTKNOW;
-    nPositiveFormat = 3;
-    nNegativeFormat = 8;
-    nDigits         = 2;
-    cZeroChar       = '0';
-}
-
-
-BOOL NfCurrencyEntry::IsEuro() const
-{
-    if ( aBankSymbol.EqualsAscii( "EUR" ) )
-        return TRUE;
-    String aEuro( NfCurrencyEntry::GetEuroSymbol() );
-    return aSymbol == aEuro;
-}
-
-
-void NfCurrencyEntry::ApplyVariableInformation( const NfCurrencyEntry& r )
-{
-    nPositiveFormat = r.nPositiveFormat;
-    nNegativeFormat = r.nNegativeFormat;
-    cZeroChar       = r.cZeroChar;
 }
 
 
