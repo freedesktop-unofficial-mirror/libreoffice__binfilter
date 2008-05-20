@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fstathelper.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,11 +59,6 @@ namespace binfilter
     UCB.IsContent.
 */
  sal_Bool IsDocument( const UniString& rURL );
-
-/** Return if under the URL a folder exist. This is only a wrapper for the
-    UCB.isFolder.
-*/
- sal_Bool IsFolder( const UniString& rURL );
 
 }
 
