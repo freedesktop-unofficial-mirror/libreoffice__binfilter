@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: rootfrm.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,8 +63,6 @@ struct SwCrsrMoveState;
 #define INV_SECTION 16
 #define INV_LINENUM 32
 #define INV_DIRECTION 64
-
-void SetShell( ViewShell *pSh );
 
 class SwRootFrm: public SwLayoutFrm
 {
@@ -129,7 +127,6 @@ class SwRootFrm: public SwLayoutFrm
     //Wenn zum Zeitpunkt der zerstoerung einer Shell diese noch in irgendwelchen
     //CurrShell-Objekten referenziert wird, so wird auch dies aufgeklart.
     friend class CurrShell;
-    friend void SetShell( ViewShell *pSh );
     friend void InitCurrShells( SwRootFrm *pRoot );
     ViewShell *pCurrShell;
     ViewShell *pWaitingCurrShell;
