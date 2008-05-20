@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_poly3d.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1313,19 +1313,6 @@ namespace binfilter {
 /*N*/       pImpPolyPolygon3D->aPoly3DList.Insert(
 /*N*/           new Polygon3D(rPolyPoly.GetObject(i), fScale), LIST_APPEND);
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Konstruktor mit XPolygon
-|*
-\************************************************************************/
-
-/*?*/ PolyPolygon3D::PolyPolygon3D(const XPolygon& rXPoly, double fScale)
-/*?*/ {
-/*?*/   DBG_CTOR(PolyPolygon3D, NULL);
-/*?*/   pImpPolyPolygon3D = new ImpPolyPolygon3D;
-/*?*/   pImpPolyPolygon3D->aPoly3DList.Insert(new Polygon3D(rXPoly, fScale));
-/*?*/ }
 
 /*************************************************************************
 |*
