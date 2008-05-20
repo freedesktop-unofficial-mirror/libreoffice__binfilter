@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: printfun.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -93,8 +93,6 @@ struct ScPrintHFParam
 
 class ScJobSetup
 {
-public:
-    ScJobSetup( SfxPrinter* pPrinter );
 };
 
 struct ScPrintState                         //  Variablen aus ScPrintFunc retten
@@ -236,30 +234,12 @@ public:
                                  const ScPrintOptions* pOptions = NULL,
                                  ScPageBreakData* pData = NULL );
 
-                    // ctors for device other than printer - for preview and pdf:
-
-                    ScPrintFunc( OutputDevice* pOutDev, ScDocShell* pShell, USHORT nTab,
-                                 long nPage = 0, long nDocP = 0,
-                                 const ScRange* pArea = NULL,
-                                 const ScPrintOptions* pOptions = NULL );
-
-
                     ~ScPrintFunc();
 
 
-    void            SetDrawView( FmFormView* pNew );
-
     void            SetDateTime( const Date& rDate, const Time& rTime );
 
-    void            SetRenderFlag( BOOL bFlag );
-
     BOOL            UpdatePages();
-
-    long            DoPrint( const MultiSelection& rPageRanges,
-                                long nStartPage, long nDisplayStart, BOOL bDoPrint,
-                                SfxProgress* pProgress, ScPreviewLocationData* pLocationData );
-
-                    //  Werte abfragen - sofort
 
     Size            GetPageSize() const { return aPageSize; }
     long            GetFirstPageNo() const  { return aTableParam.nFirstPageNo; }
