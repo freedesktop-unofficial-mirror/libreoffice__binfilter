@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_docpasswdrequest.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -117,11 +117,6 @@ RequestDocumentPassword::RequestDocumentPassword( ::com::sun::star::task::Passwo
        m_lContinuations.realloc( 2 );
        m_lContinuations[0] = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >( m_pAbort  );
        m_lContinuations[1] = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >( m_pPassword );
-}
-
-sal_Bool RequestDocumentPassword::isAbort()
-{
-    return m_pAbort->isSelected();
 }
 
 sal_Bool RequestDocumentPassword::isPassword()
