@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_dateitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,14 +71,6 @@ DBG_NAME(SfxDateTimeItem)
 // -----------------------------------------------------------------------
 
 TYPEINIT1(SfxDateTimeItem, SfxPoolItem);
-
-// -----------------------------------------------------------------------
-
-SfxDateTimeItem::SfxDateTimeItem( USHORT which ) :
-    SfxPoolItem( which )
-{
-    DBG_CTOR(SfxDateTimeItem, 0);
-}
 
 // -----------------------------------------------------------------------
 
@@ -233,21 +225,8 @@ BOOL SfxDateTimeItem::QueryValue( com::sun::star::uno::Any& rVal,
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
 // -----------------------------------------------------------------------
-
+/*
 TYPEINIT1(SfxColumnDateTimeItem, SfxDateTimeItem);
-
-
-SfxColumnDateTimeItem::SfxColumnDateTimeItem( USHORT which ) :
-    SfxDateTimeItem( which )
-{}
-
-SfxColumnDateTimeItem::SfxColumnDateTimeItem( USHORT which, const DateTime& rDT ) :
-    SfxDateTimeItem( which, rDT )
-{}
-
-SfxColumnDateTimeItem::SfxColumnDateTimeItem( const SfxDateTimeItem& rCpy ) :
-    SfxDateTimeItem( rCpy )
-{}
 
 SfxPoolItem* SfxColumnDateTimeItem::Clone( SfxItemPool* ) const
 {
@@ -258,5 +237,5 @@ SfxItemPresentation SfxColumnDateTimeItem::GetPresentation( SfxItemPresentation,
 {
     return SFX_ITEM_PRESENTATION_NAMELESS;
 }
-
+*/
 }
