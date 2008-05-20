@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_autofmt.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -78,118 +78,4 @@ namespace binfilter {
 
     static BOOL  m_bAskForCancelUndoWhileBufferOverflow;
     static short m_nActionWhileAutoformatUndoBufferOverflow;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ist ein Punkt am Ende ??
-
-
-// loesche im Node Anfang oder/und Ende
-
-
-
-
-
-
-
-
-        // loesche den vorherigen Absatz
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // dann lasse doch mal das AutoCorrect auf den akt. TextNode los
-
-
-
-
-
-
-/*N*/ SvxSwAutoFmtFlags* SwEditShell::GetAutoFmtFlags()
-/*N*/ {
-/*N*/   if (!pAutoFmtFlags)
-/*N*/       pAutoFmtFlags = new SvxSwAutoFmtFlags;
-/*N*/
-/*N*/   return pAutoFmtFlags;
-/*N*/ }
-
-/*N*/ void SwEditShell::SetAutoFmtFlags(SvxSwAutoFmtFlags * pFlags)
-/*N*/ {
-/*N*/   SvxSwAutoFmtFlags* pEditFlags = GetAutoFmtFlags();
-/*N*/
-/*N*/   pEditFlags->bSetNumRule     = pFlags->bSetNumRule;
-/*N*/   pEditFlags->bChgEnumNum     = pFlags->bChgEnumNum;
-/*N*/   pEditFlags->bSetBorder      = pFlags->bSetBorder;
-/*N*/   pEditFlags->bCreateTable    = pFlags->bCreateTable;
-/*N*/   pEditFlags->bReplaceStyles  = pFlags->bReplaceStyles;
-/*N*/   pEditFlags->bAFmtByInpDelSpacesAtSttEnd =
-/*N*/                                   pFlags->bAFmtByInpDelSpacesAtSttEnd;
-/*N*/   pEditFlags->bAFmtByInpDelSpacesBetweenLines =
-/*N*/                                   pFlags->bAFmtByInpDelSpacesBetweenLines;
-/*N*/
-/*N*/   //JP 15.12.98: BulletZeichen und Font in die "normalen" kopieren,
-/*N*/   //          weil beim Autoformat nur mit diesen gearbeitet wird!
-/*N*/   pEditFlags->cBullet             = pFlags->cByInputBullet;
-/*N*/   pEditFlags->aBulletFont         = pFlags->aByInputBulletFont;
-/*N*/   pEditFlags->cByInputBullet      = pFlags->cByInputBullet;
-/*N*/   pEditFlags->aByInputBulletFont  = pFlags->aByInputBulletFont;
-/*N*/ }
-
 }
