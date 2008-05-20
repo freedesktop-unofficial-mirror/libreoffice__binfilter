@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlexp.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -305,31 +305,6 @@ public:
         MapUnit eDfltUnit,
         const enum ::binfilter::xmloff::token::XMLTokenEnum eClass = xmloff::token::XML_TOKEN_INVALID,
         sal_uInt16 nExportFlag = EXPORT_ALL );
-
-    // #110680#
-    //SvXMLExport( const ::rtl::OUString& rFileName,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-    //           MapUnit eDfltUnit = MAP_INCH );
-    SvXMLExport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-        const ::rtl::OUString& rFileName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-        MapUnit eDfltUnit = MAP_INCH );
-
-    // #110680#
-    //SvXMLExport( const ::rtl::OUString& rFileName,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-    //           const ::com::sun::star::uno::Reference<
-    //              ::com::sun::star::frame::XModel > &,
-    //           sal_Int16 eDfltUnit );
-    SvXMLExport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-        const ::rtl::OUString& rFileName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > &,
-        sal_Int16 eDfltUnit );
 
     virtual ~SvXMLExport();
 
@@ -633,12 +608,6 @@ public:
                         sal_Bool bIgnWSOutside, sal_Bool bIgnWSInside );
 
     // Thes constructors do nothing if bDoSomething is not set
-    SvXMLElementExport( SvXMLExport& rExp, sal_Bool bDoSomething,
-                        sal_uInt16 nPrefix, const sal_Char *pName,
-                        sal_Bool bIgnWSOutside, sal_Bool bIgnWSInside );
-    SvXMLElementExport( SvXMLExport& rExp, sal_Bool bDoSomething,
-                        sal_uInt16 nPrefix, const ::rtl::OUString& rName,
-                        sal_Bool bIgnWSOutside, sal_Bool bIgnWSInside );
     SvXMLElementExport( SvXMLExport& rExp, sal_Bool bDoSomething,
                         sal_uInt16 nPrefix,
                         enum ::binfilter::xmloff::token::XMLTokenEnum eName,
