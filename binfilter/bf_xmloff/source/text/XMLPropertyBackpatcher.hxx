@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: XMLPropertyBackpatcher.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -115,21 +115,6 @@ public:
 
     XMLPropertyBackpatcher(
         const ::rtl::OUString& sPropertyName);
-
-    XMLPropertyBackpatcher(
-        const ::rtl::OUString& sPropertyName,
-        const ::rtl::OUString& sPreservePropertyName,
-        sal_Bool bDefault,
-        A aDef);
-
-    XMLPropertyBackpatcher(
-        const sal_Char* pPropertyName);
-
-    XMLPropertyBackpatcher(
-        const sal_Char* pPropertyName,
-        const sal_Char* pPreservePropertyName,
-        sal_Bool bDefault,
-        A aDef);
 
     ~XMLPropertyBackpatcher();
 
