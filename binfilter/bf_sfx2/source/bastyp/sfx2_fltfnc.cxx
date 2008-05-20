@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_fltfnc.cxx,v $
- * $Revision: 1.18 $
+ * $Revision: 1.19 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -218,20 +218,6 @@ public:
 /*N*/     return pImpl->aList.GetObject( nPos );
 /*N*/ }
 
-/*N*/ const SfxFilter* SfxFilterContainer::GetAnyFilter( SfxFilterFlags nMust, SfxFilterFlags nDont ) const
-/*N*/ {
-/*N*/     sal_uInt16 nCount = ( sal_uInt16 ) pImpl->aList.Count();
-/*N*/     for( sal_uInt16 n = 0; n < nCount; n++ )
-/*N*/     {
-/*N*/         const SfxFilter* pFilter = pImpl->aList.GetObject( n );
-/*N*/         SfxFilterFlags nFlags = pFilter->GetFilterFlags();
-/*N*/         if ( (nFlags & nMust) == nMust && !(nFlags & nDont ) )
-/*N*/             return pFilter;
-/*N*/     }
-/*N*/
-/*N*/     return NULL;
-/*N*/ }
-
 //----------------------------------------------------------------
 /*   [Beschreibung]
 
@@ -434,6 +420,16 @@ public:
     sal_Bool bDeleteContainers;
 };
 
+/*?*/ SfxFilterContainer* SfxFilterMatcher::GetContainer( const String &rName ) const
+/*STRIP003*/{ // DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
+/*STRIP003*/     sal_uInt16 nCount = (sal_uInt16) rList.Count();
+/*STRIP003*/     for( sal_uInt16 n = 0; n < nCount; n++ )
+/*STRIP003*/         if( rList.GetObject( n )->GetName() == rName )
+/*STRIP003*/             return rList.GetObject( n );
+/*STRIP003*/     return 0;
+/*?*/ }
+
 //----------------------------------------------------------------
 
 /*N*/ SfxFilterMatcher::SfxFilterMatcher( SfxFilterContainer* pCont)
@@ -473,24 +469,6 @@ public:
 /*N*/ {
 /*N*/     pImpl->aList.Insert( pC, pImpl->aList.Count() );
 /*N*/ }
-
-//----------------------------------------------------------------
-
-
-//----------------------------------------------------------------
-
-
-//----------------------------------------------------------------
-
-/*?*/ SfxFilterContainer* SfxFilterMatcher::GetContainer( const String &rName ) const
-/*STRIP003*/{ // DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
-/*STRIP003*/     sal_uInt16 nCount = (sal_uInt16) rList.Count();
-/*STRIP003*/     for( sal_uInt16 n = 0; n < nCount; n++ )
-/*STRIP003*/         if( rList.GetObject( n )->GetName() == rName )
-/*STRIP003*/             return rList.GetObject( n );
-/*STRIP003*/     return 0;
-/*?*/ }
 
 //----------------------------------------------------------------
 
@@ -566,22 +544,6 @@ public:
 /*N*/             SvStorageRef aStor = rMedium.GetStorage();
 /*N*/             if ( aStor.Is() )
 /*N*/                 pFilter = GetFilter4ClipBoardId( aStor->GetFormat(), nMust, nDont );
-/*N*/
-// STRIP001 /*N*/           // Als naechstes ueber Extended Attributes pruefen
-// STRIP001 /*N*/           String aNewFileName;
-// STRIP001 /*N*/           if( !pFilter )
-// STRIP001 /*N*/           {
-// STRIP001 /*N*/               aNewFileName = rMedium.GetPhysicalName();
-// STRIP001 /*N*/               SvEaMgr aMgr( aNewFileName );
-// STRIP001 /*N*/               String aType;
-// STRIP001 /*N*/               if( aMgr.GetFileType( aType ))
-// STRIP001 /*N*/               {
-// STRIP001 /*N*/                   // Plain text verwerfen wir, damit unter OS/2
-// STRIP001 /*N*/                   // html Dateien mit attribut Text als html geladen werden
-// STRIP001 /*?*/                   if( aType.CompareIgnoreCaseToAscii( "Plain Text" ) != COMPARE_EQUAL )
-// STRIP001 /*?*/                       pFilter = GetFilter4EA( aType, nMust, nDont );
-// STRIP001 /*N*/               }
-// STRIP001 /*N*/           }
 /*N*/       }
 /*N*/
 /*N*/       // Zu allerletzt ueber Extension mappen
@@ -839,11 +801,9 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
     return pFirstFilter;                                        \
 }
 
-/*N*/ IMPL_LOOP( GetFilter4EA, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Extension, const String& )
 /*N*/ IMPL_LOOP( GetFilter4Protocol, SfxMedium& )
 /*N*/ IMPL_LOOP( GetFilter4ClipBoardId, ULONG )
-/*N*/ IMPL_LOOP( GetFilter, const String& )
 /*N*/ IMPL_LOOP( GetFilter4FilterName, const String& )
 
 //----------------------------------------------------------------
@@ -860,88 +820,6 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 /*N*/       return sal_True;
 /*N*/   return sal_False;
 /*?*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ SfxFilterMatcherIter::SfxFilterMatcherIter(
-/*N*/     const SfxFilterMatcher* pMatchP,
-/*N*/   SfxFilterFlags nOrMaskP, SfxFilterFlags nAndMaskP )
-/*N*/     : pMatch( pMatchP->pImpl),
-/*N*/       nOrMask( nOrMaskP ), nAndMask( nAndMaskP )
-/*N*/ {
-/*N*/     if( nOrMask == 0xffff ) //Wg. Fehlbuild auf s
-/*N*/         nOrMask = 0;
-/*N*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ const SfxFilter *SfxFilterMatcherIter::Forward_Impl()
-/*N*/ {
-/*N*/     sal_uInt16 nCount = (sal_uInt16 )pMatch->aList.Count();
-/*N*/     for( ++nAktContainer; nAktContainer < nCount ; nAktContainer++ )
-/*N*/     {
-/*N*/         pCont = pMatch->aList.GetObject( nAktContainer );
-/*N*/         sal_uInt16 nCnt = pCont->GetFilterCount();
-/*N*/         if( nCnt )
-/*N*/         {
-/*N*/             nBorder=nCnt;
-/*N*/             nAktFilter = 0;
-/*N*/             return pCont->GetFilter( 0 );
-/*N*/         }
-/*N*/     }
-/*N*/     return 0;
-/*N*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ const SfxFilter* SfxFilterMatcherIter::First_Impl()
-/*N*/ {
-/*N*/     nAktFilter = -1;
-/*N*/     nAktContainer = -1;
-/*N*/     nBorder = 0;
-/*N*/
-/*N*/     return Forward_Impl();
-/*N*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ const SfxFilter* SfxFilterMatcherIter::Next_Impl()
-/*N*/ {
-/*N*/     if( ++nAktFilter < nBorder )
-/*N*/         return pCont->GetFilter( nAktFilter );
-/*N*/     return Forward_Impl();
-/*N*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ const SfxFilter* SfxFilterMatcherIter::First()
-/*N*/ {
-/*N*/     const SfxFilter* pFilter;
-/*N*/     for( pFilter = First_Impl(); pFilter; pFilter = Next_Impl())
-/*N*/     {
-/*N*/         SfxFilterFlags nFlags = pFilter->GetFilterFlags();
-/*N*/         if( ((nFlags & nOrMask) == nOrMask ) && !(nFlags & nAndMask ) )
-/*N*/             break;
-/*N*/     }
-/*N*/     return pFilter;
-/*N*/ }
-
-//----------------------------------------------------------------
-
-/*N*/ const SfxFilter* SfxFilterMatcherIter::Next()
-/*N*/ {
-/*N*/     const SfxFilter* pFilter;
-/*N*/     for( pFilter = Next_Impl(); pFilter; pFilter = Next_Impl())
-/*N*/     {
-/*N*/         SfxFilterFlags nFlags = pFilter->GetFilterFlags();
-/*N*/         if( ((nFlags & nOrMask) == nOrMask ) && !(nFlags & nAndMask ) )
-/*N*/             break;
-/*N*/     }
-/*N*/     return pFilter;
-/*N*/ }
-
-
-
 
 /*---------------------------------------------------------------
     helper to build own formated string from given stringlist by
