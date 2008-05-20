@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: persist.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -152,10 +152,10 @@ protected:
                      ~SvPersist();
 #ifdef DBG_UTIL
 #define ASSERT_INIT()     AssertInit();
+    SO3_DLLPRIVATE void            AssertInit() const;
 #else
 #define ASSERT_INIT()
 #endif
-    SO3_DLLPRIVATE void            AssertInit() const;
     SO3_DLLPRIVATE void         SetSaveFailed( BOOL bFail = TRUE )
                     { bSaveFailed = bFail; }
     SO3_DLLPRIVATE BOOL         GetSaveFailed() const { return bSaveFailed; }
@@ -174,7 +174,6 @@ protected:
     SO3_DLLPRIVATE BOOL            DoSaveContent( SvStorage *, BOOL bOwner );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner );
 
-    SO3_DLLPRIVATE BOOL            LoadChilds();                       // Rekursiv
     BOOL            SaveChilds();                       // Rekursiv
     BOOL            SaveAsChilds( SvStorage * pNewStg );// Rekursiv
     BOOL            SaveCompletedChilds( SvStorage * ); // Rekursiv
@@ -193,10 +192,6 @@ public:
                                String * pShortTypeName,
                                long nFileFormat = SOFFICE_FILEFORMAT_CURRENT ) const;
 
-    SvGlobalName    GetClassName() const;
-    ULONG           GetFileFormat() const;
-    String          GetFullTypeName() const;
-
                     // automatische Objektverwaltung um zu speichern
     BOOL            Insert  ( SvInfoObject * pInfoObj );
     BOOL            Move    ( SvInfoObject * pInfoObj, const String & rStorName, BOOL bCopyStorage=FALSE );
@@ -212,7 +207,6 @@ public:
     void            Remove  ( const String & rEleName );
     void            Remove  ( SvPersist * pEle );
     void            Remove  ( SvInfoObject * pInfoObj );
-    void            Clear   ();
     SvInfoObject *  Find    ( const String & rEleName ) const;
     SvInfoObject *  Find    ( const SvPersist * pEle ) const;
     const SvInfoObjectMemberList * GetObjectList() const
@@ -221,11 +215,8 @@ public:
                     // altes Interface
     BOOL            HasObject( const String & rObjName );
     SvPersistRef    GetObject( const String & rObjName );
-    SvStorageRef    GetObjectStorage( const String & rObjName );
     SvStorageRef    GetObjectStorage( SvInfoObject* pEle );
 
-                    // lokale Namensgebung
-    BOOL            IsRoot() const;
                     // eigentliche Funktionalitaet
     void            EnableSetModified( BOOL bEnable = TRUE );
     BOOL            IsEnableSetModified() const
@@ -233,7 +224,6 @@ public:
     virtual void    SetModified( BOOL = TRUE );
     BOOL            IsModified();                   // Rekursiv
 
-    SvPersistRef    CopyObject( SvStorage * );
     SvPersistRef    CopyObject( const String& rObjName, const String& rNewName, SvPersist * pSrc );
 
     virtual BOOL    DoInitNew( SvStorage * );
@@ -254,7 +244,6 @@ public:
     void            SetModifyTime( const Time & rTime )
                     { aModifiedTime = rTime; }
     BOOL            IsHandsOff() const { return bOpHandsOff; }
-    void            StartActivation( SvPersist* pObj );
 
     void            SetObjectShell( BOOL bObjSh ) { bIsObjectShell = bObjSh; }
 };
@@ -285,7 +274,6 @@ protected:
 public:
                     SV_DECL_PERSIST1(SvInfoObject,SvPersistBase,1)
                     SvInfoObject();
-                    SvInfoObject( SvPersist * );
                     SvInfoObject( SvPersist *, const String & rObjName );
                     SvInfoObject( const String& rObjName,
                                      const SvGlobalName& rClassName );
