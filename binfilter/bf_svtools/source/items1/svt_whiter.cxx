@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_whiter.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -84,26 +84,6 @@ USHORT SfxWhichIter::NextWhich()
 
 // -----------------------------------------------------------------------
 
-USHORT  SfxWhichIter::PrevWhich()
-{
-    DBG_CHKTHIS(SfxWhichIter, 0);
-    while ( pRanges != pStart || 0 != nOfst )
-    {
-        if(nOfst)
-            --nOfst;
-        else {
-            pRanges -= 2;
-            nOfst = *(pRanges+1) - (*pRanges);
-        }
-        USHORT nWhich = *pRanges + nOfst;
-        if ( nWhich >= nFrom && nWhich <= nTo )
-            return nWhich;
-    }
-    return 0;
-}
-
-// -----------------------------------------------------------------------
-
 USHORT SfxWhichIter::FirstWhich()
 {
     DBG_CHKTHIS(SfxWhichIter, 0);
@@ -113,19 +93,4 @@ USHORT SfxWhichIter::FirstWhich()
         return *pRanges;
     return NextWhich();
 }
-
-// -----------------------------------------------------------------------
-
-USHORT SfxWhichIter::LastWhich()
-{
-    DBG_CHKTHIS(SfxWhichIter, 0);
-    while(*pRanges)
-        ++pRanges;
-    nOfst = 0;
-    USHORT nWhich = *(pRanges-1);
-    if ( nWhich >= nFrom && nWhich <= nTo )
-        return nWhich;
-    return PrevWhich();
-}
-
 }
