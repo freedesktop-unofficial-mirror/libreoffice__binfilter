@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_docsh2.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -99,19 +99,6 @@ using namespace ::com::sun::star;
 /*N*/   CalcOutputFactor();
 /*N*/
 /*N*/   return bRet;
-/*N*/ }
-
-//------------------------------------------------------------------
-
-/*N*/ BOOL ScDocShell::IsEmpty() const
-/*N*/ {
-/*N*/   return bIsEmpty;
-/*N*/ }
-
-
-/*N*/ void ScDocShell::ResetEmpty()
-/*N*/ {
-/*N*/   bIsEmpty = FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------
