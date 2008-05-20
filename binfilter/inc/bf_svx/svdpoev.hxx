@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdpoev.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -95,7 +95,6 @@ private:
 
 public:
     SdrPolyEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrPolyEditView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrPolyEditView();
 
     BOOL IsSetMarkedPointsSmoothPossible() const { ForcePossibilities(); return bSetMarkedPointsSmoothPossible; }
