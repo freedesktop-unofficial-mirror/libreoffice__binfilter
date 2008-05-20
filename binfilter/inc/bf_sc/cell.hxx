@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cell.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -207,7 +207,6 @@ public:
 
                     ~ScEditCell();              // wegen pData immer!
 
-                    ScEditCell( ScDocument* );
                     ScEditCell( const EditTextObject* pObject, ScDocument*,
                                 const SfxItemPool* pFromPool /* = NULL */ );
                     ScEditCell( const ScEditCell& rEditCell, ScDocument* );
