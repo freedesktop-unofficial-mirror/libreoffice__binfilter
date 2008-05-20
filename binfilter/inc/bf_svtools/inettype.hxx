@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: inettype.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -352,8 +352,6 @@ enum INetContentType
 class  INetContentTypes
 {
 public:
-    static void Uninitialize();
-
     static INetContentType RegisterContentType(UniString const & rTypeName,
                                                UniString const &
                                                    rPresentation,
@@ -369,18 +367,8 @@ public:
     static UniString GetPresentation(INetContentType eTypeID,
                                      const ::com::sun::star::lang::Locale& aLocale);
 
-    static UniString GetExtension(UniString const & rTypeName);
-
     static INetContentType GetContentType4Extension(UniString const &
                                                         rExtension);
-
-    static INetContentType GetContentTypeFromURL(UniString const & rURL);
-
-    static bool GetExtensionFromURL(UniString const & rURL,
-                                    UniString & rExtension);
-
-    static INetContentType MapStringToContentType(UniString const &
-                                                      rPresentation);
 
     /** Parse the body of an RFC 2045 Content-Type header field.
 
@@ -443,42 +431,6 @@ public:
     static bool parse(UniString const & rMediaType, UniString & rType,
                       UniString & rSubType,
                       INetContentTypeParameterList * pParameters = 0);
-
-    /** Append a parameter to the string representation of a MIME media type.
-
-        @param rMediaType  The string representation of a MIME media type.
-
-        @param rAttribute  The name of the parameter.  Must be a valid RFC
-        2045 token.
-
-        @param rValue  The value of the paramter.  Must only consist of US-
-        ASCII characters.
-
-        @return  The string representation of rMediaType with the new
-        parameter appended.  It is not checked whether a parameter with that
-        name already existed in rMediaType.
-     */
-    static ByteString appendUSASCIIParameter(ByteString const & rMediaType,
-                                             ByteString const & rAttribute,
-                                             ByteString const & rValue);
-
-    /** Append a parameter to the string representation of a MIME media type.
-
-        @param rMediaType  The string representation of a MIME media type.
-
-        @param rAttribute  The name of the parameter.  Must be a valid RFC
-        2045 token.
-
-        @param rValue  The value of the paramter.  Must only consist of US-
-        ASCII characters.
-
-        @return  The string representation of rMediaType with the new
-        parameter appended.  It is not checked whether a parameter with that
-        name already existed in rMediaType.
-     */
-    static UniString appendUSASCIIParameter(UniString const & rMediaType,
-                                            UniString const & rAttribute,
-                                            UniString const & rValue);
 };
 
 }
