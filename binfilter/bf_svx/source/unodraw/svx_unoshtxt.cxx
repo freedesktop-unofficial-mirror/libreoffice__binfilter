@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unoshtxt.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -142,7 +142,6 @@ private:
 
 public:
     SvxTextEditSourceImpl( SdrObject* pObject );
-    SvxTextEditSourceImpl( SdrObject& rObject, SdrView& rView, const Window& rWindow );
     ~SvxTextEditSourceImpl();
 
     void SAL_CALL acquire();
@@ -194,35 +193,6 @@ SvxTextEditSourceImpl::SvxTextEditSourceImpl( SdrObject* pObject )
 
     if( mpModel )
         StartListening( *mpModel );
-}
-
-//------------------------------------------------------------------------
-
-SvxTextEditSourceImpl::SvxTextEditSourceImpl( SdrObject& rObject, SdrView& rView, const Window& rWindow )
-  : maRefCount      ( 0 ),
-    mpObject        ( &rObject ),
-    mpView          ( &rView ),
-    mpWindow        ( &rWindow ),
-    mpModel         ( rObject.GetModel() ),
-    mpOutliner      ( NULL ),
-    mpTextForwarder ( NULL ),
-    mpViewForwarder ( NULL ),
-    mbDataValid     ( FALSE ),
-    mbDestroyed     ( FALSE ),
-    mbIsLocked      ( FALSE ),
-    mbNeedsUpdate   ( FALSE ),
-    mbOldUndoMode   ( FALSE ),
-    mbForwarderIsEditMode ( FALSE ),
-    mbShapeIsEditMode     ( TRUE ),
-    mbNotificationsDisabled ( FALSE )
-{
-    if( mpModel )
-        StartListening( *mpModel );
-    if( mpView )
-        StartListening( *mpView );
-
-    // #104157# Init edit mode state from shape info (IsTextEditActive())
-    mbShapeIsEditMode = IsEditMode();
 }
 
 //------------------------------------------------------------------------
