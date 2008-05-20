@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: utility.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -372,12 +372,6 @@ inline Font SmFontPickList::Get(USHORT nPos) const
 {
     return nPos < Count() ? *((Font *)SmPickList::Get(nPos)) : Font();
 }
-
-inline BOOL SmFontPickList::Contains(const Font &rFont) const
-{
-    return SmPickList::Contains((void *)&rFont);
-}
-
 
 ////////////////////////////////////////////////////////////
 //
