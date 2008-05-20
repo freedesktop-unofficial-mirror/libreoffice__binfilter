@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: tablink.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,8 +109,6 @@ public:
     ScDocument*         GetDocument();
     ScDocShell*         GetDocShell()       { return pDocShell; }
     BOOL                IsError() const;
-
-    void                ReleaseDocRef();    // without calling DoClose
 
     static String       GetOptions( SfxMedium& rMedium );
     static void         GetFilterName( const String& rFileName,
