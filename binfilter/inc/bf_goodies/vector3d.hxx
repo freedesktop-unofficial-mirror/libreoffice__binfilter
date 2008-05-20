@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: vector3d.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,7 +80,6 @@ class Vector3D
 
     void CalcInBetween(const Vector3D& rOld1, const Vector3D& rOld2, double t);
     void CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2);
-    void CalcMiddle(const Vector3D& rOld1, const Vector3D& rOld2, Vector3D& rOld3);
 
     Vector3D&   operator+=  (const Vector3D&);
     Vector3D&   operator-=  (const Vector3D&);
