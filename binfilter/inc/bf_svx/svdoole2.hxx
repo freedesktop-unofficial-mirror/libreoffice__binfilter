@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdoole2.hxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -89,7 +89,6 @@ public:
     TYPEINFO();
 
     SdrOle2Obj(FASTBOOL bFrame_=FALSE);
-    SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, FASTBOOL bFrame_=FALSE);
     SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_=FALSE);
     virtual ~SdrOle2Obj();
 
