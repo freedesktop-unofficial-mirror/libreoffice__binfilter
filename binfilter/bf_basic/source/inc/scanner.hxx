@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: scanner.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -99,7 +99,6 @@ public:
     void  RestoreLine(void)         { pLine = pSaveLine; }
     void  LockColumn();
     void  UnlockColumn();
-    BOOL  DoesColonFollow();
 
     BOOL NextSym();                 // naechstes Symbol lesen
     const String& GetSym()          { return aSym;  }
