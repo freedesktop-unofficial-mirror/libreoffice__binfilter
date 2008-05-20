@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: pseudo.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -210,7 +210,6 @@ void SvPseudoObject::FillClass
 
     [Querverweise]
 
-    <SvPseudoObject::GetFullTypeName>, <SvPseudoObject::GetShortTypeName>,
     <SvPersist::FillClass()>
 */
 {
@@ -243,89 +242,6 @@ SvGlobalName SvPseudoObject::GetClassName() const
     FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
                 &aShortTypeName );
     return aName;
-}
-
-//=========================================================================
-String SvPseudoObject::GetAppName() const
-/*  [Beschreibung]
-
-    Ruft <SvPseudoObject::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return aAppName;
-}
-
-//=========================================================================
-String SvPseudoObject::GetFullTypeName() const
-/*  [Beschreibung]
-
-    Ruft <SvPseudoObject::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return aFullTypeName;
-}
-
-//=========================================================================
-String SvPseudoObject::GetShortTypeName() const
-/*  [Beschreibung]
-
-    Ruft <SvPseudoObject::FillClass> auf, um den Typ des Objektes zu bekommen.
-
-    [R"uckgabewert]
-
-    SvGlobalName    Der Typ des Objektes.
-*/
-{
-    SvGlobalName    aName;
-    String          aAppName, aFullTypeName, aShortTypeName;
-    ULONG           nFormat;
-
-    FillClass( &aName, &nFormat, &aAppName, &aFullTypeName,
-                &aShortTypeName );
-    return aShortTypeName;
-}
-
-//=========================================================================
-ErrCode SvPseudoObject::DoVerb
-(
-    long nVerb,                         /* Der Index in die Verbtabelle */
-    SvEmbeddedClient * pCallerClient,   /* Die Container-Seite mit dem der
-                                           Objekt-Server ggf. kommuniziert.
-                                        */
-    Window * pWin,                      /* Das Fenster in dem das Objekt
-                                           dargestellt wird. */
-    const Rectangle * pWorkRectPixel    /* Die Position und Gr"osse des
-                                           Objektes im Container */
-)
-/*  [Beschreibung]
-
-    Diese Methode ist eine Wrapper-Funktion um <SvPseudoObject::Verb>.
-    Sie teilt dem Container zusaetzlich mit, dass das Objekt in den
-    sichtbaren Bereich geschoben werden soll.
-*/
-{
-    // Default-Verben sind negativ
-    return Verb( nVerb, pCallerClient, pWin, pWorkRectPixel );
 }
 
 //=========================================================================
@@ -420,60 +336,6 @@ const SvVerbList & SvPseudoObject::GetVerbList() const
 
     return *pVerbs;
 }
-
-//=========================================================================
-const SvVerb * SvPseudoObject::GetVerb
-(
-    USHORT nMenuId  /* Wurden Verben mit der Methode
-                       <SvEmbeddedObject::AppendVerbs> an ein Menu
-                       angeh"angt, dann ist dies die MenuId, mit der
-                       nach dem Verb gesucht wird */
-) const
-/*  [Beschreibung]
-
-    In der Verbliste wird nach einem Verb mit der Id nMenuId gesucht.
-
-    [Anmerkung]
-
-    Nachdem ein Menu erzeugt wurde darf die Verbliste nicht vera"ndert
-    werden, da die MenuIs's in den Verben vom Zeitpunkt des erzeugens und
-    nicht vom Inhalt abh"angig sind.
-
-    [R"uckgabewert]
-
-    const SvVerb *  NULL, das Verb wurde nicht gefunden. Ansonsten wird
-                    das Verb mit der entsprechenden MenuId geliefert.
-*/
-{
-    const SvVerbList & rVerbs = GetVerbList();
-    for( ULONG i = 0; i < rVerbs.Count(); i++ )
-        if( rVerbs[ i ].GetMenuId() == nMenuId )
-            return &rVerbs[ i ];
-    return NULL;
-}
-
-//=========================================================================
-void SvPseudoObject::AppendVerbs
-(
-    Menu & rMenu    /* An dieses Menu werden die Verben angeh"angt */
-)
-/*  [Beschreibung]
-
-    Die Verben des Objektes werden an das Menu rMenu angeh"angt, wenn
-    sie das Attribut <SvVerb::IsOnMenu> == TRUE haben.
-*/
-{
-    const SvVerbList & rVerbs = GetVerbList();
-    for( ULONG i = 0; i < rVerbs.Count(); i++ )
-    {
-        const SvVerb & rVerb = rVerbs[ i ];
-        if( rVerb.IsOnMenu() )
-            rMenu.InsertItem( rVerb.GetMenuId(), rVerb.GetName() );
-    }
-}
-
-
-
 
 //=========================================================================
 ULONG SvPseudoObject::GetMiscStatus() const
