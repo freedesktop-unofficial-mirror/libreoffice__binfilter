@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docftn.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,12 +53,6 @@
 #endif
 #ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
-#endif
-#ifndef _ROLBCK_HXX
-#include <rolbck.hxx>
 #endif
 
 #ifndef _HORIORNT_HXX
@@ -300,10 +294,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
-/*N*/       if( DoesUndo() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-/*N*/       }
 /*N*/
 /*N*/       FASTBOOL bPageNum = rInfo.eNum == FTNNUM_PAGE &&
 /*N*/                           rOld.eNum != FTNNUM_PAGE;
@@ -349,11 +339,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !(GetEndNoteInfo() == rInfo) )
 /*N*/   {
-/*N*/       if( DoesUndo() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearRedo();
-/*N*/       }
-/*N*/
 /*N*/       FASTBOOL bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
 /*N*/       FASTBOOL bExtra   = !bNumChg &&
 /*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()||
@@ -414,13 +399,6 @@ namespace binfilter {
 /*N*/   USHORT nPos;
 /*N*/   rFtnArr.SeekEntry( pStt->nNode, &nPos );
 /*N*/
-/*N*/   SwUndoChgFtn* pUndo = 0;
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       pUndo = new SwUndoChgFtn( rPam, rNumStr, nNumber, bIsEndNote );
-/*N*/   }
-/*N*/
 /*N*/   SwTxtFtn* pTxtFtn;
 /*N*/   ULONG nIdx;
 /*N*/   BOOL bChg = FALSE;
@@ -439,8 +417,6 @@ namespace binfilter {
 /*N*/               rFtn.IsEndNote() != bIsEndNote )
 /*N*/           {
 /*N*/               bChg = TRUE;
-/*N*/               if( pUndo )
-/*N*/                   pUndo->GetHistory()->Add( *pTxtFtn );
 /*N*/
 /*N*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*N*/               if( rFtn.IsEndNote() != bIsEndNote )
@@ -464,8 +440,6 @@ namespace binfilter {
 /*?*/               rFtn.IsEndNote() != bIsEndNote )
 /*?*/           {
 /*?*/               bChg = TRUE;
-/*?*/               if( pUndo )
-/*?*/                   pUndo->GetHistory()->Add( *pTxtFtn );
 /*?*/
 /*?*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*?*/               if( rFtn.IsEndNote() != bIsEndNote )
@@ -478,11 +452,6 @@ namespace binfilter {
 /*N*/   // wer muss angestossen werden ??
 /*N*/   if( bChg )
 /*N*/   {
-/*N*/       if( pUndo )
-/*N*/       {
-/*N*/           ClearRedo();
-/*N*/           AppendUndo( pUndo );
-/*N*/       }
 /*N*/
 /*N*/       if ( bTypeChgd )
 /*?*/           rFtnArr.UpdateAllFtn();
@@ -494,8 +463,6 @@ namespace binfilter {
 /*N*/       else if( GetRootFrm() )
 /*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetRootFrm()->UpdateFtnNums();
 /*N*/   }
-/*N*/   else
-/*?*/       delete pUndo;
 /*N*/   return bChg;
 /*N*/ }
 
