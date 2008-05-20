@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_sdbinfilter.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -107,12 +107,6 @@ using namespace ::com::sun::star::frame;
 
 SdBINFilter::SdBINFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress ) :
     SdFilter( rMedium, rDocShell, bShowProgress )
-{
-}
-
-// -----------------------------------------------------------------------------
-
-SdBINFilter::~SdBINFilter()
 {
 }
 
