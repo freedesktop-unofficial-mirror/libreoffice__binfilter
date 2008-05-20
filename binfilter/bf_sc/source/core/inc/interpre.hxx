@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: interpre.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -277,8 +277,7 @@ const String& GetString();
 ScMatrix* GetMatrix(USHORT& nMatInd);                   // in interpr2.cxx
 void ScTableOp();                                       // Mehrfachoperatione;
 void ScErrCell();                                       // Sonderbehandlung
-                                                        // Fehlerzelle
-void ScDefPar();                                        // DefaultParameter
+
 //-----------------------------allgemeine Hilfsfunktionen
 void SetMaxIterationCount(USHORT n);
 inline void CurFmtToFuncFmt()
