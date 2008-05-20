@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_objstor.cxx,v $
- * $Revision: 1.21 $
+ * $Revision: 1.22 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -235,42 +235,6 @@ using namespace ::cppu;
 /*N*/ }
 
 //-------------------------------------------------------------------------
-/*N*/ sal_Bool SfxObjectShell::DoInitNew_Impl( const String& rName )
-
-/*  [Beschreibung]
-*/
-
-/*N*/ {
-/*N*/   if ( rName.Len() )
-/*N*/   {
-/*?*/       ModifyBlocker_Impl aBlock( this );
-/*?*/       pMedium = new SfxMedium( rName, SFX_STREAM_READONLY_MAKECOPY, sal_False );
-/*?*/       if ( InitNew( pMedium->GetStorage() ) )
-/*?*/       {
-/*?*/           bIsTmp = !( pMedium->GetStorage() );
-/*?*/
-/*?*/             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*?*/             if ( xModel.is() )
-/*?*/             {
-/*?*/                 SfxItemSet *pSet = GetMedium()->GetItemSet();
-/*?*/                 ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
-/*?*/                 TransformItems( SID_OPENDOC, *pSet, aArgs );
-/*?*/                 sal_Int32 nLength = aArgs.getLength();
-/*?*/                 aArgs.realloc( nLength + 1 );
-/*?*/                 aArgs[nLength].Name = DEFINE_CONST_UNICODE("Title");
-/*?*/                 aArgs[nLength].Value <<= ::rtl::OUString( GetTitle( SFX_TITLE_DETECT ) );
-/*?*/                 xModel->attachResource( ::rtl::OUString(), aArgs );
-/*?*/             }
-/*?*/
-/*?*/           SetActivateEvent_Impl( SFX_EVENT_CREATEDOC );
-/*?*/           return sal_True;
-/*?*/       }
-/*?*/       return sal_False;
-/*N*/   }
-/*N*/   else
-/*N*/       return DoInitNew(0);
-/*N*/ }
-
 
 /*N*/ sal_Bool SfxObjectShell::DoInitNew( SvStorage * pStor )
 
@@ -1154,32 +1118,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 
 //-------------------------------------------------------------------------
 
-/*?*/ sal_Bool SfxObjectShell::DoSaveAs( SfxMedium &rMedium )
-/*?*/ {
-/*?*/   // hier kommen nur Root-Storages rein, die via Temp-File gespeichert werden
-/*?*/     rMedium.CreateTempFileNoCopy();
-/*?*/     SetError(rMedium.GetErrorCode());
-/*?*/     if ( GetError() )
-/*?*/         return sal_False;
-/*?*/
-/*?*/   const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-/*?*/   if( GetCreateMode() != SFX_CREATE_MODE_EMBEDDED )
-/*?*/       if ( ShallSetBaseURL_Impl( rMedium ) )
-/*?*/           ::binfilter::StaticBaseUrl::SetBaseURL( rMedium.GetBaseURL() );
-/*?*/       else
-/*?*/           ::binfilter::StaticBaseUrl::SetBaseURL( String() );
-/*?*/
-/*?*/     sal_Bool bRet = SaveTo_Impl( rMedium, NULL, sal_False );
-/*?*/   ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-/*?*/   if( bRet )
-/*?*/       DoHandsOff();
-/*?*/   else
-/*?*/       SetError(rMedium.GetErrorCode());
-/*?*/   return bRet;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ sal_Bool SfxObjectShell::DoSaveCompleted( SfxMedium * pNewMed )
 /*N*/ {
     sal_Bool bOk = sal_True;
@@ -1329,153 +1267,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
     <SFX_FILTER_REGISTRATION>
 */
 /*?*/ {
-/*?*/   return sal_False;
-/*?*/ }
-
-/*?*/ sal_Bool SfxObjectShell::ImportFrom( SfxMedium& rMedium )
-/*?*/ {
-/*?*/     ::rtl::OUString aTypeName( rMedium.GetFilter()->GetTypeName() );
-/*?*/     ::rtl::OUString aFilterName( rMedium.GetFilter()->GetFilterName() );
-/*?*/
-/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xMan = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*?*/     ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory > xFilterFact (
-/*?*/                 xMan->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.document.FilterFactory" ) ), ::com::sun::star::uno::UNO_QUERY );
-/*?*/
-/*?*/     ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aProps;
-/*?*/     ::com::sun::star::uno::Reference < ::com::sun::star::container::XNameAccess > xFilters ( xFilterFact, ::com::sun::star::uno::UNO_QUERY );
-/*?*/     if ( xFilters->hasByName( aFilterName ) )
-/*?*/         xFilters->getByName( aFilterName ) >>= aProps;
-/*?*/
-/*?*/     ::rtl::OUString aFilterImplName;
-/*?*/     sal_Int32 nFilterProps = aProps.getLength();
-/*?*/     for ( sal_Int32 nFilterProp = 0; nFilterProp<nFilterProps; nFilterProp++ )
-/*?*/     {
-/*?*/         const ::com::sun::star::beans::PropertyValue& rFilterProp = aProps[nFilterProp];
-/*?*/         if ( rFilterProp.Name.compareToAscii("FilterService") == COMPARE_EQUAL )
-/*?*/         {
-/*?*/             rFilterProp.Value >>= aFilterImplName;
-/*?*/             break;
-/*?*/         }
-/*?*/     }
-/*?*/
-/*?*/     ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any > aArgs(1);
-/*?*/     ::com::sun::star::beans::PropertyValue aFilterProp;
-/*?*/     aFilterProp.Name = DEFINE_CONST_UNICODE("FilterName");
-/*?*/     aFilterProp.Value <<= aFilterName;
-/*?*/     aArgs[0] <<= aFilterProp;
-/*?*/     ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter > xLoader;
-/*?*/     if ( aFilterImplName.getLength() )
-/*?*/         xLoader = ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter >
-/*?*/             ( xFilterFact->createInstanceWithArguments( aTypeName, aArgs ), ::com::sun::star::uno::UNO_QUERY );
-/*?*/   if ( xLoader.is() )
-/*?*/   {
-/*?*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >  xComp( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*?*/         ::com::sun::star::uno::Reference< ::com::sun::star::document::XImporter > xImporter( xLoader, ::com::sun::star::uno::UNO_QUERY );
-/*?*/         xImporter->setTargetDocument( xComp );
-/*?*/
-/*?*/         ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > lDescriptor;
-/*?*/         rMedium.GetItemSet()->Put( SfxStringItem( SID_FILE_NAME, rMedium.GetName() ) );
-/*?*/         TransformItems( SID_OPENDOC, *rMedium.GetItemSet(), lDescriptor );
-/*?*/
-/*?*/       ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs ( lDescriptor.getLength() + 1);
-/*?*/       ::com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
-/*?*/       const ::com::sun::star::beans::PropertyValue * pOldValue = lDescriptor.getConstArray();
-/*?*/       const OUString sInputStream ( RTL_CONSTASCII_USTRINGPARAM ( "InputStream" ) );
-/*?*/
-/*?*/       sal_Bool bHasInputStream = sal_False;
-/*?*/       sal_Int32 i = 0;
-            for ( sal_Int32 nEnd = lDescriptor.getLength(); i < nEnd; i++ )
-/*?*/       {
-/*?*/           pNewValue[i] = pOldValue[i];
-/*?*/           if ( pOldValue [i].Name == sInputStream )
-/*?*/               bHasInputStream = sal_True;
-/*?*/       }
-/*?*/       if ( !bHasInputStream )
-/*?*/       {
-/*?*/           pNewValue[i].Name = sInputStream;
-/*?*/           pNewValue[i].Value <<= ::com::sun::star::uno::Reference < ::com::sun::star::io::XInputStream > ( new utl::OSeekableInputStreamWrapper ( *rMedium.GetInStream() ) );
-/*?*/       }
-/*?*/       else
-/*?*/           aArgs.realloc ( i-1 );
-/*?*/
-/*?*/         return xLoader->filter( aArgs );
-/*?*/   }
-/*?*/
-/*?*/   return sal_False;
-/*?*/ }
-
-/*?*/ sal_Bool SfxObjectShell::ExportTo( SfxMedium& rMedium )
-/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/     ::rtl::OUString aTypeName( rMedium.GetFilter()->GetTypeName() );
-/*N*/     ::rtl::OUString aFilterName( rMedium.GetFilter()->GetFilterName() );
-/*N*/     ::com::sun::star::uno::Reference< ::com::sun::star::document::XExporter > xExporter;
-/*N*/
-/*N*/   {
-/*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >  xMan = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/         ::com::sun::star::uno::Reference < ::com::sun::star::lang::XMultiServiceFactory > xFilterFact (
-/*N*/                 xMan->createInstance( DEFINE_CONST_UNICODE( "com.sun.star.document.FilterFactory" ) ), ::com::sun::star::uno::UNO_QUERY );
-/*N*/
-/*N*/         ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aProps;
-/*N*/         ::com::sun::star::uno::Reference < ::com::sun::star::container::XNameAccess > xFilters ( xFilterFact, ::com::sun::star::uno::UNO_QUERY );
-/*N*/         if ( xFilters->hasByName( aFilterName ) )
-/*N*/             xFilters->getByName( aFilterName ) >>= aProps;
-/*N*/
-/*N*/         ::rtl::OUString aFilterImplName;
-/*N*/         sal_Int32 nFilterProps = aProps.getLength();
-/*N*/         for ( sal_Int32 nFilterProp = 0; nFilterProp<nFilterProps; nFilterProp++ )
-/*N*/         {
-/*N*/             const ::com::sun::star::beans::PropertyValue& rFilterProp = aProps[nFilterProp];
-/*N*/             if ( rFilterProp.Name.compareToAscii("FilterService") == COMPARE_EQUAL )
-/*N*/             {
-/*N*/                 rFilterProp.Value >>= aFilterImplName;
-/*N*/                 break;
-/*N*/             }
-/*N*/         }
-/*N*/
-/*N*/         ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any > aArgs(1);
-/*N*/         aArgs[0] <<= aFilterName;
-/*N*/         if ( aFilterImplName.getLength() )
-/*N*/             xExporter = ::com::sun::star::uno::Reference< ::com::sun::star::document::XExporter >
-/*N*/                 ( xFilterFact->createInstanceWithArguments( aTypeName, aArgs ), ::com::sun::star::uno::UNO_QUERY );
-/*N*/   }
-/*N*/
-/*N*/     if ( xExporter.is() )
-/*N*/   {
-/*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >  xComp( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::document::XFilter > xFilter( xExporter, ::com::sun::star::uno::UNO_QUERY );
-/*N*/         xExporter->setSourceDocument( xComp );
-/*N*/
-/*N*/         ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aOldArgs;
-/*N*/         SfxItemSet* pItems = rMedium.GetItemSet();
-/*N*/         TransformItems( SID_SAVEASDOC, *pItems, aOldArgs );
-/*N*/
-/*N*/       const ::com::sun::star::beans::PropertyValue * pOldValue = aOldArgs.getConstArray();
-/*N*/       ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue > aArgs ( aOldArgs.getLength() + 1 );
-/*N*/       ::com::sun::star::beans::PropertyValue * pNewValue = aArgs.getArray();
-/*N*/
-/*N*/       // put in the REAL file name, and copy all PropertyValues
-/*N*/         const OUString sOutputStream ( RTL_CONSTASCII_USTRINGPARAM ( "OutputStream" ) );
-/*N*/         BOOL bHasStream = FALSE;
-/*N*/       sal_Int32 i, nEnd; for ( i = 0, nEnd = aOldArgs.getLength(); i < nEnd; i++ )
-/*N*/       {
-/*N*/           pNewValue[i] = pOldValue[i];
-/*N*/             if ( pOldValue[i].Name.equalsAsciiL ( RTL_CONSTASCII_STRINGPARAM ( "FileName" ) ) )
-/*N*/               pNewValue[i].Value <<= OUString ( rMedium.GetName() );
-/*N*/             if ( pOldValue[i].Name == sOutputStream )
-/*N*/                 bHasStream = sal_True;
-/*N*/       }
-/*N*/
-/*N*/         if ( !bHasStream )
-/*N*/       {
-/*N*/             pNewValue[i].Name = sOutputStream;
-/*N*/             pNewValue[i].Value <<= ::com::sun::star::uno::Reference < ::com::sun::star::io::XOutputStream > ( new ::utl::OOutputStreamWrapper ( *rMedium.GetOutStream() ) );
-/*N*/       }
-/*N*/       else
-/*N*/           aArgs.realloc ( i-1 );
-/*N*/
-/*N*/         return xFilter->filter( aArgs );
-/*N*/   }
-/*N*/
 /*?*/   return sal_False;
 /*?*/ }
 
@@ -1841,21 +1632,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/   GetConfigManager();
 /*?*/   GetDocInfo().Load(pStor);
 /*?*/   return sal_True;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
-/*?*/ sal_Bool SfxObjectShell::CanReload_Impl()
-
-/*  [Beschreibung]
-
-    Interne Methode zum Feststellen, ob eine erneutes Laden des
-    Dokuments (auch als RevertToSaved oder LastVersion bekannt)
-    m"oglich ist.
-*/
-
-/*?*/ {
-/*?*/     return pMedium && HasName() && !IsInModalMode() && !pImp->bForbidReload;
 /*?*/ }
 
 //-------------------------------------------------------------------------
