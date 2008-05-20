@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_polysc3d.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,11 +71,6 @@ namespace binfilter {
 /*N*/ : E3dScene()
 /*N*/ {
 /*N*/ }
-
-/*?*/ E3dPolyScene::E3dPolyScene(E3dDefaultAttributes& rDefault)
-/*?*/ : E3dScene(rDefault)
-/*?*/ {
-/*?*/ }
 
 /*************************************************************************
 |*
