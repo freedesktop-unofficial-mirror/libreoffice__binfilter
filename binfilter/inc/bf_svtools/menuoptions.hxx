@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: menuoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -107,36 +107,6 @@ class  SvtMenuOptions: public Options
 
          SvtMenuOptions();
         virtual ~SvtMenuOptions();
-
-        void AddListener( const Link& rLink );
-        void RemoveListener( const Link& rLink );
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get and set value of config key "org.openoffice.Office.Common/View/Menu/..."
-            @descr      These options describe internal states to enable/disable features of installed office.
-
-                        IsEntryHidingEnabled()
-                        SetEntryHidingState()   =>  Activate this field for viewing all deactivated menu entries.
-                                                    Menu commands that are normally not necessary are hidden by default.
-                                                    Default=false
-
-                        IsFollowMouseEnabled()
-                        SetFollowMouseState()   =>  Automatic selection while moving the mouse on a menu.
-                                                    Default=true
-
-            @seealso    configuration package "org.openoffice.Office.Common/View/Menu"
-        *//*-*****************************************************************************************************/
-
-        sal_Bool IsEntryHidingEnabled() const;
-        sal_Bool IsFollowMouseEnabled() const;
-        sal_Bool IsMenuIconsEnabled() const;
-
-        void SetEntryHidingState( sal_Bool bState );
-        void SetFollowMouseState( sal_Bool bState );
-        void SetMenuIconsState( sal_Bool bState );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
