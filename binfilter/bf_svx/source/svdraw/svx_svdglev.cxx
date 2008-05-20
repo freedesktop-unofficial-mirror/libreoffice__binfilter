@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdglev.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,12 +45,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ImpClearVars();
 /*N*/ }
-
-/*?*/ SdrGlueEditView::SdrGlueEditView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrPolyEditView(pModel1,pXOut)
-/*?*/ {
-/*?*/   ImpClearVars();
-/*?*/ }
 
 /*N*/ SdrGlueEditView::~SdrGlueEditView()
 /*N*/ {
