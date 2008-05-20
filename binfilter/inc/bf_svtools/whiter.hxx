@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: whiter.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,10 +61,8 @@ public:
 
     USHORT  GetCurWhich() const { return *pRanges + nOfst; }
     USHORT  NextWhich();
-    USHORT  PrevWhich();
 
     USHORT  FirstWhich();
-    USHORT  LastWhich();
 };
 
 }
