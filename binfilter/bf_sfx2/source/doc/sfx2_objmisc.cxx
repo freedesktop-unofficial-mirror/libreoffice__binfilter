@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_objmisc.cxx,v $
- * $Revision: 1.16 $
+ * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -219,12 +219,6 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::SetTemplate(sal_Bool bIs)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ void SfxObjectShell::ModifyChanged()
 
 /*  [Beschreibung]
@@ -319,10 +313,6 @@ namespace binfilter {
 /*N*/     return pImp->bModalMode || pImp->bRunningMacro;
 /*N*/ }
 
-/*N*/ void SfxObjectShell::SetMacroMode_Impl( sal_Bool bModal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 //-------------------------------------------------------------------------
 
 /*?*/ Size SfxObjectShell::GetFirstPageSize()
@@ -333,14 +323,6 @@ namespace binfilter {
 /*?*/       aRet = pIpObj->GetVisArea(ASPECT_THUMBNAIL).GetSize();
 /*?*/   return aRet;
 /*?*/ }
-
-
-//--------------------------------------------------------------------
-
-/*N*/ IndexBitSet& SfxObjectShell::GetNoSet_Impl()
-/*N*/ {
-/*N*/   return pImp->aBitSet;
-/*N*/ }
 
 //--------------------------------------------------------------------
 // changes the title of the document
@@ -607,32 +589,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::SetNamedVisibility_Impl()
-/*N*/ {
-/*N*/   if ( !pImp->bIsNamedVisible )
-/*N*/   {
-/*N*/       // Nummer verpassen
-/*N*/       pImp->bIsNamedVisible = sal_True;
-/*N*/       // ggf. neue Nummer verpassen
-/*N*/       if ( !HasName() && USHRT_MAX == pImp->nVisualDocumentNumber && !pImp->aTitle.Len() )
-/*N*/       {
-/*N*/           pImp->nVisualDocumentNumber = SFX_APP()->GetFreeIndex();
-/*N*/           Broadcast( SfxSimpleHint(SFX_HINT_TITLECHANGED) );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   SetName( GetTitle(SFX_TITLE_APINAME) );
-/*N*/ }
-
-/*?*/ void SfxObjectShell::SetNoName()
-/*?*/ {
-/*?*/     bHasName = 0;
-/*?*/     bIsTmp = sal_True;
-/*?*/     GetModel()->attachResource( ::rtl::OUString(), GetModel()->getArgs() );
-/*?*/ }
-
-//--------------------------------------------------------------------
-
 /*?*/ void SfxObjectShell::MemoryError()
 /*?*/ {
 /*?*/ }
@@ -664,34 +620,6 @@ namespace binfilter {
 /*N*/               "Progress activation/deacitivation mismatch" );
 /*N*/   pImp->pProgress = pProgress;
 /*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ void SfxObjectShell::PostActivateEvent_Impl()
-/*N*/ {
-/*N*/   SfxApplication* pSfxApp = SFX_APP();
-/*N*/   if ( !pSfxApp->IsDowning() && !IsLoading() )
-/*N*/   {
-/*N*/       if (pImp->nEventId)
-/*N*/       {
-/*N*/           SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem,
-/*N*/                            SfxStringItem, SID_DOC_SALVAGE, sal_False );
-/*N*/           sal_uInt16 nId = pImp->nEventId;
-/*N*/           pImp->nEventId = 0;
-/*N*/           if ( !pSalvageItem )
-/*N*/                 pSfxApp->NotifyEvent(SfxEventHint( nId, this ), sal_False);
-/*N*/       }
-/*N*/
-/*N*/   }
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/* Stampit #111050# allow writer to set this event id here hardly!
-   Please replace ith by a better solution! */
-/*?*/ void SfxObjectShell::Stamp_SetActivateEvent(sal_uInt16 nId )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
-/*?*/ }
 
 //--------------------------------------------------------------------
 
@@ -734,36 +662,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return !GetMedium()->UsesCache();
 /*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*?*/ void SfxObjectShell::LockAutoLoad( sal_Bool bLock )
-
-/*  Verhindert ein evtl. eintreffendes AutoLoad. Wird auch vor AutoLoad
-    eines umgebenden FrameSet beruecksichtigt.
-*/
-
-/*?*/ {
-/*?*/   if ( bLock )
-/*?*/       ++pImp->nAutoLoadLocks;
-/*?*/   else
-/*?*/       --pImp->nAutoLoadLocks;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
-
-//-------------------------------------------------------------------------
-
-/*?*/ sal_Bool SfxObjectShell::IsAutoLoadLocked() const
-
-/*  Liefert, ob ein eintreffendes AutoLoad ausgefuehrt werden darf. Wird auch
-    vor AutoLoad eines umgebenden FrameSet beruecksichtigt.
-*/
-
-/*?*/ {
-/*?*/   return !IsReadOnly() || pImp->nAutoLoadLocks > 0;
-/*?*/ }
 
 //-------------------------------------------------------------------------
 
@@ -844,12 +742,6 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::PositionView_Impl()
-/*N*/ {
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ sal_Bool SfxObjectShell::IsLoading() const
 /*  [Beschreibung ]
     Wurde bereits FinishedLoading aufgerufeb? */
@@ -893,41 +785,6 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::SetActualSize( const Size &rSize )
-/*N*/ {
-/*N*/   pImp->aViewSize = rSize;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*?*/ Size SfxObjectShell::GetActualSize() const
-/*?*/ {
-/*?*/   return pImp->aViewSize;
-/*?*/ }
-
-/*N*/ sal_Bool SfxObjectShell::IsInFrame() const
-/*N*/ {
-/*N*/   return sal_False;
-/*N*/ }
-
-/*N*/ void SfxObjectShell::SetInFrame( sal_Bool bOn )
-/*N*/ {
-/*N*/ }
-
-/*N*/ SfxModule* SfxObjectShell::GetModule() const
-/*N*/ {
-/*N*/   return GetFactory().GetModule();
-/*N*/ }
-
-/*?*/ sal_Bool SfxObjectShell::IsBasic(
-/*?*/   const String & rCode, SbxObject * pVCtrl )
-/*?*/ {
-/*?*/   if( !rCode.Len() ) return sal_False;
-/*?*/   if( !pImp->bIsBasicDefault )
-/*?*/       return sal_False;
-/*?*/   return SfxMacroConfig::IsBasic( pVCtrl, rCode, GetBasicManager() );
-/*?*/ }
-
 /*N*/ ErrCode SfxObjectShell::CallBasic( const String& rMacro,
 /*N*/   const String& rBasic, SbxObject* pVCtrl, SbxArray* pArgs,
 /*N*/   SbxValue* pRet )
@@ -949,48 +806,9 @@ namespace binfilter {
 /*?*/     return nRet;
 /*N*/ }
 
-/*?*/ ErrCode SfxObjectShell::Call( const String & rCode, sal_Bool bIsBasicReturn, SbxObject * pVCtrl )
-/*?*/ {
-/*?*/   ErrCode nErr = ERRCODE_NONE;
-/*?*/   if ( bIsBasicReturn )
-/*?*/       CallBasic( rCode, String(), pVCtrl );
-/*?*/   return nErr;
-/*?*/ }
 } //namespace binfilter
 namespace binfilter {//STRIP009
 //-------------------------------------------------------------------------
-/*N*/ ErrCode SfxObjectShell::CallStarBasicScript( const String& _rMacroName, const String& _rLocation,
-/*N*/   void* _pArguments, void* _pReturn )
-/*N*/ {
-        DBG_ERROR( "SfxObjectShell::CallStarBasicScript: dead code!" );
-        return ERRCODE_BASIC_PROC_UNDEFINED;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-/*N*/ ErrCode SfxObjectShell::CallScript(
-/*N*/   const String & rScriptType,
-/*N*/   const String & rCode,
-/*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  & rSource,
-/*N*/   void *pArgs,
-/*N*/   void *pRet
-/*N*/ )
-/*N*/ {
-        DBG_ERROR( "SfxObjectShell::CallScript: dead code!" );
-        return ERRCODE_BASIC_PROC_UNDEFINED;
-/*N*/ }
-
-
-/*N*/ SfxObjectShellFlags SfxObjectShell::GetFlags() const
-/*N*/ {
-/*N*/   if( pImp->eFlags == SFXOBJECTSHELL_UNDEFINED )
-/*N*/       pImp->eFlags = GetFactory().GetFlags();
-/*N*/   return pImp->eFlags;
-/*N*/ }
-
-/*?*/ void SfxObjectShell::SetFlags( SfxObjectShellFlags eFlags )
-/*?*/ {
-/*?*/   pImp->eFlags = eFlags;
-/*?*/ }
 
 /*N*/ void SfxObjectShell::SetBaseURL( const String& rURL )
 /*N*/ {
@@ -1097,24 +915,6 @@ namespace binfilter {//STRIP009
 /*N*/   return ( SvKeyValueIterator*) &pImp->xHeaderAttributes;
 /*N*/ }
 
-/*?*/ void SfxObjectShell::ClearHeaderAttributesForSourceViewHack()
-/*?*/ {
-/*?*/   ((SfxHeaderAttributes_Impl*)GetHeaderAttributes())
-/*?*/       ->ClearForSourceView();
-/*?*/ }
-
-
-/*?*/ void SfxObjectShell::SetHeaderAttributesForSourceViewHack()
-/*?*/ {
-/*?*/   ((SfxHeaderAttributes_Impl*)GetHeaderAttributes())
-/*?*/       ->SetAttributes();
-/*?*/ }
-
-/*?*/ void SfxObjectShell::StartLoading_Impl()
-/*?*/ {
-/*?*/   pImp->nLoadedFlags = 0;
-/*?*/ }
-
 /*N*/ sal_Bool SfxObjectShell::IsPreview() const
 /*N*/ {
 /*N*/   if ( !pMedium )
@@ -1140,50 +940,6 @@ namespace binfilter {//STRIP009
 /*N*/
 /*N*/   return bPreview;
 /*N*/ }
-
-/*?*/ sal_Bool SfxObjectShell::IsSecure()
-/*?*/ {
-/*?*/   // Wenn globale Warnung an ist, nach Secure-Referer-Liste gehen
-/*?*/   String aReferer = GetMedium()->GetName();
-/*?*/   if ( !aReferer.Len() )
-/*?*/   {
-/*?*/       // bei neuen Dokumenten das Template als Referer nehmen
-/*?*/       String aTempl( GetDocInfo().GetTemplateFileName() );
-/*?*/       if ( aTempl.Len() )
-/*?*/             aReferer = INetURLObject( aTempl ).GetMainURL( INetURLObject::NO_DECODE );
-/*?*/   }
-/*?*/
-/*?*/   INetURLObject aURL( "macro:" );
-/*?*/     if ( !aReferer.Len() )
-/*?*/         // empty new or embedded document
-/*?*/         return sal_True;
-/*?*/
-/*?*/       SvtSecurityOptions aOpt;
-/*?*/
-/*?*/   if( aOpt.GetBasicMode() == eALWAYS_EXECUTE )
-/*?*/       return sal_True;
-/*?*/
-/*?*/   if( aOpt.GetBasicMode() == eNEVER_EXECUTE )
-/*?*/       return sal_False;
-/*?*/
-/*?*/   if ( aOpt.IsSecureURL( aURL.GetMainURL( INetURLObject::NO_DECODE ), aReferer ) )
-/*?*/     //if ( SvtSecurityOptions().IsSecureURL( aURL.GetMainURL( INetURLObject::NO_DECODE ), aReferer ) )
-/*?*/   {
-/*?*/         if ( GetMedium()->GetContent().is() )
-/*?*/         {
-/*?*/             Any aAny( ::utl::UCBContentHelper::GetProperty( aURL.GetMainURL( INetURLObject::NO_DECODE ), String( RTL_CONSTASCII_USTRINGPARAM("IsProtected")) ) );
-/*?*/             sal_Bool bIsProtected = FALSE;
-/*?*/             if ( ( aAny >>= bIsProtected ) && bIsProtected )
-/*?*/                 return sal_False;
-/*?*/             else
-/*?*/                 return sal_True;
-/*?*/       }
-/*?*/       else
-/*?*/           return sal_True;
-/*?*/   }
-/*?*/   else
-/*?*/       return sal_False;
-/*?*/ }
 
 /*N*/ void SfxObjectShell::SetWaitCursor( BOOL bSet ) const
 /*N*/ {
@@ -1212,29 +968,5 @@ void SfxObjectShell::AdjustMacroMode( const String& rScriptType )
     // no macro execution at all in binfilter
     pImp->nMacroMode = MacroExecMode::NEVER_EXECUTE;
 }
-
-/*N*/ String SfxObjectShell::UpdateTitle( SfxMedium* pMed, USHORT nDocViewNumber )
-/*N*/ {
-/*N*/     // Titel des Fensters
-/*N*/     String aTitle;
-/*N*/     if ( pMed )
-/*N*/   {
-/*N*/       INetURLObject aTmp( pMed->GetName() );
-/*N*/         aTitle = aTmp.getName( INetURLObject::LAST_SEGMENT, true, INetURLObject::DECODE_WITH_CHARSET );
-/*N*/   }
-/*N*/     else
-/*N*/     {
-/*N*/       pMed = GetMedium();
-/*N*/         aTitle = GetTitle(SFX_TITLE_CAPTION);
-/*N*/         String aName(aTitle);
-/*N*/         if ( nDocViewNumber )
-/*N*/         {
-/*N*/             aName += ':';
-/*N*/             aName += String::CreateFromInt32( nDocViewNumber );
-/*N*/         }
-/*N*/     }
-/*N*/
-/*N*/     return aTitle;
-/*N*/ }
 
 }
