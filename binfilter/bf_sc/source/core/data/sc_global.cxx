@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_global.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -394,12 +394,6 @@ void global_InitAppOptions();
 /*N*/   return sResStr;
 /*N*/ }
 
-
-/*N*/ SvxBrushItem* ScGlobal::GetButtonBrushItem()
-/*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 pButtonBrushItem->SetColor( Application::GetSettings().GetStyleSettings().GetFaceColor() );
-/*N*/ }
-
 /*N*/ const String& ScGlobal::GetEmptyString()
 /*N*/ {
 /*N*/   return *pEmptyString;
@@ -752,20 +746,6 @@ void global_InitAppOptions();
 //========================================================================
 // class ScFuncDesc:
 
-/*N*/ ScFuncDesc::ScFuncDesc()
-/*N*/   :   nFIndex         (0),
-/*N*/       nCategory       (0),
-/*N*/       pFuncName       (NULL),
-/*N*/       pFuncDesc       (NULL),
-/*N*/       nArgCount       (0),
-/*N*/       aDefArgNames    (NULL),
-/*N*/       aDefArgDescs    (NULL),
-/*N*/       aDefArgOpt      (NULL),
-/*N*/       nHelpId         (0)
-/*N*/ {}
-
-//------------------------------------------------------------------------
-
 /*N*/ ScFuncDesc::~ScFuncDesc()
 /*N*/ {
 /*N*/   USHORT      nArgs;
@@ -792,15 +772,6 @@ void global_InitAppOptions();
 
 //========================================================================
 // class ScFunctionMgr:
-
-/*N*/ScFunctionMgr::ScFunctionMgr()
-/*N*/   :   pFuncList   ( ScGlobal::GetStarCalcFunctionList() ),
-/*N*/       pCurCatList ( NULL )
-/*N*/{
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/ DBG_ASSERT( pFuncList, "Funktionsliste nicht gefunden." );
-}
-
-//------------------------------------------------------------------------
 
 /*N*/ ScFunctionMgr::~ScFunctionMgr()
 /*N*/ {
