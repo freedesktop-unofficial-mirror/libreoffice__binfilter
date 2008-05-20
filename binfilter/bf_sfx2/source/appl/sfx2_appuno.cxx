@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_appuno.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1031,70 +1031,4 @@ extern "C" {
 /*N*/ {
 /*N*/   return m_lContinuations;
 /*N*/ }
-/*N*/
-/*N*/ //=========================================================================
-/*N*/
-/*N*/ RequestPackageReparation::RequestPackageReparation( ::rtl::OUString aName )
-/*N*/ {
-/*N*/   ::rtl::OUString temp;
-/*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > temp2;
-/*N*/   ::com::sun::star::document::BrokenPackageRequest aBrokenPackageRequest( temp,
-/*N*/                                                                               temp2,
-/*N*/                                                                           aName );
-/*N*/
-/*N*/       m_aRequest <<= aBrokenPackageRequest;
-/*N*/
-/*N*/       m_pApprove = new ContinuationApprove;
-/*N*/       m_pDisapprove = new ContinuationDisapprove;
-/*N*/
-/*N*/       m_lContinuations.realloc( 2 );
-/*N*/       m_lContinuations[0] = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >( m_pApprove );
-/*N*/       m_lContinuations[1] = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >( m_pDisapprove );
-/*N*/ }
-/*N*/
-/*N*/ ::com::sun::star::uno::Any SAL_CALL RequestPackageReparation::getRequest()
-/*N*/       throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {
-/*N*/   return m_aRequest;
-/*N*/ }
-/*N*/
-/*N*/ ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation > >
-/*N*/   SAL_CALL RequestPackageReparation::getContinuations()
-/*N*/       throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {
-/*N*/   return m_lContinuations;
-/*N*/ }
-/*N*/
-/*N*/ //=========================================================================
-/*N*/
-/*N*/ NotifyBrokenPackage::NotifyBrokenPackage( ::rtl::OUString aName )
-/*N*/ {
-/*N*/   ::rtl::OUString temp;
-/*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > temp2;
-/*N*/   ::com::sun::star::document::BrokenPackageRequest aBrokenPackageRequest( temp,
-/*N*/                                                                               temp2,
-/*N*/                                                                           aName );
-/*N*/
-/*N*/       m_aRequest <<= aBrokenPackageRequest;
-/*N*/
-/*N*/       m_pAbort  = new ContinuationAbort;
-/*N*/
-/*N*/       m_lContinuations.realloc( 1 );
-/*N*/       m_lContinuations[0] = ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >( m_pAbort  );
-/*N*/ }
-/*N*/
-/*N*/ ::com::sun::star::uno::Any SAL_CALL NotifyBrokenPackage::getRequest()
-/*N*/       throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {
-/*N*/   return m_aRequest;
-/*N*/ }
-/*N*/
-/*N*/ ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation > >
-/*N*/   SAL_CALL NotifyBrokenPackage::getContinuations()
-/*N*/       throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {
-/*N*/   return m_lContinuations;
-/*N*/ }
-
-
 }
