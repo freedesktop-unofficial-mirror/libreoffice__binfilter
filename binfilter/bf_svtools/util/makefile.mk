@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.4 $
+# $Revision: 1.5 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -60,18 +60,14 @@ LIB1FILES=	\
         $(SLB)$/numbers.uno.lib 	\
         $(SLB)$/wmf.lib 		\
         $(SLB)$/undo.lib		\
-        $(SLB)$/urlobj.lib		\
         $(SLB)$/syslocale.lib   \
         $(SLB)$/svdde.lib \
-        $(SLB)$/svhtml.lib     \
-        $(SLB)$/svrtf.lib	\
         $(SLB)$/config.lib	\
         $(SLB)$/filerec.lib \
         $(SLB)$/items1.lib	\
         $(SLB)$/misc1.lib	\
         $(SLB)$/notify.lib	\
-        $(SLB)$/svarray.lib \
-        $(SLB)$/svsql.lib
+        $(SLB)$/svarray.lib
 
 RESLIB1NAME=	$(RESTARGET)
 RESLIB1IMAGES=$(PRJ)$/res
