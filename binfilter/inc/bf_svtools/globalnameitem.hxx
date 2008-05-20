@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: globalnameitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,7 +60,6 @@ class  SfxGlobalNameItem: public SfxPoolItem
 public:
                             TYPEINFO();
                             SfxGlobalNameItem();
-                            SfxGlobalNameItem( USHORT nWhich, const SvGlobalName& );
                             ~SfxGlobalNameItem();
 
     virtual int             operator==( const SfxPoolItem& ) const;
