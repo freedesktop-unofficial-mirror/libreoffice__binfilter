@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: fielduno.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -183,7 +183,6 @@ private:
     String                  aTarget;
 
 public:
-                            ScCellFieldObj();
                             ScCellFieldObj(ScDocShell* pDocSh, const ScAddress& rPos,
                                             const ESelection& rSel);
     virtual                 ~ScCellFieldObj();
@@ -380,7 +379,6 @@ private:
     sal_Int16                   nFileFormat;        // enum SvxFileFormat, valid if not inserted
 
 public:
-                            ScHeaderFieldObj();
                             ScHeaderFieldObj(ScHeaderFooterContentObj* pContent, USHORT nP,
                                             USHORT nT, const ESelection& rSel);
     virtual                 ~ScHeaderFieldObj();
