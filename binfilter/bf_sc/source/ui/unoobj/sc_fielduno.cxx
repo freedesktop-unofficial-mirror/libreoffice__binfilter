@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_fielduno.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -446,16 +446,6 @@ void SAL_CALL ScCellFieldsObj::removeRefreshListener( const uno::Reference<util:
 }
 
 //------------------------------------------------------------------------
-
-//  Default-ctor wird fuer SMART_REFLECTION_IMPLEMENTATION gebraucht
-
-ScCellFieldObj::ScCellFieldObj() :
-    OComponentHelper( getMutex() ),
-    aPropSet( lcl_GetURLPropertyMap() ),
-    pDocShell( NULL )
-{
-    pEditSource = NULL;
-}
 
 ScCellFieldObj::ScCellFieldObj(ScDocShell* pDocSh, const ScAddress& rPos,
                                             const ESelection& rSel) :
@@ -1131,19 +1121,6 @@ sal_Int16 lcl_SvxToUnoFileFormat( SvxFileFormat nSvxValue )
     }
 }
 
-
-//  Default-ctor wird fuer SMART_REFLECTION_IMPLEMENTATION gebraucht
-
-ScHeaderFieldObj::ScHeaderFieldObj() :
-    OComponentHelper( getMutex() ),
-    aPropSet( lcl_GetHeaderFieldPropertyMap() ),
-    pContentObj( NULL ),
-    nPart( 0 ),
-    nType( 0 ),
-    nFileFormat( SVXFILEFORMAT_NAME_EXT )
-{
-    pEditSource = NULL;
-}
 
 ScHeaderFieldObj::ScHeaderFieldObj(ScHeaderFooterContentObj* pContent, USHORT nP,
                                             USHORT nT, const ESelection& rSel) :
