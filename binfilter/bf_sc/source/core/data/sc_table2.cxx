@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_table2.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -508,22 +508,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/       rString.Erase();
 /*N*/ }
 
-
 /*N*/ double ScTable::GetValue( USHORT nCol, USHORT nRow )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;//STRIP001 if (ValidColRow( nCol, nRow ))
 /*N*/ }
-
-
-/*N*/ void ScTable::GetFormula( USHORT nCol, USHORT nRow, String& rFormula,
-/*N*/                         BOOL bAsciiExport )
-/*N*/ {
-/*N*/   if (ValidColRow(nCol,nRow))
-/*N*/       aCol[nCol].GetFormula( nRow, rFormula, bAsciiExport );
-/*N*/   else
-/*N*/       rFormula.Erase();
-/*N*/ }
-
 
 /*N*/ BOOL ScTable::GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote)
 /*N*/ {
@@ -728,146 +716,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/   for (USHORT i=nStartCol; i<=nOldEndX; i++)
 /*N*/       bFound |= aCol[i].ExtendMerge( i, nStartRow, nOldEndY, rEndCol, rEndRow, bRefresh, bAttrs );
 /*N*/   return bFound;
-/*N*/ }
-
-
-
-/*N*/ USHORT ScTable::FillMaxRot( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2,
-/*N*/                           USHORT nCol, USHORT nAttrRow1, USHORT nAttrRow2, USHORT nArrY,
-/*N*/                           const ScPatternAttr* pPattern, const SfxItemSet* pCondSet ) const
-/*N*/ {
-/*N*/   //  Rueckgabe = neues nArrY
-/*N*/
-/*N*/   BYTE nRotDir = pPattern->GetRotateDir( pCondSet );
-/*N*/   if ( nRotDir != SC_ROTDIR_NONE )
-/*N*/   {
-/*N*/       BOOL bHit = TRUE;
-/*N*/       if ( nCol+1 < nX1 )                             // links
-/*N*/           bHit = ( nRotDir != SC_ROTDIR_LEFT );
-/*N*/       else if ( nCol > nX2+1 )                        // rechts
-/*N*/           bHit = ( nRotDir == SC_ROTDIR_LEFT );
-/*N*/
-/*N*/       if ( bHit )
-/*N*/       {
-/*N*/           double nFactor = 0.0;
-/*N*/           if ( nCol > nX2+1 )
-/*N*/           {
-/*N*/               long nRotVal = ((const SfxInt32Item&) pPattern->
-/*N*/                       GetItem( ATTR_ROTATE_VALUE, pCondSet )).GetValue();
-/*N*/               double nRealOrient = nRotVal * F_PI18000;   // 1/100 Grad
-/*N*/               double nCos = cos( nRealOrient );
-/*N*/               double nSin = sin( nRealOrient );
-/*N*/               //! begrenzen !!!
-/*N*/               //! zusaetzlich Faktor fuer unterschiedliche PPT X/Y !!!
-/*N*/
-/*N*/               //  bei SC_ROTDIR_LEFT kommt immer ein negativer Wert heraus,
-/*N*/               //  wenn der Modus beruecksichtigt wird
-/*N*/               nFactor = -fabs( nCos / nSin );
-/*N*/           }
-/*N*/
-/*N*/           for ( USHORT nRow = nAttrRow1; nRow <= nAttrRow2; nRow++ )
-/*N*/           {
-/*N*/               if ( !(pRowFlags[nRow] & CR_HIDDEN) )
-/*N*/               {
-/*N*/                   BOOL bHitOne = TRUE;
-/*N*/                   if ( nCol > nX2+1 )
-/*N*/                   {
-/*N*/                       // reicht die gedrehte Zelle bis in den sichtbaren Bereich?
-/*N*/
-/*N*/                       USHORT nTouchedCol = nCol;
-/*N*/                       long nWidth = (long) ( pRowHeight[nRow] * nFactor );
-/*N*/                       DBG_ASSERT(nWidth <= 0, "Richtung falsch");
-/*N*/                       while ( nWidth < 0 && nTouchedCol > 0 )
-/*N*/                       {
-/*N*/                           --nTouchedCol;
-/*N*/                           nWidth += GetColWidth( nTouchedCol );
-/*N*/                       }
-/*N*/                       if ( nTouchedCol > nX2 )
-/*N*/                           bHitOne = FALSE;
-/*N*/                   }
-/*N*/
-/*N*/                   if (bHitOne)
-/*N*/                   {
-/*N*/                       while ( nArrY<nArrCount && pRowInfo[nArrY].nRowNo < nRow )
-/*N*/                           ++nArrY;
-/*N*/                       if ( nArrY<nArrCount && pRowInfo[nArrY].nRowNo == nRow )
-/*N*/                           pRowInfo[nArrY].nRotMaxCol = nCol;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return nArrY;
-/*N*/ }
-
-/*N*/ void ScTable::FindMaxRotCol( RowInfo* pRowInfo, USHORT nArrCount, USHORT nX1, USHORT nX2 ) const
-/*N*/ {
-/*N*/   if ( !pColWidth || !pRowHeight || !pColFlags || !pRowFlags )
-/*N*/   {
-/*N*/       DBG_ERROR( "Spalten-/Zeileninfo fehlt" );
-/*N*/       return;
-/*N*/   }
-/*N*/
-/*N*/   //  nRotMaxCol ist auf SC_ROTMAX_NONE initialisiert, nRowNo ist schon gesetzt
-/*N*/
-/*N*/   USHORT nY1 = pRowInfo[0].nRowNo;
-/*N*/   USHORT nY2 = pRowInfo[nArrCount-1].nRowNo;
-/*N*/
-/*N*/   for (USHORT nCol=0; nCol<=MAXCOL; nCol++)
-/*N*/   {
-/*N*/       if ( !(pColFlags[nCol] & CR_HIDDEN) )
-/*N*/       {
-/*N*/           USHORT nArrY = 0;
-/*N*/           ScDocAttrIterator aIter( pDocument, nTab, nCol, nY1, nCol, nY2 );
-/*N*/           USHORT nAttrCol, nAttrRow1, nAttrRow2;
-/*N*/           const ScPatternAttr* pPattern = aIter.GetNext( nAttrCol, nAttrRow1, nAttrRow2 );
-/*N*/           while ( pPattern )
-/*N*/           {
-/*N*/               const SfxPoolItem* pCondItem;
-/*N*/               if ( pPattern->GetItemSet().GetItemState( ATTR_CONDITIONAL, TRUE, &pCondItem )
-/*N*/                       == SFX_ITEM_SET )
-/*N*/               {
-/*N*/                   //  alle Formate durchgehen, damit die Zellen nicht einzeln
-/*N*/                   //  angeschaut werden muessen
-/*N*/
-/*N*/                   ULONG nIndex = ((const SfxUInt32Item*)pCondItem)->GetValue();
-/*N*/                   ScConditionalFormatList* pList = pDocument->GetCondFormList();
-/*N*/                   ScStyleSheetPool* pStylePool = pDocument->GetStyleSheetPool();
-/*N*/                   if (pList && pStylePool && nIndex)
-/*N*/                   {
-/*N*/                       const ScConditionalFormat* pFormat = pList->GetFormat(nIndex);
-/*N*/                       if ( pFormat )
-/*N*/                       {
-/*N*/                           USHORT nEntryCount = pFormat->Count();
-/*N*/                           for (USHORT nEntry=0; nEntry<nEntryCount; nEntry++)
-/*N*/                           {
-/*N*/                               String aName = pFormat->GetEntry(nEntry)->GetStyle();
-/*N*/                               if (aName.Len())
-/*N*/                               {
-/*N*/                                   SfxStyleSheetBase* pStyleSheet =
-/*N*/                                           pStylePool->Find( aName, SFX_STYLE_FAMILY_PARA );
-/*N*/                                   if ( pStyleSheet )
-/*N*/                                   {
-/*N*/                                       FillMaxRot( pRowInfo, nArrCount, nX1, nX2,
-/*N*/                                                   nCol, nAttrRow1, nAttrRow2,
-/*N*/                                                   nArrY, pPattern, &pStyleSheet->GetItemSet() );
-/*N*/                                       //  nArrY nicht veraendern
-/*N*/                                   }
-/*N*/                               }
-/*N*/                           }
-/*N*/                       }
-/*N*/                   }
-/*N*/               }
-/*N*/
-/*N*/               nArrY = FillMaxRot( pRowInfo, nArrCount, nX1, nX2,
-/*N*/                                   nCol, nAttrRow1, nAttrRow2,
-/*N*/                                   nArrY, pPattern, NULL );
-/*N*/
-/*N*/               pPattern = aIter.GetNext( nAttrCol, nAttrRow1, nAttrRow2 );
-/*N*/           }
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 /*N*/ BOOL ScTable::HasBlockMatrixFragment( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 ) const
@@ -1092,24 +940,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   }
 /*N*/ }
 
-
 /*N*/ void ScTable::ApplySelectionStyle(const ScStyleSheet& rStyle, const ScMarkData& rMark)
 /*N*/ {
 /*N*/   for (USHORT i=0; i<=MAXCOL; i++)
 /*N*/       aCol[i].ApplySelectionStyle( rStyle, rMark );
 /*N*/ }
-
-
-
-
-/*N*/ const ScStyleSheet* ScTable::GetStyle( USHORT nCol, USHORT nRow ) const
-/*N*/ {
-/*N*/   if (ValidColRow(nCol, nRow))
-/*N*/       return aCol[nCol].GetStyle(nRow);
-/*N*/   else
-/*N*/       return NULL;
-/*N*/ }
-
 
 /*N*/ const ScStyleSheet* ScTable::GetSelectionStyle( const ScMarkData& rMark, BOOL& rFound ) const
 /*N*/ {
@@ -1631,44 +1466,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/       return pOutlineTable->GetRowArray()->ManualAction( nStartRow, nEndRow, bShow, pRowFlags );
 /*N*/   else
 /*N*/       return FALSE;
-/*N*/ }
-
-
-/*N*/ void ScTable::ExtendHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 )
-/*N*/ {
-/*N*/   if (pColFlags)
-/*N*/   {
-/*N*/       while ( rX1>0 ? (pColFlags[rX1-1] & CR_HIDDEN) : FALSE )
-/*N*/           --rX1;
-/*N*/       while ( rX2<MAXCOL ? (pColFlags[rX2+1] & CR_HIDDEN) : FALSE )
-/*N*/           ++rX2;
-/*N*/   }
-/*N*/   if (pRowFlags)
-/*N*/   {
-/*N*/       while ( rY1>0 ? (pRowFlags[rY1-1] & CR_HIDDEN) : FALSE )
-/*N*/           --rY1;
-/*N*/       while ( rY2<MAXROW ? (pRowFlags[rY2+1] & CR_HIDDEN) : FALSE )
-/*N*/           ++rY2;
-/*N*/   }
-/*N*/ }
-
-
-/*N*/ void ScTable::StripHidden( USHORT& rX1, USHORT& rY1, USHORT& rX2, USHORT& rY2 )
-/*N*/ {
-/*N*/   if (pColFlags)
-/*N*/   {
-/*N*/       while ( rX2>rX1 && (pColFlags[rX2] & CR_HIDDEN) )
-/*N*/           --rX2;
-/*N*/       while ( rX2>rX1 && (pColFlags[rX1] & CR_HIDDEN) )
-/*N*/           ++rX1;
-/*N*/   }
-/*N*/   if (pRowFlags)
-/*N*/   {
-/*N*/       while ( rY2>rY1 && (pRowFlags[rY2] & CR_HIDDEN) )
-/*N*/           --rY2;
-/*N*/       while ( rY2>rY1 && (pRowFlags[rY1] & CR_HIDDEN) )
-/*N*/           ++rY1;
-/*N*/   }
 /*N*/ }
 
 
