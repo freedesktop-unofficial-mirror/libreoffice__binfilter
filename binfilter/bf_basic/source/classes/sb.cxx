@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sb.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -72,8 +72,6 @@
 namespace binfilter {
 
 // #pragma SW_SEGMENT_CLASS( SBASIC, SBASIC_CODE )
-
-SV_IMPL_VARARR(SbTextPortions,SbTextPortion)
 
 TYPEINIT1(StarBASIC,SbxObject)
 
@@ -342,12 +340,6 @@ SbxObject* SbTypeFactory::CreateObject( const String& rClassName )
     return pRet;
 }
 
-SbxObject* createUserTypeImpl( const String& rClassName )
-{
-    SbxObject* pRetObj = pTYPEFAC->CreateObject( rClassName );
-    return pRetObj;
-}
-
 TYPEINIT1(SbClassModuleObject,SbModule)
 
 SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
@@ -593,11 +585,6 @@ void SbClassModuleObject::triggerTerminateEvent( void )
 }
 
 
-SbClassData::SbClassData( void )
-{
-    mxIfaces = new SbxArray();
-}
-
 void SbClassData::clear( void )
 {
     mxIfaces->Clear();
@@ -611,18 +598,6 @@ SbClassFactory::SbClassFactory( void )
 
 SbClassFactory::~SbClassFactory()
 {}
-
-void SbClassFactory::AddClassModule( SbModule* pClassModule )
-{
-    SbxObject* pParent = pClassModule->GetParent();
-    xClassModules->Insert( pClassModule );
-    pClassModule->SetParent( pParent );
-}
-
-void SbClassFactory::RemoveClassModule( SbModule* pClassModule )
-{
-    xClassModules->Remove( pClassModule );
-}
 
 SbxBase* SbClassFactory::Create( UINT16, UINT32 )
 {
@@ -641,14 +616,6 @@ SbxObject* SbClassFactory::CreateObject( const String& rClassName )
     }
     return pRet;
 }
-
-SbModule* SbClassFactory::FindClass( const String& rClassName )
-{
-    SbxVariable* pVar = xClassModules->Find( rClassName, SbxCLASS_DONTCARE );
-    SbModule* pMod = pVar ? (SbModule*)pVar : NULL;
-    return pMod;
-}
-
 
 ////////////////////////////////////////////////////////////////////////////
 
@@ -740,11 +707,6 @@ void StarBASIC::operator delete( void* p )
 *
 **************************************************************************/
 
-SbModule* StarBASIC::MakeModule( const String& rName, const String& rSrc )
-{
-    return MakeModule32( rName, rSrc );
-}
-
 SbModule* StarBASIC::MakeModule32( const String& rName, const ::rtl::OUString& rSrc )
 {
     SbModule* p = new SbModule( rName );
@@ -784,21 +746,6 @@ void StarBASIC::Remove( SbxVariable* pVar )
     }
     else
         SbxObject::Remove( pVar );
-}
-
-/*?*/ // BOOL StarBASIC::Compile( SbModule* /*pMod*/ )
-/*?*/ // {
-/*?*/ //    return pMod ? pMod->Compile() : FALSE;
-/*?*/ // }
-
-BOOL StarBASIC::Disassemble( SbModule* /*pMod*/, String& /*rText*/ )
-{
-/*?*/ //    rText.Erase();
-/*?*/ //    if( pMod )
-/*?*/ //        pMod->Disassemble( rText );
-/*?*/ //    return BOOL( rText.Len() != 0 );
-    DBG_ERROR( "StarBASIC::Disassemble: dead code!" );
-    return FALSE;
 }
 
 void StarBASIC::Clear()
@@ -862,20 +809,6 @@ void StarBASIC::DeInitAllModules( void )
             pBasic->DeInitAllModules();
     }
 }
-
-// #43011 Fuer das TestTool, um globale Variablen loeschen zu koennen
-void StarBASIC::ClearGlobalVars( void )
-{
-    SbxArrayRef xProps( GetProperties() );
-    USHORT nPropCount = xProps->Count();
-    for ( USHORT nProp = 0 ; nProp < nPropCount ; ++nProp )
-    {
-        SbxBase* pVar = xProps->Get( nProp );
-        pVar->Clear();
-    }
-    SetModified( TRUE );
-}
-
 
 // Diese Implementation sucht erst innerhalb der Runtime-Library, dann
 // nach einem Element innerhalb eines Moduls. Dieses Element kann eine
@@ -952,34 +885,6 @@ BOOL StarBASIC::Call( const String& rName, SbxArray* pParam )
     return bRes;
 }
 
-// Find-Funktion ueber Name (z.B. Abfrage aus BASIC-IDE)
-SbxBase* StarBASIC::FindSBXInCurrentScope( const String& /*rName*/ )
-{
-    if( !pINST )
-        return NULL;
-/*?*/ //    if( !pINST->pRun )
-/*?*/ //        return NULL;
-/*?*/ //    return pINST->pRun->FindElementExtern( rName );
-    return NULL;
-}
-
-// Alte Schnittstelle vorerst erhalten
-SbxVariable* StarBASIC::FindVarInCurrentScopy
-( const String& rName, USHORT& rStatus )
-{
-    rStatus = 1;            // Annahme: Nichts gefunden
-    SbxVariable* pVar = NULL;
-    SbxBase* pSbx = FindSBXInCurrentScope( rName );
-    if( pSbx )
-    {
-        if( !pSbx->ISA(SbxMethod) && !pSbx->ISA(SbxObject) )
-            pVar = PTR_CAST(SbxVariable,pSbx);
-    }
-    if( pVar )
-        rStatus = 0;        // doch gefunden
-    return pVar;
-}
-
 void StarBASIC::Stop()
 {
 /*?*/ //    SbiInstance* p = pINST;
@@ -997,111 +902,14 @@ BOOL StarBASIC::IsRunning()
 
 /**************************************************************************
 *
-*   Objekt-Factories etc.
-*
-**************************************************************************/
-
-// Aktivierung eines Objekts. Aktive Objekte muessen nicht mehr
-// von BASIC aus ueber den Namen angesprochen werden. Ist
-// NULL angegeben, wird alles aktiviert.
-
-void StarBASIC::ActivateObject( const String* pName, BOOL bActivate )
-{
-    if( pName )
-    {
-        SbxObject* p = (SbxObject*) SbxObject::Find( *pName, SbxCLASS_OBJECT );
-        if( p )
-            if( bActivate )
-                p->SetFlag( SBX_EXTSEARCH );
-            else
-                p->ResetFlag( SBX_EXTSEARCH );
-    }
-    else
-    {
-        for( USHORT i = 0; i < GetObjects()->Count(); i++ )
-        {
-            SbxObject* p = (SbxObject*) GetObjects()->Get( i );
-            if( bActivate )
-                p->SetFlag( SBX_EXTSEARCH );
-            else
-                p->ResetFlag( SBX_EXTSEARCH );
-        }
-    }
-}
-
-/**************************************************************************
-*
 *   Debugging und Fehlerbehandlung
 *
 **************************************************************************/
-
-SbMethod* StarBASIC::GetActiveMethod( USHORT /*nLevel*/ )
-{
-/*?*/ //    if( pINST )
-/*?*/ //        return pINST->GetCaller( nLevel );
-/*?*/ //    else
-        return NULL;
-}
-
-SbModule* StarBASIC::GetActiveModule()
-{
-/*?*/ //    if( pINST && !IsCompilerError() )
-/*?*/ //        return pINST->GetActiveModule();
-/*?*/ //    else
-        return pCMOD;
-}
-
-USHORT StarBASIC::BreakPoint( USHORT l, USHORT c1, USHORT c2 )
-{
-    SetErrorData( 0, l, c1, c2 );
-    bBreak = TRUE;
-    if( GetSbData()->aBreakHdl.IsSet() )
-        return (USHORT) GetSbData()->aBreakHdl.Call( this );
-    else
-        return BreakHdl();
-}
-
-USHORT StarBASIC::StepPoint( USHORT l, USHORT c1, USHORT c2 )
-{
-    SetErrorData( 0, l, c1, c2 );
-    bBreak = FALSE;
-    if( GetSbData()->aBreakHdl.IsSet() )
-        return (USHORT) GetSbData()->aBreakHdl.Call( this );
-    else
-        return BreakHdl();
-}
 
 USHORT __EXPORT StarBASIC::BreakHdl()
 {
     return (USHORT) ( aBreakHdl.IsSet()
         ? aBreakHdl.Call( this ) : SbDEBUG_CONTINUE );
-}
-
-// Abfragen fuer den Error-Handler und den Break-Handler:
-USHORT StarBASIC::GetLine()     { return GetSbData()->nLine; }
-USHORT StarBASIC::GetCol1()     { return GetSbData()->nCol1; }
-USHORT StarBASIC::GetCol2()     { return GetSbData()->nCol2; }
-
-// Spezifisch fuer den Error-Handler:
-SbError StarBASIC::GetErrorCode()       { return GetSbData()->nCode; }
-const String& StarBASIC::GetErrorText() { return GetSbData()->aErrMsg; }
-BOOL StarBASIC::IsCompilerError()       { return GetSbData()->bCompiler; }
-void StarBASIC::SetGlobalLanguageMode( SbLanguageMode eLanguageMode )
-{
-    GetSbData()->eLanguageMode = eLanguageMode;
-}
-SbLanguageMode StarBASIC::GetGlobalLanguageMode()
-{
-    return GetSbData()->eLanguageMode;
-}
-// Lokale Einstellung
-SbLanguageMode StarBASIC::GetLanguageMode()
-{
-    // Globale Einstellung nehmen?
-    if( eLanguageMode == SB_LANG_GLOBAL )
-        return GetSbData()->eLanguageMode;
-    else
-        return eLanguageMode;
 }
 
 // AB: 29.3.96
@@ -1187,18 +995,6 @@ struct BasicStringList_Impl : private Resource
 
 // #60175 Flag, das bei Basic-Fehlern das Anziehen der SFX-Resourcen verhindert
 static BOOL bStaticSuppressSfxResource = FALSE;
-
-void StarBASIC::StaticSuppressSfxResource( BOOL bSuppress )
-{
-    bStaticSuppressSfxResource = bSuppress;
-}
-
-// Hack for #83750, use bStaticSuppressSfxResource as setup flag
-BOOL runsInSetup( void )
-{
-    return bStaticSuppressSfxResource;
-}
-
 
 void StarBASIC::MakeErrorText( SbError nId, const String& /*aMsg*/ )
 {
@@ -1323,65 +1119,11 @@ void StarBASIC::FatalError( SbError /*n*/ )
 /*?*/ //        pINST->FatalError( n );
 }
 
-SbError StarBASIC::GetErrBasic()
-{
-/*?*/ //    if( pINST )
-/*?*/ //        return pINST->GetErr();
-/*?*/ //    else
-        return 0;
-}
-
-// #66536 Zusatz-Message fuer RTL-Funktion Error zugreifbar machen
-String StarBASIC::GetErrorMsg()
-{
-/*?*/ //    if( pINST )
-/*?*/ //        return pINST->GetErrorMsg();
-/*?*/ //    else
-        return String();
-}
-
-USHORT StarBASIC::GetErl()
-{
-/*?*/ //    if( pINST )
-/*?*/ //        return pINST->GetErl();
-/*?*/ //    else
-        return 0;
-}
-
 BOOL __EXPORT StarBASIC::ErrorHdl()
 {
     return (BOOL) ( aErrorHdl.IsSet()
         ? aErrorHdl.Call( this ) : FALSE );
 }
-
-Link StarBASIC::GetGlobalErrorHdl()
-{
-    return GetSbData()->aErrHdl;
-}
-
-void StarBASIC::SetGlobalErrorHdl( const Link& rLink )
-{
-    GetSbData()->aErrHdl = rLink;
-}
-
-
-Link StarBASIC::GetGlobalBreakHdl()
-{
-    return GetSbData()->aBreakHdl;
-}
-
-void StarBASIC::SetGlobalBreakHdl( const Link& rLink )
-{
-    GetSbData()->aBreakHdl = rLink;
-}
-
-SbxArrayRef StarBASIC::getUnoListeners( void )
-{
-    if( !xUnoListeners.Is() )
-        xUnoListeners = new SbxArray();
-    return xUnoListeners;
-}
-
 
 /**************************************************************************
 *
@@ -1460,12 +1202,6 @@ BOOL StarBASIC::StoreData( SvStream& r ) const
     }
     return TRUE;
 }
-
-BOOL StarBASIC::LoadOldModules( SvStream& )
-{
-    return FALSE;
-}
-
 
 //========================================================================
 // #118116 Implementation Collection object
