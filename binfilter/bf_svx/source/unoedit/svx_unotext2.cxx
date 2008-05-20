@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unotext2.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -111,23 +111,6 @@ uno::Any SvxUnoTextContentEnumeration::nextElement(void) throw( container::NoSuc
 // ====================================================================
 uno::Reference< text::XText > xDummyText;
 uno::Sequence< uno::Type > SvxUnoTextContent::maTypeSequence;
-
-static SvxUnoText* getDummyText() throw()
-{
-    if(!xDummyText.is())
-        xDummyText = new SvxUnoText();
-
-    return SvxUnoText::getImplementation( xDummyText );
-}
-
-SvxUnoTextContent::SvxUnoTextContent() throw()
-:   SvxUnoTextRangeBase(*getDummyText()),
-    rParentText(*getDummyText()),
-    aDisposeListeners(aDisposeContainerMutex),
-    nParagraph(0),
-    bDisposing( sal_False )
-{
-}
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nPara ) throw()
 :   SvxUnoTextRangeBase(rText),rParentText(rText),
@@ -448,14 +431,6 @@ uno::Any SAL_CALL SvxUnoTextRangeEnumeration::nextElement()
 // ====================================================================
 
 uno::Sequence< uno::Type > SvxUnoTextCursor::maTypeSequence;
-
-uno::Reference< uno::XInterface > SvxUnoTextCursor_NewInstance()
-{
-    SvxUnoText aText;
-    uno::Reference< text::XText > xText( (text::XText*)new SvxUnoTextCursor( aText ) );
-    uno::Reference< uno::XInterface > xInt( xText, uno::UNO_QUERY );
-    return xInt;
-}
 
 SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextBase& rText ) throw()
 :   SvxUnoTextRangeBase(rText),
