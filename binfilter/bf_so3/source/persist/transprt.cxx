@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: transprt.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -28,7 +28,7 @@
  *
  ************************************************************************/
 
-#define _TRANSPRT_CXX "$Revision: 1.5 $"
+#define _TRANSPRT_CXX "$Revision: 1.6 $"
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -233,45 +233,6 @@ SvBindingTransport::~SvBindingTransport (void)
 {
 }
 
-/*
- * HasTransport.
- */
-BOOL SvBindingTransport::HasTransport (const String &rUrl)
-{
-    SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    BOOL bHasTransport = FALSE;
-
-    ULONG i, n = rList.Count();
-    for (i = 0; i < n; i++)
-    {
-        bHasTransport = rList.GetObject(i)->HasTransport(rUrl);
-        if (bHasTransport)
-            break;
-    }
-    return bHasTransport;
-}
-
-/*
- * CreateTransport.
- */
-SvBindingTransport* SvBindingTransport::CreateTransport (
-    const String               &rUrl,
-    SvBindingTransportContext  &rCtx,
-    SvBindingTransportCallback *pCB)
-{
-    SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    SvBindingTransport *pTransport = NULL;
-
-    ULONG i, n = rList.Count();
-    for (i = 0; i < n; i++)
-    {
-        pTransport = rList.GetObject(i)->CreateTransport(rUrl, rCtx, pCB);
-        if (pTransport)
-            break;
-    }
-    return pTransport;
-}
-
 /*========================================================================
  *
  * SvBindingTransportFactory implementation.
@@ -289,20 +250,6 @@ SvBindingTransportFactory::~SvBindingTransportFactory (void)
     rList.Remove (this);
 }
 
-/*========================================================================
- *
- * SvBindingTransportContext implementation.
- *
- *======================================================================*/
-SvBindingTransportContext::SvBindingTransportContext (void)
-    : m_eBindAction    (BINDACTION_CUSTOM),
-      m_eBindMode      (0),
-      m_eStrmMode      (0),
-      m_nPriority      (0),
-      m_xPostLockBytes (NULL)
-{
-}
-
 SvBindingTransportContext::~SvBindingTransportContext (void)
 {
 }
@@ -312,15 +259,6 @@ SvBindingTransportContext::~SvBindingTransportContext (void)
  * SvLockBytesFactory implementation.
  *
  *======================================================================*/
-/*
- * SvLockBytesFactory.
- */
-SvLockBytesFactory::SvLockBytesFactory (const String & rWildcard)
-    : m_aWildcard (rWildcard)
-{
-    SvLockBytesFactoryList &rList = BAPP()->m_aLockBytesFactories;
-    rList.Insert (this, rList.Count());
-}
 
 /*
  * ~SvLockBytesFactory.
@@ -361,48 +299,12 @@ SvLockBytesFactory* SvLockBytesFactory::GetFactory (const String &rUrl)
  *======================================================================*/
 USHORT SfxSimpleLockBytesFactory::m_nCounter = 0;
 
-/*
- * SfxSimpleLockBytesFactory.
- */
-SfxSimpleLockBytesFactory::SfxSimpleLockBytesFactory (
-    SvLockBytes *pLockBytes, const String &rUrl, const String &rMime)
-    : SvLockBytesFactory (rUrl),
-      m_xLockBytes       (pLockBytes),
-      m_aMime            (rMime)
-{
-}
-
-/*
- * SfxSimpleLockBytesFactory ("private:tmpurl/").
- */
-SfxSimpleLockBytesFactory::SfxSimpleLockBytesFactory (
-    SvLockBytes *pLockBytes, const String &rMime)
-    : SvLockBytesFactory (
-        String::CreateFromAscii("private:tmpurl/").Append(
-            String::CreateFromInt32(++m_nCounter) ) ),
-      m_xLockBytes       (pLockBytes),
-      m_aMime            (rMime)
-{
-}
 
 /*
  * ~SfxSimpleLockBytesFactory.
  */
 SfxSimpleLockBytesFactory::~SfxSimpleLockBytesFactory (void)
 {
-}
-
-/*
- * TempURL.
- */
-String SfxSimpleLockBytesFactory::TempURL (const String &rExtension)
-{
-    String aTempUrl (String::CreateFromAscii (
-        RTL_CONSTASCII_STRINGPARAM ("private:tmpurl/")));
-    aTempUrl += String::CreateFromInt32( (USHORT)(++m_nCounter) );
-    aTempUrl += '.';
-    aTempUrl += rExtension;
-    return aTempUrl;
 }
 
 /*
