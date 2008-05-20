@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_fmtuno.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -118,10 +118,6 @@ ScConditionMode lcl_ConditionOperatorToMode( sheet::ConditionOperator eOper )
 }
 
 //------------------------------------------------------------------------
-
-ScTableConditionalFormat::ScTableConditionalFormat()
-{
-}
 
 ScTableConditionalFormat::ScTableConditionalFormat(ScDocument* pDoc, ULONG nKey,
                                                     BOOL bEnglish, BOOL bCompileXML)
@@ -437,11 +433,6 @@ ScTableConditionalFormat* ScTableConditionalFormat::getImplementation(
 
 //------------------------------------------------------------------------
 
-ScTableConditionalEntry::ScTableConditionalEntry() :
-    pParent( NULL )
-{
-}
-
 ScTableConditionalEntry::ScTableConditionalEntry( ScTableConditionalFormat* pPar,
                              USHORT nM, const String& rEx1, const String& rEx2,
                              const ScAddress& rPos, const String& rSt ) :
@@ -554,13 +545,6 @@ void SAL_CALL ScTableConditionalEntry::setStyleName( const ::rtl::OUString& aSty
     aStyle = ScStyleNameConversion::ProgrammaticToDisplayName( aStyleName, SFX_STYLE_FAMILY_PARA );
     if (pParent)
         pParent->DataChanged();
-}
-
-//------------------------------------------------------------------------
-
-ScTableValidationObj::ScTableValidationObj() :
-    aPropSet( lcl_GetValidatePropertyMap() )
-{
 }
 
 ScTableValidationObj::ScTableValidationObj(ScDocument* pDoc, ULONG nKey,
