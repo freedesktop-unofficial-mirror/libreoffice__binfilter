@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_cstitem.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,14 +55,6 @@ namespace binfilter
 
 DBG_NAME( SfxCrawlStatusItem )
 TYPEINIT1( SfxCrawlStatusItem, SfxPoolItem );
-
-// -----------------------------------------------------------------------
-
-SfxCrawlStatusItem::SfxCrawlStatusItem( USHORT which ) :
-    SfxPoolItem( which )
-{
-    DBG_CTOR( SfxCrawlStatusItem, 0 );
-}
 
 // -----------------------------------------------------------------------
 
