@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docuno.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -166,9 +166,6 @@ private:
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawTrGradTab;
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawMarkerTab;
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xDrawDashTab;
-
-    BOOL                    FillRenderMarkData( const ::com::sun::star::uno::Any& aSelection,
-                                                ScMarkData& rMark, ScPrintSelectionStatus& rStatus ) const;
 
 public:
                             ScModelObj(ScDocShell* pDocSh);
@@ -702,7 +699,6 @@ private:
     ScDocShell*             pDocShell;
 
 public:
-                            ScSpreadsheetSettingsObj(ScDocShell* pDocSh);
     virtual                 ~ScSpreadsheetSettingsObj();
 
     virtual void            Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
