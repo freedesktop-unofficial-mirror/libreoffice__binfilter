@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdview.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -106,53 +106,6 @@ enum SdrEventKind  {SDREVENT_NONE,
 #define SDRMOUSEMOVE       2
 #define SDRMOUSEBUTTONUP   3
 
-//************************************************************
-//   Hilfsklasse SdrViewEvent
-//************************************************************
-
-struct SdrViewEvent
-{
-    SdrHdl*                     pHdl;
-    SdrObject*                  pObj;
-    SdrObject*                  pRootObj;        // Dieses Markieren bei BegTextEdit
-    SdrPageView*                pPV;
-    const SvxURLField*          pURLField;
-
-    Point                       aLogicPos;
-    SdrHitKind                  eHit;
-    SdrEventKind                eEvent;
-    SdrHdlKind                  eHdlKind;
-    SdrCreateCmd                eEndCreateCmd;   // auch fuer EndInsPoint
-
-    UINT16                      nMouseClicks;
-    UINT16                      nMouseMode;
-    UINT16                      nMouseCode;
-    UINT16                      nHlplIdx;
-    UINT16                      nGlueId;
-
-    unsigned                    bMouseDown : 1;
-    unsigned                    bMouseUp : 1;
-    unsigned                    bDoubleHdlSize : 1;  // Doppelte Handlegroesse wg. TextEdit
-    unsigned                    bIsAction : 1;       // Action ist aktiv
-    unsigned                    bIsTextEdit : 1;     // TextEdit laeuft zur Zeit
-    unsigned                    bTextEditHit : 1;    // offene OutlinerView getroffen
-    unsigned                    bAddMark : 1;
-    unsigned                    bUnmark : 1;
-    unsigned                    bPrevNextMark : 1;
-    unsigned                    bMarkPrev : 1;
-    unsigned                    bInsPointNewObj : 1;
-    unsigned                    bDragWithCopy : 1;
-    unsigned                    bCaptureMouse : 1;
-    unsigned                    bReleaseMouse : 1;
-
-public:
-    SdrViewEvent();
-    ~SdrViewEvent();
-
-    // nEventKind ist SDRMOUSEBUTTONDOWN, SDRMOUSEMOVE oder SDRMOUSEBUTTONUP
-    void SetMouseEvent(const MouseEvent& rMEvt, USHORT nEventKind);
-};
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -190,7 +143,6 @@ protected:
 public:
     TYPEINFO();
     SdrView(SdrModel* pModel1, OutputDevice* pOut);
-    SdrView(SdrModel* pModel1, ExtOutputDevice* pOut);
     SdrView(SdrModel* pModel1);
     virtual ~SdrView();
 
@@ -198,7 +150,6 @@ public:
     // Sonderbehandlungen im MouseDispatcher eingreifen, so muss sie
     // den erweiterten MouseDispather mit unten stehender Methode deaktivieren
     // und selbst nachimplementieren. Beispiel fuer MouseButtonDown:
-    //      SdrViewEvent aVEvt;
     //      SdrHitKind eHit=pSdrView->PickAnything(rMEvt,SDRMOUSEBUTTONDOWN,aVEvt);
     //      ... hier Applikationsspezifischer Eingriff ...
     //      pSdrView->DoMouseEvent(aVEvt);
@@ -217,13 +168,6 @@ public:
     BOOL IsEnableTextEditOnObjectsWithoutTextIfTextToolEnabled() const { return bTextEditOnObjectsWithoutTextIfTextTool; }
 
 
-    // unvollstaendige Implementation:
-    // Das OutputDevice ist notwendig, damit ich die HandleSize ermitteln kann.
-    // Bei NULL wird das 1. angemeldete Win verwendet.
-    Pointer GetPreferedPointer(const Point& rMousePos, const OutputDevice* pOut, USHORT nModifier=0, BOOL bLeftDown=FALSE) const;
-    SdrHitKind PickAnything(const Point& rLogicPos, SdrViewEvent& rVEvt) const;
-    SdrViewContext GetContext() const;
-
     // Die Methoden beruecksichtigen den jeweiligen Kontex:
     // - Einfaches Zeichnen
     // - Punktbearbeitungs-Mode
@@ -235,20 +179,6 @@ public:
 
 
     virtual void DeleteMarked();
-
-    // Markieren von Objekten, Polygonpunkten oder Klebepunkten (je nach View-
-    // Kontext) durch Aufziehen eines Selektionsrahmens.
-    //   bAddMark=TRUE: zur bestehenden Selektion hinzumarkieren (->Shift)
-    //   bUnmark=TRUE: Bereits selektierte Objekte/Punkte/Klebepunkte die innerhalb
-    //                 des aufgezogenen Rahmens liegen werden deselektiert.
-
-    // Folgende Actions sind moeglich:
-    //   - ObjectCreating
-    //   - ObjectMarking
-    //   - Object-specific dragging
-    //   - General dragging
-    // und mehr...
-    String GetStatusText();
 
     // Strings werden beim rausstreamen in den am Stream eingestellten
     // StreamCharSet konvertiert.
@@ -305,11 +235,6 @@ public:
 //     BOOL SetAttributes(const SfxItemSet& rSet, BOOL bReplaceAll);
 //     SfxStyleSheet* GetStyleSheet() const;
 //     BOOL SetStyleSheet(SfxStyleSheet* pStyleSheet, BOOL bDontRemoveHardAttr);
-//
-//   Sonstiges:
-//   ~~~~~~~~~~
-//     Pointer GetPreferedPointer(const Point& rMousePos, const OutputDevice* pOut, USHORT nTol=0) const;
-//     String  GetStatusText();
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
