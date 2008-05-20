@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_appcfg.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -162,20 +162,6 @@ using namespace ::com::sun::star::beans;
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxApplication::SaveConfiguration() const
-/*N*/ {
-/*N*/     // Workingset schreiben?
-/*N*/ //    if ( SvtOptions().IsSaveWorkingSet() )
-/*N*/ //        SfxTaskManager::SaveWorkingSet();
-/*N*/ //(mba/task): Implementierung fehlt
-/*N*/
-/*N*/     if ( !pCfgMgr->StoreConfiguration() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         HandleConfigError_Impl( (sal_uInt16)pCfgMgr->GetErrorCode() );
-/*N*/
-/*N*/     ::utl::ConfigManager::GetConfigManager()->StoreConfigItems();
-/*N*/ }
-
-//--------------------------------------------------------------------
 /*N*/ void SfxApplication::NotifyEvent( const SfxEventHint& rEventHint, FASTBOOL bSynchron )
 /*N*/ {
 /*N*/     DBG_ASSERT(pAppData_Impl->pEventConfig,"Keine Events angemeldet!");
@@ -196,8 +182,6 @@ using namespace ::com::sun::star::beans;
 /*N*/             pDoc->Broadcast( rEventHint );
 /*N*/     }
 /*N*/ }
-
-/*N*/ IMPL_OBJHINT( SfxStringHint, String )
 
 /*N*/ SfxMiscCfg* SfxApplication::GetMiscConfig()
 /*N*/ {
