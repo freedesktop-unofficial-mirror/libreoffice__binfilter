@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: slstitm.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,15 +59,9 @@ public:
     TYPEINFO();
 
     SfxStringListItem();
-    SfxStringListItem( USHORT nWhich, const List* pList=NULL );
     SfxStringListItem( USHORT nWhich, SvStream& rStream );
     SfxStringListItem( const SfxStringListItem& rItem );
     ~SfxStringListItem();
-
-    List *                  GetList();
-
-    const List *            GetList() const
-    { return SAL_CONST_CAST(SfxStringListItem *, this)->GetList(); }
 
 #ifndef TF_POOLABLE
     virtual int             IsPoolable() const;
@@ -89,7 +83,6 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream &, USHORT nVersion ) const;
     virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const;
-    void                    Sort( BOOL bAscending = TRUE, List* pParallelList = 0 );
 
     virtual BOOL            PutValue  ( const com::sun::star::uno::Any& rVal,
                                          BYTE nMemberId = 0 );
