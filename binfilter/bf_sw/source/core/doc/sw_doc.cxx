@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_doc.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -87,12 +87,6 @@
 #endif
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>           // fuer die UndoIds
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> //DTor
@@ -179,15 +173,6 @@ namespace binfilter {
 /*N*/       SwDataChanged aTmp( this, rPos, 0 );
 /*N*/   }
 /*N*/
-/*N*/   SwUndoSplitNode* pUndo = 0;
-/*N*/   if ( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       // einfuegen vom Undo-Object, z.Z. nur beim TextNode
-/*N*/       if( pNode->IsTxtNode() )
-/*N*/           AppendUndo( pUndo = new SwUndoSplitNode( this, rPos, bChkTableStart  ));
-/*N*/   }
-/*N*/
 /*N*/   //JP 28.01.97: Sonderfall fuer SplitNode am Tabellenanfang:
 /*N*/   //              steht die am Doc/Fly/Footer/..-Anfang oder direkt
 /*N*/   //              hinter einer Tabelle, dann fuege davor
@@ -252,8 +237,6 @@ namespace binfilter {
 /*?*/                       }
 /*?*/                   }
 /*?*/
-/*?*/                   if( pUndo )
-/*?*/                       pUndo->SetTblFlag();
 /*?*/                   SetModified();
 /*?*/                   return TRUE;
 /*?*/               }
@@ -299,12 +282,6 @@ namespace binfilter {
 /*N*/   rPos.nNode++;
 /*N*/   rPos.nContent.Assign( pCurNode, 0 );
 /*N*/
-/*N*/   if( DoesUndo() )
-/*N*/   {
-/*N*/       ClearRedo();
-/*N*/       AppendUndo( new SwUndoInsert( rPos.nNode ));
-/*N*/   }
-/*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
@@ -316,9 +293,6 @@ namespace binfilter {
 
 /*N*/ BOOL SwDoc::Insert( const SwPaM &rRg, const String &rStr, BOOL bHintExpand )
 /*N*/ {
-/*N*/   if( DoesUndo() )
-/*N*/       ClearRedo();
-/*N*/
 /*N*/   const SwPosition* pPos = rRg.GetPoint();
 /*N*/
 /*N*/   SwTxtNode *pNode = pPos->nNode.GetNode().GetTxtNode();
@@ -329,43 +303,7 @@ namespace binfilter {
 /*N*/                                    : INS_NOHINTEXPAND;
 /*N*/   SwDataChanged aTmp( rRg, 0 );
 /*N*/
-/*N*/   if( !DoesUndo() || !DoesGroupUndo() )
-/*N*/   {
 /*N*/       pNode->Insert( rStr, pPos->nContent, nInsMode );
-/*N*/
-/*N*/       if( DoesUndo() )
-/*N*/           AppendUndo( new SwUndoInsert( pPos->nNode,
-/*N*/                                   pPos->nContent.GetIndex(), rStr.Len() ));
-/*N*/   }
-/*N*/   else
-/*N*/   {           // ist Undo und Gruppierung eingeschaltet, ist alles anders !
-/*?*/       USHORT nUndoSize = pUndos->Count();
-/*?*/       xub_StrLen nInsPos = pPos->nContent.GetIndex();
-/*?*/       SwUndoInsert * pUndo;
-/*?*/       CharClass& rCC = GetAppCharClass();
-/*?*/
-/*?*/       if( 0 == nUndoSize || UNDO_INSERT !=
-/*?*/               ( pUndo = (SwUndoInsert*)(*pUndos)[ --nUndoSize ])->GetId() ||
-/*?*/           !pUndo->CanGrouping( *pPos ))
-/*?*/       {
-/*?*/           pUndo = new SwUndoInsert( pPos->nNode, nInsPos, 0,
-/*?*/                           !rCC.isLetterNumeric( rStr, 0 ) );
-/*?*/           AppendUndo( pUndo );
-/*?*/       }
-/*?*/
-/*?*/       for( xub_StrLen i = 0; i < rStr.Len(); ++i )
-/*?*/       {
-/*?*/           nInsPos++;
-/*?*/           // wenn CanGrouping() TRUE returnt, ist schon alles erledigt
-/*?*/           if( !pUndo->CanGrouping( rStr.GetChar( i ) ))
-/*?*/           {
-/*?*/               pUndo = new SwUndoInsert( pPos->nNode, nInsPos,  1,
-/*?*/                           !rCC.isLetterNumeric( rStr, i ) );
-/*?*/               AppendUndo( pUndo );
-/*?*/           }
-/*?*/       }
-/*?*/       pNode->Insert( rStr, pPos->nContent, nInsMode );
-/*N*/   }
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
@@ -643,7 +581,6 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/   //  Bit 1:  -> neuer Zustand
 /*N*/   long nCall = bModified ? 1 : 0;
 /*N*/   bModified = FALSE;
-/*N*/   nUndoSavePos = nUndoPos;
 /*N*/   if( nCall && aOle2Link.IsSet() )
 /*N*/   {
 /*N*/       bInCallModified = TRUE;
@@ -660,74 +597,9 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/ }
 
-/*N*/ BOOL lcl_SpellAgain( const SwNodePtr& rpNd, void* pArgs )
-/*N*/ {
-/*N*/   SwTxtNode *pTxtNode = (SwTxtNode*)rpNd->GetTxtNode();
-/*N*/   BOOL bOnlyWrong = *(BOOL*)pArgs;
-/*N*/   if( pTxtNode )
-/*N*/   {
-/*N*/       if( bOnlyWrong )
-/*N*/       {
-/*N*/           if( pTxtNode->GetWrong() &&
-/*N*/               pTxtNode->GetWrong()->InvalidateWrong() )
-/*?*/               pTxtNode->SetWrongDirty( TRUE );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           pTxtNode->SetWrongDirty( TRUE );
-/*?*/           if( pTxtNode->GetWrong() )
-/*?*/               pTxtNode->GetWrong()->SetInvalid( 0, STRING_LEN );
-/*N*/       }
-/*N*/   }
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
- *      SwDoc::SpellItAgainSam( BOOL bInvalid, BOOL bOnlyWrong )
- *
- * stoesst das Spelling im Idle-Handler wieder an.
- * Wird bInvalid als TRUE uebergeben, so werden zusaetzlich die WrongListen
- * an allen Nodes invalidiert und auf allen Seiten das SpellInvalid-Flag
- * gesetzt.
- * Mit bOnlyWrong kann man dann steuern, ob nur die Bereiche mit falschen
- * Woertern oder die kompletten Bereiche neu ueberprueft werden muessen.
- ************************************************************************/
-
-/*N*/ void SwDoc::SpellItAgainSam( BOOL bInvalid, BOOL bOnlyWrong )
-/*N*/ {
-/*N*/   ASSERT( GetRootFrm(), "SpellAgain: Where's my RootFrm?" );
-/*N*/   if( bInvalid )
-/*N*/   {
-/*N*/       SwPageFrm *pPage = (SwPageFrm*)GetRootFrm()->Lower();
-/*N*/       while ( pPage )
-/*N*/       {
-/*N*/           pPage->InvalidateSpelling();
-/*N*/           pPage = (SwPageFrm*)pPage->GetNext();
-/*N*/       }
-/*N*/       GetNodes().ForEach( lcl_SpellAgain, &bOnlyWrong );
-/*N*/   }
-/*N*/   GetRootFrm()->SetIdleFlags();
-/*N*/ }
-
-
-
-
-    // loesche den nicht sichtbaren Content aus dem Document, wie z.B.:
-    // versteckte Bereiche, versteckte Absaetze
-
-    // embedded alle lokalen Links (Bereiche/Grafiken)
-
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
 
 /*N*/ USHORT SwDoc::GetLinkUpdMode() const
 /*N*/ {
@@ -745,7 +617,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/   return nRet;
 /*N*/ }
 
-        // setze das InsertDB als Tabelle Undo auf:
 
 
 
