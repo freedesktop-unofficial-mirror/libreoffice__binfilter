@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: factory.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,17 +76,12 @@ class SO3_DLLPUBLIC SvFactory : public SotFactory
 {
     SvFactory_Impl *    pImp;
     ULONG               nRegisterId;
-
-    SO3_DLLPRIVATE void                Revoke();
 protected:
     virtual             ~SvFactory();
 public:
                         TYPEINFO();
 
     static  BOOL                    Init();
-    static  void                    DeInit();
-
-    static  String                  GetConfigFileName();
 
     static  void                    SetDefaultPlugInFactory( SvFactory * );
     static  SvFactory *             GetDefaultPlugInFactory();
@@ -99,18 +94,6 @@ public:
     SvObjectRef         CreateAndLoad( SvStream &, ULONG * nLen = NULL ) const;
     SvObjectRef         CreateAndInit( const SvGlobalName & rSvClassName,
                                        SvStorage * ) const;
-    SvObjectRef         CreateAndInit( const String & rFileName,
-                                       SvStorage *, BOOL bLink = FALSE ) const;
-
-    SvObjectRef CreateAndInit( const ::com::sun::star::uno::Reference<
-                               ::com::sun::star::datatransfer::XTransferable>&,
-                               SvStorage*) const;
-    // do not use this function. bLink and bStorFilled are not supported anymore
-    // use CreateAndInit( const Reference<XTransferable>&, SvStorage*) instead
-
-    SvObjectRef CreateAndInit( const ::com::sun::star::uno::Reference<
-                               ::com::sun::star::datatransfer::XTransferable>&,
-                               SvStorage*, BOOL bLink, BOOL bStorFilled) const;
 
             SvFactory( const SvGlobalName &,
                        const String & rClassName, CreateInstanceType );
@@ -118,17 +101,7 @@ public:
     void                Register();
     BOOL                IsRegistered() const { return nRegisterId != 0; }
 
-                        // Emulieren
-    static void         SetAutoTreatAs( const SvGlobalName & rOldClass,
-                                        const String & rOldFullUserTypeName,
-                                        const SvGlobalName & rNewClass );
-    static SvGlobalName GetAutoTreatAs( const SvGlobalName & rClass );
-                        // Konvertieren
-    static void         SetAutoConvertTo( const SvGlobalName & rOldClass,
-                                        const String & rOldFullUserTypeName,
-                                        const SvGlobalName & rNewClass );
     static SvGlobalName GetAutoConvertTo( const SvGlobalName & rClass );
-    static SvGlobalName GetSvClass31( const SvGlobalName & rClass );
     static SvGlobalName GetSvClass( INT32 nFileFormat, const SvGlobalName & rClass );
     static BOOL         IsIntern31( const SvGlobalName & rClass );
     static BOOL         IsIntern( const SvGlobalName & rClass,
