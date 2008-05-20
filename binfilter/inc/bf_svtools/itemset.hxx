@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: itemset.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -176,8 +176,6 @@ public:
 
     SfxItemPool*                GetPool() const { return _pPool; }
     const USHORT*               GetRanges() const { return _pWhichRanges; }
-    void                        SetRanges( const USHORT *pRanges );
-    void                        MergeRange( USHORT nFrom, USHORT nTo );
     const SfxItemSet*           GetParent() const { return _pParent; }
 
     virtual SvStream &          Load( SvStream &, FASTBOOL bDirect = FALSE,
