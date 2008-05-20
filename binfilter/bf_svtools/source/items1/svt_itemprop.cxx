@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itemprop.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,27 +62,6 @@ const SfxItemPropertyMap*   SfxItemPropertyMap::GetByName(
     {
         if( rName.equalsAsciiL( pMap->pName, pMap->nNameLen ) )
             return pMap;
-        ++pMap;
-    }
-    return 0;
-}
-/* -----------------------------12.12.03 14:04--------------------------------
-
- ---------------------------------------------------------------------------*/
-const SfxItemPropertyMap*   SfxItemPropertyMap::GetTolerantByName(
-    const SfxItemPropertyMap *pMap, const OUString &rName )
-{
-    sal_Int32 nLength(rName.getLength());
-    while ( pMap->pName )
-    {
-        if( nLength == pMap->nNameLen )
-        {
-            sal_Int32 nResult(rName.compareToAscii(pMap->pName));
-            if (nResult == 0)
-                return pMap;
-            else if (nResult < 0)
-                return 0;
-        }
         ++pMap;
     }
     return 0;
