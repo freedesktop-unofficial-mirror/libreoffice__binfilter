@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -66,7 +66,6 @@ SLOFILES=	\
     $(SLO)$/sbxchar.obj \
     $(SLO)$/sbxulng.obj \
     $(SLO)$/sbxuint.obj \
-    $(SLO)$/sbxform.obj \
     $(SLO)$/sbxcoll.obj \
     $(SLO)$/sbxres.obj      \
     $(SLO)$/sbxexec.obj \
