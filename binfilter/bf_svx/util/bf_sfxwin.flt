@@ -160,7 +160,6 @@ SfxSrchDlgBrowseBox
 SfxStateCache
 SfxStatusBarConfigListBox
 SfxStatusBarConfigPage
-SfxStringHint
 SfxTaskBar
 SfxTaskBarWrapper
 SfxTaskButtonBar

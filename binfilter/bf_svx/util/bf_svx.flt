@@ -35,7 +35,6 @@ EditUndoRemoveFeature
 EditUndoSetAttribs
 EditUndoSetParaAttribs
 EditUndoSetStyleSheet
-EditUndoSplitPara
 GlobalEditData
 IdleFormattter
 ImpEditEngine
