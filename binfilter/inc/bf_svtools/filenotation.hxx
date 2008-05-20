@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: filenotation.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -34,42 +34,6 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
-
-//.........................................................................
-namespace binfilter
-{
-//.........................................................................
-
-    //=====================================================================
-    //= OFileNotation
-    //=====================================================================
-    class  OFileNotation
-    {
-    protected:
-        ::rtl::OUString     m_sSystem;
-        ::rtl::OUString     m_sFileURL;
-
-    public:
-        enum NOTATION
-        {
-            N_SYSTEM,
-            N_URL
-        };
-
-        OFileNotation( const ::rtl::OUString& _rUrlOrPath );
-        OFileNotation( const ::rtl::OUString& _rUrlOrPath, NOTATION _eInputNotation );
-
-        ::rtl::OUString get(NOTATION _eOutputNotation);
-
-    private:
-         void   construct( const ::rtl::OUString& _rUrlOrPath );
-         bool    implInitWithSystemNotation( const ::rtl::OUString& _rSystemPath );
-         bool    implInitWithURLNotation( const ::rtl::OUString& _rURL );
-    };
-
-//.........................................................................
-}
-//.........................................................................
 
 #endif // SVTOOLS_FILENOTATION_HXX
 
