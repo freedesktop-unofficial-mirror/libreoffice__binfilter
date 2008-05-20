@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: tblsel.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -50,7 +50,6 @@ class SwLayoutFrm;
 class SwPaM;
 class SwNode;
 class SwTable;
-class SwUndoTblMerge;
 class SwCellFrm;
 
 SV_DECL_PTRARR( SwCellFrms, SwCellFrm*, 16, 16 )
@@ -99,7 +98,7 @@ BOOL IsFrmInTblSel( const SwRect& rUnion, const SwFrm* pCell );
 // Zusaetzlich wird die neue Box erzeugt und mit dem entsprechenden
 // Inhalt gefuellt.
 void GetMergeSel( const SwPaM& rPam, SwSelBoxes& rBoxes,
-                  SwTableBox** ppMergeBox, SwUndoTblMerge* pUndo = 0 );
+                  SwTableBox** ppMergeBox );
 
 // teste ob die selektierten Boxen ein gueltiges Merge erlauben
 USHORT CheckMergeSel( const SwPaM& rPam );
