@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_shellio.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -85,12 +85,6 @@
 #endif
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _UNDOBJ_HXX
-#include <undobj.hxx>           // fuer Undo Insert-Dokument
-#endif
-#ifndef _SWUNDO_HXX
-#include <swundo.hxx>           // fuer Undo Insert-Dokument
 #endif
 #ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
@@ -174,26 +168,8 @@ using namespace ::com::sun::star;
 /*N*/   // Pams sind ringfoermig verkettet. Aufhoeren, wenn man wieder beim
 /*N*/   // ersten ist.
 /*N*/   SwPaM *pEnd = pPam;
-/*N*/   SwUndoInsDoc* pUndo = 0L;
 /*N*/
 /*N*/   BOOL bReadPageDescs = FALSE;
-/*N*/   BOOL bDocUndo = pDoc->DoesUndo();
-/*N*/   BOOL bSaveUndo = bDocUndo && pCrsr;
-/*N*/   if( bSaveUndo )
-/*N*/   {
-/*?*/       // das Einlesen von Seitenvorlagen ist nicht Undofaehig!
-/*?*/       if( 0 != ( bReadPageDescs = po->aOpt.IsPageDescs() ) )
-/*?*/       {
-/*?*/           bSaveUndo = FALSE;
-/*?*/           pDoc->DelAllUndoObj();
-/*?*/       }
-/*?*/       else
-/*?*/       {
-/*?*/           pDoc->ClearRedo();
-/*?*/           pDoc->StartUndo( UNDO_INSDOKUMENT );
-/*?*/       }
-/*N*/   }
-/*N*/   pDoc->DoUndo( FALSE );
 /*N*/
 /*N*/   SwNodeIndex aSplitIdx( pDoc->GetNodes() );
 /*N*/
@@ -207,11 +183,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   while( TRUE )
 /*N*/   {
-/*N*/       if( bSaveUndo )
-/*?*/           pUndo = new SwUndoInsDoc( *pPam );
-/*N*/
-/*N*/       SwPaM* pUndoPam = 0L;
-/*N*/       if( bDocUndo || pCrsr )
+/*N*/       if( pCrsr )
 /*N*/       {
 /*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
@@ -249,91 +221,8 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if( pCrsr )
 /*N*/       {
-/*?*/           *pUndoPam->GetMark() = *pPam->GetPoint();
-/*?*/           pUndoPam->GetPoint()->nNode++;
-/*?*/           SwNode* pNd = pUndoPam->GetNode();
-/*?*/           if( pNd->IsCntntNode() )
-/*?*/               pUndoPam->GetPoint()->nContent.Assign(
-/*?*/                                   (SwCntntNode*)pNd, nSttCntnt );
-/*?*/           else
-/*?*/               pUndoPam->GetPoint()->nContent.Assign( 0, 0 );
-/*?*/
-/*?*/           int bChkHeaderFooter = pNd->FindHeaderStartNode() ||
-/*?*/                                  pNd->FindFooterStartNode();
-/*?*/
-/*?*/           // Suche alle neuen Fly's und speicher sie als einzelne Undo
-/*?*/           // Objecte
-/*?*/           for( USHORT n = 0; n < pDoc->GetSpzFrmFmts()->Count(); ++n )
-/*?*/           {
-/*?*/               SwFrmFmt* pFrmFmt = (*pDoc->GetSpzFrmFmts())[ n ];
-/*?*/               const SwFmtAnchor& rAnchor = pFrmFmt->GetAnchor();
-/*?*/               if( USHRT_MAX == aFlyFrmArr.GetPos( pFrmFmt) )
-/*?*/               {
-/*?*/                   if( FLY_PAGE == rAnchor.GetAnchorId() ||
-/*?*/                       ( FLY_AT_CNTNT == rAnchor.GetAnchorId() &&
-/*?*/                           rAnchor.GetCntntAnchor() &&
-/*?*/                           ( pUndoPam->GetPoint()->nNode ==
-/*?*/                           rAnchor.GetCntntAnchor()->nNode ||
-/*?*/                           pUndoPam->GetMark()->nNode ==
-/*?*/                           rAnchor.GetCntntAnchor()->nNode ) ) )
-/*?*/                   {
-/*?*/                       if( bChkHeaderFooter &&
-/*?*/                           FLY_AT_CNTNT == rAnchor.GetAnchorId() &&
-/*?*/                           RES_DRAWFRMFMT == pFrmFmt->Which() )
-/*?*/                       {
-/*?*/                           // DrawObjecte in Kopf-/Fusszeilen ist nicht
-/*?*/                           // erlaubt!
-/*?*/                           pFrmFmt->DelFrms();
-/*?*/                           pDoc->DelFrmFmt( pFrmFmt );
-/*?*/                           --n;
-/*?*/                       }
-/*?*/                       else
-/*?*/                       {
-/*?*/                           if( bSaveUndo )
-/*?*/                           {
-/*?*/                               pDoc->SetRedlineMode_intern( eOld );
-/*?*/                               pDoc->AppendUndo( new SwUndoInsLayFmt( pFrmFmt ) );
-/*?*/                               pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
-/*?*/                           }
-/*?*/                           if( pFrmFmt->GetDepends() )
-/*?*/                           {
-/*?*/                               // beim Insert legen Draw-Objecte einen Frame an
-/*?*/                               // also weg damit.
-/*?*/                               pFrmFmt->DelFrms();
-/*?*/                           }
-/*?*/
-/*?*/                           if( FLY_PAGE == rAnchor.GetAnchorId() )
-/*?*/                           {
-/*?*/                               if( !rAnchor.GetCntntAnchor() )
-/*?*/                               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrmFmt->MakeFrms();
-/*?*/                               else if( pCrsr )
-/*?*/                                   // seitengebundene Flys eingefuegt, dann schalte
-/*?*/                                   // die Optimierungs-Flags vom SwDoc ab. Sonst
-/*?*/                                   // werden die Flys nicht an der Position erzeugt.
-/*?*/                                   pDoc->SetLoaded( FALSE );
-/*?*/                           }
-/*?*/                           else
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrmFmt->MakeFrms();
-/*?*/                       }
-/*?*/                   }
-/*?*/               }
-/*?*/           }
-/*?*/           if( aFlyFrmArr.Count() )
-/*?*/               aFlyFrmArr.Remove( 0, aFlyFrmArr.Count() );
-/*?*/
-/*?*/           pDoc->SetRedlineMode_intern( eOld );
-/*?*/           if( pDoc->IsRedlineOn() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pDoc->AppendRedline( new SwRedline( REDLINE_INSERT, *pUndoPam ));
-/*?*/           else
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pDoc->SplitRedline( *pUndoPam );
-/*?*/           pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
-/*N*/       if( bSaveUndo )
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->SetRedlineMode_intern( eOld );
-/*N*/       }
-/*N*/
-/*N*/       delete pUndoPam;
 /*N*/
 /*N*/       pPam = (SwPaM *) pPam->GetNext();
 /*N*/       if( pPam == pEnd )
@@ -358,18 +247,6 @@ using namespace ::com::sun::star;
 /*N*/   pDoc->bInReading = FALSE;
 /*N*/   pDoc->SetAllUniqueFlyNames();
 /*N*/
-/*N*/   if( bReadPageDescs )
-/*?*/       pDoc->DoUndo( TRUE );
-/*N*/   else
-/*N*/   {
-/*N*/       pDoc->DoUndo( bDocUndo );
-/*N*/       if( bSaveUndo )
-/*N*/       {
-/*?*/           pDoc->SetRedlineMode_intern( eOld );
-/*?*/           pDoc->EndUndo( UNDO_INSDOKUMENT );
-/*?*/           pDoc->SetRedlineMode_intern( REDLINE_IGNORE );
-/*N*/       }
-/*N*/   }
 /*N*/
 /*N*/   // Wenn der Pam nur fuers Lesen konstruiert wurde, jetzt zerstoeren.
 /*N*/   if( !pCrsr )
@@ -532,7 +409,6 @@ using namespace ::com::sun::star;
 /*?*/                   {
 /*?*/                       pTemplate = pDocSh->GetDoc();
 /*?*/                       pTemplate->SetOle2Link( Link() );
-/*?*/                       pTemplate->DoUndo( FALSE );     // always FALSE
 /*?*/                       pTemplate->SetBrowseMode( bTmplBrowseMode );
 /*?*/                       pTemplate->RemoveAllFmtLanguageDependencies();
 /*?*/
