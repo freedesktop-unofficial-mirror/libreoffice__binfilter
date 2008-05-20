@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: isethint.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -52,8 +52,6 @@ class  SfxItemSetHint: public SfxHint
 public:
                         TYPEINFO();
 
-                        SfxItemSetHint( SfxItemSet *pItemSet );
-                        SfxItemSetHint( const SfxItemSet &rItemSet );
     virtual             ~SfxItemSetHint();
 
     const SfxItemSet&   GetItemSet() const { return *_pItemSet; }
