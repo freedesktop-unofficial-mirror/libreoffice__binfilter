@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdsnpv.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -88,12 +88,6 @@ namespace binfilter {
 /*N*/   ClearVars();
 /*N*/ }
 
-/*?*/ SdrSnapView::SdrSnapView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrPaintView(pModel1,pXOut)
-/*?*/ {
-/*?*/   ClearVars();
-/*?*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ BOOL SdrSnapView::IsAction() const
@@ -142,35 +136,6 @@ namespace binfilter {
 /*N*/   if (bSetPageOrg) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/ }
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ BOOL SdrSnapView::PickHelpLine(const Point& rPnt, short nTol, const OutputDevice& rOut, USHORT& rnHelpLineNum, SdrPageView*& rpPV) const
-/*N*/ {
-/*N*/   rpPV=NULL;
-/*N*/   nTol=ImpGetHitTolLogic(nTol,&rOut);
-/*N*/   for (USHORT nv=GetPageViewCount(); nv>0;) {
-/*N*/       nv--;
-/*N*/       SdrPageView* pPV=GetPageViewPvNum(nv);
-/*N*/       Point aPnt(rPnt);
-/*N*/       aPnt-=pPV->GetOffset();
-/*N*/       USHORT nIndex=pPV->GetHelpLines().HitTest(aPnt,USHORT(nTol),rOut);
-/*N*/       if (nIndex!=SDRHELPLINE_NOTFOUND) {
-/*?*/           rpPV=pPV;
-/*?*/           rnHelpLineNum=nIndex;
-/*?*/           return TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
-
-
-
 
 /*N*/ void SdrSnapView::BrkDragHelpLine()
 /*N*/ {
