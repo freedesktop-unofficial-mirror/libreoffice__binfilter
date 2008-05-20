@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unomod.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -348,12 +348,6 @@ uno::Sequence< OUString > SvxUnoDrawMSFactory::concatServiceNames( uno::Sequence
 
 
 #ifndef SVX_LIGHT
-
-///
-SvxUnoDrawingModel::SvxUnoDrawingModel( SdrModel* pDoc ) throw()
-: mpDoc( pDoc )
-{
-}
 
 SvxUnoDrawingModel::~SvxUnoDrawingModel() throw()
 {
