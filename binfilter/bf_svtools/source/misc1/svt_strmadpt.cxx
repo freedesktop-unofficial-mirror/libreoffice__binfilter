@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_strmadpt.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -684,112 +684,6 @@ void SvInputStream::RemoveMark(ULONG nPos)
 {
     if (open() && m_pPipe)
         m_pPipe->removeMark(nPos);
-}
-
-//============================================================================
-//
-//  SvOutputStream
-//
-//============================================================================
-
-// virtual
-ULONG SvOutputStream::GetData(void *, ULONG)
-{
-    SetError(ERRCODE_IO_NOTSUPPORTED);
-    return 0;
-}
-
-//============================================================================
-// virtual
-ULONG SvOutputStream::PutData(void const * pData, ULONG nSize)
-{
-    if (!m_xStream.is())
-    {
-        SetError(ERRCODE_IO_CANTWRITE);
-        return 0;
-    }
-    ULONG nWritten = 0;
-    for (;;)
-    {
-        sal_Int32 nRemain
-            = sal_Int32(
-                std::min(ULONG(nSize - nWritten),
-                         ULONG(std::numeric_limits< sal_Int32 >::max())));
-        if (nRemain == 0)
-            break;
-        try
-        {
-            m_xStream->writeBytes(uno::Sequence< sal_Int8 >(
-                                      static_cast<const sal_Int8 * >(pData)
-                                          + nWritten,
-                                      nRemain));
-        }
-        catch (io::IOException)
-        {
-            SetError(ERRCODE_IO_CANTWRITE);
-            break;
-        }
-        nWritten += nRemain;
-    }
-    return nWritten;
-}
-
-//============================================================================
-// virtual
-ULONG SvOutputStream::SeekPos(ULONG)
-{
-    SetError(ERRCODE_IO_NOTSUPPORTED);
-    return 0;
-}
-
-//============================================================================
-// virtual
-void SvOutputStream::FlushData()
-{
-    if (!m_xStream.is())
-    {
-        SetError(ERRCODE_IO_INVALIDDEVICE);
-        return;
-    }
-    try
-    {
-        m_xStream->flush();
-    }
-    catch (io::IOException) {}
-}
-
-//============================================================================
-// virtual
-void SvOutputStream::SetSize(ULONG)
-{
-    SetError(ERRCODE_IO_NOTSUPPORTED);
-}
-
-//============================================================================
-SvOutputStream::SvOutputStream(uno::Reference< io::XOutputStream > const &
-                                   rTheStream):
-    m_xStream(rTheStream)
-{
-    SetBufferSize(0);
-}
-
-//============================================================================
-// virtual
-SvOutputStream::~SvOutputStream()
-{
-    if (m_xStream.is())
-        try
-        {
-            m_xStream->closeOutput();
-        }
-        catch (io::IOException) {}
-}
-
-//============================================================================
-// virtual
-USHORT SvOutputStream::IsA() const
-{
-    return 0;
 }
 
 //============================================================================
