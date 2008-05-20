@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxbase.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,14 +62,12 @@ struct SbxAppData
     SbxError            eSbxError;  // Fehlercode
     SbxFacs             aFacs;      // Factories
     SbxVarList_Impl     aVars;      // fuer Dump
-    SbxBasicFormater    *pBasicFormater;    // Zeiger auf Hilfsklasse f"ur den
                                             // Format()-Befehl
     LanguageType        eBasicFormaterLangType;
         // Bem.: es ist sinnvoll diese Klasse 'global' zu speichern, da
         //       einige Resourcen (Strings) in der Klasse gehalten werden.
 
-    SbxAppData() : eSbxError( SbxERR_OK ), aFacs(), pBasicFormater( NULL ) {}
-    ~SbxAppData();
+    SbxAppData() : eSbxError( SbxERR_OK ), aFacs() {}
 };
 
 SbxAppData* GetSbxData_Impl();
