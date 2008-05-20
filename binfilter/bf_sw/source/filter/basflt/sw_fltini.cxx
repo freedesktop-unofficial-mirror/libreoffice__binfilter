@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_fltini.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -41,9 +41,6 @@
 #include <hintids.hxx>
 #endif
 
-#ifndef _PARHTML_HXX //autogen
-#include <bf_svtools/parhtml.hxx>
-#endif
 #ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
 #endif
