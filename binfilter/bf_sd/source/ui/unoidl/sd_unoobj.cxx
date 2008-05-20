@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_unoobj.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -230,16 +230,6 @@ static int SortFunc( const void* p1, const void* p2 )
      const PSORT pCmp1 = (const PSORT) p1;
      const PSORT pCmp2 = (const PSORT) p2;
      return ( pCmp1->nOrder < pCmp2->nOrder ? -1 : pCmp1->nOrder > pCmp2->nOrder ? 1 : 0 );
-}
-
-//extern "C" int __LOADONCALLAPI SortFunc( const void* p1, const void* p2 );
-
-SdXShape::SdXShape() throw()
-:   maPropSet(aEmpty_SdXShapePropertyMap_Impl),
-    mpMap(aEmpty_SdXShapePropertyMap_Impl),
-    mpModel(NULL),
-    mpImplementationId(NULL)
-{
 }
 
 SdXShape::SdXShape( SvxShape* pShape, SdXImpressDocument* pModel) throw()
