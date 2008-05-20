@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_sourceviewconfig.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -244,48 +244,6 @@ SourceViewConfig::~SourceViewConfig()
             m_pImplConfig->Commit();
         DELETEZ( m_pImplConfig );
     }
-}
-/*-- 28.08.2002 16:32:19---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-const OUString&  SourceViewConfig::GetFontName() const
-{
-    return m_pImplConfig->GetFontName();
-}
-/*-- 28.08.2002 16:32:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SourceViewConfig::SetFontName(const OUString& rName)
-{
-    m_pImplConfig->SetFontName(rName);
-}
-/*-- 28.08.2002 16:32:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Int16 SourceViewConfig::GetFontHeight() const
-{
-    return m_pImplConfig->GetFontHeight();
-}
-/*-- 28.08.2002 16:32:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SourceViewConfig::SetFontHeight(sal_Int16 nHeight)
-{
-    m_pImplConfig->SetFontHeight(nHeight);
-}
-/*-- 28.08.2002 16:32:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-sal_Bool SourceViewConfig::IsShowProportionalFontsOnly() const
-{
-    return m_pImplConfig->IsShowProportionalFontsOnly();
-}
-/*-- 28.08.2002 16:32:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SourceViewConfig::SetShowProportionalFontsOnly(sal_Bool bSet)
-{
-    m_pImplConfig->SetShowProportionalFontsOnly(bSet);
 }
 /* -----------------------------30.08.2002 10:40------------------------------
 
