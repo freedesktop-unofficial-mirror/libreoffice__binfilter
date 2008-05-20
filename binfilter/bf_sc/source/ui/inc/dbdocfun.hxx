@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dbdocfun.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -77,23 +77,11 @@ public:
                     ScDBDocFunc( ScDocShell& rDocSh ): rDocShell(rDocSh) {}
                     ~ScDBDocFunc() {}
 
-    void            UpdateImport( const String& rTarget, const String& rDBName,
-                        const String& rTableName, const String& rStatement,
-                        BOOL bNative, BYTE nType,
-                        const ::com::sun::star::uno::Reference<
-                        ::com::sun::star::sdbc::XResultSet >& xResultSet,
-                        const SbaSelectionList* pSelection );
-
     BOOL            DoImport( USHORT nTab, const ScImportParam& rParam,
                         const ::com::sun::star::uno::Reference<
                         ::com::sun::star::sdbc::XResultSet >& xResultSet,
                         const SbaSelectionList* pSelection, BOOL bRecord,
                         BOOL bAddrInsert = FALSE );
-
-    BOOL            DoImportUno( const ScAddress& rPos,
-                                const ::com::sun::star::uno::Sequence<
-                                    ::com::sun::star::beans::PropertyValue>& aArgs );
-
 
     BOOL            Sort( USHORT nTab, const ScSortParam& rSortParam,
                             BOOL bRecord, BOOL bPaint, BOOL bApi );
