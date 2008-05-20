@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xmlimp.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -230,22 +230,6 @@ public:
     SvXMLImport(
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
         sal_uInt16 nImportFlags = IMPORT_ALL ) throw();
-
-    // #110680#
-    //SvXMLImport( const ::com::sun::star::uno::Reference<
-    //      ::com::sun::star::frame::XModel > & ) throw();
-    SvXMLImport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > & ) throw();
-
-    // #110680#
-    //SvXMLImport( const ::com::sun::star::uno::Reference<
-    //      ::com::sun::star::frame::XModel > &,
-    //      const ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver > & ) throw();
-    SvXMLImport(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > &,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::document::XGraphicObjectResolver > & ) throw();
 
     virtual ~SvXMLImport() throw();
 
