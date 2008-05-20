@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: asynclink.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -68,7 +68,6 @@ public:
     void operator=( const Link& rLink ) { _aLink = rLink; }
     void Call( void* pObj, BOOL bAllowDoubles = FALSE,
                BOOL bUseTimer = FALSE );
-    void ForcePendingCall( );
     void ClearPendingCall( );
     BOOL IsSet() const { return _aLink.IsSet(); }
     Link GetLink() const { return _aLink; }
