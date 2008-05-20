@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: poly3d.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -231,7 +231,6 @@ public:
     PolyPolygon3D(const Polygon3D& r3DPoly);
     PolyPolygon3D(const PolyPolygon3D& r3DPolyPoly);
     PolyPolygon3D(const PolyPolygon& rPolyPoly, double fScale = 1.0);
-    PolyPolygon3D(const XPolygon& rXPoly, double fScale = 1.0);
     PolyPolygon3D(const XPolyPolygon& rXPolyPoly, double fScale = 1.0);
     ~PolyPolygon3D();
 
