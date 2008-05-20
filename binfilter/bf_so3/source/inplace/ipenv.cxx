@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ipenv.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -122,22 +122,6 @@ SO2_IMPL_INTERFACE1(SvAppFrame,SvObject)
 }
 
 //=========================================================================
-SvAppFrame::SvAppFrame( SvContainerEnvironment * pEnvP )
-    : pObjI( NULL )
-    , pEnv( pEnvP )
-/*  [Beschreibung]
-
-    Diese Klasse ist nur eine Hilfe, damit der InPlaceClient bei
-    QueryInterface nicht den IOleInPlaceFrame zur"uckliefert.
-
-    [Querverweise]
-
-    <SvInPlaceClient>
-*/
-{
-}
-
-//=========================================================================
 SvAppFrame::~SvAppFrame()
 /*  [Beschreibung]
 
@@ -158,25 +142,6 @@ SO2_IMPL_INTERFACE1(SvDocFrame,SvObject)
 ::IUnknown * SvDocFrame::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
-}
-
-//=========================================================================
-SvDocFrame::SvDocFrame
-(
-    SvContainerEnvironment * pEnvP
-)
-    : pObjI( NULL )
-    , pEnv( pEnvP )
-/*  [Beschreibung]
-
-    Diese Klasse ist nur eine Hilfe, damit der InPlaceClient bei
-    QueryInterface nicht den IOleInPlaceFrame zur"uckliefert.
-
-    [Querverweise]
-
-    <SvInPlaceClient>
-*/
-{
 }
 
 //=========================================================================
@@ -240,32 +205,6 @@ SvContainerEnvironment::SvContainerEnvironment
     [Querverweise]
 */
 {
-    InsertInContList( this );
-}
-
-//=========================================================================
-SvContainerEnvironment::SvContainerEnvironment
-(
-    SvInPlaceClient * pCl,
-    SvContainerEnvironment * pPar
-)
-    : SvClientData( pCl, pPar->pIPEnv->GetEditWin() )
-    , pIPEnv( NULL )
-    , pObj( pCl )
-    , pParent( pPar )
-    , pChildList( NULL )
-    , pTopWin( pPar->GetTopWin() )
-    , pDocWin( pPar->GetDocWin() )
-    , INIT_CTOR
-/*  [Beschreibung]
-
-    [Querverweise]
-*/
-{
-    if( !pParent->pChildList )
-        pParent->pChildList = new SvContainerEnvironmentList( 2, 2 );
-    pParent->pChildList->Insert( this, LIST_APPEND );
-
     InsertInContList( this );
 }
 
@@ -476,17 +415,6 @@ Window * SvContainerEnvironment::GetEditWin() const
 }
 
 /************************************************************************
-|*    SvContainerEnvironment::DoQueryMenu()
-|*
-|*    Beschreibung
-*************************************************************************/
-MenuBar * SvContainerEnvironment::DoQueryMenu( USHORT * p0, USHORT * p1, USHORT * p2 )
-{
-    nMenuUseCount++;
-    return QueryMenu( p0, p1, p2 );
-}
-
-/************************************************************************
 |*    SvContainerEnvironment::QueryMenu()
 |*
 |*    Beschreibung
@@ -511,22 +439,6 @@ void SvContainerEnvironment::SetInPlaceMenu( MenuBar *, BOOL )
 }
 
 /************************************************************************
-|*    SvContainerEnvironment::DoMenuReleased()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::DoMenuReleased( MenuBar * pOldAppMenu )
-{
-    if( nMenuUseCount )
-    {
-        nMenuUseCount--;
-        if( pOldAppMenu )
-            SetInPlaceMenu( pOldAppMenu, FALSE );
-        MenuReleased();
-    }
-}
-
-/************************************************************************
 |*    SvContainerEnvironment::MenuReleased()
 |*
 |*    Beschreibung
@@ -545,19 +457,6 @@ void SvContainerEnvironment::UIToolsShown( BOOL bShow )
     (void)bShow;
     //if( !IsStub() && !bShow )
     //  SvSO::SetAppBorder( 0, 0, 0, 0 );
-}
-
-/*************************************************************************
-|*    SvContainerEnvironment::SetAccel()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::SetAccel( const Accelerator & rAccel )
-{
-    if( pAccel )
-        *pAccel = rAccel;
-    else
-        pAccel = new Accelerator( rAccel );
 }
 
 /*************************************************************************
@@ -611,18 +510,6 @@ void SvContainerEnvironment::SetSizeScale( const Fraction & rScaleWidth,
         SvClientData::SetSizeScale( rScaleWidth, rScaleHeight );
         OutDevScaleChanged();
     }
-}
-
-/*************************************************************************
-|*    SvContainerEnvironment::SetClipAreaPixel()
-|*
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::SetClipAreaPixel( const Rectangle & rRect )
-{
-    aClipAreaPixel = rRect;
-    if( pIPEnv )
-        pIPEnv->DoRectsChanged();
 }
 
 /*************************************************************************
@@ -1032,31 +919,9 @@ void SvInPlaceEnvironment::DeleteObjMenu()
 }
 
 //=========================================================================
-void SvInPlaceEnvironment::DeleteClipWin()
-{
-    delete pClipWin;
-    pClipWin = NULL;
-}
-
-//=========================================================================
-void SvInPlaceEnvironment::DeleteBorderWin()
-{
-    delete pBorderWin;
-    pBorderWin = NULL;
-}
-
-//=========================================================================
 Window * SvInPlaceEnvironment::GetEditWin()
 {
     return pEditWin;
-}
-
-//=========================================================================
-void SvInPlaceEnvironment::DeleteEditWin()
-{
-    delete pEditWin;
-    pEditWin = NULL;
-    bDeleteEditWin = FALSE;
 }
 
 //=========================================================================
@@ -1197,24 +1062,6 @@ void SvInPlaceEnvironment::ShowUITools( BOOL )
 {
 }
 
-/*************************************************************************/
-void SvInPlaceEnvironment::MakeUI( BOOL bMake )
-{
-    if( bMake )
-    {
-        if( !GetContainerEnv()->IsStub() )
-            // sonst nur bei Ole-SetInPlaceActiveObj
-            GetIPObj()->DoMergePalette();
-        DoShowIPObj( bMake );
-        MergeMenus();
-    }
-    else
-    {
-        DoShowIPObj( bMake );
-        ReleaseClientMenu();
-    }
-}
-
 //=========================================================================
 void SvInPlaceEnvironment::DoTopWinResize()
 /*  [Beschreibung]
@@ -1308,32 +1155,6 @@ void SvInPlaceEnvironment::RectsChangedPixel( const Rectangle & rObjRect,
     {
         if( pClipWin )
             pClipWin->SetRectsPixel( rObjRect, rClip );
-    }
-}
-
-/*************************************************************************/
-void SvInPlaceEnvironment::MakeScale( const Size & rVisAreaSize,
-                                 MapUnit nVisAreaUnit,
-                                 const Size & rObjSizePixel )
-{
-    DBG_ASSERT( pEditWin, "no Edit-Win" )
-    Size aVS = pEditWin->LogicToPixel( rVisAreaSize, nVisAreaUnit );
-    if( aVS.Width() && aVS.Height() )
-    {
-        Fraction aSX( rObjSizePixel.Width(), aVS.Width() );
-        Fraction aSY( rObjSizePixel.Height(), aVS.Height() );
-        MapMode aMod = pEditWin->GetMapMode();
-        aMod.SetScaleX( aSX );
-        aMod.SetScaleY( aSY );
-        pEditWin->SetMapMode( aMod );
-        pEditWin->Invalidate();
-
-        ULONG n = 0;
-        SvContainerEnvironment * pChild;
-        while( NULL != (pChild = pContEnv->GetChild( n++ ) ) )
-            if( pChild->GetEditWin() == pEditWin )
-                // Das Child von ContEnv muss auf dem Edit-Win basieren
-                pChild->OutDevScaleChanged();
     }
 }
 
