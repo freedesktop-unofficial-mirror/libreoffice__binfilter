@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_dynamicmenuoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -325,31 +325,6 @@ class SvtDynamicMenuOptions_Impl : public ConfigItem
 
         virtual void Commit();
 
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      base implementation of public interface for "SvtDynamicMenuOptions"!
-            @descr      These class is used as static member of "SvtDynamicMenuOptions" ...
-                        => The code exist only for one time and isn't duplicated for every instance!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void                                    Clear       (           EDynamicMenuType    eMenu           );
-        Sequence< Sequence< PropertyValue > >   GetMenu     (           EDynamicMenuType    eMenu           ) const ;
-        void                                    AppendItem  (           EDynamicMenuType    eMenu           ,
-                                                                const   OUString&           sURL            ,
-                                                                const   OUString&           sTitle          ,
-                                                                const   OUString&           sImageIdentifier,
-                                                                const   OUString&           sTargetName     );
-
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------
@@ -655,92 +630,6 @@ void SvtDynamicMenuOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtDynamicMenuOptions_Impl::Clear( EDynamicMenuType eMenu )
-{
-    switch( eMenu )
-    {
-        case E_NEWMENU      :   {
-                                    m_aNewMenu.Clear();
-                                    SetModified();
-                                }
-                                break;
-
-        case E_WIZARDMENU   :   {
-                                    m_aWizardMenu.Clear();
-                                    SetModified();
-                                }
-                                break;
-
-        case E_HELPBOOKMARKS :  {
-                                    m_aHelpBookmarksMenu.Clear();
-                                    SetModified();
-                                }
-                                break;
-    }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtDynamicMenuOptions_Impl::GetMenu( EDynamicMenuType eMenu ) const
-{
-    Sequence< Sequence< PropertyValue > > lReturn;
-    switch( eMenu )
-    {
-        case E_NEWMENU      :   {
-                                    lReturn = m_aNewMenu.GetList();
-                                }
-                                break;
-
-        case E_WIZARDMENU   :   {
-                                    lReturn = m_aWizardMenu.GetList();
-                                }
-                                break;
-
-        case E_HELPBOOKMARKS :  {
-                                    lReturn = m_aHelpBookmarksMenu.GetList();
-                                }
-                                break;
-    }
-    return lReturn;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtDynamicMenuOptions_Impl::AppendItem(            EDynamicMenuType    eMenu           ,
-                                                const   OUString&           sURL            ,
-                                                const   OUString&           sTitle          ,
-                                                const   OUString&           sImageIdentifier,
-                                                const   OUString&           sTargetName     )
-{
-    SvtDynMenuEntry aItem( sURL, sTitle, sImageIdentifier, sTargetName );
-
-    switch( eMenu )
-    {
-        case E_NEWMENU  :   {
-                                m_aNewMenu.AppendUserEntry( aItem );
-                                SetModified();
-                            }
-                            break;
-
-        case E_WIZARDMENU   :   {
-                                m_aWizardMenu.AppendUserEntry( aItem );
-                                SetModified();
-                            }
-                            break;
-
-        case E_HELPBOOKMARKS :  {
-                                m_aHelpBookmarksMenu.AppendUserEntry( aItem );
-                                SetModified();
-                            }
-                            break;
-    }
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtDynamicMenuOptions_Impl::impl_GetPropertyNames( sal_uInt32& nNewCount, sal_uInt32& nWizardCount, sal_uInt32& nHelpBookmarksCount )
@@ -887,36 +776,6 @@ SvtDynamicMenuOptions::~SvtDynamicMenuOptions()
     }
 }
 
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtDynamicMenuOptions::Clear( EDynamicMenuType eMenu )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->Clear( eMenu );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< Sequence< PropertyValue > > SvtDynamicMenuOptions::GetMenu( EDynamicMenuType eMenu ) const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetMenu( eMenu );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtDynamicMenuOptions::AppendItem(         EDynamicMenuType    eMenu           ,
-                                        const   OUString&           sURL            ,
-                                        const   OUString&           sTitle          ,
-                                        const   OUString&           sImageIdentifier,
-                                        const   OUString&           sTargetName     )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->AppendItem( eMenu, sURL, sTitle, sImageIdentifier, sTargetName );
-}
 
 //*****************************************************************************************************************
 //  private method
