@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svddrgv.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -119,7 +119,6 @@ protected:
 
 public:
     SdrDragView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrDragView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrDragView();
 
     virtual void ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const;
@@ -160,8 +159,6 @@ public:
     BOOL IsInsertGluePoint() const { return bInsGluePoint; }
 
     // Interaktives einfuegen eines neuen Punktes. nIdx=0 => vor dem ersten Punkt.
-    BOOL IsInsObjPointPossible() const;
-    BOOL IsInsPointPossible() const { return IsInsObjPointPossible(); }
     BOOL BegInsObjPoint(USHORT nIdx, const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(TRUE,nIdx,rPnt,bNewObj,pOut,nMinMov); }
     BOOL BegInsObjPoint(const Point& rPnt, BOOL bNewObj, OutputDevice* pOut=NULL, short nMinMov=-3) { return BegInsObjPoint(FALSE,0,rPnt,bNewObj,pOut,nMinMov); }
     void BrkInsObjPoint() { BrkDragObj(); }
@@ -172,7 +169,6 @@ public:
     void SetInsObjPointMode(BOOL bOn) { bInsObjPointMode = bOn; }
     BOOL IsInsObjPointMode() const { return bInsObjPointMode; }
 
-    BOOL IsInsGluePointPossible() const;
     void BrkInsGluePoint() { BrkDragObj(); }
     BOOL IsInsGluePoint() const { return pDragBla!=NULL && bInsGluePoint; }
 
