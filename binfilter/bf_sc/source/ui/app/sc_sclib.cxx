@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_sclib.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -39,7 +39,6 @@
 #endif
 
 #include <bf_svtools/inettype.hxx>
-#include <bf_svtools/parhtml.hxx>
 #include <comphelper/classids.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfile.hxx>
@@ -182,54 +181,6 @@ SfxModule* ScModuleDummy::Load()
         return pMod;
     }
     return NULL;
-}
-
-SvGlobalName ScModuleDummy::GetID(USHORT nFileFormat)
-{
-    SvGlobalName aName;
-
-    switch (nFileFormat)
-    {
-        //  GlobalNames der ScDocShell:
-
-        case SOFFICE_FILEFORMAT_31:
-            aName = SvGlobalName( BF_SO3_SC_CLASSID_30 );
-            break;
-
-        case SOFFICE_FILEFORMAT_40:
-            aName = SvGlobalName( BF_SO3_SC_CLASSID_40 );
-            break;
-
-        case SOFFICE_FILEFORMAT_50:
-            aName = SvGlobalName( BF_SO3_SC_CLASSID_50 );
-            break;
-
-        case SOFFICE_FILEFORMAT_60:
-            aName = SvGlobalName( BF_SO3_SC_CLASSID_60 );
-            break;
-
-        default:
-            DBG_ERROR("ScModuleDummy::GetID: unbekanntes Fileformat");
-            break;
-    }
-    return aName;
-}
-
-USHORT ScModuleDummy::HasID(const SvGlobalName& rName)
-{
-    if (GetID(SOFFICE_FILEFORMAT_31) == rName)
-        return SOFFICE_FILEFORMAT_31;
-
-    if (GetID(SOFFICE_FILEFORMAT_40) == rName)
-        return SOFFICE_FILEFORMAT_40;
-
-    if (GetID(SOFFICE_FILEFORMAT_50) == rName)
-        return SOFFICE_FILEFORMAT_50;
-
-    if (GetID(SOFFICE_FILEFORMAT_60) == rName)
-        return SOFFICE_FILEFORMAT_60;
-
-    return 0;           // unbekannter Name: kein passendes Fileformat
 }
 
 //------------------------------------------------------------------
@@ -677,27 +628,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 
         // test for HTML
 
-/*N*/       if ( HTMLParser::IsHTMLFormat( aHeader.GetBuffer() ) )
-/*N*/       {
-/*?*/           if ( aPresetFilterName.EqualsAscii(pFilterHtml) )
-/*?*/           {
-/*?*/               // old HTML filter is allowed, default is WebQuery filter
-/*?*/           }
-/*?*/           else
-/*?*/               *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
-/*?*/                                               String::CreateFromAscii(pFilterHtmlWeb) );
-/*?*/           return ERRCODE_NONE;
-/*N*/       }
-
-        // test for RTF
-/*N*/
-/*N*/       if ( aHeader.CompareTo( "{\\rtf", 5 ) == COMPARE_EQUAL )
-/*N*/       {
-/*?*/           *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
-/*?*/                                             String::CreateFromAscii(pFilterRtf) );
-/*?*/           return ERRCODE_NONE;
-/*?*/       }
-/*N*/
         // #97832#; we don't have a flat xml filter
 /*      if ( aHeader.CompareTo( "<?xml", 5 ) == COMPARE_EQUAL )
         {
