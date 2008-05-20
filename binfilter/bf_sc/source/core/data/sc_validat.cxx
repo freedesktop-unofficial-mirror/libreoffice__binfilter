@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_validat.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,17 +63,6 @@ namespace binfilter {
 /*N*/                           ScDocument* pDocument, const ScAddress& rPos,
 /*N*/                           BOOL bCompileEnglish, BOOL bCompileXML ) :
 /*N*/   ScConditionEntry( eOper, rExpr1, rExpr2, pDocument, rPos, bCompileEnglish, bCompileXML ),
-/*N*/   nKey( 0 ),
-/*N*/   eDataMode( eMode )
-/*N*/ {
-/*N*/   bShowInput = bShowError = FALSE;
-/*N*/   eErrorStyle = SC_VALERR_STOP;
-/*N*/ }
-
-/*N*/ ScValidationData::ScValidationData( ScValidationMode eMode, ScConditionMode eOper,
-/*N*/                           const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-/*N*/                           ScDocument* pDocument, const ScAddress& rPos ) :
-/*N*/   ScConditionEntry( eOper, pArr1, pArr2, pDocument, rPos ),
 /*N*/   nKey( 0 ),
 /*N*/   eDataMode( eMode )
 /*N*/ {
@@ -252,19 +241,6 @@ namespace binfilter {
 /*N*/
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/       InsertNew( rList[i]->Clone() );
-/*N*/
-/*N*/   //!     sortierte Eintraege aus rList schneller einfuegen ???
-/*N*/ }
-
-/*N*/ ScValidationDataList::ScValidationDataList(ScDocument* pNewDoc,
-/*N*/                                           const ScValidationDataList& rList)
-/*N*/ {
-/*N*/   //  fuer neues Dokument - echte Kopie mit neuen Tokens!
-/*N*/
-/*N*/   USHORT nCount = rList.Count();
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       InsertNew( rList[i]->Clone(pNewDoc) );
 /*N*/
 /*N*/   //!     sortierte Eintraege aus rList schneller einfuegen ???
 /*N*/ }
