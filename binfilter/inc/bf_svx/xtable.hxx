@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: xtable.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -337,40 +337,17 @@ public:
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
 };
 
-// -------------------
-// class XColorList
-// -------------------
-
-class XColorList : public XPropertyList
-{
-public:
-                    XColorList( const String& rPath,
-                                XOutdevItemPool* pXPool = NULL,
-                                USHORT nInitSize = 16,
-                                USHORT nReSize = 16 );
-    virtual         ~XColorList();
-
-    XColorEntry*    Replace(XColorEntry* pEntry, long nIndex );
-    XColorEntry*    Remove(long nIndex);
-
-    virtual BOOL    Load();
-    virtual BOOL    Save();
-    virtual BOOL    Create();
-    virtual BOOL    CreateBitmapsForUI();
-    virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
-};
-
 // --------------------
 // class XLineEndTable
 // --------------------
 
 class XLineEndTable : public XPropertyTable
 {
-public:
                     XLineEndTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
                                     USHORT nInitSize = 16,
                                     USHORT nReSize = 16 );
+public:
     virtual         ~XLineEndTable();
 
     XLineEndEntry*  Replace(long nIndex, XLineEndEntry* pEntry );
@@ -424,11 +401,11 @@ public:
 
 class XDashTable : public XPropertyTable
 {
-public:
                     XDashTable( const String& rPath,
                                 XOutdevItemPool* pXPool = NULL,
                                 USHORT nInitSize = 16,
                                 USHORT nReSize = 16 );
+public:
     virtual         ~XDashTable();
 
     XDashEntry*     Replace(long nIndex, XDashEntry* pEntry );
@@ -482,11 +459,11 @@ public:
 
 class XHatchTable : public XPropertyTable
 {
-public:
                     XHatchTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
                                     USHORT nInitSize = 16,
                                     USHORT nReSize = 16 );
+public:
     virtual         ~XHatchTable();
 
     XHatchEntry*    Replace(long nIndex, XHatchEntry* pEntry );
@@ -539,11 +516,11 @@ public:
 
 class XGradientTable : public XPropertyTable
 {
-public:
                     XGradientTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
                                     USHORT nInitSize = 16,
                                     USHORT nReSize = 16 );
+public:
     virtual         ~XGradientTable();
 
     XGradientEntry* Replace(long nIndex, XGradientEntry* pEntry );
@@ -596,11 +573,11 @@ public:
 
 class XBitmapTable : public XPropertyTable
 {
-public:
                     XBitmapTable( const String& rPath,
                                     XOutdevItemPool* pXPool = NULL,
                                     USHORT nInitSize = 16,
                                     USHORT nReSize = 16 );
+public:
     virtual         ~XBitmapTable();
 
     XBitmapEntry*   Replace(long nIndex, XBitmapEntry* pEntry );
