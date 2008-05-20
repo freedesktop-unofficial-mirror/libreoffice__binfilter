@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: chartarr.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -142,10 +142,6 @@ private:
     void        CreatePositionMap();
 
 public:
-    ScChartArray( ScDocument* pDoc, USHORT nTab,
-                    USHORT nStartCol, USHORT nStartRow,
-                    USHORT nEndCol, USHORT nEndRow,
-                    const String& rChartName );
     ScChartArray( ScDocument* pDoc, const ScRangeListRef& rRangeList,
                     const String& rChartName );
     ScChartArray( const ScChartArray& rArr );
