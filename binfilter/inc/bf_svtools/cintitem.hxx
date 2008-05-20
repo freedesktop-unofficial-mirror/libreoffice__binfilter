@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cintitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,8 +53,6 @@ public:
 
     CntByteItem(USHORT which = 0, BYTE nTheValue = 0):
         SfxPoolItem(which), m_nValue(nTheValue) { DBG_CTOR(CntByteItem, 0); }
-
-    CntByteItem(USHORT which, SvStream & rStream);
 
     CntByteItem(const CntByteItem & rItem):
         SfxPoolItem(rItem), m_nValue(rItem.m_nValue)
