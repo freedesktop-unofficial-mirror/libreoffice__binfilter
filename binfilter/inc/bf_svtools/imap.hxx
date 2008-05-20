@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: imap.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,29 +69,11 @@ protected:
     void                ImpWriteImageMap( SvStream& rOStm, const String& ) const ;
     void                ImpReadImageMap( SvStream& rIStm, USHORT nCount, const String& );
 
-    // Im-/Export
-    void                ImpWriteCERN( SvStream& rOStm, const String& rBaseURL ) const;
-    void                ImpWriteNCSA( SvStream& rOStm, const String& rBaseURL ) const;
-    ULONG               ImpReadCERN( SvStream& rOStm, const String& rBaseURL );
-    ULONG               ImpReadNCSA( SvStream& rOStm, const String& rBaseURL );
-
-    void                ImpReadCERNLine( const ByteString& rLine, const String& rBaseURL );
-    Point               ImpReadCERNCoords( const char** ppStr );
-    long                ImpReadCERNRadius( const char** ppStr );
-    String              ImpReadCERNURL( const char** ppStr, const String& rBaseURL );
-
-    void                ImpReadNCSALine( const ByteString& rLine, const String& rBaseURL );
-    String              ImpReadNCSAURL( const char** ppStr, const String& rBaseURL );
-    Point               ImpReadNCSACoords( const char** ppStr );
-
-    ULONG               ImpDetectFormat( SvStream& rIStm );
-
 public:
 
     TYPEINFO();
 
                         ImageMap() {};
-                        ImageMap( const String& rName );
                         ImageMap( const ImageMap& rImageMap );
 
                         // Der Dtor gibt den intern belegten
@@ -117,17 +99,6 @@ public:
     IMapObject*         GetPrevIMapObject() { return (IMapObject*) maList.Prev(); }
     IMapObject*         GetIMapObject( USHORT nPos ) const { return (IMapObject*) maList.GetObject( nPos ); }
 
-    // Gibt das Objekt zurueck, das zuerst getroffen wurde oder NULL;
-    // Groessen- und Positionsangaben sind in 1/100mm;
-    // rTotalSize ist die Originalgroesse des Bildes;
-    // rDisplaySize die aktuelle Darstellungsgroesse;
-    // rRelPoint bezieht sich auf die Darstellungsgroesse
-    // und die linke oebere Ecke des Bildes
-    IMapObject*         GetHitIMapObject( const Size& rOriginalSize,
-                                          const Size& rDisplaySize,
-                                          const Point& rRelHitPoint,
-                                          ULONG nFlags = 0 );
-
     // Gibt die Gesamtanzahl der IMap-Objekte zurueck
     UINT16              GetIMapObjectCount() const { return (UINT16) maList.Count(); }
 
@@ -141,18 +112,12 @@ public:
     const String&       GetName() const { return aName; }
     void                SetName( const String& rName ) { aName = rName; }
 
-    // gibt das BoundRect aller IMap-Objekte in 1/100mm zurueck
-    Rectangle           GetBoundRect() const;
-
     // skaliert alle Objekte der ImageMap entpr. dem uebergebenen Faktor
     void                Scale( const Fraction& rFractX, const Fraction& rFracY );
 
     // Im-/Export
     void                Write ( SvStream& rOStm, const String& rBaseURL ) const;
     void                Read( SvStream& rIStm, const String& rBaseURL );
-
-    void                Write( SvStream& rOStm, ULONG nFormat, const String& rBaseURL ) const;
-    ULONG               Read( SvStream& rIStm, ULONG nFormat, const String& rBaseURL );
 };
 
 class IMapCompat
