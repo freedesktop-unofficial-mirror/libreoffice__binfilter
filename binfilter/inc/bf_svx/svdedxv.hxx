@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdedxv.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -127,7 +127,6 @@ protected:
 
 public:
     SdrObjEditView(SdrModel* pModel1, OutputDevice* pOut=NULL);
-    SdrObjEditView(SdrModel* pModel1, ExtOutputDevice* pXOut);
     virtual ~SdrObjEditView();
 
     // Actionhandling fuer Macromodus
@@ -168,23 +167,6 @@ public:
     // der besagt, dass das Objekt geloescht werden sollte.
     SdrEndTextEditKind EndTextEdit(BOOL bDontDeleteReally=FALSE);
     BOOL IsTextEdit() const { return pTextEditObj!=NULL; }
-
-    // TRUE=Es wird ein Textrahmen (OBJ_TEXT,OBJ_OUTLINETEXT,...) editiert
-    // ansonsten handelt es sich um ein beschriftetes Zeichenobjekt, an dem
-    // der Text ja bekanntlich hor. und vert. zentriert wird.
-
-    // Diese Methode liefert TRUE, wenn der Punkt rHit innerhalb der
-    // des Objektbereichs oder der OutlinerView liegt.
-    BOOL IsTextEditHit(const Point& rHit, short nTol) const;
-
-    // Diese Methode liefert TRUE, wenn der Punkt rHit innerhalb des
-    // Handle-dicken Rahmens liegt, der die OutlinerView bei TextFrames
-    // umschliesst.
-    BOOL IsTextEditFrameHit(const Point& rHit) const;
-
-    // Bei aktiver Selektion, also zwischen MouseButtonDown und
-    // MouseButtonUp liefert diese Methode immer TRUE.
-    BOOL IsTextEditInSelectionMode() const;
 
     // Folgende Methode addiert einen passenden Offset zum MouseEvent
     // um diesen an den Outliner weiterzureichen.
