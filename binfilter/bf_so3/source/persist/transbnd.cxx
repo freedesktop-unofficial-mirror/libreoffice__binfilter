@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: transbnd.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -28,7 +28,7 @@
  *
  ************************************************************************/
 
-#define _TRANSBND_CXX "$Revision: 1.4 $"
+#define _TRANSBND_CXX "$Revision: 1.5 $"
 
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -126,147 +126,12 @@ namespace binfilter {
 
 /*========================================================================
  *
- * SvBindingCancelable_Impl.
- *
- *======================================================================*/
-class SvBindingCancelable_Impl : public SfxCancellable
-{
-    SvBinding &m_rBinding;
-
-public:
-    SvBindingCancelable_Impl (
-        SfxCancelManager *pMgr, SvBinding &rBinding);
-
-    virtual void Cancel (void);
-};
-
-SvBindingCancelable_Impl::SvBindingCancelable_Impl (
-    SfxCancelManager *pMgr, SvBinding &rBinding)
-    : SfxCancellable (pMgr, String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "dummy") ) ),
-      m_rBinding     (rBinding)
-{
-}
-
-/*
- * Cancel.
- */
-void SvBindingCancelable_Impl::Cancel (void)
-{
-    m_rBinding.Abort();
-}
-
-class SvBindingCookieRequest_Impl
-{
-    /** Representation.
-    */
-    Reference<XContent> m_xContent;
-
-public:
-    SvBindingCookieRequest_Impl (const String &rUrl);
-    virtual ~SvBindingCookieRequest_Impl (void);
-
-    String GetCookie (void);
-    void   SetCookie (const String &rCookieField);
-};
-
-/*
- * SvBindingCookieRequest_Impl.
- */
-SvBindingCookieRequest_Impl::SvBindingCookieRequest_Impl (const String &rUrl)
-    : m_xContent (NULL)
-{
-    if (BAPP()->HasHttpCache())
-    {
-        String aDocUrl (String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "private:httpcache#" ) ));
-        aDocUrl += rUrl;
-
-        m_xContent = SvBindingTransport_Impl::createContent (aDocUrl);
-    }
-}
-
-/*
- * ~SvBindingCookieRequest_Impl.
- */
-SvBindingCookieRequest_Impl::~SvBindingCookieRequest_Impl (void)
-{
-}
-
-/*
- * GetCookie.
- */
-String SvBindingCookieRequest_Impl::GetCookie (void)
-{
-    String aCookie;
-
-    Reference<XCommandProcessor> xProcessor (m_xContent, UNO_QUERY);
-    if (xProcessor.is())
-    {
-        rtl::OUString aName (String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Cookie" ) ) );
-        Sequence<Property> aProps(1);
-
-        aProps[0].Name = aName;
-        aProps[0].Handle = -1;
-
-        Any aAny = SvBindingTransport_Impl::getProperties (xProcessor, aProps);
-        Reference< XRow > xValues;
-        if ( aAny >>= xValues )
-        {
-            Any aValue = xValues->getObject( 1, Reference< XNameAccess>() );
-            rtl::OUString aResult;
-            if ( aValue >>= aResult )
-                aCookie = aResult;
-        }
-    }
-    return aCookie;
-}
-
-/*
- * SetCookie.
- */
-void SvBindingCookieRequest_Impl::SetCookie (const String &rCookieField)
-{
-    Reference<XCommandProcessor> xProcessor (m_xContent, UNO_QUERY);
-    if (xProcessor.is())
-    {
-        Sequence<PropertyValue> aProps(1);
-
-        aProps[0].Name = String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Cookie" ) );
-        aProps[0].Handle = -1;
-        aProps[0].Value <<= rtl::OUString( rCookieField );
-
-        SvBindingTransport_Impl::setProperties (xProcessor, aProps);
-    }
-}
-
-/*========================================================================
- *
  * SvBinding implementation.
  *
  *======================================================================*/
 /*
  * SvBinding.
  */
-SvBinding::SvBinding (
-    const String         &rUrl,
-    SvBindMode            eBindMode,
-    StreamMode            eStrmMode,
-    SvBindStatusCallback *pCallback)
-    : m_aUrlObj     (rUrl),
-      m_xCallback   (pCallback),
-      m_pTransport  (NULL),
-      m_pCancelable (NULL),
-      m_eErrCode    (ERRCODE_NONE),
-      m_aExpires    (0, 0),
-      m_xLockBytes  (NULL),
-      m_bStarted    (FALSE),
-      m_bComplete   (FALSE),
-      m_bErrorDoc   (FALSE),
-      m_bMimeAvail  (FALSE)
-{
-    m_aBindCtx.SetBindMode   (eBindMode);
-    m_aBindCtx.SetStreamMode (eStrmMode);
-}
-
 /*
  * ~SvBinding.
  */
@@ -274,185 +139,6 @@ SvBinding::~SvBinding (void)
 {
     delete m_pTransport;
     delete m_pCancelable;
-}
-
-/*
- * Start.
- */
-void SvBinding::StartTransport (void)
-{
-    if (!m_bStarted)
-    {
-        // Cleanup current transport and mark started.
-        DELETEZ (m_pTransport);
-        m_bStarted = TRUE;
-
-        // Create transport.
-        m_pTransport = SvBindingTransport::CreateTransport (
-            m_aUrlObj.GetMainURL( INetURLObject::DECODE_TO_IURI ), m_aBindCtx, this);
-        if (m_pTransport)
-            m_pTransport->Start();
-        else
-            OnError (ERRCODE_IO_NOTSUPPORTED);
-    }
-}
-
-/*
- * SetCancelManager.
- */
-void SvBinding::SetCancelManager (SfxCancelManager *pMgr)
-{
-    DELETEZ (m_pCancelable);
-    if (pMgr)
-        m_pCancelable = new SvBindingCancelable_Impl (pMgr, *this);
-}
-
-/*
- * Abort.
- */
-void SvBinding::Abort (void)
-{
-    m_eErrCode = ERRCODE_IO_ABORT;
-
-    if (m_pTransport)
-        m_pTransport->Abort();
-
-    DELETEZ (m_pTransport);
-    DELETEZ (m_pCancelable);
-
-    m_xCallback.Clear();
-}
-
-/*
- * Suspend.
- */
-void SvBinding::Suspend (void)
-{
-    DBG_WARNING ("SvBinding::Suspend(): not implemented");
-}
-
-/*
- * Resume.
- */
-void SvBinding::Resume (void)
-{
-    DBG_WARNING ("SvBinding::Resume(): not implemented");
-}
-
-/*
- * GetMimeType.
- */
-ErrCode SvBinding::GetMimeType (String &rMime)
-{
-    if (!m_bStarted)
-    {
-        // Initialize context.
-        if (m_aBindCtx.GetPostLockBytes() != NULL)
-            m_aBindCtx.SetBindAction (BINDACTION_POST);
-        else
-            m_aBindCtx.SetBindAction (BINDACTION_GET);
-
-        // Start transport.
-        StartTransport();
-    }
-
-    while (!m_bMimeAvail && !m_eErrCode)
-    {
-        if (m_aBindCtx.GetBindMode() & SVBIND_ASYNC)
-            return ERRCODE_IO_PENDING;
-        else
-            Application::Yield();
-    }
-
-    if (m_bMimeAvail)
-    {
-        rMime = m_aMime;
-        m_eErrCode = ERRCODE_NONE;
-    }
-    return m_eErrCode;
-}
-
-/*
- * GetStream.
- */
-ErrCode SvBinding::GetStream (SvStream *&rpStrm)
-{
-    SvLockBytesRef xLockBytes;
-
-    ErrCode eErrCode = GetLockBytes (xLockBytes);
-    if (eErrCode == ERRCODE_NONE)
-        rpStrm = new SvStream (xLockBytes);
-    else
-        rpStrm = NULL;
-
-    return eErrCode;
-}
-
-/*
- * GetLockBytes.
- */
-ErrCode SvBinding::GetLockBytes (SvLockBytesRef &rxLockBytes)
-{
-    if (!m_bStarted)
-    {
-        // Initialize context.
-        if (m_aBindCtx.GetPostLockBytes() != NULL)
-            m_aBindCtx.SetBindAction (BINDACTION_POST);
-        else
-            m_aBindCtx.SetBindAction (BINDACTION_GET);
-
-        // Start transport.
-        StartTransport();
-    }
-
-    while (!m_xLockBytes.Is() && !m_eErrCode)
-    {
-        if (m_aBindCtx.GetBindMode() & SVBIND_ASYNC)
-            return ERRCODE_IO_PENDING;
-        else
-            Application::Yield();
-    }
-
-    if (m_xLockBytes.Is())
-    {
-        rxLockBytes = m_xLockBytes;
-        m_eErrCode = ERRCODE_NONE;
-    }
-    return m_eErrCode;
-}
-
-/*
- * PutStream.
- */
-ErrCode SvBinding::PutStream (SvStream *pStrm)
-{
-    SvLockBytesRef xLockBytes (new SvLockBytes (pStrm));
-    return PutLockBytes (xLockBytes);
-}
-
-/*
- * PutLockBytes.
- */
-ErrCode SvBinding::PutLockBytes (SvLockBytesRef &rxLockBytes)
-{
-    if (!m_bStarted)
-    {
-        // Initialize context.
-        m_aBindCtx.SetPostLockBytes (rxLockBytes);
-        m_aBindCtx.SetBindAction (BINDACTION_PUT);
-
-        // Start transport.
-        StartTransport();
-    }
-
-    while (!m_bComplete && !m_eErrCode)
-    {
-        if (m_aBindCtx.GetBindMode() & SVBIND_ASYNC)
-            return ERRCODE_IO_PENDING;
-        else
-            Application::Yield();
-    }
-    return m_eErrCode;
 }
 
 /*
@@ -591,79 +277,11 @@ void SvBinding::OnRedirect (const String &rUrl)
 }
 
 /*
- * GetCookie.
- */
-String SvBinding::GetCookie (void) const
-{
-    INetProtocol eProto = m_aUrlObj.GetProtocol();
-    if ((eProto == INET_PROT_HTTP) || (eProto == INET_PROT_HTTPS))
-    {
-        // Get Cookie(s).
-        SvBindingCookieRequest_Impl aRequest(m_aUrlObj.GetMainURL(INetURLObject::DECODE_TO_IURI));
-        return aRequest.GetCookie();
-    }
-    else
-    {
-        // Not supported.
-        return String();
-    }
-}
-
-/*
- * SetCookie.
- */
-void SvBinding::SetCookie (const String &rCookieField)
-{
-    INetProtocol eProto = m_aUrlObj.GetProtocol();
-    if ((eProto == INET_PROT_HTTP) || (eProto == INET_PROT_HTTPS))
-    {
-        // Set Cookie.
-        SvBindingCookieRequest_Impl aRequest(m_aUrlObj.GetMainURL(INetURLObject::DECODE_TO_IURI));
-        aRequest.SetCookie (rCookieField);
-    }
-}
-
-/*
- * GetHeaders.
- */
-SvKeyValueIteratorRef SvBinding::GetHeaders (void) const
-{
-    if (m_xHeadIter.Is())
-        return SvKeyValueIteratorRef(m_xHeadIter);
-    else
-        return SvKeyValueIteratorRef(new SvKeyValueIterator);
-}
-
-/*
- * SetHeaders.
- */
-void SvBinding::SetHeaders (SvKeyValueIteratorRef & )
-{
-}
-
-/*
  * ShouldUseFtpProxy.
  */
 BOOL SvBinding::ShouldUseFtpProxy (const String &rUrl)
 {
     return BAPP()->ShouldUseFtpProxy (rUrl);
-}
-
-/*========================================================================
- *
- * SvBindStatusCallback implementation.
- *
- *======================================================================*/
-/*
- * SvBindStatusCallback.
- */
-SvBindStatusCallback::SvBindStatusCallback (void)
-    : m_bInAvailableCall (FALSE),
-      m_bDonePending     (FALSE),
-      m_bDataPending     (FALSE),
-      m_bReloadPending   (FALSE),
-      m_bPartPending     (FALSE)
-{
 }
 
 /*
@@ -860,78 +478,5 @@ void SvKeyValueIterator::Append (const SvKeyValue &rKeyVal)
     SvKeyValue *pKeyVal = new SvKeyValue (rKeyVal);
     m_pList->C40_INSERT(SvKeyValue, pKeyVal, m_pList->Count());
 }
-
-/*========================================================================
- *
- * SvRemoteStream implementation.
- *
- *======================================================================*/
-/*
- * SvRemoteStream.
- */
-SvRemoteStream::SvRemoteStream (const String &rUrl, StreamMode eMode)
-    : m_aUrl  (rUrl),
-      m_eMode (eMode)
-{
-    SvStream::bIsWritable = (m_eMode & STREAM_WRITE) != 0;
-
-    m_xBinding = new SvBinding (
-        m_aUrl, 0, m_eMode, new SvBindStatusCallback);
-
-    SvLockBytesRef xLockBytes_;
-    SetError (m_xBinding->GetLockBytes (xLockBytes_));
-    SetLockBytes (xLockBytes_);
-}
-
-/*
- * ~SvRemoteStream.
- */
-SvRemoteStream::~SvRemoteStream (void)
-{
-    m_xBinding->Abort();
-}
-
-/*
- * SetDataAvailableLink.
- */
-void SvRemoteStream::SetDataAvailableLink (const Link &rLink)
-{
-    if (m_xBinding->GetCallback())
-        m_xBinding->GetCallback()->SetDataAvailableLink (rLink);
-}
-
-/*
- * SetDoneLink.
- */
-void SvRemoteStream::SetDoneLink (const Link &rLink)
-{
-    if (m_xBinding->GetCallback())
-        m_xBinding->GetCallback()->SetDoneLink (rLink);
-}
-
-/*
- * Commit.
- */
-ErrCode SvRemoteStream::Commit (void)
-{
-    ErrCode eErrCode = ERRCODE_IO_INVALIDACCESS;
-    DBG_ASSERT(
-        m_xBinding->IsComplete(),
-        "SvRemoteStream::Commit(): Binding not yet complete");
-
-    if (m_xBinding->IsComplete())
-    {
-        m_xBinding = new SvBinding (
-            m_aUrl, 0, m_eMode, new SvBindStatusCallback);
-
-        SvLockBytesRef xLockBytes_ (GetLockBytes());
-        eErrCode = m_xBinding->PutLockBytes (xLockBytes_);
-    }
-
-    SetError (eErrCode);
-    return eErrCode;
-}
-
-
 
 }
