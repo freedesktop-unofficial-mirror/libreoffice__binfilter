@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_cacheoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,17 +113,7 @@ public:
 //  public interface
 //---------------------------------------------------------------------------------------------------------
 
-    sal_Int32       GetWriterOLE_Objects() const;
     sal_Int32       GetDrawingEngineOLE_Objects() const;
-    sal_Int32       GetGraphicManagerTotalCacheSize() const;
-    sal_Int32       GetGraphicManagerObjectCacheSize() const;
-    sal_Int32       GetGraphicManagerObjectReleaseTime() const;
-
-    void            SetWriterOLE_Objects( sal_Int32 nObjects );
-    void            SetDrawingEngineOLE_Objects( sal_Int32 nObjects );
-    void            SetGraphicManagerTotalCacheSize( sal_Int32 nTotalCacheSize );
-    void            SetGraphicManagerObjectCacheSize( sal_Int32 nObjectCacheSize );
-    void            SetGraphicManagerObjectReleaseTime( sal_Int32 nReleaseTimeSeconds );
 
 //-------------------------------------------------------------------------------------------------------------
 //  private methods
@@ -264,86 +254,9 @@ void SvtCacheOptions_Impl::Commit()
 //*****************************************************************************************************************
 //  public method
 //*****************************************************************************************************************
-sal_Int32 SvtCacheOptions_Impl::GetWriterOLE_Objects() const
-{
-    return mnWriterOLE;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
 sal_Int32 SvtCacheOptions_Impl::GetDrawingEngineOLE_Objects() const
 {
     return mnDrawingOLE;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions_Impl::GetGraphicManagerTotalCacheSize() const
-{
-    return mnGrfMgrTotalSize;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions_Impl::GetGraphicManagerObjectCacheSize() const
-{
-    return mnGrfMgrObjectSize;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions_Impl::GetGraphicManagerObjectReleaseTime() const
-{
-    return mnGrfMgrObjectRelease;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions_Impl::SetWriterOLE_Objects( sal_Int32 nWriterOLE )
-{
-    mnWriterOLE = nWriterOLE;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions_Impl::SetDrawingEngineOLE_Objects( sal_Int32 nDrawingOLE )
-{
-    mnDrawingOLE = nDrawingOLE;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions_Impl::SetGraphicManagerTotalCacheSize( sal_Int32 nGrfMgrTotalSize )
-{
-    mnGrfMgrTotalSize = nGrfMgrTotalSize;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions_Impl::SetGraphicManagerObjectCacheSize( sal_Int32 nGrfMgrObjectSize )
-{
-    mnGrfMgrObjectSize = nGrfMgrObjectSize;
-    SetModified();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions_Impl::SetGraphicManagerObjectReleaseTime( sal_Int32 nGrfMgrObjectReleaseTime )
-{
-    mnGrfMgrObjectRelease = nGrfMgrObjectReleaseTime;
-    SetModified();
 }
 
 //*****************************************************************************************************************
@@ -411,91 +324,10 @@ SvtCacheOptions::~SvtCacheOptions()
 //*****************************************************************************************************************
 //  public method
 //*****************************************************************************************************************
-sal_Int32 SvtCacheOptions::GetWriterOLE_Objects() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetWriterOLE_Objects();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
 sal_Int32 SvtCacheOptions::GetDrawingEngineOLE_Objects() const
 {
     MutexGuard aGuard( GetOwnStaticMutex() );
     return m_pDataContainer->GetDrawingEngineOLE_Objects();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions::GetGraphicManagerTotalCacheSize() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetGraphicManagerTotalCacheSize();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions::GetGraphicManagerObjectCacheSize() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetGraphicManagerObjectCacheSize();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Int32 SvtCacheOptions::GetGraphicManagerObjectReleaseTime() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetGraphicManagerObjectReleaseTime();
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions::SetWriterOLE_Objects( sal_Int32 nWriterOLE )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetWriterOLE_Objects( nWriterOLE );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions::SetDrawingEngineOLE_Objects( sal_Int32 nDrawingOLE )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetDrawingEngineOLE_Objects( nDrawingOLE );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions::SetGraphicManagerTotalCacheSize( sal_Int32 nGrfMgrTotalSize )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetGraphicManagerTotalCacheSize( nGrfMgrTotalSize );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions::SetGraphicManagerObjectCacheSize( sal_Int32 nGrfMgrObjectSize )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetGraphicManagerObjectCacheSize( nGrfMgrObjectSize );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCacheOptions::SetGraphicManagerObjectReleaseTime( sal_Int32 nGrfMgrObjectReleaseTime )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->SetGraphicManagerObjectReleaseTime( nGrfMgrObjectReleaseTime );
 }
 
 //*****************************************************************************************************************
