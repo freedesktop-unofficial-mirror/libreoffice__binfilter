@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docfac.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -108,7 +108,6 @@ public:
     SfxObjectShellFlags GetFlags() { return nFlags; }
     USHORT          GetOrdinal() const { return nId; }
     const char*     GetShortName() const { return pShortName; }
-    String          GetModuleName() const;
     void            RegisterMenuBar( const ResId &rId );
     void            RegisterPluginMenuBar( const ResId &rId );
     void            RegisterAccel( const ResId &rId );
@@ -121,8 +120,6 @@ public:
     void            RegisterHelpPIFile( const String& );
     SfxFactoryFilterContainer *GetFilterContainer( BOOL bForceLoad = TRUE) const;
 
-    void            SetCreateNewSlotId( USHORT nId );
-    USHORT          GetCreateNewSlotId() const;
     // Views
     void            RegisterViewFactory(SfxViewFactory &rFactory);
     USHORT          GetViewFactoryCount() const;
@@ -131,32 +128,18 @@ public:
     // Filter
     void            RegisterInitFactory( SfxVoidFunc pFunc );
     void            DoInitFactory();
-    void            RegisterFilter( const String &rName,
-                                    const String &rWildcard,
-                                    SfxFilterFlags nFlags,
-                                    ULONG lFormat,
-                                    const String &rMacType,
-                                    const String &rTypeName,
-                                    USHORT nIconId,
-                                    const String &rMimeType,
-                                    const String &rUserData);
+
     USHORT           GetFilterCount() const;
     const SfxFilter* GetFilter(USHORT i) const;
-    const SfxFilter* GetTemplateFilter() const;
 
     static const SfxObjectFactory*  GetFactory( const String& rFactoryURL );
-    const String&               GetStandardTemplate() const;
-    static void                 SetStandardTemplate( const String& rFactoryURL, const String& rTemplateName );
 
-    void                    SetDocumentServiceName( const ::rtl::OUString& rServiceName );
+        void                                    SetDocumentServiceName( const ::rtl::OUString& rServiceName );
     const ::rtl::OUString&  GetDocumentServiceName() const;
 
     DECL_LINK( InitFactoryHdl, void* );
 
-    SfxModule*                  GetModule() const;
-
     static const SfxObjectFactory&     GetDefaultFactory();
-    static BOOL                        HasObjectFactories();
 
 #if _SOLAR__PRIVATE
     static void                        RemoveAll_Impl();
@@ -683,9 +666,7 @@ extern "C"
 //--------------------------------------------------------------------
 
 #define SFX_FILTER_REGISTRATION(aName, aWild, ePurpose, lClipboardFormat, \
-    pMacType, pOS2Type, nOS2DocIcon, pUserData) \
-    ((SfxObjectFactory&)Factory()).RegisterFilter( \
-        aName, aWild, ePurpose, lClipboardFormat, pMacType, pOS2Type, nOS2DocIcon, String(), pUserData )
+    pMacType, pOS2Type, nOS2DocIcon, pUserData)
 
 // Den eigenen Filter Registrieren und DetectFilter setzen.
 #define SFX_OWN_FILTER_REGISTRATION(                                    \
@@ -694,10 +675,6 @@ extern "C"
     pMacType, pOS2Type, nOS2DocIcon, aMimeType, pUserData)              \
     {                                                                   \
         SfxObjectFactory& rFact = (SfxObjectFactory&)Factory();         \
-        rFact.RegisterFilter(                                           \
-                aName, aWild, ePurpose, lClipboardFormat, pMacType,     \
-                pOS2Type, nOS2DocIcon, aMimeType, pUserData );          \
-        rFact.GetFilterContainer()->SetDetectFilter( pDetectFilter );   \
      }
 
 // Einen Filter registrieren. Fuer nicht-Ini Factories ( z.B. Plugins )
@@ -707,9 +684,6 @@ extern "C"
     pMacType, pOS2Type, nOS2DocIcon, aMimeType, pUserData)          \
     {                                                               \
         SfxObjectFactory& rFact = (SfxObjectFactory&)Factory();     \
-         rFact.RegisterFilter(                                      \
-                aName, aWild, ePurpose, lClipboardFormat, pMacType, \
-                pOS2Type, nOS2DocIcon, aMimeType, pUserData );      \
     }
 
 // Fuer jede Applikation eine
