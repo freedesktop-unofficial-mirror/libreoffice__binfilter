@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ilstitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -55,7 +55,6 @@ public:
     TYPEINFO();
 
     SfxIntegerListItem();
-    SfxIntegerListItem( USHORT nWhich, const SvULongs& rList );
     SfxIntegerListItem( const SfxIntegerListItem& rItem );
     ~SfxIntegerListItem();
 
@@ -63,8 +62,6 @@ public:
     { return m_aList; }
     ::com::sun::star::uno::Sequence < sal_Int32 > GetConstSequence() const
     { return SAL_CONST_CAST(SfxIntegerListItem *, this)->GetSequence(); }
-
-    void                    GetList( SvULongs& rList ) const;
 
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
