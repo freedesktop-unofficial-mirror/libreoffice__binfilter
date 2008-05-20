@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_inetoptions.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -156,12 +156,6 @@ public:
 
     void
     addPropertiesChangeListener(
-        star::uno::Sequence< rtl::OUString > const & rPropertyNames,
-        star::uno::Reference< star::beans::XPropertiesChangeListener > const &
-            rListener);
-
-    void
-    removePropertiesChangeListener(
         star::uno::Sequence< rtl::OUString > const & rPropertyNames,
         star::uno::Reference< star::beans::XPropertiesChangeListener > const &
             rListener);
@@ -425,24 +419,6 @@ SvtInetOptions::Impl::addPropertiesChangeListener(
 }
 
 //============================================================================
-void
-SvtInetOptions::Impl::removePropertiesChangeListener(
-    star::uno::Sequence< rtl::OUString > const & rPropertyNames,
-    star::uno::Reference< star::beans::XPropertiesChangeListener > const &
-        rListener)
-{
-    osl::MutexGuard aGuard(m_aMutex);
-    Map::iterator aIt(m_aListeners.find(rListener));
-    if (aIt != m_aListeners.end())
-    {
-        for (sal_Int32 i = 0; i < rPropertyNames.getLength(); ++i)
-            aIt->second.erase(rPropertyNames[i]);
-        if (aIt->second.empty())
-            m_aListeners.erase(aIt);
-    }
-}
-
-//============================================================================
 //
 //  SvtInetOptions
 //
@@ -576,12 +552,6 @@ void SvtInetOptions::SetProxyHttpPort(sal_Int32 nValue, bool bFlush)
 }
 
 //============================================================================
-void SvtInetOptions::flush()
-{
-    m_pImpl->flush();
-}
-
-//============================================================================
 void
 SvtInetOptions::addPropertiesChangeListener(
     star::uno::Sequence< rtl::OUString > const & rPropertyNames,
@@ -589,16 +559,6 @@ SvtInetOptions::addPropertiesChangeListener(
         rListener)
 {
     m_pImpl->addPropertiesChangeListener(rPropertyNames, rListener);
-}
-
-//============================================================================
-void
-SvtInetOptions::removePropertiesChangeListener(
-    star::uno::Sequence< rtl::OUString > const & rPropertyNames,
-    star::uno::Reference< star::beans::XPropertiesChangeListener > const &
-        rListener)
-{
-    m_pImpl->removePropertiesChangeListener(rPropertyNames, rListener);
 }
 
 }
