@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: docinf.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -57,8 +57,6 @@ friend class SfxDocumentInfo;
 
     String      aTitle;
     String      aWord;
-
-    void        AdjustTitle_Impl();
 
 public:
     SfxDocUserKey() {}
@@ -144,11 +142,8 @@ public:
     virtual ~SfxDocumentInfo();
 
     int operator==( const SfxDocumentInfo& ) const;
-    const SfxDocumentInfo& CopyUserData( const SfxDocumentInfo& rSource );
 
     BOOL Load( SvStorage* );
-    ErrCode Load(const String&);
-    ULONG LoadPropertySet( SvStorage* );
     BOOL Save( SvStorage* ) const;
     BOOL SavePropertySet( SvStorage* ) const;
 
@@ -241,15 +236,10 @@ public:
     String GetNewsgroups() const;
     void SetNewsgroups( const String& rStr );
     String GetSpecialMimeType() const;
-    void SetSpecialMimeType( const String& rStr );
     USHORT GetPriority() const;
     void SetPriority( USHORT nPrio );
     BOOL IsUseUserData() const;
     void SetUseUserData( BOOL bNew );
-
-    void    DeleteUserData( BOOL bUseAuthor );
-
-    void Clear();
 };
 
 DECL_PTRHINT(/*empty*/, SfxDocumentInfoHint, SfxDocumentInfo);
