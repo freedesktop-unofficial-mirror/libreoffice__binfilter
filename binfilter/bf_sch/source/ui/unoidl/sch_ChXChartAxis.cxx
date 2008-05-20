@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_ChXChartAxis.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -138,15 +138,6 @@ const uno::Sequence< sal_Int8 > & ChXChartAxis::getUnoTunnelId() throw()
         }
     }
     return *pSeq;
-}
-
-ChXChartAxis* ChXChartAxis::getImplementation( uno::Reference< uno::XInterface > xData ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xData, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (ChXChartAxis*)xUT->getSomething( ChXChartAxis::getUnoTunnelId() );
-    else
-        return NULL;
 }
 
 void ChXChartAxis::InitNumberFormatter() throw( uno::RuntimeException )
