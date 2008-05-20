@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: polygn3d.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,8 +63,6 @@ public:
         BOOL bLinOnly=FALSE);
     E3dPolygonObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D& rPoly3D,
         const PolyPolygon3D& rVector3D, BOOL bLinOnly=FALSE);
-    E3dPolygonObj(E3dDefaultAttributes& rDefault, const PolyPolygon3D& rPoly3D,
-        const PolyPolygon3D& rVector3D, const PolyPolygon3D& rNormal3D, BOOL bLinOnly=FALSE);
     E3dPolygonObj(E3dDefaultAttributes& rDefault, const Vector3D& rP1,
         const Vector3D& rP2, BOOL bLinOnly=TRUE);
 
