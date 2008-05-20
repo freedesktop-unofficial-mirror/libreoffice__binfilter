@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_listener.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -139,8 +139,6 @@ void SvtListener::EndListeningAll()
     }
     pBrdCastLst = 0;
 }
-
-//--------------------------------------------------------------------
 
 BOOL SvtListener::IsListening( SvtBroadcaster& rBroadcaster ) const
 {
