@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unoobj2.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,9 +69,6 @@
 #endif
 #ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _SWUNDO_HXX //autogen
-#include <swundo.hxx>
 #endif
 #ifndef _ROOTFRM_HXX //autogen
 #include <rootfrm.hxx>
@@ -983,8 +980,6 @@ void SwXTextCursor::SetCrsrAttr(SwPaM& rPam, const SfxItemSet& rSet, USHORT nAtt
     SwPaM* pCrsr = &rPam;
     if( pCrsr->GetNext() != pCrsr )     // Ring von Cursorn
     {
-        pDoc->StartUndo(UNDO_INSATTR);
-
         SwPaM *_pStartCrsr = &rPam;
         do
         {
@@ -993,7 +988,6 @@ void SwXTextCursor::SetCrsrAttr(SwPaM& rPam, const SfxItemSet& rSet, USHORT nAtt
                 pDoc->Insert(*_pStartCrsr, rSet, nFlags );
         } while( (_pStartCrsr=(SwPaM *)_pStartCrsr->GetNext()) != &rPam );
 
-        pDoc->EndUndo(UNDO_INSATTR);
     }
     else
     {
@@ -1473,7 +1467,6 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
         }
 
         UnoActionContext aAction(aNewCrsr.GetDoc());
-        pDoc->StartUndo(UNDO_INSERT);
         if(aNewCrsr.HasMark())
             pDoc->DeleteAndJoin(aNewCrsr);
 
@@ -1487,7 +1480,6 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
             aNewCrsr.Left(rText.Len(), CRSR_SKIP_CHARS);
         }
         _CreateNewBookmark(aNewCrsr);
-        pDoc->EndUndo(UNDO_INSERT);
     }
 
 }
@@ -2406,7 +2398,6 @@ void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
     UnoActionContext aAction(pDoc);
     String aText(rString);
     xub_StrLen nTxtLen = aText.Len();
-    pDoc->StartUndo(UNDO_INSERT);
     if(rCrsr.HasMark())
         pDoc->DeleteAndJoin(rCrsr);
     if(nTxtLen)
@@ -2419,7 +2410,6 @@ void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
         SwXTextCursor::SelectPam(rCrsr, sal_True);
         rCrsr.Left(nTxtLen, CRSR_SKIP_CHARS);
     }
-    pDoc->EndUndo(UNDO_INSERT);
 }
 /******************************************************************
  * SwXParaFrameEnumeration
