@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swcomlib.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,10 +69,6 @@ SwDLL::SwDLL()
 }
 
 SwDLL::~SwDLL()
-{
-}
-//-------------------------------------------------------------------------
-void    SwDLL::PreExit()
 {
 }
 
@@ -267,45 +263,6 @@ ULONG SwDLL::GlobDetectFilter( SfxMedium& rMedium, const SfxFilter **ppFilter,
     }
 
     return nRet;
-}
-
-//-------------------------------------------------------------------------
-
-SvGlobalName SwModuleDummy::GetID(USHORT nFileFormat)
-{
-    SvGlobalName aName;
-    switch ( nFileFormat )
-    {
-        case SOFFICE_FILEFORMAT_31:
-            aName = SvGlobalName( BF_SO3_SW_CLASSID_30 );
-        break;
-        case SOFFICE_FILEFORMAT_40:
-            aName = SvGlobalName( BF_SO3_SW_CLASSID_40 );
-        break;
-        case SOFFICE_FILEFORMAT_50:
-            aName = SvGlobalName( BF_SO3_SW_CLASSID_50 );
-        break;
-        case SOFFICE_FILEFORMAT_60:
-            aName = SvGlobalName( BF_SO3_SW_CLASSID_60 );
-        break;
-    }
-    return aName;
-}
-
-USHORT       SwModuleDummy::HasID(const SvGlobalName& rName)
-{
-    if (GetID(SOFFICE_FILEFORMAT_31) == rName)
-        return SOFFICE_FILEFORMAT_31;
-
-    if (GetID(SOFFICE_FILEFORMAT_40) == rName)
-        return SOFFICE_FILEFORMAT_40;
-
-    if (GetID(SOFFICE_FILEFORMAT_50) == rName)
-        return SOFFICE_FILEFORMAT_50;
-
-    if (GetID(SOFFICE_FILEFORMAT_60) == rName)
-        return SOFFICE_FILEFORMAT_60;
-    return 0;
 }
 
 /*-----------------18.03.98 08.09-------------------
