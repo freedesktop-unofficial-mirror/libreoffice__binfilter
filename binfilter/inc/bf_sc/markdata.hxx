@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: markdata.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,8 +83,6 @@ public:
 
     void        SelectOneTable( USHORT nTab );
     USHORT      GetSelectCount() const;
-    USHORT      GetFirstSelected() const;
-
     void        SetMarkNegative( BOOL bFlag )   { bMarkIsNeg = bFlag; }
     BOOL        IsMarkNegative() const          { return bMarkIsNeg;  }
     void        SetMarking( BOOL bFlag )        { bMarking = bFlag;   }
@@ -95,7 +93,6 @@ public:
 
     BOOL        IsCellMarked( USHORT nCol, USHORT nRow, BOOL bNoSimple = FALSE ) const;
     void        FillRangeListWithMarks( ScRangeList* pList, BOOL bClear ) const;
-    void        ExtendRangeListTables( ScRangeList* pList ) const;
 
     void        MarkFromRangeList( const ScRangeList& rList, BOOL bReset );
 
@@ -104,9 +101,6 @@ public:
 
     BOOL        HasMultiMarks( USHORT nCol ) const;
     BOOL        HasAnyMultiMarks() const;
-
-    //  Tabellen-Markierungen anpassen:
-    void        InsertTab( USHORT nTab );
 };
 
 
