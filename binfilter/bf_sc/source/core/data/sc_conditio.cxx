@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_conditio.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -174,77 +174,6 @@ namespace binfilter {
 /*N*/   Compile( rExpr1, rExpr2, bCompileEnglish, bCompileXML, FALSE );
 /*N*/
 /*N*/   //  Formelzellen werden erst bei IsValid angelegt
-/*N*/ }
-
-/*N*/ ScConditionEntry::ScConditionEntry( ScConditionMode eOper,
-/*N*/                               const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-/*N*/                               ScDocument* pDocument, const ScAddress& rPos ) :
-/*N*/   eOp(eOper),
-/*N*/   nOptions(0),    // spaeter...
-/*N*/   nVal1(0.0),
-/*N*/   nVal2(0.0),
-/*N*/   bIsStr1(FALSE),
-/*N*/   bIsStr2(FALSE),
-/*N*/   bRelRef1(FALSE),
-/*N*/   bRelRef2(FALSE),
-/*N*/   pFormula1(NULL),
-/*N*/   pFormula2(NULL),
-/*N*/   pFCell1(NULL),
-/*N*/   pFCell2(NULL),
-/*N*/   pDoc(pDocument),
-/*N*/   aSrcPos(rPos),
-/*N*/   bFirstRun(TRUE)
-/*N*/ {
-/*N*/   if ( pArr1 )
-/*N*/   {
-/*N*/       pFormula1 = new ScTokenArray( *pArr1 );
-/*N*/       if ( pFormula1->GetLen() == 1 )
-/*N*/       {
-/*N*/           // einzelne (konstante Zahl) ?
-/*N*/           ScToken* pToken = pFormula1->First();
-/*N*/           if ( pToken->GetOpCode() == ocPush )
-/*N*/           {
-/*N*/               if ( pToken->GetType() == svDouble )
-/*N*/               {
-/*N*/                   nVal1 = pToken->GetDouble();
-/*N*/                   DELETEZ(pFormula1);             // nicht als Formel merken
-/*N*/               }
-/*N*/               else if ( pToken->GetType() == svString )
-/*N*/               {
-/*N*/                   bIsStr1 = TRUE;
-/*N*/                   aStrVal1 = pToken->GetString();
-/*N*/                   DELETEZ(pFormula1);             // nicht als Formel merken
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       bRelRef1 = lcl_HasRelRef( pDoc, pFormula1 );
-/*N*/   }
-/*N*/   if ( pArr2 )
-/*N*/   {
-/*N*/       pFormula2 = new ScTokenArray( *pArr2 );
-/*N*/       if ( pFormula2->GetLen() == 1 )
-/*N*/       {
-/*N*/           // einzelne (konstante Zahl) ?
-/*N*/           ScToken* pToken = pFormula2->First();
-/*N*/           if ( pToken->GetOpCode() == ocPush )
-/*N*/           {
-/*N*/               if ( pToken->GetType() == svDouble )
-/*N*/               {
-/*N*/                   nVal2 = pToken->GetDouble();
-/*N*/                   DELETEZ(pFormula2);             // nicht als Formel merken
-/*N*/               }
-/*N*/               else if ( pToken->GetType() == svString )
-/*N*/               {
-/*N*/                   bIsStr2 = TRUE;
-/*N*/                   aStrVal2 = pToken->GetString();
-/*N*/                   DELETEZ(pFormula2);             // nicht als Formel merken
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/       bRelRef2 = lcl_HasRelRef( pDoc, pFormula2 );
-/*N*/   }
-/*N*/
-/*N*/   //  formula cells are created at IsValid
 /*N*/ }
 
 /*N*/ ScConditionEntry::~ScConditionEntry()
@@ -972,16 +901,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScCondFormatEntry::ScCondFormatEntry( ScConditionMode eOper,
-/*N*/                                       const ScTokenArray* pArr1, const ScTokenArray* pArr2,
-/*N*/                                       ScDocument* pDocument, const ScAddress& rPos,
-/*N*/                                       const String& rStyle ) :
-/*N*/   ScConditionEntry( eOper, pArr1, pArr2, pDocument, rPos ),
-/*N*/   aStyleName( rStyle ),
-/*N*/   pParent( NULL )
-/*N*/ {
-/*N*/ }
-
 /*N*/ ScCondFormatEntry::ScCondFormatEntry( const ScCondFormatEntry& r ) :
 /*N*/   ScConditionEntry( r ),
 /*N*/   aStyleName( r.aStyleName ),
@@ -1369,20 +1288,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //!     sortierte Eintraege aus rList schneller einfuegen ???
 /*N*/ }
-
-/*N*/ ScConditionalFormatList::ScConditionalFormatList(ScDocument* pNewDoc,
-/*N*/                                               const ScConditionalFormatList& rList)
-/*N*/ {
-/*N*/   //  fuer neues Dokument - echte Kopie mit neuen Tokens!
-/*N*/
-/*N*/   USHORT nCount = rList.Count();
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/       InsertNew( rList[i]->Clone(pNewDoc) );
-/*N*/
-/*N*/   //!     sortierte Eintraege aus rList schneller einfuegen ???
-/*N*/ }
-
 
 /*N*/ void ScConditionalFormatList::Load( SvStream& rStream, ScDocument* pDocument )
 /*N*/ {
