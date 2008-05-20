@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_saveopt.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -139,216 +139,7 @@ public:
     sal_Bool                IsPrettyPrintingEnabled( ) const    { return bDoPrettyPrinting; }
     sal_Bool                IsWarnAlienFormat() const           { return bWarnAlienFormat; }
     sal_Bool                IsLoadDocPrinter() const            { return bLoadDocPrinter; }
-
-    void                    SetAutoSaveTime( sal_Int32 n );
-    void                    SetUseUserData( BOOL b );
-    void                    SetBackup( BOOL b );
-    void                    SetAutoSave( BOOL b );
-    void                    SetAutoSavePrompt( BOOL b );
-    void                    SetDocInfoSave( BOOL b );
-    void                    SetSaveWorkingSet( BOOL b );
-    void                    SetSaveDocWins( BOOL b );
-    void                    SetSaveDocView( BOOL b );
-    void                    SetSaveRelINet( BOOL b );
-    void                    SetSaveRelFSys( BOOL b );
-    void                    SetSaveUnpacked( BOOL b );
-    void                    EnablePrettyPrinting( sal_Bool _bDoPP );
-    void                    SetWarnAlienFormat( sal_Bool _bDoPP );
-    void                    SetLoadDocPrinter( sal_Bool bNew );
-
-    sal_Bool                IsReadOnly( SvtSaveOptions::EOption eOption ) const;
 };
-
-void SvtSaveOptions_Impl::SetAutoSaveTime( sal_Int32 n )
-{
-    if (!bROAutoSaveTime && nAutoSaveTime!=n)
-    {
-        nAutoSaveTime = n;
-        SetModified();
-        Commit();
-    }
-}
-
-void SvtSaveOptions_Impl::SetUseUserData( BOOL b )
-{
-    if (!bROUseUserData && bUseUserData!=b)
-    {
-        bUseUserData = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetBackup( BOOL b )
-{
-    if (!bROBackup && bBackup!=b)
-    {
-        bBackup = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetAutoSave( BOOL b )
-{
-    if (!bROAutoSave && bAutoSave!=b)
-    {
-        bAutoSave = b;
-        SetModified();
-        Commit();
-    }
-}
-
-void SvtSaveOptions_Impl::SetAutoSavePrompt( BOOL b )
-{
-    if (!bROAutoSavePrompt && bAutoSavePrompt!=b)
-    {
-        bAutoSavePrompt = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetDocInfoSave(BOOL b)
-{
-    if (!bRODocInfSave && bDocInfSave!=b)
-    {
-        bDocInfSave = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveWorkingSet( BOOL b )
-{
-    if (!bROSaveWorkingSet && bSaveWorkingSet!=b)
-    {
-        bSaveWorkingSet = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveDocWins( BOOL b )
-{
-    if (!bROSaveDocWins && bSaveDocWins!=b)
-    {
-        bSaveDocWins = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveDocView( BOOL b )
-{
-    if (!bROSaveDocView && bSaveDocView!=b)
-    {
-        bSaveDocView = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveRelINet( BOOL b )
-{
-    if (!bROSaveRelINet && bSaveRelINet!=b)
-    {
-        bSaveRelINet = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveRelFSys( BOOL b )
-{
-    if (!bROSaveRelFSys && bSaveRelFSys!=b)
-    {
-        bSaveRelFSys = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetSaveUnpacked( BOOL b )
-{
-    if (!bROSaveUnpacked && bSaveUnpacked!=b)
-    {
-        bSaveUnpacked = b;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::EnablePrettyPrinting( sal_Bool _bDoPP )
-{
-    if (!bRODoPrettyPrinting && bDoPrettyPrinting!=_bDoPP)
-    {
-        bDoPrettyPrinting = _bDoPP;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetWarnAlienFormat( sal_Bool _bDoPP )
-{
-    if (!bROWarnAlienFormat && bWarnAlienFormat!=_bDoPP)
-    {
-        bWarnAlienFormat = _bDoPP;
-        SetModified();
-    }
-}
-
-void SvtSaveOptions_Impl::SetLoadDocPrinter( sal_Bool bNew )
-{
-    if ( !bROLoadDocPrinter && bLoadDocPrinter != bNew )
-    {
-        bLoadDocPrinter = bNew;
-        SetModified();
-    }
-}
-
-sal_Bool SvtSaveOptions_Impl::IsReadOnly( SvtSaveOptions::EOption eOption ) const
-{
-    sal_Bool bReadOnly = CFG_READONLY_DEFAULT;
-    switch(eOption)
-    {
-        case SvtSaveOptions::E_AUTOSAVETIME :
-            bReadOnly = bROAutoSaveTime;
-            break;
-        case SvtSaveOptions::E_USEUSERDATA :
-            bReadOnly = bROUseUserData;
-            break;
-        case SvtSaveOptions::E_BACKUP :
-            bReadOnly = bROBackup;
-            break;
-        case SvtSaveOptions::E_AUTOSAVE :
-            bReadOnly = bROAutoSave;
-            break;
-        case SvtSaveOptions::E_AUTOSAVEPROMPT :
-            bReadOnly = bROAutoSavePrompt;
-            break;
-        case SvtSaveOptions::E_DOCINFSAVE :
-            bReadOnly = bRODocInfSave;
-            break;
-        case SvtSaveOptions::E_SAVEWORKINGSET :
-            bReadOnly = bROSaveWorkingSet;
-            break;
-        case SvtSaveOptions::E_SAVEDOCWINS :
-            bReadOnly = bROSaveDocWins;
-            break;
-        case SvtSaveOptions::E_SAVEDOCVIEW :
-            bReadOnly = bROSaveDocView;
-            break;
-        case SvtSaveOptions::E_SAVERELINET :
-            bReadOnly = bROSaveRelINet;
-            break;
-        case SvtSaveOptions::E_SAVERELFSYS :
-            bReadOnly = bROSaveRelFSys;
-            break;
-        case SvtSaveOptions::E_SAVEUNPACKED :
-            bReadOnly = bROSaveUnpacked;
-            break;
-        case SvtSaveOptions::E_DOPRETTYPRINTING :
-            bReadOnly = bRODoPrettyPrinting;
-            break;
-        case SvtSaveOptions::E_WARNALIENFORMAT :
-            bReadOnly = bROWarnAlienFormat;
-            break;
-        case SvtSaveOptions::E_LOADDOCPRINTER :
-            bReadOnly = bROLoadDocPrinter;
-            break;
-    }
-    return bReadOnly;
-}
 
 #define FORMAT           0
 #define TIMEINTERVALL    1
@@ -840,89 +631,9 @@ SvtSaveOptions::~SvtSaveOptions()
     }
 }
 
-void SvtSaveOptions::SetAutoSaveTime( sal_Int32 n )
-{
-    pImp->pSaveOpt->SetAutoSaveTime( n );
-}
-
-sal_Int32 SvtSaveOptions::GetAutoSaveTime() const
-{
-    return pImp->pSaveOpt->GetAutoSaveTime();
-}
-
-void SvtSaveOptions::SetUseUserData( sal_Bool b )
-{
-    pImp->pSaveOpt->SetUseUserData( b );
-}
-
-sal_Bool SvtSaveOptions::IsUseUserData() const
-{
-    return pImp->pSaveOpt->IsUseUserData();
-}
-
-void SvtSaveOptions::SetBackup( sal_Bool b )
-{
-    pImp->pSaveOpt->SetBackup( b );
-}
-
 sal_Bool SvtSaveOptions::IsBackup() const
 {
     return pImp->pSaveOpt->IsBackup();
-}
-
-void SvtSaveOptions::SetAutoSave( sal_Bool b )
-{
-    pImp->pSaveOpt->SetAutoSave( b );
-}
-
-sal_Bool SvtSaveOptions::IsAutoSave() const
-{
-    return pImp->pSaveOpt->IsAutoSave();
-}
-
-void SvtSaveOptions::SetAutoSavePrompt( sal_Bool b )
-{
-    pImp->pSaveOpt->SetAutoSavePrompt( b );
-}
-
-sal_Bool SvtSaveOptions::IsAutoSavePrompt() const
-{
-    return pImp->pSaveOpt->IsAutoSavePrompt();
-}
-
-void SvtSaveOptions::SetDocInfoSave(sal_Bool b)
-{
-    pImp->pSaveOpt->SetDocInfoSave( b );
-}
-
-sal_Bool SvtSaveOptions::IsDocInfoSave() const
-{
-    return pImp->pSaveOpt->IsDocInfoSave();
-}
-
-void SvtSaveOptions::SetSaveWorkingSet( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveWorkingSet( b );
-}
-
-sal_Bool SvtSaveOptions::IsSaveWorkingSet() const
-{
-    return pImp->pSaveOpt->IsSaveWorkingSet();
-}
-
-void SvtSaveOptions::SetSaveDocWins( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveDocWins( b );
-}
-
-sal_Bool SvtSaveOptions::IsSaveDocWins() const
-{
-    return pImp->pSaveOpt->IsSaveDocWins();
-}
-
-void SvtSaveOptions::SetSaveDocView( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveDocView( b );
 }
 
 sal_Bool SvtSaveOptions::IsSaveDocView() const
@@ -930,19 +641,9 @@ sal_Bool SvtSaveOptions::IsSaveDocView() const
     return pImp->pSaveOpt->IsSaveDocView();
 }
 
-void SvtSaveOptions::SetSaveRelINet( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveRelINet( b );
-}
-
 sal_Bool SvtSaveOptions::IsSaveRelINet() const
 {
     return pImp->pSaveOpt->IsSaveRelINet();
-}
-
-void SvtSaveOptions::SetSaveRelFSys( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveRelFSys( b );
 }
 
 sal_Bool SvtSaveOptions::IsSaveRelFSys() const
@@ -950,19 +651,9 @@ sal_Bool SvtSaveOptions::IsSaveRelFSys() const
     return pImp->pSaveOpt->IsSaveRelFSys();
 }
 
-void SvtSaveOptions::SetSaveUnpacked( sal_Bool b )
-{
-    pImp->pSaveOpt->SetSaveUnpacked( b );
-}
-
 sal_Bool SvtSaveOptions::IsSaveUnpacked() const
 {
     return pImp->pSaveOpt->IsSaveUnpacked();
-}
-
-void SvtSaveOptions::SetLoadUserSettings(sal_Bool b)
-{
-    pImp->pLoadOpt->SetLoadUserSettings(b);
 }
 
 sal_Bool   SvtSaveOptions::IsLoadUserSettings() const
@@ -970,39 +661,9 @@ sal_Bool   SvtSaveOptions::IsLoadUserSettings() const
     return pImp->pLoadOpt->IsLoadUserSettings();
 }
 
-void SvtSaveOptions::SetPrettyPrinting( sal_Bool _bEnable )
-{
-    pImp->pSaveOpt->EnablePrettyPrinting( _bEnable );
-}
-
 sal_Bool SvtSaveOptions::IsPrettyPrinting() const
 {
     return pImp->pSaveOpt->IsPrettyPrintingEnabled();
-}
-
-void SvtSaveOptions::SetWarnAlienFormat( sal_Bool _bEnable )
-{
-    pImp->pSaveOpt->SetWarnAlienFormat( _bEnable );
-}
-
-sal_Bool SvtSaveOptions::IsWarnAlienFormat() const
-{
-    return pImp->pSaveOpt->IsWarnAlienFormat();
-}
-
-void SvtSaveOptions::SetLoadDocumentPrinter( sal_Bool _bEnable )
-{
-    pImp->pSaveOpt->SetLoadDocPrinter( _bEnable );
-}
-
-sal_Bool SvtSaveOptions::IsLoadDocumentPrinter() const
-{
-    return pImp->pSaveOpt->IsLoadDocPrinter();
-}
-
-sal_Bool SvtSaveOptions::IsReadOnly( SvtSaveOptions::EOption eOption ) const
-{
-    return pImp->pSaveOpt->IsReadOnly(eOption);
 }
 
 }
