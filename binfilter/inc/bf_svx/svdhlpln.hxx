@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svdhlpln.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -64,7 +64,6 @@ public:
     void            SetPos(const Point& rPnt)         { aPos=rPnt; }
     const Point&    GetPos() const                    { return aPos; }
 
-    FASTBOOL        IsHit(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const;
     // OutputDevice wird benoetigt, da Fangpunkte eine feste Pixelgroesse haben
 
     /* returns true if this and the given help line would be rendered at the same pixel position
@@ -93,7 +92,6 @@ public:
     void               Move(USHORT nPos, USHORT nNewPos)                   { aList.Insert(aList.Remove(nPos),nNewPos); }
     SdrHelpLine&       operator[](USHORT nPos)                             { return *GetObject(nPos); }
     const SdrHelpLine& operator[](USHORT nPos) const                       { return *GetObject(nPos); }
-    USHORT             HitTest(const Point& rPnt, USHORT nTolLog, const OutputDevice& rOut) const;
     friend SvStream& operator<<(SvStream& rOut, const SdrHelpLineList& rHLL);
     friend SvStream& operator>>(SvStream& rIn, SdrHelpLineList& rHLL);
 };
