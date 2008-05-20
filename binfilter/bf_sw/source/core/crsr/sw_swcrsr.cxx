@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_swcrsr.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -487,18 +487,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/           !IsInProtectTable( TRUE ) &&
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
-
-
-/*  */
-
-/*N*/SwTableCursor::SwTableCursor( const SwPosition &rPos, SwPaM* pRing )
-/*N*/   : SwCursor( rPos, pRing )
-/*N*/{
-/*N*/   bParked = FALSE;
-/*N*/   bChg = FALSE;
-/*N*/   nTblPtNd = 0, nTblMkNd = 0;
-/*N*/   nTblPtCnt = 0, nTblMkCnt = 0;
-/*N*/}
 
 /*N*/ SwTableCursor::~SwTableCursor() {}
 
