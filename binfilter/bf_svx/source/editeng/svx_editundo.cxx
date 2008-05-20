@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_editundo.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,49 +94,6 @@ DBG_NAME( EditUndo )
 /*N*/       aComment = pEditEng->GetUndoComment( GetId() );
 /*N*/   }
 /*N*/   return aComment;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-// EditUndoDelContent
-// ------------------------------------------------------------------------
-
-
-
-
-
-// -----------------------------------------------------------------------
-// EditUndoConnectParas
-// ------------------------------------------------------------------------
-
-
-
-
-
-// -----------------------------------------------------------------------
-// EditUndoSplitPara
-// ------------------------------------------------------------------------
-/*N*/ EditUndoSplitPara::EditUndoSplitPara( ImpEditEngine* pImpEE, USHORT nN, USHORT nSP )
-/*N*/                   : EditUndo( EDITUNDO_SPLITPARA, pImpEE )
-/*N*/ {
-/*N*/   nNode   = nN;
-/*N*/   nSepPos = nSP;
-/*N*/ }
-
-/*N*/ EditUndoSplitPara::~EditUndoSplitPara()
-/*N*/ {
-/*N*/ }
-
-/*N*/ void __EXPORT EditUndoSplitPara::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ void __EXPORT EditUndoSplitPara::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ void __EXPORT EditUndoSplitPara::Repeat()
-/*N*/ {
-/*N*/   DBG_ERROR( "EditUndoSplitPara::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
