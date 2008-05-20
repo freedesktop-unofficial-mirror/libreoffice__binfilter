@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: dynamicmenuoptions.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -135,59 +135,6 @@ class  SvtDynamicMenuOptions: public Options
         //---------------------------------------------------------------------------------------------------------
         //  interface
         //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      clear complete sepcified list
-            @descr      Call this methods to clear the whole list.
-                        To fill it again use AppendItem().
-
-            @seealso    -
-
-            @param      "eMenu" select right menu to clear.
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void Clear( EDynamicMenuType eMenu );
-
-        /*-****************************************************************************************************//**
-            @short      return complete specified list
-            @descr      Call it to get all entries of an dynamic menu.
-                        We return a list of all nodes with his names and properties.
-
-            @seealso    -
-
-            @param      "eMenu" select right menu.
-            @return     A list of menu items is returned.
-
-            @onerror    We return an empty list.
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > > GetMenu( EDynamicMenuType eMenu ) const;
-
-        /*-****************************************************************************************************//**
-            @short      append a new item to specified menu
-            @descr      You can append items to a menu only - removing isn't allowed for a special item!
-                        We support a nothing or all mechanism only! Clear all or append something ...
-
-            @seealso    method Clear()
-
-            @param      "eMenu"             select right menu.
-            @param      "sURL"              URL for dispatch
-            @param      "sTitle"            label of menu entry
-            @param      "sImageIdentifier"  icon identifier
-            @param      "sTargetName"       target for dispatch
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void AppendItem(            EDynamicMenuType    eMenu            ,
-                            const   ::rtl::OUString&    sURL             ,
-                            const   ::rtl::OUString&    sTitle           ,
-                            const   ::rtl::OUString&    sImageIdentifier ,
-                            const   ::rtl::OUString&    sTargetName      );
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
