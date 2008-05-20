@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: starmath_cfgitem.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -983,19 +983,6 @@ static const char* aRootName = "Office.Math";
 /*?*/         ((SmMathConfig *) this)->LoadOther();
 /*N*/     return pOther->bAutoRedraw;
 /*N*/ }
-
-
-
-
-/*N*/ BOOL SmMathConfig::IsShowFormulaCursor() const
-/*N*/ {
-/*N*/     if (!pOther)
-/*?*/         ((SmMathConfig *) this)->LoadOther();
-/*N*/     return pOther->bFormulaCursor;
-/*N*/ }
-
-
-
 
 /*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, p )
 /*N*/ {
