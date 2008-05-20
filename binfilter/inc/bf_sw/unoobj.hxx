@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unoobj.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -417,9 +417,6 @@ public:
     SwXTextCursor(::com::sun::star::uno::Reference< ::com::sun::star::text::XText >  xParent, const SwPosition& rPos,
                     CursorType eSet, SwDoc* pDoc, const SwPosition* pMark = 0);
     SwXTextCursor(::com::sun::star::uno::Reference< ::com::sun::star::text::XText >  xParent, SwUnoCrsr* pSourceCrsr, CursorType eSet = CURSOR_ALL);
-    //invalid Cursor!
-    SwXTextCursor(SwXText* pParent = 0);
-
 
     static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId();
 
