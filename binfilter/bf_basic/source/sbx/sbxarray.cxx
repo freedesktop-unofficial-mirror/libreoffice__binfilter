@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxarray.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -255,35 +255,6 @@ void SbxArray::Put( SbxVariable* pVar, USHORT nIdx )
             rRef = pVar;
             SetFlag( SBX_MODIFIED );
         }
-    }
-}
-
-const XubString& SbxArray::GetAlias( USHORT nIdx )
-{
-    if( !CanRead() )
-    {
-        SetError( SbxERR_PROP_WRITEONLY );
-        return String::EmptyString();
-    }
-    SbxVarEntry& rRef = (SbxVarEntry&) GetRef( nIdx );
-
-    if ( !rRef.pAlias )
-        return String::EmptyString();
-
-    return *rRef.pAlias;
-}
-
-void SbxArray::PutAlias( const XubString& rAlias, USHORT nIdx )
-{
-    if( !CanWrite() )
-        SetError( SbxERR_PROP_READONLY );
-    else
-    {
-        SbxVarEntry& rRef = (SbxVarEntry&) GetRef( nIdx );
-        if( !rRef.pAlias )
-            rRef.pAlias = new XubString( rAlias );
-        else
-            *rRef.pAlias = rAlias;
     }
 }
 
@@ -740,24 +711,9 @@ USHORT SbxDimArray::Offset( const short* pIdx )
     return (USHORT) nPos;
 }
 
-SbxVariableRef& SbxDimArray::GetRef( const short* pIdx )
-{
-    return SbxArray::GetRef( Offset( pIdx ) );
-}
-
 SbxVariable* SbxDimArray::Get( const short* pIdx )
 {
     return SbxArray::Get( Offset( pIdx ) );
-}
-
-void SbxDimArray::Put( SbxVariable* p, const short* pIdx  )
-{
-    SbxArray::Put( p, Offset( pIdx ) );
-}
-
-SbxVariableRef& SbxDimArray::GetRef32( const INT32* pIdx )
-{
-    return SbxArray::GetRef32( Offset32( pIdx ) );
 }
 
 SbxVariable* SbxDimArray::Get32( const INT32* pIdx )
@@ -797,29 +753,9 @@ UINT32 SbxDimArray::Offset32( SbxArray* pPar )
     return nPos;
 }
 
-USHORT SbxDimArray::Offset( SbxArray* pPar )
-{
-    UINT32 nPos = Offset32( pPar );
-    if( nPos > (long) SBX_MAXINDEX )
-    {
-        SetError( SbxERR_BOUNDS ); nPos = 0;
-    }
-    return (USHORT) nPos;
-}
-
-SbxVariableRef& SbxDimArray::GetRef( SbxArray* pPar )
-{
-    return SbxArray::GetRef32( Offset32( pPar ) );
-}
-
 SbxVariable* SbxDimArray::Get( SbxArray* pPar )
 {
     return SbxArray::Get32( Offset32( pPar ) );
-}
-
-void SbxDimArray::Put( SbxVariable* p, SbxArray* pPar  )
-{
-    SbxArray::Put32( p, Offset32( pPar ) );
 }
 
 BOOL SbxDimArray::LoadData( SvStream& rStrm, USHORT nVer )
