@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_ChXDataRow.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -129,16 +129,6 @@ const uno::Sequence< sal_Int8 > & ChXDataRow::getUnoTunnelId() throw()
     }
     return *pSeq;
 }
-
-ChXDataRow* ChXDataRow::getImplementation( uno::Reference< uno::XInterface > xData ) throw()
-{
-    uno::Reference< lang::XUnoTunnel > xUT( xData, uno::UNO_QUERY );
-    if( xUT.is() )
-        return (ChXDataRow*)xUT->getSomething( ChXDataRow::getUnoTunnelId() );
-    else
-        return NULL;
-}
-
 
 uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_Int32 nId ) const
 {
