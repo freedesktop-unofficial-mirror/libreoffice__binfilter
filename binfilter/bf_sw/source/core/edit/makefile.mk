@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.9 $
+# $Revision: 1.10 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -50,13 +50,10 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 SLOFILES =	\
         $(SLO)$/sw_autofmt.obj \
         $(SLO)$/sw_edatmisc.obj \
-        $(SLO)$/sw_edattr.obj \
         $(SLO)$/sw_edfld.obj \
-        $(SLO)$/sw_edfmt.obj \
         $(SLO)$/sw_ednumber.obj \
         $(SLO)$/sw_edredln.obj \
         $(SLO)$/sw_edtab.obj \
-        $(SLO)$/sw_edtox.obj \
         $(SLO)$/sw_edundo.obj \
         $(SLO)$/sw_edws.obj \
         $(SLO)$/sw_edsect.obj
