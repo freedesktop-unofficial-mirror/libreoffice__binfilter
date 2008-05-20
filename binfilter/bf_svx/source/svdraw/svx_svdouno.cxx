@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdouno.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -188,21 +188,6 @@ namespace binfilter {
 /*N*/   if (rModelName.Len())
 /*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     CreateUnoControlModel(rModelName);
 /*N*/ }
-
-/*?*/ SdrUnoObj::SdrUnoObj(const String& rModelName,
-/*?*/                    const uno::Reference< lang::XMultiServiceFactory >& rxSFac,
-/*?*/                    BOOL _bOwnUnoControlModel)
-/*?*/ : bOwnUnoControlModel(_bOwnUnoControlModel)
-/*?*/ {
-/*?*/   bIsUnoObj = TRUE;
-/*?*/
-/*?*/   pEventListener = new SdrControlEventListenerImpl(this);
-/*?*/   pEventListener->acquire();
-/*?*/
-/*?*/   // nur ein owner darf eigenstaendig erzeugen
-/*?*/   if (rModelName.Len())
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 CreateUnoControlModel(rModelName,rxSFac);
-/*?*/ }
 
 /*N*/ SdrUnoObj::~SdrUnoObj()
 /*N*/ {
@@ -509,11 +494,4 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ uno::Reference< awt::XControl > SdrUnoObj::GetUnoControl(const OutputDevice* pOut) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference< awt::XControl >();//STRIP001
-/*N*/ }
-
-
-
 }
