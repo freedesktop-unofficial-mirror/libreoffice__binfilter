@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdmrkv.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -104,14 +104,6 @@ namespace binfilter {
 /*N*/   ImpClearVars();
 /*N*/   StartListening(*pModel1);
 /*N*/ }
-
-/*?*/ SdrMarkView::SdrMarkView(SdrModel* pModel1, ExtOutputDevice* pXOut):
-/*?*/   SdrSnapView(pModel1,pXOut),
-/*?*/   aHdl(this)
-/*?*/ {
-/*?*/   ImpClearVars();
-/*?*/   StartListening(*pModel1);
-/*?*/ }
 
 /*N*/ void __EXPORT SdrMarkView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
@@ -516,10 +508,6 @@ namespace binfilter {
 /*N*/   // add custom handles (used by other apps, e.g. AnchorPos)
 /*N*/ }
 
-/*N*/ void SdrMarkView::SetDragMode(SdrDragMode eMode)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
 /*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode eMode)
 /*N*/ {
 /*N*/   switch(eMode)
@@ -589,24 +577,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrMarkView::SetEditMode(SdrViewEditMode eMode)
-/*N*/ {
-/*N*/   if (eMode!=eEditMode) {
-/*N*/       BOOL bGlue0=eEditMode==SDREDITMODE_GLUEPOINTEDIT;
-/*N*/       BOOL bEdge0=((SdrCreateView*)this)->IsEdgeTool();
-/*N*/       eEditMode0=eEditMode;
-/*N*/       eEditMode=eMode;
-/*N*/       BOOL bGlue1=eEditMode==SDREDITMODE_GLUEPOINTEDIT;
-/*N*/       BOOL bEdge1=((SdrCreateView*)this)->IsEdgeTool();
-/*N*/       // etwas Aufwand um Flackern zu verhindern beim Umschalten
-/*N*/       // zwischen GlueEdit und EdgeTool
-/*N*/       if (bGlue1 && !bGlue0) ImpSetGlueVisible2(bGlue1);
-/*N*/       if (bEdge1!=bEdge0) ImpSetGlueVisible3(bEdge1);
-/*N*/       if (!bGlue1 && bGlue0) ImpSetGlueVisible2(bGlue1);
-/*N*/       if (bGlue0 && !bGlue1) UnmarkAllGluePoints();
-/*N*/   }
-/*N*/ }
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ BOOL SdrMarkView::IsObjMarkable(SdrObject* pObj, SdrPageView* pPV) const
@@ -623,23 +593,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pPV!=NULL ? pPV->IsObjMarkable(pObj) : TRUE;
 /*N*/ }
-
-
-/*N*/ SdrHdl* SdrMarkView::PickHandle(const Point& rPnt, const OutputDevice& rOut, ULONG nOptions, SdrHdl* pHdl0) const
-/*N*/ {
-/*N*/   if (&rOut==NULL) return FALSE;
-/*N*/   if (bSomeObjChgdFlag) { // ggf. Handles neu berechnen lassen!
-/*N*/       FlushComeBackTimer();
-/*N*/   }
-/*N*/   BOOL bBack=(nOptions & SDRSEARCH_BACKWARD) !=0;
-/*N*/   BOOL bNext=(nOptions & SDRSEARCH_NEXT) !=0;
-/*N*/   Point aPt(rPnt);
-/*N*/   return aHdl.HitTest(aPt,rOut,bBack,bNext,pHdl0);
-/*N*/ }
-
-
-
-
 
 /*N*/ void SdrMarkView::MarkObj(SdrObject* pObj, SdrPageView* pPV, BOOL bUnmark, BOOL bImpNoSetMarkHdl)
 /*N*/ {
@@ -663,12 +616,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ USHORT SdrMarkView::GetMarkHdlSizePixel() const
-/*N*/ {
-/*N*/   return aHdl.GetHdlSize()*2+1;
-/*N*/ }
-
 /*N*/ void SdrMarkView::SetSolidMarkHdl(BOOL bOn)
 /*N*/ {
 /*N*/   if (bOn!=aHdl.IsFineHdl()) {
@@ -676,14 +623,6 @@ namespace binfilter {
 /*N*/       if (bMerk) HideMarkHdl(NULL);
 /*N*/       aHdl.SetFineHdl(bOn);
 /*N*/       if (bMerk) ShowMarkHdl(NULL);
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrMarkView::SetMarkHdlSizePixel(USHORT nSiz)
-/*N*/ {
-/*N*/   if (nSiz<3) nSiz=3;
-/*N*/   nSiz/=2;
-/*N*/   if (nSiz!=aHdl.GetHdlSize()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/ }
 
@@ -753,108 +692,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pRet;
 /*N*/ }
-
-/*N*/ BOOL SdrMarkView::PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions) const
-/*N*/ {
-/*N*/   return PickObj(rPnt,nTol,rpObj,rpPV,nOptions,NULL,NULL,NULL);
-/*N*/ }
-
-/*N*/ BOOL SdrMarkView::PickObj(const Point& rPnt, short nTol, SdrObject*& rpObj, SdrPageView*& rpPV, ULONG nOptions, SdrObject** ppRootObj, ULONG* pnMarkNum, USHORT* pnPassNum) const
-/*N*/ { // Fehlt noch Pass2,Pass3
-/*N*/   ((SdrMarkView*)this)->aMark.ForceSort();
-/*N*/   if (ppRootObj!=NULL) *ppRootObj=NULL;
-/*N*/   if (pnMarkNum!=NULL) *pnMarkNum=CONTAINER_ENTRY_NOTFOUND;
-/*N*/   if (pnPassNum!=NULL) *pnPassNum=0;
-/*N*/   rpObj=NULL;
-/*N*/   rpPV=NULL;
-/*N*/   BOOL bWholePage=(nOptions & SDRSEARCH_WHOLEPAGE) !=0;
-/*N*/   BOOL bMarked=(nOptions & SDRSEARCH_MARKED) !=0;
-/*N*/   BOOL bMasters=!bMarked && (nOptions & SDRSEARCH_ALSOONMASTER) !=0;
-/*N*/   BOOL bBack=(nOptions & SDRSEARCH_BACKWARD) !=0;
-/*N*/   BOOL bNext=(nOptions & SDRSEARCH_NEXT) !=0; // n.i.
-/*N*/   BOOL bBoundCheckOn2ndPass=(nOptions & SDRSEARCH_PASS2BOUND) !=0; // n.i.
-/*N*/   BOOL bCheckNearestOn3rdPass=(nOptions & SDRSEARCH_PASS3NEAREST) !=0; // n.i.
-/*N*/   if (nTol<0) nTol=ImpGetHitTolLogic(nTol,NULL);
-/*N*/   Point aPt(rPnt);
-/*N*/   SdrObject* pObj=NULL;
-/*N*/   SdrObject* pHitObj=NULL;
-/*N*/   SdrPageView* pPV=NULL;
-/*N*/   if (!bBack && ((SdrObjEditView*)this)->IsTextEditFrameHit(rPnt)) {
-/*?*/       pObj=((SdrObjEditView*)this)->GetTextEditObject();
-/*?*/       pHitObj=pObj;
-/*?*/       pPV=((SdrObjEditView*)this)->GetTextEditPageView();
-/*N*/   }
-/*N*/   if (bMarked) {
-/*N*/       ULONG nMrkAnz=aMark.GetMarkCount();
-/*N*/       ULONG nMrkNum=bBack ? 0 : nMrkAnz;
-/*N*/       while (pHitObj==NULL && (bBack ? nMrkNum<nMrkAnz : nMrkNum>0)) {
-/*?*/           if (!bBack) nMrkNum--;
-/*?*/           SdrMark* pM=aMark.GetMark(nMrkNum);
-/*?*/           pObj=pM->GetObj();
-/*?*/           pPV=pM->GetPageView();
-/*?*/           pHitObj=ImpCheckObjHit(aPt,nTol,pObj,pPV,nOptions,NULL);
-/*?*/           if (bBack) nMrkNum++;
-/*N*/       }
-/*N*/   } else {
-/*N*/       USHORT nPvAnz=GetPageViewCount();
-/*N*/       USHORT nPvNum=bBack ? 0 : nPvAnz;
-/*N*/       while (pHitObj==NULL && (bBack ? nPvNum<nPvAnz : nPvNum>0)) {
-/*N*/           if (!bBack) nPvNum--;
-/*N*/           pPV=GetPageViewPvNum(nPvNum);
-/*N*/           SdrPage* pPage=pPV->GetPage();
-/*N*/           USHORT nPgAnz=1; if (bMasters) nPgAnz+=pPage->GetMasterPageCount();
-/*N*/           BOOL bExtraPassForWholePage=bWholePage && pPage!=pPV->GetObjList();
-/*N*/           if (bExtraPassForWholePage) nPgAnz++; // Suche erst in AktObjList, dann auf der gesamten Page
-/*N*/           USHORT nPgNum=bBack ? 0 : nPgAnz;
-/*N*/           while (pHitObj==NULL && (bBack ? nPgNum<nPgAnz : nPgNum>0)) {
-/*N*/               ULONG nTmpOptions=nOptions;
-/*N*/               if (!bBack) nPgNum--;
-/*N*/               const SetOfByte* pMVisLay=NULL;
-/*N*/               SdrObjList* pObjList=NULL;
-/*N*/               if (pnPassNum!=NULL) *pnPassNum&=~(SDRSEARCHPASS_MASTERPAGE|SDRSEARCHPASS_INACTIVELIST);
-/*N*/               if (nPgNum>=nPgAnz-1 || (bExtraPassForWholePage && nPgNum>=nPgAnz-2)) {
-/*N*/                   pObjList=pPV->GetObjList();
-/*N*/                   if (bExtraPassForWholePage && nPgNum==nPgAnz-2) {
-/*?*/                       pObjList=pPage;
-/*?*/                       if (pnPassNum!=NULL) *pnPassNum|=SDRSEARCHPASS_INACTIVELIST;
-/*N*/                   }
-/*N*/               } else { // sonst MasterPage
-/*N*/                   const SdrMasterPageDescriptor& rMPD=pPage->GetMasterPageDescriptor(nPgNum);
-/*N*/                   USHORT nNum=rMPD.GetPageNum();
-/*N*/                   pMVisLay=&rMPD.GetVisibleLayers();
-/*N*/                   if (nNum<pMod->GetMasterPageCount()) { // sonst ungueltiger MasterPageDescriptor
-/*N*/                       pObjList=pMod->GetMasterPage(nNum);
-/*N*/                   }
-/*N*/                   if (pnPassNum!=NULL) *pnPassNum|=SDRSEARCHPASS_MASTERPAGE;
-/*N*/                   nTmpOptions=nTmpOptions | SDRSEARCH_IMPISMASTER;
-/*N*/               }
-/*N*/               pHitObj=ImpCheckObjHit(aPt,nTol,pObjList,pPV,nTmpOptions,pMVisLay,pObj);
-/*N*/               if (bBack) nPgNum++;
-/*N*/           }
-/*N*/           if (bBack) nPvNum++;
-/*N*/       }
-/*N*/
-/*N*/   }
-/*N*/   if (pHitObj!=NULL) {
-/*N*/       if (ppRootObj!=NULL) *ppRootObj=pObj;
-/*N*/       if ((nOptions & SDRSEARCH_DEEP) !=0) pObj=pHitObj;
-/*N*/       if ((nOptions & SDRSEARCH_TESTTEXTEDIT) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       }
-/*N*/       if (pObj!=NULL && (nOptions & SDRSEARCH_TESTMACRO) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       }
-/*N*/       if (pObj!=NULL && (nOptions & SDRSEARCH_WITHTEXT) !=0 && pObj->GetOutlinerParaObject()==NULL) pObj=NULL;
-/*N*/       if (pObj!=NULL && (nOptions & SDRSEARCH_TESTTEXTAREA) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       }
-/*N*/       if (pObj!=NULL) {
-/*N*/           rpObj=pObj;
-/*N*/           rpPV=pPV;
-/*N*/           if (pnPassNum!=NULL) *pnPassNum|=SDRSEARCHPASS_DIRECT;
-/*N*/       }
-/*N*/   }
-/*N*/   return rpObj!=NULL;
-/*N*/ }
-
-
 
 /*N*/ void SdrMarkView::UnmarkAllObj(SdrPageView* pPV)
 /*N*/ {
