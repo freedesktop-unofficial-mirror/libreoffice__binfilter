@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_ddewrap.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,11 +47,7 @@ namespace binfilter
 
 //------------------------------------------------------------------------
 
-#ifdef __MINGW32__
-HSZ WINAPI DdeCreateStringHandleW_9x( DWORD idInst, LPWSTR pszString, int )
-#else
 HSZ WINAPI DdeCreateStringHandleW_9x( DWORD idInst, LPCWSTR pszString, int )
-#endif
 {
     HSZ     hszResult;
     LPSTR   pszANSIString;
