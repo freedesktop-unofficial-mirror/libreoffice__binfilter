@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_module.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -79,7 +79,7 @@ static SfxModuleArr_Impl* pModules=0;
 /*N*/       rArr.C40_INSERT( SfxModule, pPtr, rArr.Count() );
 /*N*/       SetPool( &pApp->GetPool() );
 /*N*/   }
-/*N*/   va_list pVarArgs;
+/*N*/   std::va_list pVarArgs;
 /*N*/   va_start( pVarArgs, pFactoryP );
 /*N*/   for ( SfxObjectFactory *pArg = pFactoryP; pArg;
 /*N*/        pArg = va_arg( pVarArgs, SfxObjectFactory* ) )
