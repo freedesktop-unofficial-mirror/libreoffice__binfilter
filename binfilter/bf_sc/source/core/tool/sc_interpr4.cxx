@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_interpr4.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -131,18 +131,18 @@ void ScInterpreter::ReplaceCell( ScAddress& rPos )
 
 void ScInterpreter::ReplaceCell( USHORT& rCol, USHORT& rRow, USHORT& rTab )
 {
-    ScAddress aPos( rCol, rRow, rTab );
+    ScAddress aCellPos( rCol, rRow, rTab );
     ScInterpreterTableOpParams* pTOp = pDok->aTableOpList.First();
     while (pTOp)
     {
-        if ( aPos == pTOp->aOld1 )
+        if ( aCellPos == pTOp->aOld1 )
         {
             rCol = pTOp->aNew1.Col();
             rRow = pTOp->aNew1.Row();
             rTab = pTOp->aNew1.Tab();
             return ;
         }
-        else if ( aPos == pTOp->aOld2 )
+        else if ( aCellPos == pTOp->aOld2 )
         {
             rCol = pTOp->aNew2.Col();
             rRow = pTOp->aNew2.Row();
@@ -1018,13 +1018,13 @@ BOOL ScInterpreter::PopDoubleRefOrSingleRef( ScAddress& rAdr )
             PopDoubleRef( aRange, TRUE );
             return DoubleRefToPosSingleRef( aRange, rAdr );
         }
-        break;
+        //break;
         case svSingleRef :
         {
             PopSingleRef( rAdr );
             return TRUE;
         }
-        break;
+        //break;
         default:
             Pop();
             SetError( errNoRef );
@@ -1330,10 +1330,10 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/           pFormatter->GetInputLineString(fVal, nIndex, aTempStr);
 /*?*/           return aTempStr;
 /*?*/       }
-/*?*/       break;
+/*?*/       //break;
 /*N*/       case svString:
 /*N*/           return PopString();
-/*N*/       break;
+/*N*/       //break;
 /*N*/       case svSingleRef:
 /*N*/       {
 /*N*/           ScAddress aAdr;
@@ -1347,7 +1347,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*N*/           else
 /*N*/               return EMPTY_STRING;
 /*N*/       }
-/*N*/       break;
+/*N*/       //break;
 /*?*/       case svDoubleRef:
 /*?*/       {   // positionsabhaengige SingleRef generieren
 /*?*/           ScRange aRange;
@@ -1362,7 +1362,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/           else
 /*?*/               return EMPTY_STRING;
 /*?*/       }
-/*?*/       break;
+/*?*/       //break;
 /*?*/       default:
 /*?*/           Pop();
 /*?*/           SetError(errIllegalParameter);
