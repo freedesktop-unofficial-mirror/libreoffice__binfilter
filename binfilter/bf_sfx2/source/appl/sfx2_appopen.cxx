@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sfx2_appopen.cxx,v $
- * $Revision: 1.18 $
+ * $Revision: 1.19 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -169,7 +169,7 @@ using namespace ::cppu;
 
 //--------------------------------------------------------------------
 
-/*N*/ ULONG CheckPasswd_Impl
+/*N*/ sal_uInt32 CheckPasswd_Impl
 /*N*/ (
 /*N*/     //Window *pWin,       // Parent des Dialogs
 /*N*/     SfxObjectShell* pDoc,
