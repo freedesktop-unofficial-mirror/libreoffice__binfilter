@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cellsuno.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -193,9 +193,7 @@
 #include <cppuhelper/implbase3.hxx>
 #endif
 
-#ifndef __SGI_STL_VECTOR
 #include <vector>
-#endif
 namespace binfilter {
 
 class ScDocShell;
@@ -1491,7 +1489,7 @@ public:
                                 throw(::com::sun::star::uno::RuntimeException);
 };
 
-typedef std::vector< ScRangeList > ScMyRangeLists;
+typedef ::std::vector< ScRangeList > ScMyRangeLists;
 
 class ScUniqueCellFormatsObj : public cppu::WeakImplHelper3<
                             ::com::sun::star::container::XIndexAccess,
