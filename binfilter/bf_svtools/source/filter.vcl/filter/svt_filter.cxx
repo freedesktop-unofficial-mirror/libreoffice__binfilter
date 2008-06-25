@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_filter.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1405,16 +1405,12 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
             // ignore animation for previews and set preview size
             if( aPreviewSizeHint.Width() || aPreviewSizeHint.Height() )
             {
-                vcl::PNGReader::SetPreviewSizeHint( aPreviewSizeHint );
-
                 // position the stream at the end of the image if requested
                 if( !bAllowPartialStreamRead )
                     aPNGReader.GetChunks();
             }
             else
             {
-                vcl::PNGReader::DisablePreviewMode();
-
                 // check if this PNG contains a GIF chunk!
                 const std::vector< vcl::PNGReader::ChunkData >&    rChunkData = aPNGReader.GetChunks();
                 std::vector< vcl::PNGReader::ChunkData >::const_iterator aIter( rChunkData.begin() );
@@ -1440,7 +1436,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
 
             if ( eLinkType == GFX_LINK_TYPE_NONE )
             {
-                BitmapEx aBmpEx( aPNGReader.Read() );
+                BitmapEx aBmpEx( aPNGReader.Read( aPreviewSizeHint ) );
                 if ( aBmpEx.IsEmpty() )
                     nStatus = GRFILTER_FILTERERROR;
                 else
