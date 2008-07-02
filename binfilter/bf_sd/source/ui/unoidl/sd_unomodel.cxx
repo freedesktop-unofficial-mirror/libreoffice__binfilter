@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_unomodel.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1223,7 +1223,6 @@ uno::Any SAL_CALL SdXImpressDocument::getPropertyValue( const OUString& Property
                 const Rectangle& aRect = pEmbeddedObj->GetVisArea();
                 awt::Rectangle aVisArea( aRect.nLeft, aRect.nTop, aRect.getWidth(), aRect.getHeight() );
 
-                DBG_ASSERT( (aVisArea.Width >= 0) && (aVisArea.Height >= 0), "corrupted visible area for sd document! [CL]" );
                 aAny <<= aVisArea;
             }
             break;
