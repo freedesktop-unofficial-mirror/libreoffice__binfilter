@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_interpr1.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1667,25 +1667,30 @@ void ScInterpreter::ScPropper()
 {
 //2do: what to do with I18N-CJK ?!?
     String aStr( GetString() );
-    String aUpr( ScGlobal::pCharClass->upper( aStr ) );
-    String aLwr( ScGlobal::pCharClass->lower( aStr ) );
-    register sal_Unicode* pStr = aStr.GetBufferAccess();
-    const sal_Unicode* pUpr = aUpr.GetBuffer();
-    const sal_Unicode* pLwr = aLwr.GetBuffer();
-    *pStr = *pUpr;
-    String aTmpStr( 'x' );
-    xub_StrLen nPos = 1;
     const xub_StrLen nLen = aStr.Len();
-    while( nPos < nLen )
+    // #i82487#,#i89963# don't try to write to empty string's BufferAccess
+    // (would crash now that the empty string is const)
+    if ( nLen > 0 )
     {
-        aTmpStr.SetChar( 0, pStr[nPos-1] );
-        if ( !ScGlobal::pCharClass->isLetter( aTmpStr, 0 ) )
-            pStr[nPos] = pUpr[nPos];
-        else
-            pStr[nPos] = pLwr[nPos];
-        nPos++;
+        String aUpr( ScGlobal::pCharClass->upper( aStr ) );
+        String aLwr( ScGlobal::pCharClass->lower( aStr ) );
+        register sal_Unicode* pStr = aStr.GetBufferAccess();
+        const sal_Unicode* pUpr = aUpr.GetBuffer();
+        const sal_Unicode* pLwr = aLwr.GetBuffer();
+        *pStr = *pUpr;
+        String aTmpStr( 'x' );
+        xub_StrLen nPos = 1;
+        while( nPos < nLen )
+        {
+            aTmpStr.SetChar( 0, pStr[nPos-1] );
+            if ( !ScGlobal::pCharClass->isLetter( aTmpStr, 0 ) )
+                pStr[nPos] = pUpr[nPos];
+            else
+                pStr[nPos] = pLwr[nPos];
+            nPos++;
+        }
+        aStr.ReleaseBufferAccess( nLen );
     }
-    aStr.ReleaseBufferAccess( nLen );
     PushString( aStr );
 }
 
