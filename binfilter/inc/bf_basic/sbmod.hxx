@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbmod.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -39,7 +39,6 @@
 #endif
 
 namespace binfilter {
-class SbiBreakpoints;
 class SbMethod;
 class SbProperty;
 class SbiRuntime;
@@ -65,7 +64,6 @@ protected:
     ::rtl::OUString aOUSource;
     String          aComment;
     SbiImage*       pImage;             // das Image
-    SbiBreakpoints* pBreaks;                        // Breakpoints
     SbClassData*    pClassData;
 
     void            StartDefinitions();
