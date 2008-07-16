@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cellatr.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,10 +94,6 @@ public:
           SwTableBox* GetTableBox();
     const SwTableBox* GetTableBox() const
         { return ((SwTblBoxFormula*)this)->GetTableBox(); }
-
-    // Status aendern
-    void ChangeState( const SfxPoolItem* pItem );
-    // berechne die Formel
 };
 
 class SwTblBoxValue : public SfxPoolItem
