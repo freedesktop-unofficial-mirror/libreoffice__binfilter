@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: bucket.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,8 +61,6 @@ namespace binfilter {
         UINT16          nMemArray; \
     public: \
         TheClassName##TheExtension(UINT16 TheSize); \
-        /* Notwendiger Leer-Konstruktor, benutzt default-Groesse 8 */ \
-        TheClassName##TheExtension(); \
         /* Zu verwendende Groesse der Speicherarrays setzen */ \
         /* Bitte NUR verwenden, falls sich der Leerkonstruktor */ \
         /* nicht vermeiden laesst! Nicht nachtraeglich anwenden!  */ \
@@ -109,9 +107,6 @@ namespace binfilter {
     SV_IMPL_VARARR(TheClassName##TheExtension##MemArr, char*) \
     TheClassName##TheExtension::TheClassName##TheExtension(UINT16 TheSize) { \
         InitializeSize(TheSize); \
-    } \
-    TheClassName##TheExtension::TheClassName##TheExtension() { \
-        InitializeSize(8); \
     } \
     void TheClassName##TheExtension::InitializeSize(UINT16 TheSize) { \
         UINT16 nSiz; \
