@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_docfld.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -422,7 +422,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
 /*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() )
 /*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTblBoxFormula*)pItem)->ChangeState( pHt );
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/       }
 /*?*/
 /*?*/
