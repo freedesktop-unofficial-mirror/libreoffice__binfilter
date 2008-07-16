@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: nranges.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,9 +69,6 @@ class SfxNumRanges
 public:
                                 SfxNumRanges() : _pRanges( 0 ) {}
                                 SfxNumRanges( const SfxNumRanges &rOrig );
-                                SfxNumRanges( NUMTYPE nWhich1, NUMTYPE nWhich2 );
-                                SfxNumRanges( NUMTYPE_ARG nWh1, NUMTYPE_ARG nWh2, NUMTYPE_ARG nNull, ... );
-                                SfxNumRanges( const NUMTYPE* nNumTable );
                                 ~SfxNumRanges()
                                 { delete [] _pRanges; }
 
@@ -88,8 +85,6 @@ public:
     NUMTYPE                     Count() const;
     BOOL                        IsEmpty() const
                                 { return !_pRanges || 0 == *_pRanges; }
-    BOOL                        Contains( NUMTYPE n ) const;
-    BOOL                        Intersects( const SfxNumRanges & ) const;
 
                                 operator const NUMTYPE* () const
                                 { return _pRanges; }

@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: rngitem.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -78,7 +78,6 @@ public:
                                 TYPEINFO();
                                 SfxXRangeItem();
                                 SfxXRangeItem( USHORT nWID, NUMTYPE nFrom, NUMTYPE nTo );
-                                SfxXRangeItem( USHORT nWID, SvStream &rStream );
                                 SfxXRangeItem( const SfxXRangeItem& rItem );
     virtual int                 operator==( const SfxPoolItem& ) const;
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -106,7 +105,6 @@ private:
 public:
                                 TYPEINFO();
                                 SfxXRangesItem();
-                                SfxXRangesItem( USHORT nWID, const NUMTYPE *pRanges );
                                 SfxXRangesItem( USHORT nWID, SvStream &rStream );
                                 SfxXRangesItem( const SfxXRangesItem& rItem );
     virtual                     ~SfxXRangesItem();

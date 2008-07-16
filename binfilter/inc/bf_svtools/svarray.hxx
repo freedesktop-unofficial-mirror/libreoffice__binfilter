@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svarray.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -146,8 +146,6 @@ public:\
 
 #define _SV_DECL_VARARR(nm, AE, IS, GS ) \
 _SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE & )
-#define _SV_DECL_VARARR_PLAIN(nm, AE, IS, GS ) \
-_SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE )
 
 #define SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
 _SV_DECL_VARARR_GEN(nm, AE, IS, GS, AERef, vis )\
@@ -158,14 +156,9 @@ nm& operator=( const nm& );\
 
 #define SV_DECL_VARARR(nm, AE, IS, GS ) \
 SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE &, )
-#define SV_DECL_VARARR_PLAIN(nm, AE, IS, GS ) \
-SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE, )
 
 #define SV_DECL_VARARR_VISIBILITY(nm, AE, IS, GS, vis ) \
 SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE &, vis )
-
-#define SV_DECL_VARARR_PLAIN_VISIBILITY(nm, AE, IS, GS, vis ) \
-SV_DECL_VARARR_GEN(nm, AE, IS, GS, AE, vis )
 
 #define SV_IMPL_VARARR_GEN( nm, AE, AERef )\
 nm::nm( USHORT nInit, BYTE )\
@@ -268,8 +261,6 @@ _SVVARARR_IMPL_GET_OP_INLINE(nm, AE )\
 
 #define SV_IMPL_VARARR( nm, AE ) \
 SV_IMPL_VARARR_GEN( nm, AE, AE & )
-#define SV_IMPL_VARARR_PLAIN( nm, AE ) \
-SV_IMPL_VARARR_GEN( nm, AE, AE )
 
 #if defined(PRODUCT)
 
@@ -462,8 +453,6 @@ USHORT GetPos( const AERef aE ) const;\
 
 #define _SV_DECL_PTRARR_DEF( nm, AE, IS, GS, vis )\
 _SV_DECL_PTRARR_DEF_GEN( nm, AE, IS, GS, AE &, vis )
-#define _SV_DECL_PTRARR_DEF_PLAIN( nm, AE, IS, GS, vis )\
-_SV_DECL_PTRARR_DEF_GEN( nm, AE, IS, GS, AE, vis )
 
 #define SV_DECL_PTRARR_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
@@ -519,13 +508,9 @@ private:\
 
 #define SV_DECL_PTRARR(nm, AE, IS, GS )\
 SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, )
-#define SV_DECL_PTRARR_PLAIN(nm, AE, IS, GS )\
-SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarrPlain, AE, VoidPtr, )
 
 #define SV_DECL_PTRARR_VISIBILITY(nm, AE, IS, GS, vis )\
 SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, vis )
-#define SV_DECL_PTRARR_PLAIN_VISIBILITY(nm, AE, IS, GS, vis )\
-SV_DECL_PTRARR_GEN(nm, AE, IS, GS, SvPtrarrPlain, AE, VoidPtr, vis )
 
 #define SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, Base, AERef, VPRef, vis )\
 typedef BOOL (*FnForEach_##nm)( const AERef, void* );\
@@ -582,13 +567,9 @@ private:\
 
 #define SV_DECL_PTRARR_DEL(nm, AE, IS, GS )\
 SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, )
-#define SV_DECL_PTRARR_DEL_PLAIN(nm, AE, IS, GS )\
-SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarrPlain, AE, VoidPtr, )
 
 #define SV_DECL_PTRARR_DEL_VISIBILITY(nm, AE, IS, GS, vis )\
 SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarr, AE &, VoidPtr &, vis)
-#define SV_DECL_PTRARR_DEL_PLAIN_VISIBILITY(nm, AE, IS, GS, vis )\
-SV_DECL_PTRARR_DEL_GEN(nm, AE, IS, GS, SvPtrarrPlain, AE, VoidPtr, vis)
 
 #define SV_IMPL_PTRARR_GEN(nm, AE, Base)\
 void nm::DeleteAndDestroy( USHORT nP, USHORT nL )\
@@ -603,12 +584,9 @@ void nm::DeleteAndDestroy( USHORT nP, USHORT nL )\
 
 #define SV_IMPL_PTRARR(nm, AE )\
 SV_IMPL_PTRARR_GEN(nm, AE, SvPtrarr )
-#define SV_IMPL_PTRARR_PLAIN(nm, AE )\
-SV_IMPL_PTRARR_GEN(nm, AE, SvPtrarrPlain )
 
 typedef void* VoidPtr;
 _SV_DECL_PTRARR_DEF( SvPtrarr, VoidPtr, 0, 1,  )
-_SV_DECL_PTRARR_DEF_PLAIN( SvPtrarrPlain, VoidPtr, 0, 1,  )
 
 // SORTARR - Begin
 

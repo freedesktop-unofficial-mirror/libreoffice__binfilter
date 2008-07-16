@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svstdarr.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,13 +60,6 @@ SV_DECL_VARARR_VISIBILITY( SvULongs, ULONG, 1, 1,  )
 #endif
 //#endif
 
-//#ifdef _SVSTDARR_ULONGSSORT
-#ifndef _SVSTDARR_ULONGSSORT_DECL
-SV_DECL_VARARR_SORT_VISIBILITY( SvULongsSort, ULONG, 1, 1,  )
-#define _SVSTDARR_ULONGSSORT_DECL
-#endif
-//#endif
-
 //#ifdef _SVSTDARR_USHORTS
 #ifndef _SVSTDARR_USHORTS_DECL
 SV_DECL_VARARR_VISIBILITY( SvUShorts, USHORT, 1, 1,  )
@@ -88,8 +81,6 @@ public:
     BOOL Insert( const USHORT aE );
     BOOL Insert( const USHORT aE, USHORT& rP );
     void Insert( const USHORT *pE, USHORT nL );
-    // remove ab Pos
-    void RemoveAt( const USHORT nP, USHORT nL = 1 );
     // remove ab dem Eintrag
     void Remove( const USHORT nP, USHORT nL = 1 );
     BOOL Seek_Entry( const USHORT aE, USHORT* pP = 0 ) const;
@@ -128,13 +119,6 @@ SV_DECL_VARARR_VISIBILITY( SvLongs, long, 1, 1,  )
 #endif
 //#endif
 
-//#ifdef _SVSTDARR_LONGSSORT
-#ifndef _SVSTDARR_LONGSSORT_DECL
-SV_DECL_VARARR_SORT_VISIBILITY( SvLongsSort, long, 1, 1,  )
-#define _SVSTDARR_LONGSSORT_DECL
-#endif
-//#endif
-
 //#ifdef _SVSTDARR_SHORTS
 #ifndef _SVSTDARR_SHORTS_DECL
 SV_DECL_VARARR_VISIBILITY( SvShorts, short, 1, 1,  )
@@ -157,8 +141,7 @@ SV_DECL_VARARR_VISIBILITY( SvShorts, short, 1, 1,  )
     (defined(_SVSTDARR_BYTESTRINGSSORTDTOR) && !defined(_SVSTDARR_BYTESTRINGSSORTDTOR_DECL)) || \
     (defined(_SVSTDARR_BYTESTRINGSISORT) && !defined(_SVSTDARR_BYTESTRINGSISORT_DECL)) || \
     (defined(_SVSTDARR_BYTESTRINGSISORTDTOR) && !defined(_SVSTDARR_BYTESTRINGSISORTDTOR_DECL)) || \
-    (defined(_SVSTDARR_XUB_STRLEN) && !defined(_SVSTDARR_XUB_STRLEN_DECL)) ||\
-    (defined(_SVSTDARR_XUB_STRLENSORT) && !defined(_SVSTDARR_XUB_STRLENSORT_DECL))
+    (defined(_SVSTDARR_XUB_STRLEN) && !defined(_SVSTDARR_XUB_STRLEN_DECL))
 */
 
 
@@ -255,13 +238,6 @@ SV_DECL_PTRARR_SORT_DEL_VISIBILITY( SvByteStringsISortDtor, ByteStringPtr, 1, 1,
 #ifndef _SVSTDARR_XUB_STRLEN_DECL
 SV_DECL_VARARR_VISIBILITY( SvXub_StrLens, xub_StrLen, 1, 1,  )
 #define _SVSTDARR_XUB_STRLEN_DECL
-#endif
-//#endif
-
-//#ifdef _SVSTDARR_XUB_STRLENSORT
-#ifndef _SVSTDARR_XUB_STRLENSORT_DECL
-SV_DECL_VARARR_SORT_VISIBILITY( SvXub_StrLensSort, xub_StrLen, 1, 1,  )
-#define _SVSTDARR_XUB_STRLENSORT_DECL
 #endif
 //#endif
 
