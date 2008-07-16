@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxdec.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -69,7 +69,9 @@ class SbxDecimal
     INT32       mnRefCount;
 
 public:
+#ifdef WIN32
     SbxDecimal();
+#endif
     SbxDecimal( const SbxDecimal& rDec );
 
     ~SbxDecimal();

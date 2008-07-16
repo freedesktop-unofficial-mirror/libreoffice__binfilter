@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iface.cxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -128,7 +128,6 @@ SvObject::~SvObject()
 /*************************************************************************
 |*
 |*    SvObject::ReleaseRef()
-|*    SvObject::ReleaseExt()
 |*
 |*    Beschreibung
 |*    Ersterstellung    MM 05.06.94
@@ -149,28 +148,6 @@ UINT32 SvObject::ReleaseRef()
 #endif
     return SotObject::ReleaseRef();
 }
-
-
-UINT32 SvObject::ReleaseExt()
-{
-#ifdef DBG_UTIL
-    if( nExtCount == 0 )
-    { // wegen Fehler bei Fehlermeldung
-        DBG_TRACE( "External RefCount underflow" );
-    }
-//    DBG_ASSERT( nExtCount != 0,
-//                "External RefCount underflow" );
-#endif
-    if( nExtCount != 0 )
-    {   // Niemals ausbauen! Schutz gegen !feindliche!
-        // Applikationen.
-        nExtCount--;
-        return ReleaseRef();
-    }
-    return GetRefCount();
-}
-
-
 
 //========================================================================
 void SvObject::MakeUnknown()
@@ -198,12 +175,6 @@ void SvObject::MakeUnknown()
 }
 
 
-
-UINT32 SvObject::AddExtRef()
-{
-    ++nExtCount;
-    return AddRef();
-}
 
 #if defined (_INC_WINDOWS) || defined (_WINDOWS_)
 RECT GetSysRect( const Rectangle & rRect )
