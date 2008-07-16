@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxdec.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -39,6 +39,7 @@
 
 namespace binfilter {
 
+#ifdef WIN32
 // int GnDecCounter = 0;
 SbxDecimal::SbxDecimal( void )
 {
@@ -46,6 +47,7 @@ SbxDecimal::SbxDecimal( void )
       mnRefCount = 0;
       // GnDecCounter++;
 }
+#endif
 
 SbxDecimal::SbxDecimal( const SbxDecimal& rDec )
 {
