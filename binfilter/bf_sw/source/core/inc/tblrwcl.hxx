@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: tblrwcl.hxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -113,7 +113,6 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
 
     void AddBox( const SwTableBox& rBox );
     const SwTableBox* GetBoxOfPos( const SwTableBox& rBox );
-    void AddToUndoHistory( const SwCntntNode& rNd );
 
     USHORT Count() const                { return aBoxes.Count(); }
     const SwTableBox& GetBox( USHORT nPos, USHORT* pWidth = 0 ) const
