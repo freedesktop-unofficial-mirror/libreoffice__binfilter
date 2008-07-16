@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxvalue.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -699,7 +699,9 @@ GET( GetULong,    SbxULONG,      UINT32,           nULong )
 GET( GetUShort,   SbxUSHORT,     UINT16,           nUShort )
 GET( GetInt64,    SbxSALINT64,   sal_Int64,        nInt64 )
 GET( GetUInt64,   SbxSALUINT64,  sal_uInt64,       uInt64 )
+#ifdef WNT
 GET( GetDecimal,  SbxDECIMAL,    SbxDecimal*,      pDecimal )
+#endif
 
 //////////////////////////// Daten schreiben /////////////////////////////
 
@@ -856,7 +858,9 @@ PUT( PutULong,    SbxULONG,      UINT32,           nULong )
 PUT( PutUShort,   SbxUSHORT,     UINT16,           nUShort )
 PUT( PutInt64,    SbxSALINT64,   sal_Int64,        nInt64 )
 PUT( PutUInt64,   SbxSALUINT64,  sal_uInt64,       uInt64 )
+#ifdef WNT
 PUT( PutDecimal,  SbxDECIMAL,    SbxDecimal*,      pDecimal )
+#endif
 
 ////////////////////////// Setzen des Datentyps ///////////////////////////
 

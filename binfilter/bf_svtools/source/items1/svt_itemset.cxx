@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_itemset.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -198,6 +198,54 @@ void SfxItemSet::InitRanges_Impl(USHORT nWh1, USHORT nWh2)
     const USHORT nRg = nWh2 - nWh1 + 1;
     _aItems = new const SfxPoolItem* [ nRg ];
     memset( (void*) _aItems, 0, nRg * sizeof( SfxPoolItem* ) );
+}
+
+//------------------------------------------------------------------------
+
+USHORT InitializeRanges_Impl( USHORT *&rpRanges, va_list pArgs,
+                               USHORT nWh1, USHORT nWh2, USHORT nNull )
+
+/** <H3>Description</H3>
+
+    Creates an USHORT-ranges-array in 'rpRanges' using 'nWh1' and 'nWh2' as
+    first range, 'nNull' as terminator or start of 2nd range and 'pArgs' as
+    remaider.
+
+    It returns the number of USHORTs which are contained in the described
+    set of USHORTs.
+*/
+
+{
+    USHORT nSize = 0, nIns = 0;
+    USHORT nCnt = 0;
+    SvUShorts aNumArr( 11, 8 );
+    aNumArr.Insert( nWh1, nCnt++ );
+    aNumArr.Insert( nWh2, nCnt++ );
+    DBG_ASSERT( nWh1 <= nWh2, "Ungueltiger Bereich" );
+    nSize += nWh2 - nWh1 + 1;
+    aNumArr.Insert( nNull, nCnt++ );
+    while ( 0 !=
+            ( nIns =
+              sal::static_int_cast< USHORT >(
+                  va_arg( pArgs, USHORT_ARG ) ) ) )
+    {
+        aNumArr.Insert( nIns, nCnt++ );
+        if ( 0 == (nCnt & 1) )       // 4,6,8, usw.
+        {
+            DBG_ASSERT( aNumArr[ nCnt-2 ] <= nIns, "Ungueltiger Bereich" );
+            nSize += nIns - aNumArr[ nCnt-2 ] + 1;
+        }
+    }
+    va_end( pArgs );
+
+    DBG_ASSERT( 0 == (nCnt & 1), "ungerade Anzahl von Which-Paaren!" );
+
+    // so, jetzt sind alle Bereiche vorhanden und
+    rpRanges = new USHORT[ nCnt+1 ];
+    memcpy( rpRanges, aNumArr.GetData(), sizeof(USHORT) * nCnt );
+    *(rpRanges+nCnt) = 0;
+
+    return nSize;
 }
 
 // -----------------------------------------------------------------------
