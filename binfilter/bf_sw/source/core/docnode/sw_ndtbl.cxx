@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_ndtbl.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -677,19 +677,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
 /* -----------------18.07.98 11:45-------------------
  *  Direktzugriff fuer UNO
  * --------------------------------------------------*/
-
-
-
-
-// Splittet eine Tabelle in der Grund-Zeile, in der der Index steht.
-// Alle GrundZeilen dahinter wandern in eine neue Tabelle/-Node.
-// Ist das Flag bCalcNewSize auf TRUE, wird fuer beide neuen Tabellen
-// die neue Size aus dem Max der Boxen errechnet; vorrausgesetzt,
-// die Size ist "absolut" gesetzt (USHRT_MAX)
-
-void SwCollectTblLineBoxes::AddToUndoHistory( const SwCntntNode& rNd )
-{
-}
 
 void SwCollectTblLineBoxes::AddBox( const SwTableBox& rBox )
 {
