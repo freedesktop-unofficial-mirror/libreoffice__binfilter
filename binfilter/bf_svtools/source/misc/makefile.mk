@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.3 $
+# $Revision: 1.4 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -50,7 +50,6 @@ SRC1FILES=\
 SLOFILES=\
     $(SLO)$/svt_asynclink.obj			\
     $(SLO)$/svt_ctrltool.obj			\
-    $(SLO)$/svt_embedhlp.obj            \
     $(SLO)$/svt_imageresourceaccess.obj \
     $(SLO)$/svt_templatefoldercache.obj \
     $(SLO)$/svt_urihelper.obj           \

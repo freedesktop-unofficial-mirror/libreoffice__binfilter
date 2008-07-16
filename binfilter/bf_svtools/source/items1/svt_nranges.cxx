@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_nranges.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -60,54 +60,6 @@ inline void Swap_Impl(const NUMTYPE *& rp1, const NUMTYPE *& rp2)
 }
 
 //========================================================================
-
-NUMTYPE InitializeRanges_Impl( NUMTYPE *&rpRanges, va_list pArgs,
-                               NUMTYPE nWh1, NUMTYPE nWh2, NUMTYPE nNull )
-
-/** <H3>Description</H3>
-
-    Creates an USHORT-ranges-array in 'rpRanges' using 'nWh1' and 'nWh2' as
-    first range, 'nNull' as terminator or start of 2nd range and 'pArgs' as
-    remaider.
-
-    It returns the number of NUMTYPEs which are contained in the described
-    set of NUMTYPEs.
-*/
-
-{
-    NUMTYPE nSize = 0, nIns = 0;
-    USHORT nCnt = 0;
-    SvNums aNumArr( 11, 8 );
-    aNumArr.Insert( nWh1, nCnt++ );
-    aNumArr.Insert( nWh2, nCnt++ );
-    DBG_ASSERT( nWh1 <= nWh2, "Ungueltiger Bereich" );
-    nSize += nWh2 - nWh1 + 1;
-    aNumArr.Insert( nNull, nCnt++ );
-    while ( 0 !=
-            ( nIns =
-              sal::static_int_cast< NUMTYPE >(
-                  va_arg( pArgs, NUMTYPE_ARG ) ) ) )
-    {
-        aNumArr.Insert( nIns, nCnt++ );
-        if ( 0 == (nCnt & 1) )       // 4,6,8, usw.
-        {
-            DBG_ASSERT( aNumArr[ nCnt-2 ] <= nIns, "Ungueltiger Bereich" );
-            nSize += nIns - aNumArr[ nCnt-2 ] + 1;
-        }
-    }
-    va_end( pArgs );
-
-    DBG_ASSERT( 0 == (nCnt & 1), "ungerade Anzahl von Which-Paaren!" );
-
-    // so, jetzt sind alle Bereiche vorhanden und
-    rpRanges = new NUMTYPE[ nCnt+1 ];
-    memcpy( rpRanges, aNumArr.GetData(), sizeof(NUMTYPE) * nCnt );
-    *(rpRanges+nCnt) = 0;
-
-    return nSize;
-}
-
-//------------------------------------------------------------------------
 
 NUMTYPE Count_Impl( const NUMTYPE *pRanges )
 
@@ -169,68 +121,6 @@ SfxNumRanges::SfxNumRanges( const SfxNumRanges &rOrig )
     }
     else
         _pRanges = 0;
-}
-
-//------------------------------------------------------------------------
-
-SfxNumRanges::SfxNumRanges( NUMTYPE nWhich1, NUMTYPE nWhich2 )
-
-/** <H3>Description</H3>
-
-    Constructs an SfxNumRanges-instance from one range of NUMTYPEs.
-
-    precondition:
-        nWhich1 <= nWhich2
-*/
-
-:   _pRanges( new NUMTYPE[3] )
-{
-    _pRanges[0] = nWhich1;
-    _pRanges[1] = nWhich2;
-    _pRanges[2] = 0;
-}
-
-//------------------------------------------------------------------------
-
-SfxNumRanges::SfxNumRanges( NUMTYPE_ARG nWh0, NUMTYPE_ARG nWh1, NUMTYPE_ARG nNull, ... )
-
-/** <H3>Description</H3>
-
-    Constructs an SfxNumRanges-instance from more than one sorted ranges of
-    NUMTYPEs terminated with one 0.
-
-    precondition: for each n >= 0 && n < nArgs
-        nWh(2n) <= nWh(2n+1) && ( nWh(2n+2)-nWh(2n+1) ) > 1
-*/
-
-{
-    va_list pArgs;
-    va_start( pArgs, nNull );
-    InitializeRanges_Impl(
-        _pRanges, pArgs, sal::static_int_cast< NUMTYPE >(nWh0),
-        sal::static_int_cast< NUMTYPE >(nWh1),
-        sal::static_int_cast< NUMTYPE >(nNull));
-    DBG_CHECK_RANGES(NUMTYPE, _pRanges);
-}
-
-//------------------------------------------------------------------------
-
-SfxNumRanges::SfxNumRanges( const NUMTYPE* pArr )
-
-/** <H3>Description</H3>
-
-    Constcurts an SfxNumRanges-instance from an sorted ranges of NUMTYPEs,
-    terminates with on 0.
-
-    precondition: for each n >= 0 && n < (sizeof(pArr)-1)
-        pArr[2n] <= pArr[2n+1] && ( pArr[2n+2]-pArr[2n+1] ) > 1
-*/
-
-{
-    DBG_CHECK_RANGES(NUMTYPE, pArr);
-    NUMTYPE nCount = Count_Impl(pArr) + 1;
-    _pRanges = new NUMTYPE[ nCount ];
-    memcpy( _pRanges, pArr, sizeof(NUMTYPE) * nCount );
 }
 
 //------------------------------------------------------------------------
@@ -779,50 +669,6 @@ SfxNumRanges& SfxNumRanges::operator /=
 
 //------------------------------------------------------------------------
 
-BOOL SfxNumRanges::Intersects( const SfxNumRanges &rRanges ) const
-
-/** <H3>Description</H3>
-
-    Determines if at least one range in 'rRanges' intersects with one
-    range in '*this'.
-
-    TRUE, if there is at least one with:
-        this->Contains( n ) && rRanges.Contains( n )
-*/
-
-{
-    // special cases: one is empty
-    if ( rRanges.IsEmpty() || IsEmpty() )
-        return FALSE;
-
-    // find at least one intersecting range
-    const NUMTYPE *pRange1 = _pRanges;
-    const NUMTYPE *pRange2 = rRanges._pRanges;
-
-    do
-    {
-        // 1st range is smaller than 2nd range?
-        if ( pRange1[1] < pRange2[0] )
-            // => keep 1st range
-            pRange1 += 2;
-
-        // 2nd range is smaller than 1st range?
-        else if ( pRange2[1] < pRange1[0] )
-            // => skip 2nd range
-            pRange2 += 2;
-
-        // the ranges are overlappung
-        else
-            return TRUE;
-    }
-    while ( *pRange2 );
-
-    // no intersection found
-    return FALSE;
-}
-
-//------------------------------------------------------------------------
-
 NUMTYPE SfxNumRanges::Count() const
 
 /** <H3>Description</H3>
@@ -833,21 +679,4 @@ NUMTYPE SfxNumRanges::Count() const
 
 {
     return Capacity_Impl( _pRanges );
-}
-
-//------------------------------------------------------------------------
-
-BOOL SfxNumRanges::Contains( NUMTYPE n ) const
-
-/** <H3>Description</H3>
-
-    Determines if '*this' contains 'n'.
-*/
-
-{
-    for ( NUMTYPE *pRange = _pRanges; *pRange && *pRange <= n; pRange += 2 )
-        if ( pRange[0] <= n && n <= pRange[1] )
-            return TRUE;
-    return FALSE;
-
 }
