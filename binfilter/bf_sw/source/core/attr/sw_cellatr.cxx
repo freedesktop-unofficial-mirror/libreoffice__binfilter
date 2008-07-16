@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_cellatr.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -147,90 +147,6 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
         pBox = (SwTableBox*)SwClientIter( *pDefinedIn ).
                             First( TYPE( SwTableBox ));
     return pBox;
-}
-
-
-void SwTblBoxFormula::ChangeState( const SfxPoolItem* pItem )
-{
-    if( !pDefinedIn )
-        return ;
-
-    SwTableFmlUpdate* pUpdtFld;
-    if( !pItem || RES_TABLEFML_UPDATE != pItem->Which() )
-    {
-        // setze bei allen das Value-Flag zurueck
-        ChgValid( FALSE );
-        return ;
-    }
-
-    pUpdtFld = (SwTableFmlUpdate*)pItem;
-
-    // bestimme die Tabelle, in der das Attribut steht
-    const SwTableNode* pTblNd;
-    const SwNode* pNd = GetNodeOfFormula();
-    if( pNd && &pNd->GetNodes() == &pNd->GetDoc()->GetNodes() &&
-        0 != ( pTblNd = pNd->FindTableNode() ))
-    {
-        switch( pUpdtFld->eFlags )
-        {
-        case TBL_CALC:
-            // setze das Value-Flag zurueck
-            // JP 17.06.96: interne Darstellung auf alle Formeln
-            //              (Referenzen auf andere Tabellen!!!)
-//          if( VF_CMD & pFld->GetFormat() )
-//              pFld->PtrToBoxNm( pUpdtFld->pTbl );
-//          else
-                ChgValid( FALSE );
-            break;
-        case TBL_BOXNAME:
-            // ist es die gesuchte Tabelle ??
-            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-                // zur externen Darstellung
-                PtrToBoxNm( pUpdtFld->pTbl );
-            break;
-        case TBL_BOXPTR:
-            // zur internen Darstellung
-            // JP 17.06.96: interne Darstellung auf alle Formeln
-            //              (Referenzen auf andere Tabellen!!!)
-            BoxNmToPtr( &pTblNd->GetTable() );
-            break;
-        case TBL_RELBOXNAME:
-            // ist es die gesuchte Tabelle ??
-            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-                // zur relativen Darstellung
-                ToRelBoxNm( pUpdtFld->pTbl );
-            break;
-
-        case TBL_SPLITTBL:
-            if( &pTblNd->GetTable() == pUpdtFld->pTbl )
-            {
-                USHORT nLnPos = SwTableFormula::GetLnPosInTbl(
-                                        pTblNd->GetTable(), GetTableBox() );
-                pUpdtFld->bBehindSplitLine = USHRT_MAX != nLnPos &&
-                                            pUpdtFld->nSplitLine <= nLnPos;
-            }
-            else
-                pUpdtFld->bBehindSplitLine = FALSE;
-            // kein break
-        case TBL_MERGETBL:
-            if( pUpdtFld->pHistory )
-            {
-                // fuer die History brauche ich aber die unveraenderte Formel
-                SwTblBoxFormula aCopy( *this );
-                pUpdtFld->bModified = FALSE;
-                ToSplitMergeBoxNm( *pUpdtFld );
-
-                if( pUpdtFld->bModified )
-                {
-                    // und dann in der externen Darstellung
-                    aCopy.PtrToBoxNm( &pTblNd->GetTable() );
-                }
-            }
-            else
-                ToSplitMergeBoxNm( *pUpdtFld );
-            break;
-        }
-    }
 }
 
 /*************************************************************************
