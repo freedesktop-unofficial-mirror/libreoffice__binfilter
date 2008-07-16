@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_w4watr.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -282,11 +282,6 @@ void OutW4W_SwFmtPageDesc1( SwW4WWriter& rW4WWrt, const SwPageDesc* pPg )
          || rW4WWrt.bHdFt )     // hier ignorieren ( mag WW2 nicht )
         return;
 
-#if OSL_DEBUG_LEVEL > 1
-    rW4WWrt.Strm() << sW4W_RECBEGIN << "NOP_PageDesc_";
-    ByteString sTmp(pPg->GetName(), rW4WWrt.eTargCharSet );
-    rW4WWrt.Strm() << sTmp << sW4W_TERMEND;
-#endif
     if ((( rW4WWrt.GetFilter() != 1 )   // Keiner (?) will ^L im Ascii-Text
         || (rW4WWrt.GetIniFlags() & 0x10000))
         && rW4WWrt.bIsTxtInPgDesc )
