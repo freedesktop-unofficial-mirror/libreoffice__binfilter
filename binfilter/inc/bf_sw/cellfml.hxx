@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: cellfml.hxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -74,8 +74,6 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
                         void* pPara = 0 ) const;
     void PtrToBoxNms( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
-    void BoxNmsToRelNm( const SwTable&, String&, String&, String* = 0,
-                        void* pPara = 0 ) const;
     void _MakeFormel( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
@@ -108,8 +106,6 @@ protected:
                             *rCalcPara.pTbl, &rCalcPara );
     }
 
-    static USHORT GetLnPosInTbl( const SwTable& rTbl, const SwTableBox* pBox );
-
 public:
 
     SwTableFormula( const SwTableFormula& rCpy )    { *this = rCpy; }
@@ -125,10 +121,6 @@ public:
     void PtrToBoxNm( const SwTable* pTbl );
     // erzeuge aus der externen (fuer UI) die interne (fuer CORE) Formel
     void BoxNmToPtr( const SwTable* pTbl );
-    // erzeuge aus der externen/internen Formel die relative Formel
-    void ToRelBoxNm( const SwTable* pTbl );
-    // wird vorm/nach dem mergen/splitten von Tabellen rerufen
-    void ToSplitMergeBoxNm( SwTableFmlUpdate& rTblUpd );
 
     // ist gerade eine intern Darstellung aktiv
     BOOL IsIntrnlName() const           { return eNmType == INTRNL_NAME; }
