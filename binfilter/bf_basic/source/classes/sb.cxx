@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sb.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -350,7 +350,6 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
     aOUSource = pClassModule->aOUSource;
     aComment = pClassModule->aComment;
     pImage = pClassModule->pImage;
-    pBreaks = pClassModule->pBreaks;
 
     SetClassName( pClassModule->GetName() );
 
@@ -459,7 +458,6 @@ SbClassModuleObject::~SbClassModuleObject()
     // Must be deleted by base class dtor because this data
     // is not owned by the SbClassModuleObject object
     pImage = NULL;
-    pBreaks = NULL;
 }
 
 void SbClassModuleObject::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,

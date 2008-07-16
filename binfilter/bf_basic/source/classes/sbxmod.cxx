@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxmod.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -80,9 +80,6 @@ TYPEINIT1(SbProcedureProperty,SbxProperty)
 TYPEINIT1(SbJScriptModule,SbModule)
 TYPEINIT1(SbJScriptMethod,SbMethod)
 
-SV_DECL_VARARR(SbiBreakpoints,USHORT,4,4)
-SV_IMPL_VARARR(SbiBreakpoints,USHORT)
-
 /////////////////////////////////////////////////////////////////////////////
 
 // Ein BASIC-Modul hat EXTSEARCH gesetzt, damit die im Modul enthaltenen
@@ -90,7 +87,7 @@ SV_IMPL_VARARR(SbiBreakpoints,USHORT)
 
 SbModule::SbModule( const String& rName )
          : SbxObject( String( RTL_CONSTASCII_USTRINGPARAM("StarBASICModule") ) ),
-           pImage( NULL ), pBreaks( NULL ), pClassData( NULL )
+           pImage( NULL ), pClassData( NULL )
 {
     SetName( rName );
     SetFlag( SBX_EXTSEARCH | SBX_GBLSEARCH );
@@ -100,8 +97,6 @@ SbModule::~SbModule()
 {
     if( pImage )
         delete pImage;
-    if( pBreaks )
-        delete pBreaks;
     if( pClassData )
         delete pClassData;
 }
@@ -535,32 +530,16 @@ BOOL SbModule::IsBreakable( USHORT nLine ) const
 
 USHORT SbModule::GetBPCount() const
 {
-    return pBreaks ? pBreaks->Count() : 0;
+    return 0;
 }
 
 USHORT SbModule::GetBP( USHORT n ) const
 {
-    if( pBreaks && n < pBreaks->Count() )
-        return pBreaks->GetObject( n );
-    else
-        return 0;
+    return 0;
 }
 
 BOOL SbModule::IsBP( USHORT nLine ) const
 {
-    if( pBreaks )
-    {
-        const USHORT* p = pBreaks->GetData();
-        USHORT n = pBreaks->Count();
-        for( USHORT i = 0; i < n; i++, p++ )
-        {
-            USHORT b = *p;
-            if( b == nLine )
-                return TRUE;
-            if( b < nLine )
-                break;
-        }
-    }
     return FALSE;
 }
 
@@ -572,30 +551,11 @@ BOOL SbModule::SetBP( USHORT /*nLine*/ )
 
 BOOL SbModule::ClearBP( USHORT nLine )
 {
-    BOOL bRes = FALSE;
-    if( pBreaks )
-    {
-        const USHORT* p = pBreaks->GetData();
-        USHORT n = pBreaks->Count();
-        for( USHORT i = 0; i < n; i++, p++ )
-        {
-            USHORT b = *p;
-            if( b == nLine )
-            {
-                pBreaks->Remove( i, 1 ); bRes = TRUE; break;
-            }
-            if( b < nLine )
-                break;
-        }
-        if( !pBreaks->Count() )
-            delete pBreaks, pBreaks = NULL;
-    }
-    return bRes;
+    return FALSE;
 }
 
 void SbModule::ClearAllBP()
 {
-    delete pBreaks; pBreaks = NULL;
 }
 
 void

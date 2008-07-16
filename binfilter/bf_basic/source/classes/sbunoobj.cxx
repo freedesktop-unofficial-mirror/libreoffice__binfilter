@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbunoobj.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -544,43 +544,6 @@ void unoToSbxValue( SbxVariable* pVar, const Any& aValue )
                     else
                         pVar->PutEmpty();
                     break;
-                }
-                else
-                {
-/*?*/ //                    SbiInstance* pInst = pINST;
-/*?*/ //                    if( pInst && pInst->IsCompatibility() )
-/*?*/ //                    {
-/*?*/ //                        oleautomation::Date aDate;
-/*?*/ //                        if( (aValue >>= aDate) )
-/*?*/ //                        {
-/*?*/ //                            pVar->PutDate( aDate.Value );
-/*?*/ //                            break;
-/*?*/ //                        }
-/*?*/ //                        else
-/*?*/ //                        {
-/*?*/ //                            oleautomation::Decimal aDecimal;
-/*?*/ //                            if( (aValue >>= aDecimal) )
-/*?*/ //                            {
-/*?*/ //                                pVar->PutDecimal( aDecimal );
-/*?*/ //                                break;
-/*?*/ //                            }
-/*?*/ //                            else
-/*?*/ //                            {
-/*?*/ //                                oleautomation::Currency aCurrency;
-/*?*/ //                                if( (aValue >>= aCurrency) )
-/*?*/ //                                {
-/*?*/ //                                    sal_Int64 nValue64 = aCurrency.Value;
-/*?*/ //                                    SbxINT64 aInt64;
-/*?*/ //                                    aInt64.nHigh =
-/*?*/ //                                        sal::static_int_cast< INT32 >(
-/*?*/ //                                            nValue64 >> 32);
-/*?*/ //                                    aInt64.nLow = (UINT32)( nValue64 & 0xffffffff );
-/*?*/ //                                    pVar->PutCurrency( aInt64 );
-/*?*/ //                                    break;
-/*?*/ //                                }
-/*?*/ //                            }
-/*?*/ //                        }
-/*?*/ //                    }
                 }
             }
             // SbUnoObject instanzieren
