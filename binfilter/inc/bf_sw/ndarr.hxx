@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: ndarr.hxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -126,9 +126,6 @@ class SwNodes: private BigPtrArray
     void SectionUpDown( const SwNodeIndex & aStart, const SwNodeIndex & aEnd );
     void DelNodes( const SwNodeIndex& rStart, ULONG nCnt = 1 );
 
-    void ChgNode( SwNodeIndex& rDelPos, ULONG nSize,
-                  SwNodeIndex& rInsPos, BOOL bNewFrms );
-
     void UpdtOutlineIdx( const SwNode& );   // Update ab Node alle OutlineNodes
 
     void _CopyNodes( const SwNodeRange&, const SwNodeIndex&,
@@ -180,9 +177,6 @@ public:
     inline BOOL IsDocNodes() const;
 
     void Delete(const SwNodeIndex &rPos, ULONG nNodes = 1);
-
-    BOOL _MoveNodes( const SwNodeRange&, SwNodes& rNodes, const SwNodeIndex&,
-                BOOL bNewFrms = TRUE );
 
     void _Copy( const SwNodeRange& rRg, const SwNodeIndex& rInsPos,
                 BOOL bNewFrms = TRUE ) const
