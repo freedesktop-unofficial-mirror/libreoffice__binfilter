@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iface.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -268,9 +268,6 @@ public:
     ::IUnknown *          DownAggInterface( const SvGlobalName & rName );
     ::IUnknown *          AggInterface( const SvGlobalName & rName );
 
-    USHORT              GetExtRefCount() const { return nExtCount; }
-    UINT32              AddExtRef();
-    UINT32              ReleaseExt();
     UINT32              ReleaseRef(); // Nur fur DBG_UTIL
 private:
     // Kopieren und Zuweisen dieses Objekttyps ist nicht erlaubt

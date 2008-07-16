@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxvar.hxx,v $
- * $Revision: 1.5 $
+ * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -322,7 +322,9 @@ public:
     BOOL   GetBool() const;
     const  String& GetString() const;
     const  String& GetCoreString() const;
+#ifdef WNT
     SbxDecimal* GetDecimal() const;
+#endif
     SbxBase* GetObject() const;
     sal_Unicode GetChar() const;
     BYTE   GetByte() const;
@@ -341,7 +343,9 @@ public:
     BOOL PutString( const String& );
     BOOL PutObject( SbxBase* );
     BOOL PutChar( sal_Unicode );
+#ifdef WNT
     BOOL PutDecimal( SbxDecimal* pDecimal );
+#endif
     BOOL PutByte( BYTE );
     BOOL PutUShort( UINT16 );
     BOOL PutULong( UINT32 );
