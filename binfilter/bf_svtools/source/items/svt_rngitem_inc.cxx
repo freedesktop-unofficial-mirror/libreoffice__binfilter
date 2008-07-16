@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_rngitem_inc.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -65,15 +65,6 @@ SfxXRangeItem::SfxXRangeItem( USHORT which, NUMTYPE from, NUMTYPE to ):
 {
 }
 
-
-// -----------------------------------------------------------------------
-
-SfxXRangeItem::SfxXRangeItem( USHORT nW, SvStream &rStream ) :
-    SfxPoolItem( nW )
-{
-    rStream >> nFrom;
-    rStream >> nTo;
-}
 
 // -----------------------------------------------------------------------
 
@@ -143,16 +134,6 @@ SvStream& SfxXRangeItem::Store(SvStream &rStream, USHORT) const
 SfxXRangesItem::SfxXRangesItem()
 :   _pRanges(0)
 {
-}
-
-//-------------------------------------------------------------------------
-
-SfxXRangesItem::SfxXRangesItem( USHORT nWID, const NUMTYPE *pRanges )
-:   SfxPoolItem( nWID )
-{
-    NUMTYPE nCount = Count_Impl(pRanges) + 1;
-    _pRanges = new NUMTYPE[nCount];
-    memcpy( _pRanges, pRanges, sizeof(NUMTYPE) * nCount );
 }
 
 //-------------------------------------------------------------------------
