@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: outplace.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -840,6 +840,7 @@ SvGlobalName    SvOutPlaceObject::GetCLSID( const String & rFileName )
         if ( !GetInternalServer_Impl( aFromWin ) )
             aCLSID = SvGlobalName( aClsId );
     }
+    return aCLSID;
 }
 #endif
 
