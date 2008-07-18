@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sbxmod.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -533,12 +533,12 @@ USHORT SbModule::GetBPCount() const
     return 0;
 }
 
-USHORT SbModule::GetBP( USHORT n ) const
+USHORT SbModule::GetBP( USHORT ) const
 {
     return 0;
 }
 
-BOOL SbModule::IsBP( USHORT nLine ) const
+BOOL SbModule::IsBP( USHORT ) const
 {
     return FALSE;
 }
@@ -549,7 +549,7 @@ BOOL SbModule::SetBP( USHORT /*nLine*/ )
     return FALSE;
 }
 
-BOOL SbModule::ClearBP( USHORT nLine )
+BOOL SbModule::ClearBP( USHORT )
 {
     return FALSE;
 }
