@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: factory.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -42,10 +42,6 @@
 
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
-#ifdef OS2
-#include <tools/svpm.h>
-#include <vcl/sysdep.hxx>
 #endif
 
 #include <bf_so3/factory.hxx>
