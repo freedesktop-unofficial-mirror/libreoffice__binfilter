@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_unomap.cxx,v $
- * $Revision: 1.8 $
+ * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -149,14 +149,10 @@ SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId
  *
  * --------------------------------------------------*/
 EXTERN_C
-#if defined( PM2 ) && (!defined( CSET ) && !defined ( MTW ) && !defined( WTC ))
-int _stdcall
-#else
 #ifdef WNT
 int _cdecl
 #else
 int
-#endif
 #endif
 lcl_CompareMap(const void* pSmaller, const void* pBigger )
 {
