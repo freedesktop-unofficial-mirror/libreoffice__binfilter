@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.23 $
+# $Revision: 1.24 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -175,3 +175,20 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     echo  RC $(RCFLAGS) $(RES)$/scappi.res                    >>$@
 .ENDIF
 
+.IF "$(GUI)" == "OS2"
+
+$(MISC)$/$(SHL1TARGET).def:  makefile.mk
+    @echo ------------------------------
+    @echo Making: $@
+    @echo LIBRARY     $(SHL1TARGET8) INITINSTANCE TERMINSTANCE     >$@
+    @echo DESCRIPTION 'SCALC3 DLL'                                 >>$@
+    @echo DATA        MULTIPLE                                     >>$@
+    @echo EXPORTS                                                   >>$@
+    @echo   _CreateScDocShellDll                                >>$@
+    @echo   _CreateObjScDocShellDll                             >>$@
+    @echo   _InitScDll                                              >>$@
+    @echo   _DeInitScDll                                            >>$@
+    @echo   _component_getImplementationEnvironment                 >>$@
+    @echo   _component_writeInfo                                    >>$@
+    @echo   _component_getFactory                                   >>$@
+.ENDIF
