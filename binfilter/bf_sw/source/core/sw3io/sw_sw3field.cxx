@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_sw3field.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -89,7 +89,7 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC) && !defined(__MINGW32__)
+#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC) && !defined(__MINGW32__) && !defined(OS2)
 
 #define FIELDFNTAB_SIZE 37
 #if FIELDFNTAB_SIZE != RES_FIELDS_END - RES_FIELDS_BEGIN
