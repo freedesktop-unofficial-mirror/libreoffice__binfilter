@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.19 $
+# $Revision: 1.20 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -146,6 +146,26 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo component_getImplementationEnvironment 				   >>$@
     @echo component_writeInfo									   >>$@
     @echo component_getFactory									   >>$@
+.ENDIF
+
+.IF "$(GUI)" == "OS2"
+
+$(MISC)$/$(SHL1TARGET).def:
+    @echo ------------------------------
+    @echo Making: $@
+    @echo LIBRARY     $(SHL1TARGET8)  INITINSTANCE TERMINSTANCE    >$@
+    @echo DESCRIPTION 'SDRAW3 DLL'                                 >>$@
+    @echo DATA        MULTIPLE                                     >>$@
+    @echo EXPORTS                                                   >>$@
+    @echo   _CreateSdDrawDocShellDll                                >>$@
+    @echo   _CreateSdGraphicDocShellDll                             >>$@
+    @echo   _CreateObjSdDrawDocShellDll                             >>$@
+    @echo   _CreateObjSdGraphicDocShellDll                          >>$@
+    @echo   _InitSdDll                                              >>$@
+    @echo   _DeInitSdDll                                            >>$@
+    @echo _component_getImplementationEnvironment 		    >>$@
+    @echo _component_writeInfo					    >>$@
+    @echo _component_getFactory					    >>$@
 .ENDIF
 
 .ENDIF
