@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.20 $
+# $Revision: 1.21 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -180,6 +180,34 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   component_getImplementationEnvironment @50				>>$@
     @echo   component_writeInfo @51									>>$@
     @echo   component_getFactory @52								>>$@
+
+.ENDIF
+
+
+# ------------------------------------------------------------------
+# OS/2
+# ------------------------------------------------------------------
+
+.IF "$(GUI)" == "OS2"
+
+$(MISC)$/$(SHL2TARGET).def:  makefile.mk
+    @echo ------------------------------
+    @echo Making: $@
+    @echo LIBRARY     $(SHL2TARGET8) INITINSTANCE TERMINSTANCE      >$@
+    @echo DESCRIPTION 'SWriter4 DLL'                                >>$@
+    @echo DATA        MULTIPLE                                      >>$@
+    @echo EXPORTS                                                   >>$@
+    @echo   _CreateSwDocShellDll                                    >>$@
+    @echo   _CreateSwWebDocShellDll                                 >>$@
+    @echo   _CreateSwGlobalDocShellDll                              >>$@
+    @echo   _CreateObjSwDocShellDll                                 >>$@
+    @echo   _CreateObjSwWebDocShellDll                              >>$@
+    @echo   _CreateObjSwGlobalDocShellDll                           >>$@
+    @echo   _InitSwDll                                              >>$@
+    @echo   _DeInitSwDll                                            >>$@
+    @echo   _component_getImplementationEnvironment                 >>$@
+    @echo   _component_writeInfo    			            >>$@
+    @echo   _component_getFactory    			            >>$@
 
 .ENDIF
 
