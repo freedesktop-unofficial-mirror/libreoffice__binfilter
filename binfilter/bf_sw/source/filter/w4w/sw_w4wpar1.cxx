@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_w4wpar1.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2690,10 +2690,11 @@ void SwW4WParser::Read_SetPitchAndOrFont()      // (SPF)
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Courier New" ));
 #endif // WIN
 #if defined( OS2 )
-                if ( sFntNm.EqualsAscii( "Helv" ) || || sFntNm.EqualsAscii( "Arial" ))
+                if ( sFntNm.EqualsAscii( "Helv" ) ||
+                     sFntNm.EqualsAscii( "Arial" ))
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Helvetica" ));
-                else if( sFntNm.EqualsAscii( "Tms Rmn" ) ||
-                         sFntNm.EqualsAscii( "Times New Roman" ))
+                else if( sFntNm.EqualsAscii( "Tms Rmn" )
+                      || sFntNm.EqualsAscii( "Times New Roman" ))
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Times New Roman" ));
                 else if ( sFntNm.EqualsAscii( "Courier New" ))
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Courier" ));
