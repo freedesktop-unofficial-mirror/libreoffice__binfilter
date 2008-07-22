@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.8 $
+# $Revision: 1.9 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -45,7 +45,9 @@ NO_HIDS=TRUE
 .INCLUDE :  settings.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
+.IF "$(GUI)"!="OS2"
 INCEXT=s:\solar\inc\hm
+.ENDIF
 
 .IF "$(mydebug)" != ""
 CDEFS+=-Dmydebug
