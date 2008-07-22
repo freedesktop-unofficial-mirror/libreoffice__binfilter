@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: so2dll.cxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -83,15 +83,11 @@ void ResourceDummy (void )
 #ifdef OS2
 
 #ifndef _SVWIN_H
-#include <tools/svpm.h>
-#endif
-
-#ifndef _SYSDEP_HXX
-#include <vcl/sysdep.hxx>
+#include <svpm.h>
 #endif
 
 // Statische DLL-Verwaltungs-Variablen
-static hDLLInst = 0;      // HANDLE der DLL
+static ULONG hDLLInst = 0;      // HANDLE der DLL
 
 
 /***************************************************************************
