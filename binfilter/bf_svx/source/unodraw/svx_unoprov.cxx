@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_unoprov.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -758,14 +758,10 @@ UINT32 UHashMap::getId( const OUString& rCompareString )
 ***********************************************************************/
 
 EXTERN_C
-#if defined( PM2 ) && (!defined( CSET ) && !defined ( MTW ) && !defined( WTC ))
-int _stdcall
-#else
 #ifdef WNT
 int _cdecl
 #else
 int
-#endif
 #endif
 Svx_CompareMap(const void* pSmaller, const void* pBigger )
 {
