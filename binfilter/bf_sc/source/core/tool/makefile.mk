@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.10 $
+# $Revision: 1.11 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -105,11 +105,6 @@ EXCEPTIONSFILES= \
 .IF "$(OS)$(COM)$(CPUNAME)"=="LINUXGCCPOWERPC"
 NOOPTFILES= \
                 $(SLO)$/sc_subtotal.obj
-.ENDIF
-
-.IF "$(GUI)"=="OS2"
-NOOPTFILES= \
-        $(SLO)$/sc_interpr6.obj
 .ENDIF
 
 # --- Tagets -------------------------------------------------------
