@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdpagv.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -30,13 +30,6 @@
 
 #ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
-#endif
-
-
-
-
-#ifdef OS2
-#include <tools/svpm.h>
 #endif
 
 #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
