@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.20 $
+# $Revision: 1.21 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -124,7 +124,7 @@ LIB1FILES       = \
         $(SLB)$/svx_xout.lib \
         $(SLB)$/bf_sfx.lib
 
-.IF "$(GUI)" == "OS2" || "(GUIBASE)" == "WIN"
+.IF "(GUIBASE)" == "WIN"
 LIB1FILES  += \
             $(SLB)$/ibrwimp.lib
 .ENDIF
