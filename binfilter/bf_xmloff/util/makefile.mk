@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.12 $
+# $Revision: 1.13 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -57,15 +57,21 @@ LIB1FILES=	\
 
 # --- Shared-Library -----------------------------------------------
 
-.IF "$(GUI)"!="UNX"
+.IF "$(GUI)"!="UNX" && "$(GUI)"!="OS2"
 LIB4TARGET= $(LB)$/ibf_xo.lib
 LIB4FILES=	$(LB)$/_ibf_xo.lib
+.IF "$(GUI)"!="OS2"
 LIB4OBJFILES=\
     $(OBJ)$/xmloff_xmlkywd.obj
 .ENDIF
+.ENDIF
 
 SHL1TARGET= bf_xo$(DLLPOSTFIX)
+.IF "$(GUI)" == "OS2"
+SHL1IMPLIB= ibf_xo
+.ELSE
 SHL1IMPLIB= _ibf_xo
+.ENDIF
 
 SHL1STDLIBS= \
         $(BFSVTOOLLIB)	\
@@ -83,7 +89,7 @@ SHL1STDLIBS= \
         $(BFSO3LIB)
 
 # SCO: the linker does know about weak symbols, but we can't ignore multiple defined symbols
-.IF "(OS)"=="SCO" || "$(OS)$(COM)"=="OS2GCC"
+.IF "(OS)"=="SCO"
 SHL1STDLIBS+=-licg617mxp
 .ENDIF
 
@@ -93,7 +99,9 @@ SHL1LIBS=   $(LIB1TARGET)
 # --- Def-File ---------------------------------------------------------
 
 DEF1NAME    =$(SHL1TARGET)
+.IF "$(GUI)" != "OS2"
 DEF1DEPN    =$(MISC)$/$(SHL1TARGET).flt
+.ENDIF
 DEFLIB1NAME =bf_xo
 DEF1DES     =XML Office Lib
 DEF1EXPORTFILE=	exports.dxp
