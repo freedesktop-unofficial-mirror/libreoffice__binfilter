@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_calc.cxx,v $
- * $Revision: 1.10 $
+ * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1300,9 +1300,6 @@ static int
 /*N*/           __cdecl
 /*N*/ #endif
 /*N*/
-/*N*/ #ifdef OS2
-/*N*/           _Optlink
-/*N*/ #endif
 /*N*/           *pFnc)( double ) = 0;
 /*N*/
 /*N*/   BOOL bChkTrig = FALSE, bChkPow = FALSE;
