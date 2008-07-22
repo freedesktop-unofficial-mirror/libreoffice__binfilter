@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sch_mapprov.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -187,14 +187,10 @@ SchUnoPropertyMapProvider::~SchUnoPropertyMapProvider()
 
 // -------------- copied from SwUnoPropertyMapProvider --------------
 EXTERN_C
-#if defined( PM2 ) && (!defined( CSET ) && !defined ( MTW ) && !defined( WTC ))
-int _stdcall
-#else
 #ifdef WNT
 int _cdecl
 #else
 int
-#endif
 #endif
 Sch_CompareMap( const void* pSmaller, const void* pBigger )
 {
