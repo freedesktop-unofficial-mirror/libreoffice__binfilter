@@ -8,7 +8,7 @@
 #
 # $RCSfile: makefile.mk,v $
 #
-# $Revision: 1.12 $
+# $Revision: 1.13 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -50,11 +50,13 @@ NO_HIDS=TRUE
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 
+.IF "$(GUI)" != "OS2"
 .IF "$(GUI)" != "WNT"
 .IF "$(GUI)" != "MAC"
 .IF "$(COM)" != "BLC"
 .IF "$(COM)" != "WTC"
 LIBFLAGS=/NOI /NOE /PAGE:256
+.ENDIF
 .ENDIF
 .ENDIF
 .ENDIF
