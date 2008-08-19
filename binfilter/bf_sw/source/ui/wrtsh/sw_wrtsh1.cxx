@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_wrtsh1.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -34,9 +34,9 @@
 #endif
 
 
-#if STLPORT_VERSION>=321
-#include <math.h>   // prevent conflict between exception and std::exception
-#endif
+//#if STLPORT_VERSION>=321
+//#include <math.h> // prevent conflict between exception and std::exception
+//#endif
 
 #ifndef _HINTIDS_HXX
 #include <hintids.hxx>
