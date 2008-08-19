@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_subtotal.cxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -47,7 +47,7 @@
 
 
 #include <float.h>
-#include <math.h>
+//#include <math.h>
 #ifdef SOLARIS
 #include <ieeefp.h>
 #endif
