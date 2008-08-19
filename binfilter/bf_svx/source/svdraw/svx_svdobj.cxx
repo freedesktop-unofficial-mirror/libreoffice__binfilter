@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_svdobj.cxx,v $
- * $Revision: 1.17 $
+ * $Revision: 1.18 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -29,7 +29,7 @@
  ************************************************************************/
 
 
-#include <math.h>
+//#include <math.h>
 #include <vcl/cvtsvm.hxx>
 #include <tools/line.hxx>
 #include <vector>
