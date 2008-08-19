@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_outliner.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.16 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -30,7 +30,7 @@
 
 #include <outl_pch.hxx>
 
-#include <math.h>
+//#include <math.h>
 
 #ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
