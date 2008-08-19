@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xline.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -33,7 +33,7 @@
 #endif
 
 #include <stdlib.h>
-#include <math.h>
+//#include <math.h>
 #include <tools/bigint.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
