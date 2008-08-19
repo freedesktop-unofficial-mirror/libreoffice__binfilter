@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_fldbas.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -33,7 +33,7 @@
 #pragma hdrstop
 #endif
 
-#include <math.h>
+//#include <math.h>
 #ifdef MAC
 #include <stdlib.h>
 #endif
