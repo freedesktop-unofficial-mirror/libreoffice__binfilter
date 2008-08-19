@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_table4.cxx,v $
- * $Revision: 1.7 $
+ * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,7 +45,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#include <math.h>
+//#include <math.h>
 
 #include "globstr.hrc"
 #include "document.hxx"
