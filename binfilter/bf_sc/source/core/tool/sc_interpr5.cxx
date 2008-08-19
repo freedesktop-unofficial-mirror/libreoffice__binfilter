@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_interpr5.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -38,7 +38,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include <string.h>
-#include <math.h>
+//#include <math.h>
 
 #ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
