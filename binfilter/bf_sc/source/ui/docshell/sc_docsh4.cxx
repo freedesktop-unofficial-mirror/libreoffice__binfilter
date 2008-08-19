@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_docsh4.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -37,9 +37,9 @@
 
 
 // INCLUDE ---------------------------------------------------------------
-#if STLPORT_VERSION>=321
-#include <math.h>       // prevent conflict between exception and std::exception
-#endif
+//#if STLPORT_VERSION>=321
+//#include <math.h>     // prevent conflict between exception and std::exception
+//#endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
