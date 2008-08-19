@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_xout.cxx,v $
- * $Revision: 1.11 $
+ * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -28,7 +28,7 @@
  *
  ************************************************************************/
 
-#include <math.h>
+//#include <math.h>
 #include <stdlib.h>
 #include <vcl/svapp.hxx>
 #include <bf_svtools/itemset.hxx>
