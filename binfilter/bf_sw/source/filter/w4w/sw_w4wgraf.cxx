@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_w4wgraf.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -34,7 +34,7 @@
 #endif
 
 #include <stdlib.h>
-#include <math.h>
+//#include <math.h>
 #ifdef UNX
   #include <unistd.h>
 #endif
