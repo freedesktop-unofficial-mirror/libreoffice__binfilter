@@ -67,7 +67,7 @@
 //#define _FSYS_HXX ***
 //#define _STREAM_HXX ***
 #define _CACHESTR_HXX
-#define _SV_MULTISEL_HXX
+//#define _SV_MULTISEL_HXX
 
 
 
@@ -195,7 +195,6 @@
 #define _SVDIO_HXX
 //#define _SVDLAYER_HXX
 #define _SVINCVW_HXX
-#define _SV_MULTISEL_HXX
 #define _SVRTV_HXX
 #define _SVTABBX_HXX
 #define _SVTREEBOX_HXX
