@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: zforscan.hxx,v $
- * $Revision: 1.3 $
+ * $Revision: 1.3.36.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -150,11 +150,11 @@ public:
                                                 // Veraendert nur die Bool-Variable
                                                 // (zum temporaeren Unterbrechen des
                                                 // Convert-Modus)
-    const BOOL GetConvertMode()     { return bConvertMode; }
-    const LanguageType GetNewLnge() { return eNewLnge; }
+    BOOL GetConvertMode() const     { return bConvertMode; }
+    LanguageType GetNewLnge() const { return eNewLnge; }
                                                 // Lesezugriff auf ConvertMode
                                                 // und Konvertierungsland/Spr.
-    const LanguageType GetTmpLnge() { return eTmpLnge; }
+    LanguageType GetTmpLnge() const { return eTmpLnge; }
                                                 // Lesezugriff auf
                                                 // und Ausgangsland/Spr.
 

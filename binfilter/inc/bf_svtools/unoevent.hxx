@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: unoevent.hxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.4.30.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -322,7 +322,7 @@ protected:
     /// return sal_False: no macro; getByName() will return an empty macro
     /// IllegalArgumentException: the event is not supported
     using SvBaseEventDescriptor::hasByName;
-    virtual const sal_Bool hasByName(
+    virtual sal_Bool hasByName(
         const sal_uInt16 nEvent )       /// item ID of event
              throw(
                 ::com::sun::star::lang::IllegalArgumentException);
