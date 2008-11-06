@@ -40,7 +40,7 @@
 #include <search.h>
 #endif
 #include <limits.h>
-#include <math.h>
+// #include <math.h>
 #include <float.h>
 
 #ifndef _HINTIDS_HXX

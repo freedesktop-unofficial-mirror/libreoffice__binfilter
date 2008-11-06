@@ -33,7 +33,7 @@
 #ifndef GCC
 #endif
 
-#include <math.h>
+// #include <math.h>
 
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
