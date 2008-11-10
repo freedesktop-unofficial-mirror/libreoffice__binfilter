@@ -375,10 +375,10 @@ SotStorageStream * SvStorage::OpenSotStream( const String & rEleName,
                                          StreamMode nMode,
                                          StorageMode nStorageMode )
 {
-    DBG_ASSERT( !nStorageMode, "StorageModes ignored" )
+    DBG_ASSERT( !nStorageMode, "StorageModes ignored" );
 
     SvStorageStream * pStm = NULL;
-    DBG_ASSERT( Owner(), "must be owner" )
+    DBG_ASSERT( Owner(), "must be owner" );
     // volle Ole-Patches einschalten
     // egal was kommt, nur exclusiv gestattet
     nMode |= STREAM_SHARE_DENYALL;
@@ -401,7 +401,7 @@ SotStorage * SvStorage::OpenSotStorage( const String & rEleName,
                                     StorageMode nStorageMode )
 {
     SvStorage * pStor = NULL;
-    DBG_ASSERT( Owner(), "must be owner" )
+    DBG_ASSERT( Owner(), "must be owner" );
     nMode |= STREAM_SHARE_DENYALL;
     ULONG nE = m_pOwnStg->GetError();
     BaseStorage * p = m_pOwnStg->OpenStorage( rEleName, nMode,
@@ -417,7 +417,7 @@ SvStorage * SvStorage::OpenUCBStorage( const String & rEleName,
                                     StorageMode nStorageMode )
 {
     SvStorage * pStor = NULL;
-    DBG_ASSERT( Owner(), "must be owner" )
+    DBG_ASSERT( Owner(), "must be owner" );
     nMode |= STREAM_SHARE_DENYALL;
     ULONG nE = m_pOwnStg->GetError();
     BaseStorage * p = m_pOwnStg->OpenUCBStorage( rEleName, nMode,
@@ -433,7 +433,7 @@ SvStorage * SvStorage::OpenOLEStorage( const String & rEleName,
                                     StorageMode nStorageMode )
 {
     SvStorage * pStor = NULL;
-    DBG_ASSERT( Owner(), "must be owner" )
+    DBG_ASSERT( Owner(), "must be owner" );
     nMode |= STREAM_SHARE_DENYALL;
     ULONG nE = m_pOwnStg->GetError();
     BaseStorage * p = m_pOwnStg->OpenOLEStorage( rEleName, nMode,

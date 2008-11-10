@@ -241,7 +241,7 @@ public:
 
 /*N*/ void ScUnoAddInCollection::Initialize()
 /*N*/ {
-/*N*/     DBG_ASSERT( !bInitialized, "Initialize twice?" )
+/*N*/     DBG_ASSERT( !bInitialized, "Initialize twice?" );
 /*N*/
 /*N*/     uno::Reference<lang::XMultiServiceFactory> xManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/     uno::Reference<container::XContentEnumerationAccess> xEnAc( xManager, uno::UNO_QUERY );

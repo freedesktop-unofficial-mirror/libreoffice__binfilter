@@ -350,7 +350,7 @@ SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
  --------------------------------------------------------------------*/
 
 /*N*/ void SwDBField::Evaluate()
- /*N*/ {    DBG_ERROR("STRIP")
+ /*N*/ {    DBG_ERROR("STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------

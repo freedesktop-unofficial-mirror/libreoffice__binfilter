@@ -109,7 +109,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType
 /*N*/       return aMacro.Copy(0, nPos );
 /*N*/   }
 /*N*/
-/*?*/   DBG_ASSERT(0, "Kein Macroname vorhanden")
+/*?*/   DBG_ASSERT(0, "Kein Macroname vorhanden");
 /*?*/   return aEmptyStr;
 /*N*/ }
 
@@ -125,7 +125,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType
 /*N*/       return aMacro.Copy( ++nPos );
 /*N*/   }
 /*N*/
-/*?*/   DBG_ASSERT(0, "Kein Macroname vorhanden")
+/*?*/   DBG_ASSERT(0, "Kein Macroname vorhanden");
 /*?*/   return aEmptyStr;
 /*N*/ }
 

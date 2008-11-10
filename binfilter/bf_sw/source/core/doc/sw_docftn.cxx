@@ -198,7 +198,7 @@ namespace binfilter {
 
 /*N*/ void SwEndNoteInfo::SetCharFmt( SwCharFmt* pChFmt )
 /*N*/ {
-/*N*/   DBG_ASSERT(pChFmt, "kein CharFmt?")
+/*N*/   DBG_ASSERT(pChFmt, "kein CharFmt?");
 /*N*/   pChFmt->Add( &((SwClient&)aCharFmtDep) );
 /*N*/ }
 
@@ -216,7 +216,7 @@ namespace binfilter {
 
 /*N*/ void SwEndNoteInfo::SetAnchorCharFmt( SwCharFmt* pChFmt )
 /*N*/ {
-/*N*/   DBG_ASSERT(pChFmt, "kein CharFmt?")
+/*N*/   DBG_ASSERT(pChFmt, "kein CharFmt?");
 /*N*/   pChFmt->Add( &((SwClient&)aAnchorCharFmtDep) );
 /*N*/ }
 

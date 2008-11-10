@@ -160,8 +160,8 @@ SvBaseLink::~SvBaseLink()
 
 void SvBaseLink::SetObjType( USHORT nObjTypeP )
 {
-    DBG_ASSERT( nObjType != OBJECT_CLIENT_DDE, "type already set" )
-    DBG_ASSERT( !xObj.Is(), "object exist" )
+    DBG_ASSERT( nObjType != OBJECT_CLIENT_DDE, "type already set" );
+    DBG_ASSERT( !xObj.Is(), "object exist" );
 
     nObjType = nObjTypeP;
 }
@@ -287,7 +287,7 @@ void SvBaseLink::_GetRealObject( BOOL bConnect )
     if( !pLinkMgr )
         return;
 
-    DBG_ASSERT( !xObj.Is(), "object already exist" )
+    DBG_ASSERT( !xObj.Is(), "object already exist" );
 
     if( OBJECT_CLIENT_DDE == nObjType )
     {

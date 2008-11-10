@@ -501,12 +501,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   Sequence<Any> aValues = aLayoutItem.GetProperties(aNames);
 /*N*/   aLayoutItem.EnableNotification(aNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -556,12 +556,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aDisplayItem.GetProperties(aNames);
 /*N*/   aDisplayItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -607,12 +607,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aGridItem.GetProperties(aNames);
 /*N*/   aGridItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)

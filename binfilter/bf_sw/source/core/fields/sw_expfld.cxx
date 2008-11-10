@@ -180,7 +180,7 @@ using namespace ::rtl;
 /*?*/           case SetVariableType::FORMULA:  nSet = GSE_FORMULA; break;
 /*N*/           case SetVariableType::STRING:   nSet = GSE_STRING;  break;
 /*N*/           default:
-/*?*/               DBG_ERROR("wrong value")
+/*?*/               DBG_ERROR("wrong value");
 /*?*/               nSet = -1;
 /*N*/       }
 /*N*/       return nSet;

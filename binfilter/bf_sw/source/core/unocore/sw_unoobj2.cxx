@@ -860,7 +860,7 @@ Reference< XEnumeration >  SwXTextCursor::createEnumeration(void) throw( Runtime
     {
         pParentText = (SwXText*)xTunnel->getSomething(SwXText::getUnoTunnelId());
     }
-    DBG_ASSERT(pParentText, "parent is not a SwXText")
+    DBG_ASSERT(pParentText, "parent is not a SwXText");
 
     SwUnoCrsr* pNewCrsr = pUnoCrsr->GetDoc()->CreateUnoCrsr(*pUnoCrsr->GetPoint());
     if(pUnoCrsr->HasMark())
@@ -1534,7 +1534,7 @@ uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeExceptio
         {
             // jetzt noch alle Faelle finden, die nicht abgedeckt sind
             // (Body, Kopf-/Fusszeilen, Fussnotentext )
-            DBG_WARNING("not implemented")
+            DBG_WARNING("not implemented");
         }
     }
     return xParentText;
@@ -1723,7 +1723,7 @@ sal_Bool        SwXTextRange::XTextRangeToSwPaM( SwUnoInternalPaM& rToFill,
         const SwPaM* pUnoCrsr = pCursor ? pCursor->GetPaM() : pPortion ? pPortion->GetCrsr() : 0;
         if(pUnoCrsr && pDoc == rToFill.GetDoc())
             {
-                DBG_ASSERT((SwPaM*)pUnoCrsr->GetNext() == pUnoCrsr, "was machen wir mit Ringen?" )
+                DBG_ASSERT((SwPaM*)pUnoCrsr->GetNext() == pUnoCrsr, "was machen wir mit Ringen?" );
                 bRet = sal_True;
                 *rToFill.GetPoint() = *pUnoCrsr->GetPoint();
                 if(pUnoCrsr->HasMark())
@@ -1959,7 +1959,7 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
                 SwXPageStyle* pStyle = (SwXPageStyle*)
                     xTunnel->getSomething( SwXPageStyle::getUnoTunnelId());
 
-                DBG_ASSERT(pStyle, "Was ist das fuer ein style::XStyle?")
+                DBG_ASSERT(pStyle, "Was ist das fuer ein style::XStyle?");
                 bLeft = pSttNode == pStyle->GetStartNode(eType == SwHeaderStartNode, sal_True);
                 bRight = !bLeft;
             }
@@ -1995,7 +1995,7 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
     }
     if(xCurParentRef.is() && !xRet.is())
         xRet = new SwXTextRange(rPaM, xCurParentRef);
-    DBG_ASSERT(xRet.is(), "SwXTextRange not created")
+    DBG_ASSERT(xRet.is(), "SwXTextRange not created");
     return xRet;
 }*/
 
@@ -2044,7 +2044,7 @@ Reference< XEnumeration >  SwXTextRange::createEnumeration(void) throw( RuntimeE
     {
         pParentText = (SwXText*)xTunnel->getSomething(SwXText::getUnoTunnelId());
     }
-    DBG_ASSERT(pParentText, "parent is not a SwXText")
+    DBG_ASSERT(pParentText, "parent is not a SwXText");
     CursorType eSetType = RANGE_IN_CELL == eRangePosition ? CURSOR_SELECTION_IN_TABLE : CURSOR_SELECTION;
     Reference< XEnumeration > xRet = new SwXParagraphEnumeration(pParentText, *pNewCrsr, eSetType);
     return xRet;
@@ -2118,7 +2118,7 @@ void SAL_CALL SwXTextRange::addPropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 03.05.00 12:41:48---------------------------------------------------
 
@@ -2127,7 +2127,7 @@ void SAL_CALL SwXTextRange::removePropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 03.05.00 12:41:48---------------------------------------------------
 
@@ -2136,7 +2136,7 @@ void SAL_CALL SwXTextRange::addVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 03.05.00 12:41:48---------------------------------------------------
 
@@ -2145,7 +2145,7 @@ void SAL_CALL SwXTextRange::removeVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 03.05.00 12:41:48---------------------------------------------------
 

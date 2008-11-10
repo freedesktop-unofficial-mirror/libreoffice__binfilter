@@ -176,7 +176,7 @@ OUString SwXRedlines::getImplementationName(void) throw( RuntimeException )
 BOOL SwXRedlines::supportsService(const ::rtl::OUString& ServiceName)
     throw( RuntimeException )
 {
-    DBG_ERROR("not implemented")
+    DBG_ERROR("not implemented");
     return FALSE;
 }
 /*-- 11.01.01 15:28:57---------------------------------------------------
@@ -185,7 +185,7 @@ BOOL SwXRedlines::supportsService(const ::rtl::OUString& ServiceName)
 Sequence< OUString > SwXRedlines::getSupportedServiceNames(void)
     throw( RuntimeException )
 {
-    DBG_ERROR("not implemented")
+    DBG_ERROR("not implemented");
     return Sequence< OUString >();
 }
 /*-- 11.01.01 15:28:57---------------------------------------------------

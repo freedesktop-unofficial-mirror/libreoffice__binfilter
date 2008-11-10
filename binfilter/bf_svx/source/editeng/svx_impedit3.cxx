@@ -1742,14 +1742,14 @@ struct TabInfo
 /*N*/                  ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
 /*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*N*/             }
 /*N*/
 /*N*/             // 5. Priority:
 /*N*/             // before media Bah
 /*N*/             if ( nIdx && nIdx + 1 < aWord.Len() && 0x628 == cCh )
 /*N*/             {
-/*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*?*/
 /*?*/                 // check if next character is Reh, Yeh or Alef Maksura
 /*?*/                 xub_Unicode cNextCh = aWord.GetChar( nIdx + 1 );
@@ -1766,7 +1766,7 @@ struct TabInfo
 /*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
 /*N*/                  0x60C <= cCh && 0x6FE >= cCh )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*N*/             }
 /*N*/
 /*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,

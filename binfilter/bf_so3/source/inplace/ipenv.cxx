@@ -217,7 +217,7 @@ SvContainerEnvironment::~SvContainerEnvironment()
     [Querverweise]
 */
 {
-    DBG_ASSERT( !pIPEnv, "IPEnv exist" )
+    DBG_ASSERT( !pIPEnv, "IPEnv exist" );
     ResetChilds();
 
     if( bDeleteEditWin )
@@ -238,9 +238,9 @@ SvContainerEnvironment::~SvContainerEnvironment()
     delete pAccel;
 
     DBG_ASSERT( !xAppFrame.Is() || 1 == xAppFrame->GetRefCount(),
-                "can't destroy xAppFrame" )
+                "can't destroy xAppFrame" );
     DBG_ASSERT( !xDocFrame.Is() || 1 == xDocFrame->GetRefCount(),
-                "can't destroy xDocFrame" )
+                "can't destroy xDocFrame" );
 }
 
 //=========================================================================
@@ -467,7 +467,7 @@ void SvContainerEnvironment::UIToolsShown( BOOL bShow )
 Accelerator * SvContainerEnvironment::GetAccel()
 {
     DBG_ASSERT( !pObj || pObj->Owner(),
-                 "cannot convert HACCEL to Accelerator (not implemented)" )
+                 "cannot convert HACCEL to Accelerator (not implemented)" );
     if( !pAccel && pParent )
         return pParent->GetAccel();
     return pAccel;
@@ -546,7 +546,7 @@ Rectangle SvContainerEnvironment::GetObjArea() const
 Rectangle SvContainerEnvironment::PixelObjVisAreaToLogic(
                                     const Rectangle & rObjRect ) const
 {
-    DBG_ASSERT( pIPEnv, "no InPlaceEnvironment" )
+    DBG_ASSERT( pIPEnv, "no InPlaceEnvironment" );
 
     SvInPlaceObject * pIPObj = pIPEnv->GetIPObj();
 
@@ -906,7 +906,7 @@ SvInPlaceEnvironment::SvInPlaceEnvironment( SvContainerEnvironment * pCl,
 /*************************************************************************/
 SvInPlaceEnvironment::~SvInPlaceEnvironment()
 {
-    DBG_ASSERT( !bShowUITools, "UI-Tools werden noch angezeigt" )
+    DBG_ASSERT( !bShowUITools, "UI-Tools werden noch angezeigt" );
     DoShowUITools( FALSE );
     if( bDeleteEditWin )
         delete pEditWin;
@@ -969,7 +969,7 @@ void SvInPlaceEnvironment::ShowIPObj( BOOL bShow )
 void SvInPlaceEnvironment::DoShowUITools( BOOL bShow )
 {
 
-    //DBG_ASSERT( !bShow || !bShowUITools, "bShowUITools && bShow" )
+    //DBG_ASSERT( !bShow || !bShowUITools, "bShowUITools && bShow" );
     if( bShow == bShowUITools )
         // bei soviel Activate/Deactivate ist es besser dies zu gestatten
         return;

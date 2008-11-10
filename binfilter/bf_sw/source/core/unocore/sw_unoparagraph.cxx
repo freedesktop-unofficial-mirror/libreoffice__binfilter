@@ -214,7 +214,7 @@ SwXParagraph::~SwXParagraph()
  ---------------------------------------------------------------------------*/
 void SwXParagraph::attachToText(SwXText* pParent, SwUnoCrsr* pCrsr)
 {
-    DBG_ASSERT(m_bIsDescriptor, "Paragraph is not a descriptor")
+    DBG_ASSERT(m_bIsDescriptor, "Paragraph is not a descriptor");
     if(m_bIsDescriptor)
     {
         m_bIsDescriptor = FALSE;
@@ -406,21 +406,21 @@ void SwXParagraph::addPropertyChangeListener(
     const uno::Reference< beans::XPropertyChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 08:12:50---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXParagraph::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 08:12:50---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXParagraph::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 08:12:51---------------------------------------------------
 
@@ -428,7 +428,7 @@ void SwXParagraph::addVetoableChangeListener(const OUString& PropertyName, const
 void SwXParagraph::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 //-----------------------------------------------------------------------------
 beans::PropertyState lcl_SwXParagraph_getPropertyState(

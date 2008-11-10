@@ -973,8 +973,8 @@ using namespace ::com::sun::star;
 /*N*/   CursorMoved( aStartPaM.GetNode() ); // nur damit neu eingestellte Attribute verschwinden...
 /*N*/   CursorMoved( aEndPaM.GetNode() );   // nur damit neu eingestellte Attribute verschwinden...
 /*N*/
-/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" )
-/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" )
+/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
+/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
 /*N*/
 /*N*/   USHORT nStartNode = aEditDoc.GetPos( aStartPaM.GetNode() );
 /*N*/   USHORT nEndNode = aEditDoc.GetPos( aEndPaM.GetNode() );

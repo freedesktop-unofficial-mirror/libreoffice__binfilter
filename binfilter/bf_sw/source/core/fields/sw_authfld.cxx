@@ -205,7 +205,7 @@ SwAuthorityFieldType::SwAuthorityFieldType( const SwAuthorityFieldType& rFType)
  --------------------------------------------------*/
 SwAuthorityFieldType::~SwAuthorityFieldType()
 {
-//  DBG_ASSERT(!m_pDataArr->Count(), "Array is not empty")
+//  DBG_ASSERT(!m_pDataArr->Count(), "Array is not empty");
     m_pSortKeyArr->DeleteAndDestroy(0, m_pSortKeyArr->Count());
     delete m_pSortKeyArr;
     delete m_pSequArr;
@@ -246,7 +246,7 @@ void    SwAuthorityFieldType::RemoveField(long nHandle)
         }
     }
 #ifdef DBG_UTIL
-    DBG_ASSERT(bRemoved, "Field unknown" )
+    DBG_ASSERT(bRemoved, "Field unknown" );
 #endif
 }
 /* -----------------17.09.99 13:43-------------------
@@ -393,7 +393,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
 {
     if(nPos < m_pDataArr->Count())
         return m_pDataArr->GetObject(nPos);
-    DBG_ERROR("wrong index")
+    DBG_ERROR("wrong index");
     return 0;
 }
 /* -----------------19.10.99 13:46-------------------
@@ -654,7 +654,7 @@ const SwTOXSortKey*  SwAuthorityFieldType::GetSortKey(USHORT nIdx) const
     SwTOXSortKey* pRet = 0;
     if(m_pSortKeyArr->Count() > nIdx)
         pRet = (*m_pSortKeyArr)[nIdx];
-    DBG_ASSERT(pRet, "Sort key not found")
+    DBG_ASSERT(pRet, "Sort key not found");
     return pRet;
 }
 /* -----------------20.10.99 13:38-------------------
@@ -752,7 +752,7 @@ void    SwAuthorityField::SetPar1(const String& rStr)
 USHORT  SwAuthorityField::GetHandlePosition() const
 {
     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
-    DBG_ASSERT(pAuthType, "no field type")
+    DBG_ASSERT(pAuthType, "no field type");
     return pAuthType->GetPosition(nHandle);
 }
 /* -----------------------------15.11.00 17:33--------------------------------

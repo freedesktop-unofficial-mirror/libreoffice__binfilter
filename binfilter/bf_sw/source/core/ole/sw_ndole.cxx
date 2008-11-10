@@ -484,7 +484,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   Sequence< OUString > aNames( GetPropertyNames() );
 /*N*/   Sequence< Any > aValues = GetProperties( aNames );
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT( aValues.getLength() == aNames.getLength(), "GetProperties failed" )
+/*N*/   DBG_ASSERT( aValues.getLength() == aNames.getLength(), "GetProperties failed" );
 /*N*/   if( aValues.getLength() == aNames.getLength() &&
 /*N*/       pValues->hasValue() )
 /*N*/   {

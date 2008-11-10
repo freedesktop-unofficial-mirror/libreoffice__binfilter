@@ -93,7 +93,7 @@ namespace binfilter {
 /*N*/   SvPersist::FillClass( pClassName, pClipFormat, pAppName,
 /*N*/                           pLongUserName, pUserName, nVersion );
 /*N*/   DBG_ASSERT( pObjShell,
-/*N*/               "SfxInPlaceObject::FillClass(): you must call SetShell() bevor" )
+/*N*/               "SfxInPlaceObject::FillClass(): you must call SetShell() bevor" );
 /*N*/   SfxObjectFactory &rFact = pObjShell->GetFactory();
 /*N*/
 /*N*/   for( USHORT n = 0; n < rFact.GetFilterCount(); n++ )

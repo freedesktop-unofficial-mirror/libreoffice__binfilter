@@ -675,7 +675,7 @@ inline void SwTOXBase::SetTemplateName(const String& rName)
 //  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
 //  ASSERT(aData.pTemplateName, "pTemplateName == 0");
 //  (*aData.pTemplateName) = rName;
-    DBG_WARNING("SwTOXBase::SetTemplateName obsolete")
+    DBG_WARNING("SwTOXBase::SetTemplateName obsolete");
     aStyleNames[0] = rName;
 
 }
@@ -684,7 +684,7 @@ inline String SwTOXBase::GetTemplateName() const
 {
 //  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
 //  return *aData.pTemplateName;
-    DBG_WARNING("SwTOXBase::GetTemplateName obsolete")
+    DBG_WARNING("SwTOXBase::GetTemplateName obsolete");
     return aStyleNames[0].GetToken(0, TOX_STYLE_DELIMITER);
 }
 

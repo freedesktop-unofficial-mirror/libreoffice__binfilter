@@ -276,7 +276,7 @@ using namespace ::rtl;
  * --------------------------------------------------*/
 /*N*/ void  SwModule::InitAttrPool()
 /*N*/ {
-/*N*/   DBG_ASSERT(!pAttrPool, "Pool ist schon da!")
+/*N*/   DBG_ASSERT(!pAttrPool, "Pool ist schon da!");
 /*N*/   pAttrPool = new SwAttrPool(0);
 /*N*/   SetPool(pAttrPool);
 /*N*/ }

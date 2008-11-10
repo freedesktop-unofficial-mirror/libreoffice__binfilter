@@ -1668,7 +1668,7 @@ uno::Sequence< sal_Int32 > ChXChartDocument::GetTransSequence( SchMemChart* pDat
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" )
+        DBG_ERROR( "Invalid MemChart" );
     }
 
     return aResult;
@@ -1706,7 +1706,7 @@ bool ChXChartDocument::SetTransSequence( SchMemChart* pData, bool bColumns, cons
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" )
+        DBG_ERROR( "Invalid MemChart" );
     }
 
     return bResult;

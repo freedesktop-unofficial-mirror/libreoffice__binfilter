@@ -714,7 +714,7 @@ BOOL SvPlugInObject::Load
             nPlugInMode = (USHORT)PLUGIN_EMBEDED;
 
             *xStm >> aCmdList;
-            DBG_ASSERT( !pURL, "pURL exists in load" )
+            DBG_ASSERT( !pURL, "pURL exists in load" );
             BYTE bURLExist;
             *xStm >> bURLExist;
             if( bURLExist )

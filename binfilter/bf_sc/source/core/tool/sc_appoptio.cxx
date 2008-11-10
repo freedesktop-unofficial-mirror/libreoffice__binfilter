@@ -477,12 +477,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aLayoutItem.GetProperties(aNames);
 /*N*/   aLayoutItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -509,12 +509,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aInputItem.GetProperties(aNames);
 /*N*/   aInputItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -538,12 +538,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aRevisionItem.GetProperties(aNames);
 /*N*/   aRevisionItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -570,12 +570,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aContentItem.GetProperties(aNames);
 /*N*/   aContentItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -593,12 +593,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aSortListItem.GetProperties(aNames);
 /*N*/   aSortListItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -616,12 +616,12 @@ using namespace ::com::sun::star::uno;
 /*N*/   aValues = aMiscItem.GetProperties(aNames);
 /*N*/   aMiscItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)

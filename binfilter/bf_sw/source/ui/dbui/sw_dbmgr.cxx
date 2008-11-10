@@ -351,7 +351,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/       Reference<XInterface> xInstance = xMgr->createInstance( C2U( "com.sun.star.sdb.DatabaseContext" ));
 /*?*/       xDBContext = Reference<XNameAccess>(xInstance, UNO_QUERY) ;
 /*?*/   }
-/*?*/   DBG_ASSERT(xDBContext.is(), "com.sun.star.sdb.DataBaseContext: service not available")
+/*?*/   DBG_ASSERT(xDBContext.is(), "com.sun.star.sdb.DataBaseContext: service not available");
 /*?*/   if(xDBContext.is())
 /*?*/   {
 /*?*/       try
@@ -462,7 +462,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/ sal_uInt32    SwNewDBMgr::GetSelectedRecordId()
 /*N*/ {
 /*N*/   sal_uInt32  nRet = 0;
-/*N*/     DBG_ASSERT(pImpl->pMergeData && pImpl->pMergeData->xResultSet.is(), "no data source in merge")
+/*N*/     DBG_ASSERT(pImpl->pMergeData && pImpl->pMergeData->xResultSet.is(), "no data source in merge");
 /*N*/     if(!pImpl->pMergeData || !pImpl->pMergeData->xResultSet.is())
 /*N*/       return FALSE;
 /*N*/   try

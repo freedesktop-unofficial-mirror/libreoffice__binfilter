@@ -319,9 +319,9 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/                 xEvents->replaceByName( pNames[i], aEmpty );
 /*N*/             }
 /*N*/             catch( ::com::sun::star::lang::IllegalArgumentException )
-/*N*/             { DBG_ERRORFILE( "PropagateEvents_Impl: caught IllegalArgumentException" ) }
+/*N*/             { DBG_ERRORFILE( "PropagateEvents_Impl: caught IllegalArgumentException" ); }
 /*N*/             catch( ::com::sun::star::container::NoSuchElementException )
-/*N*/             { DBG_ERRORFILE( "PropagateEvents_Impl: caught NoSuchElementException" ) }
+/*N*/             { DBG_ERRORFILE( "PropagateEvents_Impl: caught NoSuchElementException" ); }
 /*N*/         }
 /*N*/
 /*N*/         // now set the new values
@@ -342,9 +342,9 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/                     xEvents->replaceByName( aEventName, aEventData );
 /*N*/                 }
 /*N*/                 catch( ::com::sun::star::lang::IllegalArgumentException )
-/*N*/                 { DBG_ERRORFILE( "PropagateEvents_Impl: caught IllegalArgumentException" ) }
+/*N*/                 { DBG_ERRORFILE( "PropagateEvents_Impl: caught IllegalArgumentException" ); }
 /*N*/                 catch( ::com::sun::star::container::NoSuchElementException )
-/*N*/                 { DBG_ERRORFILE( "PropagateEvents_Impl: caught NoSuchElementException" ) }
+/*N*/                 { DBG_ERRORFILE( "PropagateEvents_Impl: caught NoSuchElementException" ); }
 /*N*/             }
 /*N*/             else
 /*N*/                 DBG_WARNING( "PropagateEvents_Impl: Got unkown event" );

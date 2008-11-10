@@ -319,7 +319,7 @@ sal_Bool SvxOle2Shape::createObject( const SvGlobalName &aClassName )
         }
     }
 
-    DBG_ASSERT( bOk, "could not create move ole stream!" )
+    DBG_ASSERT( bOk, "could not create move ole stream!" );
 
     if( bOk )
     {

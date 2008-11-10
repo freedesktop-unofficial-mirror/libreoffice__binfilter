@@ -247,7 +247,7 @@ using namespace ::com::sun::star;
 /*N*/         case MID_4 :
 /*N*/             rVal <<= (sal_Bool ) bHidePrint; break;
 /*N*/         default:
-/*N*/             DBG_ERROR("Wrong MemberID!")
+/*N*/             DBG_ERROR("Wrong MemberID!");
 /*N*/             return FALSE;
 /*N*/     }
 /*N*/

@@ -142,7 +142,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/         // There are no filters for "dummy" factory!
 /*N*/         if( pImpl->aServiceName.compareToAscii("dummy") != 0 )
 /*N*/         {
-/*N*/             DBG_ASSERT( pImpl->aServiceName.getLength(), "No service name - no filters!" )
+/*N*/             DBG_ASSERT( pImpl->aServiceName.getLength(), "No service name - no filters!" );
 /*N*/             SfxFilterContainer *pCont = GetFilterContainer();
 /*N*/             pCont->ReadExternalFilters( pImpl->aServiceName );
 /*N*/         }

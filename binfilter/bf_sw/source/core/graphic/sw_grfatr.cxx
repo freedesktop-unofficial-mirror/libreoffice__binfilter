@@ -341,7 +341,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ BOOL SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId  ) const
 /*N*/ {
-/*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!")
+/*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
 /*N*/   sal_Int16 nRet = GetValue();
 /*N*/     DBG_ASSERT( 0 <= nRet && nRet <= 100, "value out of range" );
 /*N*/     rVal <<= nRet;
@@ -352,7 +352,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/                                       BYTE nMemberId  )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
-/*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!")
+/*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
 /*N*/   sal_Int16 nVal;
 /*N*/   if(!(rVal >>= nVal) || nVal < -100 || nVal > 100)
 /*N*/       return FALSE;

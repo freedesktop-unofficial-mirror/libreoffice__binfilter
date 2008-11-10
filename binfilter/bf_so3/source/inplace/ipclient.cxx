@@ -86,7 +86,7 @@ SvInPlaceClient::~SvInPlaceClient()
 */
 {
     DBG_ASSERT( LIST_ENTRY_NOTFOUND == GetIPActiveClientList().GetPos( this ),
-                "ip-client in ip-client-list" )
+                "ip-client in ip-client-list" );
 
 }
 

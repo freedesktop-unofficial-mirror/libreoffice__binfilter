@@ -1075,7 +1075,7 @@ void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if(MID_COLUMN_SEPARATOR_LINE == nMemberId)
 /*N*/   {
-/*?*/       DBG_ERROR("not implemented")
+/*?*/       DBG_ERROR("not implemented");
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1092,7 +1092,7 @@ void SwFmtCol::Calc( sal_uInt16 nGutterWidth, sal_uInt16 nAct )
 /*M*/   sal_Bool bRet = sal_False;
 /*M*/   if(MID_COLUMN_SEPARATOR_LINE == nMemberId)
 /*M*/   {
-/*M*/       DBG_ERROR("not implemented")
+/*M*/       DBG_ERROR("not implemented");
 /*M*/   }
 /*M*/   else
 /*M*/   {

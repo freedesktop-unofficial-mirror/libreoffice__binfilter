@@ -146,7 +146,7 @@ void SvInfoObject::Load( SvPersistStream & rStm )
     // wegen Warning unter OS2 auskommentiert
     DBG_ASSERT( /*nVers >= INFO_OBJECT_VER_MIN &&*/
                 nVers <= INFO_OBJECT_VER_AKT,
-                "SvInfoObject version conflict" )
+                "SvInfoObject version conflict" );
     if( nVers > INFO_OBJECT_VER_AKT )
         rStm.SetError( SVSTREAM_WRONGVERSION );
     else
@@ -172,7 +172,7 @@ void SvInfoObject::Save( SvPersistStream & rStm )
     BYTE    nVer = BYTE(INFO_OBJECT_VER_AKT);
     rStm << nVer;
     String aStgName = GetStorageName();
-    DBG_ASSERT( aStgName.Len(), "kein Storage-Name" )
+    DBG_ASSERT( aStgName.Len(), "kein Storage-Name" );
     rStm.WriteByteString( aStgName, gsl_getSystemTextEncoding() );
     String aStr( GetObjName() );
     if( aStgName == aStr )
@@ -382,13 +382,13 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
 void SvPersist::TestMemberInvariant( BOOL /*bPrint*/ )
 {
 #ifdef DBG_UTIL
-    DBG_ASSERT( !(bOpSave || bOpSaveAs), "bOpSave && bOpSaveAs" )
+    DBG_ASSERT( !(bOpSave || bOpSaveAs), "bOpSave && bOpSaveAs" );
     if( !bIsInit )
     {
         if ( !bCreateTempStor )
         {
-            DBG_ASSERT( bOpHandsOff && !aStorage.Is(), "failed: bOpHandsOff && !aStorage.Is()" )
-            DBG_ASSERT( !bOpHandsOff && aStorage.Is(), "failed: !bOpHandsOff && aStorage.Is()" )
+            DBG_ASSERT( bOpHandsOff && !aStorage.Is(), "failed: bOpHandsOff && !aStorage.Is()" );
+            DBG_ASSERT( !bOpHandsOff && aStorage.Is(), "failed: !bOpHandsOff && aStorage.Is()" );
         }
     }
 #endif
@@ -563,7 +563,7 @@ BOOL SvPersist::Insert( SvInfoObject * pInfoObj )
     SvInfoObjectRef aRef( pInfoObj );
 
     DBG_ASSERT( pInfoObj->GetObjName().Len(),
-                "Try to Insert Object without name" )
+                "Try to Insert Object without name" );
     BOOL bRet = TRUE;
     if( !GetInfoList() )
         return FALSE; // es konnte keine Liste erstellt werden
@@ -602,7 +602,7 @@ BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bC
 {
     ASSERT_INIT()
     SvInfoObjectRef aRef( pInfoObj );
-    DBG_ASSERT( pInfoObj->GetObjName().Len(), "Try to Move Object without name" )
+    DBG_ASSERT( pInfoObj->GetObjName().Len(), "Try to Move Object without name" );
 
     BOOL bRet = TRUE;
     if( !GetInfoList() )
@@ -893,7 +893,7 @@ BOOL SvPersist::Unload( SvInfoObject *pInfoObj)
 
 BOOL SvPersist::Unload( SvPersist * pChild )
 {
-    DBG_ASSERT( pChild, "SvPersist::Unload(): pChild == NULL" )
+    DBG_ASSERT( pChild, "SvPersist::Unload(): pChild == NULL" );
     if( pChildList )
     {
         SvInfoObjectRef pEle = pChildList->First();
@@ -938,7 +938,7 @@ void SvPersist::Remove( const String & rName )
 
 void SvPersist::Remove( SvPersist * pChild )
 {
-    DBG_ASSERT( pChild, "SvPersist::Remove(): pChild == NULL" )
+    DBG_ASSERT( pChild, "SvPersist::Remove(): pChild == NULL" );
     if( pChildList )
     {
         SvInfoObjectRef pEle = pChildList->First();
@@ -1105,7 +1105,7 @@ void SvPersist::SetModified( BOOL bModifiedP )
 {
     ASSERT_INIT()
     DBG_ASSERT( bModifiedP || IsEnableSetModified(),
-                "SetModified( FALSE ), obwohl IsEnableSetModified() == FALSE" )
+                "SetModified( FALSE ), obwohl IsEnableSetModified() == FALSE" );
 
     if( !IsEnableSetModified() )
         return;
@@ -1128,7 +1128,7 @@ void SvPersist::SetModified( BOOL bModifiedP )
 *************************************************************************/
 void SvPersist::CountModified( BOOL bMod )
 {
-    DBG_ASSERT( bMod || nModifyCount != 0, "modifiy count underflow" )
+    DBG_ASSERT( bMod || nModifyCount != 0, "modifiy count underflow" );
     nModifyCount += bMod ? 1 : -1;
     if( pParent )
     {
@@ -1153,7 +1153,7 @@ void SvPersist::CountModified( BOOL bMod )
 void SvPersist::EnableSetModified( BOOL bEnable )
 {
     DBG_ASSERT( bEnable != bEnableSetModified,
-                "EnableSetModified 2x mit dem gleichen Wert gerufen" )
+                "EnableSetModified 2x mit dem gleichen Wert gerufen" );
     bEnableSetModified = bEnable;
 }
 
@@ -1311,7 +1311,7 @@ BOOL SvPersist::DoSaveCompleted( SvStorage * pStor )
 SvStorage * SvPersist::GetStorage() const
 {
     ASSERT_INIT()
-    DBG_ASSERT( !bOpHandsOff, "in hands off state, no accessible storage" )
+    DBG_ASSERT( !bOpHandsOff, "in hands off state, no accessible storage" );
     if( bCreateTempStor )
     {
         SvPersist *pThis = (SvPersist*) this;
@@ -1479,7 +1479,7 @@ void SvPersist::HandsOff()
 *************************************************************************/
 BOOL SvPersist::SaveCompleted( SvStorage * pStor )
 {
-    //DBG_ASSERT( bOpHandsOff | bOpSaveAs | bOpSave, aTest )
+    //DBG_ASSERT( bOpHandsOff | bOpSaveAs | bOpSave, aTest );
     ASSERT_INIT()
 
     if( !pStor && aStorage.Is() )
@@ -1509,7 +1509,7 @@ BOOL SvPersist::SaveCompleted( SvStorage * pStor )
                     GetParent()->SetModified( TRUE );
 
                 SetModified( FALSE );
-                DBG_ASSERT( !nModifyCount, "IsModified() == TRUE after save" )
+                DBG_ASSERT( !nModifyCount, "IsModified() == TRUE after save" );
             }
             if( bOpSaveAs )
             {
@@ -1519,7 +1519,7 @@ BOOL SvPersist::SaveCompleted( SvStorage * pStor )
                     if ( IsModified() && GetParent() )
                         GetParent()->SetModified( TRUE );
                     SetModified( FALSE );
-                    DBG_ASSERT( !IsModified(), "SvPersist::SaveCompleted: IsModified() == TRUE" )
+                    DBG_ASSERT( !IsModified(), "SvPersist::SaveCompleted: IsModified() == TRUE" );
                 }
             }
         }
@@ -1581,7 +1581,7 @@ void SvPersist::LoadContent( SvStream & rStm, BOOL bOwner_ )
     {
         BYTE nVers;
         rStm >> nVers;
-        DBG_ASSERT( nVers == CHILD_LIST_VER, "version conflict" )
+        DBG_ASSERT( nVers == CHILD_LIST_VER, "version conflict" );
 
         if( nVers != CHILD_LIST_VER )
             rStm.SetError( SVSTREAM_WRONGVERSION );

@@ -1905,7 +1905,7 @@ void SAL_CALL SdMasterPagesAccess::remove( const uno::Reference< drawing::XDrawP
 
     SdrPage* pSdrPage = pSdPage->GetSdrPage();
 
-    DBG_ASSERT( pSdrPage->IsMasterPage(), "SdMasterPage is not masterpage?")
+    DBG_ASSERT( pSdrPage->IsMasterPage(), "SdMasterPage is not masterpage?");
 
     if(rModel.pDoc->GetMasterPageUserCount(pSdrPage) > 0)
         return; //Todo: hier fehlt eine uno::Exception

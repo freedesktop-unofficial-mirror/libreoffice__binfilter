@@ -1602,7 +1602,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
                                     }
                                 }
 
-                                DBG_ASSERT( bOk, "could not create move ole stream!" )
+                                DBG_ASSERT( bOk, "could not create move ole stream!" );
 
                                 if( bOk )
                                 {

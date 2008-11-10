@@ -788,7 +788,7 @@ namespace binfilter {
 /*N*/   if( ! pDefaultColors )
 /*N*/       return;
 /*N*/
-/*N*/   CHART_TRACE1( "ChartModel::SetDefAttrRow - Row #%ld", i )
+/*N*/   CHART_TRACE1( "ChartModel::SetDefAttrRow - Row #%ld", i );
 /*N*/
 /*N*/   sal_Int32 nNumDefCol = pDefaultColors->Count();
 /*N*/   DBG_ASSERT( nNumDefCol, "invalid default colors" );

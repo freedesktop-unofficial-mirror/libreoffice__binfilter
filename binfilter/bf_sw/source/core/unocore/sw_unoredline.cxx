@@ -531,11 +531,11 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
         throw RuntimeException();
     if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_AUTHOR)))
     {
-        DBG_ERROR("currently not available")
+        DBG_ERROR("currently not available");
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_DATE_TIME)))
     {
-        DBG_ERROR("currently not available")
+        DBG_ERROR("currently not available");
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_COMMENT)))
     {
@@ -544,14 +544,14 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_TYPE)))
     {
-        DBG_ERROR("currently not available")
+        DBG_ERROR("currently not available");
         OUString sTmp; aValue >>= sTmp;
         if(!sTmp.getLength())
             throw IllegalArgumentException();
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_SUCCESSOR_DATA)))
     {
-        DBG_ERROR("currently not available")
+        DBG_ERROR("currently not available");
     }
     else
     {
@@ -581,14 +581,14 @@ Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
             case ND_SECTIONNODE:
             {
                 SwSectionNode* pSectNode = pNode->GetSectionNode();
-                DBG_ASSERT(pSectNode, "No section node!")
+                DBG_ASSERT(pSectNode, "No section node!");
                 xRet = SwXTextSections::GetObject( *pSectNode->GetSection().GetFmt() );
             }
             break;
             case ND_TABLENODE :
             {
                 SwTableNode* pTblNode = pNode->GetTableNode();
-                DBG_ASSERT(pTblNode, "No table node!")
+                DBG_ASSERT(pTblNode, "No table node!");
                 SwTable& rTbl = pTblNode->GetTable();
                 SwFrmFmt* pTblFmt = rTbl.GetFrmFmt();
                 xRet = SwXTextTables::GetObject( *pTblFmt );

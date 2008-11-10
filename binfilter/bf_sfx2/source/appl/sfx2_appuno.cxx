@@ -164,7 +164,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FileName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FileName" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_FILE_NAME, sVal ) );
 /*N*/                      }
@@ -172,7 +172,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterName" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_FILTER_NAME, sVal ) );
 /*N*/                      }
@@ -180,7 +180,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for OpenFlags" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for OpenFlags" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_OPTIONS, sVal ) );
 /*N*/                      }
@@ -188,7 +188,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Password" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Password" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_PASSWORD, sVal ) );
 /*N*/                      }
@@ -196,7 +196,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Referer" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Referer" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_REFERER, sVal ) );
 /*N*/                      }
@@ -204,7 +204,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterOptions" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterOptions" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_FILE_FILTEROPTIONS, sVal ) );
 /*N*/                      }
@@ -212,7 +212,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Comment" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Comment" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_DOCINFO_COMMENTS, sVal ) );
 /*N*/                      }
@@ -220,7 +220,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Author" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for Author" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_DOCINFO_AUTHOR, sVal ) );
 /*N*/                      }
@@ -228,7 +228,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Int16 nVal = -1;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= nVal) && (nVal != -1));
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Version" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Version" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxInt16Item( SID_VERSION, nVal ) );
 /*N*/                      }
@@ -236,7 +236,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Overwrite" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Overwrite" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_OVERWRITE, bVal ) );
 /*N*/                      }
@@ -244,7 +244,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Unpacked" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Unpacked" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_UNPACK, bVal ) );
 /*N*/                      }
@@ -254,7 +254,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< ::com::sun::star::task::XStatusIndicator > xVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= xVal) && xVal.is());
-/*N*/                         DBG_ASSERT( bOK, "invalid type for StatusIndicator" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for StatusIndicator" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_PROGRESS_STATUSBAR_CONTROL, rProp.Value ) );
 /*N*/                      }
@@ -262,7 +262,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< ::com::sun::star::task::XInteractionHandler > xVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= xVal) && xVal.is());
-/*N*/                         DBG_ASSERT( bOK, "invalid type for InteractionHandler" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for InteractionHandler" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_INTERACTIONHANDLER, rProp.Value ) );
 /*N*/                      }
@@ -274,7 +274,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< XInputStream > xVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= xVal) && xVal.is());
-/*N*/                         DBG_ASSERT( bOK, "invalid type for InputStream" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for InputStream" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_INPUTSTREAM, rProp.Value ) );
 /*N*/                      }
@@ -282,7 +282,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< XContent > xVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= xVal) && xVal.is());
-/*N*/                         DBG_ASSERT( bOK, "invalid type for UCBContent" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for UCBContent" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_CONTENT, rProp.Value ) );
 /*N*/                      }
@@ -290,7 +290,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< XOutputStream > xVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= xVal) && xVal.is());
-/*N*/                         DBG_ASSERT( bOK, "invalid type for OutputStream" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for OutputStream" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_OUTPUTSTREAM, rProp.Value ) );
 /*N*/                      }
@@ -298,7 +298,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         Reference< XInputStream > xVal;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= xVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for PostData" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for PostData" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUnoAnyItem( SID_POSTDATA, rProp.Value ) );
 /*N*/                      }
@@ -306,7 +306,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for AsTemplate" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for AsTemplate" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_TEMPLATE, bVal ) );
 /*N*/                      }
@@ -314,7 +314,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for OpenNewView" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for OpenNewView" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_OPEN_NEW_VIEW, bVal ) );
 /*N*/                      }
@@ -322,7 +322,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Int16 nVal = -1;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= nVal) && (nVal != -1));
-/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewId" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewId" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUInt16Item( SID_VIEW_ID, nVal ) );
 /*N*/                      }
@@ -330,7 +330,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Int16 nVal = -1;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= nVal) && (nVal != -1));
-/*N*/                         DBG_ASSERT( bOK, "invalid type for PluginMode" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for PluginMode" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxUInt16Item( SID_PLUGIN_MODE, nVal ) );
 /*N*/                      }
@@ -338,7 +338,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for ReadOnly" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for ReadOnly" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_DOC_READONLY, bVal ) );
 /*N*/                      }
@@ -346,7 +346,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for StartPresentation" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for StartPresentation" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_DOC_STARTPRESENTATION, bVal ) );
 /*N*/                      }
@@ -354,7 +354,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for SelectionOnly" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for SelectionOnly" );
 /*N*/                         if (bOK)
 /*N*/                            rSet.Put( SfxBoolItem( SID_SELECTION, bVal ) );
 /*N*/                      }
@@ -362,7 +362,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Hidden" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Hidden" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_HIDDEN, bVal ) );
 /*N*/                      }
@@ -370,7 +370,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Minimized" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Minimized" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_MINIMIZEWINS, bVal ) );
 /*N*/                      }
@@ -378,7 +378,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Silent" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Silent" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_SILENT, bVal ) );
 /*N*/                      }
@@ -386,7 +386,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for Preview" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for Preview" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_PREVIEW, bVal ) );
 /*N*/                      }
@@ -394,7 +394,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewOnly" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewOnly" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_VIEWONLY, bVal ) );
 /*N*/                      }
@@ -402,7 +402,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewOnly" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for ViewOnly" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxBoolItem( SID_EDITDOC, !bVal ) );
 /*N*/                      }
@@ -410,7 +410,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FileName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FileName" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_FILE_NAME, sVal ) );
 /*N*/                      }
@@ -418,7 +418,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for OrigURL" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for OrigURL" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_ORIGURL, sVal ) );
 /*N*/                      }
@@ -426,7 +426,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= sVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for SalvageURL" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for SalvageURL" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_DOC_SALVAGE, sVal ) );
 /*N*/                      }
@@ -434,7 +434,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= sVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for FrameName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for FrameName" );
 /*N*/                         if (bOK && sVal.getLength())
 /*N*/                             rSet.Put( SfxStringItem( SID_TARGETNAME, sVal ) );
 /*N*/                      }
@@ -442,7 +442,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for MediaType" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for MediaType" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_CONTENTTYPE, sVal ) );
 /*N*/                      }
@@ -450,7 +450,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for WindowState" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for WindowState" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_WIN_POSSIZE, sVal ) );
 /*N*/                      }
@@ -458,7 +458,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for TemplateName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for TemplateName" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_TEMPLATE_NAME, sVal ) );
 /*N*/                      }
@@ -466,7 +466,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for TemplateRegionName" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for TemplateRegionName" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_TEMPLATE_REGIONNAME, sVal ) );
 /*N*/                      }
@@ -474,7 +474,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for JumpMark" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for JumpMark" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_JUMPMARK, sVal ) );
 /*N*/                      }
@@ -482,7 +482,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for CharacterSet" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for CharacterSet" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_CHARSET, sVal ) );
 /*N*/                      }
@@ -490,7 +490,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterFlags" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for FilterFlags" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_FILE_FILTEROPTIONS, sVal ) );
 /*N*/                      }
@@ -498,7 +498,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                 {
 /*N*/                     sal_Int16 nVal =-1;
 /*N*/                     sal_Bool bOK = ((rProp.Value >>= nVal) && (nVal != -1));
-/*N*/                     DBG_ASSERT( bOK, "invalid type for MacroExecMode" )
+/*N*/                     DBG_ASSERT( bOK, "invalid type for MacroExecMode" );
 /*N*/                     if (bOK)
 /*N*/                         rSet.Put( SfxUInt16Item( SID_MACROEXECMODE, nVal ) );
 /*N*/                 }
@@ -506,7 +506,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/               {
 /*N*/                     sal_Int16 nVal =-1;
 /*N*/                     sal_Bool bOK = ((rProp.Value >>= nVal) && (nVal != -1));
-/*N*/                     DBG_ASSERT( bOK, "invalid type for UpdateDocMode" )
+/*N*/                     DBG_ASSERT( bOK, "invalid type for UpdateDocMode" );
 /*N*/                     if (bOK)
 /*N*/                         rSet.Put( SfxUInt16Item( SID_UPDATEDOCMODE, nVal ) );
 /*N*/               }
@@ -514,7 +514,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         sal_Bool bVal = sal_False;
 /*N*/                         sal_Bool bOK = (rProp.Value >>= bVal);
-/*N*/                         DBG_ASSERT( bOK, "invalid type for RepairPackage" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type for RepairPackage" );
 /*N*/                         if (bOK)
 /*N*/                            rSet.Put( SfxBoolItem( SID_REPAIRPACKAGE, bVal ) );
 /*N*/                      }
@@ -522,7 +522,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 /*N*/                      {
 /*N*/                         ::rtl::OUString sVal;
 /*N*/                         sal_Bool bOK = ((rProp.Value >>= sVal) && sVal.getLength());
-/*N*/                         DBG_ASSERT( bOK, "invalid type or value for DocumentTitle" )
+/*N*/                         DBG_ASSERT( bOK, "invalid type or value for DocumentTitle" );
 /*N*/                         if (bOK)
 /*N*/                             rSet.Put( SfxStringItem( SID_DOCINFO_TITLE, sVal ) );
 /*N*/                      }

@@ -332,7 +332,7 @@ namespace binfilter {
 /*N*/ void Outliner::SetText( const XubString& rText, Paragraph* pPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   DBG_ASSERT(pPara,"SetText:No Para")
+/*N*/   DBG_ASSERT(pPara,"SetText:No Para");
 /*N*/
 /*N*/   BOOL bUpdate = pEditEngine->GetUpdateMode();
 /*N*/   pEditEngine->SetUpdateMode( FALSE );
@@ -409,7 +409,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   DBG_ASSERT(pParaList->GetParagraphCount()==pEditEngine->GetParagraphCount(),"SetText failed!")
+/*N*/   DBG_ASSERT(pParaList->GetParagraphCount()==pEditEngine->GetParagraphCount(),"SetText failed!");
 /*N*/   bFirstParaIsEmpty = FALSE;
 /*N*/   ImplBlockInsertionCallbacks( FALSE );
 /*N*/   pEditEngine->SetUpdateMode( bUpdate );
@@ -450,8 +450,8 @@ namespace binfilter {
 /*N*/   ImplBlockInsertionCallbacks( FALSE );
 /*N*/   pEditEngine->SetUpdateMode( bUpdate );
 /*N*/
-/*N*/   DBG_ASSERT( pParaList->GetParagraphCount()==rPObj.Count(),"SetText failed")
-/*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed")
+/*N*/   DBG_ASSERT( pParaList->GetParagraphCount()==rPObj.Count(),"SetText failed");
+/*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed");
 /*N*/ }
 
 /*N*/ XubString __EXPORT Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
@@ -766,7 +766,7 @@ namespace binfilter {
 /*N*/ ULONG Outliner::GetAbsPos( Paragraph* pPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
-/*N*/   DBG_ASSERT(pPara,"GetAbsPos:No Para")
+/*N*/   DBG_ASSERT(pPara,"GetAbsPos:No Para");
 /*N*/   return pParaList->GetAbsPos( pPara );
 /*N*/ }
 

@@ -196,19 +196,11 @@ DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 DECLARE_LIST(DescrList, E3dLabel
 #define CHART_AXIS_SECONDARY_Y  4
 #define CHART_AXIS_SECONDARY_X  5
 
-#ifdef DBG_UTIL
 #define CHART_TRACE(  w )           DBG_TRACE1( "SCH(%lx):" #w, (long)this )
 #define CHART_TRACE1( w,a )         DBG_TRACE2( "SCH(%lx):" #w, (long)this, a )
 #define CHART_TRACE2( w,a,b )       DBG_TRACE3( "SCH(%lx):" #w, (long)this, a,b )
 #define CHART_TRACE3( w,a,b,c )     DBG_TRACE4( "SCH(%lx):" #w, (long)this, a,b,c )
 #define CHART_TRACE4( w,a,b,c,d )   DBG_TRACE5( "SCH(%lx):" #w, (long)this, a,b,c,d )
-#else
-#define CHART_TRACE(  w )
-#define CHART_TRACE1( w,a )
-#define CHART_TRACE2( w,a,b )
-#define CHART_TRACE3( w,a,b,c )
-#define CHART_TRACE4( w,a,b,c,d )
-#endif
 
 class ChartModel : public SdrModel
 {

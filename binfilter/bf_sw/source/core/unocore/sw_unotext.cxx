@@ -1025,7 +1025,7 @@ sal_Bool    SwXText::CheckForOwnMember(
     const OTextCursorHelper* pCursor)
         throw(IllegalArgumentException, RuntimeException)
 {
-    DBG_ASSERT((!pRange || !pCursor) && (pRange || pCursor), "only one pointer will be checked" )
+    DBG_ASSERT((!pRange || !pCursor) && (pRange || pCursor), "only one pointer will be checked" );
     Reference<XTextCursor> xOwnCursor = createCursor();
 
     uno::Reference<lang::XUnoTunnel> xTunnel( xOwnCursor, uno::UNO_QUERY);
@@ -1034,7 +1034,7 @@ sal_Bool    SwXText::CheckForOwnMember(
     {
         pOwnCursor = (OTextCursorHelper*)xTunnel->getSomething(OTextCursorHelper::getUnoTunnelId());
     }
-    DBG_ASSERT(pOwnCursor, "OTextCursorHelper::getUnoTunnelId() ??? ")
+    DBG_ASSERT(pOwnCursor, "OTextCursorHelper::getUnoTunnelId() ??? ");
     const SwStartNode* pOwnStartNode = pOwnCursor->GetPaM()->GetNode()->FindStartNode();
     SwStartNodeType eSearchNodeType = SwNormalStartNode;
     switch(eCrsrType)
@@ -1137,7 +1137,7 @@ sal_Int16 SwXText::ComparePositions(
                         nCompare = -1;
                     else
                     {
-                        DBG_ASSERT(*pStart1 == *pStart2, "SwPositions should be equal here")
+                        DBG_ASSERT(*pStart1 == *pStart2, "SwPositions should be equal here");
                         nCompare = 0;
                     }
                 }

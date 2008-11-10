@@ -563,28 +563,28 @@ void SwXTextPortion::addPropertyChangeListener(
     const Reference< XPropertyChangeListener > & aListener)
         throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 09:56:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextPortion::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 09:56:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextPortion::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 09:56:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextPortion::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 08.03.99 09:41:43---------------------------------------------------
 
@@ -675,7 +675,7 @@ OUString SwXTextPortion::getPresentation(sal_Bool bShowCommand) throw( uno::Runt
     if(pUnoCrsr && 0 != (pFmt = GetFldFmt()))
     {
         const SwField* pField = pFmt->GetFld();
-        DBG_ERROR("bShowCommand auswerten!")
+        DBG_ERROR("bShowCommand auswerten!");
         sRet = pField->Expand();
     }
     return sRet;
@@ -822,7 +822,7 @@ sal_Bool SwXTextPortion::supportsService(const OUString& rServiceName) throw( un
             // hier die zeichengebundenen am Cursor suchen - hier kann es nur einen geben
             SwTxtAttr* pTxtAttr = pUnoCrsr->GetNode()->GetTxtNode()->GetTxtAttr(
                             pUnoCrsr->GetPoint()->nContent, RES_TXTATR_FLYCNT);
-            DBG_ASSERT(pTxtAttr, "Hier muss doch ein Fly-Attribut zu finden sein!")
+            DBG_ASSERT(pTxtAttr, "Hier muss doch ein Fly-Attribut zu finden sein!");
             if(pTxtAttr)
             {
                 const SwFmtFlyCnt& rFlyCnt = pTxtAttr->GetFlyCnt();
