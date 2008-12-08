@@ -28,13 +28,6 @@
  *
  ************************************************************************/
 #define NO_LOCALIZE_EXPORT
- //==================================================================
- // StarCalc Applikations Resource
- //
- // (C) 1994 StarDivision GmbH, Hamburg, Germany
- // $Author: rt $ $Date: 2008-04-10 09:52:24 $ $Revision: 1.6 $
- // $Logfile:   T:/sc/source/ui/src/sc.srv  $ $Workfile:   sc.src  $
- //==================================================================
 
 
 #include "bf_sc.hrc" // -> #include <sfx.hrc>

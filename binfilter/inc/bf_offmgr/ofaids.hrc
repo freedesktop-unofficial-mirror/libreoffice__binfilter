@@ -27,13 +27,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-//========================================================================
-// class OfficeApplication
-//
-// (C) 1996 StarDivision GmbH, Hamburg, Germany
-// $Author: rt $ $Date: 2008-04-10 21:27:58 $ $Revision: 1.5 $
-// $Logfile:   T:/offmgr/inc/ofaids.hrv  $ $Workfile:   OFAIDS.HRC  $
-//------------------------------------------------------------------------
+
 #ifndef _OFF_OFAIDS_HRC
 #define _OFF_OFAIDS_HRC
 
