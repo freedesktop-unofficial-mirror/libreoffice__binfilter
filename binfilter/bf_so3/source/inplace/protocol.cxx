@@ -578,7 +578,7 @@ BOOL ImplSvEditObjectProtocol::Reset()
     CLASS_INVARIANT
     DBG_PROTREC( "Reset" );
 
-    if( bInClosed || aObj.Is() && aObj->IsInClose() )
+    if( bInClosed || (aObj.Is() && aObj->IsInClose()) )
     {
         if( bConnect )
             Reset2Connect(); // bis auf Connect runter
@@ -778,7 +778,7 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientConnect darf alles passieren, bis auf loeschen von this
-    if( bLastActionConnect && !bSvrConnect || !bLastActionConnect && bSvrConnect )
+    if( (bLastActionConnect && !bSvrConnect) || (!bLastActionConnect && bSvrConnect) )
     { // Object verbinden Ich darf verbinden
         DBG_ASSERT( bConnect && bConnectP && bLastActionConnect && !bSvrConnect
                     || !bConnect && !bConnectP && !bLastActionConnect && bSvrConnect,
@@ -856,7 +856,7 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientOpen darf alles passieren, bis auf loeschen von this
-    if( bLastActionOpen && !bSvrOpen || !bLastActionOpen && bSvrOpen )
+    if( (bLastActionOpen && !bSvrOpen) || (!bLastActionOpen && bSvrOpen) )
     { // Object oeffnen
         DBG_ASSERT( bOpen && bOpenP && bLastActionOpen && !bSvrOpen
                     || !bOpen && !bOpenP && !bLastActionOpen && bSvrOpen,
@@ -928,7 +928,7 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientEmbed darf alles passieren, bis auf loeschen von this
-    if( bLastActionEmbed && !bSvrEmbed || !bLastActionEmbed && bSvrEmbed )
+    if( (bLastActionEmbed && !bSvrEmbed) || (!bLastActionEmbed && bSvrEmbed) )
     { // Object oeffnen
         DBG_ASSERT( bEmbed && bEmbedP && bLastActionEmbed && !bSvrEmbed
                     || !bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed,
@@ -1006,7 +1006,7 @@ void ImplSvEditObjectProtocol::PlugIn
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientPlugIn darf alles passieren, bis auf loeschen von this
-    if( bLastActionPlugIn && !bSvrPlugIn || !bLastActionPlugIn && bSvrPlugIn )
+    if( (bLastActionPlugIn && !bSvrPlugIn) || (!bLastActionPlugIn && bSvrPlugIn) )
     { // Object oeffnen
         DBG_ASSERT( bPlugIn && bPlugInP && bLastActionPlugIn && !bSvrPlugIn
                     || !bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn,
@@ -1081,7 +1081,7 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientIPActive darf alles passieren, bis auf loeschen von this
-    if( bLastActionIPActive && !bSvrIPActive || !bLastActionIPActive && bSvrIPActive )
+    if( (bLastActionIPActive && !bSvrIPActive) || (!bLastActionIPActive && bSvrIPActive) )
     { // Object oeffnen
         DBG_ASSERT( bIPActive && bIPActiveP && bLastActionIPActive && !bSvrIPActive
                     || !bIPActive && !bIPActiveP && !bLastActionIPActive && bSvrIPActive,
@@ -1212,7 +1212,7 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
 
     // nach dem ClientUIActive darf alles passieren, bis auf loeschen von this
-    if( bLastActionUIActive && !bSvrUIActive || !bLastActionUIActive && bSvrUIActive )
+    if( (bLastActionUIActive && !bSvrUIActive) || (!bLastActionUIActive && bSvrUIActive) )
     { // Object oeffnen
         DBG_ASSERT( bUIActive && bUIActiveP && bLastActionUIActive && !bSvrUIActive
                     || !bUIActive && !bUIActiveP && !bLastActionUIActive && bSvrUIActive,

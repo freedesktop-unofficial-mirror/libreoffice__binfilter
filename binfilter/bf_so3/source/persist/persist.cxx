@@ -877,8 +877,8 @@ BOOL SvPersist::Unload( SvInfoObject *pInfoObj)
         pInfoObj->SetObj( x );
 
         // Ein Hack, da ueber den RefCount keine Logik implementiert werden daerf
-        if ( xChild->bIsObjectShell && xChild->GetRefCount() == 2
-          || !xChild->bIsObjectShell && xChild->GetRefCount() == 1 )
+        if ( (xChild->bIsObjectShell && xChild->GetRefCount() == 2)
+          || (!xChild->bIsObjectShell && xChild->GetRefCount() == 1) )
         {
             xChild->DoClose();
             xChild->pParent = NULL;
