@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sc_scmod.cxx,v $
- * $Revision: 1.13 $
+ * $Revision: 1.13.32.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -376,7 +376,7 @@ static USHORT nIdleCount = 0;
 /*N*/ {
 /*N*/   SvtCTLOptions::TextNumerals eNumerals = GetCTLOptions().GetCTLTextNumerals();
 /*N*/   return ( eNumerals == SvtCTLOptions::NUMERALS_ARABIC ) ? LANGUAGE_ENGLISH_US :
-/*N*/          ( eNumerals == SvtCTLOptions::NUMERALS_HINDI)   ? LANGUAGE_ARABIC :
+/*N*/          ( eNumerals == SvtCTLOptions::NUMERALS_HINDI)   ? LANGUAGE_ARABIC_SAUDI_ARABIA :
 /*N*/                                                            LANGUAGE_SYSTEM;
 /*N*/ }
 

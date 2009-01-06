@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_poolfmt.cxx,v $
- * $Revision: 1.12 $
+ * $Revision: 1.12.38.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -376,7 +376,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/     switch (nLanguage)
 /*N*/     {
-/*N*/     case LANGUAGE_ARABIC:
+/*N*/     case LANGUAGE_ARABIC_PRIMARY_ONLY:
 /*N*/     case LANGUAGE_ARABIC_SAUDI_ARABIA:
 /*N*/     case LANGUAGE_ARABIC_IRAQ:
 /*N*/     case LANGUAGE_ARABIC_EGYPT:

@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sd_drawdoc.cxx,v $
- * $Revision: 1.14 $
+ * $Revision: 1.14.38.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -200,9 +200,7 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
 
     // If the current application language is a language that uses right-to-left text...
     LanguageType eRealCTLLanguage = Application::GetSettings().GetLanguage();
-    if( (LANGUAGE_ARABIC == (eRealCTLLanguage & 0x00ff)) ||
-        (LANGUAGE_URDU == (eRealCTLLanguage & 0x00ff)) ||
-        (LANGUAGE_HEBREW == eRealCTLLanguage) )
+    if( MsLangId::isRightToLeft( eRealCTLLanguage ) )
     {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
     }

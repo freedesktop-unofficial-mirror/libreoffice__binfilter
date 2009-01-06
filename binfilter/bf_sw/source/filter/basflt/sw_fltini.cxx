@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_fltini.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.15.32.3 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -835,7 +835,7 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
          {LANGUAGE_SYSTEM,                  "SYSTEM"                },
          {LANGUAGE_AFRIKAANS,               "AFRIKAANS"             },
          {LANGUAGE_ALBANIAN,                    "ALBANIAN"              },
-         {LANGUAGE_ARABIC,                  "ARABIC"                },
+         {LANGUAGE_ARABIC_PRIMARY_ONLY,     "ARABIC"                },
          {LANGUAGE_ARABIC_SAUDI_ARABIA,     "ARABIC (SAUDI ARABIA)" },
          {LANGUAGE_ARABIC_IRAQ,             "ARABIC (IRAQ)"         },
          {LANGUAGE_ARABIC_EGYPT,                "ARABIC (EGYPT)"        },
@@ -972,7 +972,7 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
          {LANGUAGE_SLOVAK,                  "SLOVAK"                },
          {LANGUAGE_SLOVENIAN,               "SLOVENIAN"             },
          {LANGUAGE_SORBIAN,                 "SORBIAN"               },
-         {LANGUAGE_SPANISH,                 "SPANISH"               },
+         {LANGUAGE_SPANISH_DATED,           "SPANISH"               },
          {LANGUAGE_SPANISH_MEXICAN,         "SPANISH (MEXICAN)"     },
          {LANGUAGE_SPANISH_MODERN,          "SPANISH (MODERN)"      },
          {LANGUAGE_SPANISH_GUATEMALA,       "SPANISH (GUATEMALA)"   },
@@ -1009,7 +1009,6 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
          {LANGUAGE_URDU,                     "URDU"                 },
          {LANGUAGE_URDU_PAKISTAN,            "URDU (PAKISTAN)"      },
          {LANGUAGE_URDU_INDIA,               "URDU (INDIA)"             },
-         {LANGUAGE_UZBEK,                    "UZBEK"                    },
          {LANGUAGE_UZBEK_LATIN,              "UZBEK (LATIN)"            },
          {LANGUAGE_UZBEK_CYRILLIC,           "UZBEK (CYRILLIC)"         },
          {LANGUAGE_VENDA,                    "VENDA"                    },
