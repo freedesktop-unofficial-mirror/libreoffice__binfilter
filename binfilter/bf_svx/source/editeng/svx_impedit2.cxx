@@ -779,7 +779,7 @@ using namespace ::com::sun::star;
 /*?*/         UBiDi* pBidi = ubidi_openSized( aText.Len(), 0, &nError );
 /*?*/         nError = U_ZERO_ERROR;
 /*?*/
-/*?*/         ubidi_setPara( pBidi, aText.GetBuffer(), aText.Len(), nDefaultDir, NULL, &nError );
+/*?*/         ubidi_setPara( pBidi, reinterpret_cast<const UChar *>(aText.GetBuffer()), aText.Len(), nDefaultDir, NULL, &nError );  // UChar != sal_Unicode in MinGW
 /*?*/         nError = U_ZERO_ERROR;
 /*?*/
 /*?*/         long nCount = ubidi_countRuns( pBidi, &nError );
