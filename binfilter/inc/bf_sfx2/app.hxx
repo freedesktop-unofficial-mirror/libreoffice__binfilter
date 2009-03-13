@@ -261,9 +261,6 @@ public:
 
     String&                     GetSaveAsTargetURLHack();
     SfxFilterMatcher&           GetFilterMatcher();
-#ifdef DDE_AVAILABLE
-    BOOL                        InitializeDde();
-#endif
     DdeService*                 GetDdeService();
     void                        RemoveDdeTopic( SfxObjectShell* );
 

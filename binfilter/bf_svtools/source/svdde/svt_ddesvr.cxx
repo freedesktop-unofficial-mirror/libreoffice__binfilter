@@ -679,36 +679,6 @@ DdeItem* DdeTopic::AddItem( const DdeItem& r )
     return s;
 }
 
-// --- DdeTopic::InsertItem() -----------------------------------------
-
-void DdeTopic::InsertItem( DdeItem* pNew )
-{
-    if( pNew )
-    {
-        aItems.Insert( pNew );
-        pNew->pMyTopic = this;
-    }
-}
-
-// --- DdeTopic::RemoveItem() --------------------------------------
-
-void DdeTopic::RemoveItem( const DdeItem& r )
-{
-    DdeItem* s;
-    for ( s = aItems.First(); s; s = aItems.Next() )
-    {
-        if ( !DdeCmpStringHandles (*s->pName, *r.pName ) )
-            break;
-    }
-
-    if ( s )
-    {
-        aItems.Remove( s );
-        s->pMyTopic = 0;
-        delete s;
-    }
-}
-
 // --- DdeTopic::NotifyClient() ------------------------------------
 
 void DdeTopic::NotifyClient( const String& rItem )

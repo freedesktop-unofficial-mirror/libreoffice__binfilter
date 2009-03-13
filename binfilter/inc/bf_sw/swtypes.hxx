@@ -186,11 +186,6 @@ extern ResMgr* pSwResMgr;           // steht in swapp0.cxx
 #define SW_RES(i)       ResId(i,*pSwResMgr)
 #define SW_RESSTR(i)    UniString(ResId(i,*pSwResMgr))
 
-#if defined( WIN ) || defined( WNT ) || defined( PM2 )
-#define DDE_AVAILABLE
-#endif
-
-
 com::sun::star::lang::Locale    CreateLocale( LanguageType eLanguage );
 
 ::com::sun::star::uno::Reference<

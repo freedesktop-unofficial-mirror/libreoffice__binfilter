@@ -157,21 +157,6 @@ SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
     <SfxApplication::OpenClients()>
 */
 /*N*/ {
-/*N*/ #ifdef DDE_AVAILABLE
-/*N*/ #ifdef PRODUCT
-/*N*/     InitializeDde();
-/*N*/ #else
-/*N*/     if( !InitializeDde() )
-/*N*/     {
-/*N*/         ByteString aStr( "Kein DDE-Service moeglich. Fehler: " );
-/*N*/         if( GetDdeService() )
-/*N*/             aStr += GetDdeService()->GetError();
-/*N*/         else
-/*N*/             aStr += '?';
-/*N*/         DBG_ASSERT( sal_False, aStr.GetBuffer() )
-/*N*/     }
-/*N*/ #endif
-/*N*/ #endif
 /*N*/ }
 
 //--------------------------------------------------------------------

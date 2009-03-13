@@ -46,21 +46,6 @@
 
 namespace binfilter {
 
-//========================================================================
-#ifdef DDE_AVAILABLE
-/*N*/ String SfxDdeServiceName_Impl( const String& sIn )
-/*N*/ {
-/*N*/   ByteString sTemp = U2S( sIn );
-/*N*/   ByteString sReturn;
-/*N*/
-/*N*/   for ( sal_uInt16 n = sTemp.Len(); n; --n )
-/*N*/       if ( sTemp.Copy( n-1, 1 ).IsAlphaNumericAscii() )
-/*N*/           sReturn += sTemp.GetChar(n-1);
-/*N*/
-/*N*/   return S2U( sReturn );
-/*N*/ }
-#endif
-
 class ImplDdeService : public DdeService
 {
 public:
@@ -183,34 +168,6 @@ SV_IMPL_PTRARR( SfxDdeDocTopics_Impl, SfxDdeDocTopic_Impl * const )
 /*?*/ }
 
 //========================================================================
-#ifdef DDE_AVAILABLE
-/*N*/ BOOL SfxApplication::InitializeDde()
-/*N*/ {
-/*N*/   DBG_ASSERT( !pAppData_Impl->pDdeService,
-/*N*/               "Dde kann nicht mehrfach initialisiert werden" )
-/*N*/
-/*N*/   pAppData_Impl->pDdeService = new ImplDdeService( Application::GetAppName() );
-/*N*/   int nError = pAppData_Impl->pDdeService->GetError();
-/*N*/   if( !nError )
-/*N*/   {
-/*N*/       pAppData_Impl->pDocTopics = new SfxDdeDocTopics_Impl;
-/*N*/
-/*N*/       // wir wollen auf jedenfall RTF unterstuetzen!
-/*N*/       pAppData_Impl->pDdeService->AddFormat( FORMAT_RTF );
-/*N*/
-/*N*/       // Config-Pfad als Topic wegen Mehrfachstart
-/*N*/         INetURLObject aOfficeLockFile( SvtPathOptions().GetUserConfigPath() );
-/*N*/       aOfficeLockFile.insertName( DEFINE_CONST_UNICODE( "soffice.lck" ) );
-/*N*/         String aService( SfxDdeServiceName_Impl(
-/*N*/                   aOfficeLockFile.GetMainURL(INetURLObject::DECODE_TO_IURI) ) );
-/*N*/       aService.ToUpperAscii();
-/*N*/       pAppData_Impl->pDdeService2 = new ImplDdeService( aService );
-/*N*/       pAppData_Impl->pTriggerTopic = new SfxDdeTriggerTopic_Impl;
-/*N*/       pAppData_Impl->pDdeService2->AddTopic( *pAppData_Impl->pTriggerTopic );
-/*N*/   }
-/*N*/   return !nError;
-/*N*/ }
-#endif
 
 /*N*/ void SfxAppData_Impl::DeInitDDE()
 /*N*/ {
