@@ -92,7 +92,56 @@ protected:
 |*
 \************************************************************************/
 
-BASE3D_DECL_BUCKET(B3dEdgeEntry, Bucket)
+SV_DECL_VARARR(B3dEdgeEntryBucketMemArr, char*, 32, 32)
+class B3dEdgeEntryBucket {
+private:
+B3dEdgeEntryBucketMemArr    aMemArray;
+    UINT32          nMask;
+    UINT32          nCount;
+    INT16           nFreeMemArray;
+    INT16           nActMemArray;
+    UINT16          nFreeEntry;
+    UINT16          nShift;
+    UINT16          nBlockShift;
+    UINT16          nEntriesPerArray;
+    UINT16          nSlotSize;
+    UINT16          nNext;
+    UINT16          nMemArray;
+public:
+    B3dEdgeEntryBucket(UINT16 TheSize);
+    /* Zu verwendende Groesse der Speicherarrays setzen */
+    /* Bitte NUR verwenden, falls sich der Leerkonstruktor */
+    /* nicht vermeiden laesst! Nicht nachtraeglich anwenden!  */
+    void InitializeSize(UINT16 TheSize);
+    /* Destruktor */
+    ~B3dEdgeEntryBucket();
+    /* Anhaengen und kopieren */
+    BOOL Append(B3dEdgeEntry& rVec)
+        { if(CareForSpace()) return ImplAppend(rVec); return FALSE; }
+    /* nur neuen Eintrag anhaengen, ohne ausfuellen */
+    BOOL Append()
+        { if(CareForSpace()) return ImplAppend(); return FALSE; }
+    /* leeren und Speicher freigeben */
+    void Empty();
+    /* leeren aber Speicher behalten */
+    void Erase();
+    B3dEdgeEntry& operator[] (UINT32 nPos);
+    UINT32 Count() { return nCount; }
+    UINT32 GetNumAllocated() { return aMemArray.Count() * nEntriesPerArray; }
+    void operator=(const B3dEdgeEntryBucket&);
+    UINT16 GetBlockShift() { return nBlockShift; }
+    UINT16 GetSlotSize() { return nSlotSize; }
+private:
+    BOOL CareForSpace()
+        { if(nFreeEntry == nEntriesPerArray)
+        return ImplCareForSpace(); return TRUE; }
+    BOOL ImplCareForSpace();
+    /* Anhaengen und kopieren */
+    BOOL ImplAppend(B3dEdgeEntry& rVec);
+    /* nur neuen Eintrag anhaengen, ohne ausfuellen */
+    BOOL ImplAppend();
+};
+
 
 /*************************************************************************
 |*
@@ -141,7 +190,55 @@ protected:
 |*
 \************************************************************************/
 
-BASE3D_DECL_BUCKET(B3dEdgeList, Bucket)
+SV_DECL_VARARR(B3dEdgeListBucketMemArr, char*, 32, 32)
+class B3dEdgeListBucket {
+private:
+B3dEdgeListBucketMemArr aMemArray;
+    UINT32          nMask;
+    UINT32          nCount;
+    INT16           nFreeMemArray;
+    INT16           nActMemArray;
+    UINT16          nFreeEntry;
+    UINT16          nShift;
+    UINT16          nBlockShift;
+    UINT16          nEntriesPerArray;
+    UINT16          nSlotSize;
+    UINT16          nNext;
+    UINT16          nMemArray;
+public:
+    B3dEdgeListBucket(UINT16 TheSize);
+    /* Zu verwendende Groesse der Speicherarrays setzen */
+    /* Bitte NUR verwenden, falls sich der Leerkonstruktor */
+    /* nicht vermeiden laesst! Nicht nachtraeglich anwenden!  */
+    void InitializeSize(UINT16 TheSize);
+    /* Destruktor */
+    ~B3dEdgeListBucket();
+    /* Anhaengen und kopieren */
+    BOOL Append(B3dEdgeList& rVec)
+        { if(CareForSpace()) return ImplAppend(rVec); return FALSE; }
+    /* nur neuen Eintrag anhaengen, ohne ausfuellen */
+    BOOL Append()
+        { if(CareForSpace()) return ImplAppend(); return FALSE; }
+    /* leeren und Speicher freigeben */
+    void Empty();
+    /* leeren aber Speicher behalten */
+    void Erase();
+    B3dEdgeList& operator[] (UINT32 nPos);
+    UINT32 Count() { return nCount; }
+    UINT32 GetNumAllocated() { return aMemArray.Count() * nEntriesPerArray; }
+    void operator=(const B3dEdgeListBucket&);
+    UINT16 GetBlockShift() { return nBlockShift; }
+    UINT16 GetSlotSize() { return nSlotSize; }
+private:
+    BOOL CareForSpace()
+        { if(nFreeEntry == nEntriesPerArray)
+        return ImplCareForSpace(); return TRUE; }
+    BOOL ImplCareForSpace();
+    /* Anhaengen und kopieren */
+    BOOL ImplAppend(B3dEdgeList& rVec);
+    /* nur neuen Eintrag anhaengen, ohne ausfuellen */
+    BOOL ImplAppend();
+};
 
 /*************************************************************************
 |*

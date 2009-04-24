@@ -59,7 +59,70 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-BASE3D_IMPL_BUCKET(GeometryIndexValue, Bucket)
+SV_IMPL_VARARR(GeometryIndexValueBucketMemArr, char*)
+GeometryIndexValueBucket::GeometryIndexValueBucket(UINT16 TheSize) {
+    InitializeSize(TheSize);
+}
+void GeometryIndexValueBucket::InitializeSize(UINT16 TheSize) {
+    UINT16 nSiz;
+    for(nShift=0,nSiz=1;nSiz<sizeof(GeometryIndexValue);nSiz<<=1,nShift++);
+    nBlockShift = TheSize - nShift;
+    nMask = (1L << nBlockShift)-1L;
+    nSlotSize = 1<<nShift;
+    nEntriesPerArray = (UINT16)((1L << TheSize) >> nShift);
+    Empty();
+}
+void GeometryIndexValueBucket::operator=(const GeometryIndexValueBucket& rObj) {
+    Erase();
+    GeometryIndexValueBucket& rSrc = (GeometryIndexValueBucket&)rObj;
+    for(UINT32 a=0;a<rSrc.Count();a++)
+        Append(rSrc[a]);
+}
+void GeometryIndexValueBucket::Empty() {
+    for(UINT16 i=0;i<aMemArray.Count();i++)
+        /*#90353#*/ delete [] aMemArray[i];
+    if(aMemArray.Count())
+        aMemArray.Remove(0, aMemArray.Count());
+    nFreeMemArray = 0;
+    nActMemArray = -1;
+    Erase();
+}
+void GeometryIndexValueBucket::Erase() {
+    nFreeEntry = nEntriesPerArray;
+    nCount = 0;
+    nActMemArray = -1;
+}
+GeometryIndexValueBucket::~GeometryIndexValueBucket() {
+    Empty();
+}
+BOOL GeometryIndexValueBucket::ImplAppend(GeometryIndexValue& rVec) {
+    *((GeometryIndexValue*)(aMemArray[nActMemArray] + (nFreeEntry++ << nShift))) = rVec;
+    nCount++;
+    return TRUE;
+}
+BOOL GeometryIndexValueBucket::ImplCareForSpace() {
+    /* neues array bestimmem */
+    if(nActMemArray + 1 < nFreeMemArray) {
+        /* ist scon allokiert, gehe auf naechstes */
+        nActMemArray++;
+    } else {
+        /* neues muss allokiert werden */
+        char* pNew = new char[nEntriesPerArray << nShift];
+        if(!pNew)
+            return FALSE;
+        aMemArray.Insert((const char*&) pNew, aMemArray.Count());
+        nActMemArray = nFreeMemArray++;
+    }
+    nFreeEntry = 0;
+    return TRUE;
+}
+GeometryIndexValue& GeometryIndexValueBucket::operator[] (UINT32 nPos) {
+    if(nPos >= nCount) {
+        DBG_ERROR("Access to Bucket out of range!");
+        return *((GeometryIndexValue*)aMemArray[0]);
+    }
+    return *((GeometryIndexValue*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));
+}
 
 /*************************************************************************
 |*

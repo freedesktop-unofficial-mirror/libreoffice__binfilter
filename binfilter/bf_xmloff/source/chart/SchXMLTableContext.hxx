@@ -82,32 +82,11 @@ public:
 
 class SchXMLTableHelper
 {
-private:
-    static void GetCellAddress( const ::rtl::OUString& rStr, sal_Int32& rCol, sal_Int32& rRow );
-    static sal_Bool GetCellRangeAddress( const ::rtl::OUString& rStr, SchNumericCellRangeAddress& rResult );
-    static void PutTableContentIntoSequence(
-        const SchXMLTable& rTable,
-        SchNumericCellRangeAddress& rAddress,
-        sal_Int32 nSeriesIndex,
-        ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Sequence< double > >& aSequence );
-    static void AdjustMax( const SchNumericCellRangeAddress& rAddr,
-                           sal_Int32& nRows, sal_Int32& nColumns );
-
 public:
     /// The data for the ChartDocument is applied linearly
     static void applyTableSimple(
         const SchXMLTable& rTable,
         ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDocument > xChartDoc );
-
-    /** The data for the ChartDocument is applied by reading the
-        table, the addresses of series, the addresses of labels,
-        the cell-range-address for the categories
-     */
-    static void applyTable( const SchXMLTable& rTable,
-                            ::com::sun::star::uno::Sequence<
-                                ::com::sun::star::chart::ChartSeriesAddress >& rSeriesAddresses,
-                            ::rtl::OUString& rCategoriesAddress,
-                            ::com::sun::star::uno::Reference< ::com::sun::star::chart::XChartDocument > xChartDoc );
 };
 
 // ========================================

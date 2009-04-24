@@ -84,49 +84,6 @@ public:
 
     virtual ~SvtInetOptions();
 
-    enum ProxyType { NONE, AUTOMATIC, MANUAL };
-
-    rtl::OUString GetProxyNoProxy() const;
-
-    sal_Int32 GetProxyType() const;
-
-    rtl::OUString GetProxyFtpName() const;
-
-    sal_Int32 GetProxyFtpPort() const;
-
-    rtl::OUString GetProxyHttpName() const;
-
-    sal_Int32 GetProxyHttpPort() const;
-
-    void SetProxyNoProxy(rtl::OUString const & rValue, bool bFlush = false);
-
-    void SetProxyType(ProxyType eValue, bool bFlush = false);
-
-    void SetProxyFtpName(rtl::OUString const & rValue, bool bFlush = false);
-
-    void SetProxyFtpPort(sal_Int32 nValue, bool bFlush = false);
-
-    void SetProxyHttpName(rtl::OUString const & rValue, bool bFlush = false);
-
-    void SetProxyHttpPort(sal_Int32 nValue, bool bFlush = false);
-
-    /** Add a listener on changes of certain properties (options).
-
-        @param rPropertyNames  The names of the properties (options).  If an
-        empty sequence is used, nothing is done.
-
-        @param rListener  A listener.  If the listener is already registered
-        on other properties, it continues to also get notifications about
-        changes of those properties.  The
-        com::sun::star::beans::PropertyChangeEvents supplied to the listener
-        will have void OldValue and NewValue slots.
-     */
-    void
-    addPropertiesChangeListener(
-        com::sun::star::uno::Sequence< rtl::OUString > const & rPropertyNames,
-        com::sun::star::uno::Reference<
-                com::sun::star::beans::XPropertiesChangeListener > const &
-            rListener);
 private:
     class Impl;
 

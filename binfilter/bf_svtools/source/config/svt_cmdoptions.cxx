@@ -239,30 +239,6 @@ class SvtCommandOptions_Impl : public ConfigItem
 
         virtual void Commit();
 
-        //---------------------------------------------------------------------------------------------------------
-        //  public interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      base implementation of public interface for "SvtDynamicMenuOptions"!
-            @descr      These class is used as static member of "SvtDynamicMenuOptions" ...
-                        => The code exist only for one time and isn't duplicated for every instance!
-
-            @seealso    -
-
-            @param      -
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void                    Clear       (   SvtCommandOptions::CmdOption    eCmdOption  );
-        sal_Bool                Lookup      (   SvtCommandOptions::CmdOption    eCmdOption, const OUString& ) const;
-        Sequence< OUString >    GetList     (   SvtCommandOptions::CmdOption    eCmdOption  ) const ;
-        void                    AddCommand  (   SvtCommandOptions::CmdOption    eCmdOption,
-                                                const OUString& sURL        );
-        void EstablisFrameCallback(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFrame >& xFrame);
-
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------
@@ -404,98 +380,6 @@ void SvtCommandOptions_Impl::Commit()
 }
 
 //*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions_Impl::Clear( SvtCommandOptions::CmdOption eCmdOption )
-{
-    switch( eCmdOption )
-    {
-        case SvtCommandOptions::CMDOPTION_DISABLED:
-        {
-            m_aDisabledCommands.Clear();
-            SetModified();
-        }
-        break;
-
-        default:
-            DBG_ASSERT( sal_False, "SvtCommandOptions_Impl::Clear()\nUnknown option type given!\n" );
-    }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< OUString > SvtCommandOptions_Impl::GetList( SvtCommandOptions::CmdOption eCmdOption ) const
-{
-    Sequence< OUString > lReturn;
-
-    switch( eCmdOption )
-    {
-        case SvtCommandOptions::CMDOPTION_DISABLED:
-        {
-            lReturn = m_aDisabledCommands.GetList();
-        }
-        break;
-
-        default:
-            DBG_ASSERT( sal_False, "SvtCommandOptions_Impl::GetList()\nUnknown option type given!\n" );
-    }
-
-    return lReturn;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtCommandOptions_Impl::Lookup( SvtCommandOptions::CmdOption eCmdOption, const OUString& aCommand ) const
-{
-    switch( eCmdOption )
-    {
-        case SvtCommandOptions::CMDOPTION_DISABLED:
-        {
-            return m_aDisabledCommands.Lookup( aCommand );
-        }
-        default:
-            DBG_ASSERT( sal_False, "SvtCommandOptions_Impl::GetList()\nUnknown option type given!\n" );
-    }
-
-    return sal_False;
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions_Impl::AddCommand( SvtCommandOptions::CmdOption eCmdOption, const OUString& sCmd )
-{
-    switch( eCmdOption )
-    {
-        case SvtCommandOptions::CMDOPTION_DISABLED:
-        {
-            m_aDisabledCommands.AddCommand( sCmd );
-            SetModified();
-        }
-        break;
-
-        default:
-            DBG_ASSERT( sal_False, "SvtCommandOptions_Impl::GetList()\nUnknown option type given!\n" );
-    }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions_Impl::EstablisFrameCallback(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFrame >& xFrame)
-{
-    // check if frame already exists inside list
-    // ignore double registrations
-    // every frame must be notified one times only!
-    ::com::sun::star::uno::WeakReference< ::com::sun::star::frame::XFrame > xWeak(xFrame);
-    SvtFrameVector::const_iterator pIt = ::std::find(m_lFrames.begin(), m_lFrames.end(), xWeak);
-    if (pIt == m_lFrames.end())
-        m_lFrames.push_back(xWeak);
-}
-
-//*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************
 Sequence< OUString > SvtCommandOptions_Impl::impl_GetPropertyNames()
@@ -564,51 +448,6 @@ SvtCommandOptions::~SvtCommandOptions()
         delete m_pDataContainer;
         m_pDataContainer = NULL;
     }
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions::Clear( CmdOption eCmdOption )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->Clear( eCmdOption );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-sal_Bool SvtCommandOptions::Lookup( CmdOption eCmdOption, const OUString& aCommandURL ) const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->Lookup( eCmdOption, aCommandURL );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-Sequence< OUString > SvtCommandOptions::GetList( CmdOption eCmdOption ) const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->GetList( eCmdOption );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions::AddCommand( CmdOption eCmdOption, const OUString& sURL )
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->AddCommand( eCmdOption, sURL );
-}
-
-//*****************************************************************************************************************
-//  public method
-//*****************************************************************************************************************
-void SvtCommandOptions::EstablisFrameCallback(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFrame >& xFrame)
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    m_pDataContainer->EstablisFrameCallback(xFrame);
 }
 
 //*****************************************************************************************************************

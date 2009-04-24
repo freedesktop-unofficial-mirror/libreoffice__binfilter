@@ -32,7 +32,7 @@
 #include "ids.hxx"
 namespace binfilter {
 
-IMPLEMENT_IMPLEMENTATIONID_HELPER(frm, OImplementationIds)
+IMPLEMENT_IMPLEMENTATIONID_HELPER_SMALL(frm, OImplementationIds)
 
 
 }

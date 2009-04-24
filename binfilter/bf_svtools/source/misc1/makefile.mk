@@ -45,7 +45,6 @@ INC+= -I$(PRJ)$/inc$/bf_svtools
 
 EXCEPTIONSFILES=\
     $(SLO)$/svt_fstathelper.obj \
-    $(SLO)$/svt_folderrestriction.obj \
     $(SLO)$/svt_strmadpt.obj \
     $(SLO)$/svt_svtdata.obj
 

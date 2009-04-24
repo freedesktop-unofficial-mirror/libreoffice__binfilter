@@ -2643,14 +2643,6 @@ OUString SAL_CALL SchXMLExport_Meta_getImplementationName() throw()
     return OUString( RTL_CONSTASCII_USTRINGPARAM( "SchXMLExport.Meta" ));
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SchXMLExport_Meta_createInstance(const uno::Reference< lang::XMultiServiceFactory >& rSMgr) throw( uno::Exception )
-{
-    // #110680#
-    // return (cppu::OWeakObject*)new SchXMLExport( EXPORT_META );
-    return (cppu::OWeakObject*)new SchXMLExport( rSMgr, EXPORT_META );
-}
-
-
 // XServiceInfo
 OUString SAL_CALL SchXMLExport::getImplementationName() throw( uno::RuntimeException )
 {

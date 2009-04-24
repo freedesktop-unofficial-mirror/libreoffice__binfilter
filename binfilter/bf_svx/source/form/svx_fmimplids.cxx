@@ -33,7 +33,7 @@
 #endif
 namespace binfilter {
 
-/*N*/ IMPLEMENT_IMPLEMENTATIONID_HELPER(form, OImplementationIds)
+/*N*/ IMPLEMENT_IMPLEMENTATIONID_HELPER_VSMALL(form, OImplementationIds)
 
 
 }

@@ -673,7 +673,6 @@ class WinMtfOutput
         void                MoveTo( const Point& rPoint, sal_Bool bRecordPath = sal_False );
         void                LineTo( const Point& rPoint, sal_Bool bRecordPath = sal_False );
         void                DrawPixel( const Point& rSource, const Color& rColor );
-        void                DrawLine( const Point& rSource, const Point& rDest );
         void                DrawRect( const Rectangle& rRect, BOOL bEdge = TRUE );
         void                DrawRoundRect( const Rectangle& rRect, const Size& rSize );
         void                DrawEllipse( const Rectangle& rRect );

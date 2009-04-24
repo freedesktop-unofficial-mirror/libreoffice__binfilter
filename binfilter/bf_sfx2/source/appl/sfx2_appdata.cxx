@@ -48,8 +48,6 @@ namespace binfilter {
 /*N*/ SfxAppData_Impl::SfxAppData_Impl( SfxApplication* pApp ) :
 /*N*/       pProgress(0),
 /*N*/       pPool(0),
-/*N*/       pDdeService( 0 ),
-/*N*/       pDocTopics( 0 ),
 /*N*/       pEventConfig(0),
 /*N*/       nBasicCallLevel(0),
 /*N*/       nRescheduleLocks(0),
@@ -59,8 +57,6 @@ namespace binfilter {
             pThisDocument(0),
 /*N*/       pMatcher( 0 ),
 /*N*/       pCancelMgr( 0 ),
-/*N*/       pTriggerTopic(0),
-/*N*/       pDdeService2(0),
 /*N*/       pMiscConfig(0),
 /*N*/       bInQuit(sal_False),
 /*N*/       bInException( sal_False ),
@@ -71,7 +67,6 @@ namespace binfilter {
 
 /*N*/ SfxAppData_Impl::~SfxAppData_Impl()
 /*N*/ {
-/*N*/   DeInitDDE();
 /*N*/   delete pCancelMgr;
 /*N*/ }
 }

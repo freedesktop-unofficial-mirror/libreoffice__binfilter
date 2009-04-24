@@ -256,8 +256,6 @@ class SvtPathOptions_Impl
         rtl::OUString   UsePathVariables( const rtl::OUString& rPath );
 
         ::com::sun::star::lang::Locale  GetLocale() const { return m_aLocale; }
-
-        BOOL            IsPathReadonly(SvtPathOptions::Pathes ePath)const;
 };
 
 // global ----------------------------------------------------------------
@@ -363,25 +361,7 @@ const String& SvtPathOptions_Impl::GetPath( SvtPathOptions::Pathes ePath )
 
     return m_aEmptyString;
 }
-// -----------------------------------------------------------------------
-BOOL SvtPathOptions_Impl::IsPathReadonly(SvtPathOptions::Pathes ePath)const
-{
-    ::osl::MutexGuard aGuard( m_aMutex );
-    BOOL bReadonly = FALSE;
-    if ( ePath < SvtPathOptions::PATH_COUNT )
-    {
-        Reference<XPropertySet> xPrSet(m_xPathSettings, UNO_QUERY);
-        if(xPrSet.is())
-        {
-            Reference<XPropertySetInfo> xInfo = xPrSet->getPropertySetInfo();
-            const char* pA = aPropNames[ePath].pPropName;
-            ::rtl::OUString sU = OUString::createFromAscii(pA);
-            Property aProperty = xInfo->getPropertyByName(sU);
-            bReadonly = 0 != (aProperty.Attributes & PropertyAttribute::READONLY);
-        }
-    }
-    return bReadonly;
-}
+
 // -----------------------------------------------------------------------
 
 void SvtPathOptions_Impl::SetPath( SvtPathOptions::Pathes ePath, const String& rNewPath )
@@ -811,163 +791,9 @@ const String& SvtPathOptions::GetWorkPath() const
 
 // -----------------------------------------------------------------------
 
-void SvtPathOptions::SetAddinPath( const String& rPath )
-{
-    pImp->SetAddinPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetAutoCorrectPath( const String& rPath )
-{
-    pImp->SetAutoCorrectPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetAutoTextPath( const String& rPath )
-{
-    pImp->SetAutoTextPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetBackupPath( const String& rPath )
-{
-    pImp->SetBackupPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
 void SvtPathOptions::SetBasicPath( const String& rPath )
 {
     pImp->SetBasicPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetBitmapPath( const String& rPath )
-{
-    pImp->SetBitmapPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetConfigPath( const String& rPath )
-{
-    pImp->SetConfigPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetDictionaryPath( const String& rPath )
-{
-    pImp->SetDictionaryPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetFavoritesPath( const String& rPath )
-{
-    pImp->SetFavoritesPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetFilterPath( const String& rPath )
-{
-    pImp->SetFilterPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetGalleryPath( const String& rPath )
-{
-    pImp->SetGalleryPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetGraphicPath( const String& rPath )
-{
-    pImp->SetGraphicPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetHelpPath( const String& rPath )
-{
-    pImp->SetHelpPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetLinguisticPath( const String& rPath )
-{
-    pImp->SetLinguisticPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetModulePath( const String& rPath )
-{
-    pImp->SetModulePath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetPalettePath( const String& rPath )
-{
-    pImp->SetPalettePath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetPluginPath( const String& rPath )
-{
-    pImp->SetPluginPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetStoragePath( const String& rPath )
-{
-    pImp->SetStoragePath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetTempPath( const String& rPath )
-{
-    pImp->SetTempPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetTemplatePath( const String& rPath )
-{
-    pImp->SetTemplatePath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetUserConfigPath( const String& rPath )
-{
-    pImp->SetUserConfigPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetUserDictionaryPath( const String& rPath )
-{
-    pImp->SetUserDictionaryPath( rPath );
-}
-
-// -----------------------------------------------------------------------
-
-void SvtPathOptions::SetWorkPath( const String& rPath )
-{
-    pImp->SetWorkPath( rPath );
 }
 
 // -----------------------------------------------------------------------
@@ -1090,22 +916,6 @@ sal_Bool SvtPathOptions::SearchFile( String& rIniFile, Pathes ePath )
     }
 
     return bRet;
-}
-
-// -----------------------------------------------------------------------
-BOOL SvtPathOptions::IsPathReadonly(Pathes ePath)const
-{
-    return pImp->IsPathReadonly(ePath);
-}
-// -----------------------------------------------------------------------
-const String& SvtPathOptions::GetPath(Pathes ePath)const
-{
-    return pImp->GetPath(ePath);
-}
-// -----------------------------------------------------------------------
-void SvtPathOptions::SetPath( SvtPathOptions::Pathes ePath, const String& rNewPath )
-{
-    pImp->SetPath(ePath, rNewPath);
 }
 
 // class PathService -----------------------------------------------------

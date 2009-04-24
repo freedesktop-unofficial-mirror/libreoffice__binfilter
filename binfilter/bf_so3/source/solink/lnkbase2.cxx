@@ -51,8 +51,6 @@ namespace binfilter
 
 TYPEINIT0( SvBaseLink )
 
-class  ImplDdeItem;
-
 // nur fuer die interne Verwaltung
 struct ImplBaseLinkData
 {
@@ -65,50 +63,13 @@ struct ImplBaseLinkData
         USHORT          nUpdateMode;// UpdateMode
     };
 
-    struct tDDEType
-    {
-        ImplDdeItem* pItem;
-    };
-
-    union {
-        tClientType ClientType;
-        tDDEType DDEType;
-    };
+    tClientType ClientType;
     ImplBaseLinkData()
     {
         ClientType.nCntntType = 0;
         ClientType.bIntrnlLnk = FALSE;
         ClientType.nUpdateMode = 0;
-        DDEType.pItem = NULL;
     }
-};
-
-
-class ImplDdeItem : public DdeGetPutItem
-{
-    SvBaseLink* pLink;
-    DdeData aData;
-    Sequence< sal_Int8 > aSeq;          // Datacontainer for DdeData !!!
-    BOOL bIsValidData : 1;
-    BOOL bIsInDTOR : 1;
-public:
-    ImplDdeItem( SvBaseLink& rLink, const String& rStr )
-        : DdeGetPutItem( rStr ), pLink( &rLink ), bIsValidData( FALSE ),
-        bIsInDTOR( FALSE )
-    {}
-    virtual ~ImplDdeItem();
-
-    virtual DdeData* Get( ULONG );
-    virtual BOOL Put( const DdeData* );
-    virtual void AdviseLoop( BOOL );
-
-    void Notify()
-    {
-        bIsValidData = FALSE;
-        DdeGetPutItem::NotifyClient();
-    }
-
-    BOOL IsInDTOR() const { return bIsInDTOR; }
 };
 
 
@@ -140,14 +101,6 @@ SvBaseLink::SvBaseLink( USHORT nUpdateMode, ULONG nContentType )
 SvBaseLink::~SvBaseLink()
 {
     Disconnect();
-
-    switch( nObjType )
-    {
-    case OBJECT_DDE_EXTERN:
-        if( !pImplData->DDEType.pItem->IsInDTOR() )
-            delete pImplData->DDEType.pItem;
-        break;
-    }
 
     delete pImplData;
 }
@@ -348,13 +301,6 @@ void SvBaseLink::Disconnect()
 
 void SvBaseLink::DataChanged( const String &, const ::com::sun::star::uno::Any & )
 {
-    switch( nObjType )
-    {
-    case OBJECT_DDE_EXTERN:
-        if( pImplData->DDEType.pItem )
-            pImplData->DDEType.pItem->Notify();
-        break;
-    }
 }
 
 
@@ -420,74 +366,6 @@ void SvBaseLink::Closed()
     if( xObj.Is() )
         // beim Advise Abmelden
         xObj->RemoveAllDataAdvise( this );
-}
-
-
-ImplDdeItem::~ImplDdeItem()
-{
-    bIsInDTOR = TRUE;
-    // damit im Disconnect nicht jemand auf die Idee kommt, den Pointer zu
-    // loeschen!!
-    SvBaseLinkRef aRef( pLink );
-    aRef->Disconnect();
-}
-
-DdeData* ImplDdeItem::Get( ULONG nFormat )
-{
-    if( pLink->GetObj() )
-    {
-        // ist das noch gueltig?
-        if( bIsValidData && nFormat == aData.GetFormat() )
-            return &aData;
-
-        Any aValue;
-        String sMimeType( SotExchange::GetFormatMimeType( nFormat ));
-        if( pLink->GetObj()->GetData( aValue, sMimeType ) )
-        {
-            if( aValue >>= aSeq )
-            {
-                aData = DdeData( (const char *)aSeq.getConstArray(), aSeq.getLength(), nFormat );
-
-                bIsValidData = TRUE;
-                return &aData;
-            }
-        }
-    }
-    aSeq.realloc( 0 );
-    bIsValidData = FALSE;
-    return 0;
-}
-
-
-BOOL ImplDdeItem::Put( const DdeData*  )
-{
-    DBG_ERROR( "ImplDdeItem::Put not implemented" );
-    return FALSE;
-}
-
-
-void ImplDdeItem::AdviseLoop( BOOL bOpen )
-{
-    // Verbindung wird geschlossen, also Link abmelden
-    if( pLink->GetObj() )
-    {
-        if( bOpen )
-        {
-            // es wird wieder eine Verbindung hergestellt
-            if( OBJECT_DDE_EXTERN == pLink->GetObjType() )
-            {
-                pLink->GetObj()->AddDataAdvise( pLink, String::CreateFromAscii( "text/plain;charset=utf-16" ),  ADVISEMODE_NODATA );
-                pLink->GetObj()->AddConnectAdvise( pLink );
-            }
-        }
-        else
-        {
-            // damit im Disconnect nicht jemand auf die Idee kommt,
-            // den Pointer zu loeschen!!
-            SvBaseLinkRef aRef( pLink );
-            aRef->Disconnect();
-        }
-    }
 }
 
 }

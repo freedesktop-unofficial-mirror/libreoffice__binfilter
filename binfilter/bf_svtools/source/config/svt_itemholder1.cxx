@@ -50,7 +50,6 @@
 #include <bf_svtools/compatibility.hxx>
 #include <bf_svtools/defaultoptions.hxx>
 #include <bf_svtools/dynamicmenuoptions.hxx>
-#include <eventcfg.hxx>
 #include <bf_svtools/extendedsecurityoptions.hxx>
 #include <fltrcfg.hxx>
 #include <bf_svtools/fontoptions.hxx>
@@ -205,7 +204,6 @@ void ItemHolder1::impl_newItem(TItemInfo& rItem)
             break;
 
         case E_EVENTCFG :
-            //rItem.pItem = new GlobalEventConfig();
             break;
 
         case E_EXTENDEDSECURITYOPTIONS :

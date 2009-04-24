@@ -113,15 +113,6 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/ }
 
 //------------------------------------------------------------------
-/*N*/ void FmFormObj::SetObjEnv(const ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer > & xForm, sal_Int32 nIdx,
-/*N*/                         const ::com::sun::star::uno::Sequence< ::com::sun::star::script::ScriptEventDescriptor >& rEvts)
-/*N*/ {
-/*N*/   xParent = xForm;
-/*N*/   aEvts   = rEvts;
-/*N*/   nPos    = nIdx;
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ void FmFormObj::SetPage(SdrPage* _pNewPage)
 /*N*/ {
 /*N*/   FmFormPage* pNewFormPage = PTR_CAST(FmFormPage, _pNewPage);

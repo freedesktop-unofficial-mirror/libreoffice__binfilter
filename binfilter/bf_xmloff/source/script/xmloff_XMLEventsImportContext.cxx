@@ -92,16 +92,6 @@ XMLEventsImportContext::XMLEventsImportContext(
 }
 
 
-XMLEventsImportContext::XMLEventsImportContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrfx,
-    const OUString& rLocalName,
-    const Reference<XNameReplace> & xNameReplace) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        xEvents(xNameReplace)
-{
-}
-
 XMLEventsImportContext::~XMLEventsImportContext()
 {
 //  // if, for whatever reason, the object gets destroyed prematurely,
