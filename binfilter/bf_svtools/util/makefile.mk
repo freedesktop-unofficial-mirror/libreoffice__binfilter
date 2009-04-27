@@ -87,7 +87,6 @@ SHL1STDLIBS+= $(JPEG3RDLIB)
 # dynamic libraries
 SHL1STDLIBS+= \
         $(UNOTOOLSLIB)		\
-        $(TKLIB)			\
         $(VCLLIB)			\
         $(SOTLIB)			\
         $(TOOLSLIB)			\
@@ -97,9 +96,7 @@ SHL1STDLIBS+= \
         $(CPPUHELPERLIB)	\
         $(CPPULIB)			\
         $(VOSLIB)			\
-        $(SALLIB)			\
-        $(ICUUCLIB)		\
-        $(JVMFWKLIB)
+        $(SALLIB)
         
 .IF "$(OS)"=="MACOSX"
 # static libraries go at end

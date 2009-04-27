@@ -77,23 +77,19 @@ SHL1STDLIBS+=       \
     $(BFSO3LIB)		\
     $(BFSVTOOLLIB)	\
     $(BFSVXLIB)		\
-    $(BFGOODIESLIB)	\
     $(BFOFALIB)		\
     $(VCLLIB)		\
     $(CPPULIB)		\
     $(CPPUHELPERLIB)	\
     $(COMPHELPERLIB)	\
     $(UCBHELPERLIB)	\
-    $(TKLIB)		\
     $(VOSLIB)		\
     $(SALLIB)		\
     $(TOOLSLIB)		\
     $(I18NISOLANGLIB)   \
     $(UNOTOOLSLIB)  \
     $(SOTLIB)		\
-    $(BFXMLOFFLIB)	\
-    $(DBTOOLSLIB)
-
+    $(BFXMLOFFLIB)
 
 .IF "$(OS)" == "MACOSX"
 # static libraries must come at the end of list on MacOSX

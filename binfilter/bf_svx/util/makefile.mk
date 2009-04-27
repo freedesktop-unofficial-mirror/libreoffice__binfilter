@@ -74,9 +74,7 @@ SHL1STDLIBS= \
             $(VOSLIB) \
             $(SALLIB) \
             $(ICUUCLIB)\
-            $(FWELIB) \
             $(LEGACYSMGRLIB) \
-            $(SALHELPERLIB) \
             $(XMLSCRIPTLIB) \
             $(SYSSHELLLIB)
 

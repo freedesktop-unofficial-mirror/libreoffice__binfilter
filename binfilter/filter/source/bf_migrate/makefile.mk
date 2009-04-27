@@ -62,16 +62,10 @@ SLOFILES=	$(SLO)$/bf_migrateexports.obj \
 SHL1TARGET=$(TARGET)$(DLLPOSTFIX)
 SHL1STDLIBS=$(CPPULIB)			\
             $(CPPUHELPERLIB)	\
-            $(UNOTOOLSLIB)		\
-            $(COMPHELPERLIB)	\
-            $(VOSLIB)			\
             $(SALLIB)			\
-            $(VCLLIB)			\
-            $(BFSVTOOLLIB)			\
             $(BFSO3LIB)                       \
             $(ONELIB)			\
             $(TOOLSLIB)			\
-            $(SOTLIB)			\
             $(LEGACYSMGRLIB)	\
             $(BFSVXLIB)
 

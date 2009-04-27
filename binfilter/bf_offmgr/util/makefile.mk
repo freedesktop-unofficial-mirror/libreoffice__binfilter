@@ -74,14 +74,9 @@ SHL2STDLIBS+= \
     $(BFSVXLIB) \
     $(LEGACYSMGRLIB)	\
     $(BFBASICLIB) \
-    $(BFGOODIESLIB) \
-    $(VCLLIB) \
     $(TOOLSLIB) \
-    $(UNOTOOLSLIB) \
-    $(COMPHELPERLIB) \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
-    $(VOSLIB) \
     $(SALLIB)
 
 .IF "$(GUI)"=="WNT"
