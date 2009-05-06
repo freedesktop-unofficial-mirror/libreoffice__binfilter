@@ -807,7 +807,7 @@ void XMLConfigItemMapIndexedContext::EndElement()
                             }
                             catch( uno::Exception& )
                             {
-                                DBG_ERROR( "Exception while importing forbidden characters" );
+//                              DBG_ERROR( "Exception while importing forbidden characters" );
                             }
                         }
                     }

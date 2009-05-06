@@ -115,7 +115,8 @@ protected:
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoPage();
 
-    ::com::sun::star::uno::Any maAlienAttributes;
+    SfxItemSet* mpItems;
+    SfxItemSet* getOrCreateItems();
 
 public:
     TYPEINFO();
