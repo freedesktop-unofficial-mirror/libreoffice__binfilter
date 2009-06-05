@@ -55,7 +55,7 @@
 
 #include <bf_svx/unoipset.hxx>
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 #ifndef _SD_PRLAYOUT_HXX_
 #include <prlayout.hxx>
