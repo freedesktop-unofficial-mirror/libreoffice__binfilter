@@ -339,7 +339,7 @@ const ::com::sun::star::uno::Sequence< sal_Int8 > & SvxShape::getUnoTunnelId() t
 }
 
 //----------------------------------------------------------------------
-SvxShape* SvxShape::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
+SvxShape* SvxShape::getImplementation( const uno::Reference< uno::XInterface >& xInt )
 {
     uno::Reference< lang::XUnoTunnel > xUT( xInt, ::com::sun::star::uno::UNO_QUERY );
     if( xUT.is() )

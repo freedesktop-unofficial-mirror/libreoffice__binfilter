@@ -43,7 +43,7 @@
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #endif
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 #ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>

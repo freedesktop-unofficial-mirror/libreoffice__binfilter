@@ -43,7 +43,7 @@
 #include <bf_svx/fmdpage.hxx>
 #include <bf_svx/svdpool.hxx>
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 namespace binfilter {
 

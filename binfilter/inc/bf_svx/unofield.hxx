@@ -50,7 +50,7 @@
 #include <cppuhelper/component.hxx>
 #endif
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 #include <bf_svx/mutxhelp.hxx>
 namespace binfilter {

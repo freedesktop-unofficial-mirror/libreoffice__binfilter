@@ -101,7 +101,7 @@
 #include <osl/mutex.hxx>
 #endif
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 #include <cppuhelper/implbase11.hxx>
 

@@ -1867,7 +1867,7 @@ const uno::Sequence< sal_Int8 > & SvxUnoTextBase::getUnoTunnelId() throw()
     return *pSeq;
 }
 
-SvxUnoTextBase* SvxUnoTextBase::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
+SvxUnoTextBase* SvxUnoTextBase::getImplementation( const uno::Reference< uno::XInterface >& xInt )
 {
     uno::Reference< lang::XUnoTunnel > xUT( xInt, uno::UNO_QUERY );
     if( xUT.is() )
