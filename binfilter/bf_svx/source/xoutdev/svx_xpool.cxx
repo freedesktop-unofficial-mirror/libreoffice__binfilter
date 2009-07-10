@@ -373,7 +373,7 @@ static USHORT nVersion4Map[141];
 /*N*/       {
 /*N*/           if ( *ppDefaultItem ) //Teile schon von abgel. Klasse abgeraeumt!
 /*N*/           {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/               SetRefCount( **ppDefaultItem, 0 );
 /*N*/ #endif
 /*N*/               delete *ppDefaultItem;

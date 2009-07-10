@@ -533,7 +533,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   else
 /*N*/   {
 /*?*/       SwOLEObj* pObj = &rObj;

@@ -840,7 +840,7 @@ namespace binfilter {
 /*N*/   return pTbl->GetTabLines()[ 0 ] == pLine;
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*N*/ ULONG SwTableBox::GetSttIdx() const
 /*N*/ {

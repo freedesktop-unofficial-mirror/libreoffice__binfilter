@@ -67,7 +67,7 @@
 #undef _ZFORFIND_CXX
 
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #define NF_TEST_CALENDAR 0
 #else
 #define NF_TEST_CALENDAR 0

@@ -144,7 +144,7 @@ public:
     virtual void ChgSize( const Size& aNewSize );
 
     virtual void Cut();
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );

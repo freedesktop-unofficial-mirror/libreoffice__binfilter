@@ -163,14 +163,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/   _SetFltPtr( nCnt, ReadSwg, sSwg1 );
 /*?*/   _SetFltPtr( nCnt, (ReadXML = new XMLReader), FILTER_XML );
 /*N*/
-/*N*/ #ifdef NEW_WW97_EXPORT
-/*N*/ #endif
-/*N*/
-/*N*/ #ifdef DEBUG_SH
-/*N*/ #endif // DEBUG_SH
-/*N*/
-/*N*/ #if !( defined(PRODUCT) || defined(MAC) || defined(PM2))
-/*N*/ #endif
 /*N*/
 /*N*/     _SetFltPtr( nCnt, ReadAscii, FILTER_TEXT );
 /*N*/
