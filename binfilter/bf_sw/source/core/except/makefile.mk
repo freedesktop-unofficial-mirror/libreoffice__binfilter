@@ -58,7 +58,7 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 CXXFILES =
 
-.IF "$(product)"==""
+.IF "DBG_UTIL"!=""
 .IF "$(cap)"==""
 CXXFILES += \
         sw_errhdl.cxx
