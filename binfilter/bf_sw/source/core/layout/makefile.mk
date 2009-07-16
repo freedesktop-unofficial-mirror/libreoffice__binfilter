@@ -126,7 +126,7 @@ SLOFILES =  \
         $(SLO)$/sw_unusedf.obj \
         $(SLO)$/sw_wsfrm.obj
 
-.IF "DBG_UTIL"!=""
+.IF "$(DBG_UTIL)"!=""
 CXXFILES += \
         sw_dbg_lay.cxx
 SLOFILES +=  \

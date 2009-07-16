@@ -76,7 +76,7 @@ SUBLIBS2= \
         $(SLB)$/sw_docnode.lib \
         $(SLB)$/sw_unocore.lib
 
-.IF "DBG_UTIL" != ""
+.IF "$(DBG_UTIL)" != ""
 SUBLIBS2+= \
         $(SLB)$/sw_except.lib
 .ENDIF
