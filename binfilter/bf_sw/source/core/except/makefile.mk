@@ -58,7 +58,7 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 CXXFILES =
 
-.IF "$(DBG_UTIL)"!=""
+.IF "$(dbgutil)"!=""
 CXXFILES += \
         sw_errhdl.cxx
 

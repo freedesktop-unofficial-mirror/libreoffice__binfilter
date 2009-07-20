@@ -97,7 +97,7 @@ SLOFILES =  \
         $(SLO)$/sw_noteurl.obj \
         $(SLO)$/sw_wrong.obj
 
-.IF "$(DBG_UTIL)" != ""
+.IF "$(dbgutil)" != ""
 SLOFILES +=  \
         $(SLO)$/sw_txtio.obj
 .ENDIF
