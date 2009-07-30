@@ -1,4 +1,4 @@
-bf      binfilter :     idl basic goodies xmlscript connectivity framework stoc uui offuh shell NULL
+bf      binfilter :     idl basic goodies xmlscript connectivity framework stoc offuh shell NULL
 bf	binfilter											usr1	-	all	bf_mkout NULL
 bf	binfilter\bf_svtools\source\inc						get		-	all	bf_svt_sinc NULL
 bf  binfilter\bf_svtools\source\config					nmake	-	all bf_svt_config NULL
