@@ -34,7 +34,7 @@
 #include "osl/diagnose.h"
 #include "osl/file.hxx"
 #include "osl/process.h"
-#include "osl/module.hxx"
+#include "rtl/bootstrap.hxx"
 #include "rtl/ustrbuf.hxx"
 #include "rtl/unload.h"
 
@@ -66,8 +66,6 @@
 #include "tools/solar.h"
 
 #define OUSTR(x) ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM(x) )
-#define LEGACY_RDB_NAME "legacy_binfilters.rdb" // will be saved next to this library
-
 
 using namespace com::sun::star::beans;
 using namespace com::sun::star::registry;
@@ -90,28 +88,9 @@ namespace legacy_binfilters
 // makes simple decorated name, e.g. libcorefl.so
 #define LIBNAME(x) SAL_DLLPREFIX x SAL_DLLEXTENSION
 
-//== registered into LEGACY_RDB_NAME rdb ====================================================
-// #i30331#
-//static char const * const s_legacy_libs [] = // #dochnoetig#
-//{
-////     SVLIBRARY("sw"), // SVLIBRARY makes decorated name, e.g. libswss.so
-//  SVLIBRARY("bf_xo"),     // bf_xmloff
-//  SVLIBRARY("bf_sw"),     // bf_writer
-//  SVLIBRARY("bf_sc"),     // bf_calc
-//  SVLIBRARY("bf_sd"),     // bf_draw/bf_impress
-//  SVLIBRARY("bf_sm"),     // bf_starmath
-//  SVLIBRARY("bf_sch"),    // bf_chart
-//
-//  SVLIBRARY("bf_frm"),    // bf_form
-//  SVLIBRARY("bf_lng"),    // bf_linguistic
-//  SVLIBRARY("bf_svx"),    // bf_sfx2 bf_and svx
-//  SVLIBRARY("bf_wrapper"),    // bf_officewrp
-//    0
-//};
-
 static Reference< lang::XMultiServiceFactory > s_xLegacyMgr;
 /** has to be used for legacy binary filter components
-    (components registerd into LEGACY_RDB_NAME rdb)
+    (components registerd into legacy_binfilters.rdb)
 */
 Reference< lang::XMultiServiceFactory > const & SAL_CALL getLegacyProcessServiceFactory()
 {
@@ -1988,26 +1967,6 @@ Reference< lang::XMultiServiceFactory > LegacyServiceManager::create(
     return Reference< lang::XMultiServiceFactory >( xMgr, UNO_QUERY_THROW );
 }
 
-//==================================================================================================
-static OUString get_lib_dir()
-{
-    static OUString s_path;
-    if (0 == s_path.getLength())
-    {
-        OUString path;
-        Module::getUrlFromAddress( (void *) &get_lib_dir, path );
-        sal_Int32 nDirEnd = path.lastIndexOf( '/' );
-        if (nDirEnd < 0)
-        {
-            throw RuntimeException(
-                OUSTR("cannot locate this library's directory!"), Reference< XInterface >() );
-        }
-        s_path = path.copy( 0, nDirEnd );
-    }
-    return s_path;
-}
-
-
 /* This is the listener function used by the service manager in order
 to implement the unloading mechanism, id is the this pointer of the
 service manager instances. On notification, that is the function is being called
@@ -2034,66 +1993,6 @@ sal_Bool SAL_CALL legacysmgr_component_writeInfo(
 {
     // #i30331#
     return component_writeInfoHelper( smgr, key, s_entries );
-
-// #i30331#
-//    if (component_writeInfoHelper( smgr, key, s_entries ))
-//    {
-//        try
-//        {
-//            Reference< lang::XMultiServiceFactory > xMgr( smgr );
-//            OSL_ASSERT( xMgr.is() );
-//            // write LEGACY_RDB_NAME rdb
-//            Reference< registry::XSimpleRegistry > xSimReg(
-//                xMgr->createInstance(
-//                    OUSTR("com.sun.star.registry.SimpleRegistry") ),
-//                UNO_QUERY_THROW );
-//            OUString dir( get_lib_dir() );
-//            xSimReg->open(
-//                dir + OUSTR("/" LEGACY_RDB_NAME),
-//                sal_False /* ! read-only */, sal_True /* create */ );
-//
-//            Reference< registry::XImplementationRegistration > xImpReg(
-//                xMgr->createInstance(
-//                    OUSTR("com.sun.star.registry.ImplementationRegistration") ),
-//                UNO_QUERY_THROW );
-//
-//            OUString shared_lib_loader =
-//                OUSTR("com.sun.star.loader.SharedLibrary");
-//            dir += OUSTR("/");
-//            for ( sal_Int32 nPos = 0; 0 != s_legacy_libs[ nPos ]; ++nPos )
-//            {
-//                OUString lib_name(
-//                    OUString::createFromAscii( s_legacy_libs[ nPos ] ) );
-//                OUString abs_loc( dir + lib_name );
-//                DirectoryItem dirItem;
-//                if (DirectoryItem::E_None ==
-//                    DirectoryItem::get( abs_loc, dirItem ))
-//                {
-//                    xImpReg->registerImplementation(
-//                        shared_lib_loader, lib_name, xSimReg );
-//                } // else ignore library
-//            }
-//
-//            xSimReg->close();
-//            return sal_True;
-//        }
-//        catch (Exception & exc)
-//        {
-//#if defined _DEBUG
-//            OUStringBuffer buf( 128 );
-//            buf.appendAscii(
-//                RTL_CONSTASCII_STRINGPARAM(
-//                    "### unexpected exception "
-//                    "occured writing registry binfilters.rdb: ") );
-//            buf.append( exc.Message );
-//            OString cstr(
-//                OUStringToOString(
-//                    buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
-//            OSL_ENSURE( 0, cstr.getStr() );
-//#endif
-//        }
-//    }
-//    return sal_False;
 }
 #if defined(SOLARIS) && defined(INTEL)
 #pragma optimize ( "", on )
@@ -2116,14 +2015,17 @@ void * SAL_CALL legacysmgr_component_getFactory(
                 xProps->getPropertyValue( OUSTR("DefaultContext") ),
                 UNO_QUERY_THROW );
 
-            // read LEGACY_RDB_NAME rdb
+            // read legacy_binfilters.rdb
             Reference< registry::XSimpleRegistry > xSimReg(
                 xMgr->createInstance(
                     OUSTR("com.sun.star.registry.SimpleRegistry") ),
                 UNO_QUERY_THROW );
+            rtl::OUString rdbUrl(
+                RTL_CONSTASCII_USTRINGPARAM(
+                    "$OOO_BASE_DIR/program/legacy_binfilters.rdb"));
+            rtl::Bootstrap::expandMacros(rdbUrl); //TODO: detect failure
             xSimReg->open(
-                get_lib_dir() + OUSTR("/" LEGACY_RDB_NAME),
-                sal_True /* read-only */, sal_False /* ! create */ );
+                rdbUrl, sal_True /* read-only */, sal_False /* ! create */ );
             Any arg( makeAny( xSimReg ) );
 
             // * legacy rdb mgr *
