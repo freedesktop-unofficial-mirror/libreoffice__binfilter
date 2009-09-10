@@ -102,12 +102,10 @@
 #ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
 #endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
-#include <bf_svtools/pathoptions.hxx>
-#endif
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif
+#include <rtl/bootstrap.hxx>
 #ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
 #endif
@@ -1067,8 +1065,13 @@ void GraphicFilter::ImplInit()
 
     if( bUseConfig )
     {
-        SvtPathOptions aPathOpt;
-        aFilterPath = aPathOpt.GetModulePath();
+#if defined WNT
+        rtl::OUString url(RTL_CONSTASCII_USTRINGPARAM("BRAND_BASE_DIR"));
+#else
+        rtl::OUString url(RTL_CONSTASCII_USTRINGPARAM("OOO_BASE_DIR"));
+#endif
+        rtl::Bootstrap::expandMacros(url); //TODO: detect failure
+        utl::LocalFileHelper::ConvertURLToPhysicalName(url, aFilterPath);
     }
 
     pErrorEx = new FilterErrorEx;
