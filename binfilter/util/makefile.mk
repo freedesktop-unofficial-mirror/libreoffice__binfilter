@@ -81,3 +81,5 @@ $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
 
 .ELSE
 pseudo:
+
+.ENDIF
