@@ -53,14 +53,13 @@ SOLARLIB+=-L$(LB)
 
 # --- Allgemein -----------------------------------------------------------
 
-RES1FILELIST=\
+RESLIB1LIST=\
     $(SRS)$/so3_src.srs 	
 
 RESLIB1NAME=$(TARGET)
-RESLIB1SRSFILES=$(RES1FILELIST)
+RESLIB1SRSFILES=$(RESLIB1LIST)
 
 # -------------------------------------------------------------------------
-
 LIB3TARGET= $(SLB)$/$(TARGET).lib
 LIB3FILES=	$(SLB)$/offmgr_app.lib 
 
@@ -98,6 +97,7 @@ LIB4TARGET= $(LB)$/a$(TARGET).lib
 LIB4FILES=	$(LB)$/$(TARGET).lib
 .ENDIF
 
+.IF "$(L10N_framework)"==""
 .IF "$(BUILD_SOSL)"==""
 .IF "$(depend)" == ""
 ALL:\
@@ -107,6 +107,7 @@ ALL:\
 
 .ENDIF # "$(depend)" == ""
 .ENDIF # "$(BUILD_SOSL)" == ""
+.ENDIF
 
 .INCLUDE :	target.mk
 
@@ -138,4 +139,3 @@ $(INCCOM)$/class.lst:
     @echo nix
 .ENDIF
 .ENDIF			# "$(BUILD_SOSL)"==""
-

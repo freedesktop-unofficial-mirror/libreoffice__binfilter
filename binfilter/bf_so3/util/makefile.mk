@@ -98,10 +98,6 @@ SHL1STDLIBS=$(VOSLIB) \
             ole2disp.lib typelib.lib
 .ENDIF
 
-.IF "$(SOLAR_JAVA)" != ""
-SHL1STDLIBS+=$(SJLIB)
-.ENDIF
-
 .IF "$(GUI)"=="UNX"
 SHL1DEPN= $(LIB1TARGET)
 .ELSE
