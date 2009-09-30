@@ -44,6 +44,7 @@ TARGET=so3_inplace
 # --- Files --------------------------------------------------------
 
 SLOFILES= \
+    $(SLO)$/applet2.obj		\
     $(SLO)$/outplace.obj	\
     $(SLO)$/embobj.obj                           \
     $(SLO)$/client.obj                           \
@@ -52,13 +53,13 @@ SLOFILES= \
     $(SLO)$/protocol.obj                         \
     $(SLO)$/soconv.obj		\
     $(SLO)$/ipenv.obj		\
-    $(SLO)$/applet2.obj		\
     $(SLO)$/plugin.obj		
 
 
 EXCEPTIONSFILES= \
-    $(SLO)$/plugin.obj      \
-    $(SLO)$/applet2.obj		
+    $(SLO)$/applet2.obj \
+    $(SLO)$/plugin.obj
+
 
 # --- Tagets -------------------------------------------------------
 
