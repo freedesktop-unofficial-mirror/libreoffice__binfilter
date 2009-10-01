@@ -75,8 +75,7 @@ SHL1STDLIBS= \
             $(SALLIB) \
             $(ICUUCLIB)\
             $(LEGACYSMGRLIB) \
-            $(XMLSCRIPTLIB) \
-            $(SYSSHELLLIB)
+            $(XMLSCRIPTLIB) 
 
 .IF "$(GUI)"=="WNT"
 
