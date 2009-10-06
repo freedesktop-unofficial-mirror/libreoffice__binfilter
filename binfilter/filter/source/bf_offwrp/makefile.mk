@@ -56,7 +56,6 @@ SHL1TARGET= $(TARGET)$(DLLPOSTFIX)
 SHL1IMPLIB= ibf_wrp
 SHL1STDLIBS=    \
                 $(BFSO3LIB) 			\
-                $(SJLIB) 			\
                 $(BFSVTOOLLIB) 		\
                 $(BFOFALIB)			\
                 $(VCLLIB) 			\
