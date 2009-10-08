@@ -60,8 +60,6 @@ class DdeLink;
 class DdeRequest;
 class DdeWarmLink;
 class DdeHotLink;
-class DdePoke;
-class DdeExecute;
 class DdeItem;
 class DdeTopic;
 class DdeService;
@@ -113,7 +111,9 @@ class  DdeData
 public:
                     DdeData();
                     DdeData( const void*, long, ULONG = FORMAT_STRING );
+#ifdef WNT
                     DdeData( const String& );
+#endif
                     DdeData( const DdeData& );
                     ~DdeData();
 
@@ -261,6 +261,7 @@ public:
             DdeRequest( DdeConnection&, const String&, long = 0 );
 };
 
+#ifdef WNT
 // -----------
 // - DdePoke -
 // -----------
@@ -283,6 +284,7 @@ class  DdeExecute : public DdeTransaction
 public:
             DdeExecute( DdeConnection&, const String&, long = 0 );
 };
+#endif
 
 // -----------------
 // - DdeConnection -
@@ -352,9 +354,11 @@ public:
 class  DdeGetPutItem : public DdeItem
 {
 public:
-                    DdeGetPutItem( const sal_Unicode* p );
                     DdeGetPutItem( const String& rStr );
+#ifdef WNT
+                    DdeGetPutItem( const sal_Unicode* p );
                     DdeGetPutItem( const DdeItem& rItem );
+#endif
 
     virtual DdeData* Get( ULONG );
     virtual BOOL    Put( const DdeData* );
@@ -401,8 +405,9 @@ private:
 public:
                     DdeTopic( const String& );
     virtual        ~DdeTopic();
-
+#ifdef WNT
     const String&   GetName() const;
+#endif
     long            GetConvId();
 
     void            SetConnectHdl( const Link& rLink ) { aConnectLink = rLink; }
@@ -417,11 +422,10 @@ public:
     const Link&     GetExecuteHdl() const { return aExecLink; }
 
     void            NotifyClient( const String& );
+#ifdef WNT
     BOOL            IsSystemTopic();
-
-    void            InsertItem( DdeItem* );     // fuer eigene Ableitungen!
     DdeItem*        AddItem( const DdeItem& );  // werden kopiert !
-    void            RemoveItem( const DdeItem& );
+#endif
     const String&   GetCurItem() { return aItem;  }
     const DdeItems& GetItems()   { return aItems; }
 
@@ -467,18 +471,17 @@ public:
                     DdeService( const String& );
     virtual        ~DdeService();
 
+#ifdef WNT
     const String&   GetName() const;
     short           GetError()              { return nStatus; }
-
     static DdeServices& GetServices();
     DdeTopics&      GetTopics()             { return aTopics; }
-
     void            AddTopic( const DdeTopic& );
     void            RemoveTopic( const DdeTopic& );
-
     void            AddFormat( ULONG );
     void            RemoveFormat( ULONG );
     BOOL            HasFormat( ULONG );
+#endif
 
 private:
       //              DdeService( const DdeService& );

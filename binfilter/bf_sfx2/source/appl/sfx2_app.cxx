@@ -132,9 +132,6 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/     pApp->PreInit();
 /*N*/
 /*N*/     pCfgMgr = new SfxConfigManager;
-/*N*/ #ifdef DDE_AVAILABLE
-/*N*/     InitializeDde();
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ SfxApplication::~SfxApplication()

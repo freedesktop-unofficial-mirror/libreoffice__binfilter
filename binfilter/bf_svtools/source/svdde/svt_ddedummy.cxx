@@ -38,10 +38,6 @@ DdeData::DdeData()
 {
 }
 
-DdeData::DdeData( const String& )
-{
-}
-
 DdeData::DdeData( const DdeData& )
 {
 }
@@ -132,17 +128,6 @@ DdeRequest::DdeRequest(DdeConnection& rConnection, const String& rString, long l
 {
 }
 
-DdeExecute::DdeExecute( DdeConnection& rConnection, const String& rString, long lLong ) :
-     DdeTransaction( rConnection, rString, lLong )
-{
-}
-
-DdePoke::DdePoke( DdeConnection& rConnection, const String& rString, const DdeData&, long lLong ) :
-     DdeTransaction( rConnection, rString, lLong )
-{
-}
-
-
 DdeTopic::DdeTopic( const String& )
 {
 }
@@ -156,19 +141,6 @@ void DdeTopic::Connect (long )
 }
 
 void DdeTopic::Disconnect( long )
-{
-}
-
-void DdeTopic::InsertItem( DdeItem* )
-{
-}
-
-DdeItem* DdeTopic::AddItem( const DdeItem& rDdeItem )
-{
-  return (DdeItem*) &rDdeItem;
-}
-
-void DdeTopic::RemoveItem( const DdeItem& )
 {
 }
 
@@ -200,11 +172,6 @@ BOOL DdeTopic::Execute( const String* )
 BOOL DdeTopic::Put( const DdeData* )
 {
   return FALSE;
-}
-
-const String& DdeTopic::GetName() const
-{
-  return String::EmptyString();
 }
 
 DdeService::DdeService( const String& )
@@ -250,37 +217,9 @@ String DdeService::GetHelp()
   return String::EmptyString();
 }
 
-void DdeService::AddFormat( ULONG )
-{
-}
-
-void DdeService::AddTopic( const DdeTopic& )
-{
-}
-
-void DdeService::RemoveTopic( const DdeTopic& )
-{
-}
-
 BOOL DdeService::MakeTopic( const String& )
 {
   return FALSE;
-}
-
-const String& DdeService::GetName() const
-{
-  return String::EmptyString();
-}
-
-namespace
-{
-    struct theDdeServices
-        : public rtl::Static< DdeServices, theDdeServices > {};
-}
-
-DdeServices& DdeService::GetServices()
-{
-  return theDdeServices::get();
 }
 
 DdeItem::DdeItem( const String& )
@@ -301,11 +240,6 @@ void DdeItem::NotifyClient()
 
 DdeGetPutItem::DdeGetPutItem( const String& rStr ) :
 DdeItem( rStr )
-{
-}
-
-DdeGetPutItem::DdeGetPutItem( const DdeItem& rItem ) :
-DdeItem( rItem )
 {
 }
 
