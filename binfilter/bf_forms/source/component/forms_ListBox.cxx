@@ -573,7 +573,7 @@ void SAL_CALL OListBoxModel::read(const Reference<stario::XObjectInputStream>& _
 //------------------------------------------------------------------------------
 void OListBoxModel::loadData()
 {
-    DBG_ASSERT(m_eListSourceType != ListSourceType_VALUELIST, "fuer Werteliste kein Laden aus der Datenbank")
+    DBG_ASSERT(m_eListSourceType != ListSourceType_VALUELIST, "fuer Werteliste kein Laden aus der Datenbank");
 
     m_nNULLPos = -1;
     m_bBoundComponent = sal_False;

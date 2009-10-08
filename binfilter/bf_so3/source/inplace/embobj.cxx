@@ -120,7 +120,7 @@ void SvEmbeddedInfoObject::Load( SvPersistStream & rStm )
     SvInfoObject::Load( rStm );
     BYTE nVers = 0;
     rStm >> nVers;
-    DBG_ASSERT( nVers == INFO_VERSION, "SvInfoObject version conflict" )
+    DBG_ASSERT( nVers == INFO_VERSION, "SvInfoObject version conflict" );
     if( nVers != INFO_VERSION )
         rStm.SetError( SVSTREAM_WRONGVERSION );
     else
@@ -341,7 +341,7 @@ void SvEmbeddedObject::LoadContent( SvStream & rStm, BOOL bOwner_ )
     {
         BYTE nVers;
         rStm >> nVers;
-        DBG_ASSERT( nVers == EMBEDDED_OBJECT_VERSION, "version conflict" )
+        DBG_ASSERT( nVers == EMBEDDED_OBJECT_VERSION, "version conflict" );
 
         if( nVers != EMBEDDED_OBJECT_VERSION )
             rStm.SetError( SVSTREAM_WRONGVERSION );
@@ -465,7 +465,7 @@ void SvEmbeddedObject::SetModified( BOOL bModifiedP )
             // Fuer diesen Fall muss der gesammte Ablauf noch
             // einmal geprueft werden
             DBG_ASSERT( xPar.Is() && pP || !pP && !xPar.Is(),
-                        "Persist-Parent ist kein EmbeddedObject" )
+                        "Persist-Parent ist kein EmbeddedObject" );
         }
     }
 }
@@ -903,10 +903,12 @@ void SvEmbeddedObject::DoDraw( OutputDevice * pDev, const Point & rViewPos,
 
         GDIMetaFile * pMtf = pDev->GetConnectMetaFile();
         if( pMtf )
+        {
             if( pMtf->IsRecord() && pDev->GetOutDevType() != OUTDEV_PRINTER )
                 pMtf->Stop();
             else
                 pMtf = NULL;
+        }
 // #ifndef UNX
         if( pDev->IsClipRegion() && pDev->GetOutDevType() != OUTDEV_PRINTER )
 // #endif

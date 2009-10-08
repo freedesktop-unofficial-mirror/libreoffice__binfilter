@@ -112,7 +112,7 @@ using namespace ::com::sun::star::uno;
 /*N*/     }
 /*N*/   Sequence<Any> aValues = GetProperties(rNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == rNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == rNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == rNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < rNames.getLength(); nProp++)

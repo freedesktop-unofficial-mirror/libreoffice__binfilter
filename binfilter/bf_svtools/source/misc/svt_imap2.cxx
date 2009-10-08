@@ -35,7 +35,7 @@
 #include <sysdep.hxx>
 #endif
 #include <string.h>
-#include <math.h>
+// #include <math.h>
 
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>

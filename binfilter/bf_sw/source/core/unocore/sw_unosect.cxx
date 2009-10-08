@@ -1098,7 +1098,7 @@ void SwXTextSection::addPropertiesChangeListener(
     const Sequence< ::rtl::OUString >& aPropertyNames,
     const Reference< XPropertiesChangeListener >& xListener ) throw(RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /* -----------------------------12.02.01 10:30--------------------------------
 
@@ -1107,7 +1107,7 @@ void SwXTextSection::removePropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& xListener )
         throw(RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /* -----------------------------12.02.01 10:30--------------------------------
 
@@ -1117,35 +1117,35 @@ void SwXTextSection::firePropertiesChangeEvent(
     const Reference< XPropertiesChangeListener >& xListener )
         throw(RuntimeException)
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 10.12.98 14:47:13---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSection::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 10.12.98 14:47:13---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSection::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 10.12.98 14:47:14---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSection::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 10.12.98 14:47:14---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSection::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 
 /*-- 08.11.00 10:47:55---------------------------------------------------

@@ -314,12 +314,12 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   aValues = aCalcItem.GetProperties(aNames);
 /*N*/   aCalcItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)
@@ -373,12 +373,12 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   aValues = aLayoutItem.GetProperties(aNames);
 /*N*/   aLayoutItem.EnableNotification(aNames);
 /*N*/   pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
 /*N*/       {
-/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing")
+/*N*/           DBG_ASSERT(pValues[nProp].hasValue(), "property value missing");
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               switch(nProp)

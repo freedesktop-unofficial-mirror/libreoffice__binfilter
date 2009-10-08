@@ -1277,7 +1277,7 @@ const sal_Int32 coNumContFlags =
 /*N*/       }
 /*N*/       nIndex++;
 /*N*/       DBG_ASSERT(1 <= nIndex  &&  nIndex <= 1 + SUBSUP_NUM_ENTRIES,
-/*N*/                  "SmParser::Power() : sub-/supscript index falsch")
+/*N*/                  "SmParser::Power() : sub-/supscript index falsch");
 /*N*/
 /*N*/       // set sub-/supscript if not already done
 /*N*/       if (aSubNodes.Get(nIndex) != NULL)

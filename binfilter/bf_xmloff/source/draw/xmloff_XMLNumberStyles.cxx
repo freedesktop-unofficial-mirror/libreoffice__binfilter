@@ -395,13 +395,13 @@ static void SdXMLExportStyle( SdXMLExport& rExport, const SdXMLFixedDataStyle* p
 
 void SdXMLNumberStylesExporter::exportTimeStyle( SdXMLExport& rExport, sal_Int32 nStyle )
 {
-    DBG_ASSERT( (nStyle >= 0) && (nStyle < SdXMLTimeFormatCount), "Unknown time style!" )
+    DBG_ASSERT( (nStyle >= 0) && (nStyle < SdXMLTimeFormatCount), "Unknown time style!" );
     SdXMLExportStyle( rExport, aSdXMLFixedTimeFormats[ nStyle ] );
 }
 
 void SdXMLNumberStylesExporter::exportDateStyle( SdXMLExport& rExport, sal_Int32 nStyle )
 {
-    DBG_ASSERT( (nStyle >= 0) && (nStyle < SdXMLDateFormatCount), "Unknown date style!" )
+    DBG_ASSERT( (nStyle >= 0) && (nStyle < SdXMLDateFormatCount), "Unknown date style!" );
     SdXMLExportStyle( rExport, aSdXMLFixedDateFormats[ nStyle ] );
 }
 

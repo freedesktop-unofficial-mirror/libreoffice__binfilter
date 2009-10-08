@@ -987,7 +987,7 @@ void SwXCell::setValue(double rValue) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 table::CellContentType SwXCell::getType(void) throw( uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
     return  (table::CellContentType)0;
 }
 /* -----------------27.04.99 12:06-------------------
@@ -1128,28 +1128,28 @@ uno::Any SwXCell::getPropertyValue(const OUString& rPropertyName)
   -----------------------------------------------------------------------*/
 void SwXCell::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 10:56:35---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCell::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 10:56:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCell::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 10:56:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCell::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 10:56:37---------------------------------------------------
 
@@ -1443,28 +1443,28 @@ uno::Any SwXTextTableRow::getPropertyValue(const OUString& rPropertyName) throw(
   -----------------------------------------------------------------------*/
 void SwXTextTableRow::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:04:48---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableRow::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:04:48---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableRow::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:04:49---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableRow::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:04:49---------------------------------------------------
 
@@ -1853,7 +1853,7 @@ uno::Any SwXTextTableCursor::getPropertyValue(const OUString& rPropertyName)
                 break;
                 case RES_BOXATR_FORMAT:
                     //GetAttr fuer Tabellenselektion am Doc fehlt noch
-                    DBG_WARNING("not implemented")
+                    DBG_WARNING("not implemented");
                 break;
                 case FN_UNO_PARA_STYLE:
                 {
@@ -1886,28 +1886,28 @@ uno::Any SwXTextTableCursor::getPropertyValue(const OUString& rPropertyName)
   -----------------------------------------------------------------------*/
 void SwXTextTableCursor::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:16:18---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableCursor::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:16:18---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableCursor::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:16:19---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTableCursor::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:16:19---------------------------------------------------
 
@@ -2920,7 +2920,7 @@ uno::Sequence< OUString > SwXTextTable::getRowDescriptions(void) throw( uno::Run
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
     else
@@ -2960,7 +2960,7 @@ void SwXTextTable::setRowDescriptions(const uno::Sequence< OUString >& rRowDesc)
         }
         else
         {
-            DBG_ERROR("Wohin mit den Labels?")
+            DBG_ERROR("Wohin mit den Labels?");
         }
     }
     else
@@ -3002,7 +3002,7 @@ uno::Sequence< OUString > SwXTextTable::getColumnDescriptions(void)
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
     else
@@ -3043,7 +3043,7 @@ void SwXTextTable::setColumnDescriptions(const uno::Sequence< OUString >& rColum
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
     else
@@ -3458,28 +3458,28 @@ uno::Any SwXTextTable::getPropertyValue(const OUString& rPropertyName) throw( be
   -----------------------------------------------------------------------*/
 void SwXTextTable::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:42:52---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTable::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:42:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTable::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:42:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextTable::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 12:42:58---------------------------------------------------
 
@@ -4038,7 +4038,7 @@ uno::Any SwXCellRange::getPropertyValue(const OUString& rPropertyName) throw( be
                 break;
                 case RES_BOXATR_FORMAT:
                     //GetAttr fuer Tabellenselektion am Doc fehlt noch
-                    DBG_WARNING("not implemented")
+                    DBG_WARNING("not implemented");
                 break;
                 case FN_UNO_PARA_STYLE:
                 {
@@ -4083,28 +4083,28 @@ uno::Any SwXCellRange::getPropertyValue(const OUString& rPropertyName) throw( be
   -----------------------------------------------------------------------*/
 void SwXCellRange::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 14:27:35---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCellRange::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 14:27:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCellRange::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 14:27:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXCellRange::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 29.04.02 11:42:47---------------------------------------------------
 
@@ -4350,7 +4350,7 @@ uno::Sequence< OUString > SwXCellRange::getRowDescriptions(void)
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
     else
@@ -4391,7 +4391,7 @@ void SwXCellRange::setRowDescriptions(const uno::Sequence< OUString >& rRowDesc)
         }
         else
         {
-            DBG_ERROR("Wohin mit den Labels?")
+            DBG_ERROR("Wohin mit den Labels?");
         }
     }
 }
@@ -4431,7 +4431,7 @@ uno::Sequence< OUString > SwXCellRange::getColumnDescriptions(void)
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
     else
@@ -4468,7 +4468,7 @@ void SwXCellRange::setColumnDescriptions(const uno::Sequence< OUString >& Column
         }
         else
         {
-            DBG_ERROR("Wo kommen die Labels her?")
+            DBG_ERROR("Wo kommen die Labels her?");
         }
     }
 }
@@ -4494,7 +4494,7 @@ void SwXCellRange::removeChartDataChangeEventListener(const uno::Reference< char
  * --------------------------------------------------*/
 sal_Bool SwXCellRange::isNotANumber(double nNumber) throw( uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
     return sal_False;
 
 }
@@ -4503,7 +4503,7 @@ sal_Bool SwXCellRange::isNotANumber(double nNumber) throw( uno::RuntimeException
  * --------------------------------------------------*/
 double SwXCellRange::getNotANumber(void) throw( uno::RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
     return 0.;
 }
 /*-- 11.12.98 14:27:38---------------------------------------------------

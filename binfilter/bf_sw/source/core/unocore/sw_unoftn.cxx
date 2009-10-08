@@ -253,7 +253,7 @@ void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException 
     if(pFmt)
     {
         const SwTxtFtn* pTxtFtn = pFmt->GetTxtFtn();
-        DBG_ASSERT(pTxtFtn, "kein TextNode?")
+        DBG_ASSERT(pTxtFtn, "kein TextNode?");
         SwTxtNode& rTxtNode = (SwTxtNode&)pTxtFtn->GetTxtNode();
 
         SwPaM aPam(rTxtNode, *pTxtFtn->GetStart());
@@ -358,7 +358,7 @@ void SwXFootnote::dispose(void) throw( uno::RuntimeException )
     if(pFmt)
     {
         const SwTxtFtn* pTxtFtn = pFmt->GetTxtFtn();
-        DBG_ASSERT(pTxtFtn, "kein TextNode?")
+        DBG_ASSERT(pTxtFtn, "kein TextNode?");
         SwTxtNode& rTxtNode = (SwTxtNode&)pTxtFtn->GetTxtNode();
         xub_StrLen nPos = *pTxtFtn->GetStart();
         SwPaM aPam(rTxtNode, nPos, rTxtNode, nPos+1 );
@@ -568,7 +568,7 @@ Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
             if(pFmt)
             {
                 const SwTxtFtn* pTxtFtn = pFmt->GetTxtFtn();
-                DBG_ASSERT(pTxtFtn, "no TextNode?")
+                DBG_ASSERT(pTxtFtn, "no TextNode?");
                 aRet <<= (sal_Int16)pTxtFtn->GetSeqRefNo();
             }
         }

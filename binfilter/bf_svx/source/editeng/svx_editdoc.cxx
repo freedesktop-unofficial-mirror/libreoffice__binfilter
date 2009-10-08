@@ -576,8 +576,8 @@ using namespace ::com::sun::star;
 
 /*N*/ BOOL EditSelection::Adjust( const ContentList& rNodes )
 /*N*/ {
-/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in Adjust(1)" )
-/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in Adjust(2)" )
+/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in Adjust(1)" );
+/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in Adjust(2)" );
 /*N*/
 /*N*/   ContentNode* pStartNode = aStartPaM.GetNode();
 /*N*/   ContentNode* pEndNode = aEndPaM.GetNode();
@@ -585,8 +585,8 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nStartNode = rNodes.GetPos( pStartNode );
 /*N*/   USHORT nEndNode = rNodes.GetPos( pEndNode );
 /*N*/
-/*N*/   DBG_ASSERT( nStartNode != USHRT_MAX, "Node im Wald in Adjust(1)" )
-/*N*/   DBG_ASSERT( nEndNode != USHRT_MAX, "Node im Wald in Adjust(2)" )
+/*N*/   DBG_ASSERT( nStartNode != USHRT_MAX, "Node im Wald in Adjust(1)" );
+/*N*/   DBG_ASSERT( nEndNode != USHRT_MAX, "Node im Wald in Adjust(2)" );
 /*N*/
 /*N*/   BOOL bSwap = FALSE;
 /*N*/   if ( nStartNode > nEndNode )

@@ -1212,7 +1212,7 @@ namespace binfilter {
 
 /*N*/ void SwDocStyleSheet::SetNumRule(const SwNumRule& rRule)
 /*N*/ {
-/*N*/   DBG_ASSERT(pNumRule, "Wo ist die NumRule")
+/*N*/   DBG_ASSERT(pNumRule, "Wo ist die NumRule");
 /*N*/   rDoc.ChgNumRuleFmts( rRule );
 /*N*/ }
 

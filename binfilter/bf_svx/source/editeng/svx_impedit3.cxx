@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svx_impedit3.cxx,v $
- * $Revision: 1.15 $
+ * $Revision: 1.15.38.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -104,6 +104,7 @@
 #include <com/sun/star/i18n/ScriptType.hpp>
 #endif
 
+#include <i18npool/mslangid.hxx>
 
 
 #ifndef _LEGACYBINFILTERMGR_HXX
@@ -1614,7 +1615,7 @@ struct TabInfo
 /*N*/         {
 /*N*/             // Don't use blank if language is arabic
 /*N*/             LanguageType eLang = GetLanguage( EditPaM( pNode, nChar ) );
-/*N*/             if ( eLang != LANGUAGE_ARABIC )
+/*N*/             if ( MsLangId::getPrimaryLanguage( eLang) != LANGUAGE_ARABIC_PRIMARY_ONLY )
 /*N*/                 aPositions.Insert( nChar, aPositions.Count() );
 /*N*/         }
 /*N*/   }
@@ -1629,7 +1630,7 @@ struct TabInfo
 /*N*/   // Wenn das letzte Zeichen ein Blank ist, will ich es nicht haben!
 /*N*/   // Die Breite muss auf die Blocker davor verteilt werden...
 /*N*/   // Aber nicht, wenn es das einzige ist
-/*N*/   if ( ( pNode->GetChar( nLastChar ) == ' ' ) && ( aPositions.Count() > 1 ) && ( GetLanguage( EditPaM( pNode, nLastChar ) ) != LANGUAGE_ARABIC ) )
+/*N*/   if ( ( pNode->GetChar( nLastChar ) == ' ' ) && ( aPositions.Count() > 1 ) && ( MsLangId::getPrimaryLanguage( GetLanguage( EditPaM( pNode, nLastChar ) ) ) != LANGUAGE_ARABIC_PRIMARY_ONLY ) )
 /*N*/   {
 /*N*/         aPositions.Remove( aPositions.Count()-1, 1 );
 /*N*/       USHORT nPortionStart, nPortion;
@@ -1742,14 +1743,14 @@ struct TabInfo
 /*N*/                  ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
 /*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*N*/             }
 /*N*/
 /*N*/             // 5. Priority:
 /*N*/             // before media Bah
 /*N*/             if ( nIdx && nIdx + 1 < aWord.Len() && 0x628 == cCh )
 /*N*/             {
-/*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*?*/
 /*?*/                 // check if next character is Reh, Yeh or Alef Maksura
 /*?*/                 xub_Unicode cNextCh = aWord.GetChar( nIdx + 1 );
@@ -1766,7 +1767,7 @@ struct TabInfo
 /*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
 /*N*/                  0x60C <= cCh && 0x6FE >= cCh )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" )
+/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
 /*N*/             }
 /*N*/
 /*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,

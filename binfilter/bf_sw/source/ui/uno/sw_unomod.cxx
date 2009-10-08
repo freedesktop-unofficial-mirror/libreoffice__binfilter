@@ -289,7 +289,7 @@ Reference< XPropertySet >  SwXModule::getViewSettings(void) throw( uno::RuntimeE
     if(!pxViewSettings)
     {
         ((SwXModule*)this)->pxViewSettings = new Reference< XPropertySet > ;
-        DBG_ERROR("Web oder Text?")
+        DBG_ERROR("Web oder Text?");
         *pxViewSettings = static_cast < HelperBaseNoState * > ( new SwXViewSettings( sal_False, 0 ) );
     }
     return *pxViewSettings;
@@ -303,7 +303,7 @@ Reference< XPropertySet >  SwXModule::getPrintSettings(void) throw( uno::Runtime
     if(!pxPrintSettings)
     {
         ((SwXModule*)this)->pxPrintSettings = new Reference< XPropertySet > ;
-        DBG_ERROR("Web oder Text?")
+        DBG_ERROR("Web oder Text?");
         *pxPrintSettings = static_cast < HelperBaseNoState * > ( new SwXPrintSettings ( PRINT_SETTINGS_MODULE ) );
     }
     return *pxPrintSettings;

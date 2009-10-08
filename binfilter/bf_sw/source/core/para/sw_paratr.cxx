@@ -260,7 +260,7 @@ using namespace ::com::sun::star;
 /*N*/           bWholeWord = *(sal_Bool*)rVal.getValue();
 /*N*/       break;
 /*N*/       case MID_DROPCAP_CHAR_STYLE_NAME :
-/*N*/           DBG_ERROR("char format cannot be set in PutValue()!")
+/*N*/           DBG_ERROR("char format cannot be set in PutValue()!");
 /*N*/       break;
 /*N*/   }
 /*N*/   return sal_True;

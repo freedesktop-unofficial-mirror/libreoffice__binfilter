@@ -391,7 +391,7 @@ void SvEmbeddedClient::FreeViewData
 */
 {
 #ifdef DBG_UTIL
-    DBG_ASSERT( pDataP == pData, "pDataP != pData!" )
+    DBG_ASSERT( pDataP == pData, "pDataP != pData!" );
 #else
     (void)pDataP;
 #endif
@@ -467,7 +467,7 @@ void SvEmbeddedClient::Embedded( BOOL bEmbed )
     String aTest( "Client---Embedded---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    DBG_TRACE( aTest );
 #endif
 
     if( Owner() )

@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: sw_inftxt.cxx,v $
- * $Revision: 1.9 $
+ * $Revision: 1.9.38.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -288,7 +288,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     LanguageType eLang;
 /*N*/     const SvtCTLOptions& rCTLOptions = SW_MOD()->GetCTLOptions();
 /*N*/     if ( SvtCTLOptions::NUMERALS_HINDI == rCTLOptions.GetCTLTextNumerals() )
-/*N*/         eLang = LANGUAGE_ARABIC;
+/*N*/         eLang = LANGUAGE_ARABIC_SAUDI_ARABIA;
 /*N*/     else if ( SvtCTLOptions::NUMERALS_ARABIC == rCTLOptions.GetCTLTextNumerals() )
 /*N*/         eLang = LANGUAGE_ENGLISH;
 /*N*/     else

@@ -385,7 +385,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       rStream.ReadByteString( aName, rStream.GetStreamCharSet() );
 /*N*/       rStream.ReadByteString( aTag,  rStream.GetStreamCharSet() );
 /*N*/
-/*N*/       DBG_ASSERT(!pColNames, "Spaltennamen schon gesetzt?")
+/*N*/       DBG_ASSERT(!pColNames, "Spaltennamen schon gesetzt?");
 /*N*/       rStream >> nColNameCount;
 /*N*/       if (nColNameCount)
 /*N*/       {
@@ -1121,7 +1121,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/               //  Daten eintragen
 /*N*/               if ((nCIndex < nDataColCount) && (nRIndex < nDataRowCount))
 /*N*/               {
-/*N*/                   DBG_ASSERT((short)ppDataArr[nRIndex][nCIndex].nIndex == i, "falsch init.")
+/*N*/                   DBG_ASSERT((short)ppDataArr[nRIndex][nCIndex].nIndex == i, "falsch init.");
 /*N*/
 /*N*/                   ppDataArr[nRIndex][nCIndex].nIndex = i;
 /*N*/                   aAdr.SetCol( aDataArr[i].nCol );

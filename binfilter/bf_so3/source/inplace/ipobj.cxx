@@ -112,7 +112,7 @@ SvInPlaceObject::SvInPlaceObject()
 SvInPlaceObject::~SvInPlaceObject()
 {
     DBG_ASSERT( LIST_ENTRY_NOTFOUND == GetIPActiveObjectList().GetPos( this ),
-                "ip-object in ip-object-list" )
+                "ip-object in ip-object-list" );
 }
 
 
@@ -123,8 +123,8 @@ SvInPlaceObject::~SvInPlaceObject()
 *************************************************************************/
 void SvInPlaceObject::SetIPEnv( SvInPlaceEnvironment * pFrm )
 {
-    DBG_ASSERTWARNING( pIPEnv || pFrm, "already NULL" )
-    DBG_ASSERT( !pIPEnv || !pFrm, "IPEnv exist" )
+    DBG_ASSERTWARNING( pIPEnv || pFrm, "already NULL" );
+    DBG_ASSERT( !pIPEnv || !pFrm, "IPEnv exist" );
     pIPEnv = pFrm;
 }
 
@@ -295,7 +295,7 @@ void SvInPlaceObject::InPlaceActivate
     {
         if( bActivate )
         {
-            DBG_ASSERT( pIPEnv, "set SvInPlaceEnvironment in InPlaceActivate bevor call to superclass" )
+            DBG_ASSERT( pIPEnv, "set SvInPlaceEnvironment in InPlaceActivate bevor call to superclass" );
 
             if( GetClient()->Owner() )
                 // sonst nur bei Ole-SetInPlaceActiveObj

@@ -851,7 +851,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/     UBiDi* pBidi = ubidi_openSized( rTxt.Len(), 0, &nError );
 /*N*/     nError = U_ZERO_ERROR;
 /*N*/
-/*N*/     ubidi_setPara( pBidi, rTxt.GetBuffer(), rTxt.Len(),
+/*N*/     ubidi_setPara( pBidi, reinterpret_cast<const UChar *>(rTxt.GetBuffer()), rTxt.Len(),  // UChar != sal_Unicode in MinGW
 /*N*/                    nDefaultDir, NULL, &nError );
 /*N*/     nError = U_ZERO_ERROR;
 /*N*/     long nCount = ubidi_countRuns( pBidi, &nError );

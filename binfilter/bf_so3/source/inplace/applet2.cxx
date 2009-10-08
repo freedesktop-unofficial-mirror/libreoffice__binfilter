@@ -429,9 +429,11 @@ void SvAppletObject::InPlaceActivate
     // SvInPlaceObject::InPlaceActivate must not be called if SetIPEnv has not been
     // called (see above). It is possibe that the status of the "Enable Applet" option
     // changes between the calls InPlaceActivate( true) and InPlaceActiveFalse.
-    if(bEnabled && pImpl->pAppletEnv ||
-        !bActivate && pImpl->pAppletEnv)
+    if( (bEnabled && pImpl->pAppletEnv) ||
+        (!bActivate && pImpl->pAppletEnv) )
+    {
         SvInPlaceObject::InPlaceActivate( bActivate );
+    }
     if( !bActivate && pImpl->pAppletEnv )
         DELETEZ( pImpl->pAppletEnv );
 }

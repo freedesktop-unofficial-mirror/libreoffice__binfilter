@@ -1078,7 +1078,7 @@ void SfxItemPool::SetFileFormatVersion( USHORT nFileFormatVersion )
 
 {
     DBG_ASSERT( this == pMaster,
-                "SfxItemPool::SetFileFormatVersion() but not a master pool" )
+                "SfxItemPool::SetFileFormatVersion() but not a master pool" );
     for ( SfxItemPool *pPool = this; pPool; pPool = pPool->pSecondary )
         pPool->_nFileFormatVersion = nFileFormatVersion;
 }

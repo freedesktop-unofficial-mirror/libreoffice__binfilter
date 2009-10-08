@@ -374,7 +374,7 @@ void SvFactory::Register()
     if( !IsRegistered() )
     {
         nRegisterId = 1; // Wert ist unwichtig, aber != 0
-        DBG_ASSERT( IsRegistered(), "SvFactory::Register: cannot register" )
+        DBG_ASSERT( IsRegistered(), "SvFactory::Register: cannot register" );
     }
 }
 

@@ -779,7 +779,7 @@ using namespace ::com::sun::star;
 /*?*/         UBiDi* pBidi = ubidi_openSized( aText.Len(), 0, &nError );
 /*?*/         nError = U_ZERO_ERROR;
 /*?*/
-/*?*/         ubidi_setPara( pBidi, aText.GetBuffer(), aText.Len(), nDefaultDir, NULL, &nError );
+/*?*/         ubidi_setPara( pBidi, reinterpret_cast<const UChar *>(aText.GetBuffer()), aText.Len(), nDefaultDir, NULL, &nError );  // UChar != sal_Unicode in MinGW
 /*?*/         nError = U_ZERO_ERROR;
 /*?*/
 /*?*/         long nCount = ubidi_countRuns( pBidi, &nError );
@@ -973,8 +973,8 @@ using namespace ::com::sun::star;
 /*N*/   CursorMoved( aStartPaM.GetNode() ); // nur damit neu eingestellte Attribute verschwinden...
 /*N*/   CursorMoved( aEndPaM.GetNode() );   // nur damit neu eingestellte Attribute verschwinden...
 /*N*/
-/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" )
-/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" )
+/*N*/   DBG_ASSERT( aStartPaM.GetIndex() <= aStartPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
+/*N*/   DBG_ASSERT( aEndPaM.GetIndex() <= aEndPaM.GetNode()->Len(), "Index im Wald in ImpDeleteSelection" );
 /*N*/
 /*N*/   USHORT nStartNode = aEditDoc.GetPos( aStartPaM.GetNode() );
 /*N*/   USHORT nEndNode = aEditDoc.GetPos( aEndPaM.GetNode() );

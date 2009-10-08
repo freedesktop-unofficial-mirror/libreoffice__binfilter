@@ -458,7 +458,7 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 
 /*N*/ USHORT SwForm::GetFirstTabPos() const     //{ return nFirstTabPos; }
 /*N*/ {
-/*N*/   DBG_WARNING("compatibility")
+/*N*/   DBG_WARNING("compatibility");
 /*N*/   String sFirstLevelPattern = aPattern[ 1 ];
 /*N*/   USHORT nRet = 0;
 /*N*/   if( 2 <= ::binfilter::lcl_GetPatternCount( sFirstLevelPattern, SwForm::aFormTab ))
@@ -699,7 +699,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/ {
 /*N*/   String sRet( rSource );
 /*N*/   DBG_ASSERT(rSource.GetTokenCount('>') == rSource.GetTokenCount('<'),
-/*N*/               "count of '<' and '>' not identical")
+/*N*/               "count of '<' and '>' not identical");
 /*N*/ //    simple task - convert tokens
 /*N*/ //    <E> -> <E >
 /*N*/ //    <E#> -> <E# >
@@ -868,7 +868,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   DBG_ASSERT( !sPattern.Len() ||
 /*N*/               (sPattern.GetChar(0) == '<' &&
 /*N*/               sPattern.GetChar(sPattern.Len() - 1) == '>'),
-/*N*/               "Pattern incorrect!" )
+/*N*/               "Pattern incorrect!" );
 /*N*/
 /*N*/
 /*N*/   // strip all characters included in TOX_STYLE_DELIMITER
@@ -877,12 +877,12 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   while(nFoundStt != STRING_NOTFOUND)
 /*N*/   {
 /*?*/       xub_StrLen nFoundEnd = sTmp.Search(TOX_STYLE_DELIMITER, nFoundStt + 1);
-/*?*/       DBG_ASSERT(STRING_NOTFOUND != nFoundEnd, "Pattern incorrect")
+/*?*/       DBG_ASSERT(STRING_NOTFOUND != nFoundEnd, "Pattern incorrect");
 /*?*/       sTmp.Erase(nFoundStt, nFoundEnd - nFoundStt + 1);
 /*?*/       nFoundStt = sTmp.Search(TOX_STYLE_DELIMITER);
 /*N*/   }
 /*N*/   DBG_ASSERT( sTmp.GetTokenCount('<') == sTmp.GetTokenCount('>'),
-/*N*/                           "Pattern incorrect!")
+/*N*/                           "Pattern incorrect!");
 /*N*/ #endif
 /*N*/ }
 

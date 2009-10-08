@@ -36,7 +36,7 @@
 #endif
 
 #include <vector>
-#include <math.h>
+// #include <math.h>
 #include <stdlib.h>
 #include <sot/object.hxx>
 #ifndef BOOST_SHARED_PTR_HPP_INCLUDED

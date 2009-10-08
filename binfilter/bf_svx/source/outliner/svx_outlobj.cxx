@@ -144,10 +144,10 @@ namespace binfilter {
 /*N*/           while ( nCount )
 /*N*/           {
 /*N*/               EditTextObject* pText = EditTextObject::Create( rStream, NULL );
-/*N*/               DBG_ASSERT(pText,"CreateEditTextObject failed")
+/*N*/               DBG_ASSERT(pText,"CreateEditTextObject failed");
 /*N*/               sal_uInt32 nSync = 0;
 /*N*/               rStream >> nSync;
-/*N*/               DBG_ASSERT(nSync==nSyncRef,"Stream out of sync")
+/*N*/               DBG_ASSERT(nSync==nSyncRef,"Stream out of sync");
 /*N*/               USHORT nDepth;
 /*N*/               rStream >> nDepth;
 /*N*/               Paragraph* pPara = new Paragraph( nDepth );
@@ -191,7 +191,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   sal_uInt32 nSync = 0;
 /*N*/                   rStream >> nSync;
-/*N*/                   DBG_ASSERT(nSync==nSyncRef,"Stream out of sync")
+/*N*/                   DBG_ASSERT(nSync==nSyncRef,"Stream out of sync");
 /*N*/               }
 /*N*/           }
 /*N*/           if( nVersion == 3 )

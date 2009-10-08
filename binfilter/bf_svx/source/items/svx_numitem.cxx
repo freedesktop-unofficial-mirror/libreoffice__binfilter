@@ -111,7 +111,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/           Reference < XInterface > xI = xMSF->createInstance(
 /*N*/               ::rtl::OUString::createFromAscii( "com.sun.star.text.DefaultNumberingProvider" ) );
 /*N*/           Reference<XDefaultNumberingProvider> xRet(xI, UNO_QUERY);
-/*N*/           DBG_ASSERT(xRet.is(), "service missing: \"com.sun.star.text.DefaultNumberingProvider\"")
+/*N*/           DBG_ASSERT(xRet.is(), "service missing: \"com.sun.star.text.DefaultNumberingProvider\"");
 /*N*/           xFormatter = Reference<XNumberingFormatter> (xRet, UNO_QUERY);
 /*N*/       }
 /*N*/       catch(Exception& )
@@ -768,7 +768,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
  * --------------------------------------------------*/
 /*N*/ const SvxNumberFormat*    SvxNumRule::Get(USHORT nLevel)const
 /*N*/ {
-/*N*/   DBG_ASSERT(nLevel < SVX_MAX_NUM, "falsches Level" )
+/*N*/   DBG_ASSERT(nLevel < SVX_MAX_NUM, "falsches Level" );
 /*N*/   return aFmtsSet[nLevel] ? aFmts[nLevel] : 0;
 /*N*/ }
 /* -----------------02.11.98 09:10-------------------
@@ -782,7 +782,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/       pStdOutlineNumFmt = new SvxNumberFormat(SVX_NUM_NUMBER_NONE);
 /*N*/   }
 /*N*/
-/*N*/   DBG_ASSERT(nLevel < SVX_MAX_NUM, "falsches Level" )
+/*N*/   DBG_ASSERT(nLevel < SVX_MAX_NUM, "falsches Level" );
 /*N*/   return aFmts[nLevel] ?
 /*N*/       *aFmts[nLevel] :  eNumberingType == SVX_RULETYPE_NUMBERING ?
 /*N*/                                                   *pStdNumFmt : *pStdOutlineNumFmt;

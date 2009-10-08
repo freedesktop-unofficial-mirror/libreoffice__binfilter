@@ -2817,7 +2817,7 @@ GraphicFilter* GetGrfFilter();
  ---------------------------------------------------------------------------*/
 /*N*/ void  SvxBrushItem::ApplyGraphicTransparency_Impl()
 /*N*/ {
-/*N*/     DBG_ASSERT(pImpl->pGraphicObject, "no GraphicObject available" )
+/*N*/     DBG_ASSERT(pImpl->pGraphicObject, "no GraphicObject available" );
 /*N*/     if(pImpl->pGraphicObject)
 /*N*/     {
 /*N*/         BfGraphicAttr aAttr(pImpl->pGraphicObject->GetAttr());

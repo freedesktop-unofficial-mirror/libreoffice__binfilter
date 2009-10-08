@@ -1614,7 +1614,7 @@ uno::Any SwXFrame::getPropertyValue(const OUString& rPropertyName)
             const SwFmtCntnt* pCnt = &pFmt->GetCntnt();
             DBG_ASSERT( pCnt->GetCntntIdx() &&
                            pDoc->GetNodes()[ pCnt->GetCntntIdx()->
-                                            GetIndex() + 1 ]->GetOLENode(), "kein OLE-Node?")
+                                            GetIndex() + 1 ]->GetOLENode(), "kein OLE-Node?");
 
             SwOLENode* pOleNode =  pDoc->GetNodes()[ pCnt->GetCntntIdx()
                                             ->GetIndex() + 1 ]->GetOLENode();
@@ -1668,7 +1668,7 @@ void SwXFrame::addPropertyChangeListener(const OUString& PropertyName,
     const uno::Reference< XPropertyChangeListener > & aListener)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 15:05:05---------------------------------------------------
 
@@ -1677,7 +1677,7 @@ void SwXFrame::removePropertyChangeListener(const OUString& PropertyName,
     const uno::Reference< XPropertyChangeListener > & aListener)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 15:05:05---------------------------------------------------
 
@@ -1686,7 +1686,7 @@ void SwXFrame::addVetoableChangeListener(const OUString& PropertyName,
                                 const uno::Reference< XVetoableChangeListener > & aListener)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 15:05:05---------------------------------------------------
 
@@ -1695,7 +1695,7 @@ void SwXFrame::removeVetoableChangeListener(
     const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener)
         throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 12.09.00 14:04:53---------------------------------------------------
 
@@ -2973,7 +2973,7 @@ uno::Reference< XComponent >  SwXTextEmbeddedObject::getEmbeddedObject(void) thr
         const SwFmtCntnt* pCnt = &pFmt->GetCntnt();
         DBG_ASSERT( pCnt->GetCntntIdx() &&
                        pDoc->GetNodes()[ pCnt->GetCntntIdx()->
-                                        GetIndex() + 1 ]->GetOLENode(), "kein OLE-Node?")
+                                        GetIndex() + 1 ]->GetOLENode(), "kein OLE-Node?");
 
         SwOLENode* pOleNode =  pDoc->GetNodes()[ pCnt->GetCntntIdx()
                                         ->GetIndex() + 1 ]->GetOLENode();

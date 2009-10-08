@@ -288,7 +288,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
@@ -492,7 +492,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       InsCaptionOpt* pWriterTableOpt = 0;
@@ -677,7 +677,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       for(int nProp = 0; nProp < aNames.getLength(); nProp++)
@@ -763,7 +763,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);
 /*N*/   const Any* pValues = aValues.getConstArray();
-/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed")
+/*N*/   DBG_ASSERT(aValues.getLength() == aNames.getLength(), "GetProperties failed");
 /*N*/   if(aValues.getLength() == aNames.getLength())
 /*N*/   {
 /*N*/       OUString sTmp;

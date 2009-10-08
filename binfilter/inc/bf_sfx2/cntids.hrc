@@ -27,14 +27,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-//=========================================================================
-//
-// Misc. ID-definitions for "CHAOS"
-//
-// (C) 1997 StarDivision GmbH, Hamburg, Germany
-// $Author: rt $ $Date: 2008-04-10 22:32:13 $ $Revision: 1.4 $
-// $Logfile:   T:/chaos/source/inc/cntids.hrv  $ $Workfile:   cntids.hrc  $
-//=========================================================================
 
 #ifndef _CNTIDS_HRC
 #define _CNTIDS_HRC

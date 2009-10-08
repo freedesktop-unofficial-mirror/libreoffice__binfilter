@@ -566,7 +566,7 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
 
     uno::Reference< uno::XAggregation >     xAgg = pShape->GetAggregationInterface();
 
-    DBG_ASSERT(pSvxShape, "warum gibt es hier kein SvxShape?")
+    DBG_ASSERT(pSvxShape, "warum gibt es hier kein SvxShape?");
     //diese Position ist auf jeden Fall in 1/100 mm
     awt::Point aMM100Pos(pSvxShape->getPosition());
 
@@ -1028,7 +1028,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                  else if(RES_OPAQUE == pMap->nWID)
                 {
                     SvxShape* pSvxShape = GetSvxShape();
-                    DBG_ASSERT(pSvxShape, "No SvxShape found!")
+                    DBG_ASSERT(pSvxShape, "No SvxShape found!");
                     if(pSvxShape)
                     {
                         SdrObject* pObj = pSvxShape->GetSdrObject();
@@ -1154,7 +1154,7 @@ uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
                 if(RES_OPAQUE == pMap->nWID)
                 {
                     SvxShape* pSvxShape = GetSvxShape();
-                    DBG_ASSERT(pSvxShape, "No SvxShape found!")
+                    DBG_ASSERT(pSvxShape, "No SvxShape found!");
                     if(pSvxShape)
                     {
                         SdrObject* pObj = pSvxShape->GetSdrObject();
@@ -1168,7 +1168,7 @@ uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
                 else if(FN_ANCHOR_POSITION == pMap->nWID)
                 {
                     SvxShape* pSvxShape = GetSvxShape();
-                    DBG_ASSERT(pSvxShape, "No SvxShape found!")
+                    DBG_ASSERT(pSvxShape, "No SvxShape found!");
                     if(pSvxShape)
                     {
                         SdrObject* pObj = pSvxShape->GetSdrObject();
@@ -1453,7 +1453,7 @@ Any SwXShape::getPropertyDefault( const OUString& rPropertyName )
   -----------------------------------------------------------------------*/
 void SwXShape::addPropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 22.01.99 11:42:27---------------------------------------------------
 
@@ -1463,21 +1463,21 @@ void SwXShape::removePropertyChangeListener(
     const Reference< XPropertyChangeListener > & aListener)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 22.01.99 11:42:28---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXShape::addVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 22.01.99 11:42:28---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXShape::removeVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    DBG_WARNING("not implemented")
+    DBG_WARNING("not implemented");
 }
 /*-- 22.01.99 11:42:28---------------------------------------------------
 
@@ -1694,7 +1694,7 @@ SwXGroupShape::SwXGroupShape(Reference< XInterface > & xShape) :
 {
 #ifdef DBG_UTIL
     Reference<XShapes> xShapes(xShapeAgg, UNO_QUERY);
-    DBG_ASSERT(xShapes.is(), "no SvxShape found or shape is not a group shape")
+    DBG_ASSERT(xShapes.is(), "no SvxShape found or shape is not a group shape");
 #endif
 }
 

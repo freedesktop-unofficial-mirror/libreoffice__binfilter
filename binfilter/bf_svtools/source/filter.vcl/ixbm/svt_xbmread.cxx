@@ -160,7 +160,7 @@ long XBMReader::ParseDefine( const sal_Char* pDefine )
 {
     long    nRet = 0;
     char*   pTmp = (char*) pDefine;
-    char    cTmp;
+    int     cTmp;
 
     // bis zum Ende gehen
     pTmp += ( strlen( pDefine ) - 1 );

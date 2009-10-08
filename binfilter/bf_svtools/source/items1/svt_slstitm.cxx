@@ -73,7 +73,7 @@ public:
 
 SfxImpStringList::~SfxImpStringList()
 {
-    DBG_ASSERT(nRefCount!=0xffff,"ImpList already deleted")
+    DBG_ASSERT(nRefCount!=0xffff,"ImpList already deleted");
     String* pStr = (String*)aList.First();
     while( pStr )
     {
@@ -122,7 +122,7 @@ SfxStringListItem::SfxStringListItem( const SfxStringListItem& rItem ) :
 
     if( pImp )
     {
-        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid")
+        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
         pImp->nRefCount++;
     }
 }
@@ -133,7 +133,7 @@ SfxStringListItem::~SfxStringListItem()
 {
     if( pImp )
     {
-        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid")
+        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
         if( pImp->nRefCount > 1 )
             pImp->nRefCount--;
         else
@@ -201,7 +201,7 @@ SvStream& SfxStringListItem::Store( SvStream & rStream, USHORT ) const
         return rStream;
     }
 
-    DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid")
+    DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
 
     long nCount = pImp->aList.Count();
     rStream << nCount;
@@ -221,7 +221,7 @@ SvStream& SfxStringListItem::Store( SvStream & rStream, USHORT ) const
 
 void SfxStringListItem::SetString( const XubString& rStr )
 {
-    DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0")
+    DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0");
 
     if ( pImp && (pImp->nRefCount == 1) )
         delete pImp;
@@ -263,7 +263,7 @@ XubString SfxStringListItem::GetString()
     XubString aStr;
     if ( pImp )
     {
-        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid")
+        DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
         XubString* pStr = (XubString*)(pImp->aList.First());
         while( pStr )
         {
@@ -292,7 +292,7 @@ int SfxStringListItem::IsPoolable() const
 
 void SfxStringListItem::SetStringList( const com::sun::star::uno::Sequence< rtl::OUString >& rList )
 {
-    DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0")
+    DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0");
 
     if ( pImp && (pImp->nRefCount == 1) )
         delete pImp;

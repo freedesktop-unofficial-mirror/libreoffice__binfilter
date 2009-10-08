@@ -31,7 +31,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#include <math.h>
+// #include <math.h>
 
 #ifndef _CONFIG_HXX
 #include <tools/config.hxx>
