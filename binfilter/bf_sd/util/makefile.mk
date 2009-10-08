@@ -69,11 +69,8 @@ SHL1STDLIBS= $(BFSCHLIB) $(BFSCLIB) $(BFSMLIB)
 
 # dynamic libraries
 SHL1STDLIBS+= \
-    $(BFOFALIB) \
     $(BFSVXLIB) \
     $(LEGACYSMGRLIB)	\
-    $(BFBASICLIB) \
-    $(BFGOODIESLIB) \
     $(BFSO3LIB) \
     $(BFSVTOOLLIB) \
     $(TKLIB) \
@@ -83,10 +80,8 @@ SHL1STDLIBS+= \
     $(TOOLSLIB) \
     $(I18NISOLANGLIB) \
     $(COMPHELPERLIB) \
-    $(UCBHELPERLIB) \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
-    $(VOSLIB) \
     $(SALLIB)
 
 

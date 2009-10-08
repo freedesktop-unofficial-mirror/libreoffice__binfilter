@@ -345,11 +345,6 @@ sal_Bool SvXMLNamespaceMap::AddAtIndex( sal_uInt16 nIdx, const sal_Char *pPrefix
     return AddAtIndex( nIdx, sPrefix, sName, nKey );
 }
 
-OUString SvXMLNamespaceMap::GetAttrNameByIndex( sal_uInt16 nIdx ) const
-{
-    return GetAttrNameByKey( nIdx );
-}
-
 OUString SvXMLNamespaceMap::GetQNameByIndex( sal_uInt16 nIdx,
                                            const OUString& rLocalName ) const
 {

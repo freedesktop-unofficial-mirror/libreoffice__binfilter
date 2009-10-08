@@ -29,8 +29,8 @@
  ************************************************************************/
 
 #include <tools/urlobj.hxx>
-#include <bf_svtools/restrictedpaths.hxx>
 #include <algorithm>
+#include <vector>
 #include <osl/process.h>
 #include <tools/urlobj.hxx>
 #include <unotools/localfilehelper.hxx>
@@ -38,60 +38,6 @@
 
 namespace binfilter
 {
-    namespace
-    {
-        // ----------------------------------------------------------------
-        /** retrieves the value of an environment variable
-            @return <TRUE/> if and only if the retrieved string value is not empty
-        */
-        bool lcl_getEnvironmentValue( const sal_Char* _pAsciiEnvName, ::rtl::OUString& _rValue )
-        {
-            _rValue = ::rtl::OUString();
-            ::rtl::OUString sEnvName = ::rtl::OUString::createFromAscii( _pAsciiEnvName );
-            osl_getEnvironment( sEnvName.pData, &_rValue.pData );
-            return _rValue.getLength() != 0;
-        }
-
-        //-----------------------------------------------------------------
-        void lcl_convertStringListToUrls( const String& _rColonSeparatedList, ::std::vector< String >& _rTokens, bool _bFinalSlash )
-        {
-            const sal_Unicode s_cSeparator =
-    #if defined(WNT)
-                ';'
-    #else
-                ':'
-    #endif
-                ;
-            xub_StrLen nTokens = _rColonSeparatedList.GetTokenCount( s_cSeparator );
-            _rTokens.resize( 0 ); _rTokens.reserve( nTokens );
-            for ( xub_StrLen i=0; i<nTokens; ++i )
-            {
-                // the current token in the list
-                String sCurrentToken = _rColonSeparatedList.GetToken( i, s_cSeparator );
-                if ( !sCurrentToken.Len() )
-                    continue;
-
-                INetURLObject aCurrentURL;
-
-                String sURL;
-                if ( ::utl::LocalFileHelper::ConvertPhysicalNameToURL( sCurrentToken, sURL ) )
-                    aCurrentURL = INetURLObject( sURL );
-                else
-                {
-                    // smart URL parsing, assuming FILE protocol
-                    aCurrentURL = INetURLObject( sCurrentToken, INET_PROT_FILE );
-                }
-
-                if ( _bFinalSlash )
-                    aCurrentURL.setFinalSlash( );
-                else
-                    aCurrentURL.removeFinalSlash( );
-                _rTokens.push_back( aCurrentURL.GetMainURL( INetURLObject::NO_DECODE ) );
-            }
-        }
-
-    }
-
     //=====================================================================
     //= CheckURLAllowed
     //=====================================================================
@@ -164,36 +110,4 @@ namespace binfilter
             }
         }
     };
-
-    //=====================================================================
-    //= RestrictedPaths
-    //=====================================================================
-    //---------------------------------------------------------------------
-    RestrictedPaths::RestrictedPaths()
-        :m_bFilterIsEnabled( true )
-    {
-        ::rtl::OUString sRestrictedPathList;
-        if ( lcl_getEnvironmentValue( "RestrictedPath", sRestrictedPathList ) )
-            // append a final slash. This ensures that when we later on check
-            // for unrestricted paths, we don't allow paths like "/home/user35" just because
-            // "/home/user3" is allowed - with the final slash, we make it "/home/user3/".
-            lcl_convertStringListToUrls( sRestrictedPathList, m_aUnrestrictedURLs, true );
-    }
-
-    RestrictedPaths::~RestrictedPaths() {}
-
-    // --------------------------------------------------------------------
-    bool RestrictedPaths::isUrlAllowed( const String& _rURL ) const
-    {
-        if ( m_aUnrestrictedURLs.empty() || !m_bFilterIsEnabled )
-            return true;
-
-        ::std::vector< String >::const_iterator aApprovedURL = ::std::find_if(
-            m_aUnrestrictedURLs.begin(),
-            m_aUnrestrictedURLs.end(),
-            CheckURLAllowed( _rURL, true )
-        );
-
-        return ( aApprovedURL != m_aUnrestrictedURLs.end() );
-    }
 }

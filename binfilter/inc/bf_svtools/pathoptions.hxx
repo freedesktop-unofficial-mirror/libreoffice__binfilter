@@ -108,34 +108,8 @@ public:
     const String&   GetUIConfigPath() const;
     const String&   GetFingerprintPath() const;
 
-    BOOL            IsPathReadonly(Pathes ePath)const;
-    const String&   GetPath(Pathes ePath) const;
-
     // set the pathes
-    void            SetAddinPath( const String& rPath );
-    void            SetAutoCorrectPath( const String& rPath );
-    void            SetAutoTextPath( const String& rPath );
-    void            SetBackupPath( const String& rPath );
     void            SetBasicPath( const String& rPath );
-    void            SetBitmapPath( const String& rPath );
-    void            SetConfigPath( const String& rPath );
-    void            SetDictionaryPath( const String& rPath );
-    void            SetFavoritesPath( const String& rPath );
-    void            SetFilterPath( const String& rPath );
-    void            SetGalleryPath( const String& rPath );
-    void            SetGraphicPath( const String& rPath );
-    void            SetHelpPath( const String& rPath );
-    void            SetLinguisticPath( const String& rPath );
-    void            SetModulePath( const String& rPath );
-    void            SetPalettePath( const String& rPath );
-    void            SetPluginPath( const String& rPath );
-    void            SetStoragePath( const String& rPath );
-    void            SetTempPath( const String& rPath );
-    void            SetTemplatePath( const String& rPath );
-    void            SetUserConfigPath( const String& rPath );
-    void            SetUserDictionaryPath( const String& rPath );
-    void            SetWorkPath( const String& rPath );
-    void            SetPath( SvtPathOptions::Pathes ePath, const String& rNewPath );
 
     String          SubstituteVariable( const String& rVar );
     String          UseVariable( const String& rVar );

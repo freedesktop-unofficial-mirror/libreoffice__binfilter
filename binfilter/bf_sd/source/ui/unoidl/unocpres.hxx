@@ -53,7 +53,7 @@
 #endif
 
 #include <cppuhelper/implbase5.hxx>
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////////

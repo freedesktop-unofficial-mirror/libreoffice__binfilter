@@ -60,11 +60,6 @@ namespace binfilter {
 //  types, enums, ...
 //_________________________________________________________________________________________________________________
 
-/*-************************************************************************************************************//**
-    @descr          The method GetList() returns a list of property values.
-                    Use follow defines to seperate values by names.
-*//*-*************************************************************************************************************/
-#define CMDOPTIONS_PROPERTYNAME_URL                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "CommandURL" ))
 
 //_________________________________________________________________________________________________________________
 //  forward declarations
@@ -135,83 +130,6 @@ class  SvtCommandOptions: public Options
         //---------------------------------------------------------------------------------------------------------
         //  interface
         //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      clear complete sepcified list
-            @descr      Call this methods to clear the whole list.
-                        To fill it again use AppendItem().
-
-            @seealso    -
-
-            @param      "eMenu" select right menu to clear.
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void Clear( CmdOption eOption );
-
-        /*-****************************************************************************************************//**
-            @short      Lookup if a command URL is inside a given list
-            @descr      Lookup if a command URL is inside a given lst
-
-            @seealso    -
-
-            @param      "eOption" select right command list
-            @param      "aCommandURL" a command URL that is used for the look up
-            @return     "sal_True" if the command is inside the list otherwise "sal_False"
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        sal_Bool Lookup( CmdOption eOption, const ::rtl::OUString& aCommandURL ) const;
-
-        /*-****************************************************************************************************//**
-            @short      return complete specified list
-            @descr      Call it to get all entries of an dynamic menu.
-                        We return a list of all nodes with his names and properties.
-
-            @seealso    -
-
-            @param      "eOption" select the list to retrieve.
-            @return     A list of command strings is returned.
-
-            @onerror    We return an empty list.
-        *//*-*****************************************************************************************************/
-
-        ::com::sun::star::uno::Sequence< ::rtl::OUString > GetList( CmdOption eOption ) const;
-
-        /*-****************************************************************************************************//**
-            @short      adds a new command to specified options list
-            @descr      You can add a command to specified options list!
-
-            @seealso    method Clear()
-
-            @param      "eOption"           specifies the command list
-            @param      "sURL"              URL for dispatch
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void AddCommand( CmdOption eOption, const ::rtl::OUString& sURL );
-
-        /*-****************************************************************************************************//**
-            @short      register an office frame, which must update its dispatches if
-                        the underlying configuration was changed.
-
-            @descr      To avoid using of "dead" frame objects or implementing
-                        deregistration mechanism too, we use weak references to
-                        the given frames.
-
-            @param      "xFrame"            points to the frame, which wish to be
-                                            notified, if configuration was changed.
-            @return     -
-
-            @onerror    -
-        *//*-*****************************************************************************************************/
-
-        void EstablisFrameCallback(const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XFrame >& xFrame);
 
     //-------------------------------------------------------------------------------------------------------------
     //  private methods

@@ -104,7 +104,7 @@
 
 #include <bf_svx/unoipset.hxx>
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 class List;
 namespace binfilter {
 

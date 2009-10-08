@@ -47,7 +47,6 @@ class SvtHelpOptions;
 
 namespace binfilter {
 
-class DdeService;
 class SvUShorts;
 class SfxItemPool;
 class SfxCancelManager;
@@ -67,7 +66,6 @@ struct SfxPluginObjectFactoryPtr;
 class ISfxTemplateCommon;
 class SfxFilterMatcher;
 class SfxStatusDispatcher;
-class SfxDdeTriggerTopic_Impl;
 class SfxMiscCfg;
 class SfxDocumentTemplates;
 class SfxFrameArr_Impl;
@@ -83,12 +81,6 @@ class SfxAppData_Impl
 {
 public:
     IndexBitSet                         aIndexBitSet;           // for counting noname documents
-
-    // DDE stuff
-    DdeService*                         pDdeService;
-    SfxDdeDocTopics_Impl*               pDocTopics;
-    SfxDdeTriggerTopic_Impl*            pTriggerTopic;
-    DdeService*                         pDdeService2;
 
     // single instance classes
     SfxFrameObjectFactoryPtr*           pSfxFrameObjectFactoryPtr;
@@ -121,8 +113,6 @@ public:
 
                                         SfxAppData_Impl( SfxApplication* );
                                         ~SfxAppData_Impl();
-
-    void                                DeInitDDE();
 };
 
 }//end of namespace binfilter

@@ -410,15 +410,41 @@ SfxStyleSheet* SdPage::GetTextStyleSheetForObject( SdrObject* pObj ) const
     return FmFormPage::GetTextStyleSheetForObject( pObj );
 }
 
+SfxItemSet* SdPage::getOrCreateItems()
+{
+     if( mpItems == NULL )
+        mpItems = new SfxItemSet( pModel->GetItemPool(), SDRATTR_XMLATTRIBUTES, SDRATTR_XMLATTRIBUTES );
+
+     return mpItems;
+}
+
 sal_Bool SdPage::setAlienAttributes( const ::com::sun::star::uno::Any& rAttributes )
 {
-    maAlienAttributes = rAttributes;
+    SfxItemSet* pSet = getOrCreateItems();
+
+    SvXMLAttrContainerItem aAlienAttributes( SDRATTR_XMLATTRIBUTES );
+    if( aAlienAttributes.PutValue( rAttributes, 0 ) )
+    {
+        pSet->Put( aAlienAttributes );
+        return sal_True;
+    }
+
     return sal_False;
 }
 
 void SdPage::getAlienAttributes( ::com::sun::star::uno::Any& rAttributes )
 {
-    rAttributes = maAlienAttributes;
+    const SfxPoolItem* pItem;
+
+    if( (mpItems == NULL) || ( SFX_ITEM_SET != mpItems->GetItemState( SDRATTR_XMLATTRIBUTES, sal_False, &pItem ) ) )
+    {
+        SvXMLAttrContainerItem aAlienAttributes;
+        aAlienAttributes.QueryValue( rAttributes, 0 );
+    }
+    else
+    {
+        ((SvXMLAttrContainerItem*)pItem)->QueryValue( rAttributes, 0 );
+    }
 }
 
 

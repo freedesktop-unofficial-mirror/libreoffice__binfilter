@@ -87,7 +87,7 @@ const ::com::sun::star::uno::Sequence< sal_Int8 > & SdUnoGraphicStyle::getUnoTun
     return *pSeq;
 }
 
-SdUnoGraphicStyle* SdUnoGraphicStyle::getImplementation( uno::Reference< uno::XInterface > xInt ) throw()
+SdUnoGraphicStyle* SdUnoGraphicStyle::getImplementation( const uno::Reference< uno::XInterface >& xInt )
 {
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XUnoTunnel > xUT( xInt, ::com::sun::star::uno::UNO_QUERY );
     if( xUT.is() )

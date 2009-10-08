@@ -326,7 +326,6 @@ void SchXMLChartContext::EndElement()
     if( mbHasOwnTable )
     {
         // apply data read in table sub-element to chart
-//          SchXMLTableHelper::applyTable( maTable, maSeriesAddresses, msCategoriesAddress, xDoc );
           SchXMLTableHelper::applyTableSimple( maTable, xDoc );
     }
     else
