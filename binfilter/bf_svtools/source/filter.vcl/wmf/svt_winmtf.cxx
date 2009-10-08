@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_winmtf.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.4.30.2 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -317,7 +317,7 @@ WinMtfFontStyle::WinMtfFontStyle( LOGFONTW& rFont )
 // ------------------------------------------------------------------------
 
 #ifdef WIN_MTF_ASSERT
-const void WinMtfAssertHandler( const sal_Char* pAction, sal_uInt32 nFlags )
+void WinMtfAssertHandler( const sal_Char* pAction, sal_uInt32 nFlags )
 {
     static sal_Bool     bOnlyOnce;
     static sal_Int32    nAssertCount;
@@ -580,7 +580,7 @@ Polygon& WinMtfOutput::ImplMap( Polygon& rPolygon )
 PolyPolygon& WinMtfOutput::ImplMap( PolyPolygon& rPolyPolygon )
 {
     UINT16 nPolys = rPolyPolygon.Count();
-    for ( UINT16 i = 0; i < nPolys; ImplMap( rPolyPolygon[ i++ ] ) );
+    for ( UINT16 i = 0; i < nPolys; ImplMap( rPolyPolygon[ i++ ] ) ) ;
     return rPolyPolygon;
 }
 

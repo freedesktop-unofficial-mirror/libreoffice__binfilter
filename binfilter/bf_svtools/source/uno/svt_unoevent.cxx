@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_unoevent.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.4.30.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -530,7 +530,7 @@ void SvDetachedEventDescriptor::getByName(
         rMacro = (*aMacros[nIndex]);
 }
 
-const sal_Bool SvDetachedEventDescriptor::hasByName(
+sal_Bool SvDetachedEventDescriptor::hasByName(
     const sal_uInt16 nEvent )       /// item ID of event
         throw(IllegalArgumentException)
 {

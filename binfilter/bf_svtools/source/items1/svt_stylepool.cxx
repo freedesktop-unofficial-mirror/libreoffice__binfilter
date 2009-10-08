@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: svt_stylepool.cxx,v $
- * $Revision: 1.4 $
+ * $Revision: 1.4.30.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,7 +59,7 @@ namespace binfilter
         Node( const SfxPoolItem& rItem, Node* pParent ) : // child node Ctor
             pItem( rItem.Clone() ), pUpper( pParent ){}
         ~Node();
-        const bool hasItemSet() const { return 0 < aItemSet.size(); }
+        bool hasItemSet() const { return 0 < aItemSet.size(); }
         const StylePool::SfxItemSet_Pointer_t getItemSet() const { return aItemSet[aItemSet.size()-1]; }
         void setItemSet( const SfxItemSet& rSet ){ aItemSet.push_back( StylePool::SfxItemSet_Pointer_t( rSet.Clone() ) ); }
         Node* findChildNode( const SfxPoolItem& rItem );

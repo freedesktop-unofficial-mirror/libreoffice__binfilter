@@ -7,7 +7,7 @@
  * OpenOffice.org - a multi-platform office productivity suite
  *
  * $RCSfile: iface.hxx,v $
- * $Revision: 1.6 $
+ * $Revision: 1.6.6.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,7 +53,7 @@
 #include "bf_so3/so3dllapi.h"
 #endif
 
-struct ::IUnknown;
+struct IUnknown;
 
 namespace binfilter {
 
