@@ -65,7 +65,7 @@
 #include <bf_so3/ipenv.hxx>
 #include <bf_so3/protocol.hxx>
 #include "bf_so3/plugin.hxx"
-#include "bf_so3/applet.hxx"
+// #include "bf_so3/applet.hxx"
 #include "bf_so3/soerr.hxx"
 #include <comphelper/classids.hxx>
 #include "insdlg.hxx"
@@ -198,7 +198,7 @@ BOOL SvFactory::Init()
         pSoApp->aInfoClassMgr.SV_CLASS_REGISTER( SvEmbeddedInfoObject );
         pSoApp->aInfoClassMgr.SV_CLASS_REGISTER( SvInfoObject );
         SvPlugInObject::ClassFactory();
-        SvAppletObject::ClassFactory();
+        // SvAppletObject::ClassFactory();
         SvOutPlaceObject::ClassFactory();
     }
 
