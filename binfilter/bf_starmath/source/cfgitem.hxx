@@ -116,6 +116,8 @@ public:
         {
             return ConfigItem::ReplaceSetProperties( rNode, rValues );
         }
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Commit();
 };
 
 

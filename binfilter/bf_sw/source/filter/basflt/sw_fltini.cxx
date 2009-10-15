@@ -1127,4 +1127,7 @@ Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
     return aColor;
 }
 
+    void SwFilterOptions::Commit() {}
+    void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 }

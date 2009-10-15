@@ -134,5 +134,6 @@ LanguageType SvtSystemLanguageOptions::GetWin16SystemLanguage()
     return MsLangId::convertIsoStringToLanguage( m_sWin16SystemLocale );
 }
 
+    void SvtSystemLanguageOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
 }

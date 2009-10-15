@@ -46,6 +46,8 @@ public:
 
     void                    Load();
     const SwDBData&         GetAddressSource();
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 
 }

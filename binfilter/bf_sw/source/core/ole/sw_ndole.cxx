@@ -100,6 +100,9 @@ public:
 
     SvPtrarr::Count;
 
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+
     void Insert( SwOLEObj& rObj );
     void Remove( SwOLEObj& rObj );
 
@@ -110,6 +113,9 @@ public:
             SvPtrarr::Remove( nPos );
     }
 };
+
+void SwOLELRUCache::Commit() {}
+void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
 SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 

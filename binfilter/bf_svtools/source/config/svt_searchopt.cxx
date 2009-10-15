@@ -92,6 +92,7 @@ public:
 
     // ConfigItem
     virtual void    Commit();
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 
     BOOL            GetFlag( USHORT nOffset ) const;
     void            SetFlag( USHORT nOffset, BOOL bVal );
@@ -121,6 +122,7 @@ void SvtSearchOptions_Impl::Commit()
         Save();
 }
 
+    void SvtSearchOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
 BOOL SvtSearchOptions_Impl::GetFlag( USHORT nOffset ) const
 {

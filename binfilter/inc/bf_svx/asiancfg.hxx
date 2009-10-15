@@ -56,6 +56,9 @@ public:
     SvxAsianConfig(sal_Bool bEnableNotify = sal_True);
     virtual ~SvxAsianConfig();
 
+void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+void Commit();
+
     void            Load();
 
     sal_Bool    IsKerningWesternTextOnly() const;
