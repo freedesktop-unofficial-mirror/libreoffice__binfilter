@@ -104,7 +104,7 @@
 #endif
 #ifdef CONV_STAR_FONTS
 #ifndef _VCL_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 #endif
 #include "bf_so3/staticbaseurl.hxx"

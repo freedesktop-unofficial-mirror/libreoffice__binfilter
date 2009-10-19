@@ -50,7 +50,7 @@
 #include <tools/poly.hxx>
 #endif
 #ifndef _VCL_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 
 #ifndef _DOCARY_HXX
