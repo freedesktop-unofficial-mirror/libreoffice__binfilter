@@ -112,7 +112,7 @@ public:
 //---------------------------------------------------------------------------------------------------------
 
     virtual void Commit();
-    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
 
 //-------------------------------------------------------------------------------------------------------------
 //  private methods
@@ -236,7 +236,7 @@ void SvtOptions3D_Impl::Commit()
     PutProperties( aSeqNames, aSeqValues );
 }
 
-    void SvtOptions3D_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtOptions3D_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 //*****************************************************************************************************************
 //     private method

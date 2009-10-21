@@ -103,7 +103,7 @@ class SvtAddXMLToStorageOptions_Impl : public ConfigItem
         //---------------------------------------------------------------------------------------------------------
         //  overloaded methods of baseclass
         //---------------------------------------------------------------------------------------------------------
-    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
     void Commit();
 
         //---------------------------------------------------------------------------------------------------------
@@ -206,7 +206,7 @@ SvtAddXMLToStorageOptions_Impl::SvtAddXMLToStorageOptions_Impl()
             }
 }
 
-    void SvtAddXMLToStorageOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtAddXMLToStorageOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
     void SvtAddXMLToStorageOptions_Impl::Commit() {}
 
 

@@ -131,11 +131,11 @@ public:
     String          m_aWorkPath;
 
                     SvtDefaultOptions_Impl();
-    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
     void Commit();
 };
 
-    void SvtDefaultOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtDefaultOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
     void SvtDefaultOptions_Impl::Commit() {}
 
 // global ----------------------------------------------------------------

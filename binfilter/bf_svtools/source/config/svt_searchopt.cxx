@@ -122,7 +122,7 @@ void SvtSearchOptions_Impl::Commit()
         Save();
 }
 
-    void SvtSearchOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtSearchOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 BOOL SvtSearchOptions_Impl::GetFlag( USHORT nOffset ) const
 {

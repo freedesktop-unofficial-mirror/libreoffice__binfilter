@@ -108,7 +108,7 @@ public:
 //---------------------------------------------------------------------------------------------------------
 
     virtual void    Commit();
-    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
 
 //---------------------------------------------------------------------------------------------------------
 //  public interface
@@ -252,7 +252,7 @@ void SvtCacheOptions_Impl::Commit()
     PutProperties( aSeqNames, aSeqValues );
 }
 
-    void SvtCacheOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtCacheOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 //*****************************************************************************************************************
 //  public method
