@@ -37,9 +37,6 @@
 #include <tools/list.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
-#ifdef SOLAR_JAVA
-#include <sj2/sjapplet.hxx>
-#endif
 #include "insdlg.hxx"
 #include <svuidlg.hrc>
 #include <bf_so3/ipenv.hxx>
@@ -100,9 +97,6 @@ struct SvAppletData_Impl
 //============== SvAppletEnvironment ======================================
 //=========================================================================
 class SvAppletEnvironment : public SvInPlaceEnvironment
-#ifdef SOLAR_JAVA
-    , public SjApplet2
-#endif
 {
 protected:
     virtual void    RectsChangedPixel( const Rectangle & rObjRect,
@@ -196,9 +190,6 @@ SvAppletEnvironment::~SvAppletEnvironment()
     Die angelegten Fenster werden zerst"ort.
 */
 {
-#ifdef SOLAR_JAVA
-    appletClose(); // Fenster Reparent
-#endif
     Window * pAppletWin = GetEditWin();
     // statt DeleteEditWin() auf NULL setzen und durch den Manager
     // zerst"oren
@@ -226,9 +217,6 @@ void SvAppletEnvironment::RectsChangedPixel
 */
 {
     SvInPlaceEnvironment::RectsChangedPixel( rObjRect, rClip );
-#ifdef SOLAR_JAVA
-    setSizePixel( rObjRect.GetSize() );
-#endif
 }
 
 //=========================================================================

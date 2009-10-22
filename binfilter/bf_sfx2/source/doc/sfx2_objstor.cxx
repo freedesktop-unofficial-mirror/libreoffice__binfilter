@@ -138,7 +138,6 @@
 #include <unotools/tempfile.hxx>
 #include <ucbhelper/content.hxx>
 #include <sot/storinfo.hxx>
-#include <shell/systemshell.hxx>
 
 #include "objsh.hxx"
 #include "request.hxx"
