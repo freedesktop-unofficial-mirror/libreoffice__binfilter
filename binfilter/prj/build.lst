@@ -1,4 +1,4 @@
-bf      binfilter : vcl xmlscript connectivity framework offuh NULL
+bf      binfilter : vcl xmlscript connectivity framework goodies offuh NULL
 bf	binfilter											usr1	-	all	bf_mkout NULL
 bf	binfilter\bf_svtools\source\inc						get		-	all	bf_svt_sinc NULL
 bf  binfilter\bf_svtools\source\config					nmake	-	all bf_svt_config NULL
