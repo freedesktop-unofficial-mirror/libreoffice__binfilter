@@ -41,7 +41,7 @@ TARGET=bf_util
 .INCLUDE :  	settings.mk
 
 # --- Files -------------------------------------
-
+.IF "$(L10N_framework)"==""
 .IF "$(GUI)"=="UNX"
 LOCALLIBDIR=$(LB)
 .ELSE          # "$(GUI)"=="UNX"
@@ -61,11 +61,12 @@ RDBNAMES=		\
     bf_wrapper
 
 RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(DLLPOSTFIX)$(DLLPOST))
+.ENDIF
 
 # --- Targets ----------------------------------
 
 .INCLUDE : target.mk
-
+.IF "$(L10N_framework)"==""
 ALLTAR : $(BIN)$/legacy_binfilters.rdb
 
 .IF "$(OS)" == "WNT"
@@ -77,3 +78,8 @@ my_OOO_BIN_PATH = OOO_BASE_DIR
 $(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
     @@-$(RM) $@
     cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop=vnd.sun.star.expand:$(EMQ)$$$(my_OOO_BIN_PATH)/program/ $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
+
+.ELSE
+pseudo:
+
+.ENDIF
