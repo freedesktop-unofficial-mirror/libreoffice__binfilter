@@ -136,7 +136,7 @@ public:
 //---------------------------------------------------------------------------------------------------------
 
     virtual void Commit();
-    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
 
 //---------------------------------------------------------------------------------------------------------
 //  public interface
@@ -358,7 +358,7 @@ void SvtPrintOptions_Impl::Commit()
     PutProperties( aSeqNames, aSeqValues );
 }
 
-    void SvtPrintOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SvtPrintOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 // -----------------------------------------------------------------------------
 
