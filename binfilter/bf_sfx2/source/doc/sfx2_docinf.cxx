@@ -218,7 +218,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/                     aString = String();
 /*N*/             }
 /*N*/
-/*N*/             delete pString;
+/*N*/             delete[] pString;
 /*N*/         }
 /*N*/         else
 /*N*/         {
