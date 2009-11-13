@@ -469,11 +469,11 @@ static const char pStorageName[] = "Configurations";
 /*N*/   pBuf[nLen] = 0;
 /*N*/   if( strcmp( pBuf, pHeader ) )
 /*N*/   {
-/*N*/       delete pBuf;
+/*N*/       delete[] pBuf;
 /*?*/       return SfxConfigManager::ERR_FILETYPE;
 /*N*/   }
 /*N*/
-/*N*/   delete pBuf;
+/*N*/   delete[] pBuf;
 /*N*/
 /*N*/   // compare version
 /*N*/   char c;
