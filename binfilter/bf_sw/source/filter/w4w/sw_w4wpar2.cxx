@@ -1952,7 +1952,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                 // falls noetig das Dummy-Array freigeben
                 if(    pActTabDefs
                     && ( pActTabDefs != pTabDefs ) )
-                    delete pActTabDefs;
+                    delete[] pActTabDefs;
             }
             // Durchgang 2: Tabellenspaltendefinitionen anpassen
             else
@@ -2039,7 +2039,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                         pCurPaM->GetCntntNode(), 0 );
                 }
             }
-            delete pActTabDefs;
+            delete[] pActTabDefs;
         }
     }
 }
