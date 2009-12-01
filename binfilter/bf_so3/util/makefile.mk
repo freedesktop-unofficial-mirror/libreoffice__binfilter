@@ -37,7 +37,7 @@ PRJNAME=binfilter
 TARGET=bf_so
 
 USE_LDUMP2=TRUE
-LDUMP2=LDUMP3
+#LDUMP2=LDUMP3
 
 # --- Settings -----------------------------------------------------
 
