@@ -152,7 +152,6 @@ public:
 /* deprecated */ sal_uInt16 GetIndexByPrefix( const ::rtl::OUString& rPrefix ) const;
 /* deprecated */ const ::rtl::OUString& GetPrefixByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ const ::rtl::OUString& GetNameByIndex( sal_uInt16 nIdx ) const;
-/* deprecated */ ::rtl::OUString GetAttrNameByIndex( sal_uInt16 nIdx ) const;
 /* deprecated */ ::rtl::OUString GetQNameByIndex( sal_uInt16 nIdx,
                             const ::rtl::OUString& rLocalName ) const;
 /* deprecated */ sal_uInt16 GetKeyByAttrName( const ::rtl::OUString& rAttrName,

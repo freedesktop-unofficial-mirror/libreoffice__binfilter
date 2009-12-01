@@ -204,9 +204,6 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   if( pImp->pDialogLibContainer )
 /*N*/       pImp->pDialogLibContainer->release();
 /*N*/
-/*N*/   if ( pSfxApp->GetDdeService() )
-/*N*/       pSfxApp->RemoveDdeTopic( this );
-/*N*/
 /*N*/   delete pImp->pDocInfo;
 /*N*/   if ( pImp->xModel.is() )
 /*N*/       pImp->xModel = ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > ();

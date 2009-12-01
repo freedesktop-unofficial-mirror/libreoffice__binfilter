@@ -60,38 +60,29 @@ class DdeLink;
 class DdeRequest;
 class DdeWarmLink;
 class DdeHotLink;
-class DdeItem;
-class DdeTopic;
-class DdeService;
 class ConvList;
 struct DdeDataImp;
 struct DdeImp;
-class DdeItemImp;
 
-#ifndef _SVDDE_NOLISTS
 DECLARE_LIST( DdeConnections, DdeConnection* )
-DECLARE_LIST( DdeServices, DdeService* )
-DECLARE_LIST( DdeTopics, DdeTopic* )
-DECLARE_LIST( DdeItems, DdeItem* )
-#else
-typedef List DdeConnections;
-typedef List DdeServices;
-typedef List DdeTopics;
-typedef List DdeItems;
-#endif
-
-//#if 0 // _SOLAR__PRIVATE
 DECLARE_LIST( DdeTransactions, DdeTransaction* )
 DECLARE_LIST( DdeFormats, long )
-//#else
-//typedef List DdeTransactions;
-//typedef List DdeFormats;
-//#endif
 
 #ifndef STRING_LIST
 #define STRING_LIST
 DECLARE_LIST( StringList, String * )
 #endif
+
+#ifdef WNT
+class DdeService;
+class DdeItem;
+class DdeItemImp;
+class DdeTopic;
+DECLARE_LIST( DdeServices, DdeService* )
+DECLARE_LIST( DdeTopics, DdeTopic* )
+DECLARE_LIST( DdeItems, DdeItem* )
+#endif
+
 
 // -----------
 // - DdeData -
@@ -100,7 +91,9 @@ DECLARE_LIST( StringList, String * )
 class  DdeData
 {
     friend class    DdeInternal;
+#ifdef WNT
     friend class    DdeService;
+#endif
     friend class    DdeConnection;
     friend class    DdeTransaction;
     DdeDataImp*     pImp;
@@ -110,8 +103,8 @@ class  DdeData
 
 public:
                     DdeData();
-                    DdeData( const void*, long, ULONG = FORMAT_STRING );
 #ifdef WNT
+                    DdeData( const void*, long, ULONG = FORMAT_STRING );
                     DdeData( const String& );
 #endif
                     DdeData( const DdeData& );
@@ -126,42 +119,6 @@ public:
 
     static ULONG GetExternalFormat( ULONG nFmt );
     static ULONG GetInternalFormat( ULONG nFmt );
-};
-// ------------------
-// - DdeServiceList -
-// ------------------
-
-class DdeServiceList
-{
-    StringList      aServices;
-
-public:
-                    DdeServiceList( const String* = NULL );
-                    ~DdeServiceList();
-
-    StringList&     GetServices() { return aServices; }
-
-private:
-                            DdeServiceList( const DdeServiceList& );
-    const DdeServiceList&   operator= ( const DdeServiceList& );
-};
-
-// ----------------
-// - DdeTopicList -
-// ----------------
-
-class DdeTopicList
-{
-    StringList      aTopics;
-
-//#if 0 // _SOLAR__PRIVATE
-                    DECL_LINK( Data, DdeData* );
-//#endif
-public:
-                    DdeTopicList( const String& );
-                    ~DdeTopicList();
-
-    StringList&     GetTopics() { return aTopics; }
 };
 
 // ------------------
@@ -318,6 +275,7 @@ private:
     const DdeConnection&    operator= ( const DdeConnection& );
 };
 
+#ifdef WNT
 // -----------
 // - DdeItem -
 // -----------
@@ -355,11 +313,8 @@ class  DdeGetPutItem : public DdeItem
 {
 public:
                     DdeGetPutItem( const String& rStr );
-#ifdef WNT
                     DdeGetPutItem( const sal_Unicode* p );
                     DdeGetPutItem( const DdeItem& rItem );
-#endif
-
     virtual DdeData* Get( ULONG );
     virtual BOOL    Put( const DdeData* );
     virtual void    AdviseLoop( BOOL );     // AdviseLoop starten/stoppen
@@ -405,9 +360,7 @@ private:
 public:
                     DdeTopic( const String& );
     virtual        ~DdeTopic();
-#ifdef WNT
     const String&   GetName() const;
-#endif
     long            GetConvId();
 
     void            SetConnectHdl( const Link& rLink ) { aConnectLink = rLink; }
@@ -422,10 +375,10 @@ public:
     const Link&     GetExecuteHdl() const { return aExecLink; }
 
     void            NotifyClient( const String& );
-#ifdef WNT
+
     BOOL            IsSystemTopic();
     DdeItem*        AddItem( const DdeItem& );  // werden kopiert !
-#endif
+
     const String&   GetCurItem() { return aItem;  }
     const DdeItems& GetItems()   { return aItems; }
 
@@ -471,7 +424,6 @@ public:
                     DdeService( const String& );
     virtual        ~DdeService();
 
-#ifdef WNT
     const String&   GetName() const;
     short           GetError()              { return nStatus; }
     static DdeServices& GetServices();
@@ -481,12 +433,12 @@ public:
     void            AddFormat( ULONG );
     void            RemoveFormat( ULONG );
     BOOL            HasFormat( ULONG );
-#endif
 
 private:
       //              DdeService( const DdeService& );
     //int             operator= ( const DdeService& );
 };
+#endif
 
 // ------------------
 // - DdeTransaction -

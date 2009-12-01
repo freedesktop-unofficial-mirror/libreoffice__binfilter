@@ -1156,15 +1156,6 @@ void WinMtfOutput::LineTo( const Point& rPoint, sal_Bool bRecordPath )
 
 //-----------------------------------------------------------------------------------
 
-void WinMtfOutput::DrawLine( const Point& rSource, const Point& rDest )
-{
-    UpdateClipRegion();
-    UpdateLineStyle();
-    mpGDIMetaFile->AddAction( new MetaLineAction( ImplMap( rSource), ImplMap( rDest ), maLineStyle.aLineInfo ) );
-}
-
-//-----------------------------------------------------------------------------------
-
 void WinMtfOutput::DrawRect( const Rectangle& rRect, BOOL bEdge )
 {
     UpdateClipRegion();

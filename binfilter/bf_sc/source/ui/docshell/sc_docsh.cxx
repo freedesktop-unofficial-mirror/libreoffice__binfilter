@@ -1160,10 +1160,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/
 /*N*/   delete pAutoStyleList;
 /*N*/
-/*N*/   SfxApplication *pSfxApp = SFX_APP();
-/*N*/   if ( pSfxApp->GetDdeService() )             // DDE vor Dokument loeschen
-/*N*/       pSfxApp->RemoveDdeTopic( this );
-/*N*/
 /*N*/   delete pDocFunc;
 /*N*/   delete pFontList;
 /*N*/

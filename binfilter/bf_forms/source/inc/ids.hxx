@@ -31,12 +31,10 @@
 #ifndef _FRM_IDS_HXX_
 #define _FRM_IDS_HXX_
 
-#ifndef _UNOTOOLS_ID_HELPER_HXX_
-#include <unotools/idhelper.hxx>
-#endif
+#include <bf_svtools/idhelper.hxx>
 namespace binfilter {
 
-DECLARE_IMPLEMENTATIONID_HELPER(frm, OImplementationIds)
+DECLARE_IMPLEMENTATIONID_HELPER_SMALL(frm, OImplementationIds)
 
 }//end of namespace binfilter
 #endif // _FRM_IDS_HXX_

@@ -57,14 +57,11 @@ SHL1STDLIBS= \
             $(CPPULIB) \
             $(CPPUHELPERLIB) \
             $(BFSVTOOLLIB) \
-            $(VOSLIB) \
             $(SALLIB) \
             $(COMPHELPERLIB) \
             $(UNOTOOLSLIB) \
             $(SOTLIB) \
-            $(VOSLIB) \
-            $(VCLLIB) \
-            $(XMLSCRIPTLIB)
+            $(VCLLIB)
 
 .IF "$(GUI)"=="WNT"
 SHL1STDLIBS+=   \

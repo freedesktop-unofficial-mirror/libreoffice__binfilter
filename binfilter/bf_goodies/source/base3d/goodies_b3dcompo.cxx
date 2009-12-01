@@ -67,7 +67,75 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-BASE3D_IMPL_BUCKET(B3dEdgeList, Bucket)
+SV_IMPL_VARARR(B3dEdgeListBucketMemArr, char*)
+B3dEdgeListBucket::B3dEdgeListBucket(UINT16 TheSize) {
+    InitializeSize(TheSize);
+}
+void B3dEdgeListBucket::InitializeSize(UINT16 TheSize) {
+    UINT16 nSiz;
+    for(nShift=0,nSiz=1;nSiz<sizeof(B3dEdgeList);nSiz<<=1,nShift++);
+    nBlockShift = TheSize - nShift;
+    nMask = (1L << nBlockShift)-1L;
+    nSlotSize = 1<<nShift;
+    nEntriesPerArray = (UINT16)((1L << TheSize) >> nShift);
+    Empty();
+}
+void B3dEdgeListBucket::operator=(const B3dEdgeListBucket& rObj) {
+    Erase();
+    B3dEdgeListBucket& rSrc = (B3dEdgeListBucket&)rObj;
+    for(UINT32 a=0;a<rSrc.Count();a++)
+        Append(rSrc[a]);
+}
+void B3dEdgeListBucket::Empty() {
+    for(UINT16 i=0;i<aMemArray.Count();i++)
+        /*#90353#*/ delete [] aMemArray[i];
+    if(aMemArray.Count())
+        aMemArray.Remove(0, aMemArray.Count());
+    nFreeMemArray = 0;
+    nActMemArray = -1;
+    Erase();
+}
+void B3dEdgeListBucket::Erase() {
+    nFreeEntry = nEntriesPerArray;
+    nCount = 0;
+    nActMemArray = -1;
+}
+B3dEdgeListBucket::~B3dEdgeListBucket() {
+    Empty();
+}
+BOOL B3dEdgeListBucket::ImplAppend(B3dEdgeList& rVec) {
+    *((B3dEdgeList*)(aMemArray[nActMemArray] + (nFreeEntry++ << nShift))) = rVec;
+    nCount++;
+    return TRUE;
+}
+BOOL B3dEdgeListBucket::ImplAppend() {
+    nFreeEntry++;
+    nCount++;
+    return TRUE;
+}
+BOOL B3dEdgeListBucket::ImplCareForSpace() {
+    /* neues array bestimmem */
+    if(nActMemArray + 1 < nFreeMemArray) {
+        /* ist scon allokiert, gehe auf naechstes */
+        nActMemArray++;
+    } else {
+        /* neues muss allokiert werden */
+        char* pNew = new char[nEntriesPerArray << nShift];
+        if(!pNew)
+            return FALSE;
+        aMemArray.Insert((const char*&) pNew, aMemArray.Count());
+        nActMemArray = nFreeMemArray++;
+    }
+    nFreeEntry = 0;
+    return TRUE;
+}
+B3dEdgeList& B3dEdgeListBucket::operator[] (UINT32 nPos) {
+    if(nPos >= nCount) {
+        DBG_ERROR("Access to Bucket out of range!");
+        return *((B3dEdgeList*)aMemArray[0]);
+    }
+    return *((B3dEdgeList*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));
+}
 
 /*************************************************************************
 |*
@@ -75,7 +143,75 @@ BASE3D_IMPL_BUCKET(B3dEdgeList, Bucket)
 |*
 \************************************************************************/
 
-BASE3D_IMPL_BUCKET(B3dEdgeEntry, Bucket)
+SV_IMPL_VARARR(B3dEdgeEntryBucketMemArr, char*)
+B3dEdgeEntryBucket::B3dEdgeEntryBucket(UINT16 TheSize) {
+    InitializeSize(TheSize);
+}
+void B3dEdgeEntryBucket::InitializeSize(UINT16 TheSize) {
+    UINT16 nSiz;
+    for(nShift=0,nSiz=1;nSiz<sizeof(B3dEdgeEntry);nSiz<<=1,nShift++);
+    nBlockShift = TheSize - nShift;
+    nMask = (1L << nBlockShift)-1L;
+    nSlotSize = 1<<nShift;
+    nEntriesPerArray = (UINT16)((1L << TheSize) >> nShift);
+    Empty();
+}
+void B3dEdgeEntryBucket::operator=(const B3dEdgeEntryBucket& rObj) {
+    Erase();
+    B3dEdgeEntryBucket& rSrc = (B3dEdgeEntryBucket&)rObj;
+    for(UINT32 a=0;a<rSrc.Count();a++)
+        Append(rSrc[a]);
+}
+void B3dEdgeEntryBucket::Empty() {
+    for(UINT16 i=0;i<aMemArray.Count();i++)
+        /*#90353#*/ delete [] aMemArray[i];
+    if(aMemArray.Count())
+        aMemArray.Remove(0, aMemArray.Count());
+    nFreeMemArray = 0;
+    nActMemArray = -1;
+    Erase();
+}
+void B3dEdgeEntryBucket::Erase() {
+    nFreeEntry = nEntriesPerArray;
+    nCount = 0;
+    nActMemArray = -1;
+}
+B3dEdgeEntryBucket::~B3dEdgeEntryBucket() {
+    Empty();
+}
+BOOL B3dEdgeEntryBucket::ImplAppend(B3dEdgeEntry& rVec) {
+    *((B3dEdgeEntry*)(aMemArray[nActMemArray] + (nFreeEntry++ << nShift))) = rVec;
+    nCount++;
+    return TRUE;
+}
+BOOL B3dEdgeEntryBucket::ImplAppend() {
+    nFreeEntry++;
+    nCount++;
+    return TRUE;
+}
+BOOL B3dEdgeEntryBucket::ImplCareForSpace() {
+    /* neues array bestimmem */
+    if(nActMemArray + 1 < nFreeMemArray) {
+        /* ist scon allokiert, gehe auf naechstes */
+        nActMemArray++;
+    } else {
+        /* neues muss allokiert werden */
+        char* pNew = new char[nEntriesPerArray << nShift];
+        if(!pNew)
+            return FALSE;
+        aMemArray.Insert((const char*&) pNew, aMemArray.Count());
+        nActMemArray = nFreeMemArray++;
+    }
+    nFreeEntry = 0;
+    return TRUE;
+}
+B3dEdgeEntry& B3dEdgeEntryBucket::operator[] (UINT32 nPos) {
+    if(nPos >= nCount) {
+        DBG_ERROR("Access to Bucket out of range!");
+        return *((B3dEdgeEntry*)aMemArray[0]);
+    }
+    return *((B3dEdgeEntry*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));
+}
 
 /*************************************************************************
 |*

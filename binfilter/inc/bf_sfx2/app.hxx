@@ -82,7 +82,6 @@ class Config;
 class INetURLObject;
 class SimpleResMgr;
 namespace binfilter {
-class DdeService;
 class SvPseudoObject;
 class SvStringsDtor;
 class SvLinkSource;
@@ -261,8 +260,6 @@ public:
 
     String&                     GetSaveAsTargetURLHack();
     SfxFilterMatcher&           GetFilterMatcher();
-    DdeService*                 GetDdeService();
-    void                        RemoveDdeTopic( SfxObjectShell* );
 
     SfxResourceManager&         GetResourceManager() const
                                 { return *pResMgr; }

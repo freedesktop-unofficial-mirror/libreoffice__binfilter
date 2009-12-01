@@ -876,18 +876,6 @@ USHORT lcl_FirstTab( const ScRangeList& rRanges )
     return 0;   // soll nicht sein
 }
 
-BOOL lcl_WholeSheet( const ScRangeList& rRanges )
-{
-    if ( rRanges.Count() == 1 )
-    {
-        ScRange* pRange = rRanges.GetObject(0);
-        if ( pRange && pRange->aStart.Col() == 0 && pRange->aEnd.Col() == MAXCOL &&
-                       pRange->aStart.Row() == 0 && pRange->aEnd.Row() == MAXROW )
-            return TRUE;
-    }
-    return FALSE;
-}
-
 //------------------------------------------------------------------------
 
 ScSubTotalFunc lcl_SummaryToSubTotal( sheet::GeneralFunction eSummary )
@@ -1271,23 +1259,6 @@ String lcl_GetInputString( ScDocShell* pDocSh, const ScAddress& rPosition, BOOL 
 }
 
 //------------------------------------------------------------------------
-
-// Default-ctor fuer SMART_REFLECTION Krempel
-ScCellRangesBase::ScCellRangesBase() :
-    pDocShell( NULL ),
-    aPropSet(lcl_GetCellsPropertyMap()),
-    bChartColAsHdr( FALSE ),
-    bChartRowAsHdr( FALSE ),
-    bCursorOnly( FALSE ),
-    pCurrentFlat( NULL ),
-    pCurrentDeep( NULL ),
-    pCurrentDataSet( NULL ),
-    pValueListener( NULL ),
-    bValueChangePosted( FALSE ),
-    pMarkData( NULL ),
-    aValueListeners( 0 )
-{
-}
 
 ScCellRangesBase::ScCellRangesBase(ScDocShell* pDocSh, const ScRange& rR) :
     pDocShell( pDocSh ),

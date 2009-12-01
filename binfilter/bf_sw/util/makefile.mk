@@ -103,7 +103,6 @@ SHL2STDLIBS+= \
     $(BFXMLOFFLIB) \
     $(BFBASICLIB) \
     $(BFGOODIESLIB) \
-    $(GOODIESLIB) \
     $(BFSVTOOLLIB) \
     $(BFSO3LIB) \
     $(TKLIB) \
@@ -115,7 +114,6 @@ SHL2STDLIBS+= \
     $(UCBHELPERLIB) \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
-    $(VOSLIB) \
     $(SALLIB) \
     $(ICUUCLIB)
 

@@ -82,7 +82,8 @@ SdPage::SdPage(SdDrawDocument& rNewDoc, StarBASIC* pBasic, BOOL bMasterPage) :
     ePageKind(PK_STANDARD),
     bScaleObjects(TRUE),
     bBackgroundFullSize( FALSE ),
-    nPaperBin(PAPERBIN_PRINTER_SETTINGS)
+    nPaperBin(PAPERBIN_PRINTER_SETTINGS),
+    mpItems(NULL)
 {
     aLayoutName  = String(SdResId(STR_LAYOUT_DEFAULT_NAME));
     aLayoutName.AppendAscii( RTL_CONSTASCII_STRINGPARAM( SD_LT_SEPARATOR ));
@@ -105,6 +106,8 @@ SdPage::SdPage(SdDrawDocument& rNewDoc, StarBASIC* pBasic, BOOL bMasterPage) :
 SdPage::~SdPage()
 {
     EndListenOutlineText();
+    if( mpItems )
+        delete mpItems;
 }
 
 SdrObject* SdPage::GetPresObj(PresObjKind eObjKind, USHORT nIndex)

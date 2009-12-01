@@ -48,7 +48,7 @@
 #include <bf_svtools/lstner.hxx>
 #endif
 
-#include <unotools/servicehelper.hxx>
+#include <comphelper/servicehelper.hxx>
 
 #include <cppuhelper/implbase4.hxx>
 

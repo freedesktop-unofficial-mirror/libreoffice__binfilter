@@ -67,7 +67,6 @@ SLOFILES = \
     $(SLO)$/svt_extendedsecurityoptions.obj \
     $(SLO)$/svt_sourceviewconfig.obj		\
     $(SLO)$/svt_compatibility.obj           \
-    $(SLO)$/svt_eventcfg.obj                \
     $(SLO)$/svt_optionsdlg.obj              \
     $(SLO)$/svt_itemholder1.obj \
     $(SLO)$/svt_options.obj \
@@ -78,7 +77,6 @@ SLOFILES = \
     $(SLO)$/svt_ctloptions.obj          \
     $(SLO)$/svt_cjkoptions.obj          \
     $(SLO)$/svt_colorcfg.obj            \
-    $(SLO)$/svt_extcolorcfg.obj            \
     $(SLO)$/svt_undoopt.obj                 \
     $(SLO)$/svt_useroptions.obj      \
     $(SLO)$/svt_syslocaleoptions.obj \
