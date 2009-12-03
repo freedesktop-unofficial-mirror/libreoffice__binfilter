@@ -2745,7 +2745,7 @@ void SwFlyFrmFmt::MakeFrms()
     @return true, if background color is transparent, but not "no fill"
     or the transparency of a existing background graphic is set.
 */
-/*M*/ const sal_Bool SwFlyFrmFmt::IsBackgroundTransparent() const
+/*M*/ sal_Bool SwFlyFrmFmt::IsBackgroundTransparent() const
 /*M*/ {
 /*M*/     sal_Bool bReturn = sal_False;
 /*M*/

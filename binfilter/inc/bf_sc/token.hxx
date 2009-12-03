@@ -100,7 +100,7 @@ public:
     virtual                     ~ScToken();
 
     inline  void                Delete()                { delete this; }
-    inline  const StackVar      GetType() const         { return eType; }
+    inline  StackVar        GetType() const         { return eType; }
     inline  OpCode              GetOpCode() const       { return eOp;   }
             BYTE                GetParamCount() const;
     inline  void                NewOpCode( OpCode e )   { eOp = e; }

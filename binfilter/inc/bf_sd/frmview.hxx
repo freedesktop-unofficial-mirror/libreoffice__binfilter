@@ -121,15 +121,15 @@ public:
 
     void SetRuler(const BOOL bRulerOn)
                  { bRuler = bRulerOn; }
-    const BOOL HasRuler() { return bRuler; }
+    BOOL HasRuler() const { return bRuler; }
 
     void SetNoColors(const BOOL bNoCol)
                  { bNoColors = bNoCol; }
-    const BOOL IsNoColors() { return bNoColors; }
+    BOOL IsNoColors() const { return bNoColors; }
 
     void SetNoAttribs(const BOOL bNoAttr)
                  { bNoAttribs = bNoAttr; }
-    const BOOL IsNoAttribs() { return bNoAttribs; }
+    BOOL IsNoAttribs() const { return bNoAttribs; }
 
     void SetVisArea(const Rectangle& rVisArea)
                  { aVisArea = rVisArea; }
@@ -137,42 +137,42 @@ public:
 
     void SetPageKind(PageKind eKind)
                  { ePageKind = eKind; }
-    const PageKind GetPageKind() { return ePageKind; }
+    PageKind GetPageKind() const { return ePageKind; }
 
     void SetSelectedPage(USHORT nPage)
                  { nSelectedPage = nPage; }
-    const USHORT GetSelectedPage() { return nSelectedPage; }
+    USHORT GetSelectedPage() const { return nSelectedPage; }
 
     void SetViewShEditMode(EditMode eMode, PageKind eKind);
     EditMode GetViewShEditMode(PageKind eKind);
 
     void SetLayerMode(BOOL bMode)
                  { bLayerMode = bMode; }
-    const BOOL IsLayerMode() { return bLayerMode; }
+    BOOL IsLayerMode() const { return bLayerMode; }
 
     void SetQuickEdit(BOOL bQEdit)
                  { bQuickEdit = bQEdit; }
-    const BOOL IsQuickEdit() { return bQuickEdit; }
+    BOOL IsQuickEdit() const { return bQuickEdit; }
 
     void        SetBigHandles( BOOL bOn = TRUE ) { bBigHandles = bOn; }
-    const BOOL  IsBigHandles() const { return bBigHandles; }
+    BOOL    IsBigHandles() const { return bBigHandles; }
 
     void        SetDoubleClickTextEdit( BOOL bOn = TRUE ) { bDoubleClickTextEdit = bOn; }
-    const BOOL  IsDoubleClickTextEdit() const { return bDoubleClickTextEdit; }
+    BOOL    IsDoubleClickTextEdit() const { return bDoubleClickTextEdit; }
 
     void        SetClickChangeRotation( BOOL bOn = TRUE ) { bClickChangeRotation = bOn; }
-    const BOOL  IsClickChangeRotation() const { return bClickChangeRotation; }
+    BOOL    IsClickChangeRotation() const { return bClickChangeRotation; }
 
     void SetDragWithCopy(BOOL bCopy)
                  { bDragWithCopy = bCopy; }
-    const BOOL IsDragWithCopy() { return bDragWithCopy; }
+    BOOL IsDragWithCopy() const { return bDragWithCopy; }
 
     void SetPresentationViewShellId(USHORT nId)
                  { nPresViewShellId = nId; }
-    const USHORT GetPresentationViewShellId() { return nPresViewShellId; }
+    USHORT GetPresentationViewShellId() const { return nPresViewShellId; }
 
     void SetSlotId(USHORT nId) { nSlotId = nId; }
-    const USHORT GetSlotId() { return nSlotId; }
+    USHORT GetSlotId() const { return nSlotId; }
 
     void SetSlidesPerRow(USHORT nSlides) { nSlidesPerRow = nSlides; }
     USHORT GetSlidesPerRow() const { return nSlidesPerRow; }

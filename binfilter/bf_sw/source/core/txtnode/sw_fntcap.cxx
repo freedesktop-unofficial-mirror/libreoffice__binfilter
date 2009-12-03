@@ -218,7 +218,7 @@ public:
         :   SwDoCapitals ( rInfo ), nTxtWidth( nWidth ),
             nBreak( STRING_LEN ), pExtraPos( pExtra )
         { }
-    const xub_StrLen GetBreak() const { return nBreak; }
+    xub_StrLen GetBreak() const { return nBreak; }
 };
 
 
