@@ -1177,7 +1177,7 @@ void SvOutPlaceObject::Draw
                 }
 
                 DeleteMetaFile( hMet );
-                delete pBuf;
+                delete[] pBuf;
             }
         }
 
@@ -1700,7 +1700,7 @@ void SvOutPlaceObject::DrawObject
                 }
 
                 DeleteMetaFile( hMet );
-                delete pBuf;
+                delete[] pBuf;
             }
         }
 
