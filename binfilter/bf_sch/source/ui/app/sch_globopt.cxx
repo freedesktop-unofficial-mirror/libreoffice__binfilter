@@ -63,6 +63,8 @@ namespace binfilter {
 /*N*/     {}
 /*N*/
 /*N*/     FieldUnit GetMeasureUnit();
+        void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+        void Commit();
 /*N*/ };
 
 /*N*/ FieldUnit CalcConfigItem::GetMeasureUnit()
@@ -87,6 +89,9 @@ namespace binfilter {
 /*N*/
 /*N*/     return eResult;
 /*N*/ }
+
+void CalcConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void CalcConfigItem::Commit() {}
 
 
 }  // anonymous namespace

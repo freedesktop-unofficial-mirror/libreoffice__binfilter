@@ -70,7 +70,7 @@ class SwFtnFrm: public SwLayoutFrm
 
     BOOL bBackMoveLocked;       //Absaetze in dieser Fussnote duerfen derzeit
                                 //nicht rueckwaerts fliessen.
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 protected:
     virtual SwTwips ShrinkFrm( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
@@ -86,7 +86,7 @@ public:
     virtual void Paste( SwFrm* pParent, SwFrm* pSibling = 0 );
 
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
     const SwCntntFrm *GetRef() const    { return pRef; }
          SwCntntFrm  *GetRef()          { return pRef; }
 #else

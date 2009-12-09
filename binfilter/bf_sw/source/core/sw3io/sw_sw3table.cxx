@@ -58,7 +58,7 @@
 namespace binfilter {
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 static ULONG nCntntBox = 0;
 #endif
 
@@ -193,7 +193,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/ {
 /*N*/   Sw3FrmFmts *pOldTblLineBoxFmts = pTblLineBoxFmts;
 /*N*/   pTblLineBoxFmts = 0;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ULONG nOldCntntBox = nCntntBox;
 /*N*/ #endif
 /*N*/
@@ -289,7 +289,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           // Die einzelnen Zeilen einlesen
 /*N*/           // aIdx zeigt auf den Startnode der ersten Box
 /*N*/           rPos = *pNd; rPos++;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           nCntntBox = 0;
 /*N*/ #endif
 /*N*/           USHORT nLine = 0;
@@ -327,7 +327,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   delete pTblLineBoxFmts;
 /*N*/   pTblLineBoxFmts = pOldTblLineBoxFmts;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   nCntntBox = nOldCntntBox;
 /*N*/ #endif
 /*N*/ }
@@ -590,7 +590,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/           // jetzt die entsprechende Aktualisierung erfolgen.
 /*N*/           pBox->ChgByLanguageSystem();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           ++nCntntBox;
 /*N*/ #endif
 /*N*/       }
@@ -611,7 +611,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*?*/               delete pBox;
 /*?*/               pBox = pNewBox;
 /*?*/               rPos = pBox->GetSttNd()->EndOfSectionIndex() + 1;
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/               ASSERT( !this, "Tabellenzelle ohne Lines und ohne Content" );
 /*?*/               ++nCntntBox;
 /*?*/ #endif

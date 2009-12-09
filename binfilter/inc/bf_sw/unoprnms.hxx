@@ -727,7 +727,7 @@ struct SwPropNameLen
 typedef const SwPropNameLen SwPropNameTab[ SW_PROPNAME_END - SW_PROPNAME_BEGIN ];
 extern const SwPropNameTab aPropNameTab;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 const SwPropNameLen& GetPropName( USHORT nId );
 #else
 inline const SwPropNameLen& GetPropName( USHORT nId )

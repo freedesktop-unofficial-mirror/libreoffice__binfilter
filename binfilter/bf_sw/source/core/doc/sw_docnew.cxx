@@ -291,7 +291,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   bInsOnlyTxtGlssry =
 /*N*/   bContains_MSVBasic =
 /*N*/   bKernAsianPunctuation =
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   bXMLExport =
 /*N*/ #endif
 /*N*/                               FALSE;
