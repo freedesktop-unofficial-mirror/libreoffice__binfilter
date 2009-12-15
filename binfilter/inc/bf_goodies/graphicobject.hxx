@@ -31,9 +31,7 @@
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #define _BF_GOODIES_GRAPHICOBJECT_HXX
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
-#endif
+#include <svtools/grfmgr.hxx>
 
 // wrapper for GraphicAttr for binfilter
 namespace binfilter {
