@@ -665,7 +665,7 @@ namespace binfilter {
 /*M*/     {
 /*M*/         pCnt = rThis.GetPrevCntntFrm();
 /*M*/
-/*M*/ #ifndef PRODUCT
+/*M*/ #ifdef DBG_UTIL
 /*M*/         SwCntntFrm* pTmpCnt = ((SwLayoutFrm&)rThis).ContainsCntnt();
 /*M*/         ASSERT( ! pTmpCnt || pTmpCnt->GetPrevCntntFrm() == pCnt,
 /*M*/                 "Two different results for the master of a table?" )

@@ -44,7 +44,7 @@ class SwPortionHandler;
 // Das CLASSIO-Makro implementiert die 'freischwebende' Funktion.
 // Auf diese Weise erhaelt man beide Vorteile: virtuelle Ausgabeoperatoren
 // und allgemeine Verwendbarkeit.
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #define OUTPUT_OPERATOR  virtual SvStream &operator<<( SvStream & aOs ) const;
 #else
 #define OUTPUT_OPERATOR
@@ -174,7 +174,7 @@ public:
     // Ausgabe
     virtual void Paint( const SwTxtPaintInfo &rInf ) const = 0;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );

@@ -88,7 +88,7 @@ typedef SwTableLine* SwTableLinePtr;
 
 
 
-#if !defined( PRODUCT ) || defined( JP_DEBUG )
+#if defined(DBG_UTIL) || defined( JP_DEBUG )
 
 void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
 {
@@ -1095,7 +1095,7 @@ BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara )
 /**/
 
 
-#if !defined( PRODUCT ) || defined( JP_DEBUG )
+#if defined(DBG_UTIL) || defined( JP_DEBUG )
 
 
 #endif

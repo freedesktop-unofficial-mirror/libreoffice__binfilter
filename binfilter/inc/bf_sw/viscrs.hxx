@@ -141,7 +141,7 @@ public:
 
     // TRUE: an die Position kann der Cursor gesetzt werden
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 // JP 05.03.98: zum Testen des UNO-Crsr Verhaltens hier die Implementierung
 //              am sichtbaren Cursor
 #endif

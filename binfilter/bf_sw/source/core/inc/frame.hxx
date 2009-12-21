@@ -342,7 +342,7 @@ class SwFrm: public SwClient
     //Cache fuer (Umrandungs-)Attribute.
     static SwCache *pCache;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     //Nur zu Debugging Zwecken! eindeutige Nummerierung aller Frames,
     //verwaltet in den CToren.
     static USHORT nLastFrmId;
@@ -744,7 +744,7 @@ public:
     inline  SwCntntFrm* GetNextCntntFrm() const;
     inline  SwCntntFrm* GetPrevCntntFrm() const;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     inline USHORT GetFrmId() const { return nFrmId; }
     inline USHORT GetLastFrmId() const { return nLastFrmId; }
 #endif

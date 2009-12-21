@@ -97,6 +97,12 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 
+void ScPrintCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames )
+{
+}
+void ScPrintCfg::Commit()
+{
+}
 
 
 

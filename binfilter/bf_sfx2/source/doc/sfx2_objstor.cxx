@@ -656,19 +656,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   if ( SFX_CREATE_MODE_EMBEDDED != eCreateMode )
 /*N*/   {
 /*N*/       GetpApp()->HideStatusText();
-/*N*/
-//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pAsTempItem, SfxBoolItem, SID_TEMPLATE, sal_False);
-//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pPreviewItem, SfxBoolItem, SID_PREVIEW, sal_False);
-//STRIP007      SFX_ITEMSET_ARG( pMedium->GetItemSet(), pHiddenItem, SfxBoolItem, SID_HIDDEN, sal_False);
-//STRIP007      if( bOk && pMedium->GetOrigURL().Len()
-//STRIP007       && !( pAsTempItem && pAsTempItem->GetValue() )
-//STRIP007       && !( pPreviewItem && pPreviewItem->GetValue() )
-//STRIP007       && !( pHiddenItem && pHiddenItem->GetValue() ) )
-//STRIP007      {
-//STRIP007          INetURLObject aUrl( pMedium->GetOrigURL() );
-//STRIP007          if ( aUrl.GetProtocol() == INET_PROT_FILE )
-//STRIP007              SystemShell::AddToRecentDocumentList( aUrl.GetURLNoPass( INetURLObject::NO_DECODE ) );
-//STRIP007      }
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
