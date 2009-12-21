@@ -71,7 +71,7 @@
 #endif
 namespace binfilter {
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 
     #define _CHECK_REDLINE( pDoc )
 

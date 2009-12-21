@@ -222,7 +222,7 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
     pLines( &rLines ),
     nWidth( 0UL )
 {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     sal_uInt16 nEndCPos = 0U;
 #endif
     sal_uInt16 nLines = rLines.Count();
@@ -258,7 +258,7 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
             }
             else
             {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                 sal_uInt16 nCheckPos =
                     nCPos + (sal_uInt16)SwWriteTable::GetBoxWidth( pBox );
                 if( !nEndCPos )
@@ -275,7 +275,7 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
                 }
 #endif
                 nCPos = (sal_uInt16)nWidth;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                 SwXMLTableColumn_Impl aCol( (sal_uInt16)nWidth );
                 ASSERT( aCols.Seek_Entry(&aCol), "couldn't find last column" );
                 ASSERT( SwXMLTableColumn_Impl(nCheckPos) ==

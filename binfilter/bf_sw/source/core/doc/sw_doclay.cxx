@@ -232,7 +232,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/       }
 /*?*/       break;
 /*?*/
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/   case FLY_PAGE:
 /*?*/   case FLY_AUTO_CNTNT:
 /*?*/   case FLY_AT_FLY:

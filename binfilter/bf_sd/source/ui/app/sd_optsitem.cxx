@@ -67,6 +67,9 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
+    void SdOptionsItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SdOptionsItem::Commit() {}
+
 
 // -----------------------------------------------------------------------------
 

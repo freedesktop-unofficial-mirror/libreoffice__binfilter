@@ -480,7 +480,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/                                             //! pChartData got deleted, don't use it anymore
 /*N*/                                             if (bEnabled)
 /*N*/                                                 aIPObj->EnableSetModified(TRUE);
-/*N*/     #ifndef PRODUCT
+/*N*/     #ifdef DBG_UTIL
 /*N*/     //                                          static BOOL bShown74046 = 0;
 /*N*/     //                                          if ( !bShown74046 && SOFFICE_FILEFORMAT_NOW > SOFFICE_FILEFORMAT_50 )
 /*N*/     //                                          {

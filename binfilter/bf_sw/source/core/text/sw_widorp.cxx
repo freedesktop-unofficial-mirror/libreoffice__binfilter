@@ -36,7 +36,7 @@
 
 #include "ftnboss.hxx"
 #include "paratr.hxx"
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef _SVX_ORPHITEM_HXX //autogen

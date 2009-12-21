@@ -93,7 +93,7 @@ class SwMultiPortion;
 #define DIR_RIGHT2LEFT 2
 #define DIR_TOP2BOTTOM 3
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #define OPTCALM( rInf )  (rInf).IsOptCalm()
 #define OPTLOW( rInf )   (rInf).IsOptLow()
 #define OPTDBG( rInf )   (rInf).IsOptDbg()
@@ -387,7 +387,7 @@ public:
         { return ( pKanaComp && nKanaIdx < pKanaComp->Count() )
                    ? (*pKanaComp)[nKanaIdx] : 0; }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 };
 
@@ -410,7 +410,7 @@ class SwTxtPaintInfo : public SwTxtSizeInfo
     SwTxtPaintInfo &operator=(const SwTxtPaintInfo&);
 
 protected:
-#ifdef PRODUCT
+#ifndef DBG_UTIL
     SwTxtPaintInfo() { pFrm = 0; pWrongList = 0; pSpaceAdd = 0; pBrushItem = 0;}
 #else
     SwTxtPaintInfo() { pFrm = 0; pWrongList = 0; pSpaceAdd = 0;

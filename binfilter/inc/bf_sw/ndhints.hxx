@@ -112,7 +112,7 @@ public:
     // Methoden vom PtrArr weiterreichen, wird fuer Node::_Cut benoetigt
     const SwTxtAttr** GetData() const  { return SwpHtStart::GetData(); }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     BOOL Check() const;
 #endif
 };

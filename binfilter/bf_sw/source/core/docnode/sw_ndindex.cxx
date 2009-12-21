@@ -38,7 +38,7 @@
 #include "ndindex.hxx"
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 int SwNodeIndex::nSerial = 0;
 #endif
 
@@ -67,7 +67,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/ {
 /*N*/   rNds.RegisterIndex( *this );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }
@@ -82,7 +82,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/       pNd = rIdx.pNd;
 /*N*/
 /*N*/   pNd->GetNodes().RegisterIndex( *this );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }
@@ -97,7 +97,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/       pNd = (SwNode*)&rNd;
 /*N*/
 /*N*/   pNd->GetNodes().RegisterIndex( *this );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }

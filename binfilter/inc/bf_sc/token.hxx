@@ -61,7 +61,7 @@ enum StackVarEnum
     svErr                               // unknown StackType
 };
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 // save memory since compilers tend to int an enum
 typedef BYTE StackVar;
 #else
