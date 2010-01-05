@@ -344,7 +344,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                           rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*N*/  #if ! ( defined WTC || defined IRIX || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
+/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat,
@@ -679,7 +679,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/  ULONG ScQueryCellIterator::GetNumberFormat()
 /*N*/  {
 /*N*/   ScColumn* pCol = &(pDoc->pTab[nTab])->aCol[nCol];
-/*N*/  #if ! ( defined WTC || defined IRIX  || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
+/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/   lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/   lcl_IterGetNumberFormat( nNumFormat,
