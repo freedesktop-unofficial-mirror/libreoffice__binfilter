@@ -73,7 +73,7 @@ public:
 
     void TakeNextOffset( const SwFldPortion* pFld );
     void CheckScript( const SwTxtSizeInfo &rInf );
-    inline const sal_Bool HasFont() const { return 0 != pFnt; }
+    inline sal_Bool HasFont() const { return 0 != pFnt; }
 
     inline const XubString &GetExp() const { return aExpand; }
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
