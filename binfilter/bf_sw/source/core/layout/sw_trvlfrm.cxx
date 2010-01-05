@@ -483,7 +483,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ASSERT( pActual, "Keinen Cntnt gefunden." );
 /*N*/   if ( bBodyOnly )
 /*N*/       ASSERT( pActual->IsInDocBody(), "Cnt nicht im Body." );

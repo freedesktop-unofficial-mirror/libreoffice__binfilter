@@ -2230,7 +2230,7 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
                 }
             }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
             if( nCol == nRightCol-1UL )
             {
                 ASSERT( bSplit, "Split-Flag falsch" );

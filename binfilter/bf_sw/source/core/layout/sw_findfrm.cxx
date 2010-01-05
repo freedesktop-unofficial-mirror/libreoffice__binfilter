@@ -1051,7 +1051,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       return;                       //lieferbar
 /*N*/
 /*N*/   bInfInvalid = bInfBody = bInfTab = bInfFly = bInfFtn = bInfSct = FALSE;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   BOOL bIsInTab = FALSE;
 /*N*/ #endif
 /*N*/
@@ -1065,7 +1065,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/           bInfBody = TRUE;
 /*N*/       else if ( pFrm->IsTabFrm() || pFrm->IsCellFrm() )
 /*N*/       {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           if( pFrm->IsTabFrm() )
 /*N*/           {
 /*N*/               ASSERT( !bIsInTab, "Table in table: Not implemented." );

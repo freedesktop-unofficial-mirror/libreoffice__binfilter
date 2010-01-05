@@ -208,7 +208,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   SwDoc* pDoc = (SwDoc*)rFmt.GetDoc();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ASSERT( !(nNew == FLY_PAGE &&
 /*N*/       (FLY_AT_CNTNT==nOld || FLY_AUTO_CNTNT==nOld || FLY_IN_CNTNT==nOld ) &&
 /*N*/       pDoc->IsInHeaderFooter( rOldAnch.GetCntntAnchor()->nNode )),

@@ -138,4 +138,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       Load();
 /*N*/     return *pAdrImpl;
 /*N*/ }
+
+    void SwDBConfig::Commit() {}
+    void SwDBConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 }

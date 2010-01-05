@@ -47,7 +47,7 @@ namespace binfilter {
 class SwIndex;
 class SwIndexReg;
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #define INLINE inline
 #else
 #define INLINE
@@ -57,7 +57,7 @@ class SwIndex
 {
     friend class SwIndexReg;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     static int nSerial;
     int MySerial;
 #endif
@@ -140,7 +140,7 @@ protected:
 
 public:
     SwIndexReg();
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     ~SwIndexReg();
 #endif
 
@@ -153,7 +153,7 @@ public:
 };
 
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 
 inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
 #ifndef CFRONT
