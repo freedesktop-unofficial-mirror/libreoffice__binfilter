@@ -474,7 +474,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   String aTmp;
 /*N*/                   ByteString aMsg( "broken Matrix, no MatFormula at origin, Pos: " );
 /*N*/                   aPos.Format( aTmp, SCA_VALID_COL | SCA_VALID_ROW, pDocument );
@@ -504,7 +504,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/               if ( !nEdges )
 /*N*/                   nEdges = 1;             // mittendrin
 /*N*/           }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
 /*?*/               String aTmp;

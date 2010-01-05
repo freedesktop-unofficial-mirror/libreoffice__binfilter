@@ -110,7 +110,7 @@ struct SwIoDetect
 
 #endif
 
-#if !( defined(PRODUCT) || defined(PM2))
+#if !( !defined(DBG_UTIL) || defined(PM2))
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)  , SwIoEntry(sNm, cCharLen, pWrt, bDel)
 #else
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)
@@ -118,7 +118,7 @@ struct SwIoDetect
 
 
 const USHORT MAXFILTER =
-#if !( defined(PRODUCT) || defined(PM2))
+#if !( !defined(DBG_UTIL) || defined(PM2))
 #endif
 #ifdef DEBUG_SH
 #endif

@@ -642,14 +642,14 @@ using namespace ::rtl;
 /*?*/                           pDoc->SetGlobalDoc( TRUE );
 /*N*/                   }
 /*N*/               }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/               else
 /*?*/                   ASSERT( !this, "ohne Sw3Reader geht nichts" );
 /*N*/ #endif
 /*N*/           }
 /*N*/           break;
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
 /*?*/           ASSERT( !this, "Load: new CreateMode?" );
 /*N*/ #endif

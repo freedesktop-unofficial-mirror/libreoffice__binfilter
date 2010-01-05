@@ -102,6 +102,8 @@ private:
 public:
     SchOptions();
     virtual ~SchOptions();
+void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+void Commit();
 
     const SchColorTable& GetDefaultColors();
 

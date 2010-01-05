@@ -121,7 +121,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                              CalcFtnFlag()
  *************************************************************************/
 
-/*N*/ #ifdef PRODUCT
+/*N*/ #ifndef DBG_UTIL
 /*N*/ void SwTxtFrm::CalcFtnFlag()
 /*N*/ #else
 /*N*/ void SwTxtFrm::CalcFtnFlag( xub_StrLen nStop )//Fuer den Test von SplitFrm
@@ -135,7 +135,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/
 /*N*/   const MSHORT nSize = pHints->Count();
 /*N*/
-/*N*/ #ifdef PRODUCT
+/*N*/ #ifndef DBG_UTIL
 /*N*/   const xub_StrLen nEnd = GetFollow() ? GetFollow()->GetOfst() : STRING_LEN;
 /*N*/ #else
 /*N*/   const xub_StrLen nEnd = nStop != STRING_LEN ? nStop
@@ -275,7 +275,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/         SwTwips nTmp = (*fnRect->fnYDiff)( (pCont->*fnRect->fnGetPrtBottom)(),
 /*N*/                                            (Frm().*fnRect->fnGetTop)() );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if( nTmp < 0 )
 /*N*/       {
 /*?*/           sal_Bool bInvalidPos = sal_False;

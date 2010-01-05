@@ -776,7 +776,7 @@ using namespace ::rtl;
 /*N*/               //mich also bei meinem Format aus.
 /*N*/               //Dabei werden ich Deletet!!!
 /*N*/           if( IS_TYPE( SwFmt, pDefinedIn ))
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           {
 /*?*/               sal_Bool bDel = ((SwFmt*)pDefinedIn)->ResetAttr( RES_PAGEDESC );
 /*?*/               ASSERT( bDel, ";-) FmtPageDesc nicht zerstoert." );
@@ -785,7 +785,7 @@ using namespace ::rtl;
 /*N*/               ((SwFmt*)pDefinedIn)->ResetAttr( RES_PAGEDESC );
 /*N*/ #endif
 /*N*/           else if( IS_TYPE( SwCntntNode, pDefinedIn ))
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           {
 /*?*/               sal_Bool bDel = ((SwCntntNode*)pDefinedIn)->ResetAttr( RES_PAGEDESC );
 /*?*/               ASSERT( bDel, ";-) FmtPageDesc nicht zerstoert." );
@@ -2697,7 +2697,7 @@ void SwFlyFrmFmt::MakeFrms()
                 case FLY_IN_CNTNT:
                     pFly = new SwFlyInCntFrm( this, pFrm );
                     break;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                 default:
                     ASSERT( !this, "Neuer Ankertyp" );
 #endif

@@ -90,6 +90,8 @@ class SwRevisionConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------11.10.00 09:00--------------------------------
 
@@ -117,6 +119,8 @@ class SwInsertConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------11.10.00 09:00--------------------------------
 
@@ -142,6 +146,8 @@ class SwTableConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------18.01.01 16:57--------------------------------
 
@@ -169,6 +175,8 @@ class SwMiscConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 
 /* ---------------------------------------------------------------------------

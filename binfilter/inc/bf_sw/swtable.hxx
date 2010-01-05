@@ -46,7 +46,7 @@
 #include <calbck.hxx>
 #endif
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #ifndef _NODE_HXX
 #include <node.hxx>         // fuer StartNode->GetMyIndex
 #endif
@@ -282,7 +282,7 @@ public:
 
     const SwStartNode *GetSttNd() const { return pSttNd; }
     ULONG GetSttIdx() const
-#ifdef PRODUCT
+#ifndef DBG_UTIL
         { return pSttNd ? pSttNd->GetIndex() : 0; }
 #else
         ;

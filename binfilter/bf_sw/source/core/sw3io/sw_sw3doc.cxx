@@ -672,7 +672,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/
 /*N*/   // MIB: Das <= fuer das 40-FF ist korrekt, denn es gab eine Weile
 /*N*/   // 4.0-Storages mit 5.0-Streams.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( !bBlock )
 /*N*/       ASSERT( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
 /*N*/                 nVersion >= SWG_MAJORVERSION_30 &&

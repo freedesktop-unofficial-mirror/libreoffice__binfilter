@@ -81,7 +81,7 @@ namespace binfilter {
 /*N*/ //JP 17.03.98: aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
 /*N*/ //                Nodes aus dem falschen NodesArray im OutlineArray standen,
 /*N*/ //                jetzt mal einen Check eingebaut.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       {
 /*N*/           for( register USHORT n = 1; n < nO; ++n )
 /*N*/               if( &(*this)[ n-1 ]->GetNodes() !=

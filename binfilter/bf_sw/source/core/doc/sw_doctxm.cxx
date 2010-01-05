@@ -477,7 +477,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
                 {
                     SwPosition aPos( *pNd );
                     SwDoc* pDoc = (SwDoc*)pNd->GetDoc();
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                     ASSERT( GetBodyTxtNode( pDoc, aPos, pFrm ),
                             "wo steht der Absatz" );
 #else

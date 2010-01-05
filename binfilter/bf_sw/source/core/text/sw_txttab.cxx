@@ -238,7 +238,7 @@ namespace binfilter {
 /*N*/   : SwFixPortion( 0, 0 ), nTabPos(nTabPos), cFill(cFill)
 /*N*/ {
 /*N*/   nLineLength = 1;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( IsFilled() )
 /*N*/   {
 /*N*/       ASSERT( ' ' != cFill, "SwTabPortion::CTOR: blanks ?!" );
