@@ -63,7 +63,7 @@ namespace binfilter {
 /*N*/   nLeft( nLft ), nRight( nRght ), nUpper( 0 ), nLower( 0 ),
 /*N*/   bSimple( bSimpl ), bInner( bInnr ), bVertical( bVert )
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   bFlag3 = bFlag4 = bFlag5 = bFlag6 = bFlag7 = FALSE;
 /*N*/ #endif
 /*N*/   pRangeArr = new Range[ nCacheSize ];

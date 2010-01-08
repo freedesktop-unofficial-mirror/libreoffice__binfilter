@@ -104,7 +104,7 @@ public:
     }
 
     // Vergroessert oder verkleinert die Zeilenhoehe.
-    const BYTE GetPropLineSpace() const { return nPropLineSpace; }
+    BYTE GetPropLineSpace() const { return nPropLineSpace; }
     inline void SetPropLineSpace( const BYTE nProp )
     {
         nPropLineSpace = nProp;

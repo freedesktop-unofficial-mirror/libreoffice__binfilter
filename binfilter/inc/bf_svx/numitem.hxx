@@ -66,7 +66,7 @@
 #include <com/sun/star/style/NumberingType.hpp>
 #endif
 #ifndef _SV_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 namespace com{namespace sun{ namespace star{
     namespace text{

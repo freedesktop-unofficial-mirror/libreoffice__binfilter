@@ -221,7 +221,7 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /////////////////////////////////////////////////////////////////////////////
 
 // Stream-spezifisches
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ SvStream& Writer::Strm()
 /*N*/ {
 /*N*/   ASSERT( pStrm, "Oh-oh. Dies ist ein Storage-Writer. Gleich knallts!" );

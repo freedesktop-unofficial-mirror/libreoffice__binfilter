@@ -182,4 +182,8 @@ using namespace ::com::sun::star::lang;
 /*N*/   }
 /*N*/   return aRet;
 /*N*/ }
+
+void SvxAsianConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SvxAsianConfig::Commit() {}
 }
+

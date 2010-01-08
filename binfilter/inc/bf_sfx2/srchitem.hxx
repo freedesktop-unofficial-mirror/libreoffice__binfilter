@@ -128,6 +128,7 @@ public:
 
     // ConfigItem
     virtual void            Notify( const ::com::sun::star::uno::Sequence< ::rtl::OUString > &rPropertyNames );
+    virtual void            Commit();
 
             sal_uInt16      GetCommand() const { return nCommand; }
             void            SetCommand(sal_uInt16 nNewCommand) { nCommand = nNewCommand; }

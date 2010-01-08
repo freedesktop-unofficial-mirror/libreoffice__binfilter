@@ -36,7 +36,7 @@
 
 #include "ftnboss.hxx"
 #include "paratr.hxx"
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef _SVX_ORPHITEM_HXX //autogen
@@ -140,7 +140,7 @@ namespace binfilter {
  * naechste Seite rutscht.
  */
 
-/*N*/ const sal_Bool SwTxtFrmBreak::IsInside( SwTxtMargin &rLine ) const
+/*N*/ sal_Bool SwTxtFrmBreak::IsInside( SwTxtMargin &rLine ) const
 /*N*/ {
 /*N*/   register sal_Bool bFit = sal_False;
 /*N*/

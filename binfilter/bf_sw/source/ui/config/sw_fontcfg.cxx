@@ -243,4 +243,8 @@ using namespace ::com::sun::star::uno;
 /*M*/     Font aFont = OutputDevice::GetDefaultFont(nFontId, eLang, DEFAULTFONT_FLAGS_ONLYONE);
 /*M*/     return  aFont.GetName();
 /*N*/ }
+
+    void SwStdFontConfig::Commit() {}
+    void SwStdFontConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 }

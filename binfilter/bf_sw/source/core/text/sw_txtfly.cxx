@@ -107,7 +107,7 @@
 #include "flyfrms.hxx"
 #include "fmtcnct.hxx"  // SwFmtChain
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #include "viewopt.hxx"  // SwViewOptions, nur zum Testen (Test2)
 #endif
 namespace binfilter {
@@ -1373,7 +1373,7 @@ namespace binfilter {
 /*N*/
 /*N*/       delete pXPoly;
 /*N*/       // UPPER_LOWER_TEST
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if( pFmt->GetDoc()->GetRootFrm()->GetCurrShell() )
 /*N*/       {
 /*N*/           sal_Bool bT2 =  pFmt->GetDoc()->GetRootFrm()->GetCurrShell()->GetViewOptions()->IsTest2();
@@ -1445,7 +1445,7 @@ namespace binfilter {
  *                      SwContourCache::ShowContour()
  * zeichnet die PolyPolygone des Caches zu Debugzwecken.
  *************************************************************************/
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 #endif
 
@@ -1453,7 +1453,7 @@ namespace binfilter {
  *                      SwTxtFly::ShowContour()
  * zeichnet die PolyPolygone des Caches zu Debugzwecken.
  *************************************************************************/
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 #endif
 

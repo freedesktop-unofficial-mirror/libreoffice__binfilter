@@ -188,7 +188,7 @@ public:
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
     virtual SwTwips GrowFrm  ( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef VERTICAL_LAYOUT
@@ -266,7 +266,7 @@ public:
     void InsertEmptySct( SwSectionFrm* pDel );
     void DeleteEmptySct() { if( pDestroy ) _DeleteEmptySct(); }
     void RemoveFromList( SwSectionFrm* pSct ) { if( pDestroy ) _RemoveFromList( pSct ); }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     // Wird zur Zeit nur fuer ASSERTs benutzt:
     BOOL IsInDelList( SwSectionFrm* pSct ) const; // Ist der SectionFrm in der Liste enthalten?
 #endif
