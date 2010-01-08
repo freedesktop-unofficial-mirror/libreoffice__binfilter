@@ -192,8 +192,8 @@ public:
 
     inline OutputDevice *GetOut() { return pOut; }
     inline const XubString &GetTxt() const { return rTxt; }
-    inline const xub_StrLen GetIdx() const { return nIdx; }
-    inline const xub_StrLen GetLen() const { return nLen; }
+    xub_StrLen GetIdx() const { return nIdx; }
+    xub_StrLen GetLen() const { return nLen; }
 };
 
 
