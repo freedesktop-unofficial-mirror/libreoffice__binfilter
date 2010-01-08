@@ -319,7 +319,7 @@ public:
            sal_Bool IsPaintLocked() const { return nLockPaint != 0; }
 
     // Abfragen/Erzeugen DrawView + PageView
-    const sal_Bool HasDrawView() const;
+    sal_Bool HasDrawView() const;
     void MakeDrawView();
 
     //DrawView darf u.U. am UI benutzt werden.
