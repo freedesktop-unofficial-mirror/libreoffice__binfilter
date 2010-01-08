@@ -216,18 +216,6 @@ public:
         graphic is transparent.
     */
     sal_Bool IsBackgroundTransparent() const;
-
-    /** SwFlyFrm::IsShadowTransparent - for feature #99657#
-
-        OD 05.08.2002
-        determine, if shadow color of fly frame has to be drawn transparent
-        definition found in /core/layout/paintfrm.cxx
-
-        @author OD
-
-        @return true, if shadow color is transparent.
-    */
-    sal_Bool IsShadowTransparent() const;
 };
 
 inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const
