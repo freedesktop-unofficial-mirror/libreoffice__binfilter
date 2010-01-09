@@ -110,11 +110,12 @@ SHL2STDLIBS+= \
     $(SOTLIB) \
     $(UNOTOOLSLIB) \
     $(TOOLSLIB) \
-    $(COMPHELPERLIB) \
+        $(COMPHELPERLIB) \
     $(UCBHELPERLIB) \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
     $(SALLIB) \
+        $(SVTOOLLIB) \
     $(ICUUCLIB)
 
 
