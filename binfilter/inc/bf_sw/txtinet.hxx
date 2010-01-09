@@ -69,10 +69,10 @@ public:
     const SwCharFmt* GetCharFmt() const
             { return ((SwTxtINetFmt*)this)->GetCharFmt(); }
 
-    const BOOL IsVisited() const { return bVisited; }
+    BOOL IsVisited() const { return bVisited; }
     void SetVisited( BOOL bNew ) { bVisited = bNew; }
 
-    const BOOL IsValidVis() const { return bValidVis; }
+    BOOL IsValidVis() const { return bValidVis; }
     void SetValidVis( BOOL bNew ) { bValidVis = bNew; }
 
 };

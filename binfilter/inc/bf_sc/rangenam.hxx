@@ -117,9 +117,9 @@ public:
     ScAddress       GetPos() const                  { return aPos; }
     // Der Index muss eindeutig sein. Ist er 0, wird ein neuer Index vergeben
     void            SetIndex( USHORT nInd )         { nIndex = nExportIndex = nInd; }
-    const USHORT    GetIndex()                      { return nIndex; }
+    USHORT  GetIndex() const                    { return nIndex; }
     void            SetExportIndex( USHORT nInd )   { nExportIndex = nInd; }
-    const USHORT    GetExportIndex()                { return nExportIndex; }
+    USHORT  GetExportIndex() const              { return nExportIndex; }
     ScTokenArray*   GetCode()                       { return pCode; }
     USHORT          GetErrCode();
     BOOL            HasReferences() const;

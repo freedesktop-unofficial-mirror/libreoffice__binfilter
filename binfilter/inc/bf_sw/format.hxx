@@ -301,7 +301,7 @@ public:
 
         @return false, default implementation
     */
-    virtual const sal_Bool IsBackgroundTransparent() const;
+    virtual sal_Bool IsBackgroundTransparent() const;
 
     /** SwFmt::IsShadowTransparent - for feature #99657#
 
@@ -314,7 +314,7 @@ public:
 
         @return false, default implementation
     */
-    virtual const sal_Bool IsShadowTransparent() const;
+    sal_Bool IsShadowTransparent() const;
 };
 
 // --------------- Inline Implementierungen ------------------------
