@@ -713,7 +713,7 @@ const SwPropNameTab aPropNameTab = {
 /* 0662 UNO_NAME_SELITEM*/ {MAP_CHAR_LEN("SelectedItem")}
 };
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 const SwPropNameLen& GetPropName( USHORT nId )
 {
     DBG_ASSERT( SW_PROPNAME_BEGIN <= nId && nId < SW_PROPNAME_END,

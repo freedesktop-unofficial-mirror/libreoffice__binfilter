@@ -76,7 +76,7 @@ namespace binfilter {
 /*N*/   pInf = pNewInf;
 /*N*/   SwFont *pFnt = GetFnt();
 /*N*/   GetInfo().SetFont( pFnt );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( ALIGN_BASELINE != pFnt->GetAlign() )
 /*N*/   {
 /*?*/       ASSERT( ALIGN_BASELINE == pFnt->GetAlign(),

@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/ void SwTxtCharFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   USHORT nWhich = pOld ? pOld->Which() : pNew ? pNew->Which() : 0;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( (nWhich<RES_CHRATR_BEGIN || nWhich>RES_CHRATR_END)
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/ void SwTxtINetFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   USHORT nWhich = pOld ? pOld->Which() : pNew ? pNew->Which() : 0;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( (nWhich<RES_CHRATR_BEGIN || nWhich>RES_CHRATR_END)
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)

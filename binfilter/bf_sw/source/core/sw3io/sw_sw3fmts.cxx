@@ -322,7 +322,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/           CloseRec( SWG_ATTRIBUTE );
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   else
 /*N*/       ASSERT( !this, "Fussnoten im Fly sind nicht erlaubt" );
 /*N*/ #endif
@@ -946,7 +946,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( (cFlags & 0x20) && pRefSdrObjects )
 /*N*/   {
 /*N*/       size_t nPos = nSdrRef / 8;

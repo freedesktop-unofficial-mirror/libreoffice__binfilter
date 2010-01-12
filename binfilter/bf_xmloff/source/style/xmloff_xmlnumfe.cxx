@@ -1553,7 +1553,7 @@ void SvXMLNumFmtExport::ExportPart_Impl( const SvNumberformat& rFormat, sal_uInt
                     bAnyContent = sal_True;
                     break;
                 default:
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                     // NF_SYMBOLTYPE_PERCENT is the last known value newly
                     // introduced, alert on newer values, decreasing <0, which
                     // most certainly means having to synchronize with module

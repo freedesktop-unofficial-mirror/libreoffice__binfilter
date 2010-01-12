@@ -1159,15 +1159,7 @@ void XMLTextImportHelper::SetOutlineStyle(
     {
         if( !pOutlineStyles )
         {
-#ifdef IRIX
-            /* GCC 2 bug when member function is called as part of an array
-             * initialiser
-             */
-            sal_Int8 count = xChapterNumbering->getCount();
-            pOutlineStyles = new OUString[count];
-#else
             pOutlineStyles = new OUString[xChapterNumbering->getCount()];
-#endif
         }
         pOutlineStyles[nLevel-1] = rStyleName;
     }

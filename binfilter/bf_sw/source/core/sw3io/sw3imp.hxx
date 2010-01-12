@@ -50,7 +50,7 @@
 #include <tools/poly.hxx>
 #endif
 #ifndef _VCL_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 
 #ifndef _DOCARY_HXX
@@ -492,7 +492,7 @@ public:
     BOOL               bSpellAllAgain;      // TRUE: set all TxtNode as dirty
     BOOL               bSpellWrongAgain;    // TRUE: set all WrongList as dirty
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     BYTE              *pRefSdrObjects;
 #endif
 
@@ -504,7 +504,7 @@ public:
     void SetReadOptions( const SwgReaderOption&, BOOL );
     void SetSw31Export( BOOL b31 ) { bSw31Export = b31; }
     BOOL IsSw31Export() const { return bSw31Export; }
-#ifdef PRODUCT
+#ifndef DBG_UTIL
     inline BOOL IsSw31Or40Export() const;
     inline BOOL IsSw40Export() const;
 #else
@@ -831,7 +831,7 @@ inline BOOL Sw3IoImp::IsVersion( USHORT nMinVers1, USHORT nMaxVers1,
            (nVersion >= nMinVers2 && nVersion < nMaxVers2);
 }
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 inline BOOL Sw3IoImp::IsSw40Export() const
 {
     return pRoot->GetVersion() == SOFFICE_FILEFORMAT_40;

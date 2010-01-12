@@ -295,7 +295,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/       ASSERT( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
 /*M*/       const xub_StrLen nIdx = pPos->nContent.GetIndex();
 /*M*/       SwTxtAttr * pHnt = pTxtNode->GetTxtAttr( nIdx, RES_TXTATR_FLYCNT );
-/*M*/ #ifndef PRODUCT
+/*M*/ #ifdef DBG_UTIL
 /*M*/       ASSERT( pHnt && pHnt->Which() == RES_TXTATR_FLYCNT,
 /*M*/                   "Missing FlyInCnt-Hint." );
 /*M*/       ASSERT( pHnt && pHnt->GetFlyCnt().GetFrmFmt() == &rFmt,
@@ -594,7 +594,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/             // Continue with next selected object and assert, if this isn't excepted.
 /*?*/             if ( !pContact )
 /*?*/             {
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/                 bool bNoUserCallExcepted =
 /*?*/                         pObj->ISA(SwDrawVirtObj) &&
 /*?*/                         !static_cast<SwDrawVirtObj*>(pObj)->IsConnected();
@@ -800,7 +800,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                         pObj = &(pDrawVirtObj->ReferencedObj());
 /*?*/                     }
 /*?*/                 }
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/                 // SetAttr() removes the ParaPortion of pNewAnch, which is required by
 /*?*/                 // GetFrmAnchorPos. Therefore aTmpPoint has to be calculated before
 /*?*/                 // the call of SetAttr().
@@ -830,7 +830,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                     pObj->SetRelativePos( aTmpRel );
 /*?*/                 }
 /*?*/
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/       {
 /*?*/                   const Point aIstA( pObj->GetAnchorPos() );
 /*?*/                   ASSERT( pOldAnch == pNewAnch || aIstA == aProposedAnchorPos,
