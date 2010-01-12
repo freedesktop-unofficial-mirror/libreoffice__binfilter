@@ -74,11 +74,7 @@ $(INCCOM)$/scdll0.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
     echo \#define DLL_NAME \"libbf_sc$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX"
-.IF "$(USE_SHELL)"!="4nt"
     echo \#define DLL_NAME \"bf_sc$(DLLPOSTFIX).DLL\" >$@
-.ELSE			#  "$(USE_SHELL)"!="4nt"
-    echo #define DLL_NAME "bf_sc$(DLLPOSTFIX).DLL" >$@
-.ENDIF			#  "$(USE_SHELL)"!="4nt"
 .ENDIF			# "$(GUI)"=="UNX"
 
 $(SRS)$/sc_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc

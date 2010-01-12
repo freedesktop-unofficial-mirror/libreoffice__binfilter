@@ -94,14 +94,8 @@ $(SLO)$/sw_swdll.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swlib.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swmodule.obj : $(INCCOM)$/swdll0.hxx
 
-.IF "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
 $(INCCOM)$/swdll0.hxx: makefile.mk
     echo \#define DLL_NAME \"$(DLLPRE)bf_sw$(DLLPOSTFIX)$(DLLPOST)\" >$@
-.ELSE			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
-$(INCCOM)$/swdll0.hxx: makefile.mk
-    echo #define DLL_NAME "bf_sw$(DLLPOSTFIX).DLL" >$@
-.ENDIF			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
-
 
 $(SRS)$/sw_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
 

@@ -82,11 +82,7 @@ $(INCCOM)$/sddll0.hxx: makefile.mk
 .IF "$(GUI)"=="UNX"
     echo \#define DLL_NAME \"libbf_sd$(DLLPOSTFIX)$(DLLPOST)\" >$@
 .ELSE			# "$(GUI)"=="UNX"
-.IF "$(USE_SHELL)"!="4nt"
     echo \#define DLL_NAME \"bf_sd$(DLLPOSTFIX).DLL\" >$@
-.ELSE			# "$(USE_SHELL)"!="4nt"
-    echo #define DLL_NAME "bf_sd$(DLLPOSTFIX).DLL" >$@
-.ENDIF			#  "$(USE_SHELL)"!="4nt"
 .ENDIF			# "$(GUI)"=="UNX"
 
 
