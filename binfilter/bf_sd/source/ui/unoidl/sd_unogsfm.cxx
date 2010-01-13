@@ -469,8 +469,8 @@ void SdUnoGraphicStyleFamily::createStyle( SfxStyleSheetBase* pStyleSheet, uno::
     if( !xStyle.is() )
     {
         xStyle = new SdUnoGraphicStyle( mpModel, pStyleSheet );
-        xRef = uno::Reference< uno::XInterface >( xStyle, uno::UNO_QUERY );
-        mpStyles->insert(xRef);
+        uno::WeakReference<uno::XInterface> wRef(xStyle);
+        mpStyles->insert(wRef);
     }
 
     rAny <<= xStyle;
