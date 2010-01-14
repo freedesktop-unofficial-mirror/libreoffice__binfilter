@@ -301,7 +301,7 @@ class SvXMLStylesContext_Impl
     OUString    sId;
     OUString    sParentHRef;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     sal_uInt32 nIndexCreated;
 #endif
 
@@ -338,7 +338,7 @@ public:
 };
 
 SvXMLStylesContext_Impl::SvXMLStylesContext_Impl() :
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     nIndexCreated( 0 ),
 #endif
     aStyles( 20, 5 ),
@@ -386,7 +386,7 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
 
     if( !pIndices && bCreateIndex && aStyles.Count() > 0 )
     {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         DBG_ASSERT( 0==nIndexCreated,
                     "Performance warning: sdbcx::Index created multiple times" );
 #endif
@@ -401,7 +401,7 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
                 delete pStyleIndex;
             }
         }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         ((SvXMLStylesContext_Impl *)this)->nIndexCreated++;
 #endif
     }

@@ -191,7 +191,7 @@ void RmAppletStub::Create(RmAppletContext* pContext, const INetURLObject& rURL1,
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
 
@@ -237,7 +237,7 @@ void RmAppletContext::Create( )
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
 
@@ -260,7 +260,7 @@ void RmAppletObject::Create(const String& sClassName, const String& sName, const
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
     DCA_NAMESPACE(OCallMethodMsg, dca) aMsg( this, MSG_APPLET_CREATE );

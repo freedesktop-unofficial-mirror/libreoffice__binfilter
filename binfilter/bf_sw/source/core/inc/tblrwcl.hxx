@@ -79,7 +79,7 @@ BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* pPara );
 BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara );
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 void _InsTblBox( SwDoc* pDoc, SwTableNode* pTblNd,

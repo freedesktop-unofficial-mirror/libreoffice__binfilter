@@ -121,7 +121,7 @@ public:
     // Compound-Objekt
 //-/    const B3dMaterial& GetDefaultFrontMaterial() { return aDefaultFrontMaterial; }
 //-/    void SetDefaultFrontMaterial(const B3dMaterial& rNew) { aDefaultFrontMaterial = rNew; }
-    const Color& GetDefaultAmbientColor() { return aDefaultAmbientColor; }
+    const Color& GetDefaultAmbientColor() const { return aDefaultAmbientColor; }
     void SetDefaultAmbientColor(const Color& rNew) { aDefaultAmbientColor = rNew; }
 
 //  const B3dMaterial& GetDefaultBackMaterial() { return aDefaultBackMaterial; }
@@ -132,9 +132,9 @@ public:
 //-/    void SetDefaultTextureMode(const Base3DTextureMode eNew) { eDefaultTextureMode = eNew; }
 //-/    const BOOL GetDefaultDoubleSided() { return bDefaultDoubleSided; }
 //-/    void SetDefaultDoubleSided(const BOOL bNew) { bDefaultDoubleSided = bNew; }
-    const BOOL GetDefaultCreateNormals() { return bDefaultCreateNormals; }
+    BOOL GetDefaultCreateNormals() const { return bDefaultCreateNormals; }
     void SetDefaultCreateNormals(const BOOL bNew) { bDefaultCreateNormals = bNew; }
-    const BOOL GetDefaultCreateTexture() { return bDefaultCreateTexture; }
+    BOOL GetDefaultCreateTexture() const { return bDefaultCreateTexture; }
     void SetDefaultCreateTexture(const BOOL bNew) { bDefaultCreateTexture = bNew; }
 //-/    const BOOL GetDefaultUseStdNormals() { return bDefaultUseStdNormals; }
 //-/    void SetDefaultUseStdNormals(const BOOL bNew) { bDefaultUseStdNormals = bNew; }
@@ -154,17 +154,17 @@ public:
 //-/    void SetDefaultShadow3D(const BOOL bNew) { bDefaultShadow3D = bNew; }
 //-/    const BOOL GetDefaultFilterTexture() { return bDefaultFilterTexture; }
 //-/    void SetDefaultFilterTexture(const BOOL bNew) { bDefaultFilterTexture = bNew; }
-    const BOOL GetDefaultUseDifferentBackMaterial() { return bDefaultUseDifferentBackMaterial; }
+    BOOL GetDefaultUseDifferentBackMaterial() const { return bDefaultUseDifferentBackMaterial; }
     void SetDefaultUseDifferentBackMaterial(const BOOL bNew) { bDefaultUseDifferentBackMaterial = bNew; }
 
     // Cube-Objekt
-    const Vector3D& GetDefaultCubePos() { return aDefaultCubePos; }
+    const Vector3D& GetDefaultCubePos() const { return aDefaultCubePos; }
     void SetDefaultCubePos(const Vector3D& rNew) { aDefaultCubePos = rNew; }
-    const Vector3D& GetDefaultCubeSize() { return aDefaultCubeSize; }
+    const Vector3D& GetDefaultCubeSize() const { return aDefaultCubeSize; }
     void SetDefaultCubeSize(const Vector3D& rNew) { aDefaultCubeSize = rNew; }
-    const UINT16 GetDefaultCubeSideFlags() { return nDefaultCubeSideFlags; }
+    UINT16 GetDefaultCubeSideFlags() const { return nDefaultCubeSideFlags; }
     void SetDefaultCubeSideFlags(const UINT16 nNew) { nDefaultCubeSideFlags = nNew; }
-    const BOOL GetDefaultCubePosIsCenter() { return bDefaultCubePosIsCenter; }
+    BOOL GetDefaultCubePosIsCenter() const { return bDefaultCubePosIsCenter; }
     void SetDefaultCubePosIsCenter(const BOOL bNew) { bDefaultCubePosIsCenter = bNew; }
 
     // Sphere-Objekt
@@ -172,45 +172,45 @@ public:
 //-/    void SetDefaultHSegments(const long nNew) { nDefaultHSegments = nNew; }
 //-/    const long GetDefaultVSegments() { return nDefaultVSegments; }
 //-/    void SetDefaultVSegments(const long nNew) { nDefaultVSegments = nNew; }
-    const Vector3D& GetDefaultSphereCenter() { return aDefaultSphereCenter; }
+    const Vector3D& GetDefaultSphereCenter() const { return aDefaultSphereCenter; }
     void SetDefaultSphereCenter(const Vector3D& rNew) { aDefaultSphereCenter = rNew; }
-    const Vector3D& GetDefaultSphereSize() { return aDefaultSphereSize; }
+    const Vector3D& GetDefaultSphereSize() const { return aDefaultSphereSize; }
     void SetDefaultSphereSize(const Vector3D& rNew) { aDefaultSphereSize = rNew; }
 
     // Lathe-Objekt
-    const long GetDefaultLatheEndAngle() { return nDefaultLatheEndAngle; }
+    long GetDefaultLatheEndAngle() const { return nDefaultLatheEndAngle; }
     void SetDefaultLatheEndAngle(const long nNew) { nDefaultLatheEndAngle = nNew; }
-    const double GetDefaultLatheScale() { return fDefaultLatheScale; }
+    double GetDefaultLatheScale() const { return fDefaultLatheScale; }
     void SetDefaultLatheScale(const double fNew) { fDefaultLatheScale = fNew; }
 //-/    const double GetDefaultBackScale() { return fDefaultBackScale; }
 //-/    void SetDefaultBackScale(const double fNew) { fDefaultBackScale = fNew; }
 //-/    const double GetDefaultPercentDiag() { return fDefaultPercentDiag; }
 //-/    void SetDefaultPercentDiag(const double fNew) { fDefaultPercentDiag = fNew; }
-    const BOOL GetDefaultLatheSmoothed() { return bDefaultLatheSmoothed; }
+    BOOL GetDefaultLatheSmoothed() const { return bDefaultLatheSmoothed; }
     void SetDefaultLatheSmoothed(const BOOL bNew) { bDefaultLatheSmoothed = bNew; }
-    const BOOL GetDefaultLatheSmoothFrontBack() { return bDefaultLatheSmoothFrontBack; }
+    BOOL GetDefaultLatheSmoothFrontBack() const { return bDefaultLatheSmoothFrontBack; }
     void SetDefaultLatheSmoothFrontBack(const BOOL bNew) { bDefaultLatheSmoothFrontBack = bNew; }
-    const BOOL GetDefaultLatheCharacterMode() { return bDefaultLatheCharacterMode; }
+    BOOL GetDefaultLatheCharacterMode() const { return bDefaultLatheCharacterMode; }
     void SetDefaultLatheCharacterMode(const BOOL bNew) { bDefaultLatheCharacterMode = bNew; }
-    const BOOL GetDefaultLatheCloseFront() { return bDefaultLatheCloseFront; }
+    BOOL GetDefaultLatheCloseFront() const { return bDefaultLatheCloseFront; }
     void SetDefaultLatheCloseFront(const BOOL bNew) { bDefaultLatheCloseFront = bNew; }
-    const BOOL GetDefaultLatheCloseBack() { return bDefaultLatheCloseBack; }
+    BOOL GetDefaultLatheCloseBack() const { return bDefaultLatheCloseBack; }
     void SetDefaultLatheCloseBack(const BOOL bNew) { bDefaultLatheCloseBack = bNew; }
 
     // Extrude-Objekt
-    const double GetDefaultExtrudeScale() { return fDefaultExtrudeScale; }
+    double GetDefaultExtrudeScale() const { return fDefaultExtrudeScale; }
     void SetDefaultExtrudeScale(const double fNew) { fDefaultExtrudeScale = fNew; }
 //-/    const double GetDefaultExtrudeDepth() { return fDefaultExtrudeDepth; }
 //-/    void SetDefaultExtrudeDepth(const double fNew) { fDefaultExtrudeDepth = fNew; }
-    const BOOL GetDefaultExtrudeSmoothed() { return bDefaultExtrudeSmoothed; }
+    BOOL GetDefaultExtrudeSmoothed() const { return bDefaultExtrudeSmoothed; }
     void SetDefaultExtrudeSmoothed(const BOOL bNew) { bDefaultExtrudeSmoothed = bNew; }
-    const BOOL GetDefaultExtrudeSmoothFrontBack() { return bDefaultExtrudeSmoothFrontBack; }
+    BOOL GetDefaultExtrudeSmoothFrontBack() const { return bDefaultExtrudeSmoothFrontBack; }
     void SetDefaultExtrudeSmoothFrontBack(const BOOL bNew) { bDefaultExtrudeSmoothFrontBack = bNew; }
-    const BOOL GetDefaultExtrudeCharacterMode() { return bDefaultExtrudeCharacterMode; }
+    BOOL GetDefaultExtrudeCharacterMode() const { return bDefaultExtrudeCharacterMode; }
     void SetDefaultExtrudeCharacterMode(const BOOL bNew) { bDefaultExtrudeCharacterMode = bNew; }
-    const BOOL GetDefaultExtrudeCloseFront() { return bDefaultExtrudeCloseFront; }
+    BOOL GetDefaultExtrudeCloseFront() const { return bDefaultExtrudeCloseFront; }
     void SetDefaultExtrudeCloseFront(const BOOL bNew) { bDefaultExtrudeCloseFront = bNew; }
-    const BOOL GetDefaultExtrudeCloseBack() { return bDefaultExtrudeCloseBack; }
+    BOOL GetDefaultExtrudeCloseBack() const { return bDefaultExtrudeCloseBack; }
     void SetDefaultExtrudeCloseBack(const BOOL bNew) { bDefaultExtrudeCloseBack = bNew; }
 
     // Scene-Objekt
@@ -220,7 +220,7 @@ public:
 //-/    void SetDefaultShadowPlaneDirection(const Vector3D& rNew) { aDefaultShadowPlaneDirection = rNew; }
 //-/    const Base3DShadeModel GetDefaultShadeModel() { return eDefaultShadeModel; }
 //-/    void SetDefaultShadeModel(const Base3DShadeModel eNew) { eDefaultShadeModel = eNew; }
-    const BOOL GetDefaultDither() { return bDefaultDither; }
+    BOOL GetDefaultDither() const { return bDefaultDither; }
     void SetDefaultDither(const BOOL bNew) { bDefaultDither = bNew; }
 //-/    const BOOL GetDefaultForceDraftShadeModel() { return bDefaultForceDraftShadeModel; }
 //-/    void SetDefaultForceDraftShadeModel(const BOOL bNew) { bDefaultForceDraftShadeModel = bNew; }

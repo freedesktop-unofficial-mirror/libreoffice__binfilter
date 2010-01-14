@@ -313,21 +313,21 @@ SvXMLEnumStringMapEntry __READONLY_DATA aFieldServiceNameMapping[] =
 
 
 // property accessor helper functions
-inline sal_Bool const GetBoolProperty(const OUString&,
+inline sal_Bool GetBoolProperty(const OUString&,
                                       const Reference<XPropertySet> &);
-inline sal_Bool const GetOptionalBoolProperty(const OUString&,
+inline sal_Bool GetOptionalBoolProperty(const OUString&,
                                               const Reference<XPropertySet> &,
                                               const Reference<XPropertySetInfo> &,
                                               sal_Bool bDefault);
-inline double const GetDoubleProperty(const OUString&,
+inline double GetDoubleProperty(const OUString&,
                                       const Reference<XPropertySet> &);
 inline OUString const GetStringProperty(const OUString&,
                                         const Reference<XPropertySet> &);
-inline sal_Int32 const GetIntProperty(const OUString&,
+inline sal_Int32 GetIntProperty(const OUString&,
                                       const Reference<XPropertySet> &);
-inline sal_Int16 const GetInt16Property(const OUString&,
+inline sal_Int16 GetInt16Property(const OUString&,
                                         const Reference<XPropertySet> &);
-inline sal_Int8 const GetInt8Property(const OUString&,
+inline sal_Int8 GetInt8Property(const OUString&,
                                       const Reference<XPropertySet> &);
 inline DateTime const GetDateTimeProperty( const OUString& sPropName,
                                            const Reference<XPropertySet> & xPropSet);
@@ -2693,7 +2693,7 @@ sal_Bool XMLTextFieldExport::ExplodeFieldMasterName(
     sal_Int32 nSeparator = sMasterName.indexOf('.', nLength);
     sal_Bool bReturn = sal_True;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     // check for service name
     bReturn &= (0 == sFieldMasterPrefix.compareTo(sMasterName, nLength));
 #endif
@@ -3345,7 +3345,7 @@ OUString XMLTextFieldExport::MakeSequenceRefName(
 //
 
 
-inline sal_Bool const GetBoolProperty(
+inline sal_Bool GetBoolProperty(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet)
 {
@@ -3354,7 +3354,7 @@ inline sal_Bool const GetBoolProperty(
     return bBool;
 }
 
-inline sal_Bool const GetOptionalBoolProperty(
+inline sal_Bool GetOptionalBoolProperty(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet,
     const Reference<XPropertySetInfo> & xPropSetInfo,
@@ -3364,7 +3364,7 @@ inline sal_Bool const GetOptionalBoolProperty(
         ? GetBoolProperty( sPropName, xPropSet ) : bDefault;
 }
 
-inline double const GetDoubleProperty(
+inline double GetDoubleProperty(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet)
 {
@@ -3384,7 +3384,7 @@ inline OUString const GetStringProperty(
     return sString;
 }
 
-inline sal_Int32 const GetIntProperty(
+inline sal_Int32 GetIntProperty(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet)
 {
@@ -3394,7 +3394,7 @@ inline sal_Int32 const GetIntProperty(
     return nInt;
 }
 
-inline sal_Int16 const GetInt16Property(
+inline sal_Int16 GetInt16Property(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet)
 {
@@ -3404,7 +3404,7 @@ inline sal_Int16 const GetInt16Property(
     return nInt;
 }
 
-inline sal_Int8 const GetInt8Property(
+inline sal_Int8 GetInt8Property(
     const OUString& sPropName,
     const Reference<XPropertySet> & xPropSet)
 {

@@ -420,7 +420,7 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/   if( pStream && ERRCODE_IO_PENDING == pStream->GetError() )
 /*?*/       pStream->ResetError();
 /*?*/
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/   if( nRes )
 /*?*/   {
 /*?*/       if( xMed.Is() && !pStream )

@@ -362,7 +362,7 @@ extern SwDfltAttrTab __FAR_DATA aAttrTab;
 extern SfxItemInfo   __FAR_DATA aSlotTab[];
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 const SfxPoolItem* GetDfltAttr( USHORT nWhich );
 #else
 inline const SfxPoolItem* GetDfltAttr( USHORT nWhich )

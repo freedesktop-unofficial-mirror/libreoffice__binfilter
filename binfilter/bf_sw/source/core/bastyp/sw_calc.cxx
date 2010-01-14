@@ -475,7 +475,7 @@ static int
 /*N*/   if( eError )
 /*?*/       nResult.PutDouble( DBL_MAX );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   SbxDataType eResDType = nResult.GetType();
 /*N*/   const String& rResStr = nResult.GetString();
 /*N*/ #endif

@@ -46,7 +46,7 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR(SwCacheObjArr,SwCacheObj*);
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #define INCREMENT( nVar )
 #else
 #define INCREMENT( nVar )   ++nVar
@@ -61,7 +61,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*N*/ void SwCache::Check()
 /*N*/ {
@@ -98,7 +98,7 @@ namespace binfilter {
 /*N*/ }
 #endif
 
-#if !defined(PRODUCT) && defined(MADEBUG)
+#if defined(DBG_UTIL) && defined(MADEBUG)
 #define CHECK Check();
 #else
 #define CHECK
@@ -115,7 +115,7 @@ namespace binfilter {
 
 
 /*N*/ SwCache::SwCache( const USHORT nInitSize, const USHORT nGrowSize
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , const ByteString &rNm
 /*N*/ #endif
 /*N*/   ) :
@@ -126,7 +126,7 @@ namespace binfilter {
 /*N*/   pRealFirst( 0 ),
 /*N*/   pFirst( 0 ),
 /*N*/   pLast( 0 )
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , aName( rNm ),
 /*N*/   nAppend( 0 ),
 /*N*/   nInsertFree( 0 ),
@@ -145,7 +145,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 /*N*/ SwCache::~SwCache()
@@ -209,7 +209,7 @@ namespace binfilter {
 /*N*/   SwCacheObj *pTmp;
 /*N*/   while ( pObj )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if ( pObj->IsLocked() )
 /*N*/       {
 /*?*/           ASSERT( TRUE, "Flushing locked objects." );
@@ -334,7 +334,7 @@ namespace binfilter {
 /*N*/           ToTop( pRet );
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if ( pRet )
 /*N*/           ++nGetSuccess;
 /*N*/       else
@@ -358,7 +358,7 @@ namespace binfilter {
 /*N*/   if ( bToTop && pRet && pRet != pFirst )
 /*N*/       ToTop( pRet );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( pRet )
 /*N*/       ++nGetSuccess;
 /*N*/   else
@@ -600,7 +600,7 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*************************************************************************/
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 

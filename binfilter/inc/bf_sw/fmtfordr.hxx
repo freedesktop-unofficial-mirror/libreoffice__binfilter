@@ -62,7 +62,7 @@ public:
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
 
-    const SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
+    SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
     void  SetFillOrder( const SwFillOrder eNew ) { SetValue( USHORT(eNew) ); }
 };
 
