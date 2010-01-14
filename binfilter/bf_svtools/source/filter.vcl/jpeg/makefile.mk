@@ -39,10 +39,6 @@ TARGET=jpeg
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_svtools
 
-.IF "$(SYSTEM_JPEG)" == "YES"
-CFLAGS+=-DSYSTEM_JPEG
-.ENDIF
-
 # --- Files --------------------------------------------------------
 
 SLOFILES=	$(SLO)$/svt_jpegc.obj \
