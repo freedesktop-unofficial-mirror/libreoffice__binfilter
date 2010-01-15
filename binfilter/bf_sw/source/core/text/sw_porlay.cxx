@@ -785,7 +785,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/     } while ( TRUE );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     // check kashida data
 /*N*/     long nTmpKashidaPos = -1;
 /*N*/     sal_Bool bWrongKash = sal_False;

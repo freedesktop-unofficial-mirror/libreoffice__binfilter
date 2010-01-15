@@ -105,6 +105,7 @@ public:
     ~SvtSystemLanguageOptions();
 
     virtual void    Commit();
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 
     LanguageType GetWin16SystemLanguage();
 };

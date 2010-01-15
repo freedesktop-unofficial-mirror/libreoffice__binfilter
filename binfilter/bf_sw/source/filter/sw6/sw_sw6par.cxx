@@ -3231,18 +3231,6 @@ sal_Char Sw6Layout::UpCaseOEM(sal_Char c) const
     {
         switch (c)
         {
-#ifdef IRIX
-            case '\x04':
-                c='\x0E';
-                break;
-            case '\x14':
-                c='\x19';
-                break;
-            case '\x01':
-                c=0x01;
-                break;
-
-#else
             case '\x84':
                 c='\x8E';
                 break;
@@ -3252,7 +3240,6 @@ sal_Char Sw6Layout::UpCaseOEM(sal_Char c) const
             case '\x81':
                 c='\x9A';
                 break;
-#endif
         } // switch
     }
     else c-='\040';

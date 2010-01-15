@@ -36,13 +36,6 @@
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#if OSL_DEBUG_LEVEL == 0
-#  ifndef NDEBUG
-#    define NDEBUG
-#  endif
-#endif
-#include <assert.h>
-
 #include "attrlist.hxx"
 namespace binfilter {
 
@@ -176,7 +169,7 @@ void SvXMLAttributeList::Clear()
 {
     m_pImpl->vecAttribute.clear();
 
-    assert( ! getLength() );
+    OSL_ASSERT( ! getLength() );
 }
 
 void SvXMLAttributeList::RemoveAttribute( const OUString sName )
@@ -193,7 +186,7 @@ void SvXMLAttributeList::RemoveAttribute( const OUString sName )
 
 void SvXMLAttributeList::AppendAttributeList( const uno::Reference< ::com::sun::star::xml::sax::XAttributeList >  &r )
 {
-    assert( r.is() );
+    OSL_ASSERT( r.is() );
 
     sal_Int32 nMax = r->getLength();
     sal_Int32 nTotalSize = m_pImpl->vecAttribute.size() + nMax;
@@ -205,7 +198,7 @@ void SvXMLAttributeList::AppendAttributeList( const uno::Reference< ::com::sun::
             r->getValueByIndex( i )));
     }
 
-    assert( nTotalSize == getLength());
+    OSL_ASSERT( nTotalSize == getLength());
 }
 
 // XUnoTunnel & co

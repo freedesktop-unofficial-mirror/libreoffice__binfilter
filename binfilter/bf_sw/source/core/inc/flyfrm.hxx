@@ -144,7 +144,7 @@ public:
     virtual void ChgSize( const Size& aNewSize );
 
     virtual void Cut();
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );
@@ -215,7 +215,7 @@ public:
         @return true, if background color is transparent or a existing background
         graphic is transparent.
     */
-    const sal_Bool IsBackgroundTransparent() const;
+    sal_Bool IsBackgroundTransparent() const;
 
     /** SwFlyFrm::IsShadowTransparent - for feature #99657#
 
@@ -227,7 +227,7 @@ public:
 
         @return true, if shadow color is transparent.
     */
-    const sal_Bool IsShadowTransparent() const;
+    sal_Bool IsShadowTransparent() const;
 };
 
 inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const

@@ -1097,7 +1097,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
             }
             break;
 */
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         default:    ASSERT( FALSE, "Unknown Anchor." );
 #endif
     }

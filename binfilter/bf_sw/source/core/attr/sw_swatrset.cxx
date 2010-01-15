@@ -288,7 +288,7 @@ namespace binfilter {
 /*N*/               pFmt->SetAttr( *this );
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   else
 /*N*/       ASSERT( !this, "weder Format noch ContentNode - keine Attribute kopiert");
 /*N*/ #endif

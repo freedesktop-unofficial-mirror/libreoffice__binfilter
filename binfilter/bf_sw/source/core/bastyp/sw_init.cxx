@@ -916,7 +916,7 @@ public:
 /*N*/   delete SwEditShell::pAutoFmtFlags;
 /*N*/   delete SwNumRule::pDefBulletFont;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   //Defaultattribut freigeben lassen um asserts zu vermeiden.
 /*N*/   if ( aAttrTab[0]->GetRefCount() )
 /*N*/       SfxItemPool::ReleaseDefaults( aAttrTab, POOLATTR_END-POOLATTR_BEGIN, FALSE);
