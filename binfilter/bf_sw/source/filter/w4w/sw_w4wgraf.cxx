@@ -779,7 +779,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
             Font aFont(aStr,Size(0,Grad));
             aFont.SetColor(aColor);
             rOut.SetFont(aFont);
-            delete pC;
+            delete[] pC;
         } break;
         case W4WRG_DrText: {
             USHORT i;
@@ -791,7 +791,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
                 pC[i]=(char)GetHexByte();
             String aStr( pC, RTL_TEXTENCODING_IBM_850 );
             rOut.DrawText(P1,aStr);
-            delete pC;
+            delete[] pC;
         } break;
 
         /*

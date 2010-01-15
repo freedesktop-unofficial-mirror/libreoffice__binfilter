@@ -104,7 +104,7 @@
 #endif
 #ifdef CONV_STAR_FONTS
 #ifndef _VCL_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 #endif
 #include "bf_so3/staticbaseurl.hxx"
@@ -602,7 +602,7 @@ void SAL_CALL SvXMLImport::endElement( const OUString& rName )
         SvXMLImportContext *pContext = (*pContexts)[nCount-1];
         pContexts->Remove( nCount-1, 1 );
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         // Non product only: check if endElement call matches startELement call.
         OUString aLocalName;
         USHORT nPrefix =

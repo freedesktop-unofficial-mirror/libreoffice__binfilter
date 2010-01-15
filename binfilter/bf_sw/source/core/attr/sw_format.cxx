@@ -631,7 +631,7 @@ namespace binfilter {
 
     @return false, default implementation
 */
-/*M*/ const sal_Bool SwFmt::IsBackgroundTransparent() const
+/*M*/ sal_Bool SwFmt::IsBackgroundTransparent() const
 /*M*/ {
 /*M*/     return sal_False;
 /*M*/ }
@@ -647,7 +647,7 @@ namespace binfilter {
 
     @return false, default implementation
 */
-/*M*/ const sal_Bool SwFmt::IsShadowTransparent() const
+/*M*/ sal_Bool SwFmt::IsShadowTransparent() const
 /*M*/ {
 /*M*/     return sal_False;
 /*M*/ }

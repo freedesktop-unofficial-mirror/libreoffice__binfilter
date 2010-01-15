@@ -886,7 +886,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       SetAutoFilterFlags();
 /*N*/       if (pDrawLayer)
 /*N*/           UpdateAllCharts();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ //2do: wg. #62107
 /*N*/ // ChartListenerCollection speichern/laden, damit nach dem Laden das Update
 /*N*/ // hier einmal eingespart werden kann und somit nicht mehr alle Charts

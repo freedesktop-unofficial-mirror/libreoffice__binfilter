@@ -775,8 +775,8 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/
-/*N*/       delete pDelRows;
-/*N*/       delete ppDelCells;
+/*N*/       delete[] pDelRows;
+/*N*/       delete[] ppDelCells;
 /*N*/   }
 /*N*/
 /*N*/   pDocument->SetAutoCalc( bOldAutoCalc );
