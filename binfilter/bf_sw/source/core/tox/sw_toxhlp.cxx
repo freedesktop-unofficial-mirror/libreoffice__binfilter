@@ -76,7 +76,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
         ByteString aMsg( "IndexEntrySupplierWrapper: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -98,7 +98,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "getAlgorithmList: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -117,7 +117,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "loadAlgorithm: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -139,7 +139,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "compareIndexEntry: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );

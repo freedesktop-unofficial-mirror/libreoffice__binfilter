@@ -49,7 +49,7 @@
 #endif
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 extern const sal_Char *GetLangName( const MSHORT nLang );
 #endif
 

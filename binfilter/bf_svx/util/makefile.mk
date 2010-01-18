@@ -43,10 +43,6 @@ NO_HIDS=TRUE
 
 .INCLUDE :  settings.mk
 
-.IF "$(OS)"=="IRIX"
-LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
-.ENDIF
-
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Svx - DLL ----------
@@ -75,8 +71,7 @@ SHL1STDLIBS= \
             $(SALLIB) \
             $(ICUUCLIB)\
             $(LEGACYSMGRLIB) \
-            $(XMLSCRIPTLIB) \
-            $(SYSSHELLLIB)
+            $(XMLSCRIPTLIB)
 
 .IF "$(GUI)"=="WNT"
 

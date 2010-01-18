@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( ++nCount > LOOP_DETECT )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/       static BOOL bNoLouie = FALSE;
 /*N*/       if( bNoLouie )

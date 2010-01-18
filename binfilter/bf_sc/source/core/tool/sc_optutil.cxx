@@ -69,7 +69,12 @@ namespace binfilter {
 /*N*/   aCommitLink = rLink;
 /*N*/ }
 
+void  ScLinkConfigItem::Notify( const com::sun::star::uno::Sequence< rtl::OUString >& )
+{
+}
 
-
+void  ScLinkConfigItem::Commit()
+{
+}
 
 }

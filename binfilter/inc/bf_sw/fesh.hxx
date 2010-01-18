@@ -307,7 +307,7 @@ public:
         @returns boolean, indicating, if the horizontal text direction of the
         page, the selected drawing object is on, is right-to-left.
     */
-    const bool IsShapeDefaultHoriTextDirR2L() const;
+    bool IsShapeDefaultHoriTextDirR2L() const;
 
     void ParkCursorInTab();
 };

@@ -67,7 +67,7 @@
 #define SNAP_FLYFRAMES   0x00000002
 #define SNAP_TABLECONT   0x00000004
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 #include <tools/debug.hxx>
 namespace binfilter {

@@ -93,7 +93,7 @@ class SwMultiPortion;
 #define DIR_RIGHT2LEFT 2
 #define DIR_TOP2BOTTOM 3
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #define OPTCALM( rInf )  (rInf).IsOptCalm()
 #define OPTLOW( rInf )   (rInf).IsOptLow()
 #define OPTDBG( rInf )   (rInf).IsOptDbg()
@@ -296,7 +296,7 @@ public:
 
     inline const  SwViewOption &GetOpt() const { return *pOpt; }
     inline const XubString &GetTxt() const { return *pTxt; }
-    inline const xub_Unicode GetChar( const xub_StrLen nPos ) const
+    inline xub_Unicode GetChar( const xub_StrLen nPos ) const
         { return pTxt->GetChar( nPos ); }
 
     inline KSHORT      GetTxtHeight() const;
@@ -377,17 +377,17 @@ public:
     //
     // Feature: Kana Compression
     //
-    inline const MSHORT GetKanaIdx() const { return nKanaIdx; }
+    inline MSHORT GetKanaIdx() const { return nKanaIdx; }
     inline void ResetKanaIdx(){ nKanaIdx = 0; }
     inline void SetKanaIdx( MSHORT nNew ) { nKanaIdx = nNew; }
     inline void IncKanaIdx() { ++nKanaIdx; }
     inline void SetKanaComp( SvUShorts *pNew ){ pKanaComp = pNew; }
     inline SvUShorts* GetpKanaComp() const { return pKanaComp; }
-    inline const USHORT GetKanaComp() const
+    inline USHORT GetKanaComp() const
         { return ( pKanaComp && nKanaIdx < pKanaComp->Count() )
                    ? (*pKanaComp)[nKanaIdx] : 0; }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 };
 
@@ -410,7 +410,7 @@ class SwTxtPaintInfo : public SwTxtSizeInfo
     SwTxtPaintInfo &operator=(const SwTxtPaintInfo&);
 
 protected:
-#ifdef PRODUCT
+#ifndef DBG_UTIL
     SwTxtPaintInfo() { pFrm = 0; pWrongList = 0; pSpaceAdd = 0; pBrushItem = 0;}
 #else
     SwTxtPaintInfo() { pFrm = 0; pWrongList = 0; pSpaceAdd = 0;
@@ -458,13 +458,13 @@ public:
 
     friend SvStream &operator<<( SvStream &rOS, const SwTxtPaintInfo &rInf );
 
-    inline const MSHORT GetSpaceIdx() const { return nSpaceIdx; }
+    inline MSHORT GetSpaceIdx() const { return nSpaceIdx; }
     inline void ResetSpaceIdx(){nSpaceIdx = 0; }
     inline void SetSpaceIdx( MSHORT nNew ) { nSpaceIdx = nNew; }
     inline void IncSpaceIdx() { ++nSpaceIdx; }
     inline void SetSpaceAdd( SvShorts *pNew ){ pSpaceAdd = pNew; }
     inline SvShorts* GetpSpaceAdd() const { return pSpaceAdd; }
-    inline const short GetSpaceAdd() const
+    inline short GetSpaceAdd() const
         { return ( pSpaceAdd && nSpaceIdx < pSpaceAdd->Count() )
                    ? (*pSpaceAdd)[nSpaceIdx] : 0; }
 
