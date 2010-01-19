@@ -971,6 +971,8 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
+    void SmMathConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SmMathConfigItem::Commit() {}
 
 
 

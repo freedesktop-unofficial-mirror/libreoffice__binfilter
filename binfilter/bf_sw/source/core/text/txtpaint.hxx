@@ -73,7 +73,7 @@ inline SwSaveClip::~SwSaveClip()
     Reset();
 }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*************************************************************************
  *                          class SwDbgOut

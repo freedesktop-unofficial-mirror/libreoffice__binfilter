@@ -99,7 +99,13 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 /*N*/ public:
 /*N*/               ScLibOptions();
 /*N*/   BOOL        GetWK3Flag() const          { return bWK3Flag; }
+    virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+    virtual void                Commit();
+
 /*N*/ };
+
+void ScLibOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void ScLibOptions::Commit() {}
 
 #define CFGPATH_LIBFILTER       "Office.Calc/Filter/Import/Lotus123"
 #define ENTRYSTR_WK3            "WK3"

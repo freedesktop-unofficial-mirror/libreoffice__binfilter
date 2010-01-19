@@ -130,7 +130,7 @@ using namespace ::com::sun::star;
 /*N*/   DBG_CTOR( SwFieldType, 0 );
 /*N*/ }
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 
 /*N*/ SwFieldType::~SwFieldType()
 /*N*/ {
@@ -168,7 +168,7 @@ using namespace ::com::sun::star;
     Beschreibung: Statt Umweg ueber den Typ
  --------------------------------------------------------------------*/
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ USHORT SwField::Which() const
 /*N*/ {
 /*N*/   ASSERT(pType, "Kein Typ vorhanden");

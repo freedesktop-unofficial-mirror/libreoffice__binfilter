@@ -283,7 +283,7 @@ public:
     BOOL                GetPresFullScreen() const { return bPresFullScreen; }
 
        void                SetSummationOfParagraphs( BOOL bOn = TRUE ) { bSummationOfParagraphs = bOn; }
-    const BOOL          IsSummationOfParagraphs() const { return bSummationOfParagraphs; }
+    BOOL            IsSummationOfParagraphs() const { return bSummationOfParagraphs; }
 
     /** Set the mode that controls whether (and later how) the formatting of the document
         depends on the current printer metrics.

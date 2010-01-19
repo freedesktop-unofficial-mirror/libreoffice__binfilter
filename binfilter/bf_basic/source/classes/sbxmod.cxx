@@ -729,7 +729,7 @@ BOOL SbModule::LoadCompleted()
 /*?*/ //
 /*?*/ //    String getTokStr( /*out*/const sal_Unicode* pStartPos, /*out*/const sal_Unicode* pEndPos );
 /*?*/ //
-/*?*/ // #ifndef PRODUCT
+/*?*/ // #ifdef DBG_UTIL
 /*?*/ //    // TEST: Token ausgeben
 /*?*/ //    String getFullTokenStr( /*out*/TokenTypes eType,
 /*?*/ //        /*out*/const sal_Unicode* pStartPos, /*out*/const sal_Unicode* pEndPos );
@@ -1017,7 +1017,7 @@ BOOL SbModule::LoadCompleted()
 /*?*/ //    return String( pStartPos, (USHORT)( pEndPos - pStartPos ) );
 /*?*/ // }
 /*?*/ //
-/*?*/ // #ifndef PRODUCT
+/*?*/ // #ifdef DBG_UTIL
 /*?*/ // // TEST: Token ausgeben
 /*?*/ // String SimpleTokenizer_Impl::getFullTokenStr( /*out*/TokenTypes eType,
 /*?*/ //    /*out*/const sal_Unicode* pStartPos, /*out*/const sal_Unicode* pEndPos )

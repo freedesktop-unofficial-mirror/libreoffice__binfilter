@@ -71,7 +71,7 @@ public:
           return pImpl; }
     void UnlockImpl() { --nLockCount; }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 };
 

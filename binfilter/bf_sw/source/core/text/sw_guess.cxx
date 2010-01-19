@@ -201,7 +201,7 @@ using namespace ::com::sun::star::beans;
 /*M*/     {
 /*M*/         nCutPos = rInf.GetTxtBreak( nLineWidth, nMaxLen, nMaxComp );
 /*M*/
-/*M*/ #ifndef PRODUCT
+/*M*/ #ifdef DBG_UTIL
 /*M*/         if ( STRING_LEN != nCutPos )
 /*M*/         {
 /*M*/             rInf.GetTxtSize( &rSI, rInf.GetIdx(), nCutPos - rInf.GetIdx(),

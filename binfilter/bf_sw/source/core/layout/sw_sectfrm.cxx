@@ -2165,7 +2165,7 @@ namespace binfilter {
 /*?*/       pDestroy->Remove( nPos );
 /*N*/ }
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 
 /*N*/ BOOL SwRootFrm::IsInDelList( SwSectionFrm* pSct ) const
 /*N*/ {

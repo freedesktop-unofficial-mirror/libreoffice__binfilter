@@ -1488,7 +1488,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/         delete pPageMaker;
 /*N*/         if( pDoc->GetLayoutCache() )
 /*N*/         {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetLayoutCache()->CompareLayout( *pDoc );
 /*N*/ #endif

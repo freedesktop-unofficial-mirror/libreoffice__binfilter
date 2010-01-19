@@ -1102,7 +1102,7 @@ String &SwExcelParser::ReadExcString( StringInfoLen eLen, String &aString )
     pIn->Read( pStr, nLaenge );
     pStr[ nLaenge ] = 0;
     aString = String(pStr, eZielChar);
-    delete pStr;
+    delete[] pStr;
 
     return aString;
     }

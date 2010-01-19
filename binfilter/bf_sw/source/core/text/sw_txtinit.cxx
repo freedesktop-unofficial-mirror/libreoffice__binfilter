@@ -86,7 +86,7 @@ namespace binfilter {
 /*N*/
 /*N*/   //Pauschale groesse 250, plus 100 pro Shell
 /*N*/   SwCache *pTxtCache = new SwCache( 250, 100
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , "static SwTxtFrm::pTxtCache"
 /*N*/ #endif
 /*N*/   );

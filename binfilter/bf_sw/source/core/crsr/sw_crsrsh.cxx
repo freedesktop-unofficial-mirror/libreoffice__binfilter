@@ -275,7 +275,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-/*?*/ #if !defined( PRODUCT )
+/*?*/ #if defined(DBG_UTIL)
 /*?*/
 /*?*/ void SwCrsrShell::SttCrsrMove()
 /*?*/ {
@@ -831,7 +831,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-#if !defined(PRODUCT) || defined(WIN)
+#if defined(DBG_UTIL) || defined(WIN)
 
 
 

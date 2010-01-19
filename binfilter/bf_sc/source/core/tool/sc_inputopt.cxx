@@ -261,7 +261,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 
-
+void ScInputCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void ScInputCfg::Commit() {}
 
 
 

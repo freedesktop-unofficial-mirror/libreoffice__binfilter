@@ -65,7 +65,7 @@ public:
           SwTxtFlyCnt *GetTxtFlyCnt()       { return pTxtAttr; }
 
     // OD 27.06.2003 #108784#
-    const bool Sw3ioExportAllowed() const;
+    bool Sw3ioExportAllowed() const;
 };
 
 } //namespace binfilter
