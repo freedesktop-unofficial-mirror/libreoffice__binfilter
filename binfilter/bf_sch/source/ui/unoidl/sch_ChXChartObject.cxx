@@ -118,7 +118,7 @@ ChXChartObject::ChXChartObject( long _MapId, ChartModel* _Model, long _WhichId, 
 ChXChartObject::~ChXChartObject()
 {}
 
-const long ChXChartObject::GetId() const
+long ChXChartObject::GetId() const
 {
     return mnWhichId;
 }

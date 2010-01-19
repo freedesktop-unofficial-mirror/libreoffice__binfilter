@@ -409,12 +409,12 @@ struct SwFillData
         const Point& rPt ) : aFrm( rR ), pCMS( pC ), pPos( pP ), rPoint( rPt ),
         nLineWidth( 0 ), bFirstLine( sal_True ), bInner( sal_False ), bColumn( sal_False ),
         bEmpty( sal_True ){}
-    const SwFillMode Mode() const { return pCMS->pFill->eMode; }
-    const long X() const { return rPoint.X(); }
-    const long Y() const { return rPoint.Y(); }
-    const long Left() const { return aFrm.Left(); }
-    const long Right() const { return aFrm.Right(); }
-    const long Bottom() const { return aFrm.Bottom(); }
+    SwFillMode Mode() const { return pCMS->pFill->eMode; }
+    long X() const { return rPoint.X(); }
+    long Y() const { return rPoint.Y(); }
+    long Left() const { return aFrm.Left(); }
+    long Right() const { return aFrm.Right(); }
+    long Bottom() const { return aFrm.Bottom(); }
     SwRect& Frm() { return aFrm; }
     SwFillCrsrPos &Fill() const { return *pCMS->pFill; }
     void SetTab( MSHORT nNew ) { pCMS->pFill->nTabCnt = nNew; }
