@@ -343,7 +343,7 @@ namespace binfilter {
 /*N*/           delete pDrawObjs;
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // JP 15.10.2001: for detection of access to deleted frames
 /*N*/   pDrawObjs = (SwDrawObjs*)0x33333333;
 /*N*/ #endif

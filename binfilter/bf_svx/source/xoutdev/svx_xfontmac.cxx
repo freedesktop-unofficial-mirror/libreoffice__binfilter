@@ -357,7 +357,7 @@ XPolyPolygon XOutGetCharOutlineGX(USHORT nChar, OutputDevice& rOut,
     /* was wir angefordert haben, muessen wir auch wieder freigeben!
     */
     GXDisposeShape( aOutlineShape );
-    delete pPathData;
+    delete[] pPathData;
 
     rOut.SetFont( aFont );
 

@@ -849,7 +849,7 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/       CloseRec( SWG_OUTLINEEXT );
 /*N*/   }
 /*N*/
-/*N*/   delete ppTxtColls;
+/*N*/   delete[] ppTxtColls;
 /*N*/ #endif
 /*N*/ }
 

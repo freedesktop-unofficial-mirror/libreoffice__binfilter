@@ -89,10 +89,6 @@ SLOFILES =	\
         $(SLO)$/sw_visiturl.obj \
         $(SLO)$/sw_htmltbl.obj
 
-.IF "$(OS)$(CVER)"=="MACOSXC295"
-SLOFILES += $(SLO)$/sw_gcc_outl.obj
-.ENDIF
-
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :	target.mk

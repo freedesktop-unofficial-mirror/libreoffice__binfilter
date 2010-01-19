@@ -328,7 +328,7 @@ public:
 /*N*/     if ( !pFilter->GetFilterName().Len() ||
 /*N*/        !GetFilter4FilterName( pFilter->GetFilterName() ))
 /*N*/       pImpl->aList.Insert( pFilter, nPos );
-/*N*/ #if !defined(PRODUCT)
+/*N*/ #if defined(DBG_UTIL)
 /*N*/   else
 /*N*/       delete pFilter;
 /*N*/ #endif

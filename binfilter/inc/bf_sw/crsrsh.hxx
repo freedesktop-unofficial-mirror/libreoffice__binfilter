@@ -47,7 +47,7 @@
 #include <tblsel.hxx>               //SwTblSearchType
 #endif
 
-#if defined(PRODUCT) && !defined(WIN)
+#if !defined(DBG_UTIL) && !defined(WIN)
 // fuer die Inline-Methoden
 #ifndef _VISCRS_HXX
 #include <viscrs.hxx>
@@ -118,7 +118,7 @@ struct SwContentAtPos
         SW_OUTLINE      = 0x0040,
         SW_TOXMARK      = 0x0080,
         SW_REFMARK      = 0x0100
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         ,SW_CURR_ATTRS      = 0x4000        // nur zum Debuggen
         ,SW_TABLEBOXVALUE   = 0x8000        // nur zum Debuggen
 #endif
@@ -357,7 +357,7 @@ public:
      * Loesche vom Stack den obersten und setzen dessen Mark im Aktuellen.
      */
 
-#if defined( PRODUCT )
+#if !defined(DBG_UTIL)
     void SttCrsrMove() { ++nCrsrMove; StartAction(); }
     void EndCrsrMove( const BOOL bIdleEnd = FALSE )
             { EndAction( bIdleEnd ); --nCrsrMove; }
@@ -585,7 +585,7 @@ public:
 
 // Cursor Inlines:
 
-#if defined(PRODUCT) && !defined(WIN)
+#if !defined(DBG_UTIL) && !defined(WIN)
 
 inline SwMoveFnCollection* SwCrsrShell::MakeFindRange(
             USHORT nStt, USHORT nEnd, SwPaM* pPam ) const

@@ -2181,7 +2181,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               ASSERT( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
 /*N*/               if( IDX_NO_VALUE != nStrIdx )
 /*N*/               {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   SwFmt *pTmp = aStringPool.FindCachedFmt( nStrIdx );
 /*N*/                   ASSERT( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
 /*N*/                           "wrong format cached?" );

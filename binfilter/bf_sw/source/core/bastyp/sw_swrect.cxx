@@ -33,7 +33,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 #include <stdlib.h>
 #include "swrect.hxx"
@@ -304,7 +304,7 @@ namespace binfilter {
 /*N*/     { nX = rNew.nA; nY = rNew.nB - nHeight; }
 #endif
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 /*************************************************************************
  *                  operator<<( ostream&, SwRect&)
  *************************************************************************/

@@ -441,7 +441,7 @@ class SwDoc
     sal_Bool    bPurgeOLE : 1;          // TRUE: Purge OLE-Objects
     sal_Bool    bKernAsianPunctuation : 1;  // TRUE: kerning also for ASIAN punctuation
     sal_Bool    bReadlineChecked    : 1;  // TRUE: if the query was already shown
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     sal_Bool    bXMLExport : 1;         // TRUE: during XML export
 #endif
 
@@ -563,7 +563,7 @@ public:
     sal_Bool IsKernAsianPunctuation() const         { return bKernAsianPunctuation; }
     void SetKernAsianPunctuation( sal_Bool bFlag )  { bKernAsianPunctuation = bFlag; }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     sal_Bool InXMLExport() const            { return bXMLExport; }
     void SetXMLExport( sal_Bool bFlag )     { bXMLExport = bFlag; }
 #endif

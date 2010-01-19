@@ -37,7 +37,7 @@
 #endif
 
 #ifndef _SV_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 class Font;
 class OutputDevice;
