@@ -140,7 +140,7 @@ namespace binfilter {
 
 /*N*/ ScMultipleReadHeader::~ScMultipleReadHeader()
 /*N*/ {
-/*N*/   if ( pMemStream && pMemStream->Tell() != pMemStream->GetSize() )
+/*N*/   if ( pMemStream && pMemStream->Tell() != pMemStream->GetEndOfData() )
 /*N*/   {
 /*N*/       DBG_ERRORFILE( "Sizes nicht vollstaendig gelesen" );
 /*N*/       if ( rStream.GetError() == SVSTREAM_OK )

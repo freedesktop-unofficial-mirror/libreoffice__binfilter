@@ -44,10 +44,6 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sc
 IENV!:=$(IENV);..$/res
 
-.IF "$(OS)"=="IRIX"
-LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=30
-.ENDIF
-
 # --- Resourcen ----------------------------------------------------
 
 RESLIB1LIST=\

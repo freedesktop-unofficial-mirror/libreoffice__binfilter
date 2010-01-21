@@ -113,16 +113,16 @@ public:
     void AddMapperEntry( const UniReference < XMLPropertySetMapper >& rMapper );
 
     /** Return number of entries in input-array */
-    const sal_Int32 GetEntryCount() const { return aMapEntries.size(); }
+    sal_Int32   GetEntryCount() const { return aMapEntries.size(); }
 
     /** Returns the flags of an entry */
-    const sal_uInt32 GetEntryFlags( sal_Int32 nIndex ) const
+    sal_uInt32 GetEntryFlags( sal_Int32 nIndex ) const
     {
         return aMapEntries[nIndex].nType & ~MID_FLAG_MASK;
     }
 
     /** Returns the type of an entry */
-    const sal_uInt32 GetEntryType( sal_Int32 nIndex,
+    sal_uInt32 GetEntryType( sal_Int32 nIndex,
                                    sal_Bool bWithFlags = sal_True ) const
     {
         sal_uInt32 nType = aMapEntries[nIndex].nType;
@@ -132,7 +132,7 @@ public:
     }
 
     /** Returns the namespace-key of an entry */
-    const sal_uInt16 GetEntryNameSpace( sal_Int32 nIndex ) const
+    sal_uInt16 GetEntryNameSpace( sal_Int32 nIndex ) const
     {
         return aMapEntries[nIndex].nXMLNameSpace;
     }
@@ -150,14 +150,14 @@ public:
     }
 
     /** returns the entry context id */
-    const sal_Int16 GetEntryContextId( sal_Int32 nIndex ) const
+    sal_Int16 GetEntryContextId( sal_Int32 nIndex ) const
     {
         return nIndex == -1 ? 0 : aMapEntries[nIndex].nContextId;
     }
 
     /** Returns the index of an entry with the given XML-name and namespace
         If there is no matching entry the method returns -1 */
-    const sal_Int32 GetEntryIndex( sal_uInt16 nNamespace,
+    sal_Int32 GetEntryIndex( sal_uInt16 nNamespace,
                                    const ::rtl::OUString& rStrName,
                                    sal_Int32 nStartAt = -1 ) const;
 

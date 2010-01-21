@@ -55,9 +55,6 @@ RESLIB1NAME=bf_sw
 MYRESLIBNAME=sw
 
 # --- Allgemein -----------------------------------------------------------
-.IF "$(OS)"=="IRIX"
-LINKFLAGS+=-Wl,-LD_LAYOUT:lgot_buffer=40
-.ENDIF
 
 sw_res_files= \
     $(SRS)$/sw_app.srs          \

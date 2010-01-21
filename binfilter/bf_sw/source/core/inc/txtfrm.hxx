@@ -468,7 +468,7 @@ public:
 #endif
 
     // OD 14.03.2003 #i11760# - access to new member <mbNoFollowFormat>
-    inline const bool FollowFormatAllowed() const
+    inline bool FollowFormatAllowed() const
     {
         return mbFollowFormatAllowed;
     }
