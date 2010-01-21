@@ -165,7 +165,7 @@ namespace binfilter {
 /*?*/   return TRUE;
 /*N*/ }
 
-const BOOL SwNoTxtNode::IsPixelContour() const
+BOOL SwNoTxtNode::IsPixelContour() const
 {
     BOOL bRet;
     if( bContourMapModeValid )
