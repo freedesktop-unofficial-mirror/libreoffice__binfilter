@@ -1690,7 +1690,7 @@ namespace binfilter {
 /*?*/           // Spalten abklappern, dies erledigt SwSectionFrm::FindLastCntnt
 /*?*/           if( pRet->IsColBodyFrm() )
 /*?*/           {
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/               SwSectionFrm* pSect = pRet->FindSctFrm();
 /*?*/               ASSERT( pSect, "Wo kommt denn die Spalte her?")
 /*?*/               ASSERT( IsAnLower( pSect ), "Gespaltene Zelle?" );
@@ -2250,7 +2250,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       bValidSize = TRUE;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/         if ( HasFixSize() )
 /*N*/       {
 /*N*/           const SwFmtFrmSize &rFrmSize = GetFmt()->GetFrmSize();

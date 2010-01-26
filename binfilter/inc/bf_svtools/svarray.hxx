@@ -64,7 +64,7 @@ inline void operator delete( void*, DummyType* ) {}
 
 namespace binfilter {
 
-#if defined(PRODUCT)
+#if !defined(DBG_UTIL)
 
 #define _SVVARARR_DEF_GET_OP_INLINE( nm, ArrElem ) \
 ArrElem& operator[](USHORT nP) const { return *(pData+nP); }\
@@ -262,7 +262,7 @@ _SVVARARR_IMPL_GET_OP_INLINE(nm, AE )\
 #define SV_IMPL_VARARR( nm, AE ) \
 SV_IMPL_VARARR_GEN( nm, AE, AE & )
 
-#if defined(PRODUCT)
+#if !defined(DBG_UTIL)
 
 #define _SVOBJARR_DEF_GET_OP_INLINE( nm,ArrElem )\
 ArrElem& operator[](USHORT nP) const { return *(pData+nP); }\
@@ -948,7 +948,7 @@ public:\
 #define C40_PTR_REPLACE( c, p) Replace( (c const *) p )
 #define C40_GETPOS( c, r) GetPos( (c const *)r )
 #else
-#if defined WTC || defined IRIX || defined ICC || defined HPUX || (defined GCC && __GNUC__ >= 3) || (defined(WNT) && _MSC_VER >= 1400)
+#if defined WTC || defined ICC || defined HPUX || (defined GCC && __GNUC__ >= 3) || (defined(WNT) && _MSC_VER >= 1400)
 #define C40_INSERT( c, p, n ) Insert( (c const *&) p, n )
 #define C40_PUSH( c, p) Push( (c const *&) p )
 #define C40_PTR_INSERT( c, p ) Insert( (c const *&) p )

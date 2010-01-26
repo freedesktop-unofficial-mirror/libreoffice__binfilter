@@ -454,7 +454,7 @@ namespace binfilter {
 /*N*/
 /*N*/   aRedlRest.Restore();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       //JP 17.06.99: Bug 66973 - check count only if the selection is in
 /*N*/       //              the same (or no) section. Becaus not full selected

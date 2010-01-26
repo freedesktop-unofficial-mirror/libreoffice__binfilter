@@ -145,7 +145,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/ void SmRect::BuildRect(const OutputDevice &rDev, const SmFormat *pFormat,
 /*N*/                        const XubString &rText, USHORT nBorder)
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if (rDev.GetOutDevType() != OUTDEV_PRINTER)
 /*N*/       DBG_WARNING("Sm :  Referenz-Device ist kein Drucker");
 /*N*/ #endif

@@ -42,7 +42,7 @@
 #include "inftxt.hxx"
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*N*/ sal_Bool ChkChain( SwLinePortion *pStart )
 /*N*/ {
@@ -145,7 +145,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/ {
 /*N*/   pIns->FindLastPortion()->SetPortion( pPortion );
 /*N*/   SetPortion( pIns );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ChkChain( this );
 /*N*/ #endif
 /*N*/   return pIns;
@@ -176,7 +176,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/   SwLinePortion *pPos = FindLastPortion();
 /*N*/   pPos->SetPortion( pIns );
 /*N*/   pIns->SetPortion( 0 );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ChkChain( this );
 /*N*/ #endif
 /*N*/   return pIns;
@@ -229,7 +229,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/   return SwPosSize();
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*************************************************************************
  *                virtual SwLinePortion::Check()

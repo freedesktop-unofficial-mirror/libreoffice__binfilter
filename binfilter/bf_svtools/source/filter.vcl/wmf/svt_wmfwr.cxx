@@ -34,7 +34,7 @@
 #include <vcl/salbtype.hxx>
 #include "wmfwr.hxx"
 #ifndef _SV_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 #ifndef _RTL_CRC_H_
 #include <rtl/crc.h>

@@ -280,5 +280,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
 /*N*/ }
 
+void SvxSearchItem::Commit()
+{
+}
 
 }

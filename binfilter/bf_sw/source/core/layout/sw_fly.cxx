@@ -840,7 +840,7 @@ namespace binfilter {
 /*?*/                   }
 /*N*/               }
 /*N*/           }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           if ( IsMinHeight() )
 /*N*/           {
 /*N*/                 const Size aSizeII = CalcRel( rFrmSz );

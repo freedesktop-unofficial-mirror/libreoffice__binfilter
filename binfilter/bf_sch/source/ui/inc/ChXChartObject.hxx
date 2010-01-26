@@ -87,7 +87,7 @@ public:
     ChXChartObject( long _MapId, ChartModel* _Model, long _WhichId, long _Index = -1 );
     virtual ~ChXChartObject();
 
-    virtual const long GetId() const;
+    virtual long GetId() const;
     SdrObject* GetCurrentSdrObject() const;
      static const ::com::sun::star::uno::Sequence< sal_Int8 > & getUnoTunnelId() throw();
 

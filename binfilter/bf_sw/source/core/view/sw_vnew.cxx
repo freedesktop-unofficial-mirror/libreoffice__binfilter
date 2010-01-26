@@ -240,7 +240,7 @@ namespace binfilter {
 /*N*/     delete pAccOptions;
 /*N*/ }
 
-/*N*/ const BOOL ViewShell::HasDrawView() const
+/*N*/ BOOL ViewShell::HasDrawView() const
 /*N*/ {
 /*N*/   return Imp()->HasDrawView();
 /*N*/ }
