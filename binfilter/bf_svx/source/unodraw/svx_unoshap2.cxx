@@ -1710,7 +1710,9 @@ uno::Any SAL_CALL SvxGraphicObject::getPropertyValue( const OUString& aPropertyN
             SvMemoryStream aDestStrm( 65535, 65535 );
 
             ConvertGDIMetaFileToWMF( rGraphic.GetGDIMetaFile(), aDestStrm, NULL, sal_False );
-            uno::Sequence<sal_Int8> aSeq((sal_Int8*)aDestStrm.GetData(), aDestStrm.GetSize());
+            const uno::Sequence<sal_Int8> aSeq(
+                static_cast< const sal_Int8* >(aDestStrm.GetData()),
+                aDestStrm.GetEndOfData());
             return uno::Any( &aSeq, ::getCppuType(( uno::Sequence< sal_Int8 >*)0) );
         }
     }
