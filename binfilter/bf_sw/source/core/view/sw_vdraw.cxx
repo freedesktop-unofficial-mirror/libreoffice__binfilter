@@ -51,7 +51,7 @@
 /// OD 29.08.2002 #102450#
 /// include <bf_svx/svdoutl.hxx>
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef _HORIORNT_HXX

@@ -144,7 +144,7 @@ public:
     virtual void ChgSize( const Size& aNewSize );
 
     virtual void Cut();
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
     SwTwips _Shrink( SwTwips, SZPTR BOOL bTst );
@@ -215,19 +215,7 @@ public:
         @return true, if background color is transparent or a existing background
         graphic is transparent.
     */
-    const sal_Bool IsBackgroundTransparent() const;
-
-    /** SwFlyFrm::IsShadowTransparent - for feature #99657#
-
-        OD 05.08.2002
-        determine, if shadow color of fly frame has to be drawn transparent
-        definition found in /core/layout/paintfrm.cxx
-
-        @author OD
-
-        @return true, if shadow color is transparent.
-    */
-    const sal_Bool IsShadowTransparent() const;
+    sal_Bool IsBackgroundTransparent() const;
 };
 
 inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const

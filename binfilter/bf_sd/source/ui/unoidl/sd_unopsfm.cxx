@@ -344,8 +344,9 @@ void SdUnoPseudoStyleFamily::createStyle( SfxStyleSheetBase* pStyleSheet, Presen
     }
 
     rxRef = new SdUnoPseudoStyle( mpModel, mpPage, aSearchData.mpStyleSheet, aSearchData.meObject );
-    xRef = uno::Reference< uno::XInterface >( rxRef, uno::UNO_QUERY );
-    mpStyles->insert(xRef);
+
+    uno::WeakReference<uno::XInterface> wRef(rxRef);
+    mpStyles->insert(wRef);
 }
 
 void SdUnoPseudoStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )

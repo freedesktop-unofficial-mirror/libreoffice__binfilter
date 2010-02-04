@@ -209,7 +209,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/
 /*N*/   LockModify();
 /*N*/
-/*N*/ #ifdef PRODUCT
+/*N*/ #ifndef DBG_UTIL
 /*N*/   bInModify = TRUE;
 /*N*/ #else
 /*N*/   if( !pOldValue )
@@ -284,7 +284,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/   // nur wenn das hier noch nicht eingetragen ist einfuegen
 /*N*/   if(pDepend->pRegisteredIn != this )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       SwClientIter* pTmp = pClientIters;
 /*N*/       while( pTmp )
 /*N*/       {

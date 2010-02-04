@@ -114,7 +114,7 @@ namespace utl {
     class TransliterationWrapper;
 }//STRIP008 ;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 class Writer;
 class SwUndo;
 #define OUT_UNDOBJ( name )  \

@@ -430,7 +430,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   (*pMark) = (*pPoint);
 /*N*/ }
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 
 /*N*/ void SwPaM::Exchange()
 /*N*/ {

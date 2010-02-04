@@ -83,7 +83,7 @@ class SwHolePortion : public SwLinePortion
     KSHORT nBlankWidth;
 public:
             SwHolePortion( const SwTxtPortion &rPor );
-    inline const KSHORT GetBlankWidth( ) const { return nBlankWidth; }
+    inline KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
     virtual SwLinePortion *Compress();
     virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;

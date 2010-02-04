@@ -208,7 +208,7 @@ public:
 
     void CreateSpaceAdd( const short nInit = 0 );
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     void DebugPortions( SvStream &rOs, const XubString &rTxt,
                         const xub_StrLen nStart ); //$ ostream
 #endif

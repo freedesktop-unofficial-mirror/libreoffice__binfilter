@@ -1744,7 +1744,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/
 /*N*/   // Numerierungsregel fuer 3.1/4.0-Export ermitteln
 /*N*/   const SwNodeNum *pNdNum = pNd->GetNum();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       const SwNumRule* pNumRule = pNd->GetNumRule();
 /*N*/       ASSERT( pNumRule ? pNdNum!=0 : TRUE,

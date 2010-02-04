@@ -67,7 +67,7 @@
 //#define _FSYS_HXX ***
 //#define _STREAM_HXX ***
 #define _CACHESTR_HXX
-#define _SV_MULTISEL_HXX
+//#define _SV_MULTISEL_HXX
 
 
 
@@ -195,7 +195,6 @@
 #define _SVDIO_HXX
 //#define _SVDLAYER_HXX
 #define _SVINCVW_HXX
-#define _SV_MULTISEL_HXX
 #define _SVRTV_HXX
 #define _SVTABBX_HXX
 #define _SVTREEBOX_HXX
@@ -886,7 +885,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       SetAutoFilterFlags();
 /*N*/       if (pDrawLayer)
 /*N*/           UpdateAllCharts();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ //2do: wg. #62107
 /*N*/ // ChartListenerCollection speichern/laden, damit nach dem Laden das Update
 /*N*/ // hier einmal eingespart werden kann und somit nicht mehr alle Charts

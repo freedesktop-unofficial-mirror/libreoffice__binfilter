@@ -507,7 +507,7 @@ namespace binfilter {
 // OD 27.06.2003 #108784# - method to determine, if frame format is allowed
 // to be exported in SW3IO.
 // Drawing frame formats aren't allowed to be exported.
-const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
+bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 {
     bool bSw3ioExportAllowed = true;
 

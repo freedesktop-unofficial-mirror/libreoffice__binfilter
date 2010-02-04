@@ -343,7 +343,7 @@ namespace binfilter {
 
 /*N*/ #endif
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ USHORT SwFrm::nLastFrmId=0;
 /*N*/ #endif
 
@@ -356,7 +356,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwRootFrm::pVout = new SwLayVout();
 /*N*/   SwCache *pNew = new SwCache( 100, 100
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , "static SwBorderAttrs::pCache"
 /*N*/ #endif
 /*N*/   );
@@ -367,7 +367,7 @@ namespace binfilter {
 
 /*N*/ void _FrmFinit()
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // im Chache duerfen nur noch 0-Pointer stehen
 /*N*/   for( USHORT n = SwFrm::GetCachePtr()->Count(); n; )
 /*N*/       if( (*SwFrm::GetCachePtr())[ --n ] )

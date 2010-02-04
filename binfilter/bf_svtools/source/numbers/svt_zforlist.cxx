@@ -98,6 +98,8 @@
 #include <rtl/instance.hxx>
 #endif
 
+#include <unotools/misccfg.hxx>
+
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::i18n;
@@ -2754,7 +2756,8 @@ USHORT SvNumberFormatter::ExpandTwoDigitYear( USHORT nYear ) const
 // static
 USHORT SvNumberFormatter::GetYear2000Default()
 {
-    return Application::GetSettings().GetMiscSettings().GetTwoDigitYearStart();
+//  return Application::GetSettings().GetMiscSettings().GetTwoDigitYearStart();
+    return (USHORT) ::utl::MiscCfg().GetYear2000();
 }
 
 
@@ -2939,7 +2942,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultCurrencyFormat()
 // static
 // try to make it inline if possible since this a loop body
 // TRUE: continue; FALSE: break loop, if pFoundEntry==NULL dupe found
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 inline
 #endif
     BOOL SvNumberFormatter::ImpLookupCurrencyEntryLoopBody(

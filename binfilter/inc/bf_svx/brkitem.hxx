@@ -82,7 +82,7 @@ public:
     // MS VC4.0 kommt durcheinander
     void             SetValue( USHORT nNewVal )
                                 {SfxEnumItem::SetValue(nNewVal); }
-    const SvxBreak           GetBreak() const { return SvxBreak( GetValue() ); }
+    SvxBreak             GetBreak() const { return SvxBreak( GetValue() ); }
     void                     SetBreak( const SvxBreak eNew )
                                 { SetValue( (USHORT)eNew ); }
 };

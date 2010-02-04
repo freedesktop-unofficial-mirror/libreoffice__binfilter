@@ -59,7 +59,7 @@ ProgressBarHelper::ProgressBarHelper(const ::com::sun::star::uno::Reference < ::
     xStatusIndicator(xTempStatusIndicator),
     nReference(100),
     nValue(0),
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     bFailure(sal_False),
 #endif
     bStrict(bTempStrict),
@@ -125,7 +125,7 @@ void ProgressBarHelper::SetValue(sal_Int32 nTempValue)
 //              fOldPercent = fPercent;
 //          }
         }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         else if (!bFailure)
         {
             DBG_ERROR("tried to set a wrong value on the progressbar");

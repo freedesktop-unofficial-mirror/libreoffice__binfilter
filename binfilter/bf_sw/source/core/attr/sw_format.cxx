@@ -631,24 +631,9 @@ namespace binfilter {
 
     @return false, default implementation
 */
-/*M*/ const sal_Bool SwFmt::IsBackgroundTransparent() const
+/*M*/ sal_Bool SwFmt::IsBackgroundTransparent() const
 /*M*/ {
 /*M*/     return sal_False;
 /*M*/ }
 
-/** SwFmt::IsShadowTransparent - for feature #99657#
-
-    OD 22.08.2002
-    Virtual method to determine, if shadow of format is transparent.
-    Default implementation returns false. Thus, subclasses have to overload
-    method, if the specific subclass can have a transparent shadow.
-
-    @author OD
-
-    @return false, default implementation
-*/
-/*M*/ const sal_Bool SwFmt::IsShadowTransparent() const
-/*M*/ {
-/*M*/     return sal_False;
-/*M*/ }
 }

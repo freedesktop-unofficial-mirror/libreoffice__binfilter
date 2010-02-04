@@ -36,7 +36,7 @@
 #include "viewsh.hxx"       // IsDbg()
 #include "viewopt.hxx"      // IsDbg()
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #error Wer fummelt denn an den makefiles?
 #endif
 

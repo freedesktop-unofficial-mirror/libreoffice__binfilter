@@ -152,7 +152,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ //    OutputDevice    *pOutDev = aPrtAcc.GetPrinter();
 /*N*/     OutputDevice* pOutDev = aPrtAcc.GetRefDev();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if (!pOutDev)
 /*N*/       DBG_WARNING("Sm : kein Drucker vorhanden");
 /*N*/ #endif

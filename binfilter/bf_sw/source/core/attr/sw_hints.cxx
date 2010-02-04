@@ -161,7 +161,7 @@ namespace binfilter {
 /*N*/ }
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*N*/ void SwAttrSetChg::ClearItem( USHORT nWhich )
 /*N*/ {
@@ -197,7 +197,7 @@ namespace binfilter {
  * Ist keines vorhanden, returnt ein 0-Pointer !!!
  * inline (hintids.hxx) im PRODUCT.
  ******************************************************************************/
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 /*N*/ const SfxPoolItem* GetDfltAttr( USHORT nWhich )
