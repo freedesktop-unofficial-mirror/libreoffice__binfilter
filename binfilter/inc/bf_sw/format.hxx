@@ -302,19 +302,6 @@ public:
         @return false, default implementation
     */
     virtual sal_Bool IsBackgroundTransparent() const;
-
-    /** SwFmt::IsShadowTransparent - for feature #99657#
-
-        OD 22.08.2002
-        Virtual method to determine, if shadow of format is transparent.
-        Default implementation returns false. Thus, subclasses have to overload
-        method, if the specific subclass can have a transparent shadow.
-
-        @author OD
-
-        @return false, default implementation
-    */
-    sal_Bool IsShadowTransparent() const;
 };
 
 // --------------- Inline Implementierungen ------------------------
