@@ -99,7 +99,7 @@
 #include <bf_offmgr/app.hxx>
 #endif
 #ifndef _MAILENUM_HXX //autogen
-#include <goodies/mailenum.hxx>
+//#include <goodies/mailenum.hxx>
 #endif
 #include <cmdid.h>
 #ifndef _SWTYPES_HXX

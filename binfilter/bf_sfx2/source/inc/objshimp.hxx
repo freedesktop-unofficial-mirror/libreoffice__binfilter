@@ -61,10 +61,8 @@ class SfxDialogLibraryContainer;
 class SfxScriptLibraryContainer;
 class SfxImageManager;
 class SfxToolBoxConfig;
-class SfxAcceleratorManager;
 struct SfxObjectShell_Impl
 {
-    SfxAcceleratorManager*  pAccMgr;
     SfxDocumentInfo*    pDocInfo;
     SfxConfigManager*   pCfgMgr;
     SfxInPlaceObject*   pInPlaceObj;        // das dazugeh"orige SO2-Objekt, falls this ein SfxInPlaceObject ist
@@ -140,7 +138,6 @@ struct SfxObjectShell_Impl
     sal_Bool                bDisposing;
 
     SfxObjectShell_Impl() :
-        pAccMgr(0),
         nTime(),
         bIsTmp( sal_False),
         bClosing( sal_False),

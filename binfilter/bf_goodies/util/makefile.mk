@@ -67,7 +67,7 @@ DEFLIB1NAME	=bf_go
 #DEF1EXPORTFILE	=bf_goodies.dxp
 
 SHL1STDLIBS= \
-            $(GOODIESLIB)		\
+            $(SVTOOLLIB)		\
             $(TOOLSLIB)			\
             $(SALLIB)
 

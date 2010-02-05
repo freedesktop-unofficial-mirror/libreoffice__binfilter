@@ -63,7 +63,6 @@ class SfxFilterContainer;
 class SfxFactoryFilterContainer;
 class SfxMenuBarManager;
 class SfxBindings;
-class SfxAcceleratorManager;
 
 typedef SfxObjectShell *(*SfxObjectCtor)(SfxObjectCreateMode);
 
@@ -149,7 +148,6 @@ public:
     static USHORT                      GetObjectFactoryCount_Impl();
     static const SfxObjectFactory&     GetObjectFactory_Impl(USHORT i);
     SfxMenuBarManager*                 GetMenuBar_Impl();
-    SfxAcceleratorManager*             GetAccMgr_Impl();
     void                               SetModule_Impl( SfxModule* );
 #endif
 
