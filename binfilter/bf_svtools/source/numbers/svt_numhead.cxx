@@ -145,7 +145,7 @@ ImpSvNumMultipleReadHeader::ImpSvNumMultipleReadHeader(SvStream& rNewStream) :
 
 ImpSvNumMultipleReadHeader::~ImpSvNumMultipleReadHeader()
 {
-    DBG_ASSERT( pMemStream->Tell() == pMemStream->GetSize(),
+    DBG_ASSERT( pMemStream->Tell() == pMemStream->GetEndOfData(),
                 "Sizes nicht vollstaendig gelesen" );
     delete pMemStream;
     delete [] pBuf;
