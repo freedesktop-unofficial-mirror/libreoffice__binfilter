@@ -242,8 +242,8 @@ void SdUnoStyleFamilies::createStyleFamilyByIndex( sal_uInt16 nLayout, uno::Any&
     if( !xFamily.is() )
     {
         xFamily = new SdUnoPseudoStyleFamily( mpModel, pMaster );
-        xRef = uno::Reference< uno::XInterface >( xFamily );
-        mpStyleFamilies->insert(xRef);
+        uno::WeakReference<uno::XInterface> wRef(xFamily);
+        mpStyleFamilies->insert(wRef);
     }
 
     rAny <<= xFamily;
