@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: docfac.hxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,7 +60,6 @@ class SfxFilterContainer;
 class SfxFactoryFilterContainer;
 class SfxMenuBarManager;
 class SfxBindings;
-class SfxAcceleratorManager;
 
 typedef SfxObjectShell *(*SfxObjectCtor)(SfxObjectCreateMode);
 
@@ -149,7 +145,6 @@ public:
     static USHORT                      GetObjectFactoryCount_Impl();
     static const SfxObjectFactory&     GetObjectFactory_Impl(USHORT i);
     SfxMenuBarManager*                 GetMenuBar_Impl();
-    SfxAcceleratorManager*             GetAccMgr_Impl();
     void                               SetModule_Impl( SfxModule* );
 #endif
 
