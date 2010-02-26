@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: objshimp.hxx,v $
- * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,10 +58,8 @@ class SfxDialogLibraryContainer;
 class SfxScriptLibraryContainer;
 class SfxImageManager;
 class SfxToolBoxConfig;
-class SfxAcceleratorManager;
 struct SfxObjectShell_Impl
 {
-    SfxAcceleratorManager*  pAccMgr;
     SfxDocumentInfo*    pDocInfo;
     SfxConfigManager*   pCfgMgr;
     SfxInPlaceObject*   pInPlaceObj;        // das dazugeh"orige SO2-Objekt, falls this ein SfxInPlaceObject ist
@@ -140,7 +135,6 @@ struct SfxObjectShell_Impl
     sal_Bool                bDisposing;
 
     SfxObjectShell_Impl() :
-        pAccMgr(0),
         nTime(),
         bIsTmp( sal_False),
         bClosing( sal_False),
