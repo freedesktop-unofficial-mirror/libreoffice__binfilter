@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_fltini.cxx,v $
- * $Revision: 1.15.32.3 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -163,14 +160,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/   _SetFltPtr( nCnt, ReadSwg, sSwg1 );
 /*?*/   _SetFltPtr( nCnt, (ReadXML = new XMLReader), FILTER_XML );
 /*N*/
-/*N*/ #ifdef NEW_WW97_EXPORT
-/*N*/ #endif
-/*N*/
-/*N*/ #ifdef DEBUG_SH
-/*N*/ #endif // DEBUG_SH
-/*N*/
-/*N*/ #if !( defined(PRODUCT) || defined(MAC) || defined(PM2))
-/*N*/ #endif
 /*N*/
 /*N*/     _SetFltPtr( nCnt, ReadAscii, FILTER_TEXT );
 /*N*/
@@ -1134,5 +1123,8 @@ Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
 
     return aColor;
 }
+
+    void SwFilterOptions::Commit() {}
+    void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
 }

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3imp.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -269,7 +266,7 @@ public:
 /*N*/   pRecSizes = NULL;
 /*N*/   pAuthorityMap = 0;
 /*N*/   pConvToSymbolFmts = 0;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   pRefSdrObjects = 0;
 /*N*/ #endif
 /*N*/   hBatsFontConv = 0;
@@ -327,7 +324,7 @@ public:
 /*N*/   Reset2();
 /*N*/   nGblFlags   = SW3F_NODRAWING;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   delete pRefSdrObjects;
 /*N*/   pRefSdrObjects = 0;
 /*N*/ #endif
@@ -397,7 +394,7 @@ public:
 /*N*/   }
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 /*N*/ sal_Bool Sw3IoImp::IsSw40Export() const
 /*N*/ {
 /*N*/   ASSERT( !pStrm || pStrm->GetVersion()==pRoot->GetVersion(),
@@ -1359,7 +1356,7 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/ void Sw3IoImp::LoadDrawingLayer()
 /*N*/ {
 /*N*/   if( !pDrawing.Is() || ( nFltFlags & FLTF_NO_DRAWINGS )
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           || SwViewOption::IsTest9()
 /*N*/ #endif
 /*N*/           )
@@ -1549,7 +1546,7 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/           nFrmIds++;
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       size_t nArrSz = pPage->GetObjCount() / 8;
 /*N*/       if( (pPage->GetObjCount() % 8) > 0 )
@@ -2650,11 +2647,11 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/       Sw3NumRuleInfo *pInfo = aNumRuleInfos[0];
 /*N*/       if( !bOrganizer && !pInfo->IsUsed() )
 /*N*/       {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           sal_uInt16 nCount = pDoc->GetNumRuleTbl().Count();
 /*N*/ #endif
 /*N*/           pDoc->DelNumRule( pInfo->GetNewName() );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           ASSERT( pDoc->GetNumRuleTbl().Count() == nCount-1,
 /*N*/                   "unbenutzte NumRule wurde nicht geloescht" );
 /*N*/ #endif

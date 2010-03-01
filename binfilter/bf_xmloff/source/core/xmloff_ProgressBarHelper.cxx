@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: xmloff_ProgressBarHelper.cxx,v $
- * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -59,7 +56,7 @@ ProgressBarHelper::ProgressBarHelper(const ::com::sun::star::uno::Reference < ::
     xStatusIndicator(xTempStatusIndicator),
     nReference(100),
     nValue(0),
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     bFailure(sal_False),
 #endif
     bStrict(bTempStrict),
@@ -125,7 +122,7 @@ void ProgressBarHelper::SetValue(sal_Int32 nTempValue)
 //              fOldPercent = fPercent;
 //          }
         }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         else if (!bFailure)
         {
             DBG_ERROR("tried to set a wrong value on the progressbar");

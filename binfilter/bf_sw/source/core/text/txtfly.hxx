@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: txtfly.hxx,v $
- * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -114,7 +111,7 @@ public:
     static const SwRect CalcBoundRect( const SdrObject* pObj,
         const SwRect &rLine, const long nXPos, const sal_Bool bRight );
 #endif
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 };
 
@@ -207,7 +204,7 @@ public:
     void SetIgnoreCurrentFrame( sal_Bool bNew ) { mbIgnoreCurrentFrame = bNew; }
     void SetIgnoreContour( sal_Bool bNew ) { mbIgnoreContour = bNew; }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 };
 

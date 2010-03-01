@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_usrpref.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -94,6 +91,9 @@ using namespace ::com::sun::star::uno;
 /*-- 28.09.00 09:55:32---------------------------------------------------
 
   -----------------------------------------------------------------------*/
+    void SwContentViewConfig::Commit() {}
+    void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*N*/ Sequence<OUString> SwContentViewConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -226,6 +226,10 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
+
+    void SwLayoutViewConfig::Commit() {}
+    void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*-- 28.09.00 09:55:34---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -319,6 +323,10 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
+
+    void SwGridConfig::Commit() {}
+    void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*N*/ Sequence<OUString> SwGridConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -413,6 +421,10 @@ using namespace ::com::sun::star::uno;
 /*N*/       pNames[i] = C2U(aPropNames[i]);
 /*N*/   return aNames;
 /*N*/ }
+
+    void SwCursorConfig::Commit() {}
+    void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /* -----------------------------19.01.01 13:07--------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -475,6 +487,10 @@ using namespace ::com::sun::star::uno;
 /*N*/ {
 /*N*/   aPropNames.getArray()[0] = C2U("Color");
 /*N*/ }
+
+    void SwWebColorConfig::Commit() {}
+    void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*-- 28.09.00 09:55:33---------------------------------------------------
 
   -----------------------------------------------------------------------*/

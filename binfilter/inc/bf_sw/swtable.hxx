@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: swtable.hxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -46,7 +43,7 @@
 #include <calbck.hxx>
 #endif
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 #ifndef _NODE_HXX
 #include <node.hxx>         // fuer StartNode->GetMyIndex
 #endif
@@ -282,7 +279,7 @@ public:
 
     const SwStartNode *GetSttNd() const { return pSttNd; }
     ULONG GetSttIdx() const
-#ifdef PRODUCT
+#ifndef DBG_UTIL
         { return pSttNd ? pSttNd->GetIndex() : 0; }
 #else
         ;

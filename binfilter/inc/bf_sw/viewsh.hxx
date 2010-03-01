@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: viewsh.hxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -319,7 +316,7 @@ public:
            sal_Bool IsPaintLocked() const { return nLockPaint != 0; }
 
     // Abfragen/Erzeugen DrawView + PageView
-    const sal_Bool HasDrawView() const;
+    sal_Bool HasDrawView() const;
     void MakeDrawView();
 
     //DrawView darf u.U. am UI benutzt werden.

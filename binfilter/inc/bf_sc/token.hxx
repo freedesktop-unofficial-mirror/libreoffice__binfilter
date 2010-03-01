@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: token.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,7 +58,7 @@ enum StackVarEnum
     svErr                               // unknown StackType
 };
 
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 // save memory since compilers tend to int an enum
 typedef BYTE StackVar;
 #else
@@ -100,7 +97,7 @@ public:
     virtual                     ~ScToken();
 
     inline  void                Delete()                { delete this; }
-    inline  const StackVar      GetType() const         { return eType; }
+    inline  StackVar        GetType() const         { return eType; }
     inline  OpCode              GetOpCode() const       { return eOp;   }
             BYTE                GetParamCount() const;
     inline  void                NewOpCode( OpCode e )   { eOp = e; }

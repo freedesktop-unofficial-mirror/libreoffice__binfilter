@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_thints.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -141,7 +138,7 @@
 #include <algorithm>
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #define CHECK    Check();
 #else
 #define CHECK
@@ -516,11 +513,11 @@ using namespace ::com::sun::star::i18n;
 /*N*/               // FussNote im Redline-Bereich NICHT ins FtnArray einfuegen!
 /*N*/               if( StartOfSectionIndex() > rNodes.GetEndOfRedlines().GetIndex() )
 /*N*/               {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   const BOOL bSuccess =
 /*N*/ #endif
 /*N*/                       pDoc->GetFtnIdxs().Insert( pTxtFtn );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   ASSERT( bSuccess, "FtnIdx nicht eingetragen." );
 /*N*/ #endif
 /*N*/               }
@@ -1597,7 +1594,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   {
 /*N*/       SwpHintsArr::Insert( pHint );
 /*N*/       CalcFlags();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/         if( !rNode.GetDoc()->IsInReading() )
 /*N*/             CHECK;
 /*N*/ #endif
@@ -1927,7 +1924,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/           rNode.Modify( 0, &aHint );
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     if( !rNode.GetDoc()->IsInReading() )
 /*N*/         CHECK;
 /*N*/ #endif

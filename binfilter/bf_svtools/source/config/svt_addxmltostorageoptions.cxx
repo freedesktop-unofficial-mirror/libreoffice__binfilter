@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_addxmltostorageoptions.cxx,v $
- * $Revision: 1.3 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -103,6 +100,8 @@ class SvtAddXMLToStorageOptions_Impl : public ConfigItem
         //---------------------------------------------------------------------------------------------------------
         //  overloaded methods of baseclass
         //---------------------------------------------------------------------------------------------------------
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
+    void Commit();
 
         //---------------------------------------------------------------------------------------------------------
         //  public interface
@@ -203,6 +202,10 @@ SvtAddXMLToStorageOptions_Impl::SvtAddXMLToStorageOptions_Impl()
                 break;
             }
 }
+
+    void SvtAddXMLToStorageOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
+    void SvtAddXMLToStorageOptions_Impl::Commit() {}
+
 
 //*****************************************************************************************************************
 //  private method

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3nodes.cxx,v $
- * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1744,7 +1741,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/
 /*N*/   // Numerierungsregel fuer 3.1/4.0-Export ermitteln
 /*N*/   const SwNodeNum *pNdNum = pNd->GetNum();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       const SwNumRule* pNumRule = pNd->GetNumRule();
 /*N*/       ASSERT( pNumRule ? pNdNum!=0 : TRUE,

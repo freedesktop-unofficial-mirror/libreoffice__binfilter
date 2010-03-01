@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_modcfg.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -252,7 +249,12 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
+
   -----------------------------------------------------------------------*/
+
+    void SwRevisionConfig::Commit() {}
+    void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 //-----------------------------------------------------------------------------
 /*-- 10.10.00 16:22:56---------------------------------------------------
 
@@ -425,6 +427,10 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/     Load();
 /*N*/ }
+
+    void SwInsertConfig::Commit() {}
+    void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*-- 10.10.00 16:22:23---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -700,6 +706,10 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
+
+    void SwTableConfig::Commit() {}
+    void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*-- 18.01.01 17:02:47---------------------------------------------------
 
   -----------------------------------------------------------------------*/
@@ -722,6 +732,10 @@ using namespace ::com::sun::star::uno;
 /*N*/ SwMiscConfig::~SwMiscConfig()
 /*N*/ {
 /*N*/ }
+
+    void SwMiscConfig::Commit() {}
+    void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+
 /*-- 18.01.01 17:02:47---------------------------------------------------
 
   -----------------------------------------------------------------------*/

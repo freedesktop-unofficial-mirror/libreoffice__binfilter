@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_ndindex.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -38,7 +35,7 @@
 #include "ndindex.hxx"
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 int SwNodeIndex::nSerial = 0;
 #endif
 
@@ -67,7 +64,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/ {
 /*N*/   rNds.RegisterIndex( *this );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }
@@ -82,7 +79,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/       pNd = rIdx.pNd;
 /*N*/
 /*N*/   pNd->GetNodes().RegisterIndex( *this );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }
@@ -97,7 +94,7 @@ int SwNodeIndex::nSerial = 0;
 /*N*/       pNd = (SwNode*)&rNd;
 /*N*/
 /*N*/   pNd->GetNodes().RegisterIndex( *this );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ }

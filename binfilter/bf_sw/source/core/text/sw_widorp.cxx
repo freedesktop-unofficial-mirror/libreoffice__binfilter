@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_widorp.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -36,7 +33,7 @@
 
 #include "ftnboss.hxx"
 #include "paratr.hxx"
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef _SVX_ORPHITEM_HXX //autogen
@@ -140,7 +137,7 @@ namespace binfilter {
  * naechste Seite rutscht.
  */
 
-/*N*/ const sal_Bool SwTxtFrmBreak::IsInside( SwTxtMargin &rLine ) const
+/*N*/ sal_Bool SwTxtFrmBreak::IsInside( SwTxtMargin &rLine ) const
 /*N*/ {
 /*N*/   register sal_Bool bFit = sal_False;
 /*N*/

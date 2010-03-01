@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_viewsh.cxx,v $
- * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -249,7 +246,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   UISizeNotify();
 /*N*/   ++nStartAction;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // No Scroll starts the timer to repair the scrolled area automatically
 /*N*/   if( GetViewOptions()->IsTest8() )
 /*N*/ #endif
@@ -364,7 +361,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/                   EndAction();
 /*N*/               } while( nOldH != pRoot->Frm().Height() && nLoopCnt-- );
 /*N*/           }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
 /*N*/               //MA: 04. Nov. 94, braucht doch keiner oder??
@@ -426,7 +423,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/
 /*N*/   SET_CURR_SHELL( this );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // Wenn Test5 gedrueckt ist, wird der IdleFormatierer abgeknipst.
 /*N*/   if( pOpt->IsTest5() )
 /*N*/       return;

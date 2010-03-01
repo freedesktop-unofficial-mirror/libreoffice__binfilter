@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: iodetect.hxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -110,7 +107,7 @@ struct SwIoDetect
 
 #endif
 
-#if !( defined(PRODUCT) || defined(PM2))
+#if !( !defined(DBG_UTIL) || defined(PM2))
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)  , SwIoEntry(sNm, cCharLen, pWrt, bDel)
 #else
 #define DEB_DBWRT_SwIoEntry(sNm, cCharLen, pWrt, bDel)
@@ -118,7 +115,7 @@ struct SwIoDetect
 
 
 const USHORT MAXFILTER =
-#if !( defined(PRODUCT) || defined(PM2))
+#if !( !defined(DBG_UTIL) || defined(PM2))
 #endif
 #ifdef DEBUG_SH
 #endif

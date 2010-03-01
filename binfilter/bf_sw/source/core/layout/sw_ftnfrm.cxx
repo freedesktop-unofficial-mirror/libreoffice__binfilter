@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_ftnfrm.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -385,7 +382,7 @@ namespace binfilter {
 /*N*/   //moeglich.
 /*N*/   //Wenn die Seite eine spezielle Fussnotenseite ist, so nehmen wir uns auch
 /*N*/   //soviel Platz wie eben moeglich.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( !GetUpper() || !GetUpper()->IsFtnBossFrm() )
 /*?*/   {   ASSERT( !this, "Keine FtnBoss." );
 /*?*/       return 0;
@@ -585,7 +582,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/
 /*N*/ SwTwips SwFtnFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
@@ -731,7 +728,7 @@ namespace binfilter {
 /*?*/       pDel->Cut();
 /*?*/       delete pDel;
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/   if ( GetPrev() )
 /*N*/   {
@@ -945,7 +942,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   //immer direkt hinter dem Bodytext.
 /*N*/   //Sein FrmFmt ist immer das DefaultFrmFmt.
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( FindFtnCont() )
 /*?*/   {   ASSERT( !this, "Fussnotencontainer bereits vorhanden." );
 /*?*/       return 0;
@@ -974,7 +971,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   while( pFrm && !pFrm->IsFtnContFrm() )
 /*N*/       pFrm = pFrm->GetNext();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if ( pFrm )
 /*N*/   {
 /*N*/       SwFrm *pFtn = pFrm->GetLower();
@@ -1219,7 +1216,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 
 /*N*/ void SwFtnBossFrm::InsertFtn( SwFtnFrm* pNew )
 /*N*/ {
-/*N*/ #if (OSL_DEBUG_LEVEL > 1) && !defined(PRODUCT)
+/*N*/ #if (OSL_DEBUG_LEVEL > 1) && defined(DBG_UTIL)
 /*N*/   static USHORT nStop = 0;
 /*N*/   if ( nStop == pNew->GetFrmId() )
 /*N*/   {
@@ -2233,7 +2230,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ }
 
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 //JP 15.10.2001: in a non pro version test if the attribute has the same
 //              meaning which his reference is
 

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: txtfrm.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -330,7 +327,7 @@ public:
     inline sal_Bool IsSwapped() const { return bIsSwapped; }
 
     // Hat der Frm eine lokale Fussnote (in diesem Frm bzw. Follow)?
-#ifdef PRODUCT
+#ifndef DBG_UTIL
     void CalcFtnFlag();
 #else
     void CalcFtnFlag( xub_StrLen nStop = STRING_LEN );//Fuer den Test von SplitFrm
@@ -468,7 +465,7 @@ public:
 #endif
 
     // OD 14.03.2003 #i11760# - access to new member <mbNoFollowFormat>
-    inline const bool FollowFormatAllowed() const
+    inline bool FollowFormatAllowed() const
     {
         return mbFollowFormatAllowed;
     }

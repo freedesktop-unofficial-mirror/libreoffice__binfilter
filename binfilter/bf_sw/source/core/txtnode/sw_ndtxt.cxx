@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_ndtxt.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -170,7 +167,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 // Leider ist das SwpHints nicht ganz wasserdicht:
 // Jeder darf an den Hints rumfummeln, ohne die Sortierreihenfolge
 // und Verkettung sicherstellen zu muessen.
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #define CHECK_SWPHINTS(pNd)  { if( pNd->GetpSwpHints() && \
                                    !pNd->GetDoc()->IsInReading() ) \
                                   pNd->GetpSwpHints()->Check(); }
@@ -382,7 +379,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                           ((SwTxtFrm*)pFrm)->SetFtn( TRUE );
 /*N*/                       }
 /*N*/                   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   while( 0 != (pCntnt = (SwCntntFrm*)aIter.Next()) )
 /*N*/                   {
 /*N*/                       SwFtnFrm *pFtn = pCntnt->FindFtnFrm();

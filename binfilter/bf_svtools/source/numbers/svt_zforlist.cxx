@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_zforlist.cxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -97,6 +94,8 @@
 #ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
 #endif
+
+#include <unotools/misccfg.hxx>
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -2754,7 +2753,8 @@ USHORT SvNumberFormatter::ExpandTwoDigitYear( USHORT nYear ) const
 // static
 USHORT SvNumberFormatter::GetYear2000Default()
 {
-    return Application::GetSettings().GetMiscSettings().GetTwoDigitYearStart();
+//  return Application::GetSettings().GetMiscSettings().GetTwoDigitYearStart();
+    return (USHORT) ::utl::MiscCfg().GetYear2000();
 }
 
 
@@ -2939,7 +2939,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultCurrencyFormat()
 // static
 // try to make it inline if possible since this a loop body
 // TRUE: continue; FALSE: break loop, if pFoundEntry==NULL dupe found
-#ifdef PRODUCT
+#ifndef DBG_UTIL
 inline
 #endif
     BOOL SvNumberFormatter::ImpLookupCurrencyEntryLoopBody(

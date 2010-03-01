@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svx_txtrange.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -63,7 +60,7 @@ namespace binfilter {
 /*N*/   nLeft( nLft ), nRight( nRght ), nUpper( 0 ), nLower( 0 ),
 /*N*/   bSimple( bSimpl ), bInner( bInnr ), bVertical( bVert )
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   bFlag3 = bFlag4 = bFlag5 = bFlag6 = bFlag7 = FALSE;
 /*N*/ #endif
 /*N*/   pRangeArr = new Range[ nCacheSize ];

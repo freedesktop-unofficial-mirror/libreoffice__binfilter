@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: frame.hxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -342,7 +339,7 @@ class SwFrm: public SwClient
     //Cache fuer (Umrandungs-)Attribute.
     static SwCache *pCache;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     //Nur zu Debugging Zwecken! eindeutige Nummerierung aller Frames,
     //verwaltet in den CToren.
     static USHORT nLastFrmId;
@@ -744,7 +741,7 @@ public:
     inline  SwCntntFrm* GetNextCntntFrm() const;
     inline  SwCntntFrm* GetPrevCntntFrm() const;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     inline USHORT GetFrmId() const { return nFrmId; }
     inline USHORT GetLastFrmId() const { return nLastFrmId; }
 #endif

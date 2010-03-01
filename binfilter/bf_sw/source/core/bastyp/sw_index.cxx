@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_index.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -49,7 +46,7 @@
 
 namespace binfilter {
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 int SwIndex::nSerial = 0;
 #endif
 
@@ -103,7 +100,7 @@ int SwIndex::nSerial = 0;
 /*N*/   else
 /*N*/       ChgValue( *pArray->pFirst, nIdx );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ IDX_CHK_ARRAY
@@ -116,7 +113,7 @@ int SwIndex::nSerial = 0;
 /*N*/   : pArray( rIdx.pArray ), nIndex( rIdx.nIndex ), pNext( 0 ), pPrev( 0 )
 /*N*/ {
 /*N*/   ChgValue( rIdx, rIdx.nIndex );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   MySerial = ++nSerial;       // nur in der nicht PRODUCT-Version
 /*N*/ #endif
 /*N*/ IDX_CHK_ARRAY
@@ -324,7 +321,7 @@ int SwIndex::nSerial = 0;
 /*N*/ {
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 /*N*/ SwIndexReg::~SwIndexReg()
@@ -388,7 +385,7 @@ int SwIndex::nSerial = 0;
 |*
 *************************************************************************/
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 #ifndef CFRONT
 
@@ -566,7 +563,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 |*
 *************************************************************************/
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 /*N*/ SwIndex& SwIndex::operator=( xub_StrLen nWert )

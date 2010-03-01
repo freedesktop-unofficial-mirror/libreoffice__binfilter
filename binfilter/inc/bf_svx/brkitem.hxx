@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: brkitem.hxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -82,7 +79,7 @@ public:
     // MS VC4.0 kommt durcheinander
     void             SetValue( USHORT nNewVal )
                                 {SfxEnumItem::SetValue(nNewVal); }
-    const SvxBreak           GetBreak() const { return SvxBreak( GetValue() ); }
+    SvxBreak             GetBreak() const { return SvxBreak( GetValue() ); }
     void                     SetBreak( const SvxBreak eNew )
                                 { SetValue( (USHORT)eNew ); }
 };

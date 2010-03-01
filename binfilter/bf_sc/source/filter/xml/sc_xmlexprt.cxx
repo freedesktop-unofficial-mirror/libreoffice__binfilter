@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sc_xmlexprt.cxx,v $
- * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -932,7 +929,7 @@ void ScXMLExport::WriteRowContent()
 {
     ScMyRowFormatRange aRange;
     sal_Int32 nIndex(-1);
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     sal_Int32 nPrevCol(0);
 #endif
     sal_Int32 nCols(0);
@@ -941,7 +938,7 @@ void ScXMLExport::WriteRowContent()
     sal_Bool bIsFirst(sal_True);
     while (pRowFormatRanges->GetNext(aRange))
     {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         DBG_ASSERT(bIsFirst || (!bIsFirst && (nPrevCol + nCols == aRange.nStartColumn)), "here are some columns missing");
 #endif
         if (bIsFirst)
@@ -951,7 +948,7 @@ void ScXMLExport::WriteRowContent()
             bIsAutoStyle = aRange.bIsAutoStyle;
             nCols = aRange.nRepeatColumns;
             bIsFirst = sal_False;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
             nPrevCol = aRange.nStartColumn;
 #endif
         }
@@ -978,7 +975,7 @@ void ScXMLExport::WriteRowContent()
                 bIsAutoStyle = aRange.bIsAutoStyle;
                 nCols = aRange.nRepeatColumns;
                 nPrevValidationIndex = aRange.nValidationIndex;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                 nPrevCol = aRange.nStartColumn;
 #endif
             }

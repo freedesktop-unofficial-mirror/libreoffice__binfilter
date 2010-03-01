@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_ndhints.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -45,7 +42,7 @@ namespace binfilter {
 /*N*/ void DumpHints( const SwpHtStart &rHtStart,
 /*N*/               const SwpHtEnd &rHtEnd )
 /*N*/ {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         DBG_BF_ASSERT(0, "STRIP");//STRIP001    aDbstream << "DumpHints:" << endl;
 /*N*/ #endif
 /*N*/ }
@@ -199,14 +196,14 @@ namespace binfilter {
 /*N*/ void SwpHintsArr::Insert( const SwTxtAttr *pHt )
 /*N*/ {
 /*N*/   Resort();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   USHORT nPos;
 /*N*/   ASSERT(!SwpHtStart::Seek_Entry( pHt, &nPos ), "Insert: hint already in HtStart");
 /*N*/   ASSERT(!aHtEnd.Seek_Entry( pHt, &nPos ), "Insert: hint already in HtEnd");
 /*N*/ #endif
 /*N*/   SwpHtStart::Insert( pHt );
 /*N*/   aHtEnd.Insert( pHt );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #ifdef NIE
 /*N*/   (aDbstream << "Insert: " ).WriteNumber( long( pHt ) )<< endl;
 /*N*/   DumpHints( *this, aHtEnd );
@@ -225,7 +222,7 @@ namespace binfilter {
 /*N*/   USHORT nEndPos;
 /*N*/   aHtEnd.Seek_Entry( pHt, &nEndPos );
 /*N*/   aHtEnd.Remove( nEndPos );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #ifdef NIE
 /*N*/   (aDbstream << "DeleteAtPos: " ).WriteNumber( long( pHt ) )<< endl;
 /*N*/   DumpHints( *this, aHtEnd );
@@ -233,7 +230,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 /*************************************************************************
  *                      SwpHintsArr::Check()
@@ -331,7 +328,7 @@ namespace binfilter {
 /*N*/       if( pLast && !lcl_IsLessStart( *pLast, *pHt ) )
 /*N*/       {
 /*N*/ #ifdef NIE
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ //            ASSERT( bResort, "!Resort/Start: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Starts" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
@@ -366,7 +363,7 @@ namespace binfilter {
 /*N*/       if( pLast && !lcl_IsLessEnd( *pLast, *pHt ) )
 /*N*/       {
 /*N*/ #ifdef NIE
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ //            ASSERT( bResort, "!Resort/Ends: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Ends" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
@@ -392,7 +389,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       pLast = pHt;
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #ifdef NIE
 /*N*/   aDbstream << "Resorted:" << endl;
 /*N*/   DumpHints( *this, aHtEnd );

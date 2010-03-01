@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_frmform.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -253,7 +250,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/         ( pFollow->IsVertical() && !pFollow->Prt().Width() ) ||
 /*N*/         ( ! pFollow->IsVertical() && !pFollow->Prt().Height() ) )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       const SwFrm *pOldUp = GetUpper();
 /*N*/ #endif
 /*N*/
@@ -386,7 +383,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               pPage->ValidateLayout();
 /*N*/       }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       ASSERT( pOldUp == GetUpper(), "SwTxtFrm::CalcFollow: heavy follow" );
 /*N*/ #endif
 /*N*/
@@ -657,7 +654,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       }
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     else if ( pFoll->GetValidPrtAreaFlag() ||
 /*N*/               pFoll->GetValidSizeFlag() )
 /*N*/     {
@@ -713,7 +710,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       }
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   else
 /*N*/   {
 /*N*/       CalcFtnFlag( nTxtPos-1 );
@@ -1773,7 +1770,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/   // Um zu gucken, ob es einen Ftn-Bereich gibt.
 /*M*/   const SwFrm *pDbgFtnCont = (const SwFrm*)(FindPageFrm()->FindFtnCont());
 /*M*/
-/*M*/ #ifndef PRODUCT
+/*M*/ #ifdef DBG_UTIL
 /*M*/   // nStopAt laesst sich vom CV bearbeiten.
 /*M*/   static MSHORT nStopAt = 0;
 /*M*/   if( nStopAt == GetFrmId() )
@@ -2043,7 +2040,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   const XubString aXXX = GetTxtNode()->GetTxt();
 /*N*/   const SwTwips nDbgY = Frm().Top();
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // nStopAt laesst sich vom CV bearbeiten.
 /*N*/   static MSHORT nStopAt = 0;
 /*N*/   if( nStopAt == GetFrmId() )

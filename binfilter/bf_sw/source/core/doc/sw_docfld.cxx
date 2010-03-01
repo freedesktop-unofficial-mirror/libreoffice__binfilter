@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_docfld.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1742,7 +1739,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   {
 /*N*/       // einen Index fuers bestimmen vom TextNode anlegen
 /*N*/       SwPosition aPos( rDoc.GetNodes().GetEndOfPostIts() );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 /*N*/ #else
 /*N*/       GetBodyTxtNode( rDoc, aPos, *pFrm );
@@ -1790,7 +1787,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
             if( !pFrm )
                 break;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
             ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 #else
             GetBodyTxtNode( rDoc, aPos, *pFrm );

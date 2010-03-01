@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.8 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -76,7 +72,7 @@ SUBLIBS2= \
         $(SLB)$/sw_docnode.lib \
         $(SLB)$/sw_unocore.lib
 
-.IF "$(PRODUCT)" == ""
+.IF "$(dbgutil)" != ""
 SUBLIBS2+= \
         $(SLB)$/sw_except.lib
 .ENDIF

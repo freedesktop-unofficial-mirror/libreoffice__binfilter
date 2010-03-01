@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_findfrm.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1051,7 +1048,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       return;                       //lieferbar
 /*N*/
 /*N*/   bInfInvalid = bInfBody = bInfTab = bInfFly = bInfFtn = bInfSct = FALSE;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   BOOL bIsInTab = FALSE;
 /*N*/ #endif
 /*N*/
@@ -1065,7 +1062,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/           bInfBody = TRUE;
 /*N*/       else if ( pFrm->IsTabFrm() || pFrm->IsCellFrm() )
 /*N*/       {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           if( pFrm->IsTabFrm() )
 /*N*/           {
 /*N*/               ASSERT( !bIsInTab, "Table in table: Not implemented." );

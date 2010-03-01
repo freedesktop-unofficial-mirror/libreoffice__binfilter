@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_crsrsh.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -275,7 +272,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-/*?*/ #if !defined( PRODUCT )
+/*?*/ #if defined(DBG_UTIL)
 /*?*/
 /*?*/ void SwCrsrShell::SttCrsrMove()
 /*?*/ {
@@ -831,7 +828,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-#if !defined(PRODUCT) || defined(WIN)
+#if defined(DBG_UTIL) || defined(WIN)
 
 
 

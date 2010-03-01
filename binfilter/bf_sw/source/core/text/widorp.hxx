@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: widorp.hxx,v $
- * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -53,15 +50,15 @@ public:
     SwTxtFrmBreak( SwTxtFrm *pFrm, const SwTwips nRst = 0  );
     sal_Bool IsBreakNow( SwTxtMargin &rLine );
 
-    const sal_Bool IsBroken() const     { return bBreak; }
-    const sal_Bool IsKeepAlways() const { return bKeep; }
+    sal_Bool IsBroken() const   { return bBreak; }
+    sal_Bool IsKeepAlways() const { return bKeep; }
           void Keep()               { bKeep = sal_True; }
           void Break()              { bKeep = sal_False; bBreak = sal_True; }
 
     inline sal_Bool GetKeep() const { return bKeep; }
     inline void SetKeep( const sal_Bool bNew ) { bKeep = bNew; }
 
-    const sal_Bool IsInside( SwTxtMargin &rLine ) const;
+    sal_Bool IsInside( SwTxtMargin &rLine ) const;
 
     // Um Sonderfaelle mit Ftn behandeln zu koennen.
     // Mit SetRstHeight wird dem SwTxtFrmBreak die Resthoehe eingestellt,
@@ -94,9 +91,9 @@ public:
     WidowsAndOrphans( SwTxtFrm *pFrm, const SwTwips nRst = 0,
         sal_Bool bCheckKeep = sal_True );
     sal_Bool FindWidows( SwTxtFrm *pFrm, SwTxtMargin &rLine );
-    const MSHORT GetWidowsLines() const
+    MSHORT GetWidowsLines() const
     { return nWidLines; }
-    const MSHORT GetOrphansLines() const
+    MSHORT GetOrphansLines() const
     { return nOrphLines; }
     void ClrOrphLines(){ nOrphLines = 0; }
 

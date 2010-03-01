@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: format.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -301,20 +298,7 @@ public:
 
         @return false, default implementation
     */
-    virtual const sal_Bool IsBackgroundTransparent() const;
-
-    /** SwFmt::IsShadowTransparent - for feature #99657#
-
-        OD 22.08.2002
-        Virtual method to determine, if shadow of format is transparent.
-        Default implementation returns false. Thus, subclasses have to overload
-        method, if the specific subclass can have a transparent shadow.
-
-        @author OD
-
-        @return false, default implementation
-    */
-    virtual const sal_Bool IsShadowTransparent() const;
+    virtual sal_Bool IsBackgroundTransparent() const;
 };
 
 // --------------- Inline Implementierungen ------------------------

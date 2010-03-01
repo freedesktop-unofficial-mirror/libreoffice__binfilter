@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_searchopt.cxx,v $
- * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -92,6 +89,7 @@ public:
 
     // ConfigItem
     virtual void    Commit();
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 
     BOOL            GetFlag( USHORT nOffset ) const;
     void            SetFlag( USHORT nOffset, BOOL bVal );
@@ -121,6 +119,7 @@ void SvtSearchOptions_Impl::Commit()
         Save();
 }
 
+    void SvtSearchOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 BOOL SvtSearchOptions_Impl::GetFlag( USHORT nOffset ) const
 {

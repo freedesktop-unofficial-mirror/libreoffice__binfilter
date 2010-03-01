@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3misc.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -2181,7 +2178,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               ASSERT( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
 /*N*/               if( IDX_NO_VALUE != nStrIdx )
 /*N*/               {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/                   SwFmt *pTmp = aStringPool.FindCachedFmt( nStrIdx );
 /*N*/                   ASSERT( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
 /*N*/                           "wrong format cached?" );

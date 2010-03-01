@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sc_documen5.cxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -480,7 +477,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/                                             //! pChartData got deleted, don't use it anymore
 /*N*/                                             if (bEnabled)
 /*N*/                                                 aIPObj->EnableSetModified(TRUE);
-/*N*/     #ifndef PRODUCT
+/*N*/     #ifdef DBG_UTIL
 /*N*/     //                                          static BOOL bShown74046 = 0;
 /*N*/     //                                          if ( !bShown74046 && SOFFICE_FILEFORMAT_NOW > SOFFICE_FILEFORMAT_50 )
 /*N*/     //                                          {
