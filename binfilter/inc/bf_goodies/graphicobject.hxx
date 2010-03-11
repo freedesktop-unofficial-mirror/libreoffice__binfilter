@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: graphicobject.hxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -31,9 +28,7 @@
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #define _BF_GOODIES_GRAPHICOBJECT_HXX
 
-#ifndef _GRFMGR_HXX
-#include <goodies/grfmgr.hxx>
-#endif
+#include <svtools/grfmgr.hxx>
 
 // wrapper for GraphicAttr for binfilter
 namespace binfilter {
