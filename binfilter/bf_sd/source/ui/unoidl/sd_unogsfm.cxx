@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sd_unogsfm.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -469,8 +466,8 @@ void SdUnoGraphicStyleFamily::createStyle( SfxStyleSheetBase* pStyleSheet, uno::
     if( !xStyle.is() )
     {
         xStyle = new SdUnoGraphicStyle( mpModel, pStyleSheet );
-        xRef = uno::Reference< uno::XInterface >( xStyle, uno::UNO_QUERY );
-        mpStyles->insert(xRef);
+        uno::WeakReference<uno::XInterface> wRef(xStyle);
+        mpStyles->insert(wRef);
     }
 
     rAny <<= xStyle;
