@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_layact.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -109,7 +106,7 @@ namespace binfilter {
 
 
 //Sparen von Schreibarbeit um den Zugriff auf zerstoerte Seiten zu vermeiden.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 
 /*N*/ static void BreakPoint()
 /*N*/ {
@@ -2432,7 +2429,7 @@ namespace binfilter {
 /*N*/   return bResult;
 /*N*/ }
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 
 /*************************************************************************
@@ -2479,7 +2476,7 @@ namespace binfilter {
 /*N*/ SwLayIdle::SwLayIdle( SwRootFrm *pRt, SwViewImp *pI ) :
 /*N*/   pRoot( pRt ),
 /*N*/   pImp( pI )
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   , bIndicator( FALSE )
 /*N*/ #endif
@@ -2606,7 +2603,7 @@ namespace binfilter {
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
 /*N*/ #endif
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   if ( bIndicator && pImp->GetShell()->GetWin() )
 /*N*/   {

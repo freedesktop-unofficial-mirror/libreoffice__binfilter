@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3fmts.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -322,7 +319,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/           CloseRec( SWG_ATTRIBUTE );
 /*N*/       }
 /*N*/   }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   else
 /*N*/       ASSERT( !this, "Fussnoten im Fly sind nicht erlaubt" );
 /*N*/ #endif
@@ -946,7 +943,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( (cFlags & 0x20) && pRefSdrObjects )
 /*N*/   {
 /*N*/       size_t nPos = nSdrRef / 8;

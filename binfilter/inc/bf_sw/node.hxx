@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: node.hxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -120,19 +117,19 @@ public:
     inline const SwEndNode* EndOfSectionNode() const;
     inline       SwEndNode* EndOfSectionNode();
 
-    inline const BOOL IsWrongDirty() const      { return bWrongDirty; }
+    inline BOOL IsWrongDirty() const        { return bWrongDirty; }
     inline void SetWrongDirty( BOOL bNew )      { bWrongDirty = bNew; }
 
-    inline const BOOL IsAutoCompleteWordDirty() const   { return bACmplWrdDirty; }
+    inline BOOL IsAutoCompleteWordDirty() const { return bACmplWrdDirty; }
     inline void SetAutoCompleteWordDirty( BOOL bNew )   { bACmplWrdDirty = bNew; }
 
-    inline const BYTE GetAutoFmtLvl() const     { return nAFmtNumLvl; }
+    inline BYTE GetAutoFmtLvl() const       { return nAFmtNumLvl; }
     inline void SetAutoFmtLvl( BYTE nVal )      { nAFmtNumLvl = nVal; }
 
-    inline const BOOL IsSetNumLSpace() const    { return bSetNumLSpace; }
+    inline BOOL IsSetNumLSpace() const  { return bSetNumLSpace; }
     inline void SetNumLSpace( BOOL bFlag )      { bSetNumLSpace = bFlag; }
 
-    inline const BOOL IsIgnoreDontExpand() const    { return bIgnoreDontExpand; }
+    inline BOOL IsIgnoreDontExpand() const  { return bIgnoreDontExpand; }
     inline void SetIgnoreDontExpand( BOOL bNew )    { bIgnoreDontExpand = bNew; }
 
     BYTE    GetNodeType() const { return nNodeType; }

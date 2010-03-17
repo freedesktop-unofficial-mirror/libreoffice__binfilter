@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: legacy_binfilters_smgr.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1323,7 +1320,7 @@ void OServiceManager::remove( const Any & Element )
     // remove from the implementation map
     m_ImplementationMap.erase( aIt );
 
-    m_SetLoadedFactories.erase( *aIt);
+    m_SetLoadedFactories.erase( xEle );
     // remove from the implementation name hashmap
     Reference<XServiceInfo > xInfo( Reference<XServiceInfo >::query( xEle ) );
     if( xInfo.is() )

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_vdraw.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -51,7 +48,7 @@
 /// OD 29.08.2002 #102450#
 /// include <bf_svx/svdoutl.hxx>
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef _HORIORNT_HXX

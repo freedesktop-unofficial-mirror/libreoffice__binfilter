@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_wsfrm.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -158,11 +155,11 @@ namespace binfilter {
 /*N*/   pNext( 0 ),
 /*N*/   pUpper( 0 ),
 /*N*/   pDrawObjs( 0 )
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , nFrmId( SwFrm::nLastFrmId++ )
 /*N*/ #endif
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     bFlag01 = bFlag02 = bFlag03 = bFlag04 = bFlag05 = 0;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   static USHORT nStopAt = USHRT_MAX;
@@ -379,7 +376,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::InvalidatePage( const SwPageFrm *pPage ) const
 /*N*/ {
-/*N*/ #if (OSL_DEBUG_LEVEL > 1) && !defined(PRODUCT)
+/*N*/ #if (OSL_DEBUG_LEVEL > 1) && defined(DBG_UTIL)
 /*N*/   static USHORT nStop = 0;
 /*N*/   if ( nStop == GetFrmId() )
 /*N*/   {
@@ -3406,7 +3403,7 @@ namespace binfilter {
 /*?*/               if( pLastSctCnt == pCnt )
 /*?*/                   pLastSctCnt = NULL;
 /*?*/           }
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/           else
 /*?*/               ASSERT( !pLastSctCnt, "Where's the last SctCntnt?" );
 /*?*/ #endif
@@ -3433,7 +3430,7 @@ namespace binfilter {
 /*?*/                   pLastSctCnt = NULL;
 /*?*/               }
 /*?*/           }
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/           else
 /*?*/               ASSERT( !pLastTabCnt, "Where's the last TabCntnt?" );
 /*?*/ #endif

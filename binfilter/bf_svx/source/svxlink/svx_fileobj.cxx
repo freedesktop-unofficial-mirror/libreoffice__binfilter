@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svx_fileobj.cxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -420,7 +417,7 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/   if( pStream && ERRCODE_IO_PENDING == pStream->GetError() )
 /*?*/       pStream->ResetError();
 /*?*/
-/*?*/ #ifndef PRODUCT
+/*?*/ #ifdef DBG_UTIL
 /*?*/   if( nRes )
 /*?*/   {
 /*?*/       if( xMed.Is() && !pStream )

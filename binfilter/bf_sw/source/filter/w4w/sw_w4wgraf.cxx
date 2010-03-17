@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_w4wgraf.cxx,v $
- * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -779,7 +776,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
             Font aFont(aStr,Size(0,Grad));
             aFont.SetColor(aColor);
             rOut.SetFont(aFont);
-            delete pC;
+            delete[] pC;
         } break;
         case W4WRG_DrText: {
             USHORT i;
@@ -791,7 +788,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
                 pC[i]=(char)GetHexByte();
             String aStr( pC, RTL_TEXTENCODING_IBM_850 );
             rOut.DrawText(P1,aStr);
-            delete pC;
+            delete[] pC;
         } break;
 
         /*

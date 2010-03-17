@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_calcmove.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -679,7 +676,7 @@ namespace binfilter {
 /*N*/   if ( Frm() != aOldRect )
 /*N*/       AdjustRootSize( CHG_CHGPAGE, &aOldRect );
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   //Der Upper (Root) muss mindestens so breit
 /*N*/   //sein, dass er die breiteste Seite aufnehmen kann.
 /*N*/   if ( GetUpper() )
@@ -948,7 +945,7 @@ namespace binfilter {
 /*N*/     long nFormatCount = 0;
 /*N*/   PROTOCOL_ENTER( this, PROT_MAKEALL, 0, 0 )
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   SwDoc *pDoc = GetAttrSet()->GetDoc();
 /*N*/   if( pDoc )
 /*N*/   {
@@ -1346,7 +1343,7 @@ namespace binfilter {
 /*N*/                     ( !bSct || !FindSctFrm()->IsColLocked() ) )
 /*N*/                   bMoveOrFit = TRUE;
 /*N*/             }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
 /*N*/               ASSERT( FALSE, "+TxtFrm hat WouldFit-Versprechen nicht eingehalten." );

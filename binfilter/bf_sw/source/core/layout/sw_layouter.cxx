@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_layouter.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -103,7 +100,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( ++nCount > LOOP_DETECT )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/       static BOOL bNoLouie = FALSE;
 /*N*/       if( bNoLouie )

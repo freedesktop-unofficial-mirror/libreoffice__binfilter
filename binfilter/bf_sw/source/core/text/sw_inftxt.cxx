@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_inftxt.cxx,v $
- * $Revision: 1.9.38.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -135,13 +132,13 @@ extern const sal_Char __FAR_DATA sBulletFntName[];
 // OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
 //extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 // Test2: WYSIWYG++
 // Test4: WYSIWYG debug
 static sal_Bool bDbgLow = sal_False;
 #endif
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 
 #endif
@@ -180,7 +177,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ { }
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 /*************************************************************************
  *                      ChkOutDev()
  *************************************************************************/
@@ -233,7 +230,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/       bSnapToGrid( rNew.SnapToGrid() ),
 /*N*/     nDirection( rNew.GetDirection() )
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ChkOutDev( *this );
 /*N*/ #endif
 /*N*/ }
@@ -267,7 +264,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/         pRef = pOut;
 /*N*/     }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     ChkOutDev( *this );
 /*N*/ #endif
 /*N*/
@@ -359,7 +356,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/       bSnapToGrid( rNew.SnapToGrid() ),
 /*N*/     nDirection( rNew.GetDirection() )
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   ChkOutDev( *this );
 /*N*/ #endif
 /*N*/   SetLen( GetMinLen( *this ) );
@@ -511,7 +508,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/   nSpaceIdx = 0;
 /*N*/   pSpaceAdd = NULL;
 /*N*/   pWrongList = NULL;
-/*N*/ #ifdef PRODUCT
+/*N*/ #ifndef DBG_UTIL
 /*N*/   pBrushItem = 0;
 /*N*/ #else
 /*N*/   pBrushItem = ((SvxBrushItem*)-1);

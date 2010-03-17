@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sfx2_cfgmgr.cxx,v $
- * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -469,11 +466,11 @@ static const char pStorageName[] = "Configurations";
 /*N*/   pBuf[nLen] = 0;
 /*N*/   if( strcmp( pBuf, pHeader ) )
 /*N*/   {
-/*N*/       delete pBuf;
+/*N*/       delete[] pBuf;
 /*?*/       return SfxConfigManager::ERR_FILETYPE;
 /*N*/   }
 /*N*/
-/*N*/   delete pBuf;
+/*N*/   delete[] pBuf;
 /*N*/
 /*N*/   // compare version
 /*N*/   char c;

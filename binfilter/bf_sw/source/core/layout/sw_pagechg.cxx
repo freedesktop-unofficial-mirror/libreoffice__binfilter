@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_pagechg.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1273,7 +1270,7 @@ namespace binfilter {
 /*N*/               if ( pPage->GetFmt() != pFmtWish )
 /*N*/                   pPage->SetFrmFmt( pFmtWish );
 /*N*/           }
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
 /*?*/               ASSERT( FALSE, "CheckPageDescs, missing solution" );
@@ -1316,7 +1313,7 @@ namespace binfilter {
 /*N*/       pDoc->UpdatePageFlds( &aMsgHnt );
 /*N*/   }
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   //Ein paar Pruefungen muessen schon erlaubt sein.
 /*N*/
 /*N*/   //1. Keine zwei EmptyPages hintereinander.
@@ -1742,7 +1739,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                   {
 /*?*/                       //Umhaengen kann er sich selbst, indem wir ihm
 /*?*/                       //einfach ein Modify mit seinem AnkerAttr schicken.
-/*?*/ #ifdef PRODUCT
+/*?*/ #ifndef DBG_UTIL
 /*?*/                       pFmt->SwModify::Modify( 0, (SwFmtAnchor*)&rAnch );
 /*?*/ #else
 /*?*/                       const USHORT nCnt = pPage->GetSortedObjs()->Count();

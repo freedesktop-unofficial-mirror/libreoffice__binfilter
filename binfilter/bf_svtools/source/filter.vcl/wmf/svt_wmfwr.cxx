@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_wmfwr.cxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -34,7 +31,7 @@
 #include <vcl/salbtype.hxx>
 #include "wmfwr.hxx"
 #ifndef _SV_FONTCVT_HXX
-#include <vcl/fontcvt.hxx>
+#include <unotools/fontcvt.hxx>
 #endif
 #ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
@@ -715,7 +712,7 @@ void WMFWriter::WMFRecord_Polygon(const Polygon & rPoly)
 
     Polygon aSimplePoly;
     if ( rPoly.HasFlags() )
-        rPoly.GetSimple( aSimplePoly );
+        rPoly.AdaptiveSubdivide( aSimplePoly );
     else
         aSimplePoly = rPoly;
     nSize = aSimplePoly.GetSize();
@@ -730,7 +727,7 @@ void WMFWriter::WMFRecord_PolyLine(const Polygon & rPoly)
     USHORT nSize,i;
     Polygon aSimplePoly;
     if ( rPoly.HasFlags() )
-        rPoly.GetSimple( aSimplePoly );
+        rPoly.AdaptiveSubdivide( aSimplePoly );
     else
         aSimplePoly = rPoly;
     nSize=aSimplePoly.GetSize();
@@ -752,7 +749,7 @@ void WMFWriter::WMFRecord_PolyPolygon(const PolyPolygon & rPolyPoly)
         if ( aSimplePolyPoly[ i ].HasFlags() )
         {
             Polygon aSimplePoly;
-            aSimplePolyPoly[ i ].GetSimple( aSimplePoly );
+            aSimplePolyPoly[ i ].AdaptiveSubdivide( aSimplePoly );
             aSimplePolyPoly[ i ] = aSimplePoly;
         }
     }

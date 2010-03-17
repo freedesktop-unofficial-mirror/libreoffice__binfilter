@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_cacheoptions.cxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -108,6 +105,7 @@ public:
 //---------------------------------------------------------------------------------------------------------
 
     virtual void    Commit();
+    void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& );
 
 //---------------------------------------------------------------------------------------------------------
 //  public interface
@@ -250,6 +248,8 @@ void SvtCacheOptions_Impl::Commit()
 
     PutProperties( aSeqNames, aSeqValues );
 }
+
+    void SvtCacheOptions_Impl::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 //*****************************************************************************************************************
 //  public method

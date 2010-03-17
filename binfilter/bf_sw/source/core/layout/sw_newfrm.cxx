@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_newfrm.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -343,7 +340,7 @@ namespace binfilter {
 
 /*N*/ #endif
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ USHORT SwFrm::nLastFrmId=0;
 /*N*/ #endif
 
@@ -356,7 +353,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwRootFrm::pVout = new SwLayVout();
 /*N*/   SwCache *pNew = new SwCache( 100, 100
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   , "static SwBorderAttrs::pCache"
 /*N*/ #endif
 /*N*/   );
@@ -367,7 +364,7 @@ namespace binfilter {
 
 /*N*/ void _FrmFinit()
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   // im Chache duerfen nur noch 0-Pointer stehen
 /*N*/   for( USHORT n = SwFrm::GetCachePtr()->Count(); n; )
 /*N*/       if( (*SwFrm::GetCachePtr())[ --n ] )

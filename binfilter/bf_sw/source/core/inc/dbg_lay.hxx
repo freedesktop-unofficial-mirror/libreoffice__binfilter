@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: dbg_lay.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -67,7 +64,7 @@
 #define SNAP_FLYFRAMES   0x00000002
 #define SNAP_TABLECONT   0x00000004
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 
 #include <tools/debug.hxx>
 namespace binfilter {

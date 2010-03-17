@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sc_dociter.cxx,v $
- * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -344,7 +341,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                           rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*N*/  #if ! ( defined WTC || defined IRIX || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
+/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/                               lcl_IterGetNumberFormat( nNumFormat,
@@ -679,7 +676,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/  ULONG ScQueryCellIterator::GetNumberFormat()
 /*N*/  {
 /*N*/   ScColumn* pCol = &(pDoc->pTab[nTab])->aCol[nCol];
-/*N*/  #if ! ( defined WTC || defined IRIX  || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
+/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
 /*N*/   lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
 /*N*/  #else
 /*N*/   lcl_IterGetNumberFormat( nNumFormat,

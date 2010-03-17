@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_fntcap.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -218,7 +215,7 @@ public:
         :   SwDoCapitals ( rInfo ), nTxtWidth( nWidth ),
             nBreak( STRING_LEN ), pExtraPos( pExtra )
         { }
-    const xub_StrLen GetBreak() const { return nBreak; }
+    xub_StrLen GetBreak() const { return nBreak; }
 };
 
 
@@ -460,7 +457,7 @@ public:
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
 /*N*/       ASSERT( nPos, "nextCharBlock not implemented?" );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;
 /*N*/ #endif
@@ -529,7 +526,7 @@ public:
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
 /*N*/       ASSERT( nPos, "endOfCharBlock not implemented?" );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;
 /*N*/ #endif

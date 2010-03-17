@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: section.hxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -123,7 +120,7 @@ public:
 
     const String& GetName() const           { return sSectionNm; }
     void SetName( const String& rName )     { sSectionNm = rName; }
-    const SectionType GetType() const       { return eType; }
+    SectionType GetType() const     { return eType; }
     void SetType( SectionType eNew )        { eType = eNew; }
 
     SwSectionFmt* GetFmt()          { return (SwSectionFmt*)pRegisteredIn; }

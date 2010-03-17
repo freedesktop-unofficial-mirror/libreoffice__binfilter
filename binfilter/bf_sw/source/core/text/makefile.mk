@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.9 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -59,13 +55,6 @@ LIBFLAGS=/NOI /NOE /PAGE:512
 
 # --- Files --------------------------------------------------------
 
-.IF "$(product)$(cap)" == ""
-CXXFILES += \
-        sw_txtio.cxx
-.ENDIF
-
-
-
 SLOFILES =  \
         $(SLO)$/sw_atrstck.obj \
         $(SLO)$/sw_frmcrsr.obj \
@@ -104,7 +93,7 @@ SLOFILES =  \
         $(SLO)$/sw_noteurl.obj \
         $(SLO)$/sw_wrong.obj
 
-.IF "$(product)$(cap)" == ""
+.IF "$(dbgutil)" != ""
 SLOFILES +=  \
         $(SLO)$/sw_txtio.obj
 .ENDIF

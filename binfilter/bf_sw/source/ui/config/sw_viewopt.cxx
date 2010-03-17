@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_viewopt.cxx,v $
- * $Revision: 1.14 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -71,7 +68,7 @@
 namespace binfilter {
 
 
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ BOOL   SwViewOption::bTest9 = FALSE;      //DrawingLayerNotLoading
 /*N*/ #endif
 /*N*/ Color SwViewOption::aDocBoundColor(COL_LIGHTGRAY);
@@ -202,7 +199,7 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*M*/
 /*M*/     bSelectionInReadonly = true;
 /*M*/
-/*M*/ #ifndef PRODUCT
+/*M*/ #ifdef DBG_UTIL
 /*M*/   // korrespondieren zu den Angaben in ui/config/cfgvw.src
 /*M*/   bTest1 = bTest2 = bTest3 = bTest4 =
 /*M*/            bTest5 = bTest6 = bTest7 = bTest8 = bTest10 = FALSE;
@@ -231,7 +228,7 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/   nShdwCrsrFillMode = rVOpt.nShdwCrsrFillMode;
 /*N*/   bStarOneSetting = rVOpt.bStarOneSetting;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   bTest1          = rVOpt.bTest1      ;
 /*N*/   bTest2          = rVOpt.bTest2      ;
 /*N*/   bTest3          = rVOpt.bTest3      ;
@@ -264,7 +261,7 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/   nShdwCrsrFillMode = rVOpt.nShdwCrsrFillMode;
 /*N*/   bStarOneSetting = rVOpt.bStarOneSetting;
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   bTest1          = rVOpt.bTest1      ;
 /*N*/   bTest2          = rVOpt.bTest2      ;
 /*N*/   bTest3          = rVOpt.bTest3      ;

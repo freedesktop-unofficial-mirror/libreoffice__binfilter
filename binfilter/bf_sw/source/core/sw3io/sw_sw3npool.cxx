@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3npool.cxx,v $
- * $Revision: 1.15 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -507,7 +504,7 @@ namespace binfilter {
 // OD 27.06.2003 #108784# - method to determine, if frame format is allowed
 // to be exported in SW3IO.
 // Drawing frame formats aren't allowed to be exported.
-const bool SwFmtFlyCnt::Sw3ioExportAllowed() const
+bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 {
     bool bSw3ioExportAllowed = true;
 

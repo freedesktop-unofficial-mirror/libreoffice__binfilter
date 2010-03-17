@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: drawfont.hxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -282,7 +279,7 @@ class SwDrawTextInfo
 
     SwDrawTextInfo();       // nicht zulaessig
 public:
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     BOOL bOut   : 1;    // In der Non-Product wird der Zugriff auf die Member
     BOOL bPos   : 1;    // durch diese Flags ueberwacht.
     BOOL bText  : 1;    // Wird ein Member gesetzt, so wird das entsprechende
@@ -331,7 +328,7 @@ public:
         bIgnoreFrmRTL = FALSE;
         bPosMatchesBounds = FALSE;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bOut = bText = bIdx = bLen = bWidth = bKern = bBull = bSpec =
         bGreyWv = TRUE;
 
@@ -544,7 +541,7 @@ public:
     void SetOut( OutputDevice &rNew )
     {
         pOut = &rNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bOut = TRUE;
 #endif
     }
@@ -552,7 +549,7 @@ public:
     void SetPos( const Point &rNew )
     {
         pPos = &rNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bPos = TRUE;
 #endif
     }
@@ -560,7 +557,7 @@ public:
     void SetHyphPos( xub_StrLen *pNew )
     {
         pHyphPos = pNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bHyph = TRUE;
 #endif
     }
@@ -568,7 +565,7 @@ public:
     void SetText( const XubString &rNew )
     {
         pText = &rNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bText = TRUE;
 #endif
     }
@@ -576,7 +573,7 @@ public:
     void SetWrong( const SwWrongList* pNew )
     {
         pWrong = pNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bWrong = TRUE;
 #endif
     }
@@ -584,7 +581,7 @@ public:
     void SetSize( const Size &rNew )
     {
         pSize = &rNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bSize = TRUE;
 #endif
     }
@@ -592,7 +589,7 @@ public:
     void SetFont( SwFont* pNew )
     {
         pFnt = pNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bFnt = TRUE;
 #endif
     }
@@ -600,7 +597,7 @@ public:
     void SetIdx( xub_StrLen nNew )
     {
         nIdx = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bIdx = TRUE;
 #endif
     }
@@ -608,7 +605,7 @@ public:
     void SetLen( xub_StrLen nNew )
     {
         nLen = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bLen = TRUE;
 #endif
     }
@@ -616,7 +613,7 @@ public:
     void SetOfst( xub_StrLen nNew )
     {
         nOfst = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bOfst = TRUE;
 #endif
     }
@@ -624,7 +621,7 @@ public:
     void SetLeft( long nNew )
     {
         nLeft = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bLeft = TRUE;
 #endif
     }
@@ -632,7 +629,7 @@ public:
     void SetRight( long nNew )
     {
         nRight = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bRight = TRUE;
 #endif
     }
@@ -640,7 +637,7 @@ public:
     void SetKanaDiff( long nNew )
     {
         nKanaDiff = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bKana = TRUE;
 #endif
     }
@@ -648,7 +645,7 @@ public:
     void SetWidth( USHORT nNew )
     {
         nWidth = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bWidth = TRUE;
 #endif
     }
@@ -656,7 +653,7 @@ public:
     void SetAscent( USHORT nNew )
     {
         nAscent = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bAscent = TRUE;
 #endif
     }
@@ -664,7 +661,7 @@ public:
     void SetKern( short nNew )
     {
         nKern = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bKern = TRUE;
 #endif
     }
@@ -672,7 +669,7 @@ public:
     void SetSperren( short nNew )
     {
         nSperren = nNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bSperr = TRUE;
 #endif
     }
@@ -689,7 +686,7 @@ public:
             nSpace = nNew;
             SetSperren( 0 );
         }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bSpace = TRUE;
 #endif
     }
@@ -707,7 +704,7 @@ public:
     void SetBullet( BOOL bNew )
     {
         bBullet = bNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bBull = TRUE;
 #endif
     }
@@ -715,7 +712,7 @@ public:
     void SetUnderFnt( SwUnderlineFont* pFnt )
     {
         pUnderFnt = pFnt;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bSpec = TRUE;
 #endif
     }
@@ -723,7 +720,7 @@ public:
     void SetUpper( BOOL bNew )
     {
         bUpper = bNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bUppr = TRUE;
 #endif
     }
@@ -731,7 +728,7 @@ public:
     void SetDrawSpace( BOOL bNew )
     {
         bDrawSpace = bNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bDrawSp = TRUE;
 #endif
     }
@@ -739,7 +736,7 @@ public:
     void SetGreyWave( BOOL bNew )
     {
         bGreyWave = bNew;
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         bGreyWv = TRUE;
 #endif
     }

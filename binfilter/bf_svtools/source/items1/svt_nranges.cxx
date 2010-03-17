@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_nranges.cxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -373,7 +370,7 @@ SfxNumRanges& SfxNumRanges::operator -=
     NUMTYPE nThisSize = Count_Impl(_pRanges);
     NUMTYPE nTargetSize = 1 + (  nThisSize + Count_Impl(rRanges._pRanges) );
     NUMTYPE *pTarget = new NUMTYPE[ nTargetSize ];
-    memset( pTarget, sizeof(NUMTYPE)*nTargetSize, 0 );
+    memset( pTarget, 0, sizeof(NUMTYPE)*nTargetSize );
     memcpy( pTarget, _pRanges, sizeof(NUMTYPE)*nThisSize );
 
     NUMTYPE nPos1 = 0, nPos2 = 0, nTargetPos = 0;
@@ -583,7 +580,7 @@ SfxNumRanges& SfxNumRanges::operator /=
     NUMTYPE nThisSize = Count_Impl(_pRanges);
     NUMTYPE nTargetSize = 1 + (  nThisSize + Count_Impl(rRanges._pRanges) );
     NUMTYPE *pTarget = new NUMTYPE[ nTargetSize ];
-    memset( pTarget, sizeof(NUMTYPE)*nTargetSize, 0 );
+    memset( pTarget, 0, sizeof(NUMTYPE)*nTargetSize );
     memcpy( pTarget, _pRanges, sizeof(NUMTYPE)*nThisSize );
 
     NUMTYPE nPos1 = 0, nPos2 = 0, nTargetPos = 0;

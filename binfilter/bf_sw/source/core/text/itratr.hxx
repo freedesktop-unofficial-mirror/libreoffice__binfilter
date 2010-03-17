@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: itratr.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -136,7 +133,7 @@ public:
     inline SwFont *GetFnt() { return pFnt; }
     inline const SwFont *GetFnt() const { return pFnt; }
 
-    inline const BYTE GetPropFont() const { return nPropFont; }
+    inline BYTE GetPropFont() const { return nPropFont; }
     inline void SetPropFont( const BYTE nNew ) { nPropFont = nNew; }
 
     inline SwAttrHandler& GetAttrHandler() { return aAttrHandler; }

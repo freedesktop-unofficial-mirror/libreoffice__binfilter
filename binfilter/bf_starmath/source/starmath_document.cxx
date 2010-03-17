@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: starmath_document.cxx,v $
- * $Revision: 1.17 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -152,7 +149,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ //    OutputDevice    *pOutDev = aPrtAcc.GetPrinter();
 /*N*/     OutputDevice* pOutDev = aPrtAcc.GetRefDev();
 /*N*/
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if (!pOutDev)
 /*N*/       DBG_WARNING("Sm : kein Drucker vorhanden");
 /*N*/ #endif

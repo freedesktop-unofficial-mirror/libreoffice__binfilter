@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_ndnum.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -81,7 +78,7 @@ namespace binfilter {
 /*N*/ //JP 17.03.98: aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
 /*N*/ //                Nodes aus dem falschen NodesArray im OutlineArray standen,
 /*N*/ //                jetzt mal einen Check eingebaut.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       {
 /*N*/           for( register USHORT n = 1; n < nO; ++n )
 /*N*/               if( &(*this)[ n-1 ]->GetNodes() !=

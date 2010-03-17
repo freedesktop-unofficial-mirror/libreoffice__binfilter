@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: viewopt.hxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -173,7 +170,7 @@ protected:
     BYTE            eZoom;              // 'enum' fuer Zoom
     BYTE            nTblDest;           // Ziel fuer Tabellenhintergrund
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     // korrespondieren zu den Angaben in ui/config/cfgvw.src
     BOOL  bTest1        :1;     // Test-Flag  "Layout not loading"
     BOOL  bTest2        :1;     // Test-Flag  "WYSIWYG++"
@@ -405,7 +402,7 @@ public:
     BOOL IsAutoCompleteWords() const;
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     // korrespondieren zu den Angaben in ui/config/cfgvw.src
     inline BOOL IsTest1() const     { return bTest1; }
     inline void SetTest1( BOOL b )  { bTest1 = b; }

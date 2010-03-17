@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: tblrwcl.hxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -79,7 +76,7 @@ BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* pPara );
 BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara );
 
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 void _InsTblBox( SwDoc* pDoc, SwTableNode* pTblNd,

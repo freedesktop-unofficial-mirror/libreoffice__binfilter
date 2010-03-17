@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: fmtfordr.hxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -62,7 +59,7 @@ public:
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
 
-    const SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
+    SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
     void  SetFillOrder( const SwFillOrder eNew ) { SetValue( USHORT(eNew) ); }
 };
 

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sc_cell.cxx,v $
- * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -99,7 +96,7 @@ namespace binfilter {
 
 INT8 ScFormulaCell::nIterMode = 0;
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 static const sal_Char __FAR_DATA msgDbgInfinity[] =
     "Formelzelle INFINITY ohne Err503 !!! (os/2?)\n"
     "NICHTS anruehren und ER bescheid sagen!";
@@ -731,7 +728,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/   {
 /*N*/       BYTE cData;
 /*N*/       rStream >> cData;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/ //        static BOOL bShown = 0;
 /*N*/ //        if ( !bShown && SOFFICE_FILEFORMAT_NOW > SOFFICE_FILEFORMAT_50 )
 /*N*/ //        {
@@ -856,7 +853,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       cFlags |= bIsValue ? 0x08 : 0x10;
 /*N*/   if ( bSubTotal )
 /*N*/       cFlags |= 0x20;
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   static BOOL bShown = 0;
 /*N*/   if ( !bShown && rStream.GetVersion() > SOFFICE_FILEFORMAT_50 )
 /*N*/   {
@@ -1380,7 +1377,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       if ( pCode->GetError() != errInterpOverflow
 /*N*/         && !pCode->IsRecalcModeAlways() )
 /*N*/           pDocument->RemoveFromFormulaTree( this );
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       if ( bIsValue && !pCode->GetError() && !::rtl::math::isFinite( nErgValue ) )
 /*N*/       {
 /*N*/           DBG_ERRORFILE( msgDbgInfinity );

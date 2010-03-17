@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sc_rechead.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -140,7 +137,7 @@ namespace binfilter {
 
 /*N*/ ScMultipleReadHeader::~ScMultipleReadHeader()
 /*N*/ {
-/*N*/   if ( pMemStream && pMemStream->Tell() != pMemStream->GetSize() )
+/*N*/   if ( pMemStream && pMemStream->Tell() != pMemStream->GetEndOfData() )
 /*N*/   {
 /*N*/       DBG_ERRORFILE( "Sizes nicht vollstaendig gelesen" );
 /*N*/       if ( rStream.GetError() == SVSTREAM_OK )

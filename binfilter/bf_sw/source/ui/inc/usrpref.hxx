@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: usrpref.hxx,v $
- * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -61,6 +58,8 @@ class SwContentViewConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------28.09.00 09:45--------------------------------
 
@@ -77,6 +76,8 @@ class SwLayoutViewConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------19.01.01 13:06--------------------------------
 
@@ -93,6 +94,8 @@ class SwGridConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------19.01.01 13:06--------------------------------
 
@@ -108,6 +111,8 @@ class SwCursorConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------28.09.00 09:45--------------------------------
 
@@ -123,6 +128,8 @@ class SwWebColorConfig : public ::utl::ConfigItem
 
     void                    Load();
     void                    SetModified(){ConfigItem::SetModified();}
+    virtual void Commit();
+    virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 /* -----------------------------28.09.00 09:45--------------------------------
 

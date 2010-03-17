@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: ndnotxt.hxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -82,10 +79,10 @@ public:
     void               SetContour( const PolyPolygon *pPoly,
                                    BOOL bAutomatic = FALSE );
     const PolyPolygon *HasContour() const;
-    const BOOL         _HasContour() const { return pContour!=0; };
+    BOOL           _HasContour() const { return pContour!=0; };
 
     void               SetAutomaticContour( BOOL bSet ) { bAutomaticContour = bSet; }
-    const BOOL         HasAutomaticContour() const { return bAutomaticContour; }
+    BOOL         HasAutomaticContour() const { return bAutomaticContour; }
 
     // set either a MM100 or pixel contour
     void               SetContourAPI( const PolyPolygon *pPoly ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void               SetContourAPI( const PolyPolygon *pPoly );
@@ -94,9 +91,9 @@ public:
     BOOL               GetContourAPI( PolyPolygon &rPoly ) const;
 
     void               SetPixelContour( BOOL bSet ) { bPixelContour = bSet; }
-    const BOOL         IsPixelContour() const;
+    BOOL         IsPixelContour() const;
 
-    const BOOL         IsContourMapModeValid() const { return bContourMapModeValid; }
+    BOOL         IsContourMapModeValid() const { return bContourMapModeValid; }
 
     //Besorgt die Graphic, mit SwapIn fuer GrfNode, per GetData fuer OLE.
     Graphic GetGraphic() const;

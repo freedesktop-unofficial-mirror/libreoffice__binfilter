@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_toxhlp.cxx,v $
- * $Revision: 1.7 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -76,7 +73,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
         ByteString aMsg( "IndexEntrySupplierWrapper: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -98,7 +95,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "getAlgorithmList: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -117,7 +114,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "loadAlgorithm: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );
@@ -139,7 +136,7 @@ namespace binfilter {
     }
     catch ( UNO_NMSPC::Exception& e )
     {
- #ifndef PRODUCT
+ #ifdef DBG_UTIL
          ByteString aMsg( "compareIndexEntry: Exception caught\n" );
         aMsg += ByteString( String( e.Message ), RTL_TEXTENCODING_UTF8 );
         DBG_ERRORFILE( aMsg.GetBuffer() );

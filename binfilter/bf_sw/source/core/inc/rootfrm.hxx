@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: rootfrm.hxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -188,7 +185,7 @@ public:
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
     virtual SwTwips GrowFrm  ( SwTwips, SZPTR
                                BOOL bTst = FALSE, BOOL bInfo = FALSE );
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 #endif
 
 #ifndef VERTICAL_LAYOUT
@@ -266,7 +263,7 @@ public:
     void InsertEmptySct( SwSectionFrm* pDel );
     void DeleteEmptySct() { if( pDestroy ) _DeleteEmptySct(); }
     void RemoveFromList( SwSectionFrm* pSct ) { if( pDestroy ) _RemoveFromList( pSct ); }
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     // Wird zur Zeit nur fuer ASSERTs benutzt:
     BOOL IsInDelList( SwSectionFrm* pSct ) const; // Ist der SectionFrm in der Liste enthalten?
 #endif

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_unoprnms.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -713,7 +710,7 @@ const SwPropNameTab aPropNameTab = {
 /* 0662 UNO_NAME_SELITEM*/ {MAP_CHAR_LEN("SelectedItem")}
 };
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
 const SwPropNameLen& GetPropName( USHORT nId )
 {
     DBG_ASSERT( SW_PROPNAME_BEGIN <= nId && nId < SW_PROPNAME_END,

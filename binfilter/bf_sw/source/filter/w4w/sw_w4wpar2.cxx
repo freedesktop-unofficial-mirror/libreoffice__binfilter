@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_w4wpar2.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1952,7 +1949,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                 // falls noetig das Dummy-Array freigeben
                 if(    pActTabDefs
                     && ( pActTabDefs != pTabDefs ) )
-                    delete pActTabDefs;
+                    delete[] pActTabDefs;
             }
             // Durchgang 2: Tabellenspaltendefinitionen anpassen
             else
@@ -2039,7 +2036,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                         pCurPaM->GetCntntNode(), 0 );
                 }
             }
-            delete pActTabDefs;
+            delete[] pActTabDefs;
         }
     }
 }

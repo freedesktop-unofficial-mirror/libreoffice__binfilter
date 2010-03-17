@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: fldbas.hxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -291,7 +288,7 @@ protected:
 
 public:
 
-#ifndef PRODUCT
+#ifdef DBG_UTIL
     virtual ~SwFieldType();
 #endif
     static  const String&   GetTypeStr( USHORT nTypeId );
@@ -350,7 +347,7 @@ public:
 
     // ResId
     USHORT              Which() const
-#ifdef PRODUCT
+#ifndef DBG_UTIL
         { return pType->Which(); }
 #else
         ;       // in fldbas.cxx implementiert

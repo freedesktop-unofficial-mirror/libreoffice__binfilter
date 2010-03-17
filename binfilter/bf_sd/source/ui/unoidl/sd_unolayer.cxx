@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sd_unolayer.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -648,8 +645,8 @@ uno::Reference<drawing::XLayer> SdLayerManager::GetLayer (SdrLayer* pLayer)
         xLayer = new SdLayer (this, pLayer);
 
         // Remember the new xLayer for future calls.
-        xRef = uno::Reference<uno::XInterface> (xLayer, uno::UNO_QUERY);
-        mpLayers->insert (xRef);
+        uno::WeakReference<uno::XInterface> wRef(xLayer);
+        mpLayers->insert(wRef);
     }
 
     return xLayer;

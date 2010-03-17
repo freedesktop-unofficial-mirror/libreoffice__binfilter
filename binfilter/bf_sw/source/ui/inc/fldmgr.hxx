@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: fldmgr.hxx,v $
- * $Revision: 1.5 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -171,7 +168,7 @@ public:
 
     inline const String& GetCurFldPar1() const;
     inline const String& GetCurFldPar2() const;
-    inline const ULONG   GetCurFldFmt() const;
+    inline ULONG   GetCurFldFmt() const;
 
     // Ein Feld ermitteln
     SwField*        GetCurFld();
@@ -258,7 +255,7 @@ inline const String& SwFldMgr::GetCurFldPar1() const
 inline const String& SwFldMgr::GetCurFldPar2() const
     { return aCurPar2; }
 
-inline const ULONG   SwFldMgr::GetCurFldFmt() const
+inline ULONG   SwFldMgr::GetCurFldFmt() const
     { return nCurFmt; }
 
 

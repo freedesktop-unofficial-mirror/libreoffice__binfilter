@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svx_svxfont.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -192,8 +189,8 @@ public:
 
     inline OutputDevice *GetOut() { return pOut; }
     inline const XubString &GetTxt() const { return rTxt; }
-    inline const xub_StrLen GetIdx() const { return nIdx; }
-    inline const xub_StrLen GetLen() const { return nLen; }
+    xub_StrLen GetIdx() const { return nIdx; }
+    xub_StrLen GetLen() const { return nLen; }
 };
 
 

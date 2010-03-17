@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: xmloff_xmlnumfe.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1553,7 +1550,7 @@ void SvXMLNumFmtExport::ExportPart_Impl( const SvNumberformat& rFormat, sal_uInt
                     bAnyContent = sal_True;
                     break;
                 default:
-#ifndef PRODUCT
+#ifdef DBG_UTIL
                     // NF_SYMBOLTYPE_PERCENT is the last known value newly
                     // introduced, alert on newer values, decreasing <0, which
                     // most certainly means having to synchronize with module

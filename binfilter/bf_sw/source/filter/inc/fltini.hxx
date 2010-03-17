@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: fltini.hxx,v $
- * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -118,7 +115,7 @@ public:
 WriterRef GetStgWriter( const String& );
 WriterRef GetWWWriter( const String& );
 /*?*/ WriterRef GetWW8Writer( const String& );
-#if !( defined(PRODUCT) || defined(MAC) || defined(PM2) )
+#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
 /*?*/ WriterRef GetDebugWriter( const String& );
 /*?*/ WriterRef GetUndoWriter( const String& );
 #endif
@@ -126,7 +123,7 @@ WriterRef GetWWWriter( const String& );
 /*?*/ void GetW4WWriter( const String&, WriterRef& );
 void GetStgWriter( const String&, WriterRef& );
 void GetWWWriter( const String&, WriterRef& );
-#if !( defined(PRODUCT) || defined(MAC) || defined(PM2) )
+#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
 #endif
 #endif
 

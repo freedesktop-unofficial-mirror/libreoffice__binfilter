@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_sw3doc.cxx,v $
- * $Revision: 1.13 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -672,7 +669,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/
 /*N*/   // MIB: Das <= fuer das 40-FF ist korrekt, denn es gab eine Weile
 /*N*/   // 4.0-Storages mit 5.0-Streams.
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if( !bBlock )
 /*N*/       ASSERT( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
 /*N*/                 nVersion >= SWG_MAJORVERSION_30 &&

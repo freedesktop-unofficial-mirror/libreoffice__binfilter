@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: starmath_rect.cxx,v $
- * $Revision: 1.11 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -145,7 +142,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/ void SmRect::BuildRect(const OutputDevice &rDev, const SmFormat *pFormat,
 /*N*/                        const XubString &rText, USHORT nBorder)
 /*N*/ {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/   if (rDev.GetOutDevType() != OUTDEV_PRINTER)
 /*N*/       DBG_WARNING("Sm :  Referenz-Device ist kein Drucker");
 /*N*/ #endif

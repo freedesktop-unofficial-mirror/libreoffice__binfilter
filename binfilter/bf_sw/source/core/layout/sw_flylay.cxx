@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_flylay.cxx,v $
- * $Revision: 1.8 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -227,7 +224,7 @@ namespace binfilter {
 /*N*/   Unlock();
 /*N*/
 /*N*/ #ifdef VERTICAL_LAYOUT
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/     SWRECTFN( this )
 /*N*/     ASSERT( bHeightClipped || ( (Frm().*fnRect->fnGetHeight)() > 0 &&
 /*N*/             (Prt().*fnRect->fnGetHeight)() > 0),
@@ -771,7 +768,7 @@ namespace binfilter {
 /*N*/       pSortedObjs = new SwSortDrawObjs();
 /*N*/   if ( !pSortedObjs->Insert( pObj ) )
 /*N*/   {
-/*N*/ #ifndef PRODUCT
+/*N*/ #ifdef DBG_UTIL
 /*N*/       USHORT nIdx;
 /*N*/       ASSERT( pSortedObjs->Seek_Entry( pObj, &nIdx ),
 /*N*/               "Fly nicht in Sorted eingetragen." );
@@ -811,7 +808,7 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     }
     if ( !pSortedObjs->Insert( _pDrawVirtObj ) )
     {
-#ifndef PRODUCT
+#ifdef DBG_UTIL
         USHORT nIdx;
         ASSERT( pSortedObjs->Seek_Entry( _pDrawVirtObj, &nIdx ),
                 "Fly nicht in Sorted eingetragen." );

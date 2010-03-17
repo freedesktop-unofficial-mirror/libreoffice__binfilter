@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_tblrwcl.cxx,v $
- * $Revision: 1.10 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -88,7 +85,7 @@ typedef SwTableLine* SwTableLinePtr;
 
 
 
-#if !defined( PRODUCT ) || defined( JP_DEBUG )
+#if defined(DBG_UTIL) || defined( JP_DEBUG )
 
 void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
 {
@@ -1095,7 +1092,7 @@ BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara )
 /**/
 
 
-#if !defined( PRODUCT ) || defined( JP_DEBUG )
+#if defined(DBG_UTIL) || defined( JP_DEBUG )
 
 
 #endif

@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: sw_excimpop.cxx,v $
- * $Revision: 1.12 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1102,7 +1099,7 @@ String &SwExcelParser::ReadExcString( StringInfoLen eLen, String &aString )
     pIn->Read( pStr, nLaenge );
     pStr[ nLaenge ] = 0;
     aString = String(pStr, eZielChar);
-    delete pStr;
+    delete[] pStr;
 
     return aString;
     }

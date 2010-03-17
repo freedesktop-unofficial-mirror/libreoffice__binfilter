@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: rmapplet.cxx,v $
- * $Revision: 1.4 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -191,7 +188,7 @@ void RmAppletStub::Create(RmAppletContext* pContext, const INetURLObject& rURL1,
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
 
@@ -237,7 +234,7 @@ void RmAppletContext::Create( )
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
 
@@ -260,7 +257,7 @@ void RmAppletObject::Create(const String& sClassName, const String& sName, const
     strcpy( aBuf, RMAPPLET_PACKAGE ); // #100211# - checked
     strcat( aBuf, pClassName );       // #100211# - checked
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
-    delete aBuf;
+    delete[] aBuf;
 
     DBG_TRACE( "Rm: Window::Create() - After createObject()" );
     DCA_NAMESPACE(OCallMethodMsg, dca) aMsg( this, MSG_APPLET_CREATE );
