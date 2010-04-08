@@ -1320,7 +1320,7 @@ void OServiceManager::remove( const Any & Element )
     // remove from the implementation map
     m_ImplementationMap.erase( aIt );
 
-    m_SetLoadedFactories.erase( *aIt);
+    m_SetLoadedFactories.erase( xEle );
     // remove from the implementation name hashmap
     Reference<XServiceInfo > xInfo( Reference<XServiceInfo >::query( xEle ) );
     if( xInfo.is() )
