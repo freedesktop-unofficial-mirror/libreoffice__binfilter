@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svx_unoshap2.cxx,v $
- * $Revision: 1.9 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -1710,7 +1707,9 @@ uno::Any SAL_CALL SvxGraphicObject::getPropertyValue( const OUString& aPropertyN
             SvMemoryStream aDestStrm( 65535, 65535 );
 
             ConvertGDIMetaFileToWMF( rGraphic.GetGDIMetaFile(), aDestStrm, NULL, sal_False );
-            uno::Sequence<sal_Int8> aSeq((sal_Int8*)aDestStrm.GetData(), aDestStrm.GetSize());
+            const uno::Sequence<sal_Int8> aSeq(
+                static_cast< const sal_Int8* >(aDestStrm.GetData()),
+                aDestStrm.GetEndOfData());
             return uno::Any( &aSeq, ::getCppuType(( uno::Sequence< sal_Int8 >*)0) );
         }
     }
