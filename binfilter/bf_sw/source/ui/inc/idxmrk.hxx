@@ -58,7 +58,7 @@
 #endif
 
 #ifndef _IMAGEBTN_HXX //autogen
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #endif
 #ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
