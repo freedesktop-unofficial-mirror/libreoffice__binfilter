@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: svt_urihelper.cxx,v $
- * $Revision: 1.4.30.1 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -133,8 +130,7 @@ inline UniString SmartRel2Abs_Impl(INetURLObject const & rTheBaseURIRef,
                                                  eStyle);
         if (bCheckFileExists
             && !bWasAbsolute
-            && (aAbsURIRef.GetProtocol() == INET_PROT_FILE
-                || aAbsURIRef.GetProtocol() == INET_PROT_VND_SUN_STAR_WFS))
+            && (aAbsURIRef.GetProtocol() == INET_PROT_FILE) )
         {
             INetURLObject aNonFileURIRef;
             aNonFileURIRef.SetSmartURL(rTheRelURIRef,

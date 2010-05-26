@@ -2,12 +2,9 @@
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
- * Copyright 2008 by Sun Microsystems, Inc.
+ * Copyright 2000, 2010 Oracle and/or its affiliates.
  *
  * OpenOffice.org - a multi-platform office productivity suite
- *
- * $RCSfile: flyfrm.hxx,v $
- * $Revision: 1.6 $
  *
  * This file is part of OpenOffice.org.
  *
@@ -216,18 +213,6 @@ public:
         graphic is transparent.
     */
     sal_Bool IsBackgroundTransparent() const;
-
-    /** SwFlyFrm::IsShadowTransparent - for feature #99657#
-
-        OD 05.08.2002
-        determine, if shadow color of fly frame has to be drawn transparent
-        definition found in /core/layout/paintfrm.cxx
-
-        @author OD
-
-        @return true, if shadow color is transparent.
-    */
-    sal_Bool IsShadowTransparent() const;
 };
 
 inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const

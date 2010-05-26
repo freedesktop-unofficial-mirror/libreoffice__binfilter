@@ -2,13 +2,9 @@
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
 # 
-# Copyright 2008 by Sun Microsystems, Inc.
+# Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
-#
-# $RCSfile: makefile.mk,v $
-#
-# $Revision: 1.13 $
 #
 # This file is part of OpenOffice.org.
 #
@@ -94,14 +90,8 @@ $(SLO)$/sw_swdll.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swlib.obj : $(INCCOM)$/swdll0.hxx
 $(SLO)$/sw_swmodule.obj : $(INCCOM)$/swdll0.hxx
 
-.IF "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
 $(INCCOM)$/swdll0.hxx: makefile.mk
     echo \#define DLL_NAME \"$(DLLPRE)bf_sw$(DLLPOSTFIX)$(DLLPOST)\" >$@
-.ELSE			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
-$(INCCOM)$/swdll0.hxx: makefile.mk
-    echo #define DLL_NAME "bf_sw$(DLLPOSTFIX).DLL" >$@
-.ENDIF			# "$(GUI)"=="UNX" || "$(USE_SHELL)"!="4nt"
-
 
 $(SRS)$/sw_app.srs: $(PRJ)$/inc$/bf_svx$/globlmn.hrc
 
