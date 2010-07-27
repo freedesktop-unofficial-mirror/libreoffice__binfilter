@@ -634,9 +634,11 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   SvStorage* pStor = GetStorage();
 /*N*/   DBG_ASSERT( pStor, "Save() without Storage called!" );
+    if (!pStor)
+        return FALSE;
 /*N*/
-/*N*/     long nFileFormat = pStor->GetVersion();
-/*N*/     sal_Bool bIsXML = nFileFormat >= SOFFICE_FILEFORMAT_60;
+/*N*/   long nFileFormat = pStor->GetVersion();
+/*N*/   sal_Bool bIsXML = nFileFormat >= SOFFICE_FILEFORMAT_60;
 /*N*/   BOOL bRet = FALSE;
 /*N*/
 /*N*/   if( bIsXML )
@@ -647,8 +649,6 @@ using namespace ::com::sun::star;
         /**********************************************************************
          * StarOffice XML-Filter Export
          **********************************************************************/
-/*N*/       if( pStor )
-/*N*/       {
 /*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*N*/           SchXMLWrapper aFilter( xModel, *pStor,
 /*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
@@ -657,13 +657,8 @@ using namespace ::com::sun::star;
 /*N*/           UpdateDocInfoForSave();
 /*N*/
 /*N*/           bRet = aFilter.Export();
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           DBG_ERROR( "SaveAs (XML): got no Storage in Medium!" );
-/*N*/       }
-/*N*/
-/*N*/           FinishedLoading( SFX_LOADED_ALL );
+
+           FinishedLoading( SFX_LOADED_ALL );
 /*N*/   }
 /*N*/   else        // binary format <= 5.0
 /*N*/   {
@@ -777,6 +772,9 @@ using namespace ::com::sun::star;
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR (context, "sch", "af119097", "::SchChartDocShell::SaveAs");
 /*N*/
 /*N*/   CHART_TRACE( "SchChartDocShell::SaveAs" );
+/*N*/   DBG_ASSERT( pStor, "SaveAs() without Storage called!" );
+    if (!pStor)
+        return FALSE;
 /*N*/
 /*N*/   BOOL bRet = FALSE;
 /*N*/
@@ -798,8 +796,6 @@ using namespace ::com::sun::star;
          /**********************************************************************
           * StarOffice XML-Filter Export
           **********************************************************************/
-/*N*/       if( pStor )
-/*N*/       {
 /*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
 /*N*/           SchXMLWrapper aFilter( xModel, *pStor,
 /*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
@@ -844,14 +840,9 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
  /*?*/                     else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
  /*?*/                         pChDoc->GetChartData()->ConvertChartRangeForWriter( TRUE );
 
- /*N*/                 }
-/*N*/             }
+ /*N*/                }
 /*N*/
 /*N*/           bRet = aFilter.Export();
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           DBG_ERROR( "SaveAs (XML): got no Storage in Medium!" );
 /*N*/       }
 /*N*/   }
 /*N*/   else        // binary format <= 5.0
