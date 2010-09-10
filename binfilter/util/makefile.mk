@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -25,57 +25,26 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
+PRJ = ..
+PRJNAME = binfilter
+TARGET = bf_util
 
-PRJ=..
+my_components = \
+    bf_frm bf_sc bf_sch bf_sd bf_sm bf_svt bf_svx bf_sw bf_wrapper bf_xo
 
-PRJNAME=binfilter
-TARGET=bf_util
+.INCLUDE: settings.mk
+.INCLUDE: target.mk
 
-# --- Settings ----------------------------------
+ALLTAR : $(MISC)/legacy_binfilters.rdb
 
-.INCLUDE :  	settings.mk
+$(MISC)/legacy_binfilters.rdb .ERRREMOVE : $(SOLARENV)/bin/packcomponents.xslt \
+        $(MISC)/legacy_binfilters.input \
+        $(my_components:^"$(MISC)/":+".component")
+    $(XSLTPROC) --nonet --stringparam prefix $(PWD)/$(MISC)/ -o $@ \
+        $(SOLARENV)/bin/packcomponents.xslt $(MISC)/legacy_binfilters.input
 
-# --- Files -------------------------------------
-.IF "$(L10N_framework)"==""
-.IF "$(GUI)"=="UNX"
-LOCALLIBDIR=$(LB)
-.ELSE          # "$(GUI)"=="UNX"
-LOCALLIBDIR=$(BIN)
-.ENDIF          # "$(GUI)"=="UNX"
-
-RDBNAMES=		\
-    bf_xo		\
-    bf_sw		\
-    bf_sc		\
-    bf_sd		\
-    bf_sm		\
-    bf_sch		\
-    bf_frm		\
-    bf_svx		\
-    bf_svt		\
-    bf_wrapper
-
-RDBLIBS=$(foreach,i,$(strip $(RDBNAMES)) $(LOCALLIBDIR)$/$(DLLPRE)$i$(DLLPOSTFIX)$(DLLPOST))
-.ENDIF
-
-# --- Targets ----------------------------------
-
-.INCLUDE : target.mk
-.IF "$(L10N_framework)"==""
-ALLTAR : $(BIN)$/legacy_binfilters.rdb
-
-.IF "$(OS)" == "WNT"
-my_OOO_BIN_PATH = BRAND_BASE_DIR
-.ELSE
-my_OOO_BIN_PATH = OOO_BASE_DIR
-.ENDIF
-
-$(BIN)$/legacy_binfilters.rdb : $(RDBLIBS)
-    @@-$(RM) $@
-    cd $(LOCALLIBDIR) && $(REGCOMP) -register -r ..$/bin$/$(@:f) -wop=vnd.sun.star.expand:$(EMQ)$$$(my_OOO_BIN_PATH)/program/ $(foreach,i,$(RDBLIBS) -c $(subst,$(LOCALLIBDIR)$/,./ $i))
-
-.ELSE
-pseudo:
-
-.ENDIF
+$(MISC)/legacy_binfilters.input .ERRREMOVE :
+    - $(RM) $@
+    echo \
+        '<list>$(my_components:^"<filename>":+".component</filename>")</list>' \
+        > $@
