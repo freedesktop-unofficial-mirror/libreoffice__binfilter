@@ -43,8 +43,7 @@ $(MISC)/legacy_binfilters.rdb .ERRREMOVE : $(SOLARENV)/bin/packcomponents.xslt \
     $(XSLTPROC) --nonet --stringparam prefix $(PWD)/$(MISC)/ -o $@ \
         $(SOLARENV)/bin/packcomponents.xslt $(MISC)/legacy_binfilters.input
 
-$(MISC)/legacy_binfilters.input .ERRREMOVE :
-    - $(RM) $@
+$(MISC)/legacy_binfilters.input :
     echo \
         '<list>$(my_components:^"<filename>":+".component</filename>")</list>' \
         > $@
