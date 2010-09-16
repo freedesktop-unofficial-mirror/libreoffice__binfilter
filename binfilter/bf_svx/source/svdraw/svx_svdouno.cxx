@@ -376,7 +376,7 @@ namespace binfilter {
 /*N*/         SdrViewIter aIter( this );
 /*N*/       for ( SdrView* pView = aIter.FirstView(); pView; pView = aIter.NextView() )
 /*N*/         {
-/*N*/             ::std::set< SdrView* >::const_iterator aPrevPos = aPreviouslyVisible.find( pView );
+/*N*/             ::std::set< SdrView* >::iterator aPrevPos = aPreviouslyVisible.find( pView );
 /*N*/             if ( aPreviouslyVisible.end() != aPrevPos )
 /*N*/             {   // in pView, we were visible _before_ the layer change, and are
 /*N*/                 // visible _after_ the layer change, too
