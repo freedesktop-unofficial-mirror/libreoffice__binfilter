@@ -90,12 +90,10 @@ struct  SvtLinguOptions
     // spelling options (non-service specific)
     BOOL    bIsSpellSpecial;
     BOOL    bIsSpellAuto;
-    BOOL    bIsSpellHideMarkings;
     BOOL    bIsSpellReverse;
 
     BOOL    bROIsSpellSpecial;
     BOOL    bROIsSpellAuto;
-    BOOL    bROIsSpellHideMarkings;
     BOOL    bROIsSpellReverse;
 
     // hyphenation options (non-service specific)

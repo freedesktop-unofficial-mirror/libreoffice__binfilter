@@ -54,7 +54,6 @@
 #define UPN_IS_HYPH_AUTO                    "IsHyphAuto"
 #define UPN_IS_HYPH_SPECIAL                 "IsHyphSpecial"
 #define UPN_IS_SPELL_AUTO                   "IsSpellAuto"
-#define UPN_IS_SPELL_HIDE                   "IsSpellHide"
 #define UPN_IS_SPELL_SPECIAL                "IsSpellSpecial"
 #define UPN_IS_WRAP_REVERSE                 "IsWrapReverse"
 #define UPN_DATA_FILES_CHANGED_CHECK_VALUE  "DataFilesChangedCheckValue"
@@ -81,7 +80,6 @@
 #define UPH_HYPH_MIN_WORD_LENGTH             8
 #define UPH_DEFAULT_LOCALE                   9
 #define UPH_IS_SPELL_AUTO                   10
-#define UPH_IS_SPELL_HIDE                   11
 #define UPH_IS_SPELL_SPECIAL                13
 #define UPH_IS_HYPH_AUTO                    14
 #define UPH_IS_HYPH_SPECIAL                 15
