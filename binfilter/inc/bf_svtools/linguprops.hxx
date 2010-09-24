@@ -30,7 +30,6 @@
 
 
 // UNO property names for general options
-#define UPN_IS_GERMAN_PRE_REFORM            "IsGermanPreReform"
 #define UPN_IS_USE_DICTIONARY_LIST          "IsUseDictionaryList"
 #define UPN_IS_IGNORE_CONTROL_CHARACTERS    "IsIgnoreControlCharacters"
 #define UPN_ACTIVE_DICTIONARIES             "ActiveDictionaries"
@@ -73,7 +72,6 @@
 #define UPN_IS_REVERSE_MAPPING  "IsReverseMapping"
 
 // uno property handles
-#define UPH_IS_GERMAN_PRE_REFORM             0
 #define UPH_IS_USE_DICTIONARY_LIST           1
 #define UPH_IS_IGNORE_CONTROL_CHARACTERS     2
 #define UPH_IS_SPELL_UPPER_CASE              3

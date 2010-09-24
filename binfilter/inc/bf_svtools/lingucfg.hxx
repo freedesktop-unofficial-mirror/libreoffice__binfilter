@@ -108,11 +108,9 @@ struct  SvtLinguOptions
     BOOL    bROIsHyphAuto;
 
     // common to SpellChecker, Hyphenator and Thesaurus service
-    BOOL    bIsGermanPreReform;
     BOOL    bIsUseDictionaryList;
     BOOL    bIsIgnoreControlCharacters;
 
-    BOOL    bROIsGermanPreReform;
     BOOL    bROIsUseDictionaryList;
     BOOL    bROIsIgnoreControlCharacters;
 
