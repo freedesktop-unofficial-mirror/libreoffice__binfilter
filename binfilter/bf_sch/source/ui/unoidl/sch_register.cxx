@@ -46,26 +46,6 @@ void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**      
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
 }
 
-sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
-                                        void*   pRegistryKey    )
-{
-    uno::Reference< registry::XRegistryKey >
-            xKey( reinterpret_cast< registry::XRegistryKey* >( pRegistryKey ) ) ;
-
-    sal_Int32 i;
-    uno::Reference< registry::XRegistryKey >  xNewKey;
-
-    xNewKey = xKey->createKey(::rtl::OUString(
-    RTL_CONSTASCII_USTRINGPARAM("/") ) + SchDocument_getImplementationName() +
-    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES") )  );
-
-    uno::Sequence< ::rtl::OUString > rServices = SchDocument_getSupportedServiceNames();
-    for(i = 0; i < rServices.getLength(); i++ )
-        xNewKey->createKey( rServices.getConstArray()[i]);
-
-    return sal_True;
-}
-
 void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName ,
                                                 void*       pServiceManager     ,
                                                 void*       pRegistryKey        )
