@@ -157,7 +157,7 @@ void SAL_CALL SvNumberFormatterServiceObj::attachNumberFormatsSupplier(
                             const uno::Reference<util::XNumberFormatsSupplier>& xSupplier )
                                     throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     SvNumberFormatsSupplierObj* pNew = SvNumberFormatsSupplierObj::getImplementation( xSupplier );
     if (!pNew)
@@ -174,7 +174,7 @@ uno::Reference<util::XNumberFormatsSupplier> SAL_CALL
                             SvNumberFormatterServiceObj::getNumberFormatsSupplier()
                                     throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     return pSupplier;
 }
 
@@ -182,7 +182,7 @@ sal_Int32 SAL_CALL SvNumberFormatterServiceObj::detectNumberFormat(
                                     sal_Int32 nKey, const rtl::OUString& aString )
                             throw(util::NotNumericException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -206,7 +206,7 @@ double SAL_CALL SvNumberFormatterServiceObj::convertStringToNumber(
                                     sal_Int32 nKey, const rtl::OUString& aString )
                             throw(util::NotNumericException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     double fRet = 0.0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -229,7 +229,7 @@ double SAL_CALL SvNumberFormatterServiceObj::convertStringToNumber(
 rtl::OUString SAL_CALL SvNumberFormatterServiceObj::convertNumberToString(
                                     sal_Int32 nKey, double fValue ) throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     String aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -248,7 +248,7 @@ util::Color SAL_CALL SvNumberFormatterServiceObj::queryColorForNumber( sal_Int32
                                     double fValue, util::Color aDefaultColor )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     util::Color nRet = aDefaultColor;       // color = INT32
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -270,7 +270,7 @@ util::Color SAL_CALL SvNumberFormatterServiceObj::queryColorForNumber( sal_Int32
 rtl::OUString SAL_CALL SvNumberFormatterServiceObj::formatString( sal_Int32 nKey,
                                     const rtl::OUString& aString ) throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     String aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -290,7 +290,7 @@ util::Color SAL_CALL SvNumberFormatterServiceObj::queryColorForString( sal_Int32
                                     const rtl::OUString& aString,util::Color aDefaultColor )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     util::Color nRet = aDefaultColor;       // color = INT32
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -313,7 +313,7 @@ util::Color SAL_CALL SvNumberFormatterServiceObj::queryColorForString( sal_Int32
 rtl::OUString SAL_CALL SvNumberFormatterServiceObj::getInputString( sal_Int32 nKey, double fValue )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     String aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -332,7 +332,7 @@ rtl::OUString SAL_CALL SvNumberFormatterServiceObj::convertNumberToPreviewString
                                     const lang::Locale& nLocale, sal_Bool bAllowEnglish )
                             throw(util::MalformedNumberFormatException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     String aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -368,7 +368,7 @@ util::Color SAL_CALL SvNumberFormatterServiceObj::queryPreviewColorForNumber(
                                     util::Color aDefaultColor )
                             throw(util::MalformedNumberFormatException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     util::Color nRet = aDefaultColor;       // color = INT32
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -445,7 +445,7 @@ SvNumberFormatsObj::~SvNumberFormatsObj()
 uno::Reference<beans::XPropertySet> SAL_CALL SvNumberFormatsObj::getByKey( sal_Int32 nKey )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
     const SvNumberformat* pFormat = pFormatter ? pFormatter->GetEntry(nKey) : NULL;
@@ -459,7 +459,7 @@ uno::Sequence<sal_Int32> SAL_CALL SvNumberFormatsObj::queryKeys( sal_Int16 nType
                                     const lang::Locale& nLocale, sal_Bool bCreate )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
     if ( pFormatter )
@@ -485,7 +485,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::queryKey( const rtl::OUString& aFormat,
                                     const lang::Locale& nLocale, sal_Bool bScan )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -509,7 +509,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::addNew( const rtl::OUString& aFormat,
                                     const lang::Locale& nLocale )
                             throw(util::MalformedNumberFormatException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -540,7 +540,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::addNewConverted( const rtl::OUString& aFo
                                     const lang::Locale& nLocale, const lang::Locale& nNewLocale )
                             throw(util::MalformedNumberFormatException, uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -570,7 +570,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::addNewConverted( const rtl::OUString& aFo
 
 void SAL_CALL SvNumberFormatsObj::removeByKey( sal_Int32 nKey ) throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
 
     if (pFormatter)
@@ -585,7 +585,7 @@ rtl::OUString SAL_CALL SvNumberFormatsObj::generateFormat( sal_Int32 nBaseKey,
                                     sal_Bool bRed, sal_Int16 nDecimals, sal_Int16 nLeading )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     String aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -605,7 +605,7 @@ rtl::OUString SAL_CALL SvNumberFormatsObj::generateFormat( sal_Int32 nBaseKey,
 sal_Int32 SAL_CALL SvNumberFormatsObj::getStandardIndex( const lang::Locale& nLocale )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -623,7 +623,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::getStandardIndex( const lang::Locale& nLo
 sal_Int32 SAL_CALL SvNumberFormatsObj::getStandardFormat( sal_Int16 nType, const lang::Locale& nLocale )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -644,7 +644,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::getStandardFormat( sal_Int16 nType, const
 sal_Int32 SAL_CALL SvNumberFormatsObj::getFormatIndex( sal_Int16 nIndex, const lang::Locale& nLocale )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -662,7 +662,7 @@ sal_Int32 SAL_CALL SvNumberFormatsObj::getFormatIndex( sal_Int16 nIndex, const l
 sal_Bool SAL_CALL SvNumberFormatsObj::isTypeCompatible( sal_Int16 nOldType, sal_Int16 nNewType )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     BOOL bRet = FALSE;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -677,7 +677,7 @@ sal_Bool SAL_CALL SvNumberFormatsObj::isTypeCompatible( sal_Int16 nOldType, sal_
 sal_Int32 SAL_CALL SvNumberFormatsObj::getFormatForLocale( sal_Int32 nKey, const lang::Locale& nLocale )
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     INT32 nRet = 0;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -736,7 +736,7 @@ SvNumberFormatObj::~SvNumberFormatObj()
 uno::Reference<beans::XPropertySetInfo> SAL_CALL SvNumberFormatObj::getPropertySetInfo()
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( lcl_GetNumberFormatPropertyMap() );
     return aRef;
@@ -755,7 +755,7 @@ uno::Any SAL_CALL SvNumberFormatObj::getPropertyValue( const rtl::OUString& aPro
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     uno::Any aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
@@ -885,7 +885,7 @@ void SAL_CALL SvNumberFormatObj::removeVetoableChangeListener( const rtl::OUStri
 uno::Sequence<beans::PropertyValue> SAL_CALL SvNumberFormatObj::getPropertyValues()
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
     const SvNumberformat* pFormat = pFormatter ? pFormatter->GetEntry(nKey) : NULL;
@@ -997,7 +997,7 @@ SvNumberFormatSettingsObj::~SvNumberFormatSettingsObj()
 uno::Reference<beans::XPropertySetInfo> SAL_CALL SvNumberFormatSettingsObj::getPropertySetInfo()
                             throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( lcl_GetNumberSettingsPropertyMap() );
     return aRef;
@@ -1009,7 +1009,7 @@ void SAL_CALL SvNumberFormatSettingsObj::setPropertyValue( const rtl::OUString& 
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
     if (pFormatter)
@@ -1052,7 +1052,7 @@ uno::Any SAL_CALL SvNumberFormatSettingsObj::getPropertyValue( const rtl::OUStri
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
 
     uno::Any aRet;
     SvNumberFormatter* pFormatter = pSupplier ? pSupplier->GetNumberFormatter() : NULL;
