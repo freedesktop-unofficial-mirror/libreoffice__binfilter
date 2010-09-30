@@ -34,12 +34,6 @@
 
 namespace binfilter {
 
-// AB 29.10.99 Unicode
-#ifndef _USE_NO_NAMESPACE
-using namespace rtl;
-#endif
-
-
 // Die Konversion eines Items auf String wird ueber die Put-Methoden
 // der einzelnen Datentypen abgewickelt, um doppelten Code zu vermeiden.
 

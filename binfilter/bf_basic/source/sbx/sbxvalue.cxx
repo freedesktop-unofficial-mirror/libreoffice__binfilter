@@ -37,11 +37,6 @@
 #include "sbxconv.hxx"
 #include <math.h>
 
-// AB 29.10.99 Unicode
-#ifndef _USE_NO_NAMESPACE
-using namespace rtl;
-#endif
-
 namespace binfilter {
 
 TYPEINIT1(SbxValue,SbxBase)
