@@ -1103,21 +1103,8 @@ void SAL_CALL SvxShape::setName( const ::rtl::OUString& aName ) throw(::com::sun
 //----------------------------------------------------------------------
 OUString SAL_CALL SvxShape::getShapeType() throw(uno::RuntimeException)
 {
-    if( 0 == aShapeType.getLength() )
-    {
-        UHashMapEntry* pMap = pSdrShapeIdentifierMap;
-        while ( ( pMap->nId != mpImpl->mnObjId ) && pMap->aIdentifier.getLength() )
-            ++pMap;
-
-        if ( pMap->aIdentifier.getLength() )
-        {
-            return pMap->aIdentifier;
-        }
-        else
-        {
-            DBG_ERROR("[CL] unknown SdrObjekt identifier");
-        }
-    }
+    if( !aShapeType.getLength() )
+        return UHashMap::getNameFromId( mpImpl->mnObjId );
 
     return aShapeType;
 }

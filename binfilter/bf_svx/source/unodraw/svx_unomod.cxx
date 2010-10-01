@@ -80,9 +80,8 @@
 #include "unomodel.hxx"
 #include "svdobj.hxx"
 #include "unoshape.hxx"
+#include <hash_map>
 namespace binfilter {
-
-extern UHashMapEntry pSdrShapeIdentifierMap[];
 
 //-////////////////////////////////////////////////////////////////////
 
@@ -206,14 +205,14 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
     return sal_True;
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( const OUString& ServiceSpecifier )
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( const OUString& rServiceSpecifier )
     throw( uno::Exception, uno::RuntimeException )
 {
     const OUString aDrawingPrefix( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.") );
 
-    if( ServiceSpecifier.compareTo( aDrawingPrefix, aDrawingPrefix.getLength() ) == 0 )
+    if( rServiceSpecifier.compareTo( aDrawingPrefix, aDrawingPrefix.getLength() ) == 0 )
     {
-        UINT32 nType = aSdrShapeIdentifierMap.getId( ServiceSpecifier );
+        sal_uInt32 nType = UHashMap::getId( rServiceSpecifier );
         if( nType != UHASHMAP_NOTFOUND )
         {
             UINT16 nT = (UINT16)(nType & ~E3D_INVENTOR_FLAG);
@@ -223,7 +222,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( 
         }
     }
 
-    uno::Reference< uno::XInterface > xRet( createTextField( ServiceSpecifier ) );
+    uno::Reference< uno::XInterface > xRet( createTextField( rServiceSpecifier ) );
     if( !xRet.is() )
         throw lang::ServiceNotRegisteredException();
 
@@ -296,28 +295,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWi
 uno::Sequence< OUString > SAL_CALL SvxUnoDrawMSFactory::getAvailableServiceNames()
     throw( uno::RuntimeException )
 {
-    UHashMapEntry* pMap = pSdrShapeIdentifierMap;
-
-    UINT32 nCount = 0;
-    while (pMap->aIdentifier.getLength())
-    {
-        pMap++;
-        nCount++;
-    }
-
-    uno::Sequence< OUString > aSeq( nCount );
-    OUString* pStrings = aSeq.getArray();
-
-    pMap = pSdrShapeIdentifierMap;
-    UINT32 nIdx = 0;
-    while(pMap->aIdentifier.getLength())
-    {
-        pStrings[nIdx] = pMap->aIdentifier;
-        pMap++;
-        nIdx++;
-    }
-
-    return aSeq;
+    return UHashMap::getServiceNames();
 }
 
 uno::Sequence< OUString > SvxUnoDrawMSFactory::concatServiceNames( uno::Sequence< OUString >& rServices1, uno::Sequence< OUString >& rServices2 ) throw()

@@ -41,35 +41,25 @@
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif
+#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HPP_
+#include <com/sun/star/uno/Sequence.hxx>
+#endif
+
 namespace binfilter {
 
 /***********************************************************************
 * class UHashMap                                                       *
 ***********************************************************************/
 
-struct UHashMapEntry
-{
-    ::rtl::OUString aIdentifier;
-    UINT32 nId;
-
-    UHashMapEntry(const sal_Char * value, sal_Int32 length, UINT32 _nId) : aIdentifier(value,length,RTL_TEXTENCODING_ASCII_US), nId(_nId) { }
-};
-
-DECLARE_LIST( UHashMapEntryList, UHashMapEntry* )//STRIP008 DECLARE_LIST( UHashMapEntryList, UHashMapEntry* );
-
-#define HASHARRAYSIZE   0x10
-#define UHASHMAP_NOTFOUND (~0)
+#define UHASHMAP_NOTFOUND sal::static_int_cast< UINT32 >(~0)
 
 class UHashMap
 {
-private:
-    UHashMapEntryList m_aHashList[HASHARRAYSIZE];
-
+    UHashMap() {}
 public:
-    UHashMap( UHashMapEntry* pMap );
-    ~UHashMap() {};
-
-    UINT32 getId( const ::rtl::OUString& rCompareString );
+    static sal_uInt32 getId( const ::rtl::OUString& rCompareString );
+    static rtl::OUString getNameFromId (sal_uInt32 nId);
+    static ::com::sun::star::uno::Sequence< rtl::OUString > getServiceNames();
 };
 
 /***********************************************************************
@@ -120,8 +110,6 @@ const sal_Int16 OBJ_OLE2_APPLET = 100;
 const sal_Int16 OBJ_OLE2_PLUGIN = 101;
 
 extern SvxUnoPropertyMapProvider aSvxMapProvider;
-extern UHashMapEntry pSdrShapeIdentifierMap[];
-extern UHashMap aSdrShapeIdentifierMap;
 
 #define SFX_METRIC_ITEM             (0x40)
 #define E3D_INVENTOR_FLAG           (0x80000000)
