@@ -677,15 +677,13 @@ comphelper::PropertyMapEntry* ImplGetSvxDrawingDefaultsPropertyMap()
 ***********************************************************************/
 
 typedef ::std::hash_map< rtl::OUString, sal_uInt32, rtl::OUStringHash > UHashMapImpl;
-// obsoleting these guys:
-// extern UHashMapEntry pSdrShapeIdentifierMap[];
-// extern UHashMap aSdrShapeIdentifierMap;
 
 namespace {
   static const UHashMapImpl &GetUHashImpl()
   {
-      static UHashMapImpl *pImpl = NULL;
-      if (!pImpl) {
+      static UHashMapImpl aImpl(63);
+      static bool bInited = false;
+      if (!bInited) {
           struct { const char *name; sal_Int32 length; sal_uInt32 id; } aInit[] = {
               { RTL_CONSTASCII_STRINGPARAM("com.sun.star.drawing.RectangleShape"),                OBJ_RECT },
               { RTL_CONSTASCII_STRINGPARAM("com.sun.star.drawing.EllipseShape"),                        OBJ_CIRC },
@@ -717,11 +715,11 @@ namespace {
               { RTL_CONSTASCII_STRINGPARAM("com.sun.star.drawing.Shape3DExtrudeObject"),        E3D_EXTRUDEOBJ_ID | E3D_INVENTOR_FLAG },
               { RTL_CONSTASCII_STRINGPARAM("com.sun.star.drawing.Shape3DPolygonObject"),        E3D_POLYGONOBJ_ID | E3D_INVENTOR_FLAG }
           };
-          pImpl = new UHashMapImpl(32);
           for (sal_uInt32 i = 0; i < sizeof(aInit)/sizeof(aInit[0]); i++)
-              (*pImpl)[rtl::OUString( aInit[i].name, aInit[i].length, RTL_TEXTENCODING_ASCII_US ) ] = aInit[i].id;
+              aImpl[rtl::OUString( aInit[i].name, aInit[i].length, RTL_TEXTENCODING_ASCII_US ) ] = aInit[i].id;
+          bInited = true;
         }
-      return *pImpl;
+      return aImpl;
   }
 }
 
