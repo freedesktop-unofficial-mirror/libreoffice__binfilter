@@ -87,8 +87,7 @@ struct TypesInfo
     sal_Int32   Length;
 };
 
-// --> OD 2005-08-04 #i47323#, #i51938# - list of file types
-// the binfilter modul is responsible for
+// the binfilter module is responsible for
 // - see /filter/source/config/fragments/filters/
 static const sal_uInt8 nStreamFileTypeCount = 114;
 static const sal_uInt8 nFileTypeCount = 29 + nStreamFileTypeCount;

@@ -784,7 +784,6 @@ void SwXTextSection::setPropertyValues(
             {
                 if(rFmts[i]->GetSection()->GetName() == pSect->GetName())
                 {
-                    // --> OD 2006-07-14 #b6448029#
                     // always prevent update of an existing link in the section
                     pDoc->ChgSection( i, aSection, aItemSet.pItemSet, sal_True );
                     // <--
@@ -1311,7 +1310,6 @@ void SwXTextSection::setPropertyToDefault( const OUString& rPropertyName )
             {
                 if(rFmts[i]->GetSection()->GetName() == pSect->GetName())
                 {
-                    // --> OD 2006-07-14 #b6448029#
                     // always prevent update of an existing link in the section
                     pDoc->ChgSection( i, aSection, pNewAttrSet, sal_True );
                     // <--

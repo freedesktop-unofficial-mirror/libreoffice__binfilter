@@ -792,7 +792,6 @@ void XMLTextExportPropertySetMapper::ContextFilter(
         pWrapState->maValue >>= eVal;
         switch( eVal )
         {
-        // --> OD 2006-06-02 #b6432057#
         // merge fix #i32592# into binfilter module
         case WrapTextMode_NONE:
             // no wrapping: disable para-only and contour
