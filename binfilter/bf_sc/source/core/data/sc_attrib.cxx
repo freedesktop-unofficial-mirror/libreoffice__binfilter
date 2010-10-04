@@ -220,7 +220,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScProtectionAttr::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool __EXPORT ScProtectionAttr::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/     switch ( nMemberId  )
@@ -245,16 +245,16 @@ using namespace ::com::sun::star;
 /*N*/             rVal <<= (sal_Bool ) bHidePrint; break;
 /*N*/         default:
 /*N*/             DBG_ERROR("Wrong MemberID!");
-/*N*/             return FALSE;
+/*N*/             return false;
 /*N*/     }
 /*N*/
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL __EXPORT ScProtectionAttr::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool __EXPORT ScProtectionAttr::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/     sal_Bool bVal;
+/*N*/   bool bRet = false;
+/*N*/   sal_Bool bVal;
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/     switch ( nMemberId )
 /*N*/     {
@@ -267,7 +267,7 @@ using namespace ::com::sun::star;
 /*N*/                 bHideFormula = aProtection.IsFormulaHidden;
 /*N*/                 bHideCell    = aProtection.IsHidden;
 /*N*/                 bHidePrint   = aProtection.IsPrintHidden;
-/*N*/                 bRet = TRUE;
+/*N*/                 bRet = true;
 /*N*/             }
 /*N*/             else
 /*N*/                 DBG_ERROR("exception - wrong argument");
@@ -636,18 +636,18 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScPageHFItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool __EXPORT ScPageHFItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent =
 /*N*/       new ScHeaderFooterContentObj( pLeftArea, pCenterArea, pRightArea );
 /*N*/
 /*N*/   rVal <<= xContent;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL __EXPORT ScPageHFItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool __EXPORT ScPageHFItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/   BOOL bRet = FALSE;
+/*N*/   bool bRet = false;
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent;
 /*N*/   if ( rVal >>= xContent )
 /*N*/   {
@@ -681,7 +681,7 @@ using namespace ::com::sun::star;
 /*?*/                       pRightArea = aEngine.CreateTextObject();
 /*N*/               }
 /*N*/
-/*N*/               bRet = TRUE;
+/*N*/               bRet = true;
 /*N*/           }
 /*N*/       }
 /*N*/   }

@@ -910,7 +910,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
  * --------------------------------------------------*/
 
 
-/*N*/ sal_Bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   uno::Reference< container::XIndexReplace > xRule;
 /*N*/   if( rVal >>= xRule )

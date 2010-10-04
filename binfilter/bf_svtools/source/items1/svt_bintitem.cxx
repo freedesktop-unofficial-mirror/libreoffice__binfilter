@@ -148,26 +148,26 @@ SfxFieldUnit SfxBigIntItem::GetUnit() const
 
 //============================================================================
 // virtual
-BOOL SfxBigIntItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxBigIntItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
 {
     double aValue = 0.0;
     if ( rVal >>= aValue )
     {
         SetValue( aValue );
-        return TRUE;
+        return true;
     }
 
     DBG_ERROR( "SfxBigIntItem::PutValue - Wrong type!" );
-    return FALSE;
+    return false;
 }
 
 //============================================================================
 // virtual
-BOOL SfxBigIntItem::QueryValue( ::com::sun::star::uno::Any& rVal,   BYTE ) const
+bool SfxBigIntItem::QueryValue( ::com::sun::star::uno::Any& rVal,   BYTE ) const
 {
     double aValue = GetValue();
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 }

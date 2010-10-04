@@ -79,7 +79,7 @@ using namespace ::com::sun::star::text;
 
 
 
-/*N*/ sal_Bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const
 /*N*/ {
 /*N*/   rVal <<= (WritingMode)GetValue();

@@ -136,26 +136,26 @@ SfxItemPresentation SfxCrawlStatusItem::GetPresentation( SfxItemPresentation, Sf
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxCrawlStatusItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxCrawlStatusItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     sal_Int16 aValue = sal_Int16();
     if ( rVal >>= aValue )
     {
         SetStatus( static_cast< CrawlStatus >( aValue ) );
-        return TRUE;
+        return true;
     }
 
     DBG_ERROR( "SfxCrawlStatusItem::PutValue - Wrong type!" );
-    return FALSE;
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxCrawlStatusItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxCrawlStatusItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     sal_Int16 aValue = sal::static_int_cast< sal_Int16 >(GetStatus());
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 }

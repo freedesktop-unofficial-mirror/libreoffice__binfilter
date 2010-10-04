@@ -60,9 +60,9 @@ public:
                                                 const ::IntlWrapper * = 0)
         const;
 
-    virtual BOOL QueryValue(::com::sun::star::uno::Any & rVal, BYTE = 0) const;
+    virtual bool QueryValue(::com::sun::star::uno::Any & rVal, BYTE = 0) const;
 
-    virtual BOOL PutValue(const ::com::sun::star::uno::Any & rVal, BYTE = 0);
+    virtual bool PutValue(const ::com::sun::star::uno::Any & rVal, BYTE = 0);
 
     virtual USHORT GetValueCount() const = 0;
 
@@ -160,9 +160,9 @@ public:
                                                 const ::IntlWrapper * = 0)
         const;
 
-    virtual BOOL QueryValue(::com::sun::star::uno::Any& rVal, BYTE = 0) const;
+    virtual bool QueryValue(::com::sun::star::uno::Any& rVal, BYTE = 0) const;
 
-    virtual BOOL PutValue(const ::com::sun::star::uno::Any& rVal, BYTE = 0);
+    virtual bool PutValue(const ::com::sun::star::uno::Any& rVal, BYTE = 0);
 
     virtual SfxPoolItem * Create(SvStream & rStream, USHORT) const;
 

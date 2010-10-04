@@ -270,7 +270,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxSizeItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxSizeItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -293,7 +293,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxSizeItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxSizeItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -422,7 +422,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxLRSpaceItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxLRSpaceItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bRet = sal_True;
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -467,7 +467,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxLRSpaceItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxLRSpaceItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -723,7 +723,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool    SvxULSpaceItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool    SvxULSpaceItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -739,7 +739,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxULSpaceItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxULSpaceItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -910,7 +910,7 @@ using namespace ::com::sun::star;
 
 /*-----------------16.03.98 12:42-------------------
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxProtectItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxProtectItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -931,7 +931,7 @@ using namespace ::com::sun::star;
 /*-----------------16.03.98 12:42-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool  SvxProtectItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool  SvxProtectItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -995,7 +995,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxShadowItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxShadowItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -1027,14 +1027,14 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxShadowItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxShadowItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/     table::ShadowFormat aShadow;
 /*N*/     uno::Any aAny;
-/*N*/     sal_Bool bRet = QueryValue( aAny, bConvert ? CONVERT_TWIPS : 0 ) && ( aAny >>= aShadow );
+/*N*/     bool bRet = QueryValue( aAny, bConvert ? CONVERT_TWIPS : 0 ) && ( aAny >>= aShadow );
 /*N*/     switch ( nMemberId )
 /*N*/     {
 /*N*/         case MID_LOCATION:
@@ -1307,7 +1307,7 @@ using namespace ::com::sun::star;
 /*N*/   return aLine;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxBoxItem::QueryValue( uno::Any& rVal, BYTE nMemberId  ) const
+/*N*/ bool SvxBoxItem::QueryValue( uno::Any& rVal, BYTE nMemberId  ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   table::BorderLine aRetLine;
@@ -1394,7 +1394,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxBoxItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxBoxItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   sal_uInt16 nLine = BOX_LINE_TOP;
@@ -1917,7 +1917,7 @@ using namespace ::com::sun::star;
 
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxFmtBreakItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxFmtBreakItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   style::BreakType eBreak = style::BreakType_NONE;
 /*N*/   switch ( (SvxBreak)GetValue() )
@@ -1933,7 +1933,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxFmtBreakItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxFmtBreakItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   style::BreakType nBreak;
 /*N*/
@@ -2375,7 +2375,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*?*/     return (nTrans * 100 + 127) / 254;
 /*?*/ }
 
-/*N*/ sal_Bool SvxBrushItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxBrushItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2437,7 +2437,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxBrushItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxBrushItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2867,7 +2867,7 @@ SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) 
 /*N*/ }
 
 
-/*N*/ sal_Bool SvxFrameDirectionItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxFrameDirectionItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE )
 /*N*/ {
 /*N*/     sal_Int16 nVal;
@@ -2901,7 +2901,7 @@ SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) 
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ sal_Bool SvxFrameDirectionItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxFrameDirectionItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const
 /*N*/ {
 /*N*/     // translate SvxFrameDirection into WritingDirection2

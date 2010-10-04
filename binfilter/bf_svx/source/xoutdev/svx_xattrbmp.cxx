@@ -665,7 +665,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillBitmapItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillBitmapItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -694,12 +694,12 @@ namespace binfilter {
 /*?*/       rVal <<= xBmp;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillBitmapItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillBitmapItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -709,7 +709,7 @@ namespace binfilter {
 /*?*/       if(rVal >>= aName)
 /*?*/       {
 /*?*/           SetName( aName );
-/*?*/           return sal_True;
+/*?*/           return true;
 /*?*/       }
 /*N*/   }
 /*N*/   else if( nMemberId == MID_GRAFURL )
@@ -720,7 +720,7 @@ namespace binfilter {
 /*N*/           BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
 /*N*/           XOBitmap aBMP( aGrafObj );
 /*N*/           SetValue( aBMP );
-/*N*/           return sal_True;
+/*N*/           return true;
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -740,10 +740,10 @@ namespace binfilter {
 /*?*/               && aInput.GetColorCount() == 2)
 /*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/           }
-/*?*/           return sal_True;
+/*?*/           return true;
 /*?*/       }
 /*?*/   }
-/*N*/   return sal_False;
+/*N*/   return false;
 /*N*/ }
 
 /*N*/ BOOL XFillBitmapItem::CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 )

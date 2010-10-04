@@ -131,10 +131,10 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/                  nEnum == RES_MIRROR_GRF_BOTH;
 /*N*/           return bEnum;
 /*N*/ }
-/*N*/ BOOL SwMirrorGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwMirrorGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/   sal_Bool bRet = sal_True,
-/*N*/        bVal;
+    /*N*/   bool bRet = true;
+/*N*/   sal_Bool bVal;
 /*N*/   // Vertikal und Horizontal sind mal getauscht worden!
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
@@ -157,9 +157,9 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL SwMirrorGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwMirrorGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/   sal_Bool bRet = sal_True;
+/*N*/   bool bRet = true;
 /*N*/   sal_Bool bVal = *(sal_Bool*)rVal.getValue();
 /*N*/   // Vertikal und Horizontal sind mal getauscht worden!
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -200,7 +200,7 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/           break;
 /*N*/       default:
 /*N*/           ASSERT( !this, "unknown MemberId" );
-/*N*/           bRet = sal_False;
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -238,28 +238,28 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 
 
-/*N*/ BOOL SwRotationGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwRotationGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
 /*N*/     rVal <<= (sal_Int16)GetValue();
-/*N*/     return TRUE;
+/*N*/     return true;
 /*N*/ }
 
-/*N*/ BOOL SwRotationGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwRotationGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
 /*N*/     sal_Int16 nValue;
 /*N*/   if (rVal >>= nValue)
 /*N*/   {
-/*N*/         // UINT16 argument needed
-/*N*/         SetValue( (UINT16) nValue );
-/*N*/       return TRUE;
+/*N*/       // UINT16 argument needed
+/*N*/       SetValue( (UINT16) nValue );
+/*N*/       return true;
 /*N*/   }
 /*N*/
-/*N*/     DBG_ERROR( "SwRotationGrf::PutValue - Wrong type!" );
-/*N*/   return FALSE;
+/*N*/   DBG_ERROR( "SwRotationGrf::PutValue - Wrong type!" );
+/*N*/   return true;
 /*N*/ }
 
 // ------------------------------------------------------------------
@@ -310,13 +310,13 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/       nValue == ((SwGammaGrf&)rCmp).GetValue();
 /*N*/ }
 
-/*N*/ BOOL SwGammaGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwGammaGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= nValue;
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL SwGammaGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwGammaGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   return rVal >>= nValue;
 /*N*/ }
@@ -335,17 +335,17 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/   return new SwTransparencyGrf( *this );
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId  ) const
 /*N*/ {
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
 /*N*/   sal_Int16 nRet = GetValue();
 /*N*/     DBG_ASSERT( 0 <= nRet && nRet <= 100, "value out of range" );
 /*N*/     rVal <<= nRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId  )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
@@ -363,7 +363,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/     }
 /*N*/     DBG_ASSERT( 0 <= nVal && nVal <= 100, "value out of range" );
 /*N*/   SetValue(nVal);
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
 // ------------------------------------------------------------------
@@ -374,24 +374,24 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 
 
-/*N*/ BOOL SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                               BYTE nMemberId ) const
 /*N*/ {
 /*N*/   drawing::ColorMode eRet = (drawing::ColorMode)GetEnumValue();
 /*N*/   rVal <<= eRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                               BYTE nMemberId  )
 /*N*/ {
 /*N*/   sal_Int32 eVal = SWUnoHelper::GetEnumAsInt32( rVal );
 /*N*/   if(eVal >= 0 && eVal <= GRAPHICDRAWMODE_WATERMARK)
 /*N*/   {
 /*N*/       SetEnumValue((USHORT)eVal);
-/*N*/       return TRUE;
+/*N*/       return true;
 /*N*/   }
-/*N*/   return FALSE;
+/*N*/   return false;
 /*N*/ }
 
 

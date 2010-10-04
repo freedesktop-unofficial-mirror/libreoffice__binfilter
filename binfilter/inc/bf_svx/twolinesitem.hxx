@@ -67,9 +67,9 @@ public:
 /*NBFF*/                                    String &rText,
 /*NBFF*/                                     const ::IntlWrapper* pIntl = 0 ) const;
 
-/*NBFF*/    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool          QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                        BYTE nMemberId = 0 ) const;
-/*NBFF*/    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool          PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                        BYTE nMemberId = 0 );
 
     virtual USHORT          GetVersion( USHORT nFFVer ) const;

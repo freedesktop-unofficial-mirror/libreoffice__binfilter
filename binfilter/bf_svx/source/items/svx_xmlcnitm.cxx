@@ -84,15 +84,15 @@ using namespace ::com::sun::star::xml;
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-/*N*/ BOOL  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   Reference<XNameContainer> xContainer =
 /*N*/       new SvUnoAttributeContainer( new SvXMLAttrContainerData( *pImpl ) );
 /*N*/
 /*N*/   rVal.setValue( &xContainer, ::getCppuType((Reference<XNameContainer>*)0) );
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
-/*N*/ BOOL SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*NBFF*/{
 /*NBFF*/    Reference<XInterface> xRef;
 /*NBFF*/    SvUnoAttributeContainer* pContainer = NULL;
@@ -118,7 +118,7 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/        {
 /*NBFF*/            Reference<XNameContainer> xContainer( xRef, UNO_QUERY );
 /*NBFF*/            if( !xContainer.is() )
-/*NBFF*/                return FALSE;
+/*NBFF*/                return false;
 /*NBFF*/
 /*NBFF*/            const Sequence< OUString > aNameSequence( xContainer->getElementNames() );
 /*NBFF*/            const OUString* pNames = aNameSequence.getConstArray();
@@ -132,7 +132,7 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/
 /*NBFF*/                aAny = xContainer->getByName( aName );
 /*NBFF*/                if( aAny.getValue() == NULL || aAny.getValueType() != ::getCppuType((AttributeData*)0) )
-/*NBFF*/                    return FALSE;
+/*NBFF*/                    return false;
 /*NBFF*/
 /*NBFF*/                pData = (AttributeData*)aAny.getValue();
 /*NBFF*/                USHORT pos = aName.indexOf( sal_Unicode(':') );
@@ -163,7 +163,7 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/            {
 /*NBFF*/                delete pImpl;
 /*NBFF*/                pImpl = pNewImpl;
-/*NBFF*/                return FALSE;
+/*NBFF*/                return false;
 /*NBFF*/            }
 /*NBFF*/            else
 /*NBFF*/            {
@@ -173,10 +173,10 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/        catch(...)
 /*NBFF*/        {
 /*NBFF*/            delete pNewImpl;
-/*NBFF*/            return FALSE;
+/*NBFF*/            return false;
 /*NBFF*/        }
 /*NBFF*/    }
-/*NBFF*/    return TRUE;
+/*NBFF*/    return true;
 /*N*/ }
 
 

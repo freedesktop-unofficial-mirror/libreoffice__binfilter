@@ -220,7 +220,7 @@ void CntContentTypeItem::SetValue( const INetContentType eType )
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     rVal <<= rtl::OUString(GetValue());
     return true;
@@ -228,7 +228,7 @@ BOOL CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntContentTypeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool CntContentTypeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     rtl::OUString aValue;
     if ( rVal >>= aValue )

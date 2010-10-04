@@ -63,8 +63,8 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwVertOrient GetVertOrient() const { return eOrient; }
     SwRelationOrient GetRelationOrient() const { return eRelation; }
@@ -102,8 +102,8 @@ public:
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwHoriOrient GetHoriOrient() const { return eOrient; }
     SwRelationOrient GetRelationOrient() const { return eRelation; }

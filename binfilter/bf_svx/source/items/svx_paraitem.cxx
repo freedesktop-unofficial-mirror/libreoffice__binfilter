@@ -183,7 +183,7 @@ using namespace ::com::sun::star;
         - ein sal_uInt32 fuer alle Werte (Abstand, Hoehe, rel. Angaben)
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxLineSpacingItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxLineSpacingItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -228,7 +228,7 @@ using namespace ::com::sun::star;
 /*-----------------18.03.98 16:32-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxLineSpacingItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxLineSpacingItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -384,7 +384,7 @@ using namespace ::com::sun::star;
 /*-----------------18.03.98 16:15-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -405,7 +405,7 @@ using namespace ::com::sun::star;
 
 --------------------------------------------------*/
 
-/*N*/ sal_Bool SvxAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId  )
+/*N*/ bool SvxAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId  )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -589,7 +589,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool  SvxHyphenZoneItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool  SvxHyphenZoneItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -611,7 +611,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxHyphenZoneItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxHyphenZoneItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -793,7 +793,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 --------------------------------------------------*/
 
-/*N*/ sal_Bool SvxTabStopItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxTabStopItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -837,7 +837,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 --------------------------------------------------*/
 
-/*N*/ sal_Bool SvxTabStopItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxTabStopItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;

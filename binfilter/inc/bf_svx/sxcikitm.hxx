@@ -51,7 +51,7 @@ public:
     virtual USHORT       GetValueCount() const; // { return 4; }
             SdrCircKind  GetValue() const      { return (SdrCircKind)SfxEnumItem::GetValue(); }
 
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool         PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 };
 

@@ -290,7 +290,7 @@ public:
 
     SvxNumRule*             GetNumRule() const {return pNumRule;}
 
-    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 /* -----------------28.10.98 15:21-------------------
  *

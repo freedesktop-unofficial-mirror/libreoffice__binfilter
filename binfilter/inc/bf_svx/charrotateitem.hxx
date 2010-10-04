@@ -69,9 +69,9 @@ public:
 /*NBFF*/                                    String &rText,
 /*NBFF*/                                     const ::IntlWrapper * = 0 ) const;
 
-/*NBFF*/    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                    BYTE nMemberId );
-/*NBFF*/    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                BYTE nMemberId ) const;
 
 /*NBFF*/    inline SvxCharRotateItem& operator=( const SvxCharRotateItem& rItem )

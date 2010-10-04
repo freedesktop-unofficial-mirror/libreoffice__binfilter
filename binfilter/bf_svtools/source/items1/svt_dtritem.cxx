@@ -187,7 +187,7 @@ SfxItemPresentation SfxDateTimeRangeItem::GetPresentation
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     com::sun::star::util::DateTimeRange aValue;
     if ( rVal >>= aValue )
@@ -206,35 +206,35 @@ BOOL SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
                                            aValue.EndMinutes,
                                            aValue.EndSeconds,
                                            aValue.EndHundredthSeconds ) );
-        return TRUE;
+        return true;
     }
 
     DBG_ERROR( "SfxDateTimeRangeItem::PutValue - Wrong type!" );
-    return FALSE;
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeRangeItem::QueryValue( com::sun::star::uno::Any& rVal,
+bool SfxDateTimeRangeItem::QueryValue( com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId ) const
 {
     nMemberId &= ~CONVERT_TWIPS;
     com::sun::star::util::DateTimeRange aValue( aStartDateTime.Get100Sec(),
-                                                   aStartDateTime.GetSec(),
-                                                      aStartDateTime.GetMin(),
-                                                   aStartDateTime.GetHour(),
-                                                   aStartDateTime.GetDay(),
-                                                   aStartDateTime.GetMonth(),
-                                                   aStartDateTime.GetYear(),
+                                                aStartDateTime.GetSec(),
+                                                aStartDateTime.GetMin(),
+                                                aStartDateTime.GetHour(),
+                                                aStartDateTime.GetDay(),
+                                                aStartDateTime.GetMonth(),
+                                                aStartDateTime.GetYear(),
                                                 aEndDateTime.Get100Sec(),
-                                                   aEndDateTime.GetSec(),
-                                                      aEndDateTime.GetMin(),
-                                                   aEndDateTime.GetHour(),
-                                                   aEndDateTime.GetDay(),
-                                                   aEndDateTime.GetMonth(),
-                                                   aEndDateTime.GetYear() );
+                                                aEndDateTime.GetSec(),
+                                                aEndDateTime.GetMin(),
+                                                aEndDateTime.GetHour(),
+                                                aEndDateTime.GetDay(),
+                                                aEndDateTime.GetMonth(),
+                                                aEndDateTime.GetYear() );
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 

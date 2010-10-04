@@ -58,8 +58,8 @@ public:
         const USHORT nId = ITEMID_HORJUSTIFY );
 
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
@@ -88,8 +88,8 @@ public:
         const USHORT nId = ITEMID_VERJUSTIFY );
 
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
@@ -118,8 +118,8 @@ public:
         const USHORT nId = ITEMID_ORIENTATION );
 
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
@@ -158,8 +158,8 @@ public:
     virtual SfxPoolItem*     Create( SvStream& rStream, USHORT nVer ) const;
     virtual SvStream&        Store( SvStream&, USHORT nItemVersion ) const;
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             INT16           GetLeftMargin() const {return nLeftMargin; }
             INT16           GetTopMargin() const {return nTopMargin; }

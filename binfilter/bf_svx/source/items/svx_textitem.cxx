@@ -255,7 +255,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxFontItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxFontItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -274,7 +274,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxFontItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool SvxFontItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -480,7 +480,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:28-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxPostureItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxPostureItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -498,7 +498,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:28-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxPostureItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxPostureItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -606,7 +606,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:18-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxWeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxWeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -626,7 +626,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:18-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxWeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxWeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -728,7 +728,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:53-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxFontHeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxFontHeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   //  In StarOne sind im uno::Any immer 1/100mm. Ueber die MemberId wird
 /*N*/   //  gesteuert, ob der Wert im Item 1/100mm oder Twips sind.
@@ -821,7 +821,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*-----------------13.03.98 14:53-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxFontHeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxFontHeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
@@ -986,7 +986,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:25-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxUnderlineItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxUnderlineItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1011,7 +1011,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:28-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxUnderlineItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxUnderlineItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1115,7 +1115,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:28-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxCrossedOutItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxCrossedOutItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1133,7 +1133,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:29-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxCrossedOutItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxCrossedOutItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1380,7 +1380,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxColorItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxColorItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)(mColor.GetColor());
 /*N*/   return sal_True;
@@ -1388,7 +1388,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxColorItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxColorItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nColor;
 /*N*/   if(!(rVal >>= nColor))
@@ -1528,7 +1528,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /* -----------------------------19.02.01 12:21--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ sal_Bool SvxKerningItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxKerningItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Int16 nVal = GetValue();
 /*N*/   if(nMemberId & CONVERT_TWIPS)
@@ -1537,7 +1537,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   return sal_True;
 /*N*/ }
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxKerningItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool SvxKerningItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
 /*N*/ {
 /*N*/   sal_Int16 nVal;
 /*N*/   if(!(rVal >>= nVal))
@@ -1595,7 +1595,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:29-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxCaseMapItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxCaseMapItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Int16 nRet = style::CaseMap::NONE;
 /*N*/   switch( GetValue() )
@@ -1612,7 +1612,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 16:29-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxCaseMapItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxCaseMapItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_uInt16 nVal;
 /*N*/   if(!(rVal >>= nVal))
@@ -1728,7 +1728,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 17:05-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxEscapementItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxEscapementItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1749,7 +1749,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------13.03.98 17:05-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxEscapementItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxEscapementItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1838,7 +1838,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------14.03.98 14:13-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxLanguageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxLanguageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1857,7 +1857,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*-----------------14.03.98 14:13-------------------
 
 --------------------------------------------------*/
-/*N*/ sal_Bool SvxLanguageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxLanguageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2023,7 +2023,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxEmphasisMarkItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxEmphasisMarkItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2050,7 +2050,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxEmphasisMarkItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxEmphasisMarkItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2127,7 +2127,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*NBFF*/    return new SvxTwoLinesItem( *this );
 /*?*/ }
 
-/*NBFF*/ sal_Bool SvxTwoLinesItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/ bool SvxTwoLinesItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                BYTE nMemberId ) const
 /*NBFF*/ {
 /*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2161,7 +2161,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*NBFF*/    return bRet;
 /*NBFF*/ }
 
-/*NBFF*/ sal_Bool SvxTwoLinesItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/ bool SvxTwoLinesItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                    BYTE nMemberId )
 /*NBFF*/ {
 /*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2313,7 +2313,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*NBFF*/    return SFX_ITEM_PRESENTATION_NONE;
 /*NBFF*/ }
 
-/*NBFF*/ sal_Bool SvxCharRotateItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/ bool SvxCharRotateItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                BYTE nMemberId ) const
 /*NBFF*/ {
 /*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2334,7 +2334,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*NBFF*/    return bRet;
 /*NBFF*/ }
 
-/*NBFF*/ sal_Bool SvxCharRotateItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/ bool SvxCharRotateItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                    BYTE nMemberId )
 /*NBFF*/ {
 /*NBFF*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2428,7 +2428,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/ }
 
 
-/*N*/ sal_Bool SvxCharScaleWidthItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxCharScaleWidthItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
@@ -2443,7 +2443,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ sal_Bool SvxCharScaleWidthItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxCharScaleWidthItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
@@ -2523,7 +2523,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*?*/     return eRet;
 /*N*/ }
 
-/*N*/ sal_Bool SvxCharReliefItem::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxCharReliefItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2548,7 +2548,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ sal_Bool SvxCharReliefItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxCharReliefItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                       BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);

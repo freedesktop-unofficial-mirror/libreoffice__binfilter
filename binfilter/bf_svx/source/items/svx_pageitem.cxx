@@ -125,7 +125,7 @@ using namespace ::com::sun::star;
 
 
 //------------------------------------------------------------------------
-/*N*/ sal_Bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -162,7 +162,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 //------------------------------------------------------------------------
-/*N*/ sal_Bool SvxPageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxPageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   switch( nMemberId )
 /*N*/   {

@@ -118,7 +118,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/
@@ -133,7 +133,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/   if(!(rVal >>= aDirection))

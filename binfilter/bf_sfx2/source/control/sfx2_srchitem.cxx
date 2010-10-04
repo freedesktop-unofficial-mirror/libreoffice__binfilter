@@ -267,14 +267,14 @@ using namespace ::com::sun::star::uno;
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 
 void SvxSearchItem::Commit()

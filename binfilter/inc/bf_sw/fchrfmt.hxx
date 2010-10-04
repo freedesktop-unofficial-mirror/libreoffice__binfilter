@@ -62,7 +62,7 @@ public:
                                     String &rText,
                                     const ::IntlWrapper*    pIntl = 0 ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
 
     // an das SwTxtCharFmt weiterleiten (vom SwClient)
     virtual BOOL    GetInfo( SfxPoolItem& rInfo ) const;

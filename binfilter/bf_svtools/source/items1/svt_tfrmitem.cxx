@@ -130,7 +130,7 @@ SfxPoolItem* SfxTargetFrameItem::Clone( SfxItemPool* ) const
 
 // -----------------------------------------------------------------------
 // virtual
-BOOL SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     String aVal;
     for ( int i = 0; i <= SfxOpenModeLast; i++ )
@@ -140,12 +140,12 @@ BOOL SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
     }
 
     rVal <<= rtl::OUString( aVal );
-    return TRUE;
+    return true;
 }
 
 // -----------------------------------------------------------------------
 // virtual
-BOOL SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     rtl::OUString aValue;
     if ( rVal >>= aValue )
@@ -155,11 +155,11 @@ BOOL SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         for ( USHORT i = 0; i <= SfxOpenModeLast; i++ )
             _aFrames[ i ] = aVal.GetToken( i );
 
-        return TRUE;
+        return true;
     }
 
     DBG_ERROR( "SfxTargetFrameItem::PutValue - Wrong type!" );
-    return FALSE;
+    return false;
 }
 
 }

@@ -91,7 +91,7 @@ using namespace ::com::sun::star;
 
 //  QueryValue/PutValue: Der ::com::sun::star::table::CellVertJustify enum wird mitbenutzt...
 
-/*N*/ sal_Bool SvxRotateModeItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxRotateModeItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   table::CellVertJustify eUno = table::CellVertJustify_STANDARD;
 /*N*/   switch ( (SvxRotateMode)GetValue() )
@@ -105,7 +105,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxRotateModeItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxRotateModeItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))

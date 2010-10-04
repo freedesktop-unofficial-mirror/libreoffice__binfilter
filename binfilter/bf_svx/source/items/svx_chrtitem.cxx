@@ -302,14 +302,14 @@ using namespace ::com::sun::star;
 
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxDoubleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxDoubleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= fVal;
 /*N*/   return sal_True;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool SvxDoubleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxDoubleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   return rVal >>= fVal;
 /*N*/ }

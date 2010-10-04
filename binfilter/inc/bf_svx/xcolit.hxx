@@ -47,8 +47,8 @@ class XColorItem : public NameOrIndex
 public:
             TYPEINFO();
             XColorItem() {}
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
             XColorItem(USHORT nWhich, const String& rName, const Color& rTheColor);
             XColorItem(USHORT nWhich, SvStream& rIn);

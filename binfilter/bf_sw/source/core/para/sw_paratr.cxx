@@ -178,7 +178,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ sal_Bool SwFmtDrop::QueryValue( uno::Any& rVal, sal_uInt8 nMemberId ) const
+/*N*/ bool SwFmtDrop::QueryValue( uno::Any& rVal, sal_uInt8 nMemberId ) const
 /*N*/ {
 /*N*/   switch(nMemberId&~CONVERT_TWIPS)
 /*N*/   {
@@ -207,38 +207,38 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       break;
 /*N*/   }
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool SwFmtDrop::PutValue( const uno::Any& rVal, sal_uInt8 nMemberId )
+/*N*/ bool SwFmtDrop::PutValue( const uno::Any& rVal, sal_uInt8 nMemberId )
 /*N*/ {
 /*N*/   switch(nMemberId&~CONVERT_TWIPS)
 /*N*/   {
-/*N*/         case MID_DROPCAP_LINES :
-/*N*/         {
-/*N*/             sal_Int8 nTemp;
-/*N*/             rVal >>= nTemp;
-/*N*/             if(nTemp >=1 && nTemp < 0x7f)
-/*N*/                 nLines = (BYTE)nTemp;
-/*N*/         }
-/*N*/         break;
-/*N*/         case MID_DROPCAP_COUNT :
-/*N*/         {
-/*N*/             sal_Int16 nTemp;
-/*N*/             rVal >>= nTemp;
-/*N*/             if(nTemp >=1 && nTemp < 0x7f)
-/*N*/                 nChars = (BYTE)nTemp;
-/*N*/         }
-/*N*/         break;
-/*N*/         case MID_DROPCAP_DISTANCE :
-/*N*/         {
-/*N*/             sal_Int16 nVal;
-/*N*/             if ( rVal >>= nVal )
-/*N*/                 nDistance = (sal_Int16) MM100_TO_TWIP((sal_Int32)nVal);
-/*N*/             else
-/*N*/                 return sal_False;
-/*N*/             break;
-/*N*/         }
+/*N*/       case MID_DROPCAP_LINES :
+/*N*/       {
+/*N*/           sal_Int8 nTemp;
+/*N*/           rVal >>= nTemp;
+/*N*/           if(nTemp >=1 && nTemp < 0x7f)
+/*N*/               nLines = (BYTE)nTemp;
+/*N*/       }
+/*N*/       break;
+/*N*/       case MID_DROPCAP_COUNT :
+/*N*/       {
+/*N*/           sal_Int16 nTemp;
+/*N*/           rVal >>= nTemp;
+/*N*/           if(nTemp >=1 && nTemp < 0x7f)
+/*N*/               nChars = (BYTE)nTemp;
+/*N*/       }
+/*N*/       break;
+/*N*/       case MID_DROPCAP_DISTANCE :
+/*N*/       {
+/*N*/           sal_Int16 nVal;
+/*N*/           if ( rVal >>= nVal )
+/*N*/               nDistance = (sal_Int16) MM100_TO_TWIP((sal_Int32)nVal);
+/*N*/           else
+/*N*/               return sal_False;
+/*N*/           break;
+/*N*/       }
 /*N*/       case MID_DROPCAP_FORMAT:
 /*N*/       {
 /*N*/           if(rVal.getValueType()  == ::getCppuType((const style::DropCapFormat*)0))
@@ -260,7 +260,7 @@ using namespace ::com::sun::star;
 /*N*/           DBG_ERROR("char format cannot be set in PutValue()!");
 /*N*/       break;
 /*N*/   }
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // class SwRegisterItem -------------------------------------------------
@@ -279,21 +279,21 @@ using namespace ::com::sun::star;
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ BOOL    SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   ::rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );
 /*N*/   rVal <<= sRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ BOOL  SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   ::rtl::OUString uName;
 /*N*/   rVal >>= uName;
 /*N*/   SetValue(SwStyleNameMapper::GetUIName(uName, GET_POOLID_NUMRULE));
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 /* -----------------19.05.2003 10:44-----------------
 

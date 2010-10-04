@@ -59,7 +59,7 @@ int CntTransferResultItem::operator ==(SfxPoolItem const & rItem) const
 
 //============================================================================
 // virtual
-BOOL CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
+bool CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
 {
     rVal <<= m_aResult;
     return true;
@@ -67,7 +67,7 @@ BOOL CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
 
 //============================================================================
 // virtual
-BOOL CntTransferResultItem::PutValue(uno::Any const & rVal, BYTE)
+bool CntTransferResultItem::PutValue(uno::Any const & rVal, BYTE)
 {
     return rVal >>= m_aResult;
 }

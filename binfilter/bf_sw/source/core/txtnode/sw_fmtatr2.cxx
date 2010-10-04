@@ -138,13 +138,13 @@ using namespace ::rtl;
 /*N*/ {
 /*N*/   return pTxtAttr ? pTxtAttr->GetInfo( rInfo ) : FALSE;
 /*N*/ }
-/*N*/ BOOL SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   String sCharFmtName;
 /*N*/   if(GetCharFmt())
 /*N*/       SwStyleNameMapper::FillProgName(GetCharFmt()->GetName(), sCharFmtName,  GET_POOLID_CHRFMT, sal_True );
 /*N*/   rVal <<= OUString( sCharFmtName );
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
@@ -282,9 +282,9 @@ using namespace ::rtl;
 
 
 
-/*N*/ BOOL SwFmtINetFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwFmtINetFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = true;
 /*N*/   XubString sVal;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch(nMemberId)
@@ -326,14 +326,14 @@ using namespace ::rtl;
 /*N*/       }
 /*N*/       break;
 /*N*/       default:
-/*N*/           bRet = FALSE;
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   rVal <<= OUString(sVal);
 /*N*/   return bRet;
 /*N*/ }
-/*N*/ BOOL SwFmtINetFmt::PutValue( const uno::Any& rVal, BYTE nMemberId  )
+/*N*/ bool SwFmtINetFmt::PutValue( const uno::Any& rVal, BYTE nMemberId  )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   // all properties except HyperlinkEvents are of type string, hence
@@ -355,14 +355,14 @@ using namespace ::rtl;
 /*?*/       else
 /*?*/       {
 /*?*/           // wrong type!
-/*?*/           bRet = FALSE;
+/*?*/           bRet = false;
 /*?*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       // all string properties:
 /*N*/       if(rVal.getValueType() != ::getCppuType((::rtl::OUString*)0))
-/*N*/           return FALSE;
+/*N*/           return false;
 /*N*/       XubString sVal = *(::rtl::OUString*)rVal.getValue();
 /*N*/       switch(nMemberId)
 /*N*/       {
@@ -393,7 +393,7 @@ using namespace ::rtl;
 /*?*/           }
 /*?*/           break;
 /*?*/           default:
-/*?*/               bRet = FALSE;
+/*?*/               bRet = false;
 /*N*/       }
 /*N*/   }
 /*N*/   return bRet;
@@ -453,10 +453,10 @@ SfxPoolItem* SwFmtRuby::Clone( SfxItemPool* ) const
     return new SwFmtRuby( *this );
 }
 
-BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
+bool SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
                             BYTE nMemberId ) const
 {
-    BOOL bRet = TRUE;
+    bool bRet = true;
     nMemberId &= ~CONVERT_TWIPS;
     switch( nMemberId )
     {
@@ -476,14 +476,14 @@ BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
         }
         break;
         default:
-            bRet = FALSE;
+            bRet = false;
     }
     return bRet;
 }
-/*N*/ BOOL SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                           BYTE nMemberId  )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -522,7 +522,7 @@ BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/         }
 /*N*/         break;
 /*N*/       default:
-/*N*/           bRet = FALSE;
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }

@@ -444,19 +444,19 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/ }
 
-/*N*/ sal_Bool XColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -532,14 +532,14 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::LineStyle eLS = (::com::sun::star::drawing::LineStyle)GetValue();
 /*N*/   rVal <<= eLS;
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::LineStyle eLS;
 /*N*/   if(!(rVal >>= eLS ))
@@ -552,7 +552,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/     }
 /*N*/
 /*N*/   SetValue( (XLineStyle)eLS );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -775,7 +775,7 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineDashItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineDashItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -849,13 +849,13 @@ XubString aNameOrIndexEmptyString;
 /*?*/           break;
 /*N*/       }
 /*N*/
-/*?*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*?*/       default: DBG_ERROR("Wrong MemberId!"); return false;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineDashItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineDashItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -866,7 +866,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       {
 /*?*/           ::rtl::OUString aName;
 /*?*/           if (!(rVal >>= aName))
-/*?*/               return sal_False;
+/*?*/               return false;
 /*?*/           SetName( aName );
 /*?*/           break;
 /*N*/       }
@@ -875,7 +875,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       {
 /*N*/           ::com::sun::star::drawing::LineDash aLineDash;
 /*N*/           if(!(rVal >>= aLineDash))
-/*N*/               return sal_False;
+/*N*/               return false;
 /*N*/
 /*N*/           XDash aXDash;
 /*N*/
@@ -897,7 +897,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       {
 /*?*/           sal_Int16 nVal;
 /*?*/           if(!(rVal >>= nVal))
-/*?*/               return sal_False;
+/*?*/               return false;
 /*?*/
 /*?*/           XDash aXDash = GetValue();
 /*?*/           aXDash.SetDashStyle((XDashStyle)((UINT16)(nVal)));
@@ -915,7 +915,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       {
 /*?*/           sal_Int16 nVal;
 /*?*/           if(!(rVal >>= nVal))
-/*?*/               return sal_False;
+/*?*/               return false;
 /*?*/
 /*?*/           XDash aXDash = GetValue();
 /*?*/           if ( nMemberId == MID_LINEDASH_DOTS )
@@ -936,7 +936,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       {
 /*?*/           sal_Int32 nVal;
 /*?*/           if(!(rVal >>= nVal))
-/*?*/               return sal_False;
+/*?*/               return false;
 /*?*/
 /*?*/           XDash aXDash = GetValue();
 /*?*/           if ( nMemberId == MID_LINEDASH_DOTLEN )
@@ -954,7 +954,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*N*/ BOOL XLineDashItem::CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 )
@@ -1052,19 +1052,19 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/
 /*N*/   SetValue( nValue );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -------------------
@@ -1135,20 +1135,20 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   if(!(rVal >>= nValue))
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/
 /*N*/   SetValue( nValue );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -----------------------
@@ -1338,7 +1338,7 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineStartItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStartItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -1355,16 +1355,16 @@ XubString aNameOrIndexEmptyString;
 /*N*/       rVal <<= aBezier;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineStartItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStartItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
-/*?*/       return sal_False;
+/*?*/       return false;
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1372,7 +1372,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       if( rVal.hasValue() && rVal.getValue() )
 /*N*/       {
 /*N*/           if( rVal.getValueType() != ::getCppuType((const ::com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
-/*?*/               return sal_False;
+/*?*/               return false;
 /*N*/
 /*N*/           aXPolygon.SetSize(0);
 /*N*/           ::com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (::com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
@@ -1381,7 +1381,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /** this function searches in both the models pool and the styles pool for XLineStartItem
@@ -2009,7 +2009,7 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineEndItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineEndItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -2027,16 +2027,16 @@ XubString aNameOrIndexEmptyString;
 /*N*/       rVal <<= aBezier;
 /*N*/   }
 /*N*/ #endif
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineEndItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineEndItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -2044,7 +2044,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       if( rVal.hasValue() && rVal.getValue() )
 /*N*/       {
 /*N*/           if( rVal.getValueType() != ::getCppuType((const ::com::sun::star::drawing::PolyPolygonBezierCoords*)0) )
-/*N*/               return sal_False;
+/*N*/               return false;
 /*N*/
 /*N*/           aXPolygon.SetSize(0);
 /*N*/           ::com::sun::star::drawing::PolyPolygonBezierCoords* pCoords = (::com::sun::star::drawing::PolyPolygonBezierCoords*)rVal.getValue();
@@ -2053,7 +2053,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // ----------------------------
@@ -2125,18 +2125,18 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineStartWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStartWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineStartWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStartWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2209,18 +2209,18 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineEndWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineEndWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineEndWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineEndWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2293,20 +2293,20 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineStartCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStartCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bValue = GetValue();
 /*N*/   rVal.setValue( &bValue, ::getCppuBooleanType()  );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool XLineStartCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStartCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   if( !rVal.hasValue() || rVal.getValueType() != ::getCppuBooleanType() )
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/
 /*N*/   SetValue( *(sal_Bool*)rVal.getValue() );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2379,20 +2379,20 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ sal_Bool XLineEndCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineEndCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bValue = GetValue();
 /*N*/   rVal.setValue( &bValue, ::getCppuBooleanType()  );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL XLineEndCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineEndCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   if( !rVal.hasValue() || rVal.getValueType() != ::getCppuBooleanType() )
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/
 /*N*/   SetValue( *(sal_Bool*)rVal.getValue() );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2476,17 +2476,17 @@ XubString aNameOrIndexEmptyString;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::FillStyle eFS = (::com::sun::star::drawing::FillStyle)GetValue();
 /*N*/
 /*N*/   rVal <<= eFS;
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     ::com::sun::star::drawing::FillStyle eFS;
 /*N*/   if(!(rVal >>= eFS))
@@ -2494,13 +2494,13 @@ XubString aNameOrIndexEmptyString;
 /*?*/         // also try an int (for Basic)
 /*?*/         sal_Int32 nFS;
 /*?*/         if(!(rVal >>= nFS))
-/*?*/             return sal_False;
+/*?*/             return false;
 /*?*/         eFS = (::com::sun::star::drawing::FillStyle)nFS;
 /*N*/     }
 /*N*/
 /*N*/   SetValue( (XFillStyle)eFS );
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2574,23 +2574,23 @@ XubString aNameOrIndexEmptyString;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   if(!(rVal >>= nValue ))
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/
 /*N*/   SetValue( nValue );
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 
@@ -2897,7 +2897,7 @@ XubString aNameOrIndexEmptyString;
 
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillGradientItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillGradientItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -2942,14 +2942,14 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_GRADIENT_ENDINTENSITY: rVal <<= GetValue().GetEndIntens(); break;
 /*N*/       case MID_GRADIENT_STEPCOUNT: rVal <<= GetValue().GetSteps(); break;
 /*N*/
-/*N*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/       default: DBG_ERROR("Wrong MemberId!"); return false;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillGradientItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillGradientItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -3168,7 +3168,7 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillFloatTransparenceItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillFloatTransparenceItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   return XFillGradientItem::QueryValue( rVal, nMemberId );
 /*N*/ }
@@ -3442,7 +3442,7 @@ XubString aNameOrIndexEmptyString;
 
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillHatchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillHatchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -3481,11 +3481,11 @@ XubString aNameOrIndexEmptyString;
 /*N*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ sal_Bool XFillHatchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillHatchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -3543,7 +3543,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*N*/ BOOL XFillHatchItem::CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 )
@@ -3660,10 +3660,10 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextStyleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextStyleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
@@ -3673,13 +3673,13 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextStyle)nValue);
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 //-------------------------
@@ -3765,10 +3765,10 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
@@ -3778,13 +3778,13 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextAdjust)nValue);
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 //----------------------------
@@ -4126,10 +4126,10 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextShadowItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextShadowItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
@@ -4139,13 +4139,13 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextShadow)nValue);
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // -------------------------------
@@ -4428,10 +4428,10 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextStdFormItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextStdFormItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
@@ -4441,13 +4441,13 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ sal_Bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextStdForm)nValue);
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // --------------------------

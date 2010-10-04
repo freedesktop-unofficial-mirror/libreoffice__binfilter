@@ -84,7 +84,7 @@ using namespace ::com::sun::star;
 
 /*N*/ //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxHorJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxHorJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -128,7 +128,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxHorJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxHorJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -218,7 +218,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   table::CellVertJustify eUno = table::CellVertJustify_STANDARD;
 /*N*/   switch ( (SvxCellVerJustify)GetValue() )
@@ -232,7 +232,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))
@@ -295,7 +295,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   table::CellOrientation eUno = table::CellOrientation_STANDARD;
 /*N*/   switch ( (SvxCellOrientation)GetValue() )
@@ -309,7 +309,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   table::CellOrientation eOrient;
 /*N*/   if(!(rVal >>= eOrient))
@@ -450,7 +450,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxMarginItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxMarginItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -478,7 +478,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxMarginItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxMarginItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = ( ( nMemberId & CONVERT_TWIPS ) != 0 );
 /*N*/   long nMaxVal = bConvert ? TWIP_TO_MM100(SHRT_MAX) : SHRT_MAX;   // Members sind sal_Int16
