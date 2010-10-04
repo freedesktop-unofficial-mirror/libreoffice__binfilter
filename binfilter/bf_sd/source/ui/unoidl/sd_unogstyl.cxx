@@ -25,22 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 
-#ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>

@@ -43,16 +43,12 @@
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
 // header for class SvXMLAttrContainerItem
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
 
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #define ITEMID_BRUSH SCHATTR_SYMBOL_BRUSH

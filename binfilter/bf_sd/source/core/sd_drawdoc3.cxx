@@ -28,9 +28,7 @@
 #include <utility>
 #include <algorithm>
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 
 

@@ -25,28 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include <fonthdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
 
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

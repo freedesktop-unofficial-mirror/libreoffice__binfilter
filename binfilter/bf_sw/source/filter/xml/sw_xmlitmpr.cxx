@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 namespace binfilter {
 
 using namespace rtl;

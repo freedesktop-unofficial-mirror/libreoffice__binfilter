@@ -36,55 +36,29 @@
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _NUMRULE_HXX //autogen
 #include <numrule.hxx>
-#endif
 #include "doc.hxx"
 #include "docary.hxx"
 #include "rdswg.hxx"
 #include "swgpar.hxx"       // SWGRD_xxx-Flags
 #include "poolfmt.hxx"
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 // Maximale Anzahl verarbeitbarer Formate

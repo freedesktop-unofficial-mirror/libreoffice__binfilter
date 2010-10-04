@@ -32,13 +32,9 @@
 
 #define _SVX_HLNKITEM_CXX
 
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
 
-#ifndef _MEMBERID_HRC
 #include <memberid.hrc>
-#endif
 
 
 #include "hlnkitem.hxx"

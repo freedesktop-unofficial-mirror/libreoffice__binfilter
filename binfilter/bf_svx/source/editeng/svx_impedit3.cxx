@@ -33,9 +33,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <adjitem.hxx>
 #include <tstpitem.hxx>
@@ -43,25 +41,17 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
 #include <flditem.hxx>
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -88,25 +78,17 @@
 
 #include <math.h>
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
 
-#ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
-#endif
 
 #include <i18npool/mslangid.hxx>
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using ::rtl::OUString;

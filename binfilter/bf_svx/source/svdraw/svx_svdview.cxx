@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
 
 #include "svdio.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
@@ -40,17 +38,13 @@
 #define ITEMID_FIELD EE_FEATURE_FIELD  /* wird fuer #include <flditem.hxx> benoetigt */
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 #include "flditem.hxx"  // fuer URLField
 #include "svdoutl.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(SdrView,SdrCreateView);
@@ -117,9 +111,7 @@ namespace binfilter {
 #define MODKEY_DeepBackw bShift /* MarkNextObj rueckwaerts */
 
 } //namespace binfilter
-#ifndef _OUTLOBJ_HXX
 #include "outlobj.hxx"
-#endif
 namespace binfilter {//STRIP009
 
 /*N*/ void SdrView::UnmarkAll()

@@ -27,32 +27,20 @@
 
 #include "svdstr.hrc"
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _SVDITER_HXX
 #include "svditer.hxx"
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 
 
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_SPHERE3D_HXX
 #include "sphere3d.hxx"
-#endif
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 namespace binfilter {
 

@@ -27,40 +27,24 @@
 
 
 
-#ifndef _RTL_URI_HXX_
 #include <rtl/uri.hxx>
-#endif
 
 
 #include "namecont.hxx"
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/sfxecode.hxx>
 #include <bf_svtools/ehdl.hxx>
 #include "bf_basic/basmgr.hxx"
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_DEPLOYMENTEXCEPTION_HPP_
 #include <com/sun/star/uno/DeploymentException.hpp>
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::container;

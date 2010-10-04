@@ -44,16 +44,12 @@
 #define _SI_NOCONTROL
 #define _SI_NOSBXCONTROLS
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #ifndef _SV_MENU_HXX //autogen
 #endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -62,9 +58,7 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
@@ -74,9 +68,7 @@
 
 #include <string.h>             // memset
 
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
 
 #ifndef _CHTMODEL_HXX
 #endif
@@ -88,9 +80,7 @@
 
 
 
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

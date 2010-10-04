@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 #include "XMLEmbeddedObjectExportFilter.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

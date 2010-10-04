@@ -30,16 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _PRTOPT_HXX
 #include <prtopt.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 namespace binfilter {
 
 using namespace utl;

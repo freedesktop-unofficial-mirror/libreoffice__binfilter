@@ -40,9 +40,7 @@
 #include "global.hxx"
 #include "userlist.hxx"
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------

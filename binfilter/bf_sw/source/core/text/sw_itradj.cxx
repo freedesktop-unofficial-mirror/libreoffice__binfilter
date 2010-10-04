@@ -39,13 +39,9 @@
 #include "pormulti.hxx"
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 namespace binfilter {
 
 #define MIN_TAB_WIDTH 60

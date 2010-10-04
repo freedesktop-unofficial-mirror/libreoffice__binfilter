@@ -30,24 +30,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 #include "flypos.hxx"
 #include "frmfmt.hxx"
 #include "dcontact.hxx"

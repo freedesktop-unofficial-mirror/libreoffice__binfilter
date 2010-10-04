@@ -34,19 +34,11 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLCOLUMNROWGROUPEXPORT_HXX
 #include "XMLColumnRowGroupExport.hxx"
-#endif
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
 #include <algorithm>
 namespace binfilter {

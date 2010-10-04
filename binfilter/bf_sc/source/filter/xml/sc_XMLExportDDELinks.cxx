@@ -34,30 +34,16 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLEXPORTDDELINKS_HXX
 #include "XMLExportDDELinks.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XDDELINK_HPP_
 #include <com/sun/star/sheet/XDDELink.hpp>
-#endif
 namespace binfilter {
 
 class ScMatrix;

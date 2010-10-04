@@ -27,9 +27,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

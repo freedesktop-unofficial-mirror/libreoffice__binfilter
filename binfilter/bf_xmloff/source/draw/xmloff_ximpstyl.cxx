@@ -29,88 +29,52 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include "XMLShapeStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XIMPNOTES_HXX
 #include "ximpnote.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
 #include <com/sun/star/presentation/XPresentationPage.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGES_HPP_
 #include <com/sun/star/drawing/XDrawPages.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
 
-#ifndef _COMPHELPER_NAMECONTAINER_HXX_
 #include <comphelper/namecontainer.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_PRESENTATION_XHANDOUTMASTERSUPPLIER_HPP_
 #include <com/sun/star/presentation/XHandoutMasterSupplier.hpp>
-#endif
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
 //#endif
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 
 
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
 #include "PropertySetMerger.hxx"
-#endif
 
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
 
-#ifndef _XMLOFF_LAYERIMP_HXX
 #include "layerimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include "XMLGraphicsDefaultStyle.hxx"
-#endif
 
-#ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #include "XMLNumberStylesImport.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

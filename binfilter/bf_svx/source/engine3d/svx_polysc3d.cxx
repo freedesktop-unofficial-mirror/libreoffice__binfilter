@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef _XDEF_HXX //autogen
 #include "xdef.hxx"
-#endif
 
 
 
@@ -41,13 +39,9 @@
 
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 
 
 

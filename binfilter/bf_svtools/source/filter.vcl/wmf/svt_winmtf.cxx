@@ -31,12 +31,8 @@
 
 #include "winmtf.hxx"
 #include <vcl/metaact.hxx>
-#ifndef _SV_METRIC_HXX
 #include <vcl/metric.hxx>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
 
 namespace binfilter
 {

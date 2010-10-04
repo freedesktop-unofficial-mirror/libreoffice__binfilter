@@ -30,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _INDEX_HXX
 #include <index.hxx>
-#endif
-#ifndef _NDARR_HXX
 #include <ndarr.hxx>
-#endif
 namespace binfilter {
 
 

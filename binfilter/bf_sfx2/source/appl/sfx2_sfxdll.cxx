@@ -26,9 +26,7 @@
  ************************************************************************/
 
 #ifdef WIN
-#ifndef _SVWIN_H
 #include <svwin.h>
-#endif
 #endif
 
 #ifdef _MSC_VER

@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
-#endif
 namespace binfilter {
 
 using namespace std;

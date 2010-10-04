@@ -32,37 +32,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _MyEDITENG_HXX
 #include <bf_svx/editeng.hxx>
-#endif
 
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_SCDOCPOL_HXX
 #include "docpool.hxx"
-#endif
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef SC_STLPOOL_HXX
 #include "stlpool.hxx"
-#endif
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
 namespace binfilter {
 
 class ScXMLFontAutoStylePool_Impl: public XMLFontAutoStylePool

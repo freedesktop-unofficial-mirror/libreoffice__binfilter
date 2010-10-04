@@ -31,24 +31,14 @@
 #include <tools/rcid.h>
 #include <tools/config.hxx>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #ifndef __RSC //autogen
 #include <tools/errinf.hxx>
 #endif
-#ifndef _SBXCLASS_HXX //autogen
 #include <sbx.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include "sbunoobj.hxx"
 #include "sbjsmeth.hxx"
 #include "sbjsmod.hxx"
@@ -62,9 +52,7 @@
 /*?*/ //#include "sb.hrc"
 /*?*/ //#include "basrid.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
 namespace binfilter {
 

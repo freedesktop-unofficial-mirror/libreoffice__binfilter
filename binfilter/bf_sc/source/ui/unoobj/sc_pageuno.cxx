@@ -35,9 +35,7 @@
 #include "pageuno.hxx"
 #include "shapeuno.hxx"
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 

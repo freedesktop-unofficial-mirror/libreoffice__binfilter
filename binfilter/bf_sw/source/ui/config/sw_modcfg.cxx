@@ -30,28 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
-#ifndef _FACTORY_HXX //autogen
 #include <bf_so3/factory.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _MODCFG_HXX
 #include <modcfg.hxx>
-#endif
 
 namespace binfilter {
 

@@ -30,52 +30,28 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #define _SVSTDARR_STRINGSSORTDTOR
 
  #ifndef _STREAM_HXX //autogen
  #include <tools/stream.hxx>
  #endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer SwBookmark ...
-#endif
-#ifndef _NUMRULE_HXX //autogen
 #include <numrule.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
 namespace binfilter {
 
 // Stringbuffer fuer die umgewandelten Zahlen

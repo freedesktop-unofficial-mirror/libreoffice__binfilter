@@ -28,9 +28,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 #include <bf_svtools/filerec.hxx>
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {

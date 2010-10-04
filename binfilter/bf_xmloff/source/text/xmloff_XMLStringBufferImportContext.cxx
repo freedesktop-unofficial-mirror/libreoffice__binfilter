@@ -25,17 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSTRINGBUFFERIMPORTCONTEXT_HXX
 #include "XMLStringBufferImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 namespace binfilter {
 
 

@@ -35,57 +35,35 @@
 #include "svdview.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 
 
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include "xlnstit.hxx"
-#endif
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include "xlnwtit.hxx"
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include "xlnedwit.hxx"
-#endif
 
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include "xlnstcit.hxx"
-#endif
 
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include "xlnedcit.hxx"
-#endif
 
 
 
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 #include "svdfield.hxx"
 
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 namespace binfilter {
 

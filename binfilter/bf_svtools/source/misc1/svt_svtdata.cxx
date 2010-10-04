@@ -30,19 +30,11 @@
 
 #include <map>
 
-#ifndef _TOOLS_RESMGR_HXX
 #include <tools/resmgr.hxx>
-#endif
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
-#ifndef _VOS_PROCESS_HXX_
 #include <vos/process.hxx>
-#endif
 
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
 
 namespace binfilter
 {

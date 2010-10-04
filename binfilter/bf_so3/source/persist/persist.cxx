@@ -37,9 +37,7 @@
 #include <sot/storinfo.hxx>
 #include <sot/formats.hxx>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include <unotools/ucbhelper.hxx>
 #include <unotools/tempfile.hxx>

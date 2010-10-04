@@ -27,13 +27,9 @@
 
 #ifdef WIN
 
-#ifndef _SVWIN_H
 #include <svwin.h>
-#endif
 
-#ifndef _SYSDEP_HXX
 #include <sysdep.hxx>
-#endif
 
 #endif
 
@@ -79,9 +75,7 @@ void ResourceDummy (void )
 
 #ifdef OS2
 
-#ifndef _SVWIN_H
 #include <svpm.h>
-#endif
 
 // Statische DLL-Verwaltungs-Variablen
 static ULONG hDLLInst = 0;      // HANDLE der DLL

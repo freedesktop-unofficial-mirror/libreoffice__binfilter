@@ -34,9 +34,7 @@
 
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
@@ -44,9 +42,7 @@
 #include "viewimp.hxx"
 #include "dview.hxx"
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 
 // #i7672#
 

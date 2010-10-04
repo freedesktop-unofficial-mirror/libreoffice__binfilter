@@ -30,9 +30,7 @@
 
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #include "inetdef.hxx"
 #include "inidef.hxx"
 

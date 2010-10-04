@@ -31,16 +31,10 @@
 #endif
 
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
 #include "cmdid.h"
 #include "swtypes.hxx"

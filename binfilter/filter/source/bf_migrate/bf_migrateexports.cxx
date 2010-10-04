@@ -29,13 +29,9 @@
 #include <osl/thread.h>
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-#endif
 
-#ifndef _BF_MIGRATEFILTER_HXX
 #include <bf_migratefilter.hxx>
-#endif
 
 #include <bf_sfx2/objuno.hxx>
 

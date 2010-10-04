@@ -28,13 +28,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef TOOLS_INETMIME_HXX
 #include <tools/inetmime.hxx>
-#endif
 
-#ifndef _ADRPARSE_HXX
 #include <adrparse.hxx>
-#endif
 
 
 //============================================================================

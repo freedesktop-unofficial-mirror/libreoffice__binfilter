@@ -34,12 +34,8 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SV_MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-#ifndef _EDITOBJ_HXX //autogen
 #include <bf_svx/editobj.hxx>
-#endif
 
 #include "cell.hxx"
 #include "rangenam.hxx"

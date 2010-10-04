@@ -29,36 +29,22 @@
 //#include <tools/debug.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
 
 
 
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 //#include "xmlprmap.hxx"
 #endif
-#ifndef _XMLOFF_XMLSMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 #ifndef _XMLOFF_TXTPRMAP_HXX
 //#include "txtprmap.hxx"
 #endif
-#ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLSECTIONEXPORT_HXX
 #include "XMLSectionExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLLINENUMBERINGEXPORT_HXX_
 #include "XMLLineNumberingExport.hxx"
-#endif
 namespace binfilter {
 
 #ifndef _XMLOFF_STYLEEXP_HXX

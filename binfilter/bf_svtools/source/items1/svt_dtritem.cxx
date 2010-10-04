@@ -28,12 +28,8 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIMERANGE_HPP_
 #include <com/sun/star/util/DateTimeRange.hpp>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 #include <comphelper/processfactory.hxx>

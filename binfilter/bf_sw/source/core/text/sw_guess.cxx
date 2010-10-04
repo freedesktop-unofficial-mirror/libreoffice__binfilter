@@ -32,49 +32,23 @@
 
 #include <ctype.h>
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>    // needed for SW_MOD() macro
-#endif
 
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>
-#endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtSizeInfo, SwTxtFormatInfo
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_BREAKTYPE_HPP_
 #include <com/sun/star/i18n/BreakType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _PORFLD_HXX
 #include <porfld.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

@@ -34,33 +34,19 @@
 #define INCLUDED_ALGORITHM
 #endif
 
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include "rtl/instance.hxx"
-#endif
 
-#ifndef _RTL_CRC_H_
 #include "rtl/crc.h"
-#endif
 
-#ifndef _RTL_MEMORY_H_
 #include "rtl/memory.h"
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 namespace binfilter
 {

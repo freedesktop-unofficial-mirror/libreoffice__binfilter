@@ -33,14 +33,10 @@
 #include <tools/stream.hxx>
 #include <tools/debug.hxx>
 #include <vcl/outdev.hxx>
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/filter.hxx>
 #include "FilterConfigCache.hxx"
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #define DATA_SIZE           640
 

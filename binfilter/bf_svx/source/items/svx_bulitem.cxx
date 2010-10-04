@@ -41,9 +41,7 @@
 #include "bulitem.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 #define BULITEM_VERSION     ((USHORT)2)

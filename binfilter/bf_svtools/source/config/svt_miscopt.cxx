@@ -27,38 +27,20 @@
 
 #include <bf_svtools/miscopt.hxx>
 
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 #include "itemholder2.hxx"

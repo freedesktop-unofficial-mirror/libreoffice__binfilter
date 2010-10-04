@@ -42,9 +42,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "globstr.hrc"
 #include "rangeutl.hxx"

@@ -35,39 +35,19 @@
 #endif
 
 
-#ifndef _VIEWOPT_HXX //autogen
 #include <viewopt.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>   // SwTxtFrm
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>          // ResId fuer Abfrage wenn zu Search & Replaces
-#endif
 namespace binfilter {
 
 

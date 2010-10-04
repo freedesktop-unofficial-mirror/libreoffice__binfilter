@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 
 #include <unowcntr.hxx>
 namespace binfilter {

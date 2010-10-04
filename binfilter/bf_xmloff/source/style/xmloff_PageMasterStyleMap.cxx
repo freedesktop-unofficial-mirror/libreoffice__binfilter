@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::binfilter::xmloff::token;

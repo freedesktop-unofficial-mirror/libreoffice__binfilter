@@ -27,9 +27,7 @@
 #include "XMLChartPropertyContext.hxx"
 #include "PropertyMap.hxx"
 
-#ifndef _XMLOFF_SYMBOLIMAGECONTEXT_HXX_
 #include "XMLSymbolImageContext.hxx"
-#endif
 namespace binfilter {
 
 TYPEINIT1( XMLChartPropertyContext, SvXMLImportContext );

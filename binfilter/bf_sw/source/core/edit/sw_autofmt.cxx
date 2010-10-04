@@ -35,26 +35,16 @@
 #define _SVSTDARR_USHORTS
 
 #include <ctype.h>
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
 
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
 
 namespace binfilter {
 

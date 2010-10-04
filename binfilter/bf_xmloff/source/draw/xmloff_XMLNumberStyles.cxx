@@ -25,26 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_NUMBERSTYLESEXPORT_HXX
 #include <XMLNumberStylesExport.hxx>
-#endif
 
-#ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #include <XMLNumberStylesImport.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
 #include "sdxmlexp_impl.hxx"

@@ -30,13 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
 namespace binfilter {
 
 

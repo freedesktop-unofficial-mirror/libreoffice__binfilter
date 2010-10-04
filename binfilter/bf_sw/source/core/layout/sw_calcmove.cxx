@@ -33,9 +33,7 @@
 #include "pagefrm.hxx"
 #include "viewsh.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "dflyobj.hxx"
@@ -45,23 +43,13 @@
 #include "txtftn.hxx"
 #include "fmtftn.hxx"
 
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
 
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
-#endif
 
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"

@@ -27,15 +27,9 @@
 
 // include ----------------------------------------------------------------
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

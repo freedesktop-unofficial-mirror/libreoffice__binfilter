@@ -30,15 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
-#ifndef _SWCACHE_HXX
 #include <swcache.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR(SwCacheObjArr,SwCacheObj*);

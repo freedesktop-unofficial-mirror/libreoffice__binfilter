@@ -34,45 +34,21 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 #include "XMLTrackedChangesContext.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef SC_XMLCONTI_HXX
 #include "xmlconti.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_CELL_HXX
 #include "cell.hxx"
-#endif
-#ifndef SC_TEXTSUNO_HXX
 #include "textuno.hxx"
-#endif
-#ifndef SC_EDITUTIL_HXX
 #include "editutil.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_text_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

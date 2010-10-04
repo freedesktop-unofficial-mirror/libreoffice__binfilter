@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 #include "controlelement.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

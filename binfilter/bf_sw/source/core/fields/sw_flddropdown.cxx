@@ -27,9 +27,7 @@
 
 #include <algorithm>
 #include <bf_svtools/poolitem.hxx>
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 #include <flddropdown.hxx>
 namespace binfilter {
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008

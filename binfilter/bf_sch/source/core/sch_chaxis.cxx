@@ -31,35 +31,23 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
 
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 
 
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
 #include <bf_svtools/zforlist.hxx>
 #endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
-#endif
 
-#ifndef _XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
-#endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 
@@ -72,9 +60,7 @@
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 #include "float.h"
 #include "chaxis.hxx"

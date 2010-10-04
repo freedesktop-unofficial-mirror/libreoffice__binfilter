@@ -31,36 +31,18 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // GetCurFld
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _PAM_HXX
 #include "pam.hxx"
-#endif
 
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
 
 namespace binfilter {
 using namespace ::com::sun::star::uno;

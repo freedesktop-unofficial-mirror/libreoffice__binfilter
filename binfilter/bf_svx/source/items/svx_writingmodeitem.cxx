@@ -28,18 +28,12 @@
 // include ---------------------------------------------------------------
 
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
-#ifndef _SVX_WRITINGMODEITEM_HXX
 #include "writingmodeitem.hxx"
-#endif
 
 
-#ifndef _SVXITEMS_HRC
 #include "svxitems.hrc"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;

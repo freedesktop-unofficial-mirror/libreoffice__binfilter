@@ -35,13 +35,9 @@
 
 //___________________________________________________________________
 
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #include "ProgressBarHelper.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

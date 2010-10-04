@@ -25,21 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
 
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
 #include <comphelper/propertysetinfo.hxx>
-#endif
 
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include <bf_svx/unopool.hxx>
-#endif
 
 #include "drawdoc.hxx"
 namespace binfilter {

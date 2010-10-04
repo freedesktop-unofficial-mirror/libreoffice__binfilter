@@ -29,17 +29,11 @@
 // header for Polygon
 // header for DBG_ASSERT
 // header for XPolygon, XPolyPolygon
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 // header for Line
-#ifndef _SV_LINE_HXX
 #include <tools/line.hxx>
-#endif
 // for performance measurement
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 // Note: Enable the following to skip points in the resulting spline
 // poly-polygon, if they have equal x-values rather than identical points.

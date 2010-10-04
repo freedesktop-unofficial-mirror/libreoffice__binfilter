@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _CAMERA3D_HXX
 #include "camera3d.hxx"
-#endif
 
 
-#ifndef _SVDIO_HXX
 #include <svdio.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

@@ -26,18 +26,12 @@
  ************************************************************************/
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _XMLOFF_DRAWASPECTHDL_HXX
 #include "DrawAspectHdl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

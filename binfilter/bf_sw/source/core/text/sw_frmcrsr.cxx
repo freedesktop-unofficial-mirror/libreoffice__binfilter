@@ -30,15 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 #include "pam.hxx"          // SwPosition
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "pagefrm.hxx"
 

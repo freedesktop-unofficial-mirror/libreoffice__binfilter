@@ -27,24 +27,16 @@
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 #include "XMLShapePropertySetContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include "XMLGraphicsDefaultStyle.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

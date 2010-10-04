@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DLIGHT_HXX
 #include "b3dlight.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 

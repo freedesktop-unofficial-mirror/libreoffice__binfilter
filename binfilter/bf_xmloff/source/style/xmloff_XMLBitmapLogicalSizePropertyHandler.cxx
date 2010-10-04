@@ -28,13 +28,9 @@
 
 
 
-#ifndef _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

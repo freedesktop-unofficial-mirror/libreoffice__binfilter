@@ -25,26 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include "svdfield.hxx"
 #include "svdotext.hxx"

@@ -52,9 +52,7 @@
 #include "scmatrix.hxx"
 #include "addinlis.hxx"
 #include "scfuncs.hrc"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 

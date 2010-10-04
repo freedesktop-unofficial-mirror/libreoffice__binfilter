@@ -30,20 +30,14 @@
 
 #define USE_PROPERTY_HELPER
 
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 
 
 
 
 
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
-#ifndef _SVX_FMHELP_HRC
 #include "fmhelp.hrc"
-#endif
 
 namespace binfilter {
 

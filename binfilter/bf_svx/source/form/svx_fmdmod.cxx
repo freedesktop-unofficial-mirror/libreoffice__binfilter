@@ -28,23 +28,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_FMDMOD_HXX
 #include "fmdmod.hxx"
-#endif
 
-#ifndef _SVX_FMSERVS_HXX
 #include "fmservs.hxx"
-#endif
-#ifndef _SVX_FMOBJ_HXX
 #include <fmobj.hxx>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <unoshape.hxx>
-#endif
 #include "fmglob.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;

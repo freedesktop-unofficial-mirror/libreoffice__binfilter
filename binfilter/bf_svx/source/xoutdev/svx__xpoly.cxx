@@ -35,9 +35,7 @@
 
 #include "xoutx.hxx"
 #include "xpolyimp.hxx"
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW

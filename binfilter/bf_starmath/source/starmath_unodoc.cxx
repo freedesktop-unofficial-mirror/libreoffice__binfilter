@@ -30,18 +30,12 @@
 #include <tools/string.hxx>
 #include <bf_sfx2/docfac.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 #include "smmod.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

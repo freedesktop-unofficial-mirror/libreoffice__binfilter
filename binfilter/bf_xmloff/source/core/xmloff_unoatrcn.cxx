@@ -26,21 +26,13 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
 #include "xmlcnimp.hxx"
 

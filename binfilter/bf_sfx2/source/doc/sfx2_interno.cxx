@@ -31,9 +31,7 @@
 #define _SFX_INTERNO_CXX
 
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 #include "request.hxx"
 #include "docfac.hxx"

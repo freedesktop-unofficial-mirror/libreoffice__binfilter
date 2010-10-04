@@ -25,17 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_VECTOR3D_HXX
 #include "vector3d.hxx"
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 #ifndef _INC_FLOAT
 #include <float.h>

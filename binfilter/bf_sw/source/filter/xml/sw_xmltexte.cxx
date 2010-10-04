@@ -30,70 +30,40 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include <bf_xmloff/txtprmap.hxx>
-#endif
 
 #include <bf_sfx2/frmdescr.hxx>
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
 
-#ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
-#endif
-#ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
 
-#ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLTEXTE_HXX
 #include "xmltexte.hxx"
-#endif
 
 
 
 
-#ifndef _SW_APPLET_IMPL_HXX
 #include <SwAppletImpl.hxx>
-#endif
 
 #define _SVSTDARR_ULONGS
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

@@ -34,22 +34,12 @@
 #include <limits>
 #include <set>
 
-#ifndef _RTL_ALLOC_H_
 #include <rtl/alloc.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
-#ifndef SVTOOLS_INSTRM_HXX
 #include <instrm.hxx>
-#endif
-#ifndef SVTOOLS_OUTSTRM_HXX
 #include <outstrm.hxx>
-#endif
-#ifndef SVTOOLS_STRMADPT_HXX
 #include <strmadpt.hxx>
-#endif
 
 using namespace com::sun::star;
 

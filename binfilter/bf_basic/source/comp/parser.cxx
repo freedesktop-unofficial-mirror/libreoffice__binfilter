@@ -28,9 +28,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 #include "precompiled_basic.hxx"
 
-#ifndef _SBXCLASS_HXX //autogen
 #include <sbx.hxx>
-#endif
 #include "sbcomp.hxx"
 
 struct SbiParseStack {              // "Stack" fuer Statement-Blocks

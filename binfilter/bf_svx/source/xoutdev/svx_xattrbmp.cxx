@@ -29,15 +29,11 @@
 #include <vcl/virdev.hxx>
 #include <toolkit/unohlp.hxx>
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
 #include "dialogs.hrc"
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xtable.hxx"
@@ -45,9 +41,7 @@
 
 #include "unoapi.hxx"
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW

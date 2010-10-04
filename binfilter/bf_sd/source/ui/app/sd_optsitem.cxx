@@ -25,15 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
-#endif
-#ifndef _SV_SALBTYPE_HRC //autogen
 #include <vcl/salbtype.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include "optsitem.hxx"
 #include "cfgids.hxx"

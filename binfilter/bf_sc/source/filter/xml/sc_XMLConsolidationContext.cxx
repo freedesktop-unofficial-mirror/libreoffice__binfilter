@@ -34,26 +34,14 @@
 
 //___________________________________________________________________
 
-#ifndef _SC_XMLCONSOLIDATIONCONTEXT_HXX
 #include "XMLConsolidationContext.hxx"
-#endif
 
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

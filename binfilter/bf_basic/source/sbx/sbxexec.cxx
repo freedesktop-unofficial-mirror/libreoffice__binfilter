@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include "sbx.hxx"
 
 namespace binfilter {

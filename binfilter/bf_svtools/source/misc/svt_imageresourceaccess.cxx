@@ -28,37 +28,19 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef SVTOOLS_SOURCE_MISC_IMAGERESOURCEACCESS_HXX
 #include "imageresourceaccess.hxx"
-#endif
 
 /** === begin UNO includes === **/
-#ifndef _COM_SUN_STAR_IO_NOTCONNECTEDEXCEPTION_HPP_
 #include <com/sun/star/io/NotConnectedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_GRAPHIC_XGRAPHICPROVIDER_HPP_
 #include <com/sun/star/graphic/XGraphicProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAM_HPP_
 #include <com/sun/star/io/XStream.hpp>
-#endif
 /** === end UNO includes === **/
 
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
 //........................................................................
 namespace binfilter

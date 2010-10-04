@@ -25,16 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
 #include "datapoin.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
 #include "schattr.hxx"
 #include "objid.hxx"

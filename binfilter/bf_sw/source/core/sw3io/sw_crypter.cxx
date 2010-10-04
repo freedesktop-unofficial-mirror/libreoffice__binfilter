@@ -29,13 +29,9 @@
 #endif
 
 #include <string.h>
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _CRYPTER_HXX
 #include <crypter.hxx>
-#endif
 
 namespace binfilter {
 

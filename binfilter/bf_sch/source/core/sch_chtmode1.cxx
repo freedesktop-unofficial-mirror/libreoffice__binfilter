@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef _SVX_XLNTRIT_HXX //autogen
 #include <bf_svx/xlntrit.hxx>
-#endif
-#ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include <bf_svx/svdview.hxx>
-#endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
@@ -45,9 +37,7 @@
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #define ITEMID_ADJUST EE_PARA_JUST
 #include <bf_svx/adjitem.hxx>
 
@@ -62,57 +52,33 @@
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#ifndef _CHTMODEL_HXX
 #include "globfunc.hxx"
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
-#endif
 
 #include "glob.hrc"
 #include <bf_svx/dialogs.hrc>
 #include "math.h"
 
 
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <bf_svx/xlnedcit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include <bf_svx/xlnstcit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <bf_svx/xlnedwit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <bf_svx/xlnstwit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <bf_svx/xlnedit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <bf_svx/xlnstit.hxx>
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX //autogen
 #include <bf_svx/xlndsit.hxx>
-#endif
 
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
-#endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <bf_svx/xlnwtit.hxx>
-#endif
 
 #include "pairs.hxx"
 #include "datalog.hxx"

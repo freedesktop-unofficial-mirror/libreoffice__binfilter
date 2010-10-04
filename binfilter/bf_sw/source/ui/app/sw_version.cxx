@@ -32,15 +32,9 @@
 
 #define _VERSION_CXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
 
 #include "swtypes.hxx"
 namespace binfilter {

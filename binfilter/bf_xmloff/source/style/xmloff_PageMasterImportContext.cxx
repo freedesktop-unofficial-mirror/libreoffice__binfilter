@@ -29,25 +29,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #include "PageMasterImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPHDL_HXX_
 #include "PageMasterPropHdl.hxx"
-#endif
-#ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #include "PagePropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEPHEADERFOOTERCONTEXT_HXX
 #include "PageHeaderFooterContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

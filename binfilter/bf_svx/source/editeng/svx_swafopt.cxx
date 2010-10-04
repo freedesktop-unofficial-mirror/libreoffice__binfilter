@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_KEYCODES_HXX //autogen
 #include <vcl/keycodes.hxx>
-#endif
 
 #include "swafopt.hxx"
 namespace binfilter {

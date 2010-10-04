@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #include "cloneable.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

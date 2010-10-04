@@ -28,16 +28,10 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_SETTINGS_HXX
 #include <vcl/settings.hxx>
-#endif
 
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
 
 namespace binfilter
 {

@@ -29,37 +29,25 @@
 
 
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #define ITEMID_ADJUST EE_PARA_JUST
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
-#ifndef _SCH_AXISID_HXX
 #include "axisid.hxx"
-#endif
-#ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
-#endif
 
 #undef  ITEMID_COLOR        //  Defined in svx3ditems.hxx
 #define ITEMID_COLOR       EE_CHAR_COLOR
 
-#ifndef _SVDOCIRC_HXX //autogen
 #include <bf_svx/svdocirc.hxx>
-#endif
 #include "math.h"
 #include "glob.hrc"
 #include "float.h"
@@ -70,12 +58,8 @@
 #endif
 #include <bf_svtools/zforlist.hxx>
 #endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <bf_svx/xlnwtit.hxx>
-#endif
 
 #include "pairs.hxx"
 #include "chmod3d.hxx"

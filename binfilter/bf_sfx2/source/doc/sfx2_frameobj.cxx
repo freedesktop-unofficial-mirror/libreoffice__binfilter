@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
-#ifndef _IPWIN_HXX //autogen
 #include <bf_so3/ipwin.hxx>
-#endif
 
 
 #ifdef _MSC_VER
@@ -43,13 +39,9 @@
 
 #include <appdata.hxx>
 
-#ifndef _SFXAPP_HXX
 #include "app.hxx"
-#endif
 
-#ifndef _SFX_OBJSH_HXX
 #include "objsh.hxx"
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {

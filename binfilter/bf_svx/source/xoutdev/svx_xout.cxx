@@ -30,9 +30,7 @@
 #include <vcl/svapp.hxx>
 #include <bf_svtools/itemset.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xoutx.hxx"

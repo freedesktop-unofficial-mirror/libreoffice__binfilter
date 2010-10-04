@@ -32,19 +32,11 @@
 
 
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EXTINPUT_HXX
 #include <extinput.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 namespace binfilter {
 
 

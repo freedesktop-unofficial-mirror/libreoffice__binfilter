@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
-#endif
 namespace binfilter {
 
 //... namespace frm .......................................................
@@ -203,12 +199,8 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 }
 //... namespace frm .......................................................
 }//namespace bifilter
-#ifndef _UNO_LBNAMES_H_
 #include <uno/lbnames.h>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 namespace binfilter {//STRIP009
 

@@ -25,41 +25,23 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
 #include <com/sun/star/frame/XStorable.hpp>
-#endif
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
 //#endif
 
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include "XMLFilterServiceNames.h"
-#endif
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 #include "XMLEmbeddedObjectImportContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

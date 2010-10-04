@@ -24,13 +24,9 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SW_TEXTCURSORHELPER_HXX
 #include "TextCursorHelper.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 #include "unoobj.hxx"
 namespace binfilter {

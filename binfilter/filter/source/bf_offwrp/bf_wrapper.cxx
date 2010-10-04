@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _BF_WRAPPER_HXX
 #include <bf_wrapper.hxx>
-#endif
 
 #include <bf_offmgr/app.hxx>
 #include <bf_sw/swdll.hxx>
@@ -39,9 +37,7 @@
 #include <bf_svx/itemdata.hxx> //STRIP002
 #include <framework/imageproducer.hxx>
 
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
 
 // #i30187#
 #include <vos/mutex.hxx>

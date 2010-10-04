@@ -41,9 +41,7 @@
 //#include "txtcfg.hxx"
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "flyfrms.hxx"
 #include "inftxt.hxx"

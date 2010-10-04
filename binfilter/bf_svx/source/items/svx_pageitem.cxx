@@ -27,9 +27,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,21 +36,15 @@
 #define  ITEMID_PAGE        0
 #define  ITEMID_SETITEM     0
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #include "pageitem.hxx"
 #include "itemtype.hxx"
 #include <unomid.hxx>
 
-#ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

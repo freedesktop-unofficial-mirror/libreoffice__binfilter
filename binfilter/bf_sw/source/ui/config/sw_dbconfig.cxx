@@ -30,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
 namespace binfilter {
 using namespace utl;
 using namespace rtl;

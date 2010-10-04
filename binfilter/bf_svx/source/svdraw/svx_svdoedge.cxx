@@ -34,23 +34,15 @@
 #include "svdsuro.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 

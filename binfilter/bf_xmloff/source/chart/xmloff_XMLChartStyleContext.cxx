@@ -26,15 +26,9 @@
  ************************************************************************/
 #include "XMLChartStyleContext.hxx"
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
 #include "families.hxx"
-#endif
 
 #include "XMLChartPropertyContext.hxx"
 namespace binfilter {

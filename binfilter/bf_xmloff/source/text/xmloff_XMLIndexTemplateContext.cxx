@@ -26,55 +26,33 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #include "XMLIndexSpanEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTABSTOPENTRYCONTEXT_HXX_
 #include "XMLIndexTabStopEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYENTRYCONTEXT_HXX_
 #include "XMLIndexBibliographyEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXCHAPTERINFOENTRYCONTEXT_HXX_
 #include "XMLIndexChapterInfoEntryContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 namespace binfilter {
 
 

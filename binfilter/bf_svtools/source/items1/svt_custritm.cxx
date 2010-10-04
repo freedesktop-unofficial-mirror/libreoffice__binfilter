@@ -28,19 +28,13 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter
 {

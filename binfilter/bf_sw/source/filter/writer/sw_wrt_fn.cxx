@@ -30,20 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
 
 
 #include "shellio.hxx"
 #include "wrt_fn.hxx"
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 #include "node.hxx"
 namespace binfilter {

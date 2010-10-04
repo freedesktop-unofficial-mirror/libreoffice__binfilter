@@ -32,40 +32,20 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
 #define ITEMID_LINE             SID_ATTR_LINE_STYLE
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>       // fuer SetModifyAtAttr
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>      // fuer SetModifyAtAttr
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 namespace binfilter {
 
 

@@ -27,14 +27,10 @@
 
 #include "sbx.hxx"
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 
 #define _TLBIGINT_INT64
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 #include "sbxvar.hxx"
 #include "sbxconv.hxx"

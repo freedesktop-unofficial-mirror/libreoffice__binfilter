@@ -27,16 +27,10 @@
 
 #include <com/sun/star/uno/Reference.hxx>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 
-#ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
-#endif
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 #include <bf_sfx2/app.hxx>
 
@@ -50,15 +44,9 @@
 #include <bf_svtools/urihelper.hxx>
 #include <comphelper/processfactory.hxx>
 
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 #include <math.h>
 
 #include <bf_svtools/saveopt.hxx>
@@ -80,21 +68,15 @@
 #include "appdata.hxx"
 #include "sfxbasemodel.hxx"
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 #include "docfile.hxx"
 #include "objuno.hxx"
 #include "request.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {

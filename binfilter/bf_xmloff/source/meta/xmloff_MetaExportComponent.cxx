@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_METAEXPORTCOMPONENT_HXX
 #include "MetaExportComponent.hxx"
-#endif
 
 
 
@@ -41,18 +39,12 @@
 //#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
-#endif
 
 namespace binfilter {
 

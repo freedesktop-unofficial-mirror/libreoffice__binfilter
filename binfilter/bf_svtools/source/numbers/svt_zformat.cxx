@@ -34,39 +34,17 @@
 #include <errno.h>
 #include <stdlib.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NATIVENUMBERWRAPPER_HXX
 #include <unotools/nativenumberwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYINDEX_HPP_
 #include <com/sun/star/i18n/CalendarDisplayIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYCODE_HPP_
 #include <com/sun/star/i18n/CalendarDisplayCode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_AMPMVALUE_HPP_
 #include <com/sun/star/i18n/AmPmValue.hpp>
-#endif
 
 #define _ZFORMAT_CXX
 #include <bf_svtools/zformat.hxx>
@@ -76,9 +54,7 @@
 #include <bf_svtools/zforlist.hxx>
 #include "numhead.hxx"
 
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include "nfsymbol.hxx"
-#endif
 
 namespace binfilter
 {

@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SVDOBJ_HXX
 #include <svdobj.hxx>
-#endif
 
 #include "unomlstr.hxx"
 namespace binfilter {

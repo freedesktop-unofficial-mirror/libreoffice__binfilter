@@ -29,12 +29,8 @@
 #pragma optimize("",off)
 #endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -43,26 +39,18 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
 
 
 

@@ -25,38 +25,24 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONFOOTNOTECONFIGEXPORT_HXX
 #include "XMLSectionFootnoteConfigExport.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
 
 
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 

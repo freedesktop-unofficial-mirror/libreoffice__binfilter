@@ -30,9 +30,7 @@
 
 #include <bf_svtools/poolitem.hxx>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {

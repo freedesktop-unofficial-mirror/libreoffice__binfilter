@@ -25,22 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLTOKEN_HXX
 #include <xmltoken.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <nmspmap.hxx>
-#endif
 namespace binfilter {
 
 using ::rtl::OUString;

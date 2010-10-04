@@ -34,26 +34,14 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _XMLOFF_VISAREACONTEXT_HXX
 #include "VisAreaContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

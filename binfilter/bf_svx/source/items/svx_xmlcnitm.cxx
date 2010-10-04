@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLCNIMP_HXX
 #include <bf_xmloff/xmlcnimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLCNITM_HXX
 #include <bf_xmloff/unoatrcn.hxx>
-#endif
 #include "xmlcnitm.hxx"
 namespace binfilter {
 

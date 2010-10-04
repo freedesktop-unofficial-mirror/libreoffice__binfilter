@@ -31,21 +31,13 @@
 #endif
 
 
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 
 #include "viewsh.hxx"   // NewFldPortion, GetDoc()
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"      // NewFldPortion, GetSysFldType()
 #include "rootfrm.hxx"  // Info ueber virt. PageNumber

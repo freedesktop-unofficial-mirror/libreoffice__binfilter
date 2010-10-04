@@ -37,9 +37,7 @@
 #include <string.h>
 //#include <math.h>
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 #include "interpre.hxx"
 #include "dociter.hxx"

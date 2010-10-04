@@ -28,9 +28,7 @@
 
 #include "soole.h"
 
-#ifndef _SMPRINTF_H
 #include <systools/win32/snprintf.h>
-#endif
 
 #define ARRAYSIZE(a)    (sizeof(a)/sizeof(a[0]))
 

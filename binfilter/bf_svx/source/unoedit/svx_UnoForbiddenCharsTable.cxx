@@ -25,24 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include "UnoForbiddenCharsTable.hxx"
-#endif
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _UNO_LINGU_HXX
 #include "unolingu.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

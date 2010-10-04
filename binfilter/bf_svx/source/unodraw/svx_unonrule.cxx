@@ -28,24 +28,14 @@
 #define PROPERTY_NONE 0
 #define ITEMID_BRUSH        0
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <brshitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
 
 #include <toolkit/unohlp.hxx>
 #include <rtl/uuid.h>

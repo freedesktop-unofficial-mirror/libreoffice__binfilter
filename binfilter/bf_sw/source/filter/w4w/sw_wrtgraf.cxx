@@ -30,15 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _WRTW4W_HXX
 #include <wrtw4w.hxx>
-#endif
 namespace binfilter {
 
 void SwW4WWriter::OutW4W_Grf( const SwGrfNode* )

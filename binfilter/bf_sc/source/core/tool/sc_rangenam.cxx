@@ -37,9 +37,7 @@
 #include <tools/debug.hxx>
 #include <string.h>
 #include <unotools/collatorwrapper.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "rangenam.hxx"
 #include "compiler.hxx"

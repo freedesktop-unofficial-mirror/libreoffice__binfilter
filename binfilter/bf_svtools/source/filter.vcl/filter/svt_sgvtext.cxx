@@ -30,9 +30,7 @@
 
 // #include <math.h>
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/filter.hxx>
 #include "sgffilt.hxx"
 #include "sgfbram.hxx"

@@ -26,23 +26,15 @@
  ************************************************************************/
 
 
-#ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
-#endif
 
 #ifndef SVX_LIGHT
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#endif
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 #include "xbtmpit.hxx"
 #include "unomid.hxx"

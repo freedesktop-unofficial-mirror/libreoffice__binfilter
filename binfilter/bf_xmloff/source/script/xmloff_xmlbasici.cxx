@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLBASICI_HXX
 #include "xmlbasici.hxx"
-#endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
 #include "attrlist.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;

@@ -37,9 +37,7 @@
 #include <comphelper/processfactory.hxx>
 
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 
 #include <bf_so3/factory.hxx>
 

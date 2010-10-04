@@ -26,116 +26,52 @@
  ************************************************************************/
 
 #include <rtl/uuid.h>
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_SAXINVALIDCHARACTEREXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXInvalidCharacterException.hpp>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSTARBASICEXPORTHANDLER_HXX
 #include "XMLStarBasicExportHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSCRIPTEXPORTHANDLER_HXX
 #include "XMLScriptExportHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_SETTINGSEXPORTHELPER_HXX
 #include "SettingsExportHelper.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XVIEWDATASUPPLIER_HPP_
 #include <com/sun/star/document/XViewDataSupplier.hpp>
-#endif
 
-#ifndef _XMLOFF_GRADIENTSTYLE_HXX
 #include <GradientStyle.hxx>
-#endif
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include <HatchStyle.hxx>
-#endif
-#ifndef _XMLOFF_IMAGESTYLE_HXX
 #include <ImageStyle.hxx>
-#endif
-#ifndef _XMLOFF_TRANSGRADIENTSTYLE_HXX
 #include <TransGradientStyle.hxx>
-#endif
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include <MarkerStyle.hxx>
-#endif
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include <DashStyle.hxx>
-#endif
-#ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
 #include "XMLFontAutoStylePool"
-#endif
-#ifndef _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
 #include "XMLImageMapExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASE64EXPORT_HXX_
 #include "XMLBase64Export.hxx"
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX_
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include "XMLFilterServiceNames.h"
-#endif
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 #include "XMLEmbeddedObjectExportFilter.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASICEXPORTFILTER_HXX
 #include "XMLBasicExportFilter.hxx"
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

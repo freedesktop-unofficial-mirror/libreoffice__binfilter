@@ -37,9 +37,7 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 #include <rtl/logfile.hxx>
 

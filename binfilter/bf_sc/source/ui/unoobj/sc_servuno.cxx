@@ -35,9 +35,7 @@
 #include <bf_svtools/unoimap.hxx>
 #include <bf_svx/unofill.hxx>
 
-#ifndef _SVX_UNONRULE_HXX
 #include <bf_svx/unonrule.hxx>
-#endif
 
 #include "servuno.hxx"
 #include "cellsuno.hxx"
@@ -52,13 +50,9 @@
 #include "shapeuno.hxx"
 
 // #100263# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
 
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

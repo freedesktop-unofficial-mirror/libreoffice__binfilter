@@ -51,9 +51,7 @@ class StarBASIC;
 #include <bf_svtools/zforlist.hxx>
 #define _SVSTDARR_ULONGS
 #include <sot/formats.hxx>
-#ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
-#endif
 
 #include "docsh.hxx"
 #include "asciiopt.hxx"
@@ -65,9 +63,7 @@ class StarBASIC;
 #include "globstr.hrc"
 
 
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 //========================================================================

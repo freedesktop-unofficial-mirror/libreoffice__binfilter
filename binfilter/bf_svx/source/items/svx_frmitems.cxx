@@ -27,13 +27,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HPP_
 #include <com/sun/star/script/XTypeConverter.hpp>
-#endif
 
 #include <limits.h>
 #include <comphelper/processfactory.hxx>
@@ -54,19 +50,11 @@
 #define ITEMID_BRUSH    0
 #define ITEMID_FRAMEDIR 0
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
 #ifndef SVX_LIGHT
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 #endif // !SVX_LIGHT
 #include "bf_basic/sbx.hxx"
 #define GLOBALOVERFLOW3
@@ -75,12 +63,8 @@
 
 #include <bf_svtools/memberid.hrc>
 
-#ifndef _WALLITEM_HXX
 #include <bf_svtools/wallitem.hxx>
-#endif
-#ifndef _CNTWALL_HXX
 #include <bf_svtools/cntwall.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 #include <rtl/ustrbuf.hxx>
@@ -108,79 +92,33 @@
 #include "itemtype.hxx"
 #include "dialmgr.hxx"
 #include "svxerr.hxx"
-#ifndef _SVX_UNOPRNMS_HXX
 #include "unoprnms.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWLOCATION_HPP_
 #include <com/sun/star/table/ShadowLocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
 #include <com/sun/star/table/TableBorder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_SHADOWFORMAT_HPP_
 #include <com/sun/star/table/ShadowFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLCONTENTTYPE_HPP_
 #include <com/sun/star/table/CellContentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEORIENTATION_HPP_
 #include <com/sun/star/table/TableOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
 #include <com/sun/star/table/CellHoriJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
 #include <com/sun/star/util/SortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELDTYPE_HPP_
 #include <com/sun/star/util/SortFieldType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
 #include <com/sun/star/table/CellOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_BREAKTYPE_HPP_
 #include <com/sun/star/style/BreakType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_GRAPHICLOCATION_HPP_
 #include <com/sun/star/style/GraphicLocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
 #include <com/sun/star/awt/Rectangle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SELECTION_HPP_
 #include <com/sun/star/awt/Selection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE2_HPP_
 #include <com/sun/star/text/WritingMode2.hpp>
-#endif
 
 #include <comphelper/types.hxx>
 
-#ifndef _SVX_UNOMID_HXX
 #include <unomid.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {

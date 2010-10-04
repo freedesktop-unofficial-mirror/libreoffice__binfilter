@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include "b3dcolor.hxx"
-#endif
 
 namespace binfilter {
 /*************************************************************************

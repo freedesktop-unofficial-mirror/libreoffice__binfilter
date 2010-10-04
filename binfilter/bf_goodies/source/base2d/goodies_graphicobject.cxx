@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include "graphicobject.hxx"
-#endif
 
 namespace binfilter {
     BfGraphicAttr::BfGraphicAttr() : GraphicAttr() {}

@@ -36,72 +36,40 @@
 #include "ChartArea.hxx"
 
 
-#ifndef _SVX_UNONAMESPACEMAP_HXX_
 #include <bf_svx/UnoNamespaceMap.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 
-#ifndef SCH_UNOPMAP_HXX
 #include "mapprov.hxx"
-#endif
 // header for SvxChartLegendPosItem
 #ifndef _SVX_CHRTITEM_HXX
 #include "schattr.hxx"
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
-#ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
 #include "objid.hxx"
-#endif
 
-#ifndef _SCH_SCHGROUP_HXX
 #include "schgroup.hxx"
-#endif
 
 // for access to table addresses
 #include "memchrt.hxx"
 
 // header for SvNumberFormatsSupplierObj
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_UNOFILL_HXX_
 #include <bf_svx/unofill.hxx>
-#endif
-#ifndef _SVX_UNOSHGRP_HXX
 #include <bf_svx/unoshcol.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICENAME_HPP_
 #include <com/sun/star/lang/XServiceName.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
 namespace binfilter {
 

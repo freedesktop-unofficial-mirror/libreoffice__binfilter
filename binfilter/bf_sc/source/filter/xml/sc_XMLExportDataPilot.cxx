@@ -34,57 +34,25 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLEXPORTDATAPILOT_HXX
 #include "XMLExportDataPilot.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_DPOBJECT_HXX
 #include "dpobject.hxx"
-#endif
-#ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
-#endif
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
-#ifndef SC_SCPATATR_HXX
 #include "patattr.hxx"
-#endif
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
-#ifndef SC_DPSAVE_HXX
 #include "dpsave.hxx"
-#endif
-#ifndef SC_DPSHTTAB_HXX
 #include "dpshttab.hxx"
-#endif
-#ifndef SC_DPSDBTAB_HXX
 #include "dpsdbtab.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATAIMPORTMODE_HPP_
 #include <com/sun/star/sheet/DataImportMode.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

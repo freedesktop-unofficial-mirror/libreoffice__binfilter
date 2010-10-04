@@ -121,15 +121,11 @@
 #include <stdio.h>
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "txtfrm.hxx"
 #include "dflyobj.hxx"
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ ULONG SwProtocol::nRecord = 0;

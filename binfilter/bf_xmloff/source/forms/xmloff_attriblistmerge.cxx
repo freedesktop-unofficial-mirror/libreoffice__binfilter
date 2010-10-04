@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 #include "attriblistmerge.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

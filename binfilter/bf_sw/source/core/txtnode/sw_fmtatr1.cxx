@@ -31,12 +31,8 @@
 #endif
 
 #include <hintids.hxx>
-#ifndef _ERRHDL_HXX //autogen
 #include <errhdl.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
-#endif
 namespace binfilter {
 
 

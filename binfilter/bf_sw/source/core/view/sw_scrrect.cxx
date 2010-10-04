@@ -30,14 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
-#endif
 // OD 18.02.2003 #107562# - <SwAlignRect> for <ViewShell::Scroll()>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "crsrsh.hxx"
 #include "pagefrm.hxx"

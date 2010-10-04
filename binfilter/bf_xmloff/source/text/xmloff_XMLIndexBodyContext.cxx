@@ -26,14 +26,10 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXBODYCONTEXT_HXX_
 #include "XMLIndexBodyContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
 

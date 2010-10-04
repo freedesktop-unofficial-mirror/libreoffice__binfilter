@@ -27,15 +27,11 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
-#endif
 
 #include "dialogs.hrc"
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 

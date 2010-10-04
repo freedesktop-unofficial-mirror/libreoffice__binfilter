@@ -27,17 +27,11 @@
 
 #include "svdstr.hrc"
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_LABEL3D_HXX
 #include "label3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLabelObj, E3dPointObj);

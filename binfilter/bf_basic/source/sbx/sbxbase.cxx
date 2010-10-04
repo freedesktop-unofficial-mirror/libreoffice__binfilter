@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "sbx.hxx"
 #include "sbxfac.hxx"

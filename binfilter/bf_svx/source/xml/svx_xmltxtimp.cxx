@@ -26,40 +26,24 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
 
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 
 
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 
-#ifndef _SVX_EDITSOURCE_HXX
 #include "editsource.hxx"
-#endif
 
-#ifndef _SVX_UNOTEXT_HXX
 #include "unotext.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::document;

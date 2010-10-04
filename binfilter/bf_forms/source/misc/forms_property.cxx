@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_PROPERTY_HXX_
 #include "property.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
 
 
 

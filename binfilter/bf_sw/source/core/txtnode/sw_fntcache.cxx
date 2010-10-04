@@ -30,53 +30,27 @@
 #pragma hdrstop
 #endif
 
-#ifndef _METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 #endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // Bildschirmabgleich
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>      // Bildschirmabgleich abschalten, ViewOption
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _SWFONT_HXX
 #include <swfont.hxx>       // CH_BLANK + CH_BULLET
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
 // Enable this to use the helpclass SwRVPMark
 #if OSL_DEBUG_LEVEL > 1

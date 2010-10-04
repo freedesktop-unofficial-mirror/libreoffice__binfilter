@@ -34,15 +34,9 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLTABLESHAPESCONTEXT_HXX
 #include "XMLTableShapesContext.hxx"
-#endif
-#ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #include "XMLTableShapeImportHelper.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
 
 namespace binfilter {
 

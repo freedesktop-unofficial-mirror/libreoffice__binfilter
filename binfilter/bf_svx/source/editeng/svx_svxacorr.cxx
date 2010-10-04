@@ -38,40 +38,26 @@
 //#ifndef _SYSTEM_HXX //autogen
 //#include <vcl/system.hxx>
 //#endif
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SFX_DOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 // fuer die Sort-String-Arrays aus dem SVMEM.HXX
 #define _SVSTDARR_STRINGSISORTDTOR
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 #ifndef _COM_SUN_STAR_I18N_UNICODETYPE_HDL_
 #include <com/sun/star/i18n/UnicodeType.hdl>
 #endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
 
 #include "escpitem.hxx"
 #include "svxacorr.hxx"
 
-#ifndef _SVX_HELPID_HRC
 #include <helpid.hrc>
-#endif
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::ucb;

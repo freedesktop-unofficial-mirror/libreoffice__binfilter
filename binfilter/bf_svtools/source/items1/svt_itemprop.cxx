@@ -34,9 +34,7 @@
 #include <bf_svtools/itemprop.hxx>
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/itemset.hxx>
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
 /*************************************************************************
     UNO III Implementation

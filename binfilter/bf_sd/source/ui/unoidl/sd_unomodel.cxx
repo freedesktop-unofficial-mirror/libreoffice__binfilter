@@ -25,79 +25,49 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
 
 
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#ifndef _SVX_UNOFIELD_HXX
 #include <bf_svx/unofield.hxx>
-#endif
 
 
 
 
-#ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
-#endif
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
-#endif
 
-#ifndef _SVX_UNONAMESPACEMAP_HXX_
 #include <bf_svx/UnoNamespaceMap.hxx>
-#endif
 
-#ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
-#endif
 
-#ifndef _SVX_UNOFILL_HXX_
 #include <bf_svx/unofill.hxx>
-#endif
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
 
-#ifndef _TOOLKIT_AWT_VCLXDEVICE_HXX_
 #include <toolkit/awt/vclxdevice.hxx>
-#endif
 
 #include <bf_svtools/unoimap.hxx>
 
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SVDPAGV_HXX
 #include <bf_svx/svdpagv.hxx>
-#endif
 
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/unonrule.hxx>
 
 // #99870# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
 
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 
 #include "bf_sd/docshell.hxx"
 
-#ifndef _SD_UNODOCUMENTSETTINGS_HXX_
 #include <UnoDocumentSettings.hxx>
-#endif
 
 #include <glob.hrc>
 #include <sdresid.hxx>
@@ -116,9 +86,7 @@
 #include <unokywds.hxx>
 #include <frmview.hxx>
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using namespace ::osl;

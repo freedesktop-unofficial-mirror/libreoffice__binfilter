@@ -31,9 +31,7 @@
 
 
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 #include "config.hxx"
 #include "starmath.hrc"

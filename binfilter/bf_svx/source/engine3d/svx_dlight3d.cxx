@@ -25,21 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_DLIGHT3D_HXX
 #include "dlight3d.hxx"
-#endif
 
 namespace binfilter {
 

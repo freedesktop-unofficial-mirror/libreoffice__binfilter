@@ -29,12 +29,8 @@
 
 //#include <math.h>
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
 
 #define _OUTLINER_CXX
 #include <paralist.hxx>
@@ -43,32 +39,20 @@
 #include <editstat.hxx>
 #include <scripttypeitem.hxx>
 
-#ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
 
-#ifndef _SVX_NUMITEM_HXX
 #include <numitem.hxx>
-#endif
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
 
-#ifndef _SVX_BRSHITEM_HXX
 #include <brshitem.hxx>
-#endif
 
 // #101498# calculate if it's RTL or not
 #include <unicode/ubidi.h>
 
-#ifndef _SVX_LRSPITEM_HXX
 #include "lrspitem.hxx"
-#endif
 
-#ifndef _UNDO_HXX
 #include <bf_svtools/undo.hxx>
-#endif
 
 namespace binfilter {
 

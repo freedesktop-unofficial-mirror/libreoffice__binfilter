@@ -32,9 +32,7 @@
 #include "svdoutl.hxx"
 
 
-#ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
-#endif
 
 
 
@@ -55,9 +53,7 @@
 #endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 

@@ -25,20 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_FMTSPLITTYPES_HXX
 #include "splithdl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 
 // --
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmltoken.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

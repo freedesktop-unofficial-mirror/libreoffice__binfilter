@@ -24,9 +24,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 
 #define _SVSTDARR_STRINGS
 #include <bf_svtools/svstdarr.hxx>
@@ -37,9 +35,7 @@
 #include "docfile.hxx"
 #include "imestatuswindow.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 /*N*/ SfxAppData_Impl::SfxAppData_Impl( SfxApplication* pApp ) :

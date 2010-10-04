@@ -34,67 +34,29 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef SC_XMLEXPORTDATABASERANGES_HXX
 #include "XMLExportDatabaseRanges.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef _SC_XMLEXPORTITERATOR_HXX
 #include "XMLExportIterator.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_DBCOLECT_HXX
 #include "dbcolect.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef __GLOBSTR_HRC_
 #include "globstr.hrc"
-#endif
-#ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #include "XMLExportSharedData.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATAIMPORTMODE_HPP_
 #include <com/sun/star/sheet/DataImportMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLESORTFIELD_HPP_
 #include <com/sun/star/table/TableSortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HPP_
 #include <com/sun/star/sheet/XSubTotalField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGES_HPP_
 #include <com/sun/star/sheet/XDatabaseRanges.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGE_HPP_
 #include <com/sun/star/sheet/XDatabaseRange.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 //! not found in unonames.hxx

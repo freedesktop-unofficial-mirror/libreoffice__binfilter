@@ -41,9 +41,7 @@
 #include "dpsdbtab.hxx"
 #include "attrib.hxx"
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 namespace binfilter {

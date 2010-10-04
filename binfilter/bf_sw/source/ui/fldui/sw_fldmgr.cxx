@@ -30,32 +30,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _FLDMGR_HXX
 #include <fldmgr.hxx>
-#endif
-#ifndef _FLDUI_HRC
 #include <fldui.hrc>
-#endif
 namespace binfilter {
 using namespace rtl;
 using namespace ::com::sun::star::uno;

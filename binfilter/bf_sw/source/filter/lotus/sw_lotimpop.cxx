@@ -35,9 +35,7 @@
 #include "hintids.hxx"
 
 
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pam.hxx"

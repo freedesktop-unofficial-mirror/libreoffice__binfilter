@@ -25,18 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _SD_UNOKYWDS_HXX_
 #include "unokywds.hxx"
-#endif
 
 #include <vector>
 

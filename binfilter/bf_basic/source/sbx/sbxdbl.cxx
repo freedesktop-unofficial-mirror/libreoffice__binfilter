@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 

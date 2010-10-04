@@ -29,63 +29,37 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_XMLMETAI_HXX
 #include "xmlscripti.hxx"
-#endif
 
 
 
-#ifndef _XIMPBODY_HXX
 #include "ximpbody.hxx"
-#endif
 
-#ifndef _SFX_XMLMETAI_HXX
 #include "xmlmetai.hxx"
-#endif
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #include "DocumentSettingsContext.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XMASTERPAGESSUPPLIER_HPP_
 #include <com/sun/star/drawing/XMasterPagesSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESSUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPagesSupplier.hpp>
-#endif
 
 
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
 
 namespace binfilter {

@@ -46,9 +46,7 @@
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_svx/linkmgr.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "tablink.hxx"
 

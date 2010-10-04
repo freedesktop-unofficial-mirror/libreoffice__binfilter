@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include "uniref.hxx"
-#endif
 namespace binfilter {
 
 UniRefBase::~UniRefBase()

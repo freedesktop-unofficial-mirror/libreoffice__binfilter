@@ -29,21 +29,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX_
 #include "XMLShapePropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
-#ifndef _XMLOFF_XMLTABI_HXX
 #include "xmltabi.hxx"
-#endif
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
 
 #include "sdpropls.hxx"
 namespace binfilter {

@@ -27,17 +27,11 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
 #include <cppuhelper/typeprovider.hxx>
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
-#ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
-#endif
 
 #include <toolkit/unohlp.hxx>
 
@@ -45,21 +39,11 @@
 #include <rtl/memory.h>
 #include <bf_so3/outplace.hxx>
 
-#ifndef _SVDOPAGE_HXX
 #include "svdopage.hxx"
-#endif
-#ifndef _SVX_XFLBSTIT_HXX
 #include "xflbstit.hxx"
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include "xflbmtit.hxx"
-#endif
-#ifndef _SVDOGRP_HXX
 #include "svdogrp.hxx"
-#endif
-#ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
-#endif
 #include "globl3d.hxx"
 #include "fmglob.hxx"
 #include "unopage.hxx"
@@ -76,46 +60,28 @@
 
 #include "dialogs.hrc"      //
 
-#ifndef _SVDCAPT_HXX
 #include "svdocapt.hxx"
-#endif
 
 
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
 
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
 
-#ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
-#endif
 
 
-#ifndef _SVX_XFLHTIT_HXX
 #include "xflhtit.hxx"
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX
 #include "xlnedit.hxx"
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
 
 #include "svdstr.hrc"
 #include "unomaster.hxx"
 
-#ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
-#endif
 
 class GDIMetaFile;
 class SvStream;

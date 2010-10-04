@@ -32,9 +32,7 @@
 
 #include "layouter.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"

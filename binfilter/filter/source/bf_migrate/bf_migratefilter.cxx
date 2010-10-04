@@ -25,52 +25,30 @@
  *
  ************************************************************************/
 
-#ifndef _BF_MIGRATEFILTER_HXX
 #include <bf_migratefilter.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
 #include <com/sun/star/util/XCloseable.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
 #include <com/sun/star/frame/XStorable.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XLOADABLE_HPP_
 #include <com/sun/star/frame/XLoadable.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
 #include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
 
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
 
-#ifndef _SFX_FCONTNR_HXX
 #include <bf_sfx2/fcontnr.hxx>
-#endif
 
-#ifndef _SFX_OBJFAC_HXX
 #include <bf_sfx2/docfac.hxx>
-#endif
 
 #include <bf_so3/staticbaseurl.hxx>
 

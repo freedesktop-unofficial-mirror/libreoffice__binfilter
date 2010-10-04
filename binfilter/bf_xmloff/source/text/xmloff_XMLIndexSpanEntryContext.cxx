@@ -25,15 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #include "XMLIndexSpanEntryContext.hxx"
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 namespace binfilter {
 

@@ -36,12 +36,8 @@
 #ifdef TEST_DELAYED_RESIZE
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 
 #include "htmltbl.hxx"

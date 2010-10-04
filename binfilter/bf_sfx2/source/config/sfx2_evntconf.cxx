@@ -43,9 +43,7 @@
 #include "app.hxx"
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 // -----------------------------------------------------------------------

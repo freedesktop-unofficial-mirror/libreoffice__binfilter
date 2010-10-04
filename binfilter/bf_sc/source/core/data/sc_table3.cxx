@@ -38,9 +38,7 @@
 #include <unotools/textsearch.hxx>
 #include <unotools/collatorwrapper.hxx>
 #include <stdlib.h>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "scitems.hxx"
 #include "cell.hxx"

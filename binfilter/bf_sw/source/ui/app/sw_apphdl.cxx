@@ -34,72 +34,30 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef _SFXEVENT_HXX //autogen
 #include <bf_sfx2/event.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <bf_svtools/colorcfg.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFXISETHINT_HXX //autogen
 #include <bf_svtools/isethint.hxx>
-#endif
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>          // Funktion-Ids
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _GLOBALS_H
 #include <globals.h>        // globale Konstanten z.B.
-#endif
-#ifndef _APP_HRC
 #include <app.hrc>
-#endif
-#ifndef _USRPREF_HXX //autogen
 #include <usrpref.hxx>
-#endif
-#ifndef _PRTOPT_HXX //autogen
 #include <prtopt.hxx>
-#endif
-#ifndef _MODOPT_HXX //autogen
 #include <modcfg.hxx>
-#endif
-#ifndef _FONTCFG_HXX //autogen
 #include <fontcfg.hxx>
-#endif
-#ifndef _BARCFG_HXX
 #include <barcfg.hxx>
-#endif
-#ifndef _UINUMS_HXX //autogen
 #include <uinums.hxx>
-#endif
-#ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
 
 #include <bf_sfx2/app.hxx>
 #include <bf_svx/svxids.hrc>
@@ -110,9 +68,7 @@ using namespace ::com::sun::star;
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
 
-#ifndef _CFGID_H
 #include <cfgid.h>
-#endif
 
 #include <shells.hrc>
 #include "bf_so3/staticbaseurl.hxx"

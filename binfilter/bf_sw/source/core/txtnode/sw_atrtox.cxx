@@ -30,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SwTxtTOXMark::SwTxtTOXMark( const SwTOXMark& rAttr,

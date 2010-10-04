@@ -33,9 +33,7 @@
 #include <xmlscript/xmldlg_imexp.hxx>
 
 
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 
 namespace binfilter {
 

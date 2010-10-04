@@ -26,69 +26,31 @@
  ************************************************************************/
 #include "app.hxx"
 
-#ifndef _COM_SUN_STAR_FRAME_XTERMINATELISTENER_HPP_
 #include <com/sun/star/frame/XTerminateListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
-#endif
 
 #include <bf_svtools/svtools.hrc>
 #include <bf_svtools/saveopt.hxx>
 #include <bf_svtools/localisationoptions.hxx>
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
-#ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
-#endif
 
-#ifndef _SOERR_HXX //autogen
 #include <bf_so3/soerr.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _INETBND_HXX //autogen
 #include <bf_so3/inetbnd.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _VOS_SECURITY_HXX_
 #include <vos/security.hxx>
-#endif
-#ifndef _UCBHELPER_CONFIGURATIONKEYS_HXX_
 #include <ucbhelper/configurationkeys.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_HISTORYOPTIONS_HXX
 #include <bf_svtools/historyoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 
@@ -118,9 +80,7 @@
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
 #include <cppuhelper/implbase1.hxx>
 

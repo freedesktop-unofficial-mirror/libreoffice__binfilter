@@ -29,27 +29,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _SFXISETHINT_HXX //autogen
 #include <bf_svtools/isethint.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <bf_svtools/useroptions.hxx>
-#endif
-#ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
-#endif
-#ifndef _SVX_ADRITEM_HXX //autogen
 #include <bf_svx/adritem.hxx>
-#endif
 
 #include "cell.hxx"
 #include "dociter.hxx"
@@ -65,9 +51,7 @@
 #define SC_CHGTRACK_CXX
 #include "chgtrack.hxx"
 
-#ifndef SC_REFUPDAT_HXX
 #include "refupdat.hxx"
-#endif
 
 namespace binfilter {
 

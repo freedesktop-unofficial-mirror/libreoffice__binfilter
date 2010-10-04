@@ -27,12 +27,8 @@
 
 #include "SchXMLParagraphContext.hxx"
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
 using namespace rtl;

@@ -32,24 +32,12 @@
 
 #include <stdlib.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NUMBERFORMATCODEWRAPPER_HXX
 #include <unotools/numberformatcodewrapper.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <bf_svtools/zforlist.hxx>
 #include <bf_svtools/zformat.hxx>
@@ -58,9 +46,7 @@
 #include "zforscan.hxx"
 #undef _ZFORSCAN_CXX
 
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include "nfsymbol.hxx"
-#endif
 
 namespace binfilter
 {

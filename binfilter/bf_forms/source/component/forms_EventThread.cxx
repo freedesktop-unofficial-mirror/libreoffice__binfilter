@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_EVENT_THREAD_HXX_
 #include "EventThread.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

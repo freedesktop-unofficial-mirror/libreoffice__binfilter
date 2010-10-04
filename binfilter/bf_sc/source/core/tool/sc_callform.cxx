@@ -34,9 +34,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _VOS_MODULE_HXX_
 #include <vos/module.hxx>
-#endif
 
 #include "adiasync.hxx"
 #include <tools/debug.hxx>

@@ -34,18 +34,12 @@
 #endif
 #endif
 
-#ifndef _XPOLY_HXX
 #include "xpoly.hxx"
-#endif
 
-#ifndef _POLY3D_HXX
 #include "poly3d.hxx"
-#endif
 
 
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
 
 
 namespace binfilter {

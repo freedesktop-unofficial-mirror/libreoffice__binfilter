@@ -30,21 +30,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 #include "pam.hxx"
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "rdswg.hxx"
 #include "swgpar.hxx"
 #include "ndtxt.hxx"

@@ -32,26 +32,14 @@
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
 
 #include <bf_svx/editdata.hxx>
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -59,9 +47,7 @@
 #define ITEMID_CHARTSTYLE       CHATTR_DIAGRAM_STYLE
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include <bf_svx/chrtitem.hxx>
 #endif
@@ -75,24 +61,12 @@
 #include <chtmodel.hxx>
 #endif
 #include <bf_svx/svdoutl.hxx>   // wg. SdrOutliner
-#ifndef __SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _SCH_OBJADJ_HXX
 #include  "objadj.hxx"
-#endif
-#ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
 #include "objid.hxx"
-#endif
-#ifndef _SCH_DATAROW_HXX
 #include "datarow.hxx"
-#endif
-#ifndef _SVX_DLGUTIL_HXX
 #include  <bf_svx/dlgutil.hxx>
-#endif
 
 #include "chtscene.hxx"
 #include "glob.hrc"
@@ -102,16 +76,10 @@
 #include "chmod3d.hxx"
 #include "docshell.hxx"
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 #include "chaxis.hxx"
 #include "ChXChartDocument.hxx"

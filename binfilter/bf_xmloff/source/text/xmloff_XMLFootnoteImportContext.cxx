@@ -31,39 +31,25 @@
 #include "rtl/ustring.hxx"
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLFOOTNOTEBODYIMPORTCONTEXT_HXX
 #include "XMLFootnoteBodyImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTBLOCKCONTEXT_HXX
 #include "XMLTextListBlockContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTITEMCONTEXT_HXX
 #include "XMLTextListItemContext.hxx"
-#endif
 
 
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
 #include <com/sun/star/text/XFootnote.hpp>
-#endif
 namespace binfilter {
 
 

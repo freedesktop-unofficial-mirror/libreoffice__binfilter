@@ -39,34 +39,18 @@
 
 
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _SVDOUTL_HXX //autogen
 #include <svdoutl.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include <svdview.hxx>
-#endif
-#ifndef _SVX_UNOVIWOU_HXX
 #include <unoviwou.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX
 #include "outlobj.hxx"
-#endif
 #include "svdpage.hxx"
 #include "editeng.hxx"
-#ifndef _EDITOBJ_HXX
 #include "editobj.hxx"
-#endif
 
 #include "unotext.hxx"
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 

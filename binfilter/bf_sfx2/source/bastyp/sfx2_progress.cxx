@@ -27,9 +27,7 @@
 
 #include "progress.hxx"
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

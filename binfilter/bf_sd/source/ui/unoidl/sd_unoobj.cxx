@@ -25,59 +25,33 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SVTOOLS_UNOIMAP_HXX
 #include <bf_svtools/unoimap.hxx>
-#endif
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
 
 #include <vcl/svapp.hxx>
 
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
 #include <comphelper/extract.hxx>
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/unoapi.hxx>
 
-#ifndef _SVDOPATH_HXX
 #include <bf_svx/svdopath.hxx>
-#endif
 
-#ifndef _SVDOOLE2_HXX
 #include <bf_svx/svdoole2.hxx>
-#endif
-#ifndef _SVDOGRAF_HXX
 #include <bf_svx/svdograf.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX
 #include <bf_svx/outlobj.hxx>
-#endif
 
-#ifndef _SD_SPOUTLINER_HXX
 #include "sdoutl.hxx"
-#endif
 
-#ifndef _SDRESID_HXX
 #include "sdresid.hxx"
-#endif
 
 #include "anminfo.hxx"
 #include "unohelp.hxx"

@@ -25,25 +25,17 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DCOMPO_HXX
 #include "b3dcompo.hxx"
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include "base3d.hxx"
-#endif
 
-#ifndef _B3D_B3DGEOM_HXX
 #include "b3dgeom.hxx"
-#endif
 
 #ifndef _INC_FLOAT
 #include <float.h>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 

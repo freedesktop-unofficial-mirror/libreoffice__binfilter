@@ -30,18 +30,10 @@
 #include <bf_so3/ipenv.hxx>
 #include <bf_so3/iface.hxx>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_ACCEL_HXX
 #include <vcl/accel.hxx>
-#endif
 #include <bf_so3/so2dll.hxx>
 #include <bf_so3/ipobj.hxx>
 #include "bf_so3/ipclient.hxx"

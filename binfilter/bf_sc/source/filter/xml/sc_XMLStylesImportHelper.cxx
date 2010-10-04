@@ -34,20 +34,12 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

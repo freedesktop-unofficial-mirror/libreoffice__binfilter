@@ -25,19 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
 
 
-#ifndef _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 #include "XMLTableMasterPageExport.hxx"
-#endif
 
 #include "unonames.hxx"
 namespace binfilter {

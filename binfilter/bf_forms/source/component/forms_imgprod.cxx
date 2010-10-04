@@ -33,17 +33,11 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <bf_svtools/filter.hxx>
 
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
 
-#ifndef SVTOOLS_SOURCE_MISC_IMAGERESOURCEACCESS_HXX
 #include "bf_svtools/imageresourceaccess.hxx"
-#endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 // --------------------
 // - ImgProdLockBytes -

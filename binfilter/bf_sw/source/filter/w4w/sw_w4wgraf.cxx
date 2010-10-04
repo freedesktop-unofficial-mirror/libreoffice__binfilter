@@ -36,43 +36,19 @@
   #include <unistd.h>
 #endif
 
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _FILTER_HXX //autogen
 #include <bf_svtools/filter.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
-#endif
-#ifndef _SVX_IMPGRF_HXX //autogen
 #include <bf_svx/impgrf.hxx>
-#endif
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>          // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>          // ERR_CHAR
-#endif
-#ifndef _W4WGRAF_HXX
 #include <w4wgraf.hxx>         // eigenes
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 #define MAX_MEM_GRAF 300000         // ab 300K im File statt im Speicher

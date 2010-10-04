@@ -29,17 +29,13 @@
 
 
 
-#ifndef _SV_METAACT_HXX
 #include <vcl/metaact.hxx>
-#endif
 
 
 
 #include "svdobj.hxx"
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 #include "xattr.hxx"
 #include "xoutx.hxx"

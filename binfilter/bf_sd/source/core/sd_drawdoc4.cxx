@@ -47,103 +47,39 @@
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/xtable.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
-#ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_XBTMPIT_HXX //autogen
 #include <bf_svx/xbtmpit.hxx>
-#endif
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include <bf_svx/xflhtit.hxx>
-#endif
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include <bf_svx/xflgrit.hxx>
-#endif
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <bf_svx/xflclit.hxx>
-#endif
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <bf_svx/xlnedcit.hxx>
-#endif
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include <bf_svx/xlnstcit.hxx>
-#endif
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <bf_svx/xlnedwit.hxx>
-#endif
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <bf_svx/xlnstwit.hxx>
-#endif
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <bf_svx/xlnedit.hxx>
-#endif
-#ifndef _SVX_CHARRELIEFITEM_HXX
 #include <bf_svx/charreliefitem.hxx>
-#endif
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <bf_svx/xlnstit.hxx>
-#endif
-#ifndef _SVX_XLNDSIT_HXX //autogen
 #include <bf_svx/xlndsit.hxx>
-#endif
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <bf_svx/xlnwtit.hxx>
-#endif
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
-#ifndef _SVX_NUMITEM_HXX
 #include <bf_svx/numitem.hxx>
-#endif
-#ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX
 #include <bf_svx/outlobj.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
 
 #include "sdresid.hxx"
 #include "drawdoc.hxx"

@@ -25,30 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_TXTPARAI_HXX
 #include "txtparai.hxx"
-#endif
-#ifndef _XMLTEXTLISTBLOCKCONTEXT_HXX
 #include "XMLTextListBlockContext.hxx"
-#endif
 
 
-#ifndef _XMLTEXTLISTITEMCONTEXT_HXX
 #include "XMLTextListItemContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

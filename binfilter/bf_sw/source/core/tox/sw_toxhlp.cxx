@@ -30,28 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XINDEXENTRYSUPPLIER_HPP_
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _TOXWRAP_HXX
 #include <toxwrap.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
  IndexEntrySupplierWrapper::IndexEntrySupplierWrapper()

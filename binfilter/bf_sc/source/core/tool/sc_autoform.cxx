@@ -43,9 +43,7 @@
 #include <bf_svx/dialogs.hrc>
 #include <tools/urlobj.hxx>
 
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 
 #include "globstr.hrc"
 namespace binfilter {

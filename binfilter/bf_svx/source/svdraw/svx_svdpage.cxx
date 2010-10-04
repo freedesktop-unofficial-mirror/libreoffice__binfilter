@@ -30,19 +30,13 @@
 #define _IPOBJ_HXX
 #endif
 
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
 #include <string.h>
 #ifndef _STRING_H
 #define _STRING_H
 #endif
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include "svdetc.hxx"
 #include "svdio.hxx"
@@ -58,9 +52,7 @@
 #endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 

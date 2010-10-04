@@ -24,9 +24,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include "chdescr.hxx"
 

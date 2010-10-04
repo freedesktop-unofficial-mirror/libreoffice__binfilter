@@ -37,23 +37,15 @@
 
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
 
 
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
 
 
-#ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"
-#endif
 
 
 
@@ -64,14 +56,10 @@
 
 
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 
 
-#ifndef _E3D_VIEW3D_HXX
 #include "view3d.hxx"
-#endif
 
 
 

@@ -25,18 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_OPAQUETYPES_HXX
 #include "opaquhdl.hxx"
-#endif
 
 
 
 // --
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

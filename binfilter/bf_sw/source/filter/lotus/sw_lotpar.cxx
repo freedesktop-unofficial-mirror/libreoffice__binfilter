@@ -30,27 +30,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _FLTGLBLS_HXX
 #include <fltglbls.hxx>
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _LOTPAR_HXX
 #include <lotpar.hxx>
-#endif
-#ifndef _SWFLTOPT_HXX
 #include <swfltopt.hxx>
-#endif
 namespace binfilter {
 
 LotGlob *pLotGlob = NULL;

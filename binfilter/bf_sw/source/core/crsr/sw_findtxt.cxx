@@ -34,16 +34,10 @@
 #define _SVSTDARR_ULONGS
 
 
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 namespace binfilter {
 

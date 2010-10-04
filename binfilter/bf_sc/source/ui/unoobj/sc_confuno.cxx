@@ -39,19 +39,13 @@
 #include "miscuno.hxx"
 #include "forbiuno.hxx"
 #include "viewopti.hxx"
-#ifndef SC_SCDOCPOL_HXX
 #include "docpool.hxx"
-#endif
 #include "bf_sc.hrc"
 
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

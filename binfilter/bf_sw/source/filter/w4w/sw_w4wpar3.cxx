@@ -33,86 +33,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX //autogen
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX //autogen
 #include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_ORPHITEM_HXX //autogen
 #include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
-#ifndef _DOCUFLD_HXX        // fuer Hidden Text
 #include <docufld.hxx>
-#endif
-#ifndef _FMTFLD_HXX         // fuer Hidden Text
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>      // GET_POOLID_TXTCOLL
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // RES_POOLCOLL_STANDARD
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>           // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>           // GetDecimal()
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 

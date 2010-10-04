@@ -30,9 +30,7 @@
 
 // #include <math.h>
 
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 #include <vcl/graph.hxx>
 #include <tools/poly.hxx>
 #include <bf_svtools/filter.hxx>
@@ -40,9 +38,7 @@
 #include "sgfbram.hxx"
 #include "sgvmain.hxx"
 #include "sgvspln.hxx"
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 //#if OSL_DEBUG_LEVEL > 1
 //#include "Debug.c"

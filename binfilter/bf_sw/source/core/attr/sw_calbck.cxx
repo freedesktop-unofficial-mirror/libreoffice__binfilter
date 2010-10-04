@@ -30,18 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>      // fuer RES_..
-#endif
-#ifndef _FRAME_HXX
 #include <frame.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _SWFNTCCH_HXX
 #include <swfntcch.hxx>
-#endif
 namespace binfilter {
 
 static SwClientIter* pClientIters = 0;

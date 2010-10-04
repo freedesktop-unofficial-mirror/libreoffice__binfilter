@@ -31,9 +31,7 @@
 #ifndef GCC
 #endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <bf_svtools/hint.hxx>
 #include <bf_svtools/smplhint.hxx>

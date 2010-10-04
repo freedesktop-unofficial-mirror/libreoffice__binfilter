@@ -224,15 +224,9 @@
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_svtools/zformat.hxx>
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <bf_svtools/PasswordHelper.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
 
 #include "attrib.hxx"
 #include "patattr.hxx"
@@ -258,9 +252,7 @@
 #include "indexmap.hxx"
 #include "scrdata.hxx"
 #include "poolhelp.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
 

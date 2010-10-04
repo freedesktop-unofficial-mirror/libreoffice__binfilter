@@ -31,19 +31,13 @@
 #endif
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 #include "pam.hxx"
 #include "rootfrm.hxx"

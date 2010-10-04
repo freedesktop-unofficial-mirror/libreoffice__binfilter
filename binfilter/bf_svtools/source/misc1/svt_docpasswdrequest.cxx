@@ -30,12 +30,8 @@
 
 #include "docpasswdrequest.hxx"
 
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONABORT_HPP_
 #include <com/sun/star/task/XInteractionAbort.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONPASSWORD_HPP_
 #include <com/sun/star/task/XInteractionPassword.hpp>
-#endif
 
 namespace binfilter
 {

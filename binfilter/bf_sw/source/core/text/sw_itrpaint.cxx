@@ -31,16 +31,12 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "txtatr.hxx"  // SwINetFmt
 
 
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
 
 #include "itrpaint.hxx"
 #include "pormulti.hxx"

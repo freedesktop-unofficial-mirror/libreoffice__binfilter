@@ -41,9 +41,7 @@
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #include "drawitem.hxx"
 namespace binfilter {

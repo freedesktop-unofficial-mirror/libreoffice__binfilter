@@ -25,29 +25,15 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP
 #include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP
 #include <com/sun/star/awt/FontPitch.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include "maptype.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX
 #include "XMLFontStylesContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

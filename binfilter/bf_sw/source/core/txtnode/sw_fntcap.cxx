@@ -30,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
 #ifndef _COM_SUN_STAR_I18N_CHARTYPE_HDL
@@ -42,19 +40,11 @@
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
 
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _SWFONT_HXX
 #include <swfont.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;

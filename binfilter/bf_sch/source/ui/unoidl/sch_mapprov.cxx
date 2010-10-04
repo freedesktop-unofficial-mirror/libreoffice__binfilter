@@ -28,50 +28,26 @@
 #include "mapprov.hxx"
 #include "schattr.hxx"
 
-#ifndef _SCH_APP_HRC
 #include "app.hrc"          // for SID_TEXTBREAK
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>    // for SID_ATTR_NUMBERFORMAT_SOURCE
-#endif
 
 // for SdrObject
 // for SdrObjList
 // for SdrObjListIter
 // header for E3dExtrudeObj
 // for SVX_UNOEDIT_CHAR_PROPERTIES, SVX_UNOEDIT_FONT_PROPERTIES
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HPP_
 #include <com/sun/star/chart/ChartErrorIndicatorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HPP_
 #include <com/sun/star/chart/ChartErrorCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HPP_
 #include <com/sun/star/chart/ChartRegressionCurveType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISARRANGEORDERTYPE_HPP_
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

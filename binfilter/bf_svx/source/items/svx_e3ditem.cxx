@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
 #include <com/sun/star/drawing/Direction3D.hpp>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

@@ -25,23 +25,13 @@
  *
  ************************************************************************/
 #include <limits.h>
-#ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

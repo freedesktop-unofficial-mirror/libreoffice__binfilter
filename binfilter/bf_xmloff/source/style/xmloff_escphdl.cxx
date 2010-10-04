@@ -26,18 +26,12 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_ESCAPETYPES_HXX
 #include <escphdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 namespace binfilter {

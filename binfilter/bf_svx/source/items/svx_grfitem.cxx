@@ -31,15 +31,9 @@
 
 #define ITEMID_GRF_CROP         0
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVX_GRFCROP_HXX
 #include <grfcrop.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

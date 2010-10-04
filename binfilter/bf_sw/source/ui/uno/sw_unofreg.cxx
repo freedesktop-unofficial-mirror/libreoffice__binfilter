@@ -27,19 +27,13 @@
 
 #include <string.h>
 
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
 #include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
-#ifndef _SWXFILTEROPTIONS_HXX
 #include <SwXFilterOptions.hxx>
-#endif
 namespace binfilter {
 
 using namespace rtl;

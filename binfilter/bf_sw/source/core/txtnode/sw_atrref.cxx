@@ -30,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
-#endif
 namespace binfilter {
 
 

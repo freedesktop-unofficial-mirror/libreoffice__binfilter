@@ -30,21 +30,11 @@
 
 #include <vcl/salbtype.hxx>
 #include "wmfwr.hxx"
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 #include <vcl/metric.hxx>
 

@@ -29,27 +29,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _PROPIMP0_HXX
 #include "propimp0.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmluconv.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

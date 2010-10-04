@@ -34,32 +34,16 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLTABLESOURCECONTEXT_HXX
 #include "XMLTableSourceContext.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_TABLINK_HXX
 #include "tablink.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSHEETLINKABLE_HPP_
 #include <com/sun/star/sheet/XSheetLinkable.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

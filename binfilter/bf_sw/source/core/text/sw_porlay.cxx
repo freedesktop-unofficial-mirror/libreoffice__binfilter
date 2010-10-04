@@ -35,15 +35,9 @@
 #include "itrform2.hxx"
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
-#ifndef _PORRST_HXX
 #include <porrst.hxx>       // SwHangingPortion
-#endif
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
@@ -51,24 +45,14 @@
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 #ifdef BIDI
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
 #endif
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::i18n::ScriptType;

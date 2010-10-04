@@ -27,36 +27,18 @@
 
 #include "arrdecl.hxx"
 
-#ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
 #include <com/sun/star/util/XCloseable.hpp>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SB_SBSTAR_HXX //autogen
 #include "bf_basic/sbstar.hxx"
-#endif
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -66,15 +48,9 @@
 
 #include "objsh.hxx"
 
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PRINTWARNINGOPTIONS_HXX
 #include <bf_svtools/printwarningoptions.hxx>
-#endif
 
 #include <bf_svtools/urihelper.hxx>
 #include <bf_svtools/pathoptions.hxx>
@@ -99,23 +75,17 @@
 #include "sfxsids.hrc"
 #include "dlgcont.hxx"
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #include "scriptcont.hxx"
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::script;
 
-#ifndef _UNO_MAPPING_HXX_
 #include <uno/mapping.hxx>
-#endif
 
 //====================================================================
 #include "bf_so3/staticbaseurl.hxx"

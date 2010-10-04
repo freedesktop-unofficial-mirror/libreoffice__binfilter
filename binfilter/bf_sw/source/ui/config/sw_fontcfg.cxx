@@ -30,22 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FONTCFG_HXX
 #include <fontcfg.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
 
 
 
 // #107253#
-#ifndef _SWLINGUCONFIG_HXX
 #include <swlinguconfig.hxx>
-#endif
 namespace binfilter {
 
 using namespace utl;

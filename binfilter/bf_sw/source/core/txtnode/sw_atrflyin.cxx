@@ -32,24 +32,16 @@
 
 #include "cntfrm.hxx"       // _GetFly
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pam.hxx"          // fuer SwTxtFlyCnt
 #include "ndtxt.hxx"        // SwFlyFrmFmt
 #include "frmfmt.hxx"       // SwFlyFrmFmt
 
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
 namespace binfilter {

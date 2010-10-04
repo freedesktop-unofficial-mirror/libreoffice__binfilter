@@ -44,28 +44,18 @@
 #include <bf_svx/editstat.hxx>
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include <bf_svx/flditem.hxx>
 //#include <vcl/system.hxx>
 #include <bf_svtools/inethist.hxx>
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
 #endif

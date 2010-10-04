@@ -32,14 +32,10 @@
 
 #include "hintids.hxx"
 
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
 
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 #include "doc.hxx"
 #include "inetfld.hxx"
 #include "poolfmt.hxx"

@@ -35,20 +35,12 @@
 
 
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _SWDTFLVR_HXX
 #include <swdtflvr.hxx>
-#endif
 
 #if OSL_DEBUG_LEVEL > 1
 #endif

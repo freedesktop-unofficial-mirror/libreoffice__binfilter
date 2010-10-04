@@ -26,17 +26,11 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
-#ifndef _XMLIMPIT_HXX
 #include "xmlimpit.hxx"
-#endif
 
-#ifndef _XMLITEM_HXX
 #include "xmlitem.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

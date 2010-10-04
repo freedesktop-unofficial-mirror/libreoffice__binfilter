@@ -25,16 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #include <xmlbahdl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {

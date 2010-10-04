@@ -37,20 +37,12 @@
 #include "xmlsorti.hxx"
 #include "xmlimprt.hxx"
 
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 #define SC_USERLIST "UserList"

@@ -29,9 +29,7 @@
 #ifdef PCH
 #endif
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

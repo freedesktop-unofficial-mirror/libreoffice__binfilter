@@ -25,16 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLFOOTNOTEBODYIMPORTCONTEXT_HXX_
 #include "XMLFootnoteBodyImportContext.hxx"
-#endif
 
 #include "rtl/ustring.hxx"
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
 

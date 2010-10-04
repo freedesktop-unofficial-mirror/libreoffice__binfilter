@@ -27,65 +27,33 @@
 
 #define ITEMID_GRF_CROP 0
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HPP_
 #include <com/sun/star/drawing/TextFitToSizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HPP_
 #include <com/sun/star/drawing/TextHorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HPP_
 #include <com/sun/star/drawing/TextVerticalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HPP_
 #include <com/sun/star/drawing/TextAnimationKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HPP_
 #include <com/sun/star/drawing/TextAnimationDirection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASUREKIND_HPP_
 #include <com/sun/star/drawing/MeasureKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextHorzPos.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextVertPos.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 #include <comphelper/processfactory.hxx>
 
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 #include "svdattr.hxx"
 #include "svdattrx.hxx"
 #include "svdpool.hxx"
 
-#ifndef _SOLAR_HRC
 #include <bf_svtools/solar.hrc>
-#endif
 
-#ifndef _SVX_XMLCNITM_HXX
 #include "xmlcnitm.hxx"
-#endif
 
 #include "svxids.hrc"
 #include "xtable.hxx"    // fuer RGB_Color()
@@ -98,25 +66,18 @@
 #include "adjitem.hxx"
 #include "writingmodeitem.hxx"
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include <xtxasit.hxx>
 #include <xfillit0.hxx>
 #include <xflclit.hxx>
 #include <xlineit0.hxx>
 
-#ifndef _SVX3DITEMS_HXX
 #include <svx3ditems.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+
 namespace binfilter {
 
 using namespace ::rtl;

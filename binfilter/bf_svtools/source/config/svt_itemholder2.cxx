@@ -30,13 +30,9 @@
 //-----------------------------------------------
 // includes
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
 
 #include <apearcfg.hxx>
 #include <bf_svtools/cjkoptions.hxx>

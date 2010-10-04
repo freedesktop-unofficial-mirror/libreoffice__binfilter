@@ -27,54 +27,32 @@
 
 //--------------------------------------------------------------------------------------------------------
 
-#ifndef  _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
-#ifndef  _COM_SUN_STAR_UTL_URL_HPP_
 #include <com/sun/star/util/URL.hpp>
-#endif
 
-#ifndef  _COM_SUN_STAR_UTL_XURLTRANSFORMER_HPP_
 #include <com/sun/star/util/XURLTransformer.hpp>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
 
-#ifndef _SFX_APPUNO_HXX
 #include <appuno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX
 #include <objsh.hxx>
-#endif
-#ifndef _SFX_SFXBASEMODEL_HXX_
 #include <sfxbasemodel.hxx>
-#endif
-#ifndef _SFX_EVENTCONF_HXX
 #include <evntconf.hxx>
-#endif
 
 #include <bf_svtools/securityoptions.hxx>
 #include <comphelper/processfactory.hxx>
 
-#ifndef _SFX_EVENTSUPPLIER_HXX_
 #include "eventsupplier.hxx"
-#endif
 
 #include "app.hxx"
 
 #include "sfxsids.hrc"
 #include "docfile.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------

@@ -29,108 +29,60 @@
 //  my own includes
 //________________________________________________________________________________________________________
 
-#ifndef _SFX_SFXBASEMODEL_HXX_
 #include <sfxbasemodel.hxx>
-#endif
 #include <bf_sfx2/app.hxx>
 
 //________________________________________________________________________________________________________
 //  include of other projects
 //________________________________________________________________________________________________________
 
-#ifndef _COM_SUN_STAR_VIEW_XPRINTJOB_HPP_
 #include <com/sun/star/view/XPrintJob.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HPP_
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_ILLEGALARGUMENTEXCEPTION_HPP_
 #include <com/sun/star/lang/IllegalArgumentException.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_ILLEGALARGUMENTIOEXCEPTION_HPP_
 #include <com/sun/star/frame/IllegalArgumentIOException.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_PAPERFORMAT_HPP_
 #include <com/sun/star/view/PaperFormat.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_PAPERORIENTATION_HPP_
 #include <com/sun/star/view/PaperOrientation.hpp>
-#endif
 
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
-#endif
 
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_NAMECLASH_HPP_
 #include <com/sun/star/ucb/NameClash.hpp>
-#endif
 
-#ifndef _UNO_MAPPING_HXX_
 #include <uno/mapping.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include "bf_basic/sbx.hxx"
 
-#ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
-#endif
 
-#ifndef _THREAD_HXX_
 #include <osl/thread.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX_
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _UNOTOOLS_TEMPFILE_HXX_
 #include <unotools/tempfile.hxx>
-#endif
 
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX_
 #include <unotools/localfilehelper.hxx>
-#endif
 
-#ifndef _UCBHELPER_CONTENT_HXX
 #include <ucbhelper/content.hxx>
-#endif
 
 #include <vos/mutex.hxx>
 #include <vcl/salctype.hxx>
@@ -141,63 +93,37 @@
 
 #include "appuno.hxx"
 
-#ifndef _SFX_OBJSHIMP_HXX
 #include <objshimp.hxx>
-#endif
 
 
-#ifndef _SFXDOCFILE_HXX
 #include <docfile.hxx>
-#endif
 
-#ifndef _SFXREQUEST_HXX
 #include <request.hxx>
-#endif
 
-#ifndef _SFX_OBJUNO_HXX
 #include <objuno.hxx>
-#endif
 
-#ifndef _SFX_PRINTER_HXX
 #include <printer.hxx>
-#endif
 
-#ifndef _SFXEVENT_HXX
 #include <event.hxx>
-#endif
 
-#ifndef _SFX_EVENTSUPPLIER_HXX_
 #include <eventsupplier.hxx>
-#endif
 
-#ifndef _SFX_EVENTCONF_HXX
 #include <evntconf.hxx>
-#endif
 
-#ifndef _SFX_INTERNO_HXX
 #include <interno.hxx>
-#endif
 
-#ifndef _SFX_HRC
 #include "sfx.hrc"
-#endif
 
 #include "openflag.hxx"
 #include "appdata.hxx"
 #include "docfac.hxx"
 #include "fcontnr.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 
-#ifndef _CPPUHELPER_TYPEPROVIDER_HXX_
 #include <cppuhelper/typeprovider.hxx>
-#endif
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 namespace binfilter {
 

@@ -32,22 +32,16 @@
 #include "svdio.hxx"
 
 #ifndef SVX_LIGHT
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
 #endif
-#endif
 
-#ifndef _SVXLINKMGR_HXX //autogen
 #include <linkmgr.hxx>
-#endif
 
 
 #include <bf_svtools/urihelper.hxx>
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

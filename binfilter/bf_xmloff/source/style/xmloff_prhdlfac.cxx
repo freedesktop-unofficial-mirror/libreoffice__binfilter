@@ -25,109 +25,45 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_COLORMODE_HPP_
 #include <com/sun/star/drawing/ColorMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
 #include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE2_HPP_
 #include <com/sun/star/text/WritingMode2.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <prhdlfac.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #include "xmlbahdl.hxx"
-#endif
 
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include "NamedBoolPropertyHdl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CROSSEDOUTTYPES_HXX
 #include "cdouthdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_CASEMAPTYPES_HXX
 #include "csmaphdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_KERNINGTYPES_HXX
 #include "kernihdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_POSTURETYPES_HXX
 #include <postuhdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_SHADOWTYPES_HXX
 #include "shadwhdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_SHADOWEDTYPES_HXX
 #include "shdwdhdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_UNDERLINETYPES_HXX
 #include "undlihdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTWEIGHTTYPES_HXX
 #include "weighhdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FMTSPLITTYPES_HXX
 #include "splithdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_BREAKTYPES_HXX
 #include "breakhdl.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_ADJUSTTYPES_HXX
 #include <adjushdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_ESCAPETYPES_HXX
 #include <escphdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARHEIGHTTYPES_HXX
 #include <chrhghdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARLOCALETYPES_HXX
 #include <chrlohdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_LINESPACETYPES_HXX
 #include <lspachdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_BORDERTYPES_HXX
 #include <bordrhdl.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_TABSTOPTYPES_HXX
 #include <tabsthdl.hxx>
-#endif
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include "EnumPropertyHdl.hxx"
-#endif
-#ifndef _XMLOFF_ATTRIBUTECONTAINERHANDLER_HXX
 #include "AttributeContainerHandler.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_DURATIONS_HXX
 #include "durationhdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLRECTANGLEMEMBERSHANDLER_HXX
 #include "XMLRectangleMembersHandler.hxx"
-#endif
-#ifndef _XMLOFF_DRAWASPECTHDL_HXX
 #include "DrawAspectHdl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

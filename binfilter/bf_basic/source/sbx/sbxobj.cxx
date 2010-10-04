@@ -25,17 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include <vcl/sound.hxx>
 #include "sbx.hxx"
 #include "sbxbase.hxx"
 #include "sbxres.hxx"
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 namespace binfilter {
 

@@ -45,16 +45,10 @@
 #include "svdstr.hrc"    // Objektname
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

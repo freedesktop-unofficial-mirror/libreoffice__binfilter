@@ -36,9 +36,7 @@
 
 #include "convuno.hxx"
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace binfilter {
 

@@ -25,15 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
 
 
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
 #include "xdef.hxx"
 #include "xflhtit.hxx"

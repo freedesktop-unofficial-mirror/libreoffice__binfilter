@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEROLE_HPP_
 #include <com/sun/star/accessibility/AccessibleRole.hpp>
-#endif
 
 #include <bf_so3/ipenv.hxx>
 #include <bf_so3/ipobj.hxx>

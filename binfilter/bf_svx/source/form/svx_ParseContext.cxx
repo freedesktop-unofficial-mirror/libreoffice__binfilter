@@ -24,26 +24,14 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include "ParseContext.hxx"
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 #include "dialmgr.hxx"
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
 
 namespace binfilter {
 

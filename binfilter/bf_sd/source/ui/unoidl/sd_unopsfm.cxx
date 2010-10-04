@@ -26,17 +26,11 @@
  ************************************************************************/
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SD_UNOKYWDS_HXX_
 #include <unokywds.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>

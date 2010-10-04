@@ -25,105 +25,47 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include <bf_xmloff/txtprmap.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
-#endif
-#ifndef _UNOOBJ_HXX
 #include "unoobj.hxx"
-#endif
-#ifndef _UNOFRAME_HXX
 #include "unoframe.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
-#ifndef _UNOCOLL_HXX
 #include "unocoll.hxx"
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
-#ifndef _XMLTEXTI_HXX
 #include "xmltexti.hxx"
-#endif
-#ifndef _XMLREDLINEIMPORTHELPER_HXX
 #include "XMLRedlineImportHelper.hxx"
-#endif
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include <bf_xmloff/XMLFilterServiceNames.h>
-#endif
 
-#ifndef _SW_APPLET_IMPL_HXX
 #include <SwAppletImpl.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
 
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
 
 #include <bf_sfx2/frmdescr.hxx>
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

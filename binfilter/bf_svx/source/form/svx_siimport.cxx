@@ -25,33 +25,19 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_SIIMPORT_HXX
 #include "siimport.hxx"
-#endif
 
-#ifndef _SVDORECT_HXX
 #include "svdorect.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 
-#ifndef _SVX_XFLCLIT_HXX
 #include "xflclit.hxx"
-#endif
 
-#ifndef _SVX_XLNCLIT_HXX
 #include "xlnclit.hxx"
-#endif
 
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
 namespace binfilter {
 
 

@@ -26,34 +26,24 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTABLESOURCECONTEXT_HXX_
 #include "XMLIndexTableSourceContext.hxx"
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELD_PART_HPP
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {

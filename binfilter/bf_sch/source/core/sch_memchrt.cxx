@@ -39,9 +39,7 @@
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 
 #include <float.h>
 #include <math.h>

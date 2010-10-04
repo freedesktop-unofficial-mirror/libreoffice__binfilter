@@ -36,9 +36,7 @@
 #include <vcl/sysdata.hxx>
 #endif
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>
-#endif
 
 #include <vcl/window.hxx>
 #include <bf_so3/client.hxx>

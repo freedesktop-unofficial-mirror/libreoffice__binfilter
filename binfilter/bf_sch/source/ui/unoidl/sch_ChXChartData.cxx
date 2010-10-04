@@ -28,18 +28,12 @@
 #include "ChXChartData.hxx"
 
 // header for SvxServiceInfoHelper
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 // header for class OGuard
 // header for rtl_createUuid
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include "chtmodel.hxx"
 #include "memchrt.hxx"

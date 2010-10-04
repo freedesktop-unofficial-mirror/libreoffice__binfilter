@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 namespace binfilter {
 
 XMLPropertyHandler::~XMLPropertyHandler()

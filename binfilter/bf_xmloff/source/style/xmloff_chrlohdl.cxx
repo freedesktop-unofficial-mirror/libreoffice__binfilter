@@ -26,21 +26,15 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARLOCALETYPES_HXX
 #include <chrlohdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

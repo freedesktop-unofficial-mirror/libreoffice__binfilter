@@ -28,80 +28,34 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SW_XDOCUMENT_SETTINGS_HXX
 #include <SwXDocumentSettings.hxx>
-#endif
-#ifndef _SW_XPRINTPREVIEWSETTINGS_HXX_
 #include <SwXPrintPreviewSettings.hxx>
-#endif
-#ifndef _COMPHELPER_MASTERPROPERTSETINFO_HXX_
 #include <comphelper/MasterPropertySetInfo.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_PRINTERINDEPENDENTLAYOUT_HPP_
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _CHCMPRSE_HXX
 #include <chcmprse.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
-#endif
 #include <cmdid.h>
-#ifndef _SVX_ZOOMITEM_HXX
 #include <bf_svx/zoomitem.hxx>
-#endif
-#ifndef _COMPHELPER_TYPEGENERATION_HXX_
 #include <comphelper/TypeGeneration.hxx>
-#endif
-#ifndef _UNOMOD_HXX
 #include <unomod.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 

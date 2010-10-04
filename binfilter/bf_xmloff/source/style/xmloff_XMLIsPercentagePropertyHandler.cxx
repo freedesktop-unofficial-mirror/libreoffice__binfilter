@@ -25,18 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLISPERCENTAGEPROPERTYHANDLER_HXX
 #include "XMLIsPercentagePropertyHandler.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

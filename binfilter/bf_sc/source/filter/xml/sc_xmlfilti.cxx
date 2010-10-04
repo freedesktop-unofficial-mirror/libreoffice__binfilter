@@ -37,12 +37,8 @@
 #include "xmlfilti.hxx"
 #include "xmlimprt.hxx"
 
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 namespace binfilter {

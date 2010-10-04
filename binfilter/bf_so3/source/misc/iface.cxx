@@ -35,9 +35,7 @@
 
 #include "bf_so3/soerr.hxx"
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 

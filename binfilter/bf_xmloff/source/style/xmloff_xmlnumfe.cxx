@@ -30,9 +30,7 @@
 
 #include <bf_svtools/zformat.hxx>
 #include <bf_svtools/numuno.hxx>
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include <bf_svtools/nfsymbol.hxx>
-#endif
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
@@ -49,9 +47,7 @@
 #include <bf_svtools/svstdarr.hxx>
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 #include <set>
 namespace binfilter {

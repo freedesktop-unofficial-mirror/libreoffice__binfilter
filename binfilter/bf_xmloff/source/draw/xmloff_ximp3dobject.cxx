@@ -30,14 +30,10 @@
 #endif
 
 
-#ifndef _XIMP3DOBJECT_HXX
 #include "ximp3dobject.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
@@ -47,13 +43,9 @@
 
 
 
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

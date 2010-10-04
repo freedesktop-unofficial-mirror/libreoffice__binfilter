@@ -53,13 +53,9 @@
 #include "svdograf.hxx"
 #include "sdgcpitm.hxx"
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {

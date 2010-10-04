@@ -25,36 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 
-#ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
-#endif
-#ifndef _SVDPAGV_HXX
 #include "svdpagv.hxx"
-#endif
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 #include "svdstr.hrc"   // Objektname
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
-#ifndef _SVDVITER_HXX
 #include "svdviter.hxx"
-#endif
 
 #include <set>
 

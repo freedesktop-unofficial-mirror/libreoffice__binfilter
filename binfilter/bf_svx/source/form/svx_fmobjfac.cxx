@@ -32,55 +32,33 @@
 
 
 
-#ifndef _FM_FMOBJFAC_HXX
 #include "fmobjfac.hxx"
-#endif
 
-#ifndef _FM_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
 
-#ifndef _FM_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
 #include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
 #include <com/sun/star/frame/XFrame.hpp>
-#endif
 
-#ifndef _SVX_FMSHIMP_HXX
 #include "fmshimp.hxx"
-#endif
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 
 
 
-#ifndef _SVX_FMSERVS_HXX
 #include "fmservs.hxx"
-#endif
 
 
 
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 
 namespace binfilter {
 

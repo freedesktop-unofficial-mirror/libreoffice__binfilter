@@ -26,12 +26,8 @@
  ************************************************************************/
 
 #define _TLBIGINT_INT64
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "sbx.hxx"
 #include "sbxconv.hxx"

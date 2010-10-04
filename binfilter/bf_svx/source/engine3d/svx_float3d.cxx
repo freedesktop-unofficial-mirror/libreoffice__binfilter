@@ -29,13 +29,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
-#endif
 
-#ifndef _SFXDOCKWIN_HXX
 #include <bf_sfx2/dockwin.hxx>
-#endif
 
 #include <bf_svx/f3dchild.hxx>
 

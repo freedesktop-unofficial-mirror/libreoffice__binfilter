@@ -27,9 +27,7 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 #else
 class SfxObjectShell;
 #endif
@@ -38,17 +36,11 @@ class SfxObjectShell;
 #pragma hdrstop
 #endif
 
-#ifndef _FM_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _FM_PAGE_HXX
 #include "fmpage.hxx"
-#endif
 
 #include "svdobj.hxx"
 

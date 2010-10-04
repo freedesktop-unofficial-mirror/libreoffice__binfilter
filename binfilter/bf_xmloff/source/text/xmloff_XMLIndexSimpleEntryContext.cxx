@@ -26,27 +26,17 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXSIMPLEENTRYCONTEXT_HXX_
 #include "XMLIndexSimpleEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 namespace binfilter {

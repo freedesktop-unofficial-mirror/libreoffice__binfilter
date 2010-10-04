@@ -38,32 +38,16 @@
 #define _FESHVIEW_ONLY_INLINE_NEEDED
 #endif
 
-#ifndef _SVDOPATH_HXX
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVDVMARK_HXX //autogen
 #include <bf_svx/svdvmark.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>      // fuer InitFldTypes
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "fesh.hxx"
 #include "doc.hxx"

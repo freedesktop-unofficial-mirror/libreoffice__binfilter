@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include "cfgitem.hxx"
 

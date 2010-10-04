@@ -37,54 +37,32 @@
 
 
 
-#ifndef _EDITSTAT_HXX //autogen
 #include <editstat.hxx>
-#endif
 
-#ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
-#endif
 
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
 
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
-#endif
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include "adjitem.hxx"
-#endif
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 #include "flditem.hxx"
 
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
-#endif
 
-#ifndef _SVX_XFLGRIT_HXX
 #include "xflgrit.hxx"
-#endif
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
 namespace binfilter {
 

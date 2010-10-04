@@ -39,19 +39,13 @@
 #include "document.hxx"
 #include "olinetab.hxx"
 
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
 
-#ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XPRINTAREAS_HPP_
 #include <com/sun/star/sheet/XPrintAreas.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

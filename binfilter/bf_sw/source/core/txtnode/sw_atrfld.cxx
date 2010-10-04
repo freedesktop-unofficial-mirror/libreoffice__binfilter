@@ -30,18 +30,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"          // Update fuer UserFields
 
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
 #include "reffld.hxx"
 #include "ddefld.hxx"
 #include "usrfld.hxx"

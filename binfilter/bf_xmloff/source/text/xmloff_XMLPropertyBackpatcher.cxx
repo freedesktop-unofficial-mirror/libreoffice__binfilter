@@ -26,23 +26,15 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLPROPERTYBACKPATCHER_HXX
 #include "XMLPropertyBackpatcher.hxx"
-#endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
 #include "txtimp.hxx"   // XMLTextImportHelper partially implemented here
-#endif
 namespace binfilter {
 
 

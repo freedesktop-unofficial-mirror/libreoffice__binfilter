@@ -41,12 +41,8 @@
 #include <bf_svtools/zforlist.hxx>
 #include <tools/rcid.h>
 #include <tools/solar.h>
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>

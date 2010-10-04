@@ -30,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
-#endif
 namespace binfilter {
 
 

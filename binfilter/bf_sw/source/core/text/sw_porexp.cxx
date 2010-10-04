@@ -30,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _POREXP_HXX
 #include <porexp.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

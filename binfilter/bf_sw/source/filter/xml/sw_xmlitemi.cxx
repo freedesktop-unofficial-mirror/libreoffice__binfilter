@@ -32,80 +32,38 @@
 
 #include <hintids.hxx>
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
-#ifndef _XMLIMPIT_HXX
 #include "xmlimpit.hxx"
-#endif
-#ifndef _XMLITEM_HXX
 #include "xmlitem.hxx"
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX
 #include <bf_xmloff/families.hxx>
-#endif
 
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
 
 #ifndef _XMLOFF_XMLTABI_HXX
 //#include <bf_xmloff/xmltabi.hxx>
 #endif
 
-#ifndef _XMLBRSHI_HXX
 #include "xmlbrshi.hxx"
-#endif
 
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

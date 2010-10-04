@@ -29,19 +29,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 #include <sot/formats.hxx>
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include "linkmgr.hxx"
 #include "fileobj.hxx"

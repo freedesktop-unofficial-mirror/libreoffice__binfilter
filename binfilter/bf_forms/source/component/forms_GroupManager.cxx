@@ -25,21 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_GROUPMANAGER_HXX_
 #include "GroupManager.hxx"
-#endif
-#ifndef _FRM_DATABASEFORM_HXX_
 #include "DatabaseForm.hxx"
-#endif
 
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #include "property.hrc"
 

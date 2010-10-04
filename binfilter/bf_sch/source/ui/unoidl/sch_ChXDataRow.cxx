@@ -32,27 +32,15 @@
 // header for SvxServiceInfoHelper
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 // header for SvxUnoTextRangeBase
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
 #include "schattr.hxx"
 
@@ -61,29 +49,15 @@
 #include <bf_svx/brshitem.hxx>
 #endif
 // header for SVX_SYMBOLTYPE_BRUSHITEM
-#ifndef _SVX_TAB_LINE_HXX
 #include <bf_svx/tabline.hxx>
-#endif
-#ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISASSIGN_HPP_
 #include <com/sun/star/chart/ChartAxisAssign.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
 // header for SvxChartDataDescrItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -91,9 +65,7 @@
 #endif
 
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;

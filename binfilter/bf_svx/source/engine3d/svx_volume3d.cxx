@@ -26,14 +26,10 @@
  ************************************************************************/
 
 
-#ifndef _POLY3D_HXX
 #include "poly3d.hxx"
-#endif
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

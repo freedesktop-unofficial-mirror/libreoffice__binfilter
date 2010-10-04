@@ -25,26 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSCRIPTCONTEXTFACTORY_HXX
 #include "XMLScriptContextFactory.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 namespace binfilter {
 

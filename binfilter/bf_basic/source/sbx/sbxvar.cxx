@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include "bf_svtools/brdcst.hxx"
 
 #include "sbx.hxx"

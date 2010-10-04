@@ -25,32 +25,20 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
 
 #include <com/sun/star/io/XActiveDataSource.hpp>
 
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 
-#ifndef _SFX_NAMECONT_HXX
 #include "namecont.hxx"
-#endif
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #include "scriptcont.hxx"
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _RTL_DIGEST_H_
 #include <rtl/digest.h>
-#endif
 
 // For password functionality
 

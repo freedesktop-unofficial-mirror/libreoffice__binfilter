@@ -30,20 +30,12 @@
 
 #include <bf_svtools/intitem.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SFXMETRICITEM_HXX
 #include <bf_svtools/metitem.hxx>
-#endif
 
 namespace binfilter
 {

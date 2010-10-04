@@ -25,32 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
 #include "XMLTextPropertySetContext.hxx"
-#endif
-#ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #include "XMLTextColumnsContext.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #include "XMLBackgroundImageContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLSECTIONFOOTNOTECONFIGIMPORT_HXX
 #include "XMLSectionFootnoteConfigImport.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLTABI_HXX
 #include "xmltabi.hxx"
-#endif
-#ifndef _XMLOFF_TXTDROPI_HXX
 #include "txtdropi.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

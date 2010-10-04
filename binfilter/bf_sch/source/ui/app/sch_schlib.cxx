@@ -30,17 +30,11 @@
 #endif
 
 
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
 
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
 #include <sot/formats.hxx>
 #include "schmod.hxx"

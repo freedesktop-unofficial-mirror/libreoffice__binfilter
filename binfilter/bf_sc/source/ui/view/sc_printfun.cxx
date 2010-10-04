@@ -47,12 +47,8 @@
 #include <bf_svx/sizeitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_sfx2/printer.hxx>
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
 
 #ifdef MAC
 #define RGBColor MAC_RGBColor

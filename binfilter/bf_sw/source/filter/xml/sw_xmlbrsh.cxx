@@ -33,27 +33,17 @@
 #include "hintids.hxx"
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
 #include <bf_xmloff/xmlimp.hxx>
 #include <bf_xmloff/xmltkmap.hxx>
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include <bf_xmloff/XMLBase64ImportContext.hxx>
-#endif
 
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
 #include "xmlbrshi.hxx"
 #include "xmlbrshe.hxx"

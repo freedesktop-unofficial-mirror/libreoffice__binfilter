@@ -29,27 +29,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 
 // #100617# FRound
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

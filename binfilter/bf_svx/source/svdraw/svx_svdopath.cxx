@@ -41,17 +41,11 @@
 
 
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
-#endif
 
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
 namespace binfilter {
 

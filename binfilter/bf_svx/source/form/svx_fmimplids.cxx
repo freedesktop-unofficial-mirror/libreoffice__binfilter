@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ IMPLEMENT_IMPLEMENTATIONID_HELPER_VSMALL(form, OImplementationIds)

@@ -29,12 +29,8 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
 
@@ -51,13 +47,9 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <xfillit0.hxx>
-#endif
 
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include <xflgrit.hxx>
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW

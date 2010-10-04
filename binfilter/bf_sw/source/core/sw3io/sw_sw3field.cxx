@@ -34,36 +34,20 @@
 
 #include <stdio.h>
 
-#ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>
-#endif
 
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
 #endif
 
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "sw3imp.hxx"
@@ -76,9 +60,7 @@
 #include "usrfld.hxx"
 #include "dbfld.hxx"
 #include "txtfld.hxx"
-#ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
-#endif
 #include "ndtxt.hxx"
 
 #include "poolfmt.hxx"      // fuer InSetExpField

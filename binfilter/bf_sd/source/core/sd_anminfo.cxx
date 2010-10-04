@@ -26,12 +26,8 @@
  ************************************************************************/
 
 #include "bf_svx/xtable.hxx"
-#ifndef _SVDSURO_HXX //autogen
 #include <bf_svx/svdsuro.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 #include <bf_svtools/urihelper.hxx>
 
 #ifdef _MSC_VER
@@ -44,9 +40,7 @@
 #include "drawdoc.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

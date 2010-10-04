@@ -29,37 +29,21 @@
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SV_GDIMTF_HXX
 #include <vcl/gdimtf.hxx>
-#endif
-#ifndef _IPOBJ_HXX
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include <tools/poly.hxx>
 #include <vcl/outdev.hxx>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
 namespace binfilter {
 
 

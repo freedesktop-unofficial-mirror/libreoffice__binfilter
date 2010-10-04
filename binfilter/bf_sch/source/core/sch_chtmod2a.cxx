@@ -32,16 +32,10 @@
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _SVDOCIRC_HXX //autogen
 #include <bf_svx/svdocirc.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
@@ -52,9 +46,7 @@
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #include <bf_svx/fwdtitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 #ifndef _CHTMODEL_HXX
 #endif
 
@@ -68,9 +60,7 @@
 #include "globfunc.hxx"
 
 
-#ifndef _SVX_XLINIIT_HXX //autogen
 #include <bf_svx/xlineit.hxx>
-#endif
 // header for Line
 
 #include "chaxis.hxx"

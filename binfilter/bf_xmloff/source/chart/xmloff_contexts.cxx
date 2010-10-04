@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLMETAI_HXX
 #include "xmlmetai.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
 
 //  #ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 //  #include "XMLChartStyleContext.hxx"

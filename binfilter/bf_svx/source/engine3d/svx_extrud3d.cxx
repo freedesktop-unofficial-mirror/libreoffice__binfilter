@@ -28,27 +28,17 @@
 #include "svdstr.hrc"
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_EXTRUD3D_HXX
 #include "extrud3d.hxx"
-#endif
 
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
 
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 
 

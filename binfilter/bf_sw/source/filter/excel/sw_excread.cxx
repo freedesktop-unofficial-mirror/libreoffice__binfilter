@@ -32,29 +32,15 @@
 #ifdef DBG_UTIL
 #include <stdio.h>
 #endif
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _FLTGLBLS_HXX
 #include <fltglbls.hxx>
-#endif
-#ifndef _EXLPAR_HXX
 #include <exlpar.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
 
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>           // ...Percent()
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
-#endif
 namespace binfilter {
 
 

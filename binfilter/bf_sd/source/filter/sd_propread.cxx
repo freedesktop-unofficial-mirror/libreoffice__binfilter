@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _PROPREAD_HXX_
 #include <propread.hxx>
-#endif
 #include "rtl/tencinfo.h"
 #include "rtl/textenc.h"
 namespace binfilter {

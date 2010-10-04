@@ -30,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
 #include "swfntcch.hxx"
 #include "fmtcol.hxx"
 namespace binfilter {

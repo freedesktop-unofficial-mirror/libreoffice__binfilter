@@ -27,159 +27,65 @@
 
 #define _TRANSPRT_CXX "$Revision: 1.6 $"
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGENOTIFIER_HPP_
 #include <com/sun/star/beans/XPropertiesChangeNotifier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
 #include <com/sun/star/io/XActiveDataControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAMLISTENER_HPP_
 #include <com/sun/star/io/XStreamListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONABORT_HPP_
 #include <com/sun/star/task/XInteractionAbort.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONAPPROVE_HPP_
 #include <com/sun/star/task/XInteractionApprove.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
 #include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_CHAOSPROGRESSSTART_HPP_
 #include <com/sun/star/ucb/CHAOSProgressStart.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMAND_HPP_
 #include <com/sun/star/ucb/Command.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_DOCUMENTHEADERFIELD_HPP_
 #include <com/sun/star/ucb/DocumentHeaderField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_INTERACTIVECHAOSEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveCHAOSException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_INSERTCOMMANDARGUMENT_HPP_
 #include <com/sun/star/ucb/InsertCommandArgument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENCOMMANDARGUMENT2_HPP_
 #include <com/sun/star/ucb/OpenCommandArgument2.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENMODE_HPP_
 #include <com/sun/star/ucb/OpenMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_POSTCOMMANDARGUMENT_HPP_
 #include <com/sun/star/ucb/PostCommandArgument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 
-#ifndef _VOS_MACROS_HXX_
 #include <vos/macros.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
-#ifndef _EINF_HXX
 #include <tools/errinf.hxx>
-#endif
-#ifndef _TOOLS_INETMSG_HXX
 #include <tools/inetmsg.hxx>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <bf_so3/binding.hxx>
-#endif
-#ifndef _BINDDATA_HXX
 #include <binddata.hxx>
-#endif
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
-#ifndef _TRANSUNO_HXX
 #include <transuno.hxx>
-#endif
-#ifndef _SO2DEFS_HXX
 #include <bf_so3/so2defs.hxx>
-#endif
 
 #ifndef CONTENT_TYPE_STR_APP_WWWFORM
 #define CONTENT_TYPE_STR_APP_WWWFORM "application/x-www-form-urlencoded"

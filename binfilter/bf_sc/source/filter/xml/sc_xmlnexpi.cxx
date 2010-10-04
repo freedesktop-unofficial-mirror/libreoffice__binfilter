@@ -38,16 +38,12 @@
 #include "xmlimprt.hxx"
 #include "docuno.hxx"
 //#include "document.hxx"
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <com/sun/star/sheet/XNamedRanges.hpp>
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
-#ifndef _COM_SUN_STAR_SHEET_XNAMEDRANGE_HPP_
 #include <com/sun/star/sheet/XNamedRange.hpp>
-#endif
 namespace binfilter {
 
 #define SC_NAMEDRANGES "NamedRanges"

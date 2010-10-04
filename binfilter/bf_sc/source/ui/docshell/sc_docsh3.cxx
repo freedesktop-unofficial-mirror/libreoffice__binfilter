@@ -38,9 +38,7 @@
 #include <bf_svx/flstitem.hxx>
 #include <bf_svx/paperinf.hxx>
 
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 
 //#include <bf_svx/postdlg.hxx>
 #include <bf_svx/sizeitem.hxx>

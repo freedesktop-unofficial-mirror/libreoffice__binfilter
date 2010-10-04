@@ -27,29 +27,17 @@
 
 #include <stdio.h>
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 
 #include <map>
 
-#ifndef _XMLEOHLP_HXX
 #include "xmleohlp.hxx"
-#endif
 namespace binfilter {
 
 // -----------

@@ -44,9 +44,7 @@
 |*  Letzte Aenderung    MA 05. Sep. 93
 |*
 |*************************************************************************/
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 /*N*/ SwRect::SwRect( const Rectangle &rRect ) :
 /*N*/   nX( rRect.Left() ),

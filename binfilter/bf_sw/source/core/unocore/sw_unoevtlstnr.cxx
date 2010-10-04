@@ -30,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _UNOEVTLSTNR_HXX
 #include <unoevtlstnr.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
 #include <com/sun/star/lang/EventObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -34,125 +34,59 @@
 
 #include <limits.h>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
 #include <com/sun/star/table/XCellRange.hpp>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _XMLOFF_FAMILIES_HXX
 #include <bf_xmloff/families.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
 
-#ifndef _SVX_PROTITEM_HXX
 #include <bf_svx/protitem.hxx>
-#endif
 
-#ifndef _POOLFMT_HXX
 #include "poolfmt.hxx"
-#endif
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _FMTFORDR_HXX
 #include "fmtfordr.hxx"
-#endif
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
-#ifndef _SWTABLE_HXX
 #include "swtable.hxx"
-#endif
-#ifndef _SWTBLFMT_HXX
 #include "swtblfmt.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _PAM_HXX
 #include "pam.hxx"
-#endif
-#ifndef _UNOTBL_HXX
 #include "unotbl.hxx"
-#endif
-#ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
-#endif
-#ifndef _CELLATR_HXX
 #include "cellatr.hxx"
-#endif
-#ifndef _SWDDETBL_HXX
 #include "swddetbl.hxx"
-#endif
-#ifndef _DDEFLD_HXX
 #include "ddefld.hxx"
-#endif
 
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>   // for cTokenSeparator
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _NDTXT_HXX
 #include "ndtxt.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

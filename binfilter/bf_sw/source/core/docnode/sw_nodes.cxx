@@ -32,45 +32,21 @@
 
 #include <stdlib.h>
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
 #include <swddetbl.hxx>
-#endif
-#ifndef _FRAME_HXX
 #include <frame.hxx>
-#endif
 namespace binfilter {//STRIP009
 /*N*/ extern FASTBOOL CheckNodesRange( const SwNodeIndex& rStt,
 /*N*/                           const SwNodeIndex& rEnd, FASTBOOL bChkSection );

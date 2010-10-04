@@ -31,21 +31,15 @@
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_ANIMIMP_HXX
 #include "animimp.hxx"
-#endif
 
 
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

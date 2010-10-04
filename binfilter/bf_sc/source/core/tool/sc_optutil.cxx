@@ -36,9 +36,7 @@
 #include "optutil.hxx"
 #include "global.hxx"       // for pSysLocale
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------

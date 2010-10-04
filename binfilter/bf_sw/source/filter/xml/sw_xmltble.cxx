@@ -32,118 +32,56 @@
 
 #include <hintids.hxx>
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_XCELL_HPP_
 #include <com/sun/star/table/XCell.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef XMLOFF_NUMEHELP_HXX
 #include <bf_xmloff/numehelp.hxx>
-#endif
 
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include "swtable.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _PAM_HXX
 #include "pam.hxx"
-#endif
-#ifndef _FRMFMT_HXX
 #include "frmfmt.hxx"
-#endif
-#ifndef _WRTSWTBL_HXX
 #include "wrtswtbl.hxx"
-#endif
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
-#ifndef _CELLATR_HXX
 #include "cellatr.hxx"
-#endif
-#ifndef _DDEFLD_HXX
 #include "ddefld.hxx"
-#endif
-#ifndef _SWDDETBL_HXX
 #include "swddetbl.hxx"
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
 
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>   // for cTokenSeperator
-#endif
 
-#ifndef _UNOOBJ_HXX
 #include "unoobj.hxx"
-#endif
-#ifndef _UNOTBL_HXX
 #include "unotbl.hxx"
-#endif
 
-#ifndef _XMLTEXTE_HXX
 #include "xmltexte.hxx"
-#endif
-#ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _SWRECT_HXX
 #include <bf_sw/swrect.hxx>
-#endif
 namespace binfilter {
 
 

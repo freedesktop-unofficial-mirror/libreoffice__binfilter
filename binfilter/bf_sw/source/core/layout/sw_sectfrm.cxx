@@ -30,29 +30,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
 
-#ifndef _HINTS_HXX //autogen
 #include <hints.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
-#endif
 #include "sectfrm.hxx"
 #include "section.hxx"      // SwSection
 #include "frmtool.hxx"      // StackHack
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"          // SwDoc
 #include "pagefrm.hxx"      // SwPageFrm
@@ -64,15 +52,9 @@
 #include "ftnfrm.hxx"       // SwFtnFrm
 #include "dbg_lay.hxx"
 #include "frmsh.hxx"
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _FMTFTNTX_HXX //autogen
 #include <fmtftntx.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR_SORT( SwDestroyList, SwSectionFrmPtr )

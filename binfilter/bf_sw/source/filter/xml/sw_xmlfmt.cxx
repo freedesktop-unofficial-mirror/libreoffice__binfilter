@@ -30,124 +30,56 @@
 #pragma hdrstop
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #ifndef _SVSTDARR_STRINGSSORT_DECL
 #define _SVSTDARR_STRINGSSORT
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _FORMAT_HXX //autogen wg. SwFmt
 #include <format.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _FMTCOL_HXX //autogen wg. SwTxtFmtColl
 #include <fmtcol.hxx>
-#endif
-#ifndef _HINTS_HXX //autogen wg. SwFmtChg
 #include <hints.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
-#ifndef _POOLFMT_HXX //autogen wg. RES_POOL_CHRFMT_TYPE
 #include <poolfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen wg. SwCharFmt
 #include <charfmt.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen wg. SwFrmFmt
 #include <frmfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
 #include "docary.hxx"
-#ifndef _UNOSTYLE_HXX
 #include "unostyle.hxx"
-#endif
-#ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
-#endif
-#ifndef _PAGEDESC_HXX
 #include "pagedesc.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLITEM_HXX
 #include "xmlitem.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_TXTSTYLI_HXX
 #include <bf_xmloff/txtstyli.hxx>
-#endif
-#ifndef _XMLOFF_TXTIMP_HXX
 #include <bf_xmloff/txtimp.hxx>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX
 #include <bf_xmloff/families.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTMASTERSTYLESCONTEXT_HXX
 #include <bf_xmloff/XMLTextMasterStylesContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX
 #include <bf_xmloff/XMLTextShapeStyleContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include <bf_xmloff/XMLGraphicsDefaultStyle.hxx>
-#endif
 
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
-#ifndef _CELLATR_HXX
 #include "cellatr.hxx"
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 

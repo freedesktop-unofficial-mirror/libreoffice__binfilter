@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************

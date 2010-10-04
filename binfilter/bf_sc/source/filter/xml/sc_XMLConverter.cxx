@@ -35,30 +35,16 @@
 
 //___________________________________________________________________
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
-#ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"
-#endif
-#ifndef SC_DOCUNO_HXX
 #include "docuno.hxx"
-#endif
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
 namespace binfilter {
 

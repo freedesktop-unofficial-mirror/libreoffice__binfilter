@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DOCUMENT_EVENTOBJECT_HPP_
 #include <com/sun/star/document/EventObject.hpp>
-#endif
 
 #include "unoshcol.hxx"
 #include "unoprov.hxx"

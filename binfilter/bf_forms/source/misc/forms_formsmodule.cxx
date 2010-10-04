@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
-#endif
 
-#ifndef _COMPHELPER_SEQUENCE_HXX_
 #include <comphelper/sequence.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

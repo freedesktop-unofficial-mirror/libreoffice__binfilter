@@ -37,12 +37,8 @@
 #include "scitems.hxx"
 #include <tools/urlobj.hxx>
 #include <math.h>
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <bf_svtools/PasswordHelper.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "patattr.hxx"
 #include "docpool.hxx"

@@ -34,16 +34,12 @@
 #include "cntfrm.hxx"
 #include "node.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "frmtool.hxx"
 
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 #include "tabfrm.hxx"
 #include "sectfrm.hxx"
 #include "flyfrms.hxx"

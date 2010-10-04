@@ -43,9 +43,7 @@
 
 
 
-#ifndef _MyEDITVIEW_HXX
 #include "editview.hxx"
-#endif
 
 namespace binfilter {
 

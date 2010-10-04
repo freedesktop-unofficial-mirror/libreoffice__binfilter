@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include <NamedBoolPropertyHdl.hxx>
-#endif
 
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 

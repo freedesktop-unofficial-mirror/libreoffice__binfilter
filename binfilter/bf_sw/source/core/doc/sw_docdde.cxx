@@ -32,51 +32,25 @@
 
 #include <stdlib.h>
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #define _SVSTDARR_STRINGS
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>           // LinkManager
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>           // fuer Server-Funktionalitaet
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer die Bookmarks
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>          // fuer SwSectionFmt
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>          // fuer SwTable
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 namespace binfilter {
 
 

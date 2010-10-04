@@ -25,25 +25,15 @@
  *
  ************************************************************************/
 
-#ifndef _CHXCHART_AXIS_HXX
 #include "ChXChartAxis.hxx"
-#endif
 #include "schattr.hxx"
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
-#ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
-#endif
 
 // header for SvxDoubleItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -51,36 +41,24 @@
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 #include "charttyp.hxx"
 // header for SvxUnoTextRangeBase
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISARRANGEORDERTYPE_HPP_
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
-#endif
 
 #include "chaxis.hxx"
 #include "mapprov.hxx"
 #include "pairs.hxx"
 
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 
 namespace binfilter {
 

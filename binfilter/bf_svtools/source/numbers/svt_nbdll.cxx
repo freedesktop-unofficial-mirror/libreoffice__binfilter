@@ -30,13 +30,9 @@
 
 #ifdef WIN
 
-#ifndef _SVWIN_H
 #include <svwin.h>
-#endif
 
-#ifndef _SYSDEP_HXX
 #include <sysdep.hxx>
-#endif
 
 namespace binfilter
 {

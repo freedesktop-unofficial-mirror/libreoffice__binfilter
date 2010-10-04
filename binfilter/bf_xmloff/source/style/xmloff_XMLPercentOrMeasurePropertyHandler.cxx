@@ -27,17 +27,11 @@
 
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLPERCENTORMEASUREPROPERTYHANDLER_HXX
 #include "XMLPercentOrMeasurePropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

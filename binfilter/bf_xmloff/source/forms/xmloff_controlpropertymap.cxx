@@ -25,23 +25,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 #ifndef __SGI_STL_ALGORITHM
 #include <algorithm>
 #endif
 
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
-#endif
 
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #include "controlpropertymap.hxx"
-#endif
 
 #include <string.h>
 namespace binfilter {

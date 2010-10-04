@@ -25,16 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
-#endif
 #ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HDL_
 #include <com/sun/star/text/XTextField.hdl>
 #endif
@@ -48,13 +42,9 @@
 
 #define ITEMID_TABSTOP EE_PARA_TABS
 
-#ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
-#endif
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 #include <rtl/uuid.h>
@@ -67,9 +57,7 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
 #include "flditem.hxx"
 #include "unoshprp.hxx"

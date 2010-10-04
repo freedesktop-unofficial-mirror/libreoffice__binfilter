@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONEXPORT_HXX_
 #include "XMLSectionExport.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
@@ -43,58 +39,36 @@
 
 
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
 #include <com/sun/star/text/SectionFileLink.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEX_HPP_
 #include <com/sun/star/text/XDocumentIndex.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
 #include <com/sun/star/text/BibliographyDataField.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_TXTFLDE_HXX
 #include "txtflde.hxx"
-#endif
 
 namespace binfilter {
 

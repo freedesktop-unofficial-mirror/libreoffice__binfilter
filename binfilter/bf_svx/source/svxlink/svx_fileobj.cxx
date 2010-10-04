@@ -33,21 +33,11 @@
 #endif
 
 
-#ifndef _SOT_FORMATS_HXX
 #include <sot/formats.hxx>
-#endif
-#ifndef _LNKBASE_HXX
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
-#endif
 
 #include "fileobj.hxx"
 #include "linkmgr.hxx"

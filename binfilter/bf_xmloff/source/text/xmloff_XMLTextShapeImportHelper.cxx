@@ -25,29 +25,15 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLTIMP_HXX_
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 #include "XMLAnchorTypePropHdl.hxx"
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
 
-#ifndef _XMLTEXTSHAPEIMPORTHELPER_HXX
 #include "XMLTextShapeImportHelper.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

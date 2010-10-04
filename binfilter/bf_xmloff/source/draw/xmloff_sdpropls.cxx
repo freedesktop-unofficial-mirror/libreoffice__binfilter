@@ -29,158 +29,82 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_LINESTYLE_HPP_
 #include <com/sun/star/drawing/LineStyle.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
 #include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_RECTANGLEPOINT_HPP_
 #include <com/sun/star/drawing/RectanglePoint.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_BitmapMode_HPP_
 #include <com/sun/star/drawing/BitmapMode.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include <EnumPropertyHdl.hxx>
-#endif
 
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include <NamedBoolPropertyHdl.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 #include "numithdl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 #include "XMLBitmapRepeatOffsetPropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFILLBITMAPSIZEPROPERTYHANDLER_HXX
 #include "XMLFillBitmapSizePropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HPP_
 #include <com/sun/star/drawing/TextAnimationKind.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HPP_
 #include <com/sun/star/drawing/TextAnimationDirection.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HPP_
 #include <com/sun/star/drawing/TextHorizontalAdjust.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HPP_
 #include <com/sun/star/drawing/TextVerticalAdjust.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HPP_
 #include <com/sun/star/drawing/TextFitToSizeType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextHorzPos.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextVertPos.hpp>
-#endif
 
-#ifndef _XMLOFF_CONTROLBORDERHDL_HXX_
 #include "ControlBorderHandler.hxx"
-#endif
 
 
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
 
-#ifndef _PROPIMP0_HXX
 #include "propimp0.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <xmlnmspe.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_NORMALSKIND_HPP_
 #include <com/sun/star/drawing/NormalsKind.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREPROJECTIONMODE_HPP_
 #include <com/sun/star/drawing/TextureProjectionMode.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREKIND_HPP_
 #include <com/sun/star/drawing/TextureKind.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREMODE_HPP_
 #include <com/sun/star/drawing/TextureMode.hpp>
-#endif
 
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLCLIPPROPERTYHANDLER_HXX
 #include "XMLClipPropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLISPERCENTAGEPROPERTYHANDLER_HXX
 #include "XMLIsPercentagePropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLPERCENTORMEASUREPROPERTYHANDLER_HXX
 #include "XMLPercentOrMeasurePropertyHandler.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

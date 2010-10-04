@@ -40,57 +40,29 @@
 #include "xmlannoi.hxx"
 #include "document.hxx"
 #include "cellsuno.hxx"
-#ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #include "XMLTableShapeImportHelper.hxx"
-#endif
-#ifndef _SC_XMLTEXTPCONTEXT_HXX
 #include "XMLTextPContext.hxx"
-#endif
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
 
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 // core implementation
-#ifndef SC_AREALINK_HXX
 #include "arealink.hxx"
-#endif
 // core implementation
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef _SCERRORS_HXX
 #include "scerrors.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmluconv.hxx>
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 #include <bf_svtools/zforlist.hxx>
 
 
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCONDITION_HPP_
 #include <com/sun/star/sheet/XSheetCondition.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_text_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 #define SC_CURRENCYSYMBOL   "CurrencySymbol"

@@ -32,20 +32,14 @@
 #include "svdpool.hxx"
 #include "svdocapt.hxx"
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 
 
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include "xlnedwit.hxx"
-#endif
 
 
 
@@ -53,80 +47,44 @@
 
 
 
-#ifndef _EEITEMID_HXX
 #include <eeitemid.hxx>
-#endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
 
 
 
 //#include <charscaleitem.hxx>
 
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include <xlnstcit.hxx>
-#endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
 
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
 
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
 
 
-#ifndef _SVX_XFLTRIT_HXX //autogen
 #include <xfltrit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <xlnedcit.hxx>
-#endif
 
-#ifndef _SVX_ADJITEM_HXX
 #include <adjitem.hxx>
-#endif
 
-#ifndef _SVX_XFLBCKIT_HXX
 #include "xflbckit.hxx"
-#endif
 
 
-#ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
-#endif
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
-#endif
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

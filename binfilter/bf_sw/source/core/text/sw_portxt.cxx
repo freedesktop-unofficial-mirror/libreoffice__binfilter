@@ -35,20 +35,12 @@
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>    // SwTxtGuess, Zeilenumbruch
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
-#endif
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1

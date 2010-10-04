@@ -30,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _CHECKIT_HXX
 #include <checkit.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;

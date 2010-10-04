@@ -32,50 +32,24 @@
 
 // #include <math.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _SOUND_HXX //autogen
 #include <vcl/sound.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_SETTINGS_HXX //autogen
 #include <vcl/settings.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NUMBERFORMATCODEWRAPPER_HXX
 #include <unotools/numberformatcodewrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_KNUMBERFORMATUSAGE_HPP_
 #include <com/sun/star/i18n/KNumberFormatUsage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_KNUMBERFORMATTYPE_HPP_
 #include <com/sun/star/i18n/KNumberFormatType.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 
 #define _ZFORLIST_CXX
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 #include <bf_svtools/zforlist.hxx>
 #undef _ZFORLIST_CXX
 
@@ -88,12 +62,8 @@
 #include "listener.hxx"
 #include <bf_svtools/smplhint.hxx>
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <unotools/misccfg.hxx>
 

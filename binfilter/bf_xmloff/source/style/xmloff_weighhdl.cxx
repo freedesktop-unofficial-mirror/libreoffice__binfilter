@@ -25,33 +25,23 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTWEIGHTTYPES_HXX
 #include <weighhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #ifndef _INC_LIMITS
 #include <limits.h>
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/unohlp.hxx>
-#endif
 
 namespace binfilter {
 

@@ -27,39 +27,27 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _SVDOOLE2_HXX
 #include "svdoole2.hxx"
-#endif
 
 #include <bf_so3/outplace.hxx>
 
 #ifndef SVX_LIGHT
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 #ifndef _SFX_FRMDESCRHXX
 #include <bf_sfx2/frmdescr.hxx>
 #endif
 #endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 
-#ifndef _SVX_SHAPEIMPL_HXX
 #include "shapeimpl.hxx"
-#endif
 
 #include "unoshprp.hxx"
 
 #include "svdstr.hrc"
 
-#ifndef _FRAMEOBJ_HXX
 #include <bf_sfx2/frameobj.hxx>
-#endif
 
 namespace binfilter {
 

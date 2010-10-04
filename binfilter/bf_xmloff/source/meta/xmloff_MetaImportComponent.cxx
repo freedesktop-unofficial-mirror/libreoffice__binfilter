@@ -25,18 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_METAIMPORTCOMPONENT_HXX
 #include "MetaImportComponent.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLMETAI_HXX
 #include "xmlmetai.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -25,24 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSTATES_HPP_
 #include <com/sun/star/beans/XMultiPropertyStates.hpp>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_TEXTMASTERPAGECONTEXT_HXX_
 #include "XMLTextMasterPageContext.hxx"
-#endif
-#ifndef _XMLOFF_TEXTHEADERFOOTERCONTEXT_HXX_
 #include "XMLTextHeaderFooterContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #include "PageMasterImportContext.hxx"
-#endif
 namespace binfilter {
 
 

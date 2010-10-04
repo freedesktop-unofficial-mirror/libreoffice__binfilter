@@ -29,12 +29,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
 
 // -------------------------------------------------------------------
 
@@ -87,23 +83,13 @@ typedef int (FAR PASCAL *FNw4wf)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
 
 // -------------------------------------------------------------------
 
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _W4WFLT_HXX
 #include <w4wflt.hxx>
-#endif
 
-#ifndef _SWERROR_H
 #include <swerror.h>
-#endif
 
 namespace binfilter {//STRIP009
 

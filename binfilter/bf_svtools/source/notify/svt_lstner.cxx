@@ -30,9 +30,7 @@
 #ifndef GCC
 #endif
 
-#ifndef DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <bf_svtools/hint.hxx>
 #include <bf_svtools/brdcst.hxx>

@@ -30,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <tstpitem.hxx>
 #include <fontitem.hxx>
@@ -55,23 +51,17 @@
 #include <emphitem.hxx>
 #include <charreliefitem.hxx>
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 #include <editdoc.hxx>
 #include <eerdll.hxx>
 #include <eerdll2.hxx>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include <tools/shl.hxx>
 
-#ifndef _COM_SUN_STAR_TEXT_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
-#endif
 
 #include <stdlib.h> // qsort
 namespace binfilter {

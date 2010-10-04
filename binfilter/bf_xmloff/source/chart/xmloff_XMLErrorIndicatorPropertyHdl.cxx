@@ -26,15 +26,9 @@
  ************************************************************************/
 #include "XMLErrorIndicatorPropertyHdl.hxx"
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HPP_
 #include <com/sun/star/chart/ChartErrorIndicatorType.hpp>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

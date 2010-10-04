@@ -30,13 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _REFRESH_LISTENER_CONTAINER_HXX_
 #include <RefreshListenerContainer.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHLISTENER_HPP_
 #include <com/sun/star/util/XRefreshListener.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

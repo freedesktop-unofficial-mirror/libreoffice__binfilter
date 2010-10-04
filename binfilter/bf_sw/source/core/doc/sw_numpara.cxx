@@ -35,12 +35,8 @@
 #include "docsh.hxx"
 #include "ndtxt.hxx"
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 #include "numpara.hxx"
 #include "number.hxx"
 
@@ -48,9 +44,7 @@
 
 #ifdef JP_DEBUG
 
-#ifndef _SVWINDOW_HXX
 #include <svwindow.hxx>
-#endif
 namespace binfilter {
 
 class GrfWindow : public WorkWindow, public Timer

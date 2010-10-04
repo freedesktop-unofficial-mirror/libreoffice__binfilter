@@ -29,9 +29,7 @@
 
 
 #include <string.h>
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 #include <tools/stream.hxx>
 #include <vcl/gdimtf.hxx>
 #include <tools/color.hxx>

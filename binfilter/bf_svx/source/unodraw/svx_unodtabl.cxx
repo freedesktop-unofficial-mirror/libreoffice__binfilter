@@ -25,26 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
 
 
 
 #include <vector>
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
 
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 namespace binfilter {
 

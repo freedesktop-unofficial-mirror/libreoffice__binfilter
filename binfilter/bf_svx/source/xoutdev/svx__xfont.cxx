@@ -29,37 +29,27 @@
 #include <vcl/virdev.hxx>
 #include <math.h>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xoutx.hxx"
 
 // #101498#
-#ifndef _OUTLINER_HXX
 #include "outliner.hxx"
-#endif
 
 
 #ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-#endif
 
 
 #ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 #endif
 
-#ifndef _UNO_LINGU_HXX
 #include "unolingu.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;

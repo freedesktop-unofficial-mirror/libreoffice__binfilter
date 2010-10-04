@@ -29,9 +29,7 @@
 
 
 #include "winmtf.hxx"
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {

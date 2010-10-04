@@ -25,19 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _E3D_POLYGON3D_HXX
 #include "polygn3d.hxx"
-#endif
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
 
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPolygonObj, E3dCompoundObject);

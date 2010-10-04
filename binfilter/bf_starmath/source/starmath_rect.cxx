@@ -29,12 +29,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 
 #include "rect.hxx"

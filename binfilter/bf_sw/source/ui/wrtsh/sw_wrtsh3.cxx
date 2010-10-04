@@ -30,14 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "wrtsh.hxx"
 #include "wrtsh.hrc"

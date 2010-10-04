@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #include "bf_so3/linkmgr.hxx"
 
 #include <vcl/msgbox.hxx>

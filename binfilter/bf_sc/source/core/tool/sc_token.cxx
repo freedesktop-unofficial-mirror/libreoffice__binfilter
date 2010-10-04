@@ -41,9 +41,7 @@
 #endif
 #include <string.h>
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include "compiler.hxx"
 #include "rechead.hxx"

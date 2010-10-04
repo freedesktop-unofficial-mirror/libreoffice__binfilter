@@ -29,19 +29,13 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
 
 #endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <tools/urlobj.hxx>
 #include <vcl/virdev.hxx>
@@ -54,21 +48,13 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <xlineit0.hxx>
-#endif
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <xlnclit.hxx>
-#endif
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX //autogen
 #include <xlndsit.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -30,16 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _ENVIMG_HXX
 #include <envimg.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 namespace binfilter {
 
 #ifdef WIN

@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XOUTX_HXX
 #include <xoutx.hxx>
-#endif
 
 #include "txtrange.hxx"
 #include <math.h>

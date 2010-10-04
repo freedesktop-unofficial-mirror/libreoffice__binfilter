@@ -38,9 +38,7 @@
 #include <bf_svtools/colorcfg.hxx>
 #include <bf_svx/outlobj.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdocapt.hxx>

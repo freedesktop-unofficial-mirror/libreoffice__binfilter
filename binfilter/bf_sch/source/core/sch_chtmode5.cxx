@@ -31,16 +31,10 @@
 #endif
 
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -52,9 +46,7 @@
 
 #ifndef _CHTMODEL_HXX
 #endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 #include <math.h>
 #include <float.h>
 #include "glob.hrc"

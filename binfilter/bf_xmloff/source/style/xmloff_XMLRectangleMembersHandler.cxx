@@ -25,26 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 #ifndef _COM_SUN_STAR_AWT_RECTANGLE_HDL_
 #include <com/sun/star/awt/Rectangle.hdl>
 #endif
 
-#ifndef _XMLOFF_XMLRECTANGLEMEMBERSHANDLER_HXX
 #include "XMLRectangleMembersHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

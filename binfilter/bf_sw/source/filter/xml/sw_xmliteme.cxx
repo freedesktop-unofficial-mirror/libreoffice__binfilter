@@ -32,77 +32,35 @@
 
 #include <hintids.hxx>
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _SHL_HXX //autogen wg. SHL_WRITER
 #include <tools/shl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLITMPR_HXX
 #include "xmlexpit.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLTABE_HXX
 #include <bf_xmloff/xmltabe.hxx>
-#endif
-#ifndef _XMLBRSHE_HXX
 #include "xmlbrshe.hxx"
-#endif
 
-#ifndef _SVX_TSPTITEM_HXX
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
 
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 
-#ifndef _SWMODULE_HXX //autogen wg. SW_MOD
 #include <swmodule.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
-#ifndef _FRMFMT_HXX
 #include "frmfmt.hxx"
-#endif
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
-#ifndef _SWRECT_HXX
 #include "swrect.hxx"
-#endif
 
-#ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

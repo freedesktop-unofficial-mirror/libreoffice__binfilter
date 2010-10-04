@@ -32,17 +32,13 @@
 
 #include <stdlib.h>             // fuer qsort
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #include "errhdl.hxx"           // fuers ASSERT
 #include "index.hxx"
 #include "error.h"              // fuers ASSERT
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 

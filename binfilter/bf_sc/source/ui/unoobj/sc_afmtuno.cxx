@@ -32,26 +32,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef SC_UNOWIDS_HXX
 #include "unowids.hxx"
-#endif
 
 #ifndef _RTL_UUID_H_ //autogen wg. rtl_createUuid
 #include <rtl/uuid.h>
 #endif
 
-#ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
 #include <com/sun/star/table/CellHoriJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
 #include <com/sun/star/table/CellOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XFONT_HPP_
 #include <com/sun/star/awt/XFont.hpp>
-#endif
 
 #include "afmtuno.hxx"
 #include "miscuno.hxx"

@@ -25,15 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
 #include <com/sun/star/sdb/SQLContext.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

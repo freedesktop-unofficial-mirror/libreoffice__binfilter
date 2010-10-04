@@ -48,12 +48,8 @@
 #include <ctype.h>
 
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
-#endif
 
 #include "autoform.hxx"
 #include "patattr.hxx"
@@ -66,9 +62,7 @@
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 
 namespace binfilter {
 // -----------------------------------------------------------------------

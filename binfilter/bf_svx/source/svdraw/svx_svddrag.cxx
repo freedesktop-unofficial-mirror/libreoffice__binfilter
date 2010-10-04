@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SVDDRAG_HXX //autogen
 #include "svddrag.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ void SdrDragStat::Clear(FASTBOOL bLeaveOne)

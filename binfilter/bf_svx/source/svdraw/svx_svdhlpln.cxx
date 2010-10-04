@@ -30,9 +30,7 @@
 
 
 
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 namespace binfilter {
 

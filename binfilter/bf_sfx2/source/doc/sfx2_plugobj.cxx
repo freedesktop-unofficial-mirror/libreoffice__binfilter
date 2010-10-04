@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _IPWIN_HXX //autogen
 #include <bf_so3/ipwin.hxx>
-#endif
 
-#ifndef _PLUGPOOL_HXX //autogen
 #include <bf_svtools/plugpool.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

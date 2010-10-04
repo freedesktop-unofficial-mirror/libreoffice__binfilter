@@ -58,21 +58,11 @@
 #include "rtl/ustring.h"
 #include "rtl/ustring.hxx"
 #include "sal/types.h"
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef TOOLS_INETMIME_HXX
 #include <tools/inetmime.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENTBROKER_HXX
 #include <ucbhelper/contentbroker.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include "rtl/instance.hxx"
-#endif
 
 namespace css = com::sun::star;
 using namespace com::sun::star;

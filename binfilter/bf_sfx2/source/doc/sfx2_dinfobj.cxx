@@ -40,9 +40,7 @@
 #include "dinfobj.hxx"
 #include "fcontnr.hxx"
 
-#ifndef _SBXCLASS_HXX //autogen
 #include "bf_basic/sbx.hxx"
-#endif
 //========================================================================
 
 #define DocumentInfo

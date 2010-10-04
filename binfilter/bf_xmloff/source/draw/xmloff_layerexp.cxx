@@ -26,26 +26,18 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERSUPPLIER_HPP_
 #include <com/sun/star/drawing/XLayerSupplier.hpp>
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_LAYEREXP_HXX
 #include "layerexp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

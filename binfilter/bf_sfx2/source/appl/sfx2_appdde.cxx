@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SVDDE_HXX //autogen
 #include <bf_svtools/svdde.hxx>
-#endif
 #include <tools/urlobj.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #ifdef _MSC_VER

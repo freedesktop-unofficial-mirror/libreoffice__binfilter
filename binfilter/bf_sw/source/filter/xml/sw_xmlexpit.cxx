@@ -35,21 +35,13 @@
 
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
@@ -58,66 +50,38 @@
 
 
 
-#ifndef _HINTIDS_HXX
 #include "hintids.hxx"
-#endif
 
-#ifndef SW_UNOMID_HXX
 #include "unomid.h"
-#endif
 
 
-#ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
-#endif
 
-#ifndef _SVX_ULSPITEM_HXX
 #include <bf_svx/ulspitem.hxx>
-#endif
 
-#ifndef _SVX_SHADITEM_HXX
 #include <bf_svx/shaditem.hxx>
-#endif
 
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
 
-#ifndef _SVX_BRKITEM_HXX
 #include <bf_svx/brkitem.hxx>
-#endif
 
-#ifndef _SVX_KEEPITEM_HXX
 #include <bf_svx/keepitem.hxx>
-#endif
 
 
-#ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
 
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
 
-#ifndef _FMTLSPLT_HXX
 #include "fmtlsplt.hxx"
-#endif
 
 
 
 
-#ifndef _SW_XMLITHLP_HXX
 #include "xmlithlp.hxx"
-#endif
 namespace binfilter {
 
 

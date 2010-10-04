@@ -25,37 +25,21 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLTRACKEDCHANGESIMPORTCONTEXT_HXX
 #include "XMLTrackedChangesImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLCHANGEDREGIONIMPORTCONTEXT_HXX
 #include "XMLChangedRegionImportContext.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 namespace binfilter {
 

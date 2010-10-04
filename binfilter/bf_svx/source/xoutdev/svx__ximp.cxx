@@ -32,9 +32,7 @@
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xoutx.hxx"
 namespace binfilter {

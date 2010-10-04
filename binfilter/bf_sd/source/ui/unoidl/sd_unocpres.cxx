@@ -25,24 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
 
 #include "unohelp.hxx"
 #include "unocpres.hxx"
 #include "cusshow.hxx"
 #include "unopage.hxx"
 
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 
 namespace binfilter {
 

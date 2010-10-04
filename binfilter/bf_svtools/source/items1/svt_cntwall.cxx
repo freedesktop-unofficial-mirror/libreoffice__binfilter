@@ -32,9 +32,7 @@
 #include <tools/string.hxx>
 #include <tools/stream.hxx>
 
-#ifndef _VCOMPAT_HXX
 #include <tools/vcompat.hxx>
-#endif
 
 #include <bf_svtools/cntwall.hxx>
 

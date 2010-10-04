@@ -35,9 +35,7 @@
 #include "asciiopt.hxx"
 #include "asciiopt.hrc"
 
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
 namespace binfilter {
 
 

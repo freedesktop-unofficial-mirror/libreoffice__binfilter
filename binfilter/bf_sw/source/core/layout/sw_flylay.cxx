@@ -30,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
@@ -47,30 +45,18 @@
 #include "sectfrm.hxx"
 
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
 
 #ifdef ACCESSIBLE_LAYOUT
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
 #endif
 namespace binfilter {
 

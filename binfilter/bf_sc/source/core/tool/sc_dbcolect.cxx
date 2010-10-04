@@ -32,9 +32,7 @@
 #endif
 
 #include <tools/debug.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "dbcolect.hxx"
 #include "rechead.hxx"

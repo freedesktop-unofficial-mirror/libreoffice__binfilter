@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLBASICEXPORTFILTER_HXX
 #include "XMLBasicExportFilter.hxx"
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;

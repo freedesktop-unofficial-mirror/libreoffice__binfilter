@@ -25,74 +25,36 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen wg. SfxItemSet
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTSTYLI_HXX
 #include "txtstyli.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 #include "XMLChartStyleContext.hxx"
-#endif
-#ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
 #include "XMLChartPropertySetMapper.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include "XMLShapeStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_FILLSTYLECONTEXTS_HXX_
 #include "FillStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFOOTNOTECONFIGURATIONIMPORTCONTEXT_HXX
 #include "XMLFootnoteConfigurationImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYCONFIGURATIONCONTEXT_HXX_
 #include "XMLIndexBibliographyConfigurationContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingImportContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #include "PageMasterImportContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 #include "PageMasterImportPropMapper.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

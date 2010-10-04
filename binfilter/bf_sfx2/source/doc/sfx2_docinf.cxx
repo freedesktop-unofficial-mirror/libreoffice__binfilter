@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
-#endif
 #include <tools/urlobj.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <tools/tenccvt.hxx>

@@ -26,38 +26,18 @@
  ************************************************************************/
 
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
-#ifndef _GLOBDOC_HRC
 #include "globdoc.hrc"
-#endif
 
-#ifndef _SWWDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _SWGLOBDOCSH_HXX
 #include <globdoc.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _INIT_HXX
 #include <init.hxx>
-#endif
-#ifndef _DOBJFAC_HXX
 #include <dobjfac.hxx>
-#endif
-#ifndef _CFGID_H
 #include <cfgid.h>
-#endif
 namespace binfilter {
 
 /*************************************************************************

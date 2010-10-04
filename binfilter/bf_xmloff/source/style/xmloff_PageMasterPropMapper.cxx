@@ -25,17 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
 
 
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 #include "PageMasterPropHdlFactory.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

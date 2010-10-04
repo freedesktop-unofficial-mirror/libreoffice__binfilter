@@ -36,9 +36,7 @@
 #include <bf_svtools/smplhint.hxx>
 #include <bf_svtools/cnclhint.hxx>
 
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 namespace { struct lclMutex : public rtl::Static< ::vos::OMutex, lclMutex >{}; }
 

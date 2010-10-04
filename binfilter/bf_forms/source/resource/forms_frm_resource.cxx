@@ -27,19 +27,13 @@
 
 #include "frm_resource.hxx"
 
-#ifndef _TOOLS_SIMPLERESMGR_HXX_
 #include <tools/simplerm.hxx>
-#endif
 
 // ---- needed as long as we have no contexts for components ---
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 //---------------------------------------------------
 
-#ifndef _SOLAR_HRC
 #include <bf_svtools/solar.hrc>
-#endif
 namespace binfilter {
 
 //.........................................................................

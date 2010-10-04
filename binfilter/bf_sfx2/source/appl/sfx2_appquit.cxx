@@ -24,9 +24,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _BASMGR_HXX //autogen
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #ifdef WIN
 #define _TL_LANG_SPECIAL
@@ -36,9 +34,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
 
 #include "appdata.hxx"
 #include "plugobj.hxx"

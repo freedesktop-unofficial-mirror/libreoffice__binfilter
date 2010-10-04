@@ -35,9 +35,7 @@
 //------------------------------------------------------------------------
 
 #include <bf_svtools/zformat.hxx>
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 #include <tools/debug.hxx>
 
 #include "zforauto.hxx"

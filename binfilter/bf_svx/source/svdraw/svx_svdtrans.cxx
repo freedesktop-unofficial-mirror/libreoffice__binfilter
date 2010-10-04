@@ -30,9 +30,7 @@
 #include "xpoly.hxx"
 
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 
 namespace binfilter {

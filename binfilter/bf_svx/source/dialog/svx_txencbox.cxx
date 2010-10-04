@@ -30,14 +30,8 @@
 #include "txencbox.hxx"
 #include "dialogs.hrc"
 
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
-#ifndef _RTL_LOCALE_H_
 #include <rtl/locale.h>
-#endif
-#ifndef _OSL_NLSUPPORT_H_
 #include <osl/nlsupport.h>
-#endif
 namespace binfilter {
 }

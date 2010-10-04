@@ -41,9 +41,7 @@
 #include <bf_svx/shaditem.hxx>
 #include <bf_svtools/poolcach.hxx>
 
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
 
 #include "attarray.hxx"
 #include "document.hxx"

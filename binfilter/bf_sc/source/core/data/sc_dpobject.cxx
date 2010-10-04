@@ -51,9 +51,7 @@
 #include <comphelper/processfactory.hxx>
 #include <tools/debug.hxx>
 #include <bf_svtools/zforlist.hxx>      // IsNumberFormat
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 

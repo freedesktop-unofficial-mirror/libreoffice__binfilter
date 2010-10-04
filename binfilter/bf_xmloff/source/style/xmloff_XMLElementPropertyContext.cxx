@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

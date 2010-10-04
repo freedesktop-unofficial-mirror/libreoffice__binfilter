@@ -26,9 +26,7 @@
  ************************************************************************/
 #include "XMLTextOrientationHdl.hxx"
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

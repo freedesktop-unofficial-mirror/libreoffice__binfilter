@@ -48,14 +48,10 @@
 #include "docpool.hxx"
 #include "appoptio.hxx"
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 #include <bf_svx/svdfield.hxx>      //  SdrRegisterFieldClasses
 #include <rtl/logfile.hxx>

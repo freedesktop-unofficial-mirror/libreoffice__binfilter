@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef XMLOFF_FORMS_LOGGING_HXX
 #include "logging.hxx"
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

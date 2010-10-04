@@ -27,18 +27,10 @@
 
 
 
-#ifndef _EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
-#endif
-#ifndef __SBX_SBXMETHOD_HXX //autogen
 #include "bf_basic/sbxmeth.hxx"
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
 
 #include <sal/types.h>
 #include <com/sun/star/uno/Reference.h>
@@ -53,16 +45,10 @@ using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
 using namespace ::vos;
 
-#ifndef _SVTOOLS_CTYPEITM_HXX
 #include <bf_svtools/ctypeitm.hxx>
-#endif
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include <tools/urlobj.hxx>
 
@@ -74,9 +60,7 @@ using namespace ::vos;
 #include "arrdecl.hxx"
 #include "app.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 #define SFX_STR_OVERRIDE "Override"

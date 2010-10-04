@@ -33,20 +33,14 @@
 
 //#include <vcl/system.hxx>
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 
@@ -59,9 +53,7 @@
 
 
 
-#ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
-#endif
 
 
 

@@ -25,19 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _SD_XMLVIEWSETTINGSCONTEXT_HXX
 #include "viewcontext.hxx"
-#endif
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_VISAREACONTEXT_HXX
 #include "VisAreaContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

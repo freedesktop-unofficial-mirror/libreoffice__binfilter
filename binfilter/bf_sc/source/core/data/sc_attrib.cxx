@@ -35,9 +35,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 
-#ifndef _COM_SUN_STAR_UTIL_CELLPROTECTION_HPP_
 #include <com/sun/star/util/CellProtection.hpp>
-#endif
 
 #include "scitems.hxx"
 #define ITEMID_FIELD EE_FEATURE_FIELD
@@ -47,17 +45,11 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include <bf_svx/flditem.hxx>
 

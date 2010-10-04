@@ -34,22 +34,12 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLTEXTPCONTEXT_HXX
 #include "XMLTextPContext.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef SC_XMLCELLI_HXX
 #include "xmlcelli.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
 namespace binfilter {
 

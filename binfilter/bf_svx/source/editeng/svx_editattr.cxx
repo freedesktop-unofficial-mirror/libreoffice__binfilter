@@ -30,31 +30,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <svxfont.hxx>
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
 #include <fontitem.hxx>
 #include <postitem.hxx>
@@ -75,9 +63,7 @@
 #include <charreliefitem.hxx>
 #include <editattr.hxx>
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 namespace binfilter {
 

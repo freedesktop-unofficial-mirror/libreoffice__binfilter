@@ -29,13 +29,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_RCID_H
 #include <tools/rcid.h>
-#endif
 
-#ifndef MATH_COMMAND_HXX
 #include "command.hxx"
-#endif
 namespace binfilter {
 
 SmCommandDesc::SmCommandDesc(const ResId& rResId) :

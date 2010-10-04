@@ -31,36 +31,26 @@
 
 #define ENABLE_BYTESTRING_STREAM_OPERATORS
 
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
 
 
 
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
 #ifndef SVX_LIGHT
 #endif
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
 #endif
-#endif
 
 
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMPGEIMP_HXX
 #include "fmpgeimp.hxx"
 #endif
-#endif
 
-#ifndef _SVDIO_HXX //autogen
 #include "svdio.hxx"
-#endif
 
 #ifndef SVX_LIGHT
 #endif
@@ -71,9 +61,7 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 #endif
 

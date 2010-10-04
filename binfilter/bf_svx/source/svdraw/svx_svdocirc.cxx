@@ -25,30 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <xlnedwit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <xlnstwit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <xlnstit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <xlnedit.hxx>
-#endif
 
 #include "svdocirc.hxx"
 #include <math.h>
@@ -57,21 +45,13 @@
 #include "svdio.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
 
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 

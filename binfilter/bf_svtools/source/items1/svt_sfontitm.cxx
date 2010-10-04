@@ -28,16 +28,10 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _VCOMPAT_HXX
 #include <tools/vcompat.hxx>
-#endif
 
-#ifndef _SFONTITM_HXX
 #include <bf_svtools/sfontitm.hxx>
-#endif
 
 namespace binfilter
 {

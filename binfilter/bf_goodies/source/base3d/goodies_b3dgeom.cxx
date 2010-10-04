@@ -25,25 +25,15 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DGEOM_HXX
 #include "b3dgeom.hxx"
-#endif
 
-#ifndef _B3D_B3DCOMPO_HXX
 #include "b3dcompo.hxx"
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include "base3d.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #ifndef _INC_MATH
 #include <math.h>

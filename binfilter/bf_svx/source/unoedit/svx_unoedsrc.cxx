@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "unoedsrc.hxx"
 namespace binfilter {

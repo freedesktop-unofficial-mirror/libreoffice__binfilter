@@ -30,20 +30,12 @@
 #endif
 #define APPEND(str,ascii) str.AppendAscii(RTL_CONSTASCII_STRINGPARAM(ascii))
 
-#ifndef _SV_LINEINFO_HXX
 #include <vcl/lineinfo.hxx>
-#endif
 
 
-#ifndef SYMBOL_HXX
 #include "symbol.hxx"
-#endif
-#ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
-#ifndef _MATHTYPE_HXX
 #include "mathtype.hxx"
-#endif
 
 #include <math.h>
 #include <float.h>

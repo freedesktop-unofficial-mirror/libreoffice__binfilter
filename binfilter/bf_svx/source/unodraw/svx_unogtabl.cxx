@@ -25,15 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
 
 
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
 #include "xdef.hxx"
 #include "xflgrit.hxx"

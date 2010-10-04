@@ -33,9 +33,7 @@
 
 //#define ENABLE_STRING_STREAM_OPERATORS
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 #include <editobj2.hxx>
 #include <editeng.hxx>
@@ -45,9 +43,7 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 
 
@@ -59,9 +55,7 @@
 #include <brshitem.hxx>
 #include <bf_svtools/intitem.hxx>
 
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ DBG_NAME( EE_EditTextObject )

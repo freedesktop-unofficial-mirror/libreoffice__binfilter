@@ -27,31 +27,19 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERMANAGER_HPP_
 #include <com/sun/star/drawing/XLayerManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERSUPPLIER_HPP_
 #include <com/sun/star/drawing/XLayerSupplier.hpp>
-#endif
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_LAYERIMP_HXX
 #include "layerimp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

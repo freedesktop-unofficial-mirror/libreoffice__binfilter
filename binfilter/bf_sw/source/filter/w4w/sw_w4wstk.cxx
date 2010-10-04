@@ -89,39 +89,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>                   // GetAdjust()
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>           // W4WStkEntry, W4WStack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>                   // SwW4WParser
-#endif
 
 
 namespace binfilter {

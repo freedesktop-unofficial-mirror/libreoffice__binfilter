@@ -34,18 +34,12 @@
 #include <eerdll.hxx>
 
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 #include <eerdll2.hxx>
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <lspcitem.hxx>
 #include <adjitem.hxx>
@@ -54,9 +48,7 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 
 
@@ -64,17 +56,11 @@
 #include <emphitem.hxx>
 #include <scriptspaceitem.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <akrnitem.hxx>
 #include <cntritem.hxx>
@@ -100,9 +86,7 @@
 
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 /*N*/ GlobalEditData::GlobalEditData()

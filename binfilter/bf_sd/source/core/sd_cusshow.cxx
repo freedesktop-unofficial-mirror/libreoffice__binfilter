@@ -36,9 +36,7 @@
 #include "drawdoc.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

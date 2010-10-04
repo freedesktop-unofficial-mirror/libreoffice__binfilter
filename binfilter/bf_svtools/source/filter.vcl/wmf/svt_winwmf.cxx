@@ -29,15 +29,9 @@
 
 
 #include "winmtf.hxx"
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {

@@ -32,12 +32,8 @@
 
 #include <stdlib.h>  // strtod()
 
-#ifndef _LINKMGR_HXX //autogen
 #include <bf_so3/linkmgr.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 #include "doc.hxx"
 #include "rdswg.hxx"

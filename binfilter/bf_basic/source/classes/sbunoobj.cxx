@@ -25,26 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _TOOLERR_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 
 #include <cppuhelper/implbase1.hxx>
 #include <cppuhelper/typeprovider.hxx>
 #include <cppuhelper/extract.hxx>
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #include <rtl/ustrbuf.hxx>
 #include <rtl/strbuf.hxx>

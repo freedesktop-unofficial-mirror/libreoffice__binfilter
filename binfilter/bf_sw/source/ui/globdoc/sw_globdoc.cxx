@@ -30,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
 #include "swtypes.hxx"
 

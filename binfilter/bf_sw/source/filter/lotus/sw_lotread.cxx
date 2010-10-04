@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include "fltglbls.hxx"
 #include "lotpar.hxx"

@@ -25,20 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
 
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
 
 #include <tox.hxx>
 

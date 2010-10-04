@@ -31,9 +31,7 @@
 
 #include <algorithm>
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
 
 #include <unoedhlp.hxx>
 #include <outliner.hxx>

@@ -35,32 +35,16 @@
 
 #include "XMLChartPropertySetMapper.hxx"
 
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include "EnumPropertyHdl.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLERRORINDICATORPROPERTYHDL_HXX_
 #include "XMLErrorIndicatorPropertyHdl.hxx"
-#endif
-#ifndef _XMLTEXTORIENTATIONHDL_HXX_
 #include "XMLTextOrientationHdl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISMARKS_HPP_
 #include <com/sun/star/chart/ChartAxisMarks.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
-#endif
 
 // header for any2enum
 namespace binfilter {

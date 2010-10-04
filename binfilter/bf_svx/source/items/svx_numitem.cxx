@@ -31,51 +31,23 @@
 #include <numitem.hxx>
 
 #define ITEMID_BRUSH SID_ATTR_BRUSH
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <brshitem.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
-#ifndef _SVX_NUMDEF_HXX
 #include <numdef.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 #include <vcl/svapp.hxx>
-#ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XNUMBERINGFORMATTER_HPP_
 #include <com/sun/star/text/XNumberingFormatter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XDEFAULTNUMBERINGPROVIDER_HPP_
 #include <com/sun/star/text/XDefaultNumberingProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #include "unonrule.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 #define MM100_TO_TWIP(MM100)    ((MM100*72L+63L)/127L)

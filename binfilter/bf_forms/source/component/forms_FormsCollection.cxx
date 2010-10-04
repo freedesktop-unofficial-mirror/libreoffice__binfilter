@@ -27,17 +27,11 @@
 
 #include "FormsCollection.hxx"
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

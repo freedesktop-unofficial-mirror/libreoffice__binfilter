@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _OFF_APP_HXX
 #include "app.hxx"
-#endif
 
 #include <bf_svx/dialdll.hxx>
 #include "bf_basic/basrdll.hxx"

@@ -27,9 +27,7 @@
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 namespace binfilter {
 

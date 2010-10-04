@@ -27,9 +27,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 #if defined UNX && !defined LINUX
 #include <wchar.h>
 #endif
@@ -51,9 +49,7 @@
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTREGRESS     0
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include "chrtitem.hxx"
 

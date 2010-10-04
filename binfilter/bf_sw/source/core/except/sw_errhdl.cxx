@@ -37,19 +37,11 @@
 #include <dos.h>
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_SOUND_HXX //autogen
 #include <vcl/sound.hxx>
-#endif
 
-#ifndef _SWERROR_H
 #include <error.h>              // fuer die defines von ERR_SW6MSG_ ...
-#endif
 namespace binfilter {
 
 // break into CodeView

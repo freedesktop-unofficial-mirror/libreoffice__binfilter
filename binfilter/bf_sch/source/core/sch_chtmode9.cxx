@@ -29,18 +29,12 @@
 
 #pragma hdrstop
 #endif
-#ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
-#endif
 
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <bf_svx/xlnclit.hxx>
-#endif
 
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -51,16 +45,10 @@
 
 #include <list>
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
@@ -77,13 +65,9 @@
 
 // header for class SdrOutliner
 // header for GetDraftFillColor()
-#ifndef _SVDETC_HXX
 #include <bf_svx/svdetc.hxx>
-#endif
 
-#ifndef _CHTMODEL_HXX
 #include "globfunc.hxx"
-#endif
 
 #include "ChXChartDocument.hxx"
 

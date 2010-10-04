@@ -26,12 +26,8 @@
  ************************************************************************/
 
 #ifdef WIN
-#ifndef _SVWIN_H
 #include <tools/svwin.h>
-#endif
-#ifndef _SYSDEP_HXX
 #include <vcl/sysdep.hxx>
-#endif
 #endif
 namespace binfilter {
 

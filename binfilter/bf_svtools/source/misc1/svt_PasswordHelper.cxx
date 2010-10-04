@@ -32,16 +32,10 @@
 #ifndef GCC
 #endif
 
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include "PasswordHelper.hxx"
-#endif
 
-#ifndef _RTL_DIGEST_H_
 #include <rtl/digest.h>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 using namespace com::sun::star;
 

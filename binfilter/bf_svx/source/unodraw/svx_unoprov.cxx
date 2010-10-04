@@ -27,33 +27,21 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_MEASUREUNIT_HPP_
 #include <com/sun/star/util/MeasureUnit.hpp>
-#endif
 
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <hash_map>
 
 #include <comphelper/propertysetinfo.hxx>
 
-#ifndef _SVX_DIALMGR_HXX
 #include "dialmgr.hxx"
-#endif
 
 #include "unoshprp.hxx"
 #include "svdobj.hxx"

@@ -31,9 +31,7 @@
 #include <math.h>
 
 
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
 
 #if defined( WIN ) && defined( MSC )
 #pragma code_seg( "SVTOOLS_FILTER2", "SVTOOLS_CODE" )

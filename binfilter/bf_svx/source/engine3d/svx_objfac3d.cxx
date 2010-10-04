@@ -26,49 +26,27 @@
  ************************************************************************/
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 
-#ifndef _E3D_DLIGHT3D_HXX
 #include "dlight3d.hxx"
-#endif
 
-#ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
-#endif
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
-#endif
 
-#ifndef _E3D_SPHERE3D_HXX
 #include "sphere3d.hxx"
-#endif
 
-#ifndef _E3D_EXTRUD3D_HXX
 #include "extrud3d.hxx"
-#endif
 
-#ifndef _E3D_LATHE3D_HXX
 #include "lathe3d.hxx"
-#endif
 
-#ifndef _E3D_POLYGON3D_HXX
 #include "polygn3d.hxx"
-#endif
 
-#ifndef _OBJFAC3D_HXX
 #include "objfac3d.hxx"
-#endif
 
 namespace binfilter {
 

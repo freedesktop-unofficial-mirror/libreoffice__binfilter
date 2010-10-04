@@ -35,9 +35,7 @@
 #include <outlobj.hxx>
 #include <outleeng.hxx>
 
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
 
 

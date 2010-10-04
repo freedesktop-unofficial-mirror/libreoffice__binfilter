@@ -40,9 +40,7 @@
 #include "document.hxx"
 #include "bf_sc.hrc"        // FID_DATACHANGED
 
-#ifndef _OSL_THREAD_H_
 #include <osl/thread.h>
-#endif
 namespace binfilter {
 
 

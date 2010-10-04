@@ -28,28 +28,16 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #ifndef _TOOLS_RCID_H //autogen
 #include <tools/rcid.h>
 #endif
-#ifndef _SV_WINTYPES_HXX //autogen
 #include <vcl/wintypes.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #if defined(OS2)
-#ifndef _SV_SOUND_HXX //autogen
 #include <vcl/sound.hxx>
-#endif
 #endif
 
 #ifndef GCC

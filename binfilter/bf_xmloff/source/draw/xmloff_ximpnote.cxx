@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XIMPNOTES_HXX
 #include "ximpnote.hxx"
-#endif
 
 namespace binfilter {
 

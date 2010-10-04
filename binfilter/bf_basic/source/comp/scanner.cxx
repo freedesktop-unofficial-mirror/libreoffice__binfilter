@@ -38,12 +38,8 @@
 #include <math.h>   // atof()
 #endif
 #include <rtl/math.hxx>
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
 namespace binfilter {
 

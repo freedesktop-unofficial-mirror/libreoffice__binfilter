@@ -29,19 +29,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
-#ifndef FORMAT_HXX
 #include "format.hxx"
-#endif
 namespace binfilter {
 
 /////////////////////////////////////////////////////////////////

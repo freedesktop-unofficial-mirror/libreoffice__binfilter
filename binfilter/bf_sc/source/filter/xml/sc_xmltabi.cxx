@@ -42,18 +42,10 @@
 #include "document.hxx"
 #include "olinetab.hxx"
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef _SC_XMLTABLESHAPESCONTEXT_HXX
 #include "XMLTableShapesContext.hxx"
-#endif
-#ifndef _SC_XMLTABLESOURCECONTEXT_HXX
 #include "XMLTableSourceContext.hxx"
-#endif
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 

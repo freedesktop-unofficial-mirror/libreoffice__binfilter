@@ -25,60 +25,38 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmluconv.hxx>
-#endif
 
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 
 #ifndef _TOOLS_DATE_HXX
 #include <tools/date.hxx>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 #endif
 
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
 //#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XNUMBERINGTYPEINFO_HPP_
 #include <com/sun/star/text/XNumberingTypeInfo.hpp>
-#endif
 
-#ifndef _SVX_VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
 namespace binfilter {
 
 using namespace rtl;

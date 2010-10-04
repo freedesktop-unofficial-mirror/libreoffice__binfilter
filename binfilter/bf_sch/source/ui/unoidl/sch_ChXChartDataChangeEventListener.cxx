@@ -26,13 +26,9 @@
  ************************************************************************/
 
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
 #include "ChXChartDataChangeEventListener.hxx"
 #include "ChXChartDocument.hxx"

@@ -29,36 +29,22 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
 
 #endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _SV_APP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 #include "dialogs.hrc"
 #include "dialmgr.hxx"
@@ -68,37 +54,21 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <xfillit0.hxx>
-#endif
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <xlnstwit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <xlnedwit.hxx>
-#endif
 
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <xlnclit.hxx>
-#endif
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <xlineit0.hxx>
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <xlnstit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <xlnedit.hxx>
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW

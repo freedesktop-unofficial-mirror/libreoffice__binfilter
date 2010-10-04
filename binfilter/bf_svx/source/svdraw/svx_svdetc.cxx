@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
-#endif
 
 #include "svdetc.hxx"
 #include "svditext.hxx"
@@ -36,19 +34,13 @@
 #include "svdview.hxx"
 #include "svdoutl.hxx"
 
-#ifndef _SV_BMPACC_HXX //autogen
 #include <vcl/bmpacc.hxx>
-#endif
 
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
 
 
 
-#ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 #include <bf_svtools/cacheoptions.hxx>
-#endif
 
 
 
@@ -57,40 +49,24 @@
 
 
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include "xflclit.hxx"
-#endif
 
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
 
-#ifndef _SVX_XBTMPIT_HXX //autogen
 #include "xbtmpit.hxx"
-#endif
 
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include "xflgrit.hxx"
-#endif
 
-#ifndef _SVDOOLE2_HXX //autogen
 #include "svdoole2.hxx"
-#endif
 
 
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 // #97870#
-#ifndef _SVX_XFLBCKIT_HXX
 #include "xflbckit.hxx"
-#endif
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include <bf_goodies/b3dcolor.hxx>
-#endif
 
 namespace binfilter {
 

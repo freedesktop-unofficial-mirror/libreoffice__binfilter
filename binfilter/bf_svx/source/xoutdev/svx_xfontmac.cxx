@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SOLAR_H
 #include <Solar.h>
-#endif
 
 #if defined (MAC)
 #include <mac_start.h>
@@ -51,9 +49,7 @@
 #include <mac_end.h>
 #endif
 
-#ifndef _SV_HXX
 #include <sv.hxx>
-#endif
 
 #include "xpoly.hxx"
 #include "xattr.hxx"

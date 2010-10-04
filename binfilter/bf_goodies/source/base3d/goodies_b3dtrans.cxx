@@ -25,17 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DTRANS_HXX
 #include "b3dtrans.hxx"
-#endif
 
 //#ifndef _B3D_BASE3D_HXX
 //#include "base3d.hxx"
 //#endif
 
-#ifndef _B3D_VOLUM_HXX
 #include "b3dvolum.hxx"
-#endif
 
 namespace binfilter {
 

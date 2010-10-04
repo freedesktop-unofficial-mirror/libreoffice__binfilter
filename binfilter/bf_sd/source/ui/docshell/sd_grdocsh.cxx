@@ -25,18 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
 
 
-#ifndef _SO_CLSIDS_HXX //autogen
 #include <comphelper/classids.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

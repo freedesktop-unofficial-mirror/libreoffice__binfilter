@@ -25,34 +25,16 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 #include "XMLShapePropertySetContext.hxx"
-#endif
-#ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #include "XMLTextColumnsContext.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #include "XMLBackgroundImageContext.hxx"
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX
 #include "XMLTextShapeStyleContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

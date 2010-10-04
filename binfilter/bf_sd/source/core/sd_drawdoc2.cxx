@@ -31,35 +31,19 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
 #include "sdoutl.hxx"
 #else   // SVX_LIGHT
 #define SfxPrinter Printer
 #endif // !SVX_LIGHT
 
-#ifndef _SVX_PAPERINF_HXX
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVDOPAGE_HXX //autogen
 #include <bf_svx/svdopage.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
 
 #include <bf_svx/dialogs.hrc>

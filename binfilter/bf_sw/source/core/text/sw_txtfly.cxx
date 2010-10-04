@@ -31,9 +31,7 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "viewsh.hxx"
@@ -42,59 +40,33 @@
 #include "dcontact.hxx"     // SwContact
 #include "dflyobj.hxx"      // SdrObject
 #include "frmtool.hxx"    // ::DrawGraphic
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
 
 #ifdef VERT_DISTANCE
 #include <math.h>
 #endif
 
 
-#ifndef _E3D_OBJ3D_HXX //autogen
 #include <bf_svx/obj3d.hxx>
-#endif
 
-#ifndef _TXTRANGE_HXX //autogen
 #include <bf_svx/txtrange.hxx>
-#endif
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
 
 
 
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
 // #102344#
-#ifndef _SVDOEDGE_HXX
 #include <bf_svx/svdoedge.hxx>
-#endif
 
 #include "itrform2.hxx"   // SwTxtFormatter
 #include "porfly.hxx"     // NewFlyCntPortion

@@ -29,9 +29,7 @@
 
 #include <limits.h>             // USHRT_MAX
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 using namespace ::ucbhelper;
 using namespace ::com::sun::star::uno;

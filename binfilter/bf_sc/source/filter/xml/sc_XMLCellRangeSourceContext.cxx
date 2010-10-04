@@ -34,20 +34,12 @@
 
 //___________________________________________________________________
 
-#ifndef _SC_XMLCELLRANGESOURCECONTEXT_HXX
 #include "XMLCellRangeSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

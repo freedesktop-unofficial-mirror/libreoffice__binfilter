@@ -165,9 +165,7 @@
 #include "tablink.hxx"
 #include "collect.hxx"
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 namespace binfilter {
 

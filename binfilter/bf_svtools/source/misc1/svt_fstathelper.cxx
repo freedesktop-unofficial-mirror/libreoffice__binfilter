@@ -28,21 +28,11 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
-#ifndef _TIME_HXX
 #include <tools/time.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENT_HXX
 #include <ucbhelper/content.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
 #include <fstathelper.hxx>
 

@@ -25,43 +25,25 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLLINENUMBERINGSEPARATORIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingSeparatorImportContext.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include "com/sun/star/text/XLineNumberingProperties.hpp"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HPP_
 #include <com/sun/star/style/LineNumberPosition.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 namespace binfilter {
 
 

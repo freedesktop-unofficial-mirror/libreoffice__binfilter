@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

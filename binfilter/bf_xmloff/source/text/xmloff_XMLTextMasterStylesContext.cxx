@@ -27,19 +27,11 @@
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLTEXTMASTERPAGECONTEXT_HXX
 #include "XMLTextMasterPageContext.hxx"
-#endif
-#ifndef _XMLTEXTMASTERSTYLESCONTEXT_HXX
 #include "XMLTextMasterStylesContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

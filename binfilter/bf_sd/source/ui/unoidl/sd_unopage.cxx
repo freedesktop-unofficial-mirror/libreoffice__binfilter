@@ -25,65 +25,31 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_PAPERORIENTATION_HPP_
 #include <com/sun/star/view/PaperOrientation.hpp>
-#endif
 
 #include <bf_sfx2/app.hxx>
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SV_METAACT_HXX
 #include <vcl/metaact.hxx>
-#endif
-#ifndef _UNOMODEL_HXX
 #include <unomodel.hxx>
-#endif
-#ifndef _SD_UNOPAGE_HXX
 #include <unopage.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SDRESID_HXX
 #include <sdresid.hxx>
-#endif
 #include <glob.hrc>
-#ifndef _SD_PAGE_HXX //autogen
 #include <sdpage.hxx>
-#endif
-#ifndef _SD_UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX //autogen
 #include <bf_svx/unoshape.hxx>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
 #include <comphelper/extract.hxx>
 
-#ifndef _SVDITER_HXX
 #include <bf_svx/svditer.hxx>
-#endif
-#ifndef _WMF_HXX
 #include <bf_svtools/wmf.hxx>
-#endif
-#ifndef _SVDOOLE2_HXX
 #include <bf_svx/svdoole2.hxx>
-#endif
 
 #include "bf_sd/docshell.hxx"
 #include "unoobj.hxx"

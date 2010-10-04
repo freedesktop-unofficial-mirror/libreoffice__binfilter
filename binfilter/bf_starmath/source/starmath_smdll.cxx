@@ -29,17 +29,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
 
-#ifndef _STARMATH_HRC
 #include <starmath.hrc>
-#endif
 namespace binfilter {
 
 BOOL SmDLL::bInitialized = FALSE;

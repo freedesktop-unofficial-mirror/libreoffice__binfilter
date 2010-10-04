@@ -43,45 +43,21 @@
 #include "xmlcvali.hxx"
 #include "xmlstyli.hxx"
 
-#ifndef SC_XMLLABRI_HXX
 #include "xmllabri.hxx"
-#endif
-#ifndef _SC_XMLCONSOLIDATIONCONTEXT_HXX
 #include "XMLConsolidationContext.hxx"
-#endif
-#ifndef _SC_XMLDDELINKSCONTEXT_HXX
 #include "XMLDDELinksContext.hxx"
-#endif
-#ifndef _SC_XMLCALCULATIONSETTINGSCONTEXT_HXX
 #include "XMLCalculationSettingsContext.hxx"
-#endif
-#ifndef _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 #include "XMLTrackedChangesContext.hxx"
-#endif
-#ifndef SC_XMLEMPTYCONTEXT_HXX
 #include "XMLEmptyContext.hxx"
-#endif
-#ifndef _SCERRORS_HXX
 #include "scerrors.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

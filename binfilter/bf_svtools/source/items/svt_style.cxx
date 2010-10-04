@@ -36,15 +36,9 @@
 #define _SVSTDARR_BYTESTRINGS
 #define _SVSTDARR_BYTESTRINGSSORTDTOR
 
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
-#endif
 #include <bf_svtools/smplhint.hxx>
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svtools/itemset.hxx>
@@ -54,9 +48,7 @@
 #include <bf_svtools/itemiter.hxx>
 #include <bf_svtools/style.hxx>
 #include <bf_svtools/svstdarr.hxx>
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #define STYLESTREAM             "SfxStyleSheets"
 #define STYLESTREAM_VERSION     USHORT(50)

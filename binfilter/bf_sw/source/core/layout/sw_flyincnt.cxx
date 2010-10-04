@@ -31,21 +31,15 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "txtfrm.hxx"       //fuer IsLocked()
 #include "flyfrms.hxx"
 namespace binfilter {

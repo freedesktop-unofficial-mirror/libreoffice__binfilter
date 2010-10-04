@@ -25,16 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
-#endif
 
 #include "rotmodit.hxx"
 namespace binfilter {

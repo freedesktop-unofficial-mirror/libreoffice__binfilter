@@ -30,20 +30,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _SVDPAGV_HXX //autogen
 #include <bf_svx/svdpagv.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 
 /// OD 29.08.2002 #102450#
 /// include <bf_svx/svdoutl.hxx>
@@ -51,9 +43,7 @@
 #ifdef DBG_UTIL
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "fesh.hxx"
 #include "doc.hxx"

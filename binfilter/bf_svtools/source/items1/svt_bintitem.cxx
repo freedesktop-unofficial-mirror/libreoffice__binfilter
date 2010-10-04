@@ -28,21 +28,13 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
-#ifndef _BINTITEM_HXX
 #include <bf_svtools/bintitem.hxx>
-#endif
 
 // STATIC DATA
 namespace binfilter

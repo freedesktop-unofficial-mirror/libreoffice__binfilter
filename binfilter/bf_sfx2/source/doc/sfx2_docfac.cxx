@@ -25,23 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_REGISTRY_MERGECONFLICTEXCEPTION_HPP_
 #include <com/sun/star/registry/MergeConflictException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REGISTRY_XSIMPLEREGISTRY_HPP_
 #include <com/sun/star/registry/XSimpleRegistry.hpp>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
-#ifndef _EMBOBJ_HXX //autogen
 #include <bf_so3/embobj.hxx>
-#endif
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/moduleoptions.hxx>
 #include <tools/urlobj.hxx>

@@ -32,18 +32,10 @@
 
 
 
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
-#endif
-#ifndef _PORHYPH_HXX
 #include <porhyph.hxx>  //
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx> //
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>    //
-#endif
 namespace binfilter {
 
 #ifdef DBG_UTIL

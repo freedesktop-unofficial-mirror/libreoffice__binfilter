@@ -27,9 +27,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #include <bf_svtools/useroptions.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

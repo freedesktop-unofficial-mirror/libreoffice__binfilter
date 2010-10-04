@@ -27,13 +27,9 @@
 
 
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPointLight, E3dLight);

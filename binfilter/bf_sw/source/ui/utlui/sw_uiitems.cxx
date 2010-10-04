@@ -36,9 +36,7 @@
 
 #include "utlui.hrc"
 #include "attrdesc.hrc"
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

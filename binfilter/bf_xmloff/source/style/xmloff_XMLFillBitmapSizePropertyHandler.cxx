@@ -26,17 +26,11 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLFILLBITMAPSIZEPROPERTYHANDLER_HXX
 #include "XMLFillBitmapSizePropertyHandler.hxx"
-#endif
 
 namespace binfilter {
 

@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

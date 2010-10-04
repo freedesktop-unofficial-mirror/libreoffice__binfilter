@@ -26,85 +26,51 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTOCCONTEXT_HXX_
 #include "XMLIndexTOCContext.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTINSERT_HPP_
 #include <com/sun/star/text/XRelativeTextContentInsert.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLINDEXTOCSOURCECONTEXT_HXX_
 #include "XMLIndexTOCSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXOBJECTSOURCECONTEXT_HXX_
 #include "XMLIndexObjectSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXALPHABETICALSOURCECONTEXT_HXX_
 #include "XMLIndexAlphabeticalSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXUSERSOURCECONTEXT_HXX_
 #include "XMLIndexUserSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYSOURCECONTEXT_HXX_
 #include "XMLIndexBibliographySourceContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLINDEXILLUSTRATIONSOURCECONTEXT_HXX_
 #include "XMLIndexIllustrationSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXBODYCONTEXT_HXX_
 #include "XMLIndexBodyContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
 
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 

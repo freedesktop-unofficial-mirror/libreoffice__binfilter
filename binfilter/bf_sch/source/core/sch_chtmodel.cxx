@@ -32,48 +32,28 @@
 
 class SbxArray;
 
-#ifndef _OUTLINER_HXX
 #include <bf_svx/svdoutl.hxx>
-#endif
 
 #include "itempool.hxx"
 
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
 
 #include <bf_svx/svdetc.hxx>
 
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
 #include <bf_svtools/zforlist.hxx>
 #endif
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
-#endif
-#ifndef _XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
-#endif
-#ifndef _XFLCLIT_HXX
 #include <bf_svx/xflclit.hxx>
-#endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_DOUBLE           0
@@ -83,9 +63,7 @@ class SbxArray;
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_LANGUAGE           EE_CHAR_LANGUAGE
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include <bf_svx/chrtitem.hxx>
 #endif
@@ -96,37 +74,23 @@ class SbxArray;
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
 #include <bf_svx/colritem.hxx>
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _SVX_XLINEIT0_HXX
 #include <bf_svx/xlineit0.hxx>
-#endif
 
 // header for LinguMgr
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
 // header for class SvtLinguConfig
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
 // header for getProcessServiceFactory
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #ifndef _CHTMODEL_HXX
 #include <chtmodel.hxx>
 #include <globfunc.hxx>
 #endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #include "charttyp.hxx"
 
 #include "float.h"
@@ -143,37 +107,17 @@ class SbxArray;
 #include "chtscene.hxx"
 #include "bf_svx/def3d.hxx"
 
-#ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
 #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _XCEPTION_HXX_
 #include <vos/xception.hxx>
-#endif
-#ifndef _UNDO_HXX
 #include <bf_svtools/undo.hxx>
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using ::rtl::OUString;

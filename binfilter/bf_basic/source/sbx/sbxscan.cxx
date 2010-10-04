@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 
@@ -37,9 +35,7 @@
 #include <stdlib.h>
 #endif
 
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include <math.h>
 #include <string.h>
 #include <ctype.h>

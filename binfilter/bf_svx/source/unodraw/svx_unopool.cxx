@@ -28,38 +28,18 @@
 
 #include <comphelper/propertysetinfo.hxx>
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include "unopool.hxx"
-#endif
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
-#ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
-#endif
-#ifndef _SVX_UNOSHPRP_HXX
 #include "unoshprp.hxx"
-#endif
-#ifndef _SVX_XFLBSTIT_HXX
 #include "xflbstit.hxx"
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include "xflbmtit.hxx"
-#endif
-#ifndef _SVDETC_HXX
 #include "svdetc.hxx"
-#endif
-#ifndef _MyEDITENG_HXX
 #include "editeng.hxx"
-#endif
 
 #include "unoapi.hxx"
 #include <memory>

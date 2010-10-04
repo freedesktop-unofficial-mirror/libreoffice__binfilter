@@ -29,28 +29,14 @@
 #include <bf_svx/svxids.hrc>
 #include <bf_svx/impgrf.hxx>
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXECODE_HXX //autogen
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _FILTER_CONFIG_ITEM_HXX_
 #include <bf_svtools/FilterConfigItem.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX //autogen
 #include <sot/formats.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XARCHIVER_HPP_
 #include <com/sun/star/util/XArchiver.hpp>
-#endif
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -69,17 +55,11 @@ using namespace ::com::sun::star;
 #include "strmname.h"
 
 
-#ifndef _OFF_OFAIDS_HRC
 #include <bf_offmgr/ofaids.hrc>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 TYPEINIT1( SdModuleDummy, SfxModule );

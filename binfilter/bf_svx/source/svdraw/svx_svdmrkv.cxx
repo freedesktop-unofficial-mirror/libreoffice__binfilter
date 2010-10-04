@@ -34,19 +34,13 @@
 #include "svdstr.hrc"
 
 // #105722#
-#ifndef _SVDOPATH_HXX
 #include "svdopath.hxx"
-#endif
 
 // #i13033#
-#ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
-#endif
 
 // OD 30.06.2003 #108784#
-#ifndef _SVDOVIRT_HXX
 #include <svdovirt.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

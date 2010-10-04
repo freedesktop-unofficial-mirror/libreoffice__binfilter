@@ -30,13 +30,9 @@
 
 #include <bf_svtools/flagitem.hxx>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {

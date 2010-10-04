@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMLAYERIMPORT_HXX_
 #include "formlayerimport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_LAYERIMPORT_HXX_
 #include "layerimport.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

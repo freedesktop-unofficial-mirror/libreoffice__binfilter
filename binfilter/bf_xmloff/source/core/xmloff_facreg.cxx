@@ -29,9 +29,7 @@
 
 
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 
 #include <cppuhelper/factory.hxx>

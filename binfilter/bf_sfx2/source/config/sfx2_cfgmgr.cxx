@@ -29,9 +29,7 @@
 
 #include <stdio.h>
 
-#ifndef _COM_SUN_STAR_UCB_INTERACTIVEAUGMENTEDIOEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveAugmentedIOException.hpp>
-#endif
 
 #include <ucbhelper/content.hxx>
 #include <tools/urlobj.hxx>

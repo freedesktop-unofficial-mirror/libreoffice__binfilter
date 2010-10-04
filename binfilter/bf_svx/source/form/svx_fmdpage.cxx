@@ -29,28 +29,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
 
-#ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
 
-#ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
 
-#ifndef _SVX_FMDPAGE_HXX
 #include "fmdpage.hxx"
-#endif
 
-#ifndef _SVX_UNOSHAPE_HXX //autogen
 #include "unoshape.hxx"
-#endif
-#ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ DBG_NAME(SvxFmDrawPage)

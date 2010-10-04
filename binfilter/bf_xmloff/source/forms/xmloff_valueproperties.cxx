@@ -25,15 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 #include "valueproperties.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

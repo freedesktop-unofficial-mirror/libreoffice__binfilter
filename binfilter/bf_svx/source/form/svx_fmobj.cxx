@@ -30,50 +30,30 @@
 
 
 
-#ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
 
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 
 
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
 
 
 
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
-#ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
-#endif
 
 
 
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 
-#ifndef _SVX_FMVIEW_HXX //autogen
 #include <fmview.hxx>
-#endif
 
-#ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
 
-#ifndef _SVX_FMPGEIMP_HXX
 #include "fmpgeimp.hxx"
-#endif
 
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;

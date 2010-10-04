@@ -33,9 +33,7 @@
 #include <time.h>
 #include "pagefrm.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "viewimp.hxx"
@@ -52,30 +50,18 @@
 
 #include <ftnidx.hxx>
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
 
 #define _SVSTDARR_BOOLS
 
 #define _LAYACT_CXX
 #include "layact.hxx"
 
-#ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
 
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"
@@ -85,9 +71,7 @@
 #include "mdiexp.hxx"
 #include "fmtornt.hxx"
 #include "sectfrm.hxx"
-#ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
-#endif
 namespace binfilter {
 
 //#pragma optimize("ity",on)

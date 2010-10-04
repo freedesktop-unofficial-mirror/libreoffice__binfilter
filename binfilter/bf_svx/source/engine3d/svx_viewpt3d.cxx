@@ -25,17 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _VIEWPT3D_HXX
 #include "viewpt3d.hxx"
-#endif
 
-#ifndef _VOLUME3D_HXX
 #include "volume3d.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************

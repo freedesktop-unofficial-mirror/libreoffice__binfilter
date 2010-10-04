@@ -58,13 +58,9 @@
 
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter
 {

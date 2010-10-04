@@ -36,9 +36,7 @@
 #define ITEMID_DATE     0
 #define ITEMID_TEXT     0
 
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
 
 #include "postattr.hxx"
 namespace binfilter {

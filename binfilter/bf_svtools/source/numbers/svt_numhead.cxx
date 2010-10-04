@@ -30,9 +30,7 @@
 #ifndef GCC
 #endif
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include "numhead.hxx"
 

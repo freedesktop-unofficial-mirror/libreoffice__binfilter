@@ -25,17 +25,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYBROADCASTER_HPP_
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
-#endif
 
 
-#ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
 
 
@@ -48,9 +42,7 @@
 #include "svdetc.hxx"
 #include "svdview.hxx"
 #include "unomlstr.hxx"
-#ifndef _CLIENT_HXX
 #include <bf_so3/client.hxx>
-#endif
 
 namespace binfilter {
 

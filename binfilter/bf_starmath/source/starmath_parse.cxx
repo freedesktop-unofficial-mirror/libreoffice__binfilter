@@ -35,16 +35,10 @@
 
 #include <com/sun/star/i18n/UnicodeType.hpp>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
-#ifndef CONFIG_HXX
 #include "config.hxx"
-#endif
 
 #include "node.hxx"
 namespace binfilter {

@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 // header for SvStream
 // header for SAL_STATIC_CAST
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 #include "schopt.hxx"
 

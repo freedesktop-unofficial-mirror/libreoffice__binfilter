@@ -27,9 +27,7 @@
 
 #include <vector>
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 

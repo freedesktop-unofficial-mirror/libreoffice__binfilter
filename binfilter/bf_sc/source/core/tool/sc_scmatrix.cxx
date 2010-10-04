@@ -39,9 +39,7 @@
 
 #include "scmatrix.hxx"
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------

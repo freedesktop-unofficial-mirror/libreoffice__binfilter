@@ -44,9 +44,7 @@
 #include <bf_svtools/poolcach.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <bf_svtools/zforlist.hxx>
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 
 #include "attarray.hxx"
 #include "patattr.hxx"
@@ -72,9 +70,7 @@
 #include "indexmap.hxx"
 #include "detfunc.hxx"      // for UpdateAllComments
 #include "scmod.hxx"
-#ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
-#endif
 #include "progress.hxx"
 #ifndef __SGI_STL_SET
 #include <set>

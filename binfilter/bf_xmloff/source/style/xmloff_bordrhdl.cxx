@@ -26,24 +26,16 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BORDERTYPES_HXX
 #include <bordrhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

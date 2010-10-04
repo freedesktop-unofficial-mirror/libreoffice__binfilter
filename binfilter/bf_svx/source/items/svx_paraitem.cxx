@@ -27,24 +27,12 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _COM_SUN_STAR_STYLE_TABSTOP_HPP_
 #include <com/sun/star/style/TabStop.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_STYLE_LINESPACING_HPP_
 #include <com/sun/star/style/LineSpacing.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_STYLE_LINESPACINGMODE_HPP_
 #include <com/sun/star/style/LineSpacingMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include <comphelper/types.hxx>
 
@@ -71,9 +59,7 @@ using namespace ::com::sun::star;
 
 #define _SVX_PARAITEM_CXX
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 
 #include <bf_svtools/memberid.hrc>
 #include "svxitems.hrc"
@@ -101,9 +87,7 @@ using namespace ::com::sun::star;
 #include "dialmgr.hxx"
 #include "paperinf.hxx"
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
 #include <algorithm>
 namespace binfilter {

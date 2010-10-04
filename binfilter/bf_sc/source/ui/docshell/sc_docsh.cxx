@@ -47,9 +47,7 @@
 #include <comphelper/classids.hxx>
 #include <bf_sfx2/request.hxx>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 
 #include <sot/formats.hxx>
 #define SOT_FORMATSTR_ID_STARCALC_30 SOT_FORMATSTR_ID_STARCALC
@@ -84,9 +82,7 @@
 #include "docsh.hxx"
 #include "ViewSettingsSequenceDefines.hxx"
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 

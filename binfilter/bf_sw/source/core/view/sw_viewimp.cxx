@@ -32,9 +32,7 @@
 
 #include "scrrect.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "crsrsh.hxx"
@@ -45,9 +43,7 @@
 #include "layact.hxx"
 #include "swregion.hxx"
 #include "dview.hxx"
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 #ifdef ACCESSIBLE_LAYOUT
 #endif
 

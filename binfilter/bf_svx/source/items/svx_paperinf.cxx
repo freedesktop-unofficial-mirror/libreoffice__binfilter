@@ -30,12 +30,8 @@
 #include <limits.h>
 
 
-#ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"
-#endif
-#ifndef _SVX_PAPERINF_HXX
 #include "paperinf.hxx"
-#endif
 namespace binfilter {
 
 #define SVX_PAPER_OFFSET    3   // Anfang: enum Paper A3 - SvxPaper A0; Diff=3

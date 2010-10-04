@@ -31,9 +31,7 @@
 #endif
 
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #include "swregion.hxx"
 namespace binfilter {
 

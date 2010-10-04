@@ -33,21 +33,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _CSTITEM_HXX //autogen
 #include <bf_svtools/cstitem.hxx>
-#endif
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_STARTOPTIONS_HXX
 #include <bf_svtools/startoptions.hxx>
-#endif
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/urihelper.hxx>
 #include <bf_svtools/helpopt.hxx>

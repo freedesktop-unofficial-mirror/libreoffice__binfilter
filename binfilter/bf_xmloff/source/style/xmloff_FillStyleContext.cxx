@@ -26,42 +26,22 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_FILLSTYLECONTEXTS_HXX_
 #include "FillStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_GRADIENTSTYLE_HXX
 #include "GradientStyle.hxx"
-#endif
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include "HatchStyle.hxx"
-#endif
-#ifndef _XMLOFF_IMAGESTYLE_HXX
 #include "ImageStyle.hxx"
-#endif
-#ifndef _XMLOFF_TRANSGRADIENTSTYLE_HXX
 #include "TransGradientStyle.hxx"
-#endif
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include "MarkerStyle.hxx"
-#endif
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include "DashStyle.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

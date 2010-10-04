@@ -28,15 +28,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SFXVISIBILITYITEM_HXX
 #include <bf_svtools/visitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {

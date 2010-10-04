@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
 
 #include <tools/debug.hxx>
 #include <osl/file.hxx>

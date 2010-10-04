@@ -33,17 +33,13 @@
 #include <float.h>
 #endif
 
-#ifndef _SVDOPATH_HXX //autogen
 #include "svdopath.hxx"
-#endif
 
 
 
 
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
 
 // FG: wegen der DEBUG-Ausgabe in Dateien (temporaer)
@@ -51,17 +47,11 @@
 #include <stdio.h>
 #endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPolyObj, E3dObject);

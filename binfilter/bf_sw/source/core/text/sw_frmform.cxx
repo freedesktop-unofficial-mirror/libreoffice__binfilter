@@ -31,64 +31,28 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      // ChangeFtnRef
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>      // SwVirtFlyDrawObj
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // SwFtnFrm
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>      // SwViewOptions
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // ViewShell
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _TXTCFG_HXX
 #include <txtcfg.hxx>
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
-#endif
-#ifndef _WIDORP_HXX
 #include <widorp.hxx>       // Widows and Orphans
-#endif
-#ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectionFrm
-#endif
 
 namespace binfilter {
 

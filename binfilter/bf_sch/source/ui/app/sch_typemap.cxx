@@ -33,33 +33,15 @@
 #include <bf_svx/eeitem.hxx>
 
 #include "eetext.hxx"
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
 
 #include <bf_svx/svxids.hrc>
 
@@ -77,9 +59,7 @@
 #define ITEMID_PAGE         0
 
 
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 
 #define ITEMID_AUTHOR       0
 #define ITEMID_DATE         0
@@ -94,13 +74,9 @@
 #include <bf_svx/zoomitem.hxx>
 
 #define ITEMID_CHARTSTYLE   0
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
 
-#ifndef _SFXMSG_HXX
 #include <bf_sfx2/msg.hxx>
-#endif
 
 namespace binfilter {
 

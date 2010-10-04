@@ -32,73 +32,37 @@
 #define _EXTERN_FORMLAYER_
 
 
-#ifndef _SVXERR_HXX
 #include "svxerr.hxx"
-#endif
 
-#ifndef _SVX_FMUNOPGE_HXX
 #include "fmpgeimp.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_IO_XOBJECTOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XObjectOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
 
-#ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>
-#endif
 
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
-#ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
 
 //  #include "fmstream.hxx"
-#ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
 
-#ifndef _SVDITER_HXX //autogen
 #include "svditer.hxx"
-#endif
 
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 
-#ifndef _VCL_STDTEXT_HXX
 #include <vcl/stdtext.hxx>
-#endif
 
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef SVX_DBTOOLSCLIENT_HXX
 #include "dbtoolsclient.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;

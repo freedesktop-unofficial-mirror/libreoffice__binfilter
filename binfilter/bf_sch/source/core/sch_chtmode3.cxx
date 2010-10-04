@@ -25,40 +25,20 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_TAB_LINE_HXX
 #include <bf_svx/tabline.hxx>
-#endif
-#ifndef _SVDOGRAF_HXX //autogen
 #include <bf_svx/svdograf.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SVX_XBTMPIT_HXX //autogen
 #include <bf_svx/xbtmpit.hxx>
-#endif
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 #ifndef _SVX_COLRITEM_HXX //autogen
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include <bf_svx/xflftrit.hxx>
-#endif
-#ifndef _SVX_XFLHTIT_HXX
 #include <bf_svx/xflhtit.hxx>
-#endif
-#ifndef _XTABLE_HXX
 #include <bf_svx/xtable.hxx>
-#endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 // header for SvxChartTextOrientItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -68,12 +48,8 @@
 
 #endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 
 
@@ -87,29 +63,17 @@
 #include <bf_svx/sizeitem.hxx>
 #endif
 // header for SAL_STATIC_CAST
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX
 #include <bf_svx/xlnedit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX
 #include <bf_svx/xlnstit.hxx>
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX
 #include <bf_svx/xlndsit.hxx>
-#endif
 
-#ifndef _SVX_XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
-#endif
 
-#ifndef _SVX_XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
-#endif
 
 
 #include "glob.hrc"

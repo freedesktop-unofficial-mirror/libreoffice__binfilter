@@ -31,9 +31,7 @@
 #ifndef GCC
 #endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "listener.hxx"
 #include "listeneriter.hxx"

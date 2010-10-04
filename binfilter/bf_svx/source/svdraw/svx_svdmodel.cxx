@@ -25,43 +25,23 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 #include "svdmodel.hxx"
 
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
 
-#ifndef _SVX_XIT_HXX
 #include "xit.hxx"
-#endif
 
-#ifndef _XDEF_HXX
 #include <xdef.hxx>
-#endif
 
-#ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
-#endif
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
-#endif
 
 
 #include "editeng.hxx"   // Fuer EditEngine::CreatePool()
@@ -82,65 +62,39 @@
 #include <eeitemid.hxx>
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_ASIANCFG_HXX
 #include "asiancfg.hxx"
 #endif
-#endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include "fontitem.hxx"
-#endif
 
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include "colritem.hxx"
-#endif
 
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
-#endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 
 
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
-#endif
 
-#ifndef _PERSIST_HXX
 #include <bf_so3/persist.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 
 
 // #95114#
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter {
 

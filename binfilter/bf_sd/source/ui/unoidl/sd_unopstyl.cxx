@@ -27,43 +27,27 @@
 
 
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 #include <bf_svx/unoshprp.hxx>
 
 
-#ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
 #include <bf_svx/unoshape.hxx>
-#ifndef _SVX_XIT_HXX
 #include <bf_svx/xit.hxx>
-#endif
 
-#ifndef _SD_STLPOOL_HXX
 #include "stlpool.hxx"
-#endif
 
 #include <unopsfm.hxx>
 #include <unopstyl.hxx>

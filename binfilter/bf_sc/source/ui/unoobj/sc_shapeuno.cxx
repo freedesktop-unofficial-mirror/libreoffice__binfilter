@@ -50,9 +50,7 @@
 #include "unonames.hxx"
 #include "unoguard.hxx"
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

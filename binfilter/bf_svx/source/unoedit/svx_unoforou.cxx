@@ -31,12 +31,8 @@
 
 #include <algorithm>
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
 
 #include <bf_svtools/itemset.hxx>
 #include <outliner.hxx>

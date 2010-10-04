@@ -29,41 +29,25 @@
 
 #include "svdstr.hrc"
 
-#ifndef _SVDITER_HXX
 #include "svditer.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
 #if defined( UNX ) || defined( ICC )
 #include <stdlib.h>
 #endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
-#endif
 
-#ifndef _E3D_DLIGHT3D_HXX
 #include "dlight3d.hxx"
-#endif
 
-#ifndef _SVDTRANS_HXX
 #include "svdtrans.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
 
 #include "scene3d.hxx"
 

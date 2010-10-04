@@ -37,14 +37,10 @@
 #include "xmlannoi.hxx"
 #include "xmlimprt.hxx"
 #include "xmlcelli.hxx"
-#ifndef SC_XMLCONTI_HXX
 #include "xmlconti.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

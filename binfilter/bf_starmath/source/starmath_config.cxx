@@ -29,29 +29,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 
 
-#ifndef CONFIG_HXX
 #include "config.hxx"
-#endif
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
 namespace binfilter {
 
 /////////////////////////////////////////////////////////////////

@@ -30,12 +30,8 @@
 #include <vos/macros.hxx>
 #include <vcl/svapp.hxx>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 #include <sbx.hxx>
 #include "sb.hxx"
 #include <sbjsmeth.hxx>

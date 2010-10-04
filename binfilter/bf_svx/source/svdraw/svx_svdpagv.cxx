@@ -25,13 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
-#endif
 
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
-#endif
 
 
 #include "svdpagv.hxx"
@@ -43,9 +39,7 @@
 #include "svdogrp.hxx"
 
 #include "svdoole2.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

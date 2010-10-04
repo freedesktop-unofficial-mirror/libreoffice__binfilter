@@ -28,12 +28,8 @@
 
 #include <stdio.h>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 // ================================================================================

@@ -31,9 +31,7 @@
 
 #include "xtable.hxx"
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xpool.hxx"

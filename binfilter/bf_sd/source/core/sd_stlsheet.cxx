@@ -29,13 +29,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
-#endif
 
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #include <bf_svtools/itemset.hxx>
 #include <bf_svtools/smplhint.hxx>

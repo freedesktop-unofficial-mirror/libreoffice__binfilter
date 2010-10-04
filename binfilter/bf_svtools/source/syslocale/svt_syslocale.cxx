@@ -32,30 +32,14 @@
 
 #include <bf_svtools/syslocale.hxx>
 
-#ifndef _SVT_BROADCAST_HXX
 #include <broadcast.hxx>
-#endif
-#ifndef _SVT_LISTENER_HXX
 #include <listener.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALEOPTIONS_HXX
 #include <bf_svtools/syslocaleoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 
 using namespace osl;

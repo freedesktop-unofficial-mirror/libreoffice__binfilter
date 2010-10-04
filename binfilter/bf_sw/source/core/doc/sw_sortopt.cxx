@@ -30,16 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
-#endif
 namespace binfilter {
 
 

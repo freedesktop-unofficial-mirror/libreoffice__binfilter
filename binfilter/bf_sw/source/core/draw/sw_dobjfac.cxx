@@ -26,15 +26,9 @@
  ************************************************************************/
 
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
-#ifndef _DOBJFAC_HXX
 #include <dobjfac.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
 namespace binfilter {
 
 SwObjectFactory aSwObjectFactory;

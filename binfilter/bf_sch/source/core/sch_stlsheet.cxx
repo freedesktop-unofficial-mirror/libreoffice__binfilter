@@ -29,22 +29,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _XDEF_HXX //autogen
 #include <bf_svx/xdef.hxx>
-#endif
 
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include "stlsheet.hxx"
 namespace binfilter {

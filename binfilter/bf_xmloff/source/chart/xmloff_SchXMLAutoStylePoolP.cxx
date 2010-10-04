@@ -30,9 +30,7 @@
 #include "SchXMLAutoStylePoolP.hxx"
 #include "PropertyMap.hxx"
 
-#ifndef SCH_XMLEXPORT_HXX_
 #include "SchXMLExport.hxx"
-#endif
 namespace binfilter {
 
 using ::binfilter::xmloff::token::GetXMLToken;

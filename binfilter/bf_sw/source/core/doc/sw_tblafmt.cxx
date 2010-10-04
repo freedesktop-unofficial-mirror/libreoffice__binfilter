@@ -35,31 +35,17 @@
 
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
 
 #define READ_OLDVERS        // erstmal noch alte Versionen lesen
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _TBLAFMT_HXX
 #include <tblafmt.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _ERRHDL_HXX //autogen
 #include <errhdl.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

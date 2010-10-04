@@ -39,14 +39,10 @@
 #include "xmlsceni.hxx"
 #include "attrib.hxx"
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

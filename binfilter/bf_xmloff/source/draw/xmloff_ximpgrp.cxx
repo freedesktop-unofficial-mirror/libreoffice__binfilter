@@ -29,19 +29,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include"xmlnmspe.hxx"
-#endif
 
-#ifndef _XIMPGROUP_HXX
 #include "ximpgrp.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_EVENTIMP_HXX
 #include "eventimp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

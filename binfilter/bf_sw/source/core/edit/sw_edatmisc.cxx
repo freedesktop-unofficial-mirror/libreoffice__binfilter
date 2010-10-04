@@ -30,16 +30,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>      // fuer aNodes
-#endif
 namespace binfilter {
 
 

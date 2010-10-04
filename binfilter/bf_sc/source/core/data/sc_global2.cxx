@@ -43,9 +43,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include "document.hxx"
 #include "rangeutl.hxx"

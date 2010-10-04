@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLTEXTTABLECONTEXT_HXX
 #include "XMLTextTableContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

@@ -29,9 +29,7 @@
 #include "svdedxv.hxx"
 #include <bf_svtools/solar.hrc>
 
-#ifndef _STRING_H
 #include <tools/string.h>
-#endif
 
 
 

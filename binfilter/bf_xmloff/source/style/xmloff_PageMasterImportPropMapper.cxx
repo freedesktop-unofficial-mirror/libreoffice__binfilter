@@ -29,22 +29,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 #include "PageMasterImportPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 #define XML_LINE_LEFT 0

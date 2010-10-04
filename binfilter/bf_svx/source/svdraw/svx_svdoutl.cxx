@@ -25,15 +25,9 @@
  *
  ************************************************************************/
 
-#ifndef _SVDOUTL_HXX //autogen
 #include "svdoutl.hxx"
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
 #include "svdotext.hxx"
-#endif
-#ifndef _EDITSTAT_HXX //autogen wg. EE_CNTRL_STRETCHING
 #include <editstat.hxx>
-#endif
 namespace binfilter {
 
 

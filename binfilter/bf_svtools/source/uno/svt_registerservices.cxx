@@ -28,27 +28,15 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SAL_TYPES_H_
 #include "sal/types.h"
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
 #include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
 
 namespace css = com::sun::star;
 using css::uno::Reference;

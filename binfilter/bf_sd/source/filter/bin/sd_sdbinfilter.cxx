@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 #include <sot/formats.hxx>
 #include <bf_svtools/itempool.hxx>
@@ -40,40 +38,18 @@
 #include "bf_sd/docshell.hxx"
 
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
-#ifndef _SVX_XFLGRIT_HXX
 #include <bf_svx/xflgrit.hxx>
-#endif
-#ifndef _SVX_XBTMPIT_HXX
 #include <bf_svx/xbtmpit.hxx>
-#endif
-#ifndef _SVX_XLNDSIT_HXX
 #include <bf_svx/xlndsit.hxx>
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include <bf_svx/xlnstit.hxx>
-#endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include <bf_svx/xflftrit.hxx>
-#endif
-#ifndef _SVX_XFLHTIT_HXX
 #include <bf_svx/xflhtit.hxx>
-#endif
-#ifndef _SVX_XLNEDIT_HXX
 #include <bf_svx/xlnedit.hxx>
-#endif
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _SVDITER_HXX
 #include <bf_svx/svditer.hxx>
-#endif
 
 #include "sdoutl.hxx"
 #include "sdpage.hxx"

@@ -30,26 +30,16 @@
 #endif
 
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 namespace binfilter {
 
 

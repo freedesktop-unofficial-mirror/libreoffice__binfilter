@@ -25,16 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _XMLOFF_SINGLEPROPERTYSETINFOCACHE_HXX
 #include "SinglePropertySetInfoCache.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;

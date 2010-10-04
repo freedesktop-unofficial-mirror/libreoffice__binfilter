@@ -26,12 +26,8 @@
  ************************************************************************/
 
 
-#ifndef _SV_SPLITWIN_HXX //autogen
 #include <vcl/splitwin.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

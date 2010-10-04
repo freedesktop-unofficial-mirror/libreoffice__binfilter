@@ -25,25 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #include "PagePropertySetContext.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #include "XMLBackgroundImageContext.hxx"
-#endif
-#ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #include "XMLTextColumnsContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
-#ifndef _XMLOFF_XMLFOOTNOTESEPARATORIMPORT_HXX
 #include "XMLFootnoteSeparatorImport.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

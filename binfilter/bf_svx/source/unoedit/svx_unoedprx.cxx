@@ -50,13 +50,9 @@
 //
 //------------------------------------------------------------------------
 
-#ifndef _SVX_UNOEDPRX_HXX
 #include "unoedprx.hxx"
-#endif
 
-#ifndef _SVX_UNOTEXT_HXX
 #include "unotext.hxx"
-#endif
 
 #include "editeng.hxx"
 #include "AccessibleStringWrap.hxx"

@@ -25,12 +25,8 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _OSL_THREAD_H_
 #include <osl/thread.h>
-#endif
 
 #include <vcl/virdev.hxx>
 #include <tools/stream.hxx>

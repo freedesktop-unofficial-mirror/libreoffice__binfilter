@@ -29,38 +29,28 @@
 
 #include "svdstr.hrc"
 
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
 
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 
 
@@ -72,20 +62,14 @@
 
 
 
-#ifndef _SVX_XLNWTIT_HXX
 #include "xlnwtit.hxx"
-#endif
 
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 
 
@@ -97,9 +81,7 @@
 
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
 
 namespace binfilter {

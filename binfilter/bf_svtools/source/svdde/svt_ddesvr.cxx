@@ -33,13 +33,9 @@
 #include <bf_svtools/svdde.hxx>
 #include <bf_svtools/svarray.hxx>
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _OSL_THREAD_H_
 #include <osl/thread.h>
-#endif
 
 namespace binfilter
 {

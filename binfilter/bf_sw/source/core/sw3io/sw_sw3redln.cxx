@@ -32,20 +32,14 @@
 
 #ifndef _DOC_HXX //autogen
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include <doc.hxx>
 #endif
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _REDLINE_HXX //autogen
 #include <redline.hxx>
-#endif
 
 
 #include "sw3marks.hxx"

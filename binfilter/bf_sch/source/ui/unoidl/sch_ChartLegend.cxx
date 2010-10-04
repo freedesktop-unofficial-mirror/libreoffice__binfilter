@@ -29,16 +29,10 @@
 #include "defines.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

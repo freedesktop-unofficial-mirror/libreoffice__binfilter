@@ -30,18 +30,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _UNODEFAULTS_HXX
 #include <unodefaults.hxx>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 #include <bf_svx/unoprov.hxx>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include <doc.hxx>
 namespace binfilter {

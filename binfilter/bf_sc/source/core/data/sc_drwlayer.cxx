@@ -39,9 +39,7 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
 #include <bf_svx/objfac3d.hxx>
 #include <bf_svx/svdoutl.hxx>
 #include <bf_svx/svditer.hxx>
@@ -49,9 +47,7 @@
 #include <bf_svx/svdoole2.hxx>
 #include <bf_svx/svdundo.hxx>
 #include <bf_svx/drawitem.hxx>
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
 #include <bf_sfx2/docfile.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/itempool.hxx>

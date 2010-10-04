@@ -37,9 +37,7 @@
 
 
 
-#ifndef _EERDLL_HXX
 #include "eerdll.hxx"
-#endif
 
 namespace binfilter {
 

@@ -28,13 +28,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
-#ifndef _UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
 namespace binfilter {
 
 

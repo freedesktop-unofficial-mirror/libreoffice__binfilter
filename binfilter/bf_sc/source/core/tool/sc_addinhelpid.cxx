@@ -34,13 +34,9 @@
 
 // ============================================================================
 
-#ifndef SC_ADDINHELPID_HXX
 #include "addinhelpid.hxx"
-#endif
 
-#ifndef SC_SC_HRC
 #include "bf_sc.hrc"
-#endif
 namespace binfilter {
 
 

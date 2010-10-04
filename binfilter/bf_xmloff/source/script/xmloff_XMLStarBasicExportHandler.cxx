@@ -25,20 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSTARBASICEXPORTHANDLER_HXX
 #include "XMLStarBasicExportHandler.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 namespace binfilter {
 
 

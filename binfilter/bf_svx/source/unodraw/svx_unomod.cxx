@@ -27,53 +27,31 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
 
 
 
-#ifndef _SVX_UNOFILL_HXX_
 #include <unofill.hxx>
-#endif
 
-#ifndef _SVX_UNONRULE_HXX
 #include <unonrule.hxx>
-#endif
 
-#ifndef _SVTOOLS_UNOIMAP_HXX
 #include <bf_svtools/unoimap.hxx>
-#endif
 
-#ifndef _SVX_FMDPAGE_HXX
 #include <fmdpage.hxx>
-#endif
-#ifndef _SVX_FMMODEL_HXX
 #include <fmmodel.hxx>
-#endif
 
-#ifndef _SVX_FMPAGE_HXX
 #include <fmpage.hxx>
-#endif
 
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
 
-#ifndef _SVX_UNOAPI_HXX_
 #include <unoapi.hxx>
-#endif
 
 #include "globl3d.hxx"
 #include "unofield.hxx"

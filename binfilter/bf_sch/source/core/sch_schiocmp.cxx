@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 #include "schiocmp.hxx"
 namespace binfilter {
 

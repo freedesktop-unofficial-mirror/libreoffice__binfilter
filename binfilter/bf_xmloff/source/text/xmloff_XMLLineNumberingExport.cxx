@@ -25,30 +25,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLLINENUMBERINGEXPORT_HXX_
 #include "XMLLineNumberingExport.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include "com/sun/star/text/XLineNumberingProperties.hpp"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HPP_
 #include <com/sun/star/style/LineNumberPosition.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 namespace binfilter {

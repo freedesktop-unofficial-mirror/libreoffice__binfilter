@@ -31,28 +31,16 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX //autogen
 #include <errhdl.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )

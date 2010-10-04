@@ -27,19 +27,11 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -315,9 +307,7 @@ sal_Bool SAL_CALL Svx3DSceneObject::hasElements()
 
 //----------------------------------------------------------------------
 } //namespace binfilter
-#ifndef _SVDITER_HXX
 #include <svditer.hxx>
-#endif
 namespace binfilter {//STRIP009
 struct ImpRememberTransAndRect
 {
@@ -713,9 +703,7 @@ uno::Sequence< OUString > SAL_CALL Svx3DSphereObject::getSupportedServiceNames()
 *                                                                      *
 ***********************************************************************/
 } //namespace binfilter
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
 namespace binfilter {//STRIP009
 
 

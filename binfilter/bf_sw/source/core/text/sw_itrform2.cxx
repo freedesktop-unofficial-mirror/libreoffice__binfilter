@@ -36,88 +36,38 @@
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
 
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>       // SwFmtDrop
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>      // CH_TXTATR
-#endif
-#ifndef _TXTCFG_HXX
 #include <txtcfg.hxx>
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
-#endif
-#ifndef _PORTAB_HXX
 #include <portab.hxx>       // pLastTab->
-#endif
-#ifndef _PORFLY_HXX
 #include <porfly.hxx>       // CalcFlyWidth
-#endif
-#ifndef _PORTOX_HXX
 #include <portox.hxx>       // WhichTxtPortion
-#endif
-#ifndef _PORREF_HXX
 #include <porref.hxx>       // WhichTxtPortion
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PORFTN_HXX
 #include <porftn.hxx>       // SwFtnPortion
-#endif
-#ifndef _PORHYPH_HXX
 #include <porhyph.hxx>
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // WhichFirstPortion() -> mal Verlagern.
-#endif
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
-#endif
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
 #define _SVSTDARR_LONGS
 #include <bf_svtools/svstdarr.hxx>
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
 #if OSL_DEBUG_LEVEL > 1
 #endif

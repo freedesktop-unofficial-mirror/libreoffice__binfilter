@@ -25,25 +25,17 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
 
 
 
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
 
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 #include <numithdl.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

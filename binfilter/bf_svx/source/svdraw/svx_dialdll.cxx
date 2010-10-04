@@ -34,19 +34,13 @@
 #include "brshitem.hxx"
 
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
 
 
-#ifndef _FILTER_HXX //autogen
 #include <bf_svtools/filter.hxx>
-#endif
 
-#ifndef _WALLITEM_HXX
 #include <bf_svtools/wallitem.hxx>
-#endif
 namespace binfilter {
 
 // struct DialogsResMgr --------------------------------------------------

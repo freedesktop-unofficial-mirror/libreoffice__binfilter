@@ -25,16 +25,12 @@
  *
  ************************************************************************/
 
-#ifndef _SVDITER_HXX
 #include "svditer.hxx"
-#endif
 
 
 
 // #99190#
-#ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ SdrObjListIter::SdrObjListIter(const SdrObjList& rObjList, SdrIterMode eMode, BOOL bReverse)

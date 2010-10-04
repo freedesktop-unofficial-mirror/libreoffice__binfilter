@@ -30,18 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
 #include "cntfrm.hxx"
 #include "pam.hxx"
 
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
 #include "pageiter.hxx"
 #include "txtfrm.hxx"
 namespace binfilter {

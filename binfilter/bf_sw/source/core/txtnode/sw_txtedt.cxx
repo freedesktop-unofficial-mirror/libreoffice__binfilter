@@ -39,19 +39,11 @@
     #include <time.h>           // clock()
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 #ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
 #endif
@@ -59,38 +51,18 @@
 #include <com/sun/star/i18n/ScriptType.hdl>
 #endif
 
-#ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>      // GetDoc()
-#endif
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _WRONG_HXX
 #include <wrong.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx> // SwDrawTextInfo
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;

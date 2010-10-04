@@ -30,9 +30,7 @@
 #endif
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -43,37 +41,21 @@
 
 
 
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SCH_STLPOOL_HXX
 #include "stlpool.hxx"
-#endif
-#ifndef _SCH_SCHIOCMP_HXX
 #include "schiocmp.hxx"
-#endif
-#ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
-#endif
-#ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
 
 #ifdef ITEMID_FONT
 #undef ITEMID_FONT
@@ -101,9 +83,7 @@
 
 #include "memchrt.hxx"
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
 namespace binfilter {
 

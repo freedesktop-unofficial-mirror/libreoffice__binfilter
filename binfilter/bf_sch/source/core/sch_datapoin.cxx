@@ -33,9 +33,7 @@
 
 #include "datapoin.hxx"
 #include "glob.hxx"
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 /*************************************************************************
 |*

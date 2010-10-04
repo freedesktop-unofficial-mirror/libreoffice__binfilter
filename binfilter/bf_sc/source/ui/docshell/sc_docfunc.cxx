@@ -43,9 +43,7 @@
 #include <vcl/msgbox.hxx>
 #include <vcl/waitobj.hxx>
 #include <bf_svtools/zforlist.hxx>
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <bf_svtools/PasswordHelper.hxx>
-#endif
 
 #include <list>
 

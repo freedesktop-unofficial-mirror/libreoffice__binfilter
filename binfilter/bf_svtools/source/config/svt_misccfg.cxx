@@ -27,13 +27,9 @@
 
 #include "misccfg.hxx"
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 

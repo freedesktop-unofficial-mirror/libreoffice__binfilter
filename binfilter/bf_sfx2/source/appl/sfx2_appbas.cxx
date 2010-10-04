@@ -25,25 +25,13 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SFXRECTITEM_HXX //autogen
 #include <bf_svtools/rectitem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include <bf_svtools/stritem.hxx>
 
@@ -62,18 +50,14 @@
 #include "appimp.hxx"
 #include "dlgcont.hxx"
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #include "scriptcont.hxx"
 
 #define ITEMID_SEARCH SID_SEARCH_ITEM
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 
 namespace binfilter {

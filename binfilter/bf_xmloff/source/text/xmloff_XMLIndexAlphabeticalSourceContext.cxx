@@ -26,30 +26,22 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXALPHABETICALSOURCECONTEXT_HXX_
 #include "XMLIndexAlphabeticalSourceContext.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {

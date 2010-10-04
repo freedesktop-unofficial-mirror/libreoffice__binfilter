@@ -28,13 +28,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _FLBYTES_HXX
 #include <flbytes.hxx>
-#endif
 
 #ifndef _SVSTDARR_ULONGS_DECL
 #define _SVSTDARR_ULONGS

@@ -25,34 +25,20 @@
  *
  ************************************************************************/
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include <vcl/virdev.hxx>
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include "smmod.hxx"
 #include <bf_so3/factory.hxx>
 
-#ifndef _CONFIG_HXX
 #include "config.hxx"
-#endif
 #include "starmath.hrc"
 namespace binfilter {//STRIP009
 /*N*/ TYPEINIT1( SmModuleDummy, SfxModule );

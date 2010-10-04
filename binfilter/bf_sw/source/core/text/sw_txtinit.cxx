@@ -36,9 +36,7 @@
 #include "txtcache.hxx"
 #include "porrst.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "pordrop.hxx"
 #include "txtfly.hxx"   // SwContourCache

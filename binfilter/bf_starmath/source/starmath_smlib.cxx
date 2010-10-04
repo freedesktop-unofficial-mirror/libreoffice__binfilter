@@ -29,26 +29,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_FCONTNR_HXX
 #include <bf_sfx2/fcontnr.hxx>
-#endif
 
 
-#ifndef _DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
 
 #include "dllname.hxx"
 namespace binfilter {

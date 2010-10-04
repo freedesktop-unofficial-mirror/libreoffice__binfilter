@@ -25,41 +25,27 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 #include <list>
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 
 
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
 
 
-#ifndef _XIMP3DSCENE_HXX
 #include "ximp3dscene.hxx"
-#endif
 
-#ifndef _XIMP3DOBJECT_HXX
 #include "ximp3dobject.hxx"
-#endif
 
-#ifndef _XIMPGROUP_HXX
 #include "ximpgrp.hxx"
-#endif
 
 #include <map>
 #include <vector>

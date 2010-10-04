@@ -26,21 +26,13 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARHEIGHTTYPES_HXX
 #include <chrhghdl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 namespace binfilter {

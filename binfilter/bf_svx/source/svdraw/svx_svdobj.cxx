@@ -63,53 +63,31 @@
 #include "unopage.hxx"
 #include "eeitem.hxx"
 
-#ifndef _SVDPOOL_HXX
 #include "svdpool.hxx"
-#endif
 
-#ifndef _MyEDITENG_HXX
 #include "editeng.hxx"
-#endif
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
-#endif
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
 
 // #97849#
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
-#ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>
-#endif
 
 #include <bf_sfx2/docfac.hxx>
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
 
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
 
-#ifndef _VCL_GRAPHICTOOLS_HXX_
 #include <vcl/graphictools.hxx>
-#endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
 namespace binfilter {
 

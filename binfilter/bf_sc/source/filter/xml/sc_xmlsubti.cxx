@@ -36,35 +36,17 @@
 
 #include "xmlstyli.hxx"
 #include "document.hxx"
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_DOCUNO_HXX
 #include "docuno.hxx"
-#endif
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
 #include <com/sun/star/util/XMergeable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
 #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
 #include <com/sun/star/sheet/XCellRangeMovement.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------

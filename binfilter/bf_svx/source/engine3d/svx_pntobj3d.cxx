@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
 
-#ifndef _E3D_PNTOBJ3D_HXX
 #include "pntobj3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPointObj, E3dObject);

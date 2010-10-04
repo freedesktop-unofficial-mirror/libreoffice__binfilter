@@ -64,9 +64,7 @@
 #include "tablink.hxx"      // ScDocumentLoader statics
 #include "docoptio.hxx"
 
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------

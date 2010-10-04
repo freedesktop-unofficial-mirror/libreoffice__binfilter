@@ -25,14 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 #include "svdocapt.hxx"
 #include "svdattrx.hxx"
@@ -43,9 +39,7 @@
 
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

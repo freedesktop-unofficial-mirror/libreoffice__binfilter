@@ -28,9 +28,7 @@
 
 
 
-#ifndef _SVX_MATRIX3D_HXX
 #include "matrix3d.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************

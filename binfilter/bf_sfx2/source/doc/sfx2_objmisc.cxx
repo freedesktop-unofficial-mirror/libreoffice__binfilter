@@ -25,18 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _INETMSG_HXX //autogen
 #include <bf_svtools/inetmsg.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 #include <bf_so3/inetbnd.hxx>
 #include <vos/mutex.hxx>
 #include <bf_sfx2/app.hxx>
@@ -45,9 +37,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
-#endif
 
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/uno/Any.h>
@@ -58,12 +48,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::document;
 
-#ifndef _SB_BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
-#ifndef _SBXCLASS_HXX //autogen
 #include "bf_basic/sbx.hxx"
-#endif
 
 #include <unotools/ucbhelper.hxx>
 #include <bf_svtools/inettype.hxx>

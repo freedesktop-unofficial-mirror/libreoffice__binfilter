@@ -29,12 +29,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _XOUTX_HXX //autogen
 #include <bf_svx/xoutx.hxx>
-#endif
 
 #include "xchar.hxx"
 #include "types.hxx"

@@ -27,18 +27,10 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #include "layerexport.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #include "officeforms.hxx"
-#endif
 namespace binfilter {
 
 

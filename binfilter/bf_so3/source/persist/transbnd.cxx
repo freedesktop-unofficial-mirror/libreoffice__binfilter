@@ -27,88 +27,40 @@
 
 #define _TRANSBND_CXX "$Revision: 1.5 $"
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDPROCESSOR_HPP_
 #include <com/sun/star/ucb/XCommandProcessor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
 #ifndef _RTL_USTRING_
 #include <rtl/ustring.h>
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SFXCANCEL_HXX
 #include <bf_svtools/cancel.hxx>
-#endif
-#ifndef _INETHIST_HXX
 #include <bf_svtools/inethist.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <bf_so3/binding.hxx>
-#endif
-#ifndef _BINDDATA_HXX
 #include <binddata.hxx>
-#endif
-#ifndef _TRANSBND_HXX
 #include <bf_so3/transbnd.hxx>
-#endif
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
-#ifndef _TRANSUNO_HXX
 #include <transuno.hxx>
-#endif
-#ifndef _SO2DEFS_HXX
 #include <bf_so3/so2defs.hxx>
-#endif
 
 #include <algorithm>
 

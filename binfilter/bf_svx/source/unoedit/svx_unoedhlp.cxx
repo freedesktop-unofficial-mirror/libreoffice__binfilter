@@ -29,9 +29,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "unoedhlp.hxx"
 #include "editeng.hxx"

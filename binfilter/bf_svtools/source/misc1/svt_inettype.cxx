@@ -28,22 +28,12 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
-#ifndef _SVTOOLS_HRC
 #include <bf_svtools/svtools.hrc>
-#endif
 
 #ifndef _SVSTDARR_STRINGSSORT_DECL
 #define _SVSTDARR_STRINGSSORT

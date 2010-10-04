@@ -28,9 +28,7 @@
 #define _SVX_USE_UNOGLOBALS_
 
 #ifndef SVX_LIGHT
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 #endif
 
 /*
@@ -47,13 +45,9 @@
 #include "svdopath.hxx"
 #include "svdomeas.hxx"
 
-#ifndef _E3D_EXTRUD3D_HXX
 #include <extrud3d.hxx>
-#endif
 
-#ifndef _E3D_LATHE3D_HXX
 #include <lathe3d.hxx>
-#endif
 #include <cube3d.hxx>
 #include <sphere3d.hxx>
 #include <polygn3d.hxx>

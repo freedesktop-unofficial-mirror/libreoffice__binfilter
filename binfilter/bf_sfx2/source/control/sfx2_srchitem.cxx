@@ -27,12 +27,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef __SBX_SBXVARIABLE_HXX
 #include "bf_basic/sbxvar.hxx"
-#endif
-#ifndef _SVT_SEARCHOPT_HXX_
 #include <bf_svtools/searchopt.hxx>
-#endif
 
 
 #include <bf_svtools/memberid.hrc>

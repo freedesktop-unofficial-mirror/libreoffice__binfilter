@@ -30,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FRAME_HXX
 #include <frame.hxx>            // fuer AttrCache
-#endif
 
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>           // fuer SwParaFmt - SwHyphenBug
-#endif
-#ifndef _SWCACHE_HXX
 #include <swcache.hxx>
-#endif
 namespace binfilter {
 
 

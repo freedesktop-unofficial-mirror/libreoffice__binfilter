@@ -33,9 +33,7 @@
 // For debugging only
 // #define DBG_SAVE_DISASSEMBLY
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <com/sun/star/ucb/XSimpleFileAccess3.hpp>

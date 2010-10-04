@@ -32,79 +32,33 @@
 
 #include <com/sun/star/uno/Sequence.h>
 
-#ifndef _SVTOOLS_LINGUPROPS_HXX_
 #include <bf_svtools/linguprops.hxx>
-#endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_HNGPNCTITEM_HXX
 #include <bf_svx/hngpnctitem.hxx>
-#endif
-#ifndef _SVX_SRIPTSPACEITEM_HXX
 #include <bf_svx/scriptspaceitem.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>      // SwDoc
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>   // SwFmtDrop
-#endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtInfo
-#endif
-#ifndef _NOTEURL_HXX
 #include <noteurl.hxx>  // SwNoteURL
-#endif
-#ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _ITRATR_HXX
 #include <itratr.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
