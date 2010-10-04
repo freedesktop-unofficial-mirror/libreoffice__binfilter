@@ -46,9 +46,6 @@
 #ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #endif
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-#include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
 
 namespace css = com::sun::star;
 using css::uno::Reference;
@@ -77,32 +74,6 @@ SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment (
     const sal_Char ** ppEnvTypeName, uno_Environment ** /* ppEnv */)
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
-}
-
-SAL_DLLPUBLIC_EXPORT sal_Bool SAL_CALL component_writeInfo (
-    void * /* _pServiceManager */, void * _pRegistryKey)
-{
-    if (_pRegistryKey)
-    {
-        Reference< css::registry::XRegistryKey > xRegistryKey (
-            reinterpret_cast< css::registry::XRegistryKey* >(_pRegistryKey));
-        Reference< css::registry::XRegistryKey > xNewKey;
-
-        xNewKey = xRegistryKey->createKey (
-            OUString::createFromAscii(
-                "/com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject/UNO/SERVICES" ) );
-        xNewKey->createKey (
-            OUString::createFromAscii( "com.sun.star.util.NumberFormatsSupplier" ) );
-
-        xNewKey = xRegistryKey->createKey (
-            OUString::createFromAscii(
-                "/com.sun.star.uno.util.numbers.SvNumberFormatterServiceObject/UNO/SERVICES" ) );
-        xNewKey->createKey (
-            OUString::createFromAscii( "com.sun.star.util.NumberFormatter" ) );
-
-        return sal_True;
-    }
-    return sal_False;
 }
 
 SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
