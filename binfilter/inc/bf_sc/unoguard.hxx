@@ -33,7 +33,7 @@
 #endif
 namespace binfilter {
 
-class ScUnoGuard : public NAMESPACE_VOS(OGuard)
+class ScUnoGuard : public vos::OGuard
 {
 public:
             ScUnoGuard();

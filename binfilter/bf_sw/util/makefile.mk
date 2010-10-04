@@ -170,7 +170,6 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   InitSwDll @24                                          >>$@
     @echo   DeInitSwDll @25                                        >>$@
     @echo   component_getImplementationEnvironment @50				>>$@
-    @echo   component_writeInfo @51									>>$@
     @echo   component_getFactory @52								>>$@
 
 .ENDIF
@@ -198,8 +197,14 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   _InitSwDll                                              >>$@
     @echo   _DeInitSwDll                                            >>$@
     @echo   _component_getImplementationEnvironment                 >>$@
-    @echo   _component_writeInfo    			            >>$@
     @echo   _component_getFactory    			            >>$@
 
 .ENDIF
 
+ALLTAR : $(MISC)/bf_sw.component
+
+$(MISC)/bf_sw.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_sw.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL2TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_sw.component

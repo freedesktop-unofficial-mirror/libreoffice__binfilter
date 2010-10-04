@@ -232,11 +232,6 @@ void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationN
                                                  void*      pServiceManager     ,
                                                  void*      pRegistryKey        );
 
-
-//----------------------the following part is copied from sfx2 project source\appl\appuno.cxx
-
-sal_Bool SAL_CALL sfx2_component_writeInfo( void*   pServiceManager ,
-                                        void*   pRegistryKey    );
 }
 //STRIP002 added end
 
@@ -256,29 +251,6 @@ void SAL_CALL writeInfo( registry::XRegistryKey * pRegistryKey, const OUString& 
 
     for( sal_Int32 i = 0; i < rServices.getLength(); i++ )
         xNewKey->createKey( rServices.getConstArray()[i]);
-}
-
-sal_Bool SAL_CALL component_writeInfo( void * pServiceManager, void * pRegistryKey )
-{
-    if( pRegistryKey )
-    {
-        try
-        {
-            registry::XRegistryKey *pKey = reinterpret_cast< registry::XRegistryKey * >( pRegistryKey );
-
-            writeInfo( pKey, SvxUnoColorTable::getImplementationName_Static(), SvxUnoColorTable::getSupportedServiceNames_Static() );
-#ifndef SVX_LIGHT
-            //writeInfo( pKey, svx::GraphicExporter_getImplementationName(), svx::GraphicExporter_getSupportedServiceNames() );
-#endif
-            sfx2_component_writeInfo(pServiceManager,pRegistryKey);//STRIP002
-        }
-        catch (registry::InvalidRegistryException &)
-        {
-            OSL_ENSURE( sal_False, "### InvalidRegistryException!" );
-        }
-    }
-
-    return sal_True;
 }
 
 void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
