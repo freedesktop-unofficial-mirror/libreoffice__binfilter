@@ -135,7 +135,6 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo   InitSdDll @24                                          >>$@
     @echo   DeInitSdDll @25                                        >>$@
     @echo component_getImplementationEnvironment 				   >>$@
-    @echo component_writeInfo									   >>$@
     @echo component_getFactory									   >>$@
 .ENDIF
 
@@ -155,7 +154,6 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo   _InitSdDll                                              >>$@
     @echo   _DeInitSdDll                                            >>$@
     @echo _component_getImplementationEnvironment 		    >>$@
-    @echo _component_writeInfo					    >>$@
     @echo _component_getFactory					    >>$@
 .ENDIF
 
@@ -167,3 +165,11 @@ $(MISCX)$/$(SHL1TARGET).flt:
     @echo WEP>$@
     @echo LIBMAIN>>$@
     @echo LibMain>>$@
+
+ALLTAR : $(MISC)/bf_sd.component
+
+$(MISC)/bf_sd.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_sd.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_sd.component

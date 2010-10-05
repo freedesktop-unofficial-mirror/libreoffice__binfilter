@@ -165,112 +165,12 @@ SC_SIMPLE_SERVICE_INFO( ScSpreadsheetSettings, "ScSpreadsheetSettings", SCSPREAD
 
 //------------------------------------------------------------------------
 
-void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
-                        const ::rtl::OUString& rImplementationName,
-                        const uno::Sequence< ::rtl::OUString >& rServices )
-                    throw( registry::InvalidRegistryException )
-{
-    ::rtl::OUString aImpl = ::rtl::OUString::createFromAscii( "/" );
-    aImpl += rImplementationName;
-    aImpl += ::rtl::OUString::createFromAscii( "/UNO/SERVICES" );
-    uno::Reference<registry::XRegistryKey> xNewKey = pRegistryKey->createKey(aImpl);
-
-    const ::rtl::OUString* pArray = rServices.getConstArray();
-    for( sal_Int32 i = 0; i < rServices.getLength(); i++ )
-        xNewKey->createKey( pArray[i]);
-}
-
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(
     const sal_Char ** ppEnvTypeName, uno_Environment ** ppEnv )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
-}
-
-sal_Bool SAL_CALL component_writeInfo(
-    void * pServiceManager, registry::XRegistryKey * pRegistryKey )
-{
-    if (pRegistryKey)
-    {
-        try
-        {
-            lcl_WriteInfo( pRegistryKey,
-                            ScSpreadsheetSettings::getImplementationName_Static(),
-                            ScSpreadsheetSettings::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScRecentFunctionsObj::getImplementationName_Static(),
-                            ScRecentFunctionsObj::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScFunctionListObj::getImplementationName_Static(),
-                            ScFunctionListObj::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScAutoFormatsObj::getImplementationName_Static(),
-                            ScAutoFormatsObj::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScFunctionAccess::getImplementationName_Static(),
-                            ScFunctionAccess::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScFilterOptionsObj::getImplementationName_Static(),
-                            ScFilterOptionsObj::getSupportedServiceNames_Static() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLImport_getImplementationName(),
-                            ScXMLImport_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLImport_Meta_getImplementationName(),
-                            ScXMLImport_Meta_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLImport_Styles_getImplementationName(),
-                            ScXMLImport_Styles_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLImport_Content_getImplementationName(),
-                            ScXMLImport_Content_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLImport_Settings_getImplementationName(),
-                            ScXMLImport_Settings_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLExport_getImplementationName(),
-                            ScXMLExport_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLExport_Meta_getImplementationName(),
-                            ScXMLExport_Meta_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLExport_Styles_getImplementationName(),
-                            ScXMLExport_Styles_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLExport_Content_getImplementationName(),
-                            ScXMLExport_Content_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScXMLExport_Settings_getImplementationName(),
-                            ScXMLExport_Settings_getSupportedServiceNames() );
-
-            lcl_WriteInfo( pRegistryKey,
-                            ScDocument_getImplementationName(),
-                            ScDocument_getSupportedServiceNames() );
-
-            return sal_True;
-        }
-        catch (registry::InvalidRegistryException&)
-        {
-            OSL_ENSURE( sal_False, "### InvalidRegistryException!" );
-        }
-    }
-    return sal_False;
 }
 
 void * SAL_CALL component_getFactory(
