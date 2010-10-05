@@ -28,13 +28,9 @@
 #ifndef SC_STRLOAD_HXX
 #define SC_STRLOAD_HXX
 
-#ifndef SC_SCRESID_HXX
 #include "scresid.hxx"
-#endif
 
-#ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
-#endif
 namespace binfilter {
 
 class ScRscStrLoader : public Resource

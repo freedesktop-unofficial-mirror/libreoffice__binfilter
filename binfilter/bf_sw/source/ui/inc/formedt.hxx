@@ -27,25 +27,15 @@
 #ifndef _FORMEDT_HXX
 #define _FORMEDT_HXX
 
-#ifndef _SVX_STDDLG_HXX //autogen
 #include <bf_svx/stddlg.hxx>
-#endif
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _EDIT_HXX //autogen
 #include <vcl/edit.hxx>
-#endif
 
 #include "toxe.hxx"
 namespace binfilter {

@@ -28,13 +28,9 @@
 #ifndef _SBX_SBXOBJECT_HXX
 #define _SBX_SBXOBJECT_HXX
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SBXVAR_HXX
 #include "sbxvar.hxx"
-#endif
 
 ///////////////////////////////////////////////////////////////////////////
 

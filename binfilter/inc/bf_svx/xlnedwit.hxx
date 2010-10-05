@@ -28,9 +28,7 @@
 #ifndef _SVX_XLNEDWIT_HXX
 #define _SVX_XLNEDWIT_HXX
 
-#ifndef _SFXMETRICITEM_HXX //autogen
 #include <bf_svtools/metitem.hxx>
-#endif
 namespace binfilter {
 
 #define LINE_END_WIDTH_DEFAULT      (200)

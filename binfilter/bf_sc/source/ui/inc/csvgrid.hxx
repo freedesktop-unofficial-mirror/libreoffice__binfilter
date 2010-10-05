@@ -30,25 +30,15 @@
 #ifndef _SC_CSVGRID_HXX
 #define _SC_CSVGRID_HXX
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _MENU_HXX
 #include <vcl/menu.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
 #include <vector>
 #include <memory>
 
-#ifndef _SC_CSVCONTROL_HXX
 #include "csvcontrol.hxx"
-#endif
-#ifndef _SC_CSVSPLITS_HXX
 #include "csvsplits.hxx"
-#endif
 
 namespace binfilter {
 class ColorConfig;

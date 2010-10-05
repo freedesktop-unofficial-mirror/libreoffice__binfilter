@@ -45,9 +45,7 @@ extern "C" {    // reopen extern "C" {
 #endif
 #endif
 
-#ifndef _SBXCLASS_HXX
 #include "sbx.hxx"
-#endif
 
 #include <com/sun/star/bridge/oleautomation/Decimal.hpp>
 

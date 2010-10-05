@@ -27,13 +27,9 @@
 #ifndef _SXMSITM_HXX
 #define _SXMSITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SXSIITM_HXX
 #include <bf_svx/sxsiitm.hxx>
-#endif
 namespace binfilter {
 
 // Massstabsvorgabe. Wenn bereits am Model ein Massstab (UIScale) gesetzt

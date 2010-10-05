@@ -42,15 +42,11 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #101499#
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
 
 
 #include "xoutx.hxx"

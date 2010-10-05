@@ -28,9 +28,7 @@
 #ifndef SC_UNDOCELL_HXX
 #define SC_UNDOCELL_HXX
 
-#ifndef SC_UNDOBASE_HXX
 #include "undobase.hxx"
-#endif
 namespace binfilter {
 
 class ScDocShell;

@@ -28,15 +28,9 @@
 #ifndef _SVTOOLS_LOCALRESACCESS_HXX_
 #define _SVTOOLS_LOCALRESACCESS_HXX_
 
-#ifndef _TOOLS_RC_HXX
 #include <tools/rc.hxx>
-#endif
-#ifndef _TOOLS_RCID_H
 #include <tools/rcid.h>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 //.........................................................................
 namespace binfilter

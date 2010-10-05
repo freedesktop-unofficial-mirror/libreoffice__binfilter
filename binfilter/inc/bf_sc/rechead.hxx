@@ -28,9 +28,7 @@
 #ifndef SC_RECHEAD_HXX
 #define SC_RECHEAD_HXX
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

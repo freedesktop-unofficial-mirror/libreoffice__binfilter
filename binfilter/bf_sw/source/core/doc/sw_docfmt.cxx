@@ -48,9 +48,7 @@
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
 
 #include <fmtpdsc.hxx>

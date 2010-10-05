@@ -28,9 +28,7 @@
 #ifndef _SVX_MUTXHELP_HXX
 #define _SVX_MUTXHELP_HXX
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 namespace binfilter {
 
 class SvxMutexHelper

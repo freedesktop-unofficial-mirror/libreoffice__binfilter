@@ -29,9 +29,7 @@
 
 #include "errhdl.hxx"
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

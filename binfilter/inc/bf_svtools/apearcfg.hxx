@@ -27,16 +27,10 @@
 #ifndef _SVT_APEARCFG_HXX
 #define _SVT_APEARCFG_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include "tools/solar.h"
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
 class Application;
 

@@ -27,13 +27,9 @@
 #ifndef _SXMTRITM_HXX
 #define _SXMTRITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 // Den Text quer zur Masslinie (90deg Drehung nach links)

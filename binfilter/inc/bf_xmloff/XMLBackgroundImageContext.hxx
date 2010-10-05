@@ -28,13 +28,9 @@
 #ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #define _XMLBACKGROUNDIMAGECONTEXT_HXX
 
-#ifndef _COM_SUN_STAR_STYLE_GRAPHICLOCATION_HPP_
 #include <com/sun/star/style/GraphicLocation.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace io { class XOutputStream; }

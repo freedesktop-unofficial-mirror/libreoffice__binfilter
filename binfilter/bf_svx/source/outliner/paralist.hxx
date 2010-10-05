@@ -30,13 +30,9 @@
 
 //STRIP008 class Paragraph;
 
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 class Paragraph;
 

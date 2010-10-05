@@ -27,13 +27,9 @@
 #ifndef _SDTAIITM_HXX
 #define _SDTAIITM_HXX
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 class SdrTextAniStartInsideItem: public SdrYesNoItem {

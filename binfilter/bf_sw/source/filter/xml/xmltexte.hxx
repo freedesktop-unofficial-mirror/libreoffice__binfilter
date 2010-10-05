@@ -28,12 +28,8 @@
 #ifndef _XMLTEXTE_HXX
 #define _XMLTEXTE_HXX
 
-#ifndef _XMLOFF_TEXTPARAE_HXX_
 #include <bf_xmloff/txtparae.hxx>
-#endif
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace style {
                 class XStyle; } } } }
 namespace binfilter {

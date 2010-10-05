@@ -32,9 +32,7 @@
 #else
 #include <new.h>    //fuer size_t, FIXEDMEM aus tools
 #endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "porlin.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping

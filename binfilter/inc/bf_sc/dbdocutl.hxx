@@ -28,13 +28,9 @@
 #ifndef SC_DBDOCUTL_HXX
 #define SC_DBDOCUTL_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;

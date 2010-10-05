@@ -30,12 +30,8 @@
 
 #include <bf_so3/pseudo.hxx>
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
 class SvFactory;
 class SotFactory;
 namespace binfilter {

@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_XMLNUMFE_HXX
 #define _XMLOFF_XMLNUMFE_HXX
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 class Color;
 class CharClass;
 class LocaleDataWrapper;

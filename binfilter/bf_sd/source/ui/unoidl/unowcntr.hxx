@@ -28,9 +28,7 @@
 #ifndef _SV_UNOWCNTR_HXX_
 #define _SV_UNOWCNTR_HXX_
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace binfilter {
 
 typedef sal_Bool (*weakref_searchfunc)( ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface > xRef, void* pSearchData );

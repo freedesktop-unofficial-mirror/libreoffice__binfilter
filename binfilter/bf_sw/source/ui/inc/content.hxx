@@ -28,13 +28,9 @@
 #define _CONTENT_HXX
 
 #include <limits.h>     // USHRT_MAX
-#ifndef _SWCONT_HXX
 #include "swcont.hxx"
-#endif
 
-#ifndef _MENU_HXX //autogen
 #include <vcl/menu.hxx>
-#endif
 namespace binfilter {
 
 class SwWrtShell;

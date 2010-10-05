@@ -30,9 +30,7 @@
 
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATACHANGEEVENTLISTENER_HPP_
 #include <com/sun/star/chart/XChartDataChangeEventListener.hpp>
-#endif
 namespace binfilter {
 
 class ChXChartDocument;

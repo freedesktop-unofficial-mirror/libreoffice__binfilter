@@ -28,19 +28,11 @@
 #ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #define INCLUDED_SVTOOLS_SYSLOCALE_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 namespace osl { class Mutex; }
 

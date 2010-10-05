@@ -28,12 +28,8 @@
 #ifndef _SVX_XLINJOIT_HXX
 #define _SVX_XLINJOIT_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
-#endif
 namespace binfilter {
 
 //---------------------

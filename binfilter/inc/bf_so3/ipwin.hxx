@@ -28,19 +28,13 @@
 #ifndef _IPWIN_HXX
 #define _IPWIN_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 #include <bf_so3/so2ref.hxx>
 #include <bf_so3/iface.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace binfilter {
 

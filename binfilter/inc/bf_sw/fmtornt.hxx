@@ -27,18 +27,10 @@
 #ifndef _FMTORNT_HXX
 #define _FMTORNT_HXX
 
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 

@@ -28,12 +28,8 @@
 #ifndef _E3D_POLYOB3D_HXX
 #define _E3D_POLYOB3D_HXX
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
-#ifndef _POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

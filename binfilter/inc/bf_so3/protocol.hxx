@@ -28,19 +28,11 @@
 #ifndef _PROTOCOL_HXX
 #define _PROTOCOL_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _TOOLS_STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/

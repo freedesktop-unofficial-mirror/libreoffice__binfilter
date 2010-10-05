@@ -29,29 +29,17 @@
 #define _SCH_SCHOPT_HXX
 
 // header for TYPEINFO
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 // header for ConfigItem
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 // header for SfxPoolItem
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 // header for Color
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 // header for Table
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
 // header for XColorEntry
-#ifndef _XTABLE_HXX
 #include <bf_svx/xtable.hxx>   //STRIP002
-#endif
 namespace binfilter {
 
 // --------------------

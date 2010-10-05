@@ -29,17 +29,11 @@
 
 
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
 #include "viewopt.hxx"
 
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 namespace binfilter {
 
 /* -----------------------------28.09.00 09:45--------------------------------

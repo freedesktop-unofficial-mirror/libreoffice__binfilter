@@ -28,18 +28,12 @@
 #ifndef _XMLITEM_HXX
 #define _XMLITEM_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
-#ifndef _SOLAR_H //autogen wg. USHORT
 #include <tools/solar.h>
-#endif
 #include <limits.h>
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {

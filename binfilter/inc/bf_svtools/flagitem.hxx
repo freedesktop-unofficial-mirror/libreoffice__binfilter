@@ -27,19 +27,11 @@
 #ifndef _SFXFLAGITEM_HXX
 #define _SFXFLAGITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 class SvStream;
 

@@ -28,19 +28,13 @@
 #ifndef _SVDMRKV_HXX
 #define _SVDMRKV_HXX
 
-#ifndef _SVDMARK_HXX
 #include <bf_svx/svdmark.hxx>
-#endif
 
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
 #include <bf_svx/svdsnpv.hxx>
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

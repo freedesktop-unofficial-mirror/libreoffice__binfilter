@@ -29,13 +29,9 @@
 #define _CHXCHART_AXIS_HXX
 
 // header for SvNumberFormatsSupplierObj
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
 #include "ChXChartObject.hxx"
 namespace binfilter {

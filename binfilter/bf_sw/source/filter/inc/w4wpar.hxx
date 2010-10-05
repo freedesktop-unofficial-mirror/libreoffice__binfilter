@@ -27,32 +27,16 @@
 #ifndef _W4WPAR_HXX
 #define _W4WPAR_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX //autogen fuer DECLARE_TABLE
 #include <tools/table.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SWRECT_HXX //autogen
 #include <swrect.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>           // SwSelBoxes
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>          // numerierte Listen
-#endif
 
 class String;
 class Graphic;

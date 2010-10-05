@@ -28,16 +28,10 @@
 #ifndef _XMLITMPR_HXX
 #define _XMLITMPR_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
 #define XML_EXPORT_FLAG_DEFAULTS    0x0001      // export also default items
 #define XML_EXPORT_FLAG_DEEP        0x0002      // export also items from

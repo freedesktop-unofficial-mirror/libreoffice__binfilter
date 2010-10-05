@@ -30,17 +30,11 @@
 
 #include <bf_svx/svdview.hxx>
 
-#ifndef _SVX_DEF3D_HXX
 #include <bf_svx/def3d.hxx>
-#endif
 
-#ifndef _E3D_DEFLT3D_HXX
 #include <bf_svx/deflt3d.hxx>
-#endif
 
-#ifndef _SVX_VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

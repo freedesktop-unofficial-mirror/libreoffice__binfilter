@@ -28,25 +28,15 @@
 #ifndef _XIMPSTYLE_HXX
 #define _XIMPSTYLE_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 
-#ifndef _XIMPPAGE_HXX
 #include "ximppage.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_PAPERORIENTATION_HPP_
 #include <com/sun/star/view/PaperOrientation.hpp>
-#endif
 namespace binfilter {
 
 class SvNumberFormatter;

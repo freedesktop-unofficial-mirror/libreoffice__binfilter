@@ -27,43 +27,19 @@
 #ifndef _ZFORLIST_HXX
 #define _ZFORLIST_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_NUMBERFORMATCODE_HPP_
 #include <com/sun/star/i18n/NumberFormatCode.hpp>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_ONDEMAND_HXX
 #include <bf_svtools/ondemand.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #include <bf_svtools/nfkeytab.hxx>
-#endif
 
 class Date;
 class SvStream;

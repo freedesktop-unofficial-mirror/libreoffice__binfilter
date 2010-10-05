@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #define _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace container
 {

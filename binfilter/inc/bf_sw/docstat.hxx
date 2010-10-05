@@ -27,9 +27,7 @@
 #ifndef _DOCSTAT_HXX
 #define _DOCSTAT_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////

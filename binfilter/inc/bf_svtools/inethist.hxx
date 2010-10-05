@@ -27,25 +27,15 @@
 #ifndef _INETHIST_HXX
 #define _INETHIST_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef _SFXHINT_HXX
 #include <bf_svtools/hint.hxx>
-#endif
 
 namespace binfilter
 {

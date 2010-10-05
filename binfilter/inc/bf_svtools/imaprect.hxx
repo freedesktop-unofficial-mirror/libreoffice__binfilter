@@ -27,17 +27,11 @@
 #ifndef _GOODIES_IMAPRECT_HXX
 #define _GOODIES_IMAPRECT_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _GOODIES_IMAPOBJ_HXX
 #include <bf_svtools/imapobj.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 class Fraction;
 

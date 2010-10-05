@@ -28,29 +28,15 @@
 #define _SWMODULE_HXX
 
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
 #include "shellid.hxx"
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEEVENTLISTENER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceEventListener.hpp>
-#endif
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 namespace com{ namespace sun{ namespace star{ namespace scanner{
     class XScannerManager;
 }}}}

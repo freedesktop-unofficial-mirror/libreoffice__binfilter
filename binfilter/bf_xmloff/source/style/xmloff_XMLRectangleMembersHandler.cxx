@@ -30,9 +30,7 @@
 #include <rtl/ustrbuf.hxx>
 
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HDL_
 #include <com/sun/star/awt/Rectangle.hdl>
-#endif
 
 #include "XMLRectangleMembersHandler.hxx"
 

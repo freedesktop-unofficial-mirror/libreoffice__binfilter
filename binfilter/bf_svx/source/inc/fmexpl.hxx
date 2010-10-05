@@ -33,9 +33,7 @@
 
 
 
-#ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
-#endif
 
 
 
@@ -48,9 +46,7 @@
 
 
 
-#ifndef _SVX_FMVIEW_HXX
 #include "fmview.hxx"
-#endif
 
 
 class SdrObjListIter;

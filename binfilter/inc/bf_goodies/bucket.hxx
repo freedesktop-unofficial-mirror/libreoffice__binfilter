@@ -28,9 +28,7 @@
 #ifndef _B3D_BUCKET_HXX
 #define _B3D_BUCKET_HXX
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 namespace binfilter {
 

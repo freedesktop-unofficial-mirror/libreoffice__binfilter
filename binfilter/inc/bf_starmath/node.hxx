@@ -30,9 +30,7 @@
 #define NODE_HXX
 
 
-#ifndef _DYNARY_HXX //autogen
 #include <tools/dynary.hxx>
-#endif
 
 #include "parse.hxx"
 #include "types.hxx"

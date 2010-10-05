@@ -27,17 +27,11 @@
 #ifndef _SFX_MISCCFG_HXX
 #define _SFX_MISCCFG_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include "tools/solar.h"
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include "unotools/configitem.hxx"
-#endif
 
 namespace binfilter
 {

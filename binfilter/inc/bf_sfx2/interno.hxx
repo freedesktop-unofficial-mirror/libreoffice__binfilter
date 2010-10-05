@@ -27,9 +27,7 @@
 #ifndef _SFX_INTERNO_HXX
 #define _SFX_INTERNO_HXX
 
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 #include "bf_sfx2/objsh.hxx"
 #include "bf_sfx2/sfx.hrc"
 

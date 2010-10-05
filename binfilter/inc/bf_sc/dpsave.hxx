@@ -28,17 +28,11 @@
 #ifndef SC_DPSAVE_HXX
 #define SC_DPSAVE_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _LIST_HXX //autogen wg. List
 #include <tools/list.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
-#endif
 
 class SvStream;
 

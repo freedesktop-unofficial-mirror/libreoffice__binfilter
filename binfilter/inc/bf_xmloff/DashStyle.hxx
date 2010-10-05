@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_DASHSTYLE_HXX
 #define _XMLOFF_DASHSTYLE_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace uno { template<class A> class Reference; }

@@ -27,23 +27,15 @@
 #ifndef _SWTYPES_HXX
 #define _SWTYPES_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 #include <limits.h>     //fuer LONG_MAX
 
 #ifdef PM20
 #include <stdlib.h>
 #endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 // wenn das hier geaendert wird, dann auch im globals.hrc aendern!!!
 //#define SW_FILEFORMAT_40 SOFFICE_FILEFORMAT_40

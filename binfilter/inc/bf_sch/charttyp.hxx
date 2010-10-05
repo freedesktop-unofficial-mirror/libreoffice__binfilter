@@ -24,16 +24,10 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _SVX_TAB_LINE_HXX //autogen
 #include <bf_svx/tabline.hxx>
-#endif
 #include "chtmodel.hxx"
 namespace binfilter {
 

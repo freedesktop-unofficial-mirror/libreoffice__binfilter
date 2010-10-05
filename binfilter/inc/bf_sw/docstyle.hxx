@@ -32,13 +32,9 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;

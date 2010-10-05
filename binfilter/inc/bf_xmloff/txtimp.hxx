@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_TEXTIMP_HXX_
 #define _XMLOFF_TEXTIMP_HXX_
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #ifndef __SGI_STL_MAP
 #include <map>
@@ -39,29 +37,17 @@
 #include <vector>
 #endif
 
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include <bf_xmloff/xmlimppr.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
 
 // functional.hxx is obsolete and should be replaced by its comphelper
 // counterpart
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace text { class XText; class XTextCursor; class XTextRange; class XTextContent; }
 namespace frame { class XModel; }

@@ -27,13 +27,9 @@
 #ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #define SVX_QUERYDESIGNCONTEXT_HXX
 
-#ifndef CONNECTIVITY_IPARSECONTEXT_HXX
 #include <connectivity/IParseContext.hxx>
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 namespace binfilter {
 
 namespace svxform

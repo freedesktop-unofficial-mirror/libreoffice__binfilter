@@ -25,7 +25,5 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_INETDEF_HXX
 #include <tools/inetdef.hxx>
-#endif
 

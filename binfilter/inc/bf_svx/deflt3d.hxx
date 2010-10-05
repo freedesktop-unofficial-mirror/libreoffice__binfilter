@@ -31,9 +31,7 @@
 
 
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemSet;

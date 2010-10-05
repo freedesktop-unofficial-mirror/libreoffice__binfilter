@@ -27,16 +27,10 @@
 #ifndef _UNOREDLINES_HXX
 #define _UNOREDLINES_HXX
 
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _UNOBASECLASS_HXX
 #include <unobaseclass.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
 namespace com{ namespace sun{ namespace star{
         namespace beans{
             class XPropertySet;

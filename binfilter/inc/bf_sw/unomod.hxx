@@ -27,24 +27,12 @@
 #ifndef _UNOMOD_HXX
 #define _UNOMOD_HXX
 
-#ifndef _COM_SUN_STAR_TEXT_XMODULE_HPP_
 #include <com/sun/star/text/XModule.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XPRINTSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/view/XPrintSettingsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XVIEWSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/view/XViewSettingsSupplier.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx> // helper for implementations
-#endif
-#ifndef _COMPHELPER_CHAINABLEPROPERTYSET_HXX_
 #include <comphelper/ChainablePropertySet.hxx>
-#endif
-#ifndef _COMPHELPER_SETTINGSHELPER_HXX_
 #include <comphelper/SettingsHelper.hxx>
-#endif
 namespace binfilter {
 
 class SwView;

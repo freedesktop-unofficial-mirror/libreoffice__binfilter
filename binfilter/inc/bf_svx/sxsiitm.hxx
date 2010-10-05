@@ -27,9 +27,7 @@
 #ifndef _SXSIITM_HXX
 #define _SXSIITM_HXX
 
-#ifndef _SXFIITM_HXX
 #include <bf_svx/sxfiitm.hxx>
-#endif
 namespace binfilter {
 
 class SdrScaleItem: public SdrFractionItem {

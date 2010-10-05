@@ -27,12 +27,8 @@
 #ifndef SC_XMLDPIMP_HXX
 #define SC_XMLDPIMP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
 #include "global.hxx"
 #include "dpobject.hxx"

@@ -28,9 +28,7 @@
 #ifndef SC_MUTEXHLP_HXX
 #define SC_MUTEXHLP_HXX
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 namespace binfilter {
 
 //  used in XComponent implementations to construct a Mutex before the

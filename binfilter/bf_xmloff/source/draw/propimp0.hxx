@@ -28,9 +28,7 @@
 #ifndef _PROPIMP0_HXX
 #define _PROPIMP0_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

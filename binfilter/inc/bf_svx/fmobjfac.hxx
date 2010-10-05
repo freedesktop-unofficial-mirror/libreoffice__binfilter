@@ -28,9 +28,7 @@
 #ifndef _SVX_FMOBJFAC_HXX
 #define _SVX_FMOBJFAC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 class SdrObjFactory;

@@ -28,9 +28,7 @@
 #ifndef _SBXRES_HXX
 #define _SBXRES_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 // Zur Zeit sind Ressources im SVTOOLS-Projekt nicht vorgesehen.
 // Da es sich um unkritische Ressourcen handelt (BASIC-Keywords),

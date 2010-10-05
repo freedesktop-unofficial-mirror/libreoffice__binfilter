@@ -28,9 +28,7 @@
 #ifndef _SVX_XMLXTEXP_HXX
 #define _SVX_XMLXTEXP_HXX
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "bf_xmloff/xmlexp.hxx"
-#endif
 
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {

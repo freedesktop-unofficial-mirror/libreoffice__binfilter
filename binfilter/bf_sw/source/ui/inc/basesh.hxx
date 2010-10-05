@@ -28,25 +28,15 @@
 #define _SWBASESH_HXX
 
 
-#ifndef _SHELLID_HXX
 #include <shellid.hxx>
-#endif
 
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_USHORTS
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include <bf_svtools/svstdarr.hxx>
 class Graphic;
 

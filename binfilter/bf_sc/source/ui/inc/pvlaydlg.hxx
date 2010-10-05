@@ -28,30 +28,16 @@
 #ifndef SC_PVLAYDLG_HXX
 #define SC_PVLAYDLG_HXX
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _SCRBAR_HXX //autogen
 #include <vcl/scrbar.hxx>
-#endif
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef _MOREBTN_HXX //autogen
 #include <vcl/morebtn.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef SC_ANYREFDG_HXX
 #include "anyrefdg.hxx"
-#endif
 
-#ifndef SC_FIELDWND_HXX
 #include "fieldwnd.hxx"
-#endif
 namespace binfilter {
 
 

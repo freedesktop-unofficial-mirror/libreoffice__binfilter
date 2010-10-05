@@ -29,15 +29,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _VCL_FNTSTYLE_HXX
 #include <vcl/fntstyle.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 namespace binfilter {
 
 // class SvxCharRotateItem ----------------------------------------------

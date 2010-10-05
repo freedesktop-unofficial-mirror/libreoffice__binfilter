@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_ANIMIMP_HXX
 #define _XMLOFF_ANIMIMP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
 namespace binfilter {
 

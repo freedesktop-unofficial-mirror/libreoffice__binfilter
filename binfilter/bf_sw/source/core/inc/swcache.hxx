@@ -59,9 +59,7 @@
  */
 
 #ifdef DBG_UTIL
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #endif
 
 #ifndef _SVSTDARR_HXX

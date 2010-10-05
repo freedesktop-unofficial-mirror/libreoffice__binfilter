@@ -28,9 +28,7 @@
 
 #define ROLBCK_HISTORY_ONLY     // Der Kampf gegen die CLOOK's
 
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HDL_
 #include <com/sun/star/i18n/ForbiddenCharacters.hdl>
-#endif
 
 #include <vcl/virdev.hxx>
 #include <rtl/logfile.hxx>

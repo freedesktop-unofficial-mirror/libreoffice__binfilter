@@ -28,9 +28,7 @@
 #ifndef _TXTDROPI_HXX
 #define _TXTDROPI_HXX
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 namespace rtl { class OUString; }
 namespace binfilter {
 

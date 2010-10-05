@@ -28,20 +28,12 @@
 #ifndef INCLUDED_SVTOOLS_DOCPASSWDREQUEST_HXX
 #define INCLUDED_SVTOOLS_DOCPASSWDREQUEST_HXX
 
-#ifndef _COM_SUN_STAR_TASK_DOCUMENTPASSWORDREQUEST_HPP_
 #include <com/sun/star/task/DocumentPasswordRequest.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONREQUEST_HPP_
 #include <com/sun/star/task/XInteractionRequest.hpp>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
 namespace binfilter {
 

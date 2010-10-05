@@ -29,15 +29,11 @@
 
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "ftnboss.hxx"
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 namespace binfilter {
 
 class SvPtrarr;

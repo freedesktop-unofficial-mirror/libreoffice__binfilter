@@ -31,9 +31,7 @@
 #include <vector>
 #endif
 
-#ifndef _XMLOFF_XMLSTYLE_HXX_
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 namespace binfilter {
 
 struct XMLPropertyState;

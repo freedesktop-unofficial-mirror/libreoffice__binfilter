@@ -27,9 +27,7 @@
 #ifndef _SVX_RLRCITEM_HXX
 #define _SVX_RLRCITEM_HXX
 
-#ifndef _SFXCTRLITEM_HXX
 #include <bf_sfx2/ctrlitem.hxx>
-#endif
 namespace binfilter {
 
 class SvxRuler;

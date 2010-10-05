@@ -29,9 +29,7 @@
 #define _SCH_FUZOOM_HXX
 
 
-#ifndef _SCH_FUPOOR_HXX
 #include "fupoor.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************

@@ -31,15 +31,9 @@
 
 #include <bf_svx/svxids.hrc>
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

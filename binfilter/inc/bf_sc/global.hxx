@@ -28,15 +28,9 @@
 #ifndef SC_SCGLOB_HXX
 #define SC_SCGLOB_HXX
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
 }}}}

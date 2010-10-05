@@ -27,9 +27,7 @@
 #ifndef _VISCRS_HXX
 #define _VISCRS_HXX
 
-#ifndef _CURSOR_HXX //autogen
 #include <vcl/cursor.hxx>
-#endif
 #include "swcrsr.hxx"
 #include "swrect.hxx"
 #include "swregion.hxx"

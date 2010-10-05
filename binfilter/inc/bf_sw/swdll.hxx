@@ -36,12 +36,8 @@ class StatusBar;
 class SfxMedium;
 class SfxFilter;
 
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
 #include <bf_so3/pseudo.hxx>
 

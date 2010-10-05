@@ -32,15 +32,11 @@
 //STRIP008 class SchObjGroup;
 //STRIP008 class ChartAxis;
 
-#ifndef _SVDOBJ_HXX //autogen wg. SdrObject
 #include <bf_svx/svdobj.hxx>
-#endif
 
 #include "adjust.hxx"
 #include "tools/solar.h"
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 #include "schattr.hxx"
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -50,9 +46,7 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #include <bf_svx/chrtitem.hxx>
 #endif
-#ifndef _SVX_VECTOR3D_HXX //autogen
 #include <bf_goodies/vector3d.hxx>
-#endif
 
 #include <float.h>      // for DBL_MIN
 namespace binfilter {

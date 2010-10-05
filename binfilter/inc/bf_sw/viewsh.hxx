@@ -27,16 +27,10 @@
 #ifndef _VIEWSH_HXX
 #define _VIEWSH_HXX
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _RING_HXX
 #include <ring.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 #ifdef ACCESSIBLE_LAYOUT
 namespace com { namespace sun { namespace star { namespace accessibility {

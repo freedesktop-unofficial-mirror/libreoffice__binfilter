@@ -27,28 +27,16 @@
 #ifndef _CRSRSH_HXX
 #define _CRSRSH_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer ViewShell
-#endif
-#ifndef _CSHTYP_HXX
 #include <cshtyp.hxx>           // fuer die CursorShell Typen
-#endif
-#ifndef _CRSTATE_HXX
 #include <crstate.hxx>          // fuer die CursorMove-Staties
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>               //SwTblSearchType
-#endif
 
 #if !defined(DBG_UTIL) && !defined(WIN)
 // fuer die Inline-Methoden
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 #define CRSR_INLINE inline
 #else
 #define CRSR_INLINE

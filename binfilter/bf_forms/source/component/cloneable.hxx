@@ -28,9 +28,7 @@
 #ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #define FORMS_COMPONENT_CLONEABLE_HXX
 
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
 #include <com/sun/star/uno/XAggregation.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

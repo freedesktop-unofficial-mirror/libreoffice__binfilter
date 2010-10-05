@@ -30,9 +30,7 @@
 
 class ResMgr;
 
-#ifndef _SV_ACCEL_HXX //autogen
 #include <vcl/accel.hxx>
-#endif
 
 namespace binfilter {
 

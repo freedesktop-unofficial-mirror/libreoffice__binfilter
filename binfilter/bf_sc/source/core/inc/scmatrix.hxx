@@ -28,13 +28,9 @@
 #ifndef SC_MATRIX_HXX
 #define SC_MATRIX_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

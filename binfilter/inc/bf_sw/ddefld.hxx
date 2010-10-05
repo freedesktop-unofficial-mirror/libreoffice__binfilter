@@ -27,9 +27,7 @@
 #ifndef _DDEFLD_HXX
 #define _DDEFLD_HXX
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
 #include "fldbas.hxx"
 namespace binfilter {
 

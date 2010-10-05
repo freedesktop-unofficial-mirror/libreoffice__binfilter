@@ -27,9 +27,7 @@
 #ifndef _SFX_MACROCONF_HXX
 #define _SFX_MACROCONF_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>      // SvUShorts
 #include <bf_sfx2/evntconf.hxx>

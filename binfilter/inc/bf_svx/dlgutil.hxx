@@ -28,12 +28,8 @@
 #define _SVX_DLGUTIL_HXX
 
 // include ---------------------------------------------------------------
-#ifndef _FIELD_HXX
 #include <vcl/field.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 namespace binfilter {
 
 // macro -----------------------------------------------------------------

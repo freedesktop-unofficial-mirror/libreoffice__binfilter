@@ -28,21 +28,13 @@
 #ifndef _SW_XMLITHLP_HXX
 #define _SW_XMLITHLP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include <bf_xmloff/xmlement.hxx>
-#endif
 
-#ifndef _HINTIDS_HXX
 #include "hintids.hxx"  // for following include
-#endif
 
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx> // for SvxGraphicsPosition
-#endif
 namespace rtl { class OUString; }
 class Color;
 

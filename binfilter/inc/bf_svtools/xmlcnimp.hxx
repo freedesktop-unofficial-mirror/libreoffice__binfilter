@@ -28,17 +28,11 @@
 #ifndef _SVTOOLS_XMLCNIMP_HXX
 #define _SVTOOLS_XMLCNIMP_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _SVTOOLS_NMSPMAP_HXX
 #include <xmloff/nmspmap.hxx>
-#endif
 
 namespace rtl { class OUString; }
 

@@ -27,12 +27,8 @@
 #ifndef _FMTSRND_HXX
 #define _FMTSRND_HXX
 
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 

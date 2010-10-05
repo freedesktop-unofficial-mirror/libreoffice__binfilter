@@ -28,20 +28,12 @@
 #ifndef _SC_XMLDETECTIVECONTEXT_HXX
 #define _SC_XMLDETECTIVECONTEXT_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
 
-#ifndef SC_DETFUNC_HXX
 #include "detfunc.hxx"
-#endif
-#ifndef SC_DETDATA_HXX
 #include "detdata.hxx"
-#endif
 
 #ifndef __SGI_STL_LIST
 #include <list>

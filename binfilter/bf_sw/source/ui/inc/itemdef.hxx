@@ -28,9 +28,7 @@
 #define ITEMDEF_HXX
 
 
-#ifndef _SFXMSG_HXX //autogen
 #include <bf_sfx2/msg.hxx>
-#endif
 namespace binfilter {
 
 SFX_DECL_TYPE(10); //SwElemItem

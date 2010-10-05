@@ -28,17 +28,13 @@
 #ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 #define _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace text { class XTextContent; }
 } } }
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 class XMLTextNumRuleInfo

@@ -32,22 +32,12 @@
 #include <vos/thread.hxx>
 
 
-#ifndef _OSL_CONDITN_HXX_
 #include <osl/conditn.hxx>
-#endif
-#ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_GUARDING_HXX_
 #include <comphelper/guarding.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 namespace binfilter {
     using namespace ::comphelper;
 

@@ -27,12 +27,8 @@
 #ifndef _SW3MARKS_HXX
 #define _SW3MARKS_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _CNTNRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
 namespace binfilter {
 
 enum Sw3MarkType {

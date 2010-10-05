@@ -28,21 +28,13 @@
 #ifndef _SVDLAYER_HXX
 #define _SVDLAYER_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVDSOB_HXX //autogen
 #include <bf_svx/svdsob.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer typedef SdrLayerID
-#endif
 namespace binfilter {
 
 class SdrModel;

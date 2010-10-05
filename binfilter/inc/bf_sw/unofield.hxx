@@ -27,27 +27,13 @@
 #ifndef _UNOFIELD_HXX
 #define _UNOFIELD_HXX
 
-#ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XUPDATABLE_HPP_
 #include <com/sun/star/util/XUpdatable.hpp>
-#endif
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _REFRESH_LISTENER_CONTAINER_HXX_
 #include <RefreshListenerContainer.hxx>
-#endif
 class String;
 namespace binfilter {
 

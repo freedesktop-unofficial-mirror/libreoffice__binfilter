@@ -27,18 +27,10 @@
 #ifndef _PARATR_HXX
 #define _PARATR_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 

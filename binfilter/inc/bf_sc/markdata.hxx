@@ -28,9 +28,7 @@
 #ifndef SC_MARKDATA_HXX
 #define SC_MARKDATA_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScMarkArray;

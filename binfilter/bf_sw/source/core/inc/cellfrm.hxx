@@ -27,9 +27,7 @@
 #ifndef _CELLFRM_HXX
 #define _CELLFRM_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "layfrm.hxx"
 namespace binfilter {

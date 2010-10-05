@@ -27,30 +27,14 @@
 #ifndef _EDITSH_HXX
 #define _EDITSH_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _SVXSWAFOPT_HXX
 #include <bf_svx/swafopt.hxx>
-#endif
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>   // fuer Basisklasse
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLALTERNATIVES_HPP_
 #include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
-#endif
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}

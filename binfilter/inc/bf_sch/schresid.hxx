@@ -28,9 +28,7 @@
 #ifndef _SCH_SCHRESID_HXX
 #define _SCH_SCHRESID_HXX
 
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 namespace binfilter {
 
 class SchResId : public ResId

@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLCALCULATIONSETTINGSCONTEXT_HXX
 #define _XMLOFF_XMLCALCULATIONSETTINGSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class XMLCalculationSettingsContext : public SvXMLImportContext

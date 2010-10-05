@@ -28,12 +28,8 @@
 #ifndef _HDFTCTRL_HXX
 #define _HDFTCTRL_HXX
 
-#ifndef _SFXMNUITEM_HXX //autogen
 #include <bf_sfx2/mnuitem.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
 #define _SVSTDARR_STRINGSSORTDTOR
 #define _SVSTDARR_BOOLS
 #include <bf_svtools/svstdarr.hxx>

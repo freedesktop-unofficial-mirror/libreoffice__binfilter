@@ -30,16 +30,10 @@
 #ifndef _SC_CSVRULER_HXX
 #define _SC_CSVRULER_HXX
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _SC_CSVCONTROL_HXX
 #include "csvcontrol.hxx"
-#endif
-#ifndef _SC_CSVSPLITS_HXX
 #include "csvsplits.hxx"
-#endif
 namespace binfilter {
 
 

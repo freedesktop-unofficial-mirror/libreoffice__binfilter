@@ -29,9 +29,7 @@
 #define SCH_MAPPROV_HXX
 
 // header for SfxItemPropertyMap
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
 namespace binfilter {
 

@@ -27,12 +27,8 @@
 #ifndef _OPTLOAD_HXX
 #define _OPTLOAD_HXX
 
-#ifndef _GROUP_HXX //autogen
 #include <vcl/group.hxx>
-#endif
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;

@@ -28,13 +28,9 @@
 #ifndef SC_UNDOBASE_HXX
 #define SC_UNDOBASE_HXX
 
-#ifndef _UNDO_HXX //autogen
 #include <bf_svtools/undo.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocument;

@@ -28,12 +28,8 @@
 #define _FNTCACHE_HXX
 
 
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "swcache.hxx"

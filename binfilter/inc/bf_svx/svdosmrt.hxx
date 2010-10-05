@@ -28,13 +28,9 @@
 #ifndef _SVDSMRT_HXX
 #define _SVDSMRT_HXX
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 
-#ifndef _SVDOSMEV_HXX
 #include <bf_svx/svdosmev.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

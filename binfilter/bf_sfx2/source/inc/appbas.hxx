@@ -28,9 +28,7 @@
 #define _SFX_APPBAS_HXX
 
 
-#ifndef _SBXDEF_HXX //autogen
 #include "bf_basic/sbxdef.hxx"
-#endif
 namespace binfilter {
 
 class StarBASIC;

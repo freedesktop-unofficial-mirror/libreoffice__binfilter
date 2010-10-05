@@ -29,9 +29,7 @@
 #ifndef _XMLOFF_XMLSECTIONFOOTNOTECONFIGEXPORT_HXX
 #define _XMLOFF_XMLSECTIONFOOTNOTECONFIGEXPORT_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 #include <vector>
 namespace binfilter {

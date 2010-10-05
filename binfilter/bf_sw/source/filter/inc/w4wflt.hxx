@@ -27,9 +27,7 @@
 #ifndef _W4WFLT_HXX
 #define _W4WFLT_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 class String;
 namespace binfilter {
 

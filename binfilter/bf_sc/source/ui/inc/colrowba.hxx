@@ -28,13 +28,9 @@
 #ifndef SC_COLROWBAR_HXX
 #define SC_COLROWBAR_HXX
 
-#ifndef SC_HDRCONT_HXX
 #include "hdrcont.hxx"
-#endif
 
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 namespace binfilter {
 
 class ScHeaderFunctionSet;

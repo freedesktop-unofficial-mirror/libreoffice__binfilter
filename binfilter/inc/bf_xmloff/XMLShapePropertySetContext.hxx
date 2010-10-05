@@ -28,9 +28,7 @@
 #define _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 class XMLShapePropertySetContext : public SvXMLPropertySetContext

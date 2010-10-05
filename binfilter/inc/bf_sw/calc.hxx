@@ -28,9 +28,7 @@
 #define _CALC_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #ifndef __SBX_SBXVALUE //autogen
 #include "bf_basic/sbxvar.hxx"

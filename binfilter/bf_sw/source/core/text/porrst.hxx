@@ -27,9 +27,7 @@
 #ifndef _PORRST_HXX
 #define _PORRST_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "porlay.hxx"
 #include "porexp.hxx"

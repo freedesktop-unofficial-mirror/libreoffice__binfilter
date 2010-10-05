@@ -28,15 +28,9 @@
 #ifndef _XMLOFF_ATTRLIST_HXX
 #define _XMLOFF_ATTRLIST_HXX
 
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
 #include <cppuhelper/implbase3.hxx>
 namespace binfilter {

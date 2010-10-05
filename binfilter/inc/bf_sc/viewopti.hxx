@@ -28,21 +28,13 @@
 #ifndef SC_VIEWOPTI_HXX
 #define SC_VIEWOPTI_HXX
 
-#ifndef _SVX_OPTGRID_HXX //autogen
 #include <bf_svx/optgrid.hxx>
-#endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 //==================================================================

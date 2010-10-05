@@ -28,13 +28,9 @@
 #ifndef _SVDOEDGE_HXX
 #define _SVDOEDGE_HXX
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 
-#ifndef _SVDGLUE_HXX
 #include <bf_svx/svdglue.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

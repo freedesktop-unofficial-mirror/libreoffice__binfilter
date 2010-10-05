@@ -27,9 +27,7 @@
 #ifndef _UNOEVENT_HXX
 #define _UNOEVENT_HXX
 
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
 
 namespace binfilter {
 

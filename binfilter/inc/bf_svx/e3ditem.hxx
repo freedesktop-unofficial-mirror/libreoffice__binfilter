@@ -28,12 +28,8 @@
 #ifndef _SVXE3DITEM_HXX
 #define _SVXE3DITEM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

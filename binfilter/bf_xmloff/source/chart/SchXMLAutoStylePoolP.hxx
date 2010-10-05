@@ -27,9 +27,7 @@
 #ifndef _SCH_XMLAUTOSTYLEPOOLP_HXX_
 #define _SCH_XMLAUTOSTYLEPOOLP_HXX_
 
-#ifndef _XMLOFF_XMLASTPLP_HXX
 #include "xmlaustp.hxx"
-#endif
 namespace binfilter {
 
 class SchXMLExport;

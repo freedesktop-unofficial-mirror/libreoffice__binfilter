@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 #define _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 //.........................................................................

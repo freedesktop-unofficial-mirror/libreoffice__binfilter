@@ -27,9 +27,7 @@
 #ifndef _SDOOITM_HXX
 #define _SDOOITM_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------

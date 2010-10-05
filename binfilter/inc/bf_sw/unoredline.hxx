@@ -27,12 +27,8 @@
 #ifndef _UNOREDLINE_HXX
 #define _UNOREDLINE_HXX
 
-#ifndef _UNOPORT_HXX
 #include <unoport.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
 #include <cppuhelper/implbase1.hxx>
 

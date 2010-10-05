@@ -28,9 +28,7 @@
 #ifndef _SV_PRIVSPLT_HXX
 #define _SV_PRIVSPLT_HXX
 
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
 
 namespace binfilter
 {

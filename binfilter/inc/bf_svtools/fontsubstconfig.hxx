@@ -27,13 +27,9 @@
 #ifndef _SVT_FONTSUBSTCONFIG_HXX
 #define _SVT_FONTSUBSTCONFIG_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
 namespace binfilter
 {

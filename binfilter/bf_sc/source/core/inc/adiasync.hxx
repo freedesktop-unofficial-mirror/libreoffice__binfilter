@@ -28,9 +28,7 @@
 #ifndef _SC_ADIASYNC_HXX
 #define _SC_ADIASYNC_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "callform.hxx"
 class String;

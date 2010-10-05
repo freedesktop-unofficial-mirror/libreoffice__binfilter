@@ -28,13 +28,9 @@
 #ifndef SC_DPSHTTAB_HXX
 #define SC_DPSHTTAB_HXX
 
-#ifndef SC_DPTABDAT_HXX
 #include "dptabdat.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 

@@ -27,9 +27,7 @@
 
 #ifndef _SGFFILT_HXX
 #define _SGFFILT_HXX
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 namespace binfilter
 {

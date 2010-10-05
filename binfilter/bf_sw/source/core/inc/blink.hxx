@@ -32,12 +32,8 @@ class SwLinePortion;
 class SwRootFrm;
 class SwTxtFrm;
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 
 class SwBlinkPortion

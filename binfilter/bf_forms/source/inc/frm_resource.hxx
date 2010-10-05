@@ -28,9 +28,7 @@
 #ifndef _FRM_RESOURCE_HXX_
 #define _FRM_RESOURCE_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 class SimpleResMgr;
 namespace binfilter {
 

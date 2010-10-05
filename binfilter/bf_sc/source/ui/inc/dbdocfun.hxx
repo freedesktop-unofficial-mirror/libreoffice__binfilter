@@ -28,13 +28,9 @@
 #ifndef SC_DBDOCFUN_HXX
 #define SC_DBDOCFUN_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 class String;
 namespace binfilter {

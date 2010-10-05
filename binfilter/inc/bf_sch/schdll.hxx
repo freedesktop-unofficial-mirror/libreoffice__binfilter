@@ -31,13 +31,9 @@
 #include <bf_sfx2/sfxdefs.hxx>
 
 // header for class SfxModule
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
 // header for class SvInPlaceObject
-#ifndef _IPOBJ_HXX
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include <bf_sch/chattr.hxx>    // to do: remove this line and replace most of the schdll.hxx includes to chattr.hxx
 class OutputDevice;

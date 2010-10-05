@@ -28,13 +28,9 @@
 #ifndef _SVDMARK_HXX
 #define _SVDMARK_HXX
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 class Rectangle;
 namespace binfilter {
 

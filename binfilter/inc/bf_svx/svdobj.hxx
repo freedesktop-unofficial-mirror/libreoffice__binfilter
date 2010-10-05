@@ -30,53 +30,29 @@
 
 #include <memory>
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SVDSOB_HXX //autogen
 #include <bf_svx/svdsob.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer SdrLayerID
-#endif
 
-#ifndef _SVDGLUE_HXX
 #include <bf_svx/svdglue.hxx> // Klebepunkte
-#endif
 
-#ifndef _SVX_XDASH_HXX
 #include <bf_svx/xdash.hxx>
-#endif
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 
-#ifndef _POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
 
-#ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
 class Pointer;
 class AutoTimer;

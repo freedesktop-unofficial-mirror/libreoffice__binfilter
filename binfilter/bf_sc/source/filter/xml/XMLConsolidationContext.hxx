@@ -28,13 +28,9 @@
 #ifndef _SC_XMLCONSOLIDATIONCONTEXT_HXX
 #define _SC_XMLCONSOLIDATIONCONTEXT_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

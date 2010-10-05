@@ -28,13 +28,9 @@
 #ifndef SC_DETFUNC_HXX
 #define SC_DETFUNC_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 class String;
 namespace binfilter {
 

@@ -28,16 +28,10 @@
 #ifndef _NDARR_HXX
 #define _NDARR_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _BPARR_HXX
 #include <bparr.hxx>
-#endif
-#ifndef _NDTYP_HXX
 #include <ndtyp.hxx>
-#endif
 
 class Graphic;
 class UniString;

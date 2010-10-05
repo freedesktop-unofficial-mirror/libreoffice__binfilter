@@ -30,18 +30,12 @@
 
 #include <limits.h>
 
-#ifndef __SGI_STL_HASH_MAP
 #include <hash_map>
-#endif
 #ifndef __SGI_STL_MAP
 #include <map>
 #endif
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 namespace binfilter {
 
 const sal_uInt16 XML_NAMESPACE_XMLNS  = (USHRT_MAX-2);

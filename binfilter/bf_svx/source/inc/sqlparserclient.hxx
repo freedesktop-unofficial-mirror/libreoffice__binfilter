@@ -28,12 +28,8 @@
 #ifndef SVX_SQLPARSERCLIENT_HXX
 #define SVX_SQLPARSERCLIENT_HXX
 
-#ifndef SVX_DBTOOLSCLIENT_HXX
 #include "dbtoolsclient.hxx"
-#endif
-#ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include "ParseContext.hxx"
-#endif
 namespace binfilter {
 
 //........................................................................

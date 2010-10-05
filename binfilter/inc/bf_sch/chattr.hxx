@@ -29,9 +29,7 @@
 #define _SCH_CHATTR_HXX
 
 // header for SID_OBJ1_START
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
 namespace binfilter {
 
 /*--------------------------------------------------

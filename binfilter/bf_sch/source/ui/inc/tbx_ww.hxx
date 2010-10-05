@@ -30,12 +30,8 @@
 #ifndef _SCH_TBX_WW_HXX
 #define _SCH_TBX_WW_HXX
 
-#ifndef _SV_TOOLBOX_HXX //autogen
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 
 
 #include "schresid.hxx"

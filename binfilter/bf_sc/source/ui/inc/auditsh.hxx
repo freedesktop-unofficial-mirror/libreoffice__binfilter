@@ -28,12 +28,8 @@
 #ifndef SC_AUDITSH_HXX
 #define SC_AUDITSH_HXX
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
 #include "shellids.hxx"
 namespace binfilter {

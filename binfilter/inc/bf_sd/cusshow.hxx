@@ -29,14 +29,10 @@
 #define _SD_CUSSHOW_HXX
 
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace binfilter {
 
 class SdDrawDocument;

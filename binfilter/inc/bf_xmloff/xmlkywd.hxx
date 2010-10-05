@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLKYWD_HXX
 #define _XMLOFF_XMLKYWD_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 /*

@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 #define _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPARE_HPP_
 #include <com/sun/star/ucb/XAnyCompare.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

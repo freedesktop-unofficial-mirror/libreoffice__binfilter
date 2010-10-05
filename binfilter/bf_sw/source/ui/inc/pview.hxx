@@ -27,25 +27,13 @@
 #ifndef _SWPVIEW_HXX
 #define _SWPVIEW_HXX
 
-#ifndef _SFXVIEWFRM_HXX //autogen
 #include <bf_sfx2/viewfrm.hxx>
-#endif
-#ifndef _VIEWFAC_HXX //autogen
 #include <bf_sfx2/viewfac.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SFXVIEWSH_HXX //autogen
 #include <bf_sfx2/viewsh.hxx>
-#endif
 #include "shellid.hxx"
-#ifndef _SVX_ZOOMITEM_HXX
 #include <bf_svx/zoomitem.hxx>
-#endif
 class ImageButton;
 class Button;
 class SvtAccessibilityOptions;

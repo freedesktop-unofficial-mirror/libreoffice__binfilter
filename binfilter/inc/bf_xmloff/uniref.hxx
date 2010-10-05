@@ -28,12 +28,8 @@
 #ifndef _UNIVERSALL_REFERENCE_HXX
 #define _UNIVERSALL_REFERENCE_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _OSL_INTERLOCK_H_
 #include <osl/interlck.h>
-#endif
 namespace binfilter {
 
 /**

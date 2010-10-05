@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
 #define _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 

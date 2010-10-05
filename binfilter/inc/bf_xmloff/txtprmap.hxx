@@ -27,12 +27,8 @@
 #ifndef _XMLOFF_TEXTPRMAP_HXX_
 #define _XMLOFF_TEXTPRMAP_HXX_
 
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
 namespace binfilter {
 
 #define CTF_CHARHEIGHT               (XML_TEXT_CTF_START + 1)

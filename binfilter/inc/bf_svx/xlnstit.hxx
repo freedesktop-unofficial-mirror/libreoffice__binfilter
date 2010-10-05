@@ -28,12 +28,8 @@
 #ifndef _SVX_XLNSTIT_HXX
 #define _SVX_XLNSTIT_HXX
 
-#ifndef _XPOLY_HXX //autogen
 #include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVX_XIT_HXX //autogen
 #include <bf_svx/xit.hxx>
-#endif
 namespace binfilter {
 
 class SdrModel;

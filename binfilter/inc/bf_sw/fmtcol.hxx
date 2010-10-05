@@ -28,15 +28,9 @@
 #define _FMTCOL_HXX
 
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>      // fuer MAXLEVEL
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;        // fuer friend

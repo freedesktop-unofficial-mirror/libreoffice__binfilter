@@ -33,9 +33,7 @@
 
 #include <vector>
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 namespace binfilter
 {

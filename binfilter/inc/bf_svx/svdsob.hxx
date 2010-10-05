@@ -28,13 +28,9 @@
 #ifndef _SVDSOB_HXX
 #define _SVDSOB_HXX
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 #ifndef _STRING_H
 #define _STRING_H

@@ -28,12 +28,8 @@
 #ifndef _BPARR_HXX
 #define _BPARR_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 struct BlockInfo;

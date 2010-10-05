@@ -27,9 +27,7 @@
 #ifndef _SVTOOLS_ITEMDEL_HXX
 #define _SVTOOLS_ITEMDEL_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
 #endif
 

@@ -27,15 +27,9 @@
 #ifndef SC_XMLANNOI_HXX
 #define SC_XMLANNOI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

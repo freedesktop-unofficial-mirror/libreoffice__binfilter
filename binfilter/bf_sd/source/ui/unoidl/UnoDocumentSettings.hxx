@@ -28,9 +28,7 @@
 #ifndef _SD_UNODOCUMENTSETTINGS_HXX_
 #define _SD_UNODOCUMENTSETTINGS_HXX_
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 namespace binfilter {
 
 class SdXImpressDocument;

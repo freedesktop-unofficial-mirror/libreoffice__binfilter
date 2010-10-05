@@ -27,9 +27,7 @@
 #ifndef _TXTFLY_HXX
 #define _TXTFLY_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "swrect.hxx"

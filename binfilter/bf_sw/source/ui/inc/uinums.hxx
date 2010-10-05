@@ -27,13 +27,9 @@
 #ifndef _UINUMS_HXX
 #define _UINUMS_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
 namespace binfilter {
 
 

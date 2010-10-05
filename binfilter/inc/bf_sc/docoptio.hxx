@@ -30,13 +30,9 @@
 
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
-#endif
 namespace binfilter {
 
 

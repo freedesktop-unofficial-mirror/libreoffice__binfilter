@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #define _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace xml { namespace sax { class XAttributeList; } }

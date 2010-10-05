@@ -28,13 +28,9 @@
 #ifndef _SVDOPATH_HXX
 #define _SVDOPATH_HXX
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

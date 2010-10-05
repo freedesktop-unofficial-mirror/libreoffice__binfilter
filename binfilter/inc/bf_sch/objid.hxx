@@ -28,15 +28,9 @@
 #ifndef _SCH_OBJID_HXX
 #define _SCH_OBJID_HXX
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVDITER_HXX //autogen
 #include <bf_svx/svditer.hxx>
-#endif
 namespace binfilter {
 
 

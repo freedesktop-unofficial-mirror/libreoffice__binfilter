@@ -27,13 +27,9 @@
 #ifndef _SXMOITM_HXX
 #define _SXMOITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDMETITM_HXX
 #include <bf_svx/sdmetitm.hxx>
-#endif
 namespace binfilter {
 
 // Ueberstand der Masslinie ueber die Masshilfslinien

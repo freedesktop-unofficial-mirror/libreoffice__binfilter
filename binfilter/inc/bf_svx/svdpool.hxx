@@ -28,13 +28,9 @@
 #ifndef _SVDPOOL_HXX
 #define _SVDPOOL_HXX
 
-#ifndef _XPOOL_HXX
 #include <bf_svx/xpool.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 class XLineAttrSetItem;

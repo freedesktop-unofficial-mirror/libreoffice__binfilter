@@ -28,12 +28,8 @@
 #define _SORTOPT_HXX
 
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 enum SwSortOrder        { SRT_ASCENDING, SRT_DESCENDING };

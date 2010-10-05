@@ -32,18 +32,10 @@
 #include <com/sun/star/uno/XInterface.hpp>
 #include <com/sun/star/presentation/FadeEffect.hpp>
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _FM_FMPAGE_HXX //autogen
 #include <bf_svx/fmpage.hxx>
-#endif
-#ifndef _SD_FADEDEF_H
 #include <bf_sd/fadedef.h>
-#endif
-#ifndef _SD_DIADEF_H
 #include <bf_sd/diadef.h>
-#endif
 #ifndef _PRESENTATION
 #include <bf_sd/pres.hxx>
 #endif

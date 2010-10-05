@@ -27,9 +27,7 @@
 #ifndef _PRCNTFLD_HXX
 #define _PRCNTFLD_HXX
 
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 namespace binfilter {
 
 class PercentField : public MetricField

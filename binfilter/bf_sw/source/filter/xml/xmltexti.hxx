@@ -28,20 +28,12 @@
 #ifndef _XMLTEXTI_HXX
 #define _XMLTEXTI_HXX
 
-#ifndef _XMLOFF_TXTIMP_HXX
 #include <bf_xmloff/txtimp.hxx>
-#endif
-#ifndef _XMLOFF_FUNCTIONAL_HXX
 #include <bf_xmloff/functional.hxx>
-#endif
 
-#ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
-#endif
 
-#ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
-#endif
 class SvPlugInObjectRef;
 namespace binfilter {
 class SvXMLImport;

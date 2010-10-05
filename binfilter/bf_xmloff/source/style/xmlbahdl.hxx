@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #define _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
 

@@ -28,18 +28,12 @@
 #ifndef _SVSTOR_HXX
 #define _SVSTOR_HXX
 
-#ifndef _IFACE_HXX
 #include <bf_so3/iface.hxx>
-#endif
-#ifndef _SOT_STORAGE_HXX
 #include <sot/storage.hxx>
-#endif
 
 #include <bf_so3/so2defs.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 #ifdef SvStorage
 #undef SvStorage

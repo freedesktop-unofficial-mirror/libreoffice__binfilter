@@ -27,9 +27,7 @@
 
 #include <rtl/logfile.hxx>
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HDL_
 #include <com/sun/star/xml/sax/SAXParseException.hdl>
-#endif
 #include <bf_sfx2/docfile.hxx>
 #include "drawdoc.hxx"
 #include <unotools/streamwrap.hxx>

@@ -36,13 +36,9 @@
 //#include <vcl/bitmapex.hxx>
 //#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>
-#endif
 
 //#ifndef _TOOLS_TIME_HXX
 //#include <tools/time.hxx>

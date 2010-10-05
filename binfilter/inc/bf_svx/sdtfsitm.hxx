@@ -27,13 +27,9 @@
 #ifndef _SDTFSITM_HXX
 #define _SDTFSITM_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 enum SdrFitToSizeType {SDRTEXTFIT_NONE,         // - kein FitToSize

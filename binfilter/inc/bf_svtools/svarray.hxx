@@ -38,13 +38,9 @@
 #define INCLUDED_LIMITS_H
 #endif
 
-#ifndef _RTL_ALLOC_H_
 #include <rtl/alloc.h>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class String;
 

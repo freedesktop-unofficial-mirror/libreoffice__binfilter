@@ -28,12 +28,8 @@
 #ifndef _XPOOL_HXX
 #define _XPOOL_HXX
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

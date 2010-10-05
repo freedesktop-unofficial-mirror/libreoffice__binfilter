@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 struct SvXMLEnumMapEntry;

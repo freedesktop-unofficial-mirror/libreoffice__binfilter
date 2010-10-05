@@ -28,9 +28,7 @@
 #ifndef SC_NAVSETT_HXX
 #define SC_NAVSETT_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #include <vector>
 namespace binfilter {

@@ -27,9 +27,7 @@
 #ifndef _XMLTEXTORIENTATIONHDL_HXX_
 #define _XMLTEXTORIENTATIONHDL_HXX_
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 class XMLTextOrientationHdl : public XMLPropertyHandler

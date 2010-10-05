@@ -28,21 +28,13 @@
 #ifndef _FRQITEM_HXX
 #define _FRQITEM_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 

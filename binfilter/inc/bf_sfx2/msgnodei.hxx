@@ -29,12 +29,8 @@
 #define _MSGNODEI_HXX
 
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
 namespace binfilter {
 struct SfxMsgAttachFile {
     String  aFile;

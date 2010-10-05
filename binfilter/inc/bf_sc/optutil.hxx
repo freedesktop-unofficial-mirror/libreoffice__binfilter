@@ -28,13 +28,9 @@
 #ifndef SC_OPTUTIL_HXX
 #define SC_OPTUTIL_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 

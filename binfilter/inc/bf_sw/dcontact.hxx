@@ -27,13 +27,9 @@
 #ifndef _DCONTACT_HXX
 #define _DCONTACT_HXX
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 // OD 14.05.2003 #108784#
-#ifndef _SVDOVIRT_HXX
 #include <bf_svx/svdovirt.hxx>
-#endif
 
 // OD 17.06.2003 #108784#
 #include <list>

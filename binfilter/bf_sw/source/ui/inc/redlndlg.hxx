@@ -29,9 +29,7 @@
 
 #include "chldwrap.hxx"
 
-#ifndef _BASEDLGS_HXX //autogen
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 namespace binfilter {
 
 class SwChildWinWrapper;

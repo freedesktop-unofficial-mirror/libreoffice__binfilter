@@ -27,9 +27,7 @@
 #ifndef _TABFRM_HXX
 #define _TABFRM_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 #include "layfrm.hxx"
 #include "flowfrm.hxx"
 namespace binfilter {

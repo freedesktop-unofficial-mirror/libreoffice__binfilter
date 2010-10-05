@@ -28,9 +28,7 @@
 #ifndef _SC_XMLCELLRANGESOURCECONTEXT_HXX
 #define _SC_XMLCELLRANGESOURCECONTEXT_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

@@ -27,9 +27,7 @@
 #ifndef _SVXLINKMGR_HXX
 #define _SVXLINKMGR_HXX
 
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>
-#endif
 class Graphic;
 class Size;
 namespace binfilter {

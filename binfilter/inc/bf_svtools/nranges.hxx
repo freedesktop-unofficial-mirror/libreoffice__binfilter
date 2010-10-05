@@ -48,9 +48,7 @@
 
 #else
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 namespace binfilter
 {

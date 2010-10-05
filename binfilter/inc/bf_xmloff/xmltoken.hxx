@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #define _XMLOFF_XMLTOKEN_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {

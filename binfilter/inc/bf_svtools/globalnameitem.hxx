@@ -27,23 +27,13 @@
 #ifndef _GLOBALNAMEITEM_HXX
 #define _GLOBALNAMEITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 namespace binfilter
 {

@@ -27,17 +27,11 @@
 #ifndef _DOCINF_HXX
 #define _DOCINF_HXX
 
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 class Date;
 class Time;
 class DateTime;

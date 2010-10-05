@@ -28,32 +28,16 @@
 #ifndef _SDATTR_HXX
 #define _SDATTR_HXX
 
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
 #include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
 
-#ifndef _SD_GLOB_HXX
 #include <bf_sd/glob.hxx>
-#endif
-#ifndef _SD_FADEDEF_H
 #include <bf_sd/fadedef.h>
-#endif
-#ifndef _SD_DIADEF_H
 #include <bf_sd/diadef.h>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------

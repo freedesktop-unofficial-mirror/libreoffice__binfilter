@@ -30,9 +30,7 @@
 
 
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 namespace binfilter {
 class SwDoc;
 

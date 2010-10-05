@@ -28,16 +28,10 @@
 #define _VIEWIMP_HXX
 
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 // OD 25.06.2003 #108784#
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "swrect.hxx"
@@ -72,9 +66,7 @@ class SwPagePreviewLayout;
 // OD 15.01.2003 #103492#
 } //namespace binfilter
 
-#ifndef _PREVWPAGE_HXX
 #include <prevwpage.hxx>
-#endif
 // OD 15.01.2003 #103492#
 #include <vector>
 namespace binfilter {//STRIP009

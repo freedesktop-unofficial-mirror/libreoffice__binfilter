@@ -28,18 +28,10 @@
 #ifndef _XMLOFF_CONTROLBORDERHDL_HXX_
 #define _XMLOFF_CONTROLBORDERHDL_HXX_
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include "prhdlfac.hxx"
-#endif
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

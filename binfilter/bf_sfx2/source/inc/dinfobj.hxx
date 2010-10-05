@@ -28,9 +28,7 @@
 #define _SFX_DINFOBJ_HXX
 
 
-#ifndef _AUTO_HXX //autogen
 #include <bf_so3/auto.hxx>
-#endif
 #include "docinf.hxx"
 #include "dinfdlg.hxx"
 namespace binfilter {

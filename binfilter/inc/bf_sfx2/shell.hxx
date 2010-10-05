@@ -27,15 +27,9 @@
 #ifndef _SFX_SHELL_HXX
 #define _SFX_SHELL_HXX
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include <tools/string.hxx>
 

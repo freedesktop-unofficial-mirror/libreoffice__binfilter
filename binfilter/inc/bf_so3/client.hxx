@@ -33,9 +33,7 @@
 #include <tools/gen.hxx>
 #include <tools/fract.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/

@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #define _XMLOFF_ENUMPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <bf_xmloff/xmlprhdl.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_TYPE_H_
 #include <com/sun/star/uno/Type.h>
-#endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include <bf_xmloff/xmlement.hxx>
-#endif
 namespace binfilter {
 
 /**

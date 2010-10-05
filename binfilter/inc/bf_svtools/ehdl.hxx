@@ -30,13 +30,9 @@
 
 #ifndef __RSC
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _EINF_HXX
 #include <tools/errinf.hxx>
-#endif
 
 class Window;
 class ResMgr;

@@ -27,22 +27,16 @@
 #ifndef _SFX_XMLVERSION_HXX
 #define _SFX_XMLVERSION_HXX
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
 
 //#ifndef _XMLOFF_XMLITMAP_HXX
 //#include <bf_xmloff/xmlitmap.hxx>
 //#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
 
 

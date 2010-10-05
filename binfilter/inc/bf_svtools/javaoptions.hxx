@@ -27,12 +27,8 @@
 #ifndef _SVTOOLS_JAVAOPTIONS_HXX
 #define _SVTOOLS_JAVAOPTIONS_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
 #endif //

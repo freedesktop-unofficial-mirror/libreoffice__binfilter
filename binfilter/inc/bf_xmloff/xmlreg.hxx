@@ -29,9 +29,7 @@
 #define _XMLOFF_XMLREG_HXX
 
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 namespace binfilter {
 
 /**

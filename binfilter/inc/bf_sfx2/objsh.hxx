@@ -31,54 +31,30 @@
 //  include uno header first!
 //________________________________________________________________________________________________________________
 
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
 #include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
 
 //________________________________________________________________________________________________________________
 //  include something else
 //________________________________________________________________________________________________________________
 
 #if _SOLAR__PRIVATE
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
 #endif
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SO2DEFS_HXX //autogen
 #include <bf_so3/so2defs.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 #include <bf_so3/svstor.hxx>
 
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
 
 #include <bf_sfx2/shell.hxx>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 namespace binfilter {
  class SvLinkSource;
 }

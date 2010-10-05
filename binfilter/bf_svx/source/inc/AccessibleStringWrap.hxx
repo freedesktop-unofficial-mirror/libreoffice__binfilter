@@ -28,13 +28,9 @@
 #ifndef _ACCESSIBLESTRINGWRAP_HXX
 #define _ACCESSIBLESTRINGWRAP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 class OutputDevice;
 class Rectangle;
 class Point;

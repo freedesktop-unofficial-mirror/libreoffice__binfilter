@@ -28,9 +28,7 @@
 #ifndef SC_PAGEPAR_HXX
 #define SC_PAGEPAR_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 //-----------------------------------------------------------------------

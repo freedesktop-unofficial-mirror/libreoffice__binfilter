@@ -27,26 +27,14 @@
 #ifndef _SWTABLE_HXX
 #define _SWTABLE_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _TBLENUM_HXX
 #include <tblenum.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 
 #ifndef DBG_UTIL
-#ifndef _NODE_HXX
 #include <node.hxx>         // fuer StartNode->GetMyIndex
-#endif
 #else
 namespace binfilter {
 class SwStartNode;

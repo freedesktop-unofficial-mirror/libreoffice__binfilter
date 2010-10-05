@@ -28,12 +28,8 @@
 #ifndef _ADRPARSE_HXX
 #define _ADRPARSE_HXX
 
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 

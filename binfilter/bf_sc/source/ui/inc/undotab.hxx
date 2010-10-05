@@ -28,12 +28,8 @@
 #ifndef SC_UNDOTAB_HXX
 #define SC_UNDOTAB_HXX
 
-#ifndef SC_UNDOBASE_HXX
 #include "undobase.hxx"
-#endif
-#ifndef SC_MARKDATA_HXX
 #include "markdata.hxx"
-#endif
 
 #ifndef _SVSTDARR_USHORTS
 

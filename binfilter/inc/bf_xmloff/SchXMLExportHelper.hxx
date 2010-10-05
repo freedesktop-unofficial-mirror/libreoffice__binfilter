@@ -27,15 +27,9 @@
 #ifndef _XMLOFF_SCH_XMLEXPORTHELPER_HXX_
 #define _XMLOFF_SCH_XMLEXPORTHELPER_HXX_
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGMAPPING_HPP_
 #include <com/sun/star/util/XStringMapping.hpp>
-#endif
 
 #include "queue"
 

@@ -28,9 +28,7 @@
 #ifndef SC_OPCODE_HXX
 #define SC_OPCODE_HXX
 
-#ifndef SC_COMPILER_HRC
 #include "compiler.hrc"                     // OpCodes
-#endif
 namespace binfilter {
 
 enum OpCodeEnum

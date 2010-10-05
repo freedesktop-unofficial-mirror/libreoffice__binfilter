@@ -36,42 +36,18 @@
 // #include <math.h>
 #include <stdlib.h>
 #include <sot/object.hxx>
-#ifndef BOOST_SHARED_PTR_HPP_INCLUDED
 #include <boost/shared_ptr.hpp>
-#endif
-#ifndef _TOOL_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _STACK_HXX
 #include <tools/stack.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
-#ifndef _DYNARY_HXX
 #include <tools/dynary.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _SV_FONT_HXX
 #include <vcl/font.hxx>
-#endif
-#ifndef _SV_BMPACC_HXX
 #include <vcl/bmpacc.hxx>
-#endif
-#ifndef _SV_LINEINFO_HXX
 #include <vcl/lineinfo.hxx>
-#endif
-#ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
-#endif
 
 namespace binfilter
 {

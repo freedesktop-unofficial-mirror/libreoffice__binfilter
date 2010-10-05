@@ -28,30 +28,14 @@
 #ifndef _SC_XMLSTYLE_HXX
 #define _SC_XMLSTYLE_HXX
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLASTPLP_HXX
 #include <bf_xmloff/xmlaustp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
-#ifndef _XMLOFF_STYLEEXP_HXX_
 #include <bf_xmloff/styleexp.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <bf_xmloff/xmlexppr.hxx>
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;

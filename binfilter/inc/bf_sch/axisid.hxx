@@ -32,13 +32,9 @@
 #define SCH_AXIS_ID_Y 2
 #define SCH_AXIS_ID_Z 3
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _SVDITER_HXX //autogen
 #include <bf_svx/svditer.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

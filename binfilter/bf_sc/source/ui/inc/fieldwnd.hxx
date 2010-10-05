@@ -29,13 +29,9 @@
 #define SC_FIELDWND_HXX
 
 
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace binfilter {
 
 #define MAX_LABELS  256

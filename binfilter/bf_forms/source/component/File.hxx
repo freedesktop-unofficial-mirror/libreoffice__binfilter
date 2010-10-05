@@ -28,9 +28,7 @@
 #ifndef _FORMS_FILE_HXX_
 #define _FORMS_FILE_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

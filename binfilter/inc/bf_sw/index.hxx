@@ -29,13 +29,9 @@
 
 #include <limits.h>
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>               // for RTTI of SwIndexReg
-#endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 namespace binfilter {
 #define INVALID_INDEX STRING_NOTFOUND

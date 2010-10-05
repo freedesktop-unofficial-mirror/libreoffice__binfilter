@@ -27,13 +27,9 @@
 #ifndef _SFXSMPLHINT_HXX
 #define _SFXSMPLHINT_HXX
 
-#ifndef _SFXHINT_HXX
 #include <bf_svtools/hint.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 namespace binfilter
 {

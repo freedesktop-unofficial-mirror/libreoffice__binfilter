@@ -30,13 +30,9 @@
 
 // #include *****************************************************************
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
 namespace binfilter {
 
 #define     SW_EVENT_OBJECT_SELECT        ( EVENT_APP_START + 0 )

@@ -27,13 +27,11 @@
 #ifndef SW_FMTLINE_HXX
 #define SW_FMTLINE_HXX
 
-
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
-class IntlWrapper;
-namespace binfilter {
 
+class IntlWrapper;
+
+namespace binfilter {
 
 class SwFmtLineNumber: public SfxPoolItem
 {

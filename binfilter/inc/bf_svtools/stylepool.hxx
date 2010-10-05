@@ -30,9 +30,7 @@
 #include <boost/shared_ptr.hpp>
 #include <rtl/ustring.hxx>
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 namespace binfilter
 {

@@ -30,13 +30,9 @@
 #include <limits.h>
 #include <string.h>
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 //#include "typecast.hxx"
 

@@ -27,9 +27,7 @@
 #ifndef _ENVIMG_HXX
 #define _ENVIMG_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 // enum -----------------------------------------------------------------------

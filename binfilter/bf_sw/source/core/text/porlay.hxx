@@ -27,15 +27,9 @@
 #ifndef _PORLAY_HXX
 #define _PORLAY_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _FRACT_HXX
 #include <tools/fract.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>
-#endif
 
 #include "swrect.hxx"   // SwRepaint
 #include "portxt.hxx"

@@ -27,12 +27,8 @@
 #ifndef _FMTCLDS_HXX
 #define _FMTCLDS_HXX
 
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 //Der ColumnDescriptor --------------------------

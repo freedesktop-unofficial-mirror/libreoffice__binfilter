@@ -27,19 +27,11 @@
 #ifndef CONFIG_HXX
 #define CONFIG_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SFXCFGITEM_HXX //autogen
 #include <bf_sfx2/cfgitem.hxx>
-#endif
 
-#ifndef _FORMAT_HXX
 #include "format.hxx"
-#endif
 
 #include "cfgitem.hxx"
 namespace binfilter {

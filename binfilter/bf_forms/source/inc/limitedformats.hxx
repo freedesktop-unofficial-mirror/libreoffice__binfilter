@@ -28,12 +28,8 @@
 #ifndef _FORMS_LIMITED_FORMATS_HXX_
 #define _FORMS_LIMITED_FORMATS_HXX_
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 #include <com/sun/star/beans/XFastPropertySet.hpp>
 namespace binfilter {
 

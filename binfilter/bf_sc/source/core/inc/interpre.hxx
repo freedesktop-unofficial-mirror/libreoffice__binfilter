@@ -32,22 +32,12 @@
 
 #include <math.h>
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 
-#ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
-#endif
-#ifndef SC_CELL_HXX
 #include "cell.hxx"
-#endif
-#ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
 #if SC_SPEW_ENABLED
 #include "scspew.hxx"

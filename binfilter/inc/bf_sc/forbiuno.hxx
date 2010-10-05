@@ -28,12 +28,8 @@
 #ifndef SC_FORBIUNO_HXX
 #define SC_FORBIUNO_HXX
 
-#ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 namespace binfilter {
 
 class ScDocShell;

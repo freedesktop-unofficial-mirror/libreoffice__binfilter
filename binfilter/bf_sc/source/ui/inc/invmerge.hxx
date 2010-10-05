@@ -28,9 +28,7 @@
 #ifndef SC_INVMERGE_HXX
 #define SC_INVMERGE_HXX
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 class Window;
 namespace binfilter {

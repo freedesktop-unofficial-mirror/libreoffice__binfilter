@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLEMENT_HXX
 #define _XMLOFF_XMLEMENT_HXX
 
-#ifndef _SAL_TYPES_H
 #include <sal/types.h>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 namespace binfilter {
 
 /** Map an XMLTokenEnum to a sal_uInt16 value.

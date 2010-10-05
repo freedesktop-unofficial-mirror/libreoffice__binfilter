@@ -27,19 +27,11 @@
 #ifndef _RDSWG_HXX
 #define _RDSWG_HXX
 
-#ifndef _SV_PRNTYPES_HXX //autogen
 #include <vcl/prntypes.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SWGSTR_HXX
 #include <swgstr.hxx>
-#endif
-#ifndef _SWGIDS_HXX
 #include <swgids.hxx>
-#endif
 class Brush;
 class Color;
 class Pen;

@@ -27,9 +27,7 @@
 #ifndef _CSHTYP_HXX
 #define _CSHTYP_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 class UniString;
 namespace binfilter {
 

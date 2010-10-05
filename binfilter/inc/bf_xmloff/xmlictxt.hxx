@@ -28,19 +28,11 @@
 #ifndef _XMLOFF_XMLICTXT_HXX
 #define _XMLOFF_XMLICTXT_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLNamespaceMap;

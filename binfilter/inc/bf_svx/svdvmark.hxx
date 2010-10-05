@@ -28,9 +28,7 @@
 #ifndef _SVDVMARK_HXX
 #define _SVDVMARK_HXX
 
-#ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
 namespace binfilter {
 

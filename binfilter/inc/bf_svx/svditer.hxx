@@ -28,13 +28,9 @@
 #ifndef _SVDITER_HXX
 #define _SVDITER_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 namespace binfilter {
 
 class SdrObjList;

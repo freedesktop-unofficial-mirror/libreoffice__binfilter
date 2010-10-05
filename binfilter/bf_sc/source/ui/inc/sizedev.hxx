@@ -28,9 +28,7 @@
 #ifndef SC_SIZEDEV_HXX
 #define SC_SIZEDEV_HXX
 
-#ifndef _SV_MAPMOD_HXX
 #include <vcl/mapmod.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 

@@ -28,9 +28,7 @@
 #ifndef SC_SCRESID_HXX
 #define SC_SCRESID_HXX
 
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 namespace binfilter {
 
 //===================================================================

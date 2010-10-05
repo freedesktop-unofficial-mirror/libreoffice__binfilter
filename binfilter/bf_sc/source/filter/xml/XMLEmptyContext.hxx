@@ -27,9 +27,7 @@
 #ifndef SC_XMLEMPTYCONTEXT_HXX
 #define SC_XMLEMPTYCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

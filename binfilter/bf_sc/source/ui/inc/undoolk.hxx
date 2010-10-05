@@ -28,9 +28,7 @@
 #ifndef SC_UNDOOLK_HXX
 #define SC_UNDOOLK_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 class SdrUndoAction;

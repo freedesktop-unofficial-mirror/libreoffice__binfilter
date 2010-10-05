@@ -29,9 +29,7 @@
 #define SC_ATRARR_HXX
 
 
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
 class Rectangle;
 namespace binfilter {
 

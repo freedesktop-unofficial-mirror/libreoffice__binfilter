@@ -28,12 +28,8 @@
 #ifndef _PROPREAD_HXX_
 #define _PROPREAD_HXX_
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
 namespace binfilter {
 

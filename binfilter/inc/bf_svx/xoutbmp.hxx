@@ -28,15 +28,9 @@
 #ifndef _XOUTBMP_HXX
 #define _XOUTBMP_HXX
 
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 class VirtualDevice;
 class INetURLObject;
 class Polygon;

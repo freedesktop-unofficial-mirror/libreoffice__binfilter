@@ -34,9 +34,7 @@
 
 
 
-#ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
-#endif
 
 
 

@@ -28,9 +28,7 @@
 #ifndef SC_PAGEUNO_HXX
 #define SC_PAGEUNO_HXX
 
-#ifndef _SVX_FMDPAGE_HXX
 #include <bf_svx/fmdpage.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------

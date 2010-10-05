@@ -27,9 +27,7 @@
 #ifndef SC_XMLLABRI_HXX
 #define SC_XMLLABRI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

@@ -32,13 +32,9 @@
 
 
 #ifdef IS_SW_DLL
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 class Reader;

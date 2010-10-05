@@ -28,24 +28,12 @@
 #define _SWFONT_HXX
 
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _TOOLS_COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _TOOLS_STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVX_SVXFONT_HXX //autogen
 #include <bf_svx/svxfont.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>     // SwDrawTextInfo
-#endif
 namespace binfilter {
 
 class SfxItemSet;

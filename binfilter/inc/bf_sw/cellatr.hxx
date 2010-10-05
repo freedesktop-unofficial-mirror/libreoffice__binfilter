@@ -28,12 +28,8 @@
 #ifndef _CELLATR_HXX
 #define _CELLATR_HXX
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 #include "format.hxx"
 #include "cellfml.hxx"

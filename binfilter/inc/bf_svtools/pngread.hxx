@@ -28,12 +28,8 @@
 #ifndef _PNGREAD_HXX
 #define _PNGREAD_HXX
 
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _SV_GRAPH_H
 #include <vcl/graph.h>
-#endif
 
 class SvStream;
 class Graphic;

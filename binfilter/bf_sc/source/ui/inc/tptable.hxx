@@ -28,13 +28,9 @@
 #ifndef SC_TPTABLE_HXX
 #define SC_TPTABLE_HXX
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 namespace binfilter {
 
 //===================================================================

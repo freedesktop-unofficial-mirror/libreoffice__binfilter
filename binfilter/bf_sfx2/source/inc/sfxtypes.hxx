@@ -27,12 +27,8 @@
 #ifndef _SFX_SFXTYPES_HXX
 #define _SFX_SFXTYPES_HXX
 
-#ifndef _RCID_H //autogen
 #include <tools/rcid.h>
-#endif
-#ifndef _SV_WRKWIN_HXX
 #include <vcl/wrkwin.hxx>
-#endif
 
 class Timer;
 namespace binfilter {

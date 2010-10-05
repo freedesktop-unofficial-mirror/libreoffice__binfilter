@@ -27,12 +27,8 @@
 #ifndef _WRTASC_HXX
 #define _WRTASC_HXX
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _WRT_FN_HXX
 #include <wrt_fn.hxx>
-#endif
 namespace binfilter {
 
 extern SwNodeFnTab aASCNodeFnTab;

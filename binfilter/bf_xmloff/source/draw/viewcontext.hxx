@@ -29,13 +29,9 @@
 #define _SD_XMLVIEWSETTINGSCONTEXT_HXX
 
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
 #include <com/sun/star/awt/Rectangle.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class SdXMLImport;

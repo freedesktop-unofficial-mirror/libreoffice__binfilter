@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 #define _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 namespace binfilter {
 
 class XMLChartStyleContext : public XMLPropStyleContext

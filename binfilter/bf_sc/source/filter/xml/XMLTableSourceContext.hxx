@@ -28,13 +28,9 @@
 #ifndef _SC_XMLTABLESOURCECONTEXT_HXX
 #define _SC_XMLTABLESOURCECONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_SHEETLINKMODE_HPP_
 #include <com/sun/star/sheet/SheetLinkMode.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

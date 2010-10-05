@@ -28,15 +28,9 @@
 #ifndef SC_SORTPARAM_HXX
 #define SC_SORTPARAM_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 namespace binfilter {
 
 

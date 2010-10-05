@@ -27,29 +27,15 @@
 #ifndef _GRFATR_HXX
 #define _GRFATR_HXX
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>      // fuer die WhichIds
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_GRFCROP_HXX
 #include <bf_svx/grfcrop.hxx>
-#endif
 
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>     // fuer inlines
-#endif
-#ifndef _FORMAT_HXX
 #include <format.hxx>       // fuer inlines
-#endif
 namespace binfilter {
 
 /******************************************************************************

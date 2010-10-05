@@ -32,13 +32,9 @@
 #include <map>
 #endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <bf_xmloff/xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

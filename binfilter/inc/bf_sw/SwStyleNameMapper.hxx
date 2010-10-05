@@ -27,15 +27,9 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #define _SWSTYLENAMEMAPPER_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _GETPOOLIDFROMNAMEENUM_HXX
 #include <SwGetPoolIdFromName.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 #include <hash_map>
 
 class String;

@@ -27,15 +27,9 @@
 #ifndef _FONTCFG_HXX
 #define _FONTCFG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 namespace binfilter {
 
 #define FONT_STANDARD       0

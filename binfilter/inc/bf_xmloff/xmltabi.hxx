@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLTABI_HXX
 #define _XMLOFF_XMLTABI_HXX
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 namespace rtl
 {
     class OUString;

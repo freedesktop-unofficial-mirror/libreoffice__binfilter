@@ -30,9 +30,7 @@
 #ifndef _SC_CSVSPLITS_HXX
 #define _SC_CSVSPLITS_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 #include <vector>
 namespace binfilter {

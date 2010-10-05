@@ -29,9 +29,7 @@
 #ifndef __SBX_SBX_FACTORY_HXX
 #define __SBX_SBX_FACTORY_HXX
 
-#ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
 
 class String;
 class UniString;

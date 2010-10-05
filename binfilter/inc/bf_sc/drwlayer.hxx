@@ -28,18 +28,10 @@
 #ifndef SC_DRWLAYER_HXX
 #define SC_DRWLAYER_HXX
 
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocument;

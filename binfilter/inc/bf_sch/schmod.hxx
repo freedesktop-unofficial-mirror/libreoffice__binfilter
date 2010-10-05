@@ -28,9 +28,7 @@
 #ifndef _SCHMOD_HXX
 #define _SCHMOD_HXX
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
 #include "schdll0.hxx"        // fuer SchModuleDummy
 #include "schdll.hxx"

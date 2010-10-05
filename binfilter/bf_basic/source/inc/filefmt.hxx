@@ -28,9 +28,7 @@
 #ifndef _SB_FILEFMT_HXX
 #define _SB_FILEFMT_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class SvStream;
 

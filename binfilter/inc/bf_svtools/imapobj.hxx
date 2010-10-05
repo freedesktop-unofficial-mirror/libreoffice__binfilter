@@ -28,17 +28,11 @@
 #ifndef _GOODIES_IMAPOBJ_HXX
 #define _GOODIES_IMAPOBJ_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
 class Point;
 class Rectangle;

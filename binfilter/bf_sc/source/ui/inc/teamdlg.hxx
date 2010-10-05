@@ -29,13 +29,9 @@
 #define SC_TEAMDLG_HXX
 
 
-#ifndef _SV_FLOATWIN_HXX //autogen
 #include <vcl/floatwin.hxx>
-#endif
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 

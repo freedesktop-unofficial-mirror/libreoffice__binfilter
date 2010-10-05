@@ -27,9 +27,7 @@
 #ifndef _SFX_OBJITEM_HXX
 #define _SFX_OBJITEM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #include <bf_sfx2/shell.hxx>
 namespace binfilter {

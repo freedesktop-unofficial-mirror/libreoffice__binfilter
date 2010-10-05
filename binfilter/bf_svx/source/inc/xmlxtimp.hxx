@@ -28,9 +28,7 @@
 #ifndef _SVX_XMLXTIMP_HXX
 #define _SVX_XMLXTIMP_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {

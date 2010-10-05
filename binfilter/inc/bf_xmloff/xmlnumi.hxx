@@ -28,15 +28,11 @@
 #ifndef _XMLOFF_XMLNUMI_HXX
 #define _XMLOFF_XMLNUMI_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
 #include <bf_xmloff/xmlstyle.hxx>
 
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
 
 namespace com { namespace sun { namespace star { namespace frame { class XModel; } } } }
 namespace binfilter {

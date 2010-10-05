@@ -27,9 +27,7 @@
 #ifndef SW_BARCFG_HXX
 #define SW_BARCFG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 class CfgUSHORTTable;

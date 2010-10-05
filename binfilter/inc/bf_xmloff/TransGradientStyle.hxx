@@ -29,9 +29,7 @@
 #define _XMLOFF_TRANSGRADIENTSTYLE_HXX
 
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace com { namespace sun { namespace star {
     namespace uno { template<class A> class Reference; }
     namespace xml { namespace sax { class XAttributeList; } }

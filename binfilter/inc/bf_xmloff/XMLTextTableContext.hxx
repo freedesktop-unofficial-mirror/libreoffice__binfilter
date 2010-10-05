@@ -28,13 +28,9 @@
 #ifndef _XMLTEXTTABLECONTEXT_HXX
 #define _XMLTEXTTABLECONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace text { class XTextContent; }

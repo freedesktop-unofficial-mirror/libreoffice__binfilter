@@ -27,13 +27,9 @@
 #ifndef _SFXBRDCST_HXX
 #define _SFXBRDCST_HXX
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 namespace binfilter {
 

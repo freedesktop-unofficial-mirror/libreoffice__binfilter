@@ -28,9 +28,7 @@
 #ifndef _XMLTEXTLISTITEMCONTEXT_HXX
 #define _XMLTEXTLISTITEMCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class XMLTextImportHelper;

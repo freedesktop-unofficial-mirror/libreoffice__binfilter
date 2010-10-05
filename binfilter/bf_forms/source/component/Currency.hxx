@@ -28,9 +28,7 @@
 #ifndef _FORMS_CURRENCY_HXX_
 #define _FORMS_CURRENCY_HXX_
 
-#ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

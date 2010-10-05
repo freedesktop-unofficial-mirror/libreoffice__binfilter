@@ -30,12 +30,8 @@
 
 
 
-#ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
 #include <comphelper/propagg.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;

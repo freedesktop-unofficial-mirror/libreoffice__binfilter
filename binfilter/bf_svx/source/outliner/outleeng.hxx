@@ -28,12 +28,8 @@
 #ifndef _OUTLEENG_HXX
 #define _OUTLEENG_HXX
 
-#ifndef _OUTLINER_HXX
 #include <outliner.hxx>
-#endif
-#ifndef _EDITENG_HXX
 #include <editeng.hxx>
-#endif
 namespace binfilter {
 
 typedef EENotify* EENotifyPtr;

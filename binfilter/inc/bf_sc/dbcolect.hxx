@@ -28,21 +28,13 @@
 #ifndef SC_DBCOLECT_HXX
 #define SC_DBCOLECT_HXX
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // MAXQUERY
-#endif
 
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"    // MAXSORT
-#endif
 
-#ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
-#endif
 namespace binfilter {
 class ScDocument;
 class ScMultipleReadHeader;

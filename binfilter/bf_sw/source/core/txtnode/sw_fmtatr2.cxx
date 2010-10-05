@@ -46,9 +46,7 @@
 #include <cppuhelper/implbase4.hxx>
 
 #include <unoevent.hxx>     // SwHyperlinkEventDescriptor
-#ifndef _COM_SUN_STAR_TEXT_RUBYADJUST_HDL_
 #include <com/sun/star/text/RubyAdjust.hdl>
-#endif
 
 #include <cmdid.h>
 #include <com/sun/star/uno/Any.h>

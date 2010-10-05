@@ -27,12 +27,8 @@
 #ifndef _HINTIDS_HXX
 #define _HINTIDS_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>        // fuer __FAR_DATA
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>          // for sal_Unicode
-#endif
 
 
 // fuer SwTxtHints ohne Endindex wird folgendes Zeichen eingefuegt:

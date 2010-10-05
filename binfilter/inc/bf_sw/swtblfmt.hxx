@@ -27,9 +27,7 @@
 #ifndef _SWTBLFMT_HXX
 #define _SWTBLFMT_HXX
 
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;

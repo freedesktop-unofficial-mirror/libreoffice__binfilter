@@ -28,15 +28,13 @@
 #define _FMTCNCT_HXX
 
 
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
+
 class IntlWrapper;
+
 namespace binfilter {
 
-
 class SwFlyFrmFmt;
-
 
 //Verbindung (Textfluss) zwischen zwei FlyFrms
 

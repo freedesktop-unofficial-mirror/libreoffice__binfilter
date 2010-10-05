@@ -28,12 +28,8 @@
 #ifndef SC_REFRESHTIMER_HXX
 #define SC_REFRESHTIMER_HXX
 
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX
 #include <vos/mutex.hxx>
-#endif
 namespace binfilter {
 
 #define SC_REFRESHTIMER_CONTROL_LIST 0

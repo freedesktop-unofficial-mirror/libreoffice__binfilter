@@ -28,19 +28,11 @@
 #ifndef _SCH_OBJADJ_HXX
 #define _SCH_OBJADJ_HXX
 
-#ifndef _SCH_ADJUST_HXX
 #include "adjust.hxx"
-#endif
 
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 

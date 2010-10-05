@@ -28,13 +28,9 @@
 #ifndef _SFXSTRITEM_HXX
 #define _SFXSTRITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter
 {

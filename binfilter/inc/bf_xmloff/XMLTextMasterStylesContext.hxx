@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLTEXTMASTERSTYLESCONTEXT_HXX
 #define _XMLOFF_XMLTEXTMASTERSTYLESCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 namespace binfilter {
 
 class XMLTextMasterStylesContext : public SvXMLStylesContext

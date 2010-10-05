@@ -29,18 +29,10 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SV_WALL_HXX
 #include <vcl/wall.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 namespace rtl
 {
     class OUString;

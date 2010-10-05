@@ -28,9 +28,7 @@
 #ifndef _ATTRIBUTEPROPERTIES_HXX
 #define _ATTRIBUTEPROPERTIES_HXX
 
-#ifndef _DEFAULTPROPERTIES_HXX
 #include <sdr/properties/defaultproperties.hxx>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

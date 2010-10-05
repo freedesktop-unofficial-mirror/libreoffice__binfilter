@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLCNITM_HXX
 #define _XMLOFF_XMLCNITM_HXX
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace rtl { class OUString; }
 namespace binfilter {
 

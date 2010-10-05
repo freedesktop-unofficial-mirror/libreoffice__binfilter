@@ -30,13 +30,9 @@
 
 #include <tools/solar.h>
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 namespace binfilter {
 
 const sal_uInt32 FmFormInventor = sal_uInt32('F')*0x00000001+

@@ -28,16 +28,10 @@
 #ifndef SC_NOTEMARK_HXX
 #define SC_NOTEMARK_HXX
 
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScNoteMarker

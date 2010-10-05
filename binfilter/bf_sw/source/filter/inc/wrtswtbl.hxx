@@ -28,22 +28,12 @@
 #ifndef  _WRTSWTBL_HXX
 #define  _WRTSWTBL_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 class Color;
 namespace binfilter {
 

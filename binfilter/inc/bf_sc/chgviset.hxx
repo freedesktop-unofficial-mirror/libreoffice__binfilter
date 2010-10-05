@@ -27,14 +27,10 @@
 #ifndef SC_CHGVISET_HXX
 #define SC_CHGVISET_HXX
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 namespace utl {
     class TextSearch;
 }

@@ -28,9 +28,7 @@
 #define _DVIEW_HXX
 
 
-#ifndef _SVX_FMVIEW_HXX //autogen
 #include <bf_svx/fmview.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 

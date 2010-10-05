@@ -28,17 +28,11 @@
 #ifndef SC_EDITSRC_HXX
 #define SC_EDITSRC_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"           // ScRange, ScAddress
-#endif
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
 #include <memory>
 namespace binfilter {

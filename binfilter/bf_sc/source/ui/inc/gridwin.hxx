@@ -28,13 +28,9 @@
 #ifndef SC_GRIDWIN_HXX
 #define SC_GRIDWIN_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 
 // nur auf dem MAC Auto-Filter per Popup
 #ifdef MAC
@@ -43,17 +39,11 @@
 #undef AUTOFILTER_POPUP
 #endif
 
-#ifndef SC_VIEWUTIL_HXX
 #include "viewutil.hxx"
-#endif
 
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 
-#ifndef SC_CBUTTON_HXX
 #include "cbutton.hxx"
-#endif
 class FloatingWindow;
 namespace binfilter {
 

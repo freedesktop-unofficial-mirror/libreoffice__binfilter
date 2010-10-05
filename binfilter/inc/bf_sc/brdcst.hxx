@@ -27,13 +27,9 @@
 #ifndef _SC_BRDCST_HXX
 #define _SC_BRDCST_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 namespace binfilter {
 class ScBaseCell;
 

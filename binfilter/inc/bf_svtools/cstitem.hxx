@@ -28,9 +28,7 @@
 #ifndef _CSTITEM_HXX
 #define _CSTITEM_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 

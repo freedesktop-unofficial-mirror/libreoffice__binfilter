@@ -29,13 +29,9 @@
 #define _SVDGLOB_HXX
 
 
-#ifndef _RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 class Link;
 class ResMgr;
 namespace binfilter {

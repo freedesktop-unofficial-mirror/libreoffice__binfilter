@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLAUTOMARKFILECONTEXT_HXX_
 #define _XMLOFF_XMLAUTOMARKFILECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace com { namespace sun { namespace star {
     namespace uno { template<class X> class Reference; }
     namespace beans { class XPropertySet; }

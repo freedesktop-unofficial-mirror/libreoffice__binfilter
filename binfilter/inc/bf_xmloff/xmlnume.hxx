@@ -28,16 +28,10 @@
 #ifndef _XMLOFF_XMLNUME_HXX
 #define _XMLOFF_XMLNUME_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _VCL_MAPUNIT_HXX
 #include <vcl/mapunit.hxx>
-#endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
 #include <bf_xmloff/attrlist.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace style { class XStyle; }

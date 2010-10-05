@@ -28,13 +28,9 @@
 #ifndef SC_OPTUNO_HXX
 #define SC_OPTUNO_HXX
 
-#ifndef SC_DOCUNO_HXX
 #include "docuno.hxx"
-#endif
 
-#ifndef SC_DOCOPTIO_HXX
 #include "docoptio.hxx"
-#endif
 namespace binfilter {
 
 

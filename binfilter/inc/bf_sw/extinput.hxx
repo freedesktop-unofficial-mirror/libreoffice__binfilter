@@ -31,9 +31,7 @@
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
 class CommandExtTextInputData;
 class Font;
 

@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class Point;
 class Rectangle;

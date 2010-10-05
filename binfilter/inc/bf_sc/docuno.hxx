@@ -28,99 +28,41 @@
 #ifndef SC_DOCUNO_HXX
 #define SC_DOCUNO_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"           // ScRange, ScAddress
-#endif
 
-#ifndef _SFX_OBJUNO_HXX
 #include <bf_sfx2/sfxbasemodel.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SVX_FMDMOD_HXX //autogen
 #include <bf_svx/fmdmod.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_XRENDERABLE_HPP_
 #include <com/sun/star/view/XRenderable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XLINKTARGETSUPPLIER_HPP_
 #include <com/sun/star/document/XLinkTargetSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESSUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPagesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGES_HPP_
 #include <com/sun/star/drawing/XDrawPages.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XGOALSEEK_HPP_
 #include <com/sun/star/sheet/XGoalSeek.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCALCULATABLE_HPP_
 #include <com/sun/star/sheet/XCalculatable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSCENARIOS_HPP_
 #include <com/sun/star/sheet/XScenarios.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCONSOLIDATABLE_HPP_
 #include <com/sun/star/sheet/XConsolidatable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDOCUMENTAUDITING_HPP_
 #include <com/sun/star/sheet/XDocumentAuditing.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
 #include <com/sun/star/util/XProtectable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XTABLECOLUMNS_HPP_
 #include <com/sun/star/table/XTableColumns.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XTABLEROWS_HPP_
 #include <com/sun/star/table/XTableRows.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONS_HPP_
 #include <com/sun/star/sheet/XSheetAnnotations.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 namespace binfilter {
 class SvEmbeddedObject;
 

@@ -28,29 +28,15 @@
 #ifndef _SCH_MEMCHRT_HXX
 #define _SCH_MEMCHRT_HXX
 
-#ifndef _SFXDEFS_HXX
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 #include <bf_sch/cellranges.hxx>
 
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 class SvStream;
 
 namespace binfilter {

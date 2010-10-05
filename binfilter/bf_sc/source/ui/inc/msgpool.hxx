@@ -28,22 +28,12 @@
 #ifndef SC_MSGPOOL_HXX
 #define SC_MSGPOOL_HXX
 
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFX_SRCHITEM_HXX
 #include <bf_sfx2/srchitem.hxx>
-#endif
 
 #include "uiitems.hxx"
 namespace binfilter {

@@ -31,9 +31,7 @@
 #ifndef _SV_HXX
 #endif
 
-#ifndef SC_FUDRAW_HXX
 #include "fudraw.hxx"
-#endif
 namespace binfilter {
 
 

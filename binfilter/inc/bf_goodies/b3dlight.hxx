@@ -28,17 +28,11 @@
 #ifndef _B3D_B3DLIGHT_HXX
 #define _B3D_B3DLIGHT_HXX
 
-#ifndef _SVX_VECTOR3D_HXX
 #include "vector3d.hxx"
-#endif
 
-#ifndef _SVX_MATRIL3D_HXX
 #include "matril3d.hxx"
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter {
 

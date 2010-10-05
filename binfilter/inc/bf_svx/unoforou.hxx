@@ -28,9 +28,7 @@
 #ifndef _SVX_UNOFOROU_HXX
 #define _SVX_UNOFOROU_HXX
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
-#endif
 
 #include <bf_svx/editdata.hxx>
 namespace binfilter {

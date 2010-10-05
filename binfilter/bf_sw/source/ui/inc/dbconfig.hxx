@@ -27,9 +27,7 @@
 #ifndef _DBCONFIG_HXX
 #define _DBCONFIG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 struct SwDBData;
 class SwDBConfig : public ::utl::ConfigItem

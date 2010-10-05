@@ -27,9 +27,7 @@
 #ifndef _TXTPAINT_HXX
 #define _TXTPAINT_HXX
 
-#ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
 
 class SwRect;               // SwSaveClip

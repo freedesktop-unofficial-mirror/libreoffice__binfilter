@@ -28,41 +28,23 @@
 #ifndef _SDPROPLS_HXX
 #define _SDPROPLS_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
-#endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include "maptype.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
 
-#ifndef _SVTOOLS_XMLEMENT_HXX
 #include "xmlement.hxx"
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <prhdlfac.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 #include "XMLTextListAutoStylePool.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

@@ -27,9 +27,7 @@
 #ifndef _SCH_XMLWRP_HXX_
 #define _SCH_XMLWRP_HXX_
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace xml {
         namespace sax {

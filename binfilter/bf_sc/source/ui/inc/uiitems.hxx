@@ -28,16 +28,10 @@
 #ifndef SC_UIITEMS_HXX
 #define SC_UIITEMS_HXX
 
-#ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
-#endif
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 class ScEditEngineDefaulter;

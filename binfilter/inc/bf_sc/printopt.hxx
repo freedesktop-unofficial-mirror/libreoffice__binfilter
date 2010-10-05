@@ -28,13 +28,9 @@
 #ifndef SC_PRINTOPT_HXX
 #define SC_PRINTOPT_HXX
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 

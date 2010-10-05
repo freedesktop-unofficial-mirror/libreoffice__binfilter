@@ -28,16 +28,10 @@
 #ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #define _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 namespace binfilter {
 
 class XMLDocumentSettingsContext : public SvXMLImportContext

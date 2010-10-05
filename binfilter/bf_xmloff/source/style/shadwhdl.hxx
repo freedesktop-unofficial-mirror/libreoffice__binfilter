@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PROPERTYHANDLER_SHADOWTYPES_HXX
 #define _XMLOFF_PROPERTYHANDLER_SHADOWTYPES_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

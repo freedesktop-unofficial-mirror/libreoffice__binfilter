@@ -28,18 +28,10 @@
 #ifndef _PAMTYP_HXX
 #define _PAMTYP_HXX
 
-#ifndef _TXTCMP_HXX //autogen
 #include <bf_svtools/txtcmp.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class SwpHints;

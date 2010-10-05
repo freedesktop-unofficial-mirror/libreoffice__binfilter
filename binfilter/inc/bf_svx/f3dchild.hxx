@@ -28,9 +28,7 @@
 #ifndef _SVX_F3DCHILD_HXX
 #define _SVX_F3DCHILD_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

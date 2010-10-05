@@ -31,49 +31,27 @@
 #include <memory>
 #include <vector>
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SVDSOB_HXX //autogen
 #include "svdsob.hxx"
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include "svdtypes.hxx" // fuer SdrLayerID
-#endif
 
-#ifndef _SVDGLUE_HXX
 #include "svdglue.hxx" // Klebepunkte
-#endif
 
-#ifndef _SVX_XDASH_HXX
 #include "xdash.hxx"
-#endif
 
-#ifndef _XPOLY_HXX
 #include "xpoly.hxx"
-#endif
 
-#ifndef _POLY3D_HXX
 #include "poly3d.hxx"
-#endif
 
-#ifndef _XENUM_HXX
 #include "xenum.hxx"
-#endif
 class PolyPolygon;
 namespace binfilter {
 

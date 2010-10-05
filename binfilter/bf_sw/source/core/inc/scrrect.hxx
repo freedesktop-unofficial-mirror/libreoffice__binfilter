@@ -28,13 +28,9 @@
 #define _SCRRECT_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 #include "swrect.hxx"
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
 namespace binfilter {
 
 class SwStripe

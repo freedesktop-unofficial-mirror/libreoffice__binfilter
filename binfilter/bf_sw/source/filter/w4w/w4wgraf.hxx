@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class Graphic;
 class SvStream;
 class Bitmap;

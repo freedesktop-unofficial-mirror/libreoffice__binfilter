@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 #include <vcl/bitmap.hxx>
 
 #include <string.h>

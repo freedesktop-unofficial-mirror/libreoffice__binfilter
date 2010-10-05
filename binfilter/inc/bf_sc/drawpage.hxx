@@ -28,9 +28,7 @@
 #ifndef SC_DRAWPAGE_HXX
 #define SC_DRAWPAGE_HXX
 
-#ifndef _FM_FMPAGE_HXX
 #include <bf_svx/fmpage.hxx>
-#endif
 namespace binfilter {
 
 

@@ -27,41 +27,25 @@
 #ifndef _SVX_TABORDER_HXX
 #define _SVX_TABORDER_HXX
 
-#ifndef _SVTREEBOX_HXX
 #include <bf_svtools/svtreebx.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XTABCONTROLLERMODEL_HPP_
 #include <com/sun/star/awt/XTabControllerModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
 #include <com/sun/star/awt/XControlContainer.hpp>
-#endif
 
-#ifndef _DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
 
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
 
-#ifndef _SVX_FMEXCH_HXX
 #include "fmexch.hxx"
-#endif
 
 class SdrModel;
 class ImageList;
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
 namespace binfilter {
 //STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)

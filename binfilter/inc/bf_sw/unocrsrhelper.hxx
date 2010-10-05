@@ -28,12 +28,8 @@
 #define _UNOCRSRHELPER_HXX
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemSet;

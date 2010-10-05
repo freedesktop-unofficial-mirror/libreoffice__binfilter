@@ -27,9 +27,7 @@
 #ifndef _SWBLOCKS_HXX
 #define _SWBLOCKS_HXX
 
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
 /*N*/#include <tools/debug.hxx> //addded for stripping
 class SvxMacroTableDtor;
 namespace binfilter {

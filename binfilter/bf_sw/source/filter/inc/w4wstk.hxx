@@ -27,17 +27,11 @@
 #ifndef _W4WSTK_HXX
 #define _W4WSTK_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
 namespace binfilter {
 
 class SwW4WParser;

@@ -34,9 +34,7 @@
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
 #include "objid.hxx"
 namespace binfilter {

@@ -38,9 +38,7 @@
 // benotigt.
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 class SwPaM;
 

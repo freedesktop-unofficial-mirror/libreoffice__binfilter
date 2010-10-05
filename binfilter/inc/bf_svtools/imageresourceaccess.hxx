@@ -28,17 +28,11 @@
 #ifndef SVTOOLS_INC_IMAGERESOURCEACCESS_HXX
 #define SVTOOLS_INC_IMAGERESOURCEACCESS_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
 /** === begin UNO includes === **/
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 /** === end UNO includes === **/
 
 class SvStream;

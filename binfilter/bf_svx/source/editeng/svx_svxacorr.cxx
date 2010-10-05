@@ -45,9 +45,7 @@
 #define _SVSTDARR_STRINGSDTOR
 
 #include <unotools/charclass.hxx>
-#ifndef _COM_SUN_STAR_I18N_UNICODETYPE_HDL_
 #include <com/sun/star/i18n/UnicodeType.hdl>
-#endif
 
 #include <svxids.hrc>
 

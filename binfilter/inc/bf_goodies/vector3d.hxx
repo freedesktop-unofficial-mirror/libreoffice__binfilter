@@ -28,9 +28,7 @@
 #ifndef _SVX_VECTOR3D_HXX
 #define _SVX_VECTOR3D_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #ifndef _INC_MATH
 #include <math.h>

@@ -28,9 +28,7 @@
 #ifndef SC_ADDINHELPID_HXX
 #define SC_ADDINHELPID_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 namespace binfilter {
 
 

@@ -27,15 +27,9 @@
 #ifndef SVTOOLS_TESTTOOL_HXX
 #define SVTOOLS_TESTTOOL_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 class Application;
 class SvStream;

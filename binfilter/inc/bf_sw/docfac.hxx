@@ -27,9 +27,7 @@
 #ifndef _DOCFAC_HXX
 #define _DOCFAC_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 class SwDoc;

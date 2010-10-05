@@ -28,9 +28,7 @@
 #ifndef SC_HINTWIN_HXX
 #define SC_HINTWIN_HXX
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 namespace binfilter {
 
 class ScHintWindow : public Window

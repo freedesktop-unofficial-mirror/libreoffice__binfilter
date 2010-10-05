@@ -28,9 +28,7 @@
 #define _XMLOFF_TEXTPRHDL_HXX_
 
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include "prhdlfac.hxx"
-#endif
 namespace binfilter {
 
 class XMLTextPropertyHandlerFactory_Impl;

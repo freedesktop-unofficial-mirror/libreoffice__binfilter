@@ -30,13 +30,9 @@
 
 
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
-#endif
 
 #include <map>
 

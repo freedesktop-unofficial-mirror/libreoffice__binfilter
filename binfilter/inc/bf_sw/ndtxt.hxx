@@ -27,18 +27,10 @@
 #ifndef _NDTXT_HXX
 #define _NDTXT_HXX
 
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _NDHINTS_HXX
 #include <ndhints.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}

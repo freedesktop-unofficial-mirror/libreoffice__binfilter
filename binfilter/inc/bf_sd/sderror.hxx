@@ -28,9 +28,7 @@
 #ifndef _SDSWERROR_H
 #define _SDSWERROR_H
 
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
 
 #define ERROR_SD_BASE           (ERRCODE_AREA_SD)
 #define ERROR_SD_READ_BASE      (ERROR_SD_BASE | ERRCODE_CLASS_READ)

@@ -28,17 +28,11 @@
 #ifndef _SFXFILEREC_HXX
 #define _SFXFILEREC_HXX
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 namespace binfilter
 {

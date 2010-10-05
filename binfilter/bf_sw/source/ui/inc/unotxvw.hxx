@@ -27,61 +27,25 @@
 #ifndef _UNOTXVW_HXX
 #define _UNOTXVW_HXX
 
-#ifndef _SFX_SFXBASECONTROLLER_HXX_
 #include <bf_sfx2/sfxbasecontroller.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTVIEWCURSOR_HPP_
 #include <com/sun/star/text/XTextViewCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTVIEWCURSORSUPPLIER_HPP_
 #include <com/sun/star/text/XTextViewCursorSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XRUBYSELECTION_HPP_
 #include <com/sun/star/text/XRubySelection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XCONTROLACCESS_HPP_
 #include <com/sun/star/view/XControlAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSCREENCURSOR_HPP_
 #include <com/sun/star/view/XScreenCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XVIEWSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/view/XViewSettingsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HPP_
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XLINECURSOR_HPP_
 #include <com/sun/star/view/XLineCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XVIEWCURSOR_HPP_
 #include <com/sun/star/view/XViewCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XPAGECURSOR_HPP_
 #include <com/sun/star/text/XPageCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE8_HXX_
 #include <cppuhelper/implbase8.hxx> // helper for implementations
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 #include "calbck.hxx"
-#ifndef _SW_TEXTCURSORHELPER_HXX
 #include "TextCursorHelper.hxx"
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 class SvEmbeddedObjectRef;
 namespace binfilter {
 

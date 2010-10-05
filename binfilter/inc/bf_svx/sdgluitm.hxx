@@ -28,12 +28,8 @@
 #ifndef _SDGLUITM_HXX
 #define _SDGLUITM_HXX
 
-#ifndef _SDPRCITM_HXX
 #include <bf_svx/sdprcitm.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------

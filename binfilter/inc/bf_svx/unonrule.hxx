@@ -28,12 +28,8 @@
 #ifndef _SVX_UNONRULE_HXX
 #define _SVX_UNONRULE_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPARE_HPP_
 #include <com/sun/star/ucb/XAnyCompare.hpp>
-#endif
 namespace binfilter {
 
 class SdrModel;

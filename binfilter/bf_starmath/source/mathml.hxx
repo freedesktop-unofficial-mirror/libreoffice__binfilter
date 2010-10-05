@@ -26,22 +26,12 @@
  ************************************************************************/
 #ifndef MATHML_HXX
 #define MATHML_HXX
-#ifndef _SDXMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _SDXMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
-#ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #include <bf_xmloff/DocumentSettingsContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
-#ifndef NODE_HXX
 #include <node.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace io {
         class XInputStream;

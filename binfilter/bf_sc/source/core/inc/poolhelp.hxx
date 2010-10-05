@@ -28,9 +28,7 @@
 #ifndef SC_POOLHELP_HXX
 #define SC_POOLHELP_HXX
 
-#ifndef _VOS_REFERNCE_HXX_
 #include <vos/refernce.hxx>
-#endif
 
 namespace binfilter {
 

@@ -28,12 +28,8 @@
 #ifndef _BUFFER_HXX
 #define _BUFFER_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 

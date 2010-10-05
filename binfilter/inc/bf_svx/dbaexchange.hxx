@@ -28,18 +28,10 @@
 #ifndef _SVX_DBAEXCHANGE_HXX_
 #define _SVX_DBAEXCHANGE_HXX_
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
-#endif
 namespace binfilter {
 
 //........................................................................

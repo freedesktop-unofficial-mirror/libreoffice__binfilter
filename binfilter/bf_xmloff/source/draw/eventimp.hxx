@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_EVENTIMP_HXX
 #define _XMLOFF_EVENTIMP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

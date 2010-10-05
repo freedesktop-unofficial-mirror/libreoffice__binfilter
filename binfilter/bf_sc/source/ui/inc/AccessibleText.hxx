@@ -28,19 +28,11 @@
 #ifndef _SC_ACCESSIBLETEXT_HXX
 #define _SC_ACCESSIBLETEXT_HXX
 
-#ifndef SC_TEXTSUNO_HXX
 #include "textuno.hxx"
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 
 #include <memory>
 namespace binfilter {

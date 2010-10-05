@@ -27,9 +27,7 @@
 #ifndef _UNOMAP_HXX
 #define _UNOMAP_HXX
 
-#ifndef _SFX_ITEMPROP_HXX //autogen
 #include <bf_svtools/itemprop.hxx>
-#endif
 namespace binfilter {
 
 #define PROPERTY_NONE 0

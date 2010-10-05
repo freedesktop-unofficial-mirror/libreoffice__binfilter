@@ -28,9 +28,7 @@
 #ifndef SC_PFUNCACHE_HXX
 #define SC_PFUNCACHE_HXX
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 namespace binfilter {
 
 class ScDocShell;

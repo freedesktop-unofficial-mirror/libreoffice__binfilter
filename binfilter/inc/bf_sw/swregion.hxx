@@ -27,9 +27,7 @@
 #ifndef _SWREGION_HXX
 #define _SWREGION_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "swrect.hxx"
 namespace binfilter {

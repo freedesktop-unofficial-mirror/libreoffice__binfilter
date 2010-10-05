@@ -27,9 +27,7 @@
 #ifndef _CAPTION_HXX
 #define _CAPTION_HXX
 
-#ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
-#endif
 namespace binfilter {
 
 enum SwCapObjType

@@ -27,9 +27,7 @@
 #ifndef _SRCEDTW_HXX
 #define _SRCEDTW_HXX
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 
 

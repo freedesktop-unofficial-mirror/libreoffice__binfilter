@@ -27,9 +27,7 @@
 #ifndef _EXCVFBFF_HXX
 #define _EXCVFBFF_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 class String;
 namespace binfilter {
 

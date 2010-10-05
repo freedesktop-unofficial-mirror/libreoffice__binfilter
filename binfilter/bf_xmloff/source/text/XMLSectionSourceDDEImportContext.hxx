@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLSECTIONSOURCEDDEIMPORTCONTEXT_HXX_
 #define _XMLOFF_XMLSECTIONSOURCEDDEIMPORTCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace beans { class XPropertySet; }

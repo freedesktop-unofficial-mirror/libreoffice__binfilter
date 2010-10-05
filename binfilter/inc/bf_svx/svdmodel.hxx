@@ -28,51 +28,27 @@
 #ifndef _SVDMODEL_HXX
 #define _SVDMODEL_HXX
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
 #include <bf_so3/svstor.hxx>
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 
-#ifndef _SVX_PAGEITEM_HXX
 #include <bf_svx/pageitem.hxx>
-#endif
 
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
 
 class OutputDevice;
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
-#endif
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
 #include <vos/ref.hxx>
 class AutoTimer;

@@ -28,29 +28,17 @@
 #ifndef _E3D_SCENE3D_HXX
 #define _E3D_SCENE3D_HXX
 
-#ifndef _CAMERA3D_HXX
 #include <bf_svx/camera3d.hxx>
-#endif
 
-#ifndef _E3D_LIGHT3D_HXX
 #include <bf_svx/light3d.hxx>
-#endif
 
-#ifndef _E3D_LABEL3D_HXX
 #include <bf_svx/label3d.hxx>
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 
-#ifndef _B3D_B3DTRANS_HXX
 #include <bf_goodies/b3dtrans.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

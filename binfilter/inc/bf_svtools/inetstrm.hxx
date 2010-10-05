@@ -25,7 +25,5 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_INETSTRM_HXX
 #include <tools/inetstrm.hxx>
-#endif
 

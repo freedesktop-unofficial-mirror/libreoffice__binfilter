@@ -29,12 +29,8 @@
 #ifndef SD_DLGCTRLS_HXX
 #define SD_DLGCTRLS_HXX
 
-#ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 #include "schresid.hxx"
 namespace binfilter {

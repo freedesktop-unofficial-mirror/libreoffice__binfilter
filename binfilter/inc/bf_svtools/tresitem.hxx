@@ -28,13 +28,9 @@
 #ifndef SVTOOLS_TRESITEM_HXX
 #define SVTOOLS_TRESITEM_HXX
 
-#ifndef _COM_SUN_STAR_UCB_TRANSFERRESULT_HPP_
 #include <com/sun/star/ucb/TransferResult.hpp>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 namespace binfilter
 {

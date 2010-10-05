@@ -36,21 +36,13 @@ class SdClipboard;
 class SdBasic;
 class BasicIDE;
 
-#ifndef _SCH_GLOB_HXX
 #include <glob.hxx>
-#endif
 
-#ifndef _SFXNEW_HXX //autogen
 #include <bf_sfx2/new.hxx>
-#endif
 
-#ifndef _SVXERR_HXX //autogen
 #include <bf_svx/svxerr.hxx>
-#endif
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

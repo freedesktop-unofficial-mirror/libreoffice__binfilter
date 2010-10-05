@@ -27,21 +27,13 @@
 #ifndef INCLUDED_SVTOOLS_ADDXMLTOSTORAGEOPTIONS_HXX
 #define INCLUDED_SVTOOLS_ADDXMLTOSTORAGEOPTIONS_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter {
 

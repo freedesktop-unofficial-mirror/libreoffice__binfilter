@@ -28,21 +28,13 @@
 #ifndef _XIMPNOTES_HXX
 #define _XIMPNOTES_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XIMPPAGE_HXX
 #include "ximppage.hxx"
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

@@ -27,13 +27,9 @@
 #ifndef _SFXIITM_HXX
 #define _SFXIITM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************/

@@ -28,9 +28,7 @@
 #ifndef _SVX_UNOVIWOU_HXX
 #define _SVX_UNOVIWOU_HXX
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
-#endif
 namespace binfilter {
 
 class OutlinerView;

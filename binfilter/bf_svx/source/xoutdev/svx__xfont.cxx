@@ -37,16 +37,12 @@
 #include "outliner.hxx"
 
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 #include <com/sun/star/i18n/XBreakIterator.hpp>
 
 
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
 
 #include "unolingu.hxx"
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002

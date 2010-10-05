@@ -28,21 +28,13 @@
 #ifndef _SVDETC_HXX
 #define _SVDETC_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;

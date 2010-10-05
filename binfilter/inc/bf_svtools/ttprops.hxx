@@ -28,20 +28,12 @@
 #ifndef _SVTOOLS_TTPROPS_HXX
 #define _SVTOOLS_TTPROPS_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _RTTI_HXX // manual
 #include <tools/rtti.hxx>
-#endif
-#ifndef _VCL_APPTYPES_HXX //autogen
 #include <vcl/apptypes.hxx>
-#endif
 
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
 
 class Bitmap;
 

@@ -28,28 +28,14 @@
 #ifndef _SD_GRDOCSH_HXX
 #define _SD_GRDOCSH_HXX
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 
-#ifndef _SD_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _SDMOD_HXX
 #include "sdmod.hxx"
-#endif
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
 namespace binfilter {
 
 

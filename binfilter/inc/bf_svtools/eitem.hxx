@@ -28,13 +28,9 @@
 #ifndef _SFXENUMITEM_HXX
 #define _SFXENUMITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVTOOLS_CENUMITM_HXX
 #include <bf_svtools/cenumitm.hxx>
-#endif
 
 namespace binfilter
 {

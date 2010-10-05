@@ -30,9 +30,7 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
 #include <bf_svx/svdglev.hxx>
 namespace binfilter {

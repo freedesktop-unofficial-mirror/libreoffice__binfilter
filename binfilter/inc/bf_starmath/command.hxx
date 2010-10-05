@@ -29,9 +29,7 @@
 
 
 
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
 class String;
 namespace binfilter {
 

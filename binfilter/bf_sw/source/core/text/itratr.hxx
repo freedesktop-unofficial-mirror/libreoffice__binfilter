@@ -28,12 +28,8 @@
 #define _ITRATR_HXX
 
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
-#endif
 
 #include "txttypes.hxx"
 #include "swfont.hxx"

@@ -27,13 +27,9 @@
 #ifndef _DPAGE_HXX
 #define _DPAGE_HXX
 
-#ifndef _FM_FMPAGE_HXX
 #include <bf_svx/fmpage.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 class SdrPageGridFrameList;

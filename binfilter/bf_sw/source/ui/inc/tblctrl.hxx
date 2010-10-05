@@ -28,9 +28,7 @@
 #define _TBLCTRL_HXX
 
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 namespace binfilter {
 
 

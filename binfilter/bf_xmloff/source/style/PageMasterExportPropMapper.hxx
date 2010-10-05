@@ -28,18 +28,10 @@
 #ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
 #define _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
 #include "XMLBackgroundImageExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCOLUMNSEXPORT_HXX
 #include "XMLTextColumnsExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLFOOTNOTESEPARATOREXPORT_HXX
 #include "XMLFootnoteSeparatorExport.hxx"
-#endif
 namespace binfilter {
 
 //______________________________________________________________________________

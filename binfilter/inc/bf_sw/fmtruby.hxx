@@ -28,9 +28,7 @@
 #define _FMTRUBY_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtRuby;

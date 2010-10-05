@@ -29,9 +29,7 @@
 #ifndef _XIOCOMP_HXX
 #define _XIOCOMP_HXX
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 class SvStream;
 namespace binfilter {
 

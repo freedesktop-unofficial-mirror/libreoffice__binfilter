@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #define _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 enum PageContextType

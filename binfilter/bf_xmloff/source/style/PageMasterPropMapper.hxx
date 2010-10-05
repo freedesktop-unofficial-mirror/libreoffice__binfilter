@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX_
 #define _XMLOFF_PAGEMASTERPROPMAPPER_HXX_
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
 namespace binfilter {
 
 

@@ -28,21 +28,13 @@
 #ifndef _SBXVAR_HXX
 #define _SBXVAR_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DECIMAL_HPP_
 #include <com/sun/star/bridge/oleautomation/Decimal.hpp>
-#endif
 
-#ifndef _SBXCORE_HXX
 #include "sbxcore.hxx"
-#endif
 
 #ifndef __SBX_64
 #define __SBX_64

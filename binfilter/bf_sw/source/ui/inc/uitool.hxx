@@ -28,12 +28,8 @@
 #ifndef _UITOOL_HXX
 #define _UITOOL_HXX
 
-#ifndef _SV_WINTYPES_HXX //autogen
 #include <vcl/wintypes.hxx>
-#endif
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
 class Printer;

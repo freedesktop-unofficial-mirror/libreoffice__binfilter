@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 #define _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include "prhdlfac.hxx"
-#endif
 namespace binfilter {
 
 

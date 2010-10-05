@@ -27,28 +27,16 @@
 #ifndef _ZFORMAT_HXX
 #define _ZFORMAT_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef NF_NFVERSI_HXX
 #include <bf_svtools/nfversi.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #include <bf_svtools/nfkeytab.hxx>
-#endif
 
 // We need ImpSvNumberformatScan for the private SvNumberformat definitions.
 #ifdef _ZFORMAT_CXX

@@ -32,9 +32,7 @@
 
 #include <hintids.hxx>
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 #include <bf_so3/ipobj.hxx>
 #include <bf_sfx2/docinf.hxx>
 #include <bf_starmath/smdll0.hxx>

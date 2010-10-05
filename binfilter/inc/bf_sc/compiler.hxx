@@ -30,22 +30,14 @@
 
 #include <string.h>     // wg. memcpy() und bitte nicht memory.h (WKC)
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 
-#ifndef SC_TOKEN_HXX
 #include "token.hxx"
-#endif
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 #include <hash_map>
 
 namespace binfilter {

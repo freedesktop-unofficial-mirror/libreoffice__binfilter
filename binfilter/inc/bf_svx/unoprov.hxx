@@ -28,22 +28,12 @@
 #ifndef SVX_UNOPROV_HXX
 #define SVX_UNOPROV_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
-#ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
-#endif
-#ifndef _SFX_ITEMPROP_HXX //autogen
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HPP_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 namespace binfilter {
 

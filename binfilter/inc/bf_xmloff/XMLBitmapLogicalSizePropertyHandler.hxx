@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 struct SvXMLEnumMapEntry;

@@ -27,9 +27,7 @@
 #ifndef _NOTXTFRM_HXX
 #define _NOTXTFRM_HXX
 
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
 class OutputDevice;
 class Bitmap;
 namespace binfilter {

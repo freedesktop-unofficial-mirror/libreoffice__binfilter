@@ -27,9 +27,7 @@
 #ifndef _DRAWDOC_HXX
 #define _DRAWDOC_HXX
 
-#ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
-#endif
 class Window;
 class SbxValue;
 class SbxObject;

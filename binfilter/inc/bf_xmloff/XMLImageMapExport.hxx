@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
 #define _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace uno { template<class X> class Reference; }

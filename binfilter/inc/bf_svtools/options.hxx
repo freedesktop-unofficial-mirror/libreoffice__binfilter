@@ -28,9 +28,7 @@
 #ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #define INCLUDED_SVTOOLS_OPTIONS_HXX
 
-#ifndef _SAL_CONFIG_H_
 #include "sal/config.h"
-#endif
 
 namespace binfilter
 {

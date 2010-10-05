@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_LAYERIMP_HXX
 #define _XMLOFF_LAYERIMP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 namespace binfilter {
 
 class AnimImpImpl;

@@ -28,18 +28,10 @@
 #ifndef _SD_IMAPINFO_HXX
 #define _SD_IMAPINFO_HXX
 
-#ifndef _SD_SDIOCMPT_HXX
 #include "sdiocmpt.hxx"
-#endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _IMAP_HXX //autogen
 #include <bf_svtools/imap.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

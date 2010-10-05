@@ -28,23 +28,15 @@
 #ifndef _SMMOD_HXX
 #define _SMMOD_HXX
 
-#ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <bf_svtools/colorcfg.hxx>
-#endif
 
 #ifndef _SMDLL_HXX
 #define _SM_DLL             // fuer SD_MOD()
 #include <bf_starmath/smdll.hxx>        // fuer SdModuleDummy
 #endif
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
 class VirtualDevice;
 
 namespace binfilter {

@@ -29,13 +29,9 @@
 #define SC_SCPATATR_HXX
 
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 class Font;
 class OutputDevice;
 class Fraction;

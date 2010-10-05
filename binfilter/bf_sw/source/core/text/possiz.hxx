@@ -28,9 +28,7 @@
 #define _POSSIZ_HXX
 
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 #include "txttypes.hxx"
 namespace binfilter {
 

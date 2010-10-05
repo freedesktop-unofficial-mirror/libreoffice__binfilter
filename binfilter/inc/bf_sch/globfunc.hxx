@@ -29,25 +29,17 @@
 #ifndef __GLOBFUNC_HXX
 #define __GLOBFUNC_HXX
 
-#ifndef _E3D_LABEL3D_HXX //autogen
 #include <bf_svx/label3d.hxx>
-#endif
 
 #include "schgroup.hxx"
 #include "objid.hxx"
 #include "datapoin.hxx"
 #include "datarow.hxx"
 #include "objadj.hxx"
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #include <vector>
 namespace binfilter {

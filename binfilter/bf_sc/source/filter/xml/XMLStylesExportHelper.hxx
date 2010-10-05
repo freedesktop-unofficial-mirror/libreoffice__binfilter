@@ -35,24 +35,12 @@
 #include <list>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HPP_
 #include <com/sun/star/sheet/ValidationAlertStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONTYPE_HPP_
 #include <com/sun/star/sheet/ValidationType.hpp>
-#endif
 namespace binfilter {
 
 class ScDocument;

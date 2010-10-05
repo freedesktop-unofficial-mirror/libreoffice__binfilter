@@ -29,12 +29,8 @@
 
 #ifdef DBG_UTIL
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 namespace binfilter {
 // -----------------------------------------------------------------------

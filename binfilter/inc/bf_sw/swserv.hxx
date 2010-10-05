@@ -28,9 +28,7 @@
 #ifndef _SWSERV_HXX
 #define _SWSERV_HXX
 
-#ifndef _LINKSRC_HXX
 #include <bf_so3/linksrc.hxx>
-#endif
 namespace binfilter {
 
 class SwBookmark;

@@ -28,17 +28,11 @@
 #ifndef SC_TABVIEW_HXX
 #define SC_TABVIEW_HXX
 
-#ifndef _SV_SCRBAR_HXX //autogen
 #include <vcl/scrbar.hxx>
-#endif
 
-#ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
-#endif
 
-#ifndef _IPCLIENT_HXX //autogen
 #include <bf_so3/ipclient.hxx>
-#endif
 
 #include "viewutil.hxx"
 #include "select.hxx"

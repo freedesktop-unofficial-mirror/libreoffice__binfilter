@@ -28,13 +28,9 @@
 #ifndef _SFXINTITEM_HXX
 #define _SFXINTITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVTOOLS_CINTITEM_HXX
 #include <bf_svtools/cintitem.hxx>
-#endif
 
 namespace binfilter
 {

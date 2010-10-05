@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXSTBITEM_HXX //autogen
 #include <bf_sfx2/stbitem.hxx>
-#endif
 namespace binfilter {
 
 // class  SwHyperlinkControl ------------------------------------------------

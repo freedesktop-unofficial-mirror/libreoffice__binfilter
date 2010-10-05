@@ -28,17 +28,11 @@
 #ifndef _B3D_B3DENTITY_HXX
 #define _B3D_B3DENTITY_HXX
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include "b3dcolor.hxx"
-#endif
 
-#ifndef _B3D_POINT4D_HXX
 #include "point4d.hxx"
-#endif
 
-#ifndef _B3D_BUCKET_HXX
 #include "bucket.hxx"
-#endif
 
 namespace binfilter {
 

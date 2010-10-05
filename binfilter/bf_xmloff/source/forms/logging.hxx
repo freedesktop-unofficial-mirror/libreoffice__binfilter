@@ -28,9 +28,7 @@
 #ifndef XMLOFF_FORMS_LOGGING_HXX
 #define XMLOFF_FORMS_LOGGING_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 #include <stack>
 namespace rtl { class Logfile; }
 namespace binfilter {

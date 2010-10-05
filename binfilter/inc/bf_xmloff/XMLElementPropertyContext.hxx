@@ -28,12 +28,8 @@
 #ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #define _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace rtl
 {
     class OUString;

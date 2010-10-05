@@ -28,13 +28,9 @@
 #ifndef _B3D_B3DGEOM_HXX
 #define _B3D_B3DGEOM_HXX
 
-#ifndef _B3D_B3DENTITY_HXX
 #include "b3dentty.hxx"
-#endif
 
-#ifndef _B3D_VOLUM_HXX
 #include "b3dvolum.hxx"
-#endif
 
 namespace binfilter {
 

@@ -28,35 +28,17 @@
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #define _XMLOFF_XMLASTPL_IMPL_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 #include <vector>
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <xmlexppr.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLAutoStylePoolP;

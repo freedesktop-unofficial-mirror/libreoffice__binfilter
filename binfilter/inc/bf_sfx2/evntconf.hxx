@@ -29,12 +29,8 @@
 
 #if _SOLAR__PRIVATE
 
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _SV_BUTTON_HXX
 #include <vcl/button.hxx>
-#endif
 
 #endif
 

@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_ANIMEXP_HXX
 #define _XMLOFF_ANIMEXP_HXX
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace binfilter {
 
 class AnimExpImpl;

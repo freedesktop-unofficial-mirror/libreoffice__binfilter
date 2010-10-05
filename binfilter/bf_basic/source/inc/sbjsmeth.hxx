@@ -29,9 +29,7 @@
 #ifndef _SB_SBJSMETH_HXX
 #define _SB_SBJSMETH_HXX
 
-#ifndef _SB_SBMETH_HXX
 #include "sbmeth.hxx"
-#endif
 
 namespace binfilter {
 

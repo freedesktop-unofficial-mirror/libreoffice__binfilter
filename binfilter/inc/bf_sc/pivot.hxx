@@ -51,9 +51,7 @@
 
 //STRIP008 class SubTotal;
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
 #define PIVOT_DATA_FIELD        (MAXCOL + 1)
 #define PIVOT_FUNC_REF          (MAXCOL + 1)

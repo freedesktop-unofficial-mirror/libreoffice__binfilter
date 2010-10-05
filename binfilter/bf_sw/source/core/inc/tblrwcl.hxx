@@ -32,15 +32,9 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;

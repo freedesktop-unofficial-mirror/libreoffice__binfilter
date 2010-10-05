@@ -30,9 +30,7 @@
 
 #ifndef _FLDITEM_HXX
 #ifndef ITEMID_FIELD
-#ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>  /* das include wird wg. EE_FEATURE_FIELD benoetigt */
-#endif
 #define ITEMID_FIELD EE_FEATURE_FIELD  /* wird fuer #include <bf_svx/flditem.hxx> benoetigt */
 #endif
 #include <bf_svx/flditem.hxx>

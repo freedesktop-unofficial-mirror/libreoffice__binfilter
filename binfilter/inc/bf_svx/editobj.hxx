@@ -28,21 +28,11 @@
 #ifndef _EDITOBJ_HXX
 #define _EDITOBJ_HXX
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemPool;

@@ -28,12 +28,8 @@
 #define _UNOPRNMS_HXX
 
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 

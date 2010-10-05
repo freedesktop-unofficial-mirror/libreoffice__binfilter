@@ -28,14 +28,10 @@
 #define _XMLOFF_XMLSTRINGBUFFERIMPORTCONTEXT_HXX
 
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 

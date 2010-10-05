@@ -28,12 +28,8 @@
 #ifndef SC_FILTER_HXX
 #define SC_FILTER_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
-#endif
 class SvStream;
 namespace binfilter {
 

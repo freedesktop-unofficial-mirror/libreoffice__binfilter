@@ -27,9 +27,7 @@
 #ifndef __FLTBASE_HXX__
 #define __FLTBASE_HXX__
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter {
 

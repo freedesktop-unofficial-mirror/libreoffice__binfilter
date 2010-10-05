@@ -28,9 +28,7 @@
 #ifndef _PLUGOBJ_HXX
 #define _PLUGOBJ_HXX
 
-#ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
-#endif
 #include "bf_sfx2/app.hxx"
 
 namespace binfilter {

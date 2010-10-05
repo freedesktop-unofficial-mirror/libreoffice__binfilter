@@ -28,65 +28,35 @@
 #ifndef _E3D_OBJ3D_HXX
 #define _E3D_OBJ3D_HXX
 
-#ifndef _SVDOATTR_HXX //autogen
 #include <bf_svx/svdoattr.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _VOLUME3D_HXX
 #include <bf_svx/volume3d.hxx>
-#endif
 
-#ifndef _SVX_MATRIX3D_HXX
 #include <bf_svx/matrix3d.hxx>
-#endif
 
-#ifndef _DEF3D_HXX
 #include <bf_svx/def3d.hxx>
-#endif
 
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _E3D_DEFLT3D_HXX
 #include <bf_svx/deflt3d.hxx>
-#endif
 
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 
-#ifndef _B3D_B3DGEOM_HXX
 #include <bf_goodies/b3dgeom.hxx>
-#endif
 
-#ifndef _B3D_MATRIL3D_HXX
 #include <bf_goodies/matril3d.hxx>
-#endif
 
-#ifndef _B3D_B3DTEX_HXX
 #include <bf_goodies/b3dtex.hxx>
-#endif
 
-#ifndef _B3D_B3DLIGHT_HXX
 #include <bf_goodies/b3dlight.hxx>
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 
-#ifndef _SVX3DITEMS_HXX
 #include <bf_svx/svx3ditems.hxx>
-#endif
 
-#ifndef _SVX_XFLCLIT_HXX
 #include <bf_svx/xflclit.hxx>
-#endif
 class Base3D;
 namespace binfilter {
 class SfxPoolItem;

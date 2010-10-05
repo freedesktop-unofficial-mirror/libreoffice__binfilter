@@ -28,9 +28,7 @@
 #ifndef _SC_XMLDDELINKSCONTEXT_HXX
 #define _SC_XMLDDELINKSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
 #ifndef __SGI_STL_LIST
 #include <list>

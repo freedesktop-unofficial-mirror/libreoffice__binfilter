@@ -28,9 +28,7 @@
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #define _SVX_XPROPERTYTABLE_HXX
 
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
-#endif
 namespace binfilter {
 
 class XPropertyList;

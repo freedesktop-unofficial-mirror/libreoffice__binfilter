@@ -28,9 +28,7 @@
 #ifndef _SVDORECT_HXX
 #define _SVDORECT_HXX
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

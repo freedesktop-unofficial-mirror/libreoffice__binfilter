@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_TXTSTYLI_HXX_
 #define _XMLOFF_TXTSTYLI_HXX_
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLTokenMap;

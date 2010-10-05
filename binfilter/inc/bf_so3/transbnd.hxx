@@ -28,49 +28,27 @@
 #ifndef _TRANSBND_HXX
 #define _TRANSBND_HXX "$Revision: 1.5 $"
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <bf_so3/binding.hxx>
-#endif
 
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace binfilter {
 

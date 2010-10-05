@@ -27,9 +27,7 @@
 #ifndef _FLOWFRM_HXX
 #define _FLOWFRM_HXX
 
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
 
 namespace binfilter {
 

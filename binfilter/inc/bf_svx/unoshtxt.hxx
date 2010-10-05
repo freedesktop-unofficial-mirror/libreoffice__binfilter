@@ -30,9 +30,7 @@
 
 #include <memory>
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
-#endif
 class Window;
 namespace binfilter {
 

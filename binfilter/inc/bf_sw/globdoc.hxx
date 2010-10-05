@@ -27,9 +27,7 @@
 #ifndef _SWGLOBDOCSH_HXX
 #define _SWGLOBDOCSH_HXX
 
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
 #include "docsh.hxx"
 namespace binfilter {
 

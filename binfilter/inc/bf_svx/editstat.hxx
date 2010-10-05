@@ -28,13 +28,9 @@
 #ifndef _EDITSTAT_HXX
 #define _EDITSTAT_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 namespace binfilter {
 
 #define EE_CNTRL_USECHARATTRIBS     0x00000001  // Verwendung harter ZeichenAttr.

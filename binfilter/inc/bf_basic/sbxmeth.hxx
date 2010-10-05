@@ -29,9 +29,7 @@
 #ifndef __SBX_SBXMETHOD_HXX
 #define __SBX_SBXMETHOD_HXX
 
-#ifndef _SBXVAR_HXX
 #include "sbxvar.hxx"
-#endif
 
 namespace binfilter {
 

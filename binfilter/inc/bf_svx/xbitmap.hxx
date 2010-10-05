@@ -28,15 +28,9 @@
 #ifndef _SVX_XBITMAP_HXX
 #define _SVX_XBITMAP_HXX
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
-#endif
 #include <bf_svx/xenum.hxx>
 namespace binfilter {
 

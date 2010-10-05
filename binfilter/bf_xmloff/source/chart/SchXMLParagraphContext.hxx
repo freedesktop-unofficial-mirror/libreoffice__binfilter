@@ -27,16 +27,10 @@
 #ifndef _SCH_XMLPARAGRAPHCONTEXT_HXX_
 #define _SCH_XMLPARAGRAPHCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include "rtl/ustrbuf.hxx"
-#endif
 namespace com { namespace sun { namespace star { namespace xml { namespace sax {
         class XAttributeList;
 }}}}}

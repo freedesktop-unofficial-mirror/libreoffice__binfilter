@@ -28,13 +28,9 @@
 #ifndef _SVDDRAG_HXX
 #define _SVDDRAG_HXX
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 namespace binfilter {
 // Statushalter fuer objektspeziefisches Draggen. Damit das Model

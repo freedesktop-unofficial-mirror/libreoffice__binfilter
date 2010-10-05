@@ -28,34 +28,18 @@
 #define _SVX_FMSHIMP_HXX
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
 #include <com/sun/star/util/XModifyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_NAVIGATIONBARMODE_HPP_
 #include <com/sun/star/form/NavigationBarMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
 
 
 
-#ifndef _SVDMARK_HXX
 #include "svdmark.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 
 #define _SVSTDARR_BOOLS
@@ -64,18 +48,10 @@
 #define _SVSTDARR_ULONGS
 #define _SVSTDARR_USHORTS
 
-#ifndef _FMSEARCH_HXX
 #include "fmsearch.hxx"
-#endif
-#ifndef _CPPUHELPER_COMPBASE6_HXX_
 #include <cppuhelper/compbase6.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef SVX_DBTOOLSCLIENT_HXX
 #include "dbtoolsclient.hxx"
-#endif
 
 #include <queue>
 namespace binfilter {

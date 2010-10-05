@@ -28,18 +28,12 @@
 #ifndef SC_DPOUTPUT_HXX
 #define SC_DPOUTPUT_HXX
 
-#ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATARESULT_HPP_
 #include <com/sun/star/sheet/DataResult.hpp>
-#endif
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 class Rectangle;
 class SvStream;
 namespace binfilter {

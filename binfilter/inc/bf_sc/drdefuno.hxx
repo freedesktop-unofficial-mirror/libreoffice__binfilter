@@ -28,13 +28,9 @@
 #ifndef SC_DRDEFUNO_HXX
 #define SC_DRDEFUNO_HXX
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include <bf_svx/unopool.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 namespace binfilter {
 
 class ScDocShell;

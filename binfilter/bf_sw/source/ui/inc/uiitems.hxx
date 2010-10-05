@@ -29,9 +29,7 @@
 
 #include "pagedesc.hxx"
 #include "cmdid.h"
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 class SwNumRule;

@@ -29,12 +29,8 @@
 
 #include <limits.h>
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _APP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 namespace binfilter
 {

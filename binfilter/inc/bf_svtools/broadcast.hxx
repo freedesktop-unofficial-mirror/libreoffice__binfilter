@@ -27,9 +27,7 @@
 #ifndef _SVT_BROADCAST_HXX
 #define _SVT_BROADCAST_HXX
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
 
 namespace binfilter {
 

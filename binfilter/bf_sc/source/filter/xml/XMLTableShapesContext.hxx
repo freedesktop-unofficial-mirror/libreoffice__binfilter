@@ -28,9 +28,7 @@
 #ifndef _SC_XMLTABLESHAPESCONTEXT_HXX
 #define _SC_XMLTABLESHAPESCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

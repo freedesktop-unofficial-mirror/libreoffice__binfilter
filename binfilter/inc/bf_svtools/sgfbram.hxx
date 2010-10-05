@@ -28,9 +28,7 @@
 #ifndef _SGFBRAM_HXX
 #define _SGFBRAM_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 namespace binfilter
 {

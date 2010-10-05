@@ -27,19 +27,11 @@
 #ifndef _SHELLIO_HXX
 #define _SHELLIO_HXX
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX //autogen
 #include <sot/formats.hxx>
-#endif
 
-#ifndef _DOCFAC_HXX
 #include <docfac.hxx>   // SwDocFac
-#endif
 #include <tools/debug.hxx>
 class SvStream;
 namespace binfilter {

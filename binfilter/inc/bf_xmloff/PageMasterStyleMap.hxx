@@ -28,15 +28,9 @@
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX_
 #define _XMLOFF_PAGEMASTERSTYLEMAP_HXX_
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
 namespace binfilter {
 
 //______________________________________________________________________________

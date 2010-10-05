@@ -31,20 +31,12 @@
 #include <bf_svx/xit.hxx>
 #include <bf_svx/xcolit.hxx>
 
-#ifndef _XPOLY_HXX //autogen
 #include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _XENUM_HXX //autogen
 #include <bf_svx/xenum.hxx>
-#endif
 
-#ifndef _SFXMETRICITEM_HXX //autogen
 #include <bf_svtools/metitem.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
 class SvStream;
 

@@ -31,9 +31,7 @@
 #include <bf_so3/ipobj.hxx>
 #include <bf_svtools/ownlist.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 //=========================================================================
 class INetURLObject;
 class SjApplet;

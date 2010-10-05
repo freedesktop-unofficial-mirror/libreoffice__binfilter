@@ -29,9 +29,7 @@
 #define SC_OUTLINETAB_HXX
 
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 class SvStream;
 namespace binfilter {
 

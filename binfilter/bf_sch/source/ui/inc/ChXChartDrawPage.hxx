@@ -27,17 +27,11 @@
 #ifndef _CHXCHARTDRAWPAGE_HXX_
 #define _CHXCHARTDRAWPAGE_HXX_
 
-#ifndef _SVX_UNOWPAGE_HXX
 #include <bf_svx/unopage.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 // header for SvxItemPropertySet
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 namespace binfilter {
 
 class ChartModel;

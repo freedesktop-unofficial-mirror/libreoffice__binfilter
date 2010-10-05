@@ -28,9 +28,7 @@
 #ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #define INCLUDED_SVTOOLS_NFKEYTAB_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter
 {

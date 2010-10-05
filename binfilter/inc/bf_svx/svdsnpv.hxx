@@ -30,9 +30,7 @@
 
 #include <bf_svx/svdpntv.hxx>
 
-#ifndef _SVDHLPLN_HXX
 #include <bf_svx/svdhlpln.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

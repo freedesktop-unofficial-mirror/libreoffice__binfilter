@@ -27,9 +27,7 @@
 #ifndef _CHARFMT_HXX
 #define _CHARFMT_HXX
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 class SwCharFmt : public SwFmt

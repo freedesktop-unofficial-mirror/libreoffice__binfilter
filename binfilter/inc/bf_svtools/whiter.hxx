@@ -36,9 +36,7 @@
 #define INCLUDED_LIMITS_H
 #endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 namespace binfilter
 {

@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_VISAREACONTEXT_HXX
 #define _XMLOFF_VISAREACONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _VCL_MAPUNIT_HXX
 #include <vcl/mapunit.hxx>
-#endif
 class Rectangle;
 namespace com { namespace sun { namespace star { namespace awt {
     struct Rectangle;

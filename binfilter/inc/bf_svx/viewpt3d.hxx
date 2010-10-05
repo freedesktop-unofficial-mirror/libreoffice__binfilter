@@ -28,9 +28,7 @@
 #ifndef _VIEWPT3D_HXX
 #define _VIEWPT3D_HXX
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 namespace binfilter {
 
 class Volume3D;

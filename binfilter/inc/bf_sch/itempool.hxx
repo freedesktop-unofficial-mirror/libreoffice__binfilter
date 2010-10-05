@@ -28,9 +28,7 @@
 #ifndef _SCH_ITEMPOOL_HXX
 #define _SCH_ITEMPOOL_HXX
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 namespace binfilter {
 
 

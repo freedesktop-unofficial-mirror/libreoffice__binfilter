@@ -28,12 +28,8 @@
 #ifndef _SV_SECTCTR_HXX
 #define _SV_SECTCTR_HXX
 
-#ifndef _SV_SV_H
 #include <vcl/sv.h>
-#endif
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
 
 class ScrollBar;
 class ScrollBarBox;

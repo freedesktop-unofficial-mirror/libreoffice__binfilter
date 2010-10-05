@@ -28,12 +28,8 @@
 #ifndef _SDASAITM_HXX
 #define _SDASAITM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 namespace binfilter {
 
 class SdrAutoShapeAdjustmentValue

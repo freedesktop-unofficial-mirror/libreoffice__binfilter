@@ -28,12 +28,8 @@
 #ifndef _SDGCPITM_HXX
 #define _SDGCPITM_HXX
 
-#ifndef _SVX_GRFCROP_HXX
 #include <bf_svx/grfcrop.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //------------------

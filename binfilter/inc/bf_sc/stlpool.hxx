@@ -28,9 +28,7 @@
 #ifndef SC_STLPOOL_HXX
 #define SC_STLPOOL_HXX
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 
 

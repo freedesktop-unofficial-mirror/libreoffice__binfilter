@@ -28,17 +28,11 @@
 #ifndef _XMLEOHLP_HXX
 #define _XMLEOHLP_HXX
 
-#ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 #include <map>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTRESOLVER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectResolver.hpp>
-#endif
 class SvGlobalName;
 namespace binfilter {
 class SvPersist;

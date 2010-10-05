@@ -28,9 +28,7 @@
 #ifndef _CAMERA3D_HXX
 #define _CAMERA3D_HXX
 
-#ifndef _VIEWPT3D_HXX
 #include <bf_svx/viewpt3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

@@ -29,9 +29,7 @@
 #define _SCH_FUSEL_HXX
 
 
-#ifndef _SCH_FUDRAW_HXX
 #include "fudraw.hxx"
-#endif
 namespace binfilter {
 
 class SdrDragMethod;

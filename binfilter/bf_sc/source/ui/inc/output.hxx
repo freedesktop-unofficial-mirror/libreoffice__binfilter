@@ -28,15 +28,9 @@
 #ifndef SC_OUTPUT_HXX
 #define SC_OUTPUT_HXX
 
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 class Rectangle;
 class Font;
 class OutputDevice;

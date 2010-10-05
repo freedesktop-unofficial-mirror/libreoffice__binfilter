@@ -30,12 +30,8 @@
 #define INITIAL_NUM_ATTR 4
 #define NUM_ATTRIBUTE_STACKS 37
 
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
-#endif
-#ifndef _SWFNTCCH_HXX
 #include <swfntcch.hxx>
-#endif
 
 namespace binfilter {
 class SfxPoolItem;

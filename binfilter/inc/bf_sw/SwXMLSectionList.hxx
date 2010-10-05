@@ -27,12 +27,8 @@
 #ifndef _SW_XMLSECTIONLIST_HXX
 #define _SW_XMLSECTIONLIST_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 class SvStrings;
 namespace binfilter {
 

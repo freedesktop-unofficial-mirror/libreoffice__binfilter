@@ -27,13 +27,9 @@
 #ifndef MATHTYPE_HXX
 #define MATHTYPE_HXX
 
-#ifndef NODE_HXX
 #include "node.hxx"
-#endif
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
 #include <set>
 namespace binfilter {

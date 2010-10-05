@@ -30,37 +30,17 @@
 #ifndef SC_ASCIIOPT_HXX
 #define SC_ASCIIOPT_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVX_TXENCBOX_HXX
 #include <bf_svx/txencbox.hxx>
-#endif
 
-#ifndef _SC_CSVTABLEBOX_HXX
 #include "csvtablebox.hxx"
-#endif
 namespace binfilter {
 
 

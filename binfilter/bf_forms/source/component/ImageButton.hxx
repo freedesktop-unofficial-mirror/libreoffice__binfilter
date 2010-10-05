@@ -28,13 +28,9 @@
 #ifndef _FRM_IMAGE_BUTTON_HXX_
 #define _FRM_IMAGE_BUTTON_HXX_
 
-#ifndef _FRM_IMAGE_HXX_
 #include "Image.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XMOUSELISTENER_HPP_
 #include <com/sun/star/awt/XMouseListener.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

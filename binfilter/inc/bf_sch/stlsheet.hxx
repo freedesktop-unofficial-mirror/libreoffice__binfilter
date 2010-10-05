@@ -28,9 +28,7 @@
 #ifndef _SCH_STLSHEET_HXX
 #define _SCH_STLSHEET_HXX
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 
 

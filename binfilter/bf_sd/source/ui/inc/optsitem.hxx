@@ -28,27 +28,13 @@
 #ifndef _SD_OPTSITEM_HXX
 #define _SD_OPTSITEM_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_ //autogen
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _SFXCFGITEM_HXX //autogen
 #include <bf_sfx2/cfgitem.hxx>
-#endif
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
-#ifndef _SVX_OPTGRID_HXX //autogen
 #include <bf_svx/optgrid.hxx>
-#endif
-#ifndef _SVX_DLGUTIL_HXX
 #include <bf_svx/dlgutil.hxx>
-#endif
 namespace binfilter {
 
 

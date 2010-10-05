@@ -28,17 +28,11 @@
 #ifndef _POLY3D_HXX
 #define _POLY3D_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _VOLUME3D_HXX
 #include <bf_svx/volume3d.hxx>
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 class SvStream;
 class Polygon;
 class PolyPolygon;

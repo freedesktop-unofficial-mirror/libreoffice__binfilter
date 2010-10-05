@@ -27,13 +27,9 @@
 #ifndef _SFXLSTNER_HXX
 #define _SFXLSTNER_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 namespace binfilter
 {

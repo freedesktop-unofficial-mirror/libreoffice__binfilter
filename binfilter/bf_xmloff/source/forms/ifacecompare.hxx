@@ -28,15 +28,9 @@
 #ifndef _XMLOFF_FORMS_IFACECOMPARE_HXX_
 #define _XMLOFF_FORMS_IFACECOMPARE_HXX_
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

@@ -28,20 +28,12 @@
 #ifndef _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 #define _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTMASTERPAGEEXPORT_HXX
 #include <bf_xmloff/XMLTextMasterPageExport.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XHEADERFOOTERCONTENT_HPP_
 #include <com/sun/star/sheet/XHeaderFooterContent.hpp>
-#endif
 
 #include "xmlexprt.hxx"
 namespace binfilter {

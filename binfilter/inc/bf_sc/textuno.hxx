@@ -28,40 +28,20 @@
 #ifndef SC_TEXTSUNO_HXX
 #define SC_TEXTSUNO_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"           // ScRange, ScAddress
-#endif
 
-#ifndef _SVX_UNOTEXT_HXX
 #include <bf_svx/unotext.hxx>
-#endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XHEADERFOOTERCONTENT_HPP_
 #include <com/sun/star/sheet/XHeaderFooterContent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
 namespace binfilter {
 
 

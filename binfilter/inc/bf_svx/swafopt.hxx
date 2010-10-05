@@ -27,9 +27,7 @@
 #ifndef _SVXSWAFOPT_HXX
 #define _SVXSWAFOPT_HXX
 
-#ifndef _VCL_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 class SvStringsISortDtor;
 namespace binfilter {
 

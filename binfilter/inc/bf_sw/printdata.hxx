@@ -28,12 +28,8 @@
 #define _SW_PRINTDATA_HXX
 
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 namespace binfilter {
 
 struct SwPrintData

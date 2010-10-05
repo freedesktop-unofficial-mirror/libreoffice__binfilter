@@ -28,12 +28,8 @@
 #define _FMTFLD_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 class SwField;

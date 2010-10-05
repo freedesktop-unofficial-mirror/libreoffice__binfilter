@@ -28,27 +28,15 @@
 #ifndef _SCH_DATA_POINT_HXX
 #define _SCH_DATA_POINT_HXX
 
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPEDESCRIPTOR_HPP__
 #include <com/sun/star/drawing/XShapeDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
 // header for SvxItemPropertySet
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 namespace binfilter {
 
 class ChartModel;

@@ -29,10 +29,6 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
-#endif
 #endif

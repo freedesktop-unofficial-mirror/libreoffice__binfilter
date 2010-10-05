@@ -44,12 +44,8 @@
 #include <vcl/svapp.hxx>
 #include <bf_svx/langitem.hxx>
 #include <bf_svx/scripttypeitem.hxx>
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 #include <acmplwrd.hxx>
 

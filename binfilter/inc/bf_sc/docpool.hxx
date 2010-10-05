@@ -28,9 +28,7 @@
 #ifndef SC_SCDOCPOL_HXX
 #define SC_SCDOCPOL_HXX
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 namespace binfilter {
 
 class ScStyleSheet;

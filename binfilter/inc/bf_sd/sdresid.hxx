@@ -29,9 +29,7 @@
 #define _SDRESID_HXX
 
 
-#ifndef _RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 namespace binfilter {
 
 class SdResId : public ResId

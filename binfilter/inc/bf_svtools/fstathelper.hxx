@@ -28,9 +28,7 @@
 #ifndef _SVTOOLS_FSTATHELPER_HXX
 #define _SVTOOLS_FSTATHELPER_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class UniString;
 class Date;

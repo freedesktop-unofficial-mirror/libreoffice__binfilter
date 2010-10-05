@@ -28,9 +28,7 @@
 #ifndef SC_BCLIST_HXX
 #define SC_BCLIST_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 namespace binfilter {
 
 class ScBroadcasters;

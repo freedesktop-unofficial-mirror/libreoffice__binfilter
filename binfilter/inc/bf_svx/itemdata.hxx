@@ -27,12 +27,8 @@
 #ifndef _SVX_ITEMDATA_HXX
 #define _SVX_ITEMDATA_HXX
 
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
-#ifndef _PSTM_HXX //autogen
 #include <tools/pstm.hxx>
-#endif
 namespace binfilter {
 
 class SvxGlobalItemData

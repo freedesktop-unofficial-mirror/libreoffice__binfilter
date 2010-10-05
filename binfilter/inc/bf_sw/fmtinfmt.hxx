@@ -28,14 +28,14 @@
 #define _FMTINFMT_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
+
 class IntlWrapper;
+
 namespace binfilter {
+
 class SvxMacro;
 class SvxMacroTableDtor;
-
 class SwTxtINetFmt;
 // ATT_INETFMT *********************************************
 

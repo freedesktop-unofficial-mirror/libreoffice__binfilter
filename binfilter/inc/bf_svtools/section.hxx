@@ -28,27 +28,15 @@
 #ifndef _SV_SECTION_HXX
 #define _SV_SECTION_HXX
 
-#ifndef _SV_SV_H
 #include <vcl/sv.h>
-#endif
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
-#ifndef _SV_DOCKWIN_HXX
 #include <vcl/dockwin.hxx>
-#endif
 
-#ifndef _SV_TABPAGE_HXX
 #include <vcl/tabpage.hxx>
-#endif
 
-#ifndef _SV_EXPANDER_HXX
 #include <bf_svtools/expander.hxx>
-#endif
 
-#ifndef _SV_PRIVSPLT_HXX
 #include <bf_svtools/privsplt.hxx>
-#endif
 
 namespace binfilter
 {

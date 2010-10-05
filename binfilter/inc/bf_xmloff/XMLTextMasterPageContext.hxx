@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_TEXTMASTERPAGECONTEXT_HXX_
 #define _XMLOFF_TEXTMASTERPAGECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLSTYLE_HXX_
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace style { class XStyle; }

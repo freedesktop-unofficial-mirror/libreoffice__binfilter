@@ -28,16 +28,10 @@
 #ifndef SC_IMPEX_HXX
 #define SC_IMPEX_HXX
 
-#ifndef _SOT_EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 class SvStream;
 namespace binfilter {
 

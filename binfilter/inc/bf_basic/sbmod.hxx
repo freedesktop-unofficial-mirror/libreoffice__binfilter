@@ -31,9 +31,7 @@
 #include "sbdef.hxx"
 #include "sbxobj.hxx"
 #include "sbxdef.hxx"
-#ifndef _RTL_USTRING_HXX
 #include <rtl/ustring.hxx>
-#endif
 
 namespace binfilter {
 class SbMethod;

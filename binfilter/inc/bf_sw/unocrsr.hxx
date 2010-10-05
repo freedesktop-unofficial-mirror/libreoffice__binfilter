@@ -27,12 +27,8 @@
 #ifndef _UNOCRSR_HXX
 #define _UNOCRSR_HXX
 
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 

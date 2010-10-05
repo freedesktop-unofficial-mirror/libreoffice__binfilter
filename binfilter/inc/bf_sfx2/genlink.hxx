@@ -27,9 +27,7 @@
 #ifndef _SFXGENLINK_HXX
 #define _SFXGENLINK_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 typedef long (*CFuncPtr)(void*);
 

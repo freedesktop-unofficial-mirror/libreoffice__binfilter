@@ -27,21 +27,15 @@
 #ifndef _LINKSRC_HXX
 #define _LINKSRC_HXX
 
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 #ifndef _SAL_CONFIG_H
 #include <sal/config.h>
 #define _SAL_CONFIG_H
 #endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace com { namespace sun { namespace star { namespace uno
 {

@@ -27,15 +27,9 @@
 #ifndef _FLTGLBS_HXX
 #define _FLTGLBS_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 class SfxPoolItem;
 class SvNumberFormatter;

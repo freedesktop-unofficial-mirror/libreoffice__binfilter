@@ -28,9 +28,7 @@
 #ifndef _AUTHRATR_HXX
 #define _AUTHRATR_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 namespace binfilter {
 

@@ -28,27 +28,15 @@
 #ifndef SC_DPTABRES_HXX
 #define SC_DPTABRES_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_MEMBERRESULT_HPP_
 #include <com/sun/star/sheet/MemberResult.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_DATARESULT_HPP_
 #include <com/sun/star/sheet/DataResult.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // enum ScSubTotalFunc
-#endif
 namespace binfilter {
 
 

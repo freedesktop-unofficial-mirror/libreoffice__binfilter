@@ -29,12 +29,8 @@
 #define _XMLOFF_XMLLINENUMBERINGEXPORT_HXX_
 
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 namespace binfilter {
 
 class SvXMLExport;

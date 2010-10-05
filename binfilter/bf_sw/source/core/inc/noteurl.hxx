@@ -29,15 +29,9 @@
 #define _NOTEURL_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include "swrect.hxx"
-#endif
 class MapMode;
 
 namespace binfilter {

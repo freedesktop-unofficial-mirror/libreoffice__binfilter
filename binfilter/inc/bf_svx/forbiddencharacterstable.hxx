@@ -28,19 +28,13 @@
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #define _FORBIDDENCHARACTERSTABLE_HXX
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 
 #include <vos/refernce.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-#endif
 namespace com {
 namespace sun {
 namespace star {

@@ -28,12 +28,8 @@
 #ifndef SC_PIVOTSH_HXX
 #define SC_PIVOTSH_HXX
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
 #include "shellids.hxx"
 namespace binfilter {

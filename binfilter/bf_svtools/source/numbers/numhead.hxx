@@ -28,9 +28,7 @@
 #ifndef NF_NUMHEAD_HXX
 #define NF_NUMHEAD_HXX
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {

@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 #define _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 
-#ifndef _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 #include "controlelement.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

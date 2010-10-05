@@ -28,17 +28,11 @@
 #ifndef SC_TABLINK_HXX
 #define SC_TABLINK_HXX
 
-#ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
-#endif
 
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
 namespace binfilter {
 
 #ifndef SO2_DECL_SVEMBEDDEDOBJECT_DEFINED

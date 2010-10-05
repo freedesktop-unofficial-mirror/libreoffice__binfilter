@@ -27,13 +27,9 @@
 #ifndef _SVX_FMEXCH_HXX
 #define _SVX_FMEXCH_HXX
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 
 class SvTreeListBox;
 namespace binfilter {

@@ -27,13 +27,9 @@
 #ifndef _CHLDWRAP_HXX
 #define _CHLDWRAP_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 namespace binfilter {
 
 class SwDocShell;

@@ -31,13 +31,9 @@
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 struct ScMyColumnRowGroup

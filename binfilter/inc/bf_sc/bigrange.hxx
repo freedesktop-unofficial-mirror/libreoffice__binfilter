@@ -29,9 +29,7 @@
 #define SC_BIGRANGE_HXX
 
 
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 namespace binfilter {
 
 

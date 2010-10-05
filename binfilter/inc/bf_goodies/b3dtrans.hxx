@@ -28,9 +28,7 @@
 #ifndef _B3D_B3DTRANS_HXX
 #define _B3D_B3DTRANS_HXX
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
 // Zu verwendender DephRange des Z-Buffers
 #define ZBUFFER_DEPTH_RANGE         (256.0 * 256.0 * 256.0)

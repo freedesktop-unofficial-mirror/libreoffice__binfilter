@@ -27,9 +27,7 @@
 #ifndef _FMTCNTNT_HXX
 #define _FMTCNTNT_HXX
 
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 class SwNodeIndex;

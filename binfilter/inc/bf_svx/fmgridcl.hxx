@@ -27,24 +27,14 @@
 #ifndef _SVX_FMGRIDCL_HXX
 #define _SVX_FMGRIDCL_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
 // alles nur fuer stl
-#ifndef _SVX_GRIDCTRL_HXX
 #include <bf_svx/gridctrl.hxx>
-#endif
-#ifndef _TRANSFER_HXX
 #include <svtools/transfer.hxx>
-#endif
 namespace binfilter {
 
 //==================================================================

@@ -28,12 +28,8 @@
 #ifndef SC_DDELINK_HXX
 #define SC_DDELINK_HXX
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;

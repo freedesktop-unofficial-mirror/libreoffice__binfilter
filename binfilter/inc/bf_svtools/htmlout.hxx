@@ -28,20 +28,12 @@
 #ifndef _HTMLOUT_HXX
 #define _HTMLOUT_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
 class Color;
 class String;

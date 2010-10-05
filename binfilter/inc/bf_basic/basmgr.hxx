@@ -28,21 +28,13 @@
 #ifndef _BASMGR_HXX
 #define _BASMGR_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "sbstar.hxx"
 
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XSTARBASICACCESS_HPP_
 #include <com/sun/star/script/XStarBasicAccess.hpp>
-#endif
 
 
 class SotStorage;

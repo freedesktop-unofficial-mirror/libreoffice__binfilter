@@ -27,9 +27,7 @@
 #ifndef _UNDOBJ_HXX
 #define _UNDOBJ_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_ULONGS
@@ -38,18 +36,10 @@
 #define _SVSTDARR_USHORTSSORT
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
-#ifndef _REDLENUM_HXX
 #include <redlenum.hxx>
-#endif
 class Graphic;
 namespace binfilter {
 

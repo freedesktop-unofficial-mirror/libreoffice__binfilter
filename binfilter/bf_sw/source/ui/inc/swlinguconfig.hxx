@@ -27,9 +27,7 @@
 #ifndef _SWLINGUCONFIG_HXX
 #define _SWLINGUCONFIG_HXX
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
 
 namespace binfilter {
 

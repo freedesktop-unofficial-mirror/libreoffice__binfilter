@@ -28,9 +28,7 @@
 #ifndef _SVT_SEARCHOPT_HXX_
 #define _SVT_SEARCHOPT_HXX_
 
-#ifndef _SOLAR_H
 #include "tools/solar.h"
-#endif
 
 namespace binfilter
 {

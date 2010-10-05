@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLCLIPPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLCLIPPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

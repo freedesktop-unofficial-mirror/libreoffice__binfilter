@@ -33,21 +33,13 @@
 #ifndef _XMLOFF_TXTVFLDI_HXX
 #define _XMLOFF_TXTVFLDI_HXX
 
-#ifndef _XMLOFF_TXTVFLDI_HXX
 #include <bf_xmloff/txtvfldi.hxx>
-#endif
 
-#ifndef _XMLOFF_TXTFLDI_HXX
 #include <bf_xmloff/txtfldi.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
 namespace binfilter {
 
 /// variable type (for XMLSetVarFieldImportContext)

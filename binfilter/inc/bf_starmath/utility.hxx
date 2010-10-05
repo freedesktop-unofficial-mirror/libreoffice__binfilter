@@ -27,24 +27,12 @@
 #ifndef UTILITY_HXX
 #define UTILITY_HXX
 
-#ifndef _SFXVARARR_HXX //autogen
 #include <bf_sfx2/minarray.hxx>
-#endif
-#ifndef _FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _SV_COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
-#ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 class String;
 namespace binfilter {
 

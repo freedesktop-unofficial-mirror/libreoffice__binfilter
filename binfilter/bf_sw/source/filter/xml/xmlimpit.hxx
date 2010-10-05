@@ -30,21 +30,13 @@
 
 #include <limits.h>
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {

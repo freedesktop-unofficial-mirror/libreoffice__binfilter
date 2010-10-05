@@ -28,13 +28,9 @@
 #ifndef _XMLTEXTLISTBLOCKCONTEXT_HXX
 #define _XMLTEXTLISTBLOCKCONTEXT_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class XMLTextImportHelper;

@@ -29,9 +29,7 @@
 
 #include "swtypes.hxx"
 #include "porexp.hxx"
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
 namespace binfilter {
 
 class SwFont;

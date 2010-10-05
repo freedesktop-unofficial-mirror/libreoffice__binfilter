@@ -28,9 +28,7 @@
 #ifndef SC_OLINEFUN_HXX
 #define SC_OLINEFUN_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocShell;

@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #define _XMLOFF_PROGRESSBARHELPER_HXX
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
 #include <com/sun/star/task/XStatusIndicator.hpp>
-#endif
 namespace binfilter {
 
 #define XML_PROGRESSRANGE   "ProgressRange"

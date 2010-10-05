@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLERROR_HXX
 #define _XMLOFF_XMLERROR_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 // STL includes
 #include <vector>

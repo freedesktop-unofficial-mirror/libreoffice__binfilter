@@ -28,9 +28,7 @@
 #define _FMTPDSC_HXX
 
 
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 

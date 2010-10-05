@@ -28,9 +28,7 @@
 #ifndef SC_TABOPPARAMS_HXX
 #define SC_TABOPPARAMS_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 #include <vector>
 namespace binfilter {
 

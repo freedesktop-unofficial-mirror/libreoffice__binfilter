@@ -28,9 +28,7 @@
 #ifndef _XMLTEXTSHAPEIMPORTHELPER_HXX
 #define _XMLTEXTSHAPEIMPORTHELPER_HXX
 
-#ifndef _XMLOFF_SHAPEIMPORT_HXX_
 #include <bf_xmloff/shapeimport.hxx>
-#endif
 namespace binfilter {
 
 class XMLTextShapeImportHelper : public XMLShapeImportHelper

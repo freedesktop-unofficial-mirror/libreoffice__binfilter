@@ -27,19 +27,11 @@
 #ifndef _PSEUDO_HXX
 #define _PSEUDO_HXX
 
-#ifndef _UNQID_HXX //autogen
 #include <tools/unqid.hxx>
-#endif
-#ifndef _IFACE_HXX
 #include <bf_so3/iface.hxx>
-#endif
-#ifndef _OWNLIST_HXX
 #include <bf_svtools/ownlist.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class  Menu;
 

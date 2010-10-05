@@ -27,13 +27,9 @@
 #ifndef _REQITEM_HXX
 #define _REQITEM_HXX
 
-#ifndef _SOLAR_H
 #include <solar.h>
-#endif
 
-#ifndef _RTTI_HXX
 #include <rtti.hxx>
-#endif
 
 #if _SOLAR__PRIVATE
 #include <bf_svtools/poolitem.hxx>

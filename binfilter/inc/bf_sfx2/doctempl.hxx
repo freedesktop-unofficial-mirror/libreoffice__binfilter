@@ -27,12 +27,8 @@
 #ifndef _SFXDOCTEMPL_HXX
 #define _SFXDOCTEMPL_HXX
 
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 // CLASS -----------------------------------------------------------------

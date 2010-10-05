@@ -28,29 +28,17 @@
 #ifndef _XMLREDLINEIMPORTHELPER_HXX
 #define _XMLREDLINEIMPORTHELPER_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _REDLINE_HXX
 #include "redline.hxx"
-#endif
 
-#ifndef _REDLENUM_HXX
 #include "redlenum.hxx"
-#endif
 
 #include <map>
 namespace com { namespace sun { namespace star {

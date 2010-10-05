@@ -28,9 +28,7 @@
 #ifndef SC_VALIDAT_HXX
 #define SC_VALIDAT_HXX
 
-#ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
-#endif
 namespace binfilter {
 
 class ScPatternAttr;

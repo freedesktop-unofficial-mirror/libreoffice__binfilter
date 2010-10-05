@@ -28,9 +28,7 @@
 #ifndef _EDITSEL_HXX
 #define _EDITSEL_HXX
 
-#ifndef _SV_SELENG_HXX //autogen
 #include <vcl/seleng.hxx>
-#endif
 namespace binfilter {
 
 class EditView;

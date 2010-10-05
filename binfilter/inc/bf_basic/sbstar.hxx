@@ -28,18 +28,10 @@
 #ifndef _SB_SBSTAR_HXX
 #define _SB_SBSTAR_HXX
 
-#ifndef _SBXCLASS_HXX //autogen
 #include "sbx.hxx"
-#endif
-#ifndef _SBX_SBXOBJECT_HXX //autogen
 #include <sbxobj.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 #include "sbdef.hxx"
 #include "sberrors.hxx"

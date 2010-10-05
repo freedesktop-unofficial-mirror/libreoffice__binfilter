@@ -27,21 +27,11 @@
 #ifndef _UNOSRCH_HXX
 #define _UNOSRCH_HXX
 
-#ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
 #include <com/sun/star/util/XPropertyReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace com{namespace sun{namespace star{namespace util{
     struct SearchOptions;
 }}}}

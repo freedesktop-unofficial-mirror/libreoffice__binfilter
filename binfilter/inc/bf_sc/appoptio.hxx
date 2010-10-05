@@ -29,25 +29,15 @@
 #define SC_APPOPTIO_HXX
 
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
-#endif
 namespace binfilter {
 
 

@@ -28,13 +28,9 @@
 #ifndef _FRM_SERVICES_HXX_
 #define _FRM_SERVICES_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _FRM_STRINGS_HXX_
 #include "strings.hxx"
-#endif
 namespace binfilter {
 
 //... namespace frm .......................................................

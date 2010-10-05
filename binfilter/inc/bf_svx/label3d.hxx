@@ -28,9 +28,7 @@
 #ifndef _E3D_LABEL3D_HXX
 #define _E3D_LABEL3D_HXX
 
-#ifndef _E3D_PNTOBJ3D_HXX
 #include <bf_svx/pntobj3d.hxx>
-#endif
 namespace binfilter {
 
 class Viewport3D;

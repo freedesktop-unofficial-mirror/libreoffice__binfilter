@@ -28,12 +28,8 @@
 #ifndef SC_RANGENAM_HXX
 #define SC_RANGENAM_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx" // -> enum UpdateRefMode
-#endif
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 namespace rtl {
     class OUStringBuffer;
 }

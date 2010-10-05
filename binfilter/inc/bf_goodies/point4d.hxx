@@ -28,17 +28,11 @@
 #ifndef _B3D_POINT4D_HXX
 #define _B3D_POINT4D_HXX
 
-#ifndef _SVX_VECTOR3D_HXX //autogen
 #include "vector3d.hxx"
-#endif
 
-#ifndef _SVX_POINT3D_HXX
 #include "point3d.hxx"
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 
 /*************************************************************************

@@ -34,20 +34,12 @@
 #define _SVSTDARR_XUB_STRLEN
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #include "errhdl.hxx"
-#ifndef _FRACT_HXX
 #include <tools/fract.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 class OutputDevice;
 class Point;
 class Size;

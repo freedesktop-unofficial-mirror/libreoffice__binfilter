@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_NUMBERSTYLESEXPORT_HXX
 #define _XMLOFF_NUMBERSTYLESEXPORT_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 namespace binfilter {
 
 class SdXMLExport;

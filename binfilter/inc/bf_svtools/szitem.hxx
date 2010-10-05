@@ -27,9 +27,7 @@
 #ifndef _SFXSZITEM_HXX
 #define _SFXSZITEM_HXX
 
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 

@@ -28,9 +28,7 @@
 #ifndef _SB_SBMETH_HXX
 #define _SB_SBMETH_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbxmeth.hxx"
 #include "sbdef.hxx"
 

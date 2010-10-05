@@ -28,25 +28,15 @@
 #ifndef _SVDUNDO_HXX
 #define _SVDUNDO_HXX
 
-#ifndef _SOLAR_HRC
 #include <bf_svtools/solar.hrc>
-#endif
 
-#ifndef _UNDO_HXX //autogen
 #include <bf_svtools/undo.hxx>
-#endif
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 class SfxItemSet;

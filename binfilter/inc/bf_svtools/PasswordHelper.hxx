@@ -32,13 +32,9 @@
 
 #endif
 
-#ifndef _SAL_TYPES_H_
 #include "sal/types.h"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include "com/sun/star/uno/Sequence.hxx"
-#endif
 
 class String;
 

@@ -27,15 +27,9 @@
 #ifndef _VIEWOPT_HXX
 #define _VIEWOPT_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
 class Window;
 class OutputDevice;

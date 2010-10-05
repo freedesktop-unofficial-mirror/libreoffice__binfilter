@@ -28,12 +28,8 @@
 #ifndef _BINDDATA_HXX
 #define _BINDDATA_HXX "$Revision: 1.4 $"
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _LIST_HXX
 #include <tools/list.hxx>
-#endif
 
 namespace binfilter
 {

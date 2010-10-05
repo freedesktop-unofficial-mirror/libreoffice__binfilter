@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 #define _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace com { namespace sun { namespace star { namespace lang {
     class XComponent; } } } }
 namespace binfilter {

@@ -28,16 +28,10 @@
 #ifndef _XMLOFF_METAIMPORTCOMPONENT_HXX
 #define _XMLOFF_METAIMPORTCOMPONENT_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
 #include <com/sun/star/document/XDocumentInfo.hpp>
-#endif
 namespace binfilter {
 
 class XMLMetaImportComponent : public SvXMLImport

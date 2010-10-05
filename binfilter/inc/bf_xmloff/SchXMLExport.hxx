@@ -27,24 +27,12 @@
 #ifndef SCH_XMLEXPORT_HXX_
 #define SCH_XMLEXPORT_HXX_
 
-#ifndef _XMLOFF_SCH_XMLEXPORTHELPER_HXX_
 #include <bf_xmloff/SchXMLExportHelper.hxx>
-#endif
-#ifndef _SCH_XMLAUTOSTYLEPOOLP_HXX_
 #include "SchXMLAutoStylePoolP.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace chart {

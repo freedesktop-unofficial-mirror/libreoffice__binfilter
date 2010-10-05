@@ -28,19 +28,11 @@
 #define FORMAT_HXX
 
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef UTILITY_HXX
 #include "utility.hxx"
-#endif
-#ifndef TYPES_HXX
 #include <types.hxx>
-#endif
 namespace binfilter {
 
 

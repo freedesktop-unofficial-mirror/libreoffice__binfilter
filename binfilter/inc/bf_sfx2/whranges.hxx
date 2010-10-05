@@ -29,9 +29,7 @@
 
 #include <limits.h>
 #include <stdarg.h>
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 DBG_NAMEEX(SfxWhichRanges)//STRIP008

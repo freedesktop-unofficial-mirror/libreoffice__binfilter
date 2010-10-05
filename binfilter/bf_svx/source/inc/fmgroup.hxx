@@ -27,13 +27,9 @@
 #ifndef _SVX_FMGROUP_HXX
 #define _SVX_FMGROUP_HXX
 
-#ifndef _SVX_FMCPONT_HXX
 #include "fmcpont.hxx"
-#endif
 
-#ifndef __DBFORM_HXX
 #include <dbform.hxx>
-#endif
 namespace binfilter {
 
 DECLARE_LIST( FmCtrlModelList, XInterface* )//STRIP008 DECLARE_LIST( FmCtrlModelList, XInterface* );

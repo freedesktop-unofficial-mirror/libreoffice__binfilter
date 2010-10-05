@@ -27,9 +27,7 @@
 #ifndef _SWFTLOPT_HXX
 #define _SWFTLOPT_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 class SwFilterOptions : public ::utl::ConfigItem

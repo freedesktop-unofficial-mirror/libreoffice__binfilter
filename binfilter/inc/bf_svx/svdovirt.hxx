@@ -28,9 +28,7 @@
 #ifndef _SVDOVIRT_HXX
 #define _SVDOVIRT_HXX
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

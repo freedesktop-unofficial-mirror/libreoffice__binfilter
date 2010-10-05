@@ -28,9 +28,7 @@
 #ifndef _SWGSTR_HXX
 #define _SWGSTR_HXX
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 typedef long long3;                     // Zur Dokumentation: 3-byte-Longs

@@ -29,9 +29,7 @@
 #define SC_TPHF_HXX
 
 
-#ifndef _SVX_HDFT_HXX //autogen
 #include <bf_svx/hdft2.hxx>
-#endif
 namespace binfilter {
 
 class ScStyleDlg;

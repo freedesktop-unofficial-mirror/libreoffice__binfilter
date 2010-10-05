@@ -28,9 +28,7 @@
 #ifndef _SVX_FMMODEL_HXX
 #define _SVX_FMMODEL_HXX
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 class SbxObject;
 class SbxArray;
 class SbxValue;

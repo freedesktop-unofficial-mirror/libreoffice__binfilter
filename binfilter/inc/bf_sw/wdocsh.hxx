@@ -28,9 +28,7 @@
 #define _SWWDOCSH_HXX
 
 #include "docsh.hxx"
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
 namespace binfilter {
 
 class SwWebDocShell: public SwDocShell

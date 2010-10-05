@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
 #define _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace binfilter {
 
 class XMLFontAutoStylePool_Impl;

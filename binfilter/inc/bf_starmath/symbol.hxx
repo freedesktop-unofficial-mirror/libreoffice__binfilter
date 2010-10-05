@@ -27,34 +27,16 @@
 #ifndef SYMBOL_HXX
 #define SYMBOL_HXX
 
-#ifndef _VOS_REFERNCE_HXX_
 #include <vos/refernce.hxx>
-#endif
-#ifndef _FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _DYNARY_HXX
 #include <tools/dynary.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef UTILITY_HXX
 #include "utility.hxx"
-#endif
-#ifndef _SMMOD_HXX
 #include <smmod.hxx>
-#endif
 namespace binfilter {
 
 #define SS_ATTR_ACCESS      0x80

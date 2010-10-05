@@ -28,18 +28,10 @@
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #define _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
 #include <com/sun/star/util/XNumberFormats.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
 #include <com/sun/star/awt/XControlModel.hpp>
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_IFACECOMPARE_HXX_
 #include "ifacecompare.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLExport;

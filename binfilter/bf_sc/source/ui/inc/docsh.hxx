@@ -28,24 +28,16 @@
 #define SC_DOCSHELL_HXX
 
 
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
 
 #include <bf_sfx2/printer.hxx>
 #include <bf_svtools/lstner.hxx>
 
-#ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
-#endif
 
 #include "document.hxx"
 #include "shellids.hxx"

@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 #ifndef   ITEMID_FONTWIDTH
 #define   ITEMID_FONTWIDTH 0
 #endif

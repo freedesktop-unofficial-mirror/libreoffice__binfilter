@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
 
 class ResMgr;
 

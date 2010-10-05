@@ -29,9 +29,7 @@
 #define _SCH_SCHIOCMP_HXX
 
 
-#ifndef _SVDIO_HXX //autogen
 #include <bf_svx/svdio.hxx>
-#endif
 
 class SvStream;
 namespace binfilter {

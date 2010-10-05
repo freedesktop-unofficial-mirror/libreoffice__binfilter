@@ -27,9 +27,7 @@
 #ifndef _SVX_BOXOBJ_HXX
 #define _SVX_BOXOBJ_HXX
 
-#ifndef _SFX_SHOBJ_HXX //autogen
 #include <bf_sfx2/shobj.hxx>
-#endif
 namespace binfilter {
 class SvxBoxItem;
 class SvxBoxInfoItem;

@@ -28,9 +28,7 @@
 #ifndef _VOLUME3D_HXX
 #define _VOLUME3D_HXX
 
-#ifndef _B3D_VOLUM_HXX
 #include <bf_goodies/b3dvolum.hxx>
-#endif
 namespace binfilter {
 class Matrix4D;
 

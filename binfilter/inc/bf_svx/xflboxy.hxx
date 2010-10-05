@@ -28,9 +28,7 @@
 #ifndef _SVX_XFLBOXY_HXX
 #define _SVX_XFLBOXY_HXX
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

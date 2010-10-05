@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLISPERCENTAGEPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLISPERCENTAGEPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

@@ -28,52 +28,28 @@
 #ifndef _SCH_DOCSHELL_HXX
 #define _SCH_DOCSHELL_HXX
 
-#ifndef _SCHDLL0_HXX //autogen
 #include "schdll0.hxx"
-#endif
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
-#endif
 
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SCHDLL0_HXX //autogen
 #include <schdll0.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
 
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
 
-#ifndef _CHTMODEL_HXX
 #include "chtmodel.hxx"
-#endif
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 #include "glob.hxx"
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
 #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
 namespace binfilter {
 
 #ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED

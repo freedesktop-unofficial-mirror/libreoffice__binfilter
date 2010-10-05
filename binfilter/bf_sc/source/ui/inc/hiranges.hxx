@@ -28,9 +28,7 @@
 #ifndef SC_HIRANGES_HXX
 #define SC_HIRANGES_HXX
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
 #include <tools/debug.hxx> //STRIP001
 namespace binfilter {

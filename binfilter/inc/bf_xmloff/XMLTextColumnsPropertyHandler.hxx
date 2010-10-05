@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLTEXTCOLUMNSPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLTEXTCOLUMNSPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

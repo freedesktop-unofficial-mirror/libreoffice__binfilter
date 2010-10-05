@@ -28,15 +28,9 @@
 #ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 #define INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 namespace binfilter {
 

@@ -27,12 +27,8 @@
 #ifndef _SCH_CELLRANGES_HXX_
 #define _SCH_CELLRANGES_HXX_
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 #include <vector>
 namespace binfilter {
 

@@ -27,15 +27,9 @@
 #ifndef _SWCRSR_HXX
 #define _SWCRSR_HXX
 
-#ifndef _PAM_HXX //autogen
 #include <pam.hxx>
-#endif
-#ifndef _TBLSEL_HXX //autogen
 #include <tblsel.hxx>
-#endif
-#ifndef _CSHTYP_HXX //autogen
 #include <cshtyp.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }

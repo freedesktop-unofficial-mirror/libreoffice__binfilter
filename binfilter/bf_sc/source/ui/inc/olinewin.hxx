@@ -28,9 +28,7 @@
 #ifndef SC_OLINEWIN_HXX
 #define SC_OLINEWIN_HXX
 
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 namespace binfilter {
 
 class ScOutlineArray;

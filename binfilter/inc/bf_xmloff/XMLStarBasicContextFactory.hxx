@@ -29,9 +29,7 @@
 #define _XMLOFF_XMLSTARBASICCONTEXTFACTORY_HXX
 
 
-#ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
-#endif
 
 
 namespace com { namespace sun { namespace star {

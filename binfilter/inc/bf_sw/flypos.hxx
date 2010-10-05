@@ -28,9 +28,7 @@
 #define _FLYPOS_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 class SwCntntNode;

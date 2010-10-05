@@ -30,19 +30,13 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
 #include <bf_svx/svdmrkv.hxx>
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 namespace binfilter {
 
 class SfxUndoAction;

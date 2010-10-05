@@ -28,9 +28,7 @@
 #ifndef SC_SCRDATA_HXX
 #define SC_SCRDATA_HXX
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace i18n {
     class XBreakIterator;

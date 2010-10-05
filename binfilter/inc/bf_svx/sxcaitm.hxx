@@ -27,17 +27,11 @@
 #ifndef _SXCAITM_HXX
 #define _SXCAITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDRANGITM_HXX
 #include <bf_svx/sdangitm.hxx>
-#endif
 
-#ifndef _SDOOITM_HXX
 #include <bf_svx/sdooitm.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------

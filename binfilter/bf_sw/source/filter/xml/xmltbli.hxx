@@ -28,9 +28,7 @@
 #ifndef _XMLTBLI_HXX
 #define _XMLTBLI_HXX
 
-#ifndef _XMLOFF_XMLTEXTTABLECONTEXT_HXX
 #include <bf_xmloff/XMLTextTableContext.hxx>
-#endif
 
 #include <hash_map>
 

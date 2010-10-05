@@ -27,24 +27,12 @@
 #ifndef _SWDOCSH_HXX
 #define _SWDOCSH_HXX
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
-#ifndef _SHELLID_HXX
 #include <shellid.hxx>
-#endif
 
 #include <bf_svtools/lstner.hxx>
 

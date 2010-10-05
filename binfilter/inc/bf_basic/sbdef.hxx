@@ -29,13 +29,9 @@
 #define _SB_SBDEF_HXX
 
 
-#ifndef _SBXDEF_HXX
 #include <sbxdef.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #if _SOLAR__PRIVATE
 #define _BASIC_TEXTPORTIONS

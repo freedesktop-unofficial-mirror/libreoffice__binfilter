@@ -28,17 +28,11 @@
 #ifndef SC_NAMECREA_HXX
 #define SC_NAMECREA_HXX
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
-#ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/imagebtn.hxx>
-#endif
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 

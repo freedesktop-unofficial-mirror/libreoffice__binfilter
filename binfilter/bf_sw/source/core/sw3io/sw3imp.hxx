@@ -27,38 +27,20 @@
 #ifndef _SW3IMP_HXX
 #define _SW3IMP_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 #ifndef _SVSTDARR_BYTES_DECL
 #define _SVSTDARR_BYTES
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _VCL_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SW3IDS_HXX
 #include <sw3ids.hxx>
-#endif
-#ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
-#endif
 #include <list>
 class SvStream;
 class SvXub_StrLens;

@@ -28,16 +28,10 @@
 #define _SVX_SVXFONT_HXX
 
 #include <limits.h>     // USHRT_MAX
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 class OutputDevice;
 class Printer;
 namespace binfilter {

@@ -28,12 +28,8 @@
 #ifndef _SVX_DATACCESSDESCRIPTOR_HXX_
 #define _SVX_DATACCESSDESCRIPTOR_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 //........................................................................

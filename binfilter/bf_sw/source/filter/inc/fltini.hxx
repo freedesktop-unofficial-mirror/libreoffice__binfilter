@@ -28,12 +28,8 @@
 #define _FLTINI_HXX
 
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 namespace binfilter {
 
 class SwNumRuleTbl;

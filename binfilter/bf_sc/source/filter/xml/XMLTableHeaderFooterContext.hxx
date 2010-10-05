@@ -28,16 +28,10 @@
 #define _SC_XMLTABLEHEADERFOOTERCONTEXT_HXX_
 
 
-#ifndef _XMLOFF_XMLICTXT_HXX_
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX_
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XHEADERFOOTERCONTENT_HPP_
 #include <com/sun/star/sheet/XHeaderFooterContent.hpp>
-#endif
 namespace binfilter {
 
 namespace com { namespace sun { namespace star {

@@ -31,9 +31,7 @@
 
 #endif
 
-#ifndef _HINT_HXX
 #include <bf_svtools/hint.hxx>
-#endif
 
 namespace binfilter
 {

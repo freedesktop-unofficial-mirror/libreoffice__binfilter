@@ -33,9 +33,7 @@
 #include <hintids.hxx>
 
 #include <bf_svx/protitem.hxx>
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
 
 #include <fmtanchr.hxx>
 #include <txtftn.hxx>

@@ -27,9 +27,7 @@
 #ifndef _SWUNOHELPER_HXX
 #define _SWUNOHELPER_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 
 namespace com { namespace sun { namespace star {

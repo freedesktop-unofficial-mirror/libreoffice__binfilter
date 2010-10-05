@@ -28,25 +28,13 @@
 #define _PAM_HXX
 
 #include <stddef.h>         // fuer MemPool
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
-#ifndef _CSHTYP_HXX
 #include <cshtyp.hxx>       // fuer die Funktions-Definitionen
-#endif
-#ifndef _RING_HXX
 #include <ring.hxx>         // Superklasse
-#endif
-#ifndef _INDEX_HXX
 #include <index.hxx>        // fuer SwIndex
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>      // fuer SwNodeIndex
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }

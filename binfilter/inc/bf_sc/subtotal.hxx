@@ -28,9 +28,7 @@
 #ifndef SC_SUBTOTAL_HXX
 #define SC_SUBTOTAL_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
 #ifndef MSC
     #include <setjmp.h>

@@ -32,9 +32,7 @@
 //#include "b3dlight.hxx"
 //#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
 //#ifndef _B3D_B3DENTITY_HXX
 //#include "b3dentty.hxx"
@@ -53,13 +51,9 @@
 //#include <vcl/outdev3d.hxx>
 //#endif
 
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
 #include <vos/mutex.hxx>
-#endif
 
 // Vorausdeklarationen
 //class B3dTexture;

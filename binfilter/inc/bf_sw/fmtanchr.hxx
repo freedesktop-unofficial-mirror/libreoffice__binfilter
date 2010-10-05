@@ -27,12 +27,9 @@
 #ifndef _FMTANCHR_HXX
 #define _FMTANCHR_HXX
 
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
+
 class IntlWrapper;
 namespace binfilter {
 

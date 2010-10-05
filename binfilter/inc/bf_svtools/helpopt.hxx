@@ -27,22 +27,16 @@
 #ifndef INCLUDED_SVTOOLS_HELPOPT_HXX
 #define INCLUDED_SVTOOLS_HELPOPT_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
 #ifndef INCLUDED_LIST
 #include <list>
 #define INCLUDED_LIST
 #endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter
 {

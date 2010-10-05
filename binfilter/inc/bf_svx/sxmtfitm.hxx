@@ -27,17 +27,11 @@
 #ifndef _SXMTFITM_HXX
 #define _SXMTFITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 
-#ifndef _SDANGITM_HXX
 #include <bf_svx/sdangitm.hxx>
-#endif
 namespace binfilter {
 
 // die 2 folgenden sind noch nicht implementiert!

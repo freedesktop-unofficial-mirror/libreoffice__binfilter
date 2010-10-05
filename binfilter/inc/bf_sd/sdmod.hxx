@@ -33,21 +33,11 @@
 #define _SD_DLL             // fuer SD_MOD()
 #include "sddll.hxx"        // fuer SdModuleDummy
 #endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 class SvFactory;
 class OutputDevice;
 

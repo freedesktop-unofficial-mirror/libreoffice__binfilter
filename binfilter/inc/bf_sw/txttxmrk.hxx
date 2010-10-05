@@ -27,9 +27,7 @@
 #ifndef _TXTTXMRK_HXX
 #define _TXTTXMRK_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtNode;

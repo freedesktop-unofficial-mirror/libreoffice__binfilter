@@ -28,9 +28,7 @@
 #ifndef _SW3CRYPT_HXX
 #define _SW3CRYPT_HXX
 
-#ifndef SOLAR_H
 #include <tools/solar.h>
-#endif
 class String;
 namespace binfilter {
 

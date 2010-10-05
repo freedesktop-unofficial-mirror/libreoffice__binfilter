@@ -28,12 +28,8 @@
 #ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #define _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 
-#ifndef _XMLOFF_SHAPEIMPORT_HXX_
 #include <bf_xmloff/shapeimport.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

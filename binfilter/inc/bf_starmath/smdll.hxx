@@ -29,15 +29,9 @@
 
 #define SMDLL   1
 
-#ifndef _SMDLL0_HXX
 #include <bf_starmath/smdll0.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
-#ifndef _SFXDEFS_HXX
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
 namespace binfilter {
 
 class SmData;

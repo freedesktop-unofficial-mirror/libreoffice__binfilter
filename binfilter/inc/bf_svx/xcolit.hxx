@@ -28,9 +28,7 @@
 #ifndef _SVX_XCOLORITEM_HXX
 #define _SVX_XCOLORITEM_HXX
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
 #include <bf_svx/xit.hxx>
 namespace binfilter {

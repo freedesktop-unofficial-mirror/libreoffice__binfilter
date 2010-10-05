@@ -27,12 +27,8 @@
 #ifndef _FILEOBJ_HXX
 #define _FILEOBJ_HXX
 
-#ifndef _LINKSRC_HXX //autogen
 #include <bf_so3/linksrc.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
 class Graphic;
 namespace binfilter {
 

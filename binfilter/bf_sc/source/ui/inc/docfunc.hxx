@@ -28,13 +28,9 @@
 #ifndef SC_DOCFUNC_HXX
 #define SC_DOCFUNC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class SfxUndoAction;

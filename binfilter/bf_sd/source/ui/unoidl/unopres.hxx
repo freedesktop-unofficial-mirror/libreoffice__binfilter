@@ -27,15 +27,9 @@
 #ifndef _SD_UNOPRES_HXX
 #define _SD_UNOPRES_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATION_HPP_
 #include <com/sun/star/presentation/XPresentation.hpp>
-#endif
 
 #include <bf_svx/unoipset.hxx>
 

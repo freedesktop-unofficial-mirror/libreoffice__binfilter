@@ -28,9 +28,7 @@
 #ifndef _SDOBJFAC_HXX
 #define _SDOBJFAC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------

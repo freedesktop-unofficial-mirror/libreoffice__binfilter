@@ -29,18 +29,10 @@
 #define XCHAR_HXX
 
 
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _XPOLY_HXX //autogen
 #include <bf_svx/xpoly.hxx>
-#endif
 
 
 #include "rect.hxx"

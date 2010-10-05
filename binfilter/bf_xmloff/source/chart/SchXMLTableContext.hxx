@@ -27,16 +27,10 @@
 #ifndef _SCH_XMLTABLECONTEXT_HXX_
 #define _SCH_XMLTABLECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef SCH_XMLIMPORT_HXX_
 #include "SchXMLImport.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
 #include "transporttypes.hxx"
 

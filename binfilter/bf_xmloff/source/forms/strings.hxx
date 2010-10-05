@@ -28,12 +28,8 @@
 #ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #define _XMLOFF_FORMS_STRINGS_HXX_
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

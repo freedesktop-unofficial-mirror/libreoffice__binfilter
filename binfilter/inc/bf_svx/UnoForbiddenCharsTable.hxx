@@ -28,16 +28,10 @@
 #ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #define _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSUPPORTEDLOCALES_HPP_
 #include <com/sun/star/linguistic2/XSupportedLocales.hpp>
-#endif
 
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 namespace binfilter {

@@ -27,9 +27,7 @@
 #ifndef _SDPRCITM_HXX
 #define _SDPRCITM_HXX
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------

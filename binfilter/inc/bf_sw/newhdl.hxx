@@ -27,9 +27,7 @@
 #ifndef _NEWHDL_HXX
 #define _NEWHDL_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
 namespace binfilter {
 

@@ -28,13 +28,9 @@
 #ifndef _DTRITEM_HXX
 #define _DTRITEM_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 

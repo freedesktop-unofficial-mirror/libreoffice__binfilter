@@ -28,12 +28,8 @@
 #ifndef _BMPWIN_HXX
 #define _BMPWIN_HXX
 
-#ifndef _GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 namespace binfilter {
 
 

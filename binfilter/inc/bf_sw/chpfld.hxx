@@ -31,9 +31,7 @@
 class SwFrm;
 class SwTxtNode;
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 namespace binfilter {
 
 enum SwChapterFormat

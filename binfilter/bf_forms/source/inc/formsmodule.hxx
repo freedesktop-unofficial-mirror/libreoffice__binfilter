@@ -28,9 +28,7 @@
 #ifndef FORMS_MODULE_HXX
 #define FORMS_MODULE_HXX
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

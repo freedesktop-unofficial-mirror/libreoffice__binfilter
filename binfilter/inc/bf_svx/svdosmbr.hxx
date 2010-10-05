@@ -28,18 +28,10 @@
 #ifndef _SVDOSMBR_HXX
 #define _SVDOSMBR_HXX
 
-#ifndef _SVX_BRWBOX_HXX //autogen
 #include <bf_svtools/brwbox.hxx>
-#endif
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SV_FLOATWIN_HXX //autogen
 #include <vcl/floatwin.hxx>
-#endif
-#ifndef _SV_MENU_HXX //autogen
 #include <vcl/menu.hxx>
-#endif
 namespace binfilter {
 
 class BrowserMouseEvent;

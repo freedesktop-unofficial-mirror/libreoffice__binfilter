@@ -27,47 +27,27 @@
 #ifndef _XMLOFF_SHAPEEXPORT_HXX_
 #define _XMLOFF_SHAPEEXPORT_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
 #include <com/sun/star/awt/Point.hpp>
-#endif
 
 #include <map>
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <bf_xmloff/xmlexppr.hxx>
-#endif
 
-#ifndef _XMLOFF_ANIMEXP_HXX
 #include <bf_xmloff/animexp.hxx>
-#endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
 #include <bf_xmloff/families.hxx>
-#endif
 class Vector2D;
 namespace binfilter {
 class Matrix3D;

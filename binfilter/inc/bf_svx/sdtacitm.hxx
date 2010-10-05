@@ -27,13 +27,9 @@
 #ifndef sdtacitm_hxx
 #define sdtacitm_hxx
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 // Anzahl der Durchlaeufe. 0=Endlos.

@@ -27,18 +27,14 @@
 #ifndef _WALLITEM_HXX
 #define _WALLITEM_HXX
 
-#ifndef SHL_HXX
 #include <tools/shl.hxx>
-#endif
 
 // -----------------------------------------------------------------------------------------
 // Hilfsklasse, um die Download-Funktionalitaet des SvxBrushItems unterhalb
 // des SVX zu benutzen. Der Link wird im Konstruktor von SvxDialogDll gesetzt.
 #ifndef _SFX_BRUSHITEMLINK_DECLARED
 #define _SFX_BRUSHITEMLINK_DECLARED
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
 
 #ifndef SHL_BRUSHITEM
 #define SHL_BRUSHITEM SHL_SHL1

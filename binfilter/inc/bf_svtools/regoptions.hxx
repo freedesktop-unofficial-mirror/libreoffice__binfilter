@@ -28,9 +28,7 @@
 #ifndef SVTOOLS_REGOPTIONS_HXX
 #define SVTOOLS_REGOPTIONS_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 #endif // SVTOOLS_REGOPTIONS_HXX
 

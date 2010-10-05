@@ -28,9 +28,7 @@
 #ifndef SC_REFUNDO_HXX
 #define SC_REFUNDO_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 class ScDocument;

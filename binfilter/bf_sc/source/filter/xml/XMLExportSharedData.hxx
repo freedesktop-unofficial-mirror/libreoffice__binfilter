@@ -28,9 +28,7 @@
 #ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #define SC_XMLEXPORTSHAREDDATA_HXX
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
 
 #ifndef __SGI_STL_VECTOR
 #include <vector>

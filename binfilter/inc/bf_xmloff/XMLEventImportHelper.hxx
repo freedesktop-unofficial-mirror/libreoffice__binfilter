@@ -29,9 +29,7 @@
 #define _XMLOFF_EVENTIMPORTHELPER_HXX
 
 
-#ifndef _XMLOFF_XMLEVENT_HXX
 #include "xmlevent.hxx"
-#endif
 
 #include <map>
 #include <list>

@@ -28,30 +28,16 @@
 #ifndef SC_NOTESUNO_HXX
 #define SC_NOTESUNO_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"           // ScRange, ScAddress
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATION_HPP_
 #include <com/sun/star/sheet/XSheetAnnotation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XSIMPLETEXT_HPP_
 #include <com/sun/star/text/XSimpleText.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
 namespace binfilter {
 
 

@@ -28,13 +28,9 @@
 #ifndef _SV_EXPANDER_HXX
 #define _SV_EXPANDER_HXX
 
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
 
-#ifndef _SV_IMAGE_HXX
 #include <vcl/image.hxx>
-#endif
 
 namespace binfilter
 {

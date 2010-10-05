@@ -28,15 +28,9 @@
 #ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #define _XMLOFF_FORMS_OFFICEFORMS_HXX_
 
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef XMLOFF_FORMS_LOGGING_HXX
 #include "logging.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLElementExport;

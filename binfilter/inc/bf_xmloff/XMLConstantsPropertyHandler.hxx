@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
 struct SvXMLEnumMapEntry;

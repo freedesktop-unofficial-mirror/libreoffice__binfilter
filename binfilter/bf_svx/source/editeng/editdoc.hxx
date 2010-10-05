@@ -31,21 +31,13 @@
 #include <editattr.hxx>
 #include <svxfont.hxx>
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _TOOLS_TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 namespace binfilter {
 
 class ImpEditEngine;

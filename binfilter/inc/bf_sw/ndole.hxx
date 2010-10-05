@@ -27,9 +27,7 @@
 #ifndef _NDOLE_HXX
 #define _NDOLE_HXX
 
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
 
 namespace binfilter {
 

@@ -33,14 +33,10 @@
 #include <bf_so3/protocol.hxx>
 #include <bf_so3/svstor.hxx>
 #include <com/sun/star/uno/Reference.hxx>
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
 #include <bf_svtools/ownlist.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class Printer;
 

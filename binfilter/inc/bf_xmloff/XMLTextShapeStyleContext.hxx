@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX_
 #define _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include <bf_xmloff/XMLShapeStyleContext.hxx>
-#endif
 namespace binfilter {
 
 class XMLTextShapeStyleContext : public XMLShapeStyleContext

@@ -28,13 +28,9 @@
 #ifndef _SVICNVW_HXX
 #define _SVICNVW_HXX
 
-#ifndef _IMAGE_HXX
 #include <vcl/image.hxx>
-#endif
 
-#ifndef _SVLBOX_HXX
 #include <bf_svtools/svlbox.hxx>
-#endif
 
 namespace binfilter
 {

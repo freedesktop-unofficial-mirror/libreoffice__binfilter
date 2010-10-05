@@ -29,9 +29,7 @@
 #define _SD_STLSHEET_HXX
 
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 class SdStyleSheet : public SfxStyleSheet
 {

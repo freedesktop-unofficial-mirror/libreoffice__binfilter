@@ -28,12 +28,8 @@
 #ifndef _SC_XMLTEXTPCONTEXT_HXX
 #define _SC_XMLTEXTPCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

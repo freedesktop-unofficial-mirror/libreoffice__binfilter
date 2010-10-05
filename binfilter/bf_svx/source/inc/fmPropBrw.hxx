@@ -27,12 +27,8 @@
 #ifndef SVX_FMPROPBRW_HXX
 #define SVX_FMPROPBRW_HXX
 
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
 #include <com/sun/star/awt/XControlContainer.hpp>
-#endif
-#ifndef _SFX_CHILDWIN_HXX
 #include <bf_sfx2/childwin.hxx>
-#endif
 namespace binfilter {
 
 //========================================================================

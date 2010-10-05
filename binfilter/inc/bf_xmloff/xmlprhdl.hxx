@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #define _XMLOFF_PROPERTYHANDLERBASE_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 namespace com{ namespace sun{ namespace star{ namespace uno{ class Any; } } } }
 namespace rtl{ class OUString; }

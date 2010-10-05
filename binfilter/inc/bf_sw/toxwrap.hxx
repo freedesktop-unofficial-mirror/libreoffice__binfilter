@@ -28,19 +28,11 @@
 #ifndef _TOXWRAP_HXX
 #define _TOXWRAP_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
-#ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace i18n {
     class XExtendedIndexEntrySupplier;

@@ -27,12 +27,8 @@
 #ifndef _SVTOOLS_CTYPEITM_HXX
 #define _SVTOOLS_CTYPEITM_HXX
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter {
 

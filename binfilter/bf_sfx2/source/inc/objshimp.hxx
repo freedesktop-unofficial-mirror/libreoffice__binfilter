@@ -27,12 +27,8 @@
 #ifndef _SFX_OBJSHIMP_HXX
 #define _SFX_OBJSHIMP_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 #include <bf_svtools/securityoptions.hxx>
 #include "objsh.hxx"

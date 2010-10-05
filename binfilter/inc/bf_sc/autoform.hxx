@@ -46,64 +46,26 @@ JP 20.07.95:
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 **************************************************************************/
 
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
-#ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_ALGITEM_HXX
 #include <bf_svx/algitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_ROTMODIT_HXX
 #include <bf_svx/rotmodit.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef _ZFORAUTO_HXX_
 #include "zforauto.hxx"
-#endif
 
 namespace binfilter {
 

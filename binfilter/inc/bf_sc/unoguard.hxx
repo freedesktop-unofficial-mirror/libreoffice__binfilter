@@ -28,9 +28,7 @@
 #ifndef SC_UNOGUARD_HXX
 #define SC_UNOGUARD_HXX
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
 #include <vos/mutex.hxx>
-#endif
 namespace binfilter {
 
 class ScUnoGuard : public NAMESPACE_VOS(OGuard)

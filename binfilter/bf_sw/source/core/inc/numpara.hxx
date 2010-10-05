@@ -28,9 +28,7 @@
 #define _NUMPARA_HXX
 
 #include "numrule.hxx"
-#ifndef _NDARR_HXX //autogen
 #include "ndarr.hxx"
-#endif
 #include "ndindex.hxx"
 namespace binfilter {
 

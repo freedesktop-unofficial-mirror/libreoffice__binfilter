@@ -28,24 +28,12 @@
 #ifndef SC_XMLIMPRT_HXX
 #define SC_XMLIMPRT_HXX
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLASTPLP_HXX
 #include <bf_xmloff/xmlaustp.hxx>
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 #include <com/sun/star/frame/XModel.hpp>
 #include <tools/time.hxx>
 #include <com/sun/star/util/DateTime.hpp>
@@ -54,33 +42,15 @@
 #endif
 #include "xmlsubti.hxx"
 #include "global.hxx"
-#ifndef _XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
-#ifndef _SC_XMLDETECTIVECONTEXT_HXX
 #include "XMLDetectiveContext.hxx"
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HPP_
 #include <com/sun/star/sheet/ValidationAlertStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONTYPE_HPP_
 #include <com/sun/star/sheet/ValidationType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HPP_
 #include <com/sun/star/sheet/XSheetCellRangeContainer.hpp>
-#endif
 namespace binfilter {
 
 class SfxItemSet;

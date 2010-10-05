@@ -28,9 +28,7 @@
 #ifndef SC_SERVUNO_HXX
 #define SC_SERVUNO_HXX
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 class String;
 

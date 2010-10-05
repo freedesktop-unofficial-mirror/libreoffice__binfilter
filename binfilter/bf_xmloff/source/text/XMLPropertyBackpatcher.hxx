@@ -37,9 +37,7 @@
 #include <vector>
 #endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {

@@ -27,12 +27,8 @@
 #ifndef _TXTINET_HXX
 #define _TXTINET_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
 class Color;
 namespace binfilter {
 

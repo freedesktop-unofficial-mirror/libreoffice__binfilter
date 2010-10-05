@@ -28,9 +28,7 @@
 #ifndef SVTOOLS_FILENOTATION_HXX
 #define SVTOOLS_FILENOTATION_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 #endif // SVTOOLS_FILENOTATION_HXX
 

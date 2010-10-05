@@ -27,12 +27,8 @@
 #ifndef _PRTOPT_HXX
 #define _PRTOPT_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _SW_PRINTDATA_HXX
 #include <printdata.hxx>
-#endif
 namespace binfilter {
 
 class SwPrintOptions : public SwPrintData, public ::utl::ConfigItem

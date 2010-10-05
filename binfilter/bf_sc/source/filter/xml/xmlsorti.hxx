@@ -27,18 +27,10 @@
 #ifndef SC_XMLSORTI_HXX
 #define SC_XMLSORTI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SORTFIELD_HPP_
 #include <com/sun/star/util/SortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
 
 #include "xmldrani.hxx"
 namespace binfilter {

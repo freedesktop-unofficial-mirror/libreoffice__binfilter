@@ -28,12 +28,8 @@
 #ifndef _XPOLYIMP_HXX
 #define _XPOLYIMP_HXX
 
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

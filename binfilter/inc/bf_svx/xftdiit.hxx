@@ -28,9 +28,7 @@
 #ifndef _SVX_XFTDIIT_HXX
 #define _SVX_XFTDIIT_HXX
 
-#ifndef _SFXMETRICITEM_HXX //autogen
 #include <bf_svtools/metitem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

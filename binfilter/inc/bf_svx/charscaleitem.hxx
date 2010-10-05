@@ -29,12 +29,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 namespace binfilter {
 
 // class SvxCharScaleItem ----------------------------------------------

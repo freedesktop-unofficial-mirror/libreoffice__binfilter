@@ -30,30 +30,18 @@
 
 
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
 
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
 
-#ifndef SC_TABLE_HXX
 #include "table.hxx"        // FastGetRowHeight (inline)
-#endif
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 
-#ifndef _SC_BRDCST_HXX
 #include "brdcst.hxx"
-#endif
 
-#ifndef SC_TABOPPARAMS_HXX
 #include "tabopparams.hxx"
-#endif
 namespace com { namespace sun { namespace star {
     namespace lang {
         class XMultiServiceFactory;

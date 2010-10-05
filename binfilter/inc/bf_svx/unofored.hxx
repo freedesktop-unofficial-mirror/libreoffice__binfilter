@@ -29,9 +29,7 @@
 #define _SVX_UNOFORED_HXX
 
 #include <bf_svx/editeng.hxx>
-#ifndef _SVX_UNOEDSRC_HXX
 #include <bf_svx/unoedsrc.hxx>
-#endif
 namespace binfilter {
 
 //  SvxEditEngineForwarder - SvxTextForwarder fuer EditEngine

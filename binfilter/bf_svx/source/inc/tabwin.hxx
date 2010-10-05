@@ -30,9 +30,7 @@
 
 
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
 
 

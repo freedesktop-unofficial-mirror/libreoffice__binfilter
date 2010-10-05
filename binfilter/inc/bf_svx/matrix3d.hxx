@@ -28,9 +28,7 @@
 #ifndef _SVX_MATRIX3D_HXX
 #define _SVX_MATRIX3D_HXX
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 
 namespace binfilter {
 

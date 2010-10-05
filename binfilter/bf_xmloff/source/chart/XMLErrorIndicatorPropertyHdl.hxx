@@ -27,9 +27,7 @@
 #ifndef _XMLERRORINDICATORPROPERTYHDL_HXX_
 #define _XMLERRORINDICATORPROPERTYHDL_HXX_
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 class XMLErrorIndicatorPropertyHdl : public XMLPropertyHandler

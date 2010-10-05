@@ -33,31 +33,15 @@
 #define SWHTML_OPTTYPE_PARAM 2
 #define SWHTML_OPTTYPE_SIZE 3
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _HTMLKYWD_HXX
 #include <bf_svtools/htmlkywd.hxx>
-#endif
-#ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _APPLET_HXX //autogen
 #include <bf_so3/applet.hxx>
-#endif
-#ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemSet;

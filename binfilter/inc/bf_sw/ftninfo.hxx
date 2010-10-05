@@ -27,9 +27,7 @@
 #ifndef _FTNINFO_HXX
 #define _FTNINFO_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include "numrule.hxx"
 namespace binfilter {

@@ -27,9 +27,7 @@
 #ifndef _SWFNTCCH_HXX
 #define _SWFNTCCH_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #define NUM_DEFAULT_VALUES 34
 

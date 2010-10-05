@@ -27,9 +27,7 @@
 #ifndef _SVT_LISTENER_HXX
 #define _SVT_LISTENER_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 namespace binfilter
 {

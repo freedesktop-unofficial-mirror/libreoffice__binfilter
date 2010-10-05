@@ -28,21 +28,11 @@
 #ifndef SC_XMLEXPORTDATABASERANGES_HXX
 #define SC_XMLEXPORTDATABASERANGES_HXX
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETFILTERDESCRIPTOR_HPP_
 #include <com/sun/star/sheet/XSheetFilterDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSUBTOTALDESCRIPTOR_HPP_
 #include <com/sun/star/sheet/XSubTotalDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLExport;

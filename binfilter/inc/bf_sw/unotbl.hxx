@@ -27,40 +27,18 @@
 #ifndef _UNOTBL_HXX
 #define _UNOTBL_HXX
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLECURSOR_HPP_
 #include <com/sun/star/text/XTextTableCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
 #include <com/sun/star/table/XCellRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEDATA_HPP_
 #include <com/sun/star/sheet/XCellRangeData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XAUTOFORMATTABLE_HPP_
 #include <com/sun/star/table/XAutoFormattable.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE10_HXX_
 #include <cppuhelper/implbase10.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
-#endif
 namespace binfilter {
 
 class SwTableBoxFmt;

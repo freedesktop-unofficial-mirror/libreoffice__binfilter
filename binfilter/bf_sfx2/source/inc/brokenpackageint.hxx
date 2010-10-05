@@ -26,9 +26,7 @@
  ************************************************************************/
 
 
-#ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
 #include <framework/interaction.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::framework;

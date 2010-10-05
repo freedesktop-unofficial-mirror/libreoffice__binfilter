@@ -31,38 +31,20 @@
 #define TF_NEWDESKTOP 1
 #endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #if _SOLAR__PRIVATE
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 #endif
 
 #include <vcl/svapp.hxx>
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
 
 // whatwever will be today's name for explorer/frameset-docs
 #define SFX_DESKTOP_HELPFILE_NAME "desktop"

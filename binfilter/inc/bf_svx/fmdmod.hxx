@@ -27,9 +27,7 @@
 #ifndef _SVX_FMDMOD_HXX
 #define _SVX_FMDMOD_HXX
 
-#ifndef SVX_UNOMOD_HXX
 #include <bf_svx/unomod.hxx>
-#endif
 namespace binfilter {
 
 class SvxFmMSFactory : public SvxUnoDrawMSFactory

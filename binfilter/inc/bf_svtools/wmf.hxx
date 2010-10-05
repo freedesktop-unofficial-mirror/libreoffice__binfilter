@@ -28,13 +28,9 @@
 #ifndef _WMF_HXX
 #define _WMF_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
-#endif
 
 namespace binfilter
 {

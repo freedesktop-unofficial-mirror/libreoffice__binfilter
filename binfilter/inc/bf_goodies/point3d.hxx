@@ -28,17 +28,11 @@
 #ifndef _B2D_POINT3D_HXX
 #define _B2D_POINT3D_HXX
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _VECTOR2D_HXX
 #include <tools/vector2d.hxx>
-#endif
 
 /*************************************************************************
 |*

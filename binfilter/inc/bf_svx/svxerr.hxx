@@ -53,9 +53,7 @@
 
 #ifndef __RSC
 
-#ifndef _EHDL_HXX //autogen
 #include <bf_svtools/ehdl.hxx>
-#endif
 namespace binfilter {
 class SvxErrorHandler : private SfxErrorHandler
 {

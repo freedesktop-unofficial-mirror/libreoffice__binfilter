@@ -27,9 +27,7 @@
 #ifndef _SFX_MISCCFG_HXX
 #define _SFX_MISCCFG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------

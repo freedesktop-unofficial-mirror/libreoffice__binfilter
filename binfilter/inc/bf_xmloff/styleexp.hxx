@@ -27,20 +27,14 @@
 #ifndef _XMLOFF_STYLEEXP_HXX_
 #define _XMLOFF_STYLEEXP_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #ifndef _VCL_MAPUNIT_HXX
 //#include <vcl/mapunit.hxx>
 #endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
 namespace com { namespace sun { namespace star
 {

@@ -30,56 +30,24 @@
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _NDARR_HXX
 #include <ndarr.hxx>
-#endif
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>             // enums
-#endif
-#ifndef _REDLENUM_HXX
 #include <redlenum.hxx>         // enums
-#endif
-#ifndef _BKMRKE_HXX
 #include <bkmrke.hxx>
-#endif
-#ifndef _FLYENUM_HXX
 #include <flyenum.hxx>
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
-#ifndef _CHCMPRSE_HXX
 #include <chcmprse.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATEDWORD_HPP_
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
-#endif
-#ifndef _VOS_REF_HXX
 #include <vos/ref.hxx>
-#endif
 
 // OD 25.06.2003 #108784#
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface

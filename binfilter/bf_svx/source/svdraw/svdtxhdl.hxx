@@ -28,9 +28,7 @@
 #ifndef _SVDTXHDL_HXX
 #define _SVDTXHDL_HXX
 
-#ifndef _VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 
 namespace binfilter {

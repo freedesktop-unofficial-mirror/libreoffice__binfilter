@@ -42,13 +42,9 @@
 #include <sys/stat.h>
 
 
-#ifndef _KEYCOD_HXX //autogen
 #include <vcl/keycod.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 /*$

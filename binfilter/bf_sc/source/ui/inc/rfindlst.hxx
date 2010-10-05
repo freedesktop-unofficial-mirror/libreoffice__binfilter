@@ -28,13 +28,9 @@
 #ifndef SC_RFINDLST_HXX
 #define SC_RFINDLST_HXX
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 //==================================================================

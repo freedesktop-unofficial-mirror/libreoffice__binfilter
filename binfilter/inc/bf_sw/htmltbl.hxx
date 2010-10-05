@@ -29,13 +29,9 @@
 #define _HTMLTBL_HXX
 
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "node.hxx"     // Fuer SwStartNode

@@ -28,9 +28,7 @@
 #ifndef _XMLBRSHE_HXX
 #define _XMLBRSHE_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 namespace binfilter {
 

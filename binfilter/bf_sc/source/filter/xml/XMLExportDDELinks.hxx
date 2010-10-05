@@ -28,9 +28,7 @@
 #ifndef _SC_XMLEXPORTDDELINKS_HXX
 #define _SC_XMLEXPORTDDELINKS_HXX
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
 
 class String;
 

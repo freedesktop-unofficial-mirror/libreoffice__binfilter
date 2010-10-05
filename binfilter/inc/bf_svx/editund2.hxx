@@ -30,9 +30,7 @@
 
 //#include <tools.hxx>
 
-#ifndef _UNDO_HXX
 #include <bf_svtools/undo.hxx>
-#endif
 namespace binfilter {
 
 class ImpEditEngine;

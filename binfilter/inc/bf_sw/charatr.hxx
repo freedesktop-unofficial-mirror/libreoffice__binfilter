@@ -27,9 +27,7 @@
 #ifndef _CHARATR_HXX
 #define _CHARATR_HXX
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 

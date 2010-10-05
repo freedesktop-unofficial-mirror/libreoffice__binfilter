@@ -28,9 +28,7 @@
 #ifndef _SB_SBERRORS_HXX
 #define _SB_SBERRORS_HXX
 
-#ifndef _SBXDEF_HXX //autogen
 #include "sbxdef.hxx"
-#endif
 
 namespace binfilter {
 

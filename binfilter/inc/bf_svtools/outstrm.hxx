@@ -32,12 +32,8 @@
 
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace io {
     class XOutputStream;

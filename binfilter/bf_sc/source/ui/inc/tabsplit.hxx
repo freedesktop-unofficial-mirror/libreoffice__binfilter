@@ -29,9 +29,7 @@
 #define SC_TABSPLIT_HXX
 
 
-#ifndef _SV_SPLIT_HXX //autogen
 #include <vcl/split.hxx>
-#endif
 namespace binfilter {
 
 class ScViewData;

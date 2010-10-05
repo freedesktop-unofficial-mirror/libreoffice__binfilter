@@ -28,9 +28,7 @@
 #ifndef SC_GRIDMERG_HXX
 #define SC_GRIDMERG_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class OutputDevice;
 namespace binfilter {

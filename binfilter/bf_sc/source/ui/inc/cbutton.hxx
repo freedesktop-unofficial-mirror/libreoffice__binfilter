@@ -30,9 +30,7 @@
 #ifndef SC_CBUTTON_HXX
 #define SC_CBUTTON_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 
 class Window;

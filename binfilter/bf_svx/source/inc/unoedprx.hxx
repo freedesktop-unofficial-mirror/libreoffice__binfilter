@@ -30,13 +30,9 @@
 
 #include <memory>
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include "unoedsrc.hxx"
-#endif
 
 namespace binfilter {
 

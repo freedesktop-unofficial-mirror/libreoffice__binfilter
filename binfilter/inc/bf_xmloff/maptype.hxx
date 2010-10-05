@@ -30,13 +30,9 @@
 
 #include <tools/solar.h>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////

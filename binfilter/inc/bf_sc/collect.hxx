@@ -28,9 +28,7 @@
 #ifndef SC_COLLECT_HXX
 #define SC_COLLECT_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include <limits.h>
 class SvStream;

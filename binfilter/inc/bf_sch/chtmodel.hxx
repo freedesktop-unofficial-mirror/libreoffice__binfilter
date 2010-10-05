@@ -40,80 +40,34 @@
 //STRIP008
 //STRIP008 class SchModelData;
 
-#ifndef _E3D_POLYGON3D_HXX //autogen
 #include <bf_svx/polygn3d.hxx>
-#endif
-#ifndef _E3D_EXTRUD3D_HXX //autogen
 #include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_OBJ3D_HXX
 #include "bf_svx/obj3d.hxx"
-#endif
 
-#ifndef _POLY3D_HXX
 #include "bf_svx/poly3d.hxx"
-#endif
 
-#ifndef _VIEWPT3D_HXX //autogen
 #include <bf_svx/viewpt3d.hxx>
-#endif
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _SVDTRANS_HXX //autogen
 #include <bf_svx/svdtrans.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _OUTLINER_HXX //autogen
 #include <bf_svx/svdoutl.hxx>
-#endif
-#ifndef _SCH_ADJUST_HXX //autogen
 #include "adjust.hxx"
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
 #include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _DEFINES_HXX
 #include "defines.hxx"
-#endif
 #include "chartbar.hxx"
 
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
-#endif
 class Vector3D;
 
 namespace binfilter {

@@ -28,13 +28,9 @@
 #ifndef _SVX_FMPAGE_HXX
 #define _SVX_FMPAGE_HXX
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
 namespace binfilter {
 

@@ -27,27 +27,17 @@
 #ifndef _CHARTINS_HXX
 #define _CHARTINS_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
 #ifdef _CHARTINS_CXX
 
-#ifndef _BASEDLGS_HXX //autogen
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 
-#ifndef _STDCTRL_HXX
 #include <bf_svtools/stdctrl.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
 #include "autoedit.hxx"
 namespace binfilter {

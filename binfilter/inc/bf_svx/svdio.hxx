@@ -28,9 +28,7 @@
 #ifndef _SVDIO_HXX
 #define _SVDIO_HXX
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

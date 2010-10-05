@@ -27,24 +27,14 @@
 #ifndef _SFX_OBJFAC_HXX
 #define _SFX_OBJFAC_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _FACTORY_HXX //autogen
 #include <bf_so3/factory.hxx>
-#endif
 
 // SFX_IMPL_MODULE_LIB
-#ifndef _OSL_MODULE_HXX_
 #include <osl/module.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/sfxdefs.hxx>

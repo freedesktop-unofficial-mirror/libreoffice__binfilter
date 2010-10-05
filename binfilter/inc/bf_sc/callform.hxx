@@ -28,9 +28,7 @@
 #ifndef SC_CALLFORM_HXX
 #define SC_CALLFORM_HXX
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------

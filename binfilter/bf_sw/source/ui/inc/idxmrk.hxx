@@ -27,51 +27,25 @@
 #ifndef _IDXMRK_HXX
 #define _IDXMRK_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _BASEDLGS_HXX
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _SV_LSTBOX_HXX
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
 
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _GROUP_HXX //autogen
 #include <vcl/group.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _IMAGEBTN_HXX //autogen
 #include <vcl/imagebtn.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include "toxe.hxx"
-#endif
-#ifndef _STDCTRL_HXX
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef  _COM_SUN_STAR_I18N_XEXTENDEDINDEXENTRYSUPPLIER_HPP_
 #include <com/sun/star/i18n/XExtendedIndexEntrySupplier.hpp>
-#endif
 namespace binfilter {
 class SwWrtShell;
 class SwTOXMgr;

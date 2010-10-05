@@ -28,19 +28,11 @@
 #define _DOCTXM_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
 class  SvUShorts;
 class  SvStringsDtor;
 class  SvPtrarr;

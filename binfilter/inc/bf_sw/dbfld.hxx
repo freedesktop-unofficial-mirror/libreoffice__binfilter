@@ -28,9 +28,7 @@
 #define _DBFLD_HXX
 
 #include "fldbas.hxx"
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;

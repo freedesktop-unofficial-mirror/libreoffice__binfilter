@@ -28,13 +28,9 @@
 #ifndef _SVDOSMEV_HXX
 #define _SVDOSMEV_HXX
 
-#ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
-#endif
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 class Date;
 class Time;
 class DateTime;

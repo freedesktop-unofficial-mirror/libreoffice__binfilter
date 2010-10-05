@@ -27,17 +27,11 @@
 #ifndef _SXMUITM_HXX
 #define _SXMUITM_HXX
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 // Vorgabe einer Masseinheit. Der Zahlenwert wird in diese Einheit umgerechnet

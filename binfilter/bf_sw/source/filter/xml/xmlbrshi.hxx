@@ -28,9 +28,7 @@
 #ifndef _XMLBRSHI_HXX
 #define _XMLBRSHI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {
     namespace io { class XOutputStream; }

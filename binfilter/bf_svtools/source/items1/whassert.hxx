@@ -27,12 +27,8 @@
 #ifndef _SFX_WHASSERT_HXX
 #define _SFX_WHASSERT_HXX
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter
 {

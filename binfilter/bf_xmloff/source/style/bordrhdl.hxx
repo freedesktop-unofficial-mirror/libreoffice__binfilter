@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PROPERTYHANDLER_BORDERTYPES_HXX
 #define _XMLOFF_PROPERTYHANDLER_BORDERTYPES_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**

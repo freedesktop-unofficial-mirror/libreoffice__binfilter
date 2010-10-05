@@ -29,9 +29,7 @@
 #define _SCEXTOPT_HXX
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 

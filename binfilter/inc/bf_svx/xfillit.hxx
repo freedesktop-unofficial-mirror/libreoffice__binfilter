@@ -28,19 +28,13 @@
 #ifndef _SVX_FILLITEM_HXX
 #define _SVX_FILLITEM_HXX
 
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
 #include <bf_svx/xcolit.hxx>
 #include <bf_svx/xgrad.hxx>
 #include <bf_svx/xhatch.hxx>
 
-#ifndef _XENUM_HXX //autogen
 #include <bf_svx/xenum.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include <bf_svx/xflclit.hxx>
 #include <bf_svx/xflgrit.hxx>

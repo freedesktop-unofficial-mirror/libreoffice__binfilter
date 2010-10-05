@@ -27,9 +27,7 @@
 #ifndef _ZOOMCTRL_HXX
 #define _ZOOMCTRL_HXX
 
-#ifndef _SVX_ZOOMCTRL_HXX //autogen
 #include <bf_svx/zoomctrl.hxx>
-#endif
 namespace binfilter {
 
 class SwZoomControl : public SvxZoomStatusBarControl

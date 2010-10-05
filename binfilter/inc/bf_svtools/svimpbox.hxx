@@ -28,25 +28,15 @@
 #ifndef _SVIMPLBOX_HXX
 #define _SVIMPLBOX_HXX
 
-#ifndef _SELENG_HXX
 #include <vcl/seleng.hxx>
-#endif
-#ifndef _SCRBAR_HXX
 #include <vcl/scrbar.hxx>
-#endif
-#ifndef _VCL_VCLEVENT_HXX
 #include <vcl/vclevent.hxx>
-#endif
 // #102891# ----------------
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
-#endif
 // #97680# -----------------
 #include <vector>
 
-#ifndef SVTOOLS_ACCESSIBLE_FACTORY_ACCESS_HXX
 #include "svtaccessiblefactory.hxx"
-#endif
 
 class Point;
 class TabBar;

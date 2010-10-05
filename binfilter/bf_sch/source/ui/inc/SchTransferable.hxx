@@ -27,9 +27,7 @@
 #ifndef _SCH_TRANSFERABLE_HXX_
 #define _SCH_TRANSFERABLE_HXX_
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
 class Graphic;

@@ -28,9 +28,7 @@
 #ifndef SC_MARKARR_HXX
 #define SC_MARKARR_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 #define SC_MARKARRAY_DELTA    4

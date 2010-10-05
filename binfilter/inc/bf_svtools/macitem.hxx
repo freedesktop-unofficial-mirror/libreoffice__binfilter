@@ -29,29 +29,17 @@
 
 // class SvxMacroItem ----------------------------------------------------
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TABLE_HXX
 #include <tools/table.hxx>
-#endif
 
 class SvStream;
 

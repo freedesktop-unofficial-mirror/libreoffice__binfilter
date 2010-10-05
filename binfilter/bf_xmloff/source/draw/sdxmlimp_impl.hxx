@@ -28,33 +28,21 @@
 #ifndef _SDXMLIMP_IMPL_HXX
 #define _SDXMLIMP_IMPL_HXX
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
 #include <com/sun/star/task/XStatusIndicator.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include "xmltkmap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

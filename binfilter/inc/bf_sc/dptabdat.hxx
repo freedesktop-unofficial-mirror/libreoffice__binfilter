@@ -28,9 +28,7 @@
 #ifndef SC_DPTABDAT_HXX
 #define SC_DPTABDAT_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class TypedStrCollection;

@@ -28,19 +28,11 @@
 #ifndef _SO2DLL_HXX
 #define _SO2DLL_HXX
 
-#ifndef _PSTM_HXX //autogen
 #include <tools/pstm.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/

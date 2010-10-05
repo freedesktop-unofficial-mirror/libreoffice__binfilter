@@ -25,16 +25,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XINTERACTIONFILTEROPTIONS_HPP_
 #include <com/sun/star/document/XInteractionFilterOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
 #include <framework/interaction.hxx>
-#endif
 
 using namespace ::framework;
 namespace binfilter {

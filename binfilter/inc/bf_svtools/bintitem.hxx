@@ -28,21 +28,13 @@
 #ifndef _BINTITEM_HXX
 #define _BINTITEM_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 

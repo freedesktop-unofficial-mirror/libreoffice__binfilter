@@ -28,13 +28,9 @@
 #ifndef SC_FORMDATA_HXX
 #define SC_FORMDATA_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 
 

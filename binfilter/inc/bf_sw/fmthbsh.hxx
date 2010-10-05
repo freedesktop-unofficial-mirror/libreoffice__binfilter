@@ -28,9 +28,7 @@
 #define _FMTHBSH_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 // ATT_SOFTHYPH ******************************

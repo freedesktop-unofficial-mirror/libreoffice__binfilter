@@ -27,20 +27,12 @@
 #ifndef _FESH_HXX
 #define _FESH_HXX
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
-#endif
-#ifndef _FLYENUM_HXX
 #include <flyenum.hxx>
-#endif
 
 // OD 25.06.2003 #108784#
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 
 #include <vector>
 class Color;

@@ -29,13 +29,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXSTBITEM_HXX //autogen
 #include <bf_sfx2/stbitem.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 // class BookmarkToolBoxControl -------------------------------------------

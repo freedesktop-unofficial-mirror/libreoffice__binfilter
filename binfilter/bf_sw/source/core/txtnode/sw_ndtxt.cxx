@@ -32,9 +32,7 @@
 
 #include <hintids.hxx>
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 #include <com/sun/star/i18n/InputSequenceCheckMode.hpp>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svtools/urihelper.hxx>

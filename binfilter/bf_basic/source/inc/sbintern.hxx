@@ -29,9 +29,7 @@
 #define _SB_INTERN_HXX
 
 #include <sbxfac.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 #include "sb.hxx"
 
 namespace

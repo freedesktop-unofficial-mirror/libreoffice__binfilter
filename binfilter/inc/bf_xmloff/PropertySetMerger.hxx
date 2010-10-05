@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
 #define _XMLOFF_PROPERTYSETMERGER_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 namespace binfilter {
 
 extern ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >

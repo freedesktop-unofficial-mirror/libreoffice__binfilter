@@ -28,13 +28,9 @@
 #ifndef SC_DETDATA_HXX
 #define SC_DETDATA_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 

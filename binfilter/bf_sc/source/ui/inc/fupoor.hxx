@@ -28,15 +28,9 @@
 #ifndef _SC_FUPOOR_HXX
 #define _SC_FUPOOR_HXX
 
-#ifndef _EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
 class Window;
 class Dialog;
 namespace binfilter {

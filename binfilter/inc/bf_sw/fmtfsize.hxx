@@ -27,19 +27,13 @@
 #ifndef _FMTFSIZE_HXX
 #define _FMTFSIZE_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
+
 class IntlWrapper;
+
 namespace binfilter {
-
-
 
 //Die Framesize ---------------------------------
 

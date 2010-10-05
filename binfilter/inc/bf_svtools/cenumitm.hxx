@@ -28,13 +28,9 @@
 #ifndef _SVTOOLS_CENUMITM_HXX
 #define _SVTOOLS_CENUMITM_HXX
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 namespace binfilter {
 

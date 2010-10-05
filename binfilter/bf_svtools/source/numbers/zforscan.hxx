@@ -27,22 +27,12 @@
 #ifndef _ZFORSCAN_HXX
 #define _ZFORSCAN_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #include <bf_svtools/nfkeytab.hxx>
-#endif
 
 namespace binfilter
 {

@@ -49,13 +49,9 @@ namespace com { namespace sun { namespace star { namespace i18n {
 }}}}
 
 
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 typedef SwFieldType* SwFldTypePtr;

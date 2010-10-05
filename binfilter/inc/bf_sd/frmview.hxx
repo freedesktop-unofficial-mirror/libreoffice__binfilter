@@ -30,13 +30,9 @@
 
 #include <com/sun/star/beans/PropertyValue.hpp>
 
-#ifndef _SVDVIEW_HXX
 #include <bf_svx/svdview.hxx>
-#endif
 
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
 namespace binfilter {
 
 class SdDrawDocument;

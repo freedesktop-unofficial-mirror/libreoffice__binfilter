@@ -28,16 +28,10 @@
 #ifndef _SVTOOLS_LNGMISC_HXX_
 #define _SVTOOLS_LNGMISC_HXX_
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 ///////////////////////////////////////////////////////////////////////////
 

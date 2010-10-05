@@ -29,13 +29,9 @@
 
 #include <limits.h>
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _SVX_FRMDIR_HXX
 #include <bf_svx/frmdir.hxx>
-#endif
 namespace binfilter {
 
 // POOLCOLL-IDs:

@@ -28,15 +28,11 @@
 #ifndef _PERSIST_HXX
 #define _PERSIST_HXX
 
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 #include <bf_so3/so2ref.hxx>
 #include <bf_so3/iface.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/

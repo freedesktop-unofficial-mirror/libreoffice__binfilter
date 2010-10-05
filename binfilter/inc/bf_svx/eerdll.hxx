@@ -30,9 +30,7 @@
 namespace binfilter {
 class GlobalEditData;
 }//end of namespace binfilter
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 
 namespace binfilter {
 

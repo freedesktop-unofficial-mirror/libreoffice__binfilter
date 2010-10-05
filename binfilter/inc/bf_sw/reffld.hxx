@@ -27,9 +27,7 @@
 #ifndef _REFFLD_HXX
 #define _REFFLD_HXX
 
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;

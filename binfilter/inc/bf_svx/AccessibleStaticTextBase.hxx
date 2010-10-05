@@ -30,19 +30,13 @@
 
 #include <memory>
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
 #include <com/sun/star/accessibility/XAccessible.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXT_HPP_
 #include <com/sun/star/accessibility/XAccessibleText.hpp>
-#endif
 
 namespace binfilter {
 

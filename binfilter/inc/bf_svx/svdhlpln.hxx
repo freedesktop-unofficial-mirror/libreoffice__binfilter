@@ -28,14 +28,10 @@
 #ifndef _SVDHLPLN_HXX
 #define _SVDHLPLN_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 

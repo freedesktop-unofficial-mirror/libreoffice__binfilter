@@ -28,15 +28,9 @@
 #ifndef SVX_DBTOOLSCLIENT_HXX
 #define SVX_DBTOOLSCLIENT_HXX
 
-#ifndef CONNECTIVITY_VIRTUAL_DBTOOLS_HXX
 #include <connectivity/virtualdbtools.hxx>
-#endif
-#ifndef _OSL_MODULE_H_
 #include <osl/module.h>
-#endif
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 //........................................................................
 namespace svxform

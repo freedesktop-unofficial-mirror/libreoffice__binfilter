@@ -28,13 +28,9 @@
 #ifndef _FORMS_RADIOBUTTON_HXX_
 #define _FORMS_RADIOBUTTON_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................

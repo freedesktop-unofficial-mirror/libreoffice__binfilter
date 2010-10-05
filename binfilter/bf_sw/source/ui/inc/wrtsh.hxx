@@ -27,12 +27,8 @@
 #ifndef _WRTSH_HXX
 #define _WRTSH_HXX
 
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
-#endif
 #include <tools/debug.hxx>
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;

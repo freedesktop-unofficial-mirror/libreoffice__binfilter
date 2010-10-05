@@ -28,9 +28,7 @@
 #ifndef _SCH_SCHGROUP_HXX
 #define _SCH_SCHGROUP_HXX
 
-#ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
-#endif
 
 #include "chtmodel.hxx"
 namespace binfilter {

@@ -28,12 +28,8 @@
 #define PARSE_HXX
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _STACK_HXX //autogen
 #include <tools/stack.hxx>
-#endif
 
 namespace binfilter {
 

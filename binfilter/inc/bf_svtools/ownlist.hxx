@@ -28,20 +28,12 @@
 #ifndef _OWNLIST_HXX
 #define _OWNLIST_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_OWNLIST_HXX //autogen
 #include <tools/ownlist.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace beans {

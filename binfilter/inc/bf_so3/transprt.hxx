@@ -28,29 +28,17 @@
 #ifndef _TRANSPRT_HXX
 #define _TRANSPRT_HXX "$Revision: 1.5 $"
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <bf_so3/binding.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class DateTime;
 

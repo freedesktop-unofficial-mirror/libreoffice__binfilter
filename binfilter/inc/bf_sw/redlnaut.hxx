@@ -27,12 +27,8 @@
 #ifndef _REDLNAUT_HXX
 #define _REDLNAUT_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
 #include "swtypes.hxx"
 namespace binfilter {

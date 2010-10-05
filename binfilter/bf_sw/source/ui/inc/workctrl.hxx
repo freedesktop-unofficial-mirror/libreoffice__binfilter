@@ -27,19 +27,11 @@
 #ifndef _WORKCTRL_HXX
 #define _WORKCTRL_HXX
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 
-#ifndef _SV_TOOLBOX_HXX
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _STDCTRL_HXX
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef _IMAGEBTN_HXX //autogen
 #include <vcl/imagebtn.hxx>
-#endif
 class PopupMenu;
 namespace binfilter {
 

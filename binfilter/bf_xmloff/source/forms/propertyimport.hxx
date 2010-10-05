@@ -28,22 +28,12 @@
 #ifndef _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 #define _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct Time;
     struct Date;

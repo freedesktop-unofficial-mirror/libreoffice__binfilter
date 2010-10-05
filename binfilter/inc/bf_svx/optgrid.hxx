@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 namespace binfilter {
 
 class SvxGridTabPage;

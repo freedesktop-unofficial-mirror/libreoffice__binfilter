@@ -28,12 +28,8 @@
 #ifndef _SVX_ACCESSIBILITY_IACCESSIBLE_PARENT_HXX
 #define _SVX_ACCESSIBILITY_IACCESSIBLE_PARENT_HXX
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 namespace accessibility {

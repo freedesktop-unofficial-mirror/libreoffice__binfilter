@@ -29,9 +29,7 @@
 
 #include <tools/list.hxx>
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 #include "bf_sfx2/minarray.hxx"
 namespace binfilter {
 

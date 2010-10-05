@@ -28,12 +28,8 @@
 #ifndef _SCH_DATAROW_HXX
 #define _SCH_DATAROW_HXX
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

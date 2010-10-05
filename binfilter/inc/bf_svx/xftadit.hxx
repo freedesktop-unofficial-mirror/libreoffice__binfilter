@@ -28,9 +28,7 @@
 #ifndef _SVX_XFTADIT_HXX
 #define _SVX_XFTADIT_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

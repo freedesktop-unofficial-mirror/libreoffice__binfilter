@@ -28,12 +28,8 @@
 #define _CRSTATE_HXX
 
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 namespace binfilter {
 
 enum SwFillMode

@@ -28,12 +28,8 @@
 #ifndef _SWPRTOPT_HXX
 #define _SWPRTOPT_HXX
 
-#ifndef _SV_MULTISEL_HXX //autogen
 #include <tools/multisel.hxx>
-#endif
-#ifndef _SW_PRINTDATA_HXX
 #include <printdata.hxx>
-#endif
 namespace binfilter {
 
 #define POSTITS_NONE    0

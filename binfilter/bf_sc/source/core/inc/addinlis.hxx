@@ -28,25 +28,15 @@
 #ifndef SC_ADDINLIS_HXX
 #define SC_ADDINLIS_HXX
 
-#ifndef _SC_ADIASYNC_HXX
 #include "adiasync.hxx"         // for ScAddInDocs PtrArr
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XRESULTLISTENER_HPP_
 #include <com/sun/star/sheet/XResultListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XVOLATILERESULT_HPP_
 #include <com/sun/star/sheet/XVolatileResult.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 namespace binfilter {
 
 

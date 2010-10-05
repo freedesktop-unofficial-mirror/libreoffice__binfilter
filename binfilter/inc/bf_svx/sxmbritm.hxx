@@ -27,13 +27,9 @@
 #ifndef _SXMBRITM_HXX
 #define _SXMBRITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef SXMBRITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 // Die Masslinie unterhalb der Bezugskante

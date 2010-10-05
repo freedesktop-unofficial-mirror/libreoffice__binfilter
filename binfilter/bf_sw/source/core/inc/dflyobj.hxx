@@ -27,12 +27,8 @@
 #ifndef _DFLYOBJ_HXX
 #define _DFLYOBJ_HXX
 
-#ifndef _SVDOVIRT_HXX //autogen
 #include <bf_svx/svdovirt.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 class SwFlyFrm;

@@ -28,9 +28,7 @@
 #ifndef _SVX_XIT_HXX
 #define _SVX_XIT_HXX
 
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
 namespace binfilter {
 
     class SfxItemPool;

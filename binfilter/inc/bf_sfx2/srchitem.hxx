@@ -28,35 +28,17 @@
 #define _SFX_SRCHITEM_HXX
 
 // include ---------------------------------------------------------------
-#ifndef _COM_SUN_STAR_UTIL_XSEARCHDESCRIPTOR_HPP_
 #include <com/sun/star/util/XSearchDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
 #include <com/sun/star/util/SearchOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
 #include <com/sun/star/util/SearchFlags.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HPP_
 #include <com/sun/star/i18n/TransliterationModules.hpp>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SFX_SRCHDEFS_HXX_
 #include <bf_sfx2/srchdefs.hxx>
-#endif
 namespace binfilter {
 
 // defines ---------------------------------------------------------------

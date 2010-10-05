@@ -27,9 +27,7 @@
 #ifndef _DOCUFLD_HXX
 #define _DOCUFLD_HXX
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
 
 #include "fldbas.hxx"
 #include "numrule.hxx"

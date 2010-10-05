@@ -29,39 +29,19 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVX_XDASH_HXX
 #include <bf_svx/xdash.hxx>
-#endif
-#ifndef _SVX_XHATCH_HXX
 #include <bf_svx/xhatch.hxx>
-#endif
-#ifndef _SVX__XGRADIENT_HXX
 #include <bf_svx/xgrad.hxx>
-#endif
-#ifndef _SVX_XBITMAP_HXX
 #include <bf_svx/xbitmap.hxx>
-#endif
-#ifndef _SVX_XFLASIT_HXX
 #include <bf_svx/xflasit.hxx>
-#endif
-#ifndef _SVX_XLNASIT_HXX
 #include <bf_svx/xlnasit.hxx>
-#endif
 
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 class Color;
 class Bitmap;
 class VirtualDevice;

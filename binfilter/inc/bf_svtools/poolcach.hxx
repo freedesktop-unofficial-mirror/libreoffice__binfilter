@@ -27,13 +27,9 @@
 #ifndef _SFXPOOLCACH_HXX
 #define _SFXPOOLCACH_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 namespace binfilter
 {

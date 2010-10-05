@@ -29,9 +29,7 @@
 #ifndef _MyEDITDATA_HXX
 #define _MyEDITDATA_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include <bf_svtools/svarray.hxx>
 namespace binfilter {

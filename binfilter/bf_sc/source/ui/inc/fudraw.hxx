@@ -28,13 +28,9 @@
 #ifndef SC_FUDRAW_HXX
 #define SC_FUDRAW_HXX
 
-#ifndef _SC_FUPOOR_HXX
 #include "fupoor.hxx"
-#endif
 
-#ifndef _SV_POINTR_HXX //autogen
 #include <vcl/pointr.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

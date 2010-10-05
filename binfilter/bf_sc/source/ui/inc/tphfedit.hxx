@@ -28,40 +28,22 @@
 #ifndef SC_TPHFEDIT_HXX
 #define SC_TPHFEDIT_HXX
 
-#ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
-#endif
 
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
 
-#ifndef _SV_GROUP_HXX //autogen
 #include <vcl/group.hxx>
-#endif
 
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"          // wegen enum SvxNumType
-#endif
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef SC_POPMENU_HXX
 #include <popmenu.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
 #include <com/sun/star/accessibility/XAccessible.hpp>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace binfilter {
 
 //===================================================================

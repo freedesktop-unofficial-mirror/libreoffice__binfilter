@@ -30,16 +30,10 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
-#ifndef _E3D_VIEW3D_HXX
 #include <bf_svx/view3d.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)

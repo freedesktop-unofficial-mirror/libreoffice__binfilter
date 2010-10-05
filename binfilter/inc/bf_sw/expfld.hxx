@@ -27,16 +27,10 @@
 #ifndef _EXPFLD_HXX
 #define _EXPFLD_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _CELLFML_HXX
 #include <cellfml.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;

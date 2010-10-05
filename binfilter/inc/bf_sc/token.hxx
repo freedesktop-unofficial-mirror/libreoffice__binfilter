@@ -30,13 +30,9 @@
 
 #include <string.h>     // memcpy(), don't use memory.h
 
-#ifndef SC_OPCODE_HXX
 #include "opcode.hxx"
-#endif
 
-#ifndef SC_REFDATA_HXX
 #include "refdata.hxx"
-#endif
 namespace binfilter {
 
 

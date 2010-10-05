@@ -27,25 +27,13 @@
 #ifndef _PAGEDESC_HXX
 #define _PAGEDESC_HXX
 
-#ifndef _FRACT_HXX
 #include <tools/fract.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>  //fuer SwTwips
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;

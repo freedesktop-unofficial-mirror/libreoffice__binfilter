@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLNMSPE_HXX
 #define _XMLOFF_XMLNMSPE_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 #define XML_NAMESPACE( prefix, key ) \

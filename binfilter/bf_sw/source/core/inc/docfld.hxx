@@ -28,12 +28,8 @@
 #ifndef _DOCFLD_HXX
 #define _DOCFLD_HXX
 
-#ifndef _CALC_HXX
 #include <calc.hxx>         // fuer SwHash
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtFld;

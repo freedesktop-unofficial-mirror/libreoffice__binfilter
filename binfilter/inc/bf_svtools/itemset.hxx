@@ -33,15 +33,9 @@
 #include <cstdarg>  // std::va_list and friends
 #endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class SvStream;
 

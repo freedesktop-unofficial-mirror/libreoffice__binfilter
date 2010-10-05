@@ -28,13 +28,9 @@
 #ifndef _SVDOGRP_HXX
 #define _SVDOGRP_HXX
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 class SdrObjListIter;
 namespace binfilter {
 

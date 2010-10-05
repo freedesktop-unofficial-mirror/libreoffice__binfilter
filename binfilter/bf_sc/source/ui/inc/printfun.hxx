@@ -29,17 +29,11 @@
 #define SC_PRINTFUN_HXX
 
 
-#ifndef SC_PAGEPAR_HXX
 #include "pagepar.hxx"
-#endif
 
-#ifndef SC_EDITUTIL_HXX
 #include "editutil.hxx"
-#endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
 class MultiSelection;
 namespace binfilter {
 

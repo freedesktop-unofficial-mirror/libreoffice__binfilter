@@ -29,9 +29,7 @@
 
 #include <tools/solar.h>
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 class String;
 namespace binfilter {
 

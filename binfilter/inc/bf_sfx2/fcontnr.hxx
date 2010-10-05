@@ -27,12 +27,8 @@
 #ifndef _SFX_FCONTNR_HXX
 #define _SFX_FCONTNR_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfxdefs.hxx>

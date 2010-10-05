@@ -28,12 +28,8 @@
 #define SW_LINEINFO_HXX
 
 
-#ifndef _CALBCK_HXX
 #include "calbck.hxx"
-#endif
-#ifndef _NUMRULE_HXX
 #include "numrule.hxx"
-#endif
 namespace binfilter {
 
 class SwCharFmt;

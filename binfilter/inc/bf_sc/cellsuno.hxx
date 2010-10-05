@@ -29,166 +29,62 @@
 #define SC_CELLSUNO_HXX
 
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"         // ScRangeList
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_XTABLECHARTSSUPPLIER_HPP_
 #include <com/sun/star/table/XTableChartsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XFORMULAQUERY_HPP_
 #include <com/sun/star/sheet/XFormulaQuery.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEADDRESSABLE_HPP_
 #include <com/sun/star/sheet/XCellRangeAddressable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETOPERATION_HPP_
 #include <com/sun/star/sheet/XSheetOperation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCELLRANGECONTAINER_HPP_
 #include <com/sun/star/sheet/XSheetCellRangeContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLFORMATRANGESSUPPLIER_HPP_
 #include <com/sun/star/sheet/XCellFormatRangesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XUNIQUECELLFORMATRANGESSUPPLIER_HPP_
 #include <com/sun/star/sheet/XUniqueCellFormatRangesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGESQUERY_HPP_
 #include <com/sun/star/sheet/XCellRangesQuery.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETFILTERABLEEX_HPP_
 #include <com/sun/star/sheet/XSheetFilterableEx.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
 #include <com/sun/star/sheet/XSpreadsheet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETPAGEBREAK_HPP_
 #include <com/sun/star/sheet/XSheetPageBreak.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEMOVEMENT_HPP_
 #include <com/sun/star/sheet/XCellRangeMovement.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XPRINTAREAS_HPP_
 #include <com/sun/star/sheet/XPrintAreas.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETLINKABLE_HPP_
 #include <com/sun/star/sheet/XSheetLinkable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSUBTOTALCALCULATABLE_HPP_
 #include <com/sun/star/sheet/XSubTotalCalculatable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XARRAYFORMULARANGE_HPP_
 #include <com/sun/star/sheet/XArrayFormulaRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEDATA_HPP_
 #include <com/sun/star/sheet/XCellRangeData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEFORMULA_HPP_
 #include <com/sun/star/sheet/XCellRangeFormula.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLSERIES_HPP_
 #include <com/sun/star/sheet/XCellSeries.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XMULTIPLEOPERATION_HPP_
 #include <com/sun/star/sheet/XMultipleOperation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLADDRESSABLE_HPP_
 #include <com/sun/star/sheet/XCellAddressable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREPLACEABLE_HPP_
 #include <com/sun/star/util/XReplaceable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XINDENT_HPP_
 #include <com/sun/star/util/XIndent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMERGEABLE_HPP_
 #include <com/sun/star/util/XMergeable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XAUTOFORMATTABLE_HPP_
 #include <com/sun/star/table/XAutoFormattable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSORTABLE_HPP_
 #include <com/sun/star/util/XSortable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XIMPORTABLE_HPP_
 #include <com/sun/star/util/XImportable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLEBORDER_HPP_
 #include <com/sun/star/table/TableBorder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATAPILOTTABLESSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDataPilotTablesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONANCHOR_HPP_
 #include <com/sun/star/sheet/XSheetAnnotationAnchor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSCENARIOSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XScenariosSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XSheetAnnotationsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETAUDITING_HPP_
 #include <com/sun/star/sheet/XSheetAuditing.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETOUTLINE_HPP_
 #include <com/sun/star/sheet/XSheetOutline.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XPROTECTABLE_HPP_
 #include <com/sun/star/util/XProtectable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSCENARIO_HPP_
 #include <com/sun/star/sheet/XScenario.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
 
 #include <vector>
 namespace binfilter {

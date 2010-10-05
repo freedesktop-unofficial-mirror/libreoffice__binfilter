@@ -32,9 +32,7 @@
 // class XDash
 //-------------
 
-#ifndef _XENUM_HXX //autogen
 #include <bf_svx/xenum.hxx>
-#endif
 namespace binfilter {
 
 class XDash

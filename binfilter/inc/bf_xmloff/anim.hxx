@@ -28,21 +28,13 @@
 #ifndef _XMLOFF_ANIM_HXX
 #define _XMLOFF_ANIM_HXX
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
 #include <com/sun/star/presentation/AnimationEffect.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include "xmlement.hxx"
-#endif
 namespace binfilter {
 
 enum XMLEffect

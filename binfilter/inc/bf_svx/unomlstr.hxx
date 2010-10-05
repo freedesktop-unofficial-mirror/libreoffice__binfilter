@@ -27,9 +27,7 @@
 #ifndef _SVX_UNOMLSTR_HXX
 #define _SVX_UNOMLSTR_HXX
 
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
 #include <com/sun/star/util/XModifyListener.hpp>
-#endif
 
 #include <cppuhelper/implbase1.hxx>
 namespace binfilter {

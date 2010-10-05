@@ -28,17 +28,13 @@
 #ifndef _B3D_VOLUM_HXX
 #define _B3D_VOLUM_HXX
 
-#ifndef _SVX_VECTOR3D_HXX
 #include "vector3d.hxx"
-#endif
 
 #ifndef _INC_FLOAT
 #include <float.h>
 #endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 /*************************************************************************
 |*

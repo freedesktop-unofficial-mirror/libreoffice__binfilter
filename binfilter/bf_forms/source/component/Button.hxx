@@ -28,13 +28,9 @@
 #ifndef _FRM_BUTTON_HXX_
 #define _FRM_BUTTON_HXX_
 
-#ifndef _FRM_IMAGE_HXX_
 #include "Image.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XBUTTON_HPP_
 #include <com/sun/star/awt/XButton.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

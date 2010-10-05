@@ -29,9 +29,7 @@
 
 #include <com/sun/star/text/HoriOrientation.hpp>
 #include <com/sun/star/text/ControlCharacter.hpp>
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HDL_
 #include <com/sun/star/text/XTextField.hdl>
-#endif
 
 
 

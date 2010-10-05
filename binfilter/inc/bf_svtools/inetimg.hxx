@@ -27,12 +27,8 @@
 #ifndef _INETIMG_HXX
 #define _INETIMG_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 namespace binfilter
 {

@@ -28,13 +28,9 @@
 #ifndef SC_DOCITER_HXX
 #define SC_DOCITER_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocument;

@@ -27,24 +27,12 @@
 #ifndef _UNOIDX_HXX
 #define _UNOIDX_HXX
 
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEXMARK_HPP_
 #include <com/sun/star/text/XDocumentIndexMark.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEX_HPP_
 #include <com/sun/star/text/XDocumentIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
 namespace binfilter {
 class SwTOXBaseSection;
 class SwTOXMark;

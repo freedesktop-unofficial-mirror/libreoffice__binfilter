@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 #define _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include "xmlimppr.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLImport;

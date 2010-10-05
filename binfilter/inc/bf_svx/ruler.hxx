@@ -28,13 +28,9 @@
 #define _SVX_RULER_HXX
 
 
-#ifndef _RULER_HXX //autogen
 #include <bf_svtools/ruler.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 class SfxRectangleItem;
 class SfxBoolItem;
 namespace binfilter {

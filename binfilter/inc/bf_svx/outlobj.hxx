@@ -28,21 +28,13 @@
 #ifndef _OUTLOBJ_HXX
 #define _OUTLOBJ_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include <bf_svx/eeitem.hxx>
 class SvStream;

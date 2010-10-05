@@ -27,12 +27,8 @@
 #ifndef _SW_TEXTCURSORHELPER_HXX
 #define _SW_TEXTCURSORHELPER_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;

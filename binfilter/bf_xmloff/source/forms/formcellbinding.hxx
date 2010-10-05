@@ -28,27 +28,13 @@
 #ifndef XMLOFF_FORMS_FORMCELLBINDING
 #define XMLOFF_FORMS_FORMCELLBINDING
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _DRAFTS_COM_SUN_STAR_FORM_XVALUEBINDING_HPP_
 #include <drafts/com/sun/star/form/XValueBinding.hpp>
-#endif
-#ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSOURCE_HPP_
 #include <drafts/com/sun/star/form/XListEntrySource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 namespace binfilter {
 
 //............................................................................

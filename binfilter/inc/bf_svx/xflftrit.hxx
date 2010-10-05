@@ -28,9 +28,7 @@
 #ifndef _SVX_XFLFTRIT_HXX
 #define _SVX_XFLFTRIT_HXX
 
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include <bf_svx/xflgrit.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------------------

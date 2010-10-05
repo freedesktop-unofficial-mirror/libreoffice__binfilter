@@ -27,9 +27,7 @@
 
 #ifdef SOLAR_JAVA
 
-#ifndef _SFXSFXJS_HXX
 #include <bf_sfx2/sfxjs.hxx>
-#endif
 namespace binfilter {
 
 class VCControl;

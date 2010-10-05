@@ -28,13 +28,9 @@
 #ifndef SVTOOLS_TOOLTIPLBOX_HXX
 #define SVTOOLS_TOOLTIPLBOX_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SV_LSTBOX_HXX
 #include <vcl/lstbox.hxx>
-#endif
 
 namespace binfilter
 {

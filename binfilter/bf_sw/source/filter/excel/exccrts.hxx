@@ -29,9 +29,7 @@
 
 #include "fltglbls.hxx"
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 // ----------------------------------------------- class ColRowSettings --

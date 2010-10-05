@@ -30,12 +30,8 @@
 
 // -----------------------------------------------------------------------
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 class Table;
 namespace binfilter {
 

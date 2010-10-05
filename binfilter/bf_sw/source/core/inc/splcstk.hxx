@@ -27,9 +27,7 @@
 #ifndef _SPLCSTK_HXX
 #define _SPLCSTK_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 class SwIntrnlCrsr;

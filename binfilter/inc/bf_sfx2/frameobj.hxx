@@ -28,9 +28,7 @@
 #ifndef _FRAMEOBJ_HXX
 #define _FRAMEOBJ_HXX
 
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 namespace binfilter {
 
 //=========================================================================

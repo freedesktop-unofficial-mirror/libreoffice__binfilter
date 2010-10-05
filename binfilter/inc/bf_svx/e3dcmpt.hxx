@@ -29,9 +29,7 @@
 #define _E3D_E3DIOCMPT_HXX
 
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 class SvStream;
 namespace binfilter {
 

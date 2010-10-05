@@ -28,9 +28,7 @@
 #ifndef _DBTOKEN_HXX
 #define _DBTOKEN_HXX
 
-#ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
-#endif
 namespace binfilter {
 
 

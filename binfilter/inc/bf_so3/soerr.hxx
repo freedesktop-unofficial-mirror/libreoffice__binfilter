@@ -27,9 +27,7 @@
 #ifndef _SOERR_HXX
 #define _SOERR_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 
 // Fehler Codes
 #define RID_SO_ERROR_HANDLER    32000

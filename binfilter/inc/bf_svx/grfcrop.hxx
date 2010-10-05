@@ -27,9 +27,7 @@
 #ifndef _SVX_GRFCROP_HXX
 #define _SVX_GRFCROP_HXX
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 #define GRFCROP_VERSION_SWDEFAULT       0

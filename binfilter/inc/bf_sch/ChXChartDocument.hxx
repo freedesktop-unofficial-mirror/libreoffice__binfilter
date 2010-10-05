@@ -28,61 +28,29 @@
 #ifndef _SCH_CHXCHARTDOCUMENT_HXX
 #define _SCH_CHXCHARTDOCUMENT_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDOCUMENT_HPP_
 #include <com/sun/star/chart/XChartDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATACHANGEEVENTLISTENER_HPP_
 #include <com/sun/star/chart/XChartDataChangeEventListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XDIAGRAM_HPP_
 #include <com/sun/star/chart/XDiagram.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
 
 // header for SfxBaseModel
-#ifndef _SFX_SFXBASEMODEL_HXX_
 #include <bf_sfx2/sfxbasemodel.hxx>
-#endif
 // header for SvxUnoDrawMSFactory
-#ifndef SVX_UNOMOD_HXX
 #include <bf_svx/unomod.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 // header for SvxItemPropertySet
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 
-#ifndef _SCH_ADDINCOLLECTION_HXX_
 #include "SchAddInCollection.hxx"
-#endif
 namespace binfilter {
 
 class ChartModel;

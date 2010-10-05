@@ -28,13 +28,9 @@
 #ifndef _SC_XMLCALCULATIONSETTINGSCONTEXT_HXX
 #define _SC_XMLCALCULATIONSETTINGSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

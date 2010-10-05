@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_METAEXPORTCOMPONENT_HXX
 #define _XMLOFF_METAEXPORTCOMPONENT_HXX
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 namespace binfilter {
 
 class XMLMetaExportComponent : public SvXMLExport

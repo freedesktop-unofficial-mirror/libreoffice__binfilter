@@ -28,12 +28,8 @@
 #ifndef SVTOOLS_URL_FILTER_HXX
 #define SVTOOLS_URL_FILTER_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 #include <functional>
 #include <vector>
 

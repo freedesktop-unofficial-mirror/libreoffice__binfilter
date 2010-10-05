@@ -34,9 +34,7 @@ class Vector3D;
 #include <math.h>
 #endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 const double fPiDiv180 = 0.01745329251994;

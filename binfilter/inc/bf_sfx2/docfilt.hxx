@@ -27,13 +27,9 @@
 #ifndef _SFX_DOCFILT_HACK_HXX
 #define _SFX_DOCFILT_HACK_HXX
 
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
 #include <com/sun/star/plugin/PluginDescription.hpp>
-#endif
 
-#ifndef _WLDCRD_HXX //autogen
 #include <tools/wldcrd.hxx>
-#endif
 namespace binfilter {
 
 #define SFX_FILTER_IMPORT            0x00000001L

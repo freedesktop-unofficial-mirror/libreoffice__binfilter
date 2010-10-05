@@ -28,9 +28,7 @@
 #ifndef XMLOFF_FORMSTYLES_HXX
 #define XMLOFF_FORMSTYLES_HXX
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

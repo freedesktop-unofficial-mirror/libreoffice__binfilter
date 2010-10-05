@@ -28,9 +28,7 @@
 #define _SWBASLNK_HXX
 
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
 namespace binfilter {
 
 class SwNode;

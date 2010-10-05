@@ -36,9 +36,7 @@
 
 class SdrObjFactory;
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 class E3dObjFactory

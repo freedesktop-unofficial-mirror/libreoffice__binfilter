@@ -28,34 +28,16 @@
 #define _NUMRULE_HXX
 
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _SV_GEN_HXX //autogen wg. Size
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
-#ifndef _ERRHDL_HXX
 #include <errhdl.hxx>       // Fuer die inline-ASSERTs
-#endif
-#ifndef _SWERROR_H
 #include <error.h>          // Fuer die inline-ASSERTs
-#endif
-#ifndef _SVX_NUMITEM_HXX
 #include <bf_svx/numitem.hxx>
-#endif
 class Font;
 namespace binfilter {
 

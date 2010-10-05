@@ -28,19 +28,11 @@
 #define _FORMAT_HXX
 
 
-#ifndef  _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>     // fuer SfxItemPool/-Set, Attr forward decl.
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>       // fuer SwModify
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;

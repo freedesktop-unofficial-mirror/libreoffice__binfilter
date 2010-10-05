@@ -27,9 +27,7 @@
 #ifndef _TXTFLCNT_HXX
 #define _TXTFLCNT_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwFlyInCntFrm;

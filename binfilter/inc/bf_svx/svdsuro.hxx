@@ -28,9 +28,7 @@
 #ifndef _SVDSURO_HXX
 #define _SVDSURO_HXX
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

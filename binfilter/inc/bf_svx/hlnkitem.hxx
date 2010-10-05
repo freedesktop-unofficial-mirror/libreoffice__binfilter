@@ -27,19 +27,11 @@
 #ifndef _SVX_HLNKITEM_HXX
 #define _SVX_HLNKITEM_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
 
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
 namespace binfilter {
 
 #define HYPERDLG_EVENT_MOUSEOVER_OBJECT     0x0001

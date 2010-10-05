@@ -28,9 +28,7 @@
 #define _NDINDEX_HXX
 
 #include <limits.h>
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 #include "node.hxx"
 #include "ndarr.hxx"

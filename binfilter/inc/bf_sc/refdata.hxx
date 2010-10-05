@@ -28,9 +28,7 @@
 #ifndef SC_REFDATA_HXX
 #define SC_REFDATA_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 

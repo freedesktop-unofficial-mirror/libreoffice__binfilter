@@ -27,13 +27,9 @@
 #ifndef _SDSXYITM_HXX
 #define _SDSXYITM_HXX
 
-#ifndef _SDMETITM_HXX
 #include <bf_svx/sdmetitm.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //---------------------

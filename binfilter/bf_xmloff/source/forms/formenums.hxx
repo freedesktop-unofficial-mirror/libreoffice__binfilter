@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_FORMENUMS_HXX_
 #define _XMLOFF_FORMENUMS_HXX_
 
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include "xmlement.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

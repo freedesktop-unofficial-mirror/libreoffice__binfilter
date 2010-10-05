@@ -28,25 +28,15 @@
 #ifndef SC_DISPUNO_HXX
 #define SC_DISPUNO_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
 #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScImportParam
-#endif
 
 namespace com { namespace sun { namespace star { namespace frame {
     class XDispatchProviderInterception;

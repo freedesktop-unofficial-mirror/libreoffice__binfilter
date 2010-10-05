@@ -30,9 +30,7 @@
 
 #include <bf_svx/xenum.hxx>
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 namespace binfilter {
 
 //-----------------

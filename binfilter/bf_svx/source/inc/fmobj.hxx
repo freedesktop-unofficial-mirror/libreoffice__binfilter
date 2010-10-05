@@ -27,16 +27,10 @@
 #ifndef _SVX_FMOBJ_HXX
 #define _SVX_FMOBJ_HXX
 
-#ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 namespace binfilter {
 
 class FmFormView;

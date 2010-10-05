@@ -28,15 +28,11 @@
 #ifndef _XMLOFF_SINGEPROPERTYSETINFOCACHE_HXX
 #define _XMLOFF_SINGEPROPERTYSETINFOCACHE_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 #include <hash_map>
 
-#ifndef _XMLOFF_PROPERTYSETINFOHASH_HXX
 #include <bf_xmloff/PropertySetInfoHash.hxx>
-#endif
 namespace binfilter {
 
 typedef ::std::hash_map

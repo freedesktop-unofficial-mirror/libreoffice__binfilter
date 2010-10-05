@@ -28,18 +28,10 @@
 #define _SFX_SAVEOPT_HXX
 
 
-#ifndef _SV_WINTYPES_HXX //autogen
 #include <vcl/wintypes.hxx>
-#endif
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 // -----------------------------------------------------------------------
 #include "bf_sfx2/cfgitem.hxx"
 namespace binfilter {

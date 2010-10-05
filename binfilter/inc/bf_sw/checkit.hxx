@@ -28,13 +28,9 @@
 #ifndef _CHECKIT_HXX
 #define _CHECKIT_HXX
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_XINPUTSEQUENCECHECKER_HPP_
 #include <com/sun/star/i18n/XInputSequenceChecker.hpp>
-#endif
 namespace binfilter {
 
 /*************************************************************************

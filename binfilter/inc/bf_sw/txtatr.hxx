@@ -27,12 +27,8 @@
 #ifndef _TXTATR_HXX
 #define _TXTATR_HXX
 
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>     // SwTxtAttr/SwTxtAttrEnd
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtNode;    // fuer SwTxtFld

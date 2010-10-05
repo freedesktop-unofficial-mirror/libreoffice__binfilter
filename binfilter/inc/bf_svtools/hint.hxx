@@ -27,9 +27,7 @@
 #ifndef _SFXHINT_HXX
 #define _SFXHINT_HXX
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 namespace binfilter
 {

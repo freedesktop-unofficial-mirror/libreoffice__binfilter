@@ -28,9 +28,7 @@
 #ifndef _ZFORFIND_HXX
 #define _ZFORFIND_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 class Date;
 

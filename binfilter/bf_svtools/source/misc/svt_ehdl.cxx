@@ -30,9 +30,7 @@
 
 #include <vos/mutex.hxx>
 #include <tools/debug.hxx>
-#ifndef _TOOLS_RCID_H //autogen
 #include <tools/rcid.h>
-#endif
 #include <vcl/wintypes.hxx>
 #include <vcl/msgbox.hxx>
 #include <vcl/svapp.hxx>

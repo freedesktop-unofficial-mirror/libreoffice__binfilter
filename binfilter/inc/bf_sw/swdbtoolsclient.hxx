@@ -27,15 +27,9 @@
 #ifndef _SWDBTOOLSCLIENT_HXX
 #define _SWDBTOOLSCLIENT_HXX
 
-#ifndef CONNECTIVITY_VIRTUAL_DBTOOLS_HXX
 #include <connectivity/virtualdbtools.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _OSL_MODULE_H_
 #include <osl/module.h>
-#endif
 namespace binfilter {
 
 /* -----------------------------30.08.2001 11:01------------------------------

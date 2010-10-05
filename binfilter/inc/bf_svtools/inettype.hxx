@@ -28,12 +28,8 @@
 #ifndef _INETTYPE_HXX
 #define _INETTYPE_HXX
 
-#ifndef TOOLS_INETMIME_HXX
 #include <tools/inetmime.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace binfilter
 {

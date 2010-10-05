@@ -28,17 +28,11 @@
 #ifndef _GOODIES_IMAPPOLY_HXX
 #define _GOODIES_IMAPPOLY_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _GOODIES_IMAPOBJ_HXX
 #include <bf_svtools/imapobj.hxx>
-#endif
 
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
 
 class Fraction;
 

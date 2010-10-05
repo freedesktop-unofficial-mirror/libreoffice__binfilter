@@ -28,13 +28,9 @@
 #define _SFXMODULE_HXX  // intern
 #define _SFXMOD_HXX     // extern
 
-#ifndef _SFX_SHELL_HXX
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 class ResMgr;
 

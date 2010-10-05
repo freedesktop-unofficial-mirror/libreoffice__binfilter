@@ -28,29 +28,17 @@
 #ifndef _SVDOATTR_HXX
 #define _SVDOATTR_HXX
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
-#endif
 
-#ifndef _SVX_XFLASIT_HXX //autogen
 #include <bf_svx/xflasit.hxx>
-#endif
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <bf_svx/xlineit0.hxx>
-#endif
 
-#ifndef _SVX_XLNASIT_HXX //autogen
 #include <bf_svx/xlnasit.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _SVDATTR_HXX
 #include <bf_svx/svdattr.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

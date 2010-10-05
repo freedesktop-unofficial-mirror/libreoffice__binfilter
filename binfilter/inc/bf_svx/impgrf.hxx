@@ -29,9 +29,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _FILTER_HXX //autogen
 #include <bf_svtools/filter.hxx>
-#endif
 
 namespace binfilter {
 

@@ -28,9 +28,7 @@
 #ifndef SC_VIEWUTIL_HXX
 #define SC_VIEWUTIL_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 class String;
 namespace binfilter {
 

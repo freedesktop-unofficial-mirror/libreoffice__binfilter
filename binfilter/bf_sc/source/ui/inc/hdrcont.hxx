@@ -28,12 +28,8 @@
 #ifndef SC_HDRCONT_HXX
 #define SC_HDRCONT_HXX
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SELENG_HXX //autogen
 #include <vcl/seleng.hxx>
-#endif
 namespace binfilter {
 
 // ---------------------------------------------------------------------------

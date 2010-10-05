@@ -28,27 +28,15 @@
 #ifndef _SVDPAGE_HXX
 #define _SVDPAGE_HXX
 
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
-#ifndef _GDIMTF_HXX //autogen
 #include <vcl/gdimtf.hxx>
-#endif
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
-#ifndef _SVDLAYER_HXX
 #include <bf_svx/svdlayer.hxx>
-#endif
 class Color;
 namespace binfilter {
 

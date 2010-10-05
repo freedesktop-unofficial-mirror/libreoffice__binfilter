@@ -28,9 +28,7 @@
 #ifndef _WRTXML_HXX
 #define _WRTXML_HXX
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
 namespace com { namespace sun { namespace start {
     namespace uno { template<class A> class Reference; }
     namespace uno { template<class A> class Sequence; }

@@ -28,9 +28,7 @@
 #ifndef _SVDOUTL_HXX
 #define _SVDOUTL_HXX
 
-#ifndef _OUTLINER_HXX //autogen
 #include <bf_svx/outliner.hxx>
-#endif
 namespace binfilter {
 
 class SdrTextObj;

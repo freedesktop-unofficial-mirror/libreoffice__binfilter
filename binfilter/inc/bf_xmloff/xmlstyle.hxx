@@ -28,23 +28,13 @@
 #ifndef _XMLOFF_XMLSTYLE_HXX
 #define _XMLOFF_XMLSTYLE_HXX
 
-#ifndef _RSCSFX_HXX //autogen wg. SfxStyleFamily
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace container
 {
     class XNameContainer;

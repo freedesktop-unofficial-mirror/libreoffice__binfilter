@@ -35,9 +35,7 @@
 #include <com/sun/star/drawing/LineDash.hpp>
 #include <com/sun/star/awt/Gradient.hpp>
 #include <com/sun/star/drawing/Hatch.hpp>
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HDL_
 #include <com/sun/star/io/XSeekable.hdl>
-#endif
 
 #include <unotools/streamwrap.hxx>
 

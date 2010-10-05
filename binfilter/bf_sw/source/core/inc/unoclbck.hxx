@@ -28,9 +28,7 @@
 #define _UNOCLBCK_HXX
 
 
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 class SwXReferenceMark;

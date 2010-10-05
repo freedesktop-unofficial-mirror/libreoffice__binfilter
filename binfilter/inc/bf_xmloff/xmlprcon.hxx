@@ -28,19 +28,11 @@
 #ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #define _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include <bf_xmloff/xmlimppr.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {

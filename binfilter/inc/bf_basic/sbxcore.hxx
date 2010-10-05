@@ -28,16 +28,10 @@
 #ifndef _SBXCORE_HXX
 #define _SBXCORE_HXX
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "sbxdef.hxx"
 

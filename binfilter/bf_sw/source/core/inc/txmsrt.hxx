@@ -27,12 +27,8 @@
 #ifndef _TXMSRT_HXX
 #define _TXMSRT_HXX
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
 class CharClass;
 namespace binfilter {
 

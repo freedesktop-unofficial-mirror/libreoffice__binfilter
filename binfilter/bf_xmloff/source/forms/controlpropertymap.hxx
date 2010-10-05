@@ -28,12 +28,8 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #define _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
 namespace binfilter {
 
 struct XMLPropertyMapEntry;

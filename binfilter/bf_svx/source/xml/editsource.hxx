@@ -28,9 +28,7 @@
 #ifndef _SVX_EDITSOURCE_HXX
 #define _SVX_EDITSOURCE_HXX
 
-#ifndef _SVX_UNOEDSRC_HXX
 #include <unoedsrc.hxx>
-#endif
 namespace binfilter {
 
 class EditEngine;

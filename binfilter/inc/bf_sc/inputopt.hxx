@@ -29,13 +29,9 @@
 #define SC_INPUTOPT_HXX
 
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
 class SvStream;
 

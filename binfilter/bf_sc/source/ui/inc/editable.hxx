@@ -28,9 +28,7 @@
 #ifndef SC_EDITABLE_HXX
 #define SC_EDITABLE_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 class ScDocument;

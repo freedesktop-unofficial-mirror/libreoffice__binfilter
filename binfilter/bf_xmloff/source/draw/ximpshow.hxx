@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XIMPSHOW_HXX
 #define _XMLOFF_XIMPSHOW_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 namespace binfilter {
 
 class ShowsImpImpl;

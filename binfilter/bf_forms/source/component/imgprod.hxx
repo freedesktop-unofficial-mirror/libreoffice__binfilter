@@ -32,22 +32,12 @@
 #include <tools/string.hxx>
 #include <tools/list.hxx>
 
-#ifndef _COM_SUN_STAR_AWT_IMAGESTATUS_HPP_
 #include <com/sun/star/awt/ImageStatus.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XIMAGECONSUMER_HPP_
 #include <com/sun/star/awt/XImageConsumer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XIMAGEPRODUCER_HPP_
 #include <com/sun/star/awt/XImageProducer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 
 
 // -----------------

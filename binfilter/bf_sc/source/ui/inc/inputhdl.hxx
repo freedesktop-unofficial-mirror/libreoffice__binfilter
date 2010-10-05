@@ -28,17 +28,11 @@
 #ifndef SC_INPUTHDL_HXX
 #define SC_INPUTHDL_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class Timer;
 class KeyEvent;
 namespace binfilter {

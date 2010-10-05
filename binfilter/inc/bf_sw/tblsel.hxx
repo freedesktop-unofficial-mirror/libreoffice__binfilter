@@ -28,12 +28,8 @@
 #define _TBLSEL_HXX
 
 
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 namespace binfilter {
 
 class SwCrsrShell;

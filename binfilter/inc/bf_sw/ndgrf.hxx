@@ -28,15 +28,9 @@
 #define _NDGRF_HXX
 
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
 namespace binfilter {
 
 class SvStorage;

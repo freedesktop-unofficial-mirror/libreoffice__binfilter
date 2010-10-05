@@ -29,31 +29,15 @@
 #define SC_CHGTRACK_HXX
 
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef _STACK_HXX //autogen
 #include <tools/stack.hxx>
-#endif
-#ifndef _QUEUE_HXX //autogen
 #include <tools/queue.hxx>
-#endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef SC_BIGRANGE_HXX
 #include "bigrange.hxx"
-#endif
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
 #ifdef SC_CHGTRACK_CXX
 // core/inc

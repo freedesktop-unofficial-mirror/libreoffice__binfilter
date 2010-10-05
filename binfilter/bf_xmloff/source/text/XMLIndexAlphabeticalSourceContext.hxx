@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_XMLINDEXALPHABETICALSOURCECONTEXT_HXX_
 #define _XMLOFF_XMLINDEXALPHABETICALSOURCECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLINDEXSOURCEBASECONTEXT_HXX_
 #include "XMLIndexSourceBaseContext.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 
 namespace com { namespace sun { namespace star {

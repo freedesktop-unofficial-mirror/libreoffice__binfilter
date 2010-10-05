@@ -28,15 +28,9 @@
 #ifndef _PARRTF_HXX
 #define _PARRTF_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVPARSER_HXX
 #include <bf_svtools/svparser.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #endif //_PARRTF_HXX

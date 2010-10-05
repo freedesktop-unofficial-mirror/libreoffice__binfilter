@@ -28,9 +28,7 @@
 #ifndef SC_CELLFORM_HXX
 #define SC_CELLFORM_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 class String;
 class Color;
 namespace binfilter {

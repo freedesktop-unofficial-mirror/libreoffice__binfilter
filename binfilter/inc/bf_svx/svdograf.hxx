@@ -28,15 +28,9 @@
 #ifndef _SVDOGRAF_HXX
 #define _SVDOGRAF_HXX
 
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
 namespace binfilter {
 class BfGraphicObject;
 

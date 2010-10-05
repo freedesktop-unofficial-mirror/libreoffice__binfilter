@@ -28,9 +28,7 @@
 #ifndef SC_UNDODRAW_HXX
 #define SC_UNDODRAW_HXX
 
-#ifndef _UNDO_HXX //autogen
 #include <bf_svtools/undo.hxx>
-#endif
 namespace binfilter {
 
 class ScDocShell;

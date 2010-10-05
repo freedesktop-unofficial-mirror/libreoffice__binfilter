@@ -29,15 +29,9 @@
 #define _SECTION_HXX
 
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _LNKBASE_HXX
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
 namespace binfilter {
 
 // Forward Deklaration

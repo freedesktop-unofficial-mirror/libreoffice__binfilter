@@ -28,17 +28,11 @@
 #ifndef _E3D_POLYSC3D_HXX
 #define _E3D_POLYSC3D_HXX
 
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _E3D_SCENE3D_HXX
 #include <bf_svx/scene3d.hxx>
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

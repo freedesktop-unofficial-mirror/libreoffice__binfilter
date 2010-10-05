@@ -28,33 +28,17 @@
 #ifndef _SBXCLASS_HXX
 #define _SBXCLASS_HXX
 
-#ifndef _REF_HXX
 #include "tools/ref.hxx"
-#endif
 
-#ifndef _SVARRAY_HXX
 #include "bf_svtools/svarray.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include "bf_svtools/smplhint.hxx"
-#endif
-#ifndef _SFXLSTNER_HXX
 #include "bf_svtools/lstner.hxx"
-#endif
 
-#ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
 
-#ifndef __SBX_SBXOBJECT_HXX
 #include "sbxobj.hxx"
-#endif
-#ifndef __SBX_SBXPROPERTY_HXX
 #include "sbxprop.hxx"
-#endif
-#ifndef __SBX_SBXMETHOD_HXX
 #include "sbxmeth.hxx"
-#endif
 
 class BigInt;
 class String;

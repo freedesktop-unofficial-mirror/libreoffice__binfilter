@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_IMAGESTYLE_HXX
 #define _XMLOFF_IMAGESTYLE_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 namespace binfilter {
 
 class SvXMLNamespaceMap;

@@ -27,20 +27,13 @@
 #ifndef SW_TGRDITEM_HXX
 #define SW_TGRDITEM_HXX
 
-
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
+
 class IntlWrapper;
+
 namespace binfilter {
-
-
 
 enum SwTextGrid { GRID_NONE, GRID_LINES_ONLY, GRID_LINES_CHARS };
 

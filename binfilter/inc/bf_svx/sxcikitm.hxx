@@ -27,13 +27,9 @@
 #ifndef _SXCIKITM_HXX
 #define _SXCIKITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 enum SdrCircKind {SDRCIRC_FULL,

@@ -34,9 +34,7 @@
 
 #include "unowids.hxx"
 
-#ifndef _RTL_UUID_H_ //autogen wg. rtl_createUuid
 #include <rtl/uuid.h>
-#endif
 
 #include <com/sun/star/table/CellVertJustify.hpp>
 #include <com/sun/star/table/CellHoriJustify.hpp>

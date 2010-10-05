@@ -27,9 +27,7 @@
 #ifndef _SCH_GLOBOPT_HXX
 #define _SCH_GLOBOPT_HXX
 
-#ifndef _VCL_FLDUNIT_HXX
 #include <vcl/fldunit.hxx>
-#endif
 namespace binfilter {
 
 namespace sch

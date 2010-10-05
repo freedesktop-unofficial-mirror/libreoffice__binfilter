@@ -28,9 +28,7 @@
 #ifndef _FRM_FORMATTED_FIELD_WRAPPER_HXX_
 #define _FRM_FORMATTED_FIELD_WRAPPER_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

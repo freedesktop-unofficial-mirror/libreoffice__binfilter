@@ -27,37 +27,21 @@
 #ifndef _SC_DWFUNCTR_HXX
 #define _SC_DWFUNCTR_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
-#ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
 
-#ifndef _IMAGEBTN_HXX //autogen
 #include <vcl/imagebtn.hxx>
-#endif
 
-#ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScAddress
-#endif
 
 namespace binfilter {
 

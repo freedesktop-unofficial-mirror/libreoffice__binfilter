@@ -28,12 +28,8 @@
 #ifndef _SC_BCASLOT_HXX
 #define _SC_BCASLOT_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "global.hxx"
 #include "brdcst.hxx"

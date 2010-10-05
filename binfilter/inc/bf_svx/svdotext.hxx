@@ -28,29 +28,17 @@
 #ifndef _SVDOTEXT_HXX
 #define _SVDOTEXT_HXX
 
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _SVDOATTR_HXX
 #include <bf_svx/svdoattr.hxx>
-#endif
 
-#ifndef _SVDTRANS_HXX
 #include <bf_svx/svdtrans.hxx> // GeoStat
-#endif
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _SVX_XTXASIT_HXX //autogen
 #include <bf_svx/xtxasit.hxx>
-#endif
 
-#ifndef _SVX_TEXTIT0_HXX //autogen
 #include <bf_svx/xtextit0.hxx>
-#endif
 
 #include <vector>
 namespace binfilter {

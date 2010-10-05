@@ -28,9 +28,7 @@
 #define _SWDRWTXTSH_HXX
 
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellid.hxx"
 namespace binfilter {
 

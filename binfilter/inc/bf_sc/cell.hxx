@@ -30,17 +30,11 @@
 
 #include <stddef.h>
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
-#endif
 
 
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 namespace binfilter {
 
 class SfxBroadcaster;

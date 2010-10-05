@@ -28,15 +28,9 @@
 #ifndef _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 #define _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................

@@ -28,22 +28,12 @@
 #ifndef SC_TABLE_HXX
 #define SC_TABLE_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef SC_COLUMN_HXX
 #include "column.hxx"
-#endif
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"
-#endif
 
 namespace utl {
     class SearchParam;

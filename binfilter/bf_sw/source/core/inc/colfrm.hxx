@@ -27,9 +27,7 @@
 #ifndef _COLFRM_HXX
 #define _COLFRM_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "ftnboss.hxx"
 namespace binfilter {

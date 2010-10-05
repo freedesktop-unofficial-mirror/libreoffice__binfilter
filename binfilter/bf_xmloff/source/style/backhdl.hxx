@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_PROPERTYHANDLER_BRUSHTYPES_HXX
 #define _XMLOFF_PROPERTYHANDLER_BRUSHTYPES_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_GRAPHICLOCATION_HPP_
 #include <com/sun/star/style/GraphicLocation.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_GRAPHICLOCATION_HPP_
 #include <com/sun/star/style/GraphicLocation.hpp>
-#endif
 namespace binfilter {
 
 /**

@@ -27,9 +27,7 @@
 #ifndef _FRMFMT_HXX
 #define _FRMFMT_HXX
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
 class Graphic;
 class Point;
 

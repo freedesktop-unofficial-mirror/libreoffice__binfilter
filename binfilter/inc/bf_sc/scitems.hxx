@@ -28,9 +28,7 @@
 #ifndef SC_ITEMS_HXX
 #define SC_ITEMS_HXX
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 namespace binfilter {
 
 //  EditEngine darf nicht ihre eigenen ITEMID's definieren

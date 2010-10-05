@@ -28,12 +28,8 @@
 #ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #define _XMLOFF_FORMATTRIBUTES_HXX_
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLExport;

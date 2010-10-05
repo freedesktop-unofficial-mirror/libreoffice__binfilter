@@ -28,27 +28,17 @@
 #ifndef _IFACE_HXX
 #define _IFACE_HXX
 
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SVBORDER_HXX
 #include <tools/svborder.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 #include <bf_so3/factory.hxx>
 #include <bf_so3/so2dll.hxx>
 
 #include <sot/object.hxx>
 
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 struct IUnknown;
 

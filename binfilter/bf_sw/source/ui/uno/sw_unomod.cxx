@@ -54,9 +54,7 @@
 #include <vos/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <com/sun/star/text/NotePrintMode.hpp>
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HDL_
 #include <com/sun/star/lang/XMultiServiceFactory.hdl>
-#endif
 #include <doc.hxx>
 #include <comphelper/TypeGeneration.hxx>
 #include <com/sun/star/beans/PropertyAttribute.hpp>

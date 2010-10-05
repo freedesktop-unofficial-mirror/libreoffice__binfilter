@@ -28,22 +28,12 @@
 #ifndef _SVTOOLS_NUMBERS_SUPPLIERSERVICE_HXX_
 #define _SVTOOLS_NUMBERS_SUPPLIERSERVICE_HXX_
 
-#ifndef _NUMUNO_HXX
 #include "numuno.hxx"
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
 #include <com/sun/star/io/XPersistObject.hpp>
-#endif
 
 namespace binfilter
 {

@@ -28,20 +28,12 @@
 #ifndef _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 #define _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 
-#ifndef _SC_XMLCHANGETRACKINGIMPORTHELPER_HXX
 #include "XMLChangeTrackingImportHelper.hxx"
-#endif
-#ifndef SC_CHGTRACK_HXX
 #include "chgtrack.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;

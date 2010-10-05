@@ -28,9 +28,7 @@
 #ifndef _SCH_GLOB_HXX
 #define _SCH_GLOB_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 #define DIA_SLOW    0

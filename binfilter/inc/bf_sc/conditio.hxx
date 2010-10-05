@@ -28,13 +28,9 @@
 #ifndef SC_CONDITIO_HXX
 #define SC_CONDITIO_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 class ScBaseCell;

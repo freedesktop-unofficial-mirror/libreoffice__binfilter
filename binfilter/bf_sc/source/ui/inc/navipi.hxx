@@ -28,35 +28,17 @@
 #ifndef SC_NAVIPI_HXX
 #define SC_NAVIPI_HXX
 
-#ifndef _TOOLBOX_HXX //autogen
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
-#ifndef SC_CONTENT_HXX
 #include "content.hxx"
-#endif
 
-#ifndef _SVEDIT_HXX //autogen
 #include <bf_svtools/svmedit.hxx>
-#endif
 namespace binfilter {
 
 

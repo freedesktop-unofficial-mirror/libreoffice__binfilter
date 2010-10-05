@@ -28,12 +28,8 @@
 #ifndef _SCANNER_HXX
 #define _SCANNER_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SBERRORS_HXX
 #include "sberrors.hxx"
-#endif
 
 namespace binfilter {
 

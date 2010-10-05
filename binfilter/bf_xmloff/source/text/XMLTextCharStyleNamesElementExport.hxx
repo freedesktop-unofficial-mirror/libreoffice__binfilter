@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #define _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
 
 namespace com { namespace sun { namespace star {

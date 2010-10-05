@@ -29,18 +29,10 @@
 #define _SCH_SDWINDOW_HXX
 
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
-#ifndef _TRANSFER_HXX //autogen
 #include <bf_svtools/transfer.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace accessibility {
         class XAccessible;

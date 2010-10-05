@@ -28,12 +28,8 @@
 #define _INFTXT_HXX
 
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "txttypes.hxx"
@@ -46,9 +42,7 @@
 #include "ndtxt.hxx"
 #include "txttypes.hxx"
 
-#ifndef _SVX_PARAVERTALIGNITEM_HXX //autogen
 #include <bf_svx/paravertalignitem.hxx>
-#endif
 class Font;
 class OutputDevice;
 namespace binfilter {

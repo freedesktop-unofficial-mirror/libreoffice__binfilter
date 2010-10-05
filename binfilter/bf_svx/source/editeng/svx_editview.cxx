@@ -50,9 +50,7 @@
 #include <editeng.hrc>
 #include <helpid.hrc>
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL_
 #include <com/sun/star/beans/PropertyValues.hdl>
-#endif
 namespace binfilter {
 
 using namespace rtl;

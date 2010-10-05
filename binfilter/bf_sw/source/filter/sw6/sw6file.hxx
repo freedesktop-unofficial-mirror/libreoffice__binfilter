@@ -29,13 +29,9 @@
 
 #include <stdlib.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "swerror.h"

@@ -28,9 +28,7 @@
 #ifndef _SVX_SDROUTLINER_HXX
 #define _SVX_SDROUTLINER_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace binfilter {
 
 class SdrModel;

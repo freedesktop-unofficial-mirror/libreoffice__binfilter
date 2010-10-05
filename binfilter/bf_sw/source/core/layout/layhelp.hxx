@@ -34,9 +34,7 @@
 #define _SVSTDARR_XUB_STRLEN
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 

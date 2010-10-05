@@ -27,9 +27,7 @@
 #ifndef _XMLOFF_CHARTPROPERTYCONTEXT_HXX_
 #define _XMLOFF_CHARTPROPERTYCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 class XMLChartPropertyContext : public SvXMLPropertySetContext

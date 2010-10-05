@@ -27,19 +27,11 @@
 #ifndef _LNKBASE_HXX
 #define _LNKBASE_HXX
 
-#ifndef _SOT_EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _LINKSOURCE_HXX
 #include <bf_so3/linksrc.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace com { namespace sun { namespace star { namespace uno
 {

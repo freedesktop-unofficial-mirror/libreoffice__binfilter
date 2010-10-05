@@ -27,9 +27,7 @@
 #ifndef _TBXANCHR_HXX
 #define _TBXANCHR_HXX
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 namespace binfilter {
 
 class SwTbxAnchor : public SfxToolBoxControl

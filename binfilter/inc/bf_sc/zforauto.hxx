@@ -28,13 +28,9 @@
 #ifndef _ZFORAUTO_HXX_
 #define _ZFORAUTO_HXX_
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 namespace binfilter {
 
 

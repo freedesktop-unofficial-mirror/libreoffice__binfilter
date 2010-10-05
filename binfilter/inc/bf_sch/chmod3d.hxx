@@ -33,21 +33,11 @@
 //Ableitungen der 3D-Objekte, um #52277# zu beheben.
 //Ueberladen der NbcSetAttributes um Attr abzufangen und in das ChartModel zu leiten
 
-#ifndef _E3D_EXTRUD3D_HXX //autogen
 #include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_POLYGON3D_HXX //autogen
 #include <bf_svx/polygn3d.hxx>
-#endif
-#ifndef _E3D_DEFLT3D_HXX //autogen
 #include <bf_svx/deflt3d.hxx>
-#endif
-#ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _E3D_LATHE3D_HXX //autogen
 #include <bf_svx/lathe3d.hxx>
-#endif
 #define CHART_SHAPE3D_IGNORE  -2 //intern! (GetChartShapeStyle()!)
 #define CHART_SHAPE3D_ANY     -1 //undefinierter Typ (GetChartShapeStyle()!)
 #define CHART_SHAPE3D_SQUARE   0

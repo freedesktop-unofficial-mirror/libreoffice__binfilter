@@ -28,9 +28,7 @@
 #ifndef SC_PNTLOCK_HXX
 #define SC_PNTLOCK_HXX
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 namespace binfilter {
 
 class ScPaintLockData

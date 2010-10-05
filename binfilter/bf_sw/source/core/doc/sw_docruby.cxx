@@ -33,12 +33,8 @@
 #include <string.h>         // fuer strchr()
 
 
-#ifndef _COM_SUN_STAR_I18N_UNICODETYPE_HDL
 #include <com/sun/star/i18n/UnicodeType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
 #include <horiornt.hxx>
 #include <errhdl.hxx>

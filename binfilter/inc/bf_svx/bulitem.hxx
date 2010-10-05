@@ -62,15 +62,9 @@ namespace binfilter {
 #define VALID_PREVTEXT      0x0080
 #define VALID_FOLLOWTEXT    0x0100
 }//end of namespace binfilter
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _VCL_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
-#endif
 
 // class SvxBulletItem ---------------------------------------------------
 namespace binfilter {

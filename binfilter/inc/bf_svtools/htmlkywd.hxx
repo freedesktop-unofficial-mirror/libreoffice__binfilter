@@ -28,13 +28,9 @@
 #ifndef _HTMLKYWD_HXX
 #define _HTMLKYWD_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include "sal/types.h"
-#endif
 
 #ifndef SVTOOLS_CONSTASCII_DECL
 #define SVTOOLS_CONSTASCII_DECL( n, s ) n[sizeof(s)]

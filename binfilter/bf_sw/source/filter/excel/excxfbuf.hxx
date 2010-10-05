@@ -27,9 +27,7 @@
 #ifndef _EXCXFBUF_HXX
 #define _EXCXFBUF_HXX
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 class SfxItemSet;
 

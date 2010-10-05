@@ -28,9 +28,7 @@
 #ifndef _SVX_XFLASIT_HXX
 #define _SVX_XFLASIT_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************

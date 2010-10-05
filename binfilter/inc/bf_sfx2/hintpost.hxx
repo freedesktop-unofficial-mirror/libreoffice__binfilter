@@ -27,13 +27,9 @@
 #ifndef _SFXHINTPOST_HXX
 #define _SFXHINTPOST_HXX
 
-#ifndef _SFXGENLINK_HXX
 #include <bf_sfx2/genlink.hxx>
-#endif
 
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
 namespace binfilter {
 
 class SfxHint;

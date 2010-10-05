@@ -52,9 +52,7 @@ class SvxLanguageItem;
 class SvxEmphasisMarkItem;
 class SvxCharReliefItem;
 }//end of namespace binfilter
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 class SfxVoidItem;
 namespace binfilter {
 

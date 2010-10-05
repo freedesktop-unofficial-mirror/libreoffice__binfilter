@@ -28,9 +28,7 @@
 #ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #define _XMLTEXTCOLUMNSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 
 
 namespace rtl { class OUString; }

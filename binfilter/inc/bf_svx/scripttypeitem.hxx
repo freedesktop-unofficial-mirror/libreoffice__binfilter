@@ -29,15 +29,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVTOOLS_LANGUAGEOPTIONS_HXX
 #include <bf_svtools/languageoptions.hxx>
-#endif
 namespace binfilter {
 
 // class SvxScriptTypeItem ----------------------------------------------

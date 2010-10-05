@@ -28,9 +28,7 @@
 #ifndef SVX_XFILLIT0_HXX
 #define SVX_XFILLIT0_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #include <bf_svx/xdef.hxx>
 #include <bf_svx/xenum.hxx>

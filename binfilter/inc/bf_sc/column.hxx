@@ -28,13 +28,9 @@
 #ifndef SC_COLUMN_HXX
 #define SC_COLUMN_HXX
 
-#ifndef SC_MARKARR_HXX
 #include "markarr.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 class Fraction;
 class OutputDevice;
 class Rectangle;

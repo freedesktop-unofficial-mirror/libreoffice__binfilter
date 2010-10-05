@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #define _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 class PageStyleContext : public XMLPropStyleContext

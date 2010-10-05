@@ -27,9 +27,7 @@
 #ifndef _SVX_FMSERVS_HXX
 #define _SVX_FMSERVS_HXX
 
-#ifndef _FM_STATIC_HXX_
 #include "fmstatic.hxx"
-#endif
 namespace binfilter {
 
 namespace svxform

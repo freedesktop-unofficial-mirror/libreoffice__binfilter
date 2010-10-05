@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLFOOTNOTESEPARATOREXPORT_HXX
 #define _XMLOFF_XMLFOOTNOTESEPARATOREXPORT_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 
 #include <vector>

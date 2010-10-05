@@ -27,18 +27,10 @@
 #ifndef _WRTW4W_HXX
 #define _WRTW4W_HXX
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _WRT_FN_HXX
 #include <wrt_fn.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 class SvMemoryStream;
 namespace binfilter {
 

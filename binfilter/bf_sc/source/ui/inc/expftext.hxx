@@ -28,9 +28,7 @@
 #ifndef _SC_EXPFTEXT_HXX
 #define _SC_EXPFTEXT_HXX
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 class ScExpandedFixedText: public FixedText

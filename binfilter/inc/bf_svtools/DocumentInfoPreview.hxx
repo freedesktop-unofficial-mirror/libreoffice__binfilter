@@ -27,19 +27,11 @@
 #ifndef SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 #define SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XSTANDALONEDOCUMENTINFO_HPP_
 #include <com/sun/star/document/XStandaloneDocumentInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace binfilter {
 

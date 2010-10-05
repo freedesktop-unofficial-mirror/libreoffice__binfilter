@@ -29,25 +29,13 @@
 #define _NODE_HXX
 
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _NDARR_HXX
 #include <ndarr.hxx>
-#endif
-#ifndef _NDTYP_HXX
 #include <ndtyp.hxx>
-#endif
-#ifndef _INDEX_HXX
 #include <index.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
 namespace binfilter {
 class SvUShorts;
 class SwCntntFrm;

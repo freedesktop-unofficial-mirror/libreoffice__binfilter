@@ -28,13 +28,9 @@
 #ifndef _SVX_XFLGRIT_HXX
 #define _SVX_XFLGRIT_HXX
 
-#ifndef _SVX_XIT_HXX //autogen
 #include <bf_svx/xit.hxx>
-#endif
 
-#ifndef _SVX__XGRADIENT_HXX
 #include <bf_svx/xgrad.hxx>
-#endif
 namespace binfilter {
 
 class SdrModel;

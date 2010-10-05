@@ -29,9 +29,7 @@
 
 #include <string.h>
 
-#ifndef _XMLOFF_PROPERTYSETINFOKEY_HXX
 #include <bf_xmloff/PropertySetInfoKey.hxx>
-#endif
 namespace binfilter {
 
 struct PropertySetInfoHash

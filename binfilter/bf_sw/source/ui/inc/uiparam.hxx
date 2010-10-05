@@ -27,9 +27,7 @@
 #ifndef _UIPARAM_HXX
 #define _UIPARAM_HXX
 
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------

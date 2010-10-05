@@ -28,25 +28,13 @@
 #ifndef _XMLOFF_FORMS_LAYERIMPORT_HXX_
 #define _XMLOFF_FORMS_LAYERIMPORT_HXX_
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 #include <com/sun/star/container/XNameContainer.hpp>
-#ifndef _VOS_REF_HXX_
 #include <vos/ref.hxx>
-#endif
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
 #include "eventimport.hxx"
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLImport;

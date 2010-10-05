@@ -28,26 +28,14 @@
 #ifndef _FACTORY_HXX
 #define _FACTORY_HXX
 
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
 #include <bf_so3/so2ref.hxx>
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
-#endif
-#ifndef _SOT_FACTORY_HXX
 #include <sot/factory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE_HPP_
 #include <com/sun/star/datatransfer/XTransferable.hpp>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace binfilter {
 class SvObject;

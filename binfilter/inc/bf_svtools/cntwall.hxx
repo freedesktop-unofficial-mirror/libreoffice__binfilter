@@ -27,19 +27,11 @@
 #ifndef _CNTWALL_HXX
 #define _CNTWALL_HXX
 
-#ifndef SHL_HXX
 #include <tools/shl.hxx>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 class SvStream;
 

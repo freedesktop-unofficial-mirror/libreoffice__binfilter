@@ -29,9 +29,7 @@
 #define SC_USERLIST_HXX
 
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------

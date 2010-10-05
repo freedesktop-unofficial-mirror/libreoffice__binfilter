@@ -28,13 +28,9 @@
 #ifndef SC_HINTS_HXX
 #define SC_HINTS_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 

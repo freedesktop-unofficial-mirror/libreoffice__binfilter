@@ -28,12 +28,8 @@
 #ifndef _FORMS_TIME_HXX_
 #define _FORMS_TIME_HXX_
 
-#ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
-#endif
-#ifndef _FORMS_LIMITED_FORMATS_HXX_
 #include "limitedformats.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................

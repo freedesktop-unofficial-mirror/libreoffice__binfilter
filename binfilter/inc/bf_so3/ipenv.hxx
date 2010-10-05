@@ -29,13 +29,9 @@
 #define _IPENV_HXX
 
 #include <bf_so3/client.hxx>
-#ifndef _TOOLS_VCLRSC_HXX
 #include <vcl/mapunit.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/

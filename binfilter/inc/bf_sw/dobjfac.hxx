@@ -27,9 +27,7 @@
 #ifndef _DOBJFAC_HXX
 #define _DOBJFAC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------

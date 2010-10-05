@@ -28,36 +28,18 @@
 #ifndef _SVX_GRIDCELL_HXX
 #define _SVX_GRIDCELL_HXX
 
-#ifndef _SVX_GRIDCTRL_HXX
 #include "gridctrl.hxx"
-#endif
 
-#ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_FORM_XBOUNDCONTROL_HPP_
 #include <com/sun/star/form/XBoundControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
 #include <com/sun/star/awt/XListBox.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCHECKBOX_HPP_
 #include <com/sun/star/awt/XCheckBox.hpp>
-#endif
-#ifndef SVX_SQLPARSERCLIENT_HXX
 #include "sqlparserclient.hxx"
-#endif
 class Edit;
 namespace binfilter {
 

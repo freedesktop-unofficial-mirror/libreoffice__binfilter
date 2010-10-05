@@ -27,9 +27,7 @@
 
 #ifndef _FM_STATIC_HXX_
 #define _FM_STATIC_HXX_
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 struct ConstAsciiString

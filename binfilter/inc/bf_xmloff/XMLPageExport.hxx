@@ -28,22 +28,14 @@
 #ifndef _XMLOFF_XMLPAGEEXPORT_HXX
 #define _XMLOFF_XMLPAGEEXPORT_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
-#ifndef _XMLOFF_ATTRLIST_HXX
 #include <bf_xmloff/attrlist.hxx>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace style { class XStyle; }

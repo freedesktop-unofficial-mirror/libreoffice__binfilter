@@ -28,17 +28,11 @@
 #ifndef _XMLOFF_FILLSTYLECONTEXTS_HXX_
 #define _XMLOFF_FILLSTYLECONTEXTS_HXX_
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLSTYLE_HXX //autogen
 #include <xmlstyle.hxx>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

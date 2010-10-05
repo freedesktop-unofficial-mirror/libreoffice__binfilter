@@ -28,9 +28,7 @@
 #ifndef _SVDOMEAS_HXX
 #define _SVDOMEAS_HXX
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************

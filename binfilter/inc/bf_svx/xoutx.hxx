@@ -28,27 +28,15 @@
 #ifndef _XOUTX_HXX
 #define _XOUTX_HXX
 
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 
 #include <bf_svx/xhatch.hxx>
 #include <bf_svx/xgrad.hxx>
-#ifndef _XPOLY_HXX //autogen
 #include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVX_RECTENUM_HXX //autogen
 #include <bf_svx/rectenum.hxx>
-#endif
-#ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
-#endif
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
 namespace binfilter {
 class SfxItemSet;
 class BfGraphicObject;

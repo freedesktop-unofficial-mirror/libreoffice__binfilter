@@ -27,13 +27,9 @@
 #ifndef _UNOEVTLSTNR_HXX
 #define _UNOEVTLSTNR_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 namespace com{namespace sun{namespace star{
     namespace lang
         {

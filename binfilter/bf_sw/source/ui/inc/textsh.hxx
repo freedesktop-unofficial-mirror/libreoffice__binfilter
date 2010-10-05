@@ -28,9 +28,7 @@
 #ifndef _SWTEXTSH_HXX
 #define _SWTEXTSH_HXX
 
-#ifndef _SWBASESH_HXX
 #include <basesh.hxx>
-#endif
 class Button;
 namespace binfilter {
 

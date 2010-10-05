@@ -27,12 +27,8 @@
 #ifndef _HINTS_HXX
 #define _HINTS_HXX
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 

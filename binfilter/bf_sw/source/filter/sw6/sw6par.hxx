@@ -28,23 +28,13 @@
 #define _SW6PAR_HXX
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
 
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
-#ifndef _SW6FILE_HXX
 #include <sw6file.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;

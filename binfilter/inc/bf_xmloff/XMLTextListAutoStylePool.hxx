@@ -29,9 +29,7 @@
 #define _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPARE_HPP_
 #include <com/sun/star/ucb/XAnyCompare.hpp>
-#endif
 
 namespace com { namespace sun { namespace star { namespace container {
     class XIndexReplace; } } } }

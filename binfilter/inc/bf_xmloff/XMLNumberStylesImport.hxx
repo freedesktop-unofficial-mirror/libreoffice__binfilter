@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #define _XMLOFF_NUMBERSTYLESIMPORT_HXX
 
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

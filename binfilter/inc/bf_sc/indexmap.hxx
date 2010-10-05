@@ -29,9 +29,7 @@
 #define _SC_INDEXMAP_HXX
 
 
-#ifndef _SOLAR_H //autogen wg. USHORT
 #include <tools/solar.h>
-#endif
 namespace binfilter {
 
 

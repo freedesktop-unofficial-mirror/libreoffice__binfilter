@@ -25,7 +25,5 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_INETMSG_HXX
 #include <tools/inetmsg.hxx>
-#endif
 

@@ -27,9 +27,7 @@
 #ifndef _CNTRSRT_HXX
 #define _CNTRSRT_HXX
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
 namespace binfilter {
 

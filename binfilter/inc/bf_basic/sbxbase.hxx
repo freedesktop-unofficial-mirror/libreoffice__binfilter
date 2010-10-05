@@ -28,21 +28,13 @@
 #ifndef _SBXBASE_HXX
 #define _SBXBASE_HXX
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _LIST_HXX
 #include "tools/list.hxx"
-#endif
 
-#ifndef _SVARRAY_HXX
 #include "bf_svtools/svarray.hxx"
-#endif
 
-#ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
 
 namespace binfilter {
 

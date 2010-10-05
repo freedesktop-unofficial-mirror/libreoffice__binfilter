@@ -28,15 +28,9 @@
 #ifndef _SDGRSITM_HXX
 #define _SDGRSITM_HXX
 
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 // ------------------

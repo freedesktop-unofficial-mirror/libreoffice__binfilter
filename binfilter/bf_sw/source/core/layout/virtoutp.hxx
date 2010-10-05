@@ -27,9 +27,7 @@
 #ifndef _VIRTOUTP_HXX
 #define _VIRTOUTP_HXX
 
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 #include "swtypes.hxx"      // UCHAR
 #include "swrect.hxx"       // SwRect

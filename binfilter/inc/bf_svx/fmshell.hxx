@@ -31,25 +31,15 @@
 // ***************************************************************************************************
 // ***************************************************************************************************
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef _SVX_FMVIEW_HXX
 #include <bf_svx/fmview.hxx>
-#endif
 
 #include <bf_svx/ifaceids.hxx>
 namespace binfilter {

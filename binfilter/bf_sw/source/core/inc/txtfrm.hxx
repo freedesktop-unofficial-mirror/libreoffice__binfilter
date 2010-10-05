@@ -27,12 +27,8 @@
 #ifndef _TXTFRM_HXX
 #define _TXTFRM_HXX
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #include "cntfrm.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
 class OutputDevice;

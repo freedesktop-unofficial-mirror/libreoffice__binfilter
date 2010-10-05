@@ -27,21 +27,13 @@
 #ifndef _SFXCANCEL_HXX
 #define _SFXCANCEL_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 namespace binfilter {
 
@@ -49,9 +41,7 @@ class SfxCancellable;
 
 #ifdef _SFX_CANCEL_CXX
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 SV_DECL_PTRARR( SfxCancellables_Impl, SfxCancellable*, 0, 4 )
 

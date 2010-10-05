@@ -48,13 +48,9 @@
 #ifndef _CALBCK_HXX
 #define _CALBCK_HXX
 
-#ifndef _SOLAR_H
 #include <tools/solar.h>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 class SvStream;
 
 namespace binfilter {

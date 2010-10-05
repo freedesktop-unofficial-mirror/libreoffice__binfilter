@@ -28,21 +28,11 @@
 #define _XMLOFF_TXTEXPPR_HXX
 
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
-#ifndef _XMLOFF_TXTDROPE_HXX
 #include "txtdrope.hxx"
-#endif
-#ifndef _XMLOFF_XMLTABE_HXX
 #include "xmltabe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCOLUMNSEXPORT_HXX
 #include "XMLTextColumnsExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLBACKGROUNDIMAGEEXPORT_HXX
 #include "XMLBackgroundImageExport.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLExport;

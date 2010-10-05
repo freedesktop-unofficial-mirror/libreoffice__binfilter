@@ -28,13 +28,9 @@
 #ifndef _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 #define _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 
-#ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
 #include <com/sun/star/text/TextContentAnchorType.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 

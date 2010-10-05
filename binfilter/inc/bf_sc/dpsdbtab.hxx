@@ -35,9 +35,7 @@ namespace com { namespace sun { namespace star {
     }
 }}}
 
-#ifndef SC_DPTABDAT_HXX
 #include "dptabdat.hxx"
-#endif
 namespace binfilter {
 
 // --------------------------------------------------------------------

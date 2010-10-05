@@ -29,12 +29,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
 namespace binfilter {
 
 // class SvxCharSetColorItem ---------------------------------------------

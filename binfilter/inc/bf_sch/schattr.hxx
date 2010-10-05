@@ -28,9 +28,7 @@
 #ifndef _SCHATTR_HXX
 #define _SCHATTR_HXX
 
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
 
 #include "chattr.hxx"
 namespace binfilter {

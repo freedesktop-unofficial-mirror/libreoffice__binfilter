@@ -29,15 +29,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 
 namespace rtl
 {

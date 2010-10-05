@@ -65,9 +65,7 @@ class SvxForbiddenCharactersTable;
 }//end of namespace binfilter
 #include <vos/ref.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com { namespace sun { namespace star {
   namespace linguistic2 {
@@ -79,15 +77,9 @@ namespace com { namespace sun { namespace star {
 }
 }}}
 
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
 namespace binfilter {

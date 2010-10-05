@@ -28,12 +28,8 @@
 #ifndef XMLOFF_NUMEHELP_HXX
 #define XMLOFF_NUMEHELP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
 #ifndef __SGI_STL_SET
 #include <set>

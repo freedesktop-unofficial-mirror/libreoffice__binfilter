@@ -30,12 +30,8 @@
 #include "SchXMLImport.hxx"
 #include "SchXMLTableContext.hxx"
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include "xmltkmap.hxx"
-#endif
 namespace com { namespace sun { namespace star { namespace xml { namespace sax {
         class XAttributeList;
 }}}}}

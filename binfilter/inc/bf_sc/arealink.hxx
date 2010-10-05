@@ -28,16 +28,10 @@
 #ifndef SC_AREALINK_HXX
 #define SC_AREALINK_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
-#endif
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
 namespace binfilter {
 
 class ScDocShell;

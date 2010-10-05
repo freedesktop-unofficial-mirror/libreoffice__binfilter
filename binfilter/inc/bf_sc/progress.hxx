@@ -28,9 +28,7 @@
 #ifndef SC_PROGRESS_HXX
 #define SC_PROGRESS_HXX
 
-#ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;

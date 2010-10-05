@@ -27,33 +27,21 @@
 #ifndef _SVX3DITEMS_HXX
 #define _SVX3DITEMS_HXX
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #ifdef ITEMID_COLOR
 #undef ITEMID_COLOR
 #endif
 #define ITEMID_COLOR            (SID_ATTR_3D_LIGHTCOLOR)
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
 
-#ifndef _SVXE3DITEM_HXX
 #include <bf_svx/e3ditem.hxx>
-#endif
 
-#ifndef _VIEWPT3D_HXX
 #include <bf_svx/viewpt3d.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 // Svx3D _3DOBJ_ Items

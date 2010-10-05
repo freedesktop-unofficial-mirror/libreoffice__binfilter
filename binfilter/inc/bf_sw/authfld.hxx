@@ -27,12 +27,8 @@
 #ifndef _AUTHFLD_HXX
 #define _AUTHFLD_HXX
 
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
 
 #define _SVSTDARR_LONGS
 #include <bf_svtools/svstdarr.hxx>

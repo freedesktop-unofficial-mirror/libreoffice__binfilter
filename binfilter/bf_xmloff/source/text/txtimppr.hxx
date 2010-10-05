@@ -27,12 +27,8 @@
 #ifndef _XMLOFF_TXTIMPPR_HXX
 #define _XMLOFF_TXTIMPPR_HXX
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include "xmlimppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class XMLFontStylesContext;

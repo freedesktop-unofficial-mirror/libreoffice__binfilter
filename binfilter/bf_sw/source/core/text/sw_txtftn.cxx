@@ -45,9 +45,7 @@
 #include <dflyobj.hxx>
 #include <bf_svx/brshitem.hxx>
 #include <bf_svx/charrotateitem.hxx>
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 #include "txtcfg.hxx"
 #include "porftn.hxx"

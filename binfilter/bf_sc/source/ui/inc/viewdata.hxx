@@ -27,13 +27,9 @@
 #ifndef SC_VIEWDATA_HXX
 #define SC_VIEWDATA_HXX
 
-#ifndef SC_VIEWOPTI_HXX
 #include "viewopti.hxx"
-#endif
 
-#ifndef SC_MARKDATA_HXX
 #include "markdata.hxx"
-#endif
 class Window;
 namespace binfilter {
 

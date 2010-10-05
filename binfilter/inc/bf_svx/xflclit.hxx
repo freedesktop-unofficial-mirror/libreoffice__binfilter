@@ -28,9 +28,7 @@
 #ifndef _SVX_XFLCLIT_HXX
 #define _SVX_XFLCLIT_HXX
 
-#ifndef _SVX_XCOLORITEM_HXX //autogen
 #include <bf_svx/xcolit.hxx>
-#endif
 namespace binfilter {
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

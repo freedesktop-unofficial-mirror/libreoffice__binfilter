@@ -27,9 +27,7 @@
 #ifndef _SDMETITM_HXX
 #define _SDMETITM_HXX
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------

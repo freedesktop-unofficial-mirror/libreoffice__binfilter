@@ -30,13 +30,9 @@
 
 
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include "uniref.hxx"
-#endif
 
 #include <vector>
 namespace rtl { class OUString; }

@@ -27,9 +27,7 @@
 #ifndef _SWDBDATA_HXX
 #define _SWDBDATA_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 namespace binfilter {
 
 // contains the description of a data source

@@ -27,22 +27,14 @@
 #ifndef _REDLINE_HXX
 #define _REDLINE_HXX
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _REDLENUM_HXX
 #include <redlenum.hxx>
-#endif
 namespace binfilter {
 class SfxItemSet;
 
