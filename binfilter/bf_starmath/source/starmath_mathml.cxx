@@ -92,7 +92,7 @@ using ::rtl::OUStringBuffer;
 #include "mathtype.hxx"
 
 #include <starmath.hrc>
-#include <parser.hxx>
+#include <parse.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 namespace binfilter {
 

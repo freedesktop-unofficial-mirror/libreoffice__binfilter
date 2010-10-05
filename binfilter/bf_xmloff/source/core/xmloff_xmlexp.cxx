@@ -56,7 +56,7 @@
 #include <TransGradientStyle.hxx>
 #include <MarkerStyle.hxx>
 #include <DashStyle.hxx>
-#include "XMLFontAutoStylePool"
+#include <bf_xmloff/XMLFontAutoStylePool.hxx>
 #include "XMLImageMapExport.hxx"
 #include "XMLBase64Export.hxx"
 #include "xmlerror.hxx"

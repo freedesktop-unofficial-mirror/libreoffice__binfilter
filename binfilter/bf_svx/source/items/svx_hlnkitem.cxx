@@ -33,11 +33,10 @@
 #define _SVX_HLNKITEM_CXX
 
 #include <svxids.hrc>
-
-#include <memberid.hrc>
-
+#include <bf_svtools/memberid.hrc>
 
 #include "hlnkitem.hxx"
+
 namespace binfilter {
 
 // -----------------------------------------------------------------------

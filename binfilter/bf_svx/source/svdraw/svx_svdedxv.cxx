@@ -28,18 +28,7 @@
 
 #include "svdedxv.hxx"
 #include <bf_svtools/solar.hrc>
-
-#include <tools/string.h>
-
-
-
-
-
-
-
-
-
-
+#include <string.h>
 #include "svditext.hxx"
 #include "svdoutl.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
