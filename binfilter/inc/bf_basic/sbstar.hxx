@@ -29,7 +29,7 @@
 #define _SB_SBSTAR_HXX
 
 #include "sbx.hxx"
-#include <sbxobj.hxx>
+#include <bf_basic/sbxobj.hxx>
 #include <rtl/ustring.hxx>
 #include <osl/mutex.hxx>
 

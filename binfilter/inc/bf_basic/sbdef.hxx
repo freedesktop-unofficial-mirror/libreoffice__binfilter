@@ -29,7 +29,7 @@
 #define _SB_SBDEF_HXX
 
 
-#include <sbxdef.hxx>
+#include <bf_basic/sbxdef.hxx>
 
 #include <bf_svtools/svarray.hxx>
 

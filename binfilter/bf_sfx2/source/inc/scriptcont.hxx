@@ -31,7 +31,7 @@
 #define _SFX_SCRIPTCONT_HXX
 
 //#include <namecont.hxx>
-#include <basmgr.hxx>
+#include <bf_basic/basmgr.hxx>
 class BasicManager;
 namespace binfilter {
 
