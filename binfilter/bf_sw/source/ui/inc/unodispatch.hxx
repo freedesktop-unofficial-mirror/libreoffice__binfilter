@@ -33,9 +33,7 @@
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase3.hxx>
 #include <list>
-//#ifndef _OSL_MUTEX_HXX_
 //#include <osl/mutex.hxx>
-//#endif
 #include <vos/mutex.hxx>
 namespace binfilter {
 

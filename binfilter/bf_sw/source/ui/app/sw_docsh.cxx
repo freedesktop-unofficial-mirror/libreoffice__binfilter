@@ -45,9 +45,7 @@
 #include <bf_sfx2/printer.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <comphelper/classids.hxx>
-//#ifndef _SB_SBJSMOD_HXX //autogen
 //#include "bf_basic/sbjsmod.hxx"
-//#endif
 
 #include <fmtpdsc.hxx>
 #include <fmtfsize.hxx>

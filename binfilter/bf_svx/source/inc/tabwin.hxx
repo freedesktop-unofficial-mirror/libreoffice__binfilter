@@ -34,9 +34,7 @@
 
 
 
-//#ifndef _SVX_FMTOOLS_HXX
 //#include "fmtools.hxx"
-//#endif
 
 namespace binfilter {
 //end of namespace binfilter

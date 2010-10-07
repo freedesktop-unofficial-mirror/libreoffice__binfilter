@@ -50,9 +50,7 @@
 #include <com/sun/star/formula/SymbolDescriptor.hpp>
 
 // #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
-//#endif
 
 #include <com/sun/star/util/DateTime.hpp>
 #include <com/sun/star/document/XViewDataSupplier.hpp>

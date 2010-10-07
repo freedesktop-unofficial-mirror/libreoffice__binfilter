@@ -36,17 +36,11 @@
 
 #include <bf_svtools/solar.hrc>
 
-//#ifndef _B2D_MPNT_HXX
 //#include <bf_goodies/b2dmpnt.hxx>
-//#endif
 
-//#ifndef _B2D_MLINE_HXX
 //#include <bf_goodies/b2dmline.hxx>
-//#endif
 
-//#ifndef _B2D_MBMP_HXX
 //#include <bf_goodies/b2dmbmp.hxx>
-//#endif
 
 #include <bf_svx/xpoly.hxx>
 #include <bf_svx/svdoedge.hxx>

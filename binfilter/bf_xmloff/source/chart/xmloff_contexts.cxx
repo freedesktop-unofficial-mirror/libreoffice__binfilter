@@ -31,9 +31,7 @@
 #include "xmlmetai.hxx"
 #include "xmlstyle.hxx"
 
-//  #ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 //  #include "XMLChartStyleContext.hxx"
-//  #endif
 
 
 #include "contexts.hxx"

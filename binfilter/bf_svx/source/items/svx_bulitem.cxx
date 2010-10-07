@@ -27,9 +27,7 @@
 
 // include ---------------------------------------------------------------
 
-//#ifndef _SV_SYSTEM_HXX
 //#include <vcl/system.hxx>
-//#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

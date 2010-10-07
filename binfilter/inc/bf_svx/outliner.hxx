@@ -84,9 +84,7 @@ class SvxLRSpaceItem;
 class EditEngine;
 class SvxForbiddenCharactersTable;
 
-//STRIP008 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 //STRIP008 #include <com/sun/star/uno/Reference.h>
-//STRIP008 #endif
 //STRIP008
 //STRIP008 #include <vos/ref.hxx>
 //STRIP008 #include <bf_svx/svxfont.hxx>

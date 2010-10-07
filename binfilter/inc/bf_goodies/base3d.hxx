@@ -28,28 +28,20 @@
 #ifndef _B3D_BASE3D_HXX
 #define _B3D_BASE3D_HXX
 
-//#ifndef _B3D_B3DLIGHT_HXX
 //#include "b3dlight.hxx"
-//#endif
 
 #include "hmatrix.hxx"
 
-//#ifndef _B3D_B3DENTITY_HXX
 //#include "b3dentty.hxx"
-//#endif
 
-//#ifndef _B3D_B3DCOMPO_HXX
 //#include "b3dcompo.hxx"
-//#endif
 
 #ifndef _INC_FLOAT
 #include <float.h>
 #endif
 
 // MUSS-Aenderung
-//#ifndef _SV_OUTDEV3D_HXX
 //#include <vcl/outdev3d.hxx>
-//#endif
 
 #include <vcl/timer.hxx>
 

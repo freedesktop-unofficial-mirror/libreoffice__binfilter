@@ -30,9 +30,7 @@
 #include <bf_so3/svstor.hxx>
 
 
-//#ifndef _XMLOFF_XMLITMAP_HXX
 //#include <bf_xmloff/xmlitmap.hxx>
-//#endif
 
 #include <bf_xmloff/xmlexp.hxx>
 

@@ -29,9 +29,7 @@
 #ifndef __EXCDOCUM_HXX__
 #define __EXCDOCUM_HXX__
 
-// auto strip #ifndef _STRING_HXX //autogen
 // auto strip #include <tools/string.hxx>
-// auto strip #endif
 namespace binfilter {
 
 

@@ -27,9 +27,7 @@
 
 #include "b3dtrans.hxx"
 
-//#ifndef _B3D_BASE3D_HXX
 //#include "base3d.hxx"
-//#endif
 
 #include "b3dvolum.hxx"
 

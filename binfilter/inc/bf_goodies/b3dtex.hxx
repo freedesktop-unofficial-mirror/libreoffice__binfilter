@@ -28,21 +28,15 @@
 #ifndef _B3D_B3DTEX_HXX
 #define _B3D_B3DTEX_HXX
 
-//#ifndef _SV_OPENGL_HXX
 //#include <vcl/opengl.hxx>
-//#endif
 
-//#ifndef _SV_BITMAPEX_HXX
 //#include <vcl/bitmapex.hxx>
-//#endif
 
 #include <tools/color.hxx>
 
 #include <vcl/salbtype.hxx>
 
-//#ifndef _TOOLS_TIME_HXX
 //#include <tools/time.hxx>
-//#endif
 
 // Vorausdeklarationen
 //class BitmapReadAccess;

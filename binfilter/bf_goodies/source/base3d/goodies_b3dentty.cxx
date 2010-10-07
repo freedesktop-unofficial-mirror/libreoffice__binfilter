@@ -27,9 +27,7 @@
 
 #include "b3dentty.hxx"
 
-//#ifndef _B3D_B3DCOMMN_HXX
 //#include "b3dcommn.hxx"
-//#endif
 
 #include "b3dtrans.hxx"
 

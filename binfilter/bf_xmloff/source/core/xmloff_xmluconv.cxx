@@ -48,9 +48,7 @@
 #include <vcl/fldunit.hxx>
 
 // #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 //#include <comphelper/processfactory.hxx>
-//#endif
 
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 #include <com/sun/star/style/NumberingType.hpp>

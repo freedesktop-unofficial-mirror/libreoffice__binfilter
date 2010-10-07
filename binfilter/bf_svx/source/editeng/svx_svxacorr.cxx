@@ -35,9 +35,7 @@
 #define ITEMID_CHARSETCOLOR 0
 #define ITEMID_COLOR        0
 
-//#ifndef _SYSTEM_HXX //autogen
 //#include <vcl/system.hxx>
-//#endif
 #include <vcl/svapp.hxx>
 #include <bf_sfx2/docfile.hxx>
 // fuer die Sort-String-Arrays aus dem SVMEM.HXX

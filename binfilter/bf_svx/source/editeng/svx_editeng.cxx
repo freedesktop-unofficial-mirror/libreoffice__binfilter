@@ -57,9 +57,7 @@
 #include "lrspitem.hxx"
 
 
-//#ifndef _SV_SYSTEM_HXX
 //#include <vcl/system.hxx>
-//#endif
 
 #include <numitem.hxx>
 #include <bulitem.hxx>
