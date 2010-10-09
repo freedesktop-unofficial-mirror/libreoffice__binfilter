@@ -38,6 +38,7 @@
 
 #include <comphelper/classids.hxx>
 
+#include <tools/urlobj.hxx>
 #include <sot/formats.hxx>
 
 #include <bf_svtools/ctrltool.hxx>
