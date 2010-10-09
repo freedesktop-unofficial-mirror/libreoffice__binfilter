@@ -38,9 +38,6 @@
 #include <vcl/sound.hxx>
 #endif
 
-#ifndef GCC
-#endif
-
 #include <bf_svtools/ehdl.hxx>
 #include <bf_svtools/svtdata.hxx>
 #include <bf_svtools/svtools.hrc>

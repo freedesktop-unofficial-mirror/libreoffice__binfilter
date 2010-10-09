@@ -28,8 +28,6 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 #include <string.h>
-#ifndef GCC
-#endif
 
 #include <bf_svtools/itemprop.hxx>
 #include <bf_svtools/itempool.hxx>

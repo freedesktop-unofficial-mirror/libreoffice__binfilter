@@ -28,9 +28,6 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 // INCLUDE ---------------------------------------------------------------
-#ifndef GCC
-#endif
-
 #include "whiter.hxx"
 #include <bf_svtools/itemset.hxx>
 

@@ -27,9 +27,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 #include <bf_svtools/hint.hxx>
 
 namespace binfilter

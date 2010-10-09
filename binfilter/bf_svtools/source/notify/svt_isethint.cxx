@@ -27,10 +27,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-#ifndef GCC
-#endif
-
 #include <bf_svtools/isethint.hxx>
 #include <bf_svtools/itemset.hxx>
 

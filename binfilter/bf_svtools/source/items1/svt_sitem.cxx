@@ -28,10 +28,6 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 // INCLUDE ---------------------------------------------------------------
-
-#ifndef GCC
-#endif
-
 #include <tools/string.hxx>
 #include <tools/stream.hxx>
 
