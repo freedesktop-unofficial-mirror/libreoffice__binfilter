@@ -221,22 +221,19 @@ rtl::OUString lcl_GetProductName()
     //  get the correct product name from the configuration
 
     ::rtl::OUStringBuffer aName;
-    utl::ConfigManager* pMgr = utl::ConfigManager::GetConfigManager();
-    if (pMgr)
-    {
-        ::rtl::OUString aValue;
-        uno::Any aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
+    utl::ConfigManager& rMgr = utl::ConfigManager::GetConfigManager();
+    ::rtl::OUString aValue;
+    uno::Any aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
 
-        aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTVERSION);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
+    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTVERSION);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
 
-        aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTEXTENSION);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
-    }
+    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTEXTENSION);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
     aName.append( (sal_Unicode)'(' );
     aName.appendAscii( TOOLS_INETDEF_OS );
     aName.append( (sal_Unicode)')' );

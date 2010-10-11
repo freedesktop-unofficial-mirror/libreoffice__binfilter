@@ -215,7 +215,7 @@ SvtUserOptions_Impl::SvtUserOptions_Impl() :
     InitUserPropertyNames();
     EnableNotification( PropertyNames::get() );
     Load();
-    Any aAny = ConfigManager::GetConfigManager()->GetDirectConfigProperty( ConfigManager::LOCALE );
+    Any aAny = ConfigManager::GetConfigManager().GetDirectConfigProperty( ConfigManager::LOCALE );
     OUString aLocale;
     if ( aAny >>= aLocale )
         m_aLocale = String( aLocale );
