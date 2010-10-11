@@ -1050,7 +1050,7 @@ sal_Int64 SAL_CALL UcbTransportInputStream_Impl::getLength (void)
  *
  *======================================================================*/
 
-class TransportThread_Impl : public ::vos::OThread
+class TransportThread_Impl : public ::osl::Thread
 {
     Link            m_aLink;
 public:

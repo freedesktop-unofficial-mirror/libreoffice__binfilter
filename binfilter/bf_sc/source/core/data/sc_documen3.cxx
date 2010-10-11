@@ -423,7 +423,7 @@ using namespace ::com::sun::star;
 /*?*/               //  let the thread that called BroadcastUno continue
 /*?*/               while ( bInUnoBroadcast )
 /*?*/               {
-/*?*/                   vos::OThread::yield();
+/*?*/                   osl::Thread::yield();
 /*?*/               }
 /*?*/           }
 /*N*/       }
