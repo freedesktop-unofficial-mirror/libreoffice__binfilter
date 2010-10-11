@@ -47,7 +47,7 @@
 #include <bf_svtools/ehdl.hxx>
 #include <comphelper/processfactory.hxx>
 #include <rtl/ustrbuf.hxx>
-#include <vos/security.hxx>
+#include <osl/security.hxx>
 #include <ucbhelper/configurationkeys.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/historyoptions.hxx>
