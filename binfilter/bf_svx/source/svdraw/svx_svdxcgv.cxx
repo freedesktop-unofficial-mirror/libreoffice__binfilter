@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -44,3 +45,5 @@ namespace binfilter {
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); GDIMetaFile aMtf; return aMtf;//STRIP001
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

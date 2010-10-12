@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -320,3 +321,5 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/     return *pObjFac;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

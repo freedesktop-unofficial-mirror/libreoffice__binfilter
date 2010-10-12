@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1493,3 +1494,5 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

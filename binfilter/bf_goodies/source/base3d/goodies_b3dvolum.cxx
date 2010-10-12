@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -143,3 +144,5 @@ SvStream& operator<<(SvStream& rOStream, const B3dVolume& rB3dVolume)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -724,3 +725,5 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

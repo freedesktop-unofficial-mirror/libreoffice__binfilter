@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1003,3 +1004,5 @@ void ScMasterPageContext::Finish( sal_Bool bOverwrite )
         ClearContent(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_PAGE_RIGHTHDRCON)));
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

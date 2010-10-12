@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -216,3 +217,5 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
 /*N*/   return (sal_uInt16)pUsrPref->GetFldUpdateFlags();
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

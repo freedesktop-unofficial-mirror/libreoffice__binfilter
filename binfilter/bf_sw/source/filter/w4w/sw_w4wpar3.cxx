@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1425,3 +1426,5 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

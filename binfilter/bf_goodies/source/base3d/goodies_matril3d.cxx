@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -84,3 +85,5 @@ BOOL B3dMaterial::operator==(const B3dMaterial& rMat)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

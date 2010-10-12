@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -785,3 +786,5 @@ void SdDrawDocument::getDefaultFonts( Font& rLatinFont, Font& rCJKFont, Font& rC
     rCTLFont = OutputDevice::GetDefaultFont( DEFAULTFONT_CTL_PRESENTATION, GetLanguage( EE_CHAR_LANGUAGE_CTL ), DEFAULTFONT_FLAGS_ONLYONE ) ;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

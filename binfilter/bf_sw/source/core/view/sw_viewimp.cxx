@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -278,3 +279,5 @@ namespace binfilter {
 
 // OD 15.01.2003 #103492# - method signature change due to new page preview functionality
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

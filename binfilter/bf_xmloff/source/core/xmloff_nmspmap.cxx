@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -379,3 +380,5 @@ sal_uInt16 SvXMLNamespaceMap::GetKeyByAttrName( const OUString& rAttrName,
     return _GetKeyByAttrName ( rAttrName, pPrefix, pLocalName, pNamespace );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

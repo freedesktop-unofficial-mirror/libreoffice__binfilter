@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1346,3 +1347,5 @@ USHORT SwSwgReader::InHint( SwTxtNode& rNd, xub_StrLen nBeg, xub_StrLen nEnd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

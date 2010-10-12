@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -329,3 +330,5 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ SwShellTableCrsr::operator SwShellTableCrsr* ()   { return this; }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
