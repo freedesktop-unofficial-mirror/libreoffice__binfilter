@@ -43,10 +43,6 @@ class SfxFilter;
 
 namespace binfilter {
 
-//#include <sal/types.h>
-
-//-------------------------------------------------------------------------
-
 class SwDLL
 
 /*  [Description]

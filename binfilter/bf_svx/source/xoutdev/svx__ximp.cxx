@@ -29,7 +29,6 @@
 #include <algorithm>
 
 #include <stdlib.h>
-//#include <math.h>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
 

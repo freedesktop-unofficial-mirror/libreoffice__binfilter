@@ -33,8 +33,8 @@
 #include <tools/solar.h>
 
 #include <tools/debug.hxx>
+
 namespace binfilter {
-//#include "typecast.hxx"
 
 #if defined (ALPHA) && defined (UNX)
 #define DEL_ARRAY( X )

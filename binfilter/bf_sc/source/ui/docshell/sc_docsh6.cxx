@@ -149,16 +149,9 @@
 #endif
 
 #ifndef PCH
-
 #include <bf_so3/ipenv.hxx>
-
-
 #include <bf_svx/linkmgr.hxx>
 #endif
-
-// INCLUDE ---------------------------------------------------------------
-
-//#include <svxlink.hxx>
 
 #include "docsh.hxx"
 

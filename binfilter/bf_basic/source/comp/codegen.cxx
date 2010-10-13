@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include "sbx.hxx"
-/*?*/ // #include "sbcomp.hxx"
 #include "image.hxx"
 #include "buffer.hxx"
 #include "opcodes.hxx"

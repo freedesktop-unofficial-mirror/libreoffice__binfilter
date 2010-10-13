@@ -35,8 +35,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "scitems.hxx"
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
@@ -54,7 +52,6 @@
 #include <tools/time.hxx>
 
 #include <bf_svx/flditem.hxx>
-//#include <vcl/system.hxx>
 #include <bf_svtools/inethist.hxx>
 #include <bf_svtools/syslocale.hxx>
 #ifndef _SVSTDARR_USHORTS

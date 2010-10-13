@@ -45,13 +45,7 @@
 #include "sbjsmod.hxx"
 #include "sbintern.hxx"
 #include "image.hxx"
-/*?*/ //#include "disas.hxx"
-/*?*/ //#include "runtime.hxx"
-/*?*/ //#include "sbuno.hxx"
-/*?*/ //#include "stdobj.hxx"
 #include "filefmt.hxx"
-/*?*/ //#include "sb.hrc"
-/*?*/ //#include "basrid.hxx"
 
 #include <vos/mutex.hxx>
 

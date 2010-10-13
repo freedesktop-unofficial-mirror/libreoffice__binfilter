@@ -28,8 +28,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-// #include <math.h>
-
 #include <tools/debug.hxx>
 #include <vcl/sound.hxx>
 #include <vcl/svapp.hxx>

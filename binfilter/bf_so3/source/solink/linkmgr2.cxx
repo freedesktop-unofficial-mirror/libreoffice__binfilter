@@ -32,7 +32,6 @@
 
 #include <vcl/msgbox.hxx>
 #include "bf_so3/lnkbase.hxx"
-//#include <bf_so3/linksrc.hxx>
 #include "impldde.hxx"
 #include "svuidlg.hrc"
 #include <bf_so3/iface.hxx>

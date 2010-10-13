@@ -30,15 +30,8 @@
 #pragma hdrstop
 #endif
 
-
-//#include <tools/debug.hxx>
-//#include <editeng.hxx>
-
 #include <unoshtxt.hxx>
 #include <unoedhlp.hxx>
-
-
-
 
 #include <bf_svtools/style.hxx>
 #include <svdoutl.hxx>
@@ -51,7 +44,8 @@
 
 #include "unotext.hxx"
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 
 

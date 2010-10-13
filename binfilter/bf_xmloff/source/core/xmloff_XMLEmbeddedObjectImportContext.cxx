@@ -28,9 +28,6 @@
 
 #include <com/sun/star/frame/XStorable.hpp>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include <tools/globname.hxx>
 #include <sot/clsids.hxx>
 

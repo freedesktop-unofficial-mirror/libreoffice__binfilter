@@ -31,7 +31,6 @@
 #pragma hdrstop
 #endif
 
-//#include <math.h>
 #ifdef MAC
 #include <stdlib.h>
 #endif

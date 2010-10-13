@@ -26,23 +26,7 @@
  *
  ************************************************************************/
 
-/*?*/ // #ifndef _SV_SVAPP_HXX //autogen
-/*?*/ // #include <vcl/svapp.hxx>
-/*?*/ // #endif
-/*?*/ // #ifndef _SOLAR_HRC
-/*?*/ // #include <bf_svtools/solar.hrc>
-/*?*/ // #endif
-/*?*/ // #ifndef _TOOLS_DEBUG_HXX //autogen
-/*?*/ // #include <tools/debug.hxx>
-/*?*/ // #endif
-/*?*/ // #ifndef _SV_MSGBOX_HXX //autogen
-/*?*/ // #include <vcl/msgbox.hxx>
-/*?*/ // #endif
-
-/*?*/ // #include "sbstar.hxx"
 #include "basrdll.hxx"
-/*?*/ // #include "basrid.hxx"
-/*?*/ // #include "sb.hrc"
 
 namespace binfilter {
 

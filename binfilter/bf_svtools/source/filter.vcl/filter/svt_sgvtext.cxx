@@ -28,15 +28,11 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-// #include <math.h>
-
 #include <tools/config.hxx>
 #include <bf_svtools/filter.hxx>
 #include "sgffilt.hxx"
 #include "sgfbram.hxx"
 #include "sgvmain.hxx"
-// #include "Debug.c"
 
 namespace binfilter {
 

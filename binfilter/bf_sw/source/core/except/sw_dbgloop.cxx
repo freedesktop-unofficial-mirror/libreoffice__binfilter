@@ -26,12 +26,6 @@
  *
  ************************************************************************/
 
-//#ifndef DBG_UTIL
-//#error Wer fummelt denn an den makefiles rum?
-//#endif
-
-//#include "dbgloop.hxx"
-//#include "errhdl.hxx"
 namespace binfilter {
 
 //DbgLoopStack DbgLoop::aDbgLoopStack;

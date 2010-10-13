@@ -28,9 +28,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-// #include <math.h>
-
 #include <osl/endian.h>
 #include <vcl/graph.hxx>
 #include <tools/poly.hxx>
@@ -40,10 +37,6 @@
 #include "sgvmain.hxx"
 #include "sgvspln.hxx"
 #include <unotools/ucbstreamhelper.hxx>
-
-//#if OSL_DEBUG_LEVEL > 1
-//#include "Debug.c"
-//#endif
 
 namespace binfilter
 {

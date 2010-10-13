@@ -28,9 +28,6 @@
 #ifndef _CODEGEN_HXX
 #define _CODEGEN_HXX
 
-/*?*/ // #include "opcodes.hxx"
-/*?*/ // #include "buffer.hxx"
-
 namespace binfilter {
 
 class SbiImage;

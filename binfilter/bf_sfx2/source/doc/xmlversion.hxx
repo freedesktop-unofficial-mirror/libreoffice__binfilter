@@ -29,9 +29,6 @@
 
 #include <bf_so3/svstor.hxx>
 
-
-//#include <bf_xmloff/xmlitmap.hxx>
-
 #include <bf_xmloff/xmlexp.hxx>
 
 #include <bf_xmloff/xmlimp.hxx>

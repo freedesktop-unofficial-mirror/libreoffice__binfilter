@@ -33,8 +33,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "xmlimprt.hxx"
 #include "xmlfilti.hxx"
 #include "document.hxx"
@@ -47,12 +45,8 @@
 #include <bf_xmloff/nmspmap.hxx>
 namespace binfilter {
 
-//#include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
-
 using namespace ::com::sun::star;
 using namespace xmloff::token;
-
-//------------------------------------------------------------------
 
 ScXMLDataPilotTablesContext::ScXMLDataPilotTablesContext( ScXMLImport& rImport,
                                       USHORT nPrfx,

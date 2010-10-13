@@ -56,9 +56,7 @@
 #include <bf_svtools/memberid.hrc>
 #include <bf_sfx2/sfxsids.hrc>
 #include <bf_svtools/cntwids.hrc>
-//#include <vcl/resid.hxx>
 #include <tools/resid.hxx>
-//#include <vcl/rc.hxx>
 #include <tools/rc.hxx>
 #include <tools/resmgr.hxx>
 #include <tools/gen.hxx>
@@ -92,7 +90,6 @@
 #include <tools/errinf.hxx>
 #include <tools/errcode.hxx>
 #include <tools/stream.hxx>
-//#include <vcl/color.hxx>
 #include <vcl/window.hxx>
 #include <global.hxx>
 #include <vcl/syswin.hxx>
@@ -149,7 +146,6 @@
 #include <vcl/apptypes.hxx>
 #include <viewopti.hxx>
 #include <viewdata.hxx>
-//#include <vcl/resid.hxx>
 #include <bf_sfx2/viewsh.hxx>
 #include <bf_sfx2/clientsh.hxx>
 #include <document.hxx>
@@ -245,7 +241,6 @@
 #include <vcl/print.hxx>
 #include <vcl/floatwin.hxx>
 #include <vcl/wrkwin.hxx>
-//#include <vcl/system.hxx>
 #include <bf_sfx2/childwin.hxx>
 #include <bf_sfx2/chalign.hxx>
 #include <bf_sfx2/dispatch.hxx>

@@ -33,11 +33,6 @@
 #include <tools/debug.hxx>
 #include <comphelper/extract.hxx>
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORYHXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
 #include <com/sun/star/linguistic2/XSupportedLocales.hpp>
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
 #include <com/sun/star/container/XNameContainer.hpp>

@@ -48,9 +48,6 @@
 
 #include <vcl/fldunit.hxx>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 #include <com/sun/star/style/NumberingType.hpp>
 #include <com/sun/star/text/XNumberingTypeInfo.hpp>

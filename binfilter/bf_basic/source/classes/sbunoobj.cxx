@@ -80,13 +80,11 @@ using namespace rtl;
 
 
 #include "sbstar.hxx"
-/*?*/ //#include "sbuno.hxx"
 #include "sberrors.hxx"
 #include "sbunoobj.hxx"
 #include "sbjsmod.hxx"
 #include "basmgr.hxx"
 #include "sbintern.hxx"
-/*?*/ //#include "runtime.hxx"
 
 #include<math.h>
 

@@ -31,7 +31,6 @@
 #endif
 
 #include <stdlib.h>
-//#include <math.h>
 #include <tools/bigint.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>

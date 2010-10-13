@@ -26,31 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
-//#include <tools/debug.hxx>
-#endif
-
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
 #include <com/sun/star/beans/XPropertyState.hpp>
 
-
-
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-//#include "xmlprmap.hxx"
-#endif
 #include "xmlnmspe.hxx"
-#ifndef _XMLOFF_TXTPRMAP_HXX
-//#include "txtprmap.hxx"
-#endif
 #include "xmlnume.hxx"
 #include "xmlexp.hxx"
 #include "XMLSectionExport.hxx"
 #include "XMLLineNumberingExport.hxx"
-namespace binfilter {
 
-#ifndef _XMLOFF_STYLEEXP_HXX
-//#include "styleexp.hxx"
-#endif
+namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;

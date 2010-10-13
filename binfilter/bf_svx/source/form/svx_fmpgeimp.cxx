@@ -48,7 +48,6 @@
 #include "fmprop.hrc"
 #include "fmglob.hxx"
 
-//  #include "fmstream.hxx"
 #include "fmobj.hxx"
 #include "fmpage.hxx"
 #include "fmmodel.hxx"
@@ -63,7 +62,8 @@
 
 #include <unotools/streamwrap.hxx>
 #include "dbtoolsclient.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -73,7 +73,7 @@ using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::form;
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 /*N*/ DBG_NAME(FmFormPageImpl)
 //------------------------------------------------------------------------------

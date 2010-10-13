@@ -36,10 +36,6 @@
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
-
 #include "xmlnmspe.hxx"
 #include "xmluconv.hxx"
 #include "xmlnumfi.hxx"     // SvXMLNumFmtDefaults

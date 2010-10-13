@@ -41,11 +41,8 @@
 
 #include <sbmod.hxx>
 
-//#include "sbuno.hxx"
 #include "basmgr.hxx"
-//#include "basrid.hxx"
 #include "sbintern.hxx"
-//#include <sb.hrc>
 
 
 #define LIB_SEP         0x01

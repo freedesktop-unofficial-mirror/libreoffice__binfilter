@@ -57,8 +57,6 @@
 #endif
 //#endif
 
-//#include <bookguid.h>
-
 #ifdef INC_CONTROLS
 #define INC_AUTOMATION
 #endif
@@ -91,9 +89,6 @@
 #include <malloc.h>
 #endif
 
-//#include <book1632.h>
-//#include <dbgout.h>
-
 #ifdef INC_CLASSLIB
 extern "C"
     {
@@ -104,7 +99,6 @@ extern "C"
    #endif
     }
 
-//#include <classlib.h>
 #endif
 
 

@@ -33,8 +33,6 @@
 #pragma hdrstop
 #endif
 
-
-//#include <math.h>
 #include <basegfx/numeric/ftools.hxx>
 
 

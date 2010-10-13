@@ -32,33 +32,19 @@
 #pragma hdrstop
 #endif
 
-//#include <vcl/system.hxx>
-
 #include "eeitem.hxx"
 #include "eeitemid.hxx"
-
-
-
-
 
 #include <vcl/window.hxx>
 
 #include <impedit.hxx>
-
-
 
 #include "lrspitem.hxx"
 #include "langitem.hxx"
 
 #include <rtl/tencinfo.h>
 
-
-
 #include <unolingu.hxx>
-
-
-
-
 
 namespace binfilter {
 using namespace ::com::sun::star;

@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-//#include <math.h>
 #include <vcl/cvtsvm.hxx>
 #include <tools/line.hxx>
 #include <vector>

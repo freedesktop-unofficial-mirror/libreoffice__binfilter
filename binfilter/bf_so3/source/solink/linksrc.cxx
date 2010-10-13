@@ -29,7 +29,6 @@
 
 #include <bf_so3/linksrc.hxx>
 #include "bf_so3/lnkbase.hxx"
-//#include <sot/exchange.hxx>
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 

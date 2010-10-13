@@ -30,9 +30,6 @@
 #pragma hdrstop
 #endif
 
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
 #include <bf_svx/eeitemid.hxx>
 #include <bf_svx/eeitem.hxx>
 #include <bf_svx/fhgtitem.hxx>

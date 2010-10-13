@@ -58,8 +58,6 @@
 #include "lrspitem.hxx"
 
 
-//#include <vcl/system.hxx>
-
 #include <numitem.hxx>
 #include <bulitem.hxx>
 

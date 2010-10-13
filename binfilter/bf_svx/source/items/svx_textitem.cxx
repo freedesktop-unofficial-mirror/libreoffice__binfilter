@@ -26,9 +26,6 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
-
 #include <tools/stream.hxx>
 #include <toolkit/unohlp.hxx>
 #include <math.h>
@@ -74,11 +71,6 @@
 #include <bf_svtools/memberid.hrc>
 #include "svxids.hrc"
 #include "svxitems.hrc"
-
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
-
 
 #include "rtl/ustring.hxx"
 #include <i18npool/mslangid.hxx>

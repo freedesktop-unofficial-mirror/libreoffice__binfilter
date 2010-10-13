@@ -46,7 +46,6 @@
 #include <bf_sfx2/printer.hxx>
 #include <bf_svx/linkmgr.hxx>
 #include <comphelper/classids.hxx>
-//#include "bf_basic/sbjsmod.hxx"
 
 #include <fmtpdsc.hxx>
 #include <fmtfsize.hxx>

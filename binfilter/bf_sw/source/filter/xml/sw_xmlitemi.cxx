@@ -51,10 +51,6 @@
 #include <bf_svx/brshitem.hxx>
 #include <bf_svx/langitem.hxx>
 
-#ifndef _XMLOFF_XMLTABI_HXX
-//#include <bf_xmloff/xmltabi.hxx>
-#endif
-
 #include "xmlbrshi.hxx"
 
 #include <paratr.hxx>

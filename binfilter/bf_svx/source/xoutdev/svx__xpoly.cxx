@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-//#include <math.h>
 #include <string.h>
 #include <tools/stream.hxx>
 

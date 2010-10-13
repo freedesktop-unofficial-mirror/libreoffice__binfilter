@@ -31,7 +31,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <float.h>
-// #include <math.h>
 #include <errno.h>
 #include <stdlib.h>
 

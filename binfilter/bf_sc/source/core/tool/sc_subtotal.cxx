@@ -25,7 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-// INCLUDE ---------------------------------------------------------------
 
 #ifdef RS6000
 
@@ -45,7 +44,6 @@
 
 
 #include <float.h>
-//#include <math.h>
 #ifdef SOLARIS
 #include <ieeefp.h>
 #endif

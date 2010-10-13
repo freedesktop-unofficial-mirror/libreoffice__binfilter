@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-//#include <math.h>
 #include <stdlib.h>
 #include "xpool.hxx"
 #include "svdpool.hxx"

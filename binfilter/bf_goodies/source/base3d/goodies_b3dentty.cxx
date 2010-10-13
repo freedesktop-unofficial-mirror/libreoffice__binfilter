@@ -28,8 +28,6 @@
 
 #include "b3dentty.hxx"
 
-//#include "b3dcommn.hxx"
-
 #include "b3dtrans.hxx"
 
 #include <tools/debug.hxx>

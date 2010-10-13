@@ -50,12 +50,10 @@
 #include <vcl/msgbox.hxx>
 #include <tools/shl.hxx>
 
-//#include <bf_linguistic/misc.hxx>
-
-
 #include <dialmgr.hxx>
 #include "dialogs.hrc"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::rtl;
 using namespace ::comphelper;

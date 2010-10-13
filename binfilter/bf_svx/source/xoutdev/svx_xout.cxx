@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-//#include <math.h>
 #include <stdlib.h>
 #include <vcl/svapp.hxx>
 #include <bf_svtools/itemset.hxx>

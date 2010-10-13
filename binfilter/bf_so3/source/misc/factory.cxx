@@ -61,7 +61,6 @@
 #include <bf_so3/ipenv.hxx>
 #include <bf_so3/protocol.hxx>
 #include "bf_so3/plugin.hxx"
-// #include "bf_so3/applet.hxx"
 #include "bf_so3/soerr.hxx"
 #include <comphelper/classids.hxx>
 #include "insdlg.hxx"

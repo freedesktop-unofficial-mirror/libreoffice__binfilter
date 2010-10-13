@@ -32,7 +32,6 @@
 #endif
 
 #include <stdlib.h>
-//#include <math.h>
 #ifdef UNX
   #include <unistd.h>
 #endif

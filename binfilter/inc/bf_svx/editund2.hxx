@@ -28,8 +28,6 @@
 #ifndef _EDITUND2_HXX
 #define _EDITUND2_HXX
 
-//#include <tools.hxx>
-
 #include <bf_svtools/undo.hxx>
 namespace binfilter {
 

@@ -103,14 +103,6 @@ public:
 };
 
 
-
-
-/***********************************************************************
-*                                                                      *
-***********************************************************************/
-
-//#include <cppuhelper/implbase4.hxx>
-
 class SdLayerManager : public ::cppu::WeakImplHelper4< ::com::sun::star::drawing::XLayerManager,
                                                        ::com::sun::star::container::XNameAccess,
                                                        ::com::sun::star::lang::XServiceInfo,

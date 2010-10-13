@@ -44,9 +44,6 @@
 #include <com/sun/star/form/ListSourceType.hpp>
 #include <vcl/wintypes.hxx>     // for check states
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #include "controlpropertyhdl.hxx"
 #include "controlpropertymap.hxx"

@@ -28,7 +28,6 @@
 
 #include <bf_svtools/zforlist.hxx>
 #include <tools/urlobj.hxx>
-//#include <vcl/system.hxx>
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

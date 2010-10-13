@@ -33,8 +33,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "DocumentSettingsContext.hxx"
 #include "xmlimp.hxx"
 #include "xmlnmspe.hxx"
@@ -49,9 +47,6 @@
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
 #include <com/sun/star/container/XIndexContainer.hpp>
 #include <com/sun/star/formula/SymbolDescriptor.hpp>
-
-// #110680#
-//#include <comphelper/processfactory.hxx>
 
 #include <com/sun/star/util/DateTime.hpp>
 #include <com/sun/star/document/XViewDataSupplier.hpp>

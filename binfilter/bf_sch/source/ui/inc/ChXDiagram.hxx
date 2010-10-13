@@ -29,7 +29,6 @@
 #define _CHART_DIAGRAM_HXX
 
 #include <cppuhelper/implbase.hxx>
-//#include <cppuhelper/implbase12.hxx>  // helper for implementations
 
 #include <com/sun/star/chart/XDiagram.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>

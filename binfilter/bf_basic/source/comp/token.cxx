@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include <ctype.h>
-/*?*/ // #include "sbcomp.hxx"
 #include "token.hxx"
 
 namespace binfilter {

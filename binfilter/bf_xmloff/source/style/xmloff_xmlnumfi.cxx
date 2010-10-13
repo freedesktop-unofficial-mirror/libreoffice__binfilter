@@ -36,9 +36,6 @@
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include "xmlnumfi.hxx"
 #include "xmlnmspe.hxx"
 #include "xmlimp.hxx"

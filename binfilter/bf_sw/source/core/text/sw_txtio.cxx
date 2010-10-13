@@ -39,8 +39,6 @@
 #endif
 
 #define CONSTCHAR( name, string ) static const sal_Char __FAR_DATA name[] = string
-//#include "txtcfg.hxx"
-
 
 #include <horiornt.hxx>
 

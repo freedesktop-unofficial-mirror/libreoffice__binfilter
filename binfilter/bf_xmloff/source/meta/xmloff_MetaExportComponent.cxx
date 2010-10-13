@@ -28,20 +28,9 @@
 
 #include "MetaExportComponent.hxx"
 
-
-
-
-
-
-
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
-
 #include "xmlnmspe.hxx"
 
 #include "nmspmap.hxx"
-
 
 #include "xmlmetae.hxx"
 

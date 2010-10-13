@@ -33,15 +33,12 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "scitems.hxx"
 #include <bf_svx/flstitem.hxx>
 #include <bf_svx/paperinf.hxx>
 
 #include <bf_svtools/stritem.hxx>
 
-//#include <bf_svx/postdlg.hxx>
 #include <bf_svx/sizeitem.hxx>
 #include <bf_offmgr/app.hxx>
 

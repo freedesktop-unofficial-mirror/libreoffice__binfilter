@@ -33,8 +33,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "scitems.hxx"
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
@@ -56,12 +54,6 @@
 #undef RGBColor
 #else
 #endif
-
-
-//#if defined( WIN ) || defined( WNT )
-//#include <svwin.h>
-//#endif
-
 
 #include "docsh.hxx"
 #include "stlpool.hxx"

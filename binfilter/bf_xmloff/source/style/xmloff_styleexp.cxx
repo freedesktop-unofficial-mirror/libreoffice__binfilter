@@ -33,10 +33,6 @@
 #endif
 
 #include "xmlnmspe.hxx"
-#ifndef _XMLOFF_XMLITMAP_HXX
-//#include "xmlitmap.hxx"
-#endif
-
 
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 #include <com/sun/star/style/XStyle.hpp>

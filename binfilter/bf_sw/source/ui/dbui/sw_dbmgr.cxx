@@ -58,9 +58,6 @@
 #include <bf_sfx2/progress.hxx>
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_offmgr/app.hxx>
-#ifndef _MAILENUM_HXX //autogen
-//#include <goodies/mailenum.hxx>
-#endif
 #include <cmdid.h>
 #include <swtypes.hxx>
 #include <swmodule.hxx>
@@ -111,8 +108,9 @@
 #include <bf_svx/dataaccessdescriptor.hxx>
 #include <cppuhelper/implbase1.hxx>
 #include <vos/mutex.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
+
 namespace binfilter {
 using namespace svx;
 using namespace ::com::sun::star;

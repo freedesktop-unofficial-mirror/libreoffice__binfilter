@@ -40,13 +40,8 @@
 #include <editeng.hxx>
 #include <fontitem.hxx>
 #include <cscoitem.hxx>
-//#include <vcl/system.hxx>
-
-
 
 #include "itemdata.hxx"
-
-
 
 #include <flditem.hxx>
 #include <lrspitem.hxx>

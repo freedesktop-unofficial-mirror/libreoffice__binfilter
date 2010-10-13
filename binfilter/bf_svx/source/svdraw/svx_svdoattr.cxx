@@ -35,27 +35,13 @@
 
 #include <bf_svtools/smplhint.hxx>
 
-
-
-
 #include "xlnstwit.hxx"
 
 #include "xlnedwit.hxx"
 
-
-
-
-
-
-
 #include <eeitemid.hxx>
 
 #include "eeitem.hxx"
-
-
-
-
-//#include <charscaleitem.hxx>
 
 #include <xlnstcit.hxx>
 

@@ -35,9 +35,6 @@
 #include "controlpropertyhdl.hxx"
 #include <comphelper/extract.hxx>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include "controlpropertymap.hxx"
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #include <com/sun/star/form/FormComponentType.hpp>

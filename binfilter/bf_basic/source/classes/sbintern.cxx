@@ -29,8 +29,6 @@
 #include "sbintern.hxx"
 #include "sbunoobj.hxx"
 #include "token.hxx"                // Tokenizer
-/*?*/ // #include "symtbl.hxx"              // Symbolverwaltung
-/*?*/ // #include "parser.hxx"              // Parser
 #include "codegen.hxx"              // Code-Generator
 #include "basmgr.hxx"
 

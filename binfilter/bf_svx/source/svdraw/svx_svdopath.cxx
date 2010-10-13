@@ -32,7 +32,6 @@
 #include "xoutx.hxx"
 #include "svdtouch.hxx"
 #include "svdio.hxx"
-//#include "svdosmrt.hxx"
 #include "svdview.hxx"  // fuer MovCreate bei Freihandlinien
 #include "svdstr.hrc"   // Objektname
 

@@ -28,8 +28,6 @@
 
 #include <outl_pch.hxx>
 
-//#include <math.h>
-
 #include <bf_svtools/style.hxx>
 #include <vcl/wrkwin.hxx>
 

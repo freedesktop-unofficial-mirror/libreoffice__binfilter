@@ -38,7 +38,6 @@
 #include <search.h>
 #endif
 #include <limits.h>
-// #include <math.h>
 #include <float.h>
 
 #include <hintids.hxx>
@@ -65,7 +64,8 @@
 #include <dbmgr.hxx>
 #include <docfld.hxx>
 #include <swunodef.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 // tippt sich schneller
 #define RESOURCE ViewShell::GetShellRes()

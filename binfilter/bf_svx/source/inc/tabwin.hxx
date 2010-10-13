@@ -24,29 +24,18 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifndef _SVX_TABWIN_HXX
 #define _SVX_TABWIN_HXX
 
-
-
-
 #include <bf_sfx2/childwin.hxx>
 
-
-
-//#include "fmtools.hxx"
-
 namespace binfilter {
-//end of namespace binfilter
-//==================================================================
+
 class FmFieldWin;
 
-//========================================================================
 class FmFormShell;
 
-//========================================================================
-
-//========================================================================
 class FmFieldWinMgr : public SfxChildWindow
 {
 public:

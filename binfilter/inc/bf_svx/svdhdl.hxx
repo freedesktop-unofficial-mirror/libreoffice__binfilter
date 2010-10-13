@@ -36,12 +36,6 @@
 
 #include <bf_svtools/solar.hrc>
 
-//#include <bf_goodies/b2dmpnt.hxx>
-
-//#include <bf_goodies/b2dmline.hxx>
-
-//#include <bf_goodies/b2dmbmp.hxx>
-
 #include <bf_svx/xpoly.hxx>
 #include <bf_svx/svdoedge.hxx>
 class VirtualDevice;

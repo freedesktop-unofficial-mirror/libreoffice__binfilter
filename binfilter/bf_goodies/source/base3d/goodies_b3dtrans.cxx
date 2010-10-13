@@ -28,8 +28,6 @@
 
 #include "b3dtrans.hxx"
 
-//#include "base3d.hxx"
-
 #include "b3dvolum.hxx"
 
 namespace binfilter {

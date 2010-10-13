@@ -33,12 +33,12 @@
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase3.hxx>
 #include <list>
-//#include <osl/mutex.hxx>
 #include <vos/mutex.hxx>
+
 namespace binfilter {
 
 class SwView;
-//---------------------------------------------------------------------------------------------------------------------
+
 class SwXDispatchProviderInterceptor : public cppu::WeakImplHelper3
 <
     ::com::sun::star::frame::XDispatchProviderInterceptor,
@@ -94,7 +94,7 @@ public:
     // view destroyed
     void    Invalidate();
 };
-//---------------------------------------------------------------------------------------------------------------------
+
 struct StatusStruct_Impl
 {
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XStatusListener> xListener;

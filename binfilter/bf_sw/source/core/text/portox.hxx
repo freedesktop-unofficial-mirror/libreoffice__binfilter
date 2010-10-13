@@ -29,8 +29,8 @@
 #define _PORTOX_HXX
 
 #include "portxt.hxx"
+
 namespace binfilter {
-//#include "porglue.hxx"
 
 /*************************************************************************
  *                      class SwToxPortion

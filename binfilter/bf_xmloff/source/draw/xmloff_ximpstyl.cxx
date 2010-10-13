@@ -56,9 +56,6 @@
 
 #include <com/sun/star/presentation/XHandoutMasterSupplier.hpp>
 
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 #include "xmlprcon.hxx"
 
 

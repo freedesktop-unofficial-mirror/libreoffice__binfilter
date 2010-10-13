@@ -31,7 +31,6 @@
 #endif
 
 #include "objsh.hxx"
-//#include "objshimp.hxx"
 #include "objitem.hxx"
 namespace binfilter {
 

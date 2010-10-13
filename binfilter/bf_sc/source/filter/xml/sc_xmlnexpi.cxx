@@ -33,12 +33,9 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "xmlnexpi.hxx"
 #include "xmlimprt.hxx"
 #include "docuno.hxx"
-//#include "document.hxx"
 #include "XMLConverter.hxx"
 
 #include <bf_xmloff/nmspmap.hxx>
@@ -54,8 +51,6 @@ namespace binfilter {
 #define SC_PRINT_RANGE "print-range"
 
 using namespace ::com::sun::star;
-
-//------------------------------------------------------------------
 
 ScXMLNamedExpressionsContext::ScXMLNamedExpressionsContext( ScXMLImport& rImport,
                                       USHORT nPrfx,

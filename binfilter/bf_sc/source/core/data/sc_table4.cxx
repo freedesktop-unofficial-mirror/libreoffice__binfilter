@@ -40,10 +40,7 @@
 #endif
                                         // sonst Absturz Win beim Fuellen
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "scitems.hxx"
-//#include <math.h>
 
 #include "globstr.hrc"
 #include "document.hxx"

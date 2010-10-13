@@ -32,10 +32,8 @@
 #include "xmlmetai.hxx"
 #include "xmlstyle.hxx"
 
-//  #include "XMLChartStyleContext.hxx"
-
-
 #include "contexts.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;

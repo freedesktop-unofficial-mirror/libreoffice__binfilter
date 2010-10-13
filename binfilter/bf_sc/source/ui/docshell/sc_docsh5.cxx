@@ -154,12 +154,9 @@
 #include <bf_sfx2/app.hxx>
 
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "docsh.hxx"
 #include "globstr.hrc"
 #include "undodat.hxx"
-//#include "pivot.hxx"
 #include "consoli.hxx"
 #include "dbcolect.hxx"
 #include "bf_sc.hrc"

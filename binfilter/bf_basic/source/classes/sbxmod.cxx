@@ -39,11 +39,8 @@
 #include "sbjsmod.hxx"
 #include "sbintern.hxx"
 #include "image.hxx"
-/*?*/ // #include "opcodes.hxx"
-/*?*/ // #include "runtime.hxx"
 #include "token.hxx"
 #include "sbunoobj.hxx"
-/*?*/ // #include "hilight.hxx"
 #include "basrdll.hxx"
 
 #include <vos/mutex.hxx>

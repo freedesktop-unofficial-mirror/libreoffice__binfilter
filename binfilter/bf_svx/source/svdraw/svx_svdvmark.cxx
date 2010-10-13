@@ -30,12 +30,7 @@
 #include "svdobj.hxx"
 #include "svdpntv.hxx"
 
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
 namespace binfilter {
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrViewUserMarker::SdrViewUserMarker(SdrPaintView* pView_)
 /*N*/ : pView(pView_),

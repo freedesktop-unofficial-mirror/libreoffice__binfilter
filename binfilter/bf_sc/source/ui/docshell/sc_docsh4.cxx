@@ -33,12 +33,6 @@
 #pragma hdrstop
 #endif
 
-
-// INCLUDE ---------------------------------------------------------------
-//#if STLPORT_VERSION>=321
-//#include <math.h>     // prevent conflict between exception and std::exception
-//#endif
-
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 #include <bf_sfx2/app.hxx>

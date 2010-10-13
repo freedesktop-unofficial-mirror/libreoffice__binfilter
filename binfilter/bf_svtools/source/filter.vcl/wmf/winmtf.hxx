@@ -33,7 +33,6 @@
 #endif
 
 #include <vector>
-// #include <math.h>
 #include <stdlib.h>
 #include <sot/object.hxx>
 #include <boost/shared_ptr.hpp>

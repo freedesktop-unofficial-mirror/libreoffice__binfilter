@@ -33,10 +33,7 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include <string.h>
-//#include <math.h>
 
 #include <bf_svtools/zforlist.hxx>
 
