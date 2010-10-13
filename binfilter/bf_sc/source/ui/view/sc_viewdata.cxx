@@ -25,8 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop

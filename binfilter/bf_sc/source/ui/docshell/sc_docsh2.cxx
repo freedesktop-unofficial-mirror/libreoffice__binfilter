@@ -26,10 +26,6 @@
  *
  ************************************************************************/
 
-
-#ifdef PCH
-#endif
-
 #include <bf_svx/svdpage.hxx>
 
 #ifdef _MSC_VER

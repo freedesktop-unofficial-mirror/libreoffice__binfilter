@@ -30,11 +30,6 @@
 #pragma optimize("",off)
 #endif
 
-//------------------------------------------------------------------
-
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif

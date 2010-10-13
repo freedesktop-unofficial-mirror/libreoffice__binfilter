@@ -39,9 +39,6 @@
 
 #endif
 
-#ifdef PCH
-#endif
-
 
 #include <float.h>
 #ifdef SOLARIS

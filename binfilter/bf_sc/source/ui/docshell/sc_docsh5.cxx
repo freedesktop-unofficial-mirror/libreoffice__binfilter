@@ -141,9 +141,6 @@
 #define _SVX_THESDLG_HXX
 
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
