@@ -88,7 +88,7 @@ throw( uno::RuntimeException )
 uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartAxis::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
     aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxis" );
@@ -133,7 +133,7 @@ void ChXChartAxis::InitNumberFormatter() throw( uno::RuntimeException )
 // XNumberFormatsSupplier
 uno::Reference< beans::XPropertySet > SAL_CALL ChXChartAxis::getNumberFormatSettings() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     InitNumberFormatter();
 
     return rNumberFormatter.get()->getNumberFormatSettings();
@@ -141,7 +141,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXChartAxis::getNumberFormatSett
 
 uno::Reference< util::XNumberFormats > SAL_CALL ChXChartAxis::getNumberFormats() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     InitNumberFormatter();
 
     return rNumberFormatter.get()->getNumberFormats();
@@ -229,7 +229,7 @@ uno::Any SAL_CALL ChXChartAxis::getPropertyValue( const ::rtl::OUString& Propert
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -283,7 +283,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel && mnWhichId != CHOBJID_ANY )
     {
@@ -566,7 +566,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             lang::WrappedTargetException,
             uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if (mpModel == NULL || mnWhichId == CHOBJID_ANY)
         return;
@@ -817,7 +817,7 @@ Sequence<PropertyState > SAL_CALL ChXChartAxis::getPropertyStates(
         throw( UnknownPropertyException,
                RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyNames.getLength();
     const ::rtl::OUString * pName = aPropertyNames.getConstArray();

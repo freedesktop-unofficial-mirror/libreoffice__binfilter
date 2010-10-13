@@ -151,7 +151,7 @@ void SwXBookmark::attachToRange(const uno::Reference< text::XTextRange > & xText
 void SwXBookmark::attach(const uno::Reference< text::XTextRange > & xTextRange)
                             throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 /*-- 10.12.98 10:14:39---------------------------------------------------
@@ -159,7 +159,7 @@ void SwXBookmark::attach(const uno::Reference< text::XTextRange > & xTextRange)
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXBookmark::getAnchor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextRange >  aRet;
     SwBookmark* pBkm = GetBookmark();
 
@@ -181,7 +181,7 @@ uno::Reference< text::XTextRange >  SwXBookmark::getAnchor(void) throw( uno::Run
   -----------------------------------------------------------------------*/
 void SwXBookmark::dispose(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwBookmark* pBkm = GetBookmark();
     if(pBkm)
         GetDoc()->DelBookmark(getName());
@@ -212,7 +212,7 @@ void SwXBookmark::removeEventListener(const uno::Reference< lang::XEventListener
   -----------------------------------------------------------------------*/
 OUString SwXBookmark::getName(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwBookmark* pBkm = GetBookmark();
     OUString sRet;
     if(pBkm)
@@ -228,7 +228,7 @@ OUString SwXBookmark::getName(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXBookmark::setName(const OUString& rName) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwBookmark* pBkm = GetBookmark();
     String sBkName(rName);
     String sOldName = getName();

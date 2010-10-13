@@ -365,7 +365,7 @@ Sequence< Type > SwXDrawPage::getTypes(  ) throw(RuntimeException)
 
 sal_Int32 SwXDrawPage::getCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -380,7 +380,7 @@ sal_Int32 SwXDrawPage::getCount(void) throw( uno::RuntimeException )
 uno::Any SwXDrawPage::getByIndex(sal_Int32 nIndex)
         throw( IndexOutOfBoundsException, WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -402,7 +402,7 @@ uno::Type  SwXDrawPage::getElementType(void) throw( uno::RuntimeException )
 
 sal_Bool SwXDrawPage::hasElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -414,7 +414,7 @@ sal_Bool SwXDrawPage::hasElements(void) throw( uno::RuntimeException )
 void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
     throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     uno::Reference< XUnoTunnel > xShapeTunnel(xShape, uno::UNO_QUERY);
@@ -547,7 +547,7 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
 
 void SwXDrawPage::remove(const uno::Reference< drawing::XShape > & xShape) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     Reference<lang::XComponent> xComp(xShape, UNO_QUERY);
@@ -556,7 +556,7 @@ void SwXDrawPage::remove(const uno::Reference< drawing::XShape > & xShape) throw
 
 uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference< drawing::XShapes > & xShapes) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc || !xShapes.is())
         throw uno::RuntimeException();
     uno::Reference< drawing::XShapeGroup >  xRet;
@@ -603,7 +603,7 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
 
 void SwXDrawPage::ungroup(const uno::Reference< drawing::XShapeGroup > & xShapeGroup) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(xPageAgg.is())
@@ -626,7 +626,7 @@ SwFmDrawPage*   SwXDrawPage::GetSvxPage()
 {
     if(!xPageAgg.is() && pDoc)
     {
-        vos::OGuard  aGuard(Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         SdrModel* pModel = pDoc->MakeDrawModel();
         SdrPage* pPage = pModel->GetPage( 0 );
 
@@ -762,7 +762,7 @@ Sequence< Type > SwXShape::getTypes(  ) throw(RuntimeException)
 
 Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     // do we need to compute the implementation id for this instance?
     if( !pImplementationId && xShapeAgg.is())
     {
@@ -804,7 +804,7 @@ Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
 
 uno::Reference< XPropertySetInfo >  SwXShape::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XPropertySetInfo >  aRet;
     if(xShapeAgg.is())
     {
@@ -828,7 +828,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
     throw( UnknownPropertyException, PropertyVetoException,
         IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                 _pMap, rPropertyName);
@@ -983,7 +983,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
 uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     SwFrmFmt*   pFmt = GetFrmFmt();
     if(xShapeAgg.is())
@@ -1082,7 +1082,7 @@ uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
 PropertyState SwXShape::getPropertyState( const OUString& rPropertyName )
     throw(beans::UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< OUString > aNames(1);
     OUString* pStrings = aNames.getArray();
     pStrings[0] = rPropertyName;
@@ -1094,7 +1094,7 @@ Sequence< PropertyState > SwXShape::getPropertyStates(
     const Sequence< OUString >& aPropertyNames )
         throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     Sequence< PropertyState > aRet(aPropertyNames.getLength());
     if(xShapeAgg.is())
@@ -1200,7 +1200,7 @@ Sequence< PropertyState > SwXShape::getPropertyStates(
 void SwXShape::setPropertyToDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     if(xShapeAgg.is())
     {
@@ -1251,7 +1251,7 @@ void SwXShape::setPropertyToDefault( const OUString& rPropertyName )
 Any SwXShape::getPropertyDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     Any aRet;
     if(xShapeAgg.is())
@@ -1315,7 +1315,7 @@ void SwXShape::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 void SwXShape::attach(const Reference< XTextRange > & xTextRange)
     throw( IllegalArgumentException, RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // get access to SwDoc
     // (see also SwXTextRange::XTextRangeToSwPaM)
@@ -1372,7 +1372,7 @@ void SwXShape::attach(const Reference< XTextRange > & xTextRange)
 
 Reference< XTextRange >  SwXShape::getAnchor(void) throw( RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XTextRange >  aRef;
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pFmt)
@@ -1394,7 +1394,7 @@ Reference< XTextRange >  SwXShape::getAnchor(void) throw( RuntimeException )
 
 void SwXShape::dispose(void) throw( RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pFmt)
     {
@@ -1530,7 +1530,7 @@ void SwXGroupShape::release(  ) throw()
 
 void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SvxShape* pSvxShape = GetSvxShape();
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pSvxShape && pFmt)
@@ -1587,7 +1587,7 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
 
 void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bOk = FALSE;
     Reference<XShapes> xShapes;
     if( xShapeAgg.is() )
@@ -1603,7 +1603,7 @@ void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeEx
 
 sal_Int32 SwXGroupShape::getCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Int32 nRet = 0;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
@@ -1619,7 +1619,7 @@ sal_Int32 SwXGroupShape::getCount(void) throw( uno::RuntimeException )
 
 Any SwXGroupShape::getByIndex(sal_Int32 nIndex) throw( IndexOutOfBoundsException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1634,7 +1634,7 @@ Any SwXGroupShape::getByIndex(sal_Int32 nIndex) throw( IndexOutOfBoundsException
 
 uno::Type SwXGroupShape::getElementType(  ) throw(RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1649,7 +1649,7 @@ uno::Type SwXGroupShape::getElementType(  ) throw(RuntimeException)
 
 sal_Bool SwXGroupShape::hasElements(  ) throw(RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {

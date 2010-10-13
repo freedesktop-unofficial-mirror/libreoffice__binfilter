@@ -334,7 +334,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXFootnoteProperties::getPropertySet
 void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, const uno::Any& aValue)
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pDoc)
     {
         const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -458,7 +458,7 @@ void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, cons
 uno::Any SwXFootnoteProperties::getPropertyValue(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     if(pDoc)
     {
@@ -646,7 +646,7 @@ void SwXEndnoteProperties::setPropertyValue(const OUString& rPropertyName, const
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException,
         lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pDoc)
     {
         const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -724,7 +724,7 @@ void SwXEndnoteProperties::setPropertyValue(const OUString& rPropertyName, const
 uno::Any SwXEndnoteProperties::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     if(pDoc)
     {
@@ -878,7 +878,7 @@ void SwXLineNumberingProperties::setPropertyValue(
         throw( UnknownPropertyException, PropertyVetoException,
                 IllegalArgumentException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pDoc)
     {
         const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -992,7 +992,7 @@ void SwXLineNumberingProperties::setPropertyValue(
 Any SwXLineNumberingProperties::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
     if(pDoc)
     {
@@ -1224,7 +1224,7 @@ void SwXNumberingRules::replaceByIndex(sal_Int32 nIndex, const uno::Any& rElemen
     throw( lang::IllegalArgumentException, lang::IndexOutOfBoundsException,
                   lang::WrappedTargetException, uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(rElement.getValueType().getTypeClass() != uno::TypeClass_SEQUENCE)
         throw lang::IllegalArgumentException();
     const uno::Sequence<beans::PropertyValue>& rProperties =
@@ -1298,7 +1298,7 @@ uno::Any SwXNumberingRules::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException,
             uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aVal;
     if(MAXLEVEL <= nIndex)
         throw lang::IndexOutOfBoundsException();
@@ -1337,7 +1337,7 @@ sal_Bool SwXNumberingRules::hasElements(void) throw( uno::RuntimeException )
 uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
                 const SwNumRule& rNumRule, sal_Int32 nIndex) const
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SwNumFmt& rFmt = rNumRule.Get( (sal_uInt16)nIndex );
 
     sal_Bool bChapterNum = pDocShell != 0;
@@ -1538,7 +1538,7 @@ void SwXNumberingRules::setNumberingRuleByIndex(
             const uno::Sequence<beans::PropertyValue>& rProperties, sal_Int32 nIndex)
     throw( uno::RuntimeException, lang::IllegalArgumentException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     // the order of the names is important!
     static const char* aNumPropertyNames[] =
     {
@@ -2198,19 +2198,19 @@ SwXTextColumns::~SwXTextColumns()
 
 sal_Int32 SwXTextColumns::getReferenceValue(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return nReference;
 }
 
 sal_Int16 SwXTextColumns::getColumnCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return aTextColumns.getLength();
 }
 
 void SwXTextColumns::setColumnCount(sal_Int16 nColumns) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(nColumns <= 0)
         throw uno::RuntimeException();
     bIsAutomaticWidth = sal_True;
@@ -2231,14 +2231,14 @@ void SwXTextColumns::setColumnCount(sal_Int16 nColumns) throw( uno::RuntimeExcep
 
 uno::Sequence< TextColumn > SwXTextColumns::getColumns(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return aTextColumns;
 }
 
 void SwXTextColumns::setColumns(const uno::Sequence< TextColumn >& rColumns)
             throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_uInt16 nReferenceTemp = 0;
     const TextColumn* prCols = rColumns.getConstArray();
     for(long i = 0; i < rColumns.getLength(); i++)

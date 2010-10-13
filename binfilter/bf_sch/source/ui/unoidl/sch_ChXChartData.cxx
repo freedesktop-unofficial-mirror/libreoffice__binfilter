@@ -256,7 +256,7 @@ uno::Sequence< uno::Sequence< double > > SAL_CALL ChXChartDataArray::getData() t
     if( ! mpModel )
         return uno::Sequence< uno::Sequence< double > >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     double *pData;
 
@@ -294,7 +294,7 @@ void SAL_CALL ChXChartDataArray::setData( const uno::Sequence< uno::Sequence< do
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // get number of rows/columns
     const uno::Sequence< double >* pSequence = aData.getConstArray();
@@ -350,7 +350,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getRowDescriptions(
     if( ! mpModel )
         return uno::Sequence< ::rtl::OUString >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nRow, nRowCnt = pDocData->GetRowCount();
@@ -373,7 +373,7 @@ void SAL_CALL ChXChartDataArray::setRowDescriptions( const uno::Sequence< ::rtl:
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nRow, nRowCnt = SCH_BIN_MIN( (sal_Int32)pDocData->GetRowCount(), aRowDescriptions.getLength() );
@@ -392,7 +392,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getColumnDescriptio
     if( ! mpModel )
         return uno::Sequence< ::rtl::OUString >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nCol, nColCnt = pDocData->GetColCount();
@@ -413,7 +413,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getColumnDescriptio
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nCol, nColCnt = SCH_BIN_MIN( (sal_Int32)pDocData->GetColCount(), aColumnDescriptions.getLength() );

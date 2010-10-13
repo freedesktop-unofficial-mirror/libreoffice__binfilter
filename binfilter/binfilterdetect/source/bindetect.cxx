@@ -534,7 +534,7 @@ BinFilterDetect::~BinFilterDetect()
 
 ::rtl::OUString SAL_CALL BinFilterDetect::detect( ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lDescriptor ) throw( ::com::sun::star::uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // create MediaDescriptor
     comphelper::MediaDescriptor aMedium( lDescriptor );

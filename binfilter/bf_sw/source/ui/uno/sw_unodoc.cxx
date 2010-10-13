@@ -62,7 +62,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwTextDocument_getSupportedServiceName
 uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );
@@ -103,7 +103,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwWebDocument_getSupportedServiceNames
 uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );
@@ -144,7 +144,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwGlobalDocument_getSupportedServiceNa
 uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );

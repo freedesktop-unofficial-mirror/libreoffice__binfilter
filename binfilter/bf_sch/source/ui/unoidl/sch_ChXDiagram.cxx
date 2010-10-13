@@ -181,7 +181,7 @@ ChXDiagram::~ChXDiagram() {}
 // bKeepModel = sal_True => try to keep model. If model is invalid take the one from DocShell
 sal_Bool ChXDiagram::SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepModel ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     sal_Bool bModelKept = sal_False;
 
     if( pDocShell )
@@ -354,7 +354,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
         return maServiceName;
     }
 
-      OGuard aGuard( Application::GetSolarMutex() );
+      SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -403,7 +403,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
 uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties( sal_Int32 Row )
     throw( uno::RuntimeException, lang::IndexOutOfBoundsException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -432,7 +432,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties(
 uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointProperties( sal_Int32 Column, sal_Int32 Row )
     throw( uno::RuntimeException, lang::IndexOutOfBoundsException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -464,7 +464,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
 // XShape ( ::XDiagram)
 awt::Size SAL_CALL ChXDiagram::getSize() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -479,7 +479,7 @@ void SAL_CALL ChXDiagram::setSize( const awt::Size& aSize )
     throw( uno::RuntimeException,
            beans::PropertyVetoException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpModel )
     {
         Rectangle aRect = mpModel->GetChartRect();
@@ -502,7 +502,7 @@ void SAL_CALL ChXDiagram::setSize( const awt::Size& aSize )
 
 awt::Point SAL_CALL ChXDiagram::getPosition() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpModel )
     {
         Point aPoint = mpModel->GetChartRect().TopLeft();
@@ -517,7 +517,7 @@ awt::Point SAL_CALL ChXDiagram::getPosition() throw( uno::RuntimeException )
 
 void SAL_CALL ChXDiagram::setPosition( const awt::Point& aPosition ) throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -757,7 +757,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getWall() throw( ::co
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXDiagram::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -775,7 +775,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                lang::WrappedTargetException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -1143,7 +1143,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
            uno::RuntimeException )
 {
     RTL_LOGFILE_CONTEXT (context, "sch (af119097) ::ChXDiagram::getPropertyValue");
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -1345,7 +1345,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
 
     return aResult;
 #else
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
     Sequence<Any> aResult (aPropertyNames.getLength());
@@ -1607,7 +1607,7 @@ beans::PropertyState SAL_CALL ChXDiagram::getPropertyState( const ::rtl::OUStrin
 
                 default:
                     {
-                        OGuard aGuard( Application::GetSolarMutex() );
+                        SolarMutexGuard aGuard;
 
                         SfxItemSet aSet( mpModel->GetItemPool(), pMap->nWID, pMap->nWID );
                         ChartType aType( mpModel );
@@ -1634,7 +1634,7 @@ void SAL_CALL ChXDiagram::setPropertyToDefault( const ::rtl::OUString& PropertyN
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -1707,7 +1707,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
     throw (beans::UnknownPropertyException,
             uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
 #if 0
     //  Old implementation.
@@ -2018,7 +2018,7 @@ sal_Int64 SAL_CALL ChXDiagram::getSomething( const uno::Sequence< sal_Int8 >& aI
 // XComponent
 void SAL_CALL ChXDiagram::dispose() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const int   nMemberListSize = 19;
     const uno::Reference<uno::XInterface> xMemberList[nMemberListSize] = {

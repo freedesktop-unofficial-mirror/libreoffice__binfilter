@@ -193,7 +193,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoPseudoStyle::getSupportedServiceNames()
 OUString SAL_CALL SdUnoPseudoStyle::getName(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( isValid() )
         return SdUnoPseudoStyleFamily::getExternalStyleName( mpStyleSheet->GetName() );
@@ -210,14 +210,14 @@ void SAL_CALL SdUnoPseudoStyle::setName( const OUString& aName )
 sal_Bool SAL_CALL SdUnoPseudoStyle::isUserDefined(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return mpStyleSheet && mpStyleSheet->IsUserDefined();
 }
 
 sal_Bool SAL_CALL SdUnoPseudoStyle::isInUse(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return mpStyleSheet && mpStyleSheet->IsUsed();
 }
@@ -225,7 +225,7 @@ sal_Bool SAL_CALL SdUnoPseudoStyle::isInUse(  )
 OUString SAL_CALL SdUnoPseudoStyle::getParentStyle(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( isValid() )
@@ -249,7 +249,7 @@ uno::Reference< beans::XPropertySetInfo > SAL_CALL SdUnoPseudoStyle::getProperty
 void SAL_CALL SdUnoPseudoStyle::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( aPropertyName );
 
@@ -337,7 +337,7 @@ void SAL_CALL SdUnoPseudoStyle::setPropertyValue( const OUString& aPropertyName,
 
 uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
@@ -438,7 +438,7 @@ void SAL_CALL SdUnoPseudoStyle::removeVetoableChangeListener( const OUString& Pr
 // XPropertyState
 beans::PropertyState SAL_CALL SdUnoPseudoStyle::getPropertyState( const OUString& PropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
 
@@ -522,7 +522,7 @@ beans::PropertyState SAL_CALL SdUnoPseudoStyle::getPropertyState( const OUString
 
 uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPseudoStyle::getPropertyStates( const uno::Sequence< OUString >& aPropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = aPropertyName.getLength();
     const OUString* pNames = aPropertyName.getConstArray();
@@ -538,7 +538,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPseudoStyle::getPropertyStat
 
 void SAL_CALL SdUnoPseudoStyle::setPropertyToDefault( const OUString& PropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
@@ -567,7 +567,7 @@ void SAL_CALL SdUnoPseudoStyle::setPropertyToDefault( const OUString& PropertyNa
 
 uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( aPropertyName );

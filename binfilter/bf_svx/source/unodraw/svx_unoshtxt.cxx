@@ -853,7 +853,7 @@ SvxTextEditSource::SvxTextEditSource( SvxTextEditSourceImpl* pImpl )
 //------------------------------------------------------------------------
 SvxTextEditSource::~SvxTextEditSource()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     mpImpl->release();
 }

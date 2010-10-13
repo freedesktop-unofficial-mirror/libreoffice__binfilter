@@ -370,7 +370,7 @@ void SwXTextDocument::GetNumberFormatter()
   -----------------------------------------------------------------------*/
 Reference< XText >  SwXTextDocument::getText(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!xBodyText.is())
@@ -385,7 +385,7 @@ Reference< XText >  SwXTextDocument::getText(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextDocument::reformat(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 }
@@ -394,7 +394,7 @@ void SwXTextDocument::reformat(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextDocument::lockControllers(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(IsValid())
     {
         UnoActionContext* pContext = new UnoActionContext(pDocShell->GetDoc());
@@ -408,7 +408,7 @@ void SwXTextDocument::lockControllers(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextDocument::unlockControllers(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(aActionArr.Count())
     {
         UnoActionContext* pContext = aActionArr.GetObject(0);
@@ -423,7 +423,7 @@ void SwXTextDocument::unlockControllers(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextDocument::hasControllersLocked(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return aActionArr.Count() > 0;
 }
 /*-- 18.12.98 13:12:23---------------------------------------------------
@@ -446,7 +446,7 @@ void SwXTextDocument::setCurrentController(const Reference< frame::XController >
  * --------------------------------------------------*/
 Reference< XInterface >  SwXTextDocument::getCurrentSelection() throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XInterface >  xRef;
     return xRef;
 }
@@ -515,7 +515,7 @@ void SwXTextDocument::removeEventListener(const Reference< lang::XEventListener 
 Reference< XPropertySet > SwXTextDocument::getLineNumberingProperties(void)
             throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(IsValid())
     {
         if(!pxXLineNumberingProperties)
@@ -534,7 +534,7 @@ Reference< XPropertySet > SwXTextDocument::getLineNumberingProperties(void)
 Reference< XIndexReplace >  SwXTextDocument::getChapterNumberingRules(void)
                                     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXChapterNumbering)
@@ -549,7 +549,7 @@ Reference< XIndexReplace >  SwXTextDocument::getChapterNumberingRules(void)
   -----------------------------------------------------------------------*/
 Reference< XIndexAccess >  SwXTextDocument::getFootnotes(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXFootnotes)
@@ -565,7 +565,7 @@ Reference< XIndexAccess >  SwXTextDocument::getFootnotes(void) throw( RuntimeExc
 Reference< XPropertySet >  SAL_CALL
         SwXTextDocument::getFootnoteSettings(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXFootnoteSettings)
@@ -580,7 +580,7 @@ Reference< XPropertySet >  SAL_CALL
   -----------------------------------------------------------------------*/
 Reference< XIndexAccess >  SwXTextDocument::getEndnotes(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXEndnotes)
@@ -595,7 +595,7 @@ Reference< XIndexAccess >  SwXTextDocument::getEndnotes(void) throw( RuntimeExce
   -----------------------------------------------------------------------*/
 Reference< XPropertySet >  SwXTextDocument::getEndnoteSettings(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXEndnoteSettings)
@@ -611,7 +611,7 @@ Reference< XPropertySet >  SwXTextDocument::getEndnoteSettings(void) throw( Runt
 Reference< util::XReplaceDescriptor >  SwXTextDocument::createReplaceDescriptor(void)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< util::XReplaceDescriptor >  xRet = new SwXTextSearch;
     return xRet;
 }
@@ -645,7 +645,7 @@ SwUnoCrsr*  SwXTextDocument::CreateCursorForSearch(Reference< XTextCursor > & xC
 sal_Int32 SwXTextDocument::replaceAll(const Reference< util::XSearchDescriptor > & xDesc)
                                         throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XUnoTunnel > xDescTunnel(xDesc, UNO_QUERY);
     if(!IsValid() || !xDescTunnel.is() || !xDescTunnel->getSomething(SwXTextSearch::getUnoTunnelId()))
         throw RuntimeException();
@@ -719,7 +719,7 @@ sal_Int32 SwXTextDocument::replaceAll(const Reference< util::XSearchDescriptor >
 Reference< util::XSearchDescriptor >  SwXTextDocument::createSearchDescriptor(void)
                                                     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< util::XSearchDescriptor >  xRet = new SwXTextSearch;
     return xRet;
 
@@ -855,7 +855,7 @@ Reference< XIndexAccess >
     SwXTextDocument::findAll(const Reference< util::XSearchDescriptor > & xDesc)
                                                 throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
     sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
@@ -876,7 +876,7 @@ Reference< XIndexAccess >
 Reference< XInterface >  SwXTextDocument::findFirst(const Reference< util::XSearchDescriptor > & xDesc)
                                             throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
     sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
@@ -902,7 +902,7 @@ Reference< XInterface >  SwXTextDocument::findNext(const Reference< XInterface >
             const Reference< util::XSearchDescriptor > & xDesc)
             throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XInterface >  xTmp;
     sal_Int32 nResult = 0;
     Reference< XTextCursor >  xCrsr;
@@ -930,7 +930,7 @@ Reference< XInterface >  SwXTextDocument::findNext(const Reference< XInterface >
 Sequence< beans::PropertyValue > SwXTextDocument::getPagePrintSettings(void)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< beans::PropertyValue > aSeq(9);
     if(IsValid())
     {
@@ -1012,7 +1012,7 @@ sal_uInt32 lcl_Any_To_ULONG(const Any& rValue, sal_Bool& bException)
 void SwXTextDocument::setPagePrintSettings(const Sequence< beans::PropertyValue >& aSettings)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(IsValid())
     {
         SwPagePreViewPrtData aData;
@@ -1093,7 +1093,7 @@ void SwXTextDocument::printPages(const Sequence< beans::PropertyValue >& xOption
 Reference< XNameAccess >  SwXTextDocument::getReferenceMarks(void)
                                         throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXReferenceMarks)
@@ -1108,7 +1108,7 @@ Reference< XNameAccess >  SwXTextDocument::getReferenceMarks(void)
  * --------------------------------------------------*/
 Reference< XEnumerationAccess >  SwXTextDocument::getTextFields(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXTextFieldTypes)
@@ -1124,7 +1124,7 @@ Reference< XEnumerationAccess >  SwXTextDocument::getTextFields(void) throw( Run
 Reference< XNameAccess >  SwXTextDocument::getTextFieldMasters(void)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXTextFieldMasters)
@@ -1139,7 +1139,7 @@ Reference< XNameAccess >  SwXTextDocument::getTextFieldMasters(void)
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getEmbeddedObjects(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXEmbeddedObjects)
@@ -1154,7 +1154,7 @@ Reference< XNameAccess >  SwXTextDocument::getEmbeddedObjects(void) throw( Runti
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getBookmarks(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXBookmarks)
@@ -1169,7 +1169,7 @@ Reference< XNameAccess >  SwXTextDocument::getBookmarks(void) throw( RuntimeExce
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getTextSections(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXTextSections)
@@ -1184,7 +1184,7 @@ Reference< XNameAccess >  SwXTextDocument::getTextSections(void) throw( RuntimeE
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getTextTables(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXTextTables)
@@ -1199,7 +1199,7 @@ Reference< XNameAccess >  SwXTextDocument::getTextTables(void) throw( RuntimeExc
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getGraphicObjects(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXGraphicObjects)
@@ -1214,7 +1214,7 @@ Reference< XNameAccess >  SwXTextDocument::getGraphicObjects(void) throw( Runtim
   -----------------------------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getTextFrames(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXTextFrames)
@@ -1229,7 +1229,7 @@ Reference< XNameAccess >  SwXTextDocument::getTextFrames(void) throw( RuntimeExc
  * --------------------------------------------------*/
 Reference< XNameAccess >  SwXTextDocument::getStyleFamilies(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXStyleFamilies)
@@ -1244,7 +1244,7 @@ Reference< XNameAccess >  SwXTextDocument::getStyleFamilies(void) throw( Runtime
   -----------------------------------------------------------------------*/
 Reference< drawing::XDrawPage >  SwXTextDocument::getDrawPage(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXDrawPage)
@@ -1489,7 +1489,7 @@ void    SwXTextDocument::InitNewDoc()
 Reference< XInterface >  SwXTextDocument::createInstance(const OUString& rServiceName)
                                         throw( Exception, RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     Reference< XInterface >  xRet;
@@ -1652,7 +1652,7 @@ Sequence< OUString > SwXTextDocument::getSupportedServiceNames(void) throw( Runt
  * --------------------------------------------------*/
 Reference< XIndexAccess >  SwXTextDocument::getDocumentIndexes(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     if(!pxXDocumentIndexes)
@@ -1679,7 +1679,7 @@ void SwXTextDocument::setPropertyValue(const OUString& rPropertyName,
     throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
                                          WrappedTargetException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -1829,7 +1829,7 @@ void SwXTextDocument::setPropertyValue(const OUString& rPropertyName,
 Any SwXTextDocument::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -2018,7 +2018,7 @@ Reference< XEnumerationAccess > SwXTextDocument::getRedlines(  ) throw(RuntimeEx
   -----------------------------------------------------------------------*/
 void SwXTextDocument::refresh(void) throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     SwWrtShell *pWrtShell = pDocShell->GetWrtShell();
@@ -2032,7 +2032,7 @@ void SwXTextDocument::refresh(void) throw( RuntimeException )
 void SwXTextDocument::addRefreshListener(const Reference< util::XRefreshListener > & l)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if ( !IsValid() )
         throw RuntimeException();
     aRefreshCont.AddListener ( reinterpret_cast < const Reference < lang::XEventListener > &> ( l ));
@@ -2043,7 +2043,7 @@ void SwXTextDocument::addRefreshListener(const Reference< util::XRefreshListener
 void SwXTextDocument::removeRefreshListener(const Reference< util::XRefreshListener > & l)
     throw( RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if ( !IsValid() || !aRefreshCont.RemoveListener ( reinterpret_cast < const Reference < lang::XEventListener > &> ( l ) ) )
         throw RuntimeException();
 }
@@ -2052,7 +2052,7 @@ void SwXTextDocument::removeRefreshListener(const Reference< util::XRefreshListe
  ---------------------------------------------------------------------------*/
 void SwXTextDocument::updateLinks(  ) throw(RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     SwDoc* pDoc = pDocShell->GetDoc();
@@ -2067,7 +2067,7 @@ void SwXTextDocument::updateLinks(  ) throw(RuntimeException)
 PropertyState SAL_CALL SwXTextDocument::getPropertyState( const OUString& rPropertyName )
     throw (UnknownPropertyException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     PropertyState eRet = PropertyState_DIRECT_VALUE;
     if(!IsValid())
         throw RuntimeException();
@@ -2099,7 +2099,7 @@ Sequence< PropertyState > SAL_CALL SwXTextDocument::getPropertyStates( const Seq
 void SAL_CALL SwXTextDocument::setPropertyToDefault( const OUString& rPropertyName )
     throw (UnknownPropertyException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -2114,7 +2114,7 @@ void SAL_CALL SwXTextDocument::setPropertyToDefault( const OUString& rPropertyNa
 Any SAL_CALL SwXTextDocument::getPropertyDefault( const OUString& rPropertyName )
     throw (UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -2160,7 +2160,7 @@ sal_Int32 SAL_CALL SwXTextDocument::getRendererCount(
         const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2192,7 +2192,7 @@ uno::Sequence< beans::PropertyValue > SAL_CALL SwXTextDocument::getRenderer(
         const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     SwDoc *pDoc = GetRenderDoc( rSelection );
@@ -2227,7 +2227,7 @@ void SAL_CALL SwXTextDocument::render(
         const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     SwDoc *pDoc = GetRenderDoc( rSelection );

@@ -347,7 +347,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxDocumentInfoObject::setFastPropertyValue(sal_Int32 nHandle, const ::com::sun::star::uno::Any& aValue) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bModified = sal_True;
 /*N*/
 /*N*/   if ( aValue.getValueType() == ::getCppuType((const ::rtl::OUString*)0) )
@@ -547,7 +547,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL  SfxDocumentInfoObject::getFastPropertyValue(sal_Int32 nHandle) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   ::com::sun::star::uno::Any aValue;
 /*N*/   if ( nHandle == WID_CONTENT_TYPE )
 /*N*/   {
@@ -698,7 +698,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ sal_Int16 SAL_CALL  SfxDocumentInfoObject::getUserFieldCount() throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   return _pInfo->GetUserKeyCount();
 /*N*/ }
 
@@ -706,7 +706,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldName(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetTitle();
 /*N*/   else
@@ -717,7 +717,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldValue(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetWord();
 /*N*/   else
@@ -728,7 +728,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void  SAL_CALL SfxDocumentInfoObject::setUserFieldName(sal_Int16 nIndex, const ::rtl::OUString& aName ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
@@ -743,7 +743,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxDocumentInfoObject::setUserFieldValue( sal_Int16 nIndex, const ::rtl::OUString& aValue ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
@@ -839,7 +839,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxStandaloneDocumentInfoObject::loadFromURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bOK = sal_False;
 /*N*/   String aName( aURL );
 /*N*/     SvStorage* pStorage = GetStorage_Impl( aName, sal_False );
@@ -901,7 +901,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxStandaloneDocumentInfoObject::storeIntoURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bOK = sal_False;
 /*N*/   String aName( aURL );
 /*N*/   SvStorage* pStor = GetStorage_Impl( aName, sal_True );

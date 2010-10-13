@@ -259,7 +259,7 @@ void    ColorConfig_Impl::Notify( const uno::Sequence<OUString>& )
     //loading via notification always uses the default setting
     Load(::rtl::OUString());
 
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     if(m_bLockBroadcast)
     {
@@ -320,7 +320,7 @@ void ColorConfig_Impl::CommitCurrentSchemeName()
  ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::SettingsChanged()
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     ImplUpdateApplicationSettings();
 
@@ -510,7 +510,7 @@ ColorConfigValue ColorConfig::GetColorValue(ColorConfigEntry eEntry, sal_Bool bS
  ---------------------------------------------------------------------------*/
 void ColorConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     Broadcast( rHint );
 }

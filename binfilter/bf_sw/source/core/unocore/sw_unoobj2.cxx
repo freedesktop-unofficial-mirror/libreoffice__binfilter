@@ -245,7 +245,7 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
     const uno::Sequence< beans::PropertyValue >& aOptions)
     throw( lang::IllegalArgumentException, io::IOException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -382,7 +382,7 @@ uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bo
   -----------------------------------------------------------------------*/
 uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return SwXTextCursor::createSortDescriptor(sal_False);
 }
 /* -----------------------------15.12.00 14:06--------------------------------
@@ -591,7 +591,7 @@ sal_Bool SwXTextCursor::convertSortProperties(
 void SwXTextCursor::sort(const uno::Sequence< beans::PropertyValue >& rDescriptor)
         throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwSortOptions aSortOpt;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
 
@@ -963,7 +963,7 @@ SwXParagraphEnumeration::~SwXParagraphEnumeration()
   -----------------------------------------------------------------------*/
 sal_Bool SwXParagraphEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1001,7 +1001,7 @@ sal_Bool SwXParagraphEnumeration::hasMoreElements(void) throw( uno::RuntimeExcep
 uno::Any SwXParagraphEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextContent >  aRef;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1307,7 +1307,7 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
   -----------------------------------------------------------------------*/
 uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!xParentText.is())
     {
         if(eRangePosition == RANGE_IN_FRAME &&
@@ -1362,7 +1362,7 @@ uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeExceptio
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextRange::getStart(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwBookmark* pBkm = GetBookmark();
     if(!xParentText.is())
@@ -1386,7 +1386,7 @@ uno::Reference< XTextRange >  SwXTextRange::getStart(void) throw( uno::RuntimeEx
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextRange::getEnd(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwBookmark* pBkm = GetBookmark();
     if(!xParentText.is())
@@ -1410,7 +1410,7 @@ uno::Reference< XTextRange >  SwXTextRange::getEnd(void) throw( uno::RuntimeExce
   -----------------------------------------------------------------------*/
 OUString SwXTextRange::getString(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwBookmark* pBkm = GetBookmark();
     OUString sRet;
     //fuer Tabellen gibt es keine Bookmark, also auch keinen Text
@@ -1444,7 +1444,7 @@ OUString SwXTextRange::getString(void) throw( uno::RuntimeException )
 void SwXTextRange::setString(const OUString& aString)
     throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(RANGE_IS_TABLE == eRangePosition)
     {
         //setString in Tabellen kann nicht erlaubt werden
@@ -1896,7 +1896,7 @@ Sequence< OUString > SAL_CALL SwXTextRange::getAvailableServiceNames(void) throw
   -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SAL_CALL SwXTextRange::getPropertySetInfo(  ) throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Reference< XPropertySetInfo > xRef =
         aPropSet.getPropertySetInfo();
     return xRef;
@@ -1909,7 +1909,7 @@ void SAL_CALL SwXTextRange::setPropertyValue(
     throw(UnknownPropertyException, PropertyVetoException,
         IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(GetDoc()->GetNodes());
@@ -1922,7 +1922,7 @@ void SAL_CALL SwXTextRange::setPropertyValue(
 Any SAL_CALL SwXTextRange::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
@@ -1971,7 +1971,7 @@ void SAL_CALL SwXTextRange::removeVetoableChangeListener(
 PropertyState SAL_CALL SwXTextRange::getPropertyState( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
@@ -1984,7 +1984,7 @@ PropertyState SAL_CALL SwXTextRange::getPropertyState( const OUString& rProperty
 Sequence< PropertyState > SAL_CALL SwXTextRange::getPropertyStates(
     const Sequence< OUString >& rPropertyName ) throw(UnknownPropertyException, RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
@@ -1997,7 +1997,7 @@ Sequence< PropertyState > SAL_CALL SwXTextRange::getPropertyStates(
 void SAL_CALL SwXTextRange::setPropertyToDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
@@ -2010,7 +2010,7 @@ void SAL_CALL SwXTextRange::setPropertyToDefault( const OUString& rPropertyName 
 Any SAL_CALL SwXTextRange::getPropertyDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
@@ -2129,7 +2129,7 @@ SwXTextRanges::~SwXTextRanges()
   -----------------------------------------------------------------------*/
 sal_Int32 SwXTextRanges::getCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Int32 nRet = 0;
     SwUnoCrsr* pCrsr = GetCrsr();
     if(pCrsr)
@@ -2148,7 +2148,7 @@ sal_Int32 SwXTextRanges::getCount(void) throw( uno::RuntimeException )
 uno::Any SwXTextRanges::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  aRef;
     XTextRangeArr* pArr = ((SwXTextRanges*)this)->GetRangesArray();
     if(pArr && pArr->Count() > nIndex)
@@ -2173,7 +2173,7 @@ uno::Type  SwXTextRanges::getElementType(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextRanges::hasElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return getCount() > 0;
 }
 /* -----------------10.12.98 14:25-------------------
@@ -2346,7 +2346,7 @@ void SwXParaFrameEnumeration::FillFrame(SwUnoCrsr& rUnoCrsr)
   -----------------------------------------------------------------------*/
 sal_Bool SwXParaFrameEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetCrsr())
         throw uno::RuntimeException();
     return xNextObject.is() ? sal_True : CreateNextObject();
@@ -2357,7 +2357,7 @@ sal_Bool SwXParaFrameEnumeration::hasMoreElements(void) throw( uno::RuntimeExcep
 uno::Any SwXParaFrameEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetCrsr())
         throw uno::RuntimeException();
     if(!xNextObject.is() && aFrameArr.Count())

@@ -116,7 +116,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChXDataPoint::getImplementationId()
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXDataPoint::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -135,7 +135,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     sal_Bool bPropertyUnknown = sal_False;
 
     if( mpModel )
@@ -342,7 +342,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -539,7 +539,7 @@ void SAL_CALL ChXDataPoint::removeVetoableChangeListener( const ::rtl::OUString&
 beans::PropertyState SAL_CALL ChXDataPoint::getPropertyState( const ::rtl::OUString& PropertyName )
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -611,7 +611,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXDataPoint::getPropertyStates(
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyName.getLength();
     const ::rtl::OUString* pNames = aPropertyName.getConstArray();
@@ -632,7 +632,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL
         throw (beans::UnknownPropertyException,
             uno::RuntimeException)
 {
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyName.getLength();
     const ::rtl::OUString* pNames = aPropertyName.getConstArray();
@@ -733,7 +733,7 @@ void SAL_CALL ChXDataPoint::setPropertyToDefault( const ::rtl::OUString& Propert
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 

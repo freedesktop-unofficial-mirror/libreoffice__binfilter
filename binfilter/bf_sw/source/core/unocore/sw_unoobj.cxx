@@ -902,7 +902,7 @@ sal_Int64 SAL_CALL SwXTextCursor::getSomething( const uno::Sequence< sal_Int8 >&
   -----------------------------------------------------------------------*/
 void SwXTextCursor::collapseToStart(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -923,7 +923,7 @@ void SwXTextCursor::collapseToStart(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextCursor::collapseToEnd(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -944,7 +944,7 @@ void SwXTextCursor::collapseToEnd(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isCollapsed(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_True;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr && pUnoCrsr->GetMark())
@@ -958,7 +958,7 @@ sal_Bool SwXTextCursor::isCollapsed(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::goLeft(sal_Int16 nCount, sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -977,7 +977,7 @@ sal_Bool SwXTextCursor::goLeft(sal_Int16 nCount, sal_Bool Expand) throw( uno::Ru
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::goRight(sal_Int16 nCount, sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -996,7 +996,7 @@ sal_Bool SwXTextCursor::goRight(sal_Int16 nCount, sal_Bool Expand) throw( uno::R
   -----------------------------------------------------------------------*/
 void SwXTextCursor::gotoStart(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -1048,7 +1048,7 @@ void SwXTextCursor::gotoStart(sal_Bool Expand) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextCursor::gotoEnd(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -1076,7 +1076,7 @@ void SwXTextCursor::gotoEnd(sal_Bool Expand) throw( uno::RuntimeException )
 void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_Bool bExpand )
                                 throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pOwnCursor = GetCrsr();
     if(!pOwnCursor || !xRange.is())
     {
@@ -1215,7 +1215,7 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfWord(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1233,7 +1233,7 @@ sal_Bool SwXTextCursor::isStartOfWord(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfWord(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1251,7 +1251,7 @@ sal_Bool SwXTextCursor::isEndOfWord(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     //Probleme gibt's noch mit einem Absatzanfang, an dem kein Wort beginnt.
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -1281,7 +1281,7 @@ sal_Bool SwXTextCursor::gotoNextWord(sal_Bool Expand) throw( uno::RuntimeExcepti
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     // hier machen Leerzeichen am Absatzanfang Probleme
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -1309,7 +1309,7 @@ sal_Bool SwXTextCursor::gotoPreviousWord(sal_Bool Expand) throw( uno::RuntimeExc
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1331,7 +1331,7 @@ sal_Bool SwXTextCursor::gotoEndOfWord(sal_Bool Expand) throw( uno::RuntimeExcept
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     sal_Bool bRet = FALSE;
     if(pUnoCrsr)
@@ -1353,7 +1353,7 @@ sal_Bool SwXTextCursor::gotoStartOfWord(sal_Bool Expand) throw( uno::RuntimeExce
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfSentence(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1379,7 +1379,7 @@ sal_Bool SwXTextCursor::isStartOfSentence(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfSentence(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1405,7 +1405,7 @@ sal_Bool SwXTextCursor::isEndOfSentence(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1435,7 +1435,7 @@ sal_Bool SwXTextCursor::gotoNextSentence(sal_Bool Expand) throw( uno::RuntimeExc
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1462,7 +1462,7 @@ sal_Bool SwXTextCursor::gotoPreviousSentence(sal_Bool Expand) throw( uno::Runtim
  --------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1484,7 +1484,7 @@ sal_Bool SwXTextCursor::gotoStartOfSentence(sal_Bool Expand) throw( uno::Runtime
  --------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1509,7 +1509,7 @@ sal_Bool SwXTextCursor::gotoEndOfSentence(sal_Bool Expand) throw( uno::RuntimeEx
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfParagraph(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1523,7 +1523,7 @@ sal_Bool SwXTextCursor::isStartOfParagraph(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfParagraph(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1537,7 +1537,7 @@ sal_Bool SwXTextCursor::isEndOfParagraph(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr )
@@ -1556,7 +1556,7 @@ sal_Bool SwXTextCursor::gotoStartOfParagraph(sal_Bool Expand) throw( uno::Runtim
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1575,7 +1575,7 @@ sal_Bool SwXTextCursor::gotoEndOfParagraph(sal_Bool Expand) throw( uno::RuntimeE
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1592,7 +1592,7 @@ sal_Bool SwXTextCursor::gotoNextParagraph(sal_Bool Expand) throw( uno::RuntimeEx
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1616,7 +1616,7 @@ uno::Reference< XText >  SwXTextCursor::getText(void) throw( uno::RuntimeExcepti
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextCursor::getStart(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwUnoCrsr* pUnoCrsr = ((SwXTextCursor*)this)->GetCrsr();
     if( pUnoCrsr)
@@ -1634,7 +1634,7 @@ uno::Reference< XTextRange >  SwXTextCursor::getStart(void) throw( uno::RuntimeE
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextCursor::getEnd(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwUnoCrsr* pUnoCrsr = ((SwXTextCursor*)this)->GetCrsr();
     if( pUnoCrsr)
@@ -1652,7 +1652,7 @@ uno::Reference< XTextRange >  SwXTextCursor::getEnd(void) throw( uno::RuntimeExc
   -----------------------------------------------------------------------*/
 OUString SwXTextCursor::getString(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     OUString aTxt;
     SwUnoCrsr* pUnoCrsr = ((SwXTextCursor*)this)->GetCrsr();
     if( pUnoCrsr)
@@ -1683,7 +1683,7 @@ OUString SwXTextCursor::getString(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextCursor::setString(const OUString& aString) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(!pUnoCrsr)
         throw uno::RuntimeException();
@@ -1879,7 +1879,7 @@ void SwXTextCursor::SetPropertyToDefault(
     const OUString& rPropertyName)
     throw(UnknownPropertyException, RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwDoc* pDoc = rPaM.GetDoc();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                             rPropSet.getPropertyMap(), rPropertyName);
@@ -1956,7 +1956,7 @@ void SwXTextCursor::setPropertyValue(const OUString& rPropertyName, const uno::A
         throw( beans::UnknownPropertyException, beans::PropertyVetoException,
              lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aAny;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -1984,7 +1984,7 @@ void SwXTextCursor::setPropertyValue(const OUString& rPropertyName, const uno::A
 Any SwXTextCursor::getPropertyValue(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aAny;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -2041,7 +2041,7 @@ void SwXTextCursor::removeVetoableChangeListener(const OUString& PropertyName, c
 beans::PropertyState SwXTextCursor::getPropertyState(const OUString& rPropertyName)
                         throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     beans::PropertyState eRet = beans::PropertyState_DEFAULT_VALUE;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -2059,7 +2059,7 @@ uno::Sequence< beans::PropertyState > SwXTextCursor::getPropertyStates(
             const uno::Sequence< OUString >& PropertyNames)
             throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(!pUnoCrsr)
         throw RuntimeException();
@@ -2087,7 +2087,7 @@ uno::Any SwXTextCursor::getPropertyDefault(const OUString& rPropertyName)
 void SAL_CALL SwXTextCursor::setAllPropertiesToDefault()
     throw (RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
         lcl_SelectParaAndReset ( *pUnoCrsr, pUnoCrsr->GetDoc());
@@ -2097,7 +2097,7 @@ void SAL_CALL SwXTextCursor::setAllPropertiesToDefault()
 void SAL_CALL SwXTextCursor::setPropertiesToDefault( const Sequence< OUString >& aPropertyNames )
     throw (UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Int32 nCount = aPropertyNames.getLength();
     if ( nCount )
     {
@@ -2149,7 +2149,7 @@ void SAL_CALL SwXTextCursor::setPropertiesToDefault( const Sequence< OUString >&
 Sequence< Any > SAL_CALL SwXTextCursor::getPropertyDefaults( const Sequence< OUString >& aPropertyNames )
     throw (UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Int32 nCount = aPropertyNames.getLength();
     Sequence < Any > aRet ( nCount );
     if ( nCount )

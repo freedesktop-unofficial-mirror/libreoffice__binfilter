@@ -111,14 +111,14 @@ uno::Sequence< OUString > SAL_CALL SdXPresentation::getSupportedServiceNames(  )
 uno::Reference< beans::XPropertySetInfo > SAL_CALL SdXPresentation::getPropertySetInfo()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
  }
 
 void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mrModel.GetDoc();
     if(pDoc == NULL)
@@ -334,7 +334,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any any;
 

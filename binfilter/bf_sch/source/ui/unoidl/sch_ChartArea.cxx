@@ -56,7 +56,7 @@ ChartArea::~ChartArea()
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartArea::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
     aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartArea" );

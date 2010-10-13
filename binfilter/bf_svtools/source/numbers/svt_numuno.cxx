@@ -101,7 +101,7 @@ void SvNumberFormatsSupplierObj::SettingsChanged()
 uno::Reference<beans::XPropertySet> SAL_CALL SvNumberFormatsSupplierObj::getNumberFormatSettings()
                                         throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return new SvNumberFormatSettingsObj( this );
 }
@@ -109,7 +109,7 @@ uno::Reference<beans::XPropertySet> SAL_CALL SvNumberFormatsSupplierObj::getNumb
 uno::Reference<util::XNumberFormats> SAL_CALL SvNumberFormatsSupplierObj::getNumberFormats()
                                         throw(uno::RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return new SvNumberFormatsObj( this );
 }

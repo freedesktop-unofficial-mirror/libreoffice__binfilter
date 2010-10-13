@@ -69,7 +69,7 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
         if ( 0L == pOfficeWrapper )
         {
             // #i30187#
-            ::vos::OGuard aGuard( Application::GetSolarMutex() );
+            SolarMutexGuard aGuard;
 
             return (XComponent*) ( new bf_OfficeWrapper( rSMgr ) );
         }

@@ -588,7 +588,7 @@ const String& SvtUserOptions::GetFullName() const
  --------------------------------------------------*/
 void SvtUserOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
     Broadcast( rHint );
 }
 

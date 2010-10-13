@@ -212,7 +212,7 @@ void SwXParagraph::setPropertyValue(const OUString& rPropertyName, const Any& aV
     throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
         WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence<OUString> aPropertyNames(1);
     aPropertyNames.getArray()[0] = rPropertyName;
     Sequence<Any> aValues(1);
@@ -225,7 +225,7 @@ void SwXParagraph::setPropertyValue(const OUString& rPropertyName, const Any& aV
 uno::Any SwXParagraph::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence<OUString> aPropertyNames(1);
     aPropertyNames.getArray()[0] = rPropertyName;
     Sequence< Any > aRet = getPropertyValues(aPropertyNames );
@@ -240,7 +240,7 @@ void SwXParagraph::setPropertyValues(
         throw(PropertyVetoException, IllegalArgumentException,
                         WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -275,7 +275,7 @@ Sequence< Any > SwXParagraph::getPropertyValues(
     const Sequence< OUString >& rPropertyNames )
         throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< Any > aValues(rPropertyNames.getLength());
     SwUnoCrsr* pUnoCrsr = ((SwXParagraph*)this)->GetCrsr();
     if(pUnoCrsr)
@@ -462,7 +462,7 @@ beans::PropertyState lcl_SwXParagraph_getPropertyState(
 beans::PropertyState SwXParagraph::getPropertyState(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     beans::PropertyState eRet = beans::PropertyState_DEFAULT_VALUE;
     SwUnoCrsr* pUnoCrsr = ((SwXParagraph*)this)->GetCrsr();
     if( pUnoCrsr )
@@ -488,7 +488,7 @@ uno::Sequence< beans::PropertyState > SwXParagraph::getPropertyStates(
         const uno::Sequence< OUString >& PropertyNames)
         throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const OUString* pNames = PropertyNames.getConstArray();
     uno::Sequence< beans::PropertyState > aRet(PropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
@@ -523,7 +523,7 @@ uno::Sequence< beans::PropertyState > SwXParagraph::getPropertyStates(
 void SwXParagraph::setPropertyToDefault(const OUString& rPropertyName)
         throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
     {
@@ -619,7 +619,7 @@ uno::Any SwXParagraph::getPropertyDefault(const OUString& rPropertyName)
 void SwXParagraph::attach(const uno::Reference< XTextRange > & xTextRange)
                     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     // SwXParagraph will only created in order to be inserteb by
     // 'insertTextContentBefore' or 'insertTextContentAfter' therefore
     // they cannot be attached
@@ -630,7 +630,7 @@ void SwXParagraph::attach(const uno::Reference< XTextRange > & xTextRange)
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getAnchor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  aRet;
     SwUnoCrsr* pUnoCrsr = ((SwXParagraph*)this)->GetCrsr();
     if(pUnoCrsr)
@@ -648,7 +648,7 @@ uno::Reference< XTextRange >  SwXParagraph::getAnchor(void) throw( uno::RuntimeE
   -----------------------------------------------------------------------*/
 void SwXParagraph::dispose(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = ((SwXParagraph*)this)->GetCrsr();
     if(pUnoCrsr)
     {
@@ -685,7 +685,7 @@ void SwXParagraph::removeEventListener(const uno::Reference< lang::XEventListene
   -----------------------------------------------------------------------*/
 uno::Reference< container::XEnumeration >  SwXParagraph::createEnumeration(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< container::XEnumeration >  aRef;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
@@ -707,7 +707,7 @@ uno::Type SwXParagraph::getElementType(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXParagraph::hasElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(((SwXParagraph*)this)->GetCrsr())
         return sal_True;
     else
@@ -725,7 +725,7 @@ uno::Reference< XText >  SwXParagraph::getText(void) throw( uno::RuntimeExceptio
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getStart(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if( pUnoCrsr)
@@ -743,7 +743,7 @@ uno::Reference< XTextRange >  SwXParagraph::getStart(void) throw( uno::RuntimeEx
   -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getEnd(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XTextRange >  xRet;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if( pUnoCrsr)
@@ -761,7 +761,7 @@ uno::Reference< XTextRange >  SwXParagraph::getEnd(void) throw( uno::RuntimeExce
   -----------------------------------------------------------------------*/
 OUString SwXParagraph::getString(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     OUString aRet;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if( pUnoCrsr)
@@ -780,7 +780,7 @@ OUString SwXParagraph::getString(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXParagraph::setString(const OUString& aString) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = GetCrsr();
 
     if(pUnoCrsr)

@@ -80,13 +80,13 @@ SvxUnoTextContentEnumeration::~SvxUnoTextContentEnumeration() throw()
 sal_Bool SAL_CALL SvxUnoTextContentEnumeration::hasMoreElements(void)
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return nNextParagraph < pEditSource->GetTextForwarder()->GetParagraphCount();
 }
 
 uno::Any SvxUnoTextContentEnumeration::nextElement(void) throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(!hasMoreElements())
         throw container::NoSuchElementException();
@@ -223,7 +223,7 @@ uno::Reference< text::XTextRange > SAL_CALL SvxUnoTextContent::getAnchor() throw
 void SAL_CALL SvxUnoTextContent::dispose()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( bDisposing )
         return; // catched a recursion
@@ -255,7 +255,7 @@ void SAL_CALL SvxUnoTextContent::removeEventListener( const uno::Reference< lang
 uno::Reference< container::XEnumeration > SAL_CALL SvxUnoTextContent::createEnumeration(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return new SvxUnoTextRangeEnumeration( rParentText, nParagraph );
 }
@@ -271,7 +271,7 @@ uno::Type SAL_CALL SvxUnoTextContent::getElementType()
 sal_Bool SAL_CALL SvxUnoTextContent::hasElements()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxTextForwarder* pForwarder = GetEditSource() ? GetEditSource()->GetTextForwarder() : NULL;
     if( pForwarder )
@@ -384,7 +384,7 @@ SvxUnoTextRangeEnumeration::~SvxUnoTextRangeEnumeration() throw()
 sal_Bool SAL_CALL SvxUnoTextRangeEnumeration::hasMoreElements()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return pPortions ? nNextPortion < pPortions->Count() : 0;
 }
@@ -392,7 +392,7 @@ sal_Bool SAL_CALL SvxUnoTextRangeEnumeration::hasMoreElements()
 uno::Any SAL_CALL SvxUnoTextRangeEnumeration::nextElement()
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( pPortions == NULL || nNextPortion >= pPortions->Count() )
         throw container::NoSuchElementException();
@@ -513,49 +513,49 @@ uno::Sequence< sal_Int8 > SAL_CALL SvxUnoTextCursor::getImplementationId()
 void SAL_CALL SvxUnoTextCursor::collapseToStart()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     CollapseToStart();
 }
 
 void SAL_CALL SvxUnoTextCursor::collapseToEnd()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     CollapseToEnd();
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::isCollapsed()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return IsCollapsed();
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::goLeft( sal_Int16 nCount, sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return GoLeft( nCount, bExpand );
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::goRight( sal_Int16 nCount, sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return GoRight( nCount, bExpand );
 }
 
 void SAL_CALL SvxUnoTextCursor::gotoStart( sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     GotoStart( bExpand );
 }
 
 void SAL_CALL SvxUnoTextCursor::gotoEnd( sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     GotoEnd( bExpand );
 }
 

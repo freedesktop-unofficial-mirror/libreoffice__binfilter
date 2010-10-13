@@ -138,7 +138,7 @@ sal_Bool SAL_CALL SvxUnoXPropertyTable::supportsService( const  OUString& Servic
 void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const  Any& aElement )
     throw( IllegalArgumentException, ElementExistException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( NULL == mpList && NULL == mpTable )
         throw IllegalArgumentException();
@@ -162,7 +162,7 @@ void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const 
 void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
     throw( NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, Name, aInternalName );
@@ -190,7 +190,7 @@ void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
 void SAL_CALL SvxUnoXPropertyTable::replaceByName( const  OUString& aName, const  Any& aElement )
     throw( IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -222,7 +222,7 @@ void SAL_CALL SvxUnoXPropertyTable::replaceByName( const  OUString& aName, const
 Any SAL_CALL SvxUnoXPropertyTable::getByName( const  OUString& aName )
     throw( NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -244,7 +244,7 @@ Any SAL_CALL SvxUnoXPropertyTable::getByName( const  OUString& aName )
 Sequence<  OUString > SAL_CALL SvxUnoXPropertyTable::getElementNames()
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const long nCount = getCount();
     Sequence< OUString > aNames( nCount );
@@ -268,7 +268,7 @@ Sequence<  OUString > SAL_CALL SvxUnoXPropertyTable::getElementNames()
 sal_Bool SAL_CALL SvxUnoXPropertyTable::hasByName( const  OUString& aName )
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -290,7 +290,7 @@ sal_Bool SAL_CALL SvxUnoXPropertyTable::hasByName( const  OUString& aName )
 sal_Bool SAL_CALL SvxUnoXPropertyTable::hasElements(  )
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return getCount() != 0;
 }

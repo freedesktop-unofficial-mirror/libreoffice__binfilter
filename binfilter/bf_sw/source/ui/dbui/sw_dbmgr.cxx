@@ -643,7 +643,7 @@ SwDbtoolsClient* SwNewDBMgr::pDbtoolsClient = NULL;
 /*N*/ void SwConnectionDisposedListener_Impl::disposing( const EventObject& rSource )
 /*N*/         throw (RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard(Application::GetSolarMutex());
+/*N*/     SolarMutexGuard aGuard;
 /*N*/     Reference<XConnection> xSource(rSource.Source, UNO_QUERY);
 /*N*/     for(USHORT nPos = rDBMgr.aDataSourceParams.Count(); nPos; nPos--)
 /*N*/     {

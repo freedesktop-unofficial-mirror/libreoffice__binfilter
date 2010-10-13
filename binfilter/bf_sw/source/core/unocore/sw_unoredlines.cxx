@@ -79,7 +79,7 @@ SwXRedlines::~SwXRedlines()
   -----------------------------------------------------------------------*/
 sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
@@ -91,7 +91,7 @@ sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
 Any SwXRedlines::getByIndex(sal_Int32 nIndex)
     throw( IndexOutOfBoundsException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
@@ -111,7 +111,7 @@ Any SwXRedlines::getByIndex(sal_Int32 nIndex)
 Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
     throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
@@ -129,7 +129,7 @@ Type SwXRedlines::getElementType(  ) throw(RuntimeException)
   -----------------------------------------------------------------------*/
 sal_Bool SwXRedlines::hasElements(  ) throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();

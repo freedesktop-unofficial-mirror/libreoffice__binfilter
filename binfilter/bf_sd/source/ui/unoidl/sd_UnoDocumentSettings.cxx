@@ -207,7 +207,7 @@ DocumentSettings::~DocumentSettings() throw()
 
 void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, const Any* pValues ) throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     SdDrawDocShell* pDocSh = mpModel->GetDocShell();
@@ -740,7 +740,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
 void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, Any* pValue ) throw(UnknownPropertyException, WrappedTargetException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     SdDrawDocShell* pDocSh = mpModel->GetDocShell();

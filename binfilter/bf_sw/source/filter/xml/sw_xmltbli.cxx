@@ -1237,7 +1237,7 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     OUString aName;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
@@ -2523,7 +2523,7 @@ void SwXMLTableContext::MakeTable()
     // this method will modify the document directly -> lock SolarMutex
     // This will call all other MakeTable*(..) methods, so
     // those don't need to be locked separately.
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     SwXMLImport& rSwImport = GetSwImport();
 

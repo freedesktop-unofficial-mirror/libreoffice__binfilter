@@ -140,7 +140,7 @@ void SdUnoGraphicStyle::create( SdXImpressDocument* pModel, SfxStyleSheetBase* p
 OUString SAL_CALL SdUnoGraphicStyle::getName(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( mpStyleSheet )
@@ -158,7 +158,7 @@ OUString SAL_CALL SdUnoGraphicStyle::getName(  )
 void SAL_CALL SdUnoGraphicStyle::setName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpStyleSheet )
     {
@@ -227,7 +227,7 @@ void SAL_CALL SdUnoGraphicStyle::removeVetoableChangeListener( const ::rtl::OUSt
 OUString SAL_CALL SdUnoGraphicStyle::getParentStyle(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( mpStyleSheet )
@@ -245,7 +245,7 @@ OUString SAL_CALL SdUnoGraphicStyle::getParentStyle(  )
 void SAL_CALL SdUnoGraphicStyle::setParentStyle( const OUString& aParentStyle )
     throw(container::NoSuchElementException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpStyleSheet )
     {

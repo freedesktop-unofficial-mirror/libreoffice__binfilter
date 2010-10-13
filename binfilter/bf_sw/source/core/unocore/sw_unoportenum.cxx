@@ -158,7 +158,7 @@ SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return aPortionArr.Count() > 0;
 }
 /*-- 27.01.99 10:44:45---------------------------------------------------
@@ -167,7 +167,7 @@ sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeExc
 uno::Any SwXTextPortionEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!aPortionArr.Count())
         throw container::NoSuchElementException();
     XTextRangeRefPtr pPortion = aPortionArr.GetObject(0);

@@ -191,7 +191,7 @@ SwXTextSection::~SwXTextSection()
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextSection >  SwXTextSection::getParentSection(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextSection >  aRef;
     SwSectionFmt*  pSectFmt = GetFmt();
     if(pSectFmt)
@@ -217,7 +217,7 @@ uno::Reference< text::XTextSection >  SwXTextSection::getParentSection(void) thr
 uno::Sequence< uno::Reference< text::XTextSection >  > SwXTextSection::getChildSections(void)
     throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Sequence<uno::Reference< text::XTextSection > > aSeq;
     SwSectionFmt*  pSectFmt = GetFmt();
     if(pSectFmt)
@@ -379,7 +379,7 @@ void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xT
 void SwXTextSection::attach(const uno::Reference< text::XTextRange > & xTextRange)
                     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 
@@ -388,7 +388,7 @@ void SwXTextSection::attach(const uno::Reference< text::XTextRange > & xTextRang
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXTextSection::getAnchor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextRange >  xRet;
     SwSectionFmt*  pSectFmt = GetFmt();
     if(pSectFmt)
@@ -416,7 +416,7 @@ uno::Reference< text::XTextRange >  SwXTextSection::getAnchor(void) throw( uno::
   -----------------------------------------------------------------------*/
 void SwXTextSection::dispose(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwSectionFmt*  pSectFmt = GetFmt();
     if(pSectFmt)
         pSectFmt->GetDoc()->DelSectionFmt( pSectFmt );
@@ -469,7 +469,7 @@ void SwXTextSection::setPropertyValues(
         throw(PropertyVetoException, lang::IllegalArgumentException,
                         lang::WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwSectionFmt*   pFmt = GetFmt();
     if(rPropertyNames.getLength() != rValues.getLength())
         throw IllegalArgumentException();
@@ -766,7 +766,7 @@ void SwXTextSection::setPropertyValue(
         lang::IllegalArgumentException,     lang::WrappedTargetException,
         uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< ::rtl::OUString > aPropertyNames(1);
     aPropertyNames.getArray()[0] = rPropertyName;
     Sequence< Any > aValues(1);
@@ -780,7 +780,7 @@ Sequence< Any > SwXTextSection::getPropertyValues(
     const Sequence< ::rtl::OUString >& rPropertyNames )
         throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< Any > aRet(rPropertyNames.getLength());
     Any* pRet = aRet.getArray();
     SwSectionFmt*   pFmt = GetFmt();
@@ -1025,7 +1025,7 @@ Sequence< Any > SwXTextSection::getPropertyValues(
 uno::Any SwXTextSection::getPropertyValue(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< ::rtl::OUString > aPropertyNames(1);
     aPropertyNames.getArray()[0] = rPropertyName;
     return getPropertyValues(aPropertyNames).getConstArray()[0];
@@ -1093,7 +1093,7 @@ void SwXTextSection::removeVetoableChangeListener(const OUString& PropertyName, 
 PropertyState SwXTextSection::getPropertyState( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< OUString > aNames(1);
     aNames.getArray()[0] = rPropertyName;
     return getPropertyStates(aNames).getConstArray()[0];
@@ -1105,7 +1105,7 @@ Sequence< PropertyState > SwXTextSection::getPropertyStates(
     const Sequence< OUString >& rPropertyNames )
         throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< PropertyState > aStates(rPropertyNames.getLength());
     SwSectionFmt*   pFmt = GetFmt();
     if(pFmt||m_bIsDescriptor)
@@ -1170,7 +1170,7 @@ Sequence< PropertyState > SwXTextSection::getPropertyStates(
 void SwXTextSection::setPropertyToDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwSectionFmt*   pFmt = GetFmt();
     if(pFmt||m_bIsDescriptor)
     {
@@ -1277,7 +1277,7 @@ void SwXTextSection::setPropertyToDefault( const OUString& rPropertyName )
 Any SwXTextSection::getPropertyDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     SwSectionFmt*   pFmt = GetFmt();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -1332,7 +1332,7 @@ Any SwXTextSection::getPropertyDefault( const OUString& rPropertyName )
   -----------------------------------------------------------------------*/
 OUString SwXTextSection::getName(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     String sRet;
     const SwSectionFmt* pFmt = GetFmt();
     if(pFmt)
@@ -1348,7 +1348,7 @@ OUString SwXTextSection::getName(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextSection::setName(const OUString& rName) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwSectionFmt*   pFmt = GetFmt();
     if(pFmt)
     {

@@ -110,7 +110,7 @@ SvxUnoNumberingRules::~SvxUnoNumberingRules() throw()
 void SAL_CALL SvxUnoNumberingRules::replaceByIndex( sal_Int32 Index, const uno::Any& Element )
     throw( lang::IllegalArgumentException, lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
         Index++;
@@ -128,7 +128,7 @@ void SAL_CALL SvxUnoNumberingRules::replaceByIndex( sal_Int32 Index, const uno::
 //XIndexAccess
 sal_Int32 SAL_CALL SvxUnoNumberingRules::getCount() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = maRule.GetLevelCount();
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
@@ -140,7 +140,7 @@ sal_Int32 SAL_CALL SvxUnoNumberingRules::getCount() throw( uno::RuntimeException
 uno::Any SAL_CALL SvxUnoNumberingRules::getByIndex( sal_Int32 Index )
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
         Index++;

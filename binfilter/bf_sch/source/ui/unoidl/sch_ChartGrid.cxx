@@ -56,7 +56,7 @@ ChartGrid::~ChartGrid()
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartGrid::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 3 );
     aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartGrid" );

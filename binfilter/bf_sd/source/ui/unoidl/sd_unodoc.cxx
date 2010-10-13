@@ -58,7 +58,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SdDrawingDocument_getSupportedServiceN
 uno::Reference< uno::XInterface > SAL_CALL SdDrawingDocument_createInstance(
                 const uno::Reference< lang::XMultiServiceFactory > & rSMgr )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SD_MOD(), "No StarDraw module!" );
@@ -97,7 +97,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SdPresentationDocument_getSupportedSer
 uno::Reference< uno::XInterface > SAL_CALL SdPresentationDocument_createInstance(
                 const uno::Reference< lang::XMultiServiceFactory > & rSMgr )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SD_MOD(), "No StarDraw module!" );

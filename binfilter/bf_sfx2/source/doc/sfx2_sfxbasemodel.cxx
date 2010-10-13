@@ -407,7 +407,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ REFERENCE< XNAMECONTAINER > SAL_CALL SfxBaseModel::getLibraryContainer() throw( RUNTIMEEXCEPTION )
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -428,7 +428,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   const OUSTRING& ExternalSourceURL, const OUSTRING& LinkTargetURL )
 /*N*/       throw(ELEMENTEXISTEXCEPTION, RUNTIMEEXCEPTION)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -447,7 +447,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   const OUSTRING& Language, const OUSTRING& Source )
 /*N*/       throw( NOSUCHELEMENTEXCEPTION, RUNTIMEEXCEPTION)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -466,7 +466,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   const ::com::sun::star::uno::Sequence< sal_Int8 >& Data )
 /*N*/       throw(NOSUCHELEMENTEXCEPTION, RUNTIMEEXCEPTION)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -500,7 +500,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
         }
     }
 */
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -513,7 +513,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::setParent(const REFERENCE< XINTERFACE >& Parent) throw(NOSUPPORTEXCEPTION, RUNTIMEEXCEPTION)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( Parent.is() && getParent().is() )
 /*N*/       // only set parent when no parent is available
 /*N*/       throw NOSUPPORTEXCEPTION();
@@ -529,7 +529,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::dispose() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/
 /*N*/   // object already disposed?
 /*N*/   if ( impl_isDisposed() )
@@ -597,7 +597,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/     throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -612,7 +612,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/     throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -626,7 +626,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ REFERENCE< XDOCUMENTINFO > SAL_CALL SfxBaseModel::getDocumentInfo() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -643,7 +643,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::disposing( const EVENTOBJECT& aObject )
 /*N*/     throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -667,7 +667,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/                                               const   SEQUENCE< PROPERTYVALUE >&  rArgs   )
 /*N*/     throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -730,7 +730,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ OUSTRING SAL_CALL SfxBaseModel::getURL() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -743,7 +743,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ SEQUENCE< PROPERTYVALUE > SAL_CALL SfxBaseModel::getArgs() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -819,7 +819,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::connectController( const REFERENCE< XCONTROLLER >& xController )
 /*N*/     throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -837,7 +837,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::disconnectController( const REFERENCE< XCONTROLLER >& xController ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -867,7 +867,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::lockControllers() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/   ++m_pData->m_nControllerLockCount ;
@@ -879,7 +879,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::unlockControllers() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/   --m_pData->m_nControllerLockCount ;
@@ -891,7 +891,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ sal_Bool SAL_CALL SfxBaseModel::hasControllersLocked() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/   return ( m_pData->m_nControllerLockCount != 0 ) ;
@@ -904,7 +904,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ REFERENCE< XCONTROLLER > SAL_CALL SfxBaseModel::getCurrentController() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -924,7 +924,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         throw (::com::sun::star::container::NoSuchElementException, ::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -938,7 +938,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ REFERENCE< XINTERFACE > SAL_CALL SfxBaseModel::getCurrentSelection() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -969,7 +969,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ sal_Bool SAL_CALL SfxBaseModel::isModified() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -984,7 +984,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         throw (::com::sun::star::beans::PropertyVetoException, ::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -999,7 +999,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::addModifyListener(const REFERENCE< XMODIFYLISTENER >& xListener) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1013,7 +1013,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::removeModifyListener(const REFERENCE< XMODIFYLISTENER >& xListener) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1026,7 +1026,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ void SAL_CALL SfxBaseModel::close( sal_Bool bDeliverOwnership ) throw (CLOSEVETOEXCEPTION, RUNTIMEEXCEPTION)
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( !m_pData || m_pData->m_bClosed || m_pData->m_bClosing )
 /*N*/       return;
 /*N*/
@@ -1082,7 +1082,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::addCloseListener( const REFERENCE< XCLOSELISTENER >& xListener ) throw (RUNTIMEEXCEPTION)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1096,7 +1096,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::removeCloseListener( const REFERENCE< XCLOSELISTENER >& xListener ) throw (RUNTIMEEXCEPTION)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1118,7 +1118,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ sal_Bool SAL_CALL SfxBaseModel::hasLocation() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1132,7 +1132,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ OUSTRING SAL_CALL SfxBaseModel::getLocation() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1146,7 +1146,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ sal_Bool SAL_CALL SfxBaseModel::isReadonly() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1160,7 +1160,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::store() throw (::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1185,7 +1185,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         throw (::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1208,7 +1208,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         throw (::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1229,7 +1229,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/              ::com::sun::star::uno::Exception)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1263,7 +1263,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/              ::com::sun::star::uno::Exception)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1353,7 +1353,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ REFERENCE< XNAMEREPLACE > SAL_CALL SfxBaseModel::getEvents() throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1372,7 +1372,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::addEventListener( const REFERENCE< XDOCEVENTLISTENER >& aListener ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1386,7 +1386,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& aListener ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1475,7 +1475,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ {
 /*N*/   // object already disposed?
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       return;
 /*N*/
@@ -1582,7 +1582,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ REFERENCE < XINDEXACCESS > SAL_CALL SfxBaseModel::getViewData() throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
@@ -1593,7 +1593,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ void SAL_CALL SfxBaseModel::setViewData( const REFERENCE < XINDEXACCESS >& aData ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // object already disposed?
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/

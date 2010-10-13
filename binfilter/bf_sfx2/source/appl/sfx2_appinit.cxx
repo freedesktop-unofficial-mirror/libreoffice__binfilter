@@ -125,7 +125,7 @@ public:
 /*N*/     if( xDesktop.is() == sal_True )
 /*N*/         xDesktop->removeTerminateListener( this );
 /*N*/
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/     SfxApplication* pApp = SFX_APP();
 /*N*/     pApp->Broadcast( SfxSimpleHint( SFX_HINT_DEINITIALIZING ) );
 /*N*/     pApp->NotifyEvent(SfxEventHint( SFX_EVENT_CLOSEAPP) );
@@ -173,7 +173,7 @@ public:
 /*N*/
 /*N*/   pImp->pObjShells = new SfxObjectShellArr_Impl;
 /*N*/
-/*N*/ //    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/ //    SolarMutexGuard aGuard;
 /*N*/
 /*N*/   SfxEventConfiguration::RegisterEvent(SFX_EVENT_STARTAPP,        String(),   String::CreateFromAscii("OnStartApp") );
 /*N*/   SfxEventConfiguration::RegisterEvent(SFX_EVENT_CLOSEAPP,        String(),   String::CreateFromAscii("OnCloseApp") );

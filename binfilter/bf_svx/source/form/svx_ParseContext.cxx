@@ -47,7 +47,7 @@ using namespace ::connectivity;
 /*N*/ OSystemParseContext::OSystemParseContext() : IParseContext()
 /*N*/ {
 /*N*/   DBG_CTOR(OSystemParseContext,NULL);
-/*N*/   vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   m_aSQLInternationals = ByteString(SVX_RES(RID_STR_SVT_SQL_INTERNATIONAL),RTL_TEXTENCODING_ASCII_US);
 /*N*/ }
 

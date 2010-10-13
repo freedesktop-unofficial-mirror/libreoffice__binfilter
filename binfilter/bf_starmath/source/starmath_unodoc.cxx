@@ -56,7 +56,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SmDocument_getSupportedServiceNames() 
 uno::Reference< uno::XInterface > SAL_CALL SmDocument_createInstance(
                 const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SM_MOD(), "No StarMath module!" );

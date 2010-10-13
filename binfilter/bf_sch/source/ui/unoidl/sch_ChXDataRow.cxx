@@ -102,7 +102,7 @@ const uno::Sequence< sal_Int8 > & ChXDataRow::getUnoTunnelId() throw()
 
 uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_Int32 nId ) const
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -123,7 +123,7 @@ uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_I
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXDataRow::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -134,7 +134,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bPropertyUnknown = sal_False;
 
     if( mpModel )
@@ -376,7 +376,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -593,7 +593,7 @@ void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& P
 beans::PropertyState SAL_CALL ChXDataRow::getPropertyState( const ::rtl::OUString& PropertyName )
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -654,7 +654,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXDataRow::getPropertyStates(
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyName.getLength();
     const ::rtl::OUString* pNames = aPropertyName.getConstArray();
@@ -672,7 +672,7 @@ void SAL_CALL ChXDataRow::setPropertyToDefault( const ::rtl::OUString& PropertyN
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 

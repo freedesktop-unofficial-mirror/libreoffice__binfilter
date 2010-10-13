@@ -549,7 +549,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/
 /*N*/ SEQUENCE< OUSTRING > SfxObjectShell::GetEventNames_Impl()
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   SEQUENCE < OUSTRING > aSequence( 14 );
         OUSTRING* pNames = aSequence.getArray();
         sal_Int32 i=0;

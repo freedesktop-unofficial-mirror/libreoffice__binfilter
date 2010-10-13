@@ -56,7 +56,7 @@ ChartLegend::~ChartLegend()
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartLegend::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 6 );
     aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartLegend" );

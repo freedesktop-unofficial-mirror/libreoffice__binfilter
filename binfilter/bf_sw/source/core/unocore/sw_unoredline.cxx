@@ -117,7 +117,7 @@ Sequence<Type> SwXRedlineText::getTypes()
 Sequence<sal_Int8> SwXRedlineText::getImplementationId()
     throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Sequence< sal_Int8 > aId( 16 );
     static sal_Bool bInit = sal_False;
     if(!bInit)
@@ -131,7 +131,7 @@ Sequence<sal_Int8> SwXRedlineText::getImplementationId()
 Reference<XTextCursor> SwXRedlineText::createTextCursor(void)
     throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     SwPosition aPos(aNodeIndex);
     SwXTextCursor* pCrsr = new SwXTextCursor(this, aPos, CURSOR_REDLINE,
@@ -183,7 +183,7 @@ Reference<XTextCursor> SwXRedlineText::createTextCursorByRange(
 Reference<XEnumeration> SwXRedlineText::createEnumeration(void)
     throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwPaM aPam(aNodeIndex);
     aPam.Move(fnMoveForward, fnGoNode);
     return new SwXParagraphEnumeration(this, *aPam.Start(), CURSOR_REDLINE);
@@ -264,7 +264,7 @@ Sequence<PropertyValue> lcl_GetSuccessorProperties(const SwRedline& rRedline)
 Any SwXRedlinePortion::getPropertyValue( const OUString& rPropertyName )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Validate();
     Any aRet;
     if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_TEXT)))
@@ -309,7 +309,7 @@ void SwXRedlinePortion::Validate() throw( RuntimeException )
 
 uno::Sequence< sal_Int8 > SAL_CALL SwXRedlinePortion::getImplementationId(  ) throw(uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Sequence< sal_Int8 > aId( 16 );
     static sal_Bool bInit = sal_False;
     if(!bInit)
@@ -437,7 +437,7 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
         WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw RuntimeException();
     if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_AUTHOR)))
@@ -473,7 +473,7 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
 Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw RuntimeException();
     Any aRet;
@@ -578,7 +578,7 @@ void SwXRedline::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 
 Reference< XEnumeration >  SwXRedline::createEnumeration(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XEnumeration > xRet;
     if(!pDoc)
         throw RuntimeException();
@@ -607,7 +607,7 @@ sal_Bool SwXRedline::hasElements(  ) throw(RuntimeException)
 
 Reference< XTextCursor >  SwXRedline::createTextCursor(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw RuntimeException();
 
@@ -676,7 +676,7 @@ Sequence<Type> SwXRedline::getTypes()
 Sequence<sal_Int8> SwXRedline::getImplementationId()
     throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Sequence< sal_Int8 > aId( 16 );
     static sal_Bool bInit = sal_False;
     if(!bInit)

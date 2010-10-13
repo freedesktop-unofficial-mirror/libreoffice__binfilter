@@ -172,14 +172,14 @@ uno::Sequence< OUString > SAL_CALL SdLayer::getSupportedServiceNames()
 uno::Reference< beans::XPropertySetInfo > SAL_CALL SdLayer::getPropertySetInfo(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return aPropSet.getPropertySetInfo();
 }
 
 void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pLayer == NULL || pLayerManager == NULL)
         throw uno::RuntimeException();
@@ -230,7 +230,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
 uno::Any SAL_CALL SdLayer::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pLayer == NULL || pLayerManager == NULL)
         throw uno::RuntimeException();
@@ -422,7 +422,7 @@ uno::Sequence< OUString > SAL_CALL SdLayerManager::getSupportedServiceNames()
 uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::insertNewByIndex( sal_Int32 nIndex )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer > xLayer;
 
@@ -457,7 +457,7 @@ void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& x
 void SAL_CALL SdLayerManager::attachShapeToLayer( const uno::Reference< drawing::XShape >& xShape, const uno::Reference< drawing::XLayer >& xLayer )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(rModel.pDoc==NULL)
         return;
@@ -478,7 +478,7 @@ void SAL_CALL SdLayerManager::attachShapeToLayer( const uno::Reference< drawing:
 
 uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::getLayerForShape( const uno::Reference< drawing::XShape >& xShape ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer >  xLayer;
 
@@ -500,7 +500,7 @@ uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::getLayerForShape( con
 sal_Int32 SAL_CALL SdLayerManager::getCount()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( rModel.pDoc )
     {
@@ -514,7 +514,7 @@ sal_Int32 SAL_CALL SdLayerManager::getCount()
 uno::Any SAL_CALL SdLayerManager::getByIndex( sal_Int32 nLayer )
     throw(lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( nLayer >= getCount() || nLayer < 0 )
         throw lang::IndexOutOfBoundsException();
@@ -535,7 +535,7 @@ uno::Any SAL_CALL SdLayerManager::getByIndex( sal_Int32 nLayer )
 uno::Any SAL_CALL SdLayerManager::getByName( const OUString& aName )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer >  xLayer;
 
@@ -560,7 +560,7 @@ uno::Any SAL_CALL SdLayerManager::getByName( const OUString& aName )
 uno::Sequence< OUString > SAL_CALL SdLayerManager::getElementNames()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrLayerAdmin& rLayerAdmin = rModel.pDoc->GetLayerAdmin();
     const sal_uInt16 nLayerCount = rLayerAdmin.GetLayerCount();
@@ -582,7 +582,7 @@ uno::Sequence< OUString > SAL_CALL SdLayerManager::getElementNames()
 
 sal_Bool SAL_CALL SdLayerManager::hasByName( const OUString& aName ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrLayerAdmin& rLayerAdmin = rModel.pDoc->GetLayerAdmin();
 

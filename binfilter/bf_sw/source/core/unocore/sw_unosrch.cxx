@@ -496,7 +496,7 @@ sal_Int64 SAL_CALL SwXTextSearch::getSomething( const Sequence< sal_Int8 >& rId 
   -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getSearchString(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return sSearchText;
 }
 /*-- 14.12.98 13:07:12---------------------------------------------------
@@ -505,7 +505,7 @@ OUString SwXTextSearch::getSearchString(void) throw( RuntimeException )
 void SwXTextSearch::setSearchString(const OUString& rString)
                                         throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sSearchText = String(rString);
 }
 /*-- 14.12.98 13:07:12---------------------------------------------------
@@ -513,7 +513,7 @@ void SwXTextSearch::setSearchString(const OUString& rString)
   -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getReplaceString(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return sReplaceText;
 }
 /*-- 14.12.98 13:07:12---------------------------------------------------
@@ -521,7 +521,7 @@ OUString SwXTextSearch::getReplaceString(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setReplaceString(const OUString& rReplaceString) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sReplaceText = String(rReplaceString);
 }
 /*-- 14.12.98 13:07:13---------------------------------------------------
@@ -539,7 +539,7 @@ void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& a
     throw( UnknownPropertyException, PropertyVetoException,
         lang::IllegalArgumentException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                 _pMap, rPropertyName);
     if(pMap)
@@ -574,7 +574,7 @@ void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& a
   -----------------------------------------------------------------------*/
 Any SwXTextSearch::getPropertyValue(const OUString& rPropertyName) throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
 
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -642,7 +642,7 @@ void SwXTextSearch::removeVetoableChangeListener(const OUString& PropertyName, c
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextSearch::getValueSearch(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return bIsValueSearch;
 }
 /*-- 14.12.98 13:07:15---------------------------------------------------
@@ -650,7 +650,7 @@ sal_Bool SwXTextSearch::getValueSearch(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setValueSearch(sal_Bool ValueSearch_) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     bIsValueSearch = ValueSearch_;
 }
 /*-- 14.12.98 13:07:15---------------------------------------------------

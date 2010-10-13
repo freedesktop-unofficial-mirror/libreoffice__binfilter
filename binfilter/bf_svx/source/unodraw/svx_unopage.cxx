@@ -152,7 +152,7 @@ void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 void SAL_CALL SvxDrawPage::add( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -185,7 +185,7 @@ void SAL_CALL SvxDrawPage::add( const Reference< drawing::XShape >& xShape )
 void SAL_CALL SvxDrawPage::remove( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -225,7 +225,7 @@ sal_Int32 SAL_CALL SvxDrawPage::getCount()
 uno::Any SAL_CALL SvxDrawPage::getByIndex( sal_Int32 Index )
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pPage == NULL)
         throw uno::RuntimeException();
@@ -311,7 +311,7 @@ void SvxDrawPage::_SelectObjectInView( const Reference< drawing::XShape > & xSha
 Reference< drawing::XShapeGroup > SAL_CALL SvxDrawPage::group( const Reference< drawing::XShapes >& xShapes )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     DBG_ASSERT(pPage,"SdrPage ist NULL! [CL]");
     DBG_ASSERT(pView, "SdrView ist NULL! [CL]");
@@ -347,7 +347,7 @@ Reference< drawing::XShapeGroup > SAL_CALL SvxDrawPage::group( const Reference< 
 void SAL_CALL SvxDrawPage::ungroup( const Reference< drawing::XShapeGroup >& aGroup )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     DBG_ASSERT(pPage,"SdrPage ist NULL! [CL]");
     DBG_ASSERT(pView, "SdrView ist NULL! [CL]");

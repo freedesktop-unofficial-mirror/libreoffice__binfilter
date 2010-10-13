@@ -367,7 +367,7 @@ OUString SwXDocumentIndex::getServiceName(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXDocumentIndex::update(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwTOXBase* pTOXBase = (SwTOXBaseSection*)GetFmt()->GetSection();
     if(!pTOXBase)
         throw RuntimeException();
@@ -391,7 +391,7 @@ void SwXDocumentIndex::setPropertyValue(const OUString& rPropertyName,
         throw( UnknownPropertyException, PropertyVetoException,
                  IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                         _pMap, rPropertyName);
     if (!pMap)
@@ -680,7 +680,7 @@ void SwXDocumentIndex::setPropertyValue(const OUString& rPropertyName,
 uno::Any SwXDocumentIndex::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                     _pMap, rPropertyName);
@@ -1100,7 +1100,7 @@ void SwXDocumentIndex::attachToRange(const Reference< text::XTextRange > & xText
 void SwXDocumentIndex::attach(const Reference< text::XTextRange > & xTextRange)
     throw( IllegalArgumentException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 /*-- 15.01.99 14:23:56---------------------------------------------------
@@ -1108,7 +1108,7 @@ void SwXDocumentIndex::attach(const Reference< text::XTextRange > & xTextRange)
   -----------------------------------------------------------------------*/
 Reference< text::XTextRange >  SwXDocumentIndex::getAnchor(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< text::XTextRange >   xRet;
     if(GetRegisteredIn())
     {
@@ -1151,7 +1151,7 @@ void lcl_RemoveChildSections(SwSectionFmt& rParentFmt)
 }
 void SwXDocumentIndex::dispose(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(GetRegisteredIn())
     {
         SwSectionFmt*  pSectFmt = GetFmt();
@@ -1359,7 +1359,7 @@ void SwXDocumentIndexMark::InitMap(TOXTypes eToxType)
   -----------------------------------------------------------------------*/
 OUString SwXDocumentIndexMark::getMarkEntry(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     OUString sRet;
     if(pType)
@@ -1379,7 +1379,7 @@ OUString SwXDocumentIndexMark::getMarkEntry(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXDocumentIndexMark::setMarkEntry(const OUString& rIndexEntry) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     if(pType)
     {
@@ -1434,7 +1434,7 @@ void SwXDocumentIndexMark::setMarkEntry(const OUString& rIndexEntry) throw( Runt
 void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & xTextRange)
                 throw( IllegalArgumentException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!bIsDescriptor)
         throw RuntimeException();
 
@@ -1551,7 +1551,7 @@ void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & x
 void SwXDocumentIndexMark::attach(const Reference< text::XTextRange > & xTextRange)
                 throw( IllegalArgumentException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 /*-- 14.12.98 10:25:45---------------------------------------------------
@@ -1559,7 +1559,7 @@ void SwXDocumentIndexMark::attach(const Reference< text::XTextRange > & xTextRan
   -----------------------------------------------------------------------*/
 Reference< text::XTextRange >  SwXDocumentIndexMark::getAnchor(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< text::XTextRange >  aRet;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     if(pType)
@@ -1590,7 +1590,7 @@ Reference< text::XTextRange >  SwXDocumentIndexMark::getAnchor(void) throw( Runt
   -----------------------------------------------------------------------*/
 void SwXDocumentIndexMark::dispose(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     if(pType)
     {
@@ -1652,7 +1652,7 @@ void SwXDocumentIndexMark::setPropertyValue(const OUString& rPropertyName,
     throw( UnknownPropertyException, PropertyVetoException,
         IllegalArgumentException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                         _pMap, rPropertyName);
@@ -1791,7 +1791,7 @@ void SwXDocumentIndexMark::setPropertyValue(const OUString& rPropertyName,
 uno::Any SwXDocumentIndexMark::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     SwTOXType* pType = ((SwXDocumentIndexMark*)this)->GetTOXType();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -2011,7 +2011,7 @@ SwXDocumentIndexes::~SwXDocumentIndexes()
   -----------------------------------------------------------------------*/
 sal_Int32 SwXDocumentIndexes::getCount(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2032,7 +2032,7 @@ sal_Int32 SwXDocumentIndexes::getCount(void) throw( RuntimeException )
 uno::Any SwXDocumentIndexes::getByIndex(sal_Int32 nIndex)
     throw( IndexOutOfBoundsException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2064,7 +2064,7 @@ uno::Any SwXDocumentIndexes::getByIndex(sal_Int32 nIndex)
 uno::Any SwXDocumentIndexes::getByName(const OUString& rName)
     throw( container::NoSuchElementException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2095,7 +2095,7 @@ uno::Any SwXDocumentIndexes::getByName(const OUString& rName)
 uno::Sequence< OUString > SwXDocumentIndexes::getElementNames(void)
     throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2130,7 +2130,7 @@ uno::Sequence< OUString > SwXDocumentIndexes::getElementNames(void)
 sal_Bool SwXDocumentIndexes::hasByName(const OUString& rName)
     throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
 
@@ -2160,7 +2160,7 @@ uno::Type SwXDocumentIndexes::getElementType(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXDocumentIndexes::hasElements(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid())
         throw RuntimeException();
     return 0 != getCount();
@@ -2208,7 +2208,7 @@ SwXIndexStyleAccess_Impl::SwXIndexStyleAccess_Impl(SwXDocumentIndex& rParentIdx)
     rParent(rParentIdx),
     xParent(&rParentIdx)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     rParent.SetStyleAccess(this);
 }
 /*-- 13.09.99 16:52:29---------------------------------------------------
@@ -2216,7 +2216,7 @@ SwXIndexStyleAccess_Impl::SwXIndexStyleAccess_Impl(SwXDocumentIndex& rParentIdx)
   -----------------------------------------------------------------------*/
 SwXIndexStyleAccess_Impl::~SwXIndexStyleAccess_Impl()
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     rParent.SetStyleAccess(0);
 }
 /*-- 13.09.99 16:52:29---------------------------------------------------
@@ -2226,7 +2226,7 @@ void SwXIndexStyleAccess_Impl::replaceByIndex(sal_Int32 nIndex, const uno::Any& 
     throw( IllegalArgumentException, IndexOutOfBoundsException,
           WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const sal_Bool bDescriptor = rParent.IsDescriptor();
     SwSectionFmt* pSectFmt = rParent.GetFmt();
     if(!pSectFmt && !bDescriptor)
@@ -2267,7 +2267,7 @@ uno::Any SwXIndexStyleAccess_Impl::getByIndex(sal_Int32 nIndex)
     throw( IndexOutOfBoundsException, WrappedTargetException,
                  RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const sal_Bool bDescriptor = rParent.IsDescriptor();
     SwSectionFmt* pSectFmt = rParent.GetFmt();
     if(!pSectFmt && !bDescriptor)
@@ -2345,7 +2345,7 @@ SwXIndexTokenAccess_Impl::SwXIndexTokenAccess_Impl(SwXDocumentIndex& rParentIdx)
     xParent(&rParentIdx),
     nCount(SwForm::GetFormMaxLevel(rParent.GetTOXType()))
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     rParent.SetTokenAccess(this);
 }
 /*-- 13.09.99 16:52:29---------------------------------------------------
@@ -2353,7 +2353,7 @@ SwXIndexTokenAccess_Impl::SwXIndexTokenAccess_Impl(SwXDocumentIndex& rParentIdx)
   -----------------------------------------------------------------------*/
 SwXIndexTokenAccess_Impl::~SwXIndexTokenAccess_Impl()
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     rParent.SetTokenAccess(0);
 }
 /*-- 13.09.99 16:52:29---------------------------------------------------
@@ -2363,7 +2363,7 @@ void SwXIndexTokenAccess_Impl::replaceByIndex(sal_Int32 nIndex, const uno::Any& 
     throw( IllegalArgumentException, IndexOutOfBoundsException,
             WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const sal_Bool bDescriptor = rParent.IsDescriptor();
     SwSectionFmt* pSectFmt = rParent.GetFmt();
     if(!pSectFmt && !bDescriptor)
@@ -2510,7 +2510,7 @@ void SwXIndexTokenAccess_Impl::replaceByIndex(sal_Int32 nIndex, const uno::Any& 
   -----------------------------------------------------------------------*/
 sal_Int32 SwXIndexTokenAccess_Impl::getCount(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const sal_Bool bDescriptor = rParent.IsDescriptor();
     SwSectionFmt* pSectFmt = rParent.GetFmt();
     if(!pSectFmt && !bDescriptor)
@@ -2528,7 +2528,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
     throw( IndexOutOfBoundsException, WrappedTargetException,
          RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const sal_Bool bDescriptor = rParent.IsDescriptor();
     SwSectionFmt* pSectFmt = rParent.GetFmt();
     if(!pSectFmt && !bDescriptor)

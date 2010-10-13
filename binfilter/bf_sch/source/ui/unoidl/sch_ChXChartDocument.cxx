@@ -98,7 +98,7 @@ ChXChartDocument::ChXChartDocument( SchChartDocShell* pShell ) :
 {
     if( pShell )
     {
-        OGuard aSolarGuard( Application::GetSolarMutex());
+        SolarMutexGuard aSolarGuard;
 
         m_pDocShell = pShell;
         if( m_pDocShell->GetModelPtr())
@@ -144,7 +144,7 @@ ChXChartDocument::~ChXChartDocument()
 void ChXChartDocument::setDiagramType( const ::rtl::OUString& aType,
                                        sal_Bool bKeepAddin /* = sal_False */ ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( ! m_pModel )
         return;
@@ -513,7 +513,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( m_pModel )
     {
@@ -707,7 +707,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     if( m_pModel )
@@ -1004,7 +1004,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // use AddIn
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aGuard;
             m_pModel->SetChartAddIn( xAddIn );
 
             // initialize AddIn with this as chart document
@@ -1051,7 +1051,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // clear addin
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aGuard;
             uno::Reference< util::XRefreshable > xRefreshable;
             m_pModel->SetChartAddIn( xRefreshable );
         }
@@ -1084,7 +1084,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
                         // update local model
                         if( m_pModel )
                         {
-                            OGuard aGuard( Application::GetSolarMutex());
+                            SolarMutexGuard aGuard;
                             m_pModel = m_pDocShell->GetModelPtr();
                         }
                     }
@@ -1212,7 +1212,7 @@ void SAL_CALL ChXChartDocument::lockControllers() throw( uno::RuntimeException )
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         m_pModel->LockBuild();
     }
     else
@@ -1223,7 +1223,7 @@ void SAL_CALL ChXChartDocument::unlockControllers() throw( uno::RuntimeException
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         m_pModel->UnlockBuild();
     }
     else
@@ -1234,7 +1234,7 @@ sal_Bool SAL_CALL ChXChartDocument::hasControllersLocked() throw( uno::RuntimeEx
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         return m_pModel->IsLockedBuild();
     }
     else
@@ -1374,7 +1374,7 @@ void ChXChartDocument::InitNumberFormatter() throw( uno::RuntimeException )
     {
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aGuard;
             mrNumberFormatter = new SvNumberFormatsSupplierObj( m_pModel->GetNumFormatter() );
         }
         else
@@ -1506,7 +1506,7 @@ void SAL_CALL ChXChartDocument::disposing (const lang::EventObject & Source)
         return;
 
     //  Inform the document shell of the disposing of Source.Source.
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchChartDocShell* pDocSh = (SchChartDocShell*)GetObjectShell();
     if (pDocSh == NULL)

@@ -126,7 +126,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChXChartDrawPage::getImplementationId() throw
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXChartDrawPage::getPropertySetInfo()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return maPropSet.getPropertySetInfo();
 }
@@ -138,7 +138,7 @@ void SAL_CALL ChXChartDrawPage::setPropertyValue( const ::rtl::OUString& aProper
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( aPropertyName );
     if( mpModel &&
@@ -186,7 +186,7 @@ uno::Any SAL_CALL ChXChartDrawPage::getPropertyValue( const ::rtl::OUString& aPr
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aResult;
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( aPropertyName );

@@ -152,7 +152,7 @@ void setLogicRectHack( SdrObject* pObj, const Rectangle& rRect )
 
 SdrObject* ChXChartObject::GetCurrentSdrObject() const
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pResult = NULL;
     if( mpModel )
@@ -176,7 +176,7 @@ SdrObject* ChXChartObject::GetCurrentSdrObject() const
 // XShape interface methods
 awt::Point SAL_CALL ChXChartObject::getPosition() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -209,7 +209,7 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
             return;
     }
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -241,7 +241,7 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
 
 awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -268,7 +268,7 @@ void SAL_CALL ChXChartObject::setSize( const awt::Size& aSize )
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXChartObject::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -279,7 +279,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel && mnWhichId != CHOBJID_ANY )
     {
@@ -419,7 +419,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aResultaAny;
     sal_Bool bPropertyUnknown = sal_False;
@@ -679,7 +679,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
             lang::WrappedTargetException,
             uno::RuntimeException)
 {
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  Get pointers to first elements of lists.
     const SfxItemPropertyMap *  pProperty = maPropSet.getPropertyMap ();
@@ -843,7 +843,7 @@ uno::Sequence< uno::Any > SAL_CALL ChXChartObject::getPropertyValues    (
 
     return aResult;
 #endif
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
     Sequence<Any> aResult (aPropertyNames.getLength());
@@ -915,7 +915,7 @@ void SAL_CALL ChXChartObject::firePropertiesChangeEvent (
 beans::PropertyState SAL_CALL ChXChartObject::getPropertyState( const ::rtl::OUString& PropertyName )
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -984,7 +984,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
                uno::RuntimeException )
 {
 #if 0
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyNames.getLength();
     const ::rtl::OUString * pName = aPropertyNames.getConstArray();
@@ -999,7 +999,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
 
     return aStates;
 #else
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     //  Get pointers to first elements of lists.
     const SfxItemPropertyMap * pProperty = maPropSet.getPropertyMap ();
@@ -1099,7 +1099,7 @@ void SAL_CALL ChXChartObject::setPropertyToDefault( const ::rtl::OUString& Prope
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 

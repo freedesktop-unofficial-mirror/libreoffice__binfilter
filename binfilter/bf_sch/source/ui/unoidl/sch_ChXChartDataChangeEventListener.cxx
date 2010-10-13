@@ -53,14 +53,14 @@ ChXChartDataChangeEventListener::ChXChartDataChangeEventListener()
 
 void ChXChartDataChangeEventListener::SetOwner( ChXChartDocument* pXDoc ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     mpXDoc = pXDoc;
 }
 
 void ChXChartDataChangeEventListener::Reset() throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     mpXDoc = NULL;
 }
 
@@ -68,7 +68,7 @@ void ChXChartDataChangeEventListener::Reset() throw()
 void SAL_CALL ChXChartDataChangeEventListener::chartDataChanged( const chart::ChartDataChangeEvent& aEvent )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpXDoc )
         mpXDoc->RefreshData( aEvent );
 }
@@ -99,7 +99,7 @@ sal_Bool SAL_CALL ChXChartDataChangeEventListener::supportsService( const OUStri
 uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataChangeEventListener::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< OUString > aServSeq( 0 );
     return aServSeq;

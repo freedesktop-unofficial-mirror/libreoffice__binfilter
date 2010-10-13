@@ -199,7 +199,7 @@ void SwXReferenceMark::attachToRange(const uno::Reference< text::XTextRange > & 
 void SwXReferenceMark::attach(const uno::Reference< text::XTextRange > & xTextRange)
                 throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 /*-- 11.12.98 10:28:34---------------------------------------------------
@@ -207,7 +207,7 @@ void SwXReferenceMark::attach(const uno::Reference< text::XTextRange > & xTextRa
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXReferenceMark::getAnchor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextRange >  xRet;
     if(IsValid())
     {
@@ -238,7 +238,7 @@ uno::Reference< text::XTextRange >  SwXReferenceMark::getAnchor(void) throw( uno
   -----------------------------------------------------------------------*/
 void SwXReferenceMark::dispose(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(IsValid())
     {
         const SwFmtRefMark* pNewMark = pDoc->GetRefMark(sMarkName);
@@ -283,7 +283,7 @@ void SwXReferenceMark::removeEventListener(const uno::Reference< lang::XEventLis
   -----------------------------------------------------------------------*/
 OUString SwXReferenceMark::getName(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!IsValid() || !pDoc->GetRefMark(sMarkName))
     {
         throw uno::RuntimeException();
@@ -295,7 +295,7 @@ OUString SwXReferenceMark::getName(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXReferenceMark::setName(const OUString& Name_) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(m_bIsDescriptor)
         sMarkName = String(Name_);
     else

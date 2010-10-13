@@ -279,7 +279,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
     InterfaceRef  xParent;
     FormButtonType eButtonType;
     {
-        ::vos::OGuard aGuard( Application::GetSolarMutex() );
+        SolarMutexGuard aGuard;
 
         // Parent holen
         Reference<XFormComponent>  xComp(getModel(), UNO_QUERY);
@@ -322,7 +322,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
         case FormButtonType_URL:
         {
-            ::vos::OGuard aGuard( Application::GetSolarMutex() );
+            SolarMutexGuard aGuard;
 
             Reference< XModel >  xModel = getXModel(xParent);
             if (!xModel.is())

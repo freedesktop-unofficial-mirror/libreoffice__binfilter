@@ -99,7 +99,7 @@ void SvBinding::OnStart (void)
     SvBindingRef xThis (this);
     if (m_xCallback.Is())
     {
-        vos::OGuard aAppGuard (Application::GetSolarMutex());
+        SolarMutexGuard aAppGuard;
         if (m_xCallback.Is())
             m_xCallback->InitStartTime();
     }
@@ -115,7 +115,7 @@ void SvBinding::OnError (ErrCode eErrCode)
 
     if (m_xCallback.Is())
     {
-        vos::OGuard aAppGuard (Application::GetSolarMutex());
+        SolarMutexGuard aAppGuard;
         if (m_xCallback.Is())
             m_xCallback->OnStopBinding (m_eErrCode, String());
     }
@@ -216,7 +216,7 @@ void SvBinding::OnRedirect (const String &rUrl)
     SvBindingRef xThis (this);
     if (m_xCallback.Is())
     {
-        vos::OGuard aAppGuard (Application::GetSolarMutex());
+        SolarMutexGuard aAppGuard;
 
         INetURLHistory::GetOrCreate()->PutUrl (m_aUrlObj);
         m_aUrlObj.SetURL (rUrl);

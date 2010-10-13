@@ -201,7 +201,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoGraphicStyleFamily::getSupportedServiceN
 uno::Any SAL_CALL SdUnoGraphicStyleFamily::getByName( const OUString& aName )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     if( NULL == pDoc || 0 == aName.getLength() )
@@ -220,7 +220,7 @@ uno::Any SAL_CALL SdUnoGraphicStyleFamily::getByName( const OUString& aName )
 uno::Sequence< OUString > SAL_CALL SdUnoGraphicStyleFamily::getElementNames()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     SfxStyleSheetIterator* pIter = NULL;
@@ -256,7 +256,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoGraphicStyleFamily::getElementNames()
 sal_Bool SAL_CALL SdUnoGraphicStyleFamily::hasByName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     if( pDoc == NULL )
@@ -277,7 +277,7 @@ uno::Type SAL_CALL SdUnoGraphicStyleFamily::getElementType()
 sal_Bool SAL_CALL SdUnoGraphicStyleFamily::hasElements()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return mpModel->GetDoc() != NULL;
 }
 
@@ -286,7 +286,7 @@ sal_Bool SAL_CALL SdUnoGraphicStyleFamily::hasElements()
 sal_Int32 SAL_CALL SdUnoGraphicStyleFamily::getCount()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = 0;
 
@@ -304,7 +304,7 @@ sal_Int32 SAL_CALL SdUnoGraphicStyleFamily::getCount()
 
 uno::Any SAL_CALL SdUnoGraphicStyleFamily::getByIndex( sal_Int32 Index ) throw(lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -330,7 +330,7 @@ uno::Any SAL_CALL SdUnoGraphicStyleFamily::getByIndex( sal_Int32 Index ) throw(l
 void SAL_CALL SdUnoGraphicStyleFamily::insertByName( const OUString& aName, const uno::Any& aElement )
     throw(lang::IllegalArgumentException, container::ElementExistException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdUnoGraphicStyle* pStyle = getStyleFromAny( aElement );
 
@@ -355,7 +355,7 @@ void SAL_CALL SdUnoGraphicStyleFamily::insertByName( const OUString& aName, cons
 void SAL_CALL SdUnoGraphicStyleFamily::removeByName( const OUString& Name )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aStyleName( Name );
 
@@ -382,7 +382,7 @@ void SAL_CALL SdUnoGraphicStyleFamily::removeByName( const OUString& Name )
 void SAL_CALL SdUnoGraphicStyleFamily::replaceByName( const OUString& aName, const uno::Any& aElement )
     throw(lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdUnoGraphicStyle* pStyle = getStyleFromAny( aElement );
 

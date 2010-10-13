@@ -237,7 +237,7 @@ SwXModule::~SwXModule()
   -----------------------------------------------------------------------*/
 Reference< XPropertySet >  SwXModule::getViewSettings(void) throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pxViewSettings)
     {
         ((SwXModule*)this)->pxViewSettings = new Reference< XPropertySet > ;
@@ -251,7 +251,7 @@ Reference< XPropertySet >  SwXModule::getViewSettings(void) throw( uno::RuntimeE
   -----------------------------------------------------------------------*/
 Reference< XPropertySet >  SwXModule::getPrintSettings(void) throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pxPrintSettings)
     {
         ((SwXModule*)this)->pxPrintSettings = new Reference< XPropertySet > ;

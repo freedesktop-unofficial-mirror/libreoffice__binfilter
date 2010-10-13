@@ -249,7 +249,7 @@ Any SAL_CALL SwXStyleFamilies::getByName(const OUString& Name)
         lang::WrappedTargetException,
         RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 // der Index kommt aus const unsigned short aStyleByIndex[] =
     Any aRet;
     if(!IsValid())
@@ -309,7 +309,7 @@ sal_Int32 SwXStyleFamilies::getCount(void) throw( RuntimeException )
 Any SwXStyleFamilies::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
     if(nIndex >= STYLE_FAMILY_COUNT)
         throw lang::IndexOutOfBoundsException();
@@ -399,7 +399,7 @@ void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
     const Sequence< PropertyValue >& aOptions)
     throw( io::IOException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool    bLoadStyleText = sal_True;
     sal_Bool    LoadStyleFrame = sal_True;
     sal_Bool    bLoadStylePage = sal_True;
@@ -449,7 +449,7 @@ void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
 Sequence< PropertyValue > SwXStyleFamilies::getStyleLoaderOptions(void)
         throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< PropertyValue > aSeq(5);
     PropertyValue* pArray = aSeq.getArray();
     Any aVal;
@@ -669,7 +669,7 @@ sal_Int32 lcl_GetCountOrName ( const SwDoc &rDoc, SfxStyleFamily eFamily, String
   -----------------------------------------------------------------------*/
 sal_Int32 SwXStyleFamily::getCount(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return lcl_GetCountOrName ( *pDocShell->GetDoc(), eFamily, NULL );
 }
 /*-- 16.12.98 16:03:57---------------------------------------------------
@@ -678,7 +678,7 @@ sal_Int32 SwXStyleFamily::getCount(void) throw( RuntimeException )
 Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
     if ( nTempIndex >= 0 && nTempIndex < USHRT_MAX )
     {
@@ -814,7 +814,7 @@ Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
 Any SwXStyleFamily::getByName(const OUString& rName)
     throw( container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
     String sStyleName;
     SwStyleNameMapper::FillUIName(rName, sStyleName, lcl_GetSwEnumFromSfxEnum ( eFamily ), sal_True );
@@ -848,7 +848,7 @@ Any SwXStyleFamily::getByName(const OUString& rName)
   -----------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< OUString > aRet;
     if(pBasePool)
     {
@@ -873,7 +873,7 @@ Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeExcepti
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamily::hasByName(const OUString& rName) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     if(pBasePool)
     {
@@ -911,7 +911,7 @@ sal_Bool SwXStyleFamily::hasElements(void) throw( RuntimeException )
 void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
         throw( lang::IllegalArgumentException, container::ElementExistException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pBasePool)
     {
         String sStyleName;
@@ -977,7 +977,7 @@ void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
 void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
     throw( lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pBasePool)
     {
         pBasePool->SetSearchMask(eFamily);
@@ -1011,7 +1011,7 @@ void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
   -----------------------------------------------------------------------*/
 void SwXStyleFamily::removeByName(const OUString& rName) throw( container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pBasePool)
     {
         pBasePool->SetSearchMask(eFamily, SFXSTYLEBIT_ALL );
@@ -1379,7 +1379,7 @@ void SwXStyle::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 }
 OUString SwXStyle::getName(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     String aString;
     if(pBasePool)
     {
@@ -1399,7 +1399,7 @@ OUString SwXStyle::getName(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pBasePool)
     {
         pBasePool->SetSearchMask(eFamily, SFXSTYLEBIT_ALL );
@@ -1424,7 +1424,7 @@ void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     if(pBasePool)
     {
@@ -1443,7 +1443,7 @@ sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bRet = sal_False;
     if(pBasePool)
     {
@@ -1461,7 +1461,7 @@ sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
   -----------------------------------------------------------------------*/
 OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     String aString;
     if(pBasePool)
     {
@@ -1483,7 +1483,7 @@ OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
 void SwXStyle::setParentStyle(const OUString& rParentStyle)
             throw( container::NoSuchElementException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     String sParentStyle;
     SwStyleNameMapper::FillUIName(rParentStyle, sParentStyle, lcl_GetSwEnumFromSfxEnum ( eFamily ), sal_True );
     if(pBasePool)
@@ -2032,7 +2032,7 @@ void SwXStyle::setPropertyValues(
         throw(PropertyVetoException, IllegalArgumentException,
                 WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if ( !m_pDoc )
         throw RuntimeException();
     sal_Int8 nPropSetId = PROPERTY_SET_CHAR_STYLE;
@@ -2245,7 +2245,7 @@ query_itemset:
 Sequence< Any > SwXStyle::getPropertyValues(
     const Sequence< OUString >& rPropertyNames ) throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if ( !m_pDoc )
         throw RuntimeException();
     sal_Int8 nPropSetId = PROPERTY_SET_CHAR_STYLE;
@@ -2421,7 +2421,7 @@ void SwXStyle::removeVetoableChangeListener(const OUString& PropertyName,
 PropertyState SwXStyle::getPropertyState(const OUString& rPropertyName)
         throw( UnknownPropertyException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Sequence< OUString > aNames(1);
     OUString* pNames = aNames.getArray();
@@ -2436,7 +2436,7 @@ Sequence< PropertyState > SwXStyle::getPropertyStates(
     const Sequence< OUString >& rPropertyNames)
         throw( UnknownPropertyException, RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< PropertyState > aRet(rPropertyNames.getLength());
     PropertyState* pStates = aRet.getArray();
     if(pBasePool)
@@ -2537,7 +2537,7 @@ void SwXStyle::setPropertyToDefault(const OUString& rPropertyName)
 void SAL_CALL SwXStyle::setPropertiesToDefault( const Sequence< OUString >& aPropertyNames )
     throw (UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFmt *pTargetFmt = 0;
 
     if(pBasePool)
@@ -2604,7 +2604,7 @@ void SAL_CALL SwXStyle::setPropertiesToDefault( const Sequence< OUString >& aPro
 void SAL_CALL SwXStyle::setAllPropertiesToDefault(  )
     throw (RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(pBasePool)
     {
         pBasePool->SetSearchMask(eFamily);
@@ -2708,7 +2708,7 @@ void SAL_CALL SwXStyle::setAllPropertiesToDefault(  )
 Sequence< Any > SAL_CALL SwXStyle::getPropertyDefaults( const Sequence< OUString >& aPropertyNames )
     throw (UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Int32 nCount = aPropertyNames.getLength();
     Sequence < Any > aRet ( nCount );
     if ( nCount )
@@ -2844,7 +2844,7 @@ void SwXPageStyle::setPropertyValues(
     const Sequence< Any >& rValues )
         throw(PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc())
         throw RuntimeException();
     SfxItemPropertySet& aPropSet = aSwMapProvider.GetPropertySet(PROPERTY_SET_PAGE_STYLE);
@@ -3054,7 +3054,7 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
     const Sequence< OUString >& rPropertyNames )
         throw(RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!GetDoc())
         throw RuntimeException();
 

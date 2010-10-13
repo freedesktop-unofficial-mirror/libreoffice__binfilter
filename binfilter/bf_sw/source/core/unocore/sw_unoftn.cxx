@@ -174,7 +174,7 @@ uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SwXFootnote::getTypes(  ) 
  ---------------------------------------------------------------------------*/
 uno::Sequence< sal_Int8 > SAL_CALL SwXFootnote::getImplementationId(  ) throw(uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Sequence< sal_Int8 > aId( 16 );
     static sal_Bool bInit = sal_False;
     if(!bInit)
@@ -200,7 +200,7 @@ uno::Any SAL_CALL SwXFootnote::queryInterface( const uno::Type& aType ) throw(un
   -----------------------------------------------------------------------*/
 OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     String sRet;
     const SwFmtFtn*  pFmt = SwXFootnote::FindFmt();
     if(pFmt)
@@ -216,7 +216,7 @@ OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
   -----------------------------------------------------------------------*/
 void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SwFmtFtn*  pFmt = FindFmt();
     if(pFmt)
     {
@@ -295,7 +295,7 @@ void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xText
 void SwXFootnote::attach(const uno::Reference< text::XTextRange > & xTextRange)
             throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
 /*-- 10.12.98 15:31:48---------------------------------------------------
@@ -303,7 +303,7 @@ void SwXFootnote::attach(const uno::Reference< text::XTextRange > & xTextRange)
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextRange >  aRef;
     const SwFmtFtn*  pFmt = FindFmt();
     if(pFmt)
@@ -321,7 +321,7 @@ uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::Run
   -----------------------------------------------------------------------*/
 void SwXFootnote::dispose(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SwFmtFtn*  pFmt = FindFmt();
     if(pFmt)
     {
@@ -378,7 +378,7 @@ uno::Reference< text::XTextCursor >   SwXFootnote::createCursor() throw ( ::com:
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursor(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< text::XTextCursor >  aRef;
     const SwFmtFtn*  pFmt = FindFmt();
     if(pFmt)
@@ -401,7 +401,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
     const uno::Reference< text::XTextRange > & aTextPosition)
             throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     const SwFmtFtn*  pFmt = FindFmt();
     uno::Reference< text::XTextCursor >  aRef;
     SwUnoInternalPaM aPam(*GetDoc());
@@ -426,7 +426,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
   -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< container::XEnumeration >  aRef;
      uno::XInterface* pRet = 0;
     const SwFmtFtn*  pFmt = FindFmt();
@@ -519,7 +519,7 @@ void SwXFootnote::setPropertyValue( const ::rtl::OUString&,
 Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Any aRet;
     if(!SwXParagraph::getDefaultTextContentValue(aRet, rPropertyName))
     {
