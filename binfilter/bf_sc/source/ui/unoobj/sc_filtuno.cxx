@@ -36,7 +36,7 @@
 
 #include "filtuno.hxx"
 #include "miscuno.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "imoptdlg.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
@@ -72,7 +72,7 @@ ScFilterOptionsObj::~ScFilterOptionsObj()
 uno::Reference<uno::XInterface> SAL_CALL ScFilterOptionsObj_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
 
     return (::cppu::OWeakObject*) new ScFilterOptionsObj;

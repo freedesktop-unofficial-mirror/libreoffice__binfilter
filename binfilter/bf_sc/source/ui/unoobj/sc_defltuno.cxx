@@ -39,7 +39,7 @@
 #include "miscuno.hxx"
 #include "docsh.hxx"
 #include "docpool.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "unonames.hxx"
 #include "docoptio.hxx"
 namespace binfilter {
@@ -123,7 +123,7 @@ void ScDocDefaultsObj::ItemsChanged()
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDocDefaultsObj::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( lcl_GetDocDefaultsMap() );
     return aRef;
@@ -135,7 +135,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -230,7 +230,7 @@ uno::Any SAL_CALL ScDocDefaultsObj::getPropertyValue( const ::rtl::OUString& aPr
 {
     //  use pool default if set
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -283,7 +283,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDocDefaultsObj )
 beans::PropertyState SAL_CALL ScDocDefaultsObj::getPropertyState( const ::rtl::OUString& aPropertyName )
                                 throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -321,7 +321,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScDocDefaultsObj::getPropertyStates
 {
     //  the simple way: call getPropertyState
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
     uno::Sequence<beans::PropertyState> aRet(aPropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
@@ -333,7 +333,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScDocDefaultsObj::getPropertyStates
 void SAL_CALL ScDocDefaultsObj::setPropertyToDefault( const ::rtl::OUString& aPropertyName )
                             throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -358,7 +358,7 @@ uno::Any SAL_CALL ScDocDefaultsObj::getPropertyDefault( const ::rtl::OUString& a
 {
     //  always use static default
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();

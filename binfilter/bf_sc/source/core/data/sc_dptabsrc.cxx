@@ -29,13 +29,13 @@
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
 #include <bf_svtools/itemprop.hxx>
+#include <vcl/svapp.hxx>
 
 #include "dptabsrc.hxx"
 #include "dptabdat.hxx"
 #include "global.hxx"
 #include "collect.hxx"
 #include "datauno.hxx"      // ScDataUnoConversion
-#include "unoguard.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
 #include "dptabres.hxx"
@@ -1089,7 +1089,7 @@ using namespace ::com::sun::star;
 /*N*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPLevel::getPropertySetInfo()
 /*N*/                                                       throw(uno::RuntimeException)
 /*N*/ {
-/*N*/   ScUnoGuard aGuard;
+/*N*/   SolarMutexGuard aGuard;
 /*N*/
 /*N*/   static SfxItemPropertyMap aDPLevelMap_Impl[] =
 /*N*/   {

@@ -39,7 +39,7 @@
 #include "miscuno.hxx"
 #include "validat.hxx"
 #include "document.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "unonames.hxx"
 #include "styleuno.hxx"     // ScStyleNameConversion
 namespace binfilter {
@@ -201,7 +201,7 @@ void SAL_CALL ScTableConditionalFormat::addNew(
                     const uno::Sequence<beans::PropertyValue >& aConditionalEntry )
                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScConditionMode eMode = SC_COND_NONE;
     String aExpr1;
     String aExpr2;
@@ -260,7 +260,7 @@ void SAL_CALL ScTableConditionalFormat::addNew(
 void SAL_CALL ScTableConditionalFormat::removeByIndex( sal_Int32 nIndex )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScTableConditionalEntry* pEntry = (ScTableConditionalEntry*)aEntries.GetObject(nIndex);
     if (pEntry)
     {
@@ -272,7 +272,7 @@ void SAL_CALL ScTableConditionalFormat::removeByIndex( sal_Int32 nIndex )
 
 void SAL_CALL ScTableConditionalFormat::clear() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScTableConditionalEntry* pEntry;
     aEntries.First();
     while ( pEntry = (ScTableConditionalEntry*)aEntries.Remove() )
@@ -286,7 +286,7 @@ void SAL_CALL ScTableConditionalFormat::clear() throw(uno::RuntimeException)
 uno::Reference<container::XEnumeration> SAL_CALL ScTableConditionalFormat::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.TableConditionalEntryEnumeration")));
 }
 
@@ -294,7 +294,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScTableConditionalFormat::creat
 
 sal_Int32 SAL_CALL ScTableConditionalFormat::getCount() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aEntries.Count();
 }
 
@@ -302,7 +302,7 @@ uno::Any SAL_CALL ScTableConditionalFormat::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference<sheet::XSheetConditionalEntry> xEntry = GetObjectByIndex_Impl((USHORT)nIndex);
     uno::Any aAny;
     if (xEntry.is())
@@ -314,13 +314,13 @@ uno::Any SAL_CALL ScTableConditionalFormat::getByIndex( sal_Int32 nIndex )
 
 uno::Type SAL_CALL ScTableConditionalFormat::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Reference<sheet::XSheetConditionalEntry>*)0);
 }
 
 sal_Bool SAL_CALL ScTableConditionalFormat::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
 
@@ -338,7 +338,7 @@ uno::Any SAL_CALL ScTableConditionalFormat::getByName( const ::rtl::OUString& aN
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     uno::Reference<sheet::XSheetConditionalEntry> xEntry;
     long nCount = aEntries.Count();
@@ -360,7 +360,7 @@ uno::Any SAL_CALL ScTableConditionalFormat::getByName( const ::rtl::OUString& aN
 uno::Sequence< ::rtl::OUString> SAL_CALL ScTableConditionalFormat::getElementNames()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     long nCount = aEntries.Count();
     uno::Sequence< ::rtl::OUString> aNames(nCount);
@@ -374,7 +374,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScTableConditionalFormat::getElementNam
 sal_Bool SAL_CALL ScTableConditionalFormat::hasByName( const ::rtl::OUString& aName )
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     long nCount = aEntries.Count();
     for (long i=0; i<nCount; i++)
@@ -463,14 +463,14 @@ void ScTableConditionalEntry::GetData( USHORT& rM, String& rEx1, String& rEx2,
 sheet::ConditionOperator SAL_CALL ScTableConditionalEntry::getOperator()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return lcl_ConditionModeToOperator( (ScConditionMode)nMode );
 }
 
 void SAL_CALL ScTableConditionalEntry::setOperator( sheet::ConditionOperator nOperator )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     nMode = lcl_ConditionOperatorToMode( nOperator );
     if (pParent)
         pParent->DataChanged();
@@ -478,14 +478,14 @@ void SAL_CALL ScTableConditionalEntry::setOperator( sheet::ConditionOperator nOp
 
 ::rtl::OUString SAL_CALL ScTableConditionalEntry::getFormula1() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aExpr1;
 }
 
 void SAL_CALL ScTableConditionalEntry::setFormula1( const ::rtl::OUString& aFormula1 )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aExpr1 = String( aFormula1 );
     if (pParent)
         pParent->DataChanged();
@@ -493,14 +493,14 @@ void SAL_CALL ScTableConditionalEntry::setFormula1( const ::rtl::OUString& aForm
 
 ::rtl::OUString SAL_CALL ScTableConditionalEntry::getFormula2() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aExpr2;
 }
 
 void SAL_CALL ScTableConditionalEntry::setFormula2( const ::rtl::OUString& aFormula2 )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aExpr2 = String( aFormula2 );
     if (pParent)
         pParent->DataChanged();
@@ -508,7 +508,7 @@ void SAL_CALL ScTableConditionalEntry::setFormula2( const ::rtl::OUString& aForm
 
 table::CellAddress SAL_CALL ScTableConditionalEntry::getSourcePosition() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     table::CellAddress aRet;
     aRet.Column = aSrcPos.Col();
     aRet.Row    = aSrcPos.Row();
@@ -519,7 +519,7 @@ table::CellAddress SAL_CALL ScTableConditionalEntry::getSourcePosition() throw(u
 void SAL_CALL ScTableConditionalEntry::setSourcePosition( const table::CellAddress& aSourcePosition )
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aSrcPos.Set( (USHORT)aSourcePosition.Column, (USHORT)aSourcePosition.Row, aSourcePosition.Sheet );
     if (pParent)
         pParent->DataChanged();
@@ -529,14 +529,14 @@ void SAL_CALL ScTableConditionalEntry::setSourcePosition( const table::CellAddre
 
 ::rtl::OUString SAL_CALL ScTableConditionalEntry::getStyleName() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ScStyleNameConversion::DisplayToProgrammaticName( aStyle, SFX_STYLE_FAMILY_PARA );
 }
 
 void SAL_CALL ScTableConditionalEntry::setStyleName( const ::rtl::OUString& aStyleName )
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aStyle = ScStyleNameConversion::ProgrammaticToDisplayName( aStyleName, SFX_STYLE_FAMILY_PARA );
     if (pParent)
         pParent->DataChanged();
@@ -625,49 +625,49 @@ void ScTableValidationObj::DataChanged()
 sheet::ConditionOperator SAL_CALL ScTableValidationObj::getOperator()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return lcl_ConditionModeToOperator( (ScConditionMode)nMode );
 }
 
 void SAL_CALL ScTableValidationObj::setOperator( sheet::ConditionOperator nOperator )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     nMode = lcl_ConditionOperatorToMode( nOperator );
     DataChanged();
 }
 
 ::rtl::OUString SAL_CALL ScTableValidationObj::getFormula1() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aExpr1;
 }
 
 void SAL_CALL ScTableValidationObj::setFormula1( const ::rtl::OUString& aFormula1 )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aExpr1 = String( aFormula1 );
     DataChanged();
 }
 
 ::rtl::OUString SAL_CALL ScTableValidationObj::getFormula2() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aExpr2;
 }
 
 void SAL_CALL ScTableValidationObj::setFormula2( const ::rtl::OUString& aFormula2 )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aExpr2 = String( aFormula2 );
     DataChanged();
 }
 
 table::CellAddress SAL_CALL ScTableValidationObj::getSourcePosition() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     table::CellAddress aRet;
     aRet.Column = aSrcPos.Col();
     aRet.Row    = aSrcPos.Row();
@@ -678,7 +678,7 @@ table::CellAddress SAL_CALL ScTableValidationObj::getSourcePosition() throw(uno:
 void SAL_CALL ScTableValidationObj::setSourcePosition( const table::CellAddress& aSourcePosition )
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aSrcPos.Set( (USHORT)aSourcePosition.Column, (USHORT)aSourcePosition.Row, aSourcePosition.Sheet );
     DataChanged();
 }
@@ -686,7 +686,7 @@ void SAL_CALL ScTableValidationObj::setSourcePosition( const table::CellAddress&
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScTableValidationObj::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( aPropSet.getPropertyMap() );
     return aRef;
@@ -698,7 +698,7 @@ void SAL_CALL ScTableValidationObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
 
     if ( aString.EqualsAscii( SC_UNONAME_SHOWINP ) )       bShowInput = ScUnoHelpFunctions::GetBoolFromAny( aValue );
@@ -764,7 +764,7 @@ uno::Any SAL_CALL ScTableValidationObj::getPropertyValue( const ::rtl::OUString&
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
     uno::Any aRet;
 

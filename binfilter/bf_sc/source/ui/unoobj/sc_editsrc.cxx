@@ -38,7 +38,7 @@
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "hints.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "AccessibleText.hxx"
 namespace binfilter {
 
@@ -195,7 +195,7 @@ ScAnnotationEditSource::ScAnnotationEditSource(ScDocShell* pDocSh, const ScAddre
 
 ScAnnotationEditSource::~ScAnnotationEditSource()
 {
-    ScUnoGuard aGuard;      //  needed for EditEngine dtor
+    SolarMutexGuard aGuard;     //  needed for EditEngine dtor
 
     if (pDocShell)
         pDocShell->GetDocument()->RemoveUnoObject(*this);

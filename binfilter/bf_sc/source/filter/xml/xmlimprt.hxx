@@ -34,6 +34,7 @@
 #include <bf_xmloff/xmltkmap.hxx>
 #include <bf_xmloff/xmlaustp.hxx>
 #include <bf_xmloff/xmlstyle.hxx>
+#include <vcl/svapp.hxx>
 #include <com/sun/star/frame/XModel.hpp>
 #include <tools/time.hxx>
 #include <com/sun/star/util/DateTime.hpp>
@@ -563,7 +564,6 @@ class SvI18NMap;
 //class SvXMLImportItemMapper;
 class SvXMLNumFmtHelper;
 class ScXMLChangeTrackingImportHelper;
-class ScUnoGuard;
 
 struct tScMyCellRange
 {
@@ -700,7 +700,7 @@ class ScXMLImport: public SvXMLImport
     ScMyNamedExpressions*   pMyNamedExpressions;
     ScMyImportValidations*  pValidations;
     ScMyImpDetectiveOpArray*    pDetectiveOpArray;
-    ScUnoGuard*             pScUnoGuard;
+    SolarMutexGuard*        pSolarMutexGuard;
 
     ::rtl::OUString         sFirstTableStyle;
     XMLNumberFormatAttributesExportHelper* pNumberFormatAttributesExportHelper;

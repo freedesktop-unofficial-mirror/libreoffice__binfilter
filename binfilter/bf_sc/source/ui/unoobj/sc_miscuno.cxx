@@ -33,7 +33,7 @@
 #include <tools/debug.hxx>
 
 #include "miscuno.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -199,14 +199,14 @@ ScIndexEnumeration::~ScIndexEnumeration()
 
 sal_Bool SAL_CALL ScIndexEnumeration::hasMoreElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( nPos < xIndex->getCount() );
 }
 
 uno::Any SAL_CALL ScIndexEnumeration::nextElement() throw(container::NoSuchElementException,
                                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Any aReturn;
     try
     {
@@ -252,13 +252,13 @@ ScEmptyEnumerationAccess::~ScEmptyEnumerationAccess()
 uno::Reference<container::XEnumeration> SAL_CALL ScEmptyEnumerationAccess::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScEmptyEnumeration;
 }
 
 uno::Type SAL_CALL ScEmptyEnumerationAccess::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Reference<uno::XInterface>*)0);    // or what?
 }
 
@@ -281,14 +281,14 @@ ScEmptyEnumeration::~ScEmptyEnumeration()
 
 sal_Bool SAL_CALL ScEmptyEnumeration::hasMoreElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return FALSE;
 }
 
 uno::Any SAL_CALL ScEmptyEnumeration::nextElement() throw(container::NoSuchElementException,
                                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return uno::Any();
 }
 

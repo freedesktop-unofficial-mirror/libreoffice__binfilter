@@ -36,7 +36,7 @@
 #include "optuno.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -184,7 +184,7 @@ void SAL_CALL ScDocOptionsObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     BOOL bDone = ScDocOptionsHelper::setPropertyValue( aOptions, aPropertyName, aValue );
 
@@ -196,7 +196,7 @@ uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const ::rtl::OUString& aPro
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     uno::Any aRet = ScDocOptionsHelper::getPropertyValue( aOptions, aPropertyName );
     if ( !aRet.hasValue() )

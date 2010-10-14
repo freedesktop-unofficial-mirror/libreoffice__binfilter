@@ -43,10 +43,10 @@
 #include <bf_xmloff/numehelp.hxx>
 #include <bf_xmloff/xmlerror.hxx>
 
+#include <vcl/svapp.hxx>
 #include "docuno.hxx"
 #include "xmlbodyi.hxx"
 #include "xmlstyli.hxx"
-#include "unoguard.hxx"
 #include "ViewSettingsSequenceDefines.hxx"
 
 #include "XMLConverter.hxx"
@@ -1316,7 +1316,7 @@ ScXMLImport::ScXMLImport(
     sPrevCurrency(),
     nPrevCellType(0),
     nSolarMutexLocked(0),
-    pScUnoGuard(NULL),
+    pSolarMutexGuard(NULL),
     nRangeOverflowType(0),
     bSelfImportingXMLSet(sal_False)
 
@@ -1413,8 +1413,8 @@ ScXMLImport::~ScXMLImport() throw()
     if (pStylesImportHelper)
         delete pStylesImportHelper;
 
-    if (pScUnoGuard)
-        delete pScUnoGuard;
+    if (pSolarMutexGuard)
+        delete pSolarMutexGuard;
 
     if (pMyNamedExpressions)
         delete pMyNamedExpressions;
@@ -2179,8 +2179,8 @@ void ScXMLImport::LockSolarMutex()
 {
     if (nSolarMutexLocked == 0)
     {
-        DBG_ASSERT(!pScUnoGuard, "Solar Mutex is locked");
-        pScUnoGuard = new ScUnoGuard();
+        DBG_ASSERT(!pSolarMutexGuard, "Solar Mutex is locked");
+        pSolarMutexGuard = new SolarMutexGuard();
     }
     nSolarMutexLocked++;
 }
@@ -2192,9 +2192,9 @@ void ScXMLImport::UnlockSolarMutex()
         nSolarMutexLocked--;
         if (nSolarMutexLocked == 0)
         {
-            DBG_ASSERT(pScUnoGuard, "Solar Mutex is always unlocked");
-            delete pScUnoGuard;
-            pScUnoGuard = NULL;
+            DBG_ASSERT(pSolarMutexGuard, "Solar Mutex is always unlocked");
+            delete pSolarMutexGuard;
+            pSolarMutexGuard = NULL;
         }
     }
 }

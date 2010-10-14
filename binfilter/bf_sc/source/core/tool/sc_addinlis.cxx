@@ -31,12 +31,12 @@
 #endif
 
 #include <bf_sfx2/objsh.hxx>
+#include <vcl/svapp.hxx>
 
 
 #include "addinlis.hxx"
 #include "miscuno.hxx"      // SC_IMPL_SERVICE_INFO
 #include "document.hxx"
-#include "unoguard.hxx"
 #include "bf_sc.hrc"
 namespace binfilter {
 
@@ -134,7 +134,7 @@ using namespace ::com::sun::star;
 /*N*/ void SAL_CALL ScAddInListener::modified( const ::com::sun::star::sheet::ResultEvent& aEvent )
 /*N*/                               throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/   ScUnoGuard aGuard;          //! or generate a UserEvent
+/*N*/   SolarMutexGuard aGuard;         //! or generate a UserEvent
 /*N*/
 /*N*/   aResult = aEvent.Value;     // store result
 /*N*/

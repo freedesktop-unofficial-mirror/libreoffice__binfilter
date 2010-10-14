@@ -32,7 +32,7 @@
 
 #include "confuno.hxx"
 #include "unonames.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "docsh.hxx"
 #include "miscuno.hxx"
 #include "forbiuno.hxx"
@@ -118,7 +118,7 @@ void ScDocumentConfiguration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint 
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDocumentConfiguration::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( aPropSet.getPropertyMap() );
     return aRef;
@@ -130,7 +130,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if(pDocShell)
     {
@@ -271,7 +271,7 @@ uno::Any SAL_CALL ScDocumentConfiguration::getPropertyValue( const ::rtl::OUStri
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Any aRet;
 
     if(pDocShell)

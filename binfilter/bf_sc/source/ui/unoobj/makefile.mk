@@ -71,7 +71,6 @@ SLOFILES =  \
         $(SLO)$/sc_targuno.obj \
         $(SLO)$/sc_convuno.obj \
         $(SLO)$/sc_editsrc.obj \
-        $(SLO)$/sc_unoguard.obj \
         $(SLO)$/sc_confuno.obj \
         $(SLO)$/sc_filtuno.obj \
         $(SLO)$/sc_unodoc.obj

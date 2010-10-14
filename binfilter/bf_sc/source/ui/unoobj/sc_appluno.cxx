@@ -45,7 +45,7 @@
 #include "printopt.hxx"
 #include "userlist.hxx"
 #include "bf_sc.hrc"            // VAR_ARGS
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "unonames.hxx"
 
 #include <com/sun/star/sheet/FunctionArgument.hpp>
@@ -425,7 +425,7 @@ ScSpreadsheetSettings::~ScSpreadsheetSettings()
 uno::Reference<uno::XInterface> SAL_CALL ScSpreadsheetSettings_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
     static uno::Reference<uno::XInterface> xInst = (cppu::OWeakObject*)new ScSpreadsheetSettings();
     return xInst;
@@ -449,7 +449,7 @@ uno::Sequence< ::rtl::OUString> ScSpreadsheetSettings::getSupportedServiceNames_
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScSpreadsheetSettings::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( aPropSet.getPropertyMap() );
     return aRef;
@@ -461,7 +461,7 @@ void SAL_CALL ScSpreadsheetSettings::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
 
     ScModule* pScMod = SC_MOD();
@@ -608,7 +608,7 @@ uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const ::rtl::OUString
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
     uno::Any aRet;
 
@@ -684,7 +684,7 @@ ScRecentFunctionsObj::~ScRecentFunctionsObj()
 uno::Reference<uno::XInterface> SAL_CALL ScRecentFunctionsObj_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
     static uno::Reference<uno::XInterface> xInst = (cppu::OWeakObject*)new ScRecentFunctionsObj();
     return xInst;
@@ -708,7 +708,7 @@ uno::Sequence< ::rtl::OUString> ScRecentFunctionsObj::getSupportedServiceNames_S
 uno::Sequence<sal_Int32> SAL_CALL ScRecentFunctionsObj::getRecentFunctionIds()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScAppOptions& rOpt = SC_MOD()->GetAppOptions();
     USHORT nCount = rOpt.GetLRUFuncListCount();
     const USHORT* pFuncs = rOpt.GetLRUFuncList();
@@ -727,7 +727,7 @@ void SAL_CALL ScRecentFunctionsObj::setRecentFunctionIds(
                     const uno::Sequence<sal_Int32>& aRecentFunctionIds )
                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     USHORT nCount = (USHORT) Min( aRecentFunctionIds.getLength(), (INT32) LRU_MAX );
     const INT32* pAry = aRecentFunctionIds.getConstArray();
 
@@ -765,7 +765,7 @@ ScFunctionListObj::~ScFunctionListObj()
 uno::Reference<uno::XInterface> SAL_CALL ScFunctionListObj_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
     static uno::Reference<uno::XInterface> xInst = (cppu::OWeakObject*)new ScFunctionListObj();
     return xInst;
@@ -834,7 +834,7 @@ void lcl_FillSequence( uno::Sequence<beans::PropertyValue>& rSequence, const ScF
 uno::Sequence<beans::PropertyValue> SAL_CALL ScFunctionListObj::getById( sal_Int32 nId )
                                 throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
     {
@@ -864,7 +864,7 @@ uno::Any SAL_CALL ScFunctionListObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameStr = aName;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
@@ -896,7 +896,7 @@ uno::Any SAL_CALL ScFunctionListObj::getByName( const ::rtl::OUString& aName )
 
 sal_Int32 SAL_CALL ScFunctionListObj::getCount() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     USHORT nCount = 0;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
@@ -908,7 +908,7 @@ uno::Any SAL_CALL ScFunctionListObj::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
     {
@@ -938,7 +938,7 @@ uno::Any SAL_CALL ScFunctionListObj::getByIndex( sal_Int32 nIndex )
 uno::Reference<container::XEnumeration> SAL_CALL ScFunctionListObj::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.FunctionDescriptionEnumeration")));
 }
 
@@ -946,19 +946,19 @@ uno::Reference<container::XEnumeration> SAL_CALL ScFunctionListObj::createEnumer
 
 uno::Type SAL_CALL ScFunctionListObj::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Sequence<beans::PropertyValue>*)0);
 }
 
 sal_Bool SAL_CALL ScFunctionListObj::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() > 0 );
 }
 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionListObj::getElementNames() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
     {
@@ -979,7 +979,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionListObj::getElementNames() th
 sal_Bool SAL_CALL ScFunctionListObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameStr = aName;
     const ScFunctionList* pFuncList = ScGlobal::GetStarCalcFunctionList();
     if ( pFuncList )
