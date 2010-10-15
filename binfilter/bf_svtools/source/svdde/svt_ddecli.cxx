@@ -369,9 +369,9 @@ const String& DdeTransaction::GetName() const
 
 void __EXPORT DdeTransaction::Data( const DdeData* p )
 {
-    Application::GetSolarMutex().acquire();
+    SolarMutexGuard aSolarGuard;
+
     aData.Call( (void*)p );
-    Application::GetSolarMutex().release();
 }
 
 // --- DdeTransaction::Done() --------------------------------------
