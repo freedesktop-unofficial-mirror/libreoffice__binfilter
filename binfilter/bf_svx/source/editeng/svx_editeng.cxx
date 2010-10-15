@@ -938,7 +938,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   pImpEditEngine->EraseVirtualDevice();
 /*N*/ }
 
-/*N*/ void EditEngine::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void EditEngine::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->SetForbiddenCharsTable( xForbiddenChars );

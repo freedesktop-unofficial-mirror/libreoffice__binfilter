@@ -66,7 +66,6 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::osl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::frame;
@@ -76,6 +75,8 @@ using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::document;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 sal_Char __READONLY_DATA sXML_np__office[] = "_office";
 sal_Char __READONLY_DATA sXML_np__style[] = "_style";

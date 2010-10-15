@@ -98,13 +98,15 @@ static const sal_Char sAPI_sequence_value[]     = "SequenceValue";
 static const sal_Char sAPI_is_fixed_language[] = "IsFixedLanguage";
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 

@@ -29,7 +29,7 @@
 #define _EERDLL2_HXX
 
 #include <forbiddencharacterstable.hxx>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 namespace binfilter {
 
 class SfxPoolItem;
@@ -43,7 +43,7 @@ private:
 
     Link            aGetAutoCorrectHdl;
 
-    vos::ORef<SvxForbiddenCharactersTable>  xForbiddenCharsTable;
+    rtl::Reference<SvxForbiddenCharactersTable> xForbiddenCharsTable;
 
 public:
                     GlobalEditData();
@@ -55,8 +55,8 @@ public:
     void            SetGetAutoCorrectHdl( const Link& rHdl ) { aGetAutoCorrectHdl = rHdl; }
     SvxAutoCorrect* GetAutoCorrect() const { return (SvxAutoCorrect*) aGetAutoCorrectHdl.Call( NULL ); }
 
-    vos::ORef<SvxForbiddenCharactersTable>  GetForbiddenCharsTable();
-    void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars ) { xForbiddenCharsTable = xForbiddenChars; }
+    rtl::Reference<SvxForbiddenCharactersTable> GetForbiddenCharsTable();
+    void            SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars ) { xForbiddenCharsTable = xForbiddenChars; }
 };
 
 

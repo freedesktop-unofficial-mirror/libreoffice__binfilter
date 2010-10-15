@@ -111,7 +111,8 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::chart;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 BOOL lcl_IsNumeric(const String& rStr)
 {

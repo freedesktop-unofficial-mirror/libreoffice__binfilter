@@ -60,7 +60,8 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 /******************************************************************
  *  SwXTextPortionEnumeration

@@ -188,9 +188,9 @@ namespace binfilter {
 /*N*/   return ppDefItems;
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> GlobalEditData::GetForbiddenCharsTable()
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> GlobalEditData::GetForbiddenCharsTable()
 /*N*/ {
-/*N*/   if ( !xForbiddenCharsTable.isValid() )
+/*N*/   if ( !xForbiddenCharsTable.is() )
 /*N*/   {
 /*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/       xForbiddenCharsTable = new SvxForbiddenCharactersTable( xMSF );

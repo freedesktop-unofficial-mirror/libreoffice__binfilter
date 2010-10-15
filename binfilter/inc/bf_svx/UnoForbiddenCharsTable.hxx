@@ -31,7 +31,7 @@
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
 #include <com/sun/star/linguistic2/XSupportedLocales.hpp>
 
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
 #include <cppuhelper/implbase2.hxx>
 namespace binfilter {
@@ -46,10 +46,10 @@ protected:
     /** this virtual function is called if the forbidden characters are changed */
     virtual void onChange();
 
-    vos::ORef<SvxForbiddenCharactersTable> mxForbiddenChars;
+    rtl::Reference<SvxForbiddenCharactersTable> mxForbiddenChars;
 
 public:
-    SvxUnoForbiddenCharsTable(vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars);
+    SvxUnoForbiddenCharsTable(rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars);
     ~SvxUnoForbiddenCharsTable();
 
     // XForbiddenCharacters

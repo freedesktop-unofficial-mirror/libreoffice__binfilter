@@ -39,6 +39,7 @@
 #include "document.hxx"
 #include "docpool.hxx"
 #include "stlpool.hxx"
+
 namespace binfilter {
 
 // -----------------------------------------------------------------------

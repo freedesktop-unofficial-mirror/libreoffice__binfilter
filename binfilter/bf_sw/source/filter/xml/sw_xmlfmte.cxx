@@ -65,13 +65,14 @@
 #include <SwStyleNameMapper.hxx>
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::drawing;
 using namespace ::com::sun::star::lang;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 void SwXMLExport::ExportFmt( const SwFmt& rFmt, enum XMLTokenEnum eFamily )
 {

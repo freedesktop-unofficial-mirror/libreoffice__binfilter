@@ -52,7 +52,6 @@ namespace binfilter {
 
 using namespace ::comphelper;
 using namespace ::osl;
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::vos;
 using namespace ::com::sun::star;
@@ -65,6 +64,8 @@ using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::i18n;
+
+using rtl::OUString;
 
 namespace sd
 {

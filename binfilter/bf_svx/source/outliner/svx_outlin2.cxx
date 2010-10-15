@@ -304,7 +304,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetEditTextObjectPool();
 /*N*/ }
 
-/*N*/ void Outliner::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void Outliner::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->SetForbiddenCharsTable( xForbiddenChars );

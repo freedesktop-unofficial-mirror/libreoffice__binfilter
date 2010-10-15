@@ -27,7 +27,7 @@
 #ifndef SYMBOL_HXX
 #define SYMBOL_HXX
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 #include <vcl/font.hxx>
 #include <tools/list.hxx>
 #include <tools/debug.hxx>

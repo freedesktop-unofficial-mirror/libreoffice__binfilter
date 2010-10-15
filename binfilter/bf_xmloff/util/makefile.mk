@@ -80,6 +80,7 @@ SHL1STDLIBS= \
         $(VCLLIB)		\
         $(TKLIB)		\
         $(SALLIB)		\
+        $(SALHELPERLIB)		\
         $(UNOTOOLSLIB)	\
         $(BFGOODIESLIB) \
         $(BFSO3LIB)

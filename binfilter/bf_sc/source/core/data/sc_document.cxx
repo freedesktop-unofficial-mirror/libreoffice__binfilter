@@ -2694,7 +2694,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/
 /*N*/   ScPatternAttr::pDoc = this;
 /*N*/
-/*N*/   if ( xPoolHelper.isValid() && !bIsClip )
+/*N*/   if ( xPoolHelper.is() && !bIsClip )
 /*N*/       xPoolHelper->SourceDocumentGone();
 /*N*/
 /*N*/   xPoolHelper = new ScPoolHelper( this );

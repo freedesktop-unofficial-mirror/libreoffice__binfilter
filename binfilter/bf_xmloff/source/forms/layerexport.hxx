@@ -64,8 +64,8 @@ namespace xmloff
         PropertySetBag      m_aIgnoreList;
 
         // style handling
-        ::vos::ORef< XMLPropertyHandlerFactory >    m_xPropertyHandlerFactory;
-        ::vos::ORef< SvXMLExportPropertyMapper >    m_xExportMapper;
+        ::rtl::Reference< XMLPropertyHandlerFactory >   m_xPropertyHandlerFactory;
+        ::rtl::Reference< SvXMLExportPropertyMapper >   m_xExportMapper;
 
         // we need our own number formats supplier:
         // Controls which have a number formats do not work with the formats supplier of the document they reside
@@ -169,7 +169,7 @@ namespace xmloff
         virtual SvXMLExport&                                getGlobalContext();
         virtual ::rtl::OUString                             getObjectStyleName(
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxObject );
-        virtual ::vos::ORef< SvXMLExportPropertyMapper >    getStylePropertyMapper();
+        virtual ::rtl::Reference< SvXMLExportPropertyMapper >   getStylePropertyMapper();
 
         /** clear any structures which have been build in the recent <method>examine</method> calls.
         */

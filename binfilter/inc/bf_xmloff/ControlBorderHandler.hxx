@@ -29,7 +29,7 @@
 #define _XMLOFF_CONTROLBORDERHDL_HXX_
 
 #include "prhdlfac.hxx"
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 #include <rtl/ustring.hxx>
 #include "xmlexppr.hxx"
 namespace binfilter {

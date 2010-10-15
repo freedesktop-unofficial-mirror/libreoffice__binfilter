@@ -68,6 +68,8 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+
 OUString SAL_CALL ScXMLImport_getImplementationName() throw()
 {
     return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.XMLImporter" ) );

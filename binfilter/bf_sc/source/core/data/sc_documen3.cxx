@@ -831,7 +831,7 @@ using namespace ::com::sun::star;
 /*N*/   eLanguage = eLatin;
 /*N*/   eCjkLanguage = eCjk;
 /*N*/   eCtlLanguage = eCtl;
-/*N*/   if ( xPoolHelper.isValid() )
+/*N*/   if ( xPoolHelper.is() )
 /*N*/   {
 /*N*/       ScDocumentPool* pPool = xPoolHelper->GetDocPool();
 /*N*/       pPool->SetPoolDefaultItem( SvxLanguageItem( eLanguage, ATTR_FONT_LANGUAGE ) );

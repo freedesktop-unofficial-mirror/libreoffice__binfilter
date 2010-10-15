@@ -62,8 +62,6 @@ class XMLNumberFormatAttributesExportHelper;
 class SvXMLTokenMap;
 class SvXMLStyleContext;
 
-using namespace ::rtl;
-
 enum ScXMLDocTokens
 {
     XML_TOK_DOC_FONTDECLS,

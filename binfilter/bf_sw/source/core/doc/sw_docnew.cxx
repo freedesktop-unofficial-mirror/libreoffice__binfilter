@@ -671,9 +671,9 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   return pUnoCallBack;
 /*N*/ }
 
-/*N*/ vos::ORef < SvxForbiddenCharactersTable > & SwDoc::GetForbiddenCharacterTbl()
+/*N*/ rtl::Reference < SvxForbiddenCharactersTable > & SwDoc::GetForbiddenCharacterTbl()
 /*N*/ {
-/*N*/   if( !xForbiddenCharsTable.isValid() )
+/*N*/   if( !xForbiddenCharsTable.is() )
 /*N*/   {
 /*N*/       ::com::sun::star::uno::Reference<
 /*N*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
@@ -689,7 +689,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/                           BOOL bLocaleData ) const
 /*N*/ {
 /*N*/   const ::com::sun::star::i18n::ForbiddenCharacters* pRet = 0;
-/*N*/   if( xForbiddenCharsTable.isValid() )
+/*N*/   if( xForbiddenCharsTable.is() )
 /*N*/       pRet = xForbiddenCharsTable->GetForbiddenCharacters( nLang, FALSE );
 /*N*/   if( bLocaleData && !pRet && pBreakIt )
 /*N*/       pRet = &pBreakIt->GetForbidden( (LanguageType)nLang );

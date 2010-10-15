@@ -2137,12 +2137,12 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrModel::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void SdrModel::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   if( mpForbiddenCharactersTable )
 /*N*/       mpForbiddenCharactersTable->release();
 /*N*/
-/*N*/   mpForbiddenCharactersTable = xForbiddenChars.getBodyPtr();
+/*N*/   mpForbiddenCharactersTable = xForbiddenChars.get();
 /*N*/
 /*N*/   if( mpForbiddenCharactersTable )
 /*N*/       mpForbiddenCharactersTable->acquire();
@@ -2151,7 +2151,7 @@ using namespace ::com::sun::star;
 /*N*/   ImpSetOutlinerDefaults( pHitTestOutliner );
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> SdrModel::GetForbiddenCharsTable() const
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> SdrModel::GetForbiddenCharsTable() const
 /*N*/ {
 /*N*/   return mpForbiddenCharactersTable;
 /*N*/ }

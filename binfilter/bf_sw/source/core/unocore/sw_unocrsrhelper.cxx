@@ -93,7 +93,8 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 
 namespace SwUnoCursorHelper

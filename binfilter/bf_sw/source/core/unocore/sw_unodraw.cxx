@@ -82,7 +82,8 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::drawing;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 DECLARE_STL_USTRINGACCESS_MAP( Sequence< sal_Int8 > *,  SwShapeImplementationIdMap );
 

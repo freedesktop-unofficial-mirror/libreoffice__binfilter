@@ -35,11 +35,12 @@
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rImport,
                                     sal_uInt16 nPrefix,

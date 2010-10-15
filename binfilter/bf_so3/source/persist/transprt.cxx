@@ -64,7 +64,7 @@
 
 #include <vos/macros.hxx>
 #include <vos/mutex.hxx>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
 #include <tools/solar.h>
 #include <tools/debug.hxx>
@@ -1122,7 +1122,7 @@ protected:
     String                               m_aUrl;
     SvBindingTransportContext           &m_rCtx;
     SvBindingTransportCallback          *m_pCallback;
-    vos::ORef<UcbTransportDataSink_Impl> m_xSink;
+    rtl::Reference<UcbTransportDataSink_Impl> m_xSink;
     SvLockBytesRef                       m_xLockBytes;
     Reference<XContent>                  m_xContent;
     OUString                             m_aContentType;
@@ -1263,10 +1263,10 @@ IMPL_LINK( UcbTransport_Impl, ExecuteCallback, void*, pVoid )
         if ( bAborted || bException  )
         {
             // download aborted
-            if ( m_xSink.isValid() )
+            if ( m_xSink.is() )
             {
                 m_xSink->terminate();
-                m_xSink.unbind();
+                m_xSink.clear();
             }
 
             if ( getCallback_Impl(pCB) )
@@ -1280,12 +1280,12 @@ IMPL_LINK( UcbTransport_Impl, ExecuteCallback, void*, pVoid )
                 m_aContentType = getContentType_Impl(xProcessor);
             }
 
-            if ( m_xSink.isValid() )
+            if ( m_xSink.is() )
             {
                 m_xSink->terminate();
                 if( !m_xLockBytes.Is() )
                     m_xLockBytes = m_xSink->getLockBytes();
-                m_xSink.unbind();
+                m_xSink.clear();
             }
 
             if ( !m_bMimeAvail )
@@ -1353,7 +1353,7 @@ void UcbTransport_Impl::start (void)
         aArgument.Priority = m_rCtx.GetPriority();
 
         m_xSink = new UcbTransportDataSink_Impl();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.getBodyPtr());
+        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
             m_aCommand.Name = OUString::createFromAscii ("synchronize");
@@ -1503,7 +1503,7 @@ void SAL_CALL UcbTransport_Impl::push ( const Any &rStatus) throw(RuntimeExcepti
         }
         if (!m_xLockBytes.Is())
         {
-            if (m_xSink.isValid())
+            if (m_xSink.is())
                 m_xLockBytes = m_xSink->getLockBytes();
         }
         if (m_bMimeAvail && m_xLockBytes.Is() && getCallback_Impl (pCB))
@@ -1531,7 +1531,7 @@ void SAL_CALL UcbTransport_Impl::update ( const Any &rStatus) throw(RuntimeExcep
             }
             if (!m_xLockBytes.Is())
             {
-                if (m_xSink.isValid())
+                if (m_xSink.is())
                     m_xLockBytes = m_xSink->getLockBytes();
             }
             if (m_bMimeAvail && m_xLockBytes.Is() && getCallback_Impl (pCB))
@@ -1583,7 +1583,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
         }
         if (evt.PropertyName == OUString::createFromAscii ("DocumentBody"))
         {
-            if (m_xSink.isValid())
+            if (m_xSink.is())
                 m_xLockBytes = m_xSink->getLockBytes();
             continue;
         }
@@ -1780,7 +1780,7 @@ void UcbHTTPTransport_Impl::start (void)
         OpenCommandArgument2 aArgument;
         aArgument.Mode = OpenMode::DOCUMENT;
         aArgument.Priority = m_rCtx.GetPriority();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.getBodyPtr());
+        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
         m_aCommand.Argument <<= aArgument;
 
         m_nCommandId = xProcessor->createCommandIdentifier();
@@ -1833,7 +1833,7 @@ void UcbHTTPTransport_Impl::start (void)
 
             PostCommandArgument aArgument;
             aArgument.Source = new UcbTransportInputStream_Impl(xLockBytes);
-            aArgument.Sink = static_cast< OWeakObject* >(m_xSink.getBodyPtr());
+            aArgument.Sink = static_cast< OWeakObject* >(m_xSink.get());
             m_aCommand.Argument <<= aArgument;
         }
 
@@ -2021,7 +2021,7 @@ void UcbHTTPTransport_Impl::handleError_Impl (
 class UcbTransport : public SvBindingTransport
 {
 public:
-    UcbTransport (const vos::ORef<UcbTransport_Impl> &rxImpl);
+    UcbTransport (const rtl::Reference<UcbTransport_Impl> &rxImpl);
     virtual ~UcbTransport (void);
 
     /** SvBindingTransport.
@@ -2032,7 +2032,7 @@ public:
 private:
     /** Representation.
      */
-    vos::ORef<UcbTransport_Impl> m_xImpl;
+    rtl::Reference<UcbTransport_Impl> m_xImpl;
 
     /** Not implemented.
      */
@@ -2042,7 +2042,7 @@ private:
 /*
  * UcbTransport.
  */
-UcbTransport::UcbTransport (const vos::ORef<UcbTransport_Impl> &rxImpl)
+UcbTransport::UcbTransport (const rtl::Reference<UcbTransport_Impl> &rxImpl)
     : m_xImpl (rxImpl)
 {
 }
@@ -2059,7 +2059,7 @@ UcbTransport::~UcbTransport (void)
  */
 void UcbTransport::Start (void)
 {
-    if (m_xImpl.isValid())
+    if (m_xImpl.is())
         m_xImpl->start();
 }
 
@@ -2068,7 +2068,7 @@ void UcbTransport::Start (void)
  */
 void UcbTransport::Abort (void)
 {
-    if (m_xImpl.isValid())
+    if (m_xImpl.is())
         m_xImpl->abort();
 }
 
@@ -2118,7 +2118,7 @@ SvBindingTransport* CntTransportFactory::CreateTransport (
         (eProto == INET_PROT_FILE ) ||
         (eProto == INET_PROT_FTP  )    )
     {
-        vos::ORef<UcbTransport_Impl> xImpl;
+        rtl::Reference<UcbTransport_Impl> xImpl;
         if ((eProto == INET_PROT_HTTPS) || (eProto == INET_PROT_HTTP))
             xImpl = new UcbHTTPTransport_Impl (rUrl, rCtx, pCB);
         else if ((eProto == INET_PROT_FTP) && BAPP()->ShouldUseFtpProxy (rUrl))

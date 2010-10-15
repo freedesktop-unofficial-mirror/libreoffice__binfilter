@@ -30,7 +30,7 @@
 
 #include <tools/table.hxx>
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 
 #include <com/sun/star/uno/Reference.hxx>
 
@@ -58,7 +58,7 @@ struct ForbiddenCharactersInfo
 
 DECLARE_TABLE( SvxForbiddenCharactersTableImpl, ForbiddenCharactersInfo* )
 
-class SvxForbiddenCharactersTable : public SvxForbiddenCharactersTableImpl, public vos::OReference
+class SvxForbiddenCharactersTable : public SvxForbiddenCharactersTableImpl, public salhelper::SimpleReferenceObject
 {
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxMSF;

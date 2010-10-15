@@ -28,12 +28,12 @@
 #ifndef _XMLOFF_FORMLAYEREXPORT_HXX_
 #define _XMLOFF_FORMLAYEREXPORT_HXX_
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 #include <com/sun/star/drawing/XDrawPage.hpp>
 #include <com/sun/star/container/XIndexAccess.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/frame/XModel.hpp>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 #include <bf_xmloff/xmlexppr.hxx>
 
 namespace com { namespace sun { namespace star { namespace awt {
@@ -56,7 +56,7 @@ namespace xmloff
     /** provides functionallity for exporting a complete form layer.
     */
     class OFormLayerXMLExport
-                :public ::vos::OReference
+                :public ::salhelper::SimpleReferenceObject
     {
     protected:
         /// our export context

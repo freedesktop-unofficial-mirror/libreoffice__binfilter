@@ -42,7 +42,7 @@
 #include <tools/rtti.hxx>   // wegen typedef TypeId
 #include <com/sun/star/uno/Reference.h>
 
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 #include <bf_svx/svxfont.hxx>
 
 namespace com { namespace sun { namespace star { namespace linguistic2 {
@@ -86,7 +86,7 @@ class SvxForbiddenCharactersTable;
 
 //STRIP008 #include <com/sun/star/uno/Reference.h>
 //STRIP008
-//STRIP008 #include <vos/ref.hxx>
+//STRIP008 #include <rtl/ref.hxx>
 //STRIP008 #include <bf_svx/svxfont.hxx>
 //STRIP008
 //STRIP008 namespace com { namespace sun { namespace star { namespace linguistic2 {
@@ -646,7 +646,7 @@ public:
     void            SetHyphenator( ::com::sun::star::uno::Reference<
                         ::com::sun::star::linguistic2::XHyphenator >& xHyph );
 
-    void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    void            SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 
     // Depricated
     void            SetDefaultLanguage( LanguageType eLang );

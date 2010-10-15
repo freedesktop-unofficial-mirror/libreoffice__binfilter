@@ -65,6 +65,7 @@ SHL1STDLIBS= \
             $(CPPULIB) \
             $(VOSLIB) \
             $(SALLIB) \
+            $(SALHELPERLIB) \
             $(ICUUCLIB)\
             $(LEGACYSMGRLIB) \
                         $(SVTOOLLIB) \

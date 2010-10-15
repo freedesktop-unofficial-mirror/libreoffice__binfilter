@@ -37,7 +37,6 @@
 #include "XMLFontStylesContext.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
@@ -46,6 +45,8 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::awt;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 #define XML_STYLE_FAMILY_FONT 1

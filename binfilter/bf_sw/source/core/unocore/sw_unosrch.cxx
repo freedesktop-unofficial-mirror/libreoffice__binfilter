@@ -53,7 +53,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::beans;
-using namespace ::rtl;
+
+using rtl::OUString;
 /******************************************************************************
  *
  ******************************************************************************/

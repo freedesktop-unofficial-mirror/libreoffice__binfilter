@@ -64,7 +64,9 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
-using namespace ::rtl;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 SwXRedlineText::SwXRedlineText(SwDoc* pDoc, SwNodeIndex aIndex) :
     SwXText(pDoc, CURSOR_REDLINE),

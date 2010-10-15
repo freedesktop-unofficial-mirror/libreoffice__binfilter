@@ -98,7 +98,8 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 SV_IMPL_PTRARR(SwColumns,SwColumn*)
 

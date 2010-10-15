@@ -79,7 +79,8 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 //-----------------------------------------------------------------------------
 String lcl_AnyToString(uno::Any rVal) throw(IllegalArgumentException)

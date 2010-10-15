@@ -41,7 +41,6 @@
 #include "layerexp.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -50,6 +49,9 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 void SdXMLayerExporter::exportLayer( SvXMLExport& rExport )
 {

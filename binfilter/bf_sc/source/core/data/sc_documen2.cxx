@@ -478,9 +478,9 @@ namespace binfilter {
 /*N*/   // delete the EditEngine before destroying the xPoolHelper
 /*N*/   delete pCacheFieldEditEngine;
 /*N*/
-/*N*/   if ( xPoolHelper.isValid() && !bIsClip )
+/*N*/   if ( xPoolHelper.is() && !bIsClip )
 /*N*/       xPoolHelper->SourceDocumentGone();
-/*N*/   xPoolHelper.unbind();
+/*N*/   xPoolHelper.clear();
 /*N*/
 /*N*/   DeleteColorTable();
 /*N*/   delete pScriptTypeData;

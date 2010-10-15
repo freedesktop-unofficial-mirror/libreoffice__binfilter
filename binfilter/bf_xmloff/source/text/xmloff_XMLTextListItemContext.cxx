@@ -38,10 +38,11 @@
 #include "XMLTextListItemContext.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 TYPEINIT1( XMLTextListItemContext, SvXMLImportContext );
 

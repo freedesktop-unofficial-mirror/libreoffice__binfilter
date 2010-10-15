@@ -34,10 +34,11 @@
 #include "XMLBase64ImportContext.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::io;
+
+using rtl::OUString;
 
 //-----------------------------------------------------------------------------
 

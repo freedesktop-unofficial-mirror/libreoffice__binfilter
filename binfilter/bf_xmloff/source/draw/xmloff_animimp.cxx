@@ -51,7 +51,6 @@
 #include "animimp.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::cppu;
 using namespace ::com::sun::star;
@@ -63,6 +62,8 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::presentation;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 SvXMLEnumMapEntry aXML_AnimationEffect_EnumMap[] =
 {

@@ -112,7 +112,8 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 #define COM_TEXT_FLDMASTER      "com.sun.star.text.FieldMaster."
 

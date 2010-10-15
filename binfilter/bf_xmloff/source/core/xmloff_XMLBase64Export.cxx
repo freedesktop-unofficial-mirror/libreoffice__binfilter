@@ -38,7 +38,9 @@ namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::io;
-using namespace ::rtl;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 #define INPUT_BUFFER_SIZE 54
 #define OUTPUT_BUFFER_SIZE 72

@@ -44,7 +44,7 @@
 #include <horiornt.hxx>
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
 // OD 25.06.2003 #108784#
 #include <bf_svx/svdtypes.hxx>
@@ -342,7 +342,7 @@ class SwDoc
     SwUnoCallBack   *pUnoCallBack;
 
     // table of forbidden characters of this document
-    ::vos::ORef<SvxForbiddenCharactersTable>    xForbiddenCharsTable; //STRIP008 vos::ORef<SvxForbiddenCharactersTable> xForbiddenCharsTable;
+    ::rtl::Reference<SvxForbiddenCharactersTable>   xForbiddenCharsTable; //STRIP008 rtl::Reference<SvxForbiddenCharactersTable>    xForbiddenCharsTable;
 
     // -------------------------------------------------------------------
     // sonstige
@@ -1529,9 +1529,9 @@ public:
     const ::com::sun::star::i18n::
         ForbiddenCharacters* GetForbiddenCharacters( USHORT nLang,
                                                     BOOL bLocaleData ) const;
-    const vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
+    const rtl::Reference<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
             { return xForbiddenCharsTable; }
-    vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl();
+    rtl::Reference<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl();
 
     // ------------------- Zugriff auf Dummy-Member --------------------
 

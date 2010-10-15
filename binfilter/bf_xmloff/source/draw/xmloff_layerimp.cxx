@@ -43,7 +43,6 @@
 #include "layerimp.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::cppu;
 using namespace ::com::sun::star;
@@ -56,6 +55,8 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_NAME;
+
+using rtl::OUString;
 
 
 TYPEINIT1( SdXMLLayerSetContext, SvXMLImportContext );

@@ -28,11 +28,11 @@
 #ifndef _XMLOFF_FORMLAYERIMPORT_HXX_
 #define _XMLOFF_FORMLAYERIMPORT_HXX_
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 #include <com/sun/star/drawing/XDrawPage.hpp>
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 #include <bf_xmloff/xmlimppr.hxx>
 namespace binfilter {
 
@@ -53,7 +53,7 @@ namespace xmloff
     /** allows you to import a &lt;form:form&gt; element
     */
     class OFormLayerXMLImport
-                :public ::vos::OReference
+                :public ::salhelper::SimpleReferenceObject
     {
         OFormLayerXMLImport_Impl*   m_pImpl;
 
@@ -63,7 +63,7 @@ namespace xmloff
 
         /** retrieves the property mapper form form related auto styles.
         */
-        ::vos::ORef< SvXMLImportPropertyMapper >
+        ::rtl::Reference< SvXMLImportPropertyMapper >
                 getStylePropertyMapper() const;
 
         /** start importing the forms of the given page

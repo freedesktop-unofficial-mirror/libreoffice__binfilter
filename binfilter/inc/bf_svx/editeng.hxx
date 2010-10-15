@@ -63,7 +63,7 @@ class SvxBulletItem;
 class SvxLRSpaceItem;
 class SvxForbiddenCharactersTable;
 }//end of namespace binfilter
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
 #include <com/sun/star/uno/Reference.h>
 
@@ -272,7 +272,7 @@ public:
     void            SetHyphenator( ::com::sun::star::uno::Reference<
                             ::com::sun::star::linguistic2::XHyphenator >& xHyph );
 
-    void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    void            SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 
     void            SetDefaultLanguage( LanguageType eLang );
 

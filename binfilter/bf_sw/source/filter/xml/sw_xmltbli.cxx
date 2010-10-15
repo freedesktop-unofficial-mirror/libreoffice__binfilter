@@ -90,7 +90,6 @@
 #include "ndtxt.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -100,6 +99,8 @@ using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
 using ::std::hash_map;
+
+using rtl::OUString;
 
 enum SwXMLTableElemTokens
 {

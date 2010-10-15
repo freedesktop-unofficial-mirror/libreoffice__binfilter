@@ -108,6 +108,7 @@ SHL2STDLIBS+= \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
     $(SALLIB) \
+    $(SALHELPERLIB) \
         $(SVTOOLLIB) \
     $(ICUUCLIB)
 

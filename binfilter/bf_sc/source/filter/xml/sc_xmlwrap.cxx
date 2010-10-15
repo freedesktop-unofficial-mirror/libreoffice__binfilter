@@ -76,6 +76,8 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
+using rtl::OUString;
+
 // -----------------------------------------------------------------------
 
 ScXMLImportWrapper::ScXMLImportWrapper(ScDocument& rD, SfxMedium* pM, SvStorage* pS) :

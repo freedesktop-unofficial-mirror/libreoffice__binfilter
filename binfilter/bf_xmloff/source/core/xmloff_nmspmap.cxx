@@ -244,7 +244,7 @@ sal_uInt16 SvXMLNamespaceMap::_GetKeyByAttrName( const OUString& rAttrName,
     NameSpaceHash::const_iterator aIter = aNameCache.find ( rAttrName );
     if ( aIter != aNameCache.end() )
     {
-        const NameSpaceEntry &rEntry = (*aIter).second.getBody();
+        const NameSpaceEntry &rEntry = *((*aIter).second);
         if ( pPrefix )
             *pPrefix = rEntry.sPrefix;
         if ( pLocalName )

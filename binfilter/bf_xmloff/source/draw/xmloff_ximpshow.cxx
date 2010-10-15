@@ -45,7 +45,6 @@
 #include "ximpshow.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::cppu;
 using namespace ::com::sun::star;
@@ -59,6 +58,8 @@ using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::presentation;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 ///////////////////////////////////////////////////////////////////////
 

@@ -122,7 +122,8 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::drawing;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 using ::com::sun::star::frame::XModel;
 using ::com::sun::star::container::XNameAccess;

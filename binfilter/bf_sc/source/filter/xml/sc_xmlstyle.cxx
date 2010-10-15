@@ -58,6 +58,8 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+
 #define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
 #define MAP_END()   { NULL, 0, 0, XML_TOKEN_INVALID, 0 }
 

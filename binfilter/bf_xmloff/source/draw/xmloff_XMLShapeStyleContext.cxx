@@ -45,11 +45,12 @@
 
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_PROPERTIES;
+
+using rtl::OUString;
 
 //////////////////////////////////////////////////////////////////////////////
 

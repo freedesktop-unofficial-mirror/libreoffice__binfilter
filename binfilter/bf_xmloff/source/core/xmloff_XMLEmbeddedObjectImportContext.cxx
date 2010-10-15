@@ -40,7 +40,6 @@
 #include "XMLEmbeddedObjectImportContext.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::beans;
@@ -49,6 +48,8 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 struct XMLServiceMapEntry_Impl
 {

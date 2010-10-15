@@ -77,6 +77,7 @@ SHL1STDLIBS+=       \
     $(UCBHELPERLIB)	\
     $(VOSLIB)		\
     $(SALLIB)		\
+    $(SALHELPERLIB)		\
     $(TOOLSLIB)		\
     $(I18NISOLANGLIB)   \
     $(UNOTOOLSLIB)  \

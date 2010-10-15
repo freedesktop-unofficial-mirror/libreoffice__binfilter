@@ -37,12 +37,13 @@
 #include "unonames.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace xmloff::token;
+
+using rtl::OUString;
 
 XMLTableMasterPageExport::XMLTableMasterPageExport( ScXMLExport& rExp ) :
         XMLTextMasterPageExport ( rExp )

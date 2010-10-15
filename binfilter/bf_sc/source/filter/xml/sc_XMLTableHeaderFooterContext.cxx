@@ -33,13 +33,14 @@
 #include "unonames.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace xmloff::token;
+
+using rtl::OUString;
 
 
 TYPEINIT1( XMLTableHeaderFooterContext, SvXMLImportContext );

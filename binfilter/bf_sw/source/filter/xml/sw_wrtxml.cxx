@@ -62,13 +62,14 @@
 #include <rtl/logfile.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 namespace binfilter {
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
+
+using rtl::OUString;
 
 #define LOGFILE_AUTHOR "mb93740"
 

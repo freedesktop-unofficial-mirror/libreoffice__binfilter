@@ -36,22 +36,18 @@
 #include <editdata.hxx>
 
 #include <vcl/virdev.hxx>
-
 #include <vcl/cursor.hxx>
-
 #include <vcl/dndhelp.hxx>
 
 #include <com/sun/star/lang/Locale.hpp>
-
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-
 #include <com/sun/star/i18n/CharacterIteratorMode.hpp>
-
 #include <com/sun/star/i18n/WordType.hpp>
+
 #include <bf_svtools/colorcfg.hxx>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
+
 namespace binfilter {
 class SvtCTLOptions;
 class SvKeyValueIterator;
@@ -351,7 +347,7 @@ private:
     Link                aEndPasteOrDropHdl;
     Link                aModifyHdl;
 
-    vos::ORef<SvxForbiddenCharactersTable>  xForbiddenCharsTable;
+    rtl::Reference<SvxForbiddenCharactersTable> xForbiddenCharsTable;
 
 
     // ================================================================
@@ -651,8 +647,8 @@ public:
     void                SetKernAsianPunctuation( BOOL b );
     BOOL                IsKernAsianPunctuation() const { return bKernAsianPunctuation; }
 
-    vos::ORef<SvxForbiddenCharactersTable>  GetForbiddenCharsTable( BOOL bGetInternal = TRUE ) const;
-    void                SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    rtl::Reference<SvxForbiddenCharactersTable> GetForbiddenCharsTable( BOOL bGetInternal = TRUE ) const;
+    void                SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 };
 
 inline EPaM ImpEditEngine::CreateEPaM( const EditPaM& rPaM )

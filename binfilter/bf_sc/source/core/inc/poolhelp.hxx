@@ -28,7 +28,7 @@
 #ifndef SC_POOLHELP_HXX
 #define SC_POOLHELP_HXX
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 
 namespace binfilter {
 
@@ -39,7 +39,7 @@ class ScDocumentPool;
 class ScStyleSheetPool;
 
 
-class ScPoolHelper : public vos::OReference
+class ScPoolHelper : public salhelper::SimpleReferenceObject
 {
 private:
     ScDocumentPool*     pDocPool;

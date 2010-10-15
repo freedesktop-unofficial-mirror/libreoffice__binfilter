@@ -129,19 +129,19 @@ using namespace ::com::sun::star;
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ) );
 /*N*/   }
 /*N*/
-/*N*/   if ( !aDocument.GetForbiddenCharacters().isValid() ||
+/*N*/   if ( !aDocument.GetForbiddenCharacters().is() ||
 /*N*/           !aDocument.IsValidAsianCompression() || !aDocument.IsValidAsianKerning() )
 /*N*/   {
 /*N*/       //  get settings from SvxAsianConfig
 /*N*/       SvxAsianConfig aAsian( sal_False );
 /*N*/
-/*N*/       if ( !aDocument.GetForbiddenCharacters().isValid() )
+/*N*/       if ( !aDocument.GetForbiddenCharacters().is() )
 /*N*/       {
 /*N*/           // set forbidden characters if necessary
 /*N*/           uno::Sequence<lang::Locale> aLocales = aAsian.GetStartEndCharLocales();
 /*N*/           if (aLocales.getLength())
 /*N*/           {
-/*?*/               vos::ORef<SvxForbiddenCharactersTable> xForbiddenTable =
+/*?*/               rtl::Reference<SvxForbiddenCharactersTable> xForbiddenTable =
 /*?*/                       new SvxForbiddenCharactersTable( aDocument.GetServiceManager() );
 /*?*/
 /*?*/               const lang::Locale* pLocales = aLocales.getConstArray();

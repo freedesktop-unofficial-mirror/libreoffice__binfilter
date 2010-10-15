@@ -39,7 +39,6 @@
 #include <com/sun/star/document/XEventsSupplier.hpp>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -48,6 +47,8 @@ using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 //-------------------------------------------------------------------------

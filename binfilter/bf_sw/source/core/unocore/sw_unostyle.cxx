@@ -122,8 +122,9 @@ using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::container;
-using namespace ::rtl;
 using ::com::sun::star::frame::XModel;
+
+using rtl::OUString;
 /******************************************************************************
  *
  ******************************************************************************/

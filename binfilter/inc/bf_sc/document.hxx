@@ -32,16 +32,13 @@
 
 #include <vcl/timer.hxx>
 
-
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
 #include "table.hxx"        // FastGetRowHeight (inline)
-
 #include "rangelst.hxx"
-
 #include "brdcst.hxx"
-
 #include "tabopparams.hxx"
+
 namespace com { namespace sun { namespace star {
     namespace lang {
         class XMultiServiceFactory;
@@ -310,7 +307,7 @@ friend class ScPivot;
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceManager;
 
-    vos::ORef<ScPoolHelper> xPoolHelper;
+    rtl::Reference<ScPoolHelper> xPoolHelper;
 
     ScFieldEditEngine*  pEditEngine;                    // uses pEditPool from xPoolHelper
     SfxObjectShell*     pShell;
@@ -342,7 +339,7 @@ private:
     ScChangeViewSettings* pChangeViewSettings;
     ScScriptTypeData*   pScriptTypeData;
     ScRefreshTimerControl* pRefreshTimerControl;
-    vos::ORef<SvxForbiddenCharactersTable> xForbiddenCharacters;
+    rtl::Reference<SvxForbiddenCharactersTable> xForbiddenCharacters;
 
     ScFieldEditEngine*  pCacheFieldEditEngine;
 
@@ -1118,8 +1115,8 @@ public:
     ScChangeViewSettings* GetChangeViewSettings() const     { return pChangeViewSettings; }
     void                SetChangeViewSettings(const ScChangeViewSettings& rNew);
 
-    vos::ORef<SvxForbiddenCharactersTable> GetForbiddenCharacters();
-    void            SetForbiddenCharacters( const vos::ORef<SvxForbiddenCharactersTable> xNew );
+    rtl::Reference<SvxForbiddenCharactersTable> GetForbiddenCharacters();
+    void            SetForbiddenCharacters( const rtl::Reference<SvxForbiddenCharactersTable> xNew );
 
     BYTE            GetAsianCompression() const;        // CharacterCompressionType values
     BOOL            IsValidAsianCompression() const;

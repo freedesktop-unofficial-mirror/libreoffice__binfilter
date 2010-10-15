@@ -33,8 +33,9 @@
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
-using namespace ::rtl;
 using namespace std;
+
+using rtl::OUString;
 
 /**
     Field type for dropdown boxes.

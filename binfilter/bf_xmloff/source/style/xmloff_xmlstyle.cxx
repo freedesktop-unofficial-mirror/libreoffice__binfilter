@@ -58,12 +58,13 @@
 #include "PageMasterImportPropMapper.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 // ---------------------------------------------------------------------
 
@@ -748,7 +749,7 @@ UniReference < SvXMLImportPropertyMapper > SvXMLStylesContext::GetImportProperty
         break;
 #ifndef SVX_LIGHT
     case XML_STYLE_FAMILY_CONTROL_ID:
-        xMapper = const_cast<SvXMLImport&>(GetImport()).GetFormImport()->getStylePropertyMapper().getBodyPtr();
+        xMapper = const_cast<SvXMLImport&>(GetImport()).GetFormImport()->getStylePropertyMapper().get();
         break;
 #endif // #ifndef SVX_LIGHT
     }

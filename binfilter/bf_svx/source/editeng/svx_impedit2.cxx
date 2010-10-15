@@ -2017,15 +2017,15 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> ImpEditEngine::GetForbiddenCharsTable( BOOL bGetInternal ) const
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> ImpEditEngine::GetForbiddenCharsTable( BOOL bGetInternal ) const
 /*N*/ {
-/*N*/   vos::ORef<SvxForbiddenCharactersTable> xF = xForbiddenCharsTable;
-/*N*/   if ( !xF.isValid() && bGetInternal )
+/*N*/   rtl::Reference<SvxForbiddenCharactersTable> xF = xForbiddenCharsTable;
+/*N*/   if ( !xF.is() && bGetInternal )
 /*N*/       xF = EE_DLL()->GetGlobalData()->GetForbiddenCharsTable();
 /*N*/   return xF;
 /*N*/ }
 
-/*N*/ void ImpEditEngine::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void ImpEditEngine::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   EE_DLL()->GetGlobalData()->SetForbiddenCharsTable( xForbiddenChars );
 /*N*/ }

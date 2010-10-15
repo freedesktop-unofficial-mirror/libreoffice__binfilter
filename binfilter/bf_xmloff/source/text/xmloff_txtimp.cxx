@@ -68,7 +68,6 @@
 #include "XMLNumberStylesImport.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -83,6 +82,8 @@ using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::util::DateTime;
 using namespace ::com::sun::star::ucb;
 using ::comphelper::UStringLess;
+using ::rtl::OUString;
+using ::rtl::OUStringBuffer;
 
 static __FAR_DATA SvXMLTokenMapEntry aTextElemTokenMap[] =
 {

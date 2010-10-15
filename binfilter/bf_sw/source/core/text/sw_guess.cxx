@@ -52,11 +52,12 @@
 #include <porfld.hxx>
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::beans;
+
+using rtl::OUString;
 
 #ifdef VERTICAL_LAYOUT
 #define CH_FULL_BLANK 0x3000

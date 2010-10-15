@@ -86,7 +86,6 @@
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
@@ -94,6 +93,9 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::table::XCell;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 class SwXMLTableColumn_Impl : public SwWriteTableCol

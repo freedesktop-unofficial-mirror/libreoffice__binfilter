@@ -59,13 +59,15 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::xml;
 using namespace ::com::sun::star::xml::sax;
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::lang::IllegalArgumentException;
 using ::com::sun::star::lang::WrappedTargetException;
 using ::com::sun::star::beans::UnknownPropertyException;
 using ::com::sun::star::beans::PropertyVetoException;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 SvXMLImportPropertyMapper::SvXMLImportPropertyMapper(

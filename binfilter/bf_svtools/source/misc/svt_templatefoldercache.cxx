@@ -38,8 +38,8 @@
 #include <com/sun/star/uno/XComponentContext.hpp>
 #include <com/sun/star/util/XOfficeInstallationDirectories.hpp>
 #include <ucbhelper/content.hxx>
-#include <vos/ref.hxx>
-#include <vos/refernce.hxx>
+#include <rtl/ref.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
 #include <bf_svtools/pathoptions.hxx>

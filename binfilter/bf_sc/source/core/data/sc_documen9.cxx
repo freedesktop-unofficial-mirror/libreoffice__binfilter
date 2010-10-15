@@ -468,12 +468,12 @@ namespace binfilter {
 /*N*/       pDrawLayer->EnableAdjust(!bImportingXML);
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> ScDocument::GetForbiddenCharacters()
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> ScDocument::GetForbiddenCharacters()
 /*N*/ {
 /*N*/   return xForbiddenCharacters;
 /*N*/ }
 
-/*N*/ void ScDocument::SetForbiddenCharacters( const vos::ORef<SvxForbiddenCharactersTable> xNew )
+/*N*/ void ScDocument::SetForbiddenCharacters( const rtl::Reference<SvxForbiddenCharactersTable> xNew )
 /*N*/ {
 /*N*/   xForbiddenCharacters = xNew;
 /*N*/   if ( pEditEngine )

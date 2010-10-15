@@ -38,8 +38,6 @@
 #include <bf_xmloff/contextid.hxx>
 namespace binfilter {
 
-using namespace ::rtl;
-
 extern const XMLPropertyMapEntry aXMLScCellStylesProperties[];
 extern const XMLPropertyMapEntry aXMLScColumnStylesProperties[];
 extern const XMLPropertyMapEntry aXMLScRowStylesProperties[];

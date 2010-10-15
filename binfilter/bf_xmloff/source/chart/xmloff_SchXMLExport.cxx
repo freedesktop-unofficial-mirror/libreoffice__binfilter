@@ -62,10 +62,12 @@
 #include    "PropertyMap.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 using namespace ::com::sun::star::uno;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 using ::rtl::OUString;
 

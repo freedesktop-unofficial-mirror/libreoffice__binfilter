@@ -46,6 +46,8 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace xmloff::token;
 
+using rtl::OUString;
+
 //------------------------------------------------------------------
 
 ScXMLTableScenarioContext::ScXMLTableScenarioContext(

@@ -75,8 +75,6 @@ class LinguMgr
 {
     friend class LinguMgrExitLstnr;
 
-    //static ::VOS::ORefCount aRefCount;
-
     static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XLinguServiceManager > xLngSvcMgr;
     static ::com::sun::star::uno::Reference<

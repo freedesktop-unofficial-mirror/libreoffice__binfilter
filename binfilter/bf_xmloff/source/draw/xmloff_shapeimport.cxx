@@ -187,7 +187,7 @@ XMLShapeImportHelper::XMLShapeImportHelper(
 
 /*
     // chain form attributes
-    const UniReference< SvXMLImportPropertyMapper> xFormMapper( rImporter.GetFormImport()->getStylePropertyMapper().getBodyPtr() );
+    const UniReference< SvXMLImportPropertyMapper> xFormMapper( rImporter.GetFormImport()->getStylePropertyMapper().get() );
     mpPropertySetMapper->ChainImportMapper(xFormMapper);
 */
 

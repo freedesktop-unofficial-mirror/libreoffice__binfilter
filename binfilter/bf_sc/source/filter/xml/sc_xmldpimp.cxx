@@ -45,6 +45,8 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace xmloff::token;
 
+using rtl::OUString;
+
 ScXMLDataPilotTablesContext::ScXMLDataPilotTablesContext( ScXMLImport& rImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,

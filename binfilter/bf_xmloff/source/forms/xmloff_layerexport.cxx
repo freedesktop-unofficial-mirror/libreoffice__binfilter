@@ -77,14 +77,14 @@ namespace xmloff
 
         // add our style family to the export context's style pool
         m_xPropertyHandlerFactory = new OControlPropertyHandlerFactory();
-        ::vos::ORef< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper( getControlStylePropertyMap(), m_xPropertyHandlerFactory.getBodyPtr() );
-        m_xExportMapper = new OFormExportPropertyMapper( xStylePropertiesMapper.getBodyPtr() );
+        ::rtl::Reference< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper( getControlStylePropertyMap(), m_xPropertyHandlerFactory.get() );
+        m_xExportMapper = new OFormExportPropertyMapper( xStylePropertiesMapper.get() );
 
         // our style family
         m_rContext.GetAutoStylePool()->AddFamily(
             XML_STYLE_FAMILY_CONTROL_ID,
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( XML_STYLE_FAMILY_CONTROL_NAME ) ),
-            m_xExportMapper.getBodyPtr(),
+            m_xExportMapper.get(),
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( XML_STYLE_FAMILY_CONTROL_PREFIX) )
         );
 
@@ -158,7 +158,7 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    ::vos::ORef< SvXMLExportPropertyMapper > OFormLayerXMLExport_Impl::getStylePropertyMapper()
+    ::rtl::Reference< SvXMLExportPropertyMapper > OFormLayerXMLExport_Impl::getStylePropertyMapper()
     {
         return m_xExportMapper;
     }

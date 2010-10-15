@@ -54,7 +54,6 @@ namespace binfilter {
 #define XML_LINE_TOP 2
 #define XML_LINE_BOTTOM 3
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
@@ -63,6 +62,8 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace xmloff::token;
+
+using rtl::OUString;
 //using namespace ::com::sun::star::text;
 
 ScXMLCellImportPropertyMapper::ScXMLCellImportPropertyMapper(

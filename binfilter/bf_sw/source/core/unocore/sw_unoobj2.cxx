@@ -146,7 +146,8 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::drawing;
 
-using namespace ::rtl;
+
+using rtl::OUString;
 
 //collectn.cxx
 //BOOL lcl_IsNumeric(const String&);

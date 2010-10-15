@@ -59,7 +59,6 @@ namespace binfilter {
 
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
@@ -71,6 +70,8 @@ using namespace ::com::sun::star::drawing;
 using namespace ::com::sun::star::document;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::document::XEventsSupplier;
+
+using rtl::OUString;
 
 class XMLTextFrameContextHyperlink_Impl
 {
