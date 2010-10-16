@@ -124,7 +124,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     ULONG           m_nAcquireCount;
 /*N*/     SfxMedium*      m_pMedium;
-/*N*/     ::vos::OMutex   m_aMutex;
+/*N*/     ::osl::Mutex    m_aMutex;
 /*N*/ public:
 /*N*/                     SfxLockBytesHandler_Impl( SfxMedium* pMedium )
 /*N*/                         : m_pMedium( pMedium )
@@ -132,7 +132,7 @@ namespace binfilter {
 /*N*/                     {}
 /*N*/
 /*N*/     virtual void    Handle( ::utl::UcbLockBytesHandler::LoadHandlerItem nWhich, ::utl::UcbLockBytesRef xLockBytes );
-/*N*/     ::vos::OMutex&  GetMutex()
+/*N*/     ::osl::Mutex&   GetMutex()
 /*N*/                     { return m_aMutex; }
 /*N*/     void            ReleaseMedium()
 /*N*/                     { m_pMedium = NULL; }
@@ -142,7 +142,7 @@ namespace binfilter {
 
 /*N*/ void SfxLockBytesHandler_Impl::Handle( ::utl::UcbLockBytesHandler::LoadHandlerItem nWhich, ::utl::UcbLockBytesRef xLockBytes )
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( m_aMutex );
+/*N*/     ::osl::MutexGuard aGuard( m_aMutex );
 /*N*/     if ( IsActive() && xLockBytes.Is()&& m_pMedium )
 /*N*/     {
 /*N*/         switch( nWhich )
@@ -1541,7 +1541,7 @@ namespace binfilter {
         => further the help will be empty then ... #100490#
      */
 /*N*/     //CancelTransfers();
-/*N*/     ::vos::OClearableGuard aGuard( pImp->aHandler->GetMutex() );
+/*N*/     ::osl::ClearableMutexGuard aGuard( pImp->aHandler->GetMutex() );
 /*N*/     pImp->aHandler->ReleaseMedium();
 /*N*/     aGuard.clear();
 /*N*/

@@ -99,7 +99,7 @@
 #include <tools/datetime.hxx>
 #define _SVSTDARR_STRINGS
 #include <bf_svtools/svstdarr.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <SwStyleNameMapper.hxx>
 #include <swunohelper.hxx>

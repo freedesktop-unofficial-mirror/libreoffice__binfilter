@@ -69,7 +69,6 @@ namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 ChXDataPoint::ChXDataPoint( sal_Int32 _Col, sal_Int32 _Row, ChartModel* _Model ) :

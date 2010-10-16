@@ -29,7 +29,7 @@
 #define SC_REFRESHTIMER_HXX
 
 #include <vcl/timer.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 namespace binfilter {
 
 #define SC_REFRESHTIMER_CONTROL_LIST 0
@@ -41,7 +41,7 @@ DECLARE_LIST( ScRefreshTimerList, ScRefreshTimer* )
 class ScRefreshTimerControl
 {
 private:
-            ::vos::OMutex       aMutex;
+            ::osl::Mutex        aMutex;
             USHORT              nBlockRefresh;
 
 public:
@@ -59,7 +59,7 @@ public:
                                             ++nBlockRefresh;
                                     }
             BOOL                IsRefreshAllowed() const    { return !nBlockRefresh; }
-            ::vos::OMutex&      GetMutex()                  { return aMutex; }
+            ::osl::Mutex&       GetMutex()                  { return aMutex; }
 };
 
 

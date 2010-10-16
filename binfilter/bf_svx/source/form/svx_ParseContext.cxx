@@ -30,7 +30,7 @@
 #include "fmresids.hrc"
 #include "dialmgr.hxx"
 #include <vcl/svapp.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <tools/shl.hxx>
 

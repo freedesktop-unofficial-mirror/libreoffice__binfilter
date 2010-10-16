@@ -98,7 +98,7 @@
 #include <fmtornt.hxx>
 #include <bf_svx/keepitem.hxx>
 #include <fmtlsplt.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <SwStyleNameMapper.hxx>
 #include <frmatr.hxx>
 #include <crsskip.hxx>

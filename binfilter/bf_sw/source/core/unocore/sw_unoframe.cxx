@@ -92,7 +92,7 @@
 #include <frmatr.hxx>
 #include <ndtxt.hxx>
 #include <ndgrf.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_svx/svdobj.hxx>

@@ -37,7 +37,7 @@
 #include <com/sun/star/uno/Sequence.hxx>
 
 #include <osl/mutex.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <bf_svtools/smplhint.hxx>
 #include <vcl/svapp.hxx>
 #include <rtl/instance.hxx>

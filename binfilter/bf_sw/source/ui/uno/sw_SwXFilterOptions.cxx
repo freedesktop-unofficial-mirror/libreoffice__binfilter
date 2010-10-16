@@ -36,7 +36,7 @@
 #include <swdll.hxx>
 #include <unoprnms.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <tools/shl.hxx>
 #include <vcl/msgbox.hxx>

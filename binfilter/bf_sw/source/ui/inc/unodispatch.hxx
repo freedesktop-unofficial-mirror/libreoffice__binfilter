@@ -33,7 +33,7 @@
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase3.hxx>
 #include <list>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 
@@ -49,7 +49,7 @@ class SwXDispatchProviderInterceptor : public cppu::WeakImplHelper3
     class DispatchMutexLock_Impl
     {
         //::osl::MutexGuard   aGuard; #102295# solar mutex has to be used currently
-        vos::OGuard         aGuard;
+        osl::MutexGuard         aGuard;
         DispatchMutexLock_Impl();
     public:
         DispatchMutexLock_Impl(SwXDispatchProviderInterceptor&);

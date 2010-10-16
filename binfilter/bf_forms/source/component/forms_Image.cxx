@@ -39,7 +39,7 @@
 #include <vcl/svapp.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/objsh.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include "services.hxx"
 #include <comphelper/container.hxx>

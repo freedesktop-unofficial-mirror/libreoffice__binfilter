@@ -30,7 +30,7 @@
 #pragma hdrstop
 #endif
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <osl/mutex.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <vcl/svapp.hxx>
@@ -61,7 +61,6 @@
 #include <rtl/uuid.h>
 
 namespace binfilter {
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::std;

@@ -31,7 +31,7 @@
 #include <com/sun/star/lang/Locale.hpp>
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <strmadpt.hxx>
 #include "instrm.hxx"
@@ -41,7 +41,6 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::util;
-using namespace ::vos;
 using namespace ::utl;
 
 namespace binfilter

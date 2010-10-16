@@ -38,7 +38,7 @@
 #include <tools/urlobj.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <rtl/ustring.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <sot/storage.hxx>
 #include <sot/exchange.hxx>
 #include <comphelper/mediadescriptor.hxx>

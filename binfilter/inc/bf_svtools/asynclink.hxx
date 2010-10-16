@@ -30,13 +30,9 @@
 
 #include <tools/solar.h>
 #include <tools/link.hxx>
+#include <osl/mutex.hxx>
 
 class Timer;
-
-namespace vos
-{
-    class OMutex;
-}
 
 namespace binfilter {
 
@@ -48,7 +44,7 @@ class AsynchronLink
     BOOL   _bInCall;
     BOOL*  _pDeleted;
     void*  _pArg;
-    vos::OMutex* _pMutex;
+    osl::Mutex* _pMutex;
 
     DECL_STATIC_LINK( AsynchronLink, HandleCall, void* );
     void Call_Impl( void* pArg );

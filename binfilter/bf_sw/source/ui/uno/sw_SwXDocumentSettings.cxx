@@ -29,7 +29,7 @@
 #pragma hdrstop
 #endif
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <SwXDocumentSettings.hxx>
 #include <SwXPrintPreviewSettings.hxx>

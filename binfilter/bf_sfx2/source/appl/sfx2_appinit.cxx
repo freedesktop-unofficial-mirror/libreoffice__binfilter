@@ -81,7 +81,7 @@
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <cppuhelper/implbase1.hxx>
 

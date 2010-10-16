@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include "socont.h"
@@ -106,15 +106,13 @@ STDMETHODIMP_(ULONG) CImpIOleClientSite::Release(void)
  */
 
 STDMETHODIMP CImpIOleClientSite::SaveObject(void)
-    {
-    //We're already set up with the tenant to save; this is trivial.
-        vos::IMutex& mutex= Application::GetSolarMutex();
-        sal_Bool bAquired= mutex.tryToAcquire();
+{
+    ::SolarMuexGuard aGuard;
+
     m_pTen->Update();
-    if( bAquired)
-        mutex.release();
+
     return NOERROR;
-    }
+}
 
 
 

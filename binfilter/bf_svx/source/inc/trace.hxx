@@ -39,7 +39,7 @@ class Tracer
     DECLARE_STL_STDKEY_MAP( ::oslThreadIdentifier, sal_Int32, MapThreadId2Int );
     static MapThreadId2Int s_aThreadIndents;
 
-    static ::vos::OMutex    s_aMapSafety;
+    static ::osl::Mutex s_aMapSafety;
 
 public:
     Tracer(const char* _pBlockDescription);

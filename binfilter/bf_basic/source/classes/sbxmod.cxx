@@ -43,7 +43,7 @@
 #include "sbunoobj.hxx"
 #include "basrdll.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <rtl/ustring.hxx>
 
 // for the bsearch

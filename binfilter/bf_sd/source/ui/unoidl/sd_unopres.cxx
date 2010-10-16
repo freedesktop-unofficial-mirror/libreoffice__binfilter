@@ -39,13 +39,12 @@
 #include "unohelp.hxx"
 #include "unopage.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::cppu;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 const SfxItemPropertyMap* ImplGetPresentationPropertyMap()

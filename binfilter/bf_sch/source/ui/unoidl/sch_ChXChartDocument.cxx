@@ -76,7 +76,6 @@ namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-using namespace vos;
 using namespace ::com::sun::star;
 using ::rtl::OUString;
 

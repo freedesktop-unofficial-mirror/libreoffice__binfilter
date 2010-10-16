@@ -35,7 +35,7 @@
 #include <com/sun/star/text/ControlCharacter.hpp>
 
 #include <cmdid.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <rtl/uuid.h>
 

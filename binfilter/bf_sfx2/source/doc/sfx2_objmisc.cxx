@@ -31,7 +31,7 @@
 #include <bf_svtools/stritem.hxx>
 #include <bf_svtools/intitem.hxx>
 #include <bf_so3/inetbnd.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <bf_sfx2/app.hxx>
 
 #ifdef _MSC_VER

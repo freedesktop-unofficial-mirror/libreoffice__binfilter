@@ -63,10 +63,9 @@
 #include "objshimp.hxx"
 
 #include <osl/mutex.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 namespace binfilter {
 
-using namespace vos;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::frame;

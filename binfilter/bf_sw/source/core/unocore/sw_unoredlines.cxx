@@ -31,7 +31,7 @@
 #pragma hdrstop
 #endif
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include "calbck.hxx"

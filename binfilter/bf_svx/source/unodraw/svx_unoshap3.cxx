@@ -48,7 +48,6 @@
 #include "svdmodel.hxx"
 namespace binfilter {
 
-using namespace ::vos;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;

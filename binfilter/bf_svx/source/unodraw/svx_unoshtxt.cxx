@@ -50,7 +50,6 @@ namespace binfilter {
 
 
 using namespace ::osl;
-using namespace ::vos;
 using namespace ::rtl;
 
 namespace css = ::com::sun::star;
@@ -853,7 +852,7 @@ SvxTextEditSource::SvxTextEditSource( SvxTextEditSourceImpl* pImpl )
 //------------------------------------------------------------------------
 SvxTextEditSource::~SvxTextEditSource()
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     mpImpl->release();
 }

@@ -55,7 +55,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 #define WID_LAYER_LOCKED    1

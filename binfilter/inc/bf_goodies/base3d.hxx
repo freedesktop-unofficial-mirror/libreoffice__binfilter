@@ -36,7 +36,7 @@
 
 #include <vcl/timer.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 // Vorausdeklarationen
 //class B3dTexture;

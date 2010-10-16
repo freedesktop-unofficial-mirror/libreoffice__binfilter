@@ -30,7 +30,7 @@
 #include "mapprov.hxx"
 
 // header for class OGuard
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 // header for class Application
 #include <vcl/svapp.hxx>
 #include <rtl/uuid.h>

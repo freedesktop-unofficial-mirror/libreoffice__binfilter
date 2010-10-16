@@ -32,7 +32,7 @@
 #endif
 
 #include <cmdid.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include <errhdl.hxx>

@@ -77,7 +77,7 @@
 #include <bf_svx/flstitem.hxx>
 #include <vcl/metric.hxx>
 #include <bf_svtools/ctrltool.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <toolkit/helper/vclunohelper.hxx>
 #include <bf_svx/unofdesc.hxx>

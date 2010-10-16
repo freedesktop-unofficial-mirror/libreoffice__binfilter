@@ -81,7 +81,6 @@ namespace binfilter {
  #endif
 #endif
 
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::com::sun::star;
 

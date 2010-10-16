@@ -40,7 +40,7 @@
 #include <bf_svx/xmlcnitm.hxx>
 #include <bf_so3/linkmgr.hxx>
 #include <bf_so3/lnkbase.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <fmtclds.hxx>
 

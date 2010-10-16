@@ -46,7 +46,7 @@
 
 #include <doc.hxx>
 #include <ndtxt.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT

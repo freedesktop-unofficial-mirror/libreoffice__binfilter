@@ -41,7 +41,7 @@
 #include <bf_svtools/moduleoptions.hxx>
 
 // #i30187#
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 

@@ -48,7 +48,7 @@
 #include <list>
 
 #include <rtl/uuid.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include "unoevent.hxx"

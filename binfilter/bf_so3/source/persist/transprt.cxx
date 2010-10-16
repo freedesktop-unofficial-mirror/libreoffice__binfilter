@@ -62,8 +62,8 @@
 
 #include <cppuhelper/weak.hxx>
 
-#include <vos/macros.hxx>
-#include <vos/mutex.hxx>
+#include <sal/macros.h>
+#include <osl/mutex.hxx>
 #include <rtl/ref.hxx>
 
 #include <tools/solar.h>
@@ -515,7 +515,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
     Sequence<sal_Int8> aData;
     sal_Int32          nSize;
 
-    nCount = VOS_MIN(nCount, 0x7FFFFFFF);
+    nCount = SAL_MIN(nCount, 0x7FFFFFFF);
     try
     {
         while (!m_bTerminated)
@@ -547,7 +547,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
     if (pRead)
         *pRead = ULONG(nSize);
 
-    sal_uInt32 nRead = VOS_MAX(m_nRead, nPos + nSize);
+    sal_uInt32 nRead = SAL_MAX(m_nRead, nPos + nSize);
     SAL_CONST_CAST(UcbTransportLockBytes*, this)->m_nRead = nRead;
 
     return ERRCODE_NONE;
@@ -1144,7 +1144,7 @@ protected:
 
     /** getMutex_Impl.
      */
-    inline vos::IMutex& getMutex_Impl (void);
+    inline osl::Mutex& getMutex_Impl (void);
 
     /** createContent_Impl.
      */
@@ -1159,7 +1159,7 @@ protected:
 private:
     /** Representation.
      */
-    vos::OMutex                         m_aMutex;
+    osl::Mutex                          m_aMutex;
     Reference<XInteractionHandler>      m_xInteractionHdl;
     oslInterlockedCount                 m_nProgressDepth;
     sal_Int32                           m_nProgressMin;
@@ -1175,7 +1175,7 @@ private:
  */
 inline sal_Bool UcbTransport_Impl::getCallback_Impl ( SvBindingTransportCallback *&rpCallback)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
     rpCallback = m_pCallback;
     return (!!rpCallback);
 }
@@ -1183,7 +1183,7 @@ inline sal_Bool UcbTransport_Impl::getCallback_Impl ( SvBindingTransportCallback
 /*
  * getMutex_Impl.
  */
-inline vos::IMutex& UcbTransport_Impl::getMutex_Impl (void)
+inline osl::Mutex& UcbTransport_Impl::getMutex_Impl (void)
 {
     return m_aMutex;
 }
@@ -1453,7 +1453,7 @@ Reference<XProgressHandler> SAL_CALL UcbTransport_Impl::getProgressHandler (void
  */
 void SAL_CALL UcbTransport_Impl::disposing ( const EventObject & ) throw(RuntimeException)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
     // m_xTask = NULL;
 }
 
@@ -1595,7 +1595,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
  */
 void UcbTransport_Impl::dispose_Impl (void)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
 
     Reference<XPropertiesChangeNotifier> xProps (m_xContent, UNO_QUERY);
     if (xProps.is())
@@ -1970,7 +1970,7 @@ void UcbHTTPTransport_Impl::analyzeHeader_Impl (
 
         if (aName.CompareIgnoreCaseToAscii("Content-Type") == COMPARE_EQUAL)
         {
-            vos::OGuard aGuard (getMutex_Impl());
+            osl::MutexGuard aGuard (getMutex_Impl());
 
             m_aContentType = aValue;
             m_bNeedMime = sal_False;

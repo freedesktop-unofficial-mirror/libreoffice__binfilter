@@ -38,7 +38,7 @@
 #include <com/sun/star/uno/Sequence.h>
 #include <bf_svtools/poolitem.hxx> //Any2Bool
 #include <bf_svtools/smplhint.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <itemholder2.hxx>
 
 #include <vcl/svapp.hxx>

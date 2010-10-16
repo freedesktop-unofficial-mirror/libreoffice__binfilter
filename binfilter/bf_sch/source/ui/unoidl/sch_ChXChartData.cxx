@@ -44,7 +44,6 @@ namespace binfilter {
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
 #endif
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 #define SCH_BIN_MIN(a,b) ( ((a)<(b))? (a) : (b) )

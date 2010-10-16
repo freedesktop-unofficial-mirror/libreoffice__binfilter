@@ -65,7 +65,7 @@
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <crstate.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <comphelper/extract.hxx>
 #include <comphelper/stl_types.hxx>
 #include <bf_svx/scene3d.hxx>

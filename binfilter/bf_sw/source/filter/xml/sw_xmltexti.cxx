@@ -66,7 +66,7 @@
 // for locking SolarMutex: svapp + mutex
 #include <vcl/svapp.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

@@ -38,7 +38,7 @@
 #include "osl/diagnose.h"
 #include "rtl/ustring.h"
 #include "sal/types.h"
-#include "vos/mutex.hxx"
+#include "osl/mutex.hxx"
 
 namespace binfilter {
 

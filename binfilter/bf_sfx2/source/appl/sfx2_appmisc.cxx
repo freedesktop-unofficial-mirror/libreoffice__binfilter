@@ -46,7 +46,7 @@
 #include <com/sun/star/uno/Reference.h>
 #include <tools/config.hxx>
 #include <tools/rcid.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -80,7 +80,6 @@
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
-using namespace ::vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::beans;

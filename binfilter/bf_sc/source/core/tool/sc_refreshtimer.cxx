@@ -42,7 +42,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       (*ppControl)->SetAllowRefresh( FALSE );
 /*N*/       // wait for any running refresh in another thread to finnish
-/*N*/       ::vos::OGuard aGuard( (*ppControl)->GetMutex() );
+/*N*/       ::osl::MutexGuard aGuard( (*ppControl)->GetMutex() );
 /*N*/   }
 /*N*/ }
 

@@ -36,7 +36,7 @@
 
 
 #include <vcl/svapp.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <toolkit/unohlp.hxx>
 #include <rtl/uuid.h>
@@ -51,7 +51,6 @@
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::std;
 
 /******************************************************************

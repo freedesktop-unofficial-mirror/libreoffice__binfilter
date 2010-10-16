@@ -30,7 +30,7 @@
 
 #include <com/sun/star/util/XCloseable.hpp>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <tools/resary.hxx>
 #include <vcl/svapp.hxx>

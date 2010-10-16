@@ -93,7 +93,7 @@
 #include <bf_svx/unofill.hxx>
 #include <bf_svx/unolingu.hxx>
 #include <bf_sfx2/progress.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <swtypes.hxx>
 #include <swmodule.hxx>

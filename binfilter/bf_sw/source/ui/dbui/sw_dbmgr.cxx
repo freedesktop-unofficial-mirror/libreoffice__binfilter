@@ -107,7 +107,7 @@
 #include <vcl/msgbox.hxx>
 #include <bf_svx/dataaccessdescriptor.hxx>
 #include <cppuhelper/implbase1.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 

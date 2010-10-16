@@ -81,7 +81,7 @@
 // for locking SolarMutex: svapp + mutex
 #include <vcl/svapp.hxx>
 #include <sal/macros.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 namespace binfilter {
 
 

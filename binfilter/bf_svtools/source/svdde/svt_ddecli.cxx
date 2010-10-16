@@ -38,7 +38,7 @@
 
 #include <tools/debug.hxx>
 #include <vcl/svapp.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter
 {

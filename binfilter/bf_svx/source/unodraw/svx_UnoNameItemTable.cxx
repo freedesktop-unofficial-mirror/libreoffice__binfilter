@@ -39,7 +39,7 @@
 
 #include "UnoNameItemTable.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include "unoapi.hxx"
@@ -48,7 +48,6 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::cppu;
-using namespace ::vos;
 
 SvxUnoNameItemTable::SvxUnoNameItemTable( SdrModel* pModel, USHORT nWhich, BYTE nMemberId ) throw()
 : mpModel( pModel ),

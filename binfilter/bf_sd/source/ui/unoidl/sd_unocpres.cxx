@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <bf_svx/svdpage.hxx>
 
@@ -40,7 +40,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 

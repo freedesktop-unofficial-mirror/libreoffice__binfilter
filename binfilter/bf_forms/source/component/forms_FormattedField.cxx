@@ -59,7 +59,7 @@
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
 #include <com/sun/star/form/XForm.hpp>
 #include <com/sun/star/container/XIndexAccess.hpp>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
     // needed as long as we use the SolarMutex
 #include <comphelper/streamsection.hxx>
 

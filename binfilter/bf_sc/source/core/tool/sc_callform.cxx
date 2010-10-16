@@ -38,7 +38,6 @@
 #include <tools/debug.hxx>
 namespace binfilter {
 
-using namespace ::vos;
 
 //------------------------------------------------------------------------
 
@@ -147,21 +146,21 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/ }
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-/*N*/ class ModuleData : public DataObject
-/*N*/ {
-/*N*/ friend class ModuleCollection;
-/*N*/   String      aName;
-/*N*/   OModule*    pInstance;
-/*N*/ public:
-/*N*/   ModuleData(const String& rStr, OModule* pInst) : aName (rStr), pInstance (pInst) {}
-/*N*/   ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new OModule(aName);}
-/*N*/   ~ModuleData() { delete pInstance; }
-/*N*/   virtual DataObject* Clone() const { return new ModuleData(*this); }
-/*N*/
-/*N*/   const   String&         GetName() const { return aName; }
-/*N*/           OModule*        GetInstance() const { return pInstance; }
-/*N*/           void            FreeInstance() { delete pInstance; pInstance = 0; }
-/*N*/ };
+class ModuleData : public DataObject
+{
+    friend class ModuleCollection;
+    String      aName;
+    vos::OModule*  pInstance;
+public:
+    ModuleData(const String& rStr, vos::OModule* pInst) : aName (rStr), pInstance (pInst) {}
+    ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new vos::OModule(aName);}
+    ~ModuleData() { delete pInstance; }
+    virtual DataObject* Clone() const { return new ModuleData(*this); }
+
+    const   String&         GetName() const { return aName; }
+    vos::OModule*           GetInstance() const { return pInstance; }
+    void            FreeInstance() { delete pInstance; pInstance = 0; }
+};
 
 //-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 /*N*/ class ModuleCollection : public SortedCollection
@@ -211,7 +210,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/ BOOL FuncData::Call(void** ppParam)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-/*N*/   OModule* pLib = pModuleData->GetInstance();
+        vos::OModule* pLib = pModuleData->GetInstance();
 /*N*/   FARPROC fProc = (FARPROC)pLib->getSymbol(aFuncName);
 /*N*/   if (fProc != NULL)
 /*N*/   {

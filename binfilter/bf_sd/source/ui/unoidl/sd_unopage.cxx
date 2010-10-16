@@ -59,7 +59,6 @@
 #include "unohelp.hxx"
 namespace binfilter {
 
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::osl;
 using namespace ::com::sun::star;
@@ -329,14 +328,14 @@ uno::Any SAL_CALL SdGenericDrawPage::queryInterface( const uno::Type & rType )
 uno::Reference< beans::XPropertySetInfo > SAL_CALL SdGenericDrawPage::getPropertySetInfo()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
 void SAL_CALL SdGenericDrawPage::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     if( (GetPage() == NULL) || (mpModel == NULL) )
         throw uno::RuntimeException();
@@ -553,7 +552,7 @@ void SAL_CALL SdGenericDrawPage::setPropertyValue( const OUString& aPropertyName
 uno::Any SAL_CALL SdGenericDrawPage::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     uno::Any aAny;
     if( (GetPage() == NULL) || (mpModel == NULL) )
@@ -1154,7 +1153,7 @@ uno::Type SAL_CALL SdPageLinkTargets::getElementType()
 sal_Bool SAL_CALL SdPageLinkTargets::hasElements()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     SdPage* pPage = mpUnoPage->GetPage();
     if( pPage != NULL )
@@ -1181,7 +1180,7 @@ sal_Bool SAL_CALL SdPageLinkTargets::hasElements()
 uno::Any SAL_CALL SdPageLinkTargets::getByName( const OUString& aName )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     SdPage* pPage = mpUnoPage->GetPage();
     if( pPage != NULL )
@@ -1200,7 +1199,7 @@ uno::Any SAL_CALL SdPageLinkTargets::getByName( const OUString& aName )
 uno::Sequence< OUString > SAL_CALL SdPageLinkTargets::getElementNames()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     sal_uInt32 nObjCount = 0;
 
@@ -1242,7 +1241,7 @@ uno::Sequence< OUString > SAL_CALL SdPageLinkTargets::getElementNames()
 sal_Bool SAL_CALL SdPageLinkTargets::hasByName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     return FindObject( aName ) != NULL;
 }
@@ -1484,7 +1483,7 @@ sal_Bool SAL_CALL SdDrawPage::supportsService( const OUString& ServiceName )
 void SAL_CALL SdDrawPage::setName( const OUString& rName )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     DBG_ASSERT( GetPage() && !GetPage()->IsMasterPage(), "Don't call base implementation for masterpages!" );
 
@@ -1533,7 +1532,7 @@ void SAL_CALL SdDrawPage::setName( const OUString& rName )
 OUString SAL_CALL SdDrawPage::getName()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     return getPageApiName( GetPage() );
 }
@@ -1542,7 +1541,7 @@ OUString SAL_CALL SdDrawPage::getName()
 uno::Reference< drawing::XDrawPage > SAL_CALL SdDrawPage::getMasterPage(  )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     DBG_ASSERT(mpModel,"SdDrawPage hat kein Model??");
     if(mpModel && GetPage())
@@ -1561,7 +1560,7 @@ uno::Reference< drawing::XDrawPage > SAL_CALL SdDrawPage::getMasterPage(  )
 void SAL_CALL SdDrawPage::setMasterPage( const uno::Reference< drawing::XDrawPage >& xMasterPage )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     DBG_ASSERT(mpModel,"SdDrawPage hat kein Model??");
     if(mpModel && pPage)
@@ -1600,7 +1599,7 @@ void SAL_CALL SdDrawPage::setMasterPage( const uno::Reference< drawing::XDrawPag
 uno::Reference< drawing::XDrawPage > SAL_CALL SdDrawPage::getNotesPage()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     if(pPage && mpModel && mpModel->GetDoc() )
     {
@@ -2138,7 +2137,7 @@ void SdMasterPage::getBackground( uno::Any& rValue ) throw()
 void SAL_CALL SdMasterPage::setName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     if(pPage && GetPage()->GetPageKind() != PK_NOTES)
     {
@@ -2155,7 +2154,7 @@ void SAL_CALL SdMasterPage::setName( const OUString& aName )
 OUString SAL_CALL SdMasterPage::getName(  )
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     if(pPage)
     {
@@ -2172,7 +2171,7 @@ OUString SAL_CALL SdMasterPage::getName(  )
 uno::Reference< drawing::XDrawPage > SAL_CALL SdMasterPage::getNotesPage()
     throw(uno::RuntimeException)
 {
-    SolarMutexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     if(pPage && mpModel && mpModel->GetDoc() )
     {

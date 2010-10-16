@@ -85,7 +85,7 @@
 
 #include <ucbhelper/content.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/salctype.hxx>
 
 //________________________________________________________________________________________________________

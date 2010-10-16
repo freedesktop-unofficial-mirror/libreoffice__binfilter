@@ -52,7 +52,7 @@
 
 #include <wrtsh.hxx>
 #include <viewopt.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <com/sun/star/text/NotePrintMode.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hdl>

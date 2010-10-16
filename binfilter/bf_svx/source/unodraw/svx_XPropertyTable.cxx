@@ -33,7 +33,7 @@
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/container/XNameContainer.hpp>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include <cppuhelper/implbase2.hxx>
@@ -54,7 +54,6 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 using namespace ::cppu;
 using namespace ::rtl;
-using namespace ::vos;
 
 class SvxUnoXPropertyTable : public WeakImplHelper2< XNameContainer, XServiceInfo >
 {

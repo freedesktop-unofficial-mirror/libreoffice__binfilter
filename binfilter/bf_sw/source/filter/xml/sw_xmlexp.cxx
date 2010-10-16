@@ -88,7 +88,7 @@
 
 // for locking SolarMutex: svapp + mutex
 #include <vcl/svapp.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
 #include <bf_svx/xdef.hxx>

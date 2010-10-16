@@ -30,7 +30,7 @@
 
 #include "forbiddencharacterstable.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <rtl/ref.hxx>
 
@@ -42,7 +42,6 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
-using namespace ::vos;
 using namespace ::cppu;
 
 SvxUnoForbiddenCharsTable::SvxUnoForbiddenCharsTable(rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars) :

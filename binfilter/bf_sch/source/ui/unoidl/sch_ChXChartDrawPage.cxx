@@ -36,7 +36,6 @@
 namespace binfilter {
 
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 #define CHART_DRAW_PAGE_WIDTH_ID 1

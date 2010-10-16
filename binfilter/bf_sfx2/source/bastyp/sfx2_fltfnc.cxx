@@ -44,7 +44,6 @@
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
 using namespace ::rtl;
-using namespace ::vos;
 
 #include <bf_svtools/ctypeitm.hxx>
 #include <bf_svtools/sfxecode.hxx>

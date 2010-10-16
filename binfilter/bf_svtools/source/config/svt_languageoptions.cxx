@@ -33,7 +33,7 @@
 #include <vcl/svapp.hxx>
 #include <i18npool/mslangid.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <osl/mutex.hxx>
 #include <rtl/instance.hxx>

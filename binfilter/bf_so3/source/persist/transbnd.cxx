@@ -38,7 +38,7 @@
 #include <rtl/ustring.h>
 #endif
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <tools/solar.h>
 #include <tools/debug.hxx>
@@ -169,7 +169,7 @@ void SvBinding::OnDataAvailable (
         case SVBSCF_INTERMEDIATEDATANOTIFICATION:
             if (m_bMimeAvail && m_xLockBytes.Is() && nSize)
             {
-                vos::IMutex &rAppMutex = Application::GetSolarMutex();
+                osl::SolarMutex &rAppMutex = Application::GetSolarMutex();
                 if (m_xCallback.Is() && rAppMutex.tryToAcquire())
                 {
                     m_xCallback->OnDataAvailable (
@@ -198,7 +198,7 @@ void SvBinding::OnProgress (
     SvBindingRef xThis (this);
     if (m_xCallback.Is())
     {
-        vos::IMutex &rAppMutex = Application::GetSolarMutex();
+        osl::SolarMutex &rAppMutex = Application::GetSolarMutex();
         if (m_xCallback.Is() && rAppMutex.tryToAcquire())
         {
             m_xCallback->OnProgress (

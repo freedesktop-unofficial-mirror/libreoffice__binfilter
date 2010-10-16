@@ -29,7 +29,7 @@
 // header for class Application
 #include <vcl/svapp.hxx>
 // header for class OGuard
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include "ChXChartDataChangeEventListener.hxx"
 #include "ChXChartDocument.hxx"
@@ -41,7 +41,6 @@ namespace binfilter {
 
 // using namespace osl;
 using namespace rtl;
-using namespace vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star;

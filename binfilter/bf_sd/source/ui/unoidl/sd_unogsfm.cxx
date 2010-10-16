@@ -27,7 +27,7 @@
  ************************************************************************/
 
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #include <vcl/svapp.hxx>
 
@@ -51,7 +51,6 @@ namespace binfilter {
 
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 UNO3_GETIMPLEMENTATION_IMPL( SdUnoGraphicStyleFamily );

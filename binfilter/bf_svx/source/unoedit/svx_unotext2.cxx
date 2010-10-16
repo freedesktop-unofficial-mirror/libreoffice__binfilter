@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <vcl/svapp.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
@@ -48,7 +48,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 

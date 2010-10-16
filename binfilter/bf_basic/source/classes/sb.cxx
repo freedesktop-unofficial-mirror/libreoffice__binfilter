@@ -47,7 +47,7 @@
 #include "image.hxx"
 #include "filefmt.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 

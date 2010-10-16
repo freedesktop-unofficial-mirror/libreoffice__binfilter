@@ -47,7 +47,7 @@
 
 #include <sfxuno.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
 #include <bf_svtools/lstner.hxx>
 namespace binfilter {
