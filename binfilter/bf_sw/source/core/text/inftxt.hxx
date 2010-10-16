@@ -224,10 +224,10 @@ public:
                    const xub_StrLen nIdx = 0,
                    const xub_StrLen nLen = STRING_LEN );
 
-    inline SwTxtSizeInfo( SwTxtFrm *pFrm, SwFont *pFnt = 0,
-                   const xub_StrLen nIdx = 0,
-                   const xub_StrLen nLen = STRING_LEN )
-           { CtorInit( pFrm, pFnt, nIdx, nLen ); }
+    inline SwTxtSizeInfo( SwTxtFrm *_pFrm, SwFont *_pFnt = 0,
+                   const xub_StrLen _nIdx = 0,
+                   const xub_StrLen _nLen = STRING_LEN )
+           { CtorInit( _pFrm, _pFnt, _nIdx, _nLen ); }
 
     // GetMultiAttr returns the text attribute of the multiportion,
     // if rPos is inside any multi-line part.
@@ -532,9 +532,9 @@ class SwTxtFormatInfo : public SwTxtPaintInfo
 public:
     void CtorInit( SwTxtFrm *pFrm, const sal_Bool bInterHyph = sal_False,
         const sal_Bool bQuick = sal_False, const sal_Bool bTst = sal_False );
-    inline SwTxtFormatInfo(SwTxtFrm *pFrame,const sal_Bool bInterHyph=sal_False,
-            const sal_Bool bQuick = sal_False, const sal_Bool bTst = sal_False )
-           { CtorInit( pFrame, bInterHyph, bQuick, bTst ); }
+    inline SwTxtFormatInfo(SwTxtFrm *pFrame,const sal_Bool _bInterHyph=sal_False,
+            const sal_Bool _bQuick = sal_False, const sal_Bool bTst = sal_False )
+           { CtorInit( pFrame, _bInterHyph, _bQuick, bTst ); }
 
     // For the formatting inside a double line in a line (multi-line portion)
     // we need a modified text-format-info:
@@ -806,24 +806,24 @@ inline void SwTxtPaintInfo::SetPaintOfst( const SwTwips nNew )
 }
 
 
-inline void SwTxtPaintInfo::DrawText( const XubString &rText,
-                            const SwLinePortion &rPor,
-                            const xub_StrLen nStart, const xub_StrLen nLen,
-                            const sal_Bool bKern ) const
+inline void SwTxtPaintInfo::DrawText( const XubString&,
+                            const SwLinePortion&,
+                            const xub_StrLen , const xub_StrLen,
+                            const sal_Bool ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTxtPaintInfo*)this)->_DrawText( rText, rPor, nStart, nLen, bKern );
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
-inline void SwTxtPaintInfo::DrawText( const SwLinePortion &rPor,
-        const xub_StrLen nLen, const sal_Bool bKern ) const
+inline void SwTxtPaintInfo::DrawText( const SwLinePortion&,
+        const xub_StrLen, const sal_Bool ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern );
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
-inline void SwTxtPaintInfo::DrawWrongText( const SwLinePortion &rPor,
-                                const xub_StrLen nLen, const sal_Bool bKern ) const
+inline void SwTxtPaintInfo::DrawWrongText( const SwLinePortion&,
+                                const xub_StrLen, const sal_Bool ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwTxtPaintInfo*)this)->_DrawText( *pTxt, rPor, nIdx, nLen, bKern, sal_True );
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 /*************************************************************************
