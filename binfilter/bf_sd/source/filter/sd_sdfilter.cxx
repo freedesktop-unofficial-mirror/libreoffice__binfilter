@@ -30,7 +30,7 @@
 
 #include <tools/debug.hxx>
 #include <osl/file.hxx>
-#include <vos/module.hxx>
+#include <osl/module.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/progress.hxx>

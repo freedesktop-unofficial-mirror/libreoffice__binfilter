@@ -51,7 +51,7 @@
 #include "insdlg.hxx"
 #include "bf_so3/outplace.hxx"
 #include <viscache.hxx>
-#include <vos/module.hxx>
+#include <osl/module.hxx>
 #include <sot/formats.hxx>
 #include <bf_svtools/filter.hxx>
 #include <comphelper/classids.hxx>
@@ -60,7 +60,6 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <bf_svtools/wmf.hxx>
 
-using namespace vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::datatransfer;
 
@@ -636,7 +635,7 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
     io.dwFlags=IOF_SELECTCREATENEW | IOF_DISABLELINK;
     io.clsid = rName.GetCLSID();
 
-    OModule aOleDlgLib;
+    osl::Module aOleDlgLib;
     if( !aOleDlgLib.load( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "oledlg" ) ) ) )
         return &xRet;
 

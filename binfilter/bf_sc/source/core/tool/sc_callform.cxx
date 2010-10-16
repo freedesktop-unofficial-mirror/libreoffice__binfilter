@@ -32,7 +32,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#include <vos/module.hxx>
+#include <osl/module.hxx>
 
 #include "adiasync.hxx"
 #include <tools/debug.hxx>
@@ -150,15 +150,15 @@ class ModuleData : public DataObject
 {
     friend class ModuleCollection;
     String      aName;
-    vos::OModule*  pInstance;
+    osl::Module* pInstance;
 public:
-    ModuleData(const String& rStr, vos::OModule* pInst) : aName (rStr), pInstance (pInst) {}
-    ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new vos::OModule(aName);}
+    ModuleData(const String& rStr, osl::Module* pInst) : aName (rStr), pInstance (pInst) {}
+    ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new osl::Module(aName);}
     ~ModuleData() { delete pInstance; }
     virtual DataObject* Clone() const { return new ModuleData(*this); }
 
     const   String&         GetName() const { return aName; }
-    vos::OModule*           GetInstance() const { return pInstance; }
+    osl::Module*            GetInstance() const { return pInstance; }
     void            FreeInstance() { delete pInstance; pInstance = 0; }
 };
 
@@ -210,7 +210,7 @@ public:
 /*N*/ BOOL FuncData::Call(void** ppParam)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-        vos::OModule* pLib = pModuleData->GetInstance();
+        osl::Module* pLib = pModuleData->GetInstance();
 /*N*/   FARPROC fProc = (FARPROC)pLib->getSymbol(aFuncName);
 /*N*/   if (fProc != NULL)
 /*N*/   {
