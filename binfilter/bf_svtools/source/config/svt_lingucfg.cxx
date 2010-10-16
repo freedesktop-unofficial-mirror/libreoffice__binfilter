@@ -35,6 +35,7 @@
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
 #include <vcl/svapp.hxx>
+#include <sal/macros.h>
 
 #include <bf_svtools/lingucfg.hxx>
 #include <linguprops.hxx>
@@ -261,7 +262,7 @@ const Sequence< OUString > & SvtLinguConfigItem::GetPropertyNames()
 
     if (!bInitialized)
     {
-        INT32 nMax = sizeof(aNamesToHdl) / sizeof(aNamesToHdl[0]);
+        INT32 nMax = SAL_N_ELEMENTS(aNamesToHdl);
 
         aNames.realloc( nMax );
         OUString *pNames = aNames.getArray();

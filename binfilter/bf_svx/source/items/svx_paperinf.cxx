@@ -30,7 +30,7 @@
 
 #include <limits.h>
 
-
+#include <sal/macros.h>
 #include "dialogs.hrc"
 #include "paperinf.hxx"
 namespace binfilter {
@@ -82,7 +82,7 @@ static Size __FAR_DATA aDinTab[] =
     Size(lJISB6Width, lJISB6Height)        // B6 (JIS)
 };
 
-static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
+static const int nTabSize = SAL_N_ELEMENTS(aDinTab);
 
 // -----------------------------------------------------------------------
 

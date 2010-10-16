@@ -31,6 +31,7 @@
 #endif
 
 #include <vcl/svapp.hxx>
+#include <sal/macros.h>
 
 #include "cfgitem.hxx"
 
@@ -190,14 +191,14 @@ static const char* aRootName = "Office.Math";
 
 /*N*/ Sequence< OUString > SmMathConfigItem::GetFormatPropertyNames()
 /*N*/ {
-/*N*/     USHORT nCnt = sizeof(aFormatPropNames) / sizeof(aFormatPropNames[0]);
+/*N*/     USHORT nCnt = SAL_N_ELEMENTS(aFormatPropNames);
 /*N*/     return lcl_GetPropertyNames( aFormatPropNames, nCnt );
 /*N*/ }
 
 
 /*N*/ Sequence< OUString > SmMathConfigItem::GetOtherPropertyNames()
 /*N*/ {
-/*N*/     USHORT nCnt = sizeof(aMathPropNames) / sizeof(aMathPropNames[0]);
+/*N*/     USHORT nCnt = SAL_N_ELEMENTS(aMathPropNames);
 /*N*/     return lcl_GetPropertyNames( aMathPropNames, nCnt );
 /*N*/ }
 

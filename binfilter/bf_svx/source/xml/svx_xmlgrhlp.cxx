@@ -30,6 +30,7 @@
 #include <unotools/streamwrap.hxx>
 #include <unotools/tempfile.hxx>
 #include <cppuhelper/implbase1.hxx> // helper for implementations
+#include <sal/macros.h>
 
 #include "impgrf.hxx"
 #include "xmlgrhlp.hxx"
@@ -433,7 +434,7 @@ public:
 /*N*/     {
 /*N*/         const ByteString aExt( rFileName.Copy( rFileName.Len() - 3 ), RTL_TEXTENCODING_ASCII_US );
 /*N*/
-/*N*/         for( long i = 0, nCount = sizeof( aMapper ) / sizeof( aMapper[ 0 ] ); ( i < nCount ) && !aMimeType.Len(); i++ )
+/*N*/         for( long i = 0, nCount = SAL_N_ELEMENTS( aMapper ); ( i < nCount ) && !aMimeType.Len(); i++ )
 /*N*/             if( aExt == aMapper[ i ].pExt )
 /*N*/                 aMimeType = String( aMapper[ i ].pMimeType, RTL_TEXTENCODING_ASCII_US );
 /*N*/     }

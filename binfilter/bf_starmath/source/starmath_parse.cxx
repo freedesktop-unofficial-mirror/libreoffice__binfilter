@@ -37,6 +37,7 @@
 #include <com/sun/star/i18n/UnicodeType.hpp>
 
 #include <bf_svtools/syslocale.hxx>
+#include <sal/macros.h>
 
 #include "starmath.hrc"
 #include "config.hxx"
@@ -327,7 +328,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   const SmTokenTableEntry * pRes = 0;
 /*N*/   if (rName.Len())
 /*N*/   {
-/*N*/       INT32 nEntries = sizeof( aTokenTable ) / sizeof( aTokenTable[0] );
+/*N*/       INT32 nEntries = SAL_N_ELEMENTS( aTokenTable );
 /*N*/       for (INT32 i = 0;  i < nEntries;  ++i)
 /*N*/       {
 /*N*/           if (rName.EqualsIgnoreCaseAscii( aTokenTable[i].pIdent ))

@@ -28,7 +28,7 @@
 
 #include "socont.h"
 #include <bf_so3/svstor.hxx>
-
+#include <sal/macros.h>
 
 #define LOMETRIC_PER_INCH   254
 
@@ -37,8 +37,6 @@
 
 #define MAP_PIX_TO_LOGHIM(x,ppli)   MulDiv(HIMETRIC_PER_INCH, (x), (ppli))
 #define MAP_LOGHIM_TO_PIX(x,ppli)   MulDiv((ppli), (x), HIMETRIC_PER_INCH)
-
-#define ARRAYSIZE(a)    (sizeof(a)/sizeof(a[0]))
 
 namespace binfilter {
 
@@ -1507,13 +1505,13 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
     if (TEXT('\0')==*pszFile)
         {
         // MM ???
-        lstrcpyn( szObj, "untitled", ARRAYSIZE(szObj) );
+        lstrcpyn( szObj, "untitled", SAL_N_ELEMENTS(szObj) );
         //LoadString(m_pPG->m_hInst, IDS_UNTITLED, szObj, sizeof(szObj));
         }
     else
         {
         // MM ???
-        lstrcpyn( szObj, "untitled", ARRAYSIZE(szObj) );
+        lstrcpyn( szObj, "untitled", SAL_N_ELEMENTS(szObj) );
         //GetFileTitle(pszFile, szObj, sizeof(szObj));
 
        #ifndef WIN32
@@ -1523,7 +1521,7 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
         }
 
     // MM ???
-    lstrcpyn( szApp, "app name", ARRAYSIZE(szApp) );
+    lstrcpyn( szApp, "app name", SAL_N_ELEMENTS(szApp) );
     //LoadString(m_pPG->m_hInst, IDS_CAPTION, szApp, sizeof(szApp));
    #ifdef WIN32ANSI
     OLECHAR     szObjW[40], szAppW[40];

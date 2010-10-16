@@ -80,7 +80,7 @@
 
 // for locking SolarMutex: svapp + mutex
 #include <vcl/svapp.hxx>
-
+#include <sal/macros.h>
 #include <vos/mutex.hxx>
 namespace binfilter {
 
@@ -909,6 +909,8 @@ void SwXMLImport::SetConfigurationSettings(const Sequence < PropertyValue > & aC
 #include <stdio.h>
 #include <string.h>
 
+#include <sal/macros.h>
+
  const char* aNmArr[] = {
  "ForbiddenCharacters" ,
  "IsKernAsianPunctuation" ,
@@ -950,20 +952,20 @@ int Chk_Unique_hashValue( unsigned short nTblSize )
 {
     memset( aArr, 0, sizeof( aArr ) );
     unsigned long ii;
-    for( int n = 0; n < sizeof( aNmArr ) / sizeof( aNmArr[0] ); ++n )
+    for( int n = 0; n < SAL_N_ELEMENTS( aNmArr ); ++n )
     {
         ii = calc_hash( aNmArr[ n ] ) % nTblSize;
         if( aArr[ ii ] )
             break;
         aArr[ ii ] = 1;
     }
-    return n == ( sizeof( aNmArr ) / sizeof( aNmArr[0] ) );
+    return n == SAL_N_ELEMENTS( aNmArr );
 }
 
 void Show_Result( unsigned short nTblSize )
 {
     printf( "\nTblSz = %d\n", nTblSize );
-    for( int n = 0; n < sizeof( aNmArr ) / sizeof( aNmArr[0] ); ++n )
+    for( int n = 0; n < SAL_N_ELEMENTS( aNmArr ); ++n )
     {
         unsigned long ii = calc_hash( aNmArr[ n ] ) % nTblSize;
         printf( "%-30s -> %3d\n", aNmArr[ n ], ii );
@@ -977,7 +979,7 @@ void main()
 
     for( nSub = ' '; nSub < 127; ++nSub )
         for( nPrime = 13 ; nPrime < 99; ++nPrime )
-            for( nTblSize = sizeof( aNmArr ) / sizeof( aNmArr[0] );
+            for( nTblSize = SAL_N_ELEMENTS( aNmArr );
                     nTblSize < TBL_MAX; ++nTblSize )
                 if( Chk_Unique_hashValue( nTblSize ))
                 {
@@ -996,7 +998,7 @@ void main()
 
     Show_Result( nTblSize );
     printf( "\nPrime: %d, nSub: %d, TblSz = %d - %d", nPrime, nSub,
-            sizeof( aNmArr ) / sizeof( aNmArr[0] ), nTblSize );
+            SAL_N_ELEMENTS( aNmArr ), nTblSize );
 }
 -----------------------------------------------------------------
     */
@@ -1069,7 +1071,7 @@ void main()
             const sal_Unicode* p = pValues->Name;
             for( ULONG nLen = pValues->Name.getLength(); nLen; --nLen, ++p )
                 nHash = (nHash * nPrime) ^ ( *p - nSub );
-            nHash %= sizeof( aNotSetArr ) / sizeof( aNotSetArr[0] );
+            nHash %= SAL_N_ELEMENTS( aNotSetArr );
             bSet = 0 == aNotSetArr[ nHash ].pName ||
                     !pValues->Name.equalsAsciiL(
                             aNotSetArr[ nHash ].pName,

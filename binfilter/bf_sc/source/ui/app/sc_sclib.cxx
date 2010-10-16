@@ -43,6 +43,7 @@
 #include <bf_sfx2/app.hxx>
 #include <unotools/configitem.hxx>
 #include <comphelper/types.hxx>
+#include <sal/macros.h>
 
 #include <sot/formats.hxx>
 #define SOT_FORMATSTR_ID_STARCALC_30 SOT_FORMATSTR_ID_STARCALC
@@ -515,7 +516,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/           pSylk,
 /*N*/           pLotus2
 /*N*/           };
-/*N*/       const UINT16 nAnzMuster = sizeof(ppMuster) / sizeof(ppMuster[0]);
+/*N*/       const UINT16 nAnzMuster = SAL_N_ELEMENTS(ppMuster);
 /*N*/ #endif
 /*N*/
 /*N*/       const sal_Char* pFilterName[ nAnzMuster ] =     // zugehoerige Filter

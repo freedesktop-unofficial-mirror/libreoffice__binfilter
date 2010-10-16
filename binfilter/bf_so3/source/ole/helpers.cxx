@@ -31,7 +31,7 @@
 
 #include <systools/win32/snprintf.h>
 
-#define ARRAYSIZE(a)    (sizeof(a)/sizeof(a[0]))
+#include <sal/macros.h>
 
 namespace binfilter {
 static BOOL GetFileTimes(LPTSTR pszFileName, FILETIME *pft);
@@ -300,10 +300,10 @@ STDAPI_(UINT) StarObject_GetUserTypeOfClass(REFCLSID clsID, UINT iName
     StarObject_StringFromCLSID(clsID, &pszCLSID);
 
     if (0==iName)
-        sntprintf(szKey, ARRAYSIZE(szKey), TEXT("CLSID\\%s"), pszCLSID);
+        sntprintf(szKey, SAL_N_ELEMENTS(szKey), TEXT("CLSID\\%s"), pszCLSID);
     else
         {
-        sntprintf(szKey, ARRAYSIZE(szKey), TEXT("CLSID\\%s\\AuxUserType\\%u")
+        sntprintf(szKey, SAL_N_ELEMENTS(szKey), TEXT("CLSID\\%s\\AuxUserType\\%u")
             , pszCLSID, iName);
         }
 
@@ -370,7 +370,7 @@ STDAPI StarObject_DoConvert(IStorage *pIStorage, REFCLSID clsID)
 
     //Get new user type
     if (0==StarObject_GetUserTypeOfClass(clsID, 0, szNew, 256))
-        lstrcpyn(szNew, TEXT(""), ARRAYSIZE(szNew));
+        lstrcpyn(szNew, TEXT(""), SAL_N_ELEMENTS(szNew));
 
     //Write new class into the storage
     if (SUCCEEDED(WriteClassStg(pIStorage, clsID)))
@@ -487,9 +487,9 @@ STDAPI_(HGLOBAL) StarObject_ObjectDescriptorFromOleObject
    #endif
 
     if (fLink && NULL!=pszName)
-        sntprintf(szName, ARRAYSIZE(szName), TEXT("Linked %s"), pszName);
+        sntprintf(szName, SAL_N_ELEMENTS(szName), TEXT("Linked %s"), pszName);
     else
-        lstrcpyn(szName, pszName, ARRAYSIZE(szName));
+        lstrcpyn(szName, pszName, SAL_N_ELEMENTS(szName));
 
    #ifndef WIN32ANSI
    //#ifdef UNICODE

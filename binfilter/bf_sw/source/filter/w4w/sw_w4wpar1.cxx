@@ -97,6 +97,8 @@
 #include <flddat.hxx>           // class SwDateTimeField
 #include <swunohelper.hxx>
 
+#include <sal/macros.h>
+
 #include <swerror.h>
 #include <mdiexp.hxx>          // ...SetPercent()
 #include <statstr.hrc>          // ResId fuer Statusleiste
@@ -108,7 +110,7 @@ namespace binfilter {
 #define MOGEL_WW6       // Bei WW6 werden PGW und SFL ignoriert, da falsch
 
 
-#define CHARBUF_SIZE (sizeof( aCharBuffer )/sizeof( aCharBuffer[0]))
+#define CHARBUF_SIZE (SAL_N_ELEMENTS( aCharBuffer ))
 
 // #define bInsertMode FALSE
 

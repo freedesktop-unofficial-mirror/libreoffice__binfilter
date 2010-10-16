@@ -38,6 +38,7 @@
 
 //Statt uiparam.hxx selbst definieren, das spart keys
 #include <bf_svx/dialogs.hrc>
+#include <sal/macros.h>
 #define ITEMID_FONTLIST         SID_ATTR_CHAR_FONTLIST
 
 #include <sot/storinfo.hxx>
@@ -742,8 +743,8 @@ using namespace ::rtl;
 /*M*/                           0, 0, 0  };
 /*M*/   if(!bWeb)
 /*M*/   {
-/*M*/         nRange[ (sizeof(nRange)/sizeof(nRange[0])) - 3 ] = RES_PARATR_TABSTOP;
-/*M*/         nRange[ (sizeof(nRange)/sizeof(nRange[0])) - 2 ] = RES_PARATR_HYPHENZONE;
+/*M*/         nRange[ SAL_N_ELEMENTS(nRange) - 3 ] = RES_PARATR_TABSTOP;
+/*M*/         nRange[ SAL_N_ELEMENTS(nRange) - 2 ] = RES_PARATR_HYPHENZONE;
 /*M*/   }
 /*M*/   SfxItemSet aDfltSet( pDoc->GetAttrPool(), nRange );
 /*M*/

@@ -30,7 +30,7 @@
 
 #include "bf_basic/sbxvar.hxx"
 #include <bf_svtools/searchopt.hxx>
-
+#include <sal/macros.h>
 
 #include <bf_svtools/memberid.hrc>
 
@@ -88,7 +88,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       "Japanese/IsIgnoreMiddleDot"            // 18
 /*N*/   };
 /*N*/
-/*N*/     const int nCount = sizeof( aTranslitNames ) / sizeof( aTranslitNames[0] );
+/*N*/   const int nCount = SAL_N_ELEMENTS( aTranslitNames );
 /*N*/   Sequence< OUString > aNames( nCount );
 /*N*/   OUString* pNames = aNames.getArray();
 /*N*/   for (INT32 i = 0;  i < nCount;  ++i)

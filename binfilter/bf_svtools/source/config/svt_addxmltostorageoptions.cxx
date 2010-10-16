@@ -42,6 +42,7 @@
 #include <com/sun/star/uno/Sequence.hxx>
 
 #include <rtl/logfile.hxx>
+#include <sal/macros.h>
 #include "itemholder1.hxx"
 
 //_________________________________________________________________________________________________________________
@@ -207,7 +208,7 @@ Sequence< OUString > SvtAddXMLToStorageOptions_Impl::GetPropertyNames()
         "Draw"
     };
 
-    const sal_uInt16 nCnt = sizeof(pProperties) / sizeof( pProperties[0] );
+    const sal_uInt16 nCnt = SAL_N_ELEMENTS(pProperties);
     Sequence<OUString> aNames( nCnt );
     OUString* pNames = aNames.getArray();
     for( sal_uInt16 n = 0; n < nCnt; ++n )

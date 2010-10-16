@@ -36,6 +36,7 @@
 #include <unotools/configitem.hxx>
 #include <tools/debug.hxx>
 #include <vcl/print.hxx>
+#include <sal/macros.h>
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 
@@ -48,7 +49,7 @@
 namespace binfilter
 {
 
-#define DPI_COUNT (sizeof(aDPIArray)/sizeof(aDPIArray[0 ]))
+#define DPI_COUNT (SAL_N_ELEMENTS(aDPIArray))
 
 // -----------
 // - Defines -

@@ -36,6 +36,7 @@
 #include <bf_svx/ulspitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
+#include <sal/macros.h>
 
 #include <horiornt.hxx>
 
@@ -208,7 +209,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/
-/*N*/   for( int nC = 0, nArrLen = sizeof(aFontSizeArr) / sizeof( aFontSizeArr[0]);
+/*N*/   for( int nC = 0, nArrLen = SAL_N_ELEMENTS(aFontSizeArr);
 /*N*/           nC < nArrLen; ++nC )
 /*N*/   {
 /*N*/       SvxFontHeightItem *pFSize = aFontSizeArr[ nC ], *pOldFSize;

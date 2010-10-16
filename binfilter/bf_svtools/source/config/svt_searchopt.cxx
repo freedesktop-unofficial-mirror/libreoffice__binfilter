@@ -34,6 +34,7 @@
 #include <tools/solar.h>
 #include <tools/debug.hxx>
 #include <unotools/configitem.hxx>
+#include <sal/macros.h>
 
 #include <com/sun/star/i18n/TransliterationModules.hpp>
 #include <com/sun/star/uno/Sequence.hxx>
@@ -173,7 +174,7 @@ Sequence< OUString > SvtSearchOptions_Impl::GetPropertyNames() const
         "Japanese/IsIgnoreMiddleDot"            // 24
     };
 
-    const int nCount = sizeof( aPropNames ) / sizeof( aPropNames[0] );
+    const int nCount = SAL_N_ELEMENTS( aPropNames );
     Sequence< OUString > aNames( nCount );
     OUString* pNames = aNames.getArray();
     for (INT32 i = 0;  i < nCount;  ++i)
