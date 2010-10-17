@@ -36,9 +36,7 @@ NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  scpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sc.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
