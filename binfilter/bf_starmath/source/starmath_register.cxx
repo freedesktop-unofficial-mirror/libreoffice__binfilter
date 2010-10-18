@@ -28,9 +28,6 @@
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
-#include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
 #endif
@@ -113,78 +110,6 @@ void SAL_CALL component_getImplementationEnvironment(
         uno_Environment**   ppEnvironment           )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
-}
-
-sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
-                                        void*   pRegistryKey    )
-{
-    Reference< registry::XRegistryKey >
-            xKey( reinterpret_cast< registry::XRegistryKey* >( pRegistryKey ) ) ;
-
-    OUString aDelimiter( RTL_CONSTASCII_USTRINGPARAM("/") );
-    OUString aUnoServices( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES") );
-
-    // Eigentliche Implementierung und ihre Services registrieren
-    sal_Int32 i;
-    Reference< registry::XRegistryKey >  xNewKey;
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLImport_getImplementationName() +
-                               aUnoServices );
-
-    Sequence< OUString > aServices = SmXMLImport_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLExport_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLExport_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLImportMeta_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLImportMeta_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLExportMeta_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLExportMeta_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLImportSettings_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLImportSettings_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLExportSettings_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLExportSettings_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmXMLExportContent_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmXMLExportContent_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    xNewKey = xKey->createKey( aDelimiter + SmDocument_getImplementationName() +
-                               aUnoServices );
-
-    aServices = SmDocument_getSupportedServiceNames();
-    for(i = 0; i < aServices.getLength(); i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    return sal_True;
 }
 
 void* SAL_CALL component_getFactory( const sal_Char* pImplementationName,
