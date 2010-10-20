@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -113,7 +112,7 @@ struct PropValData
 };
 
 typedef PropValData* PropValDataPtr;
-SV_DECL_PTRARR(PropValDataArr, PropValDataPtr, 5, 5 )//STRIP008 ;
+SV_DECL_PTRARR(PropValDataArr, PropValDataPtr, 5, 5 )
 SV_IMPL_PTRARR(PropValDataArr, PropValDataPtr)
 
 
@@ -210,9 +209,6 @@ const SfxItemPropertyMap* GetLineNumberingMap()
     return aLineNumberingMap_Impl;
 }
 
-/* -----------------05.05.98 08:30-------------------
- *
- * --------------------------------------------------*/
 SwCharFmt* lcl_getCharFmt(SwDoc* pDoc, const uno::Any& aValue)
 {
     SwCharFmt* pRet = 0;
@@ -233,9 +229,7 @@ SwCharFmt* lcl_getCharFmt(SwDoc* pDoc, const uno::Any& aValue)
     }
     return pRet;
 }
-/* -----------------05.05.98 08:30-------------------
- *
- * --------------------------------------------------*/
+
 SwTxtFmtColl* lcl_GetParaStyle(SwDoc* pDoc, const uno::Any& aValue)
 {
     OUString uTmp;
@@ -251,9 +245,7 @@ SwTxtFmtColl* lcl_GetParaStyle(SwDoc* pDoc, const uno::Any& aValue)
     }
     return pRet;
 }
-/* -----------------05.05.98 08:30-------------------
- *
- * --------------------------------------------------*/
+
 SwPageDesc* lcl_GetPageDesc(SwDoc* pDoc, const uno::Any& aValue)
 {
     SwPageDesc* pRet = 0;
@@ -279,9 +271,7 @@ SwPageDesc* lcl_GetPageDesc(SwDoc* pDoc, const uno::Any& aValue)
     }
     return pRet;
 }
-/******************************************************************************
- *
- ******************************************************************************/
+
 // Numerierung
 const unsigned short aSvxToUnoAdjust[] =
 {
@@ -306,23 +296,16 @@ const unsigned short aUnoToSvxAdjust[] =
 /******************************************************************
  * SwXFootnoteProperties
  ******************************************************************/
-/* -----------------------------06.04.00 11:43--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXFootnoteProperties::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFootnoteProperties");
 }
-/* -----------------------------06.04.00 11:43--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXFootnoteProperties::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.FootnoteSettings") == rServiceName;
 }
-/* -----------------------------06.04.00 11:43--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFootnoteProperties::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -330,33 +313,24 @@ Sequence< OUString > SwXFootnoteProperties::getSupportedServiceNames(void) throw
     pArray[0] = C2U("com.sun.star.text.FootnoteSettings");
     return aRet;
 }
-/*-- 14.12.98 14:03:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFootnoteProperties::SwXFootnoteProperties(SwDoc* pDc) :
     pDoc(pDc),
     _pMap(GetFootnoteMap())
 {
 }
-/*-- 14.12.98 14:03:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFootnoteProperties::~SwXFootnoteProperties()
 {
-
 }
-/*-- 14.12.98 14:03:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo >  SwXFootnoteProperties::getPropertySetInfo(void)
                                                                 throw( uno::RuntimeException )
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef = new SfxItemPropertySetInfo( _pMap );
     return aRef;
 }
-/*-- 14.12.98 14:03:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, const uno::Any& aValue)
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -480,9 +454,7 @@ void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, cons
     else
         throw uno::RuntimeException();
 }
-/*-- 14.12.98 14:03:21---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXFootnoteProperties::getPropertyValue(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -604,36 +576,28 @@ uno::Any SwXFootnoteProperties::getPropertyValue(const OUString& rPropertyName)
         throw uno::RuntimeException();
     return aRet;
 }
-/*-- 14.12.98 14:03:21---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnoteProperties::addPropertyChangeListener(
     const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:03:21---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnoteProperties::removePropertyChangeListener(
     const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:03:21---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnoteProperties::addVetoableChangeListener(
     const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:03:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnoteProperties::removeVetoableChangeListener(
     const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
@@ -644,23 +608,16 @@ void SwXFootnoteProperties::removeVetoableChangeListener(
 /******************************************************************
  * SwXEndnoteProperties
  ******************************************************************/
-/* -----------------------------06.04.00 11:45--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXEndnoteProperties::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXEndnoteProperties");
 }
-/* -----------------------------06.04.00 11:45--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXEndnoteProperties::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.FootnoteSettings") == rServiceName;
 }
-/* -----------------------------06.04.00 11:45--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXEndnoteProperties::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -668,33 +625,23 @@ Sequence< OUString > SwXEndnoteProperties::getSupportedServiceNames(void) throw(
     pArray[0] = C2U("com.sun.star.text.FootnoteSettings");
     return aRet;
 }
-/*-- 14.12.98 14:27:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXEndnoteProperties::SwXEndnoteProperties(SwDoc* pDc) :
     pDoc(pDc),
     _pMap(GetEndnoteMap())
 {
-
 }
-/*-- 14.12.98 14:27:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXEndnoteProperties::~SwXEndnoteProperties()
 {
-
 }
-/*-- 14.12.98 14:27:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo >  SwXEndnoteProperties::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef = new SfxItemPropertySetInfo( _pMap );
     return aRef;
 }
-/*-- 14.12.98 14:27:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXEndnoteProperties::setPropertyValue(const OUString& rPropertyName, const uno::Any& aValue)
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException,
         lang::WrappedTargetException, uno::RuntimeException )
@@ -773,9 +720,7 @@ void SwXEndnoteProperties::setPropertyValue(const OUString& rPropertyName, const
             throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
     }
 }
-/*-- 14.12.98 14:27:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXEndnoteProperties::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
@@ -864,60 +809,46 @@ uno::Any SwXEndnoteProperties::getPropertyValue(const OUString& rPropertyName)
     }
     return aRet;
 }
-/*-- 14.12.98 14:27:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXEndnoteProperties::addPropertyChangeListener(
     const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:27:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXEndnoteProperties::removePropertyChangeListener(const OUString& PropertyName,
         const uno:: Reference< beans::XPropertyChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:27:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXEndnoteProperties::addVetoableChangeListener(const OUString& PropertyName,
     const uno:: Reference< beans::XVetoableChangeListener > & aListener)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:27:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXEndnoteProperties::removeVetoableChangeListener(const OUString& PropertyName, const uno:: Reference< beans::XVetoableChangeListener > & aListener)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
+
 /******************************************************************
  * SwXLineNumberingProperties
  ******************************************************************/
-/* -----------------------------06.04.00 11:47--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXLineNumberingProperties::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXLineNumberingProperties");
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXLineNumberingProperties::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.LineNumberingProperties") == rServiceName;
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXLineNumberingProperties::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -925,33 +856,23 @@ Sequence< OUString > SwXLineNumberingProperties::getSupportedServiceNames(void) 
     pArray[0] = C2U("com.sun.star.text.LineNumberingProperties");
     return aRet;
 }
-/*-- 14.12.98 14:33:36---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXLineNumberingProperties::SwXLineNumberingProperties(SwDoc* pDc) :
     pDoc(pDc),
     _pMap(GetLineNumberingMap())
 {
-
 }
-/*-- 14.12.98 14:33:37---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXLineNumberingProperties::~SwXLineNumberingProperties()
 {
-
 }
-/*-- 14.12.98 14:33:37---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo >  SwXLineNumberingProperties::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef = new SfxItemPropertySetInfo( _pMap );
     return aRef;
 }
-/*-- 14.12.98 14:33:37---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXLineNumberingProperties::setPropertyValue(
     const OUString& rPropertyName, const Any& aValue)
         throw( UnknownPropertyException, PropertyVetoException,
@@ -1067,9 +988,7 @@ void SwXLineNumberingProperties::setPropertyValue(
     else
         throw uno::RuntimeException();
 }
-/*-- 14.12.98 14:33:38---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXLineNumberingProperties::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
@@ -1174,35 +1093,28 @@ Any SwXLineNumberingProperties::getPropertyValue(const OUString& rPropertyName)
         throw uno::RuntimeException();
     return aRet;
 }
-/*-- 14.12.98 14:33:38---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXLineNumberingProperties::addPropertyChangeListener(const OUString& PropertyName, const uno:: Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:33:38---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXLineNumberingProperties::removePropertyChangeListener(const OUString& PropertyName, const uno:: Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:33:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXLineNumberingProperties::addVetoableChangeListener(const OUString& PropertyName, const uno:: Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 14:33:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXLineNumberingProperties::removeVetoableChangeListener(const OUString& PropertyName, const uno:: Reference< beans::XVetoableChangeListener > & aListener)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 DBG_WARNING("not implemented");
 }
+
 /******************************************************************
  * SwXNumberingRules
  ******************************************************************/
@@ -1212,17 +1124,13 @@ const String&   SwXNumberingRules::GetInvalidStyle()
 {
     return sInvalidStyle;
 }
-/* -----------------------------10.03.00 17:05--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXNumberingRules::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 17:05--------------------------------
 
- ---------------------------------------------------------------------------*/
 // return implementation specific data
 sal_Int64 SwXNumberingRules::getSomething( const uno::Sequence< sal_Int8 > & rId ) throw(::com::sun::star::uno::RuntimeException)
 {
@@ -1235,23 +1143,16 @@ sal_Int64 SwXNumberingRules::getSomething( const uno::Sequence< sal_Int8 > & rId
     return 0;
 }
 
-/* -----------------------------06.04.00 11:47--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXNumberingRules::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXNumberingRules");
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXNumberingRules::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.NumberingRules") == rServiceName;
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXNumberingRules::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -1260,9 +1161,6 @@ Sequence< OUString > SwXNumberingRules::getSupportedServiceNames(void) throw( Ru
     return aRet;
 }
 
-/*-- 14.12.98 14:57:57---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwXNumberingRules::SwXNumberingRules(const SwNumRule& rRule) :
     pNumRule(new SwNumRule(rRule)),
     bOwnNumRuleCreated(TRUE),
@@ -1291,9 +1189,7 @@ SwXNumberingRules::SwXNumberingRules(const SwNumRule& rRule) :
         sNewBulletFontNames[i] = SwXNumberingRules::GetInvalidStyle();
     }
 }
-/* -----------------22.02.99 16:35-------------------
- *
- * --------------------------------------------------*/
+
 SwXNumberingRules::SwXNumberingRules(SwDocShell& rDocSh) :
     pDoc(0),
     pNumRule(0),
@@ -1303,9 +1199,7 @@ SwXNumberingRules::SwXNumberingRules(SwDocShell& rDocSh) :
 {
     pDocShell->GetDoc()->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 }
-/* -----------------------------24.08.00 11:36--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXNumberingRules::SwXNumberingRules(SwDoc& rDoc) :
     pDoc(&rDoc),
     pNumRule(0),
@@ -1317,9 +1211,7 @@ SwXNumberingRules::SwXNumberingRules(SwDoc& rDoc) :
     sCreatedNumRuleName = rDoc.GetUniqueNumRuleName();
     sal_uInt16 nIndex = rDoc.MakeNumRule( sCreatedNumRuleName, 0 );
 }
-/*-- 14.12.98 14:57:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXNumberingRules::~SwXNumberingRules()
 {
     if(pDoc && sCreatedNumRuleName.Len())
@@ -1327,9 +1219,7 @@ SwXNumberingRules::~SwXNumberingRules()
     if( pNumRule && bOwnNumRuleCreated )
         delete pNumRule;
 }
-/*-- 14.12.98 14:57:58---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::replaceByIndex(sal_Int32 nIndex, const uno::Any& rElement)
     throw( lang::IllegalArgumentException, lang::IndexOutOfBoundsException,
                   lang::WrappedTargetException, uno::RuntimeException)
@@ -1398,16 +1288,12 @@ void SwXNumberingRules::replaceByIndex(sal_Int32 nIndex, const uno::Any& rElemen
         throw uno::RuntimeException();
 
 }
-/*-- 14.12.98 14:57:58---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXNumberingRules::getCount(void) throw( uno::RuntimeException )
 {
     return MAXLEVEL;
 }
-/*-- 14.12.98 14:57:58---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXNumberingRules::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException,
             uno::RuntimeException )
@@ -1436,24 +1322,18 @@ uno::Any SwXNumberingRules::getByIndex(sal_Int32 nIndex)
         throw uno::RuntimeException();
     return aVal;
 }
-/*-- 14.12.98 14:57:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type SwXNumberingRules::getElementType(void)
     throw( uno::RuntimeException )
 {
     return ::getCppuType((uno::Sequence<beans::PropertyValue>*)0);
 }
-/*-- 14.12.98 14:57:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXNumberingRules::hasElements(void) throw( uno::RuntimeException )
 {
     return sal_True;
 }
-/*-- 14.12.98 14:57:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
                 const SwNumRule& rNumRule, sal_Int32 nIndex) const
 {
@@ -1522,7 +1402,6 @@ uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
     pData = new PropValData((void*)&nINT32, SW_PROP_NAME_STR(UNO_NAME_FIRST_LINE_OFFSET), ::getCppuType((const sal_Int32*)0));
     aPropertyValues.Insert(pData, aPropertyValues.Count());
 
-    //
     nINT16 = rFmt.GetNumberingType();
     pData = new PropValData((void*)&nINT16, "NumberingType", ::getCppuType((const sal_Int16*)0));
     aPropertyValues.Insert(pData, aPropertyValues.Count());
@@ -1641,9 +1520,7 @@ uno::Sequence<beans::PropertyValue> SwXNumberingRules::getNumberingRuleByIndex(
     aPropertyValues.DeleteAndDestroy(0, aPropertyValues.Count());
     return aSeq;
 }
-/*-- 14.12.98 14:57:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 PropValData* lcl_FindProperty(const char* cName, PropValDataArr&    rPropertyValues)
 {
     OUString sCmp = C2U(cName);
@@ -1655,7 +1532,6 @@ PropValData* lcl_FindProperty(const char* cName, PropValDataArr&    rPropertyVal
     }
     return 0;
 }
-//-----------------------------------------------------------------------
 
 void SwXNumberingRules::setNumberingRuleByIndex(
             SwNumRule& rNumRule,
@@ -2050,18 +1926,14 @@ void SwXNumberingRules::setNumberingRuleByIndex(
     rNumRule.Set( (sal_uInt16)nIndex, aFmt );
 
 }
-/*-- 19.07.00 07:49:17---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SwXNumberingRules::getPropertySetInfo()
     throw(RuntimeException)
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef = new SfxItemPropertySetInfo( _pMap );
     return aRef;
 }
-/*-- 19.07.00 07:49:17---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::setPropertyValue( const OUString& rPropertyName, const Any& rValue )
     throw(UnknownPropertyException, PropertyVetoException,
         IllegalArgumentException, WrappedTargetException, RuntimeException)
@@ -2121,9 +1993,7 @@ void SwXNumberingRules::setPropertyValue( const OUString& rPropertyName, const A
         pDoc->UpdateNumRule( sCreatedNumRuleName, nPos );
     }
 }
-/*-- 19.07.00 07:49:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXNumberingRules::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -2158,41 +2028,31 @@ Any SwXNumberingRules::getPropertyValue( const OUString& rPropertyName )
         throw UnknownPropertyException();
     return aRet;
 }
-/*-- 19.07.00 07:49:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::addPropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 19.07.00 07:49:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::removePropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 19.07.00 07:49:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::addVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 19.07.00 07:49:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::removeVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/* -----------------------------17.10.00 14:23--------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXNumberingRules::getName() throw( RuntimeException )
 {
     String aString;
@@ -2204,18 +2064,14 @@ OUString SwXNumberingRules::getName() throw( RuntimeException )
     else
         return sCreatedNumRuleName;
 }
-/* -----------------------------17.10.00 14:23--------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXNumberingRules::setName(const OUString& Name_) throw( RuntimeException )
 {
     RuntimeException aExcept;
     aExcept.Message = C2U("readonly");
     throw aExcept;
 }
-/*-- 14.12.98 14:58:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXNumberingRules::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -2227,25 +2083,22 @@ void SwXNumberingRules::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         pDoc = 0;
     }
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
+/******************************************************************
+ * SwXChapterNumbering
+ ******************************************************************/
 OUString SwXChapterNumbering::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXChapterNumbering");
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXChapterNumbering::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     String sServiceName(rServiceName);
     return sServiceName.EqualsAscii("com.sun.star.text.ChapterNumbering") ||
             sServiceName.EqualsAscii("com.sun.star.text.NumberingRules");
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXChapterNumbering::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(2);
@@ -2254,16 +2107,12 @@ Sequence< OUString > SwXChapterNumbering::getSupportedServiceNames(void) throw( 
     pArray[1] = C2U("com.sun.star.text.NumberingRules");
     return aRet;
 }
-/* -----------------22.02.99 16:33-------------------
- *
- * --------------------------------------------------*/
+
 SwXChapterNumbering::SwXChapterNumbering(SwDocShell& rDocSh) :
     SwXNumberingRules(rDocSh)
 {
 }
-/* -----------------22.02.99 16:33-------------------
- *
- * --------------------------------------------------*/
+
 SwXChapterNumbering::~SwXChapterNumbering()
 {
 }
@@ -2271,23 +2120,16 @@ SwXChapterNumbering::~SwXChapterNumbering()
 /******************************************************************
  * SwXTextColumns
  ******************************************************************/
-/* -----------------------------06.04.00 11:47--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXTextColumns::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextColumns");
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextColumns::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.TextColumns") == rServiceName;
 }
-/* -----------------------------06.04.00 11:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextColumns::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -2295,9 +2137,7 @@ Sequence< OUString > SwXTextColumns::getSupportedServiceNames(void) throw( Runti
     pArray[0] = C2U("com.sun.star.text.TextColumns");
     return aRet;
 }
-/* -----------------------------24.10.00 16:45--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXTextColumns::SwXTextColumns(sal_uInt16 nColCount) :
     nReference(0),
     nSepLineWidth(0),
@@ -2312,9 +2152,7 @@ SwXTextColumns::SwXTextColumns(sal_uInt16 nColCount) :
     if(nColCount)
         setColumnCount(nColCount);
 }
-/*-- 16.12.98 14:06:53---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextColumns::SwXTextColumns(const SwFmtCol& rFmtCol) :
     aTextColumns(rFmtCol.GetNumCols()),
     nReference(0),
@@ -2353,32 +2191,23 @@ SwXTextColumns::SwXTextColumns(const SwFmtCol& rFmtCol) :
         case COLADJ_NONE:   nSepLineVertAlign = style::VerticalAlignment_MIDDLE;
     }
 }
-/*-- 16.12.98 14:06:54---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextColumns::~SwXTextColumns()
 {
-
 }
-/*-- 16.12.98 14:06:54---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXTextColumns::getReferenceValue(void) throw( uno::RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
     return nReference;
 }
-/*-- 16.12.98 14:06:55---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int16 SwXTextColumns::getColumnCount(void) throw( uno::RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
     return aTextColumns.getLength();
 }
-/*-- 16.12.98 14:06:55---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::setColumnCount(sal_Int16 nColumns) throw( uno::RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
@@ -2399,17 +2228,13 @@ void SwXTextColumns::setColumnCount(sal_Int16 nColumns) throw( uno::RuntimeExcep
     }
     pCols[nColumns - 1].Width += nDiff;
 }
-/*-- 16.12.98 14:06:55---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Sequence< TextColumn > SwXTextColumns::getColumns(void) throw( uno::RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
     return aTextColumns;
 }
-/*-- 16.12.98 14:06:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::setColumns(const uno::Sequence< TextColumn >& rColumns)
             throw( uno::RuntimeException )
 {
@@ -2428,17 +2253,13 @@ void SwXTextColumns::setColumns(const uno::Sequence< TextColumn >& rColumns)
     nReference = !nReferenceTemp ? USHRT_MAX : nReferenceTemp;
     aTextColumns = rColumns;
 }
-/*-- 25.10.00 10:15:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SwXTextColumns::getPropertySetInfo(  ) throw(RuntimeException)
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef = new SfxItemPropertySetInfo( _pMap );
     return aRef;
 }
-/*-- 25.10.00 10:15:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::setPropertyValue( const OUString& rPropertyName, const Any& aValue )
         throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
             WrappedTargetException, RuntimeException)
@@ -2508,9 +2329,7 @@ void SwXTextColumns::setPropertyValue( const OUString& rPropertyName, const Any&
         break;
     }
 }
-/*-- 25.10.00 10:15:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXTextColumns::getPropertyValue( const OUString& rPropertyName )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -2546,49 +2365,37 @@ Any SwXTextColumns::getPropertyValue( const OUString& rPropertyName )
     }
     return aRet;
 }
-/*-- 25.10.00 10:15:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::addPropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 25.10.00 10:15:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::removePropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 25.10.00 10:15:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::addVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 25.10.00 10:15:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextColumns::removeVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/* -----------------------------25.10.00 11:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextColumns::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextColumns::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
