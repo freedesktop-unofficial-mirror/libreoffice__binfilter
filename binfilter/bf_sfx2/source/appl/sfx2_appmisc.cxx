@@ -28,8 +28,6 @@
 
 #include <vcl/status.hxx>
 #include <vcl/msgbox.hxx>
-#include <vos/process.hxx>
-#include <vos/xception.hxx>
 #include <bf_svtools/whiter.hxx>
 #include <bf_svtools/stritem.hxx>
 #include <bf_svtools/intitem.hxx>

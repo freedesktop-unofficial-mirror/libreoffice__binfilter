@@ -68,7 +68,7 @@ namespace binfilter {
 //  // Texturverwaltung
 //  Container               maTextureStore;
 //  AutoTimer               maTimer;
-//  vos::OMutex             maMutex;
+//  osl::Mutex              maMutex;
 //
 //  // link for timer
 //    DECL_LINK(TimerHdl, AutoTimer*);

@@ -30,7 +30,6 @@
 #include <tools/debug.hxx>
 #include <i18npool/mslangid.hxx>
 #include <vcl/svapp.hxx>
-#include <vos/xception.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <unotools/charclass.hxx>
 
@@ -53,7 +52,7 @@
 #include "scmatrix.hxx"
 #include "addinlis.hxx"
 #include "scfuncs.hrc"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 

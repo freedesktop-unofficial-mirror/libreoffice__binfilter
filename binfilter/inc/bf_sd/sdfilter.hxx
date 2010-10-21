@@ -32,7 +32,6 @@
 
 #include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-namespace vos { class OModule; }
 namespace binfilter {
 
 // ------------

@@ -115,7 +115,6 @@ class SbxArray;
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <bf_svx/langitem.hxx>
-#include <vos/xception.hxx>
 #include <bf_svtools/undo.hxx>
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002

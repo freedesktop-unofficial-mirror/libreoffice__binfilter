@@ -36,7 +36,6 @@
 #include <sal/types.h>
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/ucb/XContent.hpp>
-#include <vos/process.hxx>
 
 
 #include <rtl/logfile.hxx>

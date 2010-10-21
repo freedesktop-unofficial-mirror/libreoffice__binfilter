@@ -41,7 +41,6 @@
 #include <com/sun/star/uno/Sequence.hxx>
 #include <osl/mutex.hxx>
 
-#include <vos/process.hxx>
 #include <unotools/localfilehelper.hxx>
 #include <rtl/instance.hxx>
 

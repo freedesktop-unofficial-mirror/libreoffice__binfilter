@@ -64,7 +64,6 @@
 #include <bf_svx/outlobj.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <comphelper/extract.hxx>
-#include <vos/xception.hxx>
 #include <i18npool/mslangid.hxx>
 #include <unotools/charclass.hxx>
 #include <comphelper/processfactory.hxx>

@@ -33,7 +33,6 @@
 
 #include <tools/resmgr.hxx>
 #include <tools/shl.hxx>
-#include <vos/process.hxx>
 
 #include <bf_svtools/svtdata.hxx>
 

@@ -42,7 +42,6 @@
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/urihelper.hxx>
 #include <bf_svtools/helpopt.hxx>
-#include <vos/process.hxx>
 
 #include "appimp.hxx"
 #include "sfxtypes.hxx"
