@@ -72,7 +72,6 @@ SHL1STDLIBS=\
         $(UNOTOOLSLIB) \
         $(TOOLSLIB)	\
         $(BFSVTOOLLIB) \
-        $(VOSLIB) \
         $(COMPHELPERLIB) \
         $(CPPUHELPERLIB) \
         $(CPPULIB) \
@@ -89,7 +88,7 @@ SHL1STDLIBS+= \
 .ENDIF
 
 .IF "$(GUI)"=="WIN"
-SHL1STDLIBS=$(VOSLIB) \
+SHL1STDLIBS= \
             ole2.lib compobj.lib storage.lib shell.lib \
             ole2disp.lib typelib.lib
 .ENDIF

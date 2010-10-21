@@ -73,7 +73,6 @@ SHL1STDLIBS= \
         $(BFSVTOOLLIB)	\
         $(TOOLSLIB)		\
         $(I18NISOLANGLIB) \
-        $(VOSLIB)		\
         $(CPPULIB)		\
         $(CPPUHELPERLIB)\
         $(COMPHELPERLIB)\

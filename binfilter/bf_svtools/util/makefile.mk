@@ -91,9 +91,8 @@ SHL1STDLIBS+= \
         $(COMPHELPERLIB)	\
         $(CPPUHELPERLIB)	\
         $(CPPULIB)			\
-        $(VOSLIB)			\
         $(SALLIB)
-        
+
 .IF "$(OS)"=="MACOSX"
 # static libraries go at end
 SHL1STDLIBS+= $(JPEG3RDLIB)

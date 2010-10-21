@@ -63,7 +63,6 @@ SHL1STDLIBS= \
             $(UCBHELPERLIB) \
             $(CPPUHELPERLIB) \
             $(CPPULIB) \
-            $(VOSLIB) \
             $(SALLIB) \
             $(SALHELPERLIB) \
             $(ICUUCLIB)\
