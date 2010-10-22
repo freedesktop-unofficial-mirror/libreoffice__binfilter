@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -67,25 +66,17 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::rtl;
 
-
-/* ---------------------------------------------------------------------------
-
- ---------------------------------------------------------------------------*/
 SwXRedlineText::SwXRedlineText(SwDoc* pDoc, SwNodeIndex aIndex) :
     SwXText(pDoc, CURSOR_REDLINE),
     aNodeIndex(aIndex)
 {
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const SwStartNode* SwXRedlineText::GetStartNode() const
 {
     return aNodeIndex.GetNode().GetStartNode();
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXRedlineText::queryInterface( const Type& rType )
     throw(RuntimeException)
 {
@@ -108,9 +99,7 @@ Any SwXRedlineText::queryInterface( const Type& rType )
 
     return aRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence<Type> SwXRedlineText::getTypes()
     throw(RuntimeException)
 {
@@ -124,9 +113,7 @@ Sequence<Type> SwXRedlineText::getTypes()
 
     return aTypes;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence<sal_Int8> SwXRedlineText::getImplementationId()
     throw(RuntimeException)
 {
@@ -140,9 +127,7 @@ Sequence<sal_Int8> SwXRedlineText::getImplementationId()
     }
     return aId;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference<XTextCursor> SwXRedlineText::createTextCursor(void)
     throw( RuntimeException )
 {
@@ -184,9 +169,7 @@ Reference<XTextCursor> SwXRedlineText::createTextCursor(void)
 
     return (XWordCursor*)pCrsr;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference<XTextCursor> SwXRedlineText::createTextCursorByRange(
     const Reference<XTextRange> & aTextRange)
         throw( RuntimeException )
@@ -196,9 +179,7 @@ Reference<XTextCursor> SwXRedlineText::createTextCursorByRange(
     xCursor->gotoRange(aTextRange->getEnd(), sal_True);
     return xCursor;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference<XEnumeration> SwXRedlineText::createEnumeration(void)
     throw( RuntimeException )
 {
@@ -207,42 +188,30 @@ Reference<XEnumeration> SwXRedlineText::createEnumeration(void)
     aPam.Move(fnMoveForward, fnGoNode);
     return new SwXParagraphEnumeration(this, *aPam.Start(), CURSOR_REDLINE);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Type SwXRedlineText::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXRedlineText::hasElements(  ) throw(RuntimeException)
 {
     return sal_True;    // we always have a content index
 }
-/* -----------------------------19.12.00 11:36--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXRedlinePortion::SwXRedlinePortion(   const SwRedline* pRed,
                         const SwUnoCrsr* pPortionCrsr,
                         Reference< XText >  xParent, BOOL bStart) :
     SwXTextPortion(pPortionCrsr, xParent, bStart ? PORTION_REDLINE_START : PORTION_REDLINE_END),
-//  SwXText(pPortionCrsr->GetDoc(), CURSOR_REDLINE),
-//  SwXRedlineText(pPortionCrsr->GetDoc(), *pRed->GetContentIdx()),
     pRedline(pRed)
 {
     SetCollapsed(!pRedline->HasMark());
 }
-/*-- 19.12.00 11:37:24---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedlinePortion::~SwXRedlinePortion()
 {
 }
-/* -----------------------------19.12.00 11:46--------------------------------
 
- ---------------------------------------------------------------------------*/
 util::DateTime lcl_DateTimeToUno(const DateTime& rDT)
 {
     util::DateTime aRetDT;
@@ -255,7 +224,7 @@ util::DateTime lcl_DateTimeToUno(const DateTime& rDT)
     aRetDT.HundredthSeconds = rDT.Get100Sec();
     return aRetDT;
 }
-// ---------------------------------------------------------------------------
+
 OUString lcl_RedlineTypeToOUString(SwRedlineType eType)
 {
     OUString sRet;
@@ -269,7 +238,7 @@ OUString lcl_RedlineTypeToOUString(SwRedlineType eType)
     }
     return sRet;
 }
-// ---------------------------------------------------------------------------
+
 Sequence<PropertyValue> lcl_GetSuccessorProperties(const SwRedline& rRedline)
 {
     Sequence<PropertyValue> aValues(4);
@@ -291,7 +260,7 @@ Sequence<PropertyValue> lcl_GetSuccessorProperties(const SwRedline& rRedline)
     }
     return aValues;
 }
-// ---------------------------------------------------------------------------
+
 Any SwXRedlinePortion::getPropertyValue( const OUString& rPropertyName )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -322,9 +291,7 @@ Any SwXRedlinePortion::getPropertyValue( const OUString& rPropertyName )
     }
     return aRet;
 }
-/* -----------------------------19.12.00 15:16--------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXRedlinePortion::Validate() throw( RuntimeException )
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -339,9 +306,7 @@ void SwXRedlinePortion::Validate() throw( RuntimeException )
     if(!bFound)
         throw RuntimeException();
 }
-/* -----------------------------21.03.00 15:39--------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Sequence< sal_Int8 > SAL_CALL SwXRedlinePortion::getImplementationId(  ) throw(uno::RuntimeException)
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
@@ -354,9 +319,7 @@ uno::Sequence< sal_Int8 > SAL_CALL SwXRedlinePortion::getImplementationId(  ) th
     }
     return aId;
 }
-/* -----------------------------11.01.01 16:39--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any  SwXRedlinePortion::GetPropertyValue( const OUString& rPropertyName, const SwRedline& rRedline ) throw()
 {
     Any aRet;
@@ -396,9 +359,7 @@ Any  SwXRedlinePortion::GetPropertyValue( const OUString& rPropertyName, const S
     }
     return aRet;
 }
-/* -----------------------------11.01.01 11:22--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXRedlinePortion::CreateRedlineProperties(
     const SwRedline& rRedline, sal_Bool bIsStart ) throw()
 {
@@ -451,9 +412,7 @@ Sequence< PropertyValue > SwXRedlinePortion::CreateRedlineProperties(
     aRet.realloc(nPropIdx);
     return aRet;
 }
-/*-- 11.01.01 17:06:07---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 TYPEINIT1(SwXRedline, SwClient);
 SwXRedline::SwXRedline(SwRedline& rRedline, SwDoc& rDoc) :
     pDoc(&rDoc),
@@ -462,24 +421,18 @@ SwXRedline::SwXRedline(SwRedline& rRedline, SwDoc& rDoc) :
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 }
-/*-- 11.01.01 17:06:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedline::~SwXRedline()
 {
 }
-/*-- 11.01.01 17:06:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SwXRedline::getPropertySetInfo(  ) throw(RuntimeException)
 {
     static uno::Reference< beans::XPropertySetInfo >  xRef =
         SfxItemPropertySet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_REDLINE)).getPropertySetInfo();
     return xRef;
 }
-/*-- 11.01.01 17:06:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aValue )
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
         WrappedTargetException, RuntimeException)
@@ -516,9 +469,7 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
         throw IllegalArgumentException();
     }
 }
-/*-- 11.01.01 17:06:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -561,7 +512,6 @@ Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
                     pPoint = pRedline->GetMark();
                 SwPaM aTmp(*pPoint);
                 Reference<XText> xTmpParent;
-//              Reference< XTextRange > xRange = SwXTextRange::createTextRangeFromPaM(aTmp);
                 Reference<XTextRange>xRange =
                     SwXTextRange::CreateTextRangeFromPosition( pDoc, *pPoint, 0 );
                 xRet = xRange.get();
@@ -590,42 +540,32 @@ Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
         aRet = SwXRedlinePortion::GetPropertyValue(rPropertyName, *pRedline);
     return aRet;
 }
-/*-- 11.01.01 17:06:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::addPropertyChangeListener(
     const OUString& aPropertyName,
     const Reference< XPropertyChangeListener >& xListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.01.01 17:06:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::removePropertyChangeListener(
     const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.01.01 17:06:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::addVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.01.01 17:06:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::removeVetoableChangeListener(
     const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.01.01 17:06:10---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedline::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -635,9 +575,7 @@ void SwXRedline::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         pRedline = 0;
     }
 }
-/*-- 19.12.00 11:37:25---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXRedline::createEnumeration(void) throw( RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
@@ -654,25 +592,19 @@ Reference< XEnumeration >  SwXRedline::createEnumeration(void) throw( RuntimeExc
     }
     return xRet;
 }
-/* -----------------------------19.12.00 12:34--------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Type SwXRedline::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* -----------------------------19.12.00 12:34--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXRedline::hasElements(  ) throw(RuntimeException)
 {
     if(!pDoc)
         throw RuntimeException();
     return 0 != pRedline->GetContentIdx();
 }
-/* -----------------------------19.12.00 15:11--------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XTextCursor >  SwXRedline::createTextCursor(void) throw( RuntimeException )
 {
     vos::OGuard aGuard(Application::GetSolarMutex());
@@ -707,9 +639,7 @@ Reference< XTextCursor >  SwXRedline::createTextCursor(void) throw( RuntimeExcep
     }
     return xRet;
 }
-/* -----------------------------19.12.00 15:11--------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XTextCursor >  SwXRedline::createTextCursorByRange(
     const Reference< XTextRange > & aTextPosition)
         throw( RuntimeException )
@@ -717,9 +647,7 @@ Reference< XTextCursor >  SwXRedline::createTextCursorByRange(
     throw RuntimeException();
     return Reference< XTextCursor >  ();
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXRedline::queryInterface( const uno::Type& rType )
     throw(RuntimeException)
 {
@@ -730,9 +658,7 @@ Any SwXRedline::queryInterface( const uno::Type& rType )
     }
     return aRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence<Type> SwXRedline::getTypes()
     throw(RuntimeException)
 {
@@ -746,9 +672,7 @@ Sequence<Type> SwXRedline::getTypes()
         pTypes[nCurType++] = pBaseTypes[nType];
     return aTypes;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence<sal_Int8> SwXRedline::getImplementationId()
     throw(RuntimeException)
 {
