@@ -321,8 +321,8 @@ public:
 class SmSpecialNode : public SmTextNode
 {
 protected:
-    SmSpecialNode(SmNodeType eNodeType, const SmToken &rNodeToken, USHORT nFontDesc)
-    :   SmTextNode(eNodeType, rNodeToken, nFontDesc)
+    SmSpecialNode(SmNodeType eNodeType, const SmToken &rNodeToken, USHORT nFontDescIn)
+    :   SmTextNode(eNodeType, rNodeToken, nFontDescIn)
     {}
 
 public:

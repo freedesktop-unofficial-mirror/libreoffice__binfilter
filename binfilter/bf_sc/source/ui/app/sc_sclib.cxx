@@ -93,13 +93,14 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 
 /*N*/ class ScLibOptions : public ::utl::ConfigItem
 /*N*/ {
-/*N*/   BOOL        bWK3Flag;
+/*N*/   BOOL    bWK3Flag;
 /*N*/
 /*N*/ public:
-/*N*/               ScLibOptions();
-/*N*/   BOOL        GetWK3Flag() const          { return bWK3Flag; }
-    virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
-    virtual void                Commit();
+/*N*/           ScLibOptions();
+/*N*/   BOOL    GetWK3Flag() const  { return bWK3Flag; }
+
+        virtual void    Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+        virtual void    Commit();
 
 /*N*/ };
 
@@ -110,8 +111,8 @@ void ScLibOptions::Commit() {}
 #define ENTRYSTR_WK3            "WK3"
 
 /*N*/ ScLibOptions::ScLibOptions() :
-/*N*/   ConfigItem( ::rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
-/*N*/   bWK3Flag( FALSE )
+/*N*/       ConfigItem( ::rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
+/*N*/       bWK3Flag( FALSE )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Sequence<rtl::OUString> aNames(1);
 /*N*/   aNames[0] = ::rtl::OUString::createFromAscii( ENTRYSTR_WK3 );
@@ -531,8 +532,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/           pFilterSylk,
 /*N*/           pFilterLotus
 /*N*/           };
-/*N*/
-/*N*/       const UINT16 nByteMask = 0xFF;
 /*N*/
 /*N*/       // suchen Sie jetzt!
 /*N*/       // ... realisiert ueber 'Mustererkennung'

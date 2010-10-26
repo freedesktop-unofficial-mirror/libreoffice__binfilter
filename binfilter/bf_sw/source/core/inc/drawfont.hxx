@@ -701,9 +701,9 @@ public:
 #endif
     }
 
-    void SetUnderFnt( SwUnderlineFont* pFnt )
+    void SetUnderFnt( SwUnderlineFont* pFntIn )
     {
-        pUnderFnt = pFnt;
+        pUnderFnt = pFntIn;
 #ifdef DBG_UTIL
         bSpec = TRUE;
 #endif

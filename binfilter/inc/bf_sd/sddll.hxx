@@ -86,9 +86,9 @@ public:
     SotFactory* pSdDrawDocShellFactory;
     SotFactory* pSdGraphicDocShellFactory;
 
-               SdModuleDummy(ResMgr* pResMgr, BOOL bDummy,
+               SdModuleDummy(ResMgr* pResMgrIn, BOOL bDummyIn,
                              SotFactory* pDrawObjFact, SotFactory* pGraphicObjFact)
-               : SfxModule(pResMgr, bDummy,
+               : SfxModule(pResMgrIn, bDummyIn,
                             // Der erste Factory-Pointer muss gueltig sein!
                            (SfxObjectFactory*) (pDrawObjFact ? pDrawObjFact    : pGraphicObjFact),
                            (SfxObjectFactory*) (pDrawObjFact ? pGraphicObjFact : pDrawObjFact),

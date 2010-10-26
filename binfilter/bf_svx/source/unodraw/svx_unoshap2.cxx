@@ -73,8 +73,8 @@ sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetSt
 * class SvxShapeGroup                                                  *
 ***********************************************************************/
 
-SvxShapeGroup::SvxShapeGroup( SdrObject* pObj, SvxDrawPage* pDrawPage  )  throw() :
-    SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_GROUP) ),
+SvxShapeGroup::SvxShapeGroup( SdrObject* pSdrObj, SvxDrawPage* pDrawPage  )  throw() :
+    SvxShape( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_GROUP) ),
     pPage( pDrawPage )
 {
     if( pPage )
@@ -154,8 +154,6 @@ uno::Sequence< sal_Int8 > SAL_CALL SvxShapeGroup::getImplementationId()
     }
     return aId;
 }
-
-// ::com::sun::star::drawing::XShape
 
 //----------------------------------------------------------------------
 OUString SAL_CALL SvxShapeGroup::getShapeType()
@@ -357,8 +355,8 @@ uno::Sequence< OUString > SAL_CALL SvxShapeGroup::getSupportedServiceNames()
 *                                                                      *
 ***********************************************************************/
 
-SvxShapeConnector::SvxShapeConnector( SdrObject* pObj )  throw() :
-    SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_CONNECTOR) )
+SvxShapeConnector::SvxShapeConnector( SdrObject* pSdrObj )  throw() :
+    SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_CONNECTOR) )
 {
 }
 
@@ -524,8 +522,8 @@ uno::Sequence< OUString > SAL_CALL SvxShapeConnector::getSupportedServiceNames()
 ***********************************************************************/
 
 
-SvxShapeControl::SvxShapeControl( SdrObject* pObj )  throw() :
-    SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_CONTROL) )
+SvxShapeControl::SvxShapeControl( SdrObject* pSdrObj )  throw() :
+    SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_CONTROL) )
 {
     setShapeKind( OBJ_UNO );
 }
@@ -934,8 +932,8 @@ uno::Any SAL_CALL SvxShapeControl::getPropertyDefault( const ::rtl::OUString& aP
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-SvxShapeDimensioning::SvxShapeDimensioning( SdrObject* pObj ) throw()
-:   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_DIMENSIONING) )
+SvxShapeDimensioning::SvxShapeDimensioning( SdrObject* pSdrObj ) throw()
+:   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_DIMENSIONING) )
 {
 }
 
@@ -955,8 +953,8 @@ uno::Sequence< OUString > SAL_CALL SvxShapeDimensioning::getSupportedServiceName
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-SvxShapeCircle::SvxShapeCircle( SdrObject* pObj ) throw()
-:   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_CIRCLE) )
+SvxShapeCircle::SvxShapeCircle( SdrObject* pSdrObj ) throw()
+:   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_CIRCLE) )
 {
 }
 
@@ -979,9 +977,9 @@ uno::Sequence< OUString > SAL_CALL SvxShapeCircle::getSupportedServiceNames() th
 #include "svdopath.hxx"
 namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
-SvxShapePolyPolygon::SvxShapePolyPolygon( SdrObject* pObj , drawing::PolygonKind eNew )
+SvxShapePolyPolygon::SvxShapePolyPolygon( SdrObject* pSdrObj , drawing::PolygonKind eNew )
  throw( ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
-: SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGON) ),
+: SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGON) ),
     ePolygonKind( eNew )
 {
 }
@@ -994,8 +992,6 @@ SvxShapePolyPolygon::~SvxShapePolyPolygon() throw()
 void SAL_CALL ImplSvxPolyPolygonToPointSequenceSequence( const drawing::PointSequenceSequence* pOuterSequence, XPolyPolygon& rNewPolyPolygon ) throw()
 {
     // Koordinaten in das PolyPolygon packen
-    sal_Int32 nOuterSequenceCount = pOuterSequence->getLength();
-
     // Zeiger auf innere sequences holen
     const drawing::PointSequence* pInnerSequence = pOuterSequence->getConstArray();
     const drawing::PointSequence* pInnerSeqEnd   = pInnerSequence + pOuterSequence->getLength();
@@ -1236,8 +1232,8 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygon::getSupportedServiceNames
 #include <com/sun/star/drawing/FlagSequence.hpp>
 namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
-SvxShapePolyPolygonBezier::SvxShapePolyPolygonBezier( SdrObject* pObj , drawing::PolygonKind eNew ) throw()
-:   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGONBEZIER) ),
+SvxShapePolyPolygonBezier::SvxShapePolyPolygonBezier( SdrObject* pSdrObj , drawing::PolygonKind eNew ) throw()
+:   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGONBEZIER) ),
     ePolygonKind( eNew )
 {
 }
@@ -1523,8 +1519,8 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 #include "toolkit/unohlp.hxx"
 namespace binfilter {//STRIP009
 //----------------------------------------------------------------------
-SvxGraphicObject::SvxGraphicObject( SdrObject* pObj ) throw()
-:   SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_GRAPHICOBJECT) )
+SvxGraphicObject::SvxGraphicObject( SdrObject* pSdrObj ) throw()
+:   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_GRAPHICOBJECT) )
 {
 }
 
@@ -1776,8 +1772,8 @@ void SvxConvertXPolygonToPolyPolygonBezier( const XPolygon& rPolygon, drawing::P
 
 ///////////////////////////////////////////////////////////////////////
 
-SvxShapeCaption::SvxShapeCaption( SdrObject* pObj ) throw()
-: SvxShapeText( pObj, aSvxMapProvider.GetMap(SVXMAP_CAPTION) )
+SvxShapeCaption::SvxShapeCaption( SdrObject* pSdrObj ) throw()
+: SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_CAPTION) )
 {
 }
 

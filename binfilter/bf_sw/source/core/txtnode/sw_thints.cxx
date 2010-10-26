@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -283,7 +282,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return (pNew && Insert( pNew, nMode )) ? pNew : 0;
 /*N*/ }
 
-
 // uebernehme den Pointer auf das Text-Attribut
 
 /*N*/ BOOL SwTxtNode::Insert( SwTxtAttr *pAttr, USHORT nMode )
@@ -484,7 +482,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/       }
 /*N*/   }
 /*N*/   else
+/*N*/   {
 /*N*/       ASSERT( *pAttr->GetEnd() <= Len(), "EndIdx hinter Len!" );
+/*N*/   }
 /*N*/
 /*N*/   if ( !pSwpHints )
 /*N*/       pSwpHints = new SwpHints();
@@ -502,7 +502,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       SetCalcVisible();
 /*N*/   return TRUE;
 /*N*/ }
-
 
 /*************************************************************************
  *                      SwTxtNode::Delete()
@@ -594,7 +593,6 @@ using namespace ::com::sun::star::i18n;
 /*************************************************************************
  *                      SwTxtNode::DelSoftHyph()
  *************************************************************************/
-
 
 // setze diese Attribute am TextNode. Wird der gesamte Bereich umspannt,
 // dann setze sie nur im AutoAttrSet (SwCntntNode:: SetAttr)
@@ -941,7 +939,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return rSet.Count() ? TRUE : FALSE;
 /*N*/ }
 
-
 /*N*/ void SwTxtNode::FmtToTxtAttr( SwTxtNode* pNd )
 /*N*/ {
 /*N*/   SfxItemSet aThisSet( GetDoc()->GetAttrPool(), aCharFmtSetRange );
@@ -1063,7 +1060,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return bOldVis != bNewVis;
 /*N*/ }
 
-
 /*************************************************************************
  *                      SwpHints::Resort()
  *************************************************************************/
@@ -1091,7 +1087,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
-
 
 /*************************************************************************
  *                      SwpHints::ClearDummies()
@@ -1377,7 +1372,6 @@ using namespace ::com::sun::star::i18n;
  * identischen Bereich mit einem inneren Attribut bekaeme.
  */
 
-
 /*************************************************************************
  *                      SwpHints::Insert()
  *************************************************************************/
@@ -1495,6 +1489,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           //search for a refernce with the same name
 /*N*/           SwTxtAttr* pHt;
+        // redefinition of *pHtEnd shadows declaration at top of method
+        // usage within if stmt does NOT match usage above, also used again below switch/case...
 /*N*/           xub_StrLen *pHtEnd, *pHintEnd;
 /*N*/           for( USHORT n = 0, nEnd = Count(); n < nEnd; ++n )
 /*N*/               if( RES_TXTATR_REFMARK == (pHt = GetHt( n ))->Which() &&
@@ -1904,8 +1900,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       DeleteAtPos( nPos );
 /*N*/ }
 
-
-
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/ USHORT SwTxtNode::GetLang( const xub_StrLen nBegin, const xub_StrLen nLen,
 /*N*/                            USHORT nScript ) const
@@ -1984,7 +1978,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return nRet;
 /*N*/ }
 
-
 /*N*/ sal_Unicode GetCharOfTxtAttr( const SwTxtAttr& rAttr )
 /*N*/ {
 /*N*/   sal_Unicode cRet = CH_TXTATR_BREAKWORD;
@@ -2007,7 +2000,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   return cRet;
 /*N*/ }
-
 
 }
 

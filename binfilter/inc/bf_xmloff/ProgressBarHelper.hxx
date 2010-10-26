@@ -39,16 +39,16 @@ namespace binfilter {
 class ProgressBarHelper
 {
             ::com::sun::star::uno::Reference < ::com::sun::star::task::XStatusIndicator >   xStatusIndicator;
-            sal_Int32                                                                       nRange;
-            sal_Int32                                                                       nReference;
-            sal_Int32                                                                       nValue;
-            double                                                                          fOldPercent;
-            sal_Bool                                                                        bStrict;
+            sal_Int32   nRange;
+            sal_Int32   nReference;
+            sal_Int32   nValue;
+            double      fOldPercent;
+            sal_Bool    bStrict;
             // #96469#; if the value goes over the Range the progressbar starts again
-            sal_Bool                                                                        bRepeat;
+            sal_Bool    bRepeat;
 
 #ifdef DBG_UTIL
-            sal_Bool                                                                        bFailure;
+            sal_Bool    bFailure;
 #endif
 public:
             ProgressBarHelper(const ::com::sun::star::uno::Reference < ::com::sun::star::task::XStatusIndicator>& xStatusIndicator,
@@ -56,8 +56,8 @@ public:
             ~ProgressBarHelper();
 
             void SetText(::rtl::OUString& rText) { if (xStatusIndicator.is()) xStatusIndicator->setText(rText); }
-            void SetRange(sal_Int32 nValue) { nRange = nValue; }
-            void SetReference(sal_Int32 nValue) { nReference = nValue; }
+            void SetRange(sal_Int32 nValueIn) { nRange = nValueIn; }
+            void SetReference(sal_Int32 nValueIn) { nReference = nValueIn; }
             void SetValue(sal_Int32 nValue);
             void SetRepeat(sal_Bool bValue) { bRepeat = bValue; }
             inline void Increment(sal_Int32 nInc = 1) { SetValue( nValue+nInc ); }

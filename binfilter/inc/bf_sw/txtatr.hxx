@@ -63,9 +63,7 @@ public:
 
 // ATT_HARDBLANK ******************************
 
-
 // ATT_XNLCONTAINERITEM ******************************
-
 
 // ******************************
 
@@ -73,12 +71,13 @@ class SwTxtRuby : public SwTxtAttrEnd, public SwClient
 {
 
 public:
-    SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStart, xub_StrLen nEnd ): SwTxtAttrEnd( (SfxPoolItem &)rAttr, nStart, nEnd ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStart, xub_StrLen nEnd );
+    SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStartIn, xub_StrLen nEndIn ):
+                         SwTxtAttrEnd( (SfxPoolItem &)rAttr, nStartIn, nEndIn )
+    { DBG_BF_ASSERT(0, "STRIP"); };
 
 };
 
 // ******************************
-
 
 // --------------- Inline Implementierungen ------------------------
 
@@ -87,7 +86,6 @@ inline const SwTxtNode& SwTxtCharFmt::GetTxtNode() const
     ASSERT( pMyTxtNd, "SwTxtCharFmt:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
-
 
 } //namespace binfilter
 #endif

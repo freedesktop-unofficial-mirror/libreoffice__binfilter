@@ -59,7 +59,7 @@ public:
     { (void)pPool;  return new SfxRefItem( *this ); }
     virtual int              operator==( const SfxPoolItem& rL) const
     {   return ((SfxRefItem&)rL).aRef == aRef; }
-    SfxRefItem( USHORT nWhich, const SvRefBaseRef& rValue ) : SfxPoolItem( nWhich )
+    SfxRefItem( USHORT nWhichIn, const SvRefBaseRef& rValue ) : SfxPoolItem( nWhichIn )
     {   aRef = rValue; }
     const SvRefBaseRef&      GetValue() const { return aRef; }
 

@@ -260,10 +260,10 @@ public:
     USHORT          nTextStart;
     USHORT          nTextLen;
 
+    const SvxFont&  rFont;
+
     USHORT          nPara;
     xub_StrLen      nIndex;
-
-    const SvxFont&  rFont;
 
     const sal_Int32*     pDXArray;
 

@@ -36,10 +36,6 @@
 #include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/script/XLibraryContainer.hpp>
 
-//________________________________________________________________________________________________________________
-//  include something else
-//________________________________________________________________________________________________________________
-
 #if _SOLAR__PRIVATE
 #include <vcl/timer.hxx>
 #endif
@@ -55,6 +51,7 @@
 #include <bf_sfx2/shell.hxx>
 
 #include <com/sun/star/frame/XModel.hpp>
+
 namespace binfilter {
  class SvLinkSource;
 }
@@ -119,10 +116,6 @@ typedef sal_uInt32 SfxObjectShellFlags;
 #define SFX_LOADED_IMAGES       2
 #define SFX_LOADED_ALL          3
 
-//--------------------------------------------------------------------
-
-#define SEQUENCE                ::com::sun::star::uno::Sequence
-#define OUSTRING                ::rtl::OUString
 
 //--------------------------------------------------------------------
 
@@ -321,8 +314,8 @@ public:
 
     // Contents
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
-    void                            SetStyleSheetPool( SfxStyleSheetBasePool *pPool ) {
-                                        pStyleSheetPool = pPool; }
+    void                            SetStyleSheetPool( SfxStyleSheetBasePool *pPoolIn ) {
+                                        pStyleSheetPool = pPoolIn; }
 
     //determine the position of the "Automatic" filter in the stylist
     void                        SetAutoStyleFilterIndex(sal_uInt16 nSet);
@@ -383,10 +376,13 @@ public:
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > GetBaseModel();
     // Nur uebergangsweise fuer die Applikationen !!!
 
-    virtual SEQUENCE< OUSTRING >    GetEventNames();
+//--------------------------------------------------------------------
+
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 
 #if _SOLAR__PRIVATE
-    static SEQUENCE< OUSTRING > GetEventNames_Impl();
+    static ::com::sun::star::uno::Sequence< ::rtl::OUString >   GetEventNames_Impl();
+
     void                        InitBasicManager_Impl( SvStorage *pStor, const String* pName = NULL );
     SfxObjectShell_Impl*        Get_Impl() { return pImp; }
     const SfxObjectShell_Impl*  Get_Impl() const { return pImp; }
@@ -468,9 +464,9 @@ public:
                                 SfxPoolItem( 0 ),
                                 pObjSh( pObjShell )
                             {}
-                            SfxObjectShellItem( sal_uInt16 nWhich,
+                            SfxObjectShellItem( sal_uInt16 nWhichIn,
                                                 SfxObjectShell *pObjShell ):
-                                SfxPoolItem( nWhich ),
+                                SfxPoolItem( nWhichIn ),
                                 pObjSh( pObjShell )
                             {}
 

@@ -101,11 +101,11 @@ public:
     SotFactory*     pSwWebDocShellFactory;
     SotFactory*     pSwGlobalDocShellFactory;
 
-                    SwModuleDummy( ResMgr *pResMgr, BOOL bDummy,
+                    SwModuleDummy( ResMgr *pResMgrIn, BOOL bDummyIn,
                                     SotFactory* pWebFact,
                                     SotFactory* pFact,
                                     SotFactory* pGlobalFact )
-                    :   SfxModule(pResMgr, bDummy,
+                    :   SfxModule(pResMgrIn, bDummyIn,
                                 (SfxObjectFactory*)pFact,
                                 (SfxObjectFactory*)pWebFact,
                                 (SfxObjectFactory*)pGlobalFact, 0L),

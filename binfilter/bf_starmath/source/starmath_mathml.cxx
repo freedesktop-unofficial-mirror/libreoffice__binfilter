@@ -593,9 +593,8 @@ sal_Int64 SAL_CALL SmXMLImport::getSomething( const uno::Sequence< sal_Int8 >&
     rId ) throw(uno::RuntimeException)
 {
     if( rId.getLength() == 16 &&
-        0 == rtl_compareMemory( getUnoTunnelId().getConstArray(),
-        rId.getConstArray(), 16 ) )
-    return (sal_Int64)this;
+        ! rtl_compareMemory( getUnoTunnelId().getConstArray(),rId.getConstArray(), 16 ) )
+        return (sal_Int64)this;
 
     return SvXMLImport::getSomething( rId );
 }
@@ -604,9 +603,8 @@ sal_Int64 SAL_CALL SmXMLExport::getSomething( const uno::Sequence< sal_Int8 >&
     rId ) throw(uno::RuntimeException)
 {
     if( rId.getLength() == 16 &&
-        0 == rtl_compareMemory( getUnoTunnelId().getConstArray(),
-        rId.getConstArray(), 16 ) )
-    return (sal_Int64)this;
+        ! rtl_compareMemory( getUnoTunnelId().getConstArray(),rId.getConstArray(), 16 ) )
+        return (sal_Int64)this;
 
     return SvXMLExport::getSomething( rId );
 }
@@ -615,13 +613,13 @@ sal_Int64 SAL_CALL SmXMLExport::getSomething( const uno::Sequence< sal_Int8 >&
 void SmXMLImport::endDocument(void)
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
-    //Set the resulted tree into the SmDocShell where it belongs
+    //Set the result tree into the SmDocShell where it belongs
     SmNode *pTree;
     if (pTree = GetTree())
     {
-        uno::Reference <frame::XModel> xModel = GetModel();
+        uno::Reference <frame::XModel> xFrmModel = GetModel();
         uno::Reference <lang::XUnoTunnel> xTunnel;
-        xTunnel = uno::Reference <lang::XUnoTunnel> (xModel,uno::UNO_QUERY);
+        xTunnel = uno::Reference <lang::XUnoTunnel> (xFrmModel, uno::UNO_QUERY);
         SmModel *pModel = reinterpret_cast<SmModel *>
             (xTunnel->getSomething(SmModel::getUnoTunnelId()));
 
@@ -649,9 +647,9 @@ void SmXMLImport::endDocument(void)
             SmParser &rParser = pDocShell->GetParser();
             BOOL bVal = rParser.IsImportSymbolNames();
             rParser.SetImportSymbolNames( TRUE );
-            SmNode *pTree = rParser.Parse( aText );
+            SmNode *pTmp = rParser.Parse( aText );
             aText = rParser.GetText();
-            delete pTree;
+            delete pTmp;
             rParser.SetImportSymbolNames( bVal );
 
             pDocShell->SetText( aText );

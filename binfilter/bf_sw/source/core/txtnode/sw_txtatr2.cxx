@@ -58,8 +58,8 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/ SwTxtCharFmt::SwTxtCharFmt( const SwFmtCharFmt& rAttr,
-/*N*/                   xub_StrLen nStart, xub_StrLen nEnd )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nEnd ),
+/*N*/                   xub_StrLen nStartIn, xub_StrLen nEndIn )
+/*N*/   : SwTxtAttrEnd( rAttr, nStartIn, nEndIn ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {
 /*N*/   ((SwFmtCharFmt&)rAttr).pTxtAttr = this;
@@ -104,8 +104,8 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/ SwTxtINetFmt::SwTxtINetFmt( const SwFmtINetFmt& rAttr,
-/*N*/                           xub_StrLen nStart, xub_StrLen nEnd )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nEnd ),
+/*N*/                           xub_StrLen nStartIn, xub_StrLen nEndIn )
+/*N*/   : SwTxtAttrEnd( rAttr, nStartIn, nEndIn ),
 /*N*/   SwClient( 0 ),
 /*N*/     pMyTxtNd( 0 )
 /*N*/ {

@@ -376,11 +376,11 @@ inline SwRect::SwRect( const Point& rLT, const Point& rRB ) :
     nHeight( rRB.Y() - rLT.Y() + 1 )
 {
 }
-inline SwRect::SwRect( long X, long Y, long Width, long Height ) :
+inline SwRect::SwRect( long X, long Y, long WidthIn, long HeightIn ) :
     nX( X ),
     nY( Y ),
-    nWidth ( Width ),
-    nHeight( Height )
+    nWidth ( WidthIn ),
+    nHeight( HeightIn )
 {
 }
 

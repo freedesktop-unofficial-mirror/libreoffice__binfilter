@@ -203,17 +203,19 @@ public:
     // wo es sich geaendert hat
     const SwAttrSet* GetTheChgdSet() const  { return pTheChgdSet; }
 
-    SfxItemState GetItemState( USHORT nWhich, BOOL bSrchInParent = TRUE,
+    SfxItemState GetItemState( USHORT nWhichIn, BOOL bSrchInParent = TRUE,
                                const SfxPoolItem **ppItem = 0 ) const
-    {   return pChgSet->GetItemState( nWhich, bSrchInParent, ppItem ); }
+    {   return pChgSet->GetItemState( nWhichIn, bSrchInParent, ppItem ); }
 
     USHORT Count() const { return pChgSet->Count(); }
-    void ClearItem( USHORT nWhich = 0 )
+    void ClearItem( USHORT nWhichIn = 0 )
+    {
 #ifndef DBG_UTIL
-    { pChgSet->ClearItem( nWhich ); }
+        pChgSet->ClearItem( nWhichIn );
 #else
         ;
 #endif
+    }
 };
 
 class SwCondCollCondChg: public SwMsgPoolItem

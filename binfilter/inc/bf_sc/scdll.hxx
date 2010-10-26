@@ -90,8 +90,8 @@ public:
                     // 'p' + SfxObjectShell-subclass + 'Factory'
     SotFactory*     pScDocShellFactory;
 
-                    ScModuleDummy( ResMgr *pResMgr, BOOL bDummy, SfxObjectFactory* pFact )
-                    :   SfxModule(pResMgr, bDummy, pFact, NULL),
+                    ScModuleDummy( ResMgr *pResMgrIn, BOOL bDummyIn, SfxObjectFactory* pFact )
+                    :   SfxModule(pResMgrIn, bDummyIn, pFact, NULL),
                         pScDocShellFactory(pFact)
                     {}
 

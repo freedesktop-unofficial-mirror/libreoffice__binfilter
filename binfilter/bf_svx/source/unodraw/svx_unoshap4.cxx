@@ -41,7 +41,6 @@
 #include <vcl/svapp.hxx>
 
 #include "svdmodel.hxx"
-
 #include "shapeimpl.hxx"
 
 #include "unoshprp.hxx"
