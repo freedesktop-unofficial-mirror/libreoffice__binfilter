@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -59,17 +58,13 @@ using namespace ::rtl;
  * SwXBookmark
  ******************************************************************/
 TYPEINIT1(SwXBookmark, SwClient)
-/* -----------------------------13.03.00 12:15--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXBookmark::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXBookmark::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -81,9 +76,7 @@ sal_Int64 SAL_CALL SwXBookmark::getSomething( const uno::Sequence< sal_Int8 >& r
     }
     return 0;
 }
-/* -----------------10.12.98 10:16-------------------
- *
- * --------------------------------------------------*/
+
 SwXBookmark::SwXBookmark(SwBookmark* pBkm, SwDoc* pDc) :
         pDoc(pDc),
         bIsDescriptor(0 == pBkm),
@@ -92,16 +85,11 @@ SwXBookmark::SwXBookmark(SwBookmark* pBkm, SwDoc* pDc) :
     if(pBkm)
         pBkm->Add(this);
 }
-/*-- 10.12.98 10:14:29---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXBookmark::~SwXBookmark()
 {
-
 }
-/*-- 10.12.98 10:14:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)
                                         throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
@@ -113,7 +101,6 @@ void SwXBookmark::attachToRange(const uno::Reference< text::XTextRange > & xText
     OTextCursorHelper* pCursor = 0;
     if(xRangeTunnel.is())
     {
-
         pRange = (SwXTextRange*)xRangeTunnel->getSomething(
                                 SwXTextRange::getUnoTunnelId());
         pCursor = (OTextCursorHelper*)xRangeTunnel->getSomething(
@@ -145,18 +132,14 @@ void SwXBookmark::attachToRange(const uno::Reference< text::XTextRange > & xText
     else
         throw lang::IllegalArgumentException();
 }
-/* -----------------18.02.99 13:31-------------------
- *
- * --------------------------------------------------*/
+
 void SwXBookmark::attach(const uno::Reference< text::XTextRange > & xTextRange)
                             throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
-/*-- 10.12.98 10:14:39---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXBookmark::getAnchor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -173,12 +156,8 @@ uno::Reference< text::XTextRange >  SwXBookmark::getAnchor(void) throw( uno::Run
     else
         throw uno::RuntimeException();
     return aRet;
-
-
 }
-/*-- 10.12.98 10:14:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::dispose(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -188,9 +167,7 @@ void SwXBookmark::dispose(void) throw( uno::RuntimeException )
     else
         throw uno::RuntimeException();
 }
-/*-- 10.12.98 10:14:40---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::addEventListener(const uno::Reference< lang::XEventListener > & aListener)
                                                 throw( uno::RuntimeException )
 {
@@ -198,18 +175,14 @@ void SwXBookmark::addEventListener(const uno::Reference< lang::XEventListener > 
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-- 10.12.98 10:14:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::removeEventListener(const uno::Reference< lang::XEventListener > & aListener)
     throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/*-- 10.12.98 10:14:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXBookmark::getName(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -223,9 +196,7 @@ OUString SwXBookmark::getName(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return sRet;
 }
-/*-- 10.12.98 10:14:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::setName(const OUString& rName) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -255,16 +226,11 @@ void SwXBookmark::setName(const OUString& rName) throw( uno::RuntimeException )
         throw uno::RuntimeException();
 }
 
-/* -----------------02.11.99 11:30-------------------
-
- --------------------------------------------------*/
 OUString SwXBookmark::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXBookmark");
 }
-/* -----------------02.11.99 11:30-------------------
 
- --------------------------------------------------*/
 sal_Bool SwXBookmark::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
     return !rServiceName.compareToAscii("com.sun.star.text.Bookmark") ||
@@ -272,9 +238,7 @@ sal_Bool SwXBookmark::supportsService(const OUString& rServiceName) throw( uno::
                     !rServiceName.compareToAscii("com.sun.star.text.TextContent");
 ;
 }
-/* -----------------02.11.99 11:30-------------------
 
- --------------------------------------------------*/
 uno::Sequence< OUString > SwXBookmark::getSupportedServiceNames(void) throw( uno::RuntimeException )
 {
     uno::Sequence< OUString > aRet(3);
@@ -284,9 +248,7 @@ uno::Sequence< OUString > SwXBookmark::getSupportedServiceNames(void) throw( uno
     pArr[2] = C2U("com.sun.star.text.TextContent");
     return aRet;
 }
-/*-- 10.12.98 10:14:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXBookmark::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -296,9 +258,7 @@ void    SwXBookmark::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         aLstnrCntnr.Disposing();
     }
 }
-/*-- 30.03.99 16:02:58---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo >  SwXBookmark::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
     static uno::Reference< beans::XPropertySetInfo >  aRef;
@@ -314,9 +274,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXBookmark::getPropertySetInfo(void)
     }
     return aRef;
 }
-/*-- 30.03.99 16:02:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::setPropertyValue(const OUString& PropertyName, const uno::Any& aValue)
     throw( beans::UnknownPropertyException, beans::PropertyVetoException,
         lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException )
@@ -324,9 +282,7 @@ void SwXBookmark::setPropertyValue(const OUString& PropertyName, const uno::Any&
     throw IllegalArgumentException ( OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Property is read-only: " ) ) + PropertyName, static_cast < cppu::OWeakObject * > ( this ), 0 );
     //hier gibt es nichts zu setzen
 }
-/*-- 30.03.99 16:02:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXBookmark::getPropertyValue(const OUString& rPropertyName) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     uno::Any aRet;
@@ -337,36 +293,29 @@ uno::Any SwXBookmark::getPropertyValue(const OUString& rPropertyName) throw( bea
     }
     return aRet;
 }
-/*-- 30.03.99 16:02:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::addPropertyChangeListener(const OUString& PropertyName,
     const uno::Reference< beans::XPropertyChangeListener > & aListener)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
-/*-- 30.03.99 16:02:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::removePropertyChangeListener(const OUString& PropertyName,
     const uno::Reference< beans::XPropertyChangeListener > & aListener)
             throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
-/*-- 30.03.99 16:03:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::addVetoableChangeListener(const OUString& PropertyName,
     const uno::Reference< beans::XVetoableChangeListener > & aListener)
             throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
-/*-- 30.03.99 16:03:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXBookmark::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

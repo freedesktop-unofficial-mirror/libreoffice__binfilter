@@ -30,9 +30,6 @@
 #pragma hdrstop
 #endif
 
-
-
-
 #include <errhdl.hxx>
 
 #include <unoidx.hxx>
@@ -43,22 +40,15 @@
 #include <doc.hxx>
 namespace binfilter {
 
-/* -----------------------------06.01.00 13:51--------------------------------
-
- ---------------------------------------------------------------------------*/
 SwUnoCallBack::SwUnoCallBack(SwModify *pToRegisterIn)   :
     SwModify(pToRegisterIn)
 {
 }
-/* -----------------------------06.01.00 13:51--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwUnoCallBack::~SwUnoCallBack()
 {
 }
-/* -----------------------------01.09.00 12:03--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXReferenceMark* SwUnoCallBack::GetRefMark(const SwFmtRefMark& rMark)
 {
     SwClientIter aIter( *this );
@@ -76,9 +66,7 @@ SwXReferenceMark* SwUnoCallBack::GetRefMark(const SwFmtRefMark& rMark)
     }
     return 0;
 }
-/* -----------------------------05.09.00 12:38--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXFootnote* SwUnoCallBack::GetFootnote(const SwFmtFtn& rMark)
 {
     SwClientIter aIter( *this );
@@ -97,9 +85,6 @@ SwXFootnote* SwUnoCallBack::GetFootnote(const SwFmtFtn& rMark)
     return 0;
 }
 
-/* -----------------------------27.11.00 17:15--------------------------------
-
- ---------------------------------------------------------------------------*/
 SwXDocumentIndexMark* SwUnoCallBack::GetTOXMark(const SwTOXMark& rMark)
 {
     SwClientIter aIter( *this );
