@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /************************************************************/
 extern SfxType0 aSfxInt32Item_Impl;
 #ifdef SFX_TYPEMAP
@@ -726,3 +727,4 @@ SFX_SLOTMAP_ARG(FmFormShell)
 };
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

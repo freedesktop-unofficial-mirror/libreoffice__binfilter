@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -89,3 +90,4 @@
 // 453 == SCH_IF_CHARTVIEWSHELL, da SFX_INTERFACE_LIB kein
 // Define sondern neuerdings ein Enum ist
 #define HID_SCH_VIEWSHELL_DOCUMENT  (453)
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

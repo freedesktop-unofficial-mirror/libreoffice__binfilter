@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -62,3 +63,5 @@ typedef enum { // MUST match the order chosen in ListBox LB_DRAG_MODE in optgdlg
 }
 
 #endif //  _OFA_APEARCFG_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

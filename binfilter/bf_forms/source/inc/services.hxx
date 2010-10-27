@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -209,3 +210,4 @@ DECLARE_CONSTASCII_USTRING(FRM_SUN_FORMCOMPONENT);
 }//end of namespace binfilter
 #endif // _FRM_SERVICES_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

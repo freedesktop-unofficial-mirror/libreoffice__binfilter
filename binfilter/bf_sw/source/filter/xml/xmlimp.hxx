@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -219,3 +220,5 @@ inline void SwXMLImport::SetProgressValue( sal_Int32 nValue )
 
 } //namespace binfilter
 #endif  //  _XMLIMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

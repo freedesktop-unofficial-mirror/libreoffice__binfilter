@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -67,3 +68,5 @@ SV_DECL_PTRARR(SwSortKeys, SwSortKey*, 3, 1)
 
 } //namespace binfilter
 #endif  // _SORTOPT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

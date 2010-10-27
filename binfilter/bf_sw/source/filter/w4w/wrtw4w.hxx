@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -244,3 +245,5 @@ void OutW4W_SwFmtPageDesc1( SwW4WWriter& rW4WWrt, const SwPageDesc* pPg );
 
 } //namespace binfilter
 #endif  //  _WRTW4W_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

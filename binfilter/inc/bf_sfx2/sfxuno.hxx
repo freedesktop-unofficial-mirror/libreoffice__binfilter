@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -627,3 +628,5 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
 
 }//end of namespace binfilter
 #endif // _SFX_SFXUNO_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

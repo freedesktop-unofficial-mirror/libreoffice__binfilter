@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -149,3 +150,5 @@ inline const SwCntntFrm *SwSectionFrm::FindLastCntnt( BYTE nMode ) const
 
 } //namespace binfilter
 #endif  //_SECTFRM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

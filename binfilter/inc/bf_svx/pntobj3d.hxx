@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -64,3 +65,5 @@ class E3dPointObj : public E3dObject
 
 }//end of namespace binfilter
 #endif          // _E3D_PNTOBJ3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

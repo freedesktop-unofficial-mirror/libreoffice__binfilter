@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -104,3 +105,4 @@ inline SvxShadowItem &SvxShadowItem::operator=( const SvxShadowItem& rFmtShadow 
 }//end of namespace binfilter
 #endif // #ifndef _SVX_SHADITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

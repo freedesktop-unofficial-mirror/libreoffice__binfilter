@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -59,3 +60,5 @@
 #define HID_PSEUDOSHEET_BACKGROUND          (HID_SD_START + 97)
 #define HID_PSEUDOSHEET_NOTES               (HID_SD_START + 98)
 #define HID_PSEUDOSHEET_SUBTITLE            (HID_SD_START + 101)
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

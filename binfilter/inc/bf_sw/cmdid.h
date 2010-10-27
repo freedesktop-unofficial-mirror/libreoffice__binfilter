@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -1223,3 +1224,4 @@ Achtung: Ab sofort sind in diesem File keine C++-Kommentare (//) mehr
 #define MAC_EVENT_IMAGE_ABORT       0x0a            //
 #define MAC_EVENT_IMAGE_ERROR       0x0b            //
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
