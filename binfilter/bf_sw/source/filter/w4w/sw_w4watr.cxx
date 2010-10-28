@@ -95,7 +95,7 @@ namespace binfilter {
  * gepflegt werden: rtf\rtfatr.cxx, sw6\sw6atr.cxx, w4w\w4watr.cxx
  */
 
-#if !defined(MSC) && !defined(UNX) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC) && !defined(__MINGW32__) && !defined(OS2)
+#if !defined(MSC) && !defined(UNX) && !defined(PPC) && !defined(CSET) && !defined(WTC) && !defined(__MINGW32__) && !defined(OS2)
 
 #define ATTRFNTAB_SIZE 130
 #if ATTRFNTAB_SIZE != POOLATTR_END - POOLATTR_BEGIN
@@ -188,28 +188,27 @@ void OutW4W_SwFmtPageDesc1( SwW4WWriter& rW4WWrt, const SwPageDesc* pPg )
          || rW4WWrt.bHdFt )     // hier ignorieren ( mag WW2 nicht )
         return;
 
-    if ((( rW4WWrt.GetFilter() != 1 )   // Keiner (?) will ^L im Ascii-Text
-        || (rW4WWrt.GetIniFlags() & 0x10000))
-        && rW4WWrt.bIsTxtInPgDesc )
+    if ( (   ( rW4WWrt.GetFilter() != 1        )    // Keiner (?) will ^L im Ascii-Text
+          || ( rW4WWrt.GetIniFlags() & 0x10000 )
+         )
+         && rW4WWrt.bIsTxtInPgDesc
+       )
         rW4WWrt.Strm() << sW4W_RECBEGIN << "HNP" << cW4W_RED;
 
-//    if ( rW4WWrt.pPgDsc2 != pPg )
-      {
-        rW4WWrt.pPgDsc2 = pPg;
-        const SwFrmFmt *pFrm = &(pPg->GetMaster()); //!!! GetLeft()
+    rW4WWrt.pPgDsc2 = pPg;
+    const SwFrmFmt *pFrm = &(pPg->GetMaster()); //!!! GetLeft()
 #if OSL_DEBUG_LEVEL > 1
-        rW4WWrt.Strm() << sW4W_RECBEGIN <<  "NOP_Pagedesc_Inhalt" << sW4W_TERMEND;
+    rW4WWrt.Strm() << sW4W_RECBEGIN <<  "NOP_Pagedesc_Inhalt" << sW4W_TERMEND;
 #endif
-        BOOL bOldPg = rW4WWrt.bPageDesc;
-        rW4WWrt.bPageDesc = TRUE;
+    BOOL bOldPg = rW4WWrt.bPageDesc;
+    rW4WWrt.bPageDesc = TRUE;
 
-        OutW4W_SwFmt( rW4WWrt, *pFrm );
+    OutW4W_SwFmt( rW4WWrt, *pFrm );
 
-        rW4WWrt.bPageDesc = bOldPg;
+    rW4WWrt.bPageDesc = bOldPg;
 #if OSL_DEBUG_LEVEL > 1
-        rW4WWrt.Strm() << sW4W_RECBEGIN << "NOP_Pagedesc_Inhalt_Ende" << sW4W_TERMEND ;//!!!
+    rW4WWrt.Strm() << sW4W_RECBEGIN << "NOP_Pagedesc_Inhalt_Ende" << sW4W_TERMEND ;//!!!
 #endif
-    }
     rW4WWrt.bIsTxtInPgDesc = FALSE;
     return;
 }
@@ -234,11 +233,12 @@ static BOOL OutW4W_SwFmtHeader1( SwW4WWriter& rWrt, const SwFmtHeader& rHd,
         return FALSE;
 
     // hole einen Node zu dem Request
-        SwCntntNode *pNode = 0;
-        const SwFmtCntnt& rCntnt = rHd.GetHeaderFmt()->GetCntnt();
-        if( rCntnt.GetCntntIdx() )
-            pNode = rWrt.pDoc->GetNodes()[ rCntnt.GetCntntIdx()->GetIndex()+ 1 ]->
-                                GetCntntNode();
+    SwCntntNode *pNode = 0;
+    const SwFmtCntnt& rCntnt = rHd.GetHeaderFmt()->GetCntnt();
+    if( rCntnt.GetCntntIdx() )
+        pNode = rWrt.pDoc->GetNodes()[ rCntnt.GetCntntIdx()->GetIndex()+ 1 ]
+                         ->GetCntntNode();
+
     do {    // middle-check-loop
         if( !pNode )
             break;          // es gibt keine Kopf-/Fusszeile/Fussnote
@@ -552,19 +552,16 @@ Writer& OutW4W_SwFmt( Writer& rWrt, const SwFmt& rFmt )
     case RES_CONDTXTFMTCOLL:
     case RES_TXTFMTCOLL:
         {
-//          if( rW4WWrt.bAttrOnOff )
-            {
-                USHORT nFontHeight, nFontId;
-                CalcFontSize( rW4WWrt, rFmt, nFontId, nFontHeight );
+            USHORT nFontHeight, nFontId;
+            CalcFontSize( rW4WWrt, rFmt, nFontId, nFontHeight );
 
-                // dann gebe mal das "W4W"-FontAttribut aus
-                rW4WWrt.Strm() << sW4W_RECBEGIN << "SPF10" << cW4W_TXTERM
-                        << '0' << cW4W_TXTERM << "10" << cW4W_TXTERM;
-                rWrt.OutULong( nFontId ) << cW4W_TXTERM;
-                rWrt.OutULong( nFontHeight ) << cW4W_TXTERM;
-                OutW4W_String( rWrt, rW4WWrt.GetFont( nFontId ).
-                            GetFamilyName() ).Strm() << sW4W_TERMEND;
-            }
+            // dann gebe mal das "W4W"-FontAttribut aus
+            rW4WWrt.Strm() << sW4W_RECBEGIN << "SPF10" << cW4W_TXTERM
+                           << '0' << cW4W_TXTERM << "10" << cW4W_TXTERM;
+            rWrt.OutULong( nFontId ) << cW4W_TXTERM;
+            rWrt.OutULong( nFontHeight ) << cW4W_TXTERM;
+            OutW4W_String( rWrt, rW4WWrt.GetFont( nFontId ).GetFamilyName() ).Strm()
+                << sW4W_TERMEND;
 
             // akt. Collection-Pointer am Writer setzen
             rW4WWrt.pNdFmt = &rFmt;
@@ -763,9 +760,6 @@ static Writer& OutW4W_SwTxtNode( Writer& rWrt, SwCntntNode & rNode )
     if( !rW4WWrt.bWriteAll && rW4WWrt.bFirstLine )
     {
         ASSERT( !&rWrt, "Teilausgabe der Dokuments nicht implementiert" );
-// jetzt noch die Attribute aus dem Format setzen
-//        rW4WWrt.bAttrOnOff = TRUE;
-//        OutW4W_SwFmt( rW4WWrt, *rW4WWrt.ChrFmt() );
     }
 
 
@@ -848,8 +842,6 @@ static Writer& OutW4W_SwGrfNode( Writer& rWrt, SwCntntNode & rNode )
 {
     SwW4WWriter& rW4WWrt = (SwW4WWriter&)rWrt;
     rW4WWrt.OutW4W_Grf( rNode.GetGrfNode() );
-//    rWrt.Strm() << sW4W_RECBEGIN << "HNL" << cW4W_RED;        //!!!
-
     return rWrt;
 }
 
@@ -949,7 +941,6 @@ static Writer& OutW4W_SwKerning( Writer& rWrt, const SfxPoolItem& rHt )
 
 #ifdef JP_NEWCORE
     // JP 23.09.94, wie nun ?????
-
     Fraction aTmp( 20, 1 );
     aTmp += rKern.frKern;
     nDist = (long)aTmp; // in Twips umrechnen
@@ -1024,7 +1015,6 @@ static Writer& OutW4W_SwUnderline( Writer& rWrt, const SfxPoolItem& rHt )
         pSttStr = "BUL";
         pEndStr = "EUL";
 
-//  ??? if( rULine.bUnderlineSpaces )
     }
     else if( UNDERLINE_DOUBLE == rULine.GetUnderline() )
     {
@@ -1177,10 +1167,6 @@ static Writer& OutW4W_SwField( Writer& rWrt, const SfxPoolItem& rHt )
 
 
 
-
-
-
-
 /* File FRMATR.HXX */
 
 static Writer& OutW4W_SwFrmSize( Writer& rWrt, const SfxPoolItem& /*rHt*/ )
@@ -1211,28 +1197,14 @@ static Writer& OutW4W_SwBreak( Writer& rWrt, const SfxPoolItem& rHt )
 
     if( SVX_BREAK_NONE != rBreak.GetBreak() )
 
-    if ( ( rW4WWrt.GetFilter() != 1 )   // Keiner (?) will ^L im Ascii-Text
-        || (rW4WWrt.GetIniFlags() & 0x10000))
+    if (   ( rW4WWrt.GetFilter()   != 1     )  // Keiner (?) will ^L im Ascii-Text
+        || ( rW4WWrt.GetIniFlags() & 0x10000)
+       )
         OUTRECORD( rWrt.Strm(), "HNP" );
 
-        rWrt.Strm() << sW4W_RECBEGIN << "NOP_PageBreak" << sW4W_TERMEND;//!!!
-        //!!! PAGEBREAK_AFTER stimmt nicht
+    rWrt.Strm() << sW4W_RECBEGIN << "NOP_PageBreak" << sW4W_TERMEND;//!!!
+    //!!! PAGEBREAK_AFTER stimmt nicht
 
-#if 0
-    const SwFmtPageBreak & rBreak = (const SwFmtPageBreak&)rHt;
-    if ( rBreak.IsAuto() )
-    {
-        rWrt << "\\page";
-    }
-    else
-        switch( rBreak.GetPageBreak() )
-        {
-        case PAGEBREAK_NONE:        break;
-        case PAGEBREAK_BEFORE:      rWrt << "\\pagebb"; break;
-        case PAGEBREAK_AFTER:       // rWrt << "\*pageba"; break;
-        case PAGEBREAK_BOTH:        break;
-        }
-#endif
     return rWrt;
 }
 
@@ -1247,7 +1219,6 @@ static Writer& OutW4W_SwFmtLRSpace( Writer& rWrt, const SfxPoolItem& rHt )
     SwW4WWriter & rW4WWrt = (SwW4WWriter&)rWrt;
 
     // hole erstmal die Seitenangaben
-//  const SwFrmFmt &rFmtPage = rW4WWrt.pDoc->GetPageDesc(0).GetMaster();
     const SwFrmFmt* pFmtPage = rW4WWrt.pPgFrm;
     const SvxLRSpaceItem& rPageLR = pFmtPage->GetLRSpace();
     const SwFmtFrmSize& rSz = pFmtPage->GetFrmSize();
@@ -1510,7 +1481,6 @@ static Writer& OutW4W_SwTabStop( Writer& rWrt, const SfxPoolItem& rHt )
     SwW4WWriter& rW4WWrt = (SwW4WWriter&)rWrt;
 
     const SvxTabStopItem & rTStops = (const SvxTabStopItem&)rHt;
-//    long nLeftMargin = ( rW4WWrt).GetLeftMargin();
     SwTwips nLeftMargin, nWidth;
     rW4WWrt.GetMargins( nLeftMargin, nWidth );
 

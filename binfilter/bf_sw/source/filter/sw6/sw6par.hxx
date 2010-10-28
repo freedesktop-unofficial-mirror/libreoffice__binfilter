@@ -186,11 +186,7 @@ struct DATEIDESC {
 // einige Forward-Deklaratioen
 class SwPaM;
 class SwDoc;
-#ifdef __MWERKS__
-class SwSw6Parser : public Sw6Layout // Fehler im MWerks-Compiler, sorry
-#else
 class SwSw6Parser:private Sw6Layout
-#endif
 {
 
 private:
