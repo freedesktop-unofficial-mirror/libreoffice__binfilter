@@ -89,15 +89,11 @@ struct  SvtLinguOptions
 
     // spelling options (non-service specific)
     BOOL    bIsSpellSpecial;
-    BOOL    bIsSpellInAllLanguages;
     BOOL    bIsSpellAuto;
-    BOOL    bIsSpellHideMarkings;
     BOOL    bIsSpellReverse;
 
     BOOL    bROIsSpellSpecial;
-    BOOL    bROIsSpellInAllLanguages;
     BOOL    bROIsSpellAuto;
-    BOOL    bROIsSpellHideMarkings;
     BOOL    bROIsSpellReverse;
 
     // hyphenation options (non-service specific)
@@ -108,11 +104,9 @@ struct  SvtLinguOptions
     BOOL    bROIsHyphAuto;
 
     // common to SpellChecker, Hyphenator and Thesaurus service
-    BOOL    bIsGermanPreReform;
     BOOL    bIsUseDictionaryList;
     BOOL    bIsIgnoreControlCharacters;
 
-    BOOL    bROIsGermanPreReform;
     BOOL    bROIsUseDictionaryList;
     BOOL    bROIsIgnoreControlCharacters;
 
