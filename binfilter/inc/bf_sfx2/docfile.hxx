@@ -72,7 +72,6 @@
 class Timer;
 class DateTime;
 class SvStringsDtor;
-class SvEaMgr;
 class INetURLObject;
 namespace binfilter {
 class SvKeyValueIterator;
