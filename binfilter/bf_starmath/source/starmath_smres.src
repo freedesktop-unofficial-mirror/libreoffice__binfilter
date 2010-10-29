@@ -38,39 +38,6 @@
 #define WORKARROUND_3 3
 #define WORKARROUND_10 10
 
-
-WarningBox RID_NOMATHTYPEFACEWARNING
-{
-    Message [ de ] = "Der \"StarMath\" Font ist nicht installiert !\nOhne diesen Font kann StarMath nicht korrekt arbeiten...\nInstallieren Sie den Font und starten Sie StarMath erneut." ;
-    Message [ en-US ] = "The \"StarMath\" font has not been installed.\nWithout this font %PRODUCTNAME Math cannot function correctly.\nPlease install this font and restart %PRODUCTNAME Math." ;
-    Message [ x-comment ] = " ";
-    Message[ pt ] = "O tipo de letra \"StarMath\" não está instalado!\nSem este tipo de letra o %PRODUCTNAME Math não operará correctamente.\nInstale o tipo de letra e reinicie a aplicação.";
-    Message[ ru ] = "Не установлен шрифт \"StarMath\".\nБез этого шрифта %PRODUCTNAME Math не может корректно работать...\nУстановите шрифт и перезапустите %PRODUCTNAME Math.";
-    Message[ el ] = "Η γραμματοσειρά \"StarMath\" δεν έχει εγκατασταθεί.\nΔεν είναι δυνατή η σωστή λειτουργία του %PRODUCTNAME Math χωρίς τη συγκεκριμένη γραμματοσειρά.\nΕγκαταστήστε τη γραμματοσειρά και επανεκκινήστε το %PRODUCTNAME Math.";
-    Message[ nl ] = "Het lettertype 'StarMath' is niet geïnstalleerd!\nZonder dit lettertype werkt %PRODUCTNAME Math niet correct.\nInstalleer dit lettertype en start %PRODUCTNAME Math opnieuw.";
-    Message[ fr ] = "La police \"StarMath\" n'est pas installée !\nSans cette police, %PRODUCTNAME Math ne fonctionne pas correctement...\nInstallez la police et redémarrez %PRODUCTNAME Math.";
-    Message[ es ] = "¡La fuente \"StarMath\" no está instalada!\nSin esta fuente StarMath no funcionará correctamente...\nInstale la fuente y reinicie StarMath.";
-    Message[ fi ] = "Fonttia StarMath ei ole asennettu.\nIlman tätä fonttia %PRODUCTNAME Math ei toimi kunnolla.\nAsenna fontti ja käynnistä %PRODUCTNAME Math uudelleen.";
-    Message[ ca ] = "El tipus de lletra \"StarMath\" no està instal.lat!\nSense aquesta StarMath no funcionarà correctament...\nInstal.leu el tipus de lletra i reinicieu StarMath.";
-    Message[ it ] = "Il carattere \"StarMath\" non è installato.\nSenza questo carattere %PRODUCTNAME Math non funzionerà in modo corretto.\nInstallate questo carattere e riavviate %PRODUCTNAME Math.";
-    Message[ sk ] = "Písmo \"StarMath\" nebolo nainštalované.\nBez tohto písma %PRODUCTNAME Math nedokáže korektne pracovať.\nProsím nainštalujte toto písmo a znovu spustte %PRODUCTNAME Math.";
-    Message[ da ] = "Skrifttypen \"StarMath\" er ikke installeret!\nUden denne skrifttype kan %PRODUCTNAME Math ikke arbejde korrekt...\nInstaller venligst skrifttypen og genstart %PRODUCTNAME Math.";
-    Message[ sv ] = "Teckensnittet \"StarMath\" är inte installerat!\nUtan detta teckensnitt kan %PRODUCTNAME Math inte arbeta korrekt....\nInstallera teckensnittet och starta om %PRODUCTNAME Math.";
-    Message[ pl ] = "Czcionka \"StarMath\" nie jest zainstalowana.\nBez tej czcionki %PRODUCTNAME Math nie może poprawnie pracować.\nZainstaluj tę czcionkę i ponownie uruchom %PRODUCTNAME Math.";
-    Message[ pt-BR ] = "A Fonte '%PRODUCTNAME Math' não está instalada!\nSem esta Fonte o %PRODUCTNAME Math não funciona corretamente...\nPor favor, instale esta fonte e reinicie o %PRODUCTNAME Math.";
-    Message[ th ] = "ยังไม่ได้ติดตั้งตัวอักษร \"StarMath\" \nไม่มีตัวอักษรคณิตศาสตร์ %PRODUCTNAME นี้  ไม่สามารถทำหน้าที่ได้ถูกต้อง.\nกรุณาติดตั้งตัวอักษรนี้และเริ่มคณิตศาสตร์ %PRODUCTNAME อีกครั้ง";
-    Message[ ja ] = "\"StarMath\" フォントがインストールされていません｡\nこのフォントなしでは %PRODUCTNAME Math がうまく機能しません...\nまずフォントをインストールして %PRODUCTNAME Math を再起動してください。";
-    Message[ ko ] = "\"StarMath\" 글꼴이 설치되어 있지 않습니다!\n이 글꼴이 없으면%PRODUCTNAME Math가 제대로 작업을 할 수 없습니다...\n글꼴을 설치한 다음, %PRODUCTNAME Math를 다시 시작하십시오.";
-    Message[ zh-CN ] = "没有安装 StarMath 字体！\n没有这个 StarMath字体程序会无法正常运作。\n请在安装这个字体后重新启动 StarMath 。";
-    Message[ zh-TW ] = "沒有安裝 StarMath 字型\n而無法正常運行！\n請安裝 StarMath 字型，然后再重新開啟 StaMath。";
-    Message[ tr ] = "\"StarMath\" yazıtipi yüklenmedi!\nBu yazıtipi olmadan StarMath programı doğru bir biçimde çalışmaz...\nYazıtipini yükleyin ve %PRODUCTNAME Math programını yeniden başlatın.";
-    Message[ hi-IN ] = "StarMath अक्षर को प्रतिष्ठापित नहीं किया है ।\nइस अक्षर के बिना %PRODUCTNAME गणित ठीक तरह से कार्य पूरा नहीं कर सकता है ।\nकृपया इस अक्षर को प्रतिष्ठापित कीजिए और %PRODUCTNAME गणित को पुनः प्रारंभ कीजिए ।";
-    Message[ ar ] = "الخط \"StarMath\" غير مُثبَّت!\nبدون هذا الخط لا يستطيع %PRODUCTNAME Math العمل بشكل صحيح...\nالرجاء تثبيت هذا الخط، ثم بدء %PRODUCTNAME Math مجدداً.";
-    Message[ he ] = "‮גופן ה \"StarMath\" אינו מותקן.\nללא גופן זה, %PRODUCTNAME Math לא יפעל באופן תקין.\nנא להתקין את הגופן ולאתחל את %PRODUCTNAME Math.‬";
-};
-
-
-
 String RID_APPLICATION
 {
     Text  = "StarMath" ;
@@ -80,70 +47,6 @@ String RID_VIEWNAME
 {
     Text  = "StarMath" ;
 };
-
-#define CMDBOXWINDOW_TEXT           \
-    Text [ de ] = "Kommandos" ;                            \
-    Text [ en-US ] = "Commands" ;              \
-    Text [ x-comment ] = " ";                   \
-    Text[ pt ] = "Comandos";\
-    Text[ ru ] = "Команды";\
-    Text[ el ] = "Εντολές";\
-    Text[ nl ] = "Commando´s";\
-    Text[ fr ] = "Commandes";\
-    Text[ es ] = "Órdenes";\
-    Text[ fi ] = "Komennot";\
-    Text[ ca ] = "Commands";\
-    Text[ it ] = "Comandi";\
-    Text[ sk ] = "Príkazy";\
-    Text[ da ] = "Kommandoer";\
-    Text[ sv ] = "Kommandon";\
-    Text[ pl ] = "Polecenia";\
-    Text[ pt-BR ] = "Comandos";\
-    Text[ th ] = "คำสั่ง";\
-    Text[ ja ] = "コマンド";\
-    Text[ ko ] = "명령";\
-    Text[ zh-CN ] = "命令";\
-    Text[ zh-TW ] = "指令";\
-    Text[ tr ] = "Komutlar";\
-    Text[ hi-IN ] = "Commands";\
-    Text[ ar ] = "أوامر";\
-    Text[ he ] = "‮פקודות‬";\
-
-DockingWindow RID_CMDBOXWINDOW\
-{
-    HelpId = HID_SMA_COMMAND_WIN ;
-    Moveable = TRUE ;
-    Closeable = FALSE ;
-    Sizeable = TRUE ;
-    OutputSize = TRUE ;
-    HideWhenDeactivate = FALSE ;
-    SVLook = TRUE ;
-    Size = MAP_APPFONT ( 292 , 94 ) ;
-    Dockable = TRUE ;
-    CMDBOXWINDOW_TEXT
-};
-
-#define _ID_LIST \
-    IdList =\
-    {\
-        SID_NEXTERR ;\
-        SID_PREVERR ;\
-        SID_VIEW050 ;\
-        SID_VIEW100 ;\
-        SID_VIEW200 ;\
-        SID_ZOOMIN ;\
-        SID_ZOOMOUT ;\
-        SID_ADJUST ;\
-        SID_DRAW ;\
-        SID_TOOLBOX ;\
-        SID_FONT ;\
-        SID_FONTSIZE ;\
-        SID_DISTANCE ;\
-        SID_ALIGN ;\
-        SID_FORMULACURSOR ;\
-        SID_SYMBOLS_CATALOGUE ;\
-    };\
-    IdCount =    {        16;    };
 
 String RID_DOCUMENTSTR
 {
