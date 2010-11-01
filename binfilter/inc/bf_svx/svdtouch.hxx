@@ -42,11 +42,11 @@ namespace binfilter {
 class XPolygon;
 class XPolyPolygon;
 
-FASTBOOL IsPointInsidePoly(const Polygon& rPoly, const Point& rHit);
+bool IsPointInsidePoly(const Polygon& rPoly, const Point& rHit);
 
-FASTBOOL IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit);
+bool IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit);
 
-FASTBOOL IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit);
+bool IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

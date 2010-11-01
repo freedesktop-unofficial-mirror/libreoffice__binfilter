@@ -287,17 +287,17 @@ namespace binfilter {
 /*N*/   long                        nHelplineDist;
 /*N*/   long                        nHelpline1Len;
 /*N*/   long                        nHelpline2Len;
-/*N*/   FASTBOOL                    bBelowRefEdge;
-/*N*/   FASTBOOL                    bTextRota90;
-/*N*/   FASTBOOL                    bTextUpsideDown;
+/*N*/   bool                    bBelowRefEdge;
+/*N*/   bool                    bTextRota90;
+/*N*/   bool                    bTextUpsideDown;
 /*N*/   long                        nMeasureOverhang;
 /*N*/   FieldUnit                   eMeasureUnit;
 /*N*/   Fraction                    aMeasureScale;
-/*N*/   FASTBOOL                    bShowUnit;
+/*N*/   bool                    bShowUnit;
 /*N*/   String                      aFormatString;
-/*N*/   FASTBOOL                    bTextAutoAngle;
+/*N*/   bool                    bTextAutoAngle;
 /*N*/   long                        nTextAutoAngleView;
-/*N*/   FASTBOOL                    bTextIsFixedAngle;
+/*N*/   bool                    bTextIsFixedAngle;
 /*N*/   long                        nTextFixedAngle;
 /*N*/ };
 /*N*/
@@ -333,11 +333,11 @@ namespace binfilter {
 /*N*/   long                        nArrow1Wdt; // Breite des 1. Pfeils
 /*N*/   long                        nArrow2Wdt; // Breite des 2. Pfeils
 /*N*/   long                        nShortLineLen; // Linienlaenge, wenn PfeileAussen
-/*N*/   FASTBOOL                    bArrow1Center; // Pfeil 1 zentriert?
-/*N*/   FASTBOOL                    bArrow2Center; // Pfeil 2 zentriert?
-/*N*/   FASTBOOL                    bAutoUpsideDown; // UpsideDown durch Automatik
-/*N*/   FASTBOOL                    bPfeileAussen;
-/*N*/   FASTBOOL                    bBreakedLine;
+/*N*/   bool                    bArrow1Center; // Pfeil 1 zentriert?
+/*N*/   bool                    bArrow2Center; // Pfeil 2 zentriert?
+/*N*/   bool                    bAutoUpsideDown; // UpsideDown durch Automatik
+/*N*/   bool                    bPfeileAussen;
+/*N*/   bool                    bBreakedLine;
 /*N*/ };
 
 /*N*/ void SdrMeasureObj::ImpTakeAttr(ImpMeasureRec& rRec) const
@@ -378,15 +378,15 @@ namespace binfilter {
 /*N*/   rPol.nLineLen=GetLen(aDelt);
 /*N*/
 /*N*/   rPol.nLineWdt2=0;
-/*N*/   long nArrow1Len=0; FASTBOOL bArrow1Center=FALSE;
-/*N*/   long nArrow2Len=0; FASTBOOL bArrow2Center=FALSE;
+/*N*/   long nArrow1Len=0; bool bArrow1Center=FALSE;
+/*N*/   long nArrow2Len=0; bool bArrow2Center=FALSE;
 /*N*/   long nArrow1Wdt=0;
 /*N*/   long nArrow2Wdt=0;
 /*N*/   rPol.nArrow1Wdt=0;
 /*N*/   rPol.nArrow2Wdt=0;
 /*N*/   long nArrowNeed=0;
 /*N*/   long nShortLen=0;
-/*N*/   FASTBOOL bPfeileAussen=FALSE;
+/*N*/   bool bPfeileAussen=FALSE;
 /*N*/
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/   sal_Int32 nLineWdt = ((XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue(); // Strichstaerke
@@ -416,13 +416,13 @@ namespace binfilter {
 /*N*/   rPol.eUsedTextHPos=rRec.eWantTextHPos;
 /*N*/   rPol.eUsedTextVPos=rRec.eWantTextVPos;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURE_TEXTVAUTO) rPol.eUsedTextVPos=SDRMEASURE_ABOVE;
-/*N*/   FASTBOOL bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
+/*N*/   bool bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURETEXT_VERTICALCENTERED) {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pOutlinerParaObject!=NULL && pOutlinerParaObject->GetTextObject().GetParagraphCount()==1) {
 /*N*/   }
 /*N*/   rPol.bBreakedLine=bBrkLine;
 /*N*/   if (rPol.eUsedTextHPos==SDRMEASURE_TEXTHAUTO) { // bei zu breitem Text diesen eventuell nach aussen schieben
-/*N*/       FASTBOOL bOutside=FALSE;
+/*N*/       bool bOutside=FALSE;
 /*N*/       long nNeedSiz=!rRec.bTextRota90 ? rPol.aTextSize.Width() : rPol.aTextSize.Height();
 /*N*/       if (nNeedSiz>rPol.nLineLen) bOutside=TRUE; // Text passt nicht in die Mitte
 /*N*/       if (bBrkLine) {
@@ -562,8 +562,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SdrMeasureObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-/*N*/   FASTBOOL bEdit,
+/*N*/ bool SdrMeasureObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
+/*N*/   bool bEdit,
 /*N*/   Color*& rpTxtColor, Color*& rpFldColor, XubString& rRet) const
 /*N*/ {
 /*N*/   const SvxFieldData* pField=rField.GetField();
@@ -642,9 +642,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   Point aTextPos;
-/*N*/   FASTBOOL bRota90=aRec.bTextRota90;
-/*N*/   FASTBOOL bUpsideDown=aRec.bTextUpsideDown!=aMPol.bAutoUpsideDown;
-/*N*/   FASTBOOL bBelowRefEdge=aRec.bBelowRefEdge;
+/*N*/   bool bRota90=aRec.bTextRota90;
+/*N*/   bool bUpsideDown=aRec.bTextUpsideDown!=aMPol.bAutoUpsideDown;
+/*N*/   bool bBelowRefEdge=aRec.bBelowRefEdge;
 /*N*/   SdrMeasureTextHPos eMH=aMPol.eUsedTextHPos;
 /*N*/   SdrMeasureTextVPos eMV=aMPol.eUsedTextVPos;
 /*N*/   if (!bRota90) {
@@ -825,7 +825,7 @@ namespace binfilter {
 
 
 
-/*N*/ FASTBOOL SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
+/*N*/ bool SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 /*N*/ }
 
@@ -852,7 +852,7 @@ namespace binfilter {
 /*N*/   if (pOutlinerParaObject==NULL) SetTextDirty(); // Text neu berechnen!
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText,
+/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
 /*N*/   Rectangle* pAnchorRect, BOOL bLineWidth ) const
 /*N*/ {
 /*N*/   if (bTextDirty) UndirtyText();
@@ -886,7 +886,7 @@ namespace binfilter {
 /*N*/   SdrTextObj::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrMeasureObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SetTextDirty();
 /*N*/   SdrTextObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);

@@ -214,7 +214,7 @@ namespace binfilter {
 /*N*/
 /*N*/   //Wenn es bereits einen Follow gibt so geht's dort hinein andernfalls
 /*N*/   //muss eben einer erzeugt werden.
-/*N*/   FASTBOOL bNewFollow;
+/*N*/   bool bNewFollow;
 /*N*/   SwTabFrm *pFoll;
 /*N*/   if ( GetFollow() )
 /*N*/   {
@@ -651,7 +651,7 @@ namespace binfilter {
 /*N*/                           BOOL bDummy;
 /*N*/                           SwFtnBossFrm *pOldBoss = bFtnsInDoc ?
 /*N*/                               FindFtnBossFrm( TRUE ) : 0;
-/*N*/                           const FASTBOOL bOldPrev = GetPrev() != 0;
+/*N*/                           const bool bOldPrev = GetPrev() != 0;
 /*N*/                           if ( MoveBwd( bDummy ) )
 /*N*/                           {
 /*N*/                                 SWREFRESHFN( this )

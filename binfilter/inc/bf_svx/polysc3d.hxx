@@ -51,7 +51,7 @@ public:
     virtual UINT16 GetObjIdentifier() const;
 
     // Zeichenmethode
-    virtual FASTBOOL Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
+    virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
 
     // Die Kontur fuer TextToContour
 

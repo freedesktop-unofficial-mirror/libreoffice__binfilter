@@ -40,7 +40,7 @@ namespace binfilter {
 // den Text bei TRUE nochmal.
 class SdrMeasureTextAutoAngleItem: public SdrYesNoItem {
 public:
-    SdrMeasureTextAutoAngleItem(FASTBOOL bOn=TRUE): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,bOn) {}
+    SdrMeasureTextAutoAngleItem(bool bOn=TRUE): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,bOn) {}
     SdrMeasureTextAutoAngleItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,rIn) {}
 };
 

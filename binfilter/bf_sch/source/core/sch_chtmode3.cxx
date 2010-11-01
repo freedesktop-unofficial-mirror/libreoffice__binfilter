@@ -1021,7 +1021,7 @@ namespace binfilter {
 /*N*/ //Achtung! diese Funktion sollte nur für 3-D-Objekte ausgeführt werden,
 /*N*/ //bei z.B. Legendensymbolen führt der Aufruf zu einer Endlos-Schleife !!!!!!!!!!!!!
 /*N*/ //Im BuildChart wird ueber bAttrAutoStorage=FALSE doppelte Ausfuehrung unterbunden
-/*N*/ void ChartModel::StoreObjectsAttributes(SdrObject* pObj,const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+/*N*/ void ChartModel::StoreObjectsAttributes(SdrObject* pObj,const SfxItemSet& rAttr, bool bReplaceAll)
 /*N*/ {//#52277#
 /*N*/   if(!bAttrAutoStorage)
 /*N*/       return;

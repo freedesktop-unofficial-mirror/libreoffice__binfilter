@@ -45,7 +45,7 @@
 #include "flyfrms.hxx"
 namespace binfilter {
 
-static FASTBOOL bInResize = FALSE;
+static bool bInResize = FALSE;
 
 /*N*/ TYPEINIT1( SwFlyDrawObj, SdrObject )
 /*N*/ TYPEINIT1( SwVirtFlyDrawObj, SdrVirtObj )

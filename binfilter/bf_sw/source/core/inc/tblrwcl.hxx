@@ -122,7 +122,7 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
     USHORT GetMode() const              { return nMode; }
     void SetValues( BOOL bFlag )        { bGetValues = FALSE; nWidth = 0;
                                           bGetFromTop = bFlag; }
-    FASTBOOL Resize( USHORT nOffset, USHORT nWidth );
+    bool Resize( USHORT nOffset, USHORT nWidth );
  };
 
 BOOL lcl_Box_CollectBox( const SwTableBox*& rpBox, void* pPara );
@@ -187,7 +187,7 @@ public:
     SwFrmFmt* GetFormat( const SfxPoolItem& rItem ) const;
     void AddFormat( const SwFrmFmt& rFmt );
 //STRIP001  // returnt TRUE, wenn geloescht werden kann
-    FASTBOOL RemoveFormat( const SwFrmFmt& rFmt );
+    bool RemoveFormat( const SwFrmFmt& rFmt );
 };
 
 

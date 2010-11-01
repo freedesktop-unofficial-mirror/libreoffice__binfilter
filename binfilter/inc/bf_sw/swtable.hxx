@@ -126,7 +126,7 @@ public:
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
 
     void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
-                     FASTBOOL bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
+                     bool bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
 
     BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
                             const BOOL bDelMakeFrms = TRUE,

@@ -318,7 +318,7 @@ namespace binfilter {
 /*N*/           SwOLEObj& rOObj = pONd->GetOLEObj();
 /*N*/
 /*N*/           SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
-/*N*/           FASTBOOL bDelData = 0 == pData;
+/*N*/           bool bDelData = 0 == pData;
 /*N*/
 /*N*/           ASSERT( pData, "UpdateChart ohne irgendwelche Daten?" );
 /*N*/           pData = rTbl.UpdateData( pData );

@@ -1487,12 +1487,12 @@ static int
 //------------------------------------------------------------------------------
 
 /******************************************************************************
- *  Methode     :   FASTBOOL SwCalc::Str2Double( double& )
+ *  Methode     :   bool SwCalc::Str2Double( double& )
  *  Beschreibung:
  *  Erstellt    :   OK 07.06.94 12:56
  *  Aenderung   :   JP 27.10.98
  ******************************************************************************/
-/*N*/ FASTBOOL SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
+/*N*/ bool SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
 /*N*/                           double& rVal, const LocaleDataWrapper* pLclData )
 /*N*/ {
 /*N*/   const LocaleDataWrapper* pLclD = pLclData;
@@ -1515,7 +1515,7 @@ static int
 /*N*/   return rtl_math_ConversionStatus_Ok == eStatus && nCurrCmdPos != rCommandPos;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
+/*N*/ bool SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
 /*N*/                           double& rVal, SwDoc* pDoc )
 /*N*/ {
 /*N*/   const LocaleDataWrapper* pLclD = &GetAppLocaleData();

@@ -808,7 +808,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dScene::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void E3dScene::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   E3dObjList* pOL = pSub;
 /*N*/   ULONG nObjCnt = pOL->GetObjCount();

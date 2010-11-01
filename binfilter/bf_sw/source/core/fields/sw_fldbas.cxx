@@ -281,9 +281,9 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*N*/   nFormat = n;
 /*N*/ }
 
-/*N*/ FASTBOOL SwField::IsFixed() const
+/*N*/ bool SwField::IsFixed() const
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
+/*N*/   bool bRet = FALSE;
 /*N*/   switch( pType->Which() )
 /*N*/   {
 /*N*/   case RES_FIXDATEFLD:

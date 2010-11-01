@@ -137,7 +137,7 @@ public:
 
 //====================================================================
 
-/*N*/ FASTBOOL SfxApplication::Initialize_Impl()
+/*N*/ bool SfxApplication::Initialize_Impl()
 /*N*/ {
 /*N*/
 /*N*/     Reference < XDesktop > xDesktop ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(

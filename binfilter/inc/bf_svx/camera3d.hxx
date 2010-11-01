@@ -51,7 +51,7 @@ class Camera3D : public Viewport3D
     double      fFocalLength;
     double      fBankAngle;
 
-    FASTBOOL    bAutoAdjustProjection;
+    bool    bAutoAdjustProjection;
 
  public:
     Camera3D(const Vector3D& rPos, const Vector3D& rLookAt,
@@ -83,9 +83,9 @@ class Camera3D : public Viewport3D
     // Um den Blickpunkt drehen, Position wird dabei veraendert
     void RotateAroundLookAt(double fHAngle, double fVAngle);
 
-    void SetAutoAdjustProjection(FASTBOOL bAdjust = TRUE)
+    void SetAutoAdjustProjection(bool bAdjust = TRUE)
         { bAutoAdjustProjection = bAdjust; }
-    FASTBOOL IsAutoAdjustProjection() const { return bAutoAdjustProjection; }
+    bool IsAutoAdjustProjection() const { return bAutoAdjustProjection; }
 
     // Die Umstellung von Filerevision 12 auf 13 erfolgte zur 355
     // 5.2.1997 Franz Gotsis, ReadData31 kann also auch die

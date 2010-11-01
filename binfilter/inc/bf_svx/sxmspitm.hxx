@@ -38,7 +38,7 @@ namespace binfilter {
 //------------------------------
 class SdrObjMoveProtectItem: public SdrYesNoItem {
 public:
-    SdrObjMoveProtectItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,bOn) {}
+    SdrObjMoveProtectItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,bOn) {}
     SdrObjMoveProtectItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,rIn) {}
 };
 
@@ -47,7 +47,7 @@ public:
 //------------------------------
 class SdrObjSizeProtectItem: public SdrYesNoItem {
 public:
-    SdrObjSizeProtectItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,bOn) {}
+    SdrObjSizeProtectItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,bOn) {}
     SdrObjSizeProtectItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,rIn) {}
 };
 

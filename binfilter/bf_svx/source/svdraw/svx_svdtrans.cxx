@@ -50,7 +50,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& rxFact, const Fraction& ryFact, FASTBOOL bNoJustify)
+/*N*/ void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& rxFact, const Fraction& ryFact, bool bNoJustify)
 /*N*/ {
 /*N*/   Fraction xFact(rxFact);
 /*N*/   Fraction yFact(ryFact);
@@ -150,7 +150,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.GetSize();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -158,7 +158,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.GetPointCount();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -166,7 +166,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.Count();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -312,7 +312,7 @@ namespace binfilter {
 /*N*/   nShW-=27000; // ShearWink wird zur Senkrechten gemessen
 /*N*/   nShW=-nShW;  // Negieren, denn '+' ist Rechtskursivierung
 /*N*/
-/*N*/   FASTBOOL bMirr=aPt3.Y()<0;
+/*N*/   bool bMirr=aPt3.Y()<0;
 /*N*/   if (bMirr) { // "Punktetausch" bei Spiegelung
 /*N*/       nHgt=-nHgt;
 /*N*/       nShW+=18000;
@@ -355,7 +355,7 @@ namespace binfilter {
 /*NBFF*/ {
 /*NBFF*/    INT32 nMul=rF.GetNumerator();
 /*NBFF*/    INT32 nDiv=rF.GetDenominator();
-/*NBFF*/    FASTBOOL bNeg=FALSE;
+/*NBFF*/    bool bNeg=FALSE;
 /*NBFF*/    if (nMul<0) { nMul=-nMul; bNeg=!bNeg; }
 /*NBFF*/    if (nDiv<0) { nDiv=-nDiv; bNeg=!bNeg; }
 /*NBFF*/    if (nMul==0 || nDiv==0) return;

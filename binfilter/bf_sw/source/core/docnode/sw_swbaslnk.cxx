@@ -138,10 +138,10 @@ namespace binfilter {
 /*?*/       return;         // das wars!
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL bUpdate = FALSE;
-/*N*/   FASTBOOL bGraphicArrived = FALSE;
-/*N*/   FASTBOOL bGraphicPieceArrived = FALSE;
-/*N*/   FASTBOOL bDontNotify = FALSE;
+/*N*/   bool bUpdate = FALSE;
+/*N*/   bool bGraphicArrived = FALSE;
+/*N*/   bool bGraphicPieceArrived = FALSE;
+/*N*/   bool bDontNotify = FALSE;
 /*N*/   Size aGrfSz, aFrmFmtSz;
 /*N*/
 /*N*/   if( pCntntNode->IsGrfNode() )
@@ -300,7 +300,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SwBaseLink::IsShowQuickDrawBmp() const
+/*N*/ bool SwBaseLink::IsShowQuickDrawBmp() const
 /*N*/ {
 /*N*/   return pCntntNode && pCntntNode->IsGrfNode() &&
 /*N*/ #ifdef NEW_GRFOBJ
@@ -389,11 +389,11 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwBaseLink::SwapIn( BOOL bWaitForData, BOOL bNativFormat )
+/*N*/ bool SwBaseLink::SwapIn( BOOL bWaitForData, BOOL bNativFormat )
 /*N*/ {
 /*N*/   bSwapIn = TRUE;
 /*N*/
-/*N*/   FASTBOOL bRes;
+/*N*/   bool bRes;
 /*N*/
 /*N*/   if( !GetObj() && ( bNativFormat || ( !IsSynchron() && bWaitForData ) ))
 /*N*/   {

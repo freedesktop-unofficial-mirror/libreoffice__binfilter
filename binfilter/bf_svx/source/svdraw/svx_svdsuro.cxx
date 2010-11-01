@@ -84,8 +84,8 @@ namespace binfilter {
 /*N*/ void SdrObjSurrogate::ImpMakeSurrogate()
 /*N*/ {
 /*N*/   if (pObj!=NULL) { // ansonsten bleibt eList=SDROBJLIST_UNKNOWN, weil Obj=NULL
-/*N*/       FASTBOOL bSameList=FALSE;
-/*N*/       FASTBOOL bSamePage=FALSE;
+/*N*/       bool bSameList=FALSE;
+/*N*/       bool bSamePage=FALSE;
 /*N*/       pModel=pObj->GetModel();
 /*N*/       pList=pObj->GetObjList();
 /*N*/       pRootList=pList;
@@ -163,7 +163,7 @@ namespace binfilter {
 /*N*/   if (rSurro.eList==SDROBJLIST_UNKNOWN) {
 /*N*/       rOut<<nId;
 /*N*/   } else {
-/*N*/       FASTBOOL bGrp=rSurro.nGrpLevel!=0;
+/*N*/       bool bGrp=rSurro.nGrpLevel!=0;
 /*N*/       if (bGrp) nId|=0x20; // Gruppierung
 /*N*/       ULONG nMaxOrdNum=rSurro.nOrdNum;
 /*N*/       unsigned i;
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/   rIn>>nId;
 /*N*/   eList=SdrObjListKind(nId & 0x1F);
 /*N*/   if (eList!=SDROBJLIST_UNKNOWN) {
-/*N*/       FASTBOOL bGrp=(nId & 0x20)!=0;      // Id-Byte
+/*N*/       bool bGrp=(nId & 0x20)!=0;      // Id-Byte
 /*N*/       unsigned nByteAnz=(nId & 0xC0)>>6;  // aufschluesseln
 /*N*/       ImpReadValue(rIn,nOrdNum,nByteAnz); // Ordnungsnummer des Objekts
 /*N*/       if (SdrIsPageKind(eList)) { // Seitennummer schreiben

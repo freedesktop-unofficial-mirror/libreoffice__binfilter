@@ -141,12 +141,12 @@ namespace binfilter {
 /*N*/   USHORT nInsPos=nAnz;
 /*N*/   USHORT nLastId=nAnz!=0 ? GetObject(nAnz-1)->GetId() : 0;
 /*N*/   DBG_ASSERT(nLastId>=nAnz,"SdrGluePointList::Insert(): nLastId<nAnz");
-/*N*/   FASTBOOL bHole=nLastId>nAnz;
+/*N*/   bool bHole=nLastId>nAnz;
 /*N*/   if (nId<=nLastId) {
 /*N*/       if (!bHole || nId==0) {
 /*N*/           nId=nLastId+1;
 /*N*/       } else {
-/*N*/           FASTBOOL bBrk=FALSE;
+/*N*/           bool bBrk=FALSE;
 /*N*/           for (USHORT nNum=0; nNum<nAnz && !bBrk; nNum++) {
 /*N*/               const SdrGluePoint* pGP=GetObject(nNum);
 /*N*/               USHORT nTmpId=pGP->GetId();

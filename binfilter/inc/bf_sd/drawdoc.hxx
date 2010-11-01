@@ -177,9 +177,9 @@ public:
                         SdDrawDocument(DocumentType eType, SfxObjectShell* pDocSh);
                         ~SdDrawDocument();
 
-    virtual SdrPage*    AllocPage(FASTBOOL bMasterPage);
+    virtual SdrPage*    AllocPage(bool bMasterPage);
     virtual void        DisposeLoadedModels();
-    virtual void        SetChanged(FASTBOOL bFlag = TRUE);
+    virtual void        SetChanged(bool bFlag = TRUE);
     virtual SvStream*   GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const;
     virtual void        HandsOff();
 
@@ -297,7 +297,7 @@ public:
     void                SetCustomShow(BOOL bCustShow) { bCustomShow = bCustShow; }
     BOOL                IsCustomShow() const { return bCustomShow; }
 
-    void                NbcSetChanged(FASTBOOL bFlag = TRUE);
+    void                NbcSetChanged(bool bFlag = TRUE);
 
     void                SetTextDefaults() const;
 

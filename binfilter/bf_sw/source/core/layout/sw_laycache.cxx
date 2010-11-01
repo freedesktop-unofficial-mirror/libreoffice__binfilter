@@ -498,7 +498,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwLayHelper::CheckInsertPage()
 /*N*/ {
-/*N*/   FASTBOOL bEnd = 0 == rpPage->GetNext();
+/*N*/   bool bEnd = 0 == rpPage->GetNext();
 /*N*/     const SwAttrSet *pAttr = rpFrm->GetAttrSet();
 /*N*/   const SvxFmtBreakItem &rBrk = pAttr->GetBreak();
 /*N*/   const SwFmtPageDesc &rDesc = pAttr->GetPageDesc();

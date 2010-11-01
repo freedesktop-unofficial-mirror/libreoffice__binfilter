@@ -36,7 +36,7 @@ namespace binfilter {
 // Die Masseinheit mit anzeigen
 class SdrMeasureShowUnitItem: public SdrYesNoItem {
 public:
-    SdrMeasureShowUnitItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURESHOWUNIT,bOn) {}
+    SdrMeasureShowUnitItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURESHOWUNIT,bOn) {}
     SdrMeasureShowUnitItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURESHOWUNIT,rIn) {}
 };
 

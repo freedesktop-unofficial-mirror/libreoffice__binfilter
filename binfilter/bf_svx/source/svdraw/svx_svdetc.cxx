@@ -243,7 +243,7 @@ namespace binfilter {
 
 /*?*/ class ImpClipMerk {
 /*?*/   Region aClip;
-/*?*/   FASTBOOL   bClip;
+/*?*/   bool   bClip;
 /*?*/ public:
 /*?*/   ImpClipMerk(const OutputDevice& rOut): aClip(rOut.GetClipRegion()),bClip(rOut.IsClipRegion()) {}
 /*?*/   void Restore(OutputDevice& rOut)
@@ -307,7 +307,7 @@ namespace binfilter {
 /*?*/   const Color& GetLineColor() const { return aLineColor; }
 /*?*/ };
 
-/*N*/ ImpSdrHdcMerk::ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode, FASTBOOL bAutoMerk):
+/*N*/ ImpSdrHdcMerk::ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode, bool bAutoMerk):
 /*N*/   pFarbMerk(NULL),
 /*N*/   pClipMerk(NULL),
 /*N*/   pLineColorMerk(NULL),
@@ -420,10 +420,10 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #98988# Re-implement GetDraftFillColor(...)
 
-/*N*/ FASTBOOL GetDraftFillColor(const SfxItemSet& rSet, Color& rCol)
+/*N*/ bool GetDraftFillColor(const SfxItemSet& rSet, Color& rCol)
 /*N*/ {
 /*N*/   XFillStyle eFill=((XFillStyleItem&)rSet.Get(XATTR_FILLSTYLE)).GetValue();
-/*N*/   FASTBOOL bRetval(FALSE);
+/*N*/   bool bRetval(FALSE);
 /*N*/
 /*N*/   switch(eFill)
 /*N*/   {
@@ -561,8 +561,8 @@ namespace binfilter {
     aSet.Put(SvxFontItem(rDefaults.eFontFamily, rDefaults.aFontName, String(), PITCH_DONTKNOW, gsl_getSystemTextEncoding() ) );
     aSet.Put(SvxColorItem(rDefaults.aFontColor));
     ULONG nHgt=rDefaults.nFontHeight;
-    FASTBOOL bDifUn=(eUn!=rDefaults.eMapUnit); // different MapUnits
-    FASTBOOL bDifFr=(aFr!=rDefaults.aMapFraction); // different MapFractions
+    bool bDifUn=(eUn!=rDefaults.eMapUnit); // different MapUnits
+    bool bDifFr=(aFr!=rDefaults.aMapFraction); // different MapFractions
     if (bDifUn || bDifFr) { // Wenn pMod!=NULL und pMod->Map!=rDef.Map
         long nTmpLong=long(nHgt); // caasting im Ctor bringt unter MSVC sehr merkwuerdige Fehlermeldungen
         BigInt aHgt1(nTmpLong); // umrechnen von DefMap in ModMap

@@ -169,7 +169,7 @@ class E3dObject : public SdrAttrObj
     SfxItemPool* ImpGetItemPool() const;
     const SfxPoolItem* ImpSetNewAttr(const SfxPoolItem* pAkt,
                                      const SfxPoolItem* pNew,
-                                     FASTBOOL bChg = TRUE);
+                                     bool bChg = TRUE);
 
  public:
     TYPEINFO();
@@ -178,7 +178,7 @@ class E3dObject : public SdrAttrObj
 
     virtual void RecalcSnapRect();
     virtual void RecalcBoundRect();
-    virtual void SetRectsDirty(FASTBOOL bNotMyself=FALSE);
+    virtual void SetRectsDirty(bool bNotMyself=FALSE);
 
     virtual ~E3dObject();
 
@@ -244,7 +244,7 @@ class E3dObject : public SdrAttrObj
 
     USHORT GetObjTreeLevel() const { return nObjTreeLevel; }
 
-    FASTBOOL HasLogicalGroup() { return ( nLogicalGroup > 0 ); }
+    bool HasLogicalGroup() { return ( nLogicalGroup > 0 ); }
     USHORT GetLogicalGroup() { return nLogicalGroup; }
 
     void SetDragDetail(E3dDragDetail eDetail)   { eDragDetail = eDetail; }
@@ -252,7 +252,7 @@ class E3dObject : public SdrAttrObj
 
     void    SetPartOfParent(UINT16 nPartCode = 1) { nPartOfParent = nPartCode; }
     UINT16  GetPartCode()   { return nPartOfParent; }
-    FASTBOOL IsPartOfParent() const { return (nPartOfParent != 0); }
+    bool IsPartOfParent() const { return (nPartOfParent != 0); }
 
 
     // ItemSet access
@@ -268,7 +268,7 @@ class E3dObject : public SdrAttrObj
 
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);

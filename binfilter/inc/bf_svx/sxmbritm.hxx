@@ -41,7 +41,7 @@ namespace binfilter {
 // (SdrMeasureLineDistItem) ueber die Bezugskante hinwegdraggt
 class SdrMeasureBelowRefEdgeItem: public SdrYesNoItem {
 public:
-    SdrMeasureBelowRefEdgeItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,bOn) {}
+    SdrMeasureBelowRefEdgeItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,bOn) {}
     SdrMeasureBelowRefEdgeItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,rIn) {}
 };
 

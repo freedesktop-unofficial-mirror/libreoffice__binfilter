@@ -120,7 +120,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrTextObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrTextObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/
@@ -285,18 +285,18 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ FASTBOOL SdrTextObj::AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt, FASTBOOL bWdt) const
+/*N*/ bool SdrTextObj::AdjustTextFrameWidthAndHeight(Rectangle& rR, bool bHgt, bool bWdt) const
 /*N*/ {
 /*N*/   if (bTextFrame && pModel!=NULL && !rR.IsEmpty()) {
 /*N*/       SdrFitToSizeType eFit=GetFitToSize();
-/*N*/       FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
-/*N*/       FASTBOOL bWdtGrow=bWdt && IsAutoGrowWidth();
-/*N*/       FASTBOOL bHgtGrow=bHgt && IsAutoGrowHeight();
+/*N*/       bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*N*/       bool bWdtGrow=bWdt && IsAutoGrowWidth();
+/*N*/       bool bHgtGrow=bHgt && IsAutoGrowHeight();
 /*N*/       SdrTextAniKind eAniKind=GetTextAniKind();
 /*N*/       SdrTextAniDirection eAniDir=GetTextAniDirection();
-/*N*/       FASTBOOL bScroll=eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE;
-/*N*/       FASTBOOL bHScroll=bScroll && (eAniDir==SDRTEXTANI_LEFT || eAniDir==SDRTEXTANI_RIGHT);
-/*N*/       FASTBOOL bVScroll=bScroll && (eAniDir==SDRTEXTANI_UP || eAniDir==SDRTEXTANI_DOWN);
+/*N*/       bool bScroll=eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE;
+/*N*/       bool bHScroll=bScroll && (eAniDir==SDRTEXTANI_LEFT || eAniDir==SDRTEXTANI_RIGHT);
+/*N*/       bool bVScroll=bScroll && (eAniDir==SDRTEXTANI_UP || eAniDir==SDRTEXTANI_DOWN);
 /*N*/       if (!bFitToSize && (bWdtGrow || bHgtGrow)) {
 /*N*/           Rectangle aR0(rR);
 /*N*/           long nHgt=0,nMinHgt=0,nMaxHgt=0;
@@ -410,9 +410,9 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::NbcAdjustTextFrameWidthAndHeight(FASTBOOL bHgt, FASTBOOL bWdt)
+/*N*/ bool SdrTextObj::NbcAdjustTextFrameWidthAndHeight(bool bHgt, bool bWdt)
 /*N*/ {
-/*N*/   FASTBOOL bRet=AdjustTextFrameWidthAndHeight(aRect,bHgt,bWdt);
+/*N*/   bool bRet=AdjustTextFrameWidthAndHeight(aRect,bHgt,bWdt);
 /*N*/   if (bRet) {
 /*N*/       SetRectsDirty();
 /*N*/       if (HAS_BASE(SdrRectObj,this)) { // mal wieder 'nen Hack

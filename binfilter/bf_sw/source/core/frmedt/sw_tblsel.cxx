@@ -935,7 +935,7 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/   pTable = pStart->FindTabFrm();
 /*M*/   pEndTable = pEnd->FindTabFrm();
 /*M*/
-/*M*/   const FASTBOOL bRepeat = pTable->GetTable()->IsHeadlineRepeat();
+/*M*/   const bool bRepeat = pTable->GetTable()->IsHeadlineRepeat();
 /*M*/
 /*M*/   const long nStSz = pStart->GetFmt()->GetFrmSize().GetWidth();
 /*M*/   const long nEdSz = pEnd->GetFmt()->GetFrmSize().GetWidth();
@@ -1538,7 +1538,7 @@ void _FndBox::SaveChartData( const SwTable &rTable )
                                                 pData->SomeData4().ToInt32();
                     if ( long(pEndBox) == LONG_MAX )
                         pEndBox = ::binfilter::lcl_FindLastBox( rTable );
-                    FASTBOOL bSttFound = FALSE, bEndFound = FALSE;
+                    bool bSttFound = FALSE, bEndFound = FALSE;
                     const SwTableSortBoxes &rBoxes = rTable.GetTabSortBoxes();
                     for ( USHORT i = 0; i < rBoxes.Count(); ++i )
                     {

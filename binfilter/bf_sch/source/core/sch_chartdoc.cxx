@@ -111,7 +111,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdrPage* ChartModel::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* ChartModel::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   return new SdrPage(*this, bMasterPage);
 /*N*/ }
@@ -279,7 +279,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void ChartModel::SetChanged(FASTBOOL bFlag)
+/*N*/ void ChartModel::SetChanged(bool bFlag)
 /*N*/ {
 /*N*/   if (pDocShell)
 /*N*/   {

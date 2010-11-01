@@ -98,10 +98,10 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                             const SwNodeIndex &rEndIdx );
 
 //Um z.B. fuer Tabelleheadlines das Erzeugen der Flys in _InsertCnt zu unterbinden.
-extern FASTBOOL bDontCreateObjects;
+extern bool bDontCreateObjects;
 
 //Fuer FlyCnts, siehe SwFlyAtCntFrm::MakeAll()
-extern FASTBOOL bSetCompletePaintOnInvalidate;
+extern bool bSetCompletePaintOnInvalidate;
 
 //Fuer Tabelleneinstellung per Tastatur.
 long MA_FASTCALL CalcRowRstHeight( SwLayoutFrm *pRow );
@@ -140,7 +140,7 @@ SwFrm* GetFrmOfModify( SwModify&, USHORT nFrmType, const Point* = 0,
                         const BOOL bCalcFrm = FALSE );
 
 //Sollen ExtraDaten (Reline-Strich, Zeilennummern) gepaintet werden?
-FASTBOOL IsExtraData( const SwDoc *pDoc );
+bool IsExtraData( const SwDoc *pDoc );
 
 // OD 14.03.2003 #i11760# - method declaration <CalcCntnt(..)>
 void CalcCntnt( SwLayoutFrm *pLay,
@@ -159,10 +159,10 @@ protected:
     const SwRect aPrt;
     SwTwips mnFlyAnchorOfst;
     SwTwips mnFlyAnchorOfstNoWrap;
-    FASTBOOL     bHadFollow;
-    FASTBOOL     bInvaKeep;
+    bool     bHadFollow;
+    bool     bInvaKeep;
 #ifdef ACCESSIBLE_LAYOUT
-    FASTBOOL     bValidSize;
+    bool     bValidSize;
 #endif
 
 public:
@@ -178,7 +178,7 @@ class SwLayNotify : public SwFrmNotify
 {
     SwTwips  nHeightOfst;
     SwTwips  nWidthOfst;
-    FASTBOOL bLowersComplete;
+    bool bLowersComplete;
 
     SwLayoutFrm *GetLay() { return (SwLayoutFrm*)pFrm; }
 public:
@@ -194,8 +194,8 @@ public:
     void    ResetHeightOfst() { nHeightOfst = 0; }
     void    ResetWidthOfst()  { nWidthOfst = 0; }
 
-    void SetLowersComplete( FASTBOOL b ) { bLowersComplete = b; }
-    FASTBOOL IsLowersComplete()          { return bLowersComplete; }
+    void SetLowersComplete( bool b ) { bLowersComplete = b; }
+    bool IsLowersComplete()          { return bLowersComplete; }
 };
 
 class SwFlyNotify : public SwLayNotify
@@ -361,9 +361,9 @@ class SwOrderIter
 {
     const SwPageFrm *pPage;
     const SdrObject *pCurrent;
-    const FASTBOOL bFlysOnly;
+    const bool bFlysOnly;
 public:
-    SwOrderIter( const SwPageFrm *pPage, FASTBOOL bFlysOnly = TRUE );
+    SwOrderIter( const SwPageFrm *pPage, bool bFlysOnly = TRUE );
 
     void             Current( const SdrObject *pNew ) { pCurrent = pNew; }
     const SdrObject *Current()    const { return pCurrent; }

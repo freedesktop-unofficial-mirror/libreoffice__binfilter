@@ -285,7 +285,7 @@ static const ULONG nErrors[18]={
     return 0;
 }
 
-FASTBOOL W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter )
+bool W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter )
 {
 #ifdef MAC
     return TRUE;            // dann beim CallMacRes feststellen

@@ -42,7 +42,7 @@ class SwNodeIndex
 {
     friend void SwNodes::RegisterIndex( SwNodeIndex& );
     friend void SwNodes::DeRegisterIndex( SwNodeIndex& );
-    friend void SwNodes::RemoveNode( ULONG, ULONG, FASTBOOL );
+    friend void SwNodes::RemoveNode( ULONG, ULONG, bool );
 
 #ifdef DBG_UTIL
     static int nSerial;

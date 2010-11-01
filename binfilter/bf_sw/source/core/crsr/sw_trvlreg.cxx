@@ -39,28 +39,28 @@ namespace binfilter {
 
 
 
-/*N*/ FASTBOOL GotoPrevRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoPrevRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoNextRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoNextRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoCurrRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoCurrRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoCurrRegionAndSkip( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                               FASTBOOL bInReadOnly )
+/*N*/ bool GotoCurrRegionAndSkip( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
+/*N*/                               bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }

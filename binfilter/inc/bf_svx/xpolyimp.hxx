@@ -63,8 +63,8 @@ public:
     ImpXPolygon( const ImpXPolygon& rImpXPoly );
     ~ImpXPolygon();
 
-    FASTBOOL operator==(const ImpXPolygon& rImpXPoly) const;
-    FASTBOOL operator!=(const ImpXPolygon& rImpXPoly) const { return !operator==(rImpXPoly); }
+    bool operator==(const ImpXPolygon& rImpXPoly) const;
+    bool operator!=(const ImpXPolygon& rImpXPoly) const { return !operator==(rImpXPoly); }
 
     void CheckPointDelete()
     {

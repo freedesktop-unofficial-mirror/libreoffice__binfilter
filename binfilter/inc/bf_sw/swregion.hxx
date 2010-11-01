@@ -39,7 +39,7 @@ class SwRegionRects : public SwRects
 {
     SwRect aOrigin; // die Kopie des StartRects
 
-    inline void InsertRect( const SwRect &rRect, const USHORT nPos, FASTBOOL &rDel);
+    inline void InsertRect( const SwRect &rRect, const USHORT nPos, bool &rDel);
 
 public:
     SwRegionRects( const SwRect& rStartRect, USHORT nInit = 20,

@@ -45,14 +45,14 @@ namespace binfilter {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SdrTextObj::HasTextEdit() const
+/*N*/ bool SdrTextObj::HasTextEdit() const
 /*N*/ {
 /*N*/   // lt. Anweisung von MB duerfen gelinkte Textobjekte nun doch
 /*N*/   // geaendert werden (kein automatisches Reload)
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::BegTextEdit(SdrOutliner& rOutl)
+/*N*/ bool SdrTextObj::BegTextEdit(SdrOutliner& rOutl)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 

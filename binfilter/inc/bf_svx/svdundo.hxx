@@ -190,7 +190,7 @@ public:
 //************************************************************
 
 class SdrUndoObjList : public SdrUndoObj {
-    FASTBOOL                    bOwner;
+    bool                    bOwner;
 
 protected:
     SdrObjList*                 pObjList;
@@ -201,7 +201,7 @@ protected:
     // statt. Im Dtor wird das Obj deleted, wenn bOwner==TRUE
 
 protected:
-    SdrUndoObjList(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE);
+    SdrUndoObjList(SdrObject& rNewObj, bool bOrdNumDirect=FALSE);
     virtual ~SdrUndoObjList();
 
     void SetView(SdrView* pView1, SdrPageView* pPageView1) { pView=pView1; pPageView=pPageView1; }
@@ -220,7 +220,7 @@ protected:
 class SdrUndoRemoveObj : public SdrUndoObjList
 {
 public:
-    SdrUndoRemoveObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
+    SdrUndoRemoveObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
     : SdrUndoObjList(rNewObj,bOrdNumDirect) {}
 
 };
@@ -237,7 +237,7 @@ public:
 class SdrUndoInsertObj : public SdrUndoObjList
 {
 public:
-    SdrUndoInsertObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
+    SdrUndoInsertObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
     :   SdrUndoObjList(rNewObj,bOrdNumDirect) {}
 };
 
@@ -252,7 +252,7 @@ public:
 class SdrUndoDelObj : public SdrUndoRemoveObj
 {
 public:
-    SdrUndoDelObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
+    SdrUndoDelObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
     :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP");}//STRIP001         :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) { SetOwner(TRUE); }
 
 };
@@ -398,7 +398,7 @@ protected:
 
     // Bei einem Undo/Redo findet moeglicherweise Uebereignung der Page
     // statt. Im Dtor wird die Page deleted, wenn bItsMine==TRUE
-    FASTBOOL                    bItsMine;
+    bool                    bItsMine;
 
 protected:
     SdrUndoPageList(SdrPage& rNewPg);

@@ -57,7 +57,7 @@
 
 namespace binfilter {
 
-extern FASTBOOL IsInProgress( const SwFlyFrm *pFly );
+extern bool IsInProgress( const SwFlyFrm *pFly );
 
 class FormatLevel
 {

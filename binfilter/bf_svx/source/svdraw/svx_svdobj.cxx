@@ -137,7 +137,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjUserData::HasMacro(const SdrObject* pObj) const
+/*N*/ bool SdrObjUserData::HasMacro(const SdrObject* pObj) const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
@@ -1155,7 +1155,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/   return new SdrObjPlusData;
 /*N*/ }
 
-/*N*/ void SdrObject::SetRectsDirty(FASTBOOL bNotMyself)
+/*N*/ void SdrObject::SetRectsDirty(bool bNotMyself)
 /*N*/ {
 /*N*/   if (!bNotMyself) {
 /*N*/       bBoundRectDirty=TRUE;
@@ -1410,7 +1410,7 @@ static double SMALLEST_DASH_WIDTH(26.95);
 /*N*/   if (bInserted && pModel!=NULL) pModel->SetChanged();
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObject::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& /*rInfoRec*/) const
+/*N*/ bool SdrObject::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& /*rInfoRec*/) const
 /*N*/ {
 /*N*/   Color aRedColor( COL_RED );
 /*N*/   Color aYellowColor( COL_YELLOW );
@@ -1940,7 +1940,7 @@ class ImpSkeleton;
 
 
 
-/*N*/ void SdrObject::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL /*bDetail*/) const
+/*N*/ void SdrObject::TakeXorPoly(XPolyPolygon& rPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   rPoly=XPolyPolygon(XPolygon(GetBoundRect()));
 /*N*/ }
@@ -2112,8 +2112,8 @@ class ImpSkeleton;
 
 /*N*/ void SdrObject::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
-/*N*/   FASTBOOL bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/   FASTBOOL bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
+/*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
+/*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
 /*N*/   if (bXMirr || bYMirr) {
 /*N*/       Point aRef1(GetSnapRect().Center());
 /*N*/       if (bXMirr) {
@@ -2190,7 +2190,7 @@ class ImpSkeleton;
 /*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
-/*N*/ void SdrObject::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrObject::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   SetGlueReallyAbsolute(TRUE);
 /*N*/   NbcShearGluePoints(rRef,nWink,tn,bVShear);
@@ -2234,7 +2234,7 @@ class ImpSkeleton;
 /*N*/ }
 
 
-/*N*/ void SdrObject::Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrObject::Shear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   if (nWink!=0) {
 /*N*/       Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
@@ -2343,14 +2343,14 @@ class ImpSkeleton;
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ long SdrObject::GetShearAngle(FASTBOOL bVertical) const
+/*N*/ long SdrObject::GetShearAngle(bool bVertical) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
 
 
 
-/*N*/ FASTBOOL SdrObject::IsPolyObj() const
+/*N*/ bool SdrObject::IsPolyObj() const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
@@ -2391,7 +2391,7 @@ class ImpSkeleton;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SdrObject::HasTextEdit() const
+/*N*/ bool SdrObject::HasTextEdit() const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
@@ -2401,7 +2401,7 @@ class ImpSkeleton;
 /*N*/   return CheckHit(rPnt,nTol,pVisiLayer);
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObject::BegTextEdit(SdrOutliner& rOutl)
+/*N*/ bool SdrObject::BegTextEdit(SdrOutliner& rOutl)
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
@@ -2465,7 +2465,7 @@ class ImpSkeleton;
 /*N*/   return pData;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObject::HasMacro() const
+/*N*/ bool SdrObject::HasMacro() const
 /*N*/ {
 /*N*/   SdrObjUserData* pData=ImpGetMacroUserData();
 /*N*/   return pData!=NULL ? pData->HasMacro(this) : FALSE;
@@ -2687,7 +2687,7 @@ class ImpSkeleton;
 
 
 
-/*N*/ void SdrObject::TakeNotPersistAttr(SfxItemSet& rAttr, FASTBOOL bMerge) const
+/*N*/ void SdrObject::TakeNotPersistAttr(SfxItemSet& rAttr, bool bMerge) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -2697,18 +2697,18 @@ class ImpSkeleton;
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/ void SdrObject::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrObject::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SdrObject::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrObject::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/ }
 
 // Das Broadcasting beim Setzen der Attribute wird vom AttrObj gemanagt
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SdrObject::IsNode() const
+/*N*/ bool SdrObject::IsNode() const
 /*N*/ {
 /*N*/   return TRUE;
 /*N*/ }
@@ -2746,7 +2746,7 @@ class ImpSkeleton;
 /*N*/   return pPlusData->pGluePoints;
 /*N*/ }
 
-/*N*/ void SdrObject::SetGlueReallyAbsolute(FASTBOOL bOn)
+/*N*/ void SdrObject::SetGlueReallyAbsolute(bool bOn)
 /*N*/ {
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
@@ -2773,7 +2773,7 @@ class ImpSkeleton;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObject::NbcShearGluePoints(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrObject::NbcShearGluePoints(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
@@ -2785,11 +2785,11 @@ class ImpSkeleton;
 
 
 
-/*N*/ void SdrObject::ConnectToNode(FASTBOOL bTail1, SdrObject* pObj)
+/*N*/ void SdrObject::ConnectToNode(bool bTail1, SdrObject* pObj)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SdrObject::DisconnectFromNode(FASTBOOL bTail1)
+/*N*/ void SdrObject::DisconnectFromNode(bool bTail1)
 /*N*/ {
 /*N*/ }
 
@@ -2895,7 +2895,7 @@ class ImpSkeleton;
 /*N*/       delete pPlusData->pUserDataList;
 /*N*/       pPlusData->pUserDataList=NULL;
 /*N*/   }
-/*N*/   FASTBOOL bReadUserDataList=FALSE;
+/*N*/   bool bReadUserDataList=FALSE;
 /*N*/   SdrDownCompat* pUserDataListCompat=NULL;
 /*N*/   if (rHead.GetVersion()>=11) { // ab V11 ist die UserDataList in DownCompat gefasst (mit Flag davor)
 /*N*/       rIn>>bTemp;
@@ -3031,7 +3031,7 @@ class ImpSkeleton;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrObject::SetInserted(FASTBOOL bIns)
+/*N*/ void SdrObject::SetInserted(bool bIns)
 /*N*/ {
 /*N*/   if (bIns!=bInserted) {
 /*N*/       bInserted=bIns;
@@ -3047,7 +3047,7 @@ class ImpSkeleton;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObject::SetMoveProtect(FASTBOOL bProt)
+/*N*/ void SdrObject::SetMoveProtect(bool bProt)
 /*N*/ {
 /*N*/   bMovProt=bProt;
 /*N*/   SetChanged();
@@ -3058,7 +3058,7 @@ class ImpSkeleton;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObject::SetResizeProtect(FASTBOOL bProt)
+/*N*/ void SdrObject::SetResizeProtect(bool bProt)
 /*N*/ {
 /*N*/   bSizProt=bProt;
 /*N*/   SetChanged();
@@ -3069,7 +3069,7 @@ class ImpSkeleton;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObject::SetPrintable(FASTBOOL bPrn)
+/*N*/ void SdrObject::SetPrintable(bool bPrn)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 

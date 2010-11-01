@@ -231,7 +231,7 @@ public:
     virtual void    RecalcSnapRect();
 
     // Paint MUSS ueberladen werden
-    virtual FASTBOOL Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const = 0;
+    virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const = 0;
 
     virtual E3dScene* GetScene() const;
 
@@ -247,14 +247,14 @@ public:
     void SetCamera(const Camera3D& rNewCamera);
     const Camera3D& GetCamera() const { return aCamera; }
 
-    FASTBOOL IsDoubleBuffered() const { return bDoubleBuffered; }
+    bool IsDoubleBuffered() const { return bDoubleBuffered; }
 
     // Clipping auf umschliessendes Rechteck der Szene
     // (Double Buffering ist immer geclipt!)
-    FASTBOOL IsClipping() const { return bClipping; }
+    bool IsClipping() const { return bClipping; }
 
     void CorrectSceneDimensions();
-    FASTBOOL IsFitInSnapRect() const { return bFitInSnapRect; }
+    bool IsFitInSnapRect() const { return bFitInSnapRect; }
 
     void FitSnapRectToBoundVol();
     virtual void WriteData(SvStream& rOut) const;
@@ -277,7 +277,7 @@ public:
     virtual void PreSave();
     virtual void PostSave();
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
 

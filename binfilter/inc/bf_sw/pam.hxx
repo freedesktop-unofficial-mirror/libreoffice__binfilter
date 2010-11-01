@@ -73,12 +73,12 @@ struct SwPosition
 
     SwPosition &operator=(const SwPosition &);
 
-    FASTBOOL operator < (const SwPosition &) const;
-    FASTBOOL operator > (const SwPosition &) const;
-    FASTBOOL operator <=(const SwPosition &) const;
-    FASTBOOL operator >=(const SwPosition &) const;
-    FASTBOOL operator ==(const SwPosition &) const;
-    FASTBOOL operator !=(const SwPosition &) const;
+    bool operator < (const SwPosition &) const;
+    bool operator > (const SwPosition &) const;
+    bool operator <=(const SwPosition &) const;
+    bool operator >=(const SwPosition &) const;
+    bool operator ==(const SwPosition &) const;
+    bool operator !=(const SwPosition &) const;
 };
 
 
@@ -105,7 +105,7 @@ struct SwMoveFnCollection;
 typedef SwMoveFnCollection* SwMoveFn;
 extern SwMoveFn fnMoveForward, fnMoveBackward;
 
-typedef FASTBOOL (*SwGoInDoc)( SwPaM& rPam, SwMoveFn fnMove );
+typedef bool (*SwGoInDoc)( SwPaM& rPam, SwMoveFn fnMove );
 extern SwGoInDoc fnGoDoc, fnGoSection, fnGoNode, fnGoCntnt, fnGoCntntCells;
 
 void _InitPam();
@@ -132,7 +132,7 @@ public:
     virtual ~SwPaM();
 
     // Bewegen des Cursors
-    FASTBOOL Move( SwMoveFn fnMove = fnMoveForward,
+    bool Move( SwMoveFn fnMove = fnMoveForward,
                     SwGoInDoc fnGo = fnGoCntnt );
 
     // Suchen
@@ -158,7 +158,7 @@ public:
      * Selektion: Point und Mark zeigen auf unterschiedliche
      * Puffer.
      */
-    FASTBOOL HasMark() const { return pPoint == pMark? FALSE : TRUE; }
+    bool HasMark() const { return pPoint == pMark? FALSE : TRUE; }
 
     const SwPosition *GetPoint() const { return pPoint; }
           SwPosition *GetPoint()       { return pPoint; }
@@ -208,8 +208,8 @@ public:
 };
 
 
-FASTBOOL CheckNodesRange( const SwNodeIndex&, const SwNodeIndex&, FASTBOOL );
-FASTBOOL GoInCntnt( SwPaM & rPam, SwMoveFn fnMove );
+bool CheckNodesRange( const SwNodeIndex&, const SwNodeIndex&, bool );
+bool GoInCntnt( SwPaM & rPam, SwMoveFn fnMove );
 
 
 } //namespace binfilter

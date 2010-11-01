@@ -90,8 +90,8 @@ public:
                     ScDrawLayer( ScDocument* pDocument, const String& rName );
     virtual         ~ScDrawLayer();
 
-    virtual SdrPage*  AllocPage(FASTBOOL bMasterPage);
-    virtual void    SetChanged( FASTBOOL bFlg = TRUE );
+    virtual SdrPage*  AllocPage(bool bMasterPage);
+    virtual void    SetChanged( bool bFlg = TRUE );
 
     virtual SvStream* GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const;
 

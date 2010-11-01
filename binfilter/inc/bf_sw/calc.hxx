@@ -219,10 +219,10 @@ public:
     void        SetCalcError( SwCalcError eErr )    { eError = eErr; }
     BOOL        IsCalcError() const                 { return eError; }
 
-    static FASTBOOL Str2Double( const String& rStr, xub_StrLen& rPos,
+    static bool Str2Double( const String& rStr, xub_StrLen& rPos,
                                 double& rVal,
                                 const LocaleDataWrapper* pData = 0 );
-    static FASTBOOL Str2Double( const String& rStr, xub_StrLen& rPos,
+    static bool Str2Double( const String& rStr, xub_StrLen& rPos,
                                 double& rVal, SwDoc* pDoc );
 
 };

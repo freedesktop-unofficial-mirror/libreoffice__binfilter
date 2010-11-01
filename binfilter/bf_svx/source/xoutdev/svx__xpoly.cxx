@@ -124,7 +124,7 @@ namespace binfilter {
 *************************************************************************/
 
 
-/*N*/ FASTBOOL ImpXPolygon::operator==(const ImpXPolygon& rImpXPoly) const
+/*N*/ bool ImpXPolygon::operator==(const ImpXPolygon& rImpXPoly) const
 /*N*/ {
 /*N*/   return nPoints==rImpXPoly.nPoints &&
 /*N*/          (nPoints==0 ||
@@ -1985,7 +1985,7 @@ namespace binfilter {
 /*N*/   USHORT nXPolyCount;
 /*N*/   rIStream >> nXPolyCount;
 /*N*/
-/*N*/   FASTBOOL bTruncated=FALSE;
+/*N*/   bool bTruncated=FALSE;
 /*N*/   ULONG nAllPointCount=0; // Gesamtanzahl der Punkte mitzaehlen
 /*N*/
 /*N*/   if ( rXPolyPoly.pImpXPolyPolygon->nRefCount > 1 ) {

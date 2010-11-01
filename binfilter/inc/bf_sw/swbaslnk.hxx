@@ -60,11 +60,11 @@ public:
     SwCntntNode *GetCntntNode() { return pCntntNode; }
 
     // nur fuer Grafiken
-    FASTBOOL SwapIn( BOOL bWaitForData = FALSE, BOOL bNativFormat = FALSE );
+    bool SwapIn( BOOL bWaitForData = FALSE, BOOL bNativFormat = FALSE );
 
-    FASTBOOL IsShowQuickDrawBmp() const;                // nur fuer Grafiken
+    bool IsShowQuickDrawBmp() const;                // nur fuer Grafiken
 
-    FASTBOOL Connect() { return 0 != SvBaseLink::GetRealObject(); }
+    bool Connect() { return 0 != SvBaseLink::GetRealObject(); }
 
     // nur fuer Grafik-Links ( zum Umschalten zwischen DDE / Grf-Link)
     void SetObjType( USHORT nType ) { SvBaseLink::SetObjType( nType ); }

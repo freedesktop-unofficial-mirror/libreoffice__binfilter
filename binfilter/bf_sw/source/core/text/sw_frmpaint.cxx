@@ -47,7 +47,7 @@ namespace binfilter {
 // steht im number.cxx
 extern const sal_Char __FAR_DATA sBulletFntName[];
 
-extern FASTBOOL bOneBeepOnly;
+extern bool bOneBeepOnly;
 
 sal_Bool bInitFont = sal_True;
 

@@ -1332,9 +1332,9 @@ void SwDrawVirtObj::RecalcBoundRect()
     aOutRect += maOffset;
 }
 
-FASTBOOL SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
+bool SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
 {
-    FASTBOOL bRet;
+    bool bRet;
 
     Point aOfs(rOut.GetOffset());
     rOut.SetOffset(aOfs + maOffset);
@@ -1357,12 +1357,12 @@ FASTBOOL SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInf
 SdrObject* SwDrawVirtObj::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
 {
     Point aPnt(rPnt - maOffset);
-    FASTBOOL bRet = rRefObj.CheckHit(aPnt, nTol, pVisiLayer) != NULL;
+    bool bRet = rRefObj.CheckHit(aPnt, nTol, pVisiLayer) != NULL;
 
     return bRet ? (SdrObject*)this : NULL;
 }
 
-void SwDrawVirtObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
+void SwDrawVirtObj::TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const
 {
     rRefObj.TakeXorPoly(rPoly, bDetail);
     rPoly.Move(maOffset.X(), maOffset.Y());
@@ -1406,7 +1406,7 @@ void SwDrawVirtObj::NbcMirror(const Point& rRef1, const Point& rRef2)
     SetRectsDirty();
 }
 
-void SwDrawVirtObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+void SwDrawVirtObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 {
     rRefObj.NbcShear(rRef - maOffset, nWink, tn, bVShear);
     SetRectsDirty();
@@ -1446,7 +1446,7 @@ void SwDrawVirtObj::Mirror(const Point& rRef1, const Point& rRef2)
 {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 }
 
-void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, bool bVShear)
 {
     if(nWink)
     {
@@ -1536,7 +1536,7 @@ void SwDrawVirtObj::NbcSetPoint(const Point& rPnt, USHORT i)
 }
 
 // #108784#
-FASTBOOL SwDrawVirtObj::HasTextEdit() const
+bool SwDrawVirtObj::HasTextEdit() const
 {
     return rRefObj.HasTextEdit();
 }

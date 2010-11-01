@@ -371,7 +371,7 @@ namespace binfilter {
 /*N*/                                 const SwTwips nOfst,
 /*N*/                                 const SwTwips nOldBottom )
 /*N*/ {
-/*N*/   FASTBOOL bScroll = TRUE;
+/*N*/   bool bScroll = TRUE;
 /*N*/   SwRect aPaintRect( pCntnt->PaintArea() );
 /*N*/     SWRECTFN( pCntnt )
 /*N*/
@@ -1143,7 +1143,7 @@ namespace binfilter {
 /*N*/ BOOL SwLayAction::IsShortCut( SwPageFrm *&prPage )
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-/*N*/   const FASTBOOL bBrowse = pRoot->GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   const bool bBrowse = pRoot->GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/
 /*N*/   //Wenn die Seite nicht Gueltig ist wird sie schnell formatiert, sonst
 /*N*/   //gibts nix als Aerger.
@@ -1208,7 +1208,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if ( pCntnt )
 /*N*/       {
-/*N*/           FASTBOOL bTstCnt = TRUE;
+/*N*/           bool bTstCnt = TRUE;
 /*N*/           if ( bBrowse )
 /*N*/           {
 /*N*/               //Der Cnt davor schon nicht mehr sichtbar?
@@ -1424,7 +1424,7 @@ namespace binfilter {
 /*N*/       if ( aOldRect != pLay->Frm() )
 /*N*/           bChanged = TRUE;
 /*N*/
-/*N*/       FASTBOOL bNoPaint = FALSE;
+/*N*/       bool bNoPaint = FALSE;
 /*N*/         if ( pLay->IsPageBodyFrm() &&
 /*N*/              pLay->Frm().Pos() == aOldRect.Pos() &&
 /*N*/              pLay->Lower() &&
@@ -1800,7 +1800,7 @@ namespace binfilter {
 /*N*/   pDoc->StopIdleTimer();
 /*N*/
 /*N*/     BOOL bChanged = FALSE;
-/*N*/   FASTBOOL bPainted = FALSE;
+/*N*/   bool bPainted = FALSE;
 /*N*/
 /*N*/   const SwPageFrm *pOldPage = pTab->FindPageFrm();
 /*N*/
@@ -1990,7 +1990,7 @@ namespace binfilter {
 /*N*/ BOOL SwLayAction::FormatCntnt( const SwPageFrm *pPage )
 /*N*/ {
 /*N*/   const SwCntntFrm *pCntnt = pPage->ContainsCntnt();
-/*N*/   const FASTBOOL bBrowse = pRoot->GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   const bool bBrowse = pRoot->GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/
 /*N*/   while ( pCntnt && pPage->IsAnLower( pCntnt ) )
 /*N*/   {
@@ -2064,7 +2064,7 @@ namespace binfilter {
 /*N*/           //So werden einerseits Vorgaenger erwischt, die jetzt fr Retouche
 /*N*/           //verantwortlich sind, andererseits werden die Fusszeilen
 /*N*/           //auch angefasst.
-/*N*/           FASTBOOL bSetCntnt = TRUE;
+/*N*/           bool bSetCntnt = TRUE;
 /*N*/           if ( pCntntPrev )
 /*N*/           {
 /*N*/                 if ( !pCntntPrev->IsValid() && pPage->IsAnLower( pCntntPrev ) )
@@ -2505,7 +2505,7 @@ namespace binfilter {
 /*N*/
 /*N*/       //Weitere Start-/EndActions nur auf wenn irgendwo Paints aufgelaufen
 /*N*/       //sind oder wenn sich die Sichtbarkeit des CharRects veraendert hat.
-/*N*/       FASTBOOL bActions = FALSE;
+/*N*/       bool bActions = FALSE;
 /*N*/       USHORT nBoolIdx = 0;
 /*N*/       do
 /*N*/       {   --pSh->nStartAction;
@@ -2532,7 +2532,7 @@ namespace binfilter {
 /*?*/           //Cursor/Selektion und die VisArea korrekt gesetzt werden.
 /*?*/           nBoolIdx = 0;
 /*?*/           do
-/*?*/           {   FASTBOOL bCrsrShell = pSh->IsA( TYPE(SwCrsrShell) );
+/*?*/           {   bool bCrsrShell = pSh->IsA( TYPE(SwCrsrShell) );
 /*?*/
 /*?*/               if ( bCrsrShell )
 /*?*/                   ((SwCrsrShell*)pSh)->SttCrsrMove();
@@ -2544,7 +2544,7 @@ namespace binfilter {
 /*?*/               //deren Loesung unverhaeltnissmaessig aufwendig waere.
 /*?*/               //fix(18176):
 /*?*/               SwViewImp *pImp = pSh->Imp();
-/*?*/               FASTBOOL bUnlock = FALSE;
+/*?*/               bool bUnlock = FALSE;
 /*?*/               if ( pImp->GetRegion() || pImp->GetScrollRects() )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->DelRegions();
@@ -2567,7 +2567,7 @@ namespace binfilter {
 /*?*/           } while ( pSh != pImp->GetShell() );
 /*N*/       }
 /*N*/
-/*N*/       FASTBOOL bInValid;
+/*N*/       bool bInValid;
 /*N*/       const SwViewOption& rVOpt = *pImp->GetShell()->GetViewOptions();
 /*N*/       SwPageFrm *pPg = (SwPageFrm*)pRoot->Lower();
 /*N*/       do

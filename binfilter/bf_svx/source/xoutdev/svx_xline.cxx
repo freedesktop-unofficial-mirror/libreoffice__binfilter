@@ -163,7 +163,7 @@ namespace binfilter {
 /*N*/   USHORT i;
 /*N*/   USHORT nPntMax=rXPoly.GetPointCount()-1;
 /*N*/
-/*N*/   FASTBOOL bHasBezier=FALSE;
+/*N*/   bool bHasBezier=FALSE;
 /*N*/   Rectangle aRect(rXPoly[0],rXPoly[0]);
 /*N*/   // zunaechst das Rect der Stuetzstellen (ohne Kontrollpunkte) bestimmen
 /*N*/   Point aPt;

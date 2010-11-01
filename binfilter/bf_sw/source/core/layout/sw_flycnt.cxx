@@ -135,7 +135,7 @@ namespace binfilter {
 /*N*/       //Richtung. Wenn der neue Anker nicht gefunden wird koennen wir uns
 /*N*/       //immer noch vom Node einen Frame besorgen. Die Change, dass dies dann
 /*N*/       //der richtige ist, ist gut.
-/*N*/       const FASTBOOL bNext = aOldIdx < aNewIdx;
+/*N*/       const bool bNext = aOldIdx < aNewIdx;
 /*N*/       while ( pCntnt && aOldIdx != aNewIdx )
 /*N*/       {
 /*N*/           do
@@ -220,8 +220,8 @@ namespace binfilter {
 /*N*/ public:
 /*N*/   SwOszControl( const SwFlyFrm *pFrm );
 /*N*/   ~SwOszControl();
-/*N*/   FASTBOOL ChkOsz();
-/*N*/   static FASTBOOL IsInProgress( const SwFlyFrm *pFly );
+/*N*/   bool ChkOsz();
+/*N*/   static bool IsInProgress( const SwFlyFrm *pFly );
 /*N*/ };
 /*N*/ const SwFlyFrm *SwOszControl::pStk1 = 0;
 /*N*/ const SwFlyFrm *SwOszControl::pStk2 = 0;
@@ -258,12 +258,12 @@ namespace binfilter {
 /*?*/       SwOszControl::pStk5 = 0;
 /*N*/ }
 
-/*N*/ FASTBOOL IsInProgress( const SwFlyFrm *pFly )
+/*N*/ bool IsInProgress( const SwFlyFrm *pFly )
 /*N*/ {
         DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   return SwOszControl::IsInProgress( pFly );
 /*N*/ }
 
-/*N*/ FASTBOOL SwOszControl::IsInProgress( const SwFlyFrm *pFly )
+/*N*/ bool SwOszControl::IsInProgress( const SwFlyFrm *pFly )
 /*N*/ {
 /*N*/   if ( SwOszControl::pStk1 && !pFly->IsLowerOf( SwOszControl::pStk1 ) )
 /*N*/       return TRUE;
@@ -278,9 +278,9 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SwOszControl::ChkOsz()
+/*N*/ bool SwOszControl::ChkOsz()
 /*N*/ {
-/*N*/   FASTBOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/   Point aTmp = pFly->Frm().Pos();
 /*N*/   if( aTmp == Point() )
 /*N*/       aTmp.X() = 1;
@@ -359,8 +359,8 @@ namespace binfilter {
 /*M*/             SwFrm* pFooter = GetAnchor()->FindFooterOrHeader();
 /*M*/             if( pFooter && !pFooter->IsFooterFrm() )
 /*M*/                 pFooter = NULL;
-/*M*/             FASTBOOL bOsz = FALSE;
-/*M*/             FASTBOOL bExtra = Lower() && Lower()->IsColumnFrm();
+/*M*/             bool bOsz = FALSE;
+/*M*/             bool bExtra = Lower() && Lower()->IsColumnFrm();
 /*M*/
 /*M*/             do {
 /*M*/                 SWRECTFN( this )
@@ -1085,7 +1085,7 @@ namespace binfilter {
 /*M*/
 /*M*/   USHORT nCnt = 0;
 /*M*/
-/*M*/   FASTBOOL bContinue = FALSE;
+/*M*/   bool bContinue = FALSE;
 /*M*/   do
 /*M*/   {   if ( ++nCnt == 10 )
 /*M*/       {
@@ -1093,7 +1093,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/       }
 /*M*/
-/*M*/       const FASTBOOL bSetComplete = !pFrm->IsValid();
+/*M*/       const bool bSetComplete = !pFrm->IsValid();
 /*M*/       const SwRect aOldFrm( pFrm->Frm() );
 /*M*/       const SwRect aOldPrt( pFrm->Prt() );
 /*M*/
@@ -1331,14 +1331,14 @@ namespace binfilter {
 /*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and set <bBrowse> to TRUE, if document is in browser mode and
 /*N*/     /// fly frame is anchored at the body, but not at frame belonging to a table.
-/*N*/     const FASTBOOL bBrowse = GetAnchor()->IsInDocBody() && !GetAnchor()->IsInTab() ?
+/*N*/     const bool bBrowse = GetAnchor()->IsInDocBody() && !GetAnchor()->IsInTab() ?
 /*N*/                                  GetFmt()->GetDoc()->IsBrowseMode() : FALSE;
 /*N*/
 /*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and init <bInvalidatePage> to FALSE, in order to invalidate
 /*N*/     /// page size, if <bInvalidatePage> is set during the calculation of the
 /*N*/     /// fly frame position.
-/*N*/     FASTBOOL bInvalidatePage = FALSE;
+/*N*/     bool bInvalidatePage = FALSE;
 /*N*/
 /*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine fly frame format and its left/right and its upper/lower spacing.
@@ -1349,9 +1349,9 @@ namespace binfilter {
 /*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine, if fly frame has no surrounding.
 /*N*/     const SwFmtSurround& rSurround = pFmt->GetSurround();
-/*N*/     const FASTBOOL bNoSurround =
+/*N*/     const bool bNoSurround =
 /*N*/         rSurround.GetSurround() == SURROUND_NONE;
-/*N*/     const FASTBOOL bWrapThrough =
+/*N*/     const bool bWrapThrough =
 /*N*/         rSurround.GetSurround() == SURROUND_THROUGHT;
 /*N*/
 /*N*/     BOOL bGrow =

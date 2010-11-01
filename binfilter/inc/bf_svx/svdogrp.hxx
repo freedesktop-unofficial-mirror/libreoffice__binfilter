@@ -70,12 +70,12 @@ class ImpSdrObjGroupLinkUserData : public SdrObjUserData
     ImpSdrObjGroupLink*         pLink;
     sal_uInt32                  nObjNum;     // des referenzierten Objekts
     USHORT                      nPageNum;    // zum schnelleren wiederauffinden
-    FASTBOOL                    bMasterPage; // Liegt im Referenzdokoment auf einer Masterpage
+    bool                    bMasterPage; // Liegt im Referenzdokoment auf einer Masterpage
 
-    FASTBOOL                    bOrigPos;    // Objekt hat immer die Position des Referenzobjekts
-    FASTBOOL                    bOrigSize;   // Objekt hat immer die Groesse des Referenzobjekts
-    FASTBOOL                    bOrigRotate; // Objekt hat immer die Drehung des Referenzobjekts
-    FASTBOOL                    bOrigShear;  // Objekt hat immer den Shearwinkel des Referenzobjekts
+    bool                    bOrigPos;    // Objekt hat immer die Position des Referenzobjekts
+    bool                    bOrigSize;   // Objekt hat immer die Groesse des Referenzobjekts
+    bool                    bOrigRotate; // Objekt hat immer die Drehung des Referenzobjekts
+    bool                    bOrigShear;  // Objekt hat immer den Shearwinkel des Referenzobjekts
 
 public:
     TYPEINFO();
@@ -107,7 +107,7 @@ protected:
     String                      aName;
 
     Point                       aRefPoint; // Referenzpunkt innerhalb der Objektgruppe
-    FASTBOOL                    bRefPoint; // Ist ein RefPoint gesetzt?
+    bool                    bRefPoint; // Ist ein RefPoint gesetzt?
 
 private:
     ImpSdrObjGroupLinkUserData* GetLinkUserData() const;
@@ -139,7 +139,7 @@ public:
     // verwendet werden, um eine benannte Gruppe aus einem fremden Dokument zu
     // laden (ohne Verknuepfung).
     void ReleaseGroupLink();
-    FASTBOOL IsLinkedGroup() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
+    bool IsLinkedGroup() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
 
     // pnPgNum, etc. ist zum schnelleren wiederauffinden gedacht
 
@@ -153,7 +153,7 @@ public:
 
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
-    virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual void operator=(const SdrObject& rObj);
 
 
@@ -162,11 +162,11 @@ public:
     virtual String GetName() const;
 
     virtual void RecalcSnapRect();
-    virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
 
 
     virtual long GetRotateAngle() const;
-    virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
+    virtual long GetShearAngle(bool bVertical=FALSE) const;
 
     virtual void Move(const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -192,8 +192,8 @@ public:
     virtual void PreSave();
     virtual void PostSave();
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
     virtual void ReformatText();

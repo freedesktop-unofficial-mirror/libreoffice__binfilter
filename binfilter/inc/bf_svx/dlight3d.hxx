@@ -64,7 +64,7 @@ class E3dDistantLight : public E3dLight
 
     virtual UINT16 GetObjIdentifier() const;
 
-    virtual FASTBOOL CalcLighting(Color& rNewColor,
+    virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,
                                   const Vector3D& rPntNormal,
                                   const Color& rPntColor);

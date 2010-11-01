@@ -26,18 +26,14 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <hintids.hxx>
 
-
 #include <com/sun/star/i18n/WordType.hdl>
 #include <com/sun/star/i18n/CharType.hdl>
-
-
 
 #include <errhdl.hxx>
 
@@ -118,7 +114,6 @@ struct _PercentHdl
 /*N*/ {
 /*N*/ }
 
-
 /*N*/ SwCursor::~SwCursor()
 /*N*/ {
 /*N*/   while( pSavePos )
@@ -129,13 +124,11 @@ struct _PercentHdl
 /*N*/   }
 /*N*/ }
 
-
 /*N*/ SwCursor::operator SwTableCursor* ()      { return 0; }
 /*N*/ SwCursor::operator SwShellCrsr* ()            { return 0; }
 /*N*/ SwCursor::operator SwShellTableCrsr* ()       { return 0; }
 /*N*/ SwCursor::operator SwUnoCrsr* ()          { return 0; }
 /*N*/ SwCursor::operator SwUnoTableCrsr* ()     { return 0; }
-
 
 // Sicher die aktuelle Position, damit ggfs. auf diese zurueck
 // gefallen werden kann. Die SavePos Objekte werden als Stack verwaltet,
@@ -166,8 +159,7 @@ struct _PercentHdl
 // stelle fest, ob sich der Point ausserhalb des Content-Bereichs
 // vom Nodes-Array befindet
 
-
-/*N*/ FASTBOOL SwCursor::IsSelOvr( int eFlags )
+/*N*/ bool SwCursor::IsSelOvr( int eFlags )
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = *this;
 /*N*/   SwDoc* pDoc = GetDoc();
@@ -280,8 +272,7 @@ struct _PercentHdl
 #define IDX     aCellStt
 #endif
 
-
-/*N*/ FASTBOOL SwCursor::IsInProtectTable( FASTBOOL bMove, FASTBOOL bChgCrsr )
+/*N*/ bool SwCursor::IsInProtectTable( bool bMove, bool bChgCrsr )
 /*N*/ {
 /*N*/   // stehe ich in einer Tabelle ??
 /*N*/   SwDoc* pDoc = GetDoc();
@@ -316,7 +307,7 @@ struct _PercentHdl
 /*N*/ }
 
 // TRUE: an die Position kann der Cursor gesetzt werden
-/*N*/ FASTBOOL SwCursor::IsAtValidPos( BOOL bPoint ) const
+/*N*/ bool SwCursor::IsAtValidPos( BOOL bPoint ) const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetDoc();
 /*N*/ }
@@ -324,13 +315,6 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/ void SwCursor::SaveTblBoxCntnt( const SwPosition* )   {}
 
 // setze den SRange fuer das Suchen im Dokument
-
-
-
-
-
-
-
 
 // diese Methode "sucht" fuer alle Anwendungsfaelle, denn in SwFindParas
 // steht immer die richtigen Parameter und die entsprechende Find-Methode
@@ -341,55 +325,49 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*M*/ }
 
-
-
-
-/*N*/ FASTBOOL SwCursor::IsStartWord() const
+/*N*/ bool SwCursor::IsStartWord() const
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::IsEndWord() const
+/*N*/ bool SwCursor::IsEndWord() const
 /*N*/ {
-     FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+     bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ return bRet;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::GoStartWord()
+/*N*/ bool SwCursor::GoStartWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoEndWord()
+/*N*/ bool SwCursor::GoEndWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoNextWord()
+/*N*/ bool SwCursor::GoNextWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoPrevWord()
+/*N*/ bool SwCursor::GoPrevWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
-
 
 //-----------------------------------------------------------------------------
-/*N*/ FASTBOOL SwCursor::GoSentence( SentenceMoveType eMoveType )
+/*N*/ bool SwCursor::GoSentence( SentenceMoveType eMoveType )
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
+/*N*/ bool SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
 /*N*/                               BOOL bVisualAllowed, BOOL bInsertCrsr )
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
@@ -422,18 +400,18 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::UpDown( BOOL bUp, USHORT nCnt,
+/*N*/ bool SwCursor::UpDown( BOOL bUp, USHORT nCnt,
 /*N*/                           Point* pPt, long nUpDownX )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GotoTblBox( const String& rName )
+/*N*/ bool SwCursor::GotoTblBox( const String& rName )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::MovePara(SwWhichPara fnWhichPara, SwPosPara fnPosPara )
+/*N*/ bool SwCursor::MovePara(SwWhichPara fnWhichPara, SwPosPara fnPosPara )
 /*N*/ {
 /*N*/   //JP 28.8.2001: for optimization test something before
 /*N*/   const SwNode* pNd;
@@ -452,8 +430,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::MoveSection( SwWhichSection fnWhichSect,
+/*N*/ bool SwCursor::MoveSection( SwWhichSection fnWhichSect,
 /*N*/                               SwPosSection fnPosSect)
 /*N*/ {
 /*N*/   SwCrsrSaveState aSave( *this );

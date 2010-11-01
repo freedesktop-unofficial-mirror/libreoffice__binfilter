@@ -63,8 +63,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ E3dPolyObj::E3dPolyObj(const PolyPolygon3D& rPolyPoly3D, FASTBOOL bDblSided,
-/*N*/   FASTBOOL bLight) :
+/*N*/ E3dPolyObj::E3dPolyObj(const PolyPolygon3D& rPolyPoly3D, bool bDblSided,
+/*N*/   bool bLight) :
 /*N*/   bDoubleSided(bDblSided),
 /*N*/   bBackSideVisible(FALSE),
 /*N*/   bLighted(bLight),
@@ -82,8 +82,8 @@ namespace binfilter {
 \************************************************************************/
 
 /*?*/ E3dPolyObj::E3dPolyObj(const PolyPolygon3D& rPolyPoly3D,
-/*?*/   const PolyPolygon3D& rPolyNormals3D, FASTBOOL bDblSided,
-/*?*/   FASTBOOL bLight) :
+/*?*/   const PolyPolygon3D& rPolyNormals3D, bool bDblSided,
+/*?*/   bool bLight) :
 /*?*/   bDoubleSided(bDblSided),
 /*?*/   bBackSideVisible(FALSE),
 /*?*/   bLighted(bLight),
@@ -104,8 +104,8 @@ namespace binfilter {
 /*N*/ E3dPolyObj::E3dPolyObj(const PolyPolygon3D& rPolyPoly3D,
 /*N*/   const PolyPolygon3D& rPolyNormals3D,
 /*N*/   const PolyPolygon3D& rPolyTexture3D,
-/*N*/   FASTBOOL bDblSided,
-/*N*/   FASTBOOL bLight) :
+/*N*/   bool bDblSided,
+/*N*/   bool bLight) :
 /*N*/   bDoubleSided(bDblSided),
 /*N*/   bBackSideVisible(FALSE),
 /*N*/   bLighted(bLight),

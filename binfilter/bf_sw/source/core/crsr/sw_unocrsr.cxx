@@ -88,7 +88,7 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 
 */
 
-/*N*/ FASTBOOL SwUnoCrsr::IsSelOvr( int eFlags )
+/*N*/ bool SwUnoCrsr::IsSelOvr( int eFlags )
 /*N*/ {
 /*N*/   if( bRemainInSection )
 /*N*/   {
@@ -194,9 +194,9 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 }
 */
 
-/*N*/ FASTBOOL SwUnoTableCrsr::IsSelOvr( int eFlags )
+/*N*/ bool SwUnoTableCrsr::IsSelOvr( int eFlags )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = SwUnoCrsr::IsSelOvr( eFlags );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 bool bRet = SwUnoCrsr::IsSelOvr( eFlags );
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()

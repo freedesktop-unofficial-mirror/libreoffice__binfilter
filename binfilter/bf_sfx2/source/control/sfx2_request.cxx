@@ -41,7 +41,7 @@ namespace binfilter {
 /*N*/ (
 /*N*/   const SfxItemSet* pArgs,
 /*N*/   USHORT          nSlotId,    // Slot-Id oder Which-Id des Parameters
-/*N*/   FASTBOOL        bDeep,      // FALSE: nicht in Parent-ItemSets suchen
+/*N*/   bool        bDeep,      // FALSE: nicht in Parent-ItemSets suchen
 /*N*/   TypeId          aType       // != 0:  RTTI Pruefung mit Assertion
 /*N*/ )
 /*N*/ {

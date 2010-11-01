@@ -567,35 +567,35 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-//-/void SchRectObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+//-/void SchRectObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
 //-/{
 //-/    SdrRectObj::NbcSetAttributes(rAttr,bReplaceAll);
 //-/    ChartModel* pModel=(ChartModel*)GetModel();
 //-/    if(pModel)
 //-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
 //-/};
-//-/void SchE3dExtrudeObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+//-/void SchE3dExtrudeObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
 //-/{
 //-/    E3dExtrudeObj::NbcSetAttributes(rAttr,bReplaceAll);
 //-/    ChartModel* pModel=(ChartModel*)GetModel();
 //-/    if(pModel)
 //-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
 //-/};
-//-/void SchE3dPolygonObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+//-/void SchE3dPolygonObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
 //-/{
 //-/    E3dPolygonObj::NbcSetAttributes(rAttr,bReplaceAll);
 //-/    ChartModel* pModel=(ChartModel*)GetModel();
 //-/    if(pModel)
 //-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
 //-/};
-//-/void SchE3dLatheObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+//-/void SchE3dLatheObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
 //-/{
 //-/    E3dLatheObj::NbcSetAttributes(rAttr,bReplaceAll);
 //-/    ChartModel* pModel=(ChartModel*)GetModel();
 //-/    if(pModel)
 //-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
 //-/};
-//-/void SchE3dObject::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+//-/void SchE3dObject::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
 //-/{
 //-/    E3dObject::NbcSetAttributes(rAttr,bReplaceAll);
 //-/    ChartModel* pModel=(ChartModel*)GetModel();

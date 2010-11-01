@@ -72,7 +72,7 @@ namespace binfilter {
 /*N*/ TYPEINIT1(FmFormPage, SdrPage);
 
 //------------------------------------------------------------------
-/*N*/ FmFormPage::FmFormPage(FmFormModel& rModel, StarBASIC* _pBasic, FASTBOOL bMasterPage)
+/*N*/ FmFormPage::FmFormPage(FmFormModel& rModel, StarBASIC* _pBasic, bool bMasterPage)
 /*N*/          :SdrPage(rModel, bMasterPage)
 /*N*/          ,pBasic(_pBasic)
 /*N*/ #ifndef SVX_LIGHT

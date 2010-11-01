@@ -331,7 +331,7 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
                                 else
                                 {
                                     USHORT nPos=0;
-                                    FASTBOOL bActive = aWinData.GetToken( 3, cToken, nPos ).ToInt32();
+                                    bool bActive = aWinData.GetToken( 3, cToken, nPos ).ToInt32();
                                     aUserData = aWinData.Copy( nPos );
                                 }
                                 // aUserData is used in ScModelObj::getViewData

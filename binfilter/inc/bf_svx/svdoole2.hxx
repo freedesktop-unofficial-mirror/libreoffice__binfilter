@@ -78,8 +78,8 @@ protected:
 public:
     TYPEINFO();
 
-    SdrOle2Obj(FASTBOOL bFrame_=FALSE);
-    SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_=FALSE);
+    SdrOle2Obj(bool bFrame_=FALSE);
+    SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, bool bFrame_=FALSE);
     virtual ~SdrOle2Obj();
 
     // Ein OLE-Zeichenobjekt kann eine StarView-Grafik beinhalten.
@@ -99,7 +99,7 @@ public:
     // spaeter wieder abfragen kann (SD braucht das fuer Praesentationsobjekte).
     void SetProgName(const String& rNam) { aProgName=rNam; }
     const String& GetProgName() const { return aProgName; }
-    FASTBOOL IsEmpty() const;
+    bool IsEmpty() const;
     void SetObjRef(const SvInPlaceObjectRef& rNewObjRef);
     const SvInPlaceObjectRef& GetObjRef() const;
 
@@ -125,7 +125,7 @@ public:
     virtual void NbcSetLogicRect(const Rectangle& rRect);
 
     // fuer Import:
-    FASTBOOL HasGDIMetaFile() const;
+    bool HasGDIMetaFile() const;
     const GDIMetaFile* GetGDIMetaFile() const;
 
     virtual void WriteData(SvStream& rOut) const;

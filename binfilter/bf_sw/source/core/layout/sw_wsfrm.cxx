@@ -1164,7 +1164,7 @@ namespace binfilter {
 /*N*/   if ( !nDiff || !GetUpper()->IsFtnBossFrm() ) // nur innerhalb von Seiten/Spalten
 /*?*/       return 0L;
 /*N*/
-/*N*/   FASTBOOL bBrowse = GetUpper()->GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   bool bBrowse = GetUpper()->GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/
 /*N*/   //Der (Page)Body veraendert sich nur im BrowseMode, aber nicht wenn er
 /*N*/   //Spalten enthaelt.
@@ -1550,7 +1550,7 @@ namespace binfilter {
 /*N*/          nDist > (LONG_MAX - nFrmHeight ) )
 /*N*/         nDist = LONG_MAX - nFrmHeight;
 /*N*/
-/*N*/   const FASTBOOL bBrowse = GetUpper()->GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   const bool bBrowse = GetUpper()->GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
 /*N*/     if( !(GetUpper()->GetType() & nType) && GetUpper()->HasFixSize() )
 /*N*/   {
@@ -1999,7 +1999,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwLayoutFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/   const FASTBOOL bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   const bool bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
 /*N*/     if( !(GetType() & nType) && HasFixSize() )
 /*N*/       return 0;
@@ -2143,7 +2143,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwLayoutFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/   const FASTBOOL bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
+/*N*/   const bool bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
 /*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
 /*N*/     if( !(GetType() & nType) && HasFixSize() )
 /*N*/       return 0;
@@ -2991,8 +2991,8 @@ namespace binfilter {
 /*N*/   const SwFmtCol &rCol = rAttrs.GetAttrSet().GetCol();
 /*N*/   const USHORT nNumCols = rCol.GetNumCols();
 /*N*/
-/*N*/   FASTBOOL bEnd = FALSE;
-/*N*/   FASTBOOL bBackLock = FALSE;
+/*N*/   bool bEnd = FALSE;
+/*N*/   bool bBackLock = FALSE;
 /*N*/   SwViewImp *pImp = GetShell() ? GetShell()->Imp() : 0;
 /*N*/   {
 /*N*/       // Zugrunde liegender Algorithmus

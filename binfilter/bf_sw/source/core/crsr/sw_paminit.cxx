@@ -78,9 +78,9 @@ namespace binfilter {
 /*N*/ SwPosSection fnSectionEnd     = &aBwrd;
 
 // Travelling in Tabellen
-/*N*/ FASTBOOL GotoPrevTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoNextTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
+/*N*/ bool GotoPrevTable( SwPaM&, SwPosTable, bool bInReadOnly );
+/*N*/ bool GotoCurrTable( SwPaM&, SwPosTable, bool bInReadOnly );
+/*N*/ bool GotoNextTable( SwPaM&, SwPosTable, bool bInReadOnly );
 
 /*N*/ SwWhichTable fnTablePrev = &GotoPrevTable;
 /*N*/ SwWhichTable fnTableCurr = &GotoCurrTable;
@@ -89,10 +89,10 @@ namespace binfilter {
 /*N*/ SwPosTable fnTableEnd = &aBwrd;
 
 // Travelling in Bereichen
-/*N*/ FASTBOOL GotoPrevRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoNextRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
+/*N*/ bool GotoPrevRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoCurrRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoNextRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
 
 /*N*/ SwWhichRegion fnRegionPrev = &GotoPrevRegion;
 /*N*/ SwWhichRegion fnRegionCurr = &GotoCurrRegion;

@@ -123,7 +123,7 @@ namespace binfilter {
 /*N*/ SwCharFmt* lcl_FindCharFmt(   SwDoc& rDoc,
 /*N*/                           const String& rName,
 /*N*/                           SwDocStyleSheet* pStyle = 0,
-/*N*/                           FASTBOOL bCreate = TRUE )
+/*N*/                           bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwCharFmt*  pFmt = 0;
 /*N*/   if( rName.Len() )
@@ -169,7 +169,7 @@ namespace binfilter {
 /*N*/ SwTxtFmtColl* lcl_FindParaFmt(    SwDoc& rDoc,
 /*N*/                               const String& rName,
 /*N*/                               SwDocStyleSheet* pStyle = 0,
-/*N*/                               FASTBOOL bCreate = TRUE )
+/*N*/                               bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwTxtFmtColl*   pColl = 0;
 /*N*/
@@ -212,7 +212,7 @@ namespace binfilter {
 /*N*/ SwFrmFmt* lcl_FindFrmFmt( SwDoc& rDoc,
 /*N*/                           const String& rName,
 /*N*/                           SwDocStyleSheet* pStyle = 0,
-/*N*/                           FASTBOOL bCreate = TRUE )
+/*N*/                           bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwFrmFmt* pFmt = 0;
 /*N*/   if( rName.Len() )
@@ -250,7 +250,7 @@ namespace binfilter {
 /*N*/ const SwPageDesc* lcl_FindPageDesc(   SwDoc&  rDoc,
 /*N*/                                   const String&    rName,
 /*N*/                                   SwDocStyleSheet* pStyle = 0,
-/*N*/                                   FASTBOOL bCreate = TRUE )
+/*N*/                                   bool bCreate = TRUE )
 /*N*/ {
 /*N*/   const SwPageDesc* pDesc = 0;
 /*N*/
@@ -284,7 +284,7 @@ namespace binfilter {
 /*N*/ const SwNumRule* lcl_FindNumRule( SwDoc&  rDoc,
 /*N*/                                   const String&    rName,
 /*N*/                                   SwDocStyleSheet* pStyle = 0,
-/*N*/                                   FASTBOOL bCreate = TRUE )
+/*N*/                                   bool bCreate = TRUE )
 /*N*/ {
 /*N*/   const SwNumRule* pRule = 0;
 /*N*/

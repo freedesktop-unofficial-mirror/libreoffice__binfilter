@@ -37,7 +37,7 @@ namespace binfilter {
 // SetOfByte
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SetOfByte::IsEmpty() const
+/*N*/ bool SetOfByte::IsEmpty() const
 /*N*/ {
 /*N*/   for (USHORT i=0; i<32; i++) {
 /*N*/       if (aData[i]!=0) return FALSE;
@@ -282,7 +282,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrLayerAdmin::Broadcast(FASTBOOL bLayerSet) const
+/*N*/ void SdrLayerAdmin::Broadcast(bool bLayerSet) const
 /*N*/ {
 /*N*/   if (pModel!=NULL) {
 /*N*/       SdrHint aHint(bLayerSet ? HINT_LAYERSETORDERCHG : HINT_LAYERORDERCHG);
@@ -305,7 +305,7 @@ namespace binfilter {
 
 
 
-/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, FASTBOOL bInherited) const
+/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, bool bInherited) const
 /*N*/ {
 /*N*/   UINT16 i(0);
 /*N*/   const SdrLayer* pLay = NULL;
@@ -326,7 +326,7 @@ namespace binfilter {
 /*N*/   return pLay;
 /*N*/ }
 
-/*N*/ SdrLayerID SdrLayerAdmin::GetLayerID(const XubString& rName, FASTBOOL bInherited) const
+/*N*/ SdrLayerID SdrLayerAdmin::GetLayerID(const XubString& rName, bool bInherited) const
 /*N*/ {
 /*N*/   SdrLayerID nRet=SDRLAYER_NOTFOUND;
 /*N*/   const SdrLayer* pLay=GetLayer(rName,bInherited);

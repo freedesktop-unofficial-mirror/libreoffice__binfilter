@@ -972,7 +972,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   //Alles nur SWG!
 /*N*/
 /*N*/   const SfxItemPool *pPool = SfxItemPool::GetStoringPool();
-/*N*/   const FASTBOOL bStoreDefTabs = pPool
+/*N*/   const bool bStoreDefTabs = pPool
 /*N*/       && pPool->GetName().EqualsAscii("SWG")
 /*N*/       && binfilter::IsDefaultItem( this );
 /*N*/

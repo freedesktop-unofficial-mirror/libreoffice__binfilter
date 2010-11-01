@@ -145,7 +145,7 @@ namespace binfilter {
 /*N*/ typedef const SwCntntFrm *(*GetNxtPrvCnt)( const SwCntntFrm* );
 
 //Frame in wiederholter Headline?
-/*N*/ FASTBOOL lcl_IsInRepeatedHeadline( const SwFrm *pFrm,
+/*N*/ bool lcl_IsInRepeatedHeadline( const SwFrm *pFrm,
 /*N*/                                   const SwTabFrm** ppTFrm = 0 )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
@@ -156,8 +156,8 @@ namespace binfilter {
 //MA 26. Jan. 98: Chg auch andere Geschuetzte Bereiche ueberspringen.
 /*N*/ const SwCntntFrm * MA_FASTCALL lcl_MissProtectedFrames( const SwCntntFrm *pCnt,
 /*N*/                                                      GetNxtPrvCnt fnNxtPrv,
-/*N*/                                                      FASTBOOL bMissHeadline,
-/*N*/                                                      FASTBOOL bInReadOnly )
+/*N*/                                                      bool bMissHeadline,
+/*N*/                                                      bool bInReadOnly )
 /*N*/ {
 /*N*/   if ( pCnt && pCnt->IsInTab() )
 /*N*/   {

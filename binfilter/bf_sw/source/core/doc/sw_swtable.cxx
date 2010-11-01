@@ -278,7 +278,7 @@ namespace binfilter {
 
 
 /*N*/ void SwTable::GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
-/*N*/                         FASTBOOL bRefreshHidden, BOOL bCurRowOnly ) const
+/*N*/                         bool bRefreshHidden, BOOL bCurRowOnly ) const
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
 /*N*/ }

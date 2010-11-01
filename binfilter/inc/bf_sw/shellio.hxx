@@ -542,10 +542,10 @@ public:
 
         // Feststellen ob das File in dem vorgegebenen Format vorliegt.
         // Z.z werden nur unsere eigene Filter unterstuetzt!!
-    static FASTBOOL IsFileFilter( SfxMedium& rMedium, const String& rFmtName,
+    static bool IsFileFilter( SfxMedium& rMedium, const String& rFmtName,
                                     const SfxFilter** ppFlt = 0 );
 
-    static FASTBOOL IsValidStgFilter( SvStorage& , const SfxFilter& );
+    static bool IsValidStgFilter( SvStorage& , const SfxFilter& );
 
         static bool IsDetectableText(const sal_Char* pBuf, ULONG &rLen,
         CharSet *pCharSet=0, bool *pSwap=0, LineEnd *pLineEnd=0);

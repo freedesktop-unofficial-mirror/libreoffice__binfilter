@@ -49,16 +49,16 @@ class SdrViewIter {
     const SdrPage*   pPage;
     const SdrObject* pObject;
     SdrView*   pAktView;
-    FASTBOOL   bNoMasterPage;
+    bool   bNoMasterPage;
     USHORT     nListenerNum;
     USHORT     nPageViewNum;
     USHORT     nOutDevNum;
 private:
     void          ImpInitVars();
     SdrView*      ImpFindView();
-    FASTBOOL      ImpCheckPageView(SdrPageView* pPV) const;
+    bool      ImpCheckPageView(SdrPageView* pPV) const;
 public:
-    SdrViewIter(const SdrObject* pObject, FASTBOOL bNoMasterPage=FALSE);
+    SdrViewIter(const SdrObject* pObject, bool bNoMasterPage=FALSE);
     SdrView*      FirstView();
     SdrView*      NextView();
 };

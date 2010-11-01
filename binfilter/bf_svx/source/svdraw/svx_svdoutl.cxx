@@ -106,7 +106,7 @@ namespace binfilter {
 /*N*/ XubString SdrOutliner::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
 /*N*/                                      Color*& rpTxtColor, Color*& rpFldColor)
 /*N*/ {
-/*N*/   FASTBOOL bOk = FALSE;
+/*N*/   bool bOk = FALSE;
 /*N*/   XubString aRet;
 /*N*/
 /*N*/   if (pTextObj)

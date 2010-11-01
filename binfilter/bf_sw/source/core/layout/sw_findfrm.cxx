@@ -309,9 +309,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   const SwFrm       *pFrm = this;
 /*N*/   const SwLayoutFrm *pLayoutFrm = 0;
 /*N*/   const SwFrm       *p;
-/*N*/   FASTBOOL bGoingUp = TRUE;
+/*N*/   bool bGoingUp = TRUE;
 /*N*/   do {
-/*N*/       FASTBOOL bGoingBwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingBwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 != (p = ::binfilter::lcl_LastLower( pFrm ))))) &&
 /*N*/           !(bGoingBwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetPrevLink()
 /*N*/                                                     : pFrm->GetPrev()))) &&
@@ -347,9 +347,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   const SwFrm       *pFrm = this;
 /*N*/   const SwLayoutFrm *pLayoutFrm = 0;
 /*N*/   const SwFrm       *p;
-/*N*/   FASTBOOL bGoingUp = FALSE;
+/*N*/   bool bGoingUp = FALSE;
 /*N*/   do {
-/*N*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*N*/           (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*N*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -575,10 +575,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/ SwFrm* lcl_NextFrm( SwFrm* pFrm )
 /*N*/ {
 /*N*/   SwFrm *pRet = 0;
-/*N*/   FASTBOOL bGoingUp = FALSE;
+/*N*/   bool bGoingUp = FALSE;
 /*N*/   do {
 /*N*/       SwFrm *p;
-/*N*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*N*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*N*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -990,10 +990,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*M*/   const SwFrm *pFrm = this;
 /*M*/     // #100926#
 /*M*/     SwCntntFrm *pCntntFrm = 0;
-/*M*/     FASTBOOL bGoingUp = ! IsCntntFrm();
+/*M*/     bool bGoingUp = ! IsCntntFrm();
 /*M*/   do {
 /*M*/       const SwFrm *p;
-/*M*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*M*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*M*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*M*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*M*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -1012,10 +1012,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*M*/   const SwFrm *pFrm = this;
 /*M*/     SwCntntFrm *pCntntFrm = 0;
 /*M*/     // #100926#
-/*M*/     FASTBOOL bGoingUp = ! IsCntntFrm();
+/*M*/     bool bGoingUp = ! IsCntntFrm();
 /*M*/   do {
 /*M*/       const SwFrm *p;
-/*M*/       FASTBOOL bGoingBack = FALSE, bGoingDown = FALSE;
+/*M*/       bool bGoingBack = FALSE, bGoingDown = FALSE;
 /*M*/       if( !(bGoingDown = (!bGoingUp && (0 !=
 /*M*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*M*/           !(bGoingBack = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetPrevLink()

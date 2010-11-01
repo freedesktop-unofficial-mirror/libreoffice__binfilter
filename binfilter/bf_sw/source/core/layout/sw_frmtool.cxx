@@ -94,9 +94,9 @@ namespace binfilter {
 // ftnfrm.cxx:
 /*N*/ void lcl_RemoveFtns( SwFtnBossFrm* pBoss, BOOL bPageOnly, BOOL bEndNotes );
 
-/*N*/ FASTBOOL bObjsDirect = TRUE;
-/*N*/ FASTBOOL bDontCreateObjects = FALSE;
-/*N*/ FASTBOOL bSetCompletePaintOnInvalidate = FALSE;
+/*N*/ bool bObjsDirect = TRUE;
+/*N*/ bool bDontCreateObjects = FALSE;
+/*N*/ bool bSetCompletePaintOnInvalidate = FALSE;
 
 /*N*/ BYTE StackHack::nCnt = 0;
 /*N*/ BOOL StackHack::bLocked = FALSE;
@@ -149,12 +149,12 @@ namespace binfilter {
 /*N*/ SwFrmNotify::~SwFrmNotify()
 /*N*/ {
 /*N*/     SWRECTFN( pFrm )
-/*N*/     const FASTBOOL bAbsP = POS_DIFF( aFrm, pFrm->Frm() );
-/*N*/     const FASTBOOL bChgWidth =
+/*N*/     const bool bAbsP = POS_DIFF( aFrm, pFrm->Frm() );
+/*N*/     const bool bChgWidth =
 /*N*/             (aFrm.*fnRect->fnGetWidth)() != (pFrm->Frm().*fnRect->fnGetWidth)();
-/*N*/     const FASTBOOL bChgHeight =
+/*N*/     const bool bChgHeight =
 /*N*/             (aFrm.*fnRect->fnGetHeight)()!=(pFrm->Frm().*fnRect->fnGetHeight)();
-/*N*/     const FASTBOOL bChgFlyBasePos = pFrm->IsTxtFrm() &&
+/*N*/     const bool bChgFlyBasePos = pFrm->IsTxtFrm() &&
 /*N*/        ( ( mnFlyAnchorOfst != ((SwTxtFrm*)pFrm)->GetBaseOfstForFly( sal_True ) ) ||
 /*N*/          ( mnFlyAnchorOfstNoWrap != ((SwTxtFrm*)pFrm)->GetBaseOfstForFly( sal_False ) ) );
 /*N*/
@@ -213,9 +213,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   //Fuer Hintergrundgrafiken muss bei Groessenaenderungen ein Repaint her.
-/*N*/     const FASTBOOL bPrtWidth =
+/*N*/     const bool bPrtWidth =
 /*N*/             (aPrt.*fnRect->fnGetWidth)() != (pFrm->Prt().*fnRect->fnGetWidth)();
-/*N*/     const FASTBOOL bPrtHeight =
+/*N*/     const bool bPrtHeight =
 /*N*/             (aPrt.*fnRect->fnGetHeight)()!=(pFrm->Prt().*fnRect->fnGetHeight)();
 /*N*/     if ( bPrtWidth || bPrtHeight )
 /*N*/   {
@@ -234,7 +234,7 @@ namespace binfilter {
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/   const FASTBOOL bPrtP = POS_DIFF( aPrt, pFrm->Prt() );
+/*N*/   const bool bPrtP = POS_DIFF( aPrt, pFrm->Prt() );
 /*N*/   if ( bAbsP || bPrtP || bChgWidth || bChgHeight ||
 /*N*/          bPrtWidth || bPrtHeight || bChgFlyBasePos )
 /*N*/   {
@@ -256,8 +256,8 @@ namespace binfilter {
 /*N*/           SwPageFrm *pPage = 0;
 /*N*/           for ( USHORT i = 0; i < rObjs.Count(); ++i )
 /*N*/           {
-/*N*/               FASTBOOL bNotify = FALSE;
-/*N*/               FASTBOOL bNotifySize = FALSE;
+/*N*/               bool bNotify = FALSE;
+/*N*/               bool bNotifySize = FALSE;
 /*N*/               SdrObject *pObj = rObjs[i];
 /*N*/               if ( pObj->IsWriterFlyFrame() )
 /*N*/               {
@@ -490,7 +490,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwLayoutFrm *pLay = GetLay();
 /*N*/     SWRECTFN( pLay )
-/*N*/   FASTBOOL bNotify = FALSE;
+/*N*/   bool bNotify = FALSE;
 /*N*/   if ( pLay->Prt().SSize() != aPrt.SSize() )
 /*N*/   {
 /*N*/       if ( !IsLowersComplete() )
@@ -760,7 +760,7 @@ namespace binfilter {
 /*N*/           pCell->InvalidatePrt(); //fuer vertikale Ausrichtung.
 /*N*/   }
 /*N*/
-/*N*/     FASTBOOL bFirst = (aFrm.*fnRect->fnGetWidth)() == 0;
+/*N*/     bool bFirst = (aFrm.*fnRect->fnGetWidth)() == 0;
 /*N*/
 /*N*/   if ( pCnt->IsNoTxtFrm() )
 /*N*/   {
@@ -854,7 +854,7 @@ namespace binfilter {
 /*N*/                    FLY_AT_CNTNT   != rAnch.GetAnchorId() )
 /*N*/                   continue;   //#60878# nicht etwa zeichengebundene.
 /*N*/
-/*N*/               FASTBOOL bCheckPos = FALSE;
+/*N*/               bool bCheckPos = FALSE;
 /*N*/               if ( rAnch.GetCntntAnchor() )
 /*N*/               {
 /*N*/                   if ( !pIdx )
@@ -881,7 +881,7 @@ namespace binfilter {
 /*N*/               SdrObject *pObj = pFmt->FindSdrObject();
 /*N*/               const Point aAktPos( pObj->GetSnapRect().TopLeft() );
 /*N*/               Point aPos( aAktPos );
-/*N*/               FASTBOOL bSetPos = FALSE;
+/*N*/               bool bSetPos = FALSE;
 /*N*/               SwFmtVertOrient *pVert;
 /*N*/               if ( SFX_ITEM_SET == pFmt->GetAttrSet().GetItemState(
 /*N*/                           RES_VERT_ORIENT, FALSE, (const SfxPoolItem**)&pVert ) )
@@ -1040,7 +1040,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
     }
 }
 
-/*N*/ FASTBOOL MA_FASTCALL lcl_ObjConnected( SwFrmFmt *pFmt )
+/*N*/ bool MA_FASTCALL lcl_ObjConnected( SwFrmFmt *pFmt )
 /*N*/ {
 /*N*/   SwClientIter aIter( *pFmt );
 /*N*/   if ( RES_FLYFRMFMT == pFmt->Which() )
@@ -1098,7 +1098,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/       {
 /*N*/           SwFrmFmt *pFmt = (SwFrmFmt*)aCpy[ USHORT(i) ];
 /*N*/           const SwFmtAnchor &rAnch = pFmt->GetAnchor();
-/*N*/           FASTBOOL bRemove = FALSE;
+/*N*/           bool bRemove = FALSE;
 /*N*/           if ( rAnch.GetAnchorId() == FLY_PAGE || rAnch.GetAnchorId() == FLY_IN_CNTNT )
 /*N*/               //Seitengebunde sind bereits verankert, zeichengebundene
 /*N*/               //will ich hier nicht.
@@ -2074,7 +2074,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*************************************************************************/
 
-/*N*/ SwOrderIter::SwOrderIter( const SwPageFrm *pPg, FASTBOOL bFlys ) :
+/*N*/ SwOrderIter::SwOrderIter( const SwPageFrm *pPg, bool bFlys ) :
 /*N*/   pPage( pPg ),
 /*N*/   pCurrent( 0 ),
 /*N*/   bFlysOnly( bFlys )
@@ -3150,7 +3150,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   return pMinFrm;
 /*N*/ }
 
-/*N*/ FASTBOOL IsExtraData( const SwDoc *pDoc )
+/*N*/ bool IsExtraData( const SwDoc *pDoc )
 /*N*/ {
 /*N*/   const SwLineNumberInfo &rInf = pDoc->GetLineNumberInfo();
 /*N*/   return rInf.IsPaintLineNumbers() ||

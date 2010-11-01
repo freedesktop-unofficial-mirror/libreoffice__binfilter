@@ -322,7 +322,7 @@ const SfxFilter* SwIoSystem::GetFilterOfFormat( const String& rFmtNm,           
     return 0;                                                                         \
 }                                                                                     \
                                                                                       \
-FASTBOOL SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter )    \
+bool SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter )    \
 {                                                                                     \
     ULONG nStgFmtId = rStg.GetFormat();                                               \
     /*#i8409# We cannot trust the clipboard id anymore :-(*/ \
@@ -368,10 +368,10 @@ FASTBOOL SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter
                                                                                       \
     /* Feststellen ob das File in dem entsprechenden Format vorliegt. */              \
     /* Z.z werden nur unsere eigene Filter unterstuetzt               */              \
-FASTBOOL SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,        \
+bool SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,        \
                                     const SfxFilter** ppFilter )                      \
 {                                                                                     \
-    FASTBOOL bRet = FALSE;                                                            \
+    bool bRet = FALSE;                                                            \
     const SfxFilter* pFltr;                                                           \
     const SfxFactoryFilterContainer& rFltContainer = IsDocShellRegistered()           \
             ? *SwDocShell::Factory().GetFilterContainer()                             \

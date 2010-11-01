@@ -118,7 +118,7 @@ class  SfxItemPool
     SfxItemPool*                    pSecondary;
     SfxItemPool*                    pMaster;
     USHORT*                         _pPoolRanges;
-    FASTBOOL                        bPersistentRefCounts;
+    bool                        bPersistentRefCounts;
 
     //---------------------------------------------------------------------
 #ifndef _SFXITEMS_HXX
@@ -130,14 +130,14 @@ private:
     inline  USHORT                  GetSize_Impl() const { return nEnd - nStart + 1; }
 
      SvStream&                      Load1_Impl( SvStream &rStream );
-     FASTBOOL                       IsItemFlag_Impl( USHORT nWhich, USHORT nFlag ) const;
+     bool                       IsItemFlag_Impl( USHORT nWhich, USHORT nFlag ) const;
 
 public:
     // fuer dflt. SfxItemSet::CTOR, setze dflt. WhichRanges
     void                            FillItemIdRanges_Impl( USHORT*& pWhichRanges ) const;
     const USHORT*                   GetFrozenIdRanges() const
                                     { return _pPoolRanges; }
-    FASTBOOL                        IsVer2_Impl() const;
+    bool                        IsVer2_Impl() const;
 
 #endif
     //---------------------------------------------------------------------
@@ -159,7 +159,7 @@ public:
 #ifndef TF_POOLABLE
                                                  USHORT *pSlotIds = 0,
 #endif
-                                                 FASTBOOL bLoadRefCounts = TRUE );
+                                                 bool bLoadRefCounts = TRUE );
     virtual                         ~SfxItemPool();
 
     void                            SetPoolDefaultItem( const SfxPoolItem& );
@@ -186,11 +186,11 @@ public:
     virtual const SfxPoolItem&      GetDefaultItem( USHORT nWhich ) const;
 
     const SfxPoolItem*              LoadItem( SvStream &rStream,
-                                              FASTBOOL bDirect = FALSE,
+                                              bool bDirect = FALSE,
                                               const SfxItemPool *pRefPool = 0 );
-    FASTBOOL                        StoreItem( SvStream &rStream,
+    bool                        StoreItem( SvStream &rStream,
                                                const SfxPoolItem &rItem,
-                                               FASTBOOL bDirect = FALSE ) const;
+                                               bool bDirect = FALSE ) const;
 
     USHORT                          GetSurrogate(const SfxPoolItem *) const;
     const SfxPoolItem *             GetItem(USHORT nWhich, USHORT nSurrogate) const;
@@ -198,7 +198,7 @@ public:
     const SfxPoolItem*              LoadSurrogate(SvStream& rStream,
                                             USHORT &rWhich, USHORT nSlotId,
                                             const SfxItemPool* pRefPool = 0 );
-    FASTBOOL                        StoreSurrogate(SvStream& rStream,
+    bool                        StoreSurrogate(SvStream& rStream,
                                             const SfxPoolItem *pItem ) const;
 
     virtual SvStream &              Load(SvStream &);
@@ -209,11 +209,11 @@ public:
 
     USHORT                          GetFirstWhich() const { return nStart; }
     USHORT                          GetLastWhich() const { return nEnd; }
-    FASTBOOL                        IsInRange( USHORT nWhich ) const {
+    bool                        IsInRange( USHORT nWhich ) const {
                                         return nWhich >= nStart &&
                                                nWhich <= nEnd; }
-    FASTBOOL                        IsInVersionsRange( USHORT nWhich ) const;
-    FASTBOOL                        IsInStoringRange( USHORT nWhich ) const;
+    bool                        IsInVersionsRange( USHORT nWhich ) const;
+    bool                        IsInStoringRange( USHORT nWhich ) const;
     void                            SetStoringRange( USHORT nFrom, USHORT nTo );
     void                            SetSecondaryPool( SfxItemPool *pPool );
     SfxItemPool*                    GetSecondaryPool() const {
@@ -225,8 +225,8 @@ public:
     void                            Delete();
 
 #ifdef TF_POOLABLE
-    FASTBOOL                        IsItemFlag( USHORT nWhich, USHORT nFlag ) const;
-    FASTBOOL                        IsItemFlag( const SfxPoolItem &rItem, USHORT nFlag ) const
+    bool                        IsItemFlag( USHORT nWhich, USHORT nFlag ) const;
+    bool                        IsItemFlag( const SfxPoolItem &rItem, USHORT nFlag ) const
                                     { return IsItemFlag( rItem.Which(), nFlag ); }
     void                            SetItemInfos( const SfxItemInfo *pInfos )
                                     { pItemInfos = pInfos; }
@@ -248,7 +248,7 @@ public:
                                     { return _nFileFormatVersion; }
     void                            SetFileFormatVersion( USHORT nFileFormatVersion );
     USHORT                          GetLoadingVersion() const;
-    FASTBOOL                        IsCurrentVersionLoading() const;
+    bool                        IsCurrentVersionLoading() const;
 
     static int                      IsWhich(USHORT nId) {
                                         return nId && nId <= SFX_WHICH_MAX; }

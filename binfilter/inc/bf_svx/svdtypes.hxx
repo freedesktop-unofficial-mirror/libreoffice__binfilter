@@ -127,7 +127,7 @@ enum SdrObjListKind {SDROBJLIST_UNKNOWN    =0x00,    // Unbekannt
                      SDROBJLIST_RESERVEDBEG=0xE0,    // Die oberen 3 Bits sind ebenfalls
                      SDROBJLIST_RESERVEDEND=0xFF};   // fuer die Surrogate reserviert
 
-inline FASTBOOL SdrIsPageKind(SdrObjListKind eK) { return eK>=SDROBJLIST_DRAWPAGE && eK<=0x1A; }
+inline bool SdrIsPageKind(SdrObjListKind eK) { return eK>=SDROBJLIST_DRAWPAGE && eK<=0x1A; }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

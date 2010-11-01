@@ -1119,7 +1119,7 @@ BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara )
     aNewFmts.Insert( pFmt, aNewFmts.Count() );
  }
 
- FASTBOOL SwShareBoxFmt::RemoveFormat( const SwFrmFmt& rFmt )
+ bool SwShareBoxFmt::RemoveFormat( const SwFrmFmt& rFmt )
  {
     // returnt TRUE, wenn geloescht werden kann
     if( pOldFmt == &rFmt )

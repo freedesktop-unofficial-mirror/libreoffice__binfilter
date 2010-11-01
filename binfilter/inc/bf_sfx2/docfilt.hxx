@@ -107,19 +107,19 @@ public:
 
     const SfxFilterContainer* GetFilterContainer( ) const { return pContainer; }
 
-    FASTBOOL        IsAllowedAsTemplate() const
+    bool        IsAllowedAsTemplate() const
                     { return nFormatType & SFX_FILTER_TEMPLATE; }
-    FASTBOOL        IsOwnFormat() const
+    bool        IsOwnFormat() const
                     { return nFormatType & SFX_FILTER_OWN; }
-    FASTBOOL        IsOwnTemplateFormat() const
+    bool        IsOwnTemplateFormat() const
                     { return nFormatType & SFX_FILTER_TEMPLATEPATH; }
-    FASTBOOL        IsAlienFormat() const
+    bool        IsAlienFormat() const
                     { return nFormatType & SFX_FILTER_ALIEN; }
-    FASTBOOL        CanImport() const
+    bool        CanImport() const
                     { return nFormatType & SFX_FILTER_IMPORT; }
-    FASTBOOL        CanExport() const
+    bool        CanExport() const
                     { return nFormatType & SFX_FILTER_EXPORT; }
-    FASTBOOL        IsInternal() const
+    bool        IsInternal() const
                     { return nFormatType & SFX_FILTER_INTERNAL; }
     SfxFilterFlags  GetFilterFlags() const  { return nFormatType; }
     const String&   GetFilterName() const { return aFilterName; }

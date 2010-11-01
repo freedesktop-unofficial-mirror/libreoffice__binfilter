@@ -115,7 +115,7 @@ namespace binfilter {
 /*N*/   SwSectionPtr pParentSect = GetParent();
 /*N*/   if( pParentSect )
 /*N*/   {
-/*N*/       FASTBOOL bPHFlag = pParentSect->IsHiddenFlag();
+/*N*/       bool bPHFlag = pParentSect->IsHiddenFlag();
 /*N*/       if( pParentSect->IsHiddenFlag() )
 /*?*/           SetHidden( TRUE );
 /*N*/

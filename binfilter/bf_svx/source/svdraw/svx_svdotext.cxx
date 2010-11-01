@@ -209,7 +209,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return aTextSize;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::IsAutoGrowHeight() const
+/*N*/ bool SdrTextObj::IsAutoGrowHeight() const
 /*N*/ {
 /*N*/   if(!bTextFrame)
 /*N*/       return FALSE; // AutoGrow nur bei TextFrames
@@ -234,7 +234,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::IsAutoGrowWidth() const
+/*N*/ bool SdrTextObj::IsAutoGrowWidth() const
 /*N*/ {
 /*N*/   if(!bTextFrame)
 /*N*/       return FALSE; // AutoGrow nur bei TextFrames
@@ -339,9 +339,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ FASTBOOL SdrTextObj::HasEditText() const
+/*N*/ bool SdrTextObj::HasEditText() const
 /*N*/ {
-/*N*/   FASTBOOL bRet=FALSE;
+/*N*/   bool bRet=FALSE;
 /*N*/   if (pEdtOutl!=NULL) {
 /*N*/       Paragraph* p1stPara=pEdtOutl->GetParagraph( 0 );
 /*N*/       ULONG nParaAnz=pEdtOutl->GetParagraphCount();
@@ -360,9 +360,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ void SdrTextObj::SetPage(SdrPage* pNewPage)
 /*N*/ {
-/*N*/   FASTBOOL bRemove=pNewPage==NULL && pPage!=NULL;
-/*N*/   FASTBOOL bInsert=pNewPage!=NULL && pPage==NULL;
-/*N*/   FASTBOOL bLinked=IsLinkedText();
+/*N*/   bool bRemove=pNewPage==NULL && pPage!=NULL;
+/*N*/   bool bInsert=pNewPage!=NULL && pPage==NULL;
+/*N*/   bool bLinked=IsLinkedText();
 /*N*/
 /*N*/   if (bLinked && bRemove) {
 /*?*/       ImpLinkAbmeldung();
@@ -391,7 +391,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if (bChg && pOutlinerParaObject!=NULL && pOldModel!=NULL && pNewModel!=NULL) {
 /*?*/       MapUnit aOldUnit(pOldModel->GetScaleUnit());
 /*?*/       MapUnit aNewUnit(pNewModel->GetScaleUnit());
-/*?*/       FASTBOOL bScaleUnitChanged=aNewUnit!=aOldUnit;
+/*?*/       bool bScaleUnitChanged=aNewUnit!=aOldUnit;
 /*?*/       SetTextSizeDirty();
 /*?*/       // und nun dem OutlinerParaObject einen neuen Pool verpassen
 /*?*/       // !!! Hier muss noch DefTab und RefDevice der beiden Models
@@ -426,13 +426,13 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::NbcSetEckenradius(long nRad)
+/*N*/ bool SdrTextObj::NbcSetEckenradius(long nRad)
 /*N*/ {
 /*N*/   SetItem(SdrEckenradiusItem(nRad));
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::NbcSetAutoGrowHeight(FASTBOOL bAuto)
+/*N*/ bool SdrTextObj::NbcSetAutoGrowHeight(bool bAuto)
 /*N*/ {
 /*N*/   if(bTextFrame)
 /*N*/   {
@@ -442,7 +442,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::NbcSetMinTextFrameHeight(long nHgt)
+/*N*/ bool SdrTextObj::NbcSetMinTextFrameHeight(long nHgt)
 /*N*/ {
 /*N*/   if(bTextFrame)
 /*N*/   {
@@ -463,7 +463,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ FASTBOOL SdrTextObj::NbcSetMinTextFrameWidth(long nWdt)
+/*N*/ bool SdrTextObj::NbcSetMinTextFrameWidth(long nWdt)
 /*N*/ {
 /*N*/   if(bTextFrame)
 /*N*/   {
@@ -497,7 +497,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   long nUpperDist=GetTextUpperDistance();
 /*N*/   long nLowerDist=GetTextLowerDistance();
 /*N*/   Rectangle aAnkRect(aRect); // Rect innerhalb dem geankert wird
-/*N*/   FASTBOOL bFrame=IsTextFrame();
+/*N*/   bool bFrame=IsTextFrame();
 /*N*/   if (!bFrame) {
 /*N*/       TakeUnrotatedSnapRect(aAnkRect);
 /*N*/   }
@@ -526,7 +526,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   rAnchorRect=aAnkRect;
 /*N*/ }
 
-/*N*/ void SdrTextObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText,
+/*N*/ void SdrTextObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
 /*N*/                              Rectangle* pAnchorRect, BOOL bLineWidth ) const
 /*N*/ {
 /*N*/   Rectangle aAnkRect; // Rect innerhalb dem geankert wird
@@ -537,10 +537,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   SdrTextAniDirection eAniDirection=GetTextAniDirection();
 /*N*/
 /*N*/   SdrFitToSizeType eFit=GetFitToSize();
-/*N*/   FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
-/*N*/   FASTBOOL bContourFrame=IsContourTextFrame();
+/*N*/   bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*N*/   bool bContourFrame=IsContourTextFrame();
 /*N*/
-/*N*/   FASTBOOL bFrame=IsTextFrame();
+/*N*/   bool bFrame=IsTextFrame();
 /*N*/   ULONG nStat0=rOutliner.GetControlWord();
 /*N*/   Size aNullSize;
 /*N*/   if (!bContourFrame)
@@ -768,7 +768,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/               delete pFormTextBoundRect;
 /*?*/               pFormTextBoundRect=NULL;
 /*N*/           }
-/*N*/           FASTBOOL bCheckText=TRUE;
+/*N*/           bool bCheckText=TRUE;
 /*N*/           if (bTextFrame) {
 /*N*/               bCheckText=GetTextLeftDistance ()<0 ||
 /*N*/                          GetTextRightDistance()<0 ||
@@ -782,7 +782,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/               Rectangle aAnchorRect;
 /*N*/               TakeTextRect(rOutliner,aTextRect,TRUE,&aAnchorRect); // EditText ignorieren!
 /*N*/               SdrFitToSizeType eFit=GetFitToSize();
-/*N*/               FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*N*/               bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
 /*N*/               if (bFitToSize) aTextRect=aAnchorRect;
 /*N*/               rOutliner.Clear();
 /*N*/               if (aGeo.nDrehWink!=0) {
@@ -802,9 +802,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   if (!bTextFrame && pOutlinerParaObject==NULL) return NULL;
 /*N*/   if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
 /*N*/   INT32 nMyTol=nTol;
-/*N*/   FASTBOOL bFontwork=IsFontwork();
+/*N*/   bool bFontwork=IsFontwork();
 /*N*/   SdrFitToSizeType eFit=GetFitToSize();
-/*N*/   FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*N*/   bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
 /*N*/   Rectangle aR(aRect);
 /*N*/   Rectangle aAnchor(aR);
 /*N*/   Rectangle aTextRect(aR);
@@ -831,7 +831,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       aR.Right ()+=nMyTol;
 /*?*/       aR.Bottom()+=nMyTol;
 /*N*/   }
-/*N*/   FASTBOOL bRet=FALSE;
+/*N*/   bool bRet=FALSE;
 /*N*/
 /*N*/   if(bFontwork)
 /*N*/   {
@@ -936,7 +936,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       TakeTextRect(rOutliner,aR,FALSE,&aAnchor);
 /*?*/       rOutliner.Clear();
 /*?*/       SdrFitToSizeType eFit=GetFitToSize();
-/*?*/       FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*?*/       bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
 /*?*/       if (bFitToSize) aR=aAnchor;
 /*?*/       Polygon aPol(aR);
 /*?*/       if (aGeo.nDrehWink!=0) RotatePoly(aPol,aR.TopLeft(),aGeo.nSin,aGeo.nCos);
@@ -1094,7 +1094,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ void SdrTextObj::RestartAnimation(SdrPageView* pPageView) const
 /*N*/ {
-///*N*/     FASTBOOL bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
+///*N*/     bool bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
 ///*N*/     if (bAnimated) {
 ///*N*/         ImpSdrMtfAnimator* pAnimator=((SdrTextObj*)this)->ImpGetMtfAnimator();
 ///*N*/         if (pAnimator!=NULL) {

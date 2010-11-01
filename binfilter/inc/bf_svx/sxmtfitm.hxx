@@ -41,7 +41,7 @@ namespace binfilter {
 // Setzt TextUpsideDown, TextRota90 sowie TextAutoAngle ausser Kraft. (n.i.)
 class SdrMeasureTextIsFixedAngleItem: public SdrYesNoItem {
 public:
-    SdrMeasureTextIsFixedAngleItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTISFIXEDANGLE,bOn) {}
+    SdrMeasureTextIsFixedAngleItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTISFIXEDANGLE,bOn) {}
     SdrMeasureTextIsFixedAngleItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURETEXTISFIXEDANGLE,rIn) {}
 };
 

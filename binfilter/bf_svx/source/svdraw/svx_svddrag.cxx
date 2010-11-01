@@ -29,7 +29,7 @@
 #include "svddrag.hxx"
 namespace binfilter {
 
-/*N*/ void SdrDragStat::Clear(FASTBOOL bLeaveOne)
+/*N*/ void SdrDragStat::Clear(bool bLeaveOne)
 /*N*/ {
 /*N*/   void* pP=aPnts.First();
 /*N*/   while (pP!=NULL) {

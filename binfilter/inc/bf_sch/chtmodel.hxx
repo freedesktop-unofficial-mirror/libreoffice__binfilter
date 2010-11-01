@@ -165,9 +165,9 @@ public:
     virtual            ~ChartModel();
 
     // SdrModel
-    virtual void        SetChanged( FASTBOOL bFlag = TRUE );
+    virtual void        SetChanged( bool bFlag = TRUE );
     virtual SdrModel *  AllocModel() const;
-    virtual SdrPage  *  AllocPage( FASTBOOL bMasterPage );
+    virtual SdrPage  *  AllocPage( bool bMasterPage );
 
     void                NewOrLoadCompleted( USHORT eMode );
     void                AdjustPrinter();
@@ -287,7 +287,7 @@ public:
 
     void                StoreObjectsAttributes( SdrObject*         pObj,
                                                 const SfxItemSet&  rAttr,
-                                                FASTBOOL           bReplaceAll );      // #52277#
+                                                bool           bReplaceAll );      // #52277#
 
     void                GetAttr( const long nObjId, SfxItemSet& rAttr, const long nIndex1 = -1 );
     SfxItemSet&         GetAttr( const long nObjId, const long nIndex1 = -1) const;

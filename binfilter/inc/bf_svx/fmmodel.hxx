@@ -63,7 +63,7 @@ public:
     FmFormModel(const XubString& rPath, SfxItemPool* pPool=NULL,
                 SvPersist* pPers=NULL );
     FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers,
-                FASTBOOL bUseExtColorTable);
+                bool bUseExtColorTable);
 
     virtual ~FmFormModel();
 

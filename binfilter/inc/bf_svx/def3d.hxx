@@ -47,7 +47,7 @@ const double EPSILON = 1e-06;
 //+++ 3D-Hilfsfunktionen +++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-FASTBOOL Do3DEdgesIntersect(const Vector3D& rV1a, const Vector3D& rV1b,
+bool Do3DEdgesIntersect(const Vector3D& rV1a, const Vector3D& rV1b,
                             const Vector3D& rV2a, const Vector3D& rV2b);
 
 enum E3dDragDetail { E3DDETAIL_DEFAULT = 0,

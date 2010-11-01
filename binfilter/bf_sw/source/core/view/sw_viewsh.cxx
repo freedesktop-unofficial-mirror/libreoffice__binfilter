@@ -64,7 +64,7 @@ BOOL ViewShell::bLstAct = FALSE;
 ShellResource *ViewShell::pShellRes = 0;
 Window *ViewShell::pCareWindow = 0;
 
-FASTBOOL bInSizeNotify = FALSE;
+bool bInSizeNotify = FALSE;
 
 /*N*/ DBG_NAME(LayoutIdle)
 
@@ -112,7 +112,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( Imp()->GetRegion() && Imp()->GetRegion()->GetOrigin() != VisArea() )
 /*N*/       Imp()->DelRegions();
 /*N*/
-/*N*/   const FASTBOOL bExtraData = ::binfilter::IsExtraData( GetDoc() );
+/*N*/   const bool bExtraData = ::binfilter::IsExtraData( GetDoc() );
 /*N*/
 /*N*/   if ( !bIdleEnd )
 /*N*/   {
@@ -142,7 +142,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*?*/       if ( !nLockPaint )
 /*?*/       {
-/*?*/           FASTBOOL bPaintsFromSystem = aInvalidRect.HasArea();
+/*?*/           bool bPaintsFromSystem = aInvalidRect.HasArea();
 /*?*/           GetWin()->Update();
 /*?*/           if ( aInvalidRect.HasArea() )
 /*?*/           {
@@ -600,7 +600,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( bDocSizeChgd )
 /*N*/   {
 /*N*/       bDocSizeChgd = FALSE;
-/*N*/       FASTBOOL bOld = bInSizeNotify;
+/*N*/       bool bOld = bInSizeNotify;
 /*N*/       bInSizeNotify = TRUE;
 /*N*/       DBG_BF_ASSERT(0, "STRIP");//::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/       bInSizeNotify = bOld;

@@ -231,7 +231,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/ }
 
 
-/*N*/ SdrPage* __EXPORT ScDrawLayer::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* __EXPORT ScDrawLayer::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   //  don't create basic until it is needed
 /*N*/   StarBASIC* pBasic = NULL;
@@ -849,7 +849,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 // static:
 
 
-/*N*/ void __EXPORT ScDrawLayer::SetChanged( FASTBOOL bFlg /* =TRUE */ )
+/*N*/ void __EXPORT ScDrawLayer::SetChanged( bool bFlg /* =TRUE */ )
 /*N*/ {
 /*N*/   if ( bFlg && pDoc )
 /*N*/       pDoc->SetChartListenerCollectionNeedsUpdate( TRUE );

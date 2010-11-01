@@ -101,7 +101,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ TYPEINIT1(SdrOle2Obj,SdrRectObj);
 /*N*/
-/*N*/ SdrOle2Obj::SdrOle2Obj(FASTBOOL bFrame_)
+/*N*/ SdrOle2Obj::SdrOle2Obj(bool bFrame_)
 /*N*/ {
 /*N*/   bInDestruction = FALSE;
 /*N*/   Init();
@@ -112,7 +112,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-/*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_):
+/*N*/ SdrOle2Obj::SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const XubString& rNewObjName, const Rectangle& rNewRect, bool bFrame_):
 /*N*/   SdrRectObj(rNewRect)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
@@ -202,7 +202,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-/*N*/ FASTBOOL SdrOle2Obj::IsEmpty() const
+/*N*/ bool SdrOle2Obj::IsEmpty() const
 /*N*/ {
 /*N*/   return !ppObjRef->Is();
 /*N*/ }
@@ -330,7 +330,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ void SdrOle2Obj::SetModel(SdrModel* pNewModel)
 /*N*/ {
-/*N*/   FASTBOOL bChg = pNewModel!=pModel;
+/*N*/   bool bChg = pNewModel!=pModel;
 /*N*/
 /*N*/   if( bChg )
 /*N*/         Disconnect(); // mit dem alten Namen
@@ -356,8 +356,8 @@ SO2_DECL_REF(SvInPlaceObject)
 
 /*N*/ void SdrOle2Obj::SetPage(SdrPage* pNewPage)
 /*N*/ {
-/*N*/   FASTBOOL bRemove=pNewPage==NULL && pPage!=NULL;
-/*N*/   FASTBOOL bInsert=pNewPage!=NULL && pPage==NULL;
+/*N*/   bool bRemove=pNewPage==NULL && pPage!=NULL;
+/*N*/   bool bInsert=pNewPage!=NULL && pPage==NULL;
 /*N*/
 /*N*/   if (bRemove) Disconnect();
 /*N*/
@@ -573,7 +573,7 @@ SO2_DECL_REF(SvInPlaceObject)
 
 // -----------------------------------------------------------------------------
 
-/*N*/ FASTBOOL SdrOle2Obj::HasGDIMetaFile() const
+/*N*/ bool SdrOle2Obj::HasGDIMetaFile() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 

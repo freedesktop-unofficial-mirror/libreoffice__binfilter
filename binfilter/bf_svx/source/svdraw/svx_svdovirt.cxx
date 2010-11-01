@@ -181,7 +181,7 @@ namespace binfilter {
 /*N*/   return rRefObj.GetRotateAngle();
 /*N*/ }
 
-/*N*/ long SdrVirtObj::GetShearAngle(FASTBOOL bVertical) const
+/*N*/ long SdrVirtObj::GetShearAngle(bool bVertical) const
 /*N*/ {
 /*N*/   return rRefObj.GetShearAngle(bVertical);
 /*N*/ }
@@ -256,11 +256,11 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void SdrVirtObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrVirtObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   rRefObj.NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/ }

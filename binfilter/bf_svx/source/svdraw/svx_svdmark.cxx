@@ -140,16 +140,16 @@ namespace binfilter {
     */
 /*N*/ }
 
-/*N*/ void SdrMarkList::InsertEntry(const SdrMark& rMark, FASTBOOL bChkSort)
+/*N*/ void SdrMarkList::InsertEntry(const SdrMark& rMark, bool bChkSort)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 
 
 
-/*N*/ FASTBOOL SdrMarkList::DeletePageView(const SdrPageView& rPV)
+/*N*/ bool SdrMarkList::DeletePageView(const SdrPageView& rPV)
 /*N*/ {
-/*N*/   FASTBOOL bChgd=FALSE;
+/*N*/   bool bChgd=FALSE;
 /*N*/   for (ULONG i=GetMarkCount(); i>0;) {
 /*?*/       i--;
 /*?*/       SdrMark* pMark=GetMark(i);
@@ -168,9 +168,9 @@ namespace binfilter {
 
 
 
-/*N*/ FASTBOOL SdrMarkList::TakeBoundRect(SdrPageView* pPV, Rectangle& rRect) const
+/*N*/ bool SdrMarkList::TakeBoundRect(SdrPageView* pPV, Rectangle& rRect) const
 /*N*/ {
-/*N*/   FASTBOOL bFnd=FALSE;
+/*N*/   bool bFnd=FALSE;
 /*N*/   Rectangle aR;
 /*N*/
 /*N*/   for (ULONG i=0; i<GetMarkCount(); i++) {
@@ -188,9 +188,9 @@ namespace binfilter {
 /*N*/   return bFnd;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrMarkList::TakeSnapRect(SdrPageView* pPV, Rectangle& rRect) const
+/*N*/ bool SdrMarkList::TakeSnapRect(SdrPageView* pPV, Rectangle& rRect) const
 /*N*/ {
-/*N*/   FASTBOOL bFnd=FALSE;
+/*N*/   bool bFnd=FALSE;
 /*N*/
 /*N*/   for (ULONG i=0; i<GetMarkCount(); i++) {
 /*?*/       SdrMark* pMark=GetMark(i);

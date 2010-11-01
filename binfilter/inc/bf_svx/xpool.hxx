@@ -57,7 +57,7 @@ public:
     // Kontstruktion des Pools als MasterPool
     XOutdevItemPool(USHORT nAttrStart = XATTR_START,
                     USHORT nAttrEnd = XATTR_END,
-                    FASTBOOL bLoadRefCounts = TRUE);
+                    bool bLoadRefCounts = TRUE);
 
     // Damit meine SetItems mit dem MasterPool konstruiert werden koennen.
     // Der SdrItemPool wird dabei automatisch als Secondary an den
@@ -66,7 +66,7 @@ public:
     XOutdevItemPool(SfxItemPool* pMaster,
                     USHORT nAttrStart = XATTR_START,
                     USHORT nAttrEnd = XATTR_END,
-                    FASTBOOL bLoadRefCounts = TRUE);
+                    bool bLoadRefCounts = TRUE);
 
     XOutdevItemPool(const XOutdevItemPool& rPool);
 

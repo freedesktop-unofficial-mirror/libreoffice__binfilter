@@ -109,12 +109,12 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/ }
 
-/*N*/ FASTBOOL SdrPathObj::FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum,
-/*N*/                            USHORT& rPointNum, FASTBOOL bAllPoints) const
+/*N*/ bool SdrPathObj::FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum,
+/*N*/                            USHORT& rPointNum, bool bAllPoints) const
 /*N*/ {
 /*N*/   USHORT nPolyCnt=aPathPolygon.Count();
 /*N*/   USHORT nPoly=0;
-/*N*/   FASTBOOL bClosed=IsClosed();
+/*N*/   bool bClosed=IsClosed();
 /*N*/   nAbsPnt+=1;
 /*N*/
 /*N*/   while (nPoly<nPolyCnt) {
@@ -163,8 +163,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/   USHORT nPolyAnz=aPathPolygon.Count();
 /*N*/   USHORT nPoly1PointAnz=nPolyAnz==0 ? 0 : aPathPolygon[0].GetPointCount();
-/*N*/   FASTBOOL bHasCtrl=FALSE;
-/*N*/   FASTBOOL bHasLine=FALSE; // gemischt wird jedoch z.Zt. nicht in eKind festgehalten
+/*N*/   bool bHasCtrl=FALSE;
+/*N*/   bool bHasLine=FALSE; // gemischt wird jedoch z.Zt. nicht in eKind festgehalten
 /*N*/   for (USHORT nPolyNum=0; nPolyNum<nPolyAnz && (!bHasCtrl || !bHasLine); nPolyNum++) {
 /*N*/       const XPolygon& rPoly=aPathPolygon[nPolyNum];
 /*N*/       USHORT nPointAnz=rPoly.GetPointCount();
@@ -249,7 +249,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   ImpAddTextToBoundRect();
 /*N*/ }
 
-/*N*/ FASTBOOL SdrPathObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
+/*N*/ bool SdrPathObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {
 /*N*/   // Hidden objects on masterpages, draw nothing
 /*N*/   if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
@@ -332,7 +332,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/   FASTBOOL bOk=TRUE;
+/*N*/   bool bOk=TRUE;
 /*N*/   if (HasText()) {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
@@ -347,7 +347,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/   if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
 /*N*/   INT32 nMyTol=nTol;
-/*N*/   FASTBOOL bFilled=IsClosed() && (bTextFrame || HasFill());
+/*N*/   bool bFilled=IsClosed() && (bTextFrame || HasFill());
 /*N*/
 /*N*/   INT32 nWdt=ImpGetLineWdt()/2; // Halbe Strichstaerke
 /*N*/   if (nWdt>nMyTol) nMyTol=nWdt; // Bei dicker Linie keine Toleranz noetig
@@ -357,7 +357,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   aR.Top()   -=nMyTol;
 /*N*/   aR.Bottom()+=nMyTol;
 /*N*/
-/*N*/   FASTBOOL bHit=FALSE;
+/*N*/   bool bHit=FALSE;
 /*N*/   unsigned nPolyAnz=aPathPolygon.Count();
 /*N*/   if (bFilled) {
 /*N*/       PolyPolygon aPP;
@@ -386,7 +386,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, FASTBOOL bDetail) const
+/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, bool bDetail) const
 /*N*/ {
 /*N*/   rXPolyPoly=aPathPolygon;
 /*N*/ }
@@ -404,7 +404,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*?*/ inline USHORT GetPrevPnt(USHORT nPnt, USHORT nPntMax, FASTBOOL bClosed)
+/*?*/ inline USHORT GetPrevPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
 /*?*/ {
 /*?*/   if (nPnt>0) {
 /*?*/       nPnt--;
@@ -415,7 +415,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/   return nPnt;
 /*?*/ }
 
-/*?*/ inline USHORT GetNextPnt(USHORT nPnt, USHORT nPntMax, FASTBOOL bClosed)
+/*?*/ inline USHORT GetNextPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
 /*?*/ {
 /*?*/   nPnt++;
 /*?*/   if (nPnt>nPntMax || (bClosed && nPnt>=nPntMax)) nPnt=0;
@@ -468,7 +468,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   RotateXPoly(aPathPolygon,rRef,sn,cs);
 /*N*/ }
 
-/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, long nAngle, double fTan, FASTBOOL bVShear)
+/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, long nAngle, double fTan, bool bVShear)
 /*N*/ {
 /*N*/   SdrTextObj::NbcShear(rRefPnt,nAngle,fTan,bVShear);
 /*N*/   ShearXPoly(aPathPolygon,rRefPnt,fTan,bVShear);
@@ -518,7 +518,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ FASTBOOL SdrPathObj::IsPolyObj() const
+/*N*/ bool SdrPathObj::IsPolyObj() const
 /*N*/ {
 /*N*/   return TRUE;
 /*N*/ }

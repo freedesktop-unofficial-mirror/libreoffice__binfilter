@@ -89,7 +89,7 @@ namespace binfilter {
 
 /*N*/ void SdrViewUserMarker::SetLineWidth(USHORT nWdt)
 /*N*/ {
-/*N*/   FASTBOOL bVis=bVisible;
+/*N*/   bool bVis=bVisible;
 /*N*/   if (bVis) Hide();
 /*N*/   nLineWdt=nWdt;
 /*N*/   if (bVis) Show();

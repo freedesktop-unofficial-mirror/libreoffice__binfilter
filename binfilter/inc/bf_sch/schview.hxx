@@ -95,8 +95,8 @@ class SchView : public E3dView
     virtual void MarkListHasChanged();
 
 
-    FASTBOOL    IsLogicalGroupMarked() { return (nLogicalMarked != 0); }
-    FASTBOOL    IsLogicalGroupEntered() { return (nLogicalEntered != 0); }
+    bool    IsLogicalGroupMarked() { return (nLogicalMarked != 0); }
+    bool    IsLogicalGroupEntered() { return (nLogicalEntered != 0); }
 
 
 

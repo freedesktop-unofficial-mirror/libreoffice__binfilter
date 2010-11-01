@@ -53,7 +53,7 @@
 #include "hfspacingitem.hxx"
 namespace binfilter {
 
-/*N*/ extern FASTBOOL bObjsDirect;  //frmtool.cxx
+/*N*/ extern bool bObjsDirect;  //frmtool.cxx
 
 /*M*/ static SwTwips lcl_GetFrmMinHeight(const SwLayoutFrm & rFrm)
 /*M*/ {
@@ -133,7 +133,7 @@ namespace binfilter {
 /*M*/   ASSERT( rCnt.GetCntntIdx(), "Kein Inhalt fuer Header." );
 /*M*/
 /*M*/   //Fuer Header Footer die Objekte gleich erzeugen lassen.
-/*M*/   FASTBOOL bOld = bObjsDirect;
+/*M*/   bool bOld = bObjsDirect;
 /*M*/   bObjsDirect = TRUE;
 /*M*/   ULONG nIndex = rCnt.GetCntntIdx()->GetIndex();
 /*M*/   ::binfilter::_InsertCnt( this, pFmt->GetDoc(), ++nIndex );
@@ -688,7 +688,7 @@ namespace binfilter {
 /*N*/
 /*N*/   const SwFmtHeader &rH = ((SwFrmFmt*)pRegisteredIn)->GetHeader();
 /*N*/
-/*N*/   const FASTBOOL bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
+/*N*/   const bool bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
 /*N*/                         ((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsHeadInBrowse();
 /*N*/
 /*N*/   if ( bOn && rH.IsActive() )
@@ -739,7 +739,7 @@ namespace binfilter {
 /*N*/   while ( pLay->GetNext() )
 /*N*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/
-/*N*/   const FASTBOOL bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
+/*N*/   const bool bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
 /*N*/                        ((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsFootInBrowse();
 /*N*/
 /*N*/   if ( bOn && rF.IsActive() )

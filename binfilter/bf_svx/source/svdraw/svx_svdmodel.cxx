@@ -103,7 +103,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrModelInfo::SdrModelInfo(FASTBOOL bInit):
+/*N*/ SdrModelInfo::SdrModelInfo(bool bInit):
 /*N*/   aCreationDate(Date(0),Time(0)),
 /*N*/   aLastWriteDate(Date(0),Time(0)),
 /*N*/   aLastReadDate(Date(0),Time(0)),
@@ -236,7 +236,7 @@ using namespace ::com::sun::star;
 /*N*/ TYPEINIT1(SdrModel,SfxBroadcaster);
 
 /*N*/ void SdrModel::ImpCtor(SfxItemPool* pPool, SvPersist* pPers,
-/*N*/   FASTBOOL bUseExtColorTable, FASTBOOL bLoadRefCounts)
+/*N*/   bool bUseExtColorTable, bool bLoadRefCounts)
 /*N*/ {
 /*N*/   mbInDestruction=false;
 /*N*/   aObjUnit=SdrEngineDefaults::GetMapFraction();
@@ -360,7 +360,7 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,FALSE, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,FALSE, (bool)bLoadRefCounts);
 /*N*/ }
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
@@ -374,10 +374,10 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,FALSE, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,FALSE, (bool)bLoadRefCounts);
 /*N*/ }
 
-/*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts):
+/*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, bool bUseExtColorTable, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
 /*N*/   aPages(1024,32,32),
 /*N*/   aMaPag(1024,32,32),
@@ -388,7 +388,7 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (bool)bLoadRefCounts);
 /*N*/ }
 
 /*N*/ SdrModel::SdrModel(const SdrModel& rSrcModel):
@@ -482,17 +482,17 @@ using namespace ::com::sun::star;
 // noch nicht implementiert:
 
 
-/*N*/ void SdrModel::SetSwapGraphics( FASTBOOL bSwap )
+/*N*/ void SdrModel::SetSwapGraphics( bool bSwap )
 /*N*/ {
 /*N*/   bSwapGraphics = bSwap;
 /*N*/ }
 
-/*?*/ FASTBOOL SdrModel::IsReadOnly() const
+/*?*/ bool SdrModel::IsReadOnly() const
 /*?*/ {
 /*?*/   return bReadOnly;
 /*?*/ }
 
-/*?*/ void SdrModel::SetReadOnly(FASTBOOL bYes)
+/*?*/ void SdrModel::SetReadOnly(bool bYes)
 /*?*/ {
 /*?*/   bReadOnly=bYes;
 /*?*/ }
@@ -625,7 +625,7 @@ using namespace ::com::sun::star;
 /*N*/   return pModel;
 /*N*/ }
 
-/*N*/ SdrPage* SdrModel::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* SdrModel::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   return new SdrPage(*this,bMasterPage);
 /*N*/ }
@@ -804,10 +804,10 @@ using namespace ::com::sun::star;
 /*N*/ void SdrModel::ImpSetUIUnit()
 /*N*/ {
 /*N*/   if (aUIScale.GetNumerator()==0 || aUIScale.GetDenominator()==0) aUIScale=Fraction(1,1);
-/*N*/   FASTBOOL bMapInch=IsInch(eObjUnit);
-/*N*/   FASTBOOL bMapMetr=IsMetric(eObjUnit);
-/*N*/   FASTBOOL bUIInch=IsInch(eUIUnit);
-/*N*/   FASTBOOL bUIMetr=IsMetric(eUIUnit);
+/*N*/   bool bMapInch=IsInch(eObjUnit);
+/*N*/   bool bMapMetr=IsMetric(eObjUnit);
+/*N*/   bool bUIInch=IsInch(eUIUnit);
+/*N*/   bool bUIMetr=IsMetric(eUIUnit);
 /*N*/   nUIUnitKomma=0;
 /*N*/   long nMul=1;
 /*N*/   long nDiv=1;
@@ -1038,7 +1038,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*?*/ void SdrModel::TakeMetricStr(long nVal, XubString& rStr, FASTBOOL bNoUnitChars, sal_Int32 nNumDigits) const
+/*?*/ void SdrModel::TakeMetricStr(long nVal, XubString& rStr, bool bNoUnitChars, sal_Int32 nNumDigits) const
 /*?*/ {
 /*?*/   if(!bUIOnlyKomma)
 /*?*/       nVal = (nVal * aUIUnitFact.GetNumerator()) / aUIUnitFact.GetDenominator();
@@ -1150,12 +1150,12 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SdrModel::SetChanged(FASTBOOL bFlg)
+/*N*/ void SdrModel::SetChanged(bool bFlg)
 /*N*/ {
 /*N*/   bChanged=bFlg;
 /*N*/ }
 
-/*N*/ void SdrModel::RecalcPageNums(FASTBOOL bMaster)
+/*N*/ void SdrModel::RecalcPageNums(bool bMaster)
 /*N*/ {
 /*N*/   Container& rPL=*(bMaster ? &aMaPag : &aPages);
 /*N*/   USHORT nAnz=USHORT(rPL.Count());

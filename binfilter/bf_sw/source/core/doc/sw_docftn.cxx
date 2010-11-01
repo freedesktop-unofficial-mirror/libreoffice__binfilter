@@ -267,19 +267,19 @@ namespace binfilter {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
 /*N*/
-/*N*/       FASTBOOL bPageNum = rInfo.eNum == FTNNUM_PAGE &&
+/*N*/       bool bPageNum = rInfo.eNum == FTNNUM_PAGE &&
 /*N*/                           rOld.eNum != FTNNUM_PAGE;
-/*N*/       FASTBOOL bFtnPos  = rInfo.ePos != rOld.ePos;
-/*N*/       FASTBOOL bFtnDesc = rOld.ePos == FTNPOS_CHAPTER &&
+/*N*/       bool bFtnPos  = rInfo.ePos != rOld.ePos;
+/*N*/       bool bFtnDesc = rOld.ePos == FTNPOS_CHAPTER &&
 /*N*/                           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
-/*N*/       FASTBOOL bExtra   = rInfo.aQuoVadis != rOld.aQuoVadis ||
+/*N*/       bool bExtra   = rInfo.aQuoVadis != rOld.aQuoVadis ||
 /*N*/                           rInfo.aErgoSum != rOld.aErgoSum ||
 /*N*/                           rInfo.aFmt.GetNumberingType() != rOld.aFmt.GetNumberingType() ||
 /*N*/                           rInfo.GetPrefix() != rOld.GetPrefix() ||
 /*N*/                           rInfo.GetSuffix() != rOld.GetSuffix();
 /*N*/       SwCharFmt *pOldChrFmt = rOld.GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
-/*N*/       FASTBOOL bFtnChrFmts = pOldChrFmt != pNewChrFmt;
+/*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;
 /*N*/
 /*N*/       *pFtnInfo = rInfo;
 /*N*/
@@ -311,16 +311,16 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !(GetEndNoteInfo() == rInfo) )
 /*N*/   {
-/*N*/       FASTBOOL bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
-/*N*/       FASTBOOL bExtra   = !bNumChg &&
+/*N*/       bool bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
+/*N*/       bool bExtra   = !bNumChg &&
 /*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()||
 /*N*/                           rInfo.GetPrefix() != GetEndNoteInfo().GetPrefix() ||
 /*N*/                           rInfo.GetSuffix() != GetEndNoteInfo().GetSuffix();
-/*N*/       FASTBOOL bFtnDesc = rInfo.GetPageDesc( *this ) !=
+/*N*/       bool bFtnDesc = rInfo.GetPageDesc( *this ) !=
 /*N*/                           GetEndNoteInfo().GetPageDesc( *this );
 /*N*/       SwCharFmt *pOldChrFmt = GetEndNoteInfo().GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
-/*N*/       FASTBOOL bFtnChrFmts = pOldChrFmt != pNewChrFmt;
+/*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;
 /*N*/
 /*N*/       *pEndNoteInfo = rInfo;
 /*N*/

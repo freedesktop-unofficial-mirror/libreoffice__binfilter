@@ -38,7 +38,7 @@ namespace binfilter {
 //------------------------------
 class SdrObjPrintableItem: public SdrYesNoItem {
 public:
-    SdrObjPrintableItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJPRINTABLE,bOn) {}
+    SdrObjPrintableItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJPRINTABLE,bOn) {}
     SdrObjPrintableItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJPRINTABLE,rIn) {}
 };
 

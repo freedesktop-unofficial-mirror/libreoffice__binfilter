@@ -105,7 +105,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dLight::ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
+/*N*/ bool E3dLight::ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
 /*N*/                                   double fR, double fG, double fB) const
 /*N*/ {
 /*N*/   ULONG   nR(rNewColor.GetRed()),
@@ -139,7 +139,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dLight::CalcLighting(Color& rNewColor,
+/*N*/ bool E3dLight::CalcLighting(Color& rNewColor,
 /*N*/                               const Vector3D& rPnt,
 /*N*/                               const Vector3D& rPntNormal,
 /*N*/                               const Color& rPntColor)
@@ -296,7 +296,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/ }
 

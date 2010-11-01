@@ -57,9 +57,9 @@ namespace binfilter {
 /*N*/   long                        nEscAbs;
 /*N*/   long                        nLineLen;
 /*N*/   SdrCaptionEscDir            eEscDir;
-/*N*/   FASTBOOL                    bFitLineLen;
-/*N*/   FASTBOOL                    bEscRel;
-/*N*/   FASTBOOL                    bFixedAngle;
+/*N*/   bool                    bFitLineLen;
+/*N*/   bool                    bEscRel;
+/*N*/   bool                    bFixedAngle;
 /*N*/
 /*N*/ public:
 /*N*/   ImpCaptParams()
@@ -95,7 +95,7 @@ namespace binfilter {
 /*N*/   nY+=rRect.Top();
 /*N*/   Point  aBestPt;
 /*N*/   EscDir eBestDir=LKS;
-/*N*/   FASTBOOL bTryH=eEscDir==SDRCAPT_ESCBESTFIT;
+/*N*/   bool bTryH=eEscDir==SDRCAPT_ESCBESTFIT;
 /*N*/   if (!bTryH) {
 /*N*/       if (eType!=SDRCAPT_TYPE1) {
 /*N*/           bTryH=eEscDir==SDRCAPT_ESCHORIZONTAL;
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/           bTryH=eEscDir==SDRCAPT_ESCVERTICAL;
 /*N*/       }
 /*N*/   }
-/*N*/   FASTBOOL bTryV=eEscDir==SDRCAPT_ESCBESTFIT;
+/*N*/   bool bTryV=eEscDir==SDRCAPT_ESCBESTFIT;
 /*N*/   if (!bTryV) {
 /*N*/       if (eType!=SDRCAPT_TYPE1) {
 /*N*/           bTryV=eEscDir==SDRCAPT_ESCVERTICAL;
@@ -115,7 +115,7 @@ namespace binfilter {
 /*N*/   if (bTryH) {
 /*N*/       Point aLft(rRect.Left()-nGap,nY);
 /*N*/       Point aRgt(rRect.Right()+nGap,nY);
-/*N*/       FASTBOOL bLft=(aTl.X()-aLft.X()<aRgt.X()-aTl.X());
+/*N*/       bool bLft=(aTl.X()-aLft.X()<aRgt.X()-aTl.X());
 /*N*/       if (bLft) {
 /*N*/           eBestDir=LKS;
 /*N*/           aBestPt=aLft;
@@ -127,7 +127,7 @@ namespace binfilter {
 /*N*/   if (bTryV) {
 /*?*/       Point aTop(nX,rRect.Top()-nGap);
 /*?*/       Point aBtm(nX,rRect.Bottom()+nGap);
-/*?*/       FASTBOOL bTop=(aTl.Y()-aTop.Y()<aBtm.Y()-aTl.Y());
+/*?*/       bool bTop=(aTl.Y()-aTop.Y()<aBtm.Y()-aTl.Y());
 /*?*/       Point aBest2;
 /*?*/       EscDir eBest2;
 /*?*/       if (bTop) {
@@ -137,7 +137,7 @@ namespace binfilter {
 /*?*/           eBest2=UNT;
 /*?*/           aBest2=aBtm;
 /*?*/       }
-/*?*/       FASTBOOL bTakeIt=eEscDir!=SDRCAPT_ESCBESTFIT;
+/*?*/       bool bTakeIt=eEscDir!=SDRCAPT_ESCBESTFIT;
 /*?*/       if (!bTakeIt) {
 /*?*/           BigInt aHorX(aBestPt.X()-aTl.X()); aHorX*=aHorX;
 /*?*/           BigInt aHorY(aBestPt.Y()-aTl.Y()); aHorY*=aHorY;
@@ -445,7 +445,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrCaptionObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrCaptionObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/   ImpRecalcTail();

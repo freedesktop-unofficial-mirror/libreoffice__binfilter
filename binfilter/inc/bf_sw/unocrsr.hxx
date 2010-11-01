@@ -49,7 +49,7 @@ public:
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual FASTBOOL IsSelOvr( int eFlags =
+    virtual bool IsSelOvr( int eFlags =
                                 ( SELOVER_CHECKNODESSECTION |
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
 
@@ -90,7 +90,7 @@ public:
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual FASTBOOL IsSelOvr( int eFlags =
+    virtual bool IsSelOvr( int eFlags =
                                 ( SELOVER_CHECKNODESSECTION |
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
 

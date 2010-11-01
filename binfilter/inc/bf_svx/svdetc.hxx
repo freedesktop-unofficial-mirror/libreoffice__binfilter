@@ -130,7 +130,7 @@ SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pMod );
 
 // Liefert eine Ersatzdarstellung fuer einen XFillStyle
 // Bei XFILL_NONE gibt's FALSE und rCol bleibt unveraendert.
-FASTBOOL GetDraftFillColor(const SfxItemSet& rSet, Color& rCol);
+bool GetDraftFillColor(const SfxItemSet& rSet, Color& rCol);
 
 // Ein Container fuer USHORTs (im Prinzip ein dynamisches Array)
 class UShortCont {
@@ -165,7 +165,7 @@ public:
 #endif
     virtual int Compare(const void* pElem1, const void* pElem2) const = 0;
 private: // damit keiner vergessen wird
-//  virtual FASTBOOL Is1stLessThan2nd(const void* pElem1, const void* pElem2) const=NULL;
+//  virtual bool Is1stLessThan2nd(const void* pElem1, const void* pElem2) const=NULL;
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -188,7 +188,7 @@ class ImpSdrHdcMerk
     Color*        pLineColorMerk;
     USHORT        nMode;
 public:
-    ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode=SDRHDC_SAVEALL, FASTBOOL bAutoMerk=TRUE);
+    ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode=SDRHDC_SAVEALL, bool bAutoMerk=TRUE);
     ~ImpSdrHdcMerk();
     void Save(const OutputDevice& rOut);
     void Restore(OutputDevice& rOut, USHORT nMask=SDRHDC_SAVEALL) const;
@@ -227,7 +227,7 @@ public:
     const Link& GetLink(unsigned nNum) const { return *((Link*)(aList.GetObject(nNum))); }
     void InsertLink(const Link& rLink, unsigned nPos=0xFFFF);
     void RemoveLink(const Link& rLink);
-    FASTBOOL HasLink(const Link& rLink) const { return FindEntry(rLink)!=0xFFFF; }
+    bool HasLink(const Link& rLink) const { return FindEntry(rLink)!=0xFFFF; }
 };
 
 // Fuer die Factory in SvdObj.CXX

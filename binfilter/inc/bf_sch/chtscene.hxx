@@ -76,7 +76,7 @@ class ChartScene : public E3dPolyScene
 //          {   return E3dObject::GetHdlCount();    }
 //      virtual void    AddToHdlList    (SdrHdlList& rHdlList)  const
 //          {   E3dObject::AddToHdlList (rHdlList); }
-//      virtual FASTBOOL    HasSpecialDrag  (void)  const
+//      virtual bool    HasSpecialDrag  (void)  const
 //          {   return E3dObject::HasSpecialDrag ();    }
 
     void ReduceDescrList(DescrList& aList);

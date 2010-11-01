@@ -159,7 +159,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // BOOL, damit hier auch bei Chapter-Einstellung die Endnoten
 /*N*/   // durchlaufen.
-/*N*/   const FASTBOOL bEndNoteOnly = FTNNUM_DOC != rFtnInfo.eNum;
+/*N*/   const bool bEndNoteOnly = FTNNUM_DOC != rFtnInfo.eNum;
 /*N*/
 /*N*/   USHORT nPos, nFtnNo = 1, nEndNo = 1;
 /*N*/   ULONG nUpdNdIdx = rStt.GetIndex();
@@ -269,7 +269,7 @@ namespace binfilter {
 
     // BOOL, damit hier auch bei Chapter-Einstellung die Endnoten
     // durchlaufen.
-/*N*/   const FASTBOOL bEndNoteOnly = FTNNUM_DOC != rFtnInfo.eNum;
+/*N*/   const bool bEndNoteOnly = FTNNUM_DOC != rFtnInfo.eNum;
 /*N*/   USHORT nFtnNo = 0, nEndNo = 0;
 /*N*/   for( USHORT nPos = 0; nPos < Count(); ++nPos )
 /*N*/   {

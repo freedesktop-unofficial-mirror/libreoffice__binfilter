@@ -49,8 +49,8 @@
 #include <swddetbl.hxx>
 #include <frame.hxx>
 namespace binfilter {//STRIP009
-/*N*/ extern FASTBOOL CheckNodesRange( const SwNodeIndex& rStt,
-/*N*/                           const SwNodeIndex& rEnd, FASTBOOL bChkSection );
+/*N*/ extern bool CheckNodesRange( const SwNodeIndex& rStt,
+/*N*/                           const SwNodeIndex& rEnd, bool bChkSection );
 
 SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)//STRIP008 ;
 } //namespace binfilter
@@ -1285,7 +1285,7 @@ namespace binfilter {
 /*N*/ };
 
 
-/*N*/ void SwNodes::RemoveNode( ULONG nDelPos, ULONG nSize, FASTBOOL bDel )
+/*N*/ void SwNodes::RemoveNode( ULONG nDelPos, ULONG nSize, bool bDel )
 /*N*/ {
 /*N*/   ULONG nEnd = nDelPos + nSize;
 /*N*/   SwNode* pNew = (*this)[ nEnd ];

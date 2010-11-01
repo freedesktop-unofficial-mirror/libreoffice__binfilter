@@ -367,7 +367,7 @@ public:
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
     // hat das Feld eine Action auf dem ClickHandler ? (z.B. INetFelder,..)
     // ist es ein Fix-Feld?
-    FASTBOOL            IsFixed() const;
+    bool            IsFixed() const;
 
     BOOL                IsAutomaticLanguage() const { return bIsAutomaticLanguage;}
     void                SetAutomaticLanguage(BOOL bSet){bIsAutomaticLanguage = bSet;}

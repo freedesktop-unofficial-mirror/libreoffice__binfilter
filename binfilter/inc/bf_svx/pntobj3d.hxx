@@ -44,7 +44,7 @@ class E3dPointObj : public E3dObject
     Vector3D    aPosition;
     Vector3D    aTransPos;
 
-    FASTBOOL    bTransPosValid  : 1;
+    bool    bTransPosValid  : 1;
 
     virtual void SetTransformChanged();
 

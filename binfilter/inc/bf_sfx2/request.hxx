@@ -40,7 +40,7 @@ class SfxItemSet;
 {
 public:
     static const SfxPoolItem* GetItem( const SfxItemSet*, USHORT nSlotId,
-                                       FASTBOOL bDeep = FALSE,
+                                       bool bDeep = FALSE,
                                        TypeId aType = 0 );
 };
 

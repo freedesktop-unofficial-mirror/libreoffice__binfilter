@@ -80,19 +80,19 @@ protected:
     // ueber nSin/nCos wird der Winkel vorgegeben
 
     // Schattenabstand ermitteln. FALSE=Kein Schatten.
-    FASTBOOL ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const;
+    bool ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const;
 
     // ggf. Schattenversatz zum BoundRect draufaddieren
     void ImpAddShadowToBoundRect();
 
     // Line und Fill Attribute fuer Schatten setzen.
     // Return=FALSE: kein Schatten attributiert.
-    FASTBOOL ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const;
+    bool ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const;
 
     // Zuhoeren, ob sich ein StyleSheet aendert
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void RemoveStyleSheet();
-    virtual void AddStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void AddStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // aus NULL-AttrPointern Pointer auf defaults machen
     virtual void ForceDefaultAttr();
@@ -130,8 +130,8 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     virtual SfxStyleSheet* GetStyleSheet() const;
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
 
     // ItemPool fuer dieses Objekt wechseln

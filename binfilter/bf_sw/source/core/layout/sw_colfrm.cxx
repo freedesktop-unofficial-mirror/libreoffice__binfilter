@@ -334,7 +334,7 @@ namespace binfilter {
 /*?*/       return;
 /*N*/   }
 /*N*/
-/*N*/     const FASTBOOL bVert = IsVertical();
+/*N*/     const bool bVert = IsVertical();
 /*N*/     SwRectFn fnRect = bVert ? fnRectVert : fnRectHori;
 /*N*/
 /*N*/   //Ist ein Pointer da, oder sollen wir die Attribute einstellen,

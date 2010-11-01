@@ -114,7 +114,7 @@ namespace binfilter {
 
 /*N*/ void SwFEShell::SetChainMarker()
 /*N*/ {
-/*N*/   FASTBOOL bDelFrom = TRUE,
+/*N*/   bool bDelFrom = TRUE,
 /*N*/            bDelTo   = TRUE;
 /*N*/   if ( IsFrmSelected() )
 /*N*/   {

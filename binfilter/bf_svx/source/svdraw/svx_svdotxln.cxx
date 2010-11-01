@@ -98,7 +98,7 @@ namespace binfilter {
 /*?*/ void ImpSdrObjTextLink::DataChanged( const String& rMimeType,
 /*?*/                               const ::com::sun::star::uno::Any & rValue )
 /*?*/ {
-/*?*/   FASTBOOL bForceReload=FALSE;
+/*?*/   bool bForceReload=FALSE;
 /*?*/   SdrModel* pModel = pSdrObj ? pSdrObj->GetModel() : 0;
 /*?*/   SvxLinkManager* pLinkManager= pModel ? pModel->GetLinkManager() : 0;
 /*?*/   if( pLinkManager )

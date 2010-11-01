@@ -514,7 +514,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // ueberpruefe Rekursion: Inhalt in "seinen eigenen" Frame
 /*N*/       // kopieren. Dann nicht kopieren
-/*N*/       FASTBOOL bMakeCpy = TRUE;
+/*N*/       bool bMakeCpy = TRUE;
 /*N*/       if( pDest == this )
 /*N*/       {
 /*N*/           const SwFmtCntnt& rCntnt = rZSortFly.GetFmt()->GetCntnt();

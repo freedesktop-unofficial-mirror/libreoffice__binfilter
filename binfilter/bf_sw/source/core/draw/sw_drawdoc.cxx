@@ -192,7 +192,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 \************************************************************************/
 
 
-/*N*/ SdrPage* SwDrawDocument::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* SwDrawDocument::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   SwDPage* pPage = new SwDPage(*this, bMasterPage);
 /*N*/   pPage->SetName( String::CreateFromAscii(

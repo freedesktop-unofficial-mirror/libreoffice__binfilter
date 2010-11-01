@@ -78,7 +78,7 @@ void CaptureDrawObj( SdrObject& rObj, const SwRect& rFrm );
 SdrObjUserCall* GetUserCall( const SdrObject* );
 
 // liefert TRUE falls das SrdObject ein Marquee-Object (Lauftext) ist
-FASTBOOL IsMarqueeTextObj( const SdrObject& rObj );
+bool IsMarqueeTextObj( const SdrObject& rObj );
 
 //Basisklasse fuer die folgenden KontaktObjekte (Rahmen+Zeichenobjekte)
 class SwContact : public SdrObjUserCall, public SwClient
@@ -187,9 +187,9 @@ class SwDrawVirtObj : public SdrVirtObj
         // All overloaded methods which need to use the offset
         virtual const Rectangle& GetBoundRect() const;
         virtual void RecalcBoundRect();
-        virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+        virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
         virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
-        virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
+        virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
         virtual void TakeContour(XPolyPolygon& rPoly) const;
         virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
         virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
@@ -197,12 +197,12 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
         virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-        virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+        virtual void NbcShear(const Point& rRef, long nWink, double tn, bool bVShear);
         virtual void Move(const Size& rSiz);
         virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
         virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
         virtual void Mirror(const Point& rRef1, const Point& rRef2);
-        virtual void Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+        virtual void Shear(const Point& rRef, long nWink, double tn, bool bVShear);
         virtual void RecalcSnapRect();
         virtual const Rectangle& GetSnapRect() const;
         virtual void SetSnapRect(const Rectangle& rRect);
@@ -215,7 +215,7 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
         // #108784#
-        virtual FASTBOOL HasTextEdit() const;
+        virtual bool HasTextEdit() const;
 
         // OD 17.06.2003 #108784# - overload 'layer' methods
         virtual SdrLayerID GetLayer() const;

@@ -271,7 +271,7 @@ public:
 
     void                        ReleaseIndex(USHORT i);
 
-    void                        NotifyEvent(const SfxEventHint& rEvent, FASTBOOL bSynchron = TRUE );
+    void                        NotifyEvent(const SfxEventHint& rEvent, bool bSynchron = TRUE );
     SfxEventConfiguration*      GetEventConfig() const;
 
     SfxMiscCfg*                 GetMiscConfig();
@@ -284,7 +284,7 @@ public:
     SfxObjectShellLock          NewDoc_Impl( const String& rFactory, const SfxItemSet* pSet = NULL );
 
     BOOL                        IsReadOnly_Impl(const String &rFile) const;
-    FASTBOOL                    Initialize_Impl();
+    bool                    Initialize_Impl();
 
     SfxAppData_Impl*            Get_Impl() const { return pAppData_Impl; }
 
@@ -296,7 +296,7 @@ public:
     void                        BuildBasicData_Impl();
     StarBASIC*                  GetBasic_Impl() const;
 
-    FASTBOOL                    IsInAsynchronCall_Impl() const;
+    bool                    IsInAsynchronCall_Impl() const;
     void                        Registrations_Impl();
     void                        InvalidateWinSlots_Impl();
 

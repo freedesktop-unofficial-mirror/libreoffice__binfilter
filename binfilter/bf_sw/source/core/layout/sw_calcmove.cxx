@@ -378,7 +378,7 @@ namespace binfilter {
 /*N*/   if ( !bValidPos )
 /*N*/   {
 /*N*/       bValidPos = TRUE;
-/*N*/       FASTBOOL bUseUpper = FALSE;
+/*N*/       bool bUseUpper = FALSE;
 /*N*/       SwFrm* pPrv = lcl_Prev( this );
 /*N*/         if ( pPrv &&
 /*N*/              ( !pPrv->IsCntntFrm() ||
@@ -768,7 +768,7 @@ namespace binfilter {
 /*N*/       bValidPrtArea = TRUE;
 /*N*/
 /*N*/         SWRECTFN( this )
-/*N*/       const FASTBOOL bTxtFrm = IsTxtFrm();
+/*N*/       const bool bTxtFrm = IsTxtFrm();
 /*N*/       SwTwips nUpper = 0;
 /*N*/       if ( bTxtFrm && ((SwTxtFrm*)this)->IsHiddenNow() )
 /*N*/       {
@@ -811,7 +811,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   SdrObject *pObj = (*GetDrawObjs())[i];
 /*N*/                   SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/                   const FASTBOOL bFly = pObj->IsWriterFlyFrame();
+/*N*/                   const bool bFly = pObj->IsWriterFlyFrame();
 /*N*/                   if ( bFly &&
 /*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
 /*N*/                        pFmt->GetFrmSize().GetWidthPercent() )
@@ -1246,8 +1246,8 @@ namespace binfilter {
 /*N*/               }
 /*N*/               if ( pNxt )
 /*N*/               {
-/*N*/                   const FASTBOOL bMoveFwdInvalid = 0 != GetIndNext();
-/*N*/                     const FASTBOOL bNxtNew =
+/*N*/                   const bool bMoveFwdInvalid = 0 != GetIndNext();
+/*N*/                     const bool bNxtNew =
 /*N*/                         ( 0 == (pNxt->Prt().*fnRect->fnGetHeight)() ) &&
 /*N*/                         (!pNxt->IsTxtFrm() ||!((SwTxtFrm*)pNxt)->IsHiddenNow());
 /*N*/                   pNxt->Calc();

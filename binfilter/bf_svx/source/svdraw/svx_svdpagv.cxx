@@ -637,7 +637,7 @@ using namespace ::com::sun::star;
 /*N*/                    pSdrHint->GetPage()!=NULL) ||
 /*N*/                   eKind==HINT_PAGECHG)
 /*N*/               {
-/*N*/                   FASTBOOL bInv=FALSE;
+/*N*/                   bool bInv=FALSE;
 /*N*/                   if (pSdrHint->GetPage()==pPage) bInv=TRUE;
 /*N*/                   else if (pSdrHint->GetPage()->IsMasterPage()) { // ebenfalls Invalidate, wenn pPage die geaenderte Page als MasterPage referenziert
 /*N*/                       USHORT nMaPgAnz=pPage!=NULL?pPage->GetMasterPageCount():0;
@@ -714,7 +714,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ void SdrPageView::InvalidateAllWin(const Rectangle& rRect, FASTBOOL bPlus1Pix)
+/*N*/ void SdrPageView::InvalidateAllWin(const Rectangle& rRect, bool bPlus1Pix)
 /*N*/ {
 /*N*/   if (bVisible) {
 /*N*/       rView.InvalidateAllWin(rRect+GetOffset(),bPlus1Pix);
@@ -725,7 +725,7 @@ using namespace ::com::sun::star;
 #define RGBCOLOR(r,g,b) ((ULONG)(((BYTE)(b) | ((USHORT)(g)<<8)) | (((ULONG)(BYTE)(r))<<16)))
 #endif
 
-/*N*/ FASTBOOL SdrPageView::IsLayer(const XubString& rName, const SetOfByte& rBS) const
+/*N*/ bool SdrPageView::IsLayer(const XubString& rName, const SetOfByte& rBS) const
 /*N*/ {
 /*N*/   if(!pPage)
 /*N*/       return FALSE;
@@ -744,7 +744,7 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrPageView::IsObjMarkable(SdrObject* pObj) const
+/*N*/ bool SdrPageView::IsObjMarkable(SdrObject* pObj) const
 /*N*/ {
 /*N*/   if(pObj)
 /*N*/   {

@@ -57,7 +57,7 @@ class E3dPointLight : public E3dLight
     virtual ~E3dPointLight();
 
 
-    virtual FASTBOOL CalcLighting(Color& rNewColor,
+    virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,
                                   const Vector3D& rPntNormal,
                                   const Color& rPntColor);

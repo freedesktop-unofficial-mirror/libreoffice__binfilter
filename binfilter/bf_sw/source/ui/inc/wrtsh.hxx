@@ -121,7 +121,7 @@ public:
     BOOL    IsExtSel() const { return bSelWrd || bSelLn; }
 
     //Basiscursortravelling
-typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
+typedef bool (SwWrtShell:: *FNSimpleMove)();
 
     //setzen des Cursors; merken der alten Position fuer Zurueckblaettern.
     DECL_LINK( ExecFlyMac, void * );

@@ -208,7 +208,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dObject::SetRectsDirty(FASTBOOL bNotMyself)
+/*N*/ void E3dObject::SetRectsDirty(bool bNotMyself)
 /*N*/ {
 /*N*/   // call parent
 /*N*/   SdrAttrObj::SetRectsDirty(bNotMyself);
@@ -262,7 +262,7 @@ namespace binfilter {
 
 /*N*/ SdrLayerID E3dObject::GetLayer() const
 /*N*/ {
-/*N*/   FASTBOOL bFirst = TRUE;
+/*N*/   bool bFirst = TRUE;
 /*N*/   E3dObjList* pOL = pSub;
 /*N*/   ULONG       nObjCnt = pOL->GetObjCount();
 /*N*/   SdrLayerID  nLayer = SdrLayerID(nLayerID);
@@ -1024,7 +1024,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ void E3dObject::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet,
-/*N*/   FASTBOOL bDontRemoveHardAttr)
+/*N*/   bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   // call parent
 /*N*/   SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet, bDontRemoveHardAttr);

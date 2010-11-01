@@ -1019,7 +1019,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       const long nBottom = pPreUp->Frm().Bottom();
 /*N*/       const long nRight  = pPreUp->Frm().Right();
-/*N*/       const FASTBOOL bCol = pPreUp->IsColBodyFrm();//ColFrms jetzt mit BodyFrm
+/*N*/       const bool bCol = pPreUp->IsColBodyFrm();//ColFrms jetzt mit BodyFrm
 /*N*/       for ( USHORT i = 0; i < pPre->GetDrawObjs()->Count(); ++i )
 /*N*/       {
 /*N*/           const SdrObject *pObj = (*pPre->GetDrawObjs())[i];
@@ -1581,7 +1581,7 @@ namespace binfilter {
 /*N*/   SwFtnBossFrm * pOldBoss = rThis.FindFtnBossFrm();
 /*N*/   SwPageFrm * const pOldPage = pOldBoss->FindPageFrm();
 /*N*/   SwLayoutFrm *pNewUpper = 0;
-/*N*/   FASTBOOL bCheckPageDescs = FALSE;
+/*N*/   bool bCheckPageDescs = FALSE;
 /*N*/
 /*N*/   if ( pFtn )
 /*N*/   {

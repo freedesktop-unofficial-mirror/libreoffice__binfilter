@@ -96,7 +96,7 @@ using namespace ::com::sun::star::uno;
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 /*?*/ }
 
-/*N*/ FASTBOOL SfxObjectShell::SaveWindows_Impl( SvStorage &rStor ) const
+/*N*/ bool SfxObjectShell::SaveWindows_Impl( SvStorage &rStor ) const
 /*N*/ {
 /*N*/       return FALSE;
 /*N*/ }

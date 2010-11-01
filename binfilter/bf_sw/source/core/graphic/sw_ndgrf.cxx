@@ -604,7 +604,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                       // HACK bis die Grafik als Portable markiert
 /*N*/                       // werden kann!!!
 /*N*/                       // Die Grafik kann in einer TempFile sein!
-/*N*/                       FASTBOOL bIsSwapOut = aGrfObj.IsSwappedOut();
+/*N*/                       bool bIsSwapOut = aGrfObj.IsSwappedOut();
 /*N*/                       if( bIsSwapOut && !aGrfObj.SwapIn() )
 /*N*/                           return FALSE;
 /*N*/

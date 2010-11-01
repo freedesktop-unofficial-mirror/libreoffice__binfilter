@@ -76,7 +76,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 
-/*N*/ void ImpTextPortionHandler::DrawTextToPath(ExtOutputDevice& rXOut, FASTBOOL bDrawEffect)
+/*N*/ void ImpTextPortionHandler::DrawTextToPath(ExtOutputDevice& rXOut, bool bDrawEffect)
 /*N*/ {
 /*N*/   aFormTextBoundRect=Rectangle();
 /*N*/   const Rectangle& rBR = rTextObj.GetSnapRect();

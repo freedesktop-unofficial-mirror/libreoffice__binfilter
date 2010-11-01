@@ -60,15 +60,15 @@ class E3dPolyObj : public E3dObject
 
 public:
     TYPEINFO();
-    E3dPolyObj(const PolyPolygon3D& rPoly3D, FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+    E3dPolyObj(const PolyPolygon3D& rPoly3D, bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const PolyPolygon3D& rPoly3D, const PolyPolygon3D& rVector3D,
-                                             FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+                                             bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const PolyPolygon3D& rPoly3D, const PolyPolygon3D& rVector3D,
                                              const PolyPolygon3D& rNormal3D,
-                                             FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+                                             bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const Vector3D& rP1, const Vector3D& rP2);
     E3dPolyObj();
     virtual ~E3dPolyObj();

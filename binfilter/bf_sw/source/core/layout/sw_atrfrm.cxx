@@ -2552,7 +2552,7 @@ void SwFlyFrmFmt::MakeFrms()
              pFrm;
              pFrm = (SwFrm*)aIter.Next() )
         {
-            FASTBOOL bAdd = !pFrm->IsCntntFrm() ||
+            bool bAdd = !pFrm->IsCntntFrm() ||
                 !((SwCntntFrm*)pFrm)->IsFollow();
 
             if ( FLY_AT_FLY == aAnchorAttr.GetAnchorId() && !pFrm->IsFlyFrm() )

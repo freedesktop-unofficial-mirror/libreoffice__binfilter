@@ -83,12 +83,12 @@ protected:
 
 protected:
     // Hilfsfunktion fuer GET/SET/INS/etc. PNT
-    FASTBOOL FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum, USHORT& rPointNum, FASTBOOL bAllPoints=TRUE) const;
+    bool FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum, USHORT& rPointNum, bool bAllPoints=TRUE) const;
     void ImpForceKind();
     void ImpForceLineWink();
 
     // fuer friend class SdrPolyEditView auf einigen Compilern:
-    void SetRectsDirty(FASTBOOL bNotMyself=FALSE) { SdrTextObj::SetRectsDirty(bNotMyself); }
+    void SetRectsDirty(bool bNotMyself=FALSE) { SdrTextObj::SetRectsDirty(bNotMyself); }
 
 public:
     TYPEINFO();
@@ -100,11 +100,11 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-    virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     virtual void operator=(const SdrObject& rObj);
 
-    virtual void TakeXorPoly(XPolyPolygon& rXPolyPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rXPolyPoly, bool bDetail) const;
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeContour(XPolyPolygon& rPoly) const;
@@ -116,10 +116,10 @@ public:
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);
     virtual void NbcRotate(const Point& rRefPnt, long nAngle, double fSin, double fCos);
-    virtual void NbcShear(const Point& rRefPnt, long nAngle, double fTan, FASTBOOL bVShear);
+    virtual void NbcShear(const Point& rRefPnt, long nAngle, double fTan, bool bVShear);
 
 
-    virtual FASTBOOL IsPolyObj() const;
+    virtual bool IsPolyObj() const;
     virtual USHORT GetPointCount() const;
     virtual const Point& GetPoint(USHORT nHdlNum) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT nHdlNum);
@@ -148,19 +148,19 @@ public:
 
     // Man stecke die Handlenummer rein und bekomme die Polygon- und Punktnummer
     // des zugehoerigen Punkts im XPolyPolygon.
-    FASTBOOL TakePolyIdxForHdlNum(USHORT nHdlNum, USHORT& rPolyNum, USHORT& rPointNum) const { return FindPolyPnt(nHdlNum,rPolyNum,rPointNum,FALSE); }
+    bool TakePolyIdxForHdlNum(USHORT nHdlNum, USHORT& rPolyNum, USHORT& rPointNum) const { return FindPolyPnt(nHdlNum,rPolyNum,rPointNum,FALSE); }
 
     // Spezialfunktionen fuer Bezierpolygon-Bearbeitung
-    static FASTBOOL IsClosed(SdrObjKind eKind) { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
-    static FASTBOOL IsLine(SdrObjKind eKind) { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
-    static FASTBOOL IsFreeHand(SdrObjKind eKind) { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
-    static FASTBOOL IsBezier(SdrObjKind eKind) { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
-    static FASTBOOL IsSpline(SdrObjKind eKind) { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
-    FASTBOOL IsClosed() const { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
-    FASTBOOL IsLine() const { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
-    FASTBOOL IsFreeHand() const { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
-    FASTBOOL IsBezier() const { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
-    FASTBOOL IsSpline() const { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
+    static bool IsClosed(SdrObjKind eKind) { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
+    static bool IsLine(SdrObjKind eKind) { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
+    static bool IsFreeHand(SdrObjKind eKind) { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
+    static bool IsBezier(SdrObjKind eKind) { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
+    static bool IsSpline(SdrObjKind eKind) { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
+    bool IsClosed() const { return eKind==OBJ_POLY || eKind==OBJ_PATHPOLY || eKind==OBJ_PATHFILL || eKind==OBJ_FREEFILL || eKind==OBJ_SPLNFILL; }
+    bool IsLine() const { return eKind==OBJ_PLIN || eKind==OBJ_PATHPLIN || eKind==OBJ_PATHLINE || eKind==OBJ_FREELINE || eKind==OBJ_SPLNLINE || eKind==OBJ_LINE; }
+    bool IsFreeHand() const { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
+    bool IsBezier() const { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
+    bool IsSpline() const { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
 
     // Pfad schliessen bzw. oeffnen; im letzteren Fall den Endpunkt um
     // "nOpenDistance" verschieben

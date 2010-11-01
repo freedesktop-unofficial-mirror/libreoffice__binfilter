@@ -480,7 +480,7 @@ namespace binfilter {
 /*N*/ const SwRect SwFrm::PaintArea() const
 /*N*/ {
 /*N*/   SwRect aRect( Frm() );
-/*N*/     const FASTBOOL bVert = IsVertical();
+/*N*/     const bool bVert = IsVertical();
 /*N*/     SwRectFn fnRect = bVert ? fnRectVert : fnRectHori;
 /*N*/     long nRight = (aRect.*fnRect->fnGetRight)();
 /*N*/     long nLeft  = (aRect.*fnRect->fnGetLeft)();

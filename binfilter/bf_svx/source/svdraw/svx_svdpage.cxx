@@ -124,7 +124,7 @@ using namespace ::com::sun::star;
 /*N*/   // Aehnliche Implementation an folgenden Stellen:
 /*N*/   //    void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
 /*N*/   //    SdrModel* SdrExchangeView::GetMarkedObjModel() const
-/*N*/   //    FASTBOOL SdrExchangeView::Paste(const SdrModel& rMod,...)
+/*N*/   //    bool SdrExchangeView::Paste(const SdrModel& rMod,...)
 /*N*/   //    void SdrEditView::CopyMarked()
 /*N*/   if (nCloneErrCnt==0) {
 /*N*/       for (no=0; no<nAnz; no++) {
@@ -480,7 +480,7 @@ using namespace ::com::sun::star;
 /*N*/   return aOutRect;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors) const
+/*N*/ bool SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors) const
 /*N*/ {
 /*N*/   BOOL bOk(TRUE);
 /*N*/   BOOL bWasNotActive = rInfoRec.bNotActive;
@@ -535,20 +535,20 @@ using namespace ::com::sun::star;
 /*N*/   return bOk;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors, USHORT nImpMode) const
+/*N*/ bool SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors, USHORT nImpMode) const
 /*N*/ {
-/*N*/   FASTBOOL bOk=TRUE;
-/*N*/   FASTBOOL bBrk=FALSE;
+/*N*/   bool bOk=TRUE;
+/*N*/   bool bBrk=FALSE;
 /*N*/   ULONG nObjAnz=GetObjCount();
 /*N*/   if (nObjAnz==0) return TRUE;
 /*N*/   USHORT nEvent=rInfoRec.nBrkEvent;
 /*N*/   const SetOfByte* pVisiLayer=&rInfoRec.aPaintLayer;
-/*N*/   FASTBOOL bPrinter=rInfoRec.bPrinter;
+/*N*/   bool bPrinter=rInfoRec.bPrinter;
 /*N*/   OutputDevice* pOut=rXOut.GetOutDev();
 /*N*/   Rectangle aCheckRect(rInfoRec.aCheckRect);
-/*N*/   FASTBOOL bDrawAll=aCheckRect.IsEmpty();
+/*N*/   bool bDrawAll=aCheckRect.IsEmpty();
 /*N*/   ImpSdrHdcMerk aHDCMerk(*pOut,SDRHDC_SAVEPENANDBRUSHANDFONT,bRestoreColors);
-/*N*/   FASTBOOL bColorsDirty=FALSE;
+/*N*/   bool bColorsDirty=FALSE;
 /*N*/   if (bDrawAll || aCheckRect.IsOver(GetAllObjBoundRect())) {
 /*N*/       Application* pAppPtr=NULL;
 /*N*/       if (nEvent!=0) pAppPtr=GetpApp();
@@ -597,12 +597,12 @@ using namespace ::com::sun::star;
 /*N*/       for (USHORT nCycle = 1; nCycle <= nPaintCycles; nCycle++)
 /*N*/       {
 /*N*/           USHORT      nPaintImpMode = nImpMode;
-/*N*/           FASTBOOL    bNormal = ( nPaintImpMode == IMP_PAGEPAINT_NORMAL );
-/*N*/           FASTBOOL    bCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_CACHE );
-/*N*/           FASTBOOL    bBGCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_BG_CACHE );
-/*N*/           FASTBOOL    bCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_CACHE );
-/*N*/           FASTBOOL    bBGCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_BG_CACHE );
-/*N*/           FASTBOOL    bPaintFlag = ( bNormal || bCachePrepare || bBGCachePrepare );
+/*N*/           bool    bNormal = ( nPaintImpMode == IMP_PAGEPAINT_NORMAL );
+/*N*/           bool    bCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_CACHE );
+/*N*/           bool    bBGCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_BG_CACHE );
+/*N*/           bool    bCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_CACHE );
+/*N*/           bool    bBGCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_BG_CACHE );
+/*N*/           bool    bPaintFlag = ( bNormal || bCachePrepare || bBGCachePrepare );
 /*N*/
 /*N*/           if( nCycle == 2 )
 /*N*/           {
@@ -864,13 +864,13 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrObjList::Save(SvStream& rOut) const
 /*N*/ {
-/*N*/   FASTBOOL bNotPersist=pPage!=NULL && pPage->IsObjectsNotPersistent();
-/*N*/   FASTBOOL bNoOLE=pModel!=NULL && pModel->IsStreamingSdrModel();
+/*N*/   bool bNotPersist=pPage!=NULL && pPage->IsObjectsNotPersistent();
+/*N*/   bool bNoOLE=pModel!=NULL && pModel->IsStreamingSdrModel();
 /*N*/   if (!bNotPersist) {
 /*N*/       SdrObjListIter aIter(*this,IM_FLAT);
 /*N*/       while (aIter.IsMore()) {
 /*N*/           SdrObject* pObj=aIter.Next();
-/*N*/           FASTBOOL bThisObjNot=pObj->IsNotPersistent();
+/*N*/           bool bThisObjNot=pObj->IsNotPersistent();
 /*N*/           if (!bThisObjNot && bNoOLE && pObj->ISA(SdrOle2Obj)) {
 /*N*/               bThisObjNot=TRUE;
 /*N*/           }
@@ -889,7 +889,7 @@ using namespace ::com::sun::star;
 /*N*/       return;
 /*N*/
 /*N*/   SdrInsertReason aReason(SDRREASON_STREAMING);
-/*N*/   FASTBOOL        bEnde=FALSE;
+/*N*/   bool        bEnde=FALSE;
 /*N*/
 /*N*/   while( rIn.GetError()==0 && !rIn.IsEof() && !bEnde )
 /*N*/   {
@@ -1107,7 +1107,7 @@ using namespace ::com::sun::star;
 
 /*N*/ TYPEINIT1(SdrPage,SdrObjList);
 
-/*N*/ SdrPage::SdrPage(SdrModel& rNewModel, FASTBOOL bMasterPage):
+/*N*/ SdrPage::SdrPage(SdrModel& rNewModel, bool bMasterPage):
 /*N*/   SdrObjList(&rNewModel,this),
 /*N*/   pBackgroundObj( NULL )
 /*N*/ {
@@ -1417,7 +1417,7 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL bEnde=FALSE;
+/*N*/   bool bEnde=FALSE;
 /*N*/   while (rIn.GetError()==0 && !rIn.IsEof() && !bEnde) {
 /*N*/       SdrIOHeaderLookAhead aHead(rIn);   // Layerdefinitionen lesen
 /*N*/       if (aHead.IsID(SdrIOLayrID)) {
@@ -1565,7 +1565,7 @@ using namespace ::com::sun::star;
 /*N*/   delete pBackgroundObj, pBackgroundObj = pObj;
 /*N*/ }
 
-/*N*/ void SdrPage::SetInserted( FASTBOOL bIns )
+/*N*/ void SdrPage::SetInserted( bool bIns )
 /*N*/ {
 /*N*/   if( bInserted != bIns )
 /*N*/   {

@@ -158,7 +158,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrUndoObjList::SdrUndoObjList(SdrObject& rNewObj, FASTBOOL bOrdNumDirect):
+/*N*/ SdrUndoObjList::SdrUndoObjList(SdrObject& rNewObj, bool bOrdNumDirect):
 /*N*/   pView(NULL),
 /*N*/   pPageView(NULL),
 /*N*/   SdrUndoObj(rNewObj),

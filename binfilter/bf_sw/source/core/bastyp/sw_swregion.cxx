@@ -65,7 +65,7 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/  inline void SwRegionRects::InsertRect( const SwRect &rRect, const USHORT nPos,
-/*N*/                                      FASTBOOL &rDel )
+/*N*/                                      bool &rDel )
 /*N*/  {
 /*N*/   if( rDel )
 /*N*/   {
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/
 /*N*/           // Das erste Rect, das wir inserten wollen, nimmt die
 /*N*/           // Stelle von i ein. So ersparen wir uns das Delete().
-/*N*/           FASTBOOL bDel = TRUE;
+/*N*/           bool bDel = TRUE;
 /*N*/
 /*N*/           //Jetzt aufteilen das Teil: Es sollen diejenigen Rechtecke
 /*N*/           //zurueckbleiben, die im alten aber nicht im neuen liegen.

@@ -90,13 +90,13 @@ using namespace ::com::sun::star;
 |*
 \************************************************************************/
 
-SdrItemPool::SdrItemPool(USHORT nAttrStart, USHORT nAttrEnd, FASTBOOL bLoadRefCounts):
+SdrItemPool::SdrItemPool(USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
     XOutdevItemPool(nAttrStart,nAttrEnd,bLoadRefCounts)
 {
     Ctor(NULL,nAttrStart,nAttrEnd);
 }
 
-SdrItemPool::SdrItemPool(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd, FASTBOOL bLoadRefCounts):
+SdrItemPool::SdrItemPool(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
     XOutdevItemPool(pMaster,nAttrStart,nAttrEnd,bLoadRefCounts)
 {
     Ctor(pMaster,nAttrStart,nAttrEnd);

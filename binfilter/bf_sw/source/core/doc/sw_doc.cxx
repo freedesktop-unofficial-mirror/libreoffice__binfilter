@@ -302,7 +302,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       USHORT nId = RES_POOLFRM_OLE;
 /*N*/
-/*N*/       FASTBOOL bMath = SmModuleDummy::HasID( *pObj->GetSvFactory() );
+/*N*/       bool bMath = SmModuleDummy::HasID( *pObj->GetSvFactory() );
 /*N*/         if ( bMath )
 /*?*/           nId = RES_POOLFRM_FORMEL;
 /*N*/

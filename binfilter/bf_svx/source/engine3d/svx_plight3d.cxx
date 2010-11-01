@@ -72,7 +72,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dPointLight::CalcLighting(Color& rNewColor,
+/*N*/ bool E3dPointLight::CalcLighting(Color& rNewColor,
 /*N*/                                    const Vector3D& rPnt,
 /*N*/                                    const Vector3D& rPntNormal,
 /*N*/                                    const Color& rPntColor)

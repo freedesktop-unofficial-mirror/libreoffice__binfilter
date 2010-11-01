@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator<(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator<(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if( nNode < rPos.nNode )
 /*N*/       return TRUE;
@@ -107,7 +107,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator>(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator>(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode > rPos.nNode )
 /*N*/       return TRUE;
@@ -117,7 +117,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator<=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator<=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode < rPos.nNode )
 /*N*/       return TRUE;
@@ -127,7 +127,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator>=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator>=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode > rPos.nNode )
 /*N*/       return TRUE;
@@ -137,7 +137,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator==(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator==(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   return
 /*N*/       ( ( nNode == rPos.nNode ) && ( nContent == rPos.nContent ) ?
@@ -145,7 +145,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator!=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator!=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if( nNode != rPos.nNode )
 /*N*/       return TRUE;
@@ -207,7 +207,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL lcl_ChkOneRange( CHKSECTION eSec, BOOL bChkSections,
+/*N*/ bool lcl_ChkOneRange( CHKSECTION eSec, BOOL bChkSections,
 /*N*/                   const SwNode& rBaseEnd, ULONG nStt, ULONG nEnd )
 /*N*/ {
 /*N*/   if( eSec != Chk_Both )
@@ -239,8 +239,8 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL CheckNodesRange( const SwNodeIndex& rStt,
-/*N*/                       const SwNodeIndex& rEnd, FASTBOOL bChkSection )
+/*N*/ bool CheckNodesRange( const SwNodeIndex& rStt,
+/*N*/                       const SwNodeIndex& rEnd, bool bChkSection )
 /*N*/ {
 /*N*/   const SwNodes& rNds = rStt.GetNodes();
 /*N*/   ULONG nStt = rStt.GetIndex(), nEnd = rEnd.GetIndex();
@@ -271,7 +271,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode )
+/*N*/ bool GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode )
 /*N*/ {
 /*N*/   if( pNd->IsCntntNode() )
 /*N*/       return ((SwCntntNode*)pNd)->GoNext( pIdx, nMode );
@@ -279,7 +279,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoPrevious( SwNode* pNd, SwIndex * pIdx, USHORT nMode )
+/*N*/ bool GoPrevious( SwNode* pNd, SwIndex * pIdx, USHORT nMode )
 /*N*/ {
 /*N*/   if( pNd->IsCntntNode() )
 /*N*/       return ((SwCntntNode*)pNd)->GoPrevious( pIdx, nMode );
@@ -287,7 +287,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ SwCntntNode* GoNextNds( SwNodeIndex* pIdx, FASTBOOL bChk )
+/*N*/ SwCntntNode* GoNextNds( SwNodeIndex* pIdx, bool bChk )
 /*N*/ {
 /*N*/   SwNodeIndex aIdx( *pIdx );
 /*N*/   SwCntntNode* pNd = aIdx.GetNodes().GoNext( &aIdx );
@@ -303,7 +303,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, FASTBOOL bChk )
+/*N*/ SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, bool bChk )
 /*N*/ {
 /*N*/   SwNodeIndex aIdx( *pIdx );
 /*N*/   SwCntntNode* pNd = aIdx.GetNodes().GoPrevious( &aIdx );
@@ -434,7 +434,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 // Bewegen des Cursors
 
 
-/*N*/ FASTBOOL SwPaM::Move( SwMoveFn fnMove, SwGoInDoc fnGo )
+/*N*/ bool SwPaM::Move( SwMoveFn fnMove, SwGoInDoc fnGo )
 /*N*/ {
 /*N*/   return (*fnGo)( *this, fnMove );
 /*N*/ }
@@ -527,20 +527,20 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 
-/*N*/ FASTBOOL GoInDoc( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInDoc( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   (*fnMove->fnDoc)( rPam.GetPoint() );
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInNode( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInNode( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   SwCntntNode *pNd = (*fnMove->fnNds)( &rPam.GetPoint()->nNode, TRUE );
 /*N*/   if( pNd )
@@ -550,7 +550,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInCntnt( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInCntnt( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   if( (*fnMove->fnNd)( &rPam.GetPoint()->nNode.GetNode(),
 /*N*/                       &rPam.GetPoint()->nContent, CRSR_SKIP_CHARS ))
@@ -558,20 +558,20 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   return GoInNode( rPam, fnMove );
 /*N*/ }
 
-/*N*/ FASTBOOL GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
 
 
-/*N*/ FASTBOOL GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoCurrPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoCurrPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {
 /*N*/   SwPosition& rPos = *rPam.GetPoint();
 /*N*/   SwCntntNode * pNd = rPos.nNode.GetNode().GetCntntNode();
@@ -600,7 +600,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNextPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoNextPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {
 /*N*/   if( rPam.Move( fnMoveForward, fnGoNode ) )
 /*N*/   {
@@ -616,7 +616,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 
-/*N*/ FASTBOOL GoCurrSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoCurrSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   SwPosition& rPos = *rPam.GetPoint();
 /*N*/   SwPosition aSavePos( rPos );        // eine Vergleichsposition
@@ -636,13 +636,13 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }

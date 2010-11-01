@@ -1093,7 +1093,7 @@ namespace binfilter {
 /*M*/       SwFmtHoriOrient aHori( pFmt->GetHoriOrient() );
 /*M*/       const SvxLRSpaceItem &rLR = pFmt->GetLRSpace();
 /*M*/       const SvxULSpaceItem &rUL = pFmt->GetULSpace();
-/*M*/       FASTBOOL bVertChgd = FALSE,
+/*M*/       bool bVertChgd = FALSE,
 /*M*/                bHoriChgd = FALSE;
 /*M*/
 /*M*/       //Horizontale und vertikale Positionen werden getrennt berechnet.
@@ -1902,7 +1902,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*N*/   if ( pPage && pPage->GetSortedObjs() )
 /*N*/   {
 /*N*/       //Die Seite nur einmal antriggern.
-/*N*/       FASTBOOL bPageInva = TRUE;
+/*N*/       bool bPageInva = TRUE;
 /*N*/
 /*N*/       SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
 /*N*/       const BOOL bHeadFoot = IsHeaderFrm() || IsFooterFrm();

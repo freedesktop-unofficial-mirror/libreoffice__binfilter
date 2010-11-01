@@ -130,13 +130,13 @@ struct SwFindParaAttr : public SwFindParas
         {}
     ~SwFindParaAttr()   { delete pSTxt; }
 
-    virtual int Find( SwPaM* , SwMoveFn , const SwPaM*, FASTBOOL bInReadOnly );
+    virtual int Find( SwPaM* , SwMoveFn , const SwPaM*, bool bInReadOnly );
      virtual int IsReplaceMode() const;
 };
 
 
 /*N*/int SwFindParaAttr::Find( SwPaM* pCrsr, SwMoveFn fnMove, const SwPaM* pRegion,
-/*N*/                           FASTBOOL bInReadOnly )
+/*N*/                           bool bInReadOnly )
 /*N*/{
 DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      // String ersetzen ?? (nur wenn Text angegeben oder nicht attributiert
 /*N*/ }
@@ -150,7 +150,7 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOp
 // Suchen nach Attributen
 
 
-/*M*/ ULONG SwCursor::Find( const SfxItemSet& rSet, FASTBOOL bNoCollections,
+/*M*/ ULONG SwCursor::Find( const SfxItemSet& rSet, bool bNoCollections,
 /*M*/                   SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
 /*M*/                   FindRanges eFndRngs,
 /*M*/                   const SearchOptions* pSearchOpt, const SfxItemSet* pReplSet )

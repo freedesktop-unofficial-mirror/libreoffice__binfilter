@@ -281,8 +281,8 @@ protected:
     Rectangle     aMarkSnap;  // von
     XPolyPolygon* pDragPoly0; // SdrView
     XPolyPolygon* pDragPoly;  //
-    FASTBOOL      bHasMarked; // verwendet
-    FASTBOOL      bVisible;   // Sichtbar?
+    bool      bHasMarked; // verwendet
+    bool      bVisible;   // Sichtbar?
 
     SetOfByte    aLayerVisi;   // Menge der sichtbaren Layer
     SetOfByte    aLayerLock;   // Menge der nicht editierbaren Layer
@@ -329,7 +329,7 @@ protected:
     void AddWin(OutputDevice* pOutDev1);
     void DelWin(OutputDevice* pOutDev1);
 
-    FASTBOOL IsLayer(const String& rName, const SetOfByte& rBS) const;
+    bool IsLayer(const String& rName, const SetOfByte& rBS) const;
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     void Show();
@@ -346,11 +346,11 @@ public:
     const SdrView& GetView() const                              { return rView; }
     const SdrPageViewWinList& GetWinList() const                { return *pWinList; }
 
-    FASTBOOL IsVisible() const                                  { return bVisible; }
+    bool IsVisible() const                                  { return bVisible; }
     // Invalidiert den gesamten Bereich der Page
     void InvalidateAllWin();
     // rRect bezieht sich auf die Page
-    void InvalidateAllWin(const Rectangle& rRect, FASTBOOL bPlus1Pix=FALSE);
+    void InvalidateAllWin(const Rectangle& rRect, bool bPlus1Pix=FALSE);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_BF_ASSERT(0, "STRIP");}//STRIP001     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
@@ -373,8 +373,8 @@ public:
     // Betretene Gruppe und Liste setzen
     void SetAktGroupAndList(SdrObject* pNewGroup, SdrObjList* pNewList);
 
-    FASTBOOL HasMarkedObj() const                               { return bHasMarked; }
-    void     SetHasMarkedObj(FASTBOOL bOn)                      { bHasMarked=bOn; }
+    bool HasMarkedObj() const                               { return bHasMarked; }
+    void     SetHasMarkedObj(bool bOn)                      { bHasMarked=bOn; }
 
     const Rectangle& MarkBound() const                          { return aMarkBound; }
     const Rectangle& MarkSnap() const                           { return aMarkSnap; }
@@ -382,11 +382,11 @@ public:
     Rectangle&       MarkSnap()                                 { return aMarkSnap; }
 
 
-    FASTBOOL IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
+    bool IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
 
-    FASTBOOL IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
+    bool IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
 
-    FASTBOOL IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
+    bool IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
 
@@ -411,7 +411,7 @@ public:
     // Liefert TRUE, wenn Layer des Obj sichtbar und nicht gesperrt.
     // Beim Gruppenobjekt muss wenigstens ein Member sichtbar sein,
     // gesperrt sein darf keiner.
-    FASTBOOL IsObjMarkable(SdrObject* pObj) const;
+    bool IsObjMarkable(SdrObject* pObj) const;
 
     // Betreten (Editieren) einer Objektgruppe. Anschliessend liegen alle
     // Memberobjekte der Gruppe im direkten Zugriff. Alle anderen Objekte

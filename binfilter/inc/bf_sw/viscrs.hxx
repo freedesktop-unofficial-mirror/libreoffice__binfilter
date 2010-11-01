@@ -70,8 +70,8 @@ public:
     void Show();
     void Hide();
 
-    FASTBOOL IsVisible() const { return bIsVisible; }
-    FASTBOOL IsDragCrsr() const { return bIsDragCrsr; }
+    bool IsVisible() const { return bIsVisible; }
+    bool IsDragCrsr() const { return bIsDragCrsr; }
     void SetDragCrsr( BOOL bFlag = TRUE ) { bIsDragCrsr = bFlag; }
 
 #ifdef SW_CRSR_TIMER
@@ -133,7 +133,7 @@ public:
 
 
 
-    FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1 );
+    bool UpDown( BOOL bUp, USHORT nCnt = 1 );
 
     // TRUE: an die Position kann der Cursor gesetzt werden
 

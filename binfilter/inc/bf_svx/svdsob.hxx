@@ -48,17 +48,17 @@ class SetOfByte {
 protected:
     BYTE aData[32];
 public:
-    SetOfByte(FASTBOOL bInitVal=FALSE)                  { memset(aData,bInitVal ? 0xFF : 0x00,sizeof(aData)); }
-    FASTBOOL operator==(const SetOfByte& rCmpSet) const { return (memcmp(aData,rCmpSet.aData,sizeof(aData))==0); }
-    FASTBOOL operator!=(const SetOfByte& rCmpSet) const { return (memcmp(aData,rCmpSet.aData,sizeof(aData))!=0); }
+    SetOfByte(bool bInitVal=FALSE)                  { memset(aData,bInitVal ? 0xFF : 0x00,sizeof(aData)); }
+    bool operator==(const SetOfByte& rCmpSet) const { return (memcmp(aData,rCmpSet.aData,sizeof(aData))==0); }
+    bool operator!=(const SetOfByte& rCmpSet) const { return (memcmp(aData,rCmpSet.aData,sizeof(aData))!=0); }
     void     Set  (BYTE a)                              { aData[a/8]|=1<<a%8; }
     void     Clear(BYTE a)                              { aData[a/8]&=~(1<<a%8); }
-    void     Set  (BYTE a, FASTBOOL b)                  { if (b) Set(a); else Clear(a); }
-    FASTBOOL IsSet(BYTE a) const                        { return (aData[a/8]&1<<a%8)!=0; }
-    FASTBOOL IsSet(USHORT a) const                      { return (a<=255) && (aData[a/8]&1<<a%8)!=0; }
+    void     Set  (BYTE a, bool b)                  { if (b) Set(a); else Clear(a); }
+    bool IsSet(BYTE a) const                        { return (aData[a/8]&1<<a%8)!=0; }
+    bool IsSet(USHORT a) const                      { return (a<=255) && (aData[a/8]&1<<a%8)!=0; }
     void     SetAll()                                   { memset(aData,0xFF,sizeof(aData)); }
     void     ClearAll()                                 { memset(aData,0x00,sizeof(aData)); }
-    FASTBOOL IsEmpty() const;
+    bool IsEmpty() const;
     void     operator&=(const SetOfByte& r2ndSet);
     friend inline SvStream& operator<<(SvStream& rOut, const SetOfByte& rSet);
     friend inline SvStream& operator>>(SvStream& rIn, SetOfByte& rSet);

@@ -112,7 +112,7 @@ using namespace ::com::sun::star::beans;
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxApplication::NotifyEvent( const SfxEventHint& rEventHint, FASTBOOL bSynchron )
+/*N*/ void SfxApplication::NotifyEvent( const SfxEventHint& rEventHint, bool bSynchron )
 /*N*/ {
 /*N*/     DBG_ASSERT(pAppData_Impl->pEventConfig,"Keine Events angemeldet!");
 /*N*/

@@ -1867,7 +1867,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/           {
 /*N*/               SdrObject *pObj = (*pFrm->GetDrawObjs())[i];
 /*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/               const FASTBOOL bFly = pObj->IsWriterFlyFrame();
+/*N*/               const bool bFly = pObj->IsWriterFlyFrame();
 /*N*/               if ( bFly &&
 /*N*/                    WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
 /*N*/                    pFmt->GetFrmSize().GetWidthPercent() )

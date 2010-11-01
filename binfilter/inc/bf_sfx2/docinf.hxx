@@ -246,8 +246,8 @@ class SfxDocumentInfoItem : public SfxStringItem
 {
 private:
     SfxDocumentInfo         aDocInfo;
-    FASTBOOL                bHasTemplate;
-    FASTBOOL                bOwnFormat;
+    bool                bHasTemplate;
+    bool                bOwnFormat;
 
 public:
     TYPEINFO();

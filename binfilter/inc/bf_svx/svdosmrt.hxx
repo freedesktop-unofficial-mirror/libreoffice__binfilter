@@ -52,8 +52,8 @@ enum SdrSmartValueFieldKind {SDRSMARTFIELD_NORMAL,
 class SdrSmartValueField: public SdrExprValue {
     ImpSdrExprTokenList*   pTokenList;
     ULONG                  nErrorTokPos;
-    FASTBOOL               bCalculating;
-    FASTBOOL               bCircRef;
+    bool               bCalculating;
+    bool               bCircRef;
     SdrExprErrKind         eError;
     SdrSmartValueFieldKind eKind;
 private:
@@ -64,7 +64,7 @@ public:
     virtual ~SdrSmartValueField();
     void operator=(const SdrSmartValueField& rSource);
     SdrSmartValueFieldKind GetFieldKind() const             { return eKind; }
-    FASTBOOL        IsMetric() const                          { return eKind==SDRSMARTFIELD_METRIC || eKind==SDRSMARTFIELD_METRICX || eKind==SDRSMARTFIELD_METRICY; }
+    bool        IsMetric() const                          { return eKind==SDRSMARTFIELD_METRIC || eKind==SDRSMARTFIELD_METRICX || eKind==SDRSMARTFIELD_METRICY; }
     void            SetFormulaString(const XubString& rStr, const SdrObject* pObj);
     const XubString& GetFormulaString(const SdrObject* pObj) const;
     XubString        GetValueString(const SdrObject* pObj) const;
@@ -72,7 +72,7 @@ public:
     void            SetUnitsRelative(long nUnits, const SdrObject* pObj);
     void            MakeUnitsAbsolute(const SdrObject* pObj);
     void            MakeUnitsRelative(const SdrObject* pObj);
-    FASTBOOL        IsError() const                           { return eError!=SDREXPRERR_NONE; }
+    bool        IsError() const                           { return eError!=SDREXPRERR_NONE; }
     SdrExprErrKind  GetError() const                          { return eError; }
     XubString        GetErrorStr() const;
     ULONG           GetErrorTokPos() const                    { return nErrorTokPos; }
@@ -104,8 +104,8 @@ public:
 class SdrSmartBoolField: public SdrSmartValueField {
 public:
     SdrSmartBoolField(): SdrSmartValueField(SDRSMARTFIELD_BOOL) {}
-    FASTBOOL GetValue(const SdrObject* pObj) const { return GetLong(pObj)!=0; }
-    FASTBOOL QuickGetValue() const                 { return QuickGetLong()!=0; }
+    bool GetValue(const SdrObject* pObj) const { return GetLong(pObj)!=0; }
+    bool QuickGetValue() const                 { return QuickGetLong()!=0; }
 };
 
 class SdrSmartAngleField: public SdrSmartValueField {
@@ -154,8 +154,8 @@ public:
     void SetAllFieldsDirty();
     const SdrSmartGeoKindField& GetKind() const { return aKind; }
     SdrSmartGeoKindField&       Kind()         { return aKind; }
-    FASTBOOL HasPos(const SdrObject* pObj) const;
-    FASTBOOL HasCtrl(const SdrObject* pObj) const;
+    bool HasPos(const SdrObject* pObj) const;
+    bool HasCtrl(const SdrObject* pObj) const;
     const SdrSmartPointField& GetPos() const   { return aPos; }
     const SdrSmartPointField& GetCtrl1() const { return aCtrl1; }
     const SdrSmartPointField& GetCtrl2() const { return aCtrl2; }
@@ -385,7 +385,7 @@ public:
     SdrSmartGluePointList aGluePoints;
     // Steuerziehpunkte
     SdrSmartDragPointList aDragPoints;
-    FASTBOOL bAnimated;
+    bool bAnimated;
     ULONG    nTimerStep;
 //    AutoTimer aAnimator;
 //    SdrPathObj* pPathObj;

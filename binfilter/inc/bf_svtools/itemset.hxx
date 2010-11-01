@@ -170,9 +170,9 @@ public:
     const USHORT*               GetRanges() const { return _pWhichRanges; }
     const SfxItemSet*           GetParent() const { return _pParent; }
 
-    virtual SvStream &          Load( SvStream &, FASTBOOL bDirect = FALSE,
+    virtual SvStream &          Load( SvStream &, bool bDirect = FALSE,
                                       const SfxItemPool *pRefPool = 0 );
-    virtual SvStream &          Store( SvStream &, FASTBOOL bDirect = FALSE ) const;
+    virtual SvStream &          Store( SvStream &, bool bDirect = FALSE ) const;
 
     virtual int                 operator==(const SfxItemSet &) const;
 };

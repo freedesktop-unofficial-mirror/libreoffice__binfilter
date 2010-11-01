@@ -55,11 +55,11 @@ class E3dLight : public E3dPointObj
     double      fIntensity;
     double      fRed, fGreen, fBlue;
 
-    FASTBOOL    bOn             : 1;
-    FASTBOOL    bVisible        : 1;
+    bool    bOn             : 1;
+    bool    bVisible        : 1;
 
  protected:
-    FASTBOOL ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
+    bool ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
                              double fR, double fG, double fB) const;
     // Lichtquellen koennen Unterobjekte nur selbst anlegen
     virtual void Insert3DObj(E3dObject* p3DObj);
@@ -74,7 +74,7 @@ class E3dLight : public E3dPointObj
 
     virtual UINT16 GetObjIdentifier() const;
 
-    virtual FASTBOOL CalcLighting(Color& rNewColor,
+    virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,
                                   const Vector3D& rPntNormal,
                                   const Color& rPntColor);
@@ -87,9 +87,9 @@ class E3dLight : public E3dPointObj
     const Color& GetColor() const { return aColor; }
     virtual void SetColor(const Color& rNewColor);
 
-    FASTBOOL IsOn() const { return bOn; }
+    bool IsOn() const { return bOn; }
 
-    FASTBOOL IsLightObjVisible() const { return bVisible; }
+    bool IsLightObjVisible() const { return bVisible; }
 
     double GetRed() const   { return fRed; }
     double GetGreen() const { return fGreen; }
@@ -99,13 +99,13 @@ class E3dLight : public E3dPointObj
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
-//-/    virtual void           SetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//-/    virtual void           NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//-/    virtual void           TakeAttributes(SfxItemSet& rAttr, FASTBOOL bMerge, FASTBOOL bOnlyHardAttr) const;
+//-/    virtual void           SetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
+//-/    virtual void           NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
+//-/    virtual void           TakeAttributes(SfxItemSet& rAttr, bool bMerge, bool bOnlyHardAttr) const;
 //-/    virtual void Collect3DAttributes(SfxItemSet& rAttr) const;
 //-/    virtual void Distribute3DAttributes(const SfxItemSet& rAttr);
 
-    virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 };
 

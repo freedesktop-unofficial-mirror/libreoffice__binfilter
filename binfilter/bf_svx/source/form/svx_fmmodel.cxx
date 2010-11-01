@@ -99,7 +99,7 @@ struct FmFormModelImplData
 |*
 \************************************************************************/
 /*N*/ FmFormModel::FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers,
-/*N*/                        FASTBOOL bUseExtColorTable)
+/*N*/                        bool bUseExtColorTable)
 /*N*/           :SdrModel(rPath, pPool, pPers, bUseExtColorTable, LOADREFCOUNTS)
 /*N*/           ,pObjShell(0)
 /*N*/           ,bStreamingOldVersion(sal_False)

@@ -336,7 +336,7 @@ SdDrawDocument::~SdDrawDocument()
 |*
 \************************************************************************/
 
-SdrPage* SdDrawDocument::AllocPage(FASTBOOL bMasterPage)
+SdrPage* SdDrawDocument::AllocPage(bool bMasterPage)
 {
     return new SdPage(*this, NULL, bMasterPage);
 }
@@ -789,7 +789,7 @@ void SdDrawDocument::SetPresMouseAsPen(BOOL bNewPresMouseAsPen)
 |*
 \************************************************************************/
 
-void SdDrawDocument::SetChanged(FASTBOOL bFlag)
+void SdDrawDocument::SetChanged(bool bFlag)
 {
     if (pDocSh)
     {
@@ -815,7 +815,7 @@ void SdDrawDocument::SetChanged(FASTBOOL bFlag)
 |*
 \************************************************************************/
 
-void SdDrawDocument::NbcSetChanged(FASTBOOL bFlag)
+void SdDrawDocument::NbcSetChanged(bool bFlag)
 {
     // #100237# forward to baseclass
     FmFormModel::SetChanged(bFlag);

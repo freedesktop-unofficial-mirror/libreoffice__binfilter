@@ -332,7 +332,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/        RES_GRF_REREAD_AND_INCACHE != nWhich )
 /*N*/       SwCntntFrm::Modify( pOld, pNew );
 /*N*/
-/*N*/   FASTBOOL bCompletePaint = TRUE;
+/*N*/   bool bCompletePaint = TRUE;
 /*N*/
 /*N*/   switch( nWhich )
 /*N*/   {

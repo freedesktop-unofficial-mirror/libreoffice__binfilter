@@ -667,7 +667,7 @@ namespace binfilter {
 /*N*/   mpStyleSheet = NULL;
 /*N*/ }
 
-/*N*/ void SdrAttrObj::AddStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::AddStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   // old StyleSheet is deleted
 /*N*/   DBG_ASSERT(!mpStyleSheet, "Old style sheet not deleted before setting new one (?)");
@@ -703,7 +703,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrAttrObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   RemoveStyleSheet();
 /*N*/   AddStyleSheet(pNewStyleSheet, bDontRemoveHardAttr);
@@ -711,7 +711,7 @@ namespace binfilter {
 /*N*/   SetRectsDirty(TRUE);
 /*N*/ }
 
-/*N*/ void SdrAttrObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   Rectangle aBoundRect0;
 /*N*/
@@ -826,7 +826,7 @@ namespace binfilter {
 //////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ FASTBOOL SdrAttrObj::ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const
+/*N*/ bool SdrAttrObj::ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const
 /*N*/ {
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/
@@ -863,7 +863,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SdrAttrObj::ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const
+/*N*/ bool SdrAttrObj::ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const
 /*N*/ {
 /*N*/   BOOL bShadOn=((SdrShadowItem&)(rSet.Get(SDRATTR_SHADOW))).GetValue();
 /*N*/

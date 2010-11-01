@@ -112,7 +112,7 @@ class SwNodes: private BigPtrArray
     // fuer dier Verwaltung der Indizies
     void RegisterIndex( SwNodeIndex& rIdx );
     void DeRegisterIndex( SwNodeIndex& rIdx );
-    void RemoveNode( ULONG nDelPos, ULONG nLen, FASTBOOL bDel );
+    void RemoveNode( ULONG nDelPos, ULONG nLen, bool bDel );
 
     // Aktionen auf die Nodes
     void SectionUpDown( const SwNodeIndex & aStart, const SwNodeIndex & aEnd );

@@ -63,12 +63,12 @@ protected:
     Point                       aPnt2;
 
 private:
-    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, FASTBOOL bContour=FALSE) const;
+    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, bool bContour=FALSE) const;
     void ImpSetAttrToCircInfo(); // Werte vom Pool kopieren
     void ImpSetCircInfoToAttr(); // Werte in den Pool kopieren
 
     // Liefert TRUE, wenn das Painten ein XPolygon erfordert.
-    FASTBOOL PaintNeedsXPoly() const;
+    bool PaintNeedsXPoly() const;
     virtual void RecalcXPoly();
 
 protected:
@@ -92,13 +92,13 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-    virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
 
 
     virtual void operator=(const SdrObject& rObj);
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
-    virtual void TakeXorPoly(XPolyPolygon& rXPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rXPoly, bool bDetail) const;
     virtual void TakeContour(XPolyPolygon& rXPoly) const;
 
 
@@ -106,7 +106,7 @@ public:
 
     virtual void NbcMove(const Size& aSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-    virtual void NbcShear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    virtual void NbcShear (const Point& rRef, long nWink, double tn, bool bVShear);
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
 protected:
@@ -116,7 +116,7 @@ public:
 
     long GetStartWink() const { return nStartWink; }
     long GetEndWink() const { return nEndWink; }
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);

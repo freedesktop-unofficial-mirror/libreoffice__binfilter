@@ -253,11 +253,11 @@ namespace binfilter {
 /*N*/     const long nClipBot = aClip.Top() + aClip.Height();
 /*N*/     const long nClipRig = aClip.Left() + aClip.Width();
 /*N*/
-/*N*/   const FASTBOOL bBot = nBot > nClipBot;
-/*N*/   const FASTBOOL bRig = nRig > nClipRig;
+/*N*/   const bool bBot = nBot > nClipBot;
+/*N*/   const bool bRig = nRig > nClipRig;
 /*N*/   if ( bBot || bRig )
 /*N*/   {
-/*N*/       FASTBOOL bAgain = FALSE;
+/*N*/       bool bAgain = FALSE;
 /*N*/         if ( bBot && !GetDrawObjs() && !GetAnchor()->IsInTab() )
 /*N*/       {
 /*N*/           SwFrm* pHeader = FindFooterOrHeader();

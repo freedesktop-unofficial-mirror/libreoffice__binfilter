@@ -50,8 +50,8 @@ class SdrHelpLine {
 public:
     SdrHelpLine(SdrHelpLineKind eNewKind=SDRHELPLINE_POINT): eKind(eNewKind) {}
     SdrHelpLine(SdrHelpLineKind eNewKind, const Point& rNewPos): aPos(rNewPos), eKind(eNewKind) {}
-    FASTBOOL operator==(const SdrHelpLine& rCmp) const { return aPos==rCmp.aPos && eKind==rCmp.eKind; }
-    FASTBOOL operator!=(const SdrHelpLine& rCmp) const { return !operator==(rCmp); }
+    bool operator==(const SdrHelpLine& rCmp) const { return aPos==rCmp.aPos && eKind==rCmp.eKind; }
+    bool operator!=(const SdrHelpLine& rCmp) const { return !operator==(rCmp); }
 
     void            SetKind(SdrHelpLineKind eNewKind) { eKind=eNewKind; }
     SdrHelpLineKind GetKind() const                   { return eKind; }

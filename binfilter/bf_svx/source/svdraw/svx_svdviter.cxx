@@ -51,7 +51,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrViewIter::SdrViewIter(const SdrObject* pObject_, FASTBOOL bNoMasterPage_)
+/*N*/ SdrViewIter::SdrViewIter(const SdrObject* pObject_, bool bNoMasterPage_)
 /*N*/ {
 /*N*/   pObject=pObject_;
 /*N*/   pModel=pObject_!=NULL ? pObject_->GetModel() : NULL;
@@ -66,10 +66,10 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SdrViewIter::ImpCheckPageView(SdrPageView* pPV) const
+/*N*/ bool SdrViewIter::ImpCheckPageView(SdrPageView* pPV) const
 /*N*/ {
 /*N*/   if (pPage!=NULL) {
-/*N*/       FASTBOOL bMaster=pPage->IsMasterPage();
+/*N*/       bool bMaster=pPage->IsMasterPage();
 /*N*/       USHORT nPageNum=pPage->GetPageNum();
 /*N*/       SdrPage* pPg=pPV->GetPage();
 /*N*/       if (pPg==pPage) {

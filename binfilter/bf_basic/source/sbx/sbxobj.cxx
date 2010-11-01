@@ -684,7 +684,7 @@ XubString SbxObject::GenerateSource( const XubString &rLinePrefix,
     // Properties in einem String einsammeln
     XubString aSource;
     SbxArrayRef xProps( GetProperties() );
-    FASTBOOL bLineFeed = FALSE;
+    bool bLineFeed = FALSE;
     for ( USHORT nProp = 0; nProp < xProps->Count(); ++nProp )
     {
         SbxPropertyRef xProp = (SbxProperty*) xProps->Get(nProp);

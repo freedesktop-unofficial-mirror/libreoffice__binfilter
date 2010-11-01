@@ -1227,7 +1227,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/ void sw3io_countwords( const String& rDelimWrd, const String& rStr,
 /*N*/                       ULONG &rWords, ULONG &rChars )
 /*N*/ {
-/*N*/   FASTBOOL bInWord = FALSE;
+/*N*/   bool bInWord = FALSE;
 /*N*/   USHORT nSpChars = 0;
 /*N*/
 /*N*/   for( xub_StrLen nPos = 0; nPos < rStr.Len(); nPos++ )

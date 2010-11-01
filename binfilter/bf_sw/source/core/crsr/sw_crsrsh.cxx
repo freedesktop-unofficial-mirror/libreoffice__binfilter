@@ -117,7 +117,7 @@ using namespace ::com::sun::star::util;
 
 // gebe den aktuellen zurueck
 
-/*N*/ SwPaM* SwCrsrShell::GetCrsr( FASTBOOL bMakeTblCrsr ) const
+/*N*/ SwPaM* SwCrsrShell::GetCrsr( bool bMakeTblCrsr ) const
 /*N*/ {
 /*N*/   if( pTblCrsr )
 /*N*/   {
@@ -159,7 +159,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr
     }
 */
 
-/*N*/   FASTBOOL bVis = bSVCrsrVis;
+/*N*/   bool bVis = bSVCrsrVis;
 
     // Idle-Formatierung ?
 /*N*/   if( bIdleEnd && Imp()->GetRegion() )
@@ -402,7 +402,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/
 /*M*/
 /*M*/   SwRect aOld( aCharRect );
-/*M*/   FASTBOOL bFirst = TRUE;
+/*M*/   bool bFirst = TRUE;
 /*M*/   SwCntntFrm *pFrm;
 /*M*/   int nLoopCnt = 100;
 /*M*/
@@ -651,7 +651,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 // also, ob GetMark gesetzt und SPoint und GetMark unterschiedlich sind.
 
 
-/*N*/ FASTBOOL SwCrsrShell::HasSelection() const
+/*N*/ bool SwCrsrShell::HasSelection() const
 /*N*/ {
 /*N*/   SwPaM* pCrsr = IsTableMode() ? pTblCrsr : pCurCrsr;
 /*N*/   return( IsTableMode() || ( pCurCrsr->HasMark() &&
@@ -766,7 +766,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 
 
 
-/*N*/ FASTBOOL SwCrsrShell::IsCrsrReadonly() const
+/*N*/ bool SwCrsrShell::IsCrsrReadonly() const
 /*N*/ {
 /*N*/   if ( GetViewOptions()->IsReadonly() )
 /*N*/   {
@@ -786,7 +786,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 // SwCursor - Methode !!!!
-/*N*/ FASTBOOL SwCursor::IsReadOnlyAvailable() const
+/*N*/ bool SwCursor::IsReadOnlyAvailable() const
 /*N*/ {
 /*N*/   const SwShellCrsr* pShCrsr = *this;
 /*N*/   const SwUnoCrsr* pUnoCrsr = *this;
@@ -799,7 +799,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 
 
 
-/*N*/ SwCursor* SwCrsrShell::GetSwCrsr( FASTBOOL bMakeTblCrsr ) const
+/*N*/ SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
 /*N*/ {
 /*N*/   return (SwCursor*)GetCrsr( bMakeTblCrsr );
 /*N*/ }
@@ -814,13 +814,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
 // aufgespannt oder nicht der einzigste ist.
 
-/*N*/ FASTBOOL SwCrsrShell::IsSelection() const
+/*N*/ bool SwCrsrShell::IsSelection() const
 /*N*/ {
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
 // returns if multiple cursors are available
-/*N*/ FASTBOOL SwCrsrShell::IsMultiSelection() const
+/*N*/ bool SwCrsrShell::IsMultiSelection() const
 /*N*/ {
 /*N*/     return pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
@@ -832,7 +832,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-/*?*/ FASTBOOL SwCrsrShell::IsCrsrPtAtEnd() const
+/*?*/ bool SwCrsrShell::IsCrsrPtAtEnd() const
 /*?*/ {
 /*?*/   return pCurCrsr->End() == pCurCrsr->GetPoint();
 /*?*/ }
@@ -851,7 +851,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*?*/ }
 
 
-/*?*/ FASTBOOL SwCrsrShell::IsSelOnePara() const
+/*?*/ bool SwCrsrShell::IsSelOnePara() const
 /*?*/ {
 /*?*/   return pCurCrsr == pCurCrsr->GetNext() &&
 /*?*/          pCurCrsr->GetPoint()->nNode ==

@@ -36,16 +36,16 @@ namespace binfilter {
 /*N*/ class ImpPolyHitCalc {
 /*N*/ public:
 /*N*/   long x1,x2,y1,y2; // Koordinaten des Rect, muessen sortiert sein!
-/*N*/   FASTBOOL bEdge;       // ein Punkt lag genau auf einer Kante
-/*N*/   FASTBOOL bIntersect;  // mind. 2 Punkte auf verschiedenen Seiten einer Kante
-/*N*/   FASTBOOL bPntInRect;  // mind. 1 Punkt war vollstaendig im Rect
+/*N*/   bool bEdge;       // ein Punkt lag genau auf einer Kante
+/*N*/   bool bIntersect;  // mind. 2 Punkte auf verschiedenen Seiten einer Kante
+/*N*/   bool bPntInRect;  // mind. 1 Punkt war vollstaendig im Rect
 /*N*/   USHORT   nOCnt;       // wenn Counter ungerade, dann getroffen
 /*N*/   USHORT   nUCnt;       // wenn Counter ungerade, dann getroffen
 /*N*/   USHORT   nLCnt;       // wenn Counter ungerade, dann getroffen
 /*N*/   USHORT   nRCnt;       // wenn Counter ungerade, dann getroffen
-/*N*/   FASTBOOL bLine;       // TRUE=PolyLine, kein Polygon
+/*N*/   bool bLine;       // TRUE=PolyLine, kein Polygon
 /*N*/ public:
-/*N*/   ImpPolyHitCalc(const Rectangle& aR, FASTBOOL bIsLine=FALSE)
+/*N*/   ImpPolyHitCalc(const Rectangle& aR, bool bIsLine=FALSE)
 /*N*/   {
 /*N*/       bLine=bIsLine;
 /*N*/       bEdge=FALSE;
@@ -60,14 +60,14 @@ namespace binfilter {
 /*N*/       nLCnt=0;
 /*N*/       nRCnt=0;
 /*N*/   }
-/*N*/   FASTBOOL IsDecided() { return bEdge || bIntersect || bPntInRect; }
+/*N*/   bool IsDecided() { return bEdge || bIntersect || bPntInRect; }
 /*N*/   void CheckPntInRect(const Point& rP)
 /*N*/   {
 /*N*/       if (!bPntInRect) {
 /*N*/           bPntInRect=rP.X()>=x1 && rP.X()<=x2 && rP.Y()>=y1 && rP.Y()<=y2;
 /*N*/       }
 /*N*/   }
-/*N*/   FASTBOOL IsHit() { return (!bLine && (nOCnt & 1)==1) || IsDecided(); }
+/*N*/   bool IsHit() { return (!bLine && (nOCnt & 1)==1) || IsDecided(); }
 /*N*/ };
 
 /*N*/ #define CAREFUL_MULDIV(Res,Val,Mul,Div) {      \
@@ -93,10 +93,10 @@ namespace binfilter {
 /*N*/       ly1=ly2;
 /*N*/       ly2=nTmp;
 /*N*/   }
-/*N*/   FASTBOOL b1=FALSE,b2=FALSE,b3=FALSE,b4=FALSE; // je 1 Flag fuer jeden der 4 Punkte LO,RO,LU,RU
-/*N*/   FASTBOOL bx1,bx2;
-/*N*/   FASTBOOL by1=ly1<=ry1 && ly2>ry1;
-/*N*/   FASTBOOL by2=ly1<=ry2 && ly2>ry2;
+/*N*/   bool b1=FALSE,b2=FALSE,b3=FALSE,b4=FALSE; // je 1 Flag fuer jeden der 4 Punkte LO,RO,LU,RU
+/*N*/   bool bx1,bx2;
+/*N*/   bool by1=ly1<=ry1 && ly2>ry1;
+/*N*/   bool by2=ly1<=ry2 && ly2>ry2;
 /*N*/   long dx,dy,a;
 /*N*/   if (by1 || by2) {
 /*N*/       dx=lx2-lx1;
@@ -105,7 +105,7 @@ namespace binfilter {
 /*N*/   if (by1) { // Nur wer die Scanline schneidet
 /*N*/       bx1=lx1<rx1;                    // x1,y1
 /*N*/       bx2=lx2<rx1;
-/*N*/       FASTBOOL bA=FALSE; // Optimierung: ggf eine Division sparen
+/*N*/       bool bA=FALSE; // Optimierung: ggf eine Division sparen
 /*N*/       if (bx1 && bx2) b1=TRUE;
 /*N*/       else if (bx1 || bx2) {
 /*N*/           long yTemp=ry1-ly1;
@@ -131,7 +131,7 @@ namespace binfilter {
 /*N*/   if (by2) { // Nur wer die Scanline schneidet
 /*N*/       bx1=lx1<rx1;                    // x1,y2
 /*N*/       bx2=lx2<rx1;
-/*N*/       FASTBOOL bA=FALSE; // Optimierung: ggf eine Division sparen
+/*N*/       bool bA=FALSE; // Optimierung: ggf eine Division sparen
 /*N*/       if (bx1 && bx2) b3=TRUE;
 /*N*/       else if (bx1 || bx2) {
 /*N*/           long yTemp=ry2-ly1;
@@ -201,7 +201,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit)
+/*N*/ bool IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit)
 /*N*/ {
 /*N*/   ImpPolyHitCalc aHit(rHit);
 /*N*/   USHORT nAnz=rPoly.Count();
@@ -214,7 +214,7 @@ namespace binfilter {
 
 
 
-/*N*/ FASTBOOL IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit)
+/*N*/ bool IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit)
 /*N*/ {
 /*N*/   ImpPolyHitCalc aHit(rHit,TRUE);
 /*N*/   CheckPolyHit(rLine,aHit);
@@ -228,7 +228,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.GetSize();
 /*N*/   if (nAnz<2) return FALSE;
-/*N*/   FASTBOOL bEdge=FALSE;
+/*N*/   bool bEdge=FALSE;
 /*N*/   USHORT nCnt=0;
 /*N*/   Point aPt0=rPoly[USHORT(nAnz-1)];
 /*N*/   for (USHORT i=0; i<nAnz && !bEdge; i++) {
@@ -239,8 +239,8 @@ namespace binfilter {
 /*N*/             ((aP1.Y()==aP2.Y()) && (rHit.Y()==aP1.Y()) && (rHit.X()>=aP1.X()) && (rHit.X()<=aP2.X())) ||
 /*N*/             (rHit.X()==aP1.X()) && (rHit.Y()==aP1.Y());
 /*N*/       if (!bEdge && aP1.Y()<=rHit.Y() && aP2.Y()>rHit.Y()) { // Nur wer die Scanline schneidet
-/*N*/           FASTBOOL bx1=aP1.X()<rHit.X();
-/*N*/           FASTBOOL bx2=aP2.X()<rHit.X();
+/*N*/           bool bx1=aP1.X()<rHit.X();
+/*N*/           bool bx2=aP2.X()<rHit.X();
 /*N*/           if (bx1 && bx2) nCnt++;
 /*N*/           else if (bx1 || bx2) {
 /*N*/               long dx=aP2.X()-aP1.X();
@@ -266,7 +266,7 @@ namespace binfilter {
 /*N*/   return (nCnt & 1)==1;
 /*N*/ }
 
-/*N*/ FASTBOOL IsPointInsidePoly(const Polygon& rPoly, const Point& rHit)
+/*N*/ bool IsPointInsidePoly(const Polygon& rPoly, const Point& rHit)
 /*N*/ {
 /*N*/   return CheckPointTouchesPoly(rPoly,rHit)!=0;
 /*N*/ }

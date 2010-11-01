@@ -67,7 +67,7 @@ class SdrMeasureObj : public SdrTextObj
 protected:
     Point                       aPt1;
     Point                       aPt2;
-    FASTBOOL                    bTextDirty;
+    bool                    bTextDirty;
 
 protected:
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
@@ -104,19 +104,19 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
+    virtual bool BegTextEdit(SdrOutliner& rOutl);
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual const Size& GetTextSize() const;
-    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText=FALSE,
+    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
         Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
 
-    virtual FASTBOOL CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-        FASTBOOL bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
+    virtual bool CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
+        bool bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);

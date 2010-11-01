@@ -95,7 +95,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dPolyScene::Paint(ExtOutputDevice& rOut,
+/*N*/ bool E3dPolyScene::Paint(ExtOutputDevice& rOut,
 /*N*/   const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }

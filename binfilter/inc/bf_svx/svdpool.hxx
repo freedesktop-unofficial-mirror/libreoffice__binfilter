@@ -65,14 +65,14 @@ private:
 public:
     // Kontstruktion des Pools als MasterPool
     SdrItemPool(USHORT nAttrStart=SDRATTR_START, USHORT nAttrEnd=SDRATTR_END,
-        FASTBOOL bLoadRefCounts = TRUE);
+        bool bLoadRefCounts = TRUE);
 
     // Damit meine SetItems mit dem MasterPool konstruiert werden koennen.
     // Der SdrItemPool wird dabei automatisch als Secondary an den
     // uebergebenen MasterPool bzw. an's Ende einer bestehenden Pool-Kette
     // angehaengt.
     SdrItemPool(SfxItemPool* pMaster, USHORT nAttrStart=SDRATTR_START, USHORT nAttrEnd=SDRATTR_END,
-        FASTBOOL bLoadRefCounts = TRUE);
+        bool bLoadRefCounts = TRUE);
 
     SdrItemPool(const SdrItemPool& rPool);
     virtual ~SdrItemPool();

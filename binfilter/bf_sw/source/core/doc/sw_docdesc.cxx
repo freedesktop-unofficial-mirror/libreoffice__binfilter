@@ -439,7 +439,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-void lcl_RemoveFrms( SwFrmFmt& rFmt, FASTBOOL& rbFtnsRemoved )
+void lcl_RemoveFrms( SwFrmFmt& rFmt, bool& rbFtnsRemoved )
 {
     SwClientIter aIter( rFmt );
     SwFrm *pFrm;
@@ -525,7 +525,7 @@ void SwDoc::DelPageDesc( USHORT i )
         // Wenn wir auf Endnotenseiten stossen, schmeissen wir alle Fussnoten weg,
         // anders kann die Reihenfolge der Seiten (FollowsPageDescs usw.)
         // nicht garantiert werden.
-        FASTBOOL bFtnsRemoved = FALSE;
+        bool bFtnsRemoved = FALSE;
 
         ::binfilter::lcl_RemoveFrms( pDel->GetMaster(), bFtnsRemoved );
         ::binfilter::lcl_RemoveFrms( pDel->GetLeft(), bFtnsRemoved );

@@ -196,10 +196,10 @@ private:
 //  void ImpCheckItemSetChanges(const SfxItemSet& rAttr);
 
 protected:
-    FASTBOOL ImpCanConvTextToCurve() const { return pOutlinerParaObject!=NULL && pModel!=NULL && !IsOutlText() && !IsFontwork(); }
-    void ImpConvertSetAttrAndLayer(SdrObject* pObj, FASTBOOL bNoSetAttr=FALSE) const;
-    SdrObject* ImpConvertMakeObj(const XPolyPolygon& rXPP, FASTBOOL bClosed, FASTBOOL bBezier, FASTBOOL bNoSetAttr=FALSE) const;
-    SdrObject* ImpConvertAddText(SdrObject* pObj, FASTBOOL bBezier) const;
+    bool ImpCanConvTextToCurve() const { return pOutlinerParaObject!=NULL && pModel!=NULL && !IsOutlText() && !IsFontwork(); }
+    void ImpConvertSetAttrAndLayer(SdrObject* pObj, bool bNoSetAttr=FALSE) const;
+    SdrObject* ImpConvertMakeObj(const XPolyPolygon& rXPP, bool bClosed, bool bBezier, bool bNoSetAttr=FALSE) const;
+    SdrObject* ImpConvertAddText(SdrObject* pObj, bool bBezier) const;
     void ImpSetTextStyleSheetListeners();
     void ImpAddTextToBoundRect();
     void ImpJustifyRect(Rectangle& rRect) const;
@@ -211,10 +211,10 @@ protected:
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
     virtual void RestGeoData(const SdrObjGeoData& rGeo);
-    FASTBOOL NbcSetEckenradius(long nRad);
-    FASTBOOL NbcSetAutoGrowHeight(FASTBOOL bAuto);
-    FASTBOOL NbcSetMinTextFrameHeight(long nHgt);
-    FASTBOOL NbcSetMinTextFrameWidth(long nWdt);
+    bool NbcSetEckenradius(long nRad);
+    bool NbcSetAutoGrowHeight(bool bAuto);
+    bool NbcSetMinTextFrameHeight(long nHgt);
+    bool NbcSetMinTextFrameWidth(long nWdt);
 
     // Konstruktoren fuer beschriftete Zeichenobjekte
     SdrTextObj();
@@ -242,50 +242,50 @@ public:
     // werden, um eine Datei in ein Textobjekt zu laden (ohne Verknuepfung).
     // TextLinks koennen nicht editiert werden (allenfalls spaeter mal ReadOnly).
     // Eine Attributierung kann nur am Textrahmen vollzogen werden.
-    FASTBOOL IsLinkedText() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
+    bool IsLinkedText() const { return pPlusData!=NULL && GetLinkUserData()!=NULL; }
 
-    FASTBOOL AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE) const;
-    FASTBOOL NbcAdjustTextFrameWidthAndHeight(FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE);
-    FASTBOOL AdjustTextFrameWidthAndHeight(FASTBOOL bHgt=TRUE, FASTBOOL bWdt=TRUE);
-    FASTBOOL IsTextFrame() const { return bTextFrame; }
-    FASTBOOL IsOutlText() const { return bTextFrame && (eTextKind==OBJ_OUTLINETEXT || eTextKind==OBJ_TITLETEXT); }
+    bool AdjustTextFrameWidthAndHeight(Rectangle& rR, bool bHgt=TRUE, bool bWdt=TRUE) const;
+    bool NbcAdjustTextFrameWidthAndHeight(bool bHgt=TRUE, bool bWdt=TRUE);
+    bool AdjustTextFrameWidthAndHeight(bool bHgt=TRUE, bool bWdt=TRUE);
+    bool IsTextFrame() const { return bTextFrame; }
+    bool IsOutlText() const { return bTextFrame && (eTextKind==OBJ_OUTLINETEXT || eTextKind==OBJ_TITLETEXT); }
     BOOL GetTextKind() const { return eTextKind; }
-    FASTBOOL HasText() const { return pEdtOutl==NULL ? pOutlinerParaObject!=NULL : HasEditText(); }
-    FASTBOOL HasEditText() const;
-    FASTBOOL IsTextEditActive() const { return pEdtOutl!=NULL; }
+    bool HasText() const { return pEdtOutl==NULL ? pOutlinerParaObject!=NULL : HasEditText(); }
+    bool HasEditText() const;
+    bool IsTextEditActive() const { return pEdtOutl!=NULL; }
 
     /** returns true only if we are in edit mode and the user actually changed anything */
     bool IsRealyEdited(){DBG_BF_ASSERT(0, "STRIP"); return false;}//STRIP001 bool IsRealyEdited() const;
 
-    void SetDisableAutoWidthOnDragging(FASTBOOL bOn) { bDisableAutoWidthOnDragging=bOn; }
-    FASTBOOL IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
+    void SetDisableAutoWidthOnDragging(bool bOn) { bDisableAutoWidthOnDragging=bOn; }
+    bool IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }
 
     // FitToSize und Fontwork wird bei GetTextSize() nicht berueksichtigt!
     virtual const Size& GetTextSize() const;
 
     // Gleichzeitig wird der Text in den Outliner gesetzt (ggf.
     // der des EditOutliners) und die PaperSize gesetzt.
-    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText=FALSE,
+    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
         Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
     const GeoStat& GetGeoStat() const { return aGeo; }
     inline long GetEckenradius() const;
-    FASTBOOL IsAutoGrowHeight() const;
+    bool IsAutoGrowHeight() const;
     inline long GetMinTextFrameHeight() const;
     inline long GetMaxTextFrameHeight() const;
-    FASTBOOL IsAutoGrowWidth() const;
+    bool IsAutoGrowWidth() const;
     inline long GetMinTextFrameWidth() const;
     inline long GetMaxTextFrameWidth() const;
     SdrFitToSizeType GetFitToSize() const;
 
     // Feststellen, ob TextFontwork
-    inline FASTBOOL IsFontwork() const;
+    inline bool IsFontwork() const;
 
     // Soll die Fontwork-Kontour versteckt werden?
-    inline FASTBOOL IsHideContour() const;
+    inline bool IsHideContour() const;
 
     // Textfluss innerhalb Kontur
-    inline FASTBOOL IsContourTextFrame() const;
+    inline bool IsContourTextFrame() const;
 
     // Horizontale Textausrichtung
     SdrTextHorzAdjust GetTextHorizontalAdjust() const;
@@ -314,7 +314,7 @@ public:
     virtual void NbcSetLogicRect(const Rectangle& rRect);
     virtual const Rectangle& GetLogicRect() const;
     virtual long GetRotateAngle() const;
-    virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
+    virtual long GetShearAngle(bool bVertical=FALSE) const;
 
 
 
@@ -322,14 +322,14 @@ public:
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-    virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    virtual void NbcShear(const Point& rRef, long nWink, double tn, bool bVShear);
 
-    virtual FASTBOOL HasTextEdit() const;
-    virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
+    virtual bool HasTextEdit() const;
+    virtual bool BegTextEdit(SdrOutliner& rOutl);
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
-    FASTBOOL IsTextAnimated() const { return GetTextAniKind()!=SDRTEXTANI_NONE; }
+    bool IsTextAnimated() const { return GetTextAniKind()!=SDRTEXTANI_NONE; }
 
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
@@ -339,11 +339,11 @@ public:
     virtual void ReformatText();
     virtual void RestartAnimation(SdrPageView* pPageView) const;
 
-    virtual FASTBOOL CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-        FASTBOOL bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
+    virtual bool CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
+        bool bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
 
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemSetChanged(const SfxItemSet& rSet);
@@ -445,19 +445,19 @@ inline long SdrTextObj::GetMaxTextFrameWidth() const
     return ((SdrTextMaxFrameWidthItem&)(GetItemSet().Get(SDRATTR_TEXT_MAXFRAMEWIDTH))).GetValue();
 }
 
-inline FASTBOOL SdrTextObj::IsFontwork() const
+inline bool SdrTextObj::IsFontwork() const
 {
     return (bTextFrame) ? FALSE // Default ist FALSE
         : ((XFormTextStyleItem&)(GetItemSet().Get(XATTR_FORMTXTSTYLE))).GetValue()!=XFT_NONE;
 }
 
-inline FASTBOOL SdrTextObj::IsHideContour() const
+inline bool SdrTextObj::IsHideContour() const
 {
     return (bTextFrame) ? FALSE // Default ist: Nein, kein HideContour; HideContour nicht bei TextFrames
         : ((XFormTextHideFormItem&)(GetItemSet().Get(XATTR_FORMTXTHIDEFORM))).GetValue();
 }
 
-inline FASTBOOL SdrTextObj::IsContourTextFrame() const
+inline bool SdrTextObj::IsContourTextFrame() const
 {
     return (bTextFrame) ? FALSE // ContourFrame nicht bei normalen TextFrames
         : ((SdrTextContourFrameItem&)(GetItemSet().Get(SDRATTR_TEXT_CONTOURFRAME))).GetValue();

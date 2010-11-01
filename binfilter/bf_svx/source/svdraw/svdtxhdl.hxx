@@ -60,7 +60,7 @@ class ImpTextPortionHandler
     // Variablen fuer ConvertToPathObj
     SdrObjGroup*                pGroup;
     SdrModel*                   pModel;
-    FASTBOOL                    bToPoly;
+    bool                    bToPoly;
 
     // Variablen fuer DrawFitText
     Point                       aPos;
@@ -86,7 +86,7 @@ private:
 public:
     ImpTextPortionHandler(SdrOutliner& rOutln, const SdrTextObj& rTxtObj);
 
-    void DrawTextToPath(ExtOutputDevice& rXOut, FASTBOOL bDrawEffect=TRUE);
+    void DrawTextToPath(ExtOutputDevice& rXOut, bool bDrawEffect=TRUE);
 
     // wird von DrawTextToPath() gesetzt:
     const Rectangle& GetFormTextBoundRect() { return aFormTextBoundRect; }

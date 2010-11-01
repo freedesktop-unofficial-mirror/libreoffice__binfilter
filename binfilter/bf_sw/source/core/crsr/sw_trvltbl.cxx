@@ -26,13 +26,11 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <hintids.hxx>
-
 
 #include <horiornt.hxx>
 
@@ -48,17 +46,6 @@ namespace binfilter {
 
 // setze Crsr in die naechsten/vorherigen Celle
 
-
-
-
-
-
-
-
-
-
-
-
 // suche die naechste nicht geschuetzte Zelle innerhalb der Tabelle
 // Parameter:
 //      rIdx    - steht auf dem TabellenNode
@@ -66,8 +53,6 @@ namespace binfilter {
 //  return:
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
-
-
 
 // suche die vorherige nicht geschuetzte Zelle innerhalb der Tabelle
 // Parameter:
@@ -77,39 +62,31 @@ namespace binfilter {
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
 
-
-
-
-
-/*N*/ FASTBOOL GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
+/*N*/ bool GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
+/*N*/                       bool bInReadOnly )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
+/*N*/ bool SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
+/*N*/ bool SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
 /*N*/   if( !pBoxIdx || !pBoxPtr || IsSelTblCells() || !IsAutoUpdateCells() )
 /*N*/       return FALSE;
@@ -174,16 +151,15 @@ namespace binfilter {
 /*?*/   return 0 != pChkBox;
 /*N*/ }
 
-
 /*N*/ void SwCrsrShell::ClearTblBoxCntnt()
 /*N*/ {
 /*N*/   delete pBoxIdx, pBoxIdx = 0;
 /*N*/   pBoxPtr = 0;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCrsrShell::EndAllTblBoxEdit()
+/*N*/ bool SwCrsrShell::EndAllTblBoxEdit()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
+/*N*/   bool bRet = FALSE;
 /*N*/   ViewShell *pSh = this;
 /*N*/   do {
 /*N*/       if( pSh->IsA( TYPE( SwCrsrShell ) ) )
@@ -193,9 +169,6 @@ namespace binfilter {
 /*N*/   } while( this != (pSh = (ViewShell *)pSh->GetNext()) );
 /*N*/   return bRet;
 /*N*/ }
-
-
-
 
 }
 
