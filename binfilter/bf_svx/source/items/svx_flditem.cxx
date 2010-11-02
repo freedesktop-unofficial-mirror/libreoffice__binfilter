@@ -81,7 +81,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ int SvxFieldData::operator==( const SvxFieldData& rFld ) const
+/*N*/ int SvxFieldData::operator==( const SvxFieldData& /*rFld*/ ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( Type() == rFld.Type(), "==: Verschiedene Typen" );
 /*N*/   return TRUE;    // Basicklasse immer gleich.
@@ -89,13 +89,13 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxFieldData::Load( SvPersistStream & rStm )
+/*N*/ void SvxFieldData::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxFieldData::Save( SvPersistStream & rStm )
+/*N*/ void SvxFieldData::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -167,7 +167,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFieldItem::Store( SvStream& rStrm, USHORT nItemVersion ) const
+/*N*/ SvStream& SvxFieldItem::Store( SvStream& rStrm, USHORT /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( pField, "SvxFieldItem::Store: Feld?!" );
 /*N*/   SvPersistStream aPStrm( GetClassManager(), &rStrm );
@@ -404,11 +404,11 @@ namespace binfilter {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPageField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Load( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxPageField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Save( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxPageField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -426,11 +426,11 @@ namespace binfilter {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPagesField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Load( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxPagesField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Save( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxPagesField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -446,11 +446,11 @@ namespace binfilter {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTimeField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Load( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxTimeField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Save( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxTimeField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -467,11 +467,11 @@ namespace binfilter {
 /*N*/   return ( rCmp.Type() == TYPE(SvxFileField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Load( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxFileField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Save( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxFileField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -487,11 +487,11 @@ namespace binfilter {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTableField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Load( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxTableField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Save( SvPersistStream & rStm )
+/*N*/ void __EXPORT SvxTableField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 

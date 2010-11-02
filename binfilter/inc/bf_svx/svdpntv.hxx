@@ -196,9 +196,9 @@ class SdrViewWinList
 {
     Container                   aList;
 
-    SdrViewWinList(const SdrViewWinList& rSource)
+    SdrViewWinList(const SdrViewWinList& /*rSource*/)
     :   aList(1024,4,4) {}
-    void operator=(const SdrViewWinList& rSource) {}
+    void operator=(const SdrViewWinList& /*rSource*/) {}
 
 protected:
     SdrViewWinRec* GetObject(USHORT i) const { return (SdrViewWinRec*)(aList.GetObject(i)); }
@@ -549,7 +549,7 @@ public:
     // stets gesetzt halten, damit der HitTest, etc. entsprechend reagieren
     // kann.
     // !!!noch nicht implementiert!!!
-    void SetLayerSortedRedraw(BOOL bOn) { bLayerSortedRedraw=TRUE; InvalidateAllWin(); }
+    void SetLayerSortedRedraw(BOOL /*bOn*/) { bLayerSortedRedraw=TRUE; InvalidateAllWin(); }
     BOOL IsLayerSortedRedraw() const { return bLayerSortedRedraw; }
 
     // zu beruecksichtigen:
@@ -607,13 +607,13 @@ public:
     // get the InteractionObjectManager for a specified window
 //STRIP012  void RefreshAllIAOManagers();
 
-    BOOL MouseButtonDown(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }
-    BOOL MouseButtonUp(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }
-    BOOL MouseMove(const MouseEvent& rMEvt, Window* pWin) { return FALSE; }
-    BOOL Command(const CommandEvent& rCEvt, Window* pWin) { return FALSE; }
-    BOOL Cut(ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
-    BOOL Yank(ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
-    BOOL Paste(Window* pWin=NULL, ULONG nFormat=SDR_ANYFORMAT) { return FALSE; }
+    BOOL MouseButtonDown(const MouseEvent& /*rMEvt*/, Window* /*pWin*/) { return FALSE; }
+    BOOL MouseButtonUp(const MouseEvent& /*rMEvt*/, Window* /*pWin*/) { return FALSE; }
+    BOOL MouseMove(const MouseEvent& /*rMEvt*/, Window* /*pWin*/) { return FALSE; }
+    BOOL Command(const CommandEvent& /*rCEvt*/, Window* /*pWin*/) { return FALSE; }
+    BOOL Cut(ULONG nFormat=SDR_ANYFORMAT) { (void)nFormat; return FALSE; }
+    BOOL Yank(ULONG nFormat=SDR_ANYFORMAT) { (void)nFormat; return FALSE; }
+BOOL Paste(Window* pWin=NULL, ULONG nFormat=SDR_ANYFORMAT) { (void)pWin; (void)nFormat; return FALSE; }
 
     // Fuer PlugIn. Wird vom Paint des OLE-Obj gerufen.
 
@@ -638,8 +638,8 @@ public:
     BOOL IsItemBrowserVisible() const { return pItemBrowser!=NULL && ((Window*)pItemBrowser)->IsVisible(); }
     Window* GetItemBrowser() const { return (Window*)pItemBrowser; }
 
-    virtual void InsertControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xCC) {}
-    virtual void RemoveControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > xCC) {}
+    virtual void InsertControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > /*xCC*/) {}
+    virtual void RemoveControlContainer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlContainer > /*xCC*/) {}
 
     BOOL IsPrintPreview() const { return bPrintPreview; }
     void SetPrintPreview(BOOL bOn=TRUE) { bPrintPreview=bOn; }

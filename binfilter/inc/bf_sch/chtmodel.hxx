@@ -213,7 +213,7 @@ public:
 
     BOOL                IsReal3D()const
                             { return (Is3DChart() /*&& !IsPieChart()*/); }
-    BOOL                HasBarConnectors( long nRow ) const
+    BOOL                HasBarConnectors( long /*nRow*/ ) const
                             { return (BOOL)(m_nDefaultColorSet&CHSPECIAL_TRACELINES); }
     inline void         SetBarConnectors( BOOL bOn, long nRow );
 
@@ -1171,7 +1171,7 @@ private:
 // inline methods
 // ==============
 
-inline void         ChartModel::SetBarConnectors( BOOL bOn, long nRow )
+inline void         ChartModel::SetBarConnectors( BOOL bOn, long /*nRow*/ )
 {
     m_nDefaultColorSet = bOn
         ? m_nDefaultColorSet|CHSPECIAL_TRACELINES

@@ -287,8 +287,8 @@ using namespace ::rtl;
     Beschreibung: SwSetExpFieldType by JP
  --------------------------------------------------------------------*/
 
-/*N*/ SwGetExpFieldType::SwGetExpFieldType(SwDoc* pDoc)
-/*N*/   : SwValueFieldType( pDoc, RES_GETEXPFLD )
+/*N*/ SwGetExpFieldType::SwGetExpFieldType(SwDoc* _pDoc)
+/*N*/   : SwValueFieldType( _pDoc, RES_GETEXPFLD )
 /*N*/ {
 /*N*/ }
 

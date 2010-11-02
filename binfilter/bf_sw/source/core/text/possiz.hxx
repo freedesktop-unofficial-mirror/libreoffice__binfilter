@@ -39,8 +39,8 @@ class SwPosSize
     KSHORT nWidth;
     KSHORT nHeight;
 public:
-    inline SwPosSize( const KSHORT nWidth = 0, const KSHORT nHeight = 0 )
-        : nWidth(nWidth), nHeight(nHeight) { }
+    inline SwPosSize( const KSHORT _nWidth = 0, const KSHORT _nHeight = 0 )
+        : nWidth(_nWidth), nHeight(_nHeight) { }
     inline SwPosSize( const Size &rSize )
         : nWidth(KSHORT(rSize.Width())), nHeight(KSHORT(rSize.Height())){ }
     inline KSHORT Height() const { return nHeight; }

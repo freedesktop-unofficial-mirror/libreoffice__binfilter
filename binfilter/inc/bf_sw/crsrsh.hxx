@@ -574,9 +574,9 @@ public:
 #if !defined(DBG_UTIL) && !defined(WIN)
 
 inline SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-            USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
+            USHORT /*nStt*/, USHORT /*nEnd*/, SwPaM* /*pPam*/ ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return pCurCrsr->MakeFindRange( (SwDocPositions)nStt, (SwDocPositions)nEnd, pPam );
+    DBG_BF_ASSERT(0, "STRIP"); return NULL;
 }
 
 inline SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const

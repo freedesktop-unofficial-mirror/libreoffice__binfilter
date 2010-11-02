@@ -53,7 +53,7 @@ class SwTxtPortion : public SwLinePortion
 public:
     inline SwTxtPortion(){ SetWhichPor( POR_TXT ); }
     SwTxtPortion( const SwLinePortion &rPortion );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");};
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
@@ -82,7 +82,7 @@ public:
     inline KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");} ;
 
     // Accessibility: pass information about this portion to the PortionHandler
 

@@ -79,7 +79,7 @@ using namespace ::com::sun::star;
 
 /*N*/ bool SvxHorJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
 /*N*/   {
@@ -123,7 +123,7 @@ using namespace ::com::sun::star;
 
 /*N*/ bool SvxHorJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
 /*N*/   {
@@ -146,6 +146,7 @@ using namespace ::com::sun::star;
 /*N*/                   case table::CellHoriJustify_RIGHT:    eSvx = SVX_HOR_JUSTIFY_RIGHT;    break;
 /*N*/                   case table::CellHoriJustify_BLOCK:    eSvx = SVX_HOR_JUSTIFY_BLOCK;    break;
 /*?*/                   case table::CellHoriJustify_REPEAT:   eSvx = SVX_HOR_JUSTIFY_REPEAT;   break;
+                        default: break;
 /*N*/               }
 /*N*/               SetValue( eSvx );
 /*N*/           }
@@ -225,7 +226,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))
@@ -243,6 +244,7 @@ using namespace ::com::sun::star;
 /*N*/       case table::CellVertJustify_TOP:       eSvx = SVX_VER_JUSTIFY_TOP;      break;
 /*N*/       case table::CellVertJustify_CENTER:   eSvx = SVX_VER_JUSTIFY_CENTER;    break;
 /*N*/       case table::CellVertJustify_BOTTOM:   eSvx = SVX_VER_JUSTIFY_BOTTOM;    break;
+            default: break;
 /*N*/   }
 /*N*/   SetValue( eSvx );
 /*N*/
@@ -288,7 +290,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   table::CellOrientation eUno = table::CellOrientation_STANDARD;
 /*N*/   switch ( (SvxCellOrientation)GetValue() )
@@ -319,6 +321,7 @@ using namespace ::com::sun::star;
 /*?*/       case table::CellOrientation_TOPBOTTOM:  eSvx = SVX_ORIENTATION_TOPBOTTOM; break;
 /*?*/       case table::CellOrientation_BOTTOMTOP:  eSvx = SVX_ORIENTATION_BOTTOMTOP; break;
 /*N*/       case table::CellOrientation_STACKED:    eSvx = SVX_ORIENTATION_STACKED;   break;
+            default: break;
 /*N*/   }
 /*N*/   SetValue( eSvx );
 /*N*/   return sal_True;
@@ -431,7 +434,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& SvxMarginItem::Store( SvStream &rStream, USHORT nItemVersion) const
+/*N*/ SvStream& SvxMarginItem::Store( SvStream &rStream, USHORT /*nItemVersion*/) const
 /*N*/ {
 /*N*/   rStream << nLeftMargin;
 /*N*/   rStream << nTopMargin;

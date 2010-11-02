@@ -299,8 +299,8 @@ public:
 class SdrPageGridFrameList {
     Container aList;
 private:
-    SdrPageGridFrameList(const SdrPageGridFrameList& rSrcList): aList(1024,4,4) {}
-    void           operator=(const SdrPageGridFrameList& rSrcList)              {}
+    SdrPageGridFrameList(const SdrPageGridFrameList& /*rSrcList*/): aList(1024,4,4) {}
+    void           operator=(const SdrPageGridFrameList& /*rSrcList*/)              {}
 protected:
     SdrPageGridFrame* GetObject(USHORT i) const { return (SdrPageGridFrame*)(aList.GetObject(i)); }
 public:

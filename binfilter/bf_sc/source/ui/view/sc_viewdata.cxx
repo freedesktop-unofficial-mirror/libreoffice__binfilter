@@ -69,16 +69,16 @@ USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 //==================================================================
 
 /*N*/ ScViewDataTable::ScViewDataTable() :
-/*N*/               nCurX( 0 ),
-/*N*/               nCurY( 0 ),
-/*N*/               bOldCurValid( FALSE ),
 /*N*/               eHSplitMode( SC_SPLIT_NONE ),
 /*N*/               eVSplitMode( SC_SPLIT_NONE ),
+/*N*/               eWhichActive( SC_SPLIT_BOTTOMLEFT ),
 /*N*/               nHSplitPos( 0 ),
 /*N*/               nVSplitPos( 0 ),
 /*N*/               nFixPosX( 0 ),
 /*N*/               nFixPosY( 0 ),
-/*N*/               eWhichActive( SC_SPLIT_BOTTOMLEFT )
+/*N*/               nCurX( 0 ),
+/*N*/               nCurY( 0 ),
+/*N*/               bOldCurValid( FALSE )
 /*N*/ {
 /*N*/   nPosX[0]=nPosX[1]=
 /*N*/   nPosY[0]=nPosY[1]=0;
@@ -614,9 +614,9 @@ void ScViewData::ReadUserData(const String& rData)
 /*N*/                   {
 /*N*/                       uno::Sequence <beans::PropertyValue> aTableViewSettings;
 /*N*/                       pTabData[nTab]->WriteUserDataSequence(aTableViewSettings);
-/*N*/                       String sName;
-/*N*/                       GetDocument()->GetName( nTab, sName );
-/*N*/                       ::rtl::OUString sOUName(sName);
+/*N*/                       String _sName;
+/*N*/                       GetDocument()->GetName( nTab, _sName );
+/*N*/                       ::rtl::OUString sOUName(_sName);
 /*N*/                       uno::Any aAny;
 /*N*/                       aAny <<= aTableViewSettings;
 /*N*/                         try
@@ -714,13 +714,13 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
             if ((rSettings[i].Value >>= xNameContainer) && xNameContainer->hasElements())
             {
                 uno::Sequence< ::rtl::OUString > aNames(xNameContainer->getElementNames());
-                for (sal_Int32 i = 0; i < aNames.getLength(); i++)
+                for (sal_Int32 j = 0; j < aNames.getLength(); j++)
                 {
-                    String sTabName(aNames[i]);
+                    String sTabName(aNames[j]);
                     sal_uInt16 nTab(0);
                     if (GetDocument()->GetTable(sTabName, nTab))
                     {
-                        uno::Any aAny = xNameContainer->getByName(aNames[i]);
+                        uno::Any aAny = xNameContainer->getByName(aNames[j]);
                         uno::Sequence<beans::PropertyValue> aTabSettings;
                         if (aAny >>= aTabSettings)
                         {
