@@ -175,9 +175,9 @@ friend class SfxItemPoolCache;
 friend class SfxItemSet;
 friend class SfxVoidItem;
 
-    ULONG                    nRefCount;                    // Referenzzaehler
-    USHORT                   nWhich;
-    USHORT                   nKind;
+    ULONG                    m_nRefCount;                    // Referenzzaehler
+    USHORT                   m_nWhich;
+    USHORT                   m_nKind;
 
 private:
     inline void              SetRefCount( ULONG n );
@@ -198,10 +198,10 @@ public:
 
     void                     SetWhich( USHORT nId ) {
                                 DBG_CHKTHIS(SfxPoolItem, 0);
-                                nWhich = nId; }
+                                m_nWhich = nId; }
     USHORT                   Which() const {
                                  DBG_CHKTHIS(SfxPoolItem, 0);
-                                 return nWhich; }
+                                 return m_nWhich; }
     virtual int              operator==( const SfxPoolItem& ) const = 0;
     int                      operator!=( const SfxPoolItem& rItem ) const
                              { return !(*this == rItem); }
@@ -225,8 +225,8 @@ public:
     virtual SvStream&        Store( SvStream &, USHORT nItemVersion ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const = 0;
 
-    ULONG                    GetRefCount() const { return nRefCount; }
-    inline USHORT            GetKind() const { return nKind; }
+    ULONG                    GetRefCount() const { return m_nRefCount; }
+    inline USHORT            GetKind() const { return m_nKind; }
 
     /** Read in a Unicode string from a streamed byte string representation.
 
@@ -284,32 +284,32 @@ private:
 inline void SfxPoolItem::SetRefCount( ULONG n )
 {
     DBG_CHKTHIS( SfxPoolItem, 0 );
-    nRefCount = n;
-    nKind = 0;
+    m_nRefCount = n;
+    m_nKind = 0;
 }
 
 inline void SfxPoolItem::SetKind( USHORT n )
 {
     DBG_CHKTHIS( SfxPoolItem, 0 );
-    nRefCount = SFX_ITEMS_SPECIAL;
-    nKind = n;
+    m_nRefCount = SFX_ITEMS_SPECIAL;
+    m_nKind = n;
 }
 
 inline ULONG SfxPoolItem::AddRef( ULONG n ) const
 {
     DBG_CHKTHIS( SfxPoolItem, 0 );
-    DBG_ASSERT( nRefCount <= SFX_ITEMS_MAXREF, "AddRef mit nicht-Pool-Item" );
-    DBG_ASSERT( ULONG_MAX - nRefCount > n, "AddRef: Referenzzaehler ueberschlaegt sich" );
-    return ( ((SfxPoolItem *)this)->nRefCount += n );
+    DBG_ASSERT( m_nRefCount <= SFX_ITEMS_MAXREF, "AddRef mit nicht-Pool-Item" );
+    DBG_ASSERT( ULONG_MAX - m_nRefCount > n, "AddRef: Referenzzaehler ueberschlaegt sich" );
+    return ( ((SfxPoolItem *)this)->m_nRefCount += n );
 }
 
 inline ULONG SfxPoolItem::ReleaseRef( ULONG n ) const
 {
     DBG_CHKTHIS( SfxPoolItem, 0 );
-    DBG_ASSERT( nRefCount <= SFX_ITEMS_MAXREF, "AddRef mit nicht-Pool-Item" );
-    DBG_ASSERT( nRefCount >= n, "ReleaseRef: Referenzzaehler ueberschlaegt sich" );
-    ((SfxPoolItem *)this)->nRefCount -= n;
-    return nRefCount;
+    DBG_ASSERT( m_nRefCount <= SFX_ITEMS_MAXREF, "AddRef mit nicht-Pool-Item" );
+    DBG_ASSERT( m_nRefCount >= n, "ReleaseRef: Referenzzaehler ueberschlaegt sich" );
+    ((SfxPoolItem *)this)->m_nRefCount -= n;
+    return m_nRefCount;
 }
 
 // -----------------------------------------------------------------------
@@ -361,7 +361,7 @@ public:
 
     // von sich selbst eine Kopie erzeugen
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
-            void            SetWhich(USHORT nWh) { nWhich = nWh; }
+            void            SetWhich(USHORT nWh) { m_nWhich = nWh; }
 };
 
 // -----------------------------------------------------------------------

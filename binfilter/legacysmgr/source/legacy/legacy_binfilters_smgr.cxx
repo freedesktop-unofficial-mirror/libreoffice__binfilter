@@ -896,8 +896,8 @@ Any OServiceManager::getPropertyValue(const OUString& PropertyName)
 }
 
 void OServiceManager::addPropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference<XPropertyChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XPropertyChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -905,8 +905,8 @@ void OServiceManager::addPropertyChangeListener(
 }
 
 void OServiceManager::removePropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference<XPropertyChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XPropertyChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -914,8 +914,8 @@ void OServiceManager::removePropertyChangeListener(
 }
 
 void OServiceManager::addVetoableChangeListener(
-    const OUString& PropertyName,
-    const Reference<XVetoableChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XVetoableChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -923,8 +923,8 @@ void OServiceManager::addVetoableChangeListener(
 }
 
 void OServiceManager::removeVetoableChangeListener(
-    const OUString& PropertyName,
-    const Reference<XVetoableChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XVetoableChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -992,14 +992,14 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
                 }
                 else
                 {
-                    Reference< XSingleServiceFactory > xFac( xFactory, UNO_QUERY );
-                    if (xFac.is())
+                    Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
+                    if (xFac2.is())
                     {
 #ifdef DEBUG
                         OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
                         OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
 #endif
-                        return xFac->createInstance();
+                        return xFac2->createInstance();
                     }
                 }
             }
@@ -1041,14 +1041,14 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
                 }
                 else
                 {
-                    Reference< XSingleServiceFactory > xFac( xFactory, UNO_QUERY );
-                    if (xFac.is())
+                    Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
+                    if (xFac2.is())
                     {
 #ifdef DEBUG
                         OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
                         OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
 #endif
-                        return xFac->createInstanceWithArguments( rArguments );
+                        return xFac2->createInstanceWithArguments( rArguments );
                     }
                 }
             }
@@ -1133,7 +1133,7 @@ Sequence< OUString > OServiceManager::getSupportedServiceNames()
 
 
 Sequence< Reference< XInterface > > OServiceManager::queryServiceFactories(
-    const OUString& aServiceName, Reference< XComponentContext > const & xContext )
+    const OUString& aServiceName, Reference< XComponentContext > const & /*xContext*/ )
 {
     Sequence< Reference< XInterface > > ret;
 
@@ -1946,7 +1946,7 @@ public:
         throw (RuntimeException);
 };
 //__________________________________________________________________________________________________
-void DisposingForwarder::disposing( lang::EventObject const & rSource )
+void DisposingForwarder::disposing( lang::EventObject const & /*rSource*/ )
     throw (RuntimeException)
 {
     m_xTarget->dispose();

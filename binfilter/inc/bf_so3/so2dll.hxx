@@ -63,7 +63,7 @@ class SvObjectList;
 class ImpFactory;
 
 //=========================================================================
-struct SO3_DLLPRIVATE ConvertTo_Impl
+struct SO3_DLLPUBLIC ConvertTo_Impl
 /*  [Beschreibung]
 
     In dieser Struktur werden Informationen "uber den Vorg"anger und den

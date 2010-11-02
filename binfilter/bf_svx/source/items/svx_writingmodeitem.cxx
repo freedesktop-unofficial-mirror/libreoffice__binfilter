@@ -67,7 +67,7 @@ using namespace ::com::sun::star::text;
 
 
 
-/*N*/ USHORT SvxWritingModeItem::GetVersion( USHORT nFVer ) const
+/*N*/ USHORT SvxWritingModeItem::GetVersion( USHORT /*nFVer*/ ) const
 /*N*/ {
 /*N*/   return USHRT_MAX;
 /*N*/ }

@@ -87,9 +87,9 @@ IMPL_PTRHINT(SfxPoolItemHint,SfxPoolItem)
 
 // SfxPoolItem -----------------------------------------------------------
 SfxPoolItem::SfxPoolItem( USHORT nW )
-    : nRefCount( 0 ),
-      nWhich( nW )
-      , nKind( 0 )
+    : m_nRefCount( 0 ),
+      m_nWhich( nW )
+      , m_nKind( 0 )
 {
     DBG_CTOR(SfxPoolItem, 0);
     DBG_ASSERT(nW <= SHRT_MAX, "Which Bereich ueberschritten");
@@ -125,9 +125,9 @@ SfxPoolItem::SfxPoolItem( USHORT nW )
 
 // -----------------------------------------------------------------------
 SfxPoolItem::SfxPoolItem( const SfxPoolItem& rCpy )
-    : nRefCount( 0 ),               // wird ja ein neues Object!
-      nWhich( rCpy.Which() )    // Funktion rufen wg. ChkThis()
-      , nKind( 0 )
+    : m_nRefCount( 0 ),             // wird ja ein neues Object!
+      m_nWhich( rCpy.Which() )  // Funktion rufen wg. ChkThis()
+      , m_nKind( 0 )
 {
     DBG_CTOR(SfxPoolItem, 0);
 #if OSL_DEBUG_LEVEL > 1
@@ -164,7 +164,7 @@ SfxPoolItem::SfxPoolItem( const SfxPoolItem& rCpy )
 SfxPoolItem::~SfxPoolItem()
 {
     DBG_DTOR(SfxPoolItem, 0);
-    DBG_ASSERT(nRefCount == 0 || nRefCount > SFX_ITEMS_MAXREF, "destroying item in use" );
+    DBG_ASSERT(m_nRefCount == 0 || m_nRefCount > SFX_ITEMS_MAXREF, "destroying item in use" );
 #if OSL_DEBUG_LEVEL > 1
     --nItemCount;
 #endif

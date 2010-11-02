@@ -496,7 +496,7 @@ USHORT SfxItemSet::ClearItem( USHORT nWhich )
 
                         // #i32448#
                         // Take care of disabled items, too.
-                        if(!pItemToClear->nWhich)
+                        if(!pItemToClear->m_nWhich)
                         {
                             // item is disabled, delete it
                             delete pItemToClear;
