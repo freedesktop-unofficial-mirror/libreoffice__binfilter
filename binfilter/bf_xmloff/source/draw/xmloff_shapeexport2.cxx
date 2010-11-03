@@ -536,6 +536,7 @@ void XMLShapeExport::ImpExportTextBoxShape(
                 bIsPresShape = TRUE;
                 break;
             }
+            default: break;
         }
 
         // Transformation
@@ -1030,7 +1031,7 @@ void XMLShapeExport::ImpExportSpreadsheetShape(
 
 void XMLShapeExport::ImpExportControlShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1059,7 +1060,7 @@ void XMLShapeExport::ImpExportControlShape(
 
 void XMLShapeExport::ImpExportConnectorShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     uno::Reference< beans::XPropertySet > xProps( xShape, uno::UNO_QUERY );
 
@@ -1208,7 +1209,7 @@ void XMLShapeExport::ImpExportConnectorShape(
 
 void XMLShapeExport::ImpExportMeasureShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     uno::Reference< beans::XPropertySet > xProps( xShape, uno::UNO_QUERY );
 
@@ -1417,7 +1418,7 @@ void XMLShapeExport::ImpExportPageShape(
 
 void XMLShapeExport::ImpExportCaptionShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1457,7 +1458,7 @@ void XMLShapeExport::ImpExportCaptionShape(
 
 void XMLShapeExport::ImpExportFrameShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1488,7 +1489,7 @@ void XMLShapeExport::ImpExportFrameShape(
 
 void XMLShapeExport::ImpExportAppletShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1540,7 +1541,7 @@ void XMLShapeExport::ImpExportAppletShape(
 
 void XMLShapeExport::ImpExportPluginShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())

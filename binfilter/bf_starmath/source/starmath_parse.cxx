@@ -1599,6 +1599,7 @@ const sal_Int32 coNumContFlags =
 /*N*/                   case TLIM :     pLim = "lim";       break;
 /*N*/                   case TLIMSUP :  pLim = "lim sup";   break;
 /*N*/                   case TLIMINF :  pLim = "lim inf";   break;
+                        default: break;
 /*N*/               }
 /*N*/               if( pLim )
 /*N*/                   CurToken.aText.AssignAscii( pLim );

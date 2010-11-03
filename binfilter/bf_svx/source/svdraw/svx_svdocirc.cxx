@@ -340,6 +340,7 @@ namespace binfilter {
 /*?*/                     case OBJ_SECT: rXOut.DrawPie(aR,aTmpPt1,aTmpPt2); break;
 /*?*/                     case OBJ_CARC: rXOut.DrawArc(aR,aTmpPt1,aTmpPt2); break;
 /*?*/                     case OBJ_CCUT: DBG_ERROR("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+                          default: break;
 /*?*/                 }
 /*?*/             }
 /*?*/         }
@@ -380,6 +381,7 @@ namespace binfilter {
 /*?*/                   case OBJ_SECT: rXOut.DrawPie(aRect,aPnt1,aPnt2); break;
 /*?*/                   case OBJ_CARC: rXOut.DrawArc(aRect,aPnt1,aPnt2); break;
 /*?*/                   case OBJ_CCUT: DBG_ERROR("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+                        default: break;
 /*N*/               }
 /*N*/           }
 /*N*/       }

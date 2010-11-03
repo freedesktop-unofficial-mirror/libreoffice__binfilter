@@ -3275,6 +3275,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/               case SC_CAT_DELETE_TABS :
 /*N*/                   eInsType = SC_CAT_INSERT_TABS;
 /*N*/               break;
+                    default: break;
 /*N*/           }
 /*N*/           for ( ScChangeAction* p = *ppFirstAction; p; p = p->GetNext() )
 /*N*/           {
@@ -3429,6 +3430,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                                       else
 /*N*/                                           pMove->GetFromRange().aEnd.IncTab( nFrom );
 /*N*/                                   break;
+                                        default: break;
 /*N*/                               }
 /*N*/                           }
 /*N*/                           if ( nTo )
@@ -3453,6 +3455,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                                       else
 /*N*/                                           pMove->GetBigRange().aEnd.IncTab( nTo );
 /*N*/                                   break;
+                                        default: break;
 /*N*/                               }
 /*N*/                           }
 /*N*/                           if ( nFrom || nTo )
@@ -3463,6 +3466,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                           }
 /*N*/                       }
 /*N*/                       break;
+                        default: break;
 /*N*/                   }
 /*N*/               }
 /*N*/               if ( bUpdate )
@@ -3477,7 +3481,6 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       }
 /*N*/       else
 /*N*/       {   // Undo Delete
-/*N*/           ScChangeAction* pNextAction = NULL;
 /*N*/           for ( ScChangeAction* p = *ppFirstAction; p; p = p->GetNext() )
 /*N*/           {
 /*N*/               if ( p == pAct )
@@ -3565,7 +3568,8 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                       do
 /*N*/                       {   // Abhaengigkeit vom FromRange herstellen
 /*N*/                           AddDependentWithNotify( pActMove, pHere );
-/*N*/                       } while ( pHere = pHere->GetNextContent() );
+                            }
+                            while ( (pHere = pHere->GetNextContent()) != 0 );
 /*N*/                   }
 /*N*/                   else
 /*N*/                       p->UpdateReference( this, eMode, rFrom, nDx, nDy, nDz );
@@ -3678,7 +3682,6 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/   {
 /*N*/       if ( pAct->HasDependent() && !bRecursion )
 /*N*/       {
-/*N*/           const ScBigRange& rRange = pAct->GetBigRange();
 /*N*/           DBG_ASSERT( pTable, "ScChangeTrack::Reject: Insert ohne Table" );
 /*N*/           for ( ScChangeAction* p = pTable->Last(); p && bOk; p = pTable->Prev() )
 /*N*/           {
@@ -3738,6 +3741,8 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/               case SC_CAT_DELETE_TABS :
 /*N*/                   aDelRange.aStart.SetTab( aDelRange.aEnd.Tab() );
 /*N*/               break;
+                    default:
+                        break;
 /*N*/           }
 /*N*/           ScChangeAction* p = pAct;
 /*N*/           BOOL bLoop = TRUE;
@@ -3760,6 +3765,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                           case SC_CAT_DELETE_TABS :
 /*N*/                               aDelRange.aStart.IncTab( -1 );
 /*N*/                           break;
+                                default: break;
 /*N*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -3787,7 +3793,6 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/   {
 /*N*/       if ( pAct->HasDependent() && !bRecursion )
 /*N*/       {
-/*N*/           const ScBigRange& rRange = pAct->GetBigRange();
 /*N*/           DBG_ASSERT( pTable, "ScChangeTrack::Reject: Move ohne Table" );
 /*N*/           for ( ScChangeAction* p = pTable->Last(); p && bOk; p = pTable->Prev() )
 /*N*/           {

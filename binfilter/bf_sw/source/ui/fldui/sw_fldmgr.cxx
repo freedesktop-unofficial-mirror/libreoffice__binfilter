@@ -153,54 +153,54 @@ struct SwFldPack
 static const SwFldPack __FAR_DATA aSwFlds[] =
 {
     // Dokument
-    TYP_EXTUSERFLD,     FLD_EU_BEGIN,       FLD_EU_END,     0,                  0,
-    TYP_AUTHORFLD,      0,                  0,              FMT_AUTHOR_BEGIN,   FMT_AUTHOR_END,
-    TYP_DATEFLD,        FLD_DATE_BEGIN,     FLD_DATE_END,   0,                  0,
-    TYP_TIMEFLD,        FLD_TIME_BEGIN,     FLD_TIME_END,   0,                  0,
-    TYP_PAGENUMBERFLD,  0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-1,
-    TYP_NEXTPAGEFLD,    0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END,
-    TYP_PREVPAGEFLD,    0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END,
-    TYP_FILENAMEFLD,    0,                  0,              FMT_FF_BEGIN,       FMT_FF_END,
-    TYP_DOCSTATFLD,     FLD_STAT_BEGIN,     FLD_STAT_END,   FMT_NUM_BEGIN,      FMT_NUM_END-1,
+    {TYP_EXTUSERFLD,        FLD_EU_BEGIN,       FLD_EU_END,     0,                  0},
+    {TYP_AUTHORFLD,     0,                  0,              FMT_AUTHOR_BEGIN,   FMT_AUTHOR_END},
+    {TYP_DATEFLD,       FLD_DATE_BEGIN,     FLD_DATE_END,   0,                  0},
+    {TYP_TIMEFLD,       FLD_TIME_BEGIN,     FLD_TIME_END,   0,                  0},
+    {TYP_PAGENUMBERFLD, 0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-1},
+    {TYP_NEXTPAGEFLD,   0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END},
+    {TYP_PREVPAGEFLD,   0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END},
+    {TYP_FILENAMEFLD,   0,                  0,              FMT_FF_BEGIN,       FMT_FF_END},
+    {TYP_DOCSTATFLD,        FLD_STAT_BEGIN,     FLD_STAT_END,   FMT_NUM_BEGIN,      FMT_NUM_END-1},
 
-    TYP_CHAPTERFLD,     0,                  0,              FMT_CHAPTER_BEGIN,  FMT_CHAPTER_END,
-    TYP_TEMPLNAMEFLD,   0,                  0,              FMT_FF_BEGIN,       FMT_FF_END,
+    {TYP_CHAPTERFLD,        0,                  0,              FMT_CHAPTER_BEGIN,  FMT_CHAPTER_END},
+    {TYP_TEMPLNAMEFLD,  0,                  0,              FMT_FF_BEGIN,       FMT_FF_END},
 
     // Funktion
-    TYP_CONDTXTFLD,     0,                  0,              0,                  0,
-    TYP_DROPDOWN,       0,                  0,              0,                  0,
-    TYP_INPUTFLD,       FLD_INPUT_BEGIN,    FLD_INPUT_END,  0,                  0,
-    TYP_MACROFLD,       0,                  0,              0,                  0,
-    TYP_JUMPEDITFLD,    0,                  0,              FMT_MARK_BEGIN,     FMT_MARK_END,
-    TYP_COMBINED_CHARS,  0,                 0,              0,                  0,
-    TYP_HIDDENTXTFLD,   0,                  0,              0,                  0,
-    TYP_HIDDENPARAFLD,  0,                  0,              0,                  0,
+    {TYP_CONDTXTFLD,        0,                  0,              0,                  0},
+    {TYP_DROPDOWN,       0,                  0,              0,                  0},
+    {TYP_INPUTFLD,      FLD_INPUT_BEGIN,    FLD_INPUT_END,  0,                  0},
+    {TYP_MACROFLD,      0,                  0,              0,                  0},
+    {TYP_JUMPEDITFLD,   0,                  0,              FMT_MARK_BEGIN,     FMT_MARK_END},
+    {TYP_COMBINED_CHARS,     0,                 0,              0,                  0},
+    {TYP_HIDDENTXTFLD,  0,                  0,              0,                  0},
+    {TYP_HIDDENPARAFLD,     0,                  0,              0,                  0},
 
     // Referenzen
-    TYP_SETREFFLD,      0,                  0,              0,                  0,
-    TYP_GETREFFLD,      0,                  0,              FMT_REF_BEGIN,      FMT_REF_END,
+    {TYP_SETREFFLD,     0,                  0,              0,                  0},
+    {TYP_GETREFFLD,     0,                  0,              FMT_REF_BEGIN,      FMT_REF_END},
 
     // Ablage
-    TYP_DOCINFOFLD,     0,                  0,              FMT_REG_BEGIN,      FMT_REG_END,
+    {TYP_DOCINFOFLD,        0,                  0,              FMT_REG_BEGIN,      FMT_REG_END},
 
     // Datenbank
-    TYP_DBFLD,          0,                  0,              FMT_DBFLD_BEGIN,    FMT_DBFLD_END,
-    TYP_DBNEXTSETFLD,   0,                  0,              0,                  0,
-    TYP_DBNUMSETFLD,    0,                  0,              0,                  0,
-    TYP_DBSETNUMBERFLD, 0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-2,
-    TYP_DBNAMEFLD,      0,                  0,              0,                  0,
+    {TYP_DBFLD,         0,                  0,              FMT_DBFLD_BEGIN,    FMT_DBFLD_END},
+    {TYP_DBNEXTSETFLD,  0,                  0,              0,                  0},
+    {TYP_DBNUMSETFLD,   0,                  0,              0,                  0},
+    {TYP_DBSETNUMBERFLD, 0,                 0,              FMT_NUM_BEGIN,      FMT_NUM_END-2},
+    {TYP_DBNAMEFLD,         0,                  0,              0,                  0},
 
     // Variablen
-    TYP_SETFLD,         0,                  0,              FMT_SETVAR_BEGIN,   FMT_SETVAR_END,
+    {TYP_SETFLD,            0,                  0,              FMT_SETVAR_BEGIN,   FMT_SETVAR_END},
 
-    TYP_GETFLD,         0,                  0,              FMT_GETVAR_BEGIN,   FMT_GETVAR_END,
-    TYP_DDEFLD,         0,                  0,              FMT_DDE_BEGIN,      FMT_DDE_END,
-    TYP_FORMELFLD,      0,                  0,              FMT_GETVAR_BEGIN,   FMT_GETVAR_END,
-    TYP_INPUTFLD,       FLD_INPUT_BEGIN,    FLD_INPUT_END,  0,                  0,
-    TYP_SEQFLD,         0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-2,
-    TYP_SETREFPAGEFLD,  FLD_PAGEREF_BEGIN,  FLD_PAGEREF_END,0,                  0,
-    TYP_GETREFPAGEFLD,  0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-1,
-    TYP_USERFLD,        0,                  0,              FMT_USERVAR_BEGIN,  FMT_USERVAR_END
+    {TYP_GETFLD,            0,                  0,              FMT_GETVAR_BEGIN,   FMT_GETVAR_END},
+    {TYP_DDEFLD,            0,                  0,              FMT_DDE_BEGIN,      FMT_DDE_END},
+    {TYP_FORMELFLD,     0,                  0,              FMT_GETVAR_BEGIN,   FMT_GETVAR_END},
+    {TYP_INPUTFLD,      FLD_INPUT_BEGIN,    FLD_INPUT_END,  0,                  0},
+    {TYP_SEQFLD,            0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-2},
+    {TYP_SETREFPAGEFLD, FLD_PAGEREF_BEGIN,  FLD_PAGEREF_END,0,                  0},
+    {TYP_GETREFPAGEFLD, 0,                  0,              FMT_NUM_BEGIN,      FMT_NUM_END-1},
+    {TYP_USERFLD,       0,                  0,              FMT_USERVAR_BEGIN,  FMT_USERVAR_END}
 };
 
 String* SwFldMgr::pDate = 0;

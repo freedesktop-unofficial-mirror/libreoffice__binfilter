@@ -72,13 +72,13 @@ using rtl::OUString;
 
 
 
-/*N*/ USHORT SvXMLAttrContainerItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT SvXMLAttrContainerItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   // This item should never be stored
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-/*N*/ bool  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   Reference<XNameContainer> xContainer =
 /*N*/       new SvUnoAttributeContainer( new SvXMLAttrContainerData( *pImpl ) );
@@ -86,7 +86,7 @@ using rtl::OUString;
 /*N*/   rVal.setValue( &xContainer, ::getCppuType((Reference<XNameContainer>*)0) );
 /*N*/   return true;
 /*N*/ }
-/*N*/ bool SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*NBFF*/{
 /*NBFF*/    Reference<XInterface> xRef;
 /*NBFF*/    SvUnoAttributeContainer* pContainer = NULL;
@@ -214,20 +214,20 @@ using rtl::OUString;
 
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetFirstNamespaceIndex() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT nIdx ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT /*nIdx*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT i ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return  OUString::createFromAscii (""); //STRIP001
+/*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT /*i*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return OUString::createFromAscii ("");
 /*N*/ }
 
-/*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT i ) const
+/*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString::createFromAscii ("");//STRIP001 /*N*/    return pImpl->GetPrefix( i );
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString::createFromAscii ("");
 /*N*/ }
 
 

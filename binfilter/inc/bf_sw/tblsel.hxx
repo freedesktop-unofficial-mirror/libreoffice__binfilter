@@ -204,11 +204,11 @@ struct _FndPara
     const SwSelBoxes& rBoxes;
 
     _FndPara( const SwSelBoxes& rBxs, _FndBox* pFB )
-        : rBoxes( rBxs ), pFndBox( pFB ) {}
+        : pFndBox( pFB ), rBoxes( rBxs ) {}
     _FndPara( const _FndPara& rPara, _FndBox* pFB )
-        : rBoxes(rPara.rBoxes), pFndLine(rPara.pFndLine), pFndBox(pFB) {}
+        : pFndBox(pFB), pFndLine(rPara.pFndLine), rBoxes(rPara.rBoxes) {}
     _FndPara( const _FndPara& rPara, _FndLine* pFL )
-        : rBoxes(rPara.rBoxes), pFndLine(pFL), pFndBox(rPara.pFndBox) {}
+        : pFndBox(rPara.pFndBox), pFndLine(pFL), rBoxes(rPara.rBoxes) {}
 };
 
 BOOL _FndBoxCopyCol( const SwTableBox*& rpBox, void* pPara );

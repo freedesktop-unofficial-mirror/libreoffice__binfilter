@@ -1642,6 +1642,7 @@ void SmAlignNode::Arrange(const OutputDevice &rDev, const SmFormat &rFormat)
         case TALIGNL:   eHorAlign = RHA_LEFT;   break;
         case TALIGNC:   eHorAlign = RHA_CENTER; break;
         case TALIGNR:   eHorAlign = RHA_RIGHT;  break;
+        default: break;
     }
     SetRectHorAlign(eHorAlign);
 
@@ -2425,6 +2426,7 @@ void SmGlyphSpecialNode::Arrange(const OutputDevice &rDev, const SmFormat &rForm
 /*N*/   {
 /*N*/       case TBLANK:    nNum += 4;  break;
 /*?*/       case TSBLANK:   nNum += 1;  break;
+            default: break;
 /*N*/   }
 /*N*/ }
 

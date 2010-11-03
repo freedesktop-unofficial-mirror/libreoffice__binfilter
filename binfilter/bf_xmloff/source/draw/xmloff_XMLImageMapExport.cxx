@@ -248,6 +248,8 @@ void XMLImageMapExport::ExportMapEntry(
             case XML_AREA_POLYGON:
                 ExportPolygon(rPropertySet);
                 break;
+        default:
+            break;
         }
 
         // write element

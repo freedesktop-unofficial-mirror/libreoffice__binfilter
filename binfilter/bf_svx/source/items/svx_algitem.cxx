@@ -212,7 +212,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   table::CellVertJustify eUno = table::CellVertJustify_STANDARD;
 /*N*/   switch ( (SvxCellVerJustify)GetValue() )
@@ -304,7 +304,7 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   table::CellOrientation eOrient;
 /*N*/   if(!(rVal >>= eOrient))

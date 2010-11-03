@@ -64,6 +64,7 @@ namespace binfilter {
 /*?*/       case SFX_MAPUNIT_10TH_MM:   nTmp *= 10;  break;
 /*?*/       case SFX_MAPUNIT_MM:                     break;
 /*?*/       case SFX_MAPUNIT_CM:        nTmp /= 10;  break;
+        default: break;
 /*N*/   }
 /*N*/
 /*N*/   nTmp *= 20;
@@ -102,6 +103,7 @@ namespace binfilter {
 /*?*/       case SFX_MAPUNIT_10TH_MM:   nRet /= 10;  break;
 /*?*/       case SFX_MAPUNIT_MM:                     break;
 /*?*/       case SFX_MAPUNIT_CM:        nRet *= 10;  break;
+        default: break;
 /*N*/   }
 /*N*/
 /*N*/   // ggf. aufrunden

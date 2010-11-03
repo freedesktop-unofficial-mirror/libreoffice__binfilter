@@ -201,11 +201,11 @@ public:
 /*N*/         case uno::TypeClass_FLOAT:
 /*N*/         case uno::TypeClass_DOUBLE:
 /*N*/             rAny >>= rOut;
-/*N*/             bRet = TRUE;
 /*N*/             break;
+              default:
+                  rOut = 0.0;
+                  break;
 /*N*/     }
-/*N*/     if (!bRet)
-/*N*/         rOut = 0.0;
 /*N*/     return bRet;
 /*N*/ }
 

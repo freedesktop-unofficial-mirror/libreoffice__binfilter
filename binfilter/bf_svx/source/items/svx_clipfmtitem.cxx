@@ -100,7 +100,7 @@ String SvxClipboardFmtItem_Impl::sEmptyStr;
 /*N*/   return nRet;
 /*N*/ }
 
-/*N*/ SfxPoolItem* SvxClipboardFmtItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxClipboardFmtItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxClipboardFmtItem( *this );
 /*N*/ }
