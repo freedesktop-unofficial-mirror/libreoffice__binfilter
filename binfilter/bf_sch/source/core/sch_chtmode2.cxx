@@ -1751,6 +1751,7 @@ enum ChartStyleV0
 /*?*/           case CHSTYLE_3D_AREA:
 /*?*/               eChartStyle = CHSTYLE_3D_PERCENTAREA;
 /*?*/               break;
+                default: break;
 /*?*/       }
 /*?*/
 /*?*/       bNoMore = TRUE;

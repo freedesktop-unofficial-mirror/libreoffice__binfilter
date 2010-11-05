@@ -227,6 +227,7 @@ XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
                     case XML_DRAWING:       aName = SvGlobalName(SO3_SDRAW_CLASSID); break;
                     case XML_PRESENTATION:  aName = SvGlobalName(SO3_SIMPRESS_CLASSID); break;
                     case XML_CHART:         aName = SvGlobalName(SO3_SCH_CLASSID); break;
+                    default: break;
                     }
 
                     break;

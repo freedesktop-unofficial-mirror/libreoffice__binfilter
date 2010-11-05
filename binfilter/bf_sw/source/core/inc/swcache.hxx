@@ -273,8 +273,8 @@ inline SwCacheObj *SwCache::Next( SwCacheObj *pCacheObj)
 
 inline SwCacheAccess::SwCacheAccess( SwCache &rC, const void *pOwn, BOOL bSeek ) :
     rCache( rC ),
-    pOwner( pOwn ),
-    pObj( 0 )
+    pObj( 0 ),
+    pOwner( pOwn )
 {
     if ( bSeek && pOwner && 0 != (pObj = rCache.Get( pOwner )) )
         pObj->Lock();
@@ -283,8 +283,8 @@ inline SwCacheAccess::SwCacheAccess( SwCache &rC, const void *pOwn, BOOL bSeek )
 inline SwCacheAccess::SwCacheAccess( SwCache &rC, const void *pOwn,
                               const USHORT nIndex ) :
     rCache( rC ),
-    pOwner( pOwn ),
-    pObj( 0 )
+    pObj( 0 ),
+    pOwner( pOwn )
 {
     if ( pOwner && 0 != (pObj = rCache.Get( pOwner, nIndex )) )
         pObj->Lock();

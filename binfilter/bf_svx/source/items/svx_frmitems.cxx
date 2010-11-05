@@ -1102,15 +1102,15 @@ using namespace ::com::sun::star;
 /*N*/ SfxPoolItem* SvxShadowItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
 /*N*/   sal_Int8 cLoc;
-/*N*/   sal_uInt16 nWidth;
+/*N*/   sal_uInt16 _nWidth;
 /*N*/   sal_Bool bTrans;
 /*N*/   Color aColor;
 /*N*/   Color aFillColor;
 /*N*/   sal_Int8 nStyle;
-/*N*/   rStrm >> cLoc >> nWidth
+/*N*/   rStrm >> cLoc >> _nWidth
 /*N*/         >> bTrans >> aColor >> aFillColor >> nStyle;
 /*N*/   aColor.SetTransparency(bTrans ? 0xff : 0);
-/*N*/   return new SvxShadowItem( Which(), &aColor, nWidth, (SvxShadowLocation)cLoc );
+/*N*/   return new SvxShadowItem( Which(), &aColor, _nWidth, (SvxShadowLocation)cLoc );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1813,15 +1813,15 @@ using namespace ::com::sun::star;
 /*N*/ SfxPoolItem* SvxBoxInfoItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
 /*N*/   sal_Int8 cFlags;
-/*N*/   sal_uInt16 nDefDist;
-/*N*/   rStrm >> cFlags >> nDefDist;
+/*N*/   sal_uInt16 _nDefDist;
+/*N*/   rStrm >> cFlags >> _nDefDist;
 /*N*/
 /*N*/   SvxBoxInfoItem* pAttr = new SvxBoxInfoItem( Which() );
 /*N*/
 /*N*/   pAttr->SetTable  ( ( cFlags & 0x01 ) != 0 );
 /*N*/   pAttr->SetDist   ( ( cFlags & 0x02 ) != 0 );
 /*N*/   pAttr->SetMinDist( ( cFlags & 0x04 ) != 0 );
-/*N*/   pAttr->SetDefDist( nDefDist );
+/*N*/   pAttr->SetDefDist( _nDefDist );
 /*N*/
 /*N*/   while( sal_True )
 /*N*/   {

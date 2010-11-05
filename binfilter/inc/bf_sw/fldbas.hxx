@@ -287,8 +287,8 @@ public:
     // nur in abgeleiteten Klassen
     virtual const String&   GetName() const;
     virtual SwFieldType*    Copy()    const = 0;
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual    BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual  BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMId*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}
+    virtual BOOL PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMId*/ ){DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
             USHORT          Which() const { return nWhich; }
 

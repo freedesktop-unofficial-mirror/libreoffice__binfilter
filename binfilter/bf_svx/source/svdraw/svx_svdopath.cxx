@@ -179,12 +179,14 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           case OBJ_FREELINE: eKind=OBJ_PLIN; break;
 /*N*/           case OBJ_PATHFILL: eKind=OBJ_POLY; break;
 /*N*/           case OBJ_FREEFILL: eKind=OBJ_POLY; break;
+                default: break;
 /*N*/       }
 /*N*/   } else {
 /*N*/       switch (eKind) {
 /*N*/           case OBJ_LINE: eKind=OBJ_PATHLINE; break;
 /*N*/           case OBJ_PLIN: eKind=OBJ_PATHLINE; break;
 /*N*/           case OBJ_POLY: eKind=OBJ_PATHFILL; break;
+                default: break;
 /*N*/       }
 /*N*/   }
 /*N*/

@@ -188,7 +188,7 @@ XubString aNameOrIndexEmptyString;
     Argument pPool2 can be null.
     If returned string equals NameOrIndex->GetName(), the name was already unique.
 */
-/*N*/ String NameOrIndex::CheckNamedItem( const NameOrIndex* pCheckItem, const sal_uInt16 nWhich, const SfxItemPool* pPool1, const SfxItemPool* pPool2, SvxCompareValueFunc pCompareValueFunc, USHORT nPrefixResId, XPropertyList* pDefaults )
+/*N*/ String NameOrIndex::CheckNamedItem( const NameOrIndex* pCheckItem, const sal_uInt16 nWhich, const SfxItemPool* pPool1, const SfxItemPool* /*pPool2*/, SvxCompareValueFunc pCompareValueFunc, USHORT nPrefixResId, XPropertyList* pDefaults )
 /*N*/ {
 /*N*/   sal_Bool bForceNew = sal_False;
 /*N*/
@@ -362,7 +362,7 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ SfxPoolItem* XColorItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XColorItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XColorItem(*this);
 /*N*/ }
@@ -385,7 +385,7 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ SfxPoolItem* XColorItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XColorItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XColorItem(Which(), rIn);
 /*N*/ }
@@ -423,13 +423,13 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/ }
 
-/*N*/ bool XColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -488,7 +488,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStyleItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineStyleItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineStyleItem( *this );
 /*N*/ }
@@ -503,7 +503,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStyleItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineStyleItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineStyleItem(rIn);
 /*N*/ }
@@ -511,14 +511,14 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::LineStyle eLS = (::com::sun::star::drawing::LineStyle)GetValue();
 /*N*/   rVal <<= eLS;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::LineStyle eLS;
 /*N*/   if(!(rVal >>= eLS ))
@@ -654,7 +654,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XLineDashItem::XLineDashItem(SfxItemPool* pPool, const XDash& rTheDash)
+/*N*/ XLineDashItem::XLineDashItem(SfxItemPool* /*pPool*/, const XDash& rTheDash)
 /*N*/ :     NameOrIndex( XATTR_LINEDASH, -1 ),
 /*N*/   aDash(rTheDash)
 /*N*/ {
@@ -670,7 +670,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineDashItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineDashItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineDashItem(*this);
 /*N*/ }
@@ -701,7 +701,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineDashItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineDashItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineDashItem(rIn);
 /*N*/ }
@@ -836,7 +836,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineDashItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   switch ( nMemberId )
@@ -1008,7 +1008,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineWidthItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineWidthItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineWidthItem(*this);
 /*N*/ }
@@ -1023,7 +1023,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineWidthItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineWidthItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineWidthItem(rIn);
 /*N*/ }
@@ -1031,13 +1031,13 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -1091,7 +1091,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineColorItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineColorItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineColorItem(*this);
 /*N*/ }
@@ -1106,7 +1106,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineColorItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineColorItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineColorItem(rIn);
 /*N*/ }
@@ -1114,13 +1114,13 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   if(!(rVal >>= nValue))
@@ -1214,7 +1214,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XLineStartItem::XLineStartItem(SfxItemPool* pPool, const XPolygon& rXPolygon)
+/*N*/ XLineStartItem::XLineStartItem(SfxItemPool* /*pPool*/, const XPolygon& rXPolygon)
 /*N*/ :     NameOrIndex( XATTR_LINESTART, -1 ),
 /*N*/   aXPolygon(rXPolygon)
 /*N*/ {
@@ -1230,7 +1230,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineStartItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineStartItem(*this);
 /*N*/ }
@@ -1261,7 +1261,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineStartItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineStartItem(rIn);
 /*N*/ }
@@ -1319,7 +1319,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineStartItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -1339,7 +1339,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineStartItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -1510,7 +1510,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/           if( pPool1 )
 /*N*/           {
 /*N*/               nCount = pPool1->GetItemCount( XATTR_LINESTART );
-/*N*/               for( sal_uInt16 nSurrogate = 0; nSurrogate < nCount; nSurrogate++ )
+/*N*/               for( nSurrogate = 0; nSurrogate < nCount; nSurrogate++ )
 /*N*/               {
 /*N*/                   const XLineStartItem* pItem = (const XLineStartItem*)pPool1->GetItem( XATTR_LINESTART, nSurrogate );
 /*N*/
@@ -1665,7 +1665,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XLineEndItem::XLineEndItem(SfxItemPool* pPool, const XPolygon& rXPolygon)
+/*N*/ XLineEndItem::XLineEndItem(SfxItemPool* /*pPool*/, const XPolygon& rXPolygon)
 /*N*/ :     NameOrIndex( XATTR_LINEEND, -1 ),
 /*N*/   aXPolygon(rXPolygon)
 /*N*/ {
@@ -1681,7 +1681,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineEndItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineEndItem(*this);
 /*N*/ }
@@ -1712,7 +1712,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineEndItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineEndItem(rIn);
 /*N*/ }
@@ -1912,7 +1912,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/           if( pPool1 )
 /*N*/           {
 /*N*/               nCount = pPool1->GetItemCount( XATTR_LINESTART );
-/*N*/               for( sal_uInt16 nSurrogate = 0; nSurrogate < nCount; nSurrogate++ )
+/*N*/               for( nSurrogate = 0; nSurrogate < nCount; nSurrogate++ )
 /*N*/               {
 /*N*/                   const XLineStartItem* pItem = (const XLineStartItem*)pPool1->GetItem( XATTR_LINESTART, nSurrogate );
 /*N*/
@@ -1991,7 +1991,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/ bool XLineEndItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -2011,7 +2011,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineEndItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -2080,7 +2080,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartWidthItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineStartWidthItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineStartWidthItem(*this);
 /*N*/ }
@@ -2096,7 +2096,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartWidthItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineStartWidthItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineStartWidthItem(rIn);
 /*N*/ }
@@ -2104,13 +2104,13 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineStartWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStartWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineStartWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStartWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -2165,7 +2165,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndWidthItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineEndWidthItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineEndWidthItem(*this);
 /*N*/ }
@@ -2180,7 +2180,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndWidthItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineEndWidthItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineEndWidthItem(rIn);
 /*N*/ }
@@ -2188,13 +2188,13 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineEndWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineEndWidthItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineEndWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineEndWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -2248,7 +2248,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartCenterItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineStartCenterItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineStartCenterItem(*this);
 /*N*/ }
@@ -2264,7 +2264,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineStartCenterItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineStartCenterItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineStartCenterItem(rIn);
 /*N*/ }
@@ -2272,14 +2272,14 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineStartCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineStartCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   sal_Bool bValue = GetValue();
 /*N*/   rVal.setValue( &bValue, ::getCppuBooleanType()  );
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineStartCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineStartCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   if( !rVal.hasValue() || rVal.getValueType() != ::getCppuBooleanType() )
 /*N*/       return false;
@@ -2334,7 +2334,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndCenterItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineEndCenterItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineEndCenterItem(*this);
 /*N*/ }
@@ -2350,7 +2350,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineEndCenterItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineEndCenterItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineEndCenterItem(rIn);
 /*N*/ }
@@ -2358,14 +2358,14 @@ XubString aNameOrIndexEmptyString;
 //------------------------------------------------------------------------
 
 
-/*N*/ bool XLineEndCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineEndCenterItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   sal_Bool bValue = GetValue();
 /*N*/   rVal.setValue( &bValue, ::getCppuBooleanType()  );
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool XLineEndCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineEndCenterItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   if( !rVal.hasValue() || rVal.getValueType() != ::getCppuBooleanType() )
 /*N*/       return false;
@@ -2424,7 +2424,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillStyleItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillStyleItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillStyleItem( *this );
 /*N*/ }
@@ -2439,7 +2439,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillStyleItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFillStyleItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillStyleItem(rIn);
 /*N*/ }
@@ -2455,7 +2455,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ bool XFillStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillStyleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::FillStyle eFS = (::com::sun::star::drawing::FillStyle)GetValue();
 /*N*/
@@ -2465,7 +2465,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ bool XFillStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillStyleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/     ::com::sun::star::drawing::FillStyle eFS;
 /*N*/   if(!(rVal >>= eFS))
@@ -2528,7 +2528,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillColorItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillColorItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillColorItem(*this);
 /*N*/ }
@@ -2543,7 +2543,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillColorItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFillColorItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillColorItem(rIn);
 /*N*/ }
@@ -2553,7 +2553,7 @@ XubString aNameOrIndexEmptyString;
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool XFillColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillColorItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue().GetRGBColor();
 /*N*/
@@ -2562,7 +2562,7 @@ XubString aNameOrIndexEmptyString;
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool XFillColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   if(!(rVal >>= nValue ))
@@ -2743,7 +2743,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XFillGradientItem::XFillGradientItem(SfxItemPool* pPool, const XGradient& rTheGradient)
+/*N*/ XFillGradientItem::XFillGradientItem(SfxItemPool* /*pPool*/, const XGradient& rTheGradient)
 /*N*/ :     NameOrIndex( XATTR_FILLGRADIENT, -1 ),
 /*N*/   aGradient(rTheGradient)
 /*N*/ {
@@ -2759,7 +2759,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillGradientItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillGradientItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillGradientItem(*this);
 /*N*/ }
@@ -2864,7 +2864,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ USHORT XFillGradientItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT XFillGradientItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   // !!! this version number also represents the version number of superclasses
 /*N*/   // !!! (e.g. XFillFloatTransparenceItem); if you make any changes here,
@@ -2885,20 +2885,20 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_FILLGRADIENT:
 /*N*/       {
 /*N*/           const XGradient& aXGradient = GetValue();
-/*N*/           ::com::sun::star::awt::Gradient aGradient;
+/*N*/           ::com::sun::star::awt::Gradient _aGradient;
 /*N*/
-/*N*/           aGradient.Style = (::com::sun::star::awt::GradientStyle) aXGradient.GetGradientStyle();
-/*N*/           aGradient.StartColor = (INT32)aXGradient.GetStartColor().GetColor();
-/*N*/           aGradient.EndColor = (INT32)aXGradient.GetEndColor().GetColor();
-/*N*/           aGradient.Angle = (short)aXGradient.GetAngle();
-/*N*/           aGradient.Border = aXGradient.GetBorder();
-/*N*/           aGradient.XOffset = aXGradient.GetXOffset();
-/*N*/           aGradient.YOffset = aXGradient.GetYOffset();
-/*N*/           aGradient.StartIntensity = aXGradient.GetStartIntens();
-/*N*/           aGradient.EndIntensity = aXGradient.GetEndIntens();
-/*N*/           aGradient.StepCount = aXGradient.GetSteps();
+/*N*/           _aGradient.Style = (::com::sun::star::awt::GradientStyle) aXGradient.GetGradientStyle();
+/*N*/           _aGradient.StartColor = (INT32)aXGradient.GetStartColor().GetColor();
+/*N*/           _aGradient.EndColor = (INT32)aXGradient.GetEndColor().GetColor();
+/*N*/           _aGradient.Angle = (short)aXGradient.GetAngle();
+/*N*/           _aGradient.Border = aXGradient.GetBorder();
+/*N*/           _aGradient.XOffset = aXGradient.GetXOffset();
+/*N*/           _aGradient.YOffset = aXGradient.GetYOffset();
+/*N*/           _aGradient.StartIntensity = aXGradient.GetStartIntens();
+/*N*/           _aGradient.EndIntensity = aXGradient.GetEndIntens();
+/*N*/           _aGradient.StepCount = aXGradient.GetSteps();
 /*N*/
-/*N*/           rVal <<= aGradient;
+/*N*/           rVal <<= _aGradient;
 /*N*/           break;
 /*N*/       }
 /*N*/
@@ -2946,22 +2946,22 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_FILLGRADIENT:
 /*N*/       {
-/*N*/           ::com::sun::star::awt::Gradient aGradient;
-/*N*/           if(!(rVal >>= aGradient))
+/*N*/           ::com::sun::star::awt::Gradient _aGradient;
+/*N*/           if(!(rVal >>= _aGradient))
 /*N*/               return sal_False;
 /*N*/
 /*N*/           XGradient aXGradient;
 /*N*/
-/*N*/           aXGradient.SetGradientStyle( (XGradientStyle) aGradient.Style );
-/*N*/           aXGradient.SetStartColor( aGradient.StartColor );
-/*N*/           aXGradient.SetEndColor( aGradient.EndColor );
-/*N*/           aXGradient.SetAngle( aGradient.Angle );
-/*N*/           aXGradient.SetBorder( aGradient.Border );
-/*N*/           aXGradient.SetXOffset( aGradient.XOffset );
-/*N*/           aXGradient.SetYOffset( aGradient.YOffset );
-/*N*/           aXGradient.SetStartIntens( aGradient.StartIntensity );
-/*N*/           aXGradient.SetEndIntens( aGradient.EndIntensity );
-/*N*/           aXGradient.SetSteps( aGradient.StepCount );
+/*N*/           aXGradient.SetGradientStyle( (XGradientStyle) _aGradient.Style );
+/*N*/           aXGradient.SetStartColor( _aGradient.StartColor );
+/*N*/           aXGradient.SetEndColor( _aGradient.EndColor );
+/*N*/           aXGradient.SetAngle( _aGradient.Angle );
+/*N*/           aXGradient.SetBorder( _aGradient.Border );
+/*N*/           aXGradient.SetXOffset( _aGradient.XOffset );
+/*N*/           aXGradient.SetYOffset( _aGradient.YOffset );
+/*N*/           aXGradient.SetStartIntens( _aGradient.StartIntensity );
+/*N*/           aXGradient.SetEndIntens( _aGradient.EndIntensity );
+/*N*/           aXGradient.SetSteps( _aGradient.StepCount );
 /*N*/
 /*N*/           SetValue( aXGradient );
 /*N*/           break;
@@ -3097,7 +3097,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XFillFloatTransparenceItem::XFillFloatTransparenceItem(SfxItemPool* pPool, const XGradient& rTheGradient, BOOL bEnable )
+/*N*/ XFillFloatTransparenceItem::XFillFloatTransparenceItem(SfxItemPool* /*pPool*/, const XGradient& rTheGradient, BOOL bEnable )
 /*N*/ :     XFillGradientItem   ( -1, rTheGradient ),
 /*N*/   bEnabled            ( bEnable )
 /*N*/ {
@@ -3115,7 +3115,7 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* XFillFloatTransparenceItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillFloatTransparenceItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillFloatTransparenceItem( *this );
 /*N*/ }
@@ -3311,7 +3311,7 @@ XubString aNameOrIndexEmptyString;
 
 //*************************************************************************
 
-/*N*/ XFillHatchItem::XFillHatchItem(SfxItemPool* pPool, const XHatch& rTheHatch)
+/*N*/ XFillHatchItem::XFillHatchItem(SfxItemPool* /*pPool*/, const XHatch& rTheHatch)
 /*N*/ :     NameOrIndex( XATTR_FILLHATCH, -1 ),
 /*N*/   aHatch(rTheHatch)
 /*N*/ {
@@ -3327,7 +3327,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillHatchItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillHatchItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillHatchItem(*this);
 /*N*/ }
@@ -3358,7 +3358,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillHatchItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFillHatchItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillHatchItem(rIn);
 /*N*/ }
@@ -3423,7 +3423,7 @@ XubString aNameOrIndexEmptyString;
 // -----------------------------------------------------------------------
 /*N*/ bool XFillHatchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   switch ( nMemberId )
@@ -3466,7 +3466,7 @@ XubString aNameOrIndexEmptyString;
 // -----------------------------------------------------------------------
 /*N*/ bool XFillHatchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   switch ( nMemberId )
@@ -3601,7 +3601,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStyleItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextStyleItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextStyleItem( *this );
 /*N*/ }
@@ -3616,7 +3616,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStyleItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextStyleItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextStyleItem(rIn);
 /*N*/ }
@@ -3639,7 +3639,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextStyleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextStyleItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
@@ -3652,7 +3652,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -3706,7 +3706,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextAdjustItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextAdjustItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextAdjustItem( *this );
 /*N*/ }
@@ -3721,7 +3721,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextAdjustItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextAdjustItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextAdjustItem(rIn);
 /*N*/ }
@@ -3744,7 +3744,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextAdjustItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
@@ -3757,7 +3757,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -3811,7 +3811,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextDistanceItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextDistanceItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextDistanceItem(*this);
 /*N*/ }
@@ -3826,7 +3826,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextDistanceItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextDistanceItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextDistanceItem(rIn);
 /*N*/ }
@@ -3876,7 +3876,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStartItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextStartItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextStartItem(*this);
 /*N*/ }
@@ -3891,7 +3891,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStartItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextStartItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextStartItem(rIn);
 /*N*/ }
@@ -3938,7 +3938,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextMirrorItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextMirrorItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextMirrorItem(*this);
 /*N*/ }
@@ -3953,7 +3953,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextMirrorItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextMirrorItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextMirrorItem(rIn);
 /*N*/ }
@@ -4001,7 +4001,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextOutlineItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextOutlineItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextOutlineItem(*this);
 /*N*/ }
@@ -4016,7 +4016,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextOutlineItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextOutlineItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextOutlineItem(rIn);
 /*N*/ }
@@ -4066,7 +4066,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextShadowItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowItem( *this );
 /*N*/ }
@@ -4081,7 +4081,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextShadowItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowItem(rIn);
 /*N*/ }
@@ -4105,7 +4105,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextShadowItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextShadowItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
@@ -4118,7 +4118,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -4173,7 +4173,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowColorItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextShadowColorItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowColorItem(*this);
 /*N*/ }
@@ -4188,7 +4188,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowColorItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextShadowColorItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowColorItem(rIn);
 /*N*/ }
@@ -4238,7 +4238,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowXValItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextShadowXValItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowXValItem(*this);
 /*N*/ }
@@ -4253,7 +4253,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowXValItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextShadowXValItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowXValItem(rIn);
 /*N*/ }
@@ -4303,7 +4303,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowYValItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextShadowYValItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowYValItem(*this);
 /*N*/ }
@@ -4318,7 +4318,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowYValItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextShadowYValItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowYValItem(rIn);
 /*N*/ }
@@ -4368,7 +4368,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStdFormItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextStdFormItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextStdFormItem( *this );
 /*N*/ }
@@ -4383,7 +4383,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextStdFormItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextStdFormItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextStdFormItem(rIn);
 /*N*/ }
@@ -4407,7 +4407,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextStdFormItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFormTextStdFormItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= (sal_Int32)GetValue();
 /*N*/   return true;
@@ -4420,7 +4420,7 @@ XubString aNameOrIndexEmptyString;
 \*************************************************************************/
 
 // #FontWork#
-/*N*/ bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_Int32 nValue;
 /*N*/   rVal >>= nValue;
@@ -4471,7 +4471,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextHideFormItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextHideFormItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextHideFormItem(*this);
 /*N*/ }
@@ -4486,7 +4486,7 @@ XubString aNameOrIndexEmptyString;
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextHideFormItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextHideFormItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextHideFormItem(rIn);
 /*N*/ }
@@ -4550,12 +4550,12 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ SfxPoolItem* XLineAttrSetItem::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* XLineAttrSetItem::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
-/*N*/   SfxItemSet *pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet *_pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                   XATTR_LINE_FIRST, XATTR_LINE_LAST);
-/*N*/   pSet->Load( rStream );
-/*N*/   return new XLineAttrSetItem( pSet );
+/*N*/   _pSet->Load( rStream );
+/*N*/   return new XLineAttrSetItem( _pSet );
 /*N*/ }
 
 /*************************************************************************
@@ -4623,12 +4623,12 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ SfxPoolItem* XFillAttrSetItem::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* XFillAttrSetItem::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
-/*N*/   SfxItemSet *pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet* _pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                   XATTR_FILL_FIRST, XATTR_FILL_LAST);
-/*N*/   pSet->Load( rStream );
-/*N*/   return new XFillAttrSetItem( pSet );
+/*N*/   _pSet->Load( rStream );
+/*N*/   return new XFillAttrSetItem( _pSet );
 /*N*/ }
 
 /*************************************************************************
@@ -4696,12 +4696,12 @@ XubString aNameOrIndexEmptyString;
 |*
 \************************************************************************/
 
-/*N*/ SfxPoolItem* XTextAttrSetItem::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* XTextAttrSetItem::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
-/*N*/   SfxItemSet *pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet* _pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                   XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
-/*N*/   pSet->Load( rStream );
-/*N*/   return new XTextAttrSetItem( pSet );
+/*N*/   _pSet->Load( rStream );
+/*N*/   return new XTextAttrSetItem( _pSet );
 /*N*/ }
 
 /*************************************************************************

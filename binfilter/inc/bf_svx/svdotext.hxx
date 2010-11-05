@@ -385,7 +385,7 @@ public:
         The region to paint the outliner content into. This is useful
         to e.g. determine the top, left position of text in shapes.
      */
-    void UpdateOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 void UpdateOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const;
+    void UpdateOutlinerFormatting( SdrOutliner& /*rOutl*/, Rectangle& /*rPaintRect*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave();

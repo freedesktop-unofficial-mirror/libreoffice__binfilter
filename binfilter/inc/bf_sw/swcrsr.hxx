@@ -159,8 +159,8 @@ public:
     bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( FALSE ); }
     bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( TRUE ); }
     bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
-    bool GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( TRUE, nCnt ); }
-    bool GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( FALSE, nCnt ); }
+    bool GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
+    bool GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
     bool GotoTblBox( const String& rName );
 
     bool MovePara( SwWhichPara, SwPosPara );

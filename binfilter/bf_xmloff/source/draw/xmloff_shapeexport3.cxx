@@ -115,7 +115,7 @@ void XMLShapeExport::ImpExport3DSceneShape( const uno::Reference< drawing::XShap
 
 void XMLShapeExport::ImpExport3DShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType eShapeType, sal_Int32 /* nFeatures*/ /* = SEF_DEFAULT */, awt::Point* /*pRefPoint*/ /* = NULL */)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -318,6 +318,8 @@ void XMLShapeExport::ImpExport3DShape(
                 }
                 break;
             }
+            default:
+                break;
         }
     }
 }

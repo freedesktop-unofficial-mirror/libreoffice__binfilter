@@ -528,7 +528,7 @@ public:
     BOOL IsFtnAllowed() const;
 
     virtual void  Modify( SfxPoolItem*, SfxPoolItem* );
-    virtual void  Format( const SwBorderAttrs *pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  Format( const SwBorderAttrs *pAttrs = 0 );
+    virtual void  Format( const SwBorderAttrs* pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP"); (void)pAttrs;}
 
     virtual void  CheckDirection( BOOL bVert );
 

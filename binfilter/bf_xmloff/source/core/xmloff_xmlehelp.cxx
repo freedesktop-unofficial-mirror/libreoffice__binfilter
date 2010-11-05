@@ -153,6 +153,7 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
             break;
         }
         break;
+    default: break;
     }
 
 
@@ -175,7 +176,7 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
         }
         else
         {
-            BigInt nBigFac( nFac );
+            nBigFac = nFac;
             BigInt nBig10( 10 );
             rOut.append( (sal_Int32)(nBigVal / nBigFac) );
             if( !(nBigVal % nBigFac).IsZero() )
@@ -421,6 +422,7 @@ double SvXMLExportHelper::GetConversionFactor(::rtl::OUStringBuffer& rUnit,
                 }
                 break;
             }
+            default: break;
         }
 
         if(eUnit != XML_TOKEN_INVALID)

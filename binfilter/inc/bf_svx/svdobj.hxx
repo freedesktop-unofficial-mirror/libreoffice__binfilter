@@ -1076,7 +1076,7 @@ public:
     // setting the UNO representation is allowed for the UNO representation itself only!
     void setUnoShape(
         const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >& _rxUnoShape,
-        GrantXShapeAccess aGrant
+        GrantXShapeAccess /*aGrant*/
     )
     {
         mxUnoShape = _rxUnoShape;

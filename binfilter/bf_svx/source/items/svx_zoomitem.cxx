@@ -68,7 +68,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxZoomItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxZoomItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxZoomItem( *this );
 /*N*/ }

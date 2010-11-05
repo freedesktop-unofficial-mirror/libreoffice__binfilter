@@ -67,6 +67,8 @@ using namespace ::com::sun::star;
 /*?*/       case NF_DATETIME_SYSTEM_SHORT_HHMM:
 /*?*/           nLng = LANGUAGE_SYSTEM;
 /*?*/           break;
+            default:
+                break;
 /*N*/       }
 /*N*/   return nLng;
 /*N*/ }

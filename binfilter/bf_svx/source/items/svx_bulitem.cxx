@@ -218,14 +218,14 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxBulletItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxBulletItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxBulletItem( *this );
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxBulletItem::Create( SvStream& rStrm, USHORT nVersion ) const
+/*N*/ SfxPoolItem* SvxBulletItem::Create( SvStream& rStrm, USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   return new SvxBulletItem( rStrm, Which() );
 /*N*/ }
@@ -254,7 +254,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ USHORT SvxBulletItem::GetVersion( USHORT nVersion ) const
+/*N*/ USHORT SvxBulletItem::GetVersion( USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   return BULITEM_VERSION;
 /*N*/ }
@@ -303,7 +303,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxBulletItem::Store( SvStream& rStrm, USHORT nItemVersion ) const
+/*N*/ SvStream& SvxBulletItem::Store( SvStream& rStrm, USHORT /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   // Korrektur bei leerer Bitmap
 /*N*/   if( ( nStyle == BS_BMP ) &&
@@ -324,7 +324,7 @@ namespace binfilter {
 /*N*/       StoreFont( rStrm, aFont );
 /*N*/   else
 /*N*/   {
-/*?*/       ULONG nStart = rStrm.Tell();
+/*?*/       ULONG _nStart = rStrm.Tell();
 /*?*/
 /*?*/       // Kleine Vorab-Schaetzung der Groesse...
 /*?*/       USHORT nFac = ( rStrm.GetCompressMode() != COMPRESSMODE_NONE ) ? 3 : 1;
@@ -344,8 +344,8 @@ namespace binfilter {
 /*?*/       // Bitmap > 64K verwendet wird, hat das SvxNumBulletItem beim Laden ein Problem,
 /*?*/       // stuerzt aber nicht ab.
 /*?*/
-/*?*/       if ( (nEnd-nStart) > 0xFF00 )
-/*?*/           rStrm.Seek( nStart );
+/*?*/       if ( (nEnd-_nStart) > 0xFF00 )
+/*?*/           rStrm.Seek( _nStart );
 /*N*/   }
 /*N*/   rStrm << nWidth;
 /*N*/   rStrm << nStart;
@@ -361,23 +361,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return rStrm;
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
 
 }
 

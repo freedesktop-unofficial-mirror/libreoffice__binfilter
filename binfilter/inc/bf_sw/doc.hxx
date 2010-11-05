@@ -1279,9 +1279,9 @@ public:
         // erzeuge aus der Tabelle wieder normalen Text
         // einfuegen von Spalten/Zeilen in der Tabelle
     sal_Bool InsertCol( const SwCursor& /*rCursor*/,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+                        sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
     sal_Bool InsertRow( const SwCursor& /*rCursor*/,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
         // loeschen von Spalten/Zeilen in der Tabelle
     sal_Bool DeleteRowCol( const SwSelBoxes& /*rBoxes*/ ){DBG_BF_ASSERT(0, "STRIP"); return NULL;}
     sal_Bool DeleteRow( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
@@ -1296,7 +1296,7 @@ public:
         // aus der FEShell wg.. Undo und bModified
 
     // Direktzugriff fuer Uno
-    void SetTabCols(SwTable& rTab, const SwTabCols& /*rNew*/, SwTabCols& /*rOld*/,
+    void SetTabCols(SwTable& /*rTab*/, const SwTabCols& /*rNew*/, SwTabCols& /*rOld*/,
                                     const SwTableBox* /*pStart*/, sal_Bool /*bCurRowOnly*/){DBG_BF_ASSERT(0, "STRIP");}
 
     void SetHeadlineRepeat( SwTable& /*rTable*/, sal_Bool /*bSet*/ ){DBG_BF_ASSERT(0, "STRIP");}

@@ -86,7 +86,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartStyleItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* SvxChartStyleItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxChartStyleItem(*this);
 /*N*/ }
@@ -115,14 +115,14 @@ using namespace ::com::sun::star;
 
 /*N*/ // -----------------------------------------------------------------------
 /*N*/
-/*N*/ SfxPoolItem* SvxChartDataDescrItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* SvxChartDataDescrItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxChartDataDescrItem(*this);
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartDataDescrItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* SvxChartDataDescrItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new SvxChartDataDescrItem(rIn, Which());
 /*N*/ }
@@ -148,14 +148,14 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartLegendPosItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* SvxChartLegendPosItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxChartLegendPosItem(*this);
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartLegendPosItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* SvxChartLegendPosItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new SvxChartLegendPosItem(rIn, Which());
 /*N*/ }
@@ -181,14 +181,14 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartTextOrderItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* SvxChartTextOrderItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxChartTextOrderItem(*this);
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartTextOrderItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* SvxChartTextOrderItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new SvxChartTextOrderItem(rIn, Which());
 /*N*/ }
@@ -214,14 +214,14 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartTextOrientItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* SvxChartTextOrientItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxChartTextOrientItem(*this);
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxChartTextOrientItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* SvxChartTextOrientItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new SvxChartTextOrientItem(rIn, Which());
 /*N*/ }
@@ -264,112 +264,40 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxDoubleItem::Clone(SfxItemPool* Pool) const
+/*N*/ SfxPoolItem* SvxDoubleItem::Clone(SfxItemPool* /*Pool*/) const
 /*N*/ {
 /*N*/   return new SvxDoubleItem(*this);
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxDoubleItem::Create(SvStream& rIn, USHORT nVersion) const
+/*N*/ SfxPoolItem* SvxDoubleItem::Create(SvStream& rIn, USHORT /*nVersion*/) const
 /*N*/ {
-/*N*/   double fVal;
-/*N*/   rIn >> fVal;
-/*N*/   return new SvxDoubleItem(fVal, Which());
+/*N*/   double _fVal;
+/*N*/   rIn >> _fVal;
+/*N*/   return new SvxDoubleItem(_fVal, Which());
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxDoubleItem::Store(SvStream& rOut, USHORT nItemVersion) const
+/*N*/ SvStream& SvxDoubleItem::Store(SvStream& rOut, USHORT /*nItemVersion*/) const
 /*N*/ {
 /*N*/   rOut << fVal;
 /*N*/   return rOut;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-
-
-
-// -----------------------------------------------------------------------
-/*N*/ bool SvxDoubleItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxDoubleItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= fVal;
 /*N*/   return sal_True;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ bool SvxDoubleItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxDoubleItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   return rVal >>= fVal;
 /*N*/ }
-
-
-
-/*************************************************************************
-|*
-|*  SvxChartKindErrorItem
-|*
-*************************************************************************/
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-/*************************************************************************
-|*
-|*  SvxChartIndicateItem
-|*
-*************************************************************************/
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-/*************************************************************************
-|*
-|*  SvxChartRegressItem
-|*
-*************************************************************************/
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 
 }
 

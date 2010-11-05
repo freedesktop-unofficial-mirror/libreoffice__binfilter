@@ -83,7 +83,7 @@ using namespace ::com::sun::star;
     Beschreibung: Clonen
  --------------------------------------------------------------------*/
 
-/*N*/ SfxPoolItem* SvxPageItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxPageItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxPageItem( *this );
 /*N*/ }
@@ -120,7 +120,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 /*N*/ bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -188,7 +188,8 @@ using namespace ::com::sun::star;
 /*N*/               case style::PageStyleLayout_RIGHT   : eUse |= SVX_PAGE_RIGHT; break;
 /*?*/               case style::PageStyleLayout_ALL     : eUse |= SVX_PAGE_ALL  ; break;
 /*N*/               case style::PageStyleLayout_MIRRORED: eUse |= SVX_PAGE_MIRROR;break;
-/*N*/           }
+                    default: break;
+                }
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -221,7 +222,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& SvxPageItem::Store( SvStream &rStrm, USHORT nItemVersion ) const
+/*N*/ SvStream& SvxPageItem::Store( SvStream &rStrm, USHORT /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   // UNICODE: rStrm << aDescName;
 /*N*/   rStrm.WriteByteString(aDescName);
@@ -247,7 +248,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ SfxPoolItem* SvxSetItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxSetItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxSetItem(*this);
 /*N*/ }
@@ -255,14 +256,14 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 
-/*N*/ SfxPoolItem* SvxSetItem::Create(SvStream &rStrm, USHORT nVersion) const
+/*N*/ SfxPoolItem* SvxSetItem::Create(SvStream &rStrm, USHORT /*nVersion*/) const
 /*N*/ {
-/*N*/   SfxItemSet* pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet* _pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                      GetItemSet().GetRanges() );
 /*N*/
-/*N*/   pSet->Load( rStrm );
+/*N*/   _pSet->Load( rStrm );
 /*N*/
-/*N*/   return new SvxSetItem( Which(), *pSet );
+/*N*/   return new SvxSetItem( Which(), *_pSet );
 /*N*/ }
 
 /*N*/ SvStream& SvxSetItem::Store(SvStream &rStrm, USHORT nItemVersion) const

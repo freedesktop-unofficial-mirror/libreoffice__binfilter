@@ -405,13 +405,13 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       sCharStyleName      != rFormat.sCharStyleName
 /*N*/       )
 /*N*/       return FALSE;
-/*N*/   if(pGraphicBrush && !rFormat.pGraphicBrush ||
-/*N*/           !pGraphicBrush && rFormat.pGraphicBrush ||
-/*N*/               pGraphicBrush && *pGraphicBrush != *rFormat.pGraphicBrush )
+/*N*/   if((pGraphicBrush && !rFormat.pGraphicBrush) ||
+/*N*/           (!pGraphicBrush && rFormat.pGraphicBrush) ||
+/*N*/               (pGraphicBrush && *pGraphicBrush != *rFormat.pGraphicBrush ))
 /*N*/       return FALSE;
 /*N*/   if(pBulletFont && !rFormat.pBulletFont ||
-/*N*/           !pBulletFont && rFormat.pBulletFont ||
-/*N*/               pBulletFont && *pBulletFont != *rFormat.pBulletFont)
+/*N*/           (!pBulletFont && rFormat.pBulletFont) ||
+/*N*/           (pBulletFont && (*pBulletFont != *rFormat.pBulletFont)))
 /*N*/       return FALSE;
 /*N*/   return TRUE;
 /*N*/ }
@@ -426,7 +426,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       delete pGraphicBrush;
 /*N*/       pGraphicBrush = 0;
 /*N*/   }
-/*N*/   else if(!pGraphicBrush || pGraphicBrush && !(*pBrushItem == *pGraphicBrush))
+/*N*/   else if(!pGraphicBrush || (pGraphicBrush && !(*pBrushItem == *pGraphicBrush)))
 /*N*/   {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         delete pGraphicBrush;
 /*N*/    }
@@ -569,9 +569,9 @@ static SvxNumberFormat* pStdNumFmt = 0;
 static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/ SvxNumRule::SvxNumRule(ULONG nFeatures, USHORT nLevels, BOOL bCont, SvxNumRuleType eType) :
 /*N*/   nLevelCount(nLevels),
-/*N*/   nFeatureFlags(nFeatures),
 /*N*/   bContinuousNumbering(bCont),
-/*N*/   eNumberingType(eType)
+/*N*/   eNumberingType(eType),
+/*N*/   nFeatureFlags(nFeatures)
 /*N*/ {
 /*N*/   ++nRefCount;
 /*N*/     LanguageType eLang = Application::GetSettings().GetLanguage();
@@ -726,9 +726,9 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   for(USHORT i = 0; i < nLevelCount; i++)
 /*N*/   {
 /*N*/       if( aFmtsSet[i] != rCopy.aFmtsSet[i] ||
-/*N*/           !aFmts[i] &&  rCopy.aFmts[i] ||
-/*N*/           aFmts[i] &&  !rCopy.aFmts[i] ||
-/*N*/           aFmts[i] && *aFmts[i] !=  *rCopy.aFmts[i] )
+/*N*/           (!aFmts[i] &&  rCopy.aFmts[i]) ||
+/*N*/           (aFmts[i] &&  !rCopy.aFmts[i]) ||
+/*N*/           (aFmts[i] && *aFmts[i] !=  *rCopy.aFmts[i] ))
 /*N*/           return FALSE;
 /*N*/   }
 /*N*/   return TRUE;
@@ -850,7 +850,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /* -----------------27.10.98 10:41-------------------
  *
  * --------------------------------------------------*/
-/*N*/ SfxPoolItem*  SvxNumBulletItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem*  SvxNumBulletItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxNumBulletItem(*this);
 /*N*/ }
@@ -865,7 +865,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /* -----------------08.12.98 10:43-------------------
  *
  * --------------------------------------------------*/
-/*N*/ SvStream& SvxNumBulletItem::Store(SvStream &rStream, USHORT nItemVersion )const
+/*N*/ SvStream& SvxNumBulletItem::Store(SvStream &rStream, USHORT /*nItemVersion*/ )const
 /*N*/ {
 /*N*/   pNumRule->Store(rStream);
 /*N*/   return rStream;
@@ -873,7 +873,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /* -----------------08.12.98 10:43-------------------
  *
  * --------------------------------------------------*/
-/*N*/ USHORT    SvxNumBulletItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT    SvxNumBulletItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   return NUMITEM_VERSION_03;
 /*N*/ }
@@ -883,7 +883,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
  * --------------------------------------------------*/
 
 
-/*N*/ bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   uno::Reference< container::XIndexReplace > xRule;
 /*N*/   if( rVal >>= xRule )

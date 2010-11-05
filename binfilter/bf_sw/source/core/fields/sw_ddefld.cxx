@@ -212,8 +212,8 @@ BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ SwDDEField::SwDDEField( SwDDEFieldType* pType )
-/*N*/   : SwField(pType)
+/*N*/ SwDDEField::SwDDEField( SwDDEFieldType* _pType )
+/*N*/   : SwField(_pType)
 /*N*/ {
 /*N*/ }
 

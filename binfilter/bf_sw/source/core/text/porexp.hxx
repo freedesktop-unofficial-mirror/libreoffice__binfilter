@@ -83,7 +83,7 @@ public:
 class SwPostItsPortion : public SwExpandPortion
 {
 public:
-    SwPostItsPortion( sal_Bool bScrpt ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001          SwPostItsPortion( sal_Bool bScrpt );
+    SwPostItsPortion( sal_Bool /*bScrpt*/ ){DBG_BF_ASSERT(0, "STRIP");};
     OUTPUT_OPERATOR
 };
 

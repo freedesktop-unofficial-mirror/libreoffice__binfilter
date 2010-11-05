@@ -1132,6 +1132,7 @@ namespace binfilter {
 /*?*/                                               CHOBJID_AREA, pRowGroup);
 /*?*/                       }
 /*?*/                       break;
+                        default: break;
 /*?*/               }
 /*?*/           }
 /*N*/
@@ -1754,6 +1755,7 @@ namespace binfilter {
 /*?*/                               pDescription [nRow].fValue = DBL_MIN;
 /*N*/                           }
 /*N*/                           break;
+                            default: break;
 /*N*/                   }
 /*N*/               }
 /*N*/

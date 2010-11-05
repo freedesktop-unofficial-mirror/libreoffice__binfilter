@@ -176,9 +176,9 @@ protected:
     const xub_StrLen nLen;
 
 public:
-    SvxDoCapitals( OutputDevice *pOut, const XubString &rTxt,
-                   const xub_StrLen nIdx, const xub_StrLen nLen )
-        : pOut(pOut), rTxt(rTxt), nIdx(nIdx), nLen(nLen)
+    SvxDoCapitals( OutputDevice* _pOut, const XubString& _rTxt,
+                   const xub_StrLen _nIdx, const xub_StrLen _nLen )
+        : pOut(_pOut), rTxt(_rTxt), nIdx(_nIdx), nLen(_nLen)
         { }
 
 
@@ -370,10 +370,10 @@ protected:
     Size        aTxtSize;
     short       nKern;
 public:
-      SvxDoGetCapitalSize( SvxFont *pFnt, const OutputDevice *pOut,
-                           const XubString &rTxt, const xub_StrLen nIdx,
-                           const xub_StrLen nLen, const short nKrn )
-            : SvxDoCapitals( (OutputDevice*)pOut, rTxt, nIdx, nLen ),
+      SvxDoGetCapitalSize( SvxFont *pFnt, const OutputDevice* _pOut,
+                           const XubString& _rTxt, const xub_StrLen _nIdx,
+                           const xub_StrLen _nLen, const short nKrn )
+            : SvxDoCapitals( (OutputDevice*)_pOut, _rTxt, _nIdx, _nLen ),
               pFont( pFnt ),
               nKern( nKrn )
             { }
@@ -402,10 +402,10 @@ protected:
     Point aSpacePos;
     short nKern;
 public:
-    SvxDoDrawCapital( SvxFont *pFnt, OutputDevice *pOut, const XubString &rTxt,
-                      const xub_StrLen nIdx, const xub_StrLen nLen,
+    SvxDoDrawCapital( SvxFont *pFnt, OutputDevice* _pOut, const XubString& _rTxt,
+                      const xub_StrLen _nIdx, const xub_StrLen _nLen,
                       const Point &rPos, const short nKrn )
-        : SvxDoCapitals( pOut, rTxt, nIdx, nLen ),
+        : SvxDoCapitals( _pOut, _rTxt, _nIdx, _nLen ),
           pFont( pFnt ),
           aPos( rPos ),
           aSpacePos( rPos ),

@@ -85,7 +85,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxVector3DItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxVector3DItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
 /*N*/   return new SvxVector3DItem( *this );
@@ -93,7 +93,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxVector3DItem::Create(SvStream &rStream, USHORT nVersion) const
+/*N*/ SfxPoolItem* SvxVector3DItem::Create(SvStream &rStream, USHORT /*nVersion*/) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
 /*N*/   Vector3D aStr;
@@ -103,7 +103,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxVector3DItem::Store(SvStream &rStream, USHORT nItemVersion) const
+/*N*/ SvStream& SvxVector3DItem::Store(SvStream &rStream, USHORT /*nItemVersion*/) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
 /*N*/
@@ -115,7 +115,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/
@@ -130,7 +130,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/   if(!(rVal >>= aDirection))

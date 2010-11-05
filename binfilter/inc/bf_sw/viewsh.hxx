@@ -266,7 +266,7 @@ public:
     void LayoutIdle();
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
-    void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
+    void  ApplyViewOptions( const SwViewOption& /*rOpt*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     //static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
     static ShellResource* GetShellRes();
@@ -274,7 +274,7 @@ public:
     static void           SetCareWin( Window* pNew ) { pCareWindow = pNew; }
     static Window*        GetCareWin(ViewShell& rVSh)
                         { return pCareWindow ? pCareWindow : CareChildWin(rVSh); }
-    static Window*        CareChildWin(ViewShell& rVSh){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;//STRIP001    static Window*        CareChildWin(ViewShell& rVSh);
+    static Window*        CareChildWin(ViewShell& /*rVSh*/){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;
 
     inline SfxViewShell   *GetSfxViewShell() { return pSfxViewShell; }
     inline void           SetSfxViewShell(SfxViewShell *pNew) { pSfxViewShell = pNew; }

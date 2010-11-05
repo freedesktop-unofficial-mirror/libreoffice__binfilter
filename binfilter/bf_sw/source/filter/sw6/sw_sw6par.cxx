@@ -111,17 +111,17 @@ namespace binfilter {
  static const SwLineType __FAR_DATA aLineTypeArr[] =
  {
  //  In          Out         Dist
-  LIN_0,      LIN_1,      LIN_0, // Einfache Linien
-  LIN_0,      LIN_2,      LIN_0,
-  LIN_0,      LIN_3,      LIN_0,
-  LIN_0,      LIN_5,      LIN_0,
-  LIN_1,      LIN_1,      LIN_2, // Doppelte Linien
-  LIN_2,      LIN_2,      LIN_2, // Doppelte Linien
-  LIN_3,      LIN_3,      LIN_3,
-  LIN_3,      LIN_2,      LIN_2,
-  LIN_2,      LIN_3,      LIN_2,
-  LIN_4,      LIN_3,      LIN_3,
-  LIN_3,      LIN_4,      LIN_3
+  {LIN_0,      LIN_1,      LIN_0}, // Einfache Linien
+  {LIN_0,      LIN_2,      LIN_0},
+  {LIN_0,      LIN_3,      LIN_0},
+  {LIN_0,      LIN_5,      LIN_0},
+  {LIN_1,      LIN_1,      LIN_2}, // Doppelte Linien
+  {LIN_2,      LIN_2,      LIN_2}, // Doppelte Linien
+  {LIN_3,      LIN_3,      LIN_3},
+  {LIN_3,      LIN_2,      LIN_2},
+  {LIN_2,      LIN_3,      LIN_2},
+  {LIN_4,      LIN_3,      LIN_3},
+  {LIN_3,      LIN_4,      LIN_3}
  };
 
 

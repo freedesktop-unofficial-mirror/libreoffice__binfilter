@@ -42,62 +42,25 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ TYPEINIT1_AUTOFACTORY(SvxHyperlinkItem, SfxPoolItem);
+TYPEINIT1_AUTOFACTORY(SvxHyperlinkItem, SfxPoolItem);
 
 // class SvxHyperlinkItem ------------------------------------------------
 
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
 #define HYPERLINKFF_MARKER  0x599401FE
 
+SfxPoolItem* SvxHyperlinkItem::Clone( SfxItemPool* ) const
+{
+    DBG_BF_ASSERT(0, "STRIP"); return NULL;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ SfxPoolItem* SvxHyperlinkItem::Clone( SfxItemPool* ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxHyperlinkItem( *this );
-/*?*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ int SvxHyperlinkItem::operator==( const SfxPoolItem& rAttr ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-/*?*/ }
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-
+int SvxHyperlinkItem::operator==( const SfxPoolItem& /*rAttr*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
+}
 
 }
 

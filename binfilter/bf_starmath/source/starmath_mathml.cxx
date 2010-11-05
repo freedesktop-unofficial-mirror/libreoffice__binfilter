@@ -3997,7 +3997,8 @@ void SmXMLExport::ExportFont(const SmNode *pNode, int nLevel)
             AddAttribute(XML_NAMESPACE_MATH,sXML_fontfamily,
                 OUString(pNode->GetToken().aText.GetBuffer()));
             break;
-
+        default:
+            break;
     }
 #if 0
     if (pNode->GetNumSubNodes() > 1) //or in the future is a node that
@@ -4157,16 +4158,8 @@ void SmXMLExport::ExportNodes(const SmNode *pNode, int nLevel)
         case NMATRIX:
             ExportMatrix(pNode,nLevel);
             break;
-#if 0
         default:
-            {
-            ULONG  nSize = pNode->GetNumSubNodes();
-            for (ULONG i = 0; i < nSize; i++)
-                if (SmNode *pTemp = pNode->GetSubNode(i))
-                    ExportNodes(pTemp,nLevel+1);
-            }
             break;
-#endif
     }
 }
 }

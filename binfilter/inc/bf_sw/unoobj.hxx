@@ -459,57 +459,7 @@ public:
                             const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& rDescriptor,
                             SwSortOptions& rSortOpt);
 };
-/*-----------------20.03.98 07:47-------------------
 
---------------------------------------------------*/
-/* das wird zunaechst nicht gebraucht - bisher fuer den XPropertySetCloner
-class SwXPropertySet : public ::com::sun::star::beans::XPropertySet,
-                        public UsrObject
-{
-    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>*       pAny;
-    ::com::sun::star::uno::Sequence< Property >*    pInfo;
-
-public:
-    // Eigentumsuebergang der Pointer!
-    SwXPropertySet( ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>*       pAny,
-                    ::com::sun::star::uno::Sequence<Property>*  pInfo );
-    virtual ~SwXPropertySet();
-
-    SMART_UNO_DECLARATION( SwXPropertySet, UsrObject );
-
-    //XPropertySet
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo(  ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL addPropertyChangeListener( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& xListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removePropertyChangeListener( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL addVetoableChangeListener( const ::rtl::OUString& PropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removeVetoableChangeListener( const ::rtl::OUString& PropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-
-};
-/*-----------------20.03.98 08:26-------------------
-
---------------------------------------------------*/
-/* das wird zunaechst nicht gebraucht - bisher fuer den XPropertySetCloner
-
-class SwXPropertySetInfo: public ::com::sun::star::beans::XPropertySetInfo, UsrObject
-{
-    ::com::sun::star::uno::Sequence< Property >*        pSeq;
-
-public:
-    SwXPropertySetInfo( const ::com::sun::star::uno::Sequence<Property>& rInfo );
-    virtual ~SwXPropertySetInfo();
-
-    SMART_UNO_DECLARATION( SwXPropertySetInfo, UsrObject );
-
-    virtual ::com::sun::star::uno::Sequence< Property > getProperties(void) throw( ::com::sun::star::uno::RuntimeException );
-    virtual Property getPropertyByName(const ::rtl::OUString& Name) throw( ::com::sun::star::uno::RuntimeException );
-    virtual BOOL hasPropertyByName(const ::rtl::OUString& Name) throw( ::com::sun::star::uno::RuntimeException );
-};
-
-/*-----------------20.02.98 08:45-------------------
-
---------------------------------------------------*/
 typedef
 cppu::WeakImplHelper5
 <

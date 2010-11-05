@@ -98,7 +98,9 @@ using namespace ::com::sun::star;
 
 // Konvertierung fuer UNO
 #define TWIP_TO_MM100(TWIP)     ((TWIP) >= 0 ? (((TWIP)*127L+36L)/72L) : (((TWIP)*127L-36L)/72L))
+#define UTWIP_TO_MM100(TWIP)    (((TWIP)*127L+36L)/72L)
 #define MM100_TO_TWIP(MM100)    ((MM100) >= 0 ? (((MM100)*72L+63L)/127L) : (((MM100)*72L-63L)/127L))
+#define UMM100_TO_TWIP(MM100)   (((MM100)*72L+63L)/127L)
 
 
 // STATIC DATA -----------------------------------------------------------
@@ -196,8 +198,10 @@ using namespace ::com::sun::star;
 /*N*/       case SVX_LINE_SPACE_FIX :
 /*N*/       case SVX_LINE_SPACE_MIN :
 /*N*/           aLSp.Mode = eLineSpace == SVX_LINE_SPACE_FIX ? style::LineSpacingMode::FIX : style::LineSpacingMode::MINIMUM;
-/*N*/             aLSp.Height = ( bConvert ? (short)TWIP_TO_MM100(nLineHeight) : nLineHeight );
+/*N*/             aLSp.Height = ( bConvert ? (short)UTWIP_TO_MM100(nLineHeight) : nLineHeight );
 /*N*/       break;
+            default:
+                break;
 /*N*/   }
 /*N*/
 /*N*/     switch ( nMemberId )
@@ -261,7 +265,7 @@ using namespace ::com::sun::star;
 /*N*/                 eLineSpace = aLSp.Mode == style::LineSpacingMode::FIX ? SVX_LINE_SPACE_FIX : SVX_LINE_SPACE_MIN;
 /*N*/                 nLineHeight = aLSp.Height;
 /*N*/                 if(bConvert)
-/*N*/                     nLineHeight = (USHORT)MM100_TO_TWIP(nLineHeight);
+/*N*/                     nLineHeight = (USHORT)UMM100_TO_TWIP(nLineHeight);
 /*N*/             }
 /*N*/             break;
 /*N*/         }
@@ -305,7 +309,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxLineSpacingItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
+/*N*/ SvStream& SvxLineSpacingItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   rStrm << (sal_Int8)  GetPropLineSpace()
 /*N*/         << (short)  GetInterLineSpace()
@@ -324,9 +328,9 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 nPos ) const
+/*?*/ XubString SvxLineSpacingItem::GetValueTextByPos( sal_uInt16 /*nPos*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;//STRIP001 //STRIP001  //! Strings demnaechst aus Resource laden
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); XubString aText;
 /*?*/   return aText;
 /*?*/ }
 
@@ -334,14 +338,14 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     sal_uInt16 nVal;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
-/*?*/ void SvxLineSpacingItem::SetEnumValue( sal_uInt16 nVal )
+/*?*/ void SvxLineSpacingItem::SetEnumValue( sal_uInt16 /*nVal*/ )
 /*?*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    switch ( nVal )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // class SvxAdjustItem ---------------------------------------------------
@@ -371,7 +375,7 @@ using namespace ::com::sun::star;
 --------------------------------------------------*/
 /*N*/ bool SvxAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -392,7 +396,7 @@ using namespace ::com::sun::star;
 
 /*N*/ bool SvxAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId  )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -455,8 +459,8 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxAdjustItem::SetEnumValue( sal_uInt16 nVal )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SvxAdjustItem::SetEnumValue( sal_uInt16 /*nVal*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -576,7 +580,7 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------------
 /*N*/ bool  SvxHyphenZoneItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch(nMemberId)
 /*N*/   {
@@ -598,7 +602,7 @@ using namespace ::com::sun::star;
 // -----------------------------------------------------------------------
 /*N*/ bool SvxHyphenZoneItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   sal_Int16 nNewVal = 0;
 /*N*/
@@ -651,21 +655,21 @@ using namespace ::com::sun::star;
 
 /*N*/ SfxPoolItem* SvxHyphenZoneItem::Create(SvStream& rStrm, sal_uInt16) const
 /*N*/ {
-/*N*/   sal_Int8 bHyphen, bHyphenPageEnd;
-/*N*/   sal_Int8 nMinLead, nMinTrail, nMaxHyphens;
-/*N*/   rStrm >> bHyphen >> bHyphenPageEnd >> nMinLead >> nMinTrail >> nMaxHyphens;
+/*N*/   sal_Int8 _bHyphen, bHyphenPageEnd;
+/*N*/   sal_Int8 _nMinLead, _nMinTrail, _nMaxHyphens;
+/*N*/   rStrm >> _bHyphen >> bHyphenPageEnd >> _nMinLead >> _nMinTrail >> _nMaxHyphens;
 /*N*/   SvxHyphenZoneItem* pAttr = new SvxHyphenZoneItem( sal_False, Which() );
-/*N*/   pAttr->SetHyphen( sal_Bool( bHyphen != 0 ) );
+/*N*/   pAttr->SetHyphen( sal_Bool( _bHyphen != 0 ) );
 /*N*/   pAttr->SetPageEnd( sal_Bool( bHyphenPageEnd != 0 ) );
-/*N*/   pAttr->GetMinLead() = nMinLead;
-/*N*/   pAttr->GetMinTrail() = nMinTrail;
-/*N*/   pAttr->GetMaxHyphens() = nMaxHyphens;
+/*N*/   pAttr->GetMinLead() = _nMinLead;
+/*N*/   pAttr->GetMinTrail() = _nMinTrail;
+/*N*/   pAttr->GetMaxHyphens() = _nMaxHyphens;
 /*N*/   return pAttr;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxHyphenZoneItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
+/*N*/ SvStream& SvxHyphenZoneItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   rStrm << (sal_Int8) IsHyphen()
 /*N*/         << (sal_Int8) IsPageEnd()
@@ -886,6 +890,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/                 case style::TabAlign_CENTER : eAdjust = SVX_TAB_ADJUST_CENTER; break;
 /*N*/                 case style::TabAlign_RIGHT  : eAdjust = SVX_TAB_ADJUST_RIGHT; break;
 /*N*/                 case style::TabAlign_DECIMAL: eAdjust = SVX_TAB_ADJUST_DECIMAL; break;
+                      default: break;
 /*N*/                 }
 /*N*/                 sal_Unicode cFill = pArr[i].FillChar;
 /*N*/                 sal_Unicode cDecimal = pArr[i].DecimalChar;
@@ -963,7 +968,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxTabStopItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
+/*N*/ SvStream& SvxTabStopItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   //MA 05. Sep. 96: Default-Tabs werden nur noch fuer das default-Attr
 /*N*/   //expandiert. Fuer vollstaendige Rueckwaertskompatibilitaet (<=304)
@@ -977,8 +982,8 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/       && binfilter::IsDefaultItem( this );
 /*N*/
 /*N*/   const short nTabs = Count();
-/*N*/   sal_uInt16  nCount = 0, nDefDist;
-/*N*/   long nNew;
+/*N*/   sal_uInt16  nCount = 0, nDefDist = 0;
+/*N*/   long nNew = 0;
 /*N*/
 /*N*/   if( bStoreDefTabs )
 /*N*/   {
@@ -1043,7 +1048,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFmtSplitItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
+/*N*/ SvStream& SvxFmtSplitItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
 /*N*/ {
 /*N*/   rStrm << (sal_Int8)GetValue();
 /*N*/   return rStrm;
@@ -1076,7 +1081,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxPoolItem* SvxScriptSpaceItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxScriptSpaceItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxScriptSpaceItem( GetValue(), Which() );
 /*N*/ }
@@ -1107,7 +1112,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxPoolItem* SvxHangingPunctuationItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxHangingPunctuationItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxHangingPunctuationItem( GetValue(), Which() );
 /*N*/ }
@@ -1139,7 +1144,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /* -----------------------------29.11.00 11:23--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ SfxPoolItem* SvxForbiddenRuleItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxForbiddenRuleItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxForbiddenRuleItem( GetValue(), Which() );
 /*N*/ }
@@ -1196,12 +1201,12 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxPoolItem* SvxParaGridItem::Clone( SfxItemPool *pPool ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ SfxPoolItem* SvxParaGridItem::Clone( SfxItemPool* /*pPool*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
-/*N*/ SfxPoolItem* SvxParaGridItem::Create(SvStream & rStrm, USHORT) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ SfxPoolItem* SvxParaGridItem::Create(SvStream & /*rStrm*/, USHORT) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ USHORT  SvxParaGridItem::GetVersion( USHORT nFFVer ) const
@@ -1216,8 +1221,8 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 /*N*/ SfxItemPresentation SvxParaGridItem::GetPresentation(
 /*N*/       SfxItemPresentation ePres,
-/*N*/       SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
-/*N*/         String &rText, const ::IntlWrapper* pIntl ) const
+/*N*/       SfxMapUnit /*eCoreMetric*/, SfxMapUnit /*ePresMetric*/,
+/*N*/         String &rText, const ::IntlWrapper* /*pIntl*/ ) const
 /*N*/ {
 /*?*/   switch( ePres )
 /*?*/   {
@@ -1234,6 +1239,8 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*?*/           return ePres;
 /*?*/       }
 /*?*/       break;
+        default:
+            break;
 /*?*/   }
 /*?*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }

@@ -215,6 +215,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case CHSTYLE_2D_STOCK_3:
 /*N*/       case CHSTYLE_2D_STOCK_4:
+            default: break;
 /*N*/           return TRUE;
 /*N*/   }
 /*N*/   if(!CanAxis(CHART_AXIS_SECONDARY_Y))
@@ -890,6 +891,7 @@ namespace binfilter {
 /*N*/                   }
 /*N*/                   break;
 /*N*/               }
+                    default: break;
 /*N*/           }
 /*N*/       } //for nRow
 /*N*/       aBarY1.NextCol();

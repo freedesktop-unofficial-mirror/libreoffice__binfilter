@@ -743,6 +743,7 @@ static int
 /*M*/                   case CALC_MEAN : eCurrListOper = CALC_PLUS;     break;
 /*M*/                   case CALC_MIN  : eCurrListOper = CALC_MIN_IN;   break;
 /*M*/                   case CALC_MAX  : eCurrListOper = CALC_MAX_IN;   break;
+                        default: break;
 /*M*/               }
 /*M*/               nCommandPos = (xub_StrLen)aRes.EndPos;
 /*M*/               return eCurrOper;
