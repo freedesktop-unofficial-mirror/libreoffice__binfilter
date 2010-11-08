@@ -1282,8 +1282,6 @@ public:
                         sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
     sal_Bool InsertRow( const SwCursor& /*rCursor*/,
                     sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
-        // loeschen von Spalten/Zeilen in der Tabelle
-    sal_Bool DeleteRowCol( const SwSelBoxes& /*rBoxes*/ ){DBG_BF_ASSERT(0, "STRIP"); return NULL;}
     sal_Bool DeleteRow( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     sal_Bool DeleteCol( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
         // teilen / zusammenfassen von Boxen in der Tabelle

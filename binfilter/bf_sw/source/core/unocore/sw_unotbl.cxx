@@ -2169,7 +2169,6 @@ void SwXTextTable::dispose(void) throw( uno::RuntimeException )
         SwTableSortBoxes& rBoxes = pTable->GetTabSortBoxes();
         SwSelBoxes aSelBoxes;
         aSelBoxes.Insert(rBoxes.GetData(), rBoxes.Count());
-        pFmt->GetDoc()->DeleteRowCol(aSelBoxes);
     }
     else
         throw uno::RuntimeException();
