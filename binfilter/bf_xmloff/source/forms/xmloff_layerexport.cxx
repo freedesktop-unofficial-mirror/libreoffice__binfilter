@@ -64,7 +64,7 @@ namespace xmloff
     //---------------------------------------------------------------------
     const ::rtl::OUString& OFormLayerXMLExport_Impl::getControlNumberStyleNamePrefix()
     {
-        static const ::rtl::OUString s_sControlNumberStyleNamePrefix = ::rtl::OUString::createFromAscii("C");
+        static const ::rtl::OUString s_sControlNumberStyleNamePrefix( RTL_CONSTASCII_USTRINGPARAM( "C" ));
         return s_sControlNumberStyleNamePrefix;
     }
 

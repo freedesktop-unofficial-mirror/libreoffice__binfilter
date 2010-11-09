@@ -1840,7 +1840,7 @@ BOOL SvPersist::SaveAsChilds( SvStorage * pStor )
             {
                 ::com::sun::star::uno::Any aAny;
                 ::rtl::OUString aMediaType;
-                ::rtl::OUString aPropNameStr = ::rtl::OUString::createFromAscii( "MediaType" );
+                ::rtl::OUString aPropNameStr( RTL_CONSTASCII_USTRINGPARAM( "MediaType" ));
 
                 GetStorage()->GetProperty( rEle.GetName(), aPropNameStr, aAny );
                 if( ( aAny >>= aMediaType ) && aMediaType.getLength()

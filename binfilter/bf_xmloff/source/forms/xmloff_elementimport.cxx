@@ -142,7 +142,7 @@ namespace xmloff
     SvXMLImportContext* OElementImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
         const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sEventTagName = ::rtl::OUString::createFromAscii("events");
+        static const ::rtl::OUString s_sEventTagName( RTL_CONSTASCII_USTRINGPARAM( "events" ));
         if ((s_sEventTagName == _rLocalName) && (XML_NAMESPACE_OFFICE == _nPrefix))
             return new OFormEventsImportContext(m_rFormImport.getGlobalContext(), _nPrefix, _rLocalName, *this);
 
@@ -266,7 +266,7 @@ namespace xmloff
         // no optimization here. If this method gets called, the XML stream did not contain a name for the
         // element, which is a heavy error. So in this case we don't care for performance
         Sequence< ::rtl::OUString > aNames = m_xParentContainer->getElementNames();
-        static const ::rtl::OUString sUnnamedName = ::rtl::OUString::createFromAscii("unnamed");
+        static const ::rtl::OUString sUnnamedName( RTL_CONSTASCII_USTRINGPARAM( "unnamed" ));
 
         ::rtl::OUString sReturn;
         const ::rtl::OUString* pNames = NULL;
@@ -898,12 +898,12 @@ namespace xmloff
             const Reference< sax::XAttributeList >& _rxAttrList)
     {
         // is it the "option" sub tag of a listbox ?
-        static const ::rtl::OUString s_sOptionElementName = ::rtl::OUString::createFromAscii("option");
+        static const ::rtl::OUString s_sOptionElementName( RTL_CONSTASCII_USTRINGPARAM( "option" ));
         if (s_sOptionElementName == _rLocalName)
             return new OListOptionImport(GetImport(), _nPrefix, _rLocalName, this);
 
         // is it the "item" sub tag of a combobox ?
-        static const ::rtl::OUString s_sItemElementName = ::rtl::OUString::createFromAscii("item");
+        static const ::rtl::OUString s_sItemElementName( RTL_CONSTASCII_USTRINGPARAM( "item" ));
         if (s_sItemElementName == _rLocalName)
             return new OComboItemImport(GetImport(), _nPrefix, _rLocalName, this);
 
@@ -1336,7 +1336,7 @@ namespace xmloff
     SvXMLImportContext* OFormImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
         const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sFormElementName = ::rtl::OUString::createFromAscii("form");
+        static const ::rtl::OUString s_sFormElementName( RTL_CONSTASCII_USTRINGPARAM( "form" ));
         if (s_sFormElementName.equals(_rLocalName))
             return new OFormImport(m_rFormImport, *this, _nPrefix, _rLocalName, m_xMeAsContainer);
 

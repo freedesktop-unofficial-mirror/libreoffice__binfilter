@@ -641,7 +641,7 @@ void OListBoxModel::loadData()
 
                 Reference<XDatabaseMetaData> xMeta = xConnection->getMetaData();
                 ::rtl::OUString aQuote = xMeta->getIdentifierQuoteString();
-                ::rtl::OUString aStatement = ::rtl::OUString::createFromAscii("SELECT ");
+                ::rtl::OUString aStatement( RTL_CONSTASCII_USTRINGPARAM( "SELECT " ));
                 if (!aBoundFieldName.getLength())   // act like a combobox
                     aStatement += ::rtl::OUString::createFromAscii("DISTINCT ");
 

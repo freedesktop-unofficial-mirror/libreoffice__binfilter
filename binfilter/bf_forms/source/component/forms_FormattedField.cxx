@@ -692,7 +692,7 @@ void OFormattedModel::loaded(const EventObject& rEvent) throw ( ::com::sun::star
 //------------------------------------------------------------------------------
 void OFormattedModel::_loaded(const EventObject& rEvent)
 {
-    static const ::rtl::OUString s_aNullDataProp = ::rtl::OUString::createFromAscii("NullDate");
+    static const ::rtl::OUString s_aNullDataProp( RTL_CONSTASCII_USTRINGPARAM( "NullDate" ));
 
     m_xOriginalFormatter = NULL;
 
@@ -861,7 +861,7 @@ void OFormattedModel::write(const Reference<XObjectOutputStream>& _rxOutStream) 
         ::rtl::OUString         sFormatDescription;
         LanguageType    eFormatLanguage = LANGUAGE_DONTKNOW;
 
-        static const ::rtl::OUString s_aLocaleProp = ::rtl::OUString::createFromAscii("Locale");
+        static const ::rtl::OUString s_aLocaleProp( RTL_CONSTASCII_USTRINGPARAM( "Locale" ));
         Reference<com::sun::star::beans::XPropertySet>  xFormat = xFormats->getByKey(nKey);
         if (hasProperty(s_aLocaleProp, xFormat))
         {
@@ -874,7 +874,7 @@ void OFormattedModel::write(const Reference<XObjectOutputStream>& _rxOutStream) 
             }
         }
 
-        static const ::rtl::OUString s_aFormatStringProp = ::rtl::OUString::createFromAscii("FormatString");
+        static const ::rtl::OUString s_aFormatStringProp( RTL_CONSTASCII_USTRINGPARAM( "FormatString" ));
         if (hasProperty(s_aFormatStringProp, xFormat))
             xFormat->getPropertyValue(s_aFormatStringProp) >>= sFormatDescription;
 

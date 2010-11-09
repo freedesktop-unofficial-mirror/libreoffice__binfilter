@@ -101,7 +101,7 @@ using namespace ::binfilter::svxform;
 /*N*/         m_sPageId = pDrawModel->GetUniquePageId();
 /*N*/     }
 /*N*/
-/*N*/     static const ::rtl::OUString sFormsCollectionServiceName = ::rtl::OUString::createFromAscii("com.sun.star.form.Forms");
+/*N*/     static const ::rtl::OUString sFormsCollectionServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.Forms" ));
 /*N*/     xForms = Reference< ::com::sun::star::container::XNameContainer > (
 /*N*/         ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
 /*N*/         sFormsCollectionServiceName), ::com::sun::star::uno::UNO_QUERY);

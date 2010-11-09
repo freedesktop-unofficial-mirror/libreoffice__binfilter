@@ -330,7 +330,7 @@ namespace xmloff
     SvXMLImportContext* OPropertyElementsContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
         const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sSinglePropertyElementName = ::rtl::OUString::createFromAscii("property");
+        static const ::rtl::OUString s_sSinglePropertyElementName( RTL_CONSTASCII_USTRINGPARAM( "property" ));
         if (_rLocalName == s_sSinglePropertyElementName)
         {
             return new OSinglePropertyContext(GetImport(), _nPrefix, _rLocalName, m_xPropertyImporter);
@@ -377,7 +377,7 @@ namespace xmloff
     SvXMLImportContext* OSinglePropertyContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
             const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sPropertyValueElementName = ::rtl::OUString::createFromAscii("property-value");
+        static const ::rtl::OUString s_sPropertyValueElementName( RTL_CONSTASCII_USTRINGPARAM( "property-value" ));
         if (_rLocalName == s_sPropertyValueElementName)
         {
             OSL_ENSURE(!m_xValueReader.Is(), "OSinglePropertyContext::CreateChildContext: already had a value element!");

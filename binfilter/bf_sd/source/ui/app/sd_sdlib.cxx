@@ -132,7 +132,7 @@ ULONG __EXPORT SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter
             // extract extra data
             OUString aPath( rMedium.GetOrigURL() );
             OUString aExtraData( xPacker->getExtraData( aPath ) );
-            const OUString aSig1= OUString::createFromAscii( "private:" );
+            const OUString aSig1( RTL_CONSTASCII_USTRINGPARAM( "private:" ));
             String aTmp;
             aTmp += sal_Unicode( '?' );
             aTmp += (*pFilter)->GetFilterContainer()->GetName();

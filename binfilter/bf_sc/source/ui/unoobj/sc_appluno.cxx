@@ -168,7 +168,7 @@ void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
                         const uno::Sequence< ::rtl::OUString >& rServices )
                     throw( registry::InvalidRegistryException )
 {
-    ::rtl::OUString aImpl = ::rtl::OUString::createFromAscii( "/" );
+    ::rtl::OUString aImpl( RTL_CONSTASCII_USTRINGPARAM( "/" ));
     aImpl += rImplementationName;
     aImpl += ::rtl::OUString::createFromAscii( "/UNO/SERVICES" );
     uno::Reference<registry::XRegistryKey> xNewKey = pRegistryKey->createKey(aImpl);

@@ -443,7 +443,7 @@ void ensureClassInfos()
 //---------------------------------------------------------------------------------------
 void registerServiceProvider(const ::rtl::OUString& _rServiceImplName, const Sequence< ::rtl::OUString >& _rServices, starregistry::XRegistryKey* _pKey)
 {
-    ::rtl::OUString sMainKeyName = ::rtl::OUString::createFromAscii("/");
+    ::rtl::OUString sMainKeyName( RTL_CONSTASCII_USTRINGPARAM( "/" ));
     sMainKeyName += _rServiceImplName;
     sMainKeyName += ::rtl::OUString::createFromAscii("/UNO/SERVICES");
     Reference<starregistry::XRegistryKey> xNewKey = _pKey->createKey(sMainKeyName);

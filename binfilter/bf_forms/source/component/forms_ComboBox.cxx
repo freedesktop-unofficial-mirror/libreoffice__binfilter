@@ -517,7 +517,7 @@ void OComboBoxModel::loadData()
 
                 Reference<XDatabaseMetaData> xMeta = xConnection->getMetaData();
                 ::rtl::OUString aQuote = xMeta->getIdentifierQuoteString();
-                ::rtl::OUString aStatement = ::rtl::OUString::createFromAscii("SELECT DISTINCT ");
+                ::rtl::OUString aStatement( RTL_CONSTASCII_USTRINGPARAM( "SELECT DISTINCT " ));
 
                 aStatement += quoteName(aQuote, aFieldName);
                 aStatement += ::rtl::OUString::createFromAscii(" FROM ");
