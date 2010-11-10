@@ -57,46 +57,6 @@ void SAL_CALL component_getImplementationEnvironment(const sal_Char** ppEnvTypeN
 }
 
 //==================================================================================================
-sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
-{
-    if(pRegistryKey)
-    {
-        try
-        {
-            sal_Bool bLegacySmgrWriteInfoDidWork(legacysmgr_component_writeInfo
-                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) ));
-            OSL_ENSURE(bLegacySmgrWriteInfoDidWork, "### LegacyServiceManager writeInfo failed!" );
-
-            Reference< XRegistryKey > xNewKey;
-            xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(bf_MigrateFilter_getImplementationName());
-            xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
-
-            Sequence< OUString > rSNL = bf_MigrateFilter_getSupportedServiceNames();
-
-            sal_Int32 nPos;
-            for(nPos=rSNL.getLength(); nPos--; )
-                xNewKey->createKey(rSNL[nPos]);
-
-            // standalone document info
-            xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticImplementationName());
-            xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
-
-            rSNL = binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticSupportedServiceNames();
-            for(nPos=rSNL.getLength(); nPos--; )
-                xNewKey->createKey(rSNL[nPos]);
-
-            return sal_True;
-        }
-        catch (InvalidRegistryException &)
-        {
-            OSL_ENSURE(sal_False, "### InvalidRegistryException!");
-        }
-    }
-
-    return sal_False;
-}
-
-//==================================================================================================
 void* SAL_CALL component_getFactory(const sal_Char* pImplName, void* pServiceManager, void* pRegistryKey)
 {
     void* pRet = 0;

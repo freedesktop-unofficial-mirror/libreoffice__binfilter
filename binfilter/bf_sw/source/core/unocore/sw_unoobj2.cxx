@@ -2163,7 +2163,7 @@ PropertyState SAL_CALL SwXTextRange::getPropertyState( const OUString& rProperty
 Sequence< PropertyState > SAL_CALL SwXTextRange::getPropertyStates(
     const Sequence< OUString >& rPropertyName ) throw(UnknownPropertyException, RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     if(!GetDoc() || !GetBookmark())
         throw RuntimeException();
     SwPaM aPaM(((SwDoc*)GetDoc())->GetNodes());
