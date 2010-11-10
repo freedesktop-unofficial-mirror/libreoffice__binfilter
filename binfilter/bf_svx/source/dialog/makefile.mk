@@ -52,7 +52,6 @@ BMP_IN=$(BFPRJ)$/win/res
 
 SRS1NAME=svx_dialogs
 SRC1FILES =  \
-        svx_imapdlg.src \
         svx_impgrf.src \
         svx_lingu.src
 

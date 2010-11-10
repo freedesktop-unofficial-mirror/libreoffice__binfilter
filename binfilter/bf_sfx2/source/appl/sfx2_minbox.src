@@ -106,6 +106,7 @@ DockingWindow RID_MAIL_INBOX
     Text [ en-US ] = "Inbox" ;
     PushButton BTN_MAILINBOX_OPEN
     {
+        HelpID = "binfilter:PushButton:RID_MAIL_INBOX:BTN_MAILINBOX_OPEN";
         Pos = MAP_APPFONT ( 252 , 6 ) ;
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? Öffnen... : Íffnen... */
@@ -139,6 +140,7 @@ DockingWindow RID_MAIL_INBOX
     };
     PushButton BTN_MAILINBOX_DELETE
     {
+        HelpID = "binfilter:PushButton:RID_MAIL_INBOX:BTN_MAILINBOX_DELETE";
         Pos = MAP_APPFONT ( 252 , 23 ) ;
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? Löschen : L÷schen */
@@ -172,6 +174,7 @@ DockingWindow RID_MAIL_INBOX
     };
     PushButton BTN_MAILINBOX_CLOSE
     {
+        HelpID = "binfilter:PushButton:RID_MAIL_INBOX:BTN_MAILINBOX_CLOSE";
         Pos = MAP_APPFONT ( 252 , 40 ) ;
         Size = MAP_APPFONT ( 50 , 14 ) ;
         /* ### ACHTUNG: Neuer Text in Resource? Schließen : Schlie˜en */
