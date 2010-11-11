@@ -107,7 +107,7 @@ STDMETHODIMP_(ULONG) CImpIOleClientSite::Release(void)
 
 STDMETHODIMP CImpIOleClientSite::SaveObject(void)
 {
-    ::SolarMuexGuard aGuard;
+    ::SolarMutexGuard aGuard;
 
     m_pTen->Update();
 
