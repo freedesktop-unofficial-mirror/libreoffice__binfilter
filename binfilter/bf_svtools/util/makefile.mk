@@ -126,3 +126,11 @@ $(MISC)$/$(SHL1TARGET).flt: svt.flt
     @echo ------------------------------
     @echo Making: $@
     $(TYPE) svt.flt >$@
+
+ALLTAR : $(MISC)/bf_svt.component
+
+$(MISC)/bf_svt.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_svt.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_svt.component
