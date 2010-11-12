@@ -74,8 +74,8 @@ class SmRectCache;
 /*N*/ public:
 /*N*/     SmNamesArray( LanguageType nLang, int nRID ) :
 /*N*/         Resource( SmResId(RID_LOCALIZED_NAMES) ),
-/*N*/         nLanguage   (nLang),
-/*N*/         aNamesAry   (SmResId(nRID))
+/*N*/         aNamesAry   (SmResId(nRID)),
+/*N*/         nLanguage   (nLang)
 /*N*/     {
 /*N*/         FreeResource();
 /*N*/     }

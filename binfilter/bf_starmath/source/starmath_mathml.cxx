@@ -1845,14 +1845,6 @@ void SmXMLOperatorContext_Impl::StartElement(const uno::Reference<
     }
 }
 
-
-
-static __FAR_DATA SvXMLTokenMapEntry aMathElemTokenMap[] =
-{
-    { XML_NAMESPACE_MATH,   XML_MATH,              XML_TOK_MATH   },
-    XML_TOKEN_MAP_END
-};
-
 class SmXMLSpaceContext_Impl : public SmXMLImportContext
 {
 public:
@@ -2324,13 +2316,6 @@ static __FAR_DATA SvXMLTokenMapEntry aColorTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-
-//const SvXMLTokenMap& SmXMLImport::GetMathElemTokenMap()
-//{
-//    if(!pMathElemTokenMap)
-//        pMathElemTokenMap = new SvXMLTokenMap(aMathElemTokenMap);
-//    return *pMathElemTokenMap;
-//}
 
 const SvXMLTokenMap& SmXMLImport::GetPresLayoutElemTokenMap()
 {
@@ -3268,7 +3253,7 @@ void SmXMLImport::SetViewSettings(const Sequence<PropertyValue>& aViewProps)
     sal_Int32 nCount = aViewProps.getLength();
     const PropertyValue *pValue = aViewProps.getConstArray();
 
-    long nTmp;
+    long nTmp = 0;
     sal_Bool bShowDeletes = sal_False, bShowInserts = sal_False, bShowFooter = sal_False, bShowHeader = sal_False;
 
     for (sal_Int32 i = 0; i < nCount ; i++)

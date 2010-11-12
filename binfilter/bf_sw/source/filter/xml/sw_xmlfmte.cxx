@@ -197,8 +197,7 @@ void SwXMLExport::_ExportAutoStyles()
             // only master pages are exported => styles for frames bound
             // to frames (but none for frames bound to pages) need to be
             // collected.
-            GetTextParagraphExport()->collectFramesBoundToFrameAutoStyles(
-                                                bShowProgress );
+            GetTextParagraphExport()->collectFramesBoundToFrameAutoStyles();
         }
         else
         {

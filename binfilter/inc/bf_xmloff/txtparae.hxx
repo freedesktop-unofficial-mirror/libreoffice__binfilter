@@ -562,10 +562,8 @@ public:
 
     // This method prepares the collection of auto styles for frames
     // that are bound to a frame.
-    void collectFramesBoundToFrameAutoStyles( sal_Bool bProgressIn = sal_False )
+    void collectFramesBoundToFrameAutoStyles()
     {
-        // unused
-        bProgressIn;
         collectFrames( sal_True );
     }
 

@@ -149,7 +149,7 @@ struct ImplXMLShapeExportInfo
     sal_Int32 mnFamily;
     XmlShapeType meShapeType;
 
-    ImplXMLShapeExportInfo() : meShapeType( XmlShapeTypeNotYetSet ), mnFamily( XML_STYLE_FAMILY_SD_GRAPHICS_ID ) {}
+    ImplXMLShapeExportInfo() : mnFamily( XML_STYLE_FAMILY_SD_GRAPHICS_ID ), meShapeType( XmlShapeTypeNotYetSet ) {}
 };
 
 /** a vector for shape style and type cache information */

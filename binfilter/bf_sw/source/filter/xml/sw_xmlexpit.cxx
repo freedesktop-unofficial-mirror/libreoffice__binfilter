@@ -839,6 +839,8 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                         aOut.append( GetXMLToken(XML_BOTTOM) );
                         bOk = sal_True;
                         break;
+                    default:
+                        break;
                     }
 
                     if( bOk )
@@ -861,6 +863,8 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                         case GPOS_RT:
                         case GPOS_RB:
                             aOut.append( GetXMLToken(XML_RIGHT) );
+                            break;
+                        default:
                             break;
                         }
                     }
