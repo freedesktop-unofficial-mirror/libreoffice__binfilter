@@ -1364,7 +1364,7 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                 case SFX_ITEM_UNKNOWN:
                     {
                         OUString sMessage (RTL_CONSTASCII_USTRINGPARAM ( "ChXChartObject::getPropertyValues: unknown property "));
-                        sMessage += OUString(RTL_CONSTASCII_USTRINGPARAM (rProperty.pName));
+                        sMessage += OUString::createFromAscii(rProperty.pName);
                            throw UnknownPropertyException (sMessage, (::cppu::OWeakObject*)this);
                     }
 
