@@ -91,17 +91,16 @@ typedef WeakImplHelper1< XStarBasicAccess > StarBasicAccessHelper;
 // Version 2
 //  + BOOL      bReference
 
-static const char* szStdLibName = "Standard";
-static const char* szBasicStorage = "StarBASIC";
-static const char* szOldManagerStream = "BasicManager";
-static const char* szManagerStream = "BasicManager2";
-static const char* szImbedded = "LIBIMBEDDED";
-static const char* szCryptingKey = "CryptedBasic";
-static const char* szScriptLanguage = "StarBasic";
+static const char szStdLibName[] = "Standard";
+static const char szBasicStorage[] = "StarBASIC";
+static const char szOldManagerStream[] = "BasicManager";
+static const char szManagerStream[] = "BasicManager2";
+static const char szImbedded[] = "LIBIMBEDDED";
+static const char szCryptingKey[] = "CryptedBasic";
+static const char szScriptLanguage[] = "StarBasic";
 
-static const String BasicStreamName( String::CreateFromAscii(szBasicStorage) );
-static const String ManagerStreamName( String::CreateFromAscii(szManagerStream) );
-
+static const String BasicStreamName( RTL_CONSTASCII_USTRINGPARAM(szBasicStorage) );
+static const String ManagerStreamName( RTL_CONSTASCII_USTRINGPARAM(szManagerStream) );
 
 #define DEFINE_CONST_UNICODE(CONSTASCII)    UniString(RTL_CONSTASCII_USTRINGPARAM(CONSTASCII))
 
