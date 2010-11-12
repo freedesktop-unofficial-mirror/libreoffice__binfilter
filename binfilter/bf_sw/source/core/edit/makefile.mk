@@ -44,7 +44,6 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\
-        $(SLO)$/sw_autofmt.obj \
         $(SLO)$/sw_edatmisc.obj \
         $(SLO)$/sw_edfld.obj \
         $(SLO)$/sw_ednumber.obj \

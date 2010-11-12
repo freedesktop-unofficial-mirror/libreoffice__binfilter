@@ -735,7 +735,6 @@ public:
 /*N*/   delete SwSelPaintRects::pMapMode;
 /*N*/   delete SwFntObj::pPixMap;
 /*N*/
-/*N*/   delete SwEditShell::pAutoFmtFlags;
 /*N*/   delete SwNumRule::pDefBulletFont;
 /*N*/
 /*N*/ #ifdef DBG_UTIL
