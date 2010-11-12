@@ -468,7 +468,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/           for( xub_StrLen nPos = nStart; nPos < nEnd; nPos++ )
 /*N*/           {
 /*N*/               sal_Char c = rText8.GetChar( nPos );
-/*N*/               sal_Unicode cNew;
+/*N*/               sal_Unicode cNew(0);
 /*N*/               if( '\xff' == c )
 /*N*/               {
 /*N*/                   if( 0 != ( pTAttr = lcl_sw3io_hasTxtAttr(

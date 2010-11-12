@@ -169,8 +169,6 @@ SV_DECL_PTRARR_DEL( SwGetINetAttrs, SwGetINetAttr*, 0, 5 )
 
 class SwEditShell: public SwCrsrShell
 {
-    static SvxSwAutoFmtFlags* pAutoFmtFlags;
-
     // fuer die privaten Methoden DelRange und die vom AutoCorrect
     friend void _InitCore();
     friend void _FinitCore();

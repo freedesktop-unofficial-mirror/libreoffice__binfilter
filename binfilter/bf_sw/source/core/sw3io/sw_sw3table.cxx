@@ -476,7 +476,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   BYTE cFlags;
 /*N*/
 /*N*/   SwFrmFmt* pFmt = rLine.GetFrmFmt();
-/*N*/   UINT16 nFmtId;
+/*N*/   UINT16 nFmtId(0);
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {
 /*N*/       cFlags = 0x04;      // keine Flags, Fmt-Id, Anzahl Boxen
@@ -644,7 +644,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   BYTE cFlags;
 /*N*/
-/*N*/   UINT16 nFmtId;
+/*N*/   UINT16 nFmtId(0);
 /*N*/   SwFrmFmt* pFmt = rBox.GetFrmFmt();
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {

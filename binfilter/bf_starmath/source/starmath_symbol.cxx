@@ -79,12 +79,12 @@ long                SF_Ident = SF_IDENT;
 
 /*N*/ SmSym::SmSym() :
 /*N*/   Name(C2S("unknown")),
-/*N*/   Character('\0'),
+/*N*/   aSetName(C2S("unknown")),
 /*N*/   pHashNext(0),
 /*N*/   pSymSetManager(0),
+/*N*/   Character('\0'),
 /*N*/   bPredefined(FALSE),
-/*N*/     bDocSymbol(FALSE),
-/*N*/   aSetName(C2S("unknown"))
+/*N*/     bDocSymbol(FALSE)
 /*N*/ {
 /*N*/   aExportName = Name;
 /*N*/   Face.SetTransparent(TRUE);
