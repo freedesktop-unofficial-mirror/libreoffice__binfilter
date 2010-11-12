@@ -253,7 +253,7 @@ void OTimeModel::_loaded(const EventObject& rEvent)
         m_bDateTimeField = sal_False;
         try
         {
-            sal_Int32 nFieldType;
+            sal_Int32 nFieldType = 0;
             xField->getPropertyValue(PROPERTY_FIELDTYPE) >>= nFieldType;
             m_bDateTimeField = (nFieldType == DataType::TIMESTAMP);
         }
