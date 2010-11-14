@@ -220,8 +220,7 @@ namespace binfilter {
 /*N*/   aLSets(1024,16,16),
 /*N*/   pModel(NULL)
 /*N*/ {
-/*N*/   sal_Char aTextControls[] = "Controls";
-/*N*/   aControlLayerName = String(aTextControls, sizeof(aTextControls-1));
+/*N*/   aControlLayerName = String(RTL_CONSTASCII_USTRINGPARAM("Controls"));
 /*N*/   pParent=pNewParent;
 /*N*/ }
 
@@ -231,8 +230,7 @@ namespace binfilter {
 /*?*/   pParent(NULL),
 /*?*/   pModel(NULL)
 /*?*/ {
-/*?*/   sal_Char aTextControls[] = "Controls";
-/*?*/   aControlLayerName = String(aTextControls, sizeof(aTextControls-1));
+/*?*/   aControlLayerName = String(RTL_CONSTASCII_USTRINGPARAM("Controls"));
 /*?*/   *this = rSrcLayerAdmin;
 /*?*/ }
 

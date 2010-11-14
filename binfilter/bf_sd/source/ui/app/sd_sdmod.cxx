@@ -87,7 +87,7 @@ IMPL_LINK(SdModule, CalcFieldValueHdl, EditFieldInfo*, pInfo)
 {
     if( pInfo )
     {
-        const String aStr( RTL_CONSTASCII_STRINGPARAM( "???" ) );
+        const String aStr( RTL_CONSTASCII_USTRINGPARAM( "???" ) );
         pInfo->SetRepresentation( aStr );
     }
 

@@ -370,7 +370,7 @@ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
 
     typedef int (FAR PASCAL *FNautorec)( LPSTR, int, LPINT );
 
-    String aAutoRecDLL(RTL_CONSTASCII_STRINGPARAM("autorec.dll"));
+    String aAutoRecDLL(RTL_CONSTASCII_USTRINGPARAM("autorec.dll"));
     SvtPathOptions aOpt;
     if( !aOpt.SearchFile( aAutoRecDLL, SvtPathOptions::PATH_FILTER ))
         return 0;
@@ -395,7 +395,7 @@ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
     //some reason the different platforms had different argument lists from
     //eachother, so we can't have super clean code :-(
     filterModule aAutoRec;
-    String aTmpStr(RTL_CONSTASCII_STRINGPARAM((SVLIBRARY("autorec"))));
+    String aTmpStr(RTL_CONSTASCII_USTRINGPARAM((SVLIBRARY("autorec"))));
     if (aAutoRec.filterLoad(aTmpStr))
     {
         typedef int (*autorec_t)(const char*, int*);

@@ -109,7 +109,7 @@ namespace binfilter {//STRIP009
 /** returns a GraphicObject for this URL */
 BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 {
-    const String aURL( rURL ), aPrefix( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX) );
+    const String aURL( rURL ), aPrefix( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX) );
 
     if( aURL.Search( aPrefix ) == 0 )
     {

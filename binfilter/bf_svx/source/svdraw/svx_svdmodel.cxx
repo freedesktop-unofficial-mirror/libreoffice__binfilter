@@ -965,20 +965,17 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_100TH_MM:
 /*?*/       {
-/*?*/           sal_Char aText[] = "/100mm";
-/*?*/           rStr = UniString(aText, sizeof(aText-1));
+/*?*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("/100mm"));
 /*?*/           break;
 /*N*/       }
 /*N*/       case FUNIT_MM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "mm";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("mm"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_CM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "cm";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("cm"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_M      :
@@ -989,26 +986,22 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_KM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "km";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("km"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_TWIP   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "twip";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("twip"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_POINT  :
 /*N*/       {
-/*N*/           sal_Char aText[] = "pt";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("pt"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_PICA   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "pica";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("pica"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_INCH   :
@@ -1019,14 +1012,12 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_FOOT   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "ft";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("ft"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_MILE   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "mile(s)";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("mile(s)"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_PERCENT:

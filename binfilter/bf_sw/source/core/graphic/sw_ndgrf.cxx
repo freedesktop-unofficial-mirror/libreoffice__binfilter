@@ -491,7 +491,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/               "SwGrfNode::StoreGraphic called for 6.0+ file format" );
 /*N*/
 /*N*/       String aDstPicStgName(
-/*N*/               RTL_CONSTASCII_STRINGPARAM( "EmbeddedPictures" ) );
+/*N*/               RTL_CONSTASCII_USTRINGPARAM( "EmbeddedPictures" ) );
 /*N*/       String aDstStrmName( aSrcStrmName );
 /*N*/       if( pRoot != pDocStg || !bGraphic )
 /*N*/       {
@@ -765,7 +765,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   if( !aUserData.Len() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   String aProt( RTL_CONSTASCII_STRINGPARAM( "vnd.sun.star.Package:" ) );
+/*N*/   String aProt( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package:" ) );
 /*N*/   if( 0 == aUserData.CompareTo( aProt, aProt.Len() ) )
 /*N*/   {
 /*N*/       // 6.0 (XML) Package
@@ -783,7 +783,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   else
 /*N*/   {
 /*N*/       // 3.1 - 5.2
-/*N*/       rStorName = String( RTL_CONSTASCII_STRINGPARAM( "EmbeddedPictures" ) );
+/*N*/       rStorName = String( RTL_CONSTASCII_USTRINGPARAM( "EmbeddedPictures" ) );
 /*N*/       rStrmName = aUserData;
 /*N*/       bGraphic = TRUE;
 /*N*/   }

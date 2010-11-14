@@ -4827,7 +4827,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
                     ==(pScd->cDat[0]=='V')))     // befehl addiere aEntry+Bef
                 {
                     aEntry+=String((sal_Char *)&pScd->
-                        cDat[2],pScd->cDat[1]);
+                        cDat[2],pScd->cDat[1],RTL_TEXTENCODING_IBM_850);
                     pScd->cDat[0]='@';           // HForm ungueltig
                 }
             }
@@ -4841,7 +4841,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
     else
     {
         aEntry=String((sal_Char *)&pTmp->            // Einfach nur einen
-            cDat[2],pTmp->cDat[1]);              // neuen Eintrag schreiben
+            cDat[2],pTmp->cDat[1],RTL_TEXTENCODING_IBM_850);              // neuen Eintrag schreiben
     }
     SwTOXMark aMark(rDoc.                        // Mache eine neue TOX-Marke
         GetTOXType(eTyp,nToxID));                // und lasse sie von der
@@ -5253,14 +5253,14 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                             SwHiddenTxtField aFld((SwHiddenTxtFieldType*)
                                 rDoc.GetSysFldType(RES_HIDDENTXTFLD),
                                 FALSE,aEmptyStr,String((sal_Char *)(
-                                pTmp->cDat+2),pTmp->cDat[1]));
+                                pTmp->cDat+2),pTmp->cDat[1],RTL_TEXTENCODING_IBM_850));
                             rDoc.Insert(aPaM,SwFmtFld(aFld));
                         }
                         else
                         {
                             SwDBField aFld((SwDBFieldType*)rDoc.
                                 InsertFldType(SwDBFieldType(&rDoc, String(
-                                (sal_Char *)(pTmp->cDat+2),pTmp->cDat[1]), SwDBData())));
+                                (sal_Char *)(pTmp->cDat+2),pTmp->cDat[1],RTL_TEXTENCODING_IBM_850), SwDBData())));
                             aFld.ChangeFormat(UF_STRING);
                             rDoc.Insert(aPaM,SwFmtFld(aFld));
                         }
