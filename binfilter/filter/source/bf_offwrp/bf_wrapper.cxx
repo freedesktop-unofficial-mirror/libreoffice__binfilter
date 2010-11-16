@@ -83,9 +83,9 @@ extern "C"{
     void legcy_setBinfilterInitState(void);
 }
 //added by jmeng for i31251 end
-bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xFactory )
-:   aListeners( aMutex ),
-    pApp( new OfficeApplication )
+bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& )
+    : pApp( new OfficeApplication )
+    , aListeners( aMutex )
 {
     SvtModuleOptions aMOpt;
 
@@ -123,7 +123,7 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xF
     //added by jmeng for i31251 end
 }
 
-void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& aArguments ) throw( Exception )
+void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& ) throw( Exception )
 {
 }
 
@@ -202,7 +202,7 @@ extern "C"
 
 void SAL_CALL component_getImplementationEnvironment(
     const sal_Char** ppEnvironmentTypeName,
-    uno_Environment** ppEnvironment)
+    uno_Environment** /*ppEnvironment*/)
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
@@ -228,7 +228,7 @@ sal_Bool SAL_CALL component_writeInfo( void* pServiceManager , void* pRegistryKe
 void* SAL_CALL component_getFactory(
     const sal_Char* pImplementationName,
     void* pServiceManager,
-    void* pRegistryKey)
+    void* /*pRegistryKey*/)
 {
     // Set default return value for this operation - if it failed.
     void* pReturn = NULL;
