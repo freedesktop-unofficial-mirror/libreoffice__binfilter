@@ -128,16 +128,16 @@ OGridControlModel::OGridControlModel(const Reference<XMultiServiceFactory>& _rxF
                     ,m_aSelectListeners(m_aMutex)
                     ,m_aResetListeners(m_aMutex)
                     ,m_aDefaultControl(FRM_CONTROL_GRID)        // use the old control name for compytibility reasons
+                    ,m_nFontRelief(awt::FontRelief::NONE)
+                    ,m_nFontEmphasis(awt::FontEmphasisMark::NONE)
                     ,m_nFontEvent(0)
+                    ,m_nBorder(1)
                     ,m_bEnable(sal_True)
                     ,m_bNavigation(sal_True)
-                    ,m_nBorder(1)
                     ,m_bRecordMarker(sal_True)
                     ,m_bPrintable(sal_True)
                     ,m_bAlwaysShowCursor(sal_False)
                     ,m_bDisplaySynchron(sal_True)
-                    ,m_nFontRelief(awt::FontRelief::NONE)
-                    ,m_nFontEmphasis(awt::FontEmphasisMark::NONE)
 {
     DBG_CTOR(OGridControlModel,NULL);
 
@@ -192,7 +192,7 @@ OGridControlModel::~OGridControlModel()
 IMPLEMENT_DEFAULT_CLONING( OGridControlModel )
 
 //------------------------------------------------------------------------------
-void OGridControlModel::cloneColumns( const OGridControlModel* _pOriginalContainer )
+void OGridControlModel::cloneColumns( const OGridControlModel* )
 {
     try
     {

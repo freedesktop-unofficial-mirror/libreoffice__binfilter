@@ -208,11 +208,11 @@ protected:
             ) throw(::com::sun::star::lang::IllegalArgumentException);
 
     // called after the object is inserted, but before the "real listeners" are notified
-    virtual void implInserted( const ElementDescription* _pElement ) { }
+    virtual void implInserted( const ElementDescription* /*_pElement*/ ) { }
     // called after the object is removed, but before the "real listeners" are notified
-    virtual void implRemoved(const InterfaceRef& _rxObject) { }
+    virtual void implRemoved(const InterfaceRef& /*_rxObject*/) { }
     // called after an object was replaced, but before the "real listeners" are notified
-    virtual void implReplaced( const InterfaceRef& _rxReplacedObject, const ElementDescription* _pElement ) { }
+    virtual void implReplaced( const InterfaceRef& /*_rxReplacedObject*/, const ElementDescription* /*_pElement*/ ) { }
 
     void SAL_CALL writeEvents(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& _rxOutStream);
     void SAL_CALL readEvents(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectInputStream>& _rxInStream);
