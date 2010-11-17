@@ -49,7 +49,7 @@ namespace binfilter {
 namespace frm
 {
 
-const ::rtl::OUString LISTBOX_EMPTY_VALUE = ::rtl::OUString::createFromAscii("$$$empty$$$");
+const ::rtl::OUString LISTBOX_EMPTY_VALUE( RTL_CONSTASCII_USTRINGPARAM( "$$$empty$$$" ));
 
 //==================================================================
 //= OListBoxModel

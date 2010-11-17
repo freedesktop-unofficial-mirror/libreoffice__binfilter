@@ -82,7 +82,7 @@ namespace frm
 const sal_uInt16 SUCCESSFUL_REPRESENT_TEXT          = 0x0001;
 const sal_uInt16 SUCCESSFUL_REPRESENT_FILE          = 0x0002;
 
-const ::rtl::OUString ALL_COMPONENTS_GROUP_NAME = ::rtl::OUString::createFromAscii("AllComponentGroup");
+const ::rtl::OUString ALL_COMPONENTS_GROUP_NAME( RTL_CONSTASCII_USTRINGPARAM( "AllComponentGroup" ));
 
 //------------------------------------------------------------------------------
 class HtmlSuccessfulObj
