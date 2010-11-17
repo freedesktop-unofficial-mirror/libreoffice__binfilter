@@ -268,8 +268,6 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/                 Point aBase( aTmpInf.GetPos() );
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*N*/                     GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aBase );
 /*N*/
 /*N*/                 ((SwFlyCntPortion*)pPos)->SetBase( *aTmpInf.GetTxtFrm(),
 /*N*/                     aBase, nTmpAscent, nTmpDescent, nFlyAsc,
@@ -317,11 +315,7 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/                 Point aBase;
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*N*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nBaseLine = GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( nBaseLine );
-/*N*/                 }
-/*N*/                 else
+/*N*/                 if (!GetInfo().GetTxtFrm()->IsVertical())
 /*N*/                     aBase = Point( ((SwFlyCntPortion*)pPos)->GetRefPoint().X(), nBaseLine );
 /*N*/
 /*N*/                 ((SwFlyCntPortion*)pPos)->SetBase( *GetInfo().GetTxtFrm(), aBase, nTmpAscent, nTmpDescent,
@@ -352,8 +346,6 @@ namespace binfilter {
 /*N*/       SwRect aLine( GetLeftMargin(), Y(), rInf.RealWidth(), nHeight );
 /*N*/
 /*N*/         SwRect aLineVert( aLine );
-/*N*/         if ( pFrm->IsVertical() )
-/*?*/             pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/         SwRect aInter( rInf.GetTxtFly()->GetFrm( aLineVert ) );
 /*N*/         if ( pFrm->IsVertical() )
                 //STRIP001 /*?*/             pFrm->SwitchVerticalToHorizontal( aInter );
@@ -372,8 +364,6 @@ namespace binfilter {
 /*N*/             aLine.Width( pPos->Width() );
 /*N*/
 /*N*/             aLineVert = aLine;
-/*N*/             if ( pFrm->IsVertical() )
-/*?*/                 pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/             aInter = rInf.GetTxtFly()->GetFrm( aLineVert );
 /*N*/             if ( pFrm->IsVertical() )
                     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchVerticalToHorizontal( aInter );
@@ -487,8 +477,6 @@ namespace binfilter {
 /*N*/     if ( pFrm->IsRightToLeft() )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchLTRtoRTL( aLineVert );
 /*N*/
-/*N*/     if ( pFrm->IsVertical() )
-/*N*/         pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/     SwRect aInter( pTxtFly->GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( pFrm->IsRightToLeft() )
@@ -618,7 +606,6 @@ namespace binfilter {
 /*?*/             if ( bVert )
 /*?*/             {
 /*?*/                 Point aPoint( nStartX, 0 );
-/*?*/                 pFrm->SwitchHorizontalToVertical( aPoint );
 /*?*/                 nStartX = aPoint.Y();
 /*?*/             }
 /*?*/
@@ -688,8 +675,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/     Point aTmpBase( aBase );
-/*N*/     if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*?*/         GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aTmpBase );
 /*N*/
 /*N*/   if( pFly )
 /*N*/   {
@@ -707,8 +692,6 @@ namespace binfilter {
 /*N*/           nMode |= SETBASE_ULSPACE;
 /*N*/           if( !rInf.IsTest() )
 /*N*/                 aTmpBase = aBase;
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*?*/                     GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aTmpBase );
 /*N*/
 /*N*/                 pRet->SetBase( *rInf.GetTxtFrm(), aTmpBase, nTmpAscent,
 /*N*/                                nTmpDescent, nFlyAsc, nFlyDesc, nMode );

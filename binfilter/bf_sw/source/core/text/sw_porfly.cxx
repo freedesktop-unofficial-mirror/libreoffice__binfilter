@@ -514,8 +514,6 @@ namespace binfilter {
 /*N*/                 rFrm.SwitchLTRtoRTL( aAnchorBase );
 /*N*/                 aAnchorBase.X() -= nOldWidth;
 /*N*/             }
-/*N*/             if ( rFrm.IsVertical() )
-/*N*/                 rFrm.SwitchHorizontalToVertical( aAnchorBase );
 /*N*/
 /*N*/             // OD 20.06.2003 #108784# - consider 'virtual' drawing objects
 /*N*/             if ( pSdrObj->ISA(SwDrawVirtObj) )
@@ -559,9 +557,6 @@ namespace binfilter {
 /*N*/                 GetDrawContact()->MoveOffsetOfVirtObjs( Size( -aDiff.X(), -aDiff.Y() ) );
 /*N*/             }
 /*N*/         }
-/*N*/
-/*N*/         if ( rFrm.IsVertical() )
-/*N*/             rFrm.SwitchHorizontalToVertical( aBase );
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -573,7 +568,6 @@ namespace binfilter {
 /*N*/         }
 /*N*/         if ( rFrm.IsVertical() )
 /*N*/         {
-/*N*/             rFrm.SwitchHorizontalToVertical( aBase );
 /*N*/             aRelAttr = Point( -nRelPos, 0 );
 /*N*/             aRelPos = Point( -aRelPos.Y(), aRelPos.X() );
 /*N*/         }

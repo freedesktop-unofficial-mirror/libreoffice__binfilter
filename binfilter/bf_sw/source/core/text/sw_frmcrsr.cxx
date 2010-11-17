@@ -258,7 +258,7 @@ namespace binfilter {
                     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchLTRtoRTL( rOrig );
 /*N*/ #endif
 /*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchHorizontalToVertical( rOrig );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             if( pFrm->IsUndersized() && pCMS && !pFrm->GetNext() &&
 /*N*/                 (rOrig.*fnRect->fnGetBottom)() == nUpperMaxY &&
@@ -294,7 +294,7 @@ namespace binfilter {
 /*?*/                 }
 /*?*/                 if( pCMS->b2Lines && pCMS->p2Lines)
 /*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pFrm->SwitchHorizontalToVertical( pCMS->p2Lines->aLine );
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*N*/             }
 /*N*/
@@ -517,21 +517,12 @@ struct SwFillData
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/     sal_Bool bChgFillData = sal_False;
 /*N*/     if( pFillData && FindPageFrm()->Frm().IsInside( aOldPoint ) )
 /*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/     }
 /*N*/
 /*N*/     if ( IsVertical() )
-/*N*/     {
-/*N*/         if ( bChgFillData )
-/*N*/             SwitchHorizontalToVertical( pFillData->Fill().aCrsr.Pos() );
 /*N*/         ((SwTxtFrm*)this)->SwapWidthAndHeight();
-/*N*/     }
-/*N*/
-/*N*/     if ( IsRightToLeft() && bChgFillData )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/     }
 /*N*/
 /*N*/     (Point&)rPoint = aOldPoint;
 /*N*/     delete pFillData;

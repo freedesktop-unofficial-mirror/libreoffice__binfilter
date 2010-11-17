@@ -124,7 +124,6 @@ namespace binfilter {
 /*N*/         if ( pFrm->IsVertical() )
 /*N*/         {
 /*N*/             Point aRightTop( nRight, pFrm->Frm().Top() );
-/*N*/             pFrm->SwitchHorizontalToVertical( aRightTop );
 /*N*/             nRight = aRightTop.Y();
 /*N*/         }
 /*N*/

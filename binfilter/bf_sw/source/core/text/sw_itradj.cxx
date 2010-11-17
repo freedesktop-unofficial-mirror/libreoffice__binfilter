@@ -428,8 +428,6 @@ namespace binfilter {
 /*N*/     SwRect aLineVert( rCurrRect );
 /*N*/     if ( GetTxtFrm()->IsRightToLeft() )
 /*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchLTRtoRTL( aLineVert );
-/*N*/     if ( GetTxtFrm()->IsVertical() )
-/*?*/         GetTxtFrm()->SwitchHorizontalToVertical( aLineVert );
 /*N*/
 /*N*/   // aFlyRect ist dokumentglobal !
 /*N*/     SwRect aFlyRect( aTxtFly.GetFrm( aLineVert ) );

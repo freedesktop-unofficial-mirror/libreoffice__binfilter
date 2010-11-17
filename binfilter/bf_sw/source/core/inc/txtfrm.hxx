@@ -435,12 +435,6 @@ public:
 
     // Swaps width and height of the text frame
     void SwapWidthAndHeight();
-    // Calculates the coordinates of a rectangle when switching from
-    // horizontal to vertical layout.
-        void SwitchHorizontalToVertical( SwRect& rRect ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void SwitchHorizontalToVertical( SwRect& rRect ) const;
-    // Calculates the coordinates of a point when switching from
-    // horizontal to vertical layout.
-        void SwitchHorizontalToVertical( Point& rPoint ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void SwitchHorizontalToVertical( Point& rPoint ) const;
     // Calculates the a limit value when switching from
     // horizontal to vertical layout.
     long SwitchHorizontalToVertical( long nLimit ) const;

@@ -97,8 +97,6 @@ sal_Bool bInitFont = sal_True;
 /*N*/         if ( IsRightToLeft() )
                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             SwitchLTRtoRTL( aRet );
 /*N*/ #endif
-/*N*/         if ( IsVertical() )
-/*N*/             SwitchHorizontalToVertical( aRet );
 /*N*/   }
 /*N*/   ResetRepaint();
 /*N*/

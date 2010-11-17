@@ -178,8 +178,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/   xub_StrLen nMin = aText.Len();
 /*M*/   xub_StrLen nMax = nStart;
 /*M*/
-/*M*/   const BOOL bNoLen = !nMin;
-/*M*/
 /*M*/     // We have to remember the "new" attributes, which have
 /*M*/     // been introduced by splitting surrounding attributes (case 4).
 /*M*/     // They may not be forgotten inside the "Forget" function
@@ -267,7 +265,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/ SwScanner::SwScanner( const SwTxtNode& rNd, const SwWrongList* pWrng,
 /*M*/                       USHORT nType, xub_StrLen nStart, xub_StrLen nEnde,
 /*M*/                       BOOL bRev, BOOL bOS )
-/*M*/     : rNode( rNd ), pWrong( pWrng ), nWordType( nType ), nLen( 0 ),
+/*M*/     : pWrong( pWrng ), rNode( rNd ), nLen( 0 ), nWordType( nType ),
 /*M*/       bReverse( bRev ), bStart( TRUE ), bIsOnlineSpell( bOS )
 /*M*/ {
 /*M*/     ASSERT( rNd.GetTxt().Len(), "SwScanner: EmptyString" );
