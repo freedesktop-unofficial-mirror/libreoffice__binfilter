@@ -1915,7 +1915,7 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 if( !aClassName.MakeId( aCLSID ) )
                 {
                     IllegalArgumentException aExcept;
-                    aExcept.Message = OUString::createFromAscii("CLSID invalid");
+                    aExcept.Message = OUString( RTL_CONSTASCII_USTRINGPARAM( "CLSID invalid" ));
                     throw aExcept;
                 }
                 const SotFactory* pFact = SvFactory::Find( aClassName );

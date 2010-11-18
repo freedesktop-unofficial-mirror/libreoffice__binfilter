@@ -447,7 +447,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
         {
             ::rtl::OUString aMessage( RTL_CONSTASCII_USTRINGPARAM( "DataPointProperties: Invalid Index (col, row): " ));
             aMessage += ::rtl::OUString::valueOf( Column );
-            aMessage += ::rtl::OUString::createFromAscii( ", " );
+            aMessage += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( ", " ));
             aMessage += ::rtl::OUString::valueOf( Row );
             lang::IndexOutOfBoundsException aEx( aMessage, (::cppu::OWeakObject*)this );
             throw aEx;

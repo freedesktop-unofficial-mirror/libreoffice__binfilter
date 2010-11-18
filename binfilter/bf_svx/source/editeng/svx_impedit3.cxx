@@ -3080,7 +3080,7 @@ struct TabInfo
 /*N*/   if ( !xBI.is() )
 /*N*/   {
 /*N*/       Reference< lang::XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/       Reference < XInterface > xI = xMSF->createInstance( OUString::createFromAscii( "com.sun.star.i18n.BreakIterator" ) );
+/*N*/       Reference < XInterface > xI = xMSF->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.BreakIterator" )) );
 /*N*/       if ( xI.is() )
 /*N*/       {
 /*N*/           Any x = xI->queryInterface( ::getCppuType((const Reference< i18n::XBreakIterator >*)0) );

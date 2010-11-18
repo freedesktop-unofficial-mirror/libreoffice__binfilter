@@ -89,11 +89,11 @@ using namespace ::com::sun::star;
 // ====================
 
 /*N*/ SchOptions::SchOptions() :
-/*N*/       ::utl::ConfigItem( ::rtl::OUString::createFromAscii( "Office.Chart" )),
+/*N*/       ::utl::ConfigItem( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Chart" ))),
 /*N*/       mbIsInitialized( FALSE )
 /*N*/ {
 /*N*/   maPropertyNames.realloc( 1 );
-/*N*/   maPropertyNames[ 0 ] = ::rtl::OUString::createFromAscii( "DefaultColor/Series" );
+/*N*/   maPropertyNames[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DefaultColor/Series" ));
 /*N*/ }
 
 /*N*/ SchOptions::~SchOptions()

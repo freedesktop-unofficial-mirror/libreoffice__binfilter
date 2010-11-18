@@ -713,7 +713,7 @@ Sequence< OUString > SAL_CALL SwXTextCursor::getAvailableServiceNames(void) thro
 {
     Sequence< OUString > aRet(1);
     OUString* pArray = aRet.getArray();
-    pArray[0] = OUString::createFromAscii("com.sun.star.text.TextContent");
+    pArray[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextContent" ));
     return aRet;
 }
 /*-- 09.12.98 14:19:00---------------------------------------------------
@@ -1889,7 +1889,7 @@ Sequence< OUString > SAL_CALL SwXTextRange::getAvailableServiceNames(void) throw
 {
     Sequence< OUString > aRet(1);
     OUString* pArray = aRet.getArray();
-    pArray[0] = OUString::createFromAscii("com.sun.star.text.TextContent");
+    pArray[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextContent" ));
     return aRet;
 }
 /*-- 03.05.00 12:41:46---------------------------------------------------

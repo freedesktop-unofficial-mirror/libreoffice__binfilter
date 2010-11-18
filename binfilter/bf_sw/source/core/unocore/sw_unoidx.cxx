@@ -2567,7 +2567,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenEntryNumber");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenEntryNumber" ));
 //              pArr[0].Value <<= C2U("TokenEntryNumber");
 
                 pArr[1].Name = C2U("CharacterStyleName");
@@ -2581,7 +2581,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenEntryText");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenEntryText" ));
 
                 pArr[1].Name = C2U("CharacterStyleName");
                 pArr[1].Value <<= aProgCharStyle;
@@ -2593,7 +2593,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenTabStop");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenTabStop" ));
 
 
                 if(SVX_TAB_ADJUST_END == aToken.eTabAlign)
@@ -2622,7 +2622,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenText");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenText" ));
 
                 pArr[1].Name = C2U("CharacterStyleName");
                 pArr[1].Value <<= aProgCharStyle;
@@ -2637,7 +2637,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenPageNumber");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenPageNumber" ));
 
                 pArr[1].Name = C2U("CharacterStyleName");
                 pArr[1].Value <<= aProgCharStyle;
@@ -2649,7 +2649,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenChapterInfo");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenChapterInfo" ));
 
                 pArr[1].Name = C2U("CharacterStyleName");
                 pArr[1].Value <<= aProgCharStyle;
@@ -2673,7 +2673,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenHyperlinkStart");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenHyperlinkStart" ));
             }
             break;
             case TOKEN_LINK_END     :
@@ -2682,7 +2682,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenHyperlinkEnd");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenHyperlinkEnd" ));
             }
             break;
             case TOKEN_AUTHORITY :
@@ -2690,7 +2690,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
                 pArr[0].Name = C2U("TokenType");
-                pArr[0].Value <<= OUString::createFromAscii("TokenBibliographyDataField");
+                pArr[0].Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "TokenBibliographyDataField" ));
 
                 pArr[1].Name = C2U("CharacterStyleName");
                 pArr[1].Value <<= aProgCharStyle;

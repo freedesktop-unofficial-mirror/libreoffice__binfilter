@@ -576,9 +576,9 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
         if ( xKey.is () )                                                                                               \
         {                                                                                                               \
             /* Build new keyname */                                                                                     \
-            sKeyName     =  UNOOUSTRING::createFromAscii( "/" )         ;                                               \
+            sKeyName     =  UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "/" ))            ;                                               \
             sKeyName    +=  CLASS::impl_getStaticImplementationName()   ;                                               \
-            sKeyName    +=  UNOOUSTRING::createFromAscii( "/UNO/SERVICES" );                                            \
+            sKeyName    +=  UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" ));                                               \
                                                                                                                         \
             /* Create new key with new name. */                                                                         \
              xNewKey = xKey->createKey( sKeyName );                                                                     \

@@ -247,13 +247,13 @@ namespace SfxContainer_Impl
 /*N*/   }
 /*N*/
 /*N*/   mxSFI = Reference< XSimpleFileAccess >( mxMSF->createInstance
-/*N*/       ( OUString::createFromAscii( "com.sun.star.ucb.SimpleFileAccess" ) ), UNO_QUERY );
+/*N*/       ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.ucb.SimpleFileAccess" )) ), UNO_QUERY );
 /*N*/   if( !mxSFI.is() )
 /*N*/   {
 /*N*/       OSL_ENSURE( 0, "### couln't create SimpleFileAccess component\n" );
 /*N*/   }
     mxStringSubstitution = Reference< XStringSubstitution >( mxMSF->createInstance
-        ( OUString::createFromAscii( "com.sun.star.util.PathSubstitution" ) ), UNO_QUERY );
+        ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.PathSubstitution" )) ), UNO_QUERY );
     OSL_ENSURE( mxStringSubstitution.is(), "### couln't create PathSubstitution component\n" );
 /*N*/ }
 

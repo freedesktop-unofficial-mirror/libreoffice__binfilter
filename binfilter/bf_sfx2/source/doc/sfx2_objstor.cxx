@@ -612,7 +612,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       if( xServiceManager.is() )
 /*N*/       {
 /*N*/           xFilterCFG = ::com::sun::star::uno::Reference< XNameAccess >(
-/*N*/               xServiceManager->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.document.FilterFactory" ) ),
+/*N*/               xServiceManager->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.FilterFactory" )) ),
 /*N*/               UNO_QUERY );
 /*N*/       }
 /*N*/
@@ -628,7 +628,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/                   ::rtl::OUString aServiceName;
 /*N*/                   sal_Int32 nPropertyCount = aProps.getLength();
 /*N*/                   for( sal_Int32 nProperty=0; nProperty < nPropertyCount; ++nProperty )
-/*N*/                       if( aProps[nProperty].Name.equals( ::rtl::OUString::createFromAscii("UIComponent")) )
+/*N*/                       if( aProps[nProperty].Name.equals( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "UIComponent" ))) )
 /*N*/                       {
 /*N*/                           ::rtl::OUString aServiceName;
 /*N*/                           aProps[nProperty].Value >>= aServiceName;
@@ -1306,7 +1306,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   const INetURLObject aActName(pActMed->GetName());
 /*N*/
 /*N*/   if ( aURL == aActName
-/*N*/       && aURL != INetURLObject( OUString::createFromAscii( "private:stream" ) ) )
+/*N*/       && aURL != INetURLObject( OUString( RTL_CONSTASCII_USTRINGPARAM( "private:stream" )) ) )
 /*N*/   {
 /*?*/       if ( IsReadOnly() )
 /*?*/       {

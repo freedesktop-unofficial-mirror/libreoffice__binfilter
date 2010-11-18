@@ -134,7 +134,7 @@ using namespace ::cppu;
 /*N*/         {
 /*N*/             sal_Bool bIsEncrypted = sal_False;
 /*N*/             ::com::sun::star::uno::Any aAny;
-/*N*/             if ( aRef->GetProperty( ::rtl::OUString::createFromAscii("HasEncryptedEntries"), aAny ) )
+/*N*/             if ( aRef->GetProperty( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasEncryptedEntries" )), aAny ) )
 /*N*/                 aAny >>= bIsEncrypted;
 /*N*/             else
 /*N*/             {

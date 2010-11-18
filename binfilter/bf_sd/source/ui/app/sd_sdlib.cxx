@@ -126,7 +126,7 @@ ULONG __EXPORT SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter
     if( *pFilter && (*pFilter)->GetFilterFlags() & SFX_FILTER_PACKED )
     {
         uno::Reference< lang::XMultiServiceFactory > xSMgr( ::legacy_binfilters::getLegacyProcessServiceFactory() );
-        uno::Reference< util::XArchiver > xPacker( xSMgr->createInstance( OUString::createFromAscii( "com.sun.star.util.Archiver" ) ), uno::UNO_QUERY );
+        uno::Reference< util::XArchiver > xPacker( xSMgr->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.Archiver" )) ), uno::UNO_QUERY );
         if( xPacker.is() )
         {
             // extract extra data

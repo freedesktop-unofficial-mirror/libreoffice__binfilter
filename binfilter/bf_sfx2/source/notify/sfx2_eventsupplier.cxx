@@ -377,8 +377,8 @@ namespace binfilter {
 /*N*/           // wrong properties
 /*N*/           return;
 /*N*/
-            OUSTRING sApplication( OUSTRING::createFromAscii( "application" ) );
-            OUSTRING sDocument( OUSTRING::createFromAscii( "document" ) );
+            OUSTRING sApplication( OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "application" )) );
+            OUSTRING sDocument( OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "document" )) );
             if ( aLibrary != sApplication && aLibrary != sDocument )
             {
                 if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAscii( "StarDesktop" ) )
@@ -415,7 +415,7 @@ namespace binfilter {
 /*N*/   m_refCount++;
 /*N*/   pImp = new SfxEvents_Impl( NULL, this );
 /*N*/   m_xEvents = pImp;
-/*N*/     m_xJobsBinding = REFERENCE< XJOBEXECUTOR >(xSmgr->createInstance(OUSTRING::createFromAscii("com.sun.star.task.JobExecutor")), UNO_QUERY);
+/*N*/     m_xJobsBinding = REFERENCE< XJOBEXECUTOR >(xSmgr->createInstance(OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.task.JobExecutor" ))), UNO_QUERY);
 /*N*/   m_refCount--;
 /*N*/   StartListening(*SFX_APP());
 /*N*/ }

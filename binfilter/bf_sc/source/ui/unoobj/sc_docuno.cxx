@@ -1077,7 +1077,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScModelObj::getAvailableServiceNames()
 
 ::rtl::OUString SAL_CALL ScModelObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScModelObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScModelObj" ));
 }
 
 sal_Bool SAL_CALL ScModelObj::supportsService( const ::rtl::OUString& rServiceName )

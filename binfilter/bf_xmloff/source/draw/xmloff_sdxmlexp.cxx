@@ -2612,7 +2612,7 @@ OUString SAL_CALL SdXMLExport::getImplementationName() throw( uno::RuntimeExcept
             case EXPORT_SETTINGS:
                 return SdDrawXMLExport_Settings_getImplementationName();
             default:
-                return OUString::createFromAscii( "SdXMLExport.Draw" );
+                return OUString( RTL_CONSTASCII_USTRINGPARAM( "SdXMLExport.Draw" ));
         }
     }
     else
@@ -2632,7 +2632,7 @@ OUString SAL_CALL SdXMLExport::getImplementationName() throw( uno::RuntimeExcept
             case EXPORT_SETTINGS:
                 return SdImpressXMLExport_Settings_getImplementationName();
             default:
-                return OUString::createFromAscii( "SdXMLExport.Impress" );
+                return OUString( RTL_CONSTASCII_USTRINGPARAM( "SdXMLExport.Impress" ));
         }
     }
 }

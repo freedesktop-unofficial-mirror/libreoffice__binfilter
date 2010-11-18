@@ -853,7 +853,7 @@ void lcl_EnquoteIfNecessary( ::rtl::OUStringBuffer& rContent, sal_uInt16 nFormat
         {
             // A quote is turned into "\"" - a quote to end quoted text, an escaped quote,
             // and a quote to resume quoting.
-            rtl::OUString aInsert( rtl::OUString::createFromAscii( "\"\\\"" ) );
+            rtl::OUString aInsert( rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( "\"\\\"" )) );
 
             sal_Int32 nPos = 0;
             while ( nPos < rContent.getLength() )
@@ -1166,7 +1166,7 @@ void SvXMLNumFmtElementContext::EndElement()
             {
                 rParent.AddNumber( aNumInfo );      // simple number
 
-                rParent.AddToCode( OUString::createFromAscii( "E+" ) );
+                rParent.AddToCode( OUString( RTL_CONSTASCII_USTRINGPARAM( "E+" )) );
                 for (sal_Int32 i=0; i<aNumInfo.nExpDigits; i++)
                     rParent.AddToCode( OUString::valueOf((sal_Unicode)'0') );
             }

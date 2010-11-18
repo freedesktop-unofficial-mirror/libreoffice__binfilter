@@ -153,8 +153,8 @@ public:
 /*N*/   Sequence< ::rtl::OUString >         aName( 1 );
 /*N*/   Reference< ::com::sun::star::lang::XSingleServiceFactory >  xFact;
 /*N*/
-/*N*/   aName.getArray()[0] = ::rtl::OUString::createFromAscii("com.sun.star.drawing.ShapeCollection");
-/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("ShapeCollection"), SvxShapeCollection_CreateInstance, aName );
+/*N*/   aName.getArray()[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeCollection" ));
+/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeCollection" )), SvxShapeCollection_CreateInstance, aName );
 /*N*/   xSet->insert( makeAny(xFact) );
 /*N*/ }
 

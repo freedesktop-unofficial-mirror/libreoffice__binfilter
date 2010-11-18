@@ -58,7 +58,7 @@ using namespace ::com::sun::star;
 /*N*/         if( xEnumAcc.is())
 /*N*/         {
 /*N*/             uno::Reference< container::XEnumeration > xEnum =
-/*N*/                 xEnumAcc->createContentEnumeration( ::rtl::OUString::createFromAscii( "com.sun.star.chart.Diagram" ));
+/*N*/                 xEnumAcc->createContentEnumeration( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.Diagram" )));
 /*N*/             if( xEnum.is())
 /*N*/             {
 /*N*/                 // clear possibly existing list

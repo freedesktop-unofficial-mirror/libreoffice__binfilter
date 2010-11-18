@@ -380,12 +380,12 @@ void SchXMLChartContext::EndElement()
             if( msChartAddress.getLength())
             {
                 aAny <<= msChartAddress;
-                xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "ChartRangeAddress" ), aAny );
+                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartRangeAddress" )), aAny );
 
                 if( msTableNumberList.getLength())
                 {
                     aAny <<= msTableNumberList;
-                    xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "TableNumberList" ), aAny );
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TableNumberList" )), aAny );
                 }
             }
             else
@@ -394,14 +394,14 @@ void SchXMLChartContext::EndElement()
                 if( msCategoriesAddress.getLength())
                 {
                     aAny <<= msCategoriesAddress;
-                    xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "CategoriesRangeAddress" ), aAny );
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "CategoriesRangeAddress" )), aAny );
                 }
 
                 // deprecated
                 if( maSeriesAddresses.getLength())
                 {
                     aAny <<= maSeriesAddresses;
-                    xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "SeriesAddresses" ), aAny );
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "SeriesAddresses" )), aAny );
                 }
             }
 
@@ -412,13 +412,13 @@ void SchXMLChartContext::EndElement()
             {
                 uno::Sequence< sal_Int32 > aSeq = GetNumberSequenceFromString( msColTrans );
                 aAny <<= aSeq;
-                xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "TranslatedColumns" ), aAny );
+                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TranslatedColumns" )), aAny );
             }
             else if( bHasRowTrans )
             {
                 uno::Sequence< sal_Int32 > aSeq = GetNumberSequenceFromString( msRowTrans );
                 aAny <<= aSeq;
-                xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "TranslatedRows" ), aAny );
+                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TranslatedRows" )), aAny );
             }
         }
         catch( beans::UnknownPropertyException )
@@ -495,7 +495,7 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
                 {
                     uno::Any aTrueBool;
                     aTrueBool <<= (sal_Bool)(sal_True);
-                    xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasMainTitle" ), aTrueBool );
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasMainTitle" )), aTrueBool );
 
                     SCH_BUILDCHART( xDoc );
                 }
@@ -510,7 +510,7 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
             {
                 if( xProp.is())
                 {
-                    xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasSubTitle" ), aTrueBool );
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSubTitle" )), aTrueBool );
                     SCH_BUILDCHART( xDoc );
                 }
                 uno::Reference< drawing::XShape > xTitleShape( xDoc->getSubTitle(), uno::UNO_QUERY );
@@ -532,7 +532,7 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
                 if( xProp.is())
                     try
                     {
-                        xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "ExportData" ), aTrueBool );
+                        xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ExportData" )), aTrueBool );
                     }
                     catch( uno::Exception )
                     {
@@ -590,9 +590,9 @@ void    SchXMLChartContext::InitChart   (awt::Size aChartSize,
         aFalseBool <<= (sal_Bool)(sal_False);
         try
         {
-            xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasMainTitle" ), aFalseBool );
-            xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasSubTitle" ), aFalseBool );
-            xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasLegend" ), aFalseBool );
+            xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasMainTitle" )), aFalseBool );
+            xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSubTitle" )), aFalseBool );
+            xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasLegend" )), aFalseBool );
         }
         catch( beans::UnknownPropertyException )
         {
@@ -845,7 +845,7 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
         aTrueBool <<= (sal_Bool)(sal_True);
         try
         {
-            xDocProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasLegend" ), aTrueBool );
+            xDocProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasLegend" )), aTrueBool );
             SCH_BUILDCHART( xDoc );
 
             // initialize position
@@ -893,7 +893,7 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
                             {
                                 uno::Any aAny;
                                 aAny <<= (chart::ChartLegendPosition)(nEnumVal);
-                                xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "Alignment" ), aAny );
+                                xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Alignment" )), aAny );
                             }
                         }
                         catch( beans::UnknownPropertyException )

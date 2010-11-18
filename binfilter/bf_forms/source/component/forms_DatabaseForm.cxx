@@ -104,7 +104,7 @@ enum DatabaseCursorType
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#define DATABASEFORM_IMPLEMENTATION_NAME    ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.ODatabaseForm")
+#define DATABASEFORM_IMPLEMENTATION_NAME    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms.ODatabaseForm" ))
 
 using namespace ::dbtools;
 using namespace ::comphelper;
@@ -549,7 +549,7 @@ ODatabaseForm::~ODatabaseForm()
         aResult += UniString('=');
         aResult += pSuccObj->aValue;
         if (pSuccObj < aSuccObjList.end() - 1)
-            aResult += ::rtl::OUString::createFromAscii("\r\n");
+            aResult += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "\r\n" ));
     }
 
 
@@ -996,7 +996,7 @@ void ODatabaseForm::Encode( ::rtl::OUString& rString ) const
             switch( nCharCode )
             {
                 case 13:    // CR
-                    aResult += ::rtl::OUString::createFromAscii("%0D%0A");  // Hex-Darstellung CR LF
+                    aResult += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "%0D%0A" ));   // Hex-Darstellung CR LF
                     break;
 
 
@@ -1043,7 +1043,7 @@ void ODatabaseForm::InsertTextPart( INetMIMEMessage& rParent, const ::rtl::OUStr
 
 
     // Header
-    ::rtl::OUString aContentDisp = ::rtl::OUString::createFromAscii("form-data; name=\"");
+    ::rtl::OUString aContentDisp = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "form-data; name=\""));
     aContentDisp += rName;
     aContentDisp += UniString('\"');
     pChild->SetContentDisposition( aContentDisp );
@@ -1108,15 +1108,15 @@ sal_Bool ODatabaseForm::InsertFilePart( INetMIMEMessage& rParent, const ::rtl::O
 
 
     // Header
-    ::rtl::OUString aContentDisp = ::rtl::OUString::createFromAscii( "form-data; name=\"" );
+    ::rtl::OUString aContentDisp = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "form-data; name=\"" ));
     aContentDisp += rName;
     aContentDisp += UniString('\"');
-    aContentDisp += ::rtl::OUString::createFromAscii("; filename=\"");
+    aContentDisp += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "; filename=\"" ));
     aContentDisp += aFileName;
     aContentDisp += UniString('\"');
     pChild->SetContentDisposition( aContentDisp );
     pChild->SetContentType( aContentType );
-    pChild->SetContentTransferEncoding( UniString(::rtl::OUString::createFromAscii("8bit")) );
+    pChild->SetContentTransferEncoding( UniString(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "8bit" ))) );
 
 
     // Body
@@ -2166,7 +2166,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
 
     Reference<XURLTransformer>
         xTransformer(m_xServiceFactory->createInstance(
-            ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")), UNO_QUERY);
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.URLTransformer" ))), UNO_QUERY);
     DBG_ASSERT(xTransformer.is(), "ODatabaseForm::submit_impl : could not create an URL transformer !");
 
     // URL-Encoding
@@ -2199,7 +2199,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
             if (xDisp.is())
             {
                 Sequence<PropertyValue> aArgs(1);
-                aArgs.getArray()->Name = ::rtl::OUString::createFromAscii("Referer");
+                aArgs.getArray()->Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
                 aArgs.getArray()->Value <<= aReferer;
                 xDisp->dispatch(aURL, aArgs);
             }
@@ -2217,7 +2217,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
             if (xDisp.is())
             {
                 Sequence<PropertyValue> aArgs(2);
-                aArgs.getArray()[0].Name = ::rtl::OUString::createFromAscii("Referer");
+                aArgs.getArray()[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
                 aArgs.getArray()[0].Value <<= aReferer;
 
                 // build a sequence from the to-be-submitted string
@@ -2226,7 +2226,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
                 Sequence< sal_Int8 > aPostData((sal_Int8*)a8BitData.GetBuffer(), a8BitData.Len());
                 Reference< XInputStream > xPostData = new SequenceInputStream(aPostData);
 
-                aArgs.getArray()[1].Name = ::rtl::OUString::createFromAscii("PostData");
+                aArgs.getArray()[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "PostData" ));
                 aArgs.getArray()[1].Value <<= xPostData;
 
                 xDisp->dispatch(aURL, aArgs);
@@ -2259,15 +2259,15 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
                 return;
 
             Sequence<PropertyValue> aArgs(3);
-            aArgs.getArray()[0].Name = ::rtl::OUString::createFromAscii("Referer");
+            aArgs.getArray()[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
             aArgs.getArray()[0].Value <<= aReferer;
-            aArgs.getArray()[1].Name = ::rtl::OUString::createFromAscii("ContentType");
+            aArgs.getArray()[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" ));
             aArgs.getArray()[1].Value <<= aContentType;
 
             // build a sequence from the to-be-submitted string
             Reference< XInputStream > xPostData = new SequenceInputStream(aData);
 
-            aArgs.getArray()[2].Name = ::rtl::OUString::createFromAscii("PostData");
+            aArgs.getArray()[2].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "PostData" ));
             aArgs.getArray()[2].Value <<= xPostData;
 
             xDisp->dispatch(aURL, aArgs);
@@ -2297,7 +2297,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
         if (xDisp.is())
         {
             Sequence<PropertyValue> aArgs(2);
-            aArgs.getArray()[0].Name = ::rtl::OUString::createFromAscii("Referer");
+            aArgs.getArray()[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
             aArgs.getArray()[0].Value <<= aReferer;
 
             // build a sequence from the to-be-submitted string
@@ -2305,7 +2305,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
             Sequence< sal_Int8 > aPostData((sal_Int8*)aSystemEncodedData.GetBuffer(), aSystemEncodedData.Len());
             Reference< XInputStream > xPostData = new SequenceInputStream(aPostData);
 
-            aArgs.getArray()[1].Name = ::rtl::OUString::createFromAscii("PostData");
+            aArgs.getArray()[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "PostData" ));
             aArgs.getArray()[1].Value <<= xPostData;
 
             xDisp->dispatch(aURL, aArgs);
@@ -3548,7 +3548,7 @@ Sequence< ::rtl::OUString > SAL_CALL ODatabaseForm::getCurrentServiceNames_Stati
     ::rtl::OUString* pServices = aServices.getArray();
 
     *pServices++ = FRM_SUN_FORMCOMPONENT;
-    *pServices++ = ::rtl::OUString::createFromAscii("com.sun.star.form.FormComponents");
+    *pServices++ = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.FormComponents" ));
     *pServices++ = FRM_SUN_COMPONENT_FORM;
     *pServices++ = FRM_SUN_COMPONENT_HTMLFORM;
     *pServices++ = FRM_SUN_COMPONENT_DATAFORM;

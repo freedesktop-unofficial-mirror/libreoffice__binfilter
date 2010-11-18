@@ -909,7 +909,7 @@ extern "C" {
 /*N*/     aTempStr = aImpl;
 /*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
 /*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster") );
+/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.GlobalEventBroadcaster" )) );
 /*N*/
 /*N*/     // standalone document info
 /*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
@@ -918,7 +918,7 @@ extern "C" {
 /*N*/     aTempStr = aImpl;
 /*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
 /*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString::createFromAscii("com.sun.star.document.StandaloneDocumentInfo") );
+/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.StandaloneDocumentInfo" )) );
 /*N*/
 /*N*/   // script library container service
 /*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
@@ -927,7 +927,7 @@ extern "C" {
 /*N*/     aTempStr = aImpl;
 /*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
 /*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString::createFromAscii("com.sun.star.script.ScriptLibraryContainer") );
+/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.ScriptLibraryContainer" )) );
 /*N*/
 /*N*/   // dialog library container service
 /*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
@@ -936,7 +936,7 @@ extern "C" {
 /*N*/     aTempStr = aImpl;
 /*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
 /*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString::createFromAscii("com.sun.star.script.DialogLibraryContainer") );
+/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.DialogLibraryContainer" )) );
 /*N*/
 /*N*/   return sal_True;
 /*N*/ }

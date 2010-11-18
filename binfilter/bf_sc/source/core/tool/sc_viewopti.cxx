@@ -475,10 +475,10 @@ using namespace ::com::sun::star::uno;
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
 /*N*/   {
-/*N*/       pNames[SCGRIDOPT_RESOLU_X] = OUString::createFromAscii( "Resolution/XAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_RESOLU_Y] = OUString::createFromAscii( "Resolution/YAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_OPTION_X] = OUString::createFromAscii( "Option/XAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_OPTION_Y] = OUString::createFromAscii( "Option/YAxis/Metric" );
+/*N*/       pNames[SCGRIDOPT_RESOLU_X] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Resolution/XAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_RESOLU_Y] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Resolution/YAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_OPTION_X] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Option/XAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_OPTION_Y] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Option/YAxis/Metric" ));
 /*N*/   }
 /*N*/
 /*N*/   return aNames;

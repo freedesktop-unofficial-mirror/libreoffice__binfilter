@@ -1857,7 +1857,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDatabaseRangeObj )
 
 ::rtl::OUString SAL_CALL ScDatabaseRangeObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScDatabaseRangeObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScDatabaseRangeObj" ));
 }
 
 sal_Bool SAL_CALL ScDatabaseRangeObj::supportsService( const ::rtl::OUString& rServiceName )

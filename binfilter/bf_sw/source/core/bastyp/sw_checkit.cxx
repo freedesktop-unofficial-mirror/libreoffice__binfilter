@@ -42,7 +42,7 @@ SwCheckIt::SwCheckIt()
 {
     Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
     Reference < XInterface > xI = xMSF->createInstance(
-        ::rtl::OUString::createFromAscii( "com.sun.star.i18n.InputSequenceChecker" ) );
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.InputSequenceChecker" )) );
     if ( xI.is() )
     {
         Any x = xI->queryInterface( ::getCppuType((const Reference< XInputSequenceChecker >*)0) );

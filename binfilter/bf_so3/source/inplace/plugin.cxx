@@ -262,7 +262,7 @@ BOOL SvPlugInObject::StartPlugIn( )
     }
 
     Reference< XMultiServiceFactory > xFac( ::utl::getProcessServiceFactory() );
-    Reference< XPluginManager > xPMgr( xFac->createInstance( OUString::createFromAscii("com.sun.star.plugin.PluginManager") ), UNO_QUERY );
+    Reference< XPluginManager > xPMgr( xFac->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.plugin.PluginManager" )) ), UNO_QUERY );
     if (! xPMgr.is() )
         ShowServiceNotAvailableError( NULL, String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PluginManager" ) ), TRUE );
 

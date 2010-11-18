@@ -104,7 +104,7 @@ namespace { struct lclMutex : public rtl::Static< ::osl::Mutex, lclMutex > {}; }
 
  ---------------------------------------------------------------------------*/
 SourceViewConfig_Impl::SourceViewConfig_Impl() :
-    ConfigItem(OUString::createFromAscii("Office.Common/Font/SourceViewFont")),
+    ConfigItem(OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Font/SourceViewFont" ))),
     m_nFontHeight(12),
     m_bProportionalFontOnly(sal_False)
 {

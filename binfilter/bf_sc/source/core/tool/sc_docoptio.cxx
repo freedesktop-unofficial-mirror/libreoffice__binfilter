@@ -286,7 +286,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
-/*N*/       pNames[SCDOCLAYOUTOPT_TABSTOP] = OUString::createFromAscii( "TabStop/Metric" );
+/*N*/       pNames[SCDOCLAYOUTOPT_TABSTOP] = OUString( RTL_CONSTASCII_USTRINGPARAM( "TabStop/Metric" ));
 /*N*/
 /*N*/   return aNames;
 /*N*/ }

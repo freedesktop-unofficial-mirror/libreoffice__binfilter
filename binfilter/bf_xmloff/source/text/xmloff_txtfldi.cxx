@@ -3865,7 +3865,7 @@ void XMLMeasureFieldImportContext::PrepareField(
 {
     Any aAny;
     aAny <<= mnKind;
-    xPropertySet->setPropertyValue(OUString::createFromAscii("Kind"), aAny);
+    xPropertySet->setPropertyValue(OUString( RTL_CONSTASCII_USTRINGPARAM( "Kind" )), aAny);
 }
 
 

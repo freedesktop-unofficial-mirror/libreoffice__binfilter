@@ -339,8 +339,8 @@ using namespace ::com::sun::star;
 /*?*/           uno::Reference< lang::XMultiServiceFactory > xFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*?*/           if( xFactory.is() )
 /*?*/           {
-/*?*/               xControlContainer = uno::Reference< awt::XControlContainer >(xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainer")), uno::UNO_QUERY);
-/*?*/               uno::Reference< awt::XControlModel > xModel(xFactory->createInstance(::rtl::OUString::createFromAscii("com.sun.star.awt.UnoControlContainerModel")), uno::UNO_QUERY);
+/*?*/               xControlContainer = uno::Reference< awt::XControlContainer >(xFactory->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.awt.UnoControlContainer" ))), uno::UNO_QUERY);
+/*?*/               uno::Reference< awt::XControlModel > xModel(xFactory->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.awt.UnoControlContainerModel" ))), uno::UNO_QUERY);
 /*?*/               uno::Reference< awt::XControl > xControl(xControlContainer, uno::UNO_QUERY);
 /*?*/               if (xControl.is())
 /*?*/                   xControl->setModel(xModel);

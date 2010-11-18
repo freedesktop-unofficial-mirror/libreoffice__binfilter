@@ -1058,8 +1058,8 @@ uno::Sequence< OUString > SAL_CALL SvxUnoTextField::getSupportedServiceNames()
     uno::Sequence< OUString > aSeq( 3 );
     OUString* pServices = aSeq.getArray();
     pServices[0] = OUString::createFromAscii( pServiceNames[mnServiceId] );
-    pServices[1] = OUString::createFromAscii( "com.sun.star.text.TextContent" ),
-    pServices[2] = OUString::createFromAscii( "com.sun.star.text.TextField" );
+    pServices[1] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextContent" )),
+    pServices[2] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextField" ));
 
     return aSeq;
 }

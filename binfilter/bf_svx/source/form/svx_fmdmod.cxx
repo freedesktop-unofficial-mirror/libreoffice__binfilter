@@ -44,11 +44,11 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/ ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SAL_CALL SvxFmMSFactory::createInstance(const ::rtl::OUString& ServiceSpecifier) throw( ::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xRet;
-/*N*/   if ( ServiceSpecifier.indexOf( ::rtl::OUString::createFromAscii("com.sun.star.form.component.") ) == 0 )
+/*N*/   if ( ServiceSpecifier.indexOf( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.component." )) ) == 0 )
 /*N*/   {
 /*?*/       xRet = ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(ServiceSpecifier);
 /*N*/   }
-/*N*/   else if ( ServiceSpecifier == ::rtl::OUString( ::rtl::OUString::createFromAscii("com.sun.star.drawing.ControlShape") ) )
+/*N*/   else if ( ServiceSpecifier == ::rtl::OUString( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ControlShape" )) ) )
 /*N*/   {
 /*N*/       SdrObject* pObj = new FmFormObj(OBJ_FM_CONTROL);
 /*N*/       xRet = *new SvxShapeControl(pObj);

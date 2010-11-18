@@ -406,7 +406,7 @@ StringSequence OFormattedModel::getSupportedServiceNames() throw()
     aSupported.realloc(aSupported.getLength() + 2);
 
     ::rtl::OUString*pArray = aSupported.getArray();
-    pArray[aSupported.getLength()-2] = ::rtl::OUString::createFromAscii("com.sun.star.form.component.DatabaseFormattedField");
+    pArray[aSupported.getLength()-2] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.component.DatabaseFormattedField" ));
     pArray[aSupported.getLength()-1] = FRM_SUN_COMPONENT_FORMATTEDFIELD;
     return aSupported;
 }

@@ -222,12 +222,12 @@ using rtl::OUString;
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT /*i*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return OUString::createFromAscii ("");
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return OUString();
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString::createFromAscii ("");
+/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString();
 /*N*/ }
 
 

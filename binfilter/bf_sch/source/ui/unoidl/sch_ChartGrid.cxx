@@ -50,7 +50,7 @@ ChartGrid::~ChartGrid()
 ::rtl::OUString SAL_CALL ChartGrid::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartGrid" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartGrid" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartGrid::getSupportedServiceNames()
@@ -59,9 +59,9 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChartGrid::getSupportedServiceNames()
     SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 3 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartGrid" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartGrid" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -83,7 +83,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartGrid::getImplementationId()
 ::rtl::OUString SAL_CALL ChartGrid::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartGrid" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartGrid" ));
 }
 
 // XUnoTunnel

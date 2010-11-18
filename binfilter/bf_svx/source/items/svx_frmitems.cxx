@@ -1410,7 +1410,7 @@ using namespace ::com::sun::star;
 /*N*/         {
 /*N*/             // serialization for basic macro recording
 /*?*/             uno::Reference < script::XTypeConverter > xConverter
-/*?*/                     ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.script.Converter")),
+/*?*/                     ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.Converter" ))),
 /*?*/                     uno::UNO_QUERY );
 /*?*/             uno::Sequence < uno::Any > aSeq;
 /*?*/             uno::Any aNew;

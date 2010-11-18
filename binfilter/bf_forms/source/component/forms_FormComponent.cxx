@@ -598,7 +598,7 @@ Sequence<rtl::OUString> SAL_CALL OControlModel::getSupportedServiceNames() throw
     aSupported.realloc(aSupported.getLength() + 2);
     ::rtl::OUString* pArray = aSupported.getArray();
     pArray[aSupported.getLength()-2] = FRM_SUN_FORMCOMPONENT;
-    pArray[aSupported.getLength()-1] = ::rtl::OUString::createFromAscii("com.sun.star.form.FormControlModel");
+    pArray[aSupported.getLength()-1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.FormControlModel" ));
 
     return aSupported;
 }
@@ -1003,7 +1003,7 @@ StringSequence SAL_CALL OBoundControlModel::getSupportedServiceNames() throw(Run
     aSupported.realloc(aSupported.getLength() + 1);
 
     ::rtl::OUString* pArray = aSupported.getArray();
-    pArray[aSupported.getLength()-1] = ::rtl::OUString::createFromAscii("com.sun.star.form.DataAwareControlModel");
+    pArray[aSupported.getLength()-1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.DataAwareControlModel" ));
     return aSupported;
 }
 

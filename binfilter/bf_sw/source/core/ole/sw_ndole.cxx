@@ -437,7 +437,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
 /*N*/ SwOLELRUCache::SwOLELRUCache()
 /*N*/   : SvPtrarr( 64, 16 ),
-/*N*/   ::utl::ConfigItem( OUString::createFromAscii( "Office.Common/Cache" )),
+/*N*/   ::utl::ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Cache" ))),
 /*N*/   bInUnload( sal_False ),
 /*N*/   nLRU_InitSize( 20 )
 /*N*/ {
@@ -449,7 +449,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ {
 /*N*/   Sequence< OUString > aNames( 1 );
 /*N*/   OUString* pNames = aNames.getArray();
-/*N*/   pNames[0] = OUString::createFromAscii( "Writer/OLE_Objects" );
+/*N*/   pNames[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Writer/OLE_Objects" ));
 /*N*/   return aNames;
 /*N*/ }
 

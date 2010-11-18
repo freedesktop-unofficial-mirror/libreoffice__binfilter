@@ -192,7 +192,7 @@ void SvtUserOptions_Impl::InitFullName()
 // -----------------------------------------------------------------------
 SvtUserOptions_Impl::SvtUserOptions_Impl() :
 
-    ConfigItem( OUString::createFromAscii("UserProfile") ),
+    ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "UserProfile" )) ),
 
     m_bIsROCompany( READONLY_DEFAULT ),
     m_bIsROFirstName( READONLY_DEFAULT ),

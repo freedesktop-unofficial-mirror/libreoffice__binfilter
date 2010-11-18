@@ -147,7 +147,7 @@ using namespace ::rtl;
 /*N*/   if( xMgr.is() )
 /*N*/   {
 /*N*/       m_xScannerManager = Reference< XScannerManager >(
-/*N*/                       xMgr->createInstance( OUString::createFromAscii( "com.sun.star.scanner.ScannerManager" ) ),
+/*N*/                       xMgr->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.scanner.ScannerManager" )) ),
 /*N*/                       UNO_QUERY );
 /*N*/
 /*N*/ //        if( m_xScannerManager.is() )

@@ -163,7 +163,7 @@ Sequence< OUString > SvtHelpOptions_Impl::GetPropertyNames()
 // -----------------------------------------------------------------------
 
 SvtHelpOptions_Impl::SvtHelpOptions_Impl()
-    : ConfigItem( OUString::createFromAscii("Office.Common/Help") )
+    : ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Help" )) )
     , pList( 0 )
     , bExtendedHelp( sal_False )
     , bHelpTips( sal_True )

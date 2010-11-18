@@ -553,20 +553,20 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/   SEQUENCE < OUSTRING > aSequence( 14 );
         OUSTRING* pNames = aSequence.getArray();
         sal_Int32 i=0;
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnStartApp");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnCloseApp");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnNew");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnLoad");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAs");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAsDone");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSave");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveDone");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrepareUnload");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnload");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnFocus");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnfocus");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrint");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnModifyChanged");
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnStartApp" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnCloseApp" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnNew" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnLoad" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveAs" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveAsDone" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSave" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveDone" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPrepareUnload" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnUnload" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnFocus" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnUnfocus" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPrint" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnModifyChanged" ));
 /*N*/   return aSequence;
 /*N*/ }
 

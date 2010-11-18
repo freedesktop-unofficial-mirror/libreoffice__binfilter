@@ -66,7 +66,7 @@ sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
 
             Reference< XRegistryKey > xNewKey;
             xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(bf_MigrateFilter_getImplementationName());
-            xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
+            xNewKey = xNewKey->createKey(OUString( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" )));
 
             Sequence< OUString > rSNL = bf_MigrateFilter_getSupportedServiceNames();
 
@@ -76,7 +76,7 @@ sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
 
             // standalone document info
             xNewKey = reinterpret_cast< XRegistryKey * >(pRegistryKey)->createKey(binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticImplementationName());
-            xNewKey = xNewKey->createKey(OUString::createFromAscii("/UNO/SERVICES"));
+            xNewKey = xNewKey->createKey(OUString( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" )));
 
             rSNL = binfilter::SfxStandaloneDocumentInfoObject::impl_getStaticSupportedServiceNames();
             for(nPos=rSNL.getLength(); nPos--; )

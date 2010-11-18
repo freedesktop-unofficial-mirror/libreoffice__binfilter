@@ -351,7 +351,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
         {
             if( pMap->nWID == WID_STYLE_FAMILY )
             {
-                aAny <<= OUString::createFromAscii( "presentation" );
+                aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "presentation" ));
             }
             else if( pMap->nWID == WID_STYLE_DISPNAME )
             {
@@ -576,7 +576,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropert
 
     if( pMap->nWID == WID_STYLE_FAMILY )
     {
-        aAny <<= OUString::createFromAscii( "presentation" );
+        aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "presentation" ));
     }
     else if( pMap->nWID == SDRATTR_TEXTDIRECTION )
     {

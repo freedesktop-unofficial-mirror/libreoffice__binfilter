@@ -78,7 +78,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ::rtl::OUString aShapeType( xDescr->getShapeType() );
 /*N*/
-/*N*/   if (aShapeType  ==  ::rtl::OUString::createFromAscii("com.sun.star.drawing.ShapeControl"))
+/*N*/   if (aShapeType  ==  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeControl" )))
 /*?*/       return new FmFormObj(OBJ_FM_CONTROL);
 /*N*/   else
 /*N*/       return SvxDrawPage::_CreateSdrObject( xDescr );
@@ -113,7 +113,7 @@ namespace binfilter {
 /*N*/ {
     /* TODO: DG? Irgendwelche Services?
     ::com::sun::star::uno::Sequence aSeq( SvxDrawPage::getSupportedServiceNames() );
-    addToSequence( aSeq, 1, ::rtl::OUString::createFromAscii("stardiv.form.superservice?") );
+    addToSequence( aSeq, 1, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.form.superservice?" )) );
     return aSeq;
     */
 /*N*/

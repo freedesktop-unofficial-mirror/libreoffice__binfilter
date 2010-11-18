@@ -233,7 +233,7 @@ void OImageControlModel::_propertyChanged( const PropertyChangeEvent& rEvt )
 
     Reference<XActiveDataSink>  xSink(
         m_xServiceFactory->createInstance(
-        ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), UNO_QUERY);
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectInputStream" ))), UNO_QUERY);
     if (!xSink.is())
         return;
 
@@ -651,7 +651,7 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
     // is this a request for a context menu?
     if ( e.PopupTrigger )
     {
-        Reference< XPopupMenu > xMenu( m_xServiceFactory->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.awt.PopupMenu" ) ), UNO_QUERY );
+        Reference< XPopupMenu > xMenu( m_xServiceFactory->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.awt.PopupMenu" )) ), UNO_QUERY );
         DBG_ASSERT( xMenu.is(), "OImageControlControl::mousePressed: could not create a popup menu!" );
 
         Reference< XWindowPeer > xWindowPeer = getPeer();

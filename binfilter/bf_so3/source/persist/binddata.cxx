@@ -277,7 +277,7 @@ sal_Bool SvBindingData_Impl::hasHttpCache (void)
     if (!m_xCache.is())
     {
         m_xCache = SvBindingTransport_Impl::createContent (
-            OUString::createFromAscii ("private:httpcache"));
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "private:httpcache" )));
 
         Reference<XCommandProcessor> xProcessor (m_xCache, UNO_QUERY);
         if (xProcessor.is())
@@ -285,9 +285,9 @@ sal_Bool SvBindingData_Impl::hasHttpCache (void)
             Sequence<Property> aProps(3);
             aProps[0].Handle = aProps[1].Handle = aProps[2].Handle = -1;
 
-            aProps[0].Name = OUString::createFromAscii ("ConnectionLimit");
-            aProps[1].Name = OUString::createFromAscii ("SizeLimit");
-            aProps[2].Name = OUString::createFromAscii ("Size");
+            aProps[0].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "ConnectionLimit" ));
+            aProps[1].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "SizeLimit" ));
+            aProps[2].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "Size" ));
 
             SvBindingTransport_Impl::getProperties (xProcessor, aProps);
         }

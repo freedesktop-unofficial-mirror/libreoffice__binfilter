@@ -189,7 +189,7 @@ Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNa
     if( bNeedsInit )
     {
         OUString* pSeq = seqServiceNames.getArray();
-        pSeq[0] = OUString::createFromAscii( "com.sun.star.script.DialogLibraryContainer" );
+        pSeq[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.DialogLibraryContainer" ));
         bNeedsInit = sal_False;
     }
     return seqServiceNames;
@@ -203,7 +203,7 @@ OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
     MutexGuard aGuard( Mutex::getGlobalMutex() );
     if( bNeedsInit )
     {
-        aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.DialogLibraryContainer" );
+        aImplName = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.DialogLibraryContainer" ));
         bNeedsInit = sal_False;
     }
     return aImplName;

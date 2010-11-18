@@ -484,7 +484,7 @@ public:
 /*N*/               xStm->SetProperty( String( RTL_CONSTASCII_USTRINGPARAM( "MediaType" ) ), aAny );
 /*N*/             }
 /*N*/
-/*N*/             const sal_Bool bCompressed = ( ( 0 == aMimeType.getLength() ) || ( aMimeType == OUString::createFromAscii( "image/tiff" ) ) );
+/*N*/             const sal_Bool bCompressed = ( ( 0 == aMimeType.getLength() ) || ( aMimeType == OUString( RTL_CONSTASCII_USTRINGPARAM( "image/tiff" )) ) );
 /*N*/             aAny <<= bCompressed;
 /*N*/             xStm->SetProperty( String( RTL_CONSTASCII_USTRINGPARAM( "Compressed" ) ), aAny );
 /*N*/

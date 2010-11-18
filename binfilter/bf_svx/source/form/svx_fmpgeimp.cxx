@@ -143,8 +143,8 @@ using namespace ::binfilter::svxform;
 /*N*/ void FmFormPageImpl::WriteData(SvStream& rOut) const
 /*N*/ {
 /*N*/     // anlegen eines output streams fuer UNO
-/*N*/     Reference< ::com::sun::star::io::XActiveDataSource >  xSource(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.io.ObjectOutputStream")), UNO_QUERY);
-/*N*/     Reference< ::com::sun::star::io::XOutputStream >  xMarkOut(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.io.MarkableOutputStream")), UNO_QUERY);
+/*N*/     Reference< ::com::sun::star::io::XActiveDataSource >  xSource(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectOutputStream" ))), UNO_QUERY);
+/*N*/     Reference< ::com::sun::star::io::XOutputStream >  xMarkOut(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.MarkableOutputStream" ))), UNO_QUERY);
 /*N*/     Reference< ::com::sun::star::io::XActiveDataSource >  xMarkSource(xMarkOut, UNO_QUERY);
 /*N*/
 /*N*/     if (xSource.is())
@@ -183,10 +183,10 @@ using namespace ::binfilter::svxform;
 /*N*/ void FmFormPageImpl::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/     // Abholen des InputStreams ueber uno
-/*N*/     Reference< ::com::sun::star::io::XActiveDataSink >  xSink(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), UNO_QUERY);
+/*N*/     Reference< ::com::sun::star::io::XActiveDataSink >  xSink(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectInputStream" ))), UNO_QUERY);
 /*N*/
 /*N*/     // creating the mark streams
-/*N*/     Reference< ::com::sun::star::io::XInputStream >  xMarkIn(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.io.MarkableInputStream")), UNO_QUERY);
+/*N*/     Reference< ::com::sun::star::io::XInputStream >  xMarkIn(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.MarkableInputStream" ))), UNO_QUERY);
 /*N*/     Reference< ::com::sun::star::io::XActiveDataSink >  xMarkSink(xMarkIn, UNO_QUERY);
 /*N*/
 /*N*/     if (xSink.is())

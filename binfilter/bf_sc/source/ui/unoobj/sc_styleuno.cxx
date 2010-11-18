@@ -1888,7 +1888,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScStyleObj )
 
 ::rtl::OUString SAL_CALL ScStyleObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScStyleObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScStyleObj" ));
 }
 
 sal_Bool SAL_CALL ScStyleObj::supportsService( const ::rtl::OUString& rServiceName )

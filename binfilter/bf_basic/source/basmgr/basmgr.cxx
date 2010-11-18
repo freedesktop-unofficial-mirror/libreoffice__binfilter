@@ -2186,7 +2186,7 @@ Any ModuleContainer_Impl::getByName( const OUString& aName )
     if( !pMod )
         throw NoSuchElementException();
     Reference< XStarBasicModuleInfo > xMod = (XStarBasicModuleInfo*)new ModuleInfo_Impl
-        ( aName, OUString::createFromAscii( "StarBasic" ), pMod->GetSource32() );
+        ( aName, OUString( RTL_CONSTASCII_USTRINGPARAM( "StarBasic" )), pMod->GetSource32() );
     Any aRetAny;
     aRetAny <<= xMod;
     return aRetAny;

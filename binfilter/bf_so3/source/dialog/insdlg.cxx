@@ -132,7 +132,7 @@ void SvObjectServerList::FillInsertObjects()
         {
             OUString sReaderService( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationAccess" ));
             Sequence< Any > aArguments( 1 );
-            aArguments[0] <<= OUString::createFromAscii( "org.openoffice.Office.Common");
+            aArguments[0] <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "org.openoffice.Office.Common" ));
 
             Reference< XHierarchicalNameAccess > xHierNameAccess(
                 sProviderMSFactory->createInstanceWithArguments( sReaderService,aArguments ),
@@ -147,14 +147,14 @@ void SvObjectServerList::FillInsertObjects()
                 if( nameAccess.is())
                 {
                     Sequence<OUString> seqNames= nameAccess->getElementNames();
-                    OUString sSeparator( OUString::createFromAscii("/"));
+                    OUString sSeparator( OUString( RTL_CONSTASCII_USTRINGPARAM( "/" )));
                     for(int i=0; i<seqNames.getLength(); i++)
                     {
 
                         OUString sComponentName= sTagName + sSeparator + seqNames[i] + sSeparator +
-                            OUString::createFromAscii("Name");
+                            OUString( RTL_CONSTASCII_USTRINGPARAM( "Name" ));
                         OUString sKey= sTagName + sSeparator + seqNames[i] + sSeparator +
-                            OUString::createFromAscii("Key");
+                            OUString( RTL_CONSTASCII_USTRINGPARAM( "Key" ));
                         Any anyName= xHierNameAccess->getByHierarchicalName(sComponentName);
                         Any anyKey= xHierNameAccess->getByHierarchicalName( sKey);
 

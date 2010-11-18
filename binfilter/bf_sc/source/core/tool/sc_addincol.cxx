@@ -527,7 +527,7 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aLocalU = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aLocalU = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                         }
 /*N*/                                         String aLocalName = String( aLocalU );
 /*N*/
@@ -539,7 +539,7 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aDescU = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aDescU = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                         }
 /*N*/                                         String aDescription = String( aDescU );
 /*N*/
@@ -564,7 +564,7 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                                     }
 /*N*/                                                     ::rtl::OUString aArgDesc;
 /*N*/                                                     try
@@ -574,7 +574,7 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                                     }
 /*N*/
 /*N*/                                                     BOOL bOptional =

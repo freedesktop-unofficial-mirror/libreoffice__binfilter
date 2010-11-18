@@ -1356,9 +1356,9 @@ void UcbTransport_Impl::start (void)
         aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
-            m_aCommand.Name = OUString::createFromAscii ("synchronize");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "synchronize" ));
         else
-            m_aCommand.Name = OUString::createFromAscii ("open");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "open" ));
         m_aCommand.Handle = -1;
         m_aCommand.Argument <<= aArgument;
 
@@ -1375,7 +1375,7 @@ void UcbTransport_Impl::start (void)
             return;
         }
 
-        m_aCommand.Name = OUString::createFromAscii ("insert");
+        m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "insert" ));
         m_aCommand.Handle = -1;
         m_aCommand.Argument <<= InsertCommandArgument( Reference<XInputStream> ( new UcbTransportInputStream_Impl(xLockBytes) ),
                                                        sal_False );
@@ -1472,8 +1472,7 @@ void SAL_CALL UcbTransport_Impl::handle ( const Reference<XInteractionRequest> &
                 = Reference< XInteractionHandler >(
                       xFactory->
                           createInstance(
-                              OUString::createFromAscii(
-                                  "com.sun.star.task.InteractionHandler")),
+                              OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.task.InteractionHandler" ))),
                       UNO_QUERY);
     }
     DBG_ASSERT(m_xInteractionHdl.is(),
@@ -1568,7 +1567,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
     for (i = 0; i < n; i++)
     {
         PropertyChangeEvent evt (rEvent[i]);
-        if (evt.PropertyName == OUString::createFromAscii ("ContentType"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" )))
         {
             if (evt.NewValue >>= m_aContentType)
             {
@@ -1581,7 +1580,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
             }
             continue;
         }
-        if (evt.PropertyName == OUString::createFromAscii ("DocumentBody"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "DocumentBody" )))
         {
             if (m_xSink.is())
                 m_xLockBytes = m_xSink->getLockBytes();
@@ -1612,7 +1611,7 @@ OUString UcbTransport_Impl::getContentType_Impl ( const Reference<XCommandProces
     OUString aResult;
     if (rxProcessor.is())
     {
-        OUString aName (OUString::createFromAscii ("ContentType"));
+        OUString aName (OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" )));
         Sequence<Property> aProps(1);
 
         aProps[0].Name = aName;
@@ -1753,7 +1752,7 @@ void UcbHTTPTransport_Impl::start (void)
         sal_Int32 n = aProps.getLength();
         aProps.realloc (n + 1);
 
-        aProps[n].Name = OUString::createFromAscii ("Referer");
+        aProps[n].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
         aProps[n].Handle = -1;
         aProps[n].Value <<= OUString(aUrl);
     }
@@ -1772,9 +1771,9 @@ void UcbHTTPTransport_Impl::start (void)
         m_xSink = new UcbTransportDataSink_Impl();
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
-            m_aCommand.Name = OUString::createFromAscii ("synchronize");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "synchronize" ));
         else
-            m_aCommand.Name = OUString::createFromAscii ("open");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "open" ));
         m_aCommand.Handle = -1;
 
         OpenCommandArgument2 aArgument;
@@ -1810,7 +1809,7 @@ void UcbHTTPTransport_Impl::start (void)
 
             sal_Int32 n = aProps.getLength();
             aProps.realloc (n + 1);
-            aProps[n].Name = OUString::createFromAscii ("ContentType");
+            aProps[n].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" ));
             aProps[n].Value <<= OUString(aMimeType);
 
             SvBindingTransport_Impl::setProperties (xProcessor, aProps);
@@ -1819,7 +1818,7 @@ void UcbHTTPTransport_Impl::start (void)
 
         if (eAction == BINDACTION_PUT)
         {
-            m_aCommand.Name = OUString::createFromAscii ("insert");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "insert" ));
             m_aCommand.Handle = -1;
             m_aCommand.Argument <<= InsertCommandArgument( Reference<XInputStream> ( new UcbTransportInputStream_Impl(xLockBytes)),
                                                            sal_False );
@@ -1828,7 +1827,7 @@ void UcbHTTPTransport_Impl::start (void)
         {
             m_xSink = new UcbTransportDataSink_Impl();
 
-            m_aCommand.Name = OUString::createFromAscii ("post");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "post" ));
             m_aCommand.Handle = -1;
 
             PostCommandArgument aArgument;
@@ -1910,7 +1909,7 @@ void SAL_CALL UcbHTTPTransport_Impl::propertiesChange ( const Sequence<PropertyC
     for (i = 0; i < n; i++)
     {
         PropertyChangeEvent evt (rEvent[i]);
-        if (evt.PropertyName == OUString::createFromAscii ("DocumentHeader"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "DocumentHeader" )))
         {
             Sequence<DocumentHeaderField> aHead;
             if (evt.NewValue >>= aHead)
@@ -1930,12 +1929,12 @@ void SAL_CALL UcbHTTPTransport_Impl::propertiesChange ( const Sequence<PropertyC
             }
             continue;
         }
-        if (evt.PropertyName == OUString::createFromAscii ("PresentationURL"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "PresentationURL" )))
         {
             OUString aUrl;
             if (evt.NewValue >>= aUrl)
             {
-                OUString aBad (OUString::createFromAscii ("private:"));
+                OUString aBad (OUString( RTL_CONSTASCII_USTRINGPARAM( "private:" )));
                 if (!(aUrl.compareTo (aBad, aBad.getLength()) == 0))
                 {
                     // URL changed (Redirection).

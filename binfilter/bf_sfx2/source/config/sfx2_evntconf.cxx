@@ -284,7 +284,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/   {
 /*N*/       xSupplier = REFERENCE< XEVENTSSUPPLIER >
 /*N*/                 ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*N*/                         ::rtl::OUString::createFromAscii("com.sun.star.frame.GlobalEventBroadcaster" )), UNO_QUERY );
+/*N*/                         ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.GlobalEventBroadcaster" ))), UNO_QUERY );
 /*N*/   }
 /*N*/
 /*N*/     if ( xSupplier.is() )

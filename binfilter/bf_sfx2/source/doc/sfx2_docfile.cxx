@@ -1110,7 +1110,7 @@ namespace binfilter {
 /*?*/               if ( pContentTypeItem )
 /*?*/                   aMimeType = pContentTypeItem->GetValue();
 /*?*/               else
-/*?*/                   aMimeType = ::rtl::OUString::createFromAscii( "application/x-www-form-urlencoded" );
+/*?*/                   aMimeType = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-www-form-urlencoded" ));
 /*?*/
 /*?*/               Reference < XInputStream > xPostData;
 /*?*/               if ( pPostDataItem )
@@ -1712,11 +1712,11 @@ namespace binfilter {
 /*?*/
 /*?*/           try
 /*?*/           {
-/*?*/               Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString::createFromAscii( "MediaType" ) );
+/*?*/               Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "MediaType" )) );
 /*?*/               ::rtl::OUString aContentType;
 /*?*/               aAny >>= aContentType;
 /*?*/
-/*?*/               pImp->xAttributes->Append( SvKeyValue( ::rtl::OUString::createFromAscii( "content-type" ), aContentType ) );
+/*?*/               pImp->xAttributes->Append( SvKeyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "content-type" )), aContentType ) );
 /*?*/           }
 /*?*/           catch ( ::com::sun::star::uno::Exception& )
 /*?*/           {

@@ -319,7 +319,7 @@ sal_Char __FAR_DATA XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/
 /*?*/         // get parser
 /*?*/         Reference< XInterface > xXMLParser = xServiceFactory->createInstance(
-/*?*/             OUString::createFromAscii("com.sun.star.xml.sax.Parser") );
+/*?*/             OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Parser" )) );
 /*?*/         DBG_ASSERT( xXMLParser.is(),
 /*?*/             "XMLReader::Read: com.sun.star.xml.sax.Parser service missing" );
 /*?*/

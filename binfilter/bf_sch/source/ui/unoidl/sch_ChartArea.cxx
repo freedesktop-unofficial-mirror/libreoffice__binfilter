@@ -50,7 +50,7 @@ ChartArea::~ChartArea()
 ::rtl::OUString SAL_CALL ChartArea::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartArea" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartArea" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartArea::getSupportedServiceNames()
@@ -59,10 +59,10 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChartArea::getSupportedServiceNames()
     SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartArea" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.FillProperties" );
-    aSeq[ 3 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartArea" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FillProperties" ));
+    aSeq[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -84,7 +84,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartArea::getImplementationId()
 ::rtl::OUString SAL_CALL ChartArea::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartArea" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartArea" ));
 }
 
 // XUnoTunnel

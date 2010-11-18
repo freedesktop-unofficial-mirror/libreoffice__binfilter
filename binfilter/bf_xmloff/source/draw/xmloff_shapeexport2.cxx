@@ -952,7 +952,7 @@ void XMLShapeExport::ImpExportGraphicObjectShape(
             {
                 if( aStr[ 0 ] == '#' )
                 {
-                    aStreamURL = OUString::createFromAscii( "vnd.sun.star.Package:" );
+                    aStreamURL = OUString( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package:" ));
                     aStreamURL = aStreamURL.concat( aStr.copy( 1, aStr.getLength() - 1 ) );
                 }
 

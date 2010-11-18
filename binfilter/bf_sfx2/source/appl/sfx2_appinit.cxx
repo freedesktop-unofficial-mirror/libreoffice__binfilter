@@ -141,7 +141,7 @@ public:
 /*N*/ {
 /*N*/
 /*N*/     Reference < XDesktop > xDesktop ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-                                           ::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop") ), UNO_QUERY );
+                                           ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.Desktop" )) ), UNO_QUERY );
 /*N*/     xDesktop->addTerminateListener( new SfxTerminateListener_Impl() );
 /*N*/
 /*N*/     // StarObjects initialisieren

@@ -205,35 +205,35 @@ String SvFactory::GetServiceName( const SvGlobalName& rClassName )
     ::rtl::OUString aServiceName;
     if( SvGlobalName(SO3_SC_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Calc.SpreadsheetDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Calc.SpreadsheetDocument" ));
     }
     else if( SvGlobalName(SO3_SW_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Writer.TextDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Writer.TextDocument" ));
     }
     else if( SvGlobalName(SO3_SWWEB_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Writer.WebDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Writer.WebDocument" ));
     }
     else if( SvGlobalName(SO3_SWGLOB_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Writer.GlobalDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Writer.GlobalDocument" ));
     }
     else if( SvGlobalName(SO3_SIMPRESS_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Draw.PresentationDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Draw.PresentationDocument" ));
     }
     else if( SvGlobalName(SO3_SDRAW_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Draw.DrawingDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Draw.DrawingDocument" ));
     }
     else if( SvGlobalName(SO3_SCH_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Chart.ChartDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Chart.ChartDocument" ));
     }
     else if( SvGlobalName(SO3_SM_CLASSID_60) == rClassName )
     {
-        aServiceName = ::rtl::OUString::createFromAscii("com.sun.star.comp.Math.FormulaDocument");
+        aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.Math.FormulaDocument" ));
     }
 
     return aServiceName;
@@ -249,7 +249,7 @@ SvObject* TryCreate( const SvGlobalName& rClassName )
         if ( xDoc.is() )
         {
             com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue > aProps( 1 );
-            aProps[0].Name = ::rtl::OUString::createFromAscii( "SetEmbedded" );
+            aProps[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "SetEmbedded" ));
             aProps[0].Value <<= sal_True;
             xDoc->attachResource( ::rtl::OUString(), aProps );
 

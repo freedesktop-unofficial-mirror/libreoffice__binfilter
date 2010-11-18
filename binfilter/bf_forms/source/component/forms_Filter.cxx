@@ -158,22 +158,22 @@ namespace frm
         switch (m_nControlClass)
         {
             case FormComponentType::RADIOBUTTON:
-                aServiceName = ::rtl::OUString::createFromAscii("radiobutton");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "radiobutton" ));
                 break;
             case FormComponentType::CHECKBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("checkbox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "checkbox" ));
                 break;
             case FormComponentType::COMBOBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("combobox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "combobox" ));
                 break;
             case FormComponentType::LISTBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("listbox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "listbox" ));
                 break;
             default:
                 if (m_bMultiLine)
-                    aServiceName = ::rtl::OUString::createFromAscii("MultiLineEdit");
+                    aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "MultiLineEdit" ));
                 else
-                    aServiceName = ::rtl::OUString::createFromAscii("Edit");
+                    aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Edit" ));
         }
         return aServiceName;
     }
@@ -294,10 +294,10 @@ namespace frm
                 switch (rEvent.Selected)
                 {
                     case STATE_CHECK:
-                        aText = ::rtl::OUString::createFromAscii("1");
+                        aText = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "1" ));
                         break;
                     case STATE_NOCHECK:
-                        aText = ::rtl::OUString::createFromAscii("0");
+                        aText = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "0" ));
                         break;
                 }
             }   break;
@@ -456,7 +456,7 @@ namespace frm
                     sal_Int32 nFormatKey = 0;
                     try
                     {
-                        m_xFormatter->getNumberFormatsSupplier()->getNumberFormatSettings()->getPropertyValue(::rtl::OUString::createFromAscii("NullDate"))
+                        m_xFormatter->getNumberFormatsSupplier()->getNumberFormatSettings()->getPropertyValue(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NullDate" )))
                             >>= aNullDate;
                         nFormatKey = ::comphelper::getINT32(m_xField->getPropertyValue(PROPERTY_FORMATKEY));
                     }
@@ -544,9 +544,9 @@ namespace frm
                 if (xVclWindow.is())
                 {
                     Any aValue;
-                    if (aText.equals(::rtl::OUString::createFromAscii("1")))
+                    if (aText.equals(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "1" ))))
                         aValue <<= (sal_Int32)STATE_CHECK;
-                    else if (aText.compareTo(::rtl::OUString::createFromAscii("0")) == 0)
+                    else if (aText.compareTo(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "0" ))) == 0)
                         aValue <<= (sal_Int32)STATE_NOCHECK;
                     else
                         aValue <<= (sal_Int32)STATE_DONTKNOW;

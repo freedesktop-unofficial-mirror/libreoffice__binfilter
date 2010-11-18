@@ -220,7 +220,7 @@ sal_Bool SAL_CALL component_writeInfo( void* pServiceManager , void* pRegistryKe
     aImpl += bf_OfficeWrapper::impl_getStaticImplementationName();
     aImpl += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
     Reference< XRegistryKey > xNewKey = xKey->createKey( aImpl );
-    xNewKey->createKey( ::rtl::OUString::createFromAscii("com.sun.star.office.OfficeWrapper") );
+    xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" )) );
 
     return sal_True;
 }

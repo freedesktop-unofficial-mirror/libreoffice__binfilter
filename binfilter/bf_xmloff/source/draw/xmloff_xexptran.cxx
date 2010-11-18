@@ -376,14 +376,14 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
         {
             case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE :
             {
-                aNewString += OUString::createFromAscii("rotate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DRotate*)pObj)->mfRotate);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SCALE      :
             {
-                aNewString += OUString::createFromAscii("scale (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "scale (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DScale*)pObj)->maScale.X());
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DScale*)pObj)->maScale.Y());
@@ -392,7 +392,7 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE  :
             {
-                aNewString += OUString::createFromAscii("translate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "translate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DTranslate*)pObj)->maTranslate.X(), TRUE);
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DTranslate*)pObj)->maTranslate.Y(), TRUE);
@@ -401,21 +401,21 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX      :
             {
-                aNewString += OUString::createFromAscii("skewX (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "skewX (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DSkewX*)pObj)->mfSkewX);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY      :
             {
-                aNewString += OUString::createFromAscii("skewY (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "skewY (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DSkewY*)pObj)->mfSkewY);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX :
             {
-                aNewString += OUString::createFromAscii("matrix (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix (" ));
 
                 // a
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DMatrix*)pObj)->maMatrix[0][0]);
@@ -470,12 +470,12 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
         const OUString aStr(msString.getStr(), (sal_uInt16)msString.getLength());
         const sal_Int32 nLen(aStr.getLength());
 
-        const OUString aString_rotate(OUString::createFromAscii("rotate"));
-        const OUString aString_scale(OUString::createFromAscii("scale"));
-        const OUString aString_translate(OUString::createFromAscii("translate"));
-        const OUString aString_skewX(OUString::createFromAscii("skewX"));
-        const OUString aString_skewY(OUString::createFromAscii("skewY"));
-        const OUString aString_matrix(OUString::createFromAscii("matrix"));
+        const OUString aString_rotate(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotate" )));
+        const OUString aString_scale(OUString( RTL_CONSTASCII_USTRINGPARAM( "scale" )));
+        const OUString aString_translate(OUString( RTL_CONSTASCII_USTRINGPARAM( "translate" )));
+        const OUString aString_skewX(OUString( RTL_CONSTASCII_USTRINGPARAM( "skewX" )));
+        const OUString aString_skewY(OUString( RTL_CONSTASCII_USTRINGPARAM( "skewY" )));
+        const OUString aString_matrix(OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix" )));
 
         sal_Int32 nPos(0);
 
@@ -753,28 +753,28 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   :
             {
-                aNewString += OUString::createFromAscii("rotatex (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatex (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateX*)pObj)->mfRotateX);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_Y   :
             {
-                aNewString += OUString::createFromAscii("rotatey (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatey (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateY*)pObj)->mfRotateY);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_Z   :
             {
-                aNewString += OUString::createFromAscii("rotatez (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatez (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateZ*)pObj)->mfRotateZ);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_SCALE      :
             {
-                aNewString += OUString::createFromAscii("scale (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "scale (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DScale*)pObj)->maScale.X());
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DScale*)pObj)->maScale.Y());
@@ -785,7 +785,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_TRANSLATE  :
             {
-                aNewString += OUString::createFromAscii("translate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "translate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate.X(), TRUE);
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate.Y(), TRUE);
@@ -796,7 +796,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX :
             {
-                aNewString += OUString::createFromAscii("matrix (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix (" ));
 
                 // a
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DMatrix*)pObj)->maMatrix[0][0]);
@@ -881,12 +881,12 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
         const OUString aStr(msString.getStr(), (sal_uInt16)msString.getLength());
         const sal_Int32 nLen(aStr.getLength());
 
-        const OUString aString_rotatex(OUString::createFromAscii("rotatex"));
-        const OUString aString_rotatey(OUString::createFromAscii("rotatey"));
-        const OUString aString_rotatez(OUString::createFromAscii("rotatez"));
-        const OUString aString_scale(OUString::createFromAscii("scale"));
-        const OUString aString_translate(OUString::createFromAscii("translate"));
-        const OUString aString_matrix(OUString::createFromAscii("matrix"));
+        const OUString aString_rotatex(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatex" )));
+        const OUString aString_rotatey(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatey" )));
+        const OUString aString_rotatez(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatez" )));
+        const OUString aString_scale(OUString( RTL_CONSTASCII_USTRINGPARAM( "scale" )));
+        const OUString aString_translate(OUString( RTL_CONSTASCII_USTRINGPARAM( "translate" )));
+        const OUString aString_matrix(OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix" )));
 
         sal_Int32 nPos(0);
 

@@ -153,7 +153,7 @@ Reference< XInterface > openConfig(const char* sPackage)
     {
         // get access to config API (not to file!)
         Reference< XMultiServiceFactory > xConfigProvider( xSMGR->createInstance(
-            OUString::createFromAscii("com.sun.star.configuration.ConfigurationProvider")), UNO_QUERY);
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationProvider" ))), UNO_QUERY);
 
         if (xConfigProvider.is())
         {
@@ -161,16 +161,16 @@ Reference< XInterface > openConfig(const char* sPackage)
             PropertyValue   aParam    ;
 
             // define cfg path for open
-            aParam.Name = OUString::createFromAscii("nodepath");
+            aParam.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "nodepath" ));
             if (TYPEPKG.equalsIgnoreAsciiCaseAscii(sPackage))
-                aParam.Value <<= OUString::createFromAscii("/org.openoffice.TypeDetection.Types/Types");
+                aParam.Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "/org.openoffice.TypeDetection.Types/Types" ));
             if (FILTERPKG.equalsIgnoreAsciiCaseAscii(sPackage))
-                aParam.Value <<= OUString::createFromAscii("/org.openoffice.TypeDetection.GraphicFilter/Filters");
+                aParam.Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "/org.openoffice.TypeDetection.GraphicFilter/Filters" ));
             lParams[0] = makeAny(aParam);
 
             // get access to file
             xCfg = xConfigProvider->createInstanceWithArguments(
-                OUString::createFromAscii("com.sun.star.configuration.ConfigurationAccess"), lParams);
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationAccess" )), lParams);
         }
     }
     catch(const RuntimeException&)

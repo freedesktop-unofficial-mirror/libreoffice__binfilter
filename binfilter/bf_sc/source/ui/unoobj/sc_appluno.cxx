@@ -170,7 +170,7 @@ void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
 {
     ::rtl::OUString aImpl( RTL_CONSTASCII_USTRINGPARAM( "/" ));
     aImpl += rImplementationName;
-    aImpl += ::rtl::OUString::createFromAscii( "/UNO/SERVICES" );
+    aImpl += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" ));
     uno::Reference<registry::XRegistryKey> xNewKey = pRegistryKey->createKey(aImpl);
 
     const ::rtl::OUString* pArray = rServices.getConstArray();
@@ -433,7 +433,7 @@ uno::Reference<uno::XInterface> SAL_CALL ScSpreadsheetSettings_CreateInstance(
 
 ::rtl::OUString ScSpreadsheetSettings::getImplementationName_Static()
 {
-    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScSpreadsheetSettings" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.StarCalc.ScSpreadsheetSettings" ));
 }
 
 uno::Sequence< ::rtl::OUString> ScSpreadsheetSettings::getSupportedServiceNames_Static()
@@ -692,7 +692,7 @@ uno::Reference<uno::XInterface> SAL_CALL ScRecentFunctionsObj_CreateInstance(
 
 ::rtl::OUString ScRecentFunctionsObj::getImplementationName_Static()
 {
-    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScRecentFunctionsObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.StarCalc.ScRecentFunctionsObj" ));
 }
 
 uno::Sequence< ::rtl::OUString> ScRecentFunctionsObj::getSupportedServiceNames_Static()
@@ -773,7 +773,7 @@ uno::Reference<uno::XInterface> SAL_CALL ScFunctionListObj_CreateInstance(
 
 ::rtl::OUString ScFunctionListObj::getImplementationName_Static()
 {
-    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScFunctionListObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.StarCalc.ScFunctionListObj" ));
 }
 
 uno::Sequence< ::rtl::OUString> ScFunctionListObj::getSupportedServiceNames_Static()

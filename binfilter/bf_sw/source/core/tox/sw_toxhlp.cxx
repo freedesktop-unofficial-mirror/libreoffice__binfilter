@@ -49,8 +49,7 @@ namespace binfilter {
 
     try {
         STAR_REFERENCE( uno::XInterface ) xI =
-            rxMSF->createInstance( ::rtl::OUString::createFromAscii(
-                                 "com.sun.star.i18n.IndexEntrySupplier" ) );
+            rxMSF->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.IndexEntrySupplier" )) );
         if( xI.is() )
         {
             UNO_NMSPC::Any x = xI->queryInterface( ::getCppuType(

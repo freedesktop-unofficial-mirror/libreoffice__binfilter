@@ -223,7 +223,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   Reference < ::com::sun::star::i18n::XBreakIterator > xBreak;
 /*N*/   Reference < XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/   Reference < XInterface > xInterface = xMSF->createInstance(::rtl::OUString::createFromAscii("com.sun.star.i18n.BreakIterator"));
+/*N*/   Reference < XInterface > xInterface = xMSF->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.BreakIterator" )));
 /*N*/   ::com::sun::star::lang::Locale aFontLocale = SvxCreateLocale(pInfo->rFont.GetLanguage());
 /*N*/
 /*N*/   if(xInterface.is())

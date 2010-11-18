@@ -472,17 +472,17 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDocument::getAvailableServiceN
     aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_STOCK ));
 
     // style tables (for XML)
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.DashTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.GradientTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.HatchTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.BitmapTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.TransparencyGradientTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.MarkerTable" ));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.DashTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.GradientTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.HatchTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.BitmapTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.TransparencyGradientTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.MarkerTable" )));
 
     // XML namespacemap / object resolver
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.xml.NamespaceMap" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.document.ExportGraphicObjectResolver" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.document.ImportGraphicObjectResolver" ));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.NamespaceMap" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.ExportGraphicObjectResolver" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.ImportGraphicObjectResolver" )));
 
     // shapes
     uno::Sequence< OUString > aDrawServices( SvxUnoDrawMSFactory::getAvailableServiceNames() );

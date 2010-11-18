@@ -1109,9 +1109,9 @@ namespace xmloff
     {
         // the label and the value
         const ::rtl::OUString sLabelAttribute = GetImport().GetNamespaceMap().GetQNameByKey(
-            GetPrefix(), ::rtl::OUString::createFromAscii("label"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "label" )));
         const ::rtl::OUString sValueAttribute = GetImport().GetNamespaceMap().GetQNameByKey(
-            GetPrefix(), ::rtl::OUString::createFromAscii("value"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "value" )));
 
         // -------------------
         // the label attribute

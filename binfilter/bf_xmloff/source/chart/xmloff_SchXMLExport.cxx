@@ -115,7 +115,7 @@ SchXMLExportHelper::SchXMLExportHelper(
         msCLSID = ::rtl::OUString( SvGlobalName( SO3_SCH_CLASSID ).GetHexName());
     }
 
-    msTableName = ::rtl::OUString::createFromAscii( "local-table" );
+    msTableName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "local-table" ));
 
     // create factory
     mxPropertyHandlerFactory = new XMLChartPropHdlFactory;
@@ -629,7 +629,7 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
         else
         {
             // get a sequence of non-chart shapes (inserted via clipboard)
-            uno::Any aShapesAny = xDocPropSet->getPropertyValue( ::rtl::OUString::createFromAscii( "AdditionalShapes" ));
+            uno::Any aShapesAny = xDocPropSet->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AdditionalShapes" )));
             aShapesAny >>= mxAdditionalShapes;
 
             if( mxAdditionalShapes.is())
@@ -1765,7 +1765,7 @@ void SchXMLExportHelper::exportAxes( uno::Reference< chart::XDiagram > xDiagram,
         return;
 
     // variables for autostyles
-    const ::rtl::OUString sNumFormat( ::rtl::OUString::createFromAscii( "NumberFormat" ));
+    const ::rtl::OUString sNumFormat( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberFormat" )));
     sal_Int32 nNumberFormat;
     uno::Reference< beans::XPropertySet > xPropSet;
     std::vector< XMLPropertyState > aPropertyStates;
@@ -1797,31 +1797,31 @@ void SchXMLExportHelper::exportAxes( uno::Reference< chart::XDiagram > xDiagram,
     if (xServiceInfo.is())
     {
         if (xServiceInfo->supportsService(
-            ::rtl::OUString::createFromAscii ("com.sun.star.chart.ChartAxisXSupplier")))
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisXSupplier" ))))
         {
             aDiagramProperties.Add (
                 OUString(RTL_CONSTASCII_USTRINGPARAM("HasXAxis")), bHasXAxis);
         }
         if (xServiceInfo->supportsService(
-            ::rtl::OUString::createFromAscii ("com.sun.star.chart.ChartAxisYSupplier")))
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisYSupplier" ))))
         {
             aDiagramProperties.Add (
                 OUString(RTL_CONSTASCII_USTRINGPARAM("HasYAxis")), bHasYAxis);
         }
         if (xServiceInfo->supportsService(
-            ::rtl::OUString::createFromAscii ("com.sun.star.chart.ChartAxisZSupplier")))
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisZSupplier" ))))
         {
             aDiagramProperties.Add (
                 OUString(RTL_CONSTASCII_USTRINGPARAM("HasZAxis")), bHasZAxis);
         }
         if (xServiceInfo->supportsService(
-            ::rtl::OUString::createFromAscii ("com.sun.star.chart.ChartTwoAxisXSupplier")))
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTwoAxisXSupplier" ))))
         {
             aDiagramProperties.Add (
                 OUString(RTL_CONSTASCII_USTRINGPARAM("HasSecondaryXAxis")), bHasSecondaryXAxis);
         }
         if (xServiceInfo->supportsService(
-            ::rtl::OUString::createFromAscii ("com.sun.star.chart.ChartTwoAxisYSupplier")))
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTwoAxisYSupplier" ))))
         {
             aDiagramProperties.Add (
                 OUString(RTL_CONSTASCII_USTRINGPARAM("HasSecondaryYAxis")), bHasSecondaryYAxis);
@@ -2498,7 +2498,7 @@ void SchXMLExport::_ExportContent()
         if( xServ.is())
         {
             if( xServ->supportsService(
-                ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartTableAddressSupplier" )))
+                ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTableAddressSupplier" ))))
             {
                 uno::Reference< beans::XPropertySet > xProp( xServ, uno::UNO_QUERY );
                 if( xProp.is())
@@ -2508,13 +2508,13 @@ void SchXMLExport::_ExportContent()
                     {
                         ::rtl::OUString sChartAddress;
                         aAny = xProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii( "ChartRangeAddress" ));
+                            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartRangeAddress" )));
                         aAny >>= sChartAddress;
                         maExportHelper.SetChartRangeAddress( sChartAddress );
 
                         ::rtl::OUString sTableNumberList;
                         aAny = xProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii( "TableNumberList" ));
+                            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TableNumberList" )));
                         aAny >>= sTableNumberList;
                         maExportHelper.SetTableNumberList( sTableNumberList );
 
@@ -2628,7 +2628,7 @@ OUString SAL_CALL SchXMLExport::getImplementationName() throw( uno::RuntimeExcep
         case EXPORT_SETTINGS:
         // there is no settings component in chart
         default:
-            return OUString::createFromAscii( "SchXMLExport" );
+            return OUString( RTL_CONSTASCII_USTRINGPARAM( "SchXMLExport" ));
     }
 }
 }//end of namespace binfilter

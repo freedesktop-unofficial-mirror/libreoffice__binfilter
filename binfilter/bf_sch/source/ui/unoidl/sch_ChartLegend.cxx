@@ -50,7 +50,7 @@ ChartLegend::~ChartLegend()
 ::rtl::OUString SAL_CALL ChartLegend::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartLegend" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartLegend" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartLegend::getSupportedServiceNames()
@@ -59,12 +59,12 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChartLegend::getSupportedServiceNames(
     SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 6 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartLegend" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.style.CharacterProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.FillProperties" );
-    aSeq[ 3 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 4 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.Shape" );
-    aSeq[ 5 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartLegend" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.CharacterProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FillProperties" ));
+    aSeq[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 4 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.Shape" ));
+    aSeq[ 5 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -86,7 +86,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartLegend::getImplementationId()
 ::rtl::OUString SAL_CALL ChartLegend::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartLegend" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartLegend" ));
 }
 
 // XUnoTunnel

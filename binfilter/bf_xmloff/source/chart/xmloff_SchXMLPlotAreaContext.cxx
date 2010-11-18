@@ -100,51 +100,51 @@ SchXMLPlotAreaContext::SchXMLPlotAreaContext( SchXMLImportHelper& rImpHelper,
     {
         try
         {
-            if( xInfo->supportsService( ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxisXSupplier" )))
+            if( xInfo->supportsService( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisXSupplier" ))))
             {
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasXAxis" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxis" )), aFalseBool );
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasXAxisGrid" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxisGrid" )), aFalseBool );
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasXAxisDescription" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxisDescription" )), aFalseBool );
             }
-            if( xInfo->supportsService( ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartTwoAxisXSupplier" )))
+            if( xInfo->supportsService( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTwoAxisXSupplier" ))))
             {
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasSecondaryXAxis" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryXAxis" )), aFalseBool );
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasSecondaryXAxisDescription" ), aFalseBool );
-            }
-
-            if( xInfo->supportsService( ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxisYSupplier" )))
-            {
-                xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasYAxis" ), aFalseBool );
-                xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasYAxisGrid" ), aFalseBool );
-                xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasYAxisDescription" ), aFalseBool );
-            }
-            if( xInfo->supportsService( ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartTwoAxisYSupplier" )))
-            {
-                xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasSecondaryYAxis" ), aFalseBool );
-                xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasSecondaryYAxisDescription" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryXAxisDescription" )), aFalseBool );
             }
 
-            if( xInfo->supportsService( ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxisZSupplier" )))
+            if( xInfo->supportsService( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisYSupplier" ))))
             {
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasZAxis" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxis" )), aFalseBool );
                 xProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii( "HasZAxisDescription" ), aFalseBool );
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxisGrid" )), aFalseBool );
+                xProp->setPropertyValue(
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxisDescription" )), aFalseBool );
+            }
+            if( xInfo->supportsService( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTwoAxisYSupplier" ))))
+            {
+                xProp->setPropertyValue(
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryYAxis" )), aFalseBool );
+                xProp->setPropertyValue(
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryYAxisDescription" )), aFalseBool );
+            }
+
+            if( xInfo->supportsService( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxisZSupplier" ))))
+            {
+                xProp->setPropertyValue(
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxis" )), aFalseBool );
+                xProp->setPropertyValue(
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisDescription" )), aFalseBool );
             }
             uno::Any aAny;
             chart::ChartDataRowSource eSource = chart::ChartDataRowSource_COLUMNS;
             aAny <<= eSource;
-            xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "DataRowSource" ), aAny );
+            xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DataRowSource" )), aAny );
         }
         catch( beans::UnknownPropertyException )
         {
@@ -296,12 +296,12 @@ void SchXMLPlotAreaContext::StartElement( const uno::Reference< xml::sax::XAttri
             uno::Any aAny;
             aAny <<= (sal_Bool)(bColHasLabels);
             xDocProp->setPropertyValue(
-                ::rtl::OUString::createFromAscii( "DataSourceLabelsInFirstColumn" ),
+                ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DataSourceLabelsInFirstColumn" )),
                 aAny );
 
             aAny <<= (sal_Bool)(bRowHasLabels);
             xDocProp->setPropertyValue(
-                ::rtl::OUString::createFromAscii( "DataSourceLabelsInFirstRow" ),
+                ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DataSourceLabelsInFirstRow" )),
                 aAny );
         }
         catch( beans::UnknownPropertyException )
@@ -346,7 +346,7 @@ void SchXMLPlotAreaContext::EndElement()
     if( xProp.is())
     {
         sal_Bool bIsThreeDim = sal_False;
-        uno::Any aAny = xProp->getPropertyValue( ::rtl::OUString::createFromAscii( "Dim3D" ));
+        uno::Any aAny = xProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Dim3D" )));
         aAny >>= bIsThreeDim;
 
         // set 3d scene attributes
@@ -566,7 +566,7 @@ uno::Reference< drawing::XShape > SchXMLAxisContext::getTitleShape()
                 if( xSuppl.is())
                 {
                     if( xDiaProp.is())
-                        xDiaProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasXAxisTitle" ), aTrueBool );
+                        xDiaProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxisTitle" )), aTrueBool );
                     xResult = uno::Reference< drawing::XShape >( xSuppl->getXAxisTitle(), uno::UNO_QUERY );
                 }
             }
@@ -578,7 +578,7 @@ uno::Reference< drawing::XShape > SchXMLAxisContext::getTitleShape()
                 if( xSuppl.is())
                 {
                     if( xDiaProp.is())
-                        xDiaProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasYAxisTitle" ), aTrueBool );
+                        xDiaProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxisTitle" )), aTrueBool );
                     xResult = uno::Reference< drawing::XShape >( xSuppl->getYAxisTitle(), uno::UNO_QUERY );
                 }
             }
@@ -588,7 +588,7 @@ uno::Reference< drawing::XShape > SchXMLAxisContext::getTitleShape()
             if( xSuppl.is())
             {
                 if( xDiaProp.is())
-                    xDiaProp->setPropertyValue( ::rtl::OUString::createFromAscii( "HasZAxisTitle" ), aTrueBool );
+                    xDiaProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisTitle" )), aTrueBool );
                 xResult = uno::Reference< drawing::XShape >( xSuppl->getZAxisTitle(), uno::UNO_QUERY );
             }
             break;
@@ -619,12 +619,12 @@ void SchXMLAxisContext::CreateGrid( ::rtl::OUString sAutoStyleName,
                     if( bIsMajor )
                     {
                         xGridProp = xSuppl->getXMainGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasXAxisGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxisGrid" ));
                     }
                     else
                     {
                         xGridProp = xSuppl->getXHelpGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasXAxisHelpGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxisHelpGrid" ));
                     }
                 }
             }
@@ -637,12 +637,12 @@ void SchXMLAxisContext::CreateGrid( ::rtl::OUString sAutoStyleName,
                     if( bIsMajor )
                     {
                         xGridProp = xSuppl->getYMainGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasYAxisGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxisGrid" ));
                     }
                     else
                     {
                         xGridProp = xSuppl->getYHelpGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasYAxisHelpGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxisHelpGrid" ));
                     }
                 }
             }
@@ -655,12 +655,12 @@ void SchXMLAxisContext::CreateGrid( ::rtl::OUString sAutoStyleName,
                     if( bIsMajor )
                     {
                         xGridProp = xSuppl->getZMainGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasZAxisGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisGrid" ));
                     }
                     else
                     {
                         xGridProp = xSuppl->getZHelpGrid();
-                        sPropertyName = ::rtl::OUString::createFromAscii( "HasZAxisHelpGrid" );
+                        sPropertyName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisHelpGrid" ));
                     }
                 }
             }
@@ -767,7 +767,7 @@ void SchXMLAxisContext::EndElement()
                 try
                 {
                     xDiaProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii( "HasXAxis" ), aTrueBool );
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasXAxis" )), aTrueBool );
                 }
                 catch( beans::UnknownPropertyException )
                 {
@@ -813,7 +813,7 @@ void SchXMLAxisContext::EndElement()
                 try
                 {
                     xDiaProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii( "HasSecondaryXAxis" ), aTrueBool );
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryXAxis" )), aTrueBool );
                 }
                 catch( beans::UnknownPropertyException )
                 {
@@ -831,7 +831,7 @@ void SchXMLAxisContext::EndElement()
                 try
                 {
                     xDiaProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii( "HasYAxis" ), aTrueBool );
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasYAxis" )), aTrueBool );
                 }
                 catch( beans::UnknownPropertyException )
                 {
@@ -877,7 +877,7 @@ void SchXMLAxisContext::EndElement()
                 try
                 {
                     xDiaProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii( "HasSecondaryYAxis" ), aTrueBool );
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasSecondaryYAxis" )), aTrueBool );
                 }
                 catch( beans::UnknownPropertyException )
                 {
@@ -894,7 +894,7 @@ void SchXMLAxisContext::EndElement()
                 try
                 {
                     xDiaProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii( "HasZAxis" ), aTrueBool );
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxis" )), aTrueBool );
                 }
                 catch( beans::UnknownPropertyException )
                 {
@@ -943,7 +943,7 @@ void SchXMLAxisContext::EndElement()
         xProp.is())
     {
         // #88077# AutoOrigin 'on' is default
-        xProp->setPropertyValue( ::rtl::OUString::createFromAscii( "AutoOrigin" ), aTrueBool );
+        xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoOrigin" )), aTrueBool );
 
         const SvXMLStylesContext* pStylesCtxt = mrImportHelper.GetAutoStylesContext();
         if( pStylesCtxt )

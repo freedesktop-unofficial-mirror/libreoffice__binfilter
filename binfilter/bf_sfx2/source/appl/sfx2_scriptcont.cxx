@@ -378,7 +378,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
             if( nArgCount > 1 )
                 pArgs[1] >>= aInitialisationParam;
             else
-                aScriptLanguage = OUString::createFromAscii( "StarBasic" );
+                aScriptLanguage = OUString( RTL_CONSTASCII_USTRINGPARAM( "StarBasic" ));
         }
 
         init( aInitialisationParam, aScriptLanguage );
@@ -399,7 +399,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 /*N*/     if( bNeedsInit )
 /*N*/     {
 /*N*/         OUString* pSeq = seqServiceNames.getArray();
-/*N*/         pSeq[0] = OUString::createFromAscii( "com.sun.star.script.ScriptLibraryContainer" );
+/*N*/         pSeq[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.ScriptLibraryContainer" ));
 /*N*/         bNeedsInit = sal_False;
 /*N*/     }
 /*N*/     return seqServiceNames;
@@ -413,7 +413,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 /*N*/   MutexGuard aGuard( Mutex::getGlobalMutex() );
 /*N*/     if( bNeedsInit )
 /*N*/     {
-/*N*/         aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.ScriptLibraryContainer" );
+/*N*/         aImplName = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.ScriptLibraryContainer" ));
 /*N*/         bNeedsInit = sal_False;
 /*N*/     }
 /*N*/     return aImplName;

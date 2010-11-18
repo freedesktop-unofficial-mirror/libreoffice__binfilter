@@ -2522,7 +2522,7 @@ IMPL_LINK( ScCellRangesBase, ValueListenerHdl, SfxHint*, pHint )
 
             beans::PropertyChangeEvent* pEvent = new beans::PropertyChangeEvent;
             pEvent->Source         = (cppu::OWeakObject*)this;
-            pEvent->PropertyName   = ::rtl::OUString::createFromAscii( "Test" );
+            pEvent->PropertyName   = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Test" ));
             pEvent->Further        = FALSE;
             pEvent->PropertyHandle = -1;
             pEvent->OldValue       = uno::Any();
@@ -4140,7 +4140,7 @@ sal_Bool SAL_CALL ScCellRangesObj::hasElements() throw(uno::RuntimeException)
 
 ::rtl::OUString SAL_CALL ScCellRangesObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScCellRangesObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScCellRangesObj" ));
 }
 
 sal_Bool SAL_CALL ScCellRangesObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -5333,7 +5333,7 @@ const SfxItemPropertyMap* ScCellRangeObj::GetItemPropertyMap()
 
 ::rtl::OUString SAL_CALL ScCellRangeObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScCellRangeObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScCellRangeObj" ));
 }
 
 sal_Bool SAL_CALL ScCellRangeObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -5950,7 +5950,7 @@ const SfxItemPropertyMap* ScCellObj::GetItemPropertyMap()
 
 ::rtl::OUString SAL_CALL ScCellObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScCellObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScCellObj" ));
 }
 
 sal_Bool SAL_CALL ScCellObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -7390,7 +7390,7 @@ const SfxItemPropertyMap* ScTableSheetObj::GetItemPropertyMap()
 
 ::rtl::OUString SAL_CALL ScTableSheetObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScTableSheetObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScTableSheetObj" ));
 }
 
 sal_Bool SAL_CALL ScTableSheetObj::supportsService( const ::rtl::OUString& rServiceName )

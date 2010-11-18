@@ -78,16 +78,14 @@ SAL_DLLPUBLIC_EXPORT sal_Bool SAL_CALL component_writeInfo (
         Reference< css::registry::XRegistryKey > xNewKey;
 
         xNewKey = xRegistryKey->createKey (
-            OUString::createFromAscii(
-                "/com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject/UNO/SERVICES" ) );
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "/com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject/UNO/SERVICES" )) );
         xNewKey->createKey (
-            OUString::createFromAscii( "com.sun.star.util.NumberFormatsSupplier" ) );
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatsSupplier" )) );
 
         xNewKey = xRegistryKey->createKey (
-            OUString::createFromAscii(
-                "/com.sun.star.uno.util.numbers.SvNumberFormatterServiceObject/UNO/SERVICES" ) );
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "/com.sun.star.uno.util.numbers.SvNumberFormatterServiceObject/UNO/SERVICES" )) );
         xNewKey->createKey (
-            OUString::createFromAscii( "com.sun.star.util.NumberFormatter" ) );
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatter" )) );
 
         return sal_True;
     }
@@ -107,7 +105,7 @@ SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
         {
             Sequence< OUString > aServiceNames(1);
             aServiceNames.getArray()[0] =
-                OUString::createFromAscii( "com.sun.star.util.NumberFormatsSupplier" );
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatsSupplier" ));
 
             xFactory = ::cppu::createSingleFactory(
                 reinterpret_cast< css::lang::XMultiServiceFactory* >(_pServiceManager),
@@ -121,7 +119,7 @@ SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
         {
             Sequence< OUString > aServiceNames(1);
             aServiceNames.getArray()[0] =
-                OUString::createFromAscii( "com.sun.star.util.NumberFormatter" );
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatter" ));
 
             xFactory = ::cppu::createSingleFactory(
                 reinterpret_cast< css::lang::XMultiServiceFactory* >(_pServiceManager),

@@ -365,7 +365,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
             Reference<XURLTransformer>
                 xTransformer(m_xServiceFactory->createInstance(
-                    ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")), UNO_QUERY);
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.URLTransformer" ))), UNO_QUERY);
 
             sal_Bool bDispatchUrlInternal = sal_False;
             xSet->getPropertyValue(PROPERTY_DISPATCHURLINTERNAL) >>= bDispatchUrlInternal;
@@ -383,7 +383,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
                 Sequence<PropertyValue> aArgs(1);
                 PropertyValue& rProp = aArgs.getArray()[0];
-                rProp.Name = ::rtl::OUString::createFromAscii("Referer");
+                rProp.Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
                 rProp.Value <<= xModel->getURL();
 
                 if (xDisp.is())

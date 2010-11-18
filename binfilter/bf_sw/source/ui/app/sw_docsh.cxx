@@ -837,8 +837,8 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   sal_Int32 nLen = aRet.getLength();
 /*N*/   aRet.realloc(nLen + 2);
 /*N*/   OUString* pNames = aRet.getArray();
-/*N*/   pNames[nLen++] = OUString::createFromAscii("OnMailMerge");
-/*N*/   pNames[nLen] = OUString::createFromAscii("OnPageCountChange");
+/*N*/   pNames[nLen++] = OUString( RTL_CONSTASCII_USTRINGPARAM( "OnMailMerge" ));
+/*N*/   pNames[nLen] = OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPageCountChange" ));
 /*N*/   return aRet;
 /*N*/ }
 /*N*/ void SwTmpPersist::FillClass( SvGlobalName * pClassName,

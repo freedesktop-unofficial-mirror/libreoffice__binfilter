@@ -643,15 +643,15 @@ void OListBoxModel::loadData()
                 ::rtl::OUString aQuote = xMeta->getIdentifierQuoteString();
                 ::rtl::OUString aStatement( RTL_CONSTASCII_USTRINGPARAM( "SELECT " ));
                 if (!aBoundFieldName.getLength())   // act like a combobox
-                    aStatement += ::rtl::OUString::createFromAscii("DISTINCT ");
+                    aStatement += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DISTINCT " ));
 
                 aStatement += quoteName(aQuote,aFieldName);
                 if (aBoundFieldName.getLength())
                 {
-                    aStatement += ::rtl::OUString::createFromAscii(", ");
+                    aStatement += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( ", " ));
                     aStatement += quoteName(aQuote, aBoundFieldName);
                 }
-                aStatement += ::rtl::OUString::createFromAscii(" FROM ");
+                aStatement += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( " FROM " ));
                 aStatement += quoteTableName(xMeta, sListSource,::dbtools::eInDataManipulation);
 
                 xContentSetProperties->setPropertyValue(PROPERTY_COMMAND, makeAny(aStatement));
@@ -777,7 +777,7 @@ void OListBoxModel::loadData()
                     {
                         xFormatter->attachNumberFormatsSupplier(xSupplier);
                         xFormatter->getNumberFormatsSupplier()->getNumberFormatSettings()->getPropertyValue(
-                            ::rtl::OUString::createFromAscii("NullDate")) >>= aNullDate;
+                            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NullDate" ))) >>= aNullDate;
                         nKeyType = getNumberFormatType(xFormatter->getNumberFormatsSupplier()->getNumberFormats(), nFormatKey);
                     }
                 }

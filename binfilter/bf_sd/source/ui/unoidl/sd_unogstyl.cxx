@@ -193,7 +193,7 @@ uno::Any SAL_CALL SdUnoGraphicStyle::getPropertyValue( const ::rtl::OUString& Pr
     if( PropertyName == aStyleName )
     {
         uno::Any aAny;
-        aAny <<= OUString::createFromAscii( "graphic" );
+        aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "graphic" ));
         return aAny;
     }
     else

@@ -610,7 +610,7 @@ BinFilterDetect::~BinFilterDetect()
                 // get possible types
                 Reference< ::com::sun::star::container::XContainerQuery > xTypeCFG ( xTypes, UNO_QUERY_THROW );
                 Sequence < com::sun::star::beans::NamedValue > aSeq(1);
-                aSeq[0].Name = ::rtl::OUString::createFromAscii("ClipboardFormat");
+                aSeq[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ClipboardFormat" ));
                 aSeq[0].Value <<= aFormatName;
                 Reference < com::sun::star::container::XEnumeration > xEnum = xTypeCFG->createSubSetEnumerationByProperties( aSeq );
                 while ( xEnum->hasMoreElements() )
@@ -726,14 +726,14 @@ UNOSEQUENCE< UNOOUSTRING > BinFilterDetect::impl_getStaticSupportedServiceNames(
 {
     UNOMUTEXGUARD aGuard( UNOMUTEX::getGlobalMutex() );
     UNOSEQUENCE< UNOOUSTRING > seqServiceNames( 1 );
-    seqServiceNames.getArray() [0] = UNOOUSTRING::createFromAscii( "com.sun.star.frame.ExtendedTypeDetection"  );
+    seqServiceNames.getArray() [0] = UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.ExtendedTypeDetection" ));
     return seqServiceNames ;
 }
 
 /* Helper for XServiceInfo */
 UNOOUSTRING BinFilterDetect::impl_getStaticImplementationName()
 {
-    return UNOOUSTRING::createFromAscii( "com.sun.star.comp.sfx2.BinaryFormatDetector" );
+    return UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.BinaryFormatDetector" ));
 }
 
 /* Helper for registry */

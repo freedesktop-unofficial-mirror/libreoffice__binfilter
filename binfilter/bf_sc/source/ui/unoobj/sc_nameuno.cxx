@@ -337,7 +337,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScNamedRangeObj )
 
 ::rtl::OUString SAL_CALL ScNamedRangeObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScNamedRangeObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScNamedRangeObj" ));
 }
 
 sal_Bool SAL_CALL ScNamedRangeObj::supportsService( const ::rtl::OUString& rServiceName )

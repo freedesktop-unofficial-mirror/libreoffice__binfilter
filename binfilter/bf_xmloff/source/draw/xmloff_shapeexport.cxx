@@ -521,7 +521,7 @@ void XMLShapeExport::exportShape(const uno::Reference< drawing::XShape >& xShape
             {
                 uno::Reference< beans::XPropertySet > xProps( xShape, uno::UNO_QUERY );
                 OUString aLayerName;
-                xProps->getPropertyValue( OUString::createFromAscii( "LayerName" ) ) >>= aLayerName;
+                xProps->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "LayerName" )) ) >>= aLayerName;
                 rExport.AddAttribute(XML_NAMESPACE_DRAW, XML_LAYER, aLayerName );
 
             }

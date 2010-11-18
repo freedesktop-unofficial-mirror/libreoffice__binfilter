@@ -554,7 +554,7 @@ void OEditModel::_loaded(const EventObject& rEvent)
                 m_xFormatter->attachNumberFormatsSupplier(xSupplier);
 
             m_nKeyType  = getNumberFormatType(xSupplier->getNumberFormats(), m_nFormatKey);
-            xSupplier->getNumberFormatSettings()->getPropertyValue(::rtl::OUString::createFromAscii("NullDate"))
+            xSupplier->getNumberFormatSettings()->getPropertyValue(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NullDate" )))
                 >>= m_aNullDate;
         }
 
@@ -564,7 +564,7 @@ void OEditModel::_loaded(const EventObject& rEvent)
             if ( !m_bMaxTextLenModified )
             {
                 sal_Int32 nFieldLen;
-                xField->getPropertyValue(::rtl::OUString::createFromAscii("Precision")) >>= nFieldLen;
+                xField->getPropertyValue(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Precision" ))) >>= nFieldLen;
 
                 if (nFieldLen && nFieldLen <= USHRT_MAX)
                 {

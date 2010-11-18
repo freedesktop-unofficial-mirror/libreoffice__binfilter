@@ -339,7 +339,7 @@ void SchXMLImportHelper::ResizeChartData( sal_Int32 nSeries, sal_Int32 nDataPoin
         if( xDiaProp.is())
         {
             chart::ChartDataRowSource eRowSource;
-            xDiaProp->getPropertyValue( ::rtl::OUString::createFromAscii( "DataRowSource" )) >>= eRowSource;
+            xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DataRowSource" ))) >>= eRowSource;
             bDataInColumns = ( eRowSource == chart::ChartDataRowSource_COLUMNS );
 
             // the chart core treats donut chart with interchanged rows/columns
@@ -548,7 +548,7 @@ OUString SAL_CALL SchXMLImport::getImplementationName() throw( uno::RuntimeExcep
         case IMPORT_SETTINGS:
         // there is no settings component in chart
         default:
-            return OUString::createFromAscii( "SchXMLImport" );
+            return OUString( RTL_CONSTASCII_USTRINGPARAM( "SchXMLImport" ));
     }
 }
 }//end of namespace binfilter

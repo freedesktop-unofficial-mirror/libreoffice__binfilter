@@ -292,22 +292,22 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             || rStrippedServiceInfo->supportsService(sServiceNameWebDocument) ) && pFilter->UsesStorage() )
         {
             // writer document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Writer)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Writer)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNamePresentationDocument))
         {
             // presentation: Ask BEFORE draw since presentation supports draw, too
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Impress)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Impress)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNameDrawingDocument))
         {
             // drawing document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Draw)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Draw)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNameSpreadsheetDocument))
         {
             // calc document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Calc)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Calc)" ));
         }
 /*
         else if(rStrippedServiceInfo->supportsService(sServiceNameChartDocument))
@@ -324,15 +324,15 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
         if ( aFilterName.getLength() && !bInserting )
         {
             uno::Reference < io::XStream > xTempFile(
-                mxMSF->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.io.TempFile" ) ),
+                mxMSF->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.TempFile" )) ),
                     uno::UNO_QUERY_THROW );
             uno::Reference < frame::XStorable > xDoc( rStrippedDocument, uno::UNO_QUERY );
             uno::Sequence < beans::PropertyValue > args(2);
-            args[0].Name = ::rtl::OUString::createFromAscii("OutputStream");
+            args[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OutputStream" ));
             args[0].Value <<= xTempFile->getOutputStream();
-            args[1].Name = ::rtl::OUString::createFromAscii("FilterName");
+            args[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "FilterName" ));
             args[1].Value <<= aFilterName;
-            xDoc->storeToURL( ::rtl::OUString::createFromAscii("private:stream/"), args );
+            xDoc->storeToURL( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "private:stream/" )), args );
             xTempFile->getOutputStream()->closeOutput();
 
             Sequence< Any > aArgs( 2 );

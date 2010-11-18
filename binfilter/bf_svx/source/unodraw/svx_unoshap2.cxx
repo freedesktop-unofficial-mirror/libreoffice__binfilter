@@ -780,7 +780,7 @@ void SAL_CALL SvxShapeControl::setPropertyValue( const OUString& aPropertyName, 
                     //modified by BerryJia for fixing Bug102407 2002-11-4
                     Any rValue;
                     rValue = aValue;
-                    if (::rtl::OUString::createFromAscii("Align") == aFormsName)
+                    if (::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Align" )) == aFormsName)
                         valueParaAdjustToAlign(rValue);
                     xControl->setPropertyValue( aFormsName, rValue );
                 }
@@ -820,7 +820,7 @@ uno::Any SAL_CALL SvxShapeControl::getPropertyValue( const OUString& aPropertyNa
                     //modified by BerryJia for fixing Bug102407 2002-11-4
                     Any rValue;
                     rValue = xControl->getPropertyValue( aFormsName );
-                    if (::rtl::OUString::createFromAscii("Align") == aFormsName)
+                    if (::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Align" )) == aFormsName)
                         valueAlignToParaAdjust(rValue);
                     return rValue;
                 }

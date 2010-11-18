@@ -232,7 +232,7 @@ SvXMLNumFmtExport::SvXMLNumFmtExport(
     pFormatter( NULL ),
     pCharClass( NULL ),
     pLocaleData( NULL ),
-    sPrefix( OUString::createFromAscii( "N" ) )
+    sPrefix( OUString( RTL_CONSTASCII_USTRINGPARAM( "N" )) )
 {
     //  supplier must be SvNumberFormatsSupplierObj
     SvNumberFormatsSupplierObj* pObj =

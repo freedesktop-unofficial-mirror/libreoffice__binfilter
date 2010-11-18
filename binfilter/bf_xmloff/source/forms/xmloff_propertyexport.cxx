@@ -240,7 +240,7 @@ namespace xmloff
                     //add by BerryJia for Bug102407
                     if(TypeClass_VOID == aValue.getValueType().getTypeClass())
                     {
-                        AddAttribute(XML_NAMESPACE_FORM, "property-is-void", ::rtl::OUString::createFromAscii("true"));
+                        AddAttribute(XML_NAMESPACE_FORM, "property-is-void", ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" )));
                         SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                     }
                     else

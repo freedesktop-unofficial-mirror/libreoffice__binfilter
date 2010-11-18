@@ -79,7 +79,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       {
 /*N*/           Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/           Reference < XInterface > xI = xMSF->createInstance(
-/*N*/               ::rtl::OUString::createFromAscii( "com.sun.star.text.DefaultNumberingProvider" ) );
+/*N*/               ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.DefaultNumberingProvider" )) );
 /*N*/           Reference<XDefaultNumberingProvider> xRet(xI, UNO_QUERY);
 /*N*/           DBG_ASSERT(xRet.is(), "service missing: \"com.sun.star.text.DefaultNumberingProvider\"");
 /*N*/           xFormatter = Reference<XNumberingFormatter> (xRet, UNO_QUERY);

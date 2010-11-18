@@ -398,9 +398,9 @@ namespace xmloff
     void OSinglePropertyContext::StartElement(const Reference< sax::XAttributeList >& _rxAttrList)
     {
         ::rtl::OUString sNameAttribute = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-name"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-name" )));
         ::rtl::OUString sTypeAttribute = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-type"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-type" )));
 
         // the name of the property
         m_aPropValue.Name = _rxAttrList->getValueByName(sNameAttribute);
@@ -414,12 +414,12 @@ namespace xmloff
         static MapString2Type s_aTypeNameMap;
         if (!s_aTypeNameMap.size())
         {
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("boolean")] = ::getBooleanCppuType();
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("short")]   = ::getCppuType( static_cast< sal_Int16* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("int")]     = ::getCppuType( static_cast< sal_Int32* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("long")]    = ::getCppuType( static_cast< sal_Int64* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("double")]  = ::getCppuType( static_cast< double* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("string")]  = ::getCppuType( static_cast< ::rtl::OUString* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "boolean" ))]  = ::getBooleanCppuType();
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "short" ))]    = ::getCppuType( static_cast< sal_Int16* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "int" ))]      = ::getCppuType( static_cast< sal_Int32* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "long" ))] = ::getCppuType( static_cast< sal_Int64* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "double" ))]   = ::getCppuType( static_cast< double* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "string" ))]   = ::getCppuType( static_cast< ::rtl::OUString* >(NULL) );
         }
 
         const ConstMapString2TypeIterator aTypePos = s_aTypeNameMap.find(sType);
@@ -473,7 +473,7 @@ namespace xmloff
     void OAccumulateCharacters::StartElement(const Reference< sax::XAttributeList >& _rxAttrList)
     {
         ::rtl::OUString sIsVoidAttributeName = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-is-void"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-is-void" )));
         ::rtl::OUString sIsVoidAttributeValue = _rxAttrList->getValueByName(sIsVoidAttributeName);
 
         if (sIsVoidAttributeValue.getLength())

@@ -238,7 +238,7 @@ SvxXMLListLevelStyleContext_Impl::SvxXMLListLevelStyleContext_Impl(
         const Reference< xml::sax::XAttributeList > & xAttrList ) :
 
     SvXMLImportContext( rImport, nPrfx, rLName ),
-    sNumFormat( OUString::createFromAscii( "1" ) ),
+    sNumFormat( OUString( RTL_CONSTASCII_USTRINGPARAM( "1" )) ),
     nLevel( -1L ),
     nSpaceBefore( 0L ),
     nMinLabelWidth( 0L ),

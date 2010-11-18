@@ -133,7 +133,7 @@ Any SvBindingTransport_Impl::getProperties ( const Reference<XCommandProcessor> 
         {
             com::sun::star::uno::Reference<XCommandEnvironment> xEnvironment;
             Command aCommand;
-            aCommand.Name     = ::rtl::OUString::createFromAscii("getPropertyValues");
+            aCommand.Name     = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "getPropertyValues" ));
             aCommand.Handle   = -1; /* unknown */
             aCommand.Argument <<= rProperties;
             aResult = rxProcessor->execute( aCommand, 0, xEnvironment );
@@ -157,7 +157,7 @@ void SvBindingTransport_Impl::setProperties ( const Reference<XCommandProcessor>
         {
             Reference<XCommandEnvironment> xEnvironment;
             Command aCommand;
-            aCommand.Name     = ::rtl::OUString::createFromAscii("setPropertyValues");
+            aCommand.Name     = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "setPropertyValues" ));
             aCommand.Handle   = -1; /* unknown */
             aCommand.Argument <<= rProperties;
             rxProcessor->execute( aCommand, 0, xEnvironment );

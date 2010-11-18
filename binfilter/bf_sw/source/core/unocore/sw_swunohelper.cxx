@@ -86,7 +86,7 @@ BOOL UCB_DeleteFile( const String& rURL )
         ucbhelper::Content aTempContent( rURL,
                                 STAR_REFERENCE( ucb::XCommandEnvironment )());
         aTempContent.executeCommand(
-                        ::rtl::OUString::createFromAscii( "delete" ),
+                        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "delete" )),
                         UNO_NMSPC::makeAny( sal_Bool( sal_True ) ) );
         bRemoved = TRUE;
     }

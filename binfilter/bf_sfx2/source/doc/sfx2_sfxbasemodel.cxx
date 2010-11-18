@@ -781,7 +781,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/           aSize[3] = aTmpRect.Bottom();
 /*N*/
 /*N*/           seqArgsNew.realloc( ++nNewLength );
-/*N*/           seqArgsNew[ nNewLength - 1 ].Name = ::rtl::OUString::createFromAscii( "WinExtent" );
+/*N*/           seqArgsNew[ nNewLength - 1 ].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "WinExtent" ));
 /*N*/           seqArgsNew[ nNewLength - 1 ].Value <<= aSize;
 /*N*/       }
 /*N*/

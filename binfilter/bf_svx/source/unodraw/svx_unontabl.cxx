@@ -299,7 +299,7 @@ void SvxUnoNumberingRuleTable::CreateName( OUString& rStrName)
 
     for( sal_Int32 nPostfix = 1; nPostfix<= nCount && bFound; nPostfix++ )
     {
-        rStrName = OUString::createFromAscii( "Standard " );
+        rStrName = OUString( RTL_CONSTASCII_USTRINGPARAM( "Standard " ));
         rStrName += OUString::valueOf( nPostfix );
         bFound = hasByName( rStrName );
     }

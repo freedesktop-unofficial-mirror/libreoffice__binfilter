@@ -87,7 +87,7 @@ public:
 
 inline ::rtl::OUString SmModel::getImplementationName_Static() throw(  )
 {
-    return ::rtl::OUString::createFromAscii("math.SmModel");
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "math.SmModel" ));
 }
 
 } //namespace binfilter

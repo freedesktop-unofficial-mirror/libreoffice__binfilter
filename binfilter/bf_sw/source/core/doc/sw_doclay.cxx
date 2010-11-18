@@ -449,7 +449,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/       sal_Bool bModel = xModel.is();
 /*?*/       uno::Any aVal;
 /*?*/       uno::Reference< beans::XPropertySet >  xSet(xModel, uno::UNO_QUERY);
-/*?*/       OUString sName( ::rtl::OUString::createFromAscii("Name") );
+/*?*/       OUString sName( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Name" )) );
 /*?*/       if( xSet.is() )
 /*?*/           aVal = xSet->getPropertyValue( sName );
 /*?*/       if( bInsInPage )

@@ -520,7 +520,7 @@ void OComboBoxModel::loadData()
                 ::rtl::OUString aStatement( RTL_CONSTASCII_USTRINGPARAM( "SELECT DISTINCT " ));
 
                 aStatement += quoteName(aQuote, aFieldName);
-                aStatement += ::rtl::OUString::createFromAscii(" FROM ");
+                aStatement += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( " FROM " ));
                 aStatement += quoteTableName(xMeta, m_aListSource,::dbtools::eInDataManipulation);
 
                 xStmt = xConnection->createStatement();
@@ -679,7 +679,7 @@ void OComboBoxModel::_loaded(const EventObject& rEvent)
                 m_xFormatter->attachNumberFormatsSupplier(xSupplier);
 
             m_nKeyType  = getNumberFormatType(xSupplier->getNumberFormats(), m_nFormatKey);
-            xSupplier->getNumberFormatSettings()->getPropertyValue(::rtl::OUString::createFromAscii("NullDate")) >>= m_aNullDate;
+            xSupplier->getNumberFormatSettings()->getPropertyValue(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NullDate" ))) >>= m_aNullDate;
         }
     }
 

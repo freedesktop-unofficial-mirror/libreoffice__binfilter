@@ -2099,7 +2099,7 @@ void SbUnoObject::doIntrospection( void )
         Reference< XMultiServiceFactory > xFactory( comphelper::getProcessServiceFactory() );
         if ( xFactory.is() )
         {
-            Reference< XInterface > xI = xFactory->createInstance( rtl::OUString::createFromAscii("com.sun.star.beans.Introspection") );
+            Reference< XInterface > xI = xFactory->createInstance( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.beans.Introspection" )) );
             if (xI.is())
                 xIntrospection = Reference< XIntrospection >::query( xI );
                 //xI->queryInterface( ::getCppuType( (const Reference< XIntrospection > *)0 ), xIntrospection );

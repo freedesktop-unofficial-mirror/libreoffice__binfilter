@@ -372,7 +372,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
-/*N*/       pNames[SCLAYOUTOPT_MEASURE] = OUString::createFromAscii( "Other/MeasureUnit/Metric" );
+/*N*/       pNames[SCLAYOUTOPT_MEASURE] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Other/MeasureUnit/Metric" ));
 /*N*/
 /*N*/   return aNames;
 /*N*/ }

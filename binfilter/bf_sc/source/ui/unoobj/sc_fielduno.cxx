@@ -844,7 +844,7 @@ ScCellFieldObj* ScCellFieldObj::getImplementation(
 
 ::rtl::OUString SAL_CALL ScCellFieldObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScCellFieldObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScCellFieldObj" ));
 }
 
 sal_Bool SAL_CALL ScCellFieldObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -1509,7 +1509,7 @@ ScHeaderFieldObj* ScHeaderFieldObj::getImplementation(
 
 ::rtl::OUString SAL_CALL ScHeaderFieldObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScHeaderFieldObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScHeaderFieldObj" ));
 }
 
 sal_Bool SAL_CALL ScHeaderFieldObj::supportsService( const ::rtl::OUString& rServiceName )

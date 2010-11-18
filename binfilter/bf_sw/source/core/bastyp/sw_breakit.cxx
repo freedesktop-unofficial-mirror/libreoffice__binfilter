@@ -53,7 +53,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   _GetLocale( (LanguageType)GetAppLanguage() );
 /*N*/   Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   Reference < XInterface > xI = xMSF->createInstance(
-/*N*/       ::rtl::OUString::createFromAscii( "com.sun.star.i18n.BreakIterator" ) );
+/*N*/       ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.BreakIterator" )) );
 /*N*/   if ( xI.is() )
 /*N*/   {
 /*N*/       Any x = xI->queryInterface( ::getCppuType((const Reference< XBreakIterator >*)0) );
