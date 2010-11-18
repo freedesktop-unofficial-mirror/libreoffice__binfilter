@@ -467,7 +467,7 @@ public:
     void SetPrtFormat( BOOL b)
         { b ? (nUIOptions |= VIEWOPT_2_PRTFORMAT) : (nUIOptions &= ~VIEWOPT_2_PRTFORMAT); }
 
-    void            SetZoomType     (BYTE nZoom){ eZoom = nZoom;    }
+    void            SetZoomType     (BYTE eZoom_){ eZoom = eZoom_;  }
     void            SetTblDest( BYTE nNew )     { nTblDest = nNew;  }
 
     const String&   GetSymbolFont() const {return sSymbolFont;}
