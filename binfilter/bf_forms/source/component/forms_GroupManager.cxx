@@ -90,27 +90,27 @@ public:
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp()
-        :m_nTabIndex( 0 )
-        ,m_nPos( -1 )
+    : m_nPos( -1 )
+    , m_nTabIndex( 0 )
 {
 }
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp(const OGroupComp& _rSource)
-        :m_aName( _rSource.m_aName )
-        ,m_xComponent( _rSource.m_xComponent )
-        ,m_nTabIndex( _rSource.m_nTabIndex )
-        ,m_nPos( _rSource.m_nPos )
-        ,m_xControlModel(_rSource.m_xControlModel)
+    : m_aName( _rSource.m_aName )
+    , m_xComponent( _rSource.m_xComponent )
+    , m_xControlModel(_rSource.m_xControlModel)
+    , m_nPos( _rSource.m_nPos )
+    , m_nTabIndex( _rSource.m_nTabIndex )
 {
 }
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp(const Reference<XPropertySet>& rxSet, sal_Int32 nInsertPos )
-            :m_xComponent( rxSet )
-            ,m_nTabIndex(0)
-            ,m_nPos( nInsertPos )
-            ,m_xControlModel(rxSet,UNO_QUERY)
+    : m_xComponent( rxSet )
+    , m_xControlModel(rxSet,UNO_QUERY)
+    , m_nPos( nInsertPos )
+    , m_nTabIndex(0)
 {
     if (m_xComponent.is())
     {
