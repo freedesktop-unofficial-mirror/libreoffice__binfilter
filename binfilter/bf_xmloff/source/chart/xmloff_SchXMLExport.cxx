@@ -676,26 +676,6 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
     if( bExportContent )
     {
         // #85929# always export table, otherwise clipboard may loose data
-//          sal_Bool bExportTable = bIncludeTable;
-//          // check for clipboard flag on document => export Table
-//          if( xDocPropSet.is() &&
-//              ! bExportTable )
-//          {
-//              uno::Any aAny;
-//              try
-//              {
-//                  aAny = xDocPropSet->getPropertyValue( ::rtl::OUString::createFromAscii( "ExportData" ));
-//                  aAny >>= bExportTable;
-//              }
-//              catch( uno::Exception )
-//              {
-//                  DBG_ERROR( "Property ExportData not found" );
-//              }
-//          }
-
-        // export of table element
-//          if( bExportTable )
-
         exportTable( xData );
     }
 

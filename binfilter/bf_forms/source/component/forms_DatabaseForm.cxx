@@ -418,7 +418,6 @@ ODatabaseForm::ODatabaseForm(const Reference<XMultiServiceFactory>& _rxFactory)
 
     {
         m_xAggregate = Reference<XAggregation>(m_xServiceFactory->createInstance(SRV_SDB_ROWSET), UNO_QUERY);
-        //  m_xAggregate = Reference<XAggregation>(m_xServiceFactory->createInstance(rtl::OUString::createFromAscii("com.sun.star.sdb.dbaccess.ORowSet")), UNO_QUERY);
         DBG_ASSERT(m_xAggregate.is(), "ODatabaseForm::ODatabaseForm : could not instantiate an SDB rowset !");
         m_xAggregateAsRowSet = Reference<XRowSet> (m_xAggregate,UNO_QUERY);
         setAggregation(m_xAggregate);

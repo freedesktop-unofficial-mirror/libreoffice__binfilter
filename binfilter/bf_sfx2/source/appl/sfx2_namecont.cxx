@@ -1020,13 +1020,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   catch( Exception& e )
 /*N*/   {
-/*N*/       // throw WrappedTargetException( OUString::createFromAscii( "parsing error!\n" ),
-/*N*/       //                              Reference< XInterface >(),
-/*N*/       //                              makeAny( e ) );
 /*N*/       OSL_ENSURE( 0, "Parsing error\n" );
-//*N*/      SfxErrorContext aEc( ERRCTX_SFX_LOADBASIC, aLibInfoPath );
-//*N*/         ULONG nErrorCode = ERRCODE_IO_GENERAL;
-//*N*/         ErrorHandler::HandleError( nErrorCode );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/

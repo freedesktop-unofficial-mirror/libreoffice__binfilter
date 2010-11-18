@@ -35,10 +35,10 @@
 #include <fmobj.hxx>
 #include <unoshape.hxx>
 #include "fmglob.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 //-----------------------------------------------------------------------------
 /*N*/ ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SAL_CALL SvxFmMSFactory::createInstance(const ::rtl::OUString& ServiceSpecifier) throw( ::com::sun::star::uno::Exception, ::com::sun::star::uno::RuntimeException )
@@ -57,42 +57,6 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/       xRet = SvxUnoDrawMSFactory::createInstance(ServiceSpecifier);
 /*N*/   return xRet;
 /*N*/ }
-
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-
-/*
-// XServiceManager
-::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SvxFmDrawModel::createInstance(const ::rtl::OUString& ServiceName)
-            const throw( ::com::sun::star::lang::ServiceNotRegisteredException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException )
-{
-    ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xRet;
-    sal_uInt16 nTokenCount = ServiceName.getTokenCount('.');
-    if (nTokenCount == 5 &&
-        ServiceName.getToken( 0, '.' ) == ::rtl::OUString::createFromAscii("stardiv") &&
-        ServiceName.getToken( 1, '.' ) == ::rtl::OUString::createFromAscii("one") &&
-        ServiceName.getToken( 2, '.' ) == ::rtl::OUString::createFromAscii("form") &&
-        ServiceName.getToken( 3, '.' ) == ::rtl::OUString::createFromAscii("component"))
-    {
-        xRet = ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(ServiceName);
-    }
-    else
-    if (nTokenCount == 4 &&
-        ServiceName.getToken( 0, '.' ) == ::rtl::OUString::createFromAscii("stardiv") &&
-        ServiceName.getToken( 1, '.' ) == ::rtl::OUString::createFromAscii("one") &&
-        ServiceName.getToken( 2, '.' ) == ::rtl::OUString::createFromAscii("drawing") &&
-        ServiceName.getToken( 3, '.' ) == ::rtl::OUString::createFromAscii("ControlShape"))
-    {
-        SdrObject* pObj = new FmFormObj();
-        xRet = *new SvxShapeControl(pObj);
-    }
-    if (!xRet.is())
-        xRet = SvxUnoDrawModel::createInstance(ServiceName);
-    return xRet;
-}
-*/
-
 
 }
 

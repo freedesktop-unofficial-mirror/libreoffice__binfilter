@@ -42,63 +42,6 @@
 
 namespace binfilter {
 
-/*?*/ // #ifdef DBG_SAVE_DISASSEMBLY
-/*?*/ // static bool dbg_bDisassemble = true;
-/*?*/ //
-/*?*/ // using namespace comphelper;
-/*?*/ // using namespace rtl;
-/*?*/ // using namespace com::sun::star::uno;
-/*?*/ // using namespace com::sun::star::lang;
-/*?*/ // using namespace com::sun::star::ucb;
-/*?*/ // using namespace com::sun::star::io;
-/*?*/ //
-/*?*/ // void dbg_SaveDisassembly( SbModule* pModule )
-/*?*/ // {
-/*?*/ //     bool bDisassemble = dbg_bDisassemble;
-/*?*/ //     if( bDisassemble )
-/*?*/ //    {
-/*?*/ //        Reference< XSimpleFileAccess3 > xSFI;
-/*?*/ //        Reference< XTextOutputStream > xTextOut;
-/*?*/ //        Reference< XOutputStream > xOut;
-/*?*/ //        Reference< XMultiServiceFactory > xSMgr = getProcessServiceFactory();
-/*?*/ //        if( xSMgr.is() )
-/*?*/ //        {
-/*?*/ //            Reference< XSimpleFileAccess3 > xSFI = Reference< XSimpleFileAccess3 >( xSMgr->createInstance
-/*?*/ //                ( OUString::createFromAscii( "com.sun.star.ucb.SimpleFileAccess" ) ), UNO_QUERY );
-/*?*/ //            if( xSFI.is() )
-/*?*/ //            {
-/*?*/ //                String aFile( RTL_CONSTASCII_USTRINGPARAM("file:///d:/BasicAsm_") );
-/*?*/ //                StarBASIC* pBasic = (StarBASIC*)pModule->GetParent();
-/*?*/ //                if( pBasic )
-/*?*/ //                {
-/*?*/ //                    aFile += pBasic->GetName();
-/*?*/ //                    aFile.AppendAscii( "_" );
-/*?*/ //                }
-/*?*/ //                aFile += pModule->GetName();
-/*?*/ //                aFile.AppendAscii( ".txt" );
-/*?*/ //
-/*?*/ //                // String aFile( RTL_CONSTASCII_USTRINGPARAM("file:///d:/BasicAsm.txt") );
-/*?*/ //                if( xSFI->exists( aFile ) )
-/*?*/ //                    xSFI->kill( aFile );
-/*?*/ //                xOut = xSFI->openFileWrite( aFile );
-/*?*/ //                Reference< XInterface > x = xSMgr->createInstance( OUString::createFromAscii( "com.sun.star.io.TextOutputStream" ) );
-/*?*/ //                Reference< XActiveDataSource > xADS( x, UNO_QUERY );
-/*?*/ //                xADS->setOutputStream( xOut );
-/*?*/ //                xTextOut = Reference< XTextOutputStream >( x, UNO_QUERY );
-/*?*/ //            }
-/*?*/ //        }
-/*?*/ //
-/*?*/ //        if( xTextOut.is() )
-/*?*/ //        {
-/*?*/ //            String aDisassemblyStr;
-/*?*/ //            pModule->Disassemble( aDisassemblyStr );
-/*?*/ //            xTextOut->writeString( aDisassemblyStr );
-/*?*/ //        }
-/*?*/ //        xOut->closeOutput();
-/*?*/ //    }
-/*?*/ // }
-/*?*/ // #endif
-
 // Diese Routine ist hier definiert, damit der Compiler als eigenes Segment
 // geladen werden kann.
 

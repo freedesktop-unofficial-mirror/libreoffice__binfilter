@@ -309,18 +309,8 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             // calc document
             aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Calc)" ));
         }
-/*
-        else if(rStrippedServiceInfo->supportsService(sServiceNameChartDocument))
-        {
-            // chart document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Chart)");
-        }
-        else if(rStrippedServiceInfo->supportsService(sServiceNameFormulaProperties))
-        {
-            // formula document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Math)");
-        }
-*/
+
+
         if ( aFilterName.getLength() && !bInserting )
         {
             uno::Reference < io::XStream > xTempFile(
