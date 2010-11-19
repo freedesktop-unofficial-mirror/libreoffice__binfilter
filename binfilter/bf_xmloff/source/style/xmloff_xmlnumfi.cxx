@@ -1100,11 +1100,6 @@ void SvXMLNumFmtElementContext::EndElement()
             break;
         case XML_TOK_STYLE_ERA:
             rParent.UpdateCalendar( sCalendar );
-#if 0
-//! I18N doesn't provide SYSTEM or extended date information yet
-            if ( rParent.IsFromSystem() )
-                bEffLong = SvXMLNumFmtDefaults::IsSystemLongEra( rParent.GetInternational(), bLong );
-#endif
             rParent.AddNfKeyword( bEffLong ? NF_KEY_GGG : NF_KEY_G );
             //  HasEra flag is set
             break;
