@@ -1348,17 +1348,7 @@ DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
 /*N*/       pMatrix = p->GetMatrixResult();
 /*N*/       if( pMatrix )
 /*N*/       {
-/*N*/ #if 0
-/*?*/ //! MatrixFormel immer changed?!?
-/*?*/ // ist bei MD's Rundumschlag von r1.167 --> r1.168 reingekommen
-/*?*/ // => ewiges Repaint von MatrixFormel, besonders bei DDE laestig
-/*?*/ // ab r1.260 (sv369b) probieren wir's mal ohne..
-/*?*/           if( cMatrixFlag == MM_FORMULA )
-/*?*/               bChanged = TRUE;
-/*?*/           else
-/*N*/ #else
 /*N*/           if( cMatrixFlag != MM_FORMULA )
-/*N*/ #endif
 /*N*/           {   // mit linker oberer Ecke weiterleben
 /*?*/               delete pMatrix;
 /*?*/               pMatrix = NULL;

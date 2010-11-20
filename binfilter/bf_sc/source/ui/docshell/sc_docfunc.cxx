@@ -426,17 +426,6 @@ using namespace ::com::sun::star;
 /*N*/ //!   CellContentChanged();
 /*N*/ //!   ShowAllCursors();
 /*N*/
-/*N*/ #if 0
-/*N*/   //! muss an der View bleiben !!!!
-/*N*/   if ( nFlags & IDF_ATTRIB )
-/*N*/   {
-/*N*/       if ( nFlags & IDF_CONTENTS )
-/*N*/           ForgetFormatArea();
-/*N*/       else
-/*N*/           StartFormatArea();              // Attribute loeschen ist auch Attributierung
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   return TRUE;
 /*N*/ }
 

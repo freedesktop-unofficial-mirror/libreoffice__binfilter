@@ -138,11 +138,6 @@ namespace binfilter {
 /*N*/               pDrawLayer->ScRenamePage( nTab, aName );
 /*N*/
 /*N*/               pTab[nTab]->SetDrawPageSize();  // #54782# sofort die richtige Groesse
-/*N*/ #if 0
-/*N*/               ULONG nx = (ULONG) ((double) (MAXCOL+1) * STD_COL_WIDTH           * HMM_PER_TWIPS );
-/*N*/               ULONG ny = (ULONG) ((double) (MAXROW+1) * ScGlobal::nStdRowHeight * HMM_PER_TWIPS );
-/*N*/               pDrawLayer->SetPageSize( nTab, Size( nx, ny ) );
-/*N*/ #endif
 /*N*/           }
 /*N*/       }
 /*N*/

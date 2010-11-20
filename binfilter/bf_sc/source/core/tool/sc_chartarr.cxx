@@ -834,38 +834,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/     ScRangePtr pR;
 /*N*/   USHORT nCol1, nRow1, nTab1, nCol2, nRow2, nTab2;
-/*N*/ #if 0
-/* now this is done in SchMemChart::ConvertChartRangeForCalc() for SO5 file format
-    const sal_Unicode cTok = ';';
-    String aRef;
-    for ( pR = aRangeListRef->First(); pR; pR = aRangeListRef->Next() )
-    {
-        pR->GetVars( nCol1, nRow1, nTab1, nCol2, nRow2, nTab2 );
-        if ( aRef.Len() )
-            aRef += cTok;
-        aRef += String::CreateFromInt32( nTab1 );
-        // hier ',' als TokenSep damit alte Versionen (<341/342) das ueberlesen
-        aRef += ',';  aRef += String::CreateFromInt32( nTab2 );
-        aRef += cTok; aRef += String::CreateFromInt32( nCol1 );
-        aRef += cTok; aRef += String::CreateFromInt32( nRow1 );
-        aRef += cTok; aRef += String::CreateFromInt32( nCol2 );
-        aRef += cTok; aRef += String::CreateFromInt32( nRow2 );
-    }
-
-    String aFlags = bColHeaders ? '1' : '0';
-    aFlags += bRowHeaders ? '1' : '0';
-    aFlags += bDummyUpperLeft ? '1' : '0';
-    aFlags += cTok;
-    aFlags += String::CreateFromInt32( eGlue );
-    aFlags += cTok;
-    aFlags += String::CreateFromInt32( nStartCol );
-    aFlags += cTok;
-    aFlags += String::CreateFromInt32( nStartRow );
-
-    rMem.SomeData1() = aRef;
-    rMem.SomeData2() = aFlags;
-*/
-/*N*/ #endif
 /*N*/
 /*N*/     String aSheetNames;
 /*N*/     SchChartRange aChartRange;

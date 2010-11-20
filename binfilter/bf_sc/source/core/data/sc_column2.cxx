@@ -88,12 +88,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------------------------
 
 // special handling for non-convertable characters is no longer needed
-#if 0
-
-//  read string from a string cell in original CharSet
-
-
-#endif
 
 // -----------------------------------------------------------------------------------------
 

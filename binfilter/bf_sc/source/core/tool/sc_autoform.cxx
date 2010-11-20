@@ -600,31 +600,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   rStream << nVal;
 /*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
 /*N*/
-/*N*/  #if 0
-/*N*/   //  This was an internal flag to allow creating AutoFormats with localized names
-/*N*/
-/*N*/   if ( USHRT_MAX == nStrResId )
-/*N*/   {
-/*N*/       String aIniVal( SFX_APP()->GetIniManager()->Get(
-/*N*/           SFX_GROUP_WORKINGSET_IMPL,
-/*N*/           String( RTL_CONSTASCII_USTRINGPARAM( "SaveTableAutoFmtNameId" ))));
-/*N*/       if( 0 != aIniVal.ToInt32() )
-/*N*/       {
-/*N*/           // check Name for ResId
-/*N*/           for( USHORT nId = RID_SVXSTR_TBLAFMT_BEGIN;
-/*N*/                       RID_SVXSTR_TBLAFMT_END > nId; ++nId )
-/*N*/           {
-/*N*/               String s( SVX_RES( nId ) );
-/*N*/               if( s == aName )
-/*N*/               {
-/*N*/                   nStrResId = nId - RID_SVXSTR_TBLAFMT_BEGIN;
-/*N*/                   break;
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/  #endif
-/*N*/
 /*N*/   rStream << nStrResId;
 /*N*/   rStream << ( b = bIncludeFont );
 /*N*/   rStream << ( b = bIncludeJustify );

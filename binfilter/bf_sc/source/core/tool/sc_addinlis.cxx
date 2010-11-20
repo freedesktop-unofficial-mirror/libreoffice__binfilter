@@ -138,20 +138,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   aResult = aEvent.Value;     // store result
 /*N*/
-/*N*/   if ( !HasListeners() )
-/*N*/   {
-/*N*/       //! remove from list and removeListener, as in RemoveDocument ???
-/*N*/
-/*N*/ #if 0
-/*N*/       //! this will crash if called before first StartListening !!!
-/*N*/       aAllListeners.Remove( this );
-/*N*/       if ( xVolRes.is() )
-/*N*/           xVolRes->removeResultListener( this );
-/*N*/       release();  // Ref for aAllListeners - this may be deleted here
-/*N*/       return;
-/*N*/ #endif
-/*N*/   }
-/*N*/
 /*N*/   //  notify document of changes
 /*N*/
 /*N*/   Broadcast( ScHint( SC_HINT_DATACHANGED, ScAddress( 0 ), NULL ) );

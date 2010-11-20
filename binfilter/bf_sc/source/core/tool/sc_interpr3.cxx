@@ -1580,18 +1580,6 @@ void ScInterpreter::ScTTest()
             SetNoValue();
             return;
         }
-#if 0
-        //  alter Templin-Code
-        double fS1 = (fSumSqr1-fSum1*fSum1/fCount1)/(fCount1-1.0)/fCount1;
-        double fS2 = (fSumSqr2-fSum2*fSum2/fCount2)/(fCount2-1.0)/fCount2;
-        if (fS1 + fS2 == 0.0)
-        {
-            SetNoValue();
-            return;
-        }
-        fT = fabs(fSum1/fCount1 - fSum2/fCount2)/sqrt(fS1+fS2);
-        fF = fCount1 + fCount2 - 2;
-#else
         //  laut Bronstein-Semendjajew
         double fS1 = (fSumSqr1 - fSum1*fSum1/fCount1) / (fCount1 - 1.0);    // Varianz
         double fS2 = (fSumSqr2 - fSum2*fSum2/fCount2) / (fCount2 - 1.0);
@@ -1599,7 +1587,6 @@ void ScInterpreter::ScTTest()
              sqrt( (fCount1-1.0)*fS1 + (fCount2-1.0)*fS2 ) *
              sqrt( fCount1*fCount2*(fCount1+fCount2-2)/(fCount1+fCount2) );
         fF = fCount1 + fCount2 - 2;
-#endif
     }
     else if (fTyp == 3.0)
     {

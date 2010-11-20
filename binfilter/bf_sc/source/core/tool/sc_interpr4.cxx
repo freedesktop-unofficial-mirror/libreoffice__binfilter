@@ -263,23 +263,6 @@ ULONG ScInterpreter::GetCellNumberFormat( const ScAddress& rPos, const ScBaseCel
 /*N*/           break;
 /*N*/           case  CELLTYPE_STRING:
 /*N*/           case  CELLTYPE_EDIT:
-/*?*/ #if 0
-/*?*/ // Xcl does it, but SUM(A1:A2) differs from A1+A2. No good.
-/*?*/           {
-/*?*/               String aStr;
-/*?*/               if ( eType == CELLTYPE_STRING )
-/*?*/                   ((ScStringCell*)pCell)->GetString( aStr );
-/*?*/               else
-/*?*/                   ((ScEditCell*)pCell)->GetString( aStr );
-/*?*/               ULONG nFIndex = 0;                  // damit default Land/Spr.
-/*?*/               if ( !pFormatter->IsNumberFormat( aStr, nFIndex, fValue ) )
-/*?*/               {
-/*?*/                   SetError(errNoValue);
-/*?*/                   fValue = 0.0;
-/*?*/               }
-/*?*/           }
-/*?*/           break;
-/*?*/ #endif
 /*N*/           default:
 /*N*/                 SetError(errCellNoValue);
 /*N*/               fValue = 0.0;

@@ -641,13 +641,6 @@ public:
 /*N*/         if ( iLook != pLocalHashMap->end() )
 /*?*/             return iLook->second->GetOriginalName();
 /*N*/
-/*N*/ #if 0
-/*N*/         //  after that, scan international names (really?)
-/*N*/
-/*N*/         iLook = pNameHashMap->find( rUpperName );
-/*N*/         if ( iLook != pNameHashMap->end() )
-/*N*/             return iLook->second->GetOriginalName();
-/*N*/ #endif
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -870,12 +863,6 @@ public:
 /*N*/         {
 /*N*/             nErrCode = errIllegalArgument;
 /*N*/         }
-/*N*/ #if 0
-/*N*/         catch(FloatingPointException&)
-/*N*/         {
-/*N*/             nErrCode = errIllegalFPOperation;
-/*N*/         }
-/*N*/ #endif
 /*N*/       catch(reflection::InvocationTargetException& rWrapped)
 /*N*/       {
 /*N*/           if ( rWrapped.TargetException.getValueType().equals(

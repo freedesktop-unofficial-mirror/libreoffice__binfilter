@@ -461,20 +461,6 @@ namespace binfilter {
 /*N*/   delete pTemp;
 /*N*/
 /*N*/       // alte Version mit SfxItemPoolCache:
-/*N*/ #if 0
-/*?*/   SfxItemPoolCache aCache( pDocument->GetPool(), &rAttr );
-/*?*/
-/*?*/   const ScPatternAttr* pPattern = pAttrArray->GetPattern( nRow );
-/*?*/
-/*?*/   //  TRUE = alten Eintrag behalten
-/*?*/
-/*?*/   ScPatternAttr* pNewPattern = (ScPatternAttr*) &aCache.ApplyTo( *pPattern, TRUE );
-/*?*/   ScDocumentPool::CheckRef( *pPattern );
-/*?*/   ScDocumentPool::CheckRef( *pNewPattern );
-/*?*/
-/*?*/   if (pNewPattern != pPattern)
-/*?*/     pAttrArray->SetPattern( nRow, pNewPattern );
-/*N*/ #endif
 /*N*/ }
 
 #ifdef _MSC_VER
