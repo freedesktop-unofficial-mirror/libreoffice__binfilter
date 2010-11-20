@@ -102,11 +102,7 @@ FrameView::FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView )
         eHandoutEditMode = EM_MASTERPAGE;
         bLayerMode = FALSE;
         SetEliminatePolyPoints(FALSE);
-
-        {
-            bool bUseContrast = Application::GetSettings().GetStyleSettings().GetHighContrastMode();
-            nDrawMode = bUseContrast ? OUTPUT_DRAWMODE_CONTRAST : OUTPUT_DRAWMODE_COLOR;
-        }
+        nDrawMode = OUTPUT_DRAWMODE_COLOR;
         nPreviewDrawMode = nDrawMode;
         bShowPreviewInPageMode = FALSE;
         bShowPreviewInMasterPageMode = TRUE;

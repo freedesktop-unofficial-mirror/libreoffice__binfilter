@@ -332,10 +332,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/       DBG_ASSERT( pVD, "XHatchList: Konnte kein XFillAttrSetItem erzeugen!" );
 /*N*/   }
 /*N*/
-/*N*/   if( Application::GetSettings().GetStyleSettings().GetHighContrastMode() != 0 )
-/*N*/       pVD->SetDrawMode( OUTPUT_DRAWMODE_CONTRAST );
-/*N*/   else
-/*N*/       pVD->SetDrawMode( OUTPUT_DRAWMODE_COLOR );
+/*N*/   pVD->SetDrawMode( OUTPUT_DRAWMODE_COLOR );
 /*N*/
 /*N*/   // Damit die Schraffuren mit Rahmen angezeigt werden:
 /*N*/   // MapMode-Aenderungen (100th mm <--> Pixel)
