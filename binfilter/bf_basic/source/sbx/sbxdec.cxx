@@ -36,12 +36,10 @@
 namespace binfilter {
 
 #ifdef WIN32
-// int GnDecCounter = 0;
 SbxDecimal::SbxDecimal( void )
 {
       setInt( 0 );
       mnRefCount = 0;
-      // GnDecCounter++;
 }
 #endif
 
@@ -53,13 +51,9 @@ SbxDecimal::SbxDecimal( const SbxDecimal& rDec )
     (void)rDec;
 #endif
     mnRefCount = 0;
-    // GnDecCounter++;
 }
 
-SbxDecimal::~SbxDecimal()
-{
-    // GnDecCounter--;
-}
+SbxDecimal::~SbxDecimal() { }
 
 void releaseDecimalPtr( SbxDecimal*& rpDecimal )
 {
@@ -571,8 +565,6 @@ start:
             if( pDec != p->pDecimal )
             {
                 releaseDecimalPtr( p->pDecimal );
-                // if( p->pDecimal )
-                    // p->pDecimal->ReleaseRef();
                 p->pDecimal = pDec;
                 if( pDec )
                     pDec->addRef();
@@ -614,7 +606,6 @@ start:
         case SbxBYREF | SbxSTRING:
             if( !p->pString )
                 p->pString = new XubString;
-            // ImpCvtNum( (double) n, 0, *p->pString );
             pDec->getString( *p->pString );
             break;
         case SbxOBJECT:
@@ -649,7 +640,6 @@ start:
                 *p->pInteger = 0;
             }
             break;
-            // *p->pInteger = n; break;
         case SbxBYREF | SbxERROR:
         case SbxBYREF | SbxUSHORT:
             if( !pDec->getUShort( *p->pUShort ) )
@@ -697,7 +687,6 @@ start:
                 *p->pSingle = 0;
             }
             break;
-            // *p->pSingle = (float) n; break;
         case SbxBYREF | SbxDATE:
         case SbxBYREF | SbxDOUBLE:
             if( !pDec->getDouble( *p->pDouble ) )

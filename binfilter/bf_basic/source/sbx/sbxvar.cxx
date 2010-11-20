@@ -462,8 +462,6 @@ BOOL SbxVariable::StoreData( SvStream& rStrm ) const
         bValStore = SbxValue::StoreData( rStrm );
     if( !bValStore )
         return FALSE;
-    // if( !SbxValue::StoreData( rStrm ) )
-        // return FALSE;
     rStrm.WriteByteString( maName, RTL_TEXTENCODING_ASCII_US );
     rStrm << nUserData;
     if( pInfo.Is() )

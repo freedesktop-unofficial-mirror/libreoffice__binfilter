@@ -460,7 +460,7 @@ public:
     const String&   GetLibName() const                  { return aLibName; }
     void            SetLibName( const String& rName )   { aLibName = rName; }
 
-    // Nur temporaer fuer Laden/Speichern....
+    // Only temporary, for saving/loading ...
     BOOL            DoLoad()                            { return bDoLoad; }
 
     BOOL            HasPassword() const                 { return aPassword.Len() != 0; }
@@ -520,13 +520,12 @@ void BasicLibInfo::Store( SotStorageStream& rSStream, const String& rBasMgrStora
     if ( aStorageName.Len() == 0 )
         aStorageName = aCurStorageName;
 
-    // Wieder laden?
+    // Load again?
     BOOL bDoLoad_ = xLib.Is();
     if ( bUseOldReloadInfo )
         bDoLoad_ = DoLoad();
     rSStream << bDoLoad_;
 
-    // Den Namen der Lib...
     rSStream.WriteByteString(GetLibName());
 
     // Absoluter Pfad....
@@ -581,10 +580,10 @@ BasicLibInfo* BasicLibInfo::Create( SotStorageStream& rSStream )
     rSStream >> nId;
     rSStream >> nVer;
 
-    DBG_ASSERT( nId == LIBINFO_ID, "Keine BasicLibInfo !?" );
+    DBG_ASSERT( nId == LIBINFO_ID, "Without BasicLibInfo !?" );
     if( nId == LIBINFO_ID )
     {
-        // Wieder laden?
+        // Load again?
         BOOL bDoLoad;
         rSStream >> bDoLoad;
         pInfo->bDoLoad = bDoLoad;
@@ -645,8 +644,6 @@ BasicManager::BasicManager( SotStorage& rStorage, const String& rBaseURL, StarBA
     // #91251: Storage name not longer available for documents < 5.0
     // Should be no real problem, because only relative storage names
     // (links) can be affected.
-    // DBG_ASSERT( aStorName.Len(), "No Storage Name!" );
-    // DBG_ASSERT(aStorageName.Len() != 0, "Bad storage name");
 
     // Wenn es den Manager-Stream nicht gibt, sind keine weiteren
     // Aktionen noetig.
@@ -679,7 +676,6 @@ BasicManager::BasicManager( SotStorage& rStorage, const String& rBaseURL, StarBA
                 StarBASIC* pBasic = GetLib( nBasic );
                 if ( pBasic )
                 {
-//                  pBasic->SetParent( pStdLib );
                     pStdLib->Insert( pBasic );
                     pBasic->SetFlag( SBX_EXTSEARCH );
                 }
@@ -902,8 +898,6 @@ void BasicManager::ImpMgrNotLoaded( const String& rStorageName )
 {
     // pErrInf wird nur zerstoert, wenn der Fehler von einem ErrorHandler
     // gehandelt wird!
-//  String aErrorText( BasicResId( IDS_SBERR_MGROPEN ) );
-//  aErrorText.SearchAndReplace( "XX", rStorageName );
     StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_MGROPEN, rStorageName, ERRCODE_BUTTON_OK );
     pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENMGRSTREAM, rStorageName ) );
 
@@ -933,7 +927,6 @@ void BasicManager::LoadBasicManager( SotStorage& rStorage, const String& rBaseUR
 {
     DBG_CHKTHIS( BasicManager, 0 );
 
-//  StreamMode eStreamMode = STREAM_READ | STREAM_NOCREATE | STREAM_SHARE_DENYWRITE;
 
     SotStorageStreamRef xManagerStream = rStorage.OpenSotStream
         ( ManagerStreamName, eStreamReadMode );
@@ -953,7 +946,6 @@ void BasicManager::LoadBasicManager( SotStorage& rStorage, const String& rBaseUR
     String aRealStorageName = maStorageName;  // fuer relative Pfade, kann durch BaseURL umgebogen werden.
 
     // Wenn aus Vorlagen geladen wird, gilt nur die BaseURL:
-    //String aBaseURL = INetURLObject::GetBaseURL();
     if ( rBaseURL.Len() )
     {
         INetURLObject aObj( rBaseURL );
@@ -988,11 +980,6 @@ void BasicManager::LoadBasicManager( SotStorage& rStorage, const String& rBaseUR
             bool bWasAbsolute = FALSE;
             aObj = aObj.smartRel2Abs( pInfo->GetRelStorageName(), bWasAbsolute );
 
-            //*** TODO: Replace if still necessary
-            /* if ( SfxContentHelper::Exists( aObj.GetMainURL() ) )
-                pInfo->SetStorageName( aObj.GetMainURL() );
-            else */
-            //*** TODO-End
             if ( pLibs->aBasicLibPath.Len() )
             {
                 // Lib im Pfad suchen...
@@ -1026,7 +1013,6 @@ void BasicManager::LoadOldBasicManager( SotStorage& rStorage )
 {
     DBG_CHKTHIS( BasicManager, 0 );
 
-//  StreamMode eStreamMode = STREAM_READ | STREAM_NOCREATE | STREAM_SHARE_DENYWRITE;
 
     SotStorageStreamRef xManagerStream = rStorage.OpenSotStream
         ( String::CreateFromAscii(szOldManagerStream), eStreamReadMode );
@@ -1051,8 +1037,6 @@ void BasicManager::LoadOldBasicManager( SotStorage& rStorage )
     xManagerStream->Seek( nBasicStartOff );
     if( !ImplLoadBasic( *xManagerStream, pLibs->GetObject(0)->GetLibRef() ) )
     {
-//      String aErrorText( BasicResId( IDS_SBERR_MGROPEN ) );
-//      aErrorText.SearchAndReplace( "XX", aStorName );
         StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_MGROPEN, aStorName, ERRCODE_BUTTON_OK );
         pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENMGRSTREAM, aStorName ) );
         // und es geht weiter...
@@ -1099,8 +1083,6 @@ void BasicManager::LoadOldBasicManager( SotStorage& rStorage )
                 AddLib( *xStorageRef, aLibName, FALSE );
             else
             {
-//              String aErrorText( BasicResId( IDS_SBERR_LIBLOAD ) );
-//              aErrorText.SearchAndReplace( "XX", aLibName );
                 StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_LIBLOAD, aStorName, ERRCODE_BUTTON_OK );
                 pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_STORAGENOTFOUND, aStorName ) );
             }
@@ -1171,7 +1153,6 @@ BOOL BasicManager::CopyBasicData( SotStorage* pStorFrom, const String& rSourceUR
             bOk = pStorFrom->CopyTo( BasicStreamName, pStorTo, BasicStreamName );
         if( bOk && pStorFrom->IsStream( ManagerStreamName ) )
         {
-            // bOk = pStorFrom->CopyTo( szManagerStream, pStorTo, szManagerStream );
             BasicManager aBasMgr;
             // Die aktuelle Base-URL ist die vom speichern...
             String aStorName( pStorFrom->GetName() );
@@ -1277,7 +1258,7 @@ void BasicManager::Store( SotStorage& rStorage, const String& rBaseURL, BOOL bSt
         // Store saved streams
         SotStorageStreamRef xManagerStream = rStorage.OpenSotStream(
             ManagerStreamName, STREAM_STD_READWRITE | STREAM_TRUNC );
-            //ManagerStreamName, STREAM_STD_READWRITE /* | STREAM_TRUNC */ );
+
         // STREAM_TRUNC buggy??!!! Then
         // xManagerStream->Seek( 0 );
         mpImpl->mpManagerStream->Seek( 0 );
@@ -1321,8 +1302,6 @@ void BasicManager::Store( SotStorage& rStorage, const String& rBaseURL, BOOL bSt
 
     if ( !xManagerStream.Is() || xManagerStream->GetError() )
     {
-//      String aErrorText( BasicResId( IDS_SBERR_MGRSAVE ) );
-//      aErrorText.SearchAndReplace( "XX", aStorName );
         StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_MGRSAVE, aStorName, ERRCODE_BUTTON_OK );
         ((BasicManager*)this)->pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENMGRSTREAM, aStorName ) );
     }
@@ -1432,8 +1411,6 @@ BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
     DBG_ASSERT( aStorName.Len(), "No Storage Name!" );
     if ( !xBasicStorage.Is() || xBasicStorage->GetError() )
     {
-//      String aErrorText( BasicResId( IDS_SBERR_MGRSAVE ) );
-//      aErrorText.SearchAndReplace( "XX", aStorName );
         StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_MGRSAVE, aStorName, ERRCODE_BUTTON_OK );
         ((BasicManager*)this)->pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENLIBSTORAGE, pLib->GetName() ) );
     }
@@ -1443,8 +1420,6 @@ BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
         SotStorageStreamRef xBasicStream = xBasicStorage->OpenSotStream( pLib->GetName(), STREAM_STD_READWRITE );
         if ( !xBasicStream.Is() || xBasicStream->GetError() )
         {
-//          String aErrorText( BasicResId( IDS_SBERR_LIBSAVE ) );
-//          aErrorText.SearchAndReplace( "XX", pLib->GetName() );
             StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_LIBSAVE, pLib->GetName(), ERRCODE_BUTTON_OK );
             ((BasicManager*)this)->pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENLIBSTREAM, pLib->GetName() ) );
         }
@@ -1476,7 +1451,6 @@ BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
             }
             // Vorsichtshalber alle Dont't Store lassen...
             pLib->SetFlag( SBX_DONTSTORE );
-//          SetFlagToAllLibs( SBX_DONTSTORE, FALSE );
             pLib->SetModified( FALSE );
             if( !xBasicStorage->Commit() )
                 bDone = FALSE;
@@ -1583,7 +1557,6 @@ BOOL BasicManager::ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorag
                 xBasicStream->SetKey( ByteString() );
                 CheckModules( pLibInfo->GetLib(), pLibInfo->IsReference() );
             }
-//          bBasMgrModified = TRUE; // Warum?
             return bLoaded;
         }
     }
@@ -1632,13 +1605,6 @@ BOOL BasicManager::ImplLoadBasic( SvStream& rStrm, StarBASICRef& rOldBasic ) con
             // Fill new libray container (5.2 -> 6.0)
             copyToLibraryContainer( pNew, mpImpl->mpInfo );
 
-/*
-            if( rOldBasic->GetParent() )
-            {
-                rOldBasic->GetParent()->Insert( rOldBasic );
-                rOldBasic->SetFlag( SBX_EXTSEARCH );
-            }
-*/
             pNew->SetModified( FALSE );
             bLoaded = TRUE;
         }
@@ -1654,14 +1620,6 @@ void BasicManager::CheckModules( StarBASIC* pLib, BOOL bReference ) const
         return;
 
     BOOL bModified = pLib->IsModified();
-
-/*?*/ //    for ( USHORT nMod = 0; nMod < pLib->GetModules()->Count(); nMod++ )
-/*?*/ //    {
-/*?*/ //        SbModule* pModule = (SbModule*)pLib->GetModules()->Get( nMod );
-/*?*/ //        DBG_ASSERT( pModule, "Modul nicht erhalten!" );
-/*?*/ //        if ( !pModule->IsCompiled() && !StarBASIC::GetErrorCode() )
-/*?*/ //            pLib->Compile( pModule );
-/*?*/ //    }
 
     // #67477, AB 8.12.99 On demand Compilieren bei referenzierten
     // Libraries sollte nicht zu modified fuehren
@@ -1691,7 +1649,6 @@ StarBASIC* BasicManager::AddLib( SotStorage& rStorage, const String& rLibName, B
     // Erstmal mit dem Original-Namen, da sonst ImpLoadLibary nicht geht...
     pLibInfo->SetLibName( rLibName );
     // Funktioniert so aber nicht, wenn Name doppelt
-//  USHORT nLibId = GetLibId( rLibName );
     USHORT nLibId = (USHORT) pLibs->GetPos( pLibInfo );
 
     // Vorm Laden StorageNamen setzen, da er mit pCurStorage verglichen wird.
@@ -1707,7 +1664,6 @@ StarBASIC* BasicManager::AddLib( SotStorage& rStorage, const String& rLibName, B
         {
             pLibInfo->GetLib()->SetModified( FALSE );   // Dann nicht speichern
             pLibInfo->SetRelStorageName( String() );
-//          pLibInfo->CalcRelStorageName( GetStorageName() );
             pLibInfo->IsReference() = TRUE;
         }
         else
@@ -1781,7 +1737,6 @@ BOOL BasicManager::RemoveLib( USHORT nLib, BOOL bDelBasicFromStorage )
 
             if ( !xBasicStorage.Is() || xBasicStorage->GetError() )
             {
-//              String aErrorText( BasicResId( IDS_SBERR_REMOVELIB ) );
                 StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_REMOVELIB, String(), ERRCODE_BUTTON_OK );
                 pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENLIBSTORAGE, pLibInfo->GetLibName() ) );
             }
@@ -1807,9 +1762,6 @@ BOOL BasicManager::RemoveLib( USHORT nLib, BOOL bDelBasicFromStorage )
                     {
                         String aName_( xStorage->GetName() );
                         xStorage.Clear();
-                        //*** TODO: Replace if still necessary
-                        //SfxContentHelper::Kill( aName );
-                        //*** TODO-End
                     }
                 }
             }
@@ -1953,15 +1905,7 @@ StarBASIC* BasicManager::CreateLib
             {
                 pLib = AddLib( *xStorage, rLibName, TRUE );
 
-                //if( !pLibInfo )
-                    //pLibInfo = FindLibInfo( pLib );
-                //pLibInfo->SetStorageName( LinkTargetURL );
-                //pLibInfo->GetLib()->SetModified( FALSE ); // Dann nicht speichern
-                //pLibInfo->SetRelStorageName( String() );
-                //pLibInfo->IsReference() = TRUE;
             }
-            //else
-                //Message?
 
             DBG_ASSERT( pLib, "XML Import: Linked basic library could not be loaded");
         }

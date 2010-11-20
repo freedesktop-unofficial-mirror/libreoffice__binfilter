@@ -82,7 +82,6 @@ BOOL SbiBuffer::Check( USHORT n )
         else p = new char [nSize + nn];
         if( !p )
         {
-/*?*/ //            pParser->Error( SbERR_PROG_TOO_LARGE );
             nInc = 0;
             delete[] pBuf; pBuf = NULL;
             return FALSE;

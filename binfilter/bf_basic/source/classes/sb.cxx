@@ -51,8 +51,6 @@
 
 namespace binfilter {
 
-// #pragma SW_SEGMENT_CLASS( SBASIC, SBASIC_CODE )
-
 TYPEINIT1(StarBASIC,SbxObject)
 
 #define RTLNAME "@SBRTL"
@@ -408,7 +406,6 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             pProcedureProp->SetFlag( SBX_NO_BROADCAST );
             SbProcedureProperty* pNewProp = new SbProcedureProperty
                 ( pProcedureProp->GetName(), pProcedureProp->GetType() );
-                // ( pProcedureProp->GetName(), pProcedureProp->GetType(), this );
             pNewProp->ResetFlag( SBX_NO_BROADCAST );
             pProcedureProp->SetFlags( nFlags_ );
             pProps->PutDirect( pNewProp, i );
@@ -618,7 +615,7 @@ StarBASIC::StarBASIC( StarBASIC* p )
         pOLEFAC = new SbOLEFactory;
         AddFactory( pOLEFAC );
     }
-//  pRtl = new SbiStdObject( String( RTL_CONSTASCII_USTRINGPARAM(RTLNAME) ), this );
+
     // Suche ueber StarBASIC ist immer global
     SetFlag( SBX_GBLSEARCH );
 }
@@ -668,7 +665,6 @@ void* StarBASIC::operator new( size_t n )
 {
     if( n < sizeof( StarBASIC ) )
     {
-//      DBG_ASSERT( FALSE, "Warnung: inkompatibler BASIC-Stand!" );
         n = sizeof( StarBASIC );
     }
     return ::operator new( n );
@@ -746,14 +742,6 @@ SbModule* StarBASIC::FindModule( const String& rName )
 // Init-Code aller Module ausfuehren (auch in inserteten Bibliotheken)
 void StarBASIC::InitAllModules( StarBASIC* pBasicNotToInit )
 {
-    // Eigene Module initialisieren
-/*?*/ //    for ( USHORT nMod = 0; nMod < pModules->Count(); nMod++ )
-/*?*/ //    {
-/*?*/ //        SbModule* pModule = (SbModule*)pModules->Get( nMod );
-/*?*/ //        if( !pModule->IsCompiled() )
-/*?*/ //            pModule->Compile();
-/*?*/ //        pModule->RunInit();
-/*?*/ //    }
     DBG_ERROR( "StarBASIC::InitAllModules: dead code!" );
     // Alle Objekte ueberpruefen, ob es sich um ein Basic handelt
     // Wenn ja, auch dort initialisieren
@@ -810,8 +798,6 @@ SbxVariable* StarBASIC::Find( const String& rName, SbxClassType t )
             if( rName.EqualsIgnoreCaseAscii( RTLNAME ) )
                 pRes = pRtl;
         }
-/*?*/ //        if( !pRes )
-/*?*/ //            pRes = ((SbiStdObject*) (SbxObject*) pRtl)->Find( rName, t );
         if( pRes )
             pRes->SetFlag( SBX_EXTFOUND );
     }
@@ -863,15 +849,7 @@ BOOL StarBASIC::Call( const String& rName, SbxArray* pParam )
     return bRes;
 }
 
-void StarBASIC::Stop()
-{
-/*?*/ //    SbiInstance* p = pINST;
-/*?*/ //    while( p )
-/*?*/ //    {
-/*?*/ //        p->Stop();
-/*?*/ //        p = p->pNext;
-/*?*/ //    }
-}
+void StarBASIC::Stop() { }
 
 BOOL StarBASIC::IsRunning()
 {
@@ -986,26 +964,6 @@ void StarBASIC::MakeErrorText( SbError nId, const String& /*aMsg*/ )
 
     USHORT nOldID = GetVBErrorCode( nId );
 
-    // Hilfsklasse instanzieren
-/*?*/ //    BasicResId aId( RID_BASIC_START );
-/*?*/ //    BasicStringList_Impl aMyStringList( aId, USHORT(nId & ERRCODE_RES_MASK) );
-
-/*?*/ //    if( aMyStringList.IsErrorTextAvailable() )
-/*?*/ ///*?*/ //    {
-/*?*/ //        // Merge Message mit Zusatztext
-/*?*/ //        String aMsg1 = aMyStringList.GetString();
-/*?*/ //        // Argument-Platzhalter durch %s ersetzen
-/*?*/ //        String aSrgStr( RTL_CONSTASCII_USTRINGPARAM("$(ARG1)") );
-/*?*/ //        USHORT nResult = aMsg1.Search( aSrgStr );
-/*?*/ //
-/*?*/ //        if( nResult != STRING_NOTFOUND )
-/*?*/ //        {
-/*?*/ //            aMsg1.Erase( nResult, aSrgStr.Len() );
-/*?*/ //            aMsg1.Insert( aMsg, nResult );
-/*?*/ //        }
-/*?*/ //        GetSbData()->aErrMsg = aMsg1;
-/*?*/ //    }
-/*?*/ //    else if( nOldID != 0 )
     if( nOldID != 0 )
     {
         String aStdMsg( RTL_CONSTASCII_USTRINGPARAM("error ") );
@@ -1025,11 +983,6 @@ BOOL StarBASIC::CError
     // Compiler-Fehler waehrend der Laufzeit -> Programm anhalten
     if( IsRunning() )
     {
-        // #109018 Check if running Basic is affected
-/*?*/ //        StarBASIC* pStartedBasic = pINST->GetBasic();
-/*?*/ //        if( pStartedBasic != this )
-/*?*/ //            return FALSE;
-
         Stop();
     }
 
@@ -1050,7 +1003,7 @@ BOOL StarBASIC::CError
         bRet = (BOOL) GetSbData()->aErrHdl.Call( this );
     else
         bRet = ErrorHdl();
-    GetSbData()->bCompiler = FALSE;     // nur TRUE fuer Error-Handler
+    GetSbData()->bCompiler = FALSE;     // Only TRUE for Error-Handler
     return bRet;
 }
 
@@ -1085,17 +1038,9 @@ void StarBASIC::Error( SbError n )
     Error( n, String() );
 }
 
-void StarBASIC::Error( SbError /*n*/, const String& /*rMsg*/ )
-{
-/*?*/ //    if( pINST )
-/*?*/ //        pINST->Error( n, rMsg );
-}
+void StarBASIC::Error( SbError /*n*/, const String& /*rMsg*/ ) { }
 
-void StarBASIC::FatalError( SbError /*n*/ )
-{
-/*?*/ //    if( pINST )
-/*?*/ //        pINST->FatalError( n );
-}
+void StarBASIC::FatalError( SbError /*n*/ ) { }
 
 BOOL __EXPORT StarBASIC::ErrorHdl()
 {
@@ -1105,7 +1050,7 @@ BOOL __EXPORT StarBASIC::ErrorHdl()
 
 /**************************************************************************
 *
-*   Laden und Speichern
+*   Saving and Loading
 *
 **************************************************************************/
 
@@ -1336,7 +1281,7 @@ void BasicCollection::CollAdd( SbxArray* pPar_ )
                 }
                 nNextIndex = nAfterIndex + 1;
             }
-            else // if( nCount == 4 )
+            else
             {
                 INT32 nBeforeIndex = implGetIndex( pBefore );
                 if( nBeforeIndex == -1 )

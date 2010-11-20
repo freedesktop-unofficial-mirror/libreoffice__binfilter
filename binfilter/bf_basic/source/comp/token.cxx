@@ -358,8 +358,6 @@ SbiTokenizer::SbiTokenizer( const ::rtl::OUString& rSrc, StarBASIC* pb )
            : SbiScanner( rSrc, pb )
 {
     pTokTable = aTokTable_Basic;
-    //if( StarBASIC::GetGlobalLanguageMode() == SB_LANG_JAVASCRIPT )
-    //  pTokTable = aTokTable_Java;
     TokenTable *tp;
     bEof = bAs = FALSE;
     eCurTok = NIL;

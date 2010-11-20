@@ -522,7 +522,7 @@ void SbiParser::Symbol()
             SbiExpression aExpr( this );
             aExpr.Gen();
             SbiOpcode eOp = _PUT;
-            // SbiSymDef* pDef = aVar.GetRealVar();
+
             if( pDef )
             {
                 if( pDef->GetConstDef() )
@@ -585,7 +585,6 @@ void SbiParser::Set()
         TypeDecl( *pTypeDef, TRUE );
 
         aLvalue.Gen();
-        // aGen.Gen( _CLASS, pDef->GetTypeId() | 0x8000 );
         aGen.Gen( _CREATE, pDef->GetId(), pTypeDef->GetTypeId() );
         aGen.Gen( _SETCLASS, pDef->GetTypeId() );
     }
@@ -609,10 +608,9 @@ void SbiParser::Set()
                 aGen.Gen( _SET );
         }
     }
-    // aGen.Gen( _SET );
 }
 
-// JSM 07.10.95
+
 void SbiParser::LSet()
 {
     SbiExpression aLvalue( this, SbLVALUE );
@@ -628,7 +626,7 @@ void SbiParser::LSet()
     aGen.Gen( _LSET );
 }
 
-// JSM 07.10.95
+
 void SbiParser::RSet()
 {
     SbiExpression aLvalue( this, SbLVALUE );
@@ -663,7 +661,6 @@ void SbiParser::DefXXX()
             else
             {
                 ch2 = aSym.ToUpperAscii().GetBuffer()[0];
-                //ch2 = aSym.Upper();
                 if( ch2 < ch1 ) Error( SbERR_SYNTAX ), ch2 = 0;
             }
         }
@@ -809,7 +806,6 @@ void SbiParser::ErrorStmnt()
 }
 
 
-// AB 22.5.1996
 // JavaScript-Parsing zunaechst provisorisch hier implementiert
 void SbiParser::OpenJavaBlock( SbiToken, SbiExprNode* )
 {

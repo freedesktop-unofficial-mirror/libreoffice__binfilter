@@ -1074,8 +1074,6 @@ BOOL SbxValue::Compute( SbxOperator eOp, const SbxValue& rOp )
                     || GetType() == SbxCURRENCY
                     || GetType() == SbxULONG )
                     aL.eType = aR.eType = GetType();
-//              else if( GetType() == SbxDouble || GetType() == SbxSingle )
-//                  aL.eType = aR.eType = SbxLONG64;
                 else
                     aL.eType = aR.eType = SbxLONG;
             }
@@ -1083,9 +1081,6 @@ BOOL SbxValue::Compute( SbxOperator eOp, const SbxValue& rOp )
                      || GetType() == SbxULONG64 || eOpType == SbxULONG64
                      || GetType() == SbxLONG64 || eOpType == SbxLONG64 )
                 aL.eType = aR.eType = SbxLONG64;
-//          else if( GetType() == SbxDouble || rOP.GetType() == SbxDouble
-//                   || GetType() == SbxSingle || rOP.GetType() == SbxSingle )
-//              aL.eType = aR.eType = SbxLONG64;
             else
                 aL.eType = aR.eType = SbxLONG;
 

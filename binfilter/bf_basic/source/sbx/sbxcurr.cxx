@@ -324,7 +324,6 @@ static String ImpCurrencyToString( const SbxINT64 &r )
 {
     BigInt a10000 = 10000;
 
-    //return GetpApp()->GetAppInternational().GetCurr( BigInt( r ), 4 );
     BigInt aInt( SbxINT64Converter::SbxINT64_2_BigInt( r ) );
     aInt.Abs();
     BigInt aFrac = aInt;

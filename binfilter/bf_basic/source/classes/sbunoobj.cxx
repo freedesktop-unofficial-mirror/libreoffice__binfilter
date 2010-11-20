@@ -97,10 +97,6 @@ TYPEINIT1(SbUnoClass,SbxObject)
 
 typedef WeakImplHelper1< XAllListener > BasicAllListenerHelper;
 
-// Flag, um immer ueber Invocation zu gehen
-//#define INVOCATION_ONLY
-
-
 // Identifier fuer die dbg_-Properies als Strings anlegen
 static String ID_DBG_SUPPORTEDINTERFACES( RTL_CONSTASCII_USTRINGPARAM("Dbg_SupportedInterfaces") );
 static String ID_DBG_PROPERTIES( RTL_CONSTASCII_USTRINGPARAM("Dbg_Properties") );
@@ -340,43 +336,26 @@ SbxDataType unoToSbxType( TypeClass eType )
         case TypeClass_INTERFACE:
         case TypeClass_TYPE:
         case TypeClass_STRUCT:
-        case TypeClass_EXCEPTION:       eRetType = SbxOBJECT;   break;
+        case TypeClass_EXCEPTION:     eRetType = SbxOBJECT; break;
 
-        /* folgende Typen lassen wir erstmal weg
-        case TypeClass_SERVICE:         break;
-        case TypeClass_CLASS:           break;
-        case TypeClass_TYPEDEF:         break;
-        case TypeClass_UNION:           break;
-        case TypeClass_ARRAY:           break;
-        */
-        case TypeClass_ENUM:            eRetType = SbxLONG;     break;
+        case TypeClass_ENUM:          eRetType = SbxLONG;   break;
         case TypeClass_SEQUENCE:
             eRetType = (SbxDataType) ( SbxOBJECT | SbxARRAY );
             break;
 
-        /*
-        case TypeClass_VOID:            break;
-        case TypeClass_UNKNOWN:         break;
-        */
-
-        case TypeClass_ANY:             eRetType = SbxVARIANT;  break;
-        case TypeClass_BOOLEAN:         eRetType = SbxBOOL;     break;
-        case TypeClass_CHAR:            eRetType = SbxCHAR;     break;
-        case TypeClass_STRING:          eRetType = SbxSTRING;   break;
-        case TypeClass_FLOAT:           eRetType = SbxSINGLE;   break;
-        case TypeClass_DOUBLE:          eRetType = SbxDOUBLE;   break;
-        //case TypeClass_OCTET:                                 break;
-        case TypeClass_BYTE:            eRetType = SbxINTEGER;  break;
-        //case TypeClass_INT:               eRetType = SbxINT;  break;
-        case TypeClass_SHORT:           eRetType = SbxINTEGER;  break;
-        case TypeClass_LONG:            eRetType = SbxLONG;     break;
-        case TypeClass_HYPER:           eRetType = SbxSALINT64; break;
-        //case TypeClass_UNSIGNED_OCTET:                        break;
-        case TypeClass_UNSIGNED_SHORT:  eRetType = SbxUSHORT;   break;
-        case TypeClass_UNSIGNED_LONG:   eRetType = SbxULONG;    break;
-        case TypeClass_UNSIGNED_HYPER:  eRetType = SbxSALUINT64;break;
-        //case TypeClass_UNSIGNED_INT:  eRetType = SbxUINT;     break;
-        //case TypeClass_UNSIGNED_BYTE: eRetType = SbxUSHORT;   break;
+        case TypeClass_ANY:            eRetType = SbxVARIANT;  break;
+        case TypeClass_BOOLEAN:        eRetType = SbxBOOL;     break;
+        case TypeClass_CHAR:           eRetType = SbxCHAR;     break;
+        case TypeClass_STRING:         eRetType = SbxSTRING;   break;
+        case TypeClass_FLOAT:          eRetType = SbxSINGLE;   break;
+        case TypeClass_DOUBLE:         eRetType = SbxDOUBLE;   break;
+        case TypeClass_BYTE:           eRetType = SbxINTEGER;  break;
+        case TypeClass_SHORT:          eRetType = SbxINTEGER;  break;
+        case TypeClass_LONG:           eRetType = SbxLONG;     break;
+        case TypeClass_HYPER:          eRetType = SbxSALINT64; break;
+        case TypeClass_UNSIGNED_SHORT: eRetType = SbxUSHORT;   break;
+        case TypeClass_UNSIGNED_LONG:  eRetType = SbxULONG;    break;
+        case TypeClass_UNSIGNED_HYPER: eRetType = SbxSALUINT64;break;
         default: break;
     }
     return eRetType;
@@ -609,24 +588,8 @@ void unoToSbxValue( SbxVariable* pVar, const Any& aValue )
             pVar->PutObject( (SbxDimArray*)xArray );
             pVar->SetFlags( nFlags );
 
-            // #54548, Die Parameter duerfen hier nicht weggehauen werden
-            //pVar->SetParameters( NULL );
         }
         break;
-
-        /*
-        case TypeClass_VOID:            break;
-        case TypeClass_UNKNOWN:         break;
-
-        case TypeClass_ANY:
-        {
-            // Any rausholen und konvertieren
-            //Any* pAny = (Any*)aValue.get();
-            //if( pAny )
-                //unoToSbxValue( pVar, *pAny );
-        }
-        break;
-        */
 
         case TypeClass_BOOLEAN:         pVar->PutBool( *(sal_Bool*)aValue.getValue() ); break;
         case TypeClass_CHAR:
@@ -634,22 +597,17 @@ void unoToSbxValue( SbxVariable* pVar, const Any& aValue )
             pVar->PutChar( *(sal_Unicode*)aValue.getValue() );
             break;
         }
-        case TypeClass_STRING:          { OUString val; aValue >>= val; pVar->PutString( String( val ) ); } break;
-        case TypeClass_FLOAT:           { float val = 0; aValue >>= val; pVar->PutSingle( val ); } break;
-        case TypeClass_DOUBLE:          { double val = 0; aValue >>= val; pVar->PutDouble( val ); } break;
-        //case TypeClass_OCTET:         break;
-        case TypeClass_BYTE:            { sal_Int8 val = 0; aValue >>= val; pVar->PutInteger( val ); } break;
-        //case TypeClass_INT:           break;
-        case TypeClass_SHORT:           { sal_Int16 val = 0; aValue >>= val; pVar->PutInteger( val ); } break;
-        case TypeClass_LONG:            { sal_Int32 val = 0; aValue >>= val; pVar->PutLong( val ); } break;
-        case TypeClass_HYPER:           { sal_Int64 val = 0; aValue >>= val; pVar->PutInt64( val ); } break;
-        //case TypeClass_UNSIGNED_OCTET:break;
-        case TypeClass_UNSIGNED_SHORT:  { sal_uInt16 val = 0; aValue >>= val; pVar->PutUShort( val ); } break;
-        case TypeClass_UNSIGNED_LONG:   { sal_uInt32 val = 0; aValue >>= val; pVar->PutULong( val ); } break;
-        case TypeClass_UNSIGNED_HYPER:  { sal_uInt64 val = 0; aValue >>= val; pVar->PutUInt64( val ); } break;
-        //case TypeClass_UNSIGNED_INT:  break;
-        //case TypeClass_UNSIGNED_BYTE: break;
-        default:                        pVar->PutEmpty();                       break;
+        case TypeClass_STRING:         { OUString val; aValue >>= val; pVar->PutString( String( val ) ); } break;
+        case TypeClass_FLOAT:          { float val = 0; aValue >>= val; pVar->PutSingle( val ); }          break;
+        case TypeClass_DOUBLE:         { double val = 0; aValue >>= val; pVar->PutDouble( val ); }         break;
+        case TypeClass_BYTE:           { sal_Int8 val = 0; aValue >>= val; pVar->PutInteger( val ); }      break;
+        case TypeClass_SHORT:          { sal_Int16 val = 0; aValue >>= val; pVar->PutInteger( val ); }     break;
+        case TypeClass_LONG:           { sal_Int32 val = 0; aValue >>= val; pVar->PutLong( val ); }        break;
+        case TypeClass_HYPER:          { sal_Int64 val = 0; aValue >>= val; pVar->PutInt64( val ); }       break;
+        case TypeClass_UNSIGNED_SHORT: { sal_uInt16 val = 0; aValue >>= val; pVar->PutUShort( val ); }     break;
+        case TypeClass_UNSIGNED_LONG:  { sal_uInt32 val = 0; aValue >>= val; pVar->PutULong( val ); }      break;
+        case TypeClass_UNSIGNED_HYPER: { sal_uInt64 val = 0; aValue >>= val; pVar->PutUInt64( val ); }     break;
+        default:                       pVar->PutEmpty();        break;
     }
 }
 
@@ -659,7 +617,6 @@ Type getUnoTypeForSbxBaseType( SbxDataType eType )
     Type aRetType = getCppuVoidType();
     switch( eType )
     {
-        //case SbxEMPTY:        eRet = TypeClass_VOID; break;
         case SbxNULL:       aRetType = ::getCppuType( (const Reference< XInterface > *)0 ); break;
         case SbxINTEGER:    aRetType = ::getCppuType( (sal_Int16*)0 ); break;
         case SbxLONG:       aRetType = ::getCppuType( (sal_Int32*)0 ); break;
@@ -668,38 +625,20 @@ Type getUnoTypeForSbxBaseType( SbxDataType eType )
         case SbxCURRENCY:   aRetType = ::getCppuType( (oleautomation::Currency*)0 ); break;
         case SbxDECIMAL:    aRetType = ::getCppuType( (oleautomation::Decimal*)0 ); break;
         case SbxDATE:       {
-/*?*/ //                            SbiInstance* pInst = pINST;
-/*?*/ //                            if( pInst && pInst->IsCompatibility() )
-/*?*/ //                                aRetType = ::getCppuType( (double*)0 );
-/*?*/ //                            else
                                 aRetType = ::getCppuType( (oleautomation::Date*)0 );
                             }
                             break;
-        // case SbxDATE:        aRetType = ::getCppuType( (double*)0 ); break;
         case SbxSTRING:     aRetType = ::getCppuType( (OUString*)0 ); break;
-        //case SbxOBJECT:   break;
-        //case SbxERROR:    break;
         case SbxBOOL:       aRetType = ::getCppuType( (sal_Bool*)0 ); break;
         case SbxVARIANT:    aRetType = ::getCppuType( (Any*)0 ); break;
-        //case SbxDATAOBJECT: break;
         case SbxCHAR:       aRetType = ::getCppuType( (sal_Unicode*)0 ); break;
         case SbxBYTE:       aRetType = ::getCppuType( (sal_Int16*)0 ); break;
         case SbxUSHORT:     aRetType = ::getCppuType( (sal_uInt16*)0 ); break;
         case SbxULONG:      aRetType = ::getCppuType( (sal_uInt32*)0 ); break;
-        //case SbxLONG64:   break;
-        //case SbxULONG64:  break;
+
         // Maschinenabhaengige zur Sicherheit auf Hyper abbilden
         case SbxINT:        aRetType = ::getCppuType( (sal_Int32*)0 ); break;
         case SbxUINT:       aRetType = ::getCppuType( (sal_uInt32*)0 ); break;
-        //case SbxVOID:     break;
-        //case SbxHRESULT:  break;
-        //case SbxPOINTER:  break;
-        //case SbxDIMARRAY: break;
-        //case SbxCARRAY:   break;
-        //case SbxUSERDEF:  break;
-        //case SbxLPSTR:    break;
-        //case SbxLPWSTR:   break;
-        //case SbxCoreSTRING: break;
         default: break;
     }
     return aRetType;
@@ -719,8 +658,6 @@ Type getUnoTypeForSbxValue( SbxValue* pVal )
         SbxBaseRef xObj = (SbxBase*)pVal->GetObject();
         if( !xObj )
         {
-            // #109936 No error any more
-            // StarBASIC::Error( SbERR_INVALID_OBJECT );
             aRetType = getCppuType( static_cast<Reference<XInterface> *>(0) );
             return aRetType;
         }
@@ -1767,27 +1704,6 @@ void SbUnoObject::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                         nParamCount = nUnoParamCount;
                         nAllocParamCount = nParamCount;
                     }
-                    else if( nParamCount < nUnoParamCount )
-                    {
-/*?*/ //                        SbiInstance* pInst = pINST;
-/*?*/ //                        if( pInst && pInst->IsCompatibility() )
-/*?*/ //                        {
-/*?*/ //                            // Check types
-/*?*/ //                            bool bError = false;
-/*?*/ //                            for( i = nParamCount ; i < nUnoParamCount ; i++ )
-/*?*/ //                            {
-/*?*/ //                                const ParamInfo& rInfo = pParamInfos[i];
-/*?*/ //                                const Reference< XIdlClass >& rxClass = rInfo.aType;
-/*?*/ //                                if( rxClass->getTypeClass() != TypeClass_ANY )
-/*?*/ //                                {
-/*?*/ //                                    bError = true;
-/*?*/ //                                    StarBASIC::Error( SbERR_NOT_OPTIONAL );
-/*?*/ //                                }
-/*?*/ //                            }
-/*?*/ //                            if( !bError )
-/*?*/ //                                nAllocParamCount = nUnoParamCount;
-/*?*/ //                        }
-                    }
 
                     if( nAllocParamCount > 0 )
                     {
@@ -1826,7 +1742,7 @@ void SbUnoObject::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                     args.realloc( nParamCount );
                     Any* pAnyArgs = args.getArray();
                     bool bBlockConversionToSmallestType( false );
-/*?*/ //                    bool bBlockConversionToSmallestType = pINST->IsCompatibility();
+
                     if( pArgNamesArray )
                     {
                         Sequence< OUString >& rNameSeq = pArgNamesArray->getNames();
@@ -1946,14 +1862,6 @@ void SbUnoObject::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                 {
                     StarBASIC::Error( ERRCODE_BASIC_EXCEPTION, implGetExceptionMsg( e4 ) );
                 }
-                /*
-                catch( NullPointerException& e1 )
-                {
-                }
-                catch( InvocationTargetException& e2 )
-                {
-                }
-                */
                 GetSbData()->bBlockCompilerError = FALSE;  // #106433 Unblock compiler errors
             }
         }
@@ -2175,29 +2083,6 @@ SbUnoMethod::~SbUnoMethod()
 
 SbxInfo* SbUnoMethod::GetInfo()
 {
-/*?*/ //    if( !pInfo && m_xUnoMethod.is() )
-/*?*/ //    {
-/*?*/ //        SbiInstance* pInst = pINST;
-/*?*/ //        if( pInst && pInst->IsCompatibility() )
-/*?*/ //        {
-/*?*/ //            pInfo = new SbxInfo();
-/*?*/ //
-/*?*/ //            const Sequence<ParamInfo>& rInfoSeq = getParamInfos();
-/*?*/ //            const ParamInfo* pParamInfos = rInfoSeq.getConstArray();
-/*?*/ //            UINT32 nParamCount = rInfoSeq.getLength();
-/*?*/ //
-/*?*/ //            for( UINT32 i = 0 ; i < nParamCount ; i++ )
-/*?*/ //            {
-/*?*/ //                const ParamInfo& rInfo = pParamInfos[i];
-/*?*/ //                OUString aParamName = rInfo.aName;
-/*?*/ //
-/*?*/ //                // const Reference< XIdlClass >& rxClass = rInfo.aType;
-/*?*/ //                SbxDataType t = SbxVARIANT;
-/*?*/ //                USHORT nFlags_ = SBX_READ;
-/*?*/ //                pInfo->AddParam( aParamName, t, nFlags_ );
-/*?*/ //            }
-/*?*/ //        }
-/*?*/ //    }
     return pInfo;
 }
 
@@ -2233,33 +2118,6 @@ SbUnoProperty::SbUnoProperty
 SbUnoProperty::~SbUnoProperty()
 {}
 
-
-/*?*/ // // #72732 Spezielle SbxVariable, die beim put/get prueft,
-/*?*/ // // ob der Kontext fuer eine UnoClass sinnvoll ist. Sonst
-/*?*/ // // liegt eventuell ein Schreibfehler im Basic-Source vor.
-/*?*/ // BOOL UnoClassMemberVariable::Get( SbxValues& rRes ) const
-/*?*/ // {
-/*?*/ //    // Zugriff auf den Member einer UnoClass mit Parametern ist unsinnig
-/*?*/ //    if( GetParameters() )
-/*?*/ //    {
-/*?*/ //        if( mpRuntime )
-/*?*/ //            mpRuntime->Error( SbERR_NO_METHOD );
-/*?*/ //    }
-/*?*/ //    return SbxVariable::Get( rRes );
-/*?*/ // }
-/*?*/ //
-/*?*/ // BOOL UnoClassMemberVariable::Put( const SbxValues& rRes )
-/*?*/ // {
-/*?*/ //    if( bInternalUse )
-/*?*/ //    {
-/*?*/ //        return SbxVariable::Put( rRes );
-/*?*/ //    }
-/*?*/ //    // Schreibzugriff auf den Member einer UnoClass ist immer falsch
-/*?*/ //    mpRuntime->Error( SbERR_NO_METHOD );
-/*?*/ //    return FALSE;
-/*?*/ // }
-/*?*/ //
-/*?*/ // TYPEINIT1(UnoClassMemberVariable,SbxVariable)
 
 SbxVariable* SbUnoObject::Find( const XubString& rName, SbxClassType t )
 {

@@ -80,7 +80,7 @@ void SbiImage::Clear()
 
 /**************************************************************************
 *
-*   Service-Routinen fuer das Laden und Speichern
+*   Service routes for saving and loading
 *
 **************************************************************************/
 
@@ -157,18 +157,15 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
         {
             case B_NAME:
                 r.ReadByteString( aName, eCharSet );
-                //r >> aName;
                 break;
             case B_COMMENT:
                 r.ReadByteString( aComment, eCharSet );
-                //r >> aComment;
                 break;
             case B_SOURCE:
             {
                 String aTmp;
                 r.ReadByteString( aTmp, eCharSet );
                 aOUSource = aTmp;
-                //r >> aSource;
                 break;
             }
 #ifdef EXTENDED_BINARY_MODULES
@@ -249,8 +246,6 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
     }
 done:
     r.Seek( nLast );
-    //if( eCharSet != ::GetSystemCharSet() )
-        //ConvertStrings();
     if( !SbiGood( r ) )
         bError = TRUE;
     return BOOL( !bError );
@@ -290,7 +285,6 @@ BOOL SbiImage::Save( SvStream& r, UINT32 nVer )
     {
         nPos = SbiOpenRecord( r, B_NAME, 1 );
         r.WriteByteString( aName, eCharSet );
-        //r << aName;
         SbiCloseRecord( r, nPos );
     }
     // Kommentar?
@@ -298,7 +292,6 @@ BOOL SbiImage::Save( SvStream& r, UINT32 nVer )
     {
         nPos = SbiOpenRecord( r, B_COMMENT, 1 );
         r.WriteByteString( aComment, eCharSet );
-        //r << aComment;
         SbiCloseRecord( r, nPos );
     }
     // Source?
@@ -313,7 +306,6 @@ BOOL SbiImage::Save( SvStream& r, UINT32 nVer )
         else
             aTmp = aOUSource;
         r.WriteByteString( aTmp, eCharSet );
-        //r << aSource;
         SbiCloseRecord( r, nPos );
 
 #ifdef EXTENDED_BINARY_MODULES

@@ -30,8 +30,6 @@
 #include "image.hxx"
 
 
-// For debugging only
-// #define DBG_SAVE_DISASSEMBLY
 
 #include <comphelper/processfactory.hxx>
 

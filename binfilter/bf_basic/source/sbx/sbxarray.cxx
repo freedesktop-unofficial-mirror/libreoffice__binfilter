@@ -314,7 +314,6 @@ void SbxArray::Remove( SbxVariable* pVar )
         for( UINT32 i = 0; i < pData->size(); i++ )
         {
             SbxVariableRef* pRef = (*pData)[i];
-            // SbxVariableRef* pRef = pData->GetObject( i );
             if( *pRef == pVar )
             {
                 Remove32( i ); break;
@@ -381,7 +380,7 @@ SbxVariable* SbxArray::FindUserData( UINT32 nData )
             {
                 p = pVar;
                 p->ResetFlag( SBX_EXTFOUND );
-                break;  // JSM 06.10.95
+                break;
             }
             // Haben wir ein Array/Objekt mit Extended Search?
             else if( pVar->IsSet( SBX_EXTSEARCH ) )
