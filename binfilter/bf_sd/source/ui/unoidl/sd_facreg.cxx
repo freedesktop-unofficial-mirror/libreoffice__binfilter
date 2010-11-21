@@ -126,7 +126,9 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
     return pRet;
 }
 
+#ifdef __cplusplus
 }
+#endif
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
