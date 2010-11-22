@@ -711,12 +711,12 @@ SvxShapeControlPropertyValueMapping[] =
     // note that order matters:
     // valueAlignToParaAdjust and valueParaAdjustToAlign search this map from the _beginning_
     // and use the first matching entry
-    {style::ParagraphAdjust_LEFT,           (sal_Int16)awt::TextAlign::LEFT},
-    {style::ParagraphAdjust_CENTER,         (sal_Int16)awt::TextAlign::CENTER},
-    {style::ParagraphAdjust_RIGHT,          (sal_Int16)awt::TextAlign::RIGHT},
-    {style::ParagraphAdjust_BLOCK,          (sal_Int16)awt::TextAlign::RIGHT},
-    {style::ParagraphAdjust_STRETCH,        (sal_Int16)awt::TextAlign::LEFT},
-    {style::ParagraphAdjust_MAKE_FIXED_SIZE,(sal_Int16)awt::TextAlign::LEFT},
+    {(sal_Int16)style::ParagraphAdjust_LEFT,            (sal_Int16)awt::TextAlign::LEFT},
+    {(sal_Int16)style::ParagraphAdjust_CENTER,          (sal_Int16)awt::TextAlign::CENTER},
+    {(sal_Int16)style::ParagraphAdjust_RIGHT,           (sal_Int16)awt::TextAlign::RIGHT},
+    {(sal_Int16)style::ParagraphAdjust_BLOCK,           (sal_Int16)awt::TextAlign::RIGHT},
+    {(sal_Int16)style::ParagraphAdjust_STRETCH,     (sal_Int16)awt::TextAlign::LEFT},
+    {(sal_Int16)style::ParagraphAdjust_MAKE_FIXED_SIZE,(sal_Int16)awt::TextAlign::LEFT},
     {-1,-1}
 };
 
