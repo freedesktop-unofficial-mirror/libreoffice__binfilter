@@ -131,7 +131,6 @@ void    SwDLL::LibInit()
 
     // create a dummy-module for Object-Factory-Pointer
     SW_MOD() = (SwModule*)new SwModuleDummy( 0, TRUE, &SwWebDocShell::Factory(), pWriterFactory, pGlobalFactory );
-    SwModule* pMod = SW_MOD();
 }
 
 //-------------------------------------------------------------------------

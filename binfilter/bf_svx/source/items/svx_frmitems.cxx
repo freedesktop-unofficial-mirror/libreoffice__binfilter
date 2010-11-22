@@ -260,7 +260,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       case MID_SIZE_WIDTH:
 /*N*/       {
-/*N*/           sal_Int32 nVal;
+/*N*/           sal_Int32 nVal = 0;
 /*N*/           if(!(rVal >>= nVal ))
 /*N*/               return sal_False;
 /*N*/
@@ -269,7 +269,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       case MID_SIZE_HEIGHT:
 /*N*/       {
-/*N*/           sal_Int32 nVal;
+/*N*/           sal_Int32 nVal = 0;
 /*N*/           if(!(rVal >>= nVal))
 /*N*/               return sal_True;
 /*N*/
@@ -440,8 +440,8 @@ using namespace ::com::sun::star;
 /*N*/       case MID_L_REL_MARGIN:
 /*N*/       case MID_R_REL_MARGIN:
 /*N*/       {
-/*N*/           sal_Int32 nRel;
-/*N*/             if((rVal >>= nRel) && nRel >= 0 && nRel < USHRT_MAX)
+/*N*/           sal_Int32 nRel = 0;
+/*N*/           if((rVal >>= nRel) && nRel >= 0 && nRel < USHRT_MAX)
 /*N*/           {
 /*N*/               if(MID_L_REL_MARGIN== nMemberId)
 /*N*/                     nPropLeftMargin = (USHORT)nRel;
@@ -693,7 +693,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
-/*N*/   sal_Int32 nVal;
+/*N*/   sal_Int32 nVal = 0;
 /*N*/   switch( nMemberId )
 /*N*/   {
 /*N*/       case MID_UP_MARGIN :
@@ -709,7 +709,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_UP_REL_MARGIN:
 /*N*/       case MID_LO_REL_MARGIN:
 /*N*/       {
-/*N*/           sal_Int32 nRel;
+/*N*/           sal_Int32 nRel = 0;
 /*?*/           if((rVal >>= nRel) && nRel > 1 )
 /*?*/           {
 /*?*/               if(MID_UP_REL_MARGIN == nMemberId)
@@ -1381,7 +1381,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if( bDistMember || nMemberId == BORDER_DISTANCE )
 /*N*/   {
-/*N*/       sal_Int32 nDist;
+/*N*/       sal_Int32 nDist = 0;
 /*N*/       if(!(rVal >>= nDist))
 /*N*/           return sal_False;
 /*N*/
@@ -1420,7 +1420,7 @@ using namespace ::com::sun::star;
 /*?*/             aNew >>= aSeq;
 /*?*/             if ( aSeq.getLength() == 4 )
 /*?*/             {
-/*?*/                 sal_Int32 nVal;
+/*?*/                 sal_Int32 nVal = 0;
 /*?*/                 if ( aSeq[0] >>= nVal )
 /*?*/                     aBorderLine.Color = nVal;
 /*?*/                 if ( aSeq[1] >>= nVal )
@@ -1891,7 +1891,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if(!(rVal >>= nBreak))
 /*N*/   {
-/*N*/       sal_Int32 nValue;
+/*N*/       sal_Int32 nValue= 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/
@@ -2399,7 +2399,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/       case MID_BACK_COLOR:
 /*N*/         case MID_BACK_COLOR_R_G_B:
 /*N*/         {
-/*N*/           sal_Int32 nCol;
+/*N*/           sal_Int32 nCol = 0;
 /*N*/           if ( !( rVal >>= nCol ) )
 /*N*/               return sal_False;
 /*N*/             if(MID_BACK_COLOR_R_G_B == nMemberId)
@@ -2412,7 +2412,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/       break;
 /*N*/         case MID_BACK_COLOR_TRANSPARENCY:
 /*N*/         {
-/*N*/             sal_Int32 nTrans;
+/*N*/             sal_Int32 nTrans = 0;
 /*N*/             if ( !( rVal >>= nTrans ) || nTrans < 0 || nTrans > 100 )
 /*N*/               return sal_False;
 /*N*/             aColor.SetTransparency(lcl_PercentToTransparency(nTrans));
@@ -2424,7 +2424,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/           style::GraphicLocation eLocation;
 /*N*/           if ( !( rVal>>=eLocation ) )
 /*N*/           {
-/*N*/               sal_Int32 nValue;
+/*N*/               sal_Int32 nValue = 0;
 /*?*/               if ( !( rVal >>= nValue ) )
 /*?*/                   return sal_False;
 /*?*/               eLocation = (style::GraphicLocation)nValue;
@@ -2823,7 +2823,7 @@ SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) 
 /*N*/ bool SvxFrameDirectionItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE )
 /*N*/ {
-/*N*/     sal_Int16 nVal;
+/*N*/     sal_Int16 nVal = 0;
 /*N*/     sal_Bool bRet = ( rVal >>= nVal );
 /*N*/     if( bRet )
 /*N*/     {

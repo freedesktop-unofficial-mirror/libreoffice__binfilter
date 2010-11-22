@@ -161,7 +161,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       case MID_PAGE_NUMTYPE:
 /*N*/       {
-/*N*/           sal_Int32 nValue;
+/*N*/           sal_Int32 nValue = 0;
 /*N*/           if(!(rVal >>= nValue))
 /*N*/               return sal_False;
 /*N*/
@@ -176,7 +176,7 @@ using namespace ::com::sun::star;
 /*N*/           style::PageStyleLayout eLayout;
 /*N*/           if(!(rVal >>= eLayout))
 /*N*/           {
-/*N*/               sal_Int32 nValue;
+/*N*/               sal_Int32 nValue = 0;
 /*?*/               if(!(rVal >>= nValue))
 /*?*/                   return sal_False;
 /*?*/               eLayout = (style::PageStyleLayout)nValue;

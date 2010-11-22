@@ -850,7 +850,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*?*/                         if (!(rAnySeq[0] >>= aSeq[n].Position)) return sal_False;
 /*?*/                         if (!(rAnySeq[1] >>= aSeq[n].Alignment))
 /*?*/                         {
-/*?*/                             sal_Int32 nVal;
+/*?*/                             sal_Int32 nVal = 0;
 /*?*/                             if (rAnySeq[1] >>= nVal)
 /*?*/                                 aSeq[n].Alignment = (::com::sun::star::style::TabAlign) nVal;
 /*?*/                             else
@@ -904,7 +904,7 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/         }
 /*N*/         case MID_STD_TAB:
 /*N*/         {
-/*N*/             sal_Int32 nNewPos;
+/*N*/             sal_Int32 nNewPos = 0;
 /*N*/             if (!(rVal >>= nNewPos) )
 /*N*/                 return sal_False;
 /*N*/             const SvxTabStop& rTab = *(GetStart());

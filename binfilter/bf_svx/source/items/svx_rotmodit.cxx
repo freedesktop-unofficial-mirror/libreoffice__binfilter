@@ -107,7 +107,7 @@ using namespace ::com::sun::star;
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))
 /*N*/   {
-/*N*/       sal_Int32 nValue;
+/*N*/       sal_Int32 nValue = 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/       eUno = (table::CellVertJustify)nValue;

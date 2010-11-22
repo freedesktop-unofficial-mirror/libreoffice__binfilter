@@ -214,9 +214,9 @@ private:
                     bIns;
         ModeStack(ModeStack *pNextMode, BOOL _bIns, BOOL _bExt, BOOL _bAdd):
             pNext(pNextMode),
+            bAdd(_bAdd),
             bIns(_bIns),
-            bExt(_bExt),
-            bAdd(_bAdd) {}
+            bExt(_bExt) {}
     } *pModeStack;
 
     // Cursor bei PageUp / -Down mitnehmen
@@ -237,7 +237,7 @@ private:
 
         CrsrStack( BOOL bValid, BOOL bFrmSel, const Point &rDocPos,
                     SwTwips lOff, CrsrStack *pN )
-            : aDocPos(rDocPos), lOffset(lOff), pNext(pN)
+            : aDocPos(rDocPos), pNext(pN), lOffset(lOff)
         {
             bValidCurPos = bValid;
             bIsFrmSel = bFrmSel;

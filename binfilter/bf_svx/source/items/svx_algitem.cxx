@@ -132,7 +132,7 @@ using namespace ::com::sun::star;
 /*N*/               table::CellHoriJustify eUno;
 /*N*/               if(!(rVal >>= eUno))
 /*N*/               {
-/*N*/                   sal_Int32 nValue;
+/*N*/                   sal_Int32 nValue = 0;
 /*?*/                   if(!(rVal >>= nValue))
 /*?*/                       return sal_False;
 /*?*/                   eUno = (table::CellHoriJustify)nValue;
@@ -154,7 +154,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_HORJUST_ADJUST:
 /*N*/           {
 /*N*/               //  property contains ParagraphAdjust values as sal_Int16
-/*N*/               sal_Int16 nVal;
+/*N*/               sal_Int16 nVal = 0;
 /*?*/               if(!(rVal >>= nVal))
 /*?*/                   return sal_False;
 /*?*/
@@ -231,7 +231,7 @@ using namespace ::com::sun::star;
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))
 /*N*/   {
-/*?*/       sal_Int32 nValue;
+/*?*/       sal_Int32 nValue = 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/       eUno = (table::CellVertJustify)nValue;
@@ -309,7 +309,7 @@ using namespace ::com::sun::star;
 /*N*/   table::CellOrientation eOrient;
 /*N*/   if(!(rVal >>= eOrient))
 /*N*/   {
-/*?*/       sal_Int32 nValue;
+/*?*/       sal_Int32 nValue = 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/       eOrient = (table::CellOrientation)nValue;
@@ -478,7 +478,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   sal_Bool bConvert = ( ( nMemberId & CONVERT_TWIPS ) != 0 );
 /*N*/   long nMaxVal = bConvert ? TWIP_TO_MM100(SHRT_MAX) : SHRT_MAX;   // Members sind sal_Int16
-/*N*/   sal_Int32 nVal;
+/*N*/   sal_Int32 nVal = 0;
 /*N*/   if(!(rVal >>= nVal) || (nVal > nMaxVal))
 /*N*/       return sal_False;
 /*N*/

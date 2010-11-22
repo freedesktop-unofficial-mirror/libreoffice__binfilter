@@ -56,8 +56,8 @@ public:
                                       SfxObjectShell *pObj = 0  )
                         :   nEventId(nId),
                             pObjShell(pObj),
-                            _bAddToHistory(FALSE),
-                            _aArgs( rArgs )
+                            _aArgs( rArgs ),
+                            _bAddToHistory(FALSE)
                         {}
                         SfxEventHint( USHORT nId, SfxObjectShell *pObj = 0 )
                         :   nEventId(nId),
@@ -92,8 +92,8 @@ public:
                                       SfxObjectShell *pObj = 0  )
                         :   _aEventName( rName ),
                             _pObjShell( pObj),
-                            _bAddToHistory( FALSE ),
-                            _aArgs( rArgs )
+                            _aArgs( rArgs ),
+                            _bAddToHistory( FALSE )
                         {}
 
                         SfxNamedHint( const String& rName,
