@@ -151,53 +151,53 @@ namespace binfilter {
 /*N*/       delete mpTextAttr;
 /*N*/ }
 
-/*N*/ ChartAxis::ChartAxis(ChartModel* pModel,long nId,long nUId) :
-/*N*/   mnInnerPos(-1),
-/*N*/   mbInnerPos(FALSE),
-/*N*/   mbCenterText(FALSE),
-/*N*/   mbColText(FALSE),
-/*N*/   mnUId(nUId),
-/*N*/   mbAlternativIdUsed(FALSE),
-/*N*/   mnAlternateId(0),
-/*N*/   mnTickLen(150),
-/*N*/   mnHelpTickLen(100),
-/*N*/   mpAxisList(NULL),
-/*N*/   mpAxisObj(NULL),
-/*N*/   mbSecondary(FALSE),
-/*N*/   mpGridAttr(NULL),
-/*N*/   mpTextAttr(NULL),
-/*N*/   mpNumFormatter(NULL),
-/*N*/   mpModel(pModel),
-/*N*/   mbPercent(FALSE),
-/*N*/   mbRadial(FALSE),
-/*N*/   mpAxisAttr(NULL),
-/*N*/   mnId(nId),
-/*N*/   mbFlippedXY(FALSE),
-/*N*/   mnPosition(0),
-/*N*/   maArea(0,0,0,0),
-/*N*/   mfMin(0.0),
-/*N*/   mfMax(0.0),
-/*N*/   mfStep(0.0),
-/*N*/   mfStepHelp(0.0),
-/*N*/   mfOrigin(0.0),
-/*N*/   mbAutoMin(FALSE),
-/*N*/   mbAutoMax(FALSE),
-/*N*/   mbAutoOrigin(FALSE),
-/*N*/   mbAutoStep(FALSE),
-/*N*/   mbAutoStepHelp(FALSE),
-/*N*/   mbLogarithm(FALSE),
-/*N*/     meTextOrient( CHTXTORIENT_AUTOMATIC ),
-/*N*/   mnTotalSize(0),
-/*N*/   mpTotal(NULL),
-/*N*/   mbTotalActual(FALSE),
-/*N*/   mbTotalAlloc(FALSE),
-/*N*/   mbColStackOK(FALSE),
-/*N*/   mpColStack(NULL),
-/*N*/   mbShowDescr(FALSE),
-/*N*/   mnTicks(CHAXIS_MARK_OUTER),
-/*N*/   mnHelpTicks(0),
-/*N*/   mbPercentCol(TRUE),
-/*N*/   mnMaxTextWidth(-1)
+/*N*/ ChartAxis::ChartAxis(ChartModel* pModel,long nId,long nUId)
+/*N*/   : mbInnerPos(FALSE)
+/*N*/   , mnInnerPos(-1)
+/*N*/   , mbColText(FALSE)
+/*N*/   , mbCenterText(FALSE)
+/*N*/   , mnMaxTextWidth(-1)
+/*N*/   , mnAlternateId(0)
+/*N*/   , mbAlternativIdUsed(FALSE)
+/*N*/   , mbPercentCol(TRUE)
+/*N*/   , mpTotal(NULL)
+/*N*/   , mnTotalSize(0)
+/*N*/   , mbTotalActual(FALSE)
+/*N*/   , mbTotalAlloc(FALSE)
+/*N*/   , mpColStack(NULL)
+/*N*/   , mbColStackOK(FALSE)
+/*N*/   , mnUId(nUId)
+/*N*/   , mbShowDescr(FALSE)
+/*N*/   , mpNumFormatter(NULL)
+/*N*/   , mpAxisList(NULL)
+/*N*/   , mpAxisObj(NULL)
+/*N*/   , mpGridAttr(NULL)
+/*N*/   , mpTextAttr(NULL)
+/*N*/   , mnTicks(CHAXIS_MARK_OUTER)
+/*N*/   , mnHelpTicks(0)
+/*N*/   , mnTickLen(150)
+/*N*/   , mnHelpTickLen(100)
+/*N*/   , mbSecondary(FALSE)
+/*N*/   , mnId(nId)
+/*N*/   , mbFlippedXY(FALSE)
+/*N*/   , mnPosition(0)
+/*N*/   , mbRadial(FALSE)
+/*N*/   , maArea(0,0,0,0)
+/*N*/   , mbPercent(FALSE)
+/*N*/   , mpAxisAttr(NULL)
+/*N*/   , mpModel(pModel)
+/*N*/   , mfMin(0.0)
+/*N*/   , mfMax(0.0)
+/*N*/   , mfStep(0.0)
+/*N*/   , mfStepHelp(0.0)
+/*N*/   , mfOrigin(0.0)
+/*N*/   , mbAutoMin(FALSE)
+/*N*/   , mbAutoMax(FALSE)
+/*N*/   , mbAutoOrigin(FALSE)
+/*N*/   , mbAutoStep(FALSE)
+/*N*/   , mbAutoStepHelp(FALSE)
+/*N*/   , mbLogarithm(FALSE)
+/*N*/   , meTextOrient( CHTXTORIENT_AUTOMATIC )
 /*N*/ {
 /*N*/   mpAxisAttr=new SfxItemSet(mpModel->GetPool(),nAxisWhichPairs);
 /*N*/   SetDefaults();  //attribute fuellen
@@ -495,10 +495,12 @@ namespace binfilter {
 /*N*/                       double fData = GetData(nCol, nRow);//mpModel->GetData(nCol, nRow, mbPercent);
 /*N*/
 /*N*/                       if (fData != DBL_MIN)
+/*N*/                       {
 /*N*/                           if (fData < 0.0)
 /*N*/                               fMinTotal += fData;
 /*N*/                           else if (fData > 0.0)
 /*N*/                               fMaxTotal += fData;
+/*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/
@@ -557,6 +559,7 @@ namespace binfilter {
 /*N*/                       double fData = GetData( nCol, 0 );
 /*N*/
 /*N*/                       if (fData != DBL_MIN)
+/*N*/                       {
 /*N*/                           if (nCol == 0)    //naja, so eigentlich nicht.... aber die X-Achse sollte eh vollständig sein
 /*N*/                           {
 /*N*/                               fMin = fData;
@@ -571,7 +574,8 @@ namespace binfilter {
 /*N*/
 /*N*/                               if (fMax < fData)
 /*N*/                                   fMax = fData;
-/*N*/                          }
+/*N*/                           }
+/*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/               else // y axis
