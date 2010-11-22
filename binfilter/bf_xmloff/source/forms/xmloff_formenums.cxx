@@ -193,8 +193,8 @@ namespace xmloff
                         { XML_START,        TextAlign::LEFT },
                         { XML_CENTER,       TextAlign::CENTER },
                         { XML_END,          TextAlign::RIGHT },
-                        { XML_JUSTIFY,      -1 },
-                        { XML_JUSTIFIED,    -1 },
+                        { XML_JUSTIFY,      (sal_uInt16)-1 },
+                        { XML_JUSTIFIED,    (sal_uInt16)-1 },
                         { XML_TOKEN_INVALID, 0 }
                     };
                     rReturn = aTextAlignMap;
@@ -258,6 +258,9 @@ namespace xmloff
                     };
                     rReturn = aListLinkageMap;
                 }
+                break;
+
+                default:
                 break;
             }
         }
