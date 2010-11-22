@@ -355,46 +355,6 @@ void SwW4WParser::StyleAnfang()
     // anscheinend nur bei WP richtig quotet. Bei WW stimmt's bei OS/2 nicht,
     // bei AMI stimmt's nie
 
-//JP 11.05.00: UNICODE-CHANGE  - stimmt das noch so ??
-#if 0
-    if ( nDocType == 44 || nDocType == 33 )    // Hier stimmen die Umlaute nicht
-    {
-        rtl_TextEncoding eCS = RTL_TEXTENCODING_IBM_437;  // Wandle Umlaute in ALay - Namen
-        if ( nDocType == 44 )
-            eCS = RTL_TEXTENCODING_MS_1252;                     // WinWord hat Ansi-Charset
-        register BYTE ch, ch2;
-        for ( USHORT i=0; i<nChrCnt; i++ )
-        {
-            ch = aCharBuffer[i];
-            if ( ch < 32 || ch > 127 )
-            {
-                ch2 = String::Convert( ch, eCS, eSysCharSet );
-                aCharBuffer[i] = ( ch2 == 0 ) ? ch : ch2;
-            }
-            else if ( nDocType == 33 && ch == '<'          // AMI-Pro-Umlaute
-                    && aCharBuffer[i+1] == '\\' )
-            {
-                ch = aCharBuffer[i+2];
-                switch ( ch )
-                {
-                case 'd':  ch = 0x84; break;
-                case 'v':  ch = 0x94; break;
-                case '|':  ch = 0x81; break;
-                case '_':  ch = 0xe1; break;
-                case 'D':  ch = 0x8e; break;
-                case 'V':  ch = 0x99; break;
-                case '\\': ch = 0x9a; break;
-                default:   ch = 'X' ; break;
-                }
-                ch2 = String::Convert( ch, eCS, eSysCharSet ); // Umlaut in's System
-                aCharBuffer[i] = ch2;
-                for ( USHORT j=i+1; j+3<nChrCnt; j++ )      // loesche Klammern
-                    aCharBuffer[j] = aCharBuffer[j+3];
-                nChrCnt -= 3;
-            }
-        }
-    }   // Ende Umpopelungen
-#endif
 }
 
 

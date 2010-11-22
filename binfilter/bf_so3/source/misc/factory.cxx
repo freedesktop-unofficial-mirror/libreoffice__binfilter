@@ -600,34 +600,6 @@ ConvertTo_Impl (* SetupConvertTable_Impl( USHORT * pCount )) [SO3_OFFICE_VERSION
           SOT_FORMATSTR_ID_STARWRITERGLOB_60
         );
 
-#if 0
-        // obselete, because Image has been removed
-        pSoApp->pConvTable[2][0] = ConvertTo_Impl
-        (// StarImage 3.0
-          SvGlobalName( 0xEA60C941L, 0x2C6C, 0x101C, 0x8E, 0x2C, 0x00, 0x00, 0x1B, 0x4C, 0xC7, 0x11 ),
-          SOT_FORMATSTR_ID_STARIMAGE
-        );
-        pSoApp->pConvTable[2][1] = ConvertTo_Impl
-        (// StarImage 4.0
-          SvGlobalName( 0x447BB8A0L, 0x41FB, 0x11D0, 0x89, 0xCA, 0x00, 0x80, 0x29, 0xE4, 0xB0, 0xB1 ),
-          SOT_FORMATSTR_ID_STARIMAGE_40
-        );
-        pSoApp->pConvTable[2][2] = ConvertTo_Impl
-        (// StarImage 5.0
-          SvGlobalName( SO3_SIM_CLASSID_50 ),
-          SOT_FORMATSTR_ID_STARIMAGE_50
-        );
-        pSoApp->pConvTable[2][3] = ConvertTo_Impl
-        (// StarImage 5.0
-          SvGlobalName( SO3_SIM_CLASSID ),
-          SOT_FORMATSTR_ID_STARIMAGE_50
-        );
-        pSoApp->pConvTable[2][4] = ConvertTo_Impl
-        (// StarImage 5.0
-          SvGlobalName( SO3_SIM_CLASSID ),
-          SOT_FORMATSTR_ID_STARIMAGE_50
-        );
-#endif
     }
     *pCount = pSoApp->nConvTableEntries;
     return pSoApp->pConvTable;

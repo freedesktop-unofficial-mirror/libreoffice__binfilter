@@ -722,36 +722,10 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   rSet.Put( rCFSet.Get( nWhich ) );
 /*N*/               nWhich = aIter.NextWhich();
 /*N*/           }
-/*N*/ #if 0
-/*N*/           SfxItemSet aTmpSet( *rSet.GetPool(), rSet.GetRanges() );
-/*N*/           aTmpSet.Set( pFmt->GetAttrSet(), TRUE );
- /*
- ????? JP 31.01.95 ???? wie jetzt ???
-             rSet.MergeValues( aTmpSet );
-
-             // jetzt alle zusammen "mergen"
-             rSet.Differentiate( aTmpSet );
- */
-/*N*/           rSet.Put( aTmpSet );
-/*N*/ #endif
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   // aufnehmen als MergeWert (falls noch nicht gesetzt neu setzen!)
-/*N*/ #if 0
- /* wenn mehrere Attribute ueberlappen werden diese gemergt !!
-  z.B
-             1234567890123456789
-               |------------|       Font1
-                  |------|          Font2
-                     ^  ^
-                     |--|       Abfragebereich: -> uneindeutig
- */
-/*N*/   else if( SFX_ITEM_DEFAULT == rSet.GetItemState( rAttr.Which(), FALSE ))
-/*N*/       rSet.Put( rAttr );
-/*N*/   else
-/*N*/       rSet.MergeValue( rAttr );
-/*N*/ #else
  /* wenn mehrere Attribute ueberlappen gewinnt der letze !!
   z.B
              1234567890123456789
@@ -761,7 +735,6 @@ using namespace ::com::sun::star::i18n;
                      |--|       Abfragebereich: -> Gueltig ist Font2
  */
 /*N*/       rSet.Put( rAttr );
-/*N*/ #endif
 /*N*/ }
 
 // erfrage die Attribute vom TextNode ueber den Bereich

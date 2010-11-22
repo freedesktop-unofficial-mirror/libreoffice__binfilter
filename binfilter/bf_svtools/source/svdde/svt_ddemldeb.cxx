@@ -234,16 +234,6 @@ APIRET MyDosAllocSharedMem(void** ppBaseAddress, char* pszName, unsigned long ul
     unsigned long ulFlags, char* pContextStr )
 {
     APIRET nRet = DosAllocSharedMem(ppBaseAddress,pszName,ulObjectSize,ulFlags );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosAllocSharedMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += ulObjectSize;
-    aStr += " (";
-    aStr += (ULONG)*((char**)ppBaseAddress);
-    aStr += ')';
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr() );
-#endif
     return nRet;
 }
 
@@ -251,16 +241,6 @@ APIRET MyDosAllocMem(void** ppBaseAddress, unsigned long ulObjectSize,
     unsigned long ulFlags, char* pContextStr )
 {
     APIRET nRet = DosAllocMem(ppBaseAddress, ulObjectSize,ulFlags );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosAllocMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += ulObjectSize;
-    aStr += " (";
-    aStr += (ULONG)*((char**)ppBaseAddress);
-    aStr += ')';
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr() );
-#endif
     return nRet;
 }
 
@@ -268,13 +248,6 @@ APIRET MyDosAllocMem(void** ppBaseAddress, unsigned long ulObjectSize,
 APIRET MyDosFreeMem( void* pBaseAddress, char* pContextStr )
 {
     APIRET nRet = DosFreeMem( pBaseAddress );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosFreeMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += (ULONG)pBaseAddress;
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr());
-#endif
     return nRet;
 }
 

@@ -314,26 +314,6 @@ void XMLEmbeddedObjectImportContext::EndElement()
                                   aSeq );
             }
         }
-#if 0
-        // reset modifies state for the object since it has been imported
-        // completly and therfor hasn't been modified.
-        Reference < XModifiable > xModifiable( xComp, UNO_QUERY );
-        if( xModifiable.is() )
-        {
-            try
-            {
-                xModifiable->setModified( sal_False );
-            }
-            catch( ::com::sun::star::beans::PropertyVetoException& e )
-            {
-                Sequence<OUString> aSeq( 0 );
-                GetImport().SetError( XMLERROR_FLAG_WARNING |
-                                  XMLERROR_API,
-                                  aSeq );
-            }
-        }
-#endif
-
     }
 }
 

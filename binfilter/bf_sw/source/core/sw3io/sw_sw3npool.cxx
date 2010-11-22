@@ -665,11 +665,6 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   SwNodes& rNodes = pIo->pDoc->GetNodes();
 /*N*/   SwNodeIndex aStart( rNodes.GetEndOfInserts() );
-/*N*/ #if 0
-/*N*/   SwStartNode* pSttNd = rNodes.MakeTextSection( aStart, SwFootnoteStartNode,
-/*N*/                                       pIo->FindTxtColl( IDX_DFLT_VALUE ) );
-/*N*/   aStart = *pSttNd;
-/*N*/ #endif
 /*N*/   SwStartNode* pSttNd = rNodes.MakeEmptySection( aStart,SwFootnoteStartNode );
 /*N*/   aStart = *pSttNd->EndOfSectionNode();
 /*N*/
@@ -679,7 +674,6 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*?*/           pIo->pSectionDepths = new SvUShorts;
 /*?*/       pIo->pSectionDepths->Insert( (USHORT)0U, pIo->pSectionDepths->Count() );
 /*N*/   }
-/*N*/ //    pIo->InContents( aStart );
 /*N*/   pIo->InContents( aStart, 0, FALSE );
 /*N*/   if( pIo->bInsert )
 /*N*/   {

@@ -1400,19 +1400,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/ {
 /*N*/   CHART_TRACE( "ChartModel::GetAttr( long nObjId, SfxItemSet& rAttr)" );
 /*N*/
-/*N*/ #if 0
-/*N*/   SdrObject* pObj=NULL;
-/*N*/
-/*N*/   //Objektattribute aus der Seite holen
-/*N*/   //aber keine indizierten Objekte auf diese Weise suchen !
-/*N*/   if(nIndex1==-1)
-/*N*/   {
-/*N*/       pObj=(GetObjWithId ((USHORT)nObjId,*GetPage(0),0,IM_DEEPWITHGROUPS));
-/*N*/       if(pObj)
-/*N*/           rAttr.Put(pObj->GetItemSet());
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   // items at model (and axis object)
 /*N*/   switch( nObjId )
 /*N*/   {

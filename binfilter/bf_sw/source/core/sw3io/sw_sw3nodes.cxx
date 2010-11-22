@@ -967,17 +967,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       {
 /*N*/           // MAXLEVEL war im 3.1/4.0-SW 5 und kann sich nichr mehr aendern,
 /*N*/           // deshalb baruchen wir es nicht zu beachten.
-/*N*/ #if 0
-/*N*/           if( cNumLevel != NO_NUM && GetRealLevel(cNumLevel) >= MAXLEVEL )
-/*N*/           {
-/*N*/               // die Numerierungs-Ebene ist zu hoch => die hoecht moegliche
-/*N*/               // setzen
-/*N*/               BYTE cTmp = MAXLEVEL-1;
-/*N*/               if( cNumLevel & NO_NUMLEVEL )
-/*N*/                   cTmp |= NO_NUMLEVEL;
-/*N*/               cNumLevel = cTmp;
-/*N*/           }
-/*N*/ #endif
 /*N*/           pNd->UpdateNum( SwNodeNum( cNumLevel ) );
 /*N*/       }
 /*N*/       else

@@ -152,18 +152,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
             {
                 if ( !hText2 || (*pService->pName == hText2 ) )
                 {
-#if 0
-                    for ( pTopic = pService->aTopics.First(); pTopic;
-                          pTopic = pService->aTopics.Next() )
-                    {
-                        if ( !hText1 || (*pTopic->pName == hText1) )
-                        {
-                            q->hszSvc   = *pService->pName;
-                            q->hszTopic = *pTopic->pName;
-                            q++;
-                        }
-                    }
-#else
                     String sTopics( pService->Topics() );
                     USHORT n = 0;
                     while( STRING_NOTFOUND != n )
@@ -182,8 +170,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                             }
                         }
                     }
-
-#endif
                 }
             }
 

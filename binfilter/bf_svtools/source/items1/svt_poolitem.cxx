@@ -375,20 +375,6 @@ int SfxPoolItem::HasMetrics() const
 }
 
 // -----------------------------------------------------------------------
-#if 0  /* @@@ NOT USED @@@ */
-void SfxPoolItem::GetVersion() const
-{
-    DBG_ERROR( "dummy called" );
-}
-
-// -----------------------------------------------------------------------
-void SfxPoolItem::Store(SvStream &rStream) const
-{
-    DBG_ERROR( "dummy called" );
-}
-#endif /* @@@ NOT USED @@@ */
-
-// -----------------------------------------------------------------------
 
 bool SfxPoolItem::QueryValue( com::sun::star::uno::Any&, BYTE ) const
 {

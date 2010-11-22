@@ -57,22 +57,12 @@ void SfxBroadcaster::Broadcast( const SfxHint &rHint )
     // is anybody to notify?
     if ( aListeners.Count() /*! || aGlobListeners.Count() */ )
     {
-        #if 0
-        // determine the type only once, because of its expensiveness
-        const TypeId& rBCType = Type();
-        const TypeId& rHintType = rHint.Type();
-        #endif
-
         // notify all registered listeners exactly once
         for ( USHORT n = 0; n < aListeners.Count(); ++n )
         {
             SfxListener* pListener = aListeners[n];
             if ( pListener )
-                #if 0
-                pListener->SFX_NOTIFY( *this, rBCType, rHint, rHintType );
-                #else
                 pListener->Notify( *this, rHint );
-                #endif
         }
     }
 }

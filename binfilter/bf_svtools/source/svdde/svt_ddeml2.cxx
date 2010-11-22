@@ -78,7 +78,6 @@ PDDESTRUCT ImpDdeMgr::MakeDDEObject( HWND hwnd, ATOM hItemName,
     PDDESTRUCT  pddes = 0;
     ULONG       usItemLen;
     PULONG      pulSharedObj;
-    //WRITELOG("MakeDDEObject: Start")
 
     PSZ pItemName = 0;
     if( hItemName != NULL )
@@ -170,11 +169,6 @@ HWND ImpDdeMgr::CreateConversationWnd()
         pWndData->nRefCount = 0;
         WinSetWindowULong( hWnd, 0, (ULONG)pWndData );
         WinSubclassWindow( hWnd, ::ConvWndProc );
-#if 0 && defined( OV_DEBUG )
-        String aStr("ConvWnd created:");
-        aStr += (ULONG)hWnd;
-        WRITELOG((char*)aStr.GetStr())
-#endif
     }
     else
         nLastErrInstance = DMLERR_SYS_ERROR;
@@ -196,20 +190,6 @@ void ImpDdeMgr::DestroyConversationWnd( HWND hWnd )
         {
             delete pObj;
             WinDestroyWindow( hWnd );
-#if 0 && defined( OV_DEBUG )
-            String aStr("ConvWnd destroyed:");
-            aStr += (ULONG)hWnd;
-            WRITELOG((char*)aStr.GetStr())
-#endif
-        }
-        else
-        {
-#if 0 && defined( OV_DEBUG )
-            String aStr("ConvWnd not destroyed (Refcount=");
-            aStr += pObj->nRefCount;
-            aStr += ") "; aStr += (ULONG)hWnd;
-            WRITELOG((char*)aStr.GetStr())
-#endif
         }
     }
 #if defined( OV_DEBUG )
@@ -233,11 +213,6 @@ USHORT ImpDdeMgr::GetConversationWndRefCount( HWND hWnd )
 // static
 USHORT ImpDdeMgr::IncConversationWndRefCount( HWND hWnd )
 {
-#if 0 && defined( OV_DEBUG )
-    String aStr("IncConversationWndRefCount ");
-    aStr += (ULONG)hWnd;
-    WRITELOG((char*)aStr.GetStr())
-#endif
     ImpConvWndData* pObj = (ImpConvWndData*)WinQueryWindowULong( hWnd, 0 );
     DBG_ASSERT(pObj,"Dde:ConvWnd has no data");
     if( pObj )
@@ -363,13 +338,6 @@ void ImpDdeMgr::FreeConvHandle( ImpDdeMgrData* pBase, HCONV hConv,
     BOOL bDestroyHWndThis )
 {
     DBG_ASSERT(pBase,"DDE:No data");
-#if 0 && defined( OV_DEBUG )
-    String aStr("FreeConvHandle: Start ");
-    aStr += (ULONG)hConv;
-    aStr += " Destroy: "; aStr += (USHORT)bDestroyHWndThis;
-    WRITELOG((char*)aStr.GetStr());
-    WRITESTATUS("FreeConvHandle: Start");
-#endif
     if( !pBase )
     {
         WRITELOG("FreeConvHandle: FAIL");
@@ -413,8 +381,6 @@ void ImpDdeMgr::FreeConvHandle( ImpDdeMgrData* pBase, HCONV hConv,
         WRITELOG("FreeConvHandle: FAIL");
     }
 #endif
-    //WRITELOG("FreeConvHandle: END");
-    //WRITESTATUS("FreeConvHandle: End");
 }
 
 // static
@@ -515,7 +481,6 @@ void ImpDdeMgr::FreeTransaction( ImpDdeMgrData* pBase, ULONG nTransId )
     DBG_ASSERT(pPtr->hConvOwner!=0,"DDE:TransId has no owner");
     if( pPtr->hConvOwner )
     {
-        //WRITELOG("Freeing transaction");
         DdeFreeStringHandle( pPtr->hszItem );
         memset( pPtr, 0, sizeof(Transaction) );
         DBG_ASSERT(pBase->nCurTransCount,"Dde:Invalid Trans. count");
@@ -795,22 +760,14 @@ void ImpDdeMgr::FreeConversations( ImpDdeMgrData* pData, HWND hWndThis,
 
 BOOL ImpDdeMgr::OwnsConversationHandles()
 {
-    //WRITESTATUS("OwnsConversationHandles()");
-#if 0 && defined( OV_DEBUG )
-    String aStr("OwnsConversationHandles Server:");
-    aStr += (ULONG)hWndServer;
-    WRITELOG((char*)aStr.GetStr())
-#endif
     ImpHCONV* pPtr = GetConvTable( pData );
     for( USHORT nCur = 1; nCur < pData->nMaxConvCount; nCur++, pPtr++ )
     {
         if( pPtr->hWndThis && pPtr->pidOwner == pidThis )
         {
-            //WRITELOG("OwnsConversationHandles: TRUE");
             return TRUE;
         }
     }
-    // WRITELOG("OwnsConversationHandles: FALSE");
     return FALSE;
 }
 

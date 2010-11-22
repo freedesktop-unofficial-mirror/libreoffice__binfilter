@@ -1704,31 +1704,6 @@ void SvNumberformat::ImpGetOutputStandard(double& fNumber, String& OutString)
                 GetFormatter().GetNumDecimalSep().GetChar(0));
     else
     {
-#if 0
-{
-        // debugger test case for ANSI standard correctness
-        ::rtl::OUString aTest;
-        // expect 0.00123   OK
-        aTest = ::rtl::math::doubleToUString( 0.001234567,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect 123       OK
-        aTest = ::rtl::math::doubleToUString( 123.4567,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect 123.5     OK
-        aTest = ::rtl::math::doubleToUString( 123.4567,
-                rtl_math_StringFormat_G, 4, '.', sal_True );
-        // expect 1e+03 (as 999.6 rounded to 3 significant digits results in
-        // 1000 with an exponent equal to significant digits)
-        // Currently (24-Jan-2003) we do fail in this case and output 1000
-        // instead, negligible.
-        aTest = ::rtl::math::doubleToUString( 999.6,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect what? result is 1.2e+004
-        aTest = ::rtl::math::doubleToUString( 12345.6789,
-                rtl_math_StringFormat_G, -3, '.', sal_True );
-}
-#endif
-
         OutString = ::rtl::math::doubleToUString( fNumber,
                 rtl_math_StringFormat_F, nStandardPrec /*2*/,
                 GetFormatter().GetNumDecimalSep().GetChar(0), sal_True );

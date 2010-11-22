@@ -1320,22 +1320,6 @@ using namespace ::com::sun::star;
 /*N*/           {
 /*N*/                  aChartRange.mbFirstRowContainsLabels    = ( aOpt.GetChar(0) != '0' );
 /*N*/                  aChartRange.mbFirstColumnContainsLabels = ( aOpt.GetChar(1) != '0' );
-  #if 0
-  /*  Calc internal data
-                 if ( aOpt.Len() >= 3 )
-                 {
-                     if ( bNewChart )
-                     {
-                         bDummyUpperLeft = ( aOpt.GetChar(2) != '0' );
-                         xub_StrLen nInd = 4;   // 111;
-                         eGlue = (ScChartGlue) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-                         nStartCol = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-                         nStartRow = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-                         bInitOk = TRUE;
-                     }
-                 }
-  */
- #endif
 /*N*/           }
 /*N*/           else
 /*N*/              {
@@ -1384,17 +1368,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/          String aFlags = rChartRange.mbFirstRowContainsLabels ? '1' : '0';
 /*N*/          aFlags += rChartRange.mbFirstColumnContainsLabels ? '1' : '0';
- #if 0
- /* these can't be stored, automatically recalculated after load by old versions
-         aFlags += bDummyUpperLeft ? '1' : '0';
-         aFlags += cTok;
-         aFlags += String::CreateFromInt32( eGlue );
-         aFlags += cTok;
-         aFlags += String::CreateFromInt32( nStartCol );
-         aFlags += cTok;
-         aFlags += String::CreateFromInt32( nStartRow );
- */
- #endif
 /*N*/
 /*N*/          SomeData1() = aRef;
 /*N*/          SomeData2() = aFlags;

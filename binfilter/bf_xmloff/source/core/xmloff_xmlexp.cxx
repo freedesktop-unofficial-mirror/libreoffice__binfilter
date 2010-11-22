@@ -677,52 +677,20 @@ void SvXMLExport::ImplExportStyles( sal_Bool bUsed )
 
 void SvXMLExport::ImplExportAutoStyles( sal_Bool bUsed )
 {
-//  AddAttributeASCII( XML_NAMESPACE_NONE, XML_ID, XML_AUTO_STYLES_ID );
-    {
-        // <style:automatic-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                  XML_AUTOMATIC_STYLES, sal_True, sal_True );
+    // <style:automatic-styles>
+    SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_AUTOMATIC_STYLES,
+       sal_True, sal_True );
 
-#if 0
-        AddAttribute( XML_NAMESPACE_XLINK, XML_TYPE, XML_SIMPLE );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_HREF, XML_STYLES_HREF );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_ACTUATE, XML_ONLOAD );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_ROLE,
-                         pNamespaceMap->GetQNameByKey( XML_NAMESPACE_OFFICE,
-                                               GetXMLToken(XML_STYLESHEET)) );
-        {
-            // <style:use-styles>
-            SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                      XML_USE_STYLES, sal_True, sal_True );
-        }
-#endif
-        _ExportAutoStyles();
-    }
+    _ExportAutoStyles();
 }
 
 void SvXMLExport::ImplExportMasterStyles( sal_Bool bUsed )
 {
-    {
-        // <style:master-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_MASTER_STYLES,
-                                sal_True, sal_True );
+    // <style:master-styles>
+    SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_MASTER_STYLES,
+                               sal_True, sal_True );
 
-        _ExportMasterStyles();
-    }
-
-#if 0
-    AddAttribute( XML_NAMESPACE_XLINK, XML_TYPE, XML_SIMPLE );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_HREF, XML_AUTO_STYLES_HREF );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_ACTUATE, XML_ONLOAD );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_ROLE,
-                  pNamespaceMap->GetQNameByKey( XML_NAMESPACE_OFFICE,
-                                                GetXMLToken(XML_STYLESHEET) ) );
-    {
-        // <style:use-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                  XML_USE_STYLES, sal_True, sal_True );
-    }
-#endif
+    _ExportMasterStyles();
 }
 
 void SvXMLExport::ImplExportContent()

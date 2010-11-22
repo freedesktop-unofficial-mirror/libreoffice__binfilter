@@ -351,14 +351,6 @@ namespace binfilter {
 /*N*/ SwStartNode& Sw3IoImp::InContents()
 /*N*/ {
 /*N*/   // Anlegen einer Section mit einem TextNode
-/*N*/ #if 0
-/*N*/   SwStartNode* pSttNd = pDoc->GetNodes().MakeTextSection(
-/*N*/                               pDoc->GetNodes().EndOfAutotext,
-/*N*/                               (SwStartNodeType)eStartNodeType,
-/*N*/                               (SwTxtFmtColl*) pDoc->GetDfltTxtFmtColl() );
-/*N*/   SwIndex aStart( pSttNd->GetMyIndex() );
-/*N*/   InContents( aStart );
-/*N*/ #endif
 /*N*/ // OPT: Section leer anlegen
 /*N*/   SwNodeIndex aStart( pDoc->GetNodes().GetEndOfAutotext() );
 /*N*/   SwStartNode* pSttNd = pDoc->GetNodes().MakeEmptySection(  aStart,

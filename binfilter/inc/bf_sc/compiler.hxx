@@ -126,15 +126,6 @@ class ScRangeData;
 // Konstanten und Datentypen compilerintern:
 
 
-#if 0
-/*
-    OpCode   eOp;           // OpCode
-    StackVar eType;         // type of data
-    USHORT   nRefCnt;       // reference count
-    BOOL     bRaw;          // nicht per Clone auf passende Groesse getrimmt
- */
-#endif
-
 #define SC_TOKEN_FIX_MEMBERS    \
     OpCode   eOp;               \
     StackVar eType;             \

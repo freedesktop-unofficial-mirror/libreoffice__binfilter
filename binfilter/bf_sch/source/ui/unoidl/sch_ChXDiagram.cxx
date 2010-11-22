@@ -1337,14 +1337,6 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
     throw (RuntimeException)
 {
     RTL_LOGFILE_CONTEXT (context, "sch (af119097) ::ChXDiagram::getPropertyValues");
-#if 0
-    uno::Sequence<uno::Any> aResult (aPropertyNames.getLength());
-
-    for (sal_Int32 i=0; i<aPropertyNames.getLength(); i++)
-        aResult[i] = getPropertyValue (aPropertyNames[i]);
-
-    return aResult;
-#else
     SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
@@ -1371,7 +1363,6 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
         CHATTR_TMP_START, CHATTR_TMP_END,
         0);
 
-    //  if( nWID == SCHATTR_SYMBOL_BRUSH )
     mpModel->GetDataRowAttrAll (aAttributes);
     //  else
     ChartType aType (mpModel);
@@ -1508,16 +1499,6 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
 #endif
             }
 
-#if 0
-        //  Compare to result of original getPropertyValue.
-        //  Used only for debugging.
-        if (*pPropertyValue != getPropertyValue (*pPropertyName))
-        {
-            DBG_ERROR1 ("ChXDiagram::getPropertyValues : values differ for nWID %d",
-                nWID);
-        }
-#endif
-
         //  Advance to the next property, property name and value.
         pPropertyName++;
         pPropertyValue++;
@@ -1529,7 +1510,6 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
             static_cast< ::cppu::OWeakObject*>(this));
 
     return aResult;
-#endif
 }
 
 
@@ -1709,22 +1689,6 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
 {
     SolarMutexGuard aGuard;
 
-#if 0
-    //  Old implementation.
-
-    const sal_Int32 nCount = aPropertyName.getLength();
-    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
-
-    uno::Sequence< beans::PropertyState > aRet( nCount );
-    beans::PropertyState* pState = aRet.getArray();
-
-    for( sal_Int32 nIdx = 0; nIdx < nCount; nIdx++ )
-        pState[ nIdx ] = getPropertyState( pNames[ nIdx ] );
-
-    return aRet;
-
-#else
-
     //  New implementation.
 
     //  Setup arrays of property names and states for easier iteration.
@@ -1839,7 +1803,6 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
             static_cast< ::cppu::OWeakObject*>(this));
 
     return aPropertyStates;
-#endif
 }
 
 

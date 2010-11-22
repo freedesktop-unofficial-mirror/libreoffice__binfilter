@@ -126,12 +126,6 @@ class XF_Data
         inline void     SetBorder( CellBorder *pNew );
 
         void            SetBorder( const CellBorder &rNew );
-#if 0
-        void            SetBorder( BYTE nTopLine, BYTE nLeftLine,
-                            BYTE nBottomLine, BYTE nRightLine,
-                            USHORT nTopColor, USHORT nLeftColor,
-                            USHORT nBottomColor, USHORT nRightColor );
-#endif
         const           CellBorder *Border() const { return pBord; }
     };
 

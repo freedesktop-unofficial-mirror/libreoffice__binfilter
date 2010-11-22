@@ -75,29 +75,6 @@ using rtl::OUStringBuffer;
 
 // ---------------------------------------------------------------------
 
-#if 0
-class SwXMLMetaContext_Impl : public SfxXMLMetaContext
-{
-public:
-    SwXMLMetaContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
-            const OUString& rLName,
-            const Reference< document::XDocumentInfo > & rInfo ) :
-        SfxXMLMetaContext( rImport, nPrfx, rLName, rInfo )
-    {}
-
-    virtual void SetDocLanguage( LanguageType eLang );
-};
-
-void SwXMLMetaContext_Impl::SetDocLanguage( LanguageType eLang )
-{
-    SwDoc& rDoc = ((SwXMLImport&)GetImport()).GetDoc();
-
-    rDoc.SetDefault( SvxLanguageItem( eLang, RES_CHRATR_LANGUAGE ) );
-}
-#endif
-
-// ---------------------------------------------------------------------
-
 SvXMLImportContext *SwXMLImport::CreateMetaContext(
                                        const OUString& rLocalName )
 {

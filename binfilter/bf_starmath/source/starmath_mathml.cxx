@@ -2015,12 +2015,6 @@ void SmXMLUnderContext_Impl::EndElement()
         GenericEndElement(TCSUB,CSUB);
     else
         HandleAccent();
-#if 0
-    //UnderBrace trick
-    SmStructureNode *pNode = rNodeStack.Pop();
-    if (pNode->GetSubNode(1)->GetToken().cMathChar == (0x0332|0xf000))
-    if (pNode->GetSubNode(0)->GetToken().cMathChar == (0x0332|0xf000))
-#endif
 }
 
 class SmXMLOverContext_Impl : public SmXMLSubContext_Impl
@@ -3462,25 +3456,9 @@ void SmXMLExport::ExportExpression(const SmNode *pNode,int nLevel)
         pRow = new SvXMLElementExport(*this,XML_NAMESPACE_MATH,sXML_mrow,
         sal_True, sal_True);
 
-    //if (nSize)
-    //{
         for (USHORT i = 0; i < nSize; i++)
             if (const SmNode *pTemp = pNode->GetSubNode(i))
                 ExportNodes(pTemp,nLevel+1);
-    //}
-#if 0
-    else
-    {
-        //This saves us from situations like "a newline" where the
-        //lack of a term following the newline would otherwise create
-        //a incorrect token like <mtr/>
-        SvXMLElementExport aDummy(*this,XML_NAMESPACE_MATH,sXML_mi,
-            sal_True,sal_True);
-        sal_Unicode nArse[2] = {'\n','\0'};
-        GetDocHandler()->characters(nArse);
-    }
-#endif
-
     delete pRow;
 }
 
@@ -3790,14 +3768,6 @@ void SmXMLExport::ExportOperator(const SmNode *pNode, int nLevel)
 {
     /*we need to either use content or font and size attributes
      *here*/
-#if 0
-    {
-    SvXMLElementExport aMath(*this,XML_NAMESPACE_MATH,sXML_mo,
-        sal_True,sal_False);
-    SmTextNode *pTemp = (SmTextNode *)pNode->GetSubNode(0);
-    GetDocHandler()->characters(pTemp->GetText());
-    }
-#endif
     SvXMLElementExport aRow(*this,XML_NAMESPACE_MATH,sXML_mrow,
         sal_True, sal_True);
     ExportNodes(pNode->GetSubNode(0),nLevel+1);
@@ -3831,12 +3801,7 @@ void SmXMLExport::ExportAttributes(const SmNode *pNode, int nLevel)
             //proper entity support required
             SvXMLElementExport aMath(*this,XML_NAMESPACE_MATH,sXML_mo,
                 sal_True,sal_False);
-#if 0
-            GetDocHandler()->characters(
-                OUString(RTL_CONSTASCII_USTRINGPARAM("&overbar;")));
-#else
             sal_Unicode nArse[2] = {0xAF,0x00};
-#endif
             GetDocHandler()->characters(nArse);
             }
             break;
@@ -3845,12 +3810,7 @@ void SmXMLExport::ExportAttributes(const SmNode *pNode, int nLevel)
             //proper entity support required
             SvXMLElementExport aMath(*this,XML_NAMESPACE_MATH,sXML_mo,
                 sal_True,sal_False);
-#if 0
-            GetDocHandler()->characters(
-                OUString(RTL_CONSTASCII_USTRINGPARAM("&underbar;")));
-#else
             sal_Unicode nArse[2] = {0x0332,0x00};
-#endif
             GetDocHandler()->characters(nArse);
             }
             break;
@@ -3985,23 +3945,12 @@ void SmXMLExport::ExportFont(const SmNode *pNode, int nLevel)
         default:
             break;
     }
-#if 0
-    if (pNode->GetNumSubNodes() > 1) //or in the future is a node that
-                                     //cannot take the currently supported
-                                     //properties
-#endif
+
     //for now we will just always export with a style and not worry about
     //anyone else for the moment.
-    {
-        //wrap a style around it
-        SvXMLElementExport aStyle(*this,XML_NAMESPACE_MATH,
-                sXML_mstyle, sal_True,sal_True);
-        ExportExpression(pNode,nLevel);
-    }
-#if 0
-    else
-        ExportNodes(pNode->GetSubNode(0),nLevel+1);
-#endif
+    //wrap a style around it
+    SvXMLElementExport aStyle(*this,XML_NAMESPACE_MATH, sXML_mstyle, sal_True,sal_True);
+    ExportExpression(pNode,nLevel);
 
     delete pElement;
 }

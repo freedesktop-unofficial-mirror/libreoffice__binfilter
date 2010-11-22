@@ -469,19 +469,6 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
             (OUString( RTL_CONSTASCII_USTRINGPARAM ("com.sun.star.document.IndexedPropertyValues") ) ), UNO_QUERY);
     if (xBox.is() )
     {
-#if 0
-        Any aAny;
-        sal_Int32 i=0;
-        for ( SfxViewFrame *pFrame = SfxViewFrame::GetFirst();
-                pFrame;
-                i++, pFrame = SfxViewFrame::GetNext(*pFrame ) )
-        {
-            Sequence < PropertyValue > aSequence;
-            pFrame->GetViewShell()->WriteUserDataSequence( aSequence, sal_False );
-            aAny <<= aSequence;
-            xBox->insertByIndex(i, aAny);
-        }
-#endif
         pValue[nIndex].Name = OUString( RTL_CONSTASCII_USTRINGPARAM ( "Views") );
         pValue[nIndex++].Value <<= Reference < XIndexAccess > ( xBox, UNO_QUERY );
     }

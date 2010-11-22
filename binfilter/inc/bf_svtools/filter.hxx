@@ -180,8 +180,6 @@ class  GraphicDescriptor
 
     void                ImpConstruct();
 
-//#if 0 // _SOLAR__PRIVATE
-
     BOOL                ImpDetectBMP( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectGIF( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectJPG( SvStream& rStm, BOOL bExtendedInfo );
@@ -206,8 +204,6 @@ class  GraphicDescriptor
     BOOL                ImpDetectWMF( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectSGV( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectEMF( SvStream& rStm, BOOL bExtendedInfo );
-
-//#endif
 
     GraphicDescriptor( const GraphicDescriptor& );
     GraphicDescriptor& operator=( const GraphicDescriptor& );

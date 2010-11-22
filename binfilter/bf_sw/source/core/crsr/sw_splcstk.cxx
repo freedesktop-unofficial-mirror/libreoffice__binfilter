@@ -149,14 +149,6 @@ void SwSpellCrsrStk::SetErrPos()
         rCrsrShell.GetCrsr()->DeleteMark();
 }
 
-
-#if 0
-
-SwPaM* SwSpellCrsrStk::GetCurCrsr() const { return pCurCrsr; }
-#endif
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

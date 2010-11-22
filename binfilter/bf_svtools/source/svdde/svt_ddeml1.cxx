@@ -334,13 +334,6 @@ HCONV ImpDdeMgr::DdeConnectImp( HSZ hszService,HSZ hszTopic,CONVCONTEXT* pCC)
     ULONG nBufLen;
     PSZ pService = AllocAtomName( (ATOM)hszService, nBufLen );
     PSZ pTopic = AllocAtomName( (ATOM)hszTopic, nBufLen );
-#if 0 && defined(OV_DEBUG)
-    String aStr("DdeConnectImp Service:");
-    aStr += pService;
-    aStr += " Topic:";
-    aStr += pTopic;
-    WRITELOG((char*)(const char*)aStr)
-#endif
 
 #if defined(OV_DEBUG)
     if( !strcmp(pService,"oliver voeltz") )
@@ -352,13 +345,6 @@ HCONV ImpDdeMgr::DdeConnectImp( HSZ hszService,HSZ hszTopic,CONVCONTEXT* pCC)
     }
 #endif
 
-#if 0
-    // original pm-fkt benutzen
-    HWND hWndCurClient = CreateConversationWnd();
-    WinDdeInitiate( hWndCurClient, pService, pTopic, pCC );
-    if( GetConversationWndRefCount(hWndCurClient) == 0)
-        DestroyConversationWnd( hWndCurClient );
-#else
     // eigener Verbindungsaufbau
     HENUM hEnum = WinBeginEnumWindows( HWND_DESKTOP );
     HWND hWndCurSrv = NextFrameWin( hEnum );
@@ -384,19 +370,9 @@ HCONV ImpDdeMgr::DdeConnectImp( HSZ hszService,HSZ hszTopic,CONVCONTEXT* pCC)
     if( GetConversationWndRefCount(hWndCurClient) == 0)
         DestroyConversationWnd( hWndCurClient );
     WinEndEnumWindows( hEnum );
-#endif
 
     if( !hCurConv )
         nLastErrInstance = DMLERR_NO_CONV_ESTABLISHED;
-
-#if 0 && defined(OV_DEBUG)
-    String aCStr( "DdeConnectImp:End ");
-    if( nLastErrInstance != DMLERR_NO_CONV_ESTABLISHED )
-        aCStr += "(Success)";
-    else
-        aCStr += "(Failed)";
-    WRITELOG((char*)aCStr.GetStr())
-#endif
 
     MyDosFreeMem( pTopic,"DdeConnectImp" );
     MyDosFreeMem( pService,"DdeConnectImp" );
@@ -440,17 +416,7 @@ HCONVLIST ImpDdeMgr::DdeConnectList( HSZ hszService, HSZ hszTopic,
 
     bListConnect = TRUE;
     DdeConnectImp( hszService, hszTopic, pCC );
-#if 0 && defined(OV_DEBUG)
-    WRITELOG("DdeConnectList:ConnectionList:")
-    HCONV hDebug = 0;
-    do
-    {
-        hDebug = DdeQueryNextServer( hCurListId, hDebug);
-        String aStr( (ULONG)hDebug );
-        WRITELOG((char*)(const char*)aStr)
-    } while( hDebug );
-#endif
-    ////WRITESTATUS("After DdeConnectList")
+
     return (HCONVLIST)hCurListId;
 }
 
@@ -924,14 +890,6 @@ BOOL ImpDdeMgr::DdeAbandonTransaction( HCONV hConv, ULONG nTransId )
 // benachrichtigt die Clients
 BOOL ImpDdeMgr::DdePostAdvise( HSZ hszTopic, HSZ hszItem)
 {
-    ////WRITELOG("DdePostAdvise:Start")
-    ////WRITESTATUS("DdePostAdvise:Start")
-
-#if 0 && defined( OV_DEBUG )
-    String aDebStr("DdePostAdvise:Item ");
-    aDebStr += (ULONG)hszItem;
-    WRITELOG((char*)(const char*)aDebStr)
-#endif
 
     Transaction* pTrans = pTransTable;
     pTrans++;
@@ -961,25 +919,16 @@ BOOL ImpDdeMgr::DdePostAdvise( HSZ hszTopic, HSZ hszItem)
                     }
                     HWND hWndClient = pConv->hWndPartner;
                     HWND hWndServer = pConv->hWndThis;
-#if 0 && defined( OV_DEBUG )
-                    String aDebStr("DdePostAdvise: Server:");
-                    aDebStr += (ULONG)hWndServer;
-                    aDebStr += " Client:";
-                    aDebStr += (ULONG)hWndClient;
-                    WRITELOG((char*)(const char*)aDebStr)
-#endif
                     DDESTRUCT* pOutDDEData;
                     if ( pTrans->nType & XTYPF_NODATA )
                     {
                         // Warm link
-                        ////WRITELOG("DdePostAdvise:Warm link found")
                         pOutDDEData = MakeDDEObject( hWndClient, hszItem,
                             DDE_FNODATA, pTrans->nFormat, 0, 0  );
                     }
                     else
                     {
                         // Hot link
-                        ////WRITELOG("DdePostAdvise:Hot link found")
                         pOutDDEData = Callback( XTYP_ADVREQ,
                             pTrans->nFormat, hOwner, hszTopic,
                             hszItem, (HDDEDATA)0, 1, 0 );
@@ -987,7 +936,6 @@ BOOL ImpDdeMgr::DdePostAdvise( HSZ hszTopic, HSZ hszItem)
                     if( pOutDDEData )
                     {
                         // todo: FACK_REQ in Out-Data setzen, wenn pTrans->nType & XTYPF_ACKREQ
-                        ////WRITELOG("DdePostAdvise:Sending data/notification")
                         BOOL bSuccess = MyWinDdePostMsg( hWndClient,
                             hWndServer,WM_DDE_DATA, pOutDDEData, DDEPM_RETRY);
                         if( bSuccess )
@@ -1158,18 +1106,6 @@ HDDEDATA ImpDdeMgr::DdeClientTransaction(void* pDdeData, ULONG cbData,
     HCONV hConv, HSZ hszItem, USHORT nFormat, USHORT nType,
     ULONG nTimeout, ULONG* pResult)
 {
-    //WRITELOG("DdeClientTransaction:Start")
-
-#if 0 && defined(OV_DEBUG)
-    if( nType == XTYP_REQUEST )
-    {
-        WRITELOG("Start XTYP_REQUEST");
-        WinMessageBox(HWND_DESKTOP,HWND_DESKTOP,
-            "Start XTYP_REQUEST","DdeClientTransaction",
-            HWND_DESKTOP,MB_OK);
-    }
-#endif
-
     if( pResult )
         *pResult = 0;
 
@@ -1200,17 +1136,7 @@ HDDEDATA ImpDdeMgr::DdeClientTransaction(void* pDdeData, ULONG cbData,
         case XTYP_ADVSTART:
             nMsg = WM_DDE_ADVISE;
             nTimeoutErr = DMLERR_ADVACKTIMEOUT;
-{
             nTimeout = 60000;
-#if 0 && defined(OV_DEBUG)
-            char aBuf[ 128 ];
-            ImpDdeMgr::DdeQueryString( hszItem,aBuf,127,850);
-            String aXXStr("Establishing hotlink ");
-            aXXStr += aBuf;
-            WRITELOG((char*)aXXStr.GetStr());
-#endif
-
-}
             break;
 
         case XTYP_ADVSTOP:
@@ -1454,20 +1380,11 @@ HDDEDATA ImpDdeMgr::DdeClientTransaction(void* pDdeData, ULONG cbData,
                 break;
 
             case WM_DDE_ACK:
-                {
-                // WRITELOG("DdeClientTransaction:Ack received")
                 BOOL bPositive = (BOOL)(pDDEInData->fsStatus & DDE_FACK);
                 MyDosFreeMem( pDDEInData,"DdeClientTransaction" );
                 pDDEInData = (HDDEDATA)bPositive;
                 if( nType == XTYP_ADVSTART && pDDEInData )
                 {
-
-#if 0 && defined(OV_DEBUG)
-                    char aBuf[ 128 ];
-                    ImpDdeMgr::DdeQueryString( pTrans->hszItem,aBuf,128,850);
-                    String aXXStr("Hotlink ");
-#endif
-
                     if( bPositive )
                     {
                         pTrans->nType = XTYP_ADVREQ;
@@ -1475,24 +1392,7 @@ HDDEDATA ImpDdeMgr::DdeClientTransaction(void* pDdeData, ULONG cbData,
                         pTrans->nType |= nTypeFlags;
                         // XST_WAITING_ACK ==> XST_WAITING_ADVDATA
                         pTrans->nConvst = XST_WAITING_ADVDATA;
-
-#if 0 && defined(OV_DEBUG)
-                        aXXStr += "established ";
-                        aXXStr += aBuf;
-#endif
-
                     }
-
-#if 0 && defined(OV_DEBUG)
-                    else
-                    {
-                        aXXStr += "failed ";
-                        aXXStr += aBuf;
-                    }
-                    WRITELOG((char*)aXXStr.GetStr());
-#endif
-
-                }
                 }
                 break;
 
@@ -1542,17 +1442,7 @@ HDDEDATA ImpDdeMgr::DdeClientTransaction(void* pDdeData, ULONG cbData,
                 *pResult = nTransId;
         }
     }
-#if 0 && defined( OV_DEBUG )
-    if( nType == XTYP_REQUEST )
-    {
-        WRITELOG("End XTYP_REQUEST");
-        WinMessageBox(HWND_DESKTOP,HWND_DESKTOP,
-            "End XTYP_REQUEST","DdeClientTransaction",
-            HWND_DESKTOP,MB_OK);
-    }
-#endif
-    //WRITELOG("DdeClientTransaction:End")
-    //WRITESTATUS("DdeClientTransaction:End")
+
     return pDDEInData;
 }
 
@@ -1607,19 +1497,12 @@ MRESULT ImpDdeMgr::DdeTimeout( ImpWndProcParams* pParams )
         // in diesem fall nicht geloescht.
         if( nTempType != (XTYP_ADVREQ & (~XTYPF_NOBLOCK) ))
         {
-            ////WRITELOG("DdeTimeout:Freeing transaction")
             FreeTransaction( pData, nTransId );
         }
         nSyncResponseMsg = WM_TIMER;
-#if 0 && defined( OV_DEBUG )
-        String aMsg("DdeTimeout:Transaction=");
-        aMsg += nTransId;
-        WRITELOG((char*)(const char*)aMsg)
-#endif
     }
     else
     {
-        ////WRITELOG("DdeTimeout:Async transaction timed out")
         pTrans->nConvst = XST_TIMEOUT;
     }
     return (MRESULT)1;
@@ -1634,18 +1517,12 @@ MRESULT ImpDdeMgr::DdeTerminate( ImpWndProcParams* pParams )
     HWND hWndPartner = (HWND)(pParams->nPar1);
 
     HCONV hConv = GetConvHandle( pData, hWndThis, hWndPartner );
-#if 0 && defined( OV_DEBUG )
-    String strDebug("DdeTerminate:ConvHandle=");
-    strDebug += (USHORT)hConv;
-    WRITELOG((char*)(const char*)strDebug)
-#endif
     ImpHCONV* pConv = pConvTable + (USHORT)hConv;
     if( hConv )
     {
         // warten wir auf ein DDE_TERMINATE Acknowledge ?
         if( pConv->nStatus & ST_TERMINATED )
         {
-            ////WRITELOG("DdeTerminate:TERMINATE-Ack received")
             pConv->nStatus |= ST_TERMACKREC;
             return (MRESULT)0;  // DdeDisconnect raeumt jetzt auf
         }
@@ -1673,23 +1550,11 @@ MRESULT ImpDdeMgr::DdeTerminate( ImpWndProcParams* pParams )
         if( !(pConv->hConvPartner) )
         {
             // nein, deshalb Transaktionstabelle selbst loeschen
-            ////WRITELOG("DdeTerminate:Freeing transactions")
             FreeTransactions( pData, hConv );
         }
     }
     else
         nLastErrInstance = DMLERR_NO_CONV_ESTABLISHED;
-
-#if 0 && defined(OV_DEBUG)
-    if( !WinIsWindow(0,hWndPartner))
-    {
-        WRITELOG("DdeTerminate:hWndPartner not valid")
-    }
-    if(!WinIsWindow(0,hWndThis))
-    {
-        WRITELOG("DdeTerminate:hWndThis not valid")
-    }
-#endif
 
     if( hConv )
     {
@@ -1818,18 +1683,6 @@ MRESULT ImpDdeMgr::DdeAck( ImpWndProcParams* pParams )
         BOOL bPositive = (BOOL)(pInDDEData->fsStatus & DDE_FACK ) != 0;
         BOOL bBusy = bPositive ? FALSE : (BOOL)(pInDDEData->fsStatus & DDE_FBUSY ) != 0;
         BOOL bNotProcessed = (BOOL)(pInDDEData->fsStatus & DDE_NOTPROCESSED ) != 0;
-#if 0 && defined( OV_DEBUG )
-        String aDebStr("DdeAck:Received ");
-        if( bPositive )
-            aDebStr += "(positive)";
-        else
-            aDebStr += "(negative)";
-        if( bBusy )
-            aDebStr += "(busy)";
-        if( bNotProcessed )
-            aDebStr += "(not processed)";
-        WRITELOG((char*)(const char*)aDebStr)
-#endif
         // ein DDE_ACK niemals bestaetigen (um endlosschleifen zu vermeiden)
         pInDDEData->fsStatus &= (~DDE_FACKREQ);
     }
@@ -1855,12 +1708,6 @@ MRESULT ImpDdeMgr::DdeAck( ImpWndProcParams* pParams )
     }
 
     BOOL bThisIsSync = (BOOL)( bInSyncTrans && nTransId == nSyncTransId );
-#if 0 && defined( OV_DEBUG )
-    if( bThisIsSync)
-        WRITELOG("DdeAck: sync transaction")
-    else
-        WRITELOG("DdeAck: async transaction")
-#endif
     // pruefen, ob die Transaktion abgeschlossen ist.
     Transaction* pTrans = pTransTable;
     pTrans += (USHORT)nTransId;
@@ -1922,13 +1769,6 @@ USHORT ImpDdeMgr::SendUnadvises(HCONV hConvServer,USHORT nFormat,BOOL bFree)
 {
     USHORT nTransFound = 0;
     BOOL bCallApp = (BOOL)(!(nTransactFilter & CBF_FAIL_ADVISES));
-#if 0 && defined( OV_DEBUG )
-    String aStr("Unadvising transactions for HCONV=");
-    aStr += (ULONG)hConvServer;
-    aStr += " CallApp:"; aStr += (USHORT)bCallApp;
-    WRITELOG((char*)aStr.GetStr())
-#endif
-
 
     // wenn wir weder loeschen noch die App benachrichtigen sollen,
     // koennen wir gleich wieder returnen
@@ -2115,13 +1955,6 @@ MRESULT ImpDdeMgr::DdeData( ImpWndProcParams* pParams )
     HWND hWndThis         = pParams->hWndReceiver;
     HWND hWndClient       = (HWND)pParams->nPar1;
     DDESTRUCT* pInDDEData = (DDESTRUCT*)(pParams->nPar2);
-#if 0 && defined( OV_DEBUG )
-    {
-        String aStr("DdeData Address:");
-        aStr += (ULONG)pInDDEData;
-        WRITELOG((char*)aStr.GetStr())
-    }
-#endif
 
     BOOL bSendAck;
     if( pInDDEData && (pInDDEData->fsStatus & DDE_FACKREQ ))
@@ -2152,13 +1985,6 @@ MRESULT ImpDdeMgr::DdeData( ImpWndProcParams* pParams )
         }
         return (MRESULT)0;
     }
-
-#if 0 && defined( OV_DEBUG )
-    if( pInDDEData )
-    {
-        WRITEDATA(pInDDEData)
-    }
-#endif
 
     BOOL bThisIsSync = (BOOL)( bInSyncTrans && nTransId == nSyncTransId );
 
@@ -2323,12 +2149,6 @@ HCONV ImpDdeMgr::ConnectWithClient( HWND hWndClient,
     ImpHCONV* pConv = pConvTable;
     pConv += (USHORT)hConv;
     pConv->hConvPartner = GetConvHandle( pData, hWndClient, hWndSrv );
-#if 0 && defined(OV_DEBUG)
-    if( !pConv->hConvPartner )
-    {
-        WRITELOG("DdeConnectWithClient:Partner not found")
-    }
-#endif
     pConv->nStatus = ST_CONNECTED;
     //WRITESTATUS("Server:Connected with client")
     //WRITELOG("ConnectWithClient:End")
@@ -2404,28 +2224,20 @@ MRESULT ImpDdeMgr::DdeInitiate( ImpWndProcParams* pParams )
             }
         }
     }
-#if 0 && defined(OV_DEBUG)
-    else
-    {
-        WRITELOG("DdeInitiate:Service filtered")
-    }
-#endif
     DdeFreeStringHandle( hszTopic );
     DdeFreeStringHandle( hszService );
     DdeFreeStringHandle( hszPartner );
     MyDosFreeMem( pDDEData,"DdeInitiate" );
-    ////WRITELOG("DdeInitiate:End")
+
     return (MRESULT)TRUE;
 }
 
 MRESULT ImpDdeMgr::DdeInitiateAck( ImpWndProcParams* pParams )
 {
-    ////WRITELOG("DdeInitiateAck:Received")
     DDEINIT* pDDEData = (DDEINIT*)(pParams->nPar2);
 
     if( !bListConnect && hCurConv )
     {
-        ////WRITELOG("DdeInitiateAck:Already connected")
         MyDosFreeMem( pDDEData,"DdeInitiateAck" );
         WinPostMsg( hWndServer, WM_DDE_TERMINATE, (MPARAM)hWndServer, 0 );
         return (MRESULT)FALSE;
@@ -2479,7 +2291,6 @@ MRESULT ImpDdeMgr::DdeInitiateAck( ImpWndProcParams* pParams )
 
 MRESULT ImpDdeMgr::DdePoke( ImpWndProcParams* pParams )
 {
-    ////WRITELOG("DdePoke:Received")
     HSZ hszItem = 0;
     DDESTRUCT* pInDDEData = (DDESTRUCT*)(pParams->nPar2);
     HCONV hConv = CheckIncoming( pParams, CBF_FAIL_REQUESTS, hszItem );
@@ -2493,12 +2304,6 @@ MRESULT ImpDdeMgr::DdePoke( ImpWndProcParams* pParams )
                 == (DDESTRUCT*)DDE_FACK )
             bSuccess = TRUE;
     }
-#if 0 && defined( OV_DEBUG )
-    else
-    {
-        WRITELOG("DdePoke:Not processed")
-    }
-#endif
     if( pInDDEData )
     {
         if( bSuccess )
@@ -2515,7 +2320,6 @@ MRESULT ImpDdeMgr::DdePoke( ImpWndProcParams* pParams )
 
 MRESULT ImpDdeMgr::DdeRequest( ImpWndProcParams* pParams )
 {
-    ////WRITELOG("DdeRequest:Received")
     HSZ hszItem = 0;
     DDESTRUCT* pInDDEData = (DDESTRUCT*)(pParams->nPar2);
     if( pInDDEData )
@@ -2534,13 +2338,11 @@ MRESULT ImpDdeMgr::DdeRequest( ImpWndProcParams* pParams )
 
         if ( !pOutDDEData )
         {
-            ////WRITELOG("DdeRequest:Not processed")
             pInDDEData->fsStatus &= (~DDE_FACK);
             MyWinDdePostMsg(hWndClient,hWndThis,WM_DDE_ACK,pInDDEData,DDEPM_RETRY);
         }
         else
         {
-            ////WRITELOG("DdeRequest:Success")
             MyDosFreeMem( pInDDEData,"DdeRequest" );
             pOutDDEData->fsStatus |= DDE_FRESPONSE;
             MyWinDdePostMsg(hWndClient,hWndThis,WM_DDE_DATA,pOutDDEData,DDEPM_RETRY);
@@ -2553,15 +2355,13 @@ MRESULT ImpDdeMgr::DdeRequest( ImpWndProcParams* pParams )
     }
 
     DdeFreeStringHandle( hszItem );
-    ////WRITELOG("DdeRequest:End")
+
     return (MRESULT)0;
 }
 
 
 MRESULT ImpDdeMgr::DdeUnadvise( ImpWndProcParams* pParams )
 {
-    ////WRITELOG("DdeUnadvise:Received")
-
     HSZ hszItem;
     HCONV hConv           = CheckIncoming( pParams, 0, hszItem );
     DDESTRUCT* pInDDEData = (DDESTRUCT*)(pParams->nPar2);

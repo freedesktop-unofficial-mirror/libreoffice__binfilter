@@ -92,8 +92,6 @@ const USHORT nBlockGrowSize = 20;
 /*N*/ }
 
 // Einfachst-Implementation, evtl. spaeter mal komplexer
-#if 0
-#endif
 
 // Auch der Move ist schlicht. Optimieren ist hier wg. der
 // Stueckelung des Feldes zwecklos!

@@ -1334,120 +1334,6 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
         // the sequence aDataPointSeq contains indices of data-points that
         // do have own attributes.  This increases the performance substantially.
 
-#if 0
-        sal_Int32 nRepeated = 1;
-        if( mxExpPropMapper.is())
-        {
-            sal_Bool bIsEmpty = sal_False;
-            ::rtl::OUString aLastASName;
-            aASName = ::rtl::OUString();
-
-            for( sal_Int32 nElement = 0; nElement < mnSeriesLength; nElement++ )
-            {
-                // get property states for autostyles
-                try
-                {
-                    xPropSet = xDiagram->getDataPointProperties( nElement, nSeries );
-                }
-                catch( uno::Exception aEx )
-                {
-                    String aStr( aEx.Message );
-                    ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR1( "Exception caught during Export of data point: %s", aBStr.GetBuffer());
-                }
-                if( xPropSet.is())
-                    aPropertyStates = mxExpPropMapper->Filter( xPropSet );
-                bIsEmpty = ( aPropertyStates.size() == 0 );
-
-                if( bExportContent )
-                {
-                    if( bIsEmpty )
-                        aASName = ::rtl::OUString();
-                    else
-                    {
-//                          AddAutoStyleAttribute( aPropertyStates );   // can't be used here because we need the name
-                        DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
-                        if( ! maAutoStyleNameQueue.empty())
-                        {
-                            aASName = maAutoStyleNameQueue.front();
-                            maAutoStyleNameQueue.pop();
-                        }
-                    }
-
-
-                    //  The following conditional realizes a run-length compression.  For every run of data
-                    //  points with the same style only one point is written together with a repeat count.
-                    //  The style of the current data point is compared with that of the last data point.
-                    //  If they differ, then the _last_ data point and, if greater than 1, the repreat count
-                    //  are written, else the repeat count is increased but no output takes place.
-                    //  This has two consequences: 1. the first data point is skipped,
-                    //  because it can not be compared to a predecessor and 2. the last data point (or series
-                    //  of data points with the same style) is written outside and after the enclosing loop.
-                    if( nElement )
-                    {
-                        if( aASName.equals( aLastASName ))
-                        {
-                            nRepeated++;
-                        }
-                        else
-                        {
-                            //  Write the style of the last data point(s).
-
-                            //  Write reapeat counter (if data point run contains more than one point).
-                            if( nRepeated > 1 )
-                            {
-                                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_REPEATED,
-                                                       ::rtl::OUString::valueOf( (sal_Int64)( nRepeated ) ));
-                            }
-
-                            //  Write style if it is present and is not the same as that of the data series.
-                            if( aLastASName.getLength() &&
-                                ! aLastASName.equals( aSeriesASName ))
-                            {
-                                mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, aLastASName );
-                            }
-
-                            //  Write the actual point data.
-                            SvXMLElementExport aPoint( mrExport, XML_NAMESPACE_CHART, XML_DATA_POINT, sal_True, sal_True );
-
-                            //  Reset repeat counter for the new style.
-                            nRepeated = 1;
-                            aLastASName = aASName;
-                        }
-                    }
-                    else
-                        //  Remember the name of the first data point's style as that of the next point's
-                        //  predecessor.
-                        aLastASName = aASName;
-                }
-                else
-                {
-                    if( ! bIsEmpty )
-                        CollectAutoStyle( aPropertyStates );
-                }
-                aPropertyStates.clear();
-            }   //  End of loop over data points.
-
-            //  Now write the style for the last data point(s).
-            if( bExportContent )
-            {
-                if( nRepeated > 1 )
-                {
-                    mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_REPEATED,
-                                           ::rtl::OUString::valueOf( (sal_Int64)( nRepeated ) ));
-                }
-
-                if( ! bIsEmpty &&
-                    aLastASName.getLength() &&
-                    ! aLastASName.equals( aSeriesASName ))
-                {
-                    mrExport.AddAttribute( XML_NAMESPACE_CHART, XML_STYLE_NAME, aLastASName );
-                }
-
-                SvXMLElementExport aPoint( mrExport, XML_NAMESPACE_CHART, XML_DATA_POINT, sal_True, sal_True );
-            }
-        }
-#else
         // more performant version for #93600#
         if( mxExpPropMapper.is())
         {
@@ -1591,7 +1477,6 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 }
             }
         }
-#endif
 
         // close series element
         if( pSeries )

@@ -74,25 +74,7 @@ namespace binfilter {
 |*
 ******************************************************************************/
 
-/*N*/ SwViewImp::~SwViewImp()
-/*N*/ {
-#if 0
-/*N*/
-/*N*/     // OD 12.12.2002 #103492#
-/*N*/
-/*N*/   //JP 29.03.96: nach ShowPage muss auch HidePage gemacht werden!!!
-/*N*/   if( pDrawView )
-/*N*/       pDrawView->HidePage( pSdrPageView );
-/*N*/
-/*N*/   delete pDrawView;
-/*N*/
-/*N*/   DelRegions();
-/*N*/   delete pScrolledArea;
-/*N*/
-/*N*/   ASSERT( !pLayAct, "Have action for the rest of your life." );
-/*N*/   ASSERT( !pIdleAct,"Be idle for the rest of your life." );
-#endif
-/*N*/ }
+/*N*/ SwViewImp::~SwViewImp() { }
 
 /******************************************************************************
 |*
@@ -222,27 +204,7 @@ namespace binfilter {
 |*
 ******************************************************************************/
 
-/*N*/ void SwViewImp::MakeDrawView()
-/*N*/ {
-#if 0
-/*N*/   if( !GetShell()->GetDoc()->GetDrawModel() )
-/*?*/       GetShell()->GetDoc()->_MakeDrawModel();
-/*N*/   else
-/*N*/   {
-/*N*/       if ( !pDrawView )
-/*N*/       {
-/*N*/           pDrawView = new SwDrawView( *this,
-/*N*/                       GetShell()->GetDoc()->GetDrawModel(),
-/*N*/                           GetShell()->GetWin() ?
-/*N*/                           GetShell()->GetWin() :
-/*N*/                           (OutputDevice*)GetShell()->GetDoc()->GetPrt() );
-/*N*/       }
-/*N*/       GetDrawView()->SetActiveLayer( XubString::CreateFromAscii(
-/*N*/                           RTL_CONSTASCII_STRINGPARAM( "Heaven" ) ) );
-/*N*/       Init( GetShell()->GetViewOptions() );
-/*N*/   }
-#endif
-/*N*/ }
+/*N*/ void SwViewImp::MakeDrawView() { }
 
 /******************************************************************************
 |*

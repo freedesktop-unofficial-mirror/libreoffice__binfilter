@@ -87,24 +87,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/       pLine = NULL;
-/*N*/
-/*N*/ #if 0
-/*N*/   ULONG nPolyPtr = (ULONG)&rXPoly;
-/*N*/   String aDbgFile( "d:\\" );
-/*N*/   aDbgFile += nPolyPtr;
-/*N*/   aDbgFile += ".pol";
-/*N*/   SvFileStream aStream( aDbgFile, STREAM_WRITE|STREAM_TRUNC );
-/*N*/   aStream << "pPoly: " << String( (ULONG)pPoly ).GetStr();
-/*N*/   for ( USHORT nPoly = 0; nPoly < pPoly->Count(); nPoly++ )
-/*N*/   {
-/*N*/       const Polygon& rPoly = pPoly->GetObject( nPoly );
-/*N*/       for ( USHORT n = 0; n < rPoly.GetSize(); n++ )
-/*N*/       {
-/*N*/           const Point& rPoint = rPoly.GetPoint( n );
-/*N*/           aStream << String( rPoint.X() ).GetStr() << ", " << String( rPoint.Y() ).GetStr()  << endl;
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 #ifdef WIN

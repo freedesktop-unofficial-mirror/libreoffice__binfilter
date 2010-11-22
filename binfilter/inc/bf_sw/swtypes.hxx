@@ -244,16 +244,8 @@ LocaleDataWrapper& GetAppLocaleData();
 ULONG GetAppLanguage();
 
 
-#if 0
-// I18N doesn't get this right, can't specify more than one to ignore
-#define SW_COLLATOR_IGNORES ( \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_KANA | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_WIDTH )
-#else
 #define SW_COLLATOR_IGNORES ( \
     ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE )
-#endif
 
 CollatorWrapper& GetAppCollator();
 CollatorWrapper& GetAppCaseCollator();

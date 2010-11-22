@@ -3248,17 +3248,6 @@ void SwW4WParser::Read_FootNoteInfo()           // (FNI)
 
 void SwW4WParser::UpdateCacheVars()
 {
-#if 0
-    const SwFrmFmt &rFmt = pPageDesc->GetMaster();
-    ASSERT( pPageDesc->GetMaster().GetFrmSize().GetFixSize() != LONG_MAX ,
-            "Seitenbreite (Master) falsch" );
-    ASSERT( pPageDesc->GetLeft().GetFrmSize().GetFixSize() != LONG_MAX ,
-            "Seitenbreite (Left) falsch" );
-    ASSERT( pPageDesc->GetMaster().GetFrmSize().GetVarSize() != LONG_MAX ,
-            "Seitenlaenge (Master) falsch" );
-    ASSERT( pPageDesc->GetLeft().GetFrmSize().GetVarSize() != LONG_MAX ,
-            "Seitenlaenge (Left) falsch" );
-#else
     SwFrmFmt *pFmt = &pPageDesc->GetLeft();
     SwFmtFrmSize aSz( pFmt->GetFrmSize() );
     BOOL bSet = FALSE;
@@ -3297,7 +3286,6 @@ void SwW4WParser::UpdateCacheVars()
     if( bSet )
         pFmt->SetAttr( aSz );
 
-#endif
     const SvxLRSpaceItem& rPageLR = pFmt->GetLRSpace();
     nPgLeft       = (USHORT)(rPageLR.GetTxtLeft() + nLeftMgnCorr);
     nPgRightDelta = (USHORT)( rPageLR.GetRight() );

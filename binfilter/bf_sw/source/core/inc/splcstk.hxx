@@ -55,13 +55,6 @@ public:
                                 // an dieser wird spaeter wieder aufgesetzt
     void SetErrPos();           // akt. Cursor auf die Error Position setzen
 
-#if 0
-                            // ??? wird das ueberhaupt benoetigt ???
-                                // fuer die EditShell, damit sie die Cursor
-                                // aus den Loeschbereichen verschieben kann
-    SwPaM* GetCurCrsr() const;
-    SwPosition* GetErrorPos() const { return pErrorPos; }
-#endif
 };
 
 

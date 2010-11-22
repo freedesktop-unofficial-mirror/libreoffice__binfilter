@@ -320,18 +320,6 @@ void SfxXMLMetaExport::Export()
     }
 
     //  document language
-#if 0
-    if ( eLanguage != LANGUAGE_SYSTEM )
-    {
-        sValue = ConvertLanguageToIsoString( eLanguage, '-' );
-        if ( sValue.getLength() )
-        {
-            SvXMLElementExport aElem( rExport, XML_NAMESPACE_DC, XML_LANGUAGE,
-                                      sal_True, sal_False );
-            aElem->Characters( sValue );
-        }
-    }
-#endif
     if ( aLocale.Language.getLength() )
     {
         sValue = aLocale.Language;

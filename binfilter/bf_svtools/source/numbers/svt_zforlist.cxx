@@ -3205,10 +3205,6 @@ void lcl_CheckCurrencySymbolPosition( const NfCurrencyEntry& rCurr )
         aStr += ", negative: ";
         aStr += ByteString::CreateFromInt32( rCurr.GetNegativeFormat() );
         aStr += ( nNeg ? " (postfix)" : " (prefix)" );
-#if 0
-// seems that there really are some currencies which differ, e.g. YugoDinar
-        DBG_ERRORFILE( aStr.GetBuffer() );
-#endif
     }
 }
 

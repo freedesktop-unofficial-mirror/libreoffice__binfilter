@@ -117,17 +117,6 @@ ImpSvNumberInputScan::~ImpSvNumberInputScan()
 
 void ImpSvNumberInputScan::Reset()
 {
-#if 0
-// ER 16.06.97 18:56 Vorbelegung erfolgt jetzt in NumberStringDivision,
-// wozu immer alles loeschen wenn einiges wieder benutzt oder gar nicht
-// gebraucht wird..
-    for (USHORT i = 0; i < SV_MAX_ANZ_INPUT_STRINGS; i++)
-    {
-        sStrArray[i].Erase();
-        nNums[i] = SV_MAX_ANZ_INPUT_STRINGS-1;
-        IsNum[i] = FALSE;
-    }
-#endif
     nMonth       = 0;
     nMonthPos    = 0;
     nTimePos     = 0;
@@ -157,17 +146,7 @@ inline BOOL ImpSvNumberInputScan::MyIsdigit( sal_Unicode c )
 {
     // If the input string wouldn't be converted using TransformInput() we'd
     // to use something similar to the following and to adapt many places.
-#if 0
-    // use faster isdigit() if possible
-    if ( c < 128 )
-        return isdigit( (unsigned char) c ) != 0;
-    if ( c < 256 )
-        return FALSE;
-    String aTmp( c );
-    return pFormatter->GetCharClass()->isDigit( aTmp, 0 );
-#else
     return c < 128 && isdigit( (unsigned char) c );
-#endif
 }
 
 
@@ -1039,10 +1018,10 @@ BOOL ImpSvNumberInputScan::GetDateRef( double& fDays, USHORT& nCounter,
                 DateFmt = YMD;
                 bFormatTurn = FALSE;
         }
+/*
         if ( bFormatTurn )
         {
-#if 0
-/* TODO:
+TODO:
 We are currently not able to fully support a switch to another calendar during
 input for the following reasons:
 1. We do have a problem if both (locale's default and format's) calendars
@@ -1066,15 +1045,8 @@ input for the following reasons:
 4. Last and least: the GetMonth() method currently only matches month names of
    the default calendar. Alternating month names of the actual format's
    calendar would have to be implemented. No problem.
-
-*/
-            if ( pFormat->IsOtherCalendar( nStringScanNumFor ) )
-                pFormat->SwitchToOtherCalendar( aOrgCalendar, fOrgDateTime );
-            else
-                pFormat->SwitchToSpecifiedCalendar( aOrgCalendar, fOrgDateTime,
-                        nStringScanNumFor );
-#endif
         }
+*/
 
         res = TRUE;
         nCounter = 0;

@@ -369,20 +369,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   pImp->nTime = aNow;
 /*N*/   rInfo.IncDocumentNumber();
 /*N*/   //! DocumentNummer
-/*N*/ #if 0
-/*N*/   const String aDocNo(rInfo.GetUserKey(0).GetWord());
-/*N*/   const String aTitle(rInfo.GetUserKey(0).GetTitle());
-/*N*/   USHORT nNo = 1;
-/*N*/   if ( aDocNo.Len() )
-/*N*/   {
-/*N*/       nNo = (USHORT)aDocNo;
-/*N*/       if(nNo)
-/*N*/           ++nNo;
-/*N*/       else
-/*N*/           nNo = 1;
-/*N*/   }
-/*N*/   rInfo.SetUserKey(SfxDocUserKey(aTitle, nNo), 0);
-/*N*/ #endif
 /*N*/   return rInfo;
 /*N*/ }
 

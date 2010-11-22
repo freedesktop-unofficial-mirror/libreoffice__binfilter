@@ -139,26 +139,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, pObj, pGrfColl, pAutoAttr );
 /*N*/
-/*N*/ #if 0
-/*N*/ JP 02.10.97 - OLE Objecte stehen immer alleine im Rahmen, also hat es
-/*N*/               keinen Sinn, nach einem vorherigen/nachfolgenden
-/*N*/               ContentNode zu suchen!
-/*N*/
-/*N*/   SwCntntNode *pCntntNd;
-/*N*/   SwIndex aIdx( rWhere, -1 );
-/*N*/   if ( (pCntntNd=(*this)[ rWhere ]->GetCntntNode()) != 0 )
-/*N*/       pCntntNd->MakeFrms( rWhere, aIdx );
-/*N*/   else
-/*N*/   {
-/*N*/       aIdx--;
-/*N*/       if ( (pCntntNd=(*this)[aIdx]->GetCntntNode()) != 0 )
-/*N*/       {
-/*N*/           SwIndex aTmp( aIdx );
-/*N*/           aIdx++;
-/*N*/           pCntntNd->MakeFrms( aTmp, aIdx );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/   return pNode;
 /*N*/ }
 
@@ -173,25 +153,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, rName, pGrfColl, pAutoAttr );
 /*N*/
-/*N*/ #if 0
-/*N*/ JP 02.10.97 - OLE Objecte stehen immer alleine im Rahmen, also hat es
-/*N*/               keinen Sinn, nach einem vorherigen/nachfolgenden
-/*N*/               ContentNode zu suchen!
-/*N*/   SwCntntNode *pCntntNd;
-/*N*/   SwIndex aIdx( rWhere, -1 );
-/*N*/   if ( (pCntntNd=(*this)[ rWhere ]->GetCntntNode()) != 0 )
-/*N*/       pCntntNd->MakeFrms( rWhere, aIdx );
-/*N*/   else
-/*N*/   {
-/*N*/       aIdx--;
-/*N*/       if ( (pCntntNd=(*this)[aIdx]->GetCntntNode()) != 0 )
-/*N*/       {
-/*N*/           SwIndex aTmp( aIdx );
-/*N*/           aIdx++;
-/*N*/           pCntntNd->MakeFrms( aTmp, aIdx );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/   return pNode;
 /*N*/ }
 

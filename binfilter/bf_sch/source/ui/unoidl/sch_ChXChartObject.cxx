@@ -832,16 +832,6 @@ uno::Sequence< uno::Any > SAL_CALL ChXChartObject::getPropertyValues    (
         const uno::Sequence< ::rtl::OUString >& aPropertyNames )
     throw ( uno::RuntimeException)
 {
-#if 0
-    uno::Sequence<uno::Any> aResult (aPropertyNames.getLength());
-
-    for (sal_Int32 i=0; i<aPropertyNames.getLength(); i++)
-    {
-        aResult[i] = getPropertyValue (aPropertyNames[i]);
-    }
-
-    return aResult;
-#endif
     SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
@@ -982,22 +972,6 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-#if 0
-    SolarMutexGuard aGuard;
-
-    const sal_Int32 nCount = aPropertyNames.getLength();
-    const ::rtl::OUString * pName = aPropertyNames.getConstArray();
-    Sequence<PropertyState > aStates (nCount);
-    PropertyState * pState = aStates.getArray();
-
-    if (mpModel == NULL)
-        return aStates;
-
-    for (sal_Int32 nIdx = 0; nIdx < nCount; nIdx++)
-        pState[nIdx] = getPropertyState (pName[nIdx]);
-
-    return aStates;
-#else
     SolarMutexGuard aGuard;
 
     //  Get pointers to first elements of lists.
@@ -1091,7 +1065,6 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
     }
 
     return aStates;
-#endif
 }
 
 void SAL_CALL ChXChartObject::setPropertyToDefault( const ::rtl::OUString& PropertyName )

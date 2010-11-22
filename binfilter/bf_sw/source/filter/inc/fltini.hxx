@@ -107,25 +107,10 @@ public:
 
 // die speziellen Writer
 
-#if 0
-/*?*/ WriterRef GetW4WWriter( const String& );
-WriterRef GetStgWriter( const String& );
-WriterRef GetWWWriter( const String& );
-/*?*/ WriterRef GetWW8Writer( const String& );
-#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
-/*?*/ WriterRef GetDebugWriter( const String& );
-/*?*/ WriterRef GetUndoWriter( const String& );
-#endif
-#else
-/*?*/ void GetW4WWriter( const String&, WriterRef& );
+void GetW4WWriter( const String&, WriterRef& );
 void GetStgWriter( const String&, WriterRef& );
 void GetWWWriter( const String&, WriterRef& );
-#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
-#endif
-#endif
 
-
-// JP 17.03.99 - 63049
 // Umsetzen der LRSpaces im aktuell importierten Doc. Die Fremd-Filter
 // liefern immer absolute Werte fuer die Ebenen einer NumRule. Wir
 // verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.

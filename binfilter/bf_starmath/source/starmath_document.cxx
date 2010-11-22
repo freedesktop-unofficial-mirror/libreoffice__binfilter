@@ -432,17 +432,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   {
 /*N*/       bRet = TRUE;
 /*N*/       SetVisArea(Rectangle(Point(0, 0), Size(2000, 1000)));
-/*N*/ #if 0
-/*N*/       if (pStor)
-/*N*/       {
-/*N*/           aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*N*/           aDocStream->SetVersion (pStor->GetVersion ());
-/*N*/           GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*N*/
-/*N*/           if (! aDocStream )
-/*N*/               bRet = FALSE;
-/*N*/       }
-/*N*/ #endif
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -617,17 +606,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ {
 /*N*/   if( SfxInPlaceObject::SaveCompleted( pStor ))
 /*N*/   {
-/*N*/ #if 0
-/*N*/       if (! pStor)
-/*N*/           return TRUE;
-/*N*/
-/*N*/       aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*N*/       aDocStream->SetVersion (pStor->GetVersion ());
-/*N*/       GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*N*/       aDocStream->SetBufferSize(DOCUMENT_BUFFER_SIZE);
-/*N*/       aDocStream->SetKey( pStor->GetKey() ); // Passwort setzen
-/*N*/       return aDocStream.Is();
-/*N*/ #endif
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/   return FALSE;
@@ -640,9 +618,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {
 /*N*/   SfxInPlaceObject::HandsOff();
-/*N*/ #if 0
-/*N*/   aDocStream.Clear();
-/*N*/ #endif
 /*N*/ }
 
 
@@ -755,9 +730,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/           }
 /*N*/
 /*N*/           bRet = TRUE;
-/*N*/ #if 0
-/*N*/           aDocStream = aTempStream;
-/*N*/ #endif
 /*N*/       }
 /*N*/   }
 /*N*/

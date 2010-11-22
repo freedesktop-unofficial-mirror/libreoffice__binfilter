@@ -2188,32 +2188,6 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
                     // is a content box
                     nSplitCol = nCol + 1UL;
 
-#if 0
-                    // eventuell ist die Zelle noch leer
-                    if( !pCell->GetContents() )
-                    {
-                        ASSERT( 1UL==pCell->GetRowSpan(),
-                                "leere Box ist nicht 1 Zeile hoch" );
-                        const SwStartNode* pPrevStNd =
-                            GetPrevBoxStartNode( nTopRow, nStartCol );
-                        HTMLTableCnts *pCnts = new HTMLTableCnts(
-                            pParser->InsertTableSection(pPrevStNd) );
-                        SwHTMLTableLayoutCnts *pCntsLayoutInfo =
-                            pCnts->CreateLayoutInfo();
-
-                        pCell->SetContents( pCnts );
-                        pLayoutInfo->GetCell( nTopRow, nStartCol )
-                                   ->SetContents( pCntsLayoutInfo );
-
-                        // ggf. COLSPAN beachten
-                        for( sal_uInt16 j=nStartCol+1; j<nSplitCol; j++ )
-                        {
-                            GetCell(nTopRow,j)->SetContents( pCnts );
-                            pLayoutInfo->GetCell( nTopRow, j )
-                                       ->SetContents( pCntsLayoutInfo );
-                        }
-                    }
-#endif
                     pBox = MakeTableBox( pLine, pCell,
                                          nTopRow, nStartCol,
                                          nBottomRow, nSplitCol );

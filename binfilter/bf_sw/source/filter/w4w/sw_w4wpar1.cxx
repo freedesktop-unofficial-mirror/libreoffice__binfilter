@@ -3112,21 +3112,6 @@ void SwW4WParser::Read_SetLeftMarginRelease()           // (LMR)
     }
     SetAttr( aLR );
 
-#if 0
-    // MIB 16.5.2001: A default tab at pos 0 isn't required since 1996.
-    if( nDocType == 33 && bStyleDef && !bIsTab )
-    {
-                    // AmiPro hat nicht so irrsinnig viele Tabs im Metafile,
-                    // so dass die dort eingebaute Mimik zum Setzen eines
-                    // Default-Tabs an die Pos 0 ( fuer 1.Zeile < LRand )
-                    // nicht ausreicht.
-
-        SvxTabStopItem aTabStops( 0, 0 );
-        aTabStops.Insert( SvxTabStop( 0, SVX_TAB_ADJUST_DEFAULT ) );
-        SetAttr( aTabStops );
-        bIsTab = TRUE;
-    }
-#endif
 }
                 // fuer IPS und RSM waehrend StyleDefinition
                 // und fuer RSM bei WordPerfekt f. Win 6,7,8
@@ -3291,16 +3276,10 @@ void SwW4WParser::AdjustTempVar1( long& rHeight,
     long nMin = (nIniHdFtSiz ? nIniHdFtSiz : MM50) * 3 / 2;
     if( rHeight < nMin )
         rHeight = nMin;
-#if 0
-// why get the page upper / lower the half of the header/footer height?
-    rPgDelta   = rHeight  / 2;
-    rHdFtDelta = rPgDelta / 2;
-#else
     // then the half height for the header/footer and the other half
     // height get half the page and the header/footer distance
     rHdFtDelta = rPgDelta  = rHeight / 4;
     rHeight -= rPgDelta;
-#endif
 }
 
 

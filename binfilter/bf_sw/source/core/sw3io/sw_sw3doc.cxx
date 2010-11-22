@@ -211,29 +211,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/                   SwNumRule* pRule = InNumRule( cType );
 /*N*/                   if( pRule )
 /*N*/                   {
-/*N*/ //JP 10.03.96: und wieder alles zurueck
-/*N*/ #if 0
-/*N*/                       if( nVersion < SWG_DELETEOLE )
-/*N*/                       {
-/*N*/                           //JP 18.01.96: Alle Ueberschriften sind normalerweise
-/*N*/                           //  ohne Kapitelnummer. Darum hier explizit abschalten
-/*N*/                           //  weil das Default jetzt wieder auf AN ist.
-/*N*/                           // und UeberschirftBasis ohne Einrueckung!
-/*N*/                           SwTxtFmtColl* pCol = pDoc->GetTxtCollFromPool(
-/*N*/                                               RES_POOLCOLL_HEADLINE_BASE );
-/*N*/                           pCol->ResetAttr( RES_LR_SPACE );
-/*N*/
-/*N*/                           for( short i = 0; i < MAXLEVEL; i++ )
-/*N*/                           {
-/*N*/                               if( !pRule->GetNumFmt( i ) )
-/*N*/                               {
-/*N*/                                   SwNumFmt aFmt( pRule->Get( i ) );
-/*N*/                                   aFmt.eType = NUMBER_NONE;
-/*N*/                                   pRule->Set( i, aFmt );
-/*N*/                               }
-/*N*/                           }
-/*N*/                       }
-/*N*/ #endif
 /*N*/                       pDoc->SetOutlineNumRule( *pRule );
 /*N*/                   }
 /*N*/                   delete pRule;

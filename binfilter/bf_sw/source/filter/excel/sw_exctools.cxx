@@ -696,29 +696,9 @@ void XF_Data::SetBorder( const CellBorder &rNew )
     pBord->nRightColor = rNew.nRightColor;
     }
 
-#if 0
-// ------------------------- XF_Data::SetBorder( BYTE, BYTE, BYTE,...  ) -
-void XF_Data::SetBorder( BYTE nTopLine, BYTE nLeftLine, BYTE nBottomLine,
-    BYTE nRightLine, UINT16 nTopColor, UINT16 nLeftColor,
-    UINT16 nBottomColor, UINT16 nRightColor )
-    {
-    if( pBord == NULL ) pBord = new CellBorder;
-    DBG_ASSERT( pBord != NULL,
-        "-XF_Data::SetBorder(): pBord == NULL!" );
-    pBord->nTopLine = nTopLine;
-    pBord->nLeftLine = nLeftLine;
-    pBord->nBottomLine = nBottomLine;
-    pBord->nRightLine = nRightLine;
-    pBord->nTopColor = nTopColor;
-    pBord->nLeftColor = nLeftColor;
-    pBord->nBottomColor = nBottomColor;
-    pBord->nRightColor = nRightColor;
-    }
-#endif
-
 // -- class XF_Buffer ----------------------------------------------------
 //
-// Kopiert aus: xfbuff.cxx
+// Copied from: xfbuff.cxx
 
 // ------------------------------------------------ XF_Buffer::XF_Buffer -
 XF_Buffer::XF_Buffer( UINT16 nNewMax )
