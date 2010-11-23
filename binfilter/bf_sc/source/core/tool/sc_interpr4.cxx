@@ -785,11 +785,11 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
                 rTab = aPos.Tab() + rRef.nRelTab;
             else
                 rTab = rRef.nTab;
-            if( rCol < 0 || rCol > MAXCOL || rRef.IsColDeleted() )
+            if( rCol > MAXCOL || rRef.IsColDeleted() )
                 SetError( errNoRef ), rCol = 0;
-            if( rRow < 0 || rRow > MAXROW || rRef.IsRowDeleted() )
+            if( rRow > MAXROW || rRef.IsRowDeleted() )
                 SetError( errNoRef ), rRow = 0;
-            if( rTab < 0 || rTab >= pDok->GetTableCount() || rRef.IsTabDeleted() )
+            if( rTab >= pDok->GetTableCount() || rRef.IsTabDeleted() )
                 SetError( errNoRef ), rTab = 0;
             if ( pDok->aTableOpList.Count() > 0 )
                 ReplaceCell( rCol, rRow, rTab );
@@ -872,11 +872,11 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
 /*N*/                   rTab1 = aPos.Tab() + rRef.nRelTab;
 /*N*/               else
 /*N*/                   rTab1 = rRef.nTab;
-/*N*/               if( rCol1 < 0 || rCol1 > MAXCOL || rRef.IsColDeleted() )
+/*N*/               if( rCol1 > MAXCOL || rRef.IsColDeleted() )
 /*N*/                   SetError( errNoRef ), rCol1 = 0;
-/*N*/               if( rRow1 < 0 || rRow1 > MAXROW || rRef.IsRowDeleted() )
+/*N*/               if( rRow1 > MAXROW || rRef.IsRowDeleted() )
 /*N*/                   SetError( errNoRef ), rRow1 = 0;
-/*N*/               if( rTab1 < 0 || rTab1 >= nMaxTab || rRef.IsTabDeleted() )
+/*N*/               if( rTab1 >= nMaxTab || rRef.IsTabDeleted() )
 /*N*/                   SetError( errNoRef ), rTab1 = 0;
 /*N*/           }
 /*N*/           {
@@ -893,11 +893,11 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
 /*N*/                   rTab2 = aPos.Tab() + rRef.nRelTab;
 /*N*/               else
 /*N*/                   rTab2 = rRef.nTab;
-/*N*/               if( rCol2 < 0 || rCol2 > MAXCOL || rRef.IsColDeleted() )
+/*N*/               if( rCol2 > MAXCOL || rRef.IsColDeleted() )
 /*N*/                   SetError( errNoRef ), rCol2 = 0;
-/*N*/               if( rRow2 < 0 || rRow2 > MAXROW || rRef.IsRowDeleted() )
+/*N*/               if( rRow2 > MAXROW || rRef.IsRowDeleted() )
 /*N*/                   SetError( errNoRef ), rRow2 = 0;
-/*N*/               if( rTab2 < 0 || rTab2 >= nMaxTab || rRef.IsTabDeleted() )
+/*N*/               if( rTab2 >= nMaxTab || rRef.IsTabDeleted() )
 /*N*/                   SetError( errNoRef ), rTab2 = 0;
 /*N*/           }
 /*N*/           if ( pDok->aTableOpList.Count() > 0 && !bDontCheckForTableOp )
