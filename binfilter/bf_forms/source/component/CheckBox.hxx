@@ -59,8 +59,6 @@ class OCheckBoxModel    :public OBoundControlModel
 protected:
     sal_Int16   getState(const ::com::sun::star::uno::Any& rValue);
 
-    virtual void            _onValueChanged();
-    virtual void            _loaded(const ::com::sun::star::lang::EventObject& rEvent);
     virtual ::com::sun::star::uno::Any  _getControlValue() const;
 
 public:
@@ -106,9 +104,6 @@ protected:
     virtual void SAL_CALL disposing();
 
 protected:
-    virtual void        _reset();
-    virtual sal_Bool    _commit();
-
     void implConstruct();
 
     DECLARE_XCLONEABLE();

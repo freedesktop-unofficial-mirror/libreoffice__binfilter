@@ -79,7 +79,6 @@ class OComboBoxModel
     static sal_Int32        nTextHandle;
 
 protected:
-    virtual void _onValueChanged();
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type>   _getTypes();
 
 public:
@@ -95,10 +94,6 @@ public:
                 ::com::sun::star::uno::Any& _rConvertedValue, ::com::sun::star::uno::Any& _rOldValue, sal_Int32 _nHandle, const ::com::sun::star::uno::Any& _rValue )
                 throw (::com::sun::star::lang::IllegalArgumentException);
 
-    // XLoadListener
-    virtual void         _loaded(const ::com::sun::star::lang::EventObject& rEvent);
-    virtual void         _unloaded();
-
     virtual void SAL_CALL reloaded( const ::com::sun::star::lang::EventObject& aEvent ) throw(::com::sun::star::uno::RuntimeException);
 
     // XServiceInfo
@@ -108,9 +103,6 @@ public:
     // UNO
     DECLARE_UNO3_AGG_DEFAULTS(OComboBoxModel, OBoundControlModel);
     virtual ::com::sun::star::uno::Any SAL_CALL queryAggregation( const ::com::sun::star::uno::Type& _rType ) throw (::com::sun::star::uno::RuntimeException);
-
-    // XBoundComponent
-    virtual sal_Bool _commit();
 
     // XPropertySet
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo> SAL_CALL getPropertySetInfo() throw(::com::sun::star::uno::RuntimeException);
@@ -122,9 +114,6 @@ public:
         write(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& _rxOutStream) throw(::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL
         read(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectInputStream>& _rxInStream) throw(::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
-
-    // XReset
-    virtual void _reset();
 
     // OAggregationArrayUsageHelper
     virtual void fillProperties(
