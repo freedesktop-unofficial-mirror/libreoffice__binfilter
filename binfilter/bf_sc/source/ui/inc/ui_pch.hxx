@@ -86,7 +86,7 @@
 #include <vcl/outdev.hxx>
 #include <vcl/pointr.hxx>
 #include <vcl/ptrstyle.hxx>
-#include <vcl/wintypes.hxx>
+#include <tools/wintypes.hxx>
 #include <vcl/event.hxx>
 #include <limits.h>
 #include <tools/errinf.hxx>
@@ -202,7 +202,6 @@
 #include <scresid.hxx>
 #include <docsh.hxx>
 #include <bf_sfx2/interno.hxx>
-#include <vcl/wintypes.hxx>
 #include <bf_sfx2/docfac.hxx>
 #include <scitems.hxx>
 #include <vcl/virdev.hxx>

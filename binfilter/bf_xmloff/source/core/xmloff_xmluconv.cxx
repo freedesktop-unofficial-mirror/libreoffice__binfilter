@@ -57,9 +57,7 @@
 
 #endif
 
-#ifndef _VCL_FLDUNIT_HXX
-#include <vcl/fldunit.hxx>
-#endif
+#include <tools/fldunit.hxx>
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_

@@ -94,9 +94,7 @@
 #ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
 #endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>
-#endif
+#include <tools/wintypes.hxx>
 #ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
 #endif
