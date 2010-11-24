@@ -536,20 +536,6 @@ namespace binfilter {
 /*N*/   return pNew;
 /*N*/ }
 
-
-struct ScRangePairNameSort
-{
-    ScRangePair*    pPair;
-    ScDocument*     pDoc;
-};
-
-
-
-
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
