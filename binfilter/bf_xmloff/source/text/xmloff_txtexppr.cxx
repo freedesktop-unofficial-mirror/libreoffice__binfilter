@@ -52,7 +52,7 @@ using namespace ::com::sun::star::awt;
 using rtl::OUString;
 
 void XMLTextExportPropertySetMapper::handleElementItem(
-        SvXMLExport& rExport,
+        SvXMLExport& rExp,
         const XMLPropertyState& rProperty,
         sal_uInt16 nFlags,
         const ::std::vector< XMLPropertyState > *pProperties,
@@ -117,19 +117,19 @@ void XMLTextExportPropertySetMapper::handleElementItem(
         break;
 
     case CTF_SECTION_FOOTNOTE_END:
-        XMLSectionFootnoteConfigExport::exportXML(rExport, sal_False,
+        XMLSectionFootnoteConfigExport::exportXML(rExp, sal_False,
                                                   pProperties, nIdx,
                                                   getPropertySetMapper());
         break;
 
     case CTF_SECTION_ENDNOTE_END:
-        XMLSectionFootnoteConfigExport::exportXML(rExport, sal_True,
+        XMLSectionFootnoteConfigExport::exportXML(rExp, sal_True,
                                                   pProperties, nIdx,
                                                   getPropertySetMapper());
         break;
 
     default:
-        SvXMLExportPropertyMapper::handleElementItem( rExport, rProperty, nFlags, pProperties, nIdx );
+        SvXMLExportPropertyMapper::handleElementItem( rExp, rProperty, nFlags, pProperties, nIdx );
         break;
     }
 }
@@ -188,8 +188,8 @@ XMLTextExportPropertySetMapper::XMLTextExportPropertySetMapper(
     SvXMLExportPropertyMapper( rMapper ),
     rExport( rExp ),
     bDropWholeWord( sal_False ),
-    maTabStopExport( rExp ),
     maDropCapExport( rExp ),
+    maTabStopExport( rExp ),
     maTextColumnsExport( rExp ),
     maBackgroundImageExport( rExp )
 {
@@ -266,7 +266,7 @@ void XMLTextExportPropertySetMapper::ContextFontHeightFilter(
 {
     if( pCharPropHeightState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pCharPropHeightState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -281,7 +281,7 @@ void XMLTextExportPropertySetMapper::ContextFontHeightFilter(
     }
     if( pCharDiffHeightState )
     {
-        float nTemp;
+        float nTemp = 0;
         pCharDiffHeightState->maValue >>= nTemp;
         if( nTemp == 0. )
         {
@@ -531,7 +531,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
         sal_Bool bClear = !pUnderlineState;
         if( !bClear )
         {
-            sal_Int16 nUnderline;
+            sal_Int16 nUnderline = 0;
             pUnderlineState->maValue >>= nUnderline;
             bClear = FontUnderline::NONE == nUnderline;
         }
@@ -546,7 +546,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaLeftMarginState && pParaLeftMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaLeftMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -563,7 +563,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaRightMarginState && pParaRightMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaRightMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -579,7 +579,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaFirstLineState && pParaFirstLineRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaFirstLineRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -595,7 +595,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaTopMarginState && pParaTopMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaTopMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -612,7 +612,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaBottomMarginState && pParaBottomMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaBottomMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -670,7 +670,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
     {
         if( pLeftBorderDistanceState && pRightBorderDistanceState && pTopBorderDistanceState && pBottomBorderDistanceState )
         {
-            sal_Int32 aLeft, aRight, aTop, aBottom;
+            sal_Int32 aLeft = 0, aRight = 0, aTop = 0, aBottom = 0;
 
             pLeftBorderDistanceState->maValue >>= aLeft;
             pRightBorderDistanceState->maValue >>= aRight;
@@ -781,7 +781,8 @@ void XMLTextExportPropertySetMapper::ContextFilter(
             if( pWrapContourState )
                 pWrapContourState->mnIndex = -1;
             break;
-        // <--
+        default:
+            break;
         }
         if( pWrapContourModeState  &&
             (!pWrapContourState ||
