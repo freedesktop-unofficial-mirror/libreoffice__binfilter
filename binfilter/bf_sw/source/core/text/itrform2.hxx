@@ -139,8 +139,8 @@ public:
     sal_Bool CalcOnceMore();
 
     void CtorInit( SwTxtFrm *pFrm, SwTxtFormatInfo *pInf );
-    inline SwTxtFormatter( SwTxtFrm *pFrm, SwTxtFormatInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtFormatter( SwTxtFrm *pTxtFrm, SwTxtFormatInfo *pTxtFrmInf )
+           { CtorInit( pTxtFrm, pTxtFrmInf ); }
     ~SwTxtFormatter();
 
     xub_StrLen FormatLine( const xub_StrLen nStart );

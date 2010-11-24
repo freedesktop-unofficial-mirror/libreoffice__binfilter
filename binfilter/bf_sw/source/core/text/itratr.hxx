@@ -91,12 +91,23 @@ protected:
     void CtorInit( SwTxtNode& rTxtNode, SwScriptInfo& rScrInf );
 #endif
     inline SwAttrIter()
-        : pFnt(0), pLastOut(0), nChgCnt(0), nPropFont(0), pShell(0), pRedln(0){}
+        : pShell(0)
+        , pFnt(0)
+        , pLastOut(0)
+        , nChgCnt(0)
+        , pRedln(0)
+        , nPropFont(0)
+        {}
 
 public:
     // Konstruktor, Destruktor
     inline SwAttrIter( SwTxtNode& rTxtNode, SwScriptInfo& rScrInf )
-        : pFnt(0), pLastOut(0), nChgCnt(0), nPropFont(0), pShell(0), pRedln(0)
+        : pShell(0)
+        , pFnt(0)
+        , pLastOut(0)
+        , nChgCnt(0)
+        , pRedln(0)
+        , nPropFont(0)
         { CtorInit( rTxtNode, rScrInf ); }
 
     virtual ~SwAttrIter();

@@ -46,8 +46,8 @@ protected:
     void CtorInit( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf );
     inline SwTxtPainter() { }
 public:
-    inline SwTxtPainter( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtPainter( SwTxtFrm *pTxtFrm, SwTxtPaintInfo *pTxtPaintInf )
+           { CtorInit( pTxtFrm, pTxtPaintInf ); }
     // if PaintMultiPortion is called recursively, we have to pass the
     // surrounding SwBidiPortion
     inline void SetPaintDrop( const sal_Bool bNew ) { bPaintDrop = bNew; }

@@ -448,12 +448,12 @@ namespace binfilter {
 /*N*/   // 4291: Unterlauf bei Flys
 /*N*/   if( aInf.GetTxtFly()->IsOn() )
 /*N*/   {
-/*N*/       SwRect aFrm( Frm() );
+/*N*/       SwRect aTmpFrm( Frm() );
 /*N*/       if( nDelta < 0 )
-/*N*/           aFrm.Height( Prt().Height() );
+/*N*/           aTmpFrm.Height( Prt().Height() );
 /*N*/       else
-/*N*/           aFrm.Height( aNewSize.Height() );
-/*N*/       if( aInf.GetTxtFly()->Relax( aFrm ) )
+/*N*/           aTmpFrm.Height( aNewSize.Height() );
+/*N*/       if( aInf.GetTxtFly()->Relax( aTmpFrm ) )
 /*N*/       {
 /*?*/           Init();
 /*?*/           return;
@@ -517,8 +517,6 @@ namespace binfilter {
 
 /*N*/ void lcl_ModifyOfst( SwTxtFrm* pFrm, xub_StrLen nPos, xub_StrLen nLen )
 /*N*/ {
-/*N*/   if( nLen < 0 )
-/*N*/       nPos -= nLen;
 /*N*/   while( pFrm && pFrm->GetOfst() <= nPos )
 /*N*/       pFrm = pFrm->GetFollow();
 /*N*/   while( pFrm )
@@ -1161,6 +1159,8 @@ namespace binfilter {
 /*N*/
 /*N*/               return;
 /*N*/           }
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1814,6 +1814,8 @@ public:
 /*?*/       case SVX_INTER_LINE_SPACE_FIX:
 /*?*/           if ( rSpace.GetInterLineSpace() > 0 )
 /*?*/               nRet = (KSHORT)rSpace.GetInterLineSpace();
+/*?*/       default:
+/*?*/           break;
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }

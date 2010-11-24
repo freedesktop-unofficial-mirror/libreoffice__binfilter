@@ -100,7 +100,8 @@ namespace binfilter {
 /*N*/   if( nTabPos < rInf.X() )
 /*N*/       nTabPos = rInf.X();
 /*N*/
-/*N*/   xub_Unicode cFill, cDec;
+/*N*/   xub_Unicode cFill = 0;
+/*N*/   xub_Unicode cDec = 0;
 /*N*/   SvxTabAdjust eAdj;
 /*N*/
 /*N*/   KSHORT nNewTabPos;
@@ -119,17 +120,17 @@ namespace binfilter {
 /*N*/
 /*N*/       const SwTwips nLinePos = GetLeftMargin();
 /*N*/       const SwTwips nLineTab = nLinePos + nTabPos;
-/*N*/         SwTwips nRight = Right();
+/*N*/         SwTwips nMyRight = Right();
 /*N*/
 /*N*/         if ( pFrm->IsVertical() )
 /*N*/         {
-/*N*/             Point aRightTop( nRight, pFrm->Frm().Top() );
-/*N*/             nRight = aRightTop.Y();
+/*N*/             Point aRightTop( nMyRight, pFrm->Frm().Top() );
+/*N*/             nMyRight = aRightTop.Y();
 /*N*/         }
 /*N*/
 /*N*/       SwTwips nNextPos;
 /*N*/       const SvxTabStop* pTabStop =
-/*N*/           aLineInf.GetTabStop( nLineTab, nTabLeft, nRight );
+/*N*/           aLineInf.GetTabStop( nLineTab, nTabLeft, nMyRight );
 /*N*/       if( pTabStop )
 /*N*/       {
 /*N*/           cFill = ' ' != pTabStop->GetFill() ? pTabStop->GetFill() : 0;
@@ -225,8 +226,8 @@ namespace binfilter {
 // Die Basisklasse wird erstmal ohne alles initialisiert.
 
 
-/*N*/ SwTabPortion::SwTabPortion( const KSHORT nTabPos, const xub_Unicode cFill )
-/*N*/   : SwFixPortion( 0, 0 ), nTabPos(nTabPos), cFill(cFill)
+/*N*/ SwTabPortion::SwTabPortion( const KSHORT nTabPosition, const xub_Unicode cFillChar )
+/*N*/   : SwFixPortion( 0, 0 ), nTabPos(nTabPosition), cFill(cFillChar)
 /*N*/ {
 /*N*/   nLineLength = 1;
 /*N*/ #ifdef DBG_UTIL

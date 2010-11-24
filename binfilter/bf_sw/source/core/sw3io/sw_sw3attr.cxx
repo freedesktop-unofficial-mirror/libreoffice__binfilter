@@ -912,11 +912,8 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SwRegisterItem::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ SvStream& SwRegisterItem::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
 /*N*/ {
-/*N*/   ASSERT( nIVer != USHRT_MAX,
-/*N*/           "SwRegisterItem: Wer faengt da Version USHRT_MAX nicht ab?" );
-/*N*/
 /*N*/   rStrm << (BYTE)GetValue();
 /*N*/   return rStrm;
 /*N*/ }
@@ -945,11 +942,8 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SwFmtLineNumber::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ SvStream& SwFmtLineNumber::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
 /*N*/ {
-/*N*/   ASSERT( nIVer != USHRT_MAX,
-/*N*/           "SwFmtLineNumber: Wer faengt da Version USHRT_MAX nicht ab?" );
-/*N*/
 /*N*/   rStrm << static_cast<sal_uInt32>(nStartValue) << IsCount();
 /*N*/   return rStrm;
 /*N*/ }
@@ -982,11 +976,8 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SwNumRuleItem::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ SvStream& SwNumRuleItem::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
 /*N*/ {
-/*N*/   ASSERT( nIVer != USHRT_MAX,
-/*N*/           "SwNumRuleItem: Wer faengt da Version USHRT_MAX nicht ab?" );
-/*N*/
 /*N*/   // Damit wir Pool-NumRules umbenennen koennen, muessen wir die
 /*N*/   // PoolId der NumRule rausfinden und mit speichern.
 /*N*/   UINT16 nPoolId = USHRT_MAX;
@@ -1042,7 +1033,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 // -----------------------------------------------------------------------
 
 
-/*N*/ SfxPoolItem* SwTblBoxNumFormat::Create( SvStream& rStrm, USHORT nVer) const
+/*N*/ SfxPoolItem* SwTblBoxNumFormat::Create( SvStream& rStrm, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   BYTE nFlag;
 /*N*/   UINT32 nTmp;
@@ -1059,7 +1050,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ }
 
 
-/*N*/ SvStream& SwTblBoxNumFormat::Store( SvStream& rStrm, USHORT nIVer ) const
+/*N*/ SvStream& SwTblBoxNumFormat::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
 /*N*/ {
 /*N*/   rStrm << GetValue() << (BYTE)bAuto;
 /*N*/   return rStrm;

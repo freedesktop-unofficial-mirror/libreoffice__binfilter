@@ -57,8 +57,11 @@ protected:
         : SfxEnumItem( nWhich, ePos ), nOffset( 0 )
     {}
     SwFmtFtnEndAtTxtEnd( const SwFmtFtnEndAtTxtEnd& rAttr )
-        : SfxEnumItem( rAttr ), nOffset( rAttr.nOffset ), aFmt( rAttr.aFmt ),
-        sPrefix( rAttr.sPrefix ), sSuffix( rAttr.sSuffix )
+        : SfxEnumItem( rAttr )
+        , sPrefix( rAttr.sPrefix )
+        , sSuffix( rAttr.sSuffix )
+        , aFmt( rAttr.aFmt )
+        , nOffset( rAttr.nOffset )
     {}
 
 public:

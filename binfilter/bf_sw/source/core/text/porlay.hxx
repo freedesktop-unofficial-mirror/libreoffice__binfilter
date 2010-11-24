@@ -326,8 +326,11 @@ inline void SwLineLayout::ResetFlags()
 }
 
 inline SwLineLayout::SwLineLayout()
-    : pNext( 0 ), nRealHeight( 0 ), pSpaceAdd( 0 ), pKanaComp( 0 ),
-      bUnderscore( sal_False )
+    : pNext( 0 )
+    , pSpaceAdd( 0 )
+    , pKanaComp( 0 )
+    , nRealHeight( 0 )
+    , bUnderscore( sal_False )
 {
     ResetFlags();
     SetWhichPor( POR_LAY );

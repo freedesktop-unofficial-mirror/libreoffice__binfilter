@@ -71,7 +71,8 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/ SwTxtFrmBreak::SwTxtFrmBreak( SwTxtFrm *pFrm, const SwTwips nRst )
-/*N*/     : pFrm(pFrm), nRstHeight(nRst)
+/*N*/     : nRstHeight(nRst)
+/*N*/     , pFrm(pFrm)
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( pFrm )
 /*N*/     SWRECTFN( pFrm )
@@ -246,7 +247,9 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 
 /*N*/ WidowsAndOrphans::WidowsAndOrphans( SwTxtFrm *pFrm, const SwTwips nRst,
 /*N*/   sal_Bool bChkKeep   )
-/*N*/   : SwTxtFrmBreak( pFrm, nRst ), nOrphLines( 0 ), nWidLines( 0 )
+/*N*/   : SwTxtFrmBreak( pFrm, nRst )
+/*N*/   , nWidLines( 0 )
+/*N*/   , nOrphLines( 0 )
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( pFrm )
 /*N*/     SWRECTFN( pFrm )

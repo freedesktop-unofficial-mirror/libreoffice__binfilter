@@ -132,7 +132,7 @@ public:
     USHORT GetGutterWidth( BOOL bMin = FALSE ) const;
 
 //  void SetLinePen( const Pen& rNew )  { aPen = rNew; }
-    void SetLineWidth(ULONG nWidth)         { nLineWidth = nWidth;}
+    void SetLineWidth(ULONG nWidth_)        { nLineWidth = nWidth_;}
     void SetLineColor(const Color& rCol )   { aLineColor = rCol;}
     void SetLineHeight( BYTE nNew )     { nLineHeight = nNew; }
     void SetLineAdj( SwColLineAdj eNew ){ eAdj = eNew; }
