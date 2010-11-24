@@ -408,12 +408,6 @@ void SwXText::insertTextContent(const uno::Reference< XTextRange > & xRange,
                                         SwXText::getUnoTunnelId());
             }
 
-
-            uno::Reference< XTextCursor >  xOwnCursor = createCursor();
-            uno::Reference<lang::XUnoTunnel> xOwnTunnel( xOwnCursor, uno::UNO_QUERY);
-            OTextCursorHelper* pOwnCursor = (OTextCursorHelper*)xOwnTunnel->getSomething(
-                                    OTextCursorHelper::getUnoTunnelId());
-
             const SwStartNode* pOwnStartNode = GetStartNode();
             SwStartNodeType eSearchNodeType = SwNormalStartNode;
             switch(eCrsrType)
