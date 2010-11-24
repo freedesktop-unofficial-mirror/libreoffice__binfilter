@@ -51,8 +51,7 @@ class SfxOptions : public SfxConfigItem
     struct SfxOptions_Impl
     {
         SfxMapUnit  eUserMetric;
-        BOOL        bSaveDocWins:1,
-                    bSaveDocView:1,
+        BOOL        bSaveDocView:1,
                     bSaveRelINet:1,
                     bSaveRelFSys:1,
                     bAutoHelpAgent:1,
@@ -110,7 +109,6 @@ public:
     void            SetSaveWorkingSet( BOOL b ) { bSaveWorkingSet = b;SetDefault(FALSE);}
     BOOL            IsSaveWorkingSet() const    { return bSaveWorkingSet;         }
     void            SetSaveDocWins( BOOL b );
-    BOOL            IsSaveDocWins() const;
     void            SetSaveDocView( BOOL b );
     BOOL            IsSaveDocView() const;
     void            SetAutoHelpAgent( BOOL b );

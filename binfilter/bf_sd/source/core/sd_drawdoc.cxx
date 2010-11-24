@@ -187,7 +187,7 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
         SetLanguage( aOptions.nDefaultLanguage_CTL, EE_CHAR_LANGUAGE_CTL );
 
         bOnlineSpell = aOptions.bIsSpellAuto;
-        bHideSpell = aOptions.bIsSpellHideMarkings;
+        bHideSpell = false;
     }
 
     LanguageType eRealLanguage = MsLangId::getRealLanguage( eLanguage );
