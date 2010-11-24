@@ -3632,12 +3632,6 @@ void SwW4WParser::Read_HdFtDefinition( BOOL bHeader )
         && GetDecimal( nPos )       && !nError
         && GetDecimal( nLinePos )   && !nError )
     {
-        long nHdFtUl = nLinePos * 240;      // Grundlage: Zeilenabstand 6 LPI
-                                            // stimmt so zumindest fuer WW2
-        // was tun wir mit diesem Wert?
-        // vielleicht sollten wir nHdFtUl
-        // ggfs. in nNewValueHTM umwandeln ???
-
         // gibt es die optionale Angabe ?
         long nOptNew1, nOptNew2;
         if( W4WR_TXTERM == GetDecimal( nOptNew1 ) && !nError &&
