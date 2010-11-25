@@ -99,12 +99,12 @@ private:
     SvStorageStream *pS;
 
 
-    int xfLMOVE(sal_uInt8 nTest) {return nTest&0x80;}
-    int xfAUTO(sal_uInt8 nTest) {return nTest&0x10;}
-    int xfEMBELL(sal_uInt8 nTest) {return nTest&0x20;}
-    int xfNULL(sal_uInt8 nTest) {return nTest&0x10;}
-    int xfLSPACE(sal_uInt8 nTest) {return nTest&0x40;}
-    int xfRULER(sal_uInt8 nTest) {return nTest&0x20;}
+    int xfLMOVE(sal_uInt8 nTest) const {return nTest&0x80;}
+    int xfAUTO(sal_uInt8 nTest) const {return nTest&0x10;}
+    int xfEMBELL(sal_uInt8 nTest) const {return nTest&0x20;}
+    int xfNULL(sal_uInt8 nTest) const {return nTest&0x10;}
+    int xfLSPACE(sal_uInt8 nTest) const {return nTest&0x40;}
+    int xfRULER(sal_uInt8 nTest) const {return nTest&0x20;}
 
 
     String &rRet;

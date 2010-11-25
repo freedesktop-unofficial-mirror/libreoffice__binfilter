@@ -89,7 +89,7 @@ public:
     void DrawTextToPath(ExtOutputDevice& rXOut, bool bDrawEffect=TRUE);
 
     // wird von DrawTextToPath() gesetzt:
-    const Rectangle& GetFormTextBoundRect() { return aFormTextBoundRect; }
+    const Rectangle& GetFormTextBoundRect() const { return aFormTextBoundRect; }
 
 
     // #101498#
