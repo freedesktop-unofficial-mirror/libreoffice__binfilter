@@ -60,7 +60,7 @@ namespace binfilter {
 /*N*/       nLCnt=0;
 /*N*/       nRCnt=0;
 /*N*/   }
-/*N*/   bool IsDecided() { return bEdge || bIntersect || bPntInRect; }
+/*N*/   bool IsDecided() const { return bEdge || bIntersect || bPntInRect; }
 /*N*/   void CheckPntInRect(const Point& rP)
 /*N*/   {
 /*N*/       if (!bPntInRect) {
