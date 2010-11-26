@@ -860,10 +860,8 @@ void ScInterpreter::ScGDA2()
     double nAbRate = 1.0 - pow(nRest / nWert, 1.0 / nDauer);
     nAbRate = ::rtl::math::approxFloor((nAbRate * 1000.0) + 0.5) / 1000.0;
     double nErsteAbRate = nWert * nAbRate * nMonate / 12.0;
-    double nGda2;
-    if (::rtl::math::approxFloor(nPeriode) == 1)
-        nGda2 = nErsteAbRate;
-    else
+    double nGda2  = nErsteAbRate;
+    if (::rtl::math::approxFloor(nPeriode) != 1)
     {
         double nSummAbRate = nErsteAbRate;
         double nMin = nDauer;
@@ -890,11 +888,7 @@ double ScInterpreter::ScInterVDB(double fWert,double fRest,double fDauer,
 
     double fTerm, fLia;
     double fRestwert = fWert - fRest;
-    double fRestwert1 = fRestwert;
     BOOL bNowLia = FALSE;
-    BOOL bFirstFlag=TRUE;
-    BOOL b2Flag=TRUE;
-    double fAbschlag=0;
 
     double fGda;
     ULONG i;
@@ -1417,10 +1411,10 @@ void ScInterpreter::ScBackSolver()
                 ScRange aVRange( aVAdr, aVAdr );    // fuer SetDirty
                 double nSaveVal;
                 ScPostIt aNote;
-                BOOL bHasNote;
+                BOOL bHasNote = 0;
                 if ( bTempCell )
                 {
-                    if ( bHasNote = (pVCell != NULL) )
+                    if ( ( bHasNote = (pVCell != NULL) ) )
                         bHasNote = pVCell->GetNote( aNote );
                     nSaveVal = 0.0;
                     pVCell = new ScValueCell( nSaveVal );
@@ -1482,10 +1476,12 @@ void ScInterpreter::ScBackSolver()
                         {
                             fs = (fn1 - fn) / (xn1 - xn);
                             if (fabs(fs) < nEps)
+                            {
                                 if (fs < 0.0)
                                     fs = -nEps;
                                 else
                                     fs = nEps;
+                            }
                         }
                         else
                             fs = nEps;
@@ -1726,7 +1722,7 @@ ScDdeLink* lcl_GetDdeLink( SvxLinkManager* pLinkMgr,
 /*N*/       String aTopic = GetString();
 /*N*/       String aAppl  = GetString();
 /*N*/
-/*N*/       if (nMode < SC_DDE_DEFAULT || nMode > SC_DDE_TEXT)
+/*N*/       if (nMode > SC_DDE_TEXT)
 /*N*/           nMode = SC_DDE_DEFAULT;
 /*N*/
 /*N*/       //  temporary documents (ScFunctionAccess) have no DocShell
