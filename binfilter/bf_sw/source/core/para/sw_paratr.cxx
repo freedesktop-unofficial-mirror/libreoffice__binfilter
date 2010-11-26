@@ -104,7 +104,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SwFmtDrop::Modify( SfxPoolItem *pA, SfxPoolItem *pB )
+/*N*/ void SwFmtDrop::Modify( SfxPoolItem * /*pA*/, SfxPoolItem * /*pB*/ )
 /*N*/ {
 /*N*/   if( pDefinedIn )
 /*N*/   {
@@ -130,7 +130,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ sal_Bool SwFmtDrop::GetInfo( SfxPoolItem& rInfo ) const
+/*N*/ sal_Bool SwFmtDrop::GetInfo( SfxPoolItem& /*rInfo*/ ) const
 /*N*/ {
 /*N*/   // fuers UNDO: pruefe ob das Attribut wirklich in diesem Format steht
 /*N*/ #ifdef USED_30
@@ -180,7 +180,7 @@ using namespace ::com::sun::star;
 /*N*/         case MID_DROPCAP_LINES : rVal <<= (sal_Int16)nLines; break;
 /*N*/         case MID_DROPCAP_COUNT : rVal <<= (sal_Int16)nChars; break;
 /*N*/         case MID_DROPCAP_DISTANCE : rVal <<= (sal_Int16) TWIP_TO_MM100(nDistance); break;
-/*N*/       case MID_DROPCAP_FORMAT:
+/*N*/         case MID_DROPCAP_FORMAT:
 /*N*/       {
 /*N*/           style::DropCapFormat aDrop;
 /*N*/           aDrop.Lines = nLines   ;
@@ -244,8 +244,8 @@ using namespace ::com::sun::star;
 /*N*/               nDistance   = MM100_TO_TWIP(pDrop->Distance);
 /*N*/           }
 /*N*/           else
-/*N*/               //exception( wrong_type)
-/*N*/               ;
+/*N*/           {
+/*N*/           }
 /*N*/       }
 /*N*/       break;
 /*N*/       case MID_DROPCAP_WHOLE_WORD:
@@ -267,14 +267,14 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // class SwNumRuleItem -------------------------------------------------
-/*N*/ SfxPoolItem* SwNumRuleItem::Clone( SfxItemPool *pPool  ) const
+/*N*/ SfxPoolItem* SwNumRuleItem::Clone( SfxItemPool * /*pPool*/  ) const
 /*N*/ {
 /*N*/   return new SwNumRuleItem( *this );
 /*N*/ }
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ bool SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );
 /*N*/   rVal <<= sRet;
@@ -283,7 +283,7 @@ using namespace ::com::sun::star;
 /* -----------------------------27.06.00 11:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ bool SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   ::rtl::OUString uName;
 /*N*/   rVal >>= uName;
