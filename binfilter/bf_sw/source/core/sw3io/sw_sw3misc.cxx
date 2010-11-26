@@ -1041,9 +1041,9 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   {
 /*N*/       OpenRec( SWG_TOXDESC );
 /*N*/       String aTypeName, aTitle;
-/*N*/       sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*N*/       sal_uInt16 nStrIdx0 = IDX_NO_VALUE;
 /*N*/       if( IsVersion( SWG_LONGIDX ) )
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           *pStrm >> nStrIdx0;
 /*N*/       else
 /*N*/           InString( *pStrm, aTypeName );
 /*N*/
@@ -1064,8 +1064,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       // Wenn keine Name da ist, dann handelt es sich um
 /*N*/       // das Standard-Verzeichnis des entsprechenden Typs. Der
 /*N*/       // (internationalisierte) Name wird dann gesetzt.
-/*N*/       if( IDX_NO_VALUE != nStrIdx )
-/*?*/           aTypeName = aStringPool.Find( nStrIdx );
+/*N*/       if( IDX_NO_VALUE != nStrIdx0 )
+/*?*/           aTypeName = aStringPool.Find( nStrIdx0 );
 /*N*/       else if( !aTypeName.Len() )
 /*N*/           aTypeName = SwTOXBase::GetTOXName( eTOXType );
 /*N*/
@@ -1121,11 +1121,11 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       *pStrm >> nTmpl;
 /*N*/       for( i = 0; Good() && i < nTmpl; i++ )
 /*N*/       {
-/*N*/           sal_uInt16 nStrIdx;
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           sal_uInt16 nStrIdx1;
+/*N*/           *pStrm >> nStrIdx1;
 /*N*/           if( i < aForm.GetFormMax() )
 /*N*/           {
-/*N*/               String sNm( aStringPool.Find( nStrIdx ) );
+/*N*/               String sNm( aStringPool.Find( nStrIdx1 ) );
 /*N*/               if( !sNm.Len() )
 /*N*/               {
 /*N*/                   // Bug 37672: falls keiner gefunden wird, nehme
@@ -1395,6 +1395,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                   case TOX_TABLES:
 /*?*/                       nPoolId = RES_POOLCOLL_LABEL_TABLE;
 /*?*/                       break;
+                        default:
+                            break;
 /*N*/                   }
 /*N*/                   String aName;
 /*N*/                   SwStyleNameMapper::FillUIName( nPoolId, aName );
@@ -1443,23 +1445,23 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/
 /*N*/       sal_uInt8 cFlags = OpenFlagRec();
 /*N*/
-/*N*/       sal_uInt16 nType, nCreateType, nCaptionDisplay, nStrIdx, nSeqStrIdx, nData;
+/*N*/       sal_uInt16 nType0, nCreateType, nCaptionDisplay, nStrIdx0, nSeqStrIdx, nData;
 /*N*/       sal_uInt16 nOLEOptions = 0;
 /*N*/       sal_uInt8 cFormFlags;
 /*N*/
-/*N*/       String aTitle, aName, aDummy;
+/*N*/       String aTitle, aName0, aDummy;
 /*N*/
-/*N*/       *pStrm  >> nType
+/*N*/       *pStrm  >> nType0
 /*N*/               >> nCreateType
 /*N*/               >> nCaptionDisplay
-/*N*/               >> nStrIdx
+/*N*/               >> nStrIdx0
 /*N*/               >> nSeqStrIdx
 /*N*/               >> nData
 /*N*/               >> cFormFlags;
 /*N*/       CloseFlagRec();
 /*N*/
 /*N*/       sal_uInt16 nMainStyleIdx = IDX_NO_VALUE;
-/*N*/       InString( *pStrm, aName );
+/*N*/       InString( *pStrm, aName0 );
 /*N*/       InString( *pStrm, aTitle );
 /*N*/       if( nVersion < SWG_NEWTOX2 )
 /*N*/           InString( *pStrm, aDummy );     // was AutoMarkURL
@@ -1469,10 +1471,10 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/                   >> nMainStyleIdx;
 /*N*/       }
 /*N*/
-/*N*/       TOXTypes eTOXType = (TOXTypes)nType;
+/*N*/       TOXTypes eTOXType = (TOXTypes)nType0;
 /*N*/       String aTypeName;
-/*N*/       if( IDX_NO_VALUE != nStrIdx )
-/*?*/           aTypeName = aStringPool.Find( nStrIdx );
+/*N*/       if( IDX_NO_VALUE != nStrIdx0 )
+/*?*/           aTypeName = aStringPool.Find( nStrIdx0 );
 /*N*/       else
 /*N*/           aTypeName = SwTOXBase::GetTOXName( eTOXType );
 /*N*/
@@ -1525,24 +1527,24 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/               {
 /*N*/                   OpenRec( SWG_FORMTOKEN_LCL );
 /*N*/
-/*N*/                   sal_uInt16 nType, nStrIdx;
+/*N*/                   sal_uInt16 nType1, nStrIdx1;
 /*N*/
 /*N*/                   OpenFlagRec();
-/*N*/                   *pStrm  >> nType
-/*N*/                           >> nStrIdx;
+/*N*/                   *pStrm  >> nType1
+/*N*/                           >> nStrIdx1;
 /*N*/                   CloseFlagRec();
 /*N*/
-/*N*/                   if( nType < TOKEN_END )
+/*N*/                   if( nType1 < TOKEN_END )
 /*N*/                   {
 /*N*/                         //#92986# some older versions created a
 /*N*/                         //wrong content index entry definition
-/*N*/                         if(TOKEN_ENTRY == nType && eTOXType == TOX_CONTENT)
-/*N*/                             nType = TOKEN_ENTRY_TEXT;
-/*N*/                         SwFormToken aToken( (FormTokenType)nType );
-/*N*/                       if( IDX_NO_VALUE != nStrIdx )
+/*N*/                         if(TOKEN_ENTRY == nType1 && eTOXType == TOX_CONTENT)
+/*N*/                             nType1 = TOKEN_ENTRY_TEXT;
+/*N*/                         SwFormToken aToken( (FormTokenType)nType1 );
+/*N*/                       if( IDX_NO_VALUE != nStrIdx1 )
 /*N*/                       {
-/*?*/                           aToken.sCharStyleName = aStringPool.Find( nStrIdx );
-/*?*/                           aToken.nPoolId = aStringPool.FindPoolId( nStrIdx );
+/*?*/                           aToken.sCharStyleName = aStringPool.Find( nStrIdx1 );
+/*?*/                           aToken.nPoolId = aStringPool.FindPoolId( nStrIdx1 );
 /*N*/                       }
 /*N*/                       switch( aToken.eTokenType )
 /*N*/                       {
@@ -1581,6 +1583,8 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*?*/                               aToken.nAuthorityField = nAuthorityField;
 /*?*/                           }
 /*?*/                           break;
+                            default:
+                                break;
 /*N*/                       }
 /*N*/
 /*N*/                       aPattern += aToken.GetString();
@@ -1603,11 +1607,11 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/       *pStrm >> nTemplates;
 /*N*/       for( i = 0; Good() && i < nTemplates; i++ )
 /*N*/       {
-/*N*/           sal_uInt16 nStrIdx;
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           sal_uInt16 nStrIdx2;
+/*N*/           *pStrm >> nStrIdx2;
 /*N*/           if( i < aForm.GetFormMax() )
 /*N*/           {
-/*N*/               String sNm( aStringPool.Find( nStrIdx ) );
+/*N*/               String sNm( aStringPool.Find( nStrIdx2 ) );
 /*N*/               ASSERT( sNm.Len(), "Template name not found" );
 /*N*/               if( !sNm.Len() )
 /*N*/               {
@@ -1665,7 +1669,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/
 /*N*/       Sw3TOXBase *pTOX = new Sw3TOXBase( pTOXType, aForm, nCreateType,
 /*N*/                                          aTitle );
-/*N*/       pTOX->SetTOXName( aName );
+/*N*/       pTOX->SetTOXName( aName0 );
 /*N*/       pTOX->SetCaptionDisplay( (SwCaptionDisplay)nCaptionDisplay );
 /*N*/       pTOX->SetOLEOptions( nOLEOptions );
 /*N*/
@@ -1703,15 +1707,15 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*?*/           String aStyleNames;
 /*?*/           for( sal_uInt16 j=0; j<nCount; j++ )
 /*?*/           {
-/*?*/               String aName;
-/*?*/               *pStrm >> nStrIdx;
-/*?*/               if( IDX_NO_VALUE != nStrIdx )
+/*?*/               String aName1;
+/*?*/               *pStrm >> nStrIdx0;
+/*?*/               if( IDX_NO_VALUE != nStrIdx0 )
 /*?*/               {
-/*?*/                   aName = aStringPool.Find( nStrIdx );
+/*?*/                   aName1 = aStringPool.Find( nStrIdx0 );
 /*?*/
 /*?*/                   if( aStyleNames.Len() )
 /*?*/                       aStyleNames += TOX_STYLE_DELIMITER;
-/*?*/                   aStyleNames += aName;
+/*?*/                   aStyleNames += aName1;
 /*?*/               }
 /*?*/           }
 /*?*/           if( nLevel < aForm.GetFormMax() )
@@ -1723,9 +1727,9 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/       // #37672#: every user index must have a style name.
 /*N*/       if( TOX_USER == eTOXType && !pTOX->GetStyleNames(0).Len() )
 /*N*/       {
-/*N*/           String aName = *SwStyleNameMapper::GetExtraUINameArray()[ RES_POOLCOLL_LABEL_ABB
+/*N*/           String aName2 = *SwStyleNameMapper::GetExtraUINameArray()[ RES_POOLCOLL_LABEL_ABB
 /*N*/                                           - RES_POOLCOLL_EXTRA_BEGIN ];
-/*?*/           pTOX->SetStyleNames( aName, 0 );
+/*?*/           pTOX->SetStyleNames( aName2, 0 );
 /*N*/       }
 /*N*/
 /*N*/       cFlags = OpenFlagRec();
@@ -1836,7 +1840,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       // If it is one of the predefined indexes, its name isn't exported.
 /*N*/       // This way, the index is found in foreign version, too.
 /*N*/       const String& rTypeName = pType->GetTypeName();
-/*N*/       sal_uInt16 nStrIdx = rTypeName != SwTOXBase::GetTOXName(eType)
+/*N*/       sal_uInt16 nStrIdx0 = rTypeName != SwTOXBase::GetTOXName(eType)
 /*N*/               ? aStringPool.Find( rTypeName, USHRT_MAX )
 /*N*/               : IDX_NO_VALUE;
 /*N*/
@@ -1851,7 +1855,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               << (sal_uInt16)  eType
 /*N*/               << (sal_uInt16)  pTOXBaseSect->GetCreateType()
 /*N*/               << (sal_uInt16)  pTOXBaseSect->GetCaptionDisplay()
-/*N*/               << nStrIdx
+/*N*/               << nStrIdx0
 /*N*/               << nSeqStrIdx
 /*N*/               << nData
 /*N*/               << cFormFlags;
@@ -1899,13 +1903,13 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/                   SwFormToken aToken( aEnum.GetNextToken() );
 /*N*/
 /*N*/                   OpenRec( SWG_FORMTOKEN_LCL );
-/*N*/                   sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*N*/                   sal_uInt16 nStrIdx1 = IDX_NO_VALUE;
 /*N*/                   if( aToken.sCharStyleName.Len() )
-/*N*/                       nStrIdx = aStringPool.Find( aToken.sCharStyleName,
+/*N*/                       nStrIdx1 = aStringPool.Find( aToken.sCharStyleName,
 /*N*/                                                   aToken.nPoolId );
 /*N*/                   *pStrm  << (sal_uInt8)0x04
 /*N*/                           << (sal_uInt16)aToken.eTokenType
-/*N*/                           << nStrIdx;
+/*N*/                           << nStrIdx1;
 /*N*/                   switch( aToken.eTokenType )
 /*N*/                   {
 /*N*/                   case TOKEN_TAB_STOP:
@@ -1922,6 +1926,8 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/                   case TOKEN_AUTHORITY:
 /*?*/                       *pStrm  << (sal_uInt16)aToken.nAuthorityField;
 /*?*/                       break;
+                        default:
+                            break;
 /*N*/                   }
 /*N*/
 /*N*/                   CloseRec( SWG_FORMTOKEN_LCL );
@@ -1985,7 +1991,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/                   String aName =
 /*?*/                       rStyleNames.GetToken( 0, TOX_STYLE_DELIMITER, nStrPos );
 /*?*/                   ASSERT( aName.Len(), "empty style name" );
-/*?*/                   sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*?*/                   sal_uInt16 nStrIdx2 = IDX_NO_VALUE;
 /*?*/                   if( aName.Len() )
 /*?*/                   {
 /*?*/                       const SwTxtFmtColl *pColl =
@@ -1993,10 +1999,10 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/                       sal_uInt16 nPoolId = pColl
 /*?*/                           ? pColl->GetPoolFmtId()
 /*?*/                           : SwStyleNameMapper::GetPoolIdFromUIName( aName, GET_POOLID_TXTCOLL );
-/*?*/                       nStrIdx = aStringPool.Find( aName, nPoolId );
+/*?*/                       nStrIdx2 = aStringPool.Find( aName, nPoolId );
 /*?*/                   }
 /*?*/
-/*N*/                   *pStrm  << nStrIdx;
+/*N*/                   *pStrm  << nStrIdx2;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -2184,15 +2190,15 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/ {
 /*N*/   ByteString sStr8;
 /*N*/   String  sStr, sSQL;
-/*N*/   SwDBData aData;
+/*N*/   SwDBData aData3;
 /*N*/   OpenRec( SWG_DBNAME );
 /*N*/
 /*N*/   // MIB 9.4.97: Die Datenbanknamen koennen 0xff enthalten und muessen
 /*N*/   // deshalb von Hand konvertiert werden.
 /*N*/   pStrm->ReadByteString( sStr8 );
 /*N*/   sStr = ConvertStringNoDbDelim( sStr8,  eSrcSet );
-/*N*/   aData.sDataSource = sStr.GetToken(0, DB_DELIM);
-/*N*/   aData.sCommand = sStr.GetToken(1, DB_DELIM);
+/*N*/   aData3.sDataSource = sStr.GetToken(0, DB_DELIM);
+/*N*/   aData3.sCommand = sStr.GetToken(1, DB_DELIM);
 /*N*/
 /*N*/   if( IsVersion( SWG_NONUMLEVEL, SWG_DESKTOP40 ) )
 /*N*/   {
@@ -2215,7 +2221,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/       }
 /*?*/       else if( nVersion >= SWG_DBTABLE )
 /*?*/       {
-/*?*/           aData.sCommand = aTableName;
+/*?*/           aData3.sCommand = aTableName;
 /*?*/       }
 /*N*/
 /*N*/   }
@@ -2231,8 +2237,8 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   {
 /*N*/       if( sSQL.Len() && nVersion >= SWG_DBTABLE )
 /*N*/       {
-/*?*/           aData.sCommand = sSQL;
-/*?*/           aData.nCommandType = sdb::CommandType::COMMAND;
+/*?*/           aData3.sCommand = sSQL;
+/*?*/           aData3.nCommandType = sdb::CommandType::COMMAND;
 /*N*/       }
 /*N*/
 /*N*/       sal_uInt16 nCount;
@@ -2252,22 +2258,22 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/                      >> nSelEnd;
 /*N*/               sDBName = ConvertStringNoDbDelim( sStr8, eSrcSet );
 /*N*/
-/*N*/                 SwDBData aData;
-/*N*/                 aData.sDataSource = sDBName.GetToken(0, DB_DELIM);
-/*N*/                 aData.sCommand = sDBName.GetToken(1, DB_DELIM);
-/*N*/                 aData.nCommandType = -1;
-/*N*/                 rDBMgr.AddDSData(aData, nSelStart, nSelEnd );
+/*N*/                 SwDBData aData4;
+/*N*/                 aData4.sDataSource = sDBName.GetToken(0, DB_DELIM);
+/*N*/                 aData4.sCommand = sDBName.GetToken(1, DB_DELIM);
+/*N*/                 aData4.nCommandType = -1;
+/*N*/                 rDBMgr.AddDSData(aData4, nSelStart, nSelEnd );
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       // sonst zumindest irgendeinen Namen setzen
-/*N*/       aData = pDoc->GetNewDBMgr()->GetAddressDBName();
+/*N*/       aData3 = pDoc->GetNewDBMgr()->GetAddressDBName();
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_DBNAME );
-/*N*/   pDoc->ChgDBData( aData );
+/*N*/   pDoc->ChgDBData( aData3 );
 /*N*/ }
 
 /*N*/ void Sw3IoImp::OutDBName()
@@ -2308,12 +2314,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   {
 /*N*/       // Die Datenbank-Beschreibung koennen wir im 4.0 FF auf einen Schlag
 /*N*/       // rausschreiben
-/*N*/       SwDBData aData = pDoc->_GetDBDesc();
-/*N*/       String sTmpDBName = aData.sDataSource;
+/*N*/       SwDBData aData1 = pDoc->_GetDBDesc();
+/*N*/       String sTmpDBName = aData1.sDataSource;
 /*N*/       sTmpDBName += DB_DELIM;
-/*N*/       sTmpDBName += (String)aData.sCommand;
-/*N*/       ByteString s8 = ConvertStringNoDbDelim( sTmpDBName, eSrcSet );
-/*N*/       pStrm->WriteByteString( s8 );
+/*N*/       sTmpDBName += (String)aData1.sCommand;
+/*N*/       ByteString s8a = ConvertStringNoDbDelim( sTmpDBName, eSrcSet );
+/*N*/       pStrm->WriteByteString( s8a  );
 /*N*/
 /*N*/       // Datenbankname, SQL-Statement und aktuelle Selektion abspeichern
 /*N*/       long nSelStart, nSelEnd;
@@ -2324,14 +2330,14 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       for (sal_uInt16 i = 0; i < nCount; i++)
 /*N*/       {
 /*N*/           String sDesc(*aDBNameList.GetObject(i));
-/*N*/           ByteString s8 = ConvertStringNoDbDelim( sDesc, eSrcSet );
-/*N*/           pStrm->WriteByteString( s8 );
+/*N*/           ByteString s8b = ConvertStringNoDbDelim( sDesc, eSrcSet );
+/*N*/           pStrm->WriteByteString( s8b );
 /*N*/
-/*N*/             SwDBData aData;
-/*N*/             aData.sDataSource = sDesc.GetToken(0, DB_DELIM);
-/*N*/             aData.sCommand = sDesc.GetToken(1, DB_DELIM);
-/*N*/             aData.nCommandType = -1;
-/*N*/             rDBMgr.GetDSSelection(aData, nSelStart, nSelEnd);
+/*N*/             SwDBData aData2;
+/*N*/             aData2.sDataSource = sDesc.GetToken(0, DB_DELIM);
+/*N*/             aData2.sCommand = sDesc.GetToken(1, DB_DELIM);
+/*N*/             aData2.nCommandType = -1;
+/*N*/             rDBMgr.GetDSSelection(aData2, nSelStart, nSelEnd);
 /*N*/
 /*N*/           *pStrm << (sal_Int32)nSelStart
 /*N*/                  << (sal_Int32)nSelEnd;
@@ -2384,7 +2390,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 
 /*N*/ void Sw3IoImp::OutDocStat( sal_Bool bFirst )
 /*N*/ {
-/*N*/   sal_uInt32 nAktPos;
+/*N*/   sal_uInt32 nAktPos = 0;
 /*N*/   if( bFirst )
 /*N*/   {
 /*N*/       OpenRec( SWG_DOCSTAT );
