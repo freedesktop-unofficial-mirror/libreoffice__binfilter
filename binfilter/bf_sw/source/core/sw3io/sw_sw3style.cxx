@@ -187,10 +187,10 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SwStyleSheet::SwStyleSheet( const String& rName, SwStyleSheetPool& rPool,
-/*N*/                           SfxStyleFamily eFam, USHORT nMask )
-/*N*/   : SfxStyleSheetBase( rName, rPool, eFam, nMask ),
-/*N*/     rDoc( rPool.rDoc ), aSet( rPool.rPool,
+/*N*/ SwStyleSheet::SwStyleSheet( const String& rName, SwStyleSheetPool& rPool1,
+/*N*/                           SfxStyleFamily eFam, USHORT nMask1 )
+/*N*/   : SfxStyleSheetBase( rName, rPool1, eFam, nMask1 ),
+/*N*/     rDoc( rPool1.rDoc ), aSet( rPool1.rPool,
 /*N*/           RES_CHRATR_BEGIN,       RES_CHRATR_END - 1,
 /*N*/           RES_PARATR_BEGIN,       RES_PARATR_END - 1,
 /*N*/           RES_FRMATR_BEGIN,       RES_FRMATR_END - 1,
@@ -426,11 +426,15 @@ public:
 /*N*/           pParent = (*rDoc.GetFrmFmts())[ 0 ]; break;
 /*N*/       case SFX_STYLE_FAMILY_PARA:
 /*N*/           pParent = (*rDoc.GetTxtFmtColls())[ 0 ]; break;
+            default:
+                break;
 /*N*/   }
 /*N*/   if( pParent )
 /*N*/       pFmt->SetDerivedFrom( pParent );
 /*N*/   else
+        {
 /*N*/       ASSERT( !this, "Parent nicht gefunden" );
+        }
 /*N*/ }
 
 // Setzen des Follows
@@ -447,7 +451,9 @@ public:
 /*N*/       if( pFollow )
 /*N*/           GetColl()->SetNextTxtFmtColl( *pFollow );
 /*N*/       else
+            {
 /*N*/           ASSERT( !this, "Follow nicht gefunden" );
+            }
 /*N*/   }
 /*N*/ }
 
@@ -998,7 +1004,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
 /*?*/               }
 /*?*/               else
+                    {
 /*?*/                   ASSERT( !this, "Collection nicht gefunden" );
+                    }
 /*N*/           }
 /*N*/   }
 /*N*/ //FEATURE::CONDCOLL
@@ -1009,9 +1017,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 // Faktorei
 
 /*N*/ SfxStyleSheetBase* __EXPORT SwStyleSheetPool::Create( const String& rName,
-/*N*/                                            SfxStyleFamily eFam, USHORT nMask)
+/*N*/                                            SfxStyleFamily eFam, USHORT nMask2)
 /*N*/ {
-/*N*/   return new SwStyleSheet( rName, *this, eFam, nMask);
+/*N*/   return new SwStyleSheet( rName, *this, eFam, nMask2);
 /*N*/ }
 
 
