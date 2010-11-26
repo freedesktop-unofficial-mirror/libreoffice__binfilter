@@ -449,7 +449,7 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void ScToken::SetByte( BYTE n )
+/*N*/ void ScToken::SetByte( BYTE /*n*/ )
 /*N*/ {
 /*N*/  DBG_ERRORFILE( "ScToken::SetByte: virtual dummy called" );
 /*N*/ }
@@ -502,12 +502,12 @@ namespace binfilter {
 /*N*/   return aDummySingleRef;
 /*N*/  }
 
-/*N*/ void ScToken::CalcAbsIfRel( const ScAddress& rPos )
+/*N*/ void ScToken::CalcAbsIfRel( const ScAddress& /*rPos*/ )
 /*N*/ {
 /*N*/   DBG_ERRORFILE( "ScToken::CalcAbsIfRel: virtual dummy called" );
 /*N*/ }
 
-/*N*/ void ScToken::CalcRelFromAbs( const ScAddress& rPos )
+/*N*/ void ScToken::CalcRelFromAbs( const ScAddress& /*rPos*/ )
 /*N*/ {
 /*N*/   DBG_ERRORFILE( "ScToken::CalcRelFromAbs: virtual dummy called" );
 /*N*/ }
@@ -524,7 +524,7 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/  void ScToken::SetIndex( USHORT n )
+/*N*/  void ScToken::SetIndex( USHORT /*n*/ )
 /*N*/  {
 /*N*/   DBG_ERRORFILE( "ScToken::SetIndex: virtual dummy called" );
 /*N*/  }
@@ -1570,16 +1570,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           sal_Char c[ MAXSTRLEN+1 ];
 /*N*/           rStream >> n;
-/*N*/           if( n > MAXSTRLEN-1 )
-/*N*/           {
-/*?*/               DBG_ERRORFILE( "bad string array boundary" );
-/*?*/               USHORT nDiff = n - (MAXSTRLEN-1);
-/*?*/               n = MAXSTRLEN-1;
-/*?*/               rStream.Read( c, n );
-/*?*/               rStream.SeekRel( nDiff );
-/*N*/           }
-/*N*/           else
-/*N*/               rStream.Read( c, n );
+/*N*/           rStream.Read( c, n );
 /*N*/           cStr[ n ] = 0;
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=0; j<n; j++ )
@@ -1590,10 +1581,10 @@ namespace binfilter {
 /*N*/       case svSingleRef:
 /*N*/       case svDoubleRef:
 /*N*/       {
-/*N*/           SingleRefData& r = aRef.Ref1;
-/*N*/           rStream >> r.nCol
-/*N*/                   >> r.nRow
-/*N*/                   >> r.nTab
+/*N*/           SingleRefData& r1 = aRef.Ref1;
+/*N*/           rStream >> r1.nCol
+/*N*/                   >> r1.nRow
+/*N*/                   >> r1.nTab
 /*N*/                   >> n;
 /*N*/           if ( nVer < SC_RELATIVE_REFS )
 /*N*/           {
@@ -1602,18 +1593,18 @@ namespace binfilter {
 /*N*/               aBools.bRelRow = ( ( n >> 2 ) & 0x03 );
 /*N*/               aBools.bRelTab = ( ( n >> 4 ) & 0x03 );
 /*N*/               aBools.bOldFlag3D = ( ( n >> 6 ) & 0x03 );
-/*N*/               r.OldBoolsToNewFlags( aBools );
+/*N*/               r1.OldBoolsToNewFlags( aBools );
 /*N*/           }
 /*N*/           else
-/*N*/               r.CreateFlagsFromLoadByte( n );
+/*N*/               r1.CreateFlagsFromLoadByte( n );
 /*N*/           if( eType == svSingleRef )
-/*N*/               aRef.Ref2 = r;
+/*N*/               aRef.Ref2 = r1;
 /*N*/           else
 /*N*/           {
-/*N*/               SingleRefData& r = aRef.Ref2;
-/*N*/               rStream >> r.nCol
-/*N*/                       >> r.nRow
-/*N*/                       >> r.nTab
+/*N*/               SingleRefData& r2 = aRef.Ref2;
+/*N*/               rStream >> r2.nCol
+/*N*/                       >> r2.nRow
+/*N*/                       >> r2.nTab
 /*N*/                       >> n;
 /*N*/               if ( nVer < SC_RELATIVE_REFS )
 /*N*/               {
@@ -1622,10 +1613,10 @@ namespace binfilter {
 /*N*/                   aBools.bRelRow = ( ( n >> 2 ) & 0x03 );
 /*N*/                   aBools.bRelTab = ( ( n >> 4 ) & 0x03 );
 /*N*/                   aBools.bOldFlag3D = ( ( n >> 6 ) & 0x03 );
-/*N*/                   r.OldBoolsToNewFlags( aBools );
+/*N*/                   r2.OldBoolsToNewFlags( aBools );
 /*N*/               }
 /*N*/               else
-/*N*/                   r.CreateFlagsFromLoadByte( n );
+/*N*/                   r2.CreateFlagsFromLoadByte( n );
 /*N*/           }
 /*N*/           break;
 /*N*/       }
