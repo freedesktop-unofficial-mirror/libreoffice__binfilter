@@ -1458,6 +1458,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/
 /*?*/           for (i = nParamCount; (i > 0) && (nGlobalError == 0); i--)
 /*?*/           {
+/*?*/               GetStackType();
 /*?*/               switch (eParamType[i])
 /*?*/               {
 /*?*/                   case PTR_DOUBLE :
