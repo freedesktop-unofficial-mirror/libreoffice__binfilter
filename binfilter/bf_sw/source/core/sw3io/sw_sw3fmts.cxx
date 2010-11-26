@@ -310,7 +310,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   if( rSet.Count() )
 /*N*/   {
 /*N*/       // Beim 3.1 Export den aktuellen Attrset merken
-/*N*/       const SfxItemSet *pOldExportItemSet;
+/*N*/       const SfxItemSet *pOldExportItemSet = NULL;
 /*N*/       if( pExportInfo )
 /*N*/       {
 /*N*/           pOldExportItemSet = pExportInfo->pItemSet;
@@ -938,21 +938,21 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   if( bWriteName )
 /*N*/       OutString( *pStrm, rFmt.GetName() );
 /*N*/
-/*N*/   BOOL bOldExportFlyFrmFmt;
-/*N*/   const SwFlyFrm* pOldExportFlyFrm;
 /*N*/   if( pExportInfo )
 /*N*/   {
-/*N*/       bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
-/*N*/       pOldExportFlyFrm = pExportInfo->pFlyFrm;
+/*N*/       BOOL bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
+/*N*/       const SwFlyFrm* pOldExportFlyFrm = pExportInfo->pFlyFrm;
 /*N*/       pExportInfo->bFlyFrmFmt = (cType == SWG_FLYFMT);
 /*N*/       pExportInfo->pFlyFrm = pExportFlyFrm;
-/*N*/   }
-/*N*/   OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
-/*N*/   if( pExportInfo )
-/*N*/   {
+                OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
 /*N*/       pExportInfo->bFlyFrmFmt = bOldExportFlyFrmFmt;
 /*N*/       pExportInfo->pFlyFrm = pOldExportFlyFrm;
+
 /*N*/   }
+        else
+        {
+/*N*/       OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
+        }
 /*N*/   CloseRec( cType );
 /*N*/   if( cType != SWG_FREEFMT && cType != SWG_SECTFMT )
 /*N*/       ((SwFmt&)rFmt).SetWritten();
@@ -1103,7 +1103,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 
 extern BOOL TstFlyRange( const SwPaM* pPam, const SwIndex& rFlyPos );
 
-/*N*/ void Sw3IoImp::CollectFlyFrms( const SwPaM* pPaM )
+/*N*/ void Sw3IoImp::CollectFlyFrms( const SwPaM* /*pPaM*/ )
 /*N*/ {
 /*N*/   if( !pFlyFrms )
 /*N*/   {
