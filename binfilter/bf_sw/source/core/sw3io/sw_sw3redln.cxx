@@ -97,6 +97,8 @@ namespace binfilter {
 /*N*/   {
 /*N*/       OpenRec( SWG_REDLINEDATA_LCL );
 /*N*/
+/*N*/       OpenFlagRec();
+/*N*/
 /*N*/       BYTE cType;
 /*N*/       UINT16 nStrIdx;
 /*N*/
@@ -285,10 +287,6 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/           ASSERT( !this, "Redline in leer" );
 /*?*/           continue;
 /*?*/       }
-/*?*/
-/*?*/       // If the redline is within one node and starts behind the
-/*?*/       // last position that is possible within the 5.2 version,
-/*?*/       // it will be ignored.
 /*?*/
 /*?*/       if( pDoc->IsInHeaderFooter( pPos->nNode ) )
 /*?*/       {
@@ -625,6 +623,11 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/                   cFlags |= 0x10;
 /*?*/               else if( pContentIdx )
 /*?*/                   cFlags |= 0x20;
+/*?*/
+/*?*/               xub_StrLen nOffs = pMark->GetNodeOff();
+/*?*/               *pStrm  << (BYTE)  cFlags
+/*?*/                       << (UINT16)pMark->GetId()
+/*?*/                       << (UINT16)nOffs;
 /*?*/
 /*?*/               if( pContentIdx )
 /*?*/               {

@@ -216,9 +216,9 @@ public:
     sal_Bool IsBackgroundTransparent() const;
 };
 
-inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const
+inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *_pLower ) const
 {
-    return pLower->IsLowerOf( this );
+    return _pLower->IsLowerOf( this );
 }
 
 } //namespace binfilter

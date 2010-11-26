@@ -938,21 +938,21 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   if( bWriteName )
 /*N*/       OutString( *pStrm, rFmt.GetName() );
 /*N*/
+/*N*/   BOOL bOldExportFlyFrmFmt = sal_False;
+/*N*/   const SwFlyFrm* pOldExportFlyFrm = NULL;
 /*N*/   if( pExportInfo )
 /*N*/   {
-/*N*/       BOOL bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
-/*N*/       const SwFlyFrm* pOldExportFlyFrm = pExportInfo->pFlyFrm;
+/*N*/       bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
+/*N*/       pOldExportFlyFrm = pExportInfo->pFlyFrm;
 /*N*/       pExportInfo->bFlyFrmFmt = (cType == SWG_FLYFMT);
 /*N*/       pExportInfo->pFlyFrm = pExportFlyFrm;
-                OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
+/*N*/   }
+/*N*/   OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
+/*N*/   if( pExportInfo )
+/*N*/   {
 /*N*/       pExportInfo->bFlyFrmFmt = bOldExportFlyFrmFmt;
 /*N*/       pExportInfo->pFlyFrm = pOldExportFlyFrm;
-
 /*N*/   }
-        else
-        {
-/*N*/       OutAttrSet( rFmt.GetAttrSet(), SWG_SECTFMT == cType );
-        }
 /*N*/   CloseRec( cType );
 /*N*/   if( cType != SWG_FREEFMT && cType != SWG_SECTFMT )
 /*N*/       ((SwFmt&)rFmt).SetWritten();

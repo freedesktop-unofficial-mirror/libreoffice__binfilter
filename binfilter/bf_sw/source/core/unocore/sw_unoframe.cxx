@@ -981,7 +981,6 @@ void SwXFrame::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                             aSet.Optimize( POLY_OPTIMIZE_CLOSE );
                             aPoly.Insert( aSet );
                         }
-                        pNoTxt->SetContourAPI( &aPoly );
                     }
                     else
                         throw IllegalArgumentException();
