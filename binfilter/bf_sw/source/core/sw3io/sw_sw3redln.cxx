@@ -97,8 +97,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       OpenRec( SWG_REDLINEDATA_LCL );
 /*N*/
-/*N*/       BYTE cDFlags = OpenFlagRec();
-/*N*/
 /*N*/       BYTE cType;
 /*N*/       UINT16 nStrIdx;
 /*N*/
@@ -106,10 +104,10 @@ namespace binfilter {
 /*N*/               >> nStrIdx;
 /*N*/       CloseFlagRec();
 /*N*/
-/*N*/       UINT32 nDate, nTime;
+/*N*/       UINT32 nDate2, nTime2;
 /*N*/       String aComment;
-/*N*/       *pStrm  >> nDate
-/*N*/               >> nTime;
+/*N*/       *pStrm  >> nDate2
+/*N*/               >> nTime2;
 /*N*/       InString( *pStrm, aComment );
 /*N*/
 /*N*/       // Das oberste Element des Stack wurde als letztes geschrieben.
@@ -120,7 +118,7 @@ namespace binfilter {
 /*N*/           nAuthorIdx = pDoc->GetRedlineAuthor();
 /*N*/
 /*N*/       pData = new SwRedlineData( (SwRedlineType)cType, nAuthorIdx,
-/*N*/                                  DateTime( nDate, nTime ), aComment,
+/*N*/                                  DateTime( nDate2, nTime2 ), aComment,
 /*N*/                                  pData );
 /*N*/
 /*N*/       CloseRec( SWG_REDLINEDATA_LCL );
@@ -128,7 +126,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // Der PaM ist erstmal egal und wird erst spaeter gesetzt
 /*N*/   SwPosition aDummyPos( pDoc->GetNodes().GetEndOfExtras() );
-/*N*/   BOOL bVisible = (cFlags & 0x10) != 0;
 /*N*/   SwRedline *pRedline =
 /*N*/       new SwRedline( pData, aDummyPos, (cFlags & 0x10) != 0,
 /*N*/                      (cFlags & 0x20) != 0, (cFlags & 0x40) != 0 );
