@@ -251,12 +251,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
     // unbenutzte Content-Position.
     const SwNode& rNode = rNdIdx.GetNode();
     if( rNode.IsCntntNode() )
-    {
-        if( nCntntIdx > STRING_MAXLEN52 )
-            return STRING_MAXLEN52;
-        else
-            return nCntntIdx;
-    }
+        return nCntntIdx;
 
     if( rNode.IsStartNode() )
         return 0;
@@ -294,10 +289,6 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/       // If the redline is within one node and starts behind the
 /*?*/       // last position that is possible within the 5.2 version,
 /*?*/       // it will be ignored.
-/*?*/       if( pPos->nContent.GetIndex() > STRING_MAXLEN52 &&
-/*?*/           pPos->nNode.GetIndex() == pEndPos->nNode.GetIndex() &&
-/*?*/           pEndPos->nContent.GetIndex() > STRING_MAXLEN52 )
-/*?*/           continue;
 /*?*/
 /*?*/       if( pDoc->IsInHeaderFooter( pPos->nNode ) )
 /*?*/       {
@@ -457,7 +448,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       xub_StrLen nLen = rNode.GetCntntNode()->Len();
 /*N*/       xub_StrLen nIdx = static_cast< xub_StrLen >( nNodeOff+nCntntOff );
 /*N*/       ASSERT( nIdx>=0 && nIdx<=nLen, "ungueltiger Cntnt-Offset" );
-/*N*/       if( nIdx<0 || nIdx > nLen )
+/*N*/       if( nIdx > nLen )
 /*N*/       {
 /*N*/           bInvalid = sal_True;
 /*N*/       }
@@ -634,14 +625,6 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/                   cFlags |= 0x10;
 /*?*/               else if( pContentIdx )
 /*?*/                   cFlags |= 0x20;
-/*?*/
-/*?*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*?*/               if( pDoc->GetNodes()[nIdx]->IsCntntNode() &&
-/*?*/                   nOffs > STRING_MAXLEN52 )
-/*?*/                   nOffs = STRING_MAXLEN52;
-/*?*/               *pStrm  << (BYTE)  cFlags
-/*?*/                       << (UINT16)pMark->GetId()
-/*?*/                       << (UINT16)nOffs;
 /*?*/
 /*?*/               if( pContentIdx )
 /*?*/               {
