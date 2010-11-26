@@ -1358,7 +1358,7 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*N*/   {
 /*N*/       ScBaseCell* pCell;
 /*N*/       ScQueryCellIterator aCellIter(pDok, nTab, aQueryParam);
-/*N*/       if (pCell = aCellIter.GetFirst())
+/*N*/       if ( (pCell = aCellIter.GetFirst() ) )
 /*N*/       {
 /*N*/           if (aCellIter.GetNext())
 /*N*/               SetIllegalArgument();
@@ -1458,7 +1458,6 @@ BOOL ScInterpreter::DoubleRefToPosSingleRef( const ScRange& rRange, ScAddress& r
 /*?*/
 /*?*/           for (i = nParamCount; (i > 0) && (nGlobalError == 0); i--)
 /*?*/           {
-/*?*/               BYTE nStackType = GetStackType();
 /*?*/               switch (eParamType[i])
 /*?*/               {
 /*?*/                   case PTR_DOUBLE :
@@ -2098,14 +2097,14 @@ void ScInterpreter::ScMissing()
 /*?*/                   {
 /*?*/                       short nIdx[ 2 ];
 /*?*/                       nIdx[ 0 ] = j+1;
-/*?*/                       for( USHORT i = 0; i < nC; i++ )
+/*?*/                       for( USHORT k = 0; k < nC; i++ )
 /*?*/                       {
-/*?*/                           nIdx[ 1 ] = i+1;
+/*?*/                           nIdx[ 1 ] = k+1;
 /*?*/                           SbxVariable* p = refArray->Get( nIdx );
-/*?*/                           if (pMat->IsString(i, j))
-/*?*/                               p->PutString( pMat->GetString(i, j) );
+/*?*/                           if (pMat->IsString(k, j))
+/*?*/                               p->PutString( pMat->GetString(k, j) );
 /*?*/                           else
-/*?*/                               p->PutDouble( pMat->GetDouble(i, j) );
+/*?*/                               p->PutDouble( pMat->GetDouble(k, j) );
 /*?*/                       }
 /*?*/                   }
 /*?*/                   pPar->PutObject( refArray );
@@ -3041,10 +3040,10 @@ void ScInterpreter::ScTTT()
 /*?*/               {   // Stack abraeumen, geht davon aus, dass jede Funktion
 /*?*/                   // prinzipiell ein Ergebnis pusht, im Fehlerfall kann dies
 /*?*/                   // ein zufaelliger Wert sein
-/*?*/                   const ScToken* pResult = pStack[ sp - 1 ];
+/*?*/                   const ScToken* pResult2 = pStack[ sp - 1 ];
 /*?*/                   while ( sp > nStackBase )
 /*?*/                       Pop();
-/*?*/                   PushTempToken( *pResult );
+/*?*/                   PushTempToken( *pResult2 );
 /*?*/               }
 /*N*/           }
 /*N*/       }
