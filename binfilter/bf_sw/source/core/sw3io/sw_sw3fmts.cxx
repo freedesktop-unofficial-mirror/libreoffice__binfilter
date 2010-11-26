@@ -252,10 +252,6 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/
 /*N*/   // Hints that start behind the maximum string length of version 5.2
 /*N*/   // don't have to be exported.
-/*N*/   if( nBgn != STRING_LEN && nBgn > STRING_MAXLEN52 )
-/*N*/       return;
-/*N*/   if( nEnd != STRING_LEN && nEnd > STRING_MAXLEN52 )
-/*N*/       nEnd = STRING_MAXLEN52;
 /*N*/
 /*N*/   if( nWhich != RES_TXTATR_FTN || nFlyLevel == 0 )
 /*N*/   {
