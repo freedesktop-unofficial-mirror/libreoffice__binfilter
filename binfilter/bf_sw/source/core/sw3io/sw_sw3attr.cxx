@@ -618,7 +618,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 /*M*/ }
 
 
-/*M*/ USHORT SwHeaderAndFooterEatSpacingItem::GetVersion( USHORT nFFVer ) const
+/*M*/ USHORT SwHeaderAndFooterEatSpacingItem::GetVersion( USHORT /*nFFVer*/ ) const
 /*M*/ {
 /*M*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*M*/           SOFFICE_FILEFORMAT_40==nFFVer ||
@@ -669,7 +669,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 /*N*/ }
 
 
-/*N*/ USHORT    SwCropGrf::GetVersion( USHORT nFFVer ) const
+/*N*/ USHORT    SwCropGrf::GetVersion( USHORT /*nFFVer*/ ) const
 /*N*/ {
 /*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
@@ -829,7 +829,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ }
 
 
-/*N*/ SfxPoolItem* SwFmtSoftHyph::Create( SvStream& rStrm, USHORT ) const
+/*N*/ SfxPoolItem* SwFmtSoftHyph::Create( SvStream& /*rStrm*/, USHORT ) const
 /*N*/ {
 /*N*/   return new SwFmtSoftHyph;
 /*N*/ }

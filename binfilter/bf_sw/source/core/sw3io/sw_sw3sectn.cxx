@@ -76,9 +76,9 @@ namespace binfilter {
 /*N*/
 /*N*/   // Der aktuelle NumRange eines 3.1/40-Files muss gerettet werden, falls
 /*N*/   // eine Section innerhalb einer Section gelesen wird (z.B. Flys)
-/*N*/   SwNumRule* pOld40Rule;
-/*N*/   SwPaM* pOld40Range;
-/*N*/   BOOL bOldConvertNoNum;
+/*N*/   SwNumRule* pOld40Rule = NULL;
+/*N*/   SwPaM* pOld40Range =NULL;
+/*N*/   BOOL bOldConvertNoNum = 0;
 /*N*/   if( !IsVersion(SWG_LONGIDX) )
 /*N*/   {
 /*N*/       pOld40Rule = pCurNumRule;

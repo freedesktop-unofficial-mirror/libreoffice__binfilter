@@ -793,7 +793,7 @@ public:
 
 // Record schliessen
 
-/*N*/ void Sw3IoImp::CloseRec( sal_uInt8 cType )
+/*N*/ void Sw3IoImp::CloseRec( sal_uInt8 /*cType*/ )
 /*N*/ {
 /*N*/   sal_uInt16 nLvl = aRecTypes.Count();
 /*N*/   ASSERT( nLvl == aRecSizes.Count(), "CloseRec: falscher Level" );
@@ -1326,7 +1326,9 @@ ULONG Sw3IoImp::OutRecSizes()
 /*?*/               if( pObj )
 /*?*/                   pPage->InsertObject( pObj );
 /*?*/               else
+                    {
 /*?*/                   ASSERT( !this, "wo ist das DrawObject?" );
+                    }
 /*?*/           }
 /*?*/       }
 /*?*/       delete pInsModel;
@@ -1708,7 +1710,7 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 
 // Sammeln der Strings am Doc. Es werden alle Strings aus benannten
 // Formaten, Collections und PageDescs gesammelt. Weiter wird allen
-// Auto-Frameformaten eine Extension im Namen verpaát, weil die Namen
+// Auto-Frameformaten eine Extension im Namen verpasst, weil die Namen
 // nicht eindeutig sind.
 
 /*N*/ void Sw3StringPool::Setup( SwDoc& rDoc, long nFFVersion,
@@ -1945,6 +1947,8 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*?*/               case TOX_TABLES:
 /*?*/                   nPoolId = RES_POOLCOLL_LABEL_TABLE;
 /*?*/                   break;
+                                default:
+                                    break;
 /*N*/               }
 /*N*/               if( USHRT_MAX != nPoolId )
 /*N*/               {

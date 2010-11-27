@@ -165,8 +165,8 @@ static OldFormats aOldGetSetExpFmt40[] =
     NF_NUMBER_1000DEC2,             VVF_XX_XX,      // 1.234,56
     NF_NUMBER_1000DEC2,             VVF_XX_X,       // 1.234,5
     NF_NUMBER_1000DEC2,             VVF_XX_XXX,     // 1.234,567
-    NF_CURRENCY_1000DEC2,           VVF_SYS_CUR,    // W„hrungsformat aus der
-                                                    // Systemeinstellung
+    NF_CURRENCY_1000DEC2,           VVF_SYS_CUR,    // currency format from the
+                                                    // system setup
                                                     // (1.234,00 DM)
     NF_CURRENCY_1000INT,            VVF_X_CUR,      // 1234 DM
     NF_CURRENCY_1000DEC2,           VVF_XX_XX_CUR,  // 1234,56 DM 1234,00 DM
@@ -194,8 +194,8 @@ static OldFormats aOldGetSetExpFmt30[] =
     NF_NUMBER_DEC2,                 0x0100,         // 1245,56
     NF_NUMBER_1000DEC2,             0x0100,         // 1.234,5
     NF_NUMBER_1000DEC2,             0x0100,         // 1.234,567
-    NF_CURRENCY_1000DEC2,           0x0200,         // W„hrungsformat aus der
-                                                    // Systemeinstellung
+    NF_CURRENCY_1000DEC2,           0x0200,         // currency format from
+                                                    // system setup
                                                     // (1.234,00 DM)
     NF_CURRENCY_1000INT,            0x1000,         // 1234 DM
     NF_CURRENCY_1000DEC2,           0x1000,         // 1234,56 DM 1234,00 DM
@@ -1055,7 +1055,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/ }
 
-/*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, UINT32& )
 /*N*/ { //SW40.SDW
 /*N*/   SwDateTimeField* pFld =
@@ -1065,7 +1065,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ SwField* lcl_sw3io_InTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InTimeField40( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, UINT32& )
 /*N*/ {
             SwDateTimeField* pFld =
@@ -1538,7 +1538,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwDocStatField( (SwDocStatFieldType*)pType, nSubType, rFmt );
 /*N*/ }
 /*N*/
-/*N*/ SwField* lcl_sw3io_InDocStatField( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InDocStatField( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                  USHORT nSubType, UINT32& rFmt )
 /*N*/ {
 /*N*/   return new SwDocStatField( (SwDocStatFieldType*)pType, nSubType, rFmt );
@@ -2001,7 +2001,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       *rIo.pStrm << ((SwDocInfoField*)pFld)->GetValue();
 /*N*/ }
 
-/*N*/ SwField* lcl_sw3io_InTemplNameField( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InTemplNameField( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& rFmt )
 /*N*/ {
 /*N*/   return new SwTemplNameField( (SwTemplNameFieldType*)pType, rFmt );

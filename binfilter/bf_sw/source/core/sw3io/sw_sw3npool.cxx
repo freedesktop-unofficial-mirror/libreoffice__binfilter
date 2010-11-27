@@ -946,7 +946,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/            SOFFICE_FILEFORMAT_40==nFFVer ) ? 0 : IVER_TOXMARK_NEWTOX;
 /*N*/ }
 
-SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT nVer) const
+SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT /*nVer*/) const
 {
     String sRubyTxt;
     SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt );
@@ -957,7 +957,7 @@ SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT nVer) const
     return pRet;
 }
 
-SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT nIVer ) const
+SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
 {
     BOOL bVal = 0;
     rStrm << bVal;
@@ -1055,7 +1055,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
     return pChain;
 }
 
-/*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT nIVer) const
+/*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT /*nIVer*/) const
 /*N*/ {
         ASSERT( nIVer != USHRT_MAX,
                 "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
@@ -1091,7 +1091,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
 /*N*/   return SOFFICE_FILEFORMAT_40 < nFFVer ? 1 : USHRT_MAX;
 /*N*/ }
 
-SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT nIVer) const
+SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT /*nIVer*/) const
 {
     SwTextGridItem* pRet = new SwTextGridItem;
     BOOL bVal;
@@ -1100,7 +1100,7 @@ SfxPoolItem* SwTextGridItem::Create(SvStream& rStrm, USHORT nIVer) const
     return pRet;
 }
 
-SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT nIVer ) const
+SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
 {
     BOOL bVal = 0;
     rStrm << bVal;
@@ -1108,7 +1108,7 @@ SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT nIVer ) const
     return rStrm;
 }
 
-/*N*/ USHORT SwTextGridItem::GetVersion( USHORT nFFVer ) const
+/*N*/ USHORT SwTextGridItem::GetVersion( USHORT /*nFFVer*/ ) const
 /*N*/ {
 /*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
