@@ -409,7 +409,7 @@ void ScMyValidationsContainer::WriteValidations(ScXMLExport& rExport)
                     break;
                 }
             }
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -700,7 +700,7 @@ sal_Int32 ScRowFormatRanges::GetMaxRows()
         {
             if ((*aItr).nRepeatRows < nMaxRows)
                 nMaxRows = (*aItr).nRepeatRows;
-            aItr++;
+            ++aItr;
         }
     else
         DBG_ERROR("no ranges found");
@@ -749,19 +749,19 @@ ScFormatRangeStyles::~ScFormatRangeStyles()
     while (i != aStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
     i = aAutoStyleNames.begin();
     while (i != aAutoStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
     ScMyFormatRangeListVec::iterator j = aTables.begin();
     while (j != aTables.end())
     {
         delete *j;
-        j++;
+        ++j;
     }
 }
 
@@ -874,7 +874,7 @@ sal_Int32 ScFormatRangeStyles::GetStyleNameIndex(const sal_uInt16 nTable,
             return (*aItr).nStyleNameIndex;
         }
         else
-            aItr++;
+            ++aItr;
     }
     return -1;
 }
@@ -915,7 +915,7 @@ sal_Int32 ScFormatRangeStyles::GetStyleNameIndex(const sal_uInt16 nTable, const 
             if (bRemoveRange && (*aItr).aRangeAddress.EndRow < nRow)
                 aItr = pFormatRanges->erase(aItr);
             else
-                aItr++;
+                ++aItr;
         }
     }
     return -1;
@@ -974,13 +974,15 @@ void ScFormatRangeStyles::GetFormatRanges(const sal_Int32 nStartColumn, const sa
                 pRowFormatRanges->AddRange(aRange, nRow);
                 nColumns += aRange.nRepeatColumns;
             }
-            aItr++;
+            ++aItr;
         }
         else
+        {
             if(aItr->aRangeAddress.EndRow < nRow)
                 aItr = pFormatRanges->erase(aItr);
             else
-                aItr++;
+                ++aItr;
+        }
     }
     pRowFormatRanges->Sort();
 }
@@ -1029,7 +1031,7 @@ ScColumnRowStylesBase::~ScColumnRowStylesBase()
     while (i != aStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
 }
 
