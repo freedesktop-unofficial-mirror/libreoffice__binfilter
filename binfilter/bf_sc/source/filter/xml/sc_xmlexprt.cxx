@@ -531,7 +531,7 @@ void ScXMLExport::CollectShapesAutoStyles(const sal_Int32 nTableCount)
                     {
                         GetShapeExport()->collectShapeAutoStyles(*aItr);
                         GetProgressBarHelper()->Increment();
-                        aItr++;
+                        ++aItr;
                     }
                 }
                 if (pShapeList)
@@ -540,7 +540,7 @@ void ScXMLExport::CollectShapesAutoStyles(const sal_Int32 nTableCount)
                     {
                         GetShapeExport()->collectShapeAutoStyles(aShapeItr->xShape);
                         GetProgressBarHelper()->Increment();
-                        aShapeItr++;
+                        ++aShapeItr;
                     }
                 }
             }
@@ -1557,30 +1557,30 @@ void ScXMLExport::_ExportAutoStyles()
                                                             {
                                                                 aItr->maValue >>= sStyleName;
                                                                 aItr->mnIndex = -1;
-                                                                aItr++;
-                                                                nCount++;
+                                                                ++aItr;
+                                                                ++nCount;
                                                             }
                                                             break;
                                                             case CTF_SC_NUMBERFORMAT :
                                                             {
                                                                 if (aItr->maValue >>= nNumberFormat)
                                                                     addDataStyle(nNumberFormat);
-                                                                aItr++;
-                                                                nCount++;
+                                                                ++aItr;
+                                                                ++nCount;
                                                             }
                                                             break;
                                                             default:
                                                             {
-                                                                aItr++;
-                                                                nCount++;
+                                                                ++aItr;
+                                                                ++nCount;
                                                             }
                                                             break;
                                                         }
                                                     }
                                                     else
                                                     {
-                                                        aItr++;
-                                                        nCount++;
+                                                        ++aItr;
+                                                        ++nCount;
                                                     }
                                                 }
                                                 if (nCount == 1) // this is the CellStyle and should be removed if alone
@@ -1691,7 +1691,7 @@ void ScXMLExport::_ExportAutoStyles()
                                                                 aItr->maValue >>= bIsVisible;
                                                                 break;
                                                             }
-                                                            aItr++;
+                                                            ++aItr;
                                                         }
                                                         ::rtl::OUString sParent;
                                                         ::rtl::OUString sName;
@@ -2265,7 +2265,7 @@ void ScXMLExport::WriteShapes(const ScMyCell& rMyCell)
                 }
                 ExportShape(aItr->xShape, pPoint);
             }
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -2377,7 +2377,7 @@ void ScXMLExport::WriteDetective( const ScMyCell& rMyCell )
         {
             SvXMLElementExport aDetElem( *this, XML_NAMESPACE_TABLE, XML_DETECTIVE, sal_True, sal_True );
             OUString sString;
-            for( ScMyDetectiveObjVec::const_iterator aObjItr = rObjVec.begin(); aObjItr != rObjVec.end(); aObjItr++ )
+            for( ScMyDetectiveObjVec::const_iterator aObjItr = rObjVec.begin(); aObjItr != rObjVec.end(); ++aObjItr )
             {
                 if (aObjItr->eObjType != SC_DETOBJ_CIRCLE)
                 {
@@ -2396,7 +2396,7 @@ void ScXMLExport::WriteDetective( const ScMyCell& rMyCell )
                 SvXMLElementExport aRangeElem( *this, XML_NAMESPACE_TABLE, XML_HIGHLIGHTED_RANGE, sal_True, sal_True );
             }
             OUStringBuffer aBuffer;
-            for( ScMyDetectiveOpVec::const_iterator aOpItr = rOpVec.begin(); aOpItr != rOpVec.end(); aOpItr++ )
+            for( ScMyDetectiveOpVec::const_iterator aOpItr = rOpVec.begin(); aOpItr != rOpVec.end(); ++aOpItr )
             {
                 OUString sString;
                 ScXMLConverter::GetStringFromDetOpType( sString, aOpItr->eOpType );
@@ -2589,7 +2589,7 @@ void ScXMLExport::WriteCalculationSettings(const uno::Reference <sheet::XSpreads
         sal_Int32 nIterationCount(100);
         aAny >>= nIterationCount;
         aAny = xPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_ITEREPSILON)));
-        double fIterationEpsilon;
+        double fIterationEpsilon(0.0);
         aAny >>= fIterationEpsilon;
         aAny = xPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_NULLDATE)));
         util::Date aNullDate;
