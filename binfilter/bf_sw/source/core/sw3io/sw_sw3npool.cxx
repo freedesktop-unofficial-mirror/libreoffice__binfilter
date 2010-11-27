@@ -132,11 +132,11 @@ namespace binfilter {
 /*N*/       else if( FLY_AT_FLY == GetAnchorId() ||
 /*N*/                FLY_AUTO_CNTNT == GetAnchorId() )
 /*N*/       {
-/*?*/           BYTE nAnchorId = GetAnchorId();
+/*?*/           BYTE nAnchorId2 = GetAnchorId();
 /*?*/           USHORT nIndex;
-/*?*/           if( FLY_AT_FLY == nAnchorId )
+/*?*/           if( FLY_AT_FLY == nAnchorId2 )
 /*?*/           {
-/*?*/               nAnchorId = FLY_PAGE;
+/*?*/               nAnchorId2 = FLY_PAGE;
 /*?*/               SwNodeIndex aIdx( pPos->nNode );
 /*?*/               const SwNodes& rNds = aIdx.GetNodes();
 /*?*/               const SwCntntNode* pCNd = rNds.GoNext( &aIdx );
@@ -148,12 +148,12 @@ namespace binfilter {
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               nAnchorId = FLY_AT_CNTNT;
+/*?*/               nAnchorId2 = FLY_AT_CNTNT;
 /*?*/               xub_StrLen nCntntIdx = pPos->nContent.GetIndex();
 /*?*/               nIndex = nCntntIdx <= STRING_MAXLEN52 ? nCntntIdx
 /*?*/                                                     : STRING_MAXLEN52;
 /*?*/           }
-/*?*/           rStrm << (BYTE) nAnchorId
+/*?*/           rStrm << (BYTE) nAnchorId2
 /*?*/                 << (USHORT) nIndex;
 /*N*/       }
 /*N*/       else
@@ -197,8 +197,8 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtHeader::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
-/*N*/   BYTE bActive;
-/*N*/   rStrm >> bActive;
+/*N*/   BYTE bActive2;
+/*N*/   rStrm >> bActive2;
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   SvStream* p = pIo->pStrm;
 /*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
@@ -213,7 +213,7 @@ namespace binfilter {
 /*N*/       if( pFmt )
 /*N*/       {
 /*N*/           pAttr = new SwFmtHeader( pFmt );
-/*N*/           pAttr->SetActive( BOOL( bActive ) );
+/*N*/           pAttr->SetActive( BOOL( bActive2 ) );
 /*N*/       }
 /*N*/       else
 /*?*/           pIo->Error();
@@ -244,8 +244,8 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtFooter::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
-/*N*/   BYTE bActive;
-/*N*/   rStrm >> bActive;
+/*N*/   BYTE bActive3;
+/*N*/   rStrm >> bActive3;
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   SvStream* p = pIo->pStrm;
 /*N*/   pIo->pStrm = (SvStorageStream*) &rStrm;
@@ -272,7 +272,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           // <--
 /*N*/           pAttr = new SwFmtFooter( pFmt );
-/*N*/           pAttr->SetActive( BOOL( bActive ) );
+/*N*/           pAttr->SetActive( BOOL( bActive3 ) );
 /*N*/       }
 /*N*/       else
 /*?*/           pIo->Error();
@@ -460,16 +460,16 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ SvStream& SwFmtFlyCnt::Store( SvStream& rStrm, USHORT ) const
 /*N*/ {
-/*N*/   SwFrmFmt* pFmt = GetFrmFmt();
-/*N*/   if( pFmt )
+/*N*/   SwFrmFmt* pFmt1 = GetFrmFmt();
+/*N*/   if( pFmt1 )
 /*N*/   {
 /*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/       SvStream* p = pIo->pStrm;
 /*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
-/*N*/       if( RES_DRAWFRMFMT == pFmt->Which() )
-/*N*/           pIo->OutFormat( SWG_SDRFMT, *pFmt );
+/*N*/       if( RES_DRAWFRMFMT == pFmt1->Which() )
+/*N*/           pIo->OutFormat( SWG_SDRFMT, *pFmt1 );
 /*N*/       else
-/*N*/           pIo->OutFormat( SWG_FLYFMT, *pFmt );
+/*N*/           pIo->OutFormat( SWG_FLYFMT, *pFmt1 );
 /*N*/       pIo->pStrm = p;
 /*N*/   }
 /*N*/   return rStrm;
@@ -511,13 +511,13 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/ SfxPoolItem* SwFmtINetFmt::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
 /*N*/   UINT16 nId1, nId2;
-/*N*/   String aURL, aTarget;
-/*N*/   rStrm.ReadByteString( aURL, rStrm.GetStreamCharSet() );
+/*N*/   String aURL1, aTarget;
+/*N*/   rStrm.ReadByteString( aURL1, rStrm.GetStreamCharSet() );
 /*N*/   rStrm.ReadByteString( aTarget, rStrm.GetStreamCharSet() );
 /*N*/   rStrm >> nId1 >> nId2;
 /*N*/
-/*N*/   aURL = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL );
-/*N*/   SwFmtINetFmt *pNew = new SwFmtINetFmt( aURL, aTarget );
+/*N*/   aURL1 = ::binfilter::StaticBaseUrl::SmartRelToAbs( aURL1 );
+/*N*/   SwFmtINetFmt *pNew = new SwFmtINetFmt( aURL1, aTarget );
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   if( nId1 != IDX_NO_VALUE )
 /*N*/   {
@@ -550,9 +550,9 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   }
 /*N*/   if( nIVer >= 1 )
 /*N*/   {
-/*N*/       String aName;
-/*N*/       rStrm.ReadByteString( aName, rStrm.GetStreamCharSet() );;
-/*N*/       pNew->SetName( aName );
+/*N*/       String aName1;
+/*N*/       rStrm.ReadByteString( aName1, rStrm.GetStreamCharSet() );;
+/*N*/       pNew->SetName( aName1 );
 /*N*/   }
 /*N*/   if( nIVer >= 2 )
 /*N*/   {
@@ -585,8 +585,8 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*?*/       nId1 = (UINT16) pIo->aStringPool.Find( aINetFmt, nINetId );
 /*N*/   if( aVisitedFmt.Len() )
 /*?*/       nId2 = (UINT16) pIo->aStringPool.Find( aVisitedFmt, nVisitedId );
-/*N*/   String aURL( GetValue() );
-/*N*/   lcl_sw3io__ConvertMarkToOutline( aURL );
+/*N*/   String aURL2( GetValue() );
+/*N*/   lcl_sw3io__ConvertMarkToOutline( aURL2 );
 /*N*/   rStrm.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel( aURL URL_DECODE ),
 /*N*/                          rStrm.GetStreamCharSet() );
 /*N*/       rStrm.WriteByteString( aTargetFrame, rStrm.GetStreamCharSet() );
@@ -656,10 +656,10 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ SfxPoolItem* SwFmtFtn::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   String aNumber;
-/*N*/   UINT16 nNumber;
-/*N*/   rStrm >> nNumber;
-/*N*/   rStrm.ReadByteString( aNumber, rStrm.GetStreamCharSet() );
+/*N*/   String aNumber1;
+/*N*/   UINT16 nNumber1;
+/*N*/   rStrm >> nNumber1;
+/*N*/   rStrm.ReadByteString( aNumber1, rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   // Die Section fuer den Text erzeugen
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -685,7 +685,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/
 /*N*/   // die Seq-Nummer einlesen - fuer die Querverweise auf Fussnoten
 /*N*/   USHORT nSeqNo;
-/*N*/   BOOL bEndNote = FALSE;
+/*N*/   BOOL bEndNote1 = FALSE;
 /*N*/   if( 1 <= nIVer )
 /*N*/   {
 /*N*/       rStrm >> nSeqNo;
@@ -694,12 +694,12 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   {
 /*N*/       BYTE nFlags;
 /*N*/       rStrm >> nFlags;
-/*N*/       bEndNote = (nFlags & 0x01) != 0;
+/*N*/       bEndNote1 = (nFlags & 0x01) != 0;
 /*N*/   }
 /*N*/
-/*N*/   SwFmtFtn aFtn( bEndNote );
-/*N*/   aFtn.SetNumStr( aNumber );
-/*N*/   aFtn.SetNumber( nNumber );
+/*N*/   SwFmtFtn aFtn( bEndNote1 );
+/*N*/   aFtn.SetNumStr( aNumber1 );
+/*N*/   aFtn.SetNumber( nNumber1 );
 /*N*/
 /*N*/   // Das Fussnoten-Attribut liest seine Section "auf der Wiese" ein.
 /*N*/   // Hier muss also der Start errechnet und eingetragen werden.
@@ -796,18 +796,18 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/ SfxPoolItem* SwTOXMark::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
 /*N*/   BYTE cType;
-/*N*/   UINT16 nLevel, nStrIdx = IDX_NO_VALUE;
-/*N*/   String aTypeName, aAltText, aPrimKey, aSecKey;
+/*N*/   UINT16 nLevel1, nStrIdx = IDX_NO_VALUE;
+/*N*/   String aTypeName, aAltText1, aPrimKey, aSecKey;
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   rStrm >> cType
-/*N*/         >> nLevel;
+/*N*/         >> nLevel1;
 /*N*/
 /*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
 /*N*/       rStrm.ReadByteString( aTypeName, rStrm.GetStreamCharSet() );
 /*N*/   else
 /*N*/       rStrm >> nStrIdx;
 /*N*/
-/*N*/   rStrm.ReadByteString( aAltText, rStrm.GetStreamCharSet() );
+/*N*/   rStrm.ReadByteString( aAltText1, rStrm.GetStreamCharSet() );
 /*N*/   rStrm.ReadByteString( aPrimKey, rStrm.GetStreamCharSet() );
 /*N*/   rStrm.ReadByteString( aSecKey, rStrm.GetStreamCharSet() );
 /*N*/
@@ -854,7 +854,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   }
 /*N*/
 /*N*/   SwTOXMark* pMark = new SwTOXMark( pType );
-/*N*/   pMark->SetAlternativeText( aAltText );
+/*N*/   pMark->SetAlternativeText( aAltText1 );
 /*N*/   switch( eType )
 /*N*/   {
 /*N*/       case TOX_INDEX:
@@ -869,7 +869,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/       case TOX_OBJECTS:
 /*N*/       case TOX_TABLES:
 /*N*/       case TOX_AUTHORITIES:
-/*N*/           pMark->SetLevel( nLevel );
+/*N*/           pMark->SetLevel( nLevel1 );
 /*N*/           break;
 /*N*/       default:
 /*?*/           pIo->Error();
@@ -948,8 +948,8 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 SfxPoolItem* SwFmtRuby::Create(SvStream & rStrm, USHORT /*nVer*/) const
 {
-    String sRubyTxt;
-    SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt );
+    String sRubyTxt1;
+    SwFmtRuby* pRet = new SwFmtRuby( sRubyTxt1 );
 
     BOOL bVal;
     rStrm >> bVal;
