@@ -67,7 +67,7 @@ namespace binfilter {
 /*N*/           bPntInRect=rP.X()>=x1 && rP.X()<=x2 && rP.Y()>=y1 && rP.Y()<=y2;
 /*N*/       }
 /*N*/   }
-/*N*/   bool IsHit() { return (!bLine && (nOCnt & 1)==1) || IsDecided(); }
+/*N*/   bool IsHit() const { return (!bLine && (nOCnt & 1)==1) || IsDecided(); }
 /*N*/ };
 
 /*N*/ #define CAREFUL_MULDIV(Res,Val,Mul,Div) {      \
