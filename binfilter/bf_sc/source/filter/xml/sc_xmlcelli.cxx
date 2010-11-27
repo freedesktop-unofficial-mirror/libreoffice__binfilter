@@ -702,7 +702,7 @@ void ScXMLTableRowCellContext::SetDetectiveObj( const table::CellAddress& rPosit
         LockSolarMutex();
         ScDetectiveFunc aDetFunc( rXMLImport.GetDocument(), rPosition.Sheet );
         uno::Reference < drawing::XShapes > xShapes (rXMLImport.GetTables().GetCurrentXShapes());   // make draw page
-        for( ScMyImpDetectiveObjVec::iterator aItr = pDetectiveObjVec->begin(); aItr != pDetectiveObjVec->end(); aItr++ )
+        for( ScMyImpDetectiveObjVec::iterator aItr = pDetectiveObjVec->begin(); aItr != pDetectiveObjVec->end(); ++aItr )
         {
             ScAddress aScAddress;
             ScUnoConversion::FillScAddress( aScAddress, rPosition );
