@@ -1397,7 +1397,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
                             break;
                         }
                     }
-                    aIter++;
+                    ++aIter;
                 }
             }
 

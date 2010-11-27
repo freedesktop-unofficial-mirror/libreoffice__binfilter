@@ -566,7 +566,7 @@ void XMLTableStyleContext::FillPropertySet(
                     //rPropSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CONDITIONALFORMAT)),
                     GetConditionalFormat(aConditionalFormat, aItr->sCondition, aItr->sApplyStyle, aItr->sBaseCell);
 
-                    aItr++;
+                    ++aItr;
                 }
                 AddProperty(CTF_SC_IMPORT_MAP, aConditionalFormat);
                 bConditionalFormatCreated = sal_True;
