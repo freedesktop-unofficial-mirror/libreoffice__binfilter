@@ -413,7 +413,9 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/
 /*?*/       UnlockModify(); // Benachrichtigungen wieder freischalten
 /*?*/
+/*?*/ #ifdef ACCESSIBLE_LAYOUT
 /*?*/       const SwRootFrm *pRootFrm;
+/*?*/ #endif
 /*?*/       // If there is an accessible layout we must call modify even
 /*?*/       // with length zero, because we have to notify about the changed
 /*?*/       // text node.
