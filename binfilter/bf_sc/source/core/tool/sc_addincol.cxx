@@ -696,13 +696,12 @@ public:
 /*N*/     {
 /*N*/         long nDescCount = pFuncData->GetArgumentCount();
 /*N*/         const ScAddInArgDesc* pArgs = pFuncData->GetArguments();
-/*N*/         long nVarCount = 0;
 /*N*/
 /*N*/         //  is aVarArg sequence needed?
 /*N*/         if ( nParamCount >= nDescCount && nDescCount > 0 &&
 /*N*/              pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS )
 /*N*/         {
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             long nVarCount = nParamCount - ( nDescCount - 1 );  // size of last argument
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/         }
 /*N*/         else if ( nParamCount <= nDescCount )
 /*N*/         {
