@@ -233,7 +233,6 @@ namespace binfilter {
 /*N*/       //  Undo initialisieren
 /*N*/
 /*N*/       ScDocument* pUndoDoc = NULL;
-/*N*/       ScDocument* pRedoDoc = NULL;
 /*N*/       if ( bAddUndo && bUndo )
 /*N*/       {
 /*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
@@ -317,7 +316,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bAddUndo && bUndo)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       //  neue Einstellungen merken
