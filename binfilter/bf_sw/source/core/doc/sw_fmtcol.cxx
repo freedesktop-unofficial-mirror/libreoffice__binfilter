@@ -273,7 +273,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  int SwCollCondition::operator==( const SwCollCondition& rCmp ) const
+/*N*/  int SwCollCondition::operator==( const SwCollCondition& /*rCmp*/ ) const
 /*N*/  {
 DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 /*N*/ }
@@ -310,7 +310,7 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 /*N*/ }
 
 
-/*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& rCond )
+/*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& /*rCond*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for( USHORT n = 0; n < aCondColls.Count(); ++n )
 /*N*/ }

@@ -151,7 +151,7 @@ namespace binfilter {
 /*N*/   pDesc->Add( &((SwClient&)aPageDescDep) );
 /*N*/ }
 
-/*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& rFmt)
+/*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& /*rFmt*/)
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rFmt.Add(this);
 /*N*/ }

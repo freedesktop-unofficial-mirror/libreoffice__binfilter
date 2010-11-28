@@ -530,7 +530,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 
 
 
-/*N*/ sal_Bool SwDoc::Replace( SwPaM& rPam, const String& rStr, sal_Bool bRegExpRplc )
+/*N*/ sal_Bool SwDoc::Replace( SwPaM& /*rPam*/, const String& /*rStr*/, sal_Bool /*bRegExpRplc*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() == *rPam.GetMark() )
 /*N*/   return sal_True;

@@ -265,7 +265,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
  *    Alle sollen neu evaluiert werden.
  */
 
-/*N*/ void SwDoc::UpdateFlds( SfxPoolItem *pNewHt, BOOL bCloseDB )
+/*N*/ void SwDoc::UpdateFlds( SfxPoolItem* /*pNewHt*/, BOOL /*bCloseDB*/ )
 /*N*/ {
 /*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Modify() fuer jeden Feldtypen rufen,
 /*N*/ }
@@ -677,7 +677,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
     Beschreibung:
  --------------------------------------------------------------------*/
 
-/*N*/ void lcl_CalcFld( SwDoc& rDoc, SwCalc& rCalc, const _SetGetExpFld& rSGEFld,
+/*N*/ void lcl_CalcFld( SwDoc& /*rDo*/c, SwCalc& /*rCalc*/, const _SetGetExpFld& rSGEFld,
 /*N*/                       SwNewDBMgr* pMgr )
 /*N*/ {
 /*N*/   const SwTxtFld* pTxtFld = rSGEFld.GetFld();

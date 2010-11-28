@@ -917,7 +917,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ }
 
 
-/*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL bUsed) const
+/*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL /*bUsed*/) const
 /*N*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    USHORT nCount = pTblFrmFmtTbl->Count();
 /*N*/ }

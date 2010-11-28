@@ -181,7 +181,7 @@ namespace binfilter {
 
     // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
     // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-/*N*/ void SwDoc::MakeUniqueBookmarkName( String& rNm )
+/*N*/ void SwDoc::MakeUniqueBookmarkName( String& /*rNm*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
 /*N*/ }
@@ -189,8 +189,8 @@ namespace binfilter {
 /*  */
 
 /*N*/ SaveBookmark::SaveBookmark( int eType, const SwBookmark& rBkmk,
-/*N*/                           const SwNodeIndex & rMvPos,
-/*N*/                           const SwIndex* pIdx )
+/*N*/                           const SwNodeIndex& /*rMvPos*/,
+/*N*/                           const SwIndex* /*pIdx*/ )
 /*N*/   : aName( rBkmk.GetName() ), aShortName( rBkmk.GetShortName() ),
 /*N*/   aCode( rBkmk.GetKeyCode() ), eBkmkType( (SaveBookmarkType)eType ),
 /*N*/   eOrigBkmType(rBkmk.GetType())

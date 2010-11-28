@@ -87,7 +87,7 @@ using namespace ::com::sun::star::linguistic2;
 |*
 |*************************************************************************/
 
-/*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& rDrawView )
+/*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
     // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
@@ -95,7 +95,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 /*N*/ }
 
 
-/*N*/ void SwDoc::UnGroupSelection( SdrView& rDrawView )
+/*N*/ void SwDoc::UnGroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     int bUndo = DoesUndo();
 /*N*/ }
@@ -150,7 +150,9 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 /*N*/               nOrdNum = ((SwDrawContact*)aIter())->GetMaster()->GetOrdNum();
 /*N*/   }
 /*N*/   else
+        {
 /*N*/           ASSERT( !this, "was ist das fuer ein Format?" );
+        }
 /*N*/ }
 } //namespace binfilter
 /*************************************************************************/
@@ -413,11 +415,11 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/ }
 
 
-/*************************************************************************/
-/*
-/* Am Outliner Link auf Methode fuer Felddarstellung in Editobjekten setzen
-/*
-/*************************************************************************/
+/*************************************************************************
+|*
+|* Am Outliner Link auf Methode fuer Felddarstellung in Editobjekten setzen
+|*
+\*************************************************************************/
 
 /*N*/ void SwDoc::SetCalcFieldValueHdl(Outliner* pOutliner)
 /*N*/ {
@@ -430,7 +432,7 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 |*
 \************************************************************************/
 
-/*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, pInfo)
+/*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, /*pInfo*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/  return(0);
 /*N*/ }

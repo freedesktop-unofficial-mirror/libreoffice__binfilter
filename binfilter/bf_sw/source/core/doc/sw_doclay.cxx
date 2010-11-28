@@ -104,7 +104,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*************************************************************************/
 
-/*N*/ SwFrmFmt *SwDoc::MakeLayoutFmt( RndStdIds eRequest, SwFrmFmt* pFrmFmt,
+/*N*/ SwFrmFmt *SwDoc::MakeLayoutFmt( RndStdIds eRequest, SwFrmFmt* /*pFrmFmt*/,
 /*N*/                               const SfxItemSet* pSet )
 /*N*/ {
 /*N*/   SwFrmFmt *pFmt = 0;
@@ -160,7 +160,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/   case RND_DRAW_OBJECT:
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFmt = MakeDrawFrmFmt( aEmptyStr, GetDfltFrmFmt() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -201,11 +201,11 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rChain.GetPrev()->GetChain() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if ( rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( rChain.GetNext()->GetChain() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwNodeIndex* pCntIdx = pFmt->GetCntnt().GetCntntIdx();
@@ -762,10 +762,10 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
  ---------------------------------------------------------------------------*/
 
 
-/*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& rPosFlyFmts,
-/*N*/                          const SwPaM* pCmpRange, sal_Bool bDrawAlso ) const
+/*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& /*rPosFlyFmts*/,
+/*N*/                          const SwPaM* /*pCmpRange*/, sal_Bool /*bDrawAlso*/ ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************

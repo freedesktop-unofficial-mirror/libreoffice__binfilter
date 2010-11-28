@@ -709,7 +709,7 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/ }
 
 // Get the programmatic Name from the pool ID
-/*N*/ void SwStyleNameMapper::FillProgName ( sal_uInt16 nId, String& rFillName )
+/*N*/ void SwStyleNameMapper::FillProgName ( sal_uInt16 /*nId*/, String& /*rFillName*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 // Get the programmatic Name from the pool ID

@@ -782,7 +782,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::SetVirDev( VirtualDevice* pVd, sal_Bool bCallVirDevDataChanged )
+/*N*/ void SwDoc::SetVirDev( VirtualDevice* pVd, sal_Bool /*bCallVirDevDataChanged*/ )
 /*N*/ {
 /*N*/     if ( (ULONG)pVirDev != (ULONG)pVd )
 /*N*/     {

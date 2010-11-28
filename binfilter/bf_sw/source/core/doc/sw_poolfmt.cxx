@@ -1580,7 +1580,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ }
 
 /*N*/ SwNumRule* SwDoc::GetNumRuleFromPool( USHORT nId, String* pDesc,
-/*N*/   SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric )
+/*N*/   SfxItemPresentation /*ePres*/, SfxMapUnit /*eCoreMetric*/, SfxMapUnit /*ePresMetric*/ )
 /*N*/ {
 /*N*/   ASSERT( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
 /*N*/           "Falsche AutoFormat-Id" );

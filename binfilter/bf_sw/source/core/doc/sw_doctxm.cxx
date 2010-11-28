@@ -82,7 +82,7 @@ typedef LinkStruct* LinkStructPtr;
      Beschreibung: Marke loeschen
  --------------------------------------------------------------------*/
 
-/*N*/ void SwDoc::Delete( SwTOXMark* pTOXMark )
+/*N*/ void SwDoc::Delete( SwTOXMark* /*pTOXMark*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/ }
@@ -240,7 +240,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
  --------------------------------------------------------------------*/
 
 
-/*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& rTOXBase, BOOL bDelNodes )
+/*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& /*rTOXBase*/, BOOL /*bDelNodes*/ )
 /*N*/ {
 /*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;//STRIP001    // its only delete the TOX, not the nodes
 /*N*/ }
@@ -390,8 +390,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
      Beschreibung: Verzeichnisinhalt zusammensammeln
  --------------------------------------------------------------------*/
 
-/*N*/ void SwTOXBaseSection::Update(const SfxItemSet* pAttr,
-/*N*/                               const bool        _bNewTOX )
+/*N*/ void SwTOXBaseSection::Update(const SfxItemSet* /*pAttr*/,
+/*N*/                               const bool /*_bNewTOX*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 

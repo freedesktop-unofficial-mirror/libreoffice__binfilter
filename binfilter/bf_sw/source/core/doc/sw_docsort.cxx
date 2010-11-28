@@ -107,7 +107,7 @@ using namespace ::com::sun::star::lang;
  --------------------------------------------------------------------*/
 
 
-/*N*/ BOOL SwDoc::SortText(const SwPaM& rPaM, const SwSortOptions& rOpt)
+/*N*/ BOOL SwDoc::SortText(const SwPaM& /*rPaM*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // pruefen ob Rahmen im Text
 /*N*/  return TRUE;
@@ -117,7 +117,7 @@ using namespace ::com::sun::star::lang;
     Beschreibung: Tabelle sortieren im Document
  --------------------------------------------------------------------*/
 
-/*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& rBoxes, const SwSortOptions& rOpt)
+/*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& /*rBoxes*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // uebers SwDoc fuer Undo !!
 /*N*/   return TRUE;

@@ -244,7 +244,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void lcl_ChgNumRule( SwDoc& rDoc, const SwNumRule& rRule, SwHistory* pHist,
+/*N*/ void lcl_ChgNumRule( SwDoc& rDoc, const SwNumRule& rRule, SwHistory* /*pHist*/,
 /*N*/                       SwNumRuleInfo* pRuleInfo = 0 )
 /*N*/ {
 /*N*/   SwNumRule* pOld = rDoc.FindNumRulePtr( rRule.GetName() );
@@ -327,7 +327,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SwDoc::SetNumRule( const SwPaM& rPam, const SwNumRule& rRule,
-/*N*/                       sal_Bool bSetAbsLSpace, sal_Bool bCalledFromShell )
+/*N*/                       sal_Bool /*bSetAbsLSpace*/, sal_Bool bCalledFromShell )
 /*N*/ {
 /*N*/   ULONG nPamPos = rPam.Start()->nNode.GetIndex();
 /*N*/   BOOL bSetItem = TRUE;
@@ -370,7 +370,7 @@ namespace binfilter {
 /*N*/   SetModified();
 /*N*/ }
 
-/*N*/ void SwDoc::SetNumRuleStart( const SwPosition& rPos, BOOL bFlag )
+/*N*/ void SwDoc::SetNumRuleStart( const SwPosition& /*rPos*/, BOOL /*bFlag*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode().GetTxtNode();
 /*N*/ }
@@ -416,7 +416,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::StopNumRuleAnimations( OutputDevice* pOut )
+/*N*/ void SwDoc::StopNumRuleAnimations( OutputDevice* /*pOut*/ )
 /*N*/ {
 /*N*/   for( USHORT n = GetNumRuleTbl().Count(); n; )
 /*N*/   {
@@ -439,7 +439,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 
 
 
-/*N*/ BOOL SwDoc::DelNumRules( const SwPaM& rPam )
+/*N*/ BOOL SwDoc::DelNumRules( const SwPaM& /*rPam*/ )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ULONG nStt = rPam.GetPoint()->nNode.GetIndex(),
 /*N*/ }

@@ -487,7 +487,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
     //JP 24.06.96: Ist der ArrayPointer 0 dann returne nur, ob im Doc. eine
     //              RefMark gesetzt ist
     // OS 25.06.96: ab jetzt wird immer die Anzahl der Referenzen returnt
-/*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* pNames ) const
+/*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* /*pNames*/ ) const
 /*N*/ {
 /*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    const SfxPoolItem* pItem;
 /*N*/ }
@@ -524,9 +524,9 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/ }
 
 
-/*N*/ void SwDoc::ReRead( SwPaM& rPam, const String& rGrfName,
-/*N*/                   const String& rFltName, const Graphic* pGraphic,
-/*N*/                   const BfGraphicObject* pGrafObj )
+/*N*/ void SwDoc::ReRead( SwPaM& /*rPam*/, const String& /*rGrfName*/,
+/*N*/                   const String& /*rFltName*/, const Graphic* /*pGraphic*/,
+/*N*/                   const BfGraphicObject* /*pGrafObj*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
 /*N*/ }

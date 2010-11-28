@@ -166,16 +166,13 @@ Verhalten von Delete-Redline:
                                           ueberlappt
 */
 
-/*N*/ BOOL SwDoc::AppendRedline( SwRedline* pNewRedl, BOOL bCallDelete )
+/*N*/ BOOL SwDoc::AppendRedline( SwRedline* /*pNewRedl*/, BOOL /*bCallDelete*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( this )
 /*N*/ }
 
-
-
-
-/*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL bSaveInUndo,
-/*N*/                           USHORT nDelType )
+/*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL /*bSaveInUndo*/,
+/*N*/                           USHORT /*nDelType*/ )
 /*N*/ {
 /*N*/   if( REDLINE_IGNOREDELETE_REDLINES & eRedlineMode ||
 /*N*/       !rRange.HasMark() || *rRange.GetMark() == *rRange.GetPoint() )
@@ -207,7 +204,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/ }
 
 
-/*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT nType ) const
+/*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT /*nType*/ ) const
 /*N*/ {
 /*N*/   const ULONG nNdIdx = rNd.GetIndex();
 /*N*/   for( USHORT n = 0; n < pRedlineTbl->Count() ; ++n )
@@ -217,7 +214,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-/*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& rPos,
+/*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& /*rPos*/,
 /*N*/                                   USHORT* pFndPos ) const
 /*N*/ {
 /*N*/   register USHORT nO = pRedlineTbl->Count(), nM, nU = 0;
@@ -234,20 +231,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
                         BOOL bCallDelete,
                         const SwPosition* pSttRng,
                         const SwPosition* pEndRng);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Kommentar am Redline setzen
 
@@ -402,9 +385,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
 // USHRT_MAX suchen im gesamten Array.
 
-
-
-
 /*  */
 
 /*?*/SwRedlineExtraData::~SwRedlineExtraData()
@@ -495,12 +475,12 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/ }
 
 
-/*N*/ void SwRedline::Show( USHORT nLoop )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwRedline::Show( USHORT /*nLoop*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SwRedline::Hide( USHORT nLoop )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwRedline::Hide( USHORT /*nLoop*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -512,20 +492,11 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
  * text node nNdIdx
  *************************************************************************/
 
-
-
-
-
-
-
 // fuers Undo
-/*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* pIdx )
+/*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* /*pIdx*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( pIdx && !pCntntSect )
 /*N*/ }
-
-
-
 
 USHORT SwRedline::GetStackCount() const
 {

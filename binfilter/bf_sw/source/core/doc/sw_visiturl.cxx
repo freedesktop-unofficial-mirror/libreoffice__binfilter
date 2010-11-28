@@ -60,7 +60,7 @@ namespace binfilter {
 /*N*/   EndListening( *INetURLHistory::GetOrCreate() );
 /*N*/ }
 
-/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if( rHint.ISA( INetURLHistoryHint ) && pDoc->GetRootFrm() )
 /*N*/   {

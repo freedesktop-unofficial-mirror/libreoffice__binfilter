@@ -1022,7 +1022,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
 // suche ab dieser Line nach der naechsten Box mit Inhalt
 
 // suche ab dieser Line nach der naechsten Box mit Inhalt
-BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* pPara )
+BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* /*pPara*/ )
 {
     // in der HeadLine sind die Absaetze mit BedingtenVorlage anzupassen
     const SwStartNode* pSttNd = rpBox->GetSttNd();
@@ -1033,7 +1033,7 @@ BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* pPara )
     return TRUE;
 }
 
-BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* pPara )
+BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* /*pPara*/ )
 {
     ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &lcl_BoxSetHeadCondColl, 0 );
     return TRUE;

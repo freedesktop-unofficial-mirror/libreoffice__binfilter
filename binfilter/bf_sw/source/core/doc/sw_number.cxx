@@ -223,7 +223,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /* -----------------------------22.02.01 16:05--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient eSet)
+/*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient /*eSet*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 /* -----------------------------22.02.01 16:05--------------------------------

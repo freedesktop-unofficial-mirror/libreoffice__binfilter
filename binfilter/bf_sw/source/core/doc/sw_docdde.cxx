@@ -68,7 +68,7 @@ struct _FindItem
 };
 
 
-/*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& rpBkmk, void* pArgs )
+/*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& /*rpBkmk*/, void* /*pArgs*/ )
 /*N*/ {
 /*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;

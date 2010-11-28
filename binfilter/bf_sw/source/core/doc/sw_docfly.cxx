@@ -823,14 +823,14 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /* -----------------23.07.98 13:56-------------------
  *
  * --------------------------------------------------*/
-/*N*/ int SwDoc::Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest )
+/*N*/ int SwDoc::Chain( SwFrmFmt& /*rSource*/, const SwFrmFmt& /*rDest*/ )
 /*N*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
 /*N*/ }
 /* -----------------23.07.98 13:56-------------------
  *
  * --------------------------------------------------*/
-/*N*/ void SwDoc::Unchain( SwFrmFmt &rFmt )
+/*N*/ void SwDoc::Unchain( SwFrmFmt& /*rFmt*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rFmt.GetChain() );
 /*N*/ }

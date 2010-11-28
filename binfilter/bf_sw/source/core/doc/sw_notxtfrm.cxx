@@ -168,7 +168,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 *************************************************************************/
 
-/*N*/ void SwNoTxtFrm::Paint( const SwRect &rRect ) const
+/*N*/ void SwNoTxtFrm::Paint( const SwRect& /*rRect*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -300,14 +300,14 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*************************************************************************/
 
 
-/*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect &rRect, const SwPosition& rPos,
-/*N*/                             SwCrsrMoveState *pCMS ) const
+/*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect& /*rRect*/, const SwPosition& /*rPos*/,
+/*N*/                             SwCrsrMoveState* /*pCMS*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* pPos, Point& aPoint,
+/*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* /*pPos*/, Point& /*aPoint*/,
 /*N*/                           const SwCrsrMoveState* ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
