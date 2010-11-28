@@ -58,7 +58,7 @@
 #include <comcore.hrc>
 namespace binfilter {
 
-/*N*/ int lcl_IsInSameTblBox( SwNodes& rNds, const SwNode& rNd,
+/*N*/ int lcl_IsInSameTblBox( SwNodes& /*rNds*/, const SwNode& rNd,
 /*N*/                           const SwNodeIndex& rIdx2 )
 /*N*/ {
 /*N*/   const SwTableNode* pTblNd = rNd.FindTableNode();

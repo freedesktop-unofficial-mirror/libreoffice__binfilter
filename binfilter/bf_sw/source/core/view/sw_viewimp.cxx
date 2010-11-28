@@ -60,7 +60,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ void SwViewImp::Init( const SwViewOption *pNewOpt )
+/*N*/ void SwViewImp::Init( const SwViewOption* /*pNewOpt*/ )
 /*N*/ {
         DBG_ERROR("Strip!");
 /*N*/ }
@@ -224,18 +224,18 @@ namespace binfilter {
 */
 
 
-/*N*/ void SwViewImp::DisposeAccessible( const SwFrm *pFrm,
-/*N*/                                  const SdrObject *pObj,
-/*N*/                                  sal_Bool bRecursive )
+/*N*/ void SwViewImp::DisposeAccessible( const SwFrm* /*pFrm*/,
+/*N*/                                  const SdrObject* /*pObj*/,
+/*N*/                                  sal_Bool /*bRecursive*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void SwViewImp::MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
-/*N*/                               const SwRect& rOldFrm )
+/*N*/ void SwViewImp::MoveAccessible( const SwFrm* /*pFrm*/, const SdrObject* /*pObj*/,
+/*N*/                               const SwRect& /*rOldFrm*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm *pFrm )
+/*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm* /*pFrm*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 

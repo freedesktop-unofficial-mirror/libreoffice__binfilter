@@ -72,7 +72,7 @@ static SwClientIter* pClientIters = 0;
 *************************************************************************/
 
 
-/*N*/ void SwClient::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
+/*N*/ void SwClient::Modify( SfxPoolItem *pOld, SfxPoolItem * /*pNew*/ )
 /*N*/ {
 /*N*/   if( (!pOld || pOld->Which() != RES_OBJECTDYING) )
 /*N*/       return;

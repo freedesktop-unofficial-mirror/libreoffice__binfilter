@@ -165,7 +165,7 @@ using namespace ::rtl;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& rInfo )
+/*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& /*rInfo*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/ }
@@ -243,8 +243,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
 /*N*/ }
 
-/*N*/ULONG SwDocShell::LoadStylesFromFile( const String& rURL,
-/*N*/                   SwgReaderOption& rOpt, BOOL bUnoCall )
+/*N*/ULONG SwDocShell::LoadStylesFromFile( const String& /*rURL*/,
+/*N*/                   SwgReaderOption& /*rOpt*/, BOOL /*bUnoCall*/ )
 /*N*/{
 /*N*/   ULONG nErr = 0;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return nErr;

@@ -42,11 +42,11 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; }; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; }; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
 
-    inline SwFmtSoftHyph& operator=(const SwFmtSoftHyph& rSH) {
+    inline SwFmtSoftHyph& operator=(const SwFmtSoftHyph& /*rSH*/) {
             return *this;
         }
 };
@@ -62,7 +62,7 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
 

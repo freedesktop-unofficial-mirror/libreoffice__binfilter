@@ -659,9 +659,7 @@ void SwSectionFmt::MakeFrms()
 
 
     // alle Sections, die von dieser abgeleitet sind
-/*N*/ USHORT SwSectionFmt::GetChildSections( SwSections& rArr,
-/*N*/                                       SectionSort eSort,
-/*N*/                                       int bAllSections ) const
+/*N*/ USHORT SwSectionFmt::GetChildSections( SwSections& rArr,SectionSort /*eSort*/,int bAllSections ) const
 /*N*/ {
 /*N*/   rArr.Remove( 0, rArr.Count() );
 /*N*/
@@ -1134,8 +1132,7 @@ void SwSectionFmt::MakeFrms()
 
 
 
-/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd,
-/*N*/                                    xub_StrLen nStt, xub_StrLen nEnd ) const
+/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen nStt, xub_StrLen /*nEnd */) const
 /*N*/ {
 /*N*/   SwStartNode* pSttNd = rSectFmt.GetSectionNode( FALSE );
 /*N*/   return pSttNd &&

@@ -91,8 +91,8 @@ using namespace ::com::sun::star::lang;
                 folgenden aus.
 ------------------------------------------------------------------------*/
 
-/*M*/ void SwModule::ApplyUsrPref(const SwViewOption &rUsrPref, SwView* pActView,
-/*M*/                           sal_uInt16 nDest )
+/*M*/ void SwModule::ApplyUsrPref(const SwViewOption& /*rUsrPref*/, SwView* /*pActView*/,
+/*M*/                           sal_uInt16 /*nDest*/ )
 /*M*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*M*/ }
 /*-----------------05.02.97 08.03-------------------

@@ -199,7 +199,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 
 
-/*N*/ bool SwRotationGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwRotationGrf::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
@@ -207,7 +207,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/     return true;
 /*N*/ }
 
-/*N*/ bool SwRotationGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwRotationGrf::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
@@ -225,42 +225,42 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwLuminanceGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwLuminanceGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwLuminanceGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwContrastGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwContrastGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwContrastGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelRGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelRGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelRGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelGGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelGGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelGGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelBGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelBGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelBGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwGammaGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwGammaGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwGammaGrf( *this );
 /*N*/ }
@@ -271,33 +271,33 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/       nValue == ((SwGammaGrf&)rCmp).GetValue();
 /*N*/ }
 
-/*N*/ bool SwGammaGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwGammaGrf::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= nValue;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool SwGammaGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwGammaGrf::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   return rVal >>= nValue;
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwInvertGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwInvertGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwInvertGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwTransparencyGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwTransparencyGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwTransparencyGrf( *this );
 /*N*/ }
 // ------------------------------------------------------------------
 /*N*/ bool SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
-/*N*/                                       BYTE nMemberId  ) const
+/*N*/                                       BYTE /*nMemberId*/  ) const
 /*N*/ {
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
 /*N*/   sal_Int16 nRet = GetValue();
@@ -307,7 +307,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 // ------------------------------------------------------------------
 /*N*/ bool SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
-/*N*/                                       BYTE nMemberId  )
+/*N*/                                       BYTE /*nMemberId*/  )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
@@ -329,14 +329,14 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwDrawModeGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwDrawModeGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwDrawModeGrf( *this );
 /*N*/ }
 
 
 /*N*/ bool SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
-/*N*/                               BYTE nMemberId ) const
+/*N*/                               BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   drawing::ColorMode eRet = (drawing::ColorMode)GetEnumValue();
 /*N*/   rVal <<= eRet;
@@ -344,7 +344,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 
 /*N*/ bool SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
-/*N*/                               BYTE nMemberId  )
+/*N*/                               BYTE /*nMemberId*/  )
 /*N*/ {
 /*N*/   sal_Int32 eVal = SWUnoHelper::GetEnumAsInt32( rVal );
 /*N*/   if(eVal >= 0 && eVal <= GRAPHICDRAWMODE_WATERMARK)

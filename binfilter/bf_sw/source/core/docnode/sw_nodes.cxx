@@ -560,7 +560,7 @@ namespace binfilter {
 |*
 *******************************************************************/
 
-/*N*/ void SwNodes::GoStartOfSection(SwNodeIndex *pIdx) const
+/*N*/ void SwNodes::GoStartOfSection(SwNodeIndex* /*pIdx*/) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 

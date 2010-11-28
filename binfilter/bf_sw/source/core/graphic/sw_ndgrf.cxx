@@ -315,7 +315,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ SwCntntNode *SwGrfNode::SplitNode( const SwPosition &rPos )
+/*N*/ SwCntntNode *SwGrfNode::SplitNode( const SwPosition& /*rPos*/ )
 /*N*/ {
 /*?*/   return this;
 /*N*/ }

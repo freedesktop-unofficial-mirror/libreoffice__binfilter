@@ -1239,7 +1239,7 @@ namespace binfilter {
 /*N*/       const String&   rName,
 /*N*/       SfxStyleFamily  eFam,
 /*N*/       USHORT          nMask,
-/*N*/       USHORT          nPos )
+/*N*/       USHORT  /*nPos*/ )
 /*N*/ {
 /*N*/   aStyleSheet.PresetName(rName);
 /*N*/   aStyleSheet.PresetParent(aEmptyStr);
@@ -1266,8 +1266,8 @@ namespace binfilter {
 
 
 
-/*N*/ BOOL  SwDocStyleSheetPool::SetParent( SfxStyleFamily eFam,
-/*N*/                               const String &rStyle, const String &rParent )
+/*N*/ BOOL  SwDocStyleSheetPool::SetParent( SfxStyleFamily /*eFam*/,
+/*N*/                               const String& /*rStyle*/, const String& /*rParent*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
@@ -1683,7 +1683,7 @@ namespace binfilter {
 
 /*N*/ void SwStyleSheetIterator::AppendStyleList(const SvStringsDtor& rList,
 /*N*/                                           BOOL    bTestUsed,
-/*N*/                                           USHORT nSection, char cType )
+/*N*/                                           USHORT /*nSection*/, char cType )
 /*N*/ {
 /*N*/   if( bTestUsed )
 /*N*/   {

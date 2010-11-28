@@ -533,8 +533,8 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 // ---------- teilen / zusammenfassen von Boxen in der Tabelle --------
 
-/*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert, USHORT nCnt,
-/*N*/                       sal_Bool bSameHeight )
+/*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& /*rBoxes*/, sal_Bool /*bVert*/, USHORT /*nCnt*/,
+/*N*/                       sal_Bool /*bSameHeight*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
@@ -625,7 +625,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ }
 
 
-/*N*/ void SwTableNode::SetNewTable( SwTable* pNewTable, BOOL bNewFrames )
+/*N*/ void SwTableNode::SetNewTable( SwTable* /*pNewTable*/, BOOL /*bNewFrames*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
 /*N*/ }
