@@ -78,7 +78,7 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtSurround::Create( SvStream& rStrm, USHORT nVrs ) const
 /*N*/ {
-/*N*/   BYTE nType, bGold = 0, bAnch=0, bCont=0, bOutside = 0;
+/*N*/   BYTE nType, bGold = 0, bAnch=0, bCont=0, bOutside1 = 0;
 /*N*/   rStrm >> nType;
 /*N*/   if ( nVrs < 5 )
 /*N*/       rStrm >> bGold;
@@ -87,7 +87,7 @@ namespace binfilter {
 /*N*/   if ( nVrs > 2 )
 /*N*/       rStrm >> bCont;
 /*N*/   if ( nVrs > 3 )
-/*N*/       rStrm >> bOutside;
+/*N*/       rStrm >> bOutside1;
 /*N*/
 /*N*/   SwFmtSurround *pRet = new SwFmtSurround( (SwSurround) nType );
 /*N*/   if( bGold && SURROUND_NONE != (SwSurround)nType &&
@@ -95,7 +95,7 @@ namespace binfilter {
 /*N*/       pRet->SetSurround( SURROUND_IDEAL );
 /*N*/   pRet->SetAnchorOnly( BOOL(bAnch) );
 /*N*/   pRet->SetContour( BOOL(bCont) );
-/*N*/   pRet->SetOutside( BOOL(bOutside) );
+/*N*/   pRet->SetOutside( BOOL(bOutside1) );
 /*N*/   return pRet;
 /*N*/ }
 
@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/ SfxPoolItem* SwFmtHoriOrient::Create( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
 /*N*/   long nPos;
-/*N*/   BYTE nOrient, nRelation, bToggle = 0, bGrf = 0;
+/*N*/   BYTE nOrient, nRelation, bToggle = 0;
 /*N*/   rStrm >> nPos >> nOrient >> nRelation;
 /*N*/
 /*N*/   if( nIVer >= IVER_HORIORIENT_TOGGLE )
@@ -272,16 +272,16 @@ namespace binfilter {
 
 /*N*/ SfxPoolItem* SwFmtFrmSize::Create( SvStream& rStrm, USHORT nVersion ) const
 /*N*/ {
-/*N*/   BYTE nSizeType, nWidthPercent = 0, nHeightPercent = 0;
+/*N*/   BYTE nSizeType, nWidthPercent1 = 0, nHeightPercent1 = 0;
 /*N*/   INT32 nWidth, nHeight;
 /*N*/   rStrm >> nSizeType >> nWidth >> nHeight;
 /*N*/
 /*N*/   if ( nVersion > 1 )
-/*N*/       rStrm >> nWidthPercent >> nHeightPercent;
+/*N*/       rStrm >> nWidthPercent1 >> nHeightPercent1;
 /*N*/
 /*N*/   SwFmtFrmSize *pRet = new SwFmtFrmSize( (SwFrmSize) nSizeType, nWidth, nHeight );
-/*N*/   pRet->SetWidthPercent ( nWidthPercent );
-/*N*/   pRet->SetHeightPercent( nHeightPercent );
+/*N*/   pRet->SetWidthPercent ( nWidthPercent1 );
+/*N*/   pRet->SetHeightPercent( nHeightPercent1 );
 /*N*/   return pRet;
 /*N*/ }
 
@@ -337,12 +337,12 @@ namespace binfilter {
 /*N*/ SfxPoolItem* SwFmtCol::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   // Die Longs muessen runtergerechnet werden
-/*N*/   BYTE   nLineAdj, bOrtho, nLineHeight, nPenStyle;
+/*N*/   BYTE   nLineAdj, bOrtho1, nLineHeight1, nPenStyle;
 /*N*/   INT16  nGutterWidth, nPenWidth;
 /*N*/   UINT16 nWishWidth, nPenRed, nPenGreen, nPenBlue;
 /*N*/   rStrm >> nLineAdj
-/*N*/         >> bOrtho
-/*N*/         >> nLineHeight
+/*N*/         >> bOrtho1
+/*N*/         >> nLineHeight1
 /*N*/         >> nGutterWidth
 /*N*/         >> nWishWidth
 /*N*/         >> nPenStyle
@@ -366,10 +366,10 @@ namespace binfilter {
 /*N*/   {
 /*N*/       for( short i = 0; i < nCol; i++ )
 /*N*/       {
-/*N*/           UINT16 nWidth, nLeft, nUpper, nRight, nLower;
-/*N*/           rStrm >> nWidth >> nLeft >> nUpper >> nRight >> nLower;
+/*N*/           UINT16 nWidth1, nLeft, nUpper, nRight, nLower;
+/*N*/           rStrm >> nWidth1 >> nLeft >> nUpper >> nRight >> nLower;
 /*N*/           SwColumn* pCol = new SwColumn;
-/*N*/           pCol->SetWishWidth( nWidth );
+/*N*/           pCol->SetWishWidth( nWidth1 );
 /*N*/           pCol->SetLeft( nLeft );
 /*N*/           pCol->SetUpper( nUpper );
 /*N*/           pCol->SetRight( nRight );
@@ -385,7 +385,7 @@ namespace binfilter {
 /*N*/   // temporaerer Bug Fix
 /*N*/   if( nCol )
 /*N*/       // Wert direkt mit dem Silberhammer einschlagen.
-/*N*/       p->_SetOrtho( (BOOL) bOrtho );
+/*N*/       p->_SetOrtho( (BOOL) bOrtho1 );
 /*N*/   return p;
 /*N*/ }
 
@@ -424,22 +424,22 @@ namespace binfilter {
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
 /*N*/   ASSERT( pIo, "Reader/Writer not found" );
 /*N*/
-/*N*/   String sURL, sTargetFrameName, sName;
+/*N*/   String sURL1, sTargetFrameName1, sName1;
 /*N*/   BOOL bServerMap = FALSE;
 /*N*/
 /*N*/   SwFmtURL *pNew = new SwFmtURL;
 /*N*/
 /*N*/   if( pIo )
-/*N*/       pNew->SetMap( pIo->InImageMap( sURL, sTargetFrameName, bServerMap ) );
+/*N*/       pNew->SetMap( pIo->InImageMap( sURL1, sTargetFrameName1, bServerMap ) );
 /*N*/   if( nIVer>=1 )
-/*N*/       rStrm.ReadByteString( sName, rStrm.GetStreamCharSet() );
+/*N*/       rStrm.ReadByteString( sName1, rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   // fix #30592#: Boese Falle: Beim setzen einer URL wird eine Image-Map
 /*N*/   // wieder geloescht.
-/*N*/   if( sURL.Len() )
-/*N*/       pNew->SetURL( sURL, bServerMap );
-/*N*/   pNew->SetTargetFrameName( sTargetFrameName );
-/*N*/   pNew->SetName( sName );
+/*N*/   if( sURL1.Len() )
+/*N*/       pNew->SetURL( sURL1, bServerMap );
+/*N*/   pNew->SetTargetFrameName( sTargetFrameName1 );
+/*N*/   pNew->SetName( sName1 );
 /*N*/   return pNew;
 /*N*/ }
 
@@ -550,17 +550,17 @@ SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
 
     if( 0 < nVer )
     {
-        UINT16 nOffset, nFmtType;
-        String sPostfix, sSuffix;
-        rStrm >> nOffset
+        UINT16 nOffset1, nFmtType;
+        String sPostfix, sSuffix1;
+        rStrm >> nOffset1
               >> nFmtType;
         rStrm.ReadByteString( sPostfix, rStrm.GetStreamCharSet() );
-        rStrm.ReadByteString( sSuffix, rStrm.GetStreamCharSet() );
+        rStrm.ReadByteString( sSuffix1, rStrm.GetStreamCharSet() );
 
         pNew->SetNumType( (SvxExtNumType)nFmtType );
-        pNew->SetOffset( nOffset );
+        pNew->SetOffset( nOffset1 );
         pNew->SetPrefix( sPostfix );
-        pNew->SetSuffix( sSuffix );
+        pNew->SetSuffix( sSuffix1 );
     }
     return pNew;
 }
@@ -856,17 +856,17 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ SfxPoolItem* SwFmtDrop::Create( SvStream& rStrm, USHORT nVer ) const
 /*N*/ {
-/*N*/   UINT16 nLines, nChars, nDistance, nX, nY, nFmt;
+/*N*/   UINT16 nLines1, nChars1, nDistance1, nX, nY, nFmt;
 /*N*/   BYTE bWhole = 0;
-/*N*/   rStrm >> nFmt >> nLines >> nChars >> nDistance;
+/*N*/   rStrm >> nFmt >> nLines1 >> nChars1 >> nDistance1;
 /*N*/   if( nVer >= DROP_WHOLEWORD )
 /*N*/       rStrm >> bWhole;
 /*N*/   else
 /*N*/       rStrm >> nX >> nY;
 /*N*/   SwFmtDrop* pAttr = new SwFmtDrop;
-/*N*/   pAttr->GetLines() = (BYTE) nLines;
-/*N*/   pAttr->GetChars() = (BYTE) nChars;
-/*N*/   pAttr->GetDistance() = nDistance;
+/*N*/   pAttr->GetLines() = (BYTE) nLines1;
+/*N*/   pAttr->GetChars() = (BYTE) nChars1;
+/*N*/   pAttr->GetDistance() = nDistance1;
 /*N*/   pAttr->GetWholeWord() = (BOOL) bWhole;
 /*N*/   if( nFmt != IDX_NO_VALUE )
 /*N*/   {
@@ -890,7 +890,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ SvStream& SwFmtDrop::Store( SvStream& rStrm, USHORT nVer ) const
 /*N*/ {
 /*N*/   USHORT nFmt = IDX_NO_VALUE;
-/*N*/   USHORT nChars = GetWholeWord() ? 1 : GetChars();
+/*N*/   USHORT nChars1 = GetWholeWord() ? 1 : GetChars();
 /*N*/   const SwFmt* pFmt = GetCharFmt();
 /*N*/   if( pFmt )
 /*N*/   {
@@ -901,7 +901,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   }
 /*N*/   rStrm << (UINT16) nFmt
 /*N*/         << (UINT16) GetLines()
-/*N*/         << (UINT16) nChars
+/*N*/         << (UINT16) nChars1
 /*N*/         << (UINT16) GetDistance();
 /*N*/   if( nVer >= DROP_WHOLEWORD )
 /*N*/       rStrm << (BYTE) GetWholeWord();
