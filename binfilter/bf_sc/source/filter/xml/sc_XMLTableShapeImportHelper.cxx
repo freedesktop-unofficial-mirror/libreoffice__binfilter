@@ -78,7 +78,6 @@ void XMLTableShapeImportHelper::finishShape(
     static_cast<ScXMLImport&>(mrImporter).LockSolarMutex();
     if (rShapes == static_cast<ScXMLImport&>(mrImporter).GetTables().GetCurrentXShapes())
     {
-        Rectangle* pRect = NULL;
         sal_Int32 nEndX(-1);
         sal_Int32 nEndY(-1);
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
