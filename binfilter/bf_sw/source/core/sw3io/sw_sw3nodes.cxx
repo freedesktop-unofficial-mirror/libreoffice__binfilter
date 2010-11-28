@@ -650,24 +650,24 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   String& rNdText = (String &)rNd.GetTxt();
 /*N*/       String aText;
 /*N*/       ByteString aText8( rText8 );
-/*N*/       SvxFontItem aFontItem( rFont );
+/*N*/       SvxFontItem aFontItem1 ( rFont );
 /*N*/       if( pConvToSymbolFmts &&
-/*N*/           lcl_sw3io_isStarSymbolFontItem( aFontItem ) )
+/*N*/           lcl_sw3io_isStarSymbolFontItem( aFontItem1 ) )
 /*N*/       {
 /*?*/           BYTE nFlags = pConvToSymbolFmts->GetFlags( rNd.GetFmtColl() );
 /*?*/           if( (SW3IO_CONV_FROM_BATS & nFlags) != 0 )
 /*?*/           {
-/*?*/               aFontItem.GetFamilyName() = sStarBats;
-/*?*/               aFontItem.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
+/*?*/               aFontItem1.GetFamilyName() = sStarBats;
+/*?*/               aFontItem1.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
 /*?*/           }
 /*?*/           else if( (SW3IO_CONV_FROM_MATH & nFlags) != 0 )
 /*?*/           {
-/*?*/               aFontItem.GetFamilyName() = sStarMath;
-/*?*/               aFontItem.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
+/*?*/               aFontItem1.GetFamilyName() = sStarMath;
+/*?*/               aFontItem1.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
 /*?*/           }
 /*N*/       }
 /*N*/       ConvertText( aText8, aText, nOffset, rNd,
-/*N*/                              eSrcSet, aFontItem, 0, FALSE );
+/*N*/                              eSrcSet, aFontItem1, 0, FALSE );
 /*N*/       rNdText.Replace( nOffset, aText.Len(), aText );
 /*N*/       if( bNdSym &&
 /*N*/           SFX_ITEM_SET == rNd.GetSwAttrSet().GetItemState( RES_CHRATR_FONT,
@@ -676,12 +676,12 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/             rFont.GetFamilyName().EqualsIgnoreCaseAscii( sStarMath ) ) )
 /*N*/       {
 /*?*/           const Font& rSymbolFont = SwNumRule::GetDefBulletFont();
-/*?*/           SvxFontItem aFontItem( rSymbolFont.GetFamily(),
+/*?*/           SvxFontItem aFontItem2( rSymbolFont.GetFamily(),
 /*?*/                                  rSymbolFont.GetName(),
 /*?*/                                  rSymbolFont.GetStyleName(),
 /*?*/                                  rSymbolFont.GetPitch(),
 /*?*/                                  rSymbolFont.GetCharSet() );
-/*?*/           ((SwCntntNode&)rNd).SetAttr( aFontItem );
+/*?*/           ((SwCntntNode&)rNd).SetAttr( aFontItem2 );
 /*N*/       }
 /*N*/
 /*N*/   if( pEncs )
@@ -1370,7 +1370,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       {
 /*N*/           // Der Hint liegt zumindest teilweise im Text
 /*N*/           const SfxPoolItem& rAttr = pHt->GetAttr();
-/*N*/           BOOL bInsert = FALSE, bSplit = FALSE;
+/*N*/           BOOL bInsert1 = FALSE, bSplit = FALSE;
 /*N*/
 /*N*/           USHORT nWhich = rAttr.Which();
 /*N*/           switch( nWhich )
@@ -1385,7 +1385,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/                       // das SwFmtINetFmt ist auf dem Top-Level
 /*N*/                       nINetFmtStart = nHtStart;
 /*N*/                       nINetFmtEnd = nHtEnd;
-/*N*/                       bInsert = TRUE;
+/*N*/                       bInsert1 = TRUE;
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
@@ -1413,7 +1413,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               {
 /*N*/                   // das Attribut beginnt erst hinter einen SwFmtINetFmt
 /*N*/                   // oder spannt exakt den gleichen Bereich auf
-/*N*/                   bInsert = TRUE;
+/*N*/                   bInsert1 = TRUE;
 /*N*/               }
 /*N*/               else if( RES_TXTATR_NOEND_BEGIN <= nWhich &&
 /*N*/                        RES_TXTATR_NOEND_END > nWhich )
@@ -1424,7 +1424,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               break;
 /*N*/           }
 /*N*/
-/*N*/           if( bInsert )
+/*N*/           if( bInsert1 )
 /*N*/           {
 /*N*/               // das Item als letztes an seiner Start-Position beginnen,
 /*N*/               // aber in jedem Fall vor einem SwFmtINetFmt
@@ -1638,7 +1638,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 // SWG_WRONGLIST Liste falscher Worte (opt)
 
 /*N*/ void Sw3IoImp::OutTxtNode
-/*N*/ ( SwCntntNode & rNode, xub_StrLen nStart, xub_StrLen nEnd, ULONG nPosIdx )
+/*N*/ ( SwCntntNode & rNode, xub_StrLen nStart, xub_StrLen nEnd1, ULONG nPosIdx )
 /*N*/ {
 /*N*/   SwTxtNode *pNd  = &((SwTxtNode&) rNode );
 /*N*/   const SwFmtColl* pColl = &pNd->GetAnyFmtColl();
@@ -1824,24 +1824,24 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   }
 /*N*/ #endif
 /*N*/
-/*N*/   if( (nEnd == STRING_LEN ? pNd->GetTxt().Len() : nEnd) > STRING_MAXLEN52 )
-/*N*/       nEnd = STRING_MAXLEN52;
+/*N*/   if( (nEnd1 == STRING_LEN ? pNd->GetTxt().Len() : nEnd1) > STRING_MAXLEN52 )
+/*N*/       nEnd1 = STRING_MAXLEN52;
 /*N*/
 /*N*/   SwInsHardBlankSoftHyph aHBSH;
 /*N*/
 /*N*/   String aText;
 /*N*/   Sw3ExportTxtAttrs *pExpInfo = IsSw31Export()
-/*N*/           ? ExportTxtNode( *pNd, nStart, nEnd, eSrcSet, aHBSH )
+/*N*/           ? ExportTxtNode( *pNd, nStart, nEnd1, eSrcSet, aHBSH )
 /*N*/           : 0;
 /*N*/
 /*N*/   ByteString aText8;
 /*N*/   if( !pExpInfo )
 /*N*/   {
 /*N*/       aText = pNd->GetTxt();
-/*N*/       if( nEnd == STRING_LEN || nEnd < nStart )
-/*N*/           nEnd = aText.Len();
-/*N*/       else if ( nEnd != aText.Len() )
-/*?*/           aText.Erase( nEnd );
+/*N*/       if( nEnd1 == STRING_LEN || nEnd1 < nStart )
+/*N*/           nEnd1 = aText.Len();
+/*N*/       else if ( nEnd1 != aText.Len() )
+/*?*/           aText.Erase( nEnd1 );
 /*N*/       if( nStart )
 /*?*/           aText.Erase( 0, nStart );
 /*N*/       const SvxFontItem& rFont = pNd->GetSwAttrSet().GetFont();
@@ -1869,15 +1869,15 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   // noch die zeichengebunden Zeichen-Objekte als abstzgebundene Objekte
 /*N*/   OutNodeFlyFrames( nPosIdx );
 /*N*/   if( pExpInfo && pExpInfo->nDrawFrmFmts )
-            ExportNodeDrawFrmFmts( *pNd, nStart, nEnd, pExpInfo->nDrawFrmFmts );
+            ExportNodeDrawFrmFmts( *pNd, nStart, nEnd1, pExpInfo->nDrawFrmFmts );
 /*N*/
 /*N*/   // Beim SW31-Export evtl. die "umgebauten" Hints ausgeben, sonst die
 /*N*/   // Original-Hints
 /*N*/   if( pExpInfo )
-/*N*/       ExportTxtAttrs( pExpInfo, nStart, nEnd );
+/*N*/       ExportTxtAttrs( pExpInfo, nStart, nEnd1 );
 /*N*/   else if( ((SwTxtNode&)rNode).HasHints() )
-/*N*/       OutTxtAttrs( *pNd, nStart, nEnd );
-/*N*/   aHBSH.OutAttr( *this, nStart, nEnd );
+/*N*/       OutTxtAttrs( *pNd, nStart, nEnd1 );
+/*N*/   aHBSH.OutAttr( *this, nStart, nEnd1 );
 /*N*/
 /*N*/   // Evtl. noch die neue Numerierungsregel (3.1/4.0) oder die
 /*N*/   // SwNodeNum-Struktor (5.0 ff) ausgeben
@@ -1900,11 +1900,11 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       // der Header
 /*N*/       cFlags = 0x04;  // 4 Bytes Daten
 /*N*/       xub_StrLen nBegin = pWrong->GetBeginInv();
-/*N*/       xub_StrLen nEnd = pWrong->GetEndInv();
+/*N*/       xub_StrLen nEnd2 = pWrong->GetEndInv();
 /*N*/
 /*N*/       *pStrm << cFlags
 /*N*/              << (UINT16)nBegin
-/*N*/              << (UINT16)nEnd;
+/*N*/              << (UINT16)nEnd2;
 /*N*/
 /*N*/       // nun die eigentliche Liste
 /*N*/       OpenValuePos16( 0 );
