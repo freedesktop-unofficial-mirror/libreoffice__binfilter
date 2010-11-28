@@ -1900,12 +1900,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       // der Header
 /*N*/       cFlags = 0x04;  // 4 Bytes Daten
 /*N*/       xub_StrLen nBegin = pWrong->GetBeginInv();
-/*N*/       if( nBegin > STRING_MAXLEN52 )
-/*N*/           nBegin = STRING_MAXLEN52;
-/*N*/
 /*N*/       xub_StrLen nEnd = pWrong->GetEndInv();
-/*N*/       if( nEnd > STRING_MAXLEN52 )
-/*N*/           nEnd = STRING_MAXLEN52;
 /*N*/
 /*N*/       *pStrm << cFlags
 /*N*/              << (UINT16)nBegin
