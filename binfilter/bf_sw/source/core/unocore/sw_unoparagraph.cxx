@@ -315,23 +315,23 @@ Sequence< Any > SwXParagraph::getPropertyValues(
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::addPropertiesChangeListener(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /* -----------------------------02.04.01 11:43--------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::removePropertiesChangeListener(
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /* -----------------------------02.04.01 11:43--------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::firePropertiesChangeEvent(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /* -----------------------------12.09.00 11:09--------------------------------
@@ -371,8 +371,8 @@ BOOL SwXParagraph::getDefaultTextContentValue(Any& rAny, const OUString& rProper
 
   -----------------------------------------------------------------------*/
 void SwXParagraph::addPropertyChangeListener(
-    const OUString& PropertyName,
-    const uno::Reference< beans::XPropertyChangeListener > & aListener)
+    const OUString& /*PropertyName*/,
+    const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -380,21 +380,26 @@ void SwXParagraph::addPropertyChangeListener(
 /*-- 11.12.98 08:12:50---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXParagraph::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXParagraph::removePropertyChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 08:12:50---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXParagraph::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXParagraph::addVetoableChangeListener(const OUString& /*PropertyName*/,
+        const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 08:12:51---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXParagraph::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener)
+void SwXParagraph::removeVetoableChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -617,7 +622,7 @@ uno::Any SwXParagraph::getPropertyDefault(const OUString& rPropertyName)
 /*-- 11.12.98 08:12:51---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXParagraph::attach(const uno::Reference< XTextRange > & xTextRange)
+void SwXParagraph::attach(const uno::Reference< XTextRange > & /*xTextRange*/)
                     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
     SolarMutexGuard aGuard;

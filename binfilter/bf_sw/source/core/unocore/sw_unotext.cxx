@@ -1143,7 +1143,7 @@ uno::Reference< beans::XPropertySetInfo > SwXText::getPropertySetInfo(  )
 /*-- 15.03.2002 12:30:42---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXText::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
+void SwXText::setPropertyValue( const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException,
     lang::IllegalArgumentException, lang::WrappedTargetException,
     uno::RuntimeException)
@@ -1209,8 +1209,8 @@ uno::Any SwXText::getPropertyValue(
 
   -----------------------------------------------------------------------*/
 void SwXText::addPropertyChangeListener(
-    const ::rtl::OUString& aPropertyName,
-    const uno::Reference< beans::XPropertyChangeListener >& xListener )
+    const ::rtl::OUString& /*aPropertyName*/,
+    const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
         throw(beans::UnknownPropertyException, lang::WrappedTargetException,
         uno::RuntimeException)
 {
@@ -1220,8 +1220,8 @@ void SwXText::addPropertyChangeListener(
 
   -----------------------------------------------------------------------*/
 void SwXText::removePropertyChangeListener(
-    const ::rtl::OUString& aPropertyName,
-    const uno::Reference< beans::XPropertyChangeListener >& aListener )
+    const ::rtl::OUString& /*aPropertyName*/,
+    const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
         throw(beans::UnknownPropertyException, lang::WrappedTargetException,
             uno::RuntimeException)
 {
@@ -1231,8 +1231,8 @@ void SwXText::removePropertyChangeListener(
 
   -----------------------------------------------------------------------*/
 void SwXText::addVetoableChangeListener(
-    const ::rtl::OUString& PropertyName,
-    const uno::Reference< beans::XVetoableChangeListener >& aListener )
+    const ::rtl::OUString& /*PropertyName*/,
+    const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
         throw(beans::UnknownPropertyException, lang::WrappedTargetException,
         uno::RuntimeException)
 {
@@ -1242,8 +1242,8 @@ void SwXText::addVetoableChangeListener(
 
   -----------------------------------------------------------------------*/
 void SwXText::removeVetoableChangeListener(
-    const ::rtl::OUString& PropertyName,
-    const uno::Reference< beans::XVetoableChangeListener >& aListener )
+    const ::rtl::OUString& /*PropertyName*/,
+    const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
         throw(beans::UnknownPropertyException, lang::WrappedTargetException,
         uno::RuntimeException)
 {

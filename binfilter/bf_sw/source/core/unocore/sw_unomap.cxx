@@ -2321,17 +2321,10 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
     }
     return aMapArr[nPropertyId];
 }
-/* -----------------04.07.98 11:42-------------------
- *
- * --------------------------------------------------*/
-sal_Bool SwItemPropertySet::FillItem(SfxItemSet& rSet, sal_uInt16 nWhich, sal_Bool bGetProperty) const
+
+sal_Bool SwItemPropertySet::FillItem(SfxItemSet& /*rSet*/, sal_uInt16 /*nWhich*/, sal_Bool /*bGetProperty*/) const
 {
     sal_Bool bRet = sal_False;
-/*  if(nWhich == SID_ATTR_PAGE_PAPERBIN)
-    {
-        rSet.Put(SvxPaperBinItem(SID_ATTR_PAGE_PAPERBIN, 0));
-        bRet = sal_True;
-    }*/
     return bRet;
 }
 }

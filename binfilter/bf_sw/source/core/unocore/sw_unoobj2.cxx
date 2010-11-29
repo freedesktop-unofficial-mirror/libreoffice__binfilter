@@ -1934,7 +1934,7 @@ Any SAL_CALL SwXTextRange::getPropertyValue( const OUString& rPropertyName )
 
   -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::addPropertyChangeListener(
-    const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener )
+    const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
@@ -1943,7 +1943,7 @@ void SAL_CALL SwXTextRange::addPropertyChangeListener(
 
   -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::removePropertyChangeListener(
-    const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
+    const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
@@ -1952,7 +1952,7 @@ void SAL_CALL SwXTextRange::removePropertyChangeListener(
 
   -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::addVetoableChangeListener(
-    const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
+    const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
@@ -1961,7 +1961,7 @@ void SAL_CALL SwXTextRange::addVetoableChangeListener(
 
   -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::removeVetoableChangeListener(
-    const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
+    const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");

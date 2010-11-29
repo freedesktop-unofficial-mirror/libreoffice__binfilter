@@ -2333,8 +2333,8 @@ Sequence< Any > SwXStyle::getPropertyValues(
 /*-- 18.04.01 13:07:29---------------------------------------------------
   -----------------------------------------------------------------------*/
 void SwXStyle::addPropertiesChangeListener(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
@@ -2342,7 +2342,7 @@ void SwXStyle::addPropertiesChangeListener(
 
   -----------------------------------------------------------------------*/
 void SwXStyle::removePropertiesChangeListener(
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
@@ -2350,8 +2350,8 @@ void SwXStyle::removePropertiesChangeListener(
 
   -----------------------------------------------------------------------*/
 void SwXStyle::firePropertiesChangeEvent(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
@@ -2382,8 +2382,8 @@ Any SwXStyle::getPropertyValue(const OUString& rPropertyName)
 /*-- 17.12.98 08:26:53---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXStyle::addPropertyChangeListener(const OUString& PropertyName,
-    const Reference< XPropertyChangeListener > & aListener)
+void SwXStyle::addPropertyChangeListener(const OUString& /*PropertyName*/,
+    const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -2391,8 +2391,8 @@ void SwXStyle::addPropertyChangeListener(const OUString& PropertyName,
 /*-- 17.12.98 08:26:54---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXStyle::removePropertyChangeListener(const OUString& PropertyName,
-    const Reference< XPropertyChangeListener > & aListener)
+void SwXStyle::removePropertyChangeListener(const OUString& /*PropertyName*/,
+    const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -2400,8 +2400,8 @@ void SwXStyle::removePropertyChangeListener(const OUString& PropertyName,
 /*-- 17.12.98 08:26:54---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXStyle::addVetoableChangeListener(const OUString& PropertyName,
-    const Reference< XVetoableChangeListener > & aListener)
+void SwXStyle::addVetoableChangeListener(const OUString& /*PropertyName*/,
+    const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -2409,8 +2409,8 @@ void SwXStyle::addVetoableChangeListener(const OUString& PropertyName,
 /*-- 17.12.98 08:26:54---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXStyle::removeVetoableChangeListener(const OUString& PropertyName,
-    const Reference< XVetoableChangeListener > & aListener)
+void SwXStyle::removeVetoableChangeListener(const OUString& /*PropertyName*/,
+    const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");

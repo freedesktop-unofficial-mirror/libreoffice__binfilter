@@ -544,26 +544,26 @@ Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
 }
 
 void SwXRedline::addPropertyChangeListener(
-    const OUString& aPropertyName,
-    const Reference< XPropertyChangeListener >& xListener )
+    const OUString& /*aPropertyName*/,
+    const Reference< XPropertyChangeListener >& /*xListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
 void SwXRedline::removePropertyChangeListener(
-    const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
+    const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
 void SwXRedline::addVetoableChangeListener(
-    const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
+    const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
 void SwXRedline::removeVetoableChangeListener(
-    const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
+    const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
@@ -643,7 +643,7 @@ Reference< XTextCursor >  SwXRedline::createTextCursor(void) throw( RuntimeExcep
 }
 
 Reference< XTextCursor >  SwXRedline::createTextCursorByRange(
-    const Reference< XTextRange > & aTextPosition)
+    const Reference< XTextRange > & /*aTextPosition*/)
         throw( RuntimeException )
 {
     throw RuntimeException();

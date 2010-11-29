@@ -497,31 +497,31 @@ Sequence< Any > SwXTextPortion::getPropertyValues(
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::addPropertiesChangeListener(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /* -----------------------------02.04.01 11:44--------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::removePropertiesChangeListener(
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /* -----------------------------02.04.01 11:44--------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::firePropertiesChangeEvent(
-    const Sequence< OUString >& aPropertyNames,
-    const Reference< XPropertiesChangeListener >& xListener )
+    const Sequence< OUString >& /*aPropertyNames*/,
+    const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
 /*-- 11.12.98 09:56:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextPortion::addPropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference< XPropertyChangeListener > & aListener)
+    const OUString& /*PropertyName*/,
+    const Reference< XPropertyChangeListener > & /*aListener*/)
         throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -529,21 +529,27 @@ void SwXTextPortion::addPropertyChangeListener(
 /*-- 11.12.98 09:56:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextPortion::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextPortion::removePropertyChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 09:56:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextPortion::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextPortion::addVetoableChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 11.12.98 09:56:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextPortion::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextPortion::removeVetoableChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
@@ -627,7 +633,7 @@ uno::Any SwXTextPortion::getPropertyDefault(const OUString& rPropertyName)
 /*-- 11.12.98 09:56:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-OUString SwXTextPortion::getPresentation(sal_Bool bShowCommand) throw( uno::RuntimeException )
+OUString SwXTextPortion::getPresentation(sal_Bool /*bShowCommand*/) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     SwUnoCrsr* pUnoCrsr = ((SwXTextPortion*)this)->GetCrsr();
@@ -644,7 +650,7 @@ OUString SwXTextPortion::getPresentation(sal_Bool bShowCommand) throw( uno::Runt
 /*-- 11.12.98 09:56:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextPortion::attach(const uno::Reference< XTextRange > & xTextRange)
+void SwXTextPortion::attach(const uno::Reference< XTextRange > & /*xTextRange*/)
     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -703,7 +709,7 @@ void SwXTextPortion::removeEventListener(const uno::Reference< lang::XEventListe
 /* -----------------24.03.99 13:30-------------------
  *
  * --------------------------------------------------*/
-uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumeration(const OUString& aServiceName)
+uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumeration(const OUString& /*aServiceName*/)
         throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
