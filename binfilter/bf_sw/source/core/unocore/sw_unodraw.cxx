@@ -1285,7 +1285,8 @@ Any SwXShape::getPropertyDefault( const OUString& rPropertyName )
     return aRet;
 }
 
-void SwXShape::addPropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXShape::addPropertyChangeListener(const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
@@ -1298,12 +1299,14 @@ void SwXShape::removePropertyChangeListener(
     DBG_WARNING("not implemented");
 }
 
-void SwXShape::addVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXShape::addVetoableChangeListener(const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 
-void SwXShape::removeVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXShape::removeVetoableChangeListener(const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }

@@ -2010,28 +2010,36 @@ Any SwXTextCursor::getPropertyValue(const OUString& rPropertyName)
 /*-- 09.12.98 14:18:55---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextCursor::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextCursor::addPropertyChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 09.12.98 14:18:57---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextCursor::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< beans::XPropertyChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextCursor::removePropertyChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 09.12.98 14:18:57---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextCursor::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextCursor::addVetoableChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 09.12.98 14:18:58---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextCursor::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXTextCursor::removeVetoableChangeListener(
+        const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
+    throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }

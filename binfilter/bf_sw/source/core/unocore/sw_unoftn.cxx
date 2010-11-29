@@ -553,32 +553,32 @@ Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
 /*-- 11.09.00 13:12:04---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFootnote::addPropertyChangeListener( const OUString& aPropertyName,
-    const Reference< XPropertyChangeListener >& xListener )
+void SwXFootnote::addPropertyChangeListener( const OUString& /*aPropertyName*/,
+    const Reference< XPropertyChangeListener >& /*xListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 /*-- 11.09.00 13:12:04---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFootnote::removePropertyChangeListener( const OUString& aPropertyName,
-    const Reference< XPropertyChangeListener >& aListener )
+void SwXFootnote::removePropertyChangeListener( const OUString& /*aPropertyName*/,
+    const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 /*-- 11.09.00 13:12:04---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFootnote::addVetoableChangeListener( const OUString& PropertyName,
-    const Reference< XVetoableChangeListener >& aListener )
+void SwXFootnote::addVetoableChangeListener( const OUString& /*PropertyName*/,
+    const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 /*-- 11.09.00 13:12:05---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFootnote::removeVetoableChangeListener( const OUString& PropertyName,
-    const Reference< XVetoableChangeListener >& aListener )
+void SwXFootnote::removeVetoableChangeListener( const OUString& /*PropertyName*/,
+    const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }

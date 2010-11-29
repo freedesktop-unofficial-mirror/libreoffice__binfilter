@@ -886,28 +886,32 @@ uno::Any SwXFieldMaster::getPropertyValue(const OUString& rPropertyName)
 /*-- 14.12.98 11:08:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFieldMaster::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXFieldMaster::addPropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:08:36---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFieldMaster::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXFieldMaster::removePropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:08:37---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFieldMaster::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXFieldMaster::addVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:08:37---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXFieldMaster::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXFieldMaster::removeVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
@@ -2066,28 +2070,32 @@ uno::Any SwXTextField::getPropertyValue(const OUString& rPropertyName)
 /*-- 14.12.98 11:37:20---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextField::addPropertyChangeListener(const OUString& PropertyName, const uno::Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXTextField::addPropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:37:20---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextField::removePropertyChangeListener(const OUString& PropertyName, const uno::Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXTextField::removePropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:37:20---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextField::addVetoableChangeListener(const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXTextField::addVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 11:37:20---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXTextField::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
+void SwXTextField::removeVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }

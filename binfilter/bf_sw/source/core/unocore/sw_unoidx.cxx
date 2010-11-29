@@ -988,28 +988,36 @@ uno::Any SwXDocumentIndex::getPropertyValue(const OUString& rPropertyName)
 /*-- 14.12.98 09:35:06---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndex::addPropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndex::addPropertyChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 09:35:06---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndex::removePropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndex::removePropertyChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 09:35:06---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndex::addVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndex::addVetoableChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 09:35:07---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndex::removeVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndex::removeVetoableChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
@@ -1888,28 +1896,36 @@ uno::Any SwXDocumentIndexMark::getPropertyValue(const OUString& rPropertyName)
 /*-- 14.12.98 10:25:46---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndexMark::addPropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndexMark::addPropertyChangeListener(
+      const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 10:25:46---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndexMark::removePropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndexMark::removePropertyChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 10:25:47---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndexMark::addVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndexMark::addVetoableChangeListener(
+       const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 /*-- 14.12.98 10:25:47---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwXDocumentIndexMark::removeVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXDocumentIndexMark::removeVetoableChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }

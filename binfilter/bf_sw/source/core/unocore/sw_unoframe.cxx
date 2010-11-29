@@ -1460,29 +1460,29 @@ uno::Any SwXFrame::getPropertyValue(const OUString& rPropertyName)
     return aAny;
 }
 
-void SwXFrame::addPropertyChangeListener(const OUString& PropertyName,
-    const uno::Reference< XPropertyChangeListener > & aListener)
+void SwXFrame::addPropertyChangeListener(const OUString& /*PropertyName*/,
+    const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 
-void SwXFrame::removePropertyChangeListener(const OUString& PropertyName,
-    const uno::Reference< XPropertyChangeListener > & aListener)
+void SwXFrame::removePropertyChangeListener(const OUString& /*PropertyName*/,
+    const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 
-void SwXFrame::addVetoableChangeListener(const OUString& PropertyName,
-                                const uno::Reference< XVetoableChangeListener > & aListener)
+void SwXFrame::addVetoableChangeListener(const OUString& /*PropertyName*/,
+                                const uno::Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 
 void SwXFrame::removeVetoableChangeListener(
-    const OUString& PropertyName, const uno::Reference< XVetoableChangeListener > & aListener)
+    const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
         throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
@@ -2026,7 +2026,7 @@ awt::Point SwXFrame::getPosition(void) throw( RuntimeException )
     return awt::Point();
 }
 
-void SwXFrame::setPosition(const awt::Point& aPosition) throw( RuntimeException )
+void SwXFrame::setPosition(const awt::Point& /*aPosition*/) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     RuntimeException aRuntime;

@@ -275,7 +275,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXBookmark::getPropertySetInfo(void)
     return aRef;
 }
 
-void SwXBookmark::setPropertyValue(const OUString& PropertyName, const uno::Any& aValue)
+void SwXBookmark::setPropertyValue(const OUString& PropertyName, const uno::Any& /*aValue*/)
     throw( beans::UnknownPropertyException, beans::PropertyVetoException,
         lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -294,25 +294,26 @@ uno::Any SwXBookmark::getPropertyValue(const OUString& rPropertyName) throw( bea
     return aRet;
 }
 
-void SwXBookmark::addPropertyChangeListener(const OUString& PropertyName,
-    const uno::Reference< beans::XPropertyChangeListener > & aListener)
+void SwXBookmark::addPropertyChangeListener(const OUString& /*PropertyName*/,
+    const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
 
-void SwXBookmark::removePropertyChangeListener(const OUString& PropertyName,
-    const uno::Reference< beans::XPropertyChangeListener > & aListener)
+void SwXBookmark::removePropertyChangeListener(const OUString& /*PropertyName*/,
+    const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
             throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
 
-void SwXBookmark::addVetoableChangeListener(const OUString& PropertyName,
-    const uno::Reference< beans::XVetoableChangeListener > & aListener)
+void SwXBookmark::addVetoableChangeListener(const OUString& /*PropertyName*/,
+    const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
             throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
 
-void SwXBookmark::removeVetoableChangeListener(const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener > & aListener) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
+void SwXBookmark::removeVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/) throw(
+beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
 }
 

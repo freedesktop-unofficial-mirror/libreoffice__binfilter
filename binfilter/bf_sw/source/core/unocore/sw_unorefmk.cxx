@@ -337,7 +337,7 @@ Reference< XPropertySetInfo > SwXReferenceMark::getPropertySetInfo(  ) throw(Run
 }
 
 void SwXReferenceMark::setPropertyValue(
-    const OUString& aPropertyName, const Any& aValue )
+    const OUString& /*aPropertyName*/, const Any& /*aValue*/ )
         throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
     throw IllegalArgumentException();
@@ -353,25 +353,25 @@ Any SwXReferenceMark::getPropertyValue( const OUString& rPropertyName )
 }
 
 void SwXReferenceMark::addPropertyChangeListener(
-    const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener )
+    const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ )
             throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
 void SwXReferenceMark::removePropertyChangeListener(
-    const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener )
+    const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ )
             throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SwXReferenceMark::addVetoableChangeListener( const OUString& PropertyName,
-    const Reference< XVetoableChangeListener >& aListener )
+void SwXReferenceMark::addVetoableChangeListener( const OUString& /*PropertyName*/,
+    const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
 void SwXReferenceMark::removeVetoableChangeListener(
-    const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener )
+    const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
