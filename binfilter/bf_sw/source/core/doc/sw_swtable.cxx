@@ -588,7 +588,7 @@ namespace binfilter {
 /*N*/   pImpl( 0 ),
 /*N*/   pSttNd( &rSttNd )
 /*N*/ {
-/*N*/   SwDoc* pDoc = pFmt->GetDoc();
+/*N*/   pFmt->GetDoc();
 /*N*/   CheckBoxFmt( pFmt )->Add( this );
 /*N*/
 /*N*/   // an der Table eintragen
@@ -864,13 +864,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !IsModifyLocked() && !IsInDocDTOR() )
 /*N*/   {
-/*N*/       const SwTblBoxNumFormat *pNewFmt = 0, *pOldFmt = 0;
-/*N*/       const SwTblBoxFormula *pNewFml = 0, *pOldFml = 0;
-/*N*/       const SwTblBoxValue *pNewVal = 0, *pOldVal = 0;
+/*N*/       const SwTblBoxNumFormat *pNewFmt = 0;
+/*N*/       const SwTblBoxFormula *pNewFml = 0;
+/*N*/       const SwTblBoxValue *pNewVal = 0;
 /*N*/       double aOldValue = 0;
 /*N*/       ULONG nOldFmt = NUMBERFORMAT_TEXT;
-/*N*/
-/*N*/       SwAttrSetChg *pNewChgSet = 0,  *pOldChgSet = 0;
 /*N*/
 /*N*/       switch( pNew ? pNew->Which() : 0 )
 /*N*/       {
@@ -885,7 +883,7 @@ namespace binfilter {
 /*N*/                                   (const SfxPoolItem**)&pNewFml );
 /*N*/               if( SFX_ITEM_SET == rSet.GetItemState( RES_BOXATR_VALUE,
 /*N*/                                   FALSE, (const SfxPoolItem**)&pNewVal ) )
-/*N*/                   aOldValue = ((SwTblBoxValue&)((SwAttrSetChg*)pOld)->
+/*N*/                   ((SwTblBoxValue&)((SwAttrSetChg*)pOld)->
 /*N*/                           GetChgSet()->Get( RES_BOXATR_VALUE )).GetValue();
 /*N*/           }
 /*N*/           break;
@@ -899,7 +897,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       case RES_BOXATR_VALUE:
 /*N*/           pNewVal = (SwTblBoxValue*)pNew;
-/*N*/           aOldValue = ((SwTblBoxValue*)pOld)->GetValue();
+/*N*/           ((SwTblBoxValue*)pOld)->GetValue();
 /*N*/           break;
 /*N*/       }
 /*N*/
