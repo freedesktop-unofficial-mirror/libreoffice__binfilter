@@ -115,7 +115,6 @@ Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
     SolarMutexGuard aGuard;
     if(!IsValid())
         throw uno::RuntimeException();
-    const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
     return Reference< XEnumeration >(new SwXRedlineEnumeration(*GetDoc()));
 }
 /*-- 11.01.01 15:28:55---------------------------------------------------
