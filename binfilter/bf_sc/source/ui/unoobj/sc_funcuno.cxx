@@ -433,7 +433,7 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
         {
             //  #87871# accept integer types because Basic passes a floating point
             //  variable as byte, short or long if it's an integer number.
-            double fVal;
+            double fVal(0.0);
             rArg >>= fVal;
             aTokenArr.AddDouble( fVal );
         }
@@ -586,7 +586,7 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
                         {
                             //  #87871# accept integer types because Basic passes a floating point
                             //  variable as byte, short or long if it's an integer number.
-                            double fVal;
+                            double fVal(0.0);
                             rElement >>= fVal;
                             pDoc->SetValue( (USHORT) nCol, (USHORT) nDocRow, 0, fVal );
                         }
