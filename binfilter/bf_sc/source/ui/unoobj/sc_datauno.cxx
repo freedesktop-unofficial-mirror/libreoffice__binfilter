@@ -212,16 +212,16 @@ void ScImportDescriptor::FillProperties( uno::Sequence<beans::PropertyValue>& rS
             eMode = sheet::DataImportMode_TABLE;        // Type ist immer ScDbQuery oder ScDbTable
     }
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_DBNAME );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_DBNAME ));
     pArray[0].Value <<= ::rtl::OUString( rParam.aDBName );
 
-    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_SRCTYPE );
+    pArray[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_SRCTYPE ));
     pArray[1].Value <<= eMode;
 
-    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_SRCOBJ );
+    pArray[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_SRCOBJ ));
     pArray[2].Value <<= ::rtl::OUString( rParam.aStatement );
 
-    pArray[3].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_NATIVE );
+    pArray[3].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_NATIVE ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[3].Value, rParam.bNative );
 }
 
@@ -327,31 +327,31 @@ void ScSortDescriptor::FillProperties( uno::Sequence<beans::PropertyValue>& rSeq
 
     //  Sequence fuellen
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ISSORTCOLUMNS );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_ISSORTCOLUMNS ));
     pArray[0].Value = ::cppu::bool2any(!rParam.bByRow);
 
-    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_CONTHDR );
+    pArray[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_CONTHDR ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[1].Value, rParam.bHasHeader );
 
-    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_MAXFLD );
+    pArray[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_MAXFLD ));
     pArray[2].Value <<= (sal_Int32) MAXSORT;
 
-    pArray[3].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_SORTFLD );
+    pArray[3].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_SORTFLD ));
     pArray[3].Value <<= aFields;
 
-    pArray[4].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_BINDFMT );
+    pArray[4].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_BINDFMT ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[4].Value, rParam.bIncludePattern );
 
-    pArray[5].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_COPYOUT );
+    pArray[5].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_COPYOUT ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[5].Value, !rParam.bInplace );
 
-    pArray[6].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_OUTPOS );
+    pArray[6].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_OUTPOS ));
     pArray[6].Value <<= aOutPos;
 
-    pArray[7].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ISULIST );
+    pArray[7].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_ISULIST ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[7].Value, rParam.bUserDef );
 
-    pArray[8].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_UINDEX );
+    pArray[8].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_UINDEX ));
     pArray[8].Value <<= (sal_Int32) rParam.nUserIndex;
 }
 
@@ -1872,7 +1872,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScDatabaseRangeObj::getSupportedService
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCDATABASERANGEOBJ_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDATABASERANGEOBJ_SERVICE ));
     return aRet;
 }
 

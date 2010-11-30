@@ -1094,9 +1094,9 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScModelObj::getSupportedServiceNames()
 {
     uno::Sequence< ::rtl::OUString> aRet(3);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCMODELOBJ_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCDOCSETTINGS_SERVICE );
-    pArray[2] = ::rtl::OUString::createFromAscii( SCDOC_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCMODELOBJ_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDOCSETTINGS_SERVICE ));
+    pArray[2] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDOC_SERVICE ));
     return aRet;
 }
 

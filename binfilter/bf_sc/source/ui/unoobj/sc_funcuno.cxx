@@ -235,7 +235,7 @@ uno::Sequence< ::rtl::OUString> ScFunctionAccess::getSupportedServiceNames_Stati
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONACCESS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFUNCTIONACCESS_SERVICE ));
     return aRet;
 }
 
@@ -259,8 +259,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionAccess::getSupportedServiceNa
 {
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONACCESS_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCDOCSETTINGS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFUNCTIONACCESS_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDOCSETTINGS_SERVICE ));
     return aRet;
 }
 

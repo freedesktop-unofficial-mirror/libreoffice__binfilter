@@ -860,8 +860,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellFieldObj::getSupportedServiceName
 {
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCTEXTFIELD_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCTEXTCONTENT_SERVICE ));
     return aRet;
 }
 
@@ -1525,8 +1525,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScHeaderFieldObj::getSupportedServiceNa
 {
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCTEXTFIELD_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCTEXTCONTENT_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCTEXTFIELD_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCTEXTCONTENT_SERVICE ));
     return aRet;
 }
 

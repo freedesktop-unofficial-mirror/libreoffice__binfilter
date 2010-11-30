@@ -131,8 +131,8 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/                           String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME ) ))
 /*N*/ {
 /*N*/   ((SfxObjectFactory&)Factory()).
-/*N*/           SetDocumentServiceName( ::rtl::OUString::createFromAscii(
-/*N*/                   "com.sun.star.sheet.SpreadsheetDocument" ) );
+/*N*/           SetDocumentServiceName( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+/*N*/                   "com.sun.star.sheet.SpreadsheetDocument" )) );
 /*N*/
 /*N*/   const String    aEmptyStr;
 /*N*/                                   // Clipboard-IDs:

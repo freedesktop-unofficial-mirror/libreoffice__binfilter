@@ -167,7 +167,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/             bDispose = sal_True;
 /*M*/             xRowSet = uno::Reference<sdbc::XRowSet>(
 /*M*/                     ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                         ::rtl::OUString::createFromAscii( SC_SERVICE_ROWSET ) ),
+/*M*/                         ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_SERVICE_ROWSET )) ),
 /*M*/                     uno::UNO_QUERY);
 /*M*/             uno::Reference<beans::XPropertySet> xRowProp( xRowSet, uno::UNO_QUERY );
 /*M*/             DBG_ASSERT( xRowProp.is(), "can't get RowSet" );
@@ -184,22 +184,22 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/                 aAny <<= ::rtl::OUString( rParam.aDBName );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_DATASOURCENAME), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_DATASOURCENAME)), aAny );
 /*M*/
 /*M*/                 aAny <<= ::rtl::OUString( rParam.aStatement );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMAND), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_COMMAND)), aAny );
 /*M*/
 /*M*/                 aAny <<= nType;
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMANDTYPE), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_COMMANDTYPE)), aAny );
 /*M*/
 /*M*/                 uno::Reference<sdb::XCompletedExecution> xExecute( xRowSet, uno::UNO_QUERY );
 /*M*/                 if ( xExecute.is() )
 /*M*/                 {
 /*M*/                     uno::Reference<task::XInteractionHandler> xHandler(
 /*M*/                             ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                                 ::rtl::OUString::createFromAscii( SC_SERVICE_INTHANDLER ) ),
+/*M*/                                 ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_SERVICE_INTHANDLER )) ),
 /*M*/                             uno::UNO_QUERY);
 /*M*/                     xExecute->executeWithCompletion( xHandler );
 /*M*/                 }

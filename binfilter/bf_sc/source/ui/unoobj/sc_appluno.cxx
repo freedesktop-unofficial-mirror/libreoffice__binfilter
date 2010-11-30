@@ -440,7 +440,7 @@ uno::Sequence< ::rtl::OUString> ScSpreadsheetSettings::getSupportedServiceNames_
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSPREADSHEETSETTINGS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSPREADSHEETSETTINGS_SERVICE ));
     return aRet;
 }
 
@@ -699,7 +699,7 @@ uno::Sequence< ::rtl::OUString> ScRecentFunctionsObj::getSupportedServiceNames_S
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCRECENTFUNCTIONSOBJ_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCRECENTFUNCTIONSOBJ_SERVICE ));
     return aRet;
 }
 
@@ -780,7 +780,7 @@ uno::Sequence< ::rtl::OUString> ScFunctionListObj::getSupportedServiceNames_Stat
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONLISTOBJ_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFUNCTIONLISTOBJ_SERVICE ));
     return aRet;
 }
 
@@ -791,21 +791,21 @@ void lcl_FillSequence( uno::Sequence<beans::PropertyValue>& rSequence, const ScF
 
     beans::PropertyValue* pArray = rSequence.getArray();
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ID );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_ID ));
     pArray[0].Value <<= (sal_Int32) rDesc.nFIndex;
 
-    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_CATEGORY );
+    pArray[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_CATEGORY ));
     pArray[1].Value <<= (sal_Int32) rDesc.nCategory;
 
-    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_NAME );
+    pArray[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_NAME ));
     if (rDesc.pFuncName)
         pArray[2].Value <<= ::rtl::OUString( *rDesc.pFuncName );
 
-    pArray[3].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_DESCRIPTION );
+    pArray[3].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_DESCRIPTION ));
     if (rDesc.pFuncDesc)
         pArray[3].Value <<= ::rtl::OUString( *rDesc.pFuncDesc );
 
-    pArray[4].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_ARGUMENTS );
+    pArray[4].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_ARGUMENTS ));
     if (rDesc.aDefArgNames && rDesc.aDefArgDescs && rDesc.aDefArgOpt )
     {
         USHORT nCount = rDesc.nArgCount;

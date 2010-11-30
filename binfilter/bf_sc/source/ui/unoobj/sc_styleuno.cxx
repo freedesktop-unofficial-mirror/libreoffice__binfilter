@@ -648,8 +648,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamiliesObj::getElementNames()
     SolarMutexGuard aGuard;
     uno::Sequence< ::rtl::OUString> aNames(SC_STYLE_FAMILY_COUNT);
     ::rtl::OUString* pNames = aNames.getArray();
-    pNames[0] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_CELL );
-    pNames[1] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_PAGE );
+    pNames[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_FAMILYNAME_CELL ));
+    pNames[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_FAMILYNAME_PAGE ));
     return aNames;
 }
 
@@ -711,13 +711,13 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScStyleFamiliesObj::getStyleLoaderO
     uno::Sequence<beans::PropertyValue> aSequence(3);
     beans::PropertyValue* pArray = aSequence.getArray();
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_OVERWSTL );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_OVERWSTL ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[0].Value, TRUE );
 
-    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADCELL );
+    pArray[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_LOADCELL ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[1].Value, TRUE );
 
-    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADPAGE );
+    pArray[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_LOADPAGE ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[2].Value, TRUE );
 
     return aSequence;
@@ -1846,7 +1846,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyValue( const ::rtl::OUString& aProperty
                     BYTE nValue = ((const SvxPaperBinItem&)pItemSet->Get(nWhich)).GetValue();
                     ::rtl::OUString aName;
                     if ( nValue == PAPERBIN_PRINTER_SETTINGS )
-                        aName = ::rtl::OUString::createFromAscii( SC_PAPERBIN_DEFAULTNAME );
+                        aName = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_PAPERBIN_DEFAULTNAME ));
                     else
                     {
                         Printer* pPrinter = pDocShell->GetPrinter();
@@ -1907,9 +1907,9 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
     BOOL bPage = ( eFamily == SFX_STYLE_FAMILY_PAGE );
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSTYLE_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( bPage ? SCPAGESTYLE_SERVICE
-                                                      : SCCELLSTYLE_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSTYLE_SERVICE ));
+    pArray[1] = bPage ? ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPAGESTYLE_SERVICE ))
+                              : ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLSTYLE_SERVICE ));
     return aRet;
 }
 

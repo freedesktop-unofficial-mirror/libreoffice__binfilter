@@ -4158,10 +4158,10 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellRangesObj::getSupportedServiceNam
 {
     uno::Sequence< ::rtl::OUString> aRet(4);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSHEETCELLRANGES_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCCELLPROPERTIES_SERVICE );
-    pArray[2] = ::rtl::OUString::createFromAscii( SCCHARPROPERTIES_SERVICE );
-    pArray[3] = ::rtl::OUString::createFromAscii( SCPARAPROPERTIES_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELLRANGES_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLPROPERTIES_SERVICE ));
+    pArray[2] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCHARPROPERTIES_SERVICE ));
+    pArray[3] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPARAPROPERTIES_SERVICE ));
     return aRet;
 }
 
@@ -5352,11 +5352,11 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellRangeObj::getSupportedServiceName
 {
     uno::Sequence< ::rtl::OUString> aRet(5);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSHEETCELLRANGE_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCCELLRANGE_SERVICE );
-    pArray[2] = ::rtl::OUString::createFromAscii( SCCELLPROPERTIES_SERVICE );
-    pArray[3] = ::rtl::OUString::createFromAscii( SCCHARPROPERTIES_SERVICE );
-    pArray[4] = ::rtl::OUString::createFromAscii( SCPARAPROPERTIES_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELLRANGE_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLRANGE_SERVICE ));
+    pArray[2] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLPROPERTIES_SERVICE ));
+    pArray[3] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCHARPROPERTIES_SERVICE ));
+    pArray[4] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPARAPROPERTIES_SERVICE ));
     return aRet;
 }
 
@@ -5968,13 +5968,13 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellObj::getSupportedServiceNames()
 {
     uno::Sequence< ::rtl::OUString> aRet(7);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSHEETCELL_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCCELL_SERVICE );
-    pArray[2] = ::rtl::OUString::createFromAscii( SCCELLPROPERTIES_SERVICE );
-    pArray[3] = ::rtl::OUString::createFromAscii( SCCHARPROPERTIES_SERVICE );
-    pArray[4] = ::rtl::OUString::createFromAscii( SCPARAPROPERTIES_SERVICE );
-    pArray[5] = ::rtl::OUString::createFromAscii( SCSHEETCELLRANGE_SERVICE );
-    pArray[6] = ::rtl::OUString::createFromAscii( SCCELLRANGE_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELL_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELL_SERVICE ));
+    pArray[2] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLPROPERTIES_SERVICE ));
+    pArray[3] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCHARPROPERTIES_SERVICE ));
+    pArray[4] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPARAPROPERTIES_SERVICE ));
+    pArray[5] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELLRANGE_SERVICE ));
+    pArray[6] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLRANGE_SERVICE ));
     return aRet;
 }
 
@@ -7403,12 +7403,12 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScTableSheetObj::getSupportedServiceNam
 {
     uno::Sequence< ::rtl::OUString> aRet(6);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSPREADSHEET_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCSHEETCELLRANGE_SERVICE );
-    pArray[2] = ::rtl::OUString::createFromAscii( SCCELLRANGE_SERVICE );
-    pArray[3] = ::rtl::OUString::createFromAscii( SCCELLPROPERTIES_SERVICE );
-    pArray[4] = ::rtl::OUString::createFromAscii( SCCHARPROPERTIES_SERVICE );
-    pArray[5] = ::rtl::OUString::createFromAscii( SCPARAPROPERTIES_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSPREADSHEET_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELLRANGE_SERVICE ));
+    pArray[2] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLRANGE_SERVICE ));
+    pArray[3] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLPROPERTIES_SERVICE ));
+    pArray[4] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCHARPROPERTIES_SERVICE ));
+    pArray[5] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPARAPROPERTIES_SERVICE ));
     return aRet;
 }
 
