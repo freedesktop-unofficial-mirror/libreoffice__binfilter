@@ -200,7 +200,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 /*N*/ ScInputCfg::ScInputCfg() :
-/*N*/   ConfigItem( OUString::createFromAscii( CFGPATH_INPUT ) )
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_INPUT )) )
 /*N*/ {
 /*N*/   sal_Int32 nIntVal;
 /*N*/

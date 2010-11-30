@@ -292,8 +292,8 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ }
 
 /*N*/ ScDocCfg::ScDocCfg() :
-/*N*/   aCalcItem( OUString::createFromAscii( CFGPATH_CALC ) ),
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_DOCLAYOUT ) )
+/*N*/   aCalcItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_CALC )) ),
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DOCLAYOUT )) )
 /*N*/ {
 /*N*/   sal_Int32 nIntVal;
 /*N*/   double fDoubleVal;

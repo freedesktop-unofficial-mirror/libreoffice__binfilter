@@ -244,7 +244,7 @@ public:
 /*N*/     {
 /*N*/         uno::Reference<container::XEnumeration> xEnum =
 /*N*/                         xEnAc->createContentEnumeration(
-/*N*/                             ::rtl::OUString::createFromAscii(SCADDINSUPPLIER_SERVICE) );
+/*N*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SCADDINSUPPLIER_SERVICE)) );
 /*N*/         if ( xEnum.is() )
 /*N*/         {
 /*N*/             //  loop through all AddIns
@@ -407,8 +407,8 @@ public:
 /*N*/         if ( xManager.is() )
 /*N*/         {
 /*N*/             uno::Reference<beans::XIntrospection> xIntro(
-/*N*/                                     xManager->createInstance(::rtl::OUString::createFromAscii(
-/*N*/                                         "com.sun.star.beans.Introspection" )),
+/*N*/                                     xManager->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+/*N*/                                         "com.sun.star.beans.Introspection" ))),
 /*N*/                                     uno::UNO_QUERY );
 /*N*/             if ( xIntro.is() )
 /*N*/             {

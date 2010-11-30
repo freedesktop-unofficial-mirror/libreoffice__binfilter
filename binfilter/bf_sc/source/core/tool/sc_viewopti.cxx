@@ -486,9 +486,9 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScViewCfg::ScViewCfg() :
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_LAYOUT ) ),
-/*N*/   aDisplayItem( OUString::createFromAscii( CFGPATH_DISPLAY ) ),
-/*N*/   aGridItem( OUString::createFromAscii( CFGPATH_GRID ) )
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LAYOUT )) ),
+/*N*/   aDisplayItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DISPLAY )) ),
+/*N*/   aGridItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_GRID )) )
 /*N*/ {
 /*N*/   sal_Int32 nIntVal;
 /*N*/

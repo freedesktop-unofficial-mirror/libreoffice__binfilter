@@ -309,7 +309,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                     ((const SvxBrushItem &)(aSet.Get( SCHATTR_SYMBOL_BRUSH ))).GetGraphicObject();
                 if( pGraphObj )
                 {
-                    aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                    aURL = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_GRAPHOBJ_URLPREFIX ));
                     aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                 }
                 aAny <<= aURL;

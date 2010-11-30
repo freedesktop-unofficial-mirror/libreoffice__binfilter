@@ -67,7 +67,7 @@ using namespace ::com::sun::star;
 /*N*/     if ( !pScriptTypeData->xBreakIter.is() )
 /*N*/     {
 /*N*/         uno::Reference< uno::XInterface > xInterface = xServiceManager->createInstance(
-/*N*/                             ::rtl::OUString::createFromAscii( SC_BREAKITER_SERVICE ) );
+/*N*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_BREAKITER_SERVICE )) );
 /*N*/         pScriptTypeData->xBreakIter = uno::Reference< i18n::XBreakIterator >( xInterface, uno::UNO_QUERY );
 /*N*/       DBG_ASSERT( pScriptTypeData->xBreakIter.is(), "can't get BreakIterator" );
 /*N*/   }

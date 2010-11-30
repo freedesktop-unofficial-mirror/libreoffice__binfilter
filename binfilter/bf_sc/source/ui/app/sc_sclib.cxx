@@ -111,7 +111,7 @@ void ScLibOptions::Commit() {}
 #define ENTRYSTR_WK3            "WK3"
 
 /*N*/ ScLibOptions::ScLibOptions() :
-/*N*/       ConfigItem( ::rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
+/*N*/       ConfigItem( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LIBFILTER )) ),
 /*N*/       bWK3Flag( FALSE )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Sequence<rtl::OUString> aNames(1);

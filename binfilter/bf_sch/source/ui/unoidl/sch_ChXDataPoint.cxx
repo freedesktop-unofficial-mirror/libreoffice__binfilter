@@ -466,7 +466,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                         ((const SvxBrushItem &)(pSet->Get( nWID ))).GetGraphicObject();
                     if( pGraphObj )
                     {
-                        aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                        aURL = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_GRAPHOBJ_URLPREFIX ));
                         aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                     }
                     aAny <<= aURL;

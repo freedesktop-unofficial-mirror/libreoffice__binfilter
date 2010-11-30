@@ -106,7 +106,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   //  read from configuration - "convert.ini" is no longer used
 /*N*/   //! config item as member to allow change of values
 /*N*/
-/*N*/   ScLinkConfigItem aConfigItem( OUString::createFromAscii( CFGPATH_UNIT ) );
+/*N*/   ScLinkConfigItem aConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_UNIT )) );
 /*N*/
 /*N*/   // empty node name -> use the config item's path itself
 /*N*/     OUString aEmptyString;
@@ -127,11 +127,11 @@ using namespace ::com::sun::star::uno;
 /*N*/           sPrefix += sSlash;
 /*N*/
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_FROM );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_FROM ));
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_TO );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_TO ));
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_FACTOR );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_FACTOR ));
 /*N*/       }
 /*N*/
 /*N*/       Sequence<Any> aProperties = aConfigItem.GetProperties(aValNames);

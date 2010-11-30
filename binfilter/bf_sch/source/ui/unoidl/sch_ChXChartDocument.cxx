@@ -462,14 +462,14 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDocument::getAvailableServiceN
     ::std::vector< OUString > aServices;
 
     // chart types
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_LINE ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_AREA ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_BAR ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_PIE ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_XY ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_NET ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_DONUT ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_STOCK ));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_LINE )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_AREA )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_BAR )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_PIE )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_XY )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_NET )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_DONUT )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_STOCK )));
 
     // style tables (for XML)
     aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.DashTable" )));

@@ -86,7 +86,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScPrintCfg::ScPrintCfg() :
-/*N*/   ConfigItem( OUString::createFromAscii( CFGPATH_PRINT ) )
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_PRINT )) )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetPropertyNames();
 /*N*/ }

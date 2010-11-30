@@ -164,11 +164,11 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if ( nVisibleMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/           lcl_SetBoolProperty( xMembProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ISVISIBLE), (BOOL)nVisibleMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISVISIBLE)), (BOOL)nVisibleMode );
 /*N*/
 /*N*/       if ( nShowDetailsMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/           lcl_SetBoolProperty( xMembProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_SHOWDETAILS), (BOOL)nShowDetailsMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SHOWDETAILS)), (BOOL)nShowDetailsMode );
 /*N*/   }
 /*N*/ }
 /*N*/
@@ -412,16 +412,16 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       sheet::DataPilotFieldOrientation eOrient = (sheet::DataPilotFieldOrientation)nOrientation;
 /*N*/       aAny <<= eOrient;
-/*N*/       xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION), aAny );
+/*N*/       xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)), aAny );
 /*N*/
 /*N*/       sheet::GeneralFunction eFunc = (sheet::GeneralFunction)nFunction;
 /*N*/       aAny <<= eFunc;
-/*N*/       xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_FUNCTION), aAny );
+/*N*/       xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_FUNCTION)), aAny );
 /*N*/
 /*N*/       if ( nUsedHierarchy >= 0 )
 /*N*/       {
 /*N*/           aAny <<= (INT32)nUsedHierarchy;
-/*N*/           xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY), aAny );
+/*N*/           xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_USEDHIERARCHY)), aAny );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -472,11 +472,11 @@ using namespace ::com::sun::star;
 /*N*/                       pArray[i] = (sheet::GeneralFunction)pSubTotalFuncs[i];
 /*N*/                   uno::Any aAny;
 /*N*/                   aAny <<= aSeq;
-/*N*/                   xLevProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_SUBTOTALS), aAny );
+/*N*/                   xLevProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SUBTOTALS)), aAny );
 /*N*/               }
 /*N*/               if ( nShowEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/                   lcl_SetBoolProperty( xLevProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_SHOWEMPTY), (BOOL)nShowEmptyMode );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SHOWEMPTY)), (BOOL)nShowEmptyMode );
 /*N*/
 /*N*/               // exceptions are caught at ScDPSaveData::WriteToSource
 /*N*/           }
@@ -677,7 +677,7 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           uno::Any aAny;
 /*N*/           aAny <<= eOrient;
-/*N*/           xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION), aAny );
+/*N*/           xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)), aAny );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -700,10 +700,10 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if ( nIgnoreEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY), (BOOL)nIgnoreEmptyMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_IGNOREEMPTY)), (BOOL)nIgnoreEmptyMode );
 /*N*/           if ( nRepeatEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY), (BOOL)nRepeatEmptyMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_REPEATIFEMPTY)), (BOOL)nRepeatEmptyMode );
 /*N*/       }
 /*N*/       catch(uno::Exception&)
 /*N*/       {
@@ -742,7 +742,7 @@ using namespace ::com::sun::star;
 /*N*/                   if ( xDimProp.is() )
 /*N*/                   {
 /*N*/                       bFound = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISDATALAYOUT)) );
 /*N*/                       //! error checking -- is "IsDataLayoutDimension" property required??
 /*N*/                   }
 /*N*/               }
@@ -787,10 +787,10 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if ( nColumnGrandMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), (BOOL)nColumnGrandMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_COLUMNGRAND)), (BOOL)nColumnGrandMode );
 /*N*/           if ( nRowGrandMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), (BOOL)nRowGrandMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ROWGRAND)), (BOOL)nRowGrandMode );
 /*N*/       }
 /*N*/   }
 /*N*/   catch(uno::Exception&)

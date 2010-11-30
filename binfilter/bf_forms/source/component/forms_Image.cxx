@@ -372,7 +372,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
             if ( bDispatchUrlInternal )
             {
                 if ( xTransformer.is() )
-                    xTransformer->parseSmart( aURL, ::rtl::OUString::createFromAscii(INET_FILE_SCHEME) );
+                    xTransformer->parseSmart( aURL, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(INET_FILE_SCHEME)) );
 
                 ::rtl::OUString aTargetFrame;
                 xSet->getPropertyValue(PROPERTY_TARGET_FRAME) >>= aTargetFrame;

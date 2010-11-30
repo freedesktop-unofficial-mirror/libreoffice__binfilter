@@ -455,12 +455,12 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScAppCfg::ScAppCfg() :
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_LAYOUT ) ),
-/*N*/   aInputItem( OUString::createFromAscii( CFGPATH_INPUT ) ),
-/*N*/   aRevisionItem( OUString::createFromAscii( CFGPATH_REVISION ) ),
-/*N*/   aContentItem( OUString::createFromAscii( CFGPATH_CONTENT ) ),
-/*N*/   aSortListItem( OUString::createFromAscii( CFGPATH_SORTLIST ) ),
-/*N*/   aMiscItem( OUString::createFromAscii( CFGPATH_MISC ) )
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LAYOUT )) ),
+/*N*/   aInputItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_INPUT )) ),
+/*N*/   aRevisionItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_REVISION )) ),
+/*N*/   aContentItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_CONTENT )) ),
+/*N*/   aSortListItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_SORTLIST )) ),
+/*N*/   aMiscItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_MISC )) )
 /*N*/ {
 /*N*/   sal_Int32 nIntVal;
 /*N*/
