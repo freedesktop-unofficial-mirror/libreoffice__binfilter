@@ -867,7 +867,6 @@ namespace binfilter {
 /*N*/       const SwTblBoxNumFormat *pNewFmt = 0;
 /*N*/       const SwTblBoxFormula *pNewFml = 0;
 /*N*/       const SwTblBoxValue *pNewVal = 0;
-/*N*/       double aOldValue = 0;
 /*N*/       ULONG nOldFmt = NUMBERFORMAT_TEXT;
 /*N*/
 /*N*/       switch( pNew ? pNew->Which() : 0 )
