@@ -9,7 +9,6 @@ UDK_3_0_0 {
         InitSwDll;
         DeInitSwDll;
         component_getImplementationEnvironment;
-        component_writeInfo;
         component_getFactory;
     local:
         *;

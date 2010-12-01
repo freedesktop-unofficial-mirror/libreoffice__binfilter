@@ -2052,7 +2052,7 @@ void SwXTextCursor::SetPropertyToDefault(
     const OUString& rPropertyName)
     throw(UnknownPropertyException, RuntimeException)
 {
-    NAMESPACE_VOS(OGuard) aGuard(Application::GetSolarMutex());
+    vos::OGuard aGuard(Application::GetSolarMutex());
     SwDoc* pDoc = rPaM.GetDoc();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                             rPropSet.getPropertyMap(), rPropertyName);

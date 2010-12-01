@@ -49,9 +49,6 @@ BMP_IN=$(BFPRJ)$/win$/res
 
 SRS1NAME=svx_form
 SRC1FILES= \
-    svx_fmexpl.src 		\
-    svx_filtnav.src		\
-    svx_taborder.src 	\
     svx_fmstring.src 	\
     svx_tbxform.src		\
     svx_fmsearch.src
