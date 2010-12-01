@@ -297,7 +297,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
     BOOL    bRet = FALSE;
     BOOL    bXML = ( nStoreVer >= SOFFICE_FILEFORMAT_60 );
     BOOL    bBinary = ( nStoreVer < SOFFICE_FILEFORMAT_60 );
-    bool    bStartPresentation = false;
 
     if( bBinary || bXML )
     {
