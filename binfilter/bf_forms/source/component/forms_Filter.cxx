@@ -490,9 +490,8 @@ namespace frm
                 }
             }
         }
-        catch( const Exception& e )
+        catch( const Exception& )
         {
-            e; // make compiler happy
             OSL_ENSURE( sal_False, "OFilterControl::implInitFilterList: caught an exception!" );
         }
 
