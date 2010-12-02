@@ -501,7 +501,7 @@ namespace frm
 
     // XFocusListener
     //---------------------------------------------------------------------
-    void SAL_CALL OFilterControl::focusGained(const FocusEvent& e)  throw( RuntimeException  )
+    void SAL_CALL OFilterControl::focusGained(const FocusEvent& )  throw( RuntimeException  )
     {
         // should we fill the combobox?
         if (m_bFilterList && !m_bFilterListFilled)
