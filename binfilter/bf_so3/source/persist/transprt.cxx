@@ -1342,8 +1342,8 @@ void UcbTransport_Impl::start (void)
         {
             m_aContentType = getContentType_Impl (xProcessor);
             if (m_aContentType.getLength() == 0)
-                m_aContentType = OUString::createFromAscii(
-                                     CONTENT_TYPE_STR_APP_OCTSTREAM);
+                m_aContentType = OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                     CONTENT_TYPE_STR_APP_OCTSTREAM));
             m_bMimeAvail = sal_True;
             xProps->addPropertiesChangeListener (Sequence<OUString>(), this);
         }

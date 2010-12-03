@@ -437,7 +437,7 @@ Reference<ifc_type> SvBindingData_Impl::getConfigManager_Impl (void)
         try
         {
             m_xManager = m_xFactory->createInstance (
-                OUString::createFromAscii (INIMANAGER_SERVICE_NAME));
+                OUString(RTL_CONSTASCII_USTRINGPARAM (INIMANAGER_SERVICE_NAME)));
             if (m_xManager.is())
             {
                 readConfigManager_Impl();
@@ -514,13 +514,13 @@ void SvBindingData_Impl::initConfigManager_Impl (void)
         try
         {
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_PROXYTYPE), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_PROXYTYPE)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_NOPROXY), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_NOPROXY)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYNAME), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYNAME)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYPORT), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYPORT)), this);
         }
         catch (Exception)
         {
@@ -539,13 +539,13 @@ void SvBindingData_Impl::dispose (void)
         try
         {
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_PROXYTYPE), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_PROXYTYPE)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_NOPROXY), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_NOPROXY)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYNAME), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYNAME)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYPORT), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYPORT)), this);
         }
         catch (Exception)
         {
