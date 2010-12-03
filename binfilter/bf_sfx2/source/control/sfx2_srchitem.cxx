@@ -101,7 +101,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SvxSearchItem::SvxSearchItem( const sal_uInt16 nId ) :
 /*N*/
 /*N*/   SfxPoolItem( nId ),
-/*N*/   ConfigItem( OUString::createFromAscii( CFG_ROOT_NODE ) ),
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFG_ROOT_NODE )) ),
 /*N*/
 /*N*/   aSearchOpt      (   SearchAlgorithms_ABSOLUTE,
 /*N*/                       SearchFlags::LEV_RELAXED,
@@ -182,7 +182,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SvxSearchItem::SvxSearchItem( const SvxSearchItem& rItem ) :
 /*N*/
 /*N*/   SfxPoolItem ( rItem ),
-/*N*/   ConfigItem( OUString::createFromAscii( CFG_ROOT_NODE ) ),
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFG_ROOT_NODE )) ),
 /*N*/
 /*N*/   aSearchOpt      ( rItem.aSearchOpt ),
 /*N*/   nCommand        ( rItem.nCommand ),

@@ -387,11 +387,11 @@ namespace binfilter {
                     aLibrary = sDocument;
             }
 /*N*/
-/*N*/       aOutProps[1].Name = OUSTRING::createFromAscii( PROP_SCRIPT );
+/*N*/       aOutProps[1].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_SCRIPT ));
 /*N*/       aOutProps[1].Value <<= aScript;
-/*N*/       aOutProps[2].Name = OUSTRING::createFromAscii( PROP_LIBRARY );
+/*N*/       aOutProps[2].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_LIBRARY ));
 /*N*/       aOutProps[2].Value <<= aLibrary;
-/*N*/       aOutProps[3].Name = OUSTRING::createFromAscii( PROP_MACRO_NAME );
+/*N*/       aOutProps[3].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_MACRO_NAME ));
 /*N*/       aOutProps[3].Value <<= aMacroName;
 /*N*/       rRet <<= aOutProps;
 /*N*/     }

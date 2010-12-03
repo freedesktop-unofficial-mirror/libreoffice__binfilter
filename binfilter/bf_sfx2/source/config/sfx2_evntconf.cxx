@@ -370,17 +370,17 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/             SEQUENCE < PROPERTYVALUE > aProperties(3);
 /*N*/             PROPERTYVALUE  *pValues = aProperties.getArray();
 /*N*/
-/*N*/             OUSTRING    aType   = OUSTRING::createFromAscii( STAR_BASIC );;
+/*N*/             OUSTRING    aType   (RTL_CONSTASCII_USTRINGPARAM( STAR_BASIC ));
 /*N*/             OUSTRING    aLib    = pMacro->GetLibName();
 /*N*/             OUSTRING    aMacro  = pMacro->GetMacName();
 /*N*/
-/*N*/             pValues[ 0 ].Name = OUSTRING::createFromAscii( PROP_EVENT_TYPE );
+/*N*/             pValues[ 0 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_EVENT_TYPE ));
 /*N*/             pValues[ 0 ].Value <<= aType;
 /*N*/
-/*N*/             pValues[ 1 ].Name = OUSTRING::createFromAscii( PROP_LIBRARY );
+/*N*/             pValues[ 1 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_LIBRARY ));
 /*N*/             pValues[ 1 ].Value <<= aLib;
 /*N*/
-/*N*/             pValues[ 2 ].Name = OUSTRING::createFromAscii( PROP_MACRO_NAME );
+/*N*/             pValues[ 2 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_MACRO_NAME ));
 /*N*/             pValues[ 2 ].Value <<= aMacro;
 /*N*/
 /*N*/             aEventData <<= aProperties;
@@ -393,10 +393,10 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/             OUSTRING    aLib    = pMacro->GetLibName();
 /*?*/             OUSTRING    aMacro  = pMacro->GetMacName();
 /*?*/
-/*?*/             pValues[ 0 ].Name = OUSTRING::createFromAscii( PROP_EVENT_TYPE );
+/*?*/             pValues[ 0 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_EVENT_TYPE ));
 /*?*/             pValues[ 0 ].Value <<= aLib;
 /*?*/
-/*?*/             pValues[ 1 ].Name = OUSTRING::createFromAscii( PROP_SCRIPT );
+/*?*/             pValues[ 1 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_SCRIPT ));
 /*?*/             pValues[ 1 ].Value <<= aMacro;
 /*?*/
 /*?*/             aEventData <<= aProperties;
@@ -408,10 +408,10 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*?*/
 /*?*/             OUSTRING    aMacro  = pMacro->GetMacName();
 /*?*/
-/*?*/             pValues[ 0 ].Name = OUSTRING::createFromAscii( PROP_EVENT_TYPE );
-/*?*/             pValues[ 0 ].Value <<= ::rtl::OUString::createFromAscii(SVX_MACRO_LANGUAGE_JAVASCRIPT);
+/*?*/             pValues[ 0 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_EVENT_TYPE ));
+/*?*/             pValues[ 0 ].Value <<= ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SVX_MACRO_LANGUAGE_JAVASCRIPT));
 /*?*/
-/*?*/             pValues[ 1 ].Name = OUSTRING::createFromAscii( PROP_MACRO_NAME );
+/*?*/             pValues[ 1 ].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_MACRO_NAME ));
 /*?*/             pValues[ 1 ].Value <<= aMacro;
 /*?*/
 /*?*/             aEventData <<= aProperties;
