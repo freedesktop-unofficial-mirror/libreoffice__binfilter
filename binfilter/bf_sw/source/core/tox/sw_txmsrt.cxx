@@ -413,7 +413,7 @@ USHORT SwTOXAuthority::GetLevel() const
 /*-- 15.09.99 14:28:08---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-void SwTOXAuthority::_GetText( String& rTxt, String& rTxtReading )
+void SwTOXAuthority::_GetText( String& rTxt, String& /*rTxtReading*/ )
 {
     //
     rTxt = m_rField.GetFld()->Expand();
