@@ -486,11 +486,11 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/     //OS: #96584# HORI_NONE and VERT_NONE are allowed now
 /*M*/   if( !bKeepOrient )
 /*M*/   {
-/*M*/       const SwFmtVertOrient &rVert = rNewFmt.GetVertOrient();
-/*M*/         rFmt.ResetAttr( RES_VERT_ORIENT );
+/*M*/       rNewFmt.GetVertOrient();
+/*M*/       rFmt.ResetAttr( RES_VERT_ORIENT );
 /*M*/
-/*M*/       const SwFmtHoriOrient &rHori = rNewFmt.GetHoriOrient();
-/*M*/         rFmt.ResetAttr( RES_HORI_ORIENT );
+/*M*/       rNewFmt.GetHoriOrient();
+/*M*/       rFmt.ResetAttr( RES_HORI_ORIENT );
 /*M*/   }
 /*M*/
 /*M*/   rFmt.ResetAttr( RES_PRINT, RES_SURROUND );
@@ -816,26 +816,15 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/   return bUnmark;
 /*?*/ }
 
-
-/* -----------------23.07.98 13:56-------------------
- *
- * --------------------------------------------------*/
-/* -----------------23.07.98 13:56-------------------
- *
- * --------------------------------------------------*/
 /*N*/ int SwDoc::Chain( SwFrmFmt& /*rSource*/, const SwFrmFmt& /*rDest*/ )
 /*N*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
 /*N*/ }
-/* -----------------23.07.98 13:56-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ void SwDoc::Unchain( SwFrmFmt& /*rFmt*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rFmt.GetChain() );
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
 
 }
 

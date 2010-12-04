@@ -235,7 +235,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   //Frms vernichten.
 /*N*/   pFmt->DelFrms();
 
-/*N*/   const sal_uInt16 nWh = pFmt->Which();
+/*N*/   pFmt->Which();
 /*N*/   {
 /*N*/       //Inhalt Loeschen.
 /*N*/       if( pCntIdx )
@@ -446,7 +446,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   {
 /*?*/       // bei Controls muss der Name erhalten bleiben
 /*?*/       uno::Reference< awt::XControlModel >  xModel = ((SdrUnoObj*)pObj)->GetUnoControlModel();
-/*?*/       sal_Bool bModel = xModel.is();
+/*?*/       xModel.is();
 /*?*/       uno::Any aVal;
 /*?*/       uno::Reference< beans::XPropertySet >  xSet(xModel, uno::UNO_QUERY);
 /*?*/       OUString sName( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Name" )) );

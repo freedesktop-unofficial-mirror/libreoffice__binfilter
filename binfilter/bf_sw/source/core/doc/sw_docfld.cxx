@@ -677,7 +677,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
     Beschreibung:
  --------------------------------------------------------------------*/
 
-/*N*/ void lcl_CalcFld( SwDoc& /*rDo*/c, SwCalc& /*rCalc*/, const _SetGetExpFld& rSGEFld,
+/*N*/ void lcl_CalcFld( SwDoc& /*rDoc*/, SwCalc& /*rCalc*/, const _SetGetExpFld& rSGEFld,
 /*N*/                       SwNewDBMgr* pMgr )
 /*N*/ {
 /*N*/   const SwTxtFld* pTxtFld = rSGEFld.GetFld();
@@ -857,7 +857,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/               SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
 /*N*/
 /*N*/             if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 aCalc.VarChange( sDBNumNm, pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType));
+/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
 /*N*/
@@ -1334,7 +1334,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/     aData.sDataSource = rDBName.GetToken(0, DB_DELIM);
 /*N*/     aData.sCommand = rDBName.GetToken(1, DB_DELIM);
 /*N*/     aData.nCommandType = -1;
-/*N*/     const SwDSParam* pParam = GetNewDBMgr()->CreateDSData(aData);
+/*N*/     GetNewDBMgr()->CreateDSData(aData);
 /*N*/   String* pNew = new String( rDBName );
 /*N*/   rDBNameList.Insert( pNew, rDBNameList.Count() );
 /*N*/ }
@@ -1344,9 +1344,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   // teste ggfs. mal, ob die angegbenen Nodes ueberhaupt Felder beinhalten.
 /*N*/   // wenn nicht, braucht das Flag nicht veraendert werden.
 /*N*/   BOOL bFldsFnd = FALSE;
-/*N*/   if( b && pChk && !GetUpdtFlds().IsFieldsDirty() && !IsInDtor()
+/*N*/   if( b && pChk && !GetUpdtFlds().IsFieldsDirty() && !IsInDtor() )
 /*N*/       // ?? was ist mit Undo, da will man es doch auch haben !!
-/*N*/       /*&& &pChk->GetNodes() == &GetNodes()*/ )
 /*N*/   {
 /*N*/       b = FALSE;
 /*N*/       if( !nLen )
@@ -1544,11 +1543,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                 ///     (eGetMode == GETFLD_EXPAND||GETFLD_CALC||GETFLD_ALL)
 /*N*/                 /// and fields of other subtypes only in the modes
 /*N*/                 ///     (eGetMode == GETFLD_CALC||GETFLD_ALL)
-                /* "old" if construct - not deleted for history and code review
-                if( ( GSE_STRING & pFld->GetSubType()
-                    ? GETFLD_EXPAND : GETFLD_CALC )
-                        & eGetMode )
-                */
+
 /*N*/                 if ( !(eGetMode == GETFLD_EXPAND) ||
 /*N*/                      (GSE_STRING & pFld->GetSubType()) )
 /*N*/                 {

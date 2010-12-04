@@ -233,7 +233,6 @@ struct ParaRstFmt
 /*M*/                       const SvUShortsSort* pAttrs )
 /*M*/ {
 /*M*/   SwPaM* pPam = (SwPaM*)&rRg;
-/*M*/   BOOL bStopAttr = FALSE;
 /*M*/   if( !bTxtAttr && pAttrs && pAttrs->Count() &&
 /*M*/       RES_TXTATR_END > (*pAttrs)[ 0 ] )
 /*M*/       bTxtAttr = TRUE;
@@ -248,7 +247,7 @@ struct ParaRstFmt
 /*M*/
 /*M*/       SwIndex& rSt = pPam->GetPoint()->nContent;
 /*M*/       USHORT nMkPos = 0, nPtPos = rSt.GetIndex();
-/*M*/       const String& rStr = pTxtNd->GetTxt();
+/*M*/       pTxtNd->GetTxt();
 /*M*/
 /*M*/       // JP 22.08.96: Sonderfall: steht der Crsr in einem URL-Attribut
 /*M*/       //              dann wird dessen Bereich genommen
@@ -604,11 +603,10 @@ struct ParaRstFmt
 /*N*/   const SfxPoolItem* pChrFmtItem = 0;
 /*N*/   aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE, &pChrFmtItem );
 /*N*/ #endif
-/*N*/   BOOL bCreateSwpHints =
 /*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE ) ||
 /*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_INETFMT, FALSE );
 /*N*/
-/*N*/   for(; aSt < aEnd; aSt++ )
+/*N*/   for(; aSt < aEnd; ++aSt )
 /*N*/   {
 /*N*/       pNode = aSt.GetNode().GetCntntNode();
 /*N*/       if( !pNode )
@@ -637,29 +635,6 @@ struct ParaRstFmt
 /*N*/   aSet.Put( rHt );
 /*N*/   bRet = InsAttr( this, rRg, aSet, nFlags );
 
-/*  if( INSATTR_DONTEXPAND & nFlags )
-    {
-        USHORT nWhich = rHt.Which();
-        const SwPosition* pPos = rRg.End();
-        SwTxtNode* pTxtNd = GetNodes()[ pPos->nNode ]->GetTxtNode();
-        SwpHints* pHts;
-        if( pTxtNd && 0 != ( pHts = pTxtNd->GetpSwpHints()) )
-        {
-            USHORT nPos = pHts->GetEndCount();
-            while( nPos )
-            {
-                SwTxtAttr *pTmp = pHts->GetEnd( --nPos );
-                USHORT *pEnd = pTmp->GetEnd();
-                if( !pEnd || *pEnd > nEnd )
-                    continue;
-                if( nEnd != *pEnd )
-                    nPos = 0;
-                else if( nWhich == pTmp->Which() )
-                    pTmp->SetDontExpand( TRUE );
-            }
-        }
-    }
-*/
 /*N*/   if( bRet )
 /*N*/       SetModified();
 /*N*/   return bRet;

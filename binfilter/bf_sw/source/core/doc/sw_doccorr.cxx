@@ -146,12 +146,11 @@ namespace binfilter {
 /*N*/                    const xub_StrLen nOffset,
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
-/*N*/   const SwNode* pOldNode = &rOldNode.GetNode();
+/*N*/   &rOldNode.GetNode();
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/
 /*N*/   { // erstmal die Bookmark korrigieren
 /*N*/       register SwBookmarks& rBkmks = *pBookmarkTbl;
-/*N*/       register SwBookmark* pBkmk;
 /*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
@@ -282,11 +281,10 @@ namespace binfilter {
 /*N*/                    const SwPosition& rNewPos,
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
-/*N*/   const ULONG nSttNode = rStartNode.GetIndex();
-/*N*/   const ULONG nEndNode = rEndNode.GetIndex();
+/*N*/   rStartNode.GetIndex();
+/*N*/   rEndNode.GetIndex();
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/
-/*N*/ //    if( !DoesUndo() )
 /*N*/       // erstmal die Bookmarks/Redlines korrigieren
 /*N*/       _DelBookmarks( rStartNode, rEndNode );
 /*N*/

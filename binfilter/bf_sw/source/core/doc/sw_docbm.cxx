@@ -165,13 +165,13 @@ namespace binfilter {
 /*N*/{
 /*?*/   if( bBkmrk )
 /*?*/   {
-/*?*/       USHORT nCount = pBookmarkTbl->Count();
+/*?*/       pBookmarkTbl->Count();
 /*?*/       USHORT i = 0;
 /*?*/       do {
 /*?*/           if(!(*pBookmarkTbl)[i]->IsBookMark())
-/*?*/               nPos++;
+/*?*/               ++nPos;
 /*?*/
-/*?*/           i++;
+/*?*/           ++i;
 /*?*/       }
 /*?*/       while( i < nPos || !(*pBookmarkTbl)[nPos]->IsBookMark() );
 /*?*/   }
@@ -324,7 +324,6 @@ namespace binfilter {
 /*N*/   for( nCnt = 0; nCnt < rTbl.Count(); ++nCnt )
 /*N*/   {
 /*N*/       // liegt auf der Position ??
-/*N*/       int eType = BKMK_POS_NONE;
 /*N*/       SwRedline* pRedl = rTbl[ nCnt ];
 /*N*/
 /*N*/       SwPosition *pRStt = &pRedl->GetBound(TRUE),

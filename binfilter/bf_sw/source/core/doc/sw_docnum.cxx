@@ -526,19 +526,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   for( USHORT n = pNumRuleTbl->Count(); n; )
 /*N*/       if( (*pNumRuleTbl)[ --n ]->GetName() == rName )
 /*N*/           return n;
-/*
-//JP 20.11.97: sollte man im Find neue Rule anlegen??
-                erstmal nicht
-    USHORT nPoolId = GetPoolId( rName, GET_POOLID_NUMRULE );
-    if( USHRT_MAX != nPoolId )
-    {
-        SwDoc* pThis = (SwDoc*)this;
-        SwNumRule* pR = pThis->GetNumRuleFromPool( nPoolId );
-        for( n = pNumRuleTbl->Count(); n; )
-            if( (*pNumRuleTbl)[ --n ] == pR )
-                 return n;
-    }
-*/
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
@@ -547,17 +534,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   for( USHORT n = pNumRuleTbl->Count(); n; )
 /*N*/       if( (*pNumRuleTbl)[ --n ]->GetName() == rName )
 /*N*/           return (*pNumRuleTbl)[ n ];
-/*N*/
-/*
-//JP 20.11.97: sollte man im Find neue Rule anlegen??
-                 erstmal nicht
-    USHORT nPoolId = GetPoolId( rName, GET_POOLID_NUMRULE );
-     if( USHRT_MAX != nPoolId )
-    {
-         SwDoc* pThis = (SwDoc*)this;
-        return pThis->GetNumRuleFromPool( nPoolId );
-    }
-*/
 /*N*/   return 0;
 /*N*/ }
 
@@ -881,21 +857,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           BOOL bCheck = TRUE;
 /*N*/           if( RES_CONDTXTFMTCOLL == pStt->GetFmtColl()->Which() )
 /*N*/           {
-/*N*/ //                SwFmtColl* pChgColl = pStt->GetCondFmtColl();
 /*N*/               pStt->ChkCondColl();
-/*
-//JP 19.11.97:
-// setzen der bedingten Vorlage aendert nichts an den Einzuegen, die bleiben
-// als harte vorhanden
-                if( pStt->GetCondFmtColl() )
-                {
-                    // es gab eine Aenderung -> harte Einzuege entfernen
-                    if( pChgColl != pStt->GetCondFmtColl() )
-                        pStt->ResetAttr( RES_LR_SPACE );
-                    bCheck = FALSE;
                 }
-*/
-            }
 /*N*/           else if( !pOutlNd && NO_NUMBERING !=
 /*N*/                   ((SwTxtFmtColl*)pStt->GetFmtColl())->GetOutlineLevel() )
 /*N*/               pOutlNd = pStt;
@@ -905,7 +868,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/ #ifndef NUM_RELSPACE
 /*N*/           // hat sich eine Level - Aenderung ergeben, so setze jetzt die
 /*N*/           // gueltigen Einzuege
-/*N*/           if( bCheck && ( nLevel != nNdOldLvl || pStt->IsSetNumLSpace())
+/*N*/           if( sbCheck && ( nLevel != nNdOldLvl || pStt->IsSetNumLSpace())
 /*N*/               && GetRealLevel( nLevel ) < MAXLEVEL )
 /*N*/           {
 /*N*/               SvxLRSpaceItem aLR( ((SvxLRSpaceItem&)pStt->SwCntntNode::GetAttr(

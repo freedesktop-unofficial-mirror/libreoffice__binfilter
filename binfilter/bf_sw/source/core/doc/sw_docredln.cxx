@@ -180,14 +180,14 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/
 /*N*/   BOOL bChg = FALSE;
 /*N*/
-/*N*/   const SwPosition* pStt = rRange.Start(),
-/*N*/                   * pEnd = pStt == rRange.GetPoint() ? rRange.GetMark()
-/*N*/                                                      : rRange.GetPoint();
+/*N*/   const SwPosition* pStt = rRange.Start();
+/*N*/   pStt == rRange.GetPoint() ? rRange.GetMark() : rRange.GetPoint();
+
 /*N*/   USHORT n = 0;
 /*N*/   GetRedline( *pStt, &n );
 /*N*/   for( ; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRedline* pRedl = (*pRedlineTbl)[ n ];
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bChg )
@@ -206,10 +206,10 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 
 /*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT /*nType*/ ) const
 /*N*/ {
-/*N*/   const ULONG nNdIdx = rNd.GetIndex();
+/*N*/   rNd.GetIndex();
 /*N*/   for( USHORT n = 0; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwRedline* pTmp = (*pRedlineTbl)[ n ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return USHRT_MAX;
 /*N*/ }
@@ -217,10 +217,10 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& /*rPos*/,
 /*N*/                                   USHORT* pFndPos ) const
 /*N*/ {
-/*N*/   register USHORT nO = pRedlineTbl->Count(), nM, nU = 0;
+/*N*/   register USHORT nO = pRedlineTbl->Count(), nU = 0;
 /*N*/   if( nO > 0 )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nO--;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if( pFndPos )
 /*N*/       *pFndPos = nU;
@@ -313,7 +313,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/           GoEndSection( pNew->GetPoint() );
 /*N*/           if( *pNew->GetPoint() > *pEnd )
 /*N*/           {
-/*N*/               BOOL bWeiter = TRUE;
 /*N*/               pC = 0;
 /*N*/               if( aNewStt.nNode != pEnd->nNode )
 /*N*/                   do {

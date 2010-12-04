@@ -838,25 +838,6 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/
 /*N*/ }
 
-/*
- *  Kleiner Hack;
- *
-const SwPageDesc& SwDoc::GetPageDesc( USHORT i ) const
-{
-    if( !i && !aPageDescs.Count() )            // noch keiner vorhanden?
-        ((SwDoc*)this)->InitPageDescs();        //Default PageDescriptor
-    return *aPageDescs[i];
-}
-
-SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
-{
-    if( !i && !aPageDescs.Count() )         // noch keiner vorhanden?
-        ((SwDoc*)this)->InitPageDescs();        //Default PageDescriptor
-    return *aPageDescs[i];
-}
-*/
-
-
 
 /*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, pTimer )
 /*N*/ {

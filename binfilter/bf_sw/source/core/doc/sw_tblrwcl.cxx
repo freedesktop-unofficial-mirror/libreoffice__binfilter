@@ -436,7 +436,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
         return FALSE;
 
     // es darf nie die gesamte Tabelle geloescht werden
-    SwNodes& rNds = pDoc->GetNodes();
+    pDoc->GetNodes();
     if( rBoxes[0]->GetSttIdx()-1 == pTblNd->GetIndex() &&
         rBoxes[rBoxes.Count()-1]->GetSttNd()->EndOfSectionIndex()+1
         == pTblNd->EndOfSectionIndex() )

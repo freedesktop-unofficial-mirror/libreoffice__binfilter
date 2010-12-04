@@ -132,11 +132,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/ }
 
 
-
-
-
-// ------------------------------------------------------------------------
-
 /*N*/ _SaveRedlEndPosForRestore::_SaveRedlEndPosForRestore( const SwNodeIndex& rInsIdx )
 /*N*/   : pSavArr( 0 ), pSavIdx( 0 )
 /*N*/ {
@@ -219,12 +214,11 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pACEWord->IsDeleted() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   SwTxtNode *pNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/   if(!pNode)
 /*?*/       return sal_False;
-/*N*/   sal_Bool bInsOneChar = sal_True;
 /*N*/
 /*N*/   SwDataChanged aTmp( rRg, 0 );
 /*N*/
@@ -233,7 +227,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPaM aPam( rPos.nNode, rPos.nContent.GetIndex() - 1,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();

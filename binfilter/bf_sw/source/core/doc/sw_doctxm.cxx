@@ -489,9 +489,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/       return ;
 
     // die aktuellen Seitennummern ins Verzeichnis eintragen
-/*?*/   SwPageFrm*  pAktPage    = 0;
-/*?*/   USHORT      nPage       = 0;
-/*?*/   SwDoc* pDoc = (SwDoc*)GetFmt()->GetDoc();
+/*?*/   (SwDoc*)GetFmt()->GetDoc();
 /*?*/
 /*?*/     SwTOXInternational aIntl( GetLanguage(),
 /*?*/                               TOX_INDEX == GetTOXType()->GetType() ?
