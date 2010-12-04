@@ -1144,7 +1144,7 @@ using namespace ::com::sun::star::i18n;
     // in pIdx kann die 2. Position returnt werden.
 /*N*/ int SwCntntNode::CanJoinPrev( SwNodeIndex* pIdx ) const
 /*N*/ {
-/*N*/   const SwNodes& rNds = GetNodes();
+/*N*/   GetNodes();
 /*N*/   BYTE nNdType = GetNodeType();
 /*N*/   SwNodeIndex aIdx( *this, -1 );
 /*N*/

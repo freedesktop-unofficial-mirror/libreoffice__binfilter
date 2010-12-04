@@ -437,7 +437,7 @@ namespace binfilter {
 /*N*/   SwSection* pSection = pFmt->GetSection();
 /*N*/     /// OD 04.10.2002 #102894#
 /*N*/     /// remember hidden condition flag of SwSection before changes
-/*N*/     bool bOldCondHidden = pSection->IsCondHidden() ? true : false;
+/*N*/     pSection->IsCondHidden() ? true : false;
 /*N*/
 /*N*/   if( *pSection == rSect )
 /*N*/   {
@@ -649,7 +649,6 @@ namespace binfilter {
 /*N*/       else
 /*?*/           new SwTxtNode( aInsPos, (SwTxtFmtColl*)GetDoc()->GetDfltTxtFmtColl() );
 /*N*/   }
-/*N*/   SwEndNode* pEndNd = new SwEndNode( aInsPos, *pSectNd );
 /*N*/
 /*N*/   pSectNd->GetSection() = rSection;
 /*N*/   SwSectionFmt* pSectFmt = pSectNd->GetSection().GetFmt();
@@ -778,7 +777,7 @@ namespace binfilter {
 /*N*/               pLast = aIter++;
 /*N*/       }
 /*N*/   }
-/*N*/   SwDoc* pDoc = GetDoc();
+/*N*/   GetDoc();
 /*N*/
 /*N*/   SwSectionFmt* pFmt = pSection->GetFmt();
 /*N*/   if( pFmt )

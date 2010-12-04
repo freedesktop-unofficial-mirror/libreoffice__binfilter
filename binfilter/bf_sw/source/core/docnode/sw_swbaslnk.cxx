@@ -368,7 +368,7 @@ namespace binfilter {
 /*?*/                   0 != (pANd = pDoc->GetNodes()[pAPos->nNode]) &&
 /*?*/                   0 != (pTblNd = pANd->FindTableNode()) )
 /*?*/               {
-/*?*/                   BOOL bLastGrf = !pTblNd->GetTable().DecGrfsThatResize();
+/*?*/                   pTblNd->GetTable().DecGrfsThatResize();
 /*?*/                   SwHTMLTableLayout *pLayout =
 /*?*/                       pTblNd->GetTable().GetHTMLTableLayout();
 /*?*/                   if( pLayout )

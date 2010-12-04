@@ -227,7 +227,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
         SwStartNode* pSttNd = new SwStartNode( aEndIdx, ND_STARTNODE,
                                                 SwTableBoxStartNode );
         pSttNd->pStartOfSection = pTblNd;
-        SwEndNode* pEndNd = new SwEndNode( aEndIdx, *pSttNd );
 
         pPrvBox = new SwTableBox( pBoxFmt, *pSttNd, pLine );
 

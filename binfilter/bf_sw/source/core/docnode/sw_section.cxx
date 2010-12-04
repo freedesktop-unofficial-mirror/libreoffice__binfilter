@@ -115,7 +115,7 @@ namespace binfilter {
 /*N*/   SwSectionPtr pParentSect = GetParent();
 /*N*/   if( pParentSect )
 /*N*/   {
-/*N*/       bool bPHFlag = pParentSect->IsHiddenFlag();
+/*N*/       pParentSect->IsHiddenFlag();
 /*N*/       if( pParentSect->IsHiddenFlag() )
 /*?*/           SetHidden( TRUE );
 /*N*/
@@ -1132,7 +1132,7 @@ void SwSectionFmt::MakeFrms()
 
 
 
-/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen nStt, xub_StrLen /*nEnd */) const
+/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen /*nStt*/, xub_StrLen /*nEnd */) const
 /*N*/ {
 /*N*/   SwStartNode* pSttNd = rSectFmt.GetSectionNode( FALSE );
 /*N*/   return pSttNd &&
