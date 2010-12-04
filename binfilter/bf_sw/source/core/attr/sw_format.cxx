@@ -213,7 +213,6 @@ namespace binfilter {
 /*N*/ void SwFmt::CopyAttrs( const SwFmt& rFmt, BOOL bReplace )
 /*N*/ {
 /*N*/   // kopiere nur das Attribut-Delta Array
-/*N*/   register SwCharFmt* pDropCharFmt = 0;
 /*N*/
 /*N*/   if ( IsInCache() )
 /*N*/   {
