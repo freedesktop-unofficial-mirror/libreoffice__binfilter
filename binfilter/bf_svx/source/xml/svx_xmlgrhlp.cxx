@@ -784,7 +784,7 @@ public:
 /*N*/
 /*N*/                 if( aId.getLength() )
 /*N*/                 {
-/*N*/                     aRet = OUString::createFromAscii( XML_GRAPHICOBJECT_URL_BASE );
+/*N*/                     aRet = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_GRAPHICOBJECT_URL_BASE ));
 /*N*/                     aRet += aId;
 /*N*/                 }
 /*N*/             }

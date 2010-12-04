@@ -1517,7 +1517,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
                                 SvPersist*          pPersist = pModel->GetPersist();
                                 String              aPersistName;
                                 OUString            aTmpStr;
-                                Any                 aAny( getPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ) ) );
+                                Any                 aAny( getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )) ) );
                                 sal_Bool            bOk = sal_False;
 
                                 if( aAny >>= aTmpStr )
@@ -1560,7 +1560,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
                                 if( bOk )
                                 {
                                     aAny <<= ( aTmpStr = aPersistName );
-                                    setPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ), aAny );
+                                    setPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )), aAny );
                                 }
 
                                 static_cast< SdrOle2Obj* >( pObj )->SetObjRef( aIPObj );

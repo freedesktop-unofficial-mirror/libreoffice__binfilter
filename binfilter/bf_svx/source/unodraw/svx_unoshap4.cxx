@@ -265,7 +265,7 @@ sal_Bool SvxOle2Shape::createObject( const SvGlobalName &aClassName )
     sal_Bool            bOk = sal_False;
     String              aPersistName;
     OUString            aTmpStr;
-    Any                 aAny( getPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ) ) );
+    Any                 aAny( getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )) ) );
 
     if( aAny >>= aTmpStr )
         aPersistName = aTmpStr;
@@ -308,7 +308,7 @@ sal_Bool SvxOle2Shape::createObject( const SvGlobalName &aClassName )
     if( bOk )
     {
         aAny <<= ( aTmpStr = aPersistName );
-        setPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ), aAny );
+        setPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )), aAny );
     }
 
     static_cast< SdrOle2Obj* >( pObj )->SetObjRef( aIPObj );

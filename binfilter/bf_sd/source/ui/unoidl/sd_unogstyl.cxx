@@ -189,7 +189,7 @@ void SAL_CALL SdUnoGraphicStyle::setPropertyValue( const ::rtl::OUString& aPrope
 
 uno::Any SAL_CALL SdUnoGraphicStyle::getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
-    static OUString aStyleName( OUString::createFromAscii( UNO_NAME_STYLE_FAMILY ) );
+    static OUString aStyleName( RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_STYLE_FAMILY ) );
     if( PropertyName == aStyleName )
     {
         uno::Any aAny;
