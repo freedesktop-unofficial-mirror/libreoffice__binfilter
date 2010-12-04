@@ -46,27 +46,16 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::util;
 
 
-
-
-
-
-
 // Parameter fuers Suchen und Ersetzen von Text
 
 
-
-
-
-
-/*M*/ ULONG SwCursor::Find( const SearchOptions& rSearchOpt,
-/*M*/                       SwDocPositions nStart, SwDocPositions nEnde,
-/*M*/                         BOOL& bCancel,
-/*M*/                       FindRanges eFndRngs, int bReplace )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ ULONG SwCursor::Find( const SearchOptions& /*rSearchOpt*/,
+/*M*/       SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/,
+/*M*/       BOOL& /*bCancel*/,
+/*M*/       FindRanges /*eFndRngs*/, int /*bReplace*/ )
+/*M*/ {
+        DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*M*/ }
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

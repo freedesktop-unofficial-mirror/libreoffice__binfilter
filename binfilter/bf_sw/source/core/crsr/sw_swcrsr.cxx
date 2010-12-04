@@ -272,10 +272,10 @@ struct _PercentHdl
 #define IDX     aCellStt
 #endif
 
-/*N*/ bool SwCursor::IsInProtectTable( bool bMove, bool bChgCrsr )
+/*N*/ bool SwCursor::IsInProtectTable( bool bMove, bool /*bChgCrsr*/ )
 /*N*/ {
 /*N*/   // stehe ich in einer Tabelle ??
-/*N*/   SwDoc* pDoc = GetDoc();
+/*N*/   GetDoc();
 /*N*/   SwCntntNode* pCNd = GetCntntNode();
 /*N*/   if( !pCNd || pSavePos->nNode == GetPoint()->nNode.GetIndex() ||
 /*N*/       !pCNd->FindTableNode() ||
@@ -307,9 +307,9 @@ struct _PercentHdl
 /*N*/ }
 
 // TRUE: an die Position kann der Cursor gesetzt werden
-/*N*/ bool SwCursor::IsAtValidPos( BOOL bPoint ) const
+/*N*/ bool SwCursor::IsAtValidPos( BOOL /*bPoint*/) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetDoc();
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwCursor::SaveTblBoxCntnt( const SwPosition* )   {}
@@ -319,9 +319,9 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 // diese Methode "sucht" fuer alle Anwendungsfaelle, denn in SwFindParas
 // steht immer die richtigen Parameter und die entsprechende Find-Methode
 
-/*M*/ ULONG SwCursor::FindAll( SwFindParas& rParas,
-/*M*/                           SwDocPositions nStart, SwDocPositions nEnde,
-/*M*/                             FindRanges eFndRngs, BOOL& bCancel )
+/*M*/ ULONG SwCursor::FindAll( SwFindParas& /*rParas*/,
+/*M*/                           SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/,
+/*M*/                             FindRanges /*eFndRngs*/, BOOL& /*bCancel*/ )
 /*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*M*/ }
 
@@ -362,13 +362,13 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/ }
 
 //-----------------------------------------------------------------------------
-/*N*/ bool SwCursor::GoSentence( SentenceMoveType eMoveType )
+/*N*/ bool SwCursor::GoSentence( SentenceMoveType /*eMoveType*/ )
 /*N*/ {
-/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
 /*N*/ bool SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
-/*N*/                               BOOL bVisualAllowed, BOOL bInsertCrsr )
+/*N*/                               BOOL /*bVisualAllowed*/, BOOL /*bInsertCrsr*/ )
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 /*N*/   if( pTblCrsr )
@@ -377,7 +377,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/
 /*N*/     // calculate cursor bidi level
 /*N*/     const SwCntntFrm* pSttFrm = NULL;
-/*N*/     SwNode& rNode = GetPoint()->nNode.GetNode();
+/*N*/     GetPoint()->nNode.GetNode();
 /*N*/     const BOOL bDoNotSetBidiLevel = 0 != (SwUnoCrsr*)*this;
 /*N*/
 /*N*/     if ( ! bDoNotSetBidiLevel )
@@ -400,15 +400,15 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-/*N*/ bool SwCursor::UpDown( BOOL bUp, USHORT nCnt,
-/*N*/                           Point* pPt, long nUpDownX )
+/*N*/ bool SwCursor::UpDown( BOOL /*bUp*/, USHORT /*nCnt*/,
+/*N*/       Point* /*pPt*/, long /*nUpDownX*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ bool SwCursor::GotoTblBox( const String& rName )
+/*N*/ bool SwCursor::GotoTblBox( const String& /*rName*/ )
 /*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ bool SwCursor::MovePara(SwWhichPara fnWhichPara, SwPosPara fnPosPara )

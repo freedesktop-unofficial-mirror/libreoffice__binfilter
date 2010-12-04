@@ -117,11 +117,11 @@ using namespace ::com::sun::star::util;
 
 // gebe den aktuellen zurueck
 
-/*N*/ SwPaM* SwCrsrShell::GetCrsr( bool bMakeTblCrsr ) const
+/*N*/ SwPaM* SwCrsrShell::GetCrsr( bool /*bMakeTblCrsr*/ ) const
 /*N*/ {
 /*N*/   if( pTblCrsr )
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr->IsCrsrMovedUpdt() )
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pCurCrsr;
 /*N*/ }
@@ -148,19 +148,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr
 
 /*N*/ void SwCrsrShell::EndAction( const BOOL bIdleEnd )
 /*N*/ {
-/*
-//OS: Wird z.B. eine Basic-Action im Hintergrund ausgefuehrt, geht es so nicht
-    if( !bHasFocus )
-    {
-        // hat die Shell nicht den Focus, dann nur das EndAction an
-        // die ViewShell weitergeben.
-        ViewShell::EndAction( bIdleEnd );
-        return;
-    }
-*/
-
 /*N*/   bool bVis = bSVCrsrVis;
-
     // Idle-Formatierung ?
 /*N*/   if( bIdleEnd && Imp()->GetRegion() )
 /*N*/   {
@@ -209,7 +197,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr
 /*?*/           //              der Cursor geupdatet werden; um z.B. den
 /*?*/           //              TabellenCursor zu erzeugen. Im UpdateCrsr wird
 /*?*/           //              das jetzt beruecksichtigt!
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell::CHKRANGE, bIdleEnd );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       return;
 /*N*/   }
@@ -294,7 +282,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/
 /*M*/   // erfrage den Count fuer die Start-/End-Actions und ob die Shell
 /*M*/   // ueberhaupt den Focus hat
-/*M*/ //    if( ActionPend() /*|| !bHasFocus*/ )
 /*M*/   //JP 12.01.98: Bug #46496# - es muss innerhalb einer BasicAction der
 /*M*/   //              Cursor geupdatet werden; um z.B. den TabellenCursor zu
 /*M*/   //              erzeugen. Im EndAction wird jetzt das UpdateCrsr gerufen!
@@ -324,8 +311,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/         pDoc->IsIdxInTbl( pTstCrsr->GetPoint()->nNode ) &&
 /*M*/         ( pTblCrsr ||
 /*M*/           pTstCrsr->GetNode( TRUE )->FindStartNode() !=
-/*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() ))
-/*M*/       /*|| ( !pTblCrsr && lcl_IsInValueBox( *pTstCrsr, *this ) )*/ )
+/*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() )) )
 /*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*M*/   }
 /*M*/
@@ -557,11 +543,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/       pVisCrsr->Show();           // wieder anzeigen
 /*M*/ }
 
-
-
 // erzeuge eine Kopie vom Cursor und speicher diese im Stack
-
-
 
 /*
  *  Loescht einen Cursor (gesteuert durch bOldCrsr)
@@ -572,16 +554,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
  */
 
 
-
 /*
  * Verbinde zwei Cursor miteinander.
  * Loesche vom Stack den obersten und setzen dessen GetMark im Aktuellen.
  */
-
-
-
-
-
 
 
 /*N*/ void SwCrsrShell::ShowCrsrs( BOOL bCrsrVis )
@@ -796,8 +772,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 
 
 #if defined(DBG_UTIL) || defined(WIN)
-
-
 
 /*N*/ SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
 /*N*/ {

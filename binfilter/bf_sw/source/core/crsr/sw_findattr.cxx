@@ -53,16 +53,18 @@ using namespace ::com::sun::star::util;
     // Sonderbehandlung fuer SvxFontItem, nur den Namen vergleichen:
 
 
-/*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
-/*N*/                                   xub_StrLen nCntntPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
+/*N*/   xub_StrLen /*nCntntPos*/ )
+/*N*/ {
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 
 
-/*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
-/*N*/                                 xub_StrLen nCntntPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
+/*N*/       xub_StrLen /*nCntntPos*/ )
+/*N*/ {
+        DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 

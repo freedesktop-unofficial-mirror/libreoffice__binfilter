@@ -62,25 +62,25 @@ namespace binfilter {
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
 
-/*N*/ bool GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoPrevTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ bool GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoNextTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ bool GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoCurrTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ bool SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
+/*N*/ bool SwCursor::MoveTable( SwWhichTable /*fnWhichTbl*/, SwPosTable /*fnPosTbl*/ )
 /*N*/ {
 /*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return bRet;

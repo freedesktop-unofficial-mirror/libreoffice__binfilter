@@ -79,15 +79,6 @@ namespace binfilter {
 
 /*N*/ SwUnoCrsr::operator SwUnoCrsr* () { return this; }
 
-/*
-
-SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
-{
-    return new SwUnoCrsr( *GetPoint(), pRing );
-}
-
-*/
-
 /*N*/ bool SwUnoCrsr::IsSelOvr( int eFlags )
 /*N*/ {
 /*N*/   if( bRemainInSection )
@@ -187,16 +178,10 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 /*N*/ SwUnoTableCrsr::operator SwTableCursor* ()    { return this; }
 /*N*/ SwUnoTableCrsr::operator SwUnoTableCrsr* ()   { return this; }
 
-/*
-SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
-{
-    return SwUnoCrsr::Create( pRing );
-}
-*/
 
-/*N*/ bool SwUnoTableCrsr::IsSelOvr( int eFlags )
+/*N*/ bool SwUnoTableCrsr::IsSelOvr( int /*eFlags*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 bool bRet = SwUnoCrsr::IsSelOvr( eFlags );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()

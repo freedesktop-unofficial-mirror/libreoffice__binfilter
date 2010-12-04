@@ -514,14 +514,14 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ void GoStartSection( SwPosition * pPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void GoStartSection( SwPosition* /*pPos*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // gehe an das Ende der akt. Grund-Section
 
 
-/*N*/ void GoEndSection( SwPosition * pPos )
+/*N*/ void GoEndSection( SwPosition* /*pPos*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -534,7 +534,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ bool GoInSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
@@ -558,14 +558,14 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   return GoInNode( rPam, fnMove );
 /*N*/ }
 
-/*N*/ bool GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInCntntCells( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
 
 
-/*N*/ bool GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoPrevPara( SwPaM & /*rPam*/, SwPosPara /*aPosPara*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
@@ -636,19 +636,16 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ bool GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoNextSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ bool GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoPrevSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
-
-
-
 
 }
 

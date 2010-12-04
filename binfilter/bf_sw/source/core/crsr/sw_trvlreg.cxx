@@ -39,28 +39,28 @@ namespace binfilter {
 
 
 
-/*N*/ bool GotoPrevRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoPrevRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ bool GotoNextRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoNextRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ bool GotoCurrRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       bool bInReadOnly )
+/*N*/ bool GotoCurrRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 /*N*/ }
 
 
-/*N*/ bool GotoCurrRegionAndSkip( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                               bool bInReadOnly )
+/*N*/ bool GotoCurrRegionAndSkip( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                               bool /*bInReadOnly*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return FALSE;
 /*N*/ }

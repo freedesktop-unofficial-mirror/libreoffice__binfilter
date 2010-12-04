@@ -45,22 +45,15 @@ namespace binfilter {
 // Parameter fuer das Suchen vom FormatCollections
 
 
-
-
-
-
 // Suchen nach Format-Collections
 
 
-/*M*/ ULONG SwCursor::Find( const SwTxtFmtColl& rFmtColl,
-/*M*/                     SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
-/*M*/                   FindRanges eFndRngs, const SwTxtFmtColl* pReplFmtColl )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP");return 0;//STRIP001
-/*M*/   // OLE-Benachrichtigung abschalten !!
+/*M*/ ULONG SwCursor::Find( const SwTxtFmtColl& /*rFmtColl*/,
+/*M*/       SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/, BOOL& /*bCancel*/,
+/*M*/       FindRanges /*eFndRngs*/, const SwTxtFmtColl* /*pReplFmtColl*/ )
+/*M*/ {
+        DBG_BF_ASSERT(0, "STRIP");return 0; // OLE-Benachrichtigung abschalten !!
 /*M*/ }
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
