@@ -424,7 +424,7 @@ public:
 /*N*/   {
 /*N*/       if( pDoc->GetDrawModel() )
 /*N*/       {
-/*N*/           SdrPage *pPage = pDoc->GetDrawModel()->GetPage( 0 );
+/*N*/           pDoc->GetDrawModel()->GetPage( 0 );
 /*N*/           SwHiddenDrawObjList_Impl::const_iterator aIter = pHiddenDrawObjs->begin();
 /*N*/           while( aIter != pHiddenDrawObjs->end() )
 /*N*/           {
@@ -1747,7 +1747,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/       // Autoformate in dieser Liste muessen mit einer
 /*N*/       // Extension versehen werden!
 /*N*/       sal_uInt16 nFmtId =  0;
-/*N*/       const String& rName = rFmt.GetName();
 /*N*/       // TODO: unicode: correct?
 /*N*/       if( rFmt.IsAuto() )         // Autoformat
 /*N*/           nFmtId = Count()+1; //++nId;

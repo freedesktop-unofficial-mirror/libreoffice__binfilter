@@ -2303,7 +2303,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         ASSERT( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
 
-        BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
+        ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
 
         String aCode;
         if( ((SwScriptField*)pFld)->IsCodeURL() )
