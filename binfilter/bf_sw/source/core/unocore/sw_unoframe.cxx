@@ -1570,7 +1570,7 @@ void SwXFrame::setPropertyToDefault( const OUString& rPropertyName )
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pFmt)
     {
-        const SwAttrSet& rFmtSet = pFmt->GetAttrSet();
+        pFmt->GetAttrSet();
         const SfxItemPropertyMap* pCur = SfxItemPropertyMap::GetByName(_pMap, rPropertyName);
         if (!pCur)
             throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
@@ -1910,7 +1910,6 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
             SvInPlaceObjectRef xIPObj;
             if( (*pCLSID) >>= aCLSID )
             {
-                sal_Bool bInternal = sal_True;
                 if( !aClassName.MakeId( aCLSID ) )
                 {
                     IllegalArgumentException aExcept;
@@ -2192,7 +2191,7 @@ uno::Reference< XTextCursor >  SwXTextFrame::createTextCursor(void) throw( Runti
 
         SwXTextCursor* pXCrsr = new SwXTextCursor(this, *aPam.GetPoint(), CURSOR_FRAME, pFmt->GetDoc());
         aRef =  (XWordCursor*)pXCrsr;
-        SwUnoCrsr*  pUnoCrsr = pXCrsr->GetCrsr();
+        pXCrsr->GetCrsr();
     }
     else
         throw RuntimeException();
@@ -2226,7 +2225,6 @@ uno::Reference< container::XEnumeration >  SwXTextFrame::createEnumeration(void)
     SolarMutexGuard aGuard;
     uno::Reference< container::XEnumeration >  aRef;
     SwFrmFmt* pFmt = GetFrmFmt();
- uno::XInterface* pRet = 0;
     if(pFmt)
     {
         SwPosition aPos(pFmt->GetCntnt().GetCntntIdx()->GetNode());

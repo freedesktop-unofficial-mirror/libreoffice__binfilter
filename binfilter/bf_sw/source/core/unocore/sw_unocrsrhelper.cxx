@@ -295,7 +295,6 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
                 {
                     const SwTableNode* pTblNode = pSttNode->FindTableNode();
                     SwFrmFmt* pTableFmt = (SwFrmFmt*)pTblNode->GetTable().GetFrmFmt();
-                    SwTable& rTable = ((SwTableNode*)pSttNode)->GetTable();
                     if(FN_UNO_TEXT_TABLE == pMap->nWID)
                     {
                         Reference< XTextTable >  xTable = SwXTextTables::GetObject(*pTableFmt);
@@ -402,7 +401,6 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
                     nPaMEnd = nTmp;
                 }
                 Sequence< ::rtl::OUString> aCharStyles;
-                USHORT nCharStylesFound = 0;
                 SwpHints* pHints = pTxtNode->GetpSwpHints();
                 for(USHORT nAttr = 0; nAttr < pHints->GetStartCount(); nAttr++ )
                 {

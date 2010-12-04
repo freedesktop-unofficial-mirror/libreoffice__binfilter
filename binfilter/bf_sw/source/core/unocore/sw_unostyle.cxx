@@ -402,7 +402,6 @@ void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
 {
     SolarMutexGuard aGuard;
     sal_Bool    bLoadStyleText = sal_True;
-    sal_Bool    LoadStyleFrame = sal_True;
     sal_Bool    bLoadStylePage = sal_True;
     sal_Bool    bLoadStyleOverwrite = sal_True;
     sal_Bool    bLoadStyleNumbering = sal_True;
@@ -946,7 +945,7 @@ void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
                     sal_uInt16 nMask = 0xffff;
                     if(eFamily == SFX_STYLE_FAMILY_PARA && !pNewStyle->IsConditional())
                         nMask &= ~SWSTYLEBIT_CONDCOLL;
-                    SfxStyleSheetBase& rNewBase = pBasePool->Make(sStyleName, eFamily, nMask);
+                    pBasePool->Make(sStyleName, eFamily, nMask);
                     pNewStyle->SetDoc(pDocShell->GetDoc(), pBasePool);
                     pNewStyle->SetStyleName(sStyleName);
                     String sParentStyleName(pNewStyle->GetParentStyleName());
@@ -1869,7 +1868,7 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
             SwStyleNameMapper::FillUIName(uDescName, sDescName, GET_POOLID_PAGEDESC, sal_True );
             if(!pNewDesc->GetPageDesc() || pNewDesc->GetPageDesc()->GetName() != sDescName)
             {
-                sal_uInt16 nCount = pDoc->GetPageDescCnt();
+                pDoc->GetPageDescCnt();
                 sal_Bool bPut = sal_False;
                 if(sDescName.Len())
                 {
@@ -2617,7 +2616,6 @@ void SAL_CALL SwXStyle::setAllPropertiesToDefault(  )
             SwDocStyleSheet aStyle( *(SwDocStyleSheet*)pBase );
 
             SwFmt *pTargetFmt = 0;
-            SwPageDesc *pTargetDesc = 0;
             sal_uInt16 nPgDscPos = USHRT_MAX;
             switch( eFamily )
             {
@@ -2960,7 +2958,7 @@ void SwXPageStyle::setPropertyValues(
                         SfxItemSet& rSetSet = pNewSetItem->GetItemSet();
                         const SfxPoolItem* pItem = 0;
                         SfxPoolItem* pNewItem = 0;
-                        SfxItemState eState = rSetSet.GetItemState(nRes, sal_True, &pItem);
+                        rSetSet.GetItemState(nRes, sal_True, &pItem);
                         if(!pItem && nRes != rSetSet.GetPool()->GetSlotId(nRes))
                             pItem = &rSetSet.GetPool()->GetDefaultItem(nRes);
                         if(pItem)
@@ -3175,7 +3173,7 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                         {
                             const SfxItemSet& rSet = pSetItem->GetItemSet();
                             const SfxPoolItem* pItem = 0;
-                            SfxItemState eState = rSet.GetItemState(nRes, sal_True, &pItem);
+                            rSet.GetItemState(nRes, sal_True, &pItem);
                             if(!pItem && nRes != rSet.GetPool()->GetSlotId(nRes))
                                 pItem = &rSet.GetPool()->GetDefaultItem(nRes);
                             if(pItem)

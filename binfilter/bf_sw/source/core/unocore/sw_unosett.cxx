@@ -382,7 +382,6 @@ void SwXFootnoteProperties::setPropertyValue(const OUString& rPropertyName, cons
                 break;
                 case  WID_FOOTNOTE_COUNTING  :
                 {
-                    sal_uInt16 nRet = 0;
                     INT16 nTmp;
                     aValue >>= nTmp;
                     switch(nTmp)
@@ -1214,7 +1213,7 @@ SwXNumberingRules::SwXNumberingRules(SwDoc& rDoc) :
 {
     rDoc.GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
     sCreatedNumRuleName = rDoc.GetUniqueNumRuleName();
-    sal_uInt16 nIndex = rDoc.MakeNumRule( sCreatedNumRuleName, 0 );
+    rDoc.MakeNumRule( sCreatedNumRuleName, 0 );
 }
 
 SwXNumberingRules::~SwXNumberingRules()
@@ -2004,7 +2003,6 @@ Any SwXNumberingRules::getPropertyValue( const OUString& rPropertyName )
 {
     Any aRet;
     const SwNumRule* pRule = pNumRule;
-    SwNumRule* pCreatedRule = 0;
     if(!pRule && pDocShell)
         pRule = pDocShell->GetDoc()->GetOutlineNumRule();
     else if(pDoc && sCreatedNumRuleName.Len())

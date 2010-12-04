@@ -2057,7 +2057,7 @@ uno::Any SwXDocumentIndexes::getByIndex(sal_Int32 nIndex)
     sal_uInt32 nIdx = 0;
 
     const SwSectionFmts& rFmts = GetDoc()->GetSections();
-    for( sal_uInt16 n = 0, nCnt = 0; n < rFmts.Count(); ++n )
+    for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
     {
         const SwSection* pSect = rFmts[ n ]->GetSection();
         if( TOX_CONTENT_SECTION == pSect->GetType() &&
@@ -2086,11 +2086,10 @@ uno::Any SwXDocumentIndexes::getByName(const OUString& rName)
         throw RuntimeException();
 
     uno::Any aRet;
-    sal_uInt32 nIdx = 0;
 
     String sToFind(rName);
     const SwSectionFmts& rFmts = GetDoc()->GetSections();
-    for( sal_uInt16 n = 0, nCnt = 0; n < rFmts.Count(); ++n )
+    for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
     {
         const SwSection* pSect = rFmts[ n ]->GetSection();
         if( TOX_CONTENT_SECTION == pSect->GetType() &&
@@ -2153,7 +2152,7 @@ sal_Bool SwXDocumentIndexes::hasByName(const OUString& rName)
 
     String sToFind(rName);
     const SwSectionFmts& rFmts = GetDoc()->GetSections();
-    for( sal_uInt16 n = 0, nCnt = 0; n < rFmts.Count(); ++n )
+    for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
     {
         const SwSection* pSect = rFmts[ n ]->GetSection();
         if( TOX_CONTENT_SECTION == pSect->GetType() &&

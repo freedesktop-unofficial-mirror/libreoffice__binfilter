@@ -490,7 +490,6 @@ void lcl_SetTblSeparators(const uno::Any& rVal, SwTable* pTable, SwTableBox* pBo
         sal_Bool bError = sal_False;
         const TableColumnSeparator* pArray = pSepSeq->getConstArray();
         sal_Int32 nLastValue = 0;
-        sal_Int32 nTblWidth = aCols.GetRight() - aCols.GetLeft();
         for(sal_uInt16 i = 0; i < nOldCount; i++)
         {
             aCols[i] = pArray[i].Position;
@@ -887,7 +886,7 @@ uno::Any SwXCell::getPropertyValue(const OUString& rPropertyName)
         if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_TEXT_SECTION)))
         {
             SwFrmFmt* pTblFmt = GetFrmFmt();
-            SwDoc* pDoc = pTblFmt->GetDoc();
+            pTblFmt->GetDoc();
             SwTable* pTable = SwTable::FindTable( pTblFmt );
             SwTableNode* pTblNode = pTable->GetTableNode();
             SwSectionNode* pSectionNode =  pTblNode->FindSectionNode();
@@ -1662,15 +1661,14 @@ SwTableProperties_Impl::SwTableProperties_Impl(const SfxItemPropertyMap* pMap) :
     _pMap(pMap),
     nArrLen(TABLE_PROP_COUNT)
 {
-    const SfxItemPropertyMap* pTemp = _pMap;
-    for(sal_uInt16 i = 0; i < nArrLen; i++)
+    for(sal_uInt16 i = 0; i < nArrLen; ++i)
         pAnyArr[i] = 0;
 
 }
 
 SwTableProperties_Impl::~SwTableProperties_Impl()
 {
-    for(sal_uInt16 i = 0; i < nArrLen; i++)
+    for(sal_uInt16 i = 0; i < nArrLen; ++i)
         delete pAnyArr[i];
 }
 
@@ -1766,7 +1764,6 @@ void    SwTableProperties_Impl::ApplyTblAttr(const SwTable& rTbl, SwDoc& rDoc)
         OUString uTmp;
         (*pPage) >>= uTmp;
         String sPageStyle = uTmp;
-        const SwPageDesc* pDesc = 0;
         if(sPageStyle.Len())
         {
             SwStyleNameMapper::FillUIName(sPageStyle, sPageStyle, GET_POOLID_PAGEDESC, sal_True );
@@ -3034,7 +3031,7 @@ uno::Any SwXTextTable::getPropertyValue(const OUString& rPropertyName) throw( be
                 break;
                 case FN_UNO_TEXT_SECTION:
                 {
-                    SwDoc* pDoc = pFmt->GetDoc();
+                    pFmt->GetDoc();
                     SwTable* pTable = SwTable::FindTable( pFmt );
                     SwTableNode* pTblNode = pTable->GetTableNode();
                     SwSectionNode* pSectionNode =  pTblNode->FindSectionNode();

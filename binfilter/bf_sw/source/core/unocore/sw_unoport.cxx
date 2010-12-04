@@ -348,7 +348,7 @@ void SwXTextPortion::GetPropertyValues( const OUString *pPropertyNames,
                     break;
                     case FN_UNO_IS_COLLAPSED:
                     {
-                        BOOL bStart = TRUE, bPut = TRUE;
+                        BOOL bPut = TRUE;
                         switch (ePortionType)
                         {
                             case PORTION_REFMARK_START:

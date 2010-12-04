@@ -540,7 +540,7 @@ void SwXParagraph::setPropertyToDefault(const OUString& rPropertyName)
 
         // Absatz selektieren
         SwParaSelection aParaSel(pUnoCrsr);
-        SwDoc* pDoc = pUnoCrsr->GetDoc();
+        pUnoCrsr->GetDoc();
         const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                 aPropSet.getPropertyMap(), rPropertyName);
         if(pMap)
@@ -599,7 +599,7 @@ uno::Any SwXParagraph::getPropertyDefault(const OUString& rPropertyName)
         if(SwXParagraph::getDefaultTextContentValue(aRet, rPropertyName))
             return aRet;
 
-        SwDoc* pDoc = pUnoCrsr->GetDoc();
+        pUnoCrsr->GetDoc();
         const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                 aPropSet.getPropertyMap(), rPropertyName);
         if(pMap)

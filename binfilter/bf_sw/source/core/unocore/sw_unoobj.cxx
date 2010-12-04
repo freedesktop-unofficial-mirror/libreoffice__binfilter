@@ -409,7 +409,7 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
     SwStyleNameMapper::FillUIName(uDescName, sDescName, GET_POOLID_PAGEDESC, sal_True );
     if(!pNewDesc->GetPageDesc() || pNewDesc->GetPageDesc()->GetName() != sDescName)
     {
-        sal_uInt16 nCount = pDoc->GetPageDescCnt();
+        pDoc->GetPageDescCnt();
         sal_Bool bPut = sal_False;
         if(sDescName.Len())
         {

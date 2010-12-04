@@ -269,8 +269,6 @@ void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xT
         SwXTextRange::XTextRangeToSwPaM(aPam, xTextRange);
         UnoActionContext aCont(pDoc);
 
-        sal_Bool bRet = sal_False;
-
         SwSection* pRet = 0;
         if(!m_sName.Len())
             m_sName =  C2S("TextSection");
@@ -1146,7 +1144,6 @@ Sequence< PropertyState > SwXTextSection::getPropertyStates(
                         pStates[i] = aPropSet.getPropertyState(pNames[i], pFmt->GetAttrSet());
                     else
                     {
-                        const SfxPoolItem* pQueryItem = 0;
                         if(RES_COL == pMap->nWID)
                         {
                             if(!pProps->pColItem)

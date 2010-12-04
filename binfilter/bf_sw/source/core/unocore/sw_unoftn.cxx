@@ -429,7 +429,6 @@ Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeExcept
 {
     SolarMutexGuard aGuard;
     uno::Reference< container::XEnumeration >  aRef;
-     uno::XInterface* pRet = 0;
     const SwFmtFtn*  pFmt = FindFmt();
     if(pFmt)
     {

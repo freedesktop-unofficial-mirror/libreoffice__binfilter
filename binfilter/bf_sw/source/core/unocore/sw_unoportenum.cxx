@@ -622,14 +622,13 @@ void lcl_FillRedlineArray(SwDoc& rDoc,SwUnoCrsr& rUnoCrsr, SwXRedlinePortionArr&
     {
         const SwPosition* pStart = rUnoCrsr.GetPoint();
         const SwNodeIndex nOwnNode = pStart->nNode;
-        SwRedlineMode eRedMode = rDoc.GetRedlineMode();
+        rDoc.GetRedlineMode();
 
         for(USHORT nRed = 0; nRed < nRedTblCount; nRed++)
         {
             const SwRedline* pRedline = rRedTbl[nRed];
             const SwPosition* pRedStart = pRedline->Start();
             const SwNodeIndex nRedNode = pRedStart->nNode;
-            SwRedlineType nType = pRedline->GetType();
             if(nOwnNode == nRedNode)
             {
                 SwXRedlinePortion_ImplPtr pToInsert = new SwXRedlinePortion_Impl(pRedline, TRUE);
@@ -842,7 +841,7 @@ void SwXTextPortionEnumeration::CreatePortions()
                                 bAtEnd = sal_True;
                             }
                             if(nNextIndex < 0)
-                                sal_Bool bMove = pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
+                                pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
                             else
                             {
                                 DBG_ASSERT(nNextIndex > nCurrentIndex, "wrong move index");

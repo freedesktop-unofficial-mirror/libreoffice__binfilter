@@ -1541,7 +1541,6 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pSvxShape && pFmt)
     {
-        sal_Bool bOk = FALSE;
         Reference<XShapes> xShapes;
         if( xShapeAgg.is() )
         {
@@ -1594,7 +1593,6 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
 void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeException)
 {
     SolarMutexGuard aGuard;
-    sal_Bool bOk = FALSE;
     Reference<XShapes> xShapes;
     if( xShapeAgg.is() )
     {
@@ -1610,7 +1608,6 @@ void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeEx
 sal_Int32 SwXGroupShape::getCount(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
-    sal_Int32 nRet = 0;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {

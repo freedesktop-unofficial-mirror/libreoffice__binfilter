@@ -318,7 +318,6 @@ uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bo
     beans::PropertyValue* pArray = aRet.getArray();
 
     uno::Any aVal;
-    sal_Bool bFalse = sal_False;
     sal_Bool bTrue = sal_True;
     aVal.setValue( &bFromTable, ::getCppuBooleanType());
     pArray[0] = beans::PropertyValue(C2U("IsSortInTable"), -1, aVal, beans::PropertyState_DIRECT_VALUE);
