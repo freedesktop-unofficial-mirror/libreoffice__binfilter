@@ -115,9 +115,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
+int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 {
-        DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+        DBG_BF_ASSERT(0, "STRIP"); return 0;
 }
 
 /*N*/ SfxPoolItem* SwFmtFld::Clone( SfxItemPool* ) const

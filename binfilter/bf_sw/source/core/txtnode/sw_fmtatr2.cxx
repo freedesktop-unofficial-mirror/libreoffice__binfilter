@@ -113,7 +113,8 @@ using namespace ::rtl;
 /*N*/ {
 /*N*/   return pTxtAttr ? pTxtAttr->GetInfo( rInfo ) : FALSE;
 /*N*/ }
-/*N*/ bool SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+
+/*N*/ bool SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   String sCharFmtName;
 /*N*/   if(GetCharFmt())

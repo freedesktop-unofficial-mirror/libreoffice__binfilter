@@ -236,7 +236,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *************************************************************************/
 
-/*N*/ void SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
+/*N*/ void SwFntObj::CreateScrFont( const ViewShell* /*pSh*/, const OutputDevice& /*rOut*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -377,7 +377,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *************************************************************************/
 
 
-/*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* pOut )
+/*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* /*pOut*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
 /*N*/ }
 

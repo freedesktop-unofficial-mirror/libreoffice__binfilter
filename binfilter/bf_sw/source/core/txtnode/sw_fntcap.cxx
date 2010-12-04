@@ -146,7 +146,7 @@ public:
     const Size &GetSize() const { return aTxtSize; }
 };
 
-/*N*/ void SwDoGetCapitalSize::Init( SwFntObj *pUpperFont, SwFntObj *pLowerFont )
+/*N*/ void SwDoGetCapitalSize::Init( SwFntObj* /*pUpperFont*/, SwFntObj* /*pLowerFont*/ )
 /*N*/ {
 /*N*/   aTxtSize.Height() = 0;
 /*N*/   aTxtSize.Width() = 0;
