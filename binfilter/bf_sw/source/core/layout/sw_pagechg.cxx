@@ -90,7 +90,7 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 20. Jan. 99
 |*
 |*************************************************************************/
-/*N*/ void SwBodyFrm::Format( const SwBorderAttrs *pAttrs )
+/*N*/ void SwBodyFrm::Format( const SwBorderAttrs* /*pAttrs*/ )
 /*N*/ {
 /*N*/   //Formatieren des Body ist zu einfach, deshalb bekommt er ein eigenes
 /*N*/   //Format; Umrandungen und dergl. sind hier nicht zu beruecksichtigen.
@@ -1452,7 +1452,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
 /*N*/   if ( !bTst )
 /*N*/         Frm().SSize().Height() += nDist;
@@ -1466,7 +1466,7 @@ namespace binfilter {
 |*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
-/*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
 /*N*/   ASSERT( nDist >= 0, "nDist < 0." );
 /*N*/     ASSERT( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );

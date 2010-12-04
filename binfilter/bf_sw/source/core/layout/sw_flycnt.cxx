@@ -258,9 +258,9 @@ namespace binfilter {
 /*?*/       SwOszControl::pStk5 = 0;
 /*N*/ }
 
-/*N*/ bool IsInProgress( const SwFlyFrm *pFly )
+/*N*/ bool IsInProgress( const SwFlyFrm* /*pFly*/ )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   return SwOszControl::IsInProgress( pFly );
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ bool SwOszControl::IsInProgress( const SwFlyFrm *pFly )
@@ -1307,8 +1307,8 @@ namespace binfilter {
 /*N*/ }
 
 // Wer weicht wem aus bzw. welcher Bereich ist "linker"/"rechter" als welcher?
-/*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient eRelO, SwRelationOrient eRelO2,
-/*N*/   BOOL bLeft )
+/*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient /*eRelO*/, SwRelationOrient /*eRelO2*/,
+/*N*/   BOOL /*bLeft*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 

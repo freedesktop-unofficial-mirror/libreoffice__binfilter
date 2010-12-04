@@ -233,7 +233,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ void SwFlyFreeFrm::CheckClip( const SwFmtFrmSize &rSz )
+/*N*/ void SwFlyFreeFrm::CheckClip( const SwFmtFrmSize & /*rSz*/ )
 /*N*/ {
 /*N*/   //Jetzt ist es ggf. an der Zeit geignete Massnahmen zu ergreifen wenn
 /*N*/   //der Fly nicht in seine Umgebung passt.
@@ -351,19 +351,7 @@ namespace binfilter {
 /*?*/                                   aOldSize.Height() );
 /*?*/                     bWidthClipped = TRUE;
 /*?*/                 }
-/*?*/
-/*?*/ //                if( bWidthClipped || bHeightClipped )
-/*?*/ //                {
-/*?*/ //                    SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
-/*?*/ //                    pFmt->LockModify();
-/*?*/ //                    SwFmtFrmSize aFrmSize( rSz );
-/*?*/ //                    aFrmSize.SetWidth( aFrmRect.Width() );
-/*?*/ //                    aFrmSize.SetHeight( aFrmRect.Height() );
-/*?*/ //                    pFmt->SetAttr( aFrmSize );
-/*?*/ //                    pFmt->UnlockModify();
-/*?*/ //                }
-/*N*/           }
-/*N*/
+                }
 /*N*/           //Jetzt die Einstellungen am Frm vornehmen, bei Spalten werden
 /*N*/           //die neuen Werte in die Attribute eingetragen, weil es sonst
 /*N*/           //ziemlich fiese Oszillationen gibt.
@@ -387,24 +375,6 @@ namespace binfilter {
 /*?*/               } while ( pLow );
 /*?*/               ::binfilter::CalcCntnt( this );
 /*?*/               ColUnlock();
-/* MA 02. Sep. 96: Wenn das Attribut gesetzt wird funktionieren Flys in Flys
- * nicht  (30095 30096)
-                SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
-                pFmt->LockModify();
-                SwFmtFrmSize aFrmSize( rSz );
-                if ( bRig )
-                    aFrmSize.SetWidth( Frm().Width() );
-                if ( bBot )
-                {
-                    aFrmSize.SetSizeType( ATT_FIX_SIZE );
-                    aFrmSize.SetHeight( Frm().Height() );
-                    bFixHeight = TRUE;
-                    bMinHeight = FALSE;
-                }
-                pFmt->SetAttr( aFrmSize );
-                pFmt->UnlockModify();
-*/
-/*?*/ //Stattdessen:
 /*?*/               if ( !bValidSize && !bWidthClipped )
 /*?*/                   bFormatHeightOnly = bValidSize = TRUE;
 /*N*/           }
@@ -814,7 +784,7 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   //gerade 'laeuft'
 /*N*/   if ( pSortedObjs )
 /*N*/   {
-/*N*/       const SdrObjectPtr *pDel = pSortedObjs->GetData();
+/*N*/       pSortedObjs->GetData();
 /*N*/       pSortedObjs->Remove( pToRemove->GetMaster() );
 /*N*/       if ( !pSortedObjs->Count() )
 /*N*/       {

@@ -138,7 +138,7 @@ namespace binfilter {
 
 
 
-/*N*/ void SwLayouter::LoopControl( SwPageFrm* pPage, BYTE nLoop )
+/*N*/ void SwLayouter::LoopControl( SwPageFrm* pPage, BYTE /*nLoop*/ )
 /*N*/ {
 /*N*/   ASSERT( pLooping, "Looping: Lost control" );
 /*N*/   pLooping->Control( pPage );

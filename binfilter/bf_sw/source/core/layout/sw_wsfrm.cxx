@@ -1418,7 +1418,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           const SwDrawObjs &rObjs = *pBoss->GetDrawObjs();
 /*N*/           ASSERT( pBoss->IsPageFrm(), "Header/Footer out of page?" );
-/*N*/           SwPageFrm *pPage = (SwPageFrm*)pBoss;
 /*N*/           for ( USHORT i = 0; i < rObjs.Count(); ++i )
 /*N*/           {
 /*N*/               SdrObject *pObj = rObjs[i];

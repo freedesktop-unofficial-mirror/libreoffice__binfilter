@@ -310,7 +310,7 @@ namespace binfilter {
 /*N*/   const SwFlyNotify aNotify( this );
 /*N*/   SwBorderAttrAccess aAccess( SwFrm::GetCache(), this );
 /*N*/   const SwBorderAttrs &rAttrs = *aAccess.Get();
-/*N*/   const Size &rSz = rAttrs.GetSize();
+/*N*/   rAttrs.GetSize();
 /*N*/   const SwFmtFrmSize &rFrmSz = GetFmt()->GetFrmSize();
 /*N*/
 /*N*/   if ( IsClipped() )

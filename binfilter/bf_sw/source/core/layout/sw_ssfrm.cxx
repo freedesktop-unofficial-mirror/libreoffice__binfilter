@@ -367,9 +367,8 @@ namespace binfilter {
 /*?*/             SwTxtNode *pTxtNd = ((SwTxtFrm*)this)->GetTxtNode();
 /*?*/             const SwFtnIdxs &rFtnIdxs = pCNd->GetDoc()->GetFtnIdxs();
 /*?*/             USHORT nPos;
-/*?*/             ULONG nIndex = pCNd->GetIndex();
+/*?*/             pCNd->GetIndex();
 /*?*/             rFtnIdxs.SeekEntry( *pTxtNd, &nPos );
-/*?*/             SwTxtFtn* pTxtFtn;
 /*?*/             if( nPos < rFtnIdxs.Count() )
 /*?*/             {
 /*?*/                 while( nPos && pTxtNd == &(rFtnIdxs[ nPos ]->GetTxtNode()) )

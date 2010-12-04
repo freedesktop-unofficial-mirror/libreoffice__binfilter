@@ -2856,7 +2856,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                       pFly->Frm().Right() >= rRect.Left() &&
 /*N*/                       pFly->Frm().Left() <= rRect.Right() )
 /*N*/                    {
-/*N*/                       const SwFmtFrmSize &rSz = pFly->GetFmt()->GetFrmSize();
+/*N*/                       pFly->GetFmt()->GetFrmSize();
 /*N*/                       pFly->InvalidateSize();
 /*N*/                    }
 /*N*/               }

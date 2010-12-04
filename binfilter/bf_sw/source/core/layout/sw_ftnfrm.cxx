@@ -339,7 +339,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwTwips SwFtnContFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwFtnContFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
 /*N*/   //Keine Pruefung ob FixSize oder nicht, die FtnContainer sind immer bis
 /*N*/   //zur Maximalhoehe variabel.
@@ -1018,7 +1018,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/       pBoss = pRet->GetRef()->FindFtnBossFrm();
 /*N*/       ASSERT( pBoss, "FindFirstFtn: No boss found" );
 /*N*/       if( !pBoss )
-/*?*/           return FALSE; // ´There must be a bug, but no GPF
+/*?*/           return FALSE; // ï¿½There must be a bug, but no GPF
 /*N*/       pPage = pBoss->FindPageFrm();
 /*N*/       nPgNum = pPage->GetPhyPageNum();
 /*N*/       if ( nPgNum == nRefNum )
@@ -2089,7 +2089,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*************************************************************************/
 
-/*N*/ BYTE SwFtnBossFrm::_NeighbourhoodAdjustment( const SwFrm* pFrm ) const
+/*N*/ BYTE SwFtnBossFrm::_NeighbourhoodAdjustment( const SwFrm* /*pFrm*/ ) const
 /*N*/ {
 /*N*/   BYTE nRet = NA_ONLY_ADJUST;
 /*N*/   if( GetUpper() && !GetUpper()->IsPageBodyFrm() )
@@ -2137,8 +2137,8 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*************************************************************************/
 
 
-/*N*/ BOOL SwLayoutFrm::MoveLowerFtns( SwCntntFrm *pStart, SwFtnBossFrm *pOldBoss,
-/*N*/                                SwFtnBossFrm *pNewBoss, const BOOL bFtnNums )
+/*N*/ BOOL SwLayoutFrm::MoveLowerFtns( SwCntntFrm* /*pStart*/, SwFtnBossFrm *pOldBoss,
+/*N*/                                SwFtnBossFrm *pNewBoss, const BOOL /*bFtnNums*/ )
 /*N*/ {
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/   if ( !pDoc->GetFtnIdxs().Count() )

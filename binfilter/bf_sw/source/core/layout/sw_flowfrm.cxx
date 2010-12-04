@@ -946,7 +946,7 @@ namespace binfilter {
 |*************************************************************************/
 
 
-/*N*/ SwLayoutFrm *SwFrm::GetPrevLeaf( MakePageType eMakeFtn )
+/*N*/ SwLayoutFrm *SwFrm::GetPrevLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
 /*N*/   ASSERT( !IsInFtn(), "GetPrevLeaf(), don't call me for Ftn." );
 /*N*/
@@ -1334,11 +1334,11 @@ namespace binfilter {
 |*************************************************************************/
 
 
-/*N*/ BOOL SwFlowFrm::CheckMoveFwd( BOOL &rbMakePage, BOOL bKeep, BOOL bMovedBwd )
+/*N*/ BOOL SwFlowFrm::CheckMoveFwd( BOOL &rbMakePage, BOOL bKeep, BOOL /*bMovedBwd*/ )
 /*N*/ {
 /*N*/   const SwFrm* pNxt = rThis.GetIndNext();
 /*N*/
-/*N*/   if ( bKeep && //!bMovedBwd &&
+/*N*/   if ( bKeep &&
 /*N*/        ( !pNxt || ( pNxt->IsTxtFrm() && ((SwTxtFrm*)pNxt)->IsEmptyMaster() ) ) &&
 /*N*/        ( 0 != (pNxt = rThis.FindNext()) ) && IsKeepFwdMoveAllowed() )
 /*N*/   {

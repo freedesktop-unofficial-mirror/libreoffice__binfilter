@@ -1782,7 +1782,7 @@ namespace binfilter {
 
 // OD 31.10.2002 #104100#
 // NOTE: no adjustments for vertical layout support necessary
-/*N*/ BOOL CheckPos( SwFrm *pFrm )
+/*N*/ BOOL CheckPos( SwFrm* /*pFrm*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return TRUE;
 /*N*/ }
@@ -2061,7 +2061,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           //Wenn der Frame die Seite vorwaerts gewechselt hat, so lassen wir
 /*N*/           //den Vorgaenger nocheinmal durchlaufen.
-/*N*/           //So werden einerseits Vorgaenger erwischt, die jetzt fr Retouche
+/*N*/           //So werden einerseits Vorgaenger erwischt, die jetzt fï¿½r Retouche
 /*N*/           //verantwortlich sind, andererseits werden die Fusszeilen
 /*N*/           //auch angefasst.
 /*N*/           bool bSetCntnt = TRUE;
@@ -2568,7 +2568,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/
 /*N*/       bool bInValid;
-/*N*/       const SwViewOption& rVOpt = *pImp->GetShell()->GetViewOptions();
+/*N*/       *pImp->GetShell()->GetViewOptions();
 /*N*/       SwPageFrm *pPg = (SwPageFrm*)pRoot->Lower();
 /*N*/       do
 /*N*/       {   bInValid = pPg->IsInvalidCntnt() || pPg->IsInvalidLayout() ||

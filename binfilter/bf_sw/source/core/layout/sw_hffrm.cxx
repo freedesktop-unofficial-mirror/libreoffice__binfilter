@@ -110,7 +110,7 @@ namespace binfilter {
 /*M*/ }
 
 /*M*/ static void lcl_LayoutFrmEnsureMinHeight(SwLayoutFrm & rFrm,
-/*M*/                                          const SwBorderAttrs * pAttrs)
+/*M*/                                          const SwBorderAttrs * /*pAttrs*/)
 /*M*/ {
 /*M*/     SwTwips nMinHeight = lcl_GetFrmMinHeight(rFrm);
 /*M*/

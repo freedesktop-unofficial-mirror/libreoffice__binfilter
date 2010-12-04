@@ -453,7 +453,7 @@ namespace binfilter {
 
 /*N*/ void SwSectionFrm::MoveCntntAndDelete( SwSectionFrm* pDel, BOOL bSave )
 /*N*/ {
-/*N*/   BOOL bSize = pDel->Lower() && pDel->Lower()->IsColumnFrm();
+/*N*/   pDel->Lower() && pDel->Lower()->IsColumnFrm();
 /*N*/   SwFrm* pPrv = pDel->GetPrev();
 /*N*/   SwLayoutFrm* pUp = pDel->GetUpper();
 /*N*/     // OD 27.03.2003 #i12711# - initialize local pointer variables.
@@ -651,7 +651,7 @@ namespace binfilter {
 /*N*/   return pRet;
 /*N*/ }
 
-/*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& rMinDiff ) const
+/*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& /*rMinDiff*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
@@ -1264,7 +1264,7 @@ namespace binfilter {
 |*************************************************************************/
 
 
-/*N*/ SwLayoutFrm *SwFrm::GetPrevSctLeaf( MakePageType eMakeFtn )
+/*N*/ SwLayoutFrm *SwFrm::GetPrevSctLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
 /*N*/   PROTOCOL_ENTER( this, PROT_LEAF, ACT_PREV_SECT, GetUpper()->FindSctFrm() )
 /*N*/
@@ -1882,10 +1882,10 @@ namespace binfilter {
 /*N*/   {   // Mehrspaltigkeit in Fussnoten unterdruecken...
 /*N*/       case RES_FMT_CHG:
 /*N*/       {
-/*?*/           const SwFmtCol& rNewCol = GetFmt()->GetCol();
+/*?*/           GetFmt()->GetCol();
 /*?*/           if( !IsInFtn() )
 /*?*/           {
-/*?*/               //Dummer Fall. Bei der Zuweisung einer Vorlage k”nnen wir uns
+/*?*/               //Dummer Fall. Bei der Zuweisung einer Vorlage kï¿½nnen wir uns
 /*?*/               //nicht auf das alte Spaltenattribut verlassen. Da diese
 /*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
 /*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.

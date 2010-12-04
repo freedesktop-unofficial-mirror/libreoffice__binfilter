@@ -1661,7 +1661,7 @@ int SwFmtURL::operator==( const SfxPoolItem &rAttr ) const
     return bRet;
 }
 
-SfxPoolItem* SwFmtURL::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtURL::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwFmtURL( *this );
 }
@@ -1787,21 +1787,21 @@ bool SwFmtURL::PutValue( const uno::Any& rVal, BYTE nMemberId )
 
 // class SwNoReadOnly
 
-SfxPoolItem* SwFmtEditInReadonly::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtEditInReadonly::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwFmtEditInReadonly( Which(), GetValue() );
 }
 
 // class SwFmtLayoutSplit
 
-SfxPoolItem* SwFmtLayoutSplit::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtLayoutSplit::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwFmtLayoutSplit( GetValue() );
 }
 
 // class SwFmtNoBalancedColumns
 
-SfxPoolItem* SwFmtNoBalancedColumns::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtNoBalancedColumns::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwFmtNoBalancedColumns( GetValue() );
 }
@@ -1938,7 +1938,7 @@ bool SwFmtFtnEndAtTxtEnd::PutValue( const uno::Any& rVal, BYTE nMemberId )
 
 // class SwFmtFtnAtTxtEnd
 
-SfxPoolItem* SwFmtFtnAtTxtEnd::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtFtnAtTxtEnd::Clone( SfxItemPool* /*pPool*/ ) const
 {
     SwFmtFtnAtTxtEnd* pNew = new SwFmtFtnAtTxtEnd;
     *pNew = *this;
@@ -1947,7 +1947,7 @@ SfxPoolItem* SwFmtFtnAtTxtEnd::Clone( SfxItemPool* pPool ) const
 
 // class SwFmtEndAtTxtEnd
 
-SfxPoolItem* SwFmtEndAtTxtEnd::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtEndAtTxtEnd::Clone( SfxItemPool* /*pPool*/ ) const
 {
     SwFmtEndAtTxtEnd* pNew = new SwFmtEndAtTxtEnd;
     *pNew = *this;
@@ -1972,7 +1972,7 @@ SwFmtChain::SwFmtChain( const SwFmtChain &rCpy ) :
     SetNext( rCpy.GetNext() );
 }
 
-SfxPoolItem* SwFmtChain::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtChain::Clone( SfxItemPool* /*pPool*/ ) const
 {
     SwFmtChain *pRet = new SwFmtChain;
     pRet->SetPrev( GetPrev() );
@@ -2044,7 +2044,7 @@ int SwFmtLineNumber::operator==( const SfxPoolItem &rAttr ) const
         bCountLines  == ((SwFmtLineNumber&)rAttr).IsCount();
 }
 
-SfxPoolItem* SwFmtLineNumber::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwFmtLineNumber::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwFmtLineNumber( *this );
 }
@@ -2126,7 +2126,7 @@ int SwTextGridItem::operator==( const SfxPoolItem& rAttr ) const
         aColor == ((SwTextGridItem&)rAttr).GetColor();
 }
 
-SfxPoolItem* SwTextGridItem::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwTextGridItem::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwTextGridItem( *this );
 }
@@ -2286,7 +2286,7 @@ bool SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
 
 // class SwHeaderAndFooterEatSpacingItem
 
-SfxPoolItem* SwHeaderAndFooterEatSpacingItem::Clone( SfxItemPool* pPool ) const
+SfxPoolItem* SwHeaderAndFooterEatSpacingItem::Clone( SfxItemPool* /*pPool*/ ) const
 {
     return new SwHeaderAndFooterEatSpacingItem( Which(), GetValue() );
 }
@@ -2372,7 +2372,7 @@ SwRect SwFrmFmt::FindLayoutRect( const sal_Bool bPrtArea, const Point* pPoint,
             if( pFrm && pFrm->GetRegisteredIn() != this )
             {
                 // die Section hat keinen eigenen ::com::sun::star::frame::Frame, also falls
-                // jemand die tatsaechliche Groeáe braucht, so muss das
+                // jemand die tatsaechliche Groeï¿½e braucht, so muss das
                 // noch implementier werden, in dem sich vom Ende noch
                 // der entsprechende ::com::sun::star::frame::Frame besorgt wird.
                 // PROBLEM: was passiert bei SectionFrames, die auf unter-
