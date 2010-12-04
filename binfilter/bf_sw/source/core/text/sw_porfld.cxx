@@ -64,7 +64,7 @@ using namespace ::com::sun::star;
 /*N*/     return pClone;
 /*N*/ }
 
-/*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* pFld )
+/*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* /*pFld*/ )
 /*N*/ {
 /*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ASSERT( pFld, "TakeNextOffset: Missing Source" );
 /*N*/ }
@@ -209,7 +209,6 @@ public:
 /*N*/       {
 /*N*/           nScript = pBreakIt->xBreak->getScriptType( aTxt, 0 );
 /*N*/           xub_StrLen nChg = 0;
-/*N*/           USHORT nCnt = 0;
 /*N*/           if( i18n::ScriptType::WEAK == nScript )
 /*N*/           {
 /*N*/               nChg =(xub_StrLen)pBreakIt->xBreak->endOfScript(aTxt,0,nScript);
@@ -263,7 +262,7 @@ public:
 /*M*/                  rInf.GetUnderScorePos() > rInf.GetIdx() )
 /*M*/                 rInf.SetUnderScorePos( rInf.GetIdx() );
 /*M*/       }
-/*M*/       BYTE nScriptChg = ScriptChange( rInf, nFullLen );
+/*M*/       ScriptChange( rInf, nFullLen );
 /*M*/       rInf.SetLen( nFullLen );
 /*M*/       if( pFnt )
 /*M*/           pFnt->GoMagic( rInf.GetVsh(), pFnt->GetActual() );

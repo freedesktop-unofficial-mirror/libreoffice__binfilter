@@ -1445,7 +1445,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/   xub_StrLen nNewStart = nStart + pCurr->GetLen();
 /*M*/
 /*M*/     // adjust text if kana compression is enabled
-/*M*/     const SwScriptInfo& rSI = GetInfo().GetParaPortion()->GetScriptInfo();
+/*M*/     GetInfo().GetParaPortion()->GetScriptInfo();
 /*M*/
 /*M*/     if ( GetInfo().CompressLine() )
 /*M*/     {
@@ -1535,7 +1535,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/
 /*N*/   // Das Dummyflag besitzen Zeilen, die nur Flyportions enthalten, diese
 /*N*/   // sollten kein Register etc. beachten. Dummerweise hat kann es eine leere
-/*N*/   // Zeile am Absatzende geben (bei leeren Abs„tzen oder nach einem
+/*N*/   // Zeile am Absatzende geben (bei leeren Absï¿½tzen oder nach einem
 /*N*/   // Shift-Return), die das Register durchaus beachten soll.
 /*N*/     if( !pCurr->IsDummy() || ( !pCurr->GetNext() &&
 /*N*/         GetStart() >= GetTxtFrm()->GetTxt().Len() && !bNewLine ) )

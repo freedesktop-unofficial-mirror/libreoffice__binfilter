@@ -153,7 +153,7 @@ using namespace ::com::sun::star::i18n;
  *              virtual SwHyphPortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwHyphPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwHyphPortion::GetExpTxt( const SwTxtSizeInfo &/*rInf*/, XubString &rTxt ) const
 /*N*/ {
 /*N*/   rTxt = '-';
 /*N*/   return sal_True;

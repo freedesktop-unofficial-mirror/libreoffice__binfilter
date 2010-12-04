@@ -310,10 +310,6 @@ namespace binfilter {
 /*N*/
 /*N*/     if ( bHasGrid )
 /*N*/     {
-/*?*/         const USHORT nGridWidth = pGrid->GetBaseHeight();
-/*?*/         const USHORT nRubyHeight = pGrid->GetRubyHeight();
-/*?*/         const sal_Bool bRubyTop = ! pGrid->GetRubyTextBelow();
-/*?*/
 /*?*/         if ( GetInfo().IsMulti() )
 /*?*/             // we are inside the GetCharRect recursion for multi portions
 /*?*/             // we center the portion in its surrounding line

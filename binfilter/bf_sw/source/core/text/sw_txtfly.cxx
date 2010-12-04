@@ -1053,7 +1053,7 @@ namespace binfilter {
 /*N*/         SWRECTFN( pCurrFrm )
 /*N*/         const long nRight = (aRect.*fnRect->fnGetRight)() - 1;
 /*N*/         const long nLeft = (aRect.*fnRect->fnGetLeft)() + 1;
-/*N*/       const sal_Bool bFooter = pCurrFrm->IsInFtn();
+/*N*/       pCurrFrm->IsInFtn();
 /*N*/       const sal_Bool bR2L = pCurrFrm->IsRightToLeft();
 /*N*/
 /*N*/       for( MSHORT i = 0; i < nCount; i++ )

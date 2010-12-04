@@ -606,8 +606,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       const SwpHints *pHints = pFoll->GetTxtNode()->GetpSwpHints();
 /*?*/       if( pHints )
 /*?*/       {
-/*?*/           SwFtnBossFrm *pFtnBoss = 0;
-/*?*/           SwFtnBossFrm *pEndBoss = 0;
 /*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
 /*?*/           {
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
@@ -662,8 +660,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       const SwpHints *pHints = GetTxtNode()->GetpSwpHints();
 /*?*/       if( pHints )
 /*?*/       {
-/*?*/           SwFtnBossFrm *pFtnBoss = 0;
-/*?*/           SwFtnBossFrm *pEndBoss = 0;
 /*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
 /*?*/           {
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
@@ -991,7 +987,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {   // Wenn wir Zeilen abgeben, darf kein Join auf den Folows gerufen werden,
 /*N*/       // im Gegenteil, es muss ggf. sogar ein Follow erzeugt werden.
 /*N*/       // Dies muss auch geschehen, wenn die Textmasse komplett im Master
-/*N*/       // bleibt, denn es könnte ja ein harter Zeilenumbruch noch eine weitere
+/*N*/       // bleibt, denn es kï¿½nnte ja ein harter Zeilenumbruch noch eine weitere
 /*N*/       // Zeile (ohne Textmassse) notwendig machen!
 /*N*/       nEnd = rLine.GetEnd();
 /*N*/       if( GetFollow() )

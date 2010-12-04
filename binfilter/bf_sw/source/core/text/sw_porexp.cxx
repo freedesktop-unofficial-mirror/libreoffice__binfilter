@@ -182,7 +182,7 @@ namespace binfilter {
  *              virtual SwBlankPortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwBlankPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwBlankPortion::GetExpTxt( const SwTxtSizeInfo & /*rInf*/, XubString &rTxt ) const
 /*N*/ {
 /*N*/   rTxt = cChar;
 /*N*/   return sal_True;

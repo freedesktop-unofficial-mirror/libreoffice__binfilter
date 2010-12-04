@@ -271,7 +271,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 
 // Format end of line
 
-/*N*/ void SwLinePortion::FormatEOL( SwTxtFormatInfo &rInf )
+/*N*/ void SwLinePortion::FormatEOL( SwTxtFormatInfo & /*rInf*/ )
 /*N*/ { }
 
 /*************************************************************************
@@ -325,7 +325,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *              virtual SwLinePortion::CalcSpacing()
  *************************************************************************/
 
-/*N*/ long SwLinePortion::CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const
+/*N*/ long SwLinePortion::CalcSpacing( short /*nSpaceAdd*/, const SwTxtSizeInfo & /*rInf*/ ) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
@@ -334,7 +334,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *              virtual SwLinePortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwLinePortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwLinePortion::GetExpTxt( const SwTxtSizeInfo & /*rInf*/, XubString &/*rTxt*/ ) const
 /*N*/ {
 /*N*/   return sal_False;
 /*N*/ }

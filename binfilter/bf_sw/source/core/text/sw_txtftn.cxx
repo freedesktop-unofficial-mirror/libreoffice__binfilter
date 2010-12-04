@@ -425,7 +425,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/
 /*?*/               if( pFtnFrm )
 /*?*/               {
-/*?*/                   const sal_Bool bEndDoc = bEndn ? sal_True : bFtnEndDoc;
 /*?*/                   if( bRollBack )
 /*?*/                   {
 /*?*/                       while ( pFtnFrm )
@@ -958,12 +957,12 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       return 0;
 /*N*/
 /*N*/   // Aha, wir sind also im Fussnotenbereich
-/*N*/   const SwFtnInfo &rFtnInfo = pFrm->GetNode()->GetDoc()->GetFtnInfo();
+/*N*/   pFrm->GetNode()->GetDoc()->GetFtnInfo();
 /*N*/   SwTxtFrm *pQuoFrm = pFrm->FindQuoVadisFrm();
 /*N*/   if( !pQuoFrm )
 /*N*/       return 0;
 /*?*/   const SwPageFrm* pPage = pFrm->FindPageFrm();
-/*?*/   const SwPageFrm* pQuoPage = pQuoFrm->FindPageFrm();
+/*?*/   pQuoFrm->FindPageFrm();
 /*?*/   if( pPage == pQuoFrm->FindPageFrm() )
 /*?*/       return 0; // Wenn der QuoVadis auf der selben (spaltigen) Seite steht
             {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001 /*?*/  const XubString aPage = lcl_GetPageNumber( pPage );
@@ -998,7 +997,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   else
 /*M*/   {
 /*M*/       const SwPageFrm* pPage = pFrm->FindPageFrm();
-/*M*/       const SwPageFrm* pErgoPage = pErgoFrm->FindPageFrm();
+/*M*/       pErgoFrm->FindPageFrm();
 /*M*/       if( pPage == pErgoFrm->FindPageFrm() )
 /*M*/           return nOffset; // Wenn der ErgoSum auf der selben Seite steht
 /*M*/   }
@@ -1304,7 +1303,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *               virtual SwFtnPortion::Paint()
  *************************************************************************/
 
-/*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &rInf ) const
+/*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &/*rInf*/ ) const
 /*N*/ {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SwFtnSave aFtnSave( rInf, pFtn );
 /*N*/ }
@@ -1313,7 +1312,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *               virtual SwFtnPortion::GetTxtSize()
  *************************************************************************/
 
-/*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &rInfo ) const
+/*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &/*rInfo*/ ) const
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   SwFtnSave aFtnSave( rInfo, pFtn );
 /*N*/ }
@@ -1384,7 +1383,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * Wird im SwTxtFrm::Prepare() gerufen
  *************************************************************************/
 
-/*N*/ sal_Bool SwParaPortion::UpdateQuoVadis( const XubString &rQuo )
+/*N*/ sal_Bool SwParaPortion::UpdateQuoVadis( const XubString & /*rQuo*/ )
 /*N*/ {
 /*N*/   SwLineLayout *pLay = this;
 /*N*/   while( pLay->GetNext() )
@@ -1404,7 +1403,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   if( !pQuo )
 /*N*/       return sal_False;
 /*N*/
-            {DBG_BF_ASSERT(0, "STRIP");} return sal_False;//STRIP001 /*?*/  return pQuo->GetQuoTxt() == rQuo;
+            {DBG_BF_ASSERT(0, "STRIP");} return sal_False;
 /*N*/ }
 
 

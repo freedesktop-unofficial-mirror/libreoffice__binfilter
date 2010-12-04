@@ -543,7 +543,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-/*N*/ sal_Bool SwTxtPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwTxtPortion::GetExpTxt( const SwTxtSizeInfo &/*rInf*/, XubString &/*rTxt*/ ) const
 /*N*/ {
 /*N*/   return sal_False;
 /*N*/ }

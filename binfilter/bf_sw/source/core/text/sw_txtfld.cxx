@@ -354,7 +354,7 @@ namespace binfilter {
 /*?*/               rNumFmt.GetGraphicOrientation(), rNumFmt.GetGraphicSize(),
 /*?*/               bLeft, bCenter, nMinDist );
 /*?*/           long nTmpA = rInf.GetLast()->GetAscent();
-/*?*/           long nTmpD = rInf.GetLast()->Height() - nTmpA;
+/*?*/           rInf.GetLast()->Height() - nTmpA;
 /*?*/           if( !rInf.IsTest() )
                     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               ((SwGrfNumPortion*)pRet)->SetBase( nTmpA, nTmpD, nTmpA, nTmpD );
 /*N*/       }

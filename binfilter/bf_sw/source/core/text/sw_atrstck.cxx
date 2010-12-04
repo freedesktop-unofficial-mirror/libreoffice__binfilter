@@ -376,7 +376,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *                      SwAttrHandler::Push()
  *************************************************************************/
 
-/*M*/ sal_Bool SwAttrHandler::Push( const SwTxtAttr& rAttr, const SfxPoolItem& rItem, SwFont& rFnt )
+/*M*/ sal_Bool SwAttrHandler::Push( const SwTxtAttr& rAttr, const SfxPoolItem& rItem, SwFont& /*rFnt*/ )
 /*M*/ {
 /*M*/     ASSERT( rItem.Which() < RES_TXTATR_WITHEND_END ||
 /*M*/             RES_UNKNOWNATR_CONTAINER == rItem.Which() ,
@@ -692,12 +692,11 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 break;
 /*M*/
 /*M*/             USHORT nRotateStack = StackPos[ RES_CHRATR_ROTATE ];
-/*M*/             const SfxPoolItem* pRotateItem = 0;
 /*M*/             const SwTxtAttr* pRotateAttr = aAttrStack[ nRotateStack ].Top();
 /*M*/
 /*M*/             if ( pRotateAttr )
 /*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
+/*?*/                DBG_BF_ASSERT(0, "STRIP");
 /*M*/             }
 /*M*/             else
 /*M*/                 rFnt.SetVertical(
