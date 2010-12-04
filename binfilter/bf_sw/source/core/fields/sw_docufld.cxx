@@ -1254,7 +1254,7 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/
 /*N*/   if( TYP_CONDTXTFLD == nSubType )
 /*N*/   {
-/*N*/       SwNewDBMgr* pMgr = pDoc->GetNewDBMgr();
+/*N*/       pDoc->GetNewDBMgr();
 /*N*/
 /*N*/       bValid = sal_False;
 /*N*/       String sTmpName;
@@ -1686,7 +1686,7 @@ BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ String SwExtUserFieldType::Expand(sal_uInt16 nSub, sal_uInt32 nFormat) const
+/*N*/ String SwExtUserFieldType::Expand(sal_uInt16 nSub, sal_uInt32 /*nFormat*/) const
 /*N*/ {
 /*N*/   SvxAddressItem aAdr;
 /*N*/   String aRet( aEmptyStr );

@@ -203,10 +203,10 @@ using namespace ::com::sun::star;
 /*N*/   return GetPar2();
 /*N*/ }
 
-void SwField::SetPar1(const String& rStr)
+void SwField::SetPar1(const String& /*rStr*/)
 {}
 
-void SwField::SetPar2(const String& rStr)
+void SwField::SetPar2(const String& /*rStr*/)
  {}
 
 /*N*/ USHORT SwField::GetSubType() const
@@ -215,7 +215,7 @@ void SwField::SetPar2(const String& rStr)
 /*N*/   return 0;
 /*N*/ }
 
-void SwField::SetSubType(USHORT nType)
+void SwField::SetSubType(USHORT /*nType*/)
 {
 //  ASSERT(0, "Sorry Not implemented");
 }

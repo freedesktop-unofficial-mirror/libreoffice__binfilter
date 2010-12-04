@@ -573,7 +573,7 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
 
 /*N*/ SwDBNextSetField::SwDBNextSetField(SwDBNextSetFieldType* pTyp,
 /*N*/                                  const String& rCond,
-/*N*/                                  const String& rDummy,
+/*N*/                                  const String& /*rDummy*/ ,
 /*N*/                                  const SwDBData& rDBData) :
 /*N*/   SwDBNameInfField(pTyp, rDBData), aCond(rCond), bCondValid(TRUE)
 /*N*/ {}

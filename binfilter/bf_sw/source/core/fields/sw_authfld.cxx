@@ -402,7 +402,7 @@ USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
             //body the directly available text node will be used
             if(!pTxtNode)
                 pTxtNode = &rFldTxtNode;
-            ULONG nPos = pTxtNode->GetIndex();
+            pTxtNode->GetIndex();
             if( pTxtNode->GetTxt().Len() && pTxtNode->GetFrm() &&
                 pTxtNode->GetNodes().IsDocNodes() )
             {

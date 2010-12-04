@@ -298,7 +298,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       if( GetDoc()->GetDrawModel() && GetDepends() )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
 /*N*/
-/*N*/       sal_Bool bModified = GetDoc()->IsModified();
+/*N*/       GetDoc()->IsModified();
 /*N*/       GetDoc()->SetModified();
 /*N*/   }
 /*N*/ }
