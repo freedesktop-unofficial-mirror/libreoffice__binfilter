@@ -421,41 +421,41 @@ Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
         beans::PropertyValue *pProps = aPropSeq.getArray();
         sal_Int32 nPos = 0L;
         pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_NUMBERINGTYPE );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_NUMBERINGTYPE ));
         pProps[nPos++].Value <<= (sal_Int16)eType ;
 
-        pProps[nPos].Name = OUString::createFromAscii( XML_UNO_NAME_NRULE_PREFIX );
+        pProps[nPos].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_PREFIX ));
         pProps[nPos++].Value <<= sPrefix;
 
-        pProps[nPos].Name = OUString::createFromAscii( XML_UNO_NAME_NRULE_SUFFIX );
+        pProps[nPos].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_SUFFIX ));
         pProps[nPos++].Value <<= sSuffix;
 
-        pProps[nPos].Name = OUString::createFromAscii( XML_UNO_NAME_NRULE_ADJUST );
+        pProps[nPos].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_ADJUST ));
         pProps[nPos++].Value <<= eAdjust;
 
         sal_Int32 nLeftMargin = nSpaceBefore + nMinLabelWidth;
         if( nLeftMargin < 0 )
             nLeftMargin = 0;
         pProps[nPos].Name =
-            OUString::createFromAscii( XML_UNO_NAME_NRULE_LEFT_MARGIN );
+            OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_LEFT_MARGIN ));
         pProps[nPos++].Value <<= (sal_Int32)nLeftMargin;
 
         sal_Int32 nFirstLineOffset =
                 nMinLabelWidth <= nLeftMargin ? -nMinLabelWidth : -nLeftMargin;
 
         pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_FIRST_LINE_OFFSET );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_FIRST_LINE_OFFSET ));
         pProps[nPos++].Value <<= (sal_Int32)nFirstLineOffset;
 
         pProps[nPos].Name =
-            OUString::createFromAscii(XML_UNO_NAME_NRULE_SYMBOL_TEXT_DISTANCE);
+            OUString(RTL_CONSTASCII_USTRINGPARAM(XML_UNO_NAME_NRULE_SYMBOL_TEXT_DISTANCE));
         pProps[nPos++].Value <<= (sal_Int16)nMinLabelDist;
 
         OUString sStyleName = sTextStyleName;
         if( sStyleName.getLength() && pI18NMap )
             sStyleName = pI18NMap->Get( SFX_STYLE_FAMILY_CHAR, sStyleName );
         pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_CHAR_STYLE_NAME );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_CHAR_STYLE_NAME ));
         pProps[nPos++].Value <<= sTextStyleName;
 
         if( bBullet )
@@ -493,12 +493,12 @@ Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
                 OUStringBuffer sTmp(1);
                 sTmp.append( cBullet );
                 pProps[nPos].Name =
-                        OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_CHAR );
+                        OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_CHAR ));
                 pProps[nPos++].Value <<= sTmp.makeStringAndClear();
             }
 
             pProps[nPos].Name =
-                    OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_FONT );
+                    OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_FONT ));
             pProps[nPos++].Value <<= aFDesc;
 
         }
@@ -520,41 +520,41 @@ Sequence<beans::PropertyValue> SvxXMLListLevelStyleContext_Impl::GetProperties(
             if( sStr.getLength() )
             {
                 pProps[nPos].Name =
-                        OUString::createFromAscii( XML_UNO_NAME_NRULE_GRAPHICURL );
+                        OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_GRAPHICURL ));
                 pProps[nPos++].Value <<= sStr;
             }
 
             awt::Size aSize( nImageWidth, nImageHeight );
             pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_GRAPHIC_SIZE );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_GRAPHIC_SIZE ));
             pProps[nPos++].Value <<= aSize;
 
             pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_VERT_ORIENT );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_VERT_ORIENT ));
             pProps[nPos++].Value <<= (sal_Int16)eImageVertOrient;
         }
 
         if( bNum )
         {
             pProps[nPos].Name =
-                    OUString::createFromAscii( XML_UNO_NAME_NRULE_START_WITH );
+                    OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_START_WITH ));
             pProps[nPos++].Value <<= (sal_Int16)nNumStartValue;
 
             pProps[nPos].Name =
-                OUString::createFromAscii(XML_UNO_NAME_NRULE_PARENT_NUMBERING);
+                OUString(RTL_CONSTASCII_USTRINGPARAM(XML_UNO_NAME_NRULE_PARENT_NUMBERING));
             pProps[nPos++].Value <<= (sal_Int16)nNumDisplayLevels;
         }
 
         if( ( bNum || bBullet ) && nRelSize )
         {
             pProps[nPos].Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_RELSIZE );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_RELSIZE ));
             pProps[nPos++].Value <<= nRelSize;
         }
 
         if( !bImage && bHasColor )
         {
-            pProps[nPos].Name = OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_COLOR );
+            pProps[nPos].Name = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_COLOR ));
             pProps[nPos++].Value <<= (sal_Int32)aColor.GetColor();
         }
 
@@ -1128,7 +1128,7 @@ void SvxXMLListStyleContext::SetDefaultStyle(
     beans::PropertyValue *pProps = aPropSeq.getArray();
 
     pProps->Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_NUMBERINGTYPE );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_NUMBERINGTYPE ));
     (pProps++)->Value <<= (sal_Int16)(bOrdered ? NumberingType::ARABIC
                                                  : NumberingType::CHAR_SPECIAL );
     if( !bOrdered )
@@ -1149,16 +1149,16 @@ void SvxXMLListStyleContext::SetDefaultStyle(
         aFDesc.Weight = WEIGHT_DONTKNOW;
         //aFDesc.Transparant = sal_True;
         pProps->Name =
-                    OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_FONT );
+                    OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_FONT ));
         (pProps++)->Value <<= aFDesc;
 
         OUStringBuffer sTmp(1);
         sTmp.append( (sal_Unicode)(0xF000 + 149) );
         pProps->Name =
-                    OUString::createFromAscii( XML_UNO_NAME_NRULE_BULLET_CHAR );
+                    OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_BULLET_CHAR ));
         (pProps++)->Value <<= sTmp.makeStringAndClear();
         pProps->Name =
-                OUString::createFromAscii( XML_UNO_NAME_NRULE_CHAR_STYLE_NAME );
+                OUString(RTL_CONSTASCII_USTRINGPARAM( XML_UNO_NAME_NRULE_CHAR_STYLE_NAME ));
         (pProps++)->Value <<=
             OUString( RTL_CONSTASCII_USTRINGPARAM( "Numbering Symbols" ) );
     }

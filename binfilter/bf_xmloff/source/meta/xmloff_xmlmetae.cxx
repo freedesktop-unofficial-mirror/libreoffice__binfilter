@@ -166,7 +166,7 @@ SfxXMLMetaExport::SfxXMLMetaExport(
         try
         {
             uno::Any aLocAny = xDocProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii( PROP_CHARLOCALE ) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_CHARLOCALE )) );
             aLocAny >>= aLocale;
         }
         catch (beans::UnknownPropertyException&)
@@ -267,39 +267,39 @@ void SfxXMLMetaExport::Export()
     }
 
     //  document title
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_TITLE),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TITLE)),
                          XML_NAMESPACE_DC, XML_TITLE );
 
     //  description
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_DESCRIPTION),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DESCRIPTION)),
                          XML_NAMESPACE_DC, XML_DESCRIPTION );
 
     //  subject
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_THEME),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_THEME)),
                          XML_NAMESPACE_DC, XML_SUBJECT );
 
     //  created...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_AUTHOR),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_AUTHOR)),
                          XML_NAMESPACE_META, XML_INITIAL_CREATOR );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_CREATIONDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_CREATIONDATE)),
                            XML_NAMESPACE_META, XML_CREATION_DATE );
 
     //  modified...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_MODIFIEDBY),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFIEDBY)),
                          XML_NAMESPACE_DC, XML_CREATOR );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_MODIFYDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFYDATE)),
                            XML_NAMESPACE_DC, XML_DATE );
 
     //  printed...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_PRINTEDBY),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTEDBY)),
                          XML_NAMESPACE_META, XML_PRINTED_BY );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_PRINTDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTDATE)),
                            XML_NAMESPACE_META, XML_PRINT_DATE );
 
     //  keywords
     // service DocumentInfo contains keywords in a single string, comma separated.
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_KEYWORDS) );
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_KEYWORDS)) );
     ::rtl::OUString sKeywords;
     aPropVal >>= sKeywords;
     if ( sKeywords.getLength() )
@@ -335,7 +335,7 @@ void SfxXMLMetaExport::Export()
 
     //  editing cycles
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_EDITINGCYCLES) );
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGCYCLES)) );
     sal_Int32 nCycles;
     if ( aPropVal >>= nCycles )
     {
@@ -350,7 +350,7 @@ void SfxXMLMetaExport::Export()
     //  editing duration
     //  property is a int32 with the Time::GetTime value
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_EDITINGDURATION) );
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGDURATION)) );
     sal_Int32 nDurVal;
     if ( aPropVal >>= nDurVal )
     {
@@ -365,7 +365,7 @@ void SfxXMLMetaExport::Export()
 
     //  default target
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_DEFAULTTARGET) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DEFAULTTARGET)) );
     ::rtl::OUString sDefTarget;
     aPropVal >>= sDefTarget;
     if ( sDefTarget.getLength() )
@@ -386,14 +386,14 @@ void SfxXMLMetaExport::Export()
 
     //  auto-reload
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_RELOADENABLED) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADENABLED)) );
     BOOL bAutoReload = FALSE;
     if ( aPropVal.getValueTypeClass() == uno::TypeClass_BOOLEAN )
         bAutoReload = *(sal_Bool*)aPropVal.getValue();
     if ( bAutoReload )
     {
         aPropVal = xInfoProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADURL) );
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADURL)) );
         ::rtl::OUString sReloadURL;
         aPropVal >>= sReloadURL;
         if ( sReloadURL.getLength() )
@@ -403,7 +403,7 @@ void SfxXMLMetaExport::Export()
         }
 
         aPropVal = xInfoProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADSECS) );
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADSECS)) );
         sal_Int32 nSecs;
         if ( aPropVal >>= nSecs )
         {
@@ -421,7 +421,7 @@ void SfxXMLMetaExport::Export()
 
     //  template
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEURL) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEURL)) );
     ::rtl::OUString sTplPath;
     aPropVal >>= sTplPath;
     if ( sTplPath.getLength() )
@@ -436,7 +436,7 @@ void SfxXMLMetaExport::Export()
 
         //  template name
         aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATENAME) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATENAME)) );
         ::rtl::OUString sTplName;
         aPropVal >>= sTplName;
         if ( sTplName.getLength() )
@@ -446,7 +446,7 @@ void SfxXMLMetaExport::Export()
 
         //  template date
         aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEDATE) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEDATE)) );
         util::DateTime aDateTime;
         if ( aPropVal >>= aDateTime )
         {

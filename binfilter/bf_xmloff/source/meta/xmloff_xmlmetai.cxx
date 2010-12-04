@@ -409,13 +409,13 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                 case XML_TOK_META_TEMPLATE_HREF:
                     aPropAny <<= GetImport().GetAbsoluteReference(sValue);
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEURL),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEURL)),
                         aPropAny );
                     break;
                 case XML_TOK_META_TEMPLATE_TITLE:
                     aPropAny <<= sValue;
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATENAME),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATENAME)),
                         aPropAny );
                     break;
                 case XML_TOK_META_TEMPLATE_DATE:
@@ -425,8 +425,8 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                         {
                             aPropAny <<= aDateTime;
                             xInfoProp->setPropertyValue(
-                                ::rtl::OUString::createFromAscii(
-                                            PROP_TEMPLATEDATE), aPropAny );
+                                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                            PROP_TEMPLATEDATE)), aPropAny );
                         }
                     }
                     break;
@@ -445,7 +445,7 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             sal_Bool bReload = sal_True;
             aPropAny.setValue( &bReload, getBooleanCppuType() );
             xInfoProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_RELOADENABLED),
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADENABLED)),
                     aPropAny );
 
             sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -464,7 +464,7 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                     case XML_TOK_META_RELOAD_HREF:
                         aPropAny <<= GetImport().GetAbsoluteReference(sValue);
                         xInfoProp->setPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADURL),
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADURL)),
                             aPropAny );
                         break;
                     case XML_TOK_META_RELOAD_DELAY:
@@ -475,8 +475,8 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                                 sal_Int32 nSecs = aTime.GetMSFromTime() / 1000;
                                 aPropAny <<= nSecs;
                                 xInfoProp->setPropertyValue(
-                                    ::rtl::OUString::createFromAscii(
-                                                PROP_RELOADSECS), aPropAny );
+                                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                                PROP_RELOADSECS)), aPropAny );
                             }
                         }
                         break;
@@ -504,7 +504,7 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                     ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
                     aPropAny <<= sValue;
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_DEFAULTTARGET),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DEFAULTTARGET)),
                         aPropAny );
                 }
             }
@@ -575,48 +575,48 @@ void SfxXMLMetaElementContext::EndElement()
         // simple strings
         case XML_TOK_META_TITLE:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_TITLE), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TITLE)), aPropAny );
             break;
         case XML_TOK_META_DESCRIPTION:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_DESCRIPTION), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DESCRIPTION)), aPropAny );
             break;
         case XML_TOK_META_SUBJECT:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_THEME), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_THEME)), aPropAny );
             break;
         case XML_TOK_META_INITIALCREATOR:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_AUTHOR), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_AUTHOR)), aPropAny );
             break;
         case XML_TOK_META_CREATOR:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_MODIFIEDBY), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFIEDBY)), aPropAny );
             break;
         case XML_TOK_META_PRINTEDBY:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_PRINTEDBY), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTEDBY)), aPropAny );
             break;
         // date/time
         case XML_TOK_META_CREATIONDATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_CREATIONDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_CREATIONDATE)), aPropAny );
             }
             break;
         case XML_TOK_META_DATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_MODIFYDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFYDATE)), aPropAny );
             }
             break;
         case XML_TOK_META_PRINTDATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_PRINTDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTDATE)), aPropAny );
             }
             break;
         // others
@@ -643,7 +643,7 @@ void SfxXMLMetaElementContext::EndElement()
                     try
                     {
                         xDocProp->setPropertyValue(
-                            ::rtl::OUString::createFromAscii( PROP_CHARLOCALE ),
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_CHARLOCALE )),
                             aPropAny );
                     }
                     catch (beans::UnknownPropertyException&)
@@ -657,7 +657,7 @@ void SfxXMLMetaElementContext::EndElement()
             if ( lcl_GetNumber( sContent, nValue, USHRT_MAX ) )
             {
                 aPropAny <<= (sal_Int16) nValue;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_EDITINGCYCLES), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGCYCLES)), aPropAny );
             }
             break;
         case XML_TOK_META_EDITINGDURATION:
@@ -665,7 +665,7 @@ void SfxXMLMetaElementContext::EndElement()
             if ( ParseISODurationString( sContent, aTime ) )
             {
                 aPropAny <<= (sal_Int32) aTime.GetTime();
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_EDITINGDURATION), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGDURATION)), aPropAny );
             }
             break;
         case XML_TOK_META_KEYWORDS:
@@ -767,7 +767,7 @@ void SfxXMLMetaContext::EndElement()
     {
         uno::Any aAny;
         aAny <<= ::rtl::OUString(sKeywords);
-        xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_KEYWORDS), aAny );
+        xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_KEYWORDS)), aAny );
     }
 }
 
