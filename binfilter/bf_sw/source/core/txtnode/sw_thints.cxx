@@ -923,16 +923,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   if( pNd == this )
 /*N*/   {
-/*?*/       if( aThisSet.Count() )
-/*?*/       {
-/*?*/           SfxItemIter aIter( aThisSet );
-/*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
-/*?*/           while( TRUE )
-/*?*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
-/*?*/           }
-/*?*/       }
-/*N*/
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -946,19 +936,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       if( aThisSet.Count() )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
-/*N*/       }
-/*N*/
-/*N*/       if( aNdSet.Count() )
-/*N*/       {
-/*?*/           SfxItemIter aIter( aNdSet );
-/*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
-/*?*/           while( TRUE )
-/*?*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pNd->pSwpHints, *pItem, pNd->GetTxt().Len() ) )
-/*?*/           }
-/*?*/
-/*?*/           SwFmtChg aTmp1( pNd->GetFmtColl() );
-/*?*/           pNd->SwModify::Modify( &aTmp1, &aTmp1 );
 /*N*/       }
 /*N*/   }
 /*N*/
