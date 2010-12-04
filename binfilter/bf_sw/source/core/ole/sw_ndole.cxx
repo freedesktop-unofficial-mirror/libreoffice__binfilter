@@ -85,7 +85,7 @@ public:
 };
 
 void SwOLELRUCache::Commit() {}
-void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 
 SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
