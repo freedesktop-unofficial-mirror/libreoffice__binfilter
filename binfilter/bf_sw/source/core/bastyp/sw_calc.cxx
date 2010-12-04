@@ -454,7 +454,7 @@ static int
 
 
 
-/*N*/ String SwCalc::GetStrResult( double nValue, BOOL bRound )
+/*N*/ String SwCalc::GetStrResult( double nValue, BOOL /*bRound*/ )
 /*N*/ {
 /*N*/   if( nValue >= DBL_MAX )
 /*N*/       switch( eError )
