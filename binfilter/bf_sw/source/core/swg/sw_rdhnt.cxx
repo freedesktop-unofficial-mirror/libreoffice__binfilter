@@ -340,7 +340,7 @@ static USHORT InSWG_SwNoHyphenHere
 }
 
 static USHORT InSWG_SwSoftHyphen
-( SwSwgReader& rPar, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen nEnd )
+( SwSwgReader& /*rPar*/, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen /*nEnd*/ )
 {
     if( !pSet )
         pNd->Insert( CHAR_SOFTHYPHEN, SwIndex( pNd, nBgn ));
@@ -348,7 +348,7 @@ static USHORT InSWG_SwSoftHyphen
 }
 
 static USHORT InSWG_SwHardBlank
-( SwSwgReader& rPar, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen nEnd )
+( SwSwgReader& /*rPar*/, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen /*nEnd*/ )
 {
     if( !pSet )
         pNd->Insert( CHAR_HARDBLANK, SwIndex( pNd, nBgn ));

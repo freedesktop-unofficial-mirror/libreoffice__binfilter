@@ -541,7 +541,7 @@ static SwField* In_SwDocInfoField( SwSwgReader& rPar, SwDocInfoFieldType* pType,
     return new SwDocInfoField( pType, (USHORT)nType | nSubType );
 }
 
-static SwField* In_SwTemplNameField( SwSwgReader& rPar, SwTemplNameFieldType* pType )
+static SwField* In_SwTemplNameField( SwSwgReader& /*rPar*/, SwTemplNameFieldType* pType )
 {
     return new SwTemplNameField( pType, nNewFldFmt );
 }
