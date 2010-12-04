@@ -115,7 +115,7 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
                         if (bFoundControlShapeDataStyle)
                         {
                             DBG_ERROR("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the ControlShapeDataStyle context id!");
-                            // already added the attribute for the first occurence
+                            // already added the attribute for the first occurrence
                             break;
                         }
 
@@ -130,7 +130,7 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
                         if (bFoundNumberingRulesName)
                         {
                             DBG_ERROR("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the numbering rules name context id!");
-                            // already added the attribute for the first occurence
+                            // already added the attribute for the first occurrence
                             break;
                         }
 

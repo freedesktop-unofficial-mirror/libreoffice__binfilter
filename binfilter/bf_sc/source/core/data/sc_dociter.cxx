@@ -632,7 +632,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                 }
 /*N*/                 else if ( nStopOnMismatch )
 /*N*/                 {
-/*N*/                     nStopOnMismatch |= nStopOnMismatchOccured;
+/*N*/                     nStopOnMismatch |= nStopOnMismatchOccurred;
 /*N*/                     // Yes, even a mismatch may have a fulfilled equal
 /*N*/                     // condition if regular expressions were involved and
 /*N*/                     // SC_LESS_EQUAL or SC_GREATER_EQUAL were queried.

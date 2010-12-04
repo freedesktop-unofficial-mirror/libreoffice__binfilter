@@ -190,7 +190,7 @@ void SAL_CALL ScNamedRangeObj::setName( const ::rtl::OUString& aNewName )
     String aNewStr = aNewName;
     Modify_Impl( &aNewStr, NULL, NULL, NULL );
 
-    if ( aName != aNewStr )                 // some error occured...
+    if ( aName != aNewStr )                 // some error occurred...
         throw uno::RuntimeException();      // no other exceptions specified
 }
 

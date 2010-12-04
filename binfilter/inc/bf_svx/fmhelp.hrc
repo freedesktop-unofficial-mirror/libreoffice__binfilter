@@ -188,7 +188,7 @@
 #define HID_EVT_ELEMENTINSERTED                 (HID_EVT_START +  13)
 #define HID_EVT_ELEMENTREMOVED                  (HID_EVT_START +  14)
 #define HID_EVT_ELEMENTREPLACED                 (HID_EVT_START +  15)
-#define HID_EVT_ERROROCCURED                    (HID_EVT_START +  16)
+#define HID_EVT_ERROROCCURRED                   (HID_EVT_START +  16)
 #define HID_EVT_FIRING                          (HID_EVT_START +  17)
 #define HID_EVT_FOCUSGAINED                     (HID_EVT_START +  18)
 #define HID_EVT_FOCUSLOST                       (HID_EVT_START +  19)

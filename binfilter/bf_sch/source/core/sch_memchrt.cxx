@@ -991,7 +991,7 @@ using namespace ::com::sun::star;
 /*N*/                 nStartPos, nEndPos - 1,
 /*N*/                 maChartRange.maRanges[ i ] ))
 /*N*/         {
-/*N*/             // if an error occured, bail out
+/*N*/             // if an error occurred, bail out
 /*N*/             maChartRange.maRanges.clear();
 /*N*/             break;
 /*N*/         }

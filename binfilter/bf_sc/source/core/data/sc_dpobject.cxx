@@ -393,7 +393,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   USHORT nOutCount = 0;
 /*N*/   BOOL bDataFound = FALSE;
 /*N*/
-/*N*/   //! merge multiple occurences (data field with different functions)
+/*N*/   //! merge multiple occurrences (data field with different functions)
 /*N*/   //! force data field in one dimension
 /*N*/
 /*N*/   long nPos[PIVOT_MAXFIELD];
