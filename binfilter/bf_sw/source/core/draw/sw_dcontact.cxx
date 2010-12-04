@@ -221,7 +221,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwFlyDrawContact::SwFlyDrawContact( SwFlyFrmFmt *pToRegisterIn, SdrModel *pMod ) :
+/*N*/ SwFlyDrawContact::SwFlyDrawContact( SwFlyFrmFmt *pToRegisterIn, SdrModel* /*pMod*/ ) :
 /*N*/   SwContact( pToRegisterIn )
 /*N*/ {
 /*N*/   SetMaster( new SwFlyDrawObj() );
@@ -266,7 +266,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ void SwFlyDrawContact::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
+/*N*/ void SwFlyDrawContact::Modify( SfxPoolItem* /*pOld*/, SfxPoolItem* /*pNew*/ )
 /*N*/ {
 /*N*/ }
 
@@ -628,7 +628,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ void SwDrawContact::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
+/*N*/ void SwDrawContact::Modify( SfxPoolItem* /*pOld*/, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   //Es kommen immer Sets herein.
 /*N*/   //MA 03. Dec. 95: Falsch es kommen nicht immer Sets herein
@@ -984,63 +984,6 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                 }
             }
             break;
-/*
-        case FLY_AT_FLY:
-            {
-                if( pAnch->GetCntntAnchor() ) // LAYER_IMPL
-                {
-                    SwFrm *pAnchor = 0;
-                    //Erst einmal ueber den Inhalt suchen, weil konstant schnell. Kann
-                    //Bei verketteten Rahmen aber auch schief gehen, weil dann evtl.
-                    //niemals ein Frame zu dem Inhalt existiert. Dann muss leider noch
-                    //die Suche vom StartNode zum FrameFormat sein.
-                    SwNodeIndex aIdx( pAnch->GetCntntAnchor()->nNode );
-                    SwCntntNode *pCNd = pFmt->GetDoc()->GetNodes().GoNext( &aIdx );
-                    if ( pCNd && 0 != (pAnchor = pCNd->GetFrm( 0, 0, FALSE ) ) )
-                        pAnchor = pAnchor->FindFlyFrm();
-                    else
-                    {
-                        const SwNodeIndex &rIdx = pAnch->GetCntntAnchor()->nNode;
-                        SwSpzFrmFmts& rFmts = *pFmt->GetDoc()->GetSpzFrmFmts();
-                        for( USHORT i = 0; i < rFmts.Count(); ++i )
-                        {
-                            SwFrmFmt *pFmt = rFmts[i];
-                            SwFlyFrmFmt* pFlyFmt;
-                            if( 0 != (pFlyFmt = PTR_CAST( SwFlyFrmFmt, pFmt )) &&
-                                pFlyFmt->GetCntnt().GetCntntIdx() && //#57390#, Reader
-                                rIdx == *pFlyFmt->GetCntnt().GetCntntIdx() )
-                            {
-                                pAnchor = pFlyFmt->GetFrm( 0, FALSE );
-                                break;
-                            }
-                        }
-                    }
-                    if ( pAnchor )  //Kann sein, dass der Anker noch nicht existiert
-                    {
-                        pAnchor->FindFlyFrm()->AppendDrawObj( this );
-                        bSetAnchorPos = false;
-                    }
-                }
-            }
-            break;
-*/
-/*
-        case FLY_IN_CNTNT:
-            {
-                ClrContourCache( GetMaster() );
-                SwCntntNode *pNode = GetFmt()->GetDoc()->
-                        GetNodes()[pAnch->GetCntntAnchor()->nNode]->GetCntntNode();
-                SwCntntFrm *pCntnt = pNode->GetFrm( 0, 0, FALSE );
-                if ( pCntnt )
-                {
-                    //Kann sein, dass der Anker noch nicht existiert
-                    pCntnt->AppendDrawObj( this );
-                    pCntnt->InvalidatePrt();
-                }
-                bSetAnchorPos = false;
-            }
-            break;
-*/
 #ifdef DBG_UTIL
         default:    ASSERT( FALSE, "Unknown Anchor." );
 #endif
@@ -1195,7 +1138,7 @@ const Point SwDrawVirtObj::GetOffset() const
     return maOffset;
 }
 
-void SwDrawVirtObj::operator=( const SdrObject& rObj )
+void SwDrawVirtObj::operator=( const SdrObject& /*rObj*/ )
 {
 DBG_BF_ASSERT(0, "STRIP");//STRIP001
 }
@@ -1334,7 +1277,7 @@ void SwDrawVirtObj::RecalcBoundRect()
 
 bool SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
 {
-    bool bRet;
+    bool bRet = FALSE;
 
     Point aOfs(rOut.GetOffset());
     rOut.SetOffset(aOfs + maOffset);
@@ -1374,11 +1317,11 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
     rPoly.Move(maOffset.X(), maOffset.Y());
 }
 
-SdrHdl* SwDrawVirtObj::GetHdl(USHORT nHdlNum) const
+SdrHdl* SwDrawVirtObj::GetHdl(USHORT /*nHdlNum*/) const
 {DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
 }
 
-SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const
+SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& /*rHdl*/, USHORT /*nPlNum*/) const
 {DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
 }
 
@@ -1442,7 +1385,7 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
     }
 }
 
-void SwDrawVirtObj::Mirror(const Point& rRef1, const Point& rRef2)
+void SwDrawVirtObj::Mirror(const Point& /*rRef1*/, const Point& /*rRef2*/)
 {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 }
 
@@ -1515,7 +1458,7 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
     SetRectsDirty();
 }
 
-Point SwDrawVirtObj::GetSnapPoint(USHORT i) const
+Point SwDrawVirtObj::GetSnapPoint(USHORT /*i*/) const
 {DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
 }
 
