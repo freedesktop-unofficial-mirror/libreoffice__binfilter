@@ -437,7 +437,6 @@ namespace binfilter {
 /*N*/   sal_Bool bSaveOldFocus(sal_False);
 /*N*/   sal_uInt16 nSavePolyNum, nSavePointNum;
 /*N*/   SdrHdlKind eSaveKind;
-/*N*/   SdrObject* pSaveObj;
 /*N*/
 /*N*/   if(pSaveOldFocusHdl
 /*N*/       && pSaveOldFocusHdl->GetObj()
