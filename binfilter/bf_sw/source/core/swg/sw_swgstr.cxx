@@ -217,7 +217,7 @@ BYTE swistream::next()
     long pos = pStrm->Tell();
     short n = nLong; nLong = 3;
     cType = get();
-    long val;
+    long val(0);
     swstreambase::operator>>( val );
     // Man achte darauf: Dieser Wert ist immer positiv,
     // es findet keine VZ-Erweiterung statt!
