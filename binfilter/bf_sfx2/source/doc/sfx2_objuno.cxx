@@ -507,8 +507,8 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
 /*N*/   {
-/*N*/       long nIntVal ;
-/*N*/       aValue >>= nIntVal ;
+/*N*/       long nIntVal(0);
+/*N*/       aValue >>= nIntVal;
 /*N*/       switch ( nHandle )
 /*N*/       {
 /*N*/           case MID_DOCINFO_AUTOLOADSECS:
@@ -522,8 +522,8 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int16*)0) )
 /*N*/   {
-/*N*/       short nIntVal ;
-/*N*/       aValue >>= nIntVal ;
+/*N*/       short nIntVal(0);
+/*N*/       aValue >>= nIntVal;
 /*N*/       switch ( nHandle )
 /*N*/       {
 /*N*/           case MID_DOCINFO_REVISION:
