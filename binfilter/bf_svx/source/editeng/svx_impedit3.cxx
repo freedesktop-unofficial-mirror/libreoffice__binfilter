@@ -727,7 +727,6 @@ struct TabInfo
 /*N*/                   break;
 /*N*/                   case EE_FEATURE_FIELD:
 /*N*/                   {
-/*N*/                       long nCurWidth = nTmpWidth;
 /*N*/                       SeekCursor( pNode, nTmpPos+1, aTmpFont );
 /*N*/                       sal_Unicode cChar = 0;  // later: NBS?
 /*N*/                       aTmpFont.SetPhysFont( GetRefDevice() );
@@ -2353,18 +2352,6 @@ struct TabInfo
 /*N*/   // dargestellt wird.
 /*N*/   // Das Rechteck ist unendlich gross.
 /*N*/   Point aOrigin( aStartPos );
-/*N*/   double nCos, nSin;
-/*N*/   if ( nOrientation )
-/*N*/   {
-/*?*/       double nRealOrientation = nOrientation*F_PI1800;
-/*?*/       nCos = cos( nRealOrientation );
-/*?*/       nSin = sin( nRealOrientation );
-/*N*/   }
-/*N*/
-/*N*/   // Fuer OnlineSpelling:
-/*N*/ //    EditPaM aCursorPos;
-/*N*/ //    if( GetStatus().DoOnlineSpelling() && pActiveView )
-/*N*/ //        aCurPos = pActiveView->pImpEditView->GetEditSelections().Max();
 /*N*/
 /*N*/   // --------------------------------------------------
 /*N*/   // Ueber alle Absaetze...
@@ -2641,7 +2628,7 @@ struct TabInfo
 /*?*/                                             Point aTopLeft( aTmpPos );
 /*?*/                                             aTopLeft.Y() -= pLine->GetMaxAscent();
 /*?*/                                           if ( nOrientation )
-/*?*/                                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001       aTopLeft = lcl_ImplCalcRotatedPos( aTopLeft, aOrigin, nSin, nCos );
+/*?*/                                           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                                             Rectangle aRect( aTopLeft, pTextPortion->GetSize() );
 /*?*/                                             pOutDev->DrawRect( aRect );
 /*N*/                                         }
