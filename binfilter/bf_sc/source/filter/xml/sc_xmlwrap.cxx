@@ -199,7 +199,6 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
             xSourceControl->start();
     }
 
-    sal_Bool bFormatError = sal_False;
     try
     {
         xParser->parseStream( aParserInput );
