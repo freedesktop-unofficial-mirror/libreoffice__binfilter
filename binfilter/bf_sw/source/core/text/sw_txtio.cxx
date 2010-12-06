@@ -38,7 +38,7 @@
 #error Wer fummelt denn an den makefiles?
 #endif
 
-#define CONSTCHAR( name, string ) static const sal_Char __FAR_DATA name[] = string
+#define CONSTCHAR( name, string ) static const sal_Char name[] = string
 
 #include <horiornt.hxx>
 

@@ -82,7 +82,7 @@ using namespace ::com::sun::star::beans;
 #endif
 
 // steht im number.cxx
-extern const sal_Char __FAR_DATA sBulletFntName[];
+extern const sal_Char sBulletFntName[];
 
 // OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
 //extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );

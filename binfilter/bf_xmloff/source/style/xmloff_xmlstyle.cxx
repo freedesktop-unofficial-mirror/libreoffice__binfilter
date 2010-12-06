@@ -68,7 +68,7 @@ using rtl::OUString;
 
 // ---------------------------------------------------------------------
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleStylesElemTokenMap[] =
+static SvXMLTokenMapEntry aStyleStylesElemTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_STYLE,          XML_TOK_STYLE_STYLE                },
     { XML_NAMESPACE_STYLE,  XML_PAGE_MASTER,    XML_TOK_STYLE_PAGE_MASTER          },

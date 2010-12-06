@@ -71,7 +71,7 @@ using namespace ::binfilter::xmloff::token;
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry aDocElemTokenMap[] =
+static SvXMLTokenMapEntry aDocElemTokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_STYLES,             XML_TOK_DOC_STYLES          },
     { XML_NAMESPACE_OFFICE, XML_AUTOMATIC_STYLES,   XML_TOK_DOC_AUTOSTYLES      },
@@ -83,14 +83,14 @@ static __FAR_DATA SvXMLTokenMapEntry aDocElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aBodyElemTokenMap[] =
+static SvXMLTokenMapEntry aBodyElemTokenMap[] =
 {
     { XML_NAMESPACE_DRAW,   XML_PAGE,               XML_TOK_BODY_PAGE   },
     { XML_NAMESPACE_PRESENTATION, XML_SETTINGS,     XML_TOK_BODY_SETTINGS   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aStylesElemTokenMap[] =
+static SvXMLTokenMapEntry aStylesElemTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_PAGE_MASTER,                XML_TOK_STYLES_PAGE_MASTER              },
     { XML_NAMESPACE_STYLE,  XML_PRESENTATION_PAGE_LAYOUT,   XML_TOK_STYLES_PRESENTATION_PAGE_LAYOUT },
@@ -98,14 +98,14 @@ static __FAR_DATA SvXMLTokenMapEntry aStylesElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMasterPageElemTokenMap[] =
+static SvXMLTokenMapEntry aMasterPageElemTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,          XML_STYLE,      XML_TOK_MASTERPAGE_STYLE    },
     { XML_NAMESPACE_PRESENTATION,   XML_NOTES,      XML_TOK_MASTERPAGE_NOTES    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMasterPageAttrTokenMap[] =
+static SvXMLTokenMapEntry aMasterPageAttrTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_NAME,                       XML_TOK_MASTERPAGE_NAME },
     { XML_NAMESPACE_STYLE,  XML_PAGE_MASTER_NAME,           XML_TOK_MASTERPAGE_PAGE_MASTER_NAME },
@@ -114,13 +114,13 @@ static __FAR_DATA SvXMLTokenMapEntry aMasterPageAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPageMasterAttrTokenMap[] =
+static SvXMLTokenMapEntry aPageMasterAttrTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,          XML_NAME,               XML_TOK_PAGEMASTER_NAME                 },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPageMasterStyleAttrTokenMap[] =
+static SvXMLTokenMapEntry aPageMasterStyleAttrTokenMap[] =
 {
     { XML_NAMESPACE_FO,             XML_MARGIN_TOP,         XML_TOK_PAGEMASTERSTYLE_MARGIN_TOP          },
     { XML_NAMESPACE_FO,             XML_MARGIN_BOTTOM,      XML_TOK_PAGEMASTERSTYLE_MARGIN_BOTTOM       },
@@ -132,7 +132,7 @@ static __FAR_DATA SvXMLTokenMapEntry aPageMasterStyleAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDrawPageAttrTokenMap[] =
+static SvXMLTokenMapEntry aDrawPageAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW,           XML_NAME,                           XML_TOK_DRAWPAGE_NAME               },
     { XML_NAMESPACE_DRAW,           XML_STYLE_NAME,                     XML_TOK_DRAWPAGE_STYLE_NAME         },
@@ -143,13 +143,13 @@ static __FAR_DATA SvXMLTokenMapEntry aDrawPageAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDrawPageElemTokenMap[] =
+static SvXMLTokenMapEntry aDrawPageElemTokenMap[] =
 {
     { XML_NAMESPACE_PRESENTATION,   XML_NOTES,              XML_TOK_DRAWPAGE_NOTES      },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPresentationPlaceholderAttrTokenMap[] =
+static SvXMLTokenMapEntry aPresentationPlaceholderAttrTokenMap[] =
 {
     { XML_NAMESPACE_PRESENTATION,   XML_OBJECT,     XML_TOK_PRESENTATIONPLACEHOLDER_OBJECTNAME  },
     { XML_NAMESPACE_SVG,            XML_X,          XML_TOK_PRESENTATIONPLACEHOLDER_X           },

@@ -46,7 +46,7 @@ namespace binfilter {
 #define STREAM_STGREAD  ( STREAM_READ | STREAM_SHARE_DENYWRITE | STREAM_NOCREATE )
 #define STREAM_STGWRITE ( STREAM_READ | STREAM_WRITE | STREAM_SHARE_DENYWRITE )
 
-sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
+sal_Char N_BLOCKINFO[] = "AutotextInfo";
 
 
 /*************************************************************************

@@ -37,7 +37,7 @@ namespace binfilter {
 #define GLOBALOVERFLOW
 
 // Vergleichsstrings
-/*N*/ sal_Unicode __FAR_DATA pszStandard[] = { 's', 't', 'a', 'n', 'd', 'a', 'r', 'd', 0 };
+/*N*/ sal_Unicode pszStandard[] = { 's', 't', 'a', 'n', 'd', 'a', 'r', 'd', 0 };
 
 // Konvertiert in echte RGB-Farben, damit in den Listboxen
 // endlich mal richtig selektiert werden kann.

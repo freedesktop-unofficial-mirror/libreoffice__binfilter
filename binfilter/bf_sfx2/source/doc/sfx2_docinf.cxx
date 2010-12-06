@@ -53,9 +53,9 @@ namespace binfilter {
 
 //========================================================================
 
-static const char __FAR_DATA pDocInfoSlot[] = "SfxDocumentInfo";
-static const char __FAR_DATA pPropSlot[] = "\005SummaryInformation";
-static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
+static const char pDocInfoSlot[] = "SfxDocumentInfo";
+static const char pPropSlot[] = "\005SummaryInformation";
+static const char pDocInfoHeader[] = "SfxDocumentInfo";
 #define VERSION 11
 #define STREAM_BUFFER_SIZE 2048
 

@@ -567,26 +567,26 @@ public:
 // bekannt. Die UI-Seite benutzt die GetReader()/GetWriter() -Funktionen,
 // um die speziellen zu erhalten.
 
-extern sal_Char __FAR_DATA FILTER_SWG[];    // SWG-Filter
-extern sal_Char __FAR_DATA FILTER_RTF[];    // RTF-Filter
-extern sal_Char __FAR_DATA FILTER_TEXT[];   // Text-Filter mit Default-CodeSet
-extern sal_Char __FAR_DATA FILTER_BAS[];    // StarBasic (identisch mit ANSI)
-extern sal_Char __FAR_DATA FILTER_W4W[];    // W4W-Filter
-extern sal_Char __FAR_DATA FILTER_WW8[];    // WinWord 97-Filter
-extern sal_Char __FAR_DATA FILTER_SW3[];    // SW3-Storage Filter
-extern sal_Char __FAR_DATA FILTER_SW4[];    // SW4-Storage Filter
-extern sal_Char __FAR_DATA FILTER_SW4[];    // SW4-Storage Filter
-extern sal_Char __FAR_DATA FILTER_SW5[];    // SW5-Storage Filter
-extern sal_Char __FAR_DATA FILTER_SWGV[];   // SWG-Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_SW3V[];   // SW3-Storage Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_SW4V[];   // SW4-Storage Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_SW5V[];   // SW5-Storage Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_SWW4V[];  // SW/Web Storage Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_SWW5V[];  // SW/Web Storage Vorlagen Filter
-extern sal_Char __FAR_DATA FILTER_TEXT_DLG[];   // text filter with encoding dialog
-extern sal_Char __FAR_DATA FILTER_XML[];    // XML filter
-extern sal_Char __FAR_DATA FILTER_XMLV[];   // XML filter
-extern sal_Char __FAR_DATA FILTER_XMLVW[];  // XML filter
+extern sal_Char FILTER_SWG[];   // SWG-Filter
+extern sal_Char FILTER_RTF[];   // RTF-Filter
+extern sal_Char FILTER_TEXT[];  // Text-Filter mit Default-CodeSet
+extern sal_Char FILTER_BAS[];   // StarBasic (identisch mit ANSI)
+extern sal_Char FILTER_W4W[];   // W4W-Filter
+extern sal_Char FILTER_WW8[];   // WinWord 97-Filter
+extern sal_Char FILTER_SW3[];   // SW3-Storage Filter
+extern sal_Char FILTER_SW4[];   // SW4-Storage Filter
+extern sal_Char FILTER_SW4[];   // SW4-Storage Filter
+extern sal_Char FILTER_SW5[];   // SW5-Storage Filter
+extern sal_Char FILTER_SWGV[];  // SWG-Vorlagen Filter
+extern sal_Char FILTER_SW3V[];  // SW3-Storage Vorlagen Filter
+extern sal_Char FILTER_SW4V[];  // SW4-Storage Vorlagen Filter
+extern sal_Char FILTER_SW5V[];  // SW5-Storage Vorlagen Filter
+extern sal_Char FILTER_SWW4V[]; // SW/Web Storage Vorlagen Filter
+extern sal_Char FILTER_SWW5V[]; // SW/Web Storage Vorlagen Filter
+extern sal_Char FILTER_TEXT_DLG[];  // text filter with encoding dialog
+extern sal_Char FILTER_XML[];   // XML filter
+extern sal_Char FILTER_XMLV[];  // XML filter
+extern sal_Char FILTER_XMLVW[]; // XML filter
 
 
 } //namespace binfilter

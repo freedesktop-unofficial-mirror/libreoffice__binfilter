@@ -80,10 +80,10 @@ namespace binfilter {
 
 #define SWG_AUTHORITY_ENTRY_LCL 'E'
 
-sal_Char __FAR_DATA sSW3IO_FixedField[] = "FixedExport";
-sal_Char __FAR_DATA sSW3IO_AuthorityField[] = "AuthorityExport";
+sal_Char sSW3IO_FixedField[] = "FixedExport";
+sal_Char sSW3IO_AuthorityField[] = "AuthorityExport";
 /* #108791# */
-sal_Char __FAR_DATA sSW3IO_DropDownField[] = "DropDownExport";
+sal_Char sSW3IO_DropDownField[] = "DropDownExport";
 
 struct OldFormats
 {

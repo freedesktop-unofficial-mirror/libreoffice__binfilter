@@ -320,7 +320,7 @@ static ColorData aNumFmtStdColors[XML_NUMF_COLORCOUNT] =
 //  token maps
 //
 
-static __FAR_DATA SvXMLTokenMapEntry aStylesElemMap[] =
+static SvXMLTokenMapEntry aStylesElemMap[] =
 {
     //  style elements
     { XML_NAMESPACE_NUMBER, XML_NUMBER_STYLE,      XML_TOK_STYLES_NUMBER_STYLE      },
@@ -333,7 +333,7 @@ static __FAR_DATA SvXMLTokenMapEntry aStylesElemMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleElemMap[] =
+static SvXMLTokenMapEntry aStyleElemMap[] =
 {
     //  elements in a style
     { XML_NAMESPACE_NUMBER, XML_TEXT,               XML_TOK_STYLE_TEXT              },
@@ -359,7 +359,7 @@ static __FAR_DATA SvXMLTokenMapEntry aStyleElemMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleAttrMap[] =
+static SvXMLTokenMapEntry aStyleAttrMap[] =
 {
     //  attributes for a style
     { XML_NAMESPACE_STYLE,  XML_NAME,                  XML_TOK_STYLE_ATTR_NAME                  },
@@ -377,7 +377,7 @@ static __FAR_DATA SvXMLTokenMapEntry aStyleAttrMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleElemAttrMap[] =
+static SvXMLTokenMapEntry aStyleElemAttrMap[] =
 {
     //  attributes for an element within a style
     { XML_NAMESPACE_NUMBER, XML_DECIMAL_PLACES,          XML_TOK_ELEM_ATTR_DECIMAL_PLACES       },
@@ -398,14 +398,14 @@ static __FAR_DATA SvXMLTokenMapEntry aStyleElemAttrMap[] =
 
 // maps for SvXMLUnitConverter::convertEnum
 
-static __FAR_DATA SvXMLEnumMapEntry aStyleValueMap[] =
+static SvXMLEnumMapEntry aStyleValueMap[] =
 {
     { XML_SHORT,            sal_False   },
     { XML_LONG,             sal_True    },
     { XML_TOKEN_INVALID,    0 }
 };
 
-static __FAR_DATA SvXMLEnumMapEntry aFormatSourceMap[] =
+static SvXMLEnumMapEntry aFormatSourceMap[] =
 {
     { XML_FIXED,            sal_False },
     { XML_LANGUAGE,         sal_True  },
@@ -427,7 +427,7 @@ struct SvXMLDefaultDateFormat
     sal_Bool                    bSystem;
 };
 
-static __FAR_DATA SvXMLDefaultDateFormat aDefaultDateFormats[] =
+static SvXMLDefaultDateFormat aDefaultDateFormats[] =
 {
     // format                           day-of-week     day             month               year            hours           minutes         seconds         format-source
 

@@ -82,12 +82,12 @@
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 
 namespace binfilter {
-const sal_Char __FAR_DATA sFrmFmtStr[] = "Frameformat";
-const sal_Char __FAR_DATA sEmptyPageStr[] = "Empty Page";
-const sal_Char __FAR_DATA sColumnCntStr[] = "Columncontainer";
-const sal_Char __FAR_DATA sCharFmtStr[] = "Zeichenformat";
-const sal_Char __FAR_DATA sTxtCollStr[] = "Textformatvorlage";
-const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
+const sal_Char sFrmFmtStr[] = "Frameformat";
+const sal_Char sEmptyPageStr[] = "Empty Page";
+const sal_Char sColumnCntStr[] = "Columncontainer";
+const sal_Char sCharFmtStr[] = "Zeichenformat";
+const sal_Char sTxtCollStr[] = "Textformatvorlage";
+const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 
 /*N*/ SV_IMPL_PTRARR( SwNumRuleTbl, SwNumRulePtr)
 /*N*/ SV_IMPL_PTRARR( SwTxtFmtColls, SwTxtFmtCollPtr)

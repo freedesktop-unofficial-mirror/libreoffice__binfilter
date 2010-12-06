@@ -108,7 +108,7 @@ namespace binfilter {
 
 // Globals ******************************************************************
 
- static const SwLineType __FAR_DATA aLineTypeArr[] =
+ static const SwLineType aLineTypeArr[] =
  {
  //  In          Out         Dist
   {LIN_0,      LIN_1,      LIN_0}, // Einfache Linien

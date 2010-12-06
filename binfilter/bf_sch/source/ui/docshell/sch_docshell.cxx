@@ -78,7 +78,7 @@ using namespace ::com::sun::star::uno;
 
 // STATIC DATA -----------------------------------------------------------
 
-static const String __FAR_DATA aStarChartDoc = String( RTL_CONSTASCII_USTRINGPARAM( "StarChartDocument" ));
+static const String aStarChartDoc = String( RTL_CONSTASCII_USTRINGPARAM( "StarChartDocument" ));
 
 //----------------------------------------------------------------------
 

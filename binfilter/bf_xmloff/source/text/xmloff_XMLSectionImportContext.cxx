@@ -89,7 +89,7 @@ enum XMLSectionToken
     XML_TOK_SECTION_IS_HIDDEN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSectionTokenMap[] =
+static SvXMLTokenMapEntry aSectionTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_STYLE_NAME, XML_TOK_SECTION_STYLE_NAME },
     { XML_NAMESPACE_TEXT, XML_NAME, XML_TOK_SECTION_NAME },

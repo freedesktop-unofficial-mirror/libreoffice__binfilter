@@ -86,7 +86,7 @@ SO2_DECL_REF(SvStorage)
 
 #define DOCUMENT_BUFFER_SIZE    (USHORT)32768
 
-static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
+static const char pStarMathDoc[] = "StarMathDocument";
 
 
 /**************************************************************************/

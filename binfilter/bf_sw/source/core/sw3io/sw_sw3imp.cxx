@@ -101,9 +101,9 @@ static Sw3IoImp* pCurIosys;                 // fuer non-poolable Attrs
 static sal_uInt32 nFltFlags = 0;
 
 
-sal_Char __FAR_DATA SW3HEADER[] = "SW3HDR";     // 3.0/3.1 Header
-sal_Char __FAR_DATA SW4HEADER[] = "SW4HDR";     // 4.0 Header
-sal_Char __FAR_DATA SW5HEADER[] = "SW5HDR";     // 5.0 Header
+sal_Char SW3HEADER[] = "SW3HDR";        // 3.0/3.1 Header
+sal_Char SW4HEADER[] = "SW4HDR";        // 4.0 Header
+sal_Char SW5HEADER[] = "SW5HDR";        // 5.0 Header
 
 // TODOs fuer 6.0-FF
 // - Record-Laengen > 16MB richtig handeln.

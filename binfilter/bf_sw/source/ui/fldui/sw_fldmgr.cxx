@@ -99,7 +99,7 @@ using namespace ::com::sun::star::sdbc;
 /*--------------------------------------------------------------------
      Beschreibung: Formate in der richtigen Reihenfolge
 --------------------------------------------------------------------*/
-/*N*/ static const USHORT __FAR_DATA aSetFmt[] =
+/*N*/ static const USHORT aSetFmt[] =
 /*N*/ {
 /*N*/ // die Reihenfolge muss zu Beginn mit den ResourceIds fuer FMT_SETVAR_???
 /*N*/ // uebereinstimmen
@@ -107,14 +107,14 @@ using namespace ::com::sun::star::sdbc;
 /*N*/   0
 /*N*/ };
 /*N*/
-/*N*/ static const USHORT __FAR_DATA aGetFmt[] =
+/*N*/ static const USHORT aGetFmt[] =
 /*N*/ {
 /*N*/ // die Reihenfolge muss zu Beginn mit den ResourceIds fuer FMT_GETVAR_???
 /*N*/ // uebereinstimmen
 /*N*/   0
 /*N*/ };
 /*N*/
-/*N*/ static const USHORT __FAR_DATA aUsrFmt[] =
+/*N*/ static const USHORT aUsrFmt[] =
 /*N*/ {
 /*N*/ // die Reihenfolge muss zu Beginn mit den ResourceIds fuer FMT_SETVAR_???
 /*N*/ // uebereinstimmen
@@ -122,7 +122,7 @@ using namespace ::com::sun::star::sdbc;
 /*N*/   SUB_CMD
 /*N*/ };
 /*N*/
-/*N*/ static const USHORT __FAR_DATA aDBFmt[] =
+/*N*/ static const USHORT aDBFmt[] =
 /*N*/ {
 /*N*/ // die Reihenfolge muss zu Beginn mit den ResourceIds fuer FMT_DBFLD_???
 /*N*/ // uebereinstimmen
@@ -150,7 +150,7 @@ struct SwFldPack
 /*--------------------------------------------------------------------
     Beschreibung: Strings und Formate
  --------------------------------------------------------------------*/
-static const SwFldPack __FAR_DATA aSwFlds[] =
+static const SwFldPack aSwFlds[] =
 {
     // Dokument
     {TYP_EXTUSERFLD,        FLD_EU_BEGIN,       FLD_EU_END,     0,                  0},

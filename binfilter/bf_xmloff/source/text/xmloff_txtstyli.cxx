@@ -62,7 +62,7 @@ using rtl::OUString;
 //using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
-static __FAR_DATA SvXMLEnumMapEntry aCategoryMap[] =
+static SvXMLEnumMapEntry aCategoryMap[] =
 {
     { XML_TEXT,     ParagraphStyleCategory::TEXT },
     { XML_CHAPTER,  ParagraphStyleCategory::CHAPTER },

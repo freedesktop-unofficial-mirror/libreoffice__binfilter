@@ -67,7 +67,7 @@ using namespace ::com::sun::star;
 
 #define SC_FUNCGROUP_COUNT  ID_FUNCTION_GRP_ADDINS
 
-static const sal_Char* __FAR_DATA aFuncNames[SC_FUNCGROUP_COUNT] =
+static const sal_Char* aFuncNames[SC_FUNCGROUP_COUNT] =
     {
         //  array index = ID - 1 (ID starts at 1)
         //  all upper case

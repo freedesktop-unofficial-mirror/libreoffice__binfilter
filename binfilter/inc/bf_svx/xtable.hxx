@@ -56,7 +56,7 @@ class XOutputDevice;
 #define BITMAP_HEIGHT 12
 
 // Standard-Vergleichsstring
-extern sal_Unicode __FAR_DATA pszStandard[]; // "standard"
+extern sal_Unicode pszStandard[]; // "standard"
 
 // Funktion zum Konvertieren in echte RGB-Farben, da mit
 // enum COL_NAME nicht verglichen werden kann.

@@ -51,7 +51,7 @@ class SwFmtVertOrient;
 class SwNodeNum;
 class SwTxtNode;
 
-extern char __FAR_DATA sOutlineStr[];   // SWG-Filter
+extern char sOutlineStr[];  // SWG-Filter
 
 inline BYTE GetRealLevel( const BYTE nLvl )
 {

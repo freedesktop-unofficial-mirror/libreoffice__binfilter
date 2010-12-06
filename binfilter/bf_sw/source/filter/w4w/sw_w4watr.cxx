@@ -152,7 +152,7 @@ static Writer& OutW4W_SwFtn( Writer& rWrt, const SfxPoolItem& rHt )
         if( nStart >= nEnd )
             break;
 
-        static sal_Char __FAR_DATA cFNT[] = "FNT00\x1f";        // FootNote
+        static sal_Char cFNT[] = "FNT00\x1f";       // FootNote
         if ( rW4WWrt.pDoc->GetFtnInfo().ePos != FTNPOS_PAGE )
             cFNT[ 4 ] = '2';            // EndNote
 

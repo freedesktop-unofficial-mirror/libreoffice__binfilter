@@ -178,7 +178,7 @@ sal_Bool SwFmtLayoutSplit::exportXML(
 
 // ---------------------------------------------------------------------
 
-static __FAR_DATA struct SvXMLEnumMapEntry aXMLTableAlignMap[] =
+static struct SvXMLEnumMapEntry aXMLTableAlignMap[] =
 {
     { XML_LEFT,             HORI_LEFT           },
     { XML_LEFT,             HORI_LEFT_AND_WIDTH },
@@ -215,7 +215,7 @@ sal_Bool SwFmtHoriOrient::exportXML(
 
 // ---------------------------------------------------------------------
 
-static __FAR_DATA SvXMLEnumMapEntry aXMLTableVAlignMap[] =
+static SvXMLEnumMapEntry aXMLTableVAlignMap[] =
 {
     { XML_TOP,                  VERT_TOP        },
     { XML_MIDDLE,               VERT_CENTER     },

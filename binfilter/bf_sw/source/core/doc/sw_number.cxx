@@ -63,10 +63,10 @@ USHORT SwNumRule::aDefNumIndents[ MAXLEVEL ] = {
 };
 
 #if defined( UNX ) && defined( GCC )
-extern const sal_Char __FAR_DATA sBulletFntName[];
-const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
+extern const sal_Char sBulletFntName[];
+const sal_Char sBulletFntName[] = "StarSymbol";
 #else
-extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
+extern const sal_Char sBulletFntName[] = "StarSymbol";
 #endif
 
 /*N*/ inline void lcl_SetRuleChgd( SwTxtNode& rNd, BYTE nLevel )

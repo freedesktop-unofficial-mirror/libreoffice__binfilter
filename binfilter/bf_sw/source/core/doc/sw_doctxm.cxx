@@ -58,7 +58,7 @@ namespace binfilter {
 
 const sal_Unicode cNumRepl      = '@';
 const sal_Unicode cEndPageNum   = '~';
-const sal_Char __FAR_DATA sPageDeli[] = ", ";
+const sal_Char sPageDeli[] = ", ";
 
 /*N*/ SV_IMPL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr)
 

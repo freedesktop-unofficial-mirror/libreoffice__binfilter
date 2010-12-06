@@ -47,9 +47,9 @@ namespace binfilter {
  */
 
 #ifndef XML_DEFINE_KEYWORDS
-#define XML_CONSTASCII_ACTION( n, s ) extern sal_Char __FAR_DATA n[sizeof(s)]
+#define XML_CONSTASCII_ACTION( n, s ) extern sal_Char n[sizeof(s)]
 #else
-#define XML_CONSTASCII_ACTION( n, s ) sal_Char __FAR_DATA n[sizeof(s)] = s
+#define XML_CONSTASCII_ACTION( n, s ) sal_Char n[sizeof(s)] = s
 #endif
 
 // common XML

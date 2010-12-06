@@ -79,8 +79,8 @@ class ScDocShellModificator;
 
 class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxListener
 {
-    static const sal_Char __FAR_DATA pStarCalcDoc[];
-    static const sal_Char __FAR_DATA pStyleName[];
+    static const sal_Char pStarCalcDoc[];
+    static const sal_Char pStyleName[];
 
     ScDocument          aDocument;
 

@@ -66,7 +66,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_DASH_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDashStyleAttrTokenMap[] =
+static SvXMLTokenMapEntry aDashStyleAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_NAME,             XML_TOK_DASH_NAME },
     { XML_NAMESPACE_DRAW, XML_STYLE,            XML_TOK_DASH_STYLE },

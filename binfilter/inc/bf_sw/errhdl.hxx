@@ -47,8 +47,8 @@ extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
 //MSC (7.0) machts nur mit static, ZTC in inlines nur ohne...
 #define ASSERT( cond, message ) \
     if( !(cond) ) { \
-        static const char __FAR_DATA _pErrorText[] = #message; \
-        static const char __FAR_DATA _pFileName[]  = __FILE__; \
+        static const char _pErrorText[] = #message; \
+        static const char _pFileName[]  = __FILE__; \
         ::binfilter::AssertFail( _pErrorText, _pFileName, __LINE__ ); \
     }
 #else
@@ -68,7 +68,7 @@ extern BOOL bAssert;                // TRUE, wenn eine ASSERT-Box hochkam
 //MSC (7.0) machts nur mit static, ZTC in inlines nur ohne...
 #define ASSERT_ID( cond, id )   \
     if( !(cond) ) { \
-        static const char __FAR_DATA _pFileName[]  = __FILE__;  \
+        static const char _pFileName[]  = __FILE__; \
         ::binfilter::AssertFail( (USHORT)id, _pFileName, __LINE__ );    \
     }
 #else

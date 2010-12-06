@@ -53,7 +53,7 @@ using namespace ::binfilter::xmloff::token;
 
 using ::rtl::OUString;
 
-static __FAR_DATA SvXMLEnumMapEntry aXMLAxisClassMap[] =
+static SvXMLEnumMapEntry aXMLAxisClassMap[] =
 {
     { XML_CATEGORY,     SCH_XML_AXIS_CATEGORY   },
     { XML_DOMAIN,       SCH_XML_AXIS_DOMAIN     },

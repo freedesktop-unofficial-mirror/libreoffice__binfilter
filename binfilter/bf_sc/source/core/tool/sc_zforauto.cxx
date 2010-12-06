@@ -40,7 +40,7 @@
 #include "global.hxx"
 namespace binfilter {
 
-static const sal_Char __FAR_DATA pStandardName[] = "Standard";
+static const sal_Char pStandardName[] = "Standard";
 
 //------------------------------------------------------------------------
 

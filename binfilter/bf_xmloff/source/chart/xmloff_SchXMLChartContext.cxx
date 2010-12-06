@@ -69,7 +69,7 @@ enum SchXMLChartType
 
 // ----------------------------------------
 
-static __FAR_DATA SvXMLEnumMapEntry aXMLChartClassMap[] =
+static SvXMLEnumMapEntry aXMLChartClassMap[] =
 {
     { XML_LINE,         XML_CHART_CLASS_LINE    },
     { XML_AREA,         XML_CHART_CLASS_AREA    },
@@ -84,7 +84,7 @@ static __FAR_DATA SvXMLEnumMapEntry aXMLChartClassMap[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-static __FAR_DATA SvXMLEnumMapEntry aXMLLegendAlignmentMap[] =
+static SvXMLEnumMapEntry aXMLLegendAlignmentMap[] =
 {
     { XML_LEFT,         chart::ChartLegendPosition_LEFT     },
     { XML_TOP,          chart::ChartLegendPosition_TOP      },

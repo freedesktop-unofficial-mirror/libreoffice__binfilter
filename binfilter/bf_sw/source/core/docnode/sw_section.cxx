@@ -72,7 +72,7 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
-//static const char __FAR_DATA sSectionFmtNm[] = "Section";
+//static const char sSectionFmtNm[] = "Section";
 #define sSectionFmtNm aEmptyStr
 
 /*N*/ class SwIntrnlSectRefLink : public SwBaseLink

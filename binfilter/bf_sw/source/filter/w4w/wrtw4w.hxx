@@ -86,8 +86,8 @@ extern SwNodeFnTab aW4WNodeFnTab;
 
 #endif
 
-extern const sal_Char __FAR_DATA sW4W_RECBEGIN[3];  // W4W_BEGICF W4W_LED
-extern const sal_Char __FAR_DATA sW4W_TERMEND[3];   // W4W_TXTREM W4W_RED
+extern const sal_Char sW4W_RECBEGIN[3]; // W4W_BEGICF W4W_LED
+extern const sal_Char sW4W_TERMEND[3];  // W4W_TXTREM W4W_RED
 
 // der W4W-Writer
 

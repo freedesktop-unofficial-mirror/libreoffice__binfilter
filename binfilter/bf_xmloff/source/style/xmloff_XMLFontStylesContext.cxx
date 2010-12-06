@@ -62,7 +62,7 @@ enum XMLFontStyleAttrTokens
     XML_TOK_FONT_STYLE_ATTR_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFontStyleAttrTokenMap[] =
+static SvXMLTokenMapEntry aFontStyleAttrTokenMap[] =
 {
     { XML_NAMESPACE_FO, XML_FONT_FAMILY,
             XML_TOK_FONT_STYLE_ATTR_FAMILY },

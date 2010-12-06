@@ -95,7 +95,7 @@ namespace binfilter {
 INT8 ScFormulaCell::nIterMode = 0;
 
 #ifdef DBG_UTIL
-static const sal_Char __FAR_DATA msgDbgInfinity[] =
+static const sal_Char msgDbgInfinity[] =
     "Formelzelle INFINITY ohne Err503 !!! (os/2?)\n"
     "NICHTS anruehren und ER bescheid sagen!";
 #endif

@@ -28,7 +28,7 @@
 #ifndef _HINTIDS_HXX
 #define _HINTIDS_HXX
 
-#include <tools/solar.h>        // fuer __FAR_DATA
+#include <tools/solar.h>
 #include <sal/types.h>          // for sal_Unicode
 
 
@@ -352,8 +352,8 @@ struct SfxItemInfo;
 
 typedef SfxPoolItem* SwDfltAttrTab[ POOLATTR_END - POOLATTR_BEGIN  ];
 
-extern SwDfltAttrTab __FAR_DATA aAttrTab;
-extern SfxItemInfo   __FAR_DATA aSlotTab[];
+extern SwDfltAttrTab aAttrTab;
+extern SfxItemInfo   aSlotTab[];
 
 
 #ifdef DBG_UTIL
@@ -377,27 +377,27 @@ sal_Unicode GetCharOfTxtAttr( const SwTxtAttr& rAttr );
 // alle Sets stehen im init.cxx
 
 // AttrSet-Range fuer die 3 Break-Attribute
-extern USHORT __FAR_DATA aBreakSetRange[];
+extern USHORT aBreakSetRange[];
 // AttrSet-Range fuer die TxtFmtColl
-extern USHORT __FAR_DATA aTxtFmtCollSetRange[];
+extern USHORT aTxtFmtCollSetRange[];
 // AttrSet-Range fuer die GrfFmtColl
-extern USHORT __FAR_DATA aGrfFmtCollSetRange[];
+extern USHORT aGrfFmtCollSetRange[];
 // AttrSet-Range fuer die TextNode
-extern USHORT __FAR_DATA aTxtNodeSetRange[];
+extern USHORT aTxtNodeSetRange[];
 // AttrSet-Range fuer die NoTxtNode
-extern USHORT __FAR_DATA aNoTxtNodeSetRange[];
+extern USHORT aNoTxtNodeSetRange[];
 // AttrSet-Range fuer die SwTable
-extern USHORT __FAR_DATA aTableSetRange[];
+extern USHORT aTableSetRange[];
 // AttrSet-Range fuer die SwTableLine
-extern USHORT __FAR_DATA aTableLineSetRange[];
+extern USHORT aTableLineSetRange[];
 // AttrSet-Range fuer die SwTableBox
-extern USHORT __FAR_DATA aTableBoxSetRange[];
+extern USHORT aTableBoxSetRange[];
 // AttrSet-Range fuer die SwFrmFmt
-extern USHORT __FAR_DATA aFrmFmtSetRange[];
+extern USHORT aFrmFmtSetRange[];
 // AttrSet-Range fuer die SwCharFmt
-extern USHORT __FAR_DATA aCharFmtSetRange[];
+extern USHORT aCharFmtSetRange[];
 // AttrSet-Range fuer die SwPageDescFmt
-extern USHORT __FAR_DATA aPgFrmFmtSetRange[];
+extern USHORT aPgFrmFmtSetRange[];
 
 // check if ID is InRange of AttrSet-Ids
 BOOL IsInRange( const USHORT* pRange, const USHORT nId );

@@ -77,8 +77,8 @@
 #include <statstr.hrc>          // ResId fuer Statusleiste
 namespace binfilter {
 
-const sal_Char __FAR_DATA sW4W_RECBEGIN[3] = { cW4W_BEGICF, cW4W_LED, 0 };
-const sal_Char __FAR_DATA sW4W_TERMEND[3] = { cW4W_TXTERM, cW4W_RED, 0 };
+const sal_Char sW4W_RECBEGIN[3] = { cW4W_BEGICF, cW4W_LED, 0 };
+const sal_Char sW4W_TERMEND[3] = { cW4W_TXTERM, cW4W_RED, 0 };
 
 
 //-------------------------------------------------------------------

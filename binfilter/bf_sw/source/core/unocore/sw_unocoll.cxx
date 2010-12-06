@@ -85,7 +85,7 @@ using namespace ::com::sun::star::lang;
 
 using rtl::OUString;
 
-const char* __FAR_DATA aProvNames[] =
+const char* aProvNames[] =
     {
         "com.sun.star.text.TextTable",          //SW_SERVICE_TYPE_TEXTTABLE
         "com.sun.star.text.TextFrame",          //SW_SERVICE_TYPE_TEXTFRAME

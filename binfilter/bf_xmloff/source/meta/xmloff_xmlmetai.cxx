@@ -130,7 +130,7 @@ enum SfxXMLMetaElemTokens
 // XML_TOK_META_KEYWORD is not in map,
 // handled in SfxXMLMetaElementContext::CreateChildContext
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaElemTokenMap[] =
+static SvXMLTokenMapEntry aMetaElemTokenMap[] =
 {
     { XML_NAMESPACE_DC,     XML_TITLE,             XML_TOK_META_TITLE },
     { XML_NAMESPACE_DC,     XML_DESCRIPTION,       XML_TOK_META_DESCRIPTION },
@@ -161,7 +161,7 @@ enum SfxXMLMetaTemplateTokens
     XML_TOK_META_TEMPLATE_END = XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaTemplateTokenMap[] =
+static SvXMLTokenMapEntry aMetaTemplateTokenMap[] =
 {
     { XML_NAMESPACE_XLINK,  XML_HREF,              XML_TOK_META_TEMPLATE_HREF },
     { XML_NAMESPACE_XLINK,  XML_TITLE,             XML_TOK_META_TEMPLATE_TITLE },
@@ -176,7 +176,7 @@ enum SfxXMLMetaReloadTokens
     XML_TOK_META_RELOAD_END = XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaReloadTokenMap[] =
+static SvXMLTokenMapEntry aMetaReloadTokenMap[] =
 {
     { XML_NAMESPACE_XLINK,  XML_HREF,              XML_TOK_META_RELOAD_HREF },
     { XML_NAMESPACE_META,   XML_DELAY,             XML_TOK_META_RELOAD_DELAY },

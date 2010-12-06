@@ -2215,7 +2215,7 @@ SvXMLImportContext *SmXMLOfficeContext_Impl::CreateChildContext(sal_uInt16 nPref
     return pContext;
 }
 
-static __FAR_DATA SvXMLTokenMapEntry aPresLayoutElemTokenMap[] =
+static SvXMLTokenMapEntry aPresLayoutElemTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_SEMANTICS, XML_TOK_SEMANTICS },
     { XML_NAMESPACE_MATH,   XML_MATH,      XML_TOK_MATH   },
@@ -2240,7 +2240,7 @@ static __FAR_DATA SvXMLTokenMapEntry aPresLayoutElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPresLayoutAttrTokenMap[] =
+static SvXMLTokenMapEntry aPresLayoutAttrTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_FONTWEIGHT,      XML_TOK_FONTWEIGHT    },
     { XML_NAMESPACE_MATH,   XML_FONTSTYLE,       XML_TOK_FONTSTYLE     },
@@ -2250,27 +2250,27 @@ static __FAR_DATA SvXMLTokenMapEntry aPresLayoutAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFencedAttrTokenMap[] =
+static SvXMLTokenMapEntry aFencedAttrTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_OPEN,       XML_TOK_OPEN },
     { XML_NAMESPACE_MATH,   XML_CLOSE,      XML_TOK_CLOSE },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aOperatorAttrTokenMap[] =
+static SvXMLTokenMapEntry aOperatorAttrTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_STRETCHY,      XML_TOK_STRETCHY },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aAnnotationAttrTokenMap[] =
+static SvXMLTokenMapEntry aAnnotationAttrTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_ENCODING,      XML_TOK_ENCODING },
     XML_TOKEN_MAP_END
 };
 
 
-static __FAR_DATA SvXMLTokenMapEntry aPresElemTokenMap[] =
+static SvXMLTokenMapEntry aPresElemTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_ANNOTATION,    XML_TOK_ANNOTATION },
     { XML_NAMESPACE_MATH,   XML_MI,    XML_TOK_MI },
@@ -2283,21 +2283,21 @@ static __FAR_DATA SvXMLTokenMapEntry aPresElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPresScriptEmptyElemTokenMap[] =
+static SvXMLTokenMapEntry aPresScriptEmptyElemTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_MPRESCRIPTS,   XML_TOK_MPRESCRIPTS },
     { XML_NAMESPACE_MATH,   XML_NONE,  XML_TOK_NONE },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPresTableElemTokenMap[] =
+static SvXMLTokenMapEntry aPresTableElemTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_MTR,       XML_TOK_MTR },
     { XML_NAMESPACE_MATH,   XML_MTD,       XML_TOK_MTD },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aColorTokenMap[] =
+static SvXMLTokenMapEntry aColorTokenMap[] =
 {
     { XML_NAMESPACE_MATH,   XML_BLACK,        TBLACK},
     { XML_NAMESPACE_MATH,   XML_WHITE,        TWHITE},

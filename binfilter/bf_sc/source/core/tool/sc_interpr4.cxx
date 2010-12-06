@@ -2545,9 +2545,9 @@ void ScInterpreter::ScTTT()
     // Stack aufraeumen
     while ( nParamCount-- )
         Pop();
-    static const sal_Unicode __FAR_DATA sEyes[]     = { ',',';',':','|','8','B', 0 };
-    static const sal_Unicode __FAR_DATA sGoods[]    = { ')',']','}', 0 };
-    static const sal_Unicode __FAR_DATA sBads[]     = { '(','[','{','/', 0 };
+    static const sal_Unicode sEyes[]        = { ',',';',':','|','8','B', 0 };
+    static const sal_Unicode sGoods[]   = { ')',']','}', 0 };
+    static const sal_Unicode sBads[]        = { '(','[','{','/', 0 };
     sal_Unicode aFace[4];
     if ( bOk )
     {

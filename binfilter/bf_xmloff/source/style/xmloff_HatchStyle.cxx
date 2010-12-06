@@ -62,7 +62,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_TABSTOP_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aHatchAttrTokenMap[] =
+static SvXMLTokenMapEntry aHatchAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_NAME, XML_TOK_HATCH_NAME },
     { XML_NAMESPACE_DRAW, XML_STYLE, XML_TOK_HATCH_STYLE },

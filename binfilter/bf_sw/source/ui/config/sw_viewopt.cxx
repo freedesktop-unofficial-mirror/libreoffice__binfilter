@@ -79,7 +79,7 @@ namespace binfilter {
 #define MIN_TABWIDTH        120
 #define MIN_TABHEIGHT       200
 
-static const char __FAR_DATA aPostItStr[] = "  ";
+static const char aPostItStr[] = "  ";
 
 /*************************************************************************
  *                    SwViewOption::IsEqualFlags()

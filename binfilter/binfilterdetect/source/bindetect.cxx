@@ -438,7 +438,7 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
     ::rtl::OUString aName( rTypeName );
     rTypeName = ::rtl::OUString();
 
-    const sal_Char __FAR_DATA FILTER_SWG[]    = "SWG";
+    const sal_Char FILTER_SWG[]    = "SWG";
     if ( bCheckAll || aName.equalsAsciiL( aFileTypeList[0].Type, aFileTypeList[0].Length ) )
     {
         // StarWriter 1.0

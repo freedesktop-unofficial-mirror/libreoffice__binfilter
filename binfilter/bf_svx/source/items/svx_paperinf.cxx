@@ -39,7 +39,7 @@ namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
 
-static Size __FAR_DATA aDinTab[] =
+static Size aDinTab[] =
 {
     Size(lA0Width,lA0Height),           // A0
     Size(lA1Width,lA1Height),           // A1

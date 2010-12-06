@@ -131,7 +131,7 @@ enum SvxXMLTextListLevelStyleAttrTokens
     XML_TOK_TEXT_LEVEL_ATTR_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aLevelAttrTokenMap[] =
+static SvXMLTokenMapEntry aLevelAttrTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_LEVEL, XML_TOK_TEXT_LEVEL_ATTR_LEVEL },
     { XML_NAMESPACE_TEXT, XML_STYLE_NAME, XML_TOK_TEXT_LEVEL_ATTR_STYLE_NAME },
@@ -589,7 +589,7 @@ enum SvxXMLStyleAttributesAttrTokens
     XML_TOK_STYLE_ATTRIBUTES_ATTR_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleAttributesAttrTokenMap[] =
+static SvXMLTokenMapEntry aStyleAttributesAttrTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_SPACE_BEFORE,
             XML_TOK_STYLE_ATTRIBUTES_ATTR_SPACE_BEFORE },

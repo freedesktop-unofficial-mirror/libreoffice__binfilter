@@ -244,7 +244,7 @@ enum SwDateTimeSubType
 #ifndef FIELDIDS_ONLY       // SWG-Testreader!!
 
 
-extern USHORT __FAR_DATA aTypeTab[];
+extern USHORT aTypeTab[];
 
 /*--------------------------------------------------------------------
     Beschreibung: Allgemeine Tools

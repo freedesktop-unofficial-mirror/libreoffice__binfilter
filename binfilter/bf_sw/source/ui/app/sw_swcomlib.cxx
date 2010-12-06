@@ -46,7 +46,7 @@ namespace binfilter {
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
 
-extern char __FAR_DATA sHTML[];
+extern char sHTML[];
 
 SwDLL::SwDLL()
 {

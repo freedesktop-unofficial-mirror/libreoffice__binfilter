@@ -273,7 +273,7 @@ struct ParaRstFmt
 /*M*/   const SwPosition *pStt = pPam->Start(), *pEnd = pPam->End();
 /*M*/   ParaRstFmt aPara( pStt, pEnd );
 /*M*/
-/*N*/     USHORT __FAR_DATA aResetableSetRange[] = {
+/*N*/     USHORT aResetableSetRange[] = {
 /*N*/         RES_FRMATR_BEGIN, RES_FRMATR_END-1,
 /*N*/         RES_CHRATR_BEGIN, RES_CHRATR_END-1,
 /*N*/         RES_PARATR_BEGIN, RES_PARATR_END-1,

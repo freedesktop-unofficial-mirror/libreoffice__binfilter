@@ -61,7 +61,7 @@ class ScEditUtil
     Fraction        aZoomX;
     Fraction        aZoomY;
 
-    static const char __FAR_DATA pCalcDelimiters[];
+    static const char pCalcDelimiters[];
 
 public:
     static String ModifyDelimiters( const String& rOld );

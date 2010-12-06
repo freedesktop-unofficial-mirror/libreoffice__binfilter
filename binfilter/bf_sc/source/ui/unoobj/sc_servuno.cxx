@@ -58,7 +58,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-static const sal_Char* __FAR_DATA aProvNames[SC_SERVICE_COUNT] =
+static const sal_Char* aProvNames[SC_SERVICE_COUNT] =
     {
         "com.sun.star.sheet.Spreadsheet",           // SC_SERVICE_SHEET
         "com.sun.star.text.TextField.URL",          // SC_SERVICE_URLFIELD
@@ -100,7 +100,7 @@ static const sal_Char* __FAR_DATA aProvNames[SC_SERVICE_COUNT] =
 //  in case some macro is still using them
 //
 
-static const sal_Char* __FAR_DATA aOldNames[SC_SERVICE_COUNT] =
+static const sal_Char* aOldNames[SC_SERVICE_COUNT] =
     {
         "",                                         // SC_SERVICE_SHEET
         "stardiv.one.text.TextField.URL",           // SC_SERVICE_URLFIELD

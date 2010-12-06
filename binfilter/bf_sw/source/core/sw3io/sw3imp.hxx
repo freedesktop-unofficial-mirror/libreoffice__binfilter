@@ -108,13 +108,13 @@ class SvxFontItem;
 class SdrObject;
 
 
-extern sal_Char __FAR_DATA SW3HEADER[];     // 3.0/3.1 Header
-extern sal_Char __FAR_DATA SW4HEADER[];     // 4.0 Header
-extern sal_Char __FAR_DATA SW5HEADER[];     // 5.0 Header
+extern sal_Char SW3HEADER[];        // 3.0/3.1 Header
+extern sal_Char SW4HEADER[];        // 4.0 Header
+extern sal_Char SW5HEADER[];        // 5.0 Header
 
-extern sal_Char __FAR_DATA sSW3IO_FixedField[];
-extern sal_Char __FAR_DATA sSW3IO_AuthorityField[];
-extern sal_Char __FAR_DATA sSW3IO_DropDownField[]; // #108791#
+extern sal_Char sSW3IO_FixedField[];
+extern sal_Char sSW3IO_AuthorityField[];
+extern sal_Char sSW3IO_DropDownField[]; // #108791#
 
 // die Block-Groessen fuer die einzelnen Stream (Lesen/Schreiben)
 #define SW3_BSR_STYLES 16384

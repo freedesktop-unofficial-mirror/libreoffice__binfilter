@@ -108,7 +108,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_META_STAT_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaStatAttrTokenMap[] =
+static SvXMLTokenMapEntry aMetaStatAttrTokenMap[] =
 {
     { XML_NAMESPACE_META, XML_TABLE_COUNT,      XML_TOK_META_STAT_TABLE },
     { XML_NAMESPACE_META, XML_IMAGE_COUNT,      XML_TOK_META_STAT_IMAGE },

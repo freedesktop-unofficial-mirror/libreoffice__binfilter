@@ -271,7 +271,7 @@ XMLShapeImportHelper::~XMLShapeImportHelper()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry aGroupShapeElemTokenMap[] =
+static SvXMLTokenMapEntry aGroupShapeElemTokenMap[] =
 {
     { XML_NAMESPACE_DRAW,           XML_G,              XML_TOK_GROUP_GROUP         },
     { XML_NAMESPACE_DRAW,           XML_RECT,           XML_TOK_GROUP_RECT          },
@@ -311,7 +311,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::GetGroupShapeElemTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DSceneShapeElemTokenMap[] =
+static SvXMLTokenMapEntry a3DSceneShapeElemTokenMap[] =
 {
     { XML_NAMESPACE_DR3D,           XML_SCENE,      XML_TOK_3DSCENE_3DSCENE     },
     { XML_NAMESPACE_DR3D,           XML_CUBE,       XML_TOK_3DSCENE_3DCUBE      },
@@ -330,7 +330,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DSceneShapeElemTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 /*
-static __FAR_DATA SvXMLTokenMapEntry aShapeAttrTokenMap[] =
+static SvXMLTokenMapEntry aShapeAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW,           XML_NAME,               XML_TOK_SHAPE_NAME                          },
     { XML_NAMESPACE_DRAW,           XML_STYLE_NAME,         XML_TOK_SHAPE_DRAWSTYLE_NAME_GRAPHICS       },
@@ -351,7 +351,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::GetShapeAttrTokenMap()
 */
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DObjectAttrTokenMap[] =
+static SvXMLTokenMapEntry a3DObjectAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW,           XML_STYLE_NAME,         XML_TOK_3DOBJECT_DRAWSTYLE_NAME     },
     { XML_NAMESPACE_DR3D,           XML_TRANSFORM,          XML_TOK_3DOBJECT_TRANSFORM          },
@@ -367,7 +367,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DObjectAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DPolygonBasedAttrTokenMap[] =
+static SvXMLTokenMapEntry a3DPolygonBasedAttrTokenMap[] =
 {
     { XML_NAMESPACE_SVG,            XML_VIEWBOX,            XML_TOK_3DPOLYGONBASED_VIEWBOX      },
     { XML_NAMESPACE_SVG,            XML_D,                  XML_TOK_3DPOLYGONBASED_D            },
@@ -383,7 +383,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DPolygonBasedAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DCubeObjectAttrTokenMap[] =
+static SvXMLTokenMapEntry a3DCubeObjectAttrTokenMap[] =
 {
     { XML_NAMESPACE_DR3D,           XML_MIN_EDGE,           XML_TOK_3DCUBEOBJ_MINEDGE   },
     { XML_NAMESPACE_DR3D,           XML_MAX_EDGE,           XML_TOK_3DCUBEOBJ_MAXEDGE   },
@@ -399,7 +399,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DCubeObjectAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DSphereObjectAttrTokenMap[] =
+static SvXMLTokenMapEntry a3DSphereObjectAttrTokenMap[] =
 {
     { XML_NAMESPACE_DR3D,           XML_CENTER,             XML_TOK_3DSPHEREOBJ_CENTER  },
     { XML_NAMESPACE_DR3D,           XML_SIZE,               XML_TOK_3DSPHEREOBJ_SIZE    },
@@ -415,7 +415,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DSphereObjectAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry a3DLightAttrTokenMap[] =
+static SvXMLTokenMapEntry a3DLightAttrTokenMap[] =
 {
     { XML_NAMESPACE_DR3D,   XML_DIFFUSE_COLOR,      XML_TOK_3DLIGHT_DIFFUSE_COLOR       },
     { XML_NAMESPACE_DR3D,   XML_DIRECTION,          XML_TOK_3DLIGHT_DIRECTION           },
@@ -433,7 +433,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::Get3DLightAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 /*
-static __FAR_DATA SvXMLTokenMapEntry aPageShapeAttrTokenMap[] =
+static SvXMLTokenMapEntry aPageShapeAttrTokenMap[] =
 {
     { XML_NAMESPACE_SVG,    XML_X,                  XML_TOK_PAGESHAPE_X             },
     { XML_NAMESPACE_SVG,    XML_Y,                  XML_TOK_PAGESHAPE_Y             },
@@ -451,7 +451,7 @@ const SvXMLTokenMap& XMLShapeImportHelper::GetPageShapeAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-static __FAR_DATA SvXMLTokenMapEntry aGraphicObjectShapeAttrTokenMap[] =
+static SvXMLTokenMapEntry aGraphicObjectShapeAttrTokenMap[] =
 {
     { XML_NAMESPACE_SVG,    XML_X,                  XML_TOK_GOSHAPE_X                   },
     { XML_NAMESPACE_SVG,    XML_Y,                  XML_TOK_GOSHAPE_Y                   },
