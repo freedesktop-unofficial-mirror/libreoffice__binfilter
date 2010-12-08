@@ -47,8 +47,8 @@ XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rImpo
                                     const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
                                          ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
-: nYear( 1930 )
-, SvXMLImportContext ( rImport, nPrefix, rLocalName )
+    : SvXMLImportContext ( rImport, nPrefix, rLocalName )
+    , nYear( 1930 )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
