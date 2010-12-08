@@ -228,7 +228,7 @@ SvxUnoGluePointAccess::~SvxUnoGluePointAccess() throw()
         EndListening( *mpObject->GetModel() );
 }
 
-void SvxUnoGluePointAccess::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
+void SvxUnoGluePointAccess::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint ) throw()
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 
