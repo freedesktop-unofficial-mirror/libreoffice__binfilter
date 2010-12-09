@@ -119,15 +119,14 @@ struct TabInfo
     long        nStartPosX;
     long        nTabPos;
 
-    TabInfo() { bValid = FALSE; }
+    TabInfo()
+        : bValid(FALSE)
+        , nCharPos(0)
+        , nTabPortion(0)
+        , nStartPosX(0)
+        , nTabPos(0)
+    {}
 };
-
-
-
-
-
-
-
 
 // ----------------------------------------------------------------------
 //  class ImpEditEngine
