@@ -771,7 +771,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
         UINT32       lDataSize;
         String       aBuffer;
         ByteString   aByteStr;
-        SmSymSet    *pSymbolSet;
 
         *pSvStream >> lDataSize >> lIdent >> lVersion;
 
@@ -812,10 +811,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
                     case 'S':
                     {
-                        // not sure about this...
-                        /* ??? pSymbolSet = new SmSymSet();
-                        ReadSM20SymSet(pSvStream, pSymbolSet);
-                        delete pSymbolSet; */
                         String      aTmp;
                         USHORT      n;
                         pSvStream->ReadByteString(aTmp, eEnc);
