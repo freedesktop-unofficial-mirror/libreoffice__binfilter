@@ -2382,9 +2382,6 @@ MRESULT ImpDdeMgr::DdeUnadvise( ImpWndProcParams* pParams )
             ULONG nTransId = GetTransaction(pData, hConv, hszItem, nFormat);
             if( nTransId )
             {
-                ////WRITELOG("DdeUnadvise:Transaction found")
-                Transaction* pTrans = pTransTable;
-                pTrans += (USHORT)nTransId;
                 ImpHCONV* pConv = pConvTable;
                 pConv += (USHORT)hConv;
                 nClosedTransactions = 1;
@@ -2428,13 +2425,6 @@ BOOL ImpDdeMgr::WaitTransState( Transaction* pTrans, ULONG nTransId,
     HAB hAB = WinQueryAnchorBlock( pConv->hWndThis );
     ULONG nTimerId = WinStartTimer( hAB, 0, 0, 50 );
     QMSG aQueueMsg;
-
-//  while( WinGetMsg( hAB, &aQueueMsg, 0, 0, 0 )    &&
-//          WinIsWindow( hAB, pConv->hWndPartner)   &&
-//          pTrans->nConvst != nNewState )
-//  {
-//      WinDispatchMsg( hAB, &aQueueMsg );
-//  }
 
     BOOL bContinue = TRUE;
     while( bContinue )
