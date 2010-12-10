@@ -82,7 +82,7 @@ private:
     double          nTabCtrlPercent;
 
 public:
-    FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView = NULL );
+    FrameView(SdDrawDocument* pDrawDoc);
     FrameView(const FrameView& rFrameView);
     virtual ~FrameView();
 

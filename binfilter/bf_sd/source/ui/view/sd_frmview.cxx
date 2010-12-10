@@ -56,7 +56,7 @@ using namespace ::std;
 |*
 \************************************************************************/
 
-FrameView::FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView )
+FrameView::FrameView(SdDrawDocument* pDrawDoc )
 : SdrView(pDrawDoc, (OutputDevice*) NULL)
 , nRefCount(0)
 , nPresViewShellId(SID_VIEWSHELL0)
@@ -72,20 +72,6 @@ FrameView::FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView )
     SetOConSnap( FALSE );
     SetFrameDragSingles( TRUE );
     SetSlidesPerRow(4);
-
-    if( NULL == pFrameView )
-    {
-        SdDrawDocShell* pDocShell = pDrawDoc->GetDocSh();
-
-        if ( pDocShell )
-        {
-            /**********************************************************************
-            * Das Dokument wurde geladen, ist eine FrameView vorhanden?
-            **********************************************************************/
-            ULONG nSdViewShellCount = 0;
-            SdDrawDocument* pDoc = pDocShell->GetDoc();
-        }
-    }
 
         aVisibleLayers.SetAll();
         aPrintableLayers.SetAll();
