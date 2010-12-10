@@ -115,7 +115,7 @@ void ScLibOptions::Commit() {}
 /*N*/       bWK3Flag( FALSE )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Sequence<rtl::OUString> aNames(1);
-/*N*/   aNames[0] = ::rtl::OUString::createFromAscii( ENTRYSTR_WK3 );
+/*N*/   aNames[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM (ENTRYSTR_WK3) );
 /*N*/   ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any> aValues = GetProperties(aNames);
 /*N*/   if ( aValues.getLength() == 1 && aValues[0].hasValue() )
 /*N*/       bWK3Flag = comphelper::getBOOL( aValues[0] );
