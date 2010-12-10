@@ -178,7 +178,7 @@ void lcl_SetSpecialProperty(SwFrmFmt* pFmt, const SfxItemPropertyMap* pMap, cons
         case  FN_TABLE_WIDTH:
         case  FN_TABLE_RELATIVE_WIDTH:
         {
-            sal_Int32 nWidth;
+            sal_Int32 nWidth(0);
             SwFmtFrmSize aSz( pFmt->GetFrmSize() );
             if(FN_TABLE_WIDTH == pMap->nWID)
             {
@@ -188,7 +188,7 @@ void lcl_SetSpecialProperty(SwFrmFmt* pFmt, const SfxItemPropertyMap* pMap, cons
             }
             else if(FN_TABLE_RELATIVE_WIDTH == pMap->nWID)
             {
-                sal_Int16 nSet;
+                sal_Int16 nSet(0);
                 aValue >>= nSet;
                 if(nSet && nSet <=100)
                     aSz.SetWidthPercent( (BYTE)nSet );
@@ -1121,7 +1121,7 @@ void SwXTextTableRow::setPropertyValue(const OUString& rPropertyName,
                     }
                     else
                     {
-                        sal_Int32 nHeight;
+                        sal_Int32 nHeight(0);
                         aValue >>= nHeight;
                          Size aSz(aFrmSize.GetSize());
                         aSz.Height() = MM100_TO_TWIP(nHeight);
