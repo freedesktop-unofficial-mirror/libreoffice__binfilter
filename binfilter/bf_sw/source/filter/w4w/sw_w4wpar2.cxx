@@ -705,12 +705,12 @@ SwFlyFrmFmt* SwW4WParser::MakeTxtFly( RndStdIds eAnchor,
     return pFlyFmt;
 }
 
-void SwW4WParser::FlySecur( BOOL bAlignCol,
+void SwW4WParser::FlySecur( BOOL /*bAlignCol*/,
                             long& rXPos, long& rYPos,
                             long& rWidthTw, long& rHeightTw,
                             RndStdIds& rAnchor,
-                            long* pTop, long* pLeft, long* pBot,
-                            long* pRight, USHORT nBorderCode )
+                            long* /*pTop*/, long* /*pLeft*/, long* /*pBot*/,
+                            long* /*pRight*/, USHORT nBorderCode )
 {
     if ( rYPos < 0 )
         rYPos = 0;
@@ -720,6 +720,8 @@ void SwW4WParser::FlySecur( BOOL bAlignCol,
         {
         case FLY_IN_CNTNT:  rAnchor = FLY_AT_CNTNT; break;
         case FLY_PAGE:      rXPos = 0;              break;
+        default:
+            break;
         }
     }
 
@@ -1664,19 +1666,6 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
     }
     nAveDist /= (nCols - 1);
 
-    // ULONG nNettoWidth = pActTabDefs[ nCols-1 ].nRightTw - pActTabDefs[ 0 ].nLeftTw;
-
-
-
-    // Zwischen-Linie
-    /*
-        aCol.SetLineAdj( COLADJ_TOP );
-        aCol.SetLineHeight( 100 );
-        aCol.SetLinePen( Pen( Color( COL_BLACK ), 1, PEN_SOLID ) );
-    */
-
-
-
     if( bEqual )   // alle Spalten gleich ?
         aCol.Init( (USHORT)nCols, (USHORT)nAveDist, (USHORT)nNettoWidth );
     else
@@ -1884,31 +1873,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
 
                     ULONG nWidth = USHRT_MAX;
                     aCol.Init( USHORT( nCols ), USHORT( nAveDist ), USHORT( nWidth ) );
-                    /*
-                    spaeter nachruesten: unterschiedliche Spaltenbreiten und -Abstaende
 
-                    if( nCols == ( aColumns.Count() / 2 ) )
-                    {
-                        for( USHORT n = 0, i = 0; n < aColumns.Count(); n += 2, ++i )
-                        {
-                            SwColumn* pCol = aCol.GetColumns()[ i ];
-                            ULONG nTmp = aColumns[ n ];
-                            nTmp *= USHRT_MAX;
-                            nTmp /= nWidth;
-                            pCol->SetWishWidth( USHORT(nTmp) );
-            /*
-                JP 07.07.95: der Dialog kennt nur eine Breite fuer alle Spalten
-                             darum hier nicht weiter beachten
-                            nTmp = aColumns[ n+1 ];
-                            if( nTmp )
-                                pCol->SetRight( USHORT(nTmp) );
-                            else
-                                pCol->SetRight( 0 );
-                            pCol->SetLeft( 0 );
-            *
-                        }
-                    }
-                    */
                     pActFlySection->SetAttr( aCol );
                 }
                 else
@@ -2342,7 +2307,6 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                             // dann die pTargetBox einfuegen
                             pLine->GetTabBoxes().C40_INSERT( SwTableBox, pTargetBox, nPos );
 
-//                          pLine->GetTabBoxes().Insert( pTargetBox, nPos );
                             // dann die Nodes loeschen!!
                             pDoc->DeleteSection( pSttNd );
                         }
@@ -2711,7 +2675,6 @@ void SwW4WParser::Read_BeginTabCell()           // (BCO)    Header eines Feldes
                 pActMGroup = new SwSelBoxes_SAR( BYTE(nCellSpan * nRowSpan));
 
                 pMergeGroups->Insert( pActMGroup, pMergeGroups->Count() );
-//              pMergeGroups->Insert( pActMGroup, pMergeGroups->Count() );
 
                 // 3. Index dieser Merge-Gruppe und Anzahl der betroffenen
                 //    Zeilen in allen betroffenen Spalten vermerken
@@ -2875,30 +2838,8 @@ void SwW4WParser::Read_ColumnBreak()            // (HCB, SCB)
             pCtrlStck->NewAttr( rPos,  SwW4WStyle( nTabStyleId ) );
             pCtrlStck->SetAttr( rPos, RES_FLTR_STYLESHEET );
         }
-        /*
-        const Color aCol( COL_LIGHTRED );
-        const Brush aBrush( aCol );
-        const SvxBrushItem aBack( aBrush, RES_BACKGROUND );
-        pTabBox->GetFrmFmt()->SetAttr( aBack );
-
-#ifdef TEST_BOX
-        String sHlp = "forgotten Box now inserted\n\nat Row #";
-        sHlp += nTabRow;
-        sHlp += " Col #";
-        sHlp += nLastProcessedCol;
-        InfoBox(0, sHlp).Execute();
-#endif
-        */
     }
     ActivateTxtFlags();                 // .<HCB> gilt als 'Text ist aufgetreten'
-
-    /*
-    BOOL bOldTxtInPgD = bIsTxtInPgDesc;
-
-
-    if( bHeadFootDef )
-        bIsTxtInPgDesc = bOldTxtInPgD;  // beruecksichtige, dass es auch Tabellen in Hd/Ft geben kann!
-    */
 
     bIsTxtInPara        = FALSE;
     bIsSTMInPara        = FALSE;

@@ -1394,7 +1394,9 @@ static Writer& OutW4W_SwLineSpacing( Writer& rWrt, const SfxPoolItem& rHt )
                 << '2' << cW4W_TXTERM
                 << "240" << sW4W_TERMEND;
     }
-    break;
+        break;
+    default:
+        break;
     }
     return rWrt;
 }
@@ -1429,6 +1431,8 @@ static Writer& OutW4W_SwAdjust( Writer& rWrt, const SfxPoolItem& rHt )
                     << '0' << sW4W_TERMEND;
             OUTRECORD( rW4WWrt.GetStrm(), "ECT" );
         }
+        break;
+    default:
         break;
     }
     return rWrt;
@@ -1511,7 +1515,7 @@ static Writer& OutW4W_SwTabStop( Writer& rWrt, const SfxPoolItem& rHt )
             nTabRel = nWidth;                   // Tab nur wenig out of SRange
 
         USHORT nSize =  (USHORT)( ((long)(nLeftMargin + nTabRel)) / 144 );
-        if ( /*nSize < 0 ||*/ nSize / 8 >= 32 )     // Stuss-Werte -> ignorieren
+        if (  nSize / 8 >= 32 )     // Stuss-Werte -> ignorieren
             continue;
         aTabPosArr[ nSize / 8 ] |= ( 0x80 >> ( nSize % 8 ));
         aTabTypesArr[ n / 2 ] |= ( n & 1 ? aAdjustArr[ rTS.GetAdjustment() ] :

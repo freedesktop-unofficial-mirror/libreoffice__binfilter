@@ -144,6 +144,8 @@ BYTE SwW4WWriter::OutW4W_GetTableColPos( const SwTableLine* pL,
     case HORI_FULL:   nCode |= 0x10;
                       nLeft = ( nPgLeft + nPgRight - nWidth ) / 2;
                       break;
+    default:
+        break;
                             // alles andere wird zu left
     }
 
@@ -282,7 +284,7 @@ BOOL SwW4WWriter::OutW4W_GetBorder( const SvxBoxItem* pBox, USHORT& rBorder )
 
 void SwW4WWriter::OutW4W_TableLineWW2( const SwTable* pTab,
 
-    USHORT nLineNo, USHORT nCols, USHORT nLineHeight, SwTwips* pCellPos )
+    USHORT nLineNo, USHORT nCols, USHORT nLineHeight, SwTwips* /*pCellPos*/ )
 {
     const SwTableLine* pL = pTab->GetTabLines()[nLineNo];
     USHORT j;
@@ -339,7 +341,7 @@ void SwW4WWriter::OutW4W_TableLineWW2( const SwTable* pTab,
 // Trennlinien im Zielformat dargestellt werden.
 
 void SwW4WWriter::OutW4W_SwTableWW2( const SwTable* pTab, USHORT nLines,
-        USHORT nMaxCols, USHORT nBCol, SwHoriOrient eHor, SwTwips* pCellPos )
+        USHORT /*nMaxCols*/, USHORT /*nBCol*/, SwHoriOrient eHor, SwTwips* pCellPos )
 {
     const SwTableLine* pL = pTab->GetTabLines()[0];
     USHORT nCols = pL->GetTabBoxes().Count();
@@ -648,7 +650,7 @@ ULONG SwW4WWriter::WriteStream()
     return 0;
 }
 
-void SwW4WWriter::Out_SwDoc( SwPaM* pPam, BOOL bAttrOn )
+void SwW4WWriter::Out_SwDoc( SwPaM* pPam, BOOL /*bAttrOn*/ )
 {
     BOOL bSaveWriteAll = bWriteAll;     // sichern
 
@@ -880,7 +882,6 @@ const SvxFontItem& SwW4WWriter::GetFont( USHORT nId ) const
         if( 0 != (pFont = (const SvxFontItem*) rPool.GetItem(
             RES_CHRATR_FONT, nGet ) ) && n++ == nId )
             break;
-//  pFont = (const SvxFontItem*)rPool.GetItem( RES_CHRATR_FONT, nId - n );
     ASSERT( pFont, "falsche Font-Id" );
     return *pFont;
 }
@@ -995,6 +996,8 @@ void SwW4WWriter::OutW4WFlyFrms( const SwFlyFrmFmt& rFlyFrmFmt )
     case HORI_CENTER:   nHAlign = 2; break;
     case HORI_LEFT:     nHAlign = 0; break;
                                         // 3 = Full Just
+    default:
+        break;
     }
     SwTwips nXPos = rH.GetPos();    //!!! Relation & Anchor ??
 
@@ -1009,6 +1012,8 @@ void SwW4WWriter::OutW4WFlyFrms( const SwFlyFrmFmt& rFlyFrmFmt )
     case VERT_LINE_CENTER:  nVAlign = 2; break;
     case VERT_BOTTOM:
     case VERT_LINE_BOTTOM:  nVAlign = 3; break;
+    default:
+        break;
     }
     SwTwips nYPos = rV.GetPos();
     USHORT nAlignW = 2;     // Default: absolute ( x und y )
@@ -1134,7 +1139,6 @@ void SwW4WWriter::GetMargins( SwTwips& rLeft, SwTwips& rWidth )
 
     // gebe die Groesse und die Raender der Seite aus
     ASSERT( pDoc->GetPageDescCnt(), "kein Seiten-Format definiert??" );
-//  SwFrmFmt &rFmtPage = (SwFrmFmt&)pDoc->GetPageDesc(0).GetMaster();
     SwFrmFmt &rFmtPage = (SwFrmFmt&)*pPgFrm;
     SwTwips nWidth = rFmtPage.GetFrmSize().GetWidth();
     const SvxLRSpaceItem& rPageLR = rFmtPage.GetLRSpace();

@@ -164,7 +164,6 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
     if ( !bStyleDef ) return;
 
     if(   !GetNextName() || nError
-//  if( W4WR_TXTERM != GetNextRecord() || nError
         || W4WR_TXTERM != GetDecimal( nStyNo ) ) return;
 
     TranslateDefaultStyle ( nStyNo, nDocType );
@@ -201,9 +200,6 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
         // Abhaengigkeit merken
         pNewStyle->pColl = pAktColl;
         pStyleBaseTab->Insert( pNewStyle );
-//      const W4WStyleIdTabEntry* &rpNewStyle = pNewStyle;
-//      pStyleBaseTab->Insert( rpNewStyle );
-
     }
     else
     {
@@ -235,8 +231,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
         W4WStyleIdTabEntry( *this, nAktStyleId, aCharBuffer );
 
     pStyleTab->Insert( pNewStyle );
-//  const W4WStyleIdTabEntry* &rpNewStyle = pNewStyle;
-//  pStyleTab->Insert( rpNewStyle );
 
 //  NOTE3( "[Style Def: %s, Id: %ld]", aCharBuffer, nAktStyleId );
 
@@ -244,13 +238,11 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
     // ignoriere dabei alle Records nach (SEP)
     BYTE c;
     while( !nError )
-//  while( !nError && !pInput->get(c).eof() && W4WR_RED != c )
     {
         c = ReadChar();
         if ( rInp.IsEof() || W4WR_RED == c )
             break;
         rInp.SeekRel( - 1 );
-//      pInput->putback(c);
         if (EOF==GetNextRecord())
             break;
     }
@@ -264,9 +256,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
     bTxtInDoc = bOldTxtInDoc;
 
     SwTxtFmtColl* pAktColl = GetAktColl();
-//  if ( 0 == nAktStyleId )     // 0 : Dieser Style ist der Default
-//      pDoc->SetTxtFmtColl( *pCurPaM, pAktColl, FALSE );//!!!???
-
     if ( pStyleBaseTab ){       // Es sind noch Verbindungen herzustellen
         W4WStyleIdTabEntry aEntry( nAktStyleId );
         W4WStyleIdTabEntry* pTmp =  &aEntry;
@@ -280,12 +269,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
             pStyleBaseTab->DeleteAndDestroy( nPos );
         }
     }
-//  if( 0 == pNewStyle->pColl->DerivedFrom() )
-//  {
-        // falls kein SBO kam,
-        // wird der neue Style vom Default abgeleitet
-//      pNewStyle->pColl->SetDerivedFrom( 0 );
-//  }
     nAktStyleId = 0;        // Starte normalen Text mit Default-Style
 }
 
@@ -385,14 +368,6 @@ void SwW4WParser::Read_StyleOn()        // (STY)
         }
         else
         {
-        //    pCtrlStck->StealAttr( RES_PARATR_TABSTOP, W4WR_NODE, pCurPaM->GetPoint() );
-        //    pCtrlStck->StealAttr( RES_FLTR_STYLESHEET, W4WR_NODE, pCurPaM->GetPoint() );
-        //    const SwPosition& rPos = *pCurPaM->GetPoint();
-        //    pCtrlStck->SetAttr( rPos, RES_LR_SPACE );
-        //    pCtrlStck->SetAttr( rPos, RES_UL_SPACE );
-        //    pCtrlStck->SetAttr( rPos, RES_CHRATR_FONT );
-        //    pCtrlStck->SetAttr( rPos, RES_CHRATR_FONTSIZE );
-
             SetAttr( SwW4WStyle( nAktStyleId ));
 
             bStyleEndRec = FALSE;
@@ -795,7 +770,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                     }
                 }
                  // cleverFrames: vertraute Strukturen zu erkennen
-                const BOOL bOnlyFrames = 0 != (W4WFL_FM_onlyFrames & nIniFMFlags);
                 const BOOL bCleverFrames =
                         (0 == (   (   W4WFL_FM_onlyFrames
                                     | W4WFL_FM_neverFrames )
