@@ -396,7 +396,7 @@ static OUString createHelpLinesString( const SdrHelpLineList& rHelpLines )
 }
 
 #define addValue( n, v ) push_back( std::pair< OUString, Any >( OUString( RTL_CONSTASCII_USTRINGPARAM( n ) ), v ) )
-void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rValues, sal_Bool bBrowse )
+void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rValues, sal_Bool /*bBrowse*/ )
 {
     std::vector< std::pair< OUString, Any > > aUserData;
 
@@ -546,7 +546,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
      }
  }
 
-/*?*/ void FrameView::ReadUserDataSequence ( const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rSequence, sal_Bool bBrowse )
+/*?*/ void FrameView::ReadUserDataSequence ( const ::com::sun::star::uno::Sequence < ::com::sun::star::beans::PropertyValue >& rSequence, sal_Bool /*bBrowse*/ )
 /*?*/ {
 /*?*/       const sal_Int32 nLength = rSequence.getLength();
      if (nLength)
