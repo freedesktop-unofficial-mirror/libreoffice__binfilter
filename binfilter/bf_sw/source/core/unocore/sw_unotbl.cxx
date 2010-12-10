@@ -1774,7 +1774,7 @@ void    SwTableProperties_Impl::ApplyTblAttr(const SwTable& rTbl, SwDoc& rDoc)
                 uno::Any* pPgNo;
                 if(GetProperty(UNO_NAME_PAGE_NUMBER_OFFSET, pPgNo ))
                 {
-                    INT16 nTmp;
+                    INT16 nTmp(0);
                     (*pPgNo) >>= nTmp;
                     aDesc.SetNumOffset( nTmp );
                 }
