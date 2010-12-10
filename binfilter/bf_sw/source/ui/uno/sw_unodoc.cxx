@@ -59,7 +59,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwTextDocument_getSupportedServiceName
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.TextDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
     SolarMutexGuard aGuard;
@@ -100,7 +100,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwWebDocument_getSupportedServiceNames
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.WebDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
     SolarMutexGuard aGuard;
@@ -141,7 +141,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwGlobalDocument_getSupportedServiceNa
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.GlobalDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
     SolarMutexGuard aGuard;

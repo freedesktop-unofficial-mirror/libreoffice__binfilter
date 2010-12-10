@@ -191,50 +191,38 @@ static ChainablePropertySetInfo * lcl_createPrintSettingsInfo()
 /******************************************************************
  * SwXModule
  ******************************************************************/
-/* -----------------30.03.99 15:10-------------------
- *
- * --------------------------------------------------*/
+
 Reference< uno::XInterface > SAL_CALL SwXModule_createInstance(
-    const Reference< XMultiServiceFactory > & rSMgr) throw( Exception )
+    const Reference< XMultiServiceFactory > & /*rSMgr*/) throw( Exception )
 {
     static Reference< uno::XInterface >  xModule = (cppu::OWeakObject*)new SwXModule();;
     return xModule;
 }
-/* -----------------------------17.04.01 13:11--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SAL_CALL SwXModule_getSupportedServiceNames() throw()
 {
     OUString sService( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.GlobalSettings"));
     const Sequence< OUString > aSeq( &sService, 1 );
     return aSeq;
 }
-/* -----------------------------17.04.01 13:11--------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SAL_CALL SwXModule_getImplementationName() throw()
 {
     return OUString( RTL_CONSTASCII_USTRINGPARAM("SwXModule" ) );
 }
-/*-- 17.12.98 12:19:01---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXModule::SwXModule() :
     pxViewSettings(0),
     pxPrintSettings(0)
 {
 }
-/*-- 17.12.98 12:19:02---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXModule::~SwXModule()
 {
     delete pxViewSettings;
     delete pxPrintSettings;
 }
-/*-- 17.12.98 12:19:03---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySet >  SwXModule::getViewSettings(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -246,9 +234,7 @@ Reference< XPropertySet >  SwXModule::getViewSettings(void) throw( uno::RuntimeE
     }
     return *pxViewSettings;
 }
-/*-- 17.12.98 12:19:03---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySet >  SwXModule::getPrintSettings(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -260,16 +246,12 @@ Reference< XPropertySet >  SwXModule::getPrintSettings(void) throw( uno::Runtime
     }
     return *pxPrintSettings;
 }
-/* -----------------------------06.04.00 10:59--------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXModule::getImplementationName(void) throw( RuntimeException )
 {
     return SwXModule_getImplementationName();
 }
-/* -----------------------------06.04.00 10:59--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXModule::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     const Sequence< OUString > aNames = SwXModule_getSupportedServiceNames();
@@ -280,9 +262,7 @@ sal_Bool SwXModule::supportsService(const OUString& rServiceName) throw( Runtime
     }
     return FALSE;
 }
-/* -----------------------------06.04.00 10:59--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXModule::getSupportedServiceNames(void) throw( RuntimeException )
 {
     return SwXModule_getSupportedServiceNames();
@@ -291,9 +271,7 @@ Sequence< OUString > SwXModule::getSupportedServiceNames(void) throw( RuntimeExc
 /******************************************************************
  * SwXPrintSettings
  ******************************************************************/
-/*-- 17.12.98 12:54:04---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXPrintSettings::SwXPrintSettings(SwXPrintSettingsType eType, SwDoc* pDoc)
 : ChainableHelperNoState ( lcl_createPrintSettingsInfo (), &Application::GetSolarMutex() )
 , meType(eType)
@@ -301,9 +279,7 @@ SwXPrintSettings::SwXPrintSettings(SwXPrintSettingsType eType, SwDoc* pDoc)
 , mpDoc ( pDoc )
 {
 }
-/*-- 17.12.98 12:54:05---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXPrintSettings::~SwXPrintSettings()
     throw()
 {
@@ -539,23 +515,17 @@ void SwXPrintSettings::_postGetValues ()
 {
     mpPrtOpt = NULL;
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXPrintSettings::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXPrintSettings");
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXPrintSettings::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.PrintSettings") == rServiceName;
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXPrintSettings::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -564,13 +534,6 @@ Sequence< OUString > SwXPrintSettings::getSupportedServiceNames(void) throw( Run
     return aRet;
 }
 
-
-/******************************************************************
- *
- ******************************************************************/
-/*-- 18.12.98 11:01:10---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwXViewSettings::SwXViewSettings(sal_Bool bWebView, SwView* pVw)
 : ChainableHelperNoState( lcl_createViewSettingsInfo (), &Application::GetSolarMutex() )
 , pView(pVw)
@@ -582,11 +545,8 @@ SwXViewSettings::SwXViewSettings(sal_Bool bWebView, SwView* pVw)
     // This property only exists if we have a view (ie, not at the module )
     if ( !pView )
         mpInfo->remove ( OUString ( RTL_CONSTASCII_USTRINGPARAM ( "HelpURL" ) ) );
-
 }
-/*-- 18.12.98 11:01:10---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXViewSettings::~SwXViewSettings()
     throw()
 {
@@ -595,9 +555,6 @@ SwXViewSettings::~SwXViewSettings()
 void SwXViewSettings::_preSetValues ()
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    sal_Bool bApply = sal_True;
-    sal_Bool bApplyZoom = sal_False;
-
     const SwViewOption* pVOpt = 0;
     pVOpt = SW_MOD()->GetViewOption(bWeb);
 
