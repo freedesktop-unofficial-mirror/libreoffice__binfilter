@@ -693,11 +693,11 @@ namespace binfilter {
 /*N*/           }
 /*N*/           break;
 /*N*/
-/*N*/
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
+/*N*/ #ifdef DBG_UTIL
 /*N*/           ASSERT(!this, "unbekannte Style-Familie");
 /*N*/ #endif
+                break;
 /*N*/   }
 /*N*/   // Member der Basisklasse
 /*N*/   pSet = &aCoreSet;
@@ -837,10 +837,11 @@ namespace binfilter {
 /*N*/           }
 /*N*/           break;
 /*N*/
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
+/*N*/ #ifdef DBG_UTIL
 /*N*/           ASSERT(!this, "unbekannte Style-Familie");
 /*N*/ #endif
+                break;
 /*N*/   }
 /*N*/
 /*N*/   if( pFmt && rSet.Count())
@@ -1013,6 +1014,8 @@ namespace binfilter {
 /*N*/       if( bDeleteInfo )
 /*N*/           pNumRule = 0;
 /*N*/       break;
+        default:
+            break;
 /*N*/   }
 /*N*/
 /*N*/   if( SFX_STYLE_FAMILY_CHAR == nFamily ||
@@ -1121,6 +1124,8 @@ namespace binfilter {
 /*?*/               pNumRule = pRule;
 /*?*/           }
 /*N*/           break;
+            default:
+                break;
 /*N*/   }
 /*N*/   bPhysical = TRUE;
 /*N*/   aCoreSet.ClearItem();
@@ -1210,14 +1215,6 @@ namespace binfilter {
 /*N*/   return pFrmFmt;
 /*N*/ }
 
-
-
-
-
-
-
-
-/*  */
 
 /*--------------------------------------------------------------------
     Beschreibung:   Methoden fuer den DocStyleSheetPool

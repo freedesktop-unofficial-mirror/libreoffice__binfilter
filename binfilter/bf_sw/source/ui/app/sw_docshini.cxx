@@ -498,10 +498,6 @@ using namespace ::rtl;
 /*N*/       sal_uInt32 nErr = ERR_SWG_READ_ERROR;
 /*N*/       switch( GetCreateMode() )
 /*N*/       {
-//      case SFX_CREATE_MODE_INTERNAL:
-//          nErr = 0;
-//          break;
-
 /*N*/       case SFX_CREATE_MODE_ORGANIZER:
 /*?*/           if( bXML )
 /*?*/           {
@@ -516,7 +512,6 @@ using namespace ::rtl;
 /*?*/           else
 /*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/           break;
-
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
 /*N*/           if ( bXML )
@@ -525,7 +520,6 @@ using namespace ::rtl;
             // SfxProgress unterdruecken, wenn man Embedded ist
 /*N*/           SW_MOD()->SetEmbeddedLoadSave( sal_True );
             // kein break;
-
 /*N*/       case SFX_CREATE_MODE_STANDARD:
 /*N*/       case SFX_CREATE_MODE_PREVIEW:
 /*N*/           {
@@ -566,11 +560,11 @@ using namespace ::rtl;
 /*N*/           }
 /*N*/           break;
 
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
+/*N*/ #ifdef DBG_UTIL
 /*?*/           ASSERT( !this, "Load: new CreateMode?" );
 /*N*/ #endif
-/*N*/
+/*N*/           break;
 /*N*/       }
 /*N*/
 /*N*/       if( !bXML )

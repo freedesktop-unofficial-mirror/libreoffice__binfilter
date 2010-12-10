@@ -76,7 +76,7 @@ using namespace ::com::sun::star;
 
 namespace binfilter {
 
-/*M*/ void SwModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*M*/ void SwModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*M*/ {
 /*M*/   if( rHint.ISA( SfxEventHint ) )
 /*M*/   {
@@ -87,14 +87,6 @@ namespace binfilter {
 /*M*/           SwWrtShell* pWrtSh = pDocSh ? pDocSh->GetWrtShell() : 0;
 /*M*/           switch( rEvHint.GetEventId() )
 /*M*/           {
-/*          MA 07. Mar. 96: UpdateInputFlds() nur noch bei Dokument neu.
-                                (Und bei Einfuegen Textbaust.)
-                case SFX_EVENT_OPENDOC:
-                // dann am aktuellen Dokument die Input-Fedler updaten
-                if( pWrtSh )
-                    pWrtSh->UpdateInputFlds();
-                break;
-*/
 /*M*/           case SFX_EVENT_CREATEDOC:
 /*M*/               // alle FIX-Date/Time Felder auf akt. setzen
 /*M*/               if( pWrtSh )
@@ -158,18 +150,13 @@ namespace binfilter {
 /*M*/   }
 /*M*/ }
 
-/* -----------------------------20.02.01 12:43--------------------------------
-
- ---------------------------------------------------------------------------*/
 /*N*/ SwDBConfig*   SwModule::GetDBConfig()
 /*N*/ {
 /*N*/   if(!pDBConfig)
 /*N*/       pDBConfig = new SwDBConfig;
 /*N*/   return pDBConfig;
 /*N*/ }
-/* -----------------------------11.04.2002 15:27------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ ColorConfig& SwModule::GetColorConfig()
 /*N*/ {
 /*N*/     if(!pColorConfig)
@@ -190,9 +177,7 @@ SvtCTLOptions& SwModule::GetCTLOptions()
     }
     return *pCTLOptions;
 }
-/*-----------------30.01.97 08.30-------------------
 
---------------------------------------------------*/
 /*N*/ const SwMasterUsrPref *SwModule::GetUsrPref(sal_Bool bWeb) const
 /*N*/ {
 /*N*/   SwModule* pNonConstModule = (SwModule*)this;
