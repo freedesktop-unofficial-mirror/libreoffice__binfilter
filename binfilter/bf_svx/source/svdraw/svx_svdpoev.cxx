@@ -62,7 +62,7 @@ namespace binfilter {
 /*N*/   ImpResetPolyPossibilityFlags();
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
 /*N*/   if (nMarkAnz>0 && !ImpIsFrameHandles()) {
-/*?*/       BOOL bReadOnly=FALSE;
+/*?*/       BOOL bLclReadOnly=FALSE;
 /*?*/       BOOL b1stSmooth=TRUE;
 /*?*/       BOOL b1stSegm=TRUE;
 /*?*/       BOOL bCurve=FALSE;
@@ -124,7 +124,7 @@ namespace binfilter {
 /*?*/               }
 /*?*/           }
 /*?*/       }
-/*?*/       if (bReadOnly) {
+/*?*/       if (bLclReadOnly) {
 /*?*/           bSetMarkedPointsSmoothPossible=FALSE;
 /*?*/           bSetMarkedSegmentsKindPossible=FALSE;
 /*?*/       }
