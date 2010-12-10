@@ -75,7 +75,7 @@ static const USHORT nFtnLines[] = {
 /*N*/ }
 
 
-/*N*/ SfxPoolItem*  SwPageFtnInfoItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem*  SwPageFtnInfoItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwPageFtnInfoItem( *this );
 /*N*/ }
@@ -88,9 +88,6 @@ static const USHORT nFtnLines[] = {
 /*N*/ }
 
 
-/* -----------------------------26.04.01 12:25--------------------------------
-
- ---------------------------------------------------------------------------*/
 /*N*/ bool SwPageFtnInfoItem::QueryValue( Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     bool bRet = true;
@@ -114,9 +111,7 @@ static const USHORT nFtnLines[] = {
 /*N*/     }
 /*N*/     return bRet;
 /*N*/ }
-/* -----------------------------26.04.01 12:26--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ bool SwPageFtnInfoItem::PutValue(const Any& rVal, BYTE nMemberId)
 /*N*/ {
 /*N*/     sal_Int32 nSet32;
@@ -180,41 +175,11 @@ static const USHORT nFtnLines[] = {
 
 /*--------------------------------------------------------------------
     Beschreibung: Copy-Konstruktor
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
     Beschreibung: Clonen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
     Beschreibung:
- --------------------------------------------------------------------*/
 
-
-
-
-/*-----------------12.11.97 12:55-------------------------------
- SwUINumRuleItem fuer die NumTabPages der FormatNumRule/Stylisten
+    SwUINumRuleItem fuer die NumTabPages der FormatNumRule/Stylisten
 ---------------------------------------------------------------*/
-
-
-
-
-
-
-
-/* -----------------17.06.98 17:43-------------------
- *
- * --------------------------------------------------*/
-/* -----------------17.06.98 17:44-------------------
- *
- * --------------------------------------------------*/
-
-
 
 }
 
