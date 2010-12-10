@@ -73,7 +73,7 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 /*N*/   void RemoveFontList( SwDoc& rDoc );
 /*N*/ };
 
-/*N*/ Writer_Impl::Writer_Impl( const SwDoc& rDoc )
+/*N*/ Writer_Impl::Writer_Impl( const SwDoc& /*rDoc*/ )
 /*N*/   : pSrcArr( 0 ), pDestArr( 0 ), pFontRemoveLst( 0 ), pBkmkNodePos( 0 )
 /*N*/ {
 /*N*/ }
@@ -192,8 +192,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
     return pNew;
  }
 
-/////////////////////////////////////////////////////////////////////////////
-
 // Stream-spezifisches
 /*N*/ #ifdef DBG_UTIL
 /*N*/ SvStream& Writer::Strm()
@@ -272,7 +270,7 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
 /*N*/ }
 
 
-/*N*/ ULONG Writer::Write( SwPaM& rPam, SvStorage&, const String* )
+/*N*/ ULONG Writer::Write( SwPaM& /*rPam*/, SvStorage&, const String* )
 /*N*/ {
 /*N*/   ASSERT( !this, "Schreiben in Storages auf einem Stream?" );
 /*N*/   return ERR_SWG_WRITE_ERROR;
@@ -378,10 +376,7 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
 // build a bookmark table, which is sort by the node position. The
 // OtherPos of the bookmarks also inserted.
 
-
 // search alle Bookmarks in the range and return it in the Array
-
-////////////////////////////////////////////////////////////////////////////
 
 // Storage-spezifisches
 
