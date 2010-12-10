@@ -204,6 +204,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                   }
 /*?*/           }
 /*?*/           break;
+            default:
+                break;
 /*?*/       }
 /*N*/   return aRet;
 /*N*/ }
@@ -355,6 +357,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/           }
 /*M*/       }
 /*M*/       break;
+        default:
+            break;
 /*M*/   }
 /*M*/
 /*M*/   if( bNewFrms )

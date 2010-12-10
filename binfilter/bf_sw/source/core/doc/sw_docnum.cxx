@@ -854,7 +854,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           }
 /*N*/
 /*N*/ //FEATURE::CONDCOLL
-/*N*/           BOOL bCheck = TRUE;
 /*N*/           if( RES_CONDTXTFMTCOLL == pStt->GetFmtColl()->Which() )
 /*N*/           {
 /*N*/               pStt->ChkCondColl();

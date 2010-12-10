@@ -985,7 +985,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/           aLR.SetLeft( GetMetricVal( CM_1 ));
 /*N*/           aLR.SetRight( GetMetricVal( CM_1 ));
 /*N*/           aSet.Put( aLR );
-/*N*/ //            aSet.Put( SvxAdjustItem( SVX_ADJUST_BLOCK ) );
 /*N*/           SvxULSpaceItem aUL;
 /*N*/           if( !pDesc )
 /*N*/               aUL = pNewColl->GetULSpace();
@@ -1176,7 +1175,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/   if( pDesc )
 /*M*/   {
 /*M*/       pNewFmt = 0;
-/*M*/ //        *pDesc = aEmptyStr; // oder den Namen ?? aNm;
 /*M*/       *pDesc = aNm;
 /*M*/   }
 /*M*/   else
@@ -1438,7 +1436,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   if( pDesc )
 /*N*/   {
 /*?*/       pNewPgDsc = 0;
-/*?*/ //        *pDesc = aEmptyStr; // oder den Namen ?? aNm;
 /*?*/       *pDesc = aNm;
 /*N*/   }
 /*N*/   else
@@ -1999,12 +1996,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/   if( pDesc )
 /*N*/   {
-/*N*/ //JP 25.02.98: wie soll die Beschreibung sein??
-/*N*/ //        String aStr;
-/*N*/ //        aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, aStr );
-/*N*/ //        *pDesc += sKomma;
-/*N*/ //        *pDesc += aStr;
-/*N*/
 /*?*/       delete pNewRule, pNewRule = 0;
 /*N*/   }
 /*N*/

@@ -347,6 +347,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                               // zur relativen Darstellung
 /*?*/                               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFld->ToRelBoxNm( pUpdtFld->pTbl );
 /*?*/                           break;
+                            default:
+                                break;
 /*?*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -626,6 +628,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       case CRSRPOS:
 /*N*/           nRet =  CNTNT.pPos->nContent.GetIndex();
 /*N*/           break;
+            default:
+                break;
 /*N*/       }
 /*N*/   return nRet;
 /*N*/ }
@@ -788,15 +792,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   // aktuelle Datensatznummer schon vorher einstellen
 /*N*/   SwNewDBMgr* pMgr = GetNewDBMgr();
 /*N*/   pMgr->CloseAll(FALSE);
-/*
-     if(pMgr && pMgr->OpenDB(DBMGR_STD, GetDBDesc(), FALSE))
-     {
-         if(!pMgr->IsInMerge() )
-             pMgr->ToFirstSelectedRecord(DBMGR_STD);
-
-         aCalc.VarChange( sDBNumNm, pMgr->GetCurSelectedRecordId(DBMGR_STD));
-     }
- */
 /*N*/
 /*N*/   String aNew;
 /*N*/   const _SetGetExpFldPtr* ppSortLst = pUpdtFlds->GetSortLst()->GetData();
@@ -807,7 +802,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       {
 /*N*/           //!SECTION
 /*N*/
-/*N*/ //            if( pGFld->IsInBodyTxt() )
 /*N*/               pSect->SetCondHidden( aCalc.Calculate(
 /*N*/                                       pSect->GetCondition() ).GetBool() );
 /*N*/           continue;
@@ -860,12 +854,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
-/*N*/
-/*N*/           // Wert fuer den Calculator setzen
-/*N*/ //JP 10.02.96: GetValue macht hier doch keinen Sinn
-/*N*/ //            ((SwDBField*)pFld)->GetValue();
-/*N*/
-/*N*/ //!OK         aCalc.VarChange(aName, ((SwDBField*)pFld)->GetValue(aCalc));
 /*N*/
 /*N*/           // Eintrag in den HashTable eintragen
 /*N*/           // Eintrag vorhanden ?
