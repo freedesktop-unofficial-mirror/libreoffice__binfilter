@@ -282,7 +282,6 @@ inline void SwXMLTableCell_Impl::Dispose()
         xSubTable = 0;
 }
 
-// ---------------------------------------------------------------------
 
 typedef SwXMLTableCell_Impl* SwXMLTableCellPtr;
 SV_DECL_PTRARR_DEL(SwXMLTableCells_Impl,SwXMLTableCellPtr,5,5)
@@ -378,7 +377,6 @@ void SwXMLTableRow_Impl::Dispose()
         aCells[i]->Dispose();
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLTableCellContext_Impl : public SvXMLImportContext
 {
@@ -598,7 +596,6 @@ void SwXMLTableCellContext_Impl::EndElement()
 {
     if( GetTable()->IsValid() )
     {
-        sal_Bool bEmpty = sal_False;
         if( bHasTextContent )
         {
             GetImport().GetTextImport()->DeleteParagraph();
@@ -655,8 +652,6 @@ void SwXMLTableCellContext_Impl::EndElement()
         }
     }
 }
-
-// ---------------------------------------------------------------------
 
 class SwXMLTableColContext_Impl : public SvXMLImportContext
 {
@@ -737,8 +732,6 @@ SwXMLTableColContext_Impl::~SwXMLTableColContext_Impl()
 {
 }
 
-// ---------------------------------------------------------------------
-
 class SwXMLTableColsContext_Impl : public SvXMLImportContext
 {
     SvXMLImportContextRef   xMyTable;
@@ -766,7 +759,7 @@ public:
 
 SwXMLTableColsContext_Impl::SwXMLTableColsContext_Impl(
         SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable, sal_Bool bHead ) :
     SvXMLImportContext( rImport, nPrfx, rLName ),
     xMyTable( pTable ),
@@ -797,8 +790,6 @@ SvXMLImportContext *SwXMLTableColsContext_Impl::CreateChildContext(
 
     return pContext;
 }
-
-// ---------------------------------------------------------------------
 
 class SwXMLTableRowContext_Impl : public SvXMLImportContext
 {
@@ -913,7 +904,6 @@ SvXMLImportContext *SwXMLTableRowContext_Impl::CreateChildContext(
     return pContext;
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLTableRowsContext_Impl : public SvXMLImportContext
 {
@@ -943,7 +933,7 @@ public:
 SwXMLTableRowsContext_Impl::SwXMLTableRowsContext_Impl( SwXMLImport& rImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable,
         sal_Bool bHead ) :
     SvXMLImportContext( rImport, nPrfx, rLName ),
@@ -977,7 +967,6 @@ SvXMLImportContext *SwXMLTableRowsContext_Impl::CreateChildContext(
     return pContext;
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLDDETableContext_Impl : public SvXMLImportContext
 {
@@ -1078,11 +1067,6 @@ String lcl_GenerateFldTypeName(OUString sPrefix, SwTableNode* pTableNode)
     {
         sPrefixStr = String('_');
     }
-//  else if (sPrefixStr.Copy(0, 1).IsAlphaAscii())
-//  {
-//      sPrefixStr.Insert('_', 0);
-//  }
-    // else: name is OK.
 
     // increase count until we find a name that is not yet taken
     String sName;
@@ -1165,8 +1149,6 @@ SwDDEFieldType* lcl_GetDDEFieldType(SwXMLDDETableContext_Impl* pContext,
     return pType;
 }
 
-
-// ---------------------------------------------------------------------
 
 class TableBoxIndex
 {
@@ -1355,7 +1337,7 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
 SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable ) :
     XMLTextTableContext( rImport, nPrfx, rLName ),
     xParentTable( pTable ),
@@ -1948,7 +1930,6 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
 {
     SwTableBox *pBox;
     sal_uInt32 nColSpan = nRightCol - nLeftCol;
-    sal_uInt32 nRowSpan = nBottomRow - nTopRow;
     sal_Int32 nColWidth = GetColumnWidth( nLeftCol, nColSpan );
 
     if( pCell->GetStartNode() )
@@ -2508,8 +2489,6 @@ void SwXMLTableContext::MakeTable()
     sal_Bool bSetHoriOrient = sal_False;
 
     sal_uInt16 nPrcWidth = 0U;
-    sal_Bool bCalcWidth = sal_False;
-    sal_Bool bSetWidth = sal_False;
 
     pTableNode->GetTable().SetHeadlineRepeat( bHasHeading );
 
@@ -2544,6 +2523,8 @@ void SwXMLTableContext::MakeTable()
                     eHoriOrient = HORI_LEFT_AND_WIDTH;
                     bSetHoriOrient = sal_True;
                 }
+                break;
+            default:
                 break;
             }
         }

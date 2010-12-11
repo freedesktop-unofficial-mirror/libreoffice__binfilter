@@ -129,7 +129,7 @@ sal_Bool SwXMLImportTableItemMapper_Impl::handleSpecialItem(
     return bRet;
 }
 
-void SwXMLImportTableItemMapper_Impl::finished( SfxItemSet& rSet ) const { }
+void SwXMLImportTableItemMapper_Impl::finished( SfxItemSet& /*rSet*/ ) const { }
 
 // ---------------------------------------------------------------------
 

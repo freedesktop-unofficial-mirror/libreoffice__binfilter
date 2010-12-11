@@ -176,8 +176,6 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
         {
             const SwTableBox *pBox = rBoxes[nBox];
 
-            sal_uInt16 nOldCPos = nCPos;
-
             if( nBox < nBoxes-1U || nWidth==0UL )
             {
                 nCPos += (sal_uInt16)SwWriteTable::GetBoxWidth( pBox );
@@ -659,7 +657,6 @@ void SwXMLExport::ExportTableLinesAutoStyles( const SwTableLines& rLines,
         {
             SwTableBox *pBox = rBoxes[nBox];
 
-            sal_uInt16 nOldCPos = nCPos;
             if( nBox < nBoxes-1U )
                 nCPos += (sal_uInt16)SwWriteTable::GetBoxWidth( pBox );
             else
@@ -912,7 +909,6 @@ void SwXMLExport::ExportTableLine( const SwTableLine& rLine,
         {
             const SwTableBox *pBox = rBoxes[nBox];
 
-            sal_uInt16 nOldCPos = nCPos;
             if( nBox < nBoxes-1U )
                 nCPos += (sal_uInt16)SwWriteTable::GetBoxWidth( pBox );
             else

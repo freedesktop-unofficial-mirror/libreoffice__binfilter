@@ -214,12 +214,12 @@ void SvXMLImportItemMapper::importXML( SfxItemSet& rSet,
 /** this method is called for every item that has the
     MID_FLAG_SPECIAL_ITEM_IMPORT flag set */
 BOOL
-SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& rEntry,
-                                            SfxPoolItem& rItem,
-                                            SfxItemSet& rSet,
-                                            const OUString& rValue,
-                                            const SvXMLUnitConverter& rUnitConverter,
-                                            const SvXMLNamespaceMap& rNamespaceMap ) const
+SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& /*rEntry*/,
+                                            SfxPoolItem& /*rItem*/,
+                                            SfxItemSet& /*rSet*/,
+                                            const OUString& /*rValue*/,
+                                            const SvXMLUnitConverter& /*rUnitConverter*/,
+                                            const SvXMLNamespaceMap& /*rNamespaceMap*/ ) const
 {
     DBG_ERROR( "unsuported special item in xml import" );
     return FALSE;
@@ -227,11 +227,11 @@ SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& rEntry,
 
 /** this method is called for every item that has the
     MID_FLAG_NO_ITEM_IMPORT flag set */
-BOOL SvXMLImportItemMapper::handleNoItem( const SvXMLItemMapEntry& rEntry,
-                                           SfxItemSet& rSet,
-                                           const OUString& rValue,
-                                           const SvXMLUnitConverter& rUnitConverter,
-                                           const SvXMLNamespaceMap& rNamespaceMap) const
+BOOL SvXMLImportItemMapper::handleNoItem( const SvXMLItemMapEntry& /*rEntry*/,
+                                           SfxItemSet& /*rSet*/,
+                                           const OUString& /*rValue*/,
+                                           const SvXMLUnitConverter& /*rUnitConverter*/,
+                                           const SvXMLNamespaceMap& /*rNamespaceMap*/) const
 {
     DBG_ERROR( "unsuported no item in xml import" );
     return FALSE;

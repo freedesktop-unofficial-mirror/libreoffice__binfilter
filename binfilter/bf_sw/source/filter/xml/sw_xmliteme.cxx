@@ -214,10 +214,10 @@ void SwXMLTableItemMapper_Impl::handleSpecialItem(
 /** this method is called for every item that has the
     MID_FLAG_ELEMENT_EXPORT flag set */
 void SwXMLTableItemMapper_Impl::handleElementItem(
-        SvXMLExport& rExport,
+        SvXMLExport& /*rExport*/,
         const SvXMLItemMapEntry& rEntry,
         const SfxPoolItem& rItem,
-        const SvXMLUnitConverter& rUnitConverter,
+        const SvXMLUnitConverter& /*rUnitConverter*/,
         const SfxItemSet&,
         sal_uInt16 ) const
 {

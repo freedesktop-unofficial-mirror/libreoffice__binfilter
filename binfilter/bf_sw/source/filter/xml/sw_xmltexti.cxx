@@ -138,7 +138,7 @@ SwXMLTextImportHelper::SwXMLTextImportHelper(
         const Reference<XPropertySet> & rInfoSet,
         sal_Bool bInsertM, sal_Bool bStylesOnlyM, sal_Bool bProgress,
         sal_Bool bBlockM, sal_Bool bOrganizerM,
-        sal_Bool bPreserveRedlineMode ) :
+        sal_Bool /*bPreserveRedlineMode*/ ) :
     XMLTextImportHelper( rModel, rImport, bInsertM, bStylesOnlyM, bProgress,
                          bBlockM, bOrganizerM ),
     pRedlineHelper( NULL )
@@ -199,7 +199,7 @@ SwOLENode *lcl_GetOLENode( const SwFrmFmt *pFrmFmt )
 }
 
 Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
-           SvXMLImport& rImport,
+           SvXMLImport& /*rImport*/,
         const OUString& rHRef,
         const OUString& rStyleName,
         const OUString& rTblName,

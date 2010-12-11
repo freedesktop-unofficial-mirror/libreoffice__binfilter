@@ -317,23 +317,23 @@ void SvXMLExportItemMapper::exportXML( SvXMLExport& rExport,
 
 /** this method is called for every item that has the
     MID_FLAG_SPECIAL_ITEM_EXPORT flag set */
-void SvXMLExportItemMapper::handleSpecialItem( SvXMLAttributeList& rAttrList,
-                                    const SvXMLItemMapEntry& rEntry,
-                                    const SfxPoolItem& rItem,
-                                    const SvXMLUnitConverter& rUnitConverter,
-                                    const SvXMLNamespaceMap& rNamespaceMap,
-                                    const SfxItemSet* pSet /* = NULL */ ) const
+void SvXMLExportItemMapper::handleSpecialItem( SvXMLAttributeList& /*rAttrList*/,
+                                    const SvXMLItemMapEntry& /*rEntry*/,
+                                    const SfxPoolItem& /*rItem*/,
+                                    const SvXMLUnitConverter& /*rUnitConverter*/,
+                                    const SvXMLNamespaceMap& /*rNamespaceMap*/,
+                                    const SfxItemSet* /*pSet = NULL */ ) const
 {
     DBG_ERROR( "special item not handled in xml export" );
 }
 
 /** this method is called for every item that has the
     MID_FLAG_NO_ITEM_EXPORT flag set */
-void SvXMLExportItemMapper::handleNoItem( SvXMLAttributeList& rAttrList,
-                               const SvXMLItemMapEntry& rEntry,
-                               const SvXMLUnitConverter& rUnitConverter,
-                               const SvXMLNamespaceMap& rNamespaceMap,
-                               const SfxItemSet& rSet ) const
+void SvXMLExportItemMapper::handleNoItem( SvXMLAttributeList& /*rAttrList*/,
+                               const SvXMLItemMapEntry& /*rEntry*/,
+                               const SvXMLUnitConverter& /*rUnitConverter*/,
+                               const SvXMLNamespaceMap& /*rNamespaceMap*/,
+                               const SfxItemSet& /*rSet*/ ) const
 {
     DBG_ERROR( "no item not handled in xml export" );
 }
@@ -341,12 +341,12 @@ void SvXMLExportItemMapper::handleNoItem( SvXMLAttributeList& rAttrList,
 /** this method is called for every item that has the
     MID_FLAG_ELEMENT_EXPORT flag set */
 void SvXMLExportItemMapper::handleElementItem(
-                        SvXMLExport& rExport,
-                        const SvXMLItemMapEntry& rEntry,
-                        const SfxPoolItem& rItem,
-                        const SvXMLUnitConverter& rUnitConverter,
-                        const SfxItemSet& rSet,
-                        sal_uInt16 nFlags ) const
+                        SvXMLExport& /*rExport*/,
+                        const SvXMLItemMapEntry& /*rEntry*/,
+                        const SfxPoolItem& /*rItem*/,
+                        const SvXMLUnitConverter& /*rUnitConverter*/,
+                        const SfxItemSet& /*rSet*/,
+                        sal_uInt16 /*nFlags*/ ) const
 {
     DBG_ERROR( "element item not handled in xml export" );
 }

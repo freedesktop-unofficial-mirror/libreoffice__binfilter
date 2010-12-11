@@ -567,8 +567,8 @@ void XMLRedlineImportHelper::SetCursor(
 
 void XMLRedlineImportHelper::AdjustStartNodeCursor(
     const OUString& rId,        /// ID used in RedlineAdd() call
-    sal_Bool bStart,
-    Reference<XTextRange> & rRange)
+    sal_Bool /*bStart*/,
+    Reference<XTextRange> & /*rRange*/)
 {
     // this method will modify the document directly -> lock SolarMutex
     SolarMutexGuard aGuard;

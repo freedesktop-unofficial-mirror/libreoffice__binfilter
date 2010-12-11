@@ -696,8 +696,6 @@ void SwXMLItemSetStyleContext_Impl::ConnectPageDesc()
 
 sal_Bool SwXMLItemSetStyleContext_Impl::ResolveDataStyleName()
 {
-    sal_Bool bTmp = bDataStyleIsResolved;
-
     // resolve, if not already done
     if (! bDataStyleIsResolved)
     {

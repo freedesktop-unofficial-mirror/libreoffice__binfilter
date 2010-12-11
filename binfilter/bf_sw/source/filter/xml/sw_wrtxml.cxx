@@ -327,8 +327,6 @@ sal_uInt32 SwXMLWriter::_Write()
     if( pDoc->GetRootFrm() && pDoc->GetDocStat().nPage > 1 &&
         !(bOrganizerMode || bBlock || bErr) )
     {
-//          DBG_ASSERT( !pDoc->GetDocStat().bModified,
-//                      "doc stat is modified!" );
         OUString sStreamName( RTL_CONSTASCII_USTRINGPARAM("layout-cache") );
         SvStorageStreamRef xStrm =  pStg->OpenStream( sStreamName,
                                STREAM_WRITE | STREAM_SHARE_DENYWRITE );
@@ -541,15 +539,11 @@ sal_Bool SwXMLWriter::WriteThroughComponent(
     return xFilter->filter( rMediaDesc );
 }
 
-
-// -----------------------------------------------------------------------
-
-void GetXMLWriter( const String& rName, WriterRef& xRet )
+void GetXMLWriter( const String& /*rName*/, WriterRef& xRet )
 {
     xRet = new SwXMLWriter();
 }
 
-// -----------------------------------------------------------------------
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

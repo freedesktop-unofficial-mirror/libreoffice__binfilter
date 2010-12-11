@@ -81,10 +81,10 @@ SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nPrefix,
 */
 SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nPrefix,
                                    const ::rtl::OUString& rLocalName,
-                                   const uno::Reference< xml::sax::XAttributeList >& xAttrList,
-                                    SfxItemSet&  rItemSet,
-                                   const SvXMLItemMapEntry& rEntry,
-                                   const SvXMLUnitConverter& rUnitConv )
+                                   const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/,
+                                    SfxItemSet&  /*rItemSet*/,
+                                   const SvXMLItemMapEntry& /*rEntry*/,
+                                   const SvXMLUnitConverter& /*rUnitConv*/ )
 {
     return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
 }
