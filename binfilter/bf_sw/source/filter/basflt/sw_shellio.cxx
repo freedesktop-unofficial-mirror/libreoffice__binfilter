@@ -119,8 +119,6 @@ using namespace ::com::sun::star;
 /*N*/   // ersten ist.
 /*N*/   SwPaM *pEnd = pPam;
 /*N*/
-/*N*/   BOOL bReadPageDescs = FALSE;
-/*N*/
 /*N*/   SwNodeIndex aSplitIdx( pDoc->GetNodes() );
 /*N*/
 /*N*/   SwRedlineMode eOld = pDoc->GetRedlineMode();
@@ -454,7 +452,7 @@ int Reader::SetStrmStgPtr()
  }
 
 
-void Reader::SetNoOutlineNum( SwDoc& rDoc )
+void Reader::SetNoOutlineNum( SwDoc& /*rDoc*/ )
 {
 }
 
@@ -525,20 +523,6 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/ {
 /*N*/ }
 
-/*
-
-SwWriter::SwWriter( SvStorage& rStg, SwCrsrShell &rShell, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( &rStg ),
-    pMedium( 0 ),
-    pShell( &rShell ),
-    pOutPam( 0 ),
-    rDoc( *rShell.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
-}
-*/
-
 
 /*N*/ SwWriter::SwWriter(SvStorage& rStg,SwDoc &rDoc)
 /*N*/   :pStrm( 0 ),
@@ -550,36 +534,6 @@ SwWriter::SwWriter( SvStorage& rStg, SwCrsrShell &rShell, BOOL bWriteAll )
 /*N*/   bWriteAll( TRUE )
 /*N*/ {
 /*N*/ }
-/*
-
-SwWriter::SwWriter( SvStorage& rStg, SwPaM& rPam, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( &rStg ),
-    pMedium( 0 ),
-    pShell( 0 ),
-    pOutPam( &rPam ),
-    rDoc( *rPam.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
-}
-*/
-
-
-
-
-/*
-
-SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( 0 ),
-    pShell( 0 ),
-    pMedium( &rMedium ),
-    pOutPam( &rPam ),
-    rDoc( *rPam.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
-}
-*/
 
 
 /*N*/ ULONG SwWriter::Write( WriterRef& rxWriter, const String* pRealFileName )
@@ -719,7 +673,7 @@ SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
 // ----------------------------------------------------------------------
 
 
-/*N*/ BOOL SetHTMLTemplate( SwDoc & rDoc )
+/*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
 /*N*/ }

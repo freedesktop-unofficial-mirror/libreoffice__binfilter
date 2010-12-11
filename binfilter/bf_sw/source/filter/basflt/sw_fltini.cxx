@@ -230,7 +230,7 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*  */
 
 
-/*N*/ ULONG Sw3Reader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
+/*N*/ ULONG Sw3Reader::Read( SwDoc & /*rDoc*/, SwPaM &rPam, const String & )
 /*N*/ {
 /*N*/   ULONG nRet;
 /*N*/   if( pStg && pIO )
@@ -1028,9 +1028,6 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
     } while( STRING_NOTFOUND != nToken );
  }
 
-/* -----------------------------02.03.00 17:33--------------------------------
-
- ---------------------------------------------------------------------------*/
 Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
 {
     Color aColor = rCol;
@@ -1080,7 +1077,7 @@ Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
 }
 
     void SwFilterOptions::Commit() {}
-    void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 
 }
 

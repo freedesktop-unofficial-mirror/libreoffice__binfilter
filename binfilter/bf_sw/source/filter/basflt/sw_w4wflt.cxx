@@ -96,7 +96,7 @@ namespace binfilter {//STRIP009
 
 #define ERR_DLL 9999
 
-/*N*/ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
+/*N*/ USHORT AutoDetec( const String& /*rFileName*/, USHORT & /*rVersion*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*N*/ }
 
