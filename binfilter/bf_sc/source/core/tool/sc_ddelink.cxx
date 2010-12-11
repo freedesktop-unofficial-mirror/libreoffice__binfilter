@@ -67,7 +67,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScDdeLink::~ScDdeLink()
+/*N*/ ScDdeLink::~ScDdeLink()
 /*N*/ {
 /*N*/   // Verbindung aufheben
 /*N*/
@@ -123,7 +123,7 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void __EXPORT ScDdeLink::DataChanged( const String& rMimeType,
+/*N*/ void ScDdeLink::DataChanged( const String& rMimeType,
 /*N*/                               const ::com::sun::star::uno::Any & rValue )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //    wir koennen nur Strings...

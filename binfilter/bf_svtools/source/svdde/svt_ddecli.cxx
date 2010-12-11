@@ -367,7 +367,7 @@ const String& DdeTransaction::GetName() const
 // --- DdeTransaction::Data() --------------------------------------
 
 
-void __EXPORT DdeTransaction::Data( const DdeData* p )
+void DdeTransaction::Data( const DdeData* p )
 {
     SolarMutexGuard aSolarGuard;
 
@@ -376,7 +376,7 @@ void __EXPORT DdeTransaction::Data( const DdeData* p )
 
 // --- DdeTransaction::Done() --------------------------------------
 
-void __EXPORT DdeTransaction::Done( BOOL bDataValid )
+void DdeTransaction::Done( BOOL bDataValid )
 {
     aDone.Call( (void*)bDataValid );
 }
@@ -398,7 +398,7 @@ DdeLink::~DdeLink()
 
 // --- DdeLink::Notify() -----------------------------------------
 
-void __EXPORT DdeLink::Notify()
+void DdeLink::Notify()
 {
     aNotify.Call( NULL );
 }

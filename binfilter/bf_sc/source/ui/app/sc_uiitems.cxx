@@ -102,7 +102,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScSortItem::~ScSortItem()
+/*N*/ ScSortItem::~ScSortItem()
 /*N*/ {
 /*N*/ }
 
@@ -140,7 +140,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScQueryItem::~ScQueryItem()
+/*N*/ ScQueryItem::~ScQueryItem()
 /*N*/ {
 /*N*/ }
 
@@ -179,7 +179,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScSubTotalItem::~ScSubTotalItem()
+/*N*/ ScSubTotalItem::~ScSubTotalItem()
 /*N*/ {
 /*N*/ }
 
@@ -213,7 +213,7 @@ namespace binfilter {
 /*N*/       pUserList = NULL;
 /*N*/ }
 
-/*N*/ __EXPORT ScUserListItem::~ScUserListItem()
+/*N*/ ScUserListItem::~ScUserListItem()
 /*N*/ {
 /*N*/   delete pUserList;
 /*N*/ }
@@ -253,7 +253,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScConsolidateItem::~ScConsolidateItem()
+/*N*/ ScConsolidateItem::~ScConsolidateItem()
 /*N*/ {
 /*N*/ }
 
@@ -297,7 +297,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPivotItem::~ScPivotItem()
+/*N*/ ScPivotItem::~ScPivotItem()
 /*N*/ {
 /*N*/   delete pSaveData;
 /*N*/ }
@@ -333,7 +333,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScSolveItem::~ScSolveItem()
+/*N*/ ScSolveItem::~ScSolveItem()
 /*N*/ {
 /*N*/ }
 

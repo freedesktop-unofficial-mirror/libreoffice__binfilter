@@ -47,7 +47,7 @@ namespace binfilter {
 |* Ableitung vom SfxChildWindow als "Behaelter" fuer Effekte
 |*
 \************************************************************************/
-/*N*/ __EXPORT Svx3DChildWindow::Svx3DChildWindow( Window* pParent,
+/*N*/ Svx3DChildWindow::Svx3DChildWindow( Window* pParent,
 /*N*/                                                        USHORT nId,
 /*N*/                                                        SfxBindings* pBindings,
 /*N*/                                                        SfxChildWinInfo* pInfo ) :

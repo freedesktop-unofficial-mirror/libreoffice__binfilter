@@ -55,7 +55,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 
 /*?*/ SFX_IMPL_OBJECTFACTORY_LIB( SchChartDocShell, SFXOBJECTSHELL_STD_NORMAL, schart,
                             SvGlobalName(BF_SO3_SCH_CLASSID), Sch, String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME )) )
-// from macro: void __EXPORT SchChartDocShell::InitFactory()
+// from macro: void SchChartDocShell::InitFactory()
 /*?*/ {
 /*?*/   ULONG nFormat50 = SOT_FORMATSTR_ID_STARCHART_50;
 /*?*/   SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
@@ -121,7 +121,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 \************************************************************************/
 
 
-/*N*/ void __EXPORT SchDLL::Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut )
+/*N*/ void SchDLL::Update( SvInPlaceObjectRef aIPObj, SchMemChart* pData, OutputDevice* pOut )
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI*fp)(SvInPlaceObjectRef, SchMemChart*, OutputDevice*);
 /*N*/
@@ -140,7 +140,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 \************************************************************************/
 
 
-/*N*/ SchMemChart* __EXPORT SchDLL::GetChartData (SvInPlaceObjectRef aIPObj)
+/*N*/ SchMemChart* SchDLL::GetChartData (SvInPlaceObjectRef aIPObj)
 /*N*/ {
 /*N*/   SchMemChart* (__LOADONCALLAPI*fp)(SvInPlaceObjectRef);
 /*N*/
@@ -157,7 +157,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 |*
 \************************************************************************/
 
-/*N*/ SchMemChart* __EXPORT SchDLL::NewMemChart (short nCols, short nRows)
+/*N*/ SchMemChart* SchDLL::NewMemChart (short nCols, short nRows)
 /*N*/ {
 /*N*/   SchMemChart* (__LOADONCALLAPI*fp)(short, short);
 /*N*/
@@ -176,7 +176,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 |*
 \************************************************************************/
 
-/*N*/ void __EXPORT SchDLL::GetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult )
+/*N*/ void SchDLL::GetDefaultForColumnText( const SchMemChart& rMemChart, sal_Int32 nCol, String& aResult )
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI*fp)( const SchMemChart&, sal_Int32, String& );
 /*N*/
@@ -188,7 +188,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/   }
 /*N*/ }
 
-/*N*/ void __EXPORT SchDLL::GetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult )
+/*N*/ void SchDLL::GetDefaultForRowText( const SchMemChart& rMemChart, sal_Int32 nRow, String& aResult )
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI*fp)( const SchMemChart&, sal_Int32, String& );
 /*N*/
@@ -200,7 +200,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/   }
 /*N*/ }
 
-/*N*/ void __EXPORT SchDLL::ConvertChartRangeForWriter( SchMemChart& rMemChart,
+/*N*/ void SchDLL::ConvertChartRangeForWriter( SchMemChart& rMemChart,
 /*N*/                                                   BOOL bOldToNew )
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI* fp )( SchMemChart&, BOOL )
@@ -210,7 +210,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/       fp( rMemChart, bOldToNew );
 /*N*/ }
 
-/*N*/ void __EXPORT SchDLL::MemChartInsertCols( SchMemChart& rMemChart,
+/*N*/ void SchDLL::MemChartInsertCols( SchMemChart& rMemChart,
 /*N*/                                           short nAtCol, short nCount)
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI* fp )( SchMemChart&, short, short )
@@ -219,7 +219,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/   if( fp )
 /*N*/       fp( rMemChart, nAtCol, nCount );
 /*N*/ }
-/*?*/ void __EXPORT SchDLL::MemChartRemoveCols( SchMemChart& rMemChart,
+/*?*/ void SchDLL::MemChartRemoveCols( SchMemChart& rMemChart,
 /*?*/                                           short nAtCol, short nCount)
 /*?*/ {
 /*?*/   void (__LOADONCALLAPI* fp )( SchMemChart&, short, short )
@@ -229,7 +229,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*?*/       fp( rMemChart, nAtCol, nCount );
 /*?*/ }
 
-/*N*/ void __EXPORT SchDLL::MemChartInsertRows( SchMemChart& rMemChart,
+/*N*/ void SchDLL::MemChartInsertRows( SchMemChart& rMemChart,
 /*N*/                                           short nAtRow, short nCount )
 /*N*/ {
 /*N*/   void (__LOADONCALLAPI* fp )( SchMemChart&, short, short )
@@ -238,7 +238,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/   if( fp )
 /*N*/       fp( rMemChart, nAtRow, nCount );
 /*N*/ }
-/*?*/ void __EXPORT SchDLL::MemChartRemoveRows( SchMemChart& rMemChart,
+/*?*/ void SchDLL::MemChartRemoveRows( SchMemChart& rMemChart,
 /*?*/                                           short nAtRow, short nCount )
 /*?*/ {
 /*?*/   void (__LOADONCALLAPI* fp )( SchMemChart&, short, short )

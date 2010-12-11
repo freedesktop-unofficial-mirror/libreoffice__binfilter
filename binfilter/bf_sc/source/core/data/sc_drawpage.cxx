@@ -50,7 +50,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ __EXPORT ScDrawPage::~ScDrawPage()
+/*N*/ ScDrawPage::~ScDrawPage()
 /*N*/ {
 /*N*/ }
 

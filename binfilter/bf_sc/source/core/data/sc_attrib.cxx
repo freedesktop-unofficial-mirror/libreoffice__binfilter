@@ -104,7 +104,7 @@ using namespace ::com::sun::star;
 /*N*/   nRowMerge = rItem.nRowMerge;
 /*N*/ }
 
-/*N*/ __EXPORT ScMergeAttr::~ScMergeAttr()
+/*N*/ ScMergeAttr::~ScMergeAttr()
 /*N*/ {
 /*N*/ }
 
@@ -113,7 +113,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScMergeAttr::operator==( const SfxPoolItem& rItem ) const
+/*N*/ int ScMergeAttr::operator==( const SfxPoolItem& rItem ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( Which() != rItem.Which() || Type() == rItem.Type(), "which ==, type !=" );
 /*N*/   return (Which() == rItem.Which())
@@ -123,14 +123,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScMergeAttr::Clone( SfxItemPool * ) const
+/*N*/ SfxPoolItem* ScMergeAttr::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new ScMergeAttr(*this);
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScMergeAttr::Create( SvStream& rStream, USHORT nVer ) const
+/*N*/ SfxPoolItem* ScMergeAttr::Create( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   INT16   nCol;
 /*N*/   INT16   nRow;
@@ -141,7 +141,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& __EXPORT ScMergeAttr::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScMergeAttr::Store( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   rStream << nColMerge;
 /*N*/   rStream << nRowMerge;
@@ -164,7 +164,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScMergeFlagAttr::~ScMergeFlagAttr()
+/*N*/ ScMergeFlagAttr::~ScMergeFlagAttr()
 /*N*/ {
 /*N*/ }
 
@@ -204,13 +204,13 @@ using namespace ::com::sun::star;
 /*N*/   bHidePrint   = rItem.bHidePrint;
 /*N*/ }
 
-/*N*/ __EXPORT ScProtectionAttr::~ScProtectionAttr()
+/*N*/ ScProtectionAttr::~ScProtectionAttr()
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ bool __EXPORT ScProtectionAttr::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool ScProtectionAttr::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/     switch ( nMemberId  )
@@ -241,7 +241,7 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool __EXPORT ScProtectionAttr::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool ScProtectionAttr::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   bool bRet = false;
 /*N*/   sal_Bool bVal;
@@ -286,7 +286,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScProtectionAttr::operator==( const SfxPoolItem& rItem ) const
+/*N*/ int ScProtectionAttr::operator==( const SfxPoolItem& rItem ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( Which() != rItem.Which() || Type() == rItem.Type(), "which ==, type !=" );
 /*N*/   return (Which() == rItem.Which())
@@ -298,14 +298,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScProtectionAttr::Clone( SfxItemPool * ) const
+/*N*/ SfxPoolItem* ScProtectionAttr::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new ScProtectionAttr(*this);
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScProtectionAttr::Create( SvStream& rStream, USHORT n ) const
+/*N*/ SfxPoolItem* ScProtectionAttr::Create( SvStream& rStream, USHORT n ) const
 /*N*/ {
 /*N*/   BOOL bProtect;
 /*N*/   BOOL bHFormula;
@@ -322,7 +322,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& __EXPORT ScProtectionAttr::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScProtectionAttr::Store( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   rStream << bProtection;
 /*N*/   rStream << bHideFormula;
@@ -354,7 +354,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScRangeItem::operator==( const SfxPoolItem& rAttr ) const
+/*N*/ int ScRangeItem::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
 /*N*/
@@ -363,7 +363,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScRangeItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* ScRangeItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new ScRangeItem( *this );
 /*N*/ }
@@ -373,14 +373,14 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ USHORT __EXPORT ScRangeItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScRangeItem::GetVersion( USHORT nFileVersion ) const
 /*N*/ {
 /*N*/   return 2;
 /*N*/ }
 
 //-----------------------------------------------------------------------
 
-/*N*/ SvStream& __EXPORT ScRangeItem::Store( SvStream& rStrm, USHORT nVer ) const
+/*N*/ SvStream& ScRangeItem::Store( SvStream& rStrm, USHORT nVer ) const
 /*N*/ {
 /*N*/   rStrm << aRange;
 /*N*/   rStrm << nFlags;
@@ -390,7 +390,7 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScRangeItem::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* ScRangeItem::Create( SvStream& rStream, USHORT nVersion ) const
 /*N*/ {
 /*N*/   ScRange aNewRange;
 /*N*/   BOOL    nNewFlags = FALSE;
@@ -473,7 +473,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ __EXPORT ScTableListItem::~ScTableListItem()
+/*N*/ ScTableListItem::~ScTableListItem()
 /*N*/ {
 /*N*/   delete [] pTabArr;
 /*N*/ }
@@ -489,7 +489,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScTableListItem::operator==( const SfxPoolItem& rAttr ) const
+/*N*/ int ScTableListItem::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unequal types" );
 /*N*/
@@ -513,7 +513,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScTableListItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* ScTableListItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new ScTableListItem( *this );
 /*N*/ }
@@ -523,7 +523,7 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ SvStream& __EXPORT ScTableListItem::Store( SvStream& rStrm, USHORT nVer ) const
+/*N*/ SvStream& ScTableListItem::Store( SvStream& rStrm, USHORT nVer ) const
 /*N*/ {
 /*N*/   rStrm << nCount;
 /*N*/
@@ -536,7 +536,7 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScTableListItem::Create( SvStream& rStrm, USHORT ) const
+/*N*/ SfxPoolItem* ScTableListItem::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   ScTableListItem* pNewItem;
 /*N*/   List             aList;
@@ -617,7 +617,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPageHFItem::~ScPageHFItem()
+/*N*/ ScPageHFItem::~ScPageHFItem()
 /*N*/ {
 /*N*/   delete pLeftArea;
 /*N*/   delete pCenterArea;
@@ -626,7 +626,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ bool __EXPORT ScPageHFItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool ScPageHFItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent =
 /*N*/       new ScHeaderFooterContentObj( pLeftArea, pCenterArea, pRightArea );
@@ -635,7 +635,7 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool __EXPORT ScPageHFItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool ScPageHFItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   bool bRet = false;
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent;
@@ -686,14 +686,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ String __EXPORT ScPageHFItem::GetValueText() const
+/*N*/ String ScPageHFItem::GetValueText() const
 /*N*/ {
 /*N*/   return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScPageHFItem"));
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScPageHFItem::operator==( const SfxPoolItem& rItem ) const
+/*N*/ int ScPageHFItem::operator==( const SfxPoolItem& rItem ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
 /*N*/
@@ -706,14 +706,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScPageHFItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* ScPageHFItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new ScPageHFItem( *this );
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ USHORT __EXPORT ScPageHFItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScPageHFItem::GetVersion( USHORT nFileVersion ) const
 /*N*/ {
 /*N*/   // 0 = ohne Feldbefehle
 /*N*/   // 1 = Titel bzw. Dateiname mit SvxFileField
@@ -783,7 +783,7 @@ using namespace ::com::sun::star;
 
 #define SC_FIELD_COUNT  6
 
-/*N*/ SfxPoolItem* __EXPORT ScPageHFItem::Create( SvStream& rStream, USHORT nVer ) const
+/*N*/ SfxPoolItem* ScPageHFItem::Create( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   EditTextObject* pLeft   = EditTextObject::Create(rStream);
 /*N*/   EditTextObject* pCenter = EditTextObject::Create(rStream);
@@ -939,7 +939,7 @@ using namespace ::com::sun::star;
 /*N*/       pArea->Store( rStream );
 /*N*/ }
 
-/*N*/ SvStream& __EXPORT ScPageHFItem::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScPageHFItem::Store( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   if ( pLeftArea && pCenterArea && pRightArea )
 /*N*/   {
@@ -999,7 +999,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageHFItem::SetLeftArea( const EditTextObject& rNew )
+/*N*/ void ScPageHFItem::SetLeftArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pLeftArea;
 /*N*/   pLeftArea = rNew.Clone();
@@ -1007,7 +1007,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageHFItem::SetCenterArea( const EditTextObject& rNew )
+/*N*/ void ScPageHFItem::SetCenterArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pCenterArea;
 /*N*/   pCenterArea = rNew.Clone();
@@ -1015,13 +1015,13 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageHFItem::SetRightArea( const EditTextObject& rNew )
+/*N*/ void ScPageHFItem::SetRightArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pRightArea;
 /*N*/   pRightArea = rNew.Clone();
 /*N*/ }
 
-/*N*/ void __EXPORT ScPageHFItem::SetArea( EditTextObject *pNew, int nArea )
+/*N*/ void ScPageHFItem::SetArea( EditTextObject *pNew, int nArea )
 /*N*/ {
 /*N*/   switch ( nArea )
 /*N*/   {
@@ -1051,7 +1051,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScViewObjectModeItem::~ScViewObjectModeItem()
+/*N*/ ScViewObjectModeItem::~ScViewObjectModeItem()
 /*N*/ {
 /*N*/ }
 
@@ -1063,28 +1063,28 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ USHORT __EXPORT ScViewObjectModeItem::GetValueCount() const
+/*N*/ USHORT ScViewObjectModeItem::GetValueCount() const
 /*N*/ {
 /*N*/   return 3;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScViewObjectModeItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* ScViewObjectModeItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new ScViewObjectModeItem( *this );
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ USHORT __EXPORT ScViewObjectModeItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScViewObjectModeItem::GetVersion( USHORT nFileVersion ) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScViewObjectModeItem::Create(
+/*N*/ SfxPoolItem* ScViewObjectModeItem::Create(
 /*N*/                                   SvStream&   rStream,
 /*N*/                                   USHORT      nVersion ) const
 /*N*/ {
@@ -1121,14 +1121,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ String __EXPORT ScDoubleItem::GetValueText() const
+/*N*/ String ScDoubleItem::GetValueText() const
 /*N*/ {
 /*N*/   return String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("ScDoubleItem"));
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ int __EXPORT ScDoubleItem::operator==( const SfxPoolItem& rItem ) const
+/*N*/ int ScDoubleItem::operator==( const SfxPoolItem& rItem ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal Which or Type" );
 /*N*/     const ScDoubleItem& _rItem = (const ScDoubleItem&)rItem;
@@ -1138,14 +1138,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScDoubleItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* ScDoubleItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new ScDoubleItem( *this );
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* __EXPORT ScDoubleItem::Create( SvStream& rStream, USHORT nVer ) const
+/*N*/ SfxPoolItem* ScDoubleItem::Create( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   double nTmp=0;
 /*N*/   rStream >> nTmp;
@@ -1157,7 +1157,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& __EXPORT ScDoubleItem::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScDoubleItem::Store( SvStream& rStream, USHORT nVer ) const
 /*N*/ {
 /*N*/   rStream << nValue;
 /*N*/
@@ -1166,7 +1166,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScDoubleItem::~ScDoubleItem()
+/*N*/ ScDoubleItem::~ScDoubleItem()
 /*N*/ {
 /*N*/ }
 

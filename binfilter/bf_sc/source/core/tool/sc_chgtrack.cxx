@@ -2218,7 +2218,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScChangeTrack::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScChangeTrack::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if ( !pDoc->IsInDtorClear() )
 /*N*/   {

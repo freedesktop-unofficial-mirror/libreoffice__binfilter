@@ -1405,7 +1405,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((co
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScFormulaCell::SFX_NOTIFY( SfxBroadcaster& rBC,
+/*N*/ void ScFormulaCell::SFX_NOTIFY( SfxBroadcaster& rBC,
 /*N*/       const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType )
 /*N*/ {
 /*N*/   if ( !pDocument->IsInDtorClear() && !pDocument->GetHardRecalcState() )

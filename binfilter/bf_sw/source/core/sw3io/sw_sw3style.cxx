@@ -207,7 +207,7 @@ public:
 /*N*/   nVersion = 0;
 /*N*/ }
 
-/*N*/ __EXPORT SwStyleSheet::~SwStyleSheet()
+/*N*/ SwStyleSheet::~SwStyleSheet()
 /*N*/ {
 /*N*/   // wird von SFX-DLL gerufen!
 /*N*/ //FEATURE::CONDCOLL
@@ -223,7 +223,7 @@ public:
 /*N*/ }
 
 
-/*N*/ void __EXPORT SwStyleSheet::Load( SvStream& r, USHORT nVer )
+/*N*/ void SwStyleSheet::Load( SvStream& r, USHORT nVer )
 /*N*/ {
 /*N*/   nVersion = nVer;    // Version wird noch gebraucht
 /*N*/
@@ -316,7 +316,7 @@ public:
 /*N*/       nId = Sw3StringPool::ConvertFromOldPoolId( nId, SWG_LONGIDX );
 /*N*/ }
 
-/*N*/ void __EXPORT SwStyleSheet::Store( SvStream& r )
+/*N*/ void SwStyleSheet::Store( SvStream& r )
 /*N*/ {
 /*N*/   ASSERT( nVersion == r.GetVersion(),
 /*N*/           "SwStyleSheet::Store: FF-Version != Stream-FF-Version" );
@@ -386,7 +386,7 @@ public:
 /*N*/ }
 
 //FEATURE::CONDCOLL
-/*N*/ USHORT __EXPORT SwStyleSheet::GetVersion() const
+/*N*/ USHORT SwStyleSheet::GetVersion() const
 /*N*/ {
 /*N*/   ASSERT( nVersion,
 /*N*/           "SwStyleSheet::GetVersion: Fileformat-Version nicht gesetzt" );
@@ -405,7 +405,7 @@ public:
 /*N*/ }
 //FEATURE::CONDCOLL
 
-/*N*/ SfxItemSet& __EXPORT SwStyleSheet::GetItemSet()
+/*N*/ SfxItemSet& SwStyleSheet::GetItemSet()
 /*N*/ {
 /*N*/   return aSet;
 /*N*/ }
@@ -469,7 +469,7 @@ public:
 /*N*/                 pConvToSymbolFmts( pConvFmts )
 /*N*/ {}
 
-/*N*/ __EXPORT SwStyleSheetPool::~SwStyleSheetPool()
+/*N*/ SwStyleSheetPool::~SwStyleSheetPool()
 /*N*/ {
 /*N*/   // wird von SFX-DLL gerufen!
 /*N*/ }
@@ -1016,7 +1016,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 // Faktorei
 
-/*N*/ SfxStyleSheetBase* __EXPORT SwStyleSheetPool::Create( const String& rName,
+/*N*/ SfxStyleSheetBase* SwStyleSheetPool::Create( const String& rName,
 /*N*/                                            SfxStyleFamily eFam, USHORT nMask2)
 /*N*/ {
 /*N*/   return new SwStyleSheet( rName, *this, eFam, nMask2);

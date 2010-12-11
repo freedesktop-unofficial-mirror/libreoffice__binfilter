@@ -577,7 +577,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void __EXPORT SdrPageView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrPageView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   if (bVisible) {
 /*N*/       SdrHint* pSdrHint=PTR_CAST(SdrHint,&rHint);

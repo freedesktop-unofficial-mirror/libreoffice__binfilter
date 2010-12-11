@@ -76,7 +76,7 @@ namespace binfilter {
 /*N*/   InitTokens();
 /*N*/ }
 
-/*N*/ __EXPORT ScUserListData::~ScUserListData()
+/*N*/ ScUserListData::~ScUserListData()
 /*N*/ {
 /*N*/   delete[] pSubStrings;
 /*N*/   delete[] pUpperSub;

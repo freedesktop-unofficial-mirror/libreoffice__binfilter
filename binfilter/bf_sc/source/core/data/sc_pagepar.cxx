@@ -49,13 +49,13 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPageTableParam::~ScPageTableParam()
+/*N*/ ScPageTableParam::~ScPageTableParam()
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageTableParam::Reset()
+/*N*/ void ScPageTableParam::Reset()
 /*N*/ {
 /*N*/   bNotes=bGrid=bHeaders=bDrawings=
 /*N*/   bLeftRight=bScaleAll=bScalePageNum=
@@ -89,13 +89,13 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPageAreaParam::~ScPageAreaParam()
+/*N*/ ScPageAreaParam::~ScPageAreaParam()
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageAreaParam::Reset()
+/*N*/ void ScPageAreaParam::Reset()
 /*N*/ {
 /*N*/   bPrintArea = bRepeatRow = bRepeatCol = FALSE;
 /*N*/

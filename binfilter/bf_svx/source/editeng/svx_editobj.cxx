@@ -235,7 +235,7 @@ namespace binfilter {
 /*N*/   nWhich = r.nWhich;
 /*N*/ }
 
-/*N*/ __EXPORT EditTextObject::~EditTextObject()
+/*N*/ EditTextObject::~EditTextObject()
 /*N*/ {
 /*N*/   DBG_DTOR( EE_EditTextObject, 0 );
 /*N*/ }
@@ -299,14 +299,14 @@ namespace binfilter {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-/*N*/ BOOL __EXPORT EditTextObject::ChangeStyleSheets( const XubString&, SfxStyleFamily,
+/*N*/ BOOL EditTextObject::ChangeStyleSheets( const XubString&, SfxStyleFamily,
 /*N*/                                           const XubString&, SfxStyleFamily )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void __EXPORT EditTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
+/*N*/ void EditTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
 /*N*/               const XubString& rOldName, const XubString& rNewName )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
@@ -403,12 +403,12 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void __EXPORT EditTextObject::StoreData( SvStream& rOStream ) const
+/*N*/ void EditTextObject::StoreData( SvStream& rOStream ) const
 /*N*/ {
 /*N*/   DBG_ERROR( "StoreData: Basisklasse!" );
 /*N*/ }
 
-/*N*/ void __EXPORT EditTextObject::CreateData( SvStream& rIStream )
+/*N*/ void EditTextObject::CreateData( SvStream& rIStream )
 /*N*/ {
 /*N*/   DBG_ERROR( "CreateData: Basisklasse!" );
 /*N*/ }
@@ -499,7 +499,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ __EXPORT BinTextObject::~BinTextObject()
+/*N*/ BinTextObject::~BinTextObject()
 /*N*/ {
 /*N*/   ClearPortionInfo();
 /*N*/   DeleteContents();
@@ -556,7 +556,7 @@ namespace binfilter {
 /*N*/   aContents.Remove( 0, aContents.Count() );
 /*N*/ }
 
-/*N*/ EditTextObject*   __EXPORT BinTextObject::Clone() const
+/*N*/ EditTextObject*   BinTextObject::Clone() const
 /*N*/ {
 /*N*/   return new BinTextObject( *this );
 /*N*/ }
@@ -727,7 +727,7 @@ namespace binfilter {
 /*N*/   return bChanges;
 /*N*/ }
 
-/*N*/ BOOL __EXPORT BinTextObject::ChangeStyleSheets(
+/*N*/ BOOL BinTextObject::ChangeStyleSheets(
 /*N*/                   const XubString& rOldName, SfxStyleFamily eOldFamily,
 /*N*/                   const XubString& rNewName, SfxStyleFamily eNewFamily )
 /*N*/ {
@@ -738,13 +738,13 @@ namespace binfilter {
 /*N*/   return bChanges;
 /*N*/ }
 
-/*N*/ void __EXPORT BinTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
+/*N*/ void BinTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
 /*N*/               const XubString& rOldName, const XubString& rNewName )
 /*N*/ {
 /*N*/   ImpChangeStyleSheets( rOldName, eFamily, rNewName, eFamily );
 /*N*/ }
 
-/*N*/ void __EXPORT BinTextObject::StoreData( SvStream& rOStream ) const
+/*N*/ void BinTextObject::StoreData( SvStream& rOStream ) const
 /*N*/ {
 /*N*/   USHORT nVer = 602;
 /*N*/   rOStream << nVer;
@@ -925,7 +925,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void __EXPORT BinTextObject::CreateData( SvStream& rIStream )
+/*N*/ void BinTextObject::CreateData( SvStream& rIStream )
 /*N*/ {
 /*N*/   rIStream >> nVersion;
 /*N*/
@@ -1461,7 +1461,7 @@ namespace binfilter {
 
 /*N*/ #define CHARSETMARKER 0x9999
 
-/*N*/ void __EXPORT BinTextObject::CreateData300( SvStream& rIStream )
+/*N*/ void BinTextObject::CreateData300( SvStream& rIStream )
 /*N*/ {
 /*N*/   // Fuer Aufwaertskompatibilitaet.
 /*N*/

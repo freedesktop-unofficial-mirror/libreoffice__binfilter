@@ -661,7 +661,7 @@ sal_uInt32 SdXMLExport::ImpRecursiveObjectCount(uno::Reference< drawing::XShapes
 
 //////////////////////////////////////////////////////////////////////////////
 
-__EXPORT SdXMLExport::~SdXMLExport()
+SdXMLExport::~SdXMLExport()
 {
     // cleanup factory, decrease refcount. Should lead to destruction.
     if(mpSdPropHdlFactory)

@@ -93,7 +93,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 
 // -----------------------------------------------------------------------
 
-/*N*/ __EXPORT ScTabDeletedHint::~ScTabDeletedHint()
+/*N*/ ScTabDeletedHint::~ScTabDeletedHint()
 /*N*/ {
 /*N*/ }
 
@@ -102,7 +102,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScTabSizeChangedHint::~ScTabSizeChangedHint()
+/*N*/ ScTabSizeChangedHint::~ScTabSizeChangedHint()
 /*N*/ {
 /*N*/ }
 
@@ -216,7 +216,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   }
 /*N*/ }
 
-/*N*/ __EXPORT ScDrawLayer::~ScDrawLayer()
+/*N*/ ScDrawLayer::~ScDrawLayer()
 /*N*/ {
 /*N*/   Broadcast(SdrHint(HINT_MODELCLEARED));
 /*N*/
@@ -231,7 +231,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/ }
 
 
-/*N*/ SdrPage* __EXPORT ScDrawLayer::AllocPage(bool bMasterPage)
+/*N*/ SdrPage* ScDrawLayer::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   //  don't create basic until it is needed
 /*N*/   StarBASIC* pBasic = NULL;
@@ -849,14 +849,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 // static:
 
 
-/*N*/ void __EXPORT ScDrawLayer::SetChanged( bool bFlg /* =TRUE */ )
+/*N*/ void ScDrawLayer::SetChanged( bool bFlg /* =TRUE */ )
 /*N*/ {
 /*N*/   if ( bFlg && pDoc )
 /*N*/       pDoc->SetChartListenerCollectionNeedsUpdate( TRUE );
 /*N*/   FmFormModel::SetChanged( bFlg );
 /*N*/ }
 
-/*N*/ SvStream* __EXPORT ScDrawLayer::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
+/*N*/ SvStream* ScDrawLayer::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
 /*N*/ {
 /*N*/   DBG_ASSERT( pDoc, "ScDrawLayer::GetDocumentStream without document" );
 /*N*/   if ( !pDoc )

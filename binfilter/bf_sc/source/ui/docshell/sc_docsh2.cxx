@@ -61,7 +61,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScDocShell::InitNew( SvStorage * pStor )
+/*N*/ BOOL ScDocShell::InitNew( SvStorage * pStor )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::InitNew" );
 /*N*/

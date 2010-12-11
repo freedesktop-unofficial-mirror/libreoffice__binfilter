@@ -83,7 +83,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScStyleSheetPool::~ScStyleSheetPool()
+/*N*/ ScStyleSheetPool::~ScStyleSheetPool()
 /*N*/ {
 /*N*/ }
 
@@ -130,7 +130,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create(
+/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create(
 /*N*/                                           const String&   rName,
 /*N*/                                           SfxStyleFamily  eFamily,
 /*N*/                                           USHORT          nMask )
@@ -144,7 +144,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
+/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
 /*N*/ }

@@ -171,7 +171,7 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScViewOptions::~ScViewOptions()
+/*N*/ ScViewOptions::~ScViewOptions()
 /*N*/ {
 /*N*/ }
 

@@ -75,21 +75,21 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PERSIST1(SdrMeasureField,SvxFieldData);
 /*N*/
-/*N*/ __EXPORT SdrMeasureField::~SdrMeasureField()
+/*N*/ SdrMeasureField::~SdrMeasureField()
 /*N*/ {
 /*N*/ }
 
-/*N*/ SvxFieldData* __EXPORT SdrMeasureField::Clone() const
+/*N*/ SvxFieldData* SdrMeasureField::Clone() const
 /*N*/ {
 /*N*/   return new SdrMeasureField(*this);
 /*N*/ }
 
-/*N*/ int __EXPORT SdrMeasureField::operator==(const SvxFieldData& rSrc) const
+/*N*/ int SdrMeasureField::operator==(const SvxFieldData& rSrc) const
 /*N*/ {
 /*N*/   return eMeasureFieldKind==((SdrMeasureField&)rSrc).GetMeasureFieldKind();
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMeasureField::Load(SvPersistStream& rIn)
+/*N*/ void SdrMeasureField::Load(SvPersistStream& rIn)
 /*N*/ {
 /*N*/   SdrDownCompat aCompat(rIn,STREAM_READ); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/ #ifdef DBG_UTIL
@@ -100,7 +100,7 @@ namespace binfilter {
 /*N*/   eMeasureFieldKind=(SdrMeasureFieldKind)nFieldKind;
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMeasureField::Save(SvPersistStream& rOut)
+/*N*/ void SdrMeasureField::Save(SvPersistStream& rOut)
 /*N*/ {
 /*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/ #ifdef DBG_UTIL
@@ -868,7 +868,7 @@ namespace binfilter {
 
 
 
-/*N*/ void __EXPORT SdrMeasureObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrMeasureObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   if (HAS_BASE(SfxStyleSheet,&rBC)) {
 /*?*/       SfxSimpleHint* pSimple=PTR_CAST(SfxSimpleHint,&rHint);

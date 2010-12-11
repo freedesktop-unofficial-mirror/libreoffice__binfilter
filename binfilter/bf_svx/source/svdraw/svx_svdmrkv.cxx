@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/   StartListening(*pModel1);
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMarkView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrMarkView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SdrHint* pSdrHint=PTR_CAST(SdrHint,&rHint);
 /*N*/   if (pSdrHint!=NULL) {

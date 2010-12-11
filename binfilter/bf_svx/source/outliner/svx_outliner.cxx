@@ -434,7 +434,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed");
 /*N*/ }
 
-/*N*/ XubString __EXPORT Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
+/*N*/ XubString Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   if ( !aCalcFieldValueHdl.IsSet() )

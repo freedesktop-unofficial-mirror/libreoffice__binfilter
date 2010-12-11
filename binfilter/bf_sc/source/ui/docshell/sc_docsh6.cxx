@@ -176,7 +176,7 @@ namespace binfilter {
 //
 
 
-/*N*/ void __EXPORT ScDocShell::SetVisArea( const Rectangle & rVisArea )
+/*N*/ void ScDocShell::SetVisArea( const Rectangle & rVisArea )
 /*N*/ {
 /*N*/   //  with the SnapVisArea call in SetVisAreaOrSize, it's safe to always
 /*N*/   //  use both the size and position of the VisArea
@@ -221,7 +221,7 @@ namespace binfilter {
 //  Style-Krempel fuer Organizer etc.
 //
 
-/*N*/ SfxStyleSheetBasePool* __EXPORT ScDocShell::GetStyleSheetPool()
+/*N*/ SfxStyleSheetBasePool* ScDocShell::GetStyleSheetPool()
 /*N*/ {
 /*N*/   return (SfxStyleSheetBasePool*)aDocument.GetStyleSheetPool();
 /*N*/ }

@@ -89,7 +89,7 @@ namespace binfilter {
 /*N*/   SetRefreshControl( pDocShell->GetDocument()->GetRefreshTimerControlAddress() );
 /*N*/ }
 
-/*N*/ __EXPORT ScTableLink::~ScTableLink()
+/*N*/ ScTableLink::~ScTableLink()
 /*N*/ {
 /*N*/   // Verbindung aufheben
 /*N*/
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScTableLink::DataChanged( const String&,
+/*N*/ void ScTableLink::DataChanged( const String&,
 /*N*/                                       const ::com::sun::star::uno::Any& )
 /*N*/ {
 /*N*/   SvxLinkManager* pLinkManager=pDocShell->GetDocument()->GetLinkManager();

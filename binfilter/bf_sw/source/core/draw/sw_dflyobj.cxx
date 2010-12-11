@@ -91,13 +91,13 @@ static bool bInResize = FALSE;
 |*
 *************************************************************************/
 
-/*N*/ UINT32 __EXPORT SwFlyDrawObj::GetObjInventor() const
+/*N*/ UINT32 SwFlyDrawObj::GetObjInventor() const
 /*N*/ {
 /*N*/   return SWGInventor;
 /*N*/ }
 
 
-/*N*/ UINT16 __EXPORT SwFlyDrawObj::GetObjIdentifier()  const
+/*N*/ UINT16 SwFlyDrawObj::GetObjIdentifier()   const
 /*N*/ {
 /*N*/   return SwFlyDrawObjIdentifier;
 /*N*/ }
@@ -124,7 +124,7 @@ static bool bInResize = FALSE;
 /*N*/ }
 
 
-/*N*/ __EXPORT SwVirtFlyDrawObj::~SwVirtFlyDrawObj()
+/*N*/ SwVirtFlyDrawObj::~SwVirtFlyDrawObj()
 /*N*/ {
 /*N*/   if ( GetPage() )    //Der SdrPage die Verantwortung entziehen.
 /*N*/       GetPage()->RemoveObject( GetOrdNum() );
@@ -204,7 +204,7 @@ static bool bInResize = FALSE;
 /*N*/ }
 
 
-/*N*/ const Rectangle& __EXPORT SwVirtFlyDrawObj::GetBoundRect() const
+/*N*/ const Rectangle& SwVirtFlyDrawObj::GetBoundRect() const
 /*N*/ {
 /*N*/   SetRect();
 /*N*/   return aOutRect;
@@ -215,7 +215,7 @@ static bool bInResize = FALSE;
 
 
 
-/*N*/ const Rectangle& __EXPORT SwVirtFlyDrawObj::GetSnapRect()  const
+/*N*/ const Rectangle& SwVirtFlyDrawObj::GetSnapRect()  const
 /*N*/ {
 /*N*/   SetRect();
 /*N*/   return aOutRect;

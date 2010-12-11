@@ -76,7 +76,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrPageObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
+/*N*/ void SdrPageObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
 /*N*/ {
 /*N*/   SdrHint* pSdrHint = PTR_CAST(SdrHint, &rHint);
 /*N*/

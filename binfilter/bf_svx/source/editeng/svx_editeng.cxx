@@ -1094,17 +1094,17 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-/*N*/ void __EXPORT EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const sal_Int32*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
+/*N*/ void EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const sal_Int32*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
+/*N*/ void EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::ParagraphInserted( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphInserted( sal_uInt16 nPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
@@ -1114,7 +1114,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/     }
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::ParagraphDeleted( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphDeleted( sal_uInt16 nPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
@@ -1124,20 +1124,20 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/     }
 /*N*/ }
 
-/*N*/ sal_Bool __EXPORT EditEngine::FormattingParagraph( sal_uInt16 )
+/*N*/ sal_Bool EditEngine::FormattingParagraph( sal_uInt16 )
 /*N*/ {
 /*N*/   // return sal_True, wenn die Attribute geaendert wurden...
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   return sal_False;
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
+/*N*/ void EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
 
-/*N*/ void __EXPORT EditEngine::ParagraphHeightChanged( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphHeightChanged( sal_uInt16 nPara )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
@@ -1147,7 +1147,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/     }
 /*N*/ }
 
-/*N*/ XubString __EXPORT EditEngine::GetUndoComment( sal_uInt16 nId ) const
+/*N*/ XubString EditEngine::GetUndoComment( sal_uInt16 nId ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   XubString aComment;
@@ -1205,7 +1205,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return Rectangle( Point(), Point() );
 /*N*/ }
 
-/*N*/ XubString __EXPORT EditEngine::CalcFieldValue( const SvxFieldItem& rField, sal_uInt16, sal_uInt16, Color*&, Color*& )
+/*N*/ XubString EditEngine::CalcFieldValue( const SvxFieldItem& rField, sal_uInt16, sal_uInt16, Color*&, Color*& )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   return ' ';

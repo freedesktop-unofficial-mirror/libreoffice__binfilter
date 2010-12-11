@@ -132,7 +132,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 //------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScDocShell::FillClass( SvGlobalName* pClassName,
+/*N*/ void ScDocShell::FillClass( SvGlobalName* pClassName,
 /*N*/                                       ULONG* pFormat,
 /*N*/                                       String* pAppName,
 /*N*/                                       String* pFullTypeName,
@@ -576,7 +576,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL __EXPORT ScDocShell::Load( SvStorage* pStor )
+/*N*/ BOOL ScDocShell::Load( SvStorage* pStor )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::Load" );
 /*N*/
@@ -631,7 +631,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScDocShell::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void ScDocShell::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
 /*N*/                        const SfxHint& rHint, const TypeId& rHintType )
 /*N*/ {
 /*N*/   if (rHint.ISA(SfxSimpleHint))                               // ohne Parameter
@@ -665,7 +665,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 
 
-/*N*/ BOOL __EXPORT ScDocShell::ConvertFrom( SfxMedium& rMedium )
+/*N*/ BOOL ScDocShell::ConvertFrom( SfxMedium& rMedium )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ConvertFrom" );
 /*N*/
@@ -910,7 +910,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScDocShell::HandsOff()
+/*N*/ void ScDocShell::HandsOff()
 /*N*/ {
 /*N*/   ScDrawLayer* pDrawLayer = aDocument.GetDrawLayer();
 /*N*/
@@ -921,7 +921,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-/*N*/ BOOL __EXPORT ScDocShell::Save()
+/*N*/ BOOL ScDocShell::Save()
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::Save" );
 /*N*/
@@ -958,7 +958,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-/*N*/ BOOL __EXPORT ScDocShell::SaveAs( SvStorage* pStor )
+/*N*/ BOOL ScDocShell::SaveAs( SvStorage* pStor )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::SaveAs" );
 /*N*/
@@ -1008,13 +1008,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 
 
-/*N*/ BOOL __EXPORT ScDocShell::SaveCompleted( SvStorage * pStor )
+/*N*/ BOOL ScDocShell::SaveCompleted( SvStorage * pStor )
 /*N*/ {
 /*N*/   return SfxInPlaceObject::SaveCompleted( pStor );
 /*N*/ }
 
 
-/*N*/ BOOL __EXPORT ScDocShell::DoSaveCompleted( SfxMedium * pNewStor )
+/*N*/ BOOL ScDocShell::DoSaveCompleted( SfxMedium * pNewStor )
 /*N*/ {
 /*N*/   BOOL bRet = SfxObjectShell::DoSaveCompleted( pNewStor );
 /*N*/
@@ -1139,7 +1139,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 //------------------------------------------------------------------
 
-/*N*/ __EXPORT ScDocShell::~ScDocShell()
+/*N*/ ScDocShell::~ScDocShell()
 /*N*/ {
 /*N*/   ResetDrawObjectShell(); // #55570# falls der Drawing-Layer noch versucht, darauf zuzugreifen
 /*N*/

@@ -382,7 +382,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrPaintView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrPaintView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   BOOL bObjChg=!bSomeObjChgdFlag; // TRUE= auswerten fuer ComeBack-Timer
 /*N*/   BOOL bMaster=pMasterBmp!=NULL;  // TRUE= auswerten fuer MasterPagePaintCache

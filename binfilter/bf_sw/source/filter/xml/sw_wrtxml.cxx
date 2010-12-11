@@ -78,7 +78,7 @@ SwXMLWriter::SwXMLWriter()
 }
 
 
-__EXPORT SwXMLWriter::~SwXMLWriter()
+SwXMLWriter::~SwXMLWriter()
 {
 }
 

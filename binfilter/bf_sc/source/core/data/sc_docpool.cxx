@@ -349,7 +349,7 @@ namespace binfilter {
 /*N*/   SetVersionMap( 9, 100, 182, pVersionMap9 );
 /*N*/ }
 
-/*N*/ __EXPORT ScDocumentPool::~ScDocumentPool()
+/*N*/ ScDocumentPool::~ScDocumentPool()
 /*N*/ {
 /*N*/   Delete();
 /*N*/
@@ -532,7 +532,7 @@ namespace binfilter {
 //  wird (Assertions).
 //
 
-/*N*/ const SfxPoolItem& __EXPORT ScDocumentPool::Put( const SfxPoolItem& rItem, USHORT nWhich )
+/*N*/ const SfxPoolItem& ScDocumentPool::Put( const SfxPoolItem& rItem, USHORT nWhich )
 /*N*/ {
 /*N*/   if ( rItem.Which() != ATTR_PATTERN )                // nur Pattern ist special
 /*N*/       return SfxItemPool::Put( rItem, nWhich );
@@ -547,7 +547,7 @@ namespace binfilter {
 /*N*/   return rNew;
 /*N*/ }
 
-/*N*/ void __EXPORT ScDocumentPool::Remove( const SfxPoolItem& rItem )
+/*N*/ void ScDocumentPool::Remove( const SfxPoolItem& rItem )
 /*N*/ {
 /*N*/   if ( rItem.Which() == ATTR_PATTERN )                // nur Pattern ist special
 /*N*/   {

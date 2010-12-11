@@ -395,7 +395,7 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ {
 /*N*/ }
 
-/*N*/ String __EXPORT ScHeaderEditEngine::CalcFieldValue( const SvxFieldItem& rField,
+/*N*/ String ScHeaderEditEngine::CalcFieldValue( const SvxFieldItem& rField,
 /*N*/                                   USHORT nPara, USHORT nPos,
 /*N*/                                   Color*& rTxtColor, Color*& rFldColor )
 /*N*/ {
@@ -462,7 +462,7 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   SetControlWord( (GetControlWord() | EE_CNTRL_MARKFIELDS) & ~EE_CNTRL_RTFSTYLESHEETS );
 /*N*/ }
 
-/*N*/ String __EXPORT ScFieldEditEngine::CalcFieldValue( const SvxFieldItem& rField,
+/*N*/ String ScFieldEditEngine::CalcFieldValue( const SvxFieldItem& rField,
 /*N*/                                   USHORT nPara, USHORT nPos,
 /*N*/                                   Color*& rTxtColor, Color*& rFldColor )
 /*N*/ {

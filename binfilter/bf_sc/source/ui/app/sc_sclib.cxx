@@ -307,7 +307,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
         return FALSE;
 }
 
-/*N*/ ULONG __EXPORT ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
+/*N*/ ULONG ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
 /*N*/                                   SfxFilterFlags nMust, SfxFilterFlags nDont )
 /*N*/ {
 /*N*/   //  #59915# laut MBA darf hier nur ERRCODE_NONE, ERRCODE_ABORT und ERRCODE_FORCEQUIET

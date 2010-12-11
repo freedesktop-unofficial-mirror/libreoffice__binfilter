@@ -157,7 +157,7 @@ namespace binfilter {
 
 
 
-/*N*/ Rectangle __EXPORT ScDocShell::GetVisArea( USHORT nAspect ) const
+/*N*/ Rectangle ScDocShell::GetVisArea( USHORT nAspect ) const
 /*N*/ {
 /*N*/   SfxObjectCreateMode eShellMode = GetCreateMode();
 /*N*/   if ( eShellMode == SFX_CREATE_MODE_ORGANIZER )

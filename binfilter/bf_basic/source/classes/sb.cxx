@@ -862,7 +862,7 @@ BOOL StarBASIC::IsRunning()
 *
 **************************************************************************/
 
-USHORT __EXPORT StarBASIC::BreakHdl()
+USHORT StarBASIC::BreakHdl()
 {
     return (USHORT) ( aBreakHdl.IsSet()
         ? aBreakHdl.Call( this ) : SbDEBUG_CONTINUE );
@@ -1042,7 +1042,7 @@ void StarBASIC::Error( SbError /*n*/, const String& /*rMsg*/ ) { }
 
 void StarBASIC::FatalError( SbError /*n*/ ) { }
 
-BOOL __EXPORT StarBASIC::ErrorHdl()
+BOOL StarBASIC::ErrorHdl()
 {
     return (BOOL) ( aErrorHdl.IsSet()
         ? aErrorHdl.Call( this ) : FALSE );

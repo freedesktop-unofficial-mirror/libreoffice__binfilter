@@ -60,7 +60,7 @@ namespace binfilter {
 /*N*/   return rRefObj;
 /*N*/ }
 
-/*N*/ void __EXPORT SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   bClosedObj=rRefObj.IsClosedObj();
 /*N*/   SetRectsDirty(); // hier noch Optimieren.

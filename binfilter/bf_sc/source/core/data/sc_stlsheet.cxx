@@ -79,7 +79,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScStyleSheet::~ScStyleSheet()
+/*N*/ ScStyleSheet::~ScStyleSheet()
 /*N*/ {
 /*N*/ }
 
@@ -91,7 +91,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScStyleSheet::SetParent( const String& rParentName )
+/*N*/ BOOL ScStyleSheet::SetParent( const String& rParentName )
 /*N*/ {
 /*N*/   BOOL bResult = FALSE;
 /*N*/   String aEffName = rParentName;
@@ -119,7 +119,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxItemSet& __EXPORT ScStyleSheet::GetItemSet()
+/*N*/ SfxItemSet& ScStyleSheet::GetItemSet()
 /*N*/ {
 /*N*/   if ( !pSet )
 /*N*/   {
@@ -231,7 +231,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScStyleSheet::IsUsed() const
+/*N*/ BOOL ScStyleSheet::IsUsed() const
 /*N*/ {
 /*N*/   if ( GetFamily() == SFX_STYLE_FAMILY_PARA )
 /*N*/   {
@@ -250,7 +250,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScStyleSheet::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void ScStyleSheet::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
 /*N*/                          const SfxHint& rHint, const TypeId& rHintType )
 /*N*/ {
 /*N*/   if ( rHint.ISA(SfxSimpleHint) )

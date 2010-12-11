@@ -118,7 +118,7 @@ void SdDLL::LibExit()
     DELETEZ( SD_MOD() );
 }
 
-ULONG __EXPORT SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter, SfxFilterFlags nMust, SfxFilterFlags nDont)
+ULONG SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter, SfxFilterFlags nMust, SfxFilterFlags nDont)
 {
     ULONG nReturn = ERRCODE_ABORT;  // Erkennung fehlgeschlagen, Filter ungueltig
     BOOL bStorage = FALSE;

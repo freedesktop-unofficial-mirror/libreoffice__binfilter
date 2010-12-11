@@ -583,7 +583,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
 /*N*/   const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SfxSimpleHint *pSimple = PTR_CAST(SfxSimpleHint, &rHint);

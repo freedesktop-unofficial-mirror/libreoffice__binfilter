@@ -78,7 +78,7 @@ namespace binfilter {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrTextObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrTextObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SdrAttrObj::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
 /*N*/   if (pOutlinerParaObject!=NULL)

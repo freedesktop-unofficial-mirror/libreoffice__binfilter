@@ -438,7 +438,7 @@ XMLShapeExport* SwXMLExport::CreateShapeExport()
     return pShapeExport;
 }
 
-__EXPORT SwXMLExport::~SwXMLExport()
+SwXMLExport::~SwXMLExport()
 {
     _FinitItemExport();
 }

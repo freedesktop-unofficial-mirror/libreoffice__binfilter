@@ -1580,7 +1580,7 @@ je Objekt variiert von 0-3:
 'C':  n  0-3  0-3   = 1+U+1
 */
 
-/*N*/ void __EXPORT SdrEdgeObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
+/*N*/ void SdrEdgeObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
 /*N*/ {
 /*N*/   SfxSimpleHint* pSimple=PTR_CAST(SfxSimpleHint,&rHint);
 /*N*/   ULONG nId=pSimple==0 ? 0 : pSimple->GetId();

@@ -48,7 +48,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void __EXPORT SchDLL::Init()
+/*N*/ void SchDLL::Init()
 /*N*/ {
 /*N*/   // called directly after loading the DLL
 /*N*/   // do whatever you want, you may use Sd-DLL too
@@ -73,7 +73,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void __EXPORT SchDLL::Exit()
+/*N*/ void SchDLL::Exit()
 /*N*/ {
 /*N*/   // the SchModule must be destroyed
 /*N*/   SchModuleDummy** ppShlPtr = (SchModuleDummy**) GetAppData(BF_SHL_SCH);

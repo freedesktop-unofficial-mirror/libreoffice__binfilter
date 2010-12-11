@@ -394,21 +394,21 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PERSIST1( SvxPageField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxPageField::Clone() const
+/*N*/ SvxFieldData* SvxPageField::Clone() const
 /*N*/ {
 /*N*/   return new SvxPageField;        // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxPageField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxPageField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPageField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Load( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxPageField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Save( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxPageField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
@@ -416,82 +416,82 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PERSIST1( SvxPagesField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxPagesField::Clone() const
+/*N*/ SvxFieldData* SvxPagesField::Clone() const
 /*N*/ {
 /*N*/   return new SvxPagesField;   // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxPagesField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxPagesField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPagesField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Load( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxPagesField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Save( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxPagesField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
 /*N*/ SV_IMPL_PERSIST1( SvxTimeField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxTimeField::Clone() const
+/*N*/ SvxFieldData* SvxTimeField::Clone() const
 /*N*/ {
 /*N*/   return new SvxTimeField;    // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxTimeField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxTimeField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTimeField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Load( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxTimeField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Save( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxTimeField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
 
 /*N*/ SV_IMPL_PERSIST1( SvxFileField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxFileField::Clone() const
+/*N*/ SvxFieldData* SvxFileField::Clone() const
 /*N*/ {
 /*N*/   return new SvxFileField;    // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxFileField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxFileField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxFileField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Load( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxFileField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Save( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxFileField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
 /*N*/ SV_IMPL_PERSIST1( SvxTableField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxTableField::Clone() const
+/*N*/ SvxFieldData* SvxTableField::Clone() const
 /*N*/ {
 /*N*/   return new SvxTableField;   // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxTableField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxTableField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTableField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Load( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxTableField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Save( SvPersistStream & /*rStm*/ )
+/*N*/ void SvxTableField::Save( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 

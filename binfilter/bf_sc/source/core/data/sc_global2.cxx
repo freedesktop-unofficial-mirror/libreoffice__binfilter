@@ -623,14 +623,14 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScConsolidateParam::~ScConsolidateParam()
+/*N*/ ScConsolidateParam::~ScConsolidateParam()
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::ClearDataAreas()
+/*N*/ void ScConsolidateParam::ClearDataAreas()
 /*N*/ {
 /*N*/   if ( ppDataAreas )
 /*N*/   {
@@ -644,7 +644,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::Clear()
+/*N*/ void ScConsolidateParam::Clear()
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/
@@ -655,7 +655,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ ScConsolidateParam& __EXPORT ScConsolidateParam::operator=( const ScConsolidateParam& r )
+/*N*/ ScConsolidateParam& ScConsolidateParam::operator=( const ScConsolidateParam& r )
 /*N*/ {
 /*N*/   nCol            = r.nCol;
 /*N*/   nRow            = r.nRow;
@@ -674,7 +674,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::SetAreas( ScArea* const* ppAreas, USHORT nCount )
+/*N*/ void ScConsolidateParam::SetAreas( ScArea* const* ppAreas, USHORT nCount )
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/   if ( ppAreas && nCount > 0 )
@@ -751,7 +751,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPivotParam::~ScPivotParam()
+/*N*/ ScPivotParam::~ScPivotParam()
 /*N*/ {
 /*N*/   ClearLabelData();
 /*N*/ }
@@ -761,7 +761,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::ClearLabelData()
+/*N*/ void ScPivotParam::ClearLabelData()
 /*N*/ {
 /*N*/   if ( (nLabels > 0) && ppLabelArr )
 /*N*/   {
@@ -778,7 +778,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::SetLabelData( LabelData** pLabArr,
+/*N*/ void ScPivotParam::SetLabelData( LabelData**  pLabArr,
 /*N*/                                         USHORT        nLab )
 /*N*/ {
 /*N*/   ClearLabelData();
@@ -794,7 +794,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::SetPivotArrays    ( const PivotField* pColArr,
+/*N*/ void ScPivotParam::SetPivotArrays ( const PivotField* pColArr,
 /*N*/                                             const PivotField* pRowArr,
 /*N*/                                             const PivotField* pDataArr,
 /*N*/                                             USHORT            nColCnt,
@@ -806,7 +806,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 //------------------------------------------------------------------------
 
-/*N*/ ScPivotParam& __EXPORT ScPivotParam::operator=( const ScPivotParam& r )
+/*N*/ ScPivotParam& ScPivotParam::operator=( const ScPivotParam& r )
 /*N*/ {
 /*N*/   nCol              = r.nCol;
 /*N*/   nRow              = r.nRow;
@@ -898,7 +898,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 /*N*/   bShown = rCpy.bShown;
 /*N*/ }
 
-/*N*/ __EXPORT ScPostIt::~ScPostIt()
+/*N*/ ScPostIt::~ScPostIt()
 /*N*/ {
 /*N*/ }
 

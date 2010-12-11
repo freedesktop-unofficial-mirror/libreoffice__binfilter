@@ -58,11 +58,11 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT SvxRotateModeItem::~SvxRotateModeItem()
+/*N*/ SvxRotateModeItem::~SvxRotateModeItem()
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxPoolItem* __EXPORT SvxRotateModeItem::Create( SvStream& rStream, USHORT ) const
+/*N*/ SfxPoolItem* SvxRotateModeItem::Create( SvStream& rStream, USHORT ) const
 /*N*/ {
 /*N*/   USHORT nVal;
 /*N*/   rStream >> nVal;
@@ -71,17 +71,17 @@ using namespace ::com::sun::star;
 
 
 
-/*?*/ USHORT __EXPORT SvxRotateModeItem::GetValueCount() const
+/*?*/ USHORT SvxRotateModeItem::GetValueCount() const
 /*?*/ {
 /*?*/   return 4;       // STANDARD, TOP, CENTER, BOTTOM
 /*?*/ }
 
-/*N*/ SfxPoolItem* __EXPORT SvxRotateModeItem::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* SvxRotateModeItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SvxRotateModeItem( *this );
 /*N*/ }
 
-/*N*/ USHORT __EXPORT SvxRotateModeItem::GetVersion( USHORT /*nFileVersion*/ ) const
+/*N*/ USHORT SvxRotateModeItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }

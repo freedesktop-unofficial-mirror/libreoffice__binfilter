@@ -137,7 +137,7 @@ using namespace ::com::sun::star;
 /*N*/   return uno::Reference< chart::XChartData >();
 /*N*/ }
 
-/*N*/ void __EXPORT ScChartListener::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScChartListener::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 /*N*/ {
 /*N*/   const ScHint* p = PTR_CAST( ScHint, &rHint );
 /*N*/   if( p && (p->GetId() & (SC_HINT_DATACHANGED | SC_HINT_DYING)) )

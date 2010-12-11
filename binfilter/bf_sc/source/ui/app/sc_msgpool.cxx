@@ -95,7 +95,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ __EXPORT ScMessagePool::~ScMessagePool()
+/*N*/ ScMessagePool::~ScMessagePool()
 /*N*/ {
 /*N*/   Delete();
 /*N*/   SetSecondaryPool( NULL );       // before deleting defaults (accesses defaults)
@@ -109,7 +109,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ SfxMapUnit __EXPORT ScMessagePool::GetMetric( USHORT nWhich ) const
+/*N*/ SfxMapUnit ScMessagePool::GetMetric( USHORT nWhich ) const
 /*N*/ {
 /*N*/   //  eigene Attribute: Twips, alles andere 1/100 mm
 /*N*/

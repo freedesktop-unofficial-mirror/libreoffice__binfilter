@@ -77,13 +77,13 @@ namespace binfilter {
 /*N*/   SetRefreshControl( pDocShell->GetDocument()->GetRefreshTimerControlAddress() );
 /*N*/ }
 
-/*N*/ __EXPORT ScAreaLink::~ScAreaLink()
+/*N*/ ScAreaLink::~ScAreaLink()
 /*N*/ {
 /*N*/   StopRefreshTimer();
 /*N*/ }
 
 
-/*N*/  void __EXPORT ScAreaLink::DataChanged( const String&,
+/*N*/  void ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/     //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im

@@ -74,14 +74,14 @@ DBG_NAME( EditUndo )
 /*N*/   DBG_DTOR( EditUndo, 0 );
 /*N*/ }
 
-/*N*/ USHORT __EXPORT EditUndo::GetId() const
+/*N*/ USHORT EditUndo::GetId() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditUndo, 0 );
 /*N*/   return nId;
 /*N*/ }
 
 
-/*N*/ XubString __EXPORT EditUndo::GetComment() const
+/*N*/ XubString EditUndo::GetComment() const
 /*N*/ {
 /*N*/   XubString aComment;
 /*N*/   if ( pImpEE )
@@ -101,15 +101,15 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Undo()
+/*N*/ void EditUndoInsertChars::Undo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Redo()
+/*N*/ void EditUndoInsertChars::Redo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ BOOL __EXPORT EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
+/*N*/ BOOL EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
 /*N*/ {
 /*N*/   if ( !pNextAction->ISA( EditUndoInsertChars ) )
 /*N*/       return FALSE;
@@ -127,7 +127,7 @@ DBG_NAME( EditUndo )
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Repeat()
+/*N*/ void EditUndoInsertChars::Repeat()
 /*N*/ {
 /*N*/   DBG_ERROR( "EditUndoInsertChars::Repeat nicht implementiert!" );
 /*N*/ }
@@ -154,15 +154,15 @@ DBG_NAME( EditUndo )
 /*N*/   delete pFeature;
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Undo()
+/*N*/ void EditUndoInsertFeature::Undo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Redo()
+/*N*/ void EditUndoInsertFeature::Redo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Repeat()
+/*N*/ void EditUndoInsertFeature::Repeat()
 /*N*/ {
 /*N*/   DBG_ERROR( "EditUndoInsertFeature::Repeat nicht implementiert!" );
 /*N*/ }
@@ -194,15 +194,15 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Undo()
+/*N*/ void EditUndoSetStyleSheet::Undo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Redo()
+/*N*/ void EditUndoSetStyleSheet::Redo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Repeat()
+/*N*/ void EditUndoSetStyleSheet::Repeat()
 /*N*/ {
 /*N*/   DBG_ERROR( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
 /*N*/ }
@@ -222,15 +222,15 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Undo()
+/*N*/ void EditUndoSetParaAttribs::Undo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Redo()
+/*N*/ void EditUndoSetParaAttribs::Redo()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Repeat()
+/*N*/ void EditUndoSetParaAttribs::Repeat()
 /*N*/ {
 /*N*/   DBG_ERROR( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
 /*N*/ }

@@ -685,16 +685,16 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScIMapInfo::~ScIMapInfo()
+/*N*/ ScIMapInfo::~ScIMapInfo()
 /*N*/ {
 /*N*/ }
 /*N*/
-/*N*/ SdrObjUserData* __EXPORT ScIMapInfo::Clone( SdrObject* pObj ) const
+/*N*/ SdrObjUserData* ScIMapInfo::Clone( SdrObject* pObj ) const
 /*N*/ {
 /*N*/   return new ScIMapInfo( *this );
 /*N*/ }
 /*N*/
-/*N*/ void __EXPORT ScIMapInfo::WriteData( SvStream& rOStm )
+/*N*/ void ScIMapInfo::WriteData( SvStream& rOStm )
 /*N*/ {
 /*N*/   SdrObjUserData::WriteData( rOStm );
 /*N*/
@@ -704,7 +704,7 @@ namespace binfilter {
             rOStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 /*N*/
-/*N*/ void __EXPORT ScIMapInfo::ReadData( SvStream& rIStm )
+/*N*/ void ScIMapInfo::ReadData( SvStream& rIStm )
 /*N*/ {
 /*N*/   SdrObjUserData::ReadData( rIStm );
 /*N*/
