@@ -269,7 +269,7 @@ public:                                                             \
                                                                             \
         SO2_IMPL_BASIC_CLASS1( Class, SfxObjectFactory, SfxInPlaceObject, aGlobName ) \
                                                                             \
-        SfxObjectShell* __EXPORT Class::CreateObject(SfxObjectCreateMode eMode) \
+        SfxObjectShell* Class::CreateObject(SfxObjectCreateMode eMode) \
         { return new Class(eMode); }                                        \
                                                                             \
         void Class::RegisterFactory( USHORT nPrio )                         \
@@ -284,24 +284,24 @@ public:                                                             \
             pObjectFactory->Register(); /* Ole Anmeldung */                 \
         }                                                                   \
                                                                             \
-        BOOL __EXPORT Class::DoInitNew( SvStorage *pStor )                  \
+        BOOL Class::DoInitNew( SvStorage *pStor )                   \
         { return SfxObjectShell::DoInitNew(pStor); }                        \
                                                                             \
-        BOOL __EXPORT Class::DoClose()                                      \
+        BOOL Class::DoClose()                                       \
         { return SfxInPlaceObject::DoClose(); }                             \
                                                                             \
-        BOOL __EXPORT Class::Close()                                        \
+        BOOL Class::Close()                                     \
         {   SvObjectRef aRef(this);                                         \
             SfxInPlaceObject::Close();                                      \
             return SfxObjectShell::Close(); }                               \
                                                                             \
-        void __EXPORT Class::ModifyChanged()                                \
+        void Class::ModifyChanged()                             \
         { SfxObjectShell::ModifyChanged(); }                                \
                                                                             \
-        SfxObjectFactory& __EXPORT Class::GetFactory() const                \
+        SfxObjectFactory& Class::GetFactory() const             \
         {   return *(SfxObjectFactory*)ClassFactory(); }                     \
                                                                             \
-        void __EXPORT Class::InitFactory()
+        void Class::InitFactory()
 
 //---------------------------------------------------------------------------
 /*  SFX_IMPL_MODULE_LIB
@@ -330,7 +330,7 @@ extern "C"
 #define SFX_IMPL_MODULE_LIB( LibName, LibString )                   \
     void * GetFunc##LibName( const char * pFuncName );              \
     static ::osl::Module* pLibHandle##LibName = NULL;               \
-    BOOL __EXPORT LoadLib##LibName()                                \
+    BOOL LoadLib##LibName()                                 \
     {                                                               \
         if( pLibHandle##LibName == NULL )                           \
         {                                                           \
@@ -344,7 +344,7 @@ extern "C"
         }                                                           \
         return pLibHandle##LibName->is();                           \
     }                                                               \
-    void __EXPORT FreeLib##LibName()                                \
+    void FreeLib##LibName()                             \
     {                                                               \
         if( pLibHandle##LibName && pLibHandle##LibName->is() )      \
         {                                                           \
@@ -354,7 +354,7 @@ extern "C"
                 (*fFunc)();                                         \
         }                                                           \
     }                                                               \
-    void* __EXPORT GetFunc##LibName( const char * pFuncName )       \
+    void* GetFunc##LibName( const char * pFuncName )        \
     {                                                               \
         if( LoadLib##LibName() )                                    \
             return pLibHandle##LibName->getSymbol( ::rtl::OUString::createFromAscii(pFuncName) );\
@@ -429,12 +429,12 @@ extern "C"
 // Gemeinsame Funktionen in DLL und LIB
 #define SFX_IMPL_OBJECTFACTORY_GEN( Class, LibType )                        \
                                                                             \
-        SfxObjectShell* __EXPORT Class::CreateObject(SfxObjectCreateMode eMode) \
+        SfxObjectShell* Class::CreateObject(SfxObjectCreateMode eMode) \
         {                                                                   \
             SfxObjectShell* pDoc = CreateObj##Class##LibType((int)eMode); \
             return pDoc;                                                    \
         }                                                                   \
-        SfxObjectFactory& __EXPORT Class::GetFactory() const                \
+        SfxObjectFactory& Class::GetFactory() const             \
         {                                                                   \
             return Factory();                                               \
         }
@@ -450,7 +450,7 @@ extern "C"
                 return (ClassName *)(*fCreate)();                                 \
             return NULL;                                                          \
         }                                                                         \
-        SotFactory* __EXPORT ClassName::ClassFactory()                                     \
+        SotFactory* ClassName::ClassFactory()                                     \
         {                                                                         \
             if( !pObjectFactory )                                                     \
             {                                                                     \
@@ -460,7 +460,7 @@ extern "C"
             }                                                                     \
             return pObjectFactory;                                                    \
         }                                                                         \
-        void* __EXPORT ClassName::CreateInstance( SotObject ** ppObj )            \
+        void* ClassName::CreateInstance( SotObject ** ppObj )            \
         {                                                                         \
             ClassName * p = Create##ClassName##Lib();                             \
             SfxInPlaceObject* pSuper1 = p;                                        \
@@ -469,7 +469,7 @@ extern "C"
                 *ppObj = pBasicObj;                                               \
             return p;                                                             \
         }                                                                         \
-        void __EXPORT ClassName::RegisterFactory( USHORT nPrio )            \
+        void ClassName::RegisterFactory( USHORT nPrio )         \
         {                                                                   \
             Factory().Construct(                                            \
                 nPrio,                                                      \
@@ -478,7 +478,7 @@ extern "C"
             Factory().RegisterInitFactory( &InitFactory );                  \
             Factory().Register();                                           \
         }                                                                   \
-        ClassName* __EXPORT CreateObj##ClassName##Lib(int nMode)                \
+        ClassName* CreateObj##ClassName##Lib(int nMode)             \
         {                                                                   \
             SfxCreateExtern_TYPE fCreate = (SfxCreateExtern_TYPE)           \
                 GetFunc##LibName( "CreateObj" #ClassName "Dll");            \
@@ -489,7 +489,7 @@ extern "C"
                                                                             \
         SFX_IMPL_OBJECTFACTORY_GEN( ClassName, Lib )                        \
                                                                             \
-        void __EXPORT ClassName::InitFactory()
+        void ClassName::InitFactory()
 
 // Funktionen und Methoden in der DLL
 #define SFX_IMPL_OBJECTFACTORY_LOD( Class, ShortName, aGlobName, LibName ) \
@@ -544,10 +544,10 @@ extern "C"
                                                                             \
         SfxObjectFactory* Class::pObjectFactory = 0;                        \
                                                                             \
-        SfxObjectShell* __EXPORT Class::CreateObject(SfxObjectCreateMode eMode) \
+        SfxObjectShell* Class::CreateObject(SfxObjectCreateMode eMode) \
         { return new Class(eMode); }                                        \
                                                                             \
-        SfxObjectFactory& __EXPORT Class::Factory()                                     \
+        SfxObjectFactory& Class::Factory()                                     \
         {                                                                         \
             if( !pObjectFactory )                                                     \
             {                                                                     \
@@ -565,10 +565,10 @@ extern "C"
             Factory().RegisterInitFactory( &InitFactory   );          \
         }                                                                   \
                                                                             \
-        SfxObjectFactory& __EXPORT Class::GetFactory() const                \
+        SfxObjectFactory& Class::GetFactory() const             \
         {   return Factory(); }                                             \
                                                                             \
-        void __EXPORT Class::InitFactory()
+        void Class::InitFactory()
 
 //--------------------------------------------------------------------
 
@@ -617,7 +617,7 @@ extern "C"
 
 #define SFX_IMPL_SIMPLE_OBJECTFACTORY_LIB( Class, nFlags, ShortName, LibName, FactoryPtr ) \
     SfxObjectFactory* Class::pObjectFactory = 0;                        \
-    SfxObjectFactory& __EXPORT Class::Factory()                                     \
+    SfxObjectFactory& Class::Factory()                                     \
     {                                                                         \
         if( !pObjectFactory )                                                     \
         {                                                                     \
@@ -626,7 +626,7 @@ extern "C"
         }                                                                     \
         return *pObjectFactory;                                                    \
     }                                                                         \
-    void __EXPORT Class::RegisterFactory( USHORT nPrio )                      \
+    void Class::RegisterFactory( USHORT nPrio )                   \
     {                                                                         \
             Factory().Construct(                                        \
                 nPrio,                                                        \
@@ -644,10 +644,10 @@ extern "C"
         return 0;                                                             \
     }                                                                         \
                                                                               \
-    SfxObjectFactory& __EXPORT Class::GetFactory() const                      \
+    SfxObjectFactory& Class::GetFactory() const                       \
         { return Factory(); }                                                \
                                                                               \
-    void __EXPORT Class::InitFactory()
+    void Class::InitFactory()
 
 //--------------------------------------------------------------------
 

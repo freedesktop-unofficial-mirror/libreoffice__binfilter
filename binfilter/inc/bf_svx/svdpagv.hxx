@@ -357,7 +357,7 @@ public:
     // Painten aller Objekte eines Layer der Page ohne MasterPage
     // pOut==NULL -> alle OutputDevices
     // Der Handler in pPaintProc hat folgendes aussehen:
-    // void __EXPORT class::PaintProcHdl(const SdrPaintProcRec& rPaintProcRec);
+    // void class::PaintProcHdl(const SdrPaintProcRec& rPaintProcRec);
 
 
     // MasterPage ueber VirtualDevice Painten

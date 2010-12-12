@@ -73,7 +73,7 @@ class  SvSoIPCService;
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE(ClassName)                                     \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     return p;                                                             \
@@ -92,7 +92,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE1(ClassName,Super1)                             \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -120,7 +120,7 @@ SO2_IMPL_CLASS1_DLL(ClassName,FactoryName,Super1,                     \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE2(ClassName,Super1,Super2)                          \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -150,7 +150,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE3(ClassName,Super1,Super2,Super3)               \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -182,7 +182,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE4(ClassName,Super1,Super2,Super3,Super4)        \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
