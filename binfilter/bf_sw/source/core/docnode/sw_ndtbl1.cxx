@@ -371,7 +371,7 @@ extern void ClearFEShellTabCols();
 /*N*/               // Abstand zum Text
 /*N*/               if (aSetBoxInfo.IsValid(VALID_DISTANCE))
 /*N*/               {
-/*N*/                   static USHORT __READONLY_DATA aBorders[] = {
+/*N*/                   static USHORT const aBorders[] = {
 /*N*/                       BOX_LINE_BOTTOM, BOX_LINE_TOP,
 /*N*/                       BOX_LINE_RIGHT, BOX_LINE_LEFT };
 /*N*/                   const USHORT* pBrd = aBorders;

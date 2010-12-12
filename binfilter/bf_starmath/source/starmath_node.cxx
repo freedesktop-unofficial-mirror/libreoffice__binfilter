@@ -278,7 +278,7 @@ void SmNode::SetColor(const Color& rColor)
 /*N*/       }
 /*N*/
 /*N*/       // check the requested size against maximum value
-/*N*/       static int __READONLY_DATA  nMaxVal = SmPtsTo100th_mm(128);
+/*N*/       static int const    nMaxVal = SmPtsTo100th_mm(128);
 /*N*/       if (aSize.Height() > nMaxVal)
 /*?*/           aSize.Height() = nMaxVal;
 /*N*/

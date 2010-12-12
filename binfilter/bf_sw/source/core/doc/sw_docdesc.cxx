@@ -200,7 +200,7 @@ namespace binfilter {
 /*N*/ // funktioniert nicht richtig, wenn man unterschiedliche WhichRanges hat.
 /*N*/ /////////////// !!!!!!!!!!!!!!!!
 /*N*/   //Die interressanten Attribute uebernehmen.
-/*N*/   USHORT __READONLY_DATA aIdArr[] = { RES_FRM_SIZE, RES_UL_SPACE,
+/*N*/   USHORT const aIdArr[] = { RES_FRM_SIZE, RES_UL_SPACE,
 /*N*/                                       RES_BACKGROUND, RES_SHADOW,
 /*N*/                                       RES_COL, RES_COL,
 /*N*/                                       RES_FRAMEDIR, RES_FRAMEDIR,

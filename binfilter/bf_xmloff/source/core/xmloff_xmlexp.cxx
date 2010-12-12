@@ -91,7 +91,7 @@ using namespace ::binfilter::xmloff::token;
 using rtl::OUString;
 using rtl::OUStringBuffer;
 
-sal_Char __READONLY_DATA sXML_1_0[] = "1.0";
+sal_Char const sXML_1_0[] = "1.0";
 
 #define LOGFILE_AUTHOR "mb93740"
 

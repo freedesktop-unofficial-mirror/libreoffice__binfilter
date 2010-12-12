@@ -374,7 +374,7 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*N*/   Size  aSize (rSize);
 /*N*/
 /*N*/   // check the requested size against minimum value
-/*N*/   static int __READONLY_DATA  nMinVal = SmPtsTo100th_mm(2);
+/*N*/   static int const    nMinVal = SmPtsTo100th_mm(2);
 /*N*/
 /*N*/   if (aSize.Height() < nMinVal)
 /*N*/       aSize.Height() = nMinVal;

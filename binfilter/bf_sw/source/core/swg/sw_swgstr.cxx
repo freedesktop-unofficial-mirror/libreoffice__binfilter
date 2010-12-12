@@ -54,7 +54,7 @@ namespace binfilter {
  {
     // Dies sind Randomwerte, die konstant zur Verschluesselung
     // des Passworts verwendet werden.
-    static BYTE __READONLY_DATA cEncode[] =
+    static BYTE const cEncode[] =
     { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
       0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
 

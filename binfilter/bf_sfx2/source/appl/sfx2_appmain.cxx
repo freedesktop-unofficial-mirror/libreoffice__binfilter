@@ -106,7 +106,7 @@ static SfxPoolItem* aStaticDefaults[1] =
 };
 
 #ifdef TF_POOLABLE
-static SfxItemInfo __READONLY_DATA aItemInfos[] =
+static SfxItemInfo const aItemInfos[] =
 {
     { 0, 0 }
 };

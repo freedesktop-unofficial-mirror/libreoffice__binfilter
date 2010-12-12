@@ -1298,7 +1298,7 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*?*/
 /*?*/       if(nSubType == TYP_CONDTXTFLD)
 /*?*/       {
-/*?*/ static char __READONLY_DATA cTmp[] = " : ";
+/*?*/ static char const cTmp[] = " : ";
 /*?*/           aStr.AppendAscii(cTmp);
 /*?*/           aStr += aFALSETxt;
 /*?*/       }

@@ -76,7 +76,7 @@ XMLTextMarkImportContext::XMLTextMarkImportContext(
 enum lcl_MarkType { TypeReference, TypeReferenceStart, TypeReferenceEnd,
                     TypeBookmark, TypeBookmarkStart, TypeBookmarkEnd };
 
-static SvXMLEnumMapEntry __READONLY_DATA lcl_aMarkTypeMap[] =
+static SvXMLEnumMapEntry const lcl_aMarkTypeMap[] =
 {
     { XML_REFERENCE_MARK,           TypeReference },
     { XML_REFERENCE_MARK_START,     TypeReferenceStart },

@@ -200,7 +200,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   xub_StrLen nLen;
 /*N*/   ResMgr& rRes = DIALOG_MGR();
 /*N*/
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLACK,
 /*N*/       RID_SVXSTR_BLUE,
@@ -229,7 +229,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   // BM: ifndef VCL part removed (deprecated)
 /*N*/
-/*N*/   static ColorData __READONLY_DATA aColTab[] =
+/*N*/   static ColorData const aColTab[] =
 /*N*/   {
 /*N*/       COL_BLACK,
 /*N*/       COL_BLUE,
@@ -469,7 +469,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ XubString& XColorTable::ConvertName( XubString& rStrName )
 /*N*/ {
-/*N*/   static USHORT __READONLY_DATA aDefResId[] =
+/*N*/   static USHORT const aDefResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLUEGREY_DEF,
 /*N*/       RID_SVXSTR_BLACK_DEF,
@@ -498,7 +498,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       RID_SVXSTR_SEABLUE_DEF,
 /*N*/       RID_SVXSTR_COLOR_SUN_DEF
 /*N*/   };
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLUEGREY,
 /*N*/       RID_SVXSTR_BLACK,

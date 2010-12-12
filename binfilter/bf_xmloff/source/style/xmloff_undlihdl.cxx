@@ -43,7 +43,7 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::awt;
 using namespace ::binfilter::xmloff::token;
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Underline_Enum[] =
+SvXMLEnumMapEntry const pXML_Underline_Enum[] =
 {
     { XML_UNDERLINE_NONE,               FontUnderline::NONE },
     { XML_UNDERLINE_SINGLE,             FontUnderline::SINGLE },

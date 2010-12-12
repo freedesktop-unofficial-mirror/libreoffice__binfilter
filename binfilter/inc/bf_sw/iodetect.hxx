@@ -259,8 +259,8 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
     }                                                                       \
     else if( sSwDos == pName )                                              \
     {                                                                       \
-        sal_Char __READONLY_DATA sSw6_FormatStt[] =         ".\\\\\\ WRITER ";  \
-        sal_Char __READONLY_DATA sSw6_FormatEnd[] =         " \\\\\\";          \
+        sal_Char const sSw6_FormatStt[] =         ".\\\\\\ WRITER ";  \
+        sal_Char const sSw6_FormatEnd[] =         " \\\\\\";          \
                                                                             \
         bRet = 0 == strncmp( sSw6_FormatStt, pHeader, 12 ) &&               \
                   0 == strncmp( sSw6_FormatEnd, pHeader + 12 + 1, 4 );          \

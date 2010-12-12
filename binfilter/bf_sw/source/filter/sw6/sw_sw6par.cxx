@@ -3487,7 +3487,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                 if (TextBefehl("PA",&pCtrl[1]) ||
                     TextBefehl("CP",&pCtrl[1]))
                 {
-                    static sal_Char __READONLY_DATA p[2]={NewPage,'\0'};
+                    static sal_Char const p[2]={NewPage,'\0'};
                     AddHForm(p,rStr.Len(),1);
                 }
                 else

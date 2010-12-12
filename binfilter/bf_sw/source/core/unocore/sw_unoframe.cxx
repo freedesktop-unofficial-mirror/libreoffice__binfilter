@@ -1761,14 +1761,14 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
         SwNode& rNode = pDoc->GetNodes().GetEndOfContent();
         SwPaM aPam(rNode);
         aPam.Move( fnMoveBackward, fnGoDoc );
-        static sal_uInt16 __READONLY_DATA aFrmAttrRange[] =
+        static sal_uInt16 const aFrmAttrRange[] =
         {
             RES_FRMATR_BEGIN,       RES_FRMATR_END-1,
             SID_ATTR_BORDER_INNER,  SID_ATTR_BORDER_INNER,
             RES_UNKNOWNATR_CONTAINER, RES_UNKNOWNATR_CONTAINER,
             0
         };
-        static sal_uInt16 __READONLY_DATA aGrAttrRange[] =
+        static sal_uInt16 const aGrAttrRange[] =
         {
             RES_GRFATR_BEGIN,       RES_GRFATR_END-1,
             0

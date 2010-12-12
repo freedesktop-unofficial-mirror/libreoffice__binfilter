@@ -376,7 +376,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ XubString& XDashList::ConvertName( XubString& rStrName )
 /*N*/ {
-/*N*/   static USHORT __READONLY_DATA aDefResId[] =
+/*N*/   static USHORT const aDefResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_DASH5_DEF,
 /*N*/       RID_SVXSTR_DASH0_DEF,
@@ -390,7 +390,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       RID_SVXSTR_DASH9_DEF,
 /*N*/       RID_SVXSTR_DASH10_DEF
 /*N*/   };
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_DASH5,
 /*N*/       RID_SVXSTR_DASH0,

@@ -164,7 +164,7 @@ struct ParaRstFmt
 /*N*/                           0 );
 /*N*/       SwAttrSet* pSet = pNode->GetpSwAttrSet();
 /*N*/
-/*N*/       USHORT __READONLY_DATA aSavIds[ 3 ] = { RES_PAGEDESC, RES_BREAK,
+/*N*/       USHORT const aSavIds[ 3 ] = { RES_PAGEDESC, RES_BREAK,
 /*N*/                                               RES_PARATR_NUMRULE };
 /*N*/
 /*N*/       const SfxPoolItem* pItem;

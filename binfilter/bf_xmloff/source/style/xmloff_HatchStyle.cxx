@@ -72,7 +72,7 @@ static SvXMLTokenMapEntry aHatchAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HatchStyle_Enum[] =
+SvXMLEnumMapEntry const pXML_HatchStyle_Enum[] =
 {
     { XML_HATCHSTYLE_SINGLE,    drawing::HatchStyle_SINGLE },
     { XML_HATCHSTYLE_DOUBLE,    drawing::HatchStyle_DOUBLE },

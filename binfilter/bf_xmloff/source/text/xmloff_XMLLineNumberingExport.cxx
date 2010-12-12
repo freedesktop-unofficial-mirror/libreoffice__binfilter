@@ -69,7 +69,7 @@ XMLLineNumberingExport::XMLLineNumberingExport(SvXMLExport& rExp) :
 {
 }
 
-SvXMLEnumMapEntry __READONLY_DATA aLineNumberPositionMap[] =
+SvXMLEnumMapEntry const aLineNumberPositionMap[] =
 {
     { XML_LEFT,     style::LineNumberPosition::LEFT },
     { XML_RIGHT,    style::LineNumberPosition::RIGHT },

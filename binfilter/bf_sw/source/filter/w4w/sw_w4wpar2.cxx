@@ -1282,19 +1282,19 @@ USHORT SwW4WParser::Read_SetBorder( USHORT nBor, SvxBoxItem& rFmtBox )
 // zumindest bei WP und WW2 nicht, d.h. "extra thick" und "hairline"
 // wird nie benutzt. Ich habe die Tabelle jetzt auf WW2 optimiert.
 
-    static USHORT __READONLY_DATA nOutTab[] = {         // Aussenlinie :
+    static USHORT const nOutTab[] = {       // Aussenlinie :
         DEF_LINE_WIDTH_0, DEF_LINE_WIDTH_1,             // none, single
         DEF_DOUBLE_LINE1_OUT, DEF_LINE_WIDTH_0,         // double, dashed
         DEF_LINE_WIDTH_0, DEF_LINE_WIDTH_3,             // dotted, sick
         DEF_LINE_WIDTH_4, DEF_LINE_WIDTH_0 };           // extra thick, hairline
 
-    static USHORT __READONLY_DATA nInTab[] = {          // Innenlinie,
+    static USHORT const nInTab[] = {            // Innenlinie,
         0, 0, DEF_DOUBLE_LINE1_IN, 0, 0, 0, 0, 0 };     // Index siehe nOutTab
 
-    static USHORT __READONLY_DATA nDistTab[] = {        // Abstand der Linien
+    static USHORT const nDistTab[] = {      // Abstand der Linien
         0, 0, DEF_DOUBLE_LINE1_DIST, 0, 0, 0, 0, 0 };   // Index siehe nOutTab
 
-    static USHORT __READONLY_DATA nLinePlace[] = {      // Art der Linien
+    static USHORT const nLinePlace[] = {        // Art der Linien
                         BOX_LINE_RIGHT,
                         BOX_LINE_BOTTOM,
                         BOX_LINE_LEFT,
@@ -3175,7 +3175,7 @@ void SwW4WParser::SetFtnInfoIntoDoc(BOOL bEndNote,
                                     String& rPrefixTxt,
                                     String& rSuffixTxt )
 {
-    static SvxExtNumType __READONLY_DATA aNumArr[]
+    static SvxExtNumType const aNumArr[]
             = { SVX_NUM_ARABIC, SVX_NUM_ARABIC, SVX_NUM_CHARS_LOWER_LETTER, SVX_NUM_CHARS_UPPER_LETTER,
                 SVX_NUM_ROMAN_LOWER,        SVX_NUM_ROMAN_UPPER };
     if( bEndNote )

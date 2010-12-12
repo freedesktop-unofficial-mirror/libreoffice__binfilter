@@ -88,7 +88,7 @@ namespace binfilter {
 
 // ATTR_FONT_TWOLINES (not used) was changed to ATTR_USERDEF (not saved in binary format) in 641c
 
-/*N*/ static SfxItemInfo __READONLY_DATA  aItemInfos[] =
+/*N*/ static SfxItemInfo const  aItemInfos[] =
 /*N*/ {
 /*N*/   { SID_ATTR_CHAR_FONT,           SFX_ITEM_POOLABLE },    // ATTR_FONT
 /*N*/   { SID_ATTR_CHAR_FONTHEIGHT,     SFX_ITEM_POOLABLE },    // ATTR_FONT_HEIGHT

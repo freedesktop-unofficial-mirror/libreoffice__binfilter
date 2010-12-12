@@ -41,7 +41,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ static SfxItemInfo __READONLY_DATA aMsgItemInfos[] =
+/*N*/ static SfxItemInfo const aMsgItemInfos[] =
 /*N*/ {
 /*N*/   { 0,                         SFX_ITEM_POOLABLE },   // SCITEM_STRING
 /*N*/   { 0,                         SFX_ITEM_POOLABLE },   // SCITEM_SEARCHDATA - nicht mehr benutzt !!!

@@ -966,7 +966,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/       USHORT nLen;
 /*N*/       USHORT nOffset;
 /*N*/       FormTokenType eToken;
-/*N*/   } __READONLY_DATA aTokenArr[] = {
+/*N*/   } const aTokenArr[] = {
 /*N*/       SwForm::aFormTab,       SwForm::nFormEntryLen,      1, TOKEN_TAB_STOP,
 /*N*/       SwForm::aFormPageNums,  SwForm::nFormPageNumsLen,   1, TOKEN_PAGE_NUMS,
 /*N*/       SwForm::aFormLinkStt,   SwForm::nFormLinkSttLen,    1, TOKEN_LINK_START,

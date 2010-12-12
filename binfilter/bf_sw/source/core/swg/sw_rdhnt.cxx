@@ -1112,7 +1112,7 @@ xub_StrLen InSWG_Nothing( SwSwgReader&, SfxItemSet*, SwTxtNode*, xub_StrLen, xub
 
 typedef USHORT ( *SwHintFn )( SwSwgReader&, SfxItemSet*, SwTxtNode*, xub_StrLen, xub_StrLen );
 
-SwHintFn __READONLY_DATA aChrInAttrs[] =
+SwHintFn const aChrInAttrs[] =
 {
 /* OLDRES_CHRATR_CASEMAP    */          InSWG_SvxCaseMapItem,
 /* OLDRES_CHRATR_CHARWIDTH */           InSWG_Nothing,
@@ -1140,7 +1140,7 @@ SwHintFn __READONLY_DATA aChrInAttrs[] =
 /* OLDRES_CHRATR_HARDBLANK          */  InSWG_SwHardBlank,
 };
 
-SwHintFn __READONLY_DATA aFontInAttrs[] =
+SwHintFn const aFontInAttrs[] =
 {
 /* OLDRES_TXTATR_CHARWIDTH */           InSWG_Nothing,
 /* OLDRES_TXTATR_COLOR */               InSWG_SwColor,
@@ -1159,7 +1159,7 @@ SwHintFn __READONLY_DATA aFontInAttrs[] =
 /* OLDRES_TXTATR_CHARFMT    */          InSWG_SwCharFmt,
 };
 
-SwHintFn __READONLY_DATA aEtcInAttrs[] =
+SwHintFn const aEtcInAttrs[] =
 {
 /* OLDRES_TXTATR_WRITINGDIRECTION   */  InSWG_Nothing,
 /* OLDRES_TXTATR_KERNING    */          InSWG_SwKerning,
@@ -1179,7 +1179,7 @@ SwHintFn __READONLY_DATA aEtcInAttrs[] =
 };
 
 
-static SwHintFn __READONLY_DATA aParInAttrs[] =
+static SwHintFn const aParInAttrs[] =
 {
 /* OLDRES_PARATR_LINESPACING    */      InSWG_SwLineSpacing,
 /* OLDRES_PARATR_FIRSTLINEOFFSET    */  InSWG_Nothing,      // nicht mehr da
@@ -1192,7 +1192,7 @@ static SwHintFn __READONLY_DATA aParInAttrs[] =
 /* OLDRES_PARATR_DROP       */          InSWG_SwDropCaps,
 };
 
-static SwHintFn __READONLY_DATA aAddInAttrs[] =
+static SwHintFn const aAddInAttrs[] =
 {
 /* OLDRES_ADD_POSTIT    */              InSWG_Nothing,
 /* OLDRES_ADD_INSERTS   */              InSWG_Nothing,
@@ -1200,7 +1200,7 @@ static SwHintFn __READONLY_DATA aAddInAttrs[] =
 /* OLDRES_ADD_OTHERCONTENT */           InSWG_Nothing,
 };
 
-static SwHintFn __READONLY_DATA aFrmInAttrs[] =
+static SwHintFn const aFrmInAttrs[] =
 {
 /* OLDRES_FILL_ORDER    */              InSWG_SwFmtFillOrder,
 /* OLDRES_FRM_SIZE */                   InSWG_SwFmtFrmSize,
@@ -1231,7 +1231,7 @@ static SwHintFn __READONLY_DATA aFrmInAttrs[] =
 /* OLDRES_COL */                        InSWG_SwFmtCol
 };
 
-static SwHintFn __READONLY_DATA aGrfInAttrs[] =
+static SwHintFn const aGrfInAttrs[] =
 {
 /* OLDRES_GRFATR_GRFSIZE    */          InSWG_Nothing,
 /* OLDRES_GRFATR_MIRRORGRF */           InSWG_SwMirrorGrf,
@@ -1251,9 +1251,9 @@ static struct HintFns
 }
 #if defined GCC || defined HPUX
 ;
-static __READONLY_DATA HintFns aHintFns[] =
+static const HintFns aHintFns[] =
 #else
-__READONLY_DATA aHintFns[] =
+const aHintFns[] =
 #endif
 {
     { aChrInAttrs,  OLDRES_CHRATR_BEGIN },
@@ -1266,7 +1266,7 @@ __READONLY_DATA aHintFns[] =
 
 };
 
-static USHORT __READONLY_DATA nAttrSizes[] =
+static USHORT const nAttrSizes[] =
 {
     OLDRES_CHRATR_END + 1 - OLDRES_CHRATR_BEGIN,
     OLDFONT_TXTATR_END - OLDFONT_TXTATR_BEGIN,

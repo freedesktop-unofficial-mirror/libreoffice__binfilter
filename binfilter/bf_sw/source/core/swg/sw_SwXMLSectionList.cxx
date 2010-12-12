@@ -44,7 +44,7 @@ using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
 #include <tools/debug.hxx>  //STRIP001
 namespace binfilter {
-sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
+sal_Char const sXML_np__block_list[] = "_block-list";
 
 // #110680#
 /*N*/ SwXMLSectionList::SwXMLSectionList(

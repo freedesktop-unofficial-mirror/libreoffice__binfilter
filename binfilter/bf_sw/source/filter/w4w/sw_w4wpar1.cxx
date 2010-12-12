@@ -2335,7 +2335,7 @@ void SwW4WParser::Read_NewTabTable()        // (NTB)
 
     SvxTabStopItem aTabStops( 0, 0 );
     USHORT nTabPos = 0;
-    static SvxTabAdjust __READONLY_DATA aAdjustArr[ 4 ] =
+    static SvxTabAdjust const aAdjustArr[ 4 ] =
         {   SVX_TAB_ADJUST_LEFT, SVX_TAB_ADJUST_CENTER,
             SVX_TAB_ADJUST_RIGHT, SVX_TAB_ADJUST_DECIMAL };
     USHORT nTmp;

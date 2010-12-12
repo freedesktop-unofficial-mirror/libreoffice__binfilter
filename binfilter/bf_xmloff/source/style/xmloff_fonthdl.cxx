@@ -44,7 +44,7 @@ using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
-static SvXMLEnumMapEntry __READONLY_DATA aFontFamilyGenericMapping[] =
+static SvXMLEnumMapEntry const aFontFamilyGenericMapping[] =
 {
     { XML_DECORATIVE,       FAMILY_DECORATIVE },
 
@@ -56,7 +56,7 @@ static SvXMLEnumMapEntry __READONLY_DATA aFontFamilyGenericMapping[] =
     { XML_TOKEN_INVALID,    0               }
 };
 
-static SvXMLEnumMapEntry __READONLY_DATA aFontPitchMapping[] =
+static SvXMLEnumMapEntry const aFontPitchMapping[] =
 {
     { XML_FIXED,            PITCH_FIXED     },
     { XML_VARIABLE,         PITCH_VARIABLE  },

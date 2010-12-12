@@ -57,7 +57,7 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 
 /*N*/ void SwWrtShell::DrawSelChanged(SdrView* pView)
 /*N*/ {
-//STRIP001  static sal_uInt16 __READONLY_DATA aInval[] =
+//STRIP001  static sal_uInt16 const aInval[] =
 //STRIP001 /*N*/     {
 //STRIP001 /*N*/         SID_ATTR_FILL_STYLE, SID_ATTR_FILL_COLOR, SID_ATTR_LINE_STYLE,
 //STRIP001 /*N*/         SID_ATTR_LINE_WIDTH, SID_ATTR_LINE_COLOR, 0

@@ -227,7 +227,7 @@ const SvXMLTokenMap&
     return *pAttrTokenMap;
 }
 
-static SvXMLEnumMapEntry __READONLY_DATA aFootnoteNumberingMap[] =
+static SvXMLEnumMapEntry const aFootnoteNumberingMap[] =
 {
     { XML_PAGE,             FootnoteNumbering::PER_PAGE },
     { XML_CHAPTER,          FootnoteNumbering::PER_CHAPTER },

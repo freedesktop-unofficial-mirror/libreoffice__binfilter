@@ -460,8 +460,8 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
     if ( bCheckAll || aName.equalsAsciiL( aFileTypeList[2].Type, aFileTypeList[2].Length ) )
     {
         // StarWriter DOS
-        sal_Char __READONLY_DATA sSw6_FormatStt[] =         ".\\\\\\ WRITER ";
-        sal_Char __READONLY_DATA sSw6_FormatEnd[] =         " \\\\\\";
+        sal_Char const sSw6_FormatStt[] =         ".\\\\\\ WRITER ";
+        sal_Char const sSw6_FormatEnd[] =         " \\\\\\";
 
 
         if ( 0 == strncmp( sSw6_FormatStt, aBuffer, 12 ) &&

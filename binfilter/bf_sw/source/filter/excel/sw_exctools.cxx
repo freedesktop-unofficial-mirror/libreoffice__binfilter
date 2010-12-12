@@ -1224,7 +1224,7 @@ const SvxColorItem *ColorBuffer::GetColor( UINT16 nIndex )
         {                           // ausserhalb der Definierten
             if( nIndex < DefColorSize )
             {                           // ... aber innerhalb der Defaults
-                static BYTE __READONLY_DATA pDefArray[ DefColorSize ][ 3 ] = {
+                static BYTE const pDefArray[ DefColorSize ][ 3 ] = {
                     { 0x00, 0x00, 0x00 },
                     { 0xff, 0xff, 0xff },
                     { 0xff, 0x00, 0x00 },

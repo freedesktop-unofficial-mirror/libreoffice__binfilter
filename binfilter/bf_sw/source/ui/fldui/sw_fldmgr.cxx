@@ -210,7 +210,7 @@ String* SwFldMgr::pTime = 0;
 /*N*/ {
 /*N*/   static const USHORT coFldCnt = STR_TYPE_END - STR_TYPE_BEGIN;
 /*N*/
-/*N*/   static USHORT __READONLY_DATA coFldNms[ coFldCnt ] = {
+/*N*/   static USHORT const coFldNms[ coFldCnt ] = {
 /*N*/       FLD_DATE_STD,
 /*N*/       FLD_TIME_STD,
 /*N*/       STR_FILENAMEFLD,

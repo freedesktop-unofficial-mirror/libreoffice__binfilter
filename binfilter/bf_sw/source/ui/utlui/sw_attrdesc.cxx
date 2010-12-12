@@ -54,7 +54,7 @@ namespace binfilter {
 /*N*/       SfxMapUnit ePresMetric,
 /*N*/       String &rText ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] = ", ";
+DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char const sKomma[] = ", ";
 }
 
 

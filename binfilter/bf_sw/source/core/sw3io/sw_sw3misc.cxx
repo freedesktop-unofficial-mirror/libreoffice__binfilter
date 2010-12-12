@@ -466,7 +466,7 @@ void Sw3IoImp::InMacroTbl()
 /*N*/   CloseFlagRec();
 /*N*/
 /*N*/   //JP 13.10.95: laut Changes-Mail von MI
-/*N*/   static sal_uInt16 __READONLY_DATA nRange[] =
+/*N*/   static sal_uInt16 const nRange[] =
 /*N*/                   {
 /*N*/                       FN_PARAM_ADDPRINTER, FN_PARAM_ADDPRINTER,
 /*N*/                       SID_HTML_MODE,  SID_HTML_MODE,

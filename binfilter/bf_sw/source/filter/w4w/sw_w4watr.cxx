@@ -1492,7 +1492,7 @@ static Writer& OutW4W_SwTabStop( Writer& rWrt, const SfxPoolItem& rHt )
     memset( aTabTypesArr, 0, 20 );
     memset( aTabLeadingArr, 0, 40 );
         // Umsetzungtabelle fuer das Adjustment
-    static BYTE __READONLY_DATA aAdjustArr[ SVX_TAB_ADJUST_DEFAULT - SVX_TAB_ADJUST_LEFT +1 ] = {
+    static BYTE const aAdjustArr[ SVX_TAB_ADJUST_DEFAULT - SVX_TAB_ADJUST_LEFT +1 ] = {
         /* SVX_TAB_ADJUST_LEFT      */      0,
         /* SVX_TAB_ADJUST_RIGHT     */      2,
         /* SVX_TAB_ADJUST_DECIMAL   */      3,

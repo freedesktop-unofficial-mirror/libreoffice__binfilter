@@ -111,7 +111,7 @@ struct _CalcOp
     SwCalcOper eOp;
 };
 
-_CalcOp __READONLY_DATA aOpTable[] = {
+_CalcOp const aOpTable[] = {
 /* ACOS */    {sCalc_Acos,      CALC_ACOS},  // Arcuscosinus
 /* ADD */     {sCalc_Add,        CALC_PLUS},  // Addition
 /* AND */     {sCalc_And,        CALC_AND},     // log. und
@@ -142,13 +142,13 @@ _CalcOp __READONLY_DATA aOpTable[] = {
 /* XOR */     {sCalc_Xor,        CALC_XOR}      // log. xoder
 };
 
-double __READONLY_DATA nRoundVal[] = {
+double const nRoundVal[] = {
     5.0e+0, 0.5e+0, 0.5e-1, 0.5e-2, 0.5e-3, 0.5e-4, 0.5e-5, 0.5e-6,
     0.5e-7, 0.5e-8, 0.5e-9, 0.5e-10,0.5e-11,0.5e-12,0.5e-13,0.5e-14,
     0.5e-15,0.5e-16
 };
 
-double __READONLY_DATA nKorrVal[] = {
+double const nKorrVal[] = {
     9, 9e-1, 9e-2, 9e-3, 9e-4, 9e-5, 9e-6, 9e-7, 9e-8,
     9e-9, 9e-10, 9e-11, 9e-12, 9e-13, 9e-14
 };
@@ -277,7 +277,7 @@ static int
 /*N*/   sCurrSym.EraseLeadingChars().EraseTrailingChars();
 /*N*/   pCharClass->toLower( sCurrSym );
 /*N*/
-/*N*/ static sal_Char __READONLY_DATA
+/*N*/ static sal_Char const
 /*N*/   sNType0[] = "false",
 /*N*/   sNType1[] = "true",
 /*N*/   sNType2[] = "pi",
@@ -308,7 +308,7 @@ static int
 /*N*/   sNType26[] = "graph"
 /*N*/   ;
 /*N*/
-/*N*/ static const sal_Char* __READONLY_DATA sNTypeTab[ 27 ] =
+/*N*/ static const sal_Char* const sNTypeTab[ 27 ] =
 /*N*/ {
 /*N*/   sNType0, sNType1, sNType2, sNType3, sNType4, sNType5,
 /*N*/   sNType6, sNType7, sNType8, sNType9, sNType10, sNType11,
@@ -319,25 +319,25 @@ static int
 /*N*/   // diese sind mit doppelten HashIds
 /*N*/   sNType25, sNType26
 /*N*/ };
-/*N*/ static USHORT __READONLY_DATA aHashValue[ 27 ] =
+/*N*/ static USHORT const aHashValue[ 27 ] =
 /*N*/ {
 /*N*/   34, 38, 43,  7, 18, 32, 22, 29, 30, 33,  3,
 /*N*/   28, 24, 40,  9, 11, 26, 45,  4, 23, 36, 44, 19,  5,  1,
 /*N*/   // diese sind mit doppelten HashIds
 /*N*/   11, 38
 /*N*/ };
-/*N*/ static USHORT __READONLY_DATA aAdrToken[ 12 ] =
+/*N*/ static USHORT const aAdrToken[ 12 ] =
 /*N*/ {
 /*N*/   POS_COMPANY, POS_STREET, POS_COUNTRY, POS_PLZ,
 /*N*/   POS_CITY, POS_TITLE, POS_POSITION, POS_TEL_COMPANY,
 /*N*/   POS_TEL_PRIVATE, POS_FAX, POS_EMAIL, POS_STATE
 /*N*/ };
 /*N*/
-/*N*/ static USHORT SwDocStat::* __READONLY_DATA aDocStat1[ 3 ] =
+/*N*/ static USHORT SwDocStat::* const aDocStat1[ 3 ] =
 /*N*/ {
 /*N*/   &SwDocStat::nTbl, &SwDocStat::nGrf, &SwDocStat::nOLE
 /*N*/ };
-/*N*/ static ULONG SwDocStat::* __READONLY_DATA aDocStat2[ 4 ] =
+/*N*/ static ULONG SwDocStat::* const aDocStat2[ 4 ] =
 /*N*/ {
 /*N*/   &SwDocStat::nPage, &SwDocStat::nPara,
 /*N*/   &SwDocStat::nWord, &SwDocStat::nChar

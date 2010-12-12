@@ -111,7 +111,7 @@ static const sal_Char* aIndexSourceElementMap[] =
     sXML_illustration_index_source
 };
 
-SvXMLEnumMapEntry __READONLY_DATA aIndexTypeMap[] =
+SvXMLEnumMapEntry const aIndexTypeMap[] =
 {
     { XML_TABLE_OF_CONTENT,     TEXT_INDEX_TOC },
     { XML_ALPHABETICAL_INDEX,   TEXT_INDEX_ALPHABETICAL },

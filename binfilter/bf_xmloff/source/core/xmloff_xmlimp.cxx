@@ -78,30 +78,30 @@ using namespace ::binfilter::xmloff::token;
 
 using rtl::OUString;
 
-sal_Char __READONLY_DATA sXML_np__office[] = "_office";
-sal_Char __READONLY_DATA sXML_np__style[] = "_style";
-sal_Char __READONLY_DATA sXML_np__text[] = "_text";
-sal_Char __READONLY_DATA sXML_np__table[] = "_table";
-sal_Char __READONLY_DATA sXML_np__draw[] = "_draw";
-sal_Char __READONLY_DATA sXML_np__dr3d[] = "_dr3d";
-sal_Char __READONLY_DATA sXML_np__fo[] = "_fo";
-sal_Char __READONLY_DATA sXML_np__xlink[] = "_xlink";
-sal_Char __READONLY_DATA sXML_np__dc[] = "_dc";
-sal_Char __READONLY_DATA sXML_np__meta[] = "_meta";
-sal_Char __READONLY_DATA sXML_np__number[] = "_number";
-sal_Char __READONLY_DATA sXML_np__svg[] = "_svg";
-sal_Char __READONLY_DATA sXML_np__chart[] = "_chart";
-sal_Char __READONLY_DATA sXML_np__math[] = "_math";
-sal_Char __READONLY_DATA sXML_np__script[] = "_script";
-sal_Char __READONLY_DATA sXML_np__config[] = "_config";
+sal_Char const sXML_np__office[] = "_office";
+sal_Char const sXML_np__style[] = "_style";
+sal_Char const sXML_np__text[] = "_text";
+sal_Char const sXML_np__table[] = "_table";
+sal_Char const sXML_np__draw[] = "_draw";
+sal_Char const sXML_np__dr3d[] = "_dr3d";
+sal_Char const sXML_np__fo[] = "_fo";
+sal_Char const sXML_np__xlink[] = "_xlink";
+sal_Char const sXML_np__dc[] = "_dc";
+sal_Char const sXML_np__meta[] = "_meta";
+sal_Char const sXML_np__number[] = "_number";
+sal_Char const sXML_np__svg[] = "_svg";
+sal_Char const sXML_np__chart[] = "_chart";
+sal_Char const sXML_np__math[] = "_math";
+sal_Char const sXML_np__script[] = "_script";
+sal_Char const sXML_np__config[] = "_config";
 
-sal_Char __READONLY_DATA sXML_np__fo_old[] = "__fo";
-sal_Char __READONLY_DATA sXML_np__xlink_old[] = "__xlink";
-sal_Char __READONLY_DATA sXML_np__office_old[] = "__office";
-sal_Char __READONLY_DATA sXML_np__style_old[] = "__style";
-sal_Char __READONLY_DATA sXML_np__text_old[] = "__text";
-sal_Char __READONLY_DATA sXML_np__table_old[] = "__table";
-sal_Char __READONLY_DATA sXML_np__meta_old[] = "__meta";
+sal_Char const sXML_np__fo_old[] = "__fo";
+sal_Char const sXML_np__xlink_old[] = "__xlink";
+sal_Char const sXML_np__office_old[] = "__office";
+sal_Char const sXML_np__style_old[] = "__style";
+sal_Char const sXML_np__text_old[] = "__text";
+sal_Char const sXML_np__table_old[] = "__table";
+sal_Char const sXML_np__meta_old[] = "__meta";
 
 #define LOGFILE_AUTHOR "mb93740"
 

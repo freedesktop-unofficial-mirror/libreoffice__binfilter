@@ -169,8 +169,8 @@ SwNumRule* SwSwgReader::InNumRule()
     {
         if( aHdr.nVersion < SWG_VER_POOLID3 )
         {
-            static short __READONLY_DATA aOldFI[ 5 ] =  { -227, -397, -567, -737, -936 };
-            static short __READONLY_DATA aOldLft[ 5 ] = { 567, 964, 1474, 567*4, 3204 };
+            static short const aOldFI[ 5 ] =  { -227, -397, -567, -737, -936 };
+            static short const aOldLft[ 5 ] = { 567, 964, 1474, 567*4, 3204 };
 
             // Alte Dokumente: Fehlende Formate nachtragen
             for( i = 0; i < MAXLEVEL; i++ )
