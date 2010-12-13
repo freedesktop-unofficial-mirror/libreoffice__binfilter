@@ -810,7 +810,7 @@ void SAL_CALL ScStyleFamilyObj::insertByName( const ::rtl::OUString& aName, cons
 
             if ( !pStylePool->Find( aNameStr, eFamily ) )   // noch nicht vorhanden
             {
-                SfxStyleSheetBase& rStyle = pStylePool->Make( aNameStr, eFamily, SFXSTYLEBIT_USERDEF );
+                /*SfxStyleSheetBase& rStyle =*/ pStylePool->Make( aNameStr, eFamily, SFXSTYLEBIT_USERDEF );
 
                 pStyleObj->InitDoc( pDocShell, aNameStr );  // Objekt kann benutzt werden
 
