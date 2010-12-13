@@ -253,7 +253,7 @@ public:
     virtual                     ~ScAutoFormat();
     virtual                     DataObject*         Clone() const { return new ScAutoFormat( *this ); }
                                 ScAutoFormatData*   operator[]( const USHORT nIndex ) const {return (ScAutoFormatData*)At( nIndex );}
-    virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const;
+    virtual short               Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     BOOL                        Load();
     BOOL                        Save();
     void                        SetSaveLater( BOOL bSet );

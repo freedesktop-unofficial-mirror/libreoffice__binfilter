@@ -400,16 +400,20 @@ public:
 
 //      ScBaseCell
 
-inline ScBaseCell::ScBaseCell( CellType eNewType ) :
-    eCellType( eNewType ),
-    pNote( NULL ),
-    pBroadcaster( NULL ), nTextWidth( TEXTWIDTH_DIRTY ), nScriptType( SC_SCRIPTTYPE_UNKNOWN )
+inline ScBaseCell::ScBaseCell( CellType eNewType )
+    : pNote( NULL )
+    , pBroadcaster( NULL )
+    , nTextWidth( TEXTWIDTH_DIRTY )
+    , eCellType( eNewType )
+    , nScriptType( SC_SCRIPTTYPE_UNKNOWN )
 {
 }
 
-inline ScBaseCell::ScBaseCell( const ScBaseCell& rBaseCell ) :
-    eCellType( rBaseCell.eCellType ),
-    pBroadcaster( NULL ), nTextWidth( rBaseCell.nTextWidth ), nScriptType( SC_SCRIPTTYPE_UNKNOWN )
+inline ScBaseCell::ScBaseCell( const ScBaseCell& rBaseCell )
+    : pBroadcaster( NULL )
+    , nTextWidth( rBaseCell.nTextWidth )
+    , eCellType( rBaseCell.eCellType )
+    , nScriptType( SC_SCRIPTTYPE_UNKNOWN )
 {
     if (rBaseCell.pNote)
         pNote = new ScPostIt( *rBaseCell.pNote );

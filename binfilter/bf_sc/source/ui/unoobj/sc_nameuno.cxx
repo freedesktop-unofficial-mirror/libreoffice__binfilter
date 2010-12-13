@@ -163,7 +163,7 @@ void ScNamedRangeObj::Modify_Impl( const String* pNewName, const String* pNewCon
                 if ( aNewRanges.Insert(pNew) )
                 {
                     ScDocFunc aFunc(*pDocShell);
-                    aFunc.ModifyRangeNames( aNewRanges, sal_True );
+                    aFunc.ModifyRangeNames( aNewRanges );
 
                     aName = aInsName;   //! broadcast?
                 }
@@ -446,7 +446,7 @@ void SAL_CALL ScNamedRangesObj::addNewByName( const ::rtl::OUString& aName,
             if ( aNewRanges.Insert(pNew) )
             {
                 ScDocFunc aFunc(*pDocShell);
-                aFunc.ModifyRangeNames( aNewRanges, sal_True );
+                aFunc.ModifyRangeNames( aNewRanges );
                 bDone = TRUE;
             }
             else
@@ -503,7 +503,7 @@ void SAL_CALL ScNamedRangesObj::removeByName( const ::rtl::OUString& aName )
                     ScRangeName aNewRanges(*pNames);
                     aNewRanges.AtFree(nPos);
                     ScDocFunc aFunc(*pDocShell);
-                    aFunc.ModifyRangeNames( aNewRanges, sal_True );
+                    aFunc.ModifyRangeNames( aNewRanges );
                     bDone = TRUE;
                 }
         }

@@ -134,7 +134,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   USHORT nCol = rPos.Col();
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
@@ -175,11 +174,6 @@ using namespace ::com::sun::star;
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::DetectiveAddSucc(const ScAddress& rPos)
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/ }
-
 /*N*/ BOOL ScDocFunc::DetectiveDelSucc(const ScAddress& rPos)
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -212,7 +206,6 @@ using namespace ::com::sun::star;
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/
-/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/   USHORT nCol = rPos.Col();
 /*N*/   USHORT nRow = rPos.Row();
 /*N*/   USHORT nTab = rPos.Tab();
@@ -234,8 +227,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   rDocShell.MakeDrawLayer();
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/
-/*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/
 /*N*/   Window* pWaitWin = rDocShell.GetDialogParent();
 /*N*/   if (pWaitWin)
@@ -270,8 +261,6 @@ using namespace ::com::sun::star;
 /*N*/   BOOL bDone = ScDetectiveFunc( pDoc,nTab ).DeleteAll( SC_DET_DETECTIVE );
 /*N*/   if (bDone)
 /*N*/   {
-/*N*/       ScDetOpList* pOldList = pDoc->GetDetOpList();
-/*N*/
 /*N*/       pDoc->ClearDetectiveOperations();
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
@@ -280,7 +269,7 @@ using namespace ::com::sun::star;
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::DetectiveRefresh( BOOL bAutomatic )
+/*N*/ BOOL ScDocFunc::DetectiveRefresh()
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -289,7 +278,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( pList && pList->Count() )
 /*N*/   {
 /*N*/       rDocShell.MakeDrawLayer();
-/*N*/       ScDrawLayer* pModel = pDoc->GetDrawLayer();
 /*N*/
 /*N*/       //  Loeschen auf allen Tabellen
 /*N*/
@@ -484,8 +472,6 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/     }
 /*N*/
-/*N*/   BOOL bEditCell(FALSE);
-/*N*/   BOOL bEditDeleted(FALSE);
 /*N*/   BOOL bHeight = FALSE;
 /*N*/   pDoc->PutCell( rPos, pNewCell );
 /*N*/
@@ -507,7 +493,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ void ScDocFunc::NotifyInputHandler( const ScAddress& rPos )
+/*N*/ void ScDocFunc::NotifyInputHandler( const ScAddress& /*rPos*/ )
 /*N*/ {
 /*N*/ }
 
@@ -516,8 +502,10 @@ using namespace ::com::sun::star;
 /*N*/           USHORT      nIndex;
 /*N*/           SfxItemSet  aItemSet;
 /*N*/
-/*N*/           ScMyRememberItem(const SfxItemSet& rItemSet, USHORT nTempIndex) :
-/*N*/               aItemSet(rItemSet), nIndex(nTempIndex) {}
+/*N*/           ScMyRememberItem(const SfxItemSet& rItemSet, USHORT nTempIndex)
+                            : nIndex(nTempIndex)
+                            , aItemSet(rItemSet)
+                            {}
 /*N*/       };
 
 /*N*/       typedef ::std::list<ScMyRememberItem*> ScMyRememberItemList;
@@ -564,13 +552,13 @@ using namespace ::com::sun::star;
 /*N*/       // Set the paragraph attributes back to the EditEngine.
 /*N*/       if (!aRememberItems.empty())
 /*N*/       {
-/*N*/           ScMyRememberItem* pRememberItem = NULL;
+/*N*/           ScMyRememberItem* pInnerRememberItem = NULL;
 /*N*/           ScMyRememberItemList::iterator aItr = aRememberItems.begin();
 /*N*/           while (aItr != aRememberItems.end())
 /*N*/           {
-/*N*/               pRememberItem = *aItr;
-/*N*/               rEngine.SetParaAttribs(pRememberItem->nIndex, pRememberItem->aItemSet);
-/*N*/               delete pRememberItem;
+/*N*/               pInnerRememberItem = *aItr;
+/*N*/               rEngine.SetParaAttribs(pInnerRememberItem->nIndex, pInnerRememberItem->aItemSet);
+/*N*/               delete pInnerRememberItem;
 /*N*/               aItr = aRememberItems.erase(aItr);
 /*N*/           }
 /*N*/       }
@@ -829,27 +817,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*M*/ BOOL ScDocFunc::InsertCells( const ScRange& rRange, InsCellCmd eCmd,
-/*N*/                               BOOL bRecord, BOOL bApi, BOOL bPartOfPaste )
-/*M*/ {
-/*M*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*M*/ }
-
-/*N*/ BOOL ScDocFunc::DeleteCells( const ScRange& rRange, DelCellCmd eCmd, BOOL bRecord, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ BOOL ScDocFunc::MoveBlock( const ScRange& rSource, const ScAddress& rDestPos,
-/*N*/                               BOOL bCut, BOOL bRecord, BOOL bPaint, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/   return TRUE;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ BOOL ScDocFunc::InsertTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   BOOL bSuccess = FALSE;
@@ -879,11 +846,6 @@ using namespace ::com::sun::star;
 /*?*/       rDocShell.ErrorMessage(STR_TABINSERT_ERROR);
 /*N*/
 /*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ BOOL ScDocFunc::DeleteTable( USHORT nTab, BOOL bRecord, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 WaitObject aWait( rDocShell.GetDialogParent() );
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::SetTableVisible( USHORT nTab, BOOL bVisible, BOOL bApi )
@@ -1001,8 +963,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/
 /*N*/   BOOL bSuccess = FALSE;
-/*N*/   USHORT nStart = pRanges[0];
-/*N*/   USHORT nEnd = pRanges[2*nRangeCnt-1];
 /*N*/
 /*N*/   BOOL bFormula = FALSE;
 /*N*/   if ( eMode == SC_SIZE_OPTIMAL )
@@ -1108,15 +1068,8 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ BOOL ScDocFunc::InsertPageBreak( BOOL bColumn, const ScAddress& rPos,
-/*N*/                               BOOL bRecord, BOOL bSetModified, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ BOOL ScDocFunc::RemovePageBreak( BOOL bColumn, const ScAddress& rPos,
-/*N*/                               BOOL bRecord, BOOL bSetModified, BOOL bApi )
+/*N*/                               BOOL bRecord, BOOL bSetModified )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1438,14 +1391,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::TabOp( const ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                           const ScTabOpParam& rParam, BOOL bRecord, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ inline ScDirection DirFromFillDir( FillDir eDir )
 /*N*/ {
 /*N*/   if (eDir==FILL_TO_BOTTOM)
@@ -1456,22 +1401,6 @@ using namespace ::com::sun::star;
 /*N*/       return DIR_TOP;
 /*N*/   else // if (eDir==FILL_TO_LEFT)
 /*N*/       return DIR_LEFT;
-/*N*/ }
-
-
-/*N*/ BOOL ScDocFunc::FillSeries( const ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                           FillDir eDir, FillCmd eCmd, FillDateCmd eDateCmd,
-/*N*/                           double fStart, double fStep, double fMax,
-/*N*/                           BOOL bRecord, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/ }
-
-/*N*/ BOOL ScDocFunc::FillAuto( ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                           FillDir eDir, USHORT nCount, BOOL bRecord, BOOL bApi )
-/*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/   return TRUE;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -1530,18 +1459,9 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::UnmergeCells( const ScRange& rRange, BOOL bRecord, BOOL bApi )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( rDocShell );
-/*N*/   return TRUE;
-/*N*/ }
-
 //------------------------------------------------------------------------
 
-
-//------------------------------------------------------------------------
-
-/*N*/ BOOL ScDocFunc::ModifyRangeNames( const ScRangeName& rNewRanges, BOOL bApi )
+/*N*/ BOOL ScDocFunc::ModifyRangeNames( const ScRangeName& rNewRanges )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1577,8 +1497,6 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           String aContent;
 /*N*/             ScRange( nX1, nY1, nTab, nX2, nY2, nTab ).Format( aContent, SCR_ABS_3D, pDoc );
-/*N*/
-/*N*/           ScRangeName* pList = pDoc->GetRangeName();
 /*N*/
 /*N*/           BOOL bInsert = FALSE;
 /*N*/           USHORT nOldPos;
@@ -1703,7 +1621,7 @@ using namespace ::com::sun::star;
 /*N*/       if ( bBottom && bRight )
 /*N*/           CreateOneName( aNewRanges, nEndCol,nEndRow,nTab, nContX1,nContY1,nContX2,nContY2, bCancel, bApi );
 /*N*/
-/*N*/       bDone = ModifyRangeNames( aNewRanges, bApi );
+/*N*/       bDone = ModifyRangeNames( aNewRanges );
 /*N*/
 /*N*/       aModificator.SetDocumentModified();
 /*N*/       SFX_APP()->Broadcast( SfxSimpleHint( SC_HINT_AREAS_CHANGED ) );
@@ -1798,7 +1716,7 @@ using namespace ::com::sun::star;
 /*N*/ BOOL ScDocFunc::InsertAreaLink( const String& rFile, const String& rFilter,
 /*N*/                               const String& rOptions, const String& rSource,
 /*N*/                               const ScRange& rDestRange, ULONG nRefresh,
-/*N*/                               BOOL bFitBlock, BOOL bApi )
+/*N*/                               BOOL bFitBlock )
 /*N*/ {
 /*N*/   //! auch fuer ScViewFunc::InsertAreaLink benutzen!
 /*N*/

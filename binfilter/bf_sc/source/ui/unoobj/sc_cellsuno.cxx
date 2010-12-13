@@ -4669,12 +4669,6 @@ void SAL_CALL ScCellRangeObj::setTableOperation( const table::CellRangeAddress& 
             default:
                 bError = TRUE;
         }
-
-        if (!bError)
-        {
-            ScDocFunc aFunc(*pDocSh);
-            aFunc.TabOp( aRange, NULL, aParam, TRUE, TRUE );
-        }
     }
 }
 
@@ -4689,10 +4683,6 @@ void SAL_CALL ScCellRangeObj::merge( sal_Bool bMerge ) throw(uno::RuntimeExcepti
         ScDocFunc aFunc(*pDocSh);
         if ( bMerge )
             aFunc.MergeCells( aRange, FALSE, TRUE, TRUE );
-        else
-            aFunc.UnmergeCells( aRange, TRUE, TRUE );
-
-        //! Fehler abfangen?
     }
 }
 
@@ -4774,13 +4764,6 @@ void SAL_CALL ScCellRangeObj::fillSeries( sheet::FillDirection nFillDirection,
             default:
                 bError = TRUE;
         }
-
-        if (!bError)
-        {
-            ScDocFunc aFunc(*pDocSh);
-            aFunc.FillSeries( aRange, NULL, eDir, eCmd, eDateCmd,
-                                MAXDOUBLE, fStep, fEndValue, TRUE, TRUE );
-        }
     }
 }
 
@@ -4822,12 +4805,6 @@ void SAL_CALL ScCellRangeObj::fillAuto( sheet::FillDirection nFillDirection,
         }
         if (nCount > MAXROW)        // Ueberlauf
             bError = TRUE;
-
-        if (!bError)
-        {
-            ScDocFunc aFunc(*pDocSh);
-            aFunc.FillAuto( aSourceRange, NULL, eDir, nCount, TRUE, TRUE );
-        }
     }
 }
 
@@ -6472,8 +6449,6 @@ void SAL_CALL ScTableSheetObj::insertCells( const table::CellRangeAddress& aRang
             DBG_ASSERT( aRange.Sheet == GetTab_Impl(), "falsche Tabelle in CellRangeAddress" );
             ScRange aScRange;
             ScUnoConversion::FillScRange( aScRange, aRange );
-            ScDocFunc aFunc(*pDocSh);
-            aFunc.InsertCells( aScRange, eCmd, TRUE, TRUE );
         }
     }
 }
@@ -6504,8 +6479,6 @@ void SAL_CALL ScTableSheetObj::removeRange( const table::CellRangeAddress& aRang
             DBG_ASSERT( aRange.Sheet == GetTab_Impl(), "falsche Tabelle in CellRangeAddress" );
             ScRange aScRange;
             ScUnoConversion::FillScRange( aScRange, aRange );
-            ScDocFunc aFunc(*pDocSh);
-            aFunc.DeleteCells( aScRange, eCmd, TRUE, TRUE );
         }
     }
 }
@@ -6521,9 +6494,6 @@ void SAL_CALL ScTableSheetObj::moveRange( const table::CellAddress& aDestination
         DBG_ASSERT( aSource.Sheet == GetTab_Impl(), "falsche Tabelle in CellRangeAddress" );
         ScRange aRange;
         ScUnoConversion::FillScRange( aRange, aSource );
-        ScAddress aDestPos( (USHORT)aDestination.Column, (USHORT)aDestination.Row, aDestination.Sheet );
-        ScDocFunc aFunc(*pDocSh);
-        aFunc.MoveBlock( aRange, aDestPos, TRUE, TRUE, TRUE, TRUE );
     }
 }
 
@@ -6538,9 +6508,6 @@ void SAL_CALL ScTableSheetObj::copyRange( const table::CellAddress& aDestination
         DBG_ASSERT( aSource.Sheet == GetTab_Impl(), "falsche Tabelle in CellRangeAddress" );
         ScRange aRange;
         ScUnoConversion::FillScRange( aRange, aSource );
-        ScAddress aDestPos( (USHORT)aDestination.Column, (USHORT)aDestination.Row, aDestination.Sheet );
-        ScDocFunc aFunc(*pDocSh);
-        aFunc.MoveBlock( aRange, aDestPos, FALSE, TRUE, TRUE, TRUE );
     }
 }
 
@@ -6964,9 +6931,7 @@ sal_Bool SAL_CALL ScTableSheetObj::showDependents( const table::CellAddress& aPo
     {
         USHORT nTab = GetTab_Impl();
         DBG_ASSERT( aPosition.Sheet == nTab, "falsche Tabelle in CellAddress" );
-        ScAddress aPos( (USHORT)aPosition.Column, (USHORT)aPosition.Row, nTab );
-        ScDocFunc aFunc(*pDocSh);
-        return aFunc.DetectiveAddSucc( aPos );
+        return false;
     }
     return FALSE;
 }
@@ -7600,10 +7565,8 @@ void ScTableColumnObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, cons
         else if ( pMap->nWID == SC_WID_UNO_NEWPAGE || pMap->nWID == SC_WID_UNO_MANPAGE )
         {
             BOOL bSet = ScUnoHelpFunctions::GetBoolFromAny( aValue );
-            if (bSet)
-                aFunc.InsertPageBreak( TRUE, rRange.aStart, TRUE, TRUE, TRUE );
-            else
-                aFunc.RemovePageBreak( TRUE, rRange.aStart, TRUE, TRUE, TRUE );
+            if (!bSet)
+                aFunc.RemovePageBreak( TRUE, rRange.aStart, TRUE, TRUE );
         }
         else
             ScCellRangeObj::SetOnePropertyValue(pMap, aValue);      // base class, no Item WID
@@ -7761,10 +7724,8 @@ void ScTableRowObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const u
         else if ( pMap->nWID == SC_WID_UNO_NEWPAGE || pMap->nWID == SC_WID_UNO_MANPAGE )
         {
             BOOL bSet = ScUnoHelpFunctions::GetBoolFromAny( aValue );
-            if (bSet)
-                aFunc.InsertPageBreak( FALSE, rRange.aStart, TRUE, TRUE, TRUE );
-            else
-                aFunc.RemovePageBreak( FALSE, rRange.aStart, TRUE, TRUE, TRUE );
+            if (!bSet)
+                aFunc.RemovePageBreak( FALSE, rRange.aStart, TRUE, TRUE );
         }
         else
             ScCellRangeObj::SetOnePropertyValue(pMap, aValue);      // base class, no Item WID

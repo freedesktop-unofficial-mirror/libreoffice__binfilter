@@ -388,12 +388,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if (pDestData)
 /*N*/           pDoc->DeleteAreaTab(aOldDest, IDF_CONTENTS);            // Zielbereich vorher loeschen
-/*N*/
-/*N*/       ScRange aSource( rSortParam.nCol1,rSortParam.nRow1,nSrcTab,
-/*N*/                           rSortParam.nCol2,rSortParam.nRow2,nSrcTab );
-/*N*/       ScAddress aDest( rSortParam.nDestCol, rSortParam.nDestRow, rSortParam.nDestTab );
-/*N*/
-/*N*/       rDocShell.GetDocFunc().MoveBlock( aSource, aDest, FALSE, FALSE, FALSE, TRUE );
 /*N*/   }
 /*N*/
 /*N*/   // #105780# don't call ScDocument::Sort with an empty SortParam (may be empty here if bCopy is set)

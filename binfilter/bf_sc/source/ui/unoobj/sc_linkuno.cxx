@@ -677,7 +677,7 @@ void ScAreaLinkObj::Modify_Impl( const ::rtl::OUString* pNewFile, const ::rtl::O
         }
 
         ScDocFunc aFunc(*pDocShell);
-        aFunc.InsertAreaLink( aFile, aFilter, aOptions, aSource, aDest, nRefresh, bFitBlock, TRUE );
+        aFunc.InsertAreaLink( aFile, aFilter, aOptions, aSource, aDest, nRefresh, bFitBlock );
     }
 }
 
@@ -960,7 +960,7 @@ void SAL_CALL ScAreaLinksObj::insertAtPosition( const table::CellAddress& aDestP
         ScDocFunc aFunc(*pDocShell);
         aFunc.InsertAreaLink( aFileStr, aFilterStr, aOptionStr,
                                 aSourceStr, ScRange(aDestAddr),
-                                0, FALSE, TRUE );                   // keine Inhalte verschieben
+                                0, FALSE );                 // keine Inhalte verschieben
     }
 }
 

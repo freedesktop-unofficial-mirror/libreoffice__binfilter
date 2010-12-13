@@ -180,8 +180,8 @@ public:
 
     ScRangeName(const ScRangeName& rScRangeName, ScDocument* pDocument);
 
-    virtual DataObject*     Clone(ScDocument* pDoc) const
-                             { return new ScRangeName(*this, pDoc); }
+    virtual DataObject*     Clone(ScDocument* pDoc_) const
+                             { return new ScRangeName(*this, pDoc_); }
     ScRangeData*            operator[]( const USHORT nIndex) const
                              { return (ScRangeData*)At(nIndex); }
     virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const;

@@ -1217,7 +1217,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/           if ( pList && ( aDocument.IsDetectiveDirty() || pList->HasAddError() ) &&
 /*N*/                pList->Count() && !IsInUndo() && SC_MOD()->GetAppOptions().GetDetectiveAuto() )
 /*N*/           {
-/*N*/               GetDocFunc().DetectiveRefresh(TRUE);    // TRUE = caused by automatic update
+/*N*/               GetDocFunc().DetectiveRefresh();
 /*N*/           }
 /*N*/           aDocument.SetDetectiveDirty(FALSE);         // always reset, also if not refreshed
 /*N*/       }

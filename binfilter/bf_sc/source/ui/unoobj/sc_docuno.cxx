@@ -1229,9 +1229,7 @@ void SAL_CALL ScDrawPagesObj::remove( const uno::Reference<drawing::XDrawPage>& 
         SdrPage* pPage = pImp->GetSdrPage();
         if (pPage)
         {
-            USHORT nPageNum = pPage->GetPageNum();
-            ScDocFunc aFunc(*pDocShell);
-            aFunc.DeleteTable( nPageNum, TRUE, TRUE );
+            /*USHORT nPageNum =*/ pPage->GetPageNum();
         }
     }
 }
@@ -1447,18 +1445,7 @@ void SAL_CALL ScTableSheetsObj::replaceByName( const ::rtl::OUString& aName, con
             {
                 String aNamStr = aName;
                 USHORT nPosition;
-                if ( pDocShell->GetDocument()->GetTable( aNamStr, nPosition ) )
-                {
-                    ScDocFunc aFunc(*pDocShell);
-                    if ( aFunc.DeleteTable( nPosition, TRUE, TRUE ) )
-                    {
-                        //  InsertTable kann jetzt eigentlich nicht schiefgehen...
-                        bDone = aFunc.InsertTable( nPosition, aNamStr, TRUE, TRUE );
-                        if (bDone)
-                            pSheetObj->InitInsertSheet( pDocShell, nPosition );
-                    }
-                }
-                else
+                if ( !pDocShell->GetDocument()->GetTable( aNamStr, nPosition ) )
                 {
                     //  not found
                     throw container::NoSuchElementException();
@@ -1490,12 +1477,7 @@ void SAL_CALL ScTableSheetsObj::removeByName( const ::rtl::OUString& aName )
     {
         USHORT nIndex;
         String aString = aName;
-        if ( pDocShell->GetDocument()->GetTable( aString, nIndex ) )
-        {
-            ScDocFunc aFunc(*pDocShell);
-            bDone = aFunc.DeleteTable( nIndex, TRUE, TRUE );
-        }
-        else
+        if ( !pDocShell->GetDocument()->GetTable( aString, nIndex ) )
         {
             //  not found
             throw container::NoSuchElementException();
@@ -1663,12 +1645,7 @@ void SAL_CALL ScTableColumnsObj::insertByIndex( sal_Int32 nPosition, sal_Int32 n
     BOOL bDone = FALSE;
     if ( pDocShell && nCount > 0 && nPosition >= 0 && nStartCol+nPosition <= nEndCol &&
             nStartCol+nPosition+nCount-1 <= MAXCOL )
-    {
-        ScDocFunc aFunc(*pDocShell);
-        ScRange aRange( (USHORT)(nStartCol+nPosition), 0, nTab,
-                        (USHORT)(nStartCol+nPosition+nCount-1), MAXROW, nTab );
-        bDone = aFunc.InsertCells( aRange, INS_INSCOLS, TRUE, TRUE );
-    }
+        bDone = false;
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
 }
@@ -1680,12 +1657,7 @@ void SAL_CALL ScTableColumnsObj::removeByIndex( sal_Int32 nIndex, sal_Int32 nCou
     BOOL bDone = FALSE;
     //  Der zu loeschende Bereich muss innerhalb des Objekts liegen
     if ( pDocShell && nCount > 0 && nIndex >= 0 && nStartCol+nIndex+nCount-1 <= nEndCol )
-    {
-        ScDocFunc aFunc(*pDocShell);
-        ScRange aRange( (USHORT)(nStartCol+nIndex), 0, nTab,
-                        (USHORT)(nStartCol+nIndex+nCount-1), MAXROW, nTab );
-        bDone = aFunc.DeleteCells( aRange, DEL_DELCOLS, TRUE, TRUE );
-    }
+        bDone = true;
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
 }
@@ -1828,10 +1800,8 @@ void SAL_CALL ScTableColumnsObj::setPropertyValue(
         //! single function to set/remove all breaks?
         BOOL bSet = ScUnoHelpFunctions::GetBoolFromAny( aValue );
         for (USHORT nCol=nStartCol; nCol<=nEndCol; nCol++)
-            if (bSet)
-                aFunc.InsertPageBreak( TRUE, ScAddress(nCol,0,nTab), TRUE, TRUE, TRUE );
-            else
-                aFunc.RemovePageBreak( TRUE, ScAddress(nCol,0,nTab), TRUE, TRUE, TRUE );
+            if (!bSet)
+                aFunc.RemovePageBreak( TRUE, ScAddress(nCol,0,nTab), TRUE, TRUE );
     }
 }
 
@@ -1931,12 +1901,7 @@ void SAL_CALL ScTableRowsObj::insertByIndex( sal_Int32 nPosition, sal_Int32 nCou
     BOOL bDone = FALSE;
     if ( pDocShell && nCount > 0 && nPosition >= 0 && nStartRow+nPosition <= nEndRow &&
             nStartRow+nPosition+nCount-1 <= MAXROW )
-    {
-        ScDocFunc aFunc(*pDocShell);
-        ScRange aRange( 0, (USHORT)(nStartRow+nPosition), nTab,
-                        MAXCOL, (USHORT)(nStartRow+nPosition+nCount-1), nTab );
-        bDone = aFunc.InsertCells( aRange, INS_INSROWS, TRUE, TRUE );
-    }
+        bDone = false;
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
 }
@@ -1948,12 +1913,7 @@ void SAL_CALL ScTableRowsObj::removeByIndex( sal_Int32 nIndex, sal_Int32 nCount 
     BOOL bDone = FALSE;
     //  Der zu loeschende Bereich muss innerhalb des Objekts liegen
     if ( pDocShell && nCount > 0 && nIndex >= 0 && nStartRow+nIndex+nCount-1 <= nEndRow )
-    {
-        ScDocFunc aFunc(*pDocShell);
-        ScRange aRange( 0, (USHORT)(nStartRow+nIndex), nTab,
-                        MAXCOL, (USHORT)(nStartRow+nIndex+nCount-1), nTab );
-        bDone = aFunc.DeleteCells( aRange, DEL_DELROWS, TRUE, TRUE );
-    }
+        bDone = true;
     if (!bDone)
         throw uno::RuntimeException();      // no other exceptions specified
 }
@@ -2072,10 +2032,8 @@ void SAL_CALL ScTableRowsObj::setPropertyValue(
         //! single function to set/remove all breaks?
         BOOL bSet = ScUnoHelpFunctions::GetBoolFromAny( aValue );
         for (USHORT nRow=nStartRow; nRow<=nEndRow; nRow++)
-            if (bSet)
-                aFunc.InsertPageBreak( FALSE, ScAddress(0,nRow,nTab), TRUE, TRUE, TRUE );
-            else
-                aFunc.RemovePageBreak( FALSE, ScAddress(0,nRow,nTab), TRUE, TRUE, TRUE );
+            if (!bSet)
+                aFunc.RemovePageBreak( FALSE, ScAddress(0,nRow,nTab), TRUE, TRUE );
     }
 }
 
@@ -2447,11 +2405,8 @@ void SAL_CALL ScScenariosObj::removeByName( const ::rtl::OUString& aName )
 {
     SolarMutexGuard aGuard;
     USHORT nIndex;
-    if ( pDocShell && GetScenarioIndex_Impl( aName, nIndex ) )
-    {
-        ScDocFunc aFunc(*pDocShell);
-        aFunc.DeleteTable( nTab+nIndex+1, TRUE, TRUE );
-    }
+    if ( pDocShell )
+        GetScenarioIndex_Impl( aName, nIndex );
 }
 
 // XEnumerationAccess

@@ -349,15 +349,21 @@ private:
             String              aExternal;
             BYTE                nByte;
 public:
-                                ScExternalToken( OpCode e, BYTE n, const String& r ) :
-                                    ScToken( e, svExternal ), nByte( n ),
-                                    aExternal( r ) {}
-                                ScExternalToken( OpCode e, const String& r ) :
-                                    ScToken( e, svExternal ), nByte( 0 ),
-                                    aExternal( r ) {}
-                                ScExternalToken( const ScExternalToken& r ) :
-                                    ScToken( r ), nByte( r.nByte ),
-                                    aExternal( r.aExternal ) {}
+                                ScExternalToken( OpCode e, BYTE n, const String& r )
+                                    : ScToken( e, svExternal )
+                                    , aExternal( r )
+                                    , nByte( n )
+                                    {}
+                                ScExternalToken( OpCode e, const String& r )
+                                    : ScToken( e, svExternal )
+                                    , aExternal( r )
+                                    , nByte( 0 )
+                                    {}
+                                ScExternalToken( const ScExternalToken& r )
+                                    : ScToken( r )
+                                    , aExternal( r.aExternal )
+                                    , nByte( r.nByte )
+                                    {}
     virtual const String&       GetExternal() const;
     virtual BYTE                GetByte() const;
     virtual void                SetByte( BYTE n );

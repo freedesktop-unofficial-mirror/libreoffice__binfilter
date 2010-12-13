@@ -45,7 +45,7 @@ class ScNumFormatAbbrev
 public:
     ScNumFormatAbbrev();
     ScNumFormatAbbrev(const ScNumFormatAbbrev& aFormat);
-    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_BF_ASSERT(0, "STRIP"); } //STRIP001    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
+    ScNumFormatAbbrev(ULONG /*nFormat*/, SvNumberFormatter& /*rFormatter*/) {DBG_BF_ASSERT(0, "STRIP"); }
     void Load( SvStream& rStream );         // Laden der Zahlenformate
     void Save( SvStream& rStream ) const;   // Speichern der Zahlenformate
 };
