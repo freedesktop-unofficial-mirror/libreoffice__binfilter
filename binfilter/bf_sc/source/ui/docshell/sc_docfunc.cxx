@@ -369,7 +369,6 @@ using namespace ::com::sun::star;
 /*N*/   ScMarkData aMultiMark = rMark;
 /*N*/   aMultiMark.SetMarking(FALSE);       // fuer MarkToMulti
 /*N*/
-/*N*/   ScDocument* pUndoDoc = NULL;
 /*N*/   BOOL bMulti = !bSimple && aMultiMark.IsMultiMarked();
 /*N*/   if (!bSimple)
 /*N*/   {
@@ -1011,9 +1010,7 @@ using namespace ::com::sun::star;
 /*N*/       //! Option "Formeln anzeigen" - woher nehmen?
 /*N*/   }
 /*N*/
-/*N*/   ScDocument*     pUndoDoc = NULL;
 /*N*/   ScOutlineTable* pUndoTab = NULL;
-/*N*/   USHORT*         pUndoRanges = NULL;
 /*N*/
 /*N*/   BOOL bShow = nSizeTwips > 0 || eMode != SC_SIZE_DIRECT;
 /*N*/   BOOL bOutline = FALSE;
@@ -1331,7 +1328,6 @@ using namespace ::com::sun::star;
 /*N*/       BOOL bSize = (*pAutoFormat)[nFormatNo]->GetIncludeWidthHeight();
 /*N*/
 /*N*/       USHORT nTabCount = pDoc->GetTableCount();
-/*N*/       ScDocument* pUndoDoc = NULL;
 /*N*/
 /*N*/       pDoc->AutoFormat( nStartCol, nStartRow, nEndCol, nEndRow, nFormatNo, aMark );
 /*N*/
@@ -1726,7 +1722,6 @@ using namespace ::com::sun::star;
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   USHORT nTab = rStartPos.Tab();
-/*N*/   ScDocument* pUndoDoc = NULL;
 /*N*/
 /*N*/   ScRangeName* pList = pDoc->GetRangeName();
 /*N*/   USHORT nCount = pList->GetCount();
