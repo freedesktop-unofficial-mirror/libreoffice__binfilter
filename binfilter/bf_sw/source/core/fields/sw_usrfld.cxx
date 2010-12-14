@@ -338,7 +338,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   {
 /*N*/   case FIELD_PROP_DOUBLE:
 /*N*/       {
-/*N*/           double fVal;
+/*N*/           double fVal(0.0);
 /*N*/           rAny >>= fVal;
 /*N*/           nValue = fVal;
 /*N*/
