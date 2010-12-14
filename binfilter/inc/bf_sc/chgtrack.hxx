@@ -118,10 +118,10 @@ public:
                                 ScChangeActionLinkEntry(
                                         ScChangeActionLinkEntry** ppPrevP,
                                         ScChangeAction* pActionP )
-                                    :   ppPrev( ppPrevP ),
-                                        pNext( *ppPrevP ),
-                                        pAction( pActionP ),
-                                        pLink( NULL )
+                                    : pNext( *ppPrevP )
+                                    , ppPrev( ppPrevP )
+                                    , pAction( pActionP )
+                                    , pLink( NULL )
                                     {
                                         if ( pNext )
                                             pNext->ppPrev = &pNext;
@@ -202,8 +202,8 @@ class ScChangeActionCellListEntry
                                 ScChangeActionCellListEntry(
                                     ScChangeActionContent* pContentP,
                                     ScChangeActionCellListEntry* pNextP )
-                                    :   pContent( pContentP ),
-                                        pNext( pNextP )
+                                    : pNext( pNextP )
+                                    , pContent( pContentP )
                                     {}
 
 public:

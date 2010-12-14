@@ -389,7 +389,7 @@ TYPEINIT1( ScAreaChangedHint, SfxHint );
 /*N*/           pBCAlwaysList->Insert( pBCA, LIST_APPEND );
 /*N*/           return ;
 /*N*/       }
-/*N*/       ScBroadcastArea* pLast;
+/*N*/       ScBroadcastArea* pLast(NULL);
 /*N*/       for ( pBCA = pBCAlwaysList->First(); pBCA; pBCA = pBCAlwaysList->Next() )
 /*N*/       {
 /*N*/           if ( pListener->IsListening( *pBCA ) )

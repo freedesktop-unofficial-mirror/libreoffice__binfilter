@@ -929,7 +929,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             DBG_ERROR("CopyToClip: n
 /*N*/
 /*N*/       pClipDoc->aDocName = aDocName;
 /*N*/       pClipDoc->aClipRange = ScRange( nCol1,nRow1,0, nCol2,nRow2,0 );
-/*N*/       pClipDoc->ResetClip( this, pMarks );
 /*N*/       USHORT i, j;
 /*N*/       pClipDoc->pRangeName->FreeAll();
 /*N*/       for (i = 0; i < pRangeName->GetCount(); i++)        //! DB-Bereiche Pivot-Bereiche auch !!!
@@ -2540,23 +2539,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void ScDocument::ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/ }
-
-
-/*N*/ void ScDocument::ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/ }
-
-
-
-
-
-
 /*N*/ ScPatternAttr* ScDocument::GetDefPattern() const
 /*N*/ {
 /*N*/   return (ScPatternAttr*) &xPoolHelper->GetDocPool()->GetDefaultItem(ATTR_PATTERN);
@@ -2681,7 +2663,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::LoadPool( SvStream& rStream, BOOL bLoadRefCounts )
+/*N*/ BOOL ScDocument::LoadPool( SvStream& rStream, BOOL /*bLoadRefCounts*/ )
 /*N*/ {
 /*N*/   //  bLoadingDone wird beim Laden des StylePools (ScStyleSheet::GetItemSet) gebraucht
 /*N*/   bLoadingDone = FALSE;

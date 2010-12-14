@@ -776,9 +776,6 @@ public:
     BOOL            IsUndo() const                              { return bIsUndo; }
     BOOL            IsClipboard() const                         { return bIsClip; }
     BOOL            IsUndoEnabled() const                       { return !bImportingXML; }
-    void            ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks );
-
-
 
     void            DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                             const ScMarkData& rMark, USHORT nDelFlag);
@@ -870,9 +867,6 @@ public:
     void            ApplySelectionFrame( const ScMarkData& rMark,
                                          const SvxBoxItem* pLineOuter,
                                          const SvxBoxInfoItem* pLineInner );
-
-    void            ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark );
-    void            ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark );
 
     ULONG           AddCondFormat( const ScConditionalFormat& rNew );
     void            FindConditionalFormat( ULONG nKey, ScRangeList& rRanges );

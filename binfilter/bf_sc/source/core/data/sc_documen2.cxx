@@ -517,11 +517,6 @@ namespace binfilter {
 /*N*/   return *pEditEngine;
 /*N*/ }
 
-/*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
-/*N*/ }
-
 /*N*/ void lcl_RefreshPivotData( ScPivotCollection* pColl )
 /*N*/ {
 /*N*/   USHORT nCount = pColl->GetCount();

@@ -1206,17 +1206,11 @@ using namespace ::com::sun::star;
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/
-/*N*/   //  #i12940# ClearItems is called (from setPropertyToDefault) directly with uno object's cached
-/*N*/   //  MarkData (GetMarkData), so rMark must be changed to multi selection for ClearSelectionItems
-/*N*/   //  here.
-/*N*/
 /*N*/   ScRange aMarkRange;
 /*N*/   ScMarkData aMultiMark = rMark;
 /*N*/   aMultiMark.SetMarking(FALSE);       // for MarkToMulti
 /*N*/   aMultiMark.MarkToMulti();
 /*N*/   aMultiMark.GetMultiMarkArea( aMarkRange );
-/*N*/
-/*N*/   pDoc->ClearSelectionItems( pWhich, aMultiMark );
 /*N*/
 /*N*/   rDocShell.PostPaint( aMarkRange, PAINT_GRID, SC_PF_LINES | SC_PF_TESTMERGE );
 /*N*/   aModificator.SetDocumentModified();
@@ -1239,8 +1233,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   ScRange aMarkRange;
 /*N*/   rMark.GetMultiMarkArea( aMarkRange );
-/*N*/
-/*N*/   pDoc->ChangeSelectionIndent( bIncrement, rMark );
 /*N*/
 /*N*/   rDocShell.PostPaint( aMarkRange, PAINT_GRID, SC_PF_LINES | SC_PF_TESTMERGE );
 /*N*/   aModificator.SetDocumentModified();
