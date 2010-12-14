@@ -69,9 +69,7 @@ namespace binfilter {
 /*N*/   sal_Int32 nDX( ((SdrShadowXDistItem&)(rSet.Get(SDRATTR_SHADOWXDIST))).GetValue() );
 /*N*/   sal_Int32 nDY( ((SdrShadowYDistItem&)(rSet.Get(SDRATTR_SHADOWYDIST))).GetValue() );
 /*N*/
-/*N*/     GDIMetaFile* pMtf=NULL;
-/*N*/     if( eFillStyle != XFILL_NONE &&
-/*N*/         (pMtf=mrXOut.GetOutDev()->GetConnectMetaFile()) )
+/*N*/     if( eFillStyle != XFILL_NONE && mrXOut.GetOutDev()->GetConnectMetaFile() )
 /*?*/     {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 /*?*/     }
 /*N*/ }
