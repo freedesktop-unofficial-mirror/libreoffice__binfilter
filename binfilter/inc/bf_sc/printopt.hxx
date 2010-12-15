@@ -70,7 +70,6 @@ class ScPrintCfg : public ScPrintOptions, public ::utl::ConfigItem
 public:
     ScPrintCfg();
 
-    void            SetOptions( const ScPrintOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void            SetOptions( const ScPrintOptions& rNew );
     virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
     virtual void                Commit();
 };

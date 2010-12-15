@@ -245,8 +245,6 @@ public:
 
     void            ResetBreaks( USHORT nTab );
 
-    BOOL            GetLastSourceRange( ScRange& rRange ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 BOOL           GetLastSourceRange( ScRange& rRange ) const;
-
 #ifdef _PRINTFUN_CXX
 private:
     void            Construct( const ScPrintOptions* pOptions );

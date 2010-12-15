@@ -100,8 +100,6 @@ public:
 
     virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
     virtual void                Commit();
-
-    void            SetOptions( const ScInputOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void            SetOptions( const ScInputOptions& rNew );
 };
 
 

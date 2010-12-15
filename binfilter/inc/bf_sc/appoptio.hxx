@@ -140,9 +140,7 @@ class ScAppCfg : public ScAppOptions
     ::com::sun::star::uno::Sequence<rtl::OUString> GetMiscPropertyNames();
 
 public:
-            ScAppCfg();
-
-    void    SetOptions( const ScAppOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001   void    SetOptions( const ScAppOptions& rNew );
+    ScAppCfg();
 };
 
 

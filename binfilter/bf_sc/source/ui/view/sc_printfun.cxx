@@ -157,13 +157,13 @@ namespace binfilter {
 /*N*/       nPageStart          ( nPage ),
 /*N*/       nDocPages           ( nDocP ),
 /*N*/       pUserArea           ( pArea ),
-/*N*/       pPageData           ( pData ),
-/*N*/       nTotalPages         ( 0 ),
-/*N*/       nTabPages           ( 0 ),
 /*N*/       bState              ( FALSE ),
+/*N*/       bSourceRangeValid   ( FALSE ),
 /*N*/       bPrintCurrentTable  ( FALSE ),
 /*N*/       bMultiArea          ( FALSE ),
-/*N*/       bSourceRangeValid   ( FALSE )
+/*N*/       nTabPages           ( 0 ),
+/*N*/       nTotalPages         ( 0 ),
+/*N*/       pPageData           ( pData )
 /*N*/ {
 /*N*/   pDev = pPrinter;
 /*N*/   aSrcOffset = pPrinter->PixelToLogic( pPrinter->GetPageOffsetPixel(), MAP_100TH_MM );
@@ -832,7 +832,6 @@ namespace binfilter {
 /*?*/   }
 /*?*/
 /*?*/   long nPages = 0;
-/*?*/   long nNoteNr = 0;
 /*?*/   long nNoteAdd;
 /*?*/   do
 /*?*/   {DBG_BF_ASSERT(0, "STRIP"); nNoteAdd=0;//STRIP001

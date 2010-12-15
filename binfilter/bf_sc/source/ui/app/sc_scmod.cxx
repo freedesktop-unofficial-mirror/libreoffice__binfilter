@@ -105,9 +105,9 @@ static USHORT nIdleCount = 0;
 
 /*N*/ ScModule::ScModule( SfxObjectFactory* pFact ) :
 /*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ), //STRIP005
-/*N*/   bIsWaterCan( FALSE ),
-/*N*/   bIsInEditCommand( FALSE ),
+/*N*/   pMessagePool( NULL ),
 /*N*/   pRefInputHandler( NULL ),
+/*N*/   pTeamDlg( NULL ),
 /*N*/   pViewCfg( NULL ),
 /*N*/   pDocCfg( NULL ),
 /*N*/   pAppCfg( NULL ),
@@ -116,12 +116,12 @@ static USHORT nIdleCount = 0;
 /*N*/   pNavipiCfg( NULL ),
 /*N*/   pColorConfig( NULL ),
 /*N*/   pCTLOptions( NULL ),
-/*N*/   pTeamDlg( NULL ),
-/*N*/   nCurRefDlgId( 0 ),
 /*N*/   pErrorHdl( NULL ),
 /*N*/   pSvxErrorHdl( NULL ),
-/*N*/   pMessagePool( NULL ),
-/*N*/   pFormEditData( NULL )
+/*N*/   pFormEditData( NULL ),
+/*N*/   nCurRefDlgId( 0 ),
+/*N*/   bIsWaterCan( FALSE ),
+/*N*/   bIsInEditCommand( FALSE )
 /*N*/ {
 /*N*/   //  im ctor ist der ResManager (DLL-Daten) noch nicht initialisiert!
 /*N*/
@@ -169,7 +169,7 @@ static USHORT nIdleCount = 0;
 
 //------------------------------------------------------------------
 
-/*N*/ void ScModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if ( rHint.ISA(SfxSimpleHint) )
 /*N*/   {
@@ -226,13 +226,9 @@ static USHORT nIdleCount = 0;
 
 //------------------------------------------------------------------
 
-#define TEXT_WIDTH(s)   rStatusBar.GetTextWidth((s))
-
-/*N*/ void ScModule::FillStatusBar(StatusBar& rStatusBar)
+/*N*/ void ScModule::FillStatusBar(StatusBar& /*rStatusBar*/)
 /*N*/ {
 /*N*/ }
-
-#undef TEXT_WIDTH
 
 //------------------------------------------------------------------
 //
@@ -279,12 +275,10 @@ static USHORT nIdleCount = 0;
 /*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void ScModule::SetAppOptions( const ScAppOptions& rOpt )
+/*N*/ void ScModule::SetAppOptions( const ScAppOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pAppCfg )
 /*N*/       pAppCfg = new ScAppCfg;
-/*N*/
-/*N*/   pAppCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ void global_InitAppOptions()
@@ -300,12 +294,10 @@ static USHORT nIdleCount = 0;
 /*N*/   return *pAppCfg;
 /*N*/ }
 
-/*N*/ void ScModule::SetInputOptions( const ScInputOptions& rOpt )
+/*N*/ void ScModule::SetInputOptions( const ScInputOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pInputCfg )
 /*N*/       pInputCfg = new ScInputCfg;
-/*N*/
-/*N*/   pInputCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ const ScInputOptions& ScModule::GetInputOptions()
@@ -316,12 +308,10 @@ static USHORT nIdleCount = 0;
 /*N*/   return *pInputCfg;
 /*N*/ }
 
-/*N*/ void ScModule::SetPrintOptions( const ScPrintOptions& rOpt )
+/*N*/ void ScModule::SetPrintOptions( const ScPrintOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pPrintCfg )
 /*N*/       pPrintCfg = new ScPrintCfg;
-/*N*/
-/*N*/   pPrintCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ const ScPrintOptions& ScModule::GetPrintOptions()
@@ -377,7 +367,7 @@ static USHORT nIdleCount = 0;
 /*N*/   nIdleCount = 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, pTimer )
+/*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, EMPTYARG )
 /*N*/ {
 /*N*/   if ( Application::AnyInput( INPUT_MOUSEANDKEYBOARD ) )
 /*N*/   {
@@ -423,13 +413,13 @@ static USHORT nIdleCount = 0;
 /*N*/   return 0;
 /*N*/ }
 
-IMPL_LINK( ScModule, SpellTimerHdl, Timer*, pTimer )
+IMPL_LINK( ScModule, SpellTimerHdl, Timer*, EMPTYARG )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( Application::AnyInput( INPUT_KEYBOARD ) )
     return 0;
 }
 
-/*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, pInfo )
+/*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, EMPTYARG )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (pInfo)
 /*N*/   return 0;
