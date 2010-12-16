@@ -829,7 +829,6 @@ namespace binfilter {
 /*N*/           ScAddress aAdr( rColumn.nCol, 0, rColumn.nTab );
 /*N*/           for (i = nStartIndex; i <= nEndIndex; i++)
 /*N*/           {
-/*N*/               ScBaseCell* pOld = pItems[i].pCell;
 /*N*/               aAdr.SetRow( pItems[i].nRow );
 /*N*/               ScBaseCell* pNew = NULL;
 /*N*/               if (bAsLink)
