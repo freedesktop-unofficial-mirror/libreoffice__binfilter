@@ -73,8 +73,8 @@ namespace binfilter {
 /*N*/   nCount( 0 ),
 /*N*/   nLimit( 0 ),
 /*N*/   pItems( NULL ),
-/*N*/   pDocument( NULL ),
-/*N*/   pAttrArray( NULL )
+/*N*/   pAttrArray( NULL ),
+/*N*/   pDocument( NULL )
 /*N*/ {
 /*N*/ }
 
@@ -813,7 +813,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       USHORT i;
 /*N*/       USHORT nBlockCount = 0;
-/*N*/       USHORT nStartIndex, nEndIndex;
+/*N*/       USHORT nStartIndex(0), nEndIndex(0);
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/           if ((pItems[i].nRow >= nRow1) && (pItems[i].nRow <= nRow2))
 /*N*/           {
@@ -930,7 +930,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if (pItems)
 /*N*/   {
-/*N*/       USHORT nStartPos;
+/*N*/       USHORT nStartPos(0);
 /*N*/       USHORT nMoveCount=0;
 /*N*/       USHORT i;
 /*N*/       for (i=0; i < nCount; i++)
@@ -973,8 +973,8 @@ namespace binfilter {
 
 
 /*N*/ void ScColumn::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/            USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
-/*N*/            ScDocument* pUndoDoc )
+/*N*/            USHORT nCol2, USHORT nRow2, USHORT nTab2, short /*nDx*/, short /*nDy*/, short /*nDz*/,
+/*N*/            ScDocument* /*pUndoDoc*/ )
 /*N*/ {
 /*N*/   if (pItems)
 /*N*/   {
@@ -1002,7 +1002,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                     }
 /*?*/                 }
 /*?*/             }
