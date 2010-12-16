@@ -402,8 +402,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/       Width( nLineWidth );
 /*N*/   ASSERT( nLineWidth >= Width(), "SwLineLayout::CalcLine: line is bursting" );
 /*N*/   SetDummy( bTmpDummy );
-/*N*/   SetRedline( rLine.GetRedln() &&
-/*N*/       rLine.GetRedln()->CheckLine( rLine.GetStart(), rLine.GetEnd() ) );
+/*N*/   SetRedline( rLine.GetRedln() && FALSE );
 /*N*/ }
 
 /*************************************************************************

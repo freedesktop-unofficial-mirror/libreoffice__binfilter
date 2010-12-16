@@ -77,7 +77,6 @@ SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,//STRIP0
 xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,//STRIP001         xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
 xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        xub_StrLen nStart = STRING_LEN );
     inline sal_Bool IsOn() const { return bOn || ( pExt && pExt->IsOn() ); }
-            sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001     sal_Bool CheckLine( xub_StrLen nChkStart, xub_StrLen nChkEnd );
     inline sal_Bool ExtOn() { if( pExt ) return pExt->IsOn(); return sal_False; }
 };
 
