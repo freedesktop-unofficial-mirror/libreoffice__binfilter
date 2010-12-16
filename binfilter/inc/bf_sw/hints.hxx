@@ -210,13 +210,13 @@ public:
 
     USHORT Count() const { return pChgSet->Count(); }
     void ClearItem( USHORT nWhichIn = 0 )
-    {
 #ifndef DBG_UTIL
+    {
         pChgSet->ClearItem( nWhichIn );
+    }
 #else
         ;
 #endif
-    }
 };
 
 class SwCondCollCondChg: public SwMsgPoolItem

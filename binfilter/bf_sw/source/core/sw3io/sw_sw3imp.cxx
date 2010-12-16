@@ -793,7 +793,7 @@ public:
 
 // Record schliessen
 
-/*N*/ void Sw3IoImp::CloseRec( sal_uInt8 /*cType*/ )
+/*N*/ void Sw3IoImp::CloseRec( sal_uInt8 cType )
 /*N*/ {
 /*N*/   sal_uInt16 nLvl = aRecTypes.Count();
 /*N*/   ASSERT( nLvl == aRecSizes.Count(), "CloseRec: falscher Level" );

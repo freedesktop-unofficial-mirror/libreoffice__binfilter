@@ -1055,7 +1055,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
     return pChain;
 }
 
-/*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT /*nIVer*/) const
+/*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT nIVer) const
 /*N*/ {
         ASSERT( nIVer != USHRT_MAX,
                 "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
@@ -1108,7 +1108,7 @@ SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
     return rStrm;
 }
 
-/*N*/ USHORT SwTextGridItem::GetVersion( USHORT /*nFFVer*/ ) const
+/*N*/ USHORT SwTextGridItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
