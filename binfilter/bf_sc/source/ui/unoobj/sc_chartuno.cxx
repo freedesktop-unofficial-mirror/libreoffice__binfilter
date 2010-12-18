@@ -51,12 +51,10 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScChartObj, "ScChartObj", "com.sun.star.table.TableChart" )
 SC_SIMPLE_SERVICE_INFO( ScChartsObj, "ScChartsObj", "com.sun.star.table.TableCharts" )
 
-//------------------------------------------------------------------------
 
 SdrOle2Obj* lcl_FindChartObj( ScDocShell* pDocShell, USHORT nTab, const String& rName )
 {
@@ -95,7 +93,6 @@ SdrOle2Obj* lcl_FindChartObj( ScDocShell* pDocShell, USHORT nTab, const String& 
     return NULL;
 }
 
-//------------------------------------------------------------------------
 
 ScChartsObj::ScChartsObj(ScDocShell* pDocSh, USHORT nT) :
     pDocShell( pDocSh ),
@@ -263,8 +260,7 @@ void SAL_CALL ScChartsObj::addNewByName( const ::rtl::OUString& aName,
             pModel->AddUndo( new SdrUndoInsertObj( *pObj ) );       //! Undo-Kommentar?
 
             // Dies veranlaesst Chart zum sofortigen Update
-            //SvData aEmpty;
-            //aIPObj->SendDataChanged( aEmpty );
+
             aIPObj->SendViewChanged();
         }
     }
@@ -423,7 +419,6 @@ sal_Bool SAL_CALL ScChartsObj::hasByName( const ::rtl::OUString& aName )
     return ( lcl_FindChartObj( pDocShell, nTab, aNameString ) != NULL );
 }
 
-//------------------------------------------------------------------------
 
 ScChartObj::ScChartObj(ScDocShell* pDocSh, USHORT nT, const String& rN) :
     pDocShell( pDocSh ),
@@ -439,7 +434,7 @@ ScChartObj::~ScChartObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScChartObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScChartObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update
 
@@ -615,14 +610,11 @@ uno::Reference<lang::XComponent> SAL_CALL ScChartObj::getEmbeddedObject() throw(
     return aChartName;
 }
 
-void SAL_CALL ScChartObj::setName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
+void SAL_CALL ScChartObj::setName( const ::rtl::OUString& /*aName*/ ) throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
     throw uno::RuntimeException();      // name cannot be changed
 }
-
-//------------------------------------------------------------------------
-
 
 
 }

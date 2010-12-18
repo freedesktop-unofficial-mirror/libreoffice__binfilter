@@ -57,7 +57,6 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 //  alles ohne Which-ID, Map nur fuer PropertySetInfo
 
@@ -121,7 +120,6 @@ const SfxItemPropertyMap* lcl_GetDBRangePropertyMap()
 }
 
 
-//------------------------------------------------------------------------
 
 #define SCDATABASERANGEOBJ_SERVICE      "com.sun.star.sheet.DatabaseRange"
 
@@ -132,7 +130,6 @@ SC_SIMPLE_SERVICE_INFO( ScSubTotalDescriptorBase, "ScSubTotalDescriptorBase", "c
 SC_SIMPLE_SERVICE_INFO( ScSubTotalFieldObj, "ScSubTotalFieldObj", "com.sun.star.sheet.SubTotalField" )
 
 
-//------------------------------------------------------------------------
 
 // static
 ScSubTotalFunc ScDataUnoConversion::GeneralToSubTotal( sheet::GeneralFunction eSummary )
@@ -186,7 +183,6 @@ sheet::GeneralFunction  ScDataUnoConversion::SubTotalToGeneral( ScSubTotalFunc e
     return eGeneral;
 }
 
-//------------------------------------------------------------------------
 
 //  ScImportDescriptor: alles static
 
@@ -298,8 +294,7 @@ void ScSortDescriptor::FillProperties( uno::Sequence<beans::PropertyValue>& rSeq
 
     //  Uno-Werte zusammensuchen
 
-    table::TableOrientation eOrient =
-        rParam.bByRow ? table::TableOrientation_ROWS : table::TableOrientation_COLUMNS;
+    rParam.bByRow ? table::TableOrientation_ROWS : table::TableOrientation_COLUMNS;
 
     table::CellAddress aOutPos;
     aOutPos.Sheet  = rParam.nDestTab;
@@ -486,7 +481,6 @@ void ScSortDescriptor::FillSortParam( ScSortParam& rParam, const uno::Sequence<b
     }
 }
 
-//------------------------------------------------------------------------
 
 ScSubTotalFieldObj::ScSubTotalFieldObj( ScSubTotalDescriptorBase* pDesc, USHORT nP ) :
     rParent( *pDesc ),
@@ -578,7 +572,6 @@ void SAL_CALL ScSubTotalFieldObj::setSubTotalColumns(
     rParent.PutData(aParam);
 }
 
-//------------------------------------------------------------------------
 
 ScSubTotalDescriptorBase::ScSubTotalDescriptorBase() :
     aPropSet( lcl_GetSubTotalPropertyMap() )
@@ -844,7 +837,6 @@ ScSubTotalDescriptorBase* ScSubTotalDescriptorBase::getImplementation(
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScSubTotalDescriptor::ScSubTotalDescriptor()
 {
@@ -869,7 +861,6 @@ void ScSubTotalDescriptor::SetParam( const ScSubTotalParam& rNew )
     aStoredParam = rNew;            // von aussen gesetzt
 }
 
-//------------------------------------------------------------------------
 
 ScRangeSubTotalDescriptor::ScRangeSubTotalDescriptor(ScDatabaseRangeObj* pPar) :
     pParent(pPar)
@@ -896,7 +887,6 @@ void ScRangeSubTotalDescriptor::PutData( const ScSubTotalParam& rParam )
         pParent->SetSubTotalParam( rParam );
 }
 
-//------------------------------------------------------------------------
 
 ScConsolidationDescriptor::ScConsolidationDescriptor()
 {
@@ -1038,7 +1028,6 @@ void SAL_CALL ScConsolidationDescriptor::setInsertLinks( sal_Bool bInsertLinks )
     aParam.bReferenceData = bInsertLinks;
 }
 
-//------------------------------------------------------------------------
 
 ScFilterDescriptorBase::ScFilterDescriptorBase(ScDocShell* pDocShell) :
     pDocSh(pDocShell),
@@ -1054,7 +1043,7 @@ ScFilterDescriptorBase::~ScFilterDescriptorBase()
         pDocSh->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScFilterDescriptorBase::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScFilterDescriptorBase::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( SfxSimpleHint ) )
     {
@@ -1321,7 +1310,6 @@ uno::Any SAL_CALL ScFilterDescriptorBase::getPropertyValue( const ::rtl::OUStrin
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScFilterDescriptorBase )
 
-//------------------------------------------------------------------------
 
 ScFilterDescriptor::ScFilterDescriptor(ScDocShell* pDocSh)
     :
@@ -1348,7 +1336,6 @@ void ScFilterDescriptor::SetParam( const ScQueryParam& rNew )
     aStoredParam = rNew;            // von aussen gesetzt
 }
 
-//------------------------------------------------------------------------
 
 ScRangeFilterDescriptor::ScRangeFilterDescriptor(ScDocShell* pDocSh, ScDatabaseRangeObj* pPar) :
     ScFilterDescriptorBase(pDocSh),
@@ -1376,7 +1363,6 @@ void ScRangeFilterDescriptor::PutData( const ScQueryParam& rParam )
         pParent->SetQueryParam( rParam );
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotFilterDescriptor::ScDataPilotFilterDescriptor(ScDocShell* pDocSh, ScDataPilotDescriptorBase* pPar) :
     ScFilterDescriptorBase(pDocSh),
@@ -1414,7 +1400,6 @@ void ScDataPilotFilterDescriptor::PutData( const ScQueryParam& rParam )
     }
 }
 
-//------------------------------------------------------------------------
 
 ScDatabaseRangeObj::ScDatabaseRangeObj(ScDocShell* pDocSh, const String& rNm) :
     pDocShell( pDocSh ),
@@ -1430,7 +1415,7 @@ ScDatabaseRangeObj::~ScDatabaseRangeObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDatabaseRangeObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDatabaseRangeObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Ref-Update interessiert nicht
 
@@ -1876,7 +1861,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScDatabaseRangeObj::getSupportedService
     return aRet;
 }
 
-//------------------------------------------------------------------------
 
 ScDatabaseRangesObj::ScDatabaseRangesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -1890,7 +1874,7 @@ ScDatabaseRangesObj::~ScDatabaseRangesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDatabaseRangesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDatabaseRangesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -2073,11 +2057,6 @@ sal_Bool SAL_CALL ScDatabaseRangesObj::hasByName( const ::rtl::OUString& aName )
     }
     return FALSE;
 }
-
-//------------------------------------------------------------------------
-
-
-
 
 
 }

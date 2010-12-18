@@ -102,7 +102,7 @@ ScDocumentConfiguration::~ScDocumentConfiguration()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDocumentConfiguration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDocumentConfiguration::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 

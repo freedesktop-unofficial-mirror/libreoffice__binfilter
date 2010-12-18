@@ -254,11 +254,11 @@ void ScAnnotationEditSource::UpdateData()
     }
 }
 
-void ScAnnotationEditSource::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAnnotationEditSource::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
+        (const ScUpdateRefHint&)rHint;
 
         //! Ref-Update
     }
@@ -277,7 +277,6 @@ void ScAnnotationEditSource::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
     }
 }
 
-//------------------------------------------------------------------------
 
 ScSimpleEditSource::ScSimpleEditSource( SvxTextForwarder* pForw ) :
     pForwarder( pForw )
@@ -306,7 +305,6 @@ void ScSimpleEditSource::UpdateData()
     //  nothing
 }
 
-//------------------------------------------------------------------------
 
 ScAccessibilityEditSource::ScAccessibilityEditSource( ::std::auto_ptr < ScAccessibleTextData > pAccessibleCellTextData )
     : mpAccessibleTextData(pAccessibleCellTextData)

@@ -128,7 +128,7 @@ void SAL_CALL ScFilterOptionsObj::setPropertyValues( const uno::Sequence<beans::
 
 // XExecutableDialog
 
-void SAL_CALL ScFilterOptionsObj::setTitle( const ::rtl::OUString& aTitle ) throw(uno::RuntimeException)
+void SAL_CALL ScFilterOptionsObj::setTitle( const ::rtl::OUString& /*aTitle*/ ) throw(uno::RuntimeException)
 {
     // not used
 }
@@ -236,7 +236,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
 
 // XImporter
 
-void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::XComponent>& xDoc )
+void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::XComponent>& /*xDoc*/ )
                             throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     bExport = sal_False;
@@ -244,7 +244,7 @@ void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::
 
 // XExporter
 
-void SAL_CALL ScFilterOptionsObj::setSourceDocument( const uno::Reference<lang::XComponent>& xDoc )
+void SAL_CALL ScFilterOptionsObj::setSourceDocument( const uno::Reference<lang::XComponent>& /*xDoc*/ )
                             throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     bExport = sal_True;

@@ -476,7 +476,7 @@ ScAutoFormatObj* ScAutoFormatObj::getImplementation(
     return pRet;
 }
 
-void ScAutoFormatObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAutoFormatObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ )
 {
     //  spaeter...
 }
@@ -681,7 +681,6 @@ uno::Any SAL_CALL ScAutoFormatObj::getPropertyValue( const ::rtl::OUString& aPro
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScAutoFormatObj )
 
-//------------------------------------------------------------------------
 
 ScAutoFormatFieldObj::ScAutoFormatFieldObj(sal_uInt16 nFormat, sal_uInt16 nField) :
     aPropSet( lcl_GetAutoFieldMap() ),
@@ -695,7 +694,7 @@ ScAutoFormatFieldObj::~ScAutoFormatFieldObj()
 {
 }
 
-void ScAutoFormatFieldObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAutoFormatFieldObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ )
 {
     //  spaeter...
 }
@@ -815,8 +814,6 @@ uno::Any SAL_CALL ScAutoFormatFieldObj::getPropertyValue( const ::rtl::OUString&
 }
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScAutoFormatFieldObj )
-
-//------------------------------------------------------------------------
 
 
 

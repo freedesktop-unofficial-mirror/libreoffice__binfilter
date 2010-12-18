@@ -436,7 +436,7 @@ uno::Any SAL_CALL ScShapeObj::getPropertyDefault( const ::rtl::OUString& aProper
 
 // XTextContent
 
-void SAL_CALL ScShapeObj::attach( const uno::Reference<text::XTextRange>& xTextRange )
+void SAL_CALL ScShapeObj::attach( const uno::Reference<text::XTextRange>& /*xTextRange*/ )
                                 throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     SolarMutexGuard aGuard;

@@ -47,7 +47,6 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 const SfxItemPropertyMap* lcl_GetDataPilotFieldMap()
 {
@@ -60,7 +59,6 @@ const SfxItemPropertyMap* lcl_GetDataPilotFieldMap()
     return aDataPilotFieldMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScDataPilotDescriptor, "ScDataPilotDescriptor", "stardiv::one::sheet::DataPilotDescriptor" )
 SC_SIMPLE_SERVICE_INFO( ScDataPilotFieldObj, "ScDataPilotFieldObj", "com.sun.star.sheet.DataPilotField" )
@@ -68,7 +66,6 @@ SC_SIMPLE_SERVICE_INFO( ScDataPilotFieldsObj, "ScDataPilotFieldsObj", "com.sun.s
 SC_SIMPLE_SERVICE_INFO( ScDataPilotTableObj, "ScDataPilotTableObj", "com.sun.star.sheet.DataPilotTable" )
 SC_SIMPLE_SERVICE_INFO( ScDataPilotTablesObj, "ScDataPilotTablesObj", "com.sun.star.sheet.DataPilotTables" )
 
-//------------------------------------------------------------------------
 
 //! irgendwann ueberall die neuen enum-Werte benutzen
 #define DATA_PILOT_HIDDEN   sheet::DataPilotFieldOrientation_HIDDEN
@@ -77,7 +74,6 @@ SC_SIMPLE_SERVICE_INFO( ScDataPilotTablesObj, "ScDataPilotTablesObj", "com.sun.s
 #define DATA_PILOT_PAGE     sheet::DataPilotFieldOrientation_PAGE
 #define DATA_PILOT_DATA     sheet::DataPilotFieldOrientation_DATA
 
-//------------------------------------------------------------------------
 
 USHORT lcl_BitCount( USHORT nBits )
 {
@@ -299,7 +295,6 @@ void lcl_SetLayoutNamesToParam( ScPivotParam& rParam, ScDocument* pDoc,
     }
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotTablesObj::ScDataPilotTablesObj(ScDocShell* pDocSh, USHORT nT) :
     pDocShell( pDocSh ),
@@ -314,7 +309,7 @@ ScDataPilotTablesObj::~ScDataPilotTablesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDataPilotTablesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDataPilotTablesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update
 
@@ -625,7 +620,6 @@ sal_Bool SAL_CALL ScDataPilotTablesObj::hasByName( const ::rtl::OUString& aName 
     return FALSE;
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotDescriptorBase::ScDataPilotDescriptorBase(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -689,7 +683,7 @@ uno::Sequence<sal_Int8> SAL_CALL ScDataPilotDescriptorBase::getImplementationId(
     return aId;
 }
 
-void ScDataPilotDescriptorBase::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDataPilotDescriptorBase::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update?
 
@@ -830,7 +824,6 @@ ScDataPilotDescriptorBase* ScDataPilotDescriptorBase::getImplementation(
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotTableObj::ScDataPilotTableObj(ScDocShell* pDocSh, USHORT nT, const String& rN) :
     ScDataPilotDescriptorBase( pDocSh ),
@@ -892,8 +885,6 @@ uno::Sequence<sal_Int8> SAL_CALL ScDataPilotTableObj::getImplementationId()
     }
     return aId;
 }
-
-// ---
 
 void ScDataPilotTableObj::GetParam( ScPivotParam& rParam, ScQueryParam& rQuery, ScArea& rSrcArea ) const
 {
@@ -961,8 +952,6 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
             if (rEntry.bDoQuery)
                 rEntry.nField += nFieldStart;
         }
-
-//      ScPivot* pNew = new ScPivot(*pPivot);   //? behaelt falsche Groessenangaben bei...
 
         ScDocument* pDoc = pDocShell->GetDocument();
         ScPivot* pNew = new ScPivot( pDoc );
@@ -1068,8 +1057,6 @@ void SAL_CALL ScDataPilotTableObj::refresh() throw(uno::RuntimeException)
     }
 }
 
-//------------------------------------------------------------------------
-
 ScDataPilotDescriptor::ScDataPilotDescriptor(ScDocShell* pDocSh) :
     ScDataPilotDescriptorBase( pDocSh )
 {
@@ -1126,8 +1113,6 @@ void SAL_CALL ScDataPilotDescriptor::setTag( const ::rtl::OUString& aNewTag )
     SolarMutexGuard aGuard;
     aTagStr = String( aNewTag );
 }
-
-//------------------------------------------------------------------------
 
 ScDataPilotFieldsObj::ScDataPilotFieldsObj(ScDataPilotDescriptorBase* pPar, USHORT nTy) :
     pParent( pPar ),
@@ -1489,8 +1474,6 @@ sal_Bool SAL_CALL ScDataPilotFieldsObj::hasByName( const ::rtl::OUString& aName 
     return FALSE;
 }
 
-//------------------------------------------------------------------------
-
 ScDataPilotFieldObj::ScDataPilotFieldObj( ScDataPilotDescriptorBase* pPar,
                                             USHORT nF, USHORT nST, USHORT nSP ) :
     aPropSet( lcl_GetDataPilotFieldMap() ),
@@ -1843,11 +1826,6 @@ void ScDataPilotFieldObj::setFunction(sheet::GeneralFunction eNewFunc)
 
     nLastFunc = eNewFunc;       // to allow setting Function before Orientation
 }
-
-
-//------------------------------------------------------------------------
-
-
 
 
 }

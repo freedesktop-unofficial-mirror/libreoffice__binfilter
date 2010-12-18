@@ -125,7 +125,6 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_WRAP),     ATTR_LINEBREAK,     &::getBooleanCppuType(),            0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_LEFTBORDER),ATTR_BORDER,       &::getCppuType((const table::BorderLine*)0),        0, LEFT_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNONAME_NUMFMT),   ATTR_VALUE_FORMAT,  &::getCppuType((const sal_Int32*)0),            0, 0 },
-//      {MAP_CHAR_LEN(SC_UNONAME_NUMRULES), SC_WID_UNO_NUMRULES,&getCppuType((const uno::Reference<container::XIndexReplace>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLORI),  ATTR_ORIENTATION,   &::getCppuType((const table::CellOrientation*)0),   0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_PADJUST),  ATTR_HOR_JUSTIFY,   &::getCppuType((const sal_Int16*)0),    0, MID_HORJUST_ADJUST },
         {MAP_CHAR_LEN(SC_UNONAME_PBMARGIN), ATTR_MARGIN,        &::getCppuType((const sal_Int32*)0),            0, MID_MARGIN_LO_MARGIN | CONVERT_TWIPS },
@@ -346,7 +345,6 @@ const SfxItemPropertyMap* lcl_GetFooterStyleMap()
 }
 
 
-//------------------------------------------------------------------------
 
 //  Index-Access auf die Style-Typen: 0 = Cell, 1 = Page
 
@@ -357,13 +355,11 @@ const SfxItemPropertyMap* lcl_GetFooterStyleMap()
 
 static UINT16 aStyleFamilyTypes[SC_STYLE_FAMILY_COUNT] = { SFX_STYLE_FAMILY_PARA, SFX_STYLE_FAMILY_PAGE };
 
-//------------------------------------------------------------------------
 
 //! diese Funktionen in einen allgemeinen Header verschieben
 inline long TwipsToHMM(long nTwips) { return (nTwips * 127 + 36) / 72; }
 inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
-//------------------------------------------------------------------------
 
 #define SCSTYLE_SERVICE         "com.sun.star.style.Style"
 #define SCCELLSTYLE_SERVICE     "com.sun.star.style.CellStyle"
@@ -372,11 +368,9 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 SC_SIMPLE_SERVICE_INFO( ScStyleFamiliesObj, "ScStyleFamiliesObj", "com.sun.star.style.StyleFamilies" )
 SC_SIMPLE_SERVICE_INFO( ScStyleFamilyObj, "ScStyleFamilyObj", "com.sun.star.style.StyleFamily" )
 
-//------------------------------------------------------------------------
 
 #define SC_PAPERBIN_DEFAULTNAME     "[From printer settings]"
 
-//------------------------------------------------------------------------
 
 //  conversion programmatic <-> display (visible) name
 //  currently, the core always has the visible names
@@ -520,7 +514,6 @@ String ScStyleNameConversion::ProgrammaticToDisplayName( const String& rProgName
     return rProgName;
 }
 
-//------------------------------------------------------------------------
 
 sal_Bool lcl_AnyTabProtected( ScDocument& rDoc )
 {
@@ -531,7 +524,6 @@ sal_Bool lcl_AnyTabProtected( ScDocument& rDoc )
     return sal_False;
 }
 
-//------------------------------------------------------------------------
 
 ScStyleFamiliesObj::ScStyleFamiliesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -545,7 +537,7 @@ ScStyleFamiliesObj::~ScStyleFamiliesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScStyleFamiliesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleFamiliesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -738,7 +730,7 @@ ScStyleFamilyObj::~ScStyleFamilyObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScStyleFamilyObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleFamilyObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -995,7 +987,6 @@ sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
     return sal_False;
 }
 
-//------------------------------------------------------------------------
 
 ScStyleObj::ScStyleObj(ScDocShell* pDocSh, SfxStyleFamily eFam, const String& rName) :
     pDocShell( pDocSh ),
@@ -1067,7 +1058,7 @@ ScStyleObj* ScStyleObj::getImplementation(
     return pRet;
 }
 
-void ScStyleObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1195,8 +1186,8 @@ void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
             aStyleName = aString;       //! notify other objects for this style?
 
             //  Zellvorlagen = 2, Seitenvorlagen = 4
-            UINT16 nId = ( eFamily == SFX_STYLE_FAMILY_PARA ) ?
-                            SID_STYLE_FAMILY2 : SID_STYLE_FAMILY4;
+            ( eFamily == SFX_STYLE_FAMILY_PARA ) ?
+                SID_STYLE_FAMILY2 : SID_STYLE_FAMILY4;
         }
     }
 }
@@ -1415,22 +1406,22 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyValues(
     return aSequence;
 }
 
-void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString>& /*aPropertyNames*/,
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
 }
 
 void SAL_CALL ScStyleObj::removePropertiesChangeListener(
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
 }
 
-void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString>& /*aPropertyNames*/,
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
@@ -1912,8 +1903,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
                               : ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLSTYLE_SERVICE ));
     return aRet;
 }
-
-//------------------------------------------------------------------------
 
 
 }

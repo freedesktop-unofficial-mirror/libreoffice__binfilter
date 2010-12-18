@@ -63,7 +63,6 @@ const SfxItemPropertyMap* lcl_GetSheetLinkMap()
     return aSheetLinkMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 SV_IMPL_PTRARR( XRefreshListenerArr_Impl, XRefreshListenerPtr );
 
@@ -74,7 +73,6 @@ SC_SIMPLE_SERVICE_INFO( ScDDELinksObj, "ScDDELinksObj", "com.sun.star.sheet.DDEL
 SC_SIMPLE_SERVICE_INFO( ScSheetLinkObj, "ScSheetLinkObj", "com.sun.star.sheet.SheetLink" )
 SC_SIMPLE_SERVICE_INFO( ScSheetLinksObj, "ScSheetLinksObj", "com.sun.star.sheet.SheetLinks" )
 
-//------------------------------------------------------------------------
 
 ScSheetLinkObj::ScSheetLinkObj(ScDocShell* pDocSh, const String& rName) :
     aPropSet( lcl_GetSheetLinkMap() ),
@@ -90,7 +88,7 @@ ScSheetLinkObj::~ScSheetLinkObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScSheetLinkObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScSheetLinkObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! notify if links in document are changed
     //  UpdateRef is not needed here
@@ -367,7 +365,6 @@ void ScSheetLinkObj::setRefreshDelay(sal_Int32 nRefreshDelay)
     ModifyRefreshDelay_Impl( nRefreshDelay );
 }
 
-//------------------------------------------------------------------------
 
 ScSheetLinksObj::ScSheetLinksObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -381,7 +378,7 @@ ScSheetLinksObj::~ScSheetLinksObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScSheetLinksObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScSheetLinksObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -575,7 +572,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScSheetLinksObj::getElementNames() thro
     return uno::Sequence< ::rtl::OUString>();
 }
 
-//------------------------------------------------------------------------
 
 ScAreaLink* lcl_GetAreaLink( ScDocShell* pDocShell, USHORT nPos )
 {
@@ -612,7 +608,7 @@ ScAreaLinkObj::~ScAreaLinkObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScAreaLinkObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAreaLinkObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! notify if links in document are changed
     //  UpdateRef is not needed here
@@ -918,7 +914,7 @@ ScAreaLinksObj::~ScAreaLinksObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScAreaLinksObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAreaLinksObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1050,7 +1046,7 @@ ScDDELinkObj::~ScDDELinkObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDDELinkObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDDELinkObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! notify if links in document are changed
     //  UpdateRef is not needed here
@@ -1090,7 +1086,7 @@ String lcl_BuildDDEName( const String& rAppl, const String& rTopic, const String
     return lcl_BuildDDEName( aAppl, aTopic, aItem );
 }
 
-void SAL_CALL ScDDELinkObj::setName( const ::rtl::OUString& aName ) throw(uno::RuntimeException)
+void SAL_CALL ScDDELinkObj::setName( const ::rtl::OUString& /*aName*/ ) throw(uno::RuntimeException)
 {
     //  name can't be changed (formulas wouldn't find the link)
     throw uno::RuntimeException();
@@ -1130,7 +1126,7 @@ void SAL_CALL ScDDELinkObj::refresh() throw(uno::RuntimeException)
     if (pDocShell)
     {
         ScDocument* pDoc = pDocShell->GetDocument();
-        BOOL bOk = pDoc->UpdateDdeLink( aAppl, aTopic, aItem );
+        pDoc->UpdateDdeLink( aAppl, aTopic, aItem );
         //! Fehler abfragen
     }
 }
@@ -1176,7 +1172,6 @@ void ScDDELinkObj::Refreshed_Impl()
         (*aRefreshListeners[n])->refreshed( aEvent );
 }
 
-//------------------------------------------------------------------------
 
 ScDDELinksObj::ScDDELinksObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -1190,7 +1185,7 @@ ScDDELinksObj::~ScDDELinksObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDDELinksObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDDELinksObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1336,9 +1331,6 @@ sal_Bool SAL_CALL ScDDELinksObj::hasByName( const ::rtl::OUString& aName )
     }
     return FALSE;
 }
-
-//------------------------------------------------------------------------
-
 
 
 

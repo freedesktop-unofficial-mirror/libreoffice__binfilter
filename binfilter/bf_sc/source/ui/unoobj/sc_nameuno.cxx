@@ -63,7 +63,6 @@ const SfxItemPropertyMap* lcl_GetNamedRangeMap()
     return aNamedRangeMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 #define SCNAMEDRANGEOBJ_SERVICE     "com.sun.star.sheet.NamedRange"
 
@@ -71,7 +70,6 @@ SC_SIMPLE_SERVICE_INFO( ScLabelRangeObj, "ScLabelRangeObj", "com.sun.star.sheet.
 SC_SIMPLE_SERVICE_INFO( ScLabelRangesObj, "ScLabelRangesObj", "com.sun.star.sheet.LabelRanges" )
 SC_SIMPLE_SERVICE_INFO( ScNamedRangesObj, "ScNamedRangesObj", "com.sun.star.sheet.NamedRanges" )
 
-//------------------------------------------------------------------------
 
 sal_Bool lcl_UserVisibleName( const ScRangeData* pData )
 {
@@ -80,7 +78,6 @@ sal_Bool lcl_UserVisibleName( const ScRangeData* pData )
     return ( pData && !pData->HasType( RT_DATABASE ) && !pData->HasType( RT_SHARED ) );
 }
 
-//------------------------------------------------------------------------
 
 ScNamedRangeObj::ScNamedRangeObj(ScDocShell* pDocSh, const String& rNm) :
     pDocShell( pDocSh ),
@@ -306,7 +303,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScNamedRangeObj::getPropertySet
 }
 
 void SAL_CALL ScNamedRangeObj::setPropertyValue(
-                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -356,7 +353,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScNamedRangeObj::getSupportedServiceNam
     return aRet;
 }
 
-//------------------------------------------------------------------------
 
 ScNamedRangesObj::ScNamedRangesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -370,7 +366,7 @@ ScNamedRangesObj::~ScNamedRangesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScNamedRangesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScNamedRangesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -615,7 +611,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScNamedRangesObj::getElementNames()
                 if ( lcl_UserVisibleName(pData) )
                     pAry[nVisPos++] = pData->GetName();
             }
-//          DBG_ASSERT(nVisPos == nVisCount, "huch, verzaehlt?");
             return aSeq;
         }
     }
@@ -641,7 +636,6 @@ sal_Bool SAL_CALL ScNamedRangesObj::hasByName( const ::rtl::OUString& aName )
     return sal_False;
 }
 
-//------------------------------------------------------------------------
 
 ScLabelRangeObj::ScLabelRangeObj(ScDocShell* pDocSh, sal_Bool bCol, const ScRange& rR) :
     pDocShell( pDocSh ),
@@ -657,7 +651,7 @@ ScLabelRangeObj::~ScLabelRangeObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScLabelRangeObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScLabelRangeObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Ref-Update !!!
 
@@ -762,7 +756,6 @@ void SAL_CALL ScLabelRangeObj::setDataArea( const table::CellRangeAddress& aData
     Modify_Impl( NULL, &aDataRange );
 }
 
-//------------------------------------------------------------------------
 
 ScLabelRangesObj::ScLabelRangesObj(ScDocShell* pDocSh, sal_Bool bCol) :
     pDocShell( pDocSh ),
@@ -777,7 +770,7 @@ ScLabelRangesObj::~ScLabelRangesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScLabelRangesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScLabelRangesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -927,9 +920,6 @@ sal_Bool SAL_CALL ScLabelRangesObj::hasElements() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
-
-//------------------------------------------------------------------------
-
 
 
 }

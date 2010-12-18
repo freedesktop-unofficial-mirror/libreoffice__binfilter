@@ -120,7 +120,6 @@ ScDocument* ScTempDocSource::GetDocument()
         return rCache.GetDocument();
 }
 
-//------------------------------------------------------------------------
 
 ScTempDocCache::ScTempDocCache() :
     pDoc( NULL ),
@@ -146,8 +145,6 @@ void ScTempDocCache::Clear()
     delete pDoc;
     pDoc = NULL;
 }
-
-//------------------------------------------------------------------------
 
 //  copy results from one document into another
 //! merge this with ScAreaLink::Refresh
@@ -190,8 +187,6 @@ BOOL lcl_CopyData( ScDocument* pSrcDoc, const ScRange& rSrcRange,
     return TRUE;
 }
 
-//------------------------------------------------------------------------
-
 ScFunctionAccess::ScFunctionAccess() :
     bInvalid( FALSE ),
     pOptions( NULL )
@@ -204,7 +199,7 @@ ScFunctionAccess::~ScFunctionAccess()
     delete pOptions;
 }
 
-void ScFunctionAccess::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScFunctionAccess::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA(SfxSimpleHint) &&
         ((SfxSimpleHint&)rHint).GetId() == SFX_HINT_DEINITIALIZING )

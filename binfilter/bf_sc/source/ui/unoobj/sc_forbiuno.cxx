@@ -73,7 +73,7 @@ ScForbiddenCharsObj::~ScForbiddenCharsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScForbiddenCharsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScForbiddenCharsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( SfxSimpleHint ) &&
             ((const SfxSimpleHint&)rHint).GetId() == SFX_HINT_DYING )
