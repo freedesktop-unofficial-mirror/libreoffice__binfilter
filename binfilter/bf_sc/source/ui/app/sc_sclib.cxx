@@ -104,7 +104,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 /*N*/ };
 
-void ScLibOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void ScLibOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 void ScLibOptions::Commit() {}
 
 #define CFGPATH_LIBFILTER       "Office.Calc/Filter/Import/Lotus123"
@@ -136,36 +136,14 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/
 /*N*/   const String    aEmptyStr;
 /*N*/                                   // Clipboard-IDs:
-/*N*/   const ULONG     nSc50Format  = SOT_FORMATSTR_ID_STARCALC_50;
+/*N*/   SOT_FORMATSTR_ID_STARCALC_50;
 /*N*/
 /*N*/   String aVndCalc = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(CONTENT_TYPE_STR_APP_VND_CALC));
 /*N*/
 /*N*/   Factory().GetFilterContainer()->SetDetectFilter( ScDLL::DetectFilter );
 /*N*/
 /*N*/   //  5.0 muss mit vnd-Mime-Type registriert werden, aeltere mit dem alten x-starcalc
-/*
-    SFX_OWN_FILTER_REGISTRATION( ScDLL::DetectFilter,
-                        String::CreateFromAscii(pFilterSc50),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("*.sdc")),
-                        SFX_FILTER_OWN | SFX_FILTER_TEMPLATE |
-                        SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                        nSc50Format,
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SVsc0.sdc")),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc 5.0")),
-                        RID_SCICN_DOCUMENT,
-                        aVndCalc, aEmptyStr );
 
-    SFX_OWN_FILTER_REGISTRATION( ScDLL::DetectFilter,
-                        String::CreateFromAscii(pFilterSc50Temp),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("*.vor")),
-                        SFX_FILTER_OWN | SFX_FILTER_TEMPLATE | SFX_FILTER_TEMPLATEPATH |
-                        SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                        nSc50Format,
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SVsc1.vor")),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc 5.0")),
-                        RID_SCICN_TEMPLATE,
-                        aVndCalc, aEmptyStr );
-*/
 /*N*/   //  alle Im-/Exportfilter werden nur noch per install.ini registriert,
 /*N*/   //  damit sie bei der Installation weggelassen werden koennen.
 /*N*/ }
@@ -301,14 +279,14 @@ SfxModule* ScModuleDummy::Load()
 /*N*/   return ( nEndFlag == 0x0d );
 /*N*/ }
 
-BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
+BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
         return FALSE;
 }
 
 /*N*/ ULONG ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
-/*N*/                                   SfxFilterFlags nMust, SfxFilterFlags nDont )
+/*N*/                                   SfxFilterFlags /*nMust*/, SfxFilterFlags /*nDont*/ )
 /*N*/ {
 /*N*/   //  #59915# laut MBA darf hier nur ERRCODE_NONE, ERRCODE_ABORT und ERRCODE_FORCEQUIET
 /*N*/   //  zurueckgegeben werden...
@@ -633,14 +611,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
         // test for HTML
 
         // #97832#; we don't have a flat xml filter
-/*      if ( aHeader.CompareTo( "<?xml", 5 ) == COMPARE_EQUAL )
-        {
-            //  if XML template is set, don't modify
-            if (!lcl_IsAnyXMLFilter(*ppFilter))
-                *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
-                                                  String::CreateFromAscii(pFilterXML) );
-            return ERRCODE_NONE;
-        }*/
 
         // dBase cannot safely be recognized - only test if the filter was set
 /*N*/         if ( aPresetFilterName.EqualsAscii(pFilterDBase) && lcl_MayBeDBase( rStr ) )
