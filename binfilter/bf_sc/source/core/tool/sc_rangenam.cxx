@@ -324,7 +324,7 @@ namespace binfilter {
 
 
 
-/*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& rMap )
+/*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& /*rMap*/ )
 /*N*/ {
 /*N*/   BOOL bCompile = FALSE;
 /*N*/   for ( ScToken* p = pCode->First(); p; p = pCode->Next() )
@@ -564,10 +564,10 @@ namespace binfilter {
 
 
 
-/*N*/ void ScRangeName::UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable)
+/*N*/ void ScRangeName::UpdateTabRef(USHORT /*nOldTable*/, USHORT /*nFlag*/, USHORT /*nNewTable*/)
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScRangeData*)pItems[i])->UpdateTabRef(nOldTable, nFlag, nNewTable);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

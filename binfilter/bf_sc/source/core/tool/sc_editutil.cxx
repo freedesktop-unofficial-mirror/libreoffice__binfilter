@@ -396,8 +396,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ }
 
 /*N*/ String ScHeaderEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/                                   USHORT nPara, USHORT nPos,
-/*N*/                                   Color*& rTxtColor, Color*& rFldColor )
+/*N*/                                   USHORT /*nPara*/, USHORT /*nPos*/,
+/*N*/                                   Color*& /*rTxtColor*/, Color*& /*rFldColor*/ )
 /*N*/ {
 /*N*/   String aRet;
 /*N*/   const SvxFieldData* pFieldData = rField.GetField();
@@ -463,8 +463,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ }
 
 /*N*/ String ScFieldEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/                                   USHORT nPara, USHORT nPos,
-/*N*/                                   Color*& rTxtColor, Color*& rFldColor )
+/*N*/                                   USHORT /*nPara*/, USHORT /*nPos*/,
+/*N*/                                   Color*& rTxtColor, Color*& /*rFldColor*/ )
 /*N*/ {
 /*N*/   String aRet;
 /*N*/   const SvxFieldData* pFieldData = rField.GetField();

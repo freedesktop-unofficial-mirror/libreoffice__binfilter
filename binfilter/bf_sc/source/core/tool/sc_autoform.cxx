@@ -249,9 +249,9 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/  {
 /*N*/  }
 
-/*N*/ void ScAutoFormatDataField::SetAdjust( const SvxAdjustItem& rAdjust )
+/*N*/ void ScAutoFormatDataField::SetAdjust( const SvxAdjustItem& /*rAdjust*/ )
 /*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aAdjust.SetAdjust( rAdjust.GetAdjust() );
+/*?*/     DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ #define READ( aItem, ItemType, nVers )      \
@@ -393,8 +393,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/  }
 
 
-//  ---------------------------------------------------------------------------
-
 /*N*/ ScAutoFormatData::ScAutoFormatData()
 /*N*/ {
 /*N*/   nStrResId = USHRT_MAX;
@@ -516,12 +514,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
 /*N*/  BOOL ScAutoFormatData::Load( SvStream& rStream, const ScAfVersions& rVersions )
 /*N*/  {
 /*N*/   BOOL    bRet = TRUE;
@@ -531,7 +523,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/      if( bRet && (nVer == AUTOFORMAT_DATA_ID_X ||
 /*N*/              (AUTOFORMAT_DATA_ID_504 <= nVer && nVer <= AUTOFORMAT_DATA_ID)) )
 /*N*/   {
-/*N*/       CharSet eSysSet = gsl_getSystemTextEncoding();
+/*N*/       gsl_getSystemTextEncoding();
 /*N*/       CharSet eSrcSet = rStream.GetStreamCharSet();
 /*N*/
 /*N*/       BOOL b;
@@ -615,8 +607,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   return bRet;
 /*N*/  }
 
-//---------------------------------------------------------------------------------------
-//---------------------------------------------------------------------------------------
 
 /*N*/ ScAutoFormat::ScAutoFormat(USHORT nLim, USHORT nDel, BOOL bDup):
 /*N*/   SortedCollection        (nLim, nDel, bDup),
@@ -755,8 +745,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/               BYTE nChrSet, nCnt;
 /*N*/               long nPos = rStream.Tell();
 /*N*/               rStream >> nCnt >> nChrSet;
-/*N*/ //                if( 4 <= nCnt )
-/*N*/ //                    rStream >> nFileVers;
 /*N*/               if( rStream.Tell() != ULONG(nPos + nCnt) )
 /*N*/               {
 /*N*/                   DBG_ERRORFILE( "Der Header enthaelt mehr/neuere Daten" );
@@ -859,7 +847,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/       ScAfVersions::Write(rStream);           // Item-Versionen
 /*N*/
 /*N*/       bRet = (rStream.GetError() == 0);
-/*N*/       //-----------------------------------------------------------
 /*N*/       rStream << (USHORT)(nCount - 1);
 /*N*/       bRet = (rStream.GetError() == 0);
 /*N*/       for (USHORT i=1; bRet && (i < nCount); i++)

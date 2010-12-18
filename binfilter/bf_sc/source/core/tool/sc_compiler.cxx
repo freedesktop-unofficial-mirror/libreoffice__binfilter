@@ -1970,15 +1970,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pToken->GetType() == svSingleRef )
 /*N*/   {
-/*N*/ //        if (!pDoc->HasTable( pToken->aRef.Ref1.nTab ) )
-/*N*/ //            SetError(errNoRef);
 /*N*/       pArr->nRefs++;
 /*N*/   }
 /*N*/   else if( pToken->GetType() == svDoubleRef )
 /*N*/   {
-/*N*/ //        if (!pDoc->HasTable( pToken->aRef.Ref1.nTab ) ||
-/*N*/ //            !pDoc->HasTable( pToken->aRef.Ref2.nTab ))
-/*N*/ //            SetError(errNoRef);
 /*N*/       pArr->nRefs++;
 /*N*/   }
 /*N*/   return TRUE;
@@ -2802,7 +2797,7 @@ namespace binfilter {
 /*N*/   return pRangeData;
 /*N*/ }
 
-/*N*/  ScRangeData* ScCompiler::UpdateDeleteTab(USHORT nTable, BOOL bIsMove, BOOL bIsName,
+/*N*/  ScRangeData* ScCompiler::UpdateDeleteTab(USHORT nTable, BOOL /*bIsMove*/, BOOL bIsName,
 /*N*/                                BOOL& rChanged)
 /*N*/  {
 /*N*/   ScRangeData* pRangeData = NULL;

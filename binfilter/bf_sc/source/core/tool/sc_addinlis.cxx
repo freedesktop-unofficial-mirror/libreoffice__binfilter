@@ -155,7 +155,7 @@ using namespace ::com::sun::star;
 
 // XEventListener
 
-/*N*/ void SAL_CALL ScAddInListener::disposing( const ::com::sun::star::lang::EventObject& Source )
+/*N*/ void SAL_CALL ScAddInListener::disposing( const ::com::sun::star::lang::EventObject& /*Source*/ )
 /*N*/                               throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // hold a ref so this is not deleted at removeResultListener

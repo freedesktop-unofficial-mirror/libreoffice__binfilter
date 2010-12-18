@@ -1380,7 +1380,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/ }
 
 /*N*/ SdrObject* ScDetectiveFunc::ShowCommentUser( USHORT nCol, USHORT nRow, const String& rUserText,
-/*N*/                                           const Rectangle& rVisible, BOOL bLeft, BOOL bForce,
+/*N*/                                           const Rectangle& /*rVisible*/, BOOL /*bLeft*/, BOOL bForce,
 /*N*/                                           SdrPage* pDestPage )
 /*N*/ {
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
@@ -1465,7 +1465,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*?*/
 /*?*/                   SfxItemSet& rAttrSet = aData.GetCaptionSet();
 /*?*/
-/*?*/ //-/                  pCaption->SetAttributes( rAttrSet, FALSE );
 /*?*/                   pCaption->SetItemSetAndBroadcast(rAttrSet);
 /*?*/
 /*?*/                   pCaption->SetSpecialTextBoxShadow();
@@ -1644,11 +1643,11 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   return eType;
 /*N*/ }
 
-/*N*/ void ScDetectiveFunc::InsertObject( ScDetectiveObjType eType,
-/*N*/                           const ScAddress& rPosition, const ScRange& rSource,
-/*N*/                           BOOL bRedLine )
+/*N*/ void ScDetectiveFunc::InsertObject( ScDetectiveObjType /*eType*/,
+/*N*/                           const ScAddress& /*rPosition*/, const ScRange& /*rSource*/,
+/*N*/                           BOOL /*bRedLine*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer();
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // static

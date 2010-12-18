@@ -1021,7 +1021,7 @@ void ScInterpreter::ScIsNonString()
 }
 
 
-void ScInterpreter::ScIsLogical(UINT16 aOldNumType)
+void ScInterpreter::ScIsLogical(UINT16 /*aOldNumType*/)
 {
     short nRes = 0;
     switch ( GetStackType() )
@@ -4591,19 +4591,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
 void ScInterpreter::ScIndirect()
 {
     BYTE nParamCount = GetByte();
-/*
-    if (nParamCount == 2)
-    {
-        double fBool = GetDouble();
-        if (fBool == 0.0)                           // nur TRUE erlaubt!!
-        {
-            SetIllegalParameter();
-            return;
-        }
-        else
-            nParamCount = 1;
-    }
-*/
     if ( MustHaveParamCount( nParamCount, 1 )  )
     {
         USHORT nTab = aPos.Tab();

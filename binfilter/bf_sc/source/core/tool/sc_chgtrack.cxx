@@ -127,8 +127,8 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   aDateTime.ConvertToUTC();
 /*N*/  }
 
-/*N*/  ScChangeAction::ScChangeAction( SvStream& rStrm, ScMultipleReadHeader& rHdr,
-/*N*/           ScChangeTrack* pTrack )
+/*N*/  ScChangeAction::ScChangeAction( SvStream& rStrm, ScMultipleReadHeader& /*rHdr*/,
+/*N*/           ScChangeTrack* /*pTrack*/ )
 /*N*/       :
 /*N*/       pNext( NULL ),
 /*N*/       pPrev( NULL ),
@@ -157,7 +157,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/  }
 
 
-/*N*/ BOOL ScChangeAction::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
+/*N*/ BOOL ScChangeAction::Store( SvStream& rStrm, ScMultipleWriteHeader& /*rHdr*/ ) const
 /*N*/ {
 /*N*/   // ScChangeTrack speichert aUser als Index auf Collection und eType selber
 /*N*/   rStrm << aBigRange;
@@ -338,7 +338,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ void ScChangeAction::UpdateReference( const ScChangeTrack* pTrack,
+/*N*/ void ScChangeAction::UpdateReference( const ScChangeTrack* /*pTrack*/,
 /*N*/       UpdateRefMode eMode, const ScBigRange& rRange,
 /*N*/       INT32 nDx, INT32 nDy, INT32 nDz )
 /*N*/ {
@@ -654,7 +654,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 
 /*N*/ BOOL ScChangeAction::LoadCellList( ScChangeAction* pOfAction,
-/*N*/       ScChangeActionCellListEntry*& pFirstCell, SvStream& rStrm,
+/*N*/       ScChangeActionCellListEntry*& /*pFirstCell*/, SvStream& rStrm,
 /*N*/       ScChangeTrack* pTrack )
 /*N*/ {
 /*N*/   UINT32 nCount;
@@ -734,7 +734,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 
 /*N*/ void ScChangeActionIns::GetDescription( String& rStr, ScDocument* pDoc,
-/*N*/       BOOL bSplitRange ) const
+/*N*/       BOOL /*bSplitRange*/ ) const
 /*N*/ {
 /*N*/   USHORT nWhatId;
 /*N*/   switch ( GetType() )
@@ -826,7 +826,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 
 /*N*/ ScChangeActionDel::ScChangeActionDel( SvStream& rStrm,
-/*N*/           ScMultipleReadHeader& rHdr, ScDocument* pDoc, USHORT nVer,
+/*N*/           ScMultipleReadHeader& rHdr, ScDocument* /*pDoc*/, USHORT /* nVer*/,
 /*N*/           ScChangeTrack* pTrackP )
 /*N*/       :
 /*N*/       ScChangeAction( rStrm, rHdr, pTrackP ),
@@ -990,7 +990,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ void ScChangeActionDel::UpdateReference( const ScChangeTrack* pTrack,
+/*N*/ void ScChangeActionDel::UpdateReference( const ScChangeTrack* /*pTrack*/,
 /*N*/       UpdateRefMode eMode, const ScBigRange& rRange,
 /*N*/       INT32 nDx, INT32 nDy, INT32 nDz )
 /*N*/ {
@@ -1287,7 +1287,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ void ScChangeActionMove::UpdateReference( const ScChangeTrack* pTrack,
+/*N*/ void ScChangeActionMove::UpdateReference( const ScChangeTrack* /*pTrack*/,
 /*N*/       UpdateRefMode eMode, const ScBigRange& rRange,
 /*N*/       INT32 nDx, INT32 nDy, INT32 nDz )
 /*N*/ {
@@ -1307,7 +1307,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 
 /*N*/ void ScChangeActionMove::GetDescription( String& rStr, ScDocument* pDoc,
-/*N*/       BOOL bSplitRange ) const
+/*N*/       BOOL /*bSplitRange*/ ) const
 /*N*/ {
 /*N*/   BOOL bFlag3D = ( GetFromRange().aStart.Tab() != GetBigRange().aStart.Tab() );
 /*N*/
@@ -1594,7 +1594,7 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 
 
 /*N*/ void ScChangeActionContent::GetDescription( String& rStr, ScDocument* pDoc,
-/*N*/       BOOL bSplitRange ) const
+/*N*/       BOOL /*bSplitRange*/ ) const
 /*N*/ {
 /*N*/
 /*N*/   String aRsc( ScGlobal::GetRscString( STR_CHANGED_CELL ) );
@@ -2081,7 +2081,7 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 
 /*N*/ BOOL ScChangeActionReject::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
 /*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::Store( rStrm, rHdr );
+/*N*/   ScChangeAction::Store( rStrm, rHdr );
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -2218,7 +2218,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/ }
 
 
-/*N*/ void ScChangeTrack::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScChangeTrack::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if ( !pDoc->IsInDtorClear() )
 /*N*/   {

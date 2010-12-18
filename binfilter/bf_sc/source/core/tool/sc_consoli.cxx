@@ -500,7 +500,7 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/   //      Daten
 /*N*/
-/*N*/   BOOL bAnyCell = ( eFunction == SUBTOTAL_FUNC_CNT2 );
+/*N*/   ( eFunction == SUBTOTAL_FUNC_CNT2 );
 /*N*/   for (nCol=nCol1; nCol<=nCol2; nCol++)
 /*N*/   {
 /*N*/       USHORT nArrX = nCol-nCol1;
@@ -520,12 +520,10 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ void ScConsData::OutputToDocument( ScDocument* pDestDoc, USHORT nCol, USHORT nRow, USHORT nTab )
 /*N*/ {
-/*N*/   OpCode eOpCode = eOpCodeTable[eFunction];
+/*N*/   eOpCodeTable[eFunction];
 /*N*/
 /*N*/   USHORT nArrX;
 /*N*/   USHORT nArrY;
-/*N*/   USHORT nCount;
-/*N*/   USHORT nPos;
 /*N*/   USHORT i;
 /*N*/
 /*N*/   //  Ecke links oben

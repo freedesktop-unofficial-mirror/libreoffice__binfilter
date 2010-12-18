@@ -762,7 +762,7 @@ void ScInterpreter::MFastTrans(ScMatrix* pA, ScMatrix* pR,
 }
 
 BOOL ScInterpreter::MFastBackSubst(ScMatrix* pA, ScMatrix* pR, USHORT n, BOOL bIsUpper)
-        // Führt Rückwaertsersetzung der Dreickesmatrix Mat a nach Mat r durch
+        // Fï¿½hrt Rï¿½ckwaertsersetzung der Dreickesmatrix Mat a nach Mat r durch
         // 2 Versionen fuer obere (U)  oder untere (L- Unit) Dreiecksmatrizen
 {
     short i, j, k;
@@ -2601,7 +2601,6 @@ void ScInterpreter::ScRGP()
             SetIllegalParameter();
             return;
         }
-        BOOL bVariancesOk = TRUE;
         ScMatrix* pQ = GetNewMat(M+1, M+2, nMatInd10);
         ScMatrix* pE = GetNewMat(M+2, 1, nMatInd12);
         ScMatrix* pV = GetNewMat(M+1, 1, nMatInd13);

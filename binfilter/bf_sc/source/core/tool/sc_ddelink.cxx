@@ -123,8 +123,8 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScDdeLink::DataChanged( const String& rMimeType,
-/*N*/                               const ::com::sun::star::uno::Any & rValue )
+/*N*/ void ScDdeLink::DataChanged( const String& /*rMimeType*/,
+/*N*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //    wir koennen nur Strings...
 /*N*/ }

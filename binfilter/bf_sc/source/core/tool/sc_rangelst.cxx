@@ -220,7 +220,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScRangeList::Load( SvStream& rStream, USHORT nVer )
+/*N*/ BOOL ScRangeList::Load( SvStream& rStream, USHORT /*nVer*/ )
 /*N*/ {
 /*N*/   BOOL bOk = TRUE;
 /*N*/   ScReadHeader aHdr( rStream );

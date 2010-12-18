@@ -61,8 +61,6 @@ double ScInterpreter::GetGammaDist(double x, double alpha, double beta)
         -0.139243221690590111E1
     };
 
-    int ipr = 6;
-
     double dx = x;
     double dgamma = gamma;
     int maxit = 10000;

@@ -356,10 +356,10 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ short TypedStrCollection::Compare( DataObject* pKey1, DataObject* pKey2 ) const
+/*N*/ short TypedStrCollection::Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const
 /*N*/ {
 /*N*/   short nResult = 0;
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( pKey1 && pKey2 )
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ return nResult;
 /*N*/ }
 

@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <osl/module.hxx>
 
@@ -39,7 +38,6 @@
 namespace binfilter {
 
 
-//------------------------------------------------------------------------
 
 extern "C" {
 
@@ -99,12 +97,10 @@ typedef void (CALLTYPE* FARPROC) ( void );
 #define LIBFUNCNAME( name ) \
     (String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( name ) ))
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /*N*/ FuncData::FuncData(const String& rIName) :
 /*N*/   pModuleData     (NULL),
 /*N*/   aInternalName   (rIName),
-/*N*/ //  aFuncName     (""),
 /*N*/   nNumber         (0),
 /*N*/   nParamCount     (0),
 /*N*/   eAsyncType      (NONE)
@@ -116,7 +112,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 //------------------------------------------------------------------------
 
 
-//------------------------------------------------------------------------
 
 /*N*/ FuncData::FuncData(const FuncData& rData) :
 /*N*/   pModuleData     (rData.pModuleData),
@@ -130,14 +125,11 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/       eParamType[i] = rData.eParamType[i];
 /*N*/ }
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /*N*/ short FuncCollection::Compare(DataObject* pKey1, DataObject* pKey2) const
 /*N*/ {
             DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 return (short) ScGlobal::pTransliteration->compareString(
 /*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ BOOL FuncCollection::SearchFunc( const String& rName, USHORT& rIndex ) const
 /*N*/ {
@@ -145,7 +137,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/   return Search( &aDataObj, rIndex );
 /*N*/ }
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 class ModuleData : public DataObject
 {
     friend class ModuleCollection;
@@ -162,7 +153,6 @@ public:
     void            FreeInstance() { delete pInstance; pInstance = 0; }
 };
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 /*N*/ class ModuleCollection : public SortedCollection
 /*N*/ {
 /*N*/ public:
@@ -171,7 +161,7 @@ public:
 /*N*/
 /*N*/   virtual DataObject*     Clone() const { return new ModuleCollection(*this); }
 /*N*/           ModuleData*     operator[]( const USHORT nIndex) const {return (ModuleData*)At(nIndex);}
-    virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short          Compare(DataObject* pKey1, DataObject* pKey2) const;
+    virtual short Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*N*/ };
 
 /*N*/ #ifdef _MSC_VER
@@ -184,16 +174,6 @@ public:
 /*N*/ #pragma code_seg()
 /*N*/ #endif
 
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
-//------------------------------------------------------------------------
 
 /*N*/ void ExitExternalFunc()
 /*N*/ {
@@ -205,7 +185,6 @@ public:
 /*N*/   }
 /*N*/ }
 
-//------------------------------------------------------------------------
 
 /*N*/ BOOL FuncData::Call(void** ppParam)
 /*N*/ {
@@ -299,18 +278,6 @@ public:
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 
 
 }

@@ -282,7 +282,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       return;
 /*N*/   }
-/*N*/   ULONG nOldPos = aRangeListRef->GetCurPos();
+/*N*/   aRangeListRef->GetCurPos();
 /*N*/
 /*N*/   pR = aRangeListRef->First();
 /*N*/   nStartCol = pR->aStart.Col();
@@ -597,7 +597,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               aString = ScGlobal::GetRscString(STR_COLUMN);
 /*N*/               aString += ' ';
-/*N*/ //                aString += String::CreateFromInt32( pCols[nCol]+1 );
 /*N*/                 ScAddress aPos( pCols[ nCol ], 0, 0 );
 /*N*/                 aPos.Format( aColStr, SCA_VALID_COL, NULL );
 /*N*/                 aString += aColStr;
@@ -745,7 +744,6 @@ namespace binfilter {
 /*?*/                   nPosCol++;
 /*?*/                 ScAddress aPos( nPosCol - 1, 0, 0 );
 /*?*/                 aPos.Format( aColStr, SCA_VALID_COL, NULL );
-/*?*/ //                aString += String::CreateFromInt32( nPosCol );
 /*?*/                 aString += aColStr;
 /*N*/           }
 /*N*/           pMemChart->SetColText(nCol, aString);

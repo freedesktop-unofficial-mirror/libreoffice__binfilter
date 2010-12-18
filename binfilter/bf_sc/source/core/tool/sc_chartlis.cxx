@@ -137,7 +137,7 @@ using namespace ::com::sun::star;
 /*N*/   return uno::Reference< chart::XChartData >();
 /*N*/ }
 
-/*N*/ void ScChartListener::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScChartListener::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   const ScHint* p = PTR_CAST( ScHint, &rHint );
 /*N*/   if( p && (p->GetId() & (SC_HINT_DATACHANGED | SC_HINT_DYING)) )
@@ -240,8 +240,8 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ void ScChartListenerCollection::ChangeListening( const String& rName,
-/*N*/       const ScRangeListRef& rRangeListRef, BOOL bDirty )
+/*N*/ void ScChartListenerCollection::ChangeListening( const String& /*rName*/,
+/*N*/       const ScRangeListRef& /*rRangeListRef*/, BOOL /*bDirty*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
 /*N*/ }
