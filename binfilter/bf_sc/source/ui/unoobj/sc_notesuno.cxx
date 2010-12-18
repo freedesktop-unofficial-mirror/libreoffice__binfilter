@@ -62,11 +62,9 @@ const SfxItemPropertyMap* lcl_GetAnnotationPropertyMap()
     return aAnnotationPropertyMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScAnnotationObj, "ScAnnotationObj", "com.sun.star.sheet.CellAnnotation" )
 
-//------------------------------------------------------------------------
 
 ScAnnotationObj::ScAnnotationObj(ScDocShell* pDocSh, const ScAddress& rPos) :
     pDocShell( pDocSh ),
@@ -100,11 +98,11 @@ ScAnnotationObj::~ScAnnotationObj()
         pUnoText->release();
 }
 
-void ScAnnotationObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAnnotationObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
+        (const ScUpdateRefHint&)rHint;
 
         //! Ref-Update
     }
@@ -131,7 +129,7 @@ uno::Reference<uno::XInterface> SAL_CALL ScAnnotationObj::getParent() throw(uno:
     return NULL;
 }
 
-void SAL_CALL ScAnnotationObj::setParent( const uno::Reference<uno::XInterface>& Parent )
+void SAL_CALL ScAnnotationObj::setParent( const uno::Reference<uno::XInterface>& /*Parent*/ )
                                     throw(lang::NoSupportException, uno::RuntimeException)
 {
     //  hamma nich
@@ -286,7 +284,7 @@ void SAL_CALL ScAnnotationObj::setIsVisible( sal_Bool bIsVisible ) throw(uno::Ru
             if ( bHad != bSet )
             {
                 pDocShell->MakeDrawLayer();
-                ScDrawLayer* pModel = pDoc->GetDrawLayer();
+                pDoc->GetDrawLayer();
 
                 ScDetectiveFunc aFunc( pDoc,nTab );
                 if ( bSet )
@@ -304,10 +302,6 @@ void SAL_CALL ScAnnotationObj::setIsVisible( sal_Bool bIsVisible ) throw(uno::Ru
         }
     }
 }
-
-//------------------------------------------------------------------------
-
-
 
 
 }

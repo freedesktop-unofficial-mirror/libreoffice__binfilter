@@ -53,7 +53,6 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 // Calc document
 extern uno::Sequence< ::rtl::OUString > SAL_CALL ScDocument_getSupportedServiceNames() throw();
@@ -105,7 +104,6 @@ extern ::rtl::OUString SAL_CALL ScXMLExport_Settings_getImplementationName() thr
 extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Settings_createInstance(
             const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception );
 
-//------------------------------------------------------------------------
 
 //  Anzahl der Funktionen, die als zuletzt benutzt gespeichert werden
 //! Define mit funcpage.hxx und dwfunctr.hxx zusammenfassen !!!
@@ -120,7 +118,6 @@ extern uno::Reference< uno::XInterface > SAL_CALL ScXMLExport_Settings_createIns
 //  Anzahl der PropertyValues in einer Function-Description
 #define SC_FUNCDESC_PROPCOUNT   5
 
-//------------------------------------------------------------------------
 
 //  alles ohne Which-ID, Map nur fuer PropertySetInfo
 
@@ -151,7 +148,6 @@ const SfxItemPropertyMap* lcl_GetSettingsPropertyMap()
     return aSettingsPropertyMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 #define SCFUNCTIONLISTOBJ_SERVICE       "com.sun.star.sheet.FunctionDescriptions"
 #define SCRECENTFUNCTIONSOBJ_SERVICE    "com.sun.star.sheet.RecentFunctions"
@@ -161,7 +157,6 @@ SC_SIMPLE_SERVICE_INFO( ScFunctionListObj, "ScFunctionListObj", SCFUNCTIONLISTOB
 SC_SIMPLE_SERVICE_INFO( ScRecentFunctionsObj, "ScRecentFunctionsObj", SCRECENTFUNCTIONSOBJ_SERVICE )
 SC_SIMPLE_SERVICE_INFO( ScSpreadsheetSettings, "ScSpreadsheetSettings", SCSPREADSHEETSETTINGS_SERVICE )
 
-//------------------------------------------------------------------------
 
 void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
                         const ::rtl::OUString& rImplementationName,
@@ -181,13 +176,13 @@ void lcl_WriteInfo( registry::XRegistryKey* pRegistryKey,
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(
-    const sal_Char ** ppEnvTypeName, uno_Environment ** ppEnv )
+    const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
 sal_Bool SAL_CALL component_writeInfo(
-    void * pServiceManager, registry::XRegistryKey * pRegistryKey )
+    void * /*pServiceManager*/, registry::XRegistryKey * pRegistryKey )
 {
     if (pRegistryKey)
     {
@@ -272,7 +267,7 @@ sal_Bool SAL_CALL component_writeInfo(
 }
 
 void * SAL_CALL component_getFactory(
-    const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
+    const sal_Char * pImplName, void * pServiceManager, void * /*pRegistryKey*/ )
 {
     if (!pServiceManager)
         return NULL;
@@ -411,7 +406,6 @@ void * SAL_CALL component_getFactory(
 
 }   // extern C
 
-//------------------------------------------------------------------------
 
 ScSpreadsheetSettings::ScSpreadsheetSettings() :
     aPropSet( lcl_GetSettingsPropertyMap() )
@@ -669,7 +663,6 @@ uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const ::rtl::OUString
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScSpreadsheetSettings )
 
-//------------------------------------------------------------------------
 
 ScRecentFunctionsObj::ScRecentFunctionsObj()
 {
@@ -682,7 +675,7 @@ ScRecentFunctionsObj::~ScRecentFunctionsObj()
 // stuff for exService_...
 
 uno::Reference<uno::XInterface> SAL_CALL ScRecentFunctionsObj_CreateInstance(
-                        const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
+                        const uno::Reference<lang::XMultiServiceFactory>& /*rSMgr*/ )
 {
     SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
@@ -750,7 +743,6 @@ sal_Int32 SAL_CALL ScRecentFunctionsObj::getMaxRecentFunctions() throw(uno::Runt
     return LRU_MAX;
 }
 
-//------------------------------------------------------------------------
 
 ScFunctionListObj::ScFunctionListObj()
 {
@@ -763,7 +755,7 @@ ScFunctionListObj::~ScFunctionListObj()
 // stuff for exService_...
 
 uno::Reference<uno::XInterface> SAL_CALL ScFunctionListObj_CreateInstance(
-                        const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
+                        const uno::Reference<lang::XMultiServiceFactory>& /*rSMgr*/ )
 {
     SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
@@ -995,11 +987,6 @@ sal_Bool SAL_CALL ScFunctionListObj::hasByName( const ::rtl::OUString& aName )
     }
     return FALSE;
 }
-
-//------------------------------------------------------------------------
-
-
-
 
 }
 

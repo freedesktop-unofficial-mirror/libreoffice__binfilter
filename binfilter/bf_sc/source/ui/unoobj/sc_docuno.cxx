@@ -452,16 +452,16 @@ uno::Reference<container::XNameAccess> SAL_CALL ScModelObj::getStyleFamilies()
 
 // XRenderable
 
-sal_Int32 SAL_CALL ScModelObj::getRendererCount( const uno::Any& aSelection,
-                                    const uno::Sequence<beans::PropertyValue>& xOptions )
+sal_Int32 SAL_CALL ScModelObj::getRendererCount( const uno::Any& /*aSelection*/,
+                                    const uno::Sequence<beans::PropertyValue>& /*xOptions*/ )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
     DBG_ERROR("Strip!");
     return 0;
 }
 
-uno::Sequence<beans::PropertyValue> SAL_CALL ScModelObj::getRenderer( sal_Int32 nRenderer,
-                                    const uno::Any& aSelection, const uno::Sequence<beans::PropertyValue>& xOptions )
+uno::Sequence<beans::PropertyValue> SAL_CALL ScModelObj::getRenderer( sal_Int32 /*nRenderer*/,
+                                    const uno::Any& /*aSelection*/, const uno::Sequence<beans::PropertyValue>& /*xOptions*/ )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
     DBG_ERROR("Strip!");
@@ -469,8 +469,8 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScModelObj::getRenderer( sal_Int32 
     return aSequence;
 }
 
-void SAL_CALL ScModelObj::render( sal_Int32 nRenderer, const uno::Any& aSelection,
-                                    const uno::Sequence<beans::PropertyValue>& rOptions )
+void SAL_CALL ScModelObj::render( sal_Int32 /*nRenderer*/, const uno::Any& /*aSelection*/,
+                                    const uno::Sequence<beans::PropertyValue>& /*rOptions*/ )
                                 throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     DBG_ERROR("Strip!");
@@ -1046,7 +1046,7 @@ uno::Reference<uno::XInterface> SAL_CALL ScModelObj::createInstance(
 
 uno::Reference<uno::XInterface> SAL_CALL ScModelObj::createInstanceWithArguments(
                                 const ::rtl::OUString& ServiceSpecifier,
-                                const uno::Sequence<uno::Any>& Arguments )
+                                const uno::Sequence<uno::Any>& /*Arguments*/ )
                                 throw(uno::Exception, uno::RuntimeException)
 {
     //! unterscheiden zwischen eigenen Services und denen vom Drawing-Layer?
@@ -1157,7 +1157,6 @@ ScModelObj* ScModelObj::getImplementation( const uno::Reference<uno::XInterface>
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScDrawPagesObj::ScDrawPagesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -1171,7 +1170,7 @@ ScDrawPagesObj::~ScDrawPagesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDrawPagesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDrawPagesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1229,7 +1228,7 @@ void SAL_CALL ScDrawPagesObj::remove( const uno::Reference<drawing::XDrawPage>& 
         SdrPage* pPage = pImp->GetSdrPage();
         if (pPage)
         {
-            /*USHORT nPageNum =*/ pPage->GetPageNum();
+            pPage->GetPageNum();
         }
     }
 }
@@ -1270,8 +1269,6 @@ sal_Bool SAL_CALL ScDrawPagesObj::hasElements() throw(uno::RuntimeException)
     return ( getCount() != 0 );
 }
 
-//------------------------------------------------------------------------
-
 ScTableSheetsObj::ScTableSheetsObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
 {
@@ -1284,7 +1281,7 @@ ScTableSheetsObj::~ScTableSheetsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScTableSheetsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScTableSheetsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1584,7 +1581,6 @@ sal_Bool SAL_CALL ScTableSheetsObj::hasByName( const ::rtl::OUString& aName )
     return FALSE;
 }
 
-//------------------------------------------------------------------------
 
 ScTableColumnsObj::ScTableColumnsObj(ScDocShell* pDocSh, USHORT nT, USHORT nSC, USHORT nEC) :
     pDocShell( pDocSh ),
@@ -1601,11 +1597,10 @@ ScTableColumnsObj::~ScTableColumnsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScTableColumnsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScTableColumnsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
 
         //! Referenz-Update fuer Tab und Start/Ende
     }
@@ -1767,7 +1762,7 @@ void SAL_CALL ScTableColumnsObj::setPropertyValue(
         throw uno::RuntimeException();
 
     ScDocFunc aFunc(*pDocShell);
-    ScDocument* pDoc = pDocShell->GetDocument();
+    pDocShell->GetDocument();
     USHORT nColArr[2];
     nColArr[0] = nStartCol;
     nColArr[1] = nEndCol;
@@ -1868,11 +1863,10 @@ ScTableRowsObj::~ScTableRowsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScTableRowsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScTableRowsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
 
         //! Referenz-Update fuer Tab und Start/Ende
     }
@@ -2088,15 +2082,13 @@ uno::Any SAL_CALL ScTableRowsObj::getPropertyValue( const ::rtl::OUString& aProp
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScTableRowsObj )
 
-//------------------------------------------------------------------------
-
 ScSpreadsheetSettingsObj::~ScSpreadsheetSettingsObj()
 {
     if (pDocShell)
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScSpreadsheetSettingsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScSpreadsheetSettingsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -2117,7 +2109,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScSpreadsheetSettingsObj::getPr
 }
 
 void SAL_CALL ScSpreadsheetSettingsObj::setPropertyValue(
-                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -2125,7 +2117,7 @@ void SAL_CALL ScSpreadsheetSettingsObj::setPropertyValue(
     //! muss noch
 }
 
-uno::Any SAL_CALL ScSpreadsheetSettingsObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScSpreadsheetSettingsObj::getPropertyValue( const ::rtl::OUString& /*aPropertyName*/ )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -2150,7 +2142,7 @@ ScAnnotationsObj::~ScAnnotationsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScAnnotationsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAnnotationsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! nTab bei Referenz-Update anpassen!!!
 
@@ -2292,8 +2284,6 @@ sal_Bool SAL_CALL ScAnnotationsObj::hasElements() throw(uno::RuntimeException)
     return ( getCount() != 0 );
 }
 
-//------------------------------------------------------------------------
-
 ScScenariosObj::ScScenariosObj(ScDocShell* pDocSh, USHORT nT) :
     pDocShell( pDocSh ),
     nTab     ( nT )
@@ -2307,12 +2297,10 @@ ScScenariosObj::~ScScenariosObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScScenariosObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScScenariosObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
-
         //! Referenz-Update fuer Tab und Start/Ende
     }
     else if ( rHint.ISA( SfxSimpleHint ) &&

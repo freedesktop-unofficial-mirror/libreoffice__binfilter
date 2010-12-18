@@ -38,7 +38,6 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScEmptyEnumeration, "ScEmptyEnumeration", "stardiv.unknown" )
 SC_SIMPLE_SERVICE_INFO( ScEmptyEnumerationAccess, "ScEmptyEnumerationAccess", "stardiv.unknown" )
@@ -47,7 +46,6 @@ SC_SIMPLE_SERVICE_INFO( ScPrintSettingsObj, "ScPrintSettingsObj", "stardiv.unkno
 
 SC_SIMPLE_SERVICE_INFO( ScNameToIndexAccess, "ScNameToIndexAccess", "stardiv.unknown" )
 
-//------------------------------------------------------------------------
 
 //  static
 uno::Reference<uno::XInterface> ScUnoHelpFunctions::AnyToInterface( const uno::Any& rAny )
@@ -181,7 +179,6 @@ void ScUnoHelpFunctions::SetBoolInAny( uno::Any& rAny, sal_Bool bValue )
     rAny.setValue( &bValue, getBooleanCppuType() );
 }
 
-//------------------------------------------------------------------------
 
 ScIndexEnumeration::ScIndexEnumeration(const uno::Reference<container::XIndexAccess>& rInd,
                                        const ::rtl::OUString& rServiceName) :
@@ -241,7 +238,6 @@ sal_Bool SAL_CALL ScIndexEnumeration::supportsService( const ::rtl::OUString& Se
     return aRet;
 }
 
-//------------------------------------------------------------------------
 
 ScEmptyEnumerationAccess::~ScEmptyEnumerationAccess()
 {
@@ -267,7 +263,6 @@ sal_Bool SAL_CALL ScEmptyEnumerationAccess::hasElements() throw(uno::RuntimeExce
     return FALSE;
 }
 
-//------------------------------------------------------------------------
 
 ScEmptyEnumeration::ScEmptyEnumeration()
 {
@@ -343,7 +338,6 @@ sal_Bool SAL_CALL ScNameToIndexAccess::hasElements(  ) throw(::com::sun::star::u
     return getCount() > 0;
 }
 
-//------------------------------------------------------------------------
 
 ScPrintSettingsObj::~ScPrintSettingsObj()
 {
@@ -358,7 +352,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScPrintSettingsObj::getProperty
 }
 
 void SAL_CALL ScPrintSettingsObj::setPropertyValue(
-                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -366,7 +360,7 @@ void SAL_CALL ScPrintSettingsObj::setPropertyValue(
     //! later...
 }
 
-uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& /*aPropertyName*/ )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -375,10 +369,6 @@ uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& a
 }
 
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScPrintSettingsObj )
-
-
-//------------------------------------------------------------------------
-
 
 
 }

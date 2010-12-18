@@ -262,7 +262,7 @@ ScHeaderFooterTextData::~ScHeaderFooterTextData()
     rContentObj.release();
 }
 
-void ScHeaderFooterTextData::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScHeaderFooterTextData::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScHeaderFooterChangedHint ) )
     {
@@ -975,7 +975,6 @@ EditTextObject* ScEditEngineTextObj::CreateTextObject()
     return GetEditEngine()->CreateTextObject();
 }
 
-//------------------------------------------------------------------------
 
 ScCellTextData::ScCellTextData(ScDocShell* pDocSh, const ScAddress& rP) :
     pDocShell( pDocSh ),
@@ -1042,7 +1041,6 @@ SvxTextForwarder* ScCellTextData::GetTextForwarder()
         }
         //  currently, GetPortions doesn't work if UpdateMode is FALSE,
         //  this will be fixed (in EditEngine) by src600
-//      pEditEngine->SetUpdateMode( FALSE );
         pEditEngine->EnableUndo( FALSE );
         if (pDocShell)
             pEditEngine->SetRefDevice(pDocShell->GetVirtualDevice_100th_mm());
@@ -1107,11 +1105,11 @@ void ScCellTextData::UpdateData()
         bDirty = TRUE;
 }
 
-void ScCellTextData::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellTextData::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
+        (const ScUpdateRefHint&)rHint;
 
         //! Ref-Update
     }

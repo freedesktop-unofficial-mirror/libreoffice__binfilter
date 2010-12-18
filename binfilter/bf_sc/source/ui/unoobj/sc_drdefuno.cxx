@@ -55,7 +55,7 @@ ScDrawDefaultsObj::~ScDrawDefaultsObj() throw ()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDrawDefaultsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDrawDefaultsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( SfxSimpleHint ) &&
             ((const SfxSimpleHint&)rHint).GetId() == SFX_HINT_DYING )

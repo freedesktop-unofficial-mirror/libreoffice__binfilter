@@ -487,7 +487,6 @@ const SfxItemPropertyMap* lcl_GetColumnPropertyMap()
         {MAP_CHAR_LEN(SC_UNONAME_CONDXML),  SC_WID_UNO_CONDXML, &getCppuType((uno::Reference<sheet::XSheetConditionalEntries>*)0), 0 | beans::PropertyAttribute::READONLY, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLHJUS), ATTR_HOR_JUSTIFY,   &getCppuType((table::CellHoriJustify*)0), 0, MID_HORJUST_HORJUST },
         {MAP_CHAR_LEN(SC_UNONAME_CELLTRAN), ATTR_BACKGROUND,    &getBooleanCppuType(),                  0, MID_GRAPHIC_TRANSPARENT },
-//      {MAP_CHAR_LEN(SC_UNONAME_CELLFILT), SC_WID_UNO_CELLFILT,&getBooleanCppuType(),                  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_MANPAGE),  SC_WID_UNO_MANPAGE, &getBooleanCppuType(),                  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_NEWPAGE),  SC_WID_UNO_NEWPAGE, &getBooleanCppuType(),                  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_WRAP),     ATTR_LINEBREAK,     &getBooleanCppuType(),                  0, 0 },
@@ -801,11 +800,6 @@ struct ScPropertyTester
     ScPropertyTester();
 };
 
-//extern const SfxItemPropertyMap* lcl_GetCellStyleMap();
-//extern const SfxItemPropertyMap* lcl_GetPageStyleMap();
-//extern const SfxItemPropertyMap* lcl_GetHeaderStyleMap();
-//extern const SfxItemPropertyMap* lcl_GetFooterStyleMap();
-
 ScPropertyTester::ScPropertyTester()
 {
     lcl_TestMap( lcl_GetCellsPropertyMap() );
@@ -814,11 +808,6 @@ ScPropertyTester::ScPropertyTester()
     lcl_TestMap( lcl_GetColumnPropertyMap() );
     lcl_TestMap( lcl_GetRowPropertyMap() );
     lcl_TestMap( lcl_GetSheetPropertyMap() );
-
-//  lcl_TestMap( lcl_GetCellStyleMap() );
-//  lcl_TestMap( lcl_GetPageStyleMap() );
-//  lcl_TestMap( lcl_GetHeaderStyleMap() );
-//  lcl_TestMap( lcl_GetFooterStyleMap() );
 }
 
 ScPropertyTester aPropertyTester;
@@ -833,12 +822,11 @@ ScLinkListener::~ScLinkListener()
 {
 }
 
-void ScLinkListener::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScLinkListener::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     aLink.Call( (SfxHint*)&rHint );
 }
 
-//------------------------------------------------------------------------
 
 void lcl_CopyProperties( beans::XPropertySet& rDest, beans::XPropertySet& rSource )
 {
@@ -1208,7 +1196,6 @@ String lcl_GetInputString( ScDocShell* pDocSh, const ScAddress& rPosition, BOOL 
                 // LANGUAGE_ENGLISH_US the "General" format has index key 0,
                 // we don't have to query.
                 sal_uInt32 nNumFmt = bEnglish ?
-//                      pFormatter->GetStandardIndex(LANGUAGE_ENGLISH_US) :
                         0 :
                         pDoc->GetNumberFormat( rPosition );
 
@@ -1248,7 +1235,6 @@ String lcl_GetInputString( ScDocShell* pDocSh, const ScAddress& rPosition, BOOL 
     return aVal;
 }
 
-//------------------------------------------------------------------------
 
 ScCellRangesBase::ScCellRangesBase(ScDocShell* pDocSh, const ScRange& rR) :
     pDocShell( pDocSh ),
@@ -1368,7 +1354,7 @@ const ScMarkData* ScCellRangesBase::GetMarkData()
     return pMarkData;
 }
 
-void ScCellRangesBase::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellRangesBase::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -1546,7 +1532,6 @@ uno::Sequence<sal_Int8> SAL_CALL ScCellRangesBase::getImplementationId()
     return aId;
 }
 
-// ---
 
 void ScCellRangesBase::PaintRanges_Impl( USHORT nPart )
 {
@@ -1706,7 +1691,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScCellRangesBase::getPropertyStates
 
     const SfxItemPropertyMap* pPropertyMap = GetItemPropertyMap();      // from derived class
 
-    const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
+    aPropertyNames.getConstArray();
     uno::Sequence<beans::PropertyState> aRet(aPropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
     const SfxItemPropertyMap* pMap = pPropertyMap;
@@ -1737,7 +1722,7 @@ void SAL_CALL ScCellRangesBase::setPropertyToDefault( const ::rtl::OUString& aPr
         {
             if ( aRanges.Count() )      // leer = nichts zu tun
             {
-                ScDocument* pDoc = pDocShell->GetDocument();
+                pDocShell->GetDocument();
                 ScDocFunc aFunc(*pDocShell);
 
                 //! Bei Items, die mehrere Properties enthalten (z.B. Hintergrund)
@@ -2469,13 +2454,12 @@ uno::Sequence<uno::Any> SAL_CALL ScCellRangesBase::getPropertyValues(
 
     const SfxItemPropertyMap* pPropertyMap = GetItemPropertyMap();      // from derived class
 
-    const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
+    aPropertyNames.getConstArray();
     uno::Sequence<uno::Any> aRet(aPropertyNames.getLength());
     uno::Any* pProperties = aRet.getArray();
     const SfxItemPropertyMap* pMap = pPropertyMap;
     for(INT32 i = 0; i < aPropertyNames.getLength(); i++)
     {
-        USHORT nItemWhich = 0;
         pMap = SfxItemPropertyMap::GetByName( pMap, aPropertyNames[i] );
         GetOnePropertyValue( pMap, pProperties[i] );
         if (!pMap)
@@ -2486,21 +2470,21 @@ uno::Sequence<uno::Any> SAL_CALL ScCellRangesBase::getPropertyValues(
     return aRet;
 }
 
-void SAL_CALL ScCellRangesBase::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-                                    const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+void SAL_CALL ScCellRangesBase::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+                                    const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     DBG_ERROR("not implemented");
 }
 
-void SAL_CALL ScCellRangesBase::removePropertiesChangeListener( const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+void SAL_CALL ScCellRangesBase::removePropertiesChangeListener( const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     DBG_ERROR("not implemented");
 }
 
-void SAL_CALL ScCellRangesBase::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-                                    const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+void SAL_CALL ScCellRangesBase::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+                                    const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     DBG_ERROR("not implemented");
@@ -3448,7 +3432,7 @@ uno::Reference<util::XSearchDescriptor> SAL_CALL ScCellRangesBase::createSearchD
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScCellRangesBase::findAll(
-                        const uno::Reference<util::XSearchDescriptor>& xDesc )
+                        const uno::Reference<util::XSearchDescriptor>& /*xDesc*/ )
                                                     throw(uno::RuntimeException)
 {
     //  Wenn nichts gefunden wird, soll Null zurueckgegeben werden (?)
@@ -3457,8 +3441,8 @@ uno::Reference<container::XIndexAccess> SAL_CALL ScCellRangesBase::findAll(
 }
 
 uno::Reference<uno::XInterface> ScCellRangesBase::Find_Impl(
-                                    const uno::Reference<util::XSearchDescriptor>& xDesc,
-                                    const ScAddress* pLastPos )
+                                    const uno::Reference<util::XSearchDescriptor>& /*xDesc*/,
+                                    const ScAddress* /*pLastPos*/ )
 {
     uno::Reference<uno::XInterface> xRet;
     return xRet;
@@ -3473,8 +3457,8 @@ uno::Reference<uno::XInterface> SAL_CALL ScCellRangesBase::findFirst(
 }
 
 uno::Reference<uno::XInterface> SAL_CALL ScCellRangesBase::findNext(
-                        const uno::Reference<uno::XInterface>& xStartAt,
-                        const uno::Reference<util::XSearchDescriptor >& xDesc )
+                        const uno::Reference<uno::XInterface>& /*xStartAt*/,
+                        const uno::Reference<util::XSearchDescriptor >& /*xDesc*/ )
                                                 throw(uno::RuntimeException)
 {
     return NULL;
@@ -3488,7 +3472,7 @@ uno::Reference<util::XReplaceDescriptor> SAL_CALL ScCellRangesBase::createReplac
     return uno::Reference<util::XReplaceDescriptor>() ;
 }
 
-sal_Int32 SAL_CALL ScCellRangesBase::replaceAll( const uno::Reference<util::XSearchDescriptor>& xDesc )
+sal_Int32 SAL_CALL ScCellRangesBase::replaceAll( const uno::Reference<util::XSearchDescriptor>& /*xDesc*/ )
                                                 throw(uno::RuntimeException)
 {
     INT32 nReplaced = 0;
@@ -3536,7 +3520,6 @@ ScCellRangesBase* ScCellRangesBase::getImplementation( const uno::Reference<uno:
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScCellRangesObj::ScCellRangesObj(ScDocShell* pDocSh, const ScRangeList& rR) :
     ScCellRangesBase( pDocSh, rR )
@@ -4697,7 +4680,7 @@ sal_Bool SAL_CALL ScCellRangeObj::getIsMerged() throw(uno::RuntimeException)
 
 void SAL_CALL ScCellRangeObj::fillSeries( sheet::FillDirection nFillDirection,
                         sheet::FillMode nFillMode, sheet::FillDateMode nFillDateMode,
-                        double fStep, double fEndValue ) throw(uno::RuntimeException)
+                        double /*fStep*/, double /*fEndValue*/ ) throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
     ScDocShell* pDocSh = GetDocShell();
@@ -5022,7 +5005,6 @@ uno::Reference<sheet::XSheetFilterDescriptor> SAL_CALL ScCellRangeObj::createFil
         //! Test, ob xObject im selben Dokument ist
 
         ScFilterDescriptor* pNew = new ScFilterDescriptor(pDocSh);  //! stattdessen vom Objekt?
-        //XSheetFilterDescriptorRef xNew = xObject->createFilterDescriptor(TRUE);
 
         ScQueryParam aParam = pNew->GetParam();
         aParam.bHasHeader = TRUE;
@@ -5337,7 +5319,6 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellRangeObj::getSupportedServiceName
     return aRet;
 }
 
-//------------------------------------------------------------------------
 
 const SfxItemPropertyMap* ScCellObj::GetEditPropertyMap()       // static
 {
@@ -5500,7 +5481,7 @@ void ScCellObj::SetString_Impl(const String& rString, BOOL bInterpret, BOOL bEng
     if ( pDocSh )
     {
         ScDocFunc aFunc(*pDocSh);
-        BOOL bOk = aFunc.SetCellText( aCellPos, rString, bInterpret, bEnglish, TRUE );
+        aFunc.SetCellText( aCellPos, rString, bInterpret, bEnglish, TRUE );
     }
 }
 
@@ -5519,7 +5500,7 @@ void ScCellObj::SetValue_Impl(double fValue)
     if ( pDocSh )
     {
         ScDocFunc aFunc(*pDocSh);
-        BOOL bOk = aFunc.PutCell( aCellPos, new ScValueCell(fValue), TRUE );
+        aFunc.PutCell( aCellPos, new ScValueCell(fValue), TRUE );
     }
 }
 
@@ -6038,7 +6019,6 @@ sal_Int16 SAL_CALL ScCellObj::resetActionLocks() throw(uno::RuntimeException)
     return nRet;
 }
 
-//------------------------------------------------------------------------
 
 ScTableSheetObj::ScTableSheetObj( ScDocShell* pDocSh, USHORT nTab ) :
     ScCellRangeObj( pDocSh, ScRange(0,0,nTab, MAXCOL,MAXROW,nTab) ),
@@ -6483,7 +6463,7 @@ void SAL_CALL ScTableSheetObj::removeRange( const table::CellRangeAddress& aRang
     }
 }
 
-void SAL_CALL ScTableSheetObj::moveRange( const table::CellAddress& aDestination,
+void SAL_CALL ScTableSheetObj::moveRange( const table::CellAddress& /*aDestination*/,
                                         const table::CellRangeAddress& aSource )
                                         throw(uno::RuntimeException)
 {
@@ -6497,7 +6477,7 @@ void SAL_CALL ScTableSheetObj::moveRange( const table::CellAddress& aDestination
     }
 }
 
-void SAL_CALL ScTableSheetObj::copyRange( const table::CellAddress& aDestination,
+void SAL_CALL ScTableSheetObj::copyRange( const table::CellAddress& /*aDestination*/,
                                         const table::CellRangeAddress& aSource )
                                         throw(uno::RuntimeException)
 {
@@ -7419,7 +7399,6 @@ ScTableSheetObj* ScTableSheetObj::getImplementation( const uno::Reference<uno::X
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScTableColumnObj::ScTableColumnObj( ScDocShell* pDocSh, USHORT nCol, USHORT nTab ) :
     ScCellRangeObj( pDocSh, ScRange(nCol,0,nTab, nCol,MAXROW,nTab) ),
@@ -7491,7 +7470,7 @@ uno::Sequence<sal_Int8> SAL_CALL ScTableColumnObj::getImplementationId() throw(u
     return ColToAlpha( nCol );      // from global.hxx
 }
 
-void SAL_CALL ScTableColumnObj::setName( const ::rtl::OUString& aNewName )
+void SAL_CALL ScTableColumnObj::setName( const ::rtl::OUString& /*aNewName*/ )
                                                 throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -7526,7 +7505,7 @@ void ScTableColumnObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, cons
         ScDocShell* pDocSh = GetDocShell();
         if (!pDocSh)
             return;                                                 //! Exception oder so?
-        ScDocument* pDoc = pDocSh->GetDocument();
+        pDocSh->GetDocument();
         const ScRange& rRange = GetRange();
         DBG_ASSERT(rRange.aStart.Col() == rRange.aEnd.Col(), "zuviele Spalten");
         USHORT nCol = rRange.aStart.Col();
@@ -7628,7 +7607,6 @@ const SfxItemPropertyMap* ScTableColumnObj::GetItemPropertyMap()
     return lcl_GetColumnPropertyMap();
 }
 
-//------------------------------------------------------------------------
 
 ScTableRowObj::ScTableRowObj(ScDocShell* pDocSh, USHORT nRow, USHORT nTab) :
     ScCellRangeObj( pDocSh, ScRange(0,nRow,nTab, MAXCOL,nRow,nTab) ),
@@ -7699,8 +7677,6 @@ void ScTableRowObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const u
         else if ( pMap->nWID == SC_WID_UNO_CELLFILT )
         {
             BOOL bFil = ScUnoHelpFunctions::GetBoolFromAny( aValue );
-//          ScSizeMode eMode = bVis ? SC_SIZE_SHOW : SC_SIZE_DIRECT;
-//          aFunc.SetWidthOrHeight( FALSE, 1, nRowArr, nTab, eMode, 0, TRUE, TRUE );
             //  SC_SIZE_DIRECT mit Groesse 0 blendet aus
             BYTE nFlags = pDoc->GetRowFlags(nRow, nTab);
             if (bFil)
@@ -7790,7 +7766,6 @@ const SfxItemPropertyMap* ScTableRowObj::GetItemPropertyMap()
     return lcl_GetRowPropertyMap();
 }
 
-//------------------------------------------------------------------------
 
 ScCellsObj::ScCellsObj(ScDocShell* pDocSh, const ScRangeList& rR) :
     pDocShell( pDocSh ),
@@ -7805,7 +7780,7 @@ ScCellsObj::~ScCellsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScCellsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -7851,7 +7826,6 @@ sal_Bool SAL_CALL ScCellsObj::hasElements() throw(uno::RuntimeException)
     return bHas;
 }
 
-//------------------------------------------------------------------------
 
 ScCellsEnumeration::ScCellsEnumeration(ScDocShell* pDocSh, const ScRangeList& rR) :
     pDocShell( pDocSh ),
@@ -7924,7 +7898,7 @@ void ScCellsEnumeration::Advance_Impl()
         bAtEnd = TRUE;      // kommt nix mehr
 }
 
-void ScCellsEnumeration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellsEnumeration::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -7985,7 +7959,6 @@ uno::Any SAL_CALL ScCellsEnumeration::nextElement() throw(container::NoSuchEleme
     return uno::Any();
 }
 
-//------------------------------------------------------------------------
 
 ScCellFormatsObj::ScCellFormatsObj(ScDocShell* pDocSh, const ScRange& rRange) :
     pDocShell( pDocSh ),
@@ -8003,7 +7976,7 @@ ScCellFormatsObj::~ScCellFormatsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScCellFormatsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellFormatsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -8107,7 +8080,6 @@ uno::Reference<container::XEnumeration> SAL_CALL ScCellFormatsObj::createEnumera
     return NULL;
 }
 
-//------------------------------------------------------------------------
 
 ScCellFormatsEnumeration::ScCellFormatsEnumeration(ScDocShell* pDocSh, const ScRange& rRange) :
     pDocShell( pDocSh ),
@@ -8171,7 +8143,7 @@ ScCellRangeObj* ScCellFormatsEnumeration::NextObject_Impl()
     return pRet;
 }
 
-void ScCellFormatsEnumeration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScCellFormatsEnumeration::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -8217,7 +8189,6 @@ uno::Any SAL_CALL ScCellFormatsEnumeration::nextElement() throw(container::NoSuc
     return aAny;
 }
 
-//------------------------------------------------------------------------
 
 ScUniqueCellFormatsObj::ScUniqueCellFormatsObj(ScDocShell* pDocSh, const ScRange& rRange) :
     pDocShell( pDocSh ),
@@ -8237,7 +8208,7 @@ ScUniqueCellFormatsObj::~ScUniqueCellFormatsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScUniqueCellFormatsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScUniqueCellFormatsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
@@ -8258,7 +8229,6 @@ void ScUniqueCellFormatsObj::GetObjects_Impl()
     if (pDocShell)
     {
         ScDocument* pDoc = pDocShell->GetDocument();
-        long nPos = 0;
         USHORT nTab = aTotalRange.aStart.Tab();
         ScAttrRectIterator aIter( pDoc, nTab,
                                     aTotalRange.aStart.Col(), aTotalRange.aStart.Row(),
@@ -8361,7 +8331,6 @@ uno::Reference<container::XEnumeration> SAL_CALL ScUniqueCellFormatsObj::createE
     return NULL;
 }
 
-//------------------------------------------------------------------------
 
 ScUniqueCellFormatsEnumeration::ScUniqueCellFormatsEnumeration(ScDocShell* pDocSh, const ScMyRangeLists& rRangeLists) :
     pDocShell( pDocSh ),
@@ -8377,7 +8346,7 @@ ScUniqueCellFormatsEnumeration::~ScUniqueCellFormatsEnumeration()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScUniqueCellFormatsEnumeration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScUniqueCellFormatsEnumeration::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
