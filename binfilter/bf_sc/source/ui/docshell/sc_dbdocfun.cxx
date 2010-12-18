@@ -50,9 +50,8 @@
 #include "editable.hxx"
 namespace binfilter {
 
-// -----------------------------------------------------------------
 
-/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/
 /*N*/   ScDocShellModificator aModificator( rDocShell );
@@ -79,7 +78,7 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 /*N*/
-/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -102,7 +101,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -143,7 +142,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData, BOOL /*bApi*/)
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -173,7 +172,6 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::RepeatDB( const String& rDBName, BOOL bRecord, BOOL bApi )
 /*N*/ {
@@ -225,7 +223,6 @@ namespace binfilter {
 /*N*/           pDBData->GetArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/
 /*N*/           ScDocument* pUndoDoc = NULL;
-/*N*/           ScOutlineTable* pUndoTab = NULL;
 /*N*/           ScRangeName* pUndoRange = NULL;
 /*N*/           ScDBCollection* pUndoDB = NULL;
 /*N*/
@@ -236,7 +233,7 @@ namespace binfilter {
 /*N*/               ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
 /*N*/               if (pTable)
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/                   pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
@@ -305,7 +302,6 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::Sort( USHORT nTab, const ScSortParam& rSortParam,
 /*N*/                           BOOL bRecord, BOOL bPaint, BOOL bApi )
@@ -315,7 +311,6 @@ namespace binfilter {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
-/*N*/   USHORT nSrcTab = nTab;
 /*N*/
 /*N*/   ScDBData* pDBData = pDoc->GetDBAtArea( nTab, rSortParam.nCol1, rSortParam.nRow1,
 /*N*/                                                   rSortParam.nCol2, rSortParam.nRow2 );
@@ -475,7 +470,6 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::Query( USHORT nTab, const ScQueryParam& rQueryParam,
 /*N*/                       const ScRange* pAdvSource, BOOL bRecord, BOOL bApi )
@@ -713,10 +707,9 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::DoSubTotals( USHORT nTab, const ScSubTotalParam& rParam,
-/*N*/                               const ScSortParam* pForceNewSort, BOOL bRecord, BOOL bApi )
+/*N*/                               const ScSortParam* /*pForceNewSort*/, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   //! auch fuer ScDBFunc::DoSubTotals benutzen!
 /*N*/   //  dann bleibt aussen:
@@ -754,9 +747,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   BOOL bOk = TRUE;
-/*N*/   BOOL bDelete = FALSE;
 /*N*/   if (rParam.bReplace)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 if (pDoc->TestRemoveSubTotals( nTab, rParam ))
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   if (bOk)
 /*N*/   {
@@ -765,7 +757,6 @@ namespace binfilter {
 /*N*/
 /*N*/       ScSubTotalParam aNewParam( rParam );        // Bereichsende wird veraendert
 /*N*/       ScDocument*     pUndoDoc = NULL;
-/*N*/       ScOutlineTable* pUndoTab = NULL;
 /*N*/       ScRangeName*    pUndoRange = NULL;
 /*N*/       ScDBCollection* pUndoDB = NULL;
 /*N*/       USHORT          nTabCount = 0;              // fuer Referenz-Undo
@@ -779,7 +770,7 @@ namespace binfilter {
 /*N*/           ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
 /*N*/           if (pTable)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/               pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, bOldFilter );
@@ -801,7 +792,6 @@ namespace binfilter {
 /*N*/               pUndoDB = new ScDBCollection( *pDocDB );
 /*N*/       }
 /*N*/
-/*N*/ //        pDoc->SetOutlineTable( nTab, NULL );
 /*N*/       ScOutlineTable* pOut = pDoc->GetOutlineTable( nTab );
 /*N*/       if (pOut)
 /*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOut->GetRowArray()->RemoveAll();        // nur Zeilen-Outlines loeschen
@@ -820,7 +810,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if (bRecord)
 /*N*/       {
-/*N*/ //            ScDBData* pUndoDBData = pDBData ? new ScDBData( *pDBData ) : NULL;
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
 /*N*/       }
 /*N*/
@@ -845,8 +834,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-//==================================================================
-
 /*N*/ BOOL ScDBDocFunc::DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
 /*N*/                                       BOOL bRecord, BOOL bApi )
 /*N*/ {
@@ -854,7 +841,6 @@ namespace binfilter {
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );
 /*N*/
 /*N*/   BOOL bDone = FALSE;
-/*N*/   BOOL bUndoSelf = FALSE;
 /*N*/   USHORT nErrId = 0;
 /*N*/
 /*N*/   ScDocument* pOldUndoDoc = NULL;

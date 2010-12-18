@@ -37,7 +37,6 @@
 
 namespace binfilter {
 
-//------------------------------------------------------------------
 
 /*N*/ ScEditableTester::ScEditableTester() :
 /*N*/   bIsEditable( TRUE ),
@@ -63,20 +62,18 @@ namespace binfilter {
 /*N*/   TestSelectedBlock( pDoc, nStartCol, nStartRow, nEndCol, nEndRow, rMark );
 /*N*/ }
 
-/*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScRange& rRange ) :
+/*N*/ ScEditableTester::ScEditableTester( ScDocument* /*pDoc*/, const ScRange& /*rRange*/ ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScMarkData& rMark ) :
+/*N*/ ScEditableTester::ScEditableTester( ScDocument* /*pDoc*/, const ScMarkData& /*rMark*/ ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
 /*N*/ }
 
-
-//------------------------------------------------------------------
 
 /*N*/ void ScEditableTester::TestBlock( ScDocument* pDoc, USHORT nTab,
 /*N*/                       USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow )
@@ -102,11 +99,6 @@ namespace binfilter {
 /*N*/       if (rMark.GetTableSelect(nTab))
 /*N*/           TestBlock( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/ }
-
-
-
-
-//------------------------------------------------------------------
 
 /*N*/ USHORT ScEditableTester::GetMessageId() const
 /*N*/ {

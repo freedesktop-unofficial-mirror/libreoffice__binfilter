@@ -30,8 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 
 #include "olinefun.hxx"
 
@@ -41,26 +39,25 @@
 namespace binfilter {
 
 
-//========================================================================
 
-/*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT nTab, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT /*nTab*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartCol = rRange.aStart.Col();
 /*N*/   return TRUE;
@@ -68,8 +65,8 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT nTab, BOOL bColumns, USHORT nLevel,
-/*N*/                                   BOOL bRecord, BOOL bPaint, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT /*nTab*/, BOOL /*bColumns*/, USHORT /*nLevel*/,
+/*N*/                                   BOOL /*bRecord*/, BOOL /*bPaint*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   return TRUE;
@@ -77,12 +74,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bDone = FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& /*rRange*/, BOOL/* bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
 /*N*/ }

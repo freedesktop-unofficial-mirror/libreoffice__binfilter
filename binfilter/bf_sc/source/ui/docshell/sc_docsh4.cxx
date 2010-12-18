@@ -78,30 +78,18 @@ namespace binfilter {
 #define SC_PREVIEW_SIZE_Y   12400
 
 
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
-
-/*N*/ void ScDocShell::DoRecalc( BOOL bApi )
+/*N*/ void ScDocShell::DoRecalc( BOOL /*bApi*/ )
 /*N*/ {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScInputHandler* pHdl = SC_MOD()->GetInputHdl(pSh);
 /*N*/ }
 
-/*N*/ void ScDocShell::DoHardRecalc( BOOL bApi )
+/*N*/ void ScDocShell::DoHardRecalc( BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   aDocument.CalcAll();
 /*N*/   GetDocFunc().DetectiveRefresh();    // erzeugt eigenes Undo
 /*N*/   PostPaintGridAll();
 /*N*/ }
 
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
 
 /*N*/ void ScDocShell::NotifyStyle( const SfxStyleSheetHint& rHint )
 /*N*/ {
@@ -202,17 +190,10 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-//------------------------------------------------------------------
-
 /*N*/ ScViewData* ScDocShell::GetViewData()
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
-
-//------------------------------------------------------------------
 
 /*N*/ USHORT ScDocShell::GetCurTab()
 /*N*/ {

@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-// System - Includes -----------------------------------------------------
 
 class StarBASIC;
 
@@ -39,7 +38,6 @@ class StarBASIC;
 #define GLOBALOVERFLOW
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <stdio.h>
 #include <ctype.h>
@@ -115,34 +113,13 @@ namespace binfilter {
 /*N*/   cStr = rOpt.GetTextSep();
 /*N*/ }
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
 // Vorbereitung fuer Undo: Undo-Dokument erzeugen
-
-
 
 // Nachbereitung Insert: Undo/Redo-Aktionen erzeugen, Invalidate/Repaint
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 // static
-
-
-
-
-
-
-
 
 /*N*/ BOOL ScImportExport::ImportStream( SvStream& rStrm, ULONG nFmt )
 /*N*/ {
@@ -247,18 +224,9 @@ enum DoubledQuoteMode
 /*N*/   return p;
 /*N*/ }
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-
         //
         //  erweiterter Ascii-Import
         //
-
-
 /*M*/ void lcl_PutString( ScDocument* pDoc, USHORT nCol, USHORT nRow, USHORT nTab,
 /*M*/                   const String& rStr, BYTE nColFormat,
 /*M*/                     ::utl::TransliterationWrapper& rTransliteration,
@@ -530,7 +498,7 @@ enum DoubledQuoteMode
 /*N*/       if ( rStrm.IsEof() )
 /*N*/           break;
 /*N*/
-/*N*/       xub_StrLen nLineLen = aLine.Len();
+/*N*/       aLine.Len();
 /*N*/       USHORT nCol = nStartCol;
 /*N*/       if ( bFixed )               //  Feste Satzlaenge
 /*N*/       {
@@ -614,28 +582,6 @@ enum DoubledQuoteMode
 /*N*/   }
 /*N*/   return p;
 /*N*/ }
-
-        //
-        //
-        //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
 

@@ -144,7 +144,7 @@ using namespace ::com::sun::star;
 /*?*/               rtl::Reference<SvxForbiddenCharactersTable> xForbiddenTable =
 /*?*/                       new SvxForbiddenCharactersTable( aDocument.GetServiceManager() );
 /*?*/
-/*?*/               const lang::Locale* pLocales = aLocales.getConstArray();
+/*?*/               aLocales.getConstArray();
 /*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;

@@ -34,7 +34,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------
 
 #include <comphelper/processfactory.hxx>
 #include <comphelper/types.hxx>
@@ -90,7 +89,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 #define SC_DBPROP_SELECTION         "Selection"
 #define SC_DBPROP_CURSOR            "Cursor"
 
-// -----------------------------------------------------------------
 
 /*M*/ BOOL ScDBDocFunc::DoImport( USHORT nTab, const ScImportParam& rParam,
 /*M*/         const uno::Reference< sdbc::XResultSet >& xResultSet,
@@ -119,7 +117,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   ScDocShellModificator aModificator( rDocShell );
 /*M*/
 /*M*/   BOOL bSuccess = FALSE;
-/*M*/   BOOL bApi = FALSE;                      //! pass as argument
 /*M*/   BOOL bTruncated = FALSE;                // for warning
 /*M*/   USHORT nErrStringId = 0;
 /*M*/   String aErrorMessage;
@@ -537,32 +534,11 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/       if (pWaitWin)
 /*M*/           pWaitWin->LeaveWait();
-/*M*/
-//*M*/      if ( bTruncated && !bApi )          // show warning
-//*M*/          ErrorHandler::HandleError(SCWARN_IMPORT_RANGE_OVERFLOW);
 /*M*/   }
-//*M*/  else if ( !bApi )
-//*M*/  {
-//*M*/      if (pWaitWin)
-//*M*/          pWaitWin->LeaveWait();
-//*M*/
-//*M*/      if (!aErrorMessage.Len())
-//*M*/      {
-//*M*/          if (!nErrStringId)
-//*M*/              nErrStringId = STR_MSSG_IMPORTDATA_0;
-//*M*/          aErrorMessage = ScGlobal::GetRscString( nErrStringId );
-//*M*/      }
-//*M*/      InfoBox aInfoBox( rDocShell.GetDialogParent(), aErrorMessage );
-//*M*/      aInfoBox.Execute();
-//*M*/  }
-/*M*/
 /*M*/   delete pImportDoc;
 /*M*/
 /*M*/   return bSuccess;
 /*M*/ }
-
-
-
 
 }
 

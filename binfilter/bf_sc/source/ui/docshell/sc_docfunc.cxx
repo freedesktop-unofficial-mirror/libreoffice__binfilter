@@ -30,7 +30,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
@@ -81,9 +80,6 @@ using namespace ::com::sun::star;
 
 // STATIC DATA -----------------------------------------------------------
 
-//========================================================================
-
-
 //  Zeile ueber dem Range painten (fuer Linien nach AdjustRowHeight)
 
 /*N*/ void lcl_PaintAbove( ScDocShell& rDocShell, const ScRange& rRange )
@@ -97,7 +93,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-//------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::AdjustRowHeight( const ScRange& rRange, BOOL bPaint )
 /*N*/ {
@@ -795,15 +790,8 @@ using namespace ::com::sun::star;
 /*N*/   else
 /*N*/       rMark.GetMarkArea( aMultiRange );
 /*N*/
-/*N*/
-/*N*/ //    BOOL bPaintExt = pDoc->HasAttrib( aMultiRange, HASATTR_PAINTEXT );
-/*N*/ //    pDoc->ApplySelectionPattern( rPattern, rMark );
-/*N*/
 /*N*/   pDoc->ApplySelectionStyle( (ScStyleSheet&)*pStyleSheet, rMark );
 /*N*/
-/*N*/ //    if (!bPaintExt)
-/*N*/ //        bPaintExt = pDoc->HasAttrib( aMultiRange, HASATTR_PAINTEXT );
-/*N*/ //    USHORT nExtFlags = bPaintExt ? SC_PF_LINES : 0;
 /*N*/   USHORT nExtFlags = 0;
 /*N*/   if (!AdjustRowHeight( aMultiRange ))
 /*N*/       rDocShell.PostPaint( aMultiRange, PAINT_GRID, nExtFlags );
@@ -1193,7 +1181,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::ClearItems( const ScMarkData& rMark, const USHORT* pWhich, BOOL bApi )
+/*N*/ BOOL ScDocFunc::ClearItems( const ScMarkData& rMark, const USHORT* /*pWhich*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1218,7 +1206,7 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::ChangeIndent( const ScMarkData& rMark, BOOL bIncrement, BOOL bApi )
+/*N*/ BOOL ScDocFunc::ChangeIndent( const ScMarkData& rMark, BOOL /*bIncrement*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1278,13 +1266,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if (bSize)
 /*N*/       {
-/*          USHORT nCols[2];
-            nCols[0] = nStartCol;
-            nCols[1] = nEndCol;
-            USHORT nRows[2];
-            nRows[0] = nStartRow;
-            nRows[1] = nEndRow;
-*/
 /*N*/           USHORT nCols[2] = { nStartCol, nEndCol };
 /*N*/           USHORT nRows[2] = { nStartRow, nEndRow };
 /*N*/
@@ -1320,8 +1301,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::EnterMatrix( const ScRange& rRange, const ScMarkData* pTabMark,
 /*N*/                               const String& rString, BOOL bApi, BOOL bEnglish )
@@ -1381,8 +1360,6 @@ using namespace ::com::sun::star;
 /*N*/   return bSuccess;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
 /*N*/ inline ScDirection DirFromFillDir( FillDir eDir )
 /*N*/ {
 /*N*/   if (eDir==FILL_TO_BOTTOM)
@@ -1394,8 +1371,6 @@ using namespace ::com::sun::star;
 /*N*/   else // if (eDir==FILL_TO_LEFT)
 /*N*/       return DIR_LEFT;
 /*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL bRecord, BOOL bApi )
 /*N*/ {
@@ -1451,8 +1426,6 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
 /*N*/ BOOL ScDocFunc::ModifyRangeNames( const ScRangeName& rNewRanges )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
@@ -1468,8 +1441,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ void ScDocFunc::CreateOneName( ScRangeName& rList,
 /*N*/                               USHORT nPosX, USHORT nPosY, USHORT nTab,
@@ -1622,8 +1593,6 @@ using namespace ::com::sun::star;
 /*N*/   return bDone;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
 /*N*/ BOOL ScDocFunc::InsertNameList( const ScAddress& rStartPos, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
@@ -1699,11 +1668,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return bDone;
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::InsertAreaLink( const String& rFile, const String& rFilter,
 /*N*/                               const String& rOptions, const String& rSource,

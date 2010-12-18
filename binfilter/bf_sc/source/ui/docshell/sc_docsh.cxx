@@ -183,13 +183,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/       DBG_ERROR("wat fuer ne Version?");
 /*N*/ }
 
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
 
 /*N*/ BOOL ScDocShell::LoadCalc( SvStorage* pStor )     // StarCalc 3, 4 or 5 file
 /*N*/ {
@@ -331,7 +324,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                                 else
                                 {
                                     USHORT nPos=0;
-                                    bool bActive = aWinData.GetToken( 3, cToken, nPos ).ToInt32();
+                                    aWinData.GetToken( 3, cToken, nPos ).ToInt32();
                                     aUserData = aWinData.Copy( nPos );
                                 }
                                 // aUserData is used in ScModelObj::getViewData
@@ -524,8 +517,9 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/       ScColumn::bDoubleAlloc = sal_True;
 /*N*/ }
 
-/*N*/ void ScDocShell::AfterXMLLoading(sal_Bool bRet)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void ScDocShell::AfterXMLLoading(sal_Bool /*bRet*/)
+/*N*/ {
+           DBG_BF_ASSERT(0, "STRIP"); //STRIP001
             aDocument.SetInsertingFromOtherDoc( FALSE );
             aDocument.SetImportingXML( FALSE );
 
@@ -631,7 +625,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/ }
 
 
-/*N*/ void ScDocShell::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void ScDocShell::SFX_NOTIFY( SfxBroadcaster& /*rBC*/, const TypeId& rBCType,
 /*N*/                        const SfxHint& rHint, const TypeId& rHintType )
 /*N*/ {
 /*N*/   if (rHint.ISA(SfxSimpleHint))                               // ohne Parameter
@@ -888,12 +882,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/                       nWidth + (USHORT)ScGlobal::nLastColWidthExtra );
 /*N*/               }
 /*N*/           }
-/*N*/ //            if ( bSetRowHeights )
-/*N*/ //            {
-/*N*/ //                //  nExtra must be 0
-/*N*/ //                aDocument.SetOptimalHeight( 0, nEndRow, nTab, 0, &aVirtDev,
-/*N*/ //                    nPPTX, nPPTY, aZoom, aZoom, FALSE );
-/*N*/ //            }
 /*N*/       }
 /*N*/       if ( bSetRowHeights )
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 UpdateAllRowHeights();        // with vdev or printer, depending on configuration
@@ -1230,7 +1218,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 /*N*/ void ScDocShell::SetDrawModified( BOOL bIsModified /* = TRUE */ )
 /*N*/ {
-/*N*/   BOOL bUpdate = ( bIsModified != IsModified() );
+/*N*/   bIsModified != IsModified() ;
 /*N*/
 /*N*/   SetModified( bIsModified );
 /*N*/
@@ -1244,11 +1232,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       SC_MOD()->AnythingChanged();
 /*N*/   }
 /*N*/ }
-
-
-
-
-
 
 /*N*/ Window* ScDocShell::GetDialogParent()
 /*N*/ {

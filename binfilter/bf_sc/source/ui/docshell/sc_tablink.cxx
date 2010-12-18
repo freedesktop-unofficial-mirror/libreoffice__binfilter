@@ -167,8 +167,6 @@ namespace binfilter {
 /*N*/   if (!aNewOpt.Len())
 /*N*/       aNewOpt = aOptions;
 /*N*/
-/*N*/   BOOL bFirst = TRUE;
-/*N*/
 /*N*/   //  Tabellen kopieren
 /*N*/
 /*N*/   ScDocShellModificator aModificator( *pDocShell );
@@ -216,7 +214,6 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/               pDoc->DeleteAreaTab( 0,0,MAXCOL,MAXROW, nTab, IDF_ALL );
-/*N*/ //                pDoc->ClearDrawPage(nTab);
 /*N*/               //  Fehler eintragen
 /*N*/               pDoc->SetString( 0,0,nTab, ScGlobal::GetRscString(STR_LINKERROR) );
 /*N*/               pDoc->SetString( 0,1,nTab, ScGlobal::GetRscString(STR_LINKERRORFILE) );
@@ -246,7 +243,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //  aufraeumen
 /*N*/
-/*N*/ //    pSrcShell->DoClose();
 /*N*/   aRef->DoClose();
 /*N*/
 /*N*/   //  Paint (koennen mehrere Tabellen sein)
@@ -352,7 +348,7 @@ namespace binfilter {
 
 /*M*/ ScDocumentLoader::ScDocumentLoader( const String& rFileName,
 /*M*/                                   String& rFilterName, String& rOptions,
-/*M*/                                   UINT32 nRekCnt, BOOL bWithInteraction ) :
+/*M*/                                   UINT32 /*nRekCnt*/, BOOL bWithInteraction ) :
 /*M*/       pDocShell(0),
 /*M*/       pMedium(0)
 /*M*/ {
@@ -392,9 +388,6 @@ namespace binfilter {
 /*N*/
 /*N*/ ScDocumentLoader::~ScDocumentLoader()
 /*N*/ {
-/*  if ( pDocShell )
-        pDocShell->DoClose();
-*/
 /*N*/   if ( aRef.Is() )
 /*N*/       aRef->DoClose();
 /*N*/   else if ( pMedium )

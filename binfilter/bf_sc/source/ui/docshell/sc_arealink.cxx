@@ -221,8 +221,8 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ScDocShellModificator aModificator( *pDocShell );
 /*N*/
-/*N*/       USHORT nStartX = aDestPos.Col();
-/*N*/       USHORT nStartY = aDestPos.Row();
+/*N*/       aDestPos.Col();
+/*N*/       aDestPos.Row();
 /*N*/       USHORT nOldEndX = aOldRange.aEnd.Col();
 /*N*/       USHORT nOldEndY = aOldRange.aEnd.Row();
 /*N*/       USHORT nNewEndX = aNewRange.aEnd.Col();

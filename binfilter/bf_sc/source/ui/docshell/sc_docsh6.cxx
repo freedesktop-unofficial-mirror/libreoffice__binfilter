@@ -28,80 +28,51 @@
 
 // System - Includes -----------------------------------------------------
 
-//#define _BASEDLGS_HXX ***
 #define _BIGINT_HXX
 #define _CACHESTR_HXX
-//#define _CLIP_HXX
 #define _CONFIG_HXX
 #define _CURSOR_HXX
-//#define _COLOR_HXX
-//#define _CTRLBOX_HXX
-//#define _CTRLTOOL_HXX
 #define _DIALOGS_HXX
 #define _DLGCFG_HXX
 #define _DYNARR_HXX
 #define _EXTATTR_HXX
-//#define _FIELD_HXX
 #define _FILDLG_HXX
-//#define _FILTER_HXX
 #define _FONTDLG_HXX
 #define _FRM3D_HXX
-//#define _GRAPH_HXX
-//#define _GDIMTF_HXX
 #define _INTRO_HXX
 #define _ISETBWR_HXX
 #define _NO_SVRTF_PARSER_HXX
-//#define _MDIFRM_HXX
 #define _MACRODLG_HXX
 #define _MODALDLG_HXX
 #define _MOREBUTTON_HXX
-//#define _MAPMOD_HXX
 #define _OUTLINER_HXX
-//#define _PAL_HXX
 #define _PASSWD_HXX
-//#define _PRNDLG_HXX   //
 #define _POLY_HXX
 #define _PVRWIN_HXX
 #define _QUEUE_HXX
 #define _RULER_HXX
 #define _SCRWIN_HXX
-//#define _SELENG_HXX
 #define _SETBRW_HXX
-//#define _SOUND_HXX
 #define _STACK_HXX
-//#define _STATUS_HXX ***
 #define _STDMENU_HXX
-//#define _STDCTRL_HXX
-//#define _SYSDLG_HXX
-//#define _TAB_HXX
 #define _TABBAR_HXX
-//#define _TREELIST_HXX
-//#define _VALUESET_HXX
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCATTR_HXX
 #define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
-//#define _VIEWFAC_HXX
 
 
 #define _SFX_PRNMON_HXX
 #define _SFX_RESMGR_HXX
-//#define _SFX_SAVEOPT_HXX
 #define _SFX_TEMPLDLG_HXX
-//#define _SFXAPP_HXX
 #define _SFXBASIC_HXX
-//#define _SFXCTRLITEM_HXX
 #define _SFXDISPATCH_HXX
 #define _SFXFILEDLG_HXX
 #define _SFXIMGMGR_HXX
 #define _SFXMNUMGR_HXX
-//#define _SFXMSG_HXX
 #define _SFXMSGDESCR_HXX
 #define _SFXMSGPOOL_HXX
-//#define _SFXOBJFACE_HXX
-//#define _SFXREQUEST_HXX
 #define _SFXSTBITEM_HXX
 #define _SFXSTBMGR_HXX
 #define _SFXTBXCTRL_HXX
@@ -167,13 +138,6 @@ namespace binfilter {
 /*N*/ };
 
 
-// STATIC DATA -----------------------------------------------------------
-
-//----------------------------------------------------------------------
-
-//
-//  Ole
-//
 
 
 /*N*/ void ScDocShell::SetVisArea( const Rectangle & rVisArea )
@@ -231,7 +195,7 @@ namespace binfilter {
 //  muessen die SetItems (ATTR_PAGE_HEADERSET, ATTR_PAGE_FOOTERSET) auf den richtigen
 //  Pool umgesetzt werden, bevor der Quell-Pool geloescht wird.
 
-/*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* pStylePool )
+/*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* /*pStylePool*/ )
 /*N*/ {
 /*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pStylePool->SetSearchMask(SFX_STYLE_FAMILY_PAGE, 0xffff);
 /*N*/ }
