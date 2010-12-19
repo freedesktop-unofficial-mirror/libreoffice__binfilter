@@ -1807,7 +1807,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
                 sal_Int32 i = 0;
                 for( set<OUString>::iterator aSetIter = rOurMasters.begin();
                      aSetIter != rOurMasters.end();
-                     aSetIter++, i++ )
+                     ++aSetIter, ++i )
                 {
                     aFieldMasters[i] = *aSetIter;
                 }
@@ -1889,7 +1889,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aVarIter = aVarName.begin();
              aVarIter != aVarName.end();
-             aVarIter++) {
+             ++aVarIter) {
 
             OUString sName = *aVarIter;
 
@@ -1948,7 +1948,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aSeqIter = aSeqName.begin();
              aSeqIter != aSeqName.end();
-             aSeqIter++) {
+             ++aSeqIter) {
 
             OUString sName = *aSeqIter;
 
@@ -1990,7 +1990,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aUserIter = aUserName.begin();
              aUserIter != aUserName.end();
-             aUserIter++) {
+             ++aUserIter) {
 
             OUString sName = *aUserIter;
 
@@ -2039,7 +2039,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aDdeIter = aDdeName.begin();
              aDdeIter != aDdeName.end();
-             aDdeIter++)
+             ++aDdeIter)
         {
             OUString sName = *aDdeIter;
 
