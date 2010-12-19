@@ -584,7 +584,7 @@ void XMLSectionExport::ExportTableOfContentStart(
         // TOC specific index source attributes:
 
         // outline-level: 1..10
-        sal_Int16 nLevel;
+        sal_Int16 nLevel(0);
         if( rPropertySet->getPropertyValue(sLevel) >>= nLevel )
         {
             OUStringBuffer sBuffer;

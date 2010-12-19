@@ -230,8 +230,6 @@ protected:
                 ::com::sun::star::text::XTextField> & rTextField,
         const ::com::sun::star::uno::Reference<
                 ::com::sun::star::beans::XPropertySet> & rPropSet,
-        const ::com::sun::star::uno::Reference<
-                ::com::sun::star::beans::XPropertySet> & rRangePropSet,
         enum FieldIdEnum nToken);
 
     /// export an empty element
@@ -285,15 +283,13 @@ protected:
     void ProcessString(
         enum ::binfilter::xmloff::token::XMLTokenEnum eXmlName,     /// attribute token (namespace text)
         enum ::binfilter::xmloff::token::XMLTokenEnum eValue,           /// attribute token
-        sal_Bool bOmitEmpty = sal_False, /// omit attribute, if value is empty
-        sal_uInt16 nPrefix = XML_NAMESPACE_TEXT);   /// attribute name prefix
+        sal_Bool bOmitEmpty = sal_False); /// omit attribute, if value is empty
 
     /// export a string attribute, omit if default
     void ProcessString(
         enum ::binfilter::xmloff::token::XMLTokenEnum eXmlName,     /// attribute token (namespace text)
         enum ::binfilter::xmloff::token::XMLTokenEnum eValue,           /// attribute value token
-        enum ::binfilter::xmloff::token::XMLTokenEnum eDefault,     /// default value token
-        sal_uInt16 nPrefix = XML_NAMESPACE_TEXT);   /// attribute name prefix
+        enum ::binfilter::xmloff::token::XMLTokenEnum eDefault);        /// default value token
 
     /// export a string as a sequence of paragraphs
     void ProcessParagraphSequence(

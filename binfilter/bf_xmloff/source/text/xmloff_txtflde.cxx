@@ -316,21 +316,21 @@ XMLTextFieldExport::XMLTextFieldExport( SvXMLExport& rExp,
           RTL_CONSTASCII_USTRINGPARAM("NumberingSeparator")),
       sPropertyNumberingType(
           RTL_CONSTASCII_USTRINGPARAM("NumberingType")),
-      sPropertyDateTimeValue(RTL_CONSTASCII_USTRINGPARAM("DateTimeValue")),
-      sPropertyUserText(RTL_CONSTASCII_USTRINGPARAM("UserText")),
-      sPropertyOffset(RTL_CONSTASCII_USTRINGPARAM("Offset")),
       sPropertyDataBaseName(RTL_CONSTASCII_USTRINGPARAM("DataBaseName")),
       sPropertyDataTableName(RTL_CONSTASCII_USTRINGPARAM("DataTableName")),
-      sPropertyCondition(RTL_CONSTASCII_USTRINGPARAM("Condition")),
+      sPropertyDateTimeValue(RTL_CONSTASCII_USTRINGPARAM("DateTimeValue")),
+      sPropertyDataColumnName(RTL_CONSTASCII_USTRINGPARAM("DataColumnName")),
       sPropertySetNumber(RTL_CONSTASCII_USTRINGPARAM("SetNumber")),
       sPropertyIsDataBaseFormat(RTL_CONSTASCII_USTRINGPARAM("DataBaseFormat")),
-      sPropertyDataColumnName(RTL_CONSTASCII_USTRINGPARAM("DataColumnName")),
+      sPropertyUserText(RTL_CONSTASCII_USTRINGPARAM("UserText")),
+      sPropertyOffset(RTL_CONSTASCII_USTRINGPARAM("Offset")),
+      sPropertyCondition(RTL_CONSTASCII_USTRINGPARAM("Condition")),
       sPropertyDateTime(RTL_CONSTASCII_USTRINGPARAM("DateTime")),
       sPropertyTrueContent(RTL_CONSTASCII_USTRINGPARAM("TrueContent")),
       sPropertyFalseContent(RTL_CONSTASCII_USTRINGPARAM("FalseContent")),
       sPropertyRevision(RTL_CONSTASCII_USTRINGPARAM("Revision")),
-      sPropertyFileFormat(RTL_CONSTASCII_USTRINGPARAM("FileFormat")),
       sPropertyChapterFormat(RTL_CONSTASCII_USTRINGPARAM("ChapterFormat")),
+      sPropertyFileFormat(RTL_CONSTASCII_USTRINGPARAM("FileFormat")),
       sPropertyLevel(RTL_CONSTASCII_USTRINGPARAM("Level")),
       sPropertyIsDate(RTL_CONSTASCII_USTRINGPARAM("IsDate")),
       sPropertyAdjust(RTL_CONSTASCII_USTRINGPARAM("Adjust")),
@@ -343,16 +343,16 @@ XMLTextFieldExport::XMLTextFieldExport( SvXMLExport& rExp,
       sPropertyReferenceFieldSource(
           RTL_CONSTASCII_USTRINGPARAM("ReferenceFieldSource")),
       sPropertySequenceNumber(RTL_CONSTASCII_USTRINGPARAM("SequenceNumber")),
-      sPropertySequenceValue(RTL_CONSTASCII_USTRINGPARAM("SequenceValue")),
       sPropertySourceName(RTL_CONSTASCII_USTRINGPARAM("SourceName")),
-      sPropertyDDECommandType(RTL_CONSTASCII_USTRINGPARAM("DDECommandType")),
-      sPropertyDDECommandFile(RTL_CONSTASCII_USTRINGPARAM("DDECommandFile")),
-      sPropertyDDECommandElement(
-          RTL_CONSTASCII_USTRINGPARAM("DDECommandElement")),
       sPropertyIsAutomaticUpdate(
           RTL_CONSTASCII_USTRINGPARAM("IsAutomaticUpdate")),
       sPropertyDependentTextFields(
           RTL_CONSTASCII_USTRINGPARAM("DependentTextFields")),
+      sPropertyDDECommandType(RTL_CONSTASCII_USTRINGPARAM("DDECommandType")),
+      sPropertyDDECommandFile(RTL_CONSTASCII_USTRINGPARAM("DDECommandFile")),
+      sPropertyDDECommandElement(
+          RTL_CONSTASCII_USTRINGPARAM("DDECommandElement")),
+      sPropertySequenceValue(RTL_CONSTASCII_USTRINGPARAM("SequenceValue")),
       sPropertyURL(RTL_CONSTASCII_USTRINGPARAM("URL")),
       sPropertyTargetFrame(RTL_CONSTASCII_USTRINGPARAM("TargetFrame")),
       sPropertyFields(RTL_CONSTASCII_USTRINGPARAM("Fields")),
@@ -1024,7 +1024,7 @@ void XMLTextFieldExport::ExportField(const Reference<XTextField> & rTextField )
                                   sal_False, sal_False);
 
         // finally, export the field itself
-        ExportFieldHelper( rTextField, xPropSet, xRangePropSet, nToken );
+        ExportFieldHelper( rTextField, xPropSet, nToken );
     }
 }
 
@@ -1032,7 +1032,6 @@ void XMLTextFieldExport::ExportField(const Reference<XTextField> & rTextField )
 void XMLTextFieldExport::ExportFieldHelper(
     const Reference<XTextField> & rTextField,
     const Reference<XPropertySet> & rPropSet,
-    const Reference<XPropertySet> & rRangePropSet,
     enum FieldIdEnum nToken)
 {
     // get property set info (because some attributes are not support
@@ -2322,8 +2321,7 @@ void XMLTextFieldExport::ProcessString(enum XMLTokenEnum eName,
 void XMLTextFieldExport::ProcessString(
     enum XMLTokenEnum eName,
     enum XMLTokenEnum eValue,
-    sal_Bool bOmitEmpty,
-    sal_uInt16 nPrefix)
+    sal_Bool bOmitEmpty)
 {
     DBG_ASSERT( eName != XML_TOKEN_INVALID, "invalid element token" );
     DBG_ASSERT( bOmitEmpty || (eValue != XML_TOKEN_INVALID),
@@ -2342,11 +2340,10 @@ void XMLTextFieldExport::ProcessString(
 void XMLTextFieldExport::ProcessString(
     enum XMLTokenEnum eName,
     enum XMLTokenEnum eValue,
-    enum XMLTokenEnum eDefault,
-    sal_uInt16 nPrefix)
+    enum XMLTokenEnum eDefault)
 {
     if ( eValue != eDefault )
-        ProcessString( eName, eValue, sal_False, nPrefix);
+        ProcessString( eName, eValue, sal_False );
 }
 
 
@@ -2549,7 +2546,7 @@ void XMLTextFieldExport::ProcessBibliographyData(
         if (aValues[i].Name.equalsAsciiL("BibiliographicType",
                                          sizeof("BibiliographicType")-1))
         {
-            sal_Int16 nTypeId;
+            sal_Int16 nTypeId(0);
             aValues[i].Value >>= nTypeId;
             OUStringBuffer sBuf;
 

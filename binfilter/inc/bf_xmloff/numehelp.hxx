@@ -86,7 +86,7 @@ public :
     XMLNumberFormatAttributesExportHelper(::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xNumberFormatsSupplier,
                                             SvXMLExport& rExport, sal_uInt16 nNamespace);
     ~XMLNumberFormatAttributesExportHelper();
-    void SetExport(SvXMLExport* pExport) { this->pExport = pExport; }
+    void SetExport(SvXMLExport* pExport_) { pExport = pExport_; }
 
     sal_Int16 GetCellType(const sal_Int32 nNumberFormat, ::rtl::OUString& sCurrency, sal_Bool& bIsStandard);
 
