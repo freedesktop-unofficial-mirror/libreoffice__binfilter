@@ -117,8 +117,7 @@ sal_Int32 ScXMLConverter::IndexOfDifferent(
 void ScXMLConverter::GetTokenByOffset(
         OUString& rToken,
         const OUString& rString,
-        sal_Int32& nOffset,
-        sal_Unicode cQuote )
+        sal_Int32& nOffset )
 {
     sal_Int32 nLength = rString.getLength();
     if( nOffset >= nLength )
@@ -494,6 +493,8 @@ void ScXMLConverter::GetStringFromFunction(
         case sheet::GeneralFunction_SUM:        sFuncStr = GetXMLToken( XML_SUM );          break;
         case sheet::GeneralFunction_VAR:        sFuncStr = GetXMLToken( XML_VAR );          break;
         case sheet::GeneralFunction_VARP:       sFuncStr = GetXMLToken( XML_VARP );         break;
+        default:
+            break;
     }
     AssignString( rString, sFuncStr, bAppendStr );
 }
@@ -565,6 +566,8 @@ void ScXMLConverter::GetStringFromOrientation(
         case sheet::DataPilotFieldOrientation_DATA:
             sOrientStr = GetXMLToken( XML_DATA );
         break;
+        default:
+        break;
     }
     AssignString( rString, sOrientStr, bAppendStr );
 }
@@ -619,6 +622,8 @@ void ScXMLConverter::GetStringFromDetObjType(
         break;
         case SC_DETOBJ_TOOTHERTAB:
             sTypeStr = GetXMLToken( XML_TO_ANOTHER_TABLE );
+        break;
+        default:
         break;
     }
     AssignString( rString, sTypeStr, bAppendStr );

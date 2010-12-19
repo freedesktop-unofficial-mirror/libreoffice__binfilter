@@ -1739,7 +1739,7 @@ void ScXMLExport::_ExportAutoStyles()
                                         sal_Int32 nRow = 0;
                                         while ( /*nRow <= nRows && */nRow <= MAXROW)
                                         {
-                                            sal_Int32 nIndex;
+                                            sal_Int32 nIndex(0);
                                             uno::Any aRow = xTableRows->getByIndex(nRow);
                                             uno::Reference<table::XCellRange> xTableRow;
                                             if (aRow >>= xTableRow)
@@ -2098,6 +2098,8 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
                 }
             }
         }
+        break;
+    default:
         break;
     }
     ::rtl::OUString* pCellString = &sElemCell;

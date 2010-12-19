@@ -82,8 +82,7 @@ public:
     static void         GetTokenByOffset(
                             ::rtl::OUString& rToken,
                             const ::rtl::OUString& rString,
-                            sal_Int32& nOffset,
-                            sal_Unicode cQuote = '\'' );
+                            sal_Int32& nOffset);
 
     static ScDocument*  GetScDocument(
                             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > xModel );

@@ -740,8 +740,8 @@ public:
     //  XPrintJobBroadcaster
     //____________________________________________________________________________________________________
 
-    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener )throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& )throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& ) throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
 
     //____________________________________________________________________________________________________
     //  XPrintable
@@ -775,8 +775,8 @@ public:
         @onerror    -
     */
 
-    virtual void SAL_CALL setPrinter( const SEQUENCE< PROPERTYVALUE >& seqPrinter )
-    throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL setPrinter( const SEQUENCE< PROPERTYVALUE >& )
+    throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}
     /**___________________________________________________________________________________________________
         @short      -
         @descr      -
@@ -984,8 +984,8 @@ public:
         @onerror    -
     */
 
-    virtual sal_Bool SAL_CALL isDataFlavorSupported( const DATAFLAVOR& aFlavor )
-        throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");return false;}//STRIP001 throw (::com::sun::star::uno::RuntimeException);
+    virtual sal_Bool SAL_CALL isDataFlavorSupported( const DATAFLAVOR& )
+        throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");return false;}
 
     //____________________________________________________________________________________________________
     //  XEventsSupplier
@@ -1119,7 +1119,7 @@ public:
     sal_Bool hasEventListeners() const;
 
 protected:
-    virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >& rPrinter,SfxPrinter*& pPrinter,sal_uInt16& nChangeFlags,SfxViewShell*& pViewSh);
+    virtual void impl_setPrinter(const SEQUENCE< PROPERTYVALUE >&,SfxPrinter*&,sal_uInt16&,SfxViewShell*&){DBG_BF_ASSERT(0, "STRIP");}
 //________________________________________________________________________________________________________
 //  private methods
 //________________________________________________________________________________________________________
