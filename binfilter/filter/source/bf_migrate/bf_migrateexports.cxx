@@ -48,7 +48,7 @@ extern "C"
 {
 
 //==================================================================================================
-void SAL_CALL component_getImplementationEnvironment(const sal_Char** ppEnvTypeName, uno_Environment** ppEnv)
+void SAL_CALL component_getImplementationEnvironment(const sal_Char** ppEnvTypeName, uno_Environment** /*ppEnv*/)
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
@@ -60,8 +60,11 @@ sal_Bool SAL_CALL component_writeInfo(void* pServiceManager, void* pRegistryKey)
     {
         try
         {
-            sal_Bool bLegacySmgrWriteInfoDidWork(legacysmgr_component_writeInfo
-                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) ));
+#if OSL_DEBUG_LEVEL > 0
+            bool bLegacySmgrWriteInfoDidWork =
+#endif
+            legacysmgr_component_writeInfo
+                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) );
             OSL_ENSURE(bLegacySmgrWriteInfoDidWork, "### LegacyServiceManager writeInfo failed!" );
 
             Reference< XRegistryKey > xNewKey;
