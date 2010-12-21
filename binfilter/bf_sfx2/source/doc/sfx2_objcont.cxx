@@ -215,28 +215,7 @@ using namespace ::com::sun::star::uno;
 /*N*/           // Konfiguration schreiben
 /*N*/           if ( GetConfigManager() )
 /*N*/           {
-/* //!MBA
-                if ( rDocInfo.HasTemplateConfig() )
-                {
-                    const String aTemplFileName( rDocInfo.GetTemplateFileName() );
-                    if ( aTemplFileName.Len() )
-                    {
-                        INetURLObject aURL( aTemplFileName );
-                        DBG_ASSERT( aURL.GetProtocol() != INET_PROT_NOT_VALID, "Illegal URL !" );
-
-                        SvStorageRef aStor = new SvStorage( aURL.GetMainURL( INetURLObject::NO_DECODE ) );
-                        if ( SVSTREAM_OK == aStor->GetError() )
-                        {
-                            GetConfigManager()->StoreConfiguration(aStor);
-                            if (aRef->IsStream(SfxConfigManager::GetStreamName()))
-                                aRef->Remove(SfxConfigManager::GetStreamName());
-                        }
-                    }
-                }
-                else
- */
 /*N*/               {
-//! MBA                    GetConfigManager()->SetModified( TRUE );
 /*?*/                     GetConfigManager()->StoreConfiguration( pNewStg );
 /*N*/               }
 /*N*/           }
@@ -289,28 +268,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       // Konfiguration schreiben
 /*N*/       if (GetConfigManager())
 /*N*/       {
-/* //!MBA
-            if ( rDocInfo.HasTemplateConfig() )
-            {
-                const String aTemplFileName( rDocInfo.GetTemplateFileName() );
-                if ( aTemplFileName.Len() )
-                {
-                    INetURLObject aURL( aTemplFileName );
-                    DBG_ASSERT( aURL.GetProtocol() != INET_PROT_NOT_VALID, "Illegal URL !" );
-
-                    SvStorageRef aStor = new SvStorage( aURL.GetMainURL( INetURLObject::NO_DECODE ) );
-                    if ( SVSTREAM_OK == aStor->GetError() )
-                    {
-                        GetConfigManager()->StoreConfiguration(aStor);
-                        if (pNewStg->IsStream(SfxConfigManager::GetStreamName()))
-                            pNewStg->Remove(SfxConfigManager::GetStreamName());
-                    }
-                }
-            }
-            else
- */
 /*N*/           {
-//!MBA                GetConfigManager()->SetModified( TRUE );
 /*?*/                 GetConfigManager()->StoreConfiguration(pNewStg);
             }
 /*N*/       }
