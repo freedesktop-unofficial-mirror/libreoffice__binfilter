@@ -306,9 +306,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       if ( SFX_CREATE_MODE_EMBEDDED == eCreateMode )
 /*N*/       {
 /*N*/           ModifyBlocker_Impl aBlock( this );
-/*N*/           // bei Embedded Objekten setzt sonst keiner den Namen
-/*N*/ //            DBG_ASSERT( pStor->GetName().Len(),
-/*N*/ //                        "StorageName hat Laenge Null" );
 /*N*/           SetTitle( pStor->GetName() );
 /*N*/       }
 /*N*/       return sal_True;
@@ -585,8 +582,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/         if( IsOwnStorageFormat_Impl(*pMed) && pMed->GetFilter() )
 /*N*/       {
-/*N*/ //???? dv         DirEntry aDirEntry( pMed->GetPhysicalName() );
-/*N*/ //???? dv         SetFileName( aDirEntry.GetFull() );
 /*N*/       }
 /*N*/       Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
 /*N*/   }
@@ -736,9 +731,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       bOk = Save();
 /*N*/   }
 
-//#88046
-//    if ( bOk )
-//        SetModified( sal_False );
 /*N*/   return bOk;
 /*N*/ }
 
@@ -832,25 +824,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/       }
 /*N*/   }
-//STRIP003/*N*/     else
-//STRIP003/*N*/     {
-//STRIP003/*?*/         // it's a "SaveAs" in an alien format
-//STRIP003/*?*/         if ( rMedium.GetFilter() && ( rMedium.GetFilter()->GetFilterFlags() & SFX_FILTER_STARONEFILTER ) )
-//STRIP003/*?*/             bOk = ExportTo( rMedium );
-//STRIP003/*?*/         else
-//STRIP003/*?*/             bOk = ConvertTo( rMedium );
-//STRIP003/*?*/
-//STRIP003/*?*/         // after saving the document, the temporary object storage must be updated
-//STRIP003/*?*/         // if the old object storage was not a temporary one, it will be updated also, because it will be used
-//STRIP003/*?*/         // as a source for copying the objects into the new temporary storage that will be created below
-//STRIP003/*?*/         // updating means: all child objects must be stored into it
-//STRIP003/*?*/         // ( same as on loading, where these objects are copied to the temporary storage )
-//STRIP003/*?*/         // but don't commit these changes, because in the case when the old object storage is not a temporary one,
-//STRIP003/*?*/         // all changes will be written into the original file !
-//STRIP003/*?*/         if( bOk )
-//STRIP003/*?*/             bOk = SaveChilds() && SaveCompletedChilds( NULL );
-//STRIP003/*N*/     }
-
     // SetModified must be enabled when SaveCompleted is called, otherwise the modified flag of child objects will not be cleared
 /*N*/     EnableSetModified( sal_True );
 /*N*/
@@ -1046,11 +1019,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/ {
     sal_Bool bOk = sal_True;
     sal_Bool bMedChanged = pNewMed && pNewMed!=pMedium;
-/*  sal_Bool bCreatedTempStor = pNewMed && pMedium &&
-        IsOwnStorageFormat_Impl(*pMedium) &&
-        !IsOwnStorageFormat_Impl(*pNewMed) &&
-        pMedium->GetName().Len();
-*/
 /*N*/     DBG_ASSERT( !pNewMed || pNewMed->GetError() == ERRCODE_NONE, "DoSaveCompleted: Medium has error!" );
 /*N*/   if ( bMedChanged )
 /*N*/   {
@@ -1621,28 +1589,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/           // Konfiguration schreiben
 /*N*/           if ( GetConfigManager() )
 /*N*/           {
-/* //!MBA
-                if ( rDocInfo.HasTemplateConfig() )
-                {
-                    const String aTemplFileName( rDocInfo.GetTemplateFileName() );
-                    if ( aTemplFileName.Len() )
-                    {
-                        INetURLObject aURL( aTemplFileName );
-                        DBG_ASSERT( aURL.GetProtocol() != INET_PROT_NOT_VALID, "Illegal URL !" );
-
-                        SvStorageRef aStor = new SvStorage( aURL.GetMainURL( INetURLObject::NO_DECODE ) );
-                        if ( SVSTREAM_OK == aStor->GetError() )
-                        {
-                            GetConfigManager()->StoreConfiguration(aStor);
-                            if (aRef->IsStream(SfxConfigManager::GetStreamName()))
-                                aRef->Remove(SfxConfigManager::GetStreamName());
-                        }
-                    }
-                }
-                else
- */
 /*N*/               {
-//! MBA                    GetConfigManager()->SetModified( sal_True );
 /*N*/                   SotStorageRef xCfgStor = pImp->pCfgMgr->GetConfigurationStorage( xStor );
 /*N*/                     if ( pImp->pCfgMgr->StoreConfiguration( xCfgStor ) )
 /*N*/                       xCfgStor->Commit();
