@@ -699,7 +699,6 @@ namespace binfilter {
 /*N*/
 /*N*/   long          nDrehWink = aGeo.nDrehWink, nShearWink = aGeo.nShearWink;
 /*N*/   bool      bRotate = ( nDrehWink != 0 && nDrehWink != 18000 );
-/*N*/   bool      bShear = ( nShearWink != 0 );
 /*N*/   bool      bRota180 = nDrehWink == 18000;
 /*N*/   USHORT        nMirrorCase = ( bRota180 ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 ) );   //  4 | 3   H&V gespiegelt | nur Vertikal
 /*N*/   bool      bHMirr = ( ( 2 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    // ---+---  ---------------+-----------------
@@ -917,7 +916,6 @@ namespace binfilter {
 
 /*N*/ void SdrGrafObj::NbcSetLogicRect( const Rectangle& rRect)
 /*N*/ {
-/*N*/   bool bChg=rRect.GetSize()!=aRect.GetSize();
 /*N*/   SdrRectObj::NbcSetLogicRect(rRect);
 /*N*/ }
 
