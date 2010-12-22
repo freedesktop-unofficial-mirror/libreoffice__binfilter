@@ -303,7 +303,7 @@ void registerClassInfo(
 //.......................................................................................
 #define REGISTER_CLASS_CORE(classImplName) \
     registerClassInfo( \
-        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form." )) + ::rtl::OUString::createFromAscii(#classImplName), \
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form." )) + ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(#classImplName)), \
         aServices, \
         frm::classImplName##_CreateInstance)
 

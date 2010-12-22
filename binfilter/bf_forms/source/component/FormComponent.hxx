@@ -69,7 +69,7 @@ const sal_Int16 FRM_DEFAULT_TABINDEX = 0;
 // macro for quickly implementing XServiceInfo::getImplementationName
 #define IMPLEMENTATION_NAME(ImplName)                                       \
     virtual ::rtl::OUString SAL_CALL getImplementationName(  ) throw(::com::sun::star::uno::RuntimeException) \
-        { return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms." )) + ::rtl::OUString::createFromAscii(#ImplName); }
+        { return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms." )) + ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(#ImplName)); }
 
 // macro for overriding the getInfoServive method of OAggregationArrayUsageHelper
 #define IMPLEMENT_INFO_SERVICE()    \
