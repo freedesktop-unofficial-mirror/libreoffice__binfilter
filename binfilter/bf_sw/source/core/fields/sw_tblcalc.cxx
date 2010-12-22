@@ -75,10 +75,10 @@ using namespace ::rtl;
 
 
 
-/*N*/ SwTblField::SwTblField( SwTblFieldType* pType, const String& rFormel,
+/*N*/ SwTblField::SwTblField( SwTblFieldType* pInType, const String& rFormel,
 /*N*/                       USHORT nType, ULONG nFmt )
-/*N*/   : SwValueField( pType, nFmt ), SwTableFormula( rFormel ),
-/*N*/   nSubType(nType), sExpand( '0' )
+/*N*/   : SwValueField( pInType, nFmt ), SwTableFormula( rFormel ),
+/*N*/   sExpand( '0' ), nSubType(nType)
 /*N*/ {
 /*N*/ }
 
@@ -254,7 +254,7 @@ BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
         break;
     case FIELD_PROP_FORMAT:
         {
-            sal_Int32 nTmp;
+            sal_Int32 nTmp(0);
             rAny >>= nTmp;
             SetFormat(nTmp);
         }

@@ -72,7 +72,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,pTim)
+/*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return 0;
 /*N*/ }
@@ -382,7 +382,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPaintView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrPaintView::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   BOOL bObjChg=!bSomeObjChgdFlag; // TRUE= auswerten fuer ComeBack-Timer
 /*N*/   BOOL bMaster=pMasterBmp!=NULL;  // TRUE= auswerten fuer MasterPagePaintCache
@@ -432,7 +432,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpComeBackHdl,Timer*,pTimer)
+/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpComeBackHdl,Timer*,EMPTYARG)
 /*N*/ {
 /*N*/   if (bSomeObjChgdFlag) {
 /*N*/       bSomeObjChgdFlag=FALSE;
@@ -447,11 +447,11 @@ using namespace ::com::sun::star;
 
 
 
-/*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* pObj )
+/*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* /*pObj*/ )
 /*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
 /*?*/ }
 
-/*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,pTimer)
+/*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   return 0;
 /*N*/ }
@@ -486,12 +486,12 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,pTimer)
+/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG)
 /*N*/ {
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->DoAnimateOneStep();
+/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
@@ -538,14 +538,14 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
+/*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* /*pOut*/, const Region* /*pRegion*/) const
 /*N*/ {
 /*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   }
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->Draw(pOut,FALSE,!bRestoreColors); // den 3. Parameter hier noch richtig setzen !!!!!
+/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/ }
 
@@ -738,13 +738,13 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/ }
 
-/*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT nNum )
+/*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPaintView::InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode)
+/*N*/ void SdrPaintView::InitRedraw(OutputDevice*, const Region&, USHORT)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -900,7 +900,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ BOOL SdrPaintView::ReadRecord(const SdrIOHeader& rViewHead,
+/*N*/ BOOL SdrPaintView::ReadRecord(const SdrIOHeader& /*rViewHead*/,
 /*N*/   const SdrNamedSubRecord& rSubHead,
 /*N*/   SvStream& rIn)
 /*N*/ {

@@ -98,9 +98,13 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
 
  public:
     SwCollectTblLineBoxes( BOOL bTop, USHORT nMd = 0, SwHistory* pHist=0 )
-        : aPosArr( 16, 16 ), aBoxes( 16, 16 ),
-        bGetFromTop( bTop ), bGetValues( TRUE ), nMode( nMd ),
-        nWidth( 0 ), pHst( pHist )
+        : aPosArr( 16, 16 )
+        , aBoxes( 16, 16 )
+        , pHst( pHist )
+        , nMode( nMd )
+        , nWidth( 0 )
+        , bGetFromTop( bTop )
+        , bGetValues( TRUE )
     {}
 
     void AddBox( const SwTableBox& rBox );
@@ -137,10 +141,16 @@ struct _SwGCLineBorder
     USHORT nLinePos;
 
     _SwGCLineBorder( const SwTable& rTable )
-        : pLines( &rTable.GetTabLines() ), nLinePos( 0 ), pShareFmts(0) {}
+        : pLines( &rTable.GetTabLines() )
+        , pShareFmts(0)
+        , nLinePos( 0 )
+        {}
 
     _SwGCLineBorder( const SwTableBox& rBox )
-        : pLines( &rBox.GetTabLines() ), nLinePos( 0 ), pShareFmts(0) {}
+        : pLines( &rBox.GetTabLines() )
+        , pShareFmts(0)
+        , nLinePos( 0 )
+        {}
     BOOL IsLastLine() const { return nLinePos + 1 >= pLines->Count(); }
 };
 

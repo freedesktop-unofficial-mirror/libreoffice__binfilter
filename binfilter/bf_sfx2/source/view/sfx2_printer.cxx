@@ -188,7 +188,7 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*?*/ const SfxFont* SfxPrinter::GetFontByName( const String &rFontName )
+/*?*/ const SfxFont* SfxPrinter::GetFontByName( const String & )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 /*?*/ }
 

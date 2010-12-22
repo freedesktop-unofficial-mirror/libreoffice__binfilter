@@ -244,8 +244,8 @@ public:
 class SdrPageViewWinList {
     Container aList;
 private:
-    SdrPageViewWinList(const SdrPageViewWinList& rSource): aList(1024,4,4) {}
-    void operator=(const SdrPageViewWinList& rSource)                  {}
+    SdrPageViewWinList(const SdrPageViewWinList& /*rSource*/): aList(1024,4,4) {}
+    void operator=(const SdrPageViewWinList& /*rSource*/)                  {}
 protected:
     SdrPageViewWinRec* GetObject(USHORT i) const { return (SdrPageViewWinRec*)(aList.GetObject(i)); }
 public:
@@ -352,7 +352,7 @@ public:
     // rRect bezieht sich auf die Page
     void InvalidateAllWin(const Rectangle& rRect, bool bPlus1Pix=FALSE);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
-    void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_BF_ASSERT(0, "STRIP");}//STRIP001     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
+    void InitRedraw(OutputDevice*, const Region&, USHORT =0, const Link* =NULL){DBG_BF_ASSERT(0, "STRIP");}
     // rReg bezieht sich auf's OutDev, nicht auf die Page
     // Painten aller Objekte eines Layer der Page ohne MasterPage
     // pOut==NULL -> alle OutputDevices

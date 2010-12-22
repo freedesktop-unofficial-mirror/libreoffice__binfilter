@@ -112,7 +112,7 @@ using namespace ::rtl;
 //-----------------------------------------------------------------------------
 /*N*/ sal_Int32 lcl_APIToSubType(const uno::Any& rAny)
 /*N*/ {
-/*N*/       sal_Int16 nVal;
+/*N*/       sal_Int16 nVal(0);
 /*N*/       rAny >>= nVal;
 /*N*/       sal_Int32 nSet = 0;
 /*N*/       switch(nVal)
@@ -427,7 +427,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
-    sal_Int32 nTmp;
+    sal_Int32 nTmp(0);
     String sTmp;
     switch( nMId )
     {
@@ -469,8 +469,8 @@ BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
  Set-Expression-Type
  --------------------------------------------------*/
 
-/*N*/ SwSetExpFieldType::SwSetExpFieldType( SwDoc* pDoc, const String& rName, USHORT nTyp )
-/*N*/   : SwValueFieldType( pDoc, RES_SETEXPFLD ),
+/*N*/ SwSetExpFieldType::SwSetExpFieldType( SwDoc* pInDoc, const String& rName, USHORT nTyp )
+/*N*/   : SwValueFieldType( pInDoc, RES_SETEXPFLD ),
 /*N*/   sName( rName ),
 /*N*/   nType(nTyp),
 /*N*/   cDelim( '.' ), nLevel( UCHAR_MAX ),
@@ -602,7 +602,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       {
-/*N*/           sal_Int8 nLvl;
+/*N*/           sal_Int8 nLvl(0);
 /*N*/           rAny >>= nLvl;
 /*N*/           if(nLvl < 0 || nLvl >= MAXLEVEL)
 /*N*/               SetOutlineLvl(UCHAR_MAX);
@@ -995,8 +995,8 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/           //I18N - if the formula contains only "TypeName+1"
 /*N*/           //and it's one of the initially created sequence fields
 /*N*/           //then the localized names has to be replaced by a programmatic name
-/*N*/           OUString sFormula = SwXFieldMaster::LocalizeFormula(*this, GetFormula(), TRUE);
-/*N*/           rAny <<= OUString( sFormula );
+/*N*/           OUString sLclFormula = SwXFieldMaster::LocalizeFormula(*this, GetFormula(), TRUE);
+/*N*/           rAny <<= OUString( sLclFormula );
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_DOUBLE:
@@ -1038,8 +1038,8 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/ BOOL SwSetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
-/*N*/   sal_Int32 nTmp32;
-/*N*/   sal_Int16 nTmp16;
+/*N*/   sal_Int32 nTmp32(0);
+/*N*/   sal_Int16 nTmp16(0);
 /*N*/   String sTmp;
 /*N*/   switch( nMId )
 /*N*/   {
@@ -1058,9 +1058,6 @@ void SwInputField::SetSubType(USHORT nSub)
 /*?*/           rAny >>= nTmp16;
 /*?*/           if(nTmp16 <= SVX_NUMBER_NONE )
 /*?*/               SetFormat(nTmp16);
-/*?*/           else
-/*?*/               //exception(wrong_value)
-/*?*/               ;
 /*?*/       }
 /*?*/       break;
 /*?*/   case FIELD_PROP_USHORT1:
@@ -1078,8 +1075,8 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/           //I18N - if the formula contains only "TypeName+1"
 /*N*/           //and it's one of the initially created sequence fields
 /*N*/           //then the localized names has to be replaced by a programmatic name
-/*N*/           OUString sFormula = SwXFieldMaster::LocalizeFormula(*this, uTmp, FALSE);
-/*N*/           SetFormula( sFormula );
+/*N*/           OUString sLclFormula = SwXFieldMaster::LocalizeFormula(*this, uTmp, FALSE);
+/*N*/           SetFormula( sLclFormula );
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_DOUBLE:

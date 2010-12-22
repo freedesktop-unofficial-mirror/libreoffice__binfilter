@@ -112,34 +112,34 @@ struct _CalcOp
 };
 
 _CalcOp const aOpTable[] = {
-/* ACOS */    {sCalc_Acos,      CALC_ACOS},  // Arcuscosinus
-/* ADD */     {sCalc_Add,        CALC_PLUS},  // Addition
-/* AND */     {sCalc_And,        CALC_AND},     // log. und
-/* ASIN */    {sCalc_Asin,       CALC_ASIN},  // Arcussinus
-/* ATAN */    {sCalc_Atan,       CALC_ATAN},  // Arcustangens
-/* COS */     {sCalc_Cos,        CALC_COS},     // Cosinus
-/* DIV */     {sCalc_Div,        CALC_DIV},   // Dividieren
-/* EQ */      {sCalc_Eq,         CALC_EQ},      // gleich
-/* G */       {sCalc_G,          CALC_GRE},     // groesser
-/* GEQ */     {sCalc_Geq,        CALC_GEQ},     // groesser gleich
-/* L */       {sCalc_L,          CALC_LES},     // kleiner
-/* LEQ */     {sCalc_Leq,        CALC_LEQ},     // kleiner gleich
-/* MAX */     {sCalc_Max,        CALC_MAX},     // Maximalwert
-/* MEAN */    {sCalc_Mean,       CALC_MEAN},  // Mittelwert
-/* MIN */     {sCalc_Min,        CALC_MIN},     // Minimalwert
-/* MUL */     {sCalc_Mul,        CALC_MUL},     // Multiplizieren
-/* NEQ */     {sCalc_Neq,        CALC_NEQ},     // nicht gleich
-/* NOT */     {sCalc_Not,        CALC_NOT},     // log. nicht
-/* OR */      {sCalc_Or,         CALC_OR},      // log. oder
-/* PHD */     {sCalc_Phd,        CALC_PHD},   // Prozent
-/* POW */     {sCalc_Pow,        CALC_POW}, // Potenzieren
-/* ROUND */   {sCalc_Round,      CALC_ROUND},   // Runden
-/* SIN */     {sCalc_Sin,        CALC_SIN},     // Sinus
-/* SQRT */    {sCalc_Sqrt,       CALC_SQRT},    // Wurzel
-/* SUB */     {sCalc_Sub,        CALC_MINUS},   // Subtraktion
-/* SUM */     {sCalc_Sum,        CALC_SUM},     // Summe
-/* TAN */     {sCalc_Tan,        CALC_TAN},     // Tangens
-/* XOR */     {sCalc_Xor,        CALC_XOR}      // log. xoder
+/* ACOS */    {{sCalc_Acos},        CALC_ACOS},  // Arcuscosinus
+/* ADD */     {{sCalc_Add},        CALC_PLUS},  // Addition
+/* AND */     {{sCalc_And},        CALC_AND},   // log. und
+/* ASIN */    {{sCalc_Asin},       CALC_ASIN},  // Arcussinus
+/* ATAN */    {{sCalc_Atan},       CALC_ATAN},  // Arcustangens
+/* COS */     {{sCalc_Cos},        CALC_COS},   // Cosinus
+/* DIV */     {{sCalc_Div},        CALC_DIV},   // Dividieren
+/* EQ */      {{sCalc_Eq},         CALC_EQ},    // gleich
+/* G */       {{sCalc_G},          CALC_GRE},   // groesser
+/* GEQ */     {{sCalc_Geq},        CALC_GEQ},   // groesser gleich
+/* L */       {{sCalc_L},          CALC_LES},   // kleiner
+/* LEQ */     {{sCalc_Leq},        CALC_LEQ},   // kleiner gleich
+/* MAX */     {{sCalc_Max},        CALC_MAX},   // Maximalwert
+/* MEAN */    {{sCalc_Mean},       CALC_MEAN},  // Mittelwert
+/* MIN */     {{sCalc_Min},        CALC_MIN},   // Minimalwert
+/* MUL */     {{sCalc_Mul},        CALC_MUL},   // Multiplizieren
+/* NEQ */     {{sCalc_Neq},        CALC_NEQ},   // nicht gleich
+/* NOT */     {{sCalc_Not},        CALC_NOT},   // log. nicht
+/* OR */      {{sCalc_Or},         CALC_OR},    // log. oder
+/* PHD */     {{sCalc_Phd},        CALC_PHD},   // Prozent
+/* POW */     {{sCalc_Pow},        CALC_POW},   // Potenzieren
+/* ROUND */   {{sCalc_Round},      CALC_ROUND}, // Runden
+/* SIN */     {{sCalc_Sin},        CALC_SIN},   // Sinus
+/* SQRT */    {{sCalc_Sqrt},       CALC_SQRT},  // Wurzel
+/* SUB */     {{sCalc_Sub},        CALC_MINUS}, // Subtraktion
+/* SUM */     {{sCalc_Sum},        CALC_SUM},   // Summe
+/* TAN */     {{sCalc_Tan},        CALC_TAN},   // Tangens
+/* XOR */     {{sCalc_Xor},        CALC_XOR}    // log. xoder
 };
 
 double const nRoundVal[] = {
@@ -252,12 +252,12 @@ static int
 |******************************************************************************/
 /*N*/
 /*N*/ SwCalc::SwCalc( SwDoc& rD )
-/*N*/   : rDoc( rD ),
-/*N*/   eError( CALC_NOERR ),
-/*N*/   nListPor( 0 ),
-/*N*/   aErrExpr( aEmptyStr, SwSbxValue(), 0 ),
+/*N*/   : aErrExpr( aEmptyStr, SwSbxValue(), 0 ),
+/*N*/   rDoc( rD ),
 /*N*/   pLclData( &GetAppLocaleData() ),
-/*N*/   pCharClass( &GetAppCharClass() )
+/*N*/   pCharClass( &GetAppCharClass() ),
+/*N*/   nListPor( 0 ),
+/*N*/   eError( CALC_NOERR )
 /*N*/ {
 /*N*/   aErrExpr.aStr.AssignAscii( "~C_ERR~" );
 /*N*/   memset( VarTable, 0, sizeof(VarTable) );
@@ -668,11 +668,8 @@ static int
 |*
 |******************************************************************************/
 
-/*N*/ void SwCalc::Pop( const VoidPtr pPtr )
+/*N*/ void SwCalc::Pop( const VoidPtr )
 /*N*/ {
-/*N*/   ASSERT( aRekurStk.Count() && aRekurStk.GetPos( pPtr ) ==
-/*N*/           (aRekurStk.Count() - 1 ), "SwCalc: Pop auf ungueltigen Ptr" );
-/*N*/
 /*N*/   aRekurStk.Remove( aRekurStk.Count() - 1 );
 /*N*/ }
 

@@ -73,7 +73,7 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
     void _MakeFormel( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
-                        void* pPara = 0 ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void* pPara = 0 ) const;
+                        void* = 0 ) const{DBG_BF_ASSERT(0, "STRIP");}
 
     void GetBoxes( const SwTableBox& rStt, const SwTableBox& rEnd,
                     SwSelBoxes& rBoxes ) const;

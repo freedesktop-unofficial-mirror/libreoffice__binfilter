@@ -74,9 +74,10 @@ class SwUnoCollection
     SwDoc*  pDoc;
 
     public:
-        SwUnoCollection(SwDoc* p) :
-            pDoc(p),
-            bObjectValid(sal_True){}
+        SwUnoCollection(SwDoc* p)
+            : bObjectValid(sal_True)
+            , pDoc(p)
+        {}
 
     virtual void                Invalidate();
     sal_Bool                        IsValid() const {return bObjectValid;}

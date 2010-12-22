@@ -491,9 +491,8 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
         }
     }
     //check for W4W at the end of the type name
-    if( rURL.getLength() && (bCheckAll || aName.getLength() > 4 &&
-                String(aName).Copy( xub_StrLen(aName.getLength()) - 4, 4 ).EqualsAscii( "_W4W" )))
-//            aName.equalsAsciiL( aFileTypeList[5].Type, aFileTypeList[5].Length )) )
+    if( rURL.getLength() && (bCheckAll || (aName.getLength() > 4 &&
+                String(aName).Copy( xub_StrLen(aName.getLength()) - 4, 4 ).EqualsAscii( "_W4W" ))))
     {
         // W4W
         ::rtl::OUString sFileName = INetURLObject( rURL ).getFSysPath(INetURLObject::FSYS_DETECT);
@@ -746,12 +745,12 @@ UNOREFERENCE< UNOXINTERFACE > SAL_CALL BinFilterDetect::impl_createInstance( con
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**          ppEnvironmentTypeName   ,
-                                                                uno_Environment**   ppEnvironment           )
+                                                                uno_Environment**   /*ppEnvironment*/           )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
 }
 
-sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
+sal_Bool SAL_CALL component_writeInfo(  void*   /*pServiceManager*/ ,
                                         void*   pRegistryKey    )
 {
     ::com::sun::star::uno::Reference< XRegistryKey >     xKey( reinterpret_cast< XRegistryKey* >( pRegistryKey ) )  ;
@@ -780,7 +779,7 @@ sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
 
 void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName ,
                                                 void*       pServiceManager     ,
-                                                void*       pRegistryKey        )
+                                                void*       /*pRegistryKey*/        )
 {
     // Set default return value for this operation - if it failed.
     void* pReturn = NULL ;

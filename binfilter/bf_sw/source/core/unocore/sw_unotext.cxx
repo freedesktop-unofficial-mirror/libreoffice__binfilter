@@ -217,8 +217,8 @@ void SwXText::insertString(const uno::Reference< XTextRange > & xTextRange,
                                     OTextCursorHelper::getUnoTunnelId());
         }
 
-        if(pRange && pRange->GetDoc()  == GetDoc() ||
-            pCursor && pCursor->GetDoc()  == GetDoc())
+        if( (pRange && pRange->GetDoc() == GetDoc()) ||
+            (pCursor && pCursor->GetDoc() == GetDoc()) )
         {
             const SwStartNode* pOwnStartNode = GetStartNode();
             if(pCursor)
@@ -417,8 +417,8 @@ void SwXText::insertTextContent(const uno::Reference< XTextRange > & xRange,
                 case CURSOR_FOOTNOTE:   eSearchNodeType = SwFootnoteStartNode;  break;
                 case CURSOR_HEADER:     eSearchNodeType = SwHeaderStartNode;    break;
                 case CURSOR_FOOTER:     eSearchNodeType = SwFooterStartNode;    break;
-                //case CURSOR_INVALID:
-                //case CURSOR_BODY:
+                default:
+                    break;
             }
 
             const SwNode* pSrcNode = 0;
@@ -983,8 +983,8 @@ sal_Bool    SwXText::CheckForOwnMember(
         case CURSOR_FOOTNOTE:   eSearchNodeType = SwFootnoteStartNode;  break;
         case CURSOR_HEADER:     eSearchNodeType = SwHeaderStartNode;    break;
         case CURSOR_FOOTER:     eSearchNodeType = SwFooterStartNode;    break;
-        //case CURSOR_INVALID:
-        //case CURSOR_BODY:
+        default:
+            break;
     }
 
     const SwNode* pSrcNode;
@@ -1021,7 +1021,7 @@ sal_Int16 SwXText::ComparePositions(
     const Reference<XTextRange>& xPos2)
             throw(IllegalArgumentException, RuntimeException)
 {
-    sal_Int16 nCompare;
+    sal_Int16 nCompare(0);
     SwUnoInternalPaM aPam1(*GetDoc());
     SwUnoInternalPaM aPam2(*GetDoc());
 
@@ -1276,8 +1276,8 @@ sal_Int64 SwXText::getSomething( const uno::Sequence< sal_Int8 >& rId )
 /******************************************************************
  * SwXBodyText
  ******************************************************************/
-SwXBodyText::SwXBodyText(SwDoc* pDoc) :
-    SwXText(pDoc, CURSOR_BODY)
+SwXBodyText::SwXBodyText(SwDoc* pDocIn) :
+    SwXText(pDocIn, CURSOR_BODY)
 {
 }
 

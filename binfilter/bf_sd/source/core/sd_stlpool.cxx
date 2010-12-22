@@ -80,8 +80,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdStyleSheetPool::SdStyleSheetPool(SfxItemPool& rPool, SdDrawDocument* pDocument) :
-/*N*/   SfxStyleSheetPool(rPool),
+/*N*/ SdStyleSheetPool::SdStyleSheetPool(SfxItemPool& rPoolIn, SdDrawDocument* pDocument) :
+/*N*/   SfxStyleSheetPool(rPoolIn),
 /*N*/   pActualStyleSheet(NULL),
 /*N*/   pDoc(pDocument)
 /*N*/ {
@@ -105,9 +105,9 @@ namespace binfilter {
 
 /*N*/ SfxStyleSheetBase* SdStyleSheetPool::Create(const String& rName,
 /*N*/                                           SfxStyleFamily eFamily,
-/*N*/                                           USHORT nMask )
+/*N*/                                           USHORT nMaskIn )
 /*N*/ {
-/*N*/   return new SdStyleSheet(rName, *this, eFamily, nMask);
+/*N*/   return new SdStyleSheet(rName, *this, eFamily, nMaskIn);
 /*N*/ }
 
 
@@ -170,7 +170,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void SdStyleSheetPool::CreateLayoutStyleSheets(const String& rLayoutName, sal_Bool bCheck /*=sal_False*/ )
+/*N*/ void SdStyleSheetPool::CreateLayoutStyleSheets(const String& rLayoutName, sal_Bool /*bCheck*/ )
 /*N*/ {
 /*N*/   sal_Bool bCreated = sal_False;
 /*N*/
@@ -249,8 +249,8 @@ namespace binfilter {
 /*N*/
 /*N*/               if( nLevel == 1 )
 /*N*/               {
-/*N*/                   Font aBulletFont( GetBulletFont() );
-/*N*/                   PutNumBulletItem( pSheet, aBulletFont );
+/*N*/                   Font aLclBulletFont( GetBulletFont() );
+/*N*/                   PutNumBulletItem( pSheet, aLclBulletFont );
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -432,9 +432,9 @@ namespace binfilter {
 /*N*/       rSubtitleSet.Put( SfxUInt16Item(EE_PARA_BULLETSTATE, 0) );
 /*N*/       aSvxLRSpaceItem.SetTxtLeft(0);
 /*N*/       rSubtitleSet.Put(aSvxLRSpaceItem);
-/*N*/       Font aBulletFont( GetBulletFont() );
-/*N*/       aBulletFont.SetSize(Size(0, 1129));     // 32 pt
-/*N*/       PutNumBulletItem( pSheet, aBulletFont );
+/*N*/       Font aLclBulletFont( GetBulletFont() );
+/*N*/       aLclBulletFont.SetSize(Size(0, 1129));      // 32 pt
+/*N*/       PutNumBulletItem( pSheet, aLclBulletFont );
 /*N*/   }
 /*N*/
     /**************************************************************************
@@ -522,7 +522,6 @@ namespace binfilter {
 /*N*/       rBackgroundSet.Put(XFillStyleItem(XFILL_NONE));
 /*N*/   }
 /*N*/
-/*N*/   DBG_ASSERT( !bCheck || !bCreated, "missing layout style sheets detected!" );
 /*N*/ }
 
 /*************************************************************************
@@ -587,13 +586,12 @@ namespace binfilter {
 /*N*/   SfxStyleSheetBase* pSheet = NULL;
 /*N*/   SfxStyleSheetBase* pParent = NULL;
 /*N*/
-/*N*/   //USHORT nMask = SFXSTYLEBIT_ALL & ~SFXSTYLEBIT_USERDEF;
-/*N*/   USHORT nMask = SFXSTYLEBIT_USED;
+/*N*/   USHORT nLclMask = SFXSTYLEBIT_USED;
 /*N*/
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_TITLE));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -602,7 +600,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_SUBTITLE));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent(String());
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -611,7 +609,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -620,7 +618,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUND));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -629,7 +627,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_NOTES));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -646,7 +644,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if (!(pSheet = Find(aLevelName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/       {
-/*N*/           pSheet = &Make(aLevelName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/           pSheet = &Make(aLevelName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/
 /*N*/           if (pSheet)
 /*N*/           {
@@ -830,7 +828,6 @@ namespace binfilter {
 /*N*/                   String aStr( SdResId( STR_PSEUDOSHEET_OUTLINE ) );
 /*N*/                   aStr.Append( sal_Unicode( ' ' ));
 /*N*/                   String aStr2( RTL_CONSTASCII_USTRINGPARAM( "Gliederung " ));
-/*N*/                   sal_Int32 nNumber = 0;
 /*N*/
 /*N*/                   if( aOldName == String( SdResId( STR_PSEUDOSHEET_TITLE ) ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel", 0, RTL_CONSTASCII_LENGTH( "Titel" )))
@@ -915,7 +912,6 @@ namespace binfilter {
 
 /*N*/ void SdStyleSheetPool::AdjustLRSpaceItems()
 /*N*/ {
-/*N*/   String aHelpFile;
 /*N*/   ULONG nCount = aStyles.Count();
 /*N*/
 /*N*/   // #63254# Aenderungen nicht mehr broadcasten,statt dessen nach
@@ -1046,13 +1042,13 @@ namespace binfilter {
 /*N*/                 aName.Search(aSubtitleName) != STRING_NOTFOUND )
 /*N*/       {
 /*N*/           // Titel- oder Untertitel-Vorlage
-/*N*/           SfxItemSet& rSet = pSheet->GetItemSet();
+/*N*/           SfxItemSet& rLclSet = pSheet->GetItemSet();
 /*N*/
-/*N*/           if (rSet.GetItemState(EE_PARA_BULLETSTATE) != SFX_ITEM_ON ||
-/*N*/               ((const SfxUInt16Item&) rSet.Get(EE_PARA_BULLETSTATE)).GetValue() == 1)
+/*N*/           if (rLclSet.GetItemState(EE_PARA_BULLETSTATE) != SFX_ITEM_ON ||
+/*N*/               ((const SfxUInt16Item&) rLclSet.Get(EE_PARA_BULLETSTATE)).GetValue() == 1)
 /*N*/           {
 /*N*/               SfxUInt16Item aBulletStateItem(EE_PARA_BULLETSTATE, 0); // Bullets nicht sichtbar
-/*N*/               rSet.Put(aBulletStateItem);
+/*N*/               rLclSet.Put(aBulletStateItem);
 /*N*/           }
 /*N*/
 /*N*/           if( nHelpId == HID_PSEUDOSHEET_TITLE ||

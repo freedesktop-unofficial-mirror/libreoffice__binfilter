@@ -54,8 +54,8 @@ class SwTableCursor;
 class SwChartEventListenerContainer : public SwEventListenerContainer
 {
     public:
-        SwChartEventListenerContainer( ::com::sun::star::uno::XInterface* pxParent) :
-            SwEventListenerContainer(pxParent){}
+        SwChartEventListenerContainer( ::com::sun::star::uno::XInterface* pxParentIn) :
+            SwEventListenerContainer(pxParentIn){}
         void ChartDataChanged();
 };
 /* ---------------------------------------------------------------------------

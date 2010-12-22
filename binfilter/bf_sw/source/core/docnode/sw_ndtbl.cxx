@@ -394,7 +394,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       SwTableBoxes& rBoxes = pLine->GetTabBoxes();
 /*N*/       for( USHORT i = 0; i < nCols; ++i )
 /*N*/       {
-/*N*/           SwTableBoxFmt *pBoxF;
+/*N*/           SwTableBoxFmt *pBoxF(0);
 /*N*/           if( pTAFmt )
 /*N*/           {
 /*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BYTE nId = !n ? 0 : (( n+1 == nRows )

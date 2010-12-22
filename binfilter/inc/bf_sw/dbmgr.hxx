@@ -128,12 +128,12 @@ struct SwDSParam : public SwDBData
         const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>&    xResSet,
         const ::com::sun::star::uno::Sequence<  ::com::sun::star::uno::Any >&   rSelection) :
         SwDBData(rData),
+        xResultSet(xResSet),
+        aSelection(rSelection),
         bScrollable(TRUE),
         bEndOfDB(FALSE),
         bAfterSelection(FALSE),
-        nSelectionIndex(0),
-        xResultSet(xResSet),
-        aSelection(rSelection)
+        nSelectionIndex(0)
         {}
 
         void CheckEndOfDB()
