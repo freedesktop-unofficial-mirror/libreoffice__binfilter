@@ -635,7 +635,7 @@ extern "C"
             Factory().RegisterInitFactory( &InitFactory    );                    \
     }                                                                         \
                                                                               \
-    SfxObjectShell* __EXPORT Class::CreateObject(SfxObjectCreateMode eMode)   \
+    SfxObjectShell* Class::CreateObject(SfxObjectCreateMode eMode)    \
     {                                                                         \
         SfxCreateExtern_TYPE fCreate = (SfxCreateExtern_TYPE)           \
             GetFunc##LibName( "CreateObj" #Class "Dll");            \
