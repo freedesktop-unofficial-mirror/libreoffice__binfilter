@@ -38,7 +38,7 @@ XMLErrorIndicatorPropertyHdl::~XMLErrorIndicatorPropertyHdl()
 {}
 
 sal_Bool XMLErrorIndicatorPropertyHdl::importXML( const ::rtl::OUString& rStrImpValue,
-                                                  uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+                                                  uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bValue;
     SvXMLUnitConverter::convertBool( bValue, rStrImpValue );
@@ -83,7 +83,7 @@ sal_Bool XMLErrorIndicatorPropertyHdl::importXML( const ::rtl::OUString& rStrImp
 }
 
 sal_Bool XMLErrorIndicatorPropertyHdl::exportXML( ::rtl::OUString& rStrExpValue,
-                                                  const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+                                                  const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     ::rtl::OUStringBuffer aBuffer;
     chart::ChartErrorIndicatorType eType;

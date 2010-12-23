@@ -61,7 +61,7 @@ void SchXMLAutoStylePoolP::exportStyleAttributes(
     if( nFamily == XML_STYLE_FAMILY_SCH_CHART_ID )
     {
         ::std::vector< XMLPropertyState >::const_iterator iter = rProperties.begin();
-        for( iter; (iter != rProperties.end()); iter++ )
+        for( ; (iter != rProperties.end()); ++iter )
         {
             UniReference< XMLPropertySetMapper > aPropMapper =
                 mrSchXMLExport.GetPropertySetMapper();

@@ -40,7 +40,7 @@ XMLTextOrientationHdl::~XMLTextOrientationHdl()
 sal_Bool XMLTextOrientationHdl::importXML(
     const ::rtl::OUString& rStrImpValue,
     ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRetval( sal_False );
 
@@ -61,7 +61,7 @@ sal_Bool XMLTextOrientationHdl::importXML(
 sal_Bool XMLTextOrientationHdl::exportXML(
     ::rtl::OUString& rStrExpValue,
     const ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bVal;
     sal_Bool bRetval( sal_False );

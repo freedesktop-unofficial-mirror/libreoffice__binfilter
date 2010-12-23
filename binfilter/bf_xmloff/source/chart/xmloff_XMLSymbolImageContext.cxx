@@ -57,12 +57,12 @@ static SvXMLTokenMapEntry aSymbolImageAttrTokenMap[] =
 };
 
 XMLSymbolImageContext::XMLSymbolImageContext(
-    SvXMLImport& rImport, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, sal_uInt16 nPrfx,
     const ::rtl::OUString& rLName,
     const XMLPropertyState& rProp,
     ::std::vector< XMLPropertyState > &rProps ) :
         XMLElementPropertyContext(
-            rImport, nPrfx, rLName, rProp, rProps )
+            rInImport, nPrfx, rLName, rProp, rProps )
 {
 }
 
@@ -72,18 +72,18 @@ XMLSymbolImageContext::~XMLSymbolImageContext()
 void XMLSymbolImageContext::StartElement( const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLTokenMap aTokenMap( aSymbolImageAttrTokenMap );
-    ::rtl::OUString aLocalName;
+    ::rtl::OUString aLclLocalName;
 
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         const ::rtl::OUString& rAttrName = xAttrList->getNameByIndex( i );
-        sal_uInt16 nPrefix =
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const ::rtl::OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SYMBOL_IMAGE_HREF:
                 msURL = rValue;
@@ -99,7 +99,7 @@ void XMLSymbolImageContext::StartElement( const uno::Reference< xml::sax::XAttri
 }
 
 SvXMLImportContext* XMLSymbolImageContext::CreateChildContext(
-    sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName,
+    sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
@@ -110,14 +110,14 @@ SvXMLImportContext* XMLSymbolImageContext::CreateChildContext(
         {
             mxBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( mxBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                        rLocalName, xAttrList,
                                                        mxBase64Stream );
         }
     }
     if( ! pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;

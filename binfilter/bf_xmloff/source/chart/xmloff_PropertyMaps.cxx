@@ -200,7 +200,7 @@ void XMLChartExportPropertyMapper::ContextFilter(
             {
                 try
                 {
-                    sal_Bool bAuto;
+                    sal_Bool bAuto(sal_False);
                     uno::Any aAny = rPropSet->getPropertyValue( aAutoPropName );
                     aAny >>= bAuto;
                     if( bAuto )
@@ -373,9 +373,9 @@ void XMLChartExportPropertyMapper::handleSpecialItem(
 // ----------------------------------------
 
 XMLChartImportPropertyMapper::XMLChartImportPropertyMapper( const UniReference< XMLPropertySetMapper >& rMapper,
-                                                            const SvXMLImport& rImport ) :
-        SvXMLImportPropertyMapper( rMapper, const_cast< SvXMLImport & >( rImport )),
-        mrImport( const_cast< SvXMLImport & > ( rImport ))
+                                                            const SvXMLImport& rInImport ) :
+        SvXMLImportPropertyMapper( rMapper, const_cast< SvXMLImport & >( rInImport )),
+        mrImport( const_cast< SvXMLImport & > ( rInImport ))
 {
     // chain shape mapper for drawing properties
 
@@ -507,7 +507,7 @@ sal_Bool XMLChartImportPropertyMapper::handleSpecialItem(
     return bRet;
 }
 
-void XMLChartImportPropertyMapper::finished( ::std::vector< XMLPropertyState >& rProperties, sal_Int32 nStartIndex, sal_Int32 nEndIndex ) const
+void XMLChartImportPropertyMapper::finished( ::std::vector< XMLPropertyState >& , sal_Int32 , sal_Int32 ) const
 {
 }
 }//end of namespace binfilter

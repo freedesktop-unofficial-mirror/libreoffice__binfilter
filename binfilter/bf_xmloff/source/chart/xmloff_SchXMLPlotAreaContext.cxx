@@ -1418,8 +1418,8 @@ SchXMLStatisticsObjectContext::SchXMLStatisticsObjectContext(
 
         SvXMLImportContext( rImport, nPrefix, rLocalName ),
         mrImportHelper( rImpHelper ),
-        mnSeriesIndex( nSeries ),
         mrStyleList( rStyleList ),
+        mnSeriesIndex( nSeries ),
         meContextType( eContextType )
 {}
 
@@ -1432,17 +1432,16 @@ void SchXMLStatisticsObjectContext::StartElement( const uno::Reference< xml::sax
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
     ::rtl::OUString aValue;
     ::rtl::OUString sAutoStyleName;
-    sal_Int32 nRepeat = 1;
 
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        if( nPrefix == XML_NAMESPACE_CHART )
+        if( nLclPrefix == XML_NAMESPACE_CHART )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                 sAutoStyleName = xAttrList->getValueByIndex( i );
         }
     }
