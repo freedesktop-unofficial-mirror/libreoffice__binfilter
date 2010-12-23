@@ -98,7 +98,7 @@ sal_Bool ScMyOpenCloseColumnRowGroup::IsGroupStart(const sal_Int32 nField)
             ScMyColumnRowGroupVec::iterator aEnd = aTableStart.end();
             while ( aItr != aEnd && nItrField < nField )
             {
-                aItr++;
+                ++aItr;
                 if ( aItr != aEnd )
                     nItrField = aItr->nField;
             }
@@ -168,7 +168,7 @@ void ScMyOpenCloseColumnRowGroup::CloseGroups(const sal_Int32 nField)
 sal_Int32 ScMyOpenCloseColumnRowGroup::GetLast()
 {
     sal_Int32 maximum(-1);
-    for (ScMyFieldGroupVec::iterator i = aTableEnd.begin(); i != aTableEnd.end(); i++)
+    for (ScMyFieldGroupVec::iterator i = aTableEnd.begin(); i != aTableEnd.end(); ++i)
         if (*i > maximum)
             maximum = *i;
     return maximum;
