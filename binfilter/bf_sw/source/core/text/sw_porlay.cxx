@@ -60,22 +60,6 @@ using namespace ::com::sun::star::i18n::ScriptType;
 namespace binfilter {
 
 /*************************************************************************
- *                 lcl_IsLigature
- *
- * Checks if cCh + cNectCh builds a ligature (used for Kashidas)
- *************************************************************************/
-
-
-/*************************************************************************
- *                 lcl_ConnectToPrev
- *
- * Checks if cCh is connectable to cPrevCh (used for Kashidas)
- *************************************************************************/
-
-
-
-
-/*************************************************************************
  *                 SwLineLayout::~SwLineLayout()
  *
  * class SwLineLayout: Das Layout einer einzelnen Zeile. Dazu
@@ -120,11 +104,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   // mit Skope aufrufen, sonst Rekursion !
 /*N*/   return pPortion->SwLinePortion::Insert( pIns );
 /*N*/ }
-
-/*************************************************************************
- *                virtual SwLineLayout::Append()
- *************************************************************************/
-
 
 /*************************************************************************
  *                virtual SwLineLayout::Format()
