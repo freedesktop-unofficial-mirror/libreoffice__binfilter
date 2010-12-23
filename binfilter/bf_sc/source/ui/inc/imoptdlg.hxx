@@ -45,7 +45,7 @@
 #endif
 
 #ifndef _SV_BUTTON_HXX //autogen
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #endif
 
 #ifndef _SVX_TXENCBOX_HXX
