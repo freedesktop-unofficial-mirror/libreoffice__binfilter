@@ -682,8 +682,6 @@ namespace binfilter {
 /*N*/   bool bObn=nEscAngle==9000;
 /*N*/   bool bLks=nEscAngle==18000;
 /*N*/   bool bUnt=nEscAngle==27000;
-/*N*/   bool bHor=bLks || bRts;
-/*N*/   bool bVer=bObn || bUnt;
 /*N*/
 /*N*/   Point aP1(rStPt); // erstmal den Pflichtabstand
 /*N*/   if (bLks) aP1.X()=rRect.Left();
@@ -890,8 +888,6 @@ namespace binfilter {
 /*N*/   Rectangle aBewareRect1(rBewareRect1);
 /*N*/   Rectangle aBewareRect2(rBewareRect2);
 /*N*/   Point aMeeting((aPt1.X()+aPt2.X()+1)/2,(aPt1.Y()+aPt2.Y()+1)/2);
-/*N*/   bool bMeetingXMid=TRUE;
-/*N*/   bool bMeetingYMid=TRUE;
 /*N*/   if (eKind==SDREDGE_ONELINE) {
 /*?*/       XPolygon aXP(2);
 /*?*/       aXP[0]=rPt1;
@@ -939,7 +935,6 @@ namespace binfilter {
 /*?*/       return aXP;
 /*N*/   }
 /*N*/   USHORT nIntersections=0;
-/*N*/   bool bForceMeeting=FALSE; // Muss die Linie durch den MeetingPoint laufen?
 /*N*/   {
 /*N*/       Point aC1(aBewareRect1.Center());
 /*N*/       Point aC2(aBewareRect2.Center());
@@ -977,8 +972,6 @@ namespace binfilter {
 /*N*/       long nXMax=Max(aBewareRect1.Right(),aBewareRect2.Right());
 /*N*/       long nYMin=Min(aBewareRect1.Top(),aBewareRect2.Top());
 /*N*/       long nYMax=Max(aBewareRect1.Bottom(),aBewareRect2.Bottom());
-/*N*/       bool bBoundOverlap=aBoundRect1.Right()>aBoundRect2.Left() && aBoundRect1.Left()<aBoundRect2.Right() &&
-/*N*/                              aBoundRect1.Bottom()>aBoundRect2.Top() && aBoundRect1.Top()<aBoundRect2.Bottom();
 /*N*/       bool bBewareOverlap=aBewareRect1.Right()>aBewareRect2.Left() && aBewareRect1.Left()<aBewareRect2.Right() &&
 /*N*/                               aBewareRect1.Bottom()>aBewareRect2.Top() && aBewareRect1.Top()<aBewareRect2.Bottom();
 /*N*/       unsigned nMainCase=3;
@@ -994,23 +987,18 @@ namespace binfilter {
 /*N*/           bool bY2Ok=aPt2.Y()<=aBewareRect1.Top() || aPt2.Y()>=aBewareRect1.Bottom();
 /*N*/           if (bLks1 && (bY1Ok || aBewareRect1.Left()<aBewareRect2.Right()) && (bY2Ok || aBewareRect2.Left()<aBewareRect1.Right())) {
 /*N*/               aMeeting.X()=nXMin;
-/*N*/               bMeetingXMid=FALSE;
 /*N*/           }
 /*N*/           if (bRts1 && (bY1Ok || aBewareRect1.Right()>aBewareRect2.Left()) && (bY2Ok || aBewareRect2.Right()>aBewareRect1.Left())) {
 /*N*/               aMeeting.X()=nXMax;
-/*N*/               bMeetingXMid=FALSE;
 /*N*/           }
 /*N*/           if (bObn1 && (bX1Ok || aBewareRect1.Top()<aBewareRect2.Bottom()) && (bX2Ok || aBewareRect2.Top()<aBewareRect1.Bottom())) {
 /*N*/               aMeeting.Y()=nYMin;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/           }
 /*N*/           if (bUnt1 && (bX1Ok || aBewareRect1.Bottom()>aBewareRect2.Top()) && (bX2Ok || aBewareRect2.Bottom()>aBewareRect1.Top())) {
 /*N*/               aMeeting.Y()=nYMax;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/           }
 /*N*/       } else if (nMainCase==2) {
 /*N*/           // Fall 2:
-/*N*/           bForceMeeting=TRUE;
 /*N*/           if (bHor1) { // beide waagerecht
 /*N*/               // 9 Moeglichkeiten:                   ???
 /*N*/               //   2.1 Gegenueber, Ueberschneidung   ???
@@ -1065,7 +1053,6 @@ namespace binfilter {
 /*N*/                           } else {
 /*?*/                               aMeeting.Y()=nYMax;
 /*N*/                           }
-/*N*/                           bMeetingYMid=FALSE;
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
@@ -1074,7 +1061,6 @@ namespace binfilter {
 /*N*/                               } else {
 /*N*/                                   aMeeting.X()=aBewR1.Left();
 /*N*/                               }
-/*N*/                               bMeetingXMid=FALSE;
 /*N*/                           }
 /*N*/                       } else {
 /*N*/                           // Direkte Verbindung (3-Linien Z-Verbindung), da
@@ -1125,7 +1111,6 @@ namespace binfilter {
 /*N*/                           } else {
 /*N*/                               aMeeting.X()=nXMax;
 /*N*/                           }
-/*N*/                           bMeetingXMid=FALSE;
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
@@ -1134,7 +1119,6 @@ namespace binfilter {
 /*N*/                               } else {
 /*N*/                                   aMeeting.Y()=aBewR1.Top();
 /*N*/                               }
-/*N*/                               bMeetingYMid=FALSE;
 /*N*/                           }
 /*N*/                       } else {
 /*N*/                           // Direkte Verbindung (3-Linien Z-Verbindung), da
@@ -1205,9 +1189,6 @@ namespace binfilter {
 /*N*/               (((bRts2 && aTmpR2.Right ()<=aPt1.X()) || (bLks2 && aTmpR2.Left()>=aPt1.X())) &&
 /*N*/                ((bUnt1 && aTmpR1.Bottom()<=aPt2.Y()) || (bObn1 && aTmpR1.Top ()>=aPt2.Y())))) {
 /*N*/               // Fall 3.2 trifft zu: Verbindung mit lediglich 2 Linien
-/*N*/               bForceMeeting=TRUE;
-/*N*/               bMeetingXMid=FALSE;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/               if (bHor1) {
 /*N*/                   aMeeting.X()=aPt2.X();
 /*N*/                   aMeeting.Y()=aPt1.Y();
@@ -1227,11 +1208,10 @@ namespace binfilter {
 /*N*/                       ((bUnt1 && aBewareRect1.Bottom()>aBewareRect2.Top   ()) ||
 /*N*/                        (bObn1 && aBewareRect1.Top   ()<aBewareRect2.Bottom())))) {
 /*N*/               // Fall 3.3
-/*N*/               bForceMeeting=TRUE;
-/*N*/               if (bRts1 || bRts2) { aMeeting.X()=nXMax; bMeetingXMid=FALSE; }
-/*N*/               if (bLks1 || bLks2) { aMeeting.X()=nXMin; bMeetingXMid=FALSE; }
-/*N*/               if (bUnt1 || bUnt2) { aMeeting.Y()=nYMax; bMeetingYMid=FALSE; }
-/*N*/               if (bObn1 || bObn2) { aMeeting.Y()=nYMin; bMeetingYMid=FALSE; }
+/*N*/               if (bRts1 || bRts2) { aMeeting.X()=nXMax; }
+/*N*/               if (bLks1 || bLks2) { aMeeting.X()=nXMin; }
+/*N*/               if (bUnt1 || bUnt2) { aMeeting.Y()=nYMax; }
+/*N*/               if (bObn1 || bObn2) { aMeeting.Y()=nYMin; }
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -1253,8 +1233,6 @@ namespace binfilter {
 /*N*/       // Sonderbehandlung fuer 'I'-Verbinder
 /*N*/       nXP1Anz--; aXP1.Remove(nXP1Anz,1);
 /*N*/       nXP2Anz--; aXP2.Remove(nXP2Anz,1);
-/*N*/       bMeetingXMid=FALSE;
-/*N*/       bMeetingYMid=FALSE;
 /*N*/   }
 /*N*/   if (bInsMeetingPoint) {
 /*N*/       aXP1.Insert(XPOLY_APPEND,aMeeting,XPOLY_NORMAL);
