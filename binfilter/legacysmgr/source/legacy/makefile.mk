@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ = ..$/..$/..
 BFPRJ = ..$/..
 PRJNAME = binfilter
