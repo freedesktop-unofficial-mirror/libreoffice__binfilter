@@ -217,7 +217,7 @@ static Sequence< OUString > retrieveAsciiValueList(
                     seq.realloc( n1Len + n2Len );
                     const OUString *pSource = seq2.getConstArray();
                     OUString *pTarget = seq.getArray();
-                    for( int i = 0 ; i < n2Len ; i ++ )
+                    for( int i = 0; i < n2Len; ++i )
                     {
                         pTarget[i+n1Len] = pSource[i];
                     }
@@ -687,7 +687,7 @@ void OServiceManager::onUnloadingNotify()
     list<IT_MM> listDeleteServiceMap;
     typedef list<IT_MM>::const_iterator CIT_DMM;
     // find occurrences in m_ServiceMap
-    for(IT_MM it_i1= m_ServiceMap.begin(); it_i1 != it_end1; it_i1++)
+    for(IT_MM it_i1= m_ServiceMap.begin(); it_i1 != it_end1; ++it_i1)
     {
         if( m_SetLoadedFactories.find( it_i1->second) != it_SetEnd)
         {
@@ -703,7 +703,7 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ServiceMap
     CIT_DMM it_end2= listDeleteServiceMap.end();
-    for( CIT_DMM it_i2= listDeleteServiceMap.begin(); it_i2 != it_end2; it_i2++)
+    for( CIT_DMM it_i2= listDeleteServiceMap.begin(); it_i2 != it_end2; ++it_i2)
         m_ServiceMap.erase( *it_i2);
 
     // find elements in m_ImplementationNameMap
@@ -711,7 +711,7 @@ void OServiceManager::onUnloadingNotify()
     IT_M it_end3= m_ImplementationNameMap.end();
     list<IT_M> listDeleteImplementationNameMap;
     typedef list<IT_M>::const_iterator CIT_DM;
-    for( IT_M it_i3= m_ImplementationNameMap.begin();  it_i3 != it_end3; it_i3++)
+    for( IT_M it_i3= m_ImplementationNameMap.begin();  it_i3 != it_end3; ++it_i3)
     {
         if( m_SetLoadedFactories.find( it_i3->second) != it_SetEnd)
         {
@@ -727,7 +727,7 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ImplementationNameMap
     CIT_DM it_end4= listDeleteImplementationNameMap.end();
-    for( CIT_DM it_i4= listDeleteImplementationNameMap.begin(); it_i4 != it_end4; it_i4++)
+    for( CIT_DM it_i4= listDeleteImplementationNameMap.begin(); it_i4 != it_end4; ++it_i4)
         m_ImplementationNameMap.erase( *it_i4);
 
     // find elements in m_ImplementationMap
@@ -735,7 +735,7 @@ void OServiceManager::onUnloadingNotify()
     IT_S it_end5= m_ImplementationMap.end();
     list<IT_S> listDeleteImplementationMap;
     typedef list<IT_S>::const_iterator CIT_DS;
-    for( IT_S it_i5= m_ImplementationMap.begin(); it_i5 != it_end5; it_i5++)
+    for( IT_S it_i5= m_ImplementationMap.begin(); it_i5 != it_end5; ++it_i5)
     {
         if( m_SetLoadedFactories.find( *it_i5) != it_SetEnd)
         {
@@ -751,14 +751,14 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ImplementationMap
     CIT_DS it_end6= listDeleteImplementationMap.end();
-    for( CIT_DS it_i6= listDeleteImplementationMap.begin(); it_i6 != it_end6; it_i6++)
+    for( CIT_DS it_i6= listDeleteImplementationMap.begin(); it_i6 != it_end6; ++it_i6)
         m_ImplementationMap.erase( *it_i6);
 
     // remove Event listener before the factories are released.
     IT_S it_end7= m_SetLoadedFactories.end();
 
     Reference<XEventListener> xlistener= getFactoryListener();
-    for( IT_S it_i7= m_SetLoadedFactories.begin(); it_i7 != it_end7; it_i7++)
+    for( IT_S it_i7= m_SetLoadedFactories.begin(); it_i7 != it_end7; ++it_i7)
     {
         Reference<XComponent> xcomp( *it_i7, UNO_QUERY);
         if( xcomp.is())
@@ -1117,7 +1117,7 @@ sal_Bool OServiceManager::supportsService(const OUString& ServiceName)
     check_undisposed();
     Sequence< OUString > aSNL = getSupportedServiceNames();
     const OUString * pArray = aSNL.getConstArray();
-    for( sal_Int32 i = 0; i < aSNL.getLength(); i++ )
+    for( sal_Int32 i = 0; i < aSNL.getLength(); ++i )
         if( pArray[i] == ServiceName )
             return sal_True;
     return sal_False;
@@ -1270,7 +1270,7 @@ void OServiceManager::insert( const Any & Element )
     {
         Sequence< OUString > aServiceNames = xSF->getSupportedServiceNames();
         const OUString * pArray = aServiceNames.getConstArray();
-        for( sal_Int32 i = 0; i < aServiceNames.getLength(); i++ )
+        for( sal_Int32 i = 0; i < aServiceNames.getLength(); ++i )
         {
             m_ServiceMap.insert( HashMultimap_OWString_Interface::value_type(
                 pArray[i], *(Reference<XInterface > *)Element.getValue() ) );
@@ -1337,7 +1337,7 @@ void OServiceManager::remove( const Any & Element )
     {
         Sequence< OUString > aServiceNames = xSF->getSupportedServiceNames();
         const OUString * pArray = aServiceNames.getConstArray();
-        for( sal_Int32 i = 0; i < aServiceNames.getLength(); i++ )
+        for( sal_Int32 i = 0; i < aServiceNames.getLength(); ++i )
         {
             pair<HashMultimap_OWString_Interface::iterator, HashMultimap_OWString_Interface::iterator> p =
                 m_ServiceMap.equal_range( pArray[i] );
@@ -1536,7 +1536,7 @@ Reference<XInterface > ORegistryServiceManager::loadWithServiceName(
     const OUString& serviceName, Reference< XComponentContext > const & xContext )
 {
     Sequence<OUString> implEntries = getFromServiceName( serviceName );
-    for (sal_Int32 i = 0; i < implEntries.getLength(); i++)
+    for (sal_Int32 i = 0; i < implEntries.getLength(); ++i)
     {
         Reference< XInterface > x(
             loadWithImplementationName( implEntries.getConstArray()[i], xContext ) );
@@ -1565,7 +1565,7 @@ void ORegistryServiceManager::fillAllNamesFromRegistry( HashSet_OWString & rSet 
         {
             sal_Int32 nPrefix = xServicesKey->getKeyName().getLength() +1;
             Sequence<Reference<XRegistryKey > > aKeys = xServicesKey->openKeys();
-            for( sal_Int32 i = 0; i < aKeys.getLength(); i++ )
+            for( sal_Int32 i = 0; i < aKeys.getLength(); ++i )
                 rSet.insert( aKeys.getConstArray()[i]->getKeyName().copy( nPrefix ) );
         }
     }
@@ -1648,7 +1648,7 @@ Reference<XEnumeration > ORegistryServiceManager::createContentEnumeration(
     // load and insert all factories specified by the registry
     sal_Int32 i;
     OUString aImplName;
-    for( i = 0; i < aImpls.getLength(); i++ )
+    for( i = 0; i < aImpls.getLength(); ++i )
     {
         aImplName = aImpls.getConstArray()[i];
         if ( !haveFactoryWithThisImplementation(aImplName) )
