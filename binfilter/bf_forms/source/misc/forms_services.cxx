@@ -477,7 +477,7 @@ void SAL_CALL createRegistryInfo_FORMS()
 }
 
 //---------------------------------------------------------------------------------------
-void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** _ppEnv)
+void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** /*_ppEnv*/)
 {
     *_ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }

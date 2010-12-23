@@ -627,7 +627,7 @@ void ODatabaseForm::AppendComponent(HtmlSuccessfulObjList& rList, const Referenc
     if (!hasProperty(PROPERTY_NAME, xComponentSet))
         return;
 
-    sal_Int16 nClassId;
+    sal_Int16 nClassId(0);
     xComponentSet->getPropertyValue(PROPERTY_CLASSID) >>= nClassId;
     ::rtl::OUString aName;
     xComponentSet->getPropertyValue( PROPERTY_NAME ) >>= aName;
@@ -690,7 +690,7 @@ void ODatabaseForm::AppendComponent(HtmlSuccessfulObjList& rList, const Referenc
             // <name>=<refValue>
             if( !hasProperty(PROPERTY_STATE, xComponentSet) )
                 break;
-            sal_Int16 nChecked;
+            sal_Int16 nChecked(0);
             xComponentSet->getPropertyValue( PROPERTY_STATE ) >>= nChecked;
             if( nChecked != 1 )
                 break;
@@ -772,10 +772,10 @@ void ODatabaseForm::AppendComponent(HtmlSuccessfulObjList& rList, const Referenc
                 ::rtl::OUString aText;
                 Any aVal  = xComponentSet->getPropertyValue( PROPERTY_VALUE );
 
-                double aDoubleVal;
+                double aDoubleVal(0.0);
                 if (aVal >>= aDoubleVal)
                 {
-                    sal_Int16 nScale;
+                    sal_Int16 nScale(0);
                     xComponentSet->getPropertyValue( PROPERTY_DECIMAL_ACCURACY ) >>= nScale;
                     aText = ::rtl::math::doubleToUString(aDoubleVal, rtl_math_StringFormat_F, nScale, '.', sal_True);
                 }

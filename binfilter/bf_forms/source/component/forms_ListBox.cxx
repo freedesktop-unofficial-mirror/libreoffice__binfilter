@@ -406,7 +406,7 @@ void SAL_CALL OListBoxModel::write(const Reference<stario::XObjectOutputStream>&
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nBoundColumn;
+        sal_Int16 nBoundColumn(0);
         m_aBoundColumn >>= nBoundColumn;
         _rxOutStream << nBoundColumn;
     }

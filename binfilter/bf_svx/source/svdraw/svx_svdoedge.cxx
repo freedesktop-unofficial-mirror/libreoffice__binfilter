@@ -155,7 +155,7 @@ namespace binfilter {
 /*N*/   rIn>>nReserve;
 /*N*/ }
 
-/*N*/ void SdrObjConnection::AfterRead(const SdrObject* pEdgeObj)
+/*N*/ void SdrObjConnection::AfterRead(const SdrObject* /*pEdgeObj*/)
 /*N*/ {
 /*N*/   if (pSuro!=NULL) {
 /*N*/       pObj=pSuro->GetObject();
@@ -916,8 +916,6 @@ namespace binfilter {
 /*?*/               nQ+=Abs(aXP[3].X()-aXP[2].X())+Abs(aXP[3].Y()-aXP[2].Y());
 /*?*/           *pnQuality=nQ;
 /*?*/       }
-/*?*/       USHORT n1=1;
-/*?*/       USHORT n2=1;
 /*?*/       if (bInfo) {
 /*?*/           pInfo->nObj1Lines=2;
 /*?*/           pInfo->nObj2Lines=2;
@@ -1684,7 +1682,7 @@ je Objekt variiert von 0-3:
 
 
 
-/*N*/ void SdrEdgeObj::NbcSetPoint(const Point& rPnt, USHORT i)
+/*N*/ void SdrEdgeObj::NbcSetPoint(const Point&, USHORT)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/   // ToDo: Umconnekten fehlt noch
 /*N*/ }

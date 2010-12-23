@@ -100,7 +100,7 @@ OControl::OControl(const Reference<com::sun::star::lang::XMultiServiceFactory>& 
     }
 
     // Refcount wieder bei NULL
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -1352,7 +1352,7 @@ sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
         // darf ich mich ueberhaupt an dieses Feld binden (Typ-Check)
         if (xFieldCandidate.is())
         {
-            sal_Int32 nFieldType;
+            sal_Int32 nFieldType(0);
             xFieldCandidate->getPropertyValue(PROPERTY_FIELDTYPE) >>= nFieldType;
             if (_approve(nFieldType))
                 setField(xFieldCandidate,sal_False);
@@ -1368,7 +1368,8 @@ sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
                 m_xField->addPropertyChangeListener(PROPERTY_VALUE, this);
                                 m_xColumnUpdate = Reference<XColumnUpdate>(m_xField, UNO_QUERY);
                                 m_xColumn = Reference<XColumn>(m_xField, UNO_QUERY);
-                INT32 nNullableFlag; m_xField->getPropertyValue(PROPERTY_ISNULLABLE) >>= nNullableFlag;
+                INT32 nNullableFlag(0);
+                m_xField->getPropertyValue(PROPERTY_ISNULLABLE) >>= nNullableFlag;
                 m_bRequired = (ColumnValue::NO_NULLS == nNullableFlag);
                     // we're optimistic : in case of ColumnValue_NULLABLE_UNKNOWN we assume nullability ....
             }
@@ -1432,19 +1433,19 @@ void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject
 
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::unloaded( const com::sun::star::lang::EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::unloaded( const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::reloading( const com::sun::star::lang::EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::reloading( const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
     m_bForwardValueChanges = sal_False;
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObject& aEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
     _unloaded();
@@ -1487,7 +1488,7 @@ void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObje
 }
 
 //------------------------------------------------------------------------------
-void OBoundControlModel::_loaded(const com::sun::star::lang::EventObject& rEvent)
+void OBoundControlModel::_loaded(const com::sun::star::lang::EventObject& )
 {
 }
 

@@ -264,7 +264,7 @@ public:
 
     // com::sun::star::awt::XTabControllerModel
     virtual sal_Bool SAL_CALL getGroupControl() throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setGroupControl(sal_Bool _bGroupControl) throw(::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL setGroupControl(sal_Bool /*_bGroupControl*/) throw(::com::sun::star::uno::RuntimeException) { }
     virtual void SAL_CALL setControlModels(const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > >& _rControls) throw(::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > > SAL_CALL getControlModels() throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setGroup(const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControlModel > >& _rGroup, const ::rtl::OUString& _rGroupName) throw(::com::sun::star::uno::RuntimeException);

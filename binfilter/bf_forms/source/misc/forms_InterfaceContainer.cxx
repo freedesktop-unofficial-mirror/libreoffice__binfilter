@@ -91,8 +91,8 @@ OInterfaceContainer::OInterfaceContainer(
                 const Reference<XMultiServiceFactory>& _rxFactory,
                 ::osl::Mutex& _rMutex,
                 const Type& _rElementType)
-        :m_rMutex(_rMutex)
-        ,m_aContainerListeners(_rMutex)
+        :m_aContainerListeners(_rMutex)
+        ,m_rMutex(_rMutex)
         ,m_aElementType(_rElementType)
         ,m_xServiceFactory(_rxFactory)
 {
@@ -272,9 +272,8 @@ void OInterfaceContainer::transformEvents( const EventFormat _eTargetFormat )
             }
         }
     }
-    catch( const Exception& e )
+    catch( const Exception& )
     {
-        e;  // make compiler happy
         DBG_ERROR( "OInterfaceContainer::transformEvents: caught an exception!" );
     }
 }
@@ -384,7 +383,7 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
     if (nLen)
     {
         // 1. Version
-        sal_uInt16 nVersion = _rxInStream->readShort();
+        /*sal_uInt16 nVersion =*/ _rxInStream->readShort();
 
         // 2. Objekte
         for (sal_Int32 i = 0; i < nLen; i++)
@@ -394,9 +393,8 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
             {
                 xObj = _rxInStream->readObject();
             }
-            catch(WrongFormatException& e)
+            catch(WrongFormatException& )
             {
-                e;  // make compiler happy
                 // the object could not be read
                 // create a object (so the readEvents below will assign the events to the right controls)
                 xObj = lcl_createPlaceHolder( m_xServiceFactory );
