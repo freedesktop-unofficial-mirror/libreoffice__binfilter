@@ -42,13 +42,13 @@ using namespace ::binfilter::xmloff::token;
 // ==================================================
 
 SchXMLDocContext::SchXMLDocContext( SchXMLImportHelper& rImpHelper,
-                                    SvXMLImport& rImport,
-                                    USHORT nPrefix,
+                                    SvXMLImport& rInImport,
+                                    USHORT nInPrefix,
                                     const ::rtl::OUString& rLName ) :
-        SvXMLImportContext( rImport, nPrefix, rLName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLName ),
         mrImportHelper( rImpHelper )
 {
-    DBG_ASSERT( XML_NAMESPACE_OFFICE == nPrefix &&
+    DBG_ASSERT( XML_NAMESPACE_OFFICE == nInPrefix &&
         ( IsXMLToken( rLName, XML_DOCUMENT ) ||
           IsXMLToken( rLName, XML_DOCUMENT_META) ||
           IsXMLToken( rLName, XML_DOCUMENT_STYLES) ||
@@ -60,7 +60,7 @@ SchXMLDocContext::~SchXMLDocContext()
 {}
 
 SvXMLImportContext* SchXMLDocContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
@@ -68,7 +68,7 @@ SvXMLImportContext* SchXMLDocContext::CreateChildContext(
     const SvXMLTokenMap& rTokenMap = mrImportHelper.GetDocElemTokenMap();
     sal_uInt16 nFlags = GetImport().getImportFlags();
 
-    switch( rTokenMap.Get( nPrefix, rLocalName ))
+    switch( rTokenMap.Get( nInPrefix, rLocalName ))
     {
         case XML_TOK_DOC_AUTOSTYLES:
             if( nFlags & IMPORT_AUTOSTYLES )
@@ -80,21 +80,21 @@ SvXMLImportContext* SchXMLDocContext::CreateChildContext(
         case XML_TOK_DOC_STYLES:
             // for draw styles containing gradients/hatches/markers and dashes
             if( nFlags & IMPORT_STYLES )
-                pContext = new SvXMLStylesContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pContext = new SvXMLStylesContext( GetImport(), nInPrefix, rLocalName, xAttrList );
             break;
         case XML_TOK_DOC_META:
             if( nFlags & IMPORT_META )
-                pContext = new SfxXMLMetaContext( GetImport(), nPrefix, rLocalName, GetImport().GetModel());
+                pContext = new SfxXMLMetaContext( GetImport(), nInPrefix, rLocalName, GetImport().GetModel());
             break;
         case XML_TOK_DOC_BODY:
             if( nFlags & IMPORT_CONTENT )
-                pContext = new SchXMLBodyContext( mrImportHelper, GetImport(), nPrefix, rLocalName );
+                pContext = new SchXMLBodyContext( mrImportHelper, GetImport(), nInPrefix, rLocalName );
             break;
     }
 
     // call parent when no own context was created
     if( ! pContext )
-        pContext = SvXMLImportContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImportContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -102,13 +102,13 @@ SvXMLImportContext* SchXMLDocContext::CreateChildContext(
 // ----------------------------------------
 
 SchXMLBodyContext::SchXMLBodyContext( SchXMLImportHelper& rImpHelper,
-                                      SvXMLImport& rImport,
-                                      USHORT nPrefix,
+                                      SvXMLImport& rInImport,
+                                      USHORT nInPrefix,
                                       const ::rtl::OUString& rLName ) :
-        SvXMLImportContext( rImport, nPrefix, rLName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLName ),
         mrImportHelper( rImpHelper )
 {
-    DBG_ASSERT( XML_NAMESPACE_OFFICE == nPrefix &&
+    DBG_ASSERT( XML_NAMESPACE_OFFICE == nInPrefix &&
                 IsXMLToken( rLName, XML_BODY ),
                 "SchXMLBodyContext instanciated with no <office:body> element" );
 }
@@ -121,24 +121,24 @@ void SchXMLBodyContext::EndElement()
 }
 
 SvXMLImportContext* SchXMLBodyContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLImportContext* pContext = 0;
 
     // <chart:chart> element
-    if( nPrefix == XML_NAMESPACE_CHART &&
+    if( nInPrefix == XML_NAMESPACE_CHART &&
         IsXMLToken( rLocalName, XML_CHART ) )
     {
         pContext = mrImportHelper.CreateChartContext( GetImport(),
-                                                      nPrefix, rLocalName,
+                                                      nInPrefix, rLocalName,
                                                       GetImport().GetModel(),
                                                       xAttrList );
     }
     else
     {
-        pContext = SvXMLImportContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImportContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
     }
 
     return pContext;

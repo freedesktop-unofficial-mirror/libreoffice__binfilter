@@ -96,8 +96,8 @@ static SvXMLEnumMapEntry aXMLLegendAlignmentMap[] =
 // ----------------------------------------
 
 SchXMLChartContext::SchXMLChartContext( SchXMLImportHelper& rImpHelper,
-                                        SvXMLImport& rImport, const ::rtl::OUString& rLocalName ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+                                        SvXMLImport& rInImport, const ::rtl::OUString& rLocalName ) :
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mbHasOwnTable( sal_False ),
         mbHasLegend( sal_False )
@@ -111,7 +111,6 @@ void SchXMLChartContext::StartElement( const uno::Reference< xml::sax::XAttribut
 {
     // parse attributes
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
-    ::rtl::OUString aValue;
     const SvXMLTokenMap& rAttrTokenMap = mrImportHelper.GetChartAttrTokenMap();
     awt::Size aChartSize;
     // this flag is necessarry for pie charts in the core
@@ -124,11 +123,11 @@ void SchXMLChartContext::StartElement( const uno::Reference< xml::sax::XAttribut
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
+        ::rtl::OUString aLclLocalName;
         ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_CHART_CLASS:
                 {
@@ -468,7 +467,7 @@ void SchXMLChartContext::EndElement()
 }
 
 SvXMLImportContext* SchXMLChartContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
@@ -480,7 +479,7 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
     uno::Reference< chart::XChartDocument > xDoc = mrImportHelper.GetChartDocument();
     uno::Reference< beans::XPropertySet > xProp( xDoc, uno::UNO_QUERY );
 
-    switch( rTokenMap.Get( nPrefix, rLocalName ))
+    switch( rTokenMap.Get( nInPrefix, rLocalName ))
     {
         case XML_TOK_CHART_PLOT_AREA:
             pContext = new SchXMLPlotAreaContext( mrImportHelper, GetImport(), rLocalName,
@@ -493,9 +492,9 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
             {
                 if( xProp.is())
                 {
-                    uno::Any aTrueBool;
-                    aTrueBool <<= (sal_Bool)(sal_True);
-                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasMainTitle" )), aTrueBool );
+                    uno::Any aLclTrueBool;
+                    aLclTrueBool <<= (sal_Bool)(sal_True);
+                    xProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasMainTitle" )), aLclTrueBool );
 
                     SCH_BUILDCHART( xDoc );
                 }
@@ -553,12 +552,12 @@ SvXMLImportContext* SchXMLChartContext::CreateChildContext(
             }
             if( mxDrawPage.is())
                 pContext = GetImport().GetShapeImport()->CreateGroupChildContext(
-                    GetImport(), nPrefix, rLocalName, xAttrList, mxDrawPage );
+                    GetImport(), nInPrefix, rLocalName, xAttrList, mxDrawPage );
             break;
     }
 
     if( ! pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -709,7 +708,6 @@ uno::Sequence< sal_Int32 > SchXMLChartContext::GetNumberSequenceFromString( cons
     ::std::vector< sal_Int32 > aVec;
     sal_Int32 nLastPos = 0;
     sal_Int32 nPos = 0;
-    const sal_Int32 nSize = rStr.getLength();
     while( nPos != -1 )
     {
         nPos = rStr.indexOf( aSpace, nLastPos );
@@ -739,12 +737,12 @@ uno::Sequence< sal_Int32 > SchXMLChartContext::GetNumberSequenceFromString( cons
 
 // ----------------------------------------
 
-SchXMLTitleContext::SchXMLTitleContext( SchXMLImportHelper& rImpHelper, SvXMLImport& rImport,
+SchXMLTitleContext::SchXMLTitleContext( SchXMLImportHelper& rImpHelper, SvXMLImport& rInImport,
                                         const ::rtl::OUString& rLocalName,
                                         ::rtl::OUString& rTitle,
                                         uno::Reference< drawing::XShape >& xTitleShape,
                                         awt::Point& rPosition ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTitle( rTitle ),
         mxTitleShape( xTitleShape ),
@@ -758,7 +756,6 @@ SchXMLTitleContext::~SchXMLTitleContext()
 void SchXMLTitleContext::StartElement( const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
-    ::rtl::OUString aValue;
 
     if( mxTitleShape.is())
         mrPosition = mxTitleShape->getPosition();
@@ -766,20 +763,20 @@ void SchXMLTitleContext::StartElement( const uno::Reference< xml::sax::XAttribut
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
+        ::rtl::OUString aLclLocalName;
         ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        if( nPrefix == XML_NAMESPACE_SVG )
+        if( nLclPrefix == XML_NAMESPACE_SVG )
         {
-            if( IsXMLToken( aLocalName, XML_X ) )
+            if( IsXMLToken( aLclLocalName, XML_X ) )
                 GetImport().GetMM100UnitConverter().convertMeasure( mrPosition.X, aValue );
-            else if( IsXMLToken( aLocalName, XML_Y ) )
+            else if( IsXMLToken( aLclLocalName, XML_Y ) )
                 GetImport().GetMM100UnitConverter().convertMeasure( mrPosition.Y, aValue );
         }
-        else if( nPrefix == XML_NAMESPACE_CHART )
+        else if( nLclPrefix == XML_NAMESPACE_CHART )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                 msAutoStyleName = aValue;
         }
     }
@@ -803,19 +800,19 @@ void SchXMLTitleContext::StartElement( const uno::Reference< xml::sax::XAttribut
 }
 
 SvXMLImportContext* SchXMLTitleContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
-    if( nPrefix == XML_NAMESPACE_TEXT &&
+    if( nInPrefix == XML_NAMESPACE_TEXT &&
         IsXMLToken( rLocalName, XML_P ) )
     {
         pContext = new SchXMLParagraphContext( GetImport(), rLocalName, mrTitle );
     }
     else
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -823,9 +820,9 @@ SvXMLImportContext* SchXMLTitleContext::CreateChildContext(
 // ----------------------------------------
 
 SchXMLLegendContext::SchXMLLegendContext( SchXMLImportHelper& rImpHelper,
-                                          SvXMLImport& rImport, const ::rtl::OUString& rLocalName,
+                                          SvXMLImport& rInImport, const ::rtl::OUString& rLocalName,
                                           ::com::sun::star::awt::Point& rPosition ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrPosition( rPosition )
 {
@@ -861,7 +858,6 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
 
     // parse attributes
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
-    ::rtl::OUString aValue;
     const SvXMLTokenMap& rAttrTokenMap = mrImportHelper.GetLegendAttrTokenMap();
 
     awt::Point aPosition;
@@ -874,11 +870,11 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
+        ::rtl::OUString aLclLocalName;
         ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_LEGEND_POSITION:
                 {

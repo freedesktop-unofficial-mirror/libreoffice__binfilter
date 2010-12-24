@@ -225,7 +225,7 @@ SvXMLImportContext* SchXMLImportHelper::CreateChartContext(
     SvXMLImport& rImport,
     sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName,
     const uno::Reference< frame::XModel > xChartModel,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
