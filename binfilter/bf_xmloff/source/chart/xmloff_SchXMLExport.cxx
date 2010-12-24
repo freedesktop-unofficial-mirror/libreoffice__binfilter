@@ -88,9 +88,9 @@ SchXMLExportHelper::SchXMLExportHelper(
     SvXMLAutoStylePoolP& rASPool ) :
         mrExport( rExport ),
         mrAutoStylePool( rASPool ),
+        mnDomainAxes( 0 ),
         mnSeriesCount( 0 ),
         mnSeriesLength( 0 ),
-        mnDomainAxes( 0 ),
         mbHasSeriesLabels( sal_False ),
         mbHasCategoryLabels( sal_False ),
         mbRowSourceColumns( sal_True )
@@ -211,8 +211,6 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
 {
     uno::Reference< chart::XDiagram > xDiagram = rChartDoc->getDiagram();
 
-    // determine if data is in rows
-    sal_Bool bSwitchData = sal_False;
     uno::Reference< beans::XPropertySet > xDiaProp( xDiagram, uno::UNO_QUERY );
     ::rtl::OUString sChartType ( xDiagram->getDiagramType());
     if( xDiaProp.is())
@@ -566,6 +564,8 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
                     case chart::ChartLegendPosition_BOTTOM:
                         msString = GetXMLToken(XML_BOTTOM);
                         break;
+                    default:
+                        break;
                 }
 
                 // export anchor position
@@ -820,7 +820,6 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
     // variables for autostyles
     uno::Reference< beans::XPropertySet > xPropSet;
     std::vector< XMLPropertyState > aPropertyStates;
-    sal_Int32 nStyleFamily = XML_STYLE_FAMILY_SCH_CHART_ID;
     ::rtl::OUString aASName;
     sal_Bool bHasTwoYAxes = sal_False;
     sal_Bool bIs3DChart = sal_False;
@@ -857,7 +856,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 if( xDocProp.is())
                 {
                     uno::Any aAny;
-                    sal_Bool bFirstCol, bFirstRow;
+                    sal_Bool bFirstCol(sal_False), bFirstRow(sal_False);
 
                     try
                     {
@@ -995,7 +994,6 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
     msStringBuffer.setLength( 0 );
     SvXMLElementExport* pSeries = NULL;
     ::rtl::OUString aSeriesASName;
-    sal_Bool bWrite = sal_False;
     sal_Int32 nAttachedAxis;
 
     sal_Int32 nNumberOfLinesInBarChart = 0;
@@ -1631,10 +1629,9 @@ void SchXMLExportHelper::exportAxes( uno::Reference< chart::XDiagram > xDiagram,
 
     // variables for autostyles
     const ::rtl::OUString sNumFormat( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "NumberFormat" )));
-    sal_Int32 nNumberFormat;
+    sal_Int32 nNumberFormat(0);
     uno::Reference< beans::XPropertySet > xPropSet;
     std::vector< XMLPropertyState > aPropertyStates;
-    sal_Int32 nStyleFamily = XML_STYLE_FAMILY_SCH_CHART_ID;
     ::rtl::OUString aASName;
 
     // get some properties from document first

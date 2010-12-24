@@ -63,23 +63,23 @@ static SvXMLEnumMapEntry aXMLAxisClassMap[] =
 };
 
 SchXMLPlotAreaContext::SchXMLPlotAreaContext( SchXMLImportHelper& rImpHelper,
-                                              SvXMLImport& rImport, const ::rtl::OUString& rLocalName,
+                                              SvXMLImport& rInImport, const ::rtl::OUString& rLocalName,
                                               uno::Sequence< chart::ChartSeriesAddress >& rSeriesAddresses,
                                               ::rtl::OUString& rCategoriesAddress,
                                               ::rtl::OUString& rChartAddress,
                                               ::rtl::OUString& rTableNumberList) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrSeriesAddresses( rSeriesAddresses ),
         mrCategoriesAddress( rCategoriesAddress ),
-        mrChartAddress( rChartAddress ),
-        mrTableNumberList( rTableNumberList ),
         mnDomainOffset( 0 ),
         mnNumOfLines( 0 ),
         mbStockHasVolume( sal_False ),
         mnSeries( 0 ),
         mnMaxSeriesLength( 0 ),
-        maSceneImportHelper( rImport )
+        maSceneImportHelper( rInImport ),
+        mrChartAddress( rChartAddress ),
+        mrTableNumberList( rTableNumberList )
 {
     // get Diagram
     uno::Reference< chart::XChartDocument > xDoc( rImpHelper.GetChartDocument(), uno::UNO_QUERY );
@@ -157,14 +157,14 @@ SchXMLPlotAreaContext::~SchXMLPlotAreaContext()
 {}
 
 SvXMLImportContext* SchXMLPlotAreaContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLImportContext* pContext = 0;
     const SvXMLTokenMap& rTokenMap = mrImportHelper.GetPlotAreaElemTokenMap();
 
-    switch( rTokenMap.Get( nPrefix, rLocalName ))
+    switch( rTokenMap.Get( nInPrefix, rLocalName ))
     {
         case XML_TOK_PA_AXIS:
             pContext = new SchXMLAxisContext( mrImportHelper, GetImport(), rLocalName, mxDiagram, maAxes );
@@ -184,39 +184,39 @@ SvXMLImportContext* SchXMLPlotAreaContext::CreateChildContext(
 
         case XML_TOK_PA_CATEGORIES:
             pContext = new SchXMLCategoriesDomainContext( mrImportHelper, GetImport(),
-                                                          nPrefix, rLocalName,
+                                                          nInPrefix, rLocalName,
                                                           mrCategoriesAddress );
             break;
 
         case XML_TOK_PA_WALL:
-            pContext = new SchXMLWallFloorContext( mrImportHelper, GetImport(), nPrefix, rLocalName, mxDiagram,
+            pContext = new SchXMLWallFloorContext( mrImportHelper, GetImport(), nInPrefix, rLocalName, mxDiagram,
                                                    SchXMLWallFloorContext::CONTEXT_TYPE_WALL );
             break;
         case XML_TOK_PA_FLOOR:
-            pContext = new SchXMLWallFloorContext( mrImportHelper, GetImport(), nPrefix, rLocalName, mxDiagram,
+            pContext = new SchXMLWallFloorContext( mrImportHelper, GetImport(), nInPrefix, rLocalName, mxDiagram,
                                                    SchXMLWallFloorContext::CONTEXT_TYPE_FLOOR );
             break;
 
         case XML_TOK_PA_LIGHT_SOURCE:
-            pContext = maSceneImportHelper.create3DLightContext( nPrefix, rLocalName, xAttrList );
+            pContext = maSceneImportHelper.create3DLightContext( nInPrefix, rLocalName, xAttrList );
             break;
 
         // elements for stock charts
         case XML_TOK_PA_STOCK_GAIN:
-            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nPrefix, rLocalName, mxDiagram,
+            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nInPrefix, rLocalName, mxDiagram,
                                                SchXMLStockContext::CONTEXT_TYPE_GAIN );
             break;
         case XML_TOK_PA_STOCK_LOSS:
-            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nPrefix, rLocalName, mxDiagram,
+            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nInPrefix, rLocalName, mxDiagram,
                                                SchXMLStockContext::CONTEXT_TYPE_LOSS );
             break;
         case XML_TOK_PA_STOCK_RANGE:
-            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nPrefix, rLocalName, mxDiagram,
+            pContext = new SchXMLStockContext( mrImportHelper, GetImport(), nInPrefix, rLocalName, mxDiagram,
                                                SchXMLStockContext::CONTEXT_TYPE_RANGE );
             break;
 
         default:
-            pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -245,45 +245,45 @@ void SchXMLPlotAreaContext::StartElement( const uno::Reference< xml::sax::XAttri
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        ::rtl::OUString aLclValue = xAttrList->getValueByIndex( i );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_PA_X:
-                GetImport().GetMM100UnitConverter().convertMeasure( maPosition.X, aValue );
+                GetImport().GetMM100UnitConverter().convertMeasure( maPosition.X, aLclValue );
                 break;
             case XML_TOK_PA_Y:
-                GetImport().GetMM100UnitConverter().convertMeasure( maPosition.Y, aValue );
+                GetImport().GetMM100UnitConverter().convertMeasure( maPosition.Y, aLclValue );
                 break;
             case XML_TOK_PA_WIDTH:
-                GetImport().GetMM100UnitConverter().convertMeasure( maSize.Width, aValue );
+                GetImport().GetMM100UnitConverter().convertMeasure( maSize.Width, aLclValue );
                 break;
             case XML_TOK_PA_HEIGHT:
-                GetImport().GetMM100UnitConverter().convertMeasure( maSize.Height, aValue );
+                GetImport().GetMM100UnitConverter().convertMeasure( maSize.Height, aLclValue );
                 break;
             case XML_TOK_PA_STYLE_NAME:
-                msAutoStyleName = aValue;
+                msAutoStyleName = aLclValue;
                 break;
             case XML_TOK_PA_CHART_ADDRESS:
-                mrChartAddress = aValue;
+                mrChartAddress = aLclValue;
                 break;
             case XML_TOK_PA_TABLE_NUMBER_LIST:
-                mrTableNumberList = aValue;
+                mrTableNumberList = aLclValue;
                 break;
             case XML_TOK_PA_DS_HAS_LABELS:
                 {
-                    if( aValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_BOTH )))
+                    if( aLclValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_BOTH )))
                         bColHasLabels = bRowHasLabels = sal_True;
-                    else if( aValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_ROW )))
+                    else if( aLclValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_ROW )))
                         bRowHasLabels = sal_True;
-                    else if( aValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_COLUMN )))
+                    else if( aLclValue.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_COLUMN )))
                         bColHasLabels = sal_True;
                 }
                 break;
             default:
-                maSceneImportHelper.processSceneAttribute( nPrefix, aLocalName, aValue );
+                maSceneImportHelper.processSceneAttribute( nLclPrefix, aLclLocalName, aLclValue );
                 break;
         }
     }
@@ -444,6 +444,8 @@ void SchXMLPlotAreaContext::EndElement()
                                         OUString( RTL_CONSTASCII_USTRINGPARAM(
                                                       "DataErrorProperties" )));
                                     break;
+                                default:
+                                    break;
                             }
                             aAny >>= xProp;
                         }
@@ -527,10 +529,10 @@ void SchXMLPlotAreaContext::EndElement()
 // ========================================
 
 SchXMLAxisContext::SchXMLAxisContext( SchXMLImportHelper& rImpHelper,
-                                      SvXMLImport& rImport, const ::rtl::OUString& rLocalName,
+                                      SvXMLImport& rInImport, const ::rtl::OUString& rLocalName,
                                       uno::Reference< chart::XDiagram > xDiagram,
                                       ::std::vector< SchXMLAxis >& aAxes ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mxDiagram( xDiagram ),
         maAxes( aAxes )
@@ -584,13 +586,17 @@ uno::Reference< drawing::XShape > SchXMLAxisContext::getTitleShape()
             }
             break;
         case SCH_XML_AXIS_SERIES:
-            uno::Reference< chart::XAxisZSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
-            if( xSuppl.is())
             {
-                if( xDiaProp.is())
-                    xDiaProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisTitle" )), aTrueBool );
-                xResult = uno::Reference< drawing::XShape >( xSuppl->getZAxisTitle(), uno::UNO_QUERY );
+                uno::Reference< chart::XAxisZSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
+                if( xSuppl.is())
+                {
+                    if( xDiaProp.is())
+                        xDiaProp->setPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasZAxisTitle" )), aTrueBool );
+                    xResult = uno::Reference< drawing::XShape >( xSuppl->getZAxisTitle(), uno::UNO_QUERY );
+                }
             }
+            break;
+        default:
             break;
     }
 
@@ -665,6 +671,8 @@ void SchXMLAxisContext::CreateGrid( ::rtl::OUString sAutoStyleName,
                 }
             }
             break;
+        default:
+            break;
     }
 
     // enable grid
@@ -706,31 +714,30 @@ void SchXMLAxisContext::StartElement( const uno::Reference< xml::sax::XAttribute
 {
     // parse attributes
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
-    ::rtl::OUString aValue;
-    SchXMLImport& rImport = ( SchXMLImport& )GetImport();
+    SchXMLImport& rLclImport = ( SchXMLImport& )GetImport();
     const SvXMLTokenMap& rAttrTokenMap = mrImportHelper.GetAxisAttrTokenMap();
 
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        ::rtl::OUString aLclValue = xAttrList->getValueByIndex( i );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_AXIS_CLASS:
                 {
                     USHORT nEnumVal;
-                    if( rImport.GetMM100UnitConverter().convertEnum( nEnumVal, aValue, aXMLAxisClassMap ))
+                    if( rLclImport.GetMM100UnitConverter().convertEnum( nEnumVal, aLclValue, aXMLAxisClassMap ))
                         maCurrentAxis.eClass = ( SchXMLAxisClass )nEnumVal;
                 }
                 break;
             case XML_TOK_AXIS_NAME:
-                maCurrentAxis.aName = aValue;
+                maCurrentAxis.aName = aLclValue;
                 break;
             case XML_TOK_AXIS_STYLE_NAME:
-                msAutoStyleName = aValue;
+                msAutoStyleName = aLclValue;
                 break;
         }
     }
@@ -936,6 +943,8 @@ void SchXMLAxisContext::EndElement()
                 }
             }
             break;
+        default:
+            break;
     }
 
     // set properties
@@ -958,19 +967,19 @@ void SchXMLAxisContext::EndElement()
 }
 
 SvXMLImportContext* SchXMLAxisContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLImportContext* pContext = 0;
-    SchXMLImport& rImport = ( SchXMLImport& )GetImport();
+    SchXMLImport& rLclImport = ( SchXMLImport& )GetImport();
 
-    if( nPrefix == XML_NAMESPACE_CHART )
+    if( nInPrefix == XML_NAMESPACE_CHART )
     {
         if( IsXMLToken( rLocalName, XML_TITLE ) )
         {
             uno::Reference< drawing::XShape > xTitleShape = getTitleShape();
-            pContext = new SchXMLTitleContext( mrImportHelper, rImport, rLocalName,
+            pContext = new SchXMLTitleContext( mrImportHelper, rLclImport, rLocalName,
                                                maCurrentAxis.aTitle,
                                                xTitleShape,
                                                maCurrentAxis.aPosition );
@@ -984,17 +993,17 @@ SvXMLImportContext* SchXMLAxisContext::CreateChildContext(
             for( sal_Int16 i = 0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+                ::rtl::OUString aLclLocalName;
+                USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-                if( nPrefix == XML_NAMESPACE_CHART )
+                if( nLclPrefix == XML_NAMESPACE_CHART )
                 {
-                    if( IsXMLToken( aLocalName, XML_CLASS ) )
+                    if( IsXMLToken( aLclLocalName, XML_CLASS ) )
                     {
                         if( IsXMLToken( xAttrList->getValueByIndex( i ), XML_MINOR ) )
                             bIsMajor = sal_False;
                     }
-                    else if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+                    else if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                         sAutoStyleName = xAttrList->getValueByIndex( i );
                 }
             }
@@ -1006,7 +1015,7 @@ SvXMLImportContext* SchXMLAxisContext::CreateChildContext(
     }
 
     if( ! pContext )
-        pContext = new SvXMLImportContext( rImport, nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( rLclImport, nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -1015,7 +1024,7 @@ SvXMLImportContext* SchXMLAxisContext::CreateChildContext(
 
 SchXMLSeriesContext::SchXMLSeriesContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport, const ::rtl::OUString& rLocalName,
+    SvXMLImport& rInImport, const ::rtl::OUString& rLocalName,
     uno::Reference< chart::XDiagram >& xDiagram,
     std::vector< SchXMLAxis >& rAxes,
     ::com::sun::star::chart::ChartSeriesAddress& rSeriesAddress,
@@ -1025,16 +1034,16 @@ SchXMLSeriesContext::SchXMLSeriesContext(
     sal_Int32& rDomainOffset,
     sal_Int32& rNumOfLines,
     sal_Bool&  rStockHasVolume ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
+        mrImportHelper( rImpHelper ),
         mxDiagram( xDiagram ),
         mrAxes( rAxes ),
-        mrImportHelper( rImpHelper ),
         mrSeriesAddress( rSeriesAddress ),
         mrStyleList( rStyleList ),
         mnSeriesIndex( nSeriesIndex ),
         mnDataPointIndex( 0 ),
-        mrDomainOffset( rDomainOffset ),
         mrMaxSeriesLength( rMaxSeriesLength ),
+        mrDomainOffset( rDomainOffset ),
         mrNumOfLines( rNumOfLines ),
         mrStockHasVolume( rStockHasVolume ),
         mpAttachedAxis( NULL )
@@ -1049,18 +1058,17 @@ void SchXMLSeriesContext::StartElement( const uno::Reference< xml::sax::XAttribu
 {
     // parse attributes
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
-    ::rtl::OUString aValue;
     const SvXMLTokenMap& rAttrTokenMap = mrImportHelper.GetSeriesAttrTokenMap();
     mnAttachedAxis = 1;
 
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
+        ::rtl::OUString aLclLocalName;
         ::rtl::OUString aValue = xAttrList->getValueByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_SERIES_CELL_RANGE:
                 mrSeriesAddress.DataRangeAddress = aValue;
@@ -1127,14 +1135,14 @@ void SchXMLSeriesContext::EndElement()
 }
 
 SvXMLImportContext* SchXMLSeriesContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
     const SvXMLTokenMap& rTokenMap = mrImportHelper.GetSeriesElemTokenMap();
 
-    switch( rTokenMap.Get( nPrefix, rLocalName ))
+    switch( rTokenMap.Get( nInPrefix, rLocalName ))
     {
         case XML_TOK_SERIES_DOMAIN:
             {
@@ -1143,7 +1151,7 @@ SvXMLImportContext* SchXMLSeriesContext::CreateChildContext(
                 mrDomainOffset++;
                 pContext = new SchXMLCategoriesDomainContext(
                     mrImportHelper, GetImport(),
-                    nPrefix, rLocalName,
+                    nInPrefix, rLocalName,
                     mrSeriesAddress.DomainRangeAddresses[ nIndex ] );
             }
             break;
@@ -1151,21 +1159,21 @@ SvXMLImportContext* SchXMLSeriesContext::CreateChildContext(
         case XML_TOK_SERIES_MEAN_VALUE_LINE:
             pContext = new SchXMLStatisticsObjectContext(
                 mrImportHelper, GetImport(),
-                nPrefix, rLocalName,
+                nInPrefix, rLocalName,
                 mrStyleList, mnSeriesIndex + mrDomainOffset,
                 SchXMLStatisticsObjectContext::CONTEXT_TYPE_MEAN_VALUE_LINE );
             break;
         case XML_TOK_SERIES_REGRESSION_CURVE:
             pContext = new SchXMLStatisticsObjectContext(
                 mrImportHelper, GetImport(),
-                nPrefix, rLocalName,
+                nInPrefix, rLocalName,
                 mrStyleList, mnSeriesIndex + mrDomainOffset,
                 SchXMLStatisticsObjectContext::CONTEXT_TYPE_REGRESSION_CURVE );
             break;
         case XML_TOK_SERIES_ERROR_INDICATOR:
             pContext = new SchXMLStatisticsObjectContext(
                 mrImportHelper, GetImport(),
-                nPrefix, rLocalName,
+                nInPrefix, rLocalName,
                 mrStyleList, mnSeriesIndex + mrDomainOffset,
                 SchXMLStatisticsObjectContext::CONTEXT_TYPE_ERROR_INDICATOR );
             break;
@@ -1176,7 +1184,7 @@ SvXMLImportContext* SchXMLSeriesContext::CreateChildContext(
             break;
 
         default:
-            pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -1185,11 +1193,11 @@ SvXMLImportContext* SchXMLSeriesContext::CreateChildContext(
 // ========================================
 
 SchXMLDataPointContext::SchXMLDataPointContext(  SchXMLImportHelper& rImpHelper,
-                                                 SvXMLImport& rImport, const ::rtl::OUString& rLocalName,
+                                                 SvXMLImport& rInImport, const ::rtl::OUString& rLocalName,
                                                  uno::Reference< chart::XDiagram >& xDiagram,
                                                  ::std::list< chartxml::DataRowPointStyle >& rStyleList,
                                                  sal_Int32 nSeries, sal_Int32& rIndex ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_CHART, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_CHART, rLocalName ),
         mrImportHelper( rImpHelper ),
         mxDiagram( xDiagram ),
         mrStyleList( rStyleList ),
@@ -1212,14 +1220,14 @@ void SchXMLDataPointContext::StartElement( const uno::Reference< xml::sax::XAttr
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        if( nPrefix == XML_NAMESPACE_CHART )
+        if( nLclPrefix == XML_NAMESPACE_CHART )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                 sAutoStyleName = xAttrList->getValueByIndex( i );
-            else if( IsXMLToken( aLocalName, XML_REPEATED ) )
+            else if( IsXMLToken( aLclLocalName, XML_REPEATED ) )
                 nRepeat = xAttrList->getValueByIndex( i ).toInt32();
         }
     }
@@ -1238,11 +1246,11 @@ void SchXMLDataPointContext::StartElement( const uno::Reference< xml::sax::XAttr
 
 SchXMLCategoriesDomainContext::SchXMLCategoriesDomainContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     ::rtl::OUString& rAddress ) :
-        SvXMLImportContext( rImport, nPrefix, rLocalName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrAddress( rAddress )
 {
@@ -1259,11 +1267,11 @@ void SchXMLCategoriesDomainContext::StartElement( const uno::Reference< xml::sax
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        if( nPrefix == XML_NAMESPACE_TABLE &&
-            IsXMLToken( aLocalName, XML_CELL_RANGE_ADDRESS ) )
+        if( nLclPrefix == XML_NAMESPACE_TABLE &&
+            IsXMLToken( aLclLocalName, XML_CELL_RANGE_ADDRESS ) )
         {
             mrAddress = xAttrList->getValueByIndex( i );
         }
@@ -1274,12 +1282,12 @@ void SchXMLCategoriesDomainContext::StartElement( const uno::Reference< xml::sax
 
 SchXMLWallFloorContext::SchXMLWallFloorContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     uno::Reference< chart::XDiagram >& xDiagram,
     ContextType eContextType ) :
-        SvXMLImportContext( rImport, nPrefix, rLocalName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLocalName ),
         mrImportHelper( rImpHelper ),
         mxWallFloorSupplier( xDiagram, uno::UNO_QUERY ),
         meContextType( eContextType )
@@ -1300,11 +1308,11 @@ void SchXMLWallFloorContext::StartElement( const uno::Reference< xml::sax::XAttr
         for( sal_Int16 i = 0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+            ::rtl::OUString aLclLocalName;
+            USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-            if( nPrefix == XML_NAMESPACE_CHART &&
-                IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( nLclPrefix == XML_NAMESPACE_CHART &&
+                IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
             {
                 sAutoStyleName = xAttrList->getValueByIndex( i );
             }
@@ -1337,12 +1345,12 @@ void SchXMLWallFloorContext::StartElement( const uno::Reference< xml::sax::XAttr
 
 SchXMLStockContext::SchXMLStockContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     uno::Reference< chart::XDiagram >& xDiagram,
     ContextType eContextType ) :
-        SvXMLImportContext( rImport, nPrefix, rLocalName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLocalName ),
         mrImportHelper( rImpHelper ),
         mxStockPropProvider( xDiagram, uno::UNO_QUERY ),
         meContextType( eContextType )
@@ -1363,11 +1371,11 @@ void SchXMLStockContext::StartElement( const uno::Reference< xml::sax::XAttribut
         for( sal_Int16 i = 0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+            ::rtl::OUString aLclLocalName;
+            USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-            if( nPrefix == XML_NAMESPACE_CHART &&
-                IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( nLclPrefix == XML_NAMESPACE_CHART &&
+                IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
             {
                 sAutoStyleName = xAttrList->getValueByIndex( i );
             }
@@ -1410,13 +1418,13 @@ void SchXMLStockContext::StartElement( const uno::Reference< xml::sax::XAttribut
 SchXMLStatisticsObjectContext::SchXMLStatisticsObjectContext(
 
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     ::std::list< chartxml::DataRowPointStyle >& rStyleList,
     sal_Int32 nSeries, ContextType eContextType ) :
 
-        SvXMLImportContext( rImport, nPrefix, rLocalName ),
+        SvXMLImportContext( rInImport, nInPrefix, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrStyleList( rStyleList ),
         mnSeriesIndex( nSeries ),
