@@ -270,7 +270,7 @@ struct OUStringLess
 /*N*/   {
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aIter = mpStreamMap->begin();
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aEnd = mpStreamMap->end();
-/*?*/       for( aIter; aIter != aEnd; aIter++ )
+/*?*/       for( aIter; aIter != aEnd; ++aIter )
 /*?*/       {
 /*?*/           if( aIter->second )
 /*?*/           {
