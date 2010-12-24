@@ -91,12 +91,12 @@ ErrorRecord::ErrorRecord( sal_Int32 nID, const Sequence<OUString>& rParams,
     const OUString& rExceptionMessage, sal_Int32 nRowNumber, sal_Int32 nCol,
     const OUString& rPublicId, const OUString& rSystemId) :
         nId(nID),
-        aParams(rParams),
         sExceptionMessage(rExceptionMessage),
         nRow(nRowNumber),
         nColumn(nCol),
         sPublicId(rPublicId),
-        sSystemId(rSystemId)
+        sSystemId(rSystemId),
+        aParams(rParams)
 {
 }
 

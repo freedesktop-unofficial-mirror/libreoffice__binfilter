@@ -102,10 +102,10 @@ public:
 TYPEINIT1( XMLEmbeddedObjectImportContext_Impl, SvXMLImportContext );
 
 XMLEmbeddedObjectImportContext_Impl::XMLEmbeddedObjectImportContext_Impl(
-        SvXMLImport& rImport, USHORT nPrfx,
+        SvXMLImport& rInImport, USHORT nPrfx,
         const OUString& rLName,
         const Reference< XDocumentHandler >& rHandler ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xHandler( rHandler )
 {
 }
@@ -115,12 +115,12 @@ XMLEmbeddedObjectImportContext_Impl::~XMLEmbeddedObjectImportContext_Impl()
 }
 
 SvXMLImportContext *XMLEmbeddedObjectImportContext_Impl::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLocalName,
-        const Reference< XAttributeList >& xAttrList )
+        const Reference< XAttributeList >& /*xAttrList*/ )
 {
     return new XMLEmbeddedObjectImportContext_Impl( GetImport(),
-                                                    nPrefix, rLocalName,
+                                                    nInPrefix, rLocalName,
                                                     xHandler );
 }
 
@@ -175,9 +175,9 @@ sal_Bool XMLEmbeddedObjectImportContext::SetComponent(
 }
 
 XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
-        SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName,
+        SvXMLImport& rInImport, USHORT nPrfx, const OUString& rLName,
         const Reference< XAttributeList >& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     // #i55761#
     bNeedToUnlockControllers(false)
 {
@@ -198,10 +198,10 @@ XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
             const OUString& rAttrName = xAttrList->getNameByIndex( i );
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
-            if( nPrefix == XML_NAMESPACE_OFFICE &&
-                IsXMLToken( aLocalName, XML_CLASS ) )
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,  &aLclLocalName );
+            if( nLclPrefix == XML_NAMESPACE_OFFICE &&
+                IsXMLToken( aLclLocalName, XML_CLASS ) )
             {
                 sClass = xAttrList->getValueByIndex( i );
                 break;
@@ -245,15 +245,15 @@ XMLEmbeddedObjectImportContext::~XMLEmbeddedObjectImportContext()
 }
 
 SvXMLImportContext *XMLEmbeddedObjectImportContext::CreateChildContext(
-        USHORT nPrefix, const OUString& rLocalName,
-        const Reference< XAttributeList >& xAttrList )
+        USHORT nInPrefix, const OUString& rLocalName,
+        const Reference< XAttributeList >& /*xAttrList*/ )
 {
     if( xHandler.is() )
         return new XMLEmbeddedObjectImportContext_Impl( GetImport(),
-                                                        nPrefix, rLocalName,
+                                                        nInPrefix, rLocalName,
                                                         xHandler );
     else
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 void XMLEmbeddedObjectImportContext::StartElement(

@@ -50,11 +50,11 @@ SvXMLImportContext::~SvXMLImportContext()
 {
 }
 
-SvXMLImportContext *SvXMLImportContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SvXMLImportContext::CreateChildContext( USHORT nInPrefix,
                                             const OUString& rLocalName,
                                             const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
-    return rImport.CreateContext( nPrefix, rLocalName, xAttrList );
+    return rImport.CreateContext( nInPrefix, rLocalName, xAttrList );
 }
 
 void SvXMLImportContext::StartElement( const uno::Reference< xml::sax::XAttributeList >& )
@@ -65,7 +65,7 @@ void SvXMLImportContext::EndElement()
 {
 }
 
-void SvXMLImportContext::Characters( const OUString& rChars )
+void SvXMLImportContext::Characters( const OUString& /*rChars*/ )
 {
 }
 

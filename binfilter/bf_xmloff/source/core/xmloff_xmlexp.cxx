@@ -153,7 +153,7 @@ SvXMLExportEventListener::~SvXMLExportEventListener()
 }
 
 // XEventListener
-void SAL_CALL SvXMLExportEventListener::disposing( const lang::EventObject& rEventObject )
+void SAL_CALL SvXMLExportEventListener::disposing( const lang::EventObject& /*rEventObject*/ )
     throw(uno::RuntimeException)
 {
     if (pExport)
@@ -231,25 +231,25 @@ SvXMLExport::SvXMLExport(
 :   pImpl( 0 ),
     // #110680#
     mxServiceFactory(xServiceFactory),
-    meClass( eClass ),
-    sWS( GetXMLToken(XML_WS) ),
+    pAttrList( new SvXMLAttributeList ),
     pNamespaceMap( new SvXMLNamespaceMap ),
 
     // #110680#
     // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit ) ),
     pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit, getServiceFactory() ) ),
 
-    pAttrList( new SvXMLAttributeList ),
-    bExtended( sal_False ),
     pNumExport(0L),
     pProgressBarHelper( NULL ),
     pEventExport( NULL ),
     pImageMapExport( NULL ),
-    pEventListener( NULL ),
     pXMLErrors( NULL ),
-    bSaveLinkedSections(sal_True),
+    pEventListener( NULL ),
+    bExtended( sal_False ),
+    meClass( eClass ),
     mnExportFlags( nExportFlags ),
-    mnErrorFlags( ERROR_NO )
+    mnErrorFlags( ERROR_NO ),
+    sWS( GetXMLToken(XML_WS) ),
+    bSaveLinkedSections(sal_True)
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
     _InitCtor();
@@ -382,7 +382,7 @@ void SAL_CALL SvXMLExport::setSourceDocument( const uno::Reference< lang::XCompo
                     sal_Int32 nIndex;
                     OUString aURL;
 
-                    for( nIndex = 0; nIndex < nCount; nIndex++, *pPrefix++ )
+                    for( nIndex = 0; nIndex < nCount; nIndex++, pPrefix++ )
                     {
                         if( xNamespaceMap->getByName( *pPrefix ) >>= aURL )
                             _GetNamespaceMap().Add( *pPrefix, aURL, XML_NAMESPACE_UNKNOWN );
@@ -520,7 +520,7 @@ void SAL_CALL SvXMLExport::cancel() throw(uno::RuntimeException)
     return sFilterName;
 }
 
-void SAL_CALL SvXMLExport::setName( const ::rtl::OUString& aName )
+void SAL_CALL SvXMLExport::setName( const ::rtl::OUString& /*aName*/ )
     throw (::com::sun::star::uno::RuntimeException)
 {
     // do nothing, because it is not possible to set the FilterName
@@ -549,7 +549,6 @@ uno::Sequence< OUString > SAL_CALL SvXMLExport::getSupportedServiceNames(  )
     throw(uno::RuntimeException)
 {
     uno::Sequence<OUString> aSeq(2);
-    OUString* pSeq = aSeq.getArray();
     aSeq[0] = OUString(
         RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.ExportFilter"));
     aSeq[1] = OUString(
@@ -661,7 +660,7 @@ void SvXMLExport::ImplExportSettings()
     }
 }
 
-void SvXMLExport::ImplExportStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportStyles( sal_Bool /*bUsed*/ )
 {
     CheckAttrList();
 
@@ -675,7 +674,7 @@ void SvXMLExport::ImplExportStyles( sal_Bool bUsed )
     }
 }
 
-void SvXMLExport::ImplExportAutoStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportAutoStyles( sal_Bool /*bUsed*/ )
 {
     // <style:automatic-styles>
     SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_AUTOMATIC_STYLES,
@@ -684,7 +683,7 @@ void SvXMLExport::ImplExportAutoStyles( sal_Bool bUsed )
     _ExportAutoStyles();
 }
 
-void SvXMLExport::ImplExportMasterStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportMasterStyles( sal_Bool /*bUsed*/ )
 {
     // <style:master-styles>
     SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_MASTER_STYLES,
@@ -922,7 +921,7 @@ void SvXMLExport::_ExportScripts()
     {
         ::rtl::OUString aValue( RTL_CONSTASCII_USTRINGPARAM( "Basic" ) );
         AddAttribute( XML_NAMESPACE_SCRIPT, XML_LANGUAGE, aValue );
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_SCRIPT_DATA, sal_True, sal_True );
+        SvXMLElementExport aLclElem( *this, XML_NAMESPACE_OFFICE, XML_SCRIPT_DATA, sal_True, sal_True );
 
         Reference< document::XExporter > xExporter;
         Reference< lang::XMultiServiceFactory > xMSF( getServiceFactory() );
@@ -963,7 +962,7 @@ void SvXMLExport::_ExportFontDecls()
         mxFontAutoStylePool->exportXML();
 }
 
-void SvXMLExport::_ExportStyles( sal_Bool bUsed )
+void SvXMLExport::_ExportStyles( sal_Bool /*bUsed*/ )
 {
     uno::Reference< lang::XMultiServiceFactory > xFact( GetModel(), uno::UNO_QUERY );
     if( xFact.is())
@@ -1191,15 +1190,15 @@ xmloff::OFormLayerXMLExport* SvXMLExport::CreateFormExport()
     return new xmloff::OFormLayerXMLExport(*this);
 }
 
-void SvXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& aProps)
+void SvXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& /*aProps*/)
 {
 }
 
-void SvXMLExport::GetConfigurationSettings(uno::Sequence<beans::PropertyValue>& aProps)
+void SvXMLExport::GetConfigurationSettings(uno::Sequence<beans::PropertyValue>& /*aProps*/)
 {
 }
 
-void SvXMLExport::addDataStyle(const sal_Int32 nNumberFormat, sal_Bool bTimeFormat )
+void SvXMLExport::addDataStyle(const sal_Int32 nNumberFormat, sal_Bool /*bTimeFormat*/ )
 {
     if(pNumExport)
         pNumExport->SetUsed(nNumberFormat);
@@ -1220,7 +1219,7 @@ void SvXMLExport::exportAutoDataStyles()
         mxFormExport->exportAutoControlNumberStyles();
 }
 
-OUString SvXMLExport::getDataStyleName(const sal_Int32 nNumberFormat, sal_Bool bTimeFormat ) const
+OUString SvXMLExport::getDataStyleName(const sal_Int32 nNumberFormat, sal_Bool /*bTimeFormat*/ ) const
 {
     OUString sTemp;
     if(pNumExport)

@@ -86,7 +86,7 @@ void XMLSettingsExportHelper::CallTypeFunction(const uno::Any& rAny,
         break;
         case uno::TypeClass_BYTE:
         {
-            sal_Int8 nInt8;
+            sal_Int8 nInt8(0);
             aAny >>= nInt8;
             exportByte(nInt8, rName);
         }

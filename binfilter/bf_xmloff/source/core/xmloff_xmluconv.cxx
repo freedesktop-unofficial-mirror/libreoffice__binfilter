@@ -593,7 +593,7 @@ void SvXMLUnitConverter::convertNumber( OUStringBuffer& rBuffer,
 /** convert string to number with optional min and max values */
 sal_Bool SvXMLUnitConverter::convertNumber( sal_Int32& rValue,
                                         const OUString& rString,
-                                        sal_Int32 nMin, sal_Int32 nMax )
+                                        sal_Int32 /*nMin*/, sal_Int32 /*nMax*/ )
 {
     sal_Bool bNeg = sal_False;
     rValue = 0;
@@ -999,10 +999,10 @@ void SvXMLUnitConverter::convertDateTime( ::rtl::OUStringBuffer& rBuffer,
         fCount = 0.0;
     sal_Int16 nCount = sal_Int16(fCount);
     sal_Bool bHasTime(sal_False);
-    double fHoursValue;
-    double fMinsValue;
-    double fSecsValue;
-    double f100SecsValue;
+    double fHoursValue(0.0);
+    double fMinsValue(0.0);
+    double fSecsValue(0.0);
+    double f100SecsValue(0.0);
     if (fValue > 0.0)
     {
         bHasTime = sal_True;
@@ -1558,7 +1558,10 @@ void SvXMLUnitConverter::encodeBase64( ::rtl::OUStringBuffer& aStrBuffer, const 
 
 void SvXMLUnitConverter::decodeBase64(uno::Sequence<sal_Int8>& aBuffer, const ::rtl::OUString& sBuffer)
 {
-    sal_Int32 nCharsDecoded = decodeBase64SomeChars( aBuffer, sBuffer );
+#if OSL_DEBUG_LEVEL > 0
+    sal_Int32 nCharsDecoded =
+#endif
+        decodeBase64SomeChars( aBuffer, sBuffer );
     OSL_ENSURE( nCharsDecoded == sBuffer.getLength(),
                 "some bytes left in base64 decoding!" );
 }

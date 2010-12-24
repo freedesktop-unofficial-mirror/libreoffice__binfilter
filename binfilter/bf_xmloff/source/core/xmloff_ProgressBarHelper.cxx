@@ -45,16 +45,16 @@ const float fProgressStep = 0.5;
 
 ProgressBarHelper::ProgressBarHelper(const ::com::sun::star::uno::Reference < ::com::sun::star::task::XStatusIndicator>& xTempStatusIndicator,
                                     const sal_Bool bTempStrict)
-    : fOldPercent(0.0),
-    nRange(nDefaultProgressBarRange),
-    xStatusIndicator(xTempStatusIndicator),
-    nReference(100),
-    nValue(0),
+    : xStatusIndicator(xTempStatusIndicator)
+    , nRange(nDefaultProgressBarRange)
+    , nReference(100)
+    , nValue(0)
+    , fOldPercent(0.0)
+    , bStrict(bTempStrict)
+    , bRepeat(sal_True)
 #ifdef DBG_UTIL
-    bFailure(sal_False),
+    , bFailure(sal_False)
 #endif
-    bStrict(bTempStrict),
-    bRepeat(sal_True)
 {
 }
 
@@ -68,8 +68,6 @@ sal_Int32 ProgressBarHelper::ChangeReference(sal_Int32 nNewReference)
     {
         if (nReference)
         {
-            double fPercent(nNewReference / nReference);
-            double fValue(nValue * fPercent);
             nValue = sal_Int32(nValue);
             nReference = nNewReference;
         }

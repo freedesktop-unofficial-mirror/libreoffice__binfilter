@@ -278,13 +278,13 @@ sal_uInt16 SvXMLNamespaceMap::_GetKeyByAttrName( const OUString& rAttrName,
         if( pLocalName )
             *pLocalName = pEntry->sName;
 
-        NameSpaceHash::const_iterator aIter = aNameHash.find( pEntry->sPrefix );
-        if ( aIter != aNameHash.end() )
+        NameSpaceHash::const_iterator aLclIter = aNameHash.find( pEntry->sPrefix );
+        if ( aLclIter != aNameHash.end() )
         {
             // found: retrieve namespace key
-            nKey = pEntry->nKey = (*aIter).second->nKey;
+            nKey = pEntry->nKey = (*aLclIter).second->nKey;
             if ( pNamespace )
-                *pNamespace = (*aIter).second->sName;
+                *pNamespace = (*aLclIter).second->sName;
         }
         else if ( pEntry->sPrefix == sXMLNS )
             // not found, but xmlns prefix: return xmlns 'namespace'
@@ -313,7 +313,7 @@ sal_uInt16 SvXMLNamespaceMap::GetNextKey( sal_uInt16 nLastKey ) const
 
 // All methods after this are deprecated...
 
-sal_Bool SvXMLNamespaceMap::AddAtIndex( sal_uInt16 nIdx, const OUString& rPrefix,
+sal_Bool SvXMLNamespaceMap::AddAtIndex( sal_uInt16 /*nIdx*/, const OUString& rPrefix,
                                     const OUString& rName, sal_uInt16 nKey )
 {
     sal_Bool bRet = sal_False;
@@ -366,7 +366,7 @@ sal_uInt16 SvXMLNamespaceMap::GetIndexByPrefix( const OUString& rPrefix ) const
 sal_uInt16 SvXMLNamespaceMap::GetKeyByAttrName(
                             const OUString& rAttrName,
                             OUString *pLocalName,
-                            sal_uInt16 nIdxGuess) const
+                            sal_uInt16 /*nIdxGuess*/) const
 {
     return _GetKeyByAttrName( rAttrName, 0, pLocalName, 0 );
 }
@@ -375,7 +375,7 @@ sal_uInt16 SvXMLNamespaceMap::GetKeyByAttrName( const OUString& rAttrName,
                                             OUString *pPrefix,
                                             OUString *pLocalName,
                                             OUString *pNamespace,
-                                            USHORT nIdxGuess ) const
+                                            USHORT /*nIdxGuess*/ ) const
 {
     return _GetKeyByAttrName ( rAttrName, pPrefix, pLocalName, pNamespace );
 }

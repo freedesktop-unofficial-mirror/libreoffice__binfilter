@@ -95,28 +95,28 @@ SvXMLAttributeList::SvXMLAttributeList( const uno::Reference<
 
 OUString SAL_CALL SvXMLAttributeList::getNameByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
 {
-    if( i < m_pImpl->vecAttribute.size() ) {
+    if( i < static_cast<sal_Int16>(m_pImpl->vecAttribute.size()) ) {
         return m_pImpl->vecAttribute[i].sName;
     }
     return OUString();
 }
 
 
-OUString SAL_CALL SvXMLAttributeList::getTypeByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
+OUString SAL_CALL SvXMLAttributeList::getTypeByIndex(sal_Int16 /*i*/) throw( ::com::sun::star::uno::RuntimeException )
 {
     return sType;
 }
 
 OUString SAL_CALL  SvXMLAttributeList::getValueByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
 {
-    if( i < m_pImpl->vecAttribute.size() ) {
+    if( i < static_cast<sal_Int16>(m_pImpl->vecAttribute.size()) ) {
         return m_pImpl->vecAttribute[i].sValue;
     }
     return OUString();
 
 }
 
-OUString SAL_CALL SvXMLAttributeList::getTypeByName( const OUString& sName ) throw( ::com::sun::star::uno::RuntimeException )
+OUString SAL_CALL SvXMLAttributeList::getTypeByName( const OUString& /*sName*/ ) throw( ::com::sun::star::uno::RuntimeException )
 {
     return sType;
 }

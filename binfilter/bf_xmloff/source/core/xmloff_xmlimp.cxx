@@ -131,7 +131,7 @@ SvXMLImportEventListener::~SvXMLImportEventListener()
 }
 
 // XEventListener
-void SAL_CALL SvXMLImportEventListener::disposing( const lang::EventObject& rEventObject )
+void SAL_CALL SvXMLImportEventListener::disposing( const lang::EventObject& /*rEventObject*/ )
     throw(uno::RuntimeException)
 {
     if (pImport)
@@ -166,7 +166,7 @@ SV_IMPL_PTRARR( SvXMLImportContexts_Impl, SvXMLImportContextPtr )
 
 SvXMLImportContext *SvXMLImport::CreateContext( USHORT nPrefix,
                                          const OUString& rLocalName,
-                                         const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+                                         const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     return new SvXMLImportContext( *this, nPrefix, rLocalName );
 }
@@ -263,23 +263,18 @@ void SvXMLImport::_InitCtor()
 SvXMLImport::SvXMLImport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
     sal_uInt16 nImportFlags ) throw ()
-:   pImpl( new SvXMLImport_Impl() ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) ),
-
-    pContexts( new SvXMLImportContexts_Impl ),
-    pNumImport( NULL ),
-    pProgressBarHelper( NULL ),
-    pEventImportHelper( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    mnImportFlags( nImportFlags ),
-    mbIsFormsSupported( sal_True )
+    : pImpl( new SvXMLImport_Impl() )
+    , mxServiceFactory(xServiceFactory)
+    , pNamespaceMap( new SvXMLNamespaceMap )
+    , pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) )
+    , pContexts( new SvXMLImportContexts_Impl )
+    , pNumImport( NULL )
+    , pProgressBarHelper( NULL )
+    , pEventImportHelper( NULL )
+    , pXMLErrors( NULL )
+    , pEventListener( NULL )
+    , mnImportFlags( nImportFlags )
+    , mbIsFormsSupported( sal_True )
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
     _InitCtor();
@@ -568,6 +563,8 @@ void SAL_CALL SvXMLImport::endElement( const OUString& rName )
                 "SvXMLImport::endElement: popped context has wrong prefix" );
         DBG_ASSERT( pContext->GetLocalName() == aLocalName,
                 "SvXMLImport::endElement: popped context has wrong lname" );
+#else
+        (void)rName;
 #endif
 
         // Call a EndElement at the current context.
@@ -599,13 +596,13 @@ void SAL_CALL SvXMLImport::characters( const OUString& rChars )
     }
 }
 
-void SAL_CALL SvXMLImport::ignorableWhitespace( const OUString& rWhitespaces )
+void SAL_CALL SvXMLImport::ignorableWhitespace( const OUString& /*rWhitespaces*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SvXMLImport::processingInstruction( const OUString& rTarget,
-                                       const OUString& rData )
+void SAL_CALL SvXMLImport::processingInstruction( const OUString& /*rTarget*/,
+                                       const OUString& /*rData*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
@@ -625,7 +622,7 @@ void SAL_CALL SvXMLImport::endCDATA( void ) throw(uno::RuntimeException)
 {
 }
 
-void SAL_CALL SvXMLImport::comment( const OUString& rComment )
+void SAL_CALL SvXMLImport::comment( const OUString& /*rComment*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
@@ -635,12 +632,12 @@ void SAL_CALL SvXMLImport::allowLineBreak( void )
 {
 }
 
-void SAL_CALL SvXMLImport::unknown( const OUString& sString )
+void SAL_CALL SvXMLImport::unknown( const OUString& /*sString*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
 
-void SvXMLImport::SetStatisticAttributes(const uno::Reference< xml::sax::XAttributeList > & xAttribs)
+void SvXMLImport::SetStatisticAttributes(const uno::Reference< xml::sax::XAttributeList > & /*xAttribs*/)
 {
     GetProgressBarHelper()->SetRepeat(sal_False);
     GetProgressBarHelper()->SetReference(0);
@@ -670,7 +667,7 @@ void SAL_CALL SvXMLImport::setTargetDocument( const uno::Reference< lang::XCompo
 }
 
 // XFilter
-sal_Bool SAL_CALL SvXMLImport::filter( const uno::Sequence< beans::PropertyValue >& aDescriptor )
+sal_Bool SAL_CALL SvXMLImport::filter( const uno::Sequence< beans::PropertyValue >& /*aDescriptor*/ )
     throw (uno::RuntimeException)
 {
     return sal_False;
@@ -750,7 +747,6 @@ uno::Sequence< OUString > SAL_CALL SvXMLImport::getSupportedServiceNames(  )
     throw(uno::RuntimeException)
 {
     uno::Sequence<OUString> aSeq(2);
-    OUString* pSeq = aSeq.getArray();
     aSeq[0] = OUString(
         RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.ImportFilter"));
     aSeq[1] = OUString(
@@ -1017,11 +1013,11 @@ Reference < XOutputStream > SvXMLImport::ResolveEmbeddedObjectURLFromBase64(
     return xOLEStream;
 }
 
-void SvXMLImport::SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps)
+void SvXMLImport::SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& /*aViewProps*/)
 {
 }
 
-void SvXMLImport::SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aConfigProps)
+void SvXMLImport::SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& /*aConfigProps*/)
 {
 }
 

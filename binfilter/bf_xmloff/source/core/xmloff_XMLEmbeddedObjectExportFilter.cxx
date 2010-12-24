@@ -163,7 +163,7 @@ OUString SAL_CALL XMLEmbeddedObjectExportFilter::getImplementationName()
     return aStr;
 }
 
-sal_Bool SAL_CALL XMLEmbeddedObjectExportFilter::supportsService( const OUString& ServiceName )
+sal_Bool SAL_CALL XMLEmbeddedObjectExportFilter::supportsService( const OUString& /*ServiceName*/ )
     throw(RuntimeException)
 {
     return sal_False;

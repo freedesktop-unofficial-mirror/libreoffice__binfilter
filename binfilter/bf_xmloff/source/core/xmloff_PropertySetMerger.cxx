@@ -82,9 +82,12 @@ public:
 // --------------------------------------------------------------------
 
 PropertySetMergerImpl::PropertySetMergerImpl( Reference< XPropertySet > rPropSet1, Reference< XPropertySet > rPropSet2 )
-: mxPropSet1( rPropSet1 ), mxPropSet2( rPropSet2 ),
-  mxPropSet1State( rPropSet1, UNO_QUERY ), mxPropSet2State( rPropSet2, UNO_QUERY ),
-  mxPropSet1Info( rPropSet1->getPropertySetInfo() ), mxPropSet2Info( rPropSet2->getPropertySetInfo() )
+    : mxPropSet1( rPropSet1 )
+    , mxPropSet1State( rPropSet1, UNO_QUERY )
+    , mxPropSet1Info( rPropSet1->getPropertySetInfo() )
+    , mxPropSet2( rPropSet2 )
+    , mxPropSet2State( rPropSet2, UNO_QUERY )
+    , mxPropSet2Info( rPropSet2->getPropertySetInfo() )
 {
 }
 
@@ -122,19 +125,19 @@ Any SAL_CALL PropertySetMergerImpl::getPropertyValue( const OUString& PropertyNa
     }
 }
 
-void SAL_CALL PropertySetMergerImpl::addPropertyChangeListener( const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::addPropertyChangeListener( const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::removePropertyChangeListener( const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::removePropertyChangeListener( const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::addVetoableChangeListener( const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::addVetoableChangeListener( const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::removeVetoableChangeListener( const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::removeVetoableChangeListener( const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
