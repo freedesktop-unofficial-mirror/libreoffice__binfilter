@@ -150,7 +150,7 @@ void SAL_CALL SvxUnoNameItemTable::removeByName( const OUString& aApiName )
             maItemSetVector.erase( aIter );
             return;
         }
-        aIter++;
+        ++aIter;
     }
 
     if( !hasByName( Name ) )
@@ -185,7 +185,7 @@ void SAL_CALL SvxUnoNameItemTable::replaceByName( const OUString& aApiName, cons
             (*aIter)->Put( *pNewItem );
             return;
         }
-        aIter++;
+        ++aIter;
     }
 
     // if it is not in our own sets, modify the pool!
