@@ -25,21 +25,14 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XINTERACTIONFILTEROPTIONS_HPP_
 #include <com/sun/star/document/XInteractionFilterOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef __FRAMEWORK_DISPATCH_INTERACTION_HXX_
-#include <framework/interaction.hxx>
-#endif
+#include <comphelper/interaction.hxx>
 
-using namespace ::framework;
 namespace binfilter {
 
-class FilterOptionsContinuation : public ContinuationBase< ::com::sun::star::document::XInteractionFilterOptions >
+class FilterOptionsContinuation : public comphelper::OInteraction< ::com::sun::star::document::XInteractionFilterOptions >
 {
     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > rProperties;
 
@@ -56,7 +49,7 @@ class RequestFilterOptions : public ::cppu::WeakImplHelper1< ::com::sun::star::t
                     ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionContinuation >
                 > m_lContinuations;
 
-    ContinuationAbort*  m_pAbort;
+    comphelper::OInteractionAbort*  m_pAbort;
 
     FilterOptionsContinuation*  m_pOptions;
 
@@ -64,7 +57,7 @@ public:
     RequestFilterOptions( ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > rModel,
                               ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > rProperties );
 
-    sal_Bool    isAbort() { return m_pAbort->isSelected(); }
+    sal_Bool    isAbort() { return m_pAbort->wasSelected(); }
 
     ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > getFilterOptions()
     {
