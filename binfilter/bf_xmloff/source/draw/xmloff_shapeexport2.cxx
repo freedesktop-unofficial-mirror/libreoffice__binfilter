@@ -190,7 +190,7 @@ sal_Bool XMLShapeExport::ImpExportPresentationAttributes( const uno::Reference< 
     {
         uno::Reference< beans::XPropertySetInfo > xPropSetInfo( xPropSet->getPropertySetInfo() );
 
-        sal_Bool bTemp;
+        sal_Bool bTemp(sal_False);
 
         // is empty pes shape?
         if( xPropSetInfo.is() && xPropSetInfo->hasPropertyByName(OUString(RTL_CONSTASCII_USTRINGPARAM("IsEmptyPresentationObject"))))
@@ -265,8 +265,8 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
         presentation::AnimationEffect eEffect;
         presentation::AnimationSpeed eSpeed;
         OUString aStrSoundURL;
-        sal_Bool bPlayFull;
-        sal_Int32 nVerb;
+        sal_Bool bPlayFull(sal_False);
+        sal_Int32 nVerb(0);
         OUString aStrMacro;
         OUString aStrLibrary;
         OUString aStrBookmark;
@@ -465,7 +465,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
 
 //////////////////////////////////////////////////////////////////////////////
 
-void XMLShapeExport::ImpExportGroupShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+void XMLShapeExport::ImpExportGroupShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     uno::Reference< drawing::XShapes > xShapes(xShape, uno::UNO_QUERY);
     if(xShapes.is() && xShapes->getCount())
@@ -570,7 +570,7 @@ void XMLShapeExport::ImpExportTextBoxShape(
 
 void XMLShapeExport::ImpExportRectangleShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -602,7 +602,7 @@ void XMLShapeExport::ImpExportRectangleShape(
 
 void XMLShapeExport::ImpExportLineShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -711,7 +711,7 @@ void XMLShapeExport::ImpExportLineShape(
 
 void XMLShapeExport::ImpExportEllipseShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -730,8 +730,8 @@ void XMLShapeExport::ImpExportEllipseShape(
         if( eKind != drawing::CircleKind_FULL )
         {
             OUStringBuffer sStringBuffer;
-            sal_Int32 nStartAngle;
-            sal_Int32 nEndAngle;
+            sal_Int32 nStartAngle(0);
+            sal_Int32 nEndAngle(0);
             xPropSet->getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("CircleStartAngle")) ) >>= nStartAngle;
             xPropSet->getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("CircleEndAngle")) ) >>= nEndAngle;
 
@@ -1306,7 +1306,7 @@ void XMLShapeExport::ImpExportOLE2Shape(
             bIsEmptyPresObj = ImpExportPresentationAttributes( xPropSet, GetXMLToken(XML_PRESENTATION_TABLE) );
 
         OUString sClassId;
-        sal_Bool bInternal;
+        sal_Bool bInternal(sal_False);
         xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("IsInternal"))) >>= bInternal;
 
         sal_Bool bExportEmbedded(0 != (rExport.getExportFlags() & EXPORT_EMBEDDED));
@@ -1515,7 +1515,7 @@ void XMLShapeExport::ImpExportAppletShape(
         rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_CODE, aStr );
 
         // export draw:may-script
-        sal_Bool bIsScript;
+        sal_Bool bIsScript(sal_False);
         xPropSet->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "AppletIsScript" ) ) ) >>= bIsScript;
         rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_MAY_SCRIPT, bIsScript ? XML_TRUE : XML_FALSE );
 

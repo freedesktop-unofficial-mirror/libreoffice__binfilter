@@ -184,15 +184,12 @@ protected:
 TYPEINIT1( XMLImageMapObjectContext, SvXMLImportContext );
 
 XMLImageMapObjectContext::XMLImageMapObjectContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     Reference<XIndexContainer> xMap,
     const sal_Char* pServiceName) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
-        xImageMap(xMap),
-        bIsActive(sal_True),
-        bValid(sal_False),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         sBoundary(RTL_CONSTASCII_USTRINGPARAM("Boundary")),
         sCenter(RTL_CONSTASCII_USTRINGPARAM("Center")),
         sDescription(RTL_CONSTASCII_USTRINGPARAM("Description")),
@@ -202,7 +199,10 @@ XMLImageMapObjectContext::XMLImageMapObjectContext(
         sPolygon(RTL_CONSTASCII_USTRINGPARAM("Polygon")),
         sRadius(RTL_CONSTASCII_USTRINGPARAM("Radius")),
         sTarget(RTL_CONSTASCII_USTRINGPARAM("Target")),
-        sURL(RTL_CONSTASCII_USTRINGPARAM("URL"))
+        sURL(RTL_CONSTASCII_USTRINGPARAM("URL")),
+        xImageMap(xMap),
+        bIsActive(sal_True),
+        bValid(sal_False)
 {
     DBG_ASSERT(NULL != pServiceName,
                "Please supply the image map object service name");
@@ -233,13 +233,13 @@ void XMLImageMapObjectContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sValue = xAttrList->getValueByIndex(nAttr);
 
         ProcessAttribute(
-            (enum XMLImageMapToken)aMap.Get(nPrefix, sLocalName), sValue);
+            (enum XMLImageMapToken)aMap.Get(nLclPrefix, sLocalName), sValue);
     }
 }
 
@@ -261,25 +261,25 @@ void XMLImageMapObjectContext::EndElement()
 }
 
 SvXMLImportContext* XMLImageMapObjectContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
          IsXMLToken(rLocalName, XML_EVENTS) )
     {
         Reference<XEventsSupplier> xEvents( xMapEntry, UNO_QUERY );
         return new XMLEventsImportContext(
-            GetImport(), nPrefix, rLocalName, xEvents);
+            GetImport(), nInPrefix, rLocalName, xEvents);
     }
-    else if ( (XML_NAMESPACE_SVG == nPrefix) &&
+    else if ( (XML_NAMESPACE_SVG == nInPrefix) &&
               IsXMLToken(rLocalName, XML_DESC) )
     {
         return new XMLStringBufferImportContext(
-            GetImport(), nPrefix, rLocalName, sDescriptionBuffer);
+            GetImport(), nInPrefix, rLocalName, sDescriptionBuffer);
     }
     else
-        return SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                       xAttrList);
 
 }
@@ -304,6 +304,8 @@ void XMLImageMapObjectContext::ProcessAttribute(
 
         case XML_TOK_IMAP_NAME:
             sNam = rValue;
+            break;
+        default:
             break;
     }
 }
@@ -367,11 +369,11 @@ protected:
 TYPEINIT1(XMLImageMapRectangleContext, XMLImageMapObjectContext);
 
 XMLImageMapRectangleContext::XMLImageMapRectangleContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     Reference<XIndexContainer> xMap) :
-        XMLImageMapObjectContext(rImport, nPrefix, rLocalName, xMap,
+        XMLImageMapObjectContext(rInImport, nInPrefix, rLocalName, xMap,
                                  "com.sun.star.image.ImageMapRectangleObject"),
         bXOK(sal_False),
         bYOK(sal_False),
@@ -477,11 +479,11 @@ protected:
 TYPEINIT1(XMLImageMapPolygonContext, XMLImageMapObjectContext);
 
 XMLImageMapPolygonContext::XMLImageMapPolygonContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     Reference<XIndexContainer> xMap) :
-        XMLImageMapObjectContext(rImport, nPrefix, rLocalName, xMap,
+        XMLImageMapObjectContext(rInImport, nInPrefix, rLocalName, xMap,
                                  "com.sun.star.image.ImageMapPolygonObject"),
         bViewBoxOK(sal_False),
         bPointsOK(sal_False)
@@ -576,11 +578,11 @@ protected:
 TYPEINIT1(XMLImageMapCircleContext, XMLImageMapObjectContext);
 
 XMLImageMapCircleContext::XMLImageMapCircleContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     Reference<XIndexContainer> xMap) :
-        XMLImageMapObjectContext(rImport, nPrefix, rLocalName, xMap,
+        XMLImageMapObjectContext(rInImport, nInPrefix, rLocalName, xMap,
                                  "com.sun.star.image.ImageMapCircleObject"),
         bXOK(sal_False),
         bYOK(sal_False),
@@ -658,11 +660,11 @@ void XMLImageMapCircleContext::Prepare(
 TYPEINIT1(XMLImageMapContext, SvXMLImportContext);
 
 XMLImageMapContext::XMLImageMapContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropertySet) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         sImageMap(RTL_CONSTASCII_USTRINGPARAM("ImageMap")),
         xPropertySet(rPropertySet)
 
@@ -674,7 +676,7 @@ XMLImageMapContext::XMLImageMapContext(
     catch( ::com::sun::star::uno::Exception e )
     {
         uno::Sequence<OUString> aSeq(0);
-        rImport.SetError( XMLERROR_FLAG_WARNING | XMLERROR_API, aSeq, e.Message, NULL );
+        rInImport.SetError( XMLERROR_FLAG_WARNING | XMLERROR_API, aSeq, e.Message, NULL );
     }
 }
 
@@ -683,32 +685,32 @@ XMLImageMapContext::~XMLImageMapContext()
 }
 
 SvXMLImportContext *XMLImageMapContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( XML_NAMESPACE_DRAW == nPrefix )
+    if ( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if ( IsXMLToken(rLocalName, XML_AREA_RECTANGLE) )
         {
             pContext = new XMLImageMapRectangleContext(
-                GetImport(), nPrefix, rLocalName, xImageMap);
+                GetImport(), nInPrefix, rLocalName, xImageMap);
         }
         else if ( IsXMLToken(rLocalName, XML_AREA_POLYGON) )
         {
             pContext = new XMLImageMapPolygonContext(
-                GetImport(), nPrefix, rLocalName, xImageMap);
+                GetImport(), nInPrefix, rLocalName, xImageMap);
         }
         else if ( IsXMLToken(rLocalName, XML_AREA_CIRCLE) )
         {
             pContext = new XMLImageMapCircleContext(
-                GetImport(), nPrefix, rLocalName, xImageMap);
+                GetImport(), nInPrefix, rLocalName, xImageMap);
         }
     }
     else
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
 
     return pContext;

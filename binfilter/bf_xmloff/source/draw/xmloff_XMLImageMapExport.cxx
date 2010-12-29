@@ -81,8 +81,6 @@ const sal_Char sAPI_ImageMapCircleObject[] = "com.sun.star.image.ImageMapCircleO
 const sal_Char sAPI_ImageMapPolygonObject[] = "com.sun.star.image.ImageMapPolygonObject";
 
 XMLImageMapExport::XMLImageMapExport(SvXMLExport& rExp) :
-    rExport(rExp),
-    bWhiteSpace(sal_True),
     sBoundary(RTL_CONSTASCII_USTRINGPARAM("Boundary")),
     sCenter(RTL_CONSTASCII_USTRINGPARAM("Center")),
     sDescription(RTL_CONSTASCII_USTRINGPARAM("Description")),
@@ -92,7 +90,9 @@ XMLImageMapExport::XMLImageMapExport(SvXMLExport& rExp) :
     sPolygon(RTL_CONSTASCII_USTRINGPARAM("Polygon")),
     sRadius(RTL_CONSTASCII_USTRINGPARAM("Radius")),
     sTarget(RTL_CONSTASCII_USTRINGPARAM("Target")),
-    sURL(RTL_CONSTASCII_USTRINGPARAM("URL"))
+    sURL(RTL_CONSTASCII_USTRINGPARAM("URL")),
+    rExport(rExp),
+    bWhiteSpace(sal_True)
 {
 }
 
@@ -161,7 +161,6 @@ void XMLImageMapExport::ExportMapEntry(
         Sequence<OUString> sServiceNames =
             xServiceInfo->getSupportedServiceNames();
         sal_Int32 nLength = sServiceNames.getLength();
-        sal_Bool bFound = sal_False;
         for( sal_Int32 i=0; i<nLength; i++ )
         {
             OUString& rName = sServiceNames[i];
@@ -260,13 +259,13 @@ void XMLImageMapExport::ExportMapEntry(
 
         // description property (as <svg:desc> element)
         aAny = rPropertySet->getPropertyValue(sDescription);
-        OUString sDescription;
-        aAny >>= sDescription;
-        if (sDescription.getLength() > 0)
+        OUString sLclDescription;
+        aAny >>= sLclDescription;
+        if (sLclDescription.getLength() > 0)
         {
             SvXMLElementExport aDesc(rExport, XML_NAMESPACE_SVG, XML_DESC,
                                      bWhiteSpace, sal_False);
-            rExport.GetDocHandler()->characters(sDescription);
+            rExport.GetDocHandler()->characters(sLclDescription);
         }
 
         // export events attached to this
@@ -319,7 +318,7 @@ void XMLImageMapExport::ExportCircle(
 
     // radius
     aAny = rPropertySet->getPropertyValue(sRadius);
-    sal_Int32 nRadius;
+    sal_Int32 nRadius(0);
     aAny >>= nRadius;
     rExport.GetMM100UnitConverter().convertMeasure(aBuffer, nRadius);
     rExport.AddAttribute( XML_NAMESPACE_SVG, XML_R,

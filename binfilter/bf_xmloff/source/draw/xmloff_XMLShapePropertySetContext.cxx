@@ -49,12 +49,12 @@ using rtl::OUString;
 TYPEINIT1( XMLShapePropertySetContext, SvXMLPropertySetContext );
 
 XMLShapePropertySetContext::XMLShapePropertySetContext(
-                 SvXMLImport& rImport, sal_uInt16 nPrfx,
+                 SvXMLImport& rInImport, sal_uInt16 nPrfx,
                  const OUString& rLName,
                  const Reference< xml::sax::XAttributeList > & xAttrList,
                  ::std::vector< XMLPropertyState > &rProps,
                  const UniReference < SvXMLImportPropertyMapper > &rMap ) :
-    SvXMLPropertySetContext( rImport, nPrfx, rLName, xAttrList, rProps, rMap ),
+    SvXMLPropertySetContext( rInImport, nPrfx, rLName, xAttrList, rProps, rMap ),
     mnBulletIndex(-1)
 {
 }
@@ -83,10 +83,10 @@ void XMLShapePropertySetContext::EndElement()
 }
 
 SvXMLImportContext *XMLShapePropertySetContext::CreateChildContext(
-                   sal_uInt16 nPrefix,
+                   sal_uInt16 nInPrefix,
                    const OUString& rLocalName,
                    const Reference< xml::sax::XAttributeList > & xAttrList,
-                   ::std::vector< XMLPropertyState > &rProperties,
+                   ::std::vector< XMLPropertyState > &rInProperties,
                    const XMLPropertyState& rProp )
 {
     SvXMLImportContext *pContext = 0;
@@ -95,19 +95,19 @@ SvXMLImportContext *XMLShapePropertySetContext::CreateChildContext(
     {
     case CTF_NUMBERINGRULES:
         mnBulletIndex = rProp.mnIndex;
-        mxBulletStyle = pContext = new SvxXMLListStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+        mxBulletStyle = pContext = new SvxXMLListStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
         break;
     case CTF_TABSTOP:
-        pContext = new SvxXMLTabStopImportContext( GetImport(), nPrefix,
+        pContext = new SvxXMLTabStopImportContext( GetImport(), nInPrefix,
                                                    rLocalName, rProp,
-                                                   rProperties );
+                                                   rInProperties );
         break;
     }
 
     if( !pContext )
-        pContext = SvXMLPropertySetContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLPropertySetContext::CreateChildContext( nInPrefix, rLocalName,
                                                             xAttrList,
-                                                            rProperties, rProp );
+                                                            rInProperties, rProp );
 
     return pContext;
 }

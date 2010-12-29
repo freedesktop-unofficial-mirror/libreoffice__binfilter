@@ -64,19 +64,19 @@ XMLGraphicsDefaultStyle::~XMLGraphicsDefaultStyle()
 {
 }
 
-SvXMLImportContext *XMLGraphicsDefaultStyle::CreateChildContext( sal_uInt16 nPrefix, const OUString& rLocalName, const Reference< XAttributeList > & xAttrList )
+SvXMLImportContext *XMLGraphicsDefaultStyle::CreateChildContext( sal_uInt16 nInPrefix, const OUString& rLocalName, const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix && IsXMLToken( rLocalName, XML_PROPERTIES ) )
+    if( XML_NAMESPACE_STYLE == nInPrefix && IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap = GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new XMLShapePropertySetContext( GetImport(), nPrefix, rLocalName, xAttrList, GetProperties(), xImpPrMap );
+            pContext = new XMLShapePropertySetContext( GetImport(), nInPrefix, rLocalName, xAttrList,   GetProperties(), xImpPrMap );
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
