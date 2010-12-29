@@ -249,7 +249,7 @@ void ScMyStyleRanges::InsertColRow(const ScRange& rRange, const sal_Int16 nDx, c
         while (aItr != pCurrencyList->end())
         {
             aItr->xRanges->UpdateReference(aRefMode, pDoc, rRange, nDx, nDy, nDz);
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -306,7 +306,7 @@ void ScMyStyleRanges::SetStylesToRanges(const ::rtl::OUString* pStyleName, ScXML
         while (aItr != pCurrencyList->end())
         {
             SetStylesToRanges(aItr->xRanges, pStyleName, util::NumberFormat::CURRENCY, &aItr->sCurrency, rImport);
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -539,7 +539,7 @@ void ScMyStylesImportHelper::InsertRow(const sal_Int32 nRow, const sal_Int32 nTa
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->InsertRow(nRow, nTab, pDoc);
-        aItr++;
+        ++aItr;
     }
     rImport.UnlockSolarMutex();
 }
@@ -551,7 +551,7 @@ void ScMyStylesImportHelper::InsertCol(const sal_Int32 nCol, const sal_Int32 nTa
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->InsertCol(nCol, nTab, pDoc);
-        aItr++;
+        ++aItr;
     }
     rImport.UnlockSolarMutex();
 }
@@ -572,7 +572,7 @@ void ScMyStylesImportHelper::SetStylesToRanges()
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->SetStylesToRanges(&aItr->sStyleName, rImport);
-        aItr++;
+        ++aItr;
     }
     aCellStyles.clear();
     aColDefaultStyles.clear();
