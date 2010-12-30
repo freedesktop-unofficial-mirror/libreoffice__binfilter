@@ -444,9 +444,9 @@ OControlModel::OControlModel(
             const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator)
     :OComponentHelper(m_aMutex)
     ,OPropertySetAggregationHelper(OComponentHelper::rBHelper)
+    ,m_xServiceFactory(_rxFactory)
     ,m_nTabIndex(FRM_DEFAULT_TABINDEX)
     ,m_nClassId(FormComponentType::CONTROL)
-    ,m_xServiceFactory(_rxFactory)
 {
     DBG_CTOR(OControlModel, NULL);
     if (_rUnoControlModelTypeName.getLength())  // the is a model we have to aggregate
@@ -473,9 +473,9 @@ OControlModel::OControlModel(
 OControlModel::OControlModel( const OControlModel* _pOriginal, const Reference< XMultiServiceFactory>& _rxFactory, const sal_Bool _bSetDelegator )
     :OComponentHelper( m_aMutex )
     ,OPropertySetAggregationHelper( OComponentHelper::rBHelper )
+    ,m_xServiceFactory( _rxFactory )
     ,m_nTabIndex( FRM_DEFAULT_TABINDEX )
     ,m_nClassId( FormComponentType::CONTROL )
-    ,m_xServiceFactory( _rxFactory )
 {
     DBG_CTOR( OControlModel, NULL );
     DBG_ASSERT( _pOriginal, "OControlModel::OControlModel: invalid original!" );
@@ -876,12 +876,12 @@ OBoundControlModel::OBoundControlModel(
     :OControlModel(_rxFactory, _rUnoControlModelTypeName, _rDefault, _bSetDelegator)
     ,m_aUpdateListeners(m_aMutex)
     ,m_aResetListeners(m_aMutex)
+    ,m_aLabelServiceName(FRM_SUN_COMPONENT_FIXEDTEXT)
     ,m_bLoaded(sal_False)
     ,m_bRequired(sal_False)
     ,m_bCommitable(_bCommitable)
-    ,m_aLabelServiceName(FRM_SUN_COMPONENT_FIXEDTEXT)
-    ,m_bResetting(sal_False)
     ,m_bForwardValueChanges(sal_True)
+    ,m_bResetting(sal_False)
 {
     DBG_CTOR(frm_OBoundControlModel, NULL);
 }
@@ -896,8 +896,8 @@ OBoundControlModel::OBoundControlModel(
     ,m_bLoaded( sal_False )
     ,m_bRequired( sal_False )
     ,m_bCommitable( _bCommitable )
-    ,m_bResetting( sal_False )
     ,m_bForwardValueChanges( sal_True )
+    ,m_bResetting( sal_False )
 {
     DBG_CTOR(frm_OBoundControlModel, NULL);
 
@@ -1105,7 +1105,7 @@ void SAL_CALL OBoundControlModel::read( const Reference< stario::XObjectInputStr
     OControlModel::read(_rxInStream);
 
     osl::MutexGuard aGuard(m_aMutex);
-    UINT16 nVersion = _rxInStream->readShort();
+    /*UINT16 nVersion =*/ _rxInStream->readShort();
     ::comphelper::operator>>( _rxInStream, m_aControlSource);
 }
 
@@ -1225,8 +1225,8 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
                     // found my root
                     break;
 
-                Reference<XChild> xAsChild(xMyTopLevel, UNO_QUERY);
-                xMyTopLevel = xAsChild.is() ? xAsChild->getParent() : InterfaceRef();
+                Reference<XChild> xLclAsChild(xMyTopLevel, UNO_QUERY);
+                xMyTopLevel = xLclAsChild.is() ? xLclAsChild->getParent() : InterfaceRef();
             }
             InterfaceRef xNewTopLevel = xAsChild->getParent();
             while (xNewTopLevel.is())
@@ -1235,8 +1235,8 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
                 if (!xAsForm.is())
                     break;
 
-                Reference<XChild> xAsChild(xNewTopLevel, UNO_QUERY);
-                xNewTopLevel = xAsChild.is() ? xAsChild->getParent() : InterfaceRef();
+                Reference<XChild> xLclAsChild(xNewTopLevel, UNO_QUERY);
+                xNewTopLevel = xLclAsChild.is() ? xLclAsChild->getParent() : InterfaceRef();
             }
             if (xNewTopLevel != xMyTopLevel)
             {
@@ -1313,9 +1313,9 @@ sal_Bool SAL_CALL OBoundControlModel::commit() throw(RuntimeException)
 
     if (bSucceed)
     {
-        cppu::OInterfaceIteratorHelper aIter(m_aUpdateListeners);
-        while (aIter.hasMoreElements())
-            ((XUpdateListener*)aIter.next())->updated(aEvt);
+        cppu::OInterfaceIteratorHelper aLclIter(m_aUpdateListeners);
+        while (aLclIter.hasMoreElements())
+            ((XUpdateListener*)aLclIter.next())->updated(aEvt);
     }
 
     return bSucceed;
