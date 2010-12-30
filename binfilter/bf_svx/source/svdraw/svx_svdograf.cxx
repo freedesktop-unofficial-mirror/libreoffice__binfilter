@@ -697,7 +697,7 @@ namespace binfilter {
 /*N*/   if( pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE ) || ( pGraphic->GetType() == GRAPHIC_DEFAULT ) )
 /*?*/       bDraft=TRUE;
 /*N*/
-/*N*/   long          nDrehWink = aGeo.nDrehWink, nShearWink = aGeo.nShearWink;
+/*N*/   long          nDrehWink = aGeo.nDrehWink;
 /*N*/   bool      bRotate = ( nDrehWink != 0 && nDrehWink != 18000 );
 /*N*/   bool      bRota180 = nDrehWink == 18000;
 /*N*/   USHORT        nMirrorCase = ( bRota180 ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 ) );   //  4 | 3   H&V gespiegelt | nur Vertikal
