@@ -103,7 +103,6 @@ class SfxFilter;
 class SfxInterface;
 class SfxMacroConfig;
 class SfxMedium;
-class SfxMediumList;
 class SfxObjectFactory;
 class SfxObjectFactoryArr_Impl;
 class SfxObjectShell;

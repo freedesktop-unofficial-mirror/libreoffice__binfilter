@@ -320,11 +320,6 @@ public:
 SV_DECL_IMPL_REF( SfxMedium )
 SV_DECL_COMPAT_WEAK( SfxMedium )
 
-#ifndef SFXMEDIUM_LIST
-#define SFXMEDIUM_LIST
-DECLARE_LIST( SfxMediumList, SfxMedium* )//STRIP008 DECLARE_LIST( SfxMediumList, SfxMedium* );
-#endif
-
 }//end of namespace binfilter
 #endif
 
