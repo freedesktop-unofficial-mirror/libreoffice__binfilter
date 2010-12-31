@@ -53,8 +53,8 @@ Point3D& Point3D::operator+= (const Point3D& rPnt)
         }
         else
         {
-            V[0] = V[0] + rPnt[0] * V[3];
-            V[1] = V[1] + rPnt[1] * V[3];
+            V[0] = V[0] + rPnt[0] * V[2];
+            V[1] = V[1] + rPnt[1] * V[2];
         }
     }
     else
@@ -92,8 +92,8 @@ Point3D& Point3D::operator-= (const Point3D& rPnt)
         }
         else
         {
-            V[0] = V[0] - rPnt[0] * V[3];
-            V[1] = V[1] - rPnt[1] * V[3];
+            V[0] = V[0] - rPnt[0] * V[2];
+            V[1] = V[1] - rPnt[1] * V[2];
         }
     }
     else
