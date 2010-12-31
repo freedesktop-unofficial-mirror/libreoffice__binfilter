@@ -63,17 +63,16 @@ using namespace ::com::sun::star;
 
 #define TAG_TABBARWIDTH "tw:"
 
-static BOOL bMoveArea = FALSE;              //! Member?
 USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 
 //==================================================================
 
 /*N*/ ScViewDataTable::ScViewDataTable() :
+/*N*/               nHSplitPos( 0 ),
+/*N*/               nVSplitPos( 0 ),
 /*N*/               eHSplitMode( SC_SPLIT_NONE ),
 /*N*/               eVSplitMode( SC_SPLIT_NONE ),
 /*N*/               eWhichActive( SC_SPLIT_BOTTOMLEFT ),
-/*N*/               nHSplitPos( 0 ),
-/*N*/               nVSplitPos( 0 ),
 /*N*/               nFixPosX( 0 ),
 /*N*/               nFixPosY( 0 ),
 /*N*/               nCurX( 0 ),
@@ -212,25 +211,23 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 
 /*N*/ ScViewData::ScViewData( ScDocShell* pDocSh )
 /*N*/   :   pDocShell   ( pDocSh ),
-//      pViewShell  ( pViewSh ),
 /*N*/       pDoc        ( NULL ),
-//      pView       ( pViewSh ),
 /*N*/       pOptions    ( new ScViewOptions ),
-/*N*/       nTabNo      ( 0 ),
-/*N*/       nRefTabNo   ( 0 ),
+/*N*/       pSpellingView ( NULL ),
+/*N*/       aLogicMode  ( MAP_100TH_MM ),
 /*N*/       aZoomX      ( 1,1 ),
 /*N*/       aZoomY      ( 1,1 ),
 /*N*/       aPageZoomX  ( 3,5 ),                    // Page-Default: 60%
 /*N*/       aPageZoomY  ( 3,5 ),
-/*N*/       aLogicMode  ( MAP_100TH_MM ),
-/*N*/       bIsRefMode  ( FALSE ),
 /*N*/       eRefType    ( SC_REFTYPE_NONE ),
-/*N*/       nFillMode   ( SC_FILL_NONE ),
-/*N*/       bDelMarkValid( FALSE ),
+/*N*/       nTabNo      ( 0 ),
+/*N*/       nRefTabNo   ( 0 ),
 /*N*/       bActive     ( TRUE ),                   //! wie initialisieren?
+/*N*/       bIsRefMode  ( FALSE ),
+/*N*/       bDelMarkValid( FALSE ),
+/*N*/       nFillMode   ( SC_FILL_NONE ),
 /*N*/       bPagebreak  ( FALSE ),
-            nTabBarWidth( 0 ),     // #116578#
-/*N*/       pSpellingView ( NULL )
+            nTabBarWidth( 0 )
 /*N*/ {
 /*N*/   SetGridMode     ( TRUE );
 /*N*/   SetSyntaxMode   ( FALSE );
@@ -702,7 +699,6 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
 {
     sal_Int32 nCount(rSettings.getLength());
     sal_Int32 nTemp32(0);
-    sal_Int16 nTemp16(0);
     sal_Bool bPageMode(sal_False);
     for (sal_Int32 i = 0; i < nCount; i++)
     {
@@ -733,10 +729,10 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
         }
         else if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
         {
-            ::rtl::OUString sName;
-            if(rSettings[i].Value >>= sName)
+            ::rtl::OUString sLclName;
+            if(rSettings[i].Value >>= sLclName)
             {
-                String sTabName(sName);
+                String sTabName(sLclName);
                 sal_uInt16 nTab(0);
                 if (GetDocument()->GetTable(sTabName, nTab))
                     nTabNo = nTab;
