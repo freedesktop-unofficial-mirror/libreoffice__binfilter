@@ -123,8 +123,8 @@ namespace binfilter {
 /*N*/                         ScViewData*           ptrViewData,
 /*N*/                         const ScQueryParam*   pQueryData ) :
 /*N*/       SfxPoolItem ( nWhich ),
-/*N*/       bIsAdvanced ( FALSE ),
-/*N*/       pViewData   ( ptrViewData )
+/*N*/       pViewData   ( ptrViewData ),
+/*N*/       bIsAdvanced ( FALSE )
 /*N*/ {
 /*N*/   if ( pQueryData ) theQueryData = *pQueryData;
 /*N*/ }
@@ -133,10 +133,10 @@ namespace binfilter {
 
 /*N*/ ScQueryItem::ScQueryItem( const ScQueryItem& rItem ) :
 /*N*/       SfxPoolItem ( rItem ),
-/*N*/       bIsAdvanced ( rItem.bIsAdvanced ),
-/*N*/       aAdvSource  ( rItem.aAdvSource ),
 /*N*/       pViewData   ( rItem.pViewData ),
-/*N*/       theQueryData( rItem.theQueryData )
+/*N*/       theQueryData( rItem.theQueryData ),
+/*N*/       bIsAdvanced ( rItem.bIsAdvanced ),
+/*N*/       aAdvSource  ( rItem.aAdvSource )
 /*N*/ {
 /*N*/ }
 

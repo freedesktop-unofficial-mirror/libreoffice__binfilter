@@ -33,14 +33,6 @@
 #include "rfindlst.hxx"
 namespace binfilter {
 
-// STATIC DATA -----------------------------------------------------------
-
-#define SC_RANGECOLORS  8
-
-/*N*/ static ColorData aColNames[SC_RANGECOLORS] =
-/*N*/   { COL_LIGHTBLUE, COL_LIGHTRED, COL_LIGHTMAGENTA, COL_GREEN,
-/*N*/       COL_BLUE, COL_RED, COL_MAGENTA, COL_BROWN };
-
 //==================================================================
 
 ScRangeFindList::~ScRangeFindList()

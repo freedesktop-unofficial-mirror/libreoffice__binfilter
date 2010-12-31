@@ -134,18 +134,8 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/           SetDocumentServiceName( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
 /*N*/                   "com.sun.star.sheet.SpreadsheetDocument" )) );
 /*N*/
-/*N*/   const String    aEmptyStr;
-/*N*/                                   // Clipboard-IDs:
-/*N*/   SOT_FORMATSTR_ID_STARCALC_50;
-/*N*/
-/*N*/   String aVndCalc = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(CONTENT_TYPE_STR_APP_VND_CALC));
-/*N*/
 /*N*/   Factory().GetFilterContainer()->SetDetectFilter( ScDLL::DetectFilter );
 /*N*/
-/*N*/   //  5.0 muss mit vnd-Mime-Type registriert werden, aeltere mit dem alten x-starcalc
-
-/*N*/   //  alle Im-/Exportfilter werden nur noch per install.ini registriert,
-/*N*/   //  damit sie bei der Installation weggelassen werden koennen.
 /*N*/ }
 
 
@@ -544,7 +534,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 /*N*/               else if( nMuster & M_DC )
 /*N*/               { //                                             don't care
 /*N*/               }
-/*N*/               else if( nMuster & M_ALT(0) )
+/*N*/               else if( nMuster & (M_ALT(0)) )
 /*N*/               { //                                      alternative Bytes
 /*N*/                   BYTE nAnzAlt = ( BYTE ) nMuster;
 /*N*/                   bSync = FALSE;          // zunaechst unsynchron

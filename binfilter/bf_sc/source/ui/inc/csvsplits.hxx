@@ -40,9 +40,9 @@ namespace binfilter {
 // ============================================================================
 
 /** Constant for an invalid vector index. */
-const sal_uInt32 CSV_VEC_NOTFOUND   = ~0UL;
+const sal_uInt32 CSV_VEC_NOTFOUND = SAL_MAX_UINT32;
 /** Constant for an invalid ruler position. */
-const sal_Int32 CSV_POS_INVALID     = -1;
+const sal_Int32 CSV_POS_INVALID = -1;
 
 
 // ----------------------------------------------------------------------------
