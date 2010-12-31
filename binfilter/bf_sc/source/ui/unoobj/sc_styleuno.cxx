@@ -146,7 +146,7 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_USERDEF),  ATTR_USERDEF,       &getCppuType((uno::Reference<container::XNameContainer>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLVJUS), ATTR_VER_JUSTIFY,   &::getCppuType((const table::CellVertJustify*)0),   0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_WRITING),  ATTR_WRITINGDIR,    &getCppuType((sal_Int16*)0),            0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aCellStyleMap_Impl;
 }
@@ -263,7 +263,7 @@ const SfxItemPropertyMap* lcl_GetPageStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_USERDEF),      ATTR_USERDEF,       &getCppuType((uno::Reference<container::XNameContainer>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNO_PAGE_WIDTH),       ATTR_PAGE_SIZE,     &::getCppuType((const sal_Int32*)0),            0, MID_SIZE_WIDTH | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNONAME_WRITING),      ATTR_WRITINGDIR,    &getCppuType((sal_Int16*)0),            0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aPageStyleMap_Impl;
 }
@@ -301,7 +301,7 @@ const SfxItemPropertyMap* lcl_GetHeaderStyleMap()
         {MAP_CHAR_LEN(SC_UNO_PAGE_HDRTOPBOR),   ATTR_BORDER,        &::getCppuType((const table::BorderLine*)0),        0, TOP_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_PAGE_HDRTOPBDIS),  ATTR_BORDER,        &::getCppuType((const sal_Int32*)0),    0, TOP_BORDER_DISTANCE | CONVERT_TWIPS },
         {MAP_CHAR_LEN(OLD_UNO_PAGE_HDRBACKTRAN),ATTR_BACKGROUND,    &::getBooleanCppuType(),            0, MID_GRAPHIC_TRANSPARENT },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aHeaderStyleMap_Impl;
 }
@@ -339,7 +339,7 @@ const SfxItemPropertyMap* lcl_GetFooterStyleMap()
         {MAP_CHAR_LEN(SC_UNO_PAGE_FTRTOPBOR),   ATTR_BORDER,        &::getCppuType((const table::BorderLine*)0),        0, TOP_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_PAGE_FTRTOPBDIS),  ATTR_BORDER,        &::getCppuType((const sal_Int32*)0),    0, TOP_BORDER_DISTANCE | CONVERT_TWIPS },
         {MAP_CHAR_LEN(OLD_UNO_PAGE_FTRBACKTRAN),ATTR_BACKGROUND,    &::getBooleanCppuType(),            0, MID_GRAPHIC_TRANSPARENT },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aFooterStyleMap_Impl;
 }
@@ -550,13 +550,13 @@ void ScStyleFamiliesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 
 // XStyleFamilies
 
-ScStyleFamilyObj*ScStyleFamiliesObj::GetObjectByType_Impl(UINT16 Type) const
+ScStyleFamilyObj*ScStyleFamiliesObj::GetObjectByType_Impl(UINT16 nType) const
 {
     if ( pDocShell )
     {
-        if ( Type == SFX_STYLE_FAMILY_PARA )
+        if ( nType == SFX_STYLE_FAMILY_PARA )
             return new ScStyleFamilyObj( pDocShell, SFX_STYLE_FAMILY_PARA );
-        else if ( Type == SFX_STYLE_FAMILY_PAGE )
+        else if ( nType == SFX_STYLE_FAMILY_PAGE )
             return new ScStyleFamilyObj( pDocShell, SFX_STYLE_FAMILY_PAGE );
     }
     DBG_ERROR("getStyleFamilyByType: keine DocShell oder falscher Typ");
@@ -989,10 +989,10 @@ sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
 
 
 ScStyleObj::ScStyleObj(ScDocShell* pDocSh, SfxStyleFamily eFam, const String& rName) :
+    aPropSet( (eFam == SFX_STYLE_FAMILY_PARA) ? lcl_GetCellStyleMap() : lcl_GetPageStyleMap() ),
     pDocShell( pDocSh ),
     eFamily( eFam ),
-    aStyleName( rName ),
-    aPropSet( (eFam == SFX_STYLE_FAMILY_PARA) ? lcl_GetCellStyleMap() : lcl_GetPageStyleMap() )
+    aStyleName( rName )
 {
     //  pDocShell ist Null, wenn per ServiceProvider erzeugt
 
@@ -1184,10 +1184,6 @@ void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
         if (bOk)
         {
             aStyleName = aString;       //! notify other objects for this style?
-
-            //  Zellvorlagen = 2, Seitenvorlagen = 4
-            ( eFamily == SFX_STYLE_FAMILY_PARA ) ?
-                SID_STYLE_FAMILY2 : SID_STYLE_FAMILY4;
         }
     }
 }
@@ -1584,13 +1580,13 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
         }
         if (!bDone)
         {
-            const SfxItemPropertyMap* pMap =
+            const SfxItemPropertyMap* pLclMap =
                     SfxItemPropertyMap::GetByName( aPropSet.getPropertyMap(), aString );
-            if ( pMap && IsScItemWid( pMap->nWID ) )
+            if ( pLclMap && IsScItemWid( pLclMap->nWID ) )
             {
                 if (pValue)
                 {
-                    switch ( pMap->nWID )       // fuer Item-Spezial-Behandlungen
+                    switch ( pLclMap->nWID )        // fuer Item-Spezial-Behandlungen
                     {
                         case ATTR_VALUE_FORMAT:
                             {
@@ -1604,7 +1600,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                                 nOldFormat = pFormatter->
                                         GetFormatForLanguageIfBuiltIn( nOldFormat, eOldLang );
 
-                                UINT32 nNewFormat;
+                                UINT32 nNewFormat(0);
                                 *pValue >>= nNewFormat;
                                 rSet.Put( SfxUInt32Item( ATTR_VALUE_FORMAT, nNewFormat ) );
 
@@ -1619,9 +1615,9 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                             break;
                         case ATTR_INDENT:
                             {
-                                sal_Int16 nVal;
+                                sal_Int16 nVal(0);
                                 *pValue >>= nVal;
-                                rSet.Put( SfxUInt16Item( pMap->nWID, (USHORT)HMMToTwips(nVal) ) );
+                                rSet.Put( SfxUInt16Item( pLclMap->nWID, (USHORT)HMMToTwips(nVal) ) );
                             }
                             break;
                         case ATTR_ROTATE_VALUE:
@@ -1665,19 +1661,19 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                         case ATTR_PAGE_SCALETOPAGES:
                         case ATTR_PAGE_FIRSTPAGENO:
                             {
-                                sal_Int16 nVal;
+                                sal_Int16 nVal(0);
                                 *pValue >>= nVal;
-                                rSet.Put( SfxUInt16Item( pMap->nWID, nVal ) );
+                                rSet.Put( SfxUInt16Item( pLclMap->nWID, nVal ) );
                             }
                             break;
                         case ATTR_PAGE_CHARTS:
                         case ATTR_PAGE_OBJECTS:
                         case ATTR_PAGE_DRAWINGS:
                             {
-                                sal_Bool bBool;
+                                sal_Bool bBool(sal_False);
                                 *pValue >>= bBool;
                                 //! sal_Bool-MID fuer ScViewObjectModeItem definieren?
-                                rSet.Put( ScViewObjectModeItem( pMap->nWID,
+                                rSet.Put( ScViewObjectModeItem( pLclMap->nWID,
                                     bBool ? VOBJ_MODE_SHOW : VOBJ_MODE_HIDE ) );
                             }
                             break;
@@ -1718,19 +1714,19 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                             //  #65253# Default-Items mit falscher Slot-ID
                             //  funktionieren im SfxItemPropertySet3 nicht
                             //! Slot-IDs aendern...
-                            if ( rSet.GetPool()->GetSlotId(pMap->nWID) == pMap->nWID &&
-                                 rSet.GetItemState(pMap->nWID, sal_False) == SFX_ITEM_DEFAULT )
+                            if ( rSet.GetPool()->GetSlotId(pLclMap->nWID) == pLclMap->nWID &&
+                                 rSet.GetItemState(pLclMap->nWID, sal_False) == SFX_ITEM_DEFAULT )
                             {
-                                rSet.Put( rSet.Get(pMap->nWID) );
+                                rSet.Put( rSet.Get(pLclMap->nWID) );
                             }
-                            aPropSet.setPropertyValue( *pMap, *pValue, rSet );
+                            aPropSet.setPropertyValue( *pLclMap, *pValue, rSet );
                     }
                 }
                 else
                 {
-                    rSet.ClearItem( pMap->nWID );
+                    rSet.ClearItem( pLclMap->nWID );
                     // #67847# language for number formats
-                    if ( pMap->nWID == ATTR_VALUE_FORMAT )
+                    if ( pLclMap->nWID == ATTR_VALUE_FORMAT )
                         rSet.ClearItem( ATTR_LANGUAGE_FORMAT );
 
                     //! for ATTR_ROTATE_VALUE, also reset ATTR_ORIENTATION?

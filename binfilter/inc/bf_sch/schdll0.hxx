@@ -55,10 +55,10 @@ public:
                 // 'p' + SfxObjectShell-subclass + 'Factory'
     SotFactory *pSchChartDocShellFactory;  // Namensaufbau zwingend!!
 
-    SchModuleDummy(ResMgr    *pResMgr,
-                   BOOL      bDummy,
+    SchModuleDummy(ResMgr    *pInResMgr,
+                   BOOL      bInDummy,
                    SotFactory *pObjFact) :
-        SfxModule(pResMgr, bDummy, (SfxObjectFactory*) pObjFact, NULL),
+        SfxModule(pInResMgr, bInDummy, (SfxObjectFactory*) pObjFact, NULL),
         pSchChartDocShellFactory(pObjFact)
     {
     }

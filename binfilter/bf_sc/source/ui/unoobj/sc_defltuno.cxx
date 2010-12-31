@@ -72,7 +72,7 @@ const SfxItemPropertyMap* lcl_GetDocDefaultsMap()
         {MAP_CHAR_LEN(SC_UNO_CTL_CLOCAL),   ATTR_CTL_FONT_LANGUAGE, &getCppuType((lang::Locale*)0), 0, MID_LANG_LOCALE },
         {MAP_CHAR_LEN(SC_UNO_STANDARDDEC),              0,      &getCppuType((sal_Int16*)0),        0, 0 },
         {MAP_CHAR_LEN(SC_UNO_TABSTOPDIS),               0,      &getCppuType((sal_Int32*)0),        0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aDocDefaultsMap_Impl;
 }

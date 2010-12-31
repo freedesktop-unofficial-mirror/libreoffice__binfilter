@@ -258,8 +258,6 @@ void ScAnnotationEditSource::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHi
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) )

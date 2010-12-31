@@ -58,7 +58,7 @@ const SfxItemPropertyMap* lcl_GetSheetLinkMap()
         {MAP_CHAR_LEN(SC_UNONAME_FILTOPT),  0,  &getCppuType((::rtl::OUString*)0),  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_LINKURL),  0,  &getCppuType((::rtl::OUString*)0),  0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_REFDELAY), 0,  &getCppuType((sal_Int32*)0),        0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aSheetLinkMap_Impl;
 }

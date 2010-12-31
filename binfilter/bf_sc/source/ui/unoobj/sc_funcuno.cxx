@@ -187,9 +187,9 @@ BOOL lcl_CopyData( ScDocument* pSrcDoc, const ScRange& rSrcRange,
     return TRUE;
 }
 
-ScFunctionAccess::ScFunctionAccess() :
-    bInvalid( FALSE ),
-    pOptions( NULL )
+ScFunctionAccess::ScFunctionAccess()
+    : pOptions( NULL )
+    , bInvalid( FALSE )
 {
     StartListening( *SFX_APP() );       // for SFX_HINT_DEINITIALIZING
 }

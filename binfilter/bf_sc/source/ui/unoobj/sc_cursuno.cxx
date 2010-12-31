@@ -115,17 +115,17 @@ void SAL_CALL ScCellCursorObj::collapseToCurrentRegion() throw(uno::RuntimeExcep
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, TRUE );
@@ -140,10 +140,10 @@ void SAL_CALL ScCellCursorObj::collapseToCurrentArray() throw(uno::RuntimeExcept
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  use the start address of the range
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  use the start address of the range
 
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
@@ -307,17 +307,17 @@ void SAL_CALL ScCellCursorObj::gotoStart() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
@@ -335,17 +335,17 @@ void SAL_CALL ScCellCursorObj::gotoEnd() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
@@ -360,10 +360,10 @@ void SAL_CALL ScCellCursorObj::gotoNext() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  bei Block immer den Start nehmen
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  bei Block immer den Start nehmen
 
     ScMarkData aMark;   // not used with bMarked=FALSE
     USHORT nNewX = aCursor.Col();
@@ -382,10 +382,10 @@ void SAL_CALL ScCellCursorObj::gotoPrevious() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  bei Block immer den Start nehmen
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  bei Block immer den Start nehmen
 
     ScMarkData aMark;   // not used with bMarked=FALSE
     USHORT nNewX = aCursor.Col();
@@ -405,20 +405,20 @@ void SAL_CALL ScCellCursorObj::gotoOffset( sal_Int32 nColumnOffset, sal_Int32 nR
     SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
-    aRange.Justify();
+    ScRange aLclRange = *rRanges.GetObject(0);
+    aLclRange.Justify();
 
-    if ( aRange.aStart.Col() + nColumnOffset >= 0 &&
-         aRange.aEnd.Col()   + nColumnOffset <= MAXCOL &&
-         aRange.aStart.Row() + nRowOffset    >= 0 &&
-         aRange.aEnd.Row()   + nRowOffset    <= MAXROW )
+    if ( aLclRange.aStart.Col() + nColumnOffset >= 0 &&
+         aLclRange.aEnd.Col()   + nColumnOffset <= MAXCOL &&
+         aLclRange.aStart.Row() + nRowOffset    >= 0 &&
+         aLclRange.aEnd.Row()   + nRowOffset    <= MAXROW )
     {
-        ScRange aNew( (USHORT)(aRange.aStart.Col() + nColumnOffset),
-                      (USHORT)(aRange.aStart.Row() + nRowOffset),
-                      aRange.aStart.Tab(),
-                      (USHORT)(aRange.aEnd.Col() + nColumnOffset),
-                      (USHORT)(aRange.aEnd.Row() + nRowOffset),
-                      aRange.aEnd.Tab() );
+        ScRange aNew( (USHORT)(aLclRange.aStart.Col() + nColumnOffset),
+                      (USHORT)(aLclRange.aStart.Row() + nRowOffset),
+                      aLclRange.aStart.Tab(),
+                      (USHORT)(aLclRange.aEnd.Col() + nColumnOffset),
+                      (USHORT)(aLclRange.aEnd.Row() + nRowOffset),
+                      aLclRange.aEnd.Tab() );
         SetNewRange( aNew );
     }
 }
@@ -451,10 +451,10 @@ uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByPositi
 }
 
 uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByName(
-                        const ::rtl::OUString& aRange ) throw(uno::RuntimeException)
+                        const ::rtl::OUString& rRange ) throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
-    return ScCellRangeObj::getCellRangeByName(aRange);
+    return ScCellRangeObj::getCellRangeByName(rRange);
 }
 
 // XServiceInfo

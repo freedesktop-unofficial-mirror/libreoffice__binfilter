@@ -57,7 +57,7 @@ const SfxItemPropertyMap* lcl_GetAnnotationPropertyMap()
 {
     static SfxItemPropertyMap aAnnotationPropertyMap_Impl[] =
     {
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aAnnotationPropertyMap_Impl;
 }
@@ -102,8 +102,6 @@ void ScAnnotationObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) &&

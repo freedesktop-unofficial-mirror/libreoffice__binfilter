@@ -107,7 +107,7 @@ ScChartsObj::~ScChartsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScChartsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScChartsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update
 

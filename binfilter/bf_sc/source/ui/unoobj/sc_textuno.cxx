@@ -80,7 +80,7 @@ const SfxItemPropertyMap* lcl_GetHdFtPropertyMap()
         SVX_UNOEDIT_FONT_PROPERTIES,
         SVX_UNOEDIT_PARA_PROPERTIES,
         SVX_UNOEDIT_NUMBERING_PROPERTIE,    // for completeness of service ParagraphProperties
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     static BOOL bTwipsSet = FALSE;
 
@@ -344,8 +344,8 @@ SvxTextForwarder* ScHeaderFooterTextData::GetTextForwarder()
                     if ( aSet.GetItemState( EE_FEATURE_FIELD, FALSE, &pItem ) == SFX_ITEM_ON )
                     {
                         const SvxFieldItem* pFieldItem = static_cast<const SvxFieldItem*>(pItem);
-                        const SvxFieldData* pData = pFieldItem->GetField();
-                        if ( !pData )
+                        const SvxFieldData* pLclData = pFieldItem->GetField();
+                        if ( !pLclData )
                         {
                             // remove the invalid field
                             pEditEngine->QuickDelete( aFieldSel );
@@ -981,9 +981,9 @@ ScCellTextData::ScCellTextData(ScDocShell* pDocSh, const ScAddress& rP) :
     aCellPos( rP ),
     pEditEngine( NULL ),
     pForwarder( NULL ),
+    pOriginalSource( NULL ),
     bDataValid( FALSE ),
     bInUpdate( FALSE ),
-    pOriginalSource( NULL ),
     bDirty( FALSE ),
     bDoUpdate( TRUE )
 {
@@ -1109,8 +1109,6 @@ void ScCellTextData::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) )

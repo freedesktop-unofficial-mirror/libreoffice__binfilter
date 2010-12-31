@@ -72,13 +72,13 @@ const SfxItemPropertyMap* lcl_GetURLPropertyMap()
 {
     static SfxItemPropertyMap aURLPropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_REPR),     0,  &getCppuType((::rtl::OUString*)0),  0},
-        {MAP_CHAR_LEN(SC_UNONAME_TARGET),   0,  &getCppuType((::rtl::OUString*)0),  0},
-        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_URL),      0,  &getCppuType((::rtl::OUString*)0),  0},
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_REPR),     0,  &getCppuType((::rtl::OUString*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_TARGET),   0,  &getCppuType((::rtl::OUString*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_URL),      0,  &getCppuType((::rtl::OUString*)0),  0,0},
+        {0,0,0,0,0,0}
     };
     return aURLPropertyMap_Impl;
 }
@@ -87,10 +87,10 @@ const SfxItemPropertyMap* lcl_GetHeaderFieldPropertyMap()
 {
     static SfxItemPropertyMap aHeaderFieldPropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY },
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY,0 },
+        {0,0,0,0,0,0}
     };
     return aHeaderFieldPropertyMap_Impl;
 }
@@ -99,11 +99,11 @@ const SfxItemPropertyMap* lcl_GetFileFieldPropertyMap()
 {
     static SfxItemPropertyMap aFileFieldPropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY },
-        {MAP_CHAR_LEN(SC_UNONAME_FILEFORM), 0,  &getCppuType((sal_Int16*)0),        0 },
-        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY },
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPE),  0,  &getCppuType((text::TextContentAnchorType*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_ANCTYPES), 0,  &getCppuType((uno::Sequence<text::TextContentAnchorType>*)0), beans::PropertyAttribute::READONLY,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_FILEFORM), 0,  &getCppuType((sal_Int16*)0),        0,0 },
+        {MAP_CHAR_LEN(SC_UNONAME_TEXTWRAP), 0,  &getCppuType((text::WrapTextMode*)0), beans::PropertyAttribute::READONLY,0 },
+        {0,0,0,0,0,0}
     };
     return aFileFieldPropertyMap_Impl;
 }
@@ -278,8 +278,6 @@ void ScCellFieldsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) &&
@@ -540,8 +538,6 @@ void ScCellFieldObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) &&

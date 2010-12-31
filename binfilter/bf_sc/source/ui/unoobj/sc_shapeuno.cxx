@@ -64,7 +64,7 @@ const SfxItemPropertyMap* lcl_GetShapeMap()
     static SfxItemPropertyMap aShapeMap_Impl[] =
     {
         {MAP_CHAR_LEN(SC_UNONAME_IMAGEMAP), 0, &getCppuType((uno::Reference<container::XIndexContainer>*)0), 0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aShapeMap_Impl;
 }

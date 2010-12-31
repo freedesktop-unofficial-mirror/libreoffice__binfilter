@@ -54,16 +54,16 @@ const SfxItemPropertyMap* lcl_GetValidatePropertyMap()
 {
     static SfxItemPropertyMap aValidatePropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_ERRALSTY), 0,  &getCppuType((sheet::ValidationAlertStyle*)0),  0},
-        {MAP_CHAR_LEN(SC_UNONAME_ERRMESS),  0,  &getCppuType((::rtl::OUString*)0),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_ERRTITLE), 0,  &getCppuType((::rtl::OUString*)0),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_IGNOREBL), 0,  &getBooleanCppuType(),                          0},
-        {MAP_CHAR_LEN(SC_UNONAME_INPMESS),  0,  &getCppuType((::rtl::OUString*)0),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_INPTITLE), 0,  &getCppuType((::rtl::OUString*)0),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_SHOWERR),  0,  &getBooleanCppuType(),                          0},
-        {MAP_CHAR_LEN(SC_UNONAME_SHOWINP),  0,  &getBooleanCppuType(),                          0},
-        {MAP_CHAR_LEN(SC_UNONAME_TYPE),     0,  &getCppuType((sheet::ValidationType*)0),        0},
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNONAME_ERRALSTY), 0,  &getCppuType((sheet::ValidationAlertStyle*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_ERRMESS),  0,  &getCppuType((::rtl::OUString*)0),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_ERRTITLE), 0,  &getCppuType((::rtl::OUString*)0),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_IGNOREBL), 0,  &getBooleanCppuType(),                          0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_INPMESS),  0,  &getCppuType((::rtl::OUString*)0),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_INPTITLE), 0,  &getCppuType((::rtl::OUString*)0),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_SHOWERR),  0,  &getBooleanCppuType(),                          0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_SHOWINP),  0,  &getBooleanCppuType(),                          0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_TYPE),     0,  &getCppuType((sheet::ValidationType*)0),        0,0},
+        {0,0,0,0,0,0}
     };
     return aValidatePropertyMap_Impl;
 }
@@ -90,6 +90,7 @@ sheet::ConditionOperator lcl_ConditionModeToOperator( ScConditionMode eMode )
         case SC_COND_BETWEEN:    eOper = sheet::ConditionOperator_BETWEEN;       break;
         case SC_COND_NOTBETWEEN: eOper = sheet::ConditionOperator_NOT_BETWEEN;   break;
         case SC_COND_DIRECT:     eOper = sheet::ConditionOperator_FORMULA;       break;
+        default: break;
     }
     return eOper;
 }
@@ -108,6 +109,7 @@ ScConditionMode lcl_ConditionOperatorToMode( sheet::ConditionOperator eOper )
         case sheet::ConditionOperator_BETWEEN:       eMode = SC_COND_BETWEEN;    break;
         case sheet::ConditionOperator_NOT_BETWEEN:   eMode = SC_COND_NOTBETWEEN; break;
         case sheet::ConditionOperator_FORMULA:       eMode = SC_COND_DIRECT;     break;
+        default: break;
     }
     return eMode;
 }
@@ -171,7 +173,7 @@ ScTableConditionalFormat::~ScTableConditionalFormat()
 {
     ScTableConditionalEntry* pEntry;
     aEntries.First();
-    while ( pEntry = (ScTableConditionalEntry*)aEntries.Remove() )
+    while ( (pEntry = (ScTableConditionalEntry*)aEntries.Remove()) )
         pEntry->release();
 }
 
@@ -275,7 +277,7 @@ void SAL_CALL ScTableConditionalFormat::clear() throw(uno::RuntimeException)
     SolarMutexGuard aGuard;
     ScTableConditionalEntry* pEntry;
     aEntries.First();
-    while ( pEntry = (ScTableConditionalEntry*)aEntries.Remove() )
+    while ( (pEntry = (ScTableConditionalEntry*)aEntries.Remove()) )
         pEntry->release();
 
     DataChanged();
@@ -742,6 +744,7 @@ void SAL_CALL ScTableValidationObj::setPropertyValue(
             case sheet::ValidationType_TEXT_LEN: nValMode = SC_VALID_TEXTLEN; break;
             case sheet::ValidationType_LIST:     nValMode = SC_VALID_LIST;    break;
             case sheet::ValidationType_CUSTOM:   nValMode = SC_VALID_CUSTOM;  break;
+            default: break;
         }
     }
     else if ( aString.EqualsAscii( SC_UNONAME_ERRALSTY ) )
@@ -754,6 +757,7 @@ void SAL_CALL ScTableValidationObj::setPropertyValue(
             case sheet::ValidationAlertStyle_WARNING: nErrorStyle = SC_VALERR_WARNING; break;
             case sheet::ValidationAlertStyle_INFO:    nErrorStyle = SC_VALERR_INFO;    break;
             case sheet::ValidationAlertStyle_MACRO:   nErrorStyle = SC_VALERR_MACRO;   break;
+            default: break;
         }
     }
 

@@ -69,7 +69,7 @@ const SfxItemPropertyMap* lcl_GetAutoFormatMap()
         {MAP_CHAR_LEN(SC_UNONAME_INCJUST),  0,  &::getBooleanCppuType(),    0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_INCNUM),   0,  &::getBooleanCppuType(),    0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_INCWIDTH), 0,  &::getBooleanCppuType(),    0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aAutoFormatMap_Impl;
 }
@@ -124,7 +124,7 @@ const SfxItemPropertyMap* lcl_GetAutoFieldMap()
         {MAP_CHAR_LEN(SC_UNONAME_ROTANG),   ATTR_ROTATE_VALUE,      &::getCppuType((const sal_Int32*)0),        0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_ROTREF),   ATTR_ROTATE_MODE,       &::getCppuType((const table::CellVertJustify*)0),   0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLVJUS), ATTR_VER_JUSTIFY,       &::getCppuType((const table::CellVertJustify*)0),   0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aAutoFieldMap_Impl;
 }

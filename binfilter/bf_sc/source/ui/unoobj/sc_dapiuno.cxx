@@ -54,7 +54,7 @@ const SfxItemPropertyMap* lcl_GetDataPilotFieldMap()
     {
         {MAP_CHAR_LEN(SC_UNONAME_FUNCTION), 0,  &getCppuType((sheet::GeneralFunction*)0),           0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_ORIENT),   0,  &getCppuType((sheet::DataPilotFieldOrientation*)0), 0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aDataPilotFieldMap_Impl;
 }
@@ -192,6 +192,7 @@ USHORT ScDataPilotConversion::FunctionBit( sheet::GeneralFunction eFunc )
         case sheet::GeneralFunction_VAR:        nRet = PIVOT_FUNC_STD_VAR;   break;
         case sheet::GeneralFunction_VARP:       nRet = PIVOT_FUNC_STD_VARP;  break;
         case sheet::GeneralFunction_AUTO:       nRet = PIVOT_FUNC_AUTO;      break;
+        default: break;
     }
     return nRet;
 }
@@ -925,9 +926,9 @@ void ScDataPilotTableObj::GetParam( ScPivotParam& rParam, ScQueryParam& rQuery, 
 void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
                                 const ScQueryParam& rQuery, const ScArea& rSrcArea )
 {
-    ScDocShell* pDocShell = GetDocShell();
-    ScDPObject* pDPObj = lcl_GetDPObject(pDocShell, nTab, aName);
-    if ( pDPObj && pDocShell )
+    ScDocShell* pLclDocShell = GetDocShell();
+    ScDPObject* pDPObj = lcl_GetDPObject(pLclDocShell, nTab, aName);
+    if ( pDPObj && pLclDocShell )
     {
         //  in den Uno-Objekten sind alle Fields in den Descriptoren innerhalb des Bereichs gezaehlt
 
@@ -953,7 +954,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
                 rEntry.nField += nFieldStart;
         }
 
-        ScDocument* pDoc = pDocShell->GetDocument();
+        ScDocument* pDoc = pLclDocShell->GetDocument();
         ScPivot* pNew = new ScPivot( pDoc );
         pNew->SetName( pDPObj->GetName() );
         pNew->SetTag( pDPObj->GetTag() );
@@ -963,7 +964,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
         pNewObj->InitFromOldPivot( *pNew, pDoc, TRUE );
         lcl_SetLayoutNamesToObject( pDoc, aNewParam, rSrcArea, *pNewObj );
 
-        ScDBDocFunc aFunc(*pDocShell);
+        ScDBDocFunc aFunc(*pLclDocShell);
         aFunc.DataPilotUpdate( pDPObj, pNewObj, TRUE, TRUE );
 
         delete pNewObj;     // DataPilotUpdate copies settings from "new" object

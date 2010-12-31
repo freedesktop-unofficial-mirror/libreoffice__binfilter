@@ -58,7 +58,7 @@ const SfxItemPropertyMap* lcl_GetNamedRangeMap()
     {
         {MAP_CHAR_LEN(SC_UNO_LINKDISPBIT),  0,  &getCppuType((uno::Reference<awt::XBitmap>*)0), beans::PropertyAttribute::READONLY, 0 },
         {MAP_CHAR_LEN(SC_UNO_LINKDISPNAME), 0,  &getCppuType((::rtl::OUString*)0),              beans::PropertyAttribute::READONLY, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aNamedRangeMap_Impl;
 }
@@ -92,7 +92,7 @@ ScNamedRangeObj::~ScNamedRangeObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScNamedRangeObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScNamedRangeObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Ref-Update interessiert nicht
 

@@ -125,25 +125,25 @@ const SfxItemPropertyMap* lcl_GetSettingsPropertyMap()
 {
     static SfxItemPropertyMap aSettingsPropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNONAME_DOAUTOCP), 0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_ENTERED),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_EXPREF),   0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_EXTFMT),   0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_LINKUPD),  0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_MARKHDR),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_METRIC),   0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_MOVEDIR),  0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_MOVESEL),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_PRALLSH),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_PREMPTY),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_RANGEFIN), 0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_SCALE),    0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_STBFUNC),  0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNONAME_ULISTS),   0,  &getCppuType((uno::Sequence< ::rtl::OUString>*)0),  0},
-        {MAP_CHAR_LEN(SC_UNONAME_PRMETRICS),0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_USETABCOL),0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_REPLWARN), 0,  &getBooleanCppuType(),              0},
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNONAME_DOAUTOCP), 0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_ENTERED),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_EXPREF),   0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_EXTFMT),   0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_LINKUPD),  0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_MARKHDR),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_METRIC),   0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_MOVEDIR),  0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_MOVESEL),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_PRALLSH),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_PREMPTY),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_RANGEFIN), 0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_SCALE),    0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_STBFUNC),  0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_ULISTS),   0,  &getCppuType((uno::Sequence< ::rtl::OUString>*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_PRMETRICS),0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_USETABCOL),0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_REPLWARN), 0,  &getBooleanCppuType(),              0,0},
+        {0,0,0,0,0,0}
     };
     return aSettingsPropertyMap_Impl;
 }
@@ -417,7 +417,7 @@ ScSpreadsheetSettings::~ScSpreadsheetSettings()
 }
 
 uno::Reference<uno::XInterface> SAL_CALL ScSpreadsheetSettings_CreateInstance(
-                        const uno::Reference<lang::XMultiServiceFactory>& rSMgr )
+                        const uno::Reference<lang::XMultiServiceFactory>& /*rSMgr*/ )
 {
     SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
@@ -634,6 +634,7 @@ uno::Any SAL_CALL ScSpreadsheetSettings::getPropertyValue( const ::rtl::OUString
             case SVX_ZOOM_OPTIMAL:   nZoomVal = SC_ZOOMVAL_OPTIMAL;   break;
             case SVX_ZOOM_WHOLEPAGE: nZoomVal = SC_ZOOMVAL_WHOLEPAGE; break;
             case SVX_ZOOM_PAGEWIDTH: nZoomVal = SC_ZOOMVAL_PAGEWIDTH; break;
+            default: break;
         }
         aRet <<= (sal_Int16) nZoomVal;
     }
