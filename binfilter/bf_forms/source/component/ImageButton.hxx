@@ -100,10 +100,10 @@ public:
         { OControl::disposing(_rSource); }
 
 // ::com::sun::star::awt::XMouseListener
-    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
 };
 
 //.........................................................................

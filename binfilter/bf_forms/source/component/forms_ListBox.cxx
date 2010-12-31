@@ -105,8 +105,8 @@ OListBoxModel::OListBoxModel(const Reference<XMultiServiceFactory>& _rxFactory)
                                     // use the old control name for compytibility reasons
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aRefreshListeners(m_aMutex)
-    ,m_bBoundComponent(sal_False)
     ,m_nNULLPos(-1)
+    ,m_bBoundComponent(sal_False)
 {
     DBG_CTOR(OListBoxModel,NULL);
 
@@ -123,8 +123,8 @@ OListBoxModel::OListBoxModel( const OListBoxModel* _pOriginal, const Reference<X
     :OBoundControlModel( _pOriginal, _rxFactory )
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aRefreshListeners( m_aMutex )
-    ,m_bBoundComponent(sal_False)
     ,m_nNULLPos(-1)
+    ,m_bBoundComponent(sal_False)
 {
     DBG_CTOR(OListBoxModel,NULL);
     m_eListSourceType = _pOriginal->m_eListSourceType;
@@ -694,9 +694,8 @@ void OListBoxModel::loadData()
         disposeComponent(xListCursor);
         return;
     }
-    catch(Exception& eUnknown)
+    catch(Exception& /*eUnknown*/)
     {
-        eUnknown;
         disposeComponent(xListCursor);
         return;
     }
@@ -721,7 +720,7 @@ void OListBoxModel::loadData()
             {
                 // Feld der 1. Column des ResultSets holen
                 Reference<XColumnsSupplier> xSupplyCols(xListCursor, UNO_QUERY);
-                DBG_ASSERT(xSupplyCols.is(), "OListBoxModel::loadData : cursor supports the row set service but is no column supplier ??!");
+                DBG_ASSERT(xSupplyCols.is(), "OListBoxModel::loadData : cursor supports the row set service but is no column supplier!");
                 Reference<XIndexAccess> xColumns;
                 if (xSupplyCols.is())
                 {
@@ -793,9 +792,9 @@ void OListBoxModel::loadData()
                 //  dann wird die Position fuer einen Leereintrag gemerkt
 
                 ::rtl::OUString aStr;
-                sal_Int16 i = 0;
+                sal_Int16 k = 0;
                 // per definitionem the list cursor is positioned _before_ the first row at the moment
-                while (xListCursor->next() && (i++<SHRT_MAX)) // max anzahl eintraege
+                while (xListCursor->next() && (k++<SHRT_MAX)) // max anzahl eintraege
                 {
                     aStr = DBTypeConversion::getValue(xDataField,
                                             xFormatter,
@@ -831,6 +830,8 @@ void OListBoxModel::loadData()
                 }
             }
             break;
+            default:
+            break;
         }
     }
     catch(SQLException& eSQL)
@@ -839,9 +840,8 @@ void OListBoxModel::loadData()
         disposeComponent(xListCursor);
         return;
     }
-    catch(Exception& eUnknown)
+    catch(Exception& /*eUnknown*/)
     {
-        eUnknown;
         disposeComponent(xListCursor);
         return;
     }
@@ -877,7 +877,7 @@ void OListBoxModel::loadData()
 }
 
 //------------------------------------------------------------------------------
-void OListBoxModel::_loaded(const EventObject& rEvent)
+void OListBoxModel::_loaded(const EventObject& /*rEvent*/)
 {
     // an Felder gebundene Listboxen haben keine Multiselektion
     if (getField().is())
@@ -943,7 +943,7 @@ StringSequence OListBoxModel::GetCurValueSeq() const
         if (nSelCount > 1)
         {
             // Einfach- oder Mehrfach-Selektion
-            sal_Bool bMultiSel;
+            sal_Bool bMultiSel(sal_False);
             const_cast<OListBoxModel*>(this)->OPropertySetAggregationHelper::getFastPropertyValue(PROPERTY_ID_MULTISELECTION) >>= bMultiSel;
             if (bMultiSel)
                 nSelCount = 1;
@@ -1156,7 +1156,7 @@ StringSequence SAL_CALL OListBoxControl::getSupportedServiceNames() throw(Runtim
 
 // XFocusListener
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::focusGained(const FocusEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::focusGained(const FocusEvent& /*_rEvent*/) throw(RuntimeException)
 {
     ::osl::MutexGuard aGuard(m_aMutex);
     if (m_aChangeListeners.getLength()) // only if there are listeners
@@ -1171,14 +1171,14 @@ void SAL_CALL OListBoxControl::focusGained(const FocusEvent& _rEvent) throw(Runt
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::focusLost(const FocusEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::focusLost(const FocusEvent& /*_rEvent*/) throw(RuntimeException)
 {
     m_aCurrentSelection.clear();
 }
 
 // XItemListener
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::itemStateChanged(const ItemEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::itemStateChanged(const ItemEvent& /*_rEvent*/) throw(RuntimeException)
 {
    // call the changelistener delayed
    ::osl::ClearableMutexGuard aGuard(m_aMutex);
@@ -1261,7 +1261,7 @@ void OListBoxControl::disposing()
 }
 
 //------------------------------------------------------------------------------
-IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYTAG)
+IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYARG)
 {
     EventObject aEvt(static_cast< XWeak*>(this));
     m_aChangeListeners.notifyEach(&XChangeListener::changed, aEvt);

@@ -60,9 +60,9 @@ DBG_NAME( OEditBaseModel )
 OEditBaseModel::OEditBaseModel( const Reference< XMultiServiceFactory >& _rxFactory, const ::rtl::OUString& rUnoControlModelName,
         const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator )
     :OBoundControlModel( _rxFactory, rUnoControlModelName, rDefault, sal_True, _bSetDelegator )
-    ,m_bFilterProposal(sal_False)
-    ,m_bEmptyIsNull(sal_True)
     ,m_nLastReadVersion(0)
+    ,m_bEmptyIsNull(sal_True)
+    ,m_bFilterProposal(sal_False)
 {
     DBG_CTOR( OEditBaseModel, NULL );
 }
@@ -158,7 +158,7 @@ void OEditBaseModel::read(const Reference<XObjectInputStream>& _rxInStream) thro
     sal_Bool bHandleCommonProps = (nVersion & PF_HANDLE_COMMON_PROPS) != 0;
     nVersion = nVersion & ~PF_SPECIAL_FLAGS;
 
-    sal_uInt16 nOld     = _rxInStream->readShort();
+    /*sal_uInt16 nOld =*/ _rxInStream->readShort();
     _rxInStream >> m_aDefaultText;
 
     if (nVersion >= 0x0003)

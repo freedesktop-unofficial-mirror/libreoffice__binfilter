@@ -161,10 +161,12 @@ void OImageControl::propertyChange( const PropertyChangeEvent& rEvt )
         Reference<XPointer> xPoint(
             m_xServiceFactory->createInstance(SRV_AWT_POINTER), UNO_QUERY);
         if (xPoint.is())
+        {
             if (getString(rEvt.NewValue).getLength())
                 xPoint->setType(SystemPointer::REFHAND);
             else
                 xPoint->setType(SystemPointer::ARROW);
+        }
 
         xPeer->setPointer(xPoint);
     }
@@ -444,11 +446,11 @@ OImageModel::OImageModel( const Reference< XMultiServiceFactory >& _rxFactory, c
         const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator )
     :OControlModel( _rxFactory, _rUnoControlModelTypeName, rDefault, _bSetDelegator )
     ,OPropertyChangeListener(m_aMutex)
-    ,m_pProducer( NULL )
     ,m_pMedium(NULL)
+    ,m_pProducer( NULL )
+    ,m_bDispatchUrlInternal(sal_False)
     ,m_bDownloading(sal_False)
     ,m_bProdStarted(sal_False)
-    ,m_bDispatchUrlInternal(sal_False)
 {
     DBG_CTOR( OImageModel, NULL );
     implConstruct();
@@ -459,11 +461,11 @@ OImageModel::OImageModel( const Reference< XMultiServiceFactory >& _rxFactory, c
 OImageModel::OImageModel( const OImageModel* _pOriginal, const Reference<XMultiServiceFactory>& _rxFactory, const sal_Bool _bSetDelegator )
     :OControlModel( _pOriginal, _rxFactory, _bSetDelegator )
     ,OPropertyChangeListener( m_aMutex )
-    ,m_pProducer( NULL )
     ,m_pMedium( NULL )
+    ,m_pProducer( NULL )
+    ,m_bDispatchUrlInternal(sal_False)
     ,m_bDownloading( sal_False )
     ,m_bProdStarted( sal_False )
-    ,m_bDispatchUrlInternal(sal_False)
 {
     DBG_CTOR( OImageModel, NULL );
     implConstruct();
@@ -729,14 +731,14 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
             }
             if( !pObjSh )
             {
-                SfxObjectShell *pTestObjSh = SfxObjectShell::GetFirst();
-                while( !pObjSh && pTestObjSh )
+                SfxObjectShell *pLclTestObjSh = SfxObjectShell::GetFirst();
+                while( !pObjSh && pLclTestObjSh )
                 {
-                    Reference< XModel > xTestModel = pTestObjSh->GetModel();
+                    Reference< XModel > xTestModel = pLclTestObjSh->GetModel();
                     if( xTestModel == xModel )
-                        pObjSh = pTestObjSh;
+                        pObjSh = pLclTestObjSh;
                     else
-                        pTestObjSh = SfxObjectShell::GetNext( *pTestObjSh );
+                        pLclTestObjSh = SfxObjectShell::GetNext( *pLclTestObjSh );
                 }
             }
         }

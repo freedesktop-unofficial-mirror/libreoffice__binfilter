@@ -139,6 +139,7 @@ public:
                             {}
 
                             SfxVersionTableDtor( const SfxVersionTableDtor &rCpy )
+                                : _SfxVersionTable(0, 1)
                             { *this = rCpy; }
 
                             ~SfxVersionTableDtor()

@@ -213,7 +213,7 @@ void ORadioButtonModel::SetSiblingPropsTo(const ::rtl::OUString& rPropName, cons
             // nur wenn es ein Radio-Button ist
             if (!hasProperty(PROPERTY_CLASSID, xSiblingProperties))
                 continue;
-            sal_Int16 nType;
+            sal_Int16 nType(0);
             xSiblingProperties->getPropertyValue(PROPERTY_CLASSID) >>= nType;
             if (nType != FormComponentType::RADIOBUTTON)
                 continue;
@@ -281,7 +281,7 @@ void ORadioButtonModel::setFastPropertyValue_NoBroadcast(sal_Int32 nHandle, cons
                     // nur wenn ich nicht mich selber gefunden habe
                     continue;
 
-                sal_Int16 nType;
+                sal_Int16 nType(0);
                 xSiblingProperties->getPropertyValue(PROPERTY_CLASSID) >>= nType;
                 if (nType != FormComponentType::RADIOBUTTON)
                     // nur Radio-Buttons
@@ -505,7 +505,7 @@ sal_Bool ORadioButtonModel::_commit()
     {
         try
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             m_xAggregateSet->getPropertyValue(PROPERTY_STATE) >>= nValue;
             if (nValue == 1)
                 xField->setPropertyValue(PROPERTY_VALUE, makeAny(m_sReferenceValue));

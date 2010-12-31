@@ -93,12 +93,12 @@ namespace frm
     //---------------------------------------------------------------------
     OFilterControl::OFilterControl( const Reference< XMultiServiceFactory >& _rxORB )
         :m_aTextListeners( *this )
-        ,m_bFilterList( sal_False )
-        ,m_bMultiLine( sal_False )
-        ,m_nControlClass( FormComponentType::TEXTFIELD )
-        ,m_bFilterListFilled( sal_False )
         ,m_xORB( _rxORB )
         ,m_aParser( _rxORB )
+        ,m_nControlClass( FormComponentType::TEXTFIELD )
+        ,m_bFilterList( sal_False )
+        ,m_bMultiLine( sal_False )
+        ,m_bFilterListFilled( sal_False )
     {
     }
 
@@ -432,10 +432,10 @@ namespace frm
 
                     aStatement.appendAscii( " FROM " );
                     aStatement.append( ::dbtools::quoteTableName( xMeta, sTableName, ::dbtools::eInDataManipulation ) );
-                    ::rtl::OUString sStatement( aStatement.makeStringAndClear( ) );
+                    ::rtl::OUString sLclStatement( aStatement.makeStringAndClear( ) );
 
                     xStatement = xConnection->createStatement();
-                    xListCursor = xStatement->executeQuery( sStatement );
+                    xListCursor = xStatement->executeQuery( sLclStatement );
 
                     Reference< XColumnsSupplier >  xSupplyCols(xListCursor, UNO_QUERY);
                     Reference< XIndexAccess >  xFields;

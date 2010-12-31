@@ -535,7 +535,7 @@ OImageControlControl::OImageControlControl(const Reference<XMultiServiceFactory>
             xComp->addMouseListener(this);
     }
     // Refcount bei 1 fuer den Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 // UNO Anbindung
@@ -724,7 +724,7 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
                     return;
             }
 
-            sal_Bool bReadOnly;
+            sal_Bool bReadOnly(sal_False);
             xSet->getPropertyValue(PROPERTY_READONLY) >>= bReadOnly;
             if (bReadOnly)
                 return;

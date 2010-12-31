@@ -82,8 +82,8 @@ InterfaceRef SAL_CALL OFormattedFieldWrapper_CreateInstance(const Reference<XMul
 
 //------------------------------------------------------------------
 OFormattedFieldWrapper::OFormattedFieldWrapper(const Reference<XMultiServiceFactory>& _rxFactory, sal_Bool _bActAsFormatted)
-    :m_pEditPart(NULL)
-    ,m_xServiceFactory(_rxFactory)
+    :m_xServiceFactory(_rxFactory)
+    ,m_pEditPart(NULL)
 {
     DBG_CTOR(OFormattedFieldWrapper, NULL);
 

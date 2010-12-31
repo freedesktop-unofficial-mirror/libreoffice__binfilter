@@ -443,7 +443,7 @@ void ImageProducer::ImplInitConsumer( const Graphic& rGraphic )
         List             aTmp;
         void *           pCons;
         sal_uInt16       nPalCount = 0;
-        const sal_uInt16 nBitCount = pBmpAcc->GetBitCount();
+        /*const sal_uInt16 nBitCount =*/ pBmpAcc->GetBitCount();
         sal_uInt32       nRMask = 0;
         sal_uInt32       nGMask = 0;
         sal_uInt32       nBMask = 0;

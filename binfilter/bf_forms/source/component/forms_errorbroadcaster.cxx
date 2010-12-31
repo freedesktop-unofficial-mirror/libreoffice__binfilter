@@ -72,7 +72,7 @@ namespace frm
     }
 
     //------------------------------------------------------------------------------
-    void SAL_CALL OErrorBroadcaster::onError( const SQLException& _rException, const ::rtl::OUString& _rContextDescription )
+    void SAL_CALL OErrorBroadcaster::onError( const SQLException& /*_rException*/, const ::rtl::OUString& /*_rContextDescription*/ )
     {
         OSL_ENSURE( false, "OErrorBroadcaster::onError: dead code!" );
     }

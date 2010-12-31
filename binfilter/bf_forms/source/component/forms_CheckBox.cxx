@@ -173,7 +173,7 @@ void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& _rEvent) throw(
     if (getField().is() && !m_bInReset)
     {
 
-        sal_uInt16 nState;
+        sal_uInt16 nState(0);
         _rEvent.NewValue >>= nState;
         switch (nState)
         {
@@ -371,9 +371,9 @@ void OCheckBoxModel::_onValueChanged()
         sal_Bool bValue = m_xColumn->getBoolean();
         if (m_xColumn->wasNull())
         {
-            sal_Bool bTriState;
+            sal_Bool bTriState(sal_False);
             m_xAggregateSet->getPropertyValue(PROPERTY_TRISTATE) >>= bTriState;
-            aValue <<= (sal_Int16)(bTriState ? CB_DONTKNOW : m_nDefaultChecked);
+            aValue <<= (bTriState ? (sal_Int16)CB_DONTKNOW : m_nDefaultChecked);
         }
         else
             aValue <<= ( bValue ? (sal_Int16)CB_CHECK : (sal_Int16)CB_NOCHECK );
@@ -423,7 +423,7 @@ sal_Bool OCheckBoxModel::_commit()
     {
         try
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             m_xAggregateSet->getPropertyValue(PROPERTY_STATE) >>= nValue;
             switch (nValue)
             {

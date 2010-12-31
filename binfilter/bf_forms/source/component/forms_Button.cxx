@@ -272,7 +272,7 @@ OButtonControl::OButtonControl(const Reference<XMultiServiceFactory>& _rxFactory
             xButton->addActionListener(this);
     }
     // Refcount bei 1 fuer Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -299,7 +299,7 @@ Any SAL_CALL OButtonControl::queryAggregation(const Type& _rType) throw (Runtime
 
 // ActionListener
 //------------------------------------------------------------------------------
-void OButtonControl::actionPerformed(const ActionEvent& rEvent) throw ( ::com::sun::star::uno::RuntimeException)
+void OButtonControl::actionPerformed(const ActionEvent& /*rEvent*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
     // Asynchron fuer starutil::URL-Button
     sal_uInt32 n = Application::PostUserEvent( LINK(this, OButtonControl,OnClick) );

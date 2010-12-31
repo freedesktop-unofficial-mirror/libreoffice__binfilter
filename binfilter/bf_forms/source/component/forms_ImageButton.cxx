@@ -245,7 +245,7 @@ OImageButtonControl::OImageButtonControl(const Reference<XMultiServiceFactory>& 
             xComp->addMouseListener((XMouseListener*)this);
     }
     // Refcount bei 1 fuer angemeldeten Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 // UNO Anbindung

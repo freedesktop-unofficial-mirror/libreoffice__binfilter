@@ -111,9 +111,10 @@ sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
     else
     {
         sal_Int32 nPrefixPos = aModelName.indexOf(aModelPrefix);
-        sal_Int32 nCampatiblePrefixPos = aModelName.indexOf(aCompatibleModelPrefix);
-        DBG_ASSERT( (nPrefixPos != -1) ||   (nCampatiblePrefixPos != -1),
+        sal_Int32 nCompatiblePrefixPos = aModelName.indexOf(aCompatibleModelPrefix);
+        DBG_ASSERT( (nPrefixPos != -1) || (nCompatiblePrefixPos != -1),
                 "::getColumnTypeByModelName() : wrong servivce !");
+        (void)nCompatiblePrefixPos;
 
         ::rtl::OUString aColumnType = (nPrefixPos != -1)
             ? aModelName.copy(aModelPrefix.getLength())
@@ -206,8 +207,8 @@ DBG_NAME(OGridColumn)
 OGridColumn::OGridColumn(const Reference<XMultiServiceFactory>& _rxFactory, const ::rtl::OUString& _sModelName)
     :OGridColumn_BASE(m_aMutex)
     ,OPropertySetAggregationHelper(OGridColumn_BASE::rBHelper)
-    ,m_aModelName(_sModelName)
     ,m_aHidden( makeAny( sal_False ) )
+    ,m_aModelName(_sModelName)
 {
     DBG_CTOR(OGridColumn,NULL);
 

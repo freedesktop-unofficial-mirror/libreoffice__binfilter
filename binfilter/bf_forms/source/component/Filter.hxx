@@ -116,8 +116,8 @@ namespace frm
         virtual sal_Int16       SAL_CALL getMaxTextLen() throw( ::com::sun::star::uno::RuntimeException );
 
     // ::com::sun::star::form::XBoundComponent
-        virtual void            SAL_CALL addUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & l) throw( ::com::sun::star::uno::RuntimeException ) {}
-        virtual void            SAL_CALL removeUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & l) throw( ::com::sun::star::uno::RuntimeException ) {}
+        virtual void            SAL_CALL addUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & /*l*/) throw( ::com::sun::star::uno::RuntimeException ) {}
+        virtual void            SAL_CALL removeUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & /*l*/) throw( ::com::sun::star::uno::RuntimeException ) {}
         virtual sal_Bool        SAL_CALL commit() throw( ::com::sun::star::uno::RuntimeException );
 
     // ::com::sun::star::lang::XEventListener
@@ -125,7 +125,7 @@ namespace frm
 
     // ::com::sun::star::awt::XFocusListener
         virtual void            SAL_CALL focusGained(const ::com::sun::star::awt::FocusEvent& e) throw( ::com::sun::star::uno::RuntimeException );
-        virtual void            SAL_CALL focusLost(const ::com::sun::star::awt::FocusEvent& e) throw( ::com::sun::star::uno::RuntimeException ){}
+        virtual void            SAL_CALL focusLost(const ::com::sun::star::awt::FocusEvent& /*e*/) throw( ::com::sun::star::uno::RuntimeException ){}
 
     // ::com::sun::star::awt::XItemListener
         virtual void            SAL_CALL itemStateChanged(const ::com::sun::star::awt::ItemEvent& rEvent) throw( ::com::sun::star::uno::RuntimeException );

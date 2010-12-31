@@ -166,7 +166,7 @@ OFormattedControl::OFormattedControl(const Reference<XMultiServiceFactory>& _rxF
         }
     }
     // Refcount wieder bei 1 fuer den Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -245,7 +245,7 @@ void OFormattedControl::keyPressed(const ::com::sun::star::awt::KeyEvent& e) thr
 }
 
 //------------------------------------------------------------------------------
-void OFormattedControl::keyReleased(const ::com::sun::star::awt::KeyEvent& e) throw ( ::com::sun::star::uno::RuntimeException)
+void OFormattedControl::keyReleased(const ::com::sun::star::awt::KeyEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
 }
 
@@ -737,7 +737,6 @@ void OFormattedModel::_loaded(const EventObject& rEvent)
                     {
                         Locale aApplicationLocale = Application::GetSettings().GetUILocale();
 
-                        sal_Int32 nNewKey = 0;
                         if (m_bOriginalNumeric)
                             aFmtKey <<= (sal_Int32)xTypes->getStandardFormat(NumberFormat::NUMBER, aApplicationLocale);
                         else
@@ -972,7 +971,7 @@ void OFormattedModel::read(const Reference<XObjectInputStream>& _rxInStream) thr
                 Reference< XDataInputStream > xIn(_rxInStream, UNO_QUERY);
                 OStreamSection aDownCompat(xIn);
 
-                sal_Int16 nSubVersion = _rxInStream->readShort();
+                /*sal_Int16 nSubVersion =*/ _rxInStream->readShort();
 
                 // version 0 and higher : the "effective value" property
                                 Any aEffectiveValue;

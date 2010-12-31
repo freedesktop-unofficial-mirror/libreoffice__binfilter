@@ -131,7 +131,7 @@ OEditControl::OEditControl(const Reference<XMultiServiceFactory>& _rxFactory)
         }
     }
     // Refcount wieder bei 2 fuer beide Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -193,7 +193,7 @@ void OEditControl::disposing(const EventObject& Source) throw( RuntimeException 
 
 // XFocusListener
 //------------------------------------------------------------------------------
-void OEditControl::focusGained( const FocusEvent& e ) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::focusGained( const FocusEvent& /*e*/ ) throw ( ::com::sun::star::uno::RuntimeException)
 {
     Reference<XPropertySet>  xSet(getModel(), UNO_QUERY);
     if (xSet.is())
@@ -201,7 +201,7 @@ void OEditControl::focusGained( const FocusEvent& e ) throw ( ::com::sun::star::
 }
 
 //------------------------------------------------------------------------------
-void OEditControl::focusLost( const FocusEvent& e ) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::focusLost( const FocusEvent& /*e*/ ) throw ( ::com::sun::star::uno::RuntimeException)
 {
     Reference<XPropertySet>  xSet(getModel(), UNO_QUERY);
     if (xSet.is())
@@ -276,7 +276,7 @@ void OEditControl::keyPressed(const ::com::sun::star::awt::KeyEvent& e) throw ( 
 }
 
 //------------------------------------------------------------------------------
-void OEditControl::keyReleased(const ::com::sun::star::awt::KeyEvent& e) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::keyReleased(const ::com::sun::star::awt::KeyEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
 }
 
@@ -314,11 +314,11 @@ DBG_NAME(OEditModel)
 OEditModel::OEditModel(const Reference<XMultiServiceFactory>& _rxFactory)
              :OEditBaseModel( _rxFactory, VCL_CONTROLMODEL_EDIT, FRM_CONTROL_EDIT )
                                     // use the old control name for compytibility reasons
-    ,m_bMaxTextLenModified(sal_False)
-    ,m_nKeyType(NumberFormat::UNDEFINED)
-    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFormatKey(0)
+    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bMaxTextLenModified(sal_False)
     ,m_bWritingFormattedFake(sal_False)
     ,m_bNumericField(sal_False)
 {
@@ -333,11 +333,11 @@ OEditModel::OEditModel(const Reference<XMultiServiceFactory>& _rxFactory)
 //------------------------------------------------------------------
 OEditModel::OEditModel( const OEditModel* _pOriginal, const Reference<XMultiServiceFactory>& _rxFactory )
         :OEditBaseModel( _pOriginal, _rxFactory )
-    ,m_bMaxTextLenModified(sal_False)
-    ,m_nKeyType(NumberFormat::UNDEFINED)
-    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFormatKey(0)
+    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bMaxTextLenModified(sal_False)
     ,m_bWritingFormattedFake(sal_False)
     ,m_bNumericField(sal_False)
 {
@@ -563,7 +563,7 @@ void OEditModel::_loaded(const EventObject& rEvent)
             m_bMaxTextLenModified = getINT16(m_xAggregateSet->getPropertyValue(PROPERTY_MAXTEXTLEN)) != 0;
             if ( !m_bMaxTextLenModified )
             {
-                sal_Int32 nFieldLen;
+                sal_Int32 nFieldLen(0);
                 xField->getPropertyValue(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Precision" ))) >>= nFieldLen;
 
                 if (nFieldLen && nFieldLen <= USHRT_MAX)

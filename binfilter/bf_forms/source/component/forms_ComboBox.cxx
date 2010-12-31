@@ -121,11 +121,11 @@ OComboBoxModel::OComboBoxModel(const Reference<XMultiServiceFactory>& _rxFactory
                     // use the old control name for compytibility reasons
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_eListSourceType(ListSourceType_TABLE)
-    ,m_bEmptyIsNull(sal_True)
     ,m_aNullDate(DBTypeConversion::getStandardDate())
-    ,m_nKeyType(NumberFormat::UNDEFINED)
     ,m_nFormatKey(0)
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bEmptyIsNull(sal_True)
 {
     DBG_CTOR( OComboBoxModel, NULL );
 
@@ -140,9 +140,9 @@ OComboBoxModel::OComboBoxModel( const OComboBoxModel* _pOriginal, const Referenc
     :OBoundControlModel( _pOriginal, _rxFactory )
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aNullDate(DBTypeConversion::getStandardDate())
-    ,m_nKeyType(NumberFormat::UNDEFINED)
     ,m_nFormatKey(0)
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
 {
     DBG_CTOR( OComboBoxModel, NULL );
 
@@ -329,7 +329,7 @@ void SAL_CALL OComboBoxModel::write(const Reference<stario::XObjectOutputStream>
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nBoundColumn;
+        sal_Int16 nBoundColumn(0);
         m_aBoundColumn >>= nBoundColumn;
         _rxOutStream << nBoundColumn;
     }
@@ -391,9 +391,9 @@ void SAL_CALL OComboBoxModel::read(const Reference<stario::XObjectInputStream>& 
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nValue;
-        _rxInStream >> nValue;
-        m_aBoundColumn <<= nValue;
+        sal_Int16 nLclValue;
+        _rxInStream >> nLclValue;
+        m_aBoundColumn <<= nLclValue;
     }
 
     if (nVersion > 0x0001)
@@ -556,9 +556,8 @@ void OComboBoxModel::loadData()
         disposeComponent(xStmt);
         return;
     }
-    catch(Exception& eUnknown)
+    catch(Exception& /*eUnknown*/)
     {
-        eUnknown;
         disposeComponent(xListCursor);
         disposeComponent(xStmt);
         return;
@@ -581,7 +580,7 @@ void OComboBoxModel::loadData()
             {
                 // die XDatabaseVAriant der ersten Spalte
                 Reference<XColumnsSupplier> xSupplyCols(xListCursor, UNO_QUERY);
-                DBG_ASSERT(xSupplyCols.is(), "OComboBoxModel::loadData : cursor supports the row set service but is no column supplier ??!");
+                DBG_ASSERT(xSupplyCols.is(), "OComboBoxModel::loadData : cursor supports the row set service but is no column supplier!");
                 Reference<XIndexAccess> xColumns;
                 if (xSupplyCols.is())
                 {
@@ -625,6 +624,8 @@ void OComboBoxModel::loadData()
                 }
             }
             break;
+            default:
+            break;
         }
     }
     catch(SQLException& eSQL)
@@ -634,9 +635,8 @@ void OComboBoxModel::loadData()
         disposeComponent(xStmt);
         return;
     }
-    catch(Exception& eUnknown)
+    catch(Exception& /*eUnknown*/)
     {
-        eUnknown;
         disposeComponent(xListCursor);
         disposeComponent(xStmt);
         return;
@@ -765,8 +765,8 @@ sal_Bool OComboBoxModel::_commit()
         {
             sal_Int32 nOldLen = aStringItemList.getLength();
             aStringItemList.realloc(nOldLen + 1);
-            ::rtl::OUString* pStringItems = aStringItemList.getArray() + nOldLen;
-            *pStringItems = aNewValue;
+            ::rtl::OUString* pLclStringItems = aStringItemList.getArray() + nOldLen;
+            *pLclStringItems = aNewValue;
 
             aAnyList <<= aStringItemList;
             m_xAggregateSet->setPropertyValue(PROPERTY_STRINGITEMLIST, aAnyList);
