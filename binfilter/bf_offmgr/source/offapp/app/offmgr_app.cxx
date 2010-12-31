@@ -116,7 +116,7 @@ public:
 
 /*N*/ TYPEINIT1(OfficeApplication,SfxApplication);
 
-/*N*/  Reference< XInterface > SAL_CALL SvxShapeCollection_CreateInstance( const Reference< ::com::sun::star::lang::XMultiServiceFactory >& rSMgr ) throw( Exception )
+/*N*/  Reference< XInterface > SAL_CALL SvxShapeCollection_CreateInstance( const Reference< ::com::sun::star::lang::XMultiServiceFactory >& /*rSMgr*/ ) throw( Exception )
 /*N*/  {
 /*?*/     return *( new SvxShapeCollection() );
 /*N*/  }
@@ -150,11 +150,11 @@ public:
 /*N*/   // Servies etc. registrieren
 /*N*/   Reference< ::com::sun::star::lang::XMultiServiceFactory >  xSMgr = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   Reference< ::com::sun::star::container::XSet >  xSet( xSMgr, UNO_QUERY );
-/*N*/   Sequence< ::rtl::OUString >         aName( 1 );
+/*N*/   Sequence< ::rtl::OUString >         aLclName( 1 );
 /*N*/   Reference< ::com::sun::star::lang::XSingleServiceFactory >  xFact;
 /*N*/
-/*N*/   aName.getArray()[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeCollection" ));
-/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeCollection" )), SvxShapeCollection_CreateInstance, aName );
+/*N*/   aLclName.getArray()[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeCollection" ));
+/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeCollection" )), SvxShapeCollection_CreateInstance, aLclName );
 /*N*/   xSet->insert( makeAny(xFact) );
 /*N*/ }
 
