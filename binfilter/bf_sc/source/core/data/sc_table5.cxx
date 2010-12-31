@@ -353,6 +353,8 @@ namespace binfilter {
 /*?*/                       case CELLTYPE_FORMULA :
 /*?*/                           ((ScFormulaCell*)pCell)->SetDirty();
 /*?*/                           break;
+/*?*/                       default:
+/*?*/                               break;
 /*?*/                   }
 /*?*/               }
 /*N*/           }

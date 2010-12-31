@@ -545,11 +545,11 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   return FALSE;
 /*N*/  }
 
-/*N*/  void ScFormulaCell::UpdateReference(UpdateRefMode eUpdateRefMode,
-/*N*/                                   const ScRange& r,
-/*N*/                                   short nDx, short nDy, short nDz,
-/*N*/                                   ScDocument* pUndoDoc )
-/*N*/  {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/  void ScFormulaCell::UpdateReference(UpdateRefMode /*eUpdateRefMode*/,
+/*N*/                                   const ScRange& /*r*/,
+/*N*/                                   short /*nDx*/, short /*nDy*/, short /*nDz*/,
+/*N*/                                   ScDocument* /*pUndoDoc*/ )
+/*N*/  {DBG_BF_ASSERT(0, "STRIP");
 /*N*/  }
 
 /*N*/ void ScFormulaCell::UpdateInsertTab(USHORT nTable)
@@ -567,7 +567,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/       pRangeData = aComp.UpdateInsertTab( nTable, FALSE );
 /*N*/       if (pRangeData)                     // Shared Formula gegen echte Formel
 /*N*/       {                                   // austauschen
-/*?*/           BOOL bChanged;
+/*?*/           BOOL bLclChanged;
 /*?*/           pDocument->RemoveFromFormulaTree( this );   // update formula count
 /*?*/           delete pCode;
 /*?*/           pCode = new ScTokenArray( *pRangeData->GetCode() );
@@ -577,7 +577,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*?*/           aComp2.UpdateInsertTab( nTable, FALSE );
 /*?*/             // If the shared formula contained a named range/formula containing
 /*?*/             // an absolute reference to a sheet, those have to be readjusted.
-/*?*/           aComp2.UpdateDeleteTab( nTable, FALSE, TRUE, bChanged );
+/*?*/           aComp2.UpdateDeleteTab( nTable, FALSE, TRUE, bLclChanged );
 /*?*/           bCompile = TRUE;
 /*N*/       }
 /*N*/       // kein StartListeningTo weil pTab[nTab] noch nicht existiert!
@@ -588,7 +588,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 
 /*N*/  BOOL ScFormulaCell::UpdateDeleteTab(USHORT nTable, BOOL bIsMove)
 /*N*/  {
-/*N*/   BOOL bChanged = FALSE;
+/*N*/   BOOL bLclChanged = FALSE;
 /*N*/   BOOL bPosChanged = ( aPos.Tab() > nTable ? TRUE : FALSE );
 /*N*/   pCode->Reset();
 /*N*/   if( pCode->GetNextReferenceRPN() && !pDocument->IsClipOrUndo() )
@@ -599,7 +599,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/           aPos.IncTab(-1);
 /*N*/       ScRangeData* pRangeData;
 /*N*/       ScCompiler aComp(pDocument, aPos, *pCode);
-/*N*/       pRangeData = aComp.UpdateDeleteTab(nTable, bIsMove, FALSE, bChanged);
+/*N*/       pRangeData = aComp.UpdateDeleteTab(nTable, bIsMove, FALSE, bLclChanged);
 /*N*/       if (pRangeData)                     // Shared Formula gegen echte Formel
 /*N*/       {                                   // austauschen
 /*N*/           pDocument->RemoveFromFormulaTree( this );   // update formula count
@@ -609,12 +609,12 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/           ScCompiler aComp2(pDocument, aPos, *pCode);
 /*N*/           aComp2.CompileTokenArray();
 /*N*/           aComp2.MoveRelWrap();
-/*N*/           aComp2.UpdateDeleteTab( nTable, FALSE, FALSE, bChanged );
+/*N*/           aComp2.UpdateDeleteTab( nTable, FALSE, FALSE, bLclChanged );
 /*N*/              // If the shared formula contained a named range/formula containing
 /*N*/              // an absolute reference to a sheet, those have to be readjusted.
 /*N*/           aComp2.UpdateInsertTab( nTable,TRUE );
-/*N*/           // bChanged kann beim letzten UpdateDeleteTab zurueckgesetzt worden sein
-/*N*/           bChanged = TRUE;
+/*N*/           // bLclChanged kann beim letzten UpdateDeleteTab zurueckgesetzt worden sein
+/*N*/           bLclChanged = TRUE;
 /*N*/           bCompile = TRUE;
 /*N*/       }
 /*N*/       // kein StartListeningTo weil pTab[nTab] noch nicht korrekt!
@@ -622,7 +622,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/   else if ( bPosChanged )
 /*N*/       aPos.IncTab(-1);
 /*N*/
-/*N*/   return bChanged;
+/*N*/   return bLclChanged;
 /*N*/  }
 
 /*N*/ BOOL ScFormulaCell::TestTabRefAbs(USHORT nTable)

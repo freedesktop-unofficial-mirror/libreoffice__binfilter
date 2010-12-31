@@ -155,8 +155,6 @@ namespace binfilter {
 
 /*N*/ void ScBroadcasterList::MoveListenersTo( ScBroadcasterList& rNew )
 /*N*/ {
-/*N*/   SfxBroadcaster* pNewBC = &rNew.aFirstBC;
-/*N*/
 /*N*/   USHORT nLstCount, nLstPos;
 /*N*/   nLstCount = aFirstBC.GetListenerCount();
 /*N*/   for (nLstPos=nLstCount; nLstPos>0;)

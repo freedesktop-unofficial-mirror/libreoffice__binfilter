@@ -160,7 +160,7 @@ public:
                                     {
                                         if ( ppPrev )
                                         {
-                                            if ( *ppPrev = pNext )
+                                            if (( *ppPrev = pNext ))
                                                 pNext->ppPrev = ppPrev;
                                             ppPrev = NULL;  // not inserted
                                         }
@@ -171,7 +171,7 @@ public:
                                         if ( !ppPrev )
                                         {
                                             ppPrev = ppPrevP;
-                                            if ( pNext = *ppPrevP )
+                                            if (( pNext = *ppPrevP ))
                                                 pNext->ppPrev = &pNext;
                                             *ppPrevP = this;
                                         }
@@ -427,7 +427,7 @@ public:
 /*N*/                               // eine Spalte/Zeile beruecksichtigt (fuer
 /*N*/                               // Auflistung der einzelnen Eintraege).
 /*N*/   virtual void                GetDescription( String&, ScDocument*,
-/*N*/                                   BOOL bSplitRange = FALSE ) const {}
+/*N*/                                   BOOL /*bSplitRange*/ = FALSE ) const {}
 /*N*/
 /*N*/   virtual void                GetRefString( String&, ScDocument*,
 /*N*/                                   BOOL bFlag3D = FALSE ) const;
@@ -497,12 +497,12 @@ class ScChangeActionDelMoveEntry : public ScChangeActionLinkEntry
 
 
                                 ScChangeActionDelMoveEntry(
-                                    ScChangeActionDelMoveEntry** ppPrev,
+                                    ScChangeActionDelMoveEntry** ppInPrev,
                                     ScChangeActionMove* pMove,
                                     short nFrom, short nTo )
                                     :   ScChangeActionLinkEntry(
                                             (ScChangeActionLinkEntry**)
-                                                ppPrev,
+                                                ppInPrev,
                                             (ScChangeAction*) pMove ),
                                         nCutOffFrom( nFrom ),
                                         nCutOffTo( nTo )
@@ -728,7 +728,7 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/                                       if ( !ppPrevInSlot )
 /*N*/                                       {
 /*N*/                                           ppPrevInSlot = pp;
-/*N*/                                           if ( pNextInSlot = *pp )
+/*N*/                                           if (( pNextInSlot = *pp ))
 /*N*/                                               pNextInSlot->ppPrevInSlot = &pNextInSlot;
 /*N*/                                           *pp = this;
 /*N*/                                       }
@@ -737,7 +737,7 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/                                   {
 /*N*/                                       if ( ppPrevInSlot )
 /*N*/                                       {
-/*N*/                                           if ( *ppPrevInSlot = pNextInSlot )
+/*N*/                                           if (( *ppPrevInSlot = pNextInSlot ))
 /*N*/                                               pNextInSlot->ppPrevInSlot = ppPrevInSlot;
 /*N*/                                           ppPrevInSlot = NULL;    // not inserted
 /*N*/                                       }
@@ -901,7 +901,7 @@ class ScChangeActionReject : public ScChangeAction
 /*N*/   virtual void                AddContent( ScChangeActionContent* ) {}
 /*N*/   virtual void                DeleteCellEntries() {}
 /*N*/
-/*N*/   virtual BOOL                Reject( ScDocument* p ) { return FALSE; }
+/*N*/   virtual BOOL                Reject( ScDocument* /*p*/ ) { return FALSE; }
 /*N*/
 /*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
 /*N*/

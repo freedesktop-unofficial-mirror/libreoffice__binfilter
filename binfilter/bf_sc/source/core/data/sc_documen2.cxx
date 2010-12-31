@@ -396,9 +396,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, pTimer )
+/*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
 /*N*/  {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( ScDdeLink::IsInUpdate() )        // nicht verschachteln
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1241,7 +1241,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if (bValid)
 /*N*/   {
-/*N*/       BOOL bOldAutoCalcSrc;
+/*N*/       BOOL bOldAutoCalcSrc = FALSE;
 /*N*/       BOOL bOldAutoCalc = GetAutoCalc();
 /*N*/       SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
 /*N*/       SetNoListening( TRUE );
@@ -1375,18 +1375,18 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 
 /*N*/ ScFieldEditEngine* ScDocument::CreateFieldEditEngine()
 /*N*/ {
-/*N*/   ScFieldEditEngine* pEditEngine = NULL;
+/*N*/   ScFieldEditEngine* pLclEditEngine = NULL;
 /*N*/   if (!pCacheFieldEditEngine)
 /*N*/   {
-/*N*/       pEditEngine = new ScFieldEditEngine( GetEnginePool(),
+/*N*/       pLclEditEngine = new ScFieldEditEngine( GetEnginePool(),
 /*N*/           GetEditPool(), FALSE );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       pEditEngine = pCacheFieldEditEngine;
+/*N*/       pLclEditEngine = pCacheFieldEditEngine;
 /*N*/       pCacheFieldEditEngine = NULL;
 /*N*/   }
-/*N*/   return pEditEngine;
+/*N*/   return pLclEditEngine;
 /*N*/ }
 
 /*N*/ void ScDocument::DisposeFieldEditEngine(ScFieldEditEngine*& rpEditEngine)
