@@ -69,19 +69,19 @@ namespace svx
     class ODataAccessDescriptor
     {
     public:
-        ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
-        ODataAccessDescriptor( const ODataAccessDescriptor& _rSource ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rValues ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }
+        ODataAccessDescriptor( const ODataAccessDescriptor& /*_rSource*/ ){DBG_BF_ASSERT(0, "STRIP");}
+        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP");}
+        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP"); }
 
         // allows to construct a descriptor from an Any containing either an XPropertySet or a property value sequence
-        ODataAccessDescriptor( const ::com::sun::star::uno::Any& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor( const ::com::sun::star::uno::Any& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP"); }
 
 
         ~ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >
             createPropertyValueSequence(){DBG_BF_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();} //STRIP001 ;
-        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}//STRIP001 ;
+        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty /*_eWhich*/ ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}
     };
 
 //........................................................................

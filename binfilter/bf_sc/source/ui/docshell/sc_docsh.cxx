@@ -532,7 +532,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                 DBG_ERROR("The Modificator should exist");
 /*N*/ }
 
-/*N*/ BOOL ScDocShell::LoadXML( SfxMedium* pMedium, SvStorage* pStor )
+/*N*/ BOOL ScDocShell::LoadXML( SfxMedium* pInMedium, SvStorage* pStor )
 /*N*/ {
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "sb99857", "ScDocShell::LoadXML" );
 /*N*/
@@ -542,7 +542,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/
 /*N*/     BeforeXMLLoading();
 /*N*/
-/*N*/   ScXMLImportWrapper aImport( aDocument, pMedium, pStor );
+/*N*/   ScXMLImportWrapper aImport( aDocument, pInMedium, pStor );
 /*N*/
 /*N*/     sal_Bool bRet(sal_False);
 /*N*/   if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
@@ -557,11 +557,11 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL ScDocShell::SaveXML( SfxMedium* pMedium, SvStorage* pStor )
+/*N*/ BOOL ScDocShell::SaveXML( SfxMedium* pInMedium, SvStorage* pStor )
 /*N*/ {
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "sb99857", "ScDocShell::SaveXML" );
 /*N*/
-/*N*/   ScXMLImportWrapper aImport( aDocument, pMedium, pStor );
+/*N*/   ScXMLImportWrapper aImport( aDocument, pInMedium, pStor );
 /*N*/   sal_Bool bRet(sal_False);
 /*N*/   if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
 /*N*/       bRet = aImport.Export(sal_False);
@@ -1065,30 +1065,34 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 #define __SCDOCSHELL_INIT \
         aDocument       ( SCDOCMODE_DOCUMENT, this ), \
+        aDdeTextFmt(String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("TEXT"))), \
+        nPrtToScreenFactor( 1.0 ), \
         pFontList       ( NULL ), \
         bHeaderOn       ( TRUE ), \
         bFooterOn       ( TRUE ), \
-        pDocHelper      ( NULL ), \
-        pAutoStyleList  ( NULL ), \
-        pOldJobSetup    ( NULL ), \
-        pPaintLockData  ( NULL ), \
-        nPrtToScreenFactor( 1.0 ), \
+        bNoInformLost( TRUE ), \
         bIsEmpty        ( TRUE ), \
         bIsInUndo       ( FALSE ), \
         bDocumentModifiedPending( FALSE ), \
         nDocumentLock   ( 0 ), \
         nCanUpdate (::com::sun::star::document::UpdateDocMode::ACCORDING_TO_CONFIG), \
         bUpdateEnabled  ( TRUE ), \
+        pDocHelper      ( NULL ), \
+        pAutoStyleList  ( NULL ), \
+        pPaintLockData  ( NULL ), \
+        pOldJobSetup    ( NULL ), \
         pVirtualDevice_100th_mm ( NULL ), \
         pModificator    ( NULL )
 
 //------------------------------------------------------------------
 
 /*N*/ ScDocShell::ScDocShell( const ScDocShell& rShell )
-/*N*/   :   SfxObjectShell( rShell.GetCreateMode() ),
-/*N*/       aDdeTextFmt(String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("TEXT"))),
-/*N*/       bNoInformLost( TRUE ),
-/*N*/       __SCDOCSHELL_INIT
+/*N*/   : SvRefBase()
+/*N*/   , SotObject()
+/*N*/   , SvObject()
+/*N*/   , SfxObjectShell( rShell.GetCreateMode() )
+/*N*/   , SfxListener()
+/*N*/   , __SCDOCSHELL_INIT
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
 /*N*/ }
@@ -1097,8 +1101,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 
 /*N*/ ScDocShell::ScDocShell( SfxObjectCreateMode eMode )
 /*N*/   :   SfxObjectShell( eMode ),
-/*N*/       aDdeTextFmt(String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("TEXT"))),
-/*N*/       bNoInformLost( TRUE ),
 /*N*/       __SCDOCSHELL_INIT
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
@@ -1164,24 +1166,24 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/ }
 
 
-/*N*/ void ScDocShell::SetDocumentModified( BOOL bIsModified /* = TRUE */ )
+/*N*/ void ScDocShell::SetDocumentModified( BOOL bInIsModified /* = TRUE */ )
 /*N*/ {
 /*N*/   //  BroadcastUno muss auch mit pPaintLockData sofort passieren
 /*N*/   //! auch bei SetDrawModified, wenn Drawing angebunden ist
 /*N*/   //! dann eigener Hint???
 /*N*/
-/*N*/   if (bIsModified)
+/*N*/   if (bInIsModified)
 /*N*/       aDocument.BroadcastUno( SfxSimpleHint( SFX_HINT_DATACHANGED ) );
 /*N*/
-/*N*/   if ( pPaintLockData && bIsModified )
+/*N*/   if ( pPaintLockData && bInIsModified )
 /*N*/   {
 /*N*/       pPaintLockData->SetModified();          // spaeter...
 /*N*/       return;
 /*N*/   }
 /*N*/
-/*N*/   SetDrawModified( bIsModified );
+/*N*/   SetDrawModified( bInIsModified );
 /*N*/
-/*N*/   if ( bIsModified )
+/*N*/   if ( bInIsModified )
 /*N*/   {
 /*N*/       if ( aDocument.IsAutoCalcShellDisabled() )
 /*?*/           SetDocumentModifiedPending( TRUE );
@@ -1216,13 +1218,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 //  (Drawing muss auch beim normalen SetDocumentModified upgedated werden,
 //   z.B. bei Tabelle loeschen etc.)
 
-/*N*/ void ScDocShell::SetDrawModified( BOOL bIsModified /* = TRUE */ )
+/*N*/ void ScDocShell::SetDrawModified( BOOL bInIsModified /* = TRUE */ )
 /*N*/ {
-/*N*/   bIsModified != IsModified() ;
 /*N*/
-/*N*/   SetModified( bIsModified );
+/*N*/   SetModified( bInIsModified );
 /*N*/
-/*N*/   if (bIsModified)
+/*N*/   if (bInIsModified)
 /*N*/   {
 /*N*/       if ( aDocument.IsChartListenerCollectionNeedsUpdate() )
 /*N*/       {

@@ -38,7 +38,7 @@ class ScAutoStyleList
 {
 
 public:
-            ScAutoStyleList(ScDocShell* pShell){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScAutoStyleList(ScDocShell* pShell);
+            ScAutoStyleList(ScDocShell* /*pShell*/){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

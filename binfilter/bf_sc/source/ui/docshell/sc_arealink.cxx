@@ -381,7 +381,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, pCaller )
+/*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
 /*N*/ }

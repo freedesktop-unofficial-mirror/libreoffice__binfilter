@@ -69,9 +69,9 @@ namespace binfilter {
 
 
 /*N*/ ScImportExport::ScImportExport( ScDocument* p )
-/*N*/   : pDoc( p ), pDocSh( PTR_CAST(ScDocShell,p->GetDocumentShell()) ),
-/*N*/     nSizeLimit( 0 ), bSingle( TRUE ), bAll( TRUE ), bUndo( FALSE ),
-/*N*/     cSep( '\t' ), cStr( '"' ), bFormulas( FALSE ), bIncludeFiltered( TRUE ),
+/*N*/   : pDocSh( PTR_CAST(ScDocShell,p->GetDocumentShell()) ), pDoc( p ),
+/*N*/     nSizeLimit( 0 ), cSep( '\t' ), cStr( '"' ), bFormulas( FALSE ),
+/*N*/     bIncludeFiltered( TRUE ), bAll( TRUE ), bSingle( TRUE ), bUndo( FALSE ),
 /*N*/     bOverflow( FALSE )
 /*N*/ {
 /*N*/   pUndoDoc = NULL;
@@ -341,11 +341,11 @@ enum DoubledQuoteMode
 /*M*/                 static const String aSeptCorrect( RTL_CONSTASCII_USTRINGPARAM( "SEPT" ) );
 /*M*/                 static const String aSepShortened( RTL_CONSTASCII_USTRINGPARAM( "SEP" ) );
 /*M*/               uno::Sequence< i18n::CalendarItem > xMonths;
-/*M*/               sal_Int32 i, nLen;
+/*M*/               sal_Int32 i, nLclLen;
 /*M*/               //  first test all month names from local international
 /*M*/               xMonths = rCalendar.getMonths();
-/*M*/               nLen = xMonths.getLength();
-/*M*/               for (i=0; i<nLen && !nMonth; i++)
+/*M*/               nLclLen = xMonths.getLength();
+/*M*/               for (i=0; i<nLclLen && !nMonth; i++)
 /*M*/               {
 /*M*/                     if ( rTransliteration.isEqual( aMStr, xMonths[i].FullName ) ||
 /*M*/                          rTransliteration.isEqual( aMStr, xMonths[i].AbbrevName ) )
@@ -359,11 +359,11 @@ enum DoubledQuoteMode
 /*M*/                     }
 /*M*/               }
 /*M*/               //  if none found, then test english month names
-/*M*/                 if ( !nMonth && pSecondCalendar && pSecondTransliteration )
+/*M*/               if ( !nMonth && pSecondCalendar && pSecondTransliteration )
 /*M*/               {
 /*M*/                   xMonths = pSecondCalendar->getMonths();
-/*M*/                   nLen = xMonths.getLength();
-/*M*/                   for (i=0; i<nLen && !nMonth; i++)
+/*M*/                   nLclLen = xMonths.getLength();
+/*M*/                   for (i=0; i<nLclLen && !nMonth; i++)
 /*M*/                   {
 /*M*/                         if ( pSecondTransliteration->isEqual( aMStr, xMonths[i].FullName ) ||
 /*M*/                              pSecondTransliteration->isEqual( aMStr, xMonths[i].AbbrevName ) )

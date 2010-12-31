@@ -271,7 +271,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScTableLink, RefreshHdl, ScTableLink*, pCaller )
+/*N*/ IMPL_LINK( ScTableLink, RefreshHdl, ScTableLink*, EMPTYARG )
 /*N*/ {
 /*N*/   long nRes = Refresh( aFileName, aFilterName, NULL, GetRefreshDelay() ) != 0;
 /*N*/   return nRes;

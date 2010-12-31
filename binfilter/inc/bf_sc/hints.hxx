@@ -143,9 +143,8 @@ class ScAutoStyleHint : public SfxHint
 {
 public:
                     TYPEINFO();
-                    ScAutoStyleHint( const ScRange& rR, const String& rSt1,
-                                        ULONG nT, const String& rSt2 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ULONG nT, const String& rSt2 );
-
+                    ScAutoStyleHint( const ScRange& /*rR*/, const String& /*rSt1*/,
+                                        ULONG /*nT*/, const String& /*rSt2*/ ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

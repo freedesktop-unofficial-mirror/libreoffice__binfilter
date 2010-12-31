@@ -239,7 +239,7 @@ public:
     double          GetPPTX() const { return nPPTX; }
     double          GetPPTY() const { return nPPTY; }
 
-    void            GetMultiArea( ScRangeListRef& rRange ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void          GetMultiArea( ScRangeListRef& rRange );
+    void            GetMultiArea( ScRangeListRef& /*rRange*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
 
     BOOL            IsAnyFillMode()             { return nFillMode != SC_FILL_NONE; }

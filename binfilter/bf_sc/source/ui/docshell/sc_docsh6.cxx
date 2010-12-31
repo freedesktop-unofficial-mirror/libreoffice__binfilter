@@ -227,7 +227,7 @@ namespace binfilter {
 /*N*/   SfxStyleSheetBase* pSourceStyle = aIter.First();
 /*N*/   while (pSourceStyle)
 /*N*/   {
-/*N*/       String aName = pSourceStyle->GetName();
+/*N*/       String aLclName = pSourceStyle->GetName();
 /*N*/       SfxStyleSheetBase* pDestStyle = pDestPool->Find( pSourceStyle->GetName(), pSourceStyle->GetFamily() );
 /*N*/       if ( pDestStyle )
 /*N*/       {
@@ -242,7 +242,7 @@ namespace binfilter {
 /*N*/       else
 /*N*/       {
 /*N*/           pStyles[nFound].pSource = pSourceStyle;
-/*N*/           pStyles[nFound].pDest = &pDestPool->Make( aName, pSourceStyle->GetFamily(), pSourceStyle->GetMask() );
+/*N*/           pStyles[nFound].pDest = &pDestPool->Make( aLclName, pSourceStyle->GetFamily(), pSourceStyle->GetMask() );
 /*N*/           ++nFound;
 /*N*/       }
 /*N*/
@@ -296,14 +296,14 @@ namespace binfilter {
 /*N*/   for (i=0; i<nCount; i++)
 /*N*/       if (aDocument.IsLinked(i))
 /*N*/       {
-/*N*/           String aDocName = aDocument.GetLinkDoc(i);
+/*N*/           String aLclDocName = aDocument.GetLinkDoc(i);
 /*N*/           String aFltName = aDocument.GetLinkFlt(i);
 /*N*/           String aOptions = aDocument.GetLinkOpt(i);
 /*N*/           ULONG nRefresh  = aDocument.GetLinkRefreshDelay(i);
 /*N*/           BOOL bThere = FALSE;
 /*N*/           for (USHORT j=0; j<i && !bThere; j++)               // im Dokument mehrfach?
 /*N*/               if (aDocument.IsLinked(j)
-/*N*/                       && aDocument.GetLinkDoc(j) == aDocName
+/*N*/                       && aDocument.GetLinkDoc(j) == aLclDocName
 /*N*/                       && aDocument.GetLinkFlt(j) == aFltName
 /*N*/                       && aDocument.GetLinkOpt(j) == aOptions)
 /*N*/                       // Ignore refresh delay in compare, it should be the
@@ -313,7 +313,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if (!bThere)                                        // schon als Filter eingetragen?
 /*N*/           {
-/*N*/               StrData* pData = new StrData(aDocName);
+/*N*/               StrData* pData = new StrData(aLclDocName);
 /*N*/               if (!aNames.Insert(pData))
 /*N*/               {
 /*?*/                   delete pData;
@@ -322,9 +322,9 @@ namespace binfilter {
 /*N*/           }
 /*N*/           if (!bThere)
 /*N*/           {
-/*N*/               ScTableLink* pLink = new ScTableLink( this, aDocName, aFltName, aOptions, nRefresh );
+/*N*/               ScTableLink* pLink = new ScTableLink( this, aLclDocName, aFltName, aOptions, nRefresh );
 /*N*/               pLink->SetInCreate( TRUE );
-/*N*/               pLinkManager->InsertFileLink( *pLink, OBJECT_CLIENT_FILE, aDocName, &aFltName );
+/*N*/               pLinkManager->InsertFileLink( *pLink, OBJECT_CLIENT_FILE, aLclDocName, &aFltName );
 /*N*/               pLink->Update();
 /*N*/               pLink->SetInCreate( FALSE );
 /*N*/           }

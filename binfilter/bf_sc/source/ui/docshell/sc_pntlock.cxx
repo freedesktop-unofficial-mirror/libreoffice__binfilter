@@ -37,9 +37,9 @@ namespace binfilter {
 
 /*N*/ ScPaintLockData::ScPaintLockData(USHORT nNewMode) :
 /*N*/   nMode( nNewMode ),
-/*N*/   nParts( 0 ),
 /*N*/   nLevel( 0 ),
 /*N*/   nDocLevel( 0 ),
+/*N*/   nParts( 0 ),
 /*N*/   bModified( FALSE )
 /*N*/ {
 /*N*/ }

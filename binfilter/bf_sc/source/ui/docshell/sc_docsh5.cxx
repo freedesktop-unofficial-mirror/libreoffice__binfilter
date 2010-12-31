@@ -544,7 +544,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, pDBData )
+/*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, EMPTYARG )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
 /*N*/ }

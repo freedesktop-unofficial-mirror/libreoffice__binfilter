@@ -211,13 +211,13 @@ using namespace ::com::sun::star;
 /*N*/   //  Loeschen wie in SvPersist::CleanUp
 /*N*/
 /*N*/   ScDrawLayer* pDrawLayer = aDocument.GetDrawLayer();
-/*N*/   const SvInfoObjectMemberList* pChildList = GetObjectList();
+/*N*/   const SvInfoObjectMemberList* pLclChildList = GetObjectList();
 /*N*/
-/*N*/   if( pChildList && pChildList->Count() )
+/*N*/   if( pLclChildList && pLclChildList->Count() )
 /*N*/   {
-/*N*/       for( ULONG i=0; i<pChildList->Count(); )
+/*N*/       for( ULONG i=0; i<pLclChildList->Count(); )
 /*N*/       {
-/*N*/           SvInfoObjectRef pEle = pChildList->GetObject(i);
+/*N*/           SvInfoObjectRef pEle = pLclChildList->GetObject(i);
 /*N*/           String aObjName = pEle->GetObjName();
 /*N*/           BOOL bFound = FALSE;
 /*N*/           if ( pDrawLayer )
