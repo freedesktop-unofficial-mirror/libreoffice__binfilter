@@ -415,7 +415,7 @@ void B3dGeometry::EndPolygon()
 |*
 \************************************************************************/
 
-sal_Bool B3dGeometry::CheckHit(const Vector3D& rFront, const Vector3D& rBack, sal_uInt16 nTol)
+sal_Bool B3dGeometry::CheckHit(const Vector3D& rFront, const Vector3D& rBack, sal_uInt16 /*nTol*/)
 {
     sal_uInt32 nPolyCounter(0L);
     sal_uInt32 nEntityCounter(0L);
