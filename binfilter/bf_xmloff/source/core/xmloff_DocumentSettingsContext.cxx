@@ -101,8 +101,8 @@ uno::Sequence<beans::PropertyValue> XMLMyList::GetSequence()
         while (aItr != aProps.end())
         {
             *pProps = *aItr;
-            pProps++;
-            aItr++;
+            ++pProps;
+            ++aItr;
         }
     }
     return aSeq;
@@ -126,7 +126,7 @@ uno::Reference<container::XNameContainer> XMLMyList::GetNameContainer()
             while (aItr != aProps.end())
             {
                 xNameContainer->insertByName(aItr->Name, aItr->Value);
-                aItr++;
+                ++aItr;
             }
         }
     }
@@ -151,8 +151,8 @@ uno::Reference<container::XIndexContainer> XMLMyList::GetIndexContainer()
             while (aItr != aProps.end())
             {
                 xIndexContainer->insertByIndex(i, aItr->Value);
-                aItr++;
-                i++;
+                ++aItr;
+                ++i;
             }
         }
     }
