@@ -200,6 +200,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 /*?*/               case SC_NOT_EQUAL :
 /*?*/                     bOk = !::rtl::math::approxEqual( nCellVal, rEntry.nVal );
 /*?*/                   break;
+/*?*/               default :
+/*?*/                   break;
 /*N*/           }
 /*N*/       }
 /*N*/       else if ( (rEntry.eOp == SC_EQUAL || rEntry.eOp == SC_NOT_EQUAL)
@@ -281,6 +283,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 /*?*/                             if ( bOk && pbTestEqualCondition && !bTestEqual )
 /*?*/                                 bTestEqual = (nCompare == 0);
 /*?*/                           break;
+/*?*/                       default :
+/*?*/                           break;
 /*?*/                   }
 /*N*/               }
 /*N*/           }
@@ -330,10 +334,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 
 
 
-/*N*/ BOOL ScTable::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam)
+/*N*/ BOOL ScTable::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, ScQueryParam&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    USHORT i, nCount;
-return FALSE;//STRIP001     return bValid;
+DBG_BF_ASSERT(0, "STRIP");
+return FALSE;
 /*N*/ }
 
 

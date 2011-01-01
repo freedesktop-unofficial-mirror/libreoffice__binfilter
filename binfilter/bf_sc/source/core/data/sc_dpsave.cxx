@@ -176,16 +176,16 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ ScDPSaveDimension::ScDPSaveDimension(const String& rName, BOOL bDataLayout) :
 /*N*/   aName( rName ),
+/*N*/   pLayoutName( NULL ),
 /*N*/   bIsDataLayout( bDataLayout ),
 /*N*/   bDupFlag( FALSE ),
 /*N*/   nOrientation( sheet::DataPilotFieldOrientation_HIDDEN ),
-/*N*/   bSubTotalDefault( TRUE ),
-/*N*/   nSubTotalCount( 0 ),
-/*N*/   pSubTotalFuncs( NULL ),
-/*N*/   nShowEmptyMode( SC_DPSAVEMODE_DONTKNOW ),
 /*N*/   nFunction( sheet::GeneralFunction_AUTO ),
 /*N*/   nUsedHierarchy( -1 ),
-/*N*/   pLayoutName( NULL )
+/*N*/   nShowEmptyMode( SC_DPSAVEMODE_DONTKNOW ),
+/*N*/   bSubTotalDefault( TRUE ),
+/*N*/   nSubTotalCount( 0 ),
+/*N*/   pSubTotalFuncs( NULL )
 /*N*/ {
 /*N*/ }
 /*N*/
@@ -194,12 +194,12 @@ using namespace ::com::sun::star;
 /*N*/   bIsDataLayout( r.bIsDataLayout ),
 /*N*/   bDupFlag( r.bDupFlag ),
 /*N*/   nOrientation( r.nOrientation ),
+/*N*/   nFunction( r.nFunction ),
+/*N*/   nUsedHierarchy( r.nUsedHierarchy ),
+/*N*/   nShowEmptyMode( r.nShowEmptyMode ),
 /*N*/   bSubTotalDefault( r.bSubTotalDefault ),
 /*N*/   nSubTotalCount( r.nSubTotalCount ),
-/*N*/   pSubTotalFuncs( NULL ),
-/*N*/   nShowEmptyMode( r.nShowEmptyMode ),
-/*N*/   nFunction( r.nFunction ),
-/*N*/   nUsedHierarchy( r.nUsedHierarchy )
+/*N*/   pSubTotalFuncs( NULL )
 /*N*/ {
 /*N*/   if ( nSubTotalCount && r.pSubTotalFuncs )
 /*N*/   {
@@ -318,16 +318,15 @@ using namespace ::com::sun::star;
 /*N*/   if ( nSubTotalCount && ( !pSubTotalFuncs || !r.pSubTotalFuncs ) )   // should not happen
 /*N*/       return FALSE;
 /*N*/
-/*N*/   long i;
-/*N*/   for (i=0; i<nSubTotalCount; i++)
+/*N*/   for (long i=0; i<nSubTotalCount; i++)
 /*N*/       if ( pSubTotalFuncs[i] != r.pSubTotalFuncs[i] )
 /*N*/           return FALSE;
 /*N*/
-/*N*/   long nCount = aMemberList.Count();
+/*N*/   ULONG nCount = aMemberList.Count();
 /*N*/   if ( nCount != r.aMemberList.Count() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (i=0; i<nCount; i++)
+/*N*/   for (ULONG i=0; i<nCount; i++)
 /*N*/       if ( !( *(ScDPSaveMember*)aMemberList.GetObject(i) ==
 /*N*/               *(ScDPSaveMember*)r.aMemberList.GetObject(i) ) )
 /*N*/           return FALSE;
@@ -492,11 +491,11 @@ using namespace ::com::sun::star;
 /*N*/                       for (long i=0; i<nCount; i++)
 /*N*/                       {
 /*N*/                           ScDPSaveMember* pMember = (ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/                           ::rtl::OUString aName = pMember->GetName();
-/*N*/                           if ( xMembers->hasByName( aName ) )
+/*N*/                           ::rtl::OUString aLclName = pMember->GetName();
+/*N*/                           if ( xMembers->hasByName( aLclName ) )
 /*N*/                           {
 /*N*/                               uno::Reference<uno::XInterface> xMemberInt = ScUnoHelpFunctions::AnyToInterface(
-/*N*/                                   xMembers->getByName( aName ) );
+/*N*/                                   xMembers->getByName( aLclName ) );
 /*N*/                               pMember->WriteToSource( xMemberInt );
 /*N*/                           }
 /*N*/                           // missing member is no error
@@ -570,11 +569,11 @@ using namespace ::com::sun::star;
 /*N*/        nRepeatEmptyMode != r.nRepeatEmptyMode )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   long nCount = aDimList.Count();
+/*N*/   ULONG nCount = aDimList.Count();
 /*N*/   if ( nCount != r.aDimList.Count() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   for (ULONG i=0; i<nCount; i++)
 /*N*/       if ( !( *(ScDPSaveDimension*)aDimList.GetObject(i) ==
 /*N*/               *(ScDPSaveDimension*)r.aDimList.GetObject(i) ) )
 /*N*/           return FALSE;

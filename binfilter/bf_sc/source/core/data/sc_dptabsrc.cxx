@@ -92,17 +92,17 @@ using namespace ::com::sun::star;
 /*N*/   nRowDimCount( 0 ),
 /*N*/   nDataDimCount( 0 ),
 /*N*/   nPageDimCount( 0 ),
+/*N*/   bColumnGrand( TRUE ),       // default is true
+/*N*/   bRowGrand( TRUE ),
+/*N*/   bIgnoreEmptyRows( FALSE ),
+/*N*/   bRepeatIfEmpty( FALSE ),
 /*N*/   nDupCount( 0 ),
-/*N*/   bResultOverflow( FALSE ),
 /*N*/   pResData( NULL ),
 /*N*/   pColResRoot( NULL ),
 /*N*/   pRowResRoot( NULL ),
 /*N*/   pColResults( NULL ),
 /*N*/   pRowResults( NULL ),
-/*N*/   bColumnGrand( TRUE ),       // default is true
-/*N*/   bRowGrand( TRUE ),
-/*N*/   bIgnoreEmptyRows( FALSE ),
-/*N*/   bRepeatIfEmpty( FALSE )
+/*N*/   bResultOverflow( FALSE )
 /*N*/ {
 /*N*/   pData->SetEmptyFlags( bIgnoreEmptyRows, bRepeatIfEmpty );
 /*N*/ }
@@ -287,20 +287,20 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResults()
 /*?*/                                                           throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0);
 /*?*/ }
 
 /*?*/ void SAL_CALL ScDPSource::refresh() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& l )
+/*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   DBG_ERROR("not implemented");   //! exception?
 /*?*/ }
 
-/*?*/ void SAL_CALL ScDPSource::removeRefreshListener( const uno::Reference<util::XRefreshListener >& l )
+/*?*/ void SAL_CALL ScDPSource::removeRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   DBG_ERROR("not implemented");   //! exception?
@@ -857,7 +857,7 @@ using namespace ::com::sun::star;
 /*N*/   return aRet;
 /*N*/ }
 
-/*?*/ void SAL_CALL ScDPHierarchy::setName( const ::rtl::OUString& rNewName ) throw(uno::RuntimeException)
+/*?*/ void SAL_CALL ScDPHierarchy::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   DBG_ERROR("not implemented");       //! exception?
 /*?*/ }
@@ -1061,7 +1061,7 @@ using namespace ::com::sun::star;
 /*N*/   return pSource->GetData()->getDimensionName( nSrcDim );     // (original) dimension name
 /*N*/ }
 
-/*?*/ void SAL_CALL ScDPLevel::setName( const ::rtl::OUString& rNewName ) throw(uno::RuntimeException)
+/*?*/ void SAL_CALL ScDPLevel::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
 /*?*/   DBG_ERROR("not implemented");       //! exception?
 /*?*/ }
@@ -1095,7 +1095,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       {MAP_CHAR_LEN(SC_UNO_SHOWEMPT), 0,  &getBooleanCppuType(),                                   0, 0 },
 /*N*/       {MAP_CHAR_LEN(SC_UNO_SUBTOTAL), 0,  &getCppuType((uno::Sequence<sheet::GeneralFunction>*)0), 0, 0 },
-/*N*/       {0,0,0,0}
+/*N*/       {0,0,0,0,0,0}
 /*N*/   };
 /*N*/   static uno::Reference<beans::XPropertySetInfo> aRef =
 /*N*/       new SfxItemPropertySetInfo( aDPLevelMap_Impl );

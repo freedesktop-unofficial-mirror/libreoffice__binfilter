@@ -63,7 +63,6 @@ public:
     virtual         ~ScSheetDPData();
 
     virtual long                    GetColumnCount();
-    virtual const TypedStrCollection&   GetColumnEntries(long nColumn);
     virtual String                  getDimensionName(long nColumn);
     virtual BOOL                    getIsDataLayoutDimension(long nColumn);
     virtual BOOL                    IsDateDimension(long nDim);

@@ -124,10 +124,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ const TypedStrCollection& ScSheetDPData::GetColumnEntries(long nColumn)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*N*/ }
-
 /*N*/ String ScSheetDPData::getDimensionName(long nColumn)
 /*N*/ {
 /*N*/   if (getIsDataLayoutDimension(nColumn))
@@ -192,8 +188,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ UINT32 ScSheetDPData::GetNumberFormat(long nDim)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ UINT32 ScSheetDPData::GetNumberFormat(long)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL ScSheetDPData::getIsDataLayoutDimension(long nColumn)
@@ -213,8 +209,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& rParam )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------

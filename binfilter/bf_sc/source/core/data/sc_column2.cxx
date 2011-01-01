@@ -201,13 +201,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTab )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pDBColl = pDocument->GetDBCollection();
-
-    return FALSE;
-}
-
 /*N*/ void ScColumn::SaveData( SvStream& rStream ) const
 /*N*/ {
 /*N*/   CellType eCellType;
@@ -236,20 +229,11 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/   //  Zellen abziehen, die wegen Import nicht gespeichert werden
 /*N*/   BOOL bRemoveAny = lcl_RemoveAny( pDocument, nCol, nTab );
 /*N*/   USHORT nEffCount = nSaveCount;
-/*N*/   if ( bRemoveAny )
-/*N*/   {
-/*?*/       for (i=0; i<nSaveCount; i++)
-/*?*/           if ( lcl_RemoveThis( pDocument, nCol, pItems[i].nRow, nTab ) )
-/*?*/               --nEffCount;
-/*?*/
-/*?*/ //        String aDbg("Tab ");aDbg+=nTab;aDbg+=" Col ";aDbg+=nCol;
-/*?*/ //        aDbg+=" Remove ";aDbg+=nSaveCount-nEffCount; DBG_ERROR(aDbg);
-/*N*/   }
 /*N*/
 /*N*/   rStream << nEffCount;           // nEffCount: Zellen, die wirklich gespeichert werden
 /*N*/
 /*N*/   ScAttrIterator aIter( pAttrArray, 0, MAXROW );
-/*N*/   USHORT nStt, nEnd;
+/*N*/   USHORT nStt(0), nEnd(0);
 /*N*/   const ScPatternAttr* pAttr;
 /*N*/   do
 /*N*/   {
@@ -263,7 +247,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/   {
 /*N*/       USHORT nRow = pItems[i].nRow;
 /*N*/
-/*N*/       if ( !bRemoveAny || !lcl_RemoveThis( pDocument, nCol, nRow, nTab ) )
+/*N*/       if ( !bRemoveAny || true )
 /*N*/       {
 /*N*/           rStream << nRow;
 /*N*/
@@ -384,7 +368,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*?*/       nNoteCount = 0;
 /*?*/       for (i=0; i<nCount; i++)
 /*?*/           if ( pItems[i].pCell->GetNotePtr() && pItems[i].nRow<=nSaveMaxRow &&
-/*?*/                   !lcl_RemoveThis( pDocument, nCol, pItems[i].nRow, nTab ) )
+/*?*/                   true )
 /*?*/               ++nNoteCount;
 /*N*/   }
 /*N*/   else
@@ -401,7 +385,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/   for (i=0; i<nCount && rStream.GetError() == SVSTREAM_OK; i++)
 /*N*/   {
 /*N*/       USHORT nRow = pItems[i].nRow;
-/*N*/       if ( !bRemoveAny || !lcl_RemoveThis( pDocument, nCol, nRow, nTab ) )
+/*N*/       if ( !bRemoveAny || true )
 /*N*/       {
 /*N*/           const ScPostIt* pNote = pItems[i].pCell->GetNotePtr();
 /*N*/           if ( pNote && nRow <= nSaveMaxRow )
@@ -528,7 +512,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/         ScFontToSubsFontConverter_AutoPtr xFontConverter;
 /*N*/         const ULONG nFontConverterFlags = FONTTOSUBSFONT_IMPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS;
 /*N*/         ScSymbolStringCellEntry* pE;
-/*N*/         USHORT nStt, nEnd;
+/*N*/         USHORT nStt(0), nEnd(0);
 /*N*/
 /*N*/         ScAttrIterator aIter( pAttrArray, 0, MAXROW );
 /*N*/         const ScPatternAttr* pAttr = aIter.Next( nStt, nEnd );
@@ -906,7 +890,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/               double nCosAbs = fabs( cos( nRealOrient ) );
 /*?*/               double nSinAbs = fabs( sin( nRealOrient ) );
 /*?*/               long nHeight = (long)( aSize.Height() * nCosAbs + aSize.Width() * nSinAbs );
-/*?*/               long nWidth;
+/*?*/               long nWidth(0);
 /*?*/               if ( eRotMode == SVX_ROTATE_MODE_STANDARD )
 /*?*/                   nWidth  = (long)( aSize.Width() * nCosAbs + aSize.Height() * nSinAbs );
 /*?*/               else if ( rOptions.bTotalSize )
@@ -1655,7 +1639,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 
 /*N*/ void lcl_UpdateSubTotal( ScFunctionData& rData, ScBaseCell* pCell )
 /*N*/ {
-/*N*/   double nValue;
+/*N*/   double nValue(0.0);
 /*N*/   BOOL bVal = FALSE;
 /*N*/   BOOL bCell = TRUE;
 /*N*/   switch (pCell->GetCellType())
@@ -1686,7 +1670,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*?*/       case CELLTYPE_NOTE:
 /*?*/           bCell = FALSE;
 /*?*/           break;
-/*?*/       // bei Strings nichts
+/*?*/       default:
+/*?*/           break;
 /*N*/   }
 /*N*/
 /*N*/   if (!rData.bError)
@@ -1719,6 +1704,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*?*/               if (bVal)
 /*?*/                   if (++rData.nCount == 1 || nValue < rData.nVal )
 /*?*/                       rData.nVal = nValue;
+/*?*/               break;
+/*?*/           default:
 /*?*/               break;
 /*N*/       }
 /*N*/   }
@@ -1775,6 +1762,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/               break;
 /*N*/           case CELLTYPE_EDIT:
 /*N*/               nTotal += 50;
+/*N*/               break;
+/*N*/           default:
 /*N*/               break;
 /*N*/       }
 /*N*/   }

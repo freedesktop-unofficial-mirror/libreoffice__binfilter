@@ -79,13 +79,8 @@ struct ScDPItemData;
 class ScDPResultData
 {
 public:
-    ScDPResultData( ScDPSource* pSrc ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDPResultData( ScDPSource* pSrc );      //! Ref
-                        ~ScDPResultData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultData();
-
-
-
-
-
+    ScDPResultData( ScDPSource* /*pSrc*/ ) {DBG_BF_ASSERT(0, "STRIP");}
+    ~ScDPResultData(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -93,10 +88,10 @@ class ScDPResultMember
 {
 
 public:
-                        ScDPResultMember( ScDPResultData* pData, ScDPDimension* pDim,
-                                            ScDPLevel* pLev, ScDPMember* pDesc,
-                                            BOOL bForceSub ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 BOOL bForceSub );  //! Ref
-                        ~ScDPResultMember(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultMember();
+                        ScDPResultMember( ScDPResultData*, ScDPDimension*,
+                                            ScDPLevel*, ScDPMember*,
+                                            BOOL ) {DBG_BF_ASSERT(0, "STRIP");}
+                        ~ScDPResultMember(){DBG_BF_ASSERT(0, "STRIP");}
 
 
 

@@ -127,19 +127,18 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPObject::ScDPObject( ScDocument* pD ) :
 /*N*/   pDoc( pD ),
-/*N*/   bAlive( FALSE ),
 /*N*/   pSaveData( NULL ),
 /*N*/   pSheetDesc( NULL ),
 /*N*/   pImpDesc( NULL ),
 /*N*/   pServDesc( NULL ),
 /*N*/   pOutput( NULL ),
-/*N*/   bSettingsChanged( FALSE )
+/*N*/   bSettingsChanged( FALSE ),
+/*N*/   bAlive( FALSE )
 /*N*/ {
 /*N*/ }
 
 /*N*/ ScDPObject::ScDPObject(const ScDPObject& r) :
 /*N*/   pDoc( r.pDoc ),
-/*N*/   bAlive( FALSE ),
 /*N*/   pSaveData( NULL ),
 /*N*/   aTableName( r.aTableName ),
 /*N*/   aTableTag( r.aTableTag ),
@@ -148,7 +147,8 @@ using namespace ::com::sun::star;
 /*N*/   pImpDesc( NULL ),
 /*N*/   pServDesc( NULL ),
 /*N*/   pOutput( NULL ),
-/*N*/   bSettingsChanged( FALSE )
+/*N*/   bSettingsChanged( FALSE ),
+/*N*/   bAlive( FALSE )
 /*N*/ {
 /*N*/   if (r.pSaveData)
 /*N*/       pSaveData = new ScDPSaveData(*r.pSaveData);
@@ -214,19 +214,19 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this)
 /*N*/   pSheetDesc->aQueryParam.nCol2 = pSheetDesc->aSourceRange.aEnd.Col();
 /*N*/   pSheetDesc->aQueryParam.nRow2 = pSheetDesc->aSourceRange.aEnd.Row();;
 /*N*/   pSheetDesc->aQueryParam.bHasHeader = TRUE;
-/*N*/   USHORT nCount = pSheetDesc->aQueryParam.GetEntryCount();
+/*N*/   /*USHORT nCount =*/ pSheetDesc->aQueryParam.GetEntryCount();
 /*N*/
 /*N*/   InvalidateSource();     // new source must be created
 /*N*/ }
 
-/*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc& rDesc)
+/*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pImpDesc && rDesc == *pImpDesc )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc& rDesc)
+/*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -316,8 +316,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 
 
 
-/*N*/ void ScDPObject::UpdateReference( UpdateRefMode eUpdateRefMode,
-/*N*/                                    const ScRange& rRange, short nDx, short nDy, short nDz )
+/*N*/ void ScDPObject::UpdateReference( UpdateRefMode /*eUpdateRefMode*/,
+/*N*/                                    const ScRange& /*rRange*/, short /*nDx*/, short /*nDy*/, short /*nDz*/ )
 /*N*/ {
     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
 }
@@ -786,14 +786,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/ void ScDPObject::ConvertOrientation( ScDPSaveData& rSaveData,
 /*N*/                           PivotField* pFields, USHORT nCount, USHORT nOrient,
 /*N*/                           ScDocument* pDoc, USHORT nRow, USHORT nTab,
-/*N*/                           const uno::Reference<sheet::XDimensionsSupplier>& xSource,
+/*N*/                           const uno::Reference<sheet::XDimensionsSupplier>& /*xSource*/,
 /*N*/                           BOOL bOldDefaults,
 /*N*/                           PivotField* pRefColFields, USHORT nRefColCount,
 /*N*/                           PivotField* pRefRowFields, USHORT nRefRowCount )
 /*N*/ {
-/*N*/   //  pDoc or xSource must be set
-/*N*/   DBG_ASSERT( pDoc || xSource.is(), "missing string source" );
-/*N*/
 /*N*/   String aDocStr;
 /*N*/   ScDPSaveDimension* pDim;
 /*N*/
@@ -808,7 +805,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           if ( pDoc )
 /*N*/               pDoc->GetString( nCol, nRow, nTab, aDocStr );
 /*N*/           else
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aDocStr = lcl_GetDimName( xSource, nCol );  // cols must start at 0
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/           if ( aDocStr.Len() )
 /*N*/               pDim = rSaveData.GetDimensionByName(aDocStr);
@@ -886,7 +883,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   }
 }
 
-/*N*/ void ScDPObject::InitFromOldPivot( const ScPivot& rOld, ScDocument* pDoc, BOOL bSetSource )
+/*N*/ void ScDPObject::InitFromOldPivot( const ScPivot& rOld, ScDocument* pInDoc, BOOL bSetSource )
 /*N*/ {
 /*N*/   ScDPSaveData aSaveData;
 /*N*/
@@ -896,13 +893,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   rOld.GetParam( aParam, aQuery, aArea );
 /*N*/
 /*N*/   ConvertOrientation( aSaveData, aParam.aColArr, aParam.nColCount,
-/*N*/                           sheet::DataPilotFieldOrientation_COLUMN, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_COLUMN, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE );
 /*N*/   ConvertOrientation( aSaveData, aParam.aRowArr, aParam.nRowCount,
-/*N*/                           sheet::DataPilotFieldOrientation_ROW, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_ROW, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE );
 /*N*/   ConvertOrientation( aSaveData, aParam.aDataArr, aParam.nDataCount,
-/*N*/                           sheet::DataPilotFieldOrientation_DATA, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_DATA, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE,
 /*N*/                           aParam.aColArr, aParam.nColCount, aParam.aRowArr, aParam.nRowCount );
 /*N*/

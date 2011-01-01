@@ -72,9 +72,9 @@ namespace binfilter {
 
 //========================================================================
 
-/*N*/ ScStyleSheetPool::ScStyleSheetPool( SfxItemPool&  rPool,
+/*N*/ ScStyleSheetPool::ScStyleSheetPool( SfxItemPool&  rInPool,
 /*N*/                                   ScDocument*     pDocument )
-/*N*/   :   SfxStyleSheetPool( rPool ),
+/*N*/   :   SfxStyleSheetPool( rInPool ),
 /*N*/       pActualStyleSheet( NULL ),
 /*N*/       pDoc( pDocument ),
 /*N*/       pForceStdName( NULL )
@@ -133,9 +133,9 @@ namespace binfilter {
 /*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create(
 /*N*/                                           const String&   rName,
 /*N*/                                           SfxStyleFamily  eFamily,
-/*N*/                                           USHORT          nMask )
+/*N*/                                           USHORT          nInMask )
 /*N*/ {
-/*N*/   ScStyleSheet* pSheet = new ScStyleSheet( rName, *this, eFamily, nMask );
+/*N*/   ScStyleSheet* pSheet = new ScStyleSheet( rName, *this, eFamily, nInMask );
 /*N*/   if ( eFamily == SFX_STYLE_FAMILY_PARA && ScGlobal::GetRscString(STR_STYLENAME_STANDARD) != rName )
 /*N*/       pSheet->SetParent( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) );
 /*N*/
@@ -144,9 +144,9 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
+/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create( const SfxStyleSheetBase& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------

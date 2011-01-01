@@ -70,7 +70,7 @@ namespace binfilter {
 /*N*/   nTab( nNewTab ),
 /*N*/   pDocument( pDoc )
 /*N*/ {
-/*N*/   ScDocumentPool* pDocPool = pDocument->GetPool();
+/*N*/   /*ScDocumentPool* pDocPool =*/ pDocument->GetPool();
 /*N*/
 /*N*/     nCount = nLimit = 1;
 /*N*/   pData = new ScAttrEntry[1];
@@ -986,9 +986,9 @@ namespace binfilter {
 
             //      Bereich loeschen, aber Merge-Flags stehenlassen
 
-/*N*/ void ScAttrArray::DeleteAreaSafe(USHORT nStartRow, USHORT nEndRow)
+/*N*/ void ScAttrArray::DeleteAreaSafe(USHORT, USHORT)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetPatternAreaSafe( nStartRow, nEndRow, pDocument->GetDefPattern(), TRUE );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1392,8 +1392,8 @@ namespace binfilter {
 /*N*/   if (pData)
 /*N*/   {
 /*N*/       BOOL bFirst=TRUE;
-/*N*/       USHORT nStartIndex;
-/*N*/       USHORT nEndIndex;
+/*N*/       USHORT nStartIndex(0);
+/*N*/       USHORT nEndIndex(0);
 /*N*/       USHORT i = 0;
 /*N*/       for (i = 0; i < nCount-1; i++)
 /*N*/           if (pData[i].nRow >= nStartRow && pData[i].nRow <= nStartRow+nSize-1)
@@ -1460,9 +1460,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScAttrArray::DeleteHardAttr(USHORT nStartRow, USHORT nEndRow)
+/*N*/ void ScAttrArray::DeleteHardAttr(USHORT, USHORT)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocument->GetDefPattern();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
         // Verschieben innerhalb eines Dokuments

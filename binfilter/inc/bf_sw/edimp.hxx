@@ -75,9 +75,9 @@ SV_DECL_VARARR_SORT( _SwPamRanges, SwPamRange, 0, 1 )
 class SwPamRanges : private _SwPamRanges
 {
 public:
-    SwPamRanges( const SwPaM& rRing ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwPamRanges( const SwPaM& rRing );
+    SwPamRanges( const SwPaM& /*rRing*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
-    SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;} //STRIP001 SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam );
+    SwPaM& SetPam( USHORT /*nArrPos*/, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;}
 
     USHORT Count() const
                 {   return _SwPamRanges::Count(); }

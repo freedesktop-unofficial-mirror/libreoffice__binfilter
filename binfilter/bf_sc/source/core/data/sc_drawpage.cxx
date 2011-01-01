@@ -42,8 +42,8 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ ScDrawPage::ScDrawPage(ScDrawLayer& rNewModel, StarBASIC* pBasic, BOOL bMasterPage) :
-/*N*/   FmFormPage(rNewModel, pBasic, bMasterPage)
+/*N*/ ScDrawPage::ScDrawPage(ScDrawLayer& rNewModel, StarBASIC* pInBasic, BOOL bMasterPage) :
+/*N*/   FmFormPage(rNewModel, pInBasic, bMasterPage)
 /*N*/ {
 /*N*/   SetSize( Size( LONG_MAX, LONG_MAX ) );
 /*N*/ }

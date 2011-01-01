@@ -96,14 +96,14 @@ namespace binfilter {
 /*N*/   aStrVal2(r.aStrVal2),
 /*N*/   bIsStr1(r.bIsStr1),
 /*N*/   bIsStr2(r.bIsStr2),
-/*N*/   bRelRef1(r.bRelRef1),
-/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(r.aSrcPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(r.pDoc),
-/*N*/   aSrcPos(r.aSrcPos),
+/*N*/   bRelRef1(r.bRelRef1),
+/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   //  ScTokenArray copy ctor erzeugt flache Kopie
@@ -125,14 +125,14 @@ namespace binfilter {
 /*N*/   aStrVal2(r.aStrVal2),
 /*N*/   bIsStr1(r.bIsStr1),
 /*N*/   bIsStr2(r.bIsStr2),
-/*N*/   bRelRef1(r.bRelRef1),
-/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(r.aSrcPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
-/*N*/   aSrcPos(r.aSrcPos),
+/*N*/   bRelRef1(r.bRelRef1),
+/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   // echte Kopie der Formeln (fuer Ref-Undo)
@@ -156,14 +156,14 @@ namespace binfilter {
 /*N*/   nVal2(0.0),
 /*N*/   bIsStr1(FALSE),
 /*N*/   bIsStr2(FALSE),
-/*N*/   bRelRef1(FALSE),
-/*N*/   bRelRef2(FALSE),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(rPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
-/*N*/   aSrcPos(rPos),
+/*N*/   bRelRef1(FALSE),
+/*N*/   bRelRef2(FALSE),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   Compile( rExpr1, rExpr2, bCompileEnglish, bCompileXML, FALSE );
@@ -186,13 +186,13 @@ namespace binfilter {
 /*N*/   nVal2(0.0),
 /*N*/   bIsStr1(FALSE),
 /*N*/   bIsStr2(FALSE),
-/*N*/   bRelRef1(FALSE),
-/*N*/   bRelRef2(FALSE),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
+/*N*/   bRelRef1(FALSE),
+/*N*/   bRelRef2(FALSE),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   USHORT nVer = (USHORT) pDoc->GetSrcVersion();
@@ -878,7 +878,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScConditionEntry::DataChanged( const ScRange* pModified ) const
+/*N*/ void ScConditionEntry::DataChanged( const ScRange* /*pModified*/ ) const
 /*N*/ {
 /*N*/   // nix
 /*N*/ }
@@ -1273,6 +1273,7 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 /*N*/ ScConditionalFormatList::ScConditionalFormatList(const ScConditionalFormatList& rList)
+/*N*/     : ScConditionalFormats_Impl()
 /*N*/ {
 /*N*/   //  fuer Ref-Undo - echte Kopie mit neuen Tokens!
 /*N*/

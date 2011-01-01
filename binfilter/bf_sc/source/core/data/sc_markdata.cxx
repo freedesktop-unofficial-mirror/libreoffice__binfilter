@@ -53,9 +53,9 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScMarkData::ScMarkData(const ScMarkData& rData) :
-/*N*/   pMultiSel( NULL ),
 /*N*/   aMarkRange( rData.aMarkRange ),
-/*N*/   aMultiRange( rData.aMultiRange )
+/*N*/   aMultiRange( rData.aMultiRange ),
+/*N*/   pMultiSel( NULL )
 /*N*/ {
 /*N*/   bMarked      = rData.bMarked;
 /*N*/   bMultiMarked = rData.bMultiMarked;

@@ -41,28 +41,19 @@
 #include "docoptio.hxx"
 namespace binfilter {
 
-//------------------------------------------------------------------------
-//------------------------------------------------------------------------
-void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
-        USHORT& nAttrEndRow, const ScAttrArray* pNewArr, USHORT nRow,
-        ScDocument* pDoc )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rpArr != pNewArr || nAttrEndRow < nRow )
-}
-
 /*N*/ ScValueIterator::ScValueIterator( ScDocument* pDocument, const ScRange& rRange,
 /*N*/           BOOL bSTotal, BOOL bTextZero ) :
 /*N*/   pDoc( pDocument ),
+/*N*/   nNumFmtIndex(0),
 /*N*/   nStartCol( rRange.aStart.Col() ),
 /*N*/   nStartRow( rRange.aStart.Row() ),
 /*N*/   nStartTab( rRange.aStart.Tab() ),
 /*N*/   nEndCol( rRange.aEnd.Col() ),
 /*N*/   nEndRow( rRange.aEnd.Row() ),
 /*N*/   nEndTab( rRange.aEnd.Tab() ),
-/*N*/   bSubTotal(bSTotal),
 /*N*/   nNumFmtType( NUMBERFORMAT_UNDEFINED ),
-/*N*/   nNumFmtIndex(0),
 /*N*/   bNumValid( FALSE ),
+/*N*/   bSubTotal(bSTotal),
 /*N*/   bNextValid( FALSE ),
 /*N*/   bCalcAsShown( pDocument->GetDocOptions().IsCalcAsShown() ),
 /*N*/   bTextAsZero( bTextZero )
@@ -136,13 +127,6 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
 /*N*/                       --nRow;
 /*N*/                       if ( bCalcAsShown )
 /*N*/                       {
-/*?*/ #ifndef WTC
-/*?*/                           lcl_IterGetNumberFormat( nNumFormat,pAttrArray,
-/*?*/ #else
-/*?*/                           lcl_IterGetNumberFormat( nNumFormat,
-/*?*/                               (ScAttrArray const *&)pAttrArray,
-/*?*/ #endif
-/*?*/                               nAttrEndRow, pCol->pAttrArray, nRow, pDoc );
 /*?*/                           rValue = pDoc->RoundValueAsShown( rValue, nNumFormat );
 /*N*/                       }
 /*N*/                       //
@@ -159,13 +143,6 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
 /*N*/                           bNextValid = TRUE;
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*?*/ #ifndef WTC
-/*?*/                               lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
-/*?*/ #else
-/*?*/                               lcl_IterGetNumberFormat( nNumFormat,
-/*?*/                                   (ScAttrArray const *&)pAttrArray,
-/*?*/ #endif
-/*?*/                                   nAttrEndRow, pCol->pAttrArray, nNextRow, pDoc );
 /*?*/                               fNextValue = pDoc->RoundValueAsShown( fNextValue, nNumFormat );
 /*N*/                           }
 /*N*/                       }
@@ -202,6 +179,8 @@ void lcl_IterGetNumberFormat( ULONG& nFormat, const ScAttrArray*& rpArr,
 /*N*/                           return TRUE;
 /*N*/                       }
 /*N*/                   }
+/*N*/                   break;
+/*N*/                   default :
 /*N*/                   break;
 /*N*/               }
 /*N*/           }
@@ -273,11 +252,11 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 //------------------------------------------------------------------------
 
 /*N*/  ScQueryValueIterator::ScQueryValueIterator(ScDocument* pDocument, USHORT nTable, const ScQueryParam& rParam) :
-/*N*/   pDoc( pDocument ),
-/*N*/   nTab( nTable),
 /*N*/   aParam (rParam),
-/*N*/   nNumFmtType( NUMBERFORMAT_UNDEFINED ),
+/*N*/   pDoc( pDocument ),
 /*N*/   nNumFmtIndex(0),
+/*N*/   nTab( nTable),
+/*N*/   nNumFmtType( NUMBERFORMAT_UNDEFINED ),
 /*N*/   bCalcAsShown( pDocument->GetDocOptions().IsCalcAsShown() )
 /*N*/  {
 /*N*/   nCol = aParam.nCol1;
@@ -339,13 +318,6 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                           rValue = ((ScValueCell*)pCell)->GetValue();
 /*N*/                           if ( bCalcAsShown )
 /*N*/                           {
-/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52  || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
-/*N*/                               lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
-/*N*/  #else
-/*N*/                               lcl_IterGetNumberFormat( nNumFormat,
-/*N*/                                   (ScAttrArray const *&)pAttrArray,
-/*N*/  #endif
-/*N*/                                   nAttrEndRow, pCol->pAttrArray, nRow, pDoc );
 /*N*/                               rValue = pDoc->RoundValueAsShown( rValue, nNumFormat );
 /*N*/                           }
 /*N*/                           nNumFmtType = NUMBERFORMAT_NUMBER;
@@ -558,9 +530,9 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 
 /*N*/ ScQueryCellIterator::ScQueryCellIterator(ScDocument* pDocument, USHORT nTable,
 /*N*/            const ScQueryParam& rParam, BOOL bMod ) :
+/*N*/   aParam (rParam),
 /*N*/   pDoc( pDocument ),
 /*N*/   nTab( nTable),
-/*N*/   aParam (rParam),
 /*N*/     nStopOnMismatch( nStopOnMismatchDisabled ),
 /*N*/     nTestEqualCondition( nTestEqualConditionDisabled ),
 /*N*/     bAdvanceQuery( FALSE )
@@ -673,14 +645,6 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/
 /*N*/  ULONG ScQueryCellIterator::GetNumberFormat()
 /*N*/  {
-/*N*/   ScColumn* pCol = &(pDoc->pTab[nTab])->aCol[nCol];
-/*N*/  #if ! ( defined WTC || defined ICC || defined HPUX || defined C50 || defined C52 || ( defined GCC && __GNUC__ >= 3 ) || ( defined WNT && _MSC_VER >= 1400 ) )
-/*N*/   lcl_IterGetNumberFormat( nNumFormat, pAttrArray,
-/*N*/  #else
-/*N*/   lcl_IterGetNumberFormat( nNumFormat,
-/*N*/       (ScAttrArray const *&)pAttrArray,
-/*N*/  #endif
-/*N*/       nAttrEndRow, pCol->pAttrArray, nRow, pDoc );
 /*N*/   return nNumFormat;
 /*N*/  }
 
@@ -741,6 +705,8 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                     case SC_LESS_EQUAL :
 /*N*/                     case SC_GREATER_EQUAL :
 /*N*/                         rEntry.eOp = SC_EQUAL;
+/*N*/                     break;
+/*N*/                     default :
 /*N*/                     break;
 /*N*/                 }
 /*N*/             }
@@ -885,10 +851,10 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/                                   USHORT nCol2, USHORT nRow2) :
 /*N*/   pDoc( pDocument ),
 /*N*/   nTab( nTable ),
-/*N*/   nCol( nCol1 ),
 /*N*/   nEndCol( nCol2 ),
 /*N*/   nStartRow( nRow1 ),
-/*N*/   nEndRow( nRow2 )
+/*N*/   nEndRow( nRow2 ),
+/*N*/   nCol( nCol1 )
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pDoc->pTab[nTab] )
 /*N*/       pColIter = pDoc->pTab[nTab]->aCol[nCol].CreateAttrIterator( nStartRow, nEndRow );

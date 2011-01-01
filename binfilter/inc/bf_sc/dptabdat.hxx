@@ -120,7 +120,6 @@ public:
                 //! or separate Str and ValueCollection
 
     virtual long                    GetColumnCount() = 0;
-    virtual const TypedStrCollection&   GetColumnEntries(long nColumn) = 0;
     virtual String                  getDimensionName(long nColumn) = 0;
     virtual BOOL                    getIsDataLayoutDimension(long nColumn) = 0;
     virtual BOOL                    IsDateDimension(long nDim) = 0;

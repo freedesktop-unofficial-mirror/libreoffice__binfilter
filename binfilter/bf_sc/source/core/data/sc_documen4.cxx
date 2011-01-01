@@ -301,6 +301,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();
 /*N*/               else
 /*N*/                   aData.bError = TRUE;
 /*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/
 /*N*/   if (aData.bError)
@@ -309,10 +311,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();
 /*N*/   return !aData.bError;
 /*N*/ }
 
-/*N*/ double ScDocument::RoundValueAsShown( double fVal, ULONG nFormat )
+/*N*/ double ScDocument::RoundValueAsShown( double , ULONG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   short nType;
-        return 0;//STRIP001 return fVal;
+DBG_BF_ASSERT(0, "STRIP");
+        return 0;
 }
 
 //

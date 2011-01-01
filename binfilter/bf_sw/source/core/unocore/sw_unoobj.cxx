@@ -439,7 +439,7 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
  * --------------------------------------------------*/
 void lcl_SetNodeNumStart( SwPaM& rCrsr, uno::Any aValue )
 {
-    sal_Int16 nTmp;
+    sal_Int16 nTmp(0);
     aValue >>= nTmp;
     sal_uInt16 nStt = (nTmp < 0 ? USHRT_MAX : (sal_uInt16)nTmp);
     SwDoc* pDoc = rCrsr.GetDoc();
@@ -468,7 +468,7 @@ class SwTextCursorItemSet_Impl
 
 public:
     SwTextCursorItemSet_Impl( SwDoc *pD, sal_uInt16 nW ) :
-        pDoc( pD ), nWhich( nW ), pItemSet(0), bGotAttrs( sal_False ) {}
+        pDoc( pD ), pItemSet(0), nWhich( nW ), bGotAttrs( sal_False ) {}
     ~SwTextCursorItemSet_Impl()
         {delete pItemSet;}
 
@@ -541,7 +541,7 @@ sal_Bool lcl_setCrsrPropertyValue(const SfxItemPropertyMap* pMap,
                 {
                     if( FN_UNO_NUM_LEVEL == pMap->nWID)
                     {
-                        sal_Int16 nLevel;
+                        sal_Int16 nLevel(0);
                         aValue >>= nLevel;
                         sal_Int16 nOldLevel = pTxtNd->GetNum()->GetLevel() & ~NO_NUMLEVEL;
                         if(nLevel < MAXLEVEL && nOldLevel != nLevel)
@@ -800,8 +800,8 @@ Sequence< OUString > SwXTextCursor::getSupportedServiceNames(void) throw( Runtim
 SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition& rPos,
                     CursorType eSet, SwDoc* pDoc, const SwPosition* pMark) :
     aLstnrCntnr(( util::XSortable*)this),
-    xParentText(xParent),
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
+    xParentText(xParent),
     pLastSortOptions(0),
     eType(eSet)
 {
@@ -819,8 +819,8 @@ SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition&
 SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent,
     SwUnoCrsr* pSourceCrsr, CursorType eSet) :
     aLstnrCntnr( (util::XSortable*)this),
-    xParentText(xParent),
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
+    xParentText(xParent),
     pLastSortOptions(0),
     eType(eSet)
 {
@@ -1102,8 +1102,7 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
         case CURSOR_FOOTNOTE:   eSearchNodeType = SwFootnoteStartNode;  break;
         case CURSOR_HEADER:     eSearchNodeType = SwHeaderStartNode;    break;
         case CURSOR_FOOTER:     eSearchNodeType = SwFooterStartNode;    break;
-        //case CURSOR_INVALID:
-        //case CURSOR_BODY:
+        default: break;
     }
     const SwStartNode* pOwnStartNode = pOwnCursor->GetNode()->
                                             FindSttNodeByType(eSearchNodeType);
@@ -1151,9 +1150,9 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
         SwPosition* pParamRight;
         if(pCursor)
         {
-            const SwPaM* pTmp = pCursor->GetPaM();
-            pParamLeft = new SwPosition(*pTmp->GetPoint());
-            pParamRight = new SwPosition(pTmp->HasMark() ? *pTmp->GetMark() : *pParamLeft);
+            const SwPaM* pLclTmp = pCursor->GetPaM();
+            pParamLeft = new SwPosition(*pLclTmp->GetPoint());
+            pParamRight = new SwPosition(pLclTmp->HasMark() ? *pLclTmp->GetMark() : *pParamLeft);
         }
         else
         {
@@ -1163,9 +1162,9 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
         }
         if(*pParamRight < *pParamLeft)
         {
-            SwPosition* pTmp = pParamLeft;
+            SwPosition* pLclTmp = pParamLeft;
             pParamLeft = pParamRight;
-            pParamRight = pTmp;
+            pParamRight = pLclTmp;
         }
         // jetzt sind vier SwPositions da, zwei davon werden gebraucht, also welche?
         if(aOwnRight < *pParamRight)
@@ -1185,12 +1184,12 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
         //der Cursor soll dem uebergebenen Range entsprechen
         if(pCursor)
         {
-            const SwPaM* pTmp = pCursor->GetPaM();
-            *pOwnCursor->GetPoint() = *pTmp->GetPoint();
-            if(pTmp->HasMark())
+            const SwPaM* pLclTmp = pCursor->GetPaM();
+            *pOwnCursor->GetPoint() = *pLclTmp->GetPoint();
+            if(pLclTmp->HasMark())
             {
                 pOwnCursor->SetMark();
-                *pOwnCursor->GetMark() = *pTmp->GetMark();
+                *pOwnCursor->GetMark() = *pLclTmp->GetMark();
             }
             else
                 pOwnCursor->DeleteMark();
@@ -1938,7 +1937,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXTextCursor::getPropertySetInfo(voi
         {
             { SW_PROP_NAME(UNO_NAME_IS_SKIP_HIDDEN_TEXT), FN_SKIP_HIDDEN_TEXT, &::getBooleanCppuType(), PROPERTY_NONE,     0},
             { SW_PROP_NAME(UNO_NAME_IS_SKIP_PROTECTED_TEXT), FN_SKIP_PROTECTED_TEXT, &::getBooleanCppuType(), PROPERTY_NONE,     0},
-            {0,0,0,0}
+            {0,0,0,0,0,0}
         };
         uno::Reference< beans::XPropertySetInfo >  xInfo = aPropSet.getPropertySetInfo();
         // PropertySetInfo verlaengern!

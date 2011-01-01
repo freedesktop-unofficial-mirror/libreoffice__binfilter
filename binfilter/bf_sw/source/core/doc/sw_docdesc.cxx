@@ -839,7 +839,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, pTimer )
+/*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, EMPTYARG )
 /*N*/ {
 /*N*/   SwFEShell* pSh = (SwFEShell*)GetEditShell();
 /*N*/   if( pSh )

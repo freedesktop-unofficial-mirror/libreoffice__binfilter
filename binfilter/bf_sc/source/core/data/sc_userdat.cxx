@@ -636,7 +636,7 @@ namespace binfilter {
 /*N*/ ScDrawObjData::~ScDrawObjData()
 /*N*/ {}
 /*N*/
-/*N*/ SdrObjUserData* ScDrawObjData::Clone(SdrObject* pObj) const
+/*N*/ SdrObjUserData* ScDrawObjData::Clone(SdrObject* /*pObj*/) const
 /*N*/ {
 /*N*/   return new ScDrawObjData( *this );
 /*N*/ }
@@ -689,7 +689,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 /*N*/
-/*N*/ SdrObjUserData* ScIMapInfo::Clone( SdrObject* pObj ) const
+/*N*/ SdrObjUserData* ScIMapInfo::Clone( SdrObject* /*pObj*/ ) const
 /*N*/ {
 /*N*/   return new ScIMapInfo( *this );
 /*N*/ }
