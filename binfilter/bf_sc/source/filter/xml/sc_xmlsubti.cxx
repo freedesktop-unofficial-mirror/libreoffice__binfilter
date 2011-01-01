@@ -108,7 +108,7 @@ sal_Int32 ScMyTableData::GetChangedCols(const sal_Int32 nFromIndex, const sal_In
 {
     ScMysalIntList::const_iterator i = nChangedCols.begin();
     while ((i != nChangedCols.end()) && ((*i < nToIndex) && !(*i >= nFromIndex)))
-        i++;
+        ++i;
     if (i == nChangedCols.end())
         return -1;
     else
@@ -124,7 +124,7 @@ void ScMyTableData::SetChangedCols(const sal_Int32 nValue)
     while ((i != nChangedCols.end()) && (*i < nValue))
     {
         sal_Int32 nTemp = *i;
-        i++;
+        ++i;
     }
     if ((i == nChangedCols.end()) || (*i != nValue))
         nChangedCols.insert(i, nValue);
