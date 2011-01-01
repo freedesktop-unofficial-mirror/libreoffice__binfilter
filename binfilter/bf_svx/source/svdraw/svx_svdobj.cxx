@@ -2597,7 +2597,7 @@ class ImpSkeleton;
 /*N*/       while( aIter != aEnd )
 /*N*/       {
 /*N*/           PostItemChange((*aIter));
-/*N*/           aIter++;
+/*N*/           ++aIter;
 /*N*/       }
 /*N*/
 /*N*/       ItemSetChanged( aSet );
