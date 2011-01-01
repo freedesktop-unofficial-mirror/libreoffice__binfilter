@@ -687,7 +687,6 @@ namespace binfilter {
 /*N*/   bool        bLoading = FALSE;
 /*N*/   OutputDevice*   pOutDev = rOut.GetOutDev();
 /*N*/   GDIMetaFile*    pRecMetaFile = pOutDev->GetConnectMetaFile();
-/*N*/   bool        bMtfRecording = ( pRecMetaFile && pRecMetaFile->IsRecord() && !pRecMetaFile->IsPause() );
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
