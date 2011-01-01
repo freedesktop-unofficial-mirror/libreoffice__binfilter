@@ -113,7 +113,7 @@ XMLRedlineExport::~XMLRedlineExport()
     // delete changes lists
     for( ChangesMapType::iterator aIter = aChangeMap.begin();
          aIter != aChangeMap.end();
-         aIter++ )
+         ++aIter )
     {
         delete aIter->second;
     }
@@ -183,7 +183,7 @@ void XMLRedlineExport::ExportChangesList(
             // iterate over changes list
             for( ChangesListType::iterator aIter = pChangesList->begin();
                  aIter != pChangesList->end();
-                 aIter++ )
+                 ++aIter )
             {
                 ExportChangedRegion( *aIter );
             }
