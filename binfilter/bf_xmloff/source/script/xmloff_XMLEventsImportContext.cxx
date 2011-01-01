@@ -165,7 +165,7 @@ void XMLEventsImportContext::SetEvents(
         EventsVector::iterator aEnd = aCollectEvents.end();
         for(EventsVector::iterator aIter = aCollectEvents.begin();
             aIter != aEnd;
-            aIter++)
+            ++aIter)
         {
             AddEventValues(aIter->first, aIter->second);
 //          EventNameValuesPair* pPair = &(*aIter);
@@ -187,7 +187,7 @@ sal_Bool XMLEventsImportContext::GetEventSequence(
     EventsVector::iterator aIter = aCollectEvents.begin();
     while( (aIter != aCollectEvents.end()) && (aIter->first != rName) )
     {
-        aIter++;
+        ++aIter;
     }
 
     // if we're not at the end, set the sequence
