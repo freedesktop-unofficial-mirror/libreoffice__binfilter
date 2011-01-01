@@ -1581,7 +1581,7 @@ sal_Bool ScXMLImport::GetValidation(const ::rtl::OUString& sName, ScMyImportVali
                 bFound = sal_True;
             }
             else
-                aItr++;
+                ++aItr;
         }
         if (bFound)
             aValidation = *aItr;
