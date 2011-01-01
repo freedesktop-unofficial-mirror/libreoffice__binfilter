@@ -74,7 +74,7 @@ SvXMLNamespaceMap::~SvXMLNamespaceMap()
     while ( aIter != aEnd )
     {
         const OUString *pString = (*aIter).first.second;
-        aIter++;
+        ++aIter;
         delete pString;
     }
 }
@@ -148,7 +148,7 @@ sal_uInt16 SvXMLNamespaceMap::GetKeyByName( const OUString& rName ) const
             nKey = (*aIter).second->nKey;
             break;
         }
-        aIter++;
+        ++aIter;
     }
     return nKey;
 }
