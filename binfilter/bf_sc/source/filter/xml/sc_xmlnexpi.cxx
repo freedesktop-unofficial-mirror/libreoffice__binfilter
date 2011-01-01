@@ -189,7 +189,7 @@ void ScXMLNamedExpressionsContext::EndElement()
                             }
                         }
                     }
-                    aItr++;
+                    ++aItr;
                 }
                 aItr = pNamedExpressions->begin();
                 while (aItr != aEndItr)
