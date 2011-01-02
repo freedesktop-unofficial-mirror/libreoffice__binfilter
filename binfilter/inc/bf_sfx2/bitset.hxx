@@ -117,7 +117,7 @@ inline BitSet BitSet::operator-( const BitSet& /*rSet*/ ) const
 // creates the asymetric difference with a single bit
 
 
-inline BitSet BitSet::operator-( USHORT nId ) const
+inline BitSet BitSet::operator-( USHORT /*nId*/ ) const
 {
     return BitSet();
 }
@@ -134,7 +134,7 @@ inline BitSet& BitSet::operator-=( const BitSet& /*rSet*/ )
 
 // creates the intersection with another bitset
 
-inline BitSet BitSet::operator&( const BitSet& rSet ) const
+inline BitSet BitSet::operator&( const BitSet& /*rSet*/ ) const
 {
     return BitSet();
 }
@@ -150,7 +150,7 @@ inline BitSet& BitSet::operator&=( const BitSet& /*rSet*/ )
 
 // creates the symetric difference with another bitset
 
-inline BitSet BitSet::operator^( const BitSet& rSet ) const
+inline BitSet BitSet::operator^( const BitSet& /*rSet*/ ) const
 {
     return BitSet();
 }
@@ -166,7 +166,7 @@ inline BitSet BitSet::operator^( USHORT /*nBit*/ ) const
 
 // builds the symetric difference with another bitset
 
-inline BitSet& BitSet::operator^=( const BitSet& rSet )
+inline BitSet& BitSet::operator^=( const BitSet& /*rSet*/ )
 {
     return *this;
 }
