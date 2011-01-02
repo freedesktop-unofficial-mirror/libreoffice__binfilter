@@ -3148,6 +3148,8 @@ class ImpSkeleton;
 /*N*/               case SDRUSERCALL_REMOVED:
 /*N*/                   eChildUserType = SDRUSERCALL_CHILD_REMOVED;
 /*N*/               break;
+/*N*/               default:
+/*N*/               break;
 /*N*/           }
 /*N*/
 /*N*/           pGroup->GetUserCall()->Changed( *this, eChildUserType, rBoundRect );
