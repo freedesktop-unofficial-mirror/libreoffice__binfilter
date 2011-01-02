@@ -150,16 +150,16 @@ public:
 /*N*/                                         long nAC, const ScAddInArgDesc* pAD,
 /*N*/                                         long nCP ) :
 /*N*/     aOriginalName( rNam ),
-/*N*/     aUpperName( rNam ),
 /*N*/     aLocalName( rLoc ),
+/*N*/     aUpperName( rNam ),
 /*N*/     aUpperLocal( rLoc ),
 /*N*/     aDescription( rDesc ),
-/*N*/     nCategory( nCat ),
-/*N*/     nHelpId( nHelp ),
 /*N*/     xFunction( rFunc ),
 /*N*/     aObject( rO ),
 /*N*/     nArgCount( nAC ),
 /*N*/     nCallerPos( nCP ),
+/*N*/     nCategory( nCat ),
+/*N*/     nHelpId( nHelp ),
 /*N*/     bCompInitialized( FALSE )
 /*N*/ {
 /*N*/     if ( nArgCount )
@@ -684,11 +684,11 @@ public:
 
 /*N*/ ScUnoAddInCall::ScUnoAddInCall( ScUnoAddInCollection& rColl, const String& rName,
 /*N*/                                 long nParamCount ) :
+/*N*/     bValidCount( FALSE ),
 /*N*/     nErrCode( errNoCode ),      // before function was called
 /*N*/     bHasString( TRUE ),
 /*N*/     fValue( 0.0 ),
-/*N*/     pMatrix( NULL ),
-/*N*/     bValidCount( FALSE )
+/*N*/     pMatrix( NULL )
 /*N*/ {
 /*N*/   pFuncData = rColl.GetFuncData( rName );
 /*N*/     DBG_ASSERT( pFuncData, "Function Data missing" );

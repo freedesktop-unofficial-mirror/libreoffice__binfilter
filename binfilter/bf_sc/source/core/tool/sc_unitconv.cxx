@@ -100,8 +100,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ #define CFGSTR_UNIT_TO        "ToUnit"
 /*N*/ #define CFGSTR_UNIT_FACTOR    "Factor"
 
-/*N*/ ScUnitConverter::ScUnitConverter( USHORT nInit, USHORT nDelta ) :
-/*N*/       StrCollection( nInit, nDelta, FALSE )
+/*N*/ ScUnitConverter::ScUnitConverter( USHORT nInit, USHORT nInDelta ) :
+/*N*/       StrCollection( nInit, nInDelta, FALSE )
 /*N*/ {
 /*N*/   //  read from configuration - "convert.ini" is no longer used
 /*N*/   //! config item as member to allow change of values
@@ -142,7 +142,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/           OUString sFromUnit;
 /*N*/           OUString sToUnit;
-/*N*/           double fFactor;
+/*N*/           double fFactor(0.0);
 /*N*/
 /*N*/           nIndex = 0;
 /*N*/           for (long i=0; i<nNodeCount; i++)

@@ -62,8 +62,8 @@ namespace binfilter {
 /*N*/   aTopic( rT ),
 /*N*/   aItem( rI ),
 /*N*/   nMode( nM ),
-/*N*/   pResult( NULL ),
-/*N*/   bNeedUpdate( FALSE )
+/*N*/   bNeedUpdate( FALSE ),
+/*N*/   pResult( NULL )
 /*N*/ {
 /*N*/ }
 
@@ -77,8 +77,8 @@ namespace binfilter {
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr ) :
 /*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
 /*N*/   pDoc( pD ),
-/*N*/   pResult( NULL ),
-/*N*/   bNeedUpdate( FALSE )
+/*N*/   bNeedUpdate( FALSE ),
+/*N*/   pResult( NULL )
 /*N*/ {
 /*N*/   rHdr.StartEntry();
 /*N*/

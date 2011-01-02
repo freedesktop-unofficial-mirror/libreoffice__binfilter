@@ -2570,13 +2570,13 @@ void ScInterpreter::ScTTT()
 
 /*N*/ ScInterpreter::ScInterpreter( ScFormulaCell* pCell, ScDocument* pDoc,
 /*N*/       const ScAddress& rPos, ScTokenArray& r ) :
-/*N*/   pMyFormulaCell( pCell ),
-/*N*/   pDok( pDoc ),
 /*N*/   aCode( r ),
 /*N*/   aPos( rPos ),
 /*N*/   rArr( r ),
-/*N*/   bCalcAsShown( pDoc->GetDocOptions().IsCalcAsShown() ),
-/*N*/   pFormatter( pDoc->GetFormatTable() )
+/*N*/   pDok( pDoc ),
+/*N*/   pMyFormulaCell( pCell ),
+/*N*/   pFormatter( pDoc->GetFormatTable() ),
+/*N*/   bCalcAsShown( pDoc->GetDocOptions().IsCalcAsShown() )
 /*N*/ {
 /*N*/ //    pStack = new ScToken*[ MAXSTACK ];
 /*N*/

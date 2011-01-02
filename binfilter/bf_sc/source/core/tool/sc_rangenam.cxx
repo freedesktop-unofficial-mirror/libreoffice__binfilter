@@ -51,7 +51,7 @@ namespace binfilter {
 // Interner ctor fuer das Suchen nach einem Index
 
 /*N*/ ScRangeData::ScRangeData( USHORT n )
-/*N*/          : nIndex( n ), pCode( NULL ), bModified( FALSE )
+/*N*/          : pCode( NULL ), nIndex( n ), bModified( FALSE )
 /*N*/ {}
 
 /*N*/ ScRangeData::ScRangeData( ScDocument* pDok,
@@ -61,12 +61,12 @@ namespace binfilter {
 /*N*/                         RangeType nType,
 /*N*/                         BOOL bEnglish ) :
 /*N*/               aName       ( rName ),
+/*N*/               pCode       ( NULL ),
 /*N*/               aPos        ( rAddress ),
 /*N*/               eType       ( nType ),
 /*N*/               pDoc        ( pDok ),
 /*N*/               nIndex      ( 0 ),
 /*N*/               nExportIndex( 0 ),
-/*N*/               pCode       ( NULL ),
 /*N*/               bModified   ( FALSE )
 /*N*/ {
 /*N*/   if (rSymbol.Len() > 0)
@@ -95,11 +95,11 @@ namespace binfilter {
 
 /*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) :
 /*N*/   aName   (rScRangeData.aName),
+/*N*/   pCode       (rScRangeData.pCode ? rScRangeData.pCode->Clone() : new ScTokenArray),      // echte Kopie erzeugen (nicht copy-ctor)
 /*N*/   aPos        (rScRangeData.aPos),
 /*N*/   eType       (rScRangeData.eType),
 /*N*/   pDoc        (rScRangeData.pDoc),
 /*N*/   nIndex      (rScRangeData.nIndex),
-/*N*/   pCode       (rScRangeData.pCode ? rScRangeData.pCode->Clone() : new ScTokenArray),      // echte Kopie erzeugen (nicht copy-ctor)
 /*N*/   bModified   (rScRangeData.bModified)
 /*N*/ {}
 
@@ -165,7 +165,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ScToken* t;
 /*N*/   pCode->Reset();
-/*N*/   while ( t = pCode->GetNextReference() )
+/*N*/   while (( t = pCode->GetNextReference() ))
 /*N*/       if ( t->GetSingleRef().nRow > nMaxRow ||
 /*N*/               (t->GetType() == svDoubleRef &&
 /*N*/               t->GetDoubleRef().Ref2.nRow > nMaxRow) )
@@ -356,7 +356,7 @@ namespace binfilter {
 /*N*/   USHORT nMaxTab = nMinTab;
 /*N*/   ScToken* t;
 /*N*/   pCode->Reset();
-/*N*/   while ( t = pCode->GetNextReference() )
+/*N*/   while (( t = pCode->GetNextReference() ))
 /*N*/   {
 /*N*/       SingleRefData& rRef1 = t->GetSingleRef();
 /*N*/       if ( rRef1.IsTabRel() && !rRef1.IsTabDeleted() )
@@ -389,7 +389,7 @@ namespace binfilter {
 /*?*/       aPos.SetTab( aPos.Tab() - nMove );
 /*?*/
 /*?*/       pCode->Reset();
-/*?*/       while ( t = pCode->GetNextReference() )
+/*?*/       while (( t = pCode->GetNextReference() ))
 /*?*/       {
 /*?*/           SingleRefData& rRef1 = t->GetSingleRef();
 /*?*/           if ( rRef1.IsTabRel() && !rRef1.IsTabDeleted() )

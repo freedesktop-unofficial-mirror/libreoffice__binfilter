@@ -139,8 +139,8 @@ namespace binfilter {
 /*N*/         {
 /*N*/             String sDayShort, sDayLong;
 /*N*/             sal_Int32 i;
-/*N*/             sal_Int32 nCount = xCal.getLength() - 1;
-/*N*/             for (i = 0; i < nCount; i++)
+/*N*/             sal_Int32 nLclCount = xCal.getLength() - 1;
+/*N*/             for (i = 0; i < nLclCount; i++)
 /*N*/             {
 /*N*/                 sDayShort += String( xCal[i].AbbrevName );
 /*N*/                 sDayShort += cDelimiter;
@@ -161,8 +161,8 @@ namespace binfilter {
 /*N*/         {
 /*N*/             String sMonthShort, sMonthLong;
 /*N*/             sal_Int32 i;
-/*N*/             sal_Int32 nCount = xCal.getLength() - 1;
-/*N*/             for (i = 0; i < nCount; i++)
+/*N*/             sal_Int32 nLclCount = xCal.getLength() - 1;
+/*N*/             for (i = 0; i < nLclCount; i++)
 /*N*/             {
 /*N*/                 sMonthShort += String( xCal[i].AbbrevName );
 /*N*/                 sMonthShort += cDelimiter;

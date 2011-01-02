@@ -163,8 +163,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/               BOOL bDeleteEnginePoolP )
 /*N*/           :
 /*N*/           pEnginePool( pEnginePoolP ),
-/*N*/           bDeleteEnginePool( bDeleteEnginePoolP ),
 /*N*/           pDefaults( NULL ),
+/*N*/           bDeleteEnginePool( bDeleteEnginePoolP ),
 /*N*/           bDeleteDefaults( FALSE )
 /*N*/ {
 /*N*/ }
@@ -173,8 +173,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ ScEnginePoolHelper::ScEnginePoolHelper( const ScEnginePoolHelper& rOrg )
 /*N*/           :
 /*N*/           pEnginePool( rOrg.bDeleteEnginePool ? rOrg.pEnginePool->Clone() : rOrg.pEnginePool ),
-/*N*/           bDeleteEnginePool( rOrg.bDeleteEnginePool ),
 /*N*/           pDefaults( NULL ),
+/*N*/           bDeleteEnginePool( rOrg.bDeleteEnginePool ),
 /*N*/           bDeleteDefaults( FALSE )
 /*N*/ {
 /*N*/ }
@@ -390,8 +390,8 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   eNumType = SVX_ARABIC;
 /*N*/ }
 
-/*N*/ ScHeaderEditEngine::ScHeaderEditEngine( SfxItemPool* pEnginePool, BOOL bDeleteEnginePool )
-/*N*/       : ScEditEngineDefaulter( pEnginePool, bDeleteEnginePool )
+/*N*/ ScHeaderEditEngine::ScHeaderEditEngine( SfxItemPool* pInEnginePool, BOOL bInDeleteEnginePool )
+/*N*/       : ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool )
 /*N*/ {
 /*N*/ }
 
@@ -449,10 +449,10 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 //
 //------------------------------------------------------------------------
 
-/*N*/ ScFieldEditEngine::ScFieldEditEngine( SfxItemPool* pEnginePool,
-/*N*/           SfxItemPool* pTextObjectPool, BOOL bDeleteEnginePool )
+/*N*/ ScFieldEditEngine::ScFieldEditEngine( SfxItemPool* pInEnginePool,
+/*N*/           SfxItemPool* pTextObjectPool, BOOL bInDeleteEnginePool )
 /*N*/       :
-/*N*/       ScEditEngineDefaulter( pEnginePool, bDeleteEnginePool ),
+/*N*/       ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool ),
 /*N*/       bExecuteURL( TRUE )
 /*N*/ {
 /*N*/   if ( pTextObjectPool )

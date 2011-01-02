@@ -1161,6 +1161,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScDetectiveData aData( pModel );
 /*N*/
@@ -1184,6 +1185,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScDetectiveData aData( pModel );
 /*N*/
@@ -1207,6 +1209,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScTripel aPos( nCol, nRow, nTab );
 /*N*/   ScTripel aErrPos;
@@ -1229,6 +1232,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   USHORT nLevelCount = FindSuccLevel( nCol, nRow, nCol, nRow, 0, 0 );
 /*N*/   if ( nLevelCount )
@@ -1245,6 +1249,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   USHORT nLevelCount = FindPredLevel( nCol, nRow, 0, 0 );
 /*N*/   if ( nLevelCount )

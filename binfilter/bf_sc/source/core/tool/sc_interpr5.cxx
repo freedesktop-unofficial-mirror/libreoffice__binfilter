@@ -2882,14 +2882,13 @@ void ScInterpreter::ScRKP()
     USHORT nCX, nRX, nCY, nRY, M, N;
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
             return;
         }
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
     {
         if (pMatY->GetDouble(i) <= 0.0)
         {
@@ -2903,7 +2902,7 @@ void ScInterpreter::ScRKP()
     {
         pMatX->GetDimensions(nCX, nRX);
         ULONG nCountX = (ULONG) nCX * nRX;
-        for (i = 0; i < nCountX; i++)
+        for (ULONG i = 0; i < nCountX; i++)
             if (!pMatX->IsValue(i))
             {
                 SetIllegalArgument();
@@ -3313,11 +3312,10 @@ void ScInterpreter::ScTrend()
         return;
     }
     BYTE nCase;                         // 1 = normal, 2,3 = mehrfach
-    USHORT nCX, nRX, nCY, nRY, M, N;
+    USHORT nCX, nRX, nCY, nRY, M(0), N(0);
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
@@ -3327,7 +3325,7 @@ void ScInterpreter::ScTrend()
     {
         pMatX->GetDimensions(nCX, nRX);
         ULONG nCountX = (ULONG) nCX * nRX;
-        for (i = 0; i < nCountX; i++)
+        for (ULONG i = 0; i < nCountX; i++)
             if (!pMatX->IsValue(i))
             {
                 SetIllegalArgument();
@@ -3376,7 +3374,7 @@ void ScInterpreter::ScTrend()
             SetIllegalParameter();
             return;
         }
-        for (i = 1; i <= nCountY; i++)
+        for (ULONG i = 1; i <= nCountY; i++)
             pMatX->PutDouble((double)i, i-1);
         nCase = 1;
     }
@@ -3454,7 +3452,7 @@ void ScInterpreter::ScTrend()
                 SetIllegalParameter();
                 return;
             }
-            for (i = 0; i < nCountXN; i++)
+            for (ULONG i = 0; i < nCountXN; i++)
                 pResMat->PutDouble(pMatNewX->GetDouble(i)*m+b, i);
         }
     }
@@ -3665,17 +3663,16 @@ void ScInterpreter::ScGrowth()
         return;
     }
     BYTE nCase;                         // 1 = normal, 2,3 = mehrfach
-    USHORT nCX, nRX, nCY, nRY, M, N;
+    USHORT nCX, nRX, nCY, nRY, M(0), N(0);
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
             return;
         }
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
     {
         if (pMatY->GetDouble(i) <= 0.0)
         {
@@ -3738,7 +3735,7 @@ void ScInterpreter::ScGrowth()
             SetIllegalParameter();
             return;
         }
-        for (i = 1; i <= nCountY; i++)
+        for (ULONG i = 1; i <= nCountY; i++)
             pMatX->PutDouble((double)i, i-1);
         nCase = 1;
     }
@@ -3816,7 +3813,7 @@ void ScInterpreter::ScGrowth()
                 SetIllegalParameter();
                 return;
             }
-            for (i = 0; i < nCountXN; i++)
+            for (ULONG i = 0; i < nCountXN; i++)
                 pResMat->PutDouble(exp(pMatNewX->GetDouble(i)*m+b), i);
         }
     }

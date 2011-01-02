@@ -191,6 +191,15 @@ namespace binfilter {
 /*N*/   nRefCnt = 0;
 /*N*/ }
 
+USHORT lcl_ScRawTokenOffset()
+{
+    // offset of cByte in ScRawToken
+    // offsetof(ScRawToken, cByte) gives a warning with gcc, because ScRawToken is no POD
+
+    ScRawToken aToken;
+    return static_cast<USHORT>( reinterpret_cast<char*>(&aToken.cByte) - reinterpret_cast<char*>(&aToken) );
+}
+
 /*N*/ ScRawToken* ScRawToken::Clone() const
 /*N*/ {
 /*N*/   ScRawToken* p;
@@ -203,7 +212,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       USHORT n = offsetof( ScRawToken, cByte );
+/*N*/       static USHORT n = lcl_ScRawTokenOffset();
 /*N*/       switch( eType )
 /*N*/       {
 /*N*/           case svByte:        n++; break;

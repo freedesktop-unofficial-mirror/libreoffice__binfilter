@@ -152,6 +152,7 @@ struct ScRawToken
     // den private dtor brauchen) und wissen, was sie tun..
     friend class ScTokenArray;
     friend class ScInterpreter;
+    friend USHORT lcl_ScRawTokenOffset();
 private:
     SC_TOKEN_FIX_MEMBERS
 public:

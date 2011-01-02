@@ -44,39 +44,6 @@ namespace binfilter {
 
 #define SC_CONS_NOTFOUND    0xFFFF
 
-// STATIC DATA -----------------------------------------------------------
-
-/*  Strings bei Gelegenheit ganz raus...
-static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTotalFunc
-        0,                                  //  none
-        STR_PIVOTFUNC_AVG,
-        STR_PIVOTFUNC_COUNT,
-        STR_PIVOTFUNC_COUNT2,
-        STR_PIVOTFUNC_MAX,
-        STR_PIVOTFUNC_MIN,
-        STR_PIVOTFUNC_PROD,
-        STR_PIVOTFUNC_STDDEV,
-        STR_PIVOTFUNC_STDDEV2,
-        STR_PIVOTFUNC_SUM,
-        STR_PIVOTFUNC_VAR,
-        STR_PIVOTFUNC_VAR2 };
-*/
-
-/*N*/ static OpCode eOpCodeTable[] = {          //  Reihenfolge wie bei enum ScSubTotalFunc
-/*N*/       ocBad,                              //  none
-/*N*/       ocAverage,
-/*N*/       ocCount,
-/*N*/       ocCount2,
-/*N*/       ocMax,
-/*N*/       ocMin,
-/*N*/       ocProduct,
-/*N*/       ocStDev,
-/*N*/       ocStDevP,
-/*N*/       ocSum,
-/*N*/       ocVar,
-/*N*/       ocVarP };
-
-// -----------------------------------------------------------------------
 
 /*N*/ void lcl_AddString( String**& pData, USHORT& nCount, const String& rInsert )
 /*N*/ {
@@ -100,14 +67,14 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/   bRowByName(FALSE),
 /*N*/   bSubTitles(FALSE),
 /*N*/   nColCount(0),
-/*N*/   ppColHeaders(NULL),
 /*N*/   nRowCount(0),
-/*N*/   ppRowHeaders(NULL),
-/*N*/   ppCount(NULL),
+/*N*/   ppUsed(NULL),
 /*N*/   ppSum(NULL),
+/*N*/   ppCount(NULL),
 /*N*/   ppSumSqr(NULL),
 /*N*/   ppRefs(NULL),
-/*N*/   ppUsed(NULL),
+/*N*/   ppColHeaders(NULL),
+/*N*/   ppRowHeaders(NULL),
 /*N*/   nDataCount(0),
 /*N*/   nTitleCount(0),
 /*N*/   ppTitles(NULL),
@@ -124,9 +91,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ #define DELETEARR(ppArray,nCount) \
 /*N*/ {                                 \
-/*N*/   USHORT i;                       \
 /*N*/   if (ppArray)                    \
-/*N*/       for(i=0; i<nCount; i++)     \
+/*N*/       for(USHORT i=0; i<nCount; i++)      \
 /*N*/           delete[] ppArray[i];    \
 /*N*/   delete[] ppArray;               \
 /*N*/   ppArray = NULL;                 \
@@ -134,9 +100,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/ #define DELETESTR(ppArray,nCount) \
 /*N*/ {                                 \
-/*N*/   USHORT i;                       \
 /*N*/   if (ppArray)                    \
-/*N*/       for(i=0; i<nCount; i++)     \
+/*N*/       for(USHORT i=0; i<nCount; i++)      \
 /*N*/           delete ppArray[i];      \
 /*N*/   delete[] ppArray;               \
 /*N*/   ppArray = NULL;                 \
@@ -144,10 +109,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ void ScConsData::DeleteData()
 /*N*/ {
-/*N*/   USHORT i;
-/*N*/
 /*N*/   if (ppRefs)
-/*N*/       for (i=0; i<nColCount; i++)
+/*N*/       for (USHORT i=0; i<nColCount; i++)
 /*N*/       {
 /*N*/           for (USHORT j=0; j<nRowCount; j++)
 /*N*/               if (ppUsed[i][j])
@@ -520,8 +483,6 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ void ScConsData::OutputToDocument( ScDocument* pDestDoc, USHORT nCol, USHORT nRow, USHORT nTab )
 /*N*/ {
-/*N*/   eOpCodeTable[eFunction];
-/*N*/
 /*N*/   USHORT nArrX;
 /*N*/   USHORT nArrY;
 /*N*/   USHORT i;

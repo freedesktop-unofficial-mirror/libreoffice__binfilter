@@ -93,6 +93,9 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/                       const String& aTempUser,  const String& aTempComment)
 /*N*/       :
 /*N*/       aBigRange( rRange ),
+/*N*/       aDateTime( aTempDateTime ),
+/*N*/       aUser( aTempUser ),
+/*N*/       aComment( aTempComment ),
 /*N*/       pNext( NULL ),
 /*N*/       pPrev( NULL ),
 /*N*/       pLinkAny( NULL ),
@@ -102,10 +105,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       nAction( nTempAction ),
 /*N*/       nRejectAction( nTempRejectAction ),
 /*N*/       eType( eTypeP ),
-/*N*/       eState( eTempState ),
-/*N*/       aDateTime( aTempDateTime ),
-/*N*/       aUser( aTempUser ),
-/*N*/       aComment( aTempComment )
+/*N*/       eState( eTempState )
 /*N*/  {
 /*N*/  }
 
@@ -449,10 +449,10 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       if ( !pE->pContent->IsDeletedIn() &&
 /*N*/               pE->pContent->GetBigRange().aStart.IsValid( pDoc ) )
 /*N*/           pE->pContent->PutNewValueToDoc( pDoc, nDx, nDy );
-/*N*/       ScChangeActionCellListEntry* pNext;
-/*N*/       pNext = pE->pNext;
+/*N*/       ScChangeActionCellListEntry* pLclNext;
+/*N*/       pLclNext = pE->pNext;
 /*N*/       delete pE;
-/*N*/       pE = pNext;
+/*N*/       pE = pLclNext;
 /*N*/   }
 /*N*/   DeleteCellEntries();        // weg mit den generierten
 /*N*/ }
@@ -555,7 +555,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       }
 /*N*/       rStrm << nCount;
 /*N*/       ScChangeActionLinkEntry* pHere;
-/*N*/       while ( pHere = (ScChangeActionLinkEntry*) pStack->Pop() )
+/*N*/       while (( pHere = (ScChangeActionLinkEntry*) pStack->Pop() ))
 /*N*/       {
 /*N*/           ScChangeAction* p = pHere->GetAction();
 /*N*/           rStrm << (UINT32) ( p ? p->GetActionNumber() : 0 );
@@ -713,11 +713,11 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScChangeActionIns::ScChangeActionIns(const ULONG nActionNumber, const ScChangeActionState eState, const ULONG nRejectingNumber,
-/*N*/                                               const ScBigRange& aBigRange, const String& aUser, const DateTime& aDateTime, const String& sComment,
-/*N*/                                               const ScChangeActionType eType)
+/*N*/ ScChangeActionIns::ScChangeActionIns(const ULONG nActionNumber, const ScChangeActionState eInState, const ULONG nRejectingNumber,
+/*N*/                                               const ScBigRange& rBigRange, const String& rUser, const DateTime& rDateTime, const String& sComment,
+/*N*/                                               const ScChangeActionType eInType)
 /*N*/       :
-/*N*/       ScChangeAction(eType, aBigRange, nActionNumber, nRejectingNumber, eState, aDateTime, aUser, sComment)
+/*N*/       ScChangeAction(eInType, rBigRange, nActionNumber, nRejectingNumber, eInState, rDateTime, rUser, sComment)
 /*N*/ {
 /*N*/ }
 
@@ -780,6 +780,8 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       case SC_CAT_INSERT_TABS :
 /*N*/           pDoc->DeleteTab( aRange.aStart.Tab() );
 /*N*/       break;
+/*N*/       default :
+/*N*/       break;
 /*N*/   }
 /*N*/   SetState( SC_CAS_REJECTED );
 /*N*/   RemoveAllLinks();
@@ -795,9 +797,9 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       ScChangeAction( SC_CAT_NONE, rRange ),
 /*N*/       pTrack( pTrackP ),
 /*N*/       pFirstCell( NULL ),
-/*N*/       pLinkMove( NULL ),
 /*N*/       pCutOff( NULL ),
 /*N*/       nCutOff( 0 ),
+/*N*/       pLinkMove( NULL ),
 /*N*/       nDx( nDxP ),
 /*N*/       nDy( nDyP )
 /*N*/ {
@@ -842,23 +844,23 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   rStrm >> n16s; nDy = n16s;
 /*N*/ }
 
-/*N*/ ScChangeActionDel::ScChangeActionDel(const ULONG nActionNumber, const ScChangeActionState eState, const ULONG nRejectingNumber,
-/*N*/                                   const ScBigRange& aBigRange, const String& aUser, const DateTime& aDateTime, const String &sComment,
-/*N*/                                   const ScChangeActionType eType, const short nD, ScChangeTrack* pTrackP) // wich of nDx and nDy is set is depend on the type
+/*N*/ ScChangeActionDel::ScChangeActionDel(const ULONG nActionNumber, const ScChangeActionState eInState, const ULONG nRejectingNumber,
+/*N*/                                   const ScBigRange& rBigRange, const String& rUser, const DateTime& rDateTime, const String &sComment,
+/*N*/                                   const ScChangeActionType eInType, const short nD, ScChangeTrack* pTrackP) // wich of nDx and nDy is set is depend on the type
 /*N*/       :
-/*N*/       ScChangeAction(eType, aBigRange, nActionNumber, nRejectingNumber, eState, aDateTime, aUser, sComment),
+/*N*/       ScChangeAction(eInType, rBigRange, nActionNumber, nRejectingNumber, eInState, rDateTime, rUser, sComment),
 /*N*/       pTrack( pTrackP ),
 /*N*/       pFirstCell( NULL ),
-/*N*/       pLinkMove( NULL ),
 /*N*/       pCutOff( NULL ),
 /*N*/       nCutOff( 0 ),
+/*N*/       pLinkMove( NULL ),
 /*N*/       nDx( 0 ),
 /*N*/       nDy( 0 )
 /*N*/ {
-/*N*/ if (eType == SC_CAT_DELETE_COLS)
-/*N*/       nDx = nD;
-/*N*/   else if (eType == SC_CAT_DELETE_ROWS)
-/*N*/       nDy = nD;
+/*N*/     if (eInType == SC_CAT_DELETE_COLS)
+/*N*/         nDx = nD;
+/*N*/     else if (eInType == SC_CAT_DELETE_ROWS)
+/*N*/         nDy = nD;
 /*N*/ }
 
 /*N*/ ScChangeActionDel::~ScChangeActionDel()
@@ -895,7 +897,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       }
 /*N*/       rStrm << nCount;
 /*N*/       ScChangeActionDelMoveEntry* pHere;
-/*N*/       while ( pHere = (ScChangeActionDelMoveEntry*) pStack->Pop() )
+/*N*/       while (( pHere = (ScChangeActionDelMoveEntry*) pStack->Pop() ))
 /*N*/       {
 /*N*/           ScChangeAction* p = pHere->GetAction();
 /*N*/           rStrm << (UINT32) ( p ? p->GetActionNumber() : 0 );
@@ -913,9 +915,9 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ BOOL ScChangeActionDel::LoadLinks( SvStream& rStrm, ScChangeTrack* pTrack )
+/*N*/ BOOL ScChangeActionDel::LoadLinks( SvStream& rStrm, ScChangeTrack* pInTrack )
 /*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::LoadLinks( rStrm, pTrack );
+/*N*/   BOOL bOk = ScChangeAction::LoadLinks( rStrm, pInTrack );
 /*N*/   UINT32 nCount;
 /*N*/   rStrm >> nCount;
 /*N*/   for ( UINT32 j = 0; j < nCount; j++ )
@@ -925,7 +927,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       rStrm >> nAct;
 /*N*/       if ( nAct )
 /*N*/       {
-/*N*/           pAct = (ScChangeActionMove*) pTrack->GetAction( nAct );
+/*N*/           pAct = (ScChangeActionMove*) pInTrack->GetAction( nAct );
 /*N*/           DBG_ASSERT( pAct, "ScChangeActionDel::LoadLinks: missing Move" );
 /*N*/       }
 /*N*/       INT16 nFrom, nTo;
@@ -937,11 +939,11 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   }
 /*N*/   if ( pCutOff )
 /*N*/   {
-/*N*/       pCutOff = (ScChangeActionIns*) pTrack->GetAction( (ULONG) pCutOff );
+/*N*/       pCutOff = (ScChangeActionIns*) pInTrack->GetAction( (ULONG) pCutOff );
 /*N*/       DBG_ASSERT( pCutOff, "ScChangeActionDel::LoadLinks: missing Insert" );
 /*N*/   }
 /*N*/
-/*N*/   bOk &= ScChangeAction::LoadCellList( this, pFirstCell, rStrm, pTrack );
+/*N*/   bOk &= ScChangeAction::LoadCellList( this, pFirstCell, rStrm, pInTrack );
 /*N*/
 /*N*/   return bOk;
 /*N*/ }
@@ -992,9 +994,9 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 
 /*N*/ void ScChangeActionDel::UpdateReference( const ScChangeTrack* /*pTrack*/,
 /*N*/       UpdateRefMode eMode, const ScBigRange& rRange,
-/*N*/       INT32 nDx, INT32 nDy, INT32 nDz )
+/*N*/       INT32 nInDx, INT32 nInDy, INT32 nInDz )
 /*N*/ {
-/*N*/   ScRefUpdate::Update( eMode, rRange, nDx, nDy, nDz, GetBigRange() );
+/*N*/   ScRefUpdate::Update( eMode, rRange, nInDx, nInDy, nInDz, GetBigRange() );
 /*N*/   if ( !IsDeletedIn() )
 /*N*/       return ;
 /*N*/   // evtl. in "druntergerutschten" anpassen
@@ -1017,6 +1019,8 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/               case SC_CAT_DELETE_TABS :
 /*N*/                   p->GetBigRange().aStart.SetTab( GetBigRange().aStart.Tab() );
 /*N*/                   p->GetBigRange().aEnd.SetTab( GetBigRange().aStart.Tab() );
+/*N*/               break;
+/*N*/               default :
 /*N*/               break;
 /*N*/           }
 /*N*/       }
@@ -1104,12 +1108,12 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/               case SC_CAT_DELETE_COLS :
 /*N*/                   if ( !(aRange.aStart.Col() == 0 && aRange.aEnd.Col() == MAXCOL) )
 /*N*/                   {   // nur wenn nicht TabDelete
-/*N*/                       if ( bOk = pDoc->CanInsertCol( aRange ) )
+/*N*/                       if (( bOk = pDoc->CanInsertCol( aRange ) ))
 /*N*/                           bOk = pDoc->InsertCol( aRange );
 /*N*/                   }
 /*N*/               break;
 /*N*/               case SC_CAT_DELETE_ROWS :
-/*N*/                   if ( bOk = pDoc->CanInsertRow( aRange ) )
+/*N*/                   if (( bOk = pDoc->CanInsertRow( aRange ) ))
 /*N*/                       bOk = pDoc->InsertRow( aRange );
 /*N*/               break;
 /*N*/               case SC_CAT_DELETE_TABS :
@@ -1117,9 +1121,11 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ //2do: Tabellennamen merken?
 /*N*/                   String aName;
 /*N*/                   pDoc->CreateValidTabName( aName );
-/*N*/                   if ( bOk = pDoc->ValidNewTabName( aName ) )
+/*N*/                   if (( bOk = pDoc->ValidNewTabName( aName ) ))
 /*N*/                       bOk = pDoc->InsertTab( aRange.aStart.Tab(), aName );
 /*N*/               }
+/*N*/               break;
+/*N*/               default :
 /*N*/               break;
 /*N*/           }
 /*N*/           pTrack->SetInDelete( FALSE );
@@ -1181,6 +1187,8 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/               else if ( nTo < 0 )
 /*N*/                   pMove->GetBigRange().aEnd.IncTab( -nTo );
 /*N*/           break;
+/*N*/           default :
+/*N*/           break;
 /*N*/       }
 /*N*/       delete pLinkMove;       // rueckt sich selbst hoch
 /*N*/   }
@@ -1210,6 +1218,8 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/               else
 /*N*/                   pCutOff->GetBigRange().aStart.IncTab( -nCutOff );
 /*N*/           break;
+/*N*/           default :
+/*N*/           break;
 /*N*/       }
 /*N*/       SetCutOffInsert( NULL, 0 );
 /*N*/   }
@@ -1230,11 +1240,11 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ rStrm >> aFromRange;
 /*N*/ }
 
-/*N*/ ScChangeActionMove::ScChangeActionMove(const ULONG nActionNumber, const ScChangeActionState eState, const ULONG nRejectingNumber,
-/*N*/                                   const ScBigRange& aToBigRange, const String& aUser, const DateTime& aDateTime, const String &sComment,
+/*N*/ ScChangeActionMove::ScChangeActionMove(const ULONG nActionNumber, const ScChangeActionState eInState, const ULONG nRejectingNumber,
+/*N*/                                   const ScBigRange& aToBigRange, const String& rUser, const DateTime& rDateTime, const String &sComment,
 /*N*/                                   const ScBigRange& aFromBigRange, ScChangeTrack* pTrackP) // wich of nDx and nDy is set is depend on the type
 /*N*/       :
-/*N*/       ScChangeAction(SC_CAT_MOVE, aToBigRange, nActionNumber, nRejectingNumber, eState, aDateTime, aUser, sComment),
+/*N*/       ScChangeAction(SC_CAT_MOVE, aToBigRange, nActionNumber, nRejectingNumber, eInState, rDateTime, rUser, sComment),
 /*N*/       aFromRange(aFromBigRange),
 /*N*/       pTrack( pTrackP ),
 /*N*/       pFirstCell( NULL ),
@@ -1265,10 +1275,10 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ BOOL ScChangeActionMove::LoadLinks( SvStream& rStrm, ScChangeTrack* pTrack )
+/*N*/ BOOL ScChangeActionMove::LoadLinks( SvStream& rStrm, ScChangeTrack* pInTrack )
 /*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::LoadLinks( rStrm, pTrack );
-/*N*/   bOk &= ScChangeAction::LoadCellList( this, pFirstCell, rStrm, pTrack );
+/*N*/   BOOL bOk = ScChangeAction::LoadLinks( rStrm, pInTrack );
+/*N*/   bOk &= ScChangeAction::LoadCellList( this, pFirstCell, rStrm, pInTrack );
 /*N*/   return bOk;
 /*N*/ }
 
@@ -1432,19 +1442,19 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/ }
 
 /*N*/ ScChangeActionContent::ScChangeActionContent( const ULONG nActionNumber,
-/*N*/           const ScChangeActionState eState, const ULONG nRejectingNumber,
-/*N*/           const ScBigRange& aBigRange, const String& aUser,
-/*N*/           const DateTime& aDateTime, const String& sComment,
+/*N*/           const ScChangeActionState eInState, const ULONG nRejectingNumber,
+/*N*/           const ScBigRange& rBigRange, const String& rUser,
+/*N*/           const DateTime& rDateTime, const String& sComment,
 /*N*/           ScBaseCell* pTempOldCell, ScDocument* pDoc, const String& sResult )
 /*N*/       :
-/*N*/       ScChangeAction(SC_CAT_CONTENT, aBigRange, nActionNumber, nRejectingNumber, eState, aDateTime, aUser, sComment),
+/*N*/       ScChangeAction(SC_CAT_CONTENT, rBigRange, nActionNumber, nRejectingNumber, eInState, rDateTime, rUser, sComment),
+/*N*/       aOldValue(sResult),
 /*N*/       pOldCell(pTempOldCell),
 /*N*/       pNewCell(NULL),
 /*N*/       pNextContent(NULL),
 /*N*/       pPrevContent(NULL),
 /*N*/       pNextInSlot(NULL),
-/*N*/       ppPrevInSlot(NULL),
-/*N*/       aOldValue(sResult)
+/*N*/       ppPrevInSlot(NULL)
 /*N*/
 /*N*/ {
 /*N*/ if (pOldCell)
@@ -1452,12 +1462,12 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/ }
 
 /*N*/ ScChangeActionContent::ScChangeActionContent( const ULONG nActionNumber,
-/*N*/           ScBaseCell* pTempNewCell, const ScBigRange& aBigRange,
+/*N*/           ScBaseCell* pTempNewCell, const ScBigRange& rBigRange,
 /*N*/           ScDocument* pDoc )
 /*N*/       :
-/*N*/       ScChangeAction(SC_CAT_CONTENT, aBigRange, nActionNumber),
-/*N*/       pNewCell(pTempNewCell),
+/*N*/       ScChangeAction(SC_CAT_CONTENT, rBigRange, nActionNumber),
 /*N*/       pOldCell(NULL),
+/*N*/       pNewCell(pTempNewCell),
 /*N*/       pNextContent(NULL),
 /*N*/       pPrevContent(NULL),
 /*N*/       pNextInSlot(NULL),
@@ -1636,12 +1646,12 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/       const ScBaseCell* pCell = GetNewCell();
 /*N*/       if ( ScChangeActionContent::GetContentCellType( pCell ) == SC_CACCT_MATORG )
 /*N*/       {
-/*N*/           ScBigRange aBigRange( GetBigRange() );
+/*N*/           ScBigRange aLclBigRange( GetBigRange() );
 /*N*/           USHORT nC, nR;
 /*N*/           ((const ScFormulaCell*)pCell)->GetMatColsRows( nC, nR );
-/*N*/           aBigRange.aEnd.IncCol( nC-1 );
-/*N*/           aBigRange.aEnd.IncRow( nR-1 );
-/*N*/           rStr = ScChangeAction::GetRefString( aBigRange, pDoc, bFlag3D );
+/*N*/           aLclBigRange.aEnd.IncCol( nC-1 );
+/*N*/           aLclBigRange.aEnd.IncRow( nR-1 );
+/*N*/           rStr = ScChangeAction::GetRefString( aLclBigRange, pDoc, bFlag3D );
 /*N*/
 /*N*/           return ;
 /*N*/       }
@@ -1754,6 +1764,8 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/           case CELLTYPE_FORMULA :
 /*N*/               ((ScFormulaCell*)pCell)->SetInChangeTrack( TRUE );
 /*N*/           break;
+/*N*/           default :
+/*N*/           break;
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -1780,6 +1792,8 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/           case CELLTYPE_FORMULA :
 /*N*/               ((ScFormulaCell*)pCell)->SetInChangeTrack( TRUE );
 /*N*/           break;
+/*N*/           default :
+/*N*/           break;
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1805,6 +1819,8 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/               break;
 /*N*/               case CELLTYPE_FORMULA :
 /*N*/                   GetFormulaString( rStr, (ScFormulaCell*) pCell );
+/*N*/               break;
+/*N*/               default :
 /*N*/               break;
 /*N*/           }
 /*N*/       }
@@ -2022,6 +2038,8 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/                   aTmpRange.aEnd.IncTab( nDz );
 /*N*/               }
 /*N*/           break;
+/*N*/           default :
+/*N*/           break;
 /*N*/       }
 /*N*/       ScRange aRange( aTmpRange.MakeRange() );
 /*N*/       if ( bOldFormula )
@@ -2041,10 +2059,10 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/               ScToken* t;
 /*N*/               ScTokenArray* pArr = ((ScFormulaCell*)pOldCell)->GetCode();
 /*N*/               pArr->Reset();
-/*N*/               while ( t = pArr->GetNextReference() )
+/*N*/               while (( t = pArr->GetNextReference() ))
 /*N*/                   lcl_InvalidateReference( *t, rPos );
 /*N*/               pArr->Reset();
-/*N*/               while ( t = pArr->GetNextReferenceRPN() )
+/*N*/               while (( t = pArr->GetNextReferenceRPN() ))
 /*N*/                   lcl_InvalidateReference( *t, rPos );
 /*N*/           }
 /*N*/           if ( bNewFormula )
@@ -2052,10 +2070,10 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/               ScToken* t;
 /*N*/               ScTokenArray* pArr = ((ScFormulaCell*)pNewCell)->GetCode();
 /*N*/               pArr->Reset();
-/*N*/               while ( t = pArr->GetNextReference() )
+/*N*/               while (( t = pArr->GetNextReference() ))
 /*N*/                   lcl_InvalidateReference( *t, rPos );
 /*N*/               pArr->Reset();
-/*N*/               while ( t = pArr->GetNextReferenceRPN() )
+/*N*/               while (( t = pArr->GetNextReferenceRPN() ))
 /*N*/                   lcl_InvalidateReference( *t, rPos );
 /*N*/           }
 /*N*/       }
@@ -2072,10 +2090,10 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScChangeActionReject::ScChangeActionReject(const ULONG nActionNumber, const ScChangeActionState eState, const ULONG nRejectingNumber,
-/*N*/                                               const ScBigRange& aBigRange, const String& aUser, const DateTime& aDateTime, const String& sComment)
+/*N*/ ScChangeActionReject::ScChangeActionReject(const ULONG nActionNumber, const ScChangeActionState eInState, const ULONG nRejectingNumber,
+/*N*/                                               const ScBigRange& aInBigRange, const String& aInUser, const DateTime& aInDateTime, const String& sComment)
 /*N*/       :
-/*N*/       ScChangeAction(SC_CAT_CONTENT, aBigRange, nActionNumber, nRejectingNumber, eState, aDateTime, aUser, sComment)
+/*N*/       ScChangeAction(SC_CAT_CONTENT, aInBigRange, nActionNumber, nRejectingNumber, eInState, aInDateTime, aInUser, sComment)
 /*N*/ {
 /*N*/ }
 
@@ -2115,8 +2133,8 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/ }
 
 /*N*/ ScChangeTrack::ScChangeTrack( ScDocument* pDocP, const StrCollection& aTempUserCollection) :
-/*N*/       pDoc( pDocP ),
-/*N*/       aUserCollection(aTempUserCollection)
+/*N*/       aUserCollection(aTempUserCollection),
+/*N*/       pDoc( pDocP )
 /*N*/ {
 /*N*/ Init();
 /*N*/   StartListening( *SfxGetpApp() );
@@ -2197,11 +2215,11 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       pBlockModifyMsg = NULL;
 /*N*/   }
 /*N*/   ScChangeTrackMsgInfo* pMsgInfo;
-/*N*/   while ( pMsgInfo = aMsgStackTmp.Pop() )
+/*N*/   while (( pMsgInfo = aMsgStackTmp.Pop() ))
 /*N*/       delete pMsgInfo;
-/*N*/   while ( pMsgInfo = aMsgStackFinal.Pop() )
+/*N*/   while (( pMsgInfo = aMsgStackFinal.Pop() ))
 /*N*/       delete pMsgInfo;
-/*N*/   while ( pMsgInfo = aMsgQueue.Get() )
+/*N*/   while (( pMsgInfo = aMsgQueue.Get() ))
 /*N*/       delete pMsgInfo;
 /*N*/ }
 
@@ -2301,7 +2319,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       {
 /*N*/           BOOL bNew = FALSE;
 /*N*/           ScChangeTrackMsgInfo* pMsg;
-/*N*/           while ( pMsg = aMsgStackFinal.Pop() )
+/*N*/           while (( pMsg = aMsgStackFinal.Pop() ))
 /*N*/           {
 /*N*/               aMsgQueue.Put( pMsg );
 /*N*/               bNew = TRUE;
@@ -2657,6 +2675,8 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/           pAppend->AddLink( NULL, pLink );
 /*N*/       }
 /*N*/       break;
+/*N*/       default :
+/*N*/       break;
 /*N*/   }
 /*N*/ }
 
@@ -2714,7 +2734,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       if ( pAppend->GetType() == SC_CAT_CONTENT )
 /*N*/       {
 /*N*/           ScChangeActionContent* pContent = (ScChangeActionContent*) pAppend;
-/*N*/           if ( pContent = pContent->GetPrevContent() )
+/*N*/           if (( pContent = pContent->GetPrevContent() ))
 /*N*/           {
 /*N*/               ULONG nMod = pContent->GetActionNumber();
 /*N*/               NotifyModified( SC_CTM_CHANGE, nMod, nMod );
@@ -3133,7 +3153,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       if ( pRemove->GetType() == SC_CAT_CONTENT )
 /*N*/       {
 /*N*/           ScChangeActionContent* pContent = (ScChangeActionContent*) pRemove;
-/*N*/           if ( pContent = pContent->GetPrevContent() )
+/*N*/           if (( pContent = pContent->GetPrevContent() ))
 /*N*/           {
 /*N*/               ULONG nMod = pContent->GetActionNumber();
 /*N*/               NotifyModified( SC_CTM_CHANGE, nMod, nMod );
@@ -3263,7 +3283,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       ScChangeActionDel* pActDel = (ScChangeActionDel*) pAct;
 /*N*/       if ( !bUndo )
 /*N*/       {   // Delete
-/*N*/           ScChangeActionType eInsType;        // fuer Insert-Undo-"Deletes"
+/*N*/           ScChangeActionType eInsType(SC_CAT_NONE);   // fuer Insert-Undo-"Deletes
 /*N*/           switch ( eActType )
 /*N*/           {
 /*N*/               case SC_CAT_DELETE_COLS :

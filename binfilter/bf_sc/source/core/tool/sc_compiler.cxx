@@ -86,7 +86,7 @@ namespace binfilter {
 /*N*/   BOOL bTemp;
 /*N*/ };
 
-/*N*/ static sal_Char* pInternal[ 5 ] = { "GAME", "SPEW", "TTT", "STARCALCTEAM", "ANTWORT" };
+/*N*/ static const sal_Char* pInternal[ 5 ] = { "GAME", "SPEW", "TTT", "STARCALCTEAM", "ANTWORT" };
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -686,6 +686,8 @@ namespace binfilter {
 /*N*/               if( nMask & SC_COMPILER_C_STRING_SEP )
 /*N*/                   eState = ssStop;
 /*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/       cLast = c;
 /*N*/       c = *pSrc;
@@ -1091,6 +1093,8 @@ namespace binfilter {
 /*?*/                           case CELLTYPE_EDIT:
 /*?*/                               ((ScEditCell*)pCell)->GetString( aStr );
 /*?*/                           break;
+/*?*/                           default:
+/*?*/                           break;
 /*?*/                       }
 /*?*/                         if ( ScGlobal::pTransliteration->isEqual( aStr, aName ) )
 /*?*/                       {
@@ -1112,7 +1116,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if ( !bInList && pDoc->GetDocOptions().IsLookUpColRowNames() )
 /*N*/   {   // in der aktuellen Tabelle suchen
-/*N*/       long nDistance, nMax;
+/*N*/       long nDistance(0), nMax(0);
 /*N*/       long nMyCol = (long) aPos.Col();
 /*N*/       long nMyRow = (long) aPos.Row();
 /*N*/       BOOL bTwo = FALSE;
@@ -1144,6 +1148,8 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/                   case CELLTYPE_EDIT:
 /*N*/                       ((ScEditCell*)pCell)->GetString( aStr );
+/*N*/                   break;
+/*N*/                   default:
 /*N*/                   break;
 /*N*/               }
 /*N*/                 if ( ScGlobal::pTransliteration->isEqual( aStr, aName ) )
@@ -1303,12 +1309,12 @@ namespace binfilter {
 /*N*/       {
 /*N*/           String aSymbol( aCorrectedSymbol );
 /*N*/           String aDoc;
-/*N*/           xub_StrLen nPos;
+/*N*/           xub_StrLen nLclPos;
 /*N*/           if ( aSymbol.GetChar(0) == '\''
-/*N*/             && ((nPos = aSymbol.SearchAscii( "'#" )) != STRING_NOTFOUND) )
+/*N*/             && ((nLclPos = aSymbol.SearchAscii( "'#" )) != STRING_NOTFOUND) )
 /*N*/           {   // 'Doc'# abspalten, kann d:\... und sonstwas sein
-/*N*/               aDoc = aSymbol.Copy( 0, nPos + 2 );
-/*N*/               aSymbol.Erase( 0, nPos + 2 );
+/*N*/               aDoc = aSymbol.Copy( 0, nLclPos + 2 );
+/*N*/               aSymbol.Erase( 0, nLclPos + 2 );
 /*N*/           }
 /*N*/           xub_StrLen nRefs = aSymbol.GetTokenCount( ':' );
 /*N*/           BOOL bColons;
@@ -1391,13 +1397,13 @@ namespace binfilter {
 /*N*/               for ( int j=0; j<nRefs; j++ )
 /*N*/               {
 /*N*/                   xub_StrLen nTmp = 0;
-/*N*/                   xub_StrLen nPos = STRING_NOTFOUND;
+/*N*/                   xub_StrLen nLclPosB = STRING_NOTFOUND;
 /*N*/                   while ( (nTmp = aRef[j].Search( '.', nTmp )) != STRING_NOTFOUND )
-/*N*/                       nPos = nTmp++;      // der letzte zaehlt
-/*N*/                   if ( nPos != STRING_NOTFOUND )
+/*N*/                       nLclPosB = nTmp++;      // der letzte zaehlt
+/*N*/                   if ( nLclPosB != STRING_NOTFOUND )
 /*N*/                   {
-/*N*/                       aTab[j] = aRef[j].Copy( 0, nPos + 1 );  // mit '.'
-/*N*/                       aRef[j].Erase( 0, nPos + 1 );
+/*N*/                       aTab[j] = aRef[j].Copy( 0, nLclPosB + 1 );  // mit '.'
+/*N*/                       aRef[j].Erase( 0, nLclPosB + 1 );
 /*N*/                   }
 /*N*/                   String aOld( aRef[j] );
 /*N*/                   String aStr2;
@@ -1703,8 +1709,8 @@ namespace binfilter {
 /*N*/               // kurz: wenn kein eigenstaendiger Ausdruck
 /*N*/               ScToken* p1 = pArr->PeekPrevNoSpaces();
 /*N*/               ScToken* p2 = pArr->PeekNextNoSpaces();
-/*N*/               OpCode eOp1 = (p1 ? p1->GetOpCode() : ocSep);
-/*N*/               OpCode eOp2 = (p2 ? p2->GetOpCode() : ocSep);
+/*N*/               OpCode eOp1 = (p1 ? p1->GetOpCode() : static_cast<OpCode>(ocSep));
+/*N*/               OpCode eOp2 = (p2 ? p2->GetOpCode() : static_cast<OpCode>(ocSep));
 /*N*/               BOOL bBorder1 = (eOp1 == ocSep || eOp1 == ocOpen);
 /*N*/               BOOL bBorder2 = (eOp2 == ocSep || eOp2 == ocClose);
 /*N*/               BOOL bAddPair = !(bBorder1 && bBorder2);
@@ -1869,8 +1875,8 @@ namespace binfilter {
 /*N*/               ScToken* p1 = pArr->PeekPrevNoSpaces();
 /*N*/               ScToken* p2 = pArr->PeekNextNoSpaces();
 /*N*/               // Anfang/Ende einer Formel => Single
-/*N*/               OpCode eOp1 = p1 ? p1->GetOpCode() : ocAdd;
-/*N*/               OpCode eOp2 = p2 ? p2->GetOpCode() : ocAdd;
+/*N*/               OpCode eOp1 = p1 ? p1->GetOpCode() : static_cast<OpCode>(ocAdd);
+/*N*/               OpCode eOp2 = p2 ? p2->GetOpCode() : static_cast<OpCode>(ocAdd);
 /*N*/               if ( eOp1 != ocColRowName && eOp1 != ocIntersect
 /*N*/                   && eOp2 != ocColRowName && eOp2 != ocIntersect )
 /*N*/               {
@@ -2986,21 +2992,21 @@ namespace binfilter {
 /*N*/   return pRangeData;
 /*N*/  }
 
-/*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pToken,
+/*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pInToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/  {
 /*N*/      ::rtl::OUStringBuffer aBuffer;
-/*N*/      ScToken* p = CreateStringFromToken( aBuffer, pToken, bAllowArrAdvance );
+/*N*/      ScToken* p = CreateStringFromToken( aBuffer, pInToken, bAllowArrAdvance );
 /*N*/      rFormula += aBuffer;
 /*N*/      return p;
 /*N*/  }
 
-/*N*/ ScToken* ScCompiler::CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pToken,
+/*N*/ ScToken* ScCompiler::CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pInToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/ {
 /*N*/   BOOL bNext = TRUE;
 /*N*/   BOOL bSpaces = FALSE;
-/*N*/   ScToken* t = pToken;
+/*N*/   ScToken* t = pInToken;
 /*N*/   OpCode eOp = t->GetOpCode();
 /*N*/   if( eOp >= ocAnd && eOp <= ocOr )
 /*N*/   {
@@ -3167,7 +3173,7 @@ namespace binfilter {
 /*N*/           t = pArr->Next();
 /*N*/       return t;
 /*N*/   }
-/*N*/   return pToken;
+/*N*/   return pInToken;
 /*N*/ }
 
 /*N*/ void ScCompiler::CreateStringFromTokenArray( String& rFormula )

@@ -53,14 +53,14 @@ namespace binfilter {
 /*N*/   nEndCol     (nCol2),
 /*N*/   nEndRow     (nRow2),
 /*N*/   bByRow      (bByR),
+/*N*/   bHasHeader  (bHasH),
 /*N*/   bDoSize     (FALSE),
 /*N*/   bKeepFmt    (FALSE),
 /*N*/   bStripData  (FALSE),
-/*N*/   bHasHeader  (bHasH),
+/*N*/   bIsAdvanced (FALSE),
 /*N*/   bDBSelection(FALSE),
 /*N*/   nIndex      (0),
 /*N*/   nExportIndex(0),
-/*N*/   bIsAdvanced (FALSE),
 /*N*/   bAutoFilter (FALSE),
 /*N*/   bModified   (FALSE)
 /*N*/ {
@@ -88,22 +88,20 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScDBData::ScDBData( SvStream& rStream, ScMultipleReadHeader& rHdr ) :
-/*N*/                   // nicht in der Datei:
-/*N*/   bAutoFilter     (FALSE),
-/*N*/   bModified       (FALSE),
-/*N*/   nExportIndex    (0),
-/*N*/                   // nicht in alten Versionen:
 /*N*/   bDoSize         (FALSE),
 /*N*/   bKeepFmt        (FALSE),
 /*N*/   bStripData      (FALSE),
-/*N*/   nIndex          (0),
+/*N*/   bSortUserDef    (FALSE),
+/*N*/   nSortUserIndex  (0),
 /*N*/   bIsAdvanced     (FALSE),
+/*N*/   nSubUserIndex   (0),
 /*N*/   bDBSelection    (FALSE),
 /*N*/   bDBSql          (TRUE),
 /*N*/   nDBType         (ScDbTable),
-/*N*/   nSubUserIndex   (0),
-/*N*/   bSortUserDef    (FALSE),
-/*N*/   nSortUserIndex  (0)
+/*N*/   nIndex          (0),
+/*N*/   nExportIndex    (0),
+/*N*/   bAutoFilter     (FALSE),
+/*N*/   bModified       (FALSE)
 /*N*/ {
 /*N*/   rHdr.StartEntry();
 /*N*/
@@ -382,11 +380,11 @@ namespace binfilter {
 /*N*/   bSortCaseSens       (rData.bSortCaseSens),
 /*N*/   bIncludePattern     (rData.bIncludePattern),
 /*N*/   bSortInplace        (rData.bSortInplace),
+/*N*/   bSortUserDef        (rData.bSortUserDef),
+/*N*/   nSortUserIndex      (rData.nSortUserIndex),
 /*N*/   nSortDestTab        (rData.nSortDestTab),
 /*N*/   nSortDestCol        (rData.nSortDestCol),
 /*N*/   nSortDestRow        (rData.nSortDestRow),
-/*N*/   bSortUserDef        (rData.bSortUserDef),
-/*N*/   nSortUserIndex      (rData.nSortUserIndex),
 /*N*/   aSortLocale         (rData.aSortLocale),
 /*N*/   aSortAlgorithm      (rData.aSortAlgorithm),
 /*N*/   bQueryInplace       (rData.bQueryInplace),

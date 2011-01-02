@@ -46,6 +46,7 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 /*N*/ ScDetOpList::ScDetOpList(const ScDetOpList& rList) :
+/*N*/   ScDetOpArr_Impl(),
 /*N*/   bHasAddError( FALSE )
 /*N*/ {
 /*N*/   USHORT nCount = rList.Count();
@@ -78,12 +79,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDetOpList::Append( ScDetOpData* pData )
+/*N*/ void ScDetOpList::Append( ScDetOpData* pInData )
 /*N*/ {
-/*N*/   if ( pData->GetOperation() == SCDETOP_ADDERROR )
+/*N*/   if ( pInData->GetOperation() == SCDETOP_ADDERROR )
 /*N*/       bHasAddError = TRUE;
 /*N*/
-/*N*/   Insert( pData, Count() );
+/*N*/   Insert( pInData, Count() );
 /*N*/ }
 
 
@@ -127,9 +128,9 @@ namespace binfilter {
 /*N*/
 /*N*/       aHdr.StartEntry();
 /*N*/
-/*N*/       ScDetOpData* pData = (*this)[i];
-/*N*/       rStream << pData->GetPos();
-/*N*/       rStream << (USHORT) pData->GetOperation();
+/*N*/       ScDetOpData* pLclData = (*this)[i];
+/*N*/       rStream << pLclData->GetPos();
+/*N*/       rStream << (USHORT) pLclData->GetOperation();
 /*N*/
 /*N*/       aHdr.EndEntry();
 /*N*/   }

@@ -75,17 +75,17 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 //------------------------------------------------------------------------
 
-/*N*/ ScDocOptions::ScDocOptions( const ScDocOptions& rCpy )
-/*N*/       :   bIsIgnoreCase( rCpy.bIsIgnoreCase ),
-/*N*/           bIsIter( rCpy.bIsIter ),
-/*N*/           nIterCount( rCpy.nIterCount ),
+/*N*/ ScDocOptions::ScDocOptions( const ScDocOptions& rCpy ) :
 /*N*/           fIterEps( rCpy.fIterEps ),
+/*N*/           nIterCount( rCpy.nIterCount ),
 /*N*/           nPrecStandardFormat( rCpy.nPrecStandardFormat ),
 /*N*/           nDay( rCpy.nDay ),
 /*N*/           nMonth( rCpy.nMonth ),
 /*N*/           nYear( rCpy.nYear ),
 /*N*/           nYear2000( rCpy.nYear2000 ),
 /*N*/           nTabDistance( rCpy.nTabDistance ),
+/*N*/               bIsIgnoreCase( rCpy.bIsIgnoreCase ),
+/*N*/           bIsIter( rCpy.bIsIter ),
 /*N*/           bCalcAsShown( rCpy.bCalcAsShown ),
 /*N*/           bMatchWholeCell( rCpy.bMatchWholeCell ),
 /*N*/           bDoAutoSpell( rCpy.bDoAutoSpell ),

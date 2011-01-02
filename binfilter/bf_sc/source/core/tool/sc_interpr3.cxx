@@ -765,7 +765,7 @@ void ScInterpreter::ScBinomDist()
         double p      = GetDouble();                    // p
         double n      = ::rtl::math::approxFloor(GetDouble());              // n
         double x      = ::rtl::math::approxFloor(GetDouble());              // x
-        double fFactor, q, fSum;
+        double fFactor, q;
         if (n < 0.0 || x < 0.0 || x > n || p < 0.0 || p > 1.0)
             SetIllegalArgument();
         else if (kum == 0.0)                        // Dichte
@@ -808,7 +808,7 @@ void ScInterpreter::ScBinomDist()
                         SetNoValue();
                     else
                     {
-                        fSum = 1.0 - fFactor;
+                        double fSum = 1.0 - fFactor;
                         ULONG max = (ULONG) (n - x) - 1;
                         for (ULONG i = 0; i < max && fFactor > 0.0; i++)
                         {
@@ -1381,7 +1381,7 @@ void ScInterpreter::ScZTest()
     BYTE nParamCount = GetByte();
     if ( !MustHaveParamCount( nParamCount, 2, 3 ) )
         return;
-    double sigma, mue, x;
+    double sigma(0.0), mue, x;
     if (nParamCount == 3)
     {
         sigma = GetDouble();
@@ -1807,14 +1807,13 @@ void ScInterpreter::ScKurt()
     if ( !MustHaveParamCountMin( nParamCount, 1 ) )
         return;
     USHORT SaveSP = sp;
-    USHORT i;
     double fSum    = 0.0;
     double fSumSqr = 0.0;
     double fCount  = 0.0;
     double fVal;
     ScAddress aAdr;
     ScRange aRange;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -1868,9 +1867,9 @@ void ScInterpreter::ScKurt()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nCount; k++)
                         {
-                            fVal = pMat->GetDouble(i);
+                            fVal = pMat->GetDouble(k);
                             fSum += fVal;
                             fSumSqr += fVal*fVal;
                             fCount++;
@@ -1878,10 +1877,10 @@ void ScInterpreter::ScKurt()
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                fVal = pMat->GetDouble(i);
+                                fVal = pMat->GetDouble(k);
                                 fSum += fVal;
                                 fSumSqr += fVal*fVal;
                                 fCount++;
@@ -1907,7 +1906,7 @@ void ScInterpreter::ScKurt()
     // #55733# GCC Optimierungsfehler, GPF wenn die 4.0 als Konstante an pow()
     // uebergeben wird, auch ein "const double fPow = 4.0;" GPF't,
     double fPow = 4.0;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -1943,14 +1942,14 @@ void ScInterpreter::ScKurt()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            fSum += pow(pMat->GetDouble(i) - fMean, fPow);
+                        for (ULONG k = 0; k < nCount; k++)
+                            fSum += pow(pMat->GetDouble(k) - fMean, fPow);
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
-                                fSum += pow(pMat->GetDouble(i) - fMean, fPow);
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
+                                fSum += pow(pMat->GetDouble(k) - fMean, fPow);
                     }
                 }
             }
@@ -2038,16 +2037,16 @@ void ScInterpreter::ScHarMean()
                 ScMatrix* pMat = PopMatrix();
                 if (pMat)
                 {
-                    ULONG nCount = pMat->GetElementCount();
+                    ULONG nLclCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nLclCount; k++)
                         {
-                            double x = pMat->GetDouble(i);
+                            double x = pMat->GetDouble(k);
                             if (x > 0.0)
                             {
                                 nVal += 1.0/x;
-                                nCount++;
+                                nLclCount++;
                             }
                             else
                                 SetIllegalArgument();
@@ -2055,14 +2054,14 @@ void ScInterpreter::ScHarMean()
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nLclCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                double x = pMat->GetDouble(i);
+                                double x = pMat->GetDouble(k);
                                 if (x > 0.0)
                                 {
                                     nVal += 1.0/x;
-                                    nCount++;
+                                    nLclCount++;
                                 }
                                 else
                                     SetIllegalArgument();
@@ -2153,16 +2152,16 @@ void ScInterpreter::ScGeoMean()
                 ScMatrix* pMat = PopMatrix();
                 if (pMat)
                 {
-                    ULONG nCount = pMat->GetElementCount();
+                    ULONG nLclCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nLclCount; k++)
                         {
-                            double x = pMat->GetDouble(i);
+                            double x = pMat->GetDouble(k);
                             if (x > 0.0)
                             {
                                 nVal += log(x);
-                                nCount++;
+                                nLclCount++;
                             }
                             else
                                 SetIllegalArgument();
@@ -2170,14 +2169,14 @@ void ScInterpreter::ScGeoMean()
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nLclCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                double x = pMat->GetDouble(i);
+                                double x = pMat->GetDouble(k);
                                 if (x > 0.0)
                                 {
                                     nVal += log(x);
-                                    nCount++;
+                                    nLclCount++;
                                 }
                                 else
                                     SetIllegalArgument();
@@ -2213,14 +2212,13 @@ void ScInterpreter::ScSkew()
     if ( !MustHaveParamCountMin( nParamCount, 1 )  )
         return;
     USHORT SaveSP = sp;
-    USHORT i;
     double fSum    = 0.0;
     double fSumSqr = 0.0;
     double fCount  = 0.0;
     double fVal;
     ScAddress aAdr;
     ScRange aRange;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -2274,9 +2272,9 @@ void ScInterpreter::ScSkew()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nCount; k++)
                         {
-                            fVal = pMat->GetDouble(i);
+                            fVal = pMat->GetDouble(k);
                             fSum += fVal;
                             fSumSqr += fVal*fVal;
                             fCount++;
@@ -2284,10 +2282,10 @@ void ScInterpreter::ScSkew()
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                fVal = pMat->GetDouble(i);
+                                fVal = pMat->GetDouble(k);
                                 fSum += fVal;
                                 fSumSqr += fVal*fVal;
                                 fCount++;
@@ -2311,7 +2309,7 @@ void ScInterpreter::ScSkew()
     sp = SaveSP;
     fSum = 0.0;
     double fPow = 3.0;      // vorsichtshalber wg. #55733#, siehe ScKurt()
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -2347,14 +2345,14 @@ void ScInterpreter::ScSkew()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            fSum += pow(pMat->GetDouble(i) - fMean, fPow);
+                        for (ULONG k = 0; k < nCount; k++)
+                            fSum += pow(pMat->GetDouble(k) - fMean, fPow);
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
-                                fSum += pow(pMat->GetDouble(i) - fMean, fPow);
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
+                                fSum += pow(pMat->GetDouble(k) - fMean, fPow);
                     }
                 }
             }
@@ -2541,7 +2539,7 @@ void ScInterpreter::ScModalValue()
 #else
         double* pSArray = pSortArray;
 #endif
-        ULONG nMaxIndex, nMax = 1, nCount = 1;
+        ULONG nMaxIndex(0), nMax = 1, nCount = 1;
         double nOldVal = pSArray[0];
         ULONG i = 0;
         for (i = 1; i < nSize; i++)
@@ -2816,11 +2814,10 @@ void ScInterpreter::GetSortArray(BYTE nParamCount, double** ppSortArray, ULONG& 
     nSize = 0;
 
     USHORT SaveSP = sp;
-    USHORT i;
     ULONG rValCount = 0;
     ScAddress aAdr;
     ScRange aRange;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -2862,8 +2859,8 @@ void ScInterpreter::GetSortArray(BYTE nParamCount, double** ppSortArray, ULONG& 
                         rValCount += nCount;
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
                                 rValCount++;
                     }
                 }
@@ -2899,7 +2896,7 @@ void ScInterpreter::GetSortArray(BYTE nParamCount, double** ppSortArray, ULONG& 
     }
     sp = SaveSP;
     ULONG nIndex = 0;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -2944,18 +2941,18 @@ void ScInterpreter::GetSortArray(BYTE nParamCount, double** ppSortArray, ULONG& 
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nCount; k++)
                         {
-                            pSArray[nIndex] = pMat->GetDouble(i);
+                            pSArray[nIndex] = pMat->GetDouble(k);
                             nIndex++;
                         }
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                pSArray[nIndex] = pMat->GetDouble(i);
+                                pSArray[nIndex] = pMat->GetDouble(k);
                                 nIndex++;
                             }
                     }
@@ -3147,13 +3144,12 @@ void ScInterpreter::ScAveDev()
     if ( !MustHaveParamCountMin( nParamCount, 1 ) )
         return;
     USHORT SaveSP = sp;
-    USHORT i;
     double nMiddle = 0.0;
     double rVal = 0.0;
     double rValCount = 0.0;
     ScAddress aAdr;
     ScRange aRange;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -3200,18 +3196,18 @@ void ScInterpreter::ScAveDev()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
+                        for (ULONG k = 0; k < nCount; k++)
                         {
-                            rVal += pMat->GetDouble(i);
+                            rVal += pMat->GetDouble(k);
                             rValCount++;
                         }
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
                             {
-                                rVal += pMat->GetDouble(i);
+                                rVal += pMat->GetDouble(k);
                                 rValCount++;
                             }
                     }
@@ -3231,7 +3227,7 @@ void ScInterpreter::ScAveDev()
     nMiddle = rVal / rValCount;
     sp = SaveSP;
     rVal = 0.0;
-    for (i = 0; i < nParamCount; i++)
+    for (USHORT i = 0; i < nParamCount; i++)
     {
         switch (GetStackType())
         {
@@ -3268,14 +3264,14 @@ void ScInterpreter::ScAveDev()
                     ULONG nCount = pMat->GetElementCount();
                     if (pMat->IsNumeric())
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            rVal += fabs(pMat->GetDouble(i) - nMiddle);
+                        for (ULONG k = 0; k < nCount; k++)
+                            rVal += fabs(pMat->GetDouble(k) - nMiddle);
                     }
                     else
                     {
-                        for (ULONG i = 0; i < nCount; i++)
-                            if (!pMat->IsString(i))
-                                rVal += fabs(pMat->GetDouble(i) - nMiddle);
+                        for (ULONG k = 0; k < nCount; k++)
+                            if (!pMat->IsString(k))
+                                rVal += fabs(pMat->GetDouble(k) - nMiddle);
                     }
                 }
             }

@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/   USHORT nRow2 = r.aEnd.Row();
 /*N*/   USHORT nTab2 = r.aEnd.Tab();
 /*N*/   ScRangePtr pOver = (ScRangePtr) &r;     // fies aber wahr wenn bInList
-/*N*/   ULONG nOldPos;
+/*N*/   ULONG nOldPos(0);
 /*N*/   if ( bIsInList )
 /*N*/   {   // merken um ggbf. zu loeschen bzw. wiederherzustellen
 /*N*/       nOldPos = GetPos( pOver );
@@ -206,11 +206,11 @@ namespace binfilter {
 /*N*/ BOOL ScRangeList::Store( SvStream& rStream ) const
 /*N*/ {
 /*N*/   BOOL bOk = TRUE;
-/*N*/   ULONG nCount = Count();
-/*N*/   ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRange);
+/*N*/   ULONG nLclCount = Count();
+/*N*/   ULONG nBytes = sizeof(UINT32) + nLclCount * sizeof(ScRange);
 /*N*/   ScWriteHeader aHdr( rStream, nBytes );
-/*N*/   rStream << (UINT32) nCount;
-/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   rStream << (UINT32) nLclCount;
+/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
 /*N*/   {
 /*N*/       rStream << *GetObject( j );
 /*N*/       if( rStream.GetError() != SVSTREAM_OK )
@@ -227,8 +227,8 @@ namespace binfilter {
 /*N*/   ScRange aRange;
 /*N*/   UINT32 n;
 /*N*/   rStream >> n;
-/*N*/   ULONG nCount = n;
-/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   ULONG nLclCount = n;
+/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
 /*N*/   {
 /*N*/       rStream >> aRange;
 /*N*/       Append( aRange );
@@ -273,9 +273,11 @@ namespace binfilter {
 
 
 /*N*/ ScRangeList::ScRangeList( const ScRangeList& rList )
+/*N*/     : ScRangeListBase()
+/*N*/     , SvRefBase()
 /*N*/ {
-/*N*/   ULONG nCount = rList.Count();
-/*N*/   for ( ULONG j = 0; j < nCount; j++ )
+/*N*/   ULONG nLclCount = rList.Count();
+/*N*/   for ( ULONG j = 0; j < nLclCount; j++ )
 /*N*/       Append( *rList.GetObject( j ) );
 /*N*/ }
 
@@ -286,8 +288,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   RemoveAll();
 /*N*/
-/*N*/   ULONG nCount = rList.Count();
-/*N*/   for ( ULONG j = 0; j < nCount; j++ )
+/*N*/   ULONG nLclCount = rList.Count();
+/*N*/   for ( ULONG j = 0; j < nLclCount; j++ )
 /*N*/       Append( *rList.GetObject( j ) );
 /*N*/
 /*N*/   return *this;
@@ -325,7 +327,7 @@ namespace binfilter {
 /*N*/   USHORT nRow2 = r1.aEnd.Row();
 /*N*/   USHORT nTab2 = r1.aEnd.Tab();
 /*N*/   ScRangePair* pOver = (ScRangePair*) &r;     // fies aber wahr wenn bInList
-/*N*/   ULONG nOldPos;
+/*N*/   ULONG nOldPos(0);
 /*N*/   if ( bIsInList )
 /*N*/   {   // merken um ggbf. zu loeschen bzw. wiederherzustellen
 /*N*/       nOldPos = GetPos( pOver );
@@ -425,11 +427,11 @@ namespace binfilter {
 /*N*/ BOOL ScRangePairList::Store( SvStream& rStream ) const
 /*N*/ {
 /*N*/   BOOL bOk = TRUE;
-/*N*/   ULONG nCount = Count();
-/*N*/   ULONG nBytes = sizeof(UINT32) + nCount * sizeof(ScRangePair);
+/*N*/   ULONG nLclCount = Count();
+/*N*/   ULONG nBytes = sizeof(UINT32) + nLclCount * sizeof(ScRangePair);
 /*N*/   ScWriteHeader aHdr( rStream, nBytes );
-/*N*/   rStream << (UINT32) nCount;
-/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   rStream << (UINT32) nLclCount;
+/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
 /*N*/   {
 /*N*/       rStream << *GetObject( j );
 /*N*/       if( rStream.GetError() != SVSTREAM_OK )
@@ -447,8 +449,8 @@ namespace binfilter {
 /*N*/   ScRange aRange;
 /*N*/   UINT32 n;
 /*N*/   rStream >> n;
-/*N*/   ULONG nCount = n;
-/*N*/   for ( ULONG j = 0; j < nCount && bOk; j++ )
+/*N*/   ULONG nLclCount = n;
+/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
 /*N*/   {
 /*N*/       if ( nVer < SC_COLROWNAME_RANGEPAIR )
 /*N*/       {   // aus technical Beta 4.0 versuchen mit altem Verhalten zu uebernehmen
@@ -514,8 +516,8 @@ namespace binfilter {
 
 /*N*/ ScRangePair* ScRangePairList::Find( const ScRange& rRange ) const
 /*N*/ {
-/*N*/   ULONG nCount = Count();
-/*N*/   for ( ULONG j = 0; j < nCount; j++ )
+/*N*/   ULONG nLclCount = Count();
+/*N*/   for ( ULONG j = 0; j < nLclCount; j++ )
 /*N*/   {
 /*N*/       ScRangePair* pR = GetObject( j );
 /*N*/       if ( pR->GetRange(0) == rRange )
@@ -528,8 +530,8 @@ namespace binfilter {
 /*N*/ ScRangePairList* ScRangePairList::Clone() const
 /*N*/ {
 /*N*/   ScRangePairList* pNew = new ScRangePairList;
-/*N*/   ULONG nCount = Count();
-/*N*/   for ( ULONG j = 0; j < nCount; j++ )
+/*N*/   ULONG nLclCount = Count();
+/*N*/   for ( ULONG j = 0; j < nLclCount; j++ )
 /*N*/   {
 /*N*/       pNew->Append( *GetObject( j ) );
 /*N*/   }

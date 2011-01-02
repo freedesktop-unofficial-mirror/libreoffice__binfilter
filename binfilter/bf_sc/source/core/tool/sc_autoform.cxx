@@ -48,7 +48,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-sal_Char *linker_dummy = "";
+const sal_Char *linker_dummy = "";
 
 //  Standard-Name ist jetzt STR_STYLENAME_STANDARD (wie Vorlagen)
 //static const sal_Char cStandardName[] = "Standard";
@@ -412,11 +412,11 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/ ScAutoFormatData::ScAutoFormatData( const ScAutoFormatData& rData ) :
 /*N*/       aName( rData.aName ),
 /*N*/       nStrResId( rData.nStrResId ),
-/*N*/       bIncludeValueFormat( rData.bIncludeValueFormat ),
 /*N*/       bIncludeFont( rData.bIncludeFont ),
 /*N*/       bIncludeJustify( rData.bIncludeJustify ),
 /*N*/       bIncludeFrame( rData.bIncludeFrame ),
 /*N*/       bIncludeBackground( rData.bIncludeBackground ),
+/*N*/       bIncludeValueFormat( rData.bIncludeValueFormat ),
 /*N*/       bIncludeWidthHeight( rData.bIncludeWidthHeight )
 /*N*/ {
 /*N*/     ppDataField = new ScAutoFormatDataField*[ 16 ];
