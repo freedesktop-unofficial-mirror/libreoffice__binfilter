@@ -383,7 +383,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::UpdateDdeLink( const String& rAppl, const String& rTopic, const String& rItem )
+/*N*/ BOOL ScDocument::UpdateDdeLink( const String&, const String&, const String& )
 /*N*/ {
 /*N*/   //  fuer refresh() per StarOne Api
 /*N*/   //  ResetValue() fuer einzelnen Link nicht noetig
@@ -392,7 +392,7 @@ namespace binfilter {
 /*N*/   BOOL bFound = FALSE;
 /*N*/     if (pLinkManager)
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/   return bFound;
 /*N*/ }
@@ -494,33 +494,32 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix* pMatrix, USHORT nCol, USHORT nRow, String& rStrValue, double& rDoubValue, BOOL& bIsString)
+/*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix*, USHORT, USHORT, String&, double&, BOOL&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pMatrix)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ void ScDocument::CreateDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode )
+/*N*/ void ScDocument::CreateDdeLink(const String&, const String&, const String&, const BYTE)
 /*N*/ {
-    //  DDE-Link anlegen und nicht updaten (z.B. fuer Excel-Import,
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  damit nicht ohne Nachfrage Verbindungen aufgebaut werden)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ BOOL ScDocument::FindDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode, USHORT& nPos )
+/*N*/ BOOL ScDocument::FindDdeLink(const String&, const String&, const String&, const BYTE, USHORT&)
 /*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
+/*?*/     DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT nPos, USHORT nCols, USHORT nRows, ScMatrix*& pMatrix)
+/*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT, USHORT, USHORT, ScMatrix*&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   USHORT nDdeCount = 0;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-void ScDocument::SetDdeLinkResult(ScMatrix* pMatrix, const USHORT nCol, const USHORT nRow, const String& rStrValue, const double& rDoubValue, BOOL bString, BOOL bEmpty)
+void ScDocument::SetDdeLinkResult(ScMatrix*, const USHORT, const USHORT, const String&, const double&, BOOL, BOOL )
 {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix");
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------------

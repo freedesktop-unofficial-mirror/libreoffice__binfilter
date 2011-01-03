@@ -373,7 +373,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::RenameTab( USHORT nTab, const String& rName, BOOL bUpdateRef,
+/*N*/ BOOL ScDocument::RenameTab( USHORT nTab, const String& rName, BOOL /*bUpdateRef*/,
 /*N*/       BOOL bExternalDocument )
 /*N*/ {
 /*N*/   BOOL    bValid = FALSE;
@@ -778,26 +778,15 @@ namespace binfilter {
 /*N*/              pRefUndoDoc, pUndoOutline );
 /*N*/ }
 
-
-//  fuer Area-Links: Zellen einuegen/loeschen, wenn sich der Bereich veraendert
-//  (ohne Paint)
-
-
-
-
-
-
-/*N*/ BOOL ScDocument::CanFitBlock( const ScRange& rOld, const ScRange& rNew )
+/*N*/ BOOL ScDocument::CanFitBlock( const ScRange&, const ScRange& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 if ( rOld == rNew )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-
-/*N*/ void ScDocument::FitBlock( const ScRange& rOld, const ScRange& rNew, BOOL bClear )
+/*N*/ void ScDocument::FitBlock( const ScRange&, const ScRange&, BOOL )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (bClear)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
 
 /*N*/ void ScDocument::DeleteArea(USHORT nCol1, USHORT nRow1,
 /*N*/                           USHORT nCol2, USHORT nRow2,
@@ -914,7 +903,7 @@ namespace binfilter {
 /*N*/                           USHORT nCol2, USHORT nRow2,
 /*N*/                           BOOL bCut, ScDocument* pClipDoc,
 /*N*/                           BOOL bAllTabs, const ScMarkData* pMarks,
-/*N*/                           BOOL bKeepScenarioFlags, BOOL bIncludeObjects)
+/*N*/                           BOOL /*bKeepScenarioFlags*/, BOOL bIncludeObjects)
 /*N*/ {
 /*N*/   DBG_ASSERT( bAllTabs || pMarks, "CopyToClip: ScMarkData fehlt" );
 /*N*/
@@ -968,36 +957,33 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aO
 /*N*/   }
 /*N*/ }
 
-void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark, USHORT nInsFlag )
+void ScDocument::StartListeningFromClip( USHORT, USHORT, USHORT, USHORT, const ScMarkData&, USHORT )
 {
 }
 
-
-/*N*/ void ScDocument::BroadcastFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                               USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark, USHORT nInsFlag )
+/*N*/ void ScDocument::BroadcastFromClip( USHORT, USHORT,
+/*N*/                               USHORT, USHORT,
+/*N*/                                   const ScMarkData&, USHORT )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (nInsFlag & IDF_CONTENTS)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-/*N*/ void ScDocument::CopyBlockFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                                   USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark,
-/*N*/                                   short nDx, short nDy,
-/*N*/                                   const ScCopyBlockFromClipParams* pCBFCP )
+/*N*/ void ScDocument::CopyBlockFromClip( USHORT, USHORT,
+/*N*/                                   USHORT, USHORT,
+/*N*/                                   const ScMarkData&,
+/*N*/                                   short, short,
+/*N*/                                   const ScCopyBlockFromClipParams* )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ScTable** ppClipTab = pCBFCP->pClipDoc->pTab;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-/*N*/ void ScDocument::CopyNonFilteredFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                                   USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark,
-/*N*/                                   short nDx, short nDy,
-/*N*/                                   const ScCopyBlockFromClipParams* pCBFCP )
+/*N*/ void ScDocument::CopyNonFilteredFromClip( USHORT, USHORT,
+/*N*/                                   USHORT, USHORT,
+/*N*/                                   const ScMarkData&,
+/*N*/                                   short, short,
+/*N*/                                   const ScCopyBlockFromClipParams* )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip for ranges of consecutive non-filtered rows
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1040,11 +1026,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
                     A proper solution would ask the user how to proceed.
                     The adjustment of the indices in the formulas is done later.
                 */
-/*N*/               ScRangeData* pClipData = (*pClipDoc->pRangeName)[i];
-/*N*/               if ( pRangeName->SearchName( pClipData->GetName(), k ) )
+/*N*/               ScRangeData* pLclClipData = (*pClipDoc->pRangeName)[i];
+/*N*/               if ( pRangeName->SearchName( pLclClipData->GetName(), k ) )
 /*N*/               {
 /*N*/                   pClipRangeNames[i] = NULL;  // range name not inserted
-/*N*/                   USHORT nOldIndex = pClipData->GetIndex();
+/*N*/                   USHORT nOldIndex = pLclClipData->GetIndex();
 /*N*/                   USHORT nNewIndex = ((*pRangeName)[k])->GetIndex();
 /*N*/                   aClipRangeMap.SetPair( i, nOldIndex, nNewIndex );
 /*N*/                   if ( !bRangeNameReplace )
@@ -1052,14 +1038,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/                   ScRangeData* pData = new ScRangeData( *pClipData );
+/*N*/                   ScRangeData* pData = new ScRangeData( *pLclClipData );
 /*N*/                   pData->SetDocument(this);
 /*N*/                   if ( pRangeName->FindIndex( pData->GetIndex() ) )
 /*N*/                       pData->SetIndex(0);     // need new index, done in Insert
 /*N*/                   if ( pRangeName->Insert( pData ) )
 /*N*/                   {
 /*N*/                       pClipRangeNames[i] = pData;
-/*N*/                       USHORT nOldIndex = pClipData->GetIndex();
+/*N*/                       USHORT nOldIndex = pLclClipData->GetIndex();
 /*N*/                       USHORT nNewIndex = pData->GetIndex();
 /*N*/                       aClipRangeMap.SetPair( i, nOldIndex, nNewIndex );
 /*N*/                       if ( !bRangeNameReplace )
@@ -1069,7 +1055,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                   {   // must be an overflow
 /*N*/                       delete pData;
 /*N*/                       pClipRangeNames[i] = NULL;
-/*N*/                       aClipRangeMap.SetPair( i, pClipData->GetIndex(), 0 );
+/*N*/                       aClipRangeMap.SetPair( i, pLclClipData->GetIndex(), 0 );
 /*N*/                       bRangeNameReplace = TRUE;
 /*N*/                   }
 /*N*/               }
@@ -1102,10 +1088,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/           DeleteArea(nCol1, nRow1, nCol2, nRow2, rMark, nDelFlag);
 /*N*/
 /*N*/           bInsertingFromOtherDoc = TRUE;  // kein Broadcast/Listener aufbauen bei Insert
-/*N*/           USHORT nC1 = nCol1;
-/*N*/           USHORT nR1 = nRow1;
-/*N*/           USHORT nC2 = nC1 + nXw;
-/*N*/           USHORT nR2 = nR1 + nYw;
+/*N*/           USHORT nC1_a = nCol1;
+/*N*/           USHORT nR1_a = nRow1;
+/*N*/           USHORT nC2_a = nC1_a + nXw;
+/*N*/           USHORT nR2_a = nR1_a + nYw;
 /*N*/           USHORT nClipStartCol = pClipDoc->aClipRange.aStart.Col();
 /*N*/           USHORT nClipStartRow = pClipDoc->aClipRange.aStart.Row();
 /*N*/
@@ -1141,22 +1127,22 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/           {
 /*N*/               do
 /*N*/               {
-/*N*/                   short nDx = ((short)nC1) - nClipStartCol;
-/*N*/                   short nDy = ((short)nR1) - nClipStartRow;
+/*N*/                   short nDx = ((short)nC1_a) - nClipStartCol;
+/*N*/                   short nDy = ((short)nR1_a) - nClipStartRow;
 /*N*/                   if ( bIncludeFiltered )
-/*N*/                       CopyBlockFromClip( nC1, nR1, nC2, nR2, rMark, nDx, nDy, &aCBFCP );
+/*N*/                       CopyBlockFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
 /*N*/                   else
-/*N*/                       CopyNonFilteredFromClip( nC1, nR1, nC2, nR2, rMark, nDx, nDy, &aCBFCP );
-/*N*/                   nC1 = nC2 + 1;
-/*N*/                   nC2 = Min((USHORT)(nC1 + nXw), nCol2);
+/*N*/                       CopyNonFilteredFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
+/*N*/                   nC1_a = nC2_a + 1;
+/*N*/                   nC2_a = Min((USHORT)(nC1_a + nXw), nCol2);
 /*N*/               }
-/*N*/               while (nC1 <= nCol2);
-/*N*/               nC1 = nCol1;
-/*N*/               nC2 = nC1 + nXw;
-/*N*/               nR1 = nR2 + 1;
-/*N*/               nR2 = Min((USHORT)(nR1 + nYw), nRow2);
+/*N*/               while (nC1_a <= nCol2);
+/*N*/               nC1_a = nCol1;
+/*N*/               nC2_a = nC1_a + nXw;
+/*N*/               nR1_a = nR2_a + 1;
+/*N*/               nR2_a = Min((USHORT)(nR1_a + nYw), nRow2);
 /*N*/           }
-/*N*/           while (nR1 <= nRow2);
+/*N*/           while (nR1_a <= nRow2);
 /*N*/
 /*N*/           ScColumn::bDoubleAlloc = bOldDouble;
 /*N*/
@@ -1176,10 +1162,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                       pClipRangeNames[i]->ReplaceRangeNamesInUse( aClipRangeMap );
 /*N*/               }
 /*N*/               // then update the formulas, they might need the just updated range names
-/*N*/               USHORT nC1 = nCol1;
-/*N*/               USHORT nR1 = nRow1;
-/*N*/               USHORT nC2 = nC1 + nXw;
-/*N*/               USHORT nR2 = nR1 + nYw;
+/*N*/               USHORT nC1_b = nCol1;
+/*N*/               USHORT nR1_b = nRow1;
+/*N*/               USHORT nC2_b = nC1_b + nXw;
+/*N*/               USHORT nR2_b = nR1_b + nYw;
 /*N*/               do
 /*N*/               {
 /*N*/                   do
@@ -1187,17 +1173,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                       for (k = 0; k <= MAXTAB; k++)
 /*N*/                       {
 /*N*/                           if ( pTab[k] && rMark.GetTableSelect(k) )
-/*N*/                               pTab[k]->ReplaceRangeNamesInUse(nC1, nR1,
-/*N*/                                   nC2, nR2, aClipRangeMap );
+/*N*/                               pTab[k]->ReplaceRangeNamesInUse(nC1_b, nR1_b,
+/*N*/                                   nC2_b, nR2_b, aClipRangeMap );
 /*N*/                       }
-/*N*/                       nC1 = nC2 + 1;
-/*N*/                       nC2 = Min((USHORT)(nC1 + nXw), nCol2);
-/*N*/                   } while (nC1 <= nCol2);
-/*N*/                   nC1 = nCol1;
-/*N*/                   nC2 = nC1 + nXw;
-/*N*/                   nR1 = nR2 + 1;
-/*N*/                   nR2 = Min((USHORT)(nR1 + nYw), nRow2);
-/*N*/               } while (nR1 <= nRow2);
+/*N*/                       nC1_b = nC2_b + 1;
+/*N*/                       nC2_b = Min((USHORT)(nC1_b + nXw), nCol2);
+/*N*/                   } while (nC1_b <= nCol2);
+/*N*/                   nC1_b = nCol1;
+/*N*/                   nC2_b = nC1_b + nXw;
+/*N*/                   nR1_b = nR2_b + 1;
+/*N*/                   nR2_b = Min((USHORT)(nR1_b + nYw), nRow2);
+/*N*/               } while (nR1_b <= nRow2);
 /*N*/           }
 /*N*/           if ( pClipRangeNames )
 /*N*/               delete [] pClipRangeNames;
@@ -1212,24 +1198,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/   }
 /*N*/ }
 
-
-
-
-/*N*/ void ScDocument::GetClipArea(USHORT& nClipX, USHORT& nClipY, BOOL bIncludeFiltered)
+/*N*/ void ScDocument::GetClipArea(USHORT&, USHORT&, BOOL)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ void ScDocument::PutCell( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell, BOOL bForceTab )
 /*N*/ {
@@ -1835,7 +1807,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetRowDefault( USHORT nTab, USHORT nRow, USHORT nLastCol, USHORT& nDefault)
+/*N*/ BOOL ScDocument::GetRowDefault( USHORT, USHORT, USHORT, USHORT&)
 /*N*/ {
 /*N*/   BOOL bRet(FALSE);
 /*N*/   return bRet;
@@ -2002,14 +1974,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ BOOL ScDocument::IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ BOOL ScDocument::IsStyleSheetUsed( const ScStyleSheet&, BOOL ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
-
-
-
-
 
 /*N*/ BOOL ScDocument::ApplyFlagsTab( USHORT nStartCol, USHORT nStartRow,
 /*N*/                       USHORT nEndCol, USHORT nEndRow, USHORT nTab, INT16 nFlags )
@@ -2022,19 +1989,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return FALSE;
 /*N*/ }
 
-
-
-
-/*N*/ BOOL ScDocument::RemoveFlagsTab( USHORT nStartCol, USHORT nStartRow,
-/*N*/                       USHORT nEndCol, USHORT nEndRow, USHORT nTab, INT16 nFlags )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL ScDocument::RemoveFlagsTab( USHORT, USHORT,
+/*N*/                       USHORT, USHORT, USHORT, INT16 )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
-
-
-
-
-
 
 /*N*/ ScPatternAttr* ScDocument::CreateSelectionPattern( const ScMarkData& rMark, BOOL bDeep )
 /*N*/ {
@@ -2177,10 +2136,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/                     nMask );
 /*N*/ }
 
-/*N*/ BOOL ScDocument::IsBlockEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-/*N*/                                       USHORT nEndCol, USHORT nEndRow ) const
+/*N*/ BOOL ScDocument::IsBlockEmpty( USHORT /*nTab*/, USHORT /*nStartCol*/, USHORT /*nStartRow*/,
+/*N*/                                       USHORT /*nEndCol*/, USHORT /*nEndRow*/ ) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -2513,8 +2472,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/ {
 /*N*/   const SfxItemSet* pSet = &rAttr.GetItemSet();
 /*N*/   BOOL bSet = FALSE;
-/*N*/   USHORT i;
-/*N*/   for (i=ATTR_PATTERN_START; i<=ATTR_PATTERN_END && !bSet; i++)
+/*N*/   for (USHORT i=ATTR_PATTERN_START; i<=ATTR_PATTERN_END && !bSet; i++)
 /*N*/       if (pSet->GetItemState(i) == SFX_ITEM_SET)
 /*N*/           bSet = TRUE;
 /*N*/

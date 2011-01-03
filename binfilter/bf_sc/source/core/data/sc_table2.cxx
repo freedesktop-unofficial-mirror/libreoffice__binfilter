@@ -459,10 +459,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::SetString( USHORT nCol, USHORT nRow, USHORT nTab, const String& rString )
+/*N*/ BOOL ScTable::SetString( USHORT nCol, USHORT nRow, USHORT nInTab, const String& rString )
 /*N*/ {
 /*N*/   if (ValidColRow(nCol,nRow))
-/*N*/       return aCol[nCol].SetString( nRow, nTab, rString );
+/*N*/       return aCol[nCol].SetString( nRow, nInTab, rString );
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }
@@ -499,9 +499,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/       rString.Erase();
 /*N*/ }
 
-/*N*/ double ScTable::GetValue( USHORT nCol, USHORT nRow )
+/*N*/ double ScTable::GetValue( USHORT, USHORT )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;//STRIP001 if (ValidColRow( nCol, nRow ))
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote)
@@ -580,7 +580,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ void ScTable::SetDirty( const ScRange& rRange )
+/*N*/ void ScTable::SetDirty( const ScRange& )
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOldAutoCalc = pDocument->GetAutoCalc();
 /*N*/ }
@@ -887,17 +887,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ void ScTable::MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner, ScLineFlags& rFlags,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow ) const
+/*N*/ void ScTable::MergeBlockFrame( SvxBoxItem*, SvxBoxInfoItem*, ScLineFlags&,
+/*N*/                   USHORT, USHORT, USHORT, USHORT ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow )
+/*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem*, const SvxBoxInfoItem*,
+/*N*/                   USHORT, USHORT, USHORT, USHORT )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1121,7 +1121,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 
 
 /*N*/ BOOL ScTable::SetRowHeightRange( USHORT nStartRow, USHORT nEndRow, USHORT nNewHeight,
-/*N*/                                   double nPPTX,double nPPTY )
+/*N*/                                   double /*nPPTX*/,double nPPTY )
 /*N*/ {
 /*N*/   BOOL bChanged = FALSE;
 /*N*/   if (VALIDROW(nStartRow) && VALIDROW(nEndRow) && pRowHeight)
@@ -1442,10 +1442,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, BOOL bShow )
+/*N*/ BOOL ScTable::UpdateOutlineCol( USHORT /*nStartCol*/, USHORT /*nEndCol*/, BOOL /*bShow*/ )
 /*N*/ {
 /*N*/   if (pOutlineTable && pColFlags)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return pOutlineTable->GetColArray()->ManualAction( nStartCol, nEndCol, bShow, pColFlags );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }

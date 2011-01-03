@@ -130,7 +130,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* ScMergeAttr::Create( SvStream& rStream, USHORT nVer ) const
+/*N*/ SfxPoolItem* ScMergeAttr::Create( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   INT16   nCol;
 /*N*/   INT16   nRow;
@@ -141,7 +141,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& ScMergeAttr::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScMergeAttr::Store( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   rStream << nColMerge;
 /*N*/   rStream << nRowMerge;
@@ -305,7 +305,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* ScProtectionAttr::Create( SvStream& rStream, USHORT n ) const
+/*N*/ SfxPoolItem* ScProtectionAttr::Create( SvStream& rStream, USHORT /*n*/ ) const
 /*N*/ {
 /*N*/   BOOL bProtect;
 /*N*/   BOOL bHFormula;
@@ -322,7 +322,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& ScProtectionAttr::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScProtectionAttr::Store( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   rStream << bProtection;
 /*N*/   rStream << bHideFormula;
@@ -373,14 +373,14 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ USHORT ScRangeItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScRangeItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   return 2;
 /*N*/ }
 
 //-----------------------------------------------------------------------
 
-/*N*/ SvStream& ScRangeItem::Store( SvStream& rStrm, USHORT nVer ) const
+/*N*/ SvStream& ScRangeItem::Store( SvStream& rStrm, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   rStrm << aRange;
 /*N*/   rStrm << nFlags;
@@ -523,7 +523,7 @@ using namespace ::com::sun::star;
 
 //-----------------------------------------------------------------------
 
-/*N*/ SvStream& ScTableListItem::Store( SvStream& rStrm, USHORT nVer ) const
+/*N*/ SvStream& ScTableListItem::Store( SvStream& rStrm, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   rStrm << nCount;
 /*N*/
@@ -558,7 +558,7 @@ using namespace ::com::sun::star;
 /*N*/   pNewItem = new ScTableListItem( Which(), aList );
 /*N*/
 /*N*/   aList.First();
-/*N*/   while ( p = (USHORT*)aList.Remove() )
+/*N*/   while (( p = (USHORT*)aList.Remove() ))
 /*N*/       delete p;
 /*N*/
 /*N*/   return pNewItem;
@@ -626,7 +626,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ bool ScPageHFItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool ScPageHFItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent =
 /*N*/       new ScHeaderFooterContentObj( pLeftArea, pCenterArea, pRightArea );
@@ -635,7 +635,7 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool ScPageHFItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool ScPageHFItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   bool bRet = false;
 /*N*/   uno::Reference<sheet::XHeaderFooterContent> xContent;
@@ -713,7 +713,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ USHORT ScPageHFItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScPageHFItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   // 0 = ohne Feldbefehle
 /*N*/   // 1 = Titel bzw. Dateiname mit SvxFileField
@@ -885,9 +885,9 @@ using namespace ::com::sun::star;
 /*N*/   BOOL            ConvertFields();
 /*N*/ };
 /*N*/
-/*N*/ ScFieldChangerEditEngine::ScFieldChangerEditEngine( SfxItemPool* pEnginePool,
-/*N*/           BOOL bDeleteEnginePool ) :
-/*N*/       ScEditEngineDefaulter( pEnginePool, bDeleteEnginePool ),
+/*N*/ ScFieldChangerEditEngine::ScFieldChangerEditEngine( SfxItemPool* pInEnginePool,
+/*N*/           BOOL bInDeleteEnginePool ) :
+/*N*/       ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool ),
 /*N*/       aExtFileId( TYPE( SvxExtFileField ) ),
 /*N*/       nConvPara( 0 ),
 /*N*/       nConvPos( 0 ),
@@ -896,7 +896,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 /*N*/
 /*N*/ String ScFieldChangerEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/           USHORT nPara, USHORT nPos, Color*& rTxtColor, Color*& rFldColor )
+/*N*/           USHORT nPara, USHORT nPos, Color*& /*rTxtColor*/, Color*& /*rFldColor*/ )
 /*N*/ {
 /*N*/   const SvxFieldData* pFieldData = rField.GetField();
 /*N*/   if ( pFieldData && pFieldData->Type() == aExtFileId )
@@ -939,7 +939,7 @@ using namespace ::com::sun::star;
 /*N*/       pArea->Store( rStream );
 /*N*/ }
 
-/*N*/ SvStream& ScPageHFItem::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScPageHFItem::Store( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   if ( pLeftArea && pCenterArea && pRightArea )
 /*N*/   {
@@ -1077,7 +1077,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ USHORT ScViewObjectModeItem::GetVersion( USHORT nFileVersion ) const
+/*N*/ USHORT ScViewObjectModeItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -1145,7 +1145,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* ScDoubleItem::Create( SvStream& rStream, USHORT nVer ) const
+/*N*/ SfxPoolItem* ScDoubleItem::Create( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   double nTmp=0;
 /*N*/   rStream >> nTmp;
@@ -1157,7 +1157,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& ScDoubleItem::Store( SvStream& rStream, USHORT nVer ) const
+/*N*/ SvStream& ScDoubleItem::Store( SvStream& rStream, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   rStream << nValue;
 /*N*/

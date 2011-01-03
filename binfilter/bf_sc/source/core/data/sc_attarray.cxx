@@ -284,7 +284,7 @@ namespace binfilter {
 
 /*N*/ void ScAttrArray::SetPatternArea(USHORT nStartRow, USHORT nEndRow, const ScPatternAttr *pPattern, BOOL bPutToPool )
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       if (bPutToPool)
 /*N*/           pPattern = (const ScPatternAttr*) &pDocument->GetPool()->Put(*pPattern);
@@ -466,7 +466,7 @@ namespace binfilter {
 
 /*N*/ void ScAttrArray::ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, ScStyleSheet* pStyle )
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       short nPos;
 /*N*/       USHORT nStart=0;
@@ -552,7 +552,7 @@ namespace binfilter {
 /*N*/   TestData();
 /*N*/ #endif
 /*N*/
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       short nPos;
 /*N*/       USHORT nStart=0;
@@ -678,7 +678,7 @@ namespace binfilter {
 /*N*/ void ScAttrArray::MergePatternArea( USHORT nStartRow, USHORT nEndRow,
 /*N*/                                   SfxItemSet** ppSet, BOOL bDeep ) const
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       const ScPatternAttr* pOld1 = NULL;
 /*N*/       const ScPatternAttr* pOld2 = NULL;

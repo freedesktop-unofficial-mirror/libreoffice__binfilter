@@ -508,20 +508,16 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void ScDocument::Fill(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark,
-/*N*/                       USHORT nFillCount, FillDir eFillDir, FillCmd eFillCmd, FillDateCmd eFillDateCmd,
-/*N*/                       double nStepValue, double nMaxValue)
+/*N*/ void ScDocument::Fill(USHORT, USHORT, USHORT, USHORT, const ScMarkData&, USHORT, FillDir, FillCmd, FillDateCmd, double, double)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nCol1, nCol2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ void ScDocument::AutoFormat( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-/*N*/                                   USHORT nFormatNo, const ScMarkData& rMark )
+/*N*/ void ScDocument::AutoFormat( USHORT, USHORT, USHORT, USHORT, USHORT, const ScMarkData& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutInOrder( nStartCol, nEndCol );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
 
 //  Outline anpassen
 
@@ -543,20 +539,16 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void ScDocument::Sort(USHORT nTab, const ScSortParam& rSortParam, BOOL bKeepQuery)
+/*N*/ void ScDocument::Sort(USHORT, const ScSortParam&, BOOL)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ USHORT ScDocument::Query(USHORT nTab, const ScQueryParam& rQueryParam, BOOL bKeepSub)
+/*N*/ USHORT ScDocument::Query(USHORT, const ScQueryParam&, BOOL)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nTab<=MAXTAB && pTab[nTab] )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
-
-
-
-
 
 /*N*/ BOOL ScDocument::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, USHORT nTab, ScQueryParam& rQueryParam)
 /*N*/ {
@@ -567,10 +559,9 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::HasColHeader( USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow,
-/*N*/                                   USHORT nTab )
+/*N*/ BOOL ScDocument::HasColHeader( USHORT, USHORT, USHORT, USHORT, USHORT )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 

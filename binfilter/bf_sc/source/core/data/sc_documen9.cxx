@@ -133,9 +133,9 @@ namespace binfilter {
 /*N*/           pDrawLayer->ScAddPage( nTab );      // always add page, with or without the table
 /*N*/           if (pTab[nTab])
 /*N*/           {
-/*N*/               String aName;
-/*N*/               pTab[nTab]->GetName(aName);
-/*N*/               pDrawLayer->ScRenamePage( nTab, aName );
+/*N*/               String aLclName;
+/*N*/               pTab[nTab]->GetName(aLclName);
+/*N*/               pDrawLayer->ScRenamePage( nTab, aLclName );
 /*N*/
 /*N*/               pTab[nTab]->SetDrawPageSize();  // #54782# sofort die richtige Groesse
 /*N*/           }
@@ -363,11 +363,11 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocument::IsPrintEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-/*N*/                               USHORT nEndCol, USHORT nEndRow, BOOL bLeftIsEmpty,
-/*N*/                               ScRange* pLastRange, Rectangle* pLastMM ) const
+/*N*/ BOOL ScDocument::IsPrintEmpty( USHORT, USHORT, USHORT,
+/*N*/                               USHORT, USHORT, BOOL,
+/*N*/                               ScRange*, Rectangle* ) const
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (!IsBlockEmpty( nTab, nStartCol, nStartRow, nEndCol, nEndRow ))
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 

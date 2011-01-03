@@ -140,7 +140,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/            StrCmp( GetStyleName(), ((const ScPatternAttr&)rCmp).GetStyleName() ) );
 /*N*/ }
 
-/*N*/ SfxPoolItem* ScPatternAttr::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* ScPatternAttr::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   String* pStr;
 /*N*/   BOOL    bHasStyle;
@@ -157,18 +157,18 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   else
 /*N*/       pStr = new String( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) );
 /*N*/
-/*N*/   SfxItemSet *pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet *pLclSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                      ATTR_PATTERN_START, ATTR_PATTERN_END );
-/*N*/   pSet->Load( rStream );
+/*N*/   pLclSet->Load( rStream );
 /*N*/
-/*N*/   ScPatternAttr* pPattern = new ScPatternAttr( pSet );
+/*N*/   ScPatternAttr* pPattern = new ScPatternAttr( pLclSet );
 /*N*/
 /*N*/   pPattern->pName = pStr;
 /*N*/
 /*N*/   return pPattern;
 /*N*/ }
 
-/*N*/ SvStream& ScPatternAttr::Store(SvStream& rStream, USHORT nItemVersion) const
+/*N*/ SvStream& ScPatternAttr::Store(SvStream& rStream, USHORT /*nItemVersion*/) const
 /*N*/ {
 /*N*/   rStream << (BOOL)TRUE;
 /*N*/
@@ -1005,7 +1005,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ BOOL ScPatternAttr::IsVisible() const
 /*N*/ {
 /*N*/   const SfxItemSet& rSet = GetItemSet();
-/*N*/   const SfxItemPool* pPool = rSet.GetPool();
+/*N*/   /*const SfxItemPool* pPool =*/ rSet.GetPool();
 /*N*/
 /*N*/   const SfxPoolItem* pItem;
 /*N*/   SfxItemState eState;

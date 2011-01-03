@@ -329,10 +329,10 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/       return FALSE;
 /*N*/ }
 
-/*N*/ SchMemChart* ScDocument::FindChartData(const String& rName, BOOL bForModify)
+/*N*/ SchMemChart* ScDocument::FindChartData(const String&, BOOL)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (!pDrawLayer)
-/*N*/   return NULL;                            // nix
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
+/*N*/   return NULL;
 /*N*/ }
 
 
