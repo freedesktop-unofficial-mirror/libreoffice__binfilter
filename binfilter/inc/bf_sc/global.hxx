@@ -120,29 +120,54 @@ struct LabelData;
                                         // Oberhalb dieser Grenze liegen
                                         // die Indizes fuer DBBereiche
 
-#define VALIDROW(nRow)                  (nRow>=0 && nRow<=MAXROW)
-#define VALIDCOL(nCol)                  (nCol>=0 && nCol<=MAXCOL)
-#define VALIDTAB(nTab)                  (nTab>=0 && nTab<=MAXTAB)
-#define VALIDCOLROW(nCol,nRow)          (VALIDCOL(nCol) && VALIDROW(nRow))
-#define VALIDCOLROWTAB(nCol,nRow,nTab)  (VALIDCOL(nCol) && VALIDROW(nRow) && VALIDTAB(nTab))
+inline bool ValidRow(short nRow)
+{
+    return (nRow>=0 && nRow<=MAXROW);
+}
 
-inline BOOL ValidColRow(USHORT nCol, USHORT nRow)
+inline bool ValidRow(USHORT nRow)
+{
+    return (nRow<=MAXROW);
+}
+
+#define VALIDROW(nRow) (ValidRow(nRow))
+
+inline bool ValidCol(short nCol)
+{
+    return (nCol>=0 && nCol<=MAXCOL);
+}
+
+inline bool ValidCOL(USHORT nCol)
+{
+    return (nCol<=MAXCOL);
+}
+
+#define VALIDCOL(nCol) (ValidCol(nCol))
+
+inline bool ValidTab(short nTab)
+{
+    return (nTab>=0 && nTab<=MAXTAB);
+}
+
+inline bool ValidTab(USHORT nTab)
+{
+    return (nTab<=MAXTAB);
+}
+
+#define VALIDTAB(nTab) (ValidTab(nTab))
+
+#define VALIDCOLROW(nCol,nRow) (VALIDCOL(nCol) && VALIDROW(nRow))
+#define VALIDCOLROWTAB(nCol,nRow,nTab) (VALIDCOL(nCol) && VALIDROW(nRow) && VALIDTAB(nTab))
+
+inline bool ValidColRow(USHORT nCol, USHORT nRow)
 {
     return nCol <= MAXCOL && nRow <= MAXROW;
 }
 
-inline BOOL ValidColRowTab(USHORT nCol, USHORT nRow, USHORT nTab)
+inline bool ValidColRowTab(USHORT nCol, USHORT nRow, USHORT nTab)
 {
     return nCol <= MAXCOL && nRow <= MAXROW && nTab <= MAXTAB;
 }
-
-/*
-#ifdef OS2
-#define PIXEL_PER_INCH      72.0
-#else
-#define PIXEL_PER_INCH      96.0
-#endif
-*/
 
 #define PIXEL_PER_INCH      96.0
 

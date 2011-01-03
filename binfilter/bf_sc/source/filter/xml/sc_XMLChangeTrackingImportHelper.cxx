@@ -786,6 +786,8 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
                     pAction = CreateRejectionAction(static_cast<ScMyRejAction*>(*aItr));
                 }
                 break;
+                default:
+                break;
             }
 
             if (pAction)
