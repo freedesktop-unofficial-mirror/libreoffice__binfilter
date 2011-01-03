@@ -265,28 +265,28 @@ ScXMLExport::ScXMLExport(
     const sal_uInt16 nExportFlag)
 :   SvXMLExport( xServiceFactory, SvXMLUnitConverter::GetMapUnit(GetFieldUnit()), XML_SPREADSHEET, nExportFlag ),
     pDoc(NULL),
-    mbShowProgress( sal_False ),
+    pNumberFormatAttributesExportHelper(NULL),
     pSharedData(NULL),
     pColumnStyles(NULL),
     pRowStyles(NULL),
     pCellStyles(NULL),
-    pMergedRangesContainer(NULL),
-    pValidationsContainer(NULL),
     pRowFormatRanges(NULL),
-    pCellsItr(NULL),
-    pChangeTrackingExportHelper(NULL),
-    pDefaults(NULL),
-    pNumberFormatAttributesExportHelper(NULL),
+    aTableStyles(),
     pGroupColumns (NULL),
     pGroupRows (NULL),
-    nOpenRow(-1),
-    nCurrentTable(0),
-    aTableStyles(),
-    bHasRowHeader(sal_False),
-    bRowHeaderOpen(sal_False),
+    pDefaults(NULL),
+    pChartListener(NULL),
+    pMergedRangesContainer(NULL),
+    pValidationsContainer(NULL),
+    pCellsItr(NULL),
+    pChangeTrackingExportHelper(NULL),
     sLayerID(RTL_CONSTASCII_USTRINGPARAM( SC_LAYERID )),
     sCaptionShape(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.CaptionShape")),
-    pChartListener(NULL)
+    nOpenRow(-1),
+    nCurrentTable(0),
+    bHasRowHeader(sal_False),
+    bRowHeaderOpen(sal_False),
+    mbShowProgress( sal_False )
 {
     if (getExportFlags() & EXPORT_CONTENT)
     {
@@ -583,7 +583,7 @@ void ScXMLExport::_ExportFontDecls()
     SvXMLExport::_ExportFontDecls();
 }
 
-table::CellRangeAddress ScXMLExport::GetEndAddress(uno::Reference<sheet::XSpreadsheet>& xTable,const sal_uInt16 nTable)
+table::CellRangeAddress ScXMLExport::GetEndAddress(uno::Reference<sheet::XSpreadsheet>& xTable,const sal_uInt16 /*nTable*/)
 {
     table::CellRangeAddress aCellAddress;
     uno::Reference<sheet::XSheetCellCursor> xCursor = xTable->createCursor();
@@ -922,7 +922,7 @@ void ScXMLExport::WriteRowStartTag(sal_Int32 nRow, const sal_Int32 nIndex,
     }
 
     const ScMyDefaultStyleList& rRowDefaults = *pDefaults->GetRowDefaults();
-    if ( nRow >= rRowDefaults.size() )
+    if ( nRow >= sal::static_int_cast<sal_Int32>(rRowDefaults.size()) )
     {
         // #i61888# used to happen with detective operations - if there are more cases, use the last row's style
         DBG_ERRORFILE("WriteRowStartTag: not enough defaults");
@@ -1162,14 +1162,14 @@ sal_Bool ScXMLExport::GetColumnHeader(::com::sun::star::table::CellRangeAddress&
     return bResult;
 }
 
-sal_Bool ScXMLExport::GetRowHeader(::com::sun::star::table::CellRangeAddress& aRowHeaderRange) const
+sal_Bool ScXMLExport::GetRowHeader(::com::sun::star::table::CellRangeAddress& rRowHeaderRange) const
 {
     sal_Bool bResult(sal_False);
     uno::Reference <sheet::XPrintAreas> xPrintAreas (xCurrentTable, uno::UNO_QUERY);
     if (xPrintAreas.is())
     {
         bResult = xPrintAreas->getPrintTitleRows();
-        aRowHeaderRange = xPrintAreas->getTitleRows();
+        rRowHeaderRange = xPrintAreas->getTitleRows();
     }
     return bResult;
 }
@@ -1309,6 +1309,7 @@ void ScXMLExport::_ExportContent()
                                 GetFormExport()->exportForms( xDrawPage );
                                 sal_Bool bRet = GetFormExport()->seekPage( xDrawPage );
                                 DBG_ASSERT( bRet, "OFormLayerXMLExport::seekPage failed!" );
+                                (void)bRet;
                             }
                             if (pSharedData->HasDrawPage())
                             {
@@ -2140,7 +2141,7 @@ void ScXMLExport::WriteCell (ScMyCell& aCell)
         }
         else
         {
-            SvXMLElementExport aElemC(*this, sElemP, sal_True, sal_False);
+            SvXMLElementExport aElemD(*this, sElemP, sal_True, sal_False);
             sal_Bool bPrevCharWasSpace(sal_True);
               if (GetCellText(aCell))
                 GetTextParagraphExport()->exportText(aCell.sStringValue, bPrevCharWasSpace);
@@ -2159,9 +2160,9 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
     ::rtl::OUString sPersistName (RTL_CONSTASCII_USTRINGPARAM("PersistName"));
     if (xShapeProps.is())
     {
-        uno::Any aAny = xShapeProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ZOrder")));
+        uno::Any aTmpAny = xShapeProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ZOrder")));
         sal_Int32 nZOrder;
-        if (aAny >>= nZOrder)
+        if (aTmpAny >>= nZOrder)
         {
             ::rtl::OUStringBuffer sBuffer;
             GetMM100UnitConverter().convertNumber(sBuffer, nZOrder);
@@ -2212,15 +2213,6 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
                             GetShapeExport()->exportShape(xShape, SEF_EXPORT_NO_CHART_DATA | SEF_DEFAULT, pPoint);
                         }
                     }
-/*                  SchMemChart* pMemChart = pDoc->FindChartData(sName);
-                    if (pMemChart && pMemChart->GetSeriesAddresses().getLength())
-                    {
-                        bMemChart = sal_True;
-                        ::rtl::OUString sRanges(pMemChart->getXMLStringForChartRange());
-                        if (sRanges.getLength())
-                            AddAttribute(XML_NAMESPACE_DRAW, XML_NOTIFY_ON_UPDATE_OF_RANGES, sRanges);
-                        GetShapeExport()->exportShape(xShape, SEF_EXPORT_NO_CHART_DATA | SEF_DEFAULT, pPoint);
-                    }*/
                 }
             }
         }
@@ -2400,9 +2392,9 @@ void ScXMLExport::WriteDetective( const ScMyCell& rMyCell )
             OUStringBuffer aBuffer;
             for( ScMyDetectiveOpVec::const_iterator aOpItr = rOpVec.begin(); aOpItr != rOpVec.end(); ++aOpItr )
             {
-                OUString sString;
-                ScXMLConverter::GetStringFromDetOpType( sString, aOpItr->eOpType );
-                AddAttribute( XML_NAMESPACE_TABLE, XML_NAME, sString );
+                OUString sLclString;
+                ScXMLConverter::GetStringFromDetOpType( sLclString, aOpItr->eOpType );
+                AddAttribute( XML_NAMESPACE_TABLE, XML_NAME, sLclString );
                 SvXMLUnitConverter::convertNumber( aBuffer, aOpItr->nIndex );
                 AddAttribute( XML_NAMESPACE_TABLE, XML_INDEX, aBuffer.makeStringAndClear() );
                 SvXMLElementExport aRangeElem( *this, XML_NAMESPACE_TABLE, XML_OPERATION, sal_True, sal_True );
@@ -2514,8 +2506,8 @@ sal_Bool ScXMLExport::IsCellEqual (ScMyCell& aCell1, ScMyCell& aCell2)
         {
             if (!aCell1.bHasAnnotation || (aCell1.bHasAnnotation && IsAnnotationEqual(aCell1.xCell, aCell2.xCell)))
             {
-                if (((aCell1.nStyleIndex == aCell2.nStyleIndex) && (aCell1.bIsAutoStyle == aCell2.bIsAutoStyle) ||
-                    (aCell1.nStyleIndex == aCell2.nStyleIndex) && (aCell1.nStyleIndex == -1)) &&
+                if ((((aCell1.nStyleIndex == aCell2.nStyleIndex) && (aCell1.bIsAutoStyle == aCell2.bIsAutoStyle)) ||
+                    ((aCell1.nStyleIndex == aCell2.nStyleIndex) && (aCell1.nStyleIndex == -1))) &&
                     (aCell1.nValidationIndex == aCell2.nValidationIndex) &&
                     IsCellTypeEqual(aCell1, aCell2))
                 {

@@ -279,7 +279,7 @@ void ScXMLExportDataPilot::WriteDPFilter(const ScQueryParam& aQueryParam)
     }
 }
 
-void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreadsheetDocument>& xSpreadDoc)
+void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreadsheetDocument>& /*xSpreadDoc*/)
 {
     pDoc = rExport.GetDocument();
     if (pDoc)
@@ -451,11 +451,11 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
                                     for (sal_Int32 nMember = 0; nMember < nMemberCount; nMember++)
                                     {
                                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NAME, ::rtl::OUString(((ScDPSaveMember*)aMembers.GetObject(nMember))->GetName()));
-                                        ::rtl::OUStringBuffer sBuffer;
-                                        SvXMLUnitConverter::convertBool(sBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetIsVisible());
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY, sBuffer.makeStringAndClear());
-                                        SvXMLUnitConverter::convertBool(sBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetShowDetails());
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_DETAILS, sBuffer.makeStringAndClear());
+                                        ::rtl::OUStringBuffer sTmpBuffer;
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetIsVisible());
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY, sTmpBuffer.makeStringAndClear());
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetShowDetails());
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_DETAILS, sTmpBuffer.makeStringAndClear());
                                         SvXMLElementExport aElemDPM(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBER, sal_True, sal_True);
                                         rExport.CheckAttrList();
                                     }

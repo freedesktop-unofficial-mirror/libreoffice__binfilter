@@ -70,60 +70,60 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
+ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       const sal_Bool bTempIsCovered,
                                       const sal_Int32 nTempRepeatedRows ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    bIsMerged(sal_False),
-    bIsMatrix(sal_False),
-    bHasSubTable(sal_False),
-    bIsCovered(bTempIsCovered),
-    nRepeatedRows(nTempRepeatedRows),
-    bIsEmpty(sal_True),
-    bHasTextImport(sal_False),
-    bIsFirstTextImport(sal_False),
-    pDetectiveObjVec(NULL),
-    pCellRangeSource(NULL),
-    pMyAnnotation(NULL),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     pOUTextValue(NULL),
     pOUTextContent(NULL),
     pOUFormula(NULL),
     pContentValidationName(NULL),
-    nCellType(util::NumberFormat::TEXT),
-    nMergedCols(1),
-    nMergedRows(1),
-    nCellsRepeated(1),
+    pMyAnnotation(NULL),
+    pDetectiveObjVec(NULL),
+    pCellRangeSource(NULL),
     fValue(0.0),
-    rXMLImport((ScXMLImport&)rImport),
+    nMergedRows(1),
+    nMergedCols(1),
+    nRepeatedRows(nTempRepeatedRows),
+    nCellsRepeated(1),
+    rXMLImport((ScXMLImport&)rInImport),
+    nCellType(util::NumberFormat::TEXT),
+    bIsMerged(sal_False),
+    bIsMatrix(sal_False),
+    bHasSubTable(sal_False),
+    bIsCovered(bTempIsCovered),
+    bIsEmpty(sal_True),
+    bHasTextImport(sal_False),
+    bIsFirstTextImport(sal_False),
     bSolarMutexLocked(sal_False),
     bFormulaTextResult(sal_False)
 {
     rXMLImport.SetRemoveLastChar(sal_False);
     rXMLImport.GetTables().AddColumn(bTempIsCovered);
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
-    ::rtl::OUString aLocalName;
+    ::rtl::OUString aLclLocalName;
     ::rtl::OUString sValue;
     ::rtl::OUString* pStyleName = NULL;
     ::rtl::OUString* pCurrencySymbol = NULL;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
-        sal_uInt16 nPrefix = rXMLImport.GetNamespaceMap().GetKeyByAttrName(
-                                            xAttrList->getNameByIndex( i ), &aLocalName );
+        sal_uInt16 nLclPrefix = rXMLImport.GetNamespaceMap().GetKeyByAttrName(
+                                            xAttrList->getNameByIndex( i ), &aLclLocalName );
         sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            sal_uInt32 nLength(aLocalName.getLength());
+            sal_uInt32 nLength(aLclLocalName.getLength());
 
             switch (nLength)
             {
             case 5 :
                 {
-                    if (IsXMLToken(aLocalName, XML_VALUE))
+                    if (IsXMLToken(aLclLocalName, XML_VALUE))
                     {
                         if (sValue.getLength())
                         {
@@ -135,7 +135,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 7 :
                 {
-                    if (IsXMLToken(aLocalName, XML_FORMULA))
+                    if (IsXMLToken(aLclLocalName, XML_FORMULA))
                     {
                         if (sValue.getLength())
                         {
@@ -147,20 +147,20 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 8 :
                 {
-                    if (IsXMLToken(aLocalName, XML_CURRENCY))
+                    if (IsXMLToken(aLclLocalName, XML_CURRENCY))
                         pCurrencySymbol = new ::rtl::OUString(sValue);
                 }
                 break;
             case 10 :
                 {
-                    if (IsXMLToken(aLocalName, XML_VALUE_TYPE))
+                    if (IsXMLToken(aLclLocalName, XML_VALUE_TYPE))
                     {
                         nCellType = GetCellType(sValue);
                         bIsEmpty = sal_False;
                     }
-                    else if (IsXMLToken(aLocalName, XML_STYLE_NAME))
+                    else if (IsXMLToken(aLclLocalName, XML_STYLE_NAME))
                         pStyleName = new ::rtl::OUString(sValue);
-                    else if (IsXMLToken(aLocalName, XML_DATE_VALUE))
+                    else if (IsXMLToken(aLclLocalName, XML_DATE_VALUE))
                     {
                         if (sValue.getLength() && rXMLImport.SetNullDateOnUnitConverter())
                         {
@@ -168,7 +168,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                             bIsEmpty = sal_False;
                         }
                     }
-                    else if (IsXMLToken(aLocalName, XML_TIME_VALUE))
+                    else if (IsXMLToken(aLclLocalName, XML_TIME_VALUE))
                     {
                         if (sValue.getLength())
                         {
@@ -180,7 +180,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 12 :
                 {
-                    if (IsXMLToken(aLocalName, XML_STRING_VALUE))
+                    if (IsXMLToken(aLclLocalName, XML_STRING_VALUE))
                     {
                         if (sValue.getLength())
                         {
@@ -193,7 +193,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 13 :
                 {
-                    if (IsXMLToken(aLocalName, XML_BOOLEAN_VALUE))
+                    if (IsXMLToken(aLclLocalName, XML_BOOLEAN_VALUE))
                     {
                         if (sValue.getLength())
                         {
@@ -210,7 +210,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 15 :
                 {
-                    if (IsXMLToken(aLocalName, XML_CONTENT_VALIDATION_NAME)) //#109340# the string in this constant is different to the name; should be changed ASAP
+                    if (IsXMLToken(aLclLocalName, XML_CONTENT_VALIDATION_NAME)) //#109340# the string in this constant is different to the name; should be changed ASAP
                     {
                         DBG_ASSERT(!pContentValidationName, "here should be only one Validation Name");
                         pContentValidationName = new ::rtl::OUString(sValue);
@@ -219,7 +219,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 19 :
                 {
-                    if (IsXMLToken(aLocalName, XML_NUMBER_ROWS_SPANNED))
+                    if (IsXMLToken(aLclLocalName, XML_NUMBER_ROWS_SPANNED))
                     {
                         bIsMerged = sal_True;
                         nMergedRows = sValue.toInt32();
@@ -228,7 +228,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 22 :
                 {
-                    if (IsXMLToken(aLocalName, XML_NUMBER_COLUMNS_SPANNED))
+                    if (IsXMLToken(aLclLocalName, XML_NUMBER_COLUMNS_SPANNED))
                     {
                         bIsMerged = sal_True;
                         nMergedCols = sValue.toInt32();
@@ -237,13 +237,13 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 23 :
                 {
-                    if (IsXMLToken(aLocalName, XML_NUMBER_COLUMNS_REPEATED))
+                    if (IsXMLToken(aLclLocalName, XML_NUMBER_COLUMNS_REPEATED))
                         nCellsRepeated = sValue.toInt32();
                 }
                 break;
             case 26 :
                 {
-                    if (IsXMLToken(aLocalName, XML_NUMBER_MATRIX_ROWS_SPANNED))
+                    if (IsXMLToken(aLclLocalName, XML_NUMBER_MATRIX_ROWS_SPANNED))
                     {
                         bIsMatrix = sal_True;
                         nMatrixRows = sValue.toInt32();
@@ -252,7 +252,7 @@ ScXMLTableRowCellContext::ScXMLTableRowCellContext( ScXMLImport& rImport,
                 break;
             case 29 :
                 {
-                    if (IsXMLToken(aLocalName, XML_NUMBER_MATRIX_COLUMNS_SPANNED))
+                    if (IsXMLToken(aLclLocalName, XML_NUMBER_MATRIX_COLUMNS_SPANNED))
                     {
                         bIsMatrix = sal_True;
                         nMatrixCols = sValue.toInt32();
@@ -365,7 +365,7 @@ void ScXMLTableRowCellContext::SetCursorOnTextImport(const ::rtl::OUString& rOUT
         DBG_ERRORFILE("this method should only be called for a existing cell");
 }
 
-SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -373,9 +373,8 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = rXMLImport.GetTableRowCellElemTokenMap();
-    sal_Bool bHeader(sal_False);
     sal_Bool bTextP(sal_False);
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
     case XML_TOK_TABLE_ROW_CELL_P:
         {
@@ -389,12 +388,12 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
                 {
                     bIsFirstTextImport = sal_True;
                     bHasTextImport = sal_True;
-                    pContext = new ScXMLTextPContext(rXMLImport, nPrefix, rLName, xAttrList, this);
+                    pContext = new ScXMLTextPContext(rXMLImport, nInPrefix, rLName, xAttrList, this);
                 }
                 else
                 {
-                    ::com::sun::star::table::CellAddress aCellPos = rXMLImport.GetTables().GetRealCellPos();
-                    if (CellExists(aCellPos))
+                    ::com::sun::star::table::CellAddress aLclCellPos = rXMLImport.GetTables().GetRealCellPos();
+                    if (CellExists(aLclCellPos))
                     {
                         if (bIsFirstTextImport && !rXMLImport.GetRemoveLastChar())
                         {
@@ -414,7 +413,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
                                 xText->insertControlCharacter(xTextRange, text::ControlCharacter::PARAGRAPH_BREAK, sal_False);
                         }
                         pContext = rXMLImport.GetTextImport()->CreateTextChildContext(
-                            rXMLImport, nPrefix, rLName, xAttrList);
+                            rXMLImport, nInPrefix, rLName, xAttrList);
                         bIsFirstTextImport = sal_False;
                     }
                 }
@@ -424,7 +423,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
     case XML_TOK_TABLE_ROW_CELL_SUBTABLE:
         {
             bHasSubTable = sal_True;
-            pContext = new ScXMLTableContext( rXMLImport , nPrefix,
+            pContext = new ScXMLTableContext( rXMLImport , nInPrefix,
                                                         rLName, xAttrList,
                                                         sal_True, nMergedCols);
             nMergedCols = 1;
@@ -434,7 +433,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
     case XML_TOK_TABLE_ROW_CELL_ANNOTATION:
         {
             bIsEmpty = sal_False;
-            pContext = new ScXMLAnnotationContext( rXMLImport, nPrefix, rLName,
+            pContext = new ScXMLAnnotationContext( rXMLImport, nInPrefix, rLName,
                                                     xAttrList, this);
         }
         break;
@@ -444,7 +443,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
             if (!pDetectiveObjVec)
                 pDetectiveObjVec = new ScMyImpDetectiveObjVec();
             pContext = new ScXMLDetectiveContext(
-                rXMLImport, nPrefix, rLName, pDetectiveObjVec );
+                rXMLImport, nInPrefix, rLName, pDetectiveObjVec );
         }
         break;
     case XML_TOK_TABLE_ROW_CELL_CELL_RANGE_SOURCE:
@@ -453,7 +452,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
             if (!pCellRangeSource)
                 pCellRangeSource = new ScMyImpCellRangeSource();
             pContext = new ScXMLCellRangeSourceContext(
-                rXMLImport, nPrefix, rLName, xAttrList, pCellRangeSource );
+                rXMLImport, nInPrefix, rLName, xAttrList, pCellRangeSource );
         }
         break;
     }
@@ -472,7 +471,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
             pTableShapeImport->SetOnTable(sal_False);
             pTableShapeImport->SetCell(aCellPos);
             pContext = rXMLImport.GetShapeImport()->CreateGroupChildContext(
-                rXMLImport, nPrefix, rLName, xAttrList, xShapes);
+                rXMLImport, nInPrefix, rLName, xAttrList, xShapes);
             if (pContext)
             {
                 bIsEmpty = sal_False;
@@ -482,7 +481,7 @@ SvXMLImportContext *ScXMLTableRowCellContext::CreateChildContext( USHORT nPrefix
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

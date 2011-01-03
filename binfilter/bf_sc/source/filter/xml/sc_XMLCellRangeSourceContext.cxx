@@ -57,12 +57,12 @@ ScMyImpCellRangeSource::ScMyImpCellRangeSource() :
 //___________________________________________________________________
 
 ScXMLCellRangeSourceContext::ScXMLCellRangeSourceContext(
-        ScXMLImport& rImport,
+        ScXMLImport& rInImport,
         USHORT nPrfx,
         const OUString& rLName,
         const uno::Reference< xml::sax::XAttributeList >& xAttrList,
         ScMyImpCellRangeSource* pCellRangeSource ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     if( !xAttrList.is() ) return;
 
@@ -73,10 +73,10 @@ ScXMLCellRangeSourceContext::ScXMLCellRangeSourceContext(
     {
         OUString sAttrName  = xAttrList->getNameByIndex( nIndex );
         OUString sValue     = xAttrList->getValueByIndex( nIndex );
-        OUString aLocalName;
-        USHORT nPrefix      = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        USHORT nLclPrefix       = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_TABLE_CELL_RANGE_SOURCE_ATTR_NAME:
                 pCellRangeSource->sSourceStr = sValue;
@@ -124,11 +124,11 @@ ScXMLCellRangeSourceContext::~ScXMLCellRangeSourceContext()
 }
 
 SvXMLImportContext *ScXMLCellRangeSourceContext::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLName,
-        const uno::Reference< xml::sax::XAttributeList>& xAttrList )
+        const uno::Reference< xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 }
 
 void ScXMLCellRangeSourceContext::EndElement()

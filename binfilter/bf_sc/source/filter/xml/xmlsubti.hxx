@@ -166,7 +166,7 @@ public:
                                                 sal_Int32 nEndX, sal_Int32 nEndY);
 
     void                                AddMatrixRange(sal_uInt32 nStartColumn, sal_uInt32 nStartRow, sal_uInt32 nEndColumn, sal_uInt32 nEndRow);
-    sal_Bool                            IsPartOfMatrix(sal_uInt32 nColumn, sal_uInt32 nRow);
+    sal_Bool                            IsPartOfMatrix(sal_Int32 nColumn, sal_Int32 nRow);
 };
 
 } //namespace binfilter

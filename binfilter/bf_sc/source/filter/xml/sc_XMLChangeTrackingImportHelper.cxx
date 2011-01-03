@@ -44,10 +44,10 @@ ScMyCellInfo::ScMyCellInfo(ScBaseCell* pTempCell, const ::rtl::OUString& rFormul
     sFormulaAddress(rFormulaAddress),
     sFormula(rFormula),
     fValue(rValue),
-    nType(nTempType),
-    nMatrixFlag(nTempMatrixFlag),
     nMatrixCols(nTempMatrixCols),
-    nMatrixRows(nTempMatrixRows)
+    nMatrixRows(nTempMatrixRows),
+    nType(nTempType),
+    nMatrixFlag(nTempMatrixFlag)
 {
 }
 
@@ -124,17 +124,17 @@ ScMyBaseAction::~ScMyBaseAction()
 {
 }
 
-ScMyInsAction::ScMyInsAction(const ScChangeActionType nActionType)
-    : ScMyBaseAction(nActionType)
+ScMyInsAction::ScMyInsAction(const ScChangeActionType nInActionType)
+    : ScMyBaseAction(nInActionType)
 {
 }
 
-ScMyDelAction::ScMyDelAction(const ScChangeActionType nActionType)
-    : ScMyBaseAction(nActionType),
-    pInsCutOff(NULL),
-    aMoveCutOffs(),
-    aGeneratedList(),
-    nD(0)
+ScMyDelAction::ScMyDelAction(const ScChangeActionType nInActionType)
+    : ScMyBaseAction(nInActionType)
+    , aGeneratedList()
+    , pInsCutOff(NULL)
+    , aMoveCutOffs()
+    , nD(0)
 {
 }
 
@@ -145,9 +145,9 @@ ScMyDelAction::~ScMyDelAction()
 }
 
 ScMyMoveAction::ScMyMoveAction()
-    : ScMyBaseAction(SC_CAT_MOVE),
-    pMoveRanges(NULL),
-    aGeneratedList()
+    : ScMyBaseAction(SC_CAT_MOVE)
+    , aGeneratedList()
+    , pMoveRanges(NULL)
 {
 }
 
@@ -175,15 +175,15 @@ ScMyRejAction::ScMyRejAction()
 {
 }
 
-ScXMLChangeTrackingImportHelper::ScXMLChangeTrackingImportHelper()
-    : sIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX)),
-    aActions(),
+ScXMLChangeTrackingImportHelper::ScXMLChangeTrackingImportHelper() :
     aUsers(),
-    nMultiSpanned(0),
-    nMultiSpannedSlaveCount(0),
-    pCurrentAction(NULL),
+    aActions(),
     pDoc(NULL),
     pTrack(NULL),
+    pCurrentAction(NULL),
+    sIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX)),
+    nMultiSpanned(0),
+    nMultiSpannedSlaveCount(0),
     bChangeTrack(sal_False)
 {
     nPrefixLength = sIDPrefix.getLength();
@@ -226,6 +226,8 @@ void ScXMLChangeTrackingImportHelper::StartChangeAction(const ScChangeActionType
         {
             pCurrentAction = new ScMyRejAction();
         }
+        break;
+        default:
         break;
     }
 }
@@ -296,6 +298,8 @@ void ScXMLChangeTrackingImportHelper::SetPosition(const sal_Int32 nPosition, con
             pCurrentAction->aBigRange.Set(nInt32Min, nInt32Min, nPosition,
                                         nInt32Max, nInt32Max, nPosition + nCount - 1);
         }
+        break;
+        default:
         break;
     }
 }

@@ -88,7 +88,7 @@ void XMLTableMasterPageExport::exportHeaderFooter(const ::com::sun::star::uno::R
             if( !bDisplay )
                 GetExport().AddAttribute( XML_NAMESPACE_STYLE,
                                                 XML_DISPLAY, XML_FALSE );
-            SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+            SvXMLElementExport aScopedElem( GetExport(), XML_NAMESPACE_STYLE,
                                       aName, sal_True, sal_True );
             if (sCenter.getLength() && !sLeft.getLength() && !sRight.getLength())
                 exportHeaderFooterContent( xCenter, sal_False, sal_False );

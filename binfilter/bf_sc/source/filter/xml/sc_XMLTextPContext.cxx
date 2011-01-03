@@ -59,27 +59,27 @@ public:
 };
 
 
-ScXMLTextTContext::ScXMLTextTContext( ScXMLImport& rImport,
+ScXMLTextTContext::ScXMLTextTContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLTextPContext* pTextPContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     if (pTextPContext)
     {
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
-        ::rtl::OUString aLocalName;
+        ::rtl::OUString aLclLocalName;
         ::rtl::OUString sValue;
         sal_Int32 nCount(1);
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
-            sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                                xAttrList->getNameByIndex( i ), &aLocalName );
+            sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                                xAttrList->getNameByIndex( i ), &aLclLocalName );
             sValue = xAttrList->getValueByIndex( i );
 
-            if ((nPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(aLocalName, XML_C))
+            if ((nLclPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(aLclLocalName, XML_C))
                 nCount = sValue.toInt32();
         }
         pTextPContext->AddSpaces(nCount);
@@ -92,18 +92,18 @@ ScXMLTextTContext::~ScXMLTextTContext()
 
 //------------------------------------------------------------------
 
-ScXMLTextPContext::ScXMLTextPContext( ScXMLImport& rImport,
+ScXMLTextPContext::ScXMLTextPContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xTempAttrList,
                                       ScXMLTableRowCellContext* pTempCellContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    xAttrList(xTempAttrList),
     pTextPContext(NULL),
     pCellContext(pTempCellContext),
-    sOUText(),
     sLName(rLName),
-    xAttrList(xTempAttrList),
+    sOUText(),
     nPrefix(nPrfx),
     bIsOwn(sal_True)
 {

@@ -200,6 +200,8 @@ void ScXMLExportDatabaseRanges::WriteImportDescriptor(const uno::Sequence <beans
             rExport.CheckAttrList();
         }
         break;
+        default :
+        break;
     }
 }
 
@@ -252,6 +254,8 @@ rtl::OUString ScXMLExportDatabaseRanges::getOperatorXML(const sheet::FilterOpera
             break;
         case sheet::FilterOperator_TOP_VALUES :
             return GetXMLToken(XML_TOP_VALUES);
+            break;
+        default :
             break;
     }
     return ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("="));
@@ -419,7 +423,6 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
     uno::Sequence <table::TableSortField> aSortFields;
     sal_Bool bBindFormatsToContent (sal_True);
     sal_Bool bCopyOutputData (sal_False);
-    sal_Bool bIsCaseSensitive (sal_False);
     sal_Bool bIsUserListEnabled (sal_False);
     table::CellAddress aOutputPosition;
     sal_Int32 nUserListIndex = 0;
@@ -438,12 +441,6 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
             uno::Any aCopyOutputData = aSortProperties[i].Value;
             aCopyOutputData >>= bCopyOutputData;
         }
-//      no longer supported
-/*      else if (aSortProperties[i].Name.compareToAscii(SC_UNONAME_ISCASE) == 0)
-        {
-            uno::Any aIsCaseSensitive = aSortProperties[i].Value;
-            aIsCaseSensitive >>= bIsCaseSensitive;
-        }*/
         else if (aSortProperties[i].Name.compareToAscii(SC_UNONAME_ISULIST) == 0)
         {
             uno::Any aIsUserListEnabled = aSortProperties[i].Value;
@@ -543,6 +540,8 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
                     break;
                     case table::TableSortFieldType_NUMERIC :
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATA_TYPE, XML_NUMBER);
+                    break;
+                    default :
                     break;
                 }
             }
@@ -726,7 +725,7 @@ void ScXMLExportDatabaseRanges::WriteDatabaseRanges(const ::com::sun::star::uno:
 
                                     sal_Bool bSortColumns(sal_True);
                                     sal_Bool bFound(sal_False);
-                                    sal_uInt32 nProperty(0);
+                                    sal_Int32 nProperty(0);
                                     while (!bFound && (nProperty < aSortProperties.getLength()))
                                     {
                                         if (aSortProperties[nProperty].Name.compareToAscii(SC_UNONAME_ISSORTCOLUMNS) == 0)

@@ -50,16 +50,16 @@ using namespace xmloff::token;
 //___________________________________________________________________
 
 ScXMLConsolidationContext::ScXMLConsolidationContext(
-        ScXMLImport& rImport,
+        ScXMLImport& rInImport,
         USHORT nPrfx,
         const OUString& rLName,
         const uno::Reference< xml::sax::XAttributeList >& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     eFunction( SUBTOTAL_FUNC_NONE ),
     bLinkToSource( sal_False ),
     bTargetAddr(sal_False)
 {
-    rImport.LockSolarMutex();
+    rInImport.LockSolarMutex();
     if( !xAttrList.is() ) return;
 
     sal_Int16               nAttrCount      = xAttrList->getLength();
@@ -69,10 +69,10 @@ ScXMLConsolidationContext::ScXMLConsolidationContext(
     {
         OUString sAttrName  = xAttrList->getNameByIndex( nIndex );
         OUString sValue     = xAttrList->getValueByIndex( nIndex );
-        OUString aLocalName;
-        USHORT nPrefix      = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        USHORT nLclPrefix       = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_CONSOLIDATION_ATTR_FUNCTION:
                 eFunction = ScXMLConverter::GetSubTotalFuncFromString( sValue );
@@ -102,11 +102,11 @@ ScXMLConsolidationContext::~ScXMLConsolidationContext()
 }
 
 SvXMLImportContext *ScXMLConsolidationContext::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLName,
-        const uno::Reference< xml::sax::XAttributeList>& xAttrList )
+        const uno::Reference< xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 }
 
 void ScXMLConsolidationContext::EndElement()

@@ -332,7 +332,6 @@ sal_Bool ScMyEmptyDatabaseRangesContainer::GetFirstAddress( table::CellAddress& 
 void ScMyEmptyDatabaseRangesContainer::SetCellData( ScMyCell& rMyCell )
 {
     rMyCell.bHasEmptyDatabase = sal_False;
-    sal_Int16 nTable = rMyCell.aCellAddress.Sheet;
     ScMyEmptyDatabaseRangeList::iterator aItr = aDatabaseList.begin();
     if( aItr != aDatabaseList.end() )
     {
@@ -486,6 +485,7 @@ void ScMyDetectiveOpContainer::Sort()
 ScMyCell::ScMyCell() :
     aShapeList(),
     aDetectiveObjVec(),
+    bIsAutoStyle( sal_False ),
     bHasShape( sal_False ),
     bIsMergedBase( sal_False ),
     bIsCovered( sal_False ),
@@ -493,15 +493,14 @@ ScMyCell::ScMyCell() :
     bHasEmptyDatabase( sal_False ),
     bHasDetectiveObj( sal_False ),
     bHasDetectiveOp( sal_False ),
-    bIsMatrixBase( sal_False ),
-    bIsMatrixCovered( sal_False ),
-    bHasAnnotation( sal_False ),
-    bIsAutoStyle( sal_False ),
     bIsEditCell( sal_False ),
     bKnowWhetherIsEditCell( sal_False ),
     bHasStringValue( sal_False ),
     bHasDoubleValue( sal_False ),
-    bHasXText( sal_False )
+    bHasXText( sal_False ),
+    bIsMatrixBase( sal_False ),
+    bIsMatrixCovered( sal_False ),
+    bHasAnnotation( sal_False )
 {
 }
 
@@ -521,15 +520,15 @@ sal_Bool ScMyExportAnnotation::operator<(const ScMyExportAnnotation& rAnno) cons
 
 
 ScMyNotEmptyCellsIterator::ScMyNotEmptyCellsIterator(ScXMLExport& rTempXMLExport)
-    : rExport(rTempXMLExport),
-    pCellItr(NULL),
-    pShapes(NULL),
-    pMergedRanges(NULL),
-    pAreaLinks(NULL),
-    pEmptyDatabaseRanges(NULL),
-    pDetectiveObj(NULL),
-    pDetectiveOp(NULL),
-    nCurrentTable(-1)
+    : pShapes(NULL)
+    , pEmptyDatabaseRanges(NULL)
+    , pMergedRanges(NULL)
+    , pAreaLinks(NULL)
+    , pDetectiveObj(NULL)
+    , pDetectiveOp(NULL)
+    , rExport(rTempXMLExport)
+    , pCellItr(NULL)
+    , nCurrentTable(-1)
 {
 }
 

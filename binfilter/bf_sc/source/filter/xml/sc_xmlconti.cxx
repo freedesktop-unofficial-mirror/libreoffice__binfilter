@@ -43,13 +43,13 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLContentContext::ScXMLContentContext( ScXMLImport& rImport,
+ScXMLContentContext::ScXMLContentContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
+                                      ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/,
                                       ::rtl::OUStringBuffer& sTempValue) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sOUText(),
     sValue(sTempValue)
 {
@@ -59,26 +59,26 @@ ScXMLContentContext::~ScXMLContentContext()
 {
 }
 
-SvXMLImportContext *ScXMLContentContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLContentContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if ((nPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(rLName, XML_S))
+    if ((nInPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(rLName, XML_S))
     {
         sal_Int32 nRepeat(0);
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
-            ::rtl::OUString aLocalName;
+            ::rtl::OUString sLclValue = xAttrList->getValueByIndex( i );
+            ::rtl::OUString aLclLocalName;
             USHORT nPrfx = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                                sAttrName, &aLocalName );
-            if ((nPrfx == XML_NAMESPACE_TEXT) && IsXMLToken(aLocalName, XML_C))
-                nRepeat = sValue.toInt32();
+                                                sAttrName, &aLclLocalName );
+            if ((nPrfx == XML_NAMESPACE_TEXT) && IsXMLToken(aLclLocalName, XML_C))
+                nRepeat = sLclValue.toInt32();
         }
         if (nRepeat)
             for (sal_Int32 j = 0; j < nRepeat; j++)
@@ -88,7 +88,7 @@ SvXMLImportContext *ScXMLContentContext::CreateChildContext( USHORT nPrefix,
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

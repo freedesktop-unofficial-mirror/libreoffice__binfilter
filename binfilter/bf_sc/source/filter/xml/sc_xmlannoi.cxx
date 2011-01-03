@@ -46,12 +46,12 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLAnnotationContext::ScXMLAnnotationContext( ScXMLImport& rImport,
+ScXMLAnnotationContext::ScXMLAnnotationContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const uno::Reference<xml::sax::XAttributeList>& xAttrList,
                                       ScXMLTableRowCellContext* pTempCellContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     nParagraphCount(0),
     bDisplay(sal_False),
     bHasTextP(sal_False)
@@ -62,12 +62,12 @@ ScXMLAnnotationContext::ScXMLAnnotationContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_TABLE_ANNOTATION_ATTR_AUTHOR:
             {
@@ -98,14 +98,14 @@ ScXMLAnnotationContext::~ScXMLAnnotationContext()
 {
 }
 
-SvXMLImportContext *ScXMLAnnotationContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLAnnotationContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if ((nPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(rLName, XML_P) )
+    if ((nInPrefix == XML_NAMESPACE_TEXT) && IsXMLToken(rLName, XML_P) )
     {
         if (!bHasTextP)
         {
@@ -115,11 +115,11 @@ SvXMLImportContext *ScXMLAnnotationContext::CreateChildContext( USHORT nPrefix,
         if(nParagraphCount)
             sOUText.append(static_cast<sal_Unicode>('\n'));
         nParagraphCount++;
-        pContext = new ScXMLContentContext( GetScImport(), nPrefix, rLName, xAttrList, sOUText);
+        pContext = new ScXMLContentContext( GetScImport(), nInPrefix, rLName, xAttrList, sOUText);
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

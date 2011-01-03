@@ -114,8 +114,11 @@ struct ScMyDefaultStyle
     sal_Int32   nRepeat;
     sal_Bool    bIsAutoStyle;
 
-    ScMyDefaultStyle() : nIndex(-1), bIsAutoStyle(sal_True),
-        nRepeat(1) {}
+    ScMyDefaultStyle()
+        : nIndex(-1)
+        , nRepeat(1)
+        , bIsAutoStyle(sal_True)
+    {}
 };
 
 typedef std::vector<ScMyDefaultStyle> ScMyDefaultStyleList;

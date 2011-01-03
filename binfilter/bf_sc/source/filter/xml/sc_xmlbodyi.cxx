@@ -63,29 +63,29 @@ using namespace ::binfilter::xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLBodyContext::ScXMLBodyContext( ScXMLImport& rImport,
+ScXMLBodyContext::ScXMLBodyContext( ScXMLImport& rInImport,
                                               USHORT nPrfx,
                                                    const ::rtl::OUString& rLName,
                                               const uno::Reference<xml::sax::XAttributeList>& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    pChangeTrackingImportHelper(NULL),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    sPassword(),
     bProtected(sal_False),
-    sPassword()
+    pChangeTrackingImportHelper(NULL)
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if (IsXMLToken(aLocalName, XML_STRUCTURE_PROTECTED))
+            if (IsXMLToken(aLclLocalName, XML_STRUCTURE_PROTECTED))
                 bProtected = IsXMLToken(sValue, XML_TRUE);
-            else if (IsXMLToken(aLocalName, XML_PROTECTION_KEY))
+            else if (IsXMLToken(aLclLocalName, XML_PROTECTION_KEY))
                 sPassword = sValue;
         }
     }
@@ -95,7 +95,7 @@ ScXMLBodyContext::~ScXMLBodyContext()
 {
 }
 
-SvXMLImportContext *ScXMLBodyContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLBodyContext::CreateChildContext( USHORT nInPrefix,
                                      const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -103,80 +103,66 @@ SvXMLImportContext *ScXMLBodyContext::CreateChildContext( USHORT nPrefix,
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetBodyElemTokenMap();
-    sal_Bool bOrdered = sal_False;
-    sal_Bool bHeading = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
-//  case XML_TOK_TEXT_H:
-//      bHeading = TRUE;
-//  case XML_TOK_TEXT_P:
-//      pContext = new SwXMLParaContext( GetSwImport(),nPrefix, rLocalName,
-//                                       xAttrList, bHeading );
-//      break;
-//  case XML_TOK_TEXT_ORDERED_LIST:
-//      bOrdered = TRUE;
-//  case XML_TOK_TEXT_UNORDERED_LIST:
-//      pContext = new SwXMLListBlockContext( GetSwImport(),nPrefix, rLocalName,
-//                                            xAttrList, bOrdered );
-//      break;
     case XML_TOK_BODY_TRACKED_CHANGES :
     {
         pChangeTrackingImportHelper = GetScImport().GetChangeTrackingImportHelper();
         if (pChangeTrackingImportHelper)
-            pContext = new ScXMLTrackedChangesContext( GetScImport(), nPrefix, rLocalName, xAttrList, pChangeTrackingImportHelper);
+            pContext = new ScXMLTrackedChangesContext( GetScImport(), nInPrefix, rLocalName, xAttrList, pChangeTrackingImportHelper);
     }
     break;
     case XML_TOK_BODY_CALCULATION_SETTINGS :
-        pContext = new ScXMLCalculationSettingsContext( GetScImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new ScXMLCalculationSettingsContext( GetScImport(), nInPrefix, rLocalName, xAttrList );
         break;
     case XML_TOK_BODY_CONTENT_VALIDATIONS :
-        pContext = new ScXMLContentValidationsContext( GetScImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new ScXMLContentValidationsContext( GetScImport(), nInPrefix, rLocalName, xAttrList );
         break;
     case XML_TOK_BODY_LABEL_RANGES:
-        pContext = new ScXMLLabelRangesContext( GetScImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new ScXMLLabelRangesContext( GetScImport(), nInPrefix, rLocalName, xAttrList );
         break;
     case XML_TOK_BODY_TABLE:
         {
             if (GetScImport().GetTables().GetCurrentSheet() >= MAXTAB)
             {
                 GetScImport().SetRangeOverflowType(SCWARN_IMPORT_SHEET_OVERFLOW);
-                pContext = new ScXMLEmptyContext(GetScImport(), nPrefix, rLocalName);
+                pContext = new ScXMLEmptyContext(GetScImport(), nInPrefix, rLocalName);
             }
             else
             {
-                pContext = new ScXMLTableContext( GetScImport(),nPrefix, rLocalName,
+                pContext = new ScXMLTableContext( GetScImport(),nInPrefix, rLocalName,
                                                   xAttrList );
             }
         }
         break;
     case XML_TOK_BODY_NAMED_EXPRESSIONS:
-        pContext = new ScXMLNamedExpressionsContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLNamedExpressionsContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     case XML_TOK_BODY_DATABASE_RANGES:
-        pContext = new ScXMLDatabaseRangesContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLDatabaseRangesContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     case XML_TOK_BODY_DATABASE_RANGE:
-        pContext = new ScXMLDatabaseRangeContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLDatabaseRangeContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     case XML_TOK_BODY_DATA_PILOT_TABLES:
-        pContext = new ScXMLDataPilotTablesContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLDataPilotTablesContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     case XML_TOK_BODY_CONSOLIDATION:
-        pContext = new ScXMLConsolidationContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLConsolidationContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     case XML_TOK_BODY_DDE_LINKS:
-        pContext = new ScXMLDDELinksContext ( GetScImport(), nPrefix, rLocalName,
+        pContext = new ScXMLDDELinksContext ( GetScImport(), nInPrefix, rLocalName,
                                                         xAttrList );
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

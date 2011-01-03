@@ -55,14 +55,14 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLTableContext::ScXMLTableContext( ScXMLImport& rImport,
+ScXMLTableContext::ScXMLTableContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       const sal_Bool bTempIsSubTable,
                                       const sal_Int32 nSpannedCols) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     bStartFormPage(sal_False)
 {
     if (!bTempIsSubTable)
@@ -76,12 +76,12 @@ ScXMLTableContext::ScXMLTableContext( ScXMLImport& rImport,
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                                sAttrName, &aLocalName );
+            ::rtl::OUString aLclLocalName;
+            USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                                sAttrName, &aLclLocalName );
             ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-            switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+            switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
             {
                 case XML_TOK_TABLE_NAME:
                         sName = sValue;
@@ -112,7 +112,7 @@ ScXMLTableContext::~ScXMLTableContext()
 {
 }
 
-SvXMLImportContext *ScXMLTableContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -120,68 +120,68 @@ SvXMLImportContext *ScXMLTableContext::CreateChildContext( USHORT nPrefix,
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetTableElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
     case XML_TOK_TABLE_COL_GROUP:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_True );
         break;
     case XML_TOK_TABLE_HEADER_COLS:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_True, sal_False );
         break;
     case XML_TOK_TABLE_COLS:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_False );
         break;
     case XML_TOK_TABLE_COL:
-            pContext = new ScXMLTableColContext( GetScImport(), nPrefix,
+            pContext = new ScXMLTableColContext( GetScImport(), nInPrefix,
                                                       rLName, xAttrList );
         break;
     case XML_TOK_TABLE_ROW_GROUP:
-        pContext = new ScXMLTableRowsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableRowsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_True );
         break;
     case XML_TOK_TABLE_HEADER_ROWS:
-        pContext = new ScXMLTableRowsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableRowsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_True, sal_False );
         break;
     case XML_TOK_TABLE_ROWS:
-        pContext = new ScXMLTableRowsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableRowsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_False );
         break;
     case XML_TOK_TABLE_ROW:
-            pContext = new ScXMLTableRowContext( GetScImport(), nPrefix,
+            pContext = new ScXMLTableRowContext( GetScImport(), nInPrefix,
                                                       rLName, xAttrList//,
                                                       //this
                                                       );
         break;
     case XML_TOK_TABLE_SOURCE:
-        pContext = new ScXMLTableSourceContext( GetScImport(), nPrefix, rLName, xAttrList);
+        pContext = new ScXMLTableSourceContext( GetScImport(), nInPrefix, rLName, xAttrList);
         break;
     case XML_TOK_TABLE_SCENARIO:
-        pContext = new ScXMLTableScenarioContext( GetScImport(), nPrefix, rLName, xAttrList);
+        pContext = new ScXMLTableScenarioContext( GetScImport(), nInPrefix, rLName, xAttrList);
         break;
     case XML_TOK_TABLE_SHAPES:
-        pContext = new ScXMLTableShapesContext( GetScImport(), nPrefix, rLName, xAttrList);
+        pContext = new ScXMLTableShapesContext( GetScImport(), nInPrefix, rLName, xAttrList);
         break;
     case XML_TOK_TABLE_FORMS:
         {
             GetScImport().GetFormImport()->startPage(GetScImport().GetTables().GetCurrentXDrawPage());
             bStartFormPage = sal_True;
-            pContext = GetScImport().GetFormImport()->createOfficeFormsContext( GetScImport(), nPrefix, rLName );
+            pContext = GetScImport().GetFormImport()->createOfficeFormsContext( GetScImport(), nInPrefix, rLName );
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

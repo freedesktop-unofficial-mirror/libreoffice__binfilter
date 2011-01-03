@@ -317,13 +317,13 @@ ScMyStylesImportHelper::ScMyStylesImportHelper(ScXMLImport& rTempImport)
     :
     aCellStyles(),
     aColDefaultStyles(),
-    bPrevRangeAdded(sal_True),
     rImport(rTempImport),
-    nMaxRanges(0),
-    pPrevStyleName(NULL),
-    pPrevCurrency(NULL),
     pStyleName(NULL),
-    pCurrency(NULL)
+    pPrevStyleName(NULL),
+    pCurrency(NULL),
+    pPrevCurrency(NULL),
+    nMaxRanges(0),
+    bPrevRangeAdded(sal_True)
 {
     aRowDefaultStyle = aCellStyles.end();
 }
@@ -354,11 +354,11 @@ void ScMyStylesImportHelper::ResetAttributes()
     nCellType = 0;
 }
 
-ScMyStylesSet::iterator ScMyStylesImportHelper::GetIterator(const ::rtl::OUString* pStyleName)
+ScMyStylesSet::iterator ScMyStylesImportHelper::GetIterator(const ::rtl::OUString* pInStyleName)
 {
     ScMyStyle aStyle;
-    if (pStyleName)
-        aStyle.sStyleName = *pStyleName;
+    if (pInStyleName)
+        aStyle.sStyleName = *pInStyleName;
     else
         DBG_ERROR("here is no stylename given");
     ScMyStylesSet::iterator aItr = aCellStyles.find(aStyle);
@@ -455,6 +455,7 @@ void ScMyStylesImportHelper::AddRange()
 void ScMyStylesImportHelper::AddColumnStyle(const ::rtl::OUString& sStyleName, const sal_Int32 nColumn, const sal_Int32 nRepeat)
 {
     DBG_ASSERT(static_cast<sal_uInt32>(nColumn) == aColDefaultStyles.size(), "some columns are absent");
+    (void)nColumn;
     ScMyStylesSet::iterator aItr = GetIterator(&sStyleName);
     DBG_ASSERT(aItr != aCellStyles.end(), "no column default style");
     for (sal_Int32 i = 0; i < nRepeat; i++)
@@ -466,16 +467,16 @@ void ScMyStylesImportHelper::SetRowStyle(const ::rtl::OUString& sStyleName)
     aRowDefaultStyle = GetIterator(&sStyleName);
 }
 
-void ScMyStylesImportHelper::SetAttributes(::rtl::OUString* pStyleName,
-    ::rtl::OUString* pCurrency, const sal_Int16 nCellType)
+void ScMyStylesImportHelper::SetAttributes(::rtl::OUString* pInStyleName,
+    ::rtl::OUString* pInCurrency, const sal_Int16 nInCellType)
 {
-    if (this->pStyleName)
-        delete this->pStyleName;
-    if (this->pCurrency)
-        delete this->pCurrency;
-    this->pStyleName = pStyleName;
-    this->pCurrency = pCurrency;
-    this->nCellType = nCellType;
+    if (pStyleName)
+        delete pStyleName;
+    if (pCurrency)
+        delete pCurrency;
+    pStyleName = pInStyleName;
+    pCurrency = pInCurrency;
+    nCellType = nInCellType;
 }
 
 void ScMyStylesImportHelper::AddRange(const ScRange& rRange)

@@ -136,10 +136,10 @@ sal_Bool ScMyValidationsContainer::AddValidation(const uno::Any& aTempAny,
         ::rtl::OUString sImputTitle;
         aAny >>= sImputTitle;
         aAny = xPropertySet->getPropertyValue(sSHOWERR);
-        sal_Bool bShowErrorMessage;
+        sal_Bool bShowErrorMessage(sal_False);
         aAny >>= bShowErrorMessage;
         aAny = xPropertySet->getPropertyValue(sSHOWINP);
-        sal_Bool bShowImputMessage;
+        sal_Bool bShowImputMessage(sal_False);
         aAny >>= bShowImputMessage;
         aAny = xPropertySet->getPropertyValue(sTYPE);
         sheet::ValidationType aValidationType;
@@ -223,6 +223,8 @@ rtl::OUString ScMyValidationsContainer::GetCondition(const ScMyValidation& aVali
             case sheet::ValidationType_WHOLE :
                 sCondition += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("cell-content-is-whole-number()"));
             break;
+            default :
+            break;
         }
         if (aValidation.sFormula1.getLength() ||
             (aValidation.aOperator == sheet::ConditionOperator_BETWEEN &&
@@ -255,6 +257,8 @@ rtl::OUString ScMyValidationsContainer::GetCondition(const ScMyValidation& aVali
                     break;
                     case sheet::ConditionOperator_NOT_EQUAL :
                         sCondition += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("!="));
+                    break;
+                    default :
                     break;
                 }
                 sCondition += aValidation.sFormula1;
@@ -407,6 +411,8 @@ void ScMyValidationsContainer::WriteValidations(ScXMLExport& rExport)
                         }
                     }
                     break;
+                    default :
+                    break;
                 }
             }
             ++aItr;
@@ -457,7 +463,7 @@ void ScMyDefaultStyles::FillDefaultStyles(const sal_uInt16 nTable,
         sal_Bool bPrevAutoStyle;
         sal_Bool bIsAutoStyle;
         sal_Bool bResult;
-        sal_Int32 nPrevIndex;
+        sal_Int32 nPrevIndex(0);
         sal_Int32 nIndex;
         sal_Int32 nRepeat(0);
         sal_Int32 nEmptyRepeat(0);
@@ -556,18 +562,18 @@ sal_Bool ScMyRowFormatRange::operator< (const ScMyRowFormatRange& rRange) const
 }
 
 ScRowFormatRanges::ScRowFormatRanges()
-    : pRowDefaults(NULL),
-    pColDefaults(NULL),
-    aRowFormatRanges(),
-    nSize(0)
+    : aRowFormatRanges()
+    , pRowDefaults(NULL)
+    , pColDefaults(NULL)
+    , nSize(0)
 {
 }
 
 ScRowFormatRanges::ScRowFormatRanges(const ScRowFormatRanges* pRanges)
-    : pRowDefaults(pRanges->pRowDefaults),
-    pColDefaults(pRanges->pColDefaults),
-    aRowFormatRanges(pRanges->aRowFormatRanges),
-    nSize(pRanges->nSize)
+    : aRowFormatRanges(pRanges->aRowFormatRanges)
+    , pRowDefaults(pRanges->pRowDefaults)
+    , pColDefaults(pRanges->pColDefaults)
+    , nSize(pRanges->nSize)
 {
 }
 

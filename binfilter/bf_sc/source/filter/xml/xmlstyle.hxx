@@ -316,7 +316,7 @@ class XmlScPropHdl_IsEqual : public XMLPropertyHandler
 {
 public:
     virtual ~XmlScPropHdl_IsEqual() {}
-    virtual sal_Bool equals( const ::com::sun::star::uno::Any& r1, const ::com::sun::star::uno::Any& r2 ) const { return sal_True; }
+    virtual sal_Bool equals( const ::com::sun::star::uno::Any& , const ::com::sun::star::uno::Any& ) const { return sal_True; }
     virtual sal_Bool importXML( const ::rtl::OUString& rStrImpValue, ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const;
     virtual sal_Bool exportXML( ::rtl::OUString& rStrExpValue, const ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const;
 };

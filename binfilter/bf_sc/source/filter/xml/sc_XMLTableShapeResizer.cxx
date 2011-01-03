@@ -41,9 +41,9 @@ namespace binfilter {
 using namespace ::com::sun::star;
 
 ScMyShapeResizer::ScMyShapeResizer(ScXMLImport& rTempImport)
-    : aShapes(),
-    rImport(rTempImport),
-    pCollection(NULL)
+    : rImport(rTempImport)
+    , aShapes()
+    , pCollection(NULL)
 {
 }
 
@@ -198,12 +198,12 @@ void ScMyShapeResizer::ResizeShapes()
                                             uno::Reference<beans::XPropertySet> xShapeProps (aItr->xShape, uno::UNO_QUERY);
                                             if(xShapeProps.is())
                                             {
-                                                uno::Any aAny = xShapeProps->getPropertyValue(  sStartShape );
+                                                uno::Any aTmpAny = xShapeProps->getPropertyValue(   sStartShape );
                                                 uno::Reference<drawing::XShape> xStartShape;
-                                                aAny >>= xStartShape;
-                                                aAny = xShapeProps->getPropertyValue( sEndShape );
+                                                aTmpAny >>= xStartShape;
+                                                aTmpAny = xShapeProps->getPropertyValue( sEndShape );
                                                 uno::Reference<drawing::XShape> xEndShape;
-                                                aAny >>= xEndShape;
+                                                aTmpAny >>= xEndShape;
                                                 if (!xStartShape.is() && !xEndShape.is())
                                                 {
                                                     awt::Size aOldSize(aSize);
@@ -225,8 +225,8 @@ void ScMyShapeResizer::ResizeShapes()
                                                     if (xStartShape.is())
                                                     {
                                                         awt::Point aEndPoint;
-                                                        uno::Any aAny = xShapeProps->getPropertyValue(sEndPosition);
-                                                        aAny >>= aEndPoint;
+                                                        uno::Any aLclAny = xShapeProps->getPropertyValue(sEndPosition);
+                                                        aLclAny >>= aEndPoint;
                                                         aPoint.X = aRec.Left() + aEndPoint.X;
                                                         aPoint.Y = aRec.Top() + aEndPoint.Y;
                                                         sProperty = sEndPosition;
@@ -234,15 +234,15 @@ void ScMyShapeResizer::ResizeShapes()
                                                     else
                                                     {
                                                         awt::Point aStartPoint;
-                                                        uno::Any aAny = xShapeProps->getPropertyValue(sStartPosition);
-                                                        aAny >>= aStartPoint;
+                                                        uno::Any aLclAny = xShapeProps->getPropertyValue(sStartPosition);
+                                                        aLclAny >>= aStartPoint;
                                                         aPoint.X = aRec.Left() + aStartPoint.X;
                                                         aPoint.Y = aRec.Top() + aStartPoint.Y;
                                                         sProperty = sStartPosition;
                                                     }
-                                                    uno::Any aAny;
-                                                    aAny <<= aPoint;
-                                                    xShapeProps->setPropertyValue(sProperty, aAny);
+                                                    uno::Any aLclAny;
+                                                    aLclAny <<= aPoint;
+                                                    xShapeProps->setPropertyValue(sProperty, aLclAny);
                                                 }
                                             }
                                         }

@@ -51,12 +51,12 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLTableColContext::ScXMLTableColContext( ScXMLImport& rImport,
+ScXMLTableColContext::ScXMLTableColContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sVisibility(GetXMLToken(XML_VISIBLE))
 {
     nColCount = 1;
@@ -66,12 +66,12 @@ ScXMLTableColContext::ScXMLTableColContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_TABLE_COL_ATTR_REPEATED:
                 {
@@ -101,35 +101,15 @@ ScXMLTableColContext::~ScXMLTableColContext()
 {
 }
 
-SvXMLImportContext *ScXMLTableColContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableColContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
-/*
-    const SvXMLTokenMap& rTokenMap = GetScImport().GetTableRowElemTokenMap();
-    sal_Bool bHeader = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLName ) )
-    {
-    case XML_TOK_TABLE_ROW_CELL:
-//      if( IsInsertCellPossible() )
-            pContext = new ScXMLTableRowCellContext( GetScImport(), nPrefix,
-                                                      rLName, xAttrList//,
-                                                      //this
-                                                      );
-        break;
-    case XML_TOK_TABLE_ROW_COVERED_CELL:
-//      if( IsInsertCellPossible() )
-            pContext = new ScXMLTableRowCellContext( GetScImport(), nPrefix,
-                                                      rLName, xAttrList//,
-                                                      //this
-                                                      );
-        break;
-    }*/
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -189,13 +169,13 @@ void ScXMLTableColContext::EndElement()
     GetScImport().GetTables().AddColStyle(nColCount, sCellStyleName);
 }
 
-ScXMLTableColsContext::ScXMLTableColsContext( ScXMLImport& rImport,
+ScXMLTableColsContext::ScXMLTableColsContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       const sal_Bool bTempHeader, const sal_Bool bTempGroup) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     nHeaderStartCol(0),
     nHeaderEndCol(0),
     nGroupStartCol(0),
@@ -206,20 +186,20 @@ ScXMLTableColsContext::ScXMLTableColsContext( ScXMLImport& rImport,
 {
     // don't have any attributes
     if (bHeader)
-        nHeaderStartCol = rImport.GetTables().GetCurrentColumn();
+        nHeaderStartCol = rInImport.GetTables().GetCurrentColumn();
     else if (bGroup)
     {
-        nGroupStartCol = rImport.GetTables().GetCurrentColumn();
+        nGroupStartCol = rInImport.GetTables().GetCurrentColumn();
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                                sAttrName, &aLocalName );
+            ::rtl::OUString aLclLocalName;
+            /*sal_uInt16 nLclPrefix =*/ GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                                sAttrName, &aLclLocalName );
             ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-            if (nPrfx == XML_NAMESPACE_TABLE && IsXMLToken(aLocalName, XML_DISPLAY))
+            if (nPrfx == XML_NAMESPACE_TABLE && IsXMLToken(aLclLocalName, XML_DISPLAY))
             {
                 if (IsXMLToken(sValue, XML_FALSE))
                     bGroupDisplay = sal_False;
@@ -232,7 +212,7 @@ ScXMLTableColsContext::~ScXMLTableColsContext()
 {
 }
 
-SvXMLImportContext *ScXMLTableColsContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableColsContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -240,26 +220,25 @@ SvXMLImportContext *ScXMLTableColsContext::CreateChildContext( USHORT nPrefix,
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetTableColsElemTokenMap();
-    sal_Bool bHeader = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
     case XML_TOK_TABLE_COLS_COL_GROUP:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_True );
         break;
     case XML_TOK_TABLE_COLS_HEADER_COLS:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_True, sal_False );
         break;
     case XML_TOK_TABLE_COLS_COLS:
-        pContext = new ScXMLTableColsContext( GetScImport(), nPrefix,
+        pContext = new ScXMLTableColsContext( GetScImport(), nInPrefix,
                                                    rLName, xAttrList,
                                                    sal_False, sal_False );
         break;
     case XML_TOK_TABLE_COLS_COL:
-            pContext = new ScXMLTableColContext( GetScImport(), nPrefix,
+            pContext = new ScXMLTableColContext( GetScImport(), nInPrefix,
                                                       rLName, xAttrList//,
                                                       //this
                                                       );
@@ -267,7 +246,7 @@ SvXMLImportContext *ScXMLTableColsContext::CreateChildContext( USHORT nPrefix,
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

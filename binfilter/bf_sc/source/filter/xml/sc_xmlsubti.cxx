@@ -99,7 +99,7 @@ void ScMyTableData::AddColumn()
     nRealCols[aTableCellPos.Column + 1] = nRealCols[aTableCellPos.Column] + nColsPerCol[aTableCellPos.Column];
 }
 
-sal_Int32 ScMyTableData::GetRealCols(const sal_Int32 nIndex, const sal_Bool bIsNormal) const
+sal_Int32 ScMyTableData::GetRealCols(const sal_Int32 nIndex, const sal_Bool /*bIsNormal*/) const
 {
     return (nIndex < 0) ? 0 : nRealCols[nIndex];
 }
@@ -122,10 +122,7 @@ void ScMyTableData::SetChangedCols(const sal_Int32 nValue)
 {
     ScMysalIntList::iterator i = nChangedCols.begin();
     while ((i != nChangedCols.end()) && (*i < nValue))
-    {
-        sal_Int32 nTemp = *i;
         ++i;
-    }
     if ((i == nChangedCols.end()) || (*i != nValue))
         nChangedCols.insert(i, nValue);
 }
@@ -134,12 +131,12 @@ void ScMyTableData::SetChangedCols(const sal_Int32 nValue)
 
 ScMyTables::ScMyTables(ScXMLImport& rTempImport)
     : rImport(rTempImport),
-    nTableCount( 0 ),
-    nCurrentSheet( -1 ),
+    aResizeShapes(rTempImport),
+    nCurrentColStylePos(0),
     nCurrentDrawPage( -1 ),
     nCurrentXShapes( -1 ),
-    aResizeShapes(rTempImport),
-    nCurrentColStylePos(0)
+    nTableCount( 0 ),
+    nCurrentSheet( -1 )
 {
     aTableVec.resize(nDefaultTabCount, NULL);
 }
@@ -481,7 +478,7 @@ void ScMyTables::NewColumn(sal_Bool bIsCovered)
                     + LastColSpanned);
             }
         }
-        sal_Int32 nTemp = aTableVec[nTableCount - 1]->GetRealCols(aTableVec[nTableCount - 1]->GetColumn());
+        /*sal_Int32 nTemp =*/ aTableVec[nTableCount - 1]->GetRealCols(aTableVec[nTableCount - 1]->GetColumn());
         if (aTableVec[nTableCount - 1]->GetRealCols(aTableVec[nTableCount - 1]->GetColumn()) > nSpannedCols - 1)
         {
             if ( aTableVec[nTableCount - 1]->GetRow() == 0)
@@ -569,8 +566,8 @@ void ScMyTables::UpdateRowHeights()
     {
         rImport.LockSolarMutex();
         // update automatic row heights
-        sal_Int16 nTableCount(rImport.GetDocument() ? rImport.GetDocument()->GetTableCount() : 0);
-        for (sal_Int16 i = 0; i < nTableCount; i++)
+        sal_Int16 nLclTableCount(rImport.GetDocument() ? rImport.GetDocument()->GetTableCount() : 0);
+        for (sal_Int16 i = 0; i < nLclTableCount; i++)
             ScModelObj::getImplementation(rImport.GetModel())->AdjustRowHeight( 0, MAXROW, i );
         rImport.UnlockSolarMutex();
     }
@@ -715,7 +712,7 @@ void ScMyTables::AddMatrixRange(sal_uInt32 nStartColumn, sal_uInt32 nStartRow, s
     aMatrixRangeList.push_back(aRange);
 }
 
-sal_Bool ScMyTables::IsPartOfMatrix(sal_uInt32 nColumn, sal_uInt32 nRow)
+sal_Bool ScMyTables::IsPartOfMatrix(sal_Int32 nColumn, sal_Int32 nRow)
 {
     sal_Bool bResult(sal_False);
     if (!aMatrixRangeList.empty())

@@ -42,12 +42,12 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------
 
-ScXMLTableShapesContext::ScXMLTableShapesContext( ScXMLImport& rImport,
+ScXMLTableShapesContext::ScXMLTableShapesContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+                                      ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/) :
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     // here are no attributes
 }
@@ -56,7 +56,7 @@ ScXMLTableShapesContext::~ScXMLTableShapesContext()
 {
 }
 
-SvXMLImportContext *ScXMLTableShapesContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableShapesContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -72,12 +72,12 @@ SvXMLImportContext *ScXMLTableShapesContext::CreateChildContext( USHORT nPrefix,
             XMLTableShapeImportHelper* pTableShapeImport = (XMLTableShapeImportHelper*)rXMLImport.GetShapeImport().get();
             pTableShapeImport->SetOnTable(sal_True);
             pContext = rXMLImport.GetShapeImport()->CreateGroupChildContext(
-                rXMLImport, nPrefix, rLName, xAttrList, xShapes);
+                rXMLImport, nInPrefix, rLName, xAttrList, xShapes);
         }
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

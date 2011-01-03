@@ -50,20 +50,20 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLSortContext::ScXMLSortContext( ScXMLImport& rImport,
+ScXMLSortContext::ScXMLSortContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    bEnabledUserList(sal_False),
-    bBindFormatsToContent(sal_True),
-    bIsCaseSensitive(sal_False),
-    bCopyOutputData(sal_False),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sCountry(),
     sLanguage(),
     sAlgorithm(),
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    bCopyOutputData(sal_False),
+    bBindFormatsToContent(sal_True),
+    bIsCaseSensitive(sal_False),
+    bEnabledUserList(sal_False)
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     nUserListIndex = 0;
@@ -73,12 +73,12 @@ ScXMLSortContext::ScXMLSortContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SORT_ATTR_BIND_STYLES_TO_CONTENT :
             {
@@ -118,7 +118,7 @@ ScXMLSortContext::~ScXMLSortContext()
 {
 }
 
-SvXMLImportContext *ScXMLSortContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSortContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -126,18 +126,18 @@ SvXMLImportContext *ScXMLSortContext::CreateChildContext( USHORT nPrefix,
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetSortElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_SORT_SORT_BY :
         {
-            pContext = new ScXMLSortByContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSortByContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -237,15 +237,15 @@ void ScXMLSortContext::AddSortField(const ::rtl::OUString& sFieldNumber, const :
     aSortFields[aSortFields.getLength() - 1] = aSortField;
 }
 
-ScXMLSortByContext::ScXMLSortByContext( ScXMLImport& rImport,
+ScXMLSortByContext::ScXMLSortByContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLSortContext* pTempSortContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    sOrder(GetXMLToken(XML_ASCENDING)),
-    sDataType(GetXMLToken(XML_AUTOMATIC))
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    sDataType(GetXMLToken(XML_AUTOMATIC)),
+    sOrder(GetXMLToken(XML_ASCENDING))
 {
     pSortContext = pTempSortContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -253,12 +253,12 @@ ScXMLSortByContext::ScXMLSortByContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SORT_BY_ATTR_FIELD_NUMBER :
             {
@@ -283,15 +283,15 @@ ScXMLSortByContext::~ScXMLSortByContext()
 {
 }
 
-SvXMLImportContext *ScXMLSortByContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSortByContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

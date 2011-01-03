@@ -49,12 +49,12 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLTableSourceContext::ScXMLTableSourceContext( ScXMLImport& rImport,
+ScXMLTableSourceContext::ScXMLTableSourceContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sLink(),
     sTableName(),
     sFilterName(),
@@ -66,29 +66,29 @@ ScXMLTableSourceContext::ScXMLTableSourceContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
-        if(nPrefix == XML_NAMESPACE_XLINK)
+        if(nLclPrefix == XML_NAMESPACE_XLINK)
         {
-            if (IsXMLToken(aLocalName, XML_HREF))
+            if (IsXMLToken(aLclLocalName, XML_HREF))
                 sLink = GetScImport().GetAbsoluteReference(sValue);
         }
-        else if (nPrefix == XML_NAMESPACE_TABLE)
+        else if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if (IsXMLToken(aLocalName, XML_TABLE_NAME))
+            if (IsXMLToken(aLclLocalName, XML_TABLE_NAME))
                 sTableName = sValue;
-            else if (IsXMLToken(aLocalName, XML_FILTER_NAME))
+            else if (IsXMLToken(aLclLocalName, XML_FILTER_NAME))
                 sFilterName = sValue;
-            else if (IsXMLToken(aLocalName, XML_FILTER_OPTIONS))
+            else if (IsXMLToken(aLclLocalName, XML_FILTER_OPTIONS))
                 sFilterOptions = sValue;
-            else if (IsXMLToken(aLocalName, XML_MODE))
+            else if (IsXMLToken(aLclLocalName, XML_MODE))
             {
                 if (IsXMLToken(sValue, XML_COPY_RESULTS_ONLY))
                     nMode = sheet::SheetLinkMode_VALUE;
             }
-            else if (IsXMLToken(aLocalName, XML_REFRESH_DELAY))
+            else if (IsXMLToken(aLclLocalName, XML_REFRESH_DELAY))
             {
                 double fTime;
                 if( SvXMLUnitConverter::convertTime( fTime, sValue ) )
@@ -102,12 +102,12 @@ ScXMLTableSourceContext::~ScXMLTableSourceContext()
 {
 }
 
-SvXMLImportContext *ScXMLTableSourceContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLTableSourceContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     return pContext;
 }
 
