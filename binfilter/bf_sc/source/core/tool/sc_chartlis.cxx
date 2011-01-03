@@ -67,8 +67,9 @@ using namespace ::com::sun::star;
 /*N*/ ScChartListener::ScChartListener( const String& rName, ScDocument* pDocP,
 /*N*/       const ScRange& rRange ) :
 /*N*/   StrData( rName ),
-/*N*/   pDoc( pDocP ),
+/*N*/   SfxListener(),
 /*N*/   pUnoData( NULL ),
+/*N*/   pDoc( pDocP ),
 /*N*/   bUsed( FALSE ),
 /*N*/   bDirty( FALSE ),
 /*N*/   bSeriesRangesScheduled( FALSE )
@@ -79,9 +80,10 @@ using namespace ::com::sun::star;
 /*N*/ ScChartListener::ScChartListener( const String& rName, ScDocument* pDocP,
 /*N*/       const ScRangeListRef& rRangeList ) :
 /*N*/   StrData( rName ),
+/*N*/   SfxListener(),
 /*N*/   aRangeListRef( rRangeList ),
-/*N*/   pDoc( pDocP ),
 /*N*/   pUnoData( NULL ),
+/*N*/   pDoc( pDocP ),
 /*N*/   bUsed( FALSE ),
 /*N*/   bDirty( FALSE ),
 /*N*/   bSeriesRangesScheduled( FALSE )
@@ -90,8 +92,9 @@ using namespace ::com::sun::star;
 
 /*N*/ ScChartListener::ScChartListener( const ScChartListener& r ) :
 /*N*/       StrData( r ),
-/*N*/       pDoc( r.pDoc ),
+/*N*/       SfxListener(),
 /*N*/       pUnoData( NULL ),
+/*N*/       pDoc( r.pDoc ),
 /*N*/       bUsed( FALSE ),
 /*N*/       bDirty( r.bDirty ),
 /*N*/       bSeriesRangesScheduled( r.bSeriesRangesScheduled )
@@ -287,7 +290,7 @@ using namespace ::com::sun::star;
 /*N*/   aTimer.Start();
 /*N*/ }
 
-/*N*/ IMPL_LINK( ScChartListenerCollection, TimerHdl, Timer*, pTimer )
+/*N*/ IMPL_LINK( ScChartListenerCollection, TimerHdl, Timer*, EMPTYARG )
 /*N*/ {
 /*N*/   if ( Application::AnyInput( INPUT_KEYBOARD ) )
 /*N*/   {

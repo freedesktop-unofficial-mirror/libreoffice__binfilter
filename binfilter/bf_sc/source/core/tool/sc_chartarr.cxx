@@ -196,10 +196,10 @@ namespace binfilter {
 /*N*/                   if ( bNewChart )
 /*N*/                   {
 /*N*/                       bDummyUpperLeft = ( aOpt.GetChar(2) != '0' );
-/*N*/                       xub_StrLen nInd = 4;    // 111;
-/*N*/                       eGlue = (ScChartGlue) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-/*N*/                       nStartCol = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
-/*N*/                       nStartRow = (USHORT) aOpt.GetToken( 0, cTok, nInd ).ToInt32();
+/*N*/                       xub_StrLen nLclInd = 4; // 111;
+/*N*/                       eGlue = (ScChartGlue) aOpt.GetToken( 0, cTok, nLclInd ).ToInt32();
+/*N*/                       nStartCol = (USHORT) aOpt.GetToken( 0, cTok, nLclInd ).ToInt32();
+/*N*/                       nStartRow = (USHORT) aOpt.GetToken( 0, cTok, nLclInd ).ToInt32();
 /*N*/                       bInitOk = TRUE;
 /*N*/                   }
 /*N*/               }
@@ -266,7 +266,7 @@ namespace binfilter {
 /*N*/   ScRangePtr pR;
 /*N*/   if ( aRangeListRef->Count() <= 1 )
 /*N*/   {
-/*?*/       if ( pR = aRangeListRef->First() )
+/*?*/       if (( pR = aRangeListRef->First() ))
 /*?*/       {
 /*?*/           if ( pR->aStart.Tab() == pR->aEnd.Tab() )
 /*?*/               eGlue = SC_CHARTGLUE_NONE;
@@ -304,7 +304,7 @@ namespace binfilter {
 /*N*/           nEndRow = n2;
 /*N*/       if ( (nTmp = n2 - n1 + 1) > nMaxRows )
 /*N*/           nMaxRows = nTmp;
-/*N*/   } while ( pR = aRangeListRef->Next() );
+/*N*/   } while (( pR = aRangeListRef->Next() ));
 /*N*/   USHORT nC = nEndCol - nStartCol + 1;
 /*N*/   if ( nC == 1 )
 /*N*/   {
@@ -805,13 +805,13 @@ namespace binfilter {
 /*N*/       SvNumberFormatter* pFormatter = pDocument->GetFormatTable();
 /*N*/       if (pFormatter)
 /*N*/       {
-/*N*/           ULONG nIndex = 0;
+/*N*/           ULONG nLclIndex = 0;
 /*N*/           ULONG nCount = pPositionMap->GetCount();
 /*N*/           const ScAddress* pPos;
 /*N*/           do
 /*N*/           {
-/*N*/               pPos = pPositionMap->GetPosition( nIndex );
-/*N*/           } while ( !pPos && ++nIndex < nCount );
+/*N*/               pPos = pPositionMap->GetPosition( nLclIndex );
+/*N*/           } while ( !pPos && ++nLclIndex < nCount );
 /*N*/           ULONG nFormat = ( pPos ? pDocument->GetNumberFormat( *pPos ) : 0 );
 /*N*/           pMemChart->SetDataType( pFormatter->GetType( nFormat ) );
 /*N*/       }
@@ -852,13 +852,13 @@ namespace binfilter {
 /*N*/             aCell.mnRow = nRow2;
 /*N*/             aCellRangeAddress.maLowerRight.maCells.push_back( aCell );
 /*N*/             aCellRangeAddress.mnTableNumber = nTab;
-/*N*/             String aName;
-/*N*/             pDocument->GetName( nTab, aName );
-/*N*/             aCellRangeAddress.msTableName = aName;
+/*N*/             String aLclName;
+/*N*/             pDocument->GetName( nTab, aLclName );
+/*N*/             aCellRangeAddress.msTableName = aLclName;
 /*N*/             aChartRange.maRanges.push_back( aCellRangeAddress );
 /*N*/             if ( aSheetNames.Len() )
 /*N*/                 aSheetNames += ';';
-/*N*/             aSheetNames += aName;
+/*N*/             aSheetNames += aLclName;
 /*N*/         }
 /*N*/     }
 /*N*/     rMem.SetChartRange( aChartRange );
@@ -971,7 +971,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // Anzahl der Daten
 /*N*/   nColCount = (USHORT) pCols->Count();
-/*N*/   if ( pCol = (Table*) pCols->First() )
+/*N*/   if (( pCol = (Table*) pCols->First() ))
 /*N*/   {
 /*N*/       if ( bDummyUpperLeft )
 /*?*/           pCol->Insert( 0, (void*)0 );        // Dummy fuer Beschriftung
@@ -1021,7 +1021,7 @@ namespace binfilter {
 /*?*/           {
 /*?*/               ULONG nKey = pFirstCol->GetCurKey();
 /*?*/               pCols->First();
-/*?*/               while ( pCol = (Table*) pCols->Next() )
+/*?*/               while (( pCol = (Table*) pCols->Next() ))
 /*?*/                   pCol->Insert( nKey, (void*)0 );     // keine Daten
 /*?*/           }
 /*?*/       }
@@ -1041,12 +1041,12 @@ namespace binfilter {
 
 /*N*/ ScChartPositionMap::ScChartPositionMap( USHORT nChartCols, USHORT nChartRows,
 /*N*/           USHORT nColAdd, USHORT nRowAdd, Table& rCols ) :
-/*N*/       nCount( (ULONG) nChartCols * nChartRows ),
-/*N*/       nColCount( nChartCols ),
-/*N*/       nRowCount( nChartRows ),
 /*N*/       ppData( new ScAddress* [ nChartCols * nChartRows ] ),
 /*N*/       ppColHeader( new ScAddress* [ nChartCols ] ),
-/*N*/       ppRowHeader( new ScAddress* [ nChartRows ] )
+/*N*/       ppRowHeader( new ScAddress* [ nChartRows ] ),
+/*N*/       nCount( (ULONG) nChartCols * nChartRows ),
+/*N*/       nColCount( nChartCols ),
+/*N*/       nRowCount( nChartRows )
 /*N*/ {
 /*N*/   DBG_ASSERT( nColCount && nRowCount, "ScChartPositionMap without dimension" );
 /*N*/ #ifdef WIN
@@ -1054,7 +1054,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/
 /*N*/   ScAddress* pPos;
-/*N*/   USHORT nCol, nRow;
+/*N*/   USHORT nCol;
 /*N*/
 /*N*/   Table* pCol = (Table*) rCols.First();
 /*N*/
@@ -1064,7 +1064,7 @@ namespace binfilter {
 /*N*/       pPos = (ScAddress*) pCol->Next();
 /*N*/   if ( nColAdd )
 /*N*/   {   // eigenstaendig
-/*N*/       for ( nRow = 0; nRow < nRowCount; nRow++ )
+/*N*/       for ( USHORT nRow = 0; nRow < nRowCount; nRow++ )
 /*N*/       {
 /*N*/           ppRowHeader[ nRow ] = pPos;
 /*N*/           pPos = (ScAddress*) pCol->Next();
@@ -1072,7 +1072,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {   // Kopie
-/*?*/       for ( nRow = 0; nRow < nRowCount; nRow++ )
+/*?*/       for ( USHORT nRow = 0; nRow < nRowCount; nRow++ )
 /*?*/       {
 /*?*/           ppRowHeader[ nRow ] = ( pPos ? new ScAddress( *pPos ) : NULL );
 /*?*/           pPos = (ScAddress*) pCol->Next();
@@ -1104,7 +1104,7 @@ namespace binfilter {
 /*N*/       else
 /*N*/       {
 /*?*/           ppColHeader[ nCol ] = NULL;
-/*?*/           for ( nRow = 0; nRow < nRowCount; nRow++, nIndex++ )
+/*?*/           for ( USHORT nRow = 0; nRow < nRowCount; nRow++, nIndex++ )
 /*?*/           {
 /*?*/               ppData[ nIndex ] = NULL;
 /*?*/           }
