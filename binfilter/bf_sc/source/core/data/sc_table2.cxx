@@ -1007,8 +1007,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/   USHORT i;
-/*N*/   USHORT nStart;
-/*N*/   USHORT nEnd;
+/*N*/   USHORT nStart(0);
+/*N*/   USHORT nEnd(0);
 /*N*/   for (i=0; i<=MAXROW; i++)
 /*N*/   {
 /*N*/       if (pUsed[i])

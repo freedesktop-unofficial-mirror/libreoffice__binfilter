@@ -332,12 +332,11 @@ ULONG erCountBCAFinds = 0;
 /*N*/       ScBroadcasterList* pBC;
 /*N*/       ScFormulaCell* pTrack;
 /*N*/       ScFormulaCell* pNext;
-/*N*/       BOOL bIsChanged = TRUE;
 /*N*/       pTrack = pFormulaTrack;
 /*N*/       do
 /*N*/       {
 /*N*/           ScHint aHint( nHintId, pTrack->aPos, pTrack );
-/*N*/           if ( pBC = pTrack->GetBroadcaster() )
+/*N*/           if (( pBC = pTrack->GetBroadcaster() ))
 /*N*/               pBC->Broadcast( aHint );
 /*N*/           pBASM->AreaBroadcast( aHint );
 /*N*/           //  Repaint fuer bedingte Formate mit relativen Referenzen:
@@ -380,7 +379,7 @@ ULONG erCountBCAFinds = 0;
 /*N*/ }
 
 /*N*/ void ScDocument::UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
-/*N*/       const ScRange& rRange, short nDx, short nDy, short nDz
+/*N*/       const ScRange& /*rRange*/, short nDx, short nDy, short nDz
 /*N*/   )
 /*N*/ {
 /*N*/   BOOL bExpandRefsOld = IsExpandRefs();

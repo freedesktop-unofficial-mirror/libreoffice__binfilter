@@ -133,7 +133,7 @@ namespace binfilter {
 
 /*N*/ void ScMarkArray::SetMarkArea( USHORT nStartRow, USHORT nEndRow, BOOL bMarked )
 /*N*/ {
-/*N*/   if ((nStartRow >= 0 && nStartRow <= MAXROW) && (nEndRow >= 0 && nEndRow <= MAXROW))
+/*N*/   if ((nStartRow <= MAXROW) && (nEndRow <= MAXROW))
 /*N*/   {
 /*N*/       if ((nStartRow == 0) && (nEndRow == MAXROW))
 /*N*/       {
