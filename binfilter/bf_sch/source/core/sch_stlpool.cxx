@@ -42,8 +42,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SchStyleSheetPool::SchStyleSheetPool(SfxItemPool& rPool) :
-/*N*/   SfxStyleSheetPool(rPool),
+/*N*/ SchStyleSheetPool::SchStyleSheetPool(SfxItemPool& rInPool) :
+/*N*/   SfxStyleSheetPool(rInPool),
 /*N*/   pActualStyleSheet(NULL)
 /*N*/ {
 /*N*/ }
@@ -66,9 +66,9 @@ namespace binfilter {
 
 /*N*/ SfxStyleSheetBase* SchStyleSheetPool::Create(const String& rName,
 /*N*/                                            SfxStyleFamily eFamily,
-/*N*/                                            USHORT nMask )
+/*N*/                                            USHORT nInMask )
 /*N*/ {
-/*N*/   return new SchStyleSheet(rName, *this, eFamily, nMask);
+/*N*/   return new SchStyleSheet(rName, *this, eFamily, nInMask);
 /*N*/ }
 
 

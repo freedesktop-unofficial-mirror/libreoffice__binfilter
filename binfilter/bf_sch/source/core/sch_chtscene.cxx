@@ -147,7 +147,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ void ChartScene::InsertAllTitleText (DescrList         &rList,
-/*N*/                                    E3dObject *pGroup,
+/*N*/                                    E3dObject * /*pGroup*/,
 /*N*/                                    long              nAxisId)
 /*N*/ {
 /*N*/   Rectangle aOldRect;

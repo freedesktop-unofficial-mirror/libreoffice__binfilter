@@ -231,8 +231,6 @@ namespace binfilter {
 /*N*/   //     die Achsentitel gemaess dieses Parameters gesetzt werden koennen.
 /*N*/   bSwitch3DColRow = bSwitchColRow;
 /*N*/
-/*N*/   long nMaxTextWidth = 0;
-/*N*/
 /*N*/   aXDescrList.Clear();
 /*N*/   aYDescrList.Clear();
 /*N*/   aZDescrList.Clear();
@@ -243,7 +241,6 @@ namespace binfilter {
 /*N*/   aShift.Translate(-(aSizeVec/500.0));//Wände etwas verschieben...
 /*N*/
 /*N*/   const double fFloorWidth = 100.0;
-/*N*/   const double fWallWith   = 50.0;    // BM: unused for now
 /*N*/
 /*N*/   for (nV = 0; nV < 3; nV++)
 /*N*/   {
@@ -285,28 +282,29 @@ namespace binfilter {
 /*N*/                   }
 /*N*/
 /*N*/                   if( pYGridMainGroup || pYGridHelpGroup )
+/*N*/                   {
 /*N*/                       // Y-Anteile
 /*N*/                       if (bSwitchColRow)
 /*N*/                       {
-/*N*/                           Vector3D aLine3D [2] = { aRect3D [0], aRect3D [1] };
+/*N*/                           Vector3D aLclLine3D [2] = { aRect3D [0], aRect3D [1] };
 /*N*/                           long     nStepMainY  = (long) aSizeVec.Y () / nColumnCnt;
 /*N*/                           long     nStepHelpY  = nStepMainY / 2;
 /*N*/
 /*N*/                           // hauptgitter auf der X-Ebene, parallel zur X-Achse
 /*N*/                           for (i = 0; i <= nColumnCnt; i++)
 /*N*/                           {
-/*N*/                               aLine3D[0].Y() =
-/*N*/                               aLine3D[1].Y() = aPos.Y() + nStepMainY * i;
+/*N*/                               aLclLine3D[0].Y() =
+/*N*/                               aLclLine3D[1].Y() = aPos.Y() + nStepMainY * i;
 /*N*/                               if( pYGridMainGroup )
-/*N*/                                   Create3DPolyObject (pYGridMainAttr, new SchE3dPolygonObj (aDefltAttr3D, aLine3D[0], aLine3D[1]),
+/*N*/                                   Create3DPolyObject (pYGridMainAttr, new SchE3dPolygonObj (aDefltAttr3D, aLclLine3D[0], aLclLine3D[1]),
 /*N*/                                                       CHOBJID_DIAGRAM_Y_GRID_MAIN, pYGridMainGroup);
 /*N*/
 /*N*/                               // hilfsgitter auf der X-Ebene, parallel zur X-Achse
 /*N*/                               if (pYGridHelpGroup && (i < nColumnCnt))
 /*N*/                               {
-/*?*/                                   aLine3D [0].Y () += nStepHelpY;
-/*?*/                                   aLine3D [1].Y () += nStepHelpY;
-/*?*/                                   Create3DPolyObject (pYGridHelpAttr, new SchE3dPolygonObj (aDefltAttr3D, aLine3D[0], aLine3D[1]),
+/*?*/                                   aLclLine3D [0].Y () += nStepHelpY;
+/*?*/                                   aLclLine3D [1].Y () += nStepHelpY;
+/*?*/                                   Create3DPolyObject (pYGridHelpAttr, new SchE3dPolygonObj (aDefltAttr3D, aLclLine3D[0], aLclLine3D[1]),
 /*?*/                                                       CHOBJID_DIAGRAM_Y_GRID_HELP, pYGridHelpGroup);
 /*N*/                               }
 /*N*/                           }
@@ -338,6 +336,7 @@ namespace binfilter {
 /*N*/                               }
 /*N*/                           }
 /*N*/                       }
+/*N*/                   }
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -352,37 +351,37 @@ namespace binfilter {
 /*N*/                   // hauptgitter auf der Z-Ebene, parallel zur Z-Achse
 /*N*/                   if( pZGridMainGroup || pZGridHelpGroup )
 /*N*/                   {
-/*N*/                       Vector3D aLine3D [2] = { aRect3D[2], aRect3D[3] };
+/*N*/                       Vector3D aLclLine3D [2] = { aRect3D[2], aRect3D[3] };
 /*N*/                       long     nStepMainZ  = (long) aSizeVec.Z () / nRowCnt;
 /*N*/                       long     nStepHelpZ  = nStepMainZ / 2;
 /*N*/
-/*N*/                       BOOL bCreateGridLine = ( (aLine3D[ 0 ].X() != aLine3D[ 1 ].X()) ||
-/*N*/                                                (aLine3D[ 0 ].Y() != aLine3D[ 1 ].Y()) );
+/*N*/                       BOOL bCreateGridLine = ( (aLclLine3D[ 0 ].X() != aLclLine3D[ 1 ].X()) ||
+/*N*/                                                (aLclLine3D[ 0 ].Y() != aLclLine3D[ 1 ].Y()) );
 /*N*/                       // Z() values become equal in the for loop
 /*N*/                       // => start and end points would be equal if !bCreateGridLine
 /*N*/
 /*N*/                       for (i = 0; i <= nRowCnt; i++)
 /*N*/                       {
-/*N*/                           aLine3D[0].Z() =
-/*N*/                           aLine3D[1].Z() = aPos.Z() + nStepMainZ * i;
+/*N*/                           aLclLine3D[0].Z() =
+/*N*/                           aLclLine3D[1].Z() = aPos.Z() + nStepMainZ * i;
 /*N*/                           if( pZGridMainGroup && bCreateGridLine )
-/*N*/                               Create3DPolyObject( pZGridMainAttr, new SchE3dPolygonObj( aDefltAttr3D, aLine3D[0], aLine3D[1] ),
+/*N*/                               Create3DPolyObject( pZGridMainAttr, new SchE3dPolygonObj( aDefltAttr3D, aLclLine3D[0], aLclLine3D[1] ),
 /*N*/                                                   CHOBJID_DIAGRAM_Z_GRID_MAIN, pZGridMainGroup );
 /*N*/
 /*N*/                           // hilfsgitter auf der Z-Ebene, parallel zur Z-Achse
 /*N*/                           if (pZGridHelpGroup && (i < nRowCnt))
 /*N*/                           {
-/*?*/                               aLine3D[0].Z() += nStepHelpZ;
-/*?*/                               aLine3D[1].Z() += nStepHelpZ;
+/*?*/                               aLclLine3D[0].Z() += nStepHelpZ;
+/*?*/                               aLclLine3D[1].Z() += nStepHelpZ;
 /*?*/                               if( bCreateGridLine )
-/*?*/                                   Create3DPolyObject( pZGridHelpAttr, new SchE3dPolygonObj( aDefltAttr3D, aLine3D[0], aLine3D[1] ),
+/*?*/                                   Create3DPolyObject( pZGridHelpAttr, new SchE3dPolygonObj( aDefltAttr3D, aLclLine3D[0], aLclLine3D[1] ),
 /*?*/                                                       CHOBJID_DIAGRAM_Z_GRID_HELP, pZGridHelpGroup );
 /*N*/                           }
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/
-/*N*/               Vector3D   aLine3D [2] = { aRect3D[0], aRect3D[(nV || !nV && bSwitchColRow)
+/*N*/               Vector3D   aLine3D [2] = { aRect3D[0], aRect3D[(nV || (!nV && bSwitchColRow))
 /*N*/                                                                  ? 3
 /*N*/                                                                  : 1] };
 /*N*/               double     fAct        = fMinValueY;
@@ -1433,7 +1432,7 @@ namespace binfilter {
 /*N*/                 pDataGroup[ nRow ]->InsertUserData( new SchDataRow( static_cast< short >( nRow ) ));
 /*N*/             }
 /*N*/
-/*N*/             for (nCol = 0; nCol < nColCnt; nCol++)
+/*N*/           for (nCol = 0; nCol < nColCnt; nCol++)
 /*N*/           {
 /*N*/               double fDataTop     = fOriginY;
 /*N*/               double fDataBottom  = fOriginY;
@@ -1445,7 +1444,7 @@ namespace binfilter {
 /*N*/               double fTop,fBottom,fMin,fMax,fMin2,fMax2;
 /*N*/               fMin2=fMax2=fOriginY;
 /*N*/
-/*N*/                 for (nRow = 0; nRow < nRowCnt; nRow++)
+/*N*/               for (nRow = 0; nRow < nRowCnt; nRow++)
 /*N*/               {
 /*N*/                   double fData=GetData(nCol, nRow, bPercent);
 /*N*/                   if (fData != DBL_MIN)
@@ -1525,22 +1524,22 @@ namespace binfilter {
 /*N*/                       case CHSTYLE_3D_FLATCOLUMN:
 /*N*/                           if (fData != DBL_MIN)
 /*N*/                           {
-/*N*/                               double fTop;
-/*N*/                               double fBottom;
+/*N*/                               double fLclTop;
+/*N*/                               double fLclBottom;
 /*N*/
 /*N*/                               if (fData < fOriginY)
 /*N*/                               {
-/*?*/                                   fTop    = fOriginY;
-/*?*/                                   fBottom = fData;
+/*?*/                                   fLclTop = fOriginY;
+/*?*/                                   fLclBottom = fData;
 /*N*/                               }
 /*N*/                               else
 /*N*/                               {
-/*N*/                                   fTop    = fData;
-/*N*/                                   fBottom = fOriginY;
+/*N*/                                   fLclTop = fData;
+/*N*/                                   fLclBottom  = fOriginY;
 /*N*/                               }
 /*N*/
-/*N*/                               long nBottom = Max ((long) (pChartYAxis->CalcFact(fBottom) * nH),0L);
-/*N*/                               long nTop = Min ((long) (pChartYAxis->CalcFact(fTop) * nH),nH);
+/*N*/                               long nBottom = Max ((long) (pChartYAxis->CalcFact(fLclBottom) * nH),0L);
+/*N*/                               long nTop = Min ((long) (pChartYAxis->CalcFact(fLclTop) * nH),nH);
 /*N*/
 /*N*/                               {
 /*N*/                                   long nBarHeight = nTop - nBottom + 1;
@@ -1640,26 +1639,26 @@ namespace binfilter {
 /*N*/                       case CHSTYLE_3D_PERCENTFLATCOLUMN:
 /*N*/                           if (fData != DBL_MIN)
 /*N*/                           {
-/*?*/                               double fTop;
-/*?*/                               double fBottom;
+/*?*/                               double fLclTop;
+/*?*/                               double fLclBottom;
 /*?*/
 /*?*/                               if (fData < fOriginY)
 /*?*/                               {
-/*?*/                                   fTop = fDataBottom;
-/*?*/                                   if (fTop == fOriginY) fDataBottom = fData;
+/*?*/                                   fLclTop = fDataBottom;
+/*?*/                                   if (fLclTop == fOriginY) fDataBottom = fData;
 /*?*/                                   else fDataBottom += fData;
-/*?*/                                   fBottom = fDataBottom;
+/*?*/                                   fLclBottom = fDataBottom;
 /*N*/                               }
 /*N*/                               else
 /*N*/                               {
-/*N*/                                   fBottom = fDataTop;
-/*N*/                                   if (fBottom == fOriginY) fDataTop = fData;
+/*N*/                                   fLclBottom = fDataTop;
+/*N*/                                   if (fLclBottom == fOriginY) fDataTop = fData;
 /*N*/                                   else fDataTop += fData;
-/*N*/                                   fTop = fDataTop;
+/*N*/                                   fLclTop = fDataTop;
 /*N*/                               }
 /*N*/
-/*N*/                               long nTop = Min((long)(pChartYAxis->CalcFact(fTop) * nH), nH);
-/*N*/                               long nBottom = Max((long)(pChartYAxis->CalcFact(fBottom) * nH),0L);
+/*N*/                               long nTop = Min((long)(pChartYAxis->CalcFact(fLclTop) * nH), nH);
+/*N*/                               long nBottom = Max((long)(pChartYAxis->CalcFact(fLclBottom) * nH),0L);
 /*N*/
 /*N*/                               {
 /*N*/                                   long nBarHeight = nTop - nBottom + 1;
@@ -1976,10 +1975,9 @@ namespace binfilter {
 /*N*/
 /*N*/           if(aDescr.Enabled())
 /*N*/           {
-/*N*/               double fZPos = (double)nZExtrude / 2.0;
 /*N*/               DataDescription* pDescr=aDescr.Insert(nCol,nRow,aDataPointAttr,Point(0,0),FALSE,CHADJUST_BOTTOM_CENTER,pChartYAxis);
 /*N*/               if(pDescr)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     Segment3DDescr(*pDescr,aPieRect,nStartAngle,nEndAngle,0,aPieRect.GetWidth()/2,aPieRect.GetWidth()/2,fZPos);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/           }
 /*N*/       }
 /*N*/   }

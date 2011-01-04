@@ -94,7 +94,7 @@ namespace binfilter {
 /*N*/                                          long             nCol,
 /*N*/                                          long             nRow,
 /*N*/                                          SfxItemSet       &rAttr,
-/*N*/                                          BOOL             bIsSimple,
+/*N*/                                          BOOL             /*bIsSimple*/,
 /*N*/                                          double           fMinPos,
 /*N*/                                          double           fOriPos,
 /*N*/                                          double           fMaxPos)
@@ -141,9 +141,9 @@ namespace binfilter {
 /*N*/       a=aPos.X()-fOriPos;
 /*N*/       b=aPos.X()+aSizeVec.X()-fOriPos;
 /*N*/
-/*N*/       double fTmp=aSizeVec.X();
+/*N*/       double fLclTmp=aSizeVec.X();
 /*N*/       aSizeVec.X()=aSizeVec.Y();
-/*N*/       aSizeVec.Y()=fTmp;
+/*N*/       aSizeVec.Y()=fLclTmp;
 /*N*/       aSizeVec.Z()=-aSizeVec.Z(); //90Grad drehen
 /*N*/   }
 /*N*/   else
@@ -469,11 +469,11 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ ChartScene* ChartModel::CreateScene (const Rectangle &rRect,
-/*N*/                        const Vector3D  &aLightVec,
-/*N*/                        double          fSpotIntensity,
-/*N*/                        Color&          rSpotColor,
-/*N*/                        double          fAmbientIntensity,
-/*N*/                        Color&          rAmbientColor)
+/*N*/                        const Vector3D  &/*aLightVec*/,
+/*N*/                        double          /*fSpotIntensity*/,
+/*N*/                        Color&          /*rSpotColor*/,
+/*N*/                        double          /*fAmbientIntensity*/,
+/*N*/                        Color&          /*rAmbientColor*/)
 /*N*/ {
 /*N*/   ChartScene *pMyScene = new ChartScene (this);
 /*N*/
@@ -486,9 +486,9 @@ namespace binfilter {
 /*N*/ void SchRectObj::NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetOutlinerParaObject(pTextObject);
-/*N*/   ChartModel* pModel=(ChartModel*)GetModel();
-/*N*/   if(pModel)
-/*N*/       pModel->SetTextFromObject(this,pTextObject);
+/*N*/   ChartModel* pLclModel=(ChartModel*)GetModel();
+/*N*/   if(pLclModel)
+/*N*/       pLclModel->SetTextFromObject(this,pTextObject);
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////

@@ -76,18 +76,11 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Kopier-Konstruktor
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Kopie erzeugen
 |*
 \************************************************************************/
 
-/*N*/ SdrObjUserData* SchAxisId::Clone(SdrObject *pObj) const
+/*N*/ SdrObjUserData* SchAxisId::Clone(SdrObject *) const
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchAxisId (*this);
 /*N*/ }

@@ -101,7 +101,6 @@ namespace binfilter {
 /*N*/   DataDescription*    pDescription = NULL;
 /*N*/   long                nCol;
 /*N*/   Size                aDescrOfs;
-/*N*/   BOOL                bInserted  = FALSE;
 /*N*/
 /*N*/   //  Pie charts may not have titles of axes.
 /*N*/   bShowXAxisTitle = FALSE;
@@ -121,8 +120,7 @@ namespace binfilter {
 /*N*/   for( nCol = 0; nCol < nColCnt; nCol++ )
 /*N*/   {
 /*N*/       SfxItemSet aDataPointAttr( GetFullDataPointAttr( nCol, nRow ));
-/*N*/       double     fData    = GetData( nCol, nRow );
-/*N*/       long       nIndex   = nCol + nRow * nColCnt;
+/*N*/       /*double fData =*/ GetData( nCol, nRow );
 /*N*/
 /*N*/       nSegOfsMax = Max( PieSegOfs( nCol ), nSegOfsMax );
 /*N*/
@@ -280,16 +278,16 @@ namespace binfilter {
 /*N*/   pGroup->GetSubList ()->SetRectsDirty ();
 /*N*/
 /*N*/   // resize of pie charts is allowed proportionally only
-/*N*/   SdrObjTransformInfoRec aInfo;
-/*N*/   aInfo.bResizeFreeAllowed    = FALSE;
-/*N*/   aInfo.bResizePropAllowed    = TRUE;
-/*N*/   aInfo.bRotateFreeAllowed    = FALSE;
-/*N*/   aInfo.bRotate90Allowed      = FALSE;
-/*N*/   aInfo.bMirrorFreeAllowed    = FALSE;
-/*N*/   aInfo.bMirror45Allowed      = FALSE;
-/*N*/   aInfo.bMirror90Allowed      = FALSE;
-/*N*/   aInfo.bShearAllowed         = FALSE;
-/*N*/   pGroup->SetObjInfo(aInfo);
+/*N*/   SdrObjTransformInfoRec aLclInfo;
+/*N*/   aLclInfo.bResizeFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bResizePropAllowed    = TRUE;
+/*N*/   aLclInfo.bRotateFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bRotate90Allowed      = FALSE;
+/*N*/   aLclInfo.bMirrorFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bMirror45Allowed      = FALSE;
+/*N*/   aLclInfo.bMirror90Allowed      = FALSE;
+/*N*/   aLclInfo.bShearAllowed         = FALSE;
+/*N*/   pGroup->SetObjInfo(aLclInfo);
 /*N*/
 /*N*/   Dirty2D (1, nColCnt, &pDescrList, FALSE, pDescription);
 /*N*/
@@ -347,7 +345,6 @@ namespace binfilter {
 /*N*/   for (nRow = 0; nRow < nRowCnt; nRow++)
 /*N*/   {
 /*N*/       SchObjGroup *pRowGroup = (SchObjGroup*) CreateSimpleGroup (CHOBJID_DIAGRAM_ROWGROUP, TRUE, TRUE);
-/*N*/       BOOL        bInserted  = FALSE;
 /*N*/
 /*N*/       pRowGroup->InsertUserData(new SchDataRow((short)nRow));
 /*N*/       pList->NbcInsertObject(pRowGroup);
@@ -358,8 +355,7 @@ namespace binfilter {
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
 /*N*/       {
 /*N*/           SfxItemSet aDataPointAttr(GetFullDataPointAttr(nCol, nRow));
-/*N*/           double     fData           = GetData (nCol, nRow);
-/*N*/           long       nIndex          = nCol + nRow * nColCnt;
+/*N*/           /*double fData =*/ GetData (nCol, nRow);
 /*N*/
 /*N*/           SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)aDataPointAttr.
 /*N*/                                            Get(SCHATTR_DATADESCR_DESCR)).GetValue();
@@ -538,18 +534,18 @@ namespace binfilter {
 /*N*/   pGroup->GetSubList()->SetRectsDirty();
 /*N*/
 /*N*/   // Ein Kreisdiagramm soll man nur proportional Resizen koennen (vorerst)
-/*N*/   SdrObjTransformInfoRec aInfo;
-/*N*/   aInfo.bResizeFreeAllowed    = FALSE;
-/*N*/   aInfo.bResizePropAllowed    = TRUE;
-/*N*/   aInfo.bRotateFreeAllowed    = FALSE;
-/*N*/   aInfo.bRotate90Allowed      = FALSE;
-/*N*/   aInfo.bMirrorFreeAllowed    = FALSE;
-/*N*/   aInfo.bMirror45Allowed      = FALSE;
-/*N*/   aInfo.bMirror90Allowed      = FALSE;
-/*N*/   aInfo.bShearAllowed         = FALSE;
-/*N*/   pGroup->SetObjInfo(aInfo);
+/*N*/   SdrObjTransformInfoRec aLclInfo;
+/*N*/   aLclInfo.bResizeFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bResizePropAllowed    = TRUE;
+/*N*/   aLclInfo.bRotateFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bRotate90Allowed      = FALSE;
+/*N*/   aLclInfo.bMirrorFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bMirror45Allowed      = FALSE;
+/*N*/   aLclInfo.bMirror90Allowed      = FALSE;
+/*N*/   aLclInfo.bShearAllowed         = FALSE;
+/*N*/   pGroup->SetObjInfo(aLclInfo);
 /*N*/
-/*N*/     Dirty2D (nRowCnt, nColCnt, pDescrLists, TRUE, pDescription);
+/*N*/   Dirty2D (nRowCnt, nColCnt, pDescrLists, TRUE, pDescription);
 /*N*/
 /*N*/   delete[] pTotal;
 /*N*/   delete[] pDescription;
@@ -574,7 +570,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // ask for sorting
 /*N*/
-/*N*/   BOOL    bSortTable = FALSE;
 /*N*/   BOOL    bRepaint   = FALSE;
 
 /*N*/   if( IsXYChart() && ! ISFLAGSET( nChartStatus, CHS_USER_NOQUERY ) )  // in this case ask for sorting
@@ -666,8 +661,8 @@ namespace binfilter {
 /*N*/           double fDataY    = GetData(nCol, nRow, FALSE);
 /*N*/           double fDataX    = GetData(nCol, 0, FALSE);
 /*N*/
-/*N*/             if (((fDataX != DBL_MIN) && (!bLogarithmX || bLogarithmX && (fDataX > 0.0))) &&
-/*N*/               ((fDataY != DBL_MIN) && (!bLogarithmY || bLogarithmY && (fDataY > 0.0))))
+/*N*/             if (((fDataX != DBL_MIN) && (!bLogarithmX || (bLogarithmX && (fDataX > 0.0)))) &&
+/*N*/               ((fDataY != DBL_MIN) && (!bLogarithmY || (bLogarithmY && (fDataY > 0.0)))))
 /*N*/           {
 /*N*/               long nXPos = pChartXAxis->GetPos(fDataX);
 /*N*/               long nYPos = pAxis->GetPos(fDataY);
@@ -1427,7 +1422,7 @@ namespace binfilter {
 |*
 \*************************************************************/
 /*N*/ SdrObject* ChartModel::CreateDonutSegment( SfxItemSet& aAttr,
-/*N*/                                          Rectangle&  aRect, ULONG nWidth,
+/*N*/                                          Rectangle&  aRect, ULONG /*nWidth*/,
 /*N*/                                          long nCol,         long nRow,
 /*N*/                                          long nStartAngle,  long nEndAngle,
 /*N*/                                          long nCount)

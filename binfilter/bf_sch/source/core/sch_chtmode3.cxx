@@ -91,42 +91,10 @@ namespace binfilter {
 |* Entscheidung, ob BuildChart notwendig
 |*
 \************************************************************************/
-/*N*/ BOOL ChartModel::IsAttrChangeNeedsBuildChart(const SfxItemSet& rAttr)
+/*N*/ BOOL ChartModel::IsAttrChangeNeedsBuildChart(const SfxItemSet&)
 /*N*/ {
 /*N*/   // BM #60999# rebuild for all EE_CHAR attributes because of possibly red color for negative numbers. sorry :-(
 /*N*/   return TRUE;
-
- /*
-    BOOL bNeedBuild=FALSE;
-
-    SfxWhichIter aWhichIter(rAttr);
-    USHORT nWhich = aWhichIter.FirstWhich();
-    while (nWhich != 0)
-    {
-       if (rAttr.GetItemState(nWhich) == SFX_ITEM_SET)
-       {
-           if(nWhich < XATTR_LINE_FIRST  || nWhich > XATTR_FILL_LAST)
-           {
-
-               switch(nWhich)
-               {
-
-               case EE_CHAR_COLOR:
-               case EE_CHAR_UNDERLINE:
-               case EE_CHAR_STRIKEOUT:
-                   break;
-
-               default:
-
-                   bNeedBuild=TRUE;
-                   break;
-               }
-           }
-       }
-       nWhich = aWhichIter.NextWhich();
-    }
-    return bNeedBuild;
-*/
 /*N*/ }
 
 /*************************************************************************
@@ -183,6 +151,7 @@ namespace binfilter {
 /*N*/         bool bIsFirst = true;
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_X_AXIS ))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*N*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_X_AXIS ));
@@ -190,8 +159,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_X_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_Y_AXIS ))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_Y_AXIS ));
@@ -199,8 +170,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*N*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_Y_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || (Is3DChart() && HasAxis( CHOBJID_DIAGRAM_Z_AXIS )))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_Z_AXIS ));
@@ -208,8 +181,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*N*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_Z_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_A_AXIS ))
+/*N*/         {
 /*?*/             if( bIsFirst )
 /*?*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_A_AXIS ));
@@ -217,8 +192,10 @@ namespace binfilter {
 /*?*/             }
 /*?*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_A_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_B_AXIS ))
+/*N*/         {
 /*?*/             if( bIsFirst )
 /*?*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_B_AXIS ));
@@ -226,6 +203,7 @@ namespace binfilter {
 /*?*/             }
 /*?*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_B_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/   }
 /*N*/
 /*N*/ //     if( bOnlyInserted )
@@ -449,26 +427,26 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   CHART_TRACE( "creating SVX_SYMBOLTYPE_BRUSHITEM" );
 /*?*/                   const Graphic*  pGraphic = ((const SvxBrushItem *)pPoolItem)->GetGraphic();
-/*?*/                   Size            aSize;
+/*?*/                   Size            aLclSize;
 /*?*/
 /*?*/                   if( pGraphic )
 /*?*/                   {
 /*?*/                       if(!pObj && aDataAttr.GetItemState(SCHATTR_SYMBOL_SIZE,TRUE,&pPoolItem)==SFX_ITEM_SET)
 /*?*/                       {
 /*?*/                           CHART_TRACE( "Size by Item" );
-/*?*/                           aSize=((const SvxSizeItem*)pPoolItem)->GetSize();
+/*?*/                           aLclSize=((const SvxSizeItem*)pPoolItem)->GetSize();
 /*?*/                       }
 /*?*/                       else
 /*?*/                       {
 /*?*/                           CHART_TRACE( "Size by Graphic" );
 /*?*/                           if( pGraphic )
-/*?*/                               aSize = ( OutputDevice::LogicToLogic( pGraphic->GetPrefSize(),
+/*?*/                               aLclSize = ( OutputDevice::LogicToLogic( pGraphic->GetPrefSize(),
 /*?*/                                                                     pGraphic->GetPrefMapMode(),
 /*?*/                                                                     MAP_100TH_MM ));
 /*?*/                       }
 /*?*/
-/*?*/                       Rectangle   aRect(aPoint.X()-aSize.Width()/2,aPoint.Y()-aSize.Height()/2
-/*?*/                                         ,aPoint.X()+aSize.Width()/2,aPoint.Y()+aSize.Height()/2);
+/*?*/                       Rectangle   aRect(aPoint.X()-aLclSize.Width()/2,aPoint.Y()-aLclSize.Height()/2
+/*?*/                                         ,aPoint.X()+aLclSize.Width()/2,aPoint.Y()+aLclSize.Height()/2);
 /*?*/                       pObj      = new SdrGrafObj(*pGraphic);
 /*?*/                       GetPage(0)->NbcInsertObject(pObj,0);
 /*?*/                       pObj->NbcSetSnapRect(aRect);
@@ -492,10 +470,10 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!pObj && aDataAttr.GetItemState(SCHATTR_SYMBOL_SIZE,TRUE,&pPoolItem)==SFX_ITEM_SET)
 /*N*/   {
-/*?*/       Size aSize=((const SvxSizeItem*)pPoolItem)->GetSize();
-/*?*/       nHalfSymbolSizeX = aSize.Width() / 2;
-/*?*/       nHalfSymbolSizeY = aSize.Height() / 2;
-/*?*/       CHART_TRACE2( "reading SCHATTR_SYMBOL_SIZE -> Size = (%ld, %ld)", aSize.Width(), aSize.Height() );
+/*?*/       Size aLclSize=((const SvxSizeItem*)pPoolItem)->GetSize();
+/*?*/       nHalfSymbolSizeX = aLclSize.Width() / 2;
+/*?*/       nHalfSymbolSizeY = aLclSize.Height() / 2;
+/*?*/       CHART_TRACE2( "reading SCHATTR_SYMBOL_SIZE -> Size = (%ld, %ld)", aLclSize.Width(), aLclSize.Height() );
 /*N*/   }
 /*N*/
 /*N*/   if(!pObj) //dann default generieren
@@ -730,7 +708,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void ChartModel::ClearDataPointAttr( long nCol, long nRow, const SfxItemSet& rAttr )
+/*N*/ void ChartModel::ClearDataPointAttr( long nCol, long nRow, const SfxItemSet& /*rAttr*/ )
 /*N*/ {
 /*N*/
 /*N*/   CHART_TRACE( "ChartModel::ClearDataPointAttr" );
@@ -741,7 +719,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
 /*N*/   if (pItemSet != NULL)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ClearDblItems(rAttr,*pItemSet);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 /*************************************************************************
 |*
@@ -959,7 +937,7 @@ namespace binfilter {
 /*N*/ void ChartModel::SetTextFromObject( SdrTextObj* pObj,OutlinerParaObject* pTextObject )
 /*N*/ {
 /*N*/   DBG_ASSERT( pObj, "ChartModel::SetTextFromObject: Object is NULL" );
-/*N*/   if( !bAttrAutoStorage && pTextObject // not during BuildChart
+/*N*/   if( (!bAttrAutoStorage && pTextObject) // not during BuildChart
 /*N*/       || !pObj )
 /*N*/       return;
 /*N*/
@@ -1071,10 +1049,10 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_WALL:
 /*N*/       {
 /*N*/           //Spezialfall, 2.Wand suchen
-/*N*/           ChartScene* pScene=GetScene();
-/*N*/           if(pScene)
+/*N*/           ChartScene* pLclScene=GetScene();
+/*N*/           if(pLclScene)
 /*N*/           {
-/*N*/               SdrObjListIter aIterator(*pScene->GetSubList(), IM_FLAT);
+/*N*/               SdrObjListIter aIterator(*pLclScene->GetSubList(), IM_FLAT);
 /*N*/               while (aIterator.IsMore())
 /*N*/               {
 /*N*/                   SdrObject   *pO   = aIterator.Next();
@@ -1213,7 +1191,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* ChartModel::GetObjectWithId(const long nId,const long nCol,const long nRow)
+/*N*/ SdrObject* ChartModel::GetObjectWithId(const long nId,const long /*nCol*/,const long /*nRow*/)
 /*N*/ {
 /*N*/   //ToDo: Das hier könnte man auch schöner machen (kein DEEP!)
 /*N*/   SdrObject* pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
@@ -1474,7 +1452,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/       case CHOBJID_DIAGRAM_B_AXIS:
 /*N*/       case CHOBJID_DIAGRAM_Z_AXIS:
 /*N*/           {
-/*N*/               const SfxPoolItem *pPoolItem;
 /*N*/               if(pObj)
 /*N*/               {
 /*N*/                   ChangeAxisAttr(rAttr,(SdrObjGroup*)pObj);
@@ -1497,6 +1474,7 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/               }
 /*N*/
+/*N*/               const SfxPoolItem *pPoolItem;
 /*N*/               if( SFX_ITEM_SET == rAttr.GetItemState( SID_TEXTBREAK, TRUE, &pPoolItem ) )
 /*N*/               {
 /*N*/                   switch(nId)

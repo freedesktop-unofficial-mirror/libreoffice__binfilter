@@ -249,7 +249,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdrTextObj *ChartModel::CreateTitle (SfxItemSet   *pTitleAttr,
+/*N*/ SdrTextObj *ChartModel::CreateTitle (SfxItemSet   *pInTitleAttr,
 /*N*/                                    short        nID,
 /*N*/                                    BOOL         bSwitchColRow,
 /*N*/                                    const String &rText,
@@ -260,7 +260,7 @@ namespace binfilter {
 /*N*/   if (pTextDirection == NULL) return NULL;  //FG: sonst Absturz
 /*N*/
 /*N*/   SfxItemSet aTextAttr(*pItemPool, nTitleWhichPairs);
-/*N*/   SvxChartTextOrient eOrient = ((const SvxChartTextOrientItem&)pTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
+/*N*/   SvxChartTextOrient eOrient = ((const SvxChartTextOrientItem&)pInTitleAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/
 /*N*/   if (bVert)
 /*N*/   {
@@ -284,7 +284,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   aTextAttr.Put(*pTitleAttr);
+/*N*/   aTextAttr.Put(*pInTitleAttr);
 /*N*/   aTextAttr.Put(SvxChartTextOrientItem(eOrient));
 /*N*/
 /*N*/   // Seit 4/1998 koennen Texte frei gedreht werden: SCHATTR_TEXT_DEGREES
@@ -314,65 +314,65 @@ namespace binfilter {
 /*N*/         PutDataRowAttr( nRow, rInAttrs );
 /*N*/
 /*N*/     const SfxPoolItem *pPoolItem = NULL;
-/*N*/   BOOL              bChanged   = FALSE;
+/*N*/   BOOL              bLclChanged   = FALSE;
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_AVERAGE, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       bShowAverage = ((const SfxBoolItem*) pPoolItem)->GetValue();
-/*N*/       bChanged     = TRUE;
+/*N*/       bLclChanged     = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_KIND_ERROR, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       eErrorKind = (SvxChartKindError) ((const SfxInt32Item*) pPoolItem)->GetValue();
-/*N*/       bChanged   = TRUE;
+/*N*/       bLclChanged   = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_PERCENT, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       fIndicatePercent = ((const SvxDoubleItem*) pPoolItem)->GetValue();
-/*N*/       bChanged         = TRUE;
+/*N*/       bLclChanged         = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_BIGERROR, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       fIndicateBigError = ((const SvxDoubleItem*) pPoolItem)->GetValue();
-/*N*/       bChanged          = TRUE;
+/*N*/       bLclChanged          = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_CONSTPLUS, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       fIndicatePlus = ((const SvxDoubleItem*) pPoolItem)->GetValue();
-/*N*/       bChanged      = TRUE;
+/*N*/       bLclChanged      = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_CONSTMINUS, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       fIndicateMinus = ((const SvxDoubleItem*) pPoolItem)->GetValue();
-/*N*/       bChanged       = TRUE;
+/*N*/       bLclChanged       = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_INDICATE, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*?*/       eIndicate = (SvxChartIndicate) ((const SfxInt32Item*) pPoolItem)->GetValue();
-/*?*/       bChanged  = TRUE;
+/*?*/       bLclChanged  = TRUE;
 /*N*/   }
 /*N*/
 /*N*/   if (rInAttrs.GetItemState(SCHATTR_STAT_REGRESSTYPE, TRUE, &pPoolItem) == SFX_ITEM_SET)
 /*N*/   {
 /*N*/       eRegression = (SvxChartRegress) ((const SfxInt32Item*) pPoolItem)->GetValue();
-/*N*/       bChanged    = TRUE;
+/*N*/       bLclChanged    = TRUE;
 /*N*/   }
 /*N*/
-/*N*/   if( bChanged )
+/*N*/   if( bLclChanged )
 /*N*/     {
 /*N*/         BuildChart( FALSE );
 /*N*/     }
 /*N*/
-/*N*/     return bChanged;
+/*N*/     return bLclChanged;
 /*N*/ }
 
-/*N*/ void ChartModel::DataRangeChanged( long _nOldRowCnt , long _nOldColCnt )
+/*N*/ void ChartModel::DataRangeChanged( long /*_nOldRowCnt*/ , long /*_nOldColCnt*/ )
 /*N*/ {
 /*N*/   if( Is3DChart() )
 /*N*/   {

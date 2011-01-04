@@ -38,11 +38,11 @@ namespace binfilter {
 /*N*/                                          ChartModel* pModel, BOOL bEnable) :
 /*N*/       mnRows(nRows),
 /*N*/       mnCols(nCols),
-/*N*/       mpList(pList),
 /*N*/       mpModel(pModel),
-/*N*/       mbEnable(bEnable),
 /*N*/       mpDescrLists(NULL),
+/*N*/       mpList(pList),
 /*N*/       mpDescrArray(NULL),
+/*N*/       mbEnable(bEnable),
 /*N*/       mpDescrGroups(NULL)
 /*N*/ {
 /*N*/ }
@@ -101,19 +101,19 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ DataDescription* ChartDataDescription::Insert( long nCol, long nRow, const SfxItemSet& rAttr, Point aPos,
-/*N*/                                              BOOL bPercent, ChartAdjust eAdjust, ChartAxis* pAxis )
+/*N*/ DataDescription* ChartDataDescription::Insert( long /*nCol*/, long /*nRow*/, const SfxItemSet& rAttr, Point /*aPos*/,
+/*N*/                                              BOOL /*bPercent*/, ChartAdjust /*eAdjust*/, ChartAxis* /*pAxis*/ )
 /*N*/ {
 /*N*/   SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)rAttr.Get(SCHATTR_DATADESCR_DESCR)).GetValue();
 /*N*/
 /*N*/   if(mbEnable && eDescr != CHDESCR_NONE)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Create(nRow); //evtl. Array und Liste erstellen
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return NULL;
 /*N*/ }
 
-/*N*/ void ChartDataDescription::Dirty2D( BOOL bRowDescr )
+/*N*/ void ChartDataDescription::Dirty2D( BOOL /*bRowDescr*/ )
 /*N*/ {
 /*N*/
 /*N*/   if(mpDescrLists)

@@ -118,10 +118,11 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchMemChart::SchMemChart(ChartDataId nMyID) :
-/*N*/   nTranslated(TRANS_NONE),
+/*N*/   nLastSelInfoReturn(0),
 /*N*/   nRefCount (0),
 /*N*/   mpColNameBuffer(NULL),
 /*N*/   mpRowNameBuffer(NULL),
+/*N*/   nTranslated(TRANS_NONE),
 /*N*/   nRowCnt (0),
 /*N*/   nColCnt (0),
 /*N*/   eDataType(NUMBERFORMAT_NUMBER),
@@ -134,8 +135,7 @@ namespace binfilter {
 /*N*/   pColNumFmtId(NULL),
 /*N*/   pRowTable(NULL),
 /*N*/   pColTable(NULL),
-/*N*/   bReadOnly(FALSE),
-/*N*/   nLastSelInfoReturn(0)
+/*N*/   bReadOnly(FALSE)
 /*N*/ {
 /*N*/ }
 
@@ -146,10 +146,11 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchMemChart::SchMemChart(short nCols, short nRows) :
-/*N*/   nTranslated(TRANS_NONE),
+/*N*/   nLastSelInfoReturn(0),
 /*N*/   nRefCount (0),
 /*N*/   mpColNameBuffer(NULL),
 /*N*/   mpRowNameBuffer(NULL),
+/*N*/   nTranslated(TRANS_NONE),
 /*N*/   eDataType(NUMBERFORMAT_NUMBER),
 /*N*/   pData (0),
 /*N*/   pColText (0),
@@ -160,8 +161,7 @@ namespace binfilter {
 /*N*/   pColNumFmtId(NULL),
 /*N*/   pRowTable(NULL),
 /*N*/   pColTable(NULL),
-/*N*/   bReadOnly(FALSE),
-/*N*/   nLastSelInfoReturn(0)
+/*N*/   bReadOnly(FALSE)
 /*N*/ {
 /*N*/   nRowCnt = nRows;
 /*N*/   nColCnt = nCols;
@@ -225,10 +225,10 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchMemChart::SchMemChart(const SchMemChart& rMemChart) :
-/*N*/   nTranslated(TRANS_NONE),
 /*N*/   nRefCount (0),
 /*N*/   mpColNameBuffer(NULL),
 /*N*/   mpRowNameBuffer(NULL),
+/*N*/   nTranslated(TRANS_NONE),
 /*N*/   myID (CHDATAID_MEMCHART_PLUS),
 /*N*/   mpNumFormatter(NULL),
 /*N*/   pRowNumFmtId(NULL),
@@ -259,13 +259,12 @@ namespace binfilter {
 /*N*/   nLastSelInfoReturn = rMemChart.nLastSelInfoReturn;
 /*N*/
 /*N*/   nTranslated = rMemChart.nTranslated;
-/*N*/   long i;
-/*N*/   for(i=0;i<nColCnt;i++)
+/*N*/   for(long i=0;i<nColCnt;i++)
 /*N*/   {
 /*N*/       pColTable[i]    = rMemChart.pColTable[i];
 /*N*/       pColNumFmtId[i] = rMemChart.pColNumFmtId[i];
 /*N*/   }
-/*N*/   for(i=0;i<nRowCnt;i++)
+/*N*/   for(long i=0;i<nRowCnt;i++)
 /*N*/   {
 /*N*/       pRowTable[i]    = rMemChart.pRowTable[i];
 /*N*/       pRowNumFmtId[i] = rMemChart.pRowNumFmtId[i];
@@ -284,12 +283,12 @@ namespace binfilter {
 /*N*/
 /*N*/   pColText = new String[nColCnt];
 /*N*/
-/*N*/   for (i = 0; i < nColCnt; i++)
+/*N*/   for (long i = 0; i < nColCnt; i++)
 /*N*/       pColText[i] = rMemChart.pColText[i];
 /*N*/
 /*N*/   pRowText = new String[nRowCnt];
 /*N*/
-/*N*/   for (i = 0; i < nRowCnt; i++)
+/*N*/   for (long i = 0; i < nRowCnt; i++)
 /*N*/       pRowText[i] = rMemChart.pRowText[i];
 /*N*/
 /*N*/   bReadOnly = rMemChart.bReadOnly;            // bm #69410#
@@ -526,8 +525,7 @@ namespace binfilter {
 /*N*/
 /*N*/   double *pIn = rMemChart.pData;
 /*N*/
-/*N*/   short i;
-/*N*/   for (i = 0; i < rMemChart.nColCnt; i++)
+/*N*/   for (short i = 0; i < rMemChart.nColCnt; i++)
 /*N*/       for (short j = 0; j < rMemChart.nRowCnt; j++)
 /*N*/           rIn >> *(pIn ++);
 /*N*/
@@ -546,14 +544,14 @@ namespace binfilter {
 /*N*/
 /*N*/   rMemChart.pColText = new String[rMemChart.nColCnt];
 /*N*/
-/*N*/   for (i = 0; i < rMemChart.nColCnt; i++)
+/*N*/   for (short i = 0; i < rMemChart.nColCnt; i++)
 /*N*/   {
 /*N*/       rIn.ReadByteString( rMemChart.pColText[ i ] );
 /*N*/   }
 /*N*/
 /*N*/   rMemChart.pRowText = new String[rMemChart.nRowCnt];
 /*N*/
-/*N*/   for (i = 0; i < rMemChart.nRowCnt; i++)
+/*N*/   for (short i = 0; i < rMemChart.nRowCnt; i++)
 /*N*/   {
 /*N*/       rIn.ReadByteString( rMemChart.pRowText[ i ] );
 /*N*/   }
@@ -567,11 +565,10 @@ namespace binfilter {
 /*N*/
 /*N*/   if(aIO.GetVersion()>=1)
 /*N*/   {
-/*N*/       long i;
-/*N*/       for (i = 0; i < rMemChart.nColCnt; i++)
+/*N*/       for (long i = 0; i < rMemChart.nColCnt; i++)
 /*N*/           rIn >> rMemChart.pColTable[i];
 /*N*/
-/*N*/       for (i = 0; i < rMemChart.nRowCnt; i++)
+/*N*/       for (long i = 0; i < rMemChart.nRowCnt; i++)
 /*N*/           rIn >> rMemChart.pRowTable[i];
 /*N*/
 /*N*/       if(aIO.GetVersion()>=2)
@@ -948,7 +945,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/     static const sal_Unicode aSpace( ' ' );
 /*N*/     static const sal_Unicode aQuote( '\'' );
-/*N*/     static const sal_Unicode aDoubleQuote( '\"' );
 /*N*/     static const sal_Unicode aDollar( '$' );
 /*N*/     static const sal_Unicode aBackslash( '\\' );
 /*N*/
@@ -1105,11 +1101,11 @@ using namespace ::com::sun::star;
 // methods to modify SchChartRange
 // -------------------------------
 
-/*N*/ static sal_Int32 lcl_GetWriterBoxNum( String& rStr, BOOL bFirst )
+/*N*/ static sal_Int32 lcl_GetWriterBoxNum( String& rStr, BOOL bInFirst )
 /*N*/ {
 /*N*/   sal_Int32 nRet = 0;
 /*N*/   xub_StrLen nPos = 0;
-/*N*/   if( bFirst )
+/*N*/   if( bInFirst )
 /*N*/   {
 /*N*/       // the first box starts with a letter
 /*N*/       sal_Unicode cChar;

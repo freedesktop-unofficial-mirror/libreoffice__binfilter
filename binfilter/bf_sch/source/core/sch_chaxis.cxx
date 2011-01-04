@@ -1919,7 +1919,9 @@ namespace binfilter {
 /*N*/       {
 /*N*/               // dann hat man mehr Platz pro Zeile (eigentlich 2 mal soviel) aber der Platz zwischen den
 /*N*/               // Beschriftungen steht auch noch zur Verfuegung (jeweils 0,2 * nDescrWidth)
-/*?*/           mnMaxTextWidth = 2 * mnMaxTextWidth + 0,4 * nDescrWidth;
+//          mnMaxTextWidth = 2 * mnMaxTextWidth + 0,4 * nDescrWidth;
+/*?*/           //cmc: I thought I'd leave ^^^ in for posterity, behold the , vs . :-)
+/*?*/           mnMaxTextWidth = 2 * mnMaxTextWidth + 0;
 /*?*/               // Man braucht auch 2 mal soviel Platz in unten am Chart.
 /*?*/           if(mbSecondary)
 /*?*/               rRect.Top() += maMaxTextSize.Height() + mnTickLen;

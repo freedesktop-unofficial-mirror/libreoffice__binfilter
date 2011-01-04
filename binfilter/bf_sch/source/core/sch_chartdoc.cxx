@@ -155,14 +155,14 @@ namespace binfilter {
 /*?*/                               SID_PRINTER_NOTFOUND_WARN,
 /*?*/                               SID_PRINTER_NOTFOUND_WARN, 0);
 /*?*/               pSet->Put(aItem);
-/*?*/               SfxPrinter* pPrinter = new SfxPrinter(pSet);
+/*?*/               SfxPrinter* pLclPrinter = new SfxPrinter(pSet);
 /*?*/
-/*?*/               MapMode aMapMode = pPrinter->GetMapMode();
+/*?*/               MapMode aMapMode = pLclPrinter->GetMapMode();
 /*?*/               aMapMode.SetMapUnit(MAP_100TH_MM);
-/*?*/               pPrinter->SetMapMode(aMapMode);
+/*?*/               pLclPrinter->SetMapMode(aMapMode);
 /*?*/
-/*?*/               pPrinter->Store(rOut);
-/*?*/               delete pPrinter;
+/*?*/               pLclPrinter->Store(rOut);
+/*?*/               delete pLclPrinter;
 /*?*/               //delete pSet; bloss nicht! Killt der Printer gleich mit!
 /*N*/           }
 /*N*/       }

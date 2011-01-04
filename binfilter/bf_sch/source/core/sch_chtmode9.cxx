@@ -311,7 +311,7 @@ namespace binfilter {
 /*N*/   pChartAAxis->SetArea(rRect);
 /*N*/   pChartBAxis->SetArea(rRect);
 /*N*/
-/*N*/   long  nStepPartWidth=pChartXAxis->GetDescrWidth(); //Warum nochmal? sollte noch immer identisch nDescrWidth sein!
+/*N*/   /*long nStepPartWidth=*/pChartXAxis->GetDescrWidth(); //Warum nochmal? sollte noch immer identisch nDescrWidth sein!
 /*N*/
 /*N*/   Position2DAxisTitles(rRect,bSwitchColRow,nTitleLeft,nTitleBottom);
 /*N*/
@@ -327,7 +327,6 @@ namespace binfilter {
 /*N*/   SdrObjList* pYGridMainList = NULL;
 /*N*/   SdrObjList* pXGridHelpList = NULL;
 /*N*/   SdrObjList* pYGridHelpList = NULL;
-/*N*/   SdrObjList* pBAxisList     = NULL;
 /*N*/
 /*N*/
 /*N*/   BOOL bXAxis = (pChartXAxis->IsVisible() && pChartYAxis->IsOriginInRange());
@@ -546,7 +545,7 @@ namespace binfilter {
 /*N*/
 /*N*/
 /*N*/   XPolygon *pLine = new XPolygon[nLines]; //#50149#
-/*N*/   BOOL    bStartPointIsValid; //  Indicates wether the first point of a line
+/*N*/   BOOL    bStartPointIsValid(FALSE);  //  Indicates wether the first point of a line
 /*N*/                               //  segment is valid.
 /*N*/
 /*N*/   for (nCol = 0; nCol < nColCnt; nCol++)
@@ -600,7 +599,6 @@ namespace binfilter {
 /*N*/               pStatLists [nRow] = pStatGroup->GetSubList ();
 /*N*/           }
 /*N*/
-/*N*/           long       nIndex         = nCol + nRow * nColCnt;
 /*N*/           double     fData          = GetData(nCol, nRow, bPercent);
 /*N*/
 /*N*/           BOOL bLogarithm = pAxis->IsLogarithm();
@@ -662,13 +660,13 @@ namespace binfilter {
 /*N*/                                                                                      aResult );
 /*N*/                                 if( aResult.Count())
 /*N*/                                 {
-/*N*/                                     SdrPathObj* pObj = new SdrPathObj( OBJ_PLIN, aResult );
-/*N*/                                     pObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
-/*N*/                                     pObj->InsertUserData( new SchDataRow( nRow ));
-/*N*/                                     pRowLists[ nRow ]->NbcInsertObject( pObj, 0 );
+/*N*/                                     SdrPathObj* pLclObj = new SdrPathObj( OBJ_PLIN, aResult );
+/*N*/                                     pLclObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
+/*N*/                                     pLclObj->InsertUserData( new SchDataRow( nRow ));
+/*N*/                                     pRowLists[ nRow ]->NbcInsertObject( pLclObj, 0 );
 /*N*/
 /*N*/                                     // Set the line's attributes.
-/*N*/                                     pObj->SetItemSet( rDataRowAttr );
+/*N*/                                     pLclObj->SetItemSet( rDataRowAttr );
 /*N*/                                 }
 /*N*/                           }
 /*N*/
@@ -770,13 +768,13 @@ namespace binfilter {
 /*?*/                                                                                  aResult );
 /*?*/                             if( aResult.Count())
 /*?*/                             {
-/*?*/                                 SdrPathObj* pObj = new SdrPathObj( OBJ_PLIN, aResult );
-/*?*/                                 pObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
-/*?*/                                 pObj->InsertUserData( new SchDataRow( nRow ));
-/*?*/                                 pRowLists[ nRow ]->NbcInsertObject( pObj, 0 );
+/*?*/                                 SdrPathObj* pLclObj = new SdrPathObj( OBJ_PLIN, aResult );
+/*?*/                                 pLclObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
+/*?*/                                 pLclObj->InsertUserData( new SchDataRow( nRow ));
+/*?*/                                 pRowLists[ nRow ]->NbcInsertObject( pLclObj, 0 );
 /*?*/
 /*?*/                                 // Set the line's attributes.
-/*?*/                                 pObj->SetItemSet( rDataRowAttr );
+/*?*/                                 pLclObj->SetItemSet( rDataRowAttr );
 /*?*/                             }
 /*?*/
 /*?*/                           // Anfangspunkt des naechsten Datenpunkts =
@@ -807,13 +805,13 @@ namespace binfilter {
 /*?*/                               if(nCol != 0)
 /*?*/                               {
 /*?*/                                   Point aEndPoint=bIsDownward ? aBarRect.BottomLeft() : aBarRect.TopLeft();//#51471#
-/*?*/                                   SdrPathObj* pObj = new SdrPathObj(pTracePoint[nRow],aEndPoint);
-/*?*/                                   pObj->InsertUserData(new SchObjectId (0));
-/*?*/                                   pList->NbcInsertObject(pObj);//immer vorne, egal welche Achse
+/*?*/                                   SdrPathObj* pLclObj = new SdrPathObj(pTracePoint[nRow],aEndPoint);
+/*?*/                                   pLclObj->InsertUserData(new SchObjectId (0));
+/*?*/                                   pList->NbcInsertObject(pLclObj);//immer vorne, egal welche Achse
 /*?*/                                   // Linie attributieren
 /*?*/
-/*?*/ //-/                                  pObj->NbcSetAttributes(rDataRowAttr, FALSE);
-/*?*/                                   pObj->SetItemSet(rDataRowAttr);
+/*?*/ //-/                                  pLclObj->NbcSetAttributes(rDataRowAttr, FALSE);
+/*?*/                                   pLclObj->SetItemSet(rDataRowAttr);
 /*?*/
 /*?*/                              }
 /*?*/                               pTracePoint[nRow]=bIsDownward ? aBarRect.BottomRight() :aBarRect.TopRight();//#51471#
@@ -1132,21 +1130,12 @@ namespace binfilter {
 /*N*/           break;
 /*N*/   }
 /*N*/
-/*N*/
-/*N*/
-/*N*/   SchObjGroup *pStatGroup=NULL;
-/*N*/
-/*N*/
 /*N*/   if(GetRowCount()&&HasStockBars())
 /*N*/   {
-/*N*/       SdrObjList* pDescrList = NULL;
-/*N*/
 /*N*/       ChartAxis *pAxis=GetAxisByUID(((const SfxInt32Item &)rDataRowAttr.Get(SCHATTR_AXIS)).GetValue());
 /*N*/       long nCol;
 /*N*/
 /*N*/       SdrObjList  *pBarList;
-/*N*/
-/*N*/       SdrObjList* pStatList  = NULL;
 /*N*/
 /*N*/       SchObjGroup *pBarGroup;
 /*N*/
@@ -1159,7 +1148,7 @@ namespace binfilter {
 /*N*/       //Statistik:
 /*N*/       if ( ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(!pStatList)
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
@@ -1181,7 +1170,7 @@ namespace binfilter {
 /*N*/                   ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
 /*N*/                    CHERROR_NONE)
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(!pStatList)
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/
@@ -1315,7 +1304,7 @@ namespace binfilter {
 /*N*/           double fData = GetData(nCol, nRow, bPercent);
 /*N*/
 /*N*/           BOOL bLogarithm = pAxis->IsLogarithm();
-/*N*/           BOOL bValidData=((fData!=DBL_MIN)&&(!bLogarithm||bLogarithm&&(fData>0.0)));
+/*N*/           BOOL bValidData=((fData!=DBL_MIN)&&(!bLogarithm||(bLogarithm&&(fData>0.0))));
 /*N*/
 /*N*/           if(!bValidData && bStacked)
 /*N*/           {
@@ -1912,6 +1901,7 @@ namespace binfilter {
 /*N*/     long nRowCnt = GetRowCount();
 /*N*/
 /*N*/     DBG_ASSERT( nSize == ( nRowCnt * nColCnt ), "Data-Point list has invalid size!" );
+/*N*/     (void)nSize;
 /*N*/
 /*N*/     // the 'outer' sequence contains one sequence for each series
 /*N*/     uno::Sequence< uno::Sequence< sal_Int32 > > aResult( nRowCnt );

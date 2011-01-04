@@ -142,14 +142,39 @@ using namespace ::com::sun::star::linguistic2;
 using namespace ::com::sun::star;
 
 /*N*/ ChartModel::ChartModel( const String& rPalettePath, SfxObjectShell* pDocSh ) :
-/*N*/   pChartDataBuffered(NULL),
-/*N*/   pAutoPilot(NULL),//#46895#
+/*N*/   SdrModel( rPalettePath, NULL, SAL_STATIC_CAST( SvPersist*, pDocSh )),
 /*N*/   bClearDepth(FALSE),
 /*N*/   bNewOrLoadCompleted(FALSE),//aus SchChartDocument::
+/*N*/   pDocShell(pDocSh), //aus SchChartDocument::
+/*N*/   bAttrAutoStorage(FALSE),
+/*N*/   pChartDataBuffered(NULL),
+/*N*/   pChartRefOutDev(NULL),
 /*N*/   nChartStatus( CHS_USER_QUERY ),
-/*N*/   SdrModel( rPalettePath, NULL, SAL_STATIC_CAST( SvPersist*, pDocSh )),
+/*N*/   pAutoPilot(NULL),//#46895#
+/*N*/   pSdrObjList(NULL),
+/*N*/   bResizePie(TRUE),
+/*N*/   nPieRadius(0),
+/*N*/   pOwnNumFormatter(FALSE),
+/*N*/   pNumFormatter(NULL),
+/*N*/   nBarPercentWidth(100),   //#50116#
+/*N*/   nNumLinesInColChart(0),   //#50212#
+/*N*/   m_nDefaultColorSet(0),  //#50037#
+/*N*/   pLogBook(NULL),
 /*N*/   aChartRect (Rectangle ()),
 /*N*/   aInitialSize (Size ()),
+/*N*/   pChItemPool (new SchItemPool),
+/*N*/   pScene (0),
+/*N*/   aLightVec (new Vector3D (1, 1, 1)), // old: aLightVec (new Vector3D (0, 0, 1)),
+/*N*/   pChartData (0),
+/*N*/   fMinData (0.0),
+/*N*/   fMaxData (0.0),
+/*N*/   fAmbientIntensity(0.6),
+/*N*/   aAmbientColor(RGBColor(COL_WHITE)),
+/*N*/   fSpotIntensity (0.6),
+/*N*/   aSpotColor(RGBColor(COL_WHITE)),
+/*N*/   eChartStyle (CHSTYLE_2D_COLUMN),
+/*N*/   eOldChartStyle (CHSTYLE_3D_XYZSYMBOLS),
+/*N*/   pDefaultColors (0),
 /*N*/   bTextScalable (TRUE),
 /*N*/   bIsCopied (FALSE),
 /*N*/   bLegendVisible (TRUE),
@@ -166,19 +191,6 @@ using namespace ::com::sun::star;
 /*N*/   bSwitch3DColRow (FALSE), // FG: reiner Zwischenspeicher, damit die ChartScene das nicht als Parameter bekommt
 /*N*/                            //     ist immer gleich bSwitchRowCol, das aber wird durchs Chart als Parameter
 /*N*/                            //     durchgereicht.
-/*N*/   pChItemPool (new SchItemPool),
-/*N*/   pScene (0),
-/*N*/   aLightVec (new Vector3D (1, 1, 1)), // old: aLightVec (new Vector3D (0, 0, 1)),
-/*N*/   pChartData (0),
-/*N*/   fMinData (0.0),
-/*N*/   fMaxData (0.0),
-/*N*/   fAmbientIntensity(0.6),
-/*N*/   aAmbientColor(RGBColor(COL_WHITE)),
-/*N*/   fSpotIntensity (0.6),
-/*N*/   aSpotColor(RGBColor(COL_WHITE)),
-/*N*/   eChartStyle (CHSTYLE_2D_COLUMN),
-/*N*/   eOldChartStyle (CHSTYLE_3D_XYZSYMBOLS),
-/*N*/   pDefaultColors (0),
 /*N*/   nMarkLen (100),
 /*N*/   nPieHeight (20),
 /*N*/   pPieSegOfs (0),
@@ -188,14 +200,14 @@ using namespace ::com::sun::star;
 /*N*/   nZAngle (0),
 /*N*/   bCanRebuild (TRUE),
 /*N*/   bShowMainTitle (TRUE),
-/*N*/   aMainTitle (String ()),
 /*N*/   bShowSubTitle (FALSE),
-/*N*/   aSubTitle (String ()),
 /*N*/   bShowXAxisTitle (FALSE),
-/*N*/   aXAxisTitle (String ()),
 /*N*/   bShowYAxisTitle (FALSE),
-/*N*/   aYAxisTitle (String ()),
 /*N*/   bShowZAxisTitle (FALSE),
+/*N*/   aMainTitle (String ()),
+/*N*/   aSubTitle (String ()),
+/*N*/   aXAxisTitle (String ()),
+/*N*/   aYAxisTitle (String ()),
 /*N*/   aZAxisTitle (String ()),
 /*N*/   bShowXGridMain (TRUE),
 /*N*/   bShowXGridHelp (FALSE),
@@ -203,6 +215,15 @@ using namespace ::com::sun::star;
 /*N*/   bShowYGridHelp (FALSE),
 /*N*/   bShowZGridMain (FALSE),
 /*N*/   bShowZGridHelp (FALSE),
+/*N*/   bShowDataDescr(TRUE),
+/*N*/   pChartXAxis(NULL),
+/*N*/   pChartYAxis(NULL),
+/*N*/   pChartZAxis(NULL),
+/*N*/   pChartAAxis(NULL),
+/*N*/   pChartBAxis(NULL),
+/*N*/   pTmpXItems(NULL),
+/*N*/   pTmpYItems(NULL),
+/*N*/   pTmpZItems(NULL),
 /*N*/   eDataDescr (CHDESCR_NONE),
 /*N*/   bShowSym (FALSE),
 /*N*/   bSwitchData (TRUE),
@@ -210,7 +231,6 @@ using namespace ::com::sun::star;
 /*N*/   bShouldBuildChart( TRUE ),
 /*N*/   bReadError (FALSE),
 /*N*/   mbIsInitialized(FALSE),
-/*N*/   pOwnNumFormatter(FALSE),
 /*N*/   pOutliner(NULL),
 /*N*/       // FG: nMoreData >=12
 /*N*/   bFormatXAxisTextInMultipleLinesIfNecessary (TRUE),
@@ -229,10 +249,10 @@ using namespace ::com::sun::star;
 /*N*/   aLastDiagramRectangle(-1,-1,-1,-1),
 /*N*/   aLegendTopLeft(-1,-1),
 /*N*/   aTitleXAxisPosition (-1,-1),
-/*N*/   eAdjustXAxesTitle(CHADJUST_TOP_CENTER),
 /*N*/   aTitleYAxisPosition(-1,-1),
-/*N*/   eAdjustYAxesTitle(CHADJUST_TOP_CENTER),
 /*N*/   aTitleZAxisPosition (-1,-1),
+/*N*/   eAdjustXAxesTitle(CHADJUST_TOP_CENTER),
+/*N*/   eAdjustYAxesTitle(CHADJUST_TOP_CENTER),
 /*N*/   eAdjustZAxesTitle(CHADJUST_TOP_CENTER),
 /*N*/   bUseRelativePositionsForChartGroups(FALSE),
 /*N*/   bAdjustMarginsForLegend(TRUE),
@@ -250,36 +270,16 @@ using namespace ::com::sun::star;
 /*N*/   bZAxisTitleHasBeenMoved(FALSE),
 /*N*/   aInitialSizefor3d (-1,-1),    // FG: Zwischenspeicher fuer InitalSize (siehe chtmod3d.cxx, Position3DAxisTitles
 /*N*/   pTestTextObj(NULL),  //  FG: fuer GetHeightOfnRows, ein Dummy-Textpointer
-/*N*/   pLogBook(NULL),
-/*N*/   bShowDataDescr(TRUE),
 /*N*/
-/*N*/   pDocShell(pDocSh), //aus SchChartDocument::
 /*N*/ //    bFreshLoaded (FALSE),
-/*N*/   m_nDefaultColorSet(0),  //#50037#
-/*N*/   nBarPercentWidth(100),   //#50116#
-/*N*/   nNumLinesInColChart(0),   //#50212#
-/*N*/   bAttrAutoStorage(FALSE),
-/*N*/   pChartRefOutDev(NULL),
-/*N*/   pChartXAxis(NULL),
-/*N*/   pChartYAxis(NULL),
-/*N*/   pChartZAxis(NULL),
-/*N*/   pChartBAxis(NULL),
-/*N*/   pChartAAxis(NULL),
-/*N*/   pTmpXItems(NULL),
-/*N*/   pTmpYItems(NULL),
-/*N*/   pTmpZItems(NULL),
-/*N*/   pSdrObjList(NULL),
-/*N*/   eProjection(PR_PERSPECTIVE),
-/*N*/   bResizePie(TRUE),
-/*N*/   nPieRadius(0),
-/*N*/   pNumFormatter(NULL),
 /*N*/   nXLastNumFmt(-1),
 /*N*/   nYLastNumFmt(-1),
 /*N*/   nBLastNumFmt(-1),
 /*N*/   eLanguage( LANGUAGE_SYSTEM ),
 /*N*/   eLanguageCJK( LANGUAGE_SYSTEM ),
 /*N*/   eLanguageCTL( LANGUAGE_SYSTEM ),
-/*N*/     mpDocStor( NULL ),
+/*N*/   eProjection(PR_PERSPECTIVE),
+/*N*/   mpDocStor( NULL ),
 /*N*/   m_pUndoActionFromDraw(NULL),
 /*N*/   m_bDeleteUndoActionNotificationFromDraw(TRUE)
 /*N*/ {
@@ -324,7 +324,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   // get current language
 /*N*/   pOutliner = SdrMakeOutliner( OUTLINERMODE_TEXTOBJECT, this);
-/*N*/   SdrOutliner& rDrawOutliner = GetDrawOutliner();
+/*N*/   /*SdrOutliner& rDrawOutliner =*/ GetDrawOutliner();
 /*N*/
 /*N*/   try
 /*N*/   {
@@ -662,7 +662,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   SdrObject *pObj;
 /*N*/   while(pSdrObjList->GetObjCount())
-/*?*/       if(pObj=pSdrObjList->RemoveObject(0))
+/*?*/       if((pObj=pSdrObjList->RemoveObject(0)))
 /*?*/           delete  pObj;
 /*N*/   delete pSdrObjList;
 /*N*/
@@ -914,7 +914,7 @@ using namespace ::com::sun::star;
 /*N*/       BOOL bOldIs3D=IsReal3D();
 /*N*/       BOOL bOldHadStockBars=HasStockBars();
 /*N*/       BOOL bOldXY = IsXYChart();
-/*N*/       BOOL bOldNet = IsNetChart();
+/*N*/       /*BOOL bOldNet =*/ IsNetChart();
 /*N*/         BOOL bOldPie = IsPieChart();
 /*N*/         BOOL bOldDonut = IsDonutChart();
 /*N*/
@@ -1046,7 +1046,7 @@ using namespace ::com::sun::star;
 /*?*/                   pAttributes->ClearItem(XATTR_LINESTYLE);
 /*?*/           }
 /*?*/       }
-/*N*/       if(!bOldIsStock && HasStockLines() || (!bOldIs3D && bNewIs3D) )
+/*N*/       if( (!bOldIsStock && HasStockLines()) || (!bOldIs3D && bNewIs3D) )
 /*N*/       {
                 long n=0;
 /*N*/           for(n=0;n<nRowCnt;n++)
@@ -1254,30 +1254,30 @@ using namespace ::com::sun::star;
 
 /*N*/ void ChartModel::SetLanguage( const LanguageType eLang, const USHORT nId )
 /*N*/ {
-/*N*/   BOOL bChanged = FALSE;
+/*N*/   BOOL bLclChanged = FALSE;
 /*N*/
 /*N*/   if( nId == EE_CHAR_LANGUAGE && eLanguage != eLang )
 /*N*/   {
 /*N*/       eLanguage = eLang;
-/*N*/       bChanged = TRUE;
+/*N*/       bLclChanged = TRUE;
 /*N*/   }
 /*N*/   else if( nId == EE_CHAR_LANGUAGE_CJK && eLanguageCJK != eLang )
 /*N*/   {
 /*N*/       eLanguageCJK = eLang;
-/*N*/       bChanged = TRUE;
+/*N*/       bLclChanged = TRUE;
 /*N*/   }
 /*N*/   else if( nId == EE_CHAR_LANGUAGE_CTL && eLanguageCTL != eLang )
 /*N*/   {
 /*N*/       eLanguageCTL = eLang;
-/*N*/       bChanged = TRUE;
+/*N*/       bLclChanged = TRUE;
 /*N*/   }
 /*N*/
-/*N*/   if( bChanged )
+/*N*/   if( bLclChanged )
 /*N*/   {
 /*N*/       GetDrawOutliner().SetDefaultLanguage( eLang );
 /*N*/       pOutliner->SetDefaultLanguage( eLang );
 /*N*/       pItemPool->SetPoolDefaultItem( SvxLanguageItem( eLang, nId ) );
-/*N*/       SetChanged( bChanged );
+/*N*/       SetChanged( bLclChanged );
 /*N*/   }
 /*N*/ }
 

@@ -289,7 +289,7 @@ enum ChartStyleV0
 /*N*/       long nTextCols    = 0;
 /*N*/       long nShows       = 0;
 /*N*/
-/*N*/       ULONG nLegendHeight = ((SvxFontHeightItem &) pLegendAttr->Get (EE_CHAR_FONTHEIGHT)).GetHeight();
+/*N*/       long nLegendHeight = ((SvxFontHeightItem &) pLegendAttr->Get (EE_CHAR_FONTHEIGHT)).GetHeight();
 /*N*/       long nLittleSpace = nLegendHeight / 3;
 /*N*/
 /*N*/       // FG: Hier wird berechnet wieviele Spalten und Zeilen die Legende haben soll
@@ -356,11 +356,11 @@ enum ChartStyleV0
 /*N*/                                            nIndex, 0, (SfxItemSet &) GetDataRowAttr(nIndex), nLegendHeight, FALSE);
 /*N*/                       if(pObj)
 /*N*/                       {
-/*N*/                           Rectangle aRect(pObj->GetSnapRect());
-/*N*/                           if((aRect.GetHeight() > nLegendHeight) && nLegendHeight)
+/*N*/                           Rectangle aLclRect(pObj->GetSnapRect());
+/*N*/                           if((aLclRect.GetHeight() > nLegendHeight) && nLegendHeight)
 /*N*/                           {
-/*?*/                               Fraction aFract(nLegendHeight,aRect.GetHeight());
-/*?*/                               pObj->NbcResize(aRect.Center(),aFract,aFract);
+/*?*/                               Fraction aFract(nLegendHeight,aLclRect.GetHeight());
+/*?*/                               pObj->NbcResize(aLclRect.Center(),aFract,aFract);
 /*N*/                           }
 /*N*/                       }
 /*N*/                       else //dann Linie als Legendensymbol, sonst geht evtl. garnix mehr
@@ -791,7 +791,6 @@ enum ChartStyleV0
 /*?*/       INT16 nInt16 = (INT16)CHDATAID_NONE; rOut << nInt16;
 /*N*/   }
 /*N*/
-/*N*/   BOOL bDummy = TRUE;            // war frueher bOwnChart
 /*N*/   rOut << bIsCopied;
 /*N*/   rOut << fMinData;
 /*N*/   rOut << (INT16)eChartStyle;
@@ -1055,6 +1054,7 @@ enum ChartStyleV0
 /*N*/   rOut << nMoreData;
 /*N*/
 /*N*/   if (nMoreData >= 2)
+/*N*/   {
 /*N*/       if (pChartData)
 /*N*/       {
 /*N*/           rOut.WriteByteString( pChartData->SomeData1() );
@@ -1071,6 +1071,7 @@ enum ChartStyleV0
 /*?*/           rOut.WriteByteString( aEmpty );
 /*?*/           rOut.WriteByteString( aEmpty );
 /*N*/       }
+/*N*/   }
 /*N*/
 /*N*/   if (nMoreData >= 3) rOut << fSpotIntensity;
 /*N*/
@@ -1832,9 +1833,9 @@ enum ChartStyleV0
 /*N*/
 /*N*/           if (nMoreData >= 6)
 /*N*/           {
-/*N*/               INT32 nInt32;
-/*N*/               rIn >> nInt32; nSplineDepth = nInt32;
-/*N*/               rIn >> nInt32; nGranularity = nInt32;
+/*N*/               INT32 nLclInt32;
+/*N*/               rIn >> nLclInt32; nSplineDepth = nLclInt32;
+/*N*/               rIn >> nLclInt32; nGranularity = nLclInt32;
 /*N*/           }
 /*N*/
 /*N*/           if (nMoreData >= 7)

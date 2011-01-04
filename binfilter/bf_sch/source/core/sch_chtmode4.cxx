@@ -296,10 +296,9 @@ namespace binfilter {
 /*?*/       rAttr.Put(SfxInt32Item(SCHATTR_STYLE_SHAPE,nTmp));
 /*N*/   }
 /*N*/
-/*N*/   ChartScene *pScene=GetScene();
-/*N*/   if(pScene)
-/*N*/ //-/      pScene->TakeAttributes(rAttr,TRUE,FALSE);
-/*N*/       rAttr.Put(pScene->GetItemSet());
+/*N*/   ChartScene *pLclScene=GetScene();
+/*N*/   if(pLclScene)
+/*N*/       rAttr.Put(pLclScene->GetItemSet());
 /*N*/
 /*N*/     if( pChartAttr->GetItemState( SCHATTR_USER_DEFINED_ATTR, TRUE, &pPoolItem ) == SFX_ITEM_SET )
 /*N*/     {
@@ -548,14 +547,13 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/
-/*N*/   ChartScene *pScene=GetScene();
-/*N*/   if(pScene) //ToDo: Ist das hier nötig??? warum nicht direkt rAttr? #63904#
+/*N*/   ChartScene *pLclScene=GetScene();
+/*N*/   if(pLclScene) //ToDo: Ist das hier nötig??? warum nicht direkt rAttr? #63904#
 /*N*/   {
 /*N*/       SfxItemSet aSceneSet(*pItemPool,nRowWhichPairs);
 /*N*/       aSceneSet.Put(rAttr);
 /*N*/
-/*N*/ //-/      pScene->NbcSetAttributes(aSceneSet,FALSE);
-/*N*/       pScene->SetItemSet(aSceneSet);
+/*N*/       pLclScene->SetItemSet(aSceneSet);
 /*N*/
 /*N*/   }
 /*N*/
@@ -783,7 +781,7 @@ namespace binfilter {
 /*N*/       if (pObj)
 /*N*/       {
 /*N*/           Rectangle   aRect = pObj->GetLogicRect();
-/*N*/           ChartAdjust eAdjust;
+/*N*/           ChartAdjust eAdjust(CHADJUST_TOP_LEFT);
 /*N*/
 /*N*/           Point aLegendPosition;
 /*N*/           if (bUseRelativePositionsForChartGroups && (aLegendTopLeft.X() >= 0) &&
@@ -823,6 +821,8 @@ namespace binfilter {
 /*?*/                       case CHLEGEND_BOTTOM:
 /*?*/                           eAdjust = CHADJUST_TOP_LEFT;
 /*?*/                           aChartRect.Bottom() -= aRect.GetHeight() + nYOfs;
+/*?*/                           break;
+/*?*/                       default:
 /*?*/                           break;
 /*N*/                   }
 /*N*/               }
@@ -870,6 +870,8 @@ namespace binfilter {
 /*?*/                       aLegendPosition.Y() = rWholeRect.Bottom();
 /*?*/                       eAdjust = CHADJUST_BOTTOM_CENTER;
 /*?*/                       aChartRect.Bottom() -= aRect.GetHeight() + nYOfs;
+/*?*/                       break;
+/*N*/                   default:
 /*?*/                       break;
 /*N*/               }
 /*N*/           }
@@ -973,7 +975,7 @@ namespace binfilter {
 /*N*/ void ChartModel::DeleteChartObjects()
 /*N*/ {
 /*N*/   SdrPage* pPage=GetPage(0);
-/*N*/     BOOL bResize = (aInitialSize != pPage->GetSize());
+/*N*/   /*BOOL bResize = (aInitialSize != */pPage->GetSize()/*)*/;
 /*N*/
 /*N*/   // FG: Bevor die Objekte geloescht und neu aufgebaut werden, merkt man sich deren
 /*N*/   //     Position. Da in InitalSize die urspruengliche Seitengroesse steht, kann

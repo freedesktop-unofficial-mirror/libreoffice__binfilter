@@ -275,7 +275,7 @@ namespace binfilter {
 
 /*N*/ void ChartModel::SetTextAttr(SdrTextObj& rTextObj,
 /*N*/                            const SfxItemSet& rAttr,
-/*N*/                            const long nMaximumWidth)
+/*N*/                            const long /*nMaximumWidth*/)
 /*N*/ {
 /*N*/     // #97992# calling SetItemSet results in changing the p...Attr in the ChartModel
 /*N*/     // because of the implementation of SchRectObj.  Maybe this is wrong, but it seemed
@@ -334,16 +334,16 @@ namespace binfilter {
 /*N*/
 /*N*/   BOOL bLogarithm = pCurrentXAxis->IsLogarithm();
 /*N*/   short nCnt;
-/*N*/   SfxItemSet* pAxisAttr;
+/*N*/   SfxItemSet* pLclAxisAttr;
 /*N*/   if (bRowDescr)
 /*N*/   {
 /*N*/       nCnt            = GetRowCount();
-/*N*/       pAxisAttr       = &GetAttr(CHOBJID_DIAGRAM_Z_AXIS);
+/*N*/       pLclAxisAttr        = &GetAttr(CHOBJID_DIAGRAM_Z_AXIS);
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       nCnt            = GetColCount();
-/*N*/       pAxisAttr       = &GetAttr(CHOBJID_DIAGRAM_X_AXIS);
+/*N*/       pLclAxisAttr        = &GetAttr(CHOBJID_DIAGRAM_X_AXIS);
 /*N*/   }
 /*N*/
 /*N*/   pOutliner->SetUpdateMode (FALSE);
@@ -427,7 +427,7 @@ namespace binfilter {
 /*N*/       //  Collect the items which control the text appearence and set them to
 /*N*/       //  the outliner.
 /*N*/       SfxItemSet aTextAttr(*pItemPool, nTextOrientWhichPairs);
-/*N*/       aTextAttr.Put(*pAxisAttr);
+/*N*/       aTextAttr.Put(*pLclAxisAttr);
 /*N*/ //        SetTextAttributes (aTextAttr);
 /*N*/
 /*N*/       for (short i = 0; i < nCnt; i++)
@@ -581,6 +581,7 @@ namespace binfilter {
 /*N*/   //average attr
 /*N*/   nRowListCnt = (short)aAverageAttrList.Count();
 /*N*/   if (nCnt != nRowListCnt)
+/*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
 /*N*/           aAverageAttrList.Seek((ULONG)nCnt);
@@ -613,10 +614,12 @@ namespace binfilter {
 /*N*/               pAverageAttr->Put(XLineTransparenceItem());
 /*N*/           }
 /*N*/       }
+/*N*/   }
 /*N*/
 /*N*/   //error attr
 /*N*/   nRowListCnt = (short)aErrorAttrList.Count();
 /*N*/   if (nCnt != nRowListCnt)
+/*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
 /*N*/           aErrorAttrList.Seek((ULONG)nCnt);
@@ -643,16 +646,15 @@ namespace binfilter {
 /*N*/               pErrorAttr->Put(XLineTransparenceItem());
 /*N*/           }
 /*N*/       }
+/*N*/   }
 /*N*/
 /*N*/   // Point-Attr
 /*N*/   long nPointCnt      = nDataColCnt * nDataRowCnt;
 /*N*/   long nPointListCnt  = aDataPointAttrList.Count();
 /*N*/   if (nPointCnt != nPointListCnt)
+/*N*/   {
 /*N*/       if (nPointListCnt > nPointCnt)
 /*N*/       {
-/*N*/ //            aDataPointAttrList.Seek((ULONG)nPointCnt);
-/*N*/ //            for (long i = nPointCnt; i < nPointListCnt; i++)
-/*N*/ //                delete aDataPointAttrList.Remove();
 /*N*/           while (nPointListCnt-- > nPointCnt)
 /*N*/           {
 /*N*/               aDataPointAttrList.Seek((ULONG)nPointCnt);
@@ -661,6 +663,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else for (long ii = nPointListCnt; ii < nPointCnt; ii++)
 /*N*/            aDataPointAttrList.Insert(NULL, LIST_APPEND);
+/*N*/   }
 /*N*/
 /*N*/   // Switch-Point-Attr
 /*N*/   nPointListCnt = aSwitchDataPointAttrList.Count();
@@ -925,25 +928,25 @@ namespace binfilter {
 //  outliner.
 /*N*/ Size ChartModel::CalcTextSizeOfOneText (SvxChartTextOrient eOrient,
 /*N*/                                       SfxItemSet         &rTextAttr,
-/*N*/                                       SdrOutliner        *pOutliner,
+/*N*/                                       SdrOutliner        *pInOutliner,
 /*N*/                                       long    MaxW,
 /*N*/                                       BOOL    bGetRotated/*=FALSE*/,
 /*N*/                                       BOOL    bUseTextAttributes)
 /*N*/ {
 /*N*/   long MaximumWidth=MaxW;
 /*N*/
-/*N*/   pOutliner->SetUpdateMode (FALSE);
-/*N*/   ULONG nParaCnt = pOutliner->GetParagraphCount();
+/*N*/   pInOutliner->SetUpdateMode (FALSE);
+/*N*/   ULONG nParaCnt = pInOutliner->GetParagraphCount();
 /*N*/
 /*N*/       // FG: Jeder Absatz muss die Text-Attribute einzeln zugewiesen bekommen. (jedenfalls scheint es so)
 /*N*/       //     Besser waere es dass fuer alle Absaetze auf einmal setzen zu koennen.
 /*N*/   if (bUseTextAttributes)
 /*N*/       SetTextAttributes (rTextAttr);
 /*N*/
-/*N*/   Size OldPaperSize = pOutliner->GetPaperSize();
+/*N*/   Size OldPaperSize = pInOutliner->GetPaperSize();
 /*N*/
 /*N*/   long nDegrees=GetTextRotation((SfxItemSet&)rTextAttr,eOrient);//#62531#
-/*N*/   double fDeg, fSin,
+/*N*/   double fDeg(0.0), fSin(0.0),
 /*N*/       fCos = 1;               // BM: Initialize Cos for if statement after if(nDegrees)-Block
 /*N*/   BOOL bBreakOK=TRUE; //s.u.
 /*N*/   if(nDegrees)
@@ -963,46 +966,15 @@ namespace binfilter {
 /*N*/       fSin=fabs(sin(fDeg));
 /*N*/       fCos=fabs(cos(fDeg));
 /*N*/
-/*
-  Hat man gedrehten Text, wird ein sinnvoller Umbruch schwierig, da
-
-  1. bei bestimmten Winkeln und bestimmter Textlänge der Text breiter und nicht schmaler wird
-  2. Diese Funktion bei Winkeln != 0 mit MaximumWidth u.U. die Höhe vorgegeben bekommt
-  (Create2DBackplane tut dies bei gedrehten Texten an der X-Achse)
-  untenstehender Code berechnet die vorzugebene MaxBreite, wenn der Text gedreht ist, dies
-  wäre leider nur ein Teil der notwendigen Lösung, die so schon recht viel Performance schluckt:
-
-        if( MaximumWidth > 0 && fCos!=0)
-        {
-            Size aFullSize(pOutliner->CalcTextSize()); //Textgröße ohne Umbruch
-            double dW = aFullSize.Height()*fSin;       //delta width je neue Zeile
-            double Wf = aFullSize.Width();             //Ist-Textbreite durch Soll-Textbreite des Textes ergibt die Anzahl der Zeilen
-
-            double p_halbe          = (dW-(double)MaximumWidth)/(2*fCos);
-            double p_halbe_quadrat  = p_halbe * p_halbe;
-            double q                = Wf*dW/fCos;
-            if(q > p_halbe_quadrat)
-            {
-                MaximumWidth=-1; //keine Lösung, Abbruch, nix umbrechen!
-            }
-            else
-            {
-                long nNewMax1 =(long) (- p_halbe + sqrt(p_halbe_quadrat-q) + 0.5);
-                long nNewMax2 =(long) (- p_halbe - sqrt(p_halbe_quadrat-q) + 0.5);
-                //Die größere Breite ist immer die bessere
-                MaximumWidth=Max(nNewMax1,nNewMax2);
-            }
-        }
-*/
 /*N*/   }
 /*N*/
 /*N*/   if( MaximumWidth > 0 && fCos!=0) //Kein Umbruch bei 90 und 270 Grad oder Max<=0
-/*N*/       pOutliner->SetPaperSize( Size( MaximumWidth, 0 ) );
+/*N*/       pInOutliner->SetPaperSize( Size( MaximumWidth, 0 ) );
 /*N*/
 /*N*/
-/*N*/   pOutliner->SetUpdateMode (TRUE);
-/*N*/   Size aSize = pOutliner->CalcTextSize();
-/*N*/   pOutliner->SetUpdateMode (FALSE);
+/*N*/   pInOutliner->SetUpdateMode (TRUE);
+/*N*/   Size aSize = pInOutliner->CalcTextSize();
+/*N*/   pInOutliner->SetUpdateMode (FALSE);
 /*N*/   Size aRot(aSize);
 /*N*/   if(nDegrees)
 /*N*/   {
@@ -1022,9 +994,9 @@ namespace binfilter {
 /*N*/           DBG_WARNING("ChartModel::CalcTextSizeOfOneText:Doch breiter?" );
 /*N*/ #endif
 /*N*/       ULONG nLines = 0;
-/*N*/       for( USHORT n = 0; n < pOutliner->GetParagraphCount(); n++ )
+/*N*/       for( USHORT n = 0; n < pInOutliner->GetParagraphCount(); n++ )
 /*N*/       {
-/*N*/           nLines += pOutliner->GetLineCount( n );
+/*N*/           nLines += pInOutliner->GetLineCount( n );
 /*N*/       }
 /*N*/
 /*N*/       // Silbentrennung nur bei >MAXLEGENDLINES Zeilen oder einem zu langen wort...
@@ -1032,7 +1004,7 @@ namespace binfilter {
 /*N*/           && (    ( nLines > MAXLEGENDLINES )
 /*N*/                || (    ( nLines >= 2 )
 /*N*/                     && ( nParaCnt == 1 )
-/*N*/                     && ( pOutliner->GetText( pOutliner->GetParagraph( 0 ) ).Search( ' ' )
+/*N*/                     && ( pInOutliner->GetText( pInOutliner->GetParagraph( 0 ) ).Search( ' ' )
 /*N*/                                                            == STRING_NOTFOUND )
 /*N*/                    )
 /*N*/             )
@@ -1043,22 +1015,22 @@ namespace binfilter {
 /*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   long nHeightOfRows = GetHeightOfnRows (rTextAttr, MAXLEGENDLINES);//war mal 2 statt MAX...#50395#
 /*?*/           }
 /*?*/
-/*?*/           ULONG nParaCnt = pOutliner->GetParagraphCount();
+/*?*/           ULONG nLclParaCnt = pInOutliner->GetParagraphCount();
 /*?*/
-/*?*/           for (ULONG i = 0; i < nParaCnt; i++)
+/*?*/           for (ULONG i = 0; i < nLclParaCnt; i++)
 /*?*/           {
 /*?*/               // Stets Silbentrennung
-/*?*/               SfxItemSet aAttr(pOutliner->GetParaAttribs(i));
+/*?*/               SfxItemSet aAttr(pInOutliner->GetParaAttribs(i));
 /*?*/               aAttr.Put( SfxBoolItem(EE_PARA_HYPHENATE, TRUE) );
-/*?*/               pOutliner->SetParaAttribs(i, aAttr);
+/*?*/               pInOutliner->SetParaAttribs(i, aAttr);
 /*?*/           }
 /*?*/
 /*?*/           //#50395# durch Bindestriche vergrößert worden->
 /*?*/           //statt 2 werden jetzt 3 Zeilen benötigt
 /*?*/           ULONG nActLines = 0;
-/*?*/           for( USHORT n = 0; n < pOutliner->GetParagraphCount(); n++ )
+/*?*/           for( USHORT n = 0; n < pInOutliner->GetParagraphCount(); n++ )
 /*?*/           {
-/*?*/               nActLines += pOutliner->GetLineCount( n );
+/*?*/               nActLines += pInOutliner->GetLineCount( n );
 /*?*/           }
 /*?*/           if(nActLines>nLines)
 /*?*/           {
@@ -1068,8 +1040,8 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   pOutliner->SetPaperSize(OldPaperSize);
-/*N*/   pOutliner->SetUpdateMode (TRUE);
+/*N*/   pInOutliner->SetPaperSize(OldPaperSize);
+/*N*/   pInOutliner->SetUpdateMode (TRUE);
 /*N*/
 /*N*/   return (bGetRotated && nDegrees) ? aRot : aSize;
 /*N*/ }

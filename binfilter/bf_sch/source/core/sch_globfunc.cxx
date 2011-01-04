@@ -709,6 +709,9 @@ namespace binfilter {
 /*N*/       case CHTXTORIENT_STANDARD:
 /*N*/       case CHTXTORIENT_STACKED:
 /*N*/           break;
+/*N*/
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/
 /*N*/   return nDegrees;
@@ -761,6 +764,8 @@ namespace binfilter {
 /*N*/               case CHADJUST_BOTTOM_RIGHT:
 /*N*/                   rAdjust = CHADJUST_BOTTOM_LEFT;
 /*N*/                   break;
+/*N*/               default:
+/*N*/                   break;
 /*N*/           }
 /*N*/           break;
 /*N*/
@@ -797,6 +802,8 @@ namespace binfilter {
 /*N*/
 /*N*/               case CHADJUST_BOTTOM_RIGHT:
 /*N*/                   rAdjust = CHADJUST_TOP_RIGHT;
+/*N*/                   break;
+/*N*/               default:
 /*N*/                   break;
 /*N*/           }
 /*N*/           break;
@@ -988,7 +995,7 @@ namespace binfilter {
 //neue in alte Achsenattr konvertieren
 /*N*/ void AxisAttrNew2Old(SfxItemSet &rDestSet,long nId,BOOL bClear)
 /*N*/ {
-/*N*/   USHORT nOff;
+/*N*/   USHORT nOff(0);
 /*N*/   double f;
 /*N*/   BOOL b;
 /*N*/   SfxItemSet aSet(rDestSet); //Kopie
@@ -1285,7 +1292,6 @@ namespace binfilter {
 /*N*/   //  factor.  The horizontal size can therefore not be stored there.  But as the font is scaled
 /*N*/   //  uniformly, the horizontal size depends uniquely on the vertical size.
 /*N*/   long nFontHeight = static_cast<const SvxFontHeightItem&>(rSet.Get(EE_CHAR_FONTHEIGHT)).GetHeight();
-/*N*/   const double fSevenPoint = (1000/*scale*/ * 2.54/*cm per inch*/ / 72/*point per inch*/ * 7 /*pt*/);
 /*N*/   long nFontWidth = 0;    // #89001# use default font width
 /*N*/   rFont.SetSize (Size (nFontWidth, nFontHeight));
 /*N*/   //  Old line.

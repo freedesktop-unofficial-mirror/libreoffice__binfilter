@@ -352,7 +352,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ChartModel::IsArea(long nRow)
+/*N*/ BOOL ChartModel::IsArea(long /*nRow*/)
 /*N*/ {
 /*N*/   switch( eChartStyle )
 /*N*/   {
