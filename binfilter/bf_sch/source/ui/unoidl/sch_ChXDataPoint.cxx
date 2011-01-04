@@ -157,7 +157,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
             }
             else if( nWID == CHATTR_PIE_SEGMENT_OFFSET )    // member of ChartModel rather than property
             {
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 aValue >>= nVal;
                 short nValToSet = (short)(abs( nVal ) % 101);       // cast long->short is ok (range 0..100)
 
@@ -228,7 +228,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
 
             if( pSet->Count() )
             {
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 switch( nWID )
                 {
                     case SCHATTR_STAT_KIND_ERROR:
@@ -453,7 +453,9 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                             break;
                         case CHDESCR_TEXTANDVALUE:
                             nVal = chart::ChartDataCaption::VALUE | chart::ChartDataCaption::TEXT;
-                    // chart::ChartDataCaption::FORMAT (missing)
+                            break;
+                        default:
+                            break;
                     }
                     if( bShowSymbol ) nVal |= chart::ChartDataCaption::SYMBOL;
 
@@ -479,7 +481,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             aAny >>= nValue;
                             aAny <<= static_cast< sal_Int16 >( nValue );
                         }
@@ -506,29 +508,29 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
     return aAny;
 }
 
-void SAL_CALL ChXDataPoint::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                       const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXDataPoint::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                       const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataPoint::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                          const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXDataPoint::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                          const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataPoint::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                       const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataPoint::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                       const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataPoint::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                          const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataPoint::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                          const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -547,7 +549,7 @@ beans::PropertyState SAL_CALL ChXDataPoint::getPropertyState( const ::rtl::OUStr
     {
         if( pMap->nWID == CHATTR_PIE_SEGMENT_OFFSET )
         {
-            sal_Int32 nOffset;
+            sal_Int32 nOffset(0);
             uno::Any aAny = getPropertyValue( PropertyName );
             aAny >>= nOffset;
             if( nOffset )
@@ -801,7 +803,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyDefault( const ::rtl::OUString& aProp
             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
             {
-                sal_Int32 nValue;
+                sal_Int32 nValue(0);
                 aAny >>= nValue;
                 aAny <<= static_cast< sal_Int16 >( nValue );
             }

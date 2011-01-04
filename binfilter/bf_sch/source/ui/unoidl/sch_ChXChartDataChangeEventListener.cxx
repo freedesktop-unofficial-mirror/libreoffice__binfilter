@@ -73,7 +73,7 @@ void SAL_CALL ChXChartDataChangeEventListener::chartDataChanged( const chart::Ch
 }
 
 // XEventListener
-void SAL_CALL ChXChartDataChangeEventListener::disposing( const lang::EventObject& Source ) throw( uno::RuntimeException )
+void SAL_CALL ChXChartDataChangeEventListener::disposing( const lang::EventObject& /*Source*/ ) throw( uno::RuntimeException )
 {
     Reset();
 }

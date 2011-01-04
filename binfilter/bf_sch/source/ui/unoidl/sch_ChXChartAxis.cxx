@@ -421,7 +421,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_AUTO_STEP_MAIN:
                 case SCHATTR_AXIS_AUTO_STEP_HELP:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         if( ! bVal )
                         {
@@ -446,7 +446,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     break;
                 case SCHATTR_AXIS_LOGARITHM:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         if( bVal )
                         {
@@ -478,7 +478,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                         ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
                         if( pAxis )
                             bLog = pAxis->IsLogarithm();
-                        double fVal;
+                        double fVal(0.0);
                         aValue >>= fVal;
                         if( fVal <= bLog? 1.0: 0.0 )
                             throw lang::IllegalArgumentException();
@@ -492,7 +492,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_MAX:
                     {
                         ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
-                        double fVal;
+                        double fVal(0.0);
                         aValue >>= fVal;
                         if( pAxis &&
                             pAxis->IsLogarithm() && fVal <= 0.0 )
@@ -511,7 +511,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_NUMFMTPERCENT:
                     // was mapped from SCHATTR_AXIS_NUMFMT, so don't use standard mechanism
                     {
-                        sal_Int32 nFmt;
+                        sal_Int32 nFmt(0);
                         aValue >>= nFmt;
                         pSet->Put( SfxUInt32Item( nWID, nFmt ));
                     }
@@ -663,7 +663,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_AUTO_STEP_MAIN:
             case SCHATTR_AXIS_AUTO_STEP_HELP:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal(sal_False);
                     *pValue >>= bVal;
                     if( ! bVal )
                     {
@@ -689,7 +689,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
 
             case SCHATTR_AXIS_LOGARITHM:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal(sal_False);
                     *pValue >>= bVal;
                     if( bVal )
                     {
@@ -721,7 +721,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
                     ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
                     if( pAxis )
                         bLog = pAxis->IsLogarithm();
-                    double fVal;
+                    double fVal(0.0);
                     *pValue >>= fVal;
                     if( fVal <= bLog? 1.0: 0.0 )
                         throw lang::IllegalArgumentException();
@@ -739,7 +739,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_MAX:
                 {
                     ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
-                    double fVal;
+                    double fVal(0.0);
                     *pValue >>= fVal;
                     if (    pAxis
                         &&  pAxis->IsLogarithm()
@@ -763,7 +763,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_NUMFMTPERCENT:
                 // was mapped from SCHATTR_AXIS_NUMFMT, so don't use standard mechanism
                 {
-                    sal_Int32 nFmt;
+                    sal_Int32 nFmt(0);
                     *pValue >>= nFmt;
                     aAttributes.Put( SfxUInt32Item( nWID, nFmt ));
                 }

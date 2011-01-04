@@ -42,12 +42,12 @@ extern uno::Reference< uno::XInterface > SAL_CALL SchDocument_createInstance(con
 extern "C" {
 
 void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**          ppEnvironmentTypeName   ,
-                                                                uno_Environment**   ppEnvironment           )
+                                                                uno_Environment**   /*ppEnvironment*/       )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
 }
 
-sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
+sal_Bool SAL_CALL component_writeInfo(  void*   /*pServiceManager*/ ,
                                         void*   pRegistryKey    )
 {
     uno::Reference< registry::XRegistryKey >
@@ -69,7 +69,7 @@ sal_Bool SAL_CALL component_writeInfo(  void*   pServiceManager ,
 
 void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName ,
                                                 void*       pServiceManager     ,
-                                                void*       pRegistryKey        )
+                                                void*       /*pRegistryKey*/    )
 {
     void* pReturn = NULL ;
 

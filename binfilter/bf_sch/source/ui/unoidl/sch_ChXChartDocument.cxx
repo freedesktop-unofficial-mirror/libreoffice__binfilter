@@ -211,7 +211,7 @@ void ChXChartDocument::SetChartModel( ChartModel* pModel ) throw()
     m_aPropSet = SvxItemPropertySet( aSchMapProvider.GetMap( CHMAP_DOC, m_pModel ));
 }
 
-void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& aEvent ) throw()
+void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& /*aEvent*/ ) throw()
 {
     osl::Guard< osl::Mutex > aGuard( GetMutex());
 
@@ -528,7 +528,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
             {
                 case CHATTR_DIAGRAM_START:      // dummy id for "HasLegend"
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         m_pModel->SetShowLegend( bVal );
                         m_pModel->SetLegendHasBeenMoved( FALSE );
@@ -579,7 +579,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_EXPORT_TABLE:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -592,7 +592,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_FIRST_COL_LABELS:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -605,7 +605,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_FIRST_ROW_LABELS:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -688,7 +688,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
         }
         else if( aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "ExportForClipboard" )))
         {
-            sal_Bool bBool;
+            sal_Bool bBool(sal_False);
             aValue >>= bBool;
             m_pDocShell->SetClipboardExport( bBool );
         }
@@ -856,7 +856,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                             {
-                                sal_Int32 nValue;
+                                sal_Int32 nValue(sal_False);
                                 aAny >>= nValue;
                                 aAny <<= static_cast< sal_Int16 >( nValue );
                             }
@@ -889,29 +889,29 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
     return aAny;
 }
 
-void SAL_CALL ChXChartDocument::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                           const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXChartDocument::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                           const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                              const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                              const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                           const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                           const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                              const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                              const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -1003,7 +1003,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // use AddIn
         if( m_pModel )
         {
-            SolarMutexGuard aGuard;
+            SolarMutexGuard aLclGuard;
             m_pModel->SetChartAddIn( xAddIn );
 
             // initialize AddIn with this as chart document
@@ -1050,7 +1050,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // clear addin
         if( m_pModel )
         {
-            SolarMutexGuard aGuard;
+            SolarMutexGuard aLclGuard;
             uno::Reference< util::XRefreshable > xRefreshable;
             m_pModel->SetChartAddIn( xRefreshable );
         }
@@ -1083,7 +1083,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
                         // update local model
                         if( m_pModel )
                         {
-                            SolarMutexGuard aGuard;
+                            SolarMutexGuard aLclGuard;
                             m_pModel = m_pDocShell->GetModelPtr();
                         }
                     }
@@ -1373,7 +1373,7 @@ void ChXChartDocument::InitNumberFormatter() throw( uno::RuntimeException )
     {
         if( m_pModel )
         {
-            SolarMutexGuard aGuard;
+            SolarMutexGuard aLclGuard;
             mrNumberFormatter = new SvNumberFormatsSupplierObj( m_pModel->GetNumFormatter() );
         }
         else
@@ -1570,11 +1570,10 @@ uno::Reference< drawing::XShapes > ChXChartDocument::GetAdditionalShapes()
         DBG_ASSERT( xFoundShapes.is(), "Couldn't create a shape collection!" );
         if( xFoundShapes.is())
         {
-            ::std::vector< uno::Reference< drawing::XShape > >::iterator aIter;
-            for( aIter = aShapeVector.begin(); aIter != aShapeVector.end(); ++aIter )
-                xFoundShapes->add( *aIter );
+            ::std::vector< uno::Reference< drawing::XShape > >::iterator aLclIter;
+            for( aLclIter = aShapeVector.begin(); aLclIter != aShapeVector.end(); ++aLclIter )
+                xFoundShapes->add( *aLclIter );
         }
-//          }
     }
 
     return xFoundShapes;

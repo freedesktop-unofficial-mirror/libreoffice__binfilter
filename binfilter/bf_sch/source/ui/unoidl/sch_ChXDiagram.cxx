@@ -164,9 +164,9 @@ inline  void    add_listener    (uno::Reference<uno::XInterface> xObject, ChXDia
 }
 
 ChXDiagram::ChXDiagram( SchChartDocShell* pDocShell, sal_Bool bPreInit ) :
+        mnBaseType( -1 ),
         mpModel( NULL ),
         maPropSet( aSchMapProvider.GetMap( CHMAP_CHART, NULL )),
-        mnBaseType( -1 ),
         maListenerList (maMutex)
 {
     if( bPreInit )
@@ -295,6 +295,9 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                         break;
                     case CHDESCR_TEXTANDVALUE:
                         nVal = chart::ChartDataCaption::VALUE | chart::ChartDataCaption::TEXT;
+                        break;
+                    default:
+                        break;
                 }
                 if( bShowSymbol ) nVal |= chart::ChartDataCaption::SYMBOL;
 
@@ -324,13 +327,13 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                 // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                 if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     aAny >>= nValue;
                     aAny <<= static_cast< sal_Int16 >( nValue );
                 }
                 else if( ( *pMap->pType == ::getCppuType((const sal_uInt16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     aAny >>= nValue;
                     aAny <<= static_cast< sal_uInt16 >( nValue );
                 }
@@ -787,7 +790,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                 throw PropertyVetoException();
 
             USHORT nWID = pMap->nWID;
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
 
             SfxItemSet* pSet;
             switch( nWID )
@@ -1003,29 +1006,29 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case SCHATTR_DATADESCR_DESCR:
                         {
                             // symbol
-                            sal_Int32 nVal;
-                            aValue >>= nVal;
+                            sal_Int32 nLclVal(0);
+                            aValue >>= nLclVal;
                             pSet->Put( SfxBoolItem( SCHATTR_DATADESCR_SHOW_SYM,
-                                                    ((nVal & chart::ChartDataCaption::SYMBOL) != 0)) );
+                                                    ((nLclVal & chart::ChartDataCaption::SYMBOL) != 0)) );
 
                             // display text, percent or both or value
                             SvxChartDataDescr eDescr = CHDESCR_NONE;
-                            if( nVal & chart::ChartDataCaption::TEXT )
+                            if( nLclVal & chart::ChartDataCaption::TEXT )
                             {
-                                if( nVal & chart::ChartDataCaption::PERCENT )
+                                if( nLclVal & chart::ChartDataCaption::PERCENT )
                                     eDescr = CHDESCR_TEXTANDPERCENT;
-                                else if( (nVal & chart::ChartDataCaption::VALUE) )
+                                else if( (nLclVal & chart::ChartDataCaption::VALUE) )
                                     eDescr = CHDESCR_TEXTANDVALUE;
                                 else
                                     eDescr = CHDESCR_TEXT;
                             }
-                            else if( (nVal & chart::ChartDataCaption::VALUE) )
+                            else if( (nLclVal & chart::ChartDataCaption::VALUE) )
                             {
                                 eDescr = CHDESCR_VALUE;
                             }
                             else
                             {
-                                if( (nVal & chart::ChartDataCaption::PERCENT) )
+                                if( (nLclVal & chart::ChartDataCaption::PERCENT) )
                                     eDescr = CHDESCR_PERCENT;
                             }
 
@@ -1055,7 +1058,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case SCHATTR_STYLE_STACKED:
                     case SCHATTR_STYLE_PERCENT:
                         {
-                            sal_Bool bSet;
+                            sal_Bool bSet(sal_False);
                             aValue >>= bSet;
                             if( bSet )
                             {
@@ -1077,7 +1080,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                     case SCHATTR_STYLE_DEEP:
                         {
-                            sal_Bool bSet;
+                            sal_Bool bSet(sal_False);
                             aValue >>= bSet;
 
                             // if deep is turned on, 3d must also be set
@@ -1285,29 +1288,29 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
     return aAny;
 }
 
-void SAL_CALL ChXDiagram::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXDiagram::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXDiagram::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDiagram::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDiagram::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -1437,6 +1440,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     pScene = lcl_GetScene( mpModel );
                 }
                 if (pScene != NULL)
+                {
                     if (nWID == OWN_ATTR_3D_VALUE_TRANSFORM_MATRIX)
                     {
                         const Matrix4D& aMtx = pScene->GetFullTransform();
@@ -1472,11 +1476,13 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     }
                     else
                         bTryAgain = TRUE;
+                }
             }
         }
 
         //  Step3
         if (bTryAgain)
+        {
             if (aAttributes.GetItemState (nWID, sal_False) == SFX_ITEM_SET)
             {
                 *pPropertyValue = GetAnyByItem (aAttributes, pProperty);
@@ -1498,6 +1504,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     sName.GetBuffer(), nWID);
 #endif
             }
+        }
 
         //  Advance to the next property, property name and value.
         pPropertyName++;
@@ -1514,15 +1521,15 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
 
 
 void SAL_CALL   ChXDiagram::addPropertiesChangeListener (
-    const Sequence<OUString >&                          aPropertyNames,
-    const Reference<beans::XPropertiesChangeListener >& xListener)
+    const Sequence<OUString >& /*aPropertyNames*/,
+    const Reference<beans::XPropertiesChangeListener >& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.
 }
 
 void SAL_CALL   ChXDiagram::removePropertiesChangeListener (
-    const Reference<beans::XPropertiesChangeListener>&  xListener)
+    const Reference<beans::XPropertiesChangeListener>& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.
@@ -1530,8 +1537,8 @@ void SAL_CALL   ChXDiagram::removePropertiesChangeListener (
 
 
 void SAL_CALL   ChXDiagram::firePropertiesChangeEvent (
-    const Sequence<OUString >&                          aPropertyNames,
-    const Reference<beans::XPropertiesChangeListener >& xListener)
+    const Sequence<OUString >& /*aPropertyNames*/,
+    const Reference<beans::XPropertiesChangeListener >& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.

@@ -255,7 +255,7 @@ awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
     return awt::Size();
 }
 
-void SAL_CALL ChXChartObject::setSize( const awt::Size& aSize )
+void SAL_CALL ChXChartObject::setSize( const awt::Size& /*aSize*/ )
     throw( beans::PropertyVetoException, uno::RuntimeException )
 {
     // set size is not supported by any chart object except
@@ -597,7 +597,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aResultaAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             aResultaAny >>= nValue;
                             aResultaAny <<= static_cast< sal_Int16 >( nValue );
                         }
@@ -630,29 +630,29 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
     return aResultaAny;
 }
 
-void SAL_CALL ChXChartObject::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXChartObject::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXChartObject::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartObject::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartObject::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -870,8 +870,8 @@ uno::Sequence< uno::Any > SAL_CALL ChXChartObject::getPropertyValues    (
 
 
 void SAL_CALL ChXChartObject::addPropertiesChangeListener   (
-        const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -881,7 +881,7 @@ void SAL_CALL ChXChartObject::addPropertiesChangeListener   (
 
 
 void SAL_CALL ChXChartObject::removePropertiesChangeListener    (
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -891,8 +891,8 @@ void SAL_CALL ChXChartObject::removePropertiesChangeListener    (
 
 
 void SAL_CALL ChXChartObject::firePropertiesChangeEvent (
-        const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -1113,7 +1113,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyDefault( const ::rtl::OUString& aPr
         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
         {
-            sal_Int32 nValue;
+            sal_Int32 nValue(0);
             aAny >>= nValue;
             aAny <<= static_cast< sal_Int16 >( nValue );
         }
@@ -1375,7 +1375,7 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *rProperty.pType == ::getCppuType((const sal_Int16*)0)) && rValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             rValue >>= nValue;
                             rValue <<= static_cast< sal_Int16 >( nValue );
                         }

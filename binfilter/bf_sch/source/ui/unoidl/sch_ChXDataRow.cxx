@@ -157,7 +157,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
             else if( nWID == CHATTR_PIE_SEGMENT_OFFSET )        // member of ChartModel rather than property
             {
                 // (not fully supported yet. problem: getPropertyValue)
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 aValue >>= nVal;
                 short nValToSet = (short)(abs( nVal ) % 101);       // cast long->short is ok (range 0..100)
 
@@ -234,7 +234,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
 
             if( pSet->Count() )
             {
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 switch( nWID )
                 {
                     case SCHATTR_STAT_KIND_ERROR:
@@ -329,8 +329,8 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                 if( SCHATTR_DATADESCR_START <= nWID && nWID <= SCHATTR_DATADESCR_END )
                 {
                     SfxItemSet rAttr( mpModel->GetDataRowAttr( mnRow ));
-                    SvxChartDataDescr eNewDataDescr;
-                    BOOL              bNewShowSym;
+                    SvxChartDataDescr eNewDataDescr(CHDESCR_NONE);
+                    BOOL              bNewShowSym(FALSE);
                     const SfxPoolItem *pPoolItem;
 
                     if( rAttr.GetItemState( SCHATTR_DATADESCR_DESCR, TRUE, &pPoolItem ) == SFX_ITEM_SET )
@@ -507,7 +507,9 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                             break;
                         case CHDESCR_TEXTANDVALUE:
                             nVal = chart::ChartDataCaption::VALUE | chart::ChartDataCaption::TEXT;
-                    // chart::ChartDataCaption::FORMAT (missing)
+                            break;
+                        default:
+                            break;
                     }
                     if( bShowSymbol ) nVal |= chart::ChartDataCaption::SYMBOL;
 
@@ -533,7 +535,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             aAny >>= nValue;
                             aAny <<= static_cast< sal_Int16 >( nValue );
                         }
@@ -560,29 +562,29 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
     return aAny;
 }
 
-void SAL_CALL ChXDataRow::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXDataRow::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXDataRow::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataRow::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -736,7 +738,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyDefault( const ::rtl::OUString& aProper
             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
             {
-                sal_Int32 nValue;
+                sal_Int32 nValue(0);
                 aAny >>= nValue;
                 aAny <<= static_cast< sal_Int16 >( nValue );
             }

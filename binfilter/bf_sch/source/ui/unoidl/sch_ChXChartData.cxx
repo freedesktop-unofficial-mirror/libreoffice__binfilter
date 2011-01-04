@@ -176,7 +176,7 @@ sal_Int64 SAL_CALL ChXChartData::getSomething( const uno::Sequence< sal_Int8 >& 
 }
 
 // XEventListener listens to disposing of XModel
-void SAL_CALL ChXChartData::disposing( const lang::EventObject& Source ) throw( uno::RuntimeException )
+void SAL_CALL ChXChartData::disposing( const lang::EventObject& /*Source*/ ) throw( uno::RuntimeException )
 {
     // XModel is disposed -> mpModel is invalid now
     mpModel = NULL;

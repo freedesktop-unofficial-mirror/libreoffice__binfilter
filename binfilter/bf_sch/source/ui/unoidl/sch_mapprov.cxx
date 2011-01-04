@@ -132,7 +132,7 @@ SchUnoPropertyMapProvider aSchMapProvider;
 #define SCH_ALIEN_PROPERTIES \
     { MAP_CHAR_LEN( UNONAME_USER_DEF_ATTR ), SCHATTR_USER_DEFINED_ATTR, &::getCppuType((uno::Reference< container::XNameContainer >*)0), 0, 0 }
 
-#define SCH_MAP_END { 0,0,0,0,0 }
+#define SCH_MAP_END { 0,0,0,0,0,0 }
 
 // ---------------
 // map definitions
@@ -197,7 +197,7 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::CopyMap( const SfxItemPropertyMap
     return pNewMap;
 }
 
-SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartModel *pModel )
+SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartModel * /*pModel*/ )
 {
     // ---------------
     // map definitions
