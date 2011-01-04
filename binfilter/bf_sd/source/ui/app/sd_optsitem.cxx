@@ -59,7 +59,7 @@ using namespace ::com::sun::star::uno;
 
 // -----------------------------------------------------------------------------
 
-    void SdOptionsItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SdOptionsItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
     void SdOptionsItem::Commit() {}
 
 
@@ -647,12 +647,12 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ BOOL SdOptionsZoom::ReadData( const Any* pValues )
 /*N*/ {
-/*N*/   INT32 nX = 1, nY = 1;
+/*N*/   INT32 nLclX = 1, nLclY = 1;
 /*N*/
-/*N*/   if( pValues[0].hasValue() ) nX = ( *(sal_Int32*) pValues[ 0 ].getValue() );
-/*N*/   if( pValues[1].hasValue() ) nY = ( *(sal_Int32*) pValues[ 1 ].getValue() );
+/*N*/   if( pValues[0].hasValue() ) nLclX = ( *(sal_Int32*) pValues[ 0 ].getValue() );
+/*N*/   if( pValues[1].hasValue() ) nLclY = ( *(sal_Int32*) pValues[ 1 ].getValue() );
 /*N*/
-/*N*/   SetScale( nX, nY );
+/*N*/   SetScale( nLclX, nLclY );
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -661,12 +661,12 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ BOOL SdOptionsZoom::WriteData( Any* pValues ) const
 /*N*/ {
-/*N*/   INT32 nX, nY;
+/*N*/   INT32 nLclX, nLclY;
 /*N*/
-/*N*/   GetScale( nX, nY );
+/*N*/   GetScale( nLclX, nLclY );
 /*N*/
-/*N*/   pValues[ 0 ] <<= (sal_Int32) nX;
-/*N*/   pValues[ 1 ] <<= (sal_Int32) nY;
+/*N*/   pValues[ 0 ] <<= (sal_Int32) nLclX;
+/*N*/   pValues[ 1 ] <<= (sal_Int32) nLclY;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }

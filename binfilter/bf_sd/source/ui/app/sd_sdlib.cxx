@@ -93,7 +93,7 @@ SdDLL::~SdDLL()
 
 void SdDLL::LibInit()
 {
-    SfxApplication* pApp = SFX_APP();
+    /*SfxApplication* pApp =*/ SFX_APP();
 
     SfxObjectFactory *p1 = NULL;
     if(SvtModuleOptions().IsImpress())
@@ -290,15 +290,15 @@ ULONG SdDLL::DetectFilter(SfxMedium& rMedium, const SfxFilter** pFilter, SfxFilt
                 {
                     pStm->Seek( STREAM_SEEK_TO_BEGIN );
 
-                    const String        aFileName( rMedium.GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) );
-                    GraphicDescriptor   aDesc( *pStm, &aFileName );
+                    const String        aLclFileName( rMedium.GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) );
+                    GraphicDescriptor   aDesc( *pStm, &aLclFileName );
                     GraphicFilter*      pGrfFilter = GetGrfFilter();
 
                     if( !aDesc.Detect( FALSE ) )
                     {
                         *pFilter = NULL;
                         nReturn = ERRCODE_ABORT;
-                        INetURLObject aURL( aFileName );
+                        INetURLObject aURL( aLclFileName );
                         if( aURL.getExtension().equalsIgnoreAsciiCaseAscii( "cgm" ) )
                         {
                             sal_uInt8 n8;

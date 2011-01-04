@@ -94,7 +94,7 @@ IMPL_LINK(SdModule, CalcFieldValueHdl, EditFieldInfo*, pInfo)
     return(0);
 }
 
-void SdModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SdModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if( rHint.ISA( SfxSimpleHint ) &&
         ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )
@@ -141,7 +141,7 @@ OutputDevice* SdModule::GetVirtualRefDevice (void)
     return mpVirtualRefDevice;
 }
 
-OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& rDocShell)
+OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& /*rDocShell*/)
 {
     return GetVirtualRefDevice();
 }
