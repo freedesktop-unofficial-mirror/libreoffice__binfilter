@@ -50,8 +50,8 @@ TYPEINIT1(SdGraphicDocShell, SdDrawDocShell);
 
 SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw, SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd)
 
-SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
-: SdDrawDocShell(eMode, bDataObject, eDocType)
+SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eInDocType)
+: SdDrawDocShell(eMode, bDataObject, eInDocType)
 {
     SetStyleFamily( 2 );
 }

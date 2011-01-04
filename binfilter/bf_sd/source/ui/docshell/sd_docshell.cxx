@@ -87,13 +87,13 @@ void SdDrawDocShell::Construct()
 
 SdDrawDocShell::SdDrawDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocumentType) :
     SfxObjectShell(eMode),
-    pPrinter(NULL),
-    pDoc(NULL),
-    bUIActive(FALSE),
     pProgress(NULL),
+    pDoc(NULL),
+    pPrinter(NULL),
+    eDocType(eDocumentType),
+    bUIActive(FALSE),
     bSdDataObj(bDataObject),
     bOwnPrinter(FALSE),
-    eDocType(eDocumentType),
     mbNewDocument( sal_True )
 {
     Construct();
@@ -149,7 +149,7 @@ void SdDrawDocShell::SetVisArea(const Rectangle& rRect)
 
 Rectangle SdDrawDocShell::GetVisArea(USHORT nAspect) const
 {
-    Rectangle aVisArea;
+    Rectangle aLclVisArea;
 
     if( ( ASPECT_THUMBNAIL == nAspect ) || ( ASPECT_DOCPRINT == nAspect ) )
     {
@@ -159,14 +159,14 @@ Rectangle SdDrawDocShell::GetVisArea(USHORT nAspect) const
          aSrcMapMode.SetMapUnit(MAP_100TH_MM);
 
          aSize = Application::GetDefaultDevice()->LogicToLogic(aSize, &aSrcMapMode, &aDstMapMode);
-         aVisArea.SetSize(aSize);
+         aLclVisArea.SetSize(aSize);
     }
     else
     {
-        aVisArea = SfxInPlaceObject::GetVisArea(nAspect);
+        aLclVisArea = SfxInPlaceObject::GetVisArea(nAspect);
     }
 
-    return (aVisArea);
+    return (aLclVisArea);
 }
 
 
@@ -278,8 +278,8 @@ BOOL SdDrawDocShell::InitNew( SvStorage * pStor )
 {
     BOOL bRet = SfxInPlaceObject::InitNew( pStor );
 
-    Rectangle aVisArea( Point(0, 0), Size(14100, 10000) );
-    SetVisArea(aVisArea);
+    Rectangle aLclVisArea( Point(0, 0), Size(14100, 10000) );
+    SetVisArea(aLclVisArea);
 
     if (bRet)
     {
@@ -305,12 +305,12 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
         if( bRet )
         {
             SdFilter*   pFilter = NULL;
-            SfxMedium* pMedium = 0L;
+            SfxMedium* pLclMedium = 0L;
 
             if( bBinary )
             {
-                pMedium = new SfxMedium( pStore );
-                pFilter = new SdBINFilter( *pMedium, *this, sal_True );
+                pLclMedium = new SfxMedium( pStore );
+                pFilter = new SdBINFilter( *pLclMedium, *this, sal_True );
             }
             else if( bXML )
             {
@@ -322,8 +322,8 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
 
             if(pFilter)
                 delete pFilter;
-            if(pMedium)
-                delete pMedium;
+            if(pLclMedium)
+                delete pLclMedium;
         }
     }
     else
