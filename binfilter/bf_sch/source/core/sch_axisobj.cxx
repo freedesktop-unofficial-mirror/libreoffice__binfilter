@@ -36,8 +36,8 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1( SchAxisObj, SchObjGroup );
 
-/*N*/ SchAxisObj::SchAxisObj( ChartModel *pModel ) :
-/*N*/       SchObjGroup( pModel )
+/*N*/ SchAxisObj::SchAxisObj( ChartModel *pInModel ) :
+/*N*/       SchObjGroup( pInModel )
 /*N*/ {
 /*N*/ }
 

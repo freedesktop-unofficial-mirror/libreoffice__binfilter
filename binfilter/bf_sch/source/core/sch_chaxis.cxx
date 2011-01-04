@@ -1002,8 +1002,8 @@ namespace binfilter {
 /*?*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           if (!mpModel->IsNegativeChart() && (mfMin < 0.0) ||
-/*N*/               mbAutoMin && (mfMin > 0.0)) mfMin = SizeBounds (mfMin, mfMax, FALSE);
+/*N*/           if ((!mpModel->IsNegativeChart() && (mfMin < 0.0)) ||
+/*N*/               (mbAutoMin && (mfMin > 0.0))) mfMin = SizeBounds (mfMin, mfMax, FALSE);
 /*N*/           if (mbAutoMax && (mfMax < 0.0)) mfMax = SizeBounds (mfMin, mfMax, TRUE);
 /*N*/
 /*N*/           if (mfMax - mfMin == 0.0) mfMax = mfMin + 1.0;
@@ -2456,7 +2456,7 @@ namespace binfilter {
 /*?*/                             fActHelp+=mfStepHelp;
 /*?*/                         }
 /*?*/                         //    If the main grid is drawn then skip the coinciding help grid lines.
-/*?*/                         if ((fActHelp == fAct) && mpMainGridList || mbColText)
+/*?*/                         if (((fActHelp == fAct) && mpMainGridList) || mbColText)
 /*?*/                             fActHelp+=mfStepHelp;
 /*?*/                     }
 /*?*/                 }
@@ -2577,7 +2577,7 @@ namespace binfilter {
 
 
 
-/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable )
+/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* /*pTransTable*/ )
 /*N*/ {
 /*N*/   ULONG nFmt, nMrgFmt;
 /*N*/   BOOL bRet =FALSE;

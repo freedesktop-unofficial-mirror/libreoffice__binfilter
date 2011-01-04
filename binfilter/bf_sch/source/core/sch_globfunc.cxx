@@ -800,6 +800,8 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/           }
 /*N*/           break;
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/ }
 
@@ -826,6 +828,8 @@ namespace binfilter {
 /*N*/           rTextObj.NbcRotate(rPos, nAng, sin(fVal), cos(fVal));
 /*N*/           break;
 /*N*/       }
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/
 /*N*/   Rectangle aRect = rTextObj.GetLogicRect();
@@ -844,8 +848,9 @@ namespace binfilter {
 /*N*/           rTextObj.NbcRotate(rPos, nDegrees, sin(fVal), cos(fVal));
 /*N*/           Rectangle aNewBoundRect=rTextObj.GetBoundRect();
 /*N*/           rTextObj.NbcMove( AdjustRotatedRect(aOldBoundRect, eAdjust, aNewBoundRect));
-/*N*/           break;
 /*N*/       }
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/ }
 
