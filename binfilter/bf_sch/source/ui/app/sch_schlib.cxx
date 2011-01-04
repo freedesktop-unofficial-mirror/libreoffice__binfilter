@@ -57,7 +57,6 @@ extern "C" { static void SAL_CALL thisModule() {} }
                             SvGlobalName(BF_SO3_SCH_CLASSID), Sch, String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME )) )
 // from macro: void SchChartDocShell::InitFactory()
 /*?*/ {
-/*?*/   ULONG nFormat50 = SOT_FORMATSTR_ID_STARCHART_50;
 /*?*/   SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
 /*?*/   rFactory.SetDocumentServiceName(String::CreateFromAscii("com.sun.star.chart.ChartDocument"));
 /*?*/ }

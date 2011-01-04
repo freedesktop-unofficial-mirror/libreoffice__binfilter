@@ -76,7 +76,7 @@ namespace binfilter {
 /*N*/
 /*N*/     if( aResult[ 0 ].hasValue() )
 /*N*/     {
-/*N*/         sal_Int32 nValue;
+/*N*/         sal_Int32 nValue(0);
 /*N*/         aResult[ 0 ] >>= nValue;
 /*N*/         eResult = static_cast< FieldUnit >( nValue );
 /*N*/     }
@@ -84,7 +84,7 @@ namespace binfilter {
 /*N*/     return eResult;
 /*N*/ }
 
-void CalcConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void CalcConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void CalcConfigItem::Commit() {}
 
 
@@ -101,8 +101,6 @@ namespace util
 /*N*/ FieldUnit GetMeasureUnit()
 /*N*/ {
 /*N*/     static CalcConfigItem aCfgItem;
-/*N*/     FieldUnit aUnit( aCfgItem.GetMeasureUnit() );
-/*N*/
 /*N*/     return aCfgItem.GetMeasureUnit();
 /*N*/ }
 

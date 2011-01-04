@@ -129,7 +129,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void SchModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SchModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if( rHint.ISA( SfxSimpleHint ) &&
 /*N*/       ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )

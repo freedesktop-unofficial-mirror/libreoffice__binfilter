@@ -158,7 +158,7 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-void SchOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SchOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void SchOptions::Commit() {}
 
 
