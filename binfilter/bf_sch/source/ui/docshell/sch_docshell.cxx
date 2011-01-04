@@ -198,10 +198,10 @@ using namespace ::com::sun::star;
 
 /*N*/ SchChartDocShell::SchChartDocShell(SfxObjectCreateMode eMode) throw() :
 /*N*/   SfxObjectShell(eMode),
+/*N*/   pChDoc(NULL),
 /*N*/   pUndoManager(NULL),
 /*N*/   pPrinter(NULL),
 /*N*/   pFontList(NULL),
-/*N*/   pChDoc(NULL),
 /*N*/   bInitNewNoNewDoc(FALSE),
 /*N*/   bOwnPrinter(FALSE),
 /*N*/   mbClipboardExport( FALSE )
@@ -322,11 +322,11 @@ using namespace ::com::sun::star;
 /*N*/         pRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
 /*N*/     {
 /*N*/         // set ref device at document at its outliner as well
-/*N*/         OutputDevice * pRefDev = GetRefDevice();
-/*N*/         if( pRefDev && pRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
+/*N*/         OutputDevice * pLclRefDev = GetRefDevice();
+/*N*/         if( pLclRefDev && pLclRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
 /*N*/         {
-/*N*/             pChDoc->SetRefDevice( pRefDev );
-/*N*/             pChDoc->GetOutliner()->SetRefDevice( pRefDev );
+/*N*/             pChDoc->SetRefDevice( pLclRefDev );
+/*N*/             pChDoc->GetOutliner()->SetRefDevice( pLclRefDev );
 /*N*/
 /*N*/             // re-render chart with new ref-device
 /*N*/
@@ -716,20 +716,20 @@ using namespace ::com::sun::star;
 /*N*/                 {
                           // #i56310# set SomeData strings according to
                           // ChartRange in MemChart like it is done in SaveAs
-                          SvPersist* pParent = GetParent();
-                          if( pParent )
+                          SvPersist* pLclParent = GetParent();
+                          if( pLclParent )
                           {
                               // determine which is parent application
                               SvGlobalName aGlobalName;
-                              ULONG nFileFormat;
+                              ULONG nLclFileFormat;
                               String aAppName, aFullName, aShortName;
-                              pParent->FillClass( &aGlobalName, &nFileFormat,
+                              pLclParent->FillClass( &aGlobalName, &nLclFileFormat,
                                                   &aAppName, &aFullName, &aShortName,
                                                   SOFFICE_FILEFORMAT_60 );
 
-                              if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
+                              if( nLclFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
                                   pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
-                              else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
+                              else if( nLclFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
                                   pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
                           }
 /*N*/                     rDocumentStream->SetSize( 0 );
@@ -808,8 +808,8 @@ using namespace ::com::sun::star;
 /*N*/             if( bFormatChanges )
 /*N*/             {
 /*N*/                 // convert SomeData-strings from Calc/Writer to data structure
-/*N*/                 SvPersist* pParent = GetParent();
-/*N*/                 if( pParent )
+/*N*/                 SvPersist* pLclParent = GetParent();
+/*N*/                 if( pLclParent )
 /*N*/                 {
 /*?*/                     // determine which is parent application
 
@@ -822,7 +822,7 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
                           SvGlobalName aGlobalName;
  /*?*/                     ULONG nFileFormat;
  /*?*/                     String aAppName, aFullName, aShortName;
- /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,
+ /*?*/                     pLclParent->FillClass( &aGlobalName, &nFileFormat,
  /*?*/                                         &aAppName, &aFullName, &aShortName,
  /*?*/                                         SOFFICE_FILEFORMAT_60 );
  /*?*/
@@ -907,20 +907,20 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
 /*N*/ //                 if( bFormatChanges )
 /*N*/ //                 {
 /*N*/                     // convert data structure from Calc/Writer to SomeData strings
-/*N*/                     SvPersist* pParent = GetParent();
-/*N*/                     if( pParent )
+/*N*/                     SvPersist* pLclParent = GetParent();
+/*N*/                     if( pLclParent )
 /*N*/                     {
 /*N*/                         // determine which is parent application
 /*N*/                         SvGlobalName aGlobalName;
-/*N*/                         ULONG nFileFormat;
+/*N*/                         ULONG nLclFileFormat;
 /*N*/                         String aAppName, aFullName, aShortName;
-/*N*/                         pParent->FillClass( &aGlobalName, &nFileFormat,
+/*N*/                         pLclParent->FillClass( &aGlobalName, &nLclFileFormat,
 /*N*/                                             &aAppName, &aFullName, &aShortName,
 /*N*/                                             SOFFICE_FILEFORMAT_60 );
 /*N*/
-/*N*/                         if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
+/*N*/                         if( nLclFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
 /*?*/                          pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
-/*N*/                         else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
+/*N*/                         else if( nLclFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
 /*N*/                             pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
 /*N*/                     }
 /*N*/ //                 }
