@@ -199,7 +199,7 @@ CntItemPool* CntItemPool::_pThePool = NULL;
 /*N*/ }
 
 //-------------------------------------------------------------------------
-/*N*/ CntStaticPoolDefaults_Impl::CntStaticPoolDefaults_Impl( CntItemPool* pPool )
+/*N*/ CntStaticPoolDefaults_Impl::CntStaticPoolDefaults_Impl( CntItemPool* /*pPool*/ )
 /*N*/ : m_nItems( 1 ),
 /*N*/   m_ppDefaults( new SfxPoolItem* [ m_nItems ] ),
 /*N*/   m_pItemInfos( new SfxItemInfo  [ m_nItems ] )
