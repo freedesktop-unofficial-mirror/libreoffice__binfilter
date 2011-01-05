@@ -357,6 +357,8 @@ void SdUnoPseudoStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         case HINT_MODELCLEARED:
             bGoneDead = sal_True;
             break;
+        default:
+            break;
         }
     }
 

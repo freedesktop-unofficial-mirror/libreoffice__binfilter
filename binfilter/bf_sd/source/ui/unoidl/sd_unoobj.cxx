@@ -147,7 +147,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
         { MAP_CHAR_LEN(UNO_NAME_OBJ_BLUESCREEN),    WID_BLUESCREEN,      &::getCppuType((const sal_Int32*)0),                       0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_VERB),          WID_VERB,            &::getCppuType((const sal_Int32*)0),                       0, 0},
         { MAP_CHAR_LEN("IsAnimation"),              WID_ISANIMATION,     &::getBooleanCppuType(),                                   0, 0},
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     static const SfxItemPropertyMap aDraw_SdXShapePropertyMap_Impl[] =
@@ -156,7 +156,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
         { MAP_CHAR_LEN(UNO_NAME_OBJ_BOOKMARK),      WID_BOOKMARK,       &::getCppuType((const OUString*)0),                 0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_CLICKACTION),   WID_CLICKACTION,    &::getCppuType((const presentation::ClickAction*)0),0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_STYLE),         WID_STYLE,          &ITYPE(style::XStyle),                              ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     if( bImpress )
@@ -167,7 +167,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
 
 SfxItemPropertyMap aEmpty_SdXShapePropertyMap_Impl[] =
 {
-    { 0,0,0,0,0}
+    { 0,0,0,0,0,0 }
 };
 
 const SvEventDescription* ImplGetSupportedMacroItems()
@@ -203,16 +203,16 @@ static int SortFunc( const void* p1, const void* p2 )
      return ( pCmp1->nOrder < pCmp2->nOrder ? -1 : pCmp1->nOrder > pCmp2->nOrder ? 1 : 0 );
 }
 
-SdXShape::SdXShape( SvxShape* pShape, SdXImpressDocument* pModel) throw()
-:   maPropSet( pModel?
+SdXShape::SdXShape( SvxShape* pShape, SdXImpressDocument* pModel) throw() :
+    mpShape( pShape ),
+    maPropSet( pModel?
                     ImplGetShapePropertyMap(pModel->IsImpressDocument(), pShape->getShapeKind() == OBJ_GRAF )
                 :   aEmpty_SdXShapePropertyMap_Impl ),
     mpMap( pModel?
                     ImplGetShapePropertyMap(pModel->IsImpressDocument(), pShape->getShapeKind() == OBJ_GRAF )
                 :   aEmpty_SdXShapePropertyMap_Impl ),
     mpModel(pModel),
-    mpImplementationId( NULL ),
-    mpShape( pShape )
+    mpImplementationId( NULL )
 {
     pShape->setMaster( this );
 }
@@ -499,23 +499,23 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     uno::Reference< drawing::XShape > xShape;
                     aValue >>= xShape;
 
-                    SdrObject* pObj = NULL;
+                    SdrObject* pLclObj = NULL;
                     if(xShape.is())
-                        pObj = GetSdrObjectFromXShape( xShape );
+                        pLclObj = GetSdrObjectFromXShape( xShape );
 
-                    if( pObj == NULL || !pObj->ISA( SdrPathObj ) )
+                    if( pLclObj == NULL || !pLclObj->ISA( SdrPathObj ) )
                         throw lang::IllegalArgumentException();
 
-                    pInfo->pPathObj = (SdrPathObj*)pObj;
+                    pInfo->pPathObj = (SdrPathObj*)pLclObj;
 
                     SdDrawDocument* pDoc = mpModel?mpModel->GetDoc():NULL;
                     if( pDoc )
                     {
-                        pInfo = pDoc->GetAnimationInfo(pObj);
+                        pInfo = pDoc->GetAnimationInfo(pLclObj);
                         if( pInfo == NULL )
                         {
                             pInfo = new SdAnimationInfo(pDoc);
-                            pObj->InsertUserData( pInfo );
+                            pLclObj->InsertUserData( pInfo );
                         }
                         pInfo->bInvisibleInPresentation = sal_True;
                     }
@@ -878,7 +878,7 @@ void SdXShape::SetEmptyPresObj( sal_Bool bEmpty ) throw()
 
                 OutlinerParaObject* pOutlinerParaObject = pObj->GetOutlinerParaObject();
                 pOutliner->SetText( *pOutlinerParaObject );
-                SfxStyleSheetPool* pStyle = pOutliner->GetStyleSheetPool();
+                /*SfxStyleSheetPool* pStyle =*/ pOutliner->GetStyleSheetPool();
                 const sal_Bool bVertical = pOutliner->IsVertical();
 
                 pOutliner->Clear();
@@ -1064,7 +1064,9 @@ void SdXShape::SetStyleSheet( const uno::Any& rAny ) throw( lang::IllegalArgumen
 
     pObj->SetStyleSheet( (SfxStyleSheet*)pStyleSheet->getStyleSheet(), sal_False );
 
-    SdDrawDocument* pDoc = mpModel? mpModel->GetDoc() : NULL;
+    SdDrawDocument* pDoc = NULL;
+    if (mpModel)
+        pDoc = mpModel->GetDoc();
 }
 
 uno::Any SdXShape::GetStyleSheet() const throw( beans::UnknownPropertyException  )
@@ -1177,22 +1179,23 @@ uno::Reference< container::XNameReplace > SAL_CALL SdXShape::getEvents(  ) throw
     return new SdUnoEventsAccess( this );
 }
 
-SdUnoEventsAccess::SdUnoEventsAccess( SdXShape* pShape ) throw()
-: mpShape( pShape ), mxShape( pShape ),
-  maStrOnClick( RTL_CONSTASCII_USTRINGPARAM("OnClick") ),
-  maStrServiceName( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.documents.Events") ),
-  maStrEventType( RTL_CONSTASCII_USTRINGPARAM("EventType") ),
-  maStrPresentation( RTL_CONSTASCII_USTRINGPARAM("Presentation") ),
-  maStrClickAction( RTL_CONSTASCII_USTRINGPARAM("ClickAction") ),
-  maStrBookmark( RTL_CONSTASCII_USTRINGPARAM("Bookmark") ),
-  maStrEffect( RTL_CONSTASCII_USTRINGPARAM("Effect") ),
-  maStrPlayFull( RTL_CONSTASCII_USTRINGPARAM("PlayFull") ),
-  maStrVerb( RTL_CONSTASCII_USTRINGPARAM("Verb") ),
-  maStrSoundURL( RTL_CONSTASCII_USTRINGPARAM("SoundURL") ),
-  maStrSpeed( RTL_CONSTASCII_USTRINGPARAM("Speed") ),
-  maStrStarBasic( RTL_CONSTASCII_USTRINGPARAM("StarBasic") ),
+SdUnoEventsAccess::SdUnoEventsAccess( SdXShape* pShape ) throw() :
+  maStrOnClick(RTL_CONSTASCII_USTRINGPARAM("OnClick")),
+  maStrServiceName(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.documents.Events")),
+  maStrEventType(RTL_CONSTASCII_USTRINGPARAM("EventType")),
+  maStrPresentation(RTL_CONSTASCII_USTRINGPARAM("Presentation")),
   maStrLibrary(RTL_CONSTASCII_USTRINGPARAM("Library")),
-  maStrMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName"))
+  maStrMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName")),
+  maStrClickAction(RTL_CONSTASCII_USTRINGPARAM("ClickAction")),
+  maStrBookmark(RTL_CONSTASCII_USTRINGPARAM("Bookmark") ),
+  maStrEffect(RTL_CONSTASCII_USTRINGPARAM("Effect") ),
+  maStrPlayFull(RTL_CONSTASCII_USTRINGPARAM("PlayFull") ),
+  maStrVerb(RTL_CONSTASCII_USTRINGPARAM("Verb") ),
+  maStrSoundURL(RTL_CONSTASCII_USTRINGPARAM("SoundURL")),
+  maStrSpeed(RTL_CONSTASCII_USTRINGPARAM("Speed")),
+  maStrStarBasic(RTL_CONSTASCII_USTRINGPARAM("StarBasic")),
+  mpShape(pShape),
+  mxShape(pShape)
 {
 }
 
@@ -1238,8 +1241,8 @@ void SAL_CALL SdUnoEventsAccess::replaceByName( const OUString& aName, const uno
     presentation::AnimationEffect eEffect;
     presentation::AnimationSpeed eSpeed;
     OUString aStrSoundURL;
-    sal_Bool bPlayFull;
-    sal_Int32 nVerb;
+    sal_Bool bPlayFull(sal_False);
+    sal_Int32 nVerb(0);
     OUString aStrMacro;
     OUString aStrLibrary;
     OUString aStrBookmark;
@@ -1441,6 +1444,9 @@ void SAL_CALL SdUnoEventsAccess::replaceByName( const OUString& aName, const uno
                     bOk = sal_True;
                 }
                 break;
+
+            default:
+                break;
             }
         }
         else
@@ -1525,6 +1531,9 @@ uno::Any SAL_CALL SdUnoEventsAccess::getByName( const OUString& aName )
 
     case presentation::ClickAction_VANISH:
         nPropertyCount += 4;
+        break;
+
+    default:
         break;
     }
 
@@ -1673,6 +1682,8 @@ uno::Any SAL_CALL SdUnoEventsAccess::getByName( const OUString& aName )
             pProperties->Handle = -1;
             pProperties->Value = aAny;
             pProperties->State = beans::PropertyState_DIRECT_VALUE;
+            break;
+        default:
             break;
         }
     }

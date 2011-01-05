@@ -366,7 +366,7 @@ void SAL_CALL SdUnoGraphicStyleFamily::removeByName( const OUString& Name )
     {
         pSSPool = (SfxStyleSheetBasePool*)pDoc->GetStyleSheetPool();
         if( pSSPool )
-            SfxStyleSheetBase* pStyleSheet = pSSPool->Find( getInternalStyleName(Name), SFX_STYLE_FAMILY_PARA, SFXSTYLEBIT_ALL );
+            /*SfxStyleSheetBase* pStyleSheet =*/ pSSPool->Find( getInternalStyleName(Name), SFX_STYLE_FAMILY_PARA, SFXSTYLEBIT_ALL );
     }
 
     if( NULL == pStyleSheet || pStyleSheet->IsUserDefined() )
@@ -415,7 +415,7 @@ uno::Reference< uno::XInterface > SAL_CALL SdUnoGraphicStyleFamily::createInstan
     return (::cppu::OWeakObject*)new SdUnoGraphicStyle();
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SdUnoGraphicStyleFamily::createInstanceWithArguments( const uno::Sequence< uno::Any >& aArguments )
+uno::Reference< uno::XInterface > SAL_CALL SdUnoGraphicStyleFamily::createInstanceWithArguments( const uno::Sequence< uno::Any >& /*aArguments*/ )
     throw(uno::Exception, uno::RuntimeException)
 {
     return (::cppu::OWeakObject*)new SdUnoGraphicStyle();
@@ -442,6 +442,7 @@ void SdUnoGraphicStyleFamily::createStyle( SfxStyleSheetBase* pStyleSheet, uno::
 
     DBG_ASSERT( pStyleSheet, "need a style for insert! [CL]" );
     DBG_ASSERT( pDoc, "need a document here! [CL]" );
+    (void)pDoc;
 
     uno::WeakReference< uno::XInterface > xRef;
     uno::Reference< style::XStyle >  xStyle;

@@ -556,10 +556,10 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     if( *pValues >>= aPrinterName )
                     {
                         bOk = sal_True;
-                        SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_True );
-                        if (pPrinter)
+                        SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_True );
+                        if (pLclPrinter)
                         {
-                            SfxPrinter *pNewPrinter = new SfxPrinter ( pPrinter->GetOptions().Clone(), aPrinterName );
+                            SfxPrinter *pNewPrinter = new SfxPrinter ( pLclPrinter->GetOptions().Clone(), aPrinterName );
                             pDocSh->SetPrinter( pNewPrinter );
                         }
                     }
@@ -688,11 +688,11 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             }
             case HANDLE_UPDATEFROMTEMPLATE:
             {
-                sal_Bool bValue;
-                if( *pValues >>= bValue )
+                sal_Bool bLclValue;
+                if( *pValues >>= bLclValue )
                 {
                     SfxDocumentInfo& rInfo = pDocSh->GetDocInfo();
-                    rInfo.SetQueryLoadTemplate( bValue );
+                    rInfo.SetQueryLoadTemplate( bLclValue );
                     bOk = sal_True;
                 }
             }
@@ -897,17 +897,17 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                 break;
             case HANDLE_PRINTERNAME:
                 {
-                    SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
-                    *pValue <<= pPrinter ? OUString ( pPrinter->GetName()) : OUString();
+                    SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_False );
+                    *pValue <<= pLclPrinter ? OUString ( pLclPrinter->GetName()) : OUString();
                 }
                 break;
             case HANDLE_PRINTERJOB:
                 {
-                    SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
-                    if (pPrinter)
+                    SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_False );
+                    if (pLclPrinter)
                     {
                         SvMemoryStream aStream;
-                        pPrinter->Store( aStream );
+                        pLclPrinter->Store( aStream );
                         aStream.Seek ( STREAM_SEEK_TO_END );
                         sal_uInt32 nSize = aStream.Tell();
                         aStream.Seek ( STREAM_SEEK_TO_BEGIN );

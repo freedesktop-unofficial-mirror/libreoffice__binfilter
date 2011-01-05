@@ -81,7 +81,7 @@ const SfxItemPropertyMap* ImplGetFullPropertyMap()
         TEXT_PROPERTIES
         CONNECTOR_PROPERTIES
         SPECIAL_DIMENSIONING_PROPERTIES
-        {0,0,0,0,0}
+        {0,0,0,0,0,0}
     };
 
     return aFullPropertyMap_Impl;
@@ -90,12 +90,12 @@ const SfxItemPropertyMap* ImplGetFullPropertyMap()
 //UNO3_GETIMPLEMENTATION_IMPL( SdUnoPseudoStyle );
 
 SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SfxStyleSheetBase* pStyleSheet ) throw()
-: mxModel( pModel ),
-  mpModel( pModel ),
-  mpPage( NULL ),
-  mpStyleSheet( pStyleSheet ),
+: mpStyleSheet( pStyleSheet ),
   meObject( PO_TITLE ),
-  maPropSet( ImplGetFullPropertyMap() )
+  maPropSet( ImplGetFullPropertyMap() ),
+  mpPage( NULL ),
+  mpModel( pModel ),
+  mxModel( pModel )
 {
     if( mpStyleSheet )
         StartListening( mpStyleSheet->GetPool() );
@@ -103,12 +103,12 @@ SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SfxStyleSheetBas
 
 SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SdPage* pPage,
                                     SfxStyleSheetBase* pStyleSheet, PresentationObjects eObject ) throw()
-: mpModel( pModel ),
-  mxModel( pModel ),
-  mpPage( pPage ),
-  mpStyleSheet( pStyleSheet ),
+: mpStyleSheet( pStyleSheet ),
   meObject( eObject ),
-  maPropSet( (eObject >= PO_OUTLINE_2 && eObject <= PO_OUTLINE_9) ? &ImplGetFullPropertyMap()[1] : ImplGetFullPropertyMap() )
+  maPropSet( (eObject >= PO_OUTLINE_2 && eObject <= PO_OUTLINE_9) ? &ImplGetFullPropertyMap()[1] : ImplGetFullPropertyMap() ),
+  mpPage( pPage ),
+  mpModel( pModel ),
+  mxModel( pModel )
 {
     if( mpStyleSheet )
         StartListening( mpStyleSheet->GetPool() );
@@ -151,7 +151,7 @@ sal_Int64 SAL_CALL SdUnoPseudoStyle::getSomething( const ::com::sun::star::uno::
     }
     else
     {
-        return NULL;
+        return 0;
     }
 }
 
@@ -200,7 +200,7 @@ OUString SAL_CALL SdUnoPseudoStyle::getName(  )
     return OUString();
 }
 
-void SAL_CALL SdUnoPseudoStyle::setName( const OUString& aName )
+void SAL_CALL SdUnoPseudoStyle::setName( const OUString& /*aName*/ )
     throw(uno::RuntimeException)
 {
 }
@@ -233,7 +233,7 @@ OUString SAL_CALL SdUnoPseudoStyle::getParentStyle(  )
     return aName;
 }
 
-void SAL_CALL SdUnoPseudoStyle::setParentStyle( const OUString& aParentStyle )
+void SAL_CALL SdUnoPseudoStyle::setParentStyle( const OUString& /*aParentStyle*/ )
     throw(container::NoSuchElementException, uno::RuntimeException)
 {
 }
@@ -416,7 +416,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
             {
-                sal_Int32 nValue;
+                sal_Int32 nValue(0);
                 aAny >>= nValue;
                 aAny <<= (sal_Int16)nValue;
             }
@@ -429,10 +429,10 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
     return aAny;
 }
 
-void SAL_CALL SdUnoPseudoStyle::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 // XPropertyState
 beans::PropertyState SAL_CALL SdUnoPseudoStyle::getPropertyState( const OUString& PropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
@@ -599,7 +599,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropert
 }
 
 /** detect if the StyleSheetPool dies or if this instances style sheet is erased */
-void SdUnoPseudoStyle::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SdUnoPseudoStyle::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     sal_Bool bGoneDead = sal_False;
 

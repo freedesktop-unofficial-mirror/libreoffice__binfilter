@@ -92,7 +92,7 @@ public:
                             SdAnimationInfo(const SdAnimationInfo& rAnmInfo);
     virtual                 ~SdAnimationInfo();
 
-    virtual SdrObjUserData* Clone(SdrObject* pObj) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001   virtual SdrObjUserData* Clone(SdrObject* pObj) const;
+    virtual SdrObjUserData* Clone(SdrObject* /*pObj*/) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
     virtual void            WriteData(SvStream& rOut);
     virtual void            ReadData(SvStream& rIn);

@@ -65,19 +65,18 @@ const SfxItemPropertyMap* ImplGetPresentationPropertyMap()
         { MAP_CHAR_LEN(UNO_NAME_SHOW_USEPEN),       ATTR_PRESENT_PEN,               &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN("IsTransitionOnClick"),      ATTR_PRESENT_CHANGE_PAGE,       &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN("IsShowLogo"),               ATTR_PRESENT_SHOW_PAUSELOGO,    &::getBooleanCppuType(),                0, 0 },
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
 
     };
 
     return aPresentationPropertyMap_Impl;
 }
 
-SfxItemPropertyMap map_impl[] = { 0,0,0,0 };
-
 ///////////////////////////////////////////////////////////////////////////////
 
 SdXPresentation::SdXPresentation(SdXImpressDocument& rMyModel) throw()
-:   maPropSet(ImplGetPresentationPropertyMap()), mrModel(rMyModel)
+    : mrModel(rMyModel)
+    , maPropSet(ImplGetPresentationPropertyMap())
 {
 }
 
@@ -408,19 +407,19 @@ uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyNam
     return any;
 }
 
-void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener )    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener )  throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )  throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 

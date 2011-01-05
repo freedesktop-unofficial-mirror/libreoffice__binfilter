@@ -50,19 +50,22 @@ class SdIMapInfo : public SdrObjUserData, public SfxListener
 
 public:
                     SdIMapInfo() :
-                        SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ) {};
+                        SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
+                        SfxListener() {}
 
                     SdIMapInfo( const ImageMap& rImageMap ) :
                         SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
-                        aImageMap( rImageMap ) {};
+                        SfxListener(),
+                        aImageMap( rImageMap ) {}
 
                     SdIMapInfo( const SdIMapInfo& rIMapInfo ) :
                         SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
-                        aImageMap( rIMapInfo.aImageMap ) {};
+                        SfxListener(),
+                        aImageMap( rIMapInfo.aImageMap ) {}
 
     virtual         ~SdIMapInfo() {};
 
-    virtual SdrObjUserData* Clone( SdrObject* pObj ) const { return new SdIMapInfo( *this ); }
+    virtual SdrObjUserData* Clone( SdrObject* /*pObj*/ ) const { return new SdIMapInfo( *this ); }
 
     virtual void WriteData( SvStream& rOStm );
     virtual void ReadData( SvStream& rIStm );

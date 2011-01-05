@@ -139,7 +139,7 @@ sal_Bool SAL_CALL SdUnoStyleFamilies::hasByName( const OUString& aName )
 {
     // is the model still valid?
     if( NULL == mpModel->GetDoc() )
-        return NULL;
+        return sal_False;
 
     // is it the graphic style?
     if( aName.compareToAscii( sUNO_Graphic_Style_Family_Name ) == 0 )
@@ -277,8 +277,6 @@ OUString SdUnoStyleFamilies::getLayoutNameByIndex( sal_uInt16 nIndex ) throw()
 sal_uInt16 SdUnoStyleFamilies::getLayoutIndexByName( const OUString& rName ) throw()
 {
     const String aName( rName );
-
-    USHORT nIndex = 0;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     if( NULL != pDoc )

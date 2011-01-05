@@ -70,7 +70,7 @@ const SfxItemPropertyMap* ImplGetSdLayerPropertyMap()
         { MAP_CHAR_LEN(UNO_NAME_LAYER_PRINTABLE),   WID_LAYER_PRINTABLE,&::getBooleanCppuType(),            0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_LAYER_VISIBLE),     WID_LAYER_VISIBLE,  &::getBooleanCppuType(),            0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_LAYER_NAME),        WID_LAYER_NAME,     &::getCppuType((const OUString*)0), 0, 0 },
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     return aSdLayerPropertyMap_Impl;
@@ -135,9 +135,10 @@ OUString SdLayer::convertToExternalName( const String& rName )
 
 /** */
 SdLayer::SdLayer( SdLayerManager* pLayerManager_, SdrLayer* pSdrLayer_ ) throw()
-: aPropSet(ImplGetSdLayerPropertyMap()),
-  pLayerManager(pLayerManager_), pLayer(pSdrLayer_),
-  mxLayerManager(pLayerManager_)
+    : pLayerManager(pLayerManager_)
+    , mxLayerManager(pLayerManager_)
+    , pLayer(pSdrLayer_)
+    , aPropSet(ImplGetSdLayerPropertyMap())
 {
 }
 
@@ -263,10 +264,10 @@ uno::Any SAL_CALL SdLayer::getPropertyValue( const OUString& PropertyName )
     return aValue;
 }
 
-void SAL_CALL SdLayer::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::addPropertyChangeListener( const OUString&/* aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 /** */
 sal_Bool SdLayer::get( LayerAttribute what ) throw()
@@ -342,7 +343,7 @@ uno::Reference<uno::XInterface> SAL_CALL SdLayer::getParent (void)
 }
 
 
-void SAL_CALL SdLayer::setParent (const uno::Reference<uno::XInterface >& rxParent)
+void SAL_CALL SdLayer::setParent (const uno::Reference<uno::XInterface >& /*rxParent*/)
     throw (::com::sun::star::lang::NoSupportException,
         ::com::sun::star::uno::RuntimeException)
 {
@@ -449,7 +450,7 @@ uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::insertNewByIndex( sal
     return xLayer;
 }
 
-void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& xLayer ) throw(container::NoSuchElementException, uno::RuntimeException)
+void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& /*xLayer*/ ) throw(container::NoSuchElementException, uno::RuntimeException)
 {
 }
 

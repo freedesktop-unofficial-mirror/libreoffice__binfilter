@@ -292,7 +292,7 @@ uno::Reference< uno::XInterface > SAL_CALL SdXCustomPresentationAccess::createIn
     return xRef;
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SdXCustomPresentationAccess::createInstanceWithArguments( const uno::Sequence< uno::Any >& aArguments )
+uno::Reference< uno::XInterface > SAL_CALL SdXCustomPresentationAccess::createInstanceWithArguments( const uno::Sequence< uno::Any >& /*aArguments*/ )
     throw(uno::Exception, uno::RuntimeException)
 {
     return createInstance();

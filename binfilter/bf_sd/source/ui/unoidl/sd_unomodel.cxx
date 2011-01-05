@@ -136,7 +136,7 @@ SdUnoForbiddenCharsTable::~SdUnoForbiddenCharsTable()
         EndListening( *mpModel );
 }
 
-void SdUnoForbiddenCharsTable::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
+void SdUnoForbiddenCharsTable::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint ) throw()
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 
@@ -173,7 +173,7 @@ const SfxItemPropertyMap* ImplGetDrawModelPropertyMap()
         { MAP_CHAR_LEN(sUNO_Prop_AutomContFocus ),  WID_MODEL_CONTFOCUS,    &::getBooleanCppuType(),                    0,  0},
         { MAP_CHAR_LEN(sUNO_Prop_ApplyFrmDsgnMode), WID_MODEL_DSGNMODE,     &::getBooleanCppuType(),                    0,  0},
         { MAP_CHAR_LEN("BasicLibraries"),               WID_MODEL_BASICLIBS,&::getCppuType((const uno::Reference< script::XLibraryContainer > *)0), beans::PropertyAttribute::READONLY, 0 },
-        { 0,0,0,0,0 }
+        { 0,0,0,0,0,0 }
     };
 
     return aDrawModelPropertyMap_Impl;
@@ -183,8 +183,8 @@ const SfxItemPropertyMap* ImplGetDrawModelPropertyMap()
 SdXImpressDocument::SdXImpressDocument( SdDrawDocShell* pShell ) throw()
 :   SfxBaseModel( pShell ),
     pDocShell( pShell ),
-    aPropSet( ImplGetDrawModelPropertyMap() ),
-    mbClipBoard( sal_False )
+    mbClipBoard( sal_False ),
+    aPropSet( ImplGetDrawModelPropertyMap() )
 {
     if( pDocShell )
     {
@@ -1224,10 +1224,10 @@ uno::Any SAL_CALL SdXImpressDocument::getPropertyValue( const OUString& Property
     return aAny;
 }
 
-void SAL_CALL SdXImpressDocument::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdXImpressDocument::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdXImpressDocument::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdXImpressDocument::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdXImpressDocument::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdXImpressDocument::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdXImpressDocument::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdXImpressDocument::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 // XLinkTargetSupplier
 uno::Reference< container::XNameAccess > SAL_CALL SdXImpressDocument::getLinks()
@@ -1259,7 +1259,7 @@ uno::Reference< container::XNameAccess > SAL_CALL SdXImpressDocument::getStyleFa
 }
 
 // XAnyCompareFactory
-uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SdXImpressDocument::createAnyCompareByName( const OUString& PropertyName )
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SdXImpressDocument::createAnyCompareByName( const OUString& /*PropertyName*/ )
     throw (uno::RuntimeException)
 {
     return SvxCreateNumRuleCompare();
@@ -1267,7 +1267,7 @@ uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SdXImpressDocument
 
 // XRenderable
 sal_Int32 SAL_CALL SdXImpressDocument::getRendererCount( const uno::Any& rSelection,
-                                                         const uno::Sequence< beans::PropertyValue >& rxOptions )
+                                                         const uno::Sequence< beans::PropertyValue >& /*rxOptions*/ )
     throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
     ::SolarMutexGuard aGuard;
@@ -1300,8 +1300,8 @@ sal_Int32 SAL_CALL SdXImpressDocument::getRendererCount( const uno::Any& rSelect
     return nRet;
 }
 
-uno::Sequence< beans::PropertyValue > SAL_CALL SdXImpressDocument::getRenderer( sal_Int32 nRenderer, const uno::Any& rSelection,
-                                                                                const uno::Sequence< beans::PropertyValue >& rxOptions )
+uno::Sequence< beans::PropertyValue > SAL_CALL SdXImpressDocument::getRenderer( sal_Int32 /*nRenderer*/, const uno::Any& /*rSelection*/,
+                                                                                const uno::Sequence< beans::PropertyValue >& /*rxOptions*/ )
     throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
     ::SolarMutexGuard aGuard;
@@ -1386,7 +1386,7 @@ IMPL_LINK( ImplRenderPaintProc, _ImplRenderPaintProc, SdrPaintProcRec*, pRecord 
     return 0;
 }
 
-void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& rSelection,
+void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /*rSelection*/,
                                           const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
