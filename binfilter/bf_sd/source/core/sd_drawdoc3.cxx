@@ -228,6 +228,7 @@ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) 
                 {
                     BOOL bOK = pStor->Rename(pStarDrawDoc, pStarDrawDoc3);
                     DBG_ASSERT(bOK, "Umbenennung des Streams gescheitert");
+                    (void)bOK;
                 }
 
                 SotStorageStreamRef docStream = pStor->OpenSotStream( pStarDrawDoc3, STREAM_READ );

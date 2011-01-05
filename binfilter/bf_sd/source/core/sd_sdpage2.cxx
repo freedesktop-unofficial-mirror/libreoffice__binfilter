@@ -367,13 +367,13 @@ SdPage::SdPage(const SdPage& rSrcPage)
 
 SdrPage* SdPage::Clone() const
 {
-    SdPage* pPage = new SdPage(*this);
+    SdPage* pLclPage = new SdPage(*this);
 
     if( (PK_STANDARD == ePageKind) && !IsMasterPage() )
     {
         // preserve presentation order on slide duplications
         SdrObjListIter aSrcIter( *this, IM_DEEPWITHGROUPS );
-        SdrObjListIter aDstIter( *pPage, IM_DEEPWITHGROUPS );
+        SdrObjListIter aDstIter( *pLclPage, IM_DEEPWITHGROUPS );
 
         while( aSrcIter.IsMore() && aDstIter.IsMore() )
         {
@@ -394,7 +394,7 @@ SdrPage* SdPage::Clone() const
         DBG_ASSERT( !aSrcIter.IsMore() && !aDstIter.IsMore(), "unequal shape numbers after a page clone?" );
     }
 
-    return(pPage);
+    return(pLclPage);
 }
 
 SfxStyleSheet* SdPage::GetTextStyleSheetForObject( SdrObject* pObj ) const

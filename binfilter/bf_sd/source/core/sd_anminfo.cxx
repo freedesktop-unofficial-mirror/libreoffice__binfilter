@@ -55,6 +55,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdAnimationInfo::SdAnimationInfo(SdDrawDocument* pTheDoc)
 /*N*/              : SdrObjUserData(SdUDInventor, SD_ANIMATIONINFO_ID, 0),
+/*N*/                pDoc                       (pTheDoc),
 /*N*/                pPolygon                   (NULL),
 /*N*/                eEffect                    (presentation::AnimationEffect_NONE),
 /*N*/                eTextEffect                (presentation::AnimationEffect_NONE),
@@ -72,11 +73,10 @@ using namespace ::com::sun::star;
 /*N*/                eSecondSpeed               (presentation::AnimationSpeed_SLOW),
 /*N*/                bSecondSoundOn             (FALSE),
 /*N*/                bSecondPlayFull            (FALSE),
-/*N*/                bInvisibleInPresentation   (FALSE),
 /*N*/                nVerb                      (0),
-/*N*/                pDoc                       (pTheDoc),
-/*N*/                bShow                      (TRUE),
+/*N*/                bInvisibleInPresentation   (FALSE),
 /*N*/                bIsShown                   (TRUE),
+/*N*/                bShow                      (TRUE),
 /*N*/                bDimmed                    (FALSE),
 /*N*/                nPresOrder                 (LIST_APPEND)
 /*N*/ {
@@ -94,6 +94,8 @@ using namespace ::com::sun::star;
 
 /*N*/ SdAnimationInfo::SdAnimationInfo(const SdAnimationInfo& rAnmInfo)
 /*N*/              : SdrObjUserData             (rAnmInfo),
+/*N*/                SfxListener(),
+/*N*/                pDoc                       (NULL),
 /*N*/                pPolygon                   (NULL),
 /*N*/                aStart                     (rAnmInfo.aStart),
 /*N*/                aEnd                       (rAnmInfo.aEnd),
@@ -109,20 +111,19 @@ using namespace ::com::sun::star;
 /*N*/                aSoundFile                 (rAnmInfo.aSoundFile),
 /*N*/                bSoundOn                   (rAnmInfo.bSoundOn),
 /*N*/                bPlayFull                  (rAnmInfo.bPlayFull),
-/*N*/                pPathObj                   (NULL),
 /*N*/                pPathSuro                  (NULL),
+/*N*/                pPathObj                   (NULL),
 /*N*/                eClickAction               (rAnmInfo.eClickAction),
 /*N*/                eSecondEffect              (rAnmInfo.eSecondEffect),
 /*N*/                eSecondSpeed               (rAnmInfo.eSecondSpeed),
+/*N*/                aSecondSoundFile           (rAnmInfo.aSecondSoundFile),
 /*N*/                bSecondSoundOn             (rAnmInfo.bSecondSoundOn),
 /*N*/                bSecondPlayFull            (rAnmInfo.bSecondPlayFull),
-/*N*/                bInvisibleInPresentation   (rAnmInfo.bInvisibleInPresentation),
-/*N*/                nVerb                      (rAnmInfo.nVerb),
 /*N*/                aBookmark                  (rAnmInfo.aBookmark),
-/*N*/                aSecondSoundFile           (rAnmInfo.aSecondSoundFile),
-/*N*/                pDoc                       (NULL),
-/*N*/                bShow                      (rAnmInfo.bShow),
+/*N*/                nVerb                      (rAnmInfo.nVerb),
+/*N*/                bInvisibleInPresentation   (rAnmInfo.bInvisibleInPresentation),
 /*N*/                bIsShown                   (rAnmInfo.bIsShown),
+/*N*/                bShow                      (rAnmInfo.bShow),
 /*N*/                bDimmed                    (rAnmInfo.bDimmed),
 /*N*/                nPresOrder                 (LIST_APPEND)
 /*N*/ {

@@ -57,9 +57,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdStyleSheet::SdStyleSheet(const String& rName, SfxStyleSheetBasePool& rPool,
-/*N*/                          SfxStyleFamily eFamily, USHORT nMask) :
-/*N*/   SfxStyleSheet(rName, rPool, eFamily, nMask)
+/*N*/ SdStyleSheet::SdStyleSheet(const String& rName, SfxStyleSheetBasePool& rInPool,
+/*N*/                          SfxStyleFamily eFamily, USHORT nInMask) :
+/*N*/   SfxStyleSheet(rName, rInPool, eFamily, nInMask)
 /*N*/ {
 /*N*/ }
 
