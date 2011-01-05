@@ -58,10 +58,10 @@ using namespace ::com::sun::star::frame;
 // ------------
 
 SdFilter::SdFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress ) :
+    mxModel( rDocShell.GetModel() ),
     mrMedium( rMedium ),
     mrDocShell( rDocShell ),
     mrDocument( *rDocShell.GetDoc() ),
-    mxModel( rDocShell.GetModel() ),
     mpProgress( NULL ),
     mbIsDraw( rDocShell.GetDocumentType() == DOCUMENT_TYPE_DRAW ),
     mbShowProgress( bShowProgress )

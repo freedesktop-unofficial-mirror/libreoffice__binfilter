@@ -38,13 +38,13 @@ PropItem& PropItem::operator=( PropItem& rPropItem )
     if ( this != &rPropItem )
     {
         Seek( STREAM_SEEK_TO_BEGIN );
-        delete[] SwitchBuffer();
+        delete[] (sal_uInt8*)SwitchBuffer();
 
         mnTextEnc = rPropItem.mnTextEnc;
-        sal_uInt32 nPos = rPropItem.Tell();
+        sal_uInt32 nLclPos = rPropItem.Tell();
         rPropItem.Seek( STREAM_SEEK_TO_END );
         SvMemoryStream::Write( rPropItem.GetData(), rPropItem.Tell() );
-        rPropItem.Seek( nPos );
+        rPropItem.Seek( nLclPos );
     }
     return *this;
 }
