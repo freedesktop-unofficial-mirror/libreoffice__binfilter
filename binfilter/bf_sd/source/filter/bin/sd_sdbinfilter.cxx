@@ -395,7 +395,7 @@ sal_Bool SdBINFilter::Import()
                 if( bKeySet )
                     xDocStm->SetKey( aStrKey );
 
-                if( bRet = ( xDocStm->GetError() == 0 ) )
+                if( (bRet = ( xDocStm->GetError() == 0 )) )
                 {
                     xDocStm->SetBufferSize( DOCUMENT_BUFFER_SIZE );
                     if( bKeySet )
