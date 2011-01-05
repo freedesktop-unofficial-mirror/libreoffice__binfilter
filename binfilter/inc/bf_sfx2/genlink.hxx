@@ -41,8 +41,10 @@ public:
     GenLink(): pFunc(0) {}
     GenLink( CFuncPtr pCFunc ): pFunc(pCFunc) {}
     GenLink( const Link& rLink ): aLink(rLink), pFunc(0) {}
-    GenLink( const GenLink& rOrig ):
-        pFunc(rOrig.pFunc), aLink(rOrig.aLink) {}
+    GenLink( const GenLink& rOrig )
+        : aLink(rOrig.aLink)
+        , pFunc(rOrig.pFunc)
+        {}
 
     GenLink& operator = ( const GenLink& rOrig )
         { pFunc = rOrig.pFunc; aLink = rOrig.aLink; return *this; }

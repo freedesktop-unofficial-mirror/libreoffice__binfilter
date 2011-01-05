@@ -142,7 +142,7 @@ public:
     SFX_DECL_XSERVICEINFO
     virtual REFERENCE< XNAMEREPLACE > SAL_CALL getEvents() throw( RUNTIMEEXCEPTION );
     virtual void SAL_CALL addEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION );
-    virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION ) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& xListener ) throw( RUNTIMEEXCEPTION );
+    virtual void SAL_CALL removeEventListener( const REFERENCE< XDOCEVENTLISTENER >& /*xListener*/ ) throw( RUNTIMEEXCEPTION ) {DBG_BF_ASSERT(0, "STRIP");}
 };
 
 }//end of namespace binfilter

@@ -103,8 +103,8 @@ namespace binfilter {
 /*N*/                   SEQUENCE < PROPERTYVALUE > aProperties;
 /*N*/                   if ( aValue >>= aProperties )
 /*N*/                   {
-/*N*/                       long nCount = aProperties.getLength();
-/*N*/                       for ( long nIndex = 0; nIndex < nCount; nIndex++ )
+/*N*/                       long nLclCount = aProperties.getLength();
+/*N*/                       for ( long nIndex = 0; nIndex < nLclCount; nIndex++ )
 /*N*/                       {
 /*N*/                           if ( aProperties[ nIndex ].Name.compareToAscii( PROP_EVENT_TYPE ) == 0 )
 /*N*/                           {
@@ -157,8 +157,8 @@ namespace binfilter {
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
-/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& aName ) throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& /*rName*/ ) throw ( RUNTIMEEXCEPTION )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
@@ -176,14 +176,14 @@ namespace binfilter {
 //--------------------------------------------------------------------------------------------------------
 // --- ::document::XEventListener ---
 //--------------------------------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& aEvent ) throw( RUNTIMEEXCEPTION )
+/*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& /*aEvent*/ ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
 // --- ::lang::XEventListener ---
 //--------------------------------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SfxEvents_Impl::disposing( const EVENTOBJECT& Source ) throw( RUNTIMEEXCEPTION )
+/*N*/ void SAL_CALL SfxEvents_Impl::disposing( const EVENTOBJECT& /*Source*/ ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   ::osl::MutexGuard aGuard( maMutex );
 /*N*/
@@ -435,7 +435,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SfxGlobalEvents_Impl::Notify( SfxBroadcaster& aBC, const SfxHint& aHint )
+/*N*/ void SfxGlobalEvents_Impl::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& aHint )
 /*N*/ {
 /*N*/   SfxEventHint* pNamedHint = PTR_CAST( SfxEventHint, &aHint );
 /*N*/   if ( pNamedHint )
