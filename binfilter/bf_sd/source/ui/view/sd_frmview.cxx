@@ -103,10 +103,10 @@ FrameView::FrameView(SdDrawDocument* pDrawDoc )
         }
 
         SfxObjectShell* pObjShell = pDrawDoc->GetObjectShell();
-        sal_Bool bReadOnly = sal_False;
+        sal_Bool bLclReadOnly = sal_False;
         if( pObjShell )
-            bReadOnly = pObjShell->IsReadOnly();
-        if( bReadOnly )
+            bLclReadOnly = pObjShell->IsReadOnly();
+        if( bLclReadOnly )
             bInitDesignMode = sal_False;
         SetDesignMode( bInitDesignMode );
 
@@ -434,12 +434,12 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
     aUserData.addValue( sUNO_View_EditModeHandout, makeAny( (sal_Int32)GetViewShEditMode( PK_HANDOUT ) ) );
 
     {
-        const Rectangle aVisArea = GetVisArea();
+        const Rectangle aLclVisArea = GetVisArea();
 
-        aUserData.addValue( sUNO_View_VisibleAreaTop, makeAny( (sal_Int32)aVisArea.Top() ) );
-        aUserData.addValue( sUNO_View_VisibleAreaLeft, makeAny( (sal_Int32)aVisArea.Left() ) );
-        aUserData.addValue( sUNO_View_VisibleAreaWidth, makeAny( (sal_Int32)aVisArea.GetWidth() ) );
-        aUserData.addValue( sUNO_View_VisibleAreaHeight, makeAny( (sal_Int32)aVisArea.GetHeight() ) );
+        aUserData.addValue( sUNO_View_VisibleAreaTop, makeAny( (sal_Int32)aLclVisArea.Top() ) );
+        aUserData.addValue( sUNO_View_VisibleAreaLeft, makeAny( (sal_Int32)aLclVisArea.Left() ) );
+        aUserData.addValue( sUNO_View_VisibleAreaWidth, makeAny( (sal_Int32)aLclVisArea.GetWidth() ) );
+        aUserData.addValue( sUNO_View_VisibleAreaHeight, makeAny( (sal_Int32)aLclVisArea.GetHeight() ) );
     }
 
     aUserData.addValue( sUNO_View_GridCoarseWidth, makeAny( (sal_Int32)GetGridCoarse().Width() ) );
@@ -677,10 +677,10 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
                  sal_Int32 nTop;
                  if( pValue->Value >>= nTop )
                  {
-                     Rectangle aVisArea( GetVisArea() );
-                     aVisArea.nBottom += nTop - aVisArea.nTop;
-                     aVisArea.nTop = nTop;
-                     SetVisArea( aVisArea );
+                     Rectangle aLclVisArea( GetVisArea() );
+                     aLclVisArea.nBottom += nTop - aLclVisArea.nTop;
+                     aLclVisArea.nTop = nTop;
+                     SetVisArea( aLclVisArea );
                  }
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaLeft ) ) )
@@ -688,10 +688,10 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
                  sal_Int32 nLeft;
                  if( pValue->Value >>= nLeft )
                  {
-                     Rectangle aVisArea( GetVisArea() );
-                     aVisArea.nRight += nLeft - aVisArea.nLeft;
-                     aVisArea.nLeft = nLeft;
-                     SetVisArea( aVisArea );
+                     Rectangle aLclVisArea( GetVisArea() );
+                     aLclVisArea.nRight += nLeft - aLclVisArea.nLeft;
+                     aLclVisArea.nLeft = nLeft;
+                     SetVisArea( aLclVisArea );
                  }
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaWidth ) ) )
@@ -699,9 +699,9 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
                  sal_Int32 nWidth;
                  if( pValue->Value >>= nWidth )
                  {
-                     Rectangle aVisArea( GetVisArea() );
-                     aVisArea.nRight = aVisArea.nLeft + nWidth - 1;
-                     SetVisArea( aVisArea );
+                     Rectangle aLclVisArea( GetVisArea() );
+                     aLclVisArea.nRight = aLclVisArea.nLeft + nWidth - 1;
+                     SetVisArea( aLclVisArea );
                  }
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaHeight ) ) )
@@ -709,9 +709,9 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
                  sal_Int32 nHeight;
                  if( pValue->Value >>= nHeight )
                  {
-                     Rectangle aVisArea( GetVisArea() );
-                     aVisArea.nBottom = nHeight + aVisArea.nTop - 1;
-                     SetVisArea( aVisArea );
+                     Rectangle aLclVisArea( GetVisArea() );
+                     aLclVisArea.nBottom = nHeight + aLclVisArea.nTop - 1;
+                     SetVisArea( aLclVisArea );
                  }
              }
 
