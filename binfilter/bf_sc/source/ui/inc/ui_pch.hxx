@@ -225,7 +225,7 @@
 #include <bf_svtools/stritem.hxx>
 #include <collect.hxx>
 #include <bf_svx/svdsob.hxx>
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #include <bf_svx/svdobj.hxx>
 #include <bf_svx/svdglue.hxx>
 #include <bf_svx/svdlayer.hxx>
