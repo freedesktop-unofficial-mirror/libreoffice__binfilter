@@ -174,7 +174,7 @@ void ScXMLDDELinkContext::EndElement()
                 sal_Int32 nCol(0);
                 sal_Int32 nRow(-1);
                 sal_Int32 nIndex(0);
-                for (ScDDELinkCells::iterator aItr = aDDELinkTable.begin(); aItr != aDDELinkTable.end(); aItr++)
+                for (ScDDELinkCells::iterator aItr = aDDELinkTable.begin(); aItr != aDDELinkTable.end(); ++aItr)
                 {
                     if (nIndex % nColumns == 0)
                     {
