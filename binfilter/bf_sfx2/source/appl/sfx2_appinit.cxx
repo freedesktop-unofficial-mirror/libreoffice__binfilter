@@ -152,7 +152,6 @@ public:
 /*N*/   // Wrapper angelegt werden
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr = new SfxFrameObjectFactoryPtr;
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr->pSfxFrameObjectFactory = SfxFrameObject::ClassFactory();
-/*N*/   SvBindStatusCallback::SetProgressCallback( STATIC_LINK( 0, SfxProgress, DefaultBindingProgress ) );
 /*N*/
 /*N*/   pImp->pEventHdl = new UniqueIndex( 1, 4, 4 );
 /*N*/

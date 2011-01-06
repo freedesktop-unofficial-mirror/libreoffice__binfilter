@@ -129,15 +129,15 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ SfxFilterListener::~SfxFilterListener()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& /*aSource*/ ) throw( uno::RuntimeException )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& /*aSource*/ ) throw( uno::RuntimeException )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 }
 

@@ -150,7 +150,7 @@ public:
      kann.
  */
 /*N*/ {
-/*N*/   const INetURLObject& rObj = rMed.GetURLObject();
+/*N*/   /*const INetURLObject& rObj =*/ rMed.GetURLObject();
 /*N*/   String aName = rMed.GetURLObject().GetMainURL( INetURLObject::NO_DECODE );
 /*N*/   // Hier noch pruefen, ob das Doc im Browser dargestellt werden soll
 /*N*/   SFX_ITEMSET_ARG( rMed.GetItemSet(), pTargetItem, SfxStringItem,
@@ -179,8 +179,8 @@ public:
 
 //----------------------------------------------------------------
 
-/*?*/ ULONG SfxFilterContainer::Execute( SfxMedium& rMedium, SfxFrame*& pFrame) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ ULONG SfxFilterContainer::Execute( SfxMedium& /*rMedium*/, SfxFrame*& /*pFrame*/) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //----------------------------------------------------------------
@@ -317,11 +317,11 @@ public:
 //----------------------------------------------------------------
 
 /*N*/ void SfxFilterContainer::LoadFilters(
-/*N*/     const String& rGroup,  // ConfigGruppe, aus der gelesen werden soll
-/*N*/   sal_Bool bInstallIni,      // Falls sal_True aus install.ini lesen,
+/*N*/     const String& /*rGroup*/,  // ConfigGruppe, aus der gelesen werden soll
+/*N*/   sal_Bool /*bInstallIni*/,      // Falls sal_True aus install.ini lesen,
 /*N*/                          // sonst soffice3.ini
-/*N*/   SfxFilterFlags nOrFlags,       // Flags zusaetzlich zu denen in der Ini
-/*N*/   SfxFilterFlags nNotFlags )     // Flags, die nicht aus der ini genommen werden
+/*N*/   SfxFilterFlags /*nOrFlags*/,       // Flags zusaetzlich zu denen in der Ini
+/*N*/   SfxFilterFlags /*nNotFlags*/ )     // Flags, die nicht aus der ini genommen werden
 /*   [Beschreibung]
 
      Stoesst das Laden eines FilterContainers an. Das eigentliche
@@ -336,7 +336,7 @@ public:
 //-------------------------------------------------------------------------
 
 /*?*/ ULONG SfxFilterContainer::GetFilter4Content(
-/*?*/     SfxMedium& rMedium, const SfxFilter** ppFilter,
+/*?*/     SfxMedium& /*rMedium*/, const SfxFilter** /*ppFilter*/,
 /*?*/   SfxFilterFlags, SfxFilterFlags ) const
 /*?*/ {
 /*?*/     return 0;
@@ -365,6 +365,7 @@ public:
 /*N*/ {
 /*N*/   SFX_ITEMSET_ARG( rMedium.GetItemSet(), pTargetItem, SfxStringItem,
 /*N*/                    SID_TARGETNAME, sal_False);
+/*N*/   (void)pTargetItem;
 /*N*/
 /*N*/     if ( *ppFilter && ( (*ppFilter)->GetFilterFlags() & SFX_FILTER_STARONEFILTER ) )
 /*N*/       return 0;
@@ -468,7 +469,7 @@ public:
 /*N*/     if( !pFilter )
 /*N*/   {
 /*N*/       // Falls Medium Remote, Zunaechst ueber Mimetypen pruefen ( nicht bei ExternBrowser, sofern dabei angeladen wird )
-/*N*/       if( !pFilter && rMedium.SupportsMIME_Impl() && ( !bCheckExternBrowser || rObj.GetProtocol() != INET_PROT_HTTP && rObj.GetProtocol() != INET_PROT_HTTPS ) )
+/*N*/       if( !pFilter && rMedium.SupportsMIME_Impl() && ( !bCheckExternBrowser || (rObj.GetProtocol() != INET_PROT_HTTP && rObj.GetProtocol() != INET_PROT_HTTPS) ) )
 /*N*/       {
 /*N*/           // Mime Typen holen
 /*N*/           String aMime;
@@ -664,7 +665,6 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*?*/                   }
 /*N*/               }
 /*N*/
-/*N*/               const SfxFilter* pTmpFilter = pFilter;
 /*N*/               nErr = pFilter->GetFilterContainer()->GetFilter4Content( rMedium, &pFilter, nMust, nDont );
 /*N*/               CHECKERROR();
 /*N*/
@@ -699,9 +699,9 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/
 /*N*/   *ppFilter = pFilter;
 /*N*/
-/*N*/   if ( ( ( pOldFilter && pOldFilter!=pFilter &&
+/*N*/   if ( (( ( pOldFilter && pOldFilter!=pFilter &&
 /*N*/           ( !pOldFilter->IsOwnTemplateFormat() || !pFilter->IsOwnFormat() ) ) ) &&
-/*N*/           nErr != ERRCODE_SFX_FORCEQUIET || bConsultUser )
+/*N*/           nErr != ERRCODE_SFX_FORCEQUIET) || bConsultUser )
 /*N*/         return ERRCODE_SFX_CONSULTUSER;
 /*N*/
 /*N*/     if( !pOldFilter )
@@ -1282,7 +1282,7 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*N*/                                 nCachePos = GetFilterCount();
 /*N*/
 /*N*/                             SfxFilter* pFilter = this->GetFilter4FilterName(sFilterName,0,0);
-/*N*/                             const SfxFilter* pCheck = this->GetFilter4FilterName(sFilterName,0,0);
+/*N*/                             /*const SfxFilter* pCheck =*/ this->GetFilter4FilterName(sFilterName,0,0);
 /*N*/                             BOOL bNew = FALSE;
 /*N*/                             if (!pFilter)
 /*N*/                             {

@@ -107,7 +107,7 @@ inline ULONG Get10ThSec()
 //#endif
 // -----------------------------------------------------------------------
 
-/*N*/ void SfxProgress_Impl::Enable_Impl( BOOL bEnable )
+/*N*/ void SfxProgress_Impl::Enable_Impl( BOOL /*bEnable*/ )
 /*N*/ {
 /*N*/   SfxObjectShell* pDoc = bAllDocs ? NULL : (SfxObjectShell*) xObjSh;
 /*N*/
@@ -115,7 +115,7 @@ inline ULONG Get10ThSec()
 /*N*/   {
 /*N*/   }
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->LockDispatcher( !bEnable );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -155,9 +155,9 @@ inline ULONG Get10ThSec()
     Fortschritts-Anzeige angezeigt.
 */
 
-/*N*/ : nVal(0),
-/*N*/   bSuspended(TRUE),
-/*N*/   pImp( new SfxProgress_Impl( rText ) )
+/*N*/ : pImp( new SfxProgress_Impl( rText ) )
+/*N*/ , nVal(0)
+/*N*/ , bSuspended(TRUE)
 /*N*/ {
 /*N*/   pImp->bRunning = TRUE;
 /*N*/   pImp->bAllowRescheduling = Application::IsInExecute();;
@@ -201,7 +201,6 @@ inline ULONG Get10ThSec()
 /*N*/
 /*N*/   if( pImp->bIsStatusText == TRUE )
 /*?*/       GetpApp()->HideStatusText( );
-/*N*/     SfxObjectShell* pDoc = pImp->xObjSh;
 /*N*/   delete pImp;
 /*N*/ }
 
@@ -240,7 +239,7 @@ inline ULONG Get10ThSec()
 
 /*?*/ void SfxProgress::SetText
 /*?*/ (
-/*?*/   const String&   rText   /*  neuer Text */
+/*?*/   const String&   /*rText*/   /*  neuer Text */
 /*?*/ )
 
 /*  [Beschreibung]
@@ -251,26 +250,6 @@ inline ULONG Get10ThSec()
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
-
-// -----------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------
-
-// muss in AppDaten
-static ULONG nLastTime = 0;
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ IMPL_STATIC_LINK( SfxProgress, DefaultBindingProgress, SvProgressArg*, pArg )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return 0;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
