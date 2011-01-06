@@ -777,7 +777,7 @@ void ShapeSortContext::moveShape( sal_Int32 nSourcePos, sal_Int32 nDestPos )
                 DBG_ASSERT( (*aIter).nIs >= nDestPos, "Shape sorting failed" );
                 (*aIter).nIs++;
             }
-            aIter++;
+            ++aIter;
         }
 
         aIter = maUnsortedList.begin();
@@ -790,7 +790,7 @@ void ShapeSortContext::moveShape( sal_Int32 nSourcePos, sal_Int32 nDestPos )
                 DBG_ASSERT( (*aIter).nIs >= nDestPos, "shape sorting failed" );
                 (*aIter).nIs++;
             }
-            aIter++;
+            ++aIter;
         }
     }
 }
