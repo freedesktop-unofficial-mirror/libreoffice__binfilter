@@ -551,7 +551,7 @@ sal_Bool SvXMLImportPropertyMapper::_FillMultiPropertySet(
     i = 0;
     for( PropertyPairs::iterator aIter = aPropertyPairs.begin();
          aIter != aPropertyPairs.end();
-         aIter++ )
+         ++aIter )
     {
         pNamesArray[i] = *(aIter->first);
         pValuesArray[i++] = *(aIter->second);
