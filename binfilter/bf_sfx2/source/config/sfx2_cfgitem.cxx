@@ -100,7 +100,7 @@ namespace binfilter {
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
 /*?*/ }
 
-/*?*/ String SfxConfigItem::GetStreamName( USHORT nType )
+/*?*/ String SfxConfigItem::GetStreamName( USHORT /*nType*/ )
 /*?*/ {
 /*?*/     return String();
 /*?*/ }

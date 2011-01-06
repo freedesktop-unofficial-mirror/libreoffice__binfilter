@@ -50,10 +50,10 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 /*N*/ SfxMiscCfg::SfxMiscCfg() :
 /*N*/   ConfigItem(C2U("Office.Common") ),
-/*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() ),
-/*N*/   bNotFound (FALSE),
 /*N*/   bPaperSize(FALSE),
-/*N*/   bPaperOrientation (FALSE)
+/*N*/   bPaperOrientation (FALSE),
+/*N*/   bNotFound (FALSE),
+/*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() )
 /*N*/ {
 /*N*/   Load();
 /*N*/ }
@@ -116,7 +116,7 @@ using namespace ::com::sun::star::uno;
 /* -----------------------------02.03.01 15:31--------------------------------
 
  ---------------------------------------------------------------------------*/
-/*?*/ void SfxMiscCfg::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames)
+/*?*/ void SfxMiscCfg::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& /*aPropertyNames*/)
 /*?*/ {
 /*?*/   Load();
 /*?*/ }

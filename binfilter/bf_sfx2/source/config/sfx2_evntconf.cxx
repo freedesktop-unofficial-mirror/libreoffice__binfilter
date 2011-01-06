@@ -91,8 +91,8 @@ static const USHORT nVersion = 5;
 //==========================================================================
 
 /*N*/ SfxEventConfiguration::SfxEventConfiguration()
-/*N*/  : pDocEventConfig( NULL )
-/*N*/  , pAppEventConfig( NULL )
+/*N*/  : pAppEventConfig( NULL )
+/*N*/  , pDocEventConfig( NULL )
 /*N*/ {
 /*N*/     bIgnoreConfigure = sal_False;
 /*N*/
@@ -240,12 +240,12 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     pEvConfig->PropagateEvents_Impl( pObjShell, aMacroTable );
 /*N*/ }
 
-/*?*/ int SfxEventConfigItem_Impl::Load( SotStorage& rStorage )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ int SfxEventConfigItem_Impl::Load( SotStorage& /*rStorage*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
-/*?*/ BOOL SfxEventConfigItem_Impl::Store( SotStorage& rStorage )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ BOOL SfxEventConfigItem_Impl::Store( SotStorage& /*rStorage*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 
@@ -444,7 +444,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     int     nCompVal = 1;
 /*N*/     long    nStart = 0;
 /*N*/     long    nEnd = gp_Id_SortList->Count() - 1;
-/*N*/     long    nMid;
+/*N*/     long    nMid(0);
 /*N*/
 /*N*/     EventNames_Impl* pMid;
 /*N*/
@@ -490,7 +490,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     int     nCompVal = 1;
 /*N*/     long    nStart = 0;
 /*N*/     long    nEnd = gp_Name_SortList->Count() - 1;
-/*N*/     long    nMid;
+/*N*/     long    nMid(0);
 /*N*/
 /*N*/     EventNames_Impl* pMid;
 /*N*/
@@ -601,6 +601,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     {
 /*N*/         // load events, they are automatically propagated to the document
 /*N*/         DBG_ASSERT( !pOutStream, "DocEventConfig must not be converted!" );
+/*N*/         (void)pOutStream;
 /*N*/         SfxEventConfigItem_Impl* pCfg = pDoc->GetEventConfig_Impl( TRUE );
 /*N*/       if ( pCfg )
 /*N*/           return ( pCfg->Load( rInStream ) == SfxConfigItem::ERR_OK );

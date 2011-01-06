@@ -159,7 +159,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/   return pDocStor->OpenSotStorage( String::CreateFromAscii(pStorageName), STREAM_STD_READWRITE );
 /*?*/ }
 
-/*?*/ void SfxConfigManager::SetModified(BOOL bMod)
+/*?*/ void SfxConfigManager::SetModified(BOOL /*bMod*/)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
 
@@ -232,7 +232,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/     if ( m_xStorage.Is() )
 /*N*/     {
 /*N*/         // first update own storage
-/*N*/         bRet = !bModified || StoreConfiguration_Impl( m_xStorage ) && m_xStorage->Commit();
+/*N*/         bRet = !bModified || (StoreConfiguration_Impl( m_xStorage ) && m_xStorage->Commit());
 /*N*/         bOwnSaveDone = TRUE;
 /*N*/         if ( !pStorage && pObjShell )
 /*N*/         {
@@ -267,7 +267,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/             }
 /*N*/         }
 /*N*/
-/*N*/         if ( bRet && !pStorage || pStorage == (SotStorage*) m_xStorage )
+/*N*/         if ( (bRet && !pStorage) || pStorage == (SotStorage*) m_xStorage )
 /*N*/         {
 /*N*/             // only storing into own storage was requested
 /*N*/             bModified = FALSE;
@@ -306,8 +306,8 @@ static const char pStorageName[] = "Configurations";
 /*?*/     return bRet;
 /*N*/ }
 
-/*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* pStorage )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* /*pStorage*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/     BOOL bRet = TRUE;
 /*?*/     return bRet;
 /*?*/ }
@@ -429,8 +429,8 @@ static const char pStorageName[] = "Configurations";
 /*N*/     return FALSE;
 /*N*/ }
 
-/*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& rCItem )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;//STRIP001
+/*?*/ BOOL SfxConfigManager::StoreConfigItem( SfxConfigItem& /*rCItem*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*?*/ }
 
 /*N*/ static const char pHeader[] = "Star Framework Config File";
@@ -482,7 +482,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/   }
 /*N*/
 /*N*/   // get position of directory
-/*N*/   long lDirPos, lStart = pStream->Tell();
+/*N*/   long lDirPos;
 /*N*/   (*pStream) >> lDirPos;
 /*N*/   pStream->Seek(lDirPos);
 /*N*/
@@ -520,9 +520,9 @@ static const char pStorageName[] = "Configurations";
 /*N*/                 // check for correct type id, inequality is allowed for userdef toolboxes
 /*N*/                 USHORT nType;
 /*N*/                 (*pStream) >> nType;
-/*N*/                 BOOL bOk = ( nType == pItem->nType ||
-/*N*/                             1294 <= nType && nType <= 1301 &&
-/*N*/                             1294 <= pItem->nType && pItem->nType <= 1301 );
+/*N*/                 BOOL bOk = ( (nType == pItem->nType) ||
+/*N*/                             (1294 <= nType && nType <= 1301 &&
+/*N*/                             1294 <= pItem->nType && pItem->nType <= 1301) );
 /*N*/
 /*N*/                 if ( !bOk || !ImportItem( pItem, pStream, pStorage ) )
 /*N*/                 {
@@ -550,7 +550,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/   return nRet;
 /*N*/ }
 
-/*N*/ BOOL SfxConfigManagerImExport_Impl::ImportItem( SfxConfigItem_Impl* pItem, SvStream* pStream, SotStorage* pStor )
+/*N*/ BOOL SfxConfigManagerImExport_Impl::ImportItem( SfxConfigItem_Impl* pItem, SvStream* pStream, SotStorage* /*pStor*/ )
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
 /*N*/   if ( pItem->nType == SFX_ITEMTYPE_DOCEVENTCONFIG )
@@ -563,8 +563,8 @@ static const char pStorageName[] = "Configurations";
          return bRet;
 /*N*/ }
 
-/*?*/ USHORT SfxConfigManagerImExport_Impl::Export( SotStorage* pStor, SotStorage *pOut )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ USHORT SfxConfigManagerImExport_Impl::Export( SotStorage* /*pStor*/, SotStorage* /*pOut*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 /*N*/ String SfxConfigManagerImExport_Impl::GetStreamName( USHORT nType )
