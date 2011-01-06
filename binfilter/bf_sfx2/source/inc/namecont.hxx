@@ -119,9 +119,9 @@ class NameContainer_Impl : public MutexHolder, public NameContainerHelper
 
 public:
     NameContainer_Impl( const ::com::sun::star::uno::Type& rType )
-        : mType( rType )
+        : mnElementCount( 0 )
+        , mType( rType )
         , mpxEventSource( NULL )
-        , mnElementCount( 0 )
         , maListenerContainer( mMutex )
     {}
 

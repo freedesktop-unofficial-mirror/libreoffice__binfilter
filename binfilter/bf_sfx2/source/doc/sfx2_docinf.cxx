@@ -155,8 +155,10 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/     BOOL bIsUniCode;
 /*N*/
 /*N*/ public:
-/*N*/     SfxPSStringProperty_Impl( UINT32 nIdP, const String& aStr ) :
-/*N*/         aString(aStr), SfxPSProperty_Impl( nIdP, VT_LPSTR ), bIsUniCode(FALSE)
+/*N*/     SfxPSStringProperty_Impl( UINT32 nIdP, const String& aStr )
+/*N*/         : SfxPSProperty_Impl( nIdP, VT_LPSTR )
+/*N*/         , aString(aStr)
+/*N*/         , bIsUniCode(FALSE)
 /*N*/     {
 /*N*/         nEncoding = RTL_TEXTENCODING_UTF8;
 /*N*/     }
@@ -279,8 +281,10 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   UINT32  aInt;
 /*N*/
 /*N*/   public:
-/*N*/   SfxPSUINT32Property_Impl( UINT32 nIdP, UINT32 aIntP ) :
-/*N*/       aInt( aIntP ), SfxPSProperty_Impl( nIdP, VT_I4 ) {}
+/*N*/   SfxPSUINT32Property_Impl( UINT32 nIdP, UINT32 aIntP )
+/*N*/       : SfxPSProperty_Impl( nIdP, VT_I4 )
+/*N*/       , aInt( aIntP )
+/*N*/       {}
 /*N*/
 /*N*/   virtual ULONG   Save( SvStream& rStream );
 /*N*/   virtual ULONG   Len();
@@ -309,8 +313,10 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   DateTime aDateTime;
 /*N*/
 /*N*/ public:
-/*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP, const DateTime& rDateTime ) :
-/*N*/       aDateTime( rDateTime ), SfxPSProperty_Impl( nIdP, VT_FILETIME ) {}
+/*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP, const DateTime& rDateTime )
+/*N*/       : SfxPSProperty_Impl( nIdP, VT_FILETIME )
+/*N*/       , aDateTime( rDateTime )
+/*N*/       {}
 /*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP ) :
 /*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME ) {};
 /*N*/
@@ -915,12 +921,12 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   BOOL bRet = Load(*aStr);
 /*N*/   if ( bRet )
 /*N*/   {
-/*N*/       String aStr = SotExchange::GetFormatMimeType( pStorage->GetFormat() );
-/*N*/       USHORT nPos = aStr.Search(';');
+/*N*/       String aLclStr = SotExchange::GetFormatMimeType( pStorage->GetFormat() );
+/*N*/       USHORT nPos = aLclStr.Search(';');
 /*N*/       if ( nPos != STRING_NOTFOUND )
-/*N*/           pImp->aSpecialMimeType = aStr.Copy( 0, nPos );
+/*N*/           pImp->aSpecialMimeType = aLclStr.Copy( 0, nPos );
 /*N*/       else
-/*N*/           pImp->aSpecialMimeType = aStr;
+/*N*/           pImp->aSpecialMimeType = aLclStr;
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -1134,36 +1140,33 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 
 //-------------------------------------------------------------------------
 
-/*N*/ String SfxDocumentInfo::AdjustTextLen_Impl( const String& rText, USHORT nMax )
+/*N*/ String SfxDocumentInfo::AdjustTextLen_Impl( const String& rText, USHORT /*nMax*/ )
 /*N*/ {
 /*N*/   String aRet = rText;
-/*! pb: dont cut any longer because the new file format has no length limit
-    if ( aRet.Len() > nMax )
-        aRet.Erase( nMax ); */
 /*N*/   return aRet;
 /*N*/ }
 
 //-------------------------------------------------------------------------
 
 /*N*/ SfxDocumentInfo::SfxDocumentInfo() :
+/*N*/   eFileCharSet(gsl_getSystemTextEncoding()),
 /*N*/   bPasswd(FALSE),
 /*N*/   bQueryTemplate(FALSE),
 /*N*/   bTemplateConfig(FALSE),
-/*N*/   eFileCharSet(gsl_getSystemTextEncoding()),
-/*N*/   nUserDataSize(0),
-/*N*/   pUserData(0),
-/*N*/   lTime(0),
-/*N*/   nDocNo(1),
+/*N*/   bSaveVersionOnClose( FALSE ),
 /*N*/   aChanged( TIMESTAMP_INVALID_DATETIME ),
 /*N*/   aPrinted( TIMESTAMP_INVALID_DATETIME ),
-/*N*/   bSaveVersionOnClose( FALSE )
+/*N*/   nUserDataSize(0),
+/*N*/   nDocNo(1),
+/*N*/   pUserData(0),
+/*N*/   lTime(0)
 /*N*/ {
 /*N*/   pImp = new SfxDocumentInfo_Impl;
 /*N*/
 /*N*/   bReadOnly = FALSE;
 /*N*/   bReloadEnabled = FALSE;
 /*N*/   nReloadSecs = 60;
-/*N*/   SfxApplication *pSfxApp = SFX_APP();
+/*N*/   /*SfxApplication *pSfxApp =*/ SFX_APP();
 /*N*/     bPortableGraphics = TRUE;
 /*N*/     SvtSaveOptions aSaveOptions;
 /*N*/     bSaveGraphicsCompressed = FALSE;

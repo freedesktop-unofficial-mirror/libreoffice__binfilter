@@ -244,23 +244,24 @@ private:
     SfxFrameProperties( SfxFrameProperties& ) {}
 public:
                                         SfxFrameProperties()
-                                            : pFrame( 0 ),
-                                              lMarginWidth( SIZE_NOT_SET ),
-                                              lMarginHeight( SIZE_NOT_SET ),
-                                              lSize( 1L ),
-                                              lSetSize( 1L ),
-                                              lFrameSpacing( SPACING_NOT_SET ),
-                                              lInheritedFrameSpacing( SPACING_NOT_SET ),
-                                              eScroll( ScrollingAuto ),
-                                              eSizeSelector( SIZE_REL ),
-                                              eSetSizeSelector( SIZE_REL ),
-                                              bHasBorder( TRUE ),
-                                              bHasBorderInherited( TRUE ),
-                                              bBorderSet( TRUE ),
-                                              bResizable( TRUE ),
-                                              bSetResizable( TRUE ),
-                                              bIsRootSet( FALSE ),
-                                              bIsInColSet( FALSE ) {}
+                                            : lMarginWidth( SIZE_NOT_SET )
+                                            , lMarginHeight( SIZE_NOT_SET )
+                                            , lSize( 1L )
+                                            , lSetSize( 1L )
+                                            , lFrameSpacing( SPACING_NOT_SET )
+                                            , lInheritedFrameSpacing( SPACING_NOT_SET )
+                                            , eScroll( ScrollingAuto )
+                                            , eSizeSelector( SIZE_REL )
+                                            , eSetSizeSelector( SIZE_REL )
+                                            , bHasBorder( TRUE )
+                                            , bBorderSet( TRUE )
+                                            , bResizable( TRUE )
+                                            , bSetResizable( TRUE )
+                                            , bIsRootSet( FALSE )
+                                            , bIsInColSet( FALSE )
+                                            , bHasBorderInherited( TRUE )
+                                            , pFrame( 0 )
+                                            {}
 
                                         ~SfxFrameProperties() { delete pFrame; }
 

@@ -127,108 +127,9 @@ namespace binfilter {
 /*?*/   delete pImpl;
 /*?*/ }
 
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Wenn die Daten sich "andern, muss das Modify-Flag gesetzt werden.
-    Ausserdem m"ussen alle angemeldeten Advises benachrichtigt werden.
-    In Abh"angigkeit des Parameters wird angezeigt, dass sich auch
-    die View und das Mtf ge"andert hat.
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Mit dieser Methode werden Informationen "uber das Objekt angefordert.
-    Wird das Objekt gesichert, dann werden diese Informationen in den
-    Storage geschrieben.
-
-    [Anmerkung]
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Die Verbindung zum Client wird ge"offnet oder geschlossen.
-
-    [Querverweise]
-
-    <SvEmbeddedObject::Open()>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Das Objekt wird InPlace aktiviert oder deaktiviert.
-
-    [Querverweise]
-
-    <SvInPlaceObject::InPlaceActivate()>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Es wird Versucht ein Applet zu starten. Es gibt nur die M"oglichkeit
-    InPlace zu aktivieren. Deshalb sind auch nur die Verben gestattet,
-    die dies ausl"osen.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es wurde InPlace aktiviert.
-                    FALSE, es wurde nicht InPLace aktiviert.
-
-    [Querverweise]
-
-    <SvPseudoObject::Verb>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Der sichtbare Ausschnitt beginnt immer an der Position (0, 0).
-*/
-
-
-//=========================================================================
-// aus PlugIn
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Ein Ausgabe ist nicht m"oglich und auch nicht n"otig.
-    und als Unterschrift der URL ausgegeben,
-
-    [Querverweise]
-
-    <SvEmbeddedObject::Draw>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Nach dem Konstruktor muss diese Methode oder Load gerufen werden,
-    um das Objekt zu initialisieren.
-    <SvPersist::InitNew>
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, Initialisierung hat geklappt.
-                    FALSE, Initialisierung hat nicht geklappt, das Objekt
-                    muss sofort freigegeben werden.
-
-    [Querverweise]
-
-*/
-
-//=========================================================================
-/*N*/ static const char * pDocName = "FloatingFrame";
-#define nVersion 3
-
 /*N*/ BOOL SfxFrameObject::Load
 /*N*/ (
-/*N*/   SvStorage * pStor   /* Storage aus dem das Objekt geladen wird. */
+/*N*/   SvStorage * /*pStor*/   /* Storage aus dem das Objekt geladen wird. */
 /*N*/ )
 /*  [Beschreibung]
 
@@ -274,7 +175,7 @@ namespace binfilter {
 //=========================================================================
 /*N*/ BOOL SfxFrameObject::SaveAs
 /*N*/ (
-/*N*/   SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
+/*N*/   SvStorage * /*pStor*/   /* Storage, in den der Inhalt des Objekte
                            geschrieben wird */
 /*N*/ )
 /*  [Beschreibung]
@@ -368,7 +269,7 @@ namespace binfilter {
     <SvPseudoObject::IsLink()>
 */
 
-/*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor *pD )
+/*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor * /*pD*/ )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
 

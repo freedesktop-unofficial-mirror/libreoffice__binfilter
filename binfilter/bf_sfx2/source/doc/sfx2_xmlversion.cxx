@@ -85,20 +85,20 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 
 // ------------------------------------------------------------------------
 /*?*/ SvXMLImportContext *SfxXMLVersListImport_Impl::CreateContext(
-/*?*/         sal_uInt16 nPrefix,
+/*?*/         sal_uInt16 nInPrefix,
 /*?*/         const OUString& rLocalName,
 /*?*/         const Reference< XAttributeList > & xAttrList )
 /*?*/ {
 /*?*/     SvXMLImportContext *pContext = 0;
 /*?*/
-/*?*/     if ( XML_NAMESPACE_FRAMEWORK == nPrefix &&
+/*?*/     if ( XML_NAMESPACE_FRAMEWORK == nInPrefix &&
 /*?*/         rLocalName.compareToAscii( sXML_version_list ) == 0 )
 /*?*/     {
-/*?*/         pContext = new SfxXMLVersListContext_Impl( *this, nPrefix, rLocalName, xAttrList );
+/*?*/         pContext = new SfxXMLVersListContext_Impl( *this, nInPrefix, rLocalName, xAttrList );
 /*?*/     }
 /*?*/     else
 /*?*/     {
-/*?*/         pContext = SvXMLImport::CreateContext( nPrefix, rLocalName, xAttrList );
+/*?*/         pContext = SvXMLImport::CreateContext( nInPrefix, rLocalName, xAttrList );
 /*?*/     }
 /*?*/
 /*?*/     return pContext;
@@ -108,12 +108,12 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 // ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
 
-/*?*/ SfxXMLVersListContext_Impl::SfxXMLVersListContext_Impl( SfxXMLVersListImport_Impl& rImport,
-/*?*/                                         sal_uInt16 nPrefix,
+/*?*/ SfxXMLVersListContext_Impl::SfxXMLVersListContext_Impl( SfxXMLVersListImport_Impl& rInImport,
+/*?*/                                         sal_uInt16 nInPrefix,
 /*?*/                                         const OUString& rLocalName,
-/*?*/                                         const Reference< XAttributeList > & xAttrList )
-/*?*/     : rLocalRef( rImport )
-/*?*/     , SvXMLImportContext( rImport, nPrefix, rLocalName )
+/*?*/                                         const Reference< XAttributeList > & /*xAttrList*/ )
+/*?*/     : SvXMLImportContext( rInImport, nInPrefix, rLocalName )
+/*?*/     , rLocalRef( rInImport )
 /*?*/ {
 /*?*/ }
 
@@ -122,20 +122,20 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/ {}
 
 // ------------------------------------------------------------------------
-/*?*/ SvXMLImportContext *SfxXMLVersListContext_Impl::CreateChildContext( sal_uInt16 nPrefix,
+/*?*/ SvXMLImportContext *SfxXMLVersListContext_Impl::CreateChildContext( sal_uInt16 nInPrefix,
 /*?*/                                         const OUString& rLocalName,
 /*?*/                                         const Reference< XAttributeList > & xAttrList )
 /*?*/ {
 /*?*/     SvXMLImportContext *pContext = 0;
 /*?*/
-/*?*/     if ( nPrefix == XML_NAMESPACE_FRAMEWORK &&
+/*?*/     if ( nInPrefix == XML_NAMESPACE_FRAMEWORK &&
 /*?*/          rLocalName.compareToAscii( sXML_version_entry ) == 0)
 /*?*/     {
-/*?*/         pContext = new SfxXMLVersionContext_Impl( rLocalRef, nPrefix, rLocalName, xAttrList );
+/*?*/         pContext = new SfxXMLVersionContext_Impl( rLocalRef, nInPrefix, rLocalName, xAttrList );
 /*?*/     }
 /*?*/     else
 /*?*/     {
-/*?*/         pContext = new SvXMLImportContext( rLocalRef, nPrefix, rLocalName );
+/*?*/         pContext = new SvXMLImportContext( rLocalRef, nInPrefix, rLocalName );
 /*?*/     }
 /*?*/
 /*?*/     return pContext;
@@ -144,12 +144,12 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 // ------------------------------------------------------------------------
 // ------------------------------------------------------------------------
 
-/*?*/ SfxXMLVersionContext_Impl::SfxXMLVersionContext_Impl( SfxXMLVersListImport_Impl& rImport,
+/*?*/ SfxXMLVersionContext_Impl::SfxXMLVersionContext_Impl( SfxXMLVersListImport_Impl& rInImport,
 /*?*/                                         sal_uInt16 nPref,
 /*?*/                                         const OUString& rLocalName,
 /*?*/                                         const Reference< XAttributeList > & xAttrList )
-/*?*/     : rLocalRef( rImport )
-/*?*/     , SvXMLImportContext( rImport, nPref, rLocalName )
+/*?*/     : SvXMLImportContext( rInImport, nPref, rLocalName )
+/*?*/     , rLocalRef( rInImport )
 /*?*/ {
 /*?*/     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
 /*?*/
@@ -160,30 +160,30 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/
 /*?*/     for ( sal_Int16 i=0; i < nAttrCount; i++ )
 /*?*/     {
-/*?*/         OUString        aLocalName;
+/*?*/         OUString        aLclLocalName;
 /*?*/         const OUString& rAttrName   = xAttrList->getNameByIndex( i );
-/*?*/         sal_uInt16      nPrefix     = rImport.GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
+/*?*/         sal_uInt16      nLclPrefix     = rInImport.GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLclLocalName );
 /*?*/
-/*?*/         if ( XML_NAMESPACE_FRAMEWORK == nPrefix )
+/*?*/         if ( XML_NAMESPACE_FRAMEWORK == nLclPrefix )
 /*?*/         {
-/*?*/             if ( aLocalName.compareToAscii( sXML_title ) == 0 )
+/*?*/             if ( aLclLocalName.compareToAscii( sXML_title ) == 0 )
 /*?*/             {
 /*?*/                 const OUString& rAttrValue = xAttrList->getValueByIndex( i );
 /*?*/                 pInfo->aName = rAttrValue;
 /*?*/             }
-/*?*/             else if ( aLocalName.compareToAscii( sXML_comment ) == 0 )
+/*?*/             else if ( aLclLocalName.compareToAscii( sXML_comment ) == 0 )
 /*?*/             {
 /*?*/                 const OUString& rAttrValue = xAttrList->getValueByIndex( i );
 /*?*/                 pInfo->aComment = rAttrValue;
 /*?*/             }
-/*?*/             else if ( aLocalName.compareToAscii( sXML_creator ) == 0 )
+/*?*/             else if ( aLclLocalName.compareToAscii( sXML_creator ) == 0 )
 /*?*/             {
 /*?*/                 const OUString& rAttrValue = xAttrList->getValueByIndex( i );
 /*?*/                 pInfo->aCreateStamp.SetName( rAttrValue );
 /*?*/             }
 /*?*/         }
-/*?*/         else if ( ( XML_NAMESPACE_DC == nPrefix ) &&
-/*?*/                   ( aLocalName.compareToAscii( sXML_date_time ) == 0 ) )
+/*?*/         else if ( ( XML_NAMESPACE_DC == nLclPrefix ) &&
+/*?*/                   ( aLclLocalName.compareToAscii( sXML_date_time ) == 0 ) )
 /*?*/         {
 /*?*/             const OUString& rAttrValue = xAttrList->getValueByIndex( i );
 /*?*/             DateTime aTime;

@@ -690,7 +690,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/       m_pData->m_sURL = rURL;
 /*N*/       m_pData->m_seqArguments = rArgs;
 /*N*/
-/*N*/       sal_Int32 nNewLength = rArgs.getLength();
 /*N*/       for ( sal_Int32 nInd = 0; nInd < rArgs.getLength(); nInd++ )
 /*N*/           if ( rArgs[nInd].Name.equalsAscii( "WinExtent" ) )
 /*N*/           {
@@ -1106,7 +1105,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //________________________________________________________________________________________________________
 //  XPrintable
 //________________________________________________________________________________________________________
-/*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& rOptions)
+/*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& /*rOptions*/)
 /*?*/         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*?*/ }
@@ -1241,8 +1240,9 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/           throw DOUBLEINITIALIZATIONEXCEPTION();
 /*N*/
 /*N*/       sal_Bool bRes = m_pData->m_pObjectShell->DoInitNew( NULL );
-/*N*/       sal_uInt32 nErrCode = m_pData->m_pObjectShell->GetError() ?
-/*N*/                                   m_pData->m_pObjectShell->GetError() : ERRCODE_IO_CANTCREATE;
+/*N*/       sal_uInt32 nErrCode = ERRCODE_IO_CANTCREATE;
+/*N*/       if (m_pData->m_pObjectShell->GetError())
+/*N*/           nErrCode = m_pData->m_pObjectShell->GetError();
 /*N*/       m_pData->m_pObjectShell->ResetError();
 /*N*/
 /*N*/       if ( !bRes )
@@ -1322,7 +1322,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 // XTransferable
 //________________________________________________________________________________________________________
 
-/*?*/ ANY SAL_CALL SfxBaseModel::getTransferData( const DATAFLAVOR& aFlavor )
+/*?*/ ANY SAL_CALL SfxBaseModel::getTransferData( const DATAFLAVOR& /*aFlavor*/ )
 /*?*/       throw (::com::sun::star::datatransfer::UnsupportedFlavorException,
 /*?*/              ::com::sun::star::io::IOException,
 /*?*/              ::com::sun::star::uno::RuntimeException)
@@ -1540,7 +1540,9 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   sal_Bool aRet = pObjectShell->APISaveAs_Impl( sURL, aParams );
 /*N*/   DELETEZ( aParams );
 /*N*/
-/*N*/   sal_uInt32 nErrCode = pObjectShell->GetError() ? pObjectShell->GetError() : ERRCODE_IO_CANTWRITE;
+/*N*/   sal_uInt32 nErrCode = ERRCODE_IO_CANTWRITE;
+/*N*/   if (pObjectShell->GetError())
+/*N*/       nErrCode = pObjectShell->GetError();
 /*N*/   pObjectShell->ResetError();
 /*N*/
 /*N*/   if ( !aRet )

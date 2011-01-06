@@ -59,17 +59,17 @@ namespace binfilter {
 /*N*/                      const String &rMimeType,
 /*N*/                      const SfxFilterContainer* pContainerP,
 /*N*/                      const String &rUsrDat ):
-/*N*/   lFormat(lFmt),
-/*N*/   nFormatType(nType),
+/*N*/   aName( rName ),
 /*N*/   aWildCard(rWildCard, ';'),
+/*N*/   lFormat(lFmt),
 /*N*/   aMacType(rMacTyp),
 /*N*/   aTypeName(rTypNm),
-/*N*/   nDocIcon(nIcon),
 /*N*/   aUserData(rUsrDat),
-/*N*/   aName( rName ),
+/*N*/   nFormatType(nType),
+/*N*/   nDocIcon(nIcon),
+/*N*/   pContainer( pContainerP ),
 /*N*/   aMimeType( rMimeType ),
-/*N*/   aFilterName( rName ),
-/*N*/   pContainer( pContainerP )
+/*N*/   aFilterName( rName )
 /*N*/ {
 /*N*/   InitMembers_Impl();
 /*N*/   pContainer = pContainerP;
@@ -136,10 +136,10 @@ namespace binfilter {
 
 /*N*/ String SfxFilter::GetFilterNameWithPrefix() const
 /*N*/ {
-/*N*/     String aName = pContainer->GetName();
-/*N*/   aName += DEFINE_CONST_UNICODE( ": " );
-/*N*/   aName += aFilterName;
-/*N*/     return aName;
+/*N*/     String aLclName = pContainer->GetName();
+/*N*/     aLclName += DEFINE_CONST_UNICODE( ": " );
+/*N*/     aLclName += aFilterName;
+/*N*/     return aLclName;
 /*N*/ }
 }
 

@@ -110,7 +110,7 @@ using namespace ::com::sun::star::frame;
 /*N*/     { "TemplateDate"    , 12, MID_DOCINFO_TEMPLATEDATE, &::getCppuType((const ::com::sun::star::util::DateTime*)0),PROPERTY_MAYBEVOID, 0 },
 /*N*/   { "Theme"           , 5 , MID_DOCINFO_SUBJECT, &::getCppuType((const ::rtl::OUString*)0), PROPERTY_UNBOUND, 0 },
 /*N*/   { "Title"           , 5 , WID_TITLE,          &::getCppuType((const ::rtl::OUString*)0), PROPERTY_UNBOUND, 0 },
-/*N*/   {0,0,0,0,0}
+/*N*/   {0,0,0,0,0,0}
 /*N*/ };
 
 //-----------------------------------------------------------------------------
@@ -156,10 +156,10 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ SfxDocumentInfoObject::SfxDocumentInfoObject( sal_Bool bStandalone )
 /*N*/   : _aPropSet( aDocInfoPropertyMap_Impl )
-/*N*/   , _pInfo( NULL )
-/*N*/   , _pFilter( NULL )
 /*N*/   , _bStandalone( bStandalone )
 /*N*/   , _pImp( new SfxDocumentInfoObject_Impl( NULL ) )
+/*N*/   , _pInfo( NULL )
+/*N*/   , _pFilter( NULL )
 /*N*/ {
         _pInfo = new SfxDocumentInfo;
 /*N*/ }
@@ -168,10 +168,10 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ SfxDocumentInfoObject::SfxDocumentInfoObject( SfxObjectShell *pObjSh )
 /*N*/   : _aPropSet( aDocInfoPropertyMap_Impl )
-/*N*/   , _pInfo( 0 )
-/*N*/   , _pFilter( NULL )
 /*N*/   , _bStandalone( sal_False )
 /*N*/   , _pImp( new SfxDocumentInfoObject_Impl( pObjSh ) )
+/*N*/   , _pInfo( 0 )
+/*N*/   , _pFilter( NULL )
 /*N*/ {
 /*N*/   if ( pObjSh )
 /*N*/   {
@@ -250,22 +250,22 @@ using namespace ::com::sun::star::frame;
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::addPropertyChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::addPropertyChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::removePropertyChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::removePropertyChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::addVetoableChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::addVetoableChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::removeVetoableChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::removeVetoableChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 /*N*/
 /*N*/ ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL  SfxDocumentInfoObject::getPropertyValues( void ) throw( ::com::sun::star::uno::RuntimeException )
@@ -491,7 +491,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getBooleanCppuType() )
 /*N*/   {
-/*N*/       sal_Bool bBoolVal ;
+/*N*/       sal_Bool bBoolVal(sal_False);
 /*N*/       aValue >>= bBoolVal ;
 /*N*/       switch ( nHandle )
 /*N*/       {
@@ -789,7 +789,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   // Filter-Detection wegen FileFormat-Version
 /*N*/   _pFilter = 0;
 /*N*/   if ( 0 != SFX_APP()->GetFilterMatcher().GuessFilter( *_pMedium, &_pFilter )
-/*N*/           || !bWrite && !_pFilter )
+/*N*/           || (!bWrite && !_pFilter) )
 /*N*/       // unbekanntes Dateiformat
 /*N*/       return NULL;
 /*N*/

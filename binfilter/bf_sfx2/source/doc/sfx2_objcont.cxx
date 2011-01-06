@@ -92,11 +92,11 @@ using namespace ::com::sun::star::uno;
 
 //====================================================================
 
-/*?*/ GDIMetaFile* SfxObjectShell::GetPreviewMetaFile( sal_Bool bFullContent ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ GDIMetaFile* SfxObjectShell::GetPreviewMetaFile( sal_Bool /*bFullContent*/ ) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
-/*N*/ bool SfxObjectShell::SaveWindows_Impl( SvStorage &rStor ) const
+/*N*/ bool SfxObjectShell::SaveWindows_Impl( SvStorage & /*rStor*/ ) const
 /*N*/ {
 /*N*/       return FALSE;
 /*N*/ }
@@ -227,8 +227,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       //!! kein Aufruf der Basisklasse wegen doppeltem Aufruf in Persist
 /*N*/       //if(!SfxObjectShell::SaveAs(pNewStg))
 /*N*/       //  return FALSE;
-/*N*/       SfxApplication *pSfxApp = SFX_APP();
-/*N*/       SfxMedium *pActMed = GetMedium();
+/*N*/       /*SfxApplication *pSfxApp =*/ SFX_APP();
+/*N*/       /*SfxMedium *pActMed =*/ GetMedium();
 /*N*/
 /*N*/       // alte DocInfo laden
 /*N*/       SfxDocumentInfo &rDocInfo = GetDocInfo();
@@ -334,11 +334,11 @@ using namespace ::com::sun::star::uno;
 
 /*?*/ SvEmbeddedInfoObject* SfxObjectShell::InsertObject
 /*?*/ (
-/*?*/   SvEmbeddedObject*   pObj,
-/*?*/   const String&       rName
+/*?*/   SvEmbeddedObject*   /*pObj*/,
+/*?*/   const String&       /*rName*/
 /*?*/ )
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 //-------------------------------------------------------------------------
@@ -347,7 +347,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ {
 /*N*/     if ( !pImp->pCfgMgr )
 /*N*/     {
-/*N*/         if ( bForceCreation || HasStorage() && SfxConfigManager::HasConfiguration( *GetStorage() ) )
+/*N*/         if ( bForceCreation || (HasStorage() && SfxConfigManager::HasConfiguration( *GetStorage() )) )
 /*N*/       {
 /*N*/             pImp->pCfgMgr = new SfxConfigManager( *this );
 /*N*/       }
@@ -387,41 +387,41 @@ using namespace ::com::sun::star::uno;
 
 //--------------------------------------------------------------------
 
-/*N*/ USHORT SfxObjectShell::GetContentCount(USHORT nIdx1,
-/*N*/                                        USHORT nIdx2)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ USHORT SfxObjectShell::GetContentCount(USHORT /*nIdx1*/,
+/*N*/                                        USHORT /*nIdx2*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxObjectShell::GetContent(String &rText,
-/*N*/                               Bitmap &rClosedBitmap,
-/*N*/                               Bitmap &rOpenedBitmap,
-/*N*/                               BOOL &bCanDel,
-/*N*/                               USHORT i,
-/*N*/                               USHORT nIdx1,
-/*N*/                               USHORT nIdx2 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxObjectShell::GetContent(String & /*rText*/,
+/*N*/                               Bitmap & /*rClosedBitmap*/,
+/*N*/                               Bitmap & /*rOpenedBitmap*/,
+/*N*/                               BOOL & /*bCanDel*/,
+/*N*/                               USHORT /*i*/,
+/*N*/                               USHORT /*nIdx1*/,
+/*N*/                               USHORT /*nIdx2*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void   SfxObjectShell::GetContent(String &rText,
-/*N*/                                 Bitmap &rClosedBitmap,
-/*N*/                                 Bitmap &rOpenedBitmap,
-/*N*/                                 BmpColorMode eColorMode,
-/*N*/                                 BOOL &bCanDel,
-/*N*/                                 USHORT i,
-/*N*/                                 USHORT nIdx1,
-/*N*/                                 USHORT nIdx2 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void   SfxObjectShell::GetContent(String & /*rText*/,
+/*N*/                                 Bitmap & /*rClosedBitmap*/,
+/*N*/                                 Bitmap & /*rOpenedBitmap*/,
+/*N*/                                 BmpColorMode /*eColorMode*/,
+/*N*/                                 BOOL & /*bCanDel*/,
+/*N*/                                 USHORT /*i*/,
+/*N*/                                 USHORT /*nIdx1*/,
+/*N*/                                 USHORT /*nIdx2*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::LoadStyles
 /*N*/ (
-    SfxObjectShell &rSource         /*  die Dokument-Vorlage, aus der
+    SfxObjectShell &/*rSource*/         /*  die Dokument-Vorlage, aus der
                                             die Styles geladen werden sollen */
 /*N*/ )
 

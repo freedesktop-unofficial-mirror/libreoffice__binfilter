@@ -61,8 +61,8 @@ namespace binfilter {
 /*N*/   bDisableViewScaling = FALSE;
 /*N*/   pNote = 0;
 /*N*/
-/*N*/     SvVerbList* pVerbs = new SvVerbList;
-/*N*/     SetVerbList( pVerbs, TRUE );
+/*N*/     SvVerbList* pLclVerbs = new SvVerbList;
+/*N*/     SetVerbList( pLclVerbs, TRUE );
 /*N*/ }
 
 /*N*/ void SfxInPlaceObject::SetShell( SfxObjectShell *pObjSh )
@@ -219,15 +219,15 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ ErrCode SfxInPlaceObject::Verb( long nVerb, SvEmbeddedClient *pCaller,
-/*N*/                               Window *pWindow, const Rectangle* pRect)
+/*N*/ ErrCode SfxInPlaceObject::Verb( long /*nVerb*/, SvEmbeddedClient * /*pCaller*/,
+/*N*/                               Window * /*pWindow*/, const Rectangle* /*pRect*/)
 /*N*/ {
          return FALSE;
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*?*/ BOOL SfxInPlaceObject::Verb( long nVerb, const Rectangle* pRect )
+/*?*/ BOOL SfxInPlaceObject::Verb( long /*nVerb*/, const Rectangle* /*pRect*/ )
 /*?*/ {
 /*?*/   return (BOOL)DoEmbed( TRUE );
 /*?*/ }
@@ -241,20 +241,20 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL bActivate )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL /*bActivate*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::Embed( BOOL bEmbed )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::Embed( BOOL /*bEmbed*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & rDocName )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & /*rDocName*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------

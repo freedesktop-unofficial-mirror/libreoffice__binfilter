@@ -95,7 +95,6 @@ namespace binfilter {
 /*N*/ DBG_NAME(SfxObjectShell)
 
 extern AsynchronLink* pPendingCloser;
-static SfxObjectShell* pWorkingDoc = NULL;
 
 //=========================================================================
 
@@ -115,13 +114,13 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ SfxObjectShell::SfxObjectShell
 /*N*/ (
 /*N*/   SfxObjectCreateMode eMode   /*  Zweck, zu dem die SfxObjectShell
-                                    erzeugt wird:
+                                    erzeugt wird:*/
 /*N*/ )
-/*N*/ : pImp( new SfxObjectShell_Impl ),
-/*N*/   _pFactory( 0 ),
-/*N*/   eCreateMode(eMode),
-/*N*/   pStyleSheetPool(0),
-/*N*/   pMedium(0)
+/*N*/ : pImp( new SfxObjectShell_Impl )
+/*N*/ , pMedium(0)
+/*N*/ , pStyleSheetPool(0)
+/*N*/ , eCreateMode(eMode)
+/*N*/ , _pFactory( 0 )
 /*N*/ {
 /*N*/   DBG_CTOR(SfxObjectShell, 0);
 /*N*/
@@ -336,7 +335,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ sal_uInt16 SfxObjectShell::PrepareClose
 /*N*/ (
 /*N*/   sal_Bool    bUI,        // sal_True: Dialoge etc. erlaubt, sal_False: silent-mode
-/*N*/   sal_Bool    bForBrowsing
+/*N*/   sal_Bool    /*bForBrowsing*/
 /*N*/ )
 /*N*/ {
 /*N*/   if( pImp->bInPrepareClose || pImp->bPreparedForClose )
@@ -389,8 +388,8 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ {
 /*N*/     if ( !pImp->bBasicInitialized )
 /*N*/     {
-/*N*/         String aName( GetMedium()->GetName() );
-/*N*/         ((SfxObjectShell*)this)->InitBasicManager_Impl( GetStorage(), aName.Len() ? &aName : NULL );
+/*N*/         String aLclName( GetMedium()->GetName() );
+/*N*/         ((SfxObjectShell*)this)->InitBasicManager_Impl( GetStorage(), aLclName.Len() ? &aLclName : NULL );
 /*N*/     }
 /*N*/   return pImp->pBasicMgr != NULL;
 /*N*/ }
@@ -424,7 +423,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
                                (aus <SvPersist::Load()>) bzw. 0, falls es
                                sich um ein neues Dokument handelt
                                (aus <SvPersist::InitNew()>). */
-/*N*/     , const String* pName
+/*N*/     , const String* /*pName*/
 )
 /*  [Beschreibung]
 

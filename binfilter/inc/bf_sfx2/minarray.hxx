@@ -360,8 +360,8 @@ inline void*& SfxPtrArr::operator [] (USHORT nPos)
 class ARR: public SfxPtrArr\
 {\
 public:\
-   ARR( BYTE nIni=nI, BYTE nGrow=nG ):\
-       SfxPtrArr(nIni,nGrow) \
+   ARR( BYTE nIni=nI, BYTE nGrowSize=nG ):\
+       SfxPtrArr(nIni,nGrowSize) \
    {}\
    ARR( const ARR& rOrig ):\
        SfxPtrArr(rOrig) \
@@ -396,8 +396,8 @@ public:\
 class ARR: public ByteArr\
 {\
 public:\
-        ARR( BYTE nIni=nI, BYTE nGrow=nG ):\
-            ByteArr(nIni,nGrow) \
+        ARR( BYTE nIni=nI, BYTE nGrowSize=nG ):\
+            ByteArr(nIni,nGrowSize) \
         {}\
         ARR( const ARR& rOrig ):\
             ByteArr(rOrig) \

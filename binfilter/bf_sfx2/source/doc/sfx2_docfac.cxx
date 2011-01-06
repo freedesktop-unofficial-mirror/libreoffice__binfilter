@@ -192,15 +192,14 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   CreateInstanceType      funcCIT
 /*N*/ )
 /*N*/ :   SvFactory( rName, rClassName, funcCIT ),
-/*N*/   fnCreate( 0 ),
 /*N*/   nId( 0 ),
-/*N*/ //  pIniMgr( 0 ),
+/*N*/   fnCreate( 0 ),
 /*N*/   pShortName( 0 ),
 /*N*/   pImpl( new SfxObjectFactory_Impl )
 /*N*/ {
-/*N*/   DBG_CTOR(SfxObjectFactory, 0);
+/*N*/     DBG_CTOR(SfxObjectFactory, 0);
 /*N*/
-/*N*/   SfxApplication* pApp = SFX_APP();
+/*N*/     /*SfxApplication* pApp =*/ SFX_APP();
 /*N*/     RegisterObjectFactory_Impl(*this);
 /*N*/ }
 
@@ -262,7 +261,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   // Etwaige Parameter abschneiden
 /*N*/   aFact.Erase( nPos, aFact.Len() );
 /*N*/
-/*N*/   SfxApplication *pApp = SFX_APP();
+/*N*/   /*SfxApplication *pApp =*/ SFX_APP();
 /*N*/
 /*N*/   // "swriter4" durch "swriter" ersetzen, zum Vergleichen uppercase verwenden
 /*N*/   WildCard aSearchedFac( aFact.EraseAllChars('4').ToUpperAscii() );

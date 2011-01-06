@@ -119,7 +119,7 @@ private:
 
     USHORT  nUserDataSize;
     USHORT  nDocNo;         // schon mal rein: Dokumentnummer, was immer das sein mag
-    void*   pUserData;      // Benutzer Daten, z.B. Doc-Statistik
+    char*   pUserData;      // Benutzer Daten, z.B. Doc-Statistik
     long    lTime;
 
     SfxDocumentInfo_Impl*   pImp;

@@ -127,8 +127,8 @@ namespace binfilter {
 /*N*/     ::osl::Mutex    m_aMutex;
 /*N*/ public:
 /*N*/                     SfxLockBytesHandler_Impl( SfxMedium* pMedium )
-/*N*/                         : m_pMedium( pMedium )
-/*N*/                         , m_nAcquireCount( 0 )
+/*N*/                         : m_nAcquireCount( 0 )
+/*N*/                         , m_pMedium( pMedium )
 /*N*/                     {}
 /*N*/
 /*N*/     virtual void    Handle( ::utl::UcbLockBytesHandler::LoadHandlerItem nWhich, ::utl::UcbLockBytesRef xLockBytes );
@@ -200,9 +200,9 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
+/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& /*xRequest*/ )
 /*N*/         throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*?*/ String ConvertDateTime_Impl(const SfxStamp &rTime, const LocaleDataWrapper& rWrapper);
@@ -234,7 +234,7 @@ namespace binfilter {
 
 
 //----------------------------------------------------------------
-/*N*/ void SfxPoolCancelManager::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SfxPoolCancelManager::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ )
 /*N*/ {
 /*N*/     if( !GetCancellableCount() ) SetManager( 0 );
 /*N*/     else if( !GetManager() )
@@ -362,19 +362,28 @@ namespace binfilter {
 //------------------------------------------------------------------
 /*N*/ SfxMedium_Impl::SfxMedium_Impl( SfxMedium* pAntiImplP )
 /*N*/  :
-/*N*/     SvCompatWeakBase( pAntiImplP ),
-/*N*/     bUpdatePickList(sal_True), bIsTemp( sal_False ), pOrigFilter( 0 ),
-/*N*/     bUsesCache(sal_True), pCancellable( 0 ),
-/*N*/     nPrio( 99 ), aExpireTime( Date() + 10, Time() ),
-/*N*/     bForceSynchron( sal_False ), bStreamReady( sal_False ), bIsStorage( sal_False ),
-/*N*/     pAntiImpl( pAntiImplP ),
-/*N*/     bDontCreateCancellable( sal_False ), pTempDir( NULL ), bIsDiskSpannedJAR( sal_False ),
-/*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ),
-/*N*/   pTempFile( NULL ),
-/*N*/   nLastStorageError( 0 ),
-/*N*/   bIsCharsetInitialized( sal_False ),
+/*N*/   SvCompatWeakBase( pAntiImplP ),
+/*N*/   bUpdatePickList(sal_True), bIsTemp( sal_False ),
+/*N*/   bUsesCache(sal_True),
+/*N*/   bForceSynchron( sal_False ),
+/*N*/   bDontCreateCancellable( sal_False ),
+/*N*/   bDownloadDone( sal_True ),
+/*N*/   bDontCallDoneLinkOnSharingError( sal_False ),
+/*N*/   bStreamReady( sal_False ),
+/*N*/   bIsStorage( sal_False ),
 /*N*/   bUseInteractionHandler( sal_True ),
 /*N*/   bAllowDefaultIntHdl( sal_False ),
+/*N*/   bIsDiskSpannedJAR( sal_False ),
+/*N*/   bIsCharsetInitialized( sal_False ),
+/*N*/   nPrio( 99 ),
+/*N*/   pCancellable( 0 ),
+/*N*/   pAntiImpl( pAntiImplP ),
+/*N*/   nFileVersion( 0 ),
+/*N*/   pOrigFilter( 0 ),
+/*N*/   aExpireTime( Date() + 10, Time() ),
+/*N*/   pTempDir( NULL ),
+/*N*/   pTempFile( NULL ),
+/*N*/   nLastStorageError( 0 ),
 /*N*/   m_bRemoveBackup( sal_False )
 /*N*/ {
 /*N*/     aHandler = new SfxLockBytesHandler_Impl( pAntiImpl );
@@ -402,17 +411,6 @@ namespace binfilter {
 /*N*/ }
 
 //================================================================
-
-/*?*/ #define IMPL_CTOR()                         \
-/*?*/      eError( SVSTREAM_OK ),                 \
-/*?*/                                             \
-/*?*/      bDirect( sal_False ),                  \
-/*?*/      bTriedStorage( sal_False ),            \
-/*?*/      bSetFilter( sal_False ),               \
-/*?*/                                             \
-/*?*/      nStorOpenMode( SFX_STREAM_READWRITE ), \
-/*?*/      pInStream(0),                          \
-/*?*/      pOutStream( 0 )
 
 //------------------------------------------------------------------
 /*N*/ void SfxMedium::ResetError()
@@ -1057,7 +1055,7 @@ namespace binfilter {
 /*N*/
 /*N*/         ::utl::UcbLockBytesHandler* pHandler = pImp->aHandler;
 /*N*/         INetProtocol eProt = GetURLObject().GetProtocol();
-/*N*/         if ( eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP || aName.Len() )
+/*N*/         if ( (eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP) || aName.Len() )
 /*N*/             pHandler = NULL;
 /*N*/         BOOL bSynchron = pImp->bForceSynchron || ! pImp->aDoneLink.IsSet();
 /*N*/         SFX_ITEMSET_ARG( pSet, pStreamItem, SfxUnoAnyItem, SID_INPUTSTREAM, sal_False);
@@ -1143,8 +1141,8 @@ namespace binfilter {
 /*N*/                 pImp->bDontCallDoneLinkOnSharingError = sal_False;
 /*N*/                 Done_Impl( ERRCODE_IO_NOTEXISTS );
 /*N*/             }
-/*N*/             else if ( pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED && bIsWritable && bAllowReadOnlyMode ||
-/*N*/                     pImp->xLockBytes->GetError() == ERRCODE_IO_NOTSUPPORTED && bIsWritable )
+/*N*/             else if ( (pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED && bIsWritable && bAllowReadOnlyMode) ||
+/*N*/                     (pImp->xLockBytes->GetError() == ERRCODE_IO_NOTSUPPORTED && bIsWritable) )
 /*N*/             {
 /*?*/                 if ( pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED )
 /*?*/                 {
@@ -1299,13 +1297,19 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*N*/ SfxMedium::SfxMedium()
-/*N*/ :   IMPL_CTOR(),
+/*N*/ :
+/*?*/     eError( SVSTREAM_OK ),
+/*?*/     bDirect( sal_False ),
 /*N*/     bRoot( sal_False ),
+/*?*/     bSetFilter( sal_False ),
+/*?*/     bTriedStorage( sal_False ),
+/*?*/     nStorOpenMode( SFX_STREAM_READWRITE ),
 /*N*/     pURLObj(0),
-/*N*/
+/*?*/     pInStream(0),
+/*?*/     pOutStream( 0 ),
+/*N*/     pFilter(0),
 /*N*/     pSet(0),
-/*N*/     pImp(new SfxMedium_Impl( this )),
-/*N*/     pFilter(0)
+/*N*/     pImp(new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     Init_Impl();
 /*N*/ }
@@ -1361,7 +1365,7 @@ namespace binfilter {
 /*N*/ }
 //----------------------------------------------------------------
 
-/*N*/ void SfxMedium::SetFilter( const SfxFilter* pFilterP, sal_Bool bResetOrig )
+/*N*/ void SfxMedium::SetFilter( const SfxFilter* pFilterP, sal_Bool /*bResetOrig*/ )
 /*N*/ {
 /*N*/     pFilter = pFilterP;
 /*N*/     pImp->nFileVersion = 0;
@@ -1445,7 +1449,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------
 
-/*N*/ void SfxMedium::SetPhysicalName_Impl( const String& rNameP )
+/*N*/ void SfxMedium::SetPhysicalName_Impl( const String& /*rNameP*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -1481,13 +1485,19 @@ namespace binfilter {
 /*N*/ (
 /*N*/     const String &rName, StreamMode nOpenMode,  sal_Bool bDirectP,
 /*N*/     const SfxFilter *pFlt, SfxItemSet *pInSet
-/*N*/ )
-/*N*/ :   IMPL_CTOR(),
+/*N*/ ) :
+/*?*/     eError( SVSTREAM_OK ),
+/*?*/     bDirect( sal_False ),
 /*N*/     bRoot( sal_False ),
-/*N*/     pFilter(pFlt),
+/*?*/     bSetFilter( sal_False ),
+/*?*/     bTriedStorage( sal_False ),
+/*?*/     nStorOpenMode( SFX_STREAM_READWRITE ),
 /*N*/     pURLObj(0),
-/*N*/     pImp(new SfxMedium_Impl( this )),
-/*N*/     pSet( pInSet )
+/*?*/     pInStream(0),
+/*?*/     pOutStream( 0 ),
+/*N*/     pFilter(pFlt),
+/*N*/     pSet( pInSet ),
+/*N*/     pImp(new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     aLogicName = rName;
 /*N*/     nStorOpenMode = nOpenMode;
@@ -1497,12 +1507,18 @@ namespace binfilter {
 //------------------------------------------------------------------
 
 /*N*/ SfxMedium::SfxMedium( SvStorage *pStorage, sal_Bool bRootP )
-/*N*/ :   IMPL_CTOR(),
-/*N*/     bRoot( bRootP ),
-/*N*/     aStorage(pStorage),
-/*N*/     pURLObj(0),
-/*N*/     pImp( new SfxMedium_Impl( this )),
-/*N*/     pSet(0)
+/*?*/ : eError( SVSTREAM_OK )
+/*?*/ , bDirect( sal_False )
+/*N*/ , bRoot( bRootP )
+/*?*/ , bSetFilter( sal_False )
+/*?*/ , bTriedStorage( sal_False )
+/*?*/ , nStorOpenMode( SFX_STREAM_READWRITE )
+/*N*/ , pURLObj(0)
+/*?*/ , pInStream(0)
+/*?*/ , pOutStream( 0 )
+/*N*/ , aStorage(pStorage)
+/*N*/ , pSet(0)
+/*N*/ , pImp( new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     SfxApplication* pApp = SFX_APP();
 /*N*/     sal_uInt32 nFormat = pStorage->GetFormat();
@@ -1585,35 +1601,8 @@ namespace binfilter {
 
 //----------------------------------------------------------------
 
-/*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String &rName )
+/*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String & /*rName*/ )
 /*N*/ {
-/* dv !!!! not needed any longer ?
-    INetProtocol eProt = GetURLObject().GetProtocol();
-    if( eProt == INET_PROT_FTP && SvBinding::ShouldUseFtpProxy( GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) ) )
-    {
-        Any aAny( UCB_Helper::GetProperty( GetContent(), WID_FLAG_IS_FOLDER ) );
-        sal_Bool bIsFolder = FALSE;
-        if ( ( aAny >>= bIsFolder ) && bIsFolder )
-            return ERRCODE_NONE;
-    }
-
-    GetMedium_Impl();
-    if( !eError && pImp->xBinding.Is() )
-    {
-        eError = pImp->xBinding->GetMimeType( rName );
-
-        // Wir koennen keine Parameter wie CharSets usw.
-        rName = rName.GetToken( 0, ';' );
-        if( !eError )
-        {
-            if( !pImp->aPreRedirectionURL.Len() )
-                pImp->aPreRedirectionURL = aLogicName;
-            SetName( pImp->xBinding->GetRedirectedURL() );
-        }
-        pImp->aExpireTime = pImp->xBinding->GetExpireDateTime();
-    }
-    return eError;
-*/
 /*N*/     return 0;
 /*N*/ }
 
@@ -1885,12 +1874,12 @@ namespace binfilter {
 
 /*?*/ SvStream& SfxVersionTableDtor::Read( SvStream& rStrm )
 /*?*/ {
-/*?*/     sal_uInt16 nCount = 0, nVersion = 0;
+/*?*/     sal_uInt16 nLclCount = 0, nVersion = 0;
 /*?*/
 /*?*/     rStrm >> nVersion;
-/*?*/     rStrm >> nCount;
+/*?*/     rStrm >> nLclCount;
 /*?*/
-/*?*/     for( sal_uInt16 i=0; i<nCount; ++i )
+/*?*/     for( sal_uInt16 i=0; i<nLclCount; ++i )
 /*?*/     {
 /*?*/         SfxVersionInfo *pNew = new SfxVersionInfo;
 /*?*/         rStrm.ReadByteString( pNew->aComment, RTL_TEXTENCODING_UTF8 );
