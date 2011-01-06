@@ -82,9 +82,8 @@ TYPEINIT1(SfxUsrAnyItem, SfxPoolItem);
 /*N*/   aValue = rAny;
 /*N*/ }
 
-/*N*/ int SfxUsrAnyItem::operator==( const SfxPoolItem &rItem ) const
+/*N*/ int SfxUsrAnyItem::operator==( const SfxPoolItem & /*rItem*/ ) const
 /*N*/ {
-/*N*/ //   return rItem.ISA( SfxUsrAnyItem ) && ((SfxUsrAnyItem&)rItem).aValue == aValue;
 /*N*/   return sal_False;
 /*N*/ }
 
@@ -890,7 +889,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 extern "C" {
 
 /*N*/
-/*N*/ sal_Bool SAL_CALL sfx2_component_writeInfo(   void*   pServiceManager ,
+/*N*/ sal_Bool SAL_CALL sfx2_component_writeInfo(   void*   /*pServiceManager*/ ,
 /*N*/                                       void*   pRegistryKey    )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::registry::XRegistryKey >        xKey( reinterpret_cast< ::com::sun::star::registry::XRegistryKey* >( pRegistryKey ) )   ;
@@ -943,7 +942,7 @@ extern "C" {
 /*N*/
 /*N*/ void* SAL_CALL sfx2_component_getFactory( const   sal_Char*   pImplementationName ,
 /*N*/                                               void*       pServiceManager     ,
-/*N*/                                               void*       pRegistryKey        )
+/*N*/                                               void*       /*pRegistryKey*/        )
 /*N*/ {
 /*N*/   // Set default return value for this operation - if it failed.
 /*N*/   void* pReturn = NULL ;

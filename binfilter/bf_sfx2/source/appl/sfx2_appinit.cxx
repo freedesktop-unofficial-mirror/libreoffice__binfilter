@@ -111,11 +111,11 @@ public:
     virtual void SAL_CALL disposing( const EventObject& Source ) throw( RuntimeException );
 };
 
-/*N*/ void SAL_CALL SfxTerminateListener_Impl::disposing( const EventObject& Source ) throw( RuntimeException )
+/*N*/ void SAL_CALL SfxTerminateListener_Impl::disposing( const EventObject& /*Source*/ ) throw( RuntimeException )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SfxTerminateListener_Impl::queryTermination( const EventObject& aEvent ) throw(TerminationVetoException, RuntimeException )
+/*N*/ void SAL_CALL SfxTerminateListener_Impl::queryTermination( const EventObject& /*aEvent*/ ) throw(TerminationVetoException, RuntimeException )
 /*N*/ {
 /*N*/ }
 

@@ -46,7 +46,7 @@ namespace binfilter {
 
 /*?*/ long SfxObjectShell::DdeExecute
 /*?*/ (
-/*?*/   const String&   rCmd        // in unserer BASIC-Syntax formuliert
+/*?*/   const String&   /*rCmd*/        // in unserer BASIC-Syntax formuliert
 /*?*/ )
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
@@ -56,9 +56,9 @@ namespace binfilter {
 
 /*?*/ long SfxObjectShell::DdeGetData
 /*?*/ (
-/*?*/   const String&   rItem,                      // das anzusprechende Item
-/*?*/   const String& rMimeType,                    // in: Format
-/*?*/   ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
+/*?*/   const String&   /*rItem*/,                      // das anzusprechende Item
+/*?*/   const String& /*rMimeType*/,                    // in: Format
+/*?*/   ::com::sun::star::uno::Any & /*rValue*/     // out: angeforderte Daten
 /*?*/ )
 {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
 /*?*/ }
@@ -67,9 +67,9 @@ namespace binfilter {
 
 /*?*/ long SfxObjectShell::DdeSetData
 /*?*/ (
-/*?*/   const String&   rItem,                      // das anzusprechende Item
-/*?*/   const String& rMimeType,                    // in: Format
-/*?*/   const ::com::sun::star::uno::Any & rValue   // out: angeforderte Daten
+/*?*/   const String&   /*rItem*/,                      // das anzusprechende Item
+/*?*/   const String& /*rMimeType*/,                    // in: Format
+/*?*/   const ::com::sun::star::uno::Any & /*rValue*/   // out: angeforderte Daten
 /*?*/ )
 /*?*/
 /*  [Beschreibung]
@@ -88,7 +88,7 @@ namespace binfilter {
 
 /*?*/ ::binfilter::SvLinkSource* SfxObjectShell::DdeCreateLinkSource
 /*?*/ (
-/*?*/   const String&   rItem      // das zu erzeugende Item
+/*?*/   const String&   /*rItem*/      // das zu erzeugende Item
 /*?*/ )
 
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001

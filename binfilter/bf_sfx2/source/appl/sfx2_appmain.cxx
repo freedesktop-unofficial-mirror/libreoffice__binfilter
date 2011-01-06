@@ -100,11 +100,6 @@ static SfxVoidItem aStaticDefault(1);
 #pragma code_seg()
 #endif
 
-static SfxPoolItem* aStaticDefaults[1] =
-{
-    &aStaticDefault
-};
-
 #ifdef TF_POOLABLE
 static SfxItemInfo const aItemInfos[] =
 {

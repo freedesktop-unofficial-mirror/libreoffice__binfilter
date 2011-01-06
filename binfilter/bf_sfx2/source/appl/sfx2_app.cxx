@@ -97,15 +97,15 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/ }
 
 /*N*/ SfxApplication::SfxApplication()
-/*N*/   : _nFeatures( ULONG_MAX )
-/*N*/   , pImp( 0 )
-/*N*/   , pAppData_Impl( 0 )
+/*N*/   : pImp( 0 )
+/*N*/   , _nFeatures( ULONG_MAX )
 /*N*/     , pCfgMgr( 0 )
+/*N*/   , pOptions( 0 )
+/*N*/   , pAppData_Impl( 0 )
 /*N*/     , bInInit( sal_False )
 /*N*/     , bInExit( sal_False )
 /*N*/     , bDowning( sal_True )
 /*N*/   , bCreatedExternal( sal_False )
-/*N*/   , pOptions( 0 )
 /*N*/ {
 /*N*/
 /*N*/   pImp = new SfxApplication_Impl;

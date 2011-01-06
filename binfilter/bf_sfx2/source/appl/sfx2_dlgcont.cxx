@@ -116,7 +116,7 @@ SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::writeLibraryElement
 /*?*/ (
 /*?*/   Any aElement,
-/*?*/   const OUString& aElementName,
+/*?*/   const OUString& /*aElementName*/,
 /*?*/   Reference< XOutputStream > xOutput
 /*?*/ )
 /*?*/   throw(Exception)
@@ -143,11 +143,11 @@ SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
 
 
 /*?*/ Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
-/*?*/   ( const OUString& aFile, SotStorageStreamRef xElementStream )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;//STRIP001
+/*?*/   ( const OUString& /*aFile*/, SotStorageStreamRef /*xElementStream*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
+/*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
 /*?*/ {
 /*?*/     // Nothing to do here, old dialogs cannot be imported
 /*?*/ }
@@ -210,7 +210,7 @@ OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
 }
 
 Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
-    ( const Reference< XMultiServiceFactory >& xServiceManager )
+    ( const Reference< XMultiServiceFactory >& /*xServiceManager*/ )
         throw( Exception )
 {
     Reference< XInterface > xRet =

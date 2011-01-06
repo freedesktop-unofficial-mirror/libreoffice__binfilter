@@ -110,8 +110,8 @@ using namespace ::cppu;
 /*N*/ sal_uInt32 CheckPasswd_Impl
 /*N*/ (
 /*N*/     //Window *pWin,       // Parent des Dialogs
-/*N*/     SfxObjectShell* pDoc,
-/*N*/   SfxItemPool &rPool, // Pool, falls ein Set erzeugt werden mus
+/*N*/     SfxObjectShell* /*pDoc*/,
+/*N*/   SfxItemPool & /*rPool*/,    // Pool, falls ein Set erzeugt werden mus
 /*N*/   SfxMedium *pFile    // das Medium, dessen Passwort gfs. erfragt werden soll
 /*N*/ )
 

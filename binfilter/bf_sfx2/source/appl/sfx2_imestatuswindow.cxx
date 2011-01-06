@@ -60,7 +60,7 @@ void ImeStatusWindow::init()
     if (Application::CanToggleImeStatusWindow())
         try
         {
-            sal_Bool bShow;
+            sal_Bool bShow(sal_False);
             if (getConfig()->getPropertyValue(
                     ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
                                       "ShowStatusWindow")))
@@ -91,7 +91,7 @@ ImeStatusWindow::~ImeStatusWindow()
         }
 }
 
-void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & rSource)
+void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & /*rSource*/)
     throw (css::uno::RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
@@ -100,7 +100,7 @@ void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & rSource)
 }
 
 void SAL_CALL
-ImeStatusWindow::propertyChange(css::beans::PropertyChangeEvent const & rEvent)
+ImeStatusWindow::propertyChange(css::beans::PropertyChangeEvent const & /*rEvent*/)
     throw (css::uno::RuntimeException)
 {
 }

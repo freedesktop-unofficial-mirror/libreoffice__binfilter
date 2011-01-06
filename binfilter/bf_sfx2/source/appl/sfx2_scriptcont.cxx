@@ -272,7 +272,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*N*/ }
 
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
+/*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
 /*?*/ {
             DBG_ERROR("Strip");
 /*?*/ }
@@ -335,25 +335,25 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
         return bSuccess;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& Name,
-/*?*/     const OUString& OldPassword, const OUString& NewPassword )
+/*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& /*Name*/,
+/*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 
 
 
 // Impl methods
-/*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* pLib,
-/*?*/     const ::rtl::OUString& aName, SotStorageRef xStorage )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* /*pLib*/,
+/*?*/     const ::rtl::OUString& /*aName*/, SotStorageRef /*xStorage*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 /*?*/ sal_Bool SfxScriptLibraryContainer::implLoadPasswordLibrary
-/*?*/     ( SfxLibrary_Impl* pLib, const OUString& Name, sal_Bool bVerifyPasswordOnly )
+/*?*/     ( SfxLibrary_Impl* /*pLib*/, const OUString& /*Name*/, sal_Bool /*bVerifyPasswordOnly*/ )
 /*?*/         throw(WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 
@@ -420,7 +420,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 /*N*/ }
 
 /*N*/ Reference< XInterface > SAL_CALL SfxScriptLibraryContainer::impl_createInstance
-/*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
+/*N*/     ( const Reference< XMultiServiceFactory >& /*xServiceManager*/ )
 /*N*/         throw( Exception )
 /*N*/ {
 /*N*/     Reference< XInterface > xRet =
