@@ -110,15 +110,15 @@ using namespace ::com::sun::star::uno;
 /*N*/                           Locale(),
 /*N*/                           2, 2, 2,
 /*N*/                           TransliterationModules_IGNORE_CASE ),
+/*N*/   eFamily         ( SFX_STYLE_FAMILY_PARA ),
 /*N*/   nCommand        ( 0 ),
+/*N*/   nCellType       ( SVX_SEARCHIN_FORMULA ),
+/*N*/   nAppFlag        ( SVX_SEARCHAPP_WRITER ),
+/*N*/   bRowDirection   ( sal_True ),
+/*N*/   bAllTables      ( sal_False ),
 /*N*/   bBackward       ( sal_False ),
 /*N*/   bPattern        ( sal_False ),
 /*N*/   bContent        ( sal_False ),
-/*N*/   eFamily         ( SFX_STYLE_FAMILY_PARA ),
-/*N*/   bRowDirection   ( sal_True ),
-/*N*/   bAllTables      ( sal_False ),
-/*N*/   nCellType       ( SVX_SEARCHIN_FORMULA ),
-/*N*/   nAppFlag        ( SVX_SEARCHAPP_WRITER ),
 /*N*/   bAsianOptions   ( FALSE )
 /*N*/ {
 /*N*/   EnableNotification( lcl_GetNotifyNames() );
@@ -185,15 +185,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFG_ROOT_NODE )) ),
 /*N*/
 /*N*/   aSearchOpt      ( rItem.aSearchOpt ),
+/*N*/   eFamily         ( rItem.eFamily ),
 /*N*/   nCommand        ( rItem.nCommand ),
+/*N*/   nCellType       ( rItem.nCellType ),
+/*N*/   nAppFlag        ( rItem.nAppFlag ),
+/*N*/   bRowDirection   ( rItem.bRowDirection ),
+/*N*/   bAllTables      ( rItem.bAllTables ),
 /*N*/   bBackward       ( rItem.bBackward ),
 /*N*/   bPattern        ( rItem.bPattern ),
 /*N*/   bContent        ( rItem.bContent ),
-/*N*/   eFamily         ( rItem.eFamily ),
-/*N*/   bRowDirection   ( rItem.bRowDirection ),
-/*N*/   bAllTables      ( rItem.bAllTables ),
-/*N*/   nCellType       ( rItem.nCellType ),
-/*N*/   nAppFlag        ( rItem.nAppFlag ),
 /*N*/   bAsianOptions   ( rItem.bAsianOptions )
 /*N*/ {
 /*N*/   EnableNotification( lcl_GetNotifyNames() );
@@ -206,7 +206,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ SfxPoolItem* SvxSearchItem::Clone( SfxItemPool *pPool) const
+/*N*/ SfxPoolItem* SvxSearchItem::Clone( SfxItemPool * /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxSearchItem(*this);
 /*N*/ }
@@ -250,27 +250,27 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ SfxItemPresentation SvxSearchItem::GetPresentation
 /*N*/ (
-/*N*/   SfxItemPresentation ePres,
-/*N*/   SfxMapUnit          eCoreUnit,
-/*N*/   SfxMapUnit          ePresUnit,
-/*N*/   XubString&          rText,
+/*N*/   SfxItemPresentation /*ePres*/,
+/*N*/   SfxMapUnit          /*eCoreUnit*/,
+/*N*/   SfxMapUnit          /*ePresUnit*/,
+/*N*/   XubString&          /*rText*/,
 /*N*/     const ::IntlWrapper *
 /*N*/ ) const
 /*N*/ {
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 
-/*N*/ void SvxSearchItem::Notify( const Sequence< OUString > &rPropertyNames )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SvxSearchItem::Notify( const Sequence< OUString > & /*rPropertyNames*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 

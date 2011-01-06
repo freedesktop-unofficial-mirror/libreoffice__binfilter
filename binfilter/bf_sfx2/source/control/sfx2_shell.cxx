@@ -50,8 +50,8 @@ namespace binfilter {
 /*N*/ };
 
 /*N*/ SfxShell::SfxShell()
-/*N*/ :   pPool(0),
-/*N*/   pImp(0)
+/*N*/   : pImp(0)
+/*N*/   , pPool(0)
 /*N*/ {
 /*N*/   pImp = new SfxShell_Impl;
 /*N*/ }
