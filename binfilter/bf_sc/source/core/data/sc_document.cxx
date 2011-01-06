@@ -1792,12 +1792,12 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       ScDefaultAttrSet::iterator aDefaultItr = aSet.begin();
 /*N*/       aItr = aDefaultItr;
-/*N*/       aItr++;
+/*N*/       ++aItr;
 /*N*/       while (aItr != aSet.end())
 /*N*/       {
 /*N*/           if (aItr->nCount > aDefaultItr->nCount)
 /*N*/               aDefaultItr = aItr;
-/*N*/           aItr++;
+/*N*/           ++aItr;
 /*N*/       }
 /*N*/       nDefault = aDefaultItr->nFirst;
 /*N*/       bRet = TRUE;
