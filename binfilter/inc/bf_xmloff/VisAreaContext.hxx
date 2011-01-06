@@ -32,9 +32,7 @@
 #include <bf_xmloff/xmlictxt.hxx>
 #endif
 
-#ifndef _VCL_MAPUNIT_HXX
-#include <vcl/mapunit.hxx>
-#endif
+#include <tools/mapunit.hxx>
 class Rectangle;
 namespace com { namespace sun { namespace star { namespace awt {
     struct Rectangle;
