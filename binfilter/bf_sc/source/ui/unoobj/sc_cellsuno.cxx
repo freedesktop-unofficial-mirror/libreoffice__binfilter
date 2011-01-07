@@ -8269,7 +8269,7 @@ void ScUniqueCellFormatsObj::GetObjects_Impl()
                     aItr = aList.erase(aItr);
                 }
                 else
-                    aItr++;
+                    ++aItr;
                 if (aItr == aList.end() && !aList.empty())
                 {
                     aItr = aList.begin();

@@ -540,7 +540,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                 }
             }
 
-            aIter++;
+            ++aIter;
         }
         while( aIter != aEnd );
     }

@@ -528,7 +528,7 @@ void ScXMLChangeTrackingImportHelper::CreateGeneratedActions(ScMyGeneratedList& 
                     DBG_ASSERT((*aItr)->nID, "could not insert generated action");
                 }
             }
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -799,7 +799,7 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
             else
                 DBG_ERROR("no action");
 
-            aItr++;
+            ++aItr;
         }
         if (pTrack->GetLast())
             pTrack->SetActionMax(pTrack->GetLast()->GetActionNumber());
@@ -810,7 +810,7 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
             SetDependences(*aItr);
 
             if ((*aItr)->nActionType == SC_CAT_CONTENT)
-                aItr++;
+                ++aItr;
             else
             {
                 if (*aItr)

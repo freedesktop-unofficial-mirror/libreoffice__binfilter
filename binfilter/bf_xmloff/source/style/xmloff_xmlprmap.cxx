@@ -103,7 +103,7 @@ void XMLPropertySetMapper::AddMapperEntry(
     for( vector < UniReference < XMLPropertyHandlerFactory > >::iterator
             aFIter = rMapper->aHdlFactories.begin();
          aFIter != rMapper->aHdlFactories.end();
-         aFIter++ )
+         ++aFIter )
     {
         aHdlFactories.push_back( *aFIter );
     }
@@ -111,7 +111,7 @@ void XMLPropertySetMapper::AddMapperEntry(
     for( vector < XMLPropertySetMapperEntry_Impl >::iterator
             aEIter = rMapper->aMapEntries.begin();
          aEIter != rMapper->aMapEntries.end();
-         aEIter++ )
+         ++aEIter )
     {
         aMapEntries.push_back( *aEIter );
     }
