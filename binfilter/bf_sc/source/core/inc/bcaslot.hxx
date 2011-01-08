@@ -37,7 +37,7 @@
 namespace binfilter {
 
 class ScBroadcastArea;
-class ScBroadcastAreaList;
+typedef ::std::vector< ScBroadcastArea* > ScBroadcastAreaList;
 
 #define BCA_INITGROWSIZE 16
 typedef ScBroadcastArea* ScBroadcastAreaPtr;
