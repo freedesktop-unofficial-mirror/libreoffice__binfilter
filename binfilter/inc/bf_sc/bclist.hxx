@@ -32,8 +32,7 @@
 #include <bf_svtools/brdcst.hxx>
 namespace binfilter {
 
-class ScBroadcasters;
-
+typedef ::std::vector< SfxBroadcaster* > ScBroadcasters;
 
 class ScBroadcasterList
 {
@@ -55,7 +54,6 @@ public:
 
 /*N*/   void    MoveListenersTo( ScBroadcasterList& rNew );
 };
-
 
 } //namespace binfilter
 #endif

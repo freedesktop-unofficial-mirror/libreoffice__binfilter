@@ -34,6 +34,7 @@
 
 #include <bf_svtools/lstner.hxx>
 #include <tools/list.hxx>
+#include <vector>
 
 #include "bclist.hxx"
 namespace binfilter {
@@ -42,7 +43,7 @@ namespace binfilter {
 
 #define SC_LISTENERS_MAX 1024
 
-/*N*/ DECLARE_LIST(ScBroadcasters, SfxBroadcaster*)//STRIP008 ;
+typedef ::std::vector< SfxBroadcaster* > ScBroadcasters;
 
 //------------------------------------------------------------------------
 
@@ -55,12 +56,9 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*?*/       ULONG nCount = pMoreBCs->Count();
-/*?*/       for (ULONG i=0; i<nCount; i++)
-/*?*/       {
-/*?*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
-/*?*/           delete pBC;
-/*?*/       }
+/*?*/       size_t nCount = pMoreBCs->size();
+/*?*/       for (size_t i = 0; i < nCount; i++)
+/*?*/           delete (*pMoreBCs)[ i ];
 /*?*/       delete pMoreBCs;
 /*N*/   }
 /*N*/ }
@@ -73,10 +71,10 @@ namespace binfilter {
 /*N*/           return;
 /*N*/       if (pMoreBCs)
 /*N*/       {
-/*?*/           ULONG nCount = pMoreBCs->Count();
-/*?*/           for (ULONG i=0; i<nCount; i++)
+/*?*/           size_t nCount = pMoreBCs->size();
+/*?*/           for (size_t i = 0; i < nCount; i++)
 /*?*/           {
-/*?*/               SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*?*/               SfxBroadcaster* pBC = (*pMoreBCs)[ i ];
 /*?*/               if (rLst.IsListening(*pBC))
 /*?*/                   return;
 /*?*/           }
@@ -90,10 +88,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*?*/       ULONG nCount = pMoreBCs->Count();
-/*?*/       for (ULONG i=0; i<nCount; i++)
+/*?*/       size_t nCount = pMoreBCs->size();
+/*?*/       for (size_t i = 0; i < nCount; i++)
 /*?*/       {
-/*?*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*?*/           SfxBroadcaster* pBC = (*pMoreBCs)[ i ];
 /*?*/           if ( pBC->GetListenerCount() < SC_LISTENERS_MAX )
 /*?*/           {
 /*?*/               rLst.StartListening(*pBC, FALSE);
@@ -105,7 +103,7 @@ namespace binfilter {
 /*?*/       pMoreBCs = new ScBroadcasters;
 /*N*/   SfxBroadcaster* pNew = new SfxBroadcaster;
 /*N*/   rLst.StartListening(*pNew, FALSE);
-/*N*/   pMoreBCs->Insert(pNew, (ULONG)0);   // vorne
+/*N*/   pMoreBCs->insert( pMoreBCs->begin(), pNew );    // vorne
 /*N*/ }
 
 /*N*/ void ScBroadcasterList::EndBroadcasting( SfxListener& rLst )
@@ -113,10 +111,10 @@ namespace binfilter {
 /*N*/   rLst.EndListening(aFirstBC);
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*?*/       ULONG nCount = pMoreBCs->Count();
-/*?*/       for (ULONG i=0; i<nCount; i++)
+/*?*/       size_t nCount = pMoreBCs->size();
+/*?*/       for (size_t i = 0; i < nCount; i++)
 /*?*/       {
-/*?*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*?*/           SfxBroadcaster* pBC = (*pMoreBCs)[ i ];
 /*?*/           rLst.EndListening(*pBC);
 /*?*/       }
 /*N*/   }
@@ -128,10 +126,10 @@ namespace binfilter {
 /*N*/       return TRUE;
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*?*/       ULONG nCount = pMoreBCs->Count();
-/*?*/       for (ULONG i=0; i<nCount; i++)
+/*?*/       size_t nCount = pMoreBCs->size();
+/*?*/       for (size_t i = 0; i < nCount; i++)
 /*?*/       {
-/*?*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*?*/           SfxBroadcaster* pBC = (*pMoreBCs)[ i ];
 /*?*/           if (pBC->HasListeners())
 /*?*/               return TRUE;
 /*?*/       }
@@ -144,10 +142,10 @@ namespace binfilter {
 /*N*/   aFirstBC.Broadcast( rHint );
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*?*/       ULONG nCount = pMoreBCs->Count();
-/*?*/       for (ULONG i=0; i<nCount; i++)
+/*?*/       size_t nCount = pMoreBCs->size();
+/*?*/       for (size_t i = 0; i < nCount; i++)
 /*?*/       {
-/*?*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*?*/           SfxBroadcaster* pBC = (*pMoreBCs)[ i  ];
 /*?*/           pBC->Broadcast( rHint );
 /*?*/       }
 /*N*/   }
@@ -166,10 +164,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (pMoreBCs)
 /*N*/   {
-/*N*/       ULONG nBCCount = pMoreBCs->Count();
-/*N*/       for (ULONG i=0; i<nBCCount; i++)
+/*N*/       size_t nBCCount = pMoreBCs->size();
+/*N*/       for (size_t i = 0; i < nBCCount; i++)
 /*N*/       {
-/*N*/           SfxBroadcaster* pBC = pMoreBCs->GetObject(i);
+/*N*/           SfxBroadcaster* pBC = (*pMoreBCs)[ i ];
 /*N*/           nLstCount = pBC->GetListenerCount();
 /*N*/           for (nLstPos=nLstCount; nLstPos>0;)
 /*N*/           {
