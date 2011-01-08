@@ -51,8 +51,6 @@
 #include "appimp.hxx"
 #include "dlgcont.hxx"
 
-#include "bf_basic/basmgr.hxx"
-
 #include "scriptcont.hxx"
 
 #define ITEMID_SEARCH SID_SEARCH_ITEM

@@ -83,7 +83,6 @@ using namespace rtl;
 #include "sberrors.hxx"
 #include "sbunoobj.hxx"
 #include "sbjsmod.hxx"
-#include "basmgr.hxx"
 #include "sbintern.hxx"
 
 #include<math.h>

@@ -25,8 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#include "bf_basic/basmgr.hxx"
-
 #ifdef WIN
 #define _TL_LANG_SPECIAL
 #endif
