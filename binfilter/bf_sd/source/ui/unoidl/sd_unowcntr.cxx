@@ -34,8 +34,6 @@ namespace binfilter {
 using namespace ::rtl;
 using namespace ::com::sun::star;
 
-DECLARE_LIST( WeakRefList, uno::WeakReference< uno::XInterface >* )//STRIP008 ;
-
 SvUnoWeakContainer::SvUnoWeakContainer() throw()
 {
     mpList = new WeakRefList;
@@ -43,37 +41,36 @@ SvUnoWeakContainer::SvUnoWeakContainer() throw()
 
 SvUnoWeakContainer::~SvUnoWeakContainer() throw()
 {
-    uno::WeakReference< uno::XInterface >* pRef = mpList->First();
-    while( pRef )
-    {
-        delete mpList->Remove();
-        pRef = mpList->GetCurObject();
-    }
+    for ( size_t i = 0, n =  mpList->size(); i < n ; ++i )
+        delete (*mpList)[ i ];
+    mpList->clear();
     delete mpList;
 }
 
 /** inserts the given ref into this container */
 void SvUnoWeakContainer::insert( uno::WeakReference< uno::XInterface > xRef ) throw()
 {
-    uno::WeakReference< uno::XInterface >* pRef = mpList->First();
-    while( pRef )
+    for ( size_t i = 0; i < mpList->size(); )
     {
+        uno::WeakReference< uno::XInterface >* pRef = (*mpList)[ i ];
         ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xTestRef( *pRef );
         if(! xTestRef.is() )
         {
-            delete mpList->Remove();
-            pRef = mpList->GetCurObject();
+            delete pRef;
+            WeakRefList::iterator it = mpList->begin();
+            ::std::advance( it, i );
+            mpList->erase( it );
         }
         else
         {
             if( *pRef == xRef )
                 return;
 
-            pRef = mpList->Next();
+            ++i;
         }
     }
 
-    mpList->Insert( new uno::WeakReference< uno::XInterface >( xRef ) );
+    mpList->push_back( new uno::WeakReference< uno::XInterface >( xRef ) );
 }
 
 /** searches the container for a ref that returns true on the given
@@ -81,14 +78,16 @@ void SvUnoWeakContainer::insert( uno::WeakReference< uno::XInterface > xRef ) th
 */
 sal_Bool SvUnoWeakContainer::findRef( uno::WeakReference< uno::XInterface >& rRef, void* pSearchData, weakref_searchfunc pSearchFunc )
 {
-    uno::WeakReference< uno::XInterface >* pRef = mpList->First();
-    while( pRef )
+    for ( size_t i = 0; i < mpList->size(); )
     {
-        uno::Reference< ::com::sun::star::uno::XInterface > xTestRef( *pRef );
-        if(!xTestRef.is())
+        uno::WeakReference< uno::XInterface >* pRef = (*mpList)[ i ];
+        ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  xTestRef( *pRef );
+        if(! xTestRef.is() )
         {
-            delete mpList->Remove();
-            pRef = mpList->GetCurObject();
+            delete pRef;
+            WeakRefList::iterator it = mpList->begin();
+            ::std::advance( it, i );
+            mpList->erase( it );
         }
         else
         {
@@ -98,7 +97,7 @@ sal_Bool SvUnoWeakContainer::findRef( uno::WeakReference< uno::XInterface >& rRe
                 return sal_True;
             }
 
-            pRef = mpList->Next();
+            ++i;
         }
     }
 

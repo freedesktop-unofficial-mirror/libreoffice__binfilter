@@ -30,11 +30,13 @@
 #define _SV_UNOWCNTR_HXX_
 
 #include <cppuhelper/weakref.hxx>
+#include <vector>
+
 namespace binfilter {
 
 typedef sal_Bool (*weakref_searchfunc)( ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface > xRef, void* pSearchData );
 
-class WeakRefList;
+typedef ::std::vector< ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface >* > WeakRefList;
 
 class SvUnoWeakContainer
 {
