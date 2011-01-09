@@ -30,8 +30,6 @@
 
 #include <com/sun/star/util/XCloseable.hpp>
 
-
-
 #include <com/sun/star/xml/sax/XParser.hpp>
 
 #include <com/sun/star/frame/XStorable.hpp>
@@ -39,7 +37,6 @@
 #include <com/sun/star/frame/XLoadable.hpp>
 
 #include <com/sun/star/io/XSeekable.hpp>
-
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 
@@ -310,9 +307,9 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Calc)" ));
         }
 
-
-        if ( aFilterName.getLength() && !bInserting )
+        if ( aFilterName.getLength() && !bInserting &&  pFilter->GetFilterFlags() &  SFX_FILTER_EXPORT)
         {
+            // we do not enter here if the filter has not EXPORT capability, since this implies no write
             uno::Reference < io::XStream > xTempFile(
                 mxMSF->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.TempFile" )) ),
                     uno::UNO_QUERY_THROW );
