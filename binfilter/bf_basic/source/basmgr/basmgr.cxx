@@ -61,7 +61,6 @@
 #include <com/sun/star/script/XStarBasicLibraryInfo.hpp>
 
 #include <cppuhelper/implbase1.hxx>
-#include <vector>
 
 namespace binfilter {
 
@@ -71,7 +70,6 @@ using namespace com::sun::star::lang;
 using namespace com::sun::star::script;
 using namespace cppu;
 using namespace rtl;
-using ::std::vector;
 
 typedef WeakImplHelper1< XNameContainer > NameContainerHelper;
 typedef WeakImplHelper1< XStarBasicModuleInfo > ModuleInfoHelper;
@@ -113,7 +111,7 @@ DBG_NAME( BasicManager );
 StreamMode eStreamReadMode = STREAM_READ | STREAM_NOCREATE | STREAM_SHARE_DENYALL;
 StreamMode eStorageReadMode = STREAM_READ | STREAM_SHARE_DENYWRITE;
 
-typedef vector< BasicError* > BasErrorLst;
+DECLARE_LIST( BasErrorLst, BasicError* )
 
 
 //----------------------------------------------------------------------------
@@ -368,18 +366,16 @@ class BasicErrorManager
 {
 private:
     BasErrorLst aErrorList;
-    size_t CurrentError;
 
 public:
-                BasicErrorManager() { CurrentError = 0; }
                 ~BasicErrorManager();
 
     void        Reset();
     void        InsertError( const BasicError& rError );
 
-    BOOL        HasErrors()         { return !aErrorList.empty(); }
-    BasicError* GetFirstError();
-    BasicError* GetNextError();
+    BOOL        HasErrors()         { return (BOOL)aErrorList.Count(); }
+    BasicError* GetFirstError()     { return aErrorList.First(); }
+    BasicError* GetNextError()      { return aErrorList.Next(); }
 };
 
 
@@ -388,34 +384,20 @@ BasicErrorManager::~BasicErrorManager()
     Reset();
 }
 
-BasicError* BasicErrorManager::GetFirstError()
-{
-    CurrentError = 0;
-    if ( aErrorList.empty() )
-        return NULL;
-    return aErrorList[ 0 ];
-}
-
-BasicError* BasicErrorManager::GetNextError()
-{
-    if (  aErrorList.empty()
-       || CurrentError + 1 >= aErrorList.size()
-       )
-        return NULL;
-    CurrentError++;
-    return aErrorList[ CurrentError ];
-}
-
 void BasicErrorManager::Reset()
 {
-    for ( size_t i = 0, n = aErrorList.size(); i < n; ++i )
-        delete aErrorList[ i ];
-    aErrorList.clear();
+    BasicError* pError = (BasicError*)aErrorList.First();
+    while ( pError )
+    {
+        delete pError;
+        pError = (BasicError*)aErrorList.Next();
+    }
+    aErrorList.Clear();
 }
 
 void BasicErrorManager::InsertError( const BasicError& rError )
 {
-    aErrorList.push_back( new BasicError( rError ) );
+    aErrorList.Insert( new BasicError( rError ), LIST_APPEND );
 }
 
 BasicError::BasicError( ULONG nId, USHORT nR, const String& rErrStr ) :

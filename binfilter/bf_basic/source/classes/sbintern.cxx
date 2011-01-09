@@ -30,6 +30,7 @@
 #include "sbunoobj.hxx"
 #include "token.hxx"                // Tokenizer
 #include "codegen.hxx"              // Code-Generator
+#include "basmgr.hxx"
 
 namespace binfilter {
 

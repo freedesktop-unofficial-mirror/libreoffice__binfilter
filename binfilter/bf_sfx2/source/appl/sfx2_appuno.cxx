@@ -35,6 +35,7 @@
 #include <bf_svtools/rectitem.hxx>
 #include <tools/urlobj.hxx>
 #include <bf_basic/sbmeth.hxx>
+#include <bf_basic/basmgr.hxx>
 #include <bf_basic/sbxcore.hxx>
 #include <bf_basic/sbx.hxx>
 #include <bf_svtools/stritem.hxx>

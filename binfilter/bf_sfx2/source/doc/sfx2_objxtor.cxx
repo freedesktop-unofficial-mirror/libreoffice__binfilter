@@ -164,6 +164,8 @@ extern AsynchronLink* pPendingCloser;
 /*N*/       pSfxApp->ReleaseIndex(pImp->nVisualDocumentNumber);
 /*N*/
 /*N*/   // Basic-Manager zerst"oren
+/*N*/   if ( pImp->pBasicMgr )
+/*N*/       BasicManager::LegacyDeleteBasicManager( pImp->pBasicMgr );
 /*N*/   if( pImp->pBasicLibContainer )
 /*N*/       pImp->pBasicLibContainer->release();
 /*N*/   if( pImp->pDialogLibContainer )

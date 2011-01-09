@@ -34,6 +34,8 @@
 
 #include "namecont.hxx"
 
+#include "bf_basic/basmgr.hxx"
+
 #include "scriptcont.hxx"
 
 #include <unotools/streamwrap.hxx>
@@ -44,6 +46,7 @@
 
 #include <bf_svtools/sfxecode.hxx>
 #include <bf_svtools/ehdl.hxx>
+#include "bf_basic/basmgr.hxx"
 #include <xmlscript/xmlmod_imexp.hxx>
 #include <app.hxx>
 namespace binfilter {
