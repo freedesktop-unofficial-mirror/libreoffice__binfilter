@@ -130,7 +130,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     {
     case ATTR_PRESENT_ALL:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -146,7 +146,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_CHANGE_PAGE:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -161,7 +161,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
     case ATTR_PRESENT_ANIMATION_ALLOWED:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -198,7 +198,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_ENDLESS:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -212,7 +212,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_FULLSCREEN:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -238,7 +238,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_MANUEL:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -252,7 +252,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_MOUSE:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -266,7 +266,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_ALWAYS_ON_TOP:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -280,7 +280,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_NAVIGATOR:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -294,7 +294,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_PEN:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -308,7 +308,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_PAUSE_TIMEOUT:
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if(!(aValue >>= nValue) || (nValue < 0))
             throw lang::IllegalArgumentException();
 
@@ -317,7 +317,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_SHOW_PAUSELOGO:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();

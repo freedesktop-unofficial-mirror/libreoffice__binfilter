@@ -190,7 +190,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     {
     case WID_LAYER_LOCKED:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( LOCKED, bValue );
@@ -198,7 +198,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     }
     case WID_LAYER_PRINTABLE:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( PRINTABLE, bValue );
@@ -206,7 +206,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     }
     case WID_LAYER_VISIBLE:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( VISIBLE, bValue );

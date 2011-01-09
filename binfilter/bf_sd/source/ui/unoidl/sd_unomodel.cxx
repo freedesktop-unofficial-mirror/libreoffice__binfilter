@@ -1108,7 +1108,7 @@ void SAL_CALL SdXImpressDocument::setPropertyValue( const OUString& aPropertyNam
         }
         case WID_MODEL_TABSTOP:
         {
-            sal_Int32 nValue;
+            sal_Int32 nValue(0);
             if(!(aValue >>= nValue) || nValue < 0 )
                 throw lang::IllegalArgumentException();
 
@@ -1130,7 +1130,7 @@ void SAL_CALL SdXImpressDocument::setPropertyValue( const OUString& aPropertyNam
             break;
         case WID_MODEL_CONTFOCUS:
             {
-                sal_Bool bFocus;
+                sal_Bool bFocus(sal_False);
                 if( !(aValue >>= bFocus ) )
                     throw lang::IllegalArgumentException();
                 pDoc->SetAutoControlFocus( bFocus );
@@ -1138,7 +1138,7 @@ void SAL_CALL SdXImpressDocument::setPropertyValue( const OUString& aPropertyNam
             break;
         case WID_MODEL_DSGNMODE:
             {
-                sal_Bool bMode;
+                sal_Bool bMode(sal_False);
                 if( !(aValue >>= bMode ) )
                     throw lang::IllegalArgumentException();
                 pDoc->SetOpenInDesignMode( bMode );

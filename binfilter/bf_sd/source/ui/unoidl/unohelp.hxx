@@ -36,7 +36,7 @@ inline sal_Bool any2bool( const ::com::sun::star::uno::Any& rAny, sal_Bool& rBoo
     }
     else
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if(!(rAny >>= nValue))
             return sal_False;
         rBool = nValue != 0;

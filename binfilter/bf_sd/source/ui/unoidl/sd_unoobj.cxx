@@ -410,7 +410,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_ISANIMATION:
                 {
-                    sal_Bool bIsAnimation;
+                    sal_Bool bIsAnimation(sal_False);
                     if(!(aValue >>= bIsAnimation))
                         throw lang::IllegalArgumentException();
 
@@ -445,7 +445,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_BLUESCREEN:
                 {
-                    sal_Int32 nColor;
+                    sal_Int32 nColor(0);
                     if(!(aValue >>= nColor))
                         throw lang::IllegalArgumentException();
 
@@ -454,7 +454,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                 }
                 case WID_VERB:
                 {
-                    sal_Int32 nVerb;
+                    sal_Int32 nVerb(0);
                     if(!(aValue >>= nVerb))
                         throw lang::IllegalArgumentException();
 
@@ -463,7 +463,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                 }
                 case WID_DIMCOLOR:
                 {
-                    sal_Int32 nColor;
+                    sal_Int32 nColor(0);
                     if(!(aValue >>= nColor))
                         throw lang::IllegalArgumentException();
 
@@ -478,7 +478,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_PRESORDER:
                 {
-                    sal_Int32 nPos;
+                    sal_Int32 nPos(0);
                     if(!(aValue >>= nPos))
                         throw lang::IllegalArgumentException();
 
