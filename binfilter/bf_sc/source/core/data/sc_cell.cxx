@@ -102,9 +102,6 @@ static const sal_Char msgDbgInfinity[] =
 
 // -----------------------------------------------------------------------
 
-DECLARE_LIST (ScFormulaCellList, ScFormulaCell*)//STRIP008 ;
-
-
 /*N*/ ScBaseCell* ScBaseCell::Clone(ScDocument* pDoc) const
 /*N*/ {
 /*N*/   switch (eCellType)
