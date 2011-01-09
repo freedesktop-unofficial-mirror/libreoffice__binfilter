@@ -482,103 +482,13 @@ public:
         { mxScriptCont = xScriptCont; }
 };
 
-typedef vector< BasicLibInfo* > BasicLibsBase;
+DECLARE_LIST( BasicLibsBase, BasicLibInfo* )
 
-class BasicLibs
+class BasicLibs : public BasicLibsBase
 {
-private:
-    BasicLibsBase   mpList;
-    size_t          current;
-
 public:
     String  aBasicLibPath;      // soll eigentlich Member vom Manager werden, aber jetzt nicht inkompatibel!
-    BasicLibInfo*   GetObject( size_t i );
-    void            Insert( BasicLibInfo* item, size_t i );
-    void            Clear() { mpList.clear(); }
-    size_t          Count() { return mpList.size(); }
-    size_t          GetPos( BasicLibInfo* pItem );
-    size_t          GetCurPos() { return current; }
-    BasicLibInfo*   First();
-    BasicLibInfo*   Next();
-    BasicLibInfo*   Prev();
-    BasicLibInfo*   Last();
-    BasicLibInfo*   Remove( BasicLibInfo* pItem );
 };
-
-size_t BasicLibs::GetPos( BasicLibInfo* pItem )
-{
-    for ( size_t i = 0, n = mpList.size(); i < n; ++i )
-        if ( mpList[ i ] == pItem )
-            return i;
-    return size_t(-1);
-}
-
-void BasicLibs::Insert( BasicLibInfo* pItem, size_t i )
-{
-    if ( i >= mpList.size() )
-    {
-        mpList.push_back( pItem );
-        current = mpList.size() - 1;
-    }
-    else
-    {
-        BasicLibsBase::iterator it = mpList.begin();
-        ::std::advance( it, i );
-        mpList.insert( it, pItem );
-        current = i;
-    }
-}
-
-BasicLibInfo* BasicLibs::Remove( BasicLibInfo* pItem )
-{
-    size_t pos = GetPos( pItem );
-    if ( pos == size_t(-1) ) return NULL;
-
-    BasicLibsBase::iterator it = mpList.begin();
-    ::std::advance( it, pos );
-    mpList.erase( it );
-    return pItem;
-}
-
-BasicLibInfo* BasicLibs::GetObject( size_t i )
-{
-    if ( i >= mpList.size() ) return NULL;
-    return mpList[ i ];
-}
-
-BasicLibInfo* BasicLibs::First()
-{
-    current = 0;
-    if ( mpList.empty() ) return NULL;
-    return mpList[ current ];
-}
-
-BasicLibInfo* BasicLibs::Next()
-{
-    if (  mpList.empty()
-       || current+1 > mpList.size()
-       )
-        return NULL;
-    current++;
-    return mpList[ current ];
-}
-
-BasicLibInfo* BasicLibs::Prev()
-{
-    if (  mpList.empty()
-       || current == 0
-       )
-        return NULL;
-    current--;
-    return mpList[ current ];
-}
-
-BasicLibInfo* BasicLibs::Last()
-{
-    if ( mpList.empty() ) return NULL;
-    current = mpList.size() - 1;
-    return mpList[ current ];
-}
 
 BasicLibInfo::BasicLibInfo()
 {
