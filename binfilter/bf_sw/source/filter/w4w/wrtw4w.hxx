@@ -118,8 +118,6 @@ class SwW4WWriter : public Writer
     void OutFlyFrm();
     void OutW4WFlyFrms( const SwFlyFrmFmt& );
 
-    ULONG WriteStream();
-
 public:
 
     SwFlyFrmFmt* pFlyFmt;           // liegt der Node in einem FlyFrame, ist

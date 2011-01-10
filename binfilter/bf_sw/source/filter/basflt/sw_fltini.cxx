@@ -260,32 +260,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
     // returns the count of it
 
 
-/*N*/ ULONG Sw3Writer::WriteStorage()
-/*N*/ {
-/*N*/   ULONG nRet;
-/*N*/   if( pIO )
-/*N*/   {
-/*N*/       // der gleiche Storage -> Save, sonst SaveAs aufrufen
-/*N*/       if( !bSaveAs )
-/*?*/           nRet = pIO->Save( pOrigPam, bWriteAll );
-/*N*/       else
-/*N*/           nRet = pIO->SaveAs( pStg, pOrigPam, bWriteAll );
-/*N*/
-/*N*/       pIO = 0;        // nach dem Schreiben ist der Pointer ungueltig !!
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       ASSERT( !this, "Sw3-Writer ohne IO-System" )
-/*?*/       nRet = ERR_SWG_WRITE_ERROR;
-/*N*/   }
-/*N*/   return nRet;
-/*N*/ }
-
-
-
-
-
-
 
  BOOL Writer::IsStgWriter() const { return FALSE; }
  BOOL Writer::IsSw3Writer() const { return FALSE; }

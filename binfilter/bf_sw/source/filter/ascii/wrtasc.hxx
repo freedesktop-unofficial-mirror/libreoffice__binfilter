@@ -41,8 +41,6 @@ class SwASCWriter : public Writer
 {
     String sLineEnd;
 
-    virtual ULONG WriteStream();
-
 public:
     SwASCWriter( const String& rFilterName );
     virtual ~SwASCWriter();

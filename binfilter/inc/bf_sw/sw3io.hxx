@@ -54,8 +54,6 @@ class Sw3Io
     friend class Sw3Writer;
 
     ULONG Load( SvStorage*, SwPaM* = NULL );
-    ULONG Save( SwPaM* = NULL, BOOL = TRUE );
-    ULONG SaveAs( SvStorage*, SwPaM* = NULL, BOOL = TRUE );
 
 public:
     Sw3Io( SwDoc& );

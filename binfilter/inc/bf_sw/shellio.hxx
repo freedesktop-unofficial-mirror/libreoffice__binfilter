@@ -359,7 +359,7 @@ protected:
     void PutNumFmtFontsInAttrPool();
     void PutEditEngFontsInAttrPool( BOOL bIncl_CJK_CTL = TRUE );
 
-    virtual ULONG WriteStream() = 0;
+//    virtual ULONG WriteStream() = 0;
 
 public:
     SwDoc* pDoc;
@@ -443,8 +443,8 @@ protected:
     SvStorage* pStg;
 
     // Fehler beim Aufruf erzeugen
-    virtual ULONG WriteStream(){DBG_BF_ASSERT(0, "STRIP"); return 0;}
-    virtual ULONG WriteStorage() = 0;
+//    virtual ULONG WriteStream(){DBG_BF_ASSERT(0, "STRIP"); return 0;}
+//    virtual ULONG WriteStorage() = 0;
 
 public:
     StgWriter() : Writer(), pStg( 0 ) {}
@@ -459,7 +459,7 @@ class Sw3Writer : public StgWriter
     Sw3Io* pIO;
     BOOL bSaveAs : 1;
 
-    virtual ULONG WriteStorage();
+//    virtual ULONG WriteStorage();
 
 public:
     Sw3Writer() : pIO( 0 ), bSaveAs( FALSE ) {}
