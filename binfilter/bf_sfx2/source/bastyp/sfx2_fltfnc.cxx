@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-
 #include <sot/exchange.hxx>
 #include "bf_basic/sbxmeth.hxx"
 #include <rtl/ustrbuf.hxx>
@@ -36,7 +34,6 @@
 #include <sal/types.h>
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/ucb/XContent.hpp>
-
 
 #include <rtl/logfile.hxx>
 
@@ -60,6 +57,10 @@ using namespace ::rtl;
 #include "app.hxx"
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+
+#include <vector>
+using ::std::vector;
+
 namespace binfilter {
 
 #define SFX_STR_OVERRIDE "Override"
@@ -391,7 +392,7 @@ public:
 
 //----------------------------------------------------------------
 
-DECLARE_LIST( SfxFContainerList_Impl, SfxFilterContainer * )//STRIP008 ;
+typedef vector< SfxFilterContainer* > SfxFContainerList_Impl;
 
 class SfxFilterMatcher_Impl
 {
@@ -402,14 +403,15 @@ public:
 };
 
 /*?*/ SfxFilterContainer* SfxFilterMatcher::GetContainer( const String &rName ) const
-/*STRIP003*/{ // DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
-/*STRIP003*/     sal_uInt16 nCount = (sal_uInt16) rList.Count();
-/*STRIP003*/     for( sal_uInt16 n = 0; n < nCount; n++ )
-/*STRIP003*/         if( rList.GetObject( n )->GetName() == rName )
-/*STRIP003*/             return rList.GetObject( n );
-/*STRIP003*/     return 0;
-/*?*/ }
+{
+    SfxFContainerList_Impl& rList = pImpl->aList;
+
+    for ( size_t i = 0, n = rList.size(); i < n; ++i )
+        if ( rList[ i ]->GetName() == rName )
+            return rList[ i ];
+
+    return 0;
+}
 
 //----------------------------------------------------------------
 
@@ -431,25 +433,23 @@ public:
 
 //----------------------------------------------------------------
 
-/*N*/ SfxFilterMatcher::~SfxFilterMatcher()
-/*N*/ {
-/*N*/   if ( pImpl->bDeleteContainers )
-/*N*/   {
-/*N*/       for ( sal_uInt32 n = pImpl->aList.Count(); n--; )
-/*N*/       {
-/*N*/           SfxFilterContainer *pFCont = pImpl->aList.Remove(n);
-/*N*/           delete pFCont;
-/*N*/       }
-/*N*/   }
-/*N*/     delete pImpl;
-/*N*/ }
+SfxFilterMatcher::~SfxFilterMatcher()
+{
+    if ( pImpl->bDeleteContainers )
+    {
+        for ( size_t i = 0, n = pImpl->aList.size(); i < n; ++i )
+            delete pImpl->aList[ i ];
+        pImpl->aList.clear();
+    }
+    delete pImpl;
+}
 
 //----------------------------------------------------------------
 
-/*N*/ void SfxFilterMatcher::AddContainer( SfxFilterContainer* pC )
-/*N*/ {
-/*N*/     pImpl->aList.Insert( pC, pImpl->aList.Count() );
-/*N*/ }
+void SfxFilterMatcher::AddContainer( SfxFilterContainer* pC )
+{
+    pImpl->aList.push_back( pC );
+}
 
 //----------------------------------------------------------------
 
@@ -735,32 +735,38 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 
 //----------------------------------------------------------------
 
-/*STRIP003*/ ULONG SfxFilterMatcher::GetFilter4Content(
-/*STRIP003*/     SfxMedium& rMedium, const SfxFilter** ppFilter,  SfxFilterFlags nMust, SfxFilterFlags nDont, sal_Bool bOnlyGoodOnes ) const
-/*STRIP003*/ {
-/*STRIP003*/     ULONG nErr = ERRCODE_NONE;
-/*STRIP003*/     SfxFContainerList_Impl& rList = pImpl->aList;
-/*STRIP003*/     sal_uInt16 nCount = (sal_uInt16)rList.Count();
-/*STRIP003*/     for( sal_uInt16 n = 0; n<nCount; n++ )
-/*STRIP003*/     {
-/*STRIP003*/         const SfxFilter* pFilter = 0;
-/*STRIP003*/         nErr = rList.GetObject( n )->GetFilter4Content(
-/*STRIP003*/             rMedium, &pFilter, nMust, nDont );
-/*STRIP003*/        CHECKERROR();
-/*STRIP003*/         if( rMedium.GetError() != ERRCODE_NONE )
-/*STRIP003*/         {
-/*STRIP003*/             pFilter = 0;
-/*STRIP003*/             return rMedium.GetError();
-/*STRIP003*/         }
-/*STRIP003*/        if( nErr == ERRCODE_ABORT && bOnlyGoodOnes ) pFilter = 0;
-/*STRIP003*/         if( pFilter )
-/*STRIP003*/         {
-/*STRIP003*/             *ppFilter = pFilter;
-/*STRIP003*/             return nErr;
-/*STRIP003*/         }
-/*STRIP003*/     }
-/*STRIP003*/     return 0;
-/*STRIP003*/ }
+ULONG SfxFilterMatcher::GetFilter4Content(
+    SfxMedium& rMedium,
+    const SfxFilter** ppFilter,
+    SfxFilterFlags nMust,
+    SfxFilterFlags nDont,
+    sal_Bool bOnlyGoodOnes
+) const
+{
+    ULONG nErr = ERRCODE_NONE;
+    SfxFContainerList_Impl& rList = pImpl->aList;
+
+    for ( size_t i = 0, n = rList.size(); i < n; ++i )
+    {
+        const SfxFilter* pFilter = 0;
+        nErr = rList[ i ]->GetFilter4Content( rMedium, &pFilter, nMust, nDont );
+        CHECKERROR();
+        if( rMedium.GetError() != ERRCODE_NONE )
+        {
+            pFilter = 0;
+            return rMedium.GetError();
+        }
+
+        if( nErr == ERRCODE_ABORT && bOnlyGoodOnes ) pFilter = 0;
+
+        if( pFilter )
+        {
+            *ppFilter = pFilter;
+            return nErr;
+        }
+    }
+    return 0;
+}
 
 #define IMPL_LOOP( Type, ArgType )                              \
 const SfxFilter* SfxFilterMatcher::Type(                        \
@@ -768,12 +774,10 @@ const SfxFilter* SfxFilterMatcher::Type(                        \
 {                                                               \
     const SfxFilter* pFirstFilter = 0;                          \
     SfxFContainerList_Impl& rList = pImpl->aList;               \
-    sal_uInt16 nCount = (sal_uInt16)rList.Count();              \
-    for( sal_uInt16 n = 0; n<nCount; n++ )                      \
+    for ( size_t i = 0, n = rList.size(); i < n; ++i )          \
     {                                                           \
-        const SfxFilter* pFilter =                              \
-            rList.GetObject( n )->Type(rStr, nMust, nDont );    \
-        if( pFilter && ( pFilter->GetFilterFlags() & SFX_FILTER_PREFERED ) ) \
+        const SfxFilter* pFilter = rList[ i ]->Type(rStr, nMust, nDont );       \
+        if( pFilter && ( pFilter->GetFilterFlags() & SFX_FILTER_PREFERED ) )    \
             return pFilter;                                     \
         else if ( !pFirstFilter )                               \
             pFirstFilter = pFilter;                             \
