@@ -42,7 +42,7 @@
 
 #include "sfxsids.hrc"
 #include "app.hxx"
-
+#include <vector>
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
 namespace binfilter {
@@ -83,10 +83,9 @@ static const USHORT nVersion = 5;
 /*N*/                 , maUIName( rUIName ) {}
 /*N*/ };
 
-/*?*/ DECLARE_LIST( SfxEventList_Impl, EventNames_Impl* )//STRIP008 ;
-/*?*/
-/*?*/ SfxEventList_Impl   *gp_Id_SortList = NULL;
-/*?*/ SfxEventList_Impl   *gp_Name_SortList = NULL;
+typedef ::std::vector< EventNames_Impl* > SfxEventList_Impl;
+SfxEventList_Impl   *gp_Id_SortList = NULL;
+SfxEventList_Impl   *gp_Name_SortList = NULL;
 
 //==========================================================================
 
@@ -106,37 +105,36 @@ static const USHORT nVersion = 5;
 
 //==========================================================================
 
-/*N*/ SfxEventConfiguration::~SfxEventConfiguration()
-/*N*/ {
-/*N*/     for (USHORT n=0; n<pEventArr->Count(); n++)
-/*N*/         delete (*pEventArr)[n];
-/*N*/     delete pEventArr;
-/*N*/     delete pAppEventConfig;
-/*N*/
-/*N*/     if ( gp_Id_SortList )
-/*N*/     {
-/*N*/         EventNames_Impl* pData = gp_Id_SortList->First();
-/*N*/         while ( pData )
-/*N*/         {
-/*N*/             delete pData;
-/*N*/             pData = gp_Id_SortList->Next();
-/*N*/         }
-/*N*/         delete gp_Id_SortList;
-/*N*/         delete gp_Name_SortList;
-/*N*/
-/*N*/         gp_Id_SortList = NULL;
-/*N*/         gp_Name_SortList = NULL;
-/*N*/     }
-/*N*/ }
+SfxEventConfiguration::~SfxEventConfiguration()
+{
+    for (USHORT n=0; n<pEventArr->Count(); n++)
+        delete (*pEventArr)[n];
+
+    delete pEventArr;
+    delete pAppEventConfig;
+
+    if ( gp_Id_SortList )
+    {
+        for ( size_t i = 0, n = gp_Id_SortList->size(); i < n; ++i )
+            delete (*gp_Id_SortList)[ i ];
+        gp_Id_SortList->clear();
+
+        delete gp_Id_SortList;
+        delete gp_Name_SortList;
+
+        gp_Id_SortList = NULL;
+        gp_Name_SortList = NULL;
+    }
+}
 
 //==========================================================================
 
-/*N*/ void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
-/*N*/ {
-/*N*/     USHORT nCount = pEventArr->Count();
-/*N*/     const SfxEvent_Impl *pEvent = new SfxEvent_Impl(rName, nId);
-/*N*/     pEventArr->Insert(pEvent, nCount);
-/*N*/ }
+void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
+{
+    USHORT nCount = pEventArr->Count();
+    const SfxEvent_Impl *pEvent = new SfxEvent_Impl(rName, nId);
+    pEventArr->Insert(pEvent, nCount);
+}
 
 //==========================================================================
 
@@ -151,16 +149,6 @@ static const USHORT nVersion = 5;
 /*N*/ {
 /*N*/   bInitialized = TRUE;
 /*N*/ }
-
-/*
-void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
-{
-    if ( GetConfigManager() == pMgr )
-        Initialize();
-    else
-        ReInitialize( pMgr );
-}
-*/
 
 //==========================================================================
 
@@ -435,7 +423,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ {
 /*N*/     rFound = sal_False;
 /*N*/
-/*N*/     if ( ! gp_Id_SortList->Count() )
+/*N*/     if ( gp_Id_SortList->empty() )
 /*N*/         return 0;
 /*N*/
 /*N*/     // use binary search to find the correct position
@@ -443,7 +431,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/
 /*N*/     int     nCompVal = 1;
 /*N*/     long    nStart = 0;
-/*N*/     long    nEnd = gp_Id_SortList->Count() - 1;
+/*N*/     long    nEnd = gp_Id_SortList->size() - 1;
 /*N*/     long    nMid(0);
 /*N*/
 /*N*/     EventNames_Impl* pMid;
@@ -453,7 +441,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     while ( nCompVal && ( nStart <= nEnd ) )
 /*N*/     {
 /*N*/         nMid = ( nEnd - nStart ) / 2 + nStart;
-/*N*/         pMid = gp_Id_SortList->GetObject( (USHORT) nMid );
+/*N*/         pMid = (*gp_Id_SortList)[ nMid ];
 /*N*/
 /*N*/         nCompVal = pMid->mnId - nId;
 /*N*/
@@ -473,7 +461,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/             nMid++;
 /*N*/     }
 /*N*/
-/*N*/     return (USHORT) nMid;
+/*N*/     return (ULONG) nMid;
 /*N*/ }
 
 // -------------------------------------------------------------------------------------------------------
@@ -481,7 +469,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/ {
 /*N*/     rFound = sal_False;
 /*N*/
-/*N*/     if ( ! gp_Name_SortList->Count() )
+/*N*/     if ( gp_Name_SortList->empty() )
 /*N*/         return 0;
 /*N*/
 /*N*/     // use binary search to find the correct position
@@ -489,7 +477,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/
 /*N*/     int     nCompVal = 1;
 /*N*/     long    nStart = 0;
-/*N*/     long    nEnd = gp_Name_SortList->Count() - 1;
+/*N*/     long    nEnd = gp_Name_SortList->size() - 1;
 /*N*/     long    nMid(0);
 /*N*/
 /*N*/     EventNames_Impl* pMid;
@@ -499,7 +487,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     while ( nCompVal && ( nStart <= nEnd ) )
 /*N*/     {
 /*N*/         nMid = ( nEnd - nStart ) / 2 + nStart;
-/*N*/         pMid = gp_Name_SortList->GetObject( (USHORT) nMid );
+/*N*/         pMid = (*gp_Name_SortList)[ nMid ];
 /*N*/
 /*N*/         nCompVal = rName.CompareTo( pMid->maEventName );
 /*N*/
@@ -519,7 +507,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/             nMid++;
 /*N*/     }
 /*N*/
-/*N*/     return (USHORT) nMid;
+/*N*/     return (ULONG) nMid;
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
@@ -534,7 +522,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/
 /*N*/         if ( bFound )
 /*N*/         {
-/*N*/             EventNames_Impl *pData = gp_Id_SortList->GetObject( nPos );
+/*N*/             EventNames_Impl *pData = (*gp_Id_SortList)[  nPos ];
 /*N*/             aRet = pData->maEventName;
 /*N*/         }
 /*N*/     }
@@ -554,7 +542,7 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/
 /*N*/         if ( bFound )
 /*N*/         {
-/*N*/             EventNames_Impl *pData = gp_Name_SortList->GetObject( nPos );
+/*N*/             EventNames_Impl *pData = (*gp_Name_SortList)[ nPos ];
 /*N*/             nRet = pData->mnId;
 /*N*/         }
 /*N*/     }
@@ -585,12 +573,16 @@ void SfxEventConfigItem_Impl::Init( SfxConfigManager *pMgr )
 /*N*/     EventNames_Impl *pData;
 /*N*/
 /*N*/     pData = new EventNames_Impl( nId, rMacroName, rUIName );
-/*N*/     gp_Id_SortList->Insert( pData, nPos );
+          SfxEventList_Impl::iterator itId = gp_Id_SortList->begin();
+          ::std::advance( itId, nPos );
+          gp_Id_SortList->insert( itId, pData );
 /*N*/
 /*N*/     nPos = GetPos_Impl( rMacroName, bFound );
 /*N*/     DBG_ASSERT( !bFound, "RegisterEvent: Name in List, but ID not?" );
 /*N*/
-/*N*/     gp_Name_SortList->Insert( pData, nPos );
+          SfxEventList_Impl::iterator itName = gp_Name_SortList->begin();
+          ::std::advance( itName, nPos );
+          gp_Name_SortList->insert( itName, pData );
 /*N*/
 /*N*/     SFX_APP()->GetEventConfig()->RegisterEvent( nId, rUIName );
 /*N*/ }
