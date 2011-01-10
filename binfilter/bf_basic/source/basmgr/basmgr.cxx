@@ -113,8 +113,7 @@ DBG_NAME( BasicManager );
 StreamMode eStreamReadMode = STREAM_READ | STREAM_NOCREATE | STREAM_SHARE_DENYALL;
 StreamMode eStorageReadMode = STREAM_READ | STREAM_SHARE_DENYWRITE;
 
-DECLARE_LIST( BasErrorLst, BasicError* )
-
+typedef vector< BasicError* > BasErrorLst;
 
 //----------------------------------------------------------------------------
 // BasicManager impl data
@@ -368,18 +367,37 @@ class BasicErrorManager
 {
 private:
     BasErrorLst aErrorList;
+    size_t CurrentError;
 
 public:
+                BasicErrorManager() { CurrentError = 0; }
                 ~BasicErrorManager();
 
     void        Reset();
     void        InsertError( const BasicError& rError );
 
-    BOOL        HasErrors()         { return (BOOL)aErrorList.Count(); }
-    BasicError* GetFirstError()     { return aErrorList.First(); }
-    BasicError* GetNextError()      { return aErrorList.Next(); }
+    BOOL        HasErrors()         { return !aErrorList.empty(); }
+    BasicError* GetFirstError();
+    BasicError* GetNextError();
 };
 
+BasicError* BasicErrorManager::GetFirstError()
+{
+    CurrentError = 0;
+    if ( aErrorList.empty() )
+        return NULL;
+    return aErrorList[ 0 ];
+}
+
+BasicError* BasicErrorManager::GetNextError()
+{
+    if (  aErrorList.empty()
+       || CurrentError + 1 >= aErrorList.size()
+       )
+        return NULL;
+    CurrentError++;
+    return aErrorList[ CurrentError ];
+}
 
 BasicErrorManager::~BasicErrorManager()
 {
@@ -388,18 +406,14 @@ BasicErrorManager::~BasicErrorManager()
 
 void BasicErrorManager::Reset()
 {
-    BasicError* pError = (BasicError*)aErrorList.First();
-    while ( pError )
-    {
-        delete pError;
-        pError = (BasicError*)aErrorList.Next();
-    }
-    aErrorList.Clear();
+    for ( size_t i = 0, n = aErrorList.size(); i < n; ++i )
+        delete aErrorList[ i ];
+    aErrorList.clear();
 }
 
 void BasicErrorManager::InsertError( const BasicError& rError )
 {
-    aErrorList.Insert( new BasicError( rError ), LIST_APPEND );
+    aErrorList.push_back( new BasicError( rError ) );
 }
 
 BasicError::BasicError( ULONG nId, USHORT nR, const String& rErrStr ) :
