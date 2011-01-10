@@ -93,7 +93,7 @@ using namespace ::com::sun::star::uno;
 //====================================================================
 
 /*?*/ GDIMetaFile* SfxObjectShell::GetPreviewMetaFile( sal_Bool /*bFullContent*/ ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
+/*?*/ { return NULL;
 /*?*/ }
 
 /*N*/ bool SfxObjectShell::SaveWindows_Impl( SvStorage & /*rStor*/ ) const
@@ -167,7 +167,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ #endif
 /*N*/   if( nMaxSize && !GetDocInfo().IsPasswd() &&
 /*N*/       SFX_CREATE_MODE_STANDARD == eCreateMode )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {
 /*N*/   }
 
 /*N*/   if( pImp->bIsSaving )
@@ -337,8 +337,7 @@ using namespace ::com::sun::star::uno;
 /*?*/   SvEmbeddedObject*   /*pObj*/,
 /*?*/   const String&       /*rName*/
 /*?*/ )
-
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
+/*?*/ { return NULL;
 /*?*/ }
 
 //-------------------------------------------------------------------------
@@ -389,7 +388,7 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ USHORT SfxObjectShell::GetContentCount(USHORT /*nIdx1*/,
 /*N*/                                        USHORT /*nIdx2*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
+/*N*/ { return 0;
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -401,7 +400,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                               USHORT /*i*/,
 /*N*/                               USHORT /*nIdx1*/,
 /*N*/                               USHORT /*nIdx2*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
+/*N*/ {
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -414,7 +413,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                                 USHORT /*i*/,
 /*N*/                                 USHORT /*nIdx1*/,
 /*N*/                                 USHORT /*nIdx2*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
+/*N*/ {
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -435,7 +434,7 @@ using namespace ::com::sun::star::uno;
     rufen.
 */
 
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {
 /*N*/ }
 
 //--------------------------------------------------------------------

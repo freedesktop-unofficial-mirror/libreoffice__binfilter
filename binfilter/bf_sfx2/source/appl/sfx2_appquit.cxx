@@ -25,8 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#include "bf_basic/basmgr.hxx"
-
 #ifdef WIN
 #define _TL_LANG_SPECIAL
 #endif
@@ -58,7 +56,6 @@
 
 namespace binfilter {
 
-DECLARE_LIST( SfxFrameWindowFactoryArray_Impl, SfxFrameWindowFactory* )
 SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)//STRIP008 ;
 
 //-------------------------------------------------------------------------

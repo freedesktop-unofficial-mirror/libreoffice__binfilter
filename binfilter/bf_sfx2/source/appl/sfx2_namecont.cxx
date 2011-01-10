@@ -26,10 +26,7 @@
  *
  ************************************************************************/
 
-
-
 #include <rtl/uri.hxx>
-
 
 #include "namecont.hxx"
 
@@ -46,6 +43,7 @@
 #include <com/sun/star/uno/DeploymentException.hpp>
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+
 namespace binfilter {
 
 using namespace ::com::sun::star::container;
@@ -202,7 +200,7 @@ namespace SfxContainer_Impl
 
 /*?*/ void NameContainer_Impl::removeByName( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 
@@ -677,7 +675,7 @@ namespace SfxContainer_Impl
 /*?*/           aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/         {
 /*?*/         }
 /*N*/     }
 /*N*/
@@ -1351,7 +1349,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::removeLibrary( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 /*N*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLoaded( const OUString& Name )
@@ -1467,7 +1465,7 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name 
 
 /*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& /*Name*/ )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); OUString aRetStr;return aRetStr;
+/*?*/ { OUString aRetStr;   return aRetStr;
 /*?*/ }
 
 sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
@@ -1480,36 +1478,36 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& /*Name*/, sal_Bool /*bReadOnly*/ )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::renameLibrary( const OUString& /*Name*/, const OUString& /*NewName*/ )
 /*?*/     throw (NoSuchElementException, ElementExistException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 
 // Methods XLibraryContainerPassword
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordProtected( const OUString& /*Name*/ )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
+/*?*/ { return sal_False;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordVerified( const OUString& /*Name*/ )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
+/*?*/ { return sal_False;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::verifyLibraryPassword
 /*?*/     ( const OUString& /*Name*/, const OUString& /*Password*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
+/*?*/ { return sal_False;
 /*?*/ }
 
 /*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& /*Name*/,
 /*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 // Methods XContainer
@@ -1699,7 +1697,7 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 // Methods XNameReplace
 /*?*/ void SfxLibrary_Impl::replaceByName( const OUString& /*aName*/, const Any& /*aElement*/ )
 /*?*/   throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 
@@ -1716,7 +1714,7 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 
 /*?*/ void SfxLibrary_Impl::removeByName( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 // XTypeProvider
