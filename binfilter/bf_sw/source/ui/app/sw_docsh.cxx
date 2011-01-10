@@ -175,9 +175,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         if (!(*ppRdr)->CheckPasswd( aPasswd, *pRead ))
         {
                 delete *ppRdr;
- //JP: SFX-Aenderung - kein close rufen
- //            if( !rMedium.IsStorage() )
- //                rMedium.CloseInStream();
             return 0;
         }
     }
@@ -290,192 +287,22 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
  --------------------------------------------------------------------*/
 
 
-/*?*/ BOOL SwDocShell::Save()
-/*?*/ {
-/*?*/    RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::Save" );
- /*?*/  sal_Bool bXML = pIo->GetStorage()->GetVersion() >= SOFFICE_FILEFORMAT_60;
- /*?*/
- /*?*/  CalcLayoutForOLEObjects();  // format for OLE objets
+BOOL SwDocShell::Save()
+{
+    //only here for virtual reason, will be deleted
+    //this is a virtual fonction from SfxObjectShell (in sfx)
+    return false;
+}
 
- /*?*/  ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
- /*?*/  if( SfxInPlaceObject::Save() )
- /*?*/  {
- /*?*/      switch( GetCreateMode() )
- /*?*/      {
- /*?*/      case SFX_CREATE_MODE_INTERNAL:
- /*?*/          nErr = 0;
- /*?*/          break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_ORGANIZER:
- /*?*/          if( bXML )
- /*?*/          {
- /*?*/              WriterRef xWrt;
-/*?*/               ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
- /*?*/              xWrt->SetOrganizerMode( TRUE );
- /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
- /*?*/              nErr = aWrt.Write( xWrt );
- /*?*/              xWrt->SetOrganizerMode( FALSE );
- /*?*/          }
- /*?*/          else
- /*?*/              nErr = pIo->SaveStyles();
- /*?*/          break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_EMBEDDED:
- /*?*/          // SfxProgress unterdruecken, wenn man Embedded ist
- /*?*/          SW_MOD()->SetEmbeddedLoadSave( TRUE );
- /*?*/          // kein break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_STANDARD:
- /*?*/      case SFX_CREATE_MODE_PREVIEW:
- /*?*/      default:
- /*?*/          {
- /*?*/              // TabellenBox Edit beenden!
- /*?*/              if( pWrtShell )
- /*?*/                  pWrtShell->EndAllTblBoxEdit();
- /*?*/
- /*?*/              WriterRef xWrt;
- /*?*/              if( bXML )
- /*?*/              {
-/*?*/                   ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
- /*?*/              }
- /*?*/              else
- /*?*/              {
-/*?*/                   ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
- /*?*/                  ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, FALSE );
- /*?*/              }
- /*?*/
- /*?*/                 BOOL bLockedView;
- /*?*/                 if ( pWrtShell )
- /*?*/                 {
- /*?*/                     bLockedView = pWrtShell->IsViewLocked();
- /*?*/                     pWrtShell->LockView( TRUE );    //lock visible section
- /*?*/                 }
- /*?*/
- /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
- /*?*/              nErr = aWrt.Write( xWrt );
- /*?*/
- /*?*/                 if ( pWrtShell )
- /*?*/                     pWrtShell->LockView( bLockedView );
- /*?*/          }
- /*?*/          break;
- /*?*/      }
- /*?*/      SW_MOD()->SetEmbeddedLoadSave( FALSE );
- /*?*/  }
- /*?*/  SetError( nErr ? nErr : nVBWarning );
- /*?*/
- /*?*/  return !IsError( nErr );
-/*?*/ }
+BOOL SwDocShell::SaveAs(SvStorage * pStor)
+{
+    //only here for virtual reason, will be deleted
+    //this is a virtual fonction from SfxObjectShell (in sfx)
+    return false;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung: Sichern im Defaultformat
- --------------------------------------------------------------------*/
-
-
-/*N*/ BOOL SwDocShell::SaveAs( SvStorage * pStor )
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SaveAs" );
-/*N*/   sal_Bool bXML = pStor->GetVersion() >= SOFFICE_FILEFORMAT_60;
-/*N*/
-/*N*/   if( pDoc->IsGlobalDoc() && !pDoc->IsGlblDocSaveLinks() )
-/*N*/       RemoveOLEObjects();
-/*N*/
-/*N*/   {
-/*N*/       // Task 75666 - is the Document imported by our Microsoft-Filters?
-/*N*/       const SfxFilter* pOldFilter = GetMedium()->GetFilter();
-/*N*/       if( pOldFilter &&
-/*N*/           ( pOldFilter->GetUserData().EqualsAscii( FILTER_WW8 ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "CWW6" ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "WW6" ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "WW1" ) ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*?*/           // name from the docinfo.
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   CalcLayoutForOLEObjects();  // format for OLE objets
-/*N*/
-/*N*/   ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
-/*N*/   if( SfxInPlaceObject::SaveAs( pStor ) )
-/*N*/   {
-/*N*/       if( GetDoc()->IsGlobalDoc() && !ISA( SwGlobalDocShell ) )
-/*N*/       {
-/*?*/           // This is to set the correct class id if SaveAs is
-/*?*/           // called from SwDoc::SplitDoc to save a normal doc as
-/*?*/           // global doc. In this case, SaveAs is called at a
-/*?*/           // normal doc shell, therefore, SfxInplaceObject::SaveAs
-/*?*/           // will set the wrong class id.
-/*?*/           SvGlobalName aClassName;
-/*?*/           ULONG nClipFormat;
-/*?*/           String aAppName, aLongUserName, aUserName;
-/*?*/           SfxObjectShellRef xDocSh =
-/*?*/               new SwGlobalDocShell( SFX_CREATE_MODE_INTERNAL );
-/*?*/           xDocSh->FillClass( &aClassName, &nClipFormat, &aAppName,
-/*?*/                               &aLongUserName, &aUserName,
-/*?*/                               pStor->GetVersion() );
-/*?*/           pStor->SetClass( aClassName, nClipFormat, aUserName );
-/*N*/       }
-
-/*N*/       if( pDoc->ContainsMSVBasic() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-
-/*N*/       if( !bXML && !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&
-/*N*/           SFX_CREATE_MODE_EMBEDDED != GetCreateMode() )
-/*N*/           AddXMLAsZipToTheStorage( *pStor );
-
-        // TabellenBox Edit beenden!
-/*N*/       if( pWrtShell )
-/*N*/           pWrtShell->EndAllTblBoxEdit();
-
-        // Modified-Flag merken und erhalten ohne den Link zu Callen
-        // (fuer OLE; nach Anweisung von MM)
-/*N*/       BOOL bIsModified = pDoc->IsModified();
-/*N*/       Link aOldOLELnk( pDoc->GetOle2Link() );
-/*N*/       pDoc->SetOle2Link( Link() );
-
-            // SfxProgress unterdruecken, wenn man Embedded ist
-/*N*/       SW_MOD()->SetEmbeddedLoadSave(
-/*N*/                           SFX_CREATE_MODE_EMBEDDED == GetCreateMode() );
-/*N*/
-/*N*/       WriterRef xWrt;
-/*N*/       if( bXML )
-/*N*/       {
-/*?*/           ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
-/*N*/           ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, TRUE );
-/*N*/       }
-
-/*N*/         BOOL bLockedView;
-/*N*/         if ( pWrtShell )
-/*N*/         {
-/*N*/             bLockedView = pWrtShell->IsViewLocked();
-/*N*/             pWrtShell->LockView( TRUE );    //lock visible section
-/*N*/         }
-/*N*/
-/*N*/       SwWriter aWrt( *pStor, *pDoc );
-/*N*/       nErr = aWrt.Write( xWrt );
-/*N*/
-/*N*/         if ( pWrtShell )
-/*N*/             pWrtShell->LockView( bLockedView );
-/*N*/
-/*N*/       if( bIsModified )
-/*N*/           pDoc->SetModified();
-/*N*/       pDoc->SetOle2Link( aOldOLELnk );
-/*N*/
-/*N*/       SW_MOD()->SetEmbeddedLoadSave( FALSE );
-/*N*/   }
-/*N*/   SetError( nErr ? nErr : nVBWarning );
-/*N*/
-/*N*/   return !IsError( nErr );
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sichern aller Formate
  --------------------------------------------------------------------*/
 
 
@@ -535,8 +362,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*--------------------------------------------------------------------
     Beschreibung: Draw()-Overload fuer OLE2 (Sfx)
  --------------------------------------------------------------------*/
-
-
 
 /*N*/ void SwDocShell::SetVisArea( const Rectangle &rRect )
 /*N*/ {
@@ -602,11 +427,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   return SfxInPlaceObject::GetMiscStatus() |
 /*N*/          SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE;
 /*N*/ }
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
 
 /*N*/ IMPL_LINK( SwDocShell, Ole2ModifiedHdl, void *, p )
 /*N*/ {
@@ -828,9 +648,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------12.02.01 12:08--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ Sequence< OUString >  SwDocShell::GetEventNames()
 /*N*/ {
 /*N*/   Sequence< OUString > aRet = SfxObjectShell::GetEventNames();

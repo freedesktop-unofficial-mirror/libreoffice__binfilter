@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -249,35 +248,6 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
     return rStrm << pStr;
 }
 
-
-/*N*/ ULONG Writer::Write( SwPaM& rPaM, SvStream& rStrm, const String* pFName )
-/*N*/ {
-/*N*/   pStrm = &rStrm;
-/*N*/   pDoc = rPaM.GetDoc();
-/*N*/   pOrigFileName = pFName;
-/*N*/   pImpl = new Writer_Impl( *pDoc );
-/*N*/
-/*N*/   // PaM kopieren, damit er veraendert werden kann
-/*N*/   pCurPam = new SwPaM( *rPaM.End(), *rPaM.Start() );
-/*N*/   // zum Vergleich auf den akt. Pam sichern
-/*N*/   pOrigPam = &rPaM;
-/*N*/
-/*N*/   ULONG nRet = WriteStream();
-/*N*/
-/*N*/   ResetWriter();
-/*N*/
-/*N*/   return nRet;
-/*N*/ }
-
-
-/*N*/ ULONG Writer::Write( SwPaM& /*rPam*/, SvStorage&, const String* )
-/*N*/ {
-/*N*/   ASSERT( !this, "Schreiben in Storages auf einem Stream?" );
-/*N*/   return ERR_SWG_WRITE_ERROR;
-/*N*/ }
-
-
-
 /*N*/ void Writer::PutNumFmtFontsInAttrPool()
 /*N*/ {
 /*N*/   if( !pImpl )
@@ -333,8 +303,6 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
 /*N*/   }
 /*N*/ }
 
-
-
 /*N*/ void Writer::_AddFontItems( SfxItemPool& rPool, USHORT nW )
 /*N*/ {
 /*N*/   const SvxFontItem* pFont = (const SvxFontItem*)&rPool.GetDefaultItem( nW );
@@ -371,35 +339,6 @@ SvStream& Writer::OutULong( SvStream& rStrm, ULONG nVal )
 /*N*/       void* p = (void*)pItem;
 /*N*/       pImpl->pFontRemoveLst->Insert( p, pImpl->pFontRemoveLst->Count() );
 /*N*/   }
-/*N*/ }
-
-// build a bookmark table, which is sort by the node position. The
-// OtherPos of the bookmarks also inserted.
-
-// search alle Bookmarks in the range and return it in the Array
-
-// Storage-spezifisches
-
-
-/*N*/ ULONG StgWriter::Write( SwPaM& rPaM, SvStorage& rStg, const String* pFName )
-/*N*/ {
-/*N*/   pStrm = 0;
-/*N*/   pStg = &rStg;
-/*N*/   pDoc = rPaM.GetDoc();
-/*N*/   pOrigFileName = pFName;
-/*N*/   pImpl = new Writer_Impl( *pDoc );
-/*N*/
-/*N*/   // PaM kopieren, damit er veraendert werden kann
-/*N*/   pCurPam = new SwPaM( *rPaM.End(), *rPaM.Start() );
-/*N*/   // zum Vergleich auf den akt. Pam sichern
-/*N*/   pOrigPam = &rPaM;
-/*N*/
-/*N*/   ULONG nRet = WriteStorage();
-/*N*/
-/*N*/   pStg = NULL;
-/*N*/   ResetWriter();
-/*N*/
-/*N*/   return nRet;
 /*N*/ }
 
 }

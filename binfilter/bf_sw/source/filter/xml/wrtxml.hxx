@@ -57,8 +57,6 @@ public:
     SwXMLWriter();
     virtual ~SwXMLWriter();
 
-    virtual ULONG Write( SwPaM&, SfxMedium&, const String* = 0 );
-
 private:
 
     // helper methods to write XML streams

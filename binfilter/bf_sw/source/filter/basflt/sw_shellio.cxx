@@ -485,19 +485,6 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
     }
 }
 
-    // read the sections of the document, which is equal to the medium.
-    // returns the count of it
-
-// ------------------------------------------------
-
-
-
-
-// ------------------------------------------------
-
-
-
-
 
 /*
  * Writer
@@ -506,11 +493,6 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*
  * Konstruktoren, Destruktoren sind inline (inc/shellio.hxx).
  */
-
-
-
-
-
 
 /*N*/ SwWriter::SwWriter( SvStream& rStrm, SwPaM& rPam, BOOL bWriteAll )
 /*N*/   : pStrm( &rStrm ),
@@ -535,149 +517,10 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/ {
 /*N*/ }
 
-
-/*N*/ ULONG SwWriter::Write( WriterRef& rxWriter, const String* pRealFileName )
-/*N*/ {
-/*N*/   BOOL bHasMark = FALSE;
-/*N*/   SwPaM * pPam;
-/*N*/
-/*N*/   SwDoc *pDoc = 0L;
-/*N*/     SvEmbeddedObjectRef* pRefForDocSh = 0;
-/*N*/
-/*N*/   if ( pShell && !bWriteAll && pShell->IsTableMode() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
-/*N*/   if( !bWriteAll && ( pShell || pOutPam ))
-/*N*/   {
-/*N*/       if( pShell )
-/*?*/           pPam = pShell->GetCrsr();
-/*N*/       else
-/*N*/           pPam = pOutPam;
-/*N*/
-/*N*/       SwPaM *pEnd = pPam;
-/*N*/
-/*N*/       // Erste Runde: Nachsehen, ob eine Selektion besteht.
-/*N*/       while(TRUE)
-/*N*/       {
-/*N*/           bHasMark = bHasMark || pPam->HasMark();
-/*N*/           pPam = (SwPaM *) pPam->GetNext();
-/*N*/           if(bHasMark || pPam == pEnd)
-/*N*/               break;
-/*N*/       }
-/*N*/
-/*N*/       // Wenn keine Selektion besteht, eine ueber das ganze Dokument aufspannen.
-/*N*/       if(!bHasMark)
-/*N*/       {
-/*?*/           if( pShell )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               pPam = new SwPaM( *pPam );
-/*?*/               pPam->Move( fnMoveBackward, fnGoDoc );
-/*?*/               pPam->SetMark();
-/*?*/               pPam->Move( fnMoveForward, fnGoDoc );
-/*?*/           }
-/*N*/       }
-/*N*/       // pPam ist immer noch der akt. Cursor !!
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // keine Shell oder alles schreiben -> eigenen Pam erzeugen
-/*N*/       SwDoc* pOutDoc = pDoc ? pDoc : &rDoc;
-/*N*/       pPam = new SwPaM( pOutDoc->GetNodes().GetEndOfContent() );
-/*N*/       pPam->Move( fnMoveBackward, fnGoDoc );
-/*N*/       pPam->SetMark();
-/*N*/       pPam->Move( fnMoveForward, fnGoDoc );
-/*N*/   }
-/*N*/
-/*N*/   rxWriter->bWriteAll = bWriteAll;
-/*N*/   SwDoc* pOutDoc = pDoc ? pDoc : &rDoc;
-/*N*/
-/*N*/   // falls der Standart PageDesc. immer noch auf initalen Werten steht
-/*N*/   // (wenn z.B. kein Drucker gesetzt wurde) dann setze jetzt auf DIN A4
-/*N*/   if( !pOutDoc->GetPrt() )
-/*N*/   {
-/*?*/       const SwPageDesc& rPgDsc = pOutDoc->GetPageDesc( 0L );
-/*?*/       //const SwPageDesc& rPgDsc = *pOutDoc->GetPageDescFromPool( RES_POOLPAGE_STANDARD );;
-/*?*/       const SwFmtFrmSize& rSz = rPgDsc.GetMaster().GetFrmSize();
-/*?*/       // Clipboard-Dokument wird immer ohne Drucker angelegt, so ist
-/*?*/       // der Std.PageDesc immer aug LONG_MAX !! Mappe dann auf DIN A4
-/*?*/       if( LONG_MAX == rSz.GetHeight() || LONG_MAX == rSz.GetWidth() )
-/*?*/       {
-/*?*/           SwPageDesc aNew( rPgDsc );
-/*?*/           SwFmtFrmSize aNewSz( rSz );
-/*?*/           aNewSz.SetHeight( lA4Height );
-/*?*/           aNewSz.SetWidth( lA4Width );
-/*?*/           aNew.GetMaster().SetAttr( aNewSz );
-/*?*/           pOutDoc->ChgPageDesc( 0, aNew );
-/*?*/       }
-/*N*/   }
-/*N*/
-/*N*/   SwEditShell* pESh = pOutDoc->GetEditShell();
-/*N*/   if( pESh )
-/*N*/       pESh->StartAllAction();
-/*N*/
-/*N*/   BOOL bWasPurgeOle = pOutDoc->IsPurgeOLE();
-/*N*/   pOutDoc->SetPurgeOLE( FALSE );
-/*N*/
-/*N*/   ULONG nError = 0;
-/*N*/   if( pMedium )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   else if( pStg )
-/*N*/       nError = rxWriter->Write( *pPam, *pStg, pRealFileName );
-/*N*/   else if( pStrm )
-/*N*/       nError = rxWriter->Write( *pPam, *pStrm, pRealFileName );
-/*N*/
-/*N*/   pOutDoc->SetPurgeOLE( bWasPurgeOle );
-/*N*/   if( pESh )
-/*N*/       pESh->EndAllAction();
-/*N*/
-/*N*/   // Falls nur zum Schreiben eine Selektion aufgespannt wurde, vor der
-/*N*/   // Rueckkehr den alten Crsr wieder herstellen.
-/*N*/   if( !bWriteAll && ( pShell || pOutPam ))
-/*N*/   {
-/*N*/       if(!bHasMark)
-/*N*/       {
-/*?*/           if( pShell )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/           else
-/*?*/               delete pPam;
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       delete pPam;            // loesche den hier erzeugten Pam
-/*N*/       // Alles erfolgreich geschrieben? Sag' das dem Dokument!
-/*N*/       if( !IsError( nError ) && !pDoc )
-/*N*/           rDoc.ResetModified();
-/*N*/   }
-/*N*/
-/*N*/   if ( pDoc )
-/*N*/   {
-/*N*/         delete pRefForDocSh;
-/*?*/       if ( !pDoc->RemoveLink() )
-/*?*/           delete pDoc;
-/*?*/       bWriteAll = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   return nError;
-/*N*/ }
-
-
-/*  */
-
-// ----------------------------------------------------------------------
-
-
 /*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
-
 
 }
 

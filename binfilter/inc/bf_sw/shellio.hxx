@@ -305,9 +305,6 @@ public:
     // returns the count of it
 };
 
-/*  */
-////////////////////////////////////////////////////////////////////////////
-
 // Der uebergebene Stream muss dynamisch angelegt werden und
 // vor dem Loeschen der Instanz per Stream() angefordert
 // und geloescht werden!
@@ -334,9 +331,6 @@ extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML, ReadXML;
 
 extern BOOL SetHTMLTemplate( SwDoc &rDoc ); //Fuer Vorlagen aus HTML.vor laden shellio.cxx
 
-
-/*  */
-/////////////////////////////////////////////////////////////////////////////
 
 /*
  * Schreiben, Writer
@@ -385,8 +379,7 @@ public:
     Writer();
     virtual ~Writer();
 
-            ULONG Write( SwPaM&, SvStream&,  const String* = 0 );
-    virtual ULONG Write( SwPaM&, SvStorage&, const String* = 0 );
+    ULONG Write( SwPaM&, SvStream&,  const String* = 0 );
 
     virtual BOOL IsStgWriter() const;
     virtual BOOL IsSw3Writer() const;
@@ -456,8 +449,6 @@ protected:
 public:
     StgWriter() : Writer(), pStg( 0 ) {}
 
-    virtual ULONG Write( SwPaM&, SvStorage&, const String* = 0 );
-
     SvStorage& GetStorage() const       { return *pStg; }
     const String& GetFltName() const    { return aFltName; }
     void SetFltName( const String& r )  { aFltName = r; }
@@ -497,20 +488,10 @@ class SwWriter
     BOOL bWriteAll;
 
 public:
-    ULONG Write( WriterRef& rxWriter, const String* = 0);
 
     SwWriter( SvStream&, SwPaM &, BOOL bWriteAll = FALSE );
-
-//  SwWriter( SvStorage&, SwCrsrShell &,BOOL bWriteAll = FALSE );
     SwWriter( SvStorage&, SwDoc & );
-//  SwWriter( SvStorage&, SwPaM&, BOOL bWriteAll = FALSE );
-
-//  SwWriter( SfxMedium&, SwPaM&, BOOL bWriteAll = FALSE );
 };
-
-
-/*  */
-/////////////////////////////////////////////////////////////////////////////
 
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
@@ -560,7 +541,6 @@ public:
 };
 
 
-// ----------------------------------
 // diese Filter sind immer vorhanden und koennen ueber die
 // Formatnamen gesucht werden. Alle anderen Filter sind nur intern
 // bekannt. Die UI-Seite benutzt die GetReader()/GetWriter() -Funktionen,

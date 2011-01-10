@@ -187,9 +187,7 @@ SwParaSelection::~SwParaSelection()
         pUnoCrsr->MovePara(fnParaCurr, fnParaStart);
     }
 }
-/* -----------------13.05.98 12:15-------------------
- *
- * --------------------------------------------------*/
+
 SwUnoInternalPaM::SwUnoInternalPaM(SwDoc& rDoc) :
     SwPaM(rDoc.GetNodes())
 {
@@ -222,6 +220,7 @@ SwUnoInternalPaM&   SwUnoInternalPaM::operator=(const SwPaM& rPaM)
     }
     return *this;
 }
+
 /****************************************************************************
     ActionContext
 ****************************************************************************/
@@ -232,9 +231,7 @@ UnoActionContext::UnoActionContext(SwDoc* pDc) :
     if(pRootFrm)
         pRootFrm->StartAllAction();
 }
-/*-----------------04.03.98 11:56-------------------
 
---------------------------------------------------*/
 UnoActionContext::~UnoActionContext()
 {
     //das Doc kann hier schon entfernt worden sein
@@ -256,9 +253,7 @@ UnoActionRemoveContext::UnoActionRemoveContext(SwDoc* pDc) :
     if(pRootFrm)
         pRootFrm->UnoRemoveAllActions();
 }
-/* -----------------07.07.98 12:05-------------------
- *
- * --------------------------------------------------*/
+
 UnoActionRemoveContext::~UnoActionRemoveContext()
 {
     SwRootFrm* pRootFrm = pDoc->GetRootFrm();
@@ -267,9 +262,6 @@ UnoActionRemoveContext::~UnoActionRemoveContext()
 
 }
 
-/*-----------------09.03.98 08:29-------------------
-
---------------------------------------------------*/
 void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)
 {
     if(bExpand)
@@ -281,9 +273,7 @@ void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)
         rCrsr.DeleteMark();
 
 }
-/* -----------------20.05.98 14:59-------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
 {
     if(!aCrsr.HasMark())
@@ -306,34 +296,9 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
         xWrt->bUCS2_WithStartChar = FALSE;
 
         long lLen;
-        if( !IsError( aWriter.Write( xWrt ) ) &&
-            STRING_MAXLEN > (( lLen  = aStream.GetSize() )
-                                    / sizeof( sal_Unicode )) + 1 )
-        {
-            aStream << (sal_Unicode)'\0';
-
-            String sBuf;
-            const sal_Unicode *p = (sal_Unicode*)aStream.GetBuffer();
-            if( p )
-                sBuf = p;
-            else
-            {
-                long lUniLen = (lLen / sizeof( sal_Unicode ));
-                sal_Unicode* pStrBuf = sBuf.AllocBuffer( xub_StrLen(
-                                lUniLen + 1));
-                aStream.Seek( 0 );
-                aStream.ResetError();
-                aStream.Read( pStrBuf, lLen );
-                pStrBuf[ lUniLen ] = '\0';
-            }
-            rBuffer = OUString( sBuf );
-        }
     }
 }
 
-/* -----------------06.07.98 07:33-------------------
- *
- * --------------------------------------------------*/
 void lcl_setCharStyle(SwDoc* pDoc, const uno::Any aValue, SfxItemSet& rSet)
      throw (lang::IllegalArgumentException)
 {
@@ -358,9 +323,7 @@ void lcl_setCharStyle(SwDoc* pDoc, const uno::Any aValue, SfxItemSet& rSet)
 
     }
 };
-/* -----------------30.06.98 08:46-------------------
- *
- * --------------------------------------------------*/
+
 void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
     throw (lang::IllegalArgumentException)
 {
@@ -388,9 +351,7 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
     }
 
 }
-/* -----------------06.07.98 07:38-------------------
- *
- * --------------------------------------------------*/
+
  void lcl_setPageDesc(SwDoc* pDoc, const uno::Any& aValue, SfxItemSet& rSet)
  {
     if(aValue.getValueType() != ::getCppuType((const OUString*)0))
@@ -434,9 +395,7 @@ void lcl_SetTxtFmtColl(const uno::Any& rAny, SwPaM& rPaM)
     }
     delete pNewDesc;
 }
-/* -----------------30.06.98 10:29-------------------
- *
- * --------------------------------------------------*/
+
 void lcl_SetNodeNumStart( SwPaM& rCrsr, uno::Any aValue )
 {
     sal_Int16 nTmp(0);
@@ -456,9 +415,6 @@ void lcl_SetNodeNumStart( SwPaM& rCrsr, uno::Any aValue )
         pDoc->SetNodeNumStart( *rCrsr.GetPoint(), nStt );
 }
 
-/* -----------------17.09.98 09:44-------------------
- *
- * --------------------------------------------------*/
 class SwTextCursorItemSet_Impl
 {
     SwDoc *pDoc;
@@ -663,9 +619,6 @@ sal_Bool lcl_setCrsrPropertyValue(const SfxItemPropertyMap* pMap,
 return bRet;
 }
 
-/* -----------------30.06.98 08:39-------------------
- *
- * --------------------------------------------------*/
 SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
 {
     static const sal_uInt16 nMaxLookup = 1000;
@@ -714,9 +667,6 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
     return bError ? 0 : pFmt;
 }
 
-/* -----------------26.06.98 16:20-------------------
- *  Hilfsfunktion fuer PageDesc
- * --------------------------------------------------*/
  SwPageDesc*    GetPageDescByName_Impl(SwDoc& rDoc, const String& rName)
  {
     SwPageDesc* pRet = 0;
@@ -746,6 +696,7 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
 
     return pRet;
  }
+
 /******************************************************************************
  ******************************************************************************
  ******************************************************************************
@@ -755,16 +706,12 @@ SwFmtColl* SwXTextCursor::GetCurTxtFmtColl(SwPaM& rPam, BOOL bConditional)
 /******************************************************************
  * SwXTextCursor
  ******************************************************************/
-/*-- 09.12.98 14:19:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextCursor::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextCursor");
 }
-/*-- 09.12.98 14:19:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 BOOL SwXTextCursor::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     String sServiceName(rServiceName);
@@ -777,9 +724,7 @@ BOOL SwXTextCursor::supportsService(const OUString& rServiceName) throw( Runtime
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesComplex") ||
         sServiceName.EqualsAscii("com.sun.star.text.TextSortable");
 }
-/*-- 09.12.98 14:19:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< OUString > SwXTextCursor::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(8);
@@ -794,9 +739,7 @@ Sequence< OUString > SwXTextCursor::getSupportedServiceNames(void) throw( Runtim
     pArray[7] = C2U("com.sun.star.text.TextSortable");
     return aRet;
 }
-/*-- 09.12.98 14:19:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition& rPos,
                     CursorType eSet, SwDoc* pDoc, const SwPosition* pMark) :
     aLstnrCntnr(( util::XSortable*)this),
@@ -813,9 +756,7 @@ SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent, const SwPosition&
     }
     pUnoCrsr->Add(this);
 }
-/* -----------------04.03.99 09:02-------------------
- *
- * --------------------------------------------------*/
+
 SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent,
     SwUnoCrsr* pSourceCrsr, CursorType eSet) :
     aLstnrCntnr( (util::XSortable*)this),
@@ -833,18 +774,13 @@ SwXTextCursor::SwXTextCursor(uno::Reference< XText >  xParent,
     pUnoCrsr->Add(this);
 }
 
-/*-- 09.12.98 14:19:20---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwXTextCursor::~SwXTextCursor()
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     delete pUnoCrsr;
     delete pLastSortOptions;
 }
-/*-- 09.12.98 14:19:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::DeleteAndInsert(const String& rText)
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -874,17 +810,13 @@ void SwXTextCursor::DeleteAndInsert(const String& rText)
         } while( (_pStartCrsr=(SwCursor*)_pStartCrsr->GetNext()) != pUnoCrsr );
     }
 }
-/* -----------------------------10.03.00 18:02--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextCursor::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextCursor::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -897,9 +829,6 @@ sal_Int64 SAL_CALL SwXTextCursor::getSomething( const uno::Sequence< sal_Int8 >&
     return OTextCursorHelper::getSomething(rId);
 }
 
-/*-- 09.12.98 14:18:12---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::collapseToStart(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -918,9 +847,7 @@ void SwXTextCursor::collapseToStart(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     }
 }
-/*-- 09.12.98 14:18:14---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::collapseToEnd(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -939,9 +866,7 @@ void SwXTextCursor::collapseToEnd(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     }
 }
-/*-- 09.12.98 14:18:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isCollapsed(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -953,9 +878,7 @@ sal_Bool SwXTextCursor::isCollapsed(void) throw( uno::RuntimeException )
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::goLeft(sal_Int16 nCount, sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -972,9 +895,7 @@ sal_Bool SwXTextCursor::goLeft(sal_Int16 nCount, sal_Bool Expand) throw( uno::Ru
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:42---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::goRight(sal_Int16 nCount, sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -991,9 +912,7 @@ sal_Bool SwXTextCursor::goRight(sal_Int16 nCount, sal_Bool Expand) throw( uno::R
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:43---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::gotoStart(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1043,9 +962,7 @@ void SwXTextCursor::gotoStart(sal_Bool Expand) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     }
 }
-/*-- 09.12.98 14:18:43---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::gotoEnd(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1070,9 +987,7 @@ void SwXTextCursor::gotoEnd(sal_Bool Expand) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     }
 }
-/* -----------------05.03.99 07:27-------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_Bool bExpand )
                                 throw( uno::RuntimeException )
 {
@@ -1209,9 +1124,6 @@ void SwXTextCursor::gotoRange(const uno::Reference< XTextRange > & xRange, sal_B
     }
 }
 
-/*-- 09.12.98 14:18:44---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfWord(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1227,9 +1139,7 @@ sal_Bool SwXTextCursor::isStartOfWord(void) throw( uno::RuntimeException )
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:44---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfWord(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1245,9 +1155,7 @@ sal_Bool SwXTextCursor::isEndOfWord(void) throw( uno::RuntimeException )
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:44---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1275,9 +1183,7 @@ sal_Bool SwXTextCursor::gotoNextWord(sal_Bool Expand) throw( uno::RuntimeExcepti
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:45---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1303,9 +1209,7 @@ sal_Bool SwXTextCursor::gotoPreviousWord(sal_Bool Expand) throw( uno::RuntimeExc
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:45---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1325,9 +1229,7 @@ sal_Bool SwXTextCursor::gotoEndOfWord(sal_Bool Expand) throw( uno::RuntimeExcept
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:46---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfWord(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1347,9 +1249,7 @@ sal_Bool SwXTextCursor::gotoStartOfWord(sal_Bool Expand) throw( uno::RuntimeExce
     }
     return bRet;
 }
-/*-- 09.12.98 14:18:46---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfSentence(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1373,9 +1273,7 @@ sal_Bool SwXTextCursor::isStartOfSentence(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfSentence(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1399,9 +1297,7 @@ sal_Bool SwXTextCursor::isEndOfSentence(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1429,9 +1325,7 @@ sal_Bool SwXTextCursor::gotoNextSentence(sal_Bool Expand) throw( uno::RuntimeExc
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1456,9 +1350,7 @@ sal_Bool SwXTextCursor::gotoPreviousSentence(sal_Bool Expand) throw( uno::Runtim
         throw uno::RuntimeException();
     return bRet;
 }
-/* -----------------15.10.99 08:24-------------------
 
- --------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1478,9 +1370,7 @@ sal_Bool SwXTextCursor::gotoStartOfSentence(sal_Bool Expand) throw( uno::Runtime
         throw uno::RuntimeException();
     return bRet;
 }
-/* -----------------15.10.99 08:24-------------------
 
- --------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfSentence(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1503,9 +1393,6 @@ sal_Bool SwXTextCursor::gotoEndOfSentence(sal_Bool Expand) throw( uno::RuntimeEx
     return bRet;
 }
 
-/*-- 09.12.98 14:18:48---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isStartOfParagraph(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1517,9 +1404,7 @@ sal_Bool SwXTextCursor::isStartOfParagraph(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:48---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::isEndOfParagraph(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1531,9 +1416,7 @@ sal_Bool SwXTextCursor::isEndOfParagraph(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:49---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoStartOfParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1550,9 +1433,7 @@ sal_Bool SwXTextCursor::gotoStartOfParagraph(sal_Bool Expand) throw( uno::Runtim
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:49---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoEndOfParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1569,9 +1450,7 @@ sal_Bool SwXTextCursor::gotoEndOfParagraph(sal_Bool Expand) throw( uno::RuntimeE
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:50---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoNextParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1586,9 +1465,7 @@ sal_Bool SwXTextCursor::gotoNextParagraph(sal_Bool Expand) throw( uno::RuntimeEx
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:50---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::gotoPreviousParagraph(sal_Bool Expand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1603,16 +1480,12 @@ sal_Bool SwXTextCursor::gotoPreviousParagraph(sal_Bool Expand) throw( uno::Runti
         throw uno::RuntimeException();
     return bRet;
 }
-/*-- 09.12.98 14:18:50---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XText >  SwXTextCursor::getText(void) throw( uno::RuntimeException )
 {
     return xParentText;
 }
-/*-- 09.12.98 14:18:50---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextCursor::getStart(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1628,9 +1501,7 @@ uno::Reference< XTextRange >  SwXTextCursor::getStart(void) throw( uno::RuntimeE
         throw uno::RuntimeException();
     return xRet;
 }
-/*-- 09.12.98 14:18:51---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextCursor::getEnd(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1646,9 +1517,7 @@ uno::Reference< XTextRange >  SwXTextCursor::getEnd(void) throw( uno::RuntimeExc
         throw uno::RuntimeException();
     return xRet;
 }
-/*-- 09.12.98 14:18:51---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextCursor::getString(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1656,30 +1525,14 @@ OUString SwXTextCursor::getString(void) throw( uno::RuntimeException )
     SwUnoCrsr* pUnoCrsr = ((SwXTextCursor*)this)->GetCrsr();
     if( pUnoCrsr)
     {
-/*      if( pUnoCrsr->GetPoint()->nNode.GetIndex() ==
-            pUnoCrsr->GetMark()->nNode.GetIndex() )
-        {
-            SwTxtNode* pTxtNd = pUnoCrsr->GetNode()->GetTxtNode();
-            if( pTxtNd )
-            {
-                sal_uInt16 nStt = pUnoCrsr->Start()->nContent.GetIndex();
-                aTxt = pTxtNd->GetExpandTxt( nStt,
-                        pUnoCrsr->End()->nContent.GetIndex() - nStt );
-            }
-        }
-        else
-*/      {
             //Text ueber mehrere Absaetze
             SwXTextCursor::getTextFromPam(*pUnoCrsr, aTxt);
-        }
     }
     else
         throw uno::RuntimeException();
     return aTxt;
 }
-/*-- 09.12.98 14:18:52---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::setString(const OUString& aString) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1689,9 +1542,7 @@ void SwXTextCursor::setString(const OUString& aString) throw( uno::RuntimeExcept
 
     DeleteAndInsert(aString);
 }
-/* -----------------------------03.05.00 12:56--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXTextCursor::GetPropertyValue(
     SwPaM& rPaM, const SfxItemPropertySet& rPropSet,
     const OUString& rPropertyName)
@@ -1722,9 +1573,7 @@ Any SwXTextCursor::GetPropertyValue(
 
     return aAny;
 }
-/* -----------------------------03.05.00 12:57--------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXTextCursor::SetPropertyValue(
     SwPaM& rPaM, const SfxItemPropertySet& rPropSet, const OUString& rPropertyName,
     const Any& aValue, const SfxItemPropertyMap* _pMap, USHORT nAttrMode)
@@ -1749,9 +1598,7 @@ void SwXTextCursor::SetPropertyValue(
     else
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( 0 ) );
 }
-/* -----------------------------03.05.00 13:16--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< PropertyState > SwXTextCursor::GetPropertyStates(
             SwPaM& rPaM, SfxItemPropertySet& rPropSet,
             const Sequence< OUString >& PropertyNames,
@@ -1843,9 +1690,7 @@ Sequence< PropertyState > SwXTextCursor::GetPropertyStates(
     delete pSetParent;
     return aRet;
 }
-/* -----------------------------03.05.00 13:17--------------------------------
 
- ---------------------------------------------------------------------------*/
 PropertyState SwXTextCursor::GetPropertyState(
     SwPaM& rPaM, SfxItemPropertySet& rPropSet, const OUString& rPropertyName)
                         throw(UnknownPropertyException, RuntimeException)
@@ -1855,9 +1700,7 @@ PropertyState SwXTextCursor::GetPropertyState(
     Sequence < PropertyState > aSeq = GetPropertyStates( rPaM, rPropSet, aStrings, SW_PROPERTY_STATE_CALLER_SINGLE_VALUE_ONLY );
     return aSeq[0];
 }
-/* -----------------------------03.05.00 13:20--------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_SelectParaAndReset ( SwPaM &rPaM, SwDoc* pDoc, const SvUShortsSort* pWhichIds = 0 )
 {
     // if we are reseting paragraph attributes, we need to select the full paragraph first
@@ -1901,9 +1744,7 @@ void SwXTextCursor::SetPropertyToDefault(
     else
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( 0 ) );
 }
-/* -----------------------------03.05.00 13:19--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXTextCursor::GetPropertyDefault(
     SwPaM& rPaM, const SfxItemPropertySet& rPropSet,
     const OUString& rPropertyName)
@@ -1925,9 +1766,7 @@ Any SwXTextCursor::GetPropertyDefault(
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( 0 ) );
     return aRet;
 }
-/*-- 09.12.98 14:18:54---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo >  SwXTextCursor::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
     static uno::Reference< beans::XPropertySetInfo >  xRef;
@@ -1948,9 +1787,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXTextCursor::getPropertySetInfo(voi
     }
     return xRef;
 }
-/*-- 09.12.98 14:18:54---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::setPropertyValue(const OUString& rPropertyName, const uno::Any& aValue)
         throw( beans::UnknownPropertyException, beans::PropertyVetoException,
              lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
@@ -1977,9 +1814,7 @@ void SwXTextCursor::setPropertyValue(const OUString& rPropertyName, const uno::A
         throw uno::RuntimeException();
 
 }
-/*-- 09.12.98 14:18:55---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXTextCursor::getPropertyValue(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -2006,45 +1841,35 @@ Any SwXTextCursor::getPropertyValue(const OUString& rPropertyName)
     return aAny;
 
 }
-/*-- 09.12.98 14:18:55---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::addPropertyChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 09.12.98 14:18:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::removePropertyChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 09.12.98 14:18:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::addVetoableChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 09.12.98 14:18:58---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::removeVetoableChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 05.03.99 11:36:11---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 beans::PropertyState SwXTextCursor::getPropertyState(const OUString& rPropertyName)
                         throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
@@ -2059,9 +1884,7 @@ beans::PropertyState SwXTextCursor::getPropertyState(const OUString& rPropertyNa
         throw RuntimeException();
     return eRet;
 }
-/*-- 05.03.99 11:36:11---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Sequence< beans::PropertyState > SwXTextCursor::getPropertyStates(
             const uno::Sequence< OUString >& PropertyNames)
             throw( beans::UnknownPropertyException, uno::RuntimeException )
@@ -2072,18 +1895,14 @@ uno::Sequence< beans::PropertyState > SwXTextCursor::getPropertyStates(
         throw RuntimeException();
     return GetPropertyStates(*pUnoCrsr, aPropSet, PropertyNames);
 }
-/*-- 05.03.99 11:36:12---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::setPropertyToDefault(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
     Sequence < OUString > aSequence ( &rPropertyName, 1 );
     setPropertiesToDefault ( aSequence );
 }
-/*-- 05.03.99 11:36:12---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXTextCursor::getPropertyDefault(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
