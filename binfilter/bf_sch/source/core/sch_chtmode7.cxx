@@ -410,55 +410,6 @@ namespace binfilter {
 /*N*/   return pOutliner;
 /*N*/ }
 
-/*
-UINT32 ChartModel::ValFor mat () const
-{
-    return nValFo rmat;
-}
-
-
-UINT32& ChartModel::ValForm at()
-{
-    return nVal Format;
-}
-
-
-UINT32 ChartModel::PercentVa lFormat () const
-{
-    return nPercentV alFormat;
-}
-
-
-UINT32& ChartModel::Per centValFormat ()
-{
-    return nPercentValFo rmat;
-}
-
-
-UINT32 ChartModel::Des crFormat () const
-{
-    return nDescrFor mat;
-}
-
-
-UINT32& ChartModel::Desc rFormat()
-{
-    return nDes crFormat;
-}
-
-
-UINT32 ChartModel::PercentD escrFormat () const
-{
-    return nPercentDescrFo rmat;
-}
-
-
-UINT32& ChartModel::Percent DescrF ormat ()
-{
-    return nPercentDescr Format;
-}
-
-*/
 /*N*/ BOOL ChartModel::IsInitialized() const
 /*N*/ {
 /*N*/   return mbIsInitialized;
@@ -581,37 +532,6 @@ UINT32& ChartModel::Percent DescrF ormat ()
 /*N*/       case CHSTYLE_2D_PERCENTCOLUMN :
 /*N*/           return FALSE;
 
-//          case CHSTYLE_2D_LINE :
-//          case CHSTYLE_2D_STACKEDLINE :
-//          case CHSTYLE_2D_PERCENTLINE :
-//          case CHSTYLE_2D_LINESYMBOLS :
-//          case CHSTYLE_2D_STACKEDLINESYM :
-//          case CHSTYLE_2D_PERCENTLINESYM :
-//          case CHSTYLE_2D_CUBIC_SPLINE :
-//          case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL :
-//          case CHSTYLE_2D_B_SPLINE :
-//          case CHSTYLE_2D_B_SPLINE_SYMBOL :
-
-//          case CHSTYLE_2D_XY :
-//          case CHSTYLE_2D_XYSYMBOLS :
-//          case CHSTYLE_2D_XY_LINE :
-//          case CHSTYLE_2D_CUBIC_SPLINE_XY :
-//          case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY :
-//          case CHSTYLE_2D_B_SPLINE_XY :
-//          case CHSTYLE_2D_B_SPLINE_SYMBOL_XY :
-
-//          case CHSTYLE_2D_BAR :
-//          case CHSTYLE_2D_STACKEDBAR:
-//          case CHSTYLE_2D_PERCENTBAR:
-
-//          case CHSTYLE_2D_AREA :
-//          case CHSTYLE_2D_PERCENTAREA :
-//          case CHSTYLE_2D_STACKEDAREA :
-
-//          case CHSTYLE_2D_STOCK_1:
-//          case CHSTYLE_2D_STOCK_2:
-//          case CHSTYLE_2D_STOCK_3:
-//          case CHSTYLE_2D_STOCK_4:
 /*N*/       default :
 /*N*/           return TRUE;
 /*N*/   }
