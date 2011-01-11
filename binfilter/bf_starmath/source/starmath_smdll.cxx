@@ -65,8 +65,7 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/
 /*N*/   String aResDll(C2S("sm"));
 /*N*/
-/*N*/   SfxModule *p = SM_MOD1();
-/*N*/   SmModule *pp = (SmModule *) p;
+/*N*/   /*SfxModule *p =*/ SM_MOD1();
 /*N*/
 }
 

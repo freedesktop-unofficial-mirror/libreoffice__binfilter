@@ -400,13 +400,12 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       const Any * pValue = aValues.getConstArray();
 /*N*/         Font        aFont;
-/*N*/         sal_Unicode cChar;
+/*N*/         sal_Unicode cChar(0);
 /*N*/         String      aSet;
-/*N*/         BOOL        bPredefined;
+/*N*/         BOOL        bPredefined(FALSE);
 /*N*/
 /*N*/         OUString    aTmpStr;
 /*N*/         INT32       nTmp32 = 0;
-/*N*/         INT16       nTmp16 = 0;
 /*N*/         BOOL        bTmp = FALSE;
 /*N*/
 /*N*/         BOOL bOK = TRUE;
@@ -646,6 +645,7 @@ static const char* aRootName = "Office.Math";
 /*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aFntFmtId( rFntFmtList.GetFontFormatId( i ) );
 /*?*/     }
 /*?*/     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
+/*?*/     (void)pVal;
 /*?*/     aCfg.ReplaceSetProperties( A2OU( FONT_FORMAT_LIST ) , aValues );
 /*?*/
 /*?*/     rFntFmtList.SetModified( FALSE );
@@ -968,7 +968,7 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-    void SmMathConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SmMathConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
     void SmMathConfigItem::Commit() {}
 
 
@@ -983,9 +983,9 @@ static const char* aRootName = "Office.Math";
 /*N*/     return pOther->bAutoRedraw;
 /*N*/ }
 
-/*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, p )
+/*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, EMPTYARG )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Save();
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 

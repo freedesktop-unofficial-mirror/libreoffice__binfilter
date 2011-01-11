@@ -418,7 +418,7 @@ public:
 class SmErrorNode : public SmMathSymbolNode
 {
 public:
-    SmErrorNode(SmParseError eError, const SmToken &rNodeToken)
+    SmErrorNode(SmParseError /*eError*/, const SmToken &rNodeToken)
     :   SmMathSymbolNode(NERROR, rNodeToken)
     {
         SetText((xub_Unicode) MS_ERROR);

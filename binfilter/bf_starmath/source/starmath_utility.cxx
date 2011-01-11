@@ -97,7 +97,7 @@ namespace binfilter {
 //
 
 
-/*N*/ SmRectCache::Key::Key(const XubString &rText, const Font &rFont)
+/*N*/ SmRectCache::Key::Key(const XubString & /*rText*/, const Font & /*rFont*/)
 /*N*/ {
 /*N*/ }
 
@@ -113,13 +113,13 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ const SmRect * SmRectCache::Search(const Key &rKey) const
+/*N*/ const SmRect * SmRectCache::Search(const Key & /*rKey*/) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
 
 
-/*N*/ const SmRect * SmRectCache::Add(const Key &rKey, const SmRect &rRect)
+/*N*/ const SmRect * SmRectCache::Add(const Key & /*rKey*/, const SmRect & /*rRect*/)
 /*N*/ {
 /*N*/   return (const SmRect *)-1;
 /*N*/ }
@@ -324,39 +324,39 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /**************************************************************************/
 /**************************************************************************/
 
-/*?*/ void * SmFontPickList::CreateItem(const String& rString)
+/*?*/ void * SmFontPickList::CreateItem(const String& /*rString*/)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new Font();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
-/*?*/ void * SmFontPickList::CreateItem(const void *pItem)
+/*?*/ void * SmFontPickList::CreateItem(const void * /*pItem*/)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new Font(*((Font *) pItem));
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
-/*?*/ void SmFontPickList::DestroyItem(void *pItem)
+/*?*/ void SmFontPickList::DestroyItem(void * /*pItem*/)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     delete (Font *)pItem;
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ BOOL SmFontPickList::CompareItem(const void *pFirstItem, const void *pSecondItem) const
+/*?*/ BOOL SmFontPickList::CompareItem(const void * /*pFirstItem*/, const void * /*pSecondItem*/) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    Font    *pFirstFont, *pSecondFont;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
-/*?*/ String SmFontPickList::GetStringItem(void *pItem)
+/*?*/ String SmFontPickList::GetStringItem(void * /*pItem*/)
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); String   aString; return aString;//STRIP001  Font   *pFont;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); String   aString; return aString;
 /*?*/ }
 
-/*?*/ void SmFontPickList::LoadItem(SvStream& rStream, void *pItem)
+/*?*/ void SmFontPickList::LoadItem(SvStream& /*rStream*/, void * /*pItem*/)
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   rStream >> *((Font *)pItem);
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SmFontPickList::SaveItem(SvStream& rStream, const void *pItem) const
+/*?*/ void SmFontPickList::SaveItem(SvStream& /*rStream*/, const void * /*pItem*/) const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   rStream << *(const Font *) pItem;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 ////////////////////////////////////////

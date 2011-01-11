@@ -77,14 +77,32 @@ typedef ::std::set< MathTypeFont, LessMathTypeFont > MathTypeFontSet;
 class MathType
 {
 public:
-    MathType(String &rIn) : bSilent(sal_False),nDefaultSize(12),nLSize(0),
-        nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(0),rRet(rIn)
+    MathType(String &rIn)
+        : rRet(rIn)
+        , nHAlign(0)
+        , nVAlign(0)
+        , nDefaultSize(12)
+        , nLSize(0)
+        , nDSize(0)
+        , nCurSize(0)
+        , nLastSize(0)
+        , bSilent(sal_False)
     {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001       Init();
     }
-    MathType(String &rIn,SmNode *pIn) : bSilent(sal_False),nDefaultSize(12),
-        nLSize(0),nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(2),
-        pTree(pIn),rRet(rIn),nInsertion(0),nSpec(0)
+    MathType(String &rIn,SmNode *pIn)
+        : rRet(rIn)
+        , pTree(pIn)
+        , nHAlign(2)
+        , nVAlign(0)
+        , nInsertion(0)
+        , nDefaultSize(12)
+        , nLSize(0)
+        , nDSize(0)
+        , nCurSize(0)
+        , nLastSize(0)
+        , nSpec(0)
+        , bSilent(sal_False)
     {
         DBG_BF_ASSERT(0, "STRIP"); //STRIP001Init();
     }

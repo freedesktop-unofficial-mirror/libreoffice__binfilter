@@ -117,7 +117,7 @@ class SmFormat : public SfxBroadcaster
 
 public:
     SmFormat();
-    SmFormat(const SmFormat &rFormat) { *this = rFormat; }
+    SmFormat(const SmFormat &rFormat) : SfxBroadcaster() { *this = rFormat; }
 
     const Size &    GetBaseSize() const             { return aBaseSize; }
     void            SetBaseSize(const Size &rSize)  { aBaseSize = rSize; }

@@ -54,7 +54,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SmDocument_getSupportedServiceNames() 
 }
 
 uno::Reference< uno::XInterface > SAL_CALL SmDocument_createInstance(
-                const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception )
+                const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ ) throw( uno::Exception )
 {
     SolarMutexGuard aGuard;
 

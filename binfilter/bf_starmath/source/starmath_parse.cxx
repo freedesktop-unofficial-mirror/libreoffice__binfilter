@@ -403,7 +403,7 @@ using namespace ::com::sun::star::i18n;
 
 // Continuing characters may be any alphanumeric or dot.
 /*?*/ const sal_Int32 coContFlags =
-/*?*/     ( coStartFlags | KParseTokens::ASC_DOT ) & ~KParseTokens::IGNORE_LEADING_WS
+/*?*/     (( coStartFlags | KParseTokens::ASC_DOT ) & ~KParseTokens::IGNORE_LEADING_WS)
 /*?*/     | KParseTokens::TWO_DOUBLE_QUOTES_BREAK_STRING;
 
 // First character for numbers, may be any numeric or dot
@@ -1316,8 +1316,8 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/
 /*N*/   // Blanks am Zeilenende ignorieren wenn die entsprechende Option gesetzt ist
-/*N*/   if (CurToken.eType == TNEWLINE  ||  CurToken.eType == TEND
-/*N*/         &&  SM_MOD1()->GetConfig()->IsIgnoreSpacesRight())
+/*N*/   if (CurToken.eType == TNEWLINE  ||  (CurToken.eType == TEND
+/*N*/         &&  SM_MOD1()->GetConfig()->IsIgnoreSpacesRight()))
 /*?*/       pBlankNode->Clear();
 /*N*/
 /*N*/   NodeStack.Push(pBlankNode);
@@ -1637,7 +1637,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   BOOL         bIsPostfix = eType == TFACT;
 /*N*/
 /*N*/   SmStructureNode *pSNode;
-/*N*/   SmNode *pOper,
+/*N*/   SmNode *pOper = 0,
 /*N*/          *pExtra = 0,
 /*N*/          *pArg;
 /*N*/
@@ -2226,19 +2226,19 @@ const sal_Int32 coNumContFlags =
 /*M*/     }
 /*M*/     else    // 5.0 <-> 6.0 formula text (symbol name) conversion
 /*M*/     {
-/*M*/         LanguageType nLang = GetLanguage();
+/*M*/         LanguageType nLclLang = GetLanguage();
 /*M*/         SmLocalizedSymbolData &rData = SM_MOD1()->GetLocSymbolData();
 /*M*/         const ResStringArray *pFrom = 0;
 /*M*/         const ResStringArray *pTo   = 0;
 /*M*/         if (CONVERT_50_TO_60 == GetConversion())
 /*M*/         {
-/*M*/             pFrom = rData.Get50NamesArray( nLang );
-/*M*/             pTo   = rData.Get60NamesArray( nLang );
+/*M*/             pFrom = rData.Get50NamesArray( nLclLang );
+/*M*/             pTo   = rData.Get60NamesArray( nLclLang );
 /*M*/         }
 /*M*/         else if (CONVERT_60_TO_50 == GetConversion())
 /*M*/         {
-/*M*/             pFrom = rData.Get60NamesArray( nLang );
-/*M*/             pTo   = rData.Get50NamesArray( nLang );
+/*M*/             pFrom = rData.Get60NamesArray( nLclLang );
+/*M*/             pTo   = rData.Get50NamesArray( nLclLang );
 /*M*/         }
 /*M*/         if (pFrom  &&  pTo)
 /*M*/         {

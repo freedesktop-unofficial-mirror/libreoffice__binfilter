@@ -190,7 +190,6 @@ public:
         return ((SmSymSetManager *) this)->GetSymbolByName(rSymbolName);
     }
 
-        void            AddReplaceSymbol( const SmSym & rSymbol );
         USHORT          GetSymbolCount() const;
         const SmSym *   GetSymbolByPos( USHORT nPos ) const;
 

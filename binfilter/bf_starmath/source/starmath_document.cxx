@@ -319,7 +319,7 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-/*N*/ void SmDocShell::SetPrinter( SfxPrinter *pNew )
+/*N*/ void SmDocShell::SetPrinter( SfxPrinter * /*pNew*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
@@ -354,10 +354,10 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/   SfxObjectShell(eMode),
 /*N*/   pSymSetMgr          ( 0 ),
 /*N*/   pTree               ( 0 ),
-/*N*/   pPrinter            ( 0 ),
-/*N*/   pTmpPrinter         ( 0 ),
 /*N*/   pEditEngineItemPool ( 0 ),
 /*N*/   pEditEngine         ( 0 ),
+/*N*/   pPrinter            ( 0 ),
+/*N*/   pTmpPrinter         ( 0 ),
 /*N*/   nModifyCount        ( 0 ),
 /*N*/   bIsFormulaArranged  ( FALSE )
 /*N*/ {

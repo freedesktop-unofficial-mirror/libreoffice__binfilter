@@ -311,11 +311,6 @@ long                SF_Ident = SF_IDENT;
 /*N*/ }
 
 
-/*N*/ void SmSymSetManager::AddReplaceSymbol( const SmSym &rSymbol )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-
 /*N*/ USHORT SmSymSetManager::GetSymbolCount() const
 /*N*/ {
 /*N*/     USHORT nRes = 0;

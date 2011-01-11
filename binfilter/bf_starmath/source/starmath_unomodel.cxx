@@ -171,10 +171,10 @@ PropertySetInfo * lcl_createModelPropertyInfo ()
         { RTL_CONSTASCII_STRINGPARAM( "FontSansIsItalic"),   HANDLE_CUSTOM_FONT_SANS_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, FNT_SANS},
         { RTL_CONSTASCII_STRINGPARAM( "FontSerifIsBold"),    HANDLE_CUSTOM_FONT_SERIF_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE,  FNT_SERIF},
         { RTL_CONSTASCII_STRINGPARAM( "FontSerifIsItalic"),   HANDLE_CUSTOM_FONT_SERIF_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, FNT_SERIF},
-        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsBold"),     HANDLE_FONT_TEXT_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsItalic"),   HANDLE_FONT_TEXT_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsBold"),    HANDLE_FONT_VARIABLES_WEIGHT    ,  &::getBooleanCppuType(),            PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsItalic"),   HANDLE_FONT_VARIABLES_POSTURE,  &::getBooleanCppuType(),  PROPERTY_NONE, },
+        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsBold"),     HANDLE_FONT_TEXT_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsItalic"),   HANDLE_FONT_TEXT_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsBold"),    HANDLE_FONT_VARIABLES_WEIGHT    ,  &::getBooleanCppuType(),            PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsItalic"),   HANDLE_FONT_VARIABLES_POSTURE,  &::getBooleanCppuType(),  PROPERTY_NONE, 0 },
         { RTL_CONSTASCII_STRINGPARAM( "Formula"                           ),    HANDLE_FORMULA                             ,        &::getCppuType((const OUString*)0),     PROPERTY_NONE, 0},
         { RTL_CONSTASCII_STRINGPARAM( "IsScaleAllBrackets"              ), HANDLE_IS_SCALE_ALL_BRACKETS              ,      &::getBooleanCppuType(),    PROPERTY_NONE, 0},
         { RTL_CONSTASCII_STRINGPARAM( "IsTextMode"                       ), HANDLE_IS_TEXT_MODE                       ,         &::getBooleanCppuType(),    PROPERTY_NONE, 0},
@@ -469,7 +469,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_RELATIVE_FONT_HEIGHT_OPERATORS     :
             case HANDLE_RELATIVE_FONT_HEIGHT_LIMITS        :
             {
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 1)
                     throw IllegalArgumentException();
@@ -486,7 +486,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_ALIGNMENT                          :
             {
                 // SmHorAlign uses the same values as HorizontalAlignment
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 0 || nVal > 2)
                     throw IllegalArgumentException();
@@ -519,7 +519,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_TOP_MARGIN                :
             case HANDLE_BOTTOM_MARGIN             :
             {
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 0)
                     throw IllegalArgumentException();
@@ -584,7 +584,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                 if ( *pValues >>= aSequence )
                 {
                     sal_uInt32 nSize = aSequence.getLength();
-                    SmSymSetManager &rManager = pDocSh->GetSymSetManager();
+                    /*SmSymSetManager &rManager =*/ pDocSh->GetSymSetManager();
                     SymbolDescriptor *pDescriptor = aSequence.getArray();
                     for (sal_uInt32 i = 0; i < nSize ; i++, pDescriptor++)
                     {
@@ -599,7 +599,6 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                                         pDescriptor->sSymbolSet );
                         aSymbol.SetExportName ( pDescriptor->sExportName );
                         aSymbol.SetDocSymbol( TRUE );
-                        rManager.AddReplaceSymbol ( aSymbol );
                     }
                 }
                 else
@@ -796,8 +795,8 @@ void SmModel::_getPropertyValues( const PropertyMapEntry **ppEntries, Any *pValu
 //////////////////////////////////////////////////////////////////////
 
 sal_Int32 SAL_CALL SmModel::getRendererCount(
-        const uno::Any& rSelection,
-        const uno::Sequence< beans::PropertyValue >& xOptions )
+        const uno::Any& /*rSelection*/,
+        const uno::Sequence< beans::PropertyValue >& /*xOptions*/ )
     throw (IllegalArgumentException, RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -830,8 +829,8 @@ static Size lcl_GuessPaperSize()
 
 uno::Sequence< beans::PropertyValue > SAL_CALL SmModel::getRenderer(
         sal_Int32 nRenderer,
-        const uno::Any& rSelection,
-        const uno::Sequence< beans::PropertyValue >& xOptions )
+        const uno::Any& /*rSelection*/,
+        const uno::Sequence< beans::PropertyValue >& /*xOptions*/ )
     throw (IllegalArgumentException, RuntimeException)
 {
     SolarMutexGuard aGuard;

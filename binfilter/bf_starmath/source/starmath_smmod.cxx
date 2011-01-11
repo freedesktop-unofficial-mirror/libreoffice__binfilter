@@ -181,8 +181,8 @@ namespace binfilter {//STRIP009
 
 /*N*/ SmModule::SmModule(SvFactory* pObjFact) :
 /*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),   //STRIP005
-/*N*/     pConfig( 0 ),
 /*N*/     pColorConfig( 0 ),
+/*N*/     pConfig( 0 ),
 /*N*/     pLocSymbolData( 0 ),
 /*N*/     pRectCache( new SmRectCache ),
 /*N*/     pSysLocale( 0 ),
@@ -214,7 +214,7 @@ namespace binfilter {//STRIP009
 /*N*/     pThis->pVirtualDev = new VirtualDevice;
 /*N*/ }
 
-/*N*/ void SmModule::ApplyColorConfigValues( const ColorConfig &rColorCfg )
+/*N*/ void SmModule::ApplyColorConfigValues( const ColorConfig & /*rColorCfg*/ )
 /*N*/ {
 /*N*/ }
 
@@ -229,7 +229,7 @@ namespace binfilter {//STRIP009
 /*N*/     return *pColorConfig;
 /*N*/ }
 
-/*N*/ void SmModule::Notify( SfxBroadcaster &rBC, const SfxHint &rHint )
+/*N*/ void SmModule::Notify( SfxBroadcaster &/*rBC*/, const SfxHint &rHint )
 /*N*/ {
 /*N*/     if (rHint.ISA(SfxSimpleHint))
 /*N*/     {

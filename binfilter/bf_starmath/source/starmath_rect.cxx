@@ -191,6 +191,7 @@ static xub_Unicode const aMathAlpha[] =
 /*N*/   Rectangle  aGlyphRect;
 /*N*/   BOOL       bSuccess = SmGetGlyphBoundRect(rDev, rText, aGlyphRect);
 /*N*/   DBG_ASSERT(bSuccess, "Sm : Ooops... (fehlt evtl. der Font?)");
+/*N*/   (void)bSuccess;
 /*N*/
 /*N*/   nItalicLeftSpace  = GetLeft() - aGlyphRect.Left() + nBorderWidth;
 /*N*/   nItalicRightSpace = aGlyphRect.Right() - GetRight() + nBorderWidth;
@@ -230,7 +231,7 @@ static xub_Unicode const aMathAlpha[] =
 
 
 /*N*/ void SmRect::Init(const OutputDevice &rDev, const SmFormat *pFormat,
-/*N*/                   const XubString &rText, USHORT nBorderWidth)
+/*N*/                   const XubString &rText, USHORT nInBorderWidth)
 /*N*/   // get rectangle fitting for drawing 'rText' on OutputDevice 'rDev'
 /*N*/ {
 /*N*/   SmRectCache *pRectCache = SM_MOD1()->GetRectCache();
@@ -244,7 +245,7 @@ static xub_Unicode const aMathAlpha[] =
 /*?*/       *this = *pResult;
 /*N*/   else
 /*N*/   {   // build rectangle and put it in cache
-/*N*/       BuildRect(rDev, pFormat, rText, nBorderWidth);
+/*N*/       BuildRect(rDev, pFormat, rText, nInBorderWidth);
 /*N*/       pResult = pRectCache->Add(aKey, *this);
 /*N*/   }
 /*N*/   DBG_ASSERT(pResult, "Sm : NULL pointer");
@@ -252,12 +253,12 @@ static xub_Unicode const aMathAlpha[] =
 
 
 /*N*/ SmRect::SmRect(const OutputDevice &rDev, const SmFormat *pFormat,
-/*N*/                const XubString &rText, long nBorderWidth)
+/*N*/                const XubString &rText, long nInBorderWidth)
 /*N*/ {
-/*N*/     DBG_ASSERT( nBorderWidth >= 0, "BorderWidth negativ" );
-/*N*/     if (nBorderWidth < 0)
-/*N*/         nBorderWidth = 0;
-/*N*/     Init(rDev, pFormat, rText, (USHORT) nBorderWidth);
+/*N*/     DBG_ASSERT( nInBorderWidth >= 0, "BorderWidth negativ" );
+/*N*/     if (nInBorderWidth < 0)
+/*N*/         nInBorderWidth = 0;
+/*N*/     Init(rDev, pFormat, rText, (USHORT) nInBorderWidth);
 /*N*/ }
 
 
