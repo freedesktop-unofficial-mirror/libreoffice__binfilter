@@ -168,8 +168,8 @@ inline void SvAddressParser_Impl::addTokenToRealName()
         if (!m_pRealNameBegin)
             m_pRealNameBegin = m_pRealNameContentBegin = m_pCurTokenBegin;
         else if (m_pRealNameEnd < m_pCurTokenBegin - 1
-                 || m_pRealNameEnd == m_pCurTokenBegin - 1
-                    && *m_pRealNameEnd != ' ')
+                 || (m_pRealNameEnd == m_pCurTokenBegin - 1
+                    && *m_pRealNameEnd != ' '))
             m_bRealNameReparse = true;
         m_pRealNameEnd = m_pRealNameContentEnd = m_pCurTokenEnd;
     }
@@ -491,6 +491,7 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
                     addTokenToAddrSpec(ELEMENT_ITEM);
                 }
                 if (!m_bRealNameFinished && m_eState != AFTER_LESS)
+                {
                     if (m_bCurTokenReparse)
                     {
                         if (!m_pRealNameBegin)
@@ -512,16 +513,19 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
                         m_pRealNameEnd = m_pCurTokenEnd;
                         m_bRealNameReparse = true;
                     }
+                }
                 m_eType = TOKEN_ATOM;
                 break;
 
             case TOKEN_DOMAIN:
                 if (m_pAddrSpec->m_eLastElem != ELEMENT_END)
+                {
                     if (m_pAddrSpec->m_bAtFound
                         && m_pAddrSpec->m_eLastElem == ELEMENT_DELIM)
                         addTokenToAddrSpec(ELEMENT_ITEM);
                     else
                         m_pAddrSpec->reset();
+                }
                 addTokenToRealName();
                 m_eType = TOKEN_ATOM;
                 break;
@@ -599,6 +603,7 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
 
             case '@':
                 if (m_pAddrSpec->m_eLastElem != ELEMENT_END)
+                {
                     if (!m_pAddrSpec->m_bAtFound
                         && m_pAddrSpec->m_eLastElem == ELEMENT_ITEM)
                     {
@@ -607,6 +612,7 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
                     }
                     else
                         m_pAddrSpec->reset();
+                }
                 addTokenToRealName();
                 break;
 
@@ -624,8 +630,8 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
                 else
                 {
                     m_pAddrSpec = m_aInnerAddrSpec.isValid()
-                                  || !m_aOuterAddrSpec.isValid()
-                                         && m_aInnerAddrSpec.isPoorlyValid() ?
+                                  || (!m_aOuterAddrSpec.isValid()
+                                         && m_aInnerAddrSpec.isPoorlyValid()) ?
                                       &m_aInnerAddrSpec :
                                   m_aOuterAddrSpec.isPoorlyValid() ?
                                       &m_aOuterAddrSpec : 0;
@@ -653,11 +659,11 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
                         }
                         UniString aTheRealName;
                         if (!m_pRealNameBegin
-                            || m_pAddrSpec == &m_aOuterAddrSpec
+                            || (m_pAddrSpec == &m_aOuterAddrSpec
                                && m_pRealNameBegin
                                       == m_aOuterAddrSpec.m_pBegin
                                && m_pRealNameEnd == m_aOuterAddrSpec.m_pEnd
-                               && m_pFirstCommentBegin)
+                               && m_pFirstCommentBegin))
                             if (!m_pFirstCommentBegin)
                                 aTheRealName = aTheAddrSpec;
                             else if (m_bFirstCommentReparse)
@@ -737,10 +743,12 @@ SvAddressParser_Impl::SvAddressParser_Impl(SvAddressParser * pParser,
 
             case '.':
                 if (m_pAddrSpec->m_eLastElem != ELEMENT_END)
+                {
                     if (m_pAddrSpec->m_eLastElem != ELEMENT_DELIM)
                         addTokenToAddrSpec(ELEMENT_DELIM);
                     else
                         m_pAddrSpec->reset();
+                }
                 addTokenToRealName();
                 break;
 

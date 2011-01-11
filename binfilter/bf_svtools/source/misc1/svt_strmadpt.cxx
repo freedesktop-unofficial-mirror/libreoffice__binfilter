@@ -306,10 +306,16 @@ SvLockBytesInputStream::readBytes(uno::Sequence< sal_Int8 > & rData,
 {
     if (!m_xLockBytes.Is())
         throw io::NotConnectedException();
-    if (nBytesToRead < 0
-        || m_nPosition > std::numeric_limits< ULONG >::max()
-           && nBytesToRead > 0)
+    if (
+         nBytesToRead < 0 ||
+         (
+          static_cast<sal_uInt64>(m_nPosition) > SAL_MAX_SIZE &&
+          nBytesToRead > 0
+         )
+       )
+    {
         throw io::IOException();
+    }
     rData.realloc(nBytesToRead);
     sal_Int32 nSize = 0;
     while (nSize < nBytesToRead)
@@ -338,7 +344,7 @@ SvLockBytesInputStream::readSomeBytes(uno::Sequence< sal_Int8 > & rData,
 {
     if (!m_xLockBytes.Is())
         throw io::NotConnectedException();
-    if (m_nPosition > std::numeric_limits< ULONG >::max()
+    if (static_cast<sal_uInt64>(m_nPosition) > SAL_MAX_SIZE
         && nMaxBytesToRead > 0)
         throw io::IOException();
     rData.realloc(nMaxBytesToRead);
@@ -387,11 +393,12 @@ sal_Int32 SAL_CALL SvLockBytesInputStream::available()
     SvLockBytesStat aStat;
     if (m_xLockBytes->Stat(&aStat, SVSTATFLAG_DEFAULT) != ERRCODE_NONE)
         throw io::IOException();
-    return aStat.nSize <= m_nPosition ?
+    return aStat.nSize <= static_cast<sal_uInt64>(m_nPosition) ?
                0 :
-               std::min< sal_uInt32 >(
-                   sal_uInt32(aStat.nSize - m_nPosition),
-                   sal_uInt32(std::numeric_limits< sal_Int32 >::max()));
+           static_cast<sal_Size>(aStat.nSize - m_nPosition) <=
+                   static_cast<sal_uInt32>(SAL_MAX_INT32) ?
+               static_cast<sal_Int32>(aStat.nSize - m_nPosition) :
+               SAL_MAX_INT32;
 }
 
 //============================================================================
@@ -578,6 +585,7 @@ void SvInputStream::FlushData()
 ULONG SvInputStream::SeekPos(ULONG nPos)
 {
     if (open())
+    {
         if (nPos == STREAM_SEEK_TO_END)
             if (m_nSeekedFrom == STREAM_SEEK_TO_END)
             {
@@ -585,7 +593,8 @@ ULONG SvInputStream::SeekPos(ULONG nPos)
                     try
                     {
                         sal_Int64 nLength = m_xSeekable->getLength();
-                        if (nLength < STREAM_SEEK_TO_END)
+                        if (static_cast<sal_uInt64>(nLength)
+                            < STREAM_SEEK_TO_END)
                         {
                             m_nSeekedFrom = Tell();
                             return ULONG(nLength);
@@ -615,6 +624,7 @@ ULONG SvInputStream::SeekPos(ULONG nPos)
             m_nSeekedFrom = STREAM_SEEK_TO_END;
             return nPos;
         }
+    }
     SetError(ERRCODE_IO_CANTSEEK);
     return Tell();
 }
@@ -683,8 +693,8 @@ void SvInputStream::RemoveMark(ULONG nPos)
 bool SvDataPipe_Impl::remove(Page * pPage)
 {
     if (pPage != m_pFirstPage || m_pReadPage == m_pFirstPage
-        || !m_aMarks.empty()
-           && *m_aMarks.begin() < m_pFirstPage->m_nOffset + m_nPageSize)
+        || (!m_aMarks.empty()
+           && *m_aMarks.begin() < m_pFirstPage->m_nOffset + m_nPageSize))
         return false;
 
     m_pFirstPage = m_pFirstPage->m_pNext;
