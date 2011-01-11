@@ -31,15 +31,16 @@
 
 #include <tools/solar.h>
 #include <tools/list.hxx>
+#include <vector>
 
 namespace binfilter
 {
 
 class SvBindingTransportFactory;
-DECLARE_LIST (SvBindingTransportFactoryList, SvBindingTransportFactory*)
+typedef ::std::vector< SvBindingTransportFactory* > SvBindingTransportFactoryList;
 
 class SvLockBytesFactory;
-DECLARE_LIST (SvLockBytesFactoryList, SvLockBytesFactory*)
+typedef ::std::vector< SvLockBytesFactory* > SvLockBytesFactoryList;
 
 class SvBindingData_Impl;
 

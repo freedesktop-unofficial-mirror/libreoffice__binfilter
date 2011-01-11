@@ -145,13 +145,23 @@ SvBindingTransport::~SvBindingTransport (void)
 SvBindingTransportFactory::SvBindingTransportFactory (void)
 {
     SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    rList.Insert (this, rList.Count());
+    rList.push_back( this );
 }
 
 SvBindingTransportFactory::~SvBindingTransportFactory (void)
 {
     SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    rList.Remove (this);
+    for ( SvBindingTransportFactoryList::iterator it = rList.begin();
+          it < rList.end();
+          ++it
+        )
+    {
+        if ( *it == this )
+        {
+            rList.erase( it );
+            break;
+        }
+    }
 }
 
 SvBindingTransportContext::~SvBindingTransportContext (void)
@@ -170,7 +180,17 @@ SvBindingTransportContext::~SvBindingTransportContext (void)
 SvLockBytesFactory::~SvLockBytesFactory (void)
 {
     SvLockBytesFactoryList &rList = BAPP()->m_aLockBytesFactories;
-    rList.Remove (this);
+    for ( SvLockBytesFactoryList::iterator it = rList.begin();
+          it < rList.end();
+          ++it
+        )
+    {
+        if ( *it == this )
+        {
+            rList.erase( it );
+            break;
+        }
+    }
 }
 
 /*
@@ -181,10 +201,10 @@ SvLockBytesFactory* SvLockBytesFactory::GetFactory (const String &rUrl)
     SvLockBytesFactoryList &rList = BAPP()->m_aLockBytesFactories;
     SvLockBytesFactory *pFactory = NULL;
 
-    ULONG i, n = rList.Count();
+    size_t i, n = rList.size();
     for (i = 0; i < n; i++)
     {
-        pFactory = rList.GetObject(i);
+        pFactory = rList[ i ];
         if (pFactory)
         {
             WildCard aWild (pFactory->GetWildcard());
