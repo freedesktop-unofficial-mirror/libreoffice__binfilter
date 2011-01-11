@@ -47,16 +47,6 @@
 #include <tools/postwin.h>
 #include "ddewrap.hxx"
 
-/*
-extern "C"
-{
-#define BOOL WIN_BOOL
-#define BYTE WIN_BYTE
-#undef BOOL
-#undef BYTE
-};
-*/
-
 #endif
 
 #include <tools/string.hxx>
@@ -71,18 +61,6 @@ class DdeTopic;
 class DdeItem;
 class DdeTopics;
 class DdeItems;
-
-// ----------------
-// - Conversation -
-// ----------------
-
-struct Conversation
-{
-    HCONV       hConv;
-    DdeTopic*   pTopic;
-};
-
-DECLARE_LIST( ConvList, Conversation* );
 
 // ---------------
 // - DdeInternal -
