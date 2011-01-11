@@ -184,8 +184,6 @@ public:
 };
 
 
-
-/*  */
 /****************  SPEZIELLE Reader ************************/
 
 // spezielle - Reader koennen beides sein !! (Excel, W4W, .. )
@@ -359,8 +357,6 @@ protected:
     void PutNumFmtFontsInAttrPool();
     void PutEditEngFontsInAttrPool( BOOL bIncl_CJK_CTL = TRUE );
 
-//    virtual ULONG WriteStream() = 0;
-
 public:
     SwDoc* pDoc;
     SwPaM* pCurPam;
@@ -442,10 +438,6 @@ protected:
     String aFltName;
     SvStorage* pStg;
 
-    // Fehler beim Aufruf erzeugen
-//    virtual ULONG WriteStream(){DBG_BF_ASSERT(0, "STRIP"); return 0;}
-//    virtual ULONG WriteStorage() = 0;
-
 public:
     StgWriter() : Writer(), pStg( 0 ) {}
 
@@ -453,24 +445,6 @@ public:
     const String& GetFltName() const    { return aFltName; }
     void SetFltName( const String& r )  { aFltName = r; }
 };
-
-class Sw3Writer : public StgWriter
-{
-    Sw3Io* pIO;
-    BOOL bSaveAs : 1;
-
-//    virtual ULONG WriteStorage();
-
-public:
-    Sw3Writer() : pIO( 0 ), bSaveAs( FALSE ) {}
-
-          Sw3Io* GetSw3Io()                 { return pIO; }
-    const Sw3Io* GetSw3Io() const           { return pIO; }
-    void SetSw3Io( Sw3Io* pIo, BOOL bSvAs = FALSE )
-        { pIO = pIo; bSaveAs = bSvAs; }
-
-};
-
 
 
 // Schnittstellenklasse fuer den allgemeinen Zugriff auf die
@@ -495,7 +469,6 @@ public:
 
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
-void GetSw3Writer( const String&, WriterRef& );
 void GetXMLWriter( const String&, WriterRef& );
 
 // Die folgende Klasse ist ein Wrappe fuer die Basic-I/O-Funktionen

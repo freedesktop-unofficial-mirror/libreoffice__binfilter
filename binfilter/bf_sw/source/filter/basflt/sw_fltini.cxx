@@ -121,9 +121,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/   ASSERT( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
 /*N*/ }
 
-
-
-
 /*N*/ void _FinitFilter()
 /*N*/ {
 /*N*/   // die Reader vernichten
@@ -135,8 +132,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/   }
 /*N*/ }
 
-
-/*  */
 
 /*N*/ void SwIoSystem::GetWriter( const String& rFltName, WriterRef& xRet )
 /*N*/ {
@@ -190,16 +185,7 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/ }
 
 
-/*  */
-
 /////////////// die Storage Reader/Writer ////////////////////////////////
-
-
-/*N*/ void GetSw3Writer( const String&, WriterRef& xRet )
-/*N*/ {
-/*N*/   xRet = new Sw3Writer;
-/*N*/ }
-
 
  ULONG StgReader::OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize )
  {
@@ -226,8 +212,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
     }
     return nRet;
  }
-
-/*  */
 
 
 /*N*/ ULONG Sw3Reader::Read( SwDoc & /*rDoc*/, SwPaM &rPam, const String & )
@@ -263,9 +247,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 
  BOOL Writer::IsStgWriter() const { return FALSE; }
  BOOL Writer::IsSw3Writer() const { return FALSE; }
-
-
-/*  */
 
 
 ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
@@ -336,8 +317,6 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
     }
     return bRes;
  }
-
-/*  */
 
 //-----------------------------------------------------------------------
 // Filter Flags lesen, wird von WW8 / W4W / EXCEL / LOTUS benutzt.
@@ -431,15 +410,6 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
         }
     return bExist;
  }
-
-/*  */
-
-
-
-
-
-
-/*  */
 
 SwRelNumRuleSpaces::SwRelNumRuleSpaces( SwDoc& rDoc, BOOL bNDoc )
     : bNewDoc( bNDoc )
@@ -604,7 +574,7 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
         }
     }
 }
-/*  */
+
  struct CharSetNameMap
  {
      rtl_TextEncoding eCode;
@@ -711,6 +681,7 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
      };
      return &aMapArr[0];
  }
+
 /*
  Get a rtl_TextEncoding from its name
  */

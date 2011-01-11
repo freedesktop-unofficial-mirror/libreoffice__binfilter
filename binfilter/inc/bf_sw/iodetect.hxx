@@ -29,9 +29,6 @@
 #ifndef _IODETECT_HXX
 #define _IODETECT_HXX
 
-
-
-
 #ifdef IS_SW_DLL
 #include <shellio.hxx>
 #endif
@@ -160,30 +157,20 @@ sal_Char sSwDos[]       = "SW6";                                \
                                                                             \
                                                                             \
 SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
-    {/* 0*/ SwIoEntry(FILTER_SW5,       4,          &::binfilter::GetSw3Writer,     TRUE)}, \
-    {/* 1*/ SwIoEntry(FILTER_SW4,       4,          &::binfilter::GetSw3Writer,     FALSE)}, \
-    {/* 2*/ SwIoEntry(FILTER_SW3,       4,          &::binfilter::GetSw3Writer,     FALSE)}, \
+    {/* 0*/ SwIoEntry(FILTER_SW5,       4,          0,  TRUE)}, \
+    {/* 1*/ SwIoEntry(FILTER_SW4,       4,          0,  FALSE)}, \
+    {/* 2*/ SwIoEntry(FILTER_SW3,       4,          0,  FALSE)}, \
     {/* 3*/ SwIoEntry(FILTER_SWG,       STRING_LEN, 0,                  TRUE)}, \
     {/* 4*/ SwIoEntry(FILTER_SWGV,      4,          0,                  FALSE)}, \
-/*  5 SwIoEntry(FILTER_RTF,         STRING_LEN, &::GetRTFWriter,    TRUE),  */\
     {/*  6*/ SwIoEntry(sSwDos,           STRING_LEN,  0,                  TRUE)}, \
     {/* 7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::binfilter::GetASCWriter,     FALSE)}, \
-/*  8 SwIoEntry(sWW6,               STRING_LEN, &::GetWW8Writer,    TRUE),  */\
-/*  9 SwIoEntry(FILTER_WW8,     STRING_LEN, &::GetWW8Writer,    FALSE), */\
     {/* 10*/ SwIoEntry(FILTER_W4W,        3,          &::binfilter::GetW4WWriter,    TRUE)}, \
-/* 11 SwIoEntry(sRtfWH,             STRING_LEN, &::GetRTFWriter,    FALSE), */\
     {/* 12*/ SwIoEntry(sCExcel,           5,          0,                  TRUE)}, \
     {/* 13*/ SwIoEntry(sExcel,            4,          0,                  FALSE)}, \
     {/* 14*/ SwIoEntry(sLotusD,           5,          0,                  TRUE)}, \
-/* 15 SwIoEntry(sHTML,          4,          &::GetHTMLWriter,   TRUE),  */\
-/* 16 SwIoEntry(sWW1,           STRING_LEN, 0,                  TRUE),  */\
-/* 17 SwIoEntry(sWW5,               STRING_LEN, 0,                  FALSE), */\
     {/* 18*/ SwIoEntry(sSwg1,            4,          0,                 FALSE)}, \
     {/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)} \
                                                                             \
-/* opt DEB_SH_SwIoEntry(sW4W_Int, STRING_LEN, 0,                    TRUE)   */\
-/* opt DEB_DBWRT_SwIoEntry(sDebug,STRING_LEN, &::GetDebugWriter,    FALSE)  */\
-/* opt DEB_DBWRT_SwIoEntry(sUndo,   STRING_LEN, &::GetUndoWriter,   FALSE)  */\
                                                                           , \
 /*last*/ {SwIoEntry(FILTER_TEXT,    4,          &::binfilter::GetASCWriter,     TRUE)} \
 };                                                                          \
@@ -203,7 +190,6 @@ struct W1_FIB
     USHORT nFibGet()    { return SVBT16ToShort(nFib); }
     USHORT wIdentGet()  { return SVBT16ToShort(wIdent); }
     USHORT fFlagsGet()  { return SVBT16ToShort(fFlags); }
-    // SVBT16 fComplex :1;//        0004 when 1, file is in complex, fast-saved format.
     BOOL fComplexGet() { return ((fFlagsGet() >> 2) & 1); }
 };
 #if OSL_DEBUG_LEVEL > 1
