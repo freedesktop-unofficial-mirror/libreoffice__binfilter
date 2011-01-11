@@ -169,7 +169,7 @@ using namespace ::com::sun::star::lang;
 /*N*/   return aRet;
 /*N*/ }
 
-void SvxAsianConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SvxAsianConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void SvxAsianConfig::Commit() {}
 }
 
