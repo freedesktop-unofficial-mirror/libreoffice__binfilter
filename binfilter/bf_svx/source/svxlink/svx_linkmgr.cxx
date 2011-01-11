@@ -45,9 +45,9 @@ namespace binfilter {
 
 
 
-/*N*/ SvxLinkManager::SvxLinkManager( SvPersist * pPersist )
+/*N*/ SvxLinkManager::SvxLinkManager( SvPersist * pInPersist )
 /*N*/ {
-/*N*/   SvLinkManager::SetPersist( pPersist );
+/*N*/   SvLinkManager::SetPersist( pInPersist );
 /*N*/ }
 
 /*N*/ ::binfilter::SvLinkSourceRef SvxLinkManager::CreateObj( ::binfilter::SvBaseLink * pLink )

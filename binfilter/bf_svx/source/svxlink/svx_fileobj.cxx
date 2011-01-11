@@ -74,7 +74,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ SvFileObject::SvFileObject()
-/*N*/   : nType( FILETYPE_TEXT ), pDownLoadData( 0 )
+/*N*/   : pDownLoadData( 0 ), nType( FILETYPE_TEXT )
 /*N*/ {
 /*N*/   bLoadAgain = bMedUseCache = TRUE;
 /*N*/   bSynchron = bLoadError = bWaitForData = bDataReady = bNativFormat =
@@ -472,6 +472,7 @@ JP 28.02.96: noch eine Baustelle:
 
 /*?*/ IMPL_STATIC_LINK( SvFileObject, DelMedium_Impl, SfxMediumRef*, pDelMed )
 /*?*/ {
+/*?*/   (void)pThis;
 /*?*/   delete pDelMed;
 /*?*/   return 0;
 /*?*/ }
