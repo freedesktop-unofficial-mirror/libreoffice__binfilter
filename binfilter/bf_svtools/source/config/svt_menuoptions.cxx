@@ -81,8 +81,6 @@ namespace binfilter
 
 #define PROPERTYCOUNT                           3
 
-DECLARE_LIST( LinkList, Link * )
-
 //_________________________________________________________________________________________________________________
 //  private declarations!
 //_________________________________________________________________________________________________________________
@@ -94,7 +92,6 @@ class SvtMenuOptions_Impl : public ConfigItem
     //-------------------------------------------------------------------------------------------------------------
 
     private:
-        LinkList    aList;
         sal_Bool    m_bDontHideDisabledEntries          ;   /// cache "DontHideDisabledEntries" of Menu section
         sal_Bool    m_bFollowMouse                      ;   /// cache "FollowMouse" of Menu section
         sal_Bool    m_bMenuIcons                        ;   /// cache "MenuIcons" of Menu section
@@ -177,8 +174,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bDontHideDisabledEntries = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -186,8 +181,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bFollowMouse = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -195,8 +188,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bMenuIcons = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -289,9 +280,6 @@ SvtMenuOptions_Impl::~SvtMenuOptions_Impl()
     {
         Commit();
     }
-
-    for ( USHORT n=0; n<aList.Count(); )
-        delete aList.Remove(n);
 }
 
 //*****************************************************************************************************************
@@ -328,9 +316,6 @@ void SvtMenuOptions_Impl::Notify( const Sequence< OUString >& seqPropertyNames )
         else DBG_ASSERT( sal_False, "SvtMenuOptions_Impl::Notify()\nUnkown property detected ... I can't handle these!\n" );
         #endif
     }
-
-    for ( USHORT n=0; n<aList.Count(); n++ )
-        aList.GetObject(n)->Call( this );
 }
 
 //*****************************************************************************************************************
