@@ -85,8 +85,6 @@ namespace binfilter
 
 #define VCL_TOOLBOX_STYLE_FLAT              ((USHORT)0x0004) // from <vcl/toolbox.hxx>
 
-DECLARE_LIST( LinkList, Link * )
-
 //_________________________________________________________________________________________________________________
 //  private declarations!
 //_________________________________________________________________________________________________________________
@@ -98,7 +96,6 @@ class SvtMiscOptions_Impl : public ConfigItem
     //-------------------------------------------------------------------------------------------------------------
 
     private:
-    LinkList    aList;
     sal_Bool    m_bUseSystemFileDialog;
     sal_Bool    m_bIsUseSystemFileDialogRO;
     sal_Bool    m_bPluginsEnabled;
@@ -376,9 +373,6 @@ SvtMiscOptions_Impl::~SvtMiscOptions_Impl()
     {
         Commit();
     }
-
-    for ( USHORT n=0; n<aList.Count(); )
-        delete aList.Remove(n);
 }
 
 /*-- 25.02.2005 13:22:04---------------------------------------------------
@@ -458,8 +452,6 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
 
 void SvtMiscOptions_Impl::CallListeners()
 {
-    for ( USHORT n = 0; n < aList.Count(); ++n )
-        aList.GetObject(n)->Call( this );
 }
 
 sal_Int16 SvtMiscOptions_Impl::GetSymbolsStyle() const
