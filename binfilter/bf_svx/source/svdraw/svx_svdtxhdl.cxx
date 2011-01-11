@@ -32,25 +32,18 @@
 #include "svdotext.hxx"
 #include "svdoutl.hxx"
 
-
 #include <outlobj.hxx>
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #101499#
 
 #include <com/sun/star/i18n/ScriptType.hdl>
 
-
-
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 
-
 #include "xoutx.hxx"
+
+#include <vector>
 
 namespace binfilter {
 
@@ -78,8 +71,8 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ void ImpTextPortionHandler::DrawTextToPath(ExtOutputDevice& rXOut, bool bDrawEffect)
 /*N*/ {
-/*N*/   aFormTextBoundRect=Rectangle();
-/*N*/   const Rectangle& rBR = rTextObj.GetSnapRect();
+/*N*/   aFormTextBoundRect = Rectangle();
+/*N*/   rTextObj.GetSnapRect();
 /*N*/
 /*N*/   bDraw = bDrawEffect;
 /*N*/
@@ -134,21 +127,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       }
 /*N*/
 /*N*/       rXOut.GetOutDev()->SetLayoutMode(nSavedLayoutMode);
-/*N*/
-/*N*/       //for (nParagraph = 0; nParagraph < nCnt; nParagraph++)
-/*N*/       //{
-/*N*/       //  aPoly = XOutCreatePolygon(aXPP[USHORT(nParagraph)], rXOut.GetOutDev());
-/*N*/       //  nTextWidth = 0;
-/*N*/       //
-/*N*/       //  rOutliner.SetDrawPortionHdl(LINK(this,ImpTextPortionHandler,FormTextWidthHdl));
-/*N*/       //  rOutliner.StripPortions();
-/*N*/       //  rOutliner.SetDrawPortionHdl(LINK(this,ImpTextPortionHandler,FormTextDrawHdl));
-/*N*/       //  rOutliner.StripPortions();
-/*N*/       //  rOutliner.SetDrawPortionHdl(Link());
-/*N*/       //
-/*N*/       //  const Rectangle& rFTBR=rXOut.GetFormTextBoundRect();
-/*N*/       //  aFormTextBoundRect.Union(rFTBR);
-/*N*/       //}
 /*N*/
 /*N*/       rXOut.GetOutDev()->SetFont(aFont);
 /*N*/       rOutliner.Clear();
@@ -223,7 +201,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 /*N*/ // #101498# List classes for recording portions
-/*N*/ DECLARE_LIST(ImpRecordPortionList, ImpRecordPortion*)//STRIP008 ;
+typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/ DECLARE_LIST(ImpRecordPortionListList, ImpRecordPortionList*)//STRIP008 ;
 
 /*N*/ // #101498# Draw recorded formtext along Poly
@@ -238,9 +216,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
 /*N*/
-/*N*/           for(sal_uInt32 b(0L); b < pList->Count(); b++)
+/*N*/           for( size_t b = 0, nb = pList->size(); b < nb; ++b )
 /*N*/           {
-/*N*/               ImpRecordPortion* pPortion = pList->GetObject(b);
+/*N*/               ImpRecordPortion* pPortion = (*pList)[ b ];
 /*N*/
 /*N*/               DrawPortionInfo aNewInfo(
 /*N*/                   pPortion->maPosition,
@@ -280,15 +258,15 @@ using namespace ::com::sun::star::i18n;
 /*N*/   {
 /*?*/       ImpRecordPortionList* pTmpList = pListList->GetObject(nListListIndex);
 /*?*/
-/*?*/       if(pTmpList->GetObject(0)->maPosition.Y() == pNewPortion->maPosition.Y())
+/*?*/       if( (*pTmpList)[0]->maPosition.Y() == pNewPortion->maPosition.Y())
 /*?*/           pList = pTmpList;
 /*N*/   }
 /*N*/
 /*N*/   if(!pList)
 /*N*/   {
 /*N*/       // no list for that Y-Coordinate yet, create a new one.
-/*N*/       pList = new ImpRecordPortionList(8, 8);
-/*N*/       pList->Insert(pNewPortion, LIST_APPEND);
+/*N*/       pList = new ImpRecordPortionList();
+/*N*/       pList->push_back ( pNewPortion );
 /*N*/       pListList->Insert(pList, LIST_APPEND);
 /*N*/   }
 /*N*/   else
@@ -296,16 +274,22 @@ using namespace ::com::sun::star::i18n;
 /*N*/       // found a list for that for that Y-Coordinate, sort in
 /*?*/       sal_uInt32 nInsertInd(0L);
 /*?*/
-/*?*/       while(nInsertInd < pList->Count()
-/*?*/           && pList->GetObject(nInsertInd)->maPosition.X() < pNewPortion->maPosition.X())
+/*?*/       while( nInsertInd < pList->size()
+/*?*/           && (*pList)[ nInsertInd ]->maPosition.X() < pNewPortion->maPosition.X())
 /*?*/       {
 /*?*/           nInsertInd++;
 /*?*/       }
 /*?*/
-/*?*/       if(nInsertInd == pList->Count())
-/*?*/           nInsertInd = LIST_APPEND;
-/*?*/
-/*?*/       pList->Insert(pNewPortion, nInsertInd);
+/*?*/       if( nInsertInd == pList->size() )
+            {
+                pList->push_back( pNewPortion );
+            }
+            else
+            {
+                ImpRecordPortionList::iterator it = pList->begin();
+                ::std::advance( it, nInsertInd );
+                pList->insert( it, pNewPortion );
+            }
 /*N*/   }
 /*N*/ }
 
@@ -321,9 +305,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
 /*N*/
-/*N*/           for(sal_uInt32 b(0L); b < pList->Count(); b++)
+/*N*/           for(sal_uInt32 b(0L); b < pList->size(); b++)
 /*N*/           {
-/*N*/               ImpRecordPortion* pPortion = pList->GetObject(b);
+/*N*/               ImpRecordPortion* pPortion = (*pList)[ b ];
 /*N*/
 /*N*/               if(pPortion->mpDXArray)
 /*N*/               {
@@ -348,12 +332,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/       for(sal_uInt32 a(0L); a < pListList->Count(); a++)
 /*N*/       {
 /*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
-/*N*/
-/*N*/           for(sal_uInt32 b(0L); b < pList->Count(); b++)
-/*N*/           {
-/*N*/               delete pList->GetObject(b);
-/*N*/           }
-/*N*/
+/*N*/           for(sal_uInt32 b(0L); b < pList->size(); b++)
+/*N*/               delete (*pList)[ b ];
 /*N*/           delete pList;
 /*N*/       }
 /*N*/
@@ -362,35 +342,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/ }
 
-
-
-
-//IMPL_LINK(ImpTextPortionHandler, FormTextWidthHdl, DrawPortionInfo*, pInfo)
-//{
-//  // #101498# change calculation of nTextWidth
-//  if(pInfo->nPara == nParagraph && pInfo->nTextLen)
-//  {
-//      // negative value is used because of the interface of
-//      // XOutputDevice::ImpDrawFormText(...), please look there
-//      // for more info.
-//      nTextWidth -= pInfo->pDXArray[pInfo->nTextLen - 1];
-//  }
-//
-//  return 0;
-//}
-
-//IMPL_LINK(ImpTextPortionHandler, FormTextDrawHdl, DrawPortionInfo*, pInfo)
-//{
-//  // #101498# Implementation of DrawFormText needs to be updated, too.
-//  if(pInfo->nPara == nParagraph)
-//  {
-//      nTextWidth = pXOut->DrawFormText(pInfo, aPoly, nTextWidth, bToLastPoint, bDraw);
-//          //pInfo->rText, aPoly, pInfo->rFont, nTextWidth,
-//          //bToLastPoint, bDraw, pInfo->pDXArray);
-//  }
-//
-//  return 0;
-//}
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

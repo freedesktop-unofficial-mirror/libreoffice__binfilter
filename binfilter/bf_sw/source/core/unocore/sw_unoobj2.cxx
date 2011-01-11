@@ -398,7 +398,6 @@ sal_Bool SwXTextCursor::convertSortProperties(
     rSortOpt.cDeli = ' ';
     rSortOpt.eDirection = SRT_COLUMNS;  //!! UI text may be contrary though !!
 
-    rSortOpt.aKeys;
     SwSortKey* pKey1 = new SwSortKey;
     pKey1->nColumnId = USHRT_MAX;
     pKey1->bIsNumeric = TRUE;
@@ -421,7 +420,6 @@ sal_Bool SwXTextCursor::convertSortProperties(
     for( int n = 0; n < rDescriptor.getLength(); ++n )
     {
         uno::Any aValue( pProperties[n].Value );
-//      String sPropName = pProperties[n].Name;
         const OUString& rPropName = pProperties[n].Name;
 
         // old and new sortdescriptor
@@ -434,7 +432,7 @@ sal_Bool SwXTextCursor::convertSortProperties(
         }
         else if(COMPARE_EQUAL == rPropName.compareToAscii("Delimiter"))
         {
-            sal_Unicode uChar;
+            sal_Unicode uChar(0);
             if( aValue >>= uChar )
                 rSortOpt.cDeli = uChar;
             else
@@ -1073,13 +1071,6 @@ void SwXParagraphEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
  ******************************************************************/
 TYPEINIT1(SwXTextRange, SwClient);
 
-/* -----------------10.12.98 13:19-------------------
- *
- * --------------------------------------------------*/
-/*uno::Reference< uno::XInterface >  SwXTextRange_NewInstance_Impl()
-{
-    return *new SwXTextRange();
-};
 /* -----------------------------10.03.00 18:02--------------------------------
 
  ---------------------------------------------------------------------------*/
