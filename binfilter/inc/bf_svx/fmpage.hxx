@@ -39,9 +39,6 @@ class StarBASIC;
 class FmFormModel;
 class FmFormPageImpl;   // haelt die Liste aller Forms
 
-//FORWARD_DECLARE_INTERFACE(uno,Reference)
-//STRIP008 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
-
 class SfxJSArray;
 class HelpEvent;
 
@@ -70,7 +67,6 @@ public:
 
     virtual SdrObject* RemoveObject(ULONG nObjNum);
 
-#ifndef SVX_LIGHT
     /** Insert _pClone into the page.
         If _pClone is no form object, InsertObject will be called.
         If _pClone is a form object, the page will create forms as needed to properly place the control model of the new object
@@ -86,7 +82,6 @@ public:
         without (to much) structure loss.
         If _pObj isn't a form object, nothing happens.
     */
-#endif
 
     // Zugriff auf alle Formulare
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer>& GetForms() const;

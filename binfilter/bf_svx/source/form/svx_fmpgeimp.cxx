@@ -239,7 +239,7 @@ using namespace ::binfilter::svxform;
 /*N*/         // don't use the writeObject of the stream, as this wouldn't be compatible with older documents
 /*N*/
 /*N*/     // objectliste einfuegen
-/*N*/     sal_Int32 nLength = aList.Count();
+/*N*/     sal_Int32 nLength = aList.size();
 /*N*/
 /*N*/     // schreiben der laenge
 /*N*/     xOutStrm->writeLong(nLength);
@@ -248,7 +248,7 @@ using namespace ::binfilter::svxform;
 /*N*/     {
 /*N*/         // schreiben des Objects mit Marke
 /*N*/         // Marke um an den Anfang zu springen
-/*N*/         Reference< ::com::sun::star::io::XPersistObject >  xObj(aList.GetObject(i)->GetUnoControlModel(), UNO_QUERY);
+/*N*/         Reference< ::com::sun::star::io::XPersistObject >  xObj(aList[ i ]->GetUnoControlModel(), UNO_QUERY);
 /*N*/         if (xObj.is())
 /*N*/         {
 /*N*/             xOutStrm->writeObject(xObj);
@@ -281,8 +281,8 @@ using namespace ::binfilter::svxform;
 /*N*/     for (sal_Int32 i = 0; i < nLength; i++)
 /*N*/     {
 /*N*/         Reference< ::com::sun::star::awt::XControlModel >  xRef(xInStrm->readObject(), UNO_QUERY);
-/*N*/         if (i < (sal_Int32)aList.Count())
-/*N*/             aList.GetObject(i)->SetUnoControlModel(xRef);
+/*N*/         if (i < (sal_Int32)aList.size())
+/*N*/             aList[ i ]->SetUnoControlModel(xRef);
 /*N*/     }
 /*N*/ }
 
@@ -298,7 +298,7 @@ using namespace ::binfilter::svxform;
 /*N*/             FmFormObj* pFormObj = PTR_CAST(FmFormObj, pObj);
 /*N*/             DBG_ASSERT(!bConnected || pFormObj->GetUnoControlModel().is(), "Controlshape ohne Control");
 /*N*/             if (!bConnected || pFormObj->GetUnoControlModel().is())
-/*N*/                 rList.Insert(pFormObj, LIST_APPEND);
+/*N*/                 rList.push_back( pFormObj );
 /*N*/
 /*N*/         }
 /*N*/     }

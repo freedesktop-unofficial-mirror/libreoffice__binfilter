@@ -36,8 +36,8 @@
 #include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
 
-
 #include <tools/list.hxx>
+#include <vector>
 
 #include <comphelper/uno3.hxx>
 FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
@@ -51,14 +51,9 @@ class FmFormObj;
 class FmFormPage;
 class SdrObject;
 
-//FORWARD_DECLARE_INTERFACE(uno,Reference)
-//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
-//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
-//STRIP008 FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
-
 class SdrObjList;
 
-DECLARE_LIST(FmObjectList, FmFormObj*)//STRIP008 DECLARE_LIST(FmObjectList, FmFormObj*);
+typedef ::std::vector< FmFormObj* > FmObjectList;
 
 //==================================================================
 // FmFormPageImpl
