@@ -202,7 +202,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ // #101498# List classes for recording portions
 typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
-/*N*/ DECLARE_LIST(ImpRecordPortionListList, ImpRecordPortionList*)//STRIP008 ;
+typedef ::std::vector< ImpRecordPortionList* > ImpRecordPortionListList;
 
 /*N*/ // #101498# Draw recorded formtext along Poly
 /*N*/ void ImpTextPortionHandler::DrawFormTextRecordPortions(Polygon aPoly)
@@ -212,9 +212,9 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/   ImpRecordPortionListList* pListList = (ImpRecordPortionListList*)mpRecordPortions;
 /*N*/   if(pListList)
 /*N*/   {
-/*N*/       for(sal_uInt32 a(0L); a < pListList->Count(); a++)
+/*N*/       for(size_t a = 0, na = pListList->size(); a < na; a++)
 /*N*/       {
-/*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
+/*N*/           ImpRecordPortionList* pList = (*pListList)[ a ];
 /*N*/
 /*N*/           for( size_t b = 0, nb = pList->size(); b < nb; ++b )
 /*N*/           {
@@ -244,7 +244,7 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/   ImpRecordPortionListList* pListList = (ImpRecordPortionListList*)mpRecordPortions;
 /*N*/   if(!pListList)
 /*N*/   {
-/*N*/       mpRecordPortions = (void*)(new ImpRecordPortionListList(2, 2));
+/*N*/       mpRecordPortions = (void*)(new ImpRecordPortionListList());
 /*N*/       pListList = (ImpRecordPortionListList*)mpRecordPortions;
 /*N*/   }
 /*N*/
@@ -254,9 +254,9 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/   // look for the list where to insert new portion
 /*N*/   ImpRecordPortionList* pList = 0L;
 /*N*/
-/*N*/   for(sal_uInt32 nListListIndex(0L); !pList && nListListIndex < pListList->Count(); nListListIndex++)
+/*N*/   for(size_t nListListIndex(0L); !pList && nListListIndex < pListList->size(); nListListIndex++)
 /*N*/   {
-/*?*/       ImpRecordPortionList* pTmpList = pListList->GetObject(nListListIndex);
+/*?*/       ImpRecordPortionList* pTmpList = (*pListList)[ nListListIndex ];
 /*?*/
 /*?*/       if( (*pTmpList)[0]->maPosition.Y() == pNewPortion->maPosition.Y())
 /*?*/           pList = pTmpList;
@@ -267,7 +267,7 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/       // no list for that Y-Coordinate yet, create a new one.
 /*N*/       pList = new ImpRecordPortionList();
 /*N*/       pList->push_back ( pNewPortion );
-/*N*/       pListList->Insert(pList, LIST_APPEND);
+/*N*/       pListList->push_back( pList );
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -301,11 +301,11 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/   ImpRecordPortionListList* pListList = (ImpRecordPortionListList*)mpRecordPortions;
 /*N*/   if(pListList)
 /*N*/   {
-/*N*/       for(sal_uInt32 a(0L); a < pListList->Count(); a++)
+/*N*/       for( size_t a(0L); a < pListList->size(); a++)
 /*N*/       {
-/*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
+/*N*/           ImpRecordPortionList* pList = (*pListList)[ a ];
 /*N*/
-/*N*/           for(sal_uInt32 b(0L); b < pList->size(); b++)
+/*N*/           for(size_t b(0L); b < pList->size(); b++)
 /*N*/           {
 /*N*/               ImpRecordPortion* pPortion = (*pList)[ b ];
 /*N*/
@@ -329,10 +329,10 @@ typedef ::std::vector< ImpRecordPortion* > ImpRecordPortionList;
 /*N*/   ImpRecordPortionListList* pListList = (ImpRecordPortionListList*)mpRecordPortions;
 /*N*/   if(pListList)
 /*N*/   {
-/*N*/       for(sal_uInt32 a(0L); a < pListList->Count(); a++)
+/*N*/       for( size_t a(0L); a < pListList->size(); a++)
 /*N*/       {
-/*N*/           ImpRecordPortionList* pList = pListList->GetObject(a);
-/*N*/           for(sal_uInt32 b(0L); b < pList->size(); b++)
+/*N*/           ImpRecordPortionList* pList = (*pListList)[ a ];
+/*N*/           for( size_t b(0L); b < pList->size(); b++)
 /*N*/               delete (*pList)[ b ];
 /*N*/           delete pList;
 /*N*/       }
