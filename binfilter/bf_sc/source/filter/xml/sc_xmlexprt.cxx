@@ -234,7 +234,7 @@ void ScXMLShapeExport::onExport( const uno::Reference < drawing::XShape >& xShap
     uno::Reference< beans::XPropertySet > xShapeProp( xShape, uno::UNO_QUERY );
     if( xShapeProp.is() )
     {
-        sal_Int16 nLayerID;
+        sal_Int16 nLayerID(0);
         if( (xShapeProp->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_LAYERID ))) >>= nLayerID) && (nLayerID == SC_LAYER_BACK) )
             GetExport().AddAttribute(XML_NAMESPACE_TABLE, XML_TABLE_BACKGROUND, XML_TRUE);
     }
@@ -251,7 +251,7 @@ sal_Int16 ScXMLExport::GetFieldUnit()
     if (xProperties.is())
     {
         ::com::sun::star::uno::Any aAny = xProperties->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("Metric")));
-        sal_Int16 nFieldUnit;
+        sal_Int16 nFieldUnit(0);
         if (aAny >>= nFieldUnit)
             return nFieldUnit;
     }
@@ -429,7 +429,7 @@ void ScXMLExport::CollectSharedData(sal_Int32& nTableCount, sal_Int32& nShapesCo
                                             if( xShapeProp.is() )
                                             {
                                                 uno::Any aPropAny = xShapeProp->getPropertyValue(sLayerID);
-                                                sal_Int16 nLayerID;
+                                                sal_Int16 nLayerID(0);
                                                 if( aPropAny >>= nLayerID )
                                                 {
                                                     if( nLayerID == SC_LAYER_INTERN )
@@ -1452,7 +1452,7 @@ void ScXMLExport::_ExportStyles( sal_Bool bUsed )
                         if (aCellStyle >>= xCellProperties)
                         {
                             uno::Any aNumberFormat = xCellProperties->getPropertyValue(sNumberFormat);
-                            sal_Int32 nNumberFormat;
+                            sal_Int32 nNumberFormat(0);
                             if (aNumberFormat >>= nNumberFormat)
                                 addDataStyle(nNumberFormat);
                         }
@@ -1665,12 +1665,10 @@ void ScXMLExport::_ExportAutoStyles()
                                             nColumns++;
                                             pColumnStyles->AddNewTable(nTable, aCellAddress.EndColumn);
                                         }
-        //                              else if (nColumns < MAXCOL)
-        //                                  pColumnStyles->AddNewTable(nTable, ++nColumns);
                                         else
                                             pColumnStyles->AddNewTable(nTable, nColumns);
                                         sal_Int32 nColumn = 0;
-                                        while (/*nColumn <= nColumns && */nColumn <= MAXCOL)
+                                        while ( nColumn <= MAXCOL )
                                         {
                                             sal_Int32 nIndex(-1);
                                             sal_Bool bIsVisible(sal_True);
@@ -1733,12 +1731,10 @@ void ScXMLExport::_ExportAutoStyles()
                                             nRows++;
                                             pRowStyles->AddNewTable(nTable, aCellAddress.EndRow);
                                         }
-        //                              else if (nRows < MAXROW)
-        //                                  pRowStyles->AddNewTable(nTable, ++nRows);
                                         else
                                             pRowStyles->AddNewTable(nTable, nRows);
                                         sal_Int32 nRow = 0;
-                                        while ( /*nRow <= nRows && */nRow <= MAXROW)
+                                        while ( nRow <= MAXROW)
                                         {
                                             sal_Int32 nIndex(0);
                                             uno::Any aRow = xTableRows->getByIndex(nRow);
@@ -2161,7 +2157,7 @@ void ScXMLExport::ExportShape(const uno::Reference < drawing::XShape >& xShape, 
     if (xShapeProps.is())
     {
         uno::Any aTmpAny = xShapeProps->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("ZOrder")));
-        sal_Int32 nZOrder;
+        sal_Int32 nZOrder(0);
         if (aTmpAny >>= nZOrder)
         {
             ::rtl::OUStringBuffer sBuffer;

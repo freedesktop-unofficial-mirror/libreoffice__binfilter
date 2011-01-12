@@ -37,8 +37,6 @@
 
 #include <bf_svtools/lstner.hxx>
 
-#include <bf_svx/unoipset.hxx>
-
 #include <comphelper/servicehelper.hxx>
 
 #include <prlayout.hxx>

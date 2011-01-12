@@ -32,8 +32,6 @@
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/presentation/XPresentation.hpp>
 
-#include <bf_svx/unoipset.hxx>
-
 #include <cppuhelper/implbase3.hxx>
 namespace binfilter {
 

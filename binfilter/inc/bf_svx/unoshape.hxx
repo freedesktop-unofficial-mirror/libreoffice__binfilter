@@ -48,8 +48,6 @@
 
 #include <bf_svtools/lstner.hxx>
 
-#include <bf_svx/unoipset.hxx>
-
 #include <cppuhelper/weak.hxx>
 #include <cppuhelper/weakagg.hxx>
 #include <cppuhelper/interfacecontainer.h>

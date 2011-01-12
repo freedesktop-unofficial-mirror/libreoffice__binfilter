@@ -40,8 +40,6 @@
 
 #include <bf_svx/unomaster.hxx>
 
-#include <bf_svx/unoipset.hxx>
-
 #include <cppuhelper/implbase2.hxx>
 struct SvEventDescription;
 namespace binfilter {

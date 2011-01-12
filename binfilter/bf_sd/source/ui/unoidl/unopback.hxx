@@ -34,7 +34,6 @@
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 
 #include <bf_svx/unoshprp.hxx>
-#include <bf_svx/unoipset.hxx>
 
 #include <comphelper/servicehelper.hxx>
 
