@@ -83,6 +83,7 @@
 #include "xmltexte.hxx"
 #include "xmlexp.hxx"
 #include <bf_sw/swrect.hxx>
+
 namespace binfilter {
 
 
@@ -224,7 +225,6 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
 }
 
 typedef SwXMLTableLines_Impl *SwXMLTableLinesPtr;
-DECLARE_LIST( SwXMLTableLinesCache_Impl, SwXMLTableLinesPtr )
 
 // ---------------------------------------------------------------------
 
@@ -567,8 +567,8 @@ void SwXMLExport::ExportTableLinesAutoStyles( const SwTableLines& rLines,
     SwXMLTableLines_Impl *pLines =
         new SwXMLTableLines_Impl( rLines );
     if( !pTableLines )
-        pTableLines = new SwXMLTableLinesCache_Impl( 5, 5 );
-    pTableLines->Insert( pLines, pTableLines->Count() );
+        pTableLines = new SwXMLTableLinesCache_Impl();
+    pTableLines->push_back( pLines );
 
     OUStringBuffer sBuffer( rNamePrefix.getLength() + 8L );
 
@@ -666,8 +666,7 @@ void SwXMLExport::ExportTableLinesAutoStyles( const SwTableLines& rLines,
             // Und ihren Index
             sal_uInt16 nOldCol = nCol;
             SwXMLTableColumn_Impl aCol( nCPos );
-            sal_Bool bFound = pLines->GetColumns().Seek_Entry( &aCol, &nCol );
-            ASSERT( bFound, "couldn't find column" );
+            ASSERT( pLines->GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
 
             const SwStartNode *pBoxSttNd = pBox->GetSttNd();
             if( pBoxSttNd )
@@ -813,7 +812,7 @@ void SwXMLExport::ExportTableBox( const SwTableBox& rBox, sal_uInt16 nColSpan,
                                                         UNO_QUERY);
                 if (xCellPropertySet.is())
                 {
-                    sal_Int32 nNumberFormat;
+                    sal_Int32 nNumberFormat(0);
                     Any aAny = xCellPropertySet->getPropertyValue(sNumberFormat);
                     aAny >>= nNumberFormat;
 
@@ -917,8 +916,7 @@ void SwXMLExport::ExportTableLine( const SwTableLine& rLine,
             // Und ihren Index
             sal_uInt16 nOldCol = nCol;
             SwXMLTableColumn_Impl aCol( nCPos );
-            sal_Bool bFound = rLines.GetColumns().Seek_Entry( &aCol, &nCol );
-            ASSERT( bFound, "couldn't find column" );
+            ASSERT( rLines.GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
 
             sal_uInt16 nColSpan = nCol - nOldCol + 1U;
             ExportTableBox( *pBox, nColSpan, rTblInfo );
@@ -940,16 +938,16 @@ void SwXMLExport::ExportTableLines( const SwTableLines& rLines,
 {
     ASSERT( pTableLines && pTableLines->Count(),
             "SwXMLExport::ExportTableLines: table columns infos missing" );
-    if( !pTableLines || 0 == pTableLines->Count() )
+    if( !pTableLines || pTableLines->empty() )
         return;
 
     SwXMLTableLines_Impl *pLines = 0;
-    sal_uInt16 nInfoPos;
-    for( nInfoPos=0; nInfoPos < pTableLines->Count(); nInfoPos++ )
+    size_t nInfoPos;
+    for( nInfoPos=0; nInfoPos < pTableLines->size(); nInfoPos++ )
     {
-        if( pTableLines->GetObject( nInfoPos )->GetLines() == &rLines )
+        if( (*pTableLines)[ nInfoPos ]->GetLines() == &rLines )
         {
-            pLines = pTableLines->GetObject( nInfoPos );
+            pLines = (*pTableLines)[  nInfoPos ];
             break;
         }
     }
@@ -960,8 +958,11 @@ void SwXMLExport::ExportTableLines( const SwTableLines& rLines,
     if( !pLines )
         return;
 
-    pTableLines->Remove( nInfoPos );
-    if( 0 == pTableLines->Count() )
+    SwXMLTableLinesCache_Impl::iterator it = pTableLines->begin();
+    ::std::advance( it, nInfoPos );
+    pTableLines->erase( it );
+
+    if( pTableLines->empty() )
     {
         delete pTableLines ;
         pTableLines = 0;

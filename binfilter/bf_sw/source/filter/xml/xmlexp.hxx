@@ -34,6 +34,8 @@
 #include "xmlitmap.hxx"
 #include <bf_xmloff/uniref.hxx>
 #include <bf_xmloff/xmltoken.hxx>
+#include <vector>
+
 namespace binfilter {
 
 class SwPaM;
@@ -50,12 +52,12 @@ class SwTableLines;
 class SwTableBox;
 class SwXMLTableColumn_Impl;
 class SwXMLTableLines_Impl;
-class SwXMLTableLinesCache_Impl;
 class SwXMLTableColumnsSortByWidth_Impl;
 class SwXMLTableFrmFmtsSort_Impl;
 class SwXMLTableInfo_Impl;
 class SwTableNode;
 
+typedef ::std::vector< SwXMLTableLines_Impl* > SwXMLTableLinesCache_Impl;
 
 #ifndef XML_PROGRESS_REF_NOT_SET
 #define XML_PROGRESS_REF_NOT_SET ((sal_Int32)-1)
