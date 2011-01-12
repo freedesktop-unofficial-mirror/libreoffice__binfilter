@@ -1668,7 +1668,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocu
 /*N*/     short   nIndex = 0;
 /*N*/     USHORT  nThisRow = 0;
 /*N*/
-/*N*/     while ( nThisRow <= MAXROW )
+/*N*/     while ( nThisRow <= MAXROW && nIndex < nCount )
 /*N*/   {
 /*N*/         const ScPatternAttr* pOldPattern = pData[nIndex].pPattern;
 /*N*/         const SfxPoolItem* pItem;
