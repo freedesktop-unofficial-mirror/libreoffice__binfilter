@@ -63,13 +63,11 @@
 
 #include "svdocapt.hxx"
 
-
 #include "xflftrit.hxx"
 
 #include "xtable.hxx"
 
 #include "xbtmpit.hxx"
-
 
 #include "xflhtit.hxx"
 
@@ -141,8 +139,6 @@ const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap()
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable = sal_True );
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject );
 
-DECLARE_LIST( SvxShapeList, SvxShape * )//STRIP008 ;
-
 #define GET_TEXT_INTERFACE( xint, xval ) \
     Reference< xint > xval; \
     if(!xTextAgg.is() ) { Reference< ::com::sun::star::text::XText > xText( (OWeakObject*)this, UNO_QUERY ); } \
@@ -166,8 +162,6 @@ struct SvxShapeImpl
     sal_uInt32      mnObjId;
     SvxShapeMaster* mpMaster;
 };
-
-//UNO3_GETIMPLEMENTATION_IMPL( SvxShape );
 
 SvxShape::SvxShape( SdrObject* pObject ) throw()
 :   aPropSet(aSvxMapProvider.GetMap(SVXMAP_SHAPE)),
@@ -840,14 +834,6 @@ void SvxShape::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
             updateShapeKind();
             break;
         }
-/*
-        case HINT_OBJREMOVED:
-        {
-            if( pObj == pSdrHint->GetObject() )
-                bClearMe = sal_True;
-            break;
-        }
-*/
         case HINT_MODELCLEARED:
         {
             bClearMe = sal_True;
@@ -869,6 +855,26 @@ void SvxShape::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
             }
             break;
         }
+        case HINT_UNKNOWN:
+        case HINT_LAYERCHG:
+        case HINT_LAYERORDERCHG:
+        case HINT_LAYERSETCHG:
+        case HINT_LAYERSETORDERCHG:
+        case HINT_PAGECHG:
+        case HINT_PAGEORDERCHG:
+        case HINT_OBJINSERTED:
+        case HINT_OBJREMOVED:
+        case HINT_OBJLISTCLEARED:
+        case HINT_REFDEVICECHG:
+        case HINT_DEFAULTTABCHG:
+        case HINT_DEFFONTHGTCHG:
+        case HINT_MODELSAVED:
+        case HINT_CONTROLINSERTED:
+        case HINT_CONTROLREMOVED:
+        case HINT_SWITCHTOPAGE:
+        case HINT_BEGEDIT:
+        case HINT_ENDEDIT:
+            break;
     };
 
     if( bClearMe )
@@ -1448,7 +1454,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
         case OWN_ATTR_ZORDER:
         {
-            sal_Int32 nNewOrdNum;
+            sal_Int32 nNewOrdNum(0);
             if(rVal >>= nNewOrdNum)
             {
                 SdrObjList* pObjList = pObj->GetObjList();
@@ -1481,7 +1487,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
         }
         case OWN_ATTR_MIRRORED:
         {
-            sal_Bool bMirror;
+            sal_Bool bMirror(sal_False);
             if(rVal >>= bMirror )
             {
                 if( pObj && pObj->ISA(SdrGrafObj) )
@@ -1622,7 +1628,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
                 case OWN_ATTR_GLUEID_HEAD:
                 case OWN_ATTR_GLUEID_TAIL:
                     {
-                        sal_Int32 nId;
+                        sal_Int32 nId(0);
                         if( rVal >>= nId )
                         {
                             pEdgeObj->setGluePointIndex( pMap->nWID == OWN_ATTR_GLUEID_HEAD, nId );
@@ -1658,7 +1664,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
                 drawing::BitmapMode eMode;
                 if(!(rVal >>= eMode) )
                 {
-                    sal_Int32 nMode;
+                    sal_Int32 nMode(0);
                     if(!(rVal >>= nMode))
                         break;
 
@@ -1673,7 +1679,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
         case SDRATTR_LAYERID:
         {
-            sal_Int16 nLayerId;
+            sal_Int16 nLayerId(0);
             if( rVal >>= nLayerId )
             {
                 SdrLayer* pLayer = pModel->GetLayerAdmin().GetLayerPerID((unsigned char)nLayerId);
@@ -1702,7 +1708,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
         }
         case SDRATTR_ROTATEANGLE:
         {
-            sal_Int32 nAngle;
+            sal_Int32 nAngle(0);
             if( rVal >>= nAngle )
             {
                 Point aRef1(pObj->GetSnapRect().Center());
@@ -1721,7 +1727,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
         case SDRATTR_SHEARANGLE:
         {
-            sal_Int32 nShear;
+            sal_Int32 nShear(0);
             if( rVal >>= nShear )
             {
                 nShear -= pObj->GetShearAngle();
@@ -1739,7 +1745,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
         case SDRATTR_OBJMOVEPROTECT:
         {
-            sal_Bool bMoveProtect;
+            sal_Bool bMoveProtect(sal_False);
             if( rVal >>= bMoveProtect )
             {
                 pObj->SetMoveProtect(bMoveProtect);
@@ -1759,7 +1765,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
         }
         case SDRATTR_OBJPRINTABLE:
         {
-            sal_Bool bPrintable;
+            sal_Bool bPrintable(sal_False);
             if( rVal >>= bPrintable )
             {
                 pObj->SetPrintable(bPrintable);
@@ -1769,7 +1775,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
         }
         case SDRATTR_OBJSIZEPROTECT:
         {
-            sal_Bool bResizeProtect;
+            sal_Bool bResizeProtect(sal_False);
             if( rVal >>= bResizeProtect )
             {
                 pObj->SetResizeProtect(bResizeProtect);
@@ -1779,7 +1785,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
         }
         case OWN_ATTR_PAGE_NUMBER:
         {
-            sal_Int32 nPageNum;
+            sal_Int32 nPageNum(0);
             if( (rVal >>= nPageNum) && ( nPageNum >= 0 ) && ( nPageNum <= 0xffff ) )
             {
                 nPageNum <<= 1;
@@ -1833,7 +1839,7 @@ void SAL_CALL SvxShape::_setPropertyValue( const OUString& rPropertyName, const 
 
             if( pMap->nWID == SDRATTR_ECKENRADIUS )
             {
-                sal_Int32 nCornerRadius;
+                sal_Int32 nCornerRadius(0);
                 if( !(rVal >>= nCornerRadius) || (nCornerRadius < 0) || (nCornerRadius > 5000000))
                     throw IllegalArgumentException();
             }
@@ -2121,25 +2127,7 @@ uno::Any SvxShape::_getPropertyValue( const OUString& PropertyName )
                 break;
             }
             case OWN_ATTR_LDBITMAP:
-            { DBG_BF_ASSERT(0, "STRIP"); // Discussed with DL, this is not needed. Thus the bitmaps may be removed again, too.
-//STRIP003              sal_uInt16 nId;
-//STRIP003              if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_OLE2 )
-//STRIP003              {
-//STRIP003                  nId = RID_UNODRAW_OLE2;
-//STRIP003              }
-//STRIP003              else if( pObj->GetObjInventor() == SdrInventor && pObj->GetObjIdentifier() == OBJ_GRAF )
-//STRIP003              {
-//STRIP003                  nId = RID_UNODRAW_GRAPHICS;
-//STRIP003              }
-//STRIP003              else
-//STRIP003              {
-//STRIP003                  nId = RID_UNODRAW_OBJECTS;
-//STRIP003              }
-//STRIP003
-//STRIP003              BitmapEx aBmp( SVX_RES(nId) );
-//STRIP003              Reference< awt::XBitmap > xBmp( VCLUnoHelper::CreateBitmap( aBmp ) );
-//STRIP003
-//STRIP003              aAny <<= xBmp;
+            {   DBG_BF_ASSERT(0, "STRIP"); // Discussed with DL, this is not needed. Thus the bitmaps may be removed again, too.
                 break;
             }
             case OWN_ATTR_OLE_VISAREA:
@@ -3491,6 +3479,15 @@ uno::Reference< uno::XInterface > SAL_CALL SvxShape::getParent(  )
         case SDROBJLIST_DRAWPAGE:
         case SDROBJLIST_MASTERPAGE:
             return PTR_CAST( SdrPage, pObjList )->getUnoPage();
+
+        case SDROBJLIST_UNKNOWN:
+        case SDROBJLIST_VIRTOBJECTS:
+        case SDROBJLIST_SYMBOLTABLE:
+        case SDROBJLIST_SAMELIST:
+        case SDROBJLIST_SAMEPAGE:
+        case SDROBJLIST_RESERVEDBEG:
+        case SDROBJLIST_RESERVEDEND:
+            break;
         }
 
 
