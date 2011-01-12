@@ -55,7 +55,6 @@
 #include <unotools/localfilehelper.hxx>
 #include <bf_so3/svstor.hxx>
 
-#include "docinf.hxx"
 #include "fltfnc.hxx"
 #include "docfac.hxx"
 #include "cfgmgr.hxx"

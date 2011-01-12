@@ -69,7 +69,6 @@
 #include "sfxtypes.hxx"
 #include "evntconf.hxx"
 #include "request.hxx"
-#include "docinf.hxx"
 #include "objuno.hxx"
 #include "appdata.hxx"
 #include "appuno.hxx"

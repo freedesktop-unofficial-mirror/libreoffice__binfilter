@@ -39,7 +39,6 @@
 #include "request.hxx"
 #include "docfile.hxx"
 #include "app.hxx"
-#include "docinf.hxx"
 #include "objshimp.hxx"
 #include "interno.hxx"
 #include "docfac.hxx"

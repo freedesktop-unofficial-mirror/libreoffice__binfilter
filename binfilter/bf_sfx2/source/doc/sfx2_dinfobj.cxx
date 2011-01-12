@@ -33,7 +33,6 @@
 #include "app.hxx"
 #include "objface.hxx"
 #include "sfxsids.hrc"
-#include "docinf.hxx"
 #include "docfile.hxx"
 #include "openflag.hxx"
 #include "dinfobj.hxx"

@@ -86,7 +86,6 @@
 #include "request.hxx"
 #include "evntconf.hxx"
 #include "cfgmgr.hxx"
-#include "docinf.hxx"
 #include "appdata.hxx"
 #include "misccfg.hxx"
 #include "appimp.hxx"

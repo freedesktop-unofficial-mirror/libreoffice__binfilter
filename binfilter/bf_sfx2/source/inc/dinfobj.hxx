@@ -30,7 +30,6 @@
 
 
 #include <bf_so3/auto.hxx>
-#include "docinf.hxx"
 #include "dinfdlg.hxx"
 namespace binfilter {
 

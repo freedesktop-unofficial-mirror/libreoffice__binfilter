@@ -76,7 +76,6 @@
 #include "appdata.hxx"
 #include "cfgmgr.hxx"
 #include "docfile.hxx"
-#include "docinf.hxx"
 #include "fcontnr.hxx"
 #include "objitem.hxx"
 #include "objsh.hxx"

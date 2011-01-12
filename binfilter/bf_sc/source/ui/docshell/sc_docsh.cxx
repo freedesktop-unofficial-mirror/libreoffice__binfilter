@@ -36,7 +36,6 @@
 
 #include <bf_svtools/ctrltool.hxx>
 #include <bf_svtools/sfxecode.hxx>
-#include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfx.hrc>

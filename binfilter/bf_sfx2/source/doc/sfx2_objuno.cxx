@@ -53,7 +53,6 @@
 #include "sfxsids.hrc"
 #include "printer.hxx"
 #include "objsh.hxx"
-#include "docinf.hxx"
 #include "docfile.hxx"
 #include "openflag.hxx"
 #include "app.hxx"

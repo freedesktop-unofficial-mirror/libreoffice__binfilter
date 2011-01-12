@@ -86,7 +86,6 @@
 #include "docfile.hxx"
 #include "fltfnc.hxx"
 #include "docfilt.hxx"
-#include "docinf.hxx"
 #include "docfac.hxx"
 #include "cfgmgr.hxx"
 #include "objshimp.hxx"

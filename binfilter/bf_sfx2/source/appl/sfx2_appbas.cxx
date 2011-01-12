@@ -43,7 +43,6 @@
 #pragma hdrstop
 #endif
 
-#include "docinf.hxx"
 #include "appuno.hxx"
 #include "objsh.hxx"
 #include "app.hxx"
