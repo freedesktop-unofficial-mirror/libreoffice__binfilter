@@ -37,9 +37,7 @@
 #ifndef _TOOLS_RCID_H //autogen
 #include <tools/rcid.h>
 #endif
-#ifndef _SV_WINTYPES_HXX //autogen
-#include <vcl/wintypes.hxx>
-#endif
+#include <tools/wintypes.hxx>
 #ifndef _SV_MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
 #endif

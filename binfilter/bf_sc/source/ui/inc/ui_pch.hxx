@@ -86,7 +86,7 @@
 #include <vcl/outdev.hxx>
 #include <vcl/pointr.hxx>
 #include <vcl/ptrstyle.hxx>
-#include <vcl/wintypes.hxx>
+#include <tools/wintypes.hxx>
 #include <vcl/event.hxx>
 #include <limits.h>
 #include <tools/errinf.hxx>
@@ -202,7 +202,6 @@
 #include <scresid.hxx>
 #include <docsh.hxx>
 #include <bf_sfx2/interno.hxx>
-#include <vcl/wintypes.hxx>
 #include <bf_sfx2/docfac.hxx>
 #include <scitems.hxx>
 #include <vcl/virdev.hxx>
@@ -225,7 +224,7 @@
 #include <bf_svtools/stritem.hxx>
 #include <collect.hxx>
 #include <bf_svx/svdsob.hxx>
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #include <bf_svx/svdobj.hxx>
 #include <bf_svx/svdglue.hxx>
 #include <bf_svx/svdlayer.hxx>
