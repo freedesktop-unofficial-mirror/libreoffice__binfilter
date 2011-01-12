@@ -41,7 +41,7 @@
 //  folgende duerfen nicht aufgenommen werden:
 //      scslots.hxx
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/string.hxx>
 #include <bf_svtools/solar.hrc>
 #include <tools/rtti.hxx>

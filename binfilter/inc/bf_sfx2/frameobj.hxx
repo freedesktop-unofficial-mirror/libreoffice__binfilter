@@ -28,6 +28,8 @@
 #ifndef _FRAMEOBJ_HXX
 #define _FRAMEOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
 #endif

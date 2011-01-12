@@ -27,9 +27,7 @@
 #ifndef _TXATRITR_HXX
 #define _TXATRITR_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif

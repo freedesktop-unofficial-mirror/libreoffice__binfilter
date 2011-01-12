@@ -27,6 +27,8 @@
 #ifndef _FMTFORDR_HXX
 #define _FMTFORDR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
 #endif

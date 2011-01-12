@@ -27,6 +27,8 @@
 #ifndef _HFFRM_HXX
 #define _HFFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif

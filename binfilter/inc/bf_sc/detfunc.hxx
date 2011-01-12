@@ -28,6 +28,8 @@
 #ifndef SC_DETFUNC_HXX
 #define SC_DETFUNC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif

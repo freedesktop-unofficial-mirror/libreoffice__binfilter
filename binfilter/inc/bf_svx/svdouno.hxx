@@ -28,6 +28,8 @@
 #ifndef _SVDOUNO_HXX
 #define _SVDOUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
 #include <com/sun/star/awt/XControlModel.hpp>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _POREXP_HXX
 #define _POREXP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "portxt.hxx"
 namespace binfilter {
 

@@ -28,11 +28,9 @@
 #ifndef _XMLOFF_XMLUCONV_HXX
 #define _XMLOFF_XMLUCONV_HXX
 
-#include <limits.h>
+#include <bf_svtools/bf_solar.h>
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <limits.h>
 
 #ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>

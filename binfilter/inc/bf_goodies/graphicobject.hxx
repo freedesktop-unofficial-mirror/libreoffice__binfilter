@@ -28,6 +28,9 @@
 #ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #define _BF_GOODIES_GRAPHICOBJECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include <svtools/grfmgr.hxx>
 
 // wrapper for GraphicAttr for binfilter

@@ -27,9 +27,8 @@
 #ifndef _ACCESSIBILITYOPTIONS_HXX
 #define _ACCESSIBILITYOPTIONS_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
 struct SwAccessibilityOptions

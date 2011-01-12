@@ -40,7 +40,7 @@
 #include "bf_basic/sbstar.hxx"
 #include <bf_svtools/zforlist.hxx>
 #include <tools/rcid.h>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif

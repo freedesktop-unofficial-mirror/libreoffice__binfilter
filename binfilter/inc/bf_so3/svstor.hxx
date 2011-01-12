@@ -28,6 +28,8 @@
 #ifndef _SVSTOR_HXX
 #define _SVSTOR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _IFACE_HXX
 #include <bf_so3/iface.hxx>
 #endif

@@ -28,6 +28,9 @@
 #ifndef _B2D_POINT3D_HXX
 #define _B2D_POINT3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif

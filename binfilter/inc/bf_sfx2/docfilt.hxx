@@ -27,6 +27,8 @@
 #ifndef _SFX_DOCFILT_HACK_HXX
 #define _SFX_DOCFILT_HACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
 #include <com/sun/star/plugin/PluginDescription.hpp>
 #endif

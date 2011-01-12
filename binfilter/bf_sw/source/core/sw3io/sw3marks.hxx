@@ -27,9 +27,7 @@
 #ifndef _SW3MARKS_HXX
 #define _SW3MARKS_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _CNTNRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
 #endif

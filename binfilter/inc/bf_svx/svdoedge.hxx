@@ -28,6 +28,8 @@
 #ifndef _SVDOEDGE_HXX
 #define _SVDOEDGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
 #endif

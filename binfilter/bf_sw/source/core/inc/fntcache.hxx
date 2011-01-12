@@ -27,6 +27,8 @@
 #ifndef _FNTCACHE_HXX
 #define _FNTCACHE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>

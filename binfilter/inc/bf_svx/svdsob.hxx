@@ -28,6 +28,8 @@
 #ifndef _SVDSOB_HXX
 #define _SVDSOB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
 #endif

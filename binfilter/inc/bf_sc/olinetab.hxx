@@ -28,6 +28,8 @@
 #ifndef SC_OUTLINETAB_HXX
 #define SC_OUTLINETAB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"

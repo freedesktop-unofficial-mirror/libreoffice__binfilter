@@ -27,6 +27,8 @@
 #ifndef _SWDRWTXTSH_HXX
 #define _SWDRWTXTSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>

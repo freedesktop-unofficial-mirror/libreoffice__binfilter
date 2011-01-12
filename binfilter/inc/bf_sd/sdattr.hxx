@@ -28,6 +28,8 @@
 #ifndef _SDATTR_HXX
 #define _SDATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
 #include <com/sun/star/presentation/FadeEffect.hpp>
 #endif

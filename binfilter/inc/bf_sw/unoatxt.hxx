@@ -27,6 +27,8 @@
 #ifndef _UNOATXT_HXX
 #define _UNOATXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTCONTAINER_HPP_
 #include <com/sun/star/text/XAutoTextContainer.hpp>
 #endif

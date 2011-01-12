@@ -28,6 +28,8 @@
 #ifndef SC_USERLIST_HXX
 #define SC_USERLIST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"

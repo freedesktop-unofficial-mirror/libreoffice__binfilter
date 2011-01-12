@@ -30,6 +30,8 @@
 
 //STRIP008 class Paragraph;
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif

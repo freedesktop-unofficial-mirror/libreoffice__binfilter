@@ -29,6 +29,8 @@
 #ifndef _MyEDITDATA_HXX
 #define _MyEDITDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif

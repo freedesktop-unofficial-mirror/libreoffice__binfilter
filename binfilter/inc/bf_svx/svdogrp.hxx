@@ -28,6 +28,8 @@
 #ifndef _SVDOGRP_HXX
 #define _SVDOGRP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif

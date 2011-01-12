@@ -27,6 +27,8 @@
 #ifndef _PAGEDESC_HXX
 #define _PAGEDESC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FRACT_HXX
 #include <tools/fract.hxx>
 #endif

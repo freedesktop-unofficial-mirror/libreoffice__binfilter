@@ -28,6 +28,8 @@
 #ifndef _DECODE_HXX
 #define _DECODE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _BMPACC_HXX
 #include <vcl/bmpacc.hxx>
 #endif

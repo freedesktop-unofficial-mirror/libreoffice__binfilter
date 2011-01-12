@@ -28,6 +28,8 @@
 #ifndef _SVX_TEXTIT0_HXX
 #define _SVX_TEXTIT0_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _XENUM_HXX //autogen
 #include <bf_svx/xenum.hxx>
 #endif

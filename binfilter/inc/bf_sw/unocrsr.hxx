@@ -27,6 +27,8 @@
 #ifndef _UNOCRSR_HXX
 #define _UNOCRSR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
 #endif
