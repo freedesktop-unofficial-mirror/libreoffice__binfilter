@@ -71,8 +71,6 @@ using rtl::OUString;
     if( rType == ::getCppuType((const Reference< xint >*)0) ) \
         aAny <<= Reference< xint >(this)
 
-DECLARE_LIST( SvxDrawPageList, SvxDrawPage * )//STRIP008 ;
-
 extern SfxItemPropertyMap* ImplGetSvxOle2PropertyMap();
 extern SfxItemPropertyMap* ImplGetSvxPageShapePropertyMap();
 
@@ -133,6 +131,27 @@ void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                             bInvalid = sal_True;
                     }
                 }
+                break;
+            case HINT_UNKNOWN:
+            case HINT_LAYERCHG:
+            case HINT_LAYERORDERCHG:
+            case HINT_LAYERSETCHG:
+            case HINT_LAYERSETORDERCHG:
+            case HINT_PAGECHG:
+            case HINT_OBJCHG:
+            case HINT_OBJINSERTED:
+            case HINT_OBJREMOVED:
+            case HINT_OBJLISTCLEARED:
+            case HINT_REFDEVICECHG:
+            case HINT_DEFAULTTABCHG:
+            case HINT_DEFFONTHGTCHG:
+            case HINT_MODELSAVED:
+            case HINT_CONTROLINSERTED:
+            case HINT_CONTROLREMOVED:
+            case HINT_SWITCHTOPAGE:
+            case HINT_OBJLISTCLEAR:
+            case HINT_BEGEDIT:
+            case HINT_ENDEDIT:
                 break;
             }
         }
