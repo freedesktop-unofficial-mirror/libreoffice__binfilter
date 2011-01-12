@@ -30,11 +30,15 @@
 #define _SVX_UNOIPSET_HXX_
 
 #include <com/sun/star/beans/XPropertySet.hpp>
+#include <vector>
+
 namespace binfilter {
 struct SfxItemPropertyMap;
 class SfxItemSet;
-class SvxIDPropertyCombineList;
+class SvxIDPropertyCombine;
 class SdrItemPool;
+
+typedef ::std::vector< SvxIDPropertyCombine* > SvxIDPropertyCombineList;
 
 class SvxShape;
 
@@ -44,7 +48,6 @@ class SvxItemPropertySet
     const SfxItemPropertyMap*   mpLastMap;
     SvxIDPropertyCombineList*   pCombiList;
     sal_Bool                    mbConvertTwips;
-//-/    void Generate3DAttrDefaultItem(sal_uInt16 nWID, SfxItemSet& rSet);
 
 public:
     SvxItemPropertySet( const SfxItemPropertyMap *pMap, sal_Bool bConvertTwips = sal_False );

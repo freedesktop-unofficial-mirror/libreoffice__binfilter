@@ -26,12 +26,8 @@
  *
  ************************************************************************/
 
-
-
-
 #include <hash_map>
 #include <vector>
-
 
 #include "svxids.hrc"
 #include "unoshprp.hxx"
@@ -227,8 +223,6 @@ struct SvxIDPropertyCombine
     uno::Any    aAny;
 };
 
-DECLARE_LIST( SvxIDPropertyCombineList, SvxIDPropertyCombine * )//STRIP008 ;
-
 SvxItemPropertySet::SvxItemPropertySet( const SfxItemPropertyMap* pMap, sal_Bool bConvertTwips )
 :   _pMap(SvxInfoSetCache::getSortedPropertyMap(pMap)), mbConvertTwips(bConvertTwips)
 {
@@ -239,12 +233,6 @@ SvxItemPropertySet::SvxItemPropertySet( const SfxItemPropertyMap* pMap, sal_Bool
 //----------------------------------------------------------------------
 SvxItemPropertySet::~SvxItemPropertySet()
 {
-/*
-    if(pItemPool)
-        delete pItemPool;
-    pItemPool = NULL;
-*/
-
     if(pCombiList)
         delete pCombiList;
     pCombiList = NULL;
@@ -253,16 +241,11 @@ SvxItemPropertySet::~SvxItemPropertySet()
 //----------------------------------------------------------------------
 uno::Any* SvxItemPropertySet::GetUsrAnyForID(sal_uInt16 nWID) const
 {
-    if(pCombiList && pCombiList->Count())
+    if( pCombiList && pCombiList->size() )
     {
-        SvxIDPropertyCombine* pActual = pCombiList->First();
-        while(pActual)
-        {
-            if(pActual->nWID == nWID)
-                return &pActual->aAny;
-            pActual = pCombiList->Next();
-
-        }
+        for ( size_t i = 0, n = pCombiList->size(); i < n; ++i )
+            if ( (*pCombiList)[ i ]->nWID == nWID )
+                return &(*pCombiList)[ i ]->aAny;
     }
     return NULL;
 }
@@ -276,7 +259,7 @@ void SvxItemPropertySet::AddUsrAnyForID(const uno::Any& rAny, sal_uInt16 nWID)
     SvxIDPropertyCombine* pNew = new SvxIDPropertyCombine;
     pNew->nWID = nWID;
     pNew->aAny = rAny;
-    pCombiList->Insert(pNew);
+    pCombiList->push_back( pNew );
 }
 
 //----------------------------------------------------------------------
@@ -346,7 +329,7 @@ sal_Bool SvxUnoCheckForConversion( const SfxItemSet& rSet, sal_Int32 nWID, const
     case XATTR_FILLBMP_SIZEX:
     case XATTR_FILLBMP_SIZEY:
         {
-            sal_Int32 nValue;
+            sal_Int32 nValue(0);
             if( rVal >>= nValue )
                 bConvert = nValue > 0;
             break;
@@ -368,7 +351,7 @@ uno::Any SvxItemPropertySet::getPropertyValue( const SfxItemPropertyMap* pMap, c
     const SfxPoolItem* pItem = 0;
     SfxItemPool* pPool = rSet.GetPool();
 
-    SfxItemState eState = rSet.GetItemState( pMap->nWID, pMap->nWID != SDRATTR_XMLATTRIBUTES, &pItem );
+    rSet.GetItemState( pMap->nWID, pMap->nWID != SDRATTR_XMLATTRIBUTES, &pItem );
 
     if( NULL == pItem && pPool )
     {
