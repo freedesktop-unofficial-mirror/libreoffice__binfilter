@@ -93,12 +93,16 @@ public:
 };
 
 SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyTable* pTable ) throw()
-: mpTable( pTable ), mpList( NULL ), mnWhich( nWhich )
+    : mnWhich( nWhich )
+    , mpList( NULL )
+    , mpTable( pTable )
 {
 }
 
 SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyList* pList ) throw()
-: mpTable( NULL ), mpList( pList ), mnWhich( nWhich )
+    : mnWhich( nWhich )
+    , mpList( pList )
+    , mpTable( NULL )
 {
 }
 

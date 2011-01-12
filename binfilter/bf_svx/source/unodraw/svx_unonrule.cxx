@@ -292,7 +292,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
 
         if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_NUMBERINGTYPE)))
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             aVal >>= nSet;
 
             switch(nSet)

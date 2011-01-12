@@ -263,7 +263,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createTextField(
     return xRet;
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWithArguments( const OUString& ServiceSpecifier, const uno::Sequence< ::com::sun::star::uno::Any >& Arguments )
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWithArguments( const OUString& /*rServiceSpecifier*/, const uno::Sequence< ::com::sun::star::uno::Any >& /*rArguments*/ )
     throw( uno::Exception, uno::RuntimeException )
 {
     throw lang::NoSupportException();
@@ -603,7 +603,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoDrawingModel::getSupportedServiceNames(
 }
 
 // XAnyCompareFactory
-uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& PropertyName )
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& /*rPropertyName*/ )
     throw(uno::RuntimeException)
 {
     return SvxCreateNumRuleCompare();

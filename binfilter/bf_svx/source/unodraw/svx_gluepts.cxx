@@ -400,7 +400,7 @@ uno::Sequence< sal_Int32 > SAL_CALL SvxUnoGluePointAccess::getIdentifiers() thro
 /* deprecated */
 
 // XIndexContainer
-void SAL_CALL SvxUnoGluePointAccess::insertByIndex( sal_Int32 Index, const uno::Any& Element )
+void SAL_CALL SvxUnoGluePointAccess::insertByIndex( sal_Int32 /*Index*/, const uno::Any& Element )
     throw(lang::IllegalArgumentException, lang::IndexOutOfBoundsException,
             lang::WrappedTargetException, uno::RuntimeException)
 {

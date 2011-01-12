@@ -161,7 +161,7 @@ sal_Bool NamespaceIteratorImpl::next( OUString& rPrefix, OUString& rURL )
     // we need the next namespace item
     mpCurrentAttr = NULL;
 
-    const SfxPoolItem* pItem;
+    const SfxPoolItem* pItem = NULL;
     // look for the next available item in the current pool
     while( (mnItem < mnItemCount) && ( NULL == (pItem = mpPool->GetItem( *mpWhichId, mnItem ) ) ) )
         mnItem++;
@@ -299,7 +299,7 @@ OUString SAL_CALL NamespaceMap::getImplementationName(  )
     return NamespaceMap_getImplementationName();
 }
 
-sal_Bool SAL_CALL NamespaceMap::supportsService( const OUString& ServiceName )
+sal_Bool SAL_CALL NamespaceMap::supportsService( const OUString& /*rServiceName*/ )
     throw(RuntimeException)
 {
     return sal_True;

@@ -189,10 +189,10 @@ void SvxUnoDrawPool::putAny( SfxItemPool* pPool, const comphelper::PropertyMapEn
         {
             ::std::auto_ptr<SfxPoolItem> pNewItem( pPool->GetDefaultItem( nWhich ).Clone() );
 
-            const SfxMapUnit eMapUnit = pPool ? pPool->GetMetric(nWhich) : SFX_MAPUNIT_100TH_MM;
+            const SfxMapUnit eLclMapUnit = pPool ? pPool->GetMetric(nWhich) : SFX_MAPUNIT_100TH_MM;
 
             BYTE nMemberId = pEntry->mnMemberId & (~SFX_METRIC_ITEM);
-            if( eMapUnit == SFX_MAPUNIT_100TH_MM )
+            if( eLclMapUnit == SFX_MAPUNIT_100TH_MM )
                 nMemberId &= (~CONVERT_TWIPS);
 
             if( !pNewItem->PutValue( aValue, nMemberId ) )

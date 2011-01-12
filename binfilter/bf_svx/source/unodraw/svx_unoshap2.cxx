@@ -453,7 +453,7 @@ void SAL_CALL SvxShapeConnector::setSize( const awt::Size& rSize )
 
 // XConnectorShape
 
-void SAL_CALL SvxShapeConnector::connectStart( const uno::Reference< drawing::XConnectableShape >& xShape, drawing::ConnectionType nPos ) throw( uno::RuntimeException )
+void SAL_CALL SvxShapeConnector::connectStart( const uno::Reference< drawing::XConnectableShape >& xShape, drawing::ConnectionType /*nPos*/ ) throw( uno::RuntimeException )
 {
     ::SolarMutexGuard aGuard;
 
@@ -468,7 +468,7 @@ void SAL_CALL SvxShapeConnector::connectStart( const uno::Reference< drawing::XC
 }
 
 //----------------------------------------------------------------------
-void SAL_CALL SvxShapeConnector::connectEnd( const uno::Reference< drawing::XConnectableShape >& xShape, drawing::ConnectionType nPos )
+void SAL_CALL SvxShapeConnector::connectEnd( const uno::Reference< drawing::XConnectableShape >& xShape, drawing::ConnectionType /*nPos*/ )
     throw( uno::RuntimeException )
 {
     ::SolarMutexGuard aGuard;
@@ -484,7 +484,7 @@ void SAL_CALL SvxShapeConnector::connectEnd( const uno::Reference< drawing::XCon
 }
 
 //----------------------------------------------------------------------
-void SAL_CALL SvxShapeConnector::disconnectBegin( const uno::Reference< drawing::XConnectableShape >& xShape )
+void SAL_CALL SvxShapeConnector::disconnectBegin( const uno::Reference< drawing::XConnectableShape >& /*xShape*/ )
     throw( uno::RuntimeException )
 {
     ::SolarMutexGuard aGuard;
@@ -497,7 +497,7 @@ void SAL_CALL SvxShapeConnector::disconnectBegin( const uno::Reference< drawing:
 }
 
 //----------------------------------------------------------------------
-void SAL_CALL SvxShapeConnector::disconnectEnd( const uno::Reference< drawing::XConnectableShape >& xShape )
+void SAL_CALL SvxShapeConnector::disconnectEnd( const uno::Reference< drawing::XConnectableShape >& /*xShape*/ )
     throw( uno::RuntimeException )
 {
     ::SolarMutexGuard aGuard;
@@ -722,7 +722,7 @@ SvxShapeControlPropertyValueMapping[] =
 
 void SvxShapeControl::valueAlignToParaAdjust(Any& rValue)
 {
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     rValue >>= nValue;
     sal_uInt16 i = 0;
     while (-1 != SvxShapeControlPropertyValueMapping[i].nFormValue)
@@ -738,7 +738,7 @@ void SvxShapeControl::valueAlignToParaAdjust(Any& rValue)
 
 void SvxShapeControl::valueParaAdjustToAlign(Any& rValue)
 {
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     rValue >>= nValue;
     sal_uInt16 i = 0;
     while (-1 != SvxShapeControlPropertyValueMapping[i].nAPIValue)
@@ -811,7 +811,7 @@ uno::Any SAL_CALL SvxShapeControl::getPropertyValue( const OUString& aPropertyNa
             {
                 if( bNeedConversion )
                 {
-                    sal_Int16 nSlant;
+                    sal_Int16 nSlant(0);
                     xControl->getPropertyValue( aFormsName ) >>= nSlant;
                     return uno::makeAny( (awt::FontSlant)nSlant );
                 }
@@ -907,7 +907,7 @@ uno::Any SAL_CALL SvxShapeControl::getPropertyDefault( const ::rtl::OUString& aP
         {
             if( bNeedConversion )
             {
-                sal_Int16 nSlant;
+                sal_Int16 nSlant(0);
                 xControl->getPropertyDefault( aFormsName ) >>= nSlant;
 
                 return uno::makeAny( (awt::FontSlant)nSlant );

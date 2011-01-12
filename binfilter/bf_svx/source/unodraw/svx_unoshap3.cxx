@@ -68,8 +68,8 @@ using rtl::OUString;
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DSceneObject::Svx3DSceneObject( SdrObject* pObj, SvxDrawPage* pDrawPage ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DSCENEOBJECT) ), pPage( pDrawPage )
+Svx3DSceneObject::Svx3DSceneObject( SdrObject* pInObj, SvxDrawPage* pDrawPage ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DSCENEOBJECT) ), pPage( pDrawPage )
 {
 }
 
@@ -484,8 +484,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DSceneObject::getSupportedServiceNames()
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DCubeObject::Svx3DCubeObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DCUBEOBJEKT) )
+Svx3DCubeObject::Svx3DCubeObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DCUBEOBJEKT) )
 {
 }
 
@@ -521,8 +521,8 @@ void SAL_CALL Svx3DCubeObject::setPropertyValue( const OUString& aPropertyName, 
         drawing::Direction3D aDirection;
         if( aValue >>= aDirection )
         {
-            Vector3D aSize(aDirection.DirectionX, aDirection.DirectionY, aDirection.DirectionZ);
-            ((E3dCubeObj*)pObj)->SetCubeSize(aSize);
+            Vector3D aLclSize(aDirection.DirectionX, aDirection.DirectionY, aDirection.DirectionZ);
+            ((E3dCubeObj*)pObj)->SetCubeSize(aLclSize);
         }
     }
     else if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_POS_IS_CENTER)) )
@@ -602,8 +602,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DCubeObject::getSupportedServiceNames()
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DSphereObject::Svx3DSphereObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DSPHEREOBJECT) )
+Svx3DSphereObject::Svx3DSphereObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DSPHEREOBJECT) )
 {
 }
 
@@ -709,8 +709,8 @@ namespace binfilter {//STRIP009
 
 
 //----------------------------------------------------------------------
-Svx3DLatheObject::Svx3DLatheObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DLATHEOBJECT) )
+Svx3DLatheObject::Svx3DLatheObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DLATHEOBJECT) )
 {
 }
 
@@ -910,8 +910,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DLatheObject::getSupportedServiceNames()
 *                                                                      *
 ***********************************************************************/
 
-Svx3DExtrudeObject::Svx3DExtrudeObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DEXTRUDEOBJECT) )
+Svx3DExtrudeObject::Svx3DExtrudeObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DEXTRUDEOBJECT) )
 {
 }
 
@@ -1024,8 +1024,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DExtrudeObject::getSupportedServiceNames(
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DPolygonObject::Svx3DPolygonObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DPOLYGONOBJECT) )
+Svx3DPolygonObject::Svx3DPolygonObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DPOLYGONOBJECT) )
 {
 }
 

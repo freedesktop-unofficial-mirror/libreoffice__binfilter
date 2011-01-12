@@ -107,7 +107,7 @@ SvxDrawPage::~SvxDrawPage() throw()
 // SfxListener
 
 //----------------------------------------------------------------------
-void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SvxDrawPage::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if( pModel )
     {

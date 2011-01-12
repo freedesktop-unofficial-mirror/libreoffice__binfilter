@@ -216,7 +216,7 @@ void SAL_CALL SvxTextEditSourceImpl::release()
 
 //------------------------------------------------------------------------
 
-void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SvxTextEditSourceImpl::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
     const SvxViewHint* pViewHint = PTR_CAST( SvxViewHint, &rHint );
@@ -227,6 +227,8 @@ void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         {
             case SVX_HINT_VIEWCHANGED:
                 Broadcast( *pViewHint );
+                break;
+            default:
                 break;
         }
     }
@@ -329,6 +331,8 @@ void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                         mpTextForwarder = NULL;
                     }
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -824,7 +828,7 @@ Point SvxTextEditSourceImpl::PixelToLogic( const Point& rPoint, const MapMode& r
     return Point();
 }
 
-IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, aNotify)
+IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, EMPTYARG)
 {
     return 0;
 }

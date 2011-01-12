@@ -134,7 +134,7 @@ void SvxUnoMarkerTable::dispose()
 }
 
 // SfxListener
-void SvxUnoMarkerTable::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
+void SvxUnoMarkerTable::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint ) throw()
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 

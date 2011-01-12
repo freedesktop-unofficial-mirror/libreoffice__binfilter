@@ -43,14 +43,14 @@ SvxUnoShapeModifyListener::~SvxUnoShapeModifyListener() throw()
 }
 
 // ::com::sun::star::util::XModifyListener
-void SAL_CALL SvxUnoShapeModifyListener::modified(const lang::EventObject& aEvent) throw( uno::RuntimeException )
+void SAL_CALL SvxUnoShapeModifyListener::modified(const lang::EventObject& /*rEvent*/) throw( uno::RuntimeException )
 {
     if( mpObj )
         mpObj->SendRepaintBroadcast();
 }
 
 // ::com::sun::star::lang::XEventListener
-void SvxUnoShapeModifyListener::disposing(const lang::EventObject& Source) throw( uno::RuntimeException )
+void SvxUnoShapeModifyListener::disposing(const lang::EventObject& /*rSource*/) throw( uno::RuntimeException )
 {
     invalidate();
 }

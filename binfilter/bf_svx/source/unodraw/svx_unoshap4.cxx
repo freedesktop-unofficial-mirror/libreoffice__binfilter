@@ -845,8 +845,8 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
             DBG_ASSERT( xFrame.Is(), "wrong ole object inside frame" );
             if( !xFrame.Is() )
             {
-                Any aAny;
-                return aAny;
+                Any aLclAny;
+                return aLclAny;
             }
 
             const SfxFrameDescriptor *pDescriptor = xFrame->GetFrameDescriptor();
@@ -861,8 +861,8 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
                 case OWN_ATTR_FRAME_ISAUTOSCROLL:
                     if( pDescriptor->GetScrollingMode() == ScrollingAuto )
                     {
-                        Any aAny;
-                        return aAny;
+                        Any aLclAny;
+                        return aLclAny;
                     }
                     else
                     {

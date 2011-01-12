@@ -138,7 +138,7 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
     }
 }
 
-void SAL_CALL SvxUnoColorTable::removeByName( const OUString& Name )
+void SAL_CALL SvxUnoColorTable::removeByName( const OUString& /*rName*/ )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 }
@@ -160,7 +160,7 @@ void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno:
 }
 
 // XNameAccess
-uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& aName )
+uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& /*rName*/ )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
 {DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;//STRIP001
 }
@@ -171,11 +171,6 @@ uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
     const long nCount = pTable ? pTable->Count() : 0;
 
     uno::Sequence< OUString > aSeq( nCount );
-    OUString* pStrings = aSeq.getArray();
-
-    for( long nIndex = 0; nIndex < nCount; nIndex++ )
-    {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-    }
 
     return aSeq;
 }
@@ -203,7 +198,7 @@ sal_Bool SAL_CALL SvxUnoColorTable::hasElements(  )
 /**
  * Create a colortable
  */
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw(uno::Exception)
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/) throw(uno::Exception)
 {
     return *new SvxUnoColorTable();
 }
@@ -236,7 +231,7 @@ sal_Bool SAL_CALL sfx2_component_writeInfo( void*   pServiceManager ,
 extern "C"
 {
 
-void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** ppEnv )
+void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
