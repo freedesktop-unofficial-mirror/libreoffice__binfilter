@@ -228,16 +228,14 @@ typedef SwXMLTableLines_Impl *SwXMLTableLinesPtr;
 
 // ---------------------------------------------------------------------
 
-typedef SwFrmFmt *SwFrmFmtPtr;
-DECLARE_LIST( SwXMLFrmFmts_Impl, SwFrmFmtPtr )
+typedef SwFrmFmt* SwFrmFmtPtr;
+typedef ::std::vector< SwFrmFmt* > SwXMLFrmFmts_Impl;
 
-class SwXMLTableFrmFmtsSort_Impl : public SwXMLFrmFmts_Impl
+class SwXMLTableFrmFmtsSort_Impl
 {
+private:
+    SwXMLFrmFmts_Impl maFrmFmtsList;
 public:
-    SwXMLTableFrmFmtsSort_Impl ( sal_uInt16 nInit, sal_uInt16 nGrow ) :
-        SwXMLFrmFmts_Impl( nInit, nGrow )
-    {}
-
     sal_Bool AddRow( SwFrmFmt& rFrmFmt, const OUString& rNamePrefix, sal_uInt32 nLine );
     sal_Bool AddCell( SwFrmFmt& rFrmFmt, const OUString& rNamePrefix,
                   sal_uInt32 nCol, sal_uInt32 nRow, sal_Bool bTop );
@@ -263,14 +261,14 @@ sal_Bool SwXMLTableFrmFmtsSort_Impl::AddRow( SwFrmFmt& rFrmFmt,
         return sal_False;
 
     // order is: -/brush, size/-, size/brush
-    sal_uInt32 nCount = Count();
+    size_t nCount = maFrmFmtsList.size();
     sal_Bool bInsert = sal_True;
-    sal_uInt32 i;
+    size_t i;
     for( i=0; i<nCount; i++ )
     {
         const SwFmtFrmSize *pTestFrmSize = 0;
         const SvxBrushItem *pTestBrush = 0;
-        const SwFrmFmt *pTestFmt = GetObject(i);
+        const SwFrmFmt *pTestFmt = maFrmFmtsList[ i ];
         const SfxItemSet& rTestSet = pTestFmt->GetAttrSet();
         if( SFX_ITEM_SET == rTestSet.GetItemState( RES_FRM_SIZE, sal_False,
                                                   &pItem ) )
@@ -323,7 +321,14 @@ sal_Bool SwXMLTableFrmFmtsSort_Impl::AddRow( SwFrmFmt& rFrmFmt,
         sBuffer.append( (sal_Int32)(nLine+1UL) );
 
         rFrmFmt.SetName( sBuffer.makeStringAndClear() );
-        Insert( &rFrmFmt, i );
+        if ( i < maFrmFmtsList.size() )
+        {
+            SwXMLFrmFmts_Impl::iterator it = maFrmFmtsList.begin();
+            ::std::advance( it, i );
+            maFrmFmtsList.insert( it, &rFrmFmt );
+        }
+        else
+            maFrmFmtsList.push_back( &rFrmFmt );
     }
 
     return bInsert;
@@ -385,16 +390,16 @@ sal_Bool SwXMLTableFrmFmtsSort_Impl::AddCell( SwFrmFmt& rFrmFmt,
     //           vert/-/-/-, vert/-/-/num, vert/-/box/-, ver/-/box/num,
     //           vert/brush/-/-, vert/brush/-/num, vert/brush/box/-,
     //           vert/brush/box/num
-    sal_uInt32 nCount = Count();
+    size_t nCount = maFrmFmtsList.size();
     sal_Bool bInsert = sal_True;
-    sal_uInt32 i;
+    size_t i;
     for( i=0; i<nCount; i++ )
     {
         const SwFmtVertOrient *pTestVertOrient = 0;
         const SvxBrushItem *pTestBrush = 0;
         const SvxBoxItem *pTestBox = 0;
         const SwTblBoxNumFormat *pTestNumFmt = 0;
-        const SwFrmFmt *pTestFmt = GetObject(i);
+        const SwFrmFmt *pTestFmt = maFrmFmtsList[ i ];
         const SfxItemSet& rTestSet = pTestFmt->GetAttrSet();
         if( SFX_ITEM_SET == rTestSet.GetItemState( RES_VERT_ORIENT, sal_False,
                                                   &pItem ) )
@@ -477,7 +482,14 @@ sal_Bool SwXMLTableFrmFmtsSort_Impl::AddCell( SwFrmFmt& rFrmFmt,
         OUStringBuffer sBuffer( rNamePrefix.getLength() + 8UL );
         lcl_xmltble_appendBoxPrefix( sBuffer, rNamePrefix, nCol, nRow, bTop );
         rFrmFmt.SetName( sBuffer.makeStringAndClear() );
-        Insert( &rFrmFmt, i );
+        if ( i < maFrmFmtsList.size() )
+        {
+            SwXMLFrmFmts_Impl::iterator it = maFrmFmtsList.begin();
+            ::std::advance( it, i );
+            maFrmFmtsList.insert( it, &rFrmFmt );
+        }
+        else
+            maFrmFmtsList.push_back( &rFrmFmt );
     }
 
     return bInsert;
@@ -554,14 +566,17 @@ void SwXMLExport::ExportTableColumnStyle( const SwXMLTableColumn_Impl& rCol )
     }
 }
 
-void SwXMLExport::ExportTableLinesAutoStyles( const SwTableLines& rLines,
-                                    sal_uInt32 nAbsWidth, sal_uInt32 nBaseWidth,
-                                    const OUString& rNamePrefix,
-                                    SwXMLTableColumnsSortByWidth_Impl& rExpCols,
-                                    SwXMLTableFrmFmtsSort_Impl& rExpRows,
-                                    SwXMLTableFrmFmtsSort_Impl& rExpCells,
-                                    SwXMLTableInfo_Impl& rTblInfo,
-                                    sal_Bool bTop )
+void SwXMLExport::ExportTableLinesAutoStyles(
+    const SwTableLines& rLines,
+    sal_uInt32 nAbsWidth,
+    sal_uInt32 nBaseWidth,
+    const OUString& rNamePrefix,
+    SwXMLTableColumnsSortByWidth_Impl& rExpCols,
+    SwXMLTableFrmFmtsSort_Impl& rExpRows,
+    SwXMLTableFrmFmtsSort_Impl& rExpCells,
+    SwXMLTableInfo_Impl& rTblInfo,
+    sal_Bool bTop
+)
 {
     // pass 1: calculate columns
     SwXMLTableLines_Impl *pLines =
@@ -745,12 +760,20 @@ void SwXMLExport::ExportTableAutoStyles( const SwTableNode& rTblNd )
 
         OUString sName( pTblFmt->GetName() );
         SwXMLTableColumnsSortByWidth_Impl aExpCols( 10, 10 );
-        SwXMLTableFrmFmtsSort_Impl aExpRows( 10, 10 );
-        SwXMLTableFrmFmtsSort_Impl aExpCells( 10, 10 );
+        SwXMLTableFrmFmtsSort_Impl aExpRows;
+        SwXMLTableFrmFmtsSort_Impl aExpCells;
         SwXMLTableInfo_Impl aTblInfo( &rTbl );
-        ExportTableLinesAutoStyles( rTbl.GetTabLines(), nAbsWidth, nBaseWidth,
-                                    sName, aExpCols, aExpRows, aExpCells,
-                                    aTblInfo, sal_True);
+        ExportTableLinesAutoStyles(
+            rTbl.GetTabLines(),
+            nAbsWidth,
+            nBaseWidth,
+            sName,
+            aExpCols,
+            aExpRows,
+            aExpCells,
+            aTblInfo,
+            sal_True
+        );
     }
 }
 
