@@ -59,7 +59,6 @@
 #include <unoredlines.hxx>
 #include <unosrch.hxx>
 #include <toolkit/awt/vclxdevice.hxx>
-#include <bf_sfx2/docinf.hxx>
 #include <bf_sfx2/objsh.hxx>   // SfxObjectShellRef <-> SV_DECL_REF(SfxObjectShell)
 #include <unoprnms.hxx>
 #include <unostyle.hxx>
@@ -880,27 +879,27 @@ sal_uInt32 lcl_Any_To_ULONG(const Any& rValue, sal_Bool& bException)
     sal_uInt32 nRet = 0;
     if( eType == TypeClass_LONG )
     {
-         sal_Int32 nVal;
+         sal_Int32 nVal(0);
          rValue >>= nVal;
          if(nVal >=0 )
             nRet = (sal_uInt32)nVal;
     }
     else if( eType == TypeClass_UNSIGNED_SHORT )
     {
-        sal_uInt16 nVal;
+        sal_uInt16 nVal(0);
         rValue >>= nVal;
         nRet = nVal;
     }
     else if( eType == TypeClass_SHORT )
     {
-        sal_Int16 nVal;
+        sal_Int16 nVal(0);
         rValue >>= nVal;
         if(nVal >=0)
             nRet = (sal_uInt32)nVal;
     }
     else if( eType == TypeClass_BYTE )
     {
-        BYTE nVal;
+        BYTE nVal(0);
         rValue >>= nVal;
         nRet = nVal;
     }
@@ -1249,7 +1248,7 @@ void    SwXTextDocument::InitNewDoc()
 
     if(pxXDrawPage)
     {
-         drawing::XDrawPage* pxPage = pxXDrawPage->get();
+        pxXDrawPage->get();
         pDrawPage->Invalidate();
         delete pxXDrawPage;
         pxXDrawPage = 0;
@@ -1606,7 +1605,7 @@ void SwXTextDocument::setPropertyValue(const OUString& rPropertyName,
         {
             sal_Int16 eRedMode = pDocShell->GetDoc()->GetRedlineMode();
             eRedMode = eRedMode & (~REDLINE_SHOW_MASK);
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             aValue >>= nSet;
             switch(nSet)
             {
@@ -1623,7 +1622,7 @@ void SwXTextDocument::setPropertyValue(const OUString& rPropertyName,
         break;
         case WID_DOC_TWO_DIGIT_YEAR:
         {
-            sal_Int16 nYear;
+            sal_Int16 nYear(0);
             aValue >>= nYear;
             pDocShell->GetDoc()->GetNumberFormatter(TRUE)->SetYear2000(nYear);
         }

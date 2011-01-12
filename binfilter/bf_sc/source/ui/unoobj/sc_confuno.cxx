@@ -148,7 +148,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                 aViewOpt.SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
             else if ( aPropertyName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
             {
-                sal_Int64 nColor;
+                sal_Int64 nColor(0);
                 if (aValue >>= nColor)
                 {
                     String aColorName;
