@@ -1405,8 +1405,9 @@ SdXMLMasterStylesContext::SdXMLMasterStylesContext(
 
 SdXMLMasterStylesContext::~SdXMLMasterStylesContext()
 {
-    while(maMasterPageList.Count())
-        maMasterPageList.Remove(maMasterPageList.Count() - 1)->ReleaseRef();
+    for ( size_t i = 0, n = maMasterPageList.size(); i < n; ++i )
+        maMasterPageList[ i ]->ReleaseRef();
+    maMasterPageList.clear();
 }
 
 SvXMLImportContext* SdXMLMasterStylesContext::CreateChildContext(
@@ -1451,7 +1452,7 @@ SvXMLImportContext* SdXMLMasterStylesContext::CreateChildContext(
                     if(pContext)
                     {
                         pContext->AddRef();
-                        maMasterPageList.Insert((SdXMLMasterPageContext*)pContext, LIST_APPEND);
+                        maMasterPageList.push_back( (SdXMLMasterPageContext*)pContext );
                     }
                 }
             }

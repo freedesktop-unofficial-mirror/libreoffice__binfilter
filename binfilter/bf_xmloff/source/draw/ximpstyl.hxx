@@ -38,6 +38,8 @@
 #include "xmlstyle.hxx"
 
 #include <com/sun/star/view/PaperOrientation.hpp>
+#include <vector>
+
 namespace binfilter {
 
 class SvNumberFormatter;
@@ -136,7 +138,7 @@ public:
     const ::rtl::OUString& GetPageMasterName() const { return msPageMasterName; }
     const ::rtl::OUString& GetName() const { return msName; }
 };
-DECLARE_LIST(ImpMasterPageList, SdXMLMasterPageContext*)//STRIP008 ;
+typedef ::std::vector< SdXMLMasterPageContext* > ImpMasterPageList;
 
 //////////////////////////////////////////////////////////////////////////////
 // presentation:placeholder context
