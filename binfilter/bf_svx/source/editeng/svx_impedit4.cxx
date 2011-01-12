@@ -253,7 +253,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   // Da Setzen eines TextObject ist nicht Undo-faehig!
 /*N*/   ResetUndoManager();
-/*N*/   sal_Bool bUpdate = GetUpdateMode();
+/*N*/   sal_Bool bLclUpdate = GetUpdateMode();
 /*N*/   sal_Bool bUndo = IsUndoEnabled();
 /*N*/
 /*N*/   SetText( XubString() );
@@ -268,7 +268,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   DBG_ASSERT( !HasUndoManager() || !GetUndoManager().GetUndoActionCount(), "Woher kommt das Undo in SetText ?!" );
 /*N*/ #endif
-/*N*/   SetUpdateMode( bUpdate );
+/*N*/   SetUpdateMode( bLclUpdate );
 /*N*/   EnableUndo( bUndo );
 /*N*/ }
 
@@ -292,7 +292,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   EditSelection aSel( aPaM, aPaM );
 /*N*/
 /*N*/   sal_Bool bUsePortionInfo = sal_False;
-/*N*/   sal_Bool bFields = sal_False;
 /*N*/   XParaPortionList* pPortionInfo = rTextObject.GetPortionInfo();
 /*N*/
 /*N*/   if ( pPortionInfo && ( (long)pPortionInfo->GetPaperWidth() == aPaperSize.Width() )
@@ -305,7 +304,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   }
 /*N*/
 /*N*/   sal_Bool bConvertItems = sal_False;
-/*N*/   MapUnit eSourceUnit, eDestUnit;
+/*N*/   MapUnit eSourceUnit = MapUnit(), eDestUnit = MapUnit();
 /*N*/   if ( rTextObject.HasMetric() )
 /*N*/   {
 /*N*/       eSourceUnit = (MapUnit)rTextObject.GetMetric();
@@ -416,11 +415,11 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               // Die TextPortions
 /*?*/               pParaPortion->GetTextPortions().Reset();
 /*?*/               sal_uInt16 nCount = pXP->aTextPortions.Count();
-/*?*/               for ( sal_uInt16 n = 0; n < nCount; n++ )
+/*?*/               for ( sal_uInt16 k = 0; k < nCount; k++ )
 /*?*/               {
-/*?*/                   TextPortion* pTextPortion = pXP->aTextPortions[n];
+/*?*/                   TextPortion* pTextPortion = pXP->aTextPortions[k];
 /*?*/                   TextPortion* pNew = new TextPortion( *pTextPortion );
-/*?*/                   pParaPortion->GetTextPortions().Insert( pNew, n );
+/*?*/                   pParaPortion->GetTextPortions().Insert( pNew, k );
 /*?*/               }
 /*?*/
 /*?*/               // Die Zeilen

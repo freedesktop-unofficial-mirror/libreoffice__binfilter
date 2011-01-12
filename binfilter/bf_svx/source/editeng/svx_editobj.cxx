@@ -79,7 +79,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pFmt->GetBrush() && pFmt->GetBrush()->GetGraphic() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Bitmap aBmp( pFmt->GetBrush()->GetGraphic()->GetBitmap() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       switch ( pFmt->GetNumberingType() )
@@ -246,55 +246,45 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ XubString EditTextObject::GetText( USHORT nParagraph ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString();//STRIP001
+/*N*/ XubString EditTextObject::GetText( USHORT ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return XubString();
 /*N*/ }
 
-/*N*/ void EditTextObject::Insert( const EditTextObject& rObj, USHORT nPara )
+/*N*/ void EditTextObject::Insert( const EditTextObject&, USHORT )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
-
-
-
 
 /*N*/ void EditTextObject::ClearPortionInfo()
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-
-
-
-/*N*/ void EditTextObject::MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart, USHORT nEnd )
+/*N*/ void EditTextObject::MergeParaAttribs( const SfxItemSet&, USHORT, USHORT )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
 
 
-/*N*/ BOOL EditTextObject::HasField( TypeId aType ) const
+/*N*/ BOOL EditTextObject::HasField( TypeId ) const
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ SfxItemSet EditTextObject::GetParaAttribs( USHORT nPara ) const
+/*N*/ SfxItemSet EditTextObject::GetParaAttribs( USHORT ) const
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/   return SfxItemSet( *(SfxItemPool*)NULL );
 /*N*/ }
 
-
-
-
-
-/*N*/ void EditTextObject::GetStyleSheet( USHORT nPara, XubString& rName, SfxStyleFamily& eFamily ) const
+/*N*/ void EditTextObject::GetStyleSheet( USHORT, XubString&, SfxStyleFamily& ) const
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-/*N*/ void EditTextObject::SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& eFamily )
+/*N*/ void EditTextObject::SetStyleSheet( USHORT, const XubString&, const SfxStyleFamily& )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
@@ -306,8 +296,8 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void EditTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
-/*N*/               const XubString& rOldName, const XubString& rNewName )
+/*N*/ void EditTextObject::ChangeStyleSheetName( SfxStyleFamily,
+/*N*/               const XubString&, const XubString& )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
@@ -318,7 +308,7 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void EditTextObject::SetUserType( USHORT n )
+/*N*/ void EditTextObject::SetUserType( USHORT /*n*/ )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
@@ -331,8 +321,8 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void EditTextObject::SetVertical( BOOL bVertical )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditTextObject::SetVertical( BOOL /*bVertical*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -345,8 +335,8 @@ namespace binfilter {
 /*N*/   // Vorspann:
 /*N*/   ULONG nStartPos = rOStream.Tell();
 /*N*/
-/*N*/   USHORT nWhich = Which();
-/*N*/   rOStream << nWhich;
+/*N*/   USHORT nLclWhich = Which();
+/*N*/   rOStream << nLclWhich;
 /*N*/
 /*N*/   sal_uInt32 nStructSz = 0;
 /*N*/   rOStream << nStructSz;
@@ -356,8 +346,8 @@ namespace binfilter {
 /*N*/
 /*N*/   // Nachspann:
 /*N*/   ULONG nEndPos = rOStream.Tell();
-/*N*/   nStructSz = nEndPos - nStartPos - sizeof( nWhich ) - sizeof( nStructSz );
-/*N*/   rOStream.Seek( nStartPos + sizeof( nWhich ) );
+/*N*/   nStructSz = nEndPos - nStartPos - sizeof( nLclWhich ) - sizeof( nStructSz );
+/*N*/   rOStream.Seek( nStartPos + sizeof( nLclWhich ) );
 /*N*/   rOStream << nStructSz;
 /*N*/   rOStream.Seek( nEndPos );
 /*N*/
@@ -369,19 +359,19 @@ namespace binfilter {
 /*N*/   ULONG nStartPos = rIStream.Tell();
 /*N*/
 /*N*/   // Ertmal sehen, was fuer ein Object...
-/*N*/   USHORT nWhich;
-/*N*/   rIStream >> nWhich;
+/*N*/   USHORT nLclWhich;
+/*N*/   rIStream >> nLclWhich;
 /*N*/
 /*N*/   sal_uInt32 nStructSz;
 /*N*/   rIStream >> nStructSz;
 /*N*/
-/*N*/   DBG_ASSERT( ( nWhich == 0x22 /*EE_FORMAT_BIN300*/ ) || ( nWhich == EE_FORMAT_BIN ), "CreateTextObject: Unbekanntes Objekt!" );
+/*N*/   DBG_ASSERT( ( nLclWhich == 0x22 /*EE_FORMAT_BIN300*/ ) || ( nLclWhich == EE_FORMAT_BIN ), "CreateTextObject: Unbekanntes Objekt!" );
 /*N*/
 /*N*/   if ( rIStream.GetError() )
 /*N*/       return NULL;
 /*N*/
 /*N*/   EditTextObject* pTxtObj = NULL;
-/*N*/   switch ( nWhich )
+/*N*/   switch ( nLclWhich )
 /*N*/   {
 /*N*/       case 0x22 /*BIN300*/:       pTxtObj = new BinTextObject( 0 );
 /*N*/                                   ((BinTextObject*)pTxtObj)->CreateData300( rIStream );
@@ -397,18 +387,18 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // Sicherstellen, dass der Stream an der richtigen Stelle hinterlassen wird.
-/*N*/   ULONG nFullSz = sizeof( nWhich ) + sizeof( nStructSz ) + nStructSz;
+/*N*/   ULONG nFullSz = sizeof( nLclWhich ) + sizeof( nStructSz ) + nStructSz;
 /*N*/   rIStream.Seek( nStartPos + nFullSz );
 /*N*/   return pTxtObj;
 /*N*/ }
 
 
-/*N*/ void EditTextObject::StoreData( SvStream& rOStream ) const
+/*N*/ void EditTextObject::StoreData( SvStream& /*rOStream*/ ) const
 /*N*/ {
 /*N*/   DBG_ERROR( "StoreData: Basisklasse!" );
 /*N*/ }
 
-/*N*/ void EditTextObject::CreateData( SvStream& rIStream )
+/*N*/ void EditTextObject::CreateData( SvStream& /*rIStream*/ )
 /*N*/ {
 /*N*/   DBG_ERROR( "CreateData: Basisklasse!" );
 /*N*/ }
@@ -420,12 +410,12 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void EditTextObject::AdjustImportedLRSpaceItems( BOOL bTurnOfBullets )
+/*N*/ void EditTextObject::AdjustImportedLRSpaceItems( BOOL /*bTurnOfBullets*/ )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-/*N*/ void EditTextObject::PrepareStore( SfxStyleSheetPool* pStyleSheetPool )
+/*N*/ void EditTextObject::PrepareStore( SfxStyleSheetPool* /*pStyleSheetPool*/ )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
@@ -435,7 +425,7 @@ namespace binfilter {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
 
-/*N*/ void EditTextObject::FinishLoad( SfxStyleSheetPool* pStyleSheetPool )
+/*N*/ void EditTextObject::FinishLoad( SfxStyleSheetPool* /*pStyleSheetPool*/ )
 /*N*/ {
 /*N*/   DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
 /*N*/ }
@@ -700,8 +690,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void BinTextObject::SetStyleSheet( USHORT nPara, const XubString& rName, const SfxStyleFamily& rFamily )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void BinTextObject::SetStyleSheet( USHORT, const XubString&, const SfxStyleFamily& )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL BinTextObject::ImpChangeStyleSheets(
@@ -990,12 +980,12 @@ namespace binfilter {
 /*N*/         USHORT nAttr;
 /*N*/       for ( nAttr = 0; nAttr < nAttribs; nAttr++ )
 /*N*/       {
-/*N*/           USHORT nWhich, nStart, nEnd;
+/*N*/           USHORT nLclWhich, nStart, nEnd;
 /*N*/           const SfxPoolItem* pItem;
 /*N*/
-/*N*/           rIStream >> nWhich;
-/*N*/           nWhich = pPool->GetNewWhich( nWhich );
-/*N*/           pItem = pPool->LoadSurrogate( rIStream, nWhich, 0 );
+/*N*/           rIStream >> nLclWhich;
+/*N*/           nLclWhich = pPool->GetNewWhich( nLclWhich );
+/*N*/           pItem = pPool->LoadSurrogate( rIStream, nLclWhich, 0 );
 /*N*/           rIStream >> nStart;
 /*N*/           rIStream >> nEnd;
 /*N*/           if ( pItem )
@@ -1009,7 +999,7 @@ namespace binfilter {
 /*N*/                   XEditAttribute* pAttr = new XEditAttribute( *pItem, nStart, nEnd );
 /*N*/                   pC->GetAttribs().Insert( pAttr, pC->GetAttribs().Count() );
 /*N*/
-/*N*/                   if ( ( nWhich >= EE_FEATURE_START ) && ( nWhich <= EE_FEATURE_END ) )
+/*N*/                   if ( ( nLclWhich >= EE_FEATURE_START ) && ( nLclWhich <= EE_FEATURE_END ) )
 /*N*/                   {
 /*N*/                       // Convert CH_FEATURE to CH_FEATURE_OLD
 /*N*/                       DBG_ASSERT( (BYTE) aByteString.GetChar( nStart ) == CH_FEATURE_OLD, "CreateData: CH_FEATURE expected!" );
@@ -1499,12 +1489,12 @@ namespace binfilter {
 /*N*/       // Which = 2; Surregat = 2; Start = 2; End = 2;
 /*N*/       for ( sal_uInt32 nAttr = 0; nAttr < nAttribs; nAttr++ )
 /*N*/       {
-/*N*/           USHORT nWhich, nStart, nEnd;
+/*N*/           USHORT nLclWhich, nStart, nEnd;
 /*N*/           const SfxPoolItem* pItem;
 /*N*/
-/*N*/           rIStream >> nWhich;
-/*N*/           nWhich = pPool->GetNewWhich( nWhich );
-/*N*/           pItem = pPool->LoadSurrogate( rIStream, nWhich, 0 );
+/*N*/           rIStream >> nLclWhich;
+/*N*/           nLclWhich = pPool->GetNewWhich( nLclWhich );
+/*N*/           pItem = pPool->LoadSurrogate( rIStream, nLclWhich, 0 );
 /*N*/           rIStream >> nStart;
 /*N*/           rIStream >> nEnd;
 /*N*/           if ( pItem )

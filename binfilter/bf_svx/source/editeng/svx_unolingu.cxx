@@ -214,9 +214,9 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Sequence< uno::Reference< linguistic2::XMeaning > > SAL_CALL
 /*N*/         ThesDummy_Impl::queryMeanings(
-/*N*/                 const ::rtl::OUString& rTerm,
-/*N*/                 const lang::Locale& rLocale,
-/*N*/                 const beans::PropertyValues& rProperties )
+/*N*/                 const ::rtl::OUString& /*rTerm*/,
+/*N*/                 const lang::Locale& /*rLocale*/,
+/*N*/                 const beans::PropertyValues& /*rProperties*/ )
 /*N*/             throw(lang::IllegalArgumentException,
 /*N*/                   uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
@@ -274,7 +274,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ sal_Bool SAL_CALL
-/*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 nLanguage )
+/*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 /*nLanguage*/ )
 /*N*/         throw(uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
 /*N*/ }
@@ -295,8 +295,8 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ uno::Reference< linguistic2::XSpellAlternatives > SAL_CALL
-/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
-/*N*/             const beans::PropertyValues& rProperties )
+/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& /*rWord*/, sal_Int16 /*nLanguage*/,
+/*N*/             const beans::PropertyValues& /*rProperties*/ )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001

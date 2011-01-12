@@ -185,18 +185,12 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/ //    aExtraCharInfos.Remove( 0, aExtraCharInfos.Count() );
 /*N*/ }
 
-/*N*/ void ParaPortion::MarkSelectionInvalid( USHORT nStart, USHORT nEnd )
+/*N*/ void ParaPortion::MarkSelectionInvalid( USHORT nStart, USHORT /*nEnd*/ )
 /*N*/ {
 /*N*/   if ( bInvalid == FALSE )
-/*N*/   {
 /*N*/       nInvalidPosStart = nStart;
-/*N*/ //        nInvalidPosEnd = nEnd;
-/*N*/   }
 /*N*/   else
-/*N*/   {
 /*N*/       nInvalidPosStart = Min( nInvalidPosStart, nStart );
-/*N*/ //        nInvalidPosEnd = pNode->Len();
-/*N*/   }
 /*N*/   nInvalidDiff = 0;
 /*N*/   bInvalid = TRUE;
 /*N*/   bSimple = FALSE;
@@ -308,10 +302,8 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 
 
 
-/*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit )
+/*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit, MapUnit )
 /*N*/ {
-/*N*/   DBG_ASSERT( eSourceUnit != eDestUnit, "ConvertItem - Why?!" );
-/*N*/
 /*N*/   switch ( rPoolItem.Which() )
 /*N*/   {
 /*N*/       case EE_PARA_LRSPACE:

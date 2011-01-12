@@ -80,8 +80,8 @@ const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::
 /*N*/   pInf->aForbiddenChars = rForbiddenChars;
 /*N*/ }
 
-/*N*/ void SvxForbiddenCharactersTable::ClearForbiddenCharacters( USHORT nLanguage )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SvxForbiddenCharactersTable::ClearForbiddenCharacters( USHORT )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 }
 

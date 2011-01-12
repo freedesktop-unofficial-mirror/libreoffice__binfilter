@@ -388,12 +388,12 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetLineCount( nParagraph );
 /*N*/ }
 
-/*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16 nParagraph, sal_uInt16 nLine ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16, sal_uInt16 ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16 nParagraph, sal_uInt16 nLine )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001
+/*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16, sal_uInt16 )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*?*/ }
 
 /*N*/ sal_uInt16 EditEngine::GetFirstLineOffset( sal_uInt16 nParagraph )
@@ -405,8 +405,8 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return ( pPortion ? pPortion->GetFirstLineOffset() : 0 );
 /*N*/ }
 
-/*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 nParagraph ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -634,8 +634,8 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/     return pImpEditEngine->GetParaAttrib( nPara, nWhich );
 /*N*/ }
 
-/*N*/ void EditEngine::GetCharAttribs( sal_uInt16 nPara, EECharAttribArray& rLst ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditEngine::GetCharAttribs( sal_uInt16, EECharAttribArray& ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SfxItemSet EditEngine::GetAttribs( const ESelection& rSel, BOOL bOnlyHardAttrib )
@@ -1094,7 +1094,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-/*N*/ void EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const sal_Int32*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
+/*N*/ void EditEngine::DrawingText( const Point&, const XubString&, USHORT, USHORT, const sal_Int32*, const SvxFont&, sal_uInt16, sal_uInt16, BYTE )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
@@ -1104,23 +1104,23 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
-/*N*/ void EditEngine::ParagraphInserted( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphInserted( sal_uInt16 )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHINSERTED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
-/*N*/ void EditEngine::ParagraphDeleted( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphDeleted( sal_uInt16 )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHREMOVED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -1137,13 +1137,13 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 
-/*N*/ void EditEngine::ParagraphHeightChanged( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphHeightChanged( sal_uInt16 )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTHEIGHTCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -1200,12 +1200,12 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return aComment;
 /*N*/ }
 
-/*N*/ Rectangle EditEngine::GetBulletArea( sal_uInt16 nPara )
+/*N*/ Rectangle EditEngine::GetBulletArea( sal_uInt16 )
 /*N*/ {
 /*N*/   return Rectangle( Point(), Point() );
 /*N*/ }
 
-/*N*/ XubString EditEngine::CalcFieldValue( const SvxFieldItem& rField, sal_uInt16, sal_uInt16, Color*&, Color*& )
+/*N*/ XubString EditEngine::CalcFieldValue( const SvxFieldItem&, sal_uInt16, sal_uInt16, Color*&, Color*& )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   return ' ';

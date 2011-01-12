@@ -247,7 +247,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return aRect;
 /*N*/ }
 
-/*N*/ void ImpEditView::ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags )
+/*N*/ void ImpEditView::ShowCursor( sal_Bool /*bGotoCursor*/, sal_Bool /*bForceVisCursor*/, USHORT /*nShowCursorFlags*/ )
 /*N*/ {
 /*N*/   // Kein ShowCursor bei einer leeren View...
 /*N*/   if ( ( aOutArea.Left() >= aOutArea.Right() ) && ( aOutArea.Top() >= aOutArea.Bottom() ) )

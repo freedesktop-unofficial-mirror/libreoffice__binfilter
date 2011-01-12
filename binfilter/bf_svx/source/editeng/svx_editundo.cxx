@@ -95,8 +95,8 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoInsertChars
 // ------------------------------------------------------------------------
-/*N*/ EditUndoInsertChars::EditUndoInsertChars( ImpEditEngine* pImpEE, const EPaM& rEPaM, const XubString& rStr )
-/*N*/                   : EditUndo( EDITUNDO_INSERTCHARS, pImpEE ),
+/*N*/ EditUndoInsertChars::EditUndoInsertChars( ImpEditEngine* pInImpEE, const EPaM& rEPaM, const XubString& rStr )
+/*N*/                   : EditUndo( EDITUNDO_INSERTCHARS, pInImpEE ),
 /*N*/                       aEPaM( rEPaM ), aText( rStr )
 /*N*/ {
 /*N*/ }
@@ -142,8 +142,8 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
 // ------------------------------------------------------------------------
-/*N*/ EditUndoInsertFeature::EditUndoInsertFeature( ImpEditEngine* pImpEE, const EPaM& rEPaM, const SfxPoolItem& rFeature)
-/*N*/                   : EditUndo( EDITUNDO_INSERTFEATURE, pImpEE ), aEPaM( rEPaM )
+/*N*/ EditUndoInsertFeature::EditUndoInsertFeature( ImpEditEngine* pInImpEE, const EPaM& rEPaM, const SfxPoolItem& rFeature)
+/*N*/                   : EditUndo( EDITUNDO_INSERTFEATURE, pInImpEE ), aEPaM( rEPaM )
 /*N*/ {
 /*N*/   pFeature = rFeature.Clone();
 /*N*/   DBG_ASSERT( pFeature, "Feature konnte nicht dupliziert werden: EditUndoInsertFeature" );
@@ -178,11 +178,11 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
 // ------------------------------------------------------------------------
-/*N*/ EditUndoSetStyleSheet::EditUndoSetStyleSheet( ImpEditEngine* pImpEE, USHORT nP,
+/*N*/ EditUndoSetStyleSheet::EditUndoSetStyleSheet( ImpEditEngine* pInImpEE, USHORT nP,
 /*N*/                       const XubString& rPrevName, SfxStyleFamily ePrevFam,
 /*N*/                       const XubString& rNewName, SfxStyleFamily eNewFam,
 /*N*/                       const SfxItemSet& rPrevParaAttribs )
-/*N*/   : EditUndo( EDITUNDO_STYLESHEET, pImpEE ), aPrevName( rPrevName ), aNewName( rNewName ),
+/*N*/   : EditUndo( EDITUNDO_STYLESHEET, pInImpEE ), aPrevName( rPrevName ), aNewName( rNewName ),
 /*N*/     aPrevParaAttribs( rPrevParaAttribs )
 /*N*/ {
 /*N*/   ePrevFamily = ePrevFam;
@@ -210,8 +210,8 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoSetParaAttribs
 // ------------------------------------------------------------------------
-/*N*/ EditUndoSetParaAttribs::EditUndoSetParaAttribs( ImpEditEngine* pImpEE, USHORT nP, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems )
-/*N*/   : EditUndo( EDITUNDO_PARAATTRIBS, pImpEE ),
+/*N*/ EditUndoSetParaAttribs::EditUndoSetParaAttribs( ImpEditEngine* pInImpEE, USHORT nP, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems )
+/*N*/   : EditUndo( EDITUNDO_PARAATTRIBS, pInImpEE ),
 /*N*/     aPrevItems( rPrevItems ),
 /*N*/     aNewItems(rNewItems )
 /*N*/ {

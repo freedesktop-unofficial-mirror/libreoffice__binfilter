@@ -436,7 +436,7 @@ public:
     USHORT          GetLen() const                  { return nEnd - nStart; }
 
     USHORT          GetStartPosX() const            { return nStartPosX; }
-    void            SetStartPosX( USHORT nStart )   { nStartPosX = nStart; }
+    void            SetStartPosX( USHORT nInStart ) { nStartPosX = nInStart; }
 
     Size            CalcTextSize( ParaPortion& rParaPortion );
 

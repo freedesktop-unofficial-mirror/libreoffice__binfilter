@@ -49,7 +49,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void EditSelFunctionSet::CreateAnchor()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditSelFunctionSet::DestroyAnchor()
@@ -57,13 +57,13 @@ namespace binfilter {
 /*N*/   // Nur bei Mehrfachselektion
 /*N*/ }
 
-/*N*/ BOOL EditSelFunctionSet::SetCursorAtPoint( const Point& rPointPixel, BOOL )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL EditSelFunctionSet::SetCursorAtPoint( const Point& /*rPointPixel*/, BOOL )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL EditSelFunctionSet::IsSelectionAtPoint( const Point& rPointPixel )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL EditSelFunctionSet::IsSelectionAtPoint( const Point& /*rPointPixel*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return FALSE;
 /*N*/ }
 
@@ -81,7 +81,7 @@ namespace binfilter {
 
 
 /*N*/ void EditSelFunctionSet::DeselectAll()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //  ----------------------------------------------------------------------

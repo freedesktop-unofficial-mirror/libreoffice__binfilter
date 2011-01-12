@@ -54,10 +54,18 @@ namespace binfilter {
 
 /*N*/ TextRanger::TextRanger( const XPolyPolygon& rXPoly, const XPolyPolygon* pXLine,
 /*N*/   USHORT nCacheSz, USHORT nLft, USHORT nRght, BOOL bSimpl, BOOL bInnr,
-/*N*/   BOOL bVert ) :
-/*N*/   pBound( NULL ), nCacheSize( nCacheSz ), nCacheIdx( 0 ), nPointCount( 0 ),
-/*N*/   nLeft( nLft ), nRight( nRght ), nUpper( 0 ), nLower( 0 ),
-/*N*/   bSimple( bSimpl ), bInner( bInnr ), bVertical( bVert )
+/*N*/   BOOL bVert )
+/*N*/   : pBound( NULL )
+/*N*/   , nCacheSize( nCacheSz )
+/*N*/   , nCacheIdx( 0 )
+/*N*/   , nRight( nRght )
+/*N*/   , nLeft( nLft )
+/*N*/   , nUpper( 0 )
+/*N*/   , nLower( 0 )
+/*N*/   , nPointCount( 0 )
+/*N*/   , bSimple( bSimpl )
+/*N*/   , bInner( bInnr )
+/*N*/   , bVertical( bVert )
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   bFlag3 = bFlag4 = bFlag5 = bFlag6 = bFlag7 = FALSE;
@@ -214,14 +222,13 @@ namespace binfilter {
 /*N*/       NotePoint( Cut( nTop, rLst, rNxt ) );
 /*N*/   if( rLst.X() != rNxt.X() && rLst.Y() != rNxt.Y() )
 /*N*/   {
-/*N*/       long nYps;
 /*N*/       if( nLowDiff && ( ( nCut & 1 ) || nLast == 1 || nNext == 1 ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nBottom, nLower );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( nUpDiff && ( ( nCut & 2 ) || nLast == 2 || nNext == 2 ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nTop, nUpper );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -426,20 +433,20 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( bDelete )
 /*N*/           {
-/*N*/               USHORT nNext = 2;
+/*N*/               USHORT nLclNext = 2;
 /*N*/               while( nBoolIdx < nCount && !aBoolArr[ nBoolIdx++ ] &&
 /*N*/                      (!bInner || nBoolIdx < nCount ) )
-/*N*/                   nNext += 2;
-/*N*/               pLongArr->Remove( nLongIdx, nNext );
-/*N*/               nNext /= 2;
-/*N*/               nBoolIdx -= nNext;
-/*N*/               nCount -= nNext;
-/*N*/               aBoolArr.Remove( nBoolIdx, nNext );
+/*N*/                   nLclNext += 2;
+/*N*/               pLongArr->Remove( nLongIdx, nLclNext );
+/*N*/               nLclNext /= 2;
+/*N*/               nBoolIdx -= nLclNext;
+/*N*/               nCount -= nLclNext;
+/*N*/               aBoolArr.Remove( nBoolIdx, nLclNext );
 /*N*/               if( nBoolIdx )
 /*N*/                   aBoolArr[ nBoolIdx - 1 ] = FALSE;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/               else
-/*N*/                   ++nNext;
+/*N*/                   ++nLclNext;
 /*N*/ #endif
 /*N*/           }
 /*N*/           bDelete = nBoolIdx < nCount && aBoolArr[ nBoolIdx ];

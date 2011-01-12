@@ -606,7 +606,6 @@ struct TabInfo
 /*N*/       if ( nXWidth <= nTmpWidth ) // while muss 1x durchlaufen werden
 /*?*/           nXWidth = nTmpWidth+1;
 /*N*/
-/*N*/       SvLongsPtr pTextRanges = 0;
 /*N*/       long nTextExtraYOffset = 0;
 /*N*/       long nTextXOffset = 0;
 /*N*/       long nTextLineHeight = 0;
@@ -616,7 +615,7 @@ struct TabInfo
 /*N*/       }
 /*N*/
 /*N*/       // Portion suchen, die nicht mehr in Zeile passt....
-/*N*/       TextPortion* pPortion;
+/*N*/       TextPortion* pPortion(NULL);
 /*N*/       sal_Bool bBrokenLine = sal_False;
 /*N*/       bLineBreak = sal_False;
 /*N*/       EditCharAttrib* pNextFeature = pNode->GetCharAttribs().FindFeature( pLine->GetStart() );
@@ -781,14 +780,13 @@ struct TabInfo
 /*N*/
 /*N*/               nTmpWidth += pPortion->GetSize().Width();
 /*N*/
-/*N*/                 pPortion->SetRightToLeft( GetRightToLeft( nPara, nTmpPos+1 ) );
-/*N*/
-/*N*/                 USHORT nPortionEnd = nTmpPos + pPortion->GetLen();
-/*N*/                 if( bScriptSpace && ( nPortionEnd < pNode->Len() ) && ( nTmpWidth < nXWidth ) && IsScriptChange( EditPaM( pNode, nPortionEnd ) ) )
+/*N*/               pPortion->SetRightToLeft( GetRightToLeft( nPara, nTmpPos+1 ) );
+/*N*/               USHORT nLclPortionEnd = nTmpPos + pPortion->GetLen();
+/*N*/               if( bScriptSpace && ( nLclPortionEnd < pNode->Len() ) && ( nTmpWidth < nXWidth ) && IsScriptChange( EditPaM( pNode, nLclPortionEnd ) ) )
 /*N*/               {
 /*N*/                     BOOL bAllow = FALSE;
-/*N*/                     USHORT nScriptTypeLeft = GetScriptType( EditPaM( pNode, nPortionEnd ) );
-/*N*/                     USHORT nScriptTypeRight = GetScriptType( EditPaM( pNode, nPortionEnd+1 ) );
+/*N*/                     USHORT nScriptTypeLeft = GetScriptType( EditPaM( pNode, nLclPortionEnd ) );
+/*N*/                     USHORT nScriptTypeRight = GetScriptType( EditPaM( pNode, nLclPortionEnd+1 ) );
 /*N*/                     if ( ( nScriptTypeLeft == i18n::ScriptType::ASIAN ) || ( nScriptTypeRight == i18n::ScriptType::ASIAN ) )
 /*N*/                         bAllow = TRUE;
 /*N*/
@@ -811,7 +809,7 @@ struct TabInfo
 /*N*/                   TextPortion* pTP = pParaPortion->GetTextPortions().GetObject( n );
 /*N*/                   nWidthAfterTab += pTP->GetSize().Width();
 /*N*/               }
-/*N*/               long nW;    // Length before tab position
+/*N*/               long nW(0); // Length before tab position
 /*N*/               if ( aCurrentTab.aTabStop.GetAdjustment() == SVX_TAB_ADJUST_RIGHT )
 /*N*/                 {
 /*N*/                   nW = nWidthAfterTab;
@@ -1274,7 +1272,7 @@ struct TabInfo
 /*N*/   return bHeightChanged;
 /*N*/ }
 
-/*N*/ void ImpEditEngine::CreateAndInsertEmptyLine( ParaPortion* pParaPortion, sal_uInt32 nStartPosY )
+/*N*/ void ImpEditEngine::CreateAndInsertEmptyLine( ParaPortion* pParaPortion, sal_uInt32 /*nStartPosY*/ )
 /*N*/ {
 /*N*/   DBG_ASSERT( !GetTextRanger(), "Don't use CreateAndInsertEmptyLine with a polygon!" );
 /*N*/
@@ -1396,8 +1394,8 @@ struct TabInfo
 /*N*/       EditLine* pLastLine = pParaPortion->GetLines().GetObject( pParaPortion->GetLines().Count()-2 );
 /*N*/       DBG_ASSERT( pLastLine, "Weicher Umbruch, keine Zeile ?!" );
 /*N*/       DBG_ASSERT( pLastLine->GetEnd() == pParaPortion->GetNode()->Len(), "Doch anders?" );
-/*N*/ //        pTmpLine->SetStart( pLastLine->GetEnd() );
-/*N*/ //        pTmpLine->SetEnd( pLastLine->GetEnd() );
+/*N*/       (void)pLastLine;
+
 /*N*/       sal_uInt16 nPos = (sal_uInt16) pParaPortion->GetTextPortions().Count() - 1 ;
 /*N*/       pTmpLine->SetStartPortion( nPos );
 /*N*/       pTmpLine->SetEndPortion( nPos );
@@ -1419,7 +1417,7 @@ struct TabInfo
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ void ImpEditEngine::ImpBreakLine( ParaPortion* pParaPortion, EditLine* pLine, TextPortion* pPortion, sal_uInt16 nPortionStart, long nRemainingWidth, sal_Bool bCanHyphenate )
+/*N*/ void ImpEditEngine::ImpBreakLine( ParaPortion* pParaPortion, EditLine* pLine, TextPortion* pPortion, sal_uInt16 nPortionStart, long nRemainingWidth, sal_Bool /*bCanHyphenate*/ )
 /*N*/ {
 /*N*/   ContentNode* const pNode = pParaPortion->GetNode();
 /*N*/
@@ -1459,7 +1457,7 @@ struct TabInfo
 /*N*/
 /*N*/       lang::Locale aLocale = GetLocale( EditPaM( pNode, nMaxBreakPos ) );
 /*N*/
-/*N*/       Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
+/*N*/       Reference < i18n::XBreakIterator > xLclBI = ImplGetBreakIterator();
 /*N*/       OUString aText( *pNode );
 /*N*/       Reference< XHyphenator > xHyph;
 /*N*/       i18n::LineBreakHyphenationOptions aHyphOptions( xHyph, Sequence< PropertyValue >(), 1 );
@@ -1472,7 +1470,7 @@ struct TabInfo
 /*N*/       aUserOptions.allowPunctuationOutsideMargin = ((const SfxBoolItem&)pNode->GetContentAttribs().GetItem( EE_PARA_HANGINGPUNCTUATION )).GetValue();
 /*N*/       aUserOptions.allowHyphenateEnglish = FALSE;
 /*N*/
-/*N*/       i18n::LineBreakResults aLBR = xBI->getLineBreak( *pNode, nMaxBreakPos, aLocale, nMinBreakPos, aHyphOptions, aUserOptions );
+/*N*/       i18n::LineBreakResults aLBR = xLclBI->getLineBreak( *pNode, nMaxBreakPos, aLocale, nMinBreakPos, aHyphOptions, aUserOptions );
 /*N*/       nBreakPos = (USHORT)aLBR.breakIndex;
 /*N*/
 /*N*/       // BUG in I18N - under special condition (break behind field, #87327#) breakIndex is < nMinBreakPos
@@ -1639,7 +1637,7 @@ struct TabInfo
 /*N*/
 /*N*/   // Die Positionen im Array und die Portion-Breiten korrigieren:
 /*N*/   // Letztes Zeichen wird schon nicht mehr beachtet...
-/*N*/     for ( USHORT n = 0; n < aPositions.Count(); n++ )
+/*N*/   for ( USHORT n = 0; n < aPositions.Count(); n++ )
 /*N*/   {
 /*N*/         nChar = aPositions[n];
 /*N*/       if ( nChar < nLastChar )
@@ -1656,11 +1654,11 @@ struct TabInfo
 /*N*/           // Correct positions in array
 /*N*/             // Even for kashidas just change positions, VCL will then draw the kashida automaticly
 /*N*/           USHORT nPortionEnd = nPortionStart + pLastPortion->GetLen();
-/*N*/           for ( USHORT n = nChar; n < nPortionEnd; n++ )
+/*N*/           for ( USHORT k = nChar; k < nPortionEnd; k++ )
 /*N*/           {
-/*N*/               pLine->GetCharPosArray()[n-nFirstChar] += nMore4Everyone;
+/*N*/               pLine->GetCharPosArray()[k-nFirstChar] += nMore4Everyone;
 /*N*/               if ( nSomeExtraSpace )
-/*N*/                   pLine->GetCharPosArray()[n-nFirstChar]++;
+/*N*/                   pLine->GetCharPosArray()[k-nFirstChar]++;
 /*N*/           }
 /*N*/
 /*N*/           if ( nSomeExtraSpace )
@@ -1904,6 +1902,7 @@ struct TabInfo
 /*N*/   sal_uInt16 nInvPos;
 /*N*/   sal_Bool bFound = aPositions.Seek_Entry( nPortionStart, &nInvPos );
 /*N*/   DBG_ASSERT( bFound && ( nInvPos < (aPositions.Count()-1) ), "InvPos ?!" );
+/*N*/   (void)bFound;
 /*N*/   for ( sal_uInt16 i = nInvPos+1; i < aPositions.Count(); i++ )
 /*N*/   {
 /*N*/       TextPortion* pNew = new TextPortion( (sal_uInt16)aPositions[i] - (sal_uInt16)aPositions[i-1] );
@@ -2514,11 +2513,11 @@ struct TabInfo
 /*?*/
 /*?*/                                   pTmpDXArray = new sal_Int32[ aText.Len() ];
 /*?*/                                   pDXArray = pTmpDXArray;
-/*?*/                                   Font aOldFont( GetRefDevice()->GetFont() );
+/*?*/                                   Font aLclOldFont( GetRefDevice()->GetFont() );
 /*?*/                                   aTmpFont.SetPhysFont( GetRefDevice() );
 /*?*/                                   aTmpFont.QuickGetTextSize( GetRefDevice(), aText, 0, aText.Len(), pTmpDXArray );
 /*?*/                                   if ( aStatus.DoRestoreFont() )
-/*?*/                                       GetRefDevice()->SetFont( aOldFont );
+/*?*/                                       GetRefDevice()->SetFont( aLclOldFont );
 /*?*/
 /*?*/                                   // add a meta file comment if we record to a metafile
 /*?*/                                   GDIMetaFile* pMtf = pOutDev->GetConnectMetaFile();
@@ -2840,7 +2839,7 @@ struct TabInfo
 /*N*/
 /*N*/       Paint( pVDev, aTmpRec, aStartPos );
 /*N*/
-/*N*/       sal_Bool bClipRegion;
+/*N*/       sal_Bool bClipRegion(sal_False);
 /*N*/       Region aOldRegion;
 /*N*/       MapMode aOldMapMode;
 /*N*/       if ( GetTextRanger() )
