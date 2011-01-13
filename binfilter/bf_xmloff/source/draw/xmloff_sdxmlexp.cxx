@@ -36,18 +36,11 @@
 
 #include "xmluconv.hxx"
 
-
-
 #include "xmlmetae.hxx"
-
 
 #include <com/sun/star/presentation/XPresentationSupplier.hpp>
 
 #include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
-
-
-
-
 
 #include "sdxmlexp.hxx"
 
@@ -63,42 +56,28 @@
 
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
 
-
 #include <com/sun/star/form/XFormsSupplier.hpp>
 
 #include <com/sun/star/presentation/XPresentationPage.hpp>
 
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
 
-
-
-
-
-
 #include <tools/debug.hxx>
 
-
-
-
 #include "sdpropls.hxx"
-
 
 #include <com/sun/star/beans/XPropertyState.hpp>
 
 #include "xexptran.hxx"
 
-
 #include <cppuhelper/implbase1.hxx>
-
-
 
 #include "PropertySetMerger.hxx"
 
 #include "layerexp.hxx"
 
-
-
 #include "XMLNumberStylesExport.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -111,7 +90,6 @@ using namespace ::binfilter::xmloff::token;
 
 using rtl::OUString;
 using rtl::OUStringBuffer;
-
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -214,8 +192,6 @@ void ImpXMLEXPPageMasterInfo::SetName(const OUString& rStr)
 {
     msName = rStr;
 }
-
-DECLARE_LIST(ImpXMLEXPPageMasterList, ImpXMLEXPPageMasterInfo*)//STRIP007;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -418,9 +394,9 @@ SdXMLExport::SdXMLExport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
     sal_Bool bIsDraw, sal_uInt16 nExportFlags )
 :   SvXMLExport( xServiceFactory, MAP_CM, bIsDraw ? XML_DRAWING : XML_PRESENTATION, nExportFlags ),
-    mpPageMasterInfoList(new ImpXMLEXPPageMasterList(1, 4, 4)),
-    mpPageMasterUsageList(new ImpXMLEXPPageMasterList(1, 4, 4)),
-    mpNotesPageMasterUsageList(new ImpXMLEXPPageMasterList(1, 4, 4)),
+    mpPageMasterInfoList(new ImpXMLEXPPageMasterList()),
+    mpPageMasterUsageList(new ImpXMLEXPPageMasterList()),
+    mpNotesPageMasterUsageList(new ImpXMLEXPPageMasterList()),
     mpHandoutPageMaster(NULL),
     mpAutoLayoutInfoList(new ImpXMLAutoLayoutInfoList(1, 4, 4)),
     mpSdPropHdlFactory(0L),
@@ -687,8 +663,9 @@ SdXMLExport::~SdXMLExport()
     // clear evtl. temporary page master infos
     if(mpPageMasterInfoList)
     {
-        while(mpPageMasterInfoList->Count())
-            delete mpPageMasterInfoList->Remove(mpPageMasterInfoList->Count() - 1L);
+        for ( size_t i = mpPageMasterInfoList->size(); i > 0; )
+            delete (*mpPageMasterInfoList)[ --i ];
+        mpPageMasterInfoList->clear();
         delete mpPageMasterInfoList;
         mpPageMasterInfoList = 0L;
     }
@@ -711,16 +688,6 @@ SdXMLExport::~SdXMLExport()
         delete mpAutoLayoutInfoList;
         mpAutoLayoutInfoList = 0L;
     }
-
-// #82003# status indicator stop is called exclusively
-// from SdXMLFilter::Export() now.
-//
-// stop progress view
-//  if(GetStatusIndicator().is())
-//  {
-//      GetStatusIndicator()->end();
-//      GetStatusIndicator()->reset();
-//  }
 }
 
 
@@ -1217,19 +1184,19 @@ ImpXMLEXPPageMasterInfo* SdXMLExport::ImpGetOrCreatePageMasterInfo( uno::Referen
     ImpXMLEXPPageMasterInfo* pNewInfo = new ImpXMLEXPPageMasterInfo(*this, xMasterPage);
 
     // compare with prev page-master infos
-    for(sal_uInt32 a = 0; !bDoesExist && a < mpPageMasterInfoList->Count(); a++)
+    for( size_t a = 0; !bDoesExist && a < mpPageMasterInfoList->size(); a++)
     {
-        if(mpPageMasterInfoList->GetObject(a)
-            && *mpPageMasterInfoList->GetObject(a) == *pNewInfo)
+        if( (*mpPageMasterInfoList)[ a ]
+            && *(*mpPageMasterInfoList)[ a ] == *pNewInfo)
         {
             delete pNewInfo;
-            pNewInfo = mpPageMasterInfoList->GetObject(a);
+            pNewInfo = (*mpPageMasterInfoList)[ a ];
             bDoesExist = true;
         }
     }
     // add entry when not found same page-master infos
     if(!bDoesExist)
-        mpPageMasterInfoList->Insert(pNewInfo, LIST_APPEND);
+        mpPageMasterInfoList->push_back( pNewInfo );
 
     return pNewInfo;
 }
@@ -1258,7 +1225,7 @@ void SdXMLExport::ImpPrepPageMasterInfos()
             if(xMasterPage.is())
                 pNewInfo = ImpGetOrCreatePageMasterInfo(xMasterPage);
 
-            mpPageMasterUsageList->Insert(pNewInfo, LIST_APPEND);
+            mpPageMasterUsageList->push_back( pNewInfo );
 
             // look for page master of handout page
             if(IsImpress())
@@ -1273,7 +1240,7 @@ void SdXMLExport::ImpPrepPageMasterInfos()
                         pNewInfo = ImpGetOrCreatePageMasterInfo(xNotesPage);
                     }
                 }
-                mpNotesPageMasterUsageList->Insert( pNewInfo, LIST_APPEND );
+                mpNotesPageMasterUsageList->push_back( pNewInfo );
             }
         }
     }
@@ -1284,9 +1251,9 @@ void SdXMLExport::ImpPrepPageMasterInfos()
 void SdXMLExport::ImpWritePageMasterInfos()
 {
     // write created page-masters, create names for these
-    for(sal_uInt32 nCnt = 0L; nCnt < mpPageMasterInfoList->Count(); nCnt++)
+    for( size_t nCnt = 0L; nCnt < mpPageMasterInfoList->size(); nCnt++)
     {
-        ImpXMLEXPPageMasterInfo* pInfo = mpPageMasterInfoList->GetObject(nCnt);
+        ImpXMLEXPPageMasterInfo* pInfo = (*mpPageMasterInfoList)[ nCnt ];
         if(pInfo)
         {
             // create name
@@ -1345,11 +1312,11 @@ void SdXMLExport::ImpWritePageMasterInfos()
 
 ImpXMLEXPPageMasterInfo* SdXMLExport::ImpGetPageMasterInfoByName(const OUString& rName)
 {
-    if(rName.getLength() && mpPageMasterInfoList->Count())
+    if( rName.getLength() && mpPageMasterInfoList->size() )
     {
-        for(sal_uInt32 nCnt = 0L; nCnt < mpPageMasterInfoList->Count(); nCnt++)
+        for( size_t nCnt = 0L; nCnt < mpPageMasterInfoList->size(); nCnt++)
         {
-            ImpXMLEXPPageMasterInfo* pInfo = mpPageMasterInfoList->GetObject(nCnt);
+            ImpXMLEXPPageMasterInfo* pInfo = (*mpPageMasterInfoList)[ nCnt ];
             if(pInfo)
             {
                 if(pInfo->GetMasterPageName().getLength() && rName.equals(pInfo->GetMasterPageName()))
@@ -2168,7 +2135,7 @@ void SdXMLExport::_ExportMasterStyles()
                 AddAttribute(XML_NAMESPACE_STYLE, XML_NAME, sMasterPageName);
             }
 
-            ImpXMLEXPPageMasterInfo* pInfo = mpPageMasterUsageList->GetObject(nMPageId);
+            ImpXMLEXPPageMasterInfo* pInfo = (nMPageId < mpPageMasterUsageList->size()) ? (*mpPageMasterUsageList)[ nMPageId ] : NULL;
             if(pInfo)
             {
                 OUString sString = pInfo->GetName();
@@ -2202,7 +2169,7 @@ void SdXMLExport::_ExportMasterStyles()
                         uno::Reference< drawing::XShapes > xShapes(xNotesPage, uno::UNO_QUERY);
                         if(xShapes.is() && xShapes->getCount())
                         {
-                            ImpXMLEXPPageMasterInfo* pInfo = mpNotesPageMasterUsageList->GetObject(nMPageId);
+                            ImpXMLEXPPageMasterInfo* pInfo = (nMPageId < mpNotesPageMasterUsageList->size() ) ? (*mpNotesPageMasterUsageList)[ nMPageId ] : NULL;
                             if(pInfo)
                             {
                                 OUString sString = pInfo->GetName();
@@ -2252,18 +2219,12 @@ void SdXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& rProps)
     beans::PropertyValue* pProps = rProps.getArray();
     if(pProps)
     {
-//      SvXMLElementExport aViewSettingsElem(*this, XML_NAMESPACE_DRAW, XML_VIEW_SETTINGS, sal_True, sal_True);
-
         uno::Reference< beans::XPropertySet > xPropSet( GetModel(), uno::UNO_QUERY );
         if( !xPropSet.is() )
             return;
 
         awt::Rectangle aVisArea;
         xPropSet->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "VisibleArea" ) ) ) >>= aVisArea;
-/*
-        sal_Int16 nMapUnit;
-        xPropSet->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "MapUnit" ) ) ) >>= nMapUnit;
-*/
 
         sal_uInt16 i = 0;
         pProps[i].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("VisibleAreaTop"));
@@ -2367,8 +2328,6 @@ OUString SAL_CALL SdImpressXMLExport_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdImpressXMLExport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_META|EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_SETTINGS|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_META|EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_SETTINGS|EXPORT_FONTDECLS|EXPORT_EMBEDDED);
 }
 
@@ -2386,8 +2345,6 @@ OUString SAL_CALL SdDrawXMLExport_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdDrawXMLExport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_META|EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_SETTINGS|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_META|EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_SETTINGS|EXPORT_FONTDECLS|EXPORT_EMBEDDED);
 }
 
@@ -2407,8 +2364,6 @@ OUString SAL_CALL DrawingLayerXMLExport_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL DrawingLayerXMLExport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_STYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_STYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
 }
 
@@ -2428,8 +2383,6 @@ OUString SAL_CALL ImpressXMLClipboardExport_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL ImpressXMLClipboardExport_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_STYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_STYLES|EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_FONTDECLS|EXPORT_EMBEDDED );
 }
 //////////////////////////////////////////////////////////////////////////////
@@ -2448,8 +2401,6 @@ OUString SAL_CALL SdImpressXMLExport_Style_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdImpressXMLExport_Style_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES );
 }
 
@@ -2467,8 +2418,6 @@ OUString SAL_CALL SdDrawXMLExport_Style_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdDrawXMLExport_Style_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_STYLES|EXPORT_MASTERSTYLES|EXPORT_AUTOSTYLES );
 }
 
@@ -2488,8 +2437,6 @@ OUString SAL_CALL SdImpressXMLExport_Meta_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdImpressXMLExport_Meta_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_META );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_META );
 }
 
@@ -2507,8 +2454,6 @@ OUString SAL_CALL SdDrawXMLExport_Meta_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdDrawXMLExport_Meta_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_META );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_META );
 }
 
@@ -2528,8 +2473,6 @@ OUString SAL_CALL SdImpressXMLExport_Settings_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdImpressXMLExport_Settings_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_SETTINGS );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_SETTINGS );
 }
 
@@ -2547,8 +2490,6 @@ OUString SAL_CALL SdDrawXMLExport_Settings_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdDrawXMLExport_Settings_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_SETTINGS );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_SETTINGS );
 }
 
@@ -2568,8 +2509,6 @@ OUString SAL_CALL SdImpressXMLExport_Content_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdImpressXMLExport_Content_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_False, EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_FONTDECLS );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_False, EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_FONTDECLS );
 }
 
@@ -2587,8 +2526,6 @@ OUString SAL_CALL SdDrawXMLExport_Content_getImplementationName() throw()
 
 uno::Reference< uno::XInterface > SAL_CALL SdDrawXMLExport_Content_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw( uno::Exception )
 {
-    // #110680#
-    // return (cppu::OWeakObject*)new SdXMLExport( sal_True, EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_FONTDECLS );
     return (cppu::OWeakObject*)new SdXMLExport( rSMgr, sal_True, EXPORT_AUTOSTYLES|EXPORT_CONTENT|EXPORT_SCRIPTS|EXPORT_FONTDECLS );
 }
 

@@ -31,7 +31,6 @@
 
 #include "xmlexp.hxx"
 
-
 #include <com/sun/star/frame/XModel.hpp>
 
 #include <com/sun/star/task/XStatusIndicator.hpp>
@@ -39,6 +38,9 @@
 #include <com/sun/star/container/XNameAccess.hpp>
 
 #include <com/sun/star/drawing/XDrawPage.hpp>
+
+#include <vector>
+
 class Rectangle;
 namespace binfilter {
 class SfxPoolItem;
@@ -52,7 +54,6 @@ class OUStrings_Impl;
 class OUStringsSort_Impl;
 
 class ImpPresPageDrawStylePropMapper;
-class ImpXMLEXPPageMasterList;
 class ImpXMLEXPPageMasterInfo;
 class ImpXMLDrawPageInfoList;
 class ImpXMLAutoLayoutInfoList;
@@ -61,6 +62,8 @@ class XMLSdPropHdlFactory;
 class ImpXMLShapeStyleInfo;
 class XMLShapeExportPropertyMapper;
 class XMLPageExportPropertyMapper;
+
+typedef ::std::vector< ImpXMLEXPPageMasterInfo* > ImpXMLEXPPageMasterList;
 
 //////////////////////////////////////////////////////////////////////////////
 
