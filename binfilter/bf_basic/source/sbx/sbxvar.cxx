@@ -31,7 +31,6 @@
 #include "bf_svtools/brdcst.hxx"
 
 #include "sbx.hxx"
-#include "sbxbase.hxx"
 #include "sbxres.hxx"
 #include "sbxconv.hxx"
 #include <math.h>
@@ -57,10 +56,6 @@ SbxVariable::SbxVariable() : SbxValue()
     pParent = NULL;
     nUserData = 0;
     nHash = 0;
-#ifdef DBG_UTIL
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::SbxVariable( const SbxVariable& r )
@@ -80,13 +75,6 @@ SbxVariable::SbxVariable( const SbxVariable& r )
         nUserData = 0;
         nHash = 0;
     }
-#ifdef DBG_UTIL
-    static sal_Char const aCellsStr[] = "Cells";
-    if ( maName.EqualsAscii( aCellsStr ) )
-        maName.AssignAscii( aCellsStr, sizeof( aCellsStr )-1 );
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::SbxVariable( SbxDataType t, void* p ) : SbxValue( t, p )
@@ -95,22 +83,10 @@ SbxVariable::SbxVariable( SbxDataType t, void* p ) : SbxValue( t, p )
     pParent = NULL;
     nUserData = 0;
     nHash = 0;
-#ifdef DBG_UTIL
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::~SbxVariable()
 {
-#ifdef DBG_UTIL
-    ByteString aBStr( (const UniString&)maName, RTL_TEXTENCODING_ASCII_US );
-    DbgOutf( "SbxVariable::Dtor %lx (%s)", (void*)this, aBStr.GetBuffer() );
-    static sal_Char const aCellsStr[] = "Cells";
-    if ( maName.EqualsAscii( aCellsStr ) )
-        maName.AssignAscii( aCellsStr, sizeof( aCellsStr )-1 );
-    GetSbxData_Impl()->aVars.Remove( this );
-#endif
     delete pCst;
 }
 

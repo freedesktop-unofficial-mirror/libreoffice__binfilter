@@ -42,7 +42,6 @@
 #include <ctype.h>
 
 #include "sbxres.hxx"
-#include "sbxbase.hxx"
 #include <bf_svtools/svtools.hrc>
 
 namespace binfilter {

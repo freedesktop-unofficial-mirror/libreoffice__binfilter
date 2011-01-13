@@ -29,7 +29,6 @@
 #include <tools/stream.hxx>
 #include <vcl/sound.hxx>
 #include "sbx.hxx"
-#include "sbxbase.hxx"
 #include "sbxres.hxx"
 
 #include <bf_svtools/brdcst.hxx>
