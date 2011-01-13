@@ -25,6 +25,7 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/miscopt.hxx>
 
 #ifndef _UTL_CONFIGMGR_HXX_

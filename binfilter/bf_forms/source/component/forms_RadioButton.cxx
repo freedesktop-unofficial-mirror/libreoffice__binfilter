@@ -25,6 +25,8 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
 #endif

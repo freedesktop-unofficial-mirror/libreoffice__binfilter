@@ -25,11 +25,11 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
 #endif
-
-
 
 #ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
