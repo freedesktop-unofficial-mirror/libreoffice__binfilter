@@ -56,13 +56,9 @@ class SvXMLExport;
 // Implementationclass for stylefamily-information
 //
 
-typedef ::rtl::OUString *OUStringPtr;
-DECLARE_LIST( SvXMLAutoStylePoolCache_Impl, OUStringPtr )
-
 class XMLFamilyData_Impl
 {
 public:
-    SvXMLAutoStylePoolCache_Impl        *pCache;
     sal_uInt32                          mnFamily;
     ::rtl::OUString                     maStrFamilyName;
     UniReference < SvXMLExportPropertyMapper >  mxMapper;
@@ -81,8 +77,7 @@ public:
 
     XMLFamilyData_Impl( sal_Int32 nFamily ) :
         mnFamily( nFamily ), mpParentList( NULL ),
-        mpNameList( NULL ), mnCount( 0 ), mnName( 0 ),
-        pCache( 0 )
+        mpNameList( NULL ), mnCount( 0 ), mnName( 0 )
     {}
     ~XMLFamilyData_Impl();
 

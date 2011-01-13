@@ -49,8 +49,7 @@ XMLFamilyData_Impl::XMLFamilyData_Impl(
         const OUString& rStrPrefix,
         sal_Bool bAsFam )
     : mnFamily( nFamily ), maStrFamilyName( rStrName), mxMapper( rMapper ), maStrPrefix( rStrPrefix ),
-      mnCount( 0 ), mnName( 0 ), bAsFamily( bAsFam ),
-      pCache( 0 )
+      mnCount( 0 ), mnName( 0 ), bAsFamily( bAsFam )
 {
     mpParentList = new SvXMLAutoStylePoolParentsP_Impl( 5, 5 );
     mpNameList   = new SvXMLAutoStylePoolNamesP_Impl( 5, 5 );
@@ -60,13 +59,6 @@ XMLFamilyData_Impl::~XMLFamilyData_Impl()
 {
     if( mpParentList ) delete mpParentList;
     if( mpNameList ) delete mpNameList;
-    DBG_ASSERT( !pCache || !pCache->Count(),
-                "auto style pool cache is not empty!" );
-    if( pCache )
-    {
-        while( pCache->Count() )
-            delete pCache->Remove( 0UL );
-    }
 }
 
 void XMLFamilyData_Impl::ClearEntries()
@@ -74,13 +66,6 @@ void XMLFamilyData_Impl::ClearEntries()
     if( mpParentList )
         delete mpParentList;
     mpParentList = new SvXMLAutoStylePoolParentsP_Impl( 5, 5 );
-    DBG_ASSERT( !pCache || !pCache->Count(),
-                "auto style pool cache is not empty!" );
-    if( pCache )
-    {
-        while( pCache->Count() )
-            delete pCache->Remove( 0UL );
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

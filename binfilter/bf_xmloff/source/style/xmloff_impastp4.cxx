@@ -113,10 +113,6 @@ void SvXMLAutoStylePoolP_Impl::RegisterName( sal_Int32 nFamily, const OUString& 
 // if not added, yet.
 //
 
-/*OUString SvXMLAutoStylePoolP_Impl::Add( sal_Int32 nFamily,
-                                         const OUString& rParent,
-                                        const vector< XMLPropertyState >& rProperties,
-                                        sal_Bool bCache )*/
 sal_Bool SvXMLAutoStylePoolP_Impl::Add(OUString& rName, sal_Int32 nFamily,
                 const OUString& rParent,
                 const ::std::vector< XMLPropertyState >& rProperties,
@@ -153,15 +149,6 @@ sal_Bool SvXMLAutoStylePoolP_Impl::Add(OUString& rName, sal_Int32 nFamily,
         {
             pFamily->mnCount++;
             bRet = sal_True;
-        }
-
-        if( bCache )
-        {
-            if( !pFamily->pCache )
-                pFamily->pCache = new SvXMLAutoStylePoolCache_Impl( 256, 256 );
-            if( pFamily->pCache->Count() < MAX_CACHE_SIZE )
-                pFamily->pCache->Insert( new OUString( rName ),
-                                         pFamily->pCache->Count() );
         }
     }
 
