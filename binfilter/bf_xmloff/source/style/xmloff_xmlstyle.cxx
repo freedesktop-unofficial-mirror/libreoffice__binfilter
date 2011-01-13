@@ -38,8 +38,6 @@
 
 #include "xmlnmspe.hxx"
 
-
-
 #include "xmlnumi.hxx"
 
 #include "txtstyli.hxx"
@@ -56,6 +54,9 @@
 #include "XMLLineNumberingImportContext.hxx"
 #include "PageMasterImportContext.hxx"
 #include "PageMasterImportPropMapper.hxx"
+
+#include <vector>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -65,6 +66,7 @@ using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
 
 using rtl::OUString;
+using ::std::vector;
 
 // ---------------------------------------------------------------------
 
@@ -246,8 +248,7 @@ int SvXMLStyleIndexCmp_Impl( const SvXMLStyleIndex_Impl& r1,
 
 // ---------------------------------------------------------------------
 
-typedef SvXMLStyleContext *SvXMLStyleContextPtr;
-DECLARE_LIST( SvXMLStyleContexts_Impl, SvXMLStyleContextPtr )
+typedef vector< SvXMLStyleContext* > SvXMLStyleContexts_Impl;
 
 DECLARE_CONTAINER_SORT_DEL( SvXMLStyleIndices_Impl, SvXMLStyleIndex_Impl )
 IMPL_CONTAINER_SORT( SvXMLStyleIndices_Impl, SvXMLStyleIndex_Impl,
@@ -272,16 +273,16 @@ public:
     SvXMLStylesContext_Impl();
     ~SvXMLStylesContext_Impl();
 
-    sal_uInt32 GetStyleCount() const { return aStyles.Count(); }
+    sal_uInt32 GetStyleCount() const { return aStyles.size(); }
 
     const SvXMLStyleContext *GetStyle( sal_uInt32 i ) const
     {
-        return i < aStyles.Count() ? aStyles.GetObject(i) : 0;
+        return i < aStyles.size() ? aStyles[ i ] : 0;
     }
 
     SvXMLStyleContext *GetStyle( sal_uInt32 i )
     {
-        return i < aStyles.Count() ? aStyles.GetObject(i) : 0;
+        return i < aStyles.size() ? aStyles[ i ] : 0;
     }
 
     inline void AddStyle( SvXMLStyleContext *pStyle );
@@ -302,7 +303,7 @@ SvXMLStylesContext_Impl::SvXMLStylesContext_Impl() :
 #ifdef DBG_UTIL
     nIndexCreated( 0 ),
 #endif
-    aStyles( 20, 5 ),
+    aStyles(),
     pIndices( 0 )
 {}
 
@@ -310,17 +311,14 @@ SvXMLStylesContext_Impl::~SvXMLStylesContext_Impl()
 {
     delete pIndices;
 
-    while( aStyles.Count() )
-    {
-        SvXMLStyleContext *pStyle = aStyles.GetObject(0);
-        aStyles.Remove( 0UL );
-        pStyle->ReleaseRef();
-    }
+    for ( size_t i = 0, n = aStyles.size(); i < n; ++i )
+        aStyles[i]->ReleaseRef();
+    aStyles.clear();
 }
 
 inline void SvXMLStylesContext_Impl::AddStyle( SvXMLStyleContext *pStyle )
 {
-    aStyles.Insert( pStyle, aStyles.Count() );
+    aStyles.push_back( pStyle );
     pStyle->AddRef();
 
     FlushIndex();
@@ -330,12 +328,9 @@ void SvXMLStylesContext_Impl::Clear()
 {
     FlushIndex();
 
-    while( aStyles.Count() )
-    {
-        SvXMLStyleContext *pStyle = aStyles.GetObject(0);
-        aStyles.Remove( 0UL );
-        pStyle->ReleaseRef();
-    }
+    for ( size_t i = 0, n = aStyles.size(); i < n; ++i )
+        aStyles[i]->ReleaseRef();
+    aStyles.clear();
 }
 
 const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
@@ -345,17 +340,17 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
 {
     const SvXMLStyleContext *pStyle = 0;
 
-    if( !pIndices && bCreateIndex && aStyles.Count() > 0 )
+    if( !pIndices && bCreateIndex && aStyles.size() > 0 )
     {
 #ifdef DBG_UTIL
         DBG_ASSERT( 0==nIndexCreated,
                     "Performance warning: sdbcx::Index created multiple times" );
 #endif
         ((SvXMLStylesContext_Impl *)this)->pIndices =
-            new SvXMLStyleIndices_Impl( aStyles.Count(), 5 );
-        for( sal_uInt32 i=0; i < aStyles.Count(); i++ )
+            new SvXMLStyleIndices_Impl( aStyles.size(), 5 );
+        for( size_t i=0; i < aStyles.size(); i++ )
         {
-            SvXMLStyleIndex_Impl* pStyleIndex = new SvXMLStyleIndex_Impl( aStyles.GetObject(i));
+            SvXMLStyleIndex_Impl* pStyleIndex = new SvXMLStyleIndex_Impl( aStyles[ i ] );
             if (!pIndices->Insert( pStyleIndex ))
             {
                 DBG_ERROR("Here is a double Style");
@@ -376,9 +371,9 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
     }
     else
     {
-        for( sal_uInt32 i=0; !pStyle && i < aStyles.Count(); i++ )
+        for( size_t i=0; !pStyle && i < aStyles.size(); i++ )
         {
-            const SvXMLStyleContext *pS = aStyles.GetObject( i );
+            const SvXMLStyleContext *pS = aStyles[ i ];
             if( pS->GetFamily() == nFamily &&
                 pS->GetName() == rName )
                 pStyle = pS;
