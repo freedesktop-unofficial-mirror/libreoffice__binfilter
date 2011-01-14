@@ -53,13 +53,13 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ ImpXPolygon::ImpXPolygon( USHORT nInitSize, USHORT nResize )
+/*N*/ ImpXPolygon::ImpXPolygon( USHORT nInitSize, USHORT nInResize )
 /*N*/ {
 /*N*/   pPointAry               = NULL;
 /*N*/   pFlagAry                = NULL;
 /*N*/   bDeleteOldPoints        = FALSE;
 /*N*/   nSize                   = 0;
-/*N*/   ImpXPolygon::nResize    = nResize;
+/*N*/   nResize                 = nInResize;
 /*N*/   nPoints                 = 0;
 /*N*/   nRefCount               = 1;
 /*N*/
@@ -84,7 +84,7 @@ namespace binfilter {
 /*N*/   pFlagAry                = NULL;
 /*N*/   bDeleteOldPoints        = FALSE;
 /*N*/   nSize                   = 0;
-/*N*/   ImpXPolygon::nResize    = rImpXPoly.nResize;
+/*N*/   nResize                 = rImpXPoly.nResize;
 /*N*/   nPoints                 = 0;
 /*N*/   nRefCount               = 1;
 /*N*/
@@ -211,8 +211,6 @@ namespace binfilter {
 
 /*N*/ void ImpXPolygon::InsertSpace( USHORT nPos, USHORT nCount )
 /*N*/ {
-/*N*/   USHORT nOldSize = nSize;
-/*N*/
 /*N*/   CheckPointDelete();
 /*N*/
 /*N*/   if ( nPos > nPoints )

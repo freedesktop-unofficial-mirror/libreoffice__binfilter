@@ -127,7 +127,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -408,7 +408,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/
 /*N*/   XHatchEntry* pEntry = NULL;
 /*N*/   long        nCount;
-/*N*/   XubString       aName;
+/*N*/   XubString       aLclName;
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   USHORT      nRed;
@@ -424,10 +424,10 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   {
 /*N*/       for( long nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/       {
-/*N*/           // UNICODE:rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE:rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -439,7 +439,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
 /*N*/           XHatch aHatch(aColor, (XHatchStyle)nStyle, nDistance, nAngle);
-/*N*/           pEntry = new XHatchEntry (aHatch, aName);
+/*N*/           pEntry = new XHatchEntry (aHatch, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -452,10 +452,10 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -472,7 +472,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
 /*N*/           XHatch aHatch(aColor, (XHatchStyle)nStyle, nDistance, nAngle);
-/*N*/           pEntry = new XHatchEntry (aHatch, aName);
+/*N*/           pEntry = new XHatchEntry (aHatch, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }

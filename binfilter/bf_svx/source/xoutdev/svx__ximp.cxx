@@ -147,7 +147,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       else if( eFillStyle == XFILL_GRADIENT )
 /*?*/       {
-/*?*/           GDIMetaFile*    pMtf = pOut->GetConnectMetaFile();
+/*?*/           /*GDIMetaFile* pMtf =*/ pOut->GetConnectMetaFile();
 /*?*/           Gradient        aVCLGradient;
 /*?*/
 /*?*/

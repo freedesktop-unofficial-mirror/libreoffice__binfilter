@@ -472,7 +472,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   // #101145# Do create outline polygons more efficient
 /*N*/                   // #102382# new interface supporting PolyPolyVector
 /*N*/                   PolyPolyVector aPolyPolyVector;
-/*N*/                   sal_Bool bOkay(ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar, nCnt));
+/*N*/                   ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar, nCnt);
 /*N*/
 /*N*/                   // #102382# iterate over single PolyPolygons
 /*N*/                   for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)
@@ -571,7 +571,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       // #108756#
 /*?*/                       // Here the wrong index was called for the ImpXOutGetTextOutlines(...)
 /*?*/                       // call. nChar needs to be added here to index the different characters.
-/*?*/                       sal_Bool bOkay(ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar + i, nNextGlyphLen));
+/*?*/                       ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar + i, nNextGlyphLen);
 /*?*/
 /*?*/                       // #102382# iterate over single PolyPolygons
 /*?*/                       for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)

@@ -61,10 +61,10 @@ namespace binfilter {
 /*N*/ XPropertyTable::XPropertyTable( const String& rPath,
 /*N*/                               XOutdevItemPool* pInPool,
 /*N*/                               USHORT nInitSize, USHORT nReSize ) :
-/*N*/           aTable          ( nInitSize, nReSize ),
-/*N*/           aPath           ( rPath ),
 /*N*/           aName           ( pszStandard, 8 ),
+/*N*/           aPath           ( rPath ),
 /*N*/           pXPool          ( pInPool ),
+/*N*/           aTable          ( nInitSize, nReSize ),
 /*N*/           pBmpTable       ( NULL ),
 /*N*/           bTableDirty     ( TRUE ),
 /*N*/           bBitmapsDirty   ( TRUE ),
@@ -132,7 +132,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ XPropertyEntry* XPropertyTable::Get( long nIndex, USHORT nDummy ) const
+/*N*/ XPropertyEntry* XPropertyTable::Get( long nIndex, USHORT /*nDummy*/ ) const
 /*N*/ {
 /*N*/   if( bTableDirty )
 /*N*/   {
@@ -212,7 +212,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ XPropertyEntry* XPropertyTable::Remove( long nIndex, USHORT nDummy )
+/*N*/ XPropertyEntry* XPropertyTable::Remove( long nIndex, USHORT /*nDummy*/ )
 /*N*/ {
 /*N*/   if( pBmpTable && !bBitmapsDirty )
 /*N*/   {
@@ -247,10 +247,10 @@ namespace binfilter {
 /*N*/ XPropertyList::XPropertyList( const String& rPath,
 /*N*/                               XOutdevItemPool* pInPool,
 /*N*/                               USHORT nInitSize, USHORT nReSize ) :
-/*N*/           aList           ( nInitSize, nReSize ),
-/*N*/           aPath           ( rPath ),
 /*N*/           aName           ( pszStandard, 8 ),
+/*N*/           aPath           ( rPath ),
 /*N*/           pXPool          ( pInPool ),
+/*N*/           aList           ( nInitSize, nReSize ),
 /*N*/           pBmpList        ( NULL ),
 /*N*/           bListDirty      ( TRUE ),
 /*N*/           bBitmapsDirty   ( TRUE ),
@@ -318,7 +318,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ XPropertyEntry* XPropertyList::Get( long nIndex, USHORT nDummy ) const
+/*N*/ XPropertyEntry* XPropertyList::Get( long nIndex, USHORT /*nDummy*/ ) const
 /*N*/ {
 /*N*/   if( bListDirty )
 /*N*/   {
@@ -398,7 +398,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ XPropertyEntry* XPropertyList::Remove( long nIndex, USHORT nDummy )
+/*N*/ XPropertyEntry* XPropertyList::Remove( long nIndex, USHORT /*nDummy*/ )
 /*N*/ {
 /*N*/   if( pBmpList && !bBitmapsDirty )
 /*N*/   {

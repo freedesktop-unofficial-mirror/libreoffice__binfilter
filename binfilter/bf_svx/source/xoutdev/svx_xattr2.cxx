@@ -102,7 +102,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineTransparenceItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineTransparenceItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineTransparenceItem(*this);
 /*N*/ }
@@ -117,7 +117,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XLineTransparenceItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XLineTransparenceItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineTransparenceItem(rIn);
 /*N*/ }
@@ -147,7 +147,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ USHORT XLineJointItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT XLineJointItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -166,7 +166,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* XLineJointItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XLineJointItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XLineJointItem( *this );
 /*N*/ }
@@ -176,7 +176,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ bool XLineJointItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XLineJointItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::com::sun::star::drawing::LineJoint eJoint = ::com::sun::star::drawing::LineJoint_NONE;
 /*N*/
@@ -206,7 +206,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ bool XLineJointItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XLineJointItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   XLineJoint eJoint = XLINEJOINT_NONE;
 /*N*/   ::com::sun::star::drawing::LineJoint eUnoJoint;
@@ -235,6 +235,8 @@ namespace binfilter {
 /*N*/       break;
 /*N*/   case ::com::sun::star::drawing::LineJoint_ROUND:
 /*N*/       eJoint = XLINEJOINT_ROUND;
+/*N*/       break;
+/*N*/   default:
 /*N*/       break;
 /*N*/   }
 /*N*/
@@ -296,7 +298,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillTransparenceItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillTransparenceItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillTransparenceItem(*this);
 /*N*/ }
@@ -311,7 +313,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillTransparenceItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFillTransparenceItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillTransparenceItem(rIn);
 /*N*/ }
@@ -364,7 +366,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowTranspItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFormTextShadowTranspItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowTranspItem(*this);
 /*N*/ }
@@ -379,7 +381,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFormTextShadowTranspItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFormTextShadowTranspItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFormTextShadowTranspItem(rIn);
 /*N*/ }
@@ -430,7 +432,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XGradientStepCountItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XGradientStepCountItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XGradientStepCountItem( *this );
 /*N*/ }
@@ -445,7 +447,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XGradientStepCountItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XGradientStepCountItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XGradientStepCountItem( rIn );
 /*N*/ }
@@ -501,7 +503,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpTileItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileItem( *this );
 /*N*/ }
@@ -517,7 +519,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpTileItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileItem( rIn );
 /*N*/ }
@@ -582,7 +584,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpPosItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosItem( *this );
 /*N*/ }
@@ -598,7 +600,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpPosItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosItem( rIn );
 /*N*/ }
@@ -674,7 +676,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeXItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpSizeXItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeXItem( *this );
 /*N*/ }
@@ -690,7 +692,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeXItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpSizeXItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeXItem( rIn );
 /*N*/ }
@@ -765,7 +767,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeYItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpSizeYItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeYItem( *this );
 /*N*/ }
@@ -781,7 +783,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeYItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpSizeYItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeYItem( rIn );
 /*N*/ }
@@ -856,7 +858,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeLogItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpSizeLogItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeLogItem( *this );
 /*N*/ }
@@ -872,7 +874,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpSizeLogItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpSizeLogItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpSizeLogItem( rIn );
 /*N*/ }
@@ -937,7 +939,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileOffsetXItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpTileOffsetXItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileOffsetXItem( *this );
 /*N*/ }
@@ -953,7 +955,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileOffsetXItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpTileOffsetXItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileOffsetXItem( rIn );
 /*N*/ }
@@ -1018,7 +1020,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileOffsetYItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpTileOffsetYItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileOffsetYItem( *this );
 /*N*/ }
@@ -1034,7 +1036,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpTileOffsetYItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpTileOffsetYItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpTileOffsetYItem( rIn );
 /*N*/ }
@@ -1099,7 +1101,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpStretchItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpStretchItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpStretchItem( *this );
 /*N*/ }
@@ -1115,7 +1117,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpStretchItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpStretchItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpStretchItem( rIn );
 /*N*/ }
@@ -1180,7 +1182,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosOffsetXItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpPosOffsetXItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosOffsetXItem( *this );
 /*N*/ }
@@ -1196,7 +1198,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosOffsetXItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpPosOffsetXItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosOffsetXItem( rIn );
 /*N*/ }
@@ -1261,7 +1263,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosOffsetYItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBmpPosOffsetYItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosOffsetYItem( *this );
 /*N*/ }
@@ -1277,7 +1279,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBmpPosOffsetYItem::Create( SvStream& rIn, USHORT nVer ) const
+/*N*/ SfxPoolItem* XFillBmpPosOffsetYItem::Create( SvStream& rIn, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new XFillBmpPosOffsetYItem( rIn );
 /*N*/ }
@@ -1339,7 +1341,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBackgroundItem::Clone( SfxItemPool* pPool ) const
+/*N*/ SfxPoolItem* XFillBackgroundItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new XFillBackgroundItem( *this );
 /*N*/ }
@@ -1354,7 +1356,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBackgroundItem::Create(SvStream& rIn, USHORT nVer) const
+/*N*/ SfxPoolItem* XFillBackgroundItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillBackgroundItem( rIn );
 /*N*/ }

@@ -88,21 +88,21 @@ static USHORT nVersion4Map[141];
 /*N*/ }
 
 
-/*N*/ XOutdevItemPool::XOutdevItemPool(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
+/*N*/ XOutdevItemPool::XOutdevItemPool(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
 /*N*/   SfxItemPool(String("XOutdevItemPool", gsl_getSystemTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
 /*N*/ {
-/*N*/   Ctor(pMaster,nAttrStart,nAttrEnd);
+/*N*/   Ctor(pInMaster,nAttrStart,nAttrEnd);
 /*N*/ }
 
 
-/*N*/ void XOutdevItemPool::Ctor(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd)
+/*N*/ void XOutdevItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEnd)
 /*N*/ {
 /*N*/   // Mich als Secondary an den MasterPool (Joe)
-/*N*/   if (pMaster==NULL) {
-/*N*/       pMaster=this;
+/*N*/   if (pInMaster==NULL) {
+/*N*/       pInMaster=this;
 /*N*/   } else {
 /*N*/       // Ich ganz hinten dran
-/*N*/       SfxItemPool* pParent=pMaster;
+/*N*/       SfxItemPool* pParent=pInMaster;
 /*N*/       while (pParent->GetSecondaryPool()!=NULL) {
 /*?*/           pParent=pParent->GetSecondaryPool();
 /*N*/       }
@@ -273,11 +273,11 @@ static USHORT nVersion4Map[141];
 /*N*/   ppPoolDefaults[XATTR_FTRESERVED_LAST    -XATTR_START] = new SfxVoidItem(XATTR_FTRESERVED_LAST);
 /*N*/
 /*N*/   // SetItems erzeugen
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_LINE_FIRST, XATTR_LINE_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_LINE_FIRST, XATTR_LINE_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_LINE - XATTR_START] = new XLineAttrSetItem(pSet);
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_FILL_FIRST, XATTR_FILL_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_FILL_FIRST, XATTR_FILL_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_FILL - XATTR_START] = new XFillAttrSetItem(pSet);
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_TEXT - XATTR_START] = new XTextAttrSetItem(pSet);
 /*N*/
 /*N*/   // ItemInfos

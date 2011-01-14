@@ -395,7 +395,7 @@ namespace binfilter {
 /*N*/   return aPoly;
 /*N*/ }
 
-/*N*/ Polygon XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* pOut )
+/*N*/ Polygon XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* )
 /*N*/ {
 /*N*/   sal_uInt16 i, nPtCount = rXPoly.GetPointCount();
 /*N*/   Polygon aPoly( nPtCount );

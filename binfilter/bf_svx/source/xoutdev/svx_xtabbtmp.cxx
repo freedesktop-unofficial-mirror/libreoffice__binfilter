@@ -117,7 +117,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XBitmapTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XBitmapTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -310,7 +310,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XBitmapList::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XBitmapList::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -346,7 +346,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/
 /*N*/   XBitmapEntry* pEntry = NULL;
 /*N*/   long        nCount;
-/*N*/   String      aName;
+/*N*/   String      aLclName;
 /*N*/
 /*N*/   rIn >> nCount; // Version oder Anzahl ?
 /*N*/
@@ -358,10 +358,10 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/           Bitmap  aBmp;
 /*N*/           XOBitmap    aXOBitmap;
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> aBmp;
 /*N*/
 /*N*/           aXOBitmap.SetBitmap( aBmp );
@@ -376,7 +376,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/           else
 /*N*/               aXOBitmap.SetBitmapType( XBITMAP_IMPORT );
 /*N*/
-/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aName );
+/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aLclName );
 /*N*/           Insert( pEntry, nIndex );
 /*N*/       }
 /*N*/   }
@@ -385,10 +385,10 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/       rIn >> nCount;
 /*N*/       for( long nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XOBitmap aXOBitmap;
 /*N*/           INT16   iTmp;
@@ -421,7 +421,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/               delete []pArray;
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aName );
+/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aLclName );
 /*N*/           Insert( pEntry, nIndex );
 /*N*/       }
 /*N*/   }
@@ -433,10 +433,10 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XOBitmap aXOBitmap;
 /*N*/           INT16   iTmp;
@@ -474,7 +474,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/               // lesen neuer Daten ...
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aName );
+/*N*/           pEntry = new XBitmapEntry( aXOBitmap, aLclName );
 /*N*/           Insert( pEntry, nIndex );
 /*N*/       }
 /*N*/   }

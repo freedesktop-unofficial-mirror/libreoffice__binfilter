@@ -380,7 +380,6 @@ namespace binfilter {
 /*N*/ void XOBitmap::Array2Bitmap()
 /*N*/ {
 /*N*/   VirtualDevice   aVD;
-/*N*/   BOOL            bPixelColor = FALSE;
 /*N*/   USHORT          nLines = 8; // von Type abhaengig
 /*N*/
 /*N*/   if( !pPixelArray )
@@ -517,7 +516,7 @@ namespace binfilter {
 
 //*************************************************************************
 
-/*N*/ XFillBitmapItem::XFillBitmapItem( SfxItemPool* pPool, const XOBitmap& rTheBitmap )
+/*N*/ XFillBitmapItem::XFillBitmapItem( SfxItemPool* /*pPool*/, const XOBitmap& rTheBitmap )
 /*N*/ :     NameOrIndex( XATTR_FILLBITMAP, -1 ),
 /*N*/   aXOBitmap( rTheBitmap )
 /*N*/ {
@@ -533,7 +532,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBitmapItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillBitmapItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillBitmapItem(*this);
 /*N*/ }
@@ -649,7 +648,7 @@ namespace binfilter {
 |*
 *************************************************************************/
 
-/*N*/ USHORT XFillBitmapItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT XFillBitmapItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   // 2. Version
 /*N*/   return( 1 );
@@ -662,7 +661,6 @@ namespace binfilter {
 
 /*N*/ bool XFillBitmapItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -672,15 +670,15 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( nMemberId == MID_GRAFURL )
 /*N*/   {
-/*N*/       XOBitmap aXOBitmap( GetValue() );
+/*N*/       XOBitmap aTmpXOBitmap( GetValue() );
 /*N*/       ::rtl::OUString aURL( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX));
-/*N*/       aURL += ::rtl::OUString::createFromAscii( aXOBitmap.GetGraphicObject().GetUniqueID().GetBuffer() );
+/*N*/       aURL += ::rtl::OUString::createFromAscii( aTmpXOBitmap.GetGraphicObject().GetUniqueID().GetBuffer() );
 /*N*/       rVal <<= aURL;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       XOBitmap aXOBitmap( GetValue() );
-/*?*/       Bitmap aBmp( aXOBitmap.GetBitmap() );
+/*?*/       XOBitmap aTmpXOBitmap( GetValue() );
+/*?*/       Bitmap aBmp( aTmpXOBitmap.GetBitmap() );
 /*?*/       BitmapEx aBmpEx( aBmp );
 /*?*/
 /*?*/       ::com::sun::star::uno::Reference< ::com::sun::star::awt::XBitmap > xBmp(
@@ -696,7 +694,6 @@ namespace binfilter {
 
 /*N*/ bool XFillBitmapItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {

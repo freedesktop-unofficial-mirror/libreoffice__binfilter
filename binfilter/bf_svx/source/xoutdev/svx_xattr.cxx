@@ -431,7 +431,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
 /*N*/
@@ -756,7 +756,6 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineDashItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   switch ( nMemberId )
@@ -874,7 +873,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_LINEDASH_STYLE:
 /*N*/       {
-/*?*/           sal_Int16 nVal;
+/*?*/           sal_Int16 nVal(0);
 /*?*/           if(!(rVal >>= nVal))
 /*?*/               return false;
 /*?*/
@@ -892,7 +891,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_LINEDASH_DOTS:
 /*N*/       case MID_LINEDASH_DASHES:
 /*N*/       {
-/*?*/           sal_Int16 nVal;
+/*?*/           sal_Int16 nVal(0);
 /*?*/           if(!(rVal >>= nVal))
 /*?*/               return false;
 /*?*/
@@ -913,7 +912,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_LINEDASH_DASHLEN:
 /*N*/       case MID_LINEDASH_DISTANCE:
 /*N*/       {
-/*?*/           sal_Int32 nVal;
+/*?*/           sal_Int32 nVal(0);
 /*?*/           if(!(rVal >>= nVal))
 /*?*/               return false;
 /*?*/
@@ -1039,7 +1038,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/
 /*N*/   SetValue( nValue );
@@ -1122,7 +1121,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   if(!(rVal >>= nValue))
 /*N*/       return false;
 /*N*/
@@ -2112,7 +2111,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineStartWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
 /*N*/   return true;
@@ -2196,7 +2195,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XLineEndWidthItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue( nValue );
 /*N*/   return true;
@@ -2564,7 +2563,7 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ bool XFillColorItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   if(!(rVal >>= nValue ))
 /*N*/       return false;
 /*N*/
@@ -2594,9 +2593,9 @@ XubString aNameOrIndexEmptyString;
 /*N*/                    USHORT nYOfs, USHORT nTheBorder,
 /*N*/                    USHORT nStartIntens, USHORT nEndIntens,
 /*N*/                    USHORT nSteps) :
+/*N*/   eStyle(eTheStyle),
 /*N*/   aStartColor(rStart),
 /*N*/   aEndColor(rEnd),
-/*N*/   eStyle(eTheStyle),
 /*N*/   nAngle(nTheAngle),
 /*N*/   nBorder(nTheBorder),
 /*N*/   nOfsX(nXOfs),
@@ -2878,7 +2877,6 @@ XubString aNameOrIndexEmptyString;
 // -----------------------------------------------------------------------
 /*N*/ bool XFillGradientItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
 /*N*/   {
@@ -2930,7 +2928,6 @@ XubString aNameOrIndexEmptyString;
 // -----------------------------------------------------------------------
 /*N*/ bool XFillGradientItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   switch ( nMemberId )
@@ -2970,7 +2967,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_GRADIENT_STARTCOLOR:
 /*N*/       case MID_GRADIENT_ENDCOLOR:
 /*N*/       {
-/*?*/           sal_Int32 nVal;
+/*?*/           sal_Int32 nVal(0);
 /*?*/           if(!(rVal >>= nVal ))
 /*?*/               return sal_False;
 /*?*/
@@ -2993,7 +2990,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_GRADIENT_XOFFSET:
 /*N*/       case MID_GRADIENT_YOFFSET:
 /*N*/       {
-/*?*/           sal_Int16 nVal;
+/*?*/           sal_Int16 nVal(0);
 /*?*/           if(!(rVal >>= nVal ))
 /*?*/               return sal_False;
 /*?*/
@@ -3209,8 +3206,8 @@ XubString aNameOrIndexEmptyString;
 
 /*N*/ XHatch::XHatch(const Color& rCol, XHatchStyle eTheStyle, long nTheDistance,
 /*N*/              long nTheAngle) :
-/*N*/   aColor(rCol),
 /*N*/   eStyle(eTheStyle),
+/*N*/   aColor(rCol),
 /*N*/   nDistance(nTheDistance),
 /*N*/   nAngle(nTheAngle)
 /*N*/ {
@@ -3495,7 +3492,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/
 /*N*/       case MID_HATCH_STYLE:
 /*N*/       {
-/*?*/           sal_Int16 nVal;
+/*?*/           sal_Int16 nVal(0);
 /*?*/           if (!(rVal >>= nVal ))
 /*?*/               return sal_False;
 /*?*/           aHatch.SetHatchStyle( (XHatchStyle)nVal );
@@ -3506,7 +3503,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_HATCH_DISTANCE:
 /*N*/       case MID_HATCH_ANGLE:
 /*N*/       {
-/*?*/           sal_Int32 nVal;
+/*?*/           sal_Int32 nVal(0);
 /*?*/           if (!(rVal >>= nVal ))
 /*?*/               return sal_False;
 /*?*/
@@ -3654,7 +3651,7 @@ XubString aNameOrIndexEmptyString;
 // #FontWork#
 /*N*/ bool XFormTextStyleItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextStyle)nValue);
 /*N*/
@@ -3759,7 +3756,7 @@ XubString aNameOrIndexEmptyString;
 // #FontWork#
 /*N*/ bool XFormTextAdjustItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextAdjust)nValue);
 /*N*/
@@ -4120,7 +4117,7 @@ XubString aNameOrIndexEmptyString;
 // #FontWork#
 /*N*/ bool XFormTextShadowItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextShadow)nValue);
 /*N*/
@@ -4422,7 +4419,7 @@ XubString aNameOrIndexEmptyString;
 // #FontWork#
 /*N*/ bool XFormTextStdFormItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
-/*N*/   sal_Int32 nValue;
+/*N*/   sal_Int32 nValue(0);
 /*N*/   rVal >>= nValue;
 /*N*/   SetValue((XFormTextStdForm)nValue);
 /*N*/

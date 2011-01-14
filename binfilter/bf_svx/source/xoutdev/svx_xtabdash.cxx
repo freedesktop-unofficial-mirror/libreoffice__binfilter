@@ -129,7 +129,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XDashTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XDashTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -407,7 +407,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/
-/*N*/   for( int i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
+/*N*/   for( size_t i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
 /*N*/   {
 /*N*/       XubString aStrDefName = SVX_RESSTR( aDefResId[i] );
 /*N*/       if( rStrName.Search( aStrDefName ) == 0 )
@@ -432,7 +432,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   XDashEntry* pEntry = NULL;
 /*N*/   long        nCount;
-/*N*/   XubString   aName;
+/*N*/   XubString   aLclName;
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   long        nDots;
@@ -447,10 +447,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   {
 /*N*/       for (long nIndex = 0; nIndex < nCount; nIndex++)
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nDots;
 /*N*/           rIn >> nDotLen;
@@ -459,7 +459,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           rIn >> nDistance;
 /*N*/           XDash aDash((XDashStyle)nStyle, (BYTE)nDots, nDotLen,
 /*N*/                       (BYTE)nDashes, nDashLen, nDistance);
-/*N*/           pEntry = new XDashEntry (aDash, aName);
+/*N*/           pEntry = new XDashEntry (aDash, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -472,10 +472,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nDots;
 /*N*/           rIn >> nDotLen;
@@ -490,7 +490,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/           XDash aDash((XDashStyle)nStyle, (BYTE)nDots, nDotLen,
 /*N*/                       (BYTE)nDashes, nDashLen, nDistance);
-/*N*/           pEntry = new XDashEntry (aDash, aName);
+/*N*/           pEntry = new XDashEntry (aDash, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }

@@ -460,7 +460,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XColorTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XColorTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -530,7 +530,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/
-/*N*/   for( int i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
+/*N*/   for( size_t i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
 /*N*/   {
 /*N*/       XubString aStrDefName = SVX_RESSTR( aDefResId[i] );
 /*N*/       if( rStrName.Search( aStrDefName ) == 0 )
@@ -561,7 +561,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   USHORT       nGreen;
 /*N*/   USHORT       nBlue;
 /*N*/   Color        aColor;
-/*N*/   XubString    aName;
+/*N*/   XubString    aLclName;
 /*N*/
 /*N*/   rIn >> nType;
 /*N*/
@@ -573,9 +573,9 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       {
 /*N*/           rIn >> nIndex;
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -584,7 +584,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           aColor = Color( (BYTE) ( nRed   >> 8 ),
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
-/*N*/           pEntry = new XColorEntry( aColor, aName);
+/*N*/           pEntry = new XColorEntry( aColor, aLclName);
 /*N*/           Insert (nIndex, pEntry);
 /*N*/       }
 /*N*/   }
@@ -598,11 +598,11 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/           rIn >> nIndex;
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
-/*N*/           if( aIOC.GetVersion() >= 0 )
+/*N*/           /*if( aIOC.GetVersion() >= 0 )*/
 /*N*/           {
 /*N*/               rIn >> nRed;
 /*N*/               rIn >> nGreen;
@@ -611,14 +611,8 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/                               (BYTE) ( nGreen >> 8 ),
 /*N*/                               (BYTE) ( nBlue  >> 8 ) );
 /*N*/           }
-            /*
-            else if( aIOC.GetVersion() >= 1 )
-            {
-                // lesen neuer Daten ...
-            }
-            */
 /*N*/
-/*N*/           pEntry = new XColorEntry( aColor, aName );
+/*N*/           pEntry = new XColorEntry( aColor, aLclName );
 /*N*/           Insert( nIndex, pEntry );
 /*N*/       }
 /*N*/   }

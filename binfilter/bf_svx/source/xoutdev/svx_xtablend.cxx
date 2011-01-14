@@ -133,7 +133,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XLineEndTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XLineEndTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -434,7 +434,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/   XLineEndEntry* pEntry = NULL;
 /*N*/   long    nVersion;
 /*N*/   long    nCount;
-/*N*/   XubString   aName;
+/*N*/   XubString   aLclName;
 /*N*/   long    nFlags;
 /*N*/
 /*N*/   rIn >> nVersion;
@@ -444,10 +444,10 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       nCount = nVersion;
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           USHORT nPoints;
 /*N*/           sal_uInt32 nTemp;
 /*N*/           Point  aPoint;
@@ -461,7 +461,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/               pXPoly->Insert(nPoint, aPoint, (XPolyFlags)nFlags);
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( *pXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( *pXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
@@ -470,14 +470,14 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       rIn >> nCount;
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon* pXPoly = new XPolygon;
 /*N*/           rIn >> *pXPoly;
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( *pXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( *pXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
@@ -489,9 +489,9 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon aXPoly;
 /*N*/           rIn >> aXPoly;
@@ -501,7 +501,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/               // lesen neuer Daten ...
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( aXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( aXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
