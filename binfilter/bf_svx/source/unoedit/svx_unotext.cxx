@@ -2060,32 +2060,32 @@ void SvxDummyTextSource::SetNotifyHdl( const Link& )
 {
 }
 
-LanguageType SvxDummyTextSource::GetLanguage( USHORT nPara, USHORT nIndex ) const
+LanguageType SvxDummyTextSource::GetLanguage( USHORT /*nPara*/, USHORT /*nIndex*/ ) const
 {
     return LANGUAGE_DONTKNOW;
 }
 
-USHORT SvxDummyTextSource::GetFieldCount( USHORT nPara ) const
+USHORT SvxDummyTextSource::GetFieldCount( USHORT /*nPara*/ ) const
 {
     return 0;
 }
 
-EFieldInfo SvxDummyTextSource::GetFieldInfo( USHORT nPara, USHORT nField ) const
+EFieldInfo SvxDummyTextSource::GetFieldInfo( USHORT /*nPara*/, USHORT /*nField*/ ) const
 {
     return EFieldInfo();
 }
 
-EBulletInfo SvxDummyTextSource::GetBulletInfo( USHORT nPara ) const
+EBulletInfo SvxDummyTextSource::GetBulletInfo( USHORT /*nPara*/ ) const
 {
     return EBulletInfo();
 }
 
-Rectangle SvxDummyTextSource::GetCharBounds( USHORT nPara, USHORT nIndex ) const
+Rectangle SvxDummyTextSource::GetCharBounds( USHORT /*nPara*/, USHORT /*nIndex*/ ) const
 {
     return Rectangle();
 }
 
-Rectangle SvxDummyTextSource::GetParaBounds( USHORT nPara ) const
+Rectangle SvxDummyTextSource::GetParaBounds( USHORT /*nPara*/ ) const
 {
     return Rectangle();
 }
@@ -2100,42 +2100,42 @@ OutputDevice* SvxDummyTextSource::GetRefDevice() const
     return NULL;
 }
 
-sal_Bool SvxDummyTextSource::GetIndexAtPoint( const Point&, USHORT& nPara, USHORT& nIndex ) const
+sal_Bool SvxDummyTextSource::GetIndexAtPoint( const Point&, USHORT& /*nPara*/, USHORT& /*nIndex*/ ) const
 {
     return sal_False;
 }
 
-sal_Bool SvxDummyTextSource::GetWordIndices( USHORT nPara, USHORT nIndex, USHORT& nStart, USHORT& nEnd ) const
+sal_Bool SvxDummyTextSource::GetWordIndices( USHORT /*nPara*/, USHORT /*nIndex*/, USHORT& /*nStart*/, USHORT& /*nEnd*/ ) const
 {
     return sal_False;
 }
 
-sal_Bool SvxDummyTextSource::GetAttributeRun( USHORT& nStartIndex, USHORT& nEndIndex, USHORT nPara, USHORT nIndex ) const
+sal_Bool SvxDummyTextSource::GetAttributeRun( USHORT& /*nStartIndex*/, USHORT& /*nEndIndex*/, USHORT /*nPara*/, USHORT /*nIndex*/ ) const
 {
     return sal_False;
 }
 
-USHORT SvxDummyTextSource::GetLineCount( USHORT nPara ) const
+USHORT SvxDummyTextSource::GetLineCount( USHORT /*nPara*/ ) const
 {
     return 0;
 }
 
-USHORT SvxDummyTextSource::GetLineLen( USHORT nPara, USHORT nLine ) const
+USHORT SvxDummyTextSource::GetLineLen( USHORT /*nPara*/, USHORT /*nLine*/ ) const
 {
     return 0;
 }
 
-sal_Bool SvxDummyTextSource::QuickFormatDoc( BOOL bFull )
+sal_Bool SvxDummyTextSource::QuickFormatDoc( BOOL /*bFull*/ )
 {
     return sal_False;
 }
 
-USHORT SvxDummyTextSource::GetDepth( USHORT nPara ) const
+USHORT SvxDummyTextSource::GetDepth( USHORT /*nPara*/ ) const
 {
     return 0;
 }
 
-sal_Bool SvxDummyTextSource::SetDepth( USHORT nPara, USHORT nNewDepth )
+sal_Bool SvxDummyTextSource::SetDepth( USHORT /*nPara*/, USHORT nNewDepth )
 {
     return nNewDepth == 0 ? sal_True : sal_False;
 }
