@@ -288,7 +288,6 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
     SwIoSystem::GetWriter( C2S(FILTER_TEXT_DLG), xWrt );
     if( xWrt.Is() )
     {
-        SwWriter aWriter( aStream, aCrsr );
         xWrt->bASCII_NoLastLineEnd = sal_True;
         SwAsciiOptions aOpt = xWrt->GetAsciiOptions();
         aOpt.SetCharSet( RTL_TEXTENCODING_UNICODE );

@@ -434,25 +434,6 @@ SV_IMPL_REF(Writer)
 // speziellen Writer
 
 
-
-class SwWriter
-{
-    SvStream* pStrm;
-    SvStorage* pStg;
-    SfxMedium* pMedium;
-
-    SwPaM* pOutPam;
-    SwCrsrShell *pShell;
-    SwDoc &rDoc;
-    BOOL bWriteAll;
-
-public:
-
-    SwWriter( SvStream&, SwPaM &, BOOL bWriteAll = FALSE );
-    SwWriter( SvStorage&, SwDoc & );
-};
-
-
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
 

@@ -867,20 +867,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/
-/*N*/ #ifdef JP_DEBUG
-/*N*/   {
-/*N*/           extern Writer* GetDebugWriter(const String&);
-/*N*/
-/*N*/       Writer* pWriter = GetDebugWriter(aEmptyStr);
-/*N*/       if( pWriter )
-/*N*/       {
-/*N*/           int nError;
-/*N*/           SvFileStream aStrm( "c:\\$$copy.db", STREAM_WRITE );
-/*N*/           SwWriter aWriter( aStrm, *pMyDoc );
-/*N*/           aWriter.Write( &nError, pWriter );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*N*/ void SwNodes::_DelDummyNodes( const SwNodeRange& rRg )

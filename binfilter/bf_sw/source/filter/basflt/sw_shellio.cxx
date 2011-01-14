@@ -486,37 +486,6 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 }
 
 
-/*
- * Writer
- */
-
-/*
- * Konstruktoren, Destruktoren sind inline (inc/shellio.hxx).
- */
-
-/*N*/ SwWriter::SwWriter( SvStream& rStrm, SwPaM& rPam, BOOL bWriteAll )
-/*N*/   : pStrm( &rStrm ),
-/*N*/   pStg( 0 ),
-/*N*/   pMedium( 0 ),
-/*N*/   pShell( 0 ),
-/*N*/   pOutPam( &rPam ),
-/*N*/   rDoc( *rPam.GetDoc() ),
-/*N*/   bWriteAll( bWriteAll )
-/*N*/ {
-/*N*/ }
-
-
-/*N*/ SwWriter::SwWriter(SvStorage& rStg,SwDoc &rDoc)
-/*N*/   :pStrm( 0 ),
-/*N*/   pStg( &rStg ),
-/*N*/   pMedium( 0 ),
-/*N*/   pShell( 0 ),
-/*N*/   pOutPam( 0 ),
-/*N*/   rDoc( rDoc ),
-/*N*/   bWriteAll( TRUE )
-/*N*/ {
-/*N*/ }
-
 /*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return FALSE;
