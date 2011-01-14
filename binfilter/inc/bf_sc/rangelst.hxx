@@ -30,25 +30,27 @@
 #define SC_RANGELST_HXX
 
 #include "global.hxx"
+#include <vector>
+
 namespace binfilter {
 
 class ScDocument;
 
 typedef ScRange* ScRangePtr;
-DECLARE_LIST( ScRangeListBase, ScRangePtr )
-class ScRangeList : public ScRangeListBase, public SvRefBase
+typedef ::std::vector< ScRangePtr > ScRangeListBase;
+
+class ScRangeList : public SvRefBase
 {
+private:
+    ScRangeListBase maList;
+    size_t current;
+
 public:
                     ScRangeList() {}
                     ScRangeList( const ScRangeList& rList );
     virtual         ~ScRangeList();
     ScRangeList&    operator=(const ScRangeList& rList);
     void            RemoveAll();
-    void            Append( const ScRange& rRange )
-                    {
-                        ScRangePtr pR = new ScRange( rRange );
-                        Insert( pR, LIST_APPEND );
-                    }
     USHORT          Parse( const String&, ScDocument* = NULL,
                             USHORT nMask = SCA_VALID );
     void            Format( String&, USHORT nFlags = 0, ScDocument* = NULL ) const;
@@ -56,8 +58,96 @@ public:
     BOOL            UpdateReference( UpdateRefMode, ScDocument*,
                                     const ScRange& rWhere,
                                     short nDx, short nDy, short nDz );
-/*N*/   BOOL            Load( SvStream&, USHORT nVer );
-/*N*/   BOOL            Store( SvStream& ) const;
+    BOOL            Load( SvStream&, USHORT nVer );
+    BOOL            Store( SvStream& ) const;
+
+    size_t          Count() const { return maList.size(); }
+    size_t          GetCurPos() const { return current; }
+
+    size_t          GetPos( ScRange* item )
+                    {
+                        for ( size_t i = 0, n = maList.size(); i < n; ++i )
+                            if ( maList[ i ] == item ) return i;
+                        return size_t(-1);
+                    }
+
+    void            Seek( size_t i ) { current = i; }
+
+    ScRange*        First()
+                    {
+                        current = 0;
+                        return maList.empty() ? NULL : maList[ current ];
+                    }
+
+    ScRange*        Next()
+                    {
+                        if ( current+1 < maList.size() )
+                        {
+                            ++current;
+                            return maList[ current ];
+                        }
+                        return NULL;
+                    }
+
+    ScRange*        GetObject( size_t i )
+                    {
+                        if ( i >= maList.size() ) return NULL;
+                        return maList[ i ];
+                    }
+
+    ScRange*        GetObject( size_t i ) const
+                    {
+                        if ( i >= maList.size() ) return NULL;
+                        return maList[ i ];
+                    }
+
+    ScRange*        Remove( size_t i )
+                    {
+                        if ( i < maList.size() )
+                        {
+                            ScRangeListBase::iterator it = maList.begin();
+                            ::std::advance( it, i );
+                            maList.erase( it );
+                            current = i;
+                        }
+                        return NULL;
+                    }
+
+    void            Insert( ScRange* item, size_t i )
+                    {
+                        if ( i < maList.size() )
+                        {
+                            ScRangeListBase::iterator it = maList.begin();
+                            ::std::advance( it, i );
+                            maList.insert( it, item );
+                            current = i;
+                        }
+                        else
+                        {
+                            current = maList.size();
+                            maList.push_back( item );
+                        }
+                    }
+
+    void            Append( const ScRange& rRange )
+                    {
+                        ScRangePtr pR = new ScRange( rRange );
+                        maList.push_back( pR );
+                    }
+
+    bool            operator ==( const ScRangeList& rList ) const
+                    {
+                        if ( maList.size() != rList.Count() ) return false;
+                        for ( size_t i = 0, n = maList.size(); i < n; ++i )
+                            if ( maList[ i ] != rList.GetObject( i ) ) return false;
+                        return true;
+                    }
+
+    bool            operator !=( const ScRangeList& rList ) const
+                    {
+                        return !( *this == rList );
+                    }
+
 };
 SV_DECL_IMPL_REF( ScRangeList );
 

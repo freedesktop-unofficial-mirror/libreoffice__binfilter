@@ -46,15 +46,16 @@ namespace binfilter {
 
 /*N*/ ScRangeList::~ScRangeList()
 /*N*/ {
-/*N*/   for ( ScRangePtr pR = First(); pR; pR = Next() )
-/*N*/       delete pR;
+        for ( size_t i = 0, n = maList.size(); i < n; ++i )
+            delete maList[ i ];
+        maList.clear();
 /*N*/ }
 
 /*N*/ void ScRangeList::RemoveAll()
 /*N*/ {
-/*N*/   for ( ScRangePtr pR = First(); pR; pR = Next() )
-/*N*/       delete pR;
-/*N*/   Clear();
+        for ( size_t i = 0, n = maList.size(); i < n; ++i )
+            delete maList[ i ];
+        maList.clear();
 /*N*/ }
 
 /*N*/ USHORT ScRangeList::Parse( const String& rStr, ScDocument* pDoc, USHORT nMask )
@@ -273,8 +274,7 @@ namespace binfilter {
 
 
 /*N*/ ScRangeList::ScRangeList( const ScRangeList& rList )
-/*N*/     : ScRangeListBase()
-/*N*/     , SvRefBase()
+/*N*/     : SvRefBase()
 /*N*/ {
 /*N*/   ULONG nLclCount = rList.Count();
 /*N*/   for ( ULONG j = 0; j < nLclCount; j++ )
