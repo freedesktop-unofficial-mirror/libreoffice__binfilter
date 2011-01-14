@@ -102,20 +102,22 @@ uno::Reference< text::XText > xDummyText;
 uno::Sequence< uno::Type > SvxUnoTextContent::maTypeSequence;
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nPara ) throw()
-:   SvxUnoTextRangeBase(rText),rParentText(rText),
-    aDisposeListeners(aDisposeContainerMutex),
-    nParagraph(nPara),
-    bDisposing( sal_False )
+    : SvxUnoTextRangeBase(rText)
+    , nParagraph(nPara)
+    , rParentText(rText)
+    , aDisposeListeners(aDisposeContainerMutex)
+    , bDisposing( sal_False )
 {
     xParentText =  const_cast<SvxUnoTextBase*>(&rText);
     SetSelection( ESelection( nParagraph,0, nParagraph, GetEditSource()->GetTextForwarder()->GetTextLen( nParagraph ) ) );
 }
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextContent& rContent ) throw()
-:   SvxUnoTextRangeBase(rContent),
-    aDisposeListeners(aDisposeContainerMutex),
-    rParentText(rContent.rParentText),
-    bDisposing( sal_False )
+    : SvxUnoTextRangeBase(rContent)
+    , cppu::OWeakAggObject()
+    , rParentText(rContent.rParentText)
+    , aDisposeListeners(aDisposeContainerMutex)
+    , bDisposing( sal_False )
 {
     xParentText = rContent.xParentText;
     nParagraph  = rContent.nParagraph;
@@ -207,7 +209,7 @@ uno::Reference< text::XText > SAL_CALL SvxUnoTextContent::getText()
 }
 
 // text::XTextContent
-void SAL_CALL SvxUnoTextContent::attach( const uno::Reference< text::XTextRange >& xTextRange )
+void SAL_CALL SvxUnoTextContent::attach( const uno::Reference< text::XTextRange >& /*xTextRange*/ )
     throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
 }
@@ -404,7 +406,7 @@ uno::Any SAL_CALL SvxUnoTextRangeEnumeration::nextElement()
 
     uno::Reference< text::XTextRange > xRange;
 
-    SvxTextForwarder* pForwarder = rParentText.GetEditSource()->GetTextForwarder();
+    /*SvxTextForwarder* pForwarder =*/ rParentText.GetEditSource()->GetTextForwarder();
 
     SvxUnoTextRange* pRange = new SvxUnoTextRange( rParentText, sal_True );
     xRange = pRange;
@@ -428,8 +430,9 @@ SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextBase& rText ) throw()
 }
 
 SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextCursor& rCursor ) throw()
-:   SvxUnoTextRangeBase(rCursor),
-    xParentText(rCursor.xParentText)
+    : SvxUnoTextRangeBase(rCursor)
+    , cppu::OWeakAggObject()
+    , xParentText(rCursor.xParentText)
 {
 }
 
