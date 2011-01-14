@@ -169,7 +169,7 @@ SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
     {/* 13*/ SwIoEntry(sExcel,            4,          0,                  FALSE)}, \
     {/* 14*/ SwIoEntry(sLotusD,           5,          0,                  TRUE)}, \
     {/* 18*/ SwIoEntry(sSwg1,            4,          0,                 FALSE)}, \
-    {/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)} \
+    {/* 19*/ SwIoEntry(FILTER_XML,       4,          0, TRUE)} \
                                                                             \
                                                                           , \
 /*last*/ {SwIoEntry(FILTER_TEXT,    4,          &::binfilter::GetASCWriter,     TRUE)} \

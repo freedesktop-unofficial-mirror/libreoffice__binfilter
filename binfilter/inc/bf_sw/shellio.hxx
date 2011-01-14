@@ -469,7 +469,6 @@ public:
 
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
-void GetXMLWriter( const String&, WriterRef& );
 
 // Die folgende Klasse ist ein Wrappe fuer die Basic-I/O-Funktionen
 // des Writer 3.0. Alles ist statisch. Alle u.a. Filternamen sind die

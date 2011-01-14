@@ -54,7 +54,6 @@ CDEFS=$(CDEFS) -Dmydebug
 CXXFILES = \
         sw_swxml.cxx      \
         sw_xmlimp.cxx      \
-        sw_wrtxml.cxx      \
         sw_xmlexp.cxx      \
         sw_xmltext.cxx      \
         sw_xmltexte.cxx      \
@@ -79,7 +78,6 @@ CXXFILES = \
 SLOFILES =  \
         $(SLO)$/sw_swxml.obj \
         $(SLO)$/sw_xmlimp.obj \
-        $(SLO)$/sw_wrtxml.obj \
         $(SLO)$/sw_xmlexp.obj \
         $(SLO)$/sw_xmltext.obj \
         $(SLO)$/sw_xmltexte.obj \
@@ -105,7 +103,6 @@ SLOFILES =  \
 EXCEPTIONSFILES= \
         $(SLO)$/sw_swxml.obj \
         $(SLO)$/sw_xmlimp.obj \
-        $(SLO)$/sw_wrtxml.obj \
         $(SLO)$/sw_xmlexp.obj \
         $(SLO)$/sw_xmltext.obj \
         $(SLO)$/sw_xmltexti.obj \
