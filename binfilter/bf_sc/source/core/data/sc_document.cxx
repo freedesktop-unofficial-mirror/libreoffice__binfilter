@@ -1072,7 +1072,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                   nXw, nYw, 0 );
 /*N*/           nXw -= pClipDoc->aClipRange.aEnd.Col();
 /*N*/           nYw -= pClipDoc->aClipRange.aEnd.Row();         // only extra value from ExtendMerge
-/*N*/           USHORT nDestAddX, nDestAddY;
+/*N*/           USHORT nDestAddX(0), nDestAddY(0);
 /*N*/           pClipDoc->GetClipArea( nDestAddX, nDestAddY, bIncludeFiltered );
 /*N*/           nXw += nDestAddX;
 /*N*/           nYw += nDestAddY;                               // ClipArea, plus ExtendMerge value

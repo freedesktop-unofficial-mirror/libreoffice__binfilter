@@ -288,7 +288,7 @@ void ScXMLExportDatabaseRanges::WriteFilterDescriptor(const uno::Reference <shee
         uno::Reference <beans::XPropertySet> xPropertySet (xSheetFilterDescriptor, uno::UNO_QUERY);
         if (xPropertySet.is())
         {
-            sal_Bool bCopyOutputData;
+            sal_Bool bCopyOutputData( sal_False );
             uno::Any aCopyOutputData = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COPYOUT)));
             if (aCopyOutputData >>= bCopyOutputData)
                 if (bCopyOutputData)
@@ -314,7 +314,7 @@ void ScXMLExportDatabaseRanges::WriteFilterDescriptor(const uno::Reference <shee
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_CONDITION_SOURCE_RANGE_ADDRESS, sOUCellAddress);
             }
 
-            sal_Bool bSkipDuplicates;
+            sal_Bool bSkipDuplicates( sal_False );
             uno::Any aSkipDuplicates = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_SKIPDUP)));
             if (aSkipDuplicates >>= bSkipDuplicates)
                 if (bSkipDuplicates)
@@ -567,17 +567,17 @@ void ScXMLExportDatabaseRanges::WriteSubTotalDescriptor(const ::com::sun::star::
             sal_Int32 nUserSortListIndex = 0;
             if (xPropertySet.is())
             {
-                sal_Bool bBindFormatsToContent;
+                sal_Bool bBindFormatsToContent( sal_False );
                 uno::Any aBindFormatsToContent = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_BINDFMT)));
                 if (aBindFormatsToContent >>= bBindFormatsToContent)
                     if (!bBindFormatsToContent)
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_BIND_STYLES_TO_CONTENT, XML_FALSE);
-                sal_Bool bInsertPageBreaks;
+                sal_Bool bInsertPageBreaks( sal_False );
                 uno::Any aInsertPageBreaks = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_INSBRK)));
                 if (aInsertPageBreaks >>= bInsertPageBreaks)
                     if (bInsertPageBreaks)
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_PAGE_BREAKS_ON_GROUP_CHANGE, XML_TRUE);
-                sal_Bool bIsCaseSensitive;
+                sal_Bool bIsCaseSensitive( sal_False );
                 uno::Any aIsCaseSensitive = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_ISCASE)));
                 if (aIsCaseSensitive >>= bIsCaseSensitive)
                     if (bIsCaseSensitive)

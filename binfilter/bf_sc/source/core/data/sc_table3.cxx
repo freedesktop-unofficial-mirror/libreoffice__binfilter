@@ -393,7 +393,7 @@ return FALSE;
 
 /*N*/ void ScTable::FindConditionalFormat( ULONG nKey, ScRangeList& rList )
 /*N*/ {
-/*N*/   USHORT nStartRow, nEndRow;
+/*N*/   USHORT nStartRow(0), nEndRow(0);
 /*N*/   for (USHORT nCol=0; nCol<=MAXCOL; nCol++)
 /*N*/   {
 /*N*/       ScAttrIterator* pIter = aCol[nCol].CreateAttrIterator( 0, MAXCOL );
