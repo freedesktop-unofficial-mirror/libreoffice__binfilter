@@ -430,25 +430,10 @@ SV_DECL_REF(Writer)
 #endif
 SV_IMPL_REF(Writer)
 
-// Basisklasse fuer alle Storage-Writer
-
-class StgWriter : public Writer
-{
-protected:
-    String aFltName;
-    SvStorage* pStg;
-
-public:
-    StgWriter() : Writer(), pStg( 0 ) {}
-
-    SvStorage& GetStorage() const       { return *pStg; }
-    const String& GetFltName() const    { return aFltName; }
-    void SetFltName( const String& r )  { aFltName = r; }
-};
-
-
 // Schnittstellenklasse fuer den allgemeinen Zugriff auf die
 // speziellen Writer
+
+
 
 class SwWriter
 {
@@ -466,6 +451,7 @@ public:
     SwWriter( SvStream&, SwPaM &, BOOL bWriteAll = FALSE );
     SwWriter( SvStorage&, SwDoc & );
 };
+
 
 void GetRTFWriter( const String&, WriterRef& );
 void GetASCWriter( const String&, WriterRef& );
