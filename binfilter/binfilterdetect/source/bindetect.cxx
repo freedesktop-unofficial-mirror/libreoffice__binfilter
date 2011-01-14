@@ -27,6 +27,8 @@
 
 #include "bindetect.hxx"
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
 #endif
