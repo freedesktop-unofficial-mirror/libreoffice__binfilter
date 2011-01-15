@@ -75,9 +75,9 @@ struct FmFormModelImplData
 \************************************************************************/
 /*N*/ FmFormModel::FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers)
 /*N*/           :SdrModel(rPath, pPool, pPers)
+/*N*/           ,m_pImpl(NULL)
 /*N*/           ,pObjShell(0)
 /*N*/           ,bStreamingOldVersion(sal_False)
-/*N*/           ,m_pImpl(NULL)
 /*N*/           ,m_bOpenInDesignMode(sal_False)
 /*N*/           ,m_bAutoControlFocus(sal_False)
 /*N*/ {
@@ -259,7 +259,7 @@ struct FmFormModelImplData
 |* MovePage
 |*
 \************************************************************************/
-/*?*/ void FmFormModel::MovePage( USHORT nPgNum, USHORT nNewPos )
+/*?*/ void FmFormModel::MovePage( USHORT, USHORT )
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
 /*?*/ }
 

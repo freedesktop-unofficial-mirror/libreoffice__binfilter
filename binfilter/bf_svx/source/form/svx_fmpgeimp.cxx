@@ -180,7 +180,7 @@ using namespace ::binfilter::svxform;
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*N*/ void FmFormPageImpl::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
+/*N*/ void FmFormPageImpl::ReadData(const SdrIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/     // Abholen des InputStreams ueber uno
 /*N*/     Reference< ::com::sun::star::io::XActiveDataSink >  xSink(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectInputStream" ))), UNO_QUERY);
@@ -253,8 +253,6 @@ using namespace ::binfilter::svxform;
 /*N*/         {
 /*N*/             xOutStrm->writeObject(xObj);
 /*N*/         }
-/*N*/         else
-/*N*/             ;// exception
 /*N*/     }
 /*N*/ }
 

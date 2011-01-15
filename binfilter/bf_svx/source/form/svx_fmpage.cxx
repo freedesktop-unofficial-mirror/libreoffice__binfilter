@@ -74,12 +74,12 @@ namespace binfilter {
 //------------------------------------------------------------------
 /*N*/ FmFormPage::FmFormPage(FmFormModel& rModel, StarBASIC* _pBasic, bool bMasterPage)
 /*N*/          :SdrPage(rModel, bMasterPage)
-/*N*/          ,pBasic(_pBasic)
 /*N*/ #ifndef SVX_LIGHT
 /*N*/          ,pImpl(new FmFormPageImpl(this))
 /*N*/ #else
 /*N*/          ,pImpl(NULL)
 /*N*/ #endif
+/*N*/          ,pBasic(_pBasic)
 /*N*/ {
 /*N*/ }
 

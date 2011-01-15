@@ -60,31 +60,24 @@ using namespace ::connectivity;
 //-----------------------------------------------------------------------------
 /*?*/ ::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;//STRIP001
-/*?*/ //STRIP001    return SvtSysLocale().GetLocaleData().getLocale();
 /*?*/ }
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode _eCode) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;//STRIP001
+/*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;
 /*?*/ }
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode _eKey) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;//STRIP001
+/*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;
 /*?*/ }
 
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-/*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString& rToken) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;//STRIP001
+/*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString&) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;
 /*?*/ }
 
 
-// =============================================================================
 // =============================================================================
 namespace
 {

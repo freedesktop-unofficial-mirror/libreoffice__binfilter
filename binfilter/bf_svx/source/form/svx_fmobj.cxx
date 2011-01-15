@@ -67,8 +67,8 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 //------------------------------------------------------------------
 /*N*/ FmFormObj::FmFormObj(sal_Int32 _nType)
 /*N*/         :SdrUnoObj(String(), sal_False)
-/*N*/         ,nEvent(0)
 /*N*/         ,pTempView(0)
+/*N*/         ,nEvent(0)
 /*N*/         ,nPos(-1)
 /*N*/         ,m_nType(_nType)
 /*N*/ {
@@ -149,9 +149,9 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/           ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer >  xOldParent(xMeAsFormComp->getParent(), ::com::sun::star::uno::UNO_QUERY);
 /*?*/           if (xOldParent.is())
 /*?*/           {
-/*?*/               sal_Int32 nPos = getElementPos(::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > (xOldParent, ::com::sun::star::uno::UNO_QUERY), xMeAsFormComp);
-/*?*/               if (nPos > -1)
-/*?*/                   xOldParent->removeByIndex(nPos);
+/*?*/               sal_Int32 nLclPos = getElementPos(::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > (xOldParent, ::com::sun::star::uno::UNO_QUERY), xMeAsFormComp);
+/*?*/               if (nLclPos > -1)
+/*?*/                   xOldParent->removeByIndex(nLclPos);
 /*?*/           }
 /*?*/           // and insert into the new container
 /*?*/           xNewParent->insertByIndex(xNewParent->getCount(), ::com::sun::star::uno::makeAny(xMeAsFormComp));
@@ -165,9 +165,9 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/                   ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess >  xManagerAsIndex(xEventManager, ::com::sun::star::uno::UNO_QUERY);
 /*?*/                   if (xManagerAsIndex.is())
 /*?*/                   {
-/*?*/                       sal_Int32 nPos = getElementPos(xManagerAsIndex, xMeAsFormComp);
-/*?*/                       DBG_ASSERT(nPos >= 0, "FmFormObj::SetPage : inserted but not present ?");
-/*?*/                       xEventManager->registerScriptEvents(nPos, aNewEvents);
+/*?*/                       sal_Int32 nLclPos = getElementPos(xManagerAsIndex, xMeAsFormComp);
+/*?*/                       DBG_ASSERT(nLclPos >= 0, "FmFormObj::SetPage : inserted but not present ?");
+/*?*/                       xEventManager->registerScriptEvents(nLclPos, aNewEvents);
 /*?*/                   }
 /*?*/               }
 /*?*/               catch(...)
@@ -215,11 +215,11 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 //------------------------------------------------------------------
 /*N*/ void FmFormObj::WriteData(SvStream& rOut) const
 /*N*/ {
-/*N*/   FmFormModel* pModel = (FmFormModel*)GetModel();
-/*N*/   if( pModel && pModel->IsStreamingOldVersion() )
+/*N*/   FmFormModel* pLclModel = (FmFormModel*)GetModel();
+/*N*/   if( pLclModel && pLclModel->IsStreamingOldVersion() )
 /*N*/   {
 /*?*/       SdrLayerID nOld = GetLayer();
-/*?*/       ((FmFormObj*)this)->NbcSetLayer( pModel->GetControlExportLayerId( *this ) );
+/*?*/       ((FmFormObj*)this)->NbcSetLayer( pLclModel->GetControlExportLayerId( *this ) );
 /*?*/       SdrUnoObj::WriteData( rOut );
 /*?*/       ((FmFormObj*)this)->NbcSetLayer( nOld );
 /*?*/       return;
