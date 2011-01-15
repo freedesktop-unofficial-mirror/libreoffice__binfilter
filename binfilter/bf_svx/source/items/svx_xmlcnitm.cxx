@@ -129,7 +129,7 @@ using rtl::OUString;
 /*NBFF*/                    return false;
 /*NBFF*/
 /*NBFF*/                pData = (AttributeData*)aAny.getValue();
-/*NBFF*/                USHORT pos = aName.indexOf( sal_Unicode(':') );
+/*NBFF*/                sal_Int32 pos = aName.indexOf( sal_Unicode(':') );
 /*NBFF*/                if( pos != -1 )
 /*NBFF*/                {
 /*NBFF*/                    const OUString aPrefix( aName.copy( 0, pos ));
@@ -222,12 +222,17 @@ using rtl::OUString;
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT /*i*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return OUString();
+/*N*/ {
+/*N*/     DBG_BF_ASSERT(0, "STRIP");
+/*N*/     static OUString aStripped;
+/*N*/     return aStripped;
 /*N*/ }
 
 /*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString();
+/*N*/     DBG_BF_ASSERT(0, "STRIP");
+/*N*/     static OUString aStripped;
+/*N*/     return aStripped;
 /*N*/ }
 
 

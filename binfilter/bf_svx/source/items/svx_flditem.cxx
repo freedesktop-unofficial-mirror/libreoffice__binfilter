@@ -84,6 +84,7 @@ namespace binfilter {
 /*N*/ int SvxFieldData::operator==( const SvxFieldData& rFld ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( Type() == rFld.Type(), "==: Verschiedene Typen" );
+/*N*/   (void)rFld;
 /*N*/   return TRUE;    // Basicklasse immer gleich.
 /*N*/ }
 

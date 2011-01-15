@@ -168,14 +168,14 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   nInclUpperLevels(0),
 /*N*/   nStart(1),
 /*N*/   cBullet(SVX_DEF_BULLET),
+/*N*/   nBulletRelSize(100),
+/*N*/   nBulletColor(COL_BLACK),
 /*N*/   nFirstLineOffset(0),
 /*N*/   nAbsLSpace(0),
 /*N*/   nLSpace(0),
 /*N*/   nCharTextDistance(0),
 /*N*/   pGraphicBrush(0),
 /*N*/   eVertOrient(SVX_VERT_NONE),
-/*N*/   nBulletRelSize(100),
-/*N*/   nBulletColor(COL_BLACK),
 /*N*/   pBulletFont(0)
 /*N*/ {
 /*N*/ }
@@ -409,7 +409,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/           (!pGraphicBrush && rFormat.pGraphicBrush) ||
 /*N*/               (pGraphicBrush && *pGraphicBrush != *rFormat.pGraphicBrush ))
 /*N*/       return FALSE;
-/*N*/   if(pBulletFont && !rFormat.pBulletFont ||
+/*N*/   if( (pBulletFont && !rFormat.pBulletFont) ||
 /*N*/           (!pBulletFont && rFormat.pBulletFont) ||
 /*N*/           (pBulletFont && (*pBulletFont != *rFormat.pBulletFont)))
 /*N*/       return FALSE;
@@ -569,9 +569,9 @@ static SvxNumberFormat* pStdNumFmt = 0;
 static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/ SvxNumRule::SvxNumRule(ULONG nFeatures, USHORT nLevels, BOOL bCont, SvxNumRuleType eType) :
 /*N*/   nLevelCount(nLevels),
-/*N*/   bContinuousNumbering(bCont),
+/*N*/   nFeatureFlags(nFeatures),
 /*N*/   eNumberingType(eType),
-/*N*/   nFeatureFlags(nFeatures)
+/*N*/   bContinuousNumbering(bCont)
 /*N*/ {
 /*N*/   ++nRefCount;
 /*N*/     LanguageType eLang = Application::GetSettings().GetLanguage();
