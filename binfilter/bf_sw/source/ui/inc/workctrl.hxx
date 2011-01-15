@@ -38,7 +38,7 @@
 #include <bf_svtools/stdctrl.hxx>
 #endif
 #ifndef _IMAGEBTN_HXX //autogen
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #endif
 class PopupMenu;
 namespace binfilter {

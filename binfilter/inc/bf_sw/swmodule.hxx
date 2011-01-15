@@ -48,9 +48,7 @@
 #ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEEVENTLISTENER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceEventListener.hpp>
 #endif
-#ifndef _VCL_FLDUNIT_HXX
-#include <vcl/fldunit.hxx>
-#endif
+#include <tools/fldunit.hxx>
 namespace com{ namespace sun{ namespace star{ namespace scanner{
     class XScannerManager;
 }}}}
