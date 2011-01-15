@@ -423,7 +423,7 @@ USHORT SvxOutlinerForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
     return rOutliner.GetLineLen(nPara, nLine);
 }
 
-sal_Bool SvxOutlinerForwarder::QuickFormatDoc( BOOL bFull )
+sal_Bool SvxOutlinerForwarder::QuickFormatDoc( BOOL )
 {
     rOutliner.QuickFormatDoc();
 
@@ -483,7 +483,7 @@ sal_Bool SvxOutlinerForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
     if(bOutlinerText)
         ++nNewDepth;
 
-    if(nNewDepth >= 0 && nNewDepth <= 9)
+    if(nNewDepth <= 9)
     {
         Paragraph* pPara = rOutliner.GetParagraph( nPara );
         if( pPara )

@@ -323,7 +323,7 @@ EFieldInfo SvxEditEngineForwarder::GetFieldInfo( USHORT nPara, USHORT nField ) c
     return rEditEngine.GetFieldInfo( nPara, nField );
 }
 
-EBulletInfo SvxEditEngineForwarder::GetBulletInfo( USHORT nPara ) const
+EBulletInfo SvxEditEngineForwarder::GetBulletInfo( USHORT ) const
 {
     return EBulletInfo();
 }
@@ -462,7 +462,7 @@ USHORT SvxEditEngineForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
     return rEditEngine.GetLineLen(nPara, nLine);
 }
 
-sal_Bool SvxEditEngineForwarder::QuickFormatDoc( BOOL bFull )
+sal_Bool SvxEditEngineForwarder::QuickFormatDoc( BOOL )
 {
     rEditEngine.QuickFormatDoc();
 
@@ -485,13 +485,13 @@ sal_Bool SvxEditEngineForwarder::InsertText( const String& rStr, const ESelectio
     return sal_True;
 }
 
-USHORT SvxEditEngineForwarder::GetDepth( USHORT nPara ) const
+USHORT SvxEditEngineForwarder::GetDepth( USHORT ) const
 {
     // EditEngine does not support outline depth
     return 0;
 }
 
-sal_Bool SvxEditEngineForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
+sal_Bool SvxEditEngineForwarder::SetDepth( USHORT, USHORT nNewDepth )
 {
     // EditEngine does not support outline depth
     return nNewDepth == 0 ? sal_True : sal_False;

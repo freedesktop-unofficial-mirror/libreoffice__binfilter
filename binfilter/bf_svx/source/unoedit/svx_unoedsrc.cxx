@@ -58,7 +58,7 @@ SvxViewForwarder* SvxEditSource::GetViewForwarder()
     return NULL;
 }
 
-SvxEditViewForwarder* SvxEditSource::GetEditViewForwarder( sal_Bool bCreate )
+SvxEditViewForwarder* SvxEditSource::GetEditViewForwarder( sal_Bool /*bCreate*/ )
 {
     return NULL;
 }
