@@ -55,7 +55,6 @@ void ImpAddHSZ( HSZ hszString, String& rStr )
 
 void ImpWriteDdeStatus(char* aFilename, char* pAppContext)
 {
-    char aBuf[ 128 ];
     USHORT nCtr;
     HWND* pAppPtr;
     ImpHCONV* pConvPtr;
@@ -190,7 +189,6 @@ void ImpWriteDdeStatus(char* aFilename, char* pAppContext)
 
 void ImpWriteDdeData(char* aFilename, DDESTRUCT* pData)
 {
-    char aBuf[ 128 ];
     USHORT nCtr;
     SvFileStream aStrm(aFilename, STREAM_READWRITE );
     aStrm.Seek( STREAM_SEEK_TO_END );
