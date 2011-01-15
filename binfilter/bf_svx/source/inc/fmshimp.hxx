@@ -111,9 +111,9 @@ struct FmLoadAction
     sal_uInt32  nEventId;
     sal_uInt16  nFlags;
 
-    FmLoadAction( ) : pPage( NULL ), nFlags( 0 ), nEventId( 0 ) { }
+    FmLoadAction( ) : pPage( NULL ), nEventId( 0 ), nFlags( 0 ) { }
     FmLoadAction( FmFormPage* _pPage, sal_uInt16 _nFlags, sal_uInt32 _nEventId )
-        :pPage( _pPage ), nFlags( _nFlags ), nEventId( _nEventId )
+        :pPage( _pPage ), nEventId( _nEventId ), nFlags( _nFlags )
     {
     }
 };
