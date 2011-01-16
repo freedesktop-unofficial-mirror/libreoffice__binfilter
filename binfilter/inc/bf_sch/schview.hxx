@@ -37,6 +37,7 @@
 #include "docshell.hxx"
 
 class Graphic;
+
 namespace binfilter {
 
 class SchViewShell;
@@ -45,10 +46,10 @@ class SchWindow;
 class ChartModel;
 class SchDragServerRef;
 class E3dScene;
-} //namespace binfilter
 
-namespace binfilter {//STRIP009
-DECLARE_LIST(E3dLogicalObjList, E3dObject*)//STRIP008 DECLARE_LIST(E3dLogicalObjList, E3dObject*);
+}
+
+namespace binfilter {
 
 /*************************************************************************
 |*
@@ -68,13 +69,10 @@ class SchView : public E3dView
 
     Timer aTimer;
     void             Construct();
-//      SchDragServerRef CreateDataObject(SchView* pView, const Point& rDragPos);
-//      SchDragServerRef CreateDataObject(ChartModel* pDocument);
     void                SetMarkHandles();
 
  public:
 
-    //void NotifySelection();
     DECL_LINK(NotifySelection,void*);
 
     SchView(SchChartDocShell* pDocSh, OutputDevice* pOutDev, SchViewShell* pShell);
@@ -98,17 +96,14 @@ class SchView : public E3dView
     bool    IsLogicalGroupMarked() { return (nLogicalMarked != 0); }
     bool    IsLogicalGroupEntered() { return (nLogicalEntered != 0); }
 
-
-
     SchChartDocShell* GetDocShell() const { return pDocSh; }
 
     // drag and drop
 
-
     virtual void Notify( SfxBroadcaster& rBC, const SfxHint& rHint );
 };
 
-} //namespace binfilter
-#endif      // _SCH_SCHVIEW_HXX
+}
+#endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
