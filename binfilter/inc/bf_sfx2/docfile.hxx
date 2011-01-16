@@ -46,11 +46,13 @@
 
 #include <bf_sfx2/sfxuno.hxx>
 #include <bf_sfx2/docinf.hxx>
+
 class Timer;
 class DateTime;
 class SvStringsDtor;
 class SvEaMgr;
 class INetURLObject;
+
 namespace binfilter {
 class SvKeyValueIterator;
 
@@ -73,13 +75,6 @@ class SfxLoadEnvironment;
 #define SFX_TFPRIO_INVISIBLE_LOWRES_GRAPHIC       50
 #define SFX_TFPRIO_INVISIBLE_HIGHRES_GRAPHIC      51
 #define SFX_TFPRIO_DOWNLOADS                      60
-
-#if _SOLAR__PRIVATE
-#ifndef STRING_LIST
-#define STRING_LIST
-DECLARE_LIST( StringList, String* )//STRIP008 DECLARE_LIST( StringList, String* );
-#endif
-#endif
 
 //____________________________________________________________________________________________________________________________________
 //  defines for namespaces
@@ -130,6 +125,7 @@ struct SfxVersionInfo
                                 return *this;
                             }
 };
+
 DECLARE_LIST( _SfxVersionTable, SfxVersionInfo* )
 class SfxVersionTableDtor : public _SfxVersionTable
 {
