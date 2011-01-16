@@ -29,6 +29,7 @@
 #define _SFX_ARRDECL_HXX
 
 #include <tools/list.hxx>
+#include <vector>
 
 #include <bf_svtools/svarray.hxx>
 #include "bf_sfx2/minarray.hxx"
@@ -47,13 +48,14 @@ SV_DECL_PTRARR( SfxModuleArr_Impl, SfxModule*, 2, 2 )//STRIP008 ;
 class SfxFilter;
 DECL_PTRARRAY( SfxFilterArr_Impl, SfxFilter*, 4, 4 )//STRIP008 ;
 
-DECLARE_LIST( SfxFilterList_Impl, SfxFilter* )//STRIP008 DECLARE_LIST( SfxFilterList_Impl, SfxFilter* );
+typedef ::std::vector<  SfxFilter* > SfxFilterList_Impl;
 
 class SfxSlot;
 typedef SfxSlot* SfxSlotPtr;
 SV_DECL_PTRARR( SfxSlotArr_Impl, SfxSlotPtr, 20, 20 )//STRIP008 ;
 
-}//end of namespace binfilter
+}
+
 #endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
