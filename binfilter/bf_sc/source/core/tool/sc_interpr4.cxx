@@ -105,9 +105,9 @@ ScSpew ScInterpreter::theSpew;
 
 void ScInterpreter::ReplaceCell( ScAddress& rPos )
 {
-    ScInterpreterTableOpParams* pTOp = pDok->aTableOpList.First();
-    while (pTOp)
+    for ( size_t i = 0, n = pDok->aTableOpList.size(); i < n; ++i )
     {
+        ScInterpreterTableOpParams* pTOp = pDok->aTableOpList[ i ];
         if ( rPos == pTOp->aOld1 )
         {
             rPos = pTOp->aNew1;
@@ -118,8 +118,6 @@ void ScInterpreter::ReplaceCell( ScAddress& rPos )
             rPos = pTOp->aNew2;
             return ;
         }
-        else
-            pTOp = pDok->aTableOpList.Next();
     }
 }
 
@@ -127,9 +125,9 @@ void ScInterpreter::ReplaceCell( ScAddress& rPos )
 void ScInterpreter::ReplaceCell( USHORT& rCol, USHORT& rRow, USHORT& rTab )
 {
     ScAddress aCellPos( rCol, rRow, rTab );
-    ScInterpreterTableOpParams* pTOp = pDok->aTableOpList.First();
-    while (pTOp)
+    for ( size_t i = 0, n = pDok->aTableOpList.size(); i < n; ++i )
     {
+        ScInterpreterTableOpParams* pTOp = pDok->aTableOpList[ i ];
         if ( aCellPos == pTOp->aOld1 )
         {
             rCol = pTOp->aNew1.Col();
@@ -144,8 +142,6 @@ void ScInterpreter::ReplaceCell( USHORT& rCol, USHORT& rRow, USHORT& rTab )
             rTab = pTOp->aNew2.Tab();
             return ;
         }
-        else
-            pTOp = pDok->aTableOpList.Next();
     }
 }
 
@@ -156,14 +152,13 @@ BOOL ScInterpreter::IsTableOpInRange( const ScRange& rRange )
         return FALSE;   // not considered to be a range in TableOp sense
 
     // we can't replace a single cell in a range
-    ScInterpreterTableOpParams* pTOp = pDok->aTableOpList.First();
-    while (pTOp)
+    for ( size_t i = 0, n = pDok->aTableOpList.size(); i < n; ++i )
     {
+        ScInterpreterTableOpParams* pTOp = pDok->aTableOpList[ i ];
         if ( rRange.In( pTOp->aOld1 ) )
             return TRUE;
         if ( rRange.In( pTOp->aOld2 ) )
             return TRUE;
-        pTOp = pDok->aTableOpList.Next();
     }
     return FALSE;
 }
@@ -791,7 +786,7 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
                 SetError( errNoRef ), rRow = 0;
             if( rTab >= pDok->GetTableCount() || rRef.IsTabDeleted() )
                 SetError( errNoRef ), rTab = 0;
-            if ( pDok->aTableOpList.Count() > 0 )
+            if ( !pDok->aTableOpList.empty() )
                 ReplaceCell( rCol, rRow, rTab );
             return;
         }
@@ -833,7 +828,7 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
 /*N*/           if( nTab < 0 || nTab >= pDok->GetTableCount() || rRef.IsTabDeleted() )
 /*N*/               SetError( errNoRef ), nTab = 0;
 /*N*/           rAdr.Set( (USHORT)nCol, (USHORT)nRow, (USHORT)nTab );
-/*N*/           if ( pDok->aTableOpList.Count() > 0 )
+/*N*/           if ( !pDok->aTableOpList.empty() )
 /*?*/               ReplaceCell( rAdr );
 /*N*/           return;
 /*N*/       }
@@ -900,7 +895,7 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
 /*N*/               if( rTab2 >= nMaxTab || rRef.IsTabDeleted() )
 /*N*/                   SetError( errNoRef ), rTab2 = 0;
 /*N*/           }
-/*N*/           if ( pDok->aTableOpList.Count() > 0 && !bDontCheckForTableOp )
+/*N*/           if ( !pDok->aTableOpList.empty() && !bDontCheckForTableOp )
 /*N*/           {
 /*?*/               ScRange aRange( rCol1, rRow1, rTab1, rCol2, rRow2, rTab2 );
 /*?*/               if ( IsTableOpInRange( aRange ) )
@@ -972,7 +967,7 @@ void ScInterpreter::PopSingleRef(USHORT& rCol, USHORT &rRow, USHORT& rTab)
 /*N*/                   SetError( errNoRef ), nTab = 0;
 /*N*/               rRange.aEnd.Set( (USHORT)nCol, (USHORT)nRow, (USHORT)nTab );
 /*N*/           }
-/*N*/           if ( pDok->aTableOpList.Count() > 0 && !bDontCheckForTableOp )
+/*N*/           if ( !pDok->aTableOpList.empty() && !bDontCheckForTableOp )
 /*N*/           {
 /*?*/               if ( IsTableOpInRange( rRange ) )
 /*?*/                   SetError( errIllegalParameter );
@@ -2276,7 +2271,7 @@ void ScInterpreter::ScMissing()
 /*N*/      PopSingleRef( pTableOp->aFormulaPos );
 /*N*/
 /*N*/      pTableOp->bValid = TRUE;
-/*N*/      pDok->aTableOpList.Insert( pTableOp );
+/*N*/      pDok->aTableOpList.push_back( pTableOp );
 /*N*/      pDok->IncInterpreterTableOpLevel();
 /*N*/
 /*N*/      BOOL bReuseLastParams = (pDok->aLastTableOpParams == *pTableOp);
@@ -2314,7 +2309,14 @@ void ScInterpreter::ScMissing()
 /*N*/          PushString( aCellString );
 /*N*/      }
 /*N*/
-/*N*/      pDok->aTableOpList.Remove( pTableOp );
+            for ( ScTabOpList::iterator it = pDok->aTableOpList.begin(); it < pDok->aTableOpList.end(); ++it )
+            {
+                if ( *it == pTableOp )
+                {
+                    pDok->aTableOpList.erase( it );
+                    break;
+                }
+            }
 /*N*/      // set dirty again once more to be able to recalculate original
 /*N*/      for ( ::std::vector< ScFormulaCell* >::const_iterator iBroadcast(
 /*N*/                  pTableOp->aNotifiedFormulaCells.begin() );

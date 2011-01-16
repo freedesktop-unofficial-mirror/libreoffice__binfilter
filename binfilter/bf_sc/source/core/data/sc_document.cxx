@@ -1463,7 +1463,7 @@ DBG_BF_ASSERT(0, "STRIP");
 
 /*N*/  void ScDocument::AddTableOpFormulaCell( ScFormulaCell* pCell )
 /*N*/  {
-/*N*/      ScInterpreterTableOpParams* p = aTableOpList.Last();
+/*N*/      ScInterpreterTableOpParams* p = ( aTableOpList.empty() ) ? NULL : aTableOpList.back();
 /*N*/      if ( p && p->bCollectNotifications )
 /*N*/      {
 /*N*/          if ( p->bRefresh )

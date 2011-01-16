@@ -98,7 +98,7 @@ struct ScInterpreterTableOpParams
     }
 };
 
-DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* )//STRIP008 DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* );
+typedef ::std::vector< ScInterpreterTableOpParams* > ScTabOpList;
 
 } //namespace binfilter
 #endif // SC_TABOPPARAMS_HXX
