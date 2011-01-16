@@ -98,7 +98,7 @@ struct DataDescription;
 class SchRectObj;
 
 typedef ::std::vector< SfxItemSet* > ItemSetList;
-DECLARE_LIST(DescrList, E3dLabelObj*)
+typedef ::std::vector< E3dLabelObj* > DescrList;
 
 #define VERTICAL_LINE aLine[0].Y() = rRect.Bottom(); aLine[1].Y() = rRect.Top();
 #define HORIZONTAL_LINE aLine[0].X() = rRect.Left(); aLine[1].X() = rRect.Right();

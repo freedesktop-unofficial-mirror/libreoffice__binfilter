@@ -231,9 +231,9 @@ namespace binfilter {
 /*N*/   //     die Achsentitel gemaess dieses Parameters gesetzt werden koennen.
 /*N*/   bSwitch3DColRow = bSwitchColRow;
 /*N*/
-/*N*/   aXDescrList.Clear();
-/*N*/   aYDescrList.Clear();
-/*N*/   aZDescrList.Clear();
+/*N*/   aXDescrList.clear();
+/*N*/   aYDescrList.clear();
+/*N*/   aZDescrList.clear();
 /*N*/
 /*N*/   E3dDefaultAttributes aDefltAttr3D;
 /*N*/
@@ -264,7 +264,6 @@ namespace binfilter {
 /*N*/               pWallObj->InsertUserData(new SchObjectId(CHOBJID_DIAGRAM_WALL));
 /*N*/               rScene.Insert3DObj(pWallObj);
 /*N*/
-/*N*/ //-/              pWallObj->NbcSetAttributes(*pDiagramWallAttr, FALSE);
 /*N*/               pWallObj->SetItemSet(*pDiagramWallAttr);
 /*N*/
 /*N*/               pWallObj->NbcSetTransform(aShift);
@@ -428,7 +427,7 @@ namespace binfilter {
 /*N*/                               }
 /*N*/
 /*N*/                               E3dLabelObj *pE3DLabel = new E3dLabelObj(aLine3D[1],pTextObj);
-/*N*/                               aYDescrList.Insert(pE3DLabel,LIST_APPEND);
+/*N*/                               aYDescrList.push_back( pE3DLabel );
 /*N*/                           }
 /*N*/                       }
 /*N*/                       else
@@ -465,7 +464,7 @@ namespace binfilter {
 /*N*/                               }
 /*N*/
 /*N*/                               E3dLabelObj *pE3DLabel = new E3dLabelObj(aLine3D [1],pTextObj);
-/*N*/                               aYDescrList.Insert(pE3DLabel,LIST_APPEND);
+/*N*/                               aYDescrList.push_back( pE3DLabel );
 /*N*/                           }
 /*N*/
 /*N*/                       }
@@ -561,7 +560,6 @@ namespace binfilter {
 /*N*/               pFloorObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_FLOOR ) );
 /*N*/               rScene.Insert3DObj( pFloorObj );
 /*N*/
-/*N*/ //-/              pFloorObj->NbcSetAttributes( *pDiagramFloorAttr, FALSE );
 /*N*/               pFloorObj->SetItemSet(*pDiagramFloorAttr);
 /*N*/
 /*N*/               pFloorObj->NbcSetTransform( aMatrix * aShift );
@@ -608,7 +606,7 @@ namespace binfilter {
 /*N*/                           E3dLabelObj *pE3DLabel = new E3dLabelObj
 /*N*/                               (aTextPos,pTextObj );
 /*N*/                           pE3DLabel->SetMarkProtect(TRUE);
-/*N*/                           aXDescrList.Insert(pE3DLabel,LIST_APPEND);
+/*N*/                           aXDescrList.push_back( pE3DLabel );
 /*N*/                       }
 /*N*/
 /*N*/                       // hilfslinien koennen mit erzeugt werden
@@ -649,7 +647,7 @@ namespace binfilter {
 /*N*/                               aXTextAttr, FALSE,CHADJUST_TOP_RIGHT);
 /*N*/                           E3dLabelObj *pE3DLabel = new E3dLabelObj (aTextPos,pTextObj );
 /*N*/                           pE3DLabel->SetMarkProtect(TRUE);
-/*N*/                           aXDescrList.Insert(pE3DLabel,LIST_APPEND);
+/*N*/                           aXDescrList.push_back( pE3DLabel );
 /*N*/                       }
 /*N*/
 /*N*/                       // hilfslinien koennen mit erzeugt werden
@@ -704,7 +702,7 @@ namespace binfilter {
 /*N*/
 /*N*/                       E3dLabelObj *pE3DLabel = new E3dLabelObj(aTextPos,pTextObj);
 /*N*/                       pE3DLabel->SetMarkProtect(TRUE);
-/*N*/                       aZDescrList.Insert(pE3DLabel,(ULONG)0);//ZListe umgekehrt füllen
+/*N*/                       aZDescrList.insert( aZDescrList.begin(), pE3DLabel );//ZListe umgekehrt füllen
 /*N*/                   }
 /*N*/
 /*N*/                   if (pZGridHelpGroup && (i < nRowCnt))
@@ -1040,7 +1038,6 @@ namespace binfilter {
 /*?*/                                       aRect3D[3] = aBackSide[nPoints];
 /*?*/                                       E3dPolygonObj *pPolyObj=new SchE3dPolygonObj (aDefltAttr3D, aRect3D);
 /*?*/
-/*?*/ //-/                                      pPolyObj->SetDoubleSided(TRUE); //Neu 18.5.98
 /*?*/                                       pPolyObj->SetItem(Svx3DDoubleSidedItem(TRUE)); //Neu 18.5.98
 /*?*/
 /*?*/                                       Create3DPolyObject (&rDataRowAttr,pPolyObj,CHOBJID_AREA, pStripe);
@@ -1153,10 +1150,6 @@ namespace binfilter {
 /*?*/             pScene->Insert3DObj( pRowGroup );
 /*N*/         }
 
-        /*Dirty3D (nColCnt, nRow, TRUE, pDescription, (eDataDescr != CHDESCR_NONE) && bShowDataDescr
-                                                                             ? pScene
-                                                                             : NULL);
-        */
 /*N*/       a3DPos.Z() += nPartDepth;
 /*N*/   }//end for nRow
 /*N*/
@@ -1227,7 +1220,6 @@ namespace binfilter {
 /*N*/   long nDepth     = -nPartDepth;
 /*N*/
 /*N*/   SfxItemSet* pYAxisAttr = pChartYAxis->GetItemSet();
-/*N*/ //    BOOL bLogarithm = ((const SfxBoolItem&) pYAxisAttr->Get(SCHATTR_Y_AXIS_LOGARITHM)).GetValue();
 /*N*/   BOOL bLogarithm = ((const SfxBoolItem&) pYAxisAttr->Get(SCHATTR_AXIS_LOGARITHM)).GetValue();
 /*N*/   BOOL bPartDescr;
 /*N*/
@@ -1326,7 +1318,6 @@ namespace binfilter {
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
 /*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDescription = new DataDescription [nColCnt];
-/*?*/                       //STRIP001  ClearDataDescription(pDescription,nColCnt);
 /*?*/                       }
 /*?*/
 /*?*/                       pDescription [nCol].eDescr = eDescr;
@@ -1758,10 +1749,6 @@ namespace binfilter {
 /*N*/                   }
 /*N*/               }
 /*N*/
-/*N*/               //Dirty3D (nRowCnt, nCol, TRUE, pDescription, (eDataDescr != CHDESCR_NONE)&& bShowDataDescr
-/*N*/               //                                                                   ? pScene
-/*N*/               //                                                                   : NULL);
-/*N*/
 /*N*/               // BM: moved here from Dirty3D.
 /*N*/               if( pDescription )
 /*N*/               {
@@ -1953,7 +1940,6 @@ namespace binfilter {
 /*N*/
 /*N*/           // default attributes reset the texture projection items so set them explicitly
 /*N*/           // use object specific projection in y direction
-/*N*/ //-/          pObj->SetUseStdTextureY( FALSE );
 /*N*/           pObj->SetItem( Svx3DTextureProjectionYItem( 0 ));
 /*N*/           pObj->SetItem( Svx3DDoubleSidedItem( TRUE ));
 /*N*/
@@ -1964,7 +1950,6 @@ namespace binfilter {
 /*N*/           pObj->SetResizeProtect(TRUE);
 /*N*/           pObj->SetModel(this);
 /*N*/
-/*N*/ //-/          pObj->NbcSetAttributes(aDataPointAttr,FALSE);
 /*N*/           pObj->SetItemSet(aDataPointAttr);
 /*N*/
 /*N*/
@@ -2098,8 +2083,6 @@ namespace binfilter {
 /*N*/
 /*N*/   aInitialSizefor3d = aInitialSize;
 /*N*/ }
-
-
 
 }
 

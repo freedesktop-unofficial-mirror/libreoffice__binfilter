@@ -91,8 +91,6 @@ namespace binfilter {
 /*N*/       aNewVol.MaxVec ().Y () * 1.2,
 /*N*/       aNewVol.MaxVec ().Z ());
 /*N*/
-/*N*/   //pDoc->Position3DAxisTitles(GetLogicRect());
-/*N*/
 /*N*/   SetRectsDirty(FALSE);
 /*N*/   return aNewVol;
 /*N*/ }
@@ -118,8 +116,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // FileFormat 5.0
 /*N*/       // Die SubList der ChartScene wird nun nicht mehr geschrieben
-/*N*/
-/*N*/       //pSub->GetPage()->SetObjectsNotPersistent(TRUE);
 /*N*/
 /*N*/       // Scene schreiben
 /*N*/       E3dPolyScene::WriteData(rOut);
@@ -152,8 +148,9 @@ namespace binfilter {
 /*N*/ {
 /*N*/   Rectangle aOldRect;
 /*N*/
-/*N*/   for (E3dLabelObj *pLabel = rList.First (); pLabel; pLabel = rList.Next ())
-/*N*/   {
+        for ( size_t i = 0, n = rList.size(); i < n; ++i )
+        {
+            E3dLabelObj *pLabel = rList[ i ];
 /*N*/       Insert3DObj(pLabel);
 /*N*/       pLabel->InsertUserData (new SchAxisId (nAxisId));
 /*N*/   }
@@ -195,8 +192,8 @@ namespace binfilter {
 /*N*/   rSet.SetBackClippingPlane(aVolume.MaxVec().Z());
 /*N*/   rSet.SetViewportRectangle(aBound);
 /*N*/
-/*N*/
-/*N*/   E3dLabelObj *p3DObj=aList.First();
+        size_t i = 0;
+/*N*/   E3dLabelObj *p3DObj = aList.empty() ? NULL : aList[ 0 ];
 /*N*/   E3dLabelObj *pOld3DObj=p3DObj;
 /*N*/   BOOL bGetCurrent=FALSE;
 /*N*/
@@ -227,11 +224,12 @@ namespace binfilter {
 /*N*/           //entfernt wurde oder nicht (bGetCurrent)
 /*N*/           if(bGetCurrent)
 /*N*/           {
-/*?*/               p3DObj=aList.GetCurObject();
+/*?*/               p3DObj = aList[ i ];
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*N*/               p3DObj=aList.Next();
+                    ++i;
+                    p3DObj = ( i < aList.size() ) ? aList[ i ] : NULL;
 /*N*/           }
 /*N*/           bGetCurrent=FALSE;
 /*N*/
@@ -267,16 +265,6 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       //aus der Page streichen
 /*N*/                       pParent->Remove3DObj(p3DObj);
-/*N*/
-/*N*/
-/*N*/                       //Die Objekte koennen ruhig in der Liste verbleiben, löschen führt
-/*N*/                       //nur zu Problemen
-/*N*/
-/*N*/                       //Da das Object entfernt wurde, darf nicht Next gerufen werden.
-/*N*/                       //bGetCurrent=TRUE;
-/*N*/                       //und aus der Liste streichen
-/*N*/                       //aList.Remove();
-/*N*/                       //delete p3DObj; (íst offenbar bei Remove() schon geschehen ???)
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
