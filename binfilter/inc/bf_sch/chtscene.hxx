@@ -41,8 +41,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 //DECLARE_LIST(DescrList, E3dLabelObj*);
-
 class ChartScene : public E3dPolyScene
 {
   protected:
