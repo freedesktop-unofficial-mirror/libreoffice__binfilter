@@ -37,8 +37,6 @@ namespace binfilter {
 
 class Reader;
 
-typedef void (*FnGetWriter)( const String&, WriterRef& );
-
 struct SwIoDetect
 {
 // eigentlich privat, aber der Compiler kann sonst die
@@ -53,12 +51,9 @@ struct SwIoDetect
 
 #ifdef IS_SW_DLL
     Reader* pReader;
-    FnGetWriter fnGetWriter;
     BOOL bDelReader;
 
    inline Reader* GetReader() const { return pReader; }
-    inline void GetWriter( const String& rNm, WriterRef& xWrt ) const
-        { if( fnGetWriter ) (*fnGetWriter)(rNm,xWrt); else xWrt = WriterRef(0); }
 #endif
 
     const sal_Char* IsReader(const sal_Char* pHeader, ULONG nInLen,
@@ -67,9 +62,9 @@ struct SwIoDetect
 
 
 #ifdef IS_SW_DLL
-#define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen, 0, pWrt, bDel
+#define SwIoEntry(sNm, cCharLen,  bDel) sNm, cCharLen, 0,  bDel
 #else
-#define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen
+#define SwIoEntry(sNm, cCharLen, bDel)  sNm, cCharLen
 #endif
 
 #ifdef DEBUG_SH
@@ -156,26 +151,22 @@ sal_Char FILTER_XMLVW[]     = "CXMLVWEB";                        \
 sal_Char sSwDos[]       = "SW6";                                \
                                                                             \
                                                                             \
-SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
-    {/* 0*/ SwIoEntry(FILTER_SW5,       4,          0,  TRUE)}, \
-    {/* 1*/ SwIoEntry(FILTER_SW4,       4,          0,  FALSE)}, \
-    {/* 2*/ SwIoEntry(FILTER_SW3,       4,          0,  FALSE)}, \
-    {/* 3*/ SwIoEntry(FILTER_SWG,       STRING_LEN, 0,                  TRUE)}, \
-    {/* 4*/ SwIoEntry(FILTER_SWGV,      4,          0,                  FALSE)}, \
-    {/*  6*/ SwIoEntry(sSwDos,           STRING_LEN,  0,                  TRUE)}, \
-    {/* 7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::binfilter::GetASCWriter,     FALSE)}, \
-    {/* 10*/ SwIoEntry(FILTER_W4W,        3,          &::binfilter::GetW4WWriter,    TRUE)}, \
-    {/* 12*/ SwIoEntry(sCExcel,           5,          0,                  TRUE)}, \
-    {/* 13*/ SwIoEntry(sExcel,            4,          0,                  FALSE)}, \
-    {/* 14*/ SwIoEntry(sLotusD,           5,          0,                  TRUE)}, \
-    {/* 18*/ SwIoEntry(sSwg1,            4,          0,                 FALSE)}, \
-    {/* 19*/ SwIoEntry(FILTER_XML,       4,          0, TRUE)} \
-                                                                            \
-                                                                          , \
-/*last*/ {SwIoEntry(FILTER_TEXT,    4,          &::binfilter::GetASCWriter,     TRUE)} \
+SwIoDetect aReaderWriter[ MAXFILTER ] {                        \
+    {/* 0*/ SwIoEntry(FILTER_SW5,     4,            TRUE)},    \
+    {/* 1*/ SwIoEntry(FILTER_SW4,     4,            FALSE)},   \
+    {/* 2*/ SwIoEntry(FILTER_SW3,     4,            FALSE)},   \
+    {/* 3*/ SwIoEntry(FILTER_SWG,     STRING_LEN,   TRUE)},    \
+    {/* 4*/ SwIoEntry(FILTER_SWGV,    4,            FALSE)},   \
+    {/* 5*/ SwIoEntry(sSwDos,         STRING_LEN,   TRUE)},    \
+    {/* 6*/ SwIoEntry(FILTER_BAS,     STRING_LEN,   FALSE)},   \
+    {/* 7*/ SwIoEntry(FILTER_W4W,     3,            TRUE)},    \
+    {/* 8*/ SwIoEntry(sCExcel,        5,            TRUE)},    \
+    {/* 9*/ SwIoEntry(sExcel,         4,            FALSE)},   \
+    {/*10*/ SwIoEntry(sLotusD,        5,            TRUE)},    \
+    {/*11*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
+    {/*12*/ SwIoEntry(FILTER_XML,     4,            TRUE)},    \
+    {/*13*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
 };                                                                          \
-
-
 
 // Filter erkennung
 struct W1_FIB

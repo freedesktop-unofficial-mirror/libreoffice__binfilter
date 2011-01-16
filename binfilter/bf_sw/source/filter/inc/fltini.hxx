@@ -88,9 +88,6 @@ class LotusReader : public Reader
 public:
 };
 
-
-
-
 class XMLReader : public Reader
 {
     virtual ULONG Read(SwDoc &,SwPaM &,const String &);
@@ -105,17 +102,12 @@ public:
                                 SvStrings& rStrings ) const;
 };
 
-// die speziellen Writer
-
-void GetW4WWriter( const String&, WriterRef& );
-void GetStgWriter( const String&, WriterRef& );
-void GetWWWriter( const String&, WriterRef& );
-
 // Umsetzen der LRSpaces im aktuell importierten Doc. Die Fremd-Filter
 // liefern immer absolute Werte fuer die Ebenen einer NumRule. Wir
 // verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.
 // Das hat zur Folge, das bei allen Absaetzen die EInzuege der NumRule vom
 // Absatz-Einzug abgezogen werden muss.
+
 class SwRelNumRuleSpaces
 {
     SwNumRuleTbl* pNumRuleTbl;  // Liste aller benannten NumRules

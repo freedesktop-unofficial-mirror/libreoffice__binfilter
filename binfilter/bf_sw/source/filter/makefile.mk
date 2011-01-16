@@ -49,7 +49,6 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 
 SUBLIBS= \
-    $(SLB)$/sw_ascii.lib \
     $(SLB)$/sw_basflt.lib \
     $(SLB)$/sw_writer.lib \
     $(SLB)$/sw_excel.lib \

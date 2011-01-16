@@ -284,7 +284,12 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
 #else
     aStream.SetNumberFormatInt( NUMBERFORMAT_INT_LITTLEENDIAN );
 #endif
-    WriterRef xWrt;
+/* this part is commented out since is not more executable due to the
+   deletion of the Writer class.
+   Investigation needs to be done in order to know if the function can be
+   removed too, or needs to be adapted
+*/
+/*    WriterRef xWrt;
     SwIoSystem::GetWriter( C2S(FILTER_TEXT_DLG), xWrt );
     if( xWrt.Is() )
     {
@@ -294,6 +299,7 @@ void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
         xWrt->SetAsciiOptions( aOpt );
         xWrt->bUCS2_WithStartChar = FALSE;
     }
+*/
 }
 
 void lcl_setCharStyle(SwDoc* pDoc, const uno::Any aValue, SfxItemSet& rSet)

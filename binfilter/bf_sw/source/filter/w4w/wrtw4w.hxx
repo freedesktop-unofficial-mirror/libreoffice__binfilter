@@ -30,7 +30,6 @@
 
 #include <swtypes.hxx>
 #include <shellio.hxx>
-#include <wrt_fn.hxx>
 #include <horiornt.hxx>
 class SvMemoryStream;
 namespace binfilter {
@@ -54,8 +53,8 @@ class SwTableNode;
 class SwTxtFmtColl;
 struct SwPosition;
 
-extern SwAttrFnTab aW4WAttrFnTab;
-extern SwNodeFnTab aW4WNodeFnTab;
+//extern SwAttrFnTab aW4WAttrFnTab;
+//extern SwNodeFnTab aW4WNodeFnTab;
 
 #define cW4W_BEGICF     '\x1b'
 #define cW4W_LED        '\x1d'
@@ -89,156 +88,11 @@ extern SwNodeFnTab aW4WNodeFnTab;
 extern const sal_Char sW4W_RECBEGIN[3]; // W4W_BEGICF W4W_LED
 extern const sal_Char sW4W_TERMEND[3];  // W4W_TXTREM W4W_RED
 
-// der W4W-Writer
-
-class SwW4WWriter : public Writer
-{
-    String sVersion;        // fuer die Verschiedenen Formate
-    SwPosFlyFrms* pFlyPos;  // Pointer auf die aktuelle "FlyFrmTabelle"
-
-    ULONG nIniFlags;        // Flags aus der writer.ini
-                            // obere 16 Bits fuer den W4W-Writer
-                            // Bedeutung siehe Datei filter\inc\w4wpar.hxx
-    ULONG nMaxNode;         // Fuer Prozent-Balken
-
-    USHORT nFilter;
-    USHORT nAktFlyPos;      // Index auf das naechste "FlyFrmFmt"
-    USHORT nPgLeft;
-    USHORT nPgRight;
-
-    BOOL bStorageFlag;
-
-
-    void OutW4WFontTab();
-    void OutW4WStyleTab();
-
-    void MakeHeader();
-
-        // gebe die evt. an der akt. Position stehenden FlyFrame aus.
-    void OutFlyFrm();
-    void OutW4WFlyFrms( const SwFlyFrmFmt& );
-
-public:
-
-    SwFlyFrmFmt* pFlyFmt;           // liegt der Node in einem FlyFrame, ist
-                                    // das Format gesetzt, sonst 0
-    SvMemoryStream* pStyleEndStrm;  // fuer StyleOn/Off
-    SvMemoryStream* pPostNlStrm;    // fuer Attribute, die nach dem naechsten
-                                    // HNL abgeschaltet werden muessen
-    const SwPageDesc* pPageDesc;    // aktuelles Seitenlayout
-    SwPosition* pNxtPg;             // AnfangsPosition der naechsten Seite
-    const SwPageDesc* pPgDsc2;      // aktuelles Seitenlayout,
-                                    // doppelt gemoppelt !?
-    SwPageIter* pIter;              // Iterator fuer seitenweise Spruenge
-    const SwFrmFmt* pPgFrm;         // akt. PageFrame, i.A. pPgDsc2->GetMaster()
-    const SwFmt* pNdFmt;            // akt. Format/Collection vom Node
-                                    // fuer den Zugriff auf einige Attribute
-                                    // z.B. Font-Size, LR-Space,..
-
-    SwTwips nFlyWidth, nFlyHeight;  // Fuer Anpassung Graphic
-    SwTwips nFlyLeft, nFlyRight;    // fuer Anpassung Raender
-
-    rtl_TextEncoding eTargCharSet;  // Target-CharSet
-
-    USHORT nFontHeight;             // akt. Hoehe vom Font
-    USHORT nFontId;                 // Id vom akt. Font
-    USHORT nDefLanguage;            // Default-Language zum Ausschalten d. Attr
-
-    BOOL bFirstLine : 1;            // wird die 1. Zeile ausgegeben ?
-    BOOL bStyleDef : 1;             // ist gerade eine Style-Def am werden ?
-    BOOL bStyleOnOff : 1;           // wird gerade ein Style An/Ausgeschaltet ?
-    BOOL bTable : 1;                // ist gerade eine Tabelle am werden ?
-    BOOL bPageDesc : 1;             // wird gerade ein PageDesc ausgegeben ?
-    BOOL bEvenPage : 1;             // ist gerade Seitenzahl ?
-    BOOL bLastPg :1;                // Letzte Seite ?
-    BOOL bHdFt : 1;                 // wird gerade Header oder Footer ausgegeben ?
-    BOOL bIsTxtInPgDesc : 1;        // gegen ueberfluessige HNLs
-    BOOL bFly : 1;                  // ist gerade ein FlyFrame am werden ?
-    BOOL bTxtAttr : 1;              // werden TextAttribute ausgegeben ?
-    BOOL bAttrOnOff: 1;             // TRUE: Attribut StartCode; sonst
-                                    // den EndCode ausgeben
-
-    SwW4WWriter( const String& rFilterName );
-    virtual ~SwW4WWriter();
-
-    void Out_SwDoc( SwPaM*, BOOL bAttrOn );
-
-    void OutW4W_CountTableSize( const SwTable*, USHORT&, USHORT&, USHORT& );
-    BYTE OutW4W_GetTableColPos( const SwTableLine*, SwHoriOrient, SwTwips* );
-    void OutW4W_WriteTableHeader( BYTE nCode, USHORT nCols, SwTwips* pCellPos );
-    BOOL OutW4W_GetBorder( const SvxBoxItem* pBox, USHORT& rBorder );
-    void OutW4W_WriteTableLineHeader( USHORT nCols, USHORT , USHORT* = 0);
-    void OutW4W_WriteTableBoxHeader( USHORT nNumCol, USHORT nSpan );
-    BOOL OutW4W_TestTableLineWW2( const SwTable*, USHORT, USHORT, SwTwips* );
-    void OutW4W_TableLineWW2( const SwTable*, USHORT, USHORT, USHORT, SwTwips* );
-    void OutW4W_SwTableWW2( const SwTable*, USHORT, USHORT, USHORT,
-                             SwHoriOrient, SwTwips* );
-    void OutW4W_TableLineNorm( const SwTable*, USHORT, USHORT, USHORT, SwTwips* );
-    void OutW4W_SwTableNorm( const SwTable*, USHORT, USHORT, USHORT,
-                             SwHoriOrient, SwTwips* );
-
-    void OutW4W_SwTable( const SwTableNode* pTableNd );
-
-    USHORT GetId( const SwTxtFmtColl& );
-    USHORT GetId( const SvxFontItem& );
-    const SvxFontItem& GetFont( USHORT nId ) const;
-
-    void GetMargins( SwTwips& rLeft, SwTwips& rWidth ); // ermittle Raender
-
-    USHORT GetFilter() const                { return nFilter; }
-    const String& GetVersion() const        { return sVersion; }
-    void ChgVersion( const String&  rVers ) { sVersion = rVers; }
-    void ChgFilter( USHORT nFltr )          { nFilter = nFltr; }
-    ULONG GetIniFlags() const               { return nIniFlags; }
-
-        // gebe die TextCollection am TextNode aus. Die Attribute
-        // werden im Style an- und abgeschaltet. Das Abschalten wird im
-        // extra Stream gespeichert !!
-    void Out_SwTxtColl_OnOff( const SwTxtFmtColl& rTxtColl,
-                                const SwAttrSet* pAutoSet, BOOL bOn );
-
-        // nicht inline, um Pointer zu pruefen
-        // bStyleStream = FALSE returnt den normalen Ausgabe-Stream (wird
-        // fuer die TextAttribute benoetigt!)
-    SvStream& GetStrm( BOOL bStyleStream = TRUE ); //$ ostream
-
-    SvStream& GetNlStrm(); //$ ostream
-
-    // fuer W4WSaveData
-    SwPaM* GetEndPaM()              { return pOrigPam; }
-    void SetEndPaM( SwPaM* pPam )   { pOrigPam = pPam; }
-
-    // fuer Grafiken
-    void OutW4W_Grf( const SwGrfNode* pGrfNd );
-
-    // fuer Storage / Stream
-    virtual BOOL IsStgWriter();
-};
-
-struct W4WSaveData
-{
-    SwW4WWriter& rWrt;
-    SwPaM* pOldPam, *pOldEnd;
-    SwFlyFrmFmt* pOldFlyFmt;
-    const SwPageDesc* pOldPageDesc;
-    SvMemoryStream* pOldStyleEndStrm;       // fuer StyleOn/Off
-    const SwFmt* pOldNdFmt;             // akt. Attribute vom Node
-    BOOL bOldWriteAll;
-
-    W4WSaveData( SwW4WWriter&, ULONG nStt, ULONG nEnd );
-    ~W4WSaveData();
-};
-
-// einige Funktions-Deklarationen
-Writer& OutW4W_SwChar( Writer& rWrt, sal_Unicode c, BOOL bRaw );
-Writer& OutW4W_String( Writer& rWrt, const String& rStr );
-Writer& OutW4W_SwFmt( Writer& rWrt, const SwFmt& rFmt );
 
 SvStream& W4WOutHex( SvStream& rStrm, USHORT nHex );
 SvStream& W4WOutHex4( SvStream& rStrm, USHORT nHex );
 SvStream& W4WOutLong( SvStream& rStrm, long nVal );
 SvStream& W4WOutULong( SvStream& rStrm, ULONG nVal );
-void OutW4W_SwFmtPageDesc1( SwW4WWriter& rW4WWrt, const SwPageDesc* pPg );
 
 
 } //namespace binfilter

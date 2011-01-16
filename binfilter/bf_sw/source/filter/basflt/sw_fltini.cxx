@@ -134,17 +134,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/ }
 
 
-/*N*/ void SwIoSystem::GetWriter( const String& rFltName, WriterRef& xRet )
-/*N*/ {
-/*N*/   for( USHORT n = 0; n < MAXFILTER; ++n )
-/*N*/       if( aReaderWriter[n].IsFilter( rFltName ) )
-/*N*/       {
-/*N*/           aReaderWriter[n].GetWriter( rFltName, xRet );
-/*N*/           break;
-/*N*/       }
-/*N*/ }
-
-
  SwRead SwIoSystem::GetReader( const String& rFltName )
  {
     SwRead pRead = 0;
@@ -243,12 +232,6 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
-
-
-
- BOOL Writer::IsStgWriter() const { return FALSE; }
- BOOL Writer::IsSw3Writer() const { return FALSE; }
-
 
 ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
 {

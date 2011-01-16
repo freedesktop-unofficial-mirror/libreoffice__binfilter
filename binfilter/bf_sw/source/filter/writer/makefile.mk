@@ -45,12 +45,10 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 
 CXXFILES = \
         sw_writer.cxx \
-        sw_wrt_fn.cxx \
         sw_wrtswtbl.cxx
 
 SLOFILES =  \
         $(SLO)$/sw_writer.obj \
-        $(SLO)$/sw_wrt_fn.obj \
         $(SLO)$/sw_wrtswtbl.obj
 
 # --- Tagets -------------------------------------------------------

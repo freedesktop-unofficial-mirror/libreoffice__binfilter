@@ -54,9 +54,7 @@ CXXFILES = \
         sw_w4wpar1.cxx \
         sw_w4wpar2.cxx \
         sw_w4wpar3.cxx \
-        sw_w4wstk.cxx \
-        sw_wrtgraf.cxx \
-        sw_wrtw4w.cxx
+        sw_w4wstk.cxx 
 
 
 
@@ -66,9 +64,7 @@ SLOFILES =  \
         $(SLO)$/sw_w4wpar1.obj \
         $(SLO)$/sw_w4wpar2.obj \
         $(SLO)$/sw_w4wpar3.obj \
-        $(SLO)$/sw_w4wstk.obj \
-        $(SLO)$/sw_wrtgraf.obj \
-        $(SLO)$/sw_wrtw4w.obj
+        $(SLO)$/sw_w4wstk.obj 
 
 # --- Tagets -------------------------------------------------------
 
