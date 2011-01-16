@@ -26,15 +26,11 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _SOLAR__PRIVATE 1
-
-
-
 
 #include <vcl/window.hxx>
 
@@ -42,16 +38,13 @@
 #include <editeng.hxx>
 #include <editview.hxx>
 
-
-
 #include "itemdata.hxx"
-
-
 
 #include <editeng.hrc>
 #include <helpid.hrc>
 
 #include <com/sun/star/beans/PropertyValues.hdl>
+
 namespace binfilter {
 
 using namespace rtl;
@@ -63,7 +56,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ DBG_NAME( EditView )
 
 // From SW => Create common method
-
 
 /*N*/ EditView::~EditView()
 /*N*/ {
@@ -135,10 +127,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-
-
-
-
 /*N*/ Window*   EditView::GetWindow() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditView, 0 );
@@ -167,8 +155,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
 /*N*/
 /*N*/ // Draw vertraegt die Assertion nicht, spaeter mal aktivieren
-/*N*/ //    DBG_ASSERT( pImpEditView->pEditEngine->HasView( this ), "ShowCursor - View nicht angemeldet!" );
-/*N*/ //    DBG_ASSERT( !GetWindow()->IsInPaint(), "ShowCursor - Why in Paint ?!" );
 /*N*/
 /*N*/   if ( pImpEditView->pEditEngine->HasView( this ) )
 /*N*/   {
@@ -185,18 +171,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   pImpEditView->GetCursor()->Hide();
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
-
-#ifndef SVX_LIGHT
-#endif
 
 /*N*/ void EditView::Cut()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001

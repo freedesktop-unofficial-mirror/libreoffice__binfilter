@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-
-// #define _SOLAR__PRIVATE 1
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -36,7 +34,6 @@
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
-
 
 #include <vcl/window.hxx>
 
@@ -47,41 +44,20 @@
 #include <eerdll.hxx>
 #include <editeng.hrc>
 
-
-
 #include "itemdata.hxx"
-
-
 
 #include <flditem.hxx>
 
 #include "lrspitem.hxx"
 
-
 #include <numitem.hxx>
 #include <bulitem.hxx>
 
-
-
-
-
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
-// Spaeter -> TOOLS\STRING.H (fuer Grep: WS_TARGET)
-
-//using namespace ::rtl;
-//using namespace ::utl;
 using namespace ::com::sun::star;
-//using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::uno;
-//using namespace ::com::sun::star::lang;
-//using namespace ::com::sun::star::beans;
-//using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::linguistic2;
-
-
 
 /*N*/ DBG_NAME( EditEngine )
 /*N*/ DBG_NAMEEX( EditView )//STRIP008 ;
@@ -273,13 +249,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           // Aendern der Breite hat bei AutoPageSize keine Wirkung, da durch
 /*N*/           // Textbreite bestimmt.
 /*N*/           // Optimierung erst nach Vobis-Auslieferung aktivieren...
-/*N*/ //            if ( !bAutoPageSize )
-/*N*/               pImpEditEngine->FormatFullDoc();
-/*N*/ //            else
-/*N*/ //            {
-/*N*/ //                pImpEditEngine->FormatDoc();            // PageSize, falls Aenderung
-/*N*/ //                pImpEditEngine->CheckAutoPageSize();    // Falls nichts formatiert wurde
-/*N*/ //            }
+/*N*/           pImpEditEngine->FormatFullDoc();
 /*N*/
 /*N*/           pImpEditEngine->UpdateViews( pImpEditEngine->GetActiveView() );
 /*N*/
@@ -927,11 +897,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 
-
-
-
-
-
 /*N*/ void EditEngine::EraseVirtualDevice()
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
@@ -945,16 +910,11 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 
-
 /*N*/ void EditEngine::SetDefaultLanguage( LanguageType eLang )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->SetDefaultLanguage( eLang );
 /*N*/ }
-
-
-
-
 
 
 /*N*/ void EditEngine::SetGlobalCharStretching( sal_uInt16 nX, sal_uInt16 nY )
