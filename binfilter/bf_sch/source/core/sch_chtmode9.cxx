@@ -706,8 +706,8 @@ namespace binfilter {
 /*N*/               case CHSTYLE_2D_LINE_STACKEDCOLUMN:
 /*N*/               {
 /*N*/                   Pair aTopBottom(pAxis->Stack(fData,TRUE));
-/*N*/                   Point aTopLeft(pBar->BarLeft()/*nPos*/,aTopBottom.A());
-/*N*/                   Point aBottomRight(pBar->BarRight()/*nPos + nColWidth*/,aTopBottom.B());
+/*N*/                   Point aTopLeft(pBar->BarLeft(),aTopBottom.A());
+/*N*/                   Point aBottomRight(pBar->BarRight(),aTopBottom.B());
 /*N*/
 /*N*/
 /*N*/                   Rectangle aObjRect(aTopLeft, aBottomRight);
@@ -810,7 +810,6 @@ namespace binfilter {
 /*?*/                                   pList->NbcInsertObject(pLclObj);//immer vorne, egal welche Achse
 /*?*/                                   // Linie attributieren
 /*?*/
-/*?*/ //-/                                  pLclObj->NbcSetAttributes(rDataRowAttr, FALSE);
 /*?*/                                   pLclObj->SetItemSet(rDataRowAttr);
 /*?*/
 /*?*/                              }
@@ -1052,9 +1051,7 @@ namespace binfilter {
 /*N*/               pObj->InsertUserData(new SchDataCol((short)nCol));
 /*N*/               pLineList->NbcInsertObject(pObj,LIST_APPEND);
 /*N*/
-/*N*/ //-/              pObj->NbcSetAttributes(*pStockLineAttr, FALSE);
 /*N*/               pObj->SetItemSet(*pStockLineAttr);
-/*N*/
 /*N*/
 /*N*/               if(HasStockRects()&&nRowCnt>3)
 /*N*/               {
@@ -1086,25 +1083,19 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       pLossList->NbcInsertObject(pObj,LIST_APPEND);
 /*N*/
-/*N*/ //-/                      pObj->NbcSetAttributes(*pStockLossAttr, FALSE);
 /*N*/                       pObj->SetItemSet(*pStockLossAttr);
-/*N*/
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
 /*N*/                       pPlusList->NbcInsertObject(pObj,LIST_APPEND);
 /*N*/
-/*N*/ //-/                      pObj->NbcSetAttributes(*pStockPlusAttr, FALSE);
 /*N*/                       pObj->SetItemSet(*pStockPlusAttr);
-/*N*/
 /*N*/                   }
 /*N*/               }
-/*N*/
 /*N*/           }
 /*N*/
 /*N*/           aBarY1.NextCol();
 /*N*/           aBarY2.NextCol();
-/*N*/ //            nPos+=nXWidth;
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1185,7 +1176,6 @@ namespace binfilter {
 /*N*/               // ************************* end description *******************************
 /*N*/           }
 /*N*/           pBar->NextCol();
-/*N*/           //      nPos+=nXWidth;
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1422,7 +1412,6 @@ namespace binfilter {
 /*?*/                       pObj->InsertUserData( new SchDataRow( (short)nRow ));
 /*?*/                       pRowLists[ nRow ]->NbcInsertObject( pObj, 0 ); //#54870# put line to background, so symbol is in front
 /*?*/
-/*?*/ //-/                      pObj->NbcSetAttributes( rDataRowAttr, FALSE );
 /*?*/                       pObj->SetItemSet( rDataRowAttr);
 /*?*/
 /*?*/                   }
@@ -1507,7 +1496,6 @@ namespace binfilter {
 /*N*/           {
 /*N*/               pObj->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
 /*N*/
-/*N*/ //-/              pObj->NbcSetAttributes( rDataRowAttr, FALSE );
 /*N*/               pObj->SetItemSet( rDataRowAttr);
 /*N*/
 /*N*/               pObj->InsertUserData( new SchDataRow( (short)nRow ));
@@ -1815,7 +1803,6 @@ namespace binfilter {
 /*N*/             break;
 /*N*/
 /*N*/         default:
-/*N*/ //             DBG_ASSERT( nSet == 0, "Trying to set number of lines to value >0 for wrong chart type" );
 /*N*/             nNumLinesInColChart = nSet > 0 ? nSet : 0;
 /*N*/             break;
 /*N*/   }
@@ -1827,7 +1814,7 @@ namespace binfilter {
 /*N*/              i < nNumLinesInColChart && i < nLastSeries ;
 /*N*/              ++i )
 /*N*/         {
-/*N*/             SfxItemSet * pSet = aDataRowAttrList.GetObject( nLastSeries - i );
+/*N*/             SfxItemSet * pSet = aDataRowAttrList[ nLastSeries - i ];
 /*N*/             OSL_ASSERT( pSet );
 /*N*/             pSet->Put( XLineColorItem(
 /*N*/                            String(),
@@ -1841,7 +1828,7 @@ namespace binfilter {
 /*N*/              i < nOldNumLines && i < nLastSeries ;
 /*N*/              ++i )
 /*N*/         {
-/*?*/             SfxItemSet * pSet = aDataRowAttrList.GetObject( nLastSeries - i );
+/*?*/             SfxItemSet * pSet = aDataRowAttrList[ nLastSeries - i ];
 /*?*/             OSL_ASSERT( pSet );
 /*?*/             pSet->Put( XFillColorItem(
 /*?*/                            String(),
@@ -1895,7 +1882,7 @@ namespace binfilter {
 /*N*/     const ItemSetList & rAttrList = IsDataSwitched()
 /*N*/         ? aSwitchDataPointAttrList
 /*N*/         : aDataPointAttrList;
-/*N*/     const long nSize = rAttrList.Count();
+/*N*/     const long nSize = rAttrList.size();
 /*N*/     long nRow, nCol;
 /*N*/   long nColCnt = GetColCount();
 /*N*/     long nRowCnt = GetRowCount();
@@ -1926,7 +1913,7 @@ namespace binfilter {
 /*N*/         {
 /*N*/             for( nCol = 0; nCol < nColCnt; ++nCol )
 /*N*/             {
-/*N*/                 if( rAttrList.GetObject( nCol * nRowCnt + nRow ) != NULL )
+/*N*/                 if( rAttrList[ nCol * nRowCnt + nRow ] != NULL )
 /*N*/                     aList.push_back( nCol );
 /*N*/             }
 /*N*/

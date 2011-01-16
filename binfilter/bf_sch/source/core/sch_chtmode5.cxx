@@ -174,30 +174,6 @@ namespace binfilter {
 /*N*/       long nColCnt = GetColCount();
 /*N*/       long nRowCnt = GetRowCount();
 /*N*/
-/*N*/         // #102853# the adaption of min/max should be (and is) handled by the
-/*N*/         // axis themselves.  (It should at least check, if the min/max values
-/*N*/         // are 'auto')
-/*N*/
-/*N*/ //        for (long nCol = 0; nCol < nColCnt; nCol++)
-/*N*/ //        {
-/*N*/ //            for (long nRow = 0; nRow < nRowCnt; nRow++)
-/*N*/ //            {
-/*N*/ //                double fData = GetData(nCol, nRow);
-/*N*/
-/*N*/ //                if ((nCol == 0) && (nRow == 0))
-/*N*/ //                {
-/*N*/                   //ToDo: wozu das hier? klären!
-/*N*/ //                    pChartYAxis->SetMin(fData);
-/*N*/ //                    pChartYAxis->SetMax(fData);
-/*N*/ //                }
-/*N*/
-/*N*/ //                if (fData < pChartYAxis->GetMin())
-/*N*/ //                    pChartYAxis->SetMin(fData);
-/*N*/ //                if (fData > pChartYAxis->GetMax())
-/*N*/ //                    pChartYAxis->SetMax(fData);
-/*N*/ //            }
-/*N*/ //        }
-/*N*/
 /*N*/       if (!bWasData || bNewTitles)
 /*N*/       {
 /*N*/           aMainTitle  = pChartData->GetMainTitle();
@@ -377,25 +353,24 @@ namespace binfilter {
 /*N*/   if( Is3DChart() )
 /*N*/   {
 /*N*/       // delete depth-attributes for 3d charts
-/*N*/       long i, nCount = aDataRowAttrList.Count();
-/*N*/       SfxItemSet  *   pAttributes;
+/*N*/       size_t i, nCount = aDataRowAttrList.size();
+/*N*/       SfxItemSet* pAttributes;
 /*N*/
 /*N*/       for( i=0; i<nCount; i++ )
-/*N*/ //-/          aDataRowAttrList.GetObject( i )->ClearItem( SID_ATTR_3D_DEPTH );
-/*N*/           aDataRowAttrList.GetObject( i )->ClearItem(SDRATTR_3DOBJ_DEPTH);
+/*N*/           aDataRowAttrList[ i ]->ClearItem(SDRATTR_3DOBJ_DEPTH);
 /*N*/
-/*N*/       nCount = aDataPointAttrList.Count();
+/*N*/       nCount = aDataPointAttrList.size();
 /*N*/       for( i=0; i < nCount; i++ )
 /*N*/       {
-/*N*/           pAttributes = aDataPointAttrList.GetObject( i );
+/*N*/           pAttributes = aDataPointAttrList[ i ];
 /*N*/           if (pAttributes != NULL)
 /*?*/               pAttributes->ClearItem(SDRATTR_3DOBJ_DEPTH);
 /*N*/       }
 /*N*/
-/*N*/       nCount = aSwitchDataPointAttrList.Count();
+/*N*/       nCount = aSwitchDataPointAttrList.size();
 /*N*/       for( i=0; i < nCount; i++ )
 /*N*/       {
-/*N*/           pAttributes = aSwitchDataPointAttrList.GetObject( i );
+/*N*/           pAttributes = aSwitchDataPointAttrList[ i ];
 /*N*/           if (pAttributes != NULL)
 /*?*/               pAttributes->ClearItem(SDRATTR_3DOBJ_DEPTH);
 /*N*/       }

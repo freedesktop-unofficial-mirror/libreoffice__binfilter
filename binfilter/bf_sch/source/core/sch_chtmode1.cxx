@@ -536,7 +536,7 @@ namespace binfilter {
 /*N*/
 /*N*/   long nRowListCnt ;
 /*N*/   //regressattr
-/*N*/   nRowListCnt = (short)aRegressAttrList.Count();
+/*N*/   nRowListCnt = aRegressAttrList.size();
 /*N*/
 /*N*/   DBG_ASSERT( pDefaultColors, "invalid default colors" );
 /*N*/   sal_Int32 nNumDefCol = pDefaultColors->Count();
@@ -546,16 +546,20 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
-/*N*/           aRegressAttrList.Seek((ULONG)nCnt);
-/*N*/           for (i = nCnt; i < nRowListCnt; i++)
-/*N*/               delete aRegressAttrList.Remove();
+                for ( i = nCnt; i < nRowListCnt; ++i )
+                {
+                    ItemSetList::iterator it = aRegressAttrList.begin();
+                    ::std::advance( it, nCnt );
+                    delete *it;
+                    aRegressAttrList.erase( it );
+                }
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           for (i = nRowListCnt; i < nCnt; i++)
 /*N*/           {
 /*N*/               SfxItemSet* pRegressAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
-/*N*/               aRegressAttrList.Insert(pRegressAttr, LIST_APPEND);
+/*N*/               aRegressAttrList.push_back( pRegressAttr );
 /*N*/
 /*N*/               pRegressAttr->Put(XLineStyleItem(XLINE_SOLID));
 /*N*/               pRegressAttr->Put(XLineWidthItem(100));
@@ -579,21 +583,25 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   //average attr
-/*N*/   nRowListCnt = (short)aAverageAttrList.Count();
+/*N*/   nRowListCnt = aAverageAttrList.size();
 /*N*/   if (nCnt != nRowListCnt)
 /*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
-/*N*/           aAverageAttrList.Seek((ULONG)nCnt);
-/*N*/           for (i = nCnt; i < nRowListCnt; i++)
-/*N*/               delete aAverageAttrList.Remove();
+                for ( i = nCnt; i < nRowListCnt; ++i )
+                {
+                    ItemSetList::iterator it = aAverageAttrList.begin();
+                    ::std::advance( it, nCnt );
+                    delete *it;
+                    aAverageAttrList.erase( it );
+                }
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           for (i = nRowListCnt; i < nCnt; i++)
 /*N*/           {
 /*N*/               SfxItemSet* pAverageAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
-/*N*/               aAverageAttrList.Insert(pAverageAttr, LIST_APPEND);
+/*N*/               aAverageAttrList.push_back( pAverageAttr );
 /*N*/
 /*N*/               pAverageAttr->Put(XLineStyleItem(XLINE_SOLID));
 /*N*/               pAverageAttr->Put(XLineWidthItem(0));
@@ -617,21 +625,25 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   //error attr
-/*N*/   nRowListCnt = (short)aErrorAttrList.Count();
+/*N*/   nRowListCnt = (short)aErrorAttrList.size();
 /*N*/   if (nCnt != nRowListCnt)
 /*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
 /*N*/       {
-/*N*/           aErrorAttrList.Seek((ULONG)nCnt);
-/*N*/           for (i = nCnt; i < nRowListCnt; i++)
-/*N*/               delete aErrorAttrList.Remove();
+                for ( i = nCnt; i < nRowListCnt; ++i )
+                {
+                    ItemSetList::iterator it = aErrorAttrList.begin();
+                    ::std::advance( it, nCnt );
+                    delete *it;
+                    aErrorAttrList.erase( it );
+                }
 /*N*/       }
 /*N*/       else
 /*N*/       {
 /*N*/           for (i = nRowListCnt; i < nCnt; i++)
 /*N*/           {
 /*N*/               SfxItemSet* pErrorAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
-/*N*/               aErrorAttrList.Insert(pErrorAttr, LIST_APPEND);
+/*N*/               aErrorAttrList.push_back( pErrorAttr );
 /*N*/
 /*N*/               pErrorAttr->Put(XLineStyleItem(XLINE_SOLID));
 /*N*/               pErrorAttr->Put(XLineWidthItem(0));
@@ -650,43 +662,43 @@ namespace binfilter {
 /*N*/
 /*N*/   // Point-Attr
 /*N*/   long nPointCnt      = nDataColCnt * nDataRowCnt;
-/*N*/   long nPointListCnt  = aDataPointAttrList.Count();
+/*N*/   long nPointListCnt  = aDataPointAttrList.size();
 /*N*/   if (nPointCnt != nPointListCnt)
 /*N*/   {
 /*N*/       if (nPointListCnt > nPointCnt)
 /*N*/       {
 /*N*/           while (nPointListCnt-- > nPointCnt)
 /*N*/           {
-/*N*/               aDataPointAttrList.Seek((ULONG)nPointCnt);
-/*N*/               delete aDataPointAttrList.Remove();
+                    ItemSetList::iterator it = aDataPointAttrList.begin();
+                    ::std::advance( it, nPointCnt );
+                    delete *it;
+                    aDataPointAttrList.erase( it );
 /*N*/           }
 /*N*/       }
 /*N*/       else for (long ii = nPointListCnt; ii < nPointCnt; ii++)
-/*N*/            aDataPointAttrList.Insert(NULL, LIST_APPEND);
+/*N*/            aDataPointAttrList.push_back( NULL );
 /*N*/   }
 /*N*/
 /*N*/   // Switch-Point-Attr
-/*N*/   nPointListCnt = aSwitchDataPointAttrList.Count();
+/*N*/   nPointListCnt = aSwitchDataPointAttrList.size();
 /*N*/   if (nPointCnt != nPointListCnt)
 /*N*/   {
 /*N*/       if (nPointListCnt > nPointCnt)
 /*N*/       {
-/*N*/ //            aSwitchDataPointAttrList.Seek((ULONG)nPointCnt);
-/*N*/ //            for (long i = nPointCnt; i < nPointListCnt; i++)
-/*N*/ //                delete aSwitchDataPointAttrList.Remove();
 /*N*/           while (nPointListCnt-- > nPointCnt)
 /*N*/           {
-/*N*/               aSwitchDataPointAttrList.Seek((ULONG)nPointCnt);
-/*N*/               delete aSwitchDataPointAttrList.Remove();
+                    ItemSetList::iterator it = aSwitchDataPointAttrList.begin();
+                    ::std::advance( it, nPointCnt );
+                    delete *it;
+                    aSwitchDataPointAttrList.erase( it );
 /*N*/           }
 /*N*/       }
 /*N*/       else for (long iii = nPointListCnt; iii < nPointCnt; iii++)
-/*N*/           aSwitchDataPointAttrList.Insert(NULL, LIST_APPEND);
-/*N*/           // Insert (new SfxItemSet(*pItemPool, nRowWhichPairs),...)
+/*N*/           aSwitchDataPointAttrList.push_back( NULL );
 /*N*/   }
 /*N*/
 /*N*/   //row attr
-/*N*/   nRowListCnt = (short)aDataRowAttrList.Count();
+/*N*/   nRowListCnt = (short)aDataRowAttrList.size();
 /*N*/   if (nCnt != nRowListCnt)
 /*N*/   {
 /*N*/       if (nRowListCnt > nCnt)
@@ -695,9 +707,13 @@ namespace binfilter {
 /*N*/           LogBookAttrData();
 /*N*/
 /*N*/           //Jetzt darf erst der Ueberhang geloescht werden:
-/*N*/           aDataRowAttrList.Seek((ULONG)nCnt);
-/*N*/           for (i = nCnt; i < nRowListCnt; i++)
-/*N*/               delete aDataRowAttrList.Remove();
+                for ( i = nCnt; i < nRowListCnt; ++i )
+                {
+                    ItemSetList::iterator it = aDataRowAttrList.begin();
+                    ::std::advance( it, nCnt );
+                    delete *it;
+                    aDataRowAttrList.erase( it );
+                }
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -708,7 +724,7 @@ namespace binfilter {
 /*N*/             for (i = nRowListCnt; i < nCnt; i++)
 /*N*/           {
 /*N*/               SfxItemSet* pDataRowAttr = new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/               aDataRowAttrList.Insert(pDataRowAttr, LIST_APPEND);
+/*N*/               aDataRowAttrList.push_back( pDataRowAttr );
 /*N*/               SetDefAttrRow(pDataRowAttr,i);
 /*N*/
 /*N*/               //  Change the defaults for lines in mixed line-column charts.
@@ -716,9 +732,6 @@ namespace binfilter {
 /*N*/                 {
 /*N*/                     pDataRowAttr->ClearItem (SCHATTR_STYLE_SYMBOL);
 /*N*/                     pDataRowAttr->Put (XLineStyleItem (XLINE_SOLID));
-/*N*/                     // #101164# as more than one line is possible via GUI, those
-/*N*/                     // should not all be black
-/*N*/ //                     pDataRowAttr->Put (XLineColorItem (String(), RGBColor (COL_BLACK)));
 /*N*/                     pDataRowAttr->Put (XLineWidthItem (0));
 /*N*/                 }
 /*N*/           }

@@ -273,7 +273,7 @@ namespace binfilter {
 \************************************************************************/
 /*N*/ void ChartModel::PutDataRowAttrAll(const SfxItemSet& rAttr,BOOL bMerge,BOOL bClearPoints)
 /*N*/ {
-/*N*/   long nCnt=aDataRowAttrList.Count();
+/*N*/   long nCnt=aDataRowAttrList.size();
 /*N*/   while(nCnt--)
 /*N*/       PutDataRowAttr(nCnt,rAttr,bMerge,bClearPoints);
 /*N*/ }
@@ -284,16 +284,16 @@ namespace binfilter {
 /*N*/   CHART_TRACE1( "ChartModel::PutDataRowAttr %smerge", bMerge? "": "NO " );
 /*N*/ //    DBG_ITEMS((SfxItemSet&)rAttr,this);
 /*N*/
-/*N*/     if( aDataRowAttrList.Count() <= (unsigned long)nRow )
+/*N*/     if( aDataRowAttrList.size() <= (unsigned long)nRow )
 /*N*/     {
 /*?*/         DBG_ERROR( "Invalid index to array requested" );
 /*?*/         return;
 /*N*/     }
 /*N*/
 /*N*/     if(!bMerge)
-/*?*/       aDataRowAttrList.GetObject(nRow)->ClearItem();
+/*?*/       aDataRowAttrList[ nRow ]->ClearItem();
 /*N*/
-/*N*/   PutItemSetWithNameCreation( *aDataRowAttrList.GetObject( nRow ), rAttr );
+/*N*/   PutItemSetWithNameCreation( *aDataRowAttrList[ nRow ], rAttr );
 /*N*/
 /*N*/   if(bClearPoints && (nRow < GetRowCount()))
 /*N*/   {
@@ -312,9 +312,9 @@ namespace binfilter {
 
 /*N*/ const SfxItemSet& ChartModel::GetDataRowAttr( long nRow ) const
 /*N*/ {
-/*N*/   if( nRow < (long)aDataRowAttrList.Count() )
+/*N*/   if( nRow < (long)aDataRowAttrList.size() )
 /*N*/   {
-/*N*/       SfxItemSet* pSet = aDataRowAttrList.GetObject( nRow );
+/*N*/       SfxItemSet* pSet = aDataRowAttrList[ nRow ];
 /*N*/       DBG_ASSERT( pSet, "Invalid ItemSet" );
 /*N*/       return *pSet;
 /*N*/   }
@@ -717,7 +717,7 @@ namespace binfilter {
 /*N*/                                ? &aSwitchDataPointAttrList
 /*N*/                                : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet* pItemSet = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if (pItemSet != NULL)
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
@@ -736,11 +736,11 @@ namespace binfilter {
 /*N*/                          ? &aSwitchDataPointAttrList
 /*N*/                          : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet* pItemSet = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if (pItemSet == NULL)
 /*N*/   {
 /*N*/       pItemSet = new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pAttrList->Replace (pItemSet, nCol * GetRowCount() + nRow);
+/*N*/       (*pAttrList)[nCol * GetRowCount() + nRow] = pItemSet;
 /*N*/   }
 /*N*/   if(!bMerge)
 /*?*/       pItemSet->ClearItem();
@@ -759,13 +759,13 @@ namespace binfilter {
 /*N*/ const SfxItemSet& ChartModel::GetDataPointAttr( long nCol, long nRow) const
 /*N*/ {
 /*N*/   long nIdx = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList& aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/       ? &aSwitchDataPointAttrList
+/*N*/       : &aDataPointAttrList;
 /*N*/
-/*N*/   if( nIdx < (long)aAttrList.Count() )
+/*N*/   if( nIdx < (long)aAttrList->size() )
 /*N*/   {
-/*N*/       SfxItemSet* pSet = aAttrList.GetObject( nIdx );
+/*N*/       SfxItemSet* pSet = (*aAttrList)[ nIdx ];
 /*N*/       if (pSet == NULL)
 /*N*/           return (GetDataRowAttr(nRow));
 /*N*/       else
@@ -785,12 +785,12 @@ namespace binfilter {
 /*N*/ const SfxItemSet * ChartModel::GetRawDataPointAttr    (long nCol,long nRow) const
 /*N*/ {
 /*N*/   long nIndex = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList & aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/       ? &aSwitchDataPointAttrList
+/*N*/       : &aDataPointAttrList;
 /*N*/
-/*N*/   if (nIndex < (long)aAttrList.Count())
-/*N*/       return aAttrList.GetObject (nIndex);
+/*N*/   if (nIndex < (long)aAttrList->size())
+/*N*/       return (*aAttrList)[ nIndex ];
 /*N*/   else
 /*N*/       return NULL;
 /*N*/ }
@@ -803,15 +803,15 @@ namespace binfilter {
 
 /*N*/ SfxItemSet ChartModel::GetFullDataPointAttr( long nCol, long nRow ) const
 /*N*/ {
-/*N*/   ItemSetList* pAttrList = IsDataSwitched()
-/*N*/         ? (class ItemSetList *) & aSwitchDataPointAttrList
-/*N*/         : (class ItemSetList *) & aDataPointAttrList;
+/*N*/   const ItemSetList* pAttrList = IsDataSwitched()
+/*N*/         ? &aSwitchDataPointAttrList
+/*N*/         : &aDataPointAttrList;
 /*N*/
-/*N*/   if( ! IsPieChart())
+/*N*/   if( !IsPieChart())
 /*N*/   {
 /*N*/         // get series' attributes and merge with data-point attributes if available
 /*N*/       SfxItemSet aAttr( GetDataRowAttr( nRow ));
-/*N*/       SfxItemSet *pObj=pAttrList->GetObject( nCol * GetRowCount() + nRow );
+/*N*/       SfxItemSet *pObj= (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/       if( pObj )
 /*N*/             aAttr.Put( *pObj );
 /*N*/       return aAttr;
@@ -846,8 +846,8 @@ namespace binfilter {
 /*N*/     aAttr.ClearItem( SCHATTR_DATADESCR_SHOW_SYM );
 /*N*/     aAttr.Put( aDescrAttrib );
 /*N*/
-/*N*/     SfxItemSet* pAttr = pAttrList->GetObject( nCol * nSecondDimension );
-/*N*/     if( ( pAttr != NULL ) && pAttr->Count())
+/*N*/     SfxItemSet* pAttr = (*pAttrList)[ nCol * nSecondDimension ];
+/*N*/     if( ( pAttr != NULL ) && pAttr->Count() )
 /*N*/         aAttr.Put( *pAttr );
 /*N*/
 /*N*/     return aAttr;
@@ -862,27 +862,26 @@ namespace binfilter {
 /*N*/ SfxItemSet& ChartModel::MergeDataPointAttr( SfxItemSet& rAttr, long nCol, long nRow ) const
 /*N*/ {
 /*N*/   CHART_TRACE2( "ChartModel::MergeDataPointAttr nCol=%ld, nRow=%ld", nCol, nRow );
-/*N*/   ItemSetList* pAttrList = IsDataSwitched()   //abhaengig vom Charttyp - statt bSwitchData
-/*N*/                                ? (class ItemSetList *) &aSwitchDataPointAttrList
-/*N*/                                : (class ItemSetList *) &aDataPointAttrList;
+/*N*/   const ItemSetList* pAttrList = IsDataSwitched()   //abhaengig vom Charttyp - statt bSwitchData
+/*N*/                           ? &aSwitchDataPointAttrList
+/*N*/                           : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet *pObj=pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet *pObj = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if(pObj)
 /*?*/       rAttr.Put(*pObj);
 /*N*/   return rAttr;
 /*N*/ }
 
 
-
 /*N*/ BOOL  ChartModel::IsDataPointAttrSet  (long nCol, long nRow)  const
 /*N*/ {
 /*N*/   UINT32 nIndex = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList& aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/                                  ? &aSwitchDataPointAttrList
+/*N*/                                  : &aDataPointAttrList;
 /*N*/
-/*N*/   if (nIndex < static_cast<UINT32>(aAttrList.Count()))
-/*N*/       return aAttrList.GetObject (nIndex) != NULL;
+/*N*/   if (nIndex < static_cast<UINT32>(aAttrList->size()))
+/*N*/       return (*aAttrList)[ nIndex ] != NULL;
 /*N*/   else
 /*N*/       //  Specified data point does not exist.  Therefore an item set does not exist also.
 /*?*/       return false;
@@ -913,7 +912,6 @@ namespace binfilter {
 /*N*/               switch (pObjId->GetObjId())
 /*N*/               {
 /*N*/                   case CHOBJID_LINE :
-/*N*/ //-/                      pObj->SetAttributes(*pAttr, FALSE);
 /*N*/                       pObj->SetItemSetAndBroadcast(*pAttr);
 /*N*/                       break;
 /*N*/
@@ -1356,11 +1354,11 @@ Fehlen evtl. noch in GetAttr(ID):
              return *pChartAttr;*/
 /*N*/
 /*N*/       case CHOBJID_DIAGRAM_REGRESSION:
-/*?*/           return *aRegressAttrList.GetObject(nIndex1);
+/*?*/           return *aRegressAttrList[ nIndex1 ];
 /*N*/       case CHOBJID_DIAGRAM_ERROR:
-/*?*/           return *aErrorAttrList.GetObject(nIndex1);
+/*?*/           return *aErrorAttrList[ nIndex1 ];
 /*N*/       case CHOBJID_DIAGRAM_AVERAGEVALUE:
-/*?*/           return *aAverageAttrList.GetObject(nIndex1);
+/*?*/           return *aAverageAttrList[ nIndex1 ];
 /*N*/
 /*N*/       default:
 /*N*/           CHART_TRACE1( "GetAttr illegal Object Id (%ld), returning dummy", nObjId );
@@ -1592,16 +1590,16 @@ pYGridMainAttr->Put(rAttr);
 //               (using the Intersect method of the SfxItemSet)
 /*N*/ void ChartModel::GetDataRowAttrAll( SfxItemSet& rOutAttributes )
 /*N*/ {
-/*N*/     long nListSize = aDataRowAttrList.Count();
+/*N*/     long nListSize = aDataRowAttrList.size();
 /*N*/
 /*N*/     // no itemsets => result stays empty
 /*N*/     if( nListSize == 0 )
 /*N*/         return;
 /*N*/
 /*N*/     // set items of first data row and then intersect with all remaining
-/*N*/     rOutAttributes.Put( *aDataRowAttrList.GetObject( 0 ));
+/*N*/     rOutAttributes.Put( *aDataRowAttrList[ 0 ] );
 /*N*/   for( long nRow = 1; nRow < nListSize; nRow++ )
-/*N*/         rOutAttributes.Intersect( *aDataRowAttrList.GetObject( nRow ));
+/*N*/         rOutAttributes.Intersect( *aDataRowAttrList[ nRow ] );
 /*N*/ }
 
 /*N*/ void ChartModel::SetItemWithNameCreation( SfxItemSet& rDestItemSet, const SfxPoolItem* pNewItem )

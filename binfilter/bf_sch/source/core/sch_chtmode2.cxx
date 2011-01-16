@@ -26,13 +26,6 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX
-// enable stream operators >>/<< for UniString (8 Bit !)
-//#ifndef ENABLE_STRING_STREAM_OPERATORS
-//#define ENABLE_STRING_STREAM_OPERATORS
-//#endif
-#endif
-
 #include "schattr.hxx"
 #include "memchrt.hxx"
 
@@ -273,9 +266,6 @@ enum ChartStyleV0
 /*?*/                   nMaxX  = Max (nMaxX,  pWidthOfEntry[nLines+nCnt]);
 /*?*/                   nMaxY  = Max (nMaxY, pHeightOfEntry[nLines+nCnt]);
 /*?*/
-/*?*/                  // nMaxX  = Max (nMaxX, pText->GetLogicRect().GetWidth());
-/*?*/                  // nMaxY  = Max (nMaxY, pText->GetLogicRect().GetHeight());
-/*?*/
 /*?*/                   pRegressNr [nLines] = i;
 /*?*/                   nLines ++;
 /*N*/               }
@@ -326,7 +316,6 @@ enum ChartStyleV0
 /*N*/       {
 /*N*/           pGroup = new SchObjGroup;
 /*N*/           pGroup->InsertUserData(new SchObjectId(CHOBJID_LEGEND));
-/*N*/           // pGroup->SetResizeProtect(TRUE);
 /*N*/           SdrObject*  pObj;
 /*N*/           SdrObjList* pObjList = pGroup->GetSubList();
 /*N*/
@@ -656,54 +645,54 @@ enum ChartStyleV0
 /*N*/   aTmpSet.Put(XLineColorItem(String(), RGBColor(COL_BLACK)));
 /*N*/
 /*N*/
-/*N*/   long i,nCount=aDataRowAttrList.Count();
+/*N*/   long i,nCount=aDataRowAttrList.size();
 /*N*/   for (i=0;i<nCount;i++)
 /*N*/   {
 /*N*/       SfxItemSet *pDataRowAttr = new SfxItemSet (*pItemPool, nRowWhichPairs);
-/*N*/       pDataRowAttr->Put(*(aDataRowAttrList.GetObject(i)));
+/*N*/       pDataRowAttr->Put( *( aDataRowAttrList[ i ] ) );
 /*N*/       pDataRowAttr->Put(aTmpSet);
-/*N*/       aTmpDataRowAttrList.Insert (pDataRowAttr, LIST_APPEND);
+/*N*/       aTmpDataRowAttrList.push_back( pDataRowAttr );
 /*N*/   }
 /*N*/
 /*N*/   SfxItemSet  *   pItemSet;
-/*N*/   nCount=aDataPointAttrList.Count();
+/*N*/   nCount=aDataPointAttrList.size();
 /*N*/   for (i=0;i<nCount;i++)
 /*N*/    {
 /*N*/       SfxItemSet* pSet=new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pItemSet = aDataPointAttrList.GetObject(i);
+/*N*/       pItemSet = aDataPointAttrList[ i ];
 /*N*/       if (pItemSet != NULL)
 /*N*/           pSet->Put(*pItemSet);
 /*N*/       pSet->Put(aTmpSet);
-/*N*/       aTmpDataPointAttrList.Insert (pSet, LIST_APPEND);
+/*N*/       aTmpDataPointAttrList.push_back( pSet );
 /*N*/    }
 /*N*/
-/*N*/   nCount=aSwitchDataPointAttrList.Count();
+/*N*/   nCount=aSwitchDataPointAttrList.size();
 /*N*/   for (i=0;i<nCount;i++)
 /*N*/    {
 /*N*/       SfxItemSet* pSet=new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pItemSet = aSwitchDataPointAttrList.GetObject(i);
+/*N*/       pItemSet = aSwitchDataPointAttrList[ i ];
 /*N*/       if (pItemSet != NULL)
 /*N*/           pSet->Put(*pItemSet);
 /*N*/       pSet->Put(aTmpSet);
-/*N*/       aTmpSwitchDataPointAttrList.Insert (pSet, LIST_APPEND);
+/*N*/       aTmpSwitchDataPointAttrList.push_back( pSet );
 /*N*/    }
 /*N*/ }
 /*N*/ void ChartModel::CleanupOld3DStorage()
 /*N*/ {
-/*N*/   long i,nCount = aTmpDataRowAttrList.Count();
+/*N*/   long i,nCount = aTmpDataRowAttrList.size();
 /*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpDataRowAttrList.GetObject(i);
-/*N*/   aTmpDataRowAttrList.Clear();
+/*N*/       delete aTmpDataRowAttrList[ i ];
+/*N*/   aTmpDataRowAttrList.clear();
 /*N*/
-/*N*/   nCount = aTmpDataPointAttrList.Count();
+/*N*/   nCount = aTmpDataPointAttrList.size();
 /*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpDataPointAttrList.GetObject(i);
-/*N*/   aTmpDataPointAttrList.Clear();
+/*N*/       delete aTmpDataPointAttrList[ i ];
+/*N*/   aTmpDataPointAttrList.clear();
 /*N*/
-/*N*/   nCount = aTmpSwitchDataPointAttrList.Count();
+/*N*/   nCount = aTmpSwitchDataPointAttrList.size();
 /*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpSwitchDataPointAttrList.GetObject(i);
-/*N*/   aTmpSwitchDataPointAttrList.Clear();
+/*N*/       delete aTmpSwitchDataPointAttrList[ i ];
+/*N*/   aTmpSwitchDataPointAttrList.clear();
 /*N*/ }
 /*************************************************************************
 |*
@@ -929,7 +918,6 @@ enum ChartStyleV0
 /*N*/
 /*N*/       SfxItemSet aStoreAttr (*pItemPool, XATTR_LINE_FIRST, XATTR_LINE_LAST,
 /*N*/                                          XATTR_FILL_FIRST, XATTR_FILL_LAST,
-/*N*/                                          //EE_ITEMS_START, EE_ITEMS_END,
 /*N*/                                          SCHATTR_DATADESCR_START, SCHATTR_DATADESCR_END, 0),
 /*N*/                   aPoolItemSet (*pItemPool, nRowWhichPairs),
 /*N*/                   *pItemSet;
@@ -937,22 +925,22 @@ enum ChartStyleV0
 /*N*/       // FG: 25.2.97 Das Schreiben im 3.1 Format  geht schief wenn man
 /*N*/       //     in globfunc.cxx die Routine CopyAttributesFrom40to31 verwendet.
 /*N*/       //     Dort wurden die items per Invalidate und Set einzeln kopiert. (falsch)
-/*N*/       nCount = (short)aDataRowAttrList.Count();
+/*N*/       nCount = (short)aDataRowAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/       {
 /*N*/           SfxItemSet* pSet = aStoreAttr.Clone();
-/*N*/           pSet->Put( *aDataRowAttrList.GetObject(i), TRUE );
+/*N*/           pSet->Put( *aDataRowAttrList[ i ], TRUE );
 /*N*/           pSet->Store( rOut );
 /*N*/           delete pSet;
 /*N*/       }
 /*N*/
-/*N*/       nCount = (short)aDataPointAttrList.Count();
+/*N*/       nCount = (short)aDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/       {
 /*N*/           SfxItemSet* pSet = aStoreAttr.Clone();
-/*N*/           pItemSet = aDataPointAttrList.GetObject(i);
+/*N*/           pItemSet = aDataPointAttrList[ i ];
 /*N*/           if (pItemSet != NULL)
 /*N*/               pSet->Put (*pItemSet, TRUE );
 /*N*/           else
@@ -961,12 +949,12 @@ enum ChartStyleV0
 /*N*/           delete pSet;
 /*N*/       }
 /*N*/
-/*N*/       nCount = (short)aSwitchDataPointAttrList.Count();
+/*N*/       nCount = (short)aSwitchDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/       {
 /*N*/           SfxItemSet* pSet = aStoreAttr.Clone();
-/*N*/           pItemSet = aSwitchDataPointAttrList.GetObject(i);
+/*N*/           pItemSet = aSwitchDataPointAttrList[ i ];
 /*N*/           if (pItemSet != NULL)
 /*N*/               pSet->Put (*pItemSet, TRUE );
 /*N*/           else
@@ -978,20 +966,20 @@ enum ChartStyleV0
 /*N*/   else if(nFileFormat <= SOFFICE_FILEFORMAT_40 && IsReal3D()) //siehe auch DocShell, Save,SaveAs!!!!!
 /*N*/   {
 /*N*/
-/*N*/       nCount = (short)aTmpDataRowAttrList.Count();
+/*N*/       nCount = (short)aTmpDataRowAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aTmpDataRowAttrList.GetObject(i)->Store(rOut);
+/*N*/           aTmpDataRowAttrList[ i ]->Store(rOut);
 /*N*/
-/*N*/       nCount = (short)aTmpDataPointAttrList.Count();
+/*N*/       nCount = (short)aTmpDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aTmpDataPointAttrList.GetObject(i)->Store(rOut);
+/*N*/           aTmpDataPointAttrList[ i ]->Store(rOut);
 /*N*/
-/*N*/       nCount = (short)aTmpSwitchDataPointAttrList.Count();
+/*N*/       nCount = (short)aTmpSwitchDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aTmpSwitchDataPointAttrList.GetObject(i)->Store(rOut);
+/*N*/           aTmpSwitchDataPointAttrList[ i ]->Store(rOut);
 /*N*/
 /*N*/   }
 /*N*/   else
@@ -999,27 +987,27 @@ enum ChartStyleV0
 /*N*/       SfxItemSet  aPoolItemSet (*pItemPool, nRowWhichPairs),
 /*N*/               *   pItemSet;
 /*N*/
-/*N*/       nCount = (short)aDataRowAttrList.Count();
+/*N*/       nCount = (short)aDataRowAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aDataRowAttrList.GetObject(i)->Store(rOut);
+/*N*/           aDataRowAttrList[ i ]->Store(rOut);
 /*N*/
-/*N*/       nCount = (short)aDataPointAttrList.Count();
+/*N*/       nCount = (short)aDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/       {
-/*N*/           pItemSet = aDataPointAttrList.GetObject(i);
+/*N*/           pItemSet = aDataPointAttrList[ i ];
 /*N*/           if (pItemSet != NULL)
 /*N*/               pItemSet->Store(rOut);
 /*N*/           else
 /*N*/               aPoolItemSet.Store(rOut);
 /*N*/       }
 /*N*/
-/*N*/       nCount = (short)aSwitchDataPointAttrList.Count();
+/*N*/       nCount = (short)aSwitchDataPointAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/       {
-/*N*/           pItemSet = aSwitchDataPointAttrList.GetObject(i);
+/*N*/           pItemSet = aSwitchDataPointAttrList[ i ];
 /*N*/           if (pItemSet != NULL)
 /*N*/               pItemSet->Store(rOut);
 /*N*/           else
@@ -1104,20 +1092,20 @@ enum ChartStyleV0
 /*N*/
 /*N*/   if (nMoreData >= 8)
 /*N*/   {
-/*N*/       nCount = (short)aRegressAttrList.Count();
+/*N*/       nCount = (short)aRegressAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aRegressAttrList.GetObject(i)->Store(rOut);
+/*N*/           aRegressAttrList[ i ]->Store(rOut);
 /*N*/
-/*N*/       nCount = (short)aAverageAttrList.Count();
+/*N*/       nCount = (short)aAverageAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aAverageAttrList.GetObject(i)->Store(rOut);
+/*N*/           aAverageAttrList[ i ]->Store(rOut);
 /*N*/
-/*N*/       nCount = (short)aErrorAttrList.Count();
+/*N*/       nCount = (short)aErrorAttrList.size();
 /*N*/       rOut << (INT16)nCount;
 /*N*/       for (i = 0; i < nCount; i++)
-/*N*/           aErrorAttrList.GetObject(i)->Store(rOut);
+/*N*/           aErrorAttrList[ i ]->Store(rOut);
 /*N*/
 /*N*/   }
 /*N*/
@@ -1660,20 +1648,7 @@ enum ChartStyleV0
 /*N*/       pAttr = new SfxItemSet(*pItemPool, nRowWhichPairs);
 /*N*/
 /*N*/       pAttr->Load(rIn);
-/*N*/       aDataRowAttrList.Insert(pAttr, LIST_APPEND);
-/*N*/
-/*N*/ //        Debug-Code
-/*N*/ //
-/*N*/ //        SfxItemState sfx_test_state = aDataRowAttrList.GetObject(i)->GetItemState(XATTR_FILLSTYLE);
-/*N*/ //        if (sfx_test_state >= SFX_ITEM_AVAILABLE)
-/*N*/ //        {
-/*N*/ //            XFillStyleItem& rTest_set = (XFillStyleItem&) aDataRowAttrList.GetObject(i)->Get(XATTR_FILLSTYLE);
-/*N*/ //        }
-/*N*/ //        sfx_test_state = aDataRowAttrList.GetObject(i)->GetItemState(XATTR_FILLCOLOR);
-/*N*/ //        if (sfx_test_state >= SFX_ITEM_AVAILABLE)
-/*N*/ //        {
-/*N*/ //            XColorItem& rTest_set = (XColorItem&) aDataRowAttrList.GetObject(i)->Get(XATTR_FILLCOLOR);
-/*N*/ //        }
+/*N*/       aDataRowAttrList.push_back( pAttr );
 /*N*/   }
 /*N*/
 /*N*/   rIn >> nInt16; nCount = (short)nInt16;
@@ -1687,16 +1662,14 @@ enum ChartStyleV0
 /*N*/           delete pAttr;
 /*N*/           pAttr = NULL;
 /*N*/       }
-/*N*/       aDataPointAttrList.Insert(pAttr, LIST_APPEND);
+/*N*/       aDataPointAttrList.push_back( pAttr );
 /*N*/   }
 /*N*/
 /*N*/   if (nVersion < 4)
 /*N*/   {
 /*?*/       for (i = 0; i < nCount; i++)
 /*?*/       {
-//          SfxItemSet* pDataPointAttr =
-//              new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*?*/           aSwitchDataPointAttrList.Insert(NULL, LIST_APPEND);
+/*?*/           aSwitchDataPointAttrList.push_back( NULL );
 /*?*/       }
 /*?*/
 /*?*/       bNoMore = TRUE;
@@ -1714,7 +1687,7 @@ enum ChartStyleV0
 /*N*/               delete pAttr;
 /*N*/               pAttr = NULL;
 /*N*/           }
-/*N*/           aSwitchDataPointAttrList.Insert(pAttr, LIST_APPEND);
+/*N*/           aSwitchDataPointAttrList.push_back( pAttr );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1851,7 +1824,7 @@ enum ChartStyleV0
 /*N*/                   pAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
 /*N*/
 /*N*/                   pAttr->Load(rIn);
-/*N*/                   aRegressAttrList.Insert(pAttr, LIST_APPEND);
+/*N*/                   aRegressAttrList.push_back( pAttr );
 /*N*/               }
 /*N*/
 /*N*/               rIn >> nInt16; nCount = (short)nInt16;
@@ -1860,7 +1833,7 @@ enum ChartStyleV0
 /*N*/                   pAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
 /*N*/
 /*N*/                   pAttr->Load(rIn);
-/*N*/                   aAverageAttrList.Insert(pAttr, LIST_APPEND);
+/*N*/                   aAverageAttrList.push_back( pAttr );
 /*N*/               }
 /*N*/
 /*N*/               rIn >> nInt16; nCount = (short)nInt16;
@@ -1869,7 +1842,7 @@ enum ChartStyleV0
 /*N*/                   pAttr = new SfxItemSet(*pItemPool, nGridWhichPairs);
 /*N*/
 /*N*/                   pAttr->Load(rIn);
-/*N*/                   aErrorAttrList.Insert(pAttr, LIST_APPEND);
+/*N*/                   aErrorAttrList.push_back( pAttr );
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -2106,14 +2079,6 @@ enum ChartStyleV0
 /*N*/       rIn >> nTmp;
 /*N*/       aBarY2.SetOverlap(nTmp);
 /*N*/   }
-/*N*/   else
-/*N*/   {
-/*      aBarY1.SetGap()
-        aBarY1.SetOverlap(nTmp)
-        aBarY2.SetGap(nTmp)
-        aBarY2.SetOverlap(nTmp)
-        */
-/*N*/   }
 /*N*/
 /*N*/   if(nVersion >= 15)
 /*N*/   {
@@ -2124,21 +2089,20 @@ enum ChartStyleV0
 /*N*/       if(IsReal3D() && (IsPieChart()||IsLine())) //Hack wegen  #62363#, double-sided neu defaulten
 /*N*/       {
 /*N*/           long nMax;
-/*N*/           nMax=aDataRowAttrList.Count();
+/*N*/           nMax=aDataRowAttrList.size();
 /*N*/           for(i=0;i<nMax;i++)
-/*N*/ //-/              aDataRowAttrList.GetObject(i)->Put(SfxBoolItem(SID_ATTR_3D_DOUBLE_SIDED,TRUE));
-/*N*/               aDataRowAttrList.GetObject(i)->Put(Svx3DDoubleSidedItem(TRUE));
-/*N*/           nMax=aDataPointAttrList.Count();
+/*N*/               aDataRowAttrList[ i ]->Put(Svx3DDoubleSidedItem(TRUE));
+/*N*/           nMax=aDataPointAttrList.size();
 /*N*/           for(i=0;i<nMax;i++)
 /*N*/           {
-/*N*/               pAttributes = aDataPointAttrList.GetObject(i);
+/*N*/               pAttributes = aDataPointAttrList[ i ];
 /*N*/               if (pAttributes != NULL)
 /*?*/                   pAttributes->Put(Svx3DDoubleSidedItem(TRUE));
 /*N*/           }
-/*N*/           nMax=aSwitchDataPointAttrList.Count();
+/*N*/           nMax=aSwitchDataPointAttrList.size();
 /*N*/           for(i=0;i<nMax;i++)
 /*N*/           {
-/*N*/               pAttributes = aSwitchDataPointAttrList.GetObject(i);
+/*N*/               pAttributes = aSwitchDataPointAttrList[ i ];
 /*N*/               if (pAttributes != NULL)
 /*N*/                   pAttributes->Put(Svx3DDoubleSidedItem(TRUE));
 /*N*/           }
@@ -2161,38 +2125,37 @@ enum ChartStyleV0
 /*?*/       if(IsReal3D()) //#61923#
 /*?*/       {
 /*?*/           long nMax;
-/*?*/           nMax=aDataRowAttrList.Count();
+/*?*/           nMax=aDataRowAttrList.size();
 /*?*/           SfxItemSet  *   pAttributes;
 /*?*/
 /*?*/           for(i=0;i<nMax;i++)
 /*?*/           {
 /*?*/               if(IsPieChart()||IsLine())
-/*?*/ //-/                  aDataRowAttrList.GetObject(i)->Put(SfxBoolItem(SID_ATTR_3D_DOUBLE_SIDED,TRUE));
-/*?*/                   aDataRowAttrList.GetObject(i)->Put(Svx3DDoubleSidedItem(TRUE));
-/*?*/               aDataRowAttrList.GetObject(i)->Put(XLineStyleItem(XLINE_NONE));
+/*?*/                   aDataRowAttrList[ i ]->Put(Svx3DDoubleSidedItem(TRUE));
+/*?*/               aDataRowAttrList[ i ]->Put(XLineStyleItem(XLINE_NONE));
 /*?*/           }
 /*?*/
-/*?*/           nMax=aDataPointAttrList.Count();
+/*?*/           nMax=aDataPointAttrList.size();
 /*?*/           for(i=0;i<nMax;i++)
 /*?*/           {
-/*?*/               pAttributes = aDataPointAttrList.GetObject(i);
+/*?*/               pAttributes = aDataPointAttrList[ i ];
 /*?*/               if (pAttributes == NULL)
 /*?*/                   continue;
 /*?*/               if(IsPieChart()||IsLine())
-/*?*/                   aDataPointAttrList.GetObject(i)->Put(Svx3DDoubleSidedItem(TRUE));
-/*?*/               aDataPointAttrList.GetObject(i)->Put(XLineStyleItem(XLINE_NONE));
+/*?*/                   aDataPointAttrList[ i ]->Put(Svx3DDoubleSidedItem(TRUE));
+/*?*/               aDataPointAttrList[ i ]->Put(XLineStyleItem(XLINE_NONE));
 /*?*/           }
 /*?*/
 /*?*/
-/*?*/           nMax=aSwitchDataPointAttrList.Count();
+/*?*/           nMax=aSwitchDataPointAttrList.size();
 /*?*/           for(i=0;i<nMax;i++)
 /*?*/           {
-/*?*/               pAttributes = aSwitchDataPointAttrList.GetObject(i);
+/*?*/               pAttributes = aSwitchDataPointAttrList[ i ];
 /*?*/               if (pAttributes == NULL)
 /*?*/                   continue;
 /*?*/               if(IsPieChart()||IsLine())
-/*?*/                   aSwitchDataPointAttrList.GetObject(i)->Put(Svx3DDoubleSidedItem(TRUE));
-/*?*/               aSwitchDataPointAttrList.GetObject(i)->Put(XLineStyleItem(XLINE_NONE));
+/*?*/                   aSwitchDataPointAttrList[ i ]->Put(Svx3DDoubleSidedItem(TRUE));
+/*?*/               aSwitchDataPointAttrList[ i ]->Put(XLineStyleItem(XLINE_NONE));
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -2205,7 +2168,7 @@ enum ChartStyleV0
 /*N*/   if(nVersion < 13)
 /*N*/   {
 /*?*/       if(IsXYChart())
-/*?*/           aDataRowAttrList.GetObject(0)->Put(SfxInt32Item(SCHATTR_AXIS,CHART_AXIS_PRIMARY_X));
+/*?*/           aDataRowAttrList[ 0 ]->Put(SfxInt32Item(SCHATTR_AXIS,CHART_AXIS_PRIMARY_X));
 /*N*/   }
     //#54870# restaurieren der line-attribute
 /*N*/   if( nVersion < 10)

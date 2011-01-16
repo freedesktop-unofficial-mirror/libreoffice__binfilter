@@ -69,6 +69,8 @@
 #include "chartbar.hxx"
 
 #include <com/sun/star/util/XRefreshable.hpp>
+#include <vector>
+
 class Vector3D;
 
 namespace binfilter {
@@ -95,8 +97,8 @@ class E3dLabelObj;
 struct DataDescription;
 class SchRectObj;
 
-DECLARE_LIST(ItemSetList, SfxItemSet*)//STRIP008 DECLARE_LIST(ItemSetList, SfxItemSet*);
-DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 DECLARE_LIST(DescrList, E3dLabelObj*);
+typedef ::std::vector< SfxItemSet* > ItemSetList;
+DECLARE_LIST(DescrList, E3dLabelObj*)
 
 #define VERTICAL_LINE aLine[0].Y() = rRect.Bottom(); aLine[1].Y() = rRect.Top();
 #define HORIZONTAL_LINE aLine[0].X() = rRect.Left(); aLine[1].X() = rRect.Right();
