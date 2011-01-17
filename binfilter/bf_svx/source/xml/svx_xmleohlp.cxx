@@ -121,29 +121,29 @@ public:
 /*N*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::readSomeBytes(
-/*?*/       Sequence< sal_Int8 >& aData,
-/*?*/       sal_Int32 nMaxBytesToRead)
+/*?*/       Sequence< sal_Int8 >& /*rData*/,
+/*?*/       sal_Int32 /*nMaxBytesToRead*/)
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
-/*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 nBytesToSkip )
+/*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 /*nBytesToSkip*/ )
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::available()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::closeInput()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------
@@ -245,8 +245,8 @@ struct OUStringLess
 /*N*/   maDefaultContainerStorageName( RTL_CONSTASCII_USTRINGPARAM(XML_CONTAINERSTORAGE_NAME) ),
 /*N*/   mpRootStorage( 0 ),
 /*N*/   mpDocPersist( 0 ),
-/*N*/   mpStreamMap( 0 ),
-/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ )
+/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ ),
+/*N*/   mpStreamMap( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -255,8 +255,8 @@ struct OUStringLess
 /*N*/   maDefaultContainerStorageName( RTL_CONSTASCII_USTRINGPARAM(XML_CONTAINERSTORAGE_NAME) ),
 /*N*/   mpRootStorage( 0 ),
 /*N*/   mpDocPersist( 0 ),
-/*N*/   mpStreamMap( 0 ),
-/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ )
+/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ ),
+/*N*/   mpStreamMap( 0 )
 /*N*/ {
 /*N*/   Init( 0, rDocPersist, eCreateMode );
 /*N*/ }
@@ -270,7 +270,7 @@ struct OUStringLess
 /*N*/   {
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aIter = mpStreamMap->begin();
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aEnd = mpStreamMap->end();
-/*?*/       for( aIter; aIter != aEnd; ++aIter )
+/*?*/       for( ; aIter != aEnd; ++aIter )
 /*?*/       {
 /*?*/           if( aIter->second )
 /*?*/           {
@@ -302,7 +302,6 @@ struct OUStringLess
 /*N*/   //           or: #<path>/<object-name>
 /*N*/   //           or: #<object-name>
 /*N*/   // currently, path may only consist of a single directory name
-/*N*/   sal_Bool    bRet = sal_False;
 /*N*/
 /*N*/   if( !rURLStr.getLength() )
 /*N*/       return sal_False;
@@ -401,7 +400,7 @@ struct OUStringLess
 /*?*/ SvStorageRef SvXMLEmbeddedObjectHelper::ImplGetObjectStorage(
 /*?*/       const OUString& rContainerStorageName,
 /*?*/       const OUString& rObjectStorageName,
-/*?*/       sal_Bool bUCBStorage )
+/*?*/       sal_Bool /*bUCBStorage*/ )
 /*?*/ {
 /*?*/   SvStorageRef xObjStor;
 /*?*/   SvStorageRef xCntnrStor( ImplGetContainerStorage( rContainerStorageName ) );
@@ -608,7 +607,7 @@ struct OUStringLess
 /*N*/       SvStorage& rRootStorage,
 /*N*/       SvPersist& rDocPersist,
 /*N*/       SvXMLEmbeddedObjectHelperMode eCreateMode,
-/*N*/       sal_Bool bDirect )
+/*N*/       sal_Bool /*bDirect*/ )
 /*N*/ {
 /*N*/   SvXMLEmbeddedObjectHelper* pThis = new SvXMLEmbeddedObjectHelper;
 /*N*/
@@ -707,13 +706,13 @@ struct OUStringLess
 /*?*/ Sequence< OUString > SAL_CALL SvXMLEmbeddedObjectHelper::getElementNames()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;//STRIP001  MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;
 /*?*/ }
 
-/*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& rURLStr )
+/*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& )
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 // XNameAccess

@@ -156,32 +156,32 @@ public:
 
 // -----------------------------------------------------------------------------
 
-/*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::readSomeBytes( Sequence< sal_Int8 >& rData, sal_Int32 nMaxBytesToRead )
+/*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::readSomeBytes( Sequence< sal_Int8 >& /*rData*/, sal_Int32 /*nMaxBytesToRead*/ )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
-/*?*/ void SAL_CALL SvXMLGraphicInputStream::skipBytes( sal_Int32 nBytesToSkip )
+/*?*/ void SAL_CALL SvXMLGraphicInputStream::skipBytes( sal_Int32 /*nBytesToSkip*/ )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
 /*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::available() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
 /*?*/ void SAL_CALL SvXMLGraphicInputStream::closeInput() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // ----------------------------
@@ -256,7 +256,7 @@ public:
 /*?*/ void SAL_CALL SvXMLGraphicOutputStream::flush()
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, IOException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------

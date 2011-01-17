@@ -111,8 +111,10 @@ private:
 
 ///////////////////////////////////////////////////////////////////////
 
-/*N*/ SvxXMLTableImportContext::SvxXMLTableImportContext( SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, SvxXMLTableImportContextEnum eContext, const Reference< XNameContainer >& xTable )
-/*N*/ : SvXMLImportContext( rImport, nPrfx, rLName ), meContext( eContext ), mxTable( xTable )
+/*N*/ SvxXMLTableImportContext::SvxXMLTableImportContext( SvXMLImport& rInImport, USHORT nPrfx, const OUString& rLName, const Reference< XAttributeList >& /*xAttrList*/, SvxXMLTableImportContextEnum eContext, const Reference< XNameContainer >& xTable )
+/*N*/ : SvXMLImportContext( rInImport, nPrfx, rLName )
+/*N*/ , mxTable( xTable )
+/*N*/ , meContext( eContext )
 /*N*/ {
 /*N*/ }
 
@@ -120,9 +122,9 @@ private:
 /*N*/ {
 /*N*/ }
 
-/*N*/ SvXMLImportContext *SvxXMLTableImportContext::CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
+/*N*/ SvXMLImportContext *SvxXMLTableImportContext::CreateChildContext( USHORT nInPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
 /*N*/ {
-/*N*/   if( XML_NAMESPACE_DRAW == nPrefix )
+/*N*/   if( XML_NAMESPACE_DRAW == nInPrefix )
 /*N*/   {
 /*N*/       try
 /*N*/       {
@@ -132,22 +134,24 @@ private:
 /*N*/           switch( meContext )
 /*N*/           {
 /*N*/           case stice_color:
-/*N*/               importColor( nPrefix, rLocalName, xAttrList, aAny, aName );
+/*N*/               importColor( nInPrefix, rLocalName, xAttrList, aAny, aName );
 /*N*/               break;
 /*N*/           case stice_marker:
-/*N*/               importMarker( nPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               importMarker( nInPrefix, rLocalName, xAttrList, aAny, aName  );
 /*N*/               break;
 /*N*/           case stice_dash:
-/*N*/               importDash( nPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               importDash( nInPrefix, rLocalName, xAttrList, aAny, aName  );
 /*N*/               break;
 /*N*/           case stice_hatch:
-/*N*/               importHatch( nPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               importHatch( nInPrefix, rLocalName, xAttrList, aAny, aName  );
 /*N*/               break;
 /*N*/           case stice_gradient:
-/*N*/               importGradient( nPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               importGradient( nInPrefix, rLocalName, xAttrList, aAny, aName  );
 /*N*/               break;
 /*N*/           case stice_bitmap:
-/*N*/               importBitmap( nPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               importBitmap( nInPrefix, rLocalName, xAttrList, aAny, aName  );
+/*N*/               break;
+/*N*/           default:
 /*N*/               break;
 /*N*/           }
 /*N*/
@@ -168,26 +172,26 @@ private:
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+/*N*/   return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importColor( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importColor( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
 /*N*/   for( sal_Int16 i=0; i < nAttrCount; i++ )
 /*N*/   {
 /*N*/       const OUString& rFullAttrName = xAttrList->getNameByIndex( i );
-/*N*/       OUString aLocalName;
-/*N*/       sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rFullAttrName, &aLocalName );
+/*N*/       OUString aLclLocalName;
+/*N*/       sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rFullAttrName, &aLclLocalName );
 /*N*/
 /*N*/
-/*N*/       if( XML_NAMESPACE_DRAW == nPrefix )
+/*N*/       if( XML_NAMESPACE_DRAW == nLclPrefix )
 /*N*/       {
-/*N*/           if( aLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sXML_name ) ) )
+/*N*/           if( aLclLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sXML_name ) ) )
 /*N*/           {
 /*N*/               rName = xAttrList->getValueByIndex( i );
 /*N*/           }
-/*N*/           else if( aLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sXML_color ) ) )
+/*N*/           else if( aLclLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sXML_color ) ) )
 /*N*/           {
 /*N*/               Color aColor;
 /*N*/               SvXMLUnitConverter::convertColor(aColor, xAttrList->getValueByIndex( i ));
@@ -197,31 +201,31 @@ private:
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importMarker( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importMarker( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   XMLMarkerStyleImport aMarkerStyle( GetImport() );
 /*N*/   aMarkerStyle.importXML( xAttrList, rAny, rName );
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importDash( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importDash( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   XMLDashStyleImport aDashStyle( GetImport() );
 /*N*/   aDashStyle.importXML( xAttrList, rAny, rName );
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importHatch( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importHatch( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   XMLHatchStyleImport aHatchStyle( GetImport() );
 /*N*/   aHatchStyle.importXML( xAttrList, rAny, rName );
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importGradient( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importGradient( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   XMLGradientStyleImport aGradientStyle( GetImport() );
 /*N*/   aGradientStyle.importXML( xAttrList, rAny, rName );
 /*N*/ }
 
-/*N*/ void SvxXMLTableImportContext::importBitmap( USHORT nPrfx, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
+/*N*/ void SvxXMLTableImportContext::importBitmap( USHORT /*nPrfx*/, const OUString& /*rLocalName*/, const Reference< XAttributeList >& xAttrList, Any& rAny, OUString& rName )
 /*N*/ {
 /*N*/   XMLImageStyle aImageStyle;
 /*N*/   aImageStyle.importXML( xAttrList, rAny, rName, GetImport() );
@@ -330,45 +334,45 @@ private:
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ SvXMLImportContext *SvxXMLXTableImport::CreateContext( sal_uInt16 nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
+/*N*/ SvXMLImportContext *SvxXMLXTableImport::CreateContext( sal_uInt16 nInPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
 /*N*/ {
-/*N*/   if( XML_NAMESPACE_OFFICE == nPrefix )
+/*N*/   if( XML_NAMESPACE_OFFICE == nInPrefix )
 /*N*/   {
 /*N*/       Type aType = mrTable->getElementType();
 /*N*/
 /*N*/       if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "color-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const sal_Int32*)0) )
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_color, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_color, mrTable );
 /*N*/       }
 /*N*/       else if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "marker-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const drawing::PolyPolygonBezierCoords*)0) )
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_marker, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_marker, mrTable );
 /*N*/       }
 /*N*/       else if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "dash-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const drawing::LineDash*)0) )
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_dash, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_dash, mrTable );
 /*N*/       }
 /*N*/       else if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "hatch-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const drawing::Hatch*)0) )
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_hatch, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_hatch, mrTable );
 /*N*/       }
 /*N*/       else if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "gradient-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const awt::Gradient*)0))
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_gradient, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_gradient, mrTable );
 /*N*/       }
 /*N*/       else if( rLocalName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "bitmap-table" ) ) )
 /*N*/       {
 /*N*/           if( aType == ::getCppuType((const OUString*)0))
-/*N*/               return new SvxXMLTableImportContext( *this, nPrefix, rLocalName, xAttrList, stice_bitmap, mrTable );
+/*N*/               return new SvxXMLTableImportContext( *this, nInPrefix, rLocalName, xAttrList, stice_bitmap, mrTable );
 /*N*/       }
 /*N*/   }
 /*N*/
-/*?*/   return new SvXMLImportContext( *this, nPrefix, rLocalName );
+/*?*/   return new SvXMLImportContext( *this, nInPrefix, rLocalName );
 /*N*/ }
 
 }
