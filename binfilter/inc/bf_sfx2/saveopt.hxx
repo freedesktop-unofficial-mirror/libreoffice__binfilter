@@ -28,9 +28,7 @@
 #define _SFX_SAVEOPT_HXX
 
 
-#ifndef _SV_WINTYPES_HXX //autogen
-#include <vcl/wintypes.hxx>
-#endif
+#include <tools/wintypes.hxx>
 #ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
 #endif

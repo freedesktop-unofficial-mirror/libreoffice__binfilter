@@ -35,9 +35,7 @@
 #include <com/sun/star/util/MeasureUnit.hpp>
 #endif
 
-#ifndef _VCL_FLDUNIT_HXX
-#include <vcl/fldunit.hxx>
-#endif
+#include <tools/fldunit.hxx>
 
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>

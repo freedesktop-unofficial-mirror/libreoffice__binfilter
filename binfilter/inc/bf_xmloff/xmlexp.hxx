@@ -56,9 +56,7 @@
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
 #endif
-#ifndef _VCL_MAPUNIT_HXX
-#include <vcl/mapunit.hxx>
-#endif
+#include <tools/mapunit.hxx>
 
 #ifndef _XMLOFF_TEXTPARAE_HXX_
 #include <bf_xmloff/txtparae.hxx>

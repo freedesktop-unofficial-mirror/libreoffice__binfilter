@@ -357,6 +357,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // zweistellige Jahreszahleneingabe aus Extras->Optionen->Allgemein->Sonstiges
 /*N*/   aDocOpt.SetYear2000( SFX_APP()->GetMiscConfig()->GetYear2000() );
+        aDocOpt.SetStdPrecision( 2 );   // #i114730# use sdc-compatible value of 2 if not overridden in file
 /*N*/
 /*N*/   aDocument.SetDocOptions( aDocOpt );
 /*N*/   aDocument.SetViewOptions( aViewOpt );
