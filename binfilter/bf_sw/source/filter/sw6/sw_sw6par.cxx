@@ -5544,10 +5544,8 @@ SwSw6Parser::SwSw6Parser(SwDoc *pSwDoc,const SwPaM &rSwPaM,
     pPaM=new SwPaM( *(rSwPaM.GetPoint() ) );
     SetDocInfo(&pDat->DocInfo);
 
-    SwTxtNode *pTxtNode=0;
-
     // Ist das ein SwPaM auf einen TextNode?
-    if (0==(pTxtNode=pDoc->GetNodes()[pPaM->GetPoint()->nNode]->GetTxtNode()))
+    if (0==pDoc->GetNodes()[pPaM->GetPoint()->nNode]->GetTxtNode())
     {
         // Ist keiner, dann machen wir uns einen
         pDoc->GetNodes().MakeTxtNode(
