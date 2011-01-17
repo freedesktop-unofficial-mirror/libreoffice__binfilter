@@ -46,6 +46,7 @@
 
 #include <bf_sfx2/sfxuno.hxx>
 #include <bf_sfx2/docinf.hxx>
+#include <vector>
 
 class Timer;
 class DateTime;
@@ -126,23 +127,29 @@ struct SfxVersionInfo
                             }
 };
 
-DECLARE_LIST( _SfxVersionTable, SfxVersionInfo* )
-class SfxVersionTableDtor : public _SfxVersionTable
+typedef ::std::vector< SfxVersionInfo* > _SfxVersionTable;
+class SfxVersionTableDtor
 {
+private:
+    _SfxVersionTable    maList;
+
 public:
-                            SfxVersionTableDtor( const sal_uInt16 nInitSz=0, const sal_uInt16 nReSz=1 )
-                                : _SfxVersionTable( nInitSz, nReSz )
-                            {}
+                        SfxVersionTableDtor() {}
 
-                            SfxVersionTableDtor( const SfxVersionTableDtor &rCpy )
-                                : _SfxVersionTable(0, 1)
-                            { *this = rCpy; }
+                        SfxVersionTableDtor( const SfxVersionTableDtor &rCpy )
+                        { *this = rCpy; }
 
-                            ~SfxVersionTableDtor()
-                            { DelDtor(); }
+                        ~SfxVersionTableDtor()
+                        { DelDtor(); }
 
-    void                    DelDtor();
-    SvStream&               Read( SvStream & );
+    void                DelDtor();
+    SvStream&           Read( SvStream & );
+
+    size_t              Count() const { return maList.size(); }
+    SfxVersionInfo*     GetObject( size_t i )
+                        { return ( maList.size() < i ) ? maList[ i ] : NULL; }
+    void                push_back( SfxVersionInfo* item ) { maList.push_back( item ); }
+
 };
 
 class SfxMedium : public SvRefBase

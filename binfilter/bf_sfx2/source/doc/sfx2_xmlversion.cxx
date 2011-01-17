@@ -193,7 +193,7 @@ sal_Char XMLN_VERSIONSLIST[] = "VersionList.xml";
 /*?*/     }
 /*?*/
 /*?*/     SfxVersionTableDtor* pVersion = rLocalRef.GetList();
-/*?*/     pVersion->Insert( pInfo, LIST_APPEND );
+/*?*/     pVersion->push_back( pInfo );
 /*?*/ }
 
 

@@ -1066,7 +1066,7 @@ namespace binfilter {
 /*?*/                 try
 /*?*/                 {
 /*?*/                     Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("IsReadOnly" )) );
-/*?*/                     BOOL bReadonly;
+/*?*/                     BOOL bReadonly( false );
 /*?*/                     if ( ( aAny >>= bReadonly ) && bReadonly )
 /*?*/                     {
 /*?*/                         GetItemSet()->Put( SfxBoolItem(SID_DOC_READONLY, sal_True));
@@ -1885,30 +1885,26 @@ namespace binfilter {
 /*?*/         rStrm.ReadByteString( pNew->aComment, RTL_TEXTENCODING_UTF8 );
 /*?*/         rStrm.ReadByteString( pNew->aName, RTL_TEXTENCODING_UTF8 );
 /*?*/         pNew->aCreateStamp.Load( rStrm );
-/*?*/         Insert( pNew, LIST_APPEND );
+/*?*/         maList.push_back( pNew );
 /*?*/     }
 /*?*/
 /*?*/     return rStrm;
 /*?*/ }
 
-/*N*/ void SfxVersionTableDtor::DelDtor()
-/*N*/ {
-/*N*/     SfxVersionInfo* pTmp = First();
-/*N*/     while( pTmp )
-/*N*/     {
-/*?*/         delete pTmp;
-/*?*/         pTmp = Next();
-/*N*/     }
-/*N*/     Clear();
-/*N*/ }
+void SfxVersionTableDtor::DelDtor()
+{
+    for ( size_t i = 0, n = maList.size(); i < n; ++i )
+        delete maList[ i ];
+    maList.clear();
+}
 
 
 //----------------------------------------------------------------
 //----------------------------------------------------------------
 //----------------------------------------------------------------
-/*?*/ SfxVersionInfo::SfxVersionInfo()
-/*?*/ {
-/*?*/ }
+SfxVersionInfo::SfxVersionInfo()
+{
+}
 
 
 }
