@@ -97,8 +97,17 @@ namespace
 /*N*/   OSystemParseContext* getSharedContext(OSystemParseContext* _pContext = NULL,sal_Bool _bSet = sal_False)
 /*N*/   {
 /*N*/       static OSystemParseContext* s_pSharedContext = NULL;
-/*N*/       if ( _pContext && !s_pSharedContext || _bSet )
+/*N*/       if ( _pContext && !s_pSharedContext )
+/*N*/       {
 /*N*/           s_pSharedContext = _pContext;
+/*N*/           return s_pSharedContext;
+/*N*/       }
+/*N*/       if ( _bSet )
+/*N*/       {
+/*N*/               OSystemParseContext* pReturn = _pContext ? _pContext : s_pSharedContext;
+/*N*/           s_pSharedContext = _pContext;
+/*N*/           return pReturn;
+/*N*/       }
 /*N*/       return s_pSharedContext;
     }
     // -----------------------------------------------------------------------------

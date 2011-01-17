@@ -125,7 +125,7 @@ public:
 /*N*/ {
 /*N*/   if( pObjFactory->nInventor == SiInventor )
 /*N*/   {
-/*N*/       if( ((pObjFactory->nIdentifier >= OBJ_CHECKBOX) && (pObjFactory->nIdentifier <= OBJ_VSCROLLBAR)) ||
+/*N*/       if( pObjFactory->nIdentifier <= OBJ_VSCROLLBAR ||
 /*N*/           pObjFactory->nIdentifier == OBJ_URLBUTTON )
 /*N*/       {
 /*N*/             switch( pObjFactory->nIdentifier )
