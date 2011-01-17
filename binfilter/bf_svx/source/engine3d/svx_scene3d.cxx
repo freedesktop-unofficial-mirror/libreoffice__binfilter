@@ -67,13 +67,13 @@ namespace binfilter {
 /*N*/ E3dScene::E3dScene()
 /*N*/ : E3dObject(),
 /*N*/   aCamera(Vector3D(0,0,4), Vector3D()),
-/*N*/   bDoubleBuffered(FALSE),
-/*N*/   bClipping(FALSE),
 /*N*/   nSaveStatus (0),
 /*N*/   nRestStatus (0),
-/*N*/   bFitInSnapRect(TRUE),
 /*N*/   aPaintTime(),
 /*N*/   nDisplayQuality(255),
+/*N*/   bDoubleBuffered(FALSE),
+/*N*/   bClipping(FALSE),
+/*N*/   bFitInSnapRect(TRUE),
 /*N*/   bDrawOnlySelected(FALSE)
 /*N*/ {
 /*N*/   // Defaults setzen
@@ -722,7 +722,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // zuerst loeschen
 /*N*/   aLabelList.Clear();
-/*N*/   SdrLayerID nLayerID = GetLayer();
+/*N*/   SdrLayerID nLclLayerID = GetLayer();
 /*N*/
 /*N*/   SdrObjListIter a3DIterator(*pSub, IM_FLAT);
 /*N*/
@@ -730,7 +730,7 @@ namespace binfilter {
 /*N*/   while ( a3DIterator.IsMore() )
 /*N*/   {
 /*N*/       E3dObject* p3DObj = (E3dObject*) a3DIterator.Next();
-/*N*/       p3DObj->NbcSetLayer(nLayerID);
+/*N*/       p3DObj->NbcSetLayer(nLclLayerID);
 /*N*/       NewObjectInserted(p3DObj);
 /*N*/   }
 /*N*/

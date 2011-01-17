@@ -188,7 +188,7 @@ namespace binfilter {
 /*N*/       Matrix4D aRotMat;
 /*N*/
 /*N*/       // Skalierung vorbereiten
-/*N*/       double fScalePerStep;
+/*N*/       double fScalePerStep(0.0);
 /*N*/       if(GetBackScale() != 100)
 /*N*/           fScalePerStep = (((double)GetBackScale() - 100.0) / 100.0) / (double)GetHorizontalSegments();
 /*N*/
@@ -353,7 +353,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dLatheObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
+/*N*/ void E3dLatheObj::CreateWireframe(Polygon3D& /*rWirePoly*/, const Matrix4D* /*pTf*/,
 /*N*/   E3dDragDetail eDetail)
 /*N*/ {
 /*N*/   // Nur selbst erzeugen, wenn alle Linien angezeigt werden sollen
@@ -365,7 +365,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       // call parent
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

@@ -57,7 +57,7 @@ namespace binfilter {
 //     laden von Dokumenten. Hier braucht man keinen CreateSphere-Aufruf, denn die wirkliche
 //     Anzahl Segmente ist ja noch nicht bekannt. Dies war bis zum 10.2.97 ein (kleines)
 //     Speicherleck.
-/*N*/ E3dSphereObj::E3dSphereObj(int dummy) // den Parameter braucht es um unterscheiden zu koennen, welcher
+/*N*/ E3dSphereObj::E3dSphereObj(int /*dummy*/) // den Parameter braucht es um unterscheiden zu koennen, welcher
 /*N*/ {                                     // der beiden Konstruktoren gemeint ist. Der obige halt per Default
 /*N*/   // Defaults setzen
 /*N*/   E3dDefaultAttributes aDefault;
@@ -279,25 +279,11 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Identifier zurueckgeben
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Wireframe erzeugen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Wandle das Objekt in ein Gruppenobjekt bestehend aus n Polygonen
 |*
 \************************************************************************/
 
-/*N*/ SdrObject *E3dSphereObj::DoConvertToPolyObj(BOOL bBezier) const
+/*N*/ SdrObject *E3dSphereObj::DoConvertToPolyObj(BOOL /*bBezier*/) const
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
@@ -435,7 +421,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dSphereObj::ReadData31(const SdrObjIOHeader& rHead, SvStream& rIn)
+/*N*/ void E3dSphereObj::ReadData31(const SdrObjIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/   SdrDownCompat aCompat(rIn, STREAM_READ);
 /*N*/ #ifdef DBG_UTIL
@@ -640,23 +626,16 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Lokale Parameter setzen mit Geometrieneuerzeugung
 |*
 \************************************************************************/
 
-/*N*/ void E3dSphereObj::SetCenter(const Vector3D& rNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dSphereObj::SetCenter(const Vector3D& /*rNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void E3dSphereObj::SetSize(const Vector3D& rNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dSphereObj::SetSize(const Vector3D& /*rNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////

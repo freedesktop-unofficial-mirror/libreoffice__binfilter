@@ -1679,7 +1679,7 @@ typedef ::std::vector< Polygon3D* > Polygon3DList;
 /*N*/                   // es gibt welche, nDoneStart ist gesetzt. Erzeuge (und
 /*N*/                   // setze) nDoneEnd
 /*N*/                   UINT16 nDoneEnd(nDoneStart);
-/*N*/                   UINT16 nStartLoop;
+/*N*/                   UINT16 nStartLoop(0);
 /*N*/                   BOOL bInLoop(FALSE);
 /*N*/
 /*N*/                   // einen step mehr in der Schleife, um Loops abzuschliessen

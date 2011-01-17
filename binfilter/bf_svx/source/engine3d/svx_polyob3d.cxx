@@ -280,7 +280,7 @@ namespace binfilter {
 |*
 |* sichern: zur 356 wurde das Fileformat freigegeben 11.2.1997 FG
 |*
-/*************************************************************************/
+**************************************************************************/
 
 /*N*/ void E3dPolyObj::WriteData(SvStream& rOut) const
 /*N*/ {
@@ -296,16 +296,16 @@ namespace binfilter {
 /*N*/       aCompat.SetID("E3dPolyObj");
 /*N*/ #endif
 /*N*/       {
-/*N*/           SdrDownCompat aCompat (rOut, STREAM_WRITE);
+/*N*/           SdrDownCompat aInnerCompat (rOut, STREAM_WRITE);
 /*N*/ #ifdef DBG_UTIL
-/*N*/           aCompat.SetID("PolyPolygon3D");
+/*N*/           aInnerCompat.SetID("PolyPolygon3D");
 /*N*/ #endif
 /*N*/           rOut << aPolyPoly3D;
 /*N*/       }
 /*N*/       {
-/*N*/           SdrDownCompat aCompat (rOut, STREAM_WRITE);
+/*N*/           SdrDownCompat aInnerCompat (rOut, STREAM_WRITE);
 /*N*/ #ifdef DBG_UTIL
-/*N*/           aCompat.SetID("PolyPolygon3D");
+/*N*/           aInnerCompat.SetID("PolyPolygon3D");
 /*N*/ #endif
 /*N*/           rOut << aNormal;
 /*N*/       }

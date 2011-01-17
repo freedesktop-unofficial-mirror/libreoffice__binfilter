@@ -135,7 +135,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // Owner holen
 /*N*/   DBG_ASSERT(GetOwnerObj()->ISA(E3dObject), "AW: Entfernen 3DObject aus Parent != 3DObject");
-/*N*/   E3dObject* pOwner = (E3dObject*)GetOwnerObj();
+/*N*/   /*E3dObject* pOwner =*/ (E3dObject*)GetOwnerObj();
 /*N*/
 /*N*/   // call parent
 /*N*/   SdrObject* pRetval = SdrObjList::RemoveObject(nObjNum);
@@ -158,8 +158,8 @@ namespace binfilter {
 /*N*/ E3dObject::E3dObject() :
 /*N*/   nLogicalGroup(0),
 /*N*/   nObjTreeLevel(0),
-/*N*/   eDragDetail(E3DDETAIL_ONEBOX),
 /*N*/   nPartOfParent(0),
+/*N*/   eDragDetail(E3DDETAIL_ONEBOX),
 /*N*/   bTfHasChanged(TRUE),
 /*N*/   bBoundVolValid(TRUE),
 /*N*/   bIsSelected(FALSE)
@@ -1171,7 +1171,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dObject::ReadOnlyOwnMembers(const SdrObjIOHeader& rHead, SvStream& rIn)
+/*N*/ void E3dObject::ReadOnlyOwnMembers(const SdrObjIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/   SdrDownCompat aCompat(rIn, STREAM_READ);
@@ -1576,7 +1576,6 @@ namespace binfilter {
 /*N*/   if (aCompat.GetBytesLeft () >= sizeof (BOOL))
 /*N*/   {
 /*N*/       BOOL bTmp, bTmp2;
-/*N*/       sal_uInt16 nTmp;
 /*N*/
 /*N*/       rIn >> bTmp;
 /*N*/       mpObjectItemSet->Put(Svx3DDoubleSidedItem(bTmp));
@@ -1584,6 +1583,8 @@ namespace binfilter {
 /*N*/       // neue Parameter zur Geometrieerzeugung
 /*N*/       if (aCompat.GetBytesLeft () >= sizeof (BOOL))
 /*N*/       {
+/*N*/           sal_uInt16 nTmp;
+/*N*/
 /*N*/           rIn >> bTmp;
 /*N*/           bCreateNormals = bTmp;
 /*N*/
@@ -1936,13 +1937,13 @@ namespace binfilter {
 /*N*/ void E3dCompoundObject::CreateFront(
 /*N*/   const PolyPolygon3D& rPolyPoly3D,
 /*N*/   const PolyPolygon3D& rFrontNormals,
-/*N*/   BOOL bCreateNormals,
-/*N*/   BOOL bCreateTexture)
+/*N*/   BOOL bInCreateNormals,
+/*N*/   BOOL bInCreateTexture)
 /*N*/ {
 /*N*/   // Vorderseite
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
-/*N*/       if(bCreateTexture)
+/*N*/       if(bInCreateTexture)
 /*N*/       {
 /*N*/           // Polygon fuer die Textur erzeugen
 /*N*/           PolyPolygon3D aPolyTexture = rPolyPoly3D;
@@ -2004,19 +2005,19 @@ namespace binfilter {
 /*N*/ void E3dCompoundObject::CreateBack(
 /*N*/   const PolyPolygon3D& rPolyPoly3D,
 /*N*/   const PolyPolygon3D& rBackNormals,
-/*N*/   BOOL bCreateNormals,
-/*N*/   BOOL bCreateTexture)
+/*N*/   BOOL bInCreateNormals,
+/*N*/   BOOL bInCreateTexture)
 /*N*/ {
 /*N*/   // PolyPolygon umdrehen
 /*N*/   PolyPolygon3D aLocalPoly = rPolyPoly3D;
 /*N*/   aLocalPoly.FlipDirections();
 /*N*/
 /*N*/   // Rueckseite
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
 /*N*/       PolyPolygon3D aLocalNormals = rBackNormals;
 /*N*/       aLocalNormals.FlipDirections();
-/*N*/       if(bCreateTexture)
+/*N*/       if(bInCreateTexture)
 /*N*/       {
 /*N*/           // Polygon fuer die Textur erzeugen
 /*N*/           PolyPolygon3D aPolyTexture(aLocalPoly);
@@ -2082,19 +2083,19 @@ namespace binfilter {
 /*N*/   const PolyPolygon3D& rPolyPolyBack,
 /*N*/   const PolyPolygon3D& rFrontNormals,
 /*N*/   const PolyPolygon3D& rBackNormals,
-/*N*/   BOOL bCreateNormals,
+/*N*/   BOOL bInCreateNormals,
 /*N*/   double fSurroundFactor,
 /*N*/   double fTextureStart,
 /*N*/   double fTextureDepth,
 /*N*/   BOOL bRotateTexture90)
 /*N*/ {
 /*N*/   USHORT nPolyCnt = rPolyPolyFront.Count();
-/*N*/   BOOL bCreateTexture = (fTextureDepth == 0.0) ? FALSE : TRUE;
-/*N*/   double fPolyLength, fPolyPos;
-/*N*/   USHORT nLastIndex;
+/*N*/   BOOL bLclCreateTexture = (fTextureDepth == 0.0) ? FALSE : TRUE;
+/*N*/   double fPolyLength(0.0), fPolyPos(0.0);
+/*N*/   USHORT nLastIndex(0);
 /*N*/
 /*N*/   // Verbindungsstuecke
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
 /*N*/       for(UINT16 a=0;a<nPolyCnt;a++)
 /*N*/       {
@@ -2115,7 +2116,7 @@ namespace binfilter {
 /*N*/           aNormal3D[3] = rPolyNormalsFront[nPrefillIndex];
 /*N*/           aNormal3D[2] = rPolyNormalsBack[nPrefillIndex];
 /*N*/
-/*N*/           if(bCreateTexture)
+/*N*/           if(bLclCreateTexture)
 /*N*/           {
 /*N*/               fPolyLength = rPoly3DFront.GetLength();
 /*N*/               fPolyPos = 0.0;
@@ -2154,7 +2155,7 @@ namespace binfilter {
 /*N*/               aNormal3D[3] = rPolyNormalsFront[i];
 /*N*/               aNormal3D[2] = rPolyNormalsBack[i];
 /*N*/
-/*N*/               if(bCreateTexture)
+/*N*/               if(bLclCreateTexture)
 /*N*/               {
 /*N*/                   // Texturkoordinaten ermitteln
 /*N*/                   Vector3D aPart = rPoly3DFront[i] - rPoly3DFront[nLastIndex];
@@ -2302,28 +2303,12 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Copy-Operator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Ausgabeparameter an 3D-Kontext setzen
-|*
-\************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
 |* Hittest fuer 3D-Objekte, wird an Geometrie weitergegeben
 |*
 \************************************************************************/
 
 /*N*/ SdrObject* E3dCompoundObject::CheckHit(const Point& rPnt, USHORT nTol,
-/*N*/   const SetOfByte* pVisiLayer) const
+/*N*/   const SetOfByte* /*pVisiLayer*/) const
 /*N*/ {
 /*N*/   E3dPolyScene* pScene = (E3dPolyScene*)GetScene();
 /*N*/   if(pScene)
@@ -2509,8 +2494,8 @@ namespace binfilter {
 /*N*/   double fSurroundFactor,             // Wertebereich der Texturkoordinaten im Umlauf
 /*N*/   double fTextureStart,               // TexCoor ueber Extrude-Tiefe
 /*N*/   double fTextureDepth,               // TexCoor ueber Extrude-Tiefe
-/*N*/   BOOL bCreateTexture,
-/*N*/   BOOL bCreateNormals,
+/*N*/   BOOL bInCreateTexture,
+/*N*/   BOOL bInCreateNormals,
 /*N*/   BOOL bCharacterExtrude,             // FALSE=exakt, TRUE=ohne Ueberschneidungen
 /*N*/   BOOL bRotateTexture90,              // Textur der Seitenflaechen um 90 Grad kippen
 /*N*/   PolyPolygon3D* pLineGeometry        // For creation of line geometry
@@ -2546,11 +2531,11 @@ namespace binfilter {
 /*N*/           AddFrontNormals(rFront, aNormalsFront, aOffset);
 /*N*/
 /*N*/           if(!bSmoothFrontBack)
-/*N*/               CreateFront(rFront, aNormalsFront, bCreateNormals, bCreateTexture);
+/*N*/               CreateFront(rFront, aNormalsFront, bInCreateNormals, bInCreateTexture);
 /*N*/           if(bSmoothLeft)
 /*N*/               AddFrontNormals(rFront, aNormalsLeft, aOffset);
 /*N*/           if(bSmoothFrontBack)
-/*?*/               CreateFront(rFront, aNormalsLeft, bCreateNormals, bCreateTexture);
+/*?*/               CreateFront(rFront, aNormalsLeft, bInCreateNormals, bInCreateTexture);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -2565,11 +2550,11 @@ namespace binfilter {
 /*N*/           AddBackNormals(rBack, aNormalsBack, aOffset);
 /*N*/
 /*N*/           if(!bSmoothFrontBack)
-/*N*/               CreateBack(rBack, aNormalsBack, bCreateNormals, bCreateTexture);
+/*N*/               CreateBack(rBack, aNormalsBack, bInCreateNormals, bInCreateTexture);
 /*N*/           if(bSmoothRight)
 /*N*/               AddBackNormals(rBack, aNormalsRight, aOffset);
 /*N*/           if(bSmoothFrontBack)
-/*?*/               CreateBack(rBack, aNormalsRight, bCreateNormals, bCreateTexture);
+/*?*/               CreateBack(rBack, aNormalsRight, bInCreateNormals, bInCreateTexture);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -2580,7 +2565,7 @@ namespace binfilter {
 /*N*/       // eigentliches Zwischenstueck
 /*N*/       CreateInBetween(rFront, rBack,
 /*N*/           aNormalsLeft, aNormalsRight,
-/*N*/           bCreateNormals,
+/*N*/           bInCreateNormals,
 /*N*/           fSurroundFactor,
 /*N*/           fTextureStart,
 /*N*/           fTextureDepth,
@@ -2700,14 +2685,14 @@ namespace binfilter {
 /*N*/           // vordere Zwischenstuecke erzeugen
 /*N*/           CreateInBetween(aOuterFront, aLocalFront,
 /*N*/               aNormalsOuterFront, aNormalsLeft,
-/*N*/               bCreateNormals,
+/*N*/               bInCreateNormals,
 /*N*/               fSurroundFactor,
 /*N*/               fTextureStart,
 /*N*/               fTextureDepth * fPercentDiag,
 /*N*/               bRotateTexture90);
 /*N*/
 /*N*/           // Vorderseite erzeugen
-/*N*/           CreateFront(aOuterFront, aNormalsOuterFront, bCreateNormals, bCreateTexture);
+/*N*/           CreateFront(aOuterFront, aNormalsOuterFront, bInCreateNormals, bInCreateTexture);
 /*N*/
 /*N*/           // Weitere Texturwerte setzen
 /*N*/           fTexMidStart += fTextureDepth * fPercentDiag;
@@ -2809,14 +2794,14 @@ namespace binfilter {
 /*N*/           // hintere Zwischenstuecke erzeugen
 /*N*/           CreateInBetween(aLocalBack, aOuterBack,
 /*N*/               aNormalsRight, aNormalsOuterBack,
-/*N*/               bCreateNormals,
+/*N*/               bInCreateNormals,
 /*N*/               fSurroundFactor,
 /*N*/               fTextureStart + (fTextureDepth * (1.0 - fPercentDiag)),
 /*N*/               fTextureDepth * fPercentDiag,
 /*N*/               bRotateTexture90);
 /*N*/
 /*N*/           // Rueckseite erzeugen
-/*N*/           CreateBack(aOuterBack, aNormalsOuterBack, bCreateNormals, bCreateTexture);
+/*N*/           CreateBack(aOuterBack, aNormalsOuterBack, bInCreateNormals, bInCreateTexture);
 /*N*/
 /*N*/           // Weitere Texturwerte setzen
 /*N*/           fTexMidDepth -= fTextureDepth * fPercentDiag;
@@ -2830,7 +2815,7 @@ namespace binfilter {
 /*N*/       // eigentliches Zwischenstueck
 /*N*/       CreateInBetween(aLocalFront, aLocalBack,
 /*N*/           aNormalsLeft, aNormalsRight,
-/*N*/           bCreateNormals,
+/*N*/           bInCreateNormals,
 /*N*/           fSurroundFactor,
 /*N*/           fTexMidStart,
 /*N*/           fTexMidDepth,

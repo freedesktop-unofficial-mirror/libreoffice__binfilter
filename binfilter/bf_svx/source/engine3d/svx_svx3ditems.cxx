@@ -258,7 +258,7 @@ using namespace ::com::sun::star;
 /*N*/ : SfxBoolItem(SDRATTR_3DOBJ_SMOOTH_NORMALS, bVal)
 /*N*/ {}
 
-/*N*/ sal_uInt16 Svx3DSmoothNormalsItem::GetVersion(sal_uInt16 nFileFormatVersion) const
+/*N*/ sal_uInt16 Svx3DSmoothNormalsItem::GetVersion(sal_uInt16 /*nFileFormatVersion*/) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -283,7 +283,7 @@ using namespace ::com::sun::star;
 /*N*/ : SfxBoolItem(SDRATTR_3DOBJ_SMOOTH_LIDS, bVal)
 /*N*/ {}
 
-/*N*/ sal_uInt16 Svx3DSmoothLidsItem::GetVersion(sal_uInt16 nFileFormatVersion) const
+/*N*/ sal_uInt16 Svx3DSmoothLidsItem::GetVersion(sal_uInt16 /*nFileFormatVersion*/) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -308,7 +308,7 @@ using namespace ::com::sun::star;
 /*N*/ : SfxBoolItem(SDRATTR_3DOBJ_CHARACTER_MODE, bVal)
 /*N*/ {}
 
-/*N*/ sal_uInt16 Svx3DCharacterModeItem::GetVersion(sal_uInt16 nFileFormatVersion) const
+/*N*/ sal_uInt16 Svx3DCharacterModeItem::GetVersion(sal_uInt16 /*nFileFormatVersion*/) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -333,7 +333,7 @@ using namespace ::com::sun::star;
 /*N*/ : SfxBoolItem(SDRATTR_3DOBJ_CLOSE_FRONT, bVal)
 /*N*/ {}
 
-/*N*/ sal_uInt16 Svx3DCloseFrontItem::GetVersion(sal_uInt16 nFileFormatVersion) const
+/*N*/ sal_uInt16 Svx3DCloseFrontItem::GetVersion(sal_uInt16 /*nFileFormatVersion*/) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -358,7 +358,7 @@ using namespace ::com::sun::star;
 /*N*/ : SfxBoolItem(SDRATTR_3DOBJ_CLOSE_BACK, bVal)
 /*N*/ {}
 
-/*N*/ sal_uInt16 Svx3DCloseBackItem::GetVersion(sal_uInt16 nFileFormatVersion) const
+/*N*/ sal_uInt16 Svx3DCloseBackItem::GetVersion(sal_uInt16 /*nFileFormatVersion*/) const
 /*N*/ {
 /*N*/   return 1;
 /*N*/ }
@@ -379,13 +379,13 @@ using namespace ::com::sun::star;
 //////////////////////////////////////////////////////////////////////////////
 
 // Svx3DNormalsKindItem: use drawing::NormalsKind
-/*N*/ bool Svx3DNormalsKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DNormalsKindItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::NormalsKind)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DNormalsKindItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DNormalsKindItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::NormalsKind eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -394,19 +394,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DNormalsKindItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DNormalsKindItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DNormalsKindItem(*this);
 /*N*/ }
 
 // Svx3DTextureProjectionXItem: use drawing::TextureProjectionMode
-/*N*/ bool Svx3DTextureProjectionXItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DTextureProjectionXItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::TextureProjectionMode)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DTextureProjectionXItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DTextureProjectionXItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::TextureProjectionMode eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -415,19 +415,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DTextureProjectionXItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DTextureProjectionXItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DTextureProjectionXItem(*this);
 /*N*/ }
 
 // Svx3DTextureProjectionYItem: use drawing::TextureProjectionMode
-/*N*/ bool Svx3DTextureProjectionYItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DTextureProjectionYItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::TextureProjectionMode)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DTextureProjectionYItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DTextureProjectionYItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::TextureProjectionMode eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -436,19 +436,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DTextureProjectionYItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DTextureProjectionYItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DTextureProjectionYItem(*this);
 /*N*/ }
 
 // Svx3DTextureKindItem: use drawing::TextureKind
-/*N*/ bool Svx3DTextureKindItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DTextureKindItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::TextureKind)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DTextureKindItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DTextureKindItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::TextureKind eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -457,19 +457,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DTextureKindItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DTextureKindItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DTextureKindItem(*this);
 /*N*/ }
 
 // Svx3DTextureModeItem: use drawing:TextureMode
-/*N*/ bool Svx3DTextureModeItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DTextureModeItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::TextureMode)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DTextureModeItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DTextureModeItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::TextureMode eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -478,19 +478,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DTextureModeItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DTextureModeItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DTextureModeItem(*this);
 /*N*/ }
 
 // Svx3DPerspectiveItem: use drawing::ProjectionMode
-/*N*/ bool Svx3DPerspectiveItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DPerspectiveItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::ProjectionMode)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DPerspectiveItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DPerspectiveItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::ProjectionMode eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -499,19 +499,19 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DPerspectiveItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DPerspectiveItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DPerspectiveItem(*this);
 /*N*/ }
 
 // Svx3DShadeModeItem: use drawing::ShadeMode
-/*N*/ bool Svx3DShadeModeItem::QueryValue( uno::Any& rVal, BYTE nMemberId) const
+/*N*/ bool Svx3DShadeModeItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/) const
 /*N*/ {
 /*N*/   rVal <<= (drawing::ShadeMode)GetValue();
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ bool Svx3DShadeModeItem::PutValue( const uno::Any& rVal, BYTE nMemberId)
+/*N*/ bool Svx3DShadeModeItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/)
 /*N*/ {
 /*N*/   drawing::ShadeMode eVar;
 /*N*/   if(!(rVal >>= eVar))
@@ -520,7 +520,7 @@ using namespace ::com::sun::star;
 /*N*/   return true;
 /*N*/ }
 
-/*N*/ SfxPoolItem* Svx3DShadeModeItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* Svx3DShadeModeItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new Svx3DShadeModeItem(*this);
 /*N*/ }

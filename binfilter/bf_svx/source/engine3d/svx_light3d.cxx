@@ -62,13 +62,11 @@ namespace binfilter {
 
 /*N*/ E3dLight::E3dLight() :
 /*N*/   E3dPointObj(Vector3D()),
-/*N*/
 /*N*/   aColor(255, 255, 255),
-/*N*/
+/*N*/   fIntensity(1.0),
 /*N*/   fRed(1.0),
 /*N*/   fGreen(1.0),
 /*N*/   fBlue(1.0),
-/*N*/   fIntensity(1.0),
 /*N*/   bOn(TRUE),
 /*N*/   bVisible(FALSE)
 /*N*/ {
@@ -140,8 +138,8 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ bool E3dLight::CalcLighting(Color& rNewColor,
-/*N*/                               const Vector3D& rPnt,
-/*N*/                               const Vector3D& rPntNormal,
+/*N*/                               const Vector3D& /*rPnt*/,
+/*N*/                               const Vector3D& /*rPntNormal*/,
 /*N*/                               const Color& rPntColor)
 /*N*/ {
 /*N*/   return ImpCalcLighting(rNewColor, rPntColor, fRed, fGreen, fBlue);
@@ -276,27 +274,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Attribute setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Attribute setzen
-|*
-\************************************************************************/
-
-/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
+/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
 /*N*/ {
 /*N*/ }
 

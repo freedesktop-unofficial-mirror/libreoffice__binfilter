@@ -98,7 +98,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*?*/ bool E3dDistantLight::CalcLighting(Color& rNewColor,
-/*?*/                                       const Vector3D& rPnt,
+/*?*/                                       const Vector3D& /*rPnt*/,
 /*?*/                                       const Vector3D& rPntNormal,
 /*?*/                                       const Color& rPntColor)
 /*?*/ {

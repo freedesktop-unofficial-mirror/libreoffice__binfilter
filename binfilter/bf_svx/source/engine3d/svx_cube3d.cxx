@@ -72,17 +72,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdrObject *E3dCubeObj::DoConvertToPolyObj(BOOL bBezier) const
+/*N*/ SdrObject *E3dCubeObj::DoConvertToPolyObj(BOOL /*bBezier*/) const
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Give out simple line geometry
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -311,8 +304,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void E3dCubeObj::SetPosIsCenter(BOOL bNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dCubeObj::SetPosIsCenter(BOOL /*bNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

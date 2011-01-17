@@ -280,7 +280,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dExtrudeObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
+/*N*/ void E3dExtrudeObj::CreateWireframe(Polygon3D& /*rWirePoly*/, const Matrix4D* /*pTf*/,
 /*N*/   E3dDragDetail eDetail)
 /*N*/ {
 /*N*/   if ( eDetail == E3DDETAIL_ALLLINES ||
@@ -291,7 +291,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       // call parent
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -390,13 +390,13 @@ namespace binfilter {
 /*N*/           {
 /*N*/               // Ab Version 513a (5.2.99): Parameter fuer das
 /*N*/               // Erzeugen der Vorder/Rueckwand
-/*N*/               BOOL bTmp;
+/*N*/               BOOL bLclTmp;
 /*N*/
-/*N*/               rIn >> bTmp; // #107245# bExtrudeCloseFront = bTmp;
-/*N*/               mpObjectItemSet->Put(Svx3DCloseFrontItem(bTmp));
+/*N*/               rIn >> bLclTmp; // #107245# bExtrudeCloseFront = bLclTmp;
+/*N*/               mpObjectItemSet->Put(Svx3DCloseFrontItem(bLclTmp));
 /*N*/
-/*N*/               rIn >> bTmp; // #107245# bExtrudeCloseBack = bTmp;
-/*N*/               mpObjectItemSet->Put(Svx3DCloseBackItem(bTmp));
+/*N*/               rIn >> bLclTmp; // #107245# bExtrudeCloseBack = bLclTmp;
+/*N*/               mpObjectItemSet->Put(Svx3DCloseBackItem(bLclTmp));
 /*N*/           }
 /*N*/           else
 /*N*/           {

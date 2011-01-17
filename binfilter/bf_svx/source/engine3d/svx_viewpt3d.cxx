@@ -45,16 +45,16 @@ namespace binfilter {
 /*N*/   aVUV(0, 1, 1),
 /*N*/   aPRP(0, 0, 2),
 /*N*/   fVPD(-3),
-/*N*/   aViewPoint (0, 0, 5000),
 /*N*/   fNearClipDist (0.0),
 /*N*/   fFarClipDist (0.0),
-/*N*/   fWRatio (1.0),
-/*N*/   fHRatio (1.0),
 /*N*/   eProjection(PR_PERSPECTIVE),
 /*N*/   eAspectMapping(AS_NO_MAPPING),
-/*N*/   bTfValid(0),
 /*N*/   // DeviceRect-Groesse < 0 -> ungueltig
-/*N*/   aDeviceRect(Point(0,0), Size(-1,-1))
+/*N*/   aDeviceRect(Point(0,0), Size(-1,-1)),
+/*N*/   aViewPoint (0, 0, 5000),
+/*N*/   bTfValid(0),
+/*N*/   fWRatio (1.0),
+/*N*/   fHRatio (1.0)
 /*N*/ {
 /*N*/   aViewWin.X = -1; aViewWin.Y = -1;
 /*N*/   aViewWin.W =  2; aViewWin.H = 2;
@@ -194,6 +194,9 @@ namespace binfilter {
 /*N*/           fTmp = aViewWin.W;
 /*N*/           aViewWin.W = aViewWin.H * fRatio;
 /*N*/           aViewWin.X = aViewWin.X * aViewWin.W / fTmp;
+/*N*/           break;
+/*N*/
+/*N*/       default:
 /*N*/           break;
 /*N*/   }
 /*N*/   fWRatio = nNewW / aViewWin.W;

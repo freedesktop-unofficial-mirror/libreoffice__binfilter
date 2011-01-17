@@ -417,8 +417,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dPolygonObj::SetLineOnly(BOOL bNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dPolygonObj::SetLineOnly(BOOL /*bNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 }
