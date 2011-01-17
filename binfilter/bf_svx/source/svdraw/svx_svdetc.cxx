@@ -543,43 +543,7 @@ namespace binfilter {
 
 /*N*/ SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pModel )
 /*N*/ {
-/*N*/   SdrEngineDefaults& rDefaults = SdrEngineDefaults::GetDefaults();
-
-/*
-    MapUnit  eUn( (pMod==NULL) ? rDefaults.eMapUnit : pMod->GetScaleUnit());
-    Fraction aFr( *((pMod==NULL) ? &rDefaults.aMapFraction : &pMod->GetScaleFraction()));
-
-    if ( pMod->GetRefDevice() )
-        pOutl->SetRefDevice( pMod->GetRefDevice() );
-    else
-    {
-        MapMode aMapMode(eUn,Point(0,0),aFr,aFr);
-        pOutl->SetRefMapMode( aMapMode );
-    }
-
-    SfxItemSet aSet(pOutl->GetEmptyItemSet());
-    aSet.Put(SvxFontItem(rDefaults.eFontFamily, rDefaults.aFontName, String(), PITCH_DONTKNOW, gsl_getSystemTextEncoding() ) );
-    aSet.Put(SvxColorItem(rDefaults.aFontColor));
-    ULONG nHgt=rDefaults.nFontHeight;
-    bool bDifUn=(eUn!=rDefaults.eMapUnit); // different MapUnits
-    bool bDifFr=(aFr!=rDefaults.aMapFraction); // different MapFractions
-    if (bDifUn || bDifFr) { // Wenn pMod!=NULL und pMod->Map!=rDef.Map
-        long nTmpLong=long(nHgt); // caasting im Ctor bringt unter MSVC sehr merkwuerdige Fehlermeldungen
-        BigInt aHgt1(nTmpLong); // umrechnen von DefMap in ModMap
-        FrPair aUnitMul(GetMapFactor(rDefaults.eMapUnit,eUn));
-
-        if (bDifUn) aHgt1*=aUnitMul.Y().GetNumerator();
-        if (bDifFr) aHgt1*=aFr.GetNumerator();
-        if (bDifFr) aHgt1*=rDefaults.aMapFraction.GetDenominator();
-        if (bDifUn) aHgt1/=aUnitMul.Y().GetDenominator();
-        if (bDifFr) aHgt1/=aFr.GetDenominator();
-        if (bDifFr) aHgt1/=rDefaults.aMapFraction.GetNumerator();
-
-        nHgt=ULONG(long(aHgt1));
-    }
-    aSet.Put(SvxFontHeightItem(nHgt));
-    pOutl->SetDefaults(aSet);
-*/
+/*N*/   /*SdrEngineDefaults& rDefaults =*/ SdrEngineDefaults::GetDefaults();
 
 /*N*/   SfxItemPool* pPool = &pModel->GetItemPool();
 /*N*/   SdrOutliner* pOutl = new SdrOutliner( pPool, nOutlinerMode );
