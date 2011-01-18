@@ -242,15 +242,6 @@ void SvEditObjectProtocol::Imp_DeleteDefault()
 *************************************************************************/
 SvEditObjectProtocol::SvEditObjectProtocol()
 {
-/*
-    if( !SOAPP->pIEOPDflt )
-    {
-        SOAPP->pIEOPDflt = new ImplSvEditObjectProtocol();
-        SOAPP->pIEOPDflt->nRefCount = 1; // nie freigeben
-    }
-    pImp = SOAPP->pIEOPDflt;
-    pImp->nRefCount++;
-*/
     pImp = new ImplSvEditObjectProtocol();
     pImp->nRefCount = 1;
 }
@@ -461,7 +452,6 @@ ErrCode ImplSvEditObjectProtocol::PlugInProtocol()
             return EmbedProtocol();
     }
 
-    //MakeVisible();
     // IPProtocol ist TRUE, wenn eines der drei Protokolle
     // gefahren werden konnte
     if( !bIPActive && !bEmbed && !bPlugIn && !ERRCODE_TOERROR( nRet ) )
@@ -508,10 +498,6 @@ ErrCode ImplSvEditObjectProtocol::IPProtocol()
             // auf PlugIn Protokoll umsteigen
             nRet = PlugInProtocol();
     }
-    /*
-    else
-        MakeVisible();
-        */
 
     CLASS_INVARIANT
 
@@ -904,9 +890,6 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
 
     if( bEmbedP )
         Opened( bEmbedP );
-/*  else gibt nicht  ueber embed
-        Reset2Embed();
-*/
 
     if( bLastActionEmbed != bEmbedP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
@@ -982,9 +965,6 @@ void ImplSvEditObjectProtocol::PlugIn
 
     if( bPlugInP )
         Opened( bPlugInP );
-/*  else gibt nicht  ueber PlugIn
-        Reset2PlugIn();
-*/
 
     if( bLastActionPlugIn != bPlugInP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
@@ -1087,13 +1067,6 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrIPActive = bIPActive;
         DBG_PROTLOG( "Svr - InPlaceActivate", bIPActiveP )
-        if( aIPObj->Owner() )
-        {
-            if( bIPActive )
-                SvInPlaceObject::GetIPActiveObjectList().Insert( aIPObj, LIST_APPEND );
-            else
-                SvInPlaceObject::GetIPActiveObjectList().Remove( aIPObj );
-        }
         if( bIPActive )
         {
             aIPObj->InPlaceActivate( bIPActive );
@@ -1151,10 +1124,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
     bLastActionUIActive = bUIActiveP;
     if( bUIActiveP )
         InPlaceActivate( bUIActiveP );
-/* gibt nichts ueber UIActive
-    else
-        Reset2UIActive();
-*/
     DBG_PROTLOG( "UIActivate", bUIActiveP )
     DBG_ASSERT( !bEmbed && !bPlugIn, "ui assert failed" );
     bUIActive = bUIActiveP; // vor der Aktion den Status setzen
@@ -1241,14 +1210,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
         aIPClient->UIActivate( FALSE );
     }
 
-    /*
-    if( bUIActive )
-    {
-        if( aIPClient->Owner() )
-            // Object anordnen anstossen
-            aIPObj->GetIPEnv()->DoRectsChanged();
-    }
-    */
     CLASS_INVARIANT
 }
 

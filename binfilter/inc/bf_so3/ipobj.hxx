@@ -42,6 +42,7 @@ class  KeyEvent;
 class  Palette;
 
 namespace binfilter {
+
 class  SvContainerEnvironment;
 class  ImpInPlaceObject;
 class  ImpInPlaceSite;
@@ -49,11 +50,12 @@ class  ImpOleInPlaceActiveObject;
 struct IOleInPlaceObject;
 struct IOleInPlaceActiveObject;
 class SvInPlaceEnvironment;
-class  SvInPlaceObjectList;
 class  SvInPlaceClipWindow;
 class  SvInPlaceWindow;
+
 /*************************************************************************
 *************************************************************************/
+
 class SvInPlaceObject;
 #ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
 #define SO2_DECL_SVINPLACEOBJECT_DEFINED
@@ -106,7 +108,6 @@ public:
     SvInPlaceEnvironment* GetIPEnv() const { return pIPEnv; }
     SvInPlaceClient * GetIPClient() const
                     { return aProt.GetIPClient(); }
-    static  SvInPlaceObjectList & GetIPActiveObjectList();
 
     // Robuste Protokollsteuerung
     ErrCode         DoInPlaceActivate( BOOL bActivate );
@@ -117,7 +118,6 @@ public:
     virtual BOOL    ReactivateAndUndo();
 };
 
-DECLARE_LIST(SvInPlaceObjectList,SvInPlaceObject*)
 SO2_IMPL_REF(SvInPlaceObject)
 
 //=========================================================================

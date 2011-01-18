@@ -54,7 +54,6 @@ namespace binfilter
 {
 class SvInPlaceClient;
 class SvInPlaceClientList;
-class SvInPlaceObjectList;
 class ImplSvEditObjectProtocol;
 class SvInPlaceEnvironment;
 class SvVerbList;
@@ -128,7 +127,6 @@ public:
 
     // InPlace-Bearbeitung
     SvInPlaceClientList *       pIPActiveClientList;
-    SvInPlaceObjectList *       pIPActiveObjectList;
     SvInPlaceEnvironment *      pUIShowIPEnv;
     ImplSvEditObjectProtocol *  pIEOPDflt;
 

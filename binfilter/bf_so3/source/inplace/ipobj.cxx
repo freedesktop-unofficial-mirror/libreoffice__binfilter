@@ -126,19 +126,6 @@ void SvInPlaceObject::SetIPEnv( SvInPlaceEnvironment * pFrm )
     pIPEnv = pFrm;
 }
 
-/************************************************************************
-|*    SvInPlaceObject::GetIPActiveObjectList()
-|*
-|*    Beschreibung
-*************************************************************************/
-SvInPlaceObjectList & SvInPlaceObject::GetIPActiveObjectList()
-{
-    SoDll * pSoApp = SOAPP;
-    if( !pSoApp->pIPActiveObjectList )
-        pSoApp->pIPActiveObjectList = new SvInPlaceObjectList();
-    return *pSoApp->pIPActiveObjectList;
-}
-
 /*************************************************************************
 |*    SvInPlaceObject::Verb()
 |*
@@ -157,16 +144,6 @@ ErrCode SvInPlaceObject::Verb
         return SvEmbeddedObject::Verb( nVerb, pCl, pWin, pWorkRectPixel );
 
     ErrCode nRet = ERRCODE_NONE;
-    /*
-    BOOL bGroesseNachTreten = TRUE;
-    switch ( nVerb )
-    {
-        case SVVERB_OPEN:
-        case SVVERB_HIDE:
-            bGroesseNachTreten = FALSE;
-            break;
-    }
-    */
 
     if( Owner() )
     {
@@ -198,11 +175,6 @@ ErrCode SvInPlaceObject::Verb
     {
         nRet = SvEmbeddedObject::Verb( nVerb, pCl, pWin, pWorkRectPixel );
     }
-    /*
-    if( bRet && bGroesseNachTreten && pWorkRectPixel
-      && GetProtocol().IsInPlaceActive() )
-        pICl->GetEnv()->RequestObjAreaPixel( *pWorkRectPixel );
-    */
     return nRet;
 }
 

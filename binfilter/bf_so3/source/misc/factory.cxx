@@ -110,7 +110,6 @@ SoDll::SoDll()
     , pSoBindingFactory( NULL )
     , pContEnvList( NULL )
     , pIPActiveClientList( NULL )
-    , pIPActiveObjectList( NULL )
     , pUIShowIPEnv( NULL )
     , pIEOPDflt( NULL )
     , aSvInterface( 0xB34BB240L, 0x4BD8, 0x101C, 0x8D, 0x86,
@@ -131,7 +130,6 @@ SoDll::~SoDll()
 {
     delete pResMgr;
     delete pIPActiveClientList;
-    delete pIPActiveObjectList;
     delete pContEnvList;
     SvEditObjectProtocol::Imp_DeleteDefault();
     delete pDeathTimer;
