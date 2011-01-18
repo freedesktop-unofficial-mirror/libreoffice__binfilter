@@ -185,9 +185,9 @@ namespace binfilter {
 /*N*/               nCurPara++;
 /*N*/               if( nCount )
 /*N*/               {
-/*N*/                   sal_uInt32 nSync = 0;
-/*N*/                   rStream >> nSync;
-/*N*/                   DBG_ASSERT(nSync==nSyncRef,"Stream out of sync");
+/*N*/                   sal_uInt32 nLclSync = 0;
+/*N*/                   rStream >> nLclSync;
+/*N*/                   DBG_ASSERT(nLclSync==nSyncRef,"Stream out of sync");
 /*N*/               }
 /*N*/           }
 /*N*/           if( nVersion == 3 )
