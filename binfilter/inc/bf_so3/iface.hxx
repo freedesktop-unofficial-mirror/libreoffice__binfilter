@@ -311,13 +311,6 @@ RECT GetSysRect( const Rectangle & rRect );
 Rectangle GetSvRect( const RECT & rRect );
 #endif
 
-#ifdef DBG_UTIL
-ByteString  SvPrint( const SvBorder & );
-ByteString  SvPrint( const Rectangle & );
-ByteString  SvPrint( const Point & );
-ByteString  SvPrint( const Size & );
-#endif
-
 //=========================================================================
 
 }

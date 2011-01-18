@@ -48,62 +48,7 @@ namespace binfilter {
 //=========================================================================
 //==========SvContainerEnvironment=========================================
 //=========================================================================
-/************************************************************************
-|*    SvPrint( ... )
-|*
-|*    Beschreibung
-*************************************************************************/
-#ifdef DBG_UTIL
-ByteString SvPrint( const SvBorder & rThis )
-{
-    ByteString aStr( "LTRB( " );
-    aStr += ByteString::CreateFromInt32(rThis.Left());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rThis.Top());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rThis.Right());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rThis.Bottom());
-    aStr += " )";
-    return aStr;
-}
-ByteString SvPrint( const Point & rPos )
-{
-    ByteString aStr( "( " );
-    aStr += ByteString::CreateFromInt32(rPos.X());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rPos.Y());
-    aStr += " )";
-    return aStr;
-}
-ByteString SvPrint( const Size & rSize )
-{
-    ByteString aStr( "( " );
-    aStr += ByteString::CreateFromInt32(rSize.Width());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rSize.Height());
-    aStr += " )";
-    return aStr;
-}
 
-ByteString SvPrint( const Rectangle & rRect )
-{
-    ByteString aStr( "LTRB( " );
-    aStr += ByteString::CreateFromInt32(rRect.Left());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rRect.Top());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rRect.Right());
-    aStr += ", ";
-    aStr += ByteString::CreateFromInt32(rRect.Bottom());
-    aStr += " )";
-    return aStr;
-}
-#endif
-
-//=========================================================================
-//=========================================================================
-//=========================================================================
 SO2_IMPL_INTERFACE1(SvAppFrame,SvObject)
 
 ::IUnknown * SvAppFrame::GetMemberInterface( const SvGlobalName & )
@@ -154,8 +99,8 @@ static void InsertInContList( SvContainerEnvironment * p )
 {
     SoDll * pSoApp = SOAPP;
     if( !pSoApp->pContEnvList )
-        pSoApp->pContEnvList = new SvContainerEnvironmentList( 2, 2 );
-    pSoApp->pContEnvList->Insert( p, LIST_APPEND );
+        pSoApp->pContEnvList = new SvContainerEnvironmentList();
+    pSoApp->pContEnvList->push_back( p );
 }
 
 #define INIT_CTOR                   \
@@ -186,14 +131,9 @@ SvContainerEnvironment::SvContainerEnvironment
     , pIPEnv( NULL )
     , pObj( pCl )
     , pParent( NULL )
-    , pChildList( NULL )
     , pTopWin( pTopWinP )
     , pDocWin( pDocWinP )
     , INIT_CTOR
-/*  [Beschreibung]
-
-    [Querverweise]
-*/
 {
     InsertInContList( this );
 }
@@ -222,9 +162,18 @@ SvContainerEnvironment::~SvContainerEnvironment()
         delete pTopWin;
 
     SoDll * pSoApp = SOAPP;
-    pSoApp->pContEnvList->Remove( this );
-    if( pParent )
-        pParent->pChildList->Remove( this );
+    for( SvContainerEnvironmentList::iterator it = pSoApp->pContEnvList->begin();
+         it < pSoApp->pContEnvList->end();
+         ++it
+       )
+    {
+        if ( *it == this )
+        {
+            pSoApp->pContEnvList->erase( it );
+            break;
+        }
+    }
+
     delete pAccel;
 
     DBG_ASSERT( !xAppFrame.Is() || 1 == xAppFrame->GetRefCount(),
@@ -236,7 +185,7 @@ SvContainerEnvironment::~SvContainerEnvironment()
 //=========================================================================
 
 //=========================================================================
-SvContainerEnvironment * SvContainerEnvironment::GetChild
+SvContainerEnvironment* SvContainerEnvironment::GetChild
 (
     ULONG nChildPos /* Position des Childs in der Liste */
 ) const
@@ -256,7 +205,7 @@ SvContainerEnvironment * SvContainerEnvironment::GetChild
     <SvContainerEnvironment::()>
 */
 {
-    return pChildList ? pChildList->GetObject( nChildPos ) : NULL;
+    return NULL;
 }
 
 //=========================================================================
@@ -267,19 +216,6 @@ void SvContainerEnvironment::ResetChilds()
     stehen, werden abgebrochen.
 */
 {
-    if( pChildList )
-    {
-        // original Liste wird durch Disconnect ver"andert
-        SvContainerEnvironmentList aList( *pChildList );
-        SvContainerEnvironment * pChild = aList.First();
-        while( pChild )
-        {
-            if( pChild->pObj )
-                // Child disconnecten
-                pChild->pObj->GetProtocol().Reset();
-            pChild = aList.Next();
-        }
-    }
 }
 
 //=========================================================================
@@ -442,11 +378,8 @@ void SvContainerEnvironment::MenuReleased()
 |*
 |*    Beschreibung
 *************************************************************************/
-void SvContainerEnvironment::UIToolsShown( BOOL bShow )
+void SvContainerEnvironment::UIToolsShown( BOOL /* bShow */ )
 {
-    (void)bShow;
-    //if( !IsStub() && !bShow )
-    //  SvSO::SetAppBorder( 0, 0, 0, 0 );
 }
 
 /*************************************************************************
@@ -971,10 +904,6 @@ void SvInPlaceEnvironment::DoShowUITools( BOOL bShow )
         // unbedingt zuerst setzen
         pSoApp->pUIShowIPEnv = this;
 
-        // this is only for MDI apps!
-//        if( pUIEnv )
-//            pUIEnv->DoShowUITools( FALSE );
-
         // kein Child darf UI-Aktiv sein
         SvContainerEnvironment * pEnv = GetContainerEnv();
         pEnv->ResetChilds2IPActive();
@@ -986,26 +915,6 @@ void SvInPlaceEnvironment::DoShowUITools( BOOL bShow )
             pPar->GetIPClient()->GetProtocol().Reset2InPlaceActive();
             pPar = pPar->GetParent();
         }
-/*
-        SvContainerEnvironmentList * pList = pSoApp->pContEnvList;
-        if( pList )
-        {
-            for( ULONG i = 0; i < pList->Count(); i++ )
-            {
-                SvContainerEnvironment * pFrm = pList->GetObject( i );
-                if( !pFrm->IsStub() && pFrm->GetIPEnv()
-                  && pFrm->GetIPEnv()->IsShowUITools() )
-                {
-                    SvInPlaceClient * pCl = pFrm->GetIPClient();
-                    if( pCl && pCl->GetProtocol().IsUIActive() )
-                        // Objekte-UI-Tools ueber UIActivate( FALSE ) wegnehmen
-                        pCl->GetProtocol().Reset2InPlaceActive();
-                    else
-                        pFrm->GetIPEnv()->DoShowUITools( FALSE );
-                }
-            }
-        }
-*/
     }
     else if( !bShow && !GetContainerEnv()->IsStub() )
     {

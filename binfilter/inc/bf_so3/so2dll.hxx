@@ -32,6 +32,7 @@
 #include <tools/pstm.hxx>
 #include <tools/link.hxx>
 #include <tools/globname.hxx>
+#include <vector>
 
 #include "bf_so3/so3dllapi.h"
 
@@ -55,12 +56,14 @@ class SvInPlaceClient;
 class SvInPlaceClientList;
 class SvInPlaceObjectList;
 class ImplSvEditObjectProtocol;
-class SvContainerEnvironmentList;
 class SvInPlaceEnvironment;
 class SvVerbList;
 struct SvBindingData;
 class SvObjectList;
 class ImpFactory;
+
+class  SvContainerEnvironment;
+typedef ::std::vector< SvContainerEnvironment* > SvContainerEnvironmentList;
 
 //=========================================================================
 struct SO3_DLLPUBLIC ConvertTo_Impl

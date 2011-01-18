@@ -50,10 +50,10 @@ namespace binfilter {
 
 class  SvInPlaceClient;
 class  SvInPlaceObject;
-class  SvContainerEnvironment;
 class  SvInPlaceClipWindow;
 class  SvInPlaceWindow;
-class  SvContainerEnvironmentList;
+class  SvContainerEnvironment;
+
 //=========================================================================
 class SO3_DLLPUBLIC SvAppFrame : public SvObject
 {
@@ -104,8 +104,7 @@ friend class SvInPlaceObject;
 private:
     SvInPlaceEnvironment *      pIPEnv; // IP-Env des Objektes
     SvInPlaceClient *           pObj;   // kann auch NULL sein
-    SvContainerEnvironment *    pParent;// fuer IP in IP
-    SvContainerEnvironmentList * pChildList; // fuer IP in IP
+    SvContainerEnvironment*     pParent;// fuer IP in IP
     WorkWindow *                pTopWin;// Application window
     WorkWindow *                pDocWin;// doc window != pTopWin
     SvAppFrameRef               xAppFrame;
@@ -134,7 +133,7 @@ private:
     SO3_DLLPRIVATE void         ResetIPEnv()
                     { pIPEnv = NULL; }
     SO3_DLLPRIVATE void         MakeWinContext_Impl();
-    //void          DeleteWindows_Impl();
+
 protected:
     virtual void    ShowUIByChildDeactivate();
 
@@ -214,7 +213,6 @@ public:
     virtual void    ShowDocument( const INetURLObject &,
                                   const XubString & );
 };
-DECLARE_LIST(SvContainerEnvironmentList,SvContainerEnvironment*)
 
 /*************************************************************************/
 class SO3_DLLPUBLIC SvInPlaceEnvironment
