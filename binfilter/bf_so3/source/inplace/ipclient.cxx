@@ -300,12 +300,6 @@ void SvInPlaceClient::InPlaceActivate
     abgebrochen.
 */
 {
-    if( !bActivate )
-    {
-        SvContainerEnvironment * pEnv = GetEnv();
-        pEnv->ResetChilds();
-    }
-
     if( !bActivate && HasViewData() )
         FreeViewData( pData );
 }
@@ -328,14 +322,7 @@ void SvInPlaceClient::UIActivate
         {
             SvInPlaceEnvironment * pActEnv = SOAPP->pUIShowIPEnv;
             SvContainerEnvironment * pEnv = GetEnv();
-            if( pActEnv )
-            {
-                if( !pEnv->IsChild( pActEnv->GetContainerEnv() ) )
-                { // es wurde kein Child aktiviert
-                    pEnv->GetIPEnv()->DoShowIPObj( FALSE );
-                }
-            }
-            else
+            if( !pActEnv )
             {
                 pEnv->GetIPEnv()->DoShowIPObj( FALSE );
                 if( pEnv->GetParent() )

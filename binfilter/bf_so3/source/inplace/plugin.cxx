@@ -127,7 +127,6 @@ SvPlugInEnvironment::~SvPlugInEnvironment()
     // statt DeleteEditWin() auf NULL setzen und durch den Manager
     // zerst"oren
     SetEditWin( NULL );
-    DeleteObjMenu();
     DeleteWindows();
     delete pImpl;
 }

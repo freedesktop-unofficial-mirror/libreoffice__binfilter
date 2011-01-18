@@ -318,11 +318,6 @@ void SvInPlaceObject::InPlaceActivate
         }
     }
 
-    if( Owner() && !bActivate )
-    { // Client-Items aus OleMenu entfernen
-        if( pIPEnv )
-            pIPEnv->ReleaseClientMenu();
-    }
     if( !bActivate && pIPEnv )
     {
         if( bDeleteIPEnv )
@@ -361,11 +356,6 @@ ErrCode SvInPlaceObject::DoUIActivate( BOOL bActivate )
 *************************************************************************/
 void SvInPlaceObject::UIActivate( BOOL bActivate )
 {
-    if( Owner() )
-    {
-        if( bActivate )
-            pIPEnv->MergeMenus();
-    }
     // bei !bActivate siehe IPClient::UIActivate
     if( bActivate )
         pIPEnv->ShowIPObj( bActivate );
@@ -403,21 +393,6 @@ void SvInPlaceObject::DocWinActivate( BOOL bActivate )
 *************************************************************************/
 BOOL SvInPlaceObject::DoMergePalette()
 {
-    /*if( GetClient()->Owner() )
-    {
-        WorkWindow * pWW = pIPEnv->GetContainerEnv()->GetDocWin();
-        if( pWW )
-        {
-            Palette aPal = pWW->GetPalette();
-            return MergePalette( aPal );
-        }
-        else
-        {
-            pWW = pIPEnv->GetContainerEnv()->GetTopWin();
-            Palette aPal = pWW->GetPalette();
-            return MergePalette( aPal );
-        }
-    }*/
     return FALSE;
 }
 

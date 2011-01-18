@@ -148,7 +148,6 @@ SvContainerEnvironment::~SvContainerEnvironment()
 */
 {
     DBG_ASSERT( !pIPEnv, "IPEnv exist" );
-    ResetChilds();
 
     if( bDeleteEditWin )
     {
@@ -180,94 +179,6 @@ SvContainerEnvironment::~SvContainerEnvironment()
                 "can't destroy xAppFrame" );
     DBG_ASSERT( !xDocFrame.Is() || 1 == xDocFrame->GetRefCount(),
                 "can't destroy xDocFrame" );
-}
-
-//=========================================================================
-
-//=========================================================================
-SvContainerEnvironment* SvContainerEnvironment::GetChild
-(
-    ULONG nChildPos /* Position des Childs in der Liste */
-) const
-/*  [Beschreibung]
-
-    Die Methode liefert das Child-Env an von der angebenen Position
-    zur"ck.
-
-    [R"uckgabewert]
-
-    SvContainerEnvironment * ,  wenn die Anzahl der Child's > nChildPos
-                                ist, wird das Child-Env zur"uckgegeben.
-                                Ansonsten wird NULL zur"uckgegeben.
-
-    [Querverweise]
-
-    <SvContainerEnvironment::()>
-*/
-{
-    return NULL;
-}
-
-//=========================================================================
-void SvContainerEnvironment::ResetChilds()
-/*  [Beschreibung]
-
-    Die Verbindung aller Client's, die in den Child-Environments
-    stehen, werden abgebrochen.
-*/
-{
-}
-
-//=========================================================================
-void SvContainerEnvironment::ResetChilds2IPActive()
-/*  [Beschreibung]
-
-    Die Methode setzt alle Childs auf IPActive zur"uck. Dabei
-    arbeitet die Methode rekusiv. Das heisst Child's von Child's werden
-    auch zur"uckgesetzt.
-
-    [R"uckgabewert]
-
-    SvContainerEnvironment * ,  wenn die Anzahl der Child's > nChildPos
-                                ist, wird das Child-Env zur"uckgegeben.
-                                Ansonsten wird NULL zur"uckgegeben.
-*/
-{
-    // kein Child darf UI-Aktiv sein
-    ULONG n = 0;
-    SvContainerEnvironment * pChild;
-    while( NULL != (pChild = GetChild( n++ ) ) )
-    {
-        if( pChild->GetIPClient() )
-            pChild->GetIPClient()->GetProtocol().Reset2InPlaceActive();
-        pChild->ResetChilds2IPActive();
-    }
-}
-
-//=========================================================================
-BOOL SvContainerEnvironment::IsChild
-(
-    SvContainerEnvironment * pEnv   /* Das Env, von dem festgestellt werden
-                                       soll, ob es ein Child ist */
-) const
-/*  [Beschreibung]
-
-    Stellt fest, ob es sich um ein Child handelt.
-
-    [R"uckgabewert]
-
-    BOOL        TRUE, es ist ein Child.
-                FALSE, es ist kein Child.
-*/
-{
-    ULONG n = 0;
-    SvContainerEnvironment * pChild;
-    while( NULL != (pChild = GetChild( n++ ) ) )
-    {
-        if( pChild == pEnv || pChild->IsChild( pEnv ) )
-            return TRUE;
-    }
-    return FALSE;
 }
 
 /************************************************************************
@@ -610,12 +521,6 @@ void SvContainerEnvironment::SetTopToolFramePixel( const SvBorder & rBorder )
         if( pIPEnv )
             // InPlace-Objekt fragt nach rOuter, deshalb vorher setzen
             pIPEnv->DoTopWinResize();
-
-        // Alle Childs benachrichtigen
-        ULONG n = 0;
-        SvContainerEnvironment * pChild;
-        while( NULL != (pChild = GetChild( n++ ) ) )
-            pChild->SetTopToolFramePixel( aTopBorder );
     }
 }
 
@@ -632,12 +537,6 @@ void SvContainerEnvironment::SetDocToolFramePixel( const SvBorder & rBorder )
         if( pIPEnv )
             // InPlace-Objekt fragt nach rOuter, deshalb vorher setzen
             pIPEnv->DoDocWinResize();
-
-        // Alle Childs benachrichtigen
-        ULONG n = 0;
-        SvContainerEnvironment * pChild;
-        while( NULL != (pChild = GetChild( n++ ) ) )
-            pChild->SetDocToolFramePixel( aDocBorder );
     }
 }
 
@@ -837,11 +736,6 @@ SvInPlaceEnvironment::~SvInPlaceEnvironment()
 }
 
 //=========================================================================
-void SvInPlaceEnvironment::DeleteObjMenu()
-{
-}
-
-//=========================================================================
 Window * SvInPlaceEnvironment::GetEditWin()
 {
     return pEditWin;
@@ -856,16 +750,6 @@ MenuBar * SvInPlaceEnvironment::QueryMenu
 )
 {
     return NULL;
-}
-
-/*************************************************************************/
-void SvInPlaceEnvironment::MergeMenus()
-{
-}
-
-/*************************************************************************/
-void SvInPlaceEnvironment::ReleaseClientMenu()
-{
 }
 
 /*************************************************************************/
@@ -906,7 +790,6 @@ void SvInPlaceEnvironment::DoShowUITools( BOOL bShow )
 
         // kein Child darf UI-Aktiv sein
         SvContainerEnvironment * pEnv = GetContainerEnv();
-        pEnv->ResetChilds2IPActive();
 
         // kein Parent darf UI-Aktiv sein
         SvContainerEnvironment * pPar = pEnv->GetParent();

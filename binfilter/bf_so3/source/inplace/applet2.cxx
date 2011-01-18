@@ -29,8 +29,6 @@
 #include <ctype.h>
 #include <stdio.h>
 
-//#define REMOTE_VERSION
-
 #include "bf_so3/applet.hxx"
 #include <tools/list.hxx>
 #include <tools/urlobj.hxx>
@@ -194,7 +192,6 @@ SvAppletEnvironment::~SvAppletEnvironment()
     SetEditWin( NULL );
     delete pAppletWin;
     DeleteWindows();
-    DeleteObjMenu();
 }
 
 //=========================================================================
@@ -485,38 +482,30 @@ ErrCode SvAppletObject::Verb
 
     ErrCode nRet = ERRCODE_SO_GENERALERROR;
 
-/*
-    nRet = SjWrapper::CheckJavaEnvironment();
-    BOOL bJavaOk = TRUE;
-    bJavaOk = SjWrapper::IsJavaRuntimeOk();
-    if( !ERRCODE_TOERROR( nRet ) && bJavaOk )
-*/
+    switch( nVerb )
     {
-        switch( nVerb )
+        case SVVERB_PROPS:
         {
-            case SVVERB_PROPS:
-            {
-                DBG_ERROR( "non-working code!" );
-                // TODO: dead corpses
-                nRet = 0;
-                break;
-            }
-            case SVVERB_SHOW:
-                break;
-
-            case SVVERB_IPACTIVATE:
-                break;
-
-            case 0L:
-                nRet = GetProtocol().IPProtocol();
-                break;
-            case SVVERB_HIDE:
-                nRet = DoInPlaceActivate( FALSE );
-                break;
-            default:
-                nRet = ERRCODE_SO_GENERALERROR;
-                break;
+            DBG_ERROR( "non-working code!" );
+            // TODO: dead corpses
+            nRet = 0;
+            break;
         }
+        case SVVERB_SHOW:
+            break;
+
+        case SVVERB_IPACTIVATE:
+            break;
+
+        case 0L:
+            nRet = GetProtocol().IPProtocol();
+            break;
+        case SVVERB_HIDE:
+            nRet = DoInPlaceActivate( FALSE );
+            break;
+        default:
+            nRet = ERRCODE_SO_GENERALERROR;
+            break;
     }
     return nRet;
 }
@@ -817,7 +806,6 @@ BOOL SvAppletObject::IsLink() const
     <SvPseudoObject::IsLink()>
 */
 {
-    //return TRUE;
     return FALSE;
 }
 

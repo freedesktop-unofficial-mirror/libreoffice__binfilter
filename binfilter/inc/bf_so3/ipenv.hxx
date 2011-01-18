@@ -161,10 +161,6 @@ public:
     OLEINPLACEFRAMEINFO *   GetOleInfo_Impl();
 
     SvContainerEnvironment* GetParent() const { return pParent; }
-    SvContainerEnvironment* GetChild( ULONG n ) const;
-    void                    ResetChilds();
-    void                    ResetChilds2IPActive();
-    BOOL                    IsChild( SvContainerEnvironment * pEnv ) const;
     SvInPlaceEnvironment *  GetIPEnv() const { return pIPEnv; }
 
     BOOL            IsStub() const;
@@ -244,8 +240,6 @@ private:
     SvContainerEnvironment *pContEnv;
     SvInPlaceObject *       pObj;
 
-    SO3_DLLPRIVATE void             MergeMenus();
-    SO3_DLLPRIVATE void             ReleaseClientMenu();
 protected:
     SO3_DLLPRIVATE virtual void TopWinResize();
     SO3_DLLPRIVATE virtual void DocWinResize();
@@ -259,8 +253,6 @@ protected:
                                         const Rectangle & rClip );
 
     SO3_DLLPRIVATE virtual      BOOL DispatchAccel( const KeyCode & );
-
-    SO3_DLLPRIVATE void         DeleteObjMenu();
 
     SO3_DLLPRIVATE void             MakeWindows();
     SO3_DLLPRIVATE void         DeleteWindows();
