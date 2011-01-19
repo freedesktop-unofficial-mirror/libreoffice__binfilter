@@ -49,8 +49,8 @@ namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
-/*N*/ bool SdrTextObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-/*N*/   bool bEdit, Color*& rpTxtColor, Color*& rpFldColor, XubString& rRet) const
+/*N*/ bool SdrTextObj::CalcFieldValue(const SvxFieldItem&, USHORT, USHORT,
+/*N*/   bool, Color*&, Color*&, XubString&) const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }

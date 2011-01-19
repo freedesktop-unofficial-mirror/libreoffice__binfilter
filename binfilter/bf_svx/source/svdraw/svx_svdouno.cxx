@@ -74,7 +74,7 @@ namespace binfilter {
 /*N*/ };
 
 // XEventListener
-/*N*/ void SAL_CALL SdrControlEventListenerImpl::disposing( const ::com::sun::star::lang::EventObject& Source )
+/*N*/ void SAL_CALL SdrControlEventListenerImpl::disposing( const ::com::sun::star::lang::EventObject& /*Source*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   if (pObj)

@@ -225,7 +225,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (eKind==OBJ_SECT) { // Der Sektor soll Start/Ende im Zentrum haben
 /*N*/       // Polygon um einen Punkt rotieren (Punkte im Array verschieben)
-/*N*/       unsigned nPointAnz=aXPoly.GetPointCount();
+/*N*/       /*unsigned nPointAnz=*/aXPoly.GetPointCount();
 /*N*/       aXPoly.Insert(0,rRect1.Center(),XPOLY_NORMAL);
 /*N*/       aXPoly[aXPoly.GetPointCount()]=rRect1.Center();
 /*N*/   }
@@ -416,7 +416,7 @@ namespace binfilter {
 /*N*/   aPnt2 = ((SdrCircObj&)rObj).aPnt2;
 /*N*/ }
 
-/*N*/ void SdrCircObj::TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const
+/*N*/ void SdrCircObj::TakeXorPoly(XPolyPolygon& rPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   XPolygon aP(ImpCalcXPoly(aRect,nStartWink,nEndWink));
 /*N*/   if (!bXPolyIsLine) { // Polygon schliessen
@@ -773,7 +773,6 @@ namespace binfilter {
 /*N*/ SdrObject* SdrCircObj::DoConvertToPolyObj(BOOL bBezier) const
 /*N*/ {
 /*N*/   XPolygon aXP(ImpCalcXPoly(aRect,nStartWink,nEndWink));
-/*N*/   SdrObjKind ePathKind=OBJ_PATHFILL;
 /*N*/   bool bFill=TRUE;
 /*N*/   if (eKind==OBJ_CARC) bFill=FALSE;
 /*N*/   SdrObject* pRet=ImpConvertMakeObj(XPolyPolygon(aXP),bFill,bBezier);

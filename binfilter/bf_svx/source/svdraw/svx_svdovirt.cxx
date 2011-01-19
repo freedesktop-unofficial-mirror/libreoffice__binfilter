@@ -60,7 +60,7 @@ namespace binfilter {
 /*N*/   return rRefObj;
 /*N*/ }
 
-/*N*/ void SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& /*rBCType*/, const SfxHint& /*rHint*/, const TypeId& /*rHintType*/)
 /*N*/ {
 /*N*/   bClosedObj=rRefObj.IsClosedObj();
 /*N*/   SetRectsDirty(); // hier noch Optimieren.
@@ -207,12 +207,12 @@ namespace binfilter {
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
 /*N*/ }
 
-/*N*/ void SdrVirtObj::SaveGeoData(SdrObjGeoData& rGeo) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrVirtObj::SaveGeoData(SdrObjGeoData& /*rGeo*/) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SdrVirtObj::RestGeoData(const SdrObjGeoData& rGeo)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrVirtObj::RestGeoData(const SdrObjGeoData& /*rGeo*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -256,8 +256,8 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrVirtObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)

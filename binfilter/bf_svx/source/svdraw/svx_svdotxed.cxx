@@ -52,13 +52,13 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ bool SdrTextObj::BegTextEdit(SdrOutliner& rOutl)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ bool SdrTextObj::BegTextEdit(SdrOutliner& /*rOutl*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
-/*N*/ void SdrTextObj::EndTextEdit(SdrOutliner& rOutl)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrTextObj::EndTextEdit(SdrOutliner& /*rOutl*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SdrObject* SdrTextObj::CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const

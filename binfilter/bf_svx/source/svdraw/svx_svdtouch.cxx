@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/   bool bx1,bx2;
 /*N*/   bool by1=ly1<=ry1 && ly2>ry1;
 /*N*/   bool by2=ly1<=ry2 && ly2>ry2;
-/*N*/   long dx,dy,a;
+/*N*/   long dx,dy,a(0);
 /*N*/   if (by1 || by2) {
 /*N*/       dx=lx2-lx1;
 /*N*/       dy=ly2-ly1;

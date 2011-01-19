@@ -394,7 +394,7 @@ namespace binfilter {
 /*N*/   SdrTextObj::operator=(rObj);
 /*N*/ }
 
-/*N*/ void SdrRectObj::TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const
+/*N*/ void SdrRectObj::TakeXorPoly(XPolyPolygon& rPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   rPoly=XPolyPolygon(ImpCalcXPoly(aRect,GetEckenradius()));
 /*N*/ }

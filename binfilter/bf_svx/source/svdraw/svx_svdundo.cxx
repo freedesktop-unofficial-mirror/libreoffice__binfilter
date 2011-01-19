@@ -159,10 +159,10 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrUndoObjList::SdrUndoObjList(SdrObject& rNewObj, bool bOrdNumDirect):
-/*N*/   pView(NULL),
-/*N*/   pPageView(NULL),
 /*N*/   SdrUndoObj(rNewObj),
-/*N*/   bOwner(FALSE)
+/*N*/   bOwner(FALSE),
+/*N*/   pView(NULL),
+/*N*/   pPageView(NULL)
 /*N*/ {
 /*N*/   pObjList=pObj->GetObjList();
 /*N*/   if (bOrdNumDirect) {

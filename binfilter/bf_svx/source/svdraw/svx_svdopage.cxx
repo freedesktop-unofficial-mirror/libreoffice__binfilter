@@ -69,14 +69,14 @@ namespace binfilter {
 /*N*/   return new SfxItemSet(rPool);
 /*N*/ }
 
-/*N*/ void SdrPageObj::ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem)
+/*N*/ void SdrPageObj::ItemChange(const sal_uInt16 /*nWhich*/, const SfxPoolItem* /*pNewItem*/)
 /*N*/ {
 /*N*/   // #86481# simply ignore item setting on page objects
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPageObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
+/*N*/ void SdrPageObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId&, const SfxHint& rHint, const TypeId&)
 /*N*/ {
 /*N*/   SdrHint* pSdrHint = PTR_CAST(SdrHint, &rHint);
 /*N*/

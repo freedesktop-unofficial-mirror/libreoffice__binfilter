@@ -57,18 +57,17 @@ using namespace ::com::sun::star;
 // festzuhalten
 //------------------------------------------------------------------------------
 /*N*/ SdrUnoControlRec::SdrUnoControlRec(SdrUnoControlList* _pParent, SdrUnoObj* _pObj, ::com::sun::star::uno::Reference< ::com::sun::star::awt::XControl > _xControl) throw()
-/*N*/                :pObj(_pObj)
-/*N*/                ,xControl(_xControl)
+/*N*/                :pParent(_pParent)
+/*N*/                ,pObj(_pObj)
 /*N*/                ,bVisible(TRUE)
-/*N*/                ,bIsListening(FALSE)
 /*N*/                ,bDisposed(FALSE)
-/*N*/                ,pParent(_pParent)
-/*N*/                  ,mnPaintLevel( 0 )
+/*N*/                ,bIsListening(FALSE)
+/*N*/                ,mnPaintLevel( 0 )
+/*N*/                ,xControl(_xControl)
 /*N*/ {
 /*N*/     DBG_ASSERT( xControl.is(), "SdrUnoControlRec::SdrUnoControlRec: invalid control, this will crash!" );
 /*N*/
 /*N*/     bVisible = xControl.is() ? !xControl->isDesignMode() : TRUE;
-/*N*/     bool bOldVisible = bVisible;
 /*N*/
 /*N*/     // if bVisible is TRUE here, then switchControlListening will also start
 /*N*/     // DesignModeListening
@@ -86,13 +85,13 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*?*/ void SdrUnoControlRec::adjustControlVisibility( bool _bForce )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ void SdrUnoControlRec::adjustControlVisibility( bool /*_bForce*/ )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ }
 
 //------------------------------------------------------------------------------
-/*?*/ void SdrUnoControlRec::switchControlListening( bool _bStart )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ void SdrUnoControlRec::switchControlListening( bool /*_bStart*/ )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ }
 
 //------------------------------------------------------------------------------
@@ -101,68 +100,68 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   uno::Reference< awt::XControl > xSource( Source.Source, uno::UNO_QUERY);
 /*N*/   if (xSource.is())
-/*?*/   {  {DBG_BF_ASSERT(0, "STRIP");}//STRIP001  // it's the control we're responsible for
+/*?*/   {  {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/ }
 
 //------------------------------------------------------------------------------
 
 // XWindowListener
-/*N*/ void SAL_CALL SdrUnoControlRec::windowResized( const ::com::sun::star::awt::WindowEvent& e )
+/*N*/ void SAL_CALL SdrUnoControlRec::windowResized( const ::com::sun::star::awt::WindowEvent& /*e*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SdrUnoControlRec::windowMoved( const ::com::sun::star::awt::WindowEvent& e )
+/*N*/ void SAL_CALL SdrUnoControlRec::windowMoved( const ::com::sun::star::awt::WindowEvent& /*e*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SdrUnoControlRec::windowShown( const ::com::sun::star::lang::EventObject& e )
+/*N*/ void SAL_CALL SdrUnoControlRec::windowShown( const ::com::sun::star::lang::EventObject& /*e*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::windowHidden( const ::com::sun::star::lang::EventObject& e )
+/*N*/ void SAL_CALL SdrUnoControlRec::windowHidden( const ::com::sun::star::lang::EventObject& /*e*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // XPropertyChangeListener
 //------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& evt )
+/*N*/ void SAL_CALL SdrUnoControlRec::propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& /*evt*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {
 /*N*/ }
 
 // XImageConsumer
 //------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::complete( sal_Int32 Status, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageProducer >& xProducer )
+/*N*/ void SAL_CALL SdrUnoControlRec::complete( sal_Int32, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageProducer >& )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SdrUnoControlRec::init( sal_Int32 Width, sal_Int32 Height ) throw(::com::sun::star::uno::RuntimeException)
+/*N*/ void SAL_CALL SdrUnoControlRec::init(sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SdrUnoControlRec::setColorModel( sal_Int16 BitCount, const ::com::sun::star::uno::Sequence< sal_Int32 >& RGBAPal, sal_Int32 RedMask, sal_Int32 GreenMask, sal_Int32 BlueMask, sal_Int32 AlphaMask ) throw(::com::sun::star::uno::RuntimeException)
+/*N*/ void SAL_CALL SdrUnoControlRec::setColorModel( sal_Int16, const ::com::sun::star::uno::Sequence< sal_Int32 >&, sal_Int32, sal_Int32, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByBytes( sal_Int32 nX, sal_Int32 nY, sal_Int32 nWidth, sal_Int32 nHeight, const ::com::sun::star::uno::Sequence< sal_Int8 >& aProducerData, sal_Int32 nOffset, sal_Int32 nScanSize ) throw(::com::sun::star::uno::RuntimeException)
+/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByBytes( sal_Int32, sal_Int32, sal_Int32, sal_Int32, const ::com::sun::star::uno::Sequence< sal_Int8 >&, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByLongs( sal_Int32 nX, sal_Int32 nY, sal_Int32 nWidth, sal_Int32 nHeight, const ::com::sun::star::uno::Sequence< sal_Int32 >& aProducerData, sal_Int32 nOffset, sal_Int32 nScanSize ) throw(::com::sun::star::uno::RuntimeException)
+/*N*/ void SAL_CALL SdrUnoControlRec::setPixelsByLongs( sal_Int32, sal_Int32, sal_Int32, sal_Int32, const ::com::sun::star::uno::Sequence< sal_Int32 >&, sal_Int32, sal_Int32 ) throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------------
-/*?*/ void SAL_CALL SdrUnoControlRec::modeChanged( const util::ModeChangeEvent& _rSource ) throw (uno::RuntimeException)
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ void SAL_CALL SdrUnoControlRec::modeChanged( const util::ModeChangeEvent& /*_rSource*/ ) throw (uno::RuntimeException)
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ }
 
 //------------------------------------------------------------------------------
@@ -383,10 +382,9 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrPageView::SdrPageView(SdrPage* pPage1, const Point& rOffs, SdrView& rNewView):
 /*N*/   rView(rNewView),
-/*N*/   //aRedraw(1024,16,16),
 /*N*/   aOfs(rOffs),
-/*N*/   pPaintingPageObj( NULL ),
-/*N*/   maDocumentColor( COL_AUTO )     // #103911# col_auto color lets the view takes the default SvxColorConfig entry
+/*N*/   maDocumentColor( COL_AUTO ),        // #103911# col_auto color lets the view takes the default SvxColorConfig entry
+/*N*/   pPaintingPageObj( NULL )
 /*N*/ {
 /*N*/   DBG_CTOR(SdrPageView,NULL);
 /*N*/   pDragPoly0=new XPolyPolygon;
@@ -456,15 +454,15 @@ using namespace ::com::sun::star;
 /*N*/           // Gruppenobjekt: sind Uno-Objekte enthalten?
 /*N*/           SdrObjListIter aIter(*((SdrObjGroup*) pObj)->GetSubList(), IM_DEEPNOGROUPS);
 /*N*/
-/*N*/           SdrObject* pObj = NULL;
+/*N*/           SdrObject* pLclObj = NULL;
 /*N*/
 /*N*/           while (aIter.IsMore())
 /*N*/           {
-/*N*/               pObj = aIter.Next();
+/*N*/               pLclObj = aIter.Next();
 /*N*/
-/*N*/               if (pObj && pObj->IsUnoObj())
+/*N*/               if (pLclObj && pLclObj->IsUnoObj())
 /*N*/               {
-/*?*/                   SdrUnoObj* pSdrUnoObj = PTR_CAST(SdrUnoObj, pObj);
+/*?*/                   SdrUnoObj* pSdrUnoObj = PTR_CAST(SdrUnoObj, pLclObj);
 /*?*/                   ImpInsertControl(pSdrUnoObj, pRec);
 /*N*/               }
 /*N*/           }
@@ -478,7 +476,7 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nPos = pWinList->Find(pOutDev);
 /*N*/
 /*N*/   if (nPos == SDRPAGEVIEWWIN_NOTFOUND)
-/*N*/       SdrPageViewWinRec* pWinRec = ImpMakePageViewWinRec(pOutDev);
+/*N*/       /*SdrPageViewWinRec* pWinRec =*/ ImpMakePageViewWinRec(pOutDev);
 /*N*/ }
 
 /*N*/ void SdrPageView::DelWin(OutputDevice* pOutDev)
@@ -577,7 +575,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SdrPageView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrPageView::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& /*rBCType*/, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   if (bVisible) {
 /*N*/       SdrHint* pSdrHint=PTR_CAST(SdrHint,&rHint);
@@ -606,25 +604,25 @@ using namespace ::com::sun::star;
 /*N*/                   // Gruppenobjekt: sind Uno-Objekte enthalten?
 /*N*/                   SdrObjListIter aIter(*((SdrObjGroup*) pObj)->GetSubList(), IM_DEEPNOGROUPS);
 /*N*/
-/*N*/                   SdrObject* pObj = NULL;
+/*N*/                   SdrObject* pLclObj = NULL;
 /*N*/
 /*N*/                   while (aIter.IsMore())
 /*N*/                   {
-/*N*/                       pObj = aIter.Next();
+/*N*/                       pLclObj = aIter.Next();
 /*N*/
-/*N*/                       if (pObj && pObj->IsUnoObj())
+/*N*/                       if (pLclObj && pLclObj->IsUnoObj())
 /*N*/                       {
 /*?*/                           if (eKind == HINT_OBJINSERTED ||
 /*?*/                               eKind == HINT_CONTROLINSERTED)
 /*?*/
 /*?*/                           {
-/*?*/                               ImpUnoInserted(pObj);
+/*?*/                               ImpUnoInserted(pLclObj);
 /*?*/                           }
 /*?*/                           else if (eKind == HINT_OBJREMOVED ||
 /*?*/                                    eKind == HINT_CONTROLREMOVED)
 /*?*/
 /*?*/                           {
-/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpUnoRemoved(pObj);
+/*?*/                               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*N*/                       }
 /*N*/                   }

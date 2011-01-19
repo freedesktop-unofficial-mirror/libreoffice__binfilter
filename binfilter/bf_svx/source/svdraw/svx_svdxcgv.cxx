@@ -41,8 +41,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*?*/ GDIMetaFile SdrExchangeView::GetMarkedObjMetaFile( BOOL bNoVDevIfOneMtfMarked ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); GDIMetaFile aMtf; return aMtf;//STRIP001
+/*?*/ GDIMetaFile SdrExchangeView::GetMarkedObjMetaFile( BOOL /*bNoVDevIfOneMtfMarked*/ ) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); GDIMetaFile aMtf; return aMtf;
 /*?*/ }
 }
 

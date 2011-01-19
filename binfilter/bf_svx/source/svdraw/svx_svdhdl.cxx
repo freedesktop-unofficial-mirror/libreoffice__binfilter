@@ -53,8 +53,8 @@ namespace binfilter {
 /*N*/     virtual int Compare(const void* pElem1, const void* pElem2) const;
 /*N*/ };
 
-/*N*/ int ImpSdrHdlListSorter::Compare(const void* pElem1, const void* pElem2) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ int ImpSdrHdlListSorter::Compare(const void*, const void*) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

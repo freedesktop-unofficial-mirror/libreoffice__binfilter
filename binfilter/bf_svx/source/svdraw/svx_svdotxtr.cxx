@@ -108,7 +108,7 @@ namespace binfilter {
 /*N*/   return aGeo.nDrehWink;
 /*N*/ }
 
-/*N*/ long SdrTextObj::GetShearAngle(bool bVertical) const
+/*N*/ long SdrTextObj::GetShearAngle(bool /*bVertical*/) const
 /*N*/ {
 /*N*/   return (aGeo.nDrehWink==0 || aGeo.nDrehWink==18000) ? aGeo.nShearWink : 0;
 /*N*/ }
@@ -328,10 +328,10 @@ namespace binfilter {
 /*N*/   return pPathObj;
 /*N*/ }
 
-/*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, bool bBezier) const
+/*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, bool /*bBezier*/) const
 /*N*/ {
 /*N*/   if (!ImpCanConvTextToCurve()) return pObj;
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;//STRIP001 SdrObject* pText=ImpConvertObj(!bBezier);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;
 /*N*/ }
 
 }

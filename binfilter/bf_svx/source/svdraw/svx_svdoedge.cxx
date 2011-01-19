@@ -1054,7 +1054,7 @@ namespace binfilter {
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
-/*N*/                               if (aBewR1.Center().Y()<aBewR2.Center().Y() != bObenLang) {
+/*N*/                               if ((aBewR1.Center().Y()<aBewR2.Center().Y()) != bObenLang) {
 /*N*/                                   aMeeting.X()=aBewR2.Right();
 /*N*/                               } else {
 /*N*/                                   aMeeting.X()=aBewR1.Left();
@@ -1112,7 +1112,7 @@ namespace binfilter {
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
-/*N*/                               if (aBewR1.Center().X()<aBewR2.Center().X() != bLinksLang) {
+/*N*/                               if ((aBewR1.Center().X()<aBewR2.Center().X()) != bLinksLang) {
 /*N*/                                   aMeeting.Y()=aBewR2.Bottom();
 /*N*/                               } else {
 /*N*/                                   aMeeting.Y()=aBewR1.Top();
@@ -1227,7 +1227,7 @@ namespace binfilter {
 /*N*/   bool bInsMeetingPoint=aEP1.X()!=aEP2.X() && aEP1.Y()!=aEP2.Y();
 /*N*/   bool bHorzE1=aEP1.Y()==aXP1[nXP1Anz-2].Y(); // letzte Linie von XP1 horizontal?
 /*N*/   bool bHorzE2=aEP2.Y()==aXP2[nXP2Anz-2].Y(); // letzte Linie von XP2 horizontal?
-/*N*/   if (aEP1==aEP2 && (bHorzE1 && bHorzE2 && aEP1.Y()==aEP2.Y()) || (!bHorzE1 && !bHorzE2 && aEP1.X()==aEP2.X())) {
+/*N*/   if (aEP1==aEP2 && ((bHorzE1 && bHorzE2 && aEP1.Y()==aEP2.Y()) || (!bHorzE1 && !bHorzE2 && aEP1.X()==aEP2.X()))) {
 /*N*/       // Sonderbehandlung fuer 'I'-Verbinder
 /*N*/       nXP1Anz--; aXP1.Remove(nXP1Anz,1);
 /*N*/       nXP2Anz--; aXP2.Remove(nXP2Anz,1);
@@ -1281,10 +1281,10 @@ namespace binfilter {
 /*N*/               Point aP3(aXP1[3]);
 /*N*/               Point aP4(aXP1[4]);
 /*N*/               if (aP1.Y()==aP2.Y()) { // beide Linien Horz
-/*N*/                   if (aP1.X()<aP2.X()==aP3.X()<aP4.X()) cForm='S';
+/*N*/                   if ((aP1.X()<aP2.X())==(aP3.X()<aP4.X())) cForm='S';
 /*N*/                   else cForm='C';
 /*N*/               } else { // sonst beide Linien Vert
-/*N*/                   if (aP1.Y()<aP2.Y()==aP3.Y()<aP4.Y()) cForm='S';
+/*N*/                   if ((aP1.Y()<aP2.Y())==(aP3.Y()<aP4.Y())) cForm='S';
 /*N*/                   else cForm='C';
 /*N*/               }
 /*N*/           } else cForm='4'; // sonst der 3. Fall mit 5 Linien
@@ -1313,11 +1313,11 @@ namespace binfilter {
 /*N*/       bool bOverflow=FALSE;
 /*N*/       Point aPt0(aXP1[0]);
 /*N*/       for (USHORT nPntNum=1; nPntNum<nPntAnz; nPntNum++) {
-/*N*/           Point aPt1(aXP1[nPntNum]);
-/*N*/           nQual+=Abs(aPt1.X()-aPt0.X())+Abs(aPt1.Y()-aPt0.Y());
+/*N*/           Point aLclPt1(aXP1[nPntNum]);
+/*N*/           nQual+=Abs(aLclPt1.X()-aPt0.X())+Abs(aLclPt1.Y()-aPt0.Y());
 /*N*/           if (nQual<nQual0) bOverflow=TRUE;
 /*N*/           nQual0=nQual;
-/*N*/           aPt0=aPt1;
+/*N*/           aPt0=aLclPt1;
 /*N*/       }
 /*N*/
 /*N*/       USHORT nTmp=nPntAnz;
@@ -1359,11 +1359,11 @@ namespace binfilter {
 /*N*/       aBewareRect2=rBewareRect2;
 /*N*/
 /*N*/       for (USHORT i=0; i<nPntAnz; i++) {
-/*N*/           Point aPt1(aXP1[i]);
-/*N*/           bool b1=aPt1.X()>aBewareRect1.Left() && aPt1.X()<aBewareRect1.Right() &&
-/*N*/                       aPt1.Y()>aBewareRect1.Top() && aPt1.Y()<aBewareRect1.Bottom();
-/*N*/           bool b2=aPt1.X()>aBewareRect2.Left() && aPt1.X()<aBewareRect2.Right() &&
-/*N*/                       aPt1.Y()>aBewareRect2.Top() && aPt1.Y()<aBewareRect2.Bottom();
+/*N*/           Point aLclPt1(aXP1[i]);
+/*N*/           bool b1=aLclPt1.X()>aBewareRect1.Left() && aLclPt1.X()<aBewareRect1.Right() &&
+/*N*/                       aLclPt1.Y()>aBewareRect1.Top() && aLclPt1.Y()<aBewareRect1.Bottom();
+/*N*/           bool b2=aLclPt1.X()>aBewareRect2.Left() && aLclPt1.X()<aBewareRect2.Right() &&
+/*N*/                       aLclPt1.Y()>aBewareRect2.Top() && aLclPt1.Y()<aBewareRect2.Bottom();
 /*N*/           USHORT nInt0=nIntersections;
 /*N*/           if (i==0 || i==nPntAnz-1) {
 /*N*/               if (b1 && b2) nIntersections++;
@@ -1373,23 +1373,23 @@ namespace binfilter {
 /*N*/           }
 /*N*/           // und nun noch auf Ueberschneidungen checken
 /*N*/           if (i>0 && nInt0==nIntersections) {
-/*N*/               if (aPt0.Y()==aPt1.Y()) { // Horizontale Linie
+/*N*/               if (aPt0.Y()==aLclPt1.Y()) { // Horizontale Linie
 /*N*/                   if (aPt0.Y()>aBewareRect1.Top() && aPt0.Y()<aBewareRect1.Bottom() &&
-/*N*/                       ((aPt0.X()<=aBewareRect1.Left() && aPt1.X()>=aBewareRect1.Right()) ||
-/*N*/                        (aPt1.X()<=aBewareRect1.Left() && aPt0.X()>=aBewareRect1.Right()))) nIntersections++;
+/*N*/                       ((aPt0.X()<=aBewareRect1.Left() && aLclPt1.X()>=aBewareRect1.Right()) ||
+/*N*/                        (aLclPt1.X()<=aBewareRect1.Left() && aPt0.X()>=aBewareRect1.Right()))) nIntersections++;
 /*N*/                   if (aPt0.Y()>aBewareRect2.Top() && aPt0.Y()<aBewareRect2.Bottom() &&
-/*N*/                       ((aPt0.X()<=aBewareRect2.Left() && aPt1.X()>=aBewareRect2.Right()) ||
-/*N*/                        (aPt1.X()<=aBewareRect2.Left() && aPt0.X()>=aBewareRect2.Right()))) nIntersections++;
+/*N*/                       ((aPt0.X()<=aBewareRect2.Left() && aLclPt1.X()>=aBewareRect2.Right()) ||
+/*N*/                        (aLclPt1.X()<=aBewareRect2.Left() && aPt0.X()>=aBewareRect2.Right()))) nIntersections++;
 /*N*/               } else { // Vertikale Linie
 /*N*/                   if (aPt0.X()>aBewareRect1.Left() && aPt0.X()<aBewareRect1.Right() &&
-/*N*/                       ((aPt0.Y()<=aBewareRect1.Top() && aPt1.Y()>=aBewareRect1.Bottom()) ||
-/*N*/                        (aPt1.Y()<=aBewareRect1.Top() && aPt0.Y()>=aBewareRect1.Bottom()))) nIntersections++;
+/*N*/                       ((aPt0.Y()<=aBewareRect1.Top() && aLclPt1.Y()>=aBewareRect1.Bottom()) ||
+/*N*/                        (aLclPt1.Y()<=aBewareRect1.Top() && aPt0.Y()>=aBewareRect1.Bottom()))) nIntersections++;
 /*N*/                   if (aPt0.X()>aBewareRect2.Left() && aPt0.X()<aBewareRect2.Right() &&
-/*N*/                       ((aPt0.Y()<=aBewareRect2.Top() && aPt1.Y()>=aBewareRect2.Bottom()) ||
-/*N*/                        (aPt1.Y()<=aBewareRect2.Top() && aPt0.Y()>=aBewareRect2.Bottom()))) nIntersections++;
+/*N*/                       ((aPt0.Y()<=aBewareRect2.Top() && aLclPt1.Y()>=aBewareRect2.Bottom()) ||
+/*N*/                        (aLclPt1.Y()<=aBewareRect2.Top() && aPt0.Y()>=aBewareRect2.Bottom()))) nIntersections++;
 /*N*/               }
 /*N*/           }
-/*N*/           aPt0=aPt1;
+/*N*/           aPt0=aLclPt1;
 /*N*/       }
 /*N*/       if (nPntAnz<=1) nIntersections++;
 /*N*/       nQual0=nQual;
@@ -1489,27 +1489,27 @@ namespace binfilter {
 /*?*/               // Vor und hinter dem Mittelpunkt jeweils
 /*?*/               // noch einen Kontrollpunkt einfuegen
 /*?*/               Point aCenter(aXP1[2]);
-/*?*/               long dx1=aCenter.X()-aXP1[1].X();
-/*?*/               long dy1=aCenter.Y()-aXP1[1].Y();
-/*?*/               long dx2=aCenter.X()-aXP1[3].X();
-/*?*/               long dy2=aCenter.Y()-aXP1[3].Y();
+/*?*/               long lcldx1=aCenter.X()-aXP1[1].X();
+/*?*/               long lcldy1=aCenter.Y()-aXP1[1].Y();
+/*?*/               long lcldx2=aCenter.X()-aXP1[3].X();
+/*?*/               long lcldy2=aCenter.Y()-aXP1[3].Y();
 /*?*/               aXP1.Insert(2,aCenter,XPOLY_CONTROL);
 /*?*/               aXP1.SetFlags(3,XPOLY_SYMMTR);
 /*?*/               aXP1.Insert(4,aCenter,XPOLY_CONTROL);
-/*?*/               aXP1[2].X()-=dx1/2;
-/*?*/               aXP1[2].Y()-=dy1/2;
-/*?*/               aXP1[3].X()-=(dx1+dx2)/4;
-/*?*/               aXP1[3].Y()-=(dy1+dy2)/4;
-/*?*/               aXP1[4].X()-=dx2/2;
-/*?*/               aXP1[4].Y()-=dy2/2;
+/*?*/               aXP1[2].X()-=lcldx1/2;
+/*?*/               aXP1[2].Y()-=lcldy1/2;
+/*?*/               aXP1[3].X()-=(lcldx1+lcldx2)/4;
+/*?*/               aXP1[3].Y()-=(lcldy1+lcldy2)/4;
+/*?*/               aXP1[4].X()-=lcldx2/2;
+/*?*/               aXP1[4].Y()-=lcldy2/2;
 /*?*/           }
 /*?*/           if (nPntAnz==6) {
-/*?*/               Point aPt1(aXP1[2]);
-/*?*/               Point aPt2(aXP1[3]);
-/*?*/               aXP1.Insert(2,aPt1,XPOLY_CONTROL);
-/*?*/               aXP1.Insert(5,aPt2,XPOLY_CONTROL);
-/*?*/               long dx=aPt1.X()-aPt2.X();
-/*?*/               long dy=aPt1.Y()-aPt2.Y();
+/*?*/               Point aLclPt1(aXP1[2]);
+/*?*/               Point aLclPt2(aXP1[3]);
+/*?*/               aXP1.Insert(2,aLclPt1,XPOLY_CONTROL);
+/*?*/               aXP1.Insert(5,aLclPt2,XPOLY_CONTROL);
+/*?*/               long dx=aLclPt1.X()-aLclPt2.X();
+/*?*/               long dy=aLclPt1.Y()-aLclPt2.Y();
 /*?*/               aXP1[3].X()-=dx/2;
 /*?*/               aXP1[3].Y()-=dy/2;
 /*?*/               aXP1.SetFlags(3,XPOLY_SYMMTR);

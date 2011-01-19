@@ -96,8 +96,8 @@ using namespace ::com::sun::star;
 /*N*/   Clear(); // Containerinhalt loeschen!
 /*N*/ }
 
-/*N*/ void SdrObjList::operator=(const SdrObjList& rSrcList)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrObjList::operator=(const SdrObjList& /*rSrcList*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
@@ -280,7 +280,7 @@ using namespace ::com::sun::star;
 /*N*/   if (pUpList!=NULL) pUpList->SetRectsDirty();
 /*N*/ }
 
-/*N*/ void SdrObjList::NbcInsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* pReason)
+/*N*/ void SdrObjList::NbcInsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* /*pReason*/)
 /*N*/ {
 /*N*/   DBG_ASSERT(pObj!=NULL,"SdrObjList::NbcInsertObject(NULL)");
 /*N*/   if (pObj!=NULL) {
@@ -348,8 +348,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG nObjNum)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG /*nObjNum*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObjList::RemoveObject(ULONG nObjNum)
@@ -1033,11 +1033,11 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ void SdrObjList::FlattenGroups()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SdrObjList::UnGroupObj( ULONG nObjNum )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ void SdrObjList::UnGroupObj( ULONG /*nObjNum*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1164,8 +1164,8 @@ using namespace ::com::sun::star;
 /*N*/   return nWdt;
 /*N*/ }
 
-/*N*/ void SdrPage::SetOrientation(Orientation eOri)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrPage::SetOrientation(Orientation /*eOri*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1621,7 +1621,7 @@ using namespace ::com::sun::star;
 
 
 /** returns an averaged background color of this page */
-/*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* pView ) const
+/*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* /*pView*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); Color aColor; return aColor;
 /*N*/ }
 

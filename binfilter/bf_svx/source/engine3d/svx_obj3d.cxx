@@ -2366,7 +2366,7 @@ namespace binfilter {
 /*N*/
 /*N*/                       // 3D Volumes schneiden sich, teste in der Geometrie
 /*N*/                       // auf Basis der Projektion weiter
-/*N*/                       if(((E3dCompoundObject*)this)->aDisplayGeometry.CheckHit(aFront, aBack, nTol) != -1L)
+/*N*/                       if(((E3dCompoundObject*)this)->aDisplayGeometry.CheckHit(aFront, aBack, nTol) == sal_True)
 /*?*/                           return ((E3dCompoundObject*)this);
 /*N*/                   }
 /*N*/               }

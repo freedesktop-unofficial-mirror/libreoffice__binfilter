@@ -170,18 +170,18 @@ namespace binfilter {
 /*?*/
 /*?*/               if(rStr.Search(cDec) != STRING_NOTFOUND)
 /*?*/               {
-/*?*/                   xub_StrLen nLen(rStr.Len() - 1);
+/*?*/                   xub_StrLen nLen2(rStr.Len() - 1);
 /*?*/
-/*?*/                   while(rStr.GetChar(nLen) == sal_Unicode('0'))
+/*?*/                   while(rStr.GetChar(nLen2) == sal_Unicode('0'))
 /*?*/                   {
-/*?*/                       rStr.Erase(nLen);
-/*?*/                       nLen--;
+/*?*/                       rStr.Erase(nLen2);
+/*?*/                       nLen2--;
 /*?*/                   }
 /*?*/
-/*?*/                   if(rStr.GetChar(nLen) == cDec)
+/*?*/                   if(rStr.GetChar(nLen2) == cDec)
 /*?*/                   {
-/*?*/                       rStr.Erase(nLen);
-/*?*/                       nLen--;
+/*?*/                       rStr.Erase(nLen2);
+/*?*/                       nLen2--;
 /*?*/                   }
 /*?*/
 /*?*/                   if(!rStr.Len())
@@ -623,13 +623,13 @@ namespace binfilter {
 /*N*/   ImpCalcGeometrics(aRec,aMPol);
 /*N*/
 /*N*/   // TextSize ermitteln inkl. Textrahmenabstaende
-/*N*/   Size aTextSize(aMPol.aTextSize);
-/*N*/   if (aTextSize.Width()<1) aTextSize.Width()=1;
-/*N*/   if (aTextSize.Height()<1) aTextSize.Height()=1;
-/*N*/   aTextSize.Width()+=GetTextLeftDistance()+GetTextRightDistance();
-/*N*/   aTextSize.Height()+=GetTextUpperDistance()+GetTextLowerDistance();
+/*N*/   Size aLclTextSize(aMPol.aTextSize);
+/*N*/   if (aLclTextSize.Width()<1) aLclTextSize.Width()=1;
+/*N*/   if (aLclTextSize.Height()<1) aLclTextSize.Height()=1;
+/*N*/   aLclTextSize.Width()+=GetTextLeftDistance()+GetTextRightDistance();
+/*N*/   aLclTextSize.Height()+=GetTextUpperDistance()+GetTextLowerDistance();
 /*N*/
-/*N*/   Point aPt1(aMPol.aMainline1.aP1);
+/*N*/   Point aLclPt1(aMPol.aMainline1.aP1);
 /*N*/   long nLen=aMPol.nLineLen;
 /*N*/   long nLWdt=aMPol.nLineWdt2;
 /*N*/   long nArr1Len=aMPol.nArrow1Len;
@@ -649,56 +649,56 @@ namespace binfilter {
 /*N*/   SdrMeasureTextVPos eMV=aMPol.eUsedTextVPos;
 /*N*/   if (!bRota90) {
 /*N*/       switch (eMH) {
-/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aPt1.X()-aTextSize.Width()-nArr1Len-nLWdt; break;
-/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aPt1.X()+nLen+nArr2Len+nLWdt; break;
-/*N*/           default: aTextPos.X()=aPt1.X(); aTextSize.Width()=nLen;
+/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aLclPt1.X()-aLclTextSize.Width()-nArr1Len-nLWdt; break;
+/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aLclPt1.X()+nLen+nArr2Len+nLWdt; break;
+/*N*/           default: aTextPos.X()=aLclPt1.X(); aLclTextSize.Width()=nLen;
 /*N*/       }
 /*N*/       switch (eMV) {
 /*N*/           case SDRMEASURETEXT_VERTICALCENTERED:
-/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aPt1.Y()-aTextSize.Height()/2; break;
+/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()/2; break;
 /*N*/           case SDRMEASURE_BELOW: {
-/*N*/               if (!bUpsideDown) aTextPos.Y()=aPt1.Y()+nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()-aTextSize.Height()-nLWdt;
+/*N*/               if (!bUpsideDown) aTextPos.Y()=aLclPt1.Y()+nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()-nLWdt;
 /*N*/           } break;
 /*N*/           default: {
-/*N*/               if (!bUpsideDown) aTextPos.Y()=aPt1.Y()-aTextSize.Height()-nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()+nLWdt;
+/*N*/               if (!bUpsideDown) aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()-nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()+nLWdt;
 /*N*/           }
 /*N*/       }
 /*N*/       if (bUpsideDown) {
-/*N*/           aTextPos.X()+=aTextSize.Width();
-/*N*/           aTextPos.Y()+=aTextSize.Height();
+/*N*/           aTextPos.X()+=aLclTextSize.Width();
+/*N*/           aTextPos.Y()+=aLclTextSize.Height();
 /*N*/       }
 /*N*/   } else { // also wenn bTextRota90==TRUE
 /*N*/       switch (eMH) {
-/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aPt1.X()-aTextSize.Height()-nArr1Len; break;
-/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aPt1.X()+nLen+nArr2Len; break;
-/*N*/           default: aTextPos.X()=aPt1.X(); aTextSize.Height()=nLen;
+/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aLclPt1.X()-aLclTextSize.Height()-nArr1Len; break;
+/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aLclPt1.X()+nLen+nArr2Len; break;
+/*N*/           default: aTextPos.X()=aLclPt1.X(); aLclTextSize.Height()=nLen;
 /*N*/       }
 /*N*/       switch (eMV) {
 /*N*/           case SDRMEASURETEXT_VERTICALCENTERED:
-/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aPt1.Y()+aTextSize.Width()/2; break;
+/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()/2; break;
 /*N*/           case SDRMEASURE_BELOW: {
-/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aPt1.Y()+aTextSize.Width()+nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()-nLWdt;
+/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()+nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()-nLWdt;
 /*N*/           } break;
 /*N*/           default: {
-/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aPt1.Y()-nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()+aTextSize.Width()+nLWdt;
+/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aLclPt1.Y()-nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()+nLWdt;
 /*N*/           }
 /*N*/       }
 /*N*/       if (bUpsideDown) {
-/*N*/           aTextPos.X()+=aTextSize.Height();
-/*N*/           aTextPos.Y()-=aTextSize.Width();
+/*N*/           aTextPos.X()+=aLclTextSize.Height();
+/*N*/           aTextPos.Y()-=aLclTextSize.Width();
 /*N*/       }
 /*N*/   }
 /*N*/   if (aMPol.nTextWink!=aGeo.nDrehWink) {
 /*N*/       ((SdrMeasureObj*)this)->aGeo.nDrehWink=aMPol.nTextWink;
 /*N*/       ((SdrMeasureObj*)this)->aGeo.RecalcSinCos();
 /*N*/   }
-/*N*/   RotatePoint(aTextPos,aPt1,aMPol.nLineSin,aMPol.nLineCos);
-/*N*/   aTextSize.Width()++; aTextSize.Height()++; // wg. des komischen Verhaltens beim Rect-Ctor
-/*N*/   rRect=Rectangle(aTextPos,aTextSize);
+/*N*/   RotatePoint(aTextPos,aLclPt1,aMPol.nLineSin,aMPol.nLineCos);
+/*N*/   aLclTextSize.Width()++; aLclTextSize.Height()++; // wg. des komischen Verhaltens beim Rect-Ctor
+/*N*/   rRect=Rectangle(aTextPos,aLclTextSize);
 /*N*/   rRect.Justify();
 /*N*/   ((SdrMeasureObj*)this)->aRect=rRect;
 /*N*/
@@ -707,30 +707,6 @@ namespace binfilter {
 /*N*/       ((SdrMeasureObj*)this)->aGeo.RecalcSinCos();
 /*N*/   }
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ void SdrMeasureObj::NbcMove(const Size& rSiz)
 /*N*/ {
@@ -820,13 +796,8 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-
-
-
-
-
-/*N*/ bool SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ bool SdrMeasureObj::BegTextEdit(SdrOutliner& /*rOutl*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*N*/ }
 
 /*N*/ void SdrMeasureObj::EndTextEdit(SdrOutliner& rOutl)

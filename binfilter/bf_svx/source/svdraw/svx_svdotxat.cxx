@@ -132,7 +132,7 @@ namespace binfilter {
 /*N*/       USHORT nParaCount=(USHORT)rOutliner.GetParagraphCount();
 /*N*/       if (nParaCount!=0)
 /*N*/       {
-/*N*/           SfxItemSet* pTempSet;
+/*N*/           SfxItemSet* pTempSet(NULL);
 /*N*/           for (USHORT nPara=0; nPara<nParaCount; nPara++)
 /*N*/           {
 /*N*/               // since setting the stylesheet removes all para attributes
@@ -340,9 +340,9 @@ namespace binfilter {
 /*N*/           {
 /*?*/               pEdtOutl->SetMaxAutoPaperSize(aSiz);
 /*?*/               if (bWdtGrow) {
-/*?*/                   Size aSiz(pEdtOutl->CalcTextSize());
-/*?*/                   nWdt=aSiz.Width()+1; // lieber etwas Tolleranz
-/*?*/                   if (bHgtGrow) nHgt=aSiz.Height()+1; // lieber etwas Tolleranz
+/*?*/                   Size aLclSiz(pEdtOutl->CalcTextSize());
+/*?*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
+/*?*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
 /*?*/               } else {
 /*?*/                   nHgt=pEdtOutl->GetTextHeight()+1; // lieber etwas Tolleranz
 /*?*/               }
@@ -354,9 +354,9 @@ namespace binfilter {
 /*N*/               // bPortionInfoChecked usw einbauen
 /*N*/               if (pOutlinerParaObject!=NULL) rOutliner.SetText(*pOutlinerParaObject);
 /*N*/               if (bWdtGrow) {
-/*N*/                   Size aSiz(rOutliner.CalcTextSize());
-/*N*/                   nWdt=aSiz.Width()+1; // lieber etwas Tolleranz
-/*N*/                   if (bHgtGrow) nHgt=aSiz.Height()+1; // lieber etwas Tolleranz
+/*N*/                   Size aLclSiz(rOutliner.CalcTextSize());
+/*N*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
+/*N*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
 /*N*/               } else {
 /*N*/                   nHgt=rOutliner.GetTextHeight()+1; // lieber etwas Tolleranz
 /*N*/               }

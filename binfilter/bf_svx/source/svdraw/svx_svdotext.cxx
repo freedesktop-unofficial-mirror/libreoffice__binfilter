@@ -86,10 +86,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ TYPEINIT1(SdrTextObj,SdrAttrObj);
 
 /*N*/ SdrTextObj::SdrTextObj():
-/*N*/   eTextKind(OBJ_TEXT),
 /*N*/   pOutlinerParaObject(NULL),
 /*N*/   pEdtOutl(NULL),
-/*N*/   pFormTextBoundRect(NULL)
+/*N*/   pFormTextBoundRect(NULL),
+/*N*/   eTextKind(OBJ_TEXT)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bPortionInfoChecked=FALSE;
@@ -108,10 +108,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ SdrTextObj::SdrTextObj(const Rectangle& rNewRect):
 /*N*/   aRect(rNewRect),
-/*N*/   eTextKind(OBJ_TEXT),
 /*N*/   pOutlinerParaObject(NULL),
 /*N*/   pEdtOutl(NULL),
-/*N*/   pFormTextBoundRect(NULL)
+/*N*/   pFormTextBoundRect(NULL),
+/*N*/   eTextKind(OBJ_TEXT)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bPortionInfoChecked=FALSE;
@@ -130,10 +130,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ }
 
 /*N*/ SdrTextObj::SdrTextObj(SdrObjKind eNewTextKind):
-/*N*/   eTextKind(eNewTextKind),
 /*N*/   pOutlinerParaObject(NULL),
 /*N*/   pEdtOutl(NULL),
-/*N*/   pFormTextBoundRect(NULL)
+/*N*/   pFormTextBoundRect(NULL),
+/*N*/   eTextKind(eNewTextKind)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bTextFrame=TRUE;
@@ -152,10 +152,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 /*N*/ SdrTextObj::SdrTextObj(SdrObjKind eNewTextKind, const Rectangle& rNewRect):
 /*N*/   aRect(rNewRect),
-/*N*/   eTextKind(eNewTextKind),
 /*N*/   pOutlinerParaObject(NULL),
 /*N*/   pEdtOutl(NULL),
-/*N*/   pFormTextBoundRect(NULL)
+/*N*/   pFormTextBoundRect(NULL),
+/*N*/   eTextKind(eNewTextKind)
 /*N*/ {
 /*N*/   bTextSizeDirty=FALSE;
 /*N*/   bTextFrame=TRUE;
@@ -527,7 +527,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ }
 
 /*N*/ void SdrTextObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
-/*N*/                              Rectangle* pAnchorRect, BOOL bLineWidth ) const
+/*N*/                              Rectangle* pAnchorRect, BOOL /*bLineWidth*/ ) const
 /*N*/ {
 /*N*/   Rectangle aAnkRect; // Rect innerhalb dem geankert wird
 /*N*/   TakeTextAnchorRect(aAnkRect);
@@ -612,7 +612,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/   rOutliner.SetPaperSize(aNullSize);
 /*N*/   if (bContourFrame)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ImpSetContourPolygon( rOutliner, aAnkRect, bLineWidth );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   // Text in den Outliner stecken - ggf. den aus dem EditOutliner
 /*N*/   OutlinerParaObject* pPara=pOutlinerParaObject;
@@ -806,7 +806,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   SdrFitToSizeType eFit=GetFitToSize();
 /*N*/   bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
 /*N*/   Rectangle aR(aRect);
-/*N*/   Rectangle aAnchor(aR);
+/*N*/   Rectangle aLclAnchor(aR);
 /*N*/   Rectangle aTextRect(aR);
 /*N*/   SdrOutliner* pOutliner = NULL;
 /*N*/   pOutliner = &pModel->GetHitTestOutliner();
@@ -817,10 +817,10 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       TakeTextRect( *pOutliner, aTextRect, FALSE, &aAnchor, FALSE ); // EditText nicht mehr ignorieren! TRUE); // EditText ignorieren!
+/*N*/       TakeTextRect( *pOutliner, aTextRect, FALSE, &aLclAnchor, FALSE ); // EditText nicht mehr ignorieren! TRUE); // EditText ignorieren!
 /*N*/
 /*N*/       if (bFitToSize)
-/*?*/           aR=aAnchor;
+/*?*/           aR=aLclAnchor;
 /*N*/       else
 /*N*/           aR=aTextRect;
 /*N*/   }
@@ -866,8 +866,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           // Zunaechst meine Dok-Koordinaten in EE-Dok-Koordinaten umwandeln.
 /*N*/           Point aPt(rPnt); aPt-=aR.TopLeft();
 /*N*/           if (bFitToSize) { // #38214#: FitToSize berueksichtigen
-/*?*/               Fraction aX(aTextRect.GetWidth()-1,aAnchor.GetWidth()-1);
-/*?*/               Fraction aY(aTextRect.GetHeight()-1,aAnchor.GetHeight()-1);
+/*?*/               Fraction aX(aTextRect.GetWidth()-1,aLclAnchor.GetWidth()-1);
+/*?*/               Fraction aY(aTextRect.GetHeight()-1,aLclAnchor.GetHeight()-1);
 /*?*/               ResizePoint(aPt,Point(),aX,aY);
 /*N*/           }
 /*N*/           if (aGeo.nDrehWink!=0) RotatePoint(aPt,Point(),-aGeo.nSin,aGeo.nCos); // -sin fuer Unrotate
@@ -931,13 +931,13 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/   // und nun noch ggf. das BoundRect des Textes dazu
 /*N*/   if (pOutlinerParaObject!=NULL && !IsFontwork() && !IsContourTextFrame()) {
-/*?*/       Rectangle aAnchor;
+/*?*/       Rectangle aLclAnchor;
 /*?*/       Rectangle aR;
-/*?*/       TakeTextRect(rOutliner,aR,FALSE,&aAnchor);
+/*?*/       TakeTextRect(rOutliner,aR,FALSE,&aLclAnchor);
 /*?*/       rOutliner.Clear();
 /*?*/       SdrFitToSizeType eFit=GetFitToSize();
 /*?*/       bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
-/*?*/       if (bFitToSize) aR=aAnchor;
+/*?*/       if (bFitToSize) aR=aLclAnchor;
 /*?*/       Polygon aPol(aR);
 /*?*/       if (aGeo.nDrehWink!=0) RotatePoly(aPol,aR.TopLeft(),aGeo.nSin,aGeo.nCos);
 /*?*/       rPoly.Insert(XPolygon(aPol));
@@ -1001,8 +1001,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 // #101029#: Extracted from Paint()
 
-/*N*/ void SdrTextObj::SetupOutlinerFormatting( SdrOutliner& rOutl, Rectangle& rPaintRect ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrTextObj::SetupOutlinerFormatting( SdrOutliner&, Rectangle& ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1092,27 +1092,9 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrTextObj::RestartAnimation(SdrPageView* pPageView) const
+/*N*/ void SdrTextObj::RestartAnimation(SdrPageView*) const
 /*N*/ {
-///*N*/     bool bAnimated=GetTextAniKind()!=SDRTEXTANI_NONE;
-///*N*/     if (bAnimated) {
-///*N*/         ImpSdrMtfAnimator* pAnimator=((SdrTextObj*)this)->ImpGetMtfAnimator();
-///*N*/         if (pAnimator!=NULL) {
-///*?*/             if (pPageView==NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-////STRIP001 /*?*/              pAnimator->Stop();
-///*?*/             } else {
-///*?*/                 for (ULONG nInfoNum=pAnimator->GetInfoCount(); nInfoNum>0;) {
-///*?*/                     nInfoNum--;
-///*?*/                     ImpMtfAnimationInfo* pInfo=pAnimator->GetInfo(nInfoNum);
-///*?*/                     if (pInfo->pPageView==pPageView) {
-///*?*/                         pAnimator->RemoveInfo(nInfoNum);
-///*?*/                     }
-///*?*/                 }
-///*?*/             }
-///*N*/         }
-///*N*/     }
 /*N*/ }
-
 
 /*N*/ void SdrTextObj::SaveGeoData(SdrObjGeoData& rGeo) const
 /*N*/ {
@@ -1329,8 +1311,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/           pOutliner->SetCalcFieldValueHdl( aDrawOutliner.GetCalcFieldValueHdl() );
 /*?*/
 /*?*/           pOutliner->SetStyleSheet( 0, GetStyleSheet());
-/*?*/           OutlinerParaObject* pOutlinerParaObject = pOutliner->CreateParaObject();
-/*?*/           SetOutlinerParaObject( pOutlinerParaObject );
+/*?*/           OutlinerParaObject* pLclOutlinerParaObject = pOutliner->CreateParaObject();
+/*?*/           SetOutlinerParaObject( pLclOutlinerParaObject );
 /*?*/
 /*?*/           delete pOutliner;
 /*?*/       }
@@ -1417,7 +1399,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // gets base transformation and rectangle of object. If it's an SdrPathObj it fills the PolyPolygon
 // with the base geometry and returns TRUE. Otherwise it returns FALSE.
-/*N*/ BOOL SdrTextObj::TRGetBaseGeometry(Matrix3D& rMat, XPolyPolygon& rPolyPolygon) const
+/*N*/ BOOL SdrTextObj::TRGetBaseGeometry(Matrix3D& rMat, XPolyPolygon& /*rPolyPolygon*/) const
 /*N*/ {
 /*N*/   // get turn and shear
 /*N*/   double fRotate = (aGeo.nDrehWink / 100.0) * F_PI180;
@@ -1481,7 +1463,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 // sets the base geometry of the object using infos contained in the homogen 3x3 matrix.
 // If it's an SdrPathObj it will use the provided geometry information. The Polygon has
 // to use (0,0) as upper left and will be scaled to the given size in the matrix.
-/*N*/ void SdrTextObj::TRSetBaseGeometry(const Matrix3D& rMat, const XPolyPolygon& rPolyPolygon)
+/*N*/ void SdrTextObj::TRSetBaseGeometry(const Matrix3D& rMat, const XPolyPolygon& /*rPolyPolygon*/)
 /*N*/ {
 /*N*/   // break up matrix
 /*N*/   Vector2D aScale, aTranslate;

@@ -56,21 +56,17 @@ namespace binfilter {
 /*N*/ ImpGraphicFill::ImpGraphicFill( const SdrObject&      rObj,
 /*N*/                                 const ExtOutputDevice&    rXOut,
 /*N*/                                 const SfxItemSet&         rFillItemSet,
-/*N*/                                 bool                  bIsShadow       ) :
+/*N*/                                 bool                  /*bIsShadow*/ ) :
 /*N*/     mrObj( rObj ),
 /*N*/     mrXOut( rXOut ),
 /*N*/     mbCommentWritten( false )
 /*N*/ {
-/*N*/   const SfxItemSet& rSet = rObj.GetItemSet();
 /*N*/     XFillStyle eFillStyle( ITEMVALUE( rFillItemSet, XATTR_FILLSTYLE, XFillStyleItem ) );
 /*N*/     XGradient aGradient( ITEMVALUE( rFillItemSet, XATTR_FILLGRADIENT, XFillGradientItem ) );
 /*N*/     XHatch aHatch( ITEMVALUE( rFillItemSet, XATTR_FILLHATCH, XFillHatchItem ) );
 /*N*/
-/*N*/   sal_Int32 nDX( ((SdrShadowXDistItem&)(rSet.Get(SDRATTR_SHADOWXDIST))).GetValue() );
-/*N*/   sal_Int32 nDY( ((SdrShadowYDistItem&)(rSet.Get(SDRATTR_SHADOWYDIST))).GetValue() );
-/*N*/
 /*N*/     if( eFillStyle != XFILL_NONE && mrXOut.GetOutDev()->GetConnectMetaFile() )
-/*?*/     {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/     {DBG_BF_ASSERT(0, "STRIP");
 /*?*/     }
 /*N*/ }
 

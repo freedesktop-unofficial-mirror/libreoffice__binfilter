@@ -388,7 +388,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, bool bDetail) const
+/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   rXPolyPoly=aPathPolygon;
 /*N*/ }

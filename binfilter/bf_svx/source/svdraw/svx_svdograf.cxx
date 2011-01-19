@@ -187,8 +187,8 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ SdrGrafObj::SdrGrafObj():
-/*N*/   bMirrored       ( FALSE ),
-/*N*/   pGraphicLink    ( NULL )
+/*N*/   pGraphicLink    ( NULL ),
+/*N*/   bMirrored       ( FALSE )
 /*N*/ {
 /*N*/   pGraphic = new BfGraphicObject;
 /*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
@@ -200,8 +200,8 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*?*/ SdrGrafObj::SdrGrafObj( const Graphic& rGrf ):
-/*?*/   bMirrored       ( FALSE ),
-/*?*/   pGraphicLink    ( NULL )
+/*?*/   pGraphicLink    ( NULL ),
+/*?*/   bMirrored       ( FALSE )
 /*?*/ {
 /*?*/   pGraphic = new BfGraphicObject( rGrf );
 /*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
@@ -686,7 +686,7 @@ namespace binfilter {
 /*N*/   bool        bSwappedOut = pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE );
 /*N*/   bool        bLoading = FALSE;
 /*N*/   OutputDevice*   pOutDev = rOut.GetOutDev();
-/*N*/   GDIMetaFile*    pRecMetaFile = pOutDev->GetConnectMetaFile();
+/*N*/   /*GDIMetaFile*  pRecMetaFile =*/ pOutDev->GetConnectMetaFile();
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
@@ -1143,7 +1143,7 @@ namespace binfilter {
 /*?*/           if( pIStm )
 /*?*/           {
 /*?*/               GraphicFilter*  pFilter = GetGrfFilter();
-/*?*/               USHORT          nError = pFilter->ImportGraphic( aGraphic, aFileURLStr, *pIStm );
+/*?*/               /*USHORT nError =*/ pFilter->ImportGraphic( aGraphic, aFileURLStr, *pIStm );
 /*?*/
 /*?*/               SetGraphicLink( aFileURLStr, aFilterName );
 /*?*/

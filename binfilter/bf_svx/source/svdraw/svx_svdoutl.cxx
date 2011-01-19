@@ -66,10 +66,10 @@ namespace binfilter {
 /*N*/   if( pObj && pObj != pTextObj )
 /*N*/   {
 /*N*/       SetUpdateMode(FALSE);
-/*N*/       USHORT nOutlinerMode = OUTLINERMODE_OUTLINEOBJECT;
+/*N*/       USHORT nLclOutlinerMode = OUTLINERMODE_OUTLINEOBJECT;
 /*N*/       if ( !pObj->IsOutlText() )
-/*N*/           nOutlinerMode = OUTLINERMODE_TEXTOBJECT;
-/*N*/       Init( nOutlinerMode );
+/*N*/           nLclOutlinerMode = OUTLINERMODE_TEXTOBJECT;
+/*N*/       Init( nLclOutlinerMode );
 /*N*/
 /*N*/       SetGlobalCharStretching(100,100);
 /*N*/

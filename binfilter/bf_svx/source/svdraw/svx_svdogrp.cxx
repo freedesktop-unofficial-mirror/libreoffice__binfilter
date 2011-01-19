@@ -526,23 +526,15 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
 /*N*/ long SdrObjGroup::GetRotateAngle() const
 /*N*/ {
 /*N*/   return nDrehWink;
 /*N*/ }
 
-
-/*N*/ long SdrObjGroup::GetShearAngle(bool bVertical) const
+/*N*/ long SdrObjGroup::GetShearAngle(bool /*bVertical*/) const
 /*N*/ {
 /*N*/   return nShearWink;
 /*N*/ }
-
 
 /*N*/ void SdrObjGroup::NbcSetSnapRect(const Rectangle& rRect)
 /*N*/ {
@@ -933,12 +925,12 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrObjGroup::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
+/*N*/ void SdrObjGroup::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
 /*N*/ {
 /*N*/   if (!IsLinkedGroup()) {
 /*N*/       SdrObjList* pOL=pSub;
 /*N*/       ULONG nObjAnz=pOL->GetObjCount();
-/*N*/       for (ULONG i=0; i<nObjAnz; i++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       for (ULONG i=0; i<nObjAnz; i++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
