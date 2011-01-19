@@ -31,6 +31,7 @@
 
 #include <vcl/svapp.hxx>
 #include <tools/stack.hxx>
+#include <vector>
 
 namespace binfilter {
 
@@ -152,7 +153,7 @@ struct SmErrorDesc
 };
 
 DECLARE_STACK(SmNodeStack,  SmNode *)
-DECLARE_LIST(SmErrDescList, SmErrorDesc *)
+typedef ::std::vector< SmErrorDesc* > SmErrDescList;
 
 /**************************************************************************/
 
@@ -225,8 +226,8 @@ protected:
     void    Brace();
     void    Bracebody(BOOL bIsLeftRight);
     void    Function();
-/*N*/   void    Binom(); // matrixfett.smf
-/*N*/   void    Stack(); // matrixfett.smf
+    void    Binom(); // matrixfett.smf
+    void    Stack(); // matrixfett.smf
     void    Matrix();
     void    Special();
     void    GlyphSpecial();
@@ -252,7 +253,7 @@ public:
     BOOL         IsExportSymbolNames() const        { return bExportSymNames; }
     void         SetExportSymbolNames(BOOL bVal)    { bExportSymNames = bVal; }
 
-    USHORT       AddError(SmParseError Type, SmNode *pNode);
+    void        AddError(SmParseError Type, SmNode *pNode);
 
 };
 
