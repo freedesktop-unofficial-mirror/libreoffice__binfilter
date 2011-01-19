@@ -77,7 +77,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -103,7 +102,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -116,7 +114,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     "Print/Frame",
 /*N*/     "Print/Size",
 /*N*/     "Print/ZoomFactor",
-/*N*/     //"Misc/NoSymbolsWarning",
 /*N*/     "Misc/IgnoreSpacesRight",
 /*N*/     "View/ToolboxVisible",
 /*N*/     "View/AutoRedraw",
@@ -183,7 +180,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -215,7 +211,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     BOOL            bToolboxVisible;
 /*N*/     BOOL            bAutoRedraw;
 /*N*/     BOOL            bFormulaCursor;
-/*N*/     //BOOL            bNoSymbolsWarning;
 /*N*/
 /*N*/     SmCfgOther();
 /*N*/ };
@@ -228,7 +223,7 @@ static const char* aRootName = "Office.Math";
 /*N*/     bPrintTitle         = bPrintFormulaText   =
 /*N*/     bPrintFrame         = bIgnoreSpacesRight  =
 /*N*/     bToolboxVisible     = bAutoRedraw         =
-/*N*/     bFormulaCursor      = /*bNoSymbolsWarning   =*/ TRUE;
+/*N*/     bFormulaCursor      = TRUE;
 /*N*/ }
 
 /////////////////////////////////////////////////////////////////
@@ -243,11 +238,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     nWeight     = WEIGHT_DONTKNOW;
 /*N*/     nItalic     = ITALIC_NONE;
 /*N*/ }
-
-
-// /*N*/ SmFontFormat::SmFontFormat( const Font &rFont )
-// /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-// /*N*/ }
 
 
 /*N*/ const Font SmFontFormat::GetFont() const
@@ -280,8 +270,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-
-
 /*N*/ void SmFontFormatList::AddFontFormat( const String &rFntFmtId,
 /*N*/         const SmFontFormat &rFntFmt )
 /*N*/ {
@@ -294,8 +282,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         SetModified( TRUE );
 /*N*/     }
 /*N*/ }
-
-
 
 
 /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( const String &rFntFmtId ) const
@@ -312,23 +298,6 @@ static const char* aRootName = "Office.Math";
 /*N*/
 /*N*/     return pRes;
 /*N*/ }
-
-
-
-// /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( USHORT nPos ) const
-// /*N*/ {
-// /*N*/     SmFontFormat *pRes = 0;
-// /*N*/     if (nPos < aEntries.Count())
-// /*N*/         pRes = &aEntries[ nPos ].aFntFmt;
-// /*N*/     return pRes;
-// /*N*/ }
-
-
-
-
-
-
-
 
 
 /////////////////////////////////////////////////////////////////
@@ -670,8 +639,8 @@ static const char* aRootName = "Office.Math";
 /*N*/         const Any *pValues = aValues.getConstArray();
 /*N*/         const Any *pVal = pValues;
 /*N*/
-/*N*/         INT16   nTmp16;
-/*N*/         BOOL    bTmp;
+/*N*/         INT16   nTmp16( 0 );
+/*N*/         BOOL    bTmp( 0 );
 /*N*/
 /*N*/         // Print/Title
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
@@ -692,11 +661,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         // Print/ZoomFactor
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= nTmp16))
 /*N*/             pOther->nPrintZoomFactor = nTmp16;
-/*        ++pVal;
-        // Misc/NoSymbolsWarning
-        if (pVal->hasValue()  &&  (*pVal >>= bTmp))
-            pOther->bNoSymbolsWarning = bTmp;
-*/
 /*N*/         ++pVal;
 /*N*/         // Misc/IgnoreSpacesRight
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
@@ -745,9 +709,6 @@ static const char* aRootName = "Office.Math";
 /*?*/     *pValue++ <<= (INT16) pOther->ePrintSize;
 /*?*/     // Print/ZoomFactor
 /*?*/     *pValue++ <<= (INT16) pOther->nPrintZoomFactor;
-/*    // Misc/NoSymbolsWarning
-    *pValue++ <<= (BOOL) pOther->bNoSymbolsWarning;
-*/
 /*?*/     // Misc/IgnoreSpacesRight
 /*?*/     *pValue++ <<= (BOOL) pOther->bIgnoreSpacesRight;
 /*?*/     // View/ToolboxVisible
@@ -780,8 +741,8 @@ static const char* aRootName = "Office.Math";
 /*N*/         const Any *pVal = pValues;
 /*N*/
 /*N*/         OUString    aTmpStr;
-/*N*/         INT16       nTmp16;
-/*N*/         BOOL        bTmp;
+/*N*/         INT16       nTmp16( 0 );
+/*N*/         BOOL        bTmp( 0 );
 /*N*/
 /*N*/         // StandardFormat/Textmode
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
