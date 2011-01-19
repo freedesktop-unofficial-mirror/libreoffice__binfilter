@@ -31,6 +31,7 @@
 
 #include <tools/list.hxx>
 #include <tools/string.hxx>
+#include <vector>
 
 namespace binfilter {
 
@@ -47,7 +48,7 @@ struct SvAddressEntry_Impl
 };
 
 //============================================================================
-DECLARE_LIST(SvAddressList_Impl, SvAddressEntry_Impl *)
+typedef ::std::vector< SvAddressEntry_Impl* > SvAddressList_Impl;
 
 //============================================================================
 class  SvAddressParser
@@ -63,24 +64,21 @@ public:
 
     ~SvAddressParser();
 
-    sal_Int32 Count() const { return m_bHasFirst ? m_aRest.Count() + 1 : 0; }
+    sal_Int32 Count() const { return m_bHasFirst ? m_aRest.size() + 1 : 0; }
 
     inline UniString const & GetEmailAddress(sal_Int32 nIndex) const;
 
     inline UniString const &GetRealName(sal_Int32 nIndex) const;
 };
 
-inline UniString const & SvAddressParser::GetEmailAddress(sal_Int32 nIndex)
-    const
+inline UniString const & SvAddressParser::GetEmailAddress(sal_Int32 nIndex) const
 {
-    return nIndex == 0 ? m_aFirst.m_aAddrSpec :
-                         m_aRest.GetObject(nIndex - 1)->m_aAddrSpec;
+    return nIndex == 0 ? m_aFirst.m_aAddrSpec : m_aRest[ nIndex - 1 ]->m_aAddrSpec;
 }
 
 inline UniString const & SvAddressParser::GetRealName(sal_Int32 nIndex) const
 {
-    return nIndex == 0 ? m_aFirst.m_aRealName :
-                         m_aRest.GetObject(nIndex - 1)->m_aRealName;
+    return nIndex == 0 ? m_aFirst.m_aRealName : m_aRest[ nIndex - 1 ]->m_aRealName;
 }
 
 }
