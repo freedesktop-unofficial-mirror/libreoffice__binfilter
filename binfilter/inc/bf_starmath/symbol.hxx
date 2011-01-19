@@ -38,6 +38,8 @@
 
 #include "utility.hxx"
 #include <smmod.hxx>
+#include <vector>
+
 namespace binfilter {
 
 #define SS_ATTR_ACCESS      0x80
@@ -108,7 +110,7 @@ public:
     void            SetDocSymbol( BOOL bVal )   { bDocSymbol = bVal; }
 };
 
-DECLARE_LIST(SmListSym, SmSym *)//STRIP008 DECLARE_LIST(SmListSym, SmSym *);
+typedef ::std::vector< SmSym* > SmListSym;
 SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )//STRIP008 ;
 
 /**************************************************************************/
@@ -116,7 +118,6 @@ SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )//STRIP008 ;
 class SmSymSet
 {
     friend class SmSymSetManager;
-
 
     SmListSym            SymbolList;
     String               Name;
@@ -127,13 +128,12 @@ public:
 
 
     const String&   GetName() const { return Name; }
-    USHORT          GetCount() const { return (USHORT) SymbolList.Count(); }
+    size_t          GetCount() const { return SymbolList.size(); }
 
-    const SmSym&    GetSymbol(USHORT SymbolNo) const
-    {
-        DBG_ASSERT(SymbolList.GetObject(SymbolNo), "Symbol nicht vorhanden");
-        return *SymbolList.GetObject(SymbolNo);
-    }
+   const SmSym& GetSymbol(USHORT SymbolNo) const
+   {
+       return *SymbolList[ SymbolNo ];
+   }
 
     USHORT      AddSymbol(SmSym* pSymbol);
 };
