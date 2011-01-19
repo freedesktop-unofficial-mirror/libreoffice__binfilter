@@ -43,6 +43,8 @@
 
 #include <bf_svtools/style.hrc>
 
+#include <vector>
+
 class SvStream;
 
 namespace binfilter
@@ -50,7 +52,6 @@ namespace binfilter
 
 class SfxItemSet;
 class SfxItemPool;
-
 class SfxStyleSheetBasePool;
 
 
@@ -149,7 +150,7 @@ public:
 
 //=========================================================================
 
-DECLARE_LIST( SfxStyles, SfxStyleSheetBase* )
+typedef ::std::vector< SfxStyleSheetBase* > SfxStyles;
 
 //=========================================================================
 

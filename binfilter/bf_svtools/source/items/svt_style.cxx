@@ -353,11 +353,11 @@ USHORT SfxStyleSheetIterator::Count()
 {
     USHORT n = 0;
     if( IsTrivialSearch())
-        n = (USHORT) pBasePool->aStyles.Count();
+        n = (USHORT) pBasePool->aStyles.size();
     else
-        for(USHORT i=0; i<pBasePool->aStyles.Count(); i++)
+        for(USHORT i=0; i<pBasePool->aStyles.size(); i++)
         {
-            SfxStyleSheetBase* pStyle = pBasePool->aStyles.GetObject(i);
+            SfxStyleSheetBase* pStyle = pBasePool->aStyles[ i ];
             if(DoesStyleMatch(pStyle))
                 n++;
         }
@@ -367,13 +367,13 @@ USHORT SfxStyleSheetIterator::Count()
 SfxStyleSheetBase* SfxStyleSheetIterator::operator[](USHORT nIdx)
 {
     if( IsTrivialSearch())
-        return pBasePool->aStyles.GetObject(nIdx);
+        return ( nIdx < pBasePool->aStyles.size() ) ? pBasePool->aStyles[ nIdx ] : NULL;
 
     USHORT z = 0;
-    for(USHORT n=0; n<pBasePool->aStyles.Count(); n++)
+    for( size_t n = 0; n < pBasePool->aStyles.size(); n++ )
     {
-        SfxStyleSheetBase* pStyle = pBasePool->aStyles.GetObject(n);
-        if( DoesStyleMatch(pStyle))
+        SfxStyleSheetBase* pStyle = pBasePool->aStyles[ n ];
+        if( DoesStyleMatch(pStyle) )
         {
             if(z == nIdx)
             {
@@ -391,12 +391,12 @@ SfxStyleSheetBase* SfxStyleSheetIterator::First()
 {
     INT32 nIdx = -1;
 
-    if ( IsTrivialSearch() && pBasePool->aStyles.Count() )
+    if ( IsTrivialSearch() && pBasePool->aStyles.size() )
         nIdx = 0;
     else
-        for( USHORT n = 0; n < pBasePool->aStyles.Count(); n++ )
+        for( size_t n = 0; n < pBasePool->aStyles.size(); n++ )
         {
-            SfxStyleSheetBase* pStyle = pBasePool->aStyles.GetObject(n);
+            SfxStyleSheetBase* pStyle = pBasePool->aStyles[ n ];
 
             if ( DoesStyleMatch( pStyle ) )
             {
@@ -408,7 +408,7 @@ SfxStyleSheetBase* SfxStyleSheetIterator::First()
     if ( nIdx != -1 )
     {
         nAktPosition = (USHORT)nIdx;
-        return pAktStyle = pBasePool->aStyles.GetObject(nIdx);
+        return pAktStyle = pBasePool->aStyles[ nIdx ];
     }
     return 0;
 }
@@ -419,12 +419,12 @@ SfxStyleSheetBase* SfxStyleSheetIterator::Next()
     INT32 nIdx = -1;
 
     if ( IsTrivialSearch() &&
-         (USHORT)pBasePool->aStyles.Count() > nAktPosition + 1 )
+         (USHORT)pBasePool->aStyles.size() > nAktPosition + 1 )
         nIdx = nAktPosition + 1;
     else
-        for( USHORT n = nAktPosition + 1; n < pBasePool->aStyles.Count(); n++ )
+        for( size_t n = nAktPosition + 1; n < pBasePool->aStyles.size(); n++ )
         {
-            SfxStyleSheetBase* pStyle = pBasePool->aStyles.GetObject(n);
+            SfxStyleSheetBase* pStyle = pBasePool->aStyles[ n ];
 
             if ( DoesStyleMatch( pStyle ) )
             {
@@ -436,7 +436,7 @@ SfxStyleSheetBase* SfxStyleSheetIterator::Next()
     if ( nIdx != -1 )
     {
         nAktPosition = (USHORT)nIdx;
-        return pAktStyle = pBasePool->aStyles.GetObject(nIdx);
+        return pAktStyle = pBasePool->aStyles[ nIdx ];
     }
     return 0;
 }
@@ -444,9 +444,9 @@ SfxStyleSheetBase* SfxStyleSheetIterator::Next()
 
 SfxStyleSheetBase* SfxStyleSheetIterator::Find(const XubString& rStr)
 {
-    for ( USHORT n = 0; n < pBasePool->aStyles.Count(); n++ )
+    for ( size_t n = 0; n < pBasePool->aStyles.size(); n++ )
     {
-        SfxStyleSheetBase* pStyle = pBasePool->aStyles.GetObject(n);
+        SfxStyleSheetBase* pStyle = pBasePool->aStyles[ n ];
 
         // #98454# performance: in case of bSearchUsed==TRUE it may be
         // significant to first compare the name and only if it matches to call
@@ -597,13 +597,23 @@ SfxStyleSheetBase& SfxStyleSheetBasePool::Make( const XubString& rName,
     if( !p )
     {
         p = Create( rName, eFam, mask );
-        if(0xffff == nPos || nPos == aStyles.Count() ||
+        if(0xffff == nPos || nPos == aStyles.size() ||
            nPos == rIter.Count())
-            aStyles.Insert( p, aStyles.Count() );
+            aStyles.push_back( p );
         else
         {
             rIter[nPos];
-            aStyles.Insert(p, rIter.GetPos());
+            size_t i = rIter.GetPos();
+            if ( i < aStyles.size() )
+            {
+                SfxStyles::iterator it = aStyles.begin();
+                ::std::advance( it, i );
+                aStyles.insert( it, p );
+            }
+            else
+            {
+                aStyles.push_back( p );
+            }
         }
         Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_CREATED, *p ) );
     }
@@ -622,7 +632,7 @@ SfxStyleSheetBase& SfxStyleSheetBasePool::Add( SfxStyleSheetBase& rSheet )
     SfxStyleSheetBase* pOld = aIter.Find( rSheet.GetName() );
     Erase( pOld );
     SfxStyleSheetBase* pNew = Create( rSheet );
-    aStyles.Insert( pNew, aStyles.Count() );
+    aStyles.push_back( pNew );
     Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_CHANGED, *pNew ) );
     return *pNew;
 }
@@ -643,9 +653,8 @@ SfxStyleSheetBasePool& SfxStyleSheetBasePool::operator+=( const SfxStyleSheetBas
     {
         // kopieren
         SfxStyleSheetBasePool& r = (SfxStyleSheetBasePool&) rP;
-        for( SfxStyleSheetBase* p = r.aStyles.First(); p; p = r.aStyles.Next() )
-            Add(*p);
-
+        for ( size_t i = 0, n = r.aStyles.size(); i < n; ++i )
+            Add( *r.aStyles[ i ] );
     }
     return *this;
 }
@@ -688,7 +697,14 @@ SfxStyleSheetBase* SfxStyleSheetBasePool::Remove( SfxStyleSheetBase* p )
     {
         // Alle Styles umsetzen, deren Parent dieser hier ist
         ChangeParent( p->GetName(), p->GetParent() );
-        aStyles.Remove( p );
+        for ( SfxStyles::iterator it = aStyles.begin(); it < aStyles.end(); ++it )
+        {
+            if ( *it == p )
+            {
+                aStyles.erase( it );
+                break;
+            }
+        }
         Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_ERASED, *p ) );
     }
     return p;
@@ -698,7 +714,14 @@ void SfxStyleSheetBasePool::Erase( SfxStyleSheetBase* p )
 {
     if( p )
     {
-        Remove(p);
+        for ( SfxStyles::iterator it = aStyles.begin(); it < aStyles.end(); ++it )
+        {
+            if ( *it == p )
+            {
+                aStyles.erase( it );
+                break;
+            }
+        }
         delete p;
     }
 }
@@ -715,16 +738,17 @@ void SfxStyleSheetBasePool::Insert( SfxStyleSheetBase* p )
         pOld = aIter.Find( p->GetParent() );
         DBG_ASSERT( pOld, "Parent nicht mehr vorhanden" );
     }
-    aStyles.Insert( p, aStyles.Count() );
+    aStyles.push_back( p );
     Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_CREATED, *p ) );
 }
 
 void SfxStyleSheetBasePool::Clear()
 {
-    while( aStyles.Count() )
+    while( aStyles.size() )
     {
-        SfxStyleSheetBase* p = aStyles.First();
-        aStyles.Remove( p );
+        SfxStyles::iterator it = aStyles.begin();
+        SfxStyleSheetBase* p = aStyles[ 0 ];
+        aStyles.erase( aStyles.begin() );
         Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_ERASED, *p ) );
         delete p;
     }
@@ -736,7 +760,6 @@ void SfxStyleSheetBasePool::ChangeParent(const XubString& rOld,
                                          const XubString& rNew,
                                          BOOL bVirtual)
 {
-    const ULONG nPos = aStyles.GetCurPos();
     const USHORT nTmpMask = GetSearchMask();
     SetSearchMask(GetSearchFamily(), 0xffff);
     for( SfxStyleSheetBase* p = First(); p; p = Next() )
@@ -750,7 +773,6 @@ void SfxStyleSheetBasePool::ChangeParent(const XubString& rOld,
         }
     }
     SetSearchMask(GetSearchFamily(), nTmpMask);
-    aStyles.Seek(nPos);
 }
 
 /////////////////////////// Laden/Speichern /////////////////////////////////
@@ -845,15 +867,15 @@ BOOL SfxStyleSheetBasePool::Load( SvStream& rStream )
         }
 
         //  #72939# only loop through the styles that were really inserted
-        ULONG n = aStyles.Count();
+        size_t n = aStyles.size();
 
         //! delete pTmpPool;
         // Jetzt Parent und Follow setzen. Alle Sheets sind geladen.
         // Mit Setxxx() noch einmal den String eintragen, da diese
         // virtuellen Methoden evtl. ueberlagert sind.
-        for ( ULONG i = 0; i < n; i++ )
+        for ( size_t i = 0; i < n; i++ )
         {
-            SfxStyleSheetBase* p = aStyles.GetObject( i );
+            SfxStyleSheetBase* p = aStyles[ i ];
             XubString aText = p->aParent;
             p->aParent.Erase();
             p->SetParent( aText );
@@ -950,7 +972,7 @@ BOOL SfxStyleSheetBasePool::Load1_Impl( SvStream& rStream )
     // virtuellen Methoden evtl. ueberlagert sind.
     for ( i = 0; i < nStyles; i++ )
     {
-        SfxStyleSheetBase* p = aStyles.GetObject( i );
+        SfxStyleSheetBase* p = aStyles[ i ];
         XubString aText = p->aParent;
         p->aParent.Erase();
         p->SetParent( aText );

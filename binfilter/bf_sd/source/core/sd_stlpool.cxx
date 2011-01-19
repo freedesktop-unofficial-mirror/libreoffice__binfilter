@@ -669,12 +669,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bNewHelpIds = FALSE;
 /*N*/   String aHelpFile;
-/*N*/   ULONG  nCount = aStyles.Count();
+/*N*/   size_t  nCount = aStyles.size();
 /*N*/   List* pEraseList = NULL;
 /*N*/
-/*N*/   for( ULONG n=0; n < nCount; n++ )
+/*N*/   for( size_t n=0; n < nCount; n++ )
 /*N*/   {
-/*N*/       SfxStyleSheetBase* pStyle = aStyles.GetObject( n );
+/*N*/       SfxStyleSheetBase* pStyle = aStyles[ n ];
 /*N*/
 /*N*/       if( !pStyle->IsUserDefined() )
 /*N*/       {
@@ -912,7 +912,7 @@ namespace binfilter {
 
 /*N*/ void SdStyleSheetPool::AdjustLRSpaceItems()
 /*N*/ {
-/*N*/   ULONG nCount = aStyles.Count();
+/*N*/   size_t nCount = aStyles.size();
 /*N*/
 /*N*/   // #63254# Aenderungen nicht mehr broadcasten,statt dessen nach
 /*N*/   // AdjustLRSpaceItems() ein UpdateStyleSheets am Outliner
@@ -941,9 +941,9 @@ namespace binfilter {
 /*N*/   String aStandardName(SdResId(STR_STANDARD_STYLESHEET_NAME));
 /*N*/   SfxStyleSheet* pSheetOutlineLevelOne = NULL;
 /*N*/
-/*N*/   for (ULONG n = 0; n < nCount; n++)
+/*N*/   for (size_t n = 0; n < nCount; n++)
 /*N*/   {
-/*N*/       SfxStyleSheet* pSheet = (SfxStyleSheet*)aStyles.GetObject(n);
+/*N*/       SfxStyleSheet* pSheet = (SfxStyleSheet*)aStyles[ n ];
 /*N*/       SfxItemSet& rSet = pSheet->GetItemSet();
 /*N*/       String aName( pSheet->GetName() );
 /*N*/       String aHelpFile;

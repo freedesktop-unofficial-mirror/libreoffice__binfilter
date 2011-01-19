@@ -115,8 +115,8 @@ namespace binfilter {
 /*N*/   if ( rName.EqualsAscii(STRING_STANDARD) && Find( rName, eFam ) != NULL )
 /*N*/   {
 /*?*/       DBG_ERROR("renaming additional default style");
-/*?*/       long nCount = aStyles.Count();
-/*?*/       for ( long nAdd = 1; nAdd <= nCount; nAdd++ )
+/*?*/       size_t nCount = aStyles.size();
+/*?*/       for ( size_t nAdd = 1; nAdd <= nCount; nAdd++ )
 /*?*/       {
 /*?*/           String aNewName = ScGlobal::GetRscString(STR_STYLENAME_STANDARD);
 /*?*/           aNewName += String::CreateFromInt32( nAdd );
@@ -437,10 +437,10 @@ namespace binfilter {
 /*N*/   //  Standard-Styles den richtigen Namen in der Programm-Sprache geben
 /*N*/
 /*N*/   String aHelpFile;
-/*N*/   ULONG nCount = aStyles.Count();
-/*N*/   for (ULONG n=0; n<nCount; n++)
+/*N*/   size_t nCount = aStyles.size();
+/*N*/   for (size_t n=0; n<nCount; n++)
 /*N*/   {
-/*N*/       SfxStyleSheetBase* pStyle = aStyles.GetObject(n);
+/*N*/       SfxStyleSheetBase* pStyle = aStyles[ n ];
 /*N*/       if (!pStyle->IsUserDefined())
 /*N*/       {
 /*N*/           String aOldName     = pStyle->GetName();
