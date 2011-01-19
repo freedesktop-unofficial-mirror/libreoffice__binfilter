@@ -62,9 +62,7 @@
 #ifndef _COM_SUN_STAR_AWT_FONTRELIEF_HPP_
 #include <com/sun/star/awt/FontRelief.hpp>
 #endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>     // for check states
-#endif
+#include <tools/wintypes.hxx>       // for check states
 namespace binfilter {
 
 //.........................................................................
