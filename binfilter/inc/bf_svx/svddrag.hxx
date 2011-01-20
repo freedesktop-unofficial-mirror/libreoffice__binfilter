@@ -95,9 +95,7 @@ protected:
     void Clear(bool bLeaveOne);
     Point& Pnt(ULONG nNum)                           { return *((Point*)aPnts.GetObject(nNum)); }
 public:
-    void*    pUser;     // Userdata
-public:
-    SdrDragStat(): aPnts(1024,16,16)                 { pUser=NULL; Reset(); }
+    SdrDragStat(): aPnts(1024,16,16)                 { Reset(); }
     ~SdrDragStat()                                   { Clear(FALSE); }
     void         Reset();
     SdrView*     GetView() const                     { return pView; }
@@ -122,8 +120,6 @@ public:
     Point&       Ref2()                              { return aRef2;  }
     const        SdrHdl* GetHdl() const              { return pHdl;   }
     void         SetHdl(SdrHdl* pH)                  { pHdl=pH;       }
-    void*        GetUser() const                     { return pUser;  }
-    void         SetUser(void* pU)                   { pUser=pU;      }
     bool     IsShown() const                     { return bShown; }
     void         SetShown(bool bOn)              { bShown=bOn; }
 
