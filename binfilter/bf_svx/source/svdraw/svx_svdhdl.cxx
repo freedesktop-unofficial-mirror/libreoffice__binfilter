@@ -46,24 +46,12 @@ namespace binfilter {
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ class ImpSdrHdlListSorter: public ContainerSorter {
-/*N*/ public:
-/*N*/     ImpSdrHdlListSorter(Container& rNewCont): ContainerSorter(rNewCont) {}
-/*N*/     virtual int Compare(const void* pElem1, const void* pElem2) const;
-/*N*/ };
-
-/*N*/ int ImpSdrHdlListSorter::Compare(const void*, const void*) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 // #97016# II
 
 /*N*/ class ImplHdlListData
 /*N*/ {
 /*N*/ public:
-/*N*/   sal_uInt32                  mnFocusIndex;
+/*N*/   ULONG                   mnFocusIndex;
 /*N*/   SdrMarkView*                pView;
 /*N*/
 /*N*/   ImplHdlListData(SdrMarkView* pV): mnFocusIndex(CONTAINER_ENTRY_NOTFOUND), pView(pV) {}
@@ -86,7 +74,7 @@ struct ImplHdlAndIndex
 
 /*N*/ SdrHdl* SdrHdlList::GetFocusHdl() const
 /*N*/ {
-/*N*/   if(pImpl->mnFocusIndex != CONTAINER_ENTRY_NOTFOUND && pImpl->mnFocusIndex < GetHdlCount())
+/*N*/   if (pImpl->mnFocusIndex != CONTAINER_ENTRY_NOTFOUND && pImpl->mnFocusIndex < GetHdlCount())
 /*?*/       return GetHdl(pImpl->mnFocusIndex);
 /*N*/   else
 /*?*/       return 0L;
@@ -95,8 +83,8 @@ struct ImplHdlAndIndex
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrHdlList::SdrHdlList(SdrMarkView* pV)
-/*N*/ : aList(1024,32,32),
-/*N*/   pImpl(new ImplHdlListData(pV))
+/*N*/ : pImpl(new ImplHdlListData(pV))
+/*N*/ , aList(1024,32,32)
 /*N*/   //#97016# II
 /*N*/   //pView(pV)
 /*N*/ {
@@ -158,18 +146,6 @@ struct ImplHdlAndIndex
 
 /*N*/ void SdrHdlList::Sort()
 /*N*/ {
-/*N*/   // #97016# II: remember current focused handle
-/*N*/   SdrHdl* pPrev = GetFocusHdl();
-/*N*/
-/*N*/     ImpSdrHdlListSorter aSort(aList);
-/*N*/     aSort.DoSort();
-
-    // #97016# II: get now and compare
-/*N*/   SdrHdl* pNow = GetFocusHdl();
-/*N*/
-/*N*/   if(pPrev != pNow)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   }
 /*N*/ }
 
 }

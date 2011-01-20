@@ -111,41 +111,11 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   return CONTAINER_ENTRY_NOTFOUND;
-
-    /*
-    ForceSort();
-    if (pObj==NULL || aList.Count()==0) return CONTAINER_ENTRY_NOTFOUND;
-    const SdrObjList* pOL=pObj->GetObjList();
-    ULONG nObjOrd=pObj->GetOrdNum();
-    ULONG nL=0;
-    ULONG nR=aList.Count();
-    if (GetMark(nL)->GetObj()==pObj) return nL;
-    while (nL+1<nR) { // Der Gesuchte befindet sich zwischen, nicht auf den Grenzen!
-        ULONG nMid=(nL+nR)/2;
-        const SdrObject* pMidObj=GetMark(nMid)->GetObj();
-        if (pMidObj==pObj) return nMid; // Hurra, gefunden!
-        const SdrObjList* pMidOL=pMidObj!=NULL ? pMidObj->GetObjList() : NULL;
-        ULONG nMidObjOrd=pMidObj!=NULL ? pMidObj->GetOrdNum() : 0;
-        if (pMidOL==pOL) {
-            if (nMidObjOrd<nObjOrd) nL=nMid;
-            else if (nMidObjOrd>nObjOrd) nR=nMid;
-            else {
-                DBG_ASSERT(FALSE,"SdrMarkList::FindObject(): Anderes Objekt mit gleicher OrdNum gefunden!");
-                return CONTAINER_ENTRY_NOTFOUND;
-            }
-        } else if ((long)pMidOL<(long)pOL) nL=nMid;
-        else nR=nMid;
-    }
-    return CONTAINER_ENTRY_NOTFOUND;
-    */
 /*N*/ }
 
-/*N*/ void SdrMarkList::InsertEntry(const SdrMark& rMark, bool bChkSort)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrMarkList::InsertEntry(const SdrMark& /*rMark*/, bool /*bChkSort*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
 
 /*N*/ bool SdrMarkList::DeletePageView(const SdrPageView& rPV)
 /*N*/ {

@@ -125,31 +125,13 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@@ @@@@@ @@   @@ @@@@@@  @@@@@ @@@@@  @@ @@@@@@
-//    @@   @@    @@@ @@@   @@    @@    @@  @@ @@   @@
-//    @@   @@     @@@@@    @@    @@    @@  @@ @@   @@
-//    @@   @@@@    @@@     @@    @@@@  @@  @@ @@   @@
-//    @@   @@     @@@@@    @@    @@    @@  @@ @@   @@
-//    @@   @@    @@@ @@@   @@    @@    @@  @@ @@   @@
-//    @@   @@@@@ @@   @@   @@    @@@@@ @@@@@  @@   @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject* pObj, SdrPageView* pPV, Window* pWin,
-/*N*/   SdrOutliner* pGivenOutliner, OutlinerView* pGivenOutlinerView,
-/*N*/   BOOL bDontDeleteOutliner, BOOL bOnlyOneView)
+/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject*, SdrPageView*, Window*,
+/*N*/   SdrOutliner*, OutlinerView*,
+/*N*/   BOOL, BOOL)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
 /*N*/ }
 
-/*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL bDontDeleteReally)
+/*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
 /*N*/ }
 

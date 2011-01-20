@@ -98,8 +98,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* pRect, BOOL bUnmark)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* /*pRect*/, BOOL /*bUnmark*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 }

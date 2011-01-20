@@ -352,8 +352,8 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
-/*N*/   aMaPag(1024,32,32)
+/*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "svx", "aw93748", "SdrModel::SdrModel(...)" );
@@ -365,8 +365,8 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
 /*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
@@ -379,8 +379,8 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, bool bUseExtColorTable, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
 /*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
@@ -391,9 +391,10 @@ using namespace ::com::sun::star;
 /*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (bool)bLoadRefCounts);
 /*N*/ }
 
-/*N*/ SdrModel::SdrModel(const SdrModel& rSrcModel):
-/*N*/   aPages(1024,32,32),
-/*N*/   aMaPag(1024,32,32)
+/*N*/ SdrModel::SdrModel(const SdrModel& /*rSrcModel*/):
+/*N*/   SfxBroadcaster(),
+/*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "svx", "aw93748", "SdrModel::SdrModel(...)" );
@@ -503,13 +504,13 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if (aIOProgressLink.IsSet()) {
 /*N*/       if (nVal==0) { // Anfang
-/*N*/           USHORT nVal=0;
-/*N*/           aIOProgressLink.Call(&nVal);
+/*N*/           USHORT nLclVal=0;
+/*N*/           aIOProgressLink.Call(&nLclVal);
 /*N*/           nProgressPercent=0;
 /*N*/           nProgressAkt=0;
 /*N*/       } else if (nVal==0xFFFFFFFF) { // Ende
-/*N*/           USHORT nVal=100;
-/*N*/           aIOProgressLink.Call(&nVal);
+/*N*/           USHORT nLclVal=100;
+/*N*/           aIOProgressLink.Call(&nLclVal);
 /*N*/           nProgressPercent=100;
 /*N*/           nProgressAkt=nProgressMax;
 /*N*/       } else if (nVal!=nProgressAkt && nProgressMax!=0) { // dazwischen
@@ -563,19 +564,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ void SdrModel::AddUndo(SdrUndoAction* pUndo)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrModel::AddUndo(SdrUndoAction* /*pUndo*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -767,7 +757,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SvStream* SdrModel::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
+/*N*/ SvStream* SdrModel::GetDocumentStream(SdrDocumentStreamInfo& /*rStreamInfo*/) const
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
@@ -828,6 +818,7 @@ using namespace ::com::sun::star;
 /*N*/       case MAP_SYSFONT    : break;
 /*N*/       case MAP_APPFONT    : break;
 /*N*/       case MAP_RELATIVE   : break;
+/*N*/       default             : break;
 /*N*/   } // switch
 /*N*/
 /*N*/   // 1 mile    =  8 furlong = 63.360" = 1.609.344,0mm
@@ -854,6 +845,7 @@ using namespace ::com::sun::star;
 /*N*/       // sonstiges
 /*N*/       case FUNIT_CUSTOM : break;
 /*N*/       case FUNIT_PERCENT: nUIUnitKomma+=2; break;
+/*N*/       default: break;
 /*N*/   } // switch
 /*N*/
 /*N*/   if (bMapInch && bUIMetr) {
@@ -1258,7 +1250,6 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrModel::WriteData(SvStream& rOut) const
 /*N*/ {
-/*N*/   const sal_uInt32 nOldCompressMode = nStreamCompressMode;
 /*N*/   sal_uInt32 nNewCompressMode = nStreamCompressMode;
 /*N*/
 /*N*/   if( SOFFICE_FILEFORMAT_40 <= rOut.GetVersion() )
@@ -1723,8 +1714,6 @@ using namespace ::com::sun::star;
 /*N*/   while(!rIn.GetError() && !rIn.IsEof() && !bEnde)
 /*N*/   {
 /*N*/       SdrIOHeaderLookAhead aHead(rIn);
-/*N*/       //ULONG nPos0=rIn.Tell();
-/*N*/       //rIn>>aHead;
 /*N*/
 /*N*/       if(!aHead.IsMagic())
 /*N*/       {
@@ -1736,7 +1725,6 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if(!aHead.IsEnde())
 /*N*/           {
-/*N*/               //rIn.Seek(nPos0); // Die Headers wollen alle selbst lesen
 /*N*/               if(aHead.IsID(SdrIOPageID))
 /*N*/               {
 /*N*/                   if(!bStarDrawPreviewMode || GetPageCount() < 3)
@@ -1797,7 +1785,6 @@ using namespace ::com::sun::star;
 /*N*/               {
 /*N*/                   // aha, das wil keiner. Also ueberlesen.
 /*N*/                   aHead.SkipRecord();
-/*N*/                   //rIn.Seek(nPos0+aHead.nBlkSize);
 /*N*/               }
 /*N*/           }
 /*N*/           else
@@ -1920,7 +1907,6 @@ using namespace ::com::sun::star;
 /*N*/   ((SdrModel*)&rMod)->nProgressOfs=0;
 /*N*/   ((SdrModel*)&rMod)->nProgressMax=rMod.ImpCountAllSteamComponents(); // Hier passenden Wert einsetzen
 /*N*/   ((SdrModel*)&rMod)->DoProgress(0);
-/*N*/   ULONG nPos0=rOut.Tell();
 /*N*/   SdrIOHeader aHead(rOut,STREAM_WRITE,SdrIOModlID);
 /*N*/   USHORT nCompressMerk=rOut.GetCompressMode(); // Der CompressMode wird von SdrModel::ReadData() gesetzt
 /*N*/   rMod.WriteData(rOut);

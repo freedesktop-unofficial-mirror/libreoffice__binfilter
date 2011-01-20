@@ -36,8 +36,6 @@ namespace binfilter {
 /*N*/       delete (Point*)pP;
 /*N*/       pP=aPnts.Next();
 /*N*/   }
-/*N*/   if (pUser!=NULL) delete pUser;
-/*N*/   pUser=NULL;
 /*N*/   aPnts.Clear();
 /*N*/   if (bLeaveOne) {
 /*N*/       aPnts.Insert(new Point,CONTAINER_APPEND);

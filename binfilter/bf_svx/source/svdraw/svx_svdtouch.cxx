@@ -237,7 +237,7 @@ namespace binfilter {
 /*N*/       if ((aP1.Y()>aP2.Y()) || ((aP1.Y()==aP2.Y()) && (aP1.X()>aP2.X()))) { Point aTmp(aP1); aP1=aP2; aP2=aTmp; }
 /*N*/       bEdge=((aP1.X()==aP2.X()) && (rHit.X()==aP1.X()) && (rHit.Y()>=aP1.Y()) && (rHit.Y()<=aP2.Y())) ||
 /*N*/             ((aP1.Y()==aP2.Y()) && (rHit.Y()==aP1.Y()) && (rHit.X()>=aP1.X()) && (rHit.X()<=aP2.X())) ||
-/*N*/             (rHit.X()==aP1.X()) && (rHit.Y()==aP1.Y());
+/*N*/             ((rHit.X()==aP1.X()) && (rHit.Y()==aP1.Y()));
 /*N*/       if (!bEdge && aP1.Y()<=rHit.Y() && aP2.Y()>rHit.Y()) { // Nur wer die Scanline schneidet
 /*N*/           bool bx1=aP1.X()<rHit.X();
 /*N*/           bool bx2=aP2.X()<rHit.X();

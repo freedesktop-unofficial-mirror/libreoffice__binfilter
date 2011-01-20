@@ -303,7 +303,7 @@ namespace binfilter {
 
 
 
-/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, bool bInherited) const
+/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, bool /*bInherited*/) const
 /*N*/ {
 /*N*/   UINT16 i(0);
 /*N*/   const SdrLayer* pLay = NULL;

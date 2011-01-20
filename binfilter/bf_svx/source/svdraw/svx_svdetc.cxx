@@ -178,7 +178,7 @@ namespace binfilter {
 /*N*/   return bUnloaded;
 /*N*/ }
 
-/*N*/ IMPL_LINK(OLEObjCache, UnloadCheckHdl, AutoTimer*, pTim)
+/*N*/ IMPL_LINK(OLEObjCache, UnloadCheckHdl, AutoTimer*, EMPTYARG)
 /*N*/ {
 /*N*/   if (nSize <= Count())
 /*N*/   {
@@ -483,13 +483,13 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   for(sal_uInt32 nX(0L); nX < nWidth; nX += nXStep)
 /*?*/                   {
-/*?*/                       const BitmapColor& rCol = (pAccess->HasPalette())
+/*?*/                       const BitmapColor& rLclCol = (pAccess->HasPalette())
 /*?*/                           ? pAccess->GetPaletteColor((BYTE)pAccess->GetPixel(nY, nX))
 /*?*/                           : pAccess->GetPixel(nY, nX);
 /*?*/
-/*?*/                       nRt += rCol.GetRed();
-/*?*/                       nGn += rCol.GetGreen();
-/*?*/                       nBl += rCol.GetBlue();
+/*?*/                       nRt += rLclCol.GetRed();
+/*?*/                       nGn += rLclCol.GetGreen();
+/*?*/                       nBl += rLclCol.GetBlue();
 /*?*/                       nAnz++;
 /*?*/                   }
 /*?*/               }

@@ -148,8 +148,8 @@ namespace binfilter {
 /*N*/       } else {
 /*N*/           bool bBrk=FALSE;
 /*N*/           for (USHORT nNum=0; nNum<nAnz && !bBrk; nNum++) {
-/*N*/               const SdrGluePoint* pGP=GetObject(nNum);
-/*N*/               USHORT nTmpId=pGP->GetId();
+/*N*/               const SdrGluePoint* pLclGP=GetObject(nNum);
+/*N*/               USHORT nTmpId=pLclGP->GetId();
 /*N*/               if (nTmpId==nId) {
 /*N*/                   nId=nLastId+1; // bereits vorhanden
 /*N*/                   bBrk=TRUE;

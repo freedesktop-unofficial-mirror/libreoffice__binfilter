@@ -311,7 +311,7 @@ namespace binfilter {
 //    } while (pOut==NULL && nWinNum<nWinAnz);
 //}
 
-/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* pOut, const Region* pRegion, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL bNoRefHdl)
 /*N*/ {
 //    if (IsSolidMarkHdl())
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
@@ -349,7 +349,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* /*pOut*/, BOOL bNoRefHdl)
 /*N*/ {
 //    if (IsSolidMarkHdl())
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
@@ -399,8 +399,8 @@ namespace binfilter {
 //  RefreshAllIAOManagers();
 /*N*/ }
 
-/*N*/ void SdrMarkView::SetMarkHdlHidden(BOOL bOn)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrMarkView::SetMarkHdlHidden(BOOL /*bOn*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL SdrMarkView::ImpIsFrameHandles() const
@@ -496,7 +496,7 @@ namespace binfilter {
 /*N*/   // add custom handles (used by other apps, e.g. AnchorPos)
 /*N*/ }
 
-/*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode eMode)
+/*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode /*eMode*/)
 /*N*/ {
 /*N*/ }
 

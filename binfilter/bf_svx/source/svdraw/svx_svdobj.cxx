@@ -137,7 +137,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/ }
 
-/*N*/ bool SdrObjUserData::HasMacro(const SdrObject* pObj) const
+/*N*/ bool SdrObjUserData::HasMacro(const SdrObject* /*pObj*/) const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
@@ -1581,21 +1581,21 @@ class ImpSkeleton;
 /*N*/     bool bMtfCommentWritten( false );
 /*N*/     if( (pMtf=rXOut.GetOutDev()->GetConnectMetaFile()) )
 /*N*/     {
-/*N*/         XPolyPolygon aPolyPoly;
-/*N*/         TakeXorPoly(aPolyPoly, TRUE);
+/*N*/         XPolyPolygon aLclPolyPoly;
+/*N*/         TakeXorPoly(aLclPolyPoly, TRUE);
 /*N*/
 /*N*/         // #103692# Offset original geometry, too
 /*N*/         if( nDX || nDY )
 /*N*/         {
 /*?*/             // transformation necessary
-/*?*/             aPolyPoly.Move( nDX, nDY );
+/*?*/             aLclPolyPoly.Move( nDX, nDY );
 /*N*/         }
 /*N*/
 /*N*/         // for geometries with more than one polygon, dashing, arrows
 /*N*/         // etc. become ambiguous (e.g. measure objects have no arrows
 /*N*/         // on the end line), thus refrain from writing the comment
 /*N*/         // here.
-/*N*/         if( aPolyPoly.Count() == 1 )
+/*N*/         if( aLclPolyPoly.Count() == 1 )
 /*N*/         {
 /*N*/             // add completely superfluous color action (gets overwritten
 /*N*/             // below), to store our line color reliably
@@ -1652,7 +1652,7 @@ class ImpSkeleton;
 /*?*/                     aEndPoly.Translate( Point(0, -aEndPoly.GetBoundRect().GetHeight() / 2) );
 /*?*/             }
 /*N*/
-/*N*/             SvtGraphicStroke aStroke( XOutCreatePolygonBezier( aPolyPoly[0], rXOut.GetOutDev() ),
+/*N*/             SvtGraphicStroke aStroke( XOutCreatePolygonBezier( aLclPolyPoly[0], rXOut.GetOutDev() ),
 /*N*/                                       XOutCreatePolygonBezier( aStartPoly, rXOut.GetOutDev() ),
 /*N*/                                       XOutCreatePolygonBezier( aEndPoly, rXOut.GetOutDev() ),
 /*N*/                                       nTransparence / 100.0,
@@ -1853,10 +1853,10 @@ class ImpSkeleton;
 /*?*/                           if( aLine.GetLength() > 16000 )
 /*?*/                           {
 /*?*/                               Point       aPoint;
-/*?*/                               Rectangle   aOutRect( aPoint, rXOut.GetOutDev()->GetOutputSizePixel() );
+/*?*/                               Rectangle   aLclOutRect( aPoint, rXOut.GetOutDev()->GetOutputSizePixel() );
 /*?*/                               Line        aIntersection;
 /*?*/
-/*?*/                               if( aLine.Intersection( aOutRect, aIntersection ) )
+/*?*/                               if( aLine.Intersection( aLclOutRect, aIntersection ) )
 /*?*/                               {
 /*?*/                                   rXOut.GetOutDev()->DrawLine( rXOut.GetOutDev()->PixelToLogic( aIntersection.GetStart() ),
 /*?*/                                                                rXOut.GetOutDev()->PixelToLogic( aIntersection.GetEnd() ) );
@@ -1883,8 +1883,8 @@ class ImpSkeleton;
 ///////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ SdrObject* SdrObject::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");  return NULL;//STRIP001
+/*N*/ SdrObject* SdrObject::CheckHit(const Point& /*rPnt*/, USHORT /*nTol*/, const SetOfByte* /*pVisiLayer*/) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");  return NULL;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObject::Clone() const
@@ -2021,11 +2021,11 @@ class ImpSkeleton;
 /*?*/
 /*N*/           case META_POLYGON_ACTION:
 /*N*/           {
-/*N*/               const Polygon& rPoly = ( (const MetaPolygonAction&) rAct ).GetPolygon();
+/*N*/               const Polygon& rLclPoly = ( (const MetaPolygonAction&) rAct ).GetPolygon();
 /*N*/
-/*N*/               if( rPoly.GetSize() > 2 )
+/*N*/               if( rLclPoly.GetSize() > 2 )
 /*N*/               {
-/*N*/                   aXPoly = rPoly;
+/*N*/                   aXPoly = rLclPoly;
 /*N*/                   bXPoly = TRUE;
 /*N*/               }
 /*N*/           }
@@ -2038,11 +2038,11 @@ class ImpSkeleton;
 /*?*/
 /*N*/           case META_POLYLINE_ACTION:
 /*N*/           {
-/*N*/               const Polygon& rPoly = ( (const MetaPolyLineAction&) rAct ).GetPolygon();
+/*N*/               const Polygon& rLclPoly = ( (const MetaPolyLineAction&) rAct ).GetPolygon();
 /*N*/
-/*N*/               if( rPoly.GetSize() > 1 )
+/*N*/               if( rLclPoly.GetSize() > 1 )
 /*N*/               {
-/*N*/                   aXPoly = rPoly;
+/*N*/                   aXPoly = rLclPoly;
 /*N*/                   bXPoly = TRUE;
 /*N*/               }
 /*N*/           }
@@ -2319,7 +2319,7 @@ class ImpSkeleton;
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ long SdrObject::GetShearAngle(bool bVertical) const
+/*N*/ long SdrObject::GetShearAngle(bool /*bVertical*/) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }

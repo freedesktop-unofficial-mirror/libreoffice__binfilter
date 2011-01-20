@@ -44,7 +44,7 @@ namespace binfilter {
 /*N*/
 
 /*N*/ public:
-/*N*/   ImpSdrConnectMarker(SdrCreateView* pView): SdrViewUserMarker(pView),pAktObj(NULL),pAktPV(NULL) {}
+/*N*/   ImpSdrConnectMarker(SdrCreateView* pInView): SdrViewUserMarker(pInView),pAktObj(NULL),pAktPV(NULL) {}
 /*N*/   ~ImpSdrConnectMarker() {}
 /*N*/   void SetTargetObject(const SdrObject* pObj);
 /*N*/ }; // svdvmark

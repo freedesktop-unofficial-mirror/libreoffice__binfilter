@@ -270,10 +270,10 @@ namespace binfilter {
 /*N*/       DBG_ASSERT(pModel, "SdrAttrObj::ReadData(): pModel=NULL, StyleSheet kann nicht gesetzt werden!");
 /*N*/       if(pModel)
 /*N*/       {
-/*N*/           SfxStyleSheetBasePool *pPool = pModel->GetStyleSheetPool();
-/*N*/           if(pPool)
+/*N*/           SfxStyleSheetBasePool *pLclPool = pModel->GetStyleSheetPool();
+/*N*/           if(pLclPool)
 /*N*/           {
-/*N*/               SfxStyleSheet *pTmpStyleSheet = (SfxStyleSheet*)pPool->Find(aStyleSheetName, eFamily);
+/*N*/               SfxStyleSheet *pTmpStyleSheet = (SfxStyleSheet*)pLclPool->Find(aStyleSheetName, eFamily);
 /*N*/               DBG_ASSERT(pTmpStyleSheet, "SdrAttrObj::ReadData(): StyleSheet nicht gefunden");
 /*N*/
 /*N*/               if(pTmpStyleSheet)
@@ -583,7 +583,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& /*rBCType*/,
 /*N*/   const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SfxSimpleHint *pSimple = PTR_CAST(SfxSimpleHint, &rHint);
