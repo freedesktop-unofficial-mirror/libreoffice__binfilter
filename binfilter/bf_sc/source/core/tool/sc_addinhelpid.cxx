@@ -176,12 +176,12 @@ const ScUnoAddInHelpId pDateFuncHelpIds[] =
 /*N*/     pCurrHelpIds = NULL;
 /*N*/     sal_uInt32 nSize = 0;
 /*N*/
-/*N*/     if( rServiceName.equalsAscii( "com.sun.star.sheet.addin.Analysis" ) )
+/*N*/     if( rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "com.sun.star.sheet.addin.Analysis" ) ) )
 /*N*/     {
 /*N*/         pCurrHelpIds = pAnalysisHelpIds;
 /*N*/         nSize = sizeof( pAnalysisHelpIds );
 /*N*/     }
-/*N*/     else if( rServiceName.equalsAscii( "com.sun.star.sheet.addin.DateFunctions" ) )
+/*N*/     else if( rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "com.sun.star.sheet.addin.DateFunctions" ) ) )
 /*N*/     {
 /*N*/         pCurrHelpIds = pDateFuncHelpIds;
 /*N*/         nSize = sizeof( pDateFuncHelpIds );

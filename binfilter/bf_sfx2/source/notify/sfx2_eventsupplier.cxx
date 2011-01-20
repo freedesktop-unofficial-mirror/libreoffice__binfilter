@@ -381,7 +381,7 @@ namespace binfilter {
             OUSTRING sDocument( OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "document" )) );
             if ( aLibrary != sApplication && aLibrary != sDocument )
             {
-                if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAscii( "StarDesktop" ) )
+                if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "StarDesktop" ) ) )
                     aLibrary = sApplication;
                 else
                     aLibrary = sDocument;

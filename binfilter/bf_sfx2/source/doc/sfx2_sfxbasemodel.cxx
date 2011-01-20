@@ -671,7 +671,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
-/*N*/   if ( rURL.getLength() == 0 && rArgs.getLength() == 1 && rArgs[0].Name.equalsAscii( "SetEmbedded" ) )
+/*N*/   if ( rURL.getLength() == 0 && rArgs.getLength() == 1 && rArgs[0].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "SetEmbedded" ) ) )
 /*N*/   {
 /*N*/       // allows to set a windowless document to EMBEDDED state
 /*N*/       // but _only_ before load() or initNew() methods
@@ -691,7 +691,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/       m_pData->m_seqArguments = rArgs;
 /*N*/
 /*N*/       for ( sal_Int32 nInd = 0; nInd < rArgs.getLength(); nInd++ )
-/*N*/           if ( rArgs[nInd].Name.equalsAscii( "WinExtent" ) )
+/*N*/           if ( rArgs[nInd].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "WinExtent" ) ) )
 /*N*/           {
 /*N*/               // the document should be resized
 /*?*/               SfxInPlaceObject* pInPlaceObj = m_pData->m_pObjectShell->GetInPlaceObject();
@@ -1403,7 +1403,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/     sal_Int32 nArg; for ( nArg=0; nArg<nCount; nArg++ )
 /*N*/     {
 /*N*/         ::com::sun::star::beans::PropertyValue& rProp = rSeq[nArg];
-/*N*/         if ( rProp.Name.equalsAscii("Title") )
+/*N*/         if ( rProp.Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("Title")) )
 /*N*/         {
 /*N*/             rProp.Value <<= rTitle;
 /*N*/             break;

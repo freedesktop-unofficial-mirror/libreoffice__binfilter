@@ -604,7 +604,7 @@ BinFilterDetect::~BinFilterDetect()
                 // check if template type is wanted (template and "normal" document share the MediaType)
                 // a template type will be detected only if the file extension is "vor" (how else?!)
                 INetURLObject aObj( aFileName );
-                sal_Bool bIsTemplate = ( aObj.getExtension().equalsAscii("vor") );
+                sal_Bool bIsTemplate = ( aObj.getExtension().equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("vor")) );
 
                 // get possible types
                 Reference< ::com::sun::star::container::XContainerQuery > xTypeCFG ( xTypes, UNO_QUERY_THROW );
@@ -623,7 +623,7 @@ BinFilterDetect::~BinFilterDetect()
                         // check wether this type specifies a template
                         sal_Bool bIsTemplateType = sal_False;
                         for ( sal_Int32 n=0; n<aExtensions.getLength(); n++ )
-                            if ( aExtensions[n].equalsAscii("vor") )
+                            if ( aExtensions[n].equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("vor")) )
                                 bIsTemplateType = sal_True;
 
                         if ( bIsTemplateType != bIsTemplate )
