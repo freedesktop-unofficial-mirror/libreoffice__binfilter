@@ -51,11 +51,6 @@ namespace binfilter {
 
 class SfxShell;
 
-#if !defined(_SFX_APPCTOR_CXX) && defined(WNT)
-#ifndef _DLL_
-#error _DLL_ mal wieder nicht defined => GetpApp() == 0
-#endif
-#endif
 
 //------------------------------------------------------------------------
 
