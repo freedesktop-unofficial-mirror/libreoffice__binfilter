@@ -784,7 +784,7 @@ void ChartModel::ClearItemSetLists()
 /*N*/   else
 /*N*/       nRowCnt = GetRowCount();
 /*N*/
-/*N*/     long nUpperIndex = ::std::min( static_cast< ULONG >( nRowCnt ), aDataRowAttrList.size() );
+/*N*/     long nUpperIndex = ::std::min( static_cast< ULONG >( nRowCnt ), static_cast <ULONG > (aDataRowAttrList.size() ) );
 /*N*/
 /*N*/     if( nStartIndex < nUpperIndex )
 /*N*/     {
@@ -998,7 +998,7 @@ void ChartModel::ClearItemSetLists()
 /*N*/       if(bOldXY!=IsXYChart())
 /*N*/       {
 /*?*/           if(bOldXY)
-/*?*/               aDataRowAttrList[ 0 ]->Put(SfxInt32Item(SCHATTR_AXIS,CHART_AXIS_PRIMARY_Y));//wird evtl. unten geändert, s.u. StockCharts
+/*?*/               aDataRowAttrList[ 0 ]->Put(SfxInt32Item(SCHATTR_AXIS,CHART_AXIS_PRIMARY_Y));//wird evtl. unten ge?dert, s.u. StockCharts
 /*?*/           else
 /*?*/               aDataRowAttrList[ 0 ]->Put(SfxInt32Item(SCHATTR_AXIS,CHART_AXIS_PRIMARY_X));
 /*?*/
