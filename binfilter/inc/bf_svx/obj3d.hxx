@@ -67,7 +67,6 @@ class SfxPoolItem;
 //************************************************************
 
 class Viewport3D;
-class E3dLightList;
 class E3dScene;
 class E3dPolyScene;
 class PolyPolygon3D;

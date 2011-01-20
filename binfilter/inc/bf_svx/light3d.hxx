@@ -30,15 +30,8 @@
 #define _E3D_LIGHT3D_HXX
 
 #include <bf_svx/pntobj3d.hxx>
+
 namespace binfilter {
-
-/************************************************************************/
-
-class E3dLight;
-
-#ifndef _E3D_LIGHT3D_LIST
-DECLARE_LIST(E3dLightList, E3dLight*)//STRIP008 DECLARE_LIST(E3dLightList, E3dLight*);
-#endif
 
 /*************************************************************************
 |*
