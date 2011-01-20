@@ -30,6 +30,8 @@
 #define _E3D_LABEL3D_HXX
 
 #include <bf_svx/pntobj3d.hxx>
+#include <vector>
+
 namespace binfilter {
 
 class Viewport3D;
@@ -39,7 +41,7 @@ class E3dLabelObj;
 /************************************************************************/
 
 class E3dLabelObj;
-DECLARE_LIST(E3dLabelList, E3dLabelObj*)//STRIP008 DECLARE_LIST(E3dLabelList, E3dLabelObj*);
+typedef ::std::vector< E3dLabelObj* > E3dLabelList;
 
 /*************************************************************************
 |*

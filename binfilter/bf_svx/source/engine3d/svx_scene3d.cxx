@@ -221,7 +221,7 @@ namespace binfilter {
 /*N*/   GetCameraSet().SetViewportRectangle((Rectangle&)rCam.GetDeviceWindow());
 /*N*/
 /*N*/   // E3dLabel-Objekte muessen neu an die Projektion angepasst werden
-/*N*/   if ( aLabelList.Count() > 0 )
+/*N*/   if ( !aLabelList.empty() )
 /*N*/   {
 /*N*/       SetBoundVolInvalid();
 /*N*/       SetRectsDirty();
@@ -243,7 +243,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( p3DObj->ISA(E3dLabelObj) )
 /*N*/   {
-/*N*/       aLabelList.Insert((E3dLabelObj*) p3DObj, LIST_APPEND);
+/*N*/       aLabelList.push_back( (E3dLabelObj*) p3DObj );
 /*N*/   }
 /*N*/
 /*N*/   // falls Unterobjekte vorhanden sind, auch diese pruefen
@@ -257,7 +257,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if ( pObj->ISA(E3dLabelObj) )
 /*N*/           {
-/*N*/               aLabelList.Insert((E3dLabelObj*) pObj, LIST_APPEND);
+/*N*/               aLabelList.push_back( (E3dLabelObj*) pObj );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -322,7 +322,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // Labels behandeln
-/*N*/   ULONG nLabelCnt = aLabelList.Count();
+/*N*/   size_t nLabelCnt = aLabelList.size();
 /*N*/   if ( nLabelCnt > 0 )
 /*N*/   {
 /*N*/       // Vorlaeufige Projektion bestimmen und Transformation in
@@ -357,9 +357,9 @@ namespace binfilter {
 /*N*/       Matrix4D aMatViewToWorld(aMatWorldToView);
 /*N*/       aMatViewToWorld.Invert();
 /*N*/
-/*N*/       for (ULONG i = 0; i < nLabelCnt; i++)
+/*N*/       for (size_t i = 0; i < nLabelCnt; i++)
 /*N*/       {
-/*N*/           E3dLabelObj* p3DObj = aLabelList.GetObject(i);
+/*N*/           E3dLabelObj* p3DObj = aLabelList[ i ];
 /*N*/           const SdrObject* pObj = p3DObj->Get2DLabelObj();
 /*N*/
 /*N*/           // View- Abmessungen des Labels holen
@@ -721,7 +721,7 @@ namespace binfilter {
 /*N*/ void E3dScene::RebuildLists()
 /*N*/ {
 /*N*/   // zuerst loeschen
-/*N*/   aLabelList.Clear();
+/*N*/   aLabelList.clear();
 /*N*/   SdrLayerID nLclLayerID = GetLayer();
 /*N*/
 /*N*/   SdrObjListIter a3DIterator(*pSub, IM_FLAT);
