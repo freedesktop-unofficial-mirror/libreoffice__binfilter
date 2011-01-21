@@ -32,7 +32,6 @@
 
 #include "xexptran.hxx"
 
-
 #include <rtl/ustrbuf.hxx>
 
 #include "xmluconv.hxx"
@@ -324,20 +323,21 @@ struct ImpSdXMLExpTransObj2DMatrix : public ImpSdXMLExpTransObj2DBase
 
 void SdXMLImExTransform2D::EmptyList()
 {
-    while(maList.Count())
+    for ( size_t i = maList.size(); i > 0; )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.Remove(maList.Count() - 1);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ --i ];
         switch(pObj->mnType)
         {
-            case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE     : delete (ImpSdXMLExpTransObj2DRotate*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SCALE      : delete (ImpSdXMLExpTransObj2DScale*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE  : delete (ImpSdXMLExpTransObj2DTranslate*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX      : delete (ImpSdXMLExpTransObj2DSkewX*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY      : delete (ImpSdXMLExpTransObj2DSkewY*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX     : delete (ImpSdXMLExpTransObj2DMatrix*)pObj; break;
-            default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE    : delete (ImpSdXMLExpTransObj2DRotate*)pObj;    break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SCALE     : delete (ImpSdXMLExpTransObj2DScale*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE : delete (ImpSdXMLExpTransObj2DTranslate*)pObj; break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX     : delete (ImpSdXMLExpTransObj2DSkewX*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY     : delete (ImpSdXMLExpTransObj2DSkewY*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX    : delete (ImpSdXMLExpTransObj2DMatrix*)pObj;    break;
+        default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
         }
     }
+    maList.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -346,19 +346,19 @@ void SdXMLImExTransform2D::EmptyList()
 void SdXMLImExTransform2D::AddRotate(double fNew)
 {
     if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DRotate(fNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DRotate(fNew) );
 }
 
 void SdXMLImExTransform2D::AddTranslate(const Vector2D& rNew)
 {
     if(rNew.X() != 0.0 || rNew.Y() != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DTranslate(rNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DTranslate(rNew) );
 }
 
 void SdXMLImExTransform2D::AddSkewX(double fNew)
 {
     if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DSkewX(fNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DSkewX(fNew) );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -369,9 +369,9 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
     OUString aClosingBrace(sal_Unicode(')'));
     OUString aEmptySpace(sal_Unicode(' '));
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++ )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE :
@@ -447,7 +447,7 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
         }
 
         // if not the last entry, add one space to next tag
-        if(a+1 != maList.Count())
+        if( a+1 != maList.size() )
             aNewString += aEmptySpace;
     }
 
@@ -494,7 +494,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DRotate(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DRotate(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -508,7 +508,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Y() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Y());
 
                     if(aValue.X() != 1.0 || aValue.Y() != 1.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DScale(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DScale(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -522,7 +522,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Y() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Y(), TRUE);
 
                     if(aValue.X() != 0.0 || aValue.Y() != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DTranslate(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DTranslate(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -533,7 +533,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DSkewX(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DSkewX(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -544,7 +544,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DSkewY(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DSkewY(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -579,7 +579,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue[1][2] = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue[1][2], TRUE);
                     Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
-                    maList.Insert(new ImpSdXMLExpTransObj2DMatrix(aValue), LIST_APPEND);
+                    maList.push_back( new ImpSdXMLExpTransObj2DMatrix(aValue) );
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
                 else
@@ -593,9 +593,9 @@ void SdXMLImExTransform2D::GetFullTransform(Matrix3D& rFullTrans)
 {
     rFullTrans.Identity();
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++ )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE     :

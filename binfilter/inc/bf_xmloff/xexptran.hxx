@@ -45,6 +45,8 @@
 
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
 
+#include <vector>
+
 namespace binfilter {
 class Vector3D;
 class Matrix4D;
@@ -58,7 +60,7 @@ class SvXMLUnitConverter;
 
 //////////////////////////////////////////////////////////////////////////////
 
-DECLARE_LIST(ImpSdXMLExpTransObj2DBaseList, ImpSdXMLExpTransObj2DBase*)//STRIP007 ;
+typedef ::std::vector< ImpSdXMLExpTransObj2DBase* > ImpSdXMLExpTransObj2DBaseList;
 DECLARE_LIST(ImpSdXMLExpTransObj3DBaseList, ImpSdXMLExpTransObj3DBase*)//STRIP007 ;
 
 //////////////////////////////////////////////////////////////////////////////
@@ -78,7 +80,7 @@ public:
     void AddTranslate(const Vector2D& rNew);
     void AddSkewX(double fNew);
 
-    sal_Bool NeedsAction() const { return (sal_Bool)(maList.Count() > 0L); }
+    sal_Bool NeedsAction() const { return (sal_Bool)!maList.empty(); }
     void GetFullTransform(Matrix3D& rFullTrans);
     const ::rtl::OUString& GetExportString(const SvXMLUnitConverter& rConv);
     void SetString(const ::rtl::OUString& rNew, const SvXMLUnitConverter& rConv);
