@@ -50,6 +50,9 @@
 #include <bf_xmloff/uniref.hxx>
 
 #include <bf_xmloff/xmlictxt.hxx>
+
+#include <vector>
+
 namespace binfilter {
 
 class SvXMLImport;
@@ -202,7 +205,7 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////
 
-DECLARE_LIST(Imp3DLightList, SdXML3DLightContext*)//STRIP007 ;
+typedef ::std::vector< SdXML3DLightContext* > Imp3DLightList;
 
 class SdXML3DSceneAttributesHelper
 {
