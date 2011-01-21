@@ -39,9 +39,6 @@ namespace binfilter {
 |*
 |*    Ring::Ring()
 |*
-|*    Ersterstellung    VB  02.07.91
-|*    Letzte Aenderung  JP 10.10.97
-|*
 *************************************************************************/
 
 /*N*/ Ring::Ring( Ring *pObj )
@@ -61,9 +58,6 @@ namespace binfilter {
 |*
 |*    Ring::~Ring()
 |*
-|*    Ersterstellung    VB  02.07.91
-|*    Letzte Aenderung  JP 10.10.97
-|*
 *************************************************************************/
 
 /*N*/ Ring::~Ring()
@@ -75,9 +69,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    Ring::MoveTo
-|*
-|*    Ersterstellung    VB 4.3.91
-|*    Letzte Aenderung  JP 10.10.97
 |*
 *************************************************************************/
 

@@ -59,8 +59,6 @@ using namespace ::com::sun::star::i18n;
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    12.01.95 ESO
-|*    Letzte Aenderung  09.05.95 ESO
 |*
 *************************************************************************/
 
@@ -149,9 +147,6 @@ using namespace ::com::sun::star::i18n;
 |*              und endend hinter dem letzten Zeichen; es muﬂ also
 |*              rText.Len()-1 long-Werte enthalten
 |*
-|*
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
@@ -677,10 +672,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       bFormTextOutline = bOutline;
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-*************************************************************************/
 
 // #101498# changed interface due to bidi requirements
 /*N*/ sal_Int32 XOutputDevice::DrawFormText(DrawPortionInfo* pInfo, const Polygon& rPoly,

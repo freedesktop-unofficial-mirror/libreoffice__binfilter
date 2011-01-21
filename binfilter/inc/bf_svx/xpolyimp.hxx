@@ -43,10 +43,6 @@ namespace binfilter {
 |*
 |*    class ImpXPolygon
 |*
-|*    Beschreibung
-|*    Ersterstellung       08.11.94
-|*    Letzte Aenderung Joe 26.09.95
-|*
 *************************************************************************/
 class ImpXPolygon
 {
@@ -85,10 +81,6 @@ public:
 /*************************************************************************
 |*
 |*    class ImpXPolyPolygon
-|*
-|*    Beschreibung
-|*    Ersterstellung          08.11.94
-|*    Letzte Aenderung  Joe 26-09-1995
 |*
 *************************************************************************/
 typedef ::std::vector< XPolygon* > XPolygonList;

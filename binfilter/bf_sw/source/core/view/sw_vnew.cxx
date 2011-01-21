@@ -133,9 +133,6 @@ namespace binfilter {
 |*
 |*  ViewShell::~ViewShell()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 10. May. 95
-|*
 ******************************************************************************/
 
 /*N*/ ViewShell::~ViewShell()

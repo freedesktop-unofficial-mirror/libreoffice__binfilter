@@ -43,9 +43,6 @@ namespace binfilter {
 |*
 |*  SwRegionRects::SwRegionRects()
 |*
-|*  Ersterstellung      MA 28. Oct. 92
-|*  Letzte Aenderung    MA 01. Feb. 93
-|*
 |*************************************************************************/
 
 /*N*/ SwRegionRects::SwRegionRects( const SwRect &rStartRect, USHORT nInit,
@@ -85,8 +82,6 @@ namespace binfilter {
 |*      entfernt.
 |*      Dazu muessen die vorhandenen Rechtecke entweder aufgeteilt oder
 |*      geloescht werden.
-|*  Ersterstellung      MA 28. Oct. 92
-|*  Letzte Aenderung    MA 09. Sep. 93
 |*
 |*************************************************************************/
 
@@ -162,8 +157,6 @@ namespace binfilter {
 |*  SwRegionRects::Compress()
 |*
 |*  Beschreibung        Zusammenfassen von benachbarten Rechtecken.
-|*  Ersterstellung      MA 16. Apr. 93
-|*  Letzte Aenderung    MA 21. Apr. 93
 |*
 |*************************************************************************/
 

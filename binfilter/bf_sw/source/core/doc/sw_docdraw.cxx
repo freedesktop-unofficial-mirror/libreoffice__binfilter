@@ -82,9 +82,6 @@ using namespace ::com::sun::star::linguistic2;
 |*
 |*  SwDoc::GroupSelection / SwDoc::UnGroupSelection
 |*
-|*  Ersterstellung      JP 21.08.95
-|*  Letzte Aenderung    JP 21.08.95
-|*
 |*************************************************************************/
 
 /*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& /*rDrawView*/ )
@@ -104,18 +101,12 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 |*
 |*  SwDoc::DeleteSelection()
 |*
-|*  Ersterstellung      MA 14. Nov. 95
-|*  Letzte Aenderung    MA 14. Nov. 95
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwDoc::DeleteSelection()
-|*
-|*  Ersterstellung      JP 11.01.96
-|*  Letzte Aenderung    JP 11.01.96
 |*
 |*************************************************************************/
 

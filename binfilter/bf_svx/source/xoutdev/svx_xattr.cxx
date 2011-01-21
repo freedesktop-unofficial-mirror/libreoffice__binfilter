@@ -90,10 +90,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    NameOrIndex::NameOrIndex(USHORT nWhich, long nIndex)
 |*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
-|*
 *************************************************************************/
 
 /*N*/ NameOrIndex::NameOrIndex(USHORT nWhich, long nIndex) :
@@ -105,10 +101,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    NameOrIndex::NameOrIndex(USHORT nWhich, const String& rName)
-|*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
 |*
 *************************************************************************/
 
@@ -122,10 +114,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    NameOrIndex::NameOrIndex(USHORT nWhich, SvStream& rIn)
 |*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
-|*
 *************************************************************************/
 
 /*N*/ NameOrIndex::NameOrIndex(USHORT nWhich, SvStream& rIn) :
@@ -137,10 +125,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    NameOrIndex::NameOrIndex(const NameOrIndex& rNameOrIndex)
-|*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
 |*
 *************************************************************************/
 
@@ -154,10 +138,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    int NameOrIndex::operator==(const SfxPoolItem& rItem) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
-|*
 *************************************************************************/
 
 /*N*/ int NameOrIndex::operator==(const SfxPoolItem& rItem) const
@@ -169,10 +149,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SvStream* NameOrIndex::Store(SvStream& rIn) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    14.11.94
-|*    Letzte Aenderung  14.11.94
 |*
 *************************************************************************/
 
@@ -452,10 +428,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStyleItem::XLineStyleItem(XLineStyle eTheLineStyle)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineStyleItem::XLineStyleItem(XLineStyle eTheLineStyle) :
@@ -466,10 +438,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineStyleItem::XLineStyleItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -482,10 +450,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStyleItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineStyleItem::Clone(SfxItemPool* /*pPool*/) const
@@ -496,10 +460,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineStyleItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -549,10 +509,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XDash::XDash(XDashStyle, USHORT, ULONG, USHORT, ULONG, ULONG)
 |*
-|*    Beschreibung
-|*    Ersterstellung    21.11.94
-|*    Letzte Aenderung  21.11.94
-|*
 *************************************************************************/
 
 /*N*/ XDash::XDash(XDashStyle eTheDash, USHORT nTheDots, ULONG nTheDotLen,
@@ -569,10 +525,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XDash::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    29.11.94
-|*    Letzte Aenderung  29.11.94
 |*
 *************************************************************************/
 
@@ -596,10 +548,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineDashItem::XLineDashItem(const String& rName, const XDash& rTheDash)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineDashItem::XLineDashItem(const XubString& rName, const XDash& rTheDash) :
@@ -612,10 +560,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineDashItem::XLineDashItem(const XLineDashItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineDashItem::XLineDashItem(const XLineDashItem& rItem) :
@@ -627,10 +571,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineDashItem::XLineDashItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -664,10 +604,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineDashItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineDashItem::Clone(SfxItemPool* /*pPool*/) const
@@ -678,10 +614,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XLineDashItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -695,10 +627,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineDashItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineDashItem::Create(SvStream& rIn, USHORT /*nVer*/) const
@@ -709,10 +637,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineDashItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -736,10 +660,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    const XDash& XLineDashItem::GetValue(const XDashTable* pTable) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -971,10 +891,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineWidthItem::XLineWidthItem(long nWidth)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineWidthItem::XLineWidthItem(long nWidth) :
@@ -985,10 +901,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineWidthItem::XLineWidthItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -1001,10 +913,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineWidthItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineWidthItem::Clone(SfxItemPool* /*pPool*/) const
@@ -1015,10 +923,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineWidthItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -1054,10 +958,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineColorItem::XLineColorItem(const XubString& rName, const Color& rTheColor)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineColorItem::XLineColorItem(const XubString& rName, const Color& rTheColor) :
@@ -1068,10 +968,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineColorItem::XLineColorItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -1084,10 +980,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineColorItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineColorItem::Clone(SfxItemPool* /*pPool*/) const
@@ -1098,10 +990,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineColorItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -1138,10 +1026,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartItem::XLineStartItem(long nIndex)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineStartItem::XLineStartItem(long nIndex) :
@@ -1153,10 +1037,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartItem::XLineStartItem(const XubString& rName,
 |*                                   const XPolygon& rXPolygon)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -1171,10 +1051,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartItem::XLineStartItem(const XLineStartItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineStartItem::XLineStartItem(const XLineStartItem& rItem) :
@@ -1186,10 +1062,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineStartItem::XLineStartItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  17.11.94
 |*
 *************************************************************************/
 
@@ -1223,10 +1095,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineStartItem::Clone(SfxItemPool* /*pPool*/) const
@@ -1237,10 +1105,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XLineStartItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -1254,10 +1118,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineStartItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineStartItem::Create(SvStream& rIn, USHORT /*nVer*/) const
@@ -1268,10 +1128,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineStartItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -1298,10 +1154,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    const XPolygon& XLineStartItem::GetValue(const XLineEndTable* pTable)
 |*                                             const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -1590,10 +1442,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndItem::XLineEndItem(long nIndex)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineEndItem::XLineEndItem(long nIndex) :
@@ -1605,10 +1453,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndItem::XLineEndItem(const XubString& rName,
 |*                               const XPolygon& rXPolygon)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -1622,10 +1466,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndItem::XLineEndItem(const XLineEndItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineEndItem::XLineEndItem(const XLineEndItem& rItem) :
@@ -1637,10 +1477,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineEndItem::XLineEndItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  17.11.94
 |*
 *************************************************************************/
 
@@ -1674,10 +1510,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineEndItem::Clone(SfxItemPool* /*pPool*/) const
@@ -1688,10 +1520,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XLineEndItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  17.11.94
 |*
 *************************************************************************/
 
@@ -1705,10 +1533,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineEndItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineEndItem::Create(SvStream& rIn, USHORT /*nVer*/) const
@@ -1719,10 +1543,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineEndItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  17.11.94
 |*
 *************************************************************************/
 
@@ -1748,10 +1568,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    const XPolygon& XLineEndItem::GetValue(const XLineEndTable* pTable) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -2043,10 +1859,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartWidthItem::XLineStartWidthItem(long nWidth)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineStartWidthItem::XLineStartWidthItem(long nWidth) :
@@ -2057,10 +1869,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineStartWidthItem::XLineStartWidthItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2073,10 +1881,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartWidthItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineStartWidthItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2088,10 +1892,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineStartWidthItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2128,10 +1928,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndWidthItem::XLineEndWidthItem(long nWidth)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineEndWidthItem::XLineEndWidthItem(long nWidth) :
@@ -2142,10 +1938,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineEndWidthItem::XLineEndWidthItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2158,10 +1950,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndWidthItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineEndWidthItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2172,10 +1960,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XLineEndWidthItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2211,10 +1995,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartCenterItem::XLineStartCenterItem(BOOL bStartCenter)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineStartCenterItem::XLineStartCenterItem(BOOL bStartCenter) :
@@ -2225,10 +2005,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineStartCenterItem::XLineStartCenterItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2241,10 +2017,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineStartCenterItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineStartCenterItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2256,10 +2028,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineStartCenterItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2297,10 +2065,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndCenterItem::XLineEndCenterItem(BOOL bEndCenter)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XLineEndCenterItem::XLineEndCenterItem(BOOL bEndCenter) :
@@ -2311,10 +2075,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XLineEndCenterItem::XLineEndCenterItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2327,10 +2087,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XLineEndCenterItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XLineEndCenterItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2342,10 +2098,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XLineEndCenterItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2387,10 +2139,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillStyleItem::XFillStyleItem(XFillStyle eFillStyle)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillStyleItem::XFillStyleItem(XFillStyle eFillStyle) :
@@ -2401,10 +2149,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFillStyleItem::XFillStyleItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2417,10 +2161,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillStyleItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillStyleItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2431,10 +2171,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFillStyleItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2491,10 +2227,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillColorItem::XFillColorItem(const XubString& rName, const Color& rTheColor)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillColorItem::XFillColorItem(const XubString& rName, const Color& rTheColor) :
@@ -2505,10 +2237,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFillColorItem::XFillColorItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2521,10 +2249,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillColorItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillColorItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2535,10 +2259,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFillColorItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2582,10 +2302,6 @@ XubString aNameOrIndexEmptyString;
 |*    XGradient::XGradient(XGradientStyle, const Color&, const Color&,
 |*                         long, USHORT, USHORT, USHORT)
 |*
-|*    Beschreibung
-|*    Ersterstellung    21.11.94
-|*    Letzte Aenderung  21.11.94
-|*
 *************************************************************************/
 
 /*N*/ XGradient::XGradient(const Color& rStart, const Color& rEnd,
@@ -2609,10 +2325,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XGradient::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    29.11.94
-|*    Letzte Aenderung  29.11.94
 |*
 *************************************************************************/
 
@@ -2641,10 +2353,6 @@ XubString aNameOrIndexEmptyString;
 |*    XFillGradientItem::XFillGradientItem(long nIndex,
 |*                                       const XGradient& rTheGradient)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillGradientItem::XFillGradientItem(long nIndex,
@@ -2659,10 +2367,6 @@ XubString aNameOrIndexEmptyString;
 |*    XFillGradientItem::XFillGradientItem(const XubString& rName,
 |*                                       const XGradient& rTheGradient)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillGradientItem::XFillGradientItem(const XubString& rName,
@@ -2676,10 +2380,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillGradientItem::XFillGradientItem(const XFillGradientItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillGradientItem::XFillGradientItem(const XFillGradientItem& rItem) :
@@ -2691,10 +2391,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFillGradientItem::XFillGradientItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2752,10 +2448,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillGradientItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillGradientItem::Clone(SfxItemPool* /*pPool*/) const
@@ -2766,10 +2458,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XFillGradientItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2783,10 +2471,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XFillGradientItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillGradientItem::Create(SvStream& rIn, USHORT nVer) const
@@ -2797,10 +2481,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFillGradientItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -2838,10 +2518,6 @@ XubString aNameOrIndexEmptyString;
 |*    const XGradient& XFillGradientItem::GetValue(const XGradientTable* pTable)
 |*                                                                 const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
-|*
 *************************************************************************/
 
 /*N*/ const XGradient& XFillGradientItem::GetValue(const XGradientTable* pTable) const
@@ -2856,10 +2532,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    USHORT XFillGradientItem::GetVersion() const
-|*
-|*    Beschreibung
-|*    Ersterstellung    01.11.95
-|*    Letzte Aenderung  01.11.95
 |*
 *************************************************************************/
 
@@ -3198,10 +2870,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XHatch::XHatch(XHatchStyle, const Color&, long, long)
 |*
-|*    Beschreibung
-|*    Ersterstellung    21.11.94
-|*    Letzte Aenderung  21.11.94
-|*
 *************************************************************************/
 
 /*N*/ XHatch::XHatch(const Color& rCol, XHatchStyle eTheStyle, long nTheDistance,
@@ -3216,10 +2884,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XHatch::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    29.11.94
-|*    Letzte Aenderung  29.11.94
 |*
 *************************************************************************/
 
@@ -3242,10 +2906,6 @@ XubString aNameOrIndexEmptyString;
 |*    XFillHatchItem::XFillHatchItem(const XubString& rName,
 |*                                 const XHatch& rTheHatch)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillHatchItem::XFillHatchItem(const XubString& rName,
@@ -3259,10 +2919,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillHatchItem::XFillHatchItem(const XFillHatchItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillHatchItem::XFillHatchItem(const XFillHatchItem& rItem) :
@@ -3274,10 +2930,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFillHatchItem::XFillHatchItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -3318,10 +2970,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFillHatchItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillHatchItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3332,10 +2980,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    int XFillHatchItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -3349,10 +2993,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XFillHatchItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillHatchItem::Create(SvStream& rIn, USHORT /*nVer*/) const
@@ -3363,10 +3003,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFillHatchItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  15.11.94
 |*
 *************************************************************************/
 
@@ -3393,10 +3029,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    const XHatch& XFillHatchItem::GetValue(const XHatchTable* pTable) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  18.11.94
 |*
 *************************************************************************/
 
@@ -3562,10 +3194,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStyleItem::XFormTextStyleItem()
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextStyleItem::XFormTextStyleItem(XFormTextStyle eTheStyle) :
@@ -3576,10 +3204,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextStyleItem::XFormTextStyleItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3592,10 +3216,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStyleItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextStyleItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3606,10 +3226,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextStyleItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3667,10 +3283,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextAdjustItem::XFormTextAdjustItem()
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextAdjustItem::XFormTextAdjustItem(XFormTextAdjust eTheAdjust) :
@@ -3681,10 +3293,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextAdjustItem::XFormTextAdjustItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3697,10 +3305,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextAdjustItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextAdjustItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3711,10 +3315,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextAdjustItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3772,10 +3372,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextDistanceItem::XFormTextDistanceItem()
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextDistanceItem::XFormTextDistanceItem(long nDist) :
@@ -3786,10 +3382,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextDistanceItem::XFormTextDistanceItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3802,10 +3394,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextDistanceItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextDistanceItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3816,10 +3404,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextDistanceItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3837,10 +3421,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStartItem::XFormTextStartItem(long nStart)
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextStartItem::XFormTextStartItem(long nStart) :
@@ -3851,10 +3431,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextStartItem::XFormTextStartItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3867,10 +3443,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStartItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextStartItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3881,10 +3453,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextStartItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  02.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3902,9 +3470,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextMirrorItem::XFormTextMirrorItem(BOOL bMirror)
 |*
-|*    Ersterstellung    06.02.95 ESO
-|*    Letzte Aenderung  06.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextMirrorItem::XFormTextMirrorItem(BOOL bMirror) :
@@ -3915,9 +3480,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextMirrorItem::XFormTextMirrorItem(SvStream& rIn)
-|*
-|*    Ersterstellung    06.02.95 ESO
-|*    Letzte Aenderung  06.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3930,9 +3492,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextMirrorItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Ersterstellung    06.02.95 ESO
-|*    Letzte Aenderung  06.02.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextMirrorItem::Clone(SfxItemPool* /*pPool*/) const
@@ -3944,9 +3503,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XFormTextMirrorItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Ersterstellung    06.02.95 ESO
-|*    Letzte Aenderung  06.02.95 ESO
 |*
 *************************************************************************/
 
@@ -3965,9 +3521,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextOutlineItem::XFormTextOutlineItem()
 |*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextOutlineItem::XFormTextOutlineItem(BOOL bOutline) :
@@ -3978,9 +3531,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextOutlineItem::XFormTextOutlineItem(SvStream& rIn)
-|*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 *************************************************************************/
 
@@ -3993,9 +3543,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextOutlineItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextOutlineItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4007,9 +3554,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XFormTextOutlineItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4027,10 +3571,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowItem::XFormTextShadowItem()
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ XFormTextShadowItem::XFormTextShadowItem(XFormTextShadow eFormTextShadow) :
@@ -4041,10 +3581,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextShadowItem::XFormTextShadowItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
 |*
 *************************************************************************/
 
@@ -4057,10 +3593,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextShadowItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4071,10 +3603,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextShadowItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
 |*
 *************************************************************************/
 
@@ -4133,10 +3661,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowColorItem::XFormTextShadowColorItem(const XubString& rName, const Color& rTheColor)
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ XFormTextShadowColorItem::XFormTextShadowColorItem(const XubString& rName,
@@ -4149,10 +3673,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowColorItem::XFormTextShadowColorItem(SvStream& rIn)
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ XFormTextShadowColorItem::XFormTextShadowColorItem(SvStream& rIn) :
@@ -4164,10 +3684,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowColorItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextShadowColorItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4178,10 +3694,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextShadowColorItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
 |*
 *************************************************************************/
 
@@ -4199,10 +3711,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowXValItem::XFormTextShadowXValItem(long)
 |*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextShadowXValItem::XFormTextShadowXValItem(long nVal) :
@@ -4213,10 +3721,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextShadowXValItem::XFormTextShadowXValItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4229,10 +3733,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowXValItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextShadowXValItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4243,10 +3743,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextShadowXValItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4264,10 +3760,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowYValItem::XFormTextShadowYValItem(long)
 |*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextShadowYValItem::XFormTextShadowYValItem(long nVal) :
@@ -4278,10 +3770,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextShadowYValItem::XFormTextShadowYValItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4294,10 +3782,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextShadowYValItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextShadowYValItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4308,10 +3792,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextShadowYValItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  28.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4329,10 +3809,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStdFormItem::XFormTextStdFormItem()
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ XFormTextStdFormItem::XFormTextStdFormItem(XFormTextStdForm eFormTextStdForm) :
@@ -4343,10 +3819,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextStdFormItem::XFormTextStdFormItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
 |*
 *************************************************************************/
 
@@ -4359,10 +3831,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextStdFormItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextStdFormItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4373,10 +3841,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFormTextStdFormItem::Create(SvStream& rIn, USHORT nVer) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.06.95
-|*    Letzte Aenderung  27.06.95
 |*
 *************************************************************************/
 
@@ -4435,9 +3899,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextHideFormItem::XFormTextHideFormItem()
 |*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ XFormTextHideFormItem::XFormTextHideFormItem(BOOL bHide) :
@@ -4448,9 +3909,6 @@ XubString aNameOrIndexEmptyString;
 /*************************************************************************
 |*
 |*    XFormTextHideFormItem::XFormTextHideFormItem(SvStream& rIn)
-|*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 *************************************************************************/
 
@@ -4463,9 +3921,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    XFormTextHideFormItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFormTextHideFormItem::Clone(SfxItemPool* /*pPool*/) const
@@ -4477,9 +3932,6 @@ XubString aNameOrIndexEmptyString;
 |*
 |*    SfxPoolItem* XFormTextHideFormItem::Create(SvStream& rIn, USHORT nVer)
 |*                                              const
-|*
-|*    Ersterstellung    27.06.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 *************************************************************************/
 

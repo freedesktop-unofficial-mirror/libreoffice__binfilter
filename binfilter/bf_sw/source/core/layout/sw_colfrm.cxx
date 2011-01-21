@@ -61,9 +61,6 @@ namespace binfilter {
 |*
 |*  SwColumnFrm::SwColumnFrm()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    AMA 30. Oct 98
-|*
 |*************************************************************************/
 /*N*/ SwColumnFrm::SwColumnFrm( SwFrmFmt *pFmt ):
 /*N*/   SwFtnBossFrm( pFmt )
@@ -90,9 +87,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::ChgColumns()
-|*
-|*  Ersterstellung      MA 11. Feb. 93
-|*  Letzte Aenderung    MA 12. Oct. 98
 |*
 |*************************************************************************/
 
@@ -319,9 +313,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::AdjustColumns()
-|*
-|*  Ersterstellung      MA 19. Jan. 99
-|*  Letzte Aenderung    MA 19. Jan. 99
 |*
 |*************************************************************************/
 

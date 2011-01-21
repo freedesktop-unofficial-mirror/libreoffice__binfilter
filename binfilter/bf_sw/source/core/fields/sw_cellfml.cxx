@@ -70,9 +70,6 @@ const USHORT cMAXSTACKSIZE = 50;
 |*      oder mit einem Feld, dann hole den Wert.
 |*      Alle anderen Bedingungen returnen einen Fehler (oder 0 ?)
 |*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
-|*
 |*************************************************************************/
 
 /*N*/ double SwTableBox::GetValue( SwTblCalcPara& rCalcPara ) const

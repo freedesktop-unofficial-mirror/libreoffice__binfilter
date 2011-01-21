@@ -109,9 +109,6 @@ namespace binfilter {
 |*
 |*  SwTable::SwTable()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 05. May. 93
-|*
 |*************************************************************************/
 /*N*/ SwTable::SwTable( SwTableFmt* pFmt )
 /*N*/   : SwClient( pFmt ),
@@ -173,9 +170,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTable::Modify()
-|*
-|*  Ersterstellung      JP ??
-|*  Letzte Aenderung    MA 06. May. 93
 |*
 |*************************************************************************/
 /*?*/ inline BOOL FmtInArr( SvPtrarr& rFmtArr, SwFmt* pBoxFmt )
@@ -262,9 +256,6 @@ namespace binfilter {
 |*
 |*  SwTable::GetTabCols()
 |*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 30. Nov. 95
-|*
 |*************************************************************************/
 
 
@@ -291,9 +282,6 @@ namespace binfilter {
 |*
 |*  SwTable::SetTabCols()
 |*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 26. Aug. 98
-|*
 |*************************************************************************/
 //Struktur zur Parameteruebergabe
 
@@ -309,9 +297,6 @@ namespace binfilter {
 |*
 |*  const SwTableBox* SwTable::GetTblBox( const Strn?ng& rName ) const
 |*      gebe den Pointer auf die benannte Box zurueck.
-|*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
 |*
 |*************************************************************************/
 /*N*/ USHORT SwTable::_GetBoxNum( String& rStr, BOOL bFirst )
@@ -453,9 +438,6 @@ namespace binfilter {
 |*
 |*  SwTableLine::SwTableLine()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 09. Mar. 93
-|*
 |*************************************************************************/
 /*N*/ SwTableLine::SwTableLine( SwTableLineFmt *pFmt, USHORT nBoxes,
 /*N*/                           SwTableBox *pUp )
@@ -478,9 +460,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTableLine::ClaimFrmFmt(), ChgFrmFmt()
-|*
-|*  Ersterstellung      MA 03. May. 93
-|*  Letzte Aenderung    MA 07. Feb. 96
 |*
 |*************************************************************************/
 /*N*/ SwFrmFmt* SwTableLine::ClaimFrmFmt()
@@ -545,9 +524,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTableBox::SwTableBox()
-|*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 04. May. 93
 |*
 |*************************************************************************/
 /*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, USHORT nLines, SwTableLine *pUp )
@@ -652,9 +628,6 @@ namespace binfilter {
 |*
 |*  SwTableBox::ClaimFrmFmt(), ChgFrmFmt()
 |*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 07. Feb. 96
-|*
 |*************************************************************************/
 /*N*/ SwFrmFmt* SwTableBox::ClaimFrmFmt()
 /*N*/ {
@@ -723,9 +696,6 @@ namespace binfilter {
 |*  String SwTableBox::GetName() const
 |*      gebe den Namen dieser Box zurueck. Dieser wird dynamisch bestimmt
 |*      und ergibt sich aus der Position in den Lines/Boxen/Tabelle
-|*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
 |*
 |*************************************************************************/
 /*N*/ void lcl_GetTblBoxColStr( USHORT nCol, String& rNm )

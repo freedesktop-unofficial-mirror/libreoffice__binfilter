@@ -348,9 +348,6 @@ namespace binfilter {
 |*
 |*  RootFrm::Alles was so zur CurrShell gehoert
 |*
-|*  Ersterstellung      MA 09. Sep. 98
-|*  Letzte Aenderung    MA 18. Feb. 99
-|*
 |*************************************************************************/
 
 /*N*/ typedef CurrShell* CurrShellPtr;
@@ -419,8 +416,6 @@ namespace binfilter {
 |*      Der RootFrm laesst sich grundsaetzlich vom Dokument ein eigenes
 |*      FrmFmt geben. Dieses loescht er dann selbst im DTor.
 |*      Das eigene FrmFmt wird vom uebergebenen Format abgeleitet.
-|*  Ersterstellung      SS 05-Apr-1991
-|*  Letzte Aenderung    MA 12. Dec. 94
 |*
 |*************************************************************************/
 
@@ -525,9 +520,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::~SwRootFrm()
 |*
-|*  Ersterstellung      SS 05-Apr-1991
-|*  Letzte Aenderung    MA 12. Dec. 94
-|*
 |*************************************************************************/
 
 
@@ -554,9 +546,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::SetFixSize()
 |*
-|*  Ersterstellung      MA 23. Jul. 92
-|*  Letzte Aenderung    MA 11. Mar. 93
-|*
 |*************************************************************************/
 
 /*N*/ #ifndef VERTICAL_LAYOUT
@@ -582,9 +571,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRootFrm::RemoveMasterObjs()
-|*
-|*  Ersterstellung      MA 19.10.95
-|*  Letzte Aenderung    MA 19.10.95
 |*
 |*************************************************************************/
 

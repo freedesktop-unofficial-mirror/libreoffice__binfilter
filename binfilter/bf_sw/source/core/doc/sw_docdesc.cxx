@@ -186,9 +186,6 @@ namespace binfilter {
 |*
 |*  SwDoc::ChgPageDesc()
 |*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 01. Mar. 95
-|*
 |*************************************************************************/
 
 /*N*/ void lcl_DescSetAttr( const SwFrmFmt &rSource, SwFrmFmt &rDest,
@@ -434,8 +431,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Alle Descriptoren, deren Follow auf den zu loeschenden
 |*      zeigen muessen angepasst werden.
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    JP 04.09.95
 |*
 |*************************************************************************/
 
@@ -541,9 +536,6 @@ void SwDoc::DelPageDesc( USHORT i )
 /*************************************************************************
 |*
 |*  SwDoc::MakePageDesc()
-|*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 20. Aug. 93
 |*
 |*************************************************************************/
 

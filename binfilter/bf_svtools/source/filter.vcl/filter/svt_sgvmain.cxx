@@ -333,10 +333,6 @@ SvStream& operator>>(SvStream& rInp, GrupType& rGrup)
 |*
 |*    Sgv2SvFarbe()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 Color Sgv2SvFarbe(BYTE nFrb1, BYTE nFrb2, BYTE nInts)
 {
@@ -429,10 +425,6 @@ void SetArea(ObjAreaType& rArea, OutputDevice& rOut)
 |*
 |*    ObjkType::DrawObjekt()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void ObjkType::Draw(OutputDevice&)
 {
@@ -445,10 +437,6 @@ void Obj0Type::Draw(OutputDevice&) {}
 |*
 |*    StrkType::DrawObjekt()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void StrkType::Draw(OutputDevice& rOut)
 {
@@ -459,10 +447,6 @@ void StrkType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    RectType::DrawObjekt()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void SgfAreaColorIntens(UINT16 Muster, BYTE Col1, BYTE Col2, BYTE Int, OutputDevice& rOut)
@@ -605,10 +589,6 @@ void RectType::Draw(OutputDevice& rOut)
 |*
 |*    PolyType::Draw()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void PolyType::Draw(OutputDevice& rOut)
 {
@@ -627,10 +607,6 @@ void PolyType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    SplnType::Draw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void SplnType::Draw(OutputDevice& rOut)
@@ -653,10 +629,6 @@ void SplnType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    CircType::Draw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void DrawSlideCirc(INT16 cx, INT16 cy, INT16 rx, INT16 ry, ObjAreaType& F, OutputDevice& rOut)
@@ -801,10 +773,6 @@ void CircType::Draw(OutputDevice& rOut)
 |*
 |*    BmapType::Draw()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 
 void BmapType::Draw(OutputDevice& rOut)
@@ -858,10 +826,6 @@ void BmapType::Draw(OutputDevice& rOut)
 |*
 |*    GrupType::...
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 UINT32 GrupType::GetSubPtr()
 {
@@ -871,10 +835,6 @@ UINT32 GrupType::GetSubPtr()
 /*************************************************************************
 |*
 |*    DrawObjkList()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void DrawObjkList( SvStream& rInp, OutputDevice& rOut )
@@ -961,10 +921,6 @@ void DrawObjkList( SvStream& rInp, OutputDevice& rOut )
 |*
 |*    SkipObjkList()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void SkipObjkList(SvStream& rInp)
 {
@@ -986,10 +942,6 @@ void SkipObjkList(SvStream& rInp)
 /*************************************************************************
 |*
 |*    SgfFilterSDrw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL SgfFilterSDrw( SvStream& rInp, SgfHeader&, SgfEntry&, GDIMetaFile& rMtf )
@@ -1046,10 +998,6 @@ BOOL SgfFilterSDrw( SvStream& rInp, SgfHeader&, SgfEntry&, GDIMetaFile& rMtf )
 /*************************************************************************
 |*
 |*    SgfSDrwFilter()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath )

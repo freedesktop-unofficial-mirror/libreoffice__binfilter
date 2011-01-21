@@ -73,9 +73,6 @@ using namespace ::com::sun::star::frame;
 |*
 |*  SwDPage::ReplaceObject()
 |*
-|*  Ersterstellung      MA 07. Aug. 95
-|*  Letzte Aenderung    MA 07. Aug. 95
-|*
 *************************************************************************/
 
 /*N*/ SdrObject*  SwDPage::ReplaceObject( SdrObject* pNewObj, ULONG nObjNum )
@@ -93,9 +90,6 @@ using namespace ::com::sun::star::frame;
 |*
 |*  SwDPage::GetGridFrameList()
 |*
-|*  Ersterstellung      MA 04. Sep. 95
-|*  Letzte Aenderung    MA 15. Feb. 96
-|*
 *************************************************************************/
 
 
@@ -106,9 +100,6 @@ using namespace ::com::sun::star::frame;
 |*  String SwDPage::GetLinkData( const String& )
 |*  void SwDPage::SetLinkData( const String&, const String& )
 |*  void SwDPage::UpdateLinkData( const String&, const String& )
-|*
-|*  Ersterstellung      JP 04.09.95
-|*  Letzte Aenderung    JP 04.09.95
 |*
 *************************************************************************/
 

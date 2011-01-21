@@ -81,9 +81,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::SwFlyFrm()
 |*
-|*  Ersterstellung      MA 28. Sep. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyFrm::SwFlyFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
@@ -196,9 +193,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::~SwFlyFrm()
 |*
-|*  Ersterstellung      MA 28. Sep. 92
-|*  Letzte Aenderung    MA 07. Jul. 95
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyFrm::~SwFlyFrm()
@@ -278,9 +272,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::InitDrawObj()
 |*
-|*  Ersterstellung      MA 02. Dec. 94
-|*  Letzte Aenderung    MA 30. Nov. 95
-|*
 |*************************************************************************/
 #ifdef _MSC_VER
 #pragma optimize("",off)
@@ -315,9 +306,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FinitDrawObj()
-|*
-|*  Ersterstellung      MA 12. Dec. 94
-|*  Letzte Aenderung    MA 15. May. 95
 |*
 |*************************************************************************/
 
@@ -374,9 +362,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::ChainFrames()
 |*
-|*  Ersterstellung      MA 29. Oct. 97
-|*  Letzte Aenderung    MA 20. Jan. 98
-|*
 |*************************************************************************/
 
 
@@ -384,9 +369,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FindChainNeighbour()
-|*
-|*  Ersterstellung      MA 11. Nov. 97
-|*  Letzte Aenderung    MA 09. Apr. 99
 |*
 |*************************************************************************/
 
@@ -396,9 +378,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::FindLastLower()
 |*
-|*  Ersterstellung      MA 29. Oct. 97
-|*  Letzte Aenderung    MA 29. Oct. 97
-|*
 |*************************************************************************/
 
 
@@ -406,9 +385,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FrmSizeChg()
-|*
-|*  Ersterstellung      MA 17. Dec. 92
-|*  Letzte Aenderung    MA 24. Jul. 96
 |*
 |*************************************************************************/
 
@@ -461,9 +437,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::Modify()
-|*
-|*  Ersterstellung      MA 17. Dec. 92
-|*  Letzte Aenderung    MA 17. Jan. 97
 |*
 |*************************************************************************/
 
@@ -662,8 +635,6 @@ namespace binfilter {
 |*                SwFlyFrm::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
 
@@ -678,9 +649,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::_Invalidate()
-|*
-|*  Ersterstellung      MA 15. Oct. 92
-|*  Letzte Aenderung    MA 26. Jun. 96
 |*
 |*************************************************************************/
 
@@ -706,8 +674,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Aenderung der relativen Position, die Position wird
 |*      damit automatisch Fix, das Attribut wird entprechend angepasst.
-|*  Ersterstellung      MA 25. Aug. 92
-|*  Letzte Aenderung    MA 09. Aug. 95
 |*
 |*************************************************************************/
 
@@ -717,8 +683,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea.
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 14. Jun. 93
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 
@@ -1074,9 +1038,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::MakeFlyPos()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 14. Nov. 96
-|*
 |*************************************************************************/
 
 /*M*/ void SwFlyFrm::MakeFlyPos()
@@ -1311,9 +1272,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::MakePrtArea()
 |*
-|*  Ersterstellung      MA 23. Jun. 93
-|*  Letzte Aenderung    MA 23. Jun. 93
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
@@ -1337,9 +1295,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::_Grow(), _Shrink()
-|*
-|*  Ersterstellung      MA 05. Oct. 92
-|*  Letzte Aenderung    MA 05. Sep. 96
 |*
 |*************************************************************************/
 
@@ -1462,9 +1417,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::ChgSize()
 |*
-|*  Ersterstellung      MA 05. Oct. 92
-|*  Letzte Aenderung    MA 04. Sep. 96
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::ChgSize( const Size& aNewSize )
@@ -1485,9 +1437,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::IsLowerOf()
 |*
-|*  Ersterstellung      MA 27. Dec. 93
-|*  Letzte Aenderung    MA 27. Dec. 93
-|*
 |*************************************************************************/
 
 /*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper ) const
@@ -1507,9 +1456,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::Cut()
@@ -1519,9 +1465,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::AppendFly(), RemoveFly()
-|*
-|*  Ersterstellung      MA 25. Aug. 92
-|*  Letzte Aenderung    MA 09. Jun. 95
 |*
 |*************************************************************************/
 
@@ -1592,9 +1535,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::AppendDrawObj(), RemoveDrawObj()
-|*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 26. Jun. 95
 |*
 |*************************************************************************/
 
@@ -1764,9 +1704,6 @@ void SwFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 |*
 |*  SwFrm::CalcFlys()
 |*
-|*  Ersterstellung      MA 29. Nov. 96
-|*  Letzte Aenderung    MA 29. Nov. 96
-|*
 |*************************************************************************/
 
 /*N*/ void lcl_MakeFlyPosition( SwFlyFrm *pFly )
@@ -1881,9 +1818,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwLayoutFrm::NotifyFlys()
 |*
-|*  Ersterstellung      MA 18. Feb. 94
-|*  Letzte Aenderung    MA 26. Jun. 96
-|*
 |*************************************************************************/
 
 /*N*/ void SwLayoutFrm::NotifyFlys()
@@ -1942,9 +1876,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwFlyFrm::NotifyDrawObj()
 |*
-|*  Ersterstellung      OK 22. Nov. 94
-|*  Letzte Aenderung    MA 10. Jan. 97
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::NotifyDrawObj()
@@ -1960,9 +1891,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*************************************************************************
 |*
 |*  SwLayoutFrm::CalcRel()
-|*
-|*  Ersterstellung      MA 13. Jun. 96
-|*  Letzte Aenderung    MA 10. Oct. 96
 |*
 |*************************************************************************/
 
@@ -2026,9 +1954,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwFlyFrm::AddSpacesToFrm
 |*
-|*  Ersterstellung      MA 11. Nov. 96
-|*  Letzte Aenderung    MA 10. Mar. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwRect SwFlyFrm::AddSpacesToFrm() const
@@ -2046,9 +1971,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*************************************************************************
 |*
 |*  SwFlyFrm::GetContour()
-|*
-|*  Ersterstellung      MA 09. Jan. 97
-|*  Letzte Aenderung    MA 10. Jan. 97
 |*
 |*************************************************************************/
 /// OD 16.04.2003 #i13147# - If called for paint and the <SwNoTxtFrm> contains

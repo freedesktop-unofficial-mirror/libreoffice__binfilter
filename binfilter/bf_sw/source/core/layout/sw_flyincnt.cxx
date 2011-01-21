@@ -52,9 +52,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::SwFlyInCntFrm(), ~SwFlyInCntFrm()
 |*
-|*  Ersterstellung      MA 01. Dec. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 /*N*/ SwFlyInCntFrm::SwFlyInCntFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
 /*N*/   SwFlyFrm( pFmt, pAnch )
@@ -82,9 +79,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::SetRefPoint(),
-|*
-|*  Ersterstellung      MA 01. Dec. 92
-|*  Letzte Aenderung    MA 06. Aug. 95
 |*
 |*************************************************************************/
 /*M*/ void SwFlyInCntFrm::SetRefPoint( const Point& rPoint, const Point& rRelAttr,
@@ -131,9 +125,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::Modify()
 |*
-|*  Ersterstellung      MA 16. Dec. 92
-|*  Letzte Aenderung    MA 02. Sep. 93
-|*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
 /*N*/ {
@@ -179,8 +170,6 @@ namespace binfilter {
 |*  SwFlyInCntFrm::Format()
 |*
 |*  Beschreibung:       Hier wird der Inhalt initial mit Formatiert.
-|*  Ersterstellung      MA 16. Dec. 92
-|*  Letzte Aenderung    MA 19. May. 93
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::Format( const SwBorderAttrs *pAttrs )
@@ -204,8 +193,6 @@ namespace binfilter {
 |*  Beschreibung        Im Unterschied zu anderen Frms wird hier nur die
 |*      die RelPos berechnet. Die absolute Position wird ausschliesslich
 |*      per SetAbsPos errechnet.
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 12. Apr. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::MakeFlyPos()
@@ -248,9 +235,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::NotifyBackground()
 |*
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 26. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::NotifyBackground( SwPageFrm *, const SwRect& rRect,
 /*N*/                                      PrepareHint eHint)
@@ -265,9 +249,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::GetRelPos()
 |*
-|*  Ersterstellung      MA 04. Dec. 92
-|*  Letzte Aenderung    MA 04. Dec. 92
-|*
 |*************************************************************************/
 /*N*/ const Point &SwFlyInCntFrm::GetRelPos() const
 /*N*/ {
@@ -278,9 +259,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::RegistFlys()
-|*
-|*  Ersterstellung      MA 26. Nov. 93
-|*  Letzte Aenderung    MA 26. Nov. 93
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::RegistFlys()
@@ -294,9 +272,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 18. Feb. 94
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::MakeAll()

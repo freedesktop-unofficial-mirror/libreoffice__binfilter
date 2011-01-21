@@ -41,9 +41,6 @@
 |*
 |*  SwRect::SwRect()
 |*
-|*  Ersterstellung      MA 02. Feb. 93
-|*  Letzte Aenderung    MA 05. Sep. 93
-|*
 |*************************************************************************/
 #include <tools/debug.hxx>
 namespace binfilter {
@@ -60,9 +57,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Center()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
 |*
 |*************************************************************************/
 /*N*/ Point SwRect::Center() const
@@ -81,9 +75,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Union()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
 |*
 |*************************************************************************/
 
@@ -106,9 +97,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Intersection(), _Intersection()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 05. Sep. 93
 |*
 |*************************************************************************/
 
@@ -162,9 +150,6 @@ namespace binfilter {
 |*
 |*  SwRect::IsInside()
 |*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
-|*
 |*************************************************************************/
 
 
@@ -198,9 +183,6 @@ namespace binfilter {
 |*
 |*  SwRect::IsOver()
 |*
-|*  Ersterstellung      MA 25. Feb. 94
-|*  Letzte Aenderung    MA 27. Jun. 96
-|*
 |*************************************************************************/
 
 
@@ -216,9 +198,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Justify()
-|*
-|*  Ersterstellung      MA 10. Oct. 94
-|*  Letzte Aenderung    MA 23. Oct. 96
 |*
 |*************************************************************************/
 

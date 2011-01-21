@@ -65,9 +65,6 @@ namespace binfilter {
 |*
 |*  SwFlyFreeFrm::SwFlyFreeFrm(), ~SwFlyFreeFrm()
 |*
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyFreeFrm::SwFlyFreeFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
@@ -104,8 +101,6 @@ namespace binfilter {
 |*      ueberlappt werden.
 |*      Es werden auch die CntntFrms innerhalb von anderen Flys
 |*      beruecksichtigt.
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 26. Aug. 93
 |*
 |*************************************************************************/
 
@@ -118,9 +113,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFreeFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 18. Feb. 94
-|*  Letzte Aenderung    MA 03. Mar. 97
 |*
 |*************************************************************************/
 
@@ -227,9 +219,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFreeFrm::CheckClip()
-|*
-|*  Ersterstellung      MA 21. Feb. 94
-|*  Letzte Aenderung    MA 03. Mar. 97
 |*
 |*************************************************************************/
 
@@ -391,9 +380,6 @@ namespace binfilter {
 |*
 |*  SwFlyLayFrm::SwFlyLayFrm()
 |*
-|*  Ersterstellung      MA 25. Aug. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyLayFrm::SwFlyLayFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
@@ -405,9 +391,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyLayFrm::Modify()
-|*
-|*  Ersterstellung      MA 08. Feb. 93
-|*  Letzte Aenderung    MA 28. Aug. 93
 |*
 |*************************************************************************/
 
@@ -483,9 +466,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::AppendFly()
-|*
-|*  Ersterstellung      MA 10. Oct. 92
-|*  Letzte Aenderung    MA 08. Jun. 96
 |*
 |*************************************************************************/
 
@@ -569,9 +549,6 @@ namespace binfilter {
 |*
 |*  SwPageFrm::RemoveFly()
 |*
-|*  Ersterstellung      MA 10. Oct. 92
-|*  Letzte Aenderung    MA 26. Aug. 96
-|*
 |*************************************************************************/
 
 /*N*/ void SwPageFrm::RemoveFly( SwFlyFrm *pToRemove )
@@ -621,9 +598,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::MoveFly
-|*
-|*  Ersterstellung      MA 25. Jan. 97
-|*  Letzte Aenderung    MA 25. Jan. 97
 |*
 |*************************************************************************/
 
@@ -695,9 +669,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::AppendDrawObject(), RemoveDrawObject()
-|*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 31. Jul. 96
 |*
 |*************************************************************************/
 
@@ -831,9 +802,6 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 |*
 |*  SwPageFrm::PlaceFly
 |*
-|*  Ersterstellung      MA 08. Feb. 93
-|*  Letzte Aenderung    MA 27. Feb. 93
-|*
 |*************************************************************************/
 
 /*N*/ SwFrm *SwPageFrm::PlaceFly( SwFlyFrm *pFly, SwFrmFmt *pFmt,
@@ -858,9 +826,6 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 /*************************************************************************
 |*
 |*  ::CalcClipRect
-|*
-|*  Ersterstellung      AMA 24. Sep. 96
-|*  Letzte Aenderung    MA  18. Dec. 96
 |*
 |*************************************************************************/
 

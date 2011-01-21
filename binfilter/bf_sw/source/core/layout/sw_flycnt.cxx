@@ -63,9 +63,6 @@ namespace binfilter {
 |*
 |*  SwFlyAtCntFrm::SwFlyAtCntFrm()
 |*
-|*  Ersterstellung      MA 11. Nov. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyAtCntFrm::SwFlyAtCntFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
@@ -85,9 +82,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyAtCntFrm::Modify()
-|*
-|*  Ersterstellung      MA 08. Feb. 93
-|*  Letzte Aenderung    MA 23. Nov. 94
 |*
 |*************************************************************************/
 
@@ -198,9 +192,6 @@ namespace binfilter {
 |*      Aussen zu einer 'grossen Oszillation' kommen kann wird im Abbruch-
 |*      fall das Attribut des Rahmens auf automatische Ausrichtung oben
 |*      eingestellt.
-|*
-|*  Ersterstellung      MA 12. Nov. 92
-|*  Letzte Aenderung    MA 20. Sep. 96
 |*
 |*************************************************************************/
 //Wir brauchen ein Paar Hilfsklassen zur Kontrolle der Ozillation und ein paar
@@ -443,8 +434,6 @@ namespace binfilter {
 |*      Absatzgebundene Objekte.
 |*      Wird beim Draggen von Absatzgebundenen Objekten zur Ankeranzeige sowie
 |*      fuer Ankerwechsel benoetigt.
-|*  Ersterstellung      MA 22. Jun. 93
-|*  Letzte Aenderung    MA 30. Jan. 95
 |*
 |*************************************************************************/
 
@@ -1012,9 +1001,6 @@ namespace binfilter {
 |*
 |*  SwFlyAtCntFrm::SetAbsPos()
 |*
-|*  Ersterstellung      MA 22. Jun. 93
-|*  Letzte Aenderung    MA 11. Sep. 98
-|*
 |*************************************************************************/
 
 
@@ -1062,9 +1048,6 @@ namespace binfilter {
 |*      die Entfernung zum Anker - sie muss also nicht mit den im Attribut
 |*      angegebenen Werten uebereinstimmen, denn diese geben die Entfernung
 |*      'im Textfluss' an.
-|*
-|*  Ersterstellung      MA 19. Nov. 92
-|*  Letzte Aenderung    MA 14. Nov. 96
 |*
 |*************************************************************************/
 

@@ -100,9 +100,6 @@ namespace binfilter {
 |*
 |*  ViewShell::SetNoNextScroll()
 |*
-|*  Ersterstellung      MA 08. Mar. 94
-|*  Letzte Aenderung    MA 08. Mar. 94
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::SetNoNextScroll()
@@ -228,9 +225,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::RefreshScrolledArea()
-|*
-|*  Ersterstellung      MA 06. Oct. 94
-|*  Letzte Aenderung    MA 19. Apr. 95
 |*
 ******************************************************************************/
 

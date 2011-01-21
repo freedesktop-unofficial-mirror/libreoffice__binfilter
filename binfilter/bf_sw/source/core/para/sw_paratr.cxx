@@ -52,8 +52,7 @@ using namespace ::com::sun::star;
 
 /*************************************************************************
 |*    Beschreibung      Methoden von SwFmtDrop
-|*    Ersterstellung    MS  19.02.91
-|*    Letzte Aenderung  JP 08.08.94
+|*
 *************************************************************************/
 
 

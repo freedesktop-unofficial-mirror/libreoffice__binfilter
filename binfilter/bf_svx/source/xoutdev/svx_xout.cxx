@@ -62,10 +62,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::XOutputDevice()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ XOutputDevice::XOutputDevice(OutputDevice* pOutDev) :
@@ -127,10 +123,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::~XOutputDevice()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ XOutputDevice::~XOutputDevice()
@@ -146,10 +138,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::DrawLine()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  02.02.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::DrawLine( const Point& rStart, const Point& rEnd )
@@ -164,10 +152,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawXPolyLine()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 *************************************************************************/
 
@@ -186,10 +170,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::DrawRect()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::DrawRect( const Rectangle& rRect, ULONG nXRound,
@@ -206,10 +186,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::DrawEllipse()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::DrawEllipse( const Rectangle& rRect )
@@ -224,10 +200,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawArc()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
 |*
 *************************************************************************/
 
@@ -244,10 +216,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawPie()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
 |*
 *************************************************************************/
 
@@ -266,8 +234,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawXPolygon()
 |*
 |*    Beschreibung      Polygon mit Linien- und Fuellstilen zeichnen
-|*    Ersterstellung    28.11.94 ESO
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 \************************************************************************/
 
@@ -287,10 +253,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawXPolyPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 *************************************************************************/
 
@@ -327,8 +289,6 @@ namespace binfilter {
 |*
 |*    Polygon fuer Linienanfang bzw. -ende initialisieren; gibt die
 |*    Entfernung vom Polygon-Fixpunkt zum Linienansatz zurueck
-|*    Ersterstellung    16.01.95 ESO
-|*    Letzte Aenderung  28.07.95 SOH
 |*
 \************************************************************************/
 
@@ -361,8 +321,6 @@ namespace binfilter {
 |*    XOutputDevice::SetLineAttr()
 |*
 |*    Linienattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    17.11.94 ESO
-|*    Letzte Aenderung  09.10.95 ESO
 |*
 \************************************************************************/
 
@@ -547,8 +505,6 @@ namespace binfilter {
 |*    XOutputDevice::SetFillAttr()
 |*
 |*    Fuellattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    17.11.94 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -687,8 +643,6 @@ namespace binfilter {
 |*    XOutputDevice::SetTextAttr()
 |*
 |*    Textattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 \************************************************************************/
 
@@ -723,8 +677,6 @@ namespace binfilter {
 |*    StarView-Pen temporaer ueberschreiben, wenn SetLineAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetLineAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -749,8 +701,6 @@ namespace binfilter {
 |*    StarView-Brush temporaer ueberschreiben, wenn SetFillAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetFillAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -771,8 +721,6 @@ namespace binfilter {
 |*    StarView-Linecolor temporaer ueberschreiben, wenn SetLineAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetLineAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -793,8 +741,6 @@ namespace binfilter {
 |*    StarView-Brush temporaer ueberschreiben, wenn SetFillAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetFillAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 

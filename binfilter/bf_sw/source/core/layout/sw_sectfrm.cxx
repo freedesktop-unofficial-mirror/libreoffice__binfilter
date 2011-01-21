@@ -64,9 +64,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::SwSectionFrm(), ~SwSectionFrm()
 |*
-|*  Ersterstellung      AMA 26. Nov. 97
-|*  Letzte Aenderung    AMA 26. Nov. 97
-|*
 |*************************************************************************/
 /*N*/ SwSectionFrm::SwSectionFrm( SwSection &rSect ) :
 /*N*/   SwLayoutFrm( rSect.GetFmt() ),
@@ -175,9 +172,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::FindSectionMaster()
 |*
-|*  Ersterstellung      AMA 17. Dec. 97
-|*  Letzte Aenderung    AMA 17. Dec. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwSectionFrm *SwSectionFrm::FindSectionMaster()
@@ -202,9 +196,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::DelEmpty()
-|*
-|*  Ersterstellung      AMA 17. Dec. 97
-|*  Letzte Aenderung    AMA 17. Dec. 97
 |*
 |*************************************************************************/
 /*N*/ void SwSectionFrm::DelEmpty( BOOL bRemove )
@@ -252,9 +243,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::Cut()
-|*
-|*  Ersterstellung      AMA 02. Dec. 97
-|*  Letzte Aenderung    AMA 02. Dec. 97
 |*
 |*************************************************************************/
 /*N*/ void SwSectionFrm::Cut()
@@ -342,9 +330,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::Paste()
 |*
-|*  Ersterstellung      AMA 04. Dec. 97
-|*  Letzte Aenderung    AMA 04. Dec. 97
-|*
 |*************************************************************************/
 
 
@@ -358,18 +343,12 @@ namespace binfilter {
 |*  Zunaechst werden uebergeordnete Bereiche immer aufgebrochen,
 |*  spaeter koennte man es einstellbar machen.
 |*
-|*  Ersterstellung      AMA 12. Dec. 97
-|*  Letzte Aenderung    AMA 12. Dec. 97
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwSectionFrm::MergeNext()
-|*
-|*  Ersterstellung      AMA 04. Dec. 97
-|*  Letzte Aenderung    AMA 04. Dec. 97
 |*
 |*  Verschmilzt zwei SectionFrms, falls es sich um den
 |*  gleichen Bereich handelt.
@@ -417,9 +396,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::SplitSect()
 |*
-|*  Ersterstellung      AMA 29. Apr. 99
-|*  Letzte Aenderung    AMA 29. Apr. 99
-|*
 |*  Zerteilt einen SectionFrm in zwei Teile, der zweite Teil beginnt mit dem
 |*  uebergebenen Frame.
 |*  Benoetigt wird dies beim Einfuegen eines inneren Bereichs, weil innerhalb
@@ -432,9 +408,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::MoveCntntAndDelete()
-|*
-|*  Ersterstellung      AMA 29. Jan 99
-|*  Letzte Aenderung    AMA 29. Jan 99
 |*
 |*  MoveCntnt wird zur Zerstoerung eines SectionFrms wg. Aufhebung oder
 |*  Verstecken des Bereichs gerufen, um den Inhalt umzuhaengen.
@@ -819,8 +792,6 @@ namespace binfilter {
 |*  SwSectionFrm::Format()
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea.
-|*  Ersterstellung      AMA 03. Dec. 97
-|*  Letzte Aenderung    MA 09. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1024,8 +995,6 @@ namespace binfilter {
 |*  Beschreibung        Liefert das naechste Layoutblatt in das der Frame
 |*      gemoved werden kann.
 |*      Neue Seiten werden nur dann erzeugt, wenn der Parameter TRUE ist.
-|*  Ersterstellung      AMA 07. Jan. 98
-|*  Letzte Aenderung    AMA 07. Jan. 98
 |*
 |*************************************************************************/
 
@@ -1258,8 +1227,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      AMA 07. Jan. 98
-|*  Letzte Aenderung    AMA 07. Jan. 98
 |*
 |*************************************************************************/
 
@@ -1468,9 +1435,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::_Grow(), _Shrink()
 |*
-|*  Ersterstellung      AMA 14. Jan. 98
-|*  Letzte Aenderung    AMA 14. Jan. 98
-|*
 |*************************************************************************/
 
 /*N*/ SwTwips SwSectionFrm::_Grow( SwTwips nDist, BOOL bTst )
@@ -1662,9 +1626,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::MoveAllowed()
 |*
-|*  Ersterstellung      MA 08. Oct. 98
-|*  Letzte Aenderung    MA 08. Oct. 98
-|*
 |*  Wann sind Frms innerhalb eines SectionFrms moveable?
 |*  Wenn sie noch nicht in der letzten Spalte des SectionFrms sind,
 |*  wenn es einen Follow gibt,
@@ -1831,9 +1792,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::Modify()
-|*
-|*  Ersterstellung      MA 08. Oct. 98
-|*  Letzte Aenderung    MA 08. Oct. 98
 |*
 |*************************************************************************/
 

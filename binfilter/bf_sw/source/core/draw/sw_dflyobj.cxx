@@ -54,9 +54,6 @@ static bool bInResize = FALSE;
 |*
 |*  SwFlyDrawObj::Ctor
 |*
-|*  Ersterstellung      MA 18. Apr. 95
-|*  Letzte Aenderung    MA 28. May. 96
-|*
 *************************************************************************/
 /*N*/ SwFlyDrawObj::SwFlyDrawObj()
 /*N*/ {
@@ -76,18 +73,12 @@ static bool bInResize = FALSE;
 |*
 |*  SwFlyDrawObj::Paint()
 |*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 20. May. 95
-|*
 *************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwFlyDrawObj::Factory-Methoden
-|*
-|*  Ersterstellung      MA 23. Feb. 95
-|*  Letzte Aenderung    MA 23. Feb. 95
 |*
 *************************************************************************/
 
@@ -107,9 +98,6 @@ static bool bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::CToren, Dtor
-|*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 28. May. 96
 |*
 *************************************************************************/
 
@@ -134,9 +122,6 @@ static bool bInResize = FALSE;
 |*
 |*  SwVirtFlyDrawObj::GetFmt()
 |*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 08. Dec. 94
-|*
 *************************************************************************/
 
 
@@ -149,9 +134,6 @@ static bool bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::Paint()
-|*
-|*  Ersterstellung      MA 20. Dec. 94
-|*  Letzte Aenderung    MA 18. Dec. 95
 |*
 *************************************************************************/
 
@@ -169,8 +151,6 @@ static bool bInResize = FALSE;
 |*                         und der Point in dessen Flaeche nicht steht.
 |*                      4. der Point in der Flaeche liegt und der Rahmen
 |*                         selektiert ist.
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    JP 25.03.96
 |*
 *************************************************************************/
 
@@ -179,9 +159,6 @@ static bool bInResize = FALSE;
 |*
 |*  SwVirtFlyDrawObj::TakeObjInfo()
 |*
-|*  Ersterstellung      MA 03. May. 95
-|*  Letzte Aenderung    MA 03. May. 95
-|*
 *************************************************************************/
 
 
@@ -189,9 +166,6 @@ static bool bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::Groessenermittlung
-|*
-|*  Ersterstellung      MA 12. Jan. 95
-|*  Letzte Aenderung    MA 10. Nov. 95
 |*
 *************************************************************************/
 
@@ -236,9 +210,6 @@ static bool bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::Move() und Resize()
-|*
-|*  Ersterstellung      MA 12. Jan. 95
-|*  Letzte Aenderung    MA 26. Jul. 96
 |*
 *************************************************************************/
 

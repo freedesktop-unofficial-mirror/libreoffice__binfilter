@@ -99,8 +99,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*      entsprechende Formate-Array gestellt.
 |*      Wenn bereits ein passendes Format existiert, so wird dies
 |*      zurueckgeliefert.
-|*  Ersterstellung      MA 22. Sep. 92
-|*  Letzte Aenderung    JP 08.05.98
 |*
 |*************************************************************************/
 
@@ -188,8 +186,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*  Beschreibung        Loescht das angegebene Format, der Inhalt wird mit
 |*      geloescht.
-|*  Ersterstellung      MA 23. Sep. 92
-|*  Letzte Aenderung    MA 05. Feb. 93
 |*
 |*************************************************************************/
 
@@ -283,9 +279,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*                          Dokument, so kopiere auch dann noch richtig !!
 |*                          Vom chaos::Anchor-Attribut wird die Position immer
 |*                          auf 0 gesetzt !!!
-|*
-|*  Ersterstellung      BP 18.12.92
-|*  Letzte Aenderung    MA 17. Jul. 96
 |*
 |*************************************************************************/
 
@@ -738,9 +731,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*  SwDoc::GetAllFlyFmts
 |*
-|*  Ersterstellung      MA 14. Jul. 93
-|*  Letzte Aenderung    MD 23. Feb. 95
-|*
 |*************************************************************************/
 
 /*sal_Bool TstFlyRange( const SwPaM* pPam, sal_uInt32 nFlyPos )
@@ -772,9 +762,6 @@ DBG_BF_ASSERT(0, "STRIP");
 |*
 |*  SwDoc::InsertLabel()
 |*
-|*  Ersterstellung      MA 11. Feb. 94
-|*  Letzte Aenderung    MA 12. Nov. 97
-|*
 |*************************************************************************/
 
 /* #i6447# changed behaviour if lcl_CpyAttr:
@@ -796,18 +783,12 @@ DBG_BF_ASSERT(0, "STRIP");
 |*
 |*  SwDoc::InsertDrawLabel()
 |*
-|*  Ersterstellung      MIB 7. Dez. 98
-|*  Letzte Aenderung    MIB 7. Dez. 98
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwDoc::DoIdleJobs()
-|*
-|*  Ersterstellung      OK 30.03.94
-|*  Letzte Aenderung    MA 09. Jun. 95
 |*
 |*************************************************************************/
 

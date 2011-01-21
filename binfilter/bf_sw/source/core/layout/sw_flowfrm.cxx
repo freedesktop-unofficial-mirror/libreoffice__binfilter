@@ -80,9 +80,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::SwFlowFrm()
 |*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
-|*
 |*************************************************************************/
 
 
@@ -118,9 +115,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsKeepFwdMoveAllowed()
 |*
-|*  Ersterstellung      MA 20. Jul. 94
-|*  Letzte Aenderung    MA 16. May. 95
-|*
 |*************************************************************************/
 
 
@@ -145,10 +139,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwFlowFrm::CheckKeep()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MA 20. Jun. 95
-|*    Letzte Aenderung  MA 09. Apr. 97
 |*
 |*************************************************************************/
 
@@ -188,9 +178,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::IsKeep()
-|*
-|*  Ersterstellung      MA 09. Apr. 97
-|*  Letzte Aenderung    MA 09. Apr. 97
 |*
 |*************************************************************************/
 
@@ -248,9 +235,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::BwdMoveNecessary()
-|*
-|*  Ersterstellung      MA 20. Jul. 94
-|*  Letzte Aenderung    MA 02. May. 96
 |*
 |*************************************************************************/
 
@@ -371,8 +355,6 @@ namespace binfilter {
 |*  Beschreibung        Eine Spezialisierte Form des Cut() und Paste(), die
 |*      eine ganze Kette umhaengt (naehmlich this und folgende). Dabei werden
 |*      nur minimale Operationen und Benachrichtigungen ausgefuehrt.
-|*  Ersterstellung      MA 18. Mar. 93
-|*  Letzte Aenderung    MA 18. May. 95
 |*
 |*************************************************************************/
 
@@ -593,9 +575,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsAnFollow()
 |*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
-|*
 |*************************************************************************/
 
 
@@ -613,9 +592,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::FindMaster()
-|*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
 |*
 |*************************************************************************/
 
@@ -677,8 +653,6 @@ namespace binfilter {
 |*      das _nicht_ unterhalb von this liegt (oder gar this selbst ist).
 |*      Ausserdem muss dieses LayoutBlatt im gleichen Textfluss wie
 |*      pAnch Ausgangsfrm liegen (Body, Ftn)
-|*  Ersterstellung      MA 25. Nov. 92
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -715,9 +689,6 @@ namespace binfilter {
 |*  SwFrm::GetLeaf()
 |*
 |*  Beschreibung        Ruft Get[Next|Prev]Leaf
-|*
-|*  Ersterstellung      MA 20. Mar. 93
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -807,9 +778,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das naechste LayoutBlatt in den das
 |*      Frame gemoved werden kann.
-|*
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -940,8 +908,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -982,9 +948,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::IsPrevObjMove()
-|*
-|*  Ersterstellung      MA 20. Feb. 96
-|*  Letzte Aenderung    MA 22. Feb. 96
 |*
 |*************************************************************************/
 
@@ -1088,8 +1051,6 @@ namespace binfilter {
 |*      im FrmFmt ein PageDesc angegeben wird.
 |*      Die Implementierung arbeitet zuaechst nur auf CntntFrms!
 |*      -->Fuer LayoutFrms ist die Definition des Vorgaengers unklar.
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 21. Mar. 95
 |*
 |*************************************************************************/
 
@@ -1150,8 +1111,6 @@ namespace binfilter {
 |*      gibt ist jede weitere Ueberlegung ueberfluessig.
 |*      Die Implementierung arbeitet zuaechst nur auf CntntFrms!
 |*      -->Fuer LayoutFrms ist die Definition des Vorgaengers unklar.
-|*  Ersterstellung      MA 11. Jun. 93
-|*  Letzte Aenderung    MA 21. Mar. 95
 |*
 |*************************************************************************/
 
@@ -1328,8 +1287,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Moved den Frm vorwaerts wenn es durch die aktuellen
 |*      Bedingungen und Attribute notwendig erscheint.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 09. Mar. 98
 |*
 |*************************************************************************/
 
@@ -1423,8 +1380,6 @@ namespace binfilter {
 |*  BOOL SwFlowFrm::MoveFwd()
 |*
 |*  Beschreibung        Returnwert sagt, ob der Frm die Seite gewechselt hat.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -1565,8 +1520,6 @@ namespace binfilter {
 |*  Beschreibung        Returnwert sagt, ob der Frm die Seite wechseln soll.
 |*                      Sollte von abgeleiteten Klassen gerufen werden.
 |*                      Das moven selbst muessen die abgeleiteten uebernehmen.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -1859,9 +1812,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::CastFlowFrm
-|*
-|*  Ersterstellung      MA 03. May. 95
-|*  Letzte Aenderung    AMA 02. Dec. 97
 |*
 |*************************************************************************/
 

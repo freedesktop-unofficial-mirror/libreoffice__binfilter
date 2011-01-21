@@ -260,9 +260,6 @@ namespace binfilter {
 |*
 |*  SwFrm::~SwFrm()
 |*
-|*  Ersterstellung      MA 02. Mar. 94
-|*  Letzte Aenderung    MA 25. Jun. 95
-|*
 |*************************************************************************/
 
 
@@ -314,8 +311,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwLayoutFrm::SetFrmFmt()
-|*    Ersterstellung    MA 22. Apr. 93
-|*    Letzte Aenderung  MA 02. Nov. 94
 |*
 |*************************************************************************/
 
@@ -334,9 +329,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwCntntFrm::SwCntntFrm(), ~SwCntntFrm()
-|*
-|*    Ersterstellung    AK 15-Feb-1991
-|*    Letzte Aenderung  MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -389,9 +381,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::~SwLayoutFrm
-|*
-|*  Ersterstellung      AK 28-Feb-1991
-|*  Letzte Aenderung    MA 11. Jan. 95
 |*
 |*************************************************************************/
 

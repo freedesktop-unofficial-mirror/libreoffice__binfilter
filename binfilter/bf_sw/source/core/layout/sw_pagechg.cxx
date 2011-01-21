@@ -72,9 +72,6 @@ namespace binfilter {
 |*
 |*  SwBodyFrm::SwBodyFrm()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 01. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ SwBodyFrm::SwBodyFrm( SwFrmFmt *pFmt ):
 /*N*/   SwLayoutFrm( pFmt )
@@ -85,9 +82,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwBodyFrm::Format()
-|*
-|*  Ersterstellung      MA 30. May. 94
-|*  Letzte Aenderung    MA 20. Jan. 99
 |*
 |*************************************************************************/
 /*N*/ void SwBodyFrm::Format( const SwBorderAttrs* /*pAttrs*/ )
@@ -165,9 +159,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::SwPageFrm(), ~SwPageFrm()
-|*
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 08. Dec. 97
 |*
 |*************************************************************************/
 /*N*/ SwPageFrm::SwPageFrm( SwFrmFmt *pFmt, SwPageDesc *pPgDsc ) :
@@ -353,8 +344,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Erzeugt die Spezifischen Flys zur Seite und formatiert
 |*      generischen Cntnt
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 09. Nov. 95
 |*
 |*************************************************************************/
 /*N*/ void MA_FASTCALL lcl_FormatLay( SwLayoutFrm *pLay )
@@ -503,9 +492,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::Modify()
-|*
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 03. Mar. 96
 |*
 |*************************************************************************/
 /*N*/ void SwPageFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -680,8 +666,6 @@ namespace binfilter {
 |*                SwPageFrm::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
     // erfrage vom Modify Informationen
@@ -689,9 +673,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::SetPageDesc()
-|*
-|*  Ersterstellung      MA 02. Nov. 94
-|*  Letzte Aenderung    MA 02. Nov. 94
 |*
 |*************************************************************************/
 /*N*/ void  SwPageFrm::SetPageDesc( SwPageDesc *pNew, SwFrmFmt *pFmt )
@@ -716,8 +697,6 @@ namespace binfilter {
 |*          Dokument oder Standard (der 0-te) wenn der erste Absatz keinen
 |*          wuenscht.
 |*     (6.  Im HTML-Mode ist der Pagedesc immer die HTML-Seitenvorlage.)
-|*  Ersterstellung      MA 15. Feb. 93
-|*  Letzte Aenderung    MA 17. Jun. 99
 |*
 |*************************************************************************/
 /*N*/ SwPageDesc *SwPageFrm::FindPageDesc()
@@ -786,9 +765,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::AdjustRootSize()
-|*
-|*  Ersterstellung      MA 13. Aug. 93
-|*  Letzte Aenderung    MA 25. Jun. 95
 |*
 |*************************************************************************/
 //Wenn der RootFrm seine Groesse aendert muss benachrichtigt werden.
@@ -927,9 +903,6 @@ namespace binfilter {
 |*
 |*  SwPageFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 22. Jun. 95
-|*
 |*************************************************************************/
 /*N*/ inline void SetLastPage( SwPageFrm *pPage )
 /*N*/ {
@@ -999,9 +972,6 @@ namespace binfilter {
 |*
 |*  SwPageFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 07. Dec. 94
-|*
 |*************************************************************************/
 /*N*/ void SwPageFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
@@ -1049,9 +1019,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::PrepareRegisterChg()
-|*
-|*  Ersterstellung      AMA 22. Jul. 96
-|*  Letzte Aenderung    AMA 22. Jul. 96
 |*
 |*************************************************************************/
 /*N*/ void lcl_PrepFlyInCntRegister( SwCntntFrm *pFrm )
@@ -1115,9 +1082,6 @@ namespace binfilter {
 |*      ob sie das richtige FrmFmt verwenden. Wenn 'falsche' Seiten
 |*      aufgespuehrt werden, so wird versucht die Situation moeglichst
 |*      einfache zu bereinigen.
-|*
-|*  Ersterstellung      MA 10. Feb. 93
-|*  Letzte Aenderung    MA 18. Apr. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::CheckPageDescs( SwPageFrm *pStart, BOOL bNotifyFields )
@@ -1329,10 +1293,6 @@ namespace binfilter {
 |*
 |*  SwFrm::InsertPage()
 |*
-|*  Beschreibung
-|*  Ersterstellung      MA 10. Feb. 93
-|*  Letzte Aenderung    MA 27. Jul. 93
-|*
 |*************************************************************************/
 /*N*/ SwPageFrm *SwFrm::InsertPage( SwPageFrm *pPrevPage, BOOL bFtn )
 /*N*/ {
@@ -1447,9 +1407,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::GrowFrm()
 |*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 05. May. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
@@ -1461,9 +1418,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRootFrm::ShrinkFrm()
-|*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
@@ -1490,9 +1444,6 @@ namespace binfilter {
 |*          Es muss zweimal angesetzt werden um leeren Seiten aufzuspueren:
 |*              - einmal fuer die Endnotenseiten.
 |*              - und einmal fuer die Seiten des Bodytextes.
-|*
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 10. Jan. 95
 |*
 |*************************************************************************/
 void SwRootFrm::RemoveSuperfluous()
@@ -1604,9 +1555,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*      sind, damit alle Seitengebundenen Rahmen und DrawObject
 |*      untergebracht sind.
 |*
-|*  Ersterstellung      MA 27. Jul. 93
-|*  Letzte Aenderung    MA 24. Apr. 97
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::AssertFlyPages()
 /*N*/ {
@@ -1689,9 +1637,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*      auf allen Seiten die Seitengebunden Objecte auf der richtigen
 |*      Seite (Seitennummer stehen).
 |*
-|*  Ersterstellung      MA 02. Nov. 94
-|*  Letzte Aenderung    MA 10. Aug. 95
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::AssertPageFlys( SwPageFrm *pPage )
 /*N*/ {
@@ -1740,9 +1685,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*
 |*  SwRootFrm::ChgSize()
 |*
-|*  Ersterstellung      MA 24. Jul. 92
-|*  Letzte Aenderung    MA 13. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ChgSize( const Size& aNewSize )
 /*N*/ {
@@ -1754,9 +1696,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*************************************************************************
 |*
 |*  SwRootFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 19. Apr. 93
 |*
 |*************************************************************************/
 /*N*/ void SwRootFrm::MakeAll()
@@ -1779,9 +1718,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*
 |*  SwRootFrm::ImplInvalidateBrowseWidth()
 |*
-|*  Ersterstellung      MA 08. Jun. 96
-|*  Letzte Aenderung    MA 08. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ImplInvalidateBrowseWidth()
 /*N*/ {
@@ -1797,9 +1733,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*************************************************************************
 |*
 |*  SwRootFrm::ImplCalcBrowseWidth()
-|*
-|*  Ersterstellung      MA 07. Jun. 96
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ImplCalcBrowseWidth()
@@ -1923,9 +1856,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*************************************************************************
 |*
 |*  SwRootFrm::StartAllAction()
-|*
-|*  Ersterstellung      MA 08. Mar. 98
-|*  Letzte Aenderung    MA 08. Mar. 98
 |*
 |*************************************************************************/
 

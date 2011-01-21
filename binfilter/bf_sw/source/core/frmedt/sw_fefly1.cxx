@@ -186,8 +186,6 @@ using namespace ::com::sun::star;
 |*  SwFEShell::FindFlyFrm()
 |*
 |*  Beschreibung        Liefert den Fly wenn einer Selektiert ist.
-|*  Ersterstellung      MA 03. Nov. 92
-|*  Letzte Aenderung    MA 05. Mar. 96
 |*
 *************************************************************************/
 

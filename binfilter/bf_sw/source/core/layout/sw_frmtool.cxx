@@ -107,9 +107,6 @@ namespace binfilter {
 |*
 |*  SwFrmNotify::SwFrmNotify()
 |*
-|*  Ersterstellung      MA 27. Nov. 92
-|*  Letzte Aenderung    MA 09. Apr. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwFrmNotify::SwFrmNotify( SwFrm *pF ) :
@@ -140,9 +137,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrmNotify::~SwFrmNotify()
-|*
-|*  Ersterstellung      MA 27. Nov. 92
-|*  Letzte Aenderung    MA 09. Apr. 97
 |*
 |*************************************************************************/
 
@@ -377,9 +371,6 @@ namespace binfilter {
 |*
 |*  SwLayNotify::SwLayNotify()
 |*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 03. Jun. 93
-|*
 |*************************************************************************/
 
 
@@ -394,9 +385,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayNotify::~SwLayNotify()
-|*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 
@@ -639,9 +627,6 @@ namespace binfilter {
 |*
 |*  SwFlyNotify::SwFlyNotify()
 |*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 26. Aug. 93
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyNotify::SwFlyNotify( SwFlyFrm *pFlyFrm ) :
@@ -654,9 +639,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyNotify::~SwFlyNotify()
-|*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 09. Nov. 95
 |*
 |*************************************************************************/
 
@@ -709,9 +691,6 @@ namespace binfilter {
 |*
 |*  SwCntntNotify::SwCntntNotify()
 |*
-|*  Ersterstellung      MA 24. Nov. 92
-|*  Letzte Aenderung    MA 16. May. 95
-|*
 |*************************************************************************/
 
 /*N*/ SwCntntNotify::SwCntntNotify( SwCntntFrm *pCntntFrm ) :
@@ -722,9 +701,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntNotify::~SwCntntNotify()
-|*
-|*  Ersterstellung      MA 24. Nov. 92
-|*  Letzte Aenderung    MA 09. Apr. 97
 |*
 |*************************************************************************/
 
@@ -953,8 +929,6 @@ namespace binfilter {
 |*  Beschreibung        Hilfsfunktionen, die friend von irgendwem sind, damit
 |*                      nicht immer gleich 'ne ganze Klasse befreundet werden
 |*                      muss.
-|*  Ersterstellung      MA 13. Apr. 93
-|*  Letzte Aenderung    MA 11. May. 95
 |*
 |*************************************************************************/
 
@@ -1672,9 +1646,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*
 |*  SwBorderAttrs::Ctor, DTor
 |*
-|*  Ersterstellung      MA 19. May. 93
-|*  Letzte Aenderung    MA 25. Jan. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwBorderAttrs::SwBorderAttrs( const SwModify *pMod, const SwFrm *pConstructor ) :
@@ -1718,8 +1689,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*      der Sicherheitsabstand wird nur einkalkuliert, wenn Umrandung und/oder
 |*      Schatten im Spiel sind; er soll vermeiden, dass aufgrund der
 |*      groben physikalischen Gegebenheiten Raender usw. uebermalt werden.
-|*  Ersterstellung      MA 19. May. 93
-|*  Letzte Aenderung    MA 08. Jul. 93
 |*
 |*************************************************************************/
 
@@ -1787,8 +1756,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*                      Es kann auch ohne Linien ein Abstand erwuenscht sein,
 |*                      dieser wird  dann nicht vom Attribut sondern hier
 |*                      beruecksichtigt (bBorderDist, z.B. fuer Zellen).
-|*  Ersterstellung      MA 21. May. 93
-|*  Letzte Aenderung    MA 07. Jun. 99
 |*
 |*************************************************************************/
 
@@ -1832,9 +1799,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*
 |*  SwBorderAttrs::_IsLine()
 |*
-|*  Ersterstellung      MA 29. Sep. 94
-|*  Letzte Aenderung    MA 29. Sep. 94
-|*
 |*************************************************************************/
 
 
@@ -1855,9 +1819,6 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 |*         oben eine Umrandung haben.
 |*      3. Die Umrandungen links und rechts vor Vorgaenger bzw. Nachfolger
 |*         sind identisch.
-|*
-|*  Ersterstellung      MA 22. Mar. 95
-|*  Letzte Aenderung    MA 22. May. 95
 |*
 |*************************************************************************/
 /*N*/ inline int CmpLines( const SvxBorderLine *pL1, const SvxBorderLine *pL2 )
@@ -2029,9 +1990,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*  SwBorderAttrAccess::CTor
 |*
-|*  Ersterstellung      MA 20. Mar. 95
-|*  Letzte Aenderung    MA 29. Nov. 95
-|*
 |*************************************************************************/
 
 /*N*/ SwBorderAttrAccess::SwBorderAttrAccess( SwCache &rCache, const SwFrm *pFrm ) :
@@ -2048,9 +2006,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*************************************************************************
 |*
 |*  SwBorderAttrAccess::NewObj, Get
-|*
-|*  Ersterstellung      MA 20. Mar. 95
-|*  Letzte Aenderung    MA 20. Mar. 95
 |*
 |*************************************************************************/
 
@@ -2069,9 +2024,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*  SwOrderIter::Ctor
 |*
-|*  Ersterstellung      MA 06. Jan. 95
-|*  Letzte Aenderung    MA 22. Nov. 95
-|*
 |*************************************************************************/
 
 /*N*/ SwOrderIter::SwOrderIter( const SwPageFrm *pPg, bool bFlys ) :
@@ -2085,18 +2037,12 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*  SwOrderIter::Top()
 |*
-|*  Ersterstellung      MA 06. Jan. 95
-|*  Letzte Aenderung    MA 22. Nov. 95
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwOrderIter::Bottom()
-|*
-|*  Ersterstellung      MA 06. Jan. 95
-|*  Letzte Aenderung    MA 22. Nov. 95
 |*
 |*************************************************************************/
 
@@ -2130,9 +2076,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*************************************************************************
 |*
 |*  SwOrderIter::Next()
-|*
-|*  Ersterstellung      MA 06. Jan. 95
-|*  Letzte Aenderung    MA 22. Nov. 95
 |*
 |*************************************************************************/
 
@@ -2168,18 +2111,12 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*  SwOrderIter::Prev()
 |*
-|*  Ersterstellung      MA 06. Jan. 95
-|*  Letzte Aenderung    MA 22. Nov. 95
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SaveCntnt(), RestoreCntnt()
-|*
-|*  Ersterstellung      MA 10. Jun. 93
-|*  Letzte Aenderung    MA 07. Mar. 95
 |*
 |*************************************************************************/
 
@@ -2448,9 +2385,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*  SqRt()              Berechnung der Quadratwurzel, damit die math.lib
 |*      nicht auch noch dazugelinkt werden muss.
 |*
-|*  Ersterstellung      OK ??
-|*  Letzte Aenderung    MA 09. Jan. 97
-|*
 |*************************************************************************/
 
 /*N*/ ULONG MA_FASTCALL SqRt( BigInt nX )
@@ -2472,9 +2406,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*************************************************************************
 |*
 |*  InsertNewPage()     Einsetzen einer neuen Seite.
-|*
-|*  Ersterstellung      MA 01. Jul. 93
-|*  Letzte Aenderung    MA 31. Jul. 95
 |*
 |*************************************************************************/
 
@@ -2515,9 +2446,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*  RegistFlys(), Regist()  Die beiden folgenden Methoden durchsuchen rekursiv
 |*      eine Layoutstruktur und melden alle FlyFrms, die einen beliebigen Frm
 |*      innerhalb der Struktur als Anker haben bei der Seite an.
-|*
-|*  Ersterstellung      MA 08. Jul. 93
-|*  Letzte Aenderung    MA 07. Jul. 95
 |*
 |*************************************************************************/
 
@@ -2599,8 +2527,6 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*  Beschreibung        Benachrichtigt den Hintergrund je nach der
 |*      Veraenderung zwischen altem und neuem Rechteckt.
-|*  Ersterstellung      MA 18. Jun. 93
-|*  Letzte Aenderung    MA 06. Jun. 96
 |*
 |*************************************************************************/
 

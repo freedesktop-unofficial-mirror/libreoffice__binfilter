@@ -1526,8 +1526,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 |*  SwTxtNode::Cut()
 |*
 |*  Beschreibung        text.doc
-|*  Ersterstellung      VB 20.03.91
-|*  Letzte Aenderung    JP 11.08.94
 |*
 *************************************************************************/
 

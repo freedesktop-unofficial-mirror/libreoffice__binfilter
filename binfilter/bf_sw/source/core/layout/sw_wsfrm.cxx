@@ -77,9 +77,6 @@ namespace binfilter {
 |*
 |*  SwFrm::SwFrm()
 |*
-|*  Ersterstellung      AK 12-Feb-1991
-|*  Letzte Aenderung    MA 05. Apr. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwFrm::SwFrm( SwModify *pMod ) :
@@ -187,9 +184,6 @@ namespace binfilter {
 |*
 |*  SwFrm::Modify()
 |*
-|*  Ersterstellung      AK 01-Mar-1991
-|*  Letzte Aenderung    MA 20. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ void SwFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
 /*N*/ {
@@ -288,8 +282,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwFrm::Prepare()
-|*    Ersterstellung    MA 13. Apr. 93
-|*    Letzte Aenderung  MA 26. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::Prepare( const PrepareHint, const void *, BOOL )
@@ -303,8 +295,6 @@ namespace binfilter {
 |*    Beschreibung:     Invalidiert die Seite, in der der Frm gerade steht.
 |*      Je nachdem ob es ein Layout, Cntnt oder FlyFrm ist wird die Seite
 |*      entsprechend Invalidiert.
-|*    Ersterstellung    MA 22. Jul. 92
-|*    Letzte Aenderung  MA 14. Oct. 94
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::InvalidatePage( const SwPageFrm *pPage ) const
@@ -395,9 +385,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::ChgSize()
-|*
-|*  Ersterstellung      AK 15-Feb-1991
-|*  Letzte Aenderung    MA 18. Nov. 98
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::ChgSize( const Size& aNewSize )
@@ -577,9 +564,6 @@ namespace binfilter {
 |*
 |*  SwFrm::Remove()
 |*
-|*  Ersterstellung      AK 01-Mar-1991
-|*  Letzte Aenderung    MA 07. Dec. 95
-|*
 |*************************************************************************/
 /*N*/ void SwFrm::Remove()
 /*N*/ {
@@ -624,9 +608,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::Paste()
-|*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 09. Sep. 98
 |*
 |*************************************************************************/
 /*N*/ void SwCntntFrm::Paste( SwFrm* pParent, SwFrm* pSibling)
@@ -728,9 +709,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::Cut()
-|*
-|*  Ersterstellung      AK 14-Feb-1991
-|*  Letzte Aenderung    MA 09. Sep. 98
 |*
 |*************************************************************************/
 /*N*/ void SwCntntFrm::Cut()
@@ -882,9 +860,6 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
-|*
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::Paste( SwFrm* pParent, SwFrm* pSibling)
 /*N*/ {
@@ -987,9 +962,6 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
-|*
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::Cut()
 /*N*/ {
@@ -1052,9 +1024,6 @@ namespace binfilter {
 |*
 |*  SwFrm::Grow()
 |*
-|*  Ersterstellung      AK 19-Feb-1991
-|*  Letzte Aenderung    MA 05. May. 94
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::Grow( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
@@ -1092,9 +1061,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::Shrink()
-|*
-|*  Ersterstellung      AK 14-Feb-1991
-|*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::Shrink( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -1152,9 +1118,6 @@ namespace binfilter {
 |*      Minimalwert fuer die Hoehe des Bodys nicht unterschritten wird.
 |*
 |*  Parameter: nDiff ist der Betrag, um den Platz geschaffen werden muss
-|*
-|*  Ersterstellung      MA 07. May. 92
-|*  Letzte Aenderung    AMA 02. Nov. 98
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::AdjustNeighbourhood( SwTwips nDiff, BOOL bTst )
@@ -1453,9 +1416,6 @@ namespace binfilter {
 |*  SwFrm::ImplInvalidateSize(), ImplInvalidatePrt(), ImplInvalidatePos(),
 |*         ImplInvalidateLineNum()
 |*
-|*  Ersterstellung      MA 15. Oct. 92
-|*  Letzte Aenderung    MA 24. Mar. 94
-|*
 |*************************************************************************/
 /*N*/ void SwFrm::ImplInvalidateSize()
 /*N*/ {
@@ -1495,9 +1455,6 @@ namespace binfilter {
 |*
 |*  SwFrm::ReinitializeFrmSizeAttrFlags
 |*
-|*  Ersterstellung      MA 15. Oct. 96
-|*  Letzte Aenderung    MA 15. Oct. 96
-|*
 |*************************************************************************/
 /*N*/ void SwFrm::ReinitializeFrmSizeAttrFlags()
 /*N*/ {
@@ -1535,9 +1492,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::GrowFrm()
-|*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 25. Mar. 99
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwCntntFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -1620,9 +1574,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::ShrinkFrm()
-|*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwCntntFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -1733,10 +1684,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwCntntFrm::Modify()
-|*
-|*    Beschreibung
-|*    Ersterstellung    AK 05-Mar-1991
-|*    Letzte Aenderung  MA 13. Oct. 95
 |*
 |*************************************************************************/
 /*N*/ void SwCntntFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -1933,9 +1880,6 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::SwLayoutFrm()
 |*
-|*  Ersterstellung      AK 14-Feb-1991
-|*  Letzte Aenderung    MA 12. May. 95
-|*
 |*************************************************************************/
 /*N*/ SwLayoutFrm::SwLayoutFrm( SwFrmFmt* pFmt ):
 /*N*/   SwFrm( pFmt ),
@@ -1991,9 +1935,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::GrowFrm()
-|*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 23. Sep. 96
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwLayoutFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -2135,9 +2076,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::ShrinkFrm()
-|*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 25. Mar. 99
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwLayoutFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -2305,8 +2243,6 @@ namespace binfilter {
 |*      PrtArea des Frm's.
 |*      Die Variablen Frm's werden auch proportional angepasst; sie werden
 |*      sich schon wieder zurechtwachsen/-schrumpfen.
-|*  Ersterstellung      MA 11.03.92
-|*  Letzte Aenderung    AMA 2. Nov. 98
 |*
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::ChgLowersProp( const Size& rOldSize )
@@ -2714,8 +2650,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea.
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 28. Jul. 92
-|*  Letzte Aenderung    MA 21. Mar. 95
 |*
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::Format( const SwBorderAttrs *pAttrs )
@@ -2806,9 +2740,6 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::InvalidatePercentLowers()
 |*
-|*  Ersterstellung      MA 13. Jun. 96
-|*  Letzte Aenderung    MA 13. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ static void InvaPercentFlys( SwFrm *pFrm, SwTwips nDiff )
 /*N*/ {
@@ -2878,9 +2809,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::CalcRel()
-|*
-|*  Ersterstellung      MA 13. Jun. 96
-|*  Letzte Aenderung    MA 10. Oct. 96
 |*
 |*************************************************************************/
 /*N*/ long SwLayoutFrm::CalcRel( const SwFmtFrmSize &rSz, BOOL bWidth ) const
@@ -3309,9 +3237,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRootFrm::InvalidateAllCntnt()
-|*
-|*  Ersterstellung      MA 13. Feb. 98
-|*  Letzte Aenderung    MA 12. Aug. 00
 |*
 |*************************************************************************/
 

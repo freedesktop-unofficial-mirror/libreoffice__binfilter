@@ -235,10 +235,6 @@ void SvEditObjectProtocol::Imp_DeleteDefault()
 |*    SvEditObjectProtocol::~SvEditObjectProtocol()
 |*    SvEditObjectProtocol::Release()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
-|*
 *************************************************************************/
 SvEditObjectProtocol::SvEditObjectProtocol()
 {
@@ -285,10 +281,6 @@ BOOL SvEditObjectProtocol::Release()
 |*    SvEditObjectProtocol::GetObj()
 |*    SvEditObjectProtocol::GetClient()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
-|*
 *************************************************************************/
 SvEmbeddedObject * SvEditObjectProtocol::GetObj() const
 {
@@ -314,10 +306,6 @@ SvInPlaceClient * SvEditObjectProtocol::GetIPClient() const
 |*    SvEditObjectProtocol::IsEmbed()
 |*    SvEditObjectProtocol::IsInPlaceActive()
 |*    SvEditObjectProtocol::IsUIActive()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
 |*
 *************************************************************************/
 BOOL SvEditObjectProtocol::IsConnect() const

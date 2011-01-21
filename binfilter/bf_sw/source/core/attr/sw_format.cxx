@@ -126,8 +126,7 @@ namespace binfilter {
 |*    SwFmt &SwFmt::operator=(const SwFmt& aFmt)
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 05.08.94
+|*
 *************************************************************************/
 
 
@@ -258,8 +257,7 @@ namespace binfilter {
 |*    SwFmt::~SwFmt()
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 14.02.91
+|*
 *************************************************************************/
 
 
@@ -290,8 +288,7 @@ namespace binfilter {
 |*    void SwFmt::Modify( SfxPoolItem* pOldValue, SfxPoolItem* pNewValue )
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 05.08.94
+|*
 *************************************************************************/
 
 
@@ -596,9 +593,6 @@ namespace binfilter {
 /*************************************************************************
 |*    void SwFmt::GetInfo( const SfxPoolItem& ) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 18.04.94
-|*    Letzte Aenderung  JP 05.08.94
 *************************************************************************/
 
 /*N*/

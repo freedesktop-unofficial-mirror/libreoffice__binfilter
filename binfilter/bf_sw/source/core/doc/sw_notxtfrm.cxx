@@ -86,10 +86,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwGrfFrm::SwGrfFrm(ViewShell * const,SwGrfNode *)
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 03. Mar. 93
-|*
 *************************************************************************/
 
 
@@ -116,10 +112,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwNoTxtNode::MakeFrm()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 03. Mar. 93
-|*
 *************************************************************************/
 
 
@@ -132,10 +124,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwNoTxtFrm::~SwNoTxtFrm()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 30. Apr. 96
-|*
 *************************************************************************/
 
 /*N*/ SwNoTxtFrm::~SwNoTxtFrm()
@@ -147,10 +135,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    void SwNoTxtFrm::Modify( SwHint * pOld, SwHint * pNew )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  JP 05.03.91
-|*
 *************************************************************************/
 
 
@@ -161,10 +145,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*************************************************************************
 |*
 |*    void SwNoTxtFrm::Paint()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 10. Jan. 97
 |*
 *************************************************************************/
 
@@ -183,8 +163,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*    Parameter         Point&  die Position im Frame  ( auch Return-Wert )
 |*                      Size&   die Groesse der Grafik ( auch Return-Wert )
 |*                      MirrorGrf   akt. Spiegelungs-Attribut
-|*    Ersterstellung    JP 04.03.91
-|*    Letzte Aenderung  JP 31.08.94
 |*
 *************************************************************************/
 
@@ -197,9 +175,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*    Beschreibung      Errechne die Position und die Groesse der Bitmap
 |*                      innerhalb des uebergebenem Rechtecks.
 |*
-|*    Ersterstellung    JP 03.09.91
-|*    Letzte Aenderung  MA 11. Oct. 94
-|*
 *************************************************************************/
 
 
@@ -209,8 +184,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    Beschreibung      Gebe die Groesse des umgebenen FLys und
 |*                      damit die der Grafik zurueck.
-|*    Ersterstellung    JP 04.03.91
-|*    Letzte Aenderung  JP 31.08.94
 |*
 *************************************************************************/
 
@@ -227,9 +200,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*************************************************************************
 |*
 |*    SwNoTxtFrm::MakeAll()
-|*
-|*    Ersterstellung    MA 29. Nov. 96
-|*    Letzte Aenderung  MA 29. Nov. 96
 |*
 *************************************************************************/
 
@@ -261,8 +231,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*    SwNoTxtFrm::Format()
 |*
 |*    Beschreibung      Errechne die Groesse der Bitmap, wenn noetig
-|*    Ersterstellung    JP 11.03.91
-|*    Letzte Aenderung  MA 13. Mar. 96
 |*
 *************************************************************************/
 
@@ -292,10 +260,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*************************************************************************
 |*
 |*    SwNoTxtFrm::GetCharRect()
-|*
-|*    Beschreibung
-|*    Ersterstellung    SS 29-Apr-1991
-|*    Letzte Aenderung  MA 10. Oct. 94
 |*
 |*************************************************************************/
 

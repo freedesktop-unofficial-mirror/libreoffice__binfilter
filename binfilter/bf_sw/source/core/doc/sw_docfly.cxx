@@ -526,9 +526,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 |*
 |*  SwDoc::ChgAnchor()
 |*
-|*  Ersterstellung      MA 10. Jan. 95
-|*  Letzte Aenderung    JP 08.07.98
-|*
 *************************************************************************/
 
 /*?*/ BOOL SwDoc::ChgAnchor( const SdrMarkList& rMrkList, int eAnchorId,

@@ -462,8 +462,6 @@ USHORT ZyklTriDiagGS(BOOL rep, USHORT n, double* lower, double* diag,
 |*
 |*    Beschreibung      Berechnet die Koeffizienten eines natuerlichen
 |*                      kubischen Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -570,8 +568,6 @@ USHORT NaturalSpline(USHORT n, double* x, double* y,
 |*
 |*    Beschreibung      Berechnet die Koeffizienten eines periodischen
 |*                      kubischen Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -649,8 +645,6 @@ USHORT PeriodicSpline(USHORT n, double* x, double* y,
 |*    Beschreibung      Berechnet die Koeffizienten eines parametrischen
 |*                      natuerlichen oder periodischen kubischen
 |*                      Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -737,8 +731,6 @@ USHORT ParaSpline(USHORT n, double* x, double* y, BYTE MargCond,
 |*                      ist Speicher fuer die Koeffizientenarrays
 |*                      allokiert, der dann spaeter vom Aufrufer mittels
 |*                      delete freizugeben ist.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -826,8 +818,6 @@ BOOL CalcSpline(Polygon& rPoly, BOOL Periodic, USHORT& n,
 |*                      Fall hat das Polygon 0, im 2. Fall PolyMax Punkte.
 |*                      Um Koordinatenueberlaeufe zu vermeiden werden diese
 |*                      auf +/-32000 begrenzt.
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL Spline2Poly(Polygon& rSpln, BOOL Periodic, Polygon& rPoly)

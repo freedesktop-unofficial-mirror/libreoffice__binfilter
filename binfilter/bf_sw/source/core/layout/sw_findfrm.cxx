@@ -55,8 +55,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Sucht den ersten/letzten CntntFrm im BodyText unterhalb
 |*      der Seite.
-|*  Ersterstellung      MA 15. Feb. 93
-|*  Letzte Aenderung    MA 18. Apr. 94
 |*
 |*************************************************************************/
 /*N*/ SwLayoutFrm *SwFtnBossFrm::FindBodyCont()
@@ -85,9 +83,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*  Beschreibung            Prueft, ob der Frame irgendwo in seiner
 |*          untergeordneten Struktur einen oder mehrere CntntFrm's enthaelt;
 |*          Falls ja wird der erste gefundene CntntFrm zurueckgegeben.
-|*
-|*  Ersterstellung      MA 13. May. 92
-|*  Letzte Aenderung    MA 20. Apr. 94
 |*
 |*************************************************************************/
 
@@ -141,8 +136,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*                  hineinzukommen. Dort hangelt es sich wieder hoch zum
 |*                  ersten SwCellFrm, seit es SectionFrms gibt, reicht kein
 |*                  ContainsCntnt()->GetUpper() mehr...
-|*  Ersterstellung      AMA 17. Mar. 99
-|*  Letzte Aenderung    AMA 17. Mar. 99
 |*
 |*************************************************************************/
 
@@ -160,8 +153,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  Beschreibung wie ContainsCntnt, nur dass nicht nur CntntFrms, sondern auch
 |*          Bereiche und Tabellen zurueckgegeben werden.
-|*  Ersterstellung      AMA 10. Mar. 99
-|*  Letzte Aenderung    AMA 10. Mar. 99
 |*
 |*************************************************************************/
 
@@ -225,9 +216,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  SwFrm::GetLower()
 |*
-|*  Ersterstellung      MA 27. Jul. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
-|*
 |*************************************************************************/
 /*N*/ const SwFrm* SwFrm::GetLower() const
 /*N*/ {
@@ -242,9 +230,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*************************************************************************
 |*
 |*  SwLayoutFrm::IsAnLower()
-|*
-|*  Ersterstellung      MA 18. Mar. 93
-|*  Letzte Aenderung    MA 18. Mar. 93
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayoutFrm::IsAnLower( const SwFrm *pAssumed ) const
@@ -291,8 +276,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*      zeigen.
 |*      pLower darf allerdings auf einen TabFrm zeigen, denn diese stehen
 |*      direkt neben den CntntFrms.
-|*  Ersterstellung      MA 29. May. 92
-|*  Letzte Aenderung    MA 30. Oct. 97
 |*
 |*************************************************************************/
 /*N*/ const SwFrm * MA_FASTCALL lcl_LastLower( const SwFrm *pFrm )
@@ -338,8 +321,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*          zeigen.
 |*          pLower darf allerdings auf einen TabFrm zeigen, denn diese stehen
 |*          direkt neben den CntntFrms.
-|*  Ersterstellung      MA 13. May. 92
-|*  Letzte Aenderung    MA 30. Oct. 97
 |*
 |*************************************************************************/
 /*N*/ const SwLayoutFrm *SwFrm::GetNextLayoutLeaf() const
@@ -371,9 +352,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  SwFrm::FindRootFrm(), FindTabFrm(), FindFtnFrm(), FindFlyFrm(),
 |*         FindPageFrm(), FindColFrm()
-|*
-|*  Ersterstellung      ??
-|*  Letzte Aenderung    MA 05. Sep. 93
 |*
 |*************************************************************************/
 /*N*/ SwRootFrm* SwFrm::FindRootFrm()
@@ -527,9 +505,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  SwFrmFrm::GetAttrSet()
 |*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    MA 02. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ const SwAttrSet* SwFrm::GetAttrSet() const
 /*N*/ {
@@ -565,8 +540,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*        auf.
 |*      - Tabellen verhalten sich prinzipiell analog zu den Cntnts
 |*      - Bereiche ebenfalls
-|*  Ersterstellung      AK 14-Feb-1991
-|*  Letzte Aenderung    AMA 10. Mar. 99
 |*
 |*************************************************************************/
 
@@ -927,9 +900,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*    SwFrm::IsMoveable();
 |*
-|*    Ersterstellung    MA 09. Mar. 93
-|*    Letzte Aenderung  MA 05. May. 95
-|*
 |*************************************************************************/
 /*N*/ BOOL SwFrm::IsMoveable() const
 /*N*/ {
@@ -976,9 +946,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*      weil im weiteren ja vom letzten Frm innerhalb eines anderen
 |*      Frms rueckwaerts gegangen wird.
 |*      Vorwaetzwander funktioniert analog.
-|*
-|*    Ersterstellung    ??
-|*    Letzte Aenderung  MA 30. Oct. 97
 |*
 |*************************************************************************/
 
@@ -1034,9 +1001,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*************************************************************************
 |*
 |*    SwFrm::SetInfFlags();
-|*
-|*    Ersterstellung    MA 05. Apr. 94
-|*    Letzte Aenderung  MA 05. Apr. 94
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::SetInfFlags()

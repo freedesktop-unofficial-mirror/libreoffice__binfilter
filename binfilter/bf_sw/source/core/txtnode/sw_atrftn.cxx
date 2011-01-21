@@ -55,10 +55,6 @@ namespace binfilter {
 |*
 |*    class SwFmtFtn
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 09.08.94
-|*    Letzte Aenderung  JP 08.08.94
-|*
 *************************************************************************/
 
 

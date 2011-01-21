@@ -42,8 +42,6 @@ namespace binfilter {
 |*    class SwFmtHardBlank
 |*
 |*    Beschreibung      Dokument 1.20
-|*    Ersterstellung    JP 23.11.90
-|*    Letzte Aenderung  JP 20.02.91
 |*
 *************************************************************************/
 
@@ -63,8 +61,6 @@ namespace binfilter {
 |*    class SwFmtSoftHyph
 |*
 |*    Beschreibung      Dokument 1.20
-|*    Ersterstellung    JP 23.11.90
-|*    Letzte Aenderung  JP 20.02.91
 |*
 *************************************************************************/
 

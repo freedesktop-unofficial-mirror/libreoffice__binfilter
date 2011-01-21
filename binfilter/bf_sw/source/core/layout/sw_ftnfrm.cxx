@@ -59,9 +59,6 @@ namespace binfilter {
 |*      Dokument, dort stehen die Fussnoten gluecklicherweise nach ihrem
 |*      Index sortiert.
 |*
-|*  Ersterstellung      MA 29. Jun. 93
-|*  Letzte Aenderung    MA 13. Dec. 93
-|*
 |*************************************************************************/
 
 /*N*/ #define ENDNOTE 0x80000000
@@ -113,9 +110,6 @@ namespace binfilter {
 |*  oder eine Seite (ohne Spalten) sein. Wenn die Seite dabei gewechselt wird
 |*  enthaelt pPage die neue Seite und die Funktion liefert TRUE.
 |*
-|*  Ersterstellung      AMA 06. Nov. 98
-|*  Letzte Aenderung    AMA 06. Nov. 98
-|*
 |*************************************************************************/
 
 /*N*/ BOOL lcl_NextFtnBoss( SwFtnBossFrm* &rpBoss, SwPageFrm* &rpPage,
@@ -165,9 +159,6 @@ namespace binfilter {
 |*  liefert die Spaltennummer, wenn pBoss eine Spalte ist,
 |*  sonst eine Null (bei Seiten).
 |*
-|*  Ersterstellung      AMA 06. Nov. 98
-|*  Letzte Aenderung    AMA 06. Nov. 98
-|*
 |*************************************************************************/
 
 /*N*/ USHORT lcl_ColumnNum( const SwFrm* pBoss )
@@ -201,9 +192,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnContFrm::SwFtnContFrm()
-|*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 02. Mar. 93
 |*
 |*************************************************************************/
 
@@ -251,8 +239,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame;
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 01. Mar. 93
-|*  Letzte Aenderung    MA 17. Nov. 98
 |*
 |*************************************************************************/
 
@@ -333,9 +319,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnContFrm::GrowFrm(), ShrinkFrm()
-|*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    AMA 05. Nov. 98
 |*
 |*************************************************************************/
 
@@ -496,9 +479,6 @@ namespace binfilter {
 |*
 |*  SwFtnFrm::SwFtnFrm()
 |*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 11. Oct. 93
-|*
 |*************************************************************************/
 
 
@@ -516,9 +496,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnFrm::InvalidateNxtFtnCnts()
-|*
-|*  Ersterstellung      MA 29. Jun. 93
-|*  Letzte Aenderung    MA 29. Jun. 93
 |*
 |*************************************************************************/
 
@@ -584,9 +561,6 @@ namespace binfilter {
 |*
 |*  SwFtnFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 24. Jul. 95
-|*
 |*************************************************************************/
 
 
@@ -644,9 +618,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnFrm::Paste()
-|*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
 |*
 |*************************************************************************/
 
@@ -717,8 +688,6 @@ namespace binfilter {
 |*  Beschreibung        Liefert das naechste LayoutBlatt in den das
 |*      Frame gemoved werden kann.
 |*      Neue Seiten werden nur dann erzeugt, wenn der Parameter TRUE ist.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    AMA 09. Nov. 98
 |*
 |*************************************************************************/
 
@@ -730,8 +699,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -740,9 +707,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::IsFtnAllowed()
-|*
-|*  Ersterstellung      MA 22. Mar. 94
-|*  Letzte Aenderung    MA 01. Dec. 94
 |*
 |*************************************************************************/
 
@@ -766,9 +730,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::UpdateFtnNums()
 |*
-|*  Ersterstellung      MA 02. Mar. 93
-|*  Letzte Aenderung    MA 09. Dec. 97
-|*
 |*************************************************************************/
 
 
@@ -777,9 +738,6 @@ namespace binfilter {
 |*
 |*  RemoveFtns()        Entfernen aller Fussnoten (nicht etwa die Referenzen)
 |*                      und Entfernen aller Fussnotenseiten.
-|*
-|*  Ersterstellung      MA 05. Dec. 97
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -874,9 +832,6 @@ namespace binfilter {
 |*
 |*  SetFtnPageDescs()   Seitenvorlagen der Fussnotenseiten aendern
 |*
-|*  Ersterstellung      MA 11. Dec. 97
-|*  Letzte Aenderung    MA 11. Dec. 97
-|*
 |*************************************************************************/
 
 void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
@@ -894,9 +849,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::MakeFtnCont()
-|*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -923,9 +875,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::FindFtnCont()
-|*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -955,9 +904,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::FindNearestFtnCont()  Sucht den naechst greifbaren Fussnotencontainer.
-|*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -991,8 +937,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  SwFtnBossFrm::FindFirstFtn()
 |*
 |*  Beschreibung        Erste Fussnote des Fussnotenbosses suchen.
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 99
 |*
 |*************************************************************************/
 
@@ -1080,8 +1024,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  SwFtnBossFrm::FindFirstFtn()
 |*
 |*  Beschreibunt        Erste Fussnote zum Cnt suchen.
-|*  Ersterstellung      MA 04. Mar. 93
-|*  Letzte Aenderung    AMA 28. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1122,9 +1064,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::ResetFtn()
-|*
-|*  Ersterstellung      MA 11. May. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1172,9 +1111,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::InsertFtn()
-|*
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1437,9 +1373,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::AppendFtn()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1624,9 +1557,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::FindFtn()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1671,9 +1601,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::RemoveFtn()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1705,9 +1632,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::ChangeFtnRef()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1715,9 +1639,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::CollectFtns()
-|*
-|*  Ersterstellung      MA 24. Jul. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1730,9 +1651,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::_CollectFtns()
-|*
-|*  Ersterstellung      MA 24. Jul. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1747,9 +1665,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::_MoveFtns()
 |*
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1758,9 +1673,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::MoveFtns()
 |*
-|*  Ersterstellung      BP 05. Aug. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1768,9 +1680,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::RearrangeFtns()
-|*
-|*  Ersterstellung      MA 20. Jan. 94
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1899,9 +1808,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwPageFrm::UpdateFtnNum()
 |*
-|*  Ersterstellung      MA 02. Mar. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 /*N*/ void SwPageFrm::UpdateFtnNum()
@@ -1964,9 +1870,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::SetFtnDeadLine()
 |*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    MA 16. Nov. 98
-|*
 |*************************************************************************/
 
 /*N*/ void SwFtnBossFrm::SetFtnDeadLine( const SwTwips nDeadLine )
@@ -1999,9 +1902,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::GetVarSpace()
-|*
-|*  Ersterstellung      MA 03. Apr. 95
-|*  Letzte Aenderung    MA 16. Nov. 98
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwFtnBossFrm::GetVarSpace() const
@@ -2084,9 +1984,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  gibt und die Fussnoten nicht vom Bereich eingesammelt werden, ist ein Adjust..,
 |*  ansonsten ein Grow/Shrink notwendig.
 |*
-|*  Ersterstellung      AMA 09. Dec 98
-|*  Letzte Aenderung    AMA 09. Dec 98
-|*
 |*************************************************************************/
 
 /*N*/ BYTE SwFtnBossFrm::_NeighbourhoodAdjustment( const SwFrm* /*pFrm*/ ) const
@@ -2122,17 +2019,11 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwPageFrm::SetColMaxFtnHeight()
 |*
-|*  Ersterstellung      AMA 29. Oct 98
-|*  Letzte Aenderung    AMA 29. Oct 98
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwLayoutFrm::MoveLowerFtns
-|*
-|*  Ersterstellung      MA 01. Sep. 94
-|*  Letzte Aenderung    MA 05. Sep. 95
 |*
 |*************************************************************************/
 
@@ -2159,9 +2050,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwLayoutFrm::MoveFtnCntFwd()
 |*
-|*  Ersterstellung      MA 24. Nov. 94
-|*  Letzte Aenderung    MA 15. Jun. 95
-|*
 |*************************************************************************/
 
 
@@ -2169,9 +2057,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  class SwSaveFtnHeight
-|*
-|*  Ersterstellung      MA 19. Jan. 94
-|*  Letzte Aenderung    MA 19. Jan. 94
 |*
 |*************************************************************************/
 

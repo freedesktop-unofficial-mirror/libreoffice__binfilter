@@ -149,10 +149,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::XOutCalcXPolyExtent()
 |*
-|*    Beschreibung
-|*    Ersterstellung    14.08.95 ESO
-|*    Letzte Aenderung  15.08.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ Rectangle XOutCalcXPolyExtent(const XPolygon& rXPoly, OutputDevice* pOut)
@@ -225,10 +221,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::CalcBezierStepCount()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  14.12.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ long XOutCalcBezierStepCount( const XPolygon& rXPoly, USHORT nIndex,
@@ -267,10 +259,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::CalcBezier()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  14.12.94 ESO
 |*
 *************************************************************************/
 
@@ -325,10 +313,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::CreatePolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  14.12.94
 |*
 *************************************************************************/
 
@@ -464,8 +448,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      Uebergang zwischen zwei Linien eines Polygons
 |*                      berechnen
-|*    Ersterstellung    02.12.94
-|*    Letzte Aenderung  09.01.95
 |*
 \************************************************************************/
 
@@ -475,8 +457,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawStartEndPoly()
 |*
 |*    Linienanfang- bzw. -endpolygon zeichnen
-|*    Ersterstellung    17.01.95 ESO
-|*    Letzte Aenderung  18.01.95 ESO
 |*
 \************************************************************************/
 
@@ -486,8 +466,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawLineStartEnd()
 |*
 |*    Linienanfang bzw. -ende eines Polygons zeichnen
-|*    Ersterstellung    18.01.95 ESO
-|*    Letzte Aenderung  20.01.95 ESO
 |*
 \************************************************************************/
 
@@ -497,8 +475,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawFatLine()
 |*
 |*    Beschreibung      Dicke Linie mit oder ohne Linienstile zeichnen
-|*    Ersterstellung    28.11.94
-|*    Letzte Aenderung  09.10.95
 |*
 \************************************************************************/
 
@@ -508,8 +484,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawPatternLine()
 |*
 |*    Beschreibung      Haarlinie mit Linienstil zeichnen
-|*    Ersterstellung    13.08.95 ESO
-|*    Letzte Aenderung  14.08.95 ESO
 |*
 \************************************************************************/
 
@@ -519,8 +493,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawLinePolygon()
 |*
 |*    Beschreibung      Polygon-Linie (ggf. mit Linienmuster) zeichnen
-|*    Ersterstellung    28.11.94
-|*    Letzte Aenderung  09.10.95 ESO
 |*
 \************************************************************************/
 

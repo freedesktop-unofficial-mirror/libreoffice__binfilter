@@ -233,10 +233,6 @@ int SwIndex::nSerial = 0;
 |*
 |*    SwIndex & SwIndex::operator=( const SwIndex & aSwIndex )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 
@@ -261,10 +257,6 @@ int SwIndex::nSerial = 0;
 /*************************************************************************
 |*
 |*    SwIndex &SwIndex::Assign
-|*
-|*    Beschreibung
-|*    Ersterstellung    VB 25.03.91
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 
@@ -376,10 +368,6 @@ int SwIndex::nSerial = 0;
 |*
 |*    SwIndex::operator++()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 #ifdef DBG_UTIL
@@ -397,10 +385,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*************************************************************************
 |*
 |*    SwIndex::operator--()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 
@@ -424,10 +408,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 |*
 |*    SwIndex::operator+=( xub_StrLen )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 
@@ -441,10 +421,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 |*
 |*    SwIndex::operator-=( xub_StrLen )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 
@@ -452,10 +428,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*************************************************************************
 |*
 |*    SwIndex::operator+=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 
@@ -471,10 +443,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 |*
 |*    SwIndex::operator-=( const SwIndex & )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 
@@ -483,10 +451,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*************************************************************************
 |*
 |*    SwIndex::operator<( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 
@@ -501,10 +465,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 |*
 |*    SwIndex::operator<=( const SwIndex & )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
-|*
 *************************************************************************/
 
 
@@ -518,10 +478,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 |*
 |*    SwIndex::operator>( const SwIndex & )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
-|*
 *************************************************************************/
 
 
@@ -534,10 +490,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*************************************************************************
 |*
 |*    SwIndex::operator>=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
 |*
 *************************************************************************/
 
@@ -553,10 +505,6 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*************************************************************************
 |*
 |*    SwIndex & SwIndex::operator=( xub_StrLen )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 10.12.90
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 

@@ -66,8 +66,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Sucht denjenigen CntntFrm, innerhalb dessen
 |*                      PrtArea der Point liegt.
-|*  Ersterstellung      MA 20. Jul. 92
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 
@@ -77,8 +75,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Sucht die Seite, innerhalb der der gesuchte Point
 |*                      liegt.
-|*  Ersterstellung      MA 20. Jul. 92
-|*  Letzte Aenderung    MA 18. Jul. 96
 |*
 |*************************************************************************/
 
@@ -90,8 +86,6 @@ namespace binfilter {
 |*  Beschreibung:       Reicht Primaer den Aufruf an die erste Seite weiter.
 |*                      Wenn der 'reingereichte Point veraendert wird,
 |*                      so wird FALSE zurueckgegeben.
-|*  Ersterstellung      MA 01. Jun. 92
-|*  Letzte Aenderung    MA 30. Nov. 94
 |*
 |*************************************************************************/
 
@@ -103,17 +97,12 @@ namespace binfilter {
 |*                      der Crsr notfalls mit Gewalt in einen der CntntFrms
 |*                      gesetzt.
 |*                      In geschuetzte Zellen gibt es hier keinen Eingang.
-|*  Ersterstellung      MA 04. Jun. 93
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwFlyFrm::GetCrsrOfst()
-|*
-|*  Ersterstellung      MA 15. Dec. 92
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 //Problem: Wenn zwei Flys genau gleich gross sind und auf derselben
@@ -130,8 +119,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    Beschreibung      Layoutabhaengiges Cursortravelling
-|*    Ersterstellung    MA 23. Jul. 92
-|*    Letzte Aenderung  MA 06. Sep. 93
 |*
 |*************************************************************************/
 
@@ -194,8 +181,6 @@ namespace binfilter {
 |*          diejenige in der der PaM sitzt. Anderfalls ist die aktuelle
 |*          Seite die erste Seite innerhalb der VisibleArea.
 |*          Es wird nur auf den vorhandenen Seiten gearbeitet!
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
@@ -209,8 +194,6 @@ namespace binfilter {
 |*          Liefert Null, wenn die Operation nicht moeglich ist.
 |*          Der PaM sitzt in der letzten Seite, wenn die Seitenzahl zu gross
 |*          gewaehlt wurde.
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
@@ -225,8 +208,6 @@ namespace binfilter {
 |*      andere Anfang/Ende.
 |*      Fuer die Bestimmung der Seite und des Cntnt (Anfang/Ende) werden
 |*      die im folgenden definierten Funktionen benutzt.
-|*    Ersterstellung    MA 15. Oct. 92
-|*    Letzte Aenderung  MA 28. Feb. 93
 |*
 |*************************************************************************/
 
@@ -253,8 +234,6 @@ namespace binfilter {
  *                      erweitert bis einer gefunden wird.
 |*                      Zurueckgegeben wird die 'Semantisch richtige' Position
 |*                      innerhalb der PrtArea des gefundenen CntntFrm
-|*  Ersterstellung      MA 15. Jul. 92
-|*  Letzte Aenderung    MA 09. Jan. 97
 |*
 |*************************************************************************/
 /*N*/ ULONG CalcDiff( const Point &rPt1, const Point &rPt2 )
@@ -519,9 +498,6 @@ namespace binfilter {
 |*  Beschreibung        Analog zu SwLayoutFrm::GetCntntPos().
 |*                      Spezialisiert fuer Felder in Rahmen.
 |*
-|*  Ersterstellung      MA 22. Mar. 95
-|*  Letzte Aenderung    MA 07. Nov. 95
-|*
 |*************************************************************************/
 /*N*/ void SwPageFrm::GetCntntPosition( const Point &rPt, SwPosition &rPos ) const
 /*N*/ {
@@ -616,8 +592,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Es wird der naechstliegende Cntnt zum uebergebenen
 |*                      Point gesucht. Es wird nur im BodyText gesucht.
-|*  Ersterstellung      MA 15. Jul. 92
-|*  Letzte Aenderung    JP 11.10.2001
 |*
 |*************************************************************************/
 
@@ -634,8 +608,6 @@ namespace binfilter {
 |*          Liefert Null, wenn die Operation nicht moeglich ist.
 |*          Die Pos ist die der letzten Seite, wenn die Seitenzahl zu gross
 |*          gewaehlt wurde.
-|*  Ersterstellung      MA 01. Jun. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
@@ -662,9 +634,6 @@ namespace binfilter {
 |*    Beschreibung      Ist der Frm bzw. die Section in der er steht
 |*                      geschuetzt?
 |*                      Auch Fly in Fly in ... und Fussnoten
-|*
-|*    Ersterstellung    MA 28. Jul. 93
-|*    Letzte Aenderung  MA 06. Nov. 97
 |*
 |*************************************************************************/
 /*N*/ BOOL SwFrm::IsProtected() const
@@ -716,9 +685,6 @@ namespace binfilter {
 |*
 |*    SwFrm::GetPhyPageNum()
 |*    Beschreibung:     Liefert die physikalische Seitennummer
-|*
-|*    Ersterstellung    OK 06.07.93 08:35
-|*    Letzte Aenderung  MA 30. Nov. 94
 |*
 |*************************************************************************/
 /*N*/ USHORT SwFrm::GetPhyPageNum() const
@@ -800,9 +766,6 @@ namespace binfilter {
 |*    SwFrm::GetVirtPageNum()
 |*    Beschreibung:     Liefert die virtuelle Seitennummer mit Offset
 |*
-|*    Ersterstellung    OK 06.07.93 08:35
-|*    Letzte Aenderung  MA 30. Nov. 94
-|*
 |*************************************************************************/
 /*N*/ USHORT SwFrm::GetVirtPageNum() const
 /*N*/ {
@@ -856,9 +819,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::MakeTblCrsrs()
 |*
-|*  Ersterstellung      MA 14. May. 93
-|*  Letzte Aenderung    MA 02. Feb. 94
-|*
 |*************************************************************************/
 //Ermitteln und einstellen derjenigen Zellen die von der Selektion
 //eingeschlossen sind.
@@ -868,9 +828,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRootFrm::CalcFrmRects
-|*
-|*  Ersterstellung      MA 24. Aug. 92
-|*  Letzte Aenderung    MA 24. Aug. 93
 |*
 |*************************************************************************/
 

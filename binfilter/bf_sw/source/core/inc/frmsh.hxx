@@ -36,8 +36,6 @@ namespace binfilter {
 |*  SwFrm::GetShell()
 |*
 |*  Beschreibung        Liefert die aktuelle Shell, ggf. auch NULL.
-|*  Ersterstellung      MA 14. Aug. 92
-|*  Letzte Aenderung    MA 18. Feb. 99
 |*
 |*************************************************************************/
 

@@ -40,9 +40,6 @@ namespace binfilter {
 |*
 |*  SwTxtLine::SwTxtLine(), ~SwTxtLine()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwTxtLine::SwTxtLine( SwTxtFrm *pFrm, SwParaPortion *pNew ) :
@@ -60,9 +57,6 @@ namespace binfilter {
 |*
 |*  SwTxtLineAccess::NewObj()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwCacheObj *SwTxtLineAccess::NewObj()
@@ -73,9 +67,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtLineAccess::GetPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
 |*
 |*************************************************************************/
 
@@ -99,9 +90,6 @@ namespace binfilter {
 |*
 |*  SwTxtLineAccess::SwTxtLineAccess()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwTxtLineAccess::SwTxtLineAccess( const SwTxtFrm *pOwner ) :
@@ -112,9 +100,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtLineAccess::IsAvailable
-|*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
 |*
 |*************************************************************************/
 
@@ -128,9 +113,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtFrm::HasPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
 |*
 |*************************************************************************/
 
@@ -153,9 +135,6 @@ namespace binfilter {
 |*
 |*  SwTxtFrm::GetPara()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwParaPortion *SwTxtFrm::GetPara()
@@ -175,9 +154,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtFrm::ClearPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
 |*
 |*************************************************************************/
 
@@ -201,9 +177,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtFrm::SetPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
 |*
 |*************************************************************************/
 

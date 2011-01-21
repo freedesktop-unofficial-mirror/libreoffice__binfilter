@@ -48,9 +48,6 @@ namespace binfilter {
 |*
 |*  SwCache::Check()
 |*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
-|*
 |*************************************************************************/
 
 #ifdef DBG_UTIL
@@ -99,9 +96,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCache::SwCache(), ~SwCache()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
 |*
 |*************************************************************************/
 
@@ -185,9 +179,6 @@ namespace binfilter {
 |*
 |*  SwCache::Flush()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 
@@ -237,9 +228,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCache::ToTop()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 24. Apr. 95
 |*
 |*************************************************************************/
 
@@ -308,9 +296,6 @@ namespace binfilter {
 |*
 |*  SwCache::Get()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
-|*
 |*************************************************************************/
 
 
@@ -363,9 +348,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCache::Delete()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
 |*
 |*************************************************************************/
 
@@ -447,9 +429,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*************************************************************************
 |*
 |*  SwCache::Insert()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 20. Sep. 94
 |*
 |*************************************************************************/
 
@@ -535,9 +514,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCache::SetLRUOfst()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 
@@ -562,9 +538,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheObj::SwCacheObj()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 24. Nov. 95
-|*
 |*************************************************************************/
 
 
@@ -586,9 +559,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*************************************************************************
 |*
 |*  SwCacheObj::SetLock(), Unlock()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
 |*
 |*************************************************************************/
 
@@ -615,9 +585,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheAccess::Get()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 04. Apr. 95
-|*
 |*************************************************************************/
 
 
@@ -638,9 +605,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*************************************************************************
 |*
 |*  SwCacheAccess::IsAvailable()
-|*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
 |*
 |*************************************************************************/
 

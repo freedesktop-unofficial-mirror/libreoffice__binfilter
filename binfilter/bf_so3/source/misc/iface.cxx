@@ -112,10 +112,6 @@ SvObject::SvObject()
 |*
 |*    SvObject::~SvObject()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 05.06.94
-|*    Letzte Aenderung  MM 05.06.94
-|*
 *************************************************************************/
 SvObject::~SvObject()
 {
@@ -124,10 +120,6 @@ SvObject::~SvObject()
 /*************************************************************************
 |*
 |*    SvObject::ReleaseRef()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MM 05.06.94
-|*    Letzte Aenderung  MM 05.06.94
 |*
 *************************************************************************/
 UINT32 SvObject::ReleaseRef()

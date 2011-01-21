@@ -1548,9 +1548,6 @@ static int
 |*
 |*  CTOR DTOR der SwHash classes
 |*
-|*  Ersterstellung      OK 25.06.93 12:20
-|*  Letzte Aenderung    OK 25.06.93 12:20
-|*
 ******************************************************************************/
 
 /*N*/ SwHash::SwHash( const String& rStr ) :

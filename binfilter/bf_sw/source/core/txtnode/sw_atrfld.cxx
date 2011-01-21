@@ -208,8 +208,6 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 |*                SwTxtFld::SwTxtFld()
 |*
 |*    Beschreibung      Attribut fuer automatischen Text, Ctor
-|*    Ersterstellung    BP 30.04.92
-|*    Letzte Aenderung  JP 15.08.94
 |*
 *************************************************************************/
 
@@ -230,8 +228,6 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 |*                SwTxtFld::Expand()
 |*
 |*    Beschreibung      exandiert das Feld und tauscht den Text im Node
-|*    Ersterstellung    BP 30.04.92
-|*    Letzte Aenderung  JP 15.08.94
 |*
 *************************************************************************/
 

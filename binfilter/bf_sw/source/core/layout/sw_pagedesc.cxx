@@ -57,9 +57,6 @@ namespace binfilter {
 |*
 |*  SwPageDesc::SwPageDesc()
 |*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 16. Feb. 94
-|*
 |*************************************************************************/
 
 
@@ -109,8 +106,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Gespiegelt werden nur die Raender.
 |*      Attribute wie Umrandung und dergleichen werden 1:1 kopiert.
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    01. Nov. 94
 |*
 |*************************************************************************/
 
@@ -151,8 +146,6 @@ namespace binfilter {
 |*                SwPageDesc::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
 
@@ -164,8 +157,6 @@ namespace binfilter {
 |*                SwPageDesc::SetRegisterFmtColl()
 |*
 |*    Beschreibung      setzt die Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -188,8 +179,6 @@ namespace binfilter {
 |*                SwPageDesc::GetRegisterFmtColl()
 |*
 |*    Beschreibung      holt die Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -205,8 +194,6 @@ namespace binfilter {
 |*                SwPageDesc::RegisterChange()
 |*
 |*    Beschreibung      benachrichtigt alle betroffenen PageFrames
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -240,8 +227,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      reagiert insbesondere auf Aenderungen
 |*                      der Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -264,9 +249,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFtnInfo::SwPageFtnInfo()
-|*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 24. Feb. 93
 |*
 |*************************************************************************/
 
@@ -302,9 +284,6 @@ namespace binfilter {
 |*
 |*  SwPageFtnInfo::operator=
 |*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 24. Feb. 93
-|*
 |*************************************************************************/
 
 
@@ -324,9 +303,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFtnInfo::operator==
-|*
-|*  Ersterstellung      MA 01. Mar. 93
-|*  Letzte Aenderung    MA 01. Mar. 93
 |*
 |*************************************************************************/
 

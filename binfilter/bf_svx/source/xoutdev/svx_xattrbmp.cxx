@@ -55,10 +55,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap()
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::XOBitmap() :
@@ -72,10 +68,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -91,10 +83,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -112,10 +100,6 @@ namespace binfilter {
 |*    XOBitmap::XOBitmap( USHORT* pArray, const Color& aPixelColor,
 |*          const Color& aBckgrColor, const Size& rSize = Size( 8, 8 ),
 |*          XBitmapStyle eStyle = XBITMAP_TILE )
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -146,10 +130,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap( const XOBitmap& rXBmp )
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::XOBitmap( const XOBitmap& rXBmp ) :
@@ -179,10 +159,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::~XOBitmap()
@@ -194,10 +170,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap& XOBitmap::operator=( const XOBitmap& rXBmp )
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -227,10 +199,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    int XOBitmap::operator==( const XOBitmap& rXOBitmap ) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -263,10 +231,6 @@ namespace binfilter {
 |*
 |*    void SetPixelArray( const USHORT* pArray )
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
-|*
 *************************************************************************/
 
 /*N*/ void XOBitmap::SetPixelArray( const USHORT* pArray )
@@ -291,10 +255,6 @@ namespace binfilter {
 |*
 |*    Bitmap XOBitmap::GetBitmap()
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
 /*N*/ Bitmap XOBitmap::GetBitmap() const
@@ -305,10 +265,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    Bitmap XOBitmap::GetGraphicObject()
-|*
-|*    Beschreibung
-|*    Ersterstellung
-|*    Letzte Aenderung
 |*
 *************************************************************************/
 
@@ -326,8 +282,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      Umwandlung der Bitmap in Array, Hinter- u.
 |*                      Vordergrundfarbe
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -372,8 +326,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      Umwandlung des Arrays, Hinter- u.
 |*                      Vordergrundfarbe in eine Bitmap
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -413,10 +365,6 @@ namespace binfilter {
 |*    XFillBitmapItem::XFillBitmapItem(const XubString& rName,
 |*                                 const Bitmap& rTheBitmap)
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillBitmapItem::XFillBitmapItem(const XubString& rName,
@@ -430,10 +378,6 @@ namespace binfilter {
 |*
 |*    XFillBitmapItem::XFillBitmapItem(const XFillBitmapItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillBitmapItem::XFillBitmapItem(const XFillBitmapItem& rItem) :
@@ -445,10 +389,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XFillBitmapItem::XFillBitmapItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.94
 |*
 *************************************************************************/
 
@@ -526,10 +466,6 @@ namespace binfilter {
 |*
 |*    XFillBitmapItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillBitmapItem::Clone(SfxItemPool* /*pPool*/) const
@@ -540,10 +476,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    int XFillBitmapItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -557,10 +489,6 @@ namespace binfilter {
 |*
 |*    SfxPoolItem* XFillBitmapItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillBitmapItem::Create(SvStream& rIn, USHORT nVer) const
@@ -571,10 +499,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SfxPoolItem* XFillBitmapItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.94
 |*
 *************************************************************************/
 
@@ -623,10 +547,6 @@ namespace binfilter {
 |*
 |*    const Bitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  26.07.94
-|*
 *************************************************************************/
 
 /*N*/ const XOBitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
@@ -641,10 +561,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    USHORT XFillBitmapItem::GetVersion() const
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 

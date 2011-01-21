@@ -42,10 +42,6 @@ namespace binfilter {
 |*
 |*    TextRanger::TextRanger()
 |*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
-|*
 *************************************************************************/
 
 #ifdef WIN
@@ -105,10 +101,6 @@ namespace binfilter {
 |*
 |*    TextRanger::~TextRanger()
 |*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
-|*
 *************************************************************************/
 
 /*N*/ TextRanger::~TextRanger()
@@ -131,10 +123,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SvxBoundArgs
-|*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
 |*
 *************************************************************************/
 

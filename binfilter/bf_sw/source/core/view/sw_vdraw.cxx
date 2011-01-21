@@ -59,9 +59,6 @@ namespace binfilter {
 |*
 |*  SwSaveHdl
 |*
-|*  Ersterstellung      MA 14. Feb. 95
-|*  Letzte Aenderung    MA 02. Jun. 98
-|*
 |*************************************************************************/
 
 
@@ -70,9 +67,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::StartAction(), EndAction()
-|*
-|*  Ersterstellung      MA 14. Feb. 95
-|*  Letzte Aenderung    MA 14. Sep. 98
 |*
 |*************************************************************************/
 
@@ -107,9 +101,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::LockPaint(), UnlockPaint()
 |*
-|*  Ersterstellung      MA 11. Jun. 96
-|*  Letzte Aenderung    MA 11. Jun. 96
-|*
 |*************************************************************************/
 
 
@@ -121,9 +112,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::PaintLayer(), PaintDispatcher()
-|*
-|*  Ersterstellung      MA 20. Dec. 94
-|*  Letzte Aenderung    AMA 04. Jun. 98
 |*
 |*************************************************************************/
 // OD 29.08.2002 #102450#
@@ -140,9 +128,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::PaintFlyChilds()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 02. Aug. 95
-|*
 |*************************************************************************/
 
 
@@ -150,9 +135,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::IsDragPossible()
-|*
-|*  Ersterstellung      MA 19. Jan. 93
-|*  Letzte Aenderung    MA 16. Jan. 95
 |*
 |*************************************************************************/
 
@@ -164,9 +146,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::NotifySizeChg()
-|*
-|*  Ersterstellung      MA 23. Jun. 93
-|*  Letzte Aenderung    MA 05. Oct. 98
 |*
 |*************************************************************************/
 

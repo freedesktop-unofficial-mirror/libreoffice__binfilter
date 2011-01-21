@@ -81,9 +81,6 @@ namespace binfilter {
 |*
 |*  SwLayAction Statisches Geraffel
 |*
-|*  Ersterstellung      MA 22. Dec. 93
-|*  Letzte Aenderung    MA 22. Dec. 93
-|*
 |*************************************************************************/
 
 /*N*/ #define IS_FLYS (pPage->GetSortedObjs())
@@ -152,9 +149,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::CheckIdleEnd()
 |*
-|*  Ersterstellung      MA 12. Aug. 94
-|*  Letzte Aenderung    MA 24. Jun. 96
-|*
 |*************************************************************************/
 //Ist es wirklich schon soweit...
 /*N*/ inline void SwLayAction::CheckIdleEnd()
@@ -166,9 +160,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::SetStatBar()
-|*
-|*  Ersterstellung      MA 10. Aug. 94
-|*  Letzte Aenderung    MA 06. Aug. 95
 |*
 |*************************************************************************/
 /*N*/ void SwLayAction::SetStatBar( BOOL bNew )
@@ -190,8 +181,6 @@ namespace binfilter {
 |*      Veraenderungen ausgegeben bzw. wird die auszugebende Flaeche in der
 |*      Region eingetragen.
 |*      PaintCntnt:  fuellt die Region,
-|*  Ersterstellung      BP 19. Jan. 92
-|*  Letzte Aenderung    MA 10. Sep. 96
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::PaintWithoutFlys( const SwRect &rRect, const SwCntntFrm *pCnt,
@@ -293,9 +282,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::_AddScrollRect()
-|*
-|*  Ersterstellung      MA 04. Mar. 94
-|*  Letzte Aenderung    MA 04. Mar. 94
 |*
 |*************************************************************************/
 /*N*/ BOOL MA_FASTCALL lcl_IsOverObj( const SwFrm *pFrm, const SwPageFrm *pPage,
@@ -426,9 +412,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::SwLayAction()
 |*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 09. Jun. 95
-|*
 |*************************************************************************/
 /*N*/ SwLayAction::SwLayAction( SwRootFrm *pRt, SwViewImp *pI ) :
 /*N*/   pRoot( pRt ),
@@ -462,9 +445,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::Reset()
 |*
-|*  Ersterstellung      MA 11. Aug. 94
-|*  Letzte Aenderung    MA 09. Jun. 95
-|*
 |*************************************************************************/
 /*N*/ void SwLayAction::Reset()
 /*N*/ {
@@ -480,9 +460,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::RemoveEmptyBrowserPages()
-|*
-|*  Ersterstellung      MA 10. Sep. 97
-|*  Letzte Aenderung    MA 10. Sep. 97
 |*
 |*************************************************************************/
 
@@ -516,9 +493,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::Action()
-|*
-|*  Ersterstellung      MA 10. Aug. 94
-|*  Letzte Aenderung    MA 06. Aug. 95
 |*
 |*************************************************************************/
 /*N*/ void SwLayAction::Action()
@@ -941,9 +915,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::TurboAction(), _TurboAction()
 |*
-|*  Ersterstellung      MA 04. Dec. 92
-|*  Letzte Aenderung    MA 15. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::_TurboAction( const SwCntntFrm *pCnt )
 /*N*/ {
@@ -1041,8 +1012,6 @@ namespace binfilter {
 |*      Fuer den BrowseMode kann auch dann der ShortCut aktiviert werden,
 |*      wenn der ungueltige Inhalt der Seite unterhalb des sichbaren
 |*      bereiches liegt.
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 18. Jul. 96
 |*
 |*************************************************************************/
 /*N*/ const SwFrm *lcl_FindFirstInvaLay( const SwFrm *pFrm, long nBottom )
@@ -1322,9 +1291,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::ChkFlyAnchor()
 |*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 02. Sep. 96
-|*
 |*************************************************************************/
 /*N*/ void SwLayAction::ChkFlyAnchor( SwFlyFrm *pFly, const SwPageFrm *pPage )
 /*N*/ {
@@ -1348,9 +1314,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::FormatFlyLayout()
-|*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 03. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwLayAction::FormatFlyLayout( const SwPageFrm *pPage )
@@ -1397,9 +1360,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayAction::FormatLayout(), FormatLayoutFly, FormatLayoutTab()
-|*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 18. May. 98
 |*
 |*************************************************************************/
 // OD 15.11.2002 #105155# - introduce support for vertical layout
@@ -1983,9 +1943,6 @@ namespace binfilter {
 |*
 |*  SwLayAction::FormatCntnt()
 |*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 16. Nov. 95
-|*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::FormatCntnt( const SwPageFrm *pPage )
 /*N*/ {
@@ -2143,8 +2100,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Returnt TRUE wenn der Absatz verarbeitet wurde,
 |*                      FALSE wenn es nichts zu verarbeiten gab.
-|*  Ersterstellung      MA 07. Dec. 92
-|*  Letzte Aenderung    MA 11. Mar. 98
 |*
 |*************************************************************************/
 /*N*/ void SwLayAction::_FormatCntnt( const SwCntntFrm *pCntnt,
@@ -2219,8 +2174,6 @@ namespace binfilter {
 |*
 |*      - Returnt TRUE wenn der Inhalt aller Flys vollstaendig verarbeitet
 |*        wurde, FALSE bei einem vorzeitigen Abbruch.
-|*  Ersterstellung      MA 02. Dec. 92
-|*  Letzte Aenderung    MA 16. Sep. 93
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::FormatFlyCntnt( const SwPageFrm *pPage, sal_Bool bDontShrink )
@@ -2260,8 +2213,6 @@ namespace binfilter {
 |*      kompliziert (SwLayAction::Action()).
 |*      - Returnt TRUE wenn der Fly vollstaendig verbeitet wurde, FALSE bei
 |*        einem vorzeitigen Abbruch.
-|*  Ersterstellung      MA 04. Dec. 92
-|*  Letzte Aenderung    MA 24. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwLayAction::FormatFlyInCnt( SwFlyInCntFrm *pFly )
@@ -2300,8 +2251,6 @@ namespace binfilter {
 |*  Beschreibung:
 |*      - Returnt TRUE wenn alle Cntnts des Flys vollstaendig verarbeitet
 |*        wurden. FALSE wenn vorzeitig unterbrochen wurde.
-|*  Ersterstellung      MA 02. Dec. 92
-|*  Letzte Aenderung    MA 24. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::_FormatFlyCntnt( const SwFlyFrm *pFly )
@@ -2348,9 +2297,6 @@ namespace binfilter {
 |*  Beschreibung:
 |*      - Returnt TRUE, wenn der Cntnt verarbeitet,
 |*        d.h. Kalkuliert und/oder gepaintet wurde.
-|*
-|*  Ersterstellung      MA 05. Jan. 93
-|*  Letzte Aenderung    MA 18. May. 95
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayAction::__FormatFlyCntnt( const SwCntntFrm *pCntnt )
@@ -2421,9 +2367,6 @@ namespace binfilter {
 |*
 |*  void SwLayIdle::SwLayIdle()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 09. Jun. 94
-|*
 |*************************************************************************/
 /*N*/ void SwLayIdle::ShowIdle( ColorData eName )
 /*N*/ {
@@ -2453,9 +2396,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  void SwLayIdle::SwLayIdle()
-|*
-|*  Ersterstellung      MA 30. Oct. 92
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 /*N*/ SwLayIdle::SwLayIdle( SwRootFrm *pRt, SwViewImp *pI ) :

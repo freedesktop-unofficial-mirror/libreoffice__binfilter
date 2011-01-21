@@ -279,9 +279,6 @@ namespace binfilter {
 |*                      SwIndex & aStart        StartNode !!!
 |*                      SwIndex & aEnd          EndPunkt
 |*
-|*    Ersterstellung    JP 23.04.91
-|*    Letzte Aenderung  JP 23.04.91
-|*
 *************************************************************************/
 /*N*/ void SwNodes::SectionUpDown( const SwNodeIndex & aStart, const SwNodeIndex & aEnd )
 /*N*/ {
@@ -663,9 +660,6 @@ namespace binfilter {
 |*    Return-Wert       BOOL        TRUE:   gueltiger SRange
 |*                                  FALSE:  ungueltiger SRange
 |*
-|*    Ersterstellung    JP 23.04.91
-|*    Letzte Aenderung  JP 18.06.92
-|*
 *************************************************************************/
 
 /*N*/ inline int TstIdx( ULONG nSttIdx, ULONG nEndIdx, ULONG nStt, ULONG nEnd )
@@ -701,9 +695,6 @@ namespace binfilter {
 |*
 |*    Parameter         SwIndex &   Der Startpunkt im Nodes-Array
 |*                      USHORT      die Anzahl
-|*
-|*    Ersterstellung    JP 23.04.91
-|*    Letzte Aenderung  JP 23.04.91
 |*
 *************************************************************************/
 /*N*/ void SwNodes::DelNodes( const SwNodeIndex & rStart, ULONG nCnt )
@@ -773,9 +764,6 @@ namespace binfilter {
 |*                      SwNodeRange &   der zu ueberpruefende Bereich
 |*    Return            USHORT      der hoechste Level
 |*
-|*    Ersterstellung    JP 24.04.91
-|*    Letzte Aenderung  JP 24.04.91
-|*
 *************************************************************************/
 
 
@@ -789,8 +777,6 @@ namespace binfilter {
 |*    Parameter         SwPaM&      zu kopierender Bereich
 |*                      SwNodes&    in dieses Nodes-Array
 |*                      SwPosition& auf diese Position im Nodes-Array
-|*    Ersterstellung    JP 09.07.92
-|*    Letzte Aenderung  JP 09.07.92
 |*
 *************************************************************************/
 
@@ -804,8 +790,6 @@ namespace binfilter {
 |*    Parameter         SwNodeRange&    zu kopierender Bereich
 |*                      SwDoc&      in dieses Dokument
 |*                      SwIndex&    auf diese Position im Nodes-Array
-|*    Ersterstellung    JP 11.11.92
-|*    Letzte Aenderung  JP 11.11.92
 |*
 *************************************************************************/
 

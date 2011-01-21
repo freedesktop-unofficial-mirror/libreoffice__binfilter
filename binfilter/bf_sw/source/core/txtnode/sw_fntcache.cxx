@@ -79,9 +79,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*
 |*  SwFntCache::Flush()
 |*
-|*  Ersterstellung      AMA 16. Dez. 94
-|*  Letzte Aenderung    AMA 16. Dez. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwFntCache::Flush( )
@@ -97,9 +94,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*************************************************************************
 |*
 |*  SwFntObj::SwFntObj(), ~SwFntObj()
-|*
-|*  Ersterstellung      AMA 7. Nov. 94
-|*  Letzte Aenderung    AMA 7. Nov. 94
 |*
 |*************************************************************************/
 
@@ -503,9 +497,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*************************************************************************
 |*
 |*  SwFntAccess::SwFntAccess()
-|*
-|*  Ersterstellung      AMA 9. Nov. 94
-|*  Letzte Aenderung    AMA 9. Nov. 94
 |*
 |*************************************************************************/
 

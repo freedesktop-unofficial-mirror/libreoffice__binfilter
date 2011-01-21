@@ -653,8 +653,6 @@ namespace binfilter {
 |*  SwPageFrm::PrepareHeader()
 |*
 |*  Beschreibung        Erzeugt oder Entfernt Header
-|*  Ersterstellung      MA 04. Feb. 93
-|*  Letzte Aenderung    MA 12. May. 96
 |*
 |*************************************************************************/
 
@@ -723,8 +721,6 @@ namespace binfilter {
 |*  SwPageFrm::PrepareFooter()
 |*
 |*  Beschreibung        Erzeugt oder Entfernt Footer
-|*  Ersterstellung      MA 04. Feb. 93
-|*  Letzte Aenderung    MA 12. May. 96
 |*
 |*************************************************************************/
 

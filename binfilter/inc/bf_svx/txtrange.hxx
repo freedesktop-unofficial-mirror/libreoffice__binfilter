@@ -47,10 +47,6 @@ typedef SvLongs* SvLongsPtr;
 |*
 |*    class TextRanger
 |*
-|*    Beschreibung
-|*    Ersterstellung       20.01.97
-|*    Letzte Aenderung AMA 20.01.97
-|*
 *************************************************************************/
 class TextRanger
 {

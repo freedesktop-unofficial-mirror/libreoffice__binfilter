@@ -55,9 +55,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::Init()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 03. Nov. 95
-|*
 |*************************************************************************/
 
 /*N*/ void SwViewImp::Init( const SwViewOption* /*pNewOpt*/ )
@@ -69,9 +66,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::~SwViewImp()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 16. Dec. 94
-|*
 ******************************************************************************/
 
 /*N*/ SwViewImp::~SwViewImp() { }
@@ -79,9 +73,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::DelRegions()
-|*
-|*  Ersterstellung      MA 14. Apr. 94
-|*  Letzte Aenderung    MA 14. Apr. 94
 |*
 ******************************************************************************/
 
@@ -94,9 +85,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::AddPaintRect()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 27. Jul. 94
 |*
 ******************************************************************************/
 
@@ -117,9 +105,6 @@ namespace binfilter {
 |*
 |*  ViewImp::CheckWaitCrsr()
 |*
-|*  Ersterstellung      MA 10. Aug. 94
-|*  Letzte Aenderung    MA 10. Aug. 94
-|*
 ******************************************************************************/
 
 /*N*/ void SwViewImp::CheckWaitCrsr()
@@ -131,9 +116,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  ViewImp::IsCalcLayoutProgress()
-|*
-|*  Ersterstellung      MA 12. Aug. 94
-|*  Letzte Aenderung    MA 12. Aug. 94
 |*
 ******************************************************************************/
 
@@ -147,9 +129,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  ViewImp::IsUpdateExpFlds()
-|*
-|*  Ersterstellung      MA 28. Mar. 96
-|*  Letzte Aenderung    MA 28. Mar. 96
 |*
 ******************************************************************************/
 
@@ -167,9 +146,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::SetFirstVisPage(), ImplGetFirstVisPage();
-|*
-|*  Ersterstellung      MA 21. Sep. 93
-|*  Letzte Aenderung    MA 08. Mar. 94
 |*
 ******************************************************************************/
 
@@ -199,9 +175,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::MakeDrawView();
 |*
-|*  Ersterstellung      AMA 01. Nov. 95
-|*  Letzte Aenderung    AMA 01. Nov. 95
-|*
 ******************************************************************************/
 
 /*N*/ void SwViewImp::MakeDrawView() { }
@@ -209,9 +182,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::GetRetoucheColor()
-|*
-|*  Ersterstellung      MA 24. Jun. 98
-|*  Letzte Aenderung    MA 24. Jun. 98
 |*
 ******************************************************************************/
 

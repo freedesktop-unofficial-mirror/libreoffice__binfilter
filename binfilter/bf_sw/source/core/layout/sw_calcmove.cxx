@@ -71,8 +71,6 @@ namespace binfilter {
 |*  SwCntntFrm::ShouldBwdMoved()
 |*
 |*  Beschreibung        Returnwert sagt, ob der Frm verschoben werden sollte.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -202,8 +200,6 @@ namespace binfilter {
 |*      Ein weiterer Vorteil ist, das eines schoenen Tages das _Prepare und
 |*      damit die Formatierung von Vorgaengern umgangen werden kann.
 |*      So kann evtl. mal 'schnell' an's Dokumentende gesprungen werden.
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 13. Dec. 93
 |*
 |*************************************************************************/
 //Zwei kleine Freundschaften werden hier zu einem Geheimbund.
@@ -343,9 +339,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::MakePos()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 24. May. 93
 |*
 |*************************************************************************/
 
@@ -494,9 +487,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 23. Feb. 93
-|*  Letzte Aenderung    MA 20. Jul. 98
 |*
 |*************************************************************************/
 
@@ -679,9 +669,6 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::MakeAll()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 28. Nov. 95
-|*
 |*************************************************************************/
 
 
@@ -753,9 +740,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::MakePrtArea()
-|*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 03. Mar. 96
 |*
 |*************************************************************************/
 
@@ -891,9 +875,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::MakeAll()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 16. Dec. 96
 |*
 |*************************************************************************/
 
@@ -1421,9 +1402,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCntntFrm::_WouldFit()
-|*
-|*  Ersterstellung      MA 28. Feb. 95
-|*  Letzte Aenderung    AMA 15. Feb. 99
 |*
 |*************************************************************************/
 

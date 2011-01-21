@@ -47,10 +47,6 @@ namespace binfilter {
 |*
 |*    ImpXPolygon::ImpXPolygon()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ ImpXPolygon::ImpXPolygon( USHORT nInitSize, USHORT nInResize )
@@ -69,10 +65,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    ImpXPolygon::ImpXPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
 |*
 *************************************************************************/
 
@@ -100,10 +92,6 @@ namespace binfilter {
 |*
 |*    ImpXPolygon::~ImpXPolygon()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ ImpXPolygon::~ImpXPolygon()
@@ -117,9 +105,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    ImpXPolygon::operator==()
-|*
-|*    Ersterstellung    Joe 26-09-95
-|*    Letzte Aenderung
 |*
 *************************************************************************/
 
@@ -143,8 +128,6 @@ namespace binfilter {
 |*    Damit wird verhindert, dass bei XPoly[n] = XPoly[0] durch ein
 |*    Resize der fuer den rechten Ausdruck verwendete Point-Array
 |*    vorzeitig geloescht wird.
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
 |*
 *************************************************************************/
 
@@ -203,10 +186,6 @@ namespace binfilter {
 |*
 |*    ImpXPolygon::InsertSpace()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.03.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ void ImpXPolygon::InsertSpace( USHORT nPos, USHORT nCount )
@@ -240,10 +219,6 @@ namespace binfilter {
 |*
 |*    ImpXPolygon::Remove()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ void ImpXPolygon::Remove( USHORT nPos, USHORT nCount )
@@ -271,10 +246,6 @@ namespace binfilter {
 |*
 |*    XPolygon::XPolygon()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ XPolygon::XPolygon( USHORT nSize, USHORT nResize )
@@ -286,10 +257,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XPolygon::XPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
 |*
 *************************************************************************/
 
@@ -305,8 +272,6 @@ namespace binfilter {
 |*    XPolygon::XPolygon()
 |*
 |*    XPolygon aus einem Standardpolygon erstellen
-|*    Ersterstellung    18.01.95 ESO
-|*    Letzte Aenderung  18.01.95 ESO
 |*
 *************************************************************************/
 
@@ -330,8 +295,6 @@ namespace binfilter {
 |*    XPolygon::XPolygon()
 |*
 |*    Rechteck (auch mit abgerundeten Ecken) als Bezierpolygon erzeugen
-|*    Ersterstellung    09.01.95 ESO
-|*    Letzte Aenderung  09.01.95 ESO
 |*
 *************************************************************************/
 
@@ -400,8 +363,6 @@ namespace binfilter {
 |*    XPolygon::XPolygon()
 |*
 |*    Ellipsen(bogen) als Bezierpolygon erzeugen
-|*    Ersterstellung    09.01.95
-|*    Letzte Aenderung  09.01.95
 |*
 *************************************************************************/
 
@@ -450,10 +411,6 @@ namespace binfilter {
 |*
 |*    XPolygon::~XPolygon()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ XPolygon::~XPolygon()
@@ -470,8 +427,6 @@ namespace binfilter {
 |*    XPolygon::CheckReference()
 |*
 |*    Referenzzaehler desImpXPoly pruefen und ggf. von diesem abkoppeln
-|*    Ersterstellung    17.01.95 ESO
-|*    Letzte Aenderung  17.01.95 ESO
 |*
 *************************************************************************/
 
@@ -488,10 +443,6 @@ namespace binfilter {
 |*
 |*    XPolygon::SetSize()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ void XPolygon::SetSize( USHORT nNewSize )
@@ -504,20 +455,12 @@ namespace binfilter {
 |*
 |*    XPolygon::GetSize()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
-|*
 *************************************************************************/
 
 
 /*************************************************************************
 |*
 |*    XPolygon::SetPointCount()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
 |*
 *************************************************************************/
 
@@ -542,10 +485,6 @@ namespace binfilter {
 |*
 |*    XPolygon::GetPointCount()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ USHORT XPolygon::GetPointCount() const
@@ -557,10 +496,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XPolygon::Insert()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
 |*
 *************************************************************************/
 
@@ -577,10 +512,6 @@ namespace binfilter {
 |*
 |*    XPolygon::Insert()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 
@@ -588,20 +519,12 @@ namespace binfilter {
 |*
 |*    XPolygon::Insert()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 
 /*************************************************************************
 |*
 |*    XPolygon::Remove()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
 |*
 *************************************************************************/
 
@@ -614,10 +537,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XPolygon::Move()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
 |*
 *************************************************************************/
 
@@ -641,10 +560,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XPolygon::GetBoundRect()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  12.01.95 ESO
 |*
 *************************************************************************/
 
@@ -691,10 +606,6 @@ namespace binfilter {
 |*
 |*    XPolygon::operator[]()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95
-|*
 *************************************************************************/
 
 /*N*/ const Point& XPolygon::operator[]( USHORT nPos ) const
@@ -708,10 +619,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XPolygon::operator[]()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  12.01.95 ESO
 |*
 *************************************************************************/
 
@@ -736,8 +643,6 @@ namespace binfilter {
 |*    XPolygon::operator=()
 |*
 |*    Beschreibung      Zuweisungsoperator
-|*    Ersterstellung    ESO 22.11.94
-|*    Letzte Aenderung  ESO 12.01.95
 |*
 *************************************************************************/
 
@@ -761,8 +666,6 @@ namespace binfilter {
 |*    XPolygon::operator==()
 |*
 |*    Beschreibung      Gleichheitsoperator
-|*    Ersterstellung    ESO 22.11.94
-|*    Letzte Aenderung  Joe 26.09.95
 |*
 *************************************************************************/
 
@@ -778,8 +681,6 @@ namespace binfilter {
 |*    XPolygon::operator!=()
 |*
 |*    Beschreibung      Ungleichheitsoperator
-|*    Ersterstellung    ESO 22.11.94
-|*    Letzte Aenderung  Joe 26.09.95
 |*
 *************************************************************************/
 
@@ -795,8 +696,6 @@ namespace binfilter {
 |*    XPolygon::GetFlags()
 |*
 |*    Flags fuer den Punkt an der Position nPos zurueckgeben
-|*    Ersterstellung    ESO 11.11.94
-|*    Letzte Aenderung  ESO 12.01.95
 |*
 *************************************************************************/
 
@@ -811,8 +710,6 @@ namespace binfilter {
 |*    XPolygon::SetFlags()
 |*
 |*    Flags fuer den Punkt an der Position nPos setzen
-|*    Ersterstellung    ESO 11.11.94
-|*    Letzte Aenderung  ESO 12.01.95
 |*
 *************************************************************************/
 
@@ -828,8 +725,6 @@ namespace binfilter {
 |*    XPolygon::IsControl()
 |*
 |*    Kurzform zur Abfrage des CONTROL-Flags
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 12.01.95
 |*
 *************************************************************************/
 
@@ -843,8 +738,6 @@ namespace binfilter {
 |*    XPolygon::IsSmooth()
 |*
 |*    Kurzform zur Abfrage von SMOOTH- und SYMMTR-Flag
-|*    Ersterstellung    ESO 18.04.95
-|*    Letzte Aenderung  ESO 18.04.95
 |*
 *************************************************************************/
 
@@ -854,8 +747,6 @@ namespace binfilter {
 |*    XPolygon::CalcDistance()
 |*
 |*    Abstand zwischen zwei Punkten berechnen
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 09.01.95
 |*
 *************************************************************************/
 
@@ -865,8 +756,6 @@ namespace binfilter {
 |*    XPolygon::SubdivideBezier()
 |*
 |*    Bezierkurve unterteilen
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 09.01.95
 |*
 *************************************************************************/
 
@@ -993,8 +882,6 @@ namespace binfilter {
 |*     Pnt    = der zu modifizierende Punkt
 |*    Wenn Center am Anfang bzw. Ende des Polygons liegt, wird Pnt
 |*    auf die entgegengesetzte Seite verlegt
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 18.04.95
 |*
 \************************************************************************/
 
@@ -1007,8 +894,6 @@ namespace binfilter {
 |*     Center = End- bzw. Anfangspunkt der Bezierkurven
 |*     Prev   = vorheriger Zugpunkt
 |*     Next   = naechster Zugpunkt
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 18.04.95
 |*
 \************************************************************************/
 
@@ -1018,8 +903,6 @@ namespace binfilter {
 |*    XPolygon::PointsToBezier()
 |*
 |*    wandelt vier Polygonpunkte in eine Bezierkurve durch diese Punkte um
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 09.01.95
 |*
 \************************************************************************/
 
@@ -1029,8 +912,6 @@ namespace binfilter {
 |*    XPolygon::Translate()
 |*
 |*    Polygon auf den uebergebenen Punkt verschieben
-|*    Ersterstellung    ESO 17.01.95
-|*    Letzte Aenderung  ESO 17.01.95
 |*
 *************************************************************************/
 
@@ -1051,8 +932,6 @@ namespace binfilter {
 |*
 |*    Alle Punkte um den Punkt rCenter drehen, Sinus und Cosinus
 |*    muessen uebergeben werden
-|*    Ersterstellung    ESO 09.01.95
-|*    Letzte Aenderung  ESO 17.01.95
 |*
 *************************************************************************/
 
@@ -1102,8 +981,6 @@ namespace binfilter {
 |*
 |*    Alle Punkte um den Punkt rCenter mit dem Winkel nAngle drehen
 |*    Winkel in 10tel Grad, Wertebereich 0 - 3600
-|*    Ersterstellung    ESO 17.01.95
-|*    Letzte Aenderung  ESO 17.01.95
 |*
 *************************************************************************/
 
@@ -1125,8 +1002,6 @@ namespace binfilter {
 |*    XPolygon::Scale()
 |*
 |*    XPolygon in X- und/oder Y-Richtung skalieren
-|*    Ersterstellung    ESO 01.02.95
-|*    Letzte Aenderung  ESO 01.02.95
 |*
 *************************************************************************/
 
@@ -1151,8 +1026,6 @@ namespace binfilter {
 |*
 |*    XPolygon in X-Richtung um einen beliebigen Winkel kippen,
 |*    bezogen auf eine Referenz-Y-Koordinate
-|*    Ersterstellung    ESO 01.02.95
-|*    Letzte Aenderung  ESO 01.02.95
 |*
 *************************************************************************/
 
@@ -1178,8 +1051,6 @@ namespace binfilter {
 |*
 |*    XPolygon in Y-Richtung um einen beliebigen Winkel kippen,
 |*    bezogen auf eine Referenz-X-Koordinate
-|*    Ersterstellung    ESO 01.02.95
-|*    Letzte Aenderung  ESO 01.02.95
 |*
 *************************************************************************/
 
@@ -1195,8 +1066,6 @@ namespace binfilter {
 |*    1: rechts oben     |    |
 |*    2: rechts unten    3----2
 |*    3: links unten
-|*    Ersterstellung    ESO 07.07.95
-|*    Letzte Aenderung  ESO 07.07.95
 |*
 *************************************************************************/
 
@@ -1214,8 +1083,6 @@ namespace binfilter {
 |*    XPolygon::operator>>()
 |*
 |*    Beschreibung      Stream-Leseoperator
-|*    Ersterstellung    ESO 04.04.95
-|*    Letzte Aenderung  ESO 04.04.95
 |*
 *************************************************************************/
 
@@ -1333,8 +1200,6 @@ namespace binfilter {
 |*    XPolygon::operator<<()
 |*
 |*    Beschreibung      Stream-Schreiboperator
-|*    Ersterstellung    ESO 04.04.95
-|*    Letzte Aenderung  ESO 04.04.95
 |*
 *************************************************************************/
 
@@ -1448,8 +1313,6 @@ namespace binfilter {
 |*    ImpXPolyPolygon::ImpXPolyPolygon()
 |*
 |*    Beschreibung      Erzeugt das XPolygon-Array
-|*    Ersterstellung    CL 09.11.94
-|*    Letzte Aenderung  MM 09.11.94
 |*
 *************************************************************************/
 
@@ -1467,8 +1330,6 @@ ImpXPolyPolygon::ImpXPolyPolygon( const ImpXPolyPolygon& rImpXPolyPoly )
 |*    ImpXPolyPolygon::~ImpXPolyPolygon()
 |*
 |*    Beschreibung      Loescht das Polygon-Array
-|*    Ersterstellung    CL 09.06.93
-|*    Letzte Aenderung  CL 09.06.93
 |*
 *************************************************************************/
 
@@ -1483,10 +1344,6 @@ ImpXPolyPolygon::~ImpXPolyPolygon()
 |*
 |*    XPolyPolygon::XPolyPolygon()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
-|*
 *************************************************************************/
 
 XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
@@ -1500,10 +1357,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 |*
 |*    XPolyPolygon::XPolyPolygon()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
-|*
 *************************************************************************/
 
 /*N*/ XPolyPolygon::XPolyPolygon( const XPolygon& rXPoly )
@@ -1516,10 +1369,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 /*************************************************************************
 |*
 |*    XPolyPolygon::XPolyPolygon()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
 |*
 *************************************************************************/
 
@@ -1535,8 +1384,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 |*    XPolyPolygon::XPolyPolygon()
 |*
 |*    XPolyPolygon aus einen Standard-PolyPolygon erzeugen
-|*    Ersterstellung    18.01.95 ESO
-|*    Letzte Aenderung  18.01.95 ESO
 |*
 *************************************************************************/
 
@@ -1552,10 +1399,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 /*************************************************************************
 |*
 |*    XPolyPolygon::~XPolyPolygon()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
 |*
 *************************************************************************/
 
@@ -1573,8 +1416,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 |*    XPolygon::CheckReference()
 |*
 |*    Referenzzaehler desImpXPolyPoly pruefen und ggf. von diesem abkoppeln
-|*    Ersterstellung    18.01.95 ESO
-|*    Letzte Aenderung  18.01.95 ESO
 |*
 *************************************************************************/
 
@@ -1590,10 +1431,6 @@ XPolyPolygon::XPolyPolygon( USHORT /* nInitSize */, USHORT /* nResize */ )
 /*************************************************************************
 |*
 |*    XPolyPolygon::Insert()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
 |*
 *************************************************************************/
 
@@ -1615,10 +1452,6 @@ void XPolyPolygon::Insert( const XPolygon& rXPoly, USHORT nPos )
 |*
 |*    XPolyPolygon::GetObject()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
-|*
 *************************************************************************/
 
 /*N*/ const XPolygon& XPolyPolygon::GetObject( USHORT nPos ) const
@@ -1630,10 +1463,6 @@ void XPolyPolygon::Insert( const XPolygon& rXPoly, USHORT nPos )
 /*************************************************************************
 |*
 |*    XPolyPolygon::Clear()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  TH 17.10.94
 |*
 *************************************************************************/
 
@@ -1657,10 +1486,6 @@ void XPolyPolygon::Insert( const XPolygon& rXPoly, USHORT nPos )
 |*
 |*    XPolyPolygon::Count()
 |*
-|*    Beschreibung
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
-|*
 *************************************************************************/
 
 /*N*/ USHORT XPolyPolygon::Count() const
@@ -1672,10 +1497,6 @@ void XPolyPolygon::Insert( const XPolygon& rXPoly, USHORT nPos )
 /*************************************************************************
 |*
 |*    XPolyPolygon::Move()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    TH 04.10.94
-|*    Letzte Aenderung  TH 04.10.94
 |*
 *************************************************************************/
 
@@ -1700,10 +1521,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*
 |*    XPolyPolygon::GetBoundRect()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    TH 04.10.94
-|*    Letzte Aenderung  TH 04.10.94
-|*
 *************************************************************************/
 
 /*N*/ Rectangle XPolyPolygon::GetBoundRect(OutputDevice* pOut) const
@@ -1725,10 +1542,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*
 |*    XPolyPolygon::operator[]()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    TH 28.10.94
-|*    Letzte Aenderung  TH 28.10.94
-|*
 *************************************************************************/
 
 /*N*/ XPolygon& XPolyPolygon::operator[]( USHORT nPos )
@@ -1740,10 +1553,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 /*************************************************************************
 |*
 |*    XPolyPolygon::operator=()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL 27.01.93
-|*    Letzte Aenderung  CL 27.01.93
 |*
 *************************************************************************/
 
@@ -1765,10 +1574,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*
 |*    XPolyPolygon::operator==()
 |*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL  27.01.93
-|*    Letzte Aenderung  Joe 27.01.93
-|*
 *************************************************************************/
 
 
@@ -1776,10 +1581,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 /*************************************************************************
 |*
 |*    XPolyPolygon::operator!=()
-|*
-|*    Beschreibung      POLY.SDW
-|*    Ersterstellung    CL  27.01.93
-|*    Letzte Aenderung  Joe 27.01.93
 |*
 *************************************************************************/
 
@@ -1789,8 +1590,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*    XPolyPolygon::Translate()
 |*
 |*    Alle Polygone auf den uebergebenen Punkt verschieben
-|*    Ersterstellung    ESO 25.01.95
-|*    Letzte Aenderung  ESO 25.01.95
 |*
 *************************************************************************/
 
@@ -1808,8 +1607,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*
 |*    Alle Polygone um den Punkt rCenter drehen, Sinus und Cosinus
 |*    muessen uebergeben werden
-|*    Ersterstellung    ESO 25.01.95
-|*    Letzte Aenderung  ESO 25.01.95
 |*
 *************************************************************************/
 
@@ -1834,8 +1631,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*    XPolyPolygon::Scale()
 |*
 |*    Alle Polygone in X- und/oder Y-Richtung skalieren
-|*    Ersterstellung    ESO 01.02.95
-|*    Letzte Aenderung  ESO 01.02.95
 |*
 *************************************************************************/
 
@@ -1853,8 +1648,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*
 |*    Alle Polygone in X-Richtung um einen beliebigen Winkel kippen,
 |*    bezogen auf eine Referenz-Y-Koordinate
-|*    Ersterstellung    ESO 01.02.95
-|*    Letzte Aenderung  ESO 01.02.95
 |*
 *************************************************************************/
 
@@ -1871,8 +1664,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*    XPolyPolygon::operator>>()
 |*
 |*    Beschreibung      Stream-Leseoperator
-|*    Ersterstellung    ESO 04.04.95
-|*    Letzte Aenderung  Joe 10.10.95  64k Begrenzung
 |*
 *************************************************************************/
 
@@ -1922,8 +1713,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 |*    XPolyPolygon::operator<<()
 |*
 |*    Beschreibung      Stream-Schreiboperator
-|*    Ersterstellung    ESO 04.04.95
-|*    Letzte Aenderung  ESO 04.04.95
 |*
 *************************************************************************/
 

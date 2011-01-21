@@ -77,9 +77,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::SwTabFrm(), ~SwTabFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwTabFrm::SwTabFrm( SwTable &rTab ):
 /*N*/   SwLayoutFrm( rTab.GetFrmFmt() ),
@@ -130,17 +127,11 @@ namespace binfilter {
 |*
 |*  SwTabFrm::JoinAndDelFollows()
 |*
-|*  Ersterstellung      MA 30. May. 96
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwTabFrm::RegistFlys()
-|*
-|*  Ersterstellung      MA 08. Jul. 93
-|*  Letzte Aenderung    MA 27. Jan. 99
 |*
 |*************************************************************************/
 /*N*/ void SwTabFrm::RegistFlys()
@@ -161,9 +152,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTabFrm::Split(), Join()
-|*
-|*  Ersterstellung      MA 03. Jun. 93
-|*  Letzte Aenderung    MA 03. Sep. 96
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwTabFrm::Split( const SwTwips nCutPos )
@@ -335,9 +323,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTabFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 10. Apr. 97
 |*
 |*************************************************************************/
 /*N*/ void MA_FASTCALL SwInvalidatePositions( SwFrm *pFrm, long nBottom )
@@ -1124,8 +1109,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 18. Jun. 97
 |*
 |*************************************************************************/
 /*M*/ void SwTabFrm::Format( const SwBorderAttrs *pAttrs )
@@ -1384,9 +1367,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::GrowFrm()
 |*
-|*  Ersterstellung      MA 12. Mar. 93
-|*  Letzte Aenderung    MA 23. Sep. 96
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwTabFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
@@ -1448,9 +1428,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwTabFrm::Modify()
-|*
-|*    Ersterstellung    MA 14. Mar. 93
-|*    Letzte Aenderung  MA 06. Dec. 96
 |*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -1604,9 +1581,6 @@ namespace binfilter {
 |*
 |*    SwTabFrm::GetInfo()
 |*
-|*    Ersterstellung    MA 06. Dec. 96
-|*    Letzte Aenderung  MA 26. Jun. 98
-|*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::GetInfo( SfxPoolItem &rHnt ) const
 /*N*/ {
@@ -1637,9 +1611,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwTabFrm::FindLastCntnt()
-|*
-|*    Ersterstellung    MA 13. Apr. 93
-|*    Letzte Aenderung  MA 15. May. 98
 |*
 |*************************************************************************/
 /*N*/ SwCntntFrm *SwTabFrm::FindLastCntnt()
@@ -1691,9 +1662,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::GetLeaf()
 |*
-|*  Ersterstellung      MA 19. Mar. 93
-|*  Letzte Aenderung    MA 25. Apr. 95
-|*
 |*************************************************************************/
 /*N*/ SwLayoutFrm *SwTabFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
 /*N*/ {
@@ -1716,8 +1684,6 @@ namespace binfilter {
 |*  SwTabFrm::ShouldBwdMoved()
 |*
 |*  Beschreibung        Returnwert sagt ob der Frm verschoben werden sollte
-|*  Ersterstellung      MA 10. Jul. 95
-|*  Letzte Aenderung    MA 04. Mar. 97
 |*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat )
@@ -1798,9 +1764,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTabFrm::Cut()
-|*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 09. Sep. 98
 |*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Cut()
@@ -1908,9 +1871,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 09. Sep. 98
-|*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
@@ -1991,9 +1951,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::SwRowFrm(), ~SwRowFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwRowFrm::SwRowFrm( const SwTableLine &rLine ):
 /*N*/   SwLayoutFrm( rLine.GetFrmFmt() ),
@@ -2027,9 +1984,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::RegistFlys()
 |*
-|*  Ersterstellung      MA 08. Jul. 93
-|*  Letzte Aenderung    MA 08. Jul. 93
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::RegistFlys( SwPageFrm *pPage )
 /*N*/ {
@@ -2039,9 +1993,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwRowFrm::Modify()
-|*
-|*    Ersterstellung    MA 12. Nov. 97
-|*    Letzte Aenderung  MA 12. Nov. 97
 |*
 |*************************************************************************/
 /*N*/ void SwRowFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -2074,9 +2025,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::MakeAll()
 |*
-|*  Ersterstellung      MA 01. Mar. 94
-|*  Letzte Aenderung    MA 01. Mar. 94
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::MakeAll()
 /*N*/ {
@@ -2088,9 +2036,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRowFrm::Format()
-|*
-|*  Ersterstellung      MA 13. Mar. 93
-|*  Letzte Aenderung    MA 20. Jun. 96
 |*
 |*************************************************************************/
 /*M*/ long MA_FASTCALL CalcHeightWidthFlys( const SwFrm *pFrm )
@@ -2269,9 +2214,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::AdjustCells()
 |*
-|*  Ersterstellung      MA 10. Aug. 93
-|*  Letzte Aenderung    MA 16. Dec. 96
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::AdjustCells( const SwTwips nHeight, const BOOL bHeight )
 /*N*/ {
@@ -2313,17 +2255,11 @@ namespace binfilter {
 |*
 |*  SwRowFrm::Cut()
 |*
-|*  Ersterstellung      MA 12. Nov. 97
-|*  Letzte Aenderung    MA 12. Nov. 97
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwRowFrm::GrowFrm()
-|*
-|*  Ersterstellung      MA 15. Mar. 93
-|*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
 
@@ -2345,9 +2281,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRowFrm::ShrinkFrm()
-|*
-|*  Ersterstellung      MA 15. Mar. 93
-|*  Letzte Aenderung    MA 20. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ SwTwips SwRowFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
@@ -2446,9 +2379,6 @@ namespace binfilter {
 |*
 |*  SwCellFrm::SwCellFrm(), ~SwCellFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwCellFrm::SwCellFrm( const SwTableBox &rBox ) :
 /*N*/   SwLayoutFrm( rBox.GetFrmFmt() ),
@@ -2499,9 +2429,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCellFrm::Format()
-|*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 29. Jan. 98
 |*
 |*************************************************************************/
 /*N*/ BOOL lcl_ArrangeLowers( SwLayoutFrm *pLay, long lYStart, BOOL bInva )
@@ -2767,9 +2694,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwCellFrm::Modify()
-|*
-|*    Ersterstellung    MA 20. Dec. 96
-|*    Letzte Aenderung  MA 20. Dec. 96
 |*
 |*************************************************************************/
 /*N*/ void SwCellFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )

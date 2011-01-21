@@ -42,10 +42,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::SetOffset()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::SetOffset( const Point& rOfs )

@@ -226,9 +226,6 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::ImplStartAction()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 25. Jul. 94
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::ImplStartAction()
@@ -240,9 +237,6 @@ bool bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::AddPaintRect()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 09. Feb. 97
 |*
 ******************************************************************************/
 
@@ -266,9 +260,6 @@ bool bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::InvalidateWindows()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 09. Feb. 97
 |*
 ******************************************************************************/
 
@@ -296,9 +287,6 @@ bool bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::MakeVisible()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    AMA 10. Okt. 95
 |*
 ******************************************************************************/
 
@@ -336,9 +324,6 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::CareChildWindow()
 |*
-|*  Ersterstellung      AMA 10. Okt. 95
-|*  Letzte Aenderung    AMA 10. Okt. 95
-|*
 ******************************************************************************/
 
 
@@ -346,18 +331,12 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::GetPagePos()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 04. Aug. 93
-|*
 ******************************************************************************/
 
 
 /*************************************************************************
 |*
 |*    ViewShell::LayoutIdle()
-|*
-|*    Ersterstellung    MA 26. May. 92
-|*    Letzte Aenderung  OG 19. Mar. 96
 |*
 *************************************************************************/
 
@@ -406,9 +385,6 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::Reformat
 |*
-|*  Ersterstellung      BP ???
-|*  Letzte Aenderung    MA 13. Feb. 98
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::Reformat()
@@ -436,9 +412,6 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::CalcLayout()
 |*                  Vollstaendige Formatierung von Layout und Inhalt.
-|*
-|*  Ersterstellung      MA 31. Jan. 94
-|*  Letzte Aenderung    MA 08. Oct. 96
 |*
 ******************************************************************************/
 
@@ -494,9 +467,6 @@ bool bInSizeNotify = FALSE;
 |*
 |*  ViewShell::SetFirstVisPageInvalid()
 |*
-|*  Ersterstellung      MA 19. May. 94
-|*  Letzte Aenderung    MA 19. May. 94
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::SetFirstVisPageInvalid()
@@ -512,9 +482,6 @@ bool bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::SizeChgNotify()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 17. Sep. 96
 |*
 ******************************************************************************/
 
@@ -549,9 +516,6 @@ bool bInSizeNotify = FALSE;
 /*************************************************************************
 |*
 |*    ViewShell::GetLayout()
-|*
-|*    Ersterstellung    OK 26. May. 92
-|*    Letzte Aenderung  MA 16. Sep. 93
 |*
 *************************************************************************/
 
@@ -588,9 +552,6 @@ bool bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::UISizeNotify()
-|*
-|*  Ersterstellung      MA 14. Jan. 97
-|*  Letzte Aenderung    MA 14. Jan. 97
 |*
 ******************************************************************************/
 

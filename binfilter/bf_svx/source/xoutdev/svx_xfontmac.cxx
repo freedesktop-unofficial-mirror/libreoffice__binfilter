@@ -64,8 +64,6 @@ namespace binfilter {
 |*    HasGX()
 |*
 |*    Prueft, ob GX installiert ist
-|*    Ersterstellung    05.02.95 DV
-|*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
 BOOL HasGX()
@@ -94,9 +92,6 @@ BOOL HasGX()
 |*
 |*    Uebertraegt die Fontattribute uas dem OutputDevice
 |*    in das Text Objekt
-|*
-|*    Ersterstellung    05.02.95 DV
-|*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
 
@@ -154,8 +149,6 @@ void SetUpFontData( OutputDevice &rOut, gxShape aTextShape )
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    03.02.95 DV
-|*    Letzte Aenderung  27.06.95 DV
 |*
 *************************************************************************/
 
@@ -361,9 +354,6 @@ XPolyPolygon XOutGetCharOutlineGX(USHORT nChar, OutputDevice& rOut,
 |*
 |*    Hilfsfunktionen fuer XOutGetCharOutlineQD gefunden in einem
 |*    Artikel zu Develop 8, 1995
-|*
-|*    Ersterstellung    28.11.95 KH
-|*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
 
@@ -948,8 +938,6 @@ void ScaleGlyphOutline(GlyphOutline* out, Fixed xScale, Fixed yScale)
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    28.11.95 KH
-|*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
 
@@ -1153,8 +1141,6 @@ XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    03.02.95 DV
-|*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
 
@@ -1204,9 +1190,6 @@ XPolyPolygon XOutGetCharOutline(USHORT nChar, OutputDevice& rOut,
 |*              und endend hinter dem letzten Zeichen; es muﬂ also
 |*              rText.Len()-1 long-Werte enthalten
 |*
-|*
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
@@ -1588,9 +1571,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
 |*
 |*    Schatten fuer FormText ausgeben
 |*
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
-|*
 *************************************************************************/
 
 void XOutputDevice::DrawFormTextShadow(const String& rText,
@@ -1624,9 +1604,6 @@ void XOutputDevice::DrawFormTextShadow(const String& rText,
 |*
 |*    Einen String entlang eines Polygons ausgeben
 |*
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
-|*
 *************************************************************************/
 
 long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
@@ -1649,9 +1626,6 @@ long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
 |*    XOutputDevice::DrawFormText(String, XPolygon, Font, nAbsStart)
 |*
 |*    Einen String entlang eines Bezier-Polygons ausgeben
-|*
-|*    Ersterstellung    03.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
