@@ -73,7 +73,6 @@ class SfxPoolItem;
 //************************************************************
 
 class ExtOutputDevice;
-//class ImpSdrMtfAnimator;
 class OutlinerParaObject;
 class SdrOutliner;
 class SdrDragStat;
@@ -94,7 +93,6 @@ class SdrVirtObj;
 class XFillAttrSetItem;
 class XLineAttrSetItem;
 class XPolyPolygon;
-class XPolygon;
 class XTextAttrSetItem;
 class SdrLineGeometry;
 

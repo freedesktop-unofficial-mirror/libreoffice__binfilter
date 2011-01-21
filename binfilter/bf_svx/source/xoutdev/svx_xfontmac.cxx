@@ -52,7 +52,6 @@
 
 #include <sv.hxx>
 
-#include "xpoly.hxx"
 #include "xattr.hxx"
 #include "xoutx.hxx"
 
@@ -1417,8 +1416,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
 
             aPos.X() -= (long) (fDx * nLen / fLen + fXDist);
             aPos.Y() -= (long) (fDy * nLen / fLen + fYDist);
-//          aPos.X() -= (long) ((fDx * nLen - fDy * nFormTextDistance) / fLen);
-//          aPos.Y() -= (long) ((fDy * nLen + fDx * nFormTextDistance) / fLen);
 
             // BoundRect-Approximation
             nXMin = Min(nXMin, aPos.X() - nMaxCharExtent);
@@ -1479,7 +1476,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                     pOut->SetFont(aFont);
                     if ( bDraw )
                         pOut->DrawTextArray(aPos, rText, pDXArray, nChar, nCnt);
-//                      pOut->DrawText(aPos, rText, nChar, nCnt);
                 }
             }
             else
@@ -1561,7 +1557,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                         else
                             pOut->DrawTextArray(aPolyPos, rText, pDXArray,
                                                 nChar+i, 1);
-//                          pOut->DrawText(aPolyPos, rText, nChar+i, 1);
                     }
                 }
             }

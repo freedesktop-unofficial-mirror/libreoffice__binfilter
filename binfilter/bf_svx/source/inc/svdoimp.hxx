@@ -48,8 +48,6 @@
 
 #include "xdash.hxx"
 
-#include "xpoly.hxx"
-
 #include "poly3d.hxx"
 
 #include "xenum.hxx"

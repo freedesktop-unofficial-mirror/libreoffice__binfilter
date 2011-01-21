@@ -58,6 +58,7 @@
 #include <cppuhelper/implbase11.hxx>
 
 #include <bf_svx/unoprov.hxx>
+
 class SvGlobalName;
 namespace binfilter {
 class SfxItemSet;
@@ -252,6 +253,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     virtual sal_Int16 SAL_CALL resetActionLocks(  ) throw (::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
+
 #include <bf_svx/unotext.hxx>
 namespace binfilter {
 class SvxShapeText : public SvxShape, public SvxUnoTextBase
@@ -305,6 +307,7 @@ virtual void SAL_CALL release() throw();
 virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
+
 #include <com/sun/star/drawing/XShapes.hpp>
 #include <com/sun/star/drawing/XShapeGroup.hpp>
 #include <com/sun/star/container/XIndexAccess.hpp>
@@ -406,6 +409,7 @@ virtual void SAL_CALL disconnectBegin( const ::com::sun::star::uno::Reference< :
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
+
 #include <com/sun/star/drawing/XControlShape.hpp>
 namespace binfilter {
 /***********************************************************************
@@ -485,6 +489,7 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
+
 #include <bf_svx/xpoly.hxx>
 
 namespace binfilter {

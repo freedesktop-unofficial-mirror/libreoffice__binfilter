@@ -38,6 +38,7 @@
 #include <bf_svx/xenum.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/bitmap.hxx>
+
 namespace binfilter {
 class SfxItemSet;
 class BfGraphicObject;
@@ -184,14 +185,6 @@ protected:
         sal_Bool bToLastPoint, sal_Bool bDraw, sal_Bool bIsShadow);
     void ImpDrawFormTextShadow(DrawPortionInfo* pInfo, const Polygon& rPoly, sal_Int32 nAbsStart,
         sal_Bool bToLastPoint, sal_Bool bDraw);
-    //long              ImpDrawFormText(const String& rText, const Polygon& rPoly,
-    //                                  Font aFont, long nAbsStart, BOOL bIsShadow,
-    //                                  BOOL bToLastPoint, BOOL bDraw,
-    //                                  const long* pDXArray = NULL);
-    //void              DrawFormTextShadow(const String& rText, const Polygon& rPoly,
-    //                                     const Font& rFont, long nAbsStart,
-    //                                     BOOL bToLastPoint, BOOL bDraw,
-    //                                     const long* pDXArray = NULL);
 
 /*N*/   void                ImpDrawTiledBitmap( OutputDevice* pOut, const Rectangle& rRect,
 /*N*/                                           const Point& rStartPoint, const Rectangle& rClipRect,
@@ -230,14 +223,6 @@ protected:
     sal_Int32 DrawFormText(DrawPortionInfo* pInfo, const Polygon& rPoly,
         sal_Int32 nAbsStart = 0L, sal_Bool bToLastPoint = sal_True,
         sal_Bool bDraw = sal_True);
-
-    // #101498# XPolygon version of DrawFormText not used, removed.
-    // Difference was only to change XPolygon to Polygon using
-    // XOutCreatePolygon(...)
-    //long              DrawFormText(const String& rText, const XPolygon& rXPoly,
-    //                               Font aFont, long nAbsStart = 0,
-    //                               BOOL bToLastPoint = TRUE, BOOL bDraw = TRUE,
-    //                               const long* pDXArray = NULL);
 
     const Rectangle&    GetFormTextBoundRect() const { return aFormTextBoundRect; }
 
@@ -301,8 +286,6 @@ long            XOutCalcBezierStepCount( const XPolygon& rXPoly, USHORT nIndex, 
 void            XOutCalcBezier( const XPolygon& rXPoly, USHORT nBezIndex, Polygon& rPoly, USHORT nPolyIndex, long nSteps );
 Polygon         XOutCreatePolygon( const XPolygon& rXPoly, OutputDevice* pOut, USHORT nRough = 0 );
 Polygon         XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* pOut );
-// #102382# Remove XOutGetCharOutline
-//XPolyPolygon  XOutGetCharOutline( USHORT nChar, OutputDevice& rOut, BOOL bOptimizeSize = TRUE );
 
 }//end of namespace binfilter
 #endif      // _XOUTX_HXX

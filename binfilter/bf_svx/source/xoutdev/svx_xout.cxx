@@ -369,8 +369,7 @@ namespace binfilter {
 //-/void XOutputDevice::SetLineAttr(const XLineAttrSetItem& rAttr)
 /*N*/ void XOutputDevice::SetLineAttr(const SfxItemSet& rSet)
 /*N*/ {
-/*N*/ //-/  const SfxItemSet&   rSet = rAttr.GetItemSet();
-/*N*/   const BOOL          bPureMtf = ( pOut->GetOutDevType() != OUTDEV_PRINTER ) && ( pOut->GetConnectMetaFile() != NULL );
+/*N*/   const BOOL bPureMtf = ( pOut->GetOutDevType() != OUTDEV_PRINTER ) && ( pOut->GetConnectMetaFile() != NULL );
 /*N*/
 /*N*/   aLineColor = ITEMVALUE( rSet, XATTR_LINECOLOR, XLineColorItem );
 /*N*/   nLineTransparence = ITEMVALUE( rSet, XATTR_LINETRANSPARENCE, XLineTransparenceItem );

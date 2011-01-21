@@ -31,14 +31,7 @@
 
 #include <bf_svx/svdotext.hxx>
 
-#include <bf_svx/xpoly.hxx>
 namespace binfilter {
-
-//************************************************************
-//   Vorausdeklarationen
-//************************************************************
-
-class XPolyPolygon;
 
 //************************************************************
 //   Defines
@@ -108,10 +101,6 @@ public:
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeContour(XPolyPolygon& rPoly) const;
-
-
-
-
 
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);

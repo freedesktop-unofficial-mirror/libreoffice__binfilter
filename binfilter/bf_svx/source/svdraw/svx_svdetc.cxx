@@ -510,6 +510,8 @@ namespace binfilter {
 /*?*/
 /*?*/           break;
 /*?*/       }
+            case XFILL_NONE:
+                break;
 /*N*/   }
 /*N*/
 /*N*/   return bRetval;

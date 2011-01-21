@@ -37,14 +37,14 @@
 
 #include <bf_svtools/solar.hrc>
 
-#include <bf_svx/xpoly.hxx>
 #include <bf_svx/svdoedge.hxx>
+
 class VirtualDevice;
 class OutputDevice;
 class Region;
 class Window;
-namespace binfilter {
 
+namespace binfilter {
 
 class SdrHdlList;
 class SdrObject;

@@ -29,33 +29,15 @@
 #ifndef _SVX_XLINIIT_HXX
 #define _SVX_XLINIIT_HXX
 
-#include <bf_svx/xit.hxx>
-#include <bf_svx/xcolit.hxx>
-
-#include <bf_svx/xpoly.hxx>
-#include <bf_svx/xenum.hxx>
-
-#include <bf_svtools/metitem.hxx>
-
-#include <bf_svtools/eitem.hxx>
-
-class SvStream;
-
-namespace binfilter {
-class XDash;
-class XDashTable;
-}//end of namespace binfilter
-
-#include <bf_svx/xdash.hxx>
+#include <bf_svx/xlnedit.hxx>
+#include <bf_svx/xlnedcit.hxx>
+#include <bf_svx/xlnstcit.hxx>
+#include <bf_svx/xlnstit.hxx>
+#include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlndsit.hxx>
 #include <bf_svx/xlnwtit.hxx>
 #include <bf_svx/xlnclit.hxx>
-#include <bf_svx/xlnstit.hxx>
-#include <bf_svx/xlnedit.hxx>
-#include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlnedwit.hxx>
-#include <bf_svx/xlnstcit.hxx>
-#include <bf_svx/xlnedcit.hxx>
 
 #endif
 

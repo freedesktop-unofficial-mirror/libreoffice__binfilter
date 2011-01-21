@@ -29,8 +29,6 @@
 #ifndef _SVDSMRT_HXX
 #define _SVDSMRT_HXX
 
-#include <bf_svx/xpoly.hxx>
-
 #include <bf_svx/svdosmev.hxx>
 class SvStream;
 namespace binfilter {
@@ -387,10 +385,6 @@ public:
     SdrSmartDragPointList aDragPoints;
     bool bAnimated;
     ULONG    nTimerStep;
-//    AutoTimer aAnimator;
-//    SdrPathObj* pPathObj;
-//private:
-//    DECL_LINK(AniHdl,AutoTimer*);
 public:
     SdrObjSmartData();
     ~SdrObjSmartData();

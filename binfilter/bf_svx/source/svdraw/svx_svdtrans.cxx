@@ -30,9 +30,7 @@
 #include <math.h>
 #include "xpoly.hxx"
 
-
 #include <tools/bigint.hxx>
-
 
 namespace binfilter {
 
@@ -398,7 +396,7 @@ namespace binfilter {
 /*?*/ FrPair GetMapFactor(FieldUnit eS, FieldUnit eD)
 /*?*/ {
 /*?*/   if (eS==eD) return FrPair(1,1,1,1);
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);//STRIP001 //STRIP001 /*?*/    FrPair aS(GetInchOrMM(eS));
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);
 /*?*/ };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -409,13 +407,6 @@ namespace binfilter {
     // 1 pole    =  5 1/2 yd  =    198" =     5.029,2mm
     // 1 yd      =  3 ft      =     36" =       914,4mm
     // 1 ft      = 12 "       =      1" =       304,8mm
-
-
-
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

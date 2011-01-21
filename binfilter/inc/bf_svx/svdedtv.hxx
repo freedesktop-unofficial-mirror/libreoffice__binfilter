@@ -35,8 +35,6 @@
 
 #include <bf_svx/svdmrkv.hxx>
 
-#include <bf_svx/xpoly.hxx>
-
 #include <bf_svx/svdmodel.hxx>
 namespace binfilter {
 

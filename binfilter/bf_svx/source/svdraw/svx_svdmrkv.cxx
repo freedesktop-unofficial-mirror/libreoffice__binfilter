@@ -435,8 +435,6 @@ namespace binfilter {
 /*N*/   // #105722# remember old focus handle values to search for it again
 /*N*/   const SdrHdl* pSaveOldFocusHdl = aHdl.GetFocusHdl();
 /*N*/   sal_Bool bSaveOldFocus(sal_False);
-/*N*/   sal_uInt16 nSavePolyNum, nSavePointNum;
-/*N*/   SdrHdlKind eSaveKind;
 /*N*/
 /*N*/   if(pSaveOldFocusHdl
 /*N*/       && pSaveOldFocusHdl->GetObj()
@@ -451,7 +449,6 @@ namespace binfilter {
 /*N*/   pMarkedObj=NULL;
 /*N*/   pMarkedPV=NULL;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   BOOL bStdDrag=eDragMode==SDRDRAG_MOVE;
 /*N*/   if (nMarkAnz==1) {
 /*?*/       pMarkedObj=aMark.GetMark(0)->GetObj();
 /*N*/   }
@@ -501,30 +498,6 @@ namespace binfilter {
 
 /*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode eMode)
 /*N*/ {
-/*N*/   switch(eMode)
-/*N*/   {
-/*?*/       case SDRDRAG_ROTATE:
-/*?*/       {
-/*?*/           // add rotation center
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SdrHdl* pHdl = new SdrHdl(aRef1, HDL_REF1);
-/*?*/
-/*?*/
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_MIRROR:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_TRANSPARENCE:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_GRADIENT:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/           break;
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 
@@ -589,16 +562,15 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pObj!=NULL && pPV!=NULL && IsObjMarkable(pObj, pPV)) {
 /*N*/       BrkAction();
-/*N*/       if (!bUnmark) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       } else {
+/*N*/       if (bUnmark)
+            {
 /*N*/           ULONG nPos=aMark.FindObject(pObj);
-/*N*/           if (nPos!=CONTAINER_ENTRY_NOTFOUND) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (nPos!=CONTAINER_ENTRY_NOTFOUND) {
 /*N*/           }
 /*N*/       }
 /*N*/       if (!bImpNoSetMarkHdl) {
 /*N*/           MarkListHasChanged();
 /*N*/           AdjustMarkHdl(TRUE);
-/*N*/ //            if (!IsSolidMarkHdl() || !bSomeObjChgdFlag) {
 /*N*/           if (!bSomeObjChgdFlag) {
 /*N*/               // ShowMarkHdl kommt sonst mit dem AfterPaintTimer
 /*N*/               ShowMarkHdl(NULL);
@@ -624,7 +596,6 @@ namespace binfilter {
 /*N*/       return NULL;
 /*N*/   }
 /*N*/   BOOL bCheckIfMarkable=(nOptions & SDRSEARCH_TESTMARKABLE)!=0;
-/*N*/   BOOL bBack=(nOptions & SDRSEARCH_BACKWARD)!=0;
 /*N*/   BOOL bDeep=(nOptions & SDRSEARCH_DEEP)!=0;
 /*N*/   BOOL bOLE=pObj->ISA(SdrOle2Obj);
 /*N*/   SdrObject* pRet=NULL;
