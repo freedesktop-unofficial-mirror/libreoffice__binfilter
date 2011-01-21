@@ -347,9 +347,6 @@ enum XMLTextType
 #define XML_TEXT_RENAME_TYPE_FRAME 10
 #define XML_TEXT_RENAME_TYPE_TABLE 20
 
-// create type for section list, XMLSectionList_Impl
-DECLARE_LIST( XMLSectionList_Impl, XMLSectionImportContext* )
-
 class XMLTextImportHelper : public UniRefBase
 {
     SvXMLTokenMap *pTextElemTokenMap;
@@ -369,8 +366,6 @@ class XMLTextImportHelper : public UniRefBase
     SvXMLImportContextRef xFontDecls;
     SvXMLImportContextRef xListBlock;
     SvXMLImportContextRef xListItem;
-
-    XMLSectionList_Impl aSectionList;
 
     UniReference < SvXMLImportPropertyMapper > xParaImpPrMap;
     UniReference < SvXMLImportPropertyMapper > xTextImpPrMap;
@@ -563,8 +558,6 @@ public:
     sal_Bool HasListItem() const { return xListItem.Is(); }
     void SetListItem( XMLTextListItemContext *pListItem );
     void _SetListItem( SvXMLImportContext *pListItem );
-
-    XMLSectionList_Impl& GetSectionList() { return aSectionList; }
 
 #ifdef CONV_STAR_FONTS
     ::rtl::OUString ConvertStarFonts( const ::rtl::OUString& rChars,
