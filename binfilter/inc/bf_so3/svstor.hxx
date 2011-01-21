@@ -231,10 +231,6 @@ inline SvStorageRef::SvStorageRef( SotObject * pObjP )
 {
     pObj = (SvStorage *)SvStorage::ClassFactory()->CastAndAddRef( pObjP );
 }
-inline SvStorageRef::SvStorageRef( SotObject * pObjP, SvCastEnum )
-{
-    pObj = (SvStorage *)SvStorage::ClassFactory()->AggCastAndAddRef( pObjP );
-}
 
 }
 

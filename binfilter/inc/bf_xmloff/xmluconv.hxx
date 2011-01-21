@@ -36,9 +36,7 @@
 #include <tools/color.hxx>
 #endif
 
-#ifndef _VCL_MAPUNIT_HXX
-#include <vcl/mapunit.hxx>
-#endif
+#include <tools/mapunit.hxx>
 
 #ifndef _XMLOFF_XMLEMENT_HXX
 #include <bf_xmloff/xmlement.hxx>

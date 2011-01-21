@@ -30,9 +30,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SV_WINTYPES_HXX //autogen
-#include <vcl/wintypes.hxx>
-#endif
+#include <tools/wintypes.hxx>
 #ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
 #endif
