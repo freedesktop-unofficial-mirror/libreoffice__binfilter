@@ -31,6 +31,7 @@
 
 #include <tools/gen.hxx>
 #include <bf_svx/xpoly.hxx>
+#include <vector>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -90,7 +91,7 @@ public:
 |*    Letzte Aenderung  Joe 26-09-1995
 |*
 *************************************************************************/
-DECLARE_LIST( XPolygonList, XPolygon* )//STRIP008 DECLARE_LIST( XPolygonList, XPolygon* );
+typedef ::std::vector< XPolygon* > XPolygonList;
 
 class ImpXPolyPolygon
 {
@@ -98,9 +99,9 @@ public:
     XPolygonList aXPolyList;
     USHORT       nRefCount;
 
-                 ImpXPolyPolygon( USHORT nInitSize = 16, USHORT nResize = 16 ) :
-                    aXPolyList( 1024, nInitSize, nResize )
+                 ImpXPolyPolygon()
                     { nRefCount = 1; }
+
                 ImpXPolyPolygon( const ImpXPolyPolygon& rImpXPolyPoly );
                 ~ImpXPolyPolygon();
 
