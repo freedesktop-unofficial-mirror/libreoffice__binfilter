@@ -67,7 +67,7 @@ namespace binfilter {
 /*N*/   {}
 /*N*/ };
 
-/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 )//STRIP008 ;
+/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 )
 /*N*/ SV_IMPL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt );
 
 /*N*/ SwCntntNode* SwTxtNode::MakeCopy( SwDoc* pDoc, const SwNodeIndex& rIdx ) const
@@ -309,7 +309,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // es wird eine DDE-Tabelle kopiert
 /*?*/       // ist im neuen Dokument ueberhaupt der FeldTyp vorhanden ?
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDDEType = ((SwDDETable&)GetTable()).GetDDEFldType();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   // dann kopiere erstmal den Inhalt der Tabelle, die Zuordnung der
 /*N*/   // Boxen/Lines und das anlegen der Frames erfolgt spaeter
@@ -363,7 +363,7 @@ namespace binfilter {
 /*N*/   // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
 /*N*/   if( pDoc == this )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Start-/EndNode noch korrigieren
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SwPaM* pRedlineRange = 0;
@@ -376,23 +376,23 @@ namespace binfilter {
 /*N*/   BOOL bRet = FALSE;
 /*N*/
 /*N*/   if( pDoc && pDoc != this )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   // Copy in sich selbst (ueber mehrere Nodes wird hier gesondert
 /*N*/   // behandelt; in einem TextNode wird normal behandelt)
 /*N*/   else if( ! ( *pStt <= rPos && rPos < *pEnd &&
 /*N*/           ( pStt->nNode != pEnd->nNode ||
 /*N*/             !pStt->nNode.GetNode().IsTxtNode() )) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( this == pDoc, " falscher Copy-Zweig!" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   pDoc->SetRedlineMode_intern( eOld );
 /*N*/   if( pRedlineRange )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pDoc->IsRedlineOn() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -448,11 +448,11 @@ namespace binfilter {
 /*N*/   // dann kopiere noch alle Bookmarks
 /*N*/   if( GetBookmarks().Count() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aRgTmp( rRg.aStart, rRg.aEnd );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bDelRedlines && ( REDLINE_DELETE_REDLINES & pDest->GetRedlineMode() ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_DeleteRedlines( rRg, aCpyRange );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   pDest->GetNodes()._DelDummyNodes( aCpyRange );
 /*N*/ }
@@ -549,7 +549,7 @@ namespace binfilter {
 /*N*/           nCnt += rChain.GetNext() ? 1: 0;
 /*N*/           for ( USHORT k = 0; nCnt && k < aArr.Count(); ++k )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const _ZSortFly &rTmp = aArr[k];
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }

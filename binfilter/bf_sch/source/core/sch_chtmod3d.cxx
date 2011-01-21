@@ -1138,7 +1138,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if( pScene && bShowDataDescrLocal )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 CreateDataDescr( aDescription, nCol, nRow, NULL, FALSE, TRUE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/       }// end for nCol
@@ -1317,7 +1317,7 @@ namespace binfilter {
 /*?*/                       if (!pDescription)
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDescription = new DataDescription [nColCnt];
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/
 /*?*/                       pDescription [nCol].eDescr = eDescr;
@@ -1375,7 +1375,7 @@ namespace binfilter {
 /*?*/
 /*?*/                       if( eDescr != CHDESCR_NONE && bValidData )
 /*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 CreateDataDescr( pDescription[ nCol ], nCol, nRow, NULL, FALSE, TRUE );
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/
@@ -1502,7 +1502,7 @@ namespace binfilter {
 /*?*/                       if (!pDescription)
 /*?*/                       {
 /*?*/                           // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt];
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/
 /*?*/                       pDescription [nRow].eDescr = eDescr;
@@ -1756,7 +1756,7 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       if (pScene && pDescription[nRow].fValue != DBL_MIN)
 /*?*/                       {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   CreateDataDescr(pDescription[nRow], nCol, nRow, NULL, TRUE, TRUE);
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/               }

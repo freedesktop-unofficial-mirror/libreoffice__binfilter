@@ -44,7 +44,7 @@
 #include "app.hxx"
 #include <vector>
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 // -----------------------------------------------------------------------

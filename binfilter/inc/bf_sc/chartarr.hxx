@@ -143,7 +143,7 @@ public:
     ScChartArray( ScDocument* pDoc, const SchMemChart& rData );
 
     virtual ~ScChartArray();
-    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
     const ScRangeListRef&   GetRangeList() const { return aRangeListRef; }
     void    SetRangeList( const ScRangeListRef& rNew ) { aRangeListRef = rNew; }
@@ -184,7 +184,7 @@ public:
     ScChartCollection( const ScChartCollection& rColl ):
             Collection( rColl ) {}
 
-    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}
     ScChartArray*       operator[](USHORT nIndex) const
                         { return (ScChartArray*)At(nIndex); }
 

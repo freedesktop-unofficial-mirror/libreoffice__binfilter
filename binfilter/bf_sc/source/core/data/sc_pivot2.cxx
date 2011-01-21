@@ -150,7 +150,7 @@ namespace binfilter {
 /*N*/       // Strings vergleichen:
 /*N*/
 /*N*/       if (pUserData)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nResult = pUserData->ICompare(rData1.aStrValue, rData2.aStrValue);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       else
 /*N*/       {
 /*N*/             nResult = (short) ScGlobal::pTransliteration->compareString(

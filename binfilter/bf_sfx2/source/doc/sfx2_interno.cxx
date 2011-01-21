@@ -49,7 +49,7 @@ namespace binfilter {
 /*N*/ SV_IMPL_FACTORY(SfxInPlaceObjectFactory){}};
 /*N*/ TYPEINIT1(SfxInPlaceObjectFactory,SvFactory);
 /*N*/ SO2_IMPL_CLASS1(SfxInPlaceObject,SfxInPlaceObjectFactory,SvInPlaceObject,
-/*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))//STRIP002 SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4D))
+/*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))
 /*?*/ void SfxInPlaceObject::TestMemberObjRef(BOOL){}
 /*?*/ void SfxInPlaceObject::TestMemberInvariant(BOOL){}
 /*?*/ ::IUnknown* SfxInPlaceObject::GetMemberInterface( const SvGlobalName & ){ return 0L; }

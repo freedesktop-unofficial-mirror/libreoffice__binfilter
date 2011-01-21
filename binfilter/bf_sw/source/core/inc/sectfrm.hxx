@@ -59,7 +59,7 @@ class SwSectionFrm: public SwLayoutFrm, public SwFlowFrm
     void CalcEndAtEndFlag();
 protected:
     virtual void MakeAll();
-    virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat );
+    virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     virtual void Format( const SwBorderAttrs *pAttrs = 0 );
 public:
     SwSectionFrm( SwSection & );                 //Inhalt wird nicht erzeugt!

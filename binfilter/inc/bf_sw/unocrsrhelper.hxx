@@ -83,7 +83,7 @@ namespace SwUnoCursorHelper
                                     SwPaM& rPam,
                                     ::com::sun::star::beans::PropertyState& eState);
 
-} //STRIP008 ;
+}
 
 } //namespace binfilter
 #endif

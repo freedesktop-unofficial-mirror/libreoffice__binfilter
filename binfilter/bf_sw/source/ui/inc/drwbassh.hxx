@@ -42,11 +42,11 @@ class SwDrawBaseShell: public SwBaseShell
 {
 
 public:
-    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDrawBaseShell(SwView &rShell);
+    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_INTERFACE(SW_DRAWBASESHELL);
 
-    void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     DisableState(SfxItemSet &rSet)               { Disable(rSet);}
+    void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
 
 
 };

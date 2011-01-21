@@ -55,7 +55,6 @@ FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
 namespace binfilter {
 
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
-//STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormatsSupplier)
 
 // ===================================================================================================
 // moegliche Rueckgabewerte fuer den Found-Handler

@@ -145,7 +145,7 @@ struct SmFntFmtListEntry
 };
 
 
-SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 )//STRIP008 ;
+SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 )
 
 
 class SmFontFormatList

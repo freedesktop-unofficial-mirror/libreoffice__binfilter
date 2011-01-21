@@ -88,7 +88,7 @@ public:
         , nLastSize(0)
         , bSilent(sal_False)
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001       Init();
+        DBG_BF_ASSERT(0, "STRIP");
     }
     MathType(String &rIn,SmNode *pIn)
         : rRet(rIn)
@@ -104,7 +104,7 @@ public:
         , nSpec(0)
         , bSilent(sal_False)
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001Init();
+        DBG_BF_ASSERT(0, "STRIP");
     }
 private:
 /*Ver 2 Header*/

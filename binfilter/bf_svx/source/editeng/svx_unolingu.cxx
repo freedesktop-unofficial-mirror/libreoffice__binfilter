@@ -184,7 +184,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/         ThesDummy_Impl::getLocales()
 /*N*/             throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa;
 /*N*/ }
 
 
@@ -219,7 +219,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/                 const beans::PropertyValues& /*rProperties*/ )
 /*N*/             throw(lang::IllegalArgumentException,
 /*N*/                   uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes;
 /*N*/ }
 
 
@@ -262,21 +262,21 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ void SpellDummy_Impl::GetSpell_Impl()
-/*N*/ { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ { DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 /*N*/ uno::Sequence< sal_Int16 > SAL_CALL
 /*N*/     SpellDummy_Impl::getLanguages()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >(); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >();
 /*N*/ }
 
 
 /*N*/ sal_Bool SAL_CALL
 /*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 /*nLanguage*/ )
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*N*/ }
 
 
@@ -299,7 +299,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/             const beans::PropertyValues& /*rProperties*/ )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes;
 /*N*/ }
 
 
@@ -373,7 +373,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/     HyphDummy_Impl::getLocales()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();
 /*N*/ }
 
 

@@ -140,7 +140,7 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
 
 void SAL_CALL SvxUnoColorTable::removeByName( const OUString& /*rName*/ )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
-{DBG_BF_ASSERT(0, "STRIP");//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");
 }
 
 // XNameReplace
@@ -162,7 +162,7 @@ void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno:
 // XNameAccess
 uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& /*rName*/ )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
-{DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;
 }
 
 uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
@@ -212,8 +212,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
-namespace binfilter {//STRIP009
-//STRIP002 added begin
+namespace binfilter {
 //------the following is added for sfx2 integrate with svx
 extern "C" {
 void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationName ,
@@ -226,7 +225,6 @@ void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationN
 sal_Bool SAL_CALL sfx2_component_writeInfo( void*   pServiceManager ,
                                         void*   pRegistryKey    );
 }
-//STRIP002 added end
 
 extern "C"
 {
@@ -258,7 +256,7 @@ sal_Bool SAL_CALL component_writeInfo( void * pServiceManager, void * pRegistryK
 #ifndef SVX_LIGHT
             //writeInfo( pKey, svx::GraphicExporter_getImplementationName(), svx::GraphicExporter_getSupportedServiceNames() );
 #endif
-            sfx2_component_writeInfo(pServiceManager,pRegistryKey);//STRIP002
+            sfx2_component_writeInfo(pServiceManager,pRegistryKey);
         }
         catch (registry::InvalidRegistryException &)
         {
@@ -298,10 +296,10 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
             pRet = xFactory.get();
         }
     }
-    if (0==pRet)// added for sfx2 moudle integration with svx   //STRIP002 begin
+    if (0==pRet)// added for sfx2 moudle integration with svx
     {
         pRet=sfx2_component_getFactory(pImplName,pServiceManager,pRegistryKey);
-    }//STRIP002 end
+    }
 
     return pRet;
 }

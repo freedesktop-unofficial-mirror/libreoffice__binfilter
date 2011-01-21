@@ -29,7 +29,7 @@
 #ifndef SC_AUTOSTYL_HXX
 #define SC_AUTOSTYL_HXX
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 class ScDocShell;
 class ScRange;

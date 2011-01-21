@@ -146,7 +146,7 @@ namespace binfilter {
 
     <SvPersist::Load>
 */
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -168,7 +168,7 @@ namespace binfilter {
 
     <SvPersist::Save>
 */
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -197,7 +197,7 @@ namespace binfilter {
 
     <SvPersist::SaveAs>
 */
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -270,11 +270,11 @@ namespace binfilter {
 */
 
 /*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor * /*pD*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*?*/ const SfxFrameDescriptor* SfxFrameObject::GetFrameDescriptor() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 

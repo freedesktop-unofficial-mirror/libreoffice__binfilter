@@ -135,7 +135,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 
  ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::NotifyGraphicArrived()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 /* -----------------------------23.02.01 09:28--------------------------------
 
@@ -163,7 +163,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 
  ---------------------------------------------------------------------------*/
 /*N*/ const Graphic* SwNumFmt::GetGraphic() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 /* -----------------------------22.02.01 13:44--------------------------------
 
@@ -207,7 +207,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 
  ---------------------------------------------------------------------------*/
 /*N*/ const String& SwNumFmt::GetCharFmtName() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       return aEmptyStr;
 /*N*/ }
 /* -----------------------------22.02.01 16:05--------------------------------
@@ -224,7 +224,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 
  ---------------------------------------------------------------------------*/
 /*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient /*eSet*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 /* -----------------------------22.02.01 16:05--------------------------------
 
@@ -262,7 +262,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/                   {
 /*N*/                       if( pMod->IsA( TYPE( SwFmt )) )
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNumRuleInfo aInfo( rRuleNm );
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                       else if( ((SwTxtNode*)pMod)->GetNodes().IsDocNodes() )
 /*N*/                           lcl_SetRuleChgd( *(SwTxtNode*)pMod, i );
@@ -309,7 +309,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 
  ---------------------------------------------------------------------------*/
 /*N*/ const SwFmtVertOrient*      SwNumFmt::GetGraphicOrientation() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL SwNodeNum::operator==( const SwNodeNum& rNum ) const

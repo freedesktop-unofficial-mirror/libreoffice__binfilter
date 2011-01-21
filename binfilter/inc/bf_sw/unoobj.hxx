@@ -137,7 +137,7 @@ enum CursorType
  *
  * --------------------------------------------------*/
 
-SV_DECL_PTRARR(SwDependArr, SwDepend*, 2, 2)//STRIP008 ;
+SV_DECL_PTRARR(SwDependArr, SwDepend*, 2, 2)
 
 SwPageDesc* GetPageDescByName_Impl(SwDoc& rDoc, const String& rName);
 ::com::sun::star::uno::Sequence< sal_Int8 > CreateUnoTunnelId();
@@ -185,7 +185,7 @@ class UnoActionRemoveContext
  *
  ******************************************************************************/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > * XTextRangeRefPtr;
-SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)
 
 void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew);
 

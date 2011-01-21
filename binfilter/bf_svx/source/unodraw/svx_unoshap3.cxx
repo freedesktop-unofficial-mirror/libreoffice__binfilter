@@ -309,7 +309,7 @@ sal_Bool SAL_CALL Svx3DSceneObject::hasElements()
 //----------------------------------------------------------------------
 } //namespace binfilter
 #include <svditer.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 struct ImpRememberTransAndRect
 {
     Matrix4D                    maMat;
@@ -705,7 +705,7 @@ uno::Sequence< OUString > SAL_CALL Svx3DSphereObject::getSupportedServiceNames()
 ***********************************************************************/
 } //namespace binfilter
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 
 //----------------------------------------------------------------------

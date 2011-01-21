@@ -540,7 +540,7 @@ namespace binfilter {
 /*N*/           static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/           static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/ #endif
 /*N*/
@@ -599,7 +599,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -653,7 +653,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -687,7 +687,7 @@ namespace binfilter {
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->IsAnyShellAccessible() &&
 /*N*/       static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static_cast< SwRootFrm * >( GetUpper() )->GetCurrShell()->Imp()
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/ }

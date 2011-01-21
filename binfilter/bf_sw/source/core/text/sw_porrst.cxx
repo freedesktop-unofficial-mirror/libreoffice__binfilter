@@ -114,7 +114,7 @@ namespace binfilter {
 
 /*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( Width() )
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwKernPortion::FormatEOL( SwTxtFormatInfo &rInf )
@@ -134,12 +134,12 @@ namespace binfilter {
 /*N*/ SwArrowPortion::SwArrowPortion( const SwLinePortion & /*rPortion*/ ) :
 /*N*/   bLeft( sal_True )
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     Height( rPortion.Height() );
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP");  //STRIP001  ((SwArrowPortion*)this)->aPos = rInf.GetPos();
+/*N*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwLinePortion *SwArrowPortion::Compress() { return this; }
@@ -179,7 +179,7 @@ namespace binfilter {
 /*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
 /*N*/         if( MSHRT_MAX != nRedlPos )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwAttrHandler aAttrHandler;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/

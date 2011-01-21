@@ -51,7 +51,7 @@ protected:
 public:
     inline SwSaveClip( OutputDevice *pOut );
     inline ~SwSaveClip();
-    void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           void Reset();
+    void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;
     inline sal_Bool IsOn()  const { return bOn; }
     inline sal_Bool IsChg() const { return bChg; }
     inline sal_Bool IsOut() const { return 0 != pOut; }

@@ -36,23 +36,23 @@
 namespace binfilter {
 
 class SfxObjectShell;
-SV_DECL_PTRARR( SfxObjectShellArr_Impl, SfxObjectShell*, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR( SfxObjectShellArr_Impl, SfxObjectShell*, 4, 4 )
 
 class SfxObjectFactory;
 typedef SfxObjectFactory* SfxObjectFactoryPtr;
-SV_DECL_PTRARR( SfxObjectFactoryArr_Impl, SfxObjectFactoryPtr, 3, 3 )//STRIP008 ;
+SV_DECL_PTRARR( SfxObjectFactoryArr_Impl, SfxObjectFactoryPtr, 3, 3 )
 
 class SfxModule;
-SV_DECL_PTRARR( SfxModuleArr_Impl, SfxModule*, 2, 2 )//STRIP008 ;
+SV_DECL_PTRARR( SfxModuleArr_Impl, SfxModule*, 2, 2 )
 
 class SfxFilter;
-DECL_PTRARRAY( SfxFilterArr_Impl, SfxFilter*, 4, 4 )//STRIP008 ;
+DECL_PTRARRAY( SfxFilterArr_Impl, SfxFilter*, 4, 4 )
 
 typedef ::std::vector<  SfxFilter* > SfxFilterList_Impl;
 
 class SfxSlot;
 typedef SfxSlot* SfxSlotPtr;
-SV_DECL_PTRARR( SfxSlotArr_Impl, SfxSlotPtr, 20, 20 )//STRIP008 ;
+SV_DECL_PTRARR( SfxSlotArr_Impl, SfxSlotPtr, 20, 20 )
 
 }
 

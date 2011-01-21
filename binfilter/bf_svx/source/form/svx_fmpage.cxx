@@ -63,7 +63,7 @@
 
 #ifndef SVX_LIGHT
 #include "fmprop.hrc"
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 #endif
 
 namespace binfilter {

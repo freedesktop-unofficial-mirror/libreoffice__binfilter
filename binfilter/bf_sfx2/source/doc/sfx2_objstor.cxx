@@ -106,7 +106,7 @@
 #include "event.hxx"
 #include "fltoptint.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -816,10 +816,10 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/             SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
 /*N*/
 /*N*/       if ( pVersionItem )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if ( pImp->bIsSaving )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
     // SetModified must be enabled when SaveCompleted is called, otherwise the modified flag of child objects will not be cleared
@@ -870,7 +870,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/             // before we overwrite the original file, we will make a backup if there is a demand for that
 /*N*/             const sal_Bool bDoBackup = SvtSaveOptions().IsBackup();
 /*N*/             if ( bDoBackup )
-/*N*/           {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*N*/           {{DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/         }
 /*N*/
@@ -900,7 +900,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*?*/               OUString aOrigName = pMedium ? OUString(pMedium->GetName()) : OUString();
 /*?*/               if ( aOrigName.getLength() && aOrigName.compareToAscii( "private:", 8 ) != COMPARE_EQUAL
 /*?*/                   && !::utl::UCBContentHelper::Exists( aOrigName ) )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*N*/           }
 /*N*/         }
@@ -1041,7 +1041,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       }
 /*N*/
 /*N*/       SvStorage *pStorage=NULL;
-/*N*/       if ( !pFilter||sal_True  ) //STRIP007 if ( !pFilter || pFilter->IsOwnFormat() )
+/*N*/       if ( !pFilter||sal_True  )
 /*N*/       {
 /*N*/           pStorage = pMedium->GetStorage();
 /*N*/           bOk = SaveCompleted( pStorage );
@@ -1425,7 +1425,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/     // distinguish between "Save" and "SaveAs"
 /*N*/     pImp-> bIsSaving = sal_False;
 /*N*/
-/*N*/   sal_Bool bToOwnFormat = sal_True;//STRIP007 IsOwnStorageFormat_Impl(*pNewFile);
+/*N*/   sal_Bool bToOwnFormat = sal_True;
 /*N*/   if ( bToOwnFormat )
 /*N*/   {
 /*N*/         // If the filter is a "cross export" filter ( f.e. a filter for exporting an impress document from
@@ -1442,7 +1442,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   }
 /*N*/
 /*N*/   if ( GetMedium()->GetFilter() && ( GetMedium()->GetFilter()->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/     // Save the document ( first as temporary file, then transfer to the target URL by committing the medium )

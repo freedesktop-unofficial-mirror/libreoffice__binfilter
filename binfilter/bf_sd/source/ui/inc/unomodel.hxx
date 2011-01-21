@@ -222,7 +222,7 @@ public:
 ***********************************************************************/
 
 #include <cppuhelper/implbase3.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SdDrawPagesAccess : public ::cppu::WeakImplHelper3< ::com::sun::star::drawing::XDrawPages, ::com::sun::star::container::XNameAccess, ::com::sun::star::lang::XServiceInfo >
 {
 private:
@@ -260,7 +260,7 @@ public:
 ***********************************************************************/
 
 #include <cppuhelper/implbase2.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SdMasterPagesAccess : public ::cppu::WeakImplHelper2< ::com::sun::star::drawing::XDrawPages, ::com::sun::star::lang::XServiceInfo >
 {
 private:
@@ -292,7 +292,7 @@ public:
 *                                                                      *
 ***********************************************************************/
 #include <cppuhelper/implbase2.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SdDocLinkTargets : public ::cppu::WeakImplHelper2< ::com::sun::star::container::XNameAccess,
                                                          ::com::sun::star::lang::XServiceInfo >
 {

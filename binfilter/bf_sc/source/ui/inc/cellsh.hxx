@@ -63,30 +63,30 @@ public:
                 ScCellShell(ScViewData* pData);
     virtual     ~ScCellShell();
 
-    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void       Execute(SfxRequest &);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}
     void        GetState(SfxItemSet &);
 
-    void        ExecuteEdit( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void     ExecuteEdit( SfxRequest& rReq );
-    void        ExecuteTrans( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void        ExecuteTrans( SfxRequest& rReq );
+    void        ExecuteEdit( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        ExecuteTrans( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
 
     void        GetBlockState( SfxItemSet& rSet );
     void        GetCellState( SfxItemSet& rSet );
 
-    void        ExecuteDB( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void       ExecuteDB( SfxRequest& rReq );
+    void        ExecuteDB( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetDBState( SfxItemSet& rSet );
 
     void        ExecImageMap(SfxRequest& rReq);     // ImageMap
     void        GetImageMapState(SfxItemSet& rSet);
 
     void        GetClipState( SfxItemSet& rSet );
-    void        GetHLinkState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void       GetHLinkState( SfxItemSet& rSet );
+    void        GetHLinkState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteCursor( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void       ExecuteCursor( SfxRequest& rReq );
-    void        ExecuteCursorSel( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void        ExecuteCursorSel( SfxRequest& rReq );
-    void        ExecutePage( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void     ExecutePage( SfxRequest& rReq );
-    void        ExecutePageSel( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void      ExecutePageSel( SfxRequest& rReq );
-    void        ExecuteMove( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void     ExecuteMove( SfxRequest& rReq );
-    void        GetStateCursor( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void      GetStateCursor( SfxItemSet& rSet );
+    void        ExecuteCursor( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        ExecuteCursorSel( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        ExecutePage( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        ExecutePageSel( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        ExecuteMove( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        GetStateCursor( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

@@ -50,7 +50,7 @@ using namespace ::com::sun::star;
 
 /*?*/ SvxVector3DItem::SvxVector3DItem()
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/   DBG_CTOR(SvxVector3DItem, 0);
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------

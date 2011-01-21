@@ -53,28 +53,6 @@ namespace com { namespace sun { namespace star {
 }}}
 namespace binfilter {
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace xml {
-//STRIP008      namespace sax {
-//STRIP008          class XParser;
-//STRIP008      }
-//STRIP008  }
-//STRIP008  namespace document {
-//STRIP008      class XGraphicObjectResolver;
-//STRIP008  }
-//STRIP008  namespace frame {
-//STRIP008      class XModel;
-//STRIP008  }
-//STRIP008  namespace task {
-//STRIP008      class XStatusIndicator;
-//STRIP008  }
-//STRIP008  namespace lang {
-//STRIP008      class XMultiServiceFactory;
-//STRIP008  }
-//STRIP008     namespace io {
-//STRIP008         class XActiveDataSource;
-//STRIP008     }
-//STRIP008 }}}
 
 class SchXMLWrapper
 {

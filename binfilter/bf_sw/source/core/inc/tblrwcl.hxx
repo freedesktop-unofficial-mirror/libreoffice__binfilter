@@ -196,7 +196,6 @@ public:
     SwFrmFmt* GetFormat( long nWidth ) const;
     SwFrmFmt* GetFormat( const SfxPoolItem& rItem ) const;
     void AddFormat( const SwFrmFmt& rFmt );
-//STRIP001  // returnt TRUE, wenn geloescht werden kann
     bool RemoveFormat( const SwFrmFmt& rFmt );
 };
 

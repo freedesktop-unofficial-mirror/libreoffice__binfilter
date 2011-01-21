@@ -52,7 +52,7 @@ public:
         { return nY == rTst.nY && nHeight == rTst.nHeight; }
 };
 
-SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 )//STRIP008 ;
+SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 )
 
 class SwStripes : public SwStripeArr, public SwStripe
 {
@@ -128,7 +128,7 @@ public:
 };
 
 typedef SwScrollArea* SwScrollAreaPtr;
-SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)//STRIP008 ;
+SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)
 
 class SwScrollAreas : public SScrAreas
 {

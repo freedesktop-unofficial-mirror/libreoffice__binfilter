@@ -127,10 +127,10 @@ SwMultiPortion( xub_StrLen nEnd ) : pFldRest( 0 ), bTab1( sal_False ),
 public:
      const SwLineLayout& GetRoot() const { return aRoot; }
      SwLineLayout& GetRoot() { return aRoot; }
-    inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool HasTabulator() const { return bTab1 || bTab2; }
+    inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     inline sal_Bool IsFollowFld() const { return bFollowFld; }
     inline sal_Bool HasFlyInCntnt() const { return bFlyInCntnt; }
-    inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool IsDouble() const { return bDouble; }
+    inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 #ifdef BIDI
     inline sal_Bool IsBidi() const { return bBidi; }
 #endif

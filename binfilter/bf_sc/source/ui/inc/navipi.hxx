@@ -105,7 +105,7 @@ public:
             ScNavigatorDialogWrapper( Window*           pParent,
                                       USHORT            nId,
                                       SfxBindings*      pBindings,
-                                      SfxChildWinInfo*  pInfo ):SfxChildWindowContext( nId ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SfxChildWinInfo*    pInfo );
+                                      SfxChildWinInfo*  pInfo ):SfxChildWindowContext( nId ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_CHILDWINDOW_CONTEXT(ScNavigatorDialogWrapper)
 

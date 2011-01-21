@@ -100,7 +100,7 @@ namespace binfilter {
 
 /*N*/ SdrObjUserData* SchObjectAdjust::Clone(SdrObject *) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchObjectAdjust(*this);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************

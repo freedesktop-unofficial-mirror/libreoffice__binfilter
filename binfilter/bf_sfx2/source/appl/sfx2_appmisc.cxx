@@ -76,7 +76,7 @@
 #include "appimp.hxx"
 #include "helper.hxx"   // SfxContentHelper::Kill()
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;

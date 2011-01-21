@@ -111,7 +111,7 @@ public:
 };
 
 typedef ::std::vector< SmSym* > SmListSym;
-SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )//STRIP008 ;
+SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )
 
 /**************************************************************************/
 

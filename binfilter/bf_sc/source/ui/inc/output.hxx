@@ -145,7 +145,7 @@ private:
 
 
 
-    void            DrawRotatedFrame( const Color* pForceColor ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            DrawRotatedFrame( const Color* pForceColor );       // pixel
+    void            DrawRotatedFrame( const Color* pForceColor ){DBG_BF_ASSERT(0, "STRIP");}
 
 public:
                     ScOutputData( OutputDevice* pNewDev, ScOutputType eNewType,

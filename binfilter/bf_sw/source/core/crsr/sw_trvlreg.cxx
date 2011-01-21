@@ -41,27 +41,27 @@ namespace binfilter {
 
 /*N*/ bool GotoPrevRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 
 /*N*/ bool GotoNextRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 
 /*N*/ bool GotoCurrRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
 /*N*/ bool GotoCurrRegionAndSkip( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
 /*N*/                               bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 }

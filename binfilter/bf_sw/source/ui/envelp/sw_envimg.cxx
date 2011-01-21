@@ -54,7 +54,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SwEnvItem::SwEnvItem() :
 /*N*/   SfxPoolItem(FN_ENVELOP)
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     aAddrText       = aEmptyStr;
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 // --------------------------------------------------------------------------
 /*N*/ SwEnvItem::SwEnvItem(const SwEnvItem& rItem) :
@@ -72,13 +72,13 @@ using namespace ::com::sun::star::uno;
 /*N*/   bPrintFromAbove(rItem.bPrintFromAbove),
 /*N*/   lShiftRight    (rItem.lShiftRight),
 /*N*/   lShiftDown     (rItem.lShiftDown)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // --------------------------------------------------------------------------
 /*N*/ int SwEnvItem::operator ==(const SfxPoolItem& rItem) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  const SwEnvItem& rEnv = (const SwEnvItem&) rItem;
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // --------------------------------------------------------------------------

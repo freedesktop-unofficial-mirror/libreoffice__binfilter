@@ -91,13 +91,13 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
     // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
-DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 
 /*N*/ void SwDoc::UnGroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     int bUndo = DoesUndo();
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
@@ -163,7 +163,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 // #75371#
 #include <bf_svx/sxenditm.hxx>
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ void SwDoc::InitDrawModel()
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::InitDrawModel" );
@@ -433,7 +433,7 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 \************************************************************************/
 
 /*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, /*pInfo*/)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/  return(0);
 /*N*/ }
 }

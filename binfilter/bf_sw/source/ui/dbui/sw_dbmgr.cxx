@@ -350,7 +350,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 
  ---------------------------------------------------------------------------*/
 /*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32 nSet)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 /* -----------------------------17.07.00 14:17--------------------------------
 

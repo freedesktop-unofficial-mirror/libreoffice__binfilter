@@ -309,7 +309,7 @@ namespace binfilter {
 
 /*N*/ SvStream &operator<<( SvStream &rStream, const SwRect &rRect )
 /*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    rStream << '[' << rRect.Top()   << '/' << rRect.Left()
+/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return rStream;
 /*N*/ }
 #endif

@@ -115,9 +115,6 @@ class SwLineNumberInfo;
 class SwAttrSet;
 class SwAuthEntry;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace uno {
-//STRIP008  template < class > class Sequence;
-//STRIP008 }}}};
 
 
 // Flags for GetScriptType - to define how handle weak - scripts (b.e.

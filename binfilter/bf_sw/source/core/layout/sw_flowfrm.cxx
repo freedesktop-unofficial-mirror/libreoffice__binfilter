@@ -725,7 +725,7 @@ namespace binfilter {
 /*N*/ SwLayoutFrm *SwFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
 /*N*/ {
 /*N*/   if ( IsInFtn() )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 return bFwd ? GetNextFtnLeaf( eMakePage ) : GetPrevFtnLeaf( eMakePage );
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if ( IsInSct() )
 /*N*/       return bFwd ? GetNextSctLeaf( eMakePage ) : GetPrevSctLeaf( eMakePage );
 /*N*/   return bFwd ? GetNextLeaf( eMakePage ) : GetPrevLeaf( eMakePage );
@@ -1280,8 +1280,8 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   else if( rThis.GetAttrSet()->GetDoc()->IsParaSpaceMaxAtPages() &&
-/*N*/            1) //STRIP001 CastFlowFrm( pOwn )->HasParaSpaceAtPages( rThis.IsSctFrm() ) )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nUpper = pAttrs->GetULSpace().GetUpper();
+/*N*/            1)
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   nUpper += pAttrs->GetTopLine( &rThis );
 /*N*/
@@ -1434,7 +1434,7 @@ namespace binfilter {
 /*N*/ //!!!!MoveFtnCntFwd muss ggf. mitgepflegt werden.
 /*N*/   SwFtnBossFrm *pOldBoss = rThis.FindFtnBossFrm();
 /*N*/   if ( rThis.IsInFtn() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     return ((SwCntntFrm&)rThis).MoveFtnCntFwd( bMakePage, pOldBoss );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   if( !IsFwdMoveAllowed() && !bMoveAlways )
 /*N*/   {
@@ -1805,7 +1805,7 @@ namespace binfilter {
 /*?*/                   pNewUpper = (SwSectionFrm*)pTmp;
 /*?*/               else
 /*?*/               {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSct = new SwSectionFrm( *pSct, TRUE );
+/*?*/                     DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }

@@ -566,7 +566,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/   case RES_CONDCOLL_CONDCHG:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwCondCollCondChg*)pNewValue)->pChangedFmt == GetRegisteredIn() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return ;    // nicht an die Basisklasse / Frames weitergeben
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
@@ -909,11 +909,11 @@ using namespace ::com::sun::star::i18n;
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_GETLOWERNUMLEVEL:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( IsTxtNode() && ((SwTxtNode*)this)->GetNum() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_FINDNEARESTNODE:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:

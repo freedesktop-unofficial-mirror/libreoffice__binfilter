@@ -49,7 +49,7 @@ namespace binfilter {
 
 }//namespace binfilter
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwInsertChartChild : public SfxChildWindow
 {
 public:

@@ -316,13 +316,13 @@ public:
 /*?*/
 /*?*/   if( IsCapital() )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         DBG_ASSERT( !pDXArray, "DrawCapital nicht fuer TextArray!" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       if ( IsKern() && !pDXArray )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             Size aSize = GetPhysTxtSize( pOut, rTxt, nIdx, nLen );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {

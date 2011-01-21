@@ -516,10 +516,10 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/ }
 
 typedef const SvxFontItem *SvxFontItemPtr;
-SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 )//STRIP008 ;
+SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 )
 
 typedef SwTxtAttr *SwTxtAttrPtr;
-SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
+SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 
 /*N*/ void Sw3IoImp::ConvertText( ByteString& rText8, String& rText,
 /*N*/                           xub_StrLen nOffset, SwTxtNode& rNd,

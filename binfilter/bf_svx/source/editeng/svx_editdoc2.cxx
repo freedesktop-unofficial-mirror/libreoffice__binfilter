@@ -121,7 +121,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/ }
 
 /*N*/ ExtraPortionInfo::~ExtraPortionInfo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // -------------------------------------------------------------------------
@@ -307,25 +307,25 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/   switch ( rPoolItem.Which() )
 /*N*/   {
 /*N*/       case EE_PARA_LRSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_ULSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_SBL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_TABS:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_CHAR_FONTHEIGHT:
 /*N*/       case EE_CHAR_FONTHEIGHT_CJK:
 /*N*/       case EE_CHAR_FONTHEIGHT_CTL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }

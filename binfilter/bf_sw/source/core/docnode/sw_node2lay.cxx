@@ -87,7 +87,7 @@ namespace binfilter {
 /*N*/       // damit wir uns vor/hinter ihn haengen koennen
 /*N*/       if( !bSearch && rNode.GetIndex() < nIndex )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aTmp( *rNode.EndOfSectionNode(), +1 );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {

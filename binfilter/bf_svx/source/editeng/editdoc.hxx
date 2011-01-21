@@ -44,7 +44,7 @@ namespace binfilter {
 class ImpEditEngine;
 class SvxTabStop;
 
-DBG_NAMEEX( EE_TextPortion )//STRIP008
+DBG_NAMEEX( EE_TextPortion )
 
 #define CHARPOSGROW     16
 #define DEFTAB          720
@@ -96,7 +96,7 @@ struct ScriptTypePosInfo
     }
 };
 
-SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 )
 
 struct WritingDirectionInfo
 {
@@ -112,10 +112,10 @@ struct WritingDirectionInfo
     }
 };
 
-SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )
 
 typedef EditCharAttrib* EditCharAttribPtr;
-SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )
 
 
 
@@ -228,7 +228,7 @@ public:
 };
 
 typedef ContentNode* ContentNodePtr;
-SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class EditPaM
@@ -351,7 +351,7 @@ public:
 // class TextPortionList
 // -------------------------------------------------------------------------
 typedef TextPortion* TextPortionPtr;
-SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )//STRIP008 ;
+SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )
 
 class TextPortionList : public TextPortionArray
 {
@@ -366,7 +366,7 @@ public:
 
 class ParaPortion;
 
-SV_DECL_VARARR( CharPosArray, sal_Int32, 0, CHARPOSGROW )//STRIP008 ;
+SV_DECL_VARARR( CharPosArray, sal_Int32, 0, CHARPOSGROW )
 
 // ------------------------------------------------------------------------
 // class EditLine
@@ -460,7 +460,7 @@ public:
 // class LineList
 // -------------------------------------------------------------------------
 typedef EditLine* EditLinePtr;
-SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 )
 
 class EditLineList : public LineArray
 {
@@ -537,7 +537,7 @@ public:
 };
 
 typedef ParaPortion* ParaPortionPtr;
-SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class ParaPortionList
@@ -608,7 +608,7 @@ public:
 };
 
 typedef DeletedNodeInfo* DeletedNodeInfoPtr;
-SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class EditDoc

@@ -108,7 +108,7 @@ struct SvXMLEmbeddedTextEntry
 };
 
 typedef SvXMLEmbeddedTextEntry* SvXMLEmbeddedTextEntryPtr;
-SV_DECL_PTRARR_DEL( SvXMLEmbeddedTextEntryArr, SvXMLEmbeddedTextEntryPtr, 4, 4 )//STRIP007 ;
+SV_DECL_PTRARR_DEL( SvXMLEmbeddedTextEntryArr, SvXMLEmbeddedTextEntryPtr, 4, 4 )
 
 //-------------------------------------------------------------------------
 

@@ -65,7 +65,7 @@ protected:
     {}
 
 public:
-    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
     virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;

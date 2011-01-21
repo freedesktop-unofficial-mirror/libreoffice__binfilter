@@ -92,12 +92,12 @@ typedef int (FAR PASCAL *FNw4wf)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
 
 #include <swerror.h>
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 #define ERR_DLL 9999
 
 /*N*/ USHORT AutoDetec( const String& /*rFileName*/, USHORT & /*rVersion*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // Handler fuer die Prozentanzeige

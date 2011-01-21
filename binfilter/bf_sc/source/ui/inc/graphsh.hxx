@@ -46,12 +46,12 @@ public:
 
     SFX_DECL_INTERFACE(SCID_GRAPHIC_SHELL);
 
-    ScGraphicShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScGraphicShell(ScViewData* pData);
-    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    Execute(SfxRequest& rReq);
-    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrState(SfxItemSet &rSet);
+    ScGraphicShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
+    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
 
-    void    ExecuteFilter(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecuteFilter(SfxRequest& rReq);
-    void    GetFilterState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void    GetFilterState(SfxItemSet &rSet);
+    void    ExecuteFilter(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetFilterState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 } //namespace binfilter

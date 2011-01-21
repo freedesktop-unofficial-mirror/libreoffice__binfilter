@@ -64,7 +64,7 @@ namespace frm
 
     class OFilterControl    :public UnoControl
                             ,public OFilterControl_BASE
-                            ,public ::binfilter::svxform::OParseContextClient//STRIP008                             ,public ::svxform::OParseContextClient
+                            ,public ::binfilter::svxform::OParseContextClient
     {
         TextListenerMultiplexer     m_aTextListeners;
 

@@ -72,7 +72,7 @@
 #if OSL_DEBUG_LEVEL > 1
 namespace binfilter {
 extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
-} //STRIP008
+}
 #endif
 namespace binfilter {
 /*N*/ TYPEINIT1( SwTxtFrm, SwCntntFrm );
@@ -301,7 +301,7 @@ namespace binfilter {
 // Entfernt die Anhaengsel des Textfrms wenn dieser hidden ist
 
 /*N*/ void SwTxtFrm::HideHidden()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

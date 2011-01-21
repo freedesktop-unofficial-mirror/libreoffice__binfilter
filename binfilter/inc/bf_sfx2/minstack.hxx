@@ -63,7 +63,6 @@ T ARR::Pop() \
     Remove( Count()-1, 1 ); \
     return aRet; \
 }
-//STRIP008 the following "DECL_PTRARRAY( ARR##arr_, T, nI, nG );\" should be "DECL_PTRARRAY( ARR##arr_, T, nI, nG )\"
 #define DECL_PTRSTACK( ARR, T, nI, nG ) \
 DECL_PTRARRAY( ARR##arr_, T, nI, nG ) \
 class ARR: private ARR##arr_ \

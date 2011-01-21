@@ -268,7 +268,7 @@ private:
 class AsciiReader: public Reader
 {
     friend class SwReader;
-    virtual ULONG Read( SwDoc &,SwPaM &,const String &){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual ULONG Read( SwDoc &,SwPaM &,const String &);
+    virtual ULONG Read( SwDoc &,SwPaM &,const String &){DBG_BF_ASSERT(0, "STRIP"); return 0;}
 public:
     AsciiReader(): Reader() {}
 };
@@ -421,7 +421,6 @@ SvStream& OutHex( SvStream& rStrm, ULONG nHex, BYTE nLen = 2 );
 
 inline SvStream& OutHex( USHORT nHex, BYTE nLen = 2 )      { return OutHex( Strm(), nHex, nLen ); }
 inline SvStream& OutHex4( USHORT nHex )     { return OutHex( Strm(), nHex, 4 ); }
-//STRIP001  inline SvStream& OutHex8( ULONG nHex )      { return OutHex( Strm(), nHex, 8 ); }
 inline SvStream& OutLong( long nVal )       { return OutLong( Strm(), nVal ); }
 inline SvStream& OutULong( ULONG nVal )     { return OutULong( Strm(), nVal ); }
 
@@ -451,7 +450,7 @@ protected:
     SvStorage* pStg;
 
     // Fehler beim Aufruf erzeugen
-    virtual ULONG WriteStream(){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual ULONG WriteStream();
+    virtual ULONG WriteStream(){DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual ULONG WriteStorage() = 0;
 
 public:

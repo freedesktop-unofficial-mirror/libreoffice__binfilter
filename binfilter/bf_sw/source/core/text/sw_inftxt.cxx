@@ -679,7 +679,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/
 /*N*/   uno::Reference< XHyphenator > xHyph = ::binfilter::GetHyphenator();
 /*N*/   if (bInterHyph && xHyph.is())
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxSpellWrapper::CheckHyphLang( xHyph, eTmp );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   if( !xHyph.is() || !xHyph->hasLocale( pBreakIt->GetLocale(eTmp) ) )
 /*N*/       return sal_False;

@@ -28,7 +28,7 @@
 #ifndef _TOXE_HXX
 #define _TOXE_HXX
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 enum SwTOXSearch
 {
     TOX_NXT,

@@ -103,7 +103,7 @@ public:
     ::com::sun::star::uno::Any  GetValue() const
                                 { return aValue; }
     virtual int                 operator==( const SfxPoolItem& ) const;
-    virtual String              GetValueText() const{DBG_BF_ASSERT(0, "STRIP"); return String();} //STRIP001 virtual String              GetValueText() const;
+    virtual String              GetValueText() const{DBG_BF_ASSERT(0, "STRIP"); return String();}
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
 };
 

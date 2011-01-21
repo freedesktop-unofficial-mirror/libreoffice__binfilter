@@ -69,7 +69,7 @@ namespace binfilter {
 /*N*/       if (bTextFrame && (pModel==NULL || !pModel->IsPasteResize())) { // #51139#
 /*N*/           if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/           if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           NbcAdjustTextFrameWidthAndHeight();
 /*N*/       }
@@ -96,7 +96,7 @@ namespace binfilter {
 /*N*/   if (bTextFrame) {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -212,7 +212,7 @@ namespace binfilter {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
 /*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -300,7 +300,7 @@ namespace binfilter {
 /*N*/           if (nAnz>0) {
 /*N*/               USHORT nMax=USHORT(nAnz-1);
 /*N*/               Point aPnt(rXP[0]);
-/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -322,7 +322,7 @@ namespace binfilter {
 /*N*/       ePathKind=bClosed?OBJ_POLY:OBJ_PLIN;
 /*N*/   }
 /*N*/   SdrPathObj* pPathObj=new SdrPathObj(ePathKind,aXPP);
-/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   ImpConvertSetAttrAndLayer(pPathObj,bNoSetAttr);
 /*N*/   return pPathObj;

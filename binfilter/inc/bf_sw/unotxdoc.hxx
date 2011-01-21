@@ -119,7 +119,7 @@ class SwUnoCrsr;
 class SwXDocumentPropertyHelper;
 
 typedef UnoActionContext* UnoActionContextPtr;
-SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)
 
 /******************************************************************************
  *
@@ -673,7 +673,7 @@ public:
 };
 } //namespace binfilter
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwXDocumentPropertyHelper : public SvxUnoForbiddenCharsTable
 {
     ::com::sun::star::uno::Reference < ::com::sun::star::uno::XInterface > xDashTable;

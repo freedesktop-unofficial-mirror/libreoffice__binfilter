@@ -323,7 +323,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetValueCount() const
 /*?*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;//STRIP001 /*?*/    return SVX_LINESPACE_END;   // SVX_LINESPACE_TWO_LINES + 1
+/*?*/       DBG_BF_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -444,7 +444,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxAdjustItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ADJUST_END;  // SVX_ADJUST_BLOCKLINE + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -454,7 +454,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxAdjustItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return GetAdjust();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------

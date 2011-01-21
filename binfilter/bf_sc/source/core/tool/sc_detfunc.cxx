@@ -424,7 +424,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   BOOL bArea = ( nRefStartCol != nRefEndCol || nRefStartRow != nRefEndRow );
 /*N*/   if (bArea && !bFromOtherTab)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   Point aStartPos = GetDrawPos( nRefStartCol, nRefStartRow, TRUE );
@@ -1397,7 +1397,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   BOOL bFound = pDoc->GetNote( nCol, nRow, nTab, aNote );
 /*N*/   if ( bFound || bForce || rUserText.Len() )
 /*N*/   {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrModel* pDestModel = pModel;
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return pObject;

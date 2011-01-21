@@ -49,13 +49,12 @@ class ImageList;
 #include <comphelper/uno3.hxx>
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
 namespace binfilter {
-//STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
 
 //========================================================================
 class FmOrderTreeListBox : public SvTreeListBox
 {
 protected:
-    ::binfilter::svxform::OControlExchangeHelper    m_aFieldExchange;//STRIP008     ::svxform::OControlExchangeHelper   m_aFieldExchange;
+    ::binfilter::svxform::OControlExchangeHelper    m_aFieldExchange;
 
 public:
     FmOrderTreeListBox( Window* pParent );

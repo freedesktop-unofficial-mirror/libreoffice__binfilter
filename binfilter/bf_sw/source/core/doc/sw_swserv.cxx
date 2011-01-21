@@ -179,7 +179,7 @@ namespace binfilter {
 /*N*/           // noch jemand am Object interessiert ?
 /*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwServerObject& rObj = *(SwServerObject*)&refObj;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/
 /*?*/           // sollte jetzt gar keine Verbindung mehr bestehen

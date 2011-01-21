@@ -94,7 +94,7 @@ using ::rtl::OUStringBuffer;
 
 #include <starmath.hrc>
 #include <parse.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 #define IMPORT_SVC_NAME RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.XMLImportFilter")

@@ -42,24 +42,24 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT /*nTab*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
 /*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartCol = rRange.aStart.Col();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -68,7 +68,7 @@ namespace binfilter {
 /*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT /*nTab*/, BOOL /*bColumns*/, USHORT /*nLevel*/,
 /*N*/                                   BOOL /*bRecord*/, BOOL /*bPaint*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -76,12 +76,12 @@ namespace binfilter {
 
 /*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& /*rRange*/, BOOL/* bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 }
 

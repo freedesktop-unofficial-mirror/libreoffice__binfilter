@@ -526,7 +526,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/
 /*N*/   if ( bResizeHTMLTable ) //Optimiertes Zusammenspiel mit Grow/Shrink des Inhaltes
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/
@@ -583,7 +583,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
 /*N*/               if( pLayout )
-/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/               bValidPrtArea = FALSE;
@@ -623,7 +623,7 @@ namespace binfilter {
 /*N*/           if ( /*!bOptLower &&*/ pLayout &&
 /*N*/                  ((Prt().*fnRect->fnGetWidth)() != nOldPrtWidth ||
 /*N*/                   (Frm().*fnRect->fnGetWidth)() != nOldFrmWidth) )
-/*N*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/             {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/             if ( !bOptLower && aOldPrtPos != (Prt().*fnRect->fnGetPos)() )
 /*N*/               aNotify.SetLowersComplete( FALSE );
@@ -666,7 +666,7 @@ namespace binfilter {
 /*N*/                                   SwHTMLTableLayout *pLayout =
 /*N*/                                       GetTable()->GetHTMLTableLayout();
 /*N*/                                   if( pLayout )
-/*N*/                                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/                                   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                   }
 /*N*/                               }
 /*N*/
@@ -742,7 +742,7 @@ namespace binfilter {
 /*N*/                       SwHTMLTableLayout *pLayout =
 /*N*/                           GetTable()->GetHTMLTableLayout();
 /*N*/                       if( pLayout )
-/*N*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/                       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/
 /*N*/                       bValidPrtArea = FALSE;
@@ -1421,11 +1421,11 @@ namespace binfilter {
 /*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/               pRootFrm->GetCurrShell() )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/         }
 /*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       SwPageFrm *pPage = FindPageFrm();
@@ -2292,7 +2292,7 @@ namespace binfilter {
 /*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/                   pRootFrm->GetCurrShell() )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pFrm, aOldFrm );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               pFrm->_InvalidatePrt();
 /*N*/           }
@@ -2487,7 +2487,7 @@ namespace binfilter {
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/           pRootFrm->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->DisposeAccessibleFrm( this, sal_True );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pMod->Remove( this );           // austragen,
 /*N*/         pMod->Remove( this );           // austragen,
@@ -2802,7 +2802,7 @@ namespace binfilter {
 /*M*/   if( (bAttrSetChg &&
 /*M*/        SFX_ITEM_SET == ((SwAttrSetChg*)pNew)->GetChgSet()->GetItemState( RES_PROTECT, FALSE )) ||
 /*M*/       RES_PROTECT == pNew->Which() )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*N*/   SwLayoutFrm::Modify( pOld, pNew );

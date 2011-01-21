@@ -1929,9 +1929,9 @@ class ImpSkeleton;
 /*N*/   bSnapRectDirty=TRUE; //rObj.bSnapRectDirty;
 /*N*/   bNotMasterCachable=rObj.bNotMasterCachable;
 /*N*/   if (pPlusData!=NULL) { delete pPlusData; pPlusData=NULL; }
-/*N*/   if (rObj.pPlusData!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (rObj.pPlusData!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/   if (pPlusData!=NULL && pPlusData->pBroadcast!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pPlusData!=NULL && pPlusData->pBroadcast!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -2032,7 +2032,7 @@ class ImpSkeleton;
 /*N*/           break;
 /*N*/
 /*?*/           case META_POLYPOLYGON_ACTION:
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           break;
 /*?*/
@@ -2443,7 +2443,7 @@ class ImpSkeleton;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrObjGeoData* SdrObject::NewGeoData() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ void SdrObject::SaveGeoData(SdrObjGeoData& rGeo) const
@@ -2715,7 +2715,7 @@ class ImpSkeleton;
 /*N*/   // erst Const-Aufruf um zu sehen, ob
 /*N*/   // ueberhaupt Klebepunkte da sind
 /*N*/   // const-Aufruf erzwingen!
-/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (GetGluePointList()!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -2766,7 +2766,7 @@ class ImpSkeleton;
 /*N*/   SdrObject* pRet = DoConvertToPolyObj(bBezier);
 /*N*/
 /*N*/   if(pRet && bLineToArea)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return pRet;

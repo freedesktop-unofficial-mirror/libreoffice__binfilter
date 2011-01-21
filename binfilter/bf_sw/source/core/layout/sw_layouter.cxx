@@ -125,7 +125,7 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwLayouter::SwLayouter() : pLooping( NULL ) //STRIP001 pEndnoter( NULL ), pLooping( NULL )
+/*N*/ SwLayouter::SwLayouter() : pLooping( NULL )
 /*N*/ {
 /*N*/ }
 

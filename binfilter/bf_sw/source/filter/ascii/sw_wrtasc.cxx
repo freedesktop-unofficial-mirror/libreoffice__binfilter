@@ -174,7 +174,7 @@ namespace binfilter {
 /*?*/                   const SwNodeIndex* pIdx = pFmt->GetCntnt().GetCntntIdx();
 /*?*/                   if( pIdx )
 /*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pCurPam;
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/               }
 /*N*/               else

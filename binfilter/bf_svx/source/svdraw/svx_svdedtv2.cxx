@@ -67,8 +67,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ULONG nAnz=aMark.GetMarkCount();
 /*N*/   if (nAnz==0) return;
-/*?*/   if (nAnz==1) { DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Sonderbehandlung fuer Einzelmarkierung
-/*N*/ } else {DBG_BF_ASSERT(0, "STRIP"); //STRIP001  // Mehrfachselektion
+/*?*/   if (nAnz==1) { DBG_BF_ASSERT(0, "STRIP");
+/*N*/ } else {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -97,7 +97,7 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrEditView::UnGroupMarked()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -298,7 +298,7 @@ SwXMLConditionContext_Impl::~SwXMLConditionContext_Impl()
 // ---------------------------------------------------------------------
 
 typedef SwXMLConditionContext_Impl *SwXMLConditionContextPtr;
-SV_DECL_PTRARR( SwXMLConditions_Impl, SwXMLConditionContextPtr, 5, 2 )//STRIP008 ;
+SV_DECL_PTRARR( SwXMLConditions_Impl, SwXMLConditionContextPtr, 5, 2 )
 
 class SwXMLTextStyleContext_Impl : public XMLTextStyleContext
 {

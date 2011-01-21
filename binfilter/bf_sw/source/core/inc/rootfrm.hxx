@@ -175,8 +175,8 @@ public:
     // fuer bestimmte UNO-Aktionen (Tabellencursor) ist es notwendig, dass alle Actions
     // kurzfristig zurueckgesetzt werden. Dazu muss sich jede ViewShell ihren alten Action-zaehler
     // merken
-    void UnoRemoveAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRemoveAllActions();
-    void UnoRestoreAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRestoreAllActions();
+    void UnoRemoveAllActions(){DBG_BF_ASSERT(0, "STRIP");}
+    void UnoRestoreAllActions(){DBG_BF_ASSERT(0, "STRIP");}
 
     const SdrPage* GetDrawPage() const { return pDrawPage; }
           SdrPage* GetDrawPage()       { return pDrawPage; }

@@ -65,7 +65,7 @@ namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 /*************************************************************************
 |*
@@ -108,7 +108,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/               pObjFactory->pNewObj = new FmFormObj(pObjFactory->nIdentifier);
 /*N*/           }   break;
 /*?*/           default:
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 return 0;
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*?*/   }
 /*N*/

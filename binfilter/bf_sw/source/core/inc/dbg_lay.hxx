@@ -82,7 +82,7 @@ public:
     static ULONG Record() { return nRecord; }
     static void SetRecord( ULONG nNew ) { nRecord = nNew; }
     static BOOL Record( ULONG nFunc ) { return 0 != (( nFunc | PROT_INIT ) & nRecord); }
-    static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam );
+    static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_BF_ASSERT(0, "STRIP");}
     static void Init();
     static void Stop();
 };
@@ -90,8 +90,8 @@ public:
 class SwEnterLeave
 {
     SwImplEnterLeave* pImpl;
-    void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar );
-    void Dtor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void Dtor();
+    void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar ){DBG_BF_ASSERT(0, "STRIP");}
+    void Dtor(){DBG_BF_ASSERT(0, "STRIP");}
 public:
      SwEnterLeave( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar )
     { if( SwProtocol::Record( nFunc ) ) Ctor( pFrm, nFunc, nAct, pPar ); else pImpl = NULL; }
@@ -105,7 +105,7 @@ public:
 #define PROTOCOL_ENTER( pFrm, nFunc, nAct, pPar ) SwEnterLeave aEnter( pFrm, nFunc, nAct, pPar );
 #define PROTOCOL_SNAPSHOT( pFrm, nFlags ) SwProtocol::SnapShot( pFrm, nFlags );
 #define GET_VARIABLE( nNo, nVar ) SwProtocol::GetVar( nNo, nVar );
-} //STRIP008 end of namespace binfilter
+}
 #else
 namespace binfilter {
 #define PROTOCOL( pFrm, nFunc, nAct, pPar )

@@ -1752,8 +1752,7 @@ public:
     // XServiceInfo
     virtual OUString SAL_CALL getImplementationName() throw (RuntimeException)
     {
-        //STRIP002 OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::getImplementationName()!" );
-        return OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.office.LegacyServiceManager")); //STRIP002return m_xOfficeMgr_si->getImplementationName();
+        return OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.office.LegacyServiceManager"));
     }
     virtual sal_Bool SAL_CALL supportsService(const OUString& ServiceName) throw (RuntimeException)
     {
@@ -1867,8 +1866,8 @@ Any LegacyServiceManager::getPropertyValue(const OUString& PropertyName)
     }
     else
     {
-        Reference< beans::XPropertySet > m_xLegacyRdbMgr_ps(m_xLegacyRdbMgr_msf, UNO_QUERY_THROW ); //STRIP002
-        return m_xLegacyRdbMgr_ps->getPropertyValue( PropertyName ); //STRIP002 return m_xOfficeMgr_ps->getPropertyValue( PropertyName );
+        Reference< beans::XPropertySet > m_xLegacyRdbMgr_ps(m_xLegacyRdbMgr_msf, UNO_QUERY_THROW );
+        return m_xLegacyRdbMgr_ps->getPropertyValue( PropertyName );
     }
 }
 

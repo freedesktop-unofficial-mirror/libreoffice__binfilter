@@ -45,7 +45,7 @@ struct SfxFrameDescriptor_Impl;
 struct SfxFrameSetDescriptor_Impl;
 class SfxFrameDescriptor;
 typedef SfxFrameDescriptor* SfxFrameDescriptorPtr;
-SV_DECL_PTRARR(SfxFramesArr, SfxFrameDescriptorPtr, 4, 2)//STRIP008 ;
+SV_DECL_PTRARR(SfxFramesArr, SfxFrameDescriptorPtr, 4, 2)
 
 //===========================================================================
 // Die SfxFrame...descriptoren bauen eine rekursive Struktur auf, die

@@ -138,7 +138,7 @@ public:
 /*?*/                   break;
 /*?*/
 /*?*/               case RES_TXTATR_HARDBLANK:
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   sOut = ((SwTxtHardBlank*)pHt)->GetChar();
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   break;
 /*?*/
 /*?*/               case RES_TXTATR_FTN:

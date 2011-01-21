@@ -48,11 +48,11 @@
 #include <ddefld.hxx>
 #include <swddetbl.hxx>
 #include <frame.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ extern bool CheckNodesRange( const SwNodeIndex& rStt,
 /*N*/                           const SwNodeIndex& rEnd, bool bChkSection );
 
-SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)//STRIP008 ;
+SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)
 } //namespace binfilter
 
 //#define JP_DEBUG
@@ -561,7 +561,7 @@ namespace binfilter {
 *******************************************************************/
 
 /*N*/ void SwNodes::GoStartOfSection(SwNodeIndex* /*pIdx*/) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwNodes::GoEndOfSection(SwNodeIndex *pIdx) const
@@ -924,7 +924,7 @@ namespace binfilter {
 /*?*/           if( pAktNode->EndOfSectionIndex() < aRg.aEnd.GetIndex() )
 /*?*/           {
 /*?*/               // also der gesamte, lege einen neuen SectionNode an
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex nStt( aInsPos, -1 );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           break;
 /*?*/

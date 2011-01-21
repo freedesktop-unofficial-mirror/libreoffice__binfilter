@@ -375,7 +375,7 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 /*N*/
 /*N*/   if ( pDoc && pDoc->HasDetectiveObjects(nTabNo) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nEndCol = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

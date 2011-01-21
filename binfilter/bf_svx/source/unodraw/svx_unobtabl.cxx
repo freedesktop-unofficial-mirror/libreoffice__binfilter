@@ -103,9 +103,9 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
 {
     return *new SvxUnoBitmapTable(pModel);
 }
-} //STRIP009 namespace bifilter
+}
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /** returns a GraphicObject for this URL */
 BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 {

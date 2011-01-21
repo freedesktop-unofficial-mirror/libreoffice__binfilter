@@ -67,7 +67,7 @@
 #include "xmlgrhlp.hxx"
 
 #include "xmlxtimp.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::container;

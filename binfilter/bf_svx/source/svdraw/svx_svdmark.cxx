@@ -54,7 +54,7 @@ namespace binfilter {
 /*N*/   if (!bSorted) {
 /*N*/       bSorted=TRUE;
 /*N*/       ULONG nAnz=aList.Count();
-/*N*/       if (nAnz>1) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (nAnz>1) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }

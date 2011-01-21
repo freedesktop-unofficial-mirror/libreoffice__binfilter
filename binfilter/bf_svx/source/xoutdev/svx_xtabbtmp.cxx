@@ -237,7 +237,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /************************************************************************/
 
 /*N*/ BOOL XBitmapList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
 /*
     SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
     aMedium.IsRemote();

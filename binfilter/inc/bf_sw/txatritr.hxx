@@ -56,8 +56,8 @@ class SwTxtAttrIterator
     const SfxPoolItem *pParaItem, *pCurItem;
 
 public:
-SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,//STRIP001  SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,
-xub_StrLen nStart = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001                         xub_StrLen nStart = 0 );
+SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,
+xub_StrLen nStart = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
     const SfxPoolItem& GetAttr() const  { return *pCurItem; }
 };
 

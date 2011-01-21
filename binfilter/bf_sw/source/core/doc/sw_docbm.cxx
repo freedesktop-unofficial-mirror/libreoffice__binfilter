@@ -85,7 +85,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwBookmark *pBM;
 /*N*/   if( MARK == eMark )
-/*?*/    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    pBM = new SwMark( *rPaM.GetPoint(), rCode, rName, rShortName );
+/*?*/    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if( BOOKMARK == eMark )
 /*N*/   {
 /*N*/       pBM = new SwBookmark(*rPaM.GetPoint(), rCode, rName, rShortName);
@@ -122,7 +122,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwServerObject* pServObj = pBM->GetObject();
 /*N*/   if( pServObj )          // dann aus der Liste entfernen
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     GetLinkManager().RemoveServer( pServObj );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   delete pBM;
 /*N*/ }
@@ -183,7 +183,7 @@ namespace binfilter {
     // werden, es wird dann bei gleichen Namen nur durchnumeriert.
 /*N*/ void SwDoc::MakeUniqueBookmarkName( String& /*rNm*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*  */
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/   aCode( rBkmk.GetKeyCode() ), eBkmkType( (SaveBookmarkType)eType ),
 /*N*/   eOrigBkmType(rBkmk.GetType())
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nNode1 = rBkmk.GetPos().nNode.GetIndex();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

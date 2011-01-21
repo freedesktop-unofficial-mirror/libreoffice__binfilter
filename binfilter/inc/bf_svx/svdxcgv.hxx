@@ -58,7 +58,6 @@ class SdrExchangeView: public SdrObjEditView
 
 protected:
 
- //STRIP001    void                ImpGetPasteObjList(Point& rPos, SdrObjList*& rpLst);
 
     // liefert True, wenn rPt geaendert wurde
 

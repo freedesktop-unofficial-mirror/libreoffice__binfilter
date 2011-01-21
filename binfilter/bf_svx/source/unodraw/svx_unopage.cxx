@@ -650,8 +650,8 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                                 {
 
                                     const SvGlobalName aClassId( pInfo->GetClassName() );
-                                    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID ); //STRIP003
-                                    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID ); //STRIP003
+                                    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID );
+                                    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID );
                                     const SvGlobalName aIFrameClassId( BF_SO3_IFRAME_CLASSID );
 
                                     if( aPluginClassId == aClassId )

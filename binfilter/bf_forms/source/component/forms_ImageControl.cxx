@@ -613,7 +613,7 @@ void OImageControlControl::implInsertGraphics()
 //  // build some arguments for the upcoming dialog
 //  try
 //  {
-//      ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );//STRIP008       ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
+//      ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
 //      aDialog.SetTitle( sTitle );
 
 //      Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);

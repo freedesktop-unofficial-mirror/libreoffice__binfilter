@@ -249,7 +249,7 @@
 #include "indexmap.hxx"
 #include "scrdata.hxx"
 #include "poolhelp.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
 
@@ -1282,11 +1282,11 @@ namespace binfilter {
 /*?*/               for (USHORT j = 0; !bInUse && (j <= MAXTAB); j++)
 /*?*/               {
 /*?*/                   if (pSrcDoc->pTab[j])
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSrcDoc->pTab[j]->IsRangeNameInUse(0, 0, MAXCOL, MAXROW,
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               if (bInUse)
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScRangeData* pData = new ScRangeData( *pSrcData );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
 /*?*/               {
@@ -1298,7 +1298,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSr
 /*N*/           {
 /*?*/               // first update all inserted named formulas if they contain other
 /*?*/               // range names and used indices changed
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           if ( pSrcRangeNames )
 /*?*/               delete [] pSrcRangeNames;

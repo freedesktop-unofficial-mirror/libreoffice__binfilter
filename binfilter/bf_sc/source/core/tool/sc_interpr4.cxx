@@ -2471,7 +2471,7 @@ void ScInterpreter::ScCalcTeam()
     static BOOL bShown = FALSE;
     if( !bShown )
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  ShowTheTeam();
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/          String aTeam( RTL_CONSTASCII_USTRINGPARAM( "Ballach, Nebel, Rentz, Rathke, Marmion" ) );
 /*N*/       if ( (GetByte() == 1) && ::rtl::math::approxEqual( GetDouble(), 1996) )
 /*N*/  /*?*/            aTeam.AppendAscii( "   (a word with 'B': -Olk, -Nietsch, -Daeumling)" );

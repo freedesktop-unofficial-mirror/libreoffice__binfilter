@@ -148,7 +148,7 @@ namespace binfilter {
 /*N*/       rIn >> rLayer.nType;
 /*N*/
 /*N*/       if(rLayer.nType == 1)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/

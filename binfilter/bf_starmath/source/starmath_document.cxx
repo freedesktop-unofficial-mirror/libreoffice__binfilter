@@ -320,7 +320,7 @@ static const char pStarMathDoc[] = "StarMathDocument";
 
 
 /*N*/ void SmDocShell::SetPrinter( SfxPrinter * /*pNew*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SmDocShell::OnDocumentPrinterChanged( Printer *pPrt )
@@ -446,7 +446,7 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/       if( pStor->IsStream( aTmpStr ))
 /*N*/       {
 /*N*/           // is this a MathType Storage?
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             MathType aEquation(aText);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if( pStor->IsStream(C2S("content.xml")) ||
 /*N*/                pStor->IsStream(C2S("Content.xml")) )

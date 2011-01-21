@@ -53,8 +53,8 @@ class SwTabCols : public SvLongs
                         //werden.
 
 public:
-        SwTabCols( USHORT nSize = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( USHORT nSize = 0 );
-        SwTabCols( const SwTabCols& ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( const SwTabCols& );
+        SwTabCols( USHORT nSize = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
+        SwTabCols( const SwTabCols& ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     BOOL IsHidden( USHORT nPos ) const         { return aHidden[nPos]; }
     void SetHidden( USHORT nPos, BOOL bValue ) { aHidden[nPos] = bValue; }

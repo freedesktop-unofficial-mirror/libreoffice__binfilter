@@ -179,7 +179,7 @@ inline ULONG Get10ThSec()
 /*N*/   if ( pObjSh )
 /*N*/       pObjSh->SetProgress_Impl(this);
 /*N*/   else if( !pImp->pActiveProgress )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->SetProgress_Impl(this);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   Resume();
 /*N*/ }
 
@@ -230,7 +230,7 @@ inline ULONG Get10ThSec()
 /*N*/   if ( pImp->xObjSh.Is() )
 /*N*/       pImp->xObjSh->SetProgress_Impl(0);
 /*N*/   else
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SFX_APP()->SetProgress_Impl(0);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if ( pImp->bLocked )
 /*N*/         pImp->Enable_Impl(TRUE);
 /*N*/ }
@@ -248,7 +248,7 @@ inline ULONG Get10ThSec()
     angezeigt wird.
 */
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------

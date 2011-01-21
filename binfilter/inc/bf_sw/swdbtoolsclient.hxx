@@ -46,13 +46,13 @@ private:
 
 
 public:
-    SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDbtoolsClient();
-    ~SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~SwDbtoolsClient();
+    SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");}
+    ~SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");}
 
     ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource > getDataSource(
         const ::rtl::OUString& _rsRegisteredName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory
-            ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 );
+            ){DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
 
 };

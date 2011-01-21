@@ -321,7 +321,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     BYTE nCurrLevel;
 /*N*/     if ( pMulti )
 /*N*/     {
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         ASSERT( pMulti->IsBidi(), "Nested MultiPortion is not BidiPortion" )
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     }
 /*N*/     else
 /*N*/         // no nested bidi portion required
@@ -800,7 +800,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // If we are already in a multiportion, we could change to the
 /*N*/       // next line
 /*N*/       if( !pPor && pTmpMulti )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   if( pFld && !pFld->HasFollow() )
 /*N*/       pFld = NULL;

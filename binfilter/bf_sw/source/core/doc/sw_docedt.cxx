@@ -333,7 +333,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/               // verschiebe noch alle Bookmarks/TOXMarks
 /*N*/               if( aBkmkArr.Count() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ::_RestoreCntntIdx( pDoc, aBkmkArr, aIdx.GetIndex() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               // falls der uebergebene PaM nicht im Crsr-Ring steht,
 /*N*/               // gesondert behandeln (z.B. Aufruf aus dem Auto-Format)
@@ -346,7 +346,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/           pDoc->GetNodes().Delete( aOldIdx, 1 );
 /*N*/       }
 /*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -355,7 +355,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/ {
 /*N*/   if( IsRedlineOn() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   sal_uInt16 nUndoSize = 0;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   sal_Bool bJoinTxt, bJoinPrev;
@@ -389,7 +389,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // ggfs. das gesicherte Word fuer die Ausnahme
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   {
@@ -507,7 +507,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   } while( sal_False );
 /*?*/
 /*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ::com::pressRedlines();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/   SetModified();
 /*?*/
 /*?*/   return sal_True;
@@ -526,7 +526,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 
 /*N*/ sal_Bool SwDoc::Replace( SwPaM& /*rPam*/, const String& /*rStr*/, sal_Bool /*bRegExpRplc*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() == *rPam.GetMark() )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return sal_True;
 /*N*/ }
 

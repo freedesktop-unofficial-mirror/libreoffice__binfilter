@@ -33,7 +33,7 @@
 #include "swrect.hxx"
 namespace binfilter {
 
-SV_DECL_VARARR( SwRects, SwRect, 20, 8 )//STRIP008 ;
+SV_DECL_VARARR( SwRects, SwRect, 20, 8 )
 
 class SwRegionRects : public SwRects
 {

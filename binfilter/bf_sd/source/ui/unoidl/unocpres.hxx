@@ -115,7 +115,7 @@ public:
 #include "unomodel.hxx"
 #include "drawdoc.hxx"
 class List;
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 class SdXCustomPresentationAccess : public ::cppu::WeakImplHelper3< ::com::sun::star::container::XNameContainer,
                                                                     ::com::sun::star::lang::XSingleServiceFactory,

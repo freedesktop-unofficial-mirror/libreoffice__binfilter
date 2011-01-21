@@ -65,7 +65,7 @@ namespace binfilter {
 
 
 /*N*/ SwSortOptions::SwSortOptions()
-/*?*/   : //STRIP001 eDirection( SRT_ROWS ),
+/*?*/   :
 /*N*/   nLanguage( LANGUAGE_SYSTEM ),
 /*N*/   cDeli( 9 ),
 /*N*/   bTable( FALSE ),

@@ -59,7 +59,7 @@ using namespace ::connectivity;
 
 //-----------------------------------------------------------------------------
 /*?*/ ::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;
 /*?*/ }
 
 //-----------------------------------------------------------------------------

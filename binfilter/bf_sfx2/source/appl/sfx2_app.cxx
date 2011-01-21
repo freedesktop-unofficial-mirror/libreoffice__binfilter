@@ -56,7 +56,7 @@
 #include "imestatuswindow.hxx"
 #include "docfilt.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 #include <bf_so3/ipenv.hxx>
 

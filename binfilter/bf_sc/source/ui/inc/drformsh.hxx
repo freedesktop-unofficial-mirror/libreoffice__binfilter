@@ -47,7 +47,7 @@ public:
 
     SFX_DECL_INTERFACE(SCID_FORM_SHELL);
 
-    ScDrawFormShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDrawFormShell(ScViewData* pData);
+    ScDrawFormShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
 
 //  void        Execute(SfxRequest &);
 //  void        GetState(SfxItemSet &);

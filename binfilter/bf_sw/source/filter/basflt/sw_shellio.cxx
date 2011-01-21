@@ -78,7 +78,7 @@ using namespace ::com::sun::star;
 /*N*/   // ist ein Medium angegeben, dann aus diesem die Streams besorgen
 /*N*/   if( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/      return ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/   }
 /*N*/
@@ -134,7 +134,7 @@ using namespace ::com::sun::star;
 /*N*/       if( pCrsr )
 /*N*/       {
 /*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Speicher mal alle Fly's
@@ -371,7 +371,7 @@ using namespace ::com::sun::star;
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTemplate = new SwDoc;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/
@@ -392,7 +392,7 @@ using namespace ::com::sun::star;
 /*N*/   if( pTemplate )
 /*N*/   {
 /*?*/       rDoc.RemoveAllFmtLanguageDependencies();
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDoc.ReplaceStyles( *pTemplate );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -546,7 +546,7 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/
 /*N*/   if ( pShell && !bWriteAll && pShell->IsTableMode() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bWriteAll = TRUE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( !bWriteAll && ( pShell || pOutPam ))
@@ -572,7 +572,7 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/       {
 /*?*/           if( pShell )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pShell->Push();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/           {
@@ -626,7 +626,7 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/
 /*N*/   ULONG nError = 0;
 /*N*/   if( pMedium )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nError = rxWriter->Write( *pPam, *pMedium, pRealFileName );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if( pStg )
 /*N*/       nError = rxWriter->Write( *pPam, *pStg, pRealFileName );
 /*N*/   else if( pStrm )
@@ -643,7 +643,7 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 /*N*/       if(!bHasMark)
 /*N*/       {
 /*?*/           if( pShell )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pShell->Pop( FALSE );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           else
 /*?*/               delete pPam;
 /*N*/       }
@@ -675,7 +675,7 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
 
 /*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 

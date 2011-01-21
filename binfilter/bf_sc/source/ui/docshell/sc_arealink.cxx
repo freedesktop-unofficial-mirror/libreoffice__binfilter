@@ -86,7 +86,7 @@ namespace binfilter {
 /*N*/  void ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/     //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -177,7 +177,7 @@ namespace binfilter {
 /*N*/   String aTempArea;
 /*N*/
 /*N*/   if( rNewFilter == ScDocShell::GetWebQueryFilterName() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       aTempArea = ScHTMLImport::GetHTMLRangeNameList( pSrcDoc, rNewArea );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/       aTempArea = rNewArea;
 /*N*/
@@ -334,7 +334,7 @@ namespace binfilter {
 /*N*/           aDestArea = aNewRange;
 /*N*/
 /*N*/       if ( nNewRefresh != GetRefreshDelay() )
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRefreshDelay( nNewRefresh );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/       USHORT nPaintEndX = Max( aOldRange.aEnd.Col(), aNewRange.aEnd.Col() );
 /*N*/       USHORT nPaintEndY = Max( aOldRange.aEnd.Row(), aNewRange.aEnd.Row() );
@@ -383,7 +383,7 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 }

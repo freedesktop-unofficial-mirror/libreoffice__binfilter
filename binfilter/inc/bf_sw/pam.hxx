@@ -52,13 +52,10 @@ class SwCntntNode;
 class SwNodes;
 class SwPaM;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 namespace utl {
     class TextSearch;
-}//STRIP008 ;
+}
 
 struct SwPosition
 {

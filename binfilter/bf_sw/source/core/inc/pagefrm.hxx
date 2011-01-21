@@ -50,7 +50,7 @@ class SwDrawContact;
 class SwAttrSetChg;
 
 
-SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2)//STRIP008 ;
+SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2)
 
 enum SwPageChg
 {

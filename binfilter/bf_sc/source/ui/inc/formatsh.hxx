@@ -54,25 +54,25 @@ public:
                 ScFormatShell(ScViewData* pData);
     virtual     ~ScFormatShell();
 
-    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteNumFormat( SfxRequest& rReq );
-    void        GetNumFormatState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetNumFormatState( SfxItemSet& rSet );
+    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        GetNumFormatState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteAttr( SfxRequest& rReq );
+    void        ExecuteAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetAttrState( SfxItemSet& rSet );
 
-    void        ExecuteAlignment( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteAlignment( SfxRequest& rReq );
+    void        ExecuteAlignment( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteTextAttr( SfxRequest& rReq );
+    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetTextAttrState( SfxItemSet& rSet );
 
-    void        GetAlignState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetAlignState( SfxItemSet& rSet );
-    void        GetBorderState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void        GetBorderState( SfxItemSet& rSet );
+    void        GetAlignState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
+    void        GetBorderState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteStyle( SfxRequest& rReq );
+    void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetStyleState( SfxItemSet& rSet );
 
 
-    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteTextDirection( SfxRequest& rReq );
+    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetTextDirectionState( SfxItemSet& rSet );
 };
 

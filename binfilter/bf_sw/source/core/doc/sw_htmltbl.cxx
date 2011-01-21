@@ -48,7 +48,7 @@ namespace binfilter {
 #define MAX_TABWIDTH (USHRT_MAX - 2001)
 
 /*N*/ SwHTMLTableLayout::~SwHTMLTableLayout()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // Die Breiten der Umrandung werden zunaechst wie in Netscape berechnet:

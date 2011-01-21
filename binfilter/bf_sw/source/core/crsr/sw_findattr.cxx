@@ -56,7 +56,7 @@ using namespace ::com::sun::star::util;
 /*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
 /*N*/   xub_StrLen /*nCntntPos*/ )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 
@@ -64,7 +64,7 @@ using namespace ::com::sun::star::util;
 /*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
 /*N*/       xub_StrLen /*nCntntPos*/ )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 
@@ -140,13 +140,13 @@ struct SwFindParaAttr : public SwFindParas
 /*N*/int SwFindParaAttr::Find( SwPaM* pCrsr, SwMoveFn fnMove, const SwPaM* pRegion,
 /*N*/                           bool bInReadOnly )
 /*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      // String ersetzen ?? (nur wenn Text angegeben oder nicht attributiert
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
 /*N*/int SwFindParaAttr::IsReplaceMode() const
 /*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOpt->replaceString.getLength() ) ||
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // Suchen nach Attributen

@@ -84,7 +84,7 @@ typedef LinkStruct* LinkStructPtr;
 
 /*N*/ void SwDoc::Delete( SwTOXMark* /*pTOXMark*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -116,7 +116,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/       pSectNd->SetNewSection( pNew );
 /*N*/
 /*N*/       if( bExpand )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/       else if( 1 == rTOX.GetTitle().Len() && IsInReading() )
 /*N*/       // insert title of TOX
@@ -242,7 +242,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 
 /*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& /*rTOXBase*/, BOOL /*bDelNodes*/ )
 /*N*/ {
-/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;//STRIP001    // its only delete the TOX, not the nodes
+/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -392,7 +392,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 
 /*N*/ void SwTOXBaseSection::Update(const SfxItemSet* /*pAttr*/,
 /*N*/                               const bool /*_bNewTOX*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------

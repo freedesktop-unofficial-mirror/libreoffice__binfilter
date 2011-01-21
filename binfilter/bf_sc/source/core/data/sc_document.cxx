@@ -266,7 +266,7 @@ namespace binfilter {
 /*N*/               if (pDPCollection)
 /*?*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if (pDetOpList)
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,1 );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               UpdateChartRef( URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if ( pUnoBroadcaster )
@@ -913,7 +913,7 @@ namespace binfilter {
 /*N*/       PutInOrder( nRow1, nRow2 );
 /*N*/       if (!pClipDoc)
 /*N*/       {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             DBG_ERROR("CopyToClip: no ClipDoc");
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       pClipDoc->aDocName = aDocName;
@@ -943,13 +943,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             DBG_ERROR("CopyToClip: n
 /*N*/           if (pTab[i] && pClipDoc->pTab[i])
 /*N*/               if ( bAllTabs || !pMarks || pMarks->GetTableSelect(i) )
 /*N*/               {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pTab[i]->CopyToClip(nCol1, nRow1, nCol2, nRow2, pClipDoc->pTab[i], bKeepScenarioFlags);
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/                   if ( pDrawLayer && bIncludeObjects )
 /*N*/                   {
 /*N*/                       //  also copy drawing objects
 /*N*/
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aObjRect = GetMMRect( nCol1, nRow1, nCol2, nRow2, i );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/               }
 /*N*/
@@ -2350,7 +2350,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           bFound = pTab[nTab]->ExtendMerge( nStartCol, nStartRow, rEndCol, rEndRow, bRefresh, bAttrs );
 /*N*/
 /*N*/       if (bRefresh)
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStartCol, nStartRow, rEndCol, rEndRow, nTab );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       DBG_ERROR("ExtendMerge: falscher Bereich");

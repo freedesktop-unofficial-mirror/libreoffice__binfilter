@@ -36,13 +36,13 @@
 #include <bf_xmloff/xmltoken.hxx>
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
-#include <tools/debug.hxx>  //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 sal_Char const sXML_np__block_list[] = "_block-list";
 
@@ -53,7 +53,7 @@ sal_Char const sXML_np__block_list[] = "_block-list";
 /*N*/ : SvXMLImport( xServiceFactory ),
 /*N*/   rSectionList ( rNewSectionList )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetNamespaceMap().Add( OUString ( RTL_CONSTASCII_USTRINGPARAM ( sXML_np__block_list ) ),
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

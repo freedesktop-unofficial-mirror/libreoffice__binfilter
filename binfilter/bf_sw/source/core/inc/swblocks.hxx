@@ -49,7 +49,7 @@ class SwImpBlocks
 protected:
     String aFile;                       // physikalischer Dateiname
     String aName;                       // logischer Name der Datei
-    SwImpBlocks( const String&, BOOL = FALSE ){DBG_ASSERT(0, "STRIP")}; //STRIP001 ;
+    SwImpBlocks( const String&, BOOL = FALSE ){DBG_ASSERT(0, "STRIP")};
 public:
     const String& GetFileName() const {return aFile;}   // phys. Dateinamen liefern
 };
@@ -64,7 +64,7 @@ class Sw3TextBlocks : public SwImpBlocks
 {
 
 public:
-    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   Sw3TextBlocks( const String& );
+    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_BF_ASSERT(0, "STRIP");} ;
 
 
 

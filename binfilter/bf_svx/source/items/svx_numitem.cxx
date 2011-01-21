@@ -48,7 +48,7 @@
 #include <comphelper/processfactory.hxx>
 
 #include "unonrule.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 #define MM100_TO_TWIP(MM100)    ((MM100*72L+63L)/127L)
@@ -374,7 +374,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   DELETEZ(pGraphicBrush);
 /*N*/   if(rFormat.pGraphicBrush)
 /*N*/     {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pGraphicBrush = new SvxBrushItem(*rFormat.pGraphicBrush);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/   DELETEZ(pBulletFont);
 /*N*/   if(rFormat.pBulletFont)
@@ -428,7 +428,7 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   }
 /*N*/   else if(!pGraphicBrush || (pGraphicBrush && !(*pBrushItem == *pGraphicBrush)))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         delete pGraphicBrush;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/    }
 /*N*/
 /*N*/   if(pOrient)
@@ -796,7 +796,7 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/                   pLinkStr->Len() &&
 /*N*/                   0 !=(pGraphic = pBrush->GetGraphic()))
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SvxBrushItem aTempItem(*pBrush);
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/       else if((SVX_NUM_BITMAP|LINK_TOKEN) == aFmt.GetNumberingType())

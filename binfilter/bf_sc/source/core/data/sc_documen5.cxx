@@ -313,7 +313,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/       }
 /*?*/       if ( bChanged )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( nDz != 0 )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/ }

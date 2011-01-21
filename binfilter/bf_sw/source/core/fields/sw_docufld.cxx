@@ -67,10 +67,10 @@
 #include <hints.hxx>
 #include <unofldmid.h>
 #include <swunohelper.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define URL_DECODE  INetURLObject::DECODE_UNAMBIGUOUS
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::rtl;
@@ -1028,7 +1028,7 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/   if ( bName )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aStr(SwFieldType::GetTypeStr(GetTypeId()));
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return Expand();
 /*N*/ }
@@ -1279,7 +1279,7 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/       }
 /*N*/       else if(sTmpName.Search('\"') == STRING_NOTFOUND &&
 /*N*/           sTmpName.GetTokenCount('.') > 2)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1943,7 +1943,7 @@ BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   if( !pNew && !pOld && GetDepends() )
 /*N*/   {
 /*?*/       // sammel erstmal alle SetPageRefFelder ein.
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _SetGetExpFlds aTmpLst( 10, 5 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // weiter an die Text-Felder, diese "Expandieren" den Text

@@ -425,7 +425,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 /*?*/ USHORT SvxPostureItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 /*?*/  return ITALIC_NORMAL + 1;   // auch ITALIC_NONE geh"ort dazu
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -545,7 +545,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 /*?*/ USHORT SvxWeightItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return WEIGHT_BLACK;    // WEIGHT_DONTKNOW geh"ort nicht dazu
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -888,7 +888,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if( SFX_MAPUNIT_RELATIVE != eUnit )
-nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRIP008 /*N*/      nHeight = nNewHeight + ::ItemToControl( (short)nNewProp, eUnit,
+nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/                                               SFX_FUNIT_TWIP );
 /*N*/   else
 /*N*/ #endif // !SVX_LIGHT
@@ -1540,7 +1540,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxCaseMapItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_CASEMAP_END; // SVX_CASEMAP_KAPITAELCHEN + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -1683,7 +1683,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxEscapementItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ESCAPEMENT_END;  // SVX_ESCAPEMENT_SUBSCRIPT + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //------------------------------------------------------------------------
@@ -1696,7 +1696,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxEscapementItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     if ( nEsc < 0 )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -1786,7 +1786,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,//STRI
 
 /*?*/ USHORT SvxLanguageItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return LANGUAGE_COUNT;  // aus tlintl.hxx
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------

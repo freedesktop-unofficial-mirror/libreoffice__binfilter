@@ -56,7 +56,7 @@ using namespace ::rtl;
 #include "arrdecl.hxx"
 #include "app.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <vector>
 using ::std::vector;
@@ -489,7 +489,7 @@ void SfxFilterMatcher::AddContainer( SfxFilterContainer* pC )
 /*?*/                   // FilterDetection nur "uber den Content
 /*?*/                   return ERRCODE_NONE;
 /*?*/               else
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pFilter = GetFilter4Mime( aMime, nMust, nDont );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/               if ( pFilter && aMime.EqualsAscii(CONTENT_TYPE_STR_APP_OCTSTREAM) )
 /*?*/               {
@@ -688,7 +688,7 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*N*/
 /*N*/   // Jetzt einmal drueberiterieren und nur die perfekten Filter nehmen
 /*N*/   if( !pFilter )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // Letzte Moeglichkeit ist die Befragung aller ObjectFactories.
@@ -700,7 +700,7 @@ if( nErr == 1 || nErr == USHRT_MAX || nErr == ULONG_MAX )       \
 /*?*/
 /*?*/ //DV !!!! don't close InStream when using the new Medium
 /*?*/ //rMedium.CloseInStream();
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   *ppFilter = pFilter;
@@ -1057,7 +1057,7 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*N*/     try
 /*N*/     {
 /*N*/         // get the FilterFactory service to access the registered filters ... and types!
-/*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceManager  =::legacy_binfilters::getLegacyProcessServiceFactory();//STRIP002 ::comphelper::getProcessServiceFactory();
+/*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceManager  =::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess >     xFilterCFG                                                ;
 /*N*/         ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameAccess >     xTypeCFG                                                  ;
 /*N*/         if( xServiceManager.is() == sal_True )

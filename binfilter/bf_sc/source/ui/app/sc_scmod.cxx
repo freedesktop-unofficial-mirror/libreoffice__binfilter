@@ -92,7 +92,7 @@
 #include "tpprint.hxx"
 #include "detfunc.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define SC_IDLE_MIN     150
 #define SC_IDLE_MAX     3000
 #define SC_IDLE_STEP    75
@@ -104,7 +104,7 @@ static USHORT nIdleCount = 0;
 //------------------------------------------------------------------
 
 /*N*/ ScModule::ScModule( SfxObjectFactory* pFact ) :
-/*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ), //STRIP005
+/*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ),
 /*N*/   pMessagePool( NULL ),
 /*N*/   pRefInputHandler( NULL ),
 /*N*/   pTeamDlg( NULL ),
@@ -181,10 +181,10 @@ static USHORT nIdleCount = 0;
 /*N*/       }
 /*N*/       else if ( nHintId == SFX_HINT_COLORS_CHANGED || nHintId == SFX_HINT_ACCESSIBILITY_CHANGED )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( ScDetectiveFunc::IsColorsInitialized() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/         else if ( nHintId == SFX_HINT_CTL_SETTINGS_CHANGED )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/   }
 /*N*/ }
@@ -382,7 +382,7 @@ static USHORT nIdleCount = 0;
 /*?*/       ScDocument* pDoc = pDocSh->GetDocument();
 /*?*/       if ( pDoc->IsLoadingDone() )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bLinks = pDoc->IdleCheckLinks();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -415,13 +415,13 @@ static USHORT nIdleCount = 0;
 
 IMPL_LINK( ScModule, SpellTimerHdl, Timer*, EMPTYARG )
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( Application::AnyInput( INPUT_KEYBOARD ) )
+    DBG_BF_ASSERT(0, "STRIP");
     return 0;
 }
 
 /*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, EMPTYARG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (pInfo)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 

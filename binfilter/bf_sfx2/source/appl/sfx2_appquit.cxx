@@ -56,7 +56,7 @@
 
 namespace binfilter {
 
-SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)//STRIP008 ;
+SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)
 
 //-------------------------------------------------------------------------
 

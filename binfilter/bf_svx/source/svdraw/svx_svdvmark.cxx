@@ -72,7 +72,7 @@ namespace binfilter {
 /*N*/
 /*N*/ SdrViewUserMarker::~SdrViewUserMarker()
 /*N*/ {
-/*N*/   if (bVisible) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 Hide();
+/*N*/   if (bVisible) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if (pView!=NULL) pView->ImpRemoveUserMarker(this);
 /*N*/   ImpDelGeometrics();
 /*N*/ }

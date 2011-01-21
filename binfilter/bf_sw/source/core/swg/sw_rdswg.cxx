@@ -559,7 +559,6 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
             nErrno = WARN_SWG_FEATURES_LOST | WARN_SW_READ_BASE;
     }
 
-//STRIP001     EndProgress( pDoc->GetDocShell() );
 
     // Expr-Felder in Shared-Formaten?
  // if( nStatus & SWGSTAT_UPDATEEXPR )

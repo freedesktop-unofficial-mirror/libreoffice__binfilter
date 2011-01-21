@@ -128,7 +128,7 @@
 
 #include <swcalwrp.hxx>
 #include <SwStyleNameMapper.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 extern void _FrmFinit();

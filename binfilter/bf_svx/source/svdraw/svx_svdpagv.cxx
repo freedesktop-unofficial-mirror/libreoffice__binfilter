@@ -40,7 +40,7 @@
 #include "svdogrp.hxx"
 
 #include "svdoole2.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -595,7 +595,7 @@ using namespace ::com::sun::star;
 /*N*/                            eKind == HINT_CONTROLREMOVED)
 /*N*/
 /*N*/                   {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ImpUnoRemoved(pObj);
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/               }
 /*N*/               else if (pObj->GetObjIdentifier() == OBJ_GRUP &&
@@ -784,7 +784,7 @@ using namespace ::com::sun::star;
 /*?*/       BOOL bGlueInvalidate = (!bDisInvalidate && rView.ImpIsGlueVisible());
 /*?*/
 /*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/
 /*?*/       SdrObject* pLastGroup = GetAktGroup();
 /*?*/
@@ -811,7 +811,7 @@ using namespace ::com::sun::star;
 /*?*/           InvalidateAllWin();
 /*?*/
 /*?*/       if(bGlueInvalidate)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 rView.GlueInvalidate();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   }
 /*N*/ }
 
@@ -824,7 +824,7 @@ using namespace ::com::sun::star;
 /*N*/       pGrp=pGrp->GetUpGroup();
 /*N*/   }
 /*N*/   if (pGrp!=GetAktGroup()) {
-/*?*/       if (pGrp!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EnterGroup(pGrp);
+/*?*/       if (pGrp!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       else LeaveAllGroup();
 /*N*/   }
 /*N*/ }

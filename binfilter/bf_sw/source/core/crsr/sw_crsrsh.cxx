@@ -312,7 +312,7 @@ using namespace ::com::sun::star::util;
 /*M*/         ( pTblCrsr ||
 /*M*/           pTstCrsr->GetNode( TRUE )->FindStartNode() !=
 /*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() )) )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*M*/   if( pTblCrsr )
@@ -337,7 +337,7 @@ using namespace ::com::sun::star::util;
 /*M*/             pSectNd->GetSection().IsProtectFlag() &&
 /*M*/            ( !pDoc->GetDocShell() ||
 /*M*/              !pDoc->GetDocShell()->IsReadOnly() || bAllProtect )) ) )
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       if( bChgState )
 /*M*/       {
@@ -345,7 +345,7 @@ using namespace ::com::sun::star::util;
 /*M*/           bAllProtect = FALSE;
 /*M*/           if( bWasAllProtect && GetDoc()->GetDocShell() &&
 /*M*/               GetDoc()->GetDocShell()->IsReadOnlyUI() )
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/       }
 /*M*/   }
@@ -411,7 +411,7 @@ using namespace ::com::sun::star::util;
 /*M*/           }
 /*M*/           else if ( Imp()->IsIdleAction() )
 /*M*/               //Wir stellen sicher, dass anstaendig Formatiert wurde #42224#
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFrm->PrepareCrsr();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/           // im geschuetzten Fly? aber bei Rahmenselektion ignorieren
 /*M*/           if( !IsReadOnlyAvailable() && pFrm->IsProtected() &&
@@ -419,7 +419,7 @@ using namespace ::com::sun::star::util;
 /*M*/                 !Imp()->GetDrawView()->GetMarkList().GetMarkCount() ) &&
 /*M*/               (!pDoc->GetDocShell() ||
 /*M*/                !pDoc->GetDocShell()->IsReadOnly() || bAllProtect ) )
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/       } while( bAgainst );
 /*M*/
@@ -509,7 +509,7 @@ using namespace ::com::sun::star::util;
 /*M*/   //Nur wenn gescrollt wurde, und wenn keine Selektion existiert.
 /*M*/   if( pFrm && Imp()->IsScrolled() &&
 /*M*/           pCurCrsr->GetNext() == pCurCrsr && !pCurCrsr->HasMark() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 Imp()->RefreshScrolledArea( aCharRect );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/
 /*M*/   eMvState = MV_NONE;     // Status fuers Crsr-Travelling - GetCrsrOfst
@@ -835,7 +835,7 @@ using namespace ::com::sun::star::util;
 /*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(
 /*?*/                           USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return pCurCrsr->MakeFindRange( (SwDocPositions)nStt,
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 #endif
 
@@ -926,7 +926,7 @@ using namespace ::com::sun::star::util;
       replaced, remove the table cursor.
     */
 /*N*/     if (pTblCrsr != NULL && bChanged)
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 TblCrsrToCursor();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 }

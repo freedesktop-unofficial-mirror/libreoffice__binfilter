@@ -58,7 +58,7 @@
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 /*N*/ TYPEINIT1(FmFormObj, SdrUnoObj);
 /*N*/ DBG_NAME(FmFormObj)
@@ -111,7 +111,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/   if (m_xEnvironmentHistory.is())
 /*N*/   {
 /*N*/       // the element in *m_pEnvironmentHistory which is equivalent to my new parent (which (perhaps) has to be created within _pNewPage->GetForms)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/         // is the right-most element in the tree.
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if (!xNewParent.is())
@@ -131,7 +131,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/           }
 /*?*/           if (xSearch.is())   // implies xSearch == xOldForms, which means we're a valid part of our current page forms hierarchy
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 ::com::sun::star::uno::Reference< ::com::sun::star::container::XChild >  xMeAsChild(GetUnoControlModel(), ::com::sun::star::uno::UNO_QUERY);
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }

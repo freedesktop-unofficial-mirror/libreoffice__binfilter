@@ -134,7 +134,7 @@ public:
 typedef ScValidationData* ScValidationDataPtr;
 
 SV_DECL_PTRARR_SORT(ScValidationEntries_Impl, ScValidationDataPtr,
-                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
+                        SC_COND_GROW, SC_COND_GROW)
 
 class ScValidationDataList : public ScValidationEntries_Impl
 {

@@ -95,9 +95,9 @@ void DecryptBlockName_Imp( String& rName );
 
 
 /*N*/ typedef SvxAutoCorrectLanguageLists* SvxAutoCorrectLanguageListsPtr;
-/*N*/ DECLARE_TABLE( SvxAutoCorrLanguageTable_Impl,  SvxAutoCorrectLanguageListsPtr)//STRIP008 ;
+/*N*/ DECLARE_TABLE( SvxAutoCorrLanguageTable_Impl,  SvxAutoCorrectLanguageListsPtr)
 
-/*N*/ DECLARE_TABLE( SvxAutoCorrLastFileAskTable_Impl, long )//STRIP008 ;
+/*N*/ DECLARE_TABLE( SvxAutoCorrLastFileAskTable_Impl, long )
 
 
 
@@ -318,14 +318,14 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/               const String& rShareAutoCorrectFile,
 /*N*/               const String& rUserAutoCorrectFile,
 /*N*/               LanguageType eLang)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /* -----------------18.11.98 11:16-------------------
  *
  * --------------------------------------------------*/
 /*N*/ SvxAutoCorrectLanguageLists::~SvxAutoCorrectLanguageLists()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /* -----------------18.11.98 11:26-------------------

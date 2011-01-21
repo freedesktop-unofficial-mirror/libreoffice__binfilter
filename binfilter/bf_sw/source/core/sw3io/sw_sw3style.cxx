@@ -99,7 +99,7 @@ struct SwStyleCondColl
     {}
 };
 typedef SwStyleCondColl* SwStyleCondCollPtr;
-SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )
 //FEATURE::CONDCOLL
 
 class SwStyleSheetPool;
@@ -852,7 +852,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                   // im Doc gesetzt.
 /*N*/                   pFmt->SetPoolFmtId( p->nId );
 /*N*/                   if( p->aHelpFile.Len() )
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/                      pFmt->SetPoolHlpFileId
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   pFmt->SetPoolHelpId( (USHORT)p->nHelpId );
 /*N*/               }
 /*N*/               else
@@ -1001,7 +1001,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*?*/               SwTxtFmtColl* pDColl = rDoc.FindTxtFmtCollByName( pCColl->sColl );
 /*?*/               if( pDColl )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
                     {
@@ -1084,7 +1084,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gelesen. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );
@@ -1240,7 +1240,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gespeichert. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );

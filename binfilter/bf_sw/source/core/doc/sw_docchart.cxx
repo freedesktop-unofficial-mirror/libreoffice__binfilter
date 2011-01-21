@@ -346,7 +346,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::SetTableName( SwFrmFmt& /*rTblFmt*/, const String& /*rNewName*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const String aOldName( rTblFmt.GetName() );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

@@ -35,7 +35,7 @@
 #include <bf_svtools/svarray.hxx>
 #include <com/sun/star/text/XAutoTextGroup.hpp>
 class SvStrings;
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwTextBlocks;
 
 class SwDocShell;
@@ -44,7 +44,7 @@ class SwDocShell;
 #ifndef SW_DECL_SWDOCSHELL_DEFINED
 #define SW_DECL_SWDOCSHELL_DEFINED
 #include <tools/ref.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 SV_DECL_REF( SwDocShell )
 } //namespace binfilter
 #endif
@@ -73,7 +73,7 @@ class SwGlossaries
     SvStrings               *pPathArr;
     SvStrings               *pGlosArr;
     BOOL                    bError;
-    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 //STRIP001  SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const;
+    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
     SvStrings       *GetNameList();
     void RemoveFileFromList( const String& rGroup );
     void InvalidateUNOOjects();

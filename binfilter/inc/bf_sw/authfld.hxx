@@ -35,7 +35,7 @@
 #include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
 class SvUShorts;
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 class SwAuthDataArr;
 /* -----------------21.09.99 13:32-------------------

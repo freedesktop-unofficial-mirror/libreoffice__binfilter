@@ -271,7 +271,7 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     // pure virtual-Methiden von SfxEnumItem
-    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001  virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,

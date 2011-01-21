@@ -28,7 +28,7 @@
 #ifndef _DOCARY_HXX
 #define _DOCARY_HXX
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwFieldType;
 class SwFrmFmt;
 class SwCharFmt;
@@ -60,7 +60,7 @@ typedef SwFieldType* SwFldTypePtr;
 
 //PageDescriptor-Schnittstelle
 //typedef SwPageDesc * SwPageDescPtr;
-//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1)//STRIP008 ;
+//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1)
 
 typedef SwFrmFmt* SwFrmFmtPtr;
 SV_DECL_PTRARR_DEL(SwFrmFmts,SwFrmFmtPtr,4,4)

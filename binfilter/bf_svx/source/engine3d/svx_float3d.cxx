@@ -53,7 +53,7 @@ namespace binfilter {
 /*N*/                                                        SfxChildWinInfo* pInfo ) :
 /*N*/   SfxChildWindow( pParent, nId )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Svx3DWin* pWin = new Svx3DWin( pBindings, this, pParent );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

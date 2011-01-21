@@ -66,7 +66,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* /*pFld*/ )
 /*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ASSERT( pFld, "TakeNextOffset: Missing Source" );
+/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt )
@@ -315,7 +315,7 @@ public:
 /*M*/             xub_StrLen nNextOfst = aExpand.Len() - nRest;
 /*M*/
 /*M*/             if ( IsQuoVadisPortion() )
-/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nNextOfst += ((SwQuoVadisPortion*)this)->GetContTxt().Len();
+/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/           XubString aNew( aExpand, nNextOfst, STRING_LEN );
 /*M*/           aExpand.Erase( nNextOfst, STRING_LEN );

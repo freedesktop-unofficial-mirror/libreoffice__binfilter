@@ -69,7 +69,7 @@ struct SfxEvent_Impl
     {}
 };
 
-SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5)//STRIP008 ;
+SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5)
 
 // -----------------------------------------------------------------------
 

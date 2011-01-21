@@ -72,7 +72,7 @@ public:
     void SetRstHeight( const SwTxtMargin &rLine )
     {
         if ( pFrm->IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             nRstHeight = nOrigin - pFrm->SwitchHorizontalToVertical( rLine.Y() );
+            {DBG_BF_ASSERT(0, "STRIP");}
         else
             nRstHeight = rLine.Y() - nOrigin;
     }

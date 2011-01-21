@@ -35,7 +35,7 @@
 
 #include "defines.hxx"
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 /*************************************************************************
 |*

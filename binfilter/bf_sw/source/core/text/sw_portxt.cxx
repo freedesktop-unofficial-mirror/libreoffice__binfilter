@@ -122,7 +122,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/
 /*N*/         if ( LANGUAGE_THAI == aLang )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             nCnt = SwScriptInfo::ThaiJustify( *pStr, 0, 0, nPos, nEnd - nPos );
+                DBG_BF_ASSERT(0, "STRIP");
 /*?*/             return nCnt;
 /*N*/         }
 /*N*/     }
@@ -131,7 +131,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/     // Kashida Justification: Insert Kashidas
 /*N*/     if ( nEnd > nPos && pSI && COMPLEX == nScript )
 /*N*/     {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         LanguageType aLang =
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ #endif
 /*N*/

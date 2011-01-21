@@ -381,7 +381,7 @@ SvxAppletShape::~SvxAppletShape() throw()
 void SvxAppletShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
 {
     SvxShape::Create( pNewObj, pNewPage );
-    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID ); //STRIP003
+    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID );
     createObject(aAppletClassId);
     SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
 }
@@ -547,7 +547,7 @@ SvxPluginShape::~SvxPluginShape() throw()
 void SvxPluginShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
 {
     SvxShape::Create( pNewObj, pNewPage );
-    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID ); //STRIP003
+    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID );
     createObject(aPluginClassId);
     SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
 }

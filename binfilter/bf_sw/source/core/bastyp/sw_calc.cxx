@@ -268,7 +268,7 @@ static int
 /*N*/   {
 /*N*/       STAR_NMSPC::lang::Locale aLocale( SvxCreateLocale( eLang ));
 /*N*/       STAR_REFERENCE( lang::XMultiServiceFactory ) xMSF(
-/*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );  //STRIP002 ::comphelper::getProcessServiceFactory());
+/*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/       pCharClass = new CharClass( xMSF, aLocale );
 /*N*/       pLclData = new LocaleDataWrapper( xMSF, aLocale );
 /*N*/   }
@@ -579,7 +579,7 @@ static int
 /*N*/       String sTableName(sDBName.GetToken(0).GetToken(1, DB_DELIM));
 /*N*/       if( pMgr && sSourceName.Len() && sTableName.Len() &&
 /*N*/           pMgr->OpenDataSource(sSourceName, sTableName))
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       // auf keinen fall eintragen!!
 /*N*/       return &aErrExpr;
@@ -959,7 +959,7 @@ static int
 /*M*/       case '0':   case '1':   case '2':   case '3':   case '4':
 /*M*/       case '5':   case '6':   case '7':   case '8':   case '9':
 /*M*/       case ',':
-/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                   }
 /*M*/                   break;
 /*M*/
@@ -1519,7 +1519,7 @@ static int
 /*N*/       LanguageType eLang = GetDocAppScriptLang( *pDoc );
 /*N*/       if( eLang != SvxLocaleToLanguage( pLclD->getLocale() ) )
 /*N*/           pLclD = new LocaleDataWrapper(
-/*N*/                            ::legacy_binfilters::getLegacyProcessServiceFactory(), //STRIP002  ::comphelper::getProcessServiceFactory(),
+/*N*/                            ::legacy_binfilters::getLegacyProcessServiceFactory(),
 /*N*/                           SvxCreateLocale( eLang ) );
 /*N*/   }
 /*N*/

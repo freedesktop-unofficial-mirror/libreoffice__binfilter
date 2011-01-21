@@ -168,7 +168,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/       case FLY_IN_CNTNT:
 /*N*/           if( pFlyFmt && rAnch.GetCntntAnchor() )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFrm* pOld = ((SwFlyFrmFmt*)pFlyFmt)->GetFrm( &aRet, FALSE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           break;
 /*N*/
@@ -187,7 +187,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/       case FLY_AT_FLY: // LAYER_IMPL
 /*?*/           if( rAnch.GetCntntAnchor() )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwFlyFrmFmt* pFmt = (SwFlyFrmFmt*)rAnch.GetCntntAnchor()->
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           break;
 /*?*/
@@ -822,7 +822,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 
 /*N*/ int SwDoc::Chain( SwFrmFmt& /*rSource*/, const SwFrmFmt& /*rDest*/ )
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 int nErr = Chainable( rSource, rDest );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ void SwDoc::Unchain( SwFrmFmt& /*rFmt*/ )

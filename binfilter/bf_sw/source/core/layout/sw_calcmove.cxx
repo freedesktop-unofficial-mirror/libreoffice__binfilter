@@ -1018,7 +1018,7 @@ namespace binfilter {
 /*N*/         SwFtnFrm* pFtn = FindFtnFrm();
 /*N*/         SwCntntFrm* pRefCnt = pFtn ? pFtn->GetRef() : 0;
 /*N*/         if ( pRefCnt && !pRefCnt->IsValid() )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -1490,7 +1490,7 @@ namespace binfilter {
 /*N*/   //Seite/Spalte liegt.
 /*N*/   SwFtnFrm* pFtnFrm = 0;
 /*N*/   if ( IsInFtn() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bRet;

@@ -347,7 +347,7 @@ namespace binfilter {
 /*?*/
 /*?*/       // new shadow line drawing
 /*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // draw the line geometry
 /*?*/       }
 /*N*/   }
@@ -395,9 +395,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   bool bOk=TRUE;
-/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;

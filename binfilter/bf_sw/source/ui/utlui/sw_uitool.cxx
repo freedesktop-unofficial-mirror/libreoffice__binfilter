@@ -291,7 +291,7 @@ namespace binfilter {
 /*N*/   const SfxPoolItem *pBoxInfo;
 /*N*/   if ( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_BORDER_INNER,
 /*N*/                                           TRUE, &pBoxInfo) )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aBoxInfo = *(SvxBoxInfoItem*)pBoxInfo;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   aBoxInfo.SetTable( FALSE );
 /*N*/       // Abstandsfeld immer anzeigen

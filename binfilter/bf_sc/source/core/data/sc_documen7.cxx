@@ -360,7 +360,7 @@ ULONG erCountBCAFinds = 0;
 /*?*/           SetForcedFormulas( TRUE );
 /*?*/           if ( bAutoCalc && !IsAutoCalcShellDisabled() && !IsInInterpreter()
 /*?*/                   && !IsCalculatingFormulaTree() )
-{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 /*?*/               CalcFormulaTree( TRUE );
+{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/           else
 /*?*/               SetForcedFormulaPending( TRUE );
 /*N*/       }
@@ -397,7 +397,7 @@ ULONG erCountBCAFinds = 0;
 /*?*/       if ( IsAutoCalcShellDisabled() )
 /*?*/           SetForcedFormulaPending( TRUE );
 /*?*/       else if ( !IsInInterpreter() )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             CalcFormulaTree( TRUE );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

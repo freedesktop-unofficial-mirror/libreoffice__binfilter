@@ -61,7 +61,7 @@
 #include <unoprnms.hxx>
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;

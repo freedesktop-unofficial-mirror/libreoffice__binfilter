@@ -213,7 +213,7 @@ public:
 /*?*/ void SAL_CALL OutputStorageWrapper_Impl::flush()
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*N*/ void SAL_CALL OutputStorageWrapper_Impl::closeOutput()
@@ -519,7 +519,7 @@ struct OUStringLess
 /*N*/
 /*N*/   // For all unkown class id, the OLE object has to be wrapped by an
 /*N*/   // outplace object.
-/*N*/   SvGlobalName aOutClassId( SO3_OUT_CLASSID ); //STRIP003
+/*N*/   SvGlobalName aOutClassId( SO3_OUT_CLASSID );
 /*N*/   if( SvGlobalName() == aClassId ||
 /*N*/       ( aOutClassId != aClassId &&
 /*N*/         !SvFactory::IsIntern( aClassId, 0 ) ) )
@@ -719,13 +719,13 @@ struct OUStringLess
 /*?*/ Type SAL_CALL SvXMLEmbeddedObjectHelper::getElementType()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasElements()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 }
 

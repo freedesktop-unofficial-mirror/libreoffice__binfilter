@@ -77,7 +77,7 @@
 #include <xlineit0.hxx>
 
 #include <svx3ditems.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
 
@@ -939,7 +939,7 @@ SdrAutoShapeAdjustmentItem::SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt1
         sal_uInt32 i, nCount;
         rIn >> nCount;
         for ( i = 0; i < nCount; i++ )
-        {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+        {DBG_BF_ASSERT(0, "STRIP");
         }
     }
 }
@@ -961,7 +961,7 @@ int SdrAutoShapeAdjustmentItem::operator==( const SfxPoolItem& rCmp ) const
         {
             sal_uInt32 i;
             for ( i = 0; i < GetCount(); i++ )
-            {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+            {DBG_BF_ASSERT(0, "STRIP");
             }
         }
     }
@@ -981,7 +981,7 @@ SvStream& SdrAutoShapeAdjustmentItem::Store( SvStream& rOut, sal_uInt16 nItemVer
         sal_uInt32 i, nCount = GetCount();
         rOut << nCount;
         for ( i = 0; i < nCount; i++ )
-        {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     rOut << GetValue( i ).nValue;
+        {DBG_BF_ASSERT(0, "STRIP"); }
     }
     return rOut;
 }
@@ -991,7 +991,7 @@ SfxPoolItem* SdrAutoShapeAdjustmentItem::Clone( SfxItemPool * /*pPool*/ ) const
     sal_uInt32 i;
     SdrAutoShapeAdjustmentItem* pItem = new SdrAutoShapeAdjustmentItem;
     for ( i = 0; i < GetCount(); i++ )
-    {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+    {DBG_BF_ASSERT(0, "STRIP");
     }
     return pItem;
 }

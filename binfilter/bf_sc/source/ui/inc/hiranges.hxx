@@ -31,7 +31,7 @@
 
 #include <tools/color.hxx>
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 //==================================================================
 
@@ -40,7 +40,7 @@ class ScHighlightRanges
 {
 
 public:
-            ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScHighlightRanges();
+            ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

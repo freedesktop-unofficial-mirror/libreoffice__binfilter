@@ -544,7 +544,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   // Der Inhalt wird eingefuegt..
 /*N*/   if( pSave )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   // jetzt koennen eventuell zwei Teile des uebergeordneten Bereich verschmelzen
 /*N*/   if( pPrvSct && !pPrvSct->IsJoinLocked() )
@@ -635,7 +635,7 @@ namespace binfilter {
 /*N*/   SwSectionFrm *pSect = this;
 /*N*/   if( nMode )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt *pFmt = IsEndnAtEnd() ? GetEndSectFmt() :
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   BOOL bFtnFound = nMode == FINDMODE_ENDNOTE;
 /*N*/   do
@@ -652,7 +652,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& /*rMinDiff*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************
@@ -739,7 +739,7 @@ namespace binfilter {
 /*N*/                  (Prt().*fnRect->fnGetTop)() > (Frm().*fnRect->fnGetHeight)() );
 /*N*/     if( !bCalc && !bGrow && IsAnyNoteAtEnd() && !IsInFtn() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSectionFrm *pSect = this;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if( bCalc )
 /*N*/   {
@@ -1889,7 +1889,7 @@ namespace binfilter {
 /*?*/               //nicht auf das alte Spaltenattribut verlassen. Da diese
 /*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
 /*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtCol aCol;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           rInvFlags |= 0x01;
 /*?*/           bClear = FALSE;
@@ -1921,7 +1921,7 @@ namespace binfilter {
 /*?*/       case RES_END_AT_TXTEND:
 /*?*/           if( !IsInFtn() )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOld = IsEndnAtEnd();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           break;
 /*?*/       case RES_COLUMNBALANCE:
@@ -1934,7 +1934,7 @@ namespace binfilter {
 /*?*/             break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           { DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -1980,7 +1980,7 @@ namespace binfilter {
 /*?*/   BOOL bRet = FALSE;
 /*?*/   while( pCont && !bRet )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pCont->FindFootNote() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   return bRet;
 /*N*/ }

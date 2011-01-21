@@ -37,7 +37,7 @@
 #include <bf_svx/scripttypeitem.hxx>
 
 #include <breakit.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include "swtypes.hxx"
 

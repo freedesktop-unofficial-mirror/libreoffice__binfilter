@@ -46,7 +46,7 @@
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 
 #include "unolingu.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -518,7 +518,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       aFont.SetOrientation(nAngle);
 /*?*/                       pOut->SetFont(aFont);
 /*?*/                       if(bDraw)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -530,7 +530,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       pOut->SetFont(aFont);
 /*N*/                       if(bDraw)
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -579,13 +579,13 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           PolyPolygon aPolyPoly(aPolyPolyVector[a]);
 /*?*/
 /*?*/                           if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/                       }
 /*?*/                   }
 /*?*/
 /*?*/                   if ( eFormTextStyle == XFT_SLANTY )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
@@ -612,7 +612,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           DrawXPolyPolygon(aChar);
 /*?*/                       else
 /*?*/                       {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ImpDrawTextArray(pOut, aPolyPos, pInfo, (long*)pDXArray, nChar + i, nNextGlyphLen);
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/                   }
 /*?*/

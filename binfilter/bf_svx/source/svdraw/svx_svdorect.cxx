@@ -283,7 +283,7 @@ namespace binfilter {
 /*?*/       if( pLineGeometry.get() )
 /*?*/       {
 /*?*/           // draw the line geometry
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpDrawShadowLineGeometry(rXOut, rSet, *pLineGeometry);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 
@@ -317,7 +317,7 @@ namespace binfilter {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
 /*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bOk=PaintGluePoints(rXOut,rInfoRec);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;

@@ -131,7 +131,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( !IsInUndo(), "InsertUndo im Undomodus!" );
 /*N*/   if ( pUndoMarkSelection )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoMarkSelection* pU = new EditUndoMarkSelection( this, *pUndoMarkSelection );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   GetUndoManager().AddUndoAction( pUndo, bTryMerge );
 /*N*/ #endif

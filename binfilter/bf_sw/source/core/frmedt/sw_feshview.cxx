@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/   if( Imp()->HasDrawView() &&
 /*N*/       Imp()->GetDrawView()->GetMarkList().GetMarkCount() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 MakeVisible( Imp()->GetDrawView()->GetAllMarkedRect() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       SwCrsrShell::MakeSelVisible();
@@ -107,9 +107,9 @@ namespace binfilter {
 /*N*/ void SwFEShell::HideChainMarker()
 /*N*/ {
 /*N*/   if ( pChainFrom )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pChainFrom->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if ( pChainTo )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pChainTo->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void SwFEShell::SetChainMarker()
@@ -122,10 +122,10 @@ namespace binfilter {
 /*?*/
 /*?*/       XPolygon aPoly(3);
 /*?*/       if ( pFly->GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       if ( pFly->GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/   if ( bDelFrom )

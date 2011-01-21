@@ -35,7 +35,7 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_starmath/smdll.hxx>
 #include <bf_svx/svdetc.hxx>
-#include <bf_svx/itemdata.hxx> //STRIP002
+#include <bf_svx/itemdata.hxx>
 #include <framework/imageproducer.hxx>
 
 #include <bf_svtools/moduleoptions.hxx>

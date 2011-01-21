@@ -39,7 +39,7 @@ class ScRefUndoData
 private:
 
 public:
-                ScRefUndoData( const ScDocument* pDoc ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScRefUndoData( const ScDocument* pDoc );
+                ScRefUndoData( const ScDocument* pDoc ){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

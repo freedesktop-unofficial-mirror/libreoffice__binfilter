@@ -119,7 +119,7 @@
 #include <comphelper/types.hxx>
 
 #include <unomid.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
@@ -1117,14 +1117,14 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxShadowItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_SHADOW_END;  // SVX_SHADOW_BOTTOMRIGHT + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*?*/ sal_uInt16 SvxShadowItem::GetEnumValue() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return GetLocation();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -1958,7 +1958,7 @@ using namespace ::com::sun::star;
 
 /*?*/ sal_uInt16 SvxFmtBreakItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_BREAK_END;   // SVX_BREAK_PAGE_BOTH + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxFmtKeepItem -------------------------------------------------
@@ -2062,14 +2062,14 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 /*?*/ CreateSvxBrushTabPage SvxBrushItemLink_Impl::GetBackgroundTabpageCreateFunc()
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 // -----------------------------------------------------------------------
 
 /*?*/ GetSvxBrushTabPageRanges SvxBrushItemLink_Impl::GetBackgroundTabpageRanges()
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 #ifndef SVX_LIGHT
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -2666,11 +2666,11 @@ GraphicFilter* GetGrfFilter();
 /*?*/               // asynchrone Fall was die Benachrichtigung angeht unterschiedlich
 /*?*/               // behandelt. Der Callback erfolgt nur bei asynchronem Eintreffen
 /*?*/               // der Daten
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pImpl->xMedium->DownLoad( );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }

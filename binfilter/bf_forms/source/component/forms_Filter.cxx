@@ -65,7 +65,7 @@ namespace binfilter {
 //--------------------------------------------------------------------------
 extern "C" void SAL_CALL createRegistryInfo_OFilterControl()
 {
-    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::OFilterControl > aAutoRegistration;//STRIP008    static ::frm::OMultiInstanceAutoRegistration< ::frm::OFilterControl > aAutoRegistration;
+    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::OFilterControl > aAutoRegistration;
 }
 
 //.........................................................................

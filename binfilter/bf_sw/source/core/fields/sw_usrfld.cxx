@@ -42,7 +42,7 @@
 #include <doc.hxx>
 #include <unofldmid.h>
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::rtl;
 /*--------------------------------------------------------------------
@@ -296,7 +296,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/
 /*N*/       // der SdrPage (und damit den VCControls) sagen, das sich was getan hat
 /*N*/       if( GetDoc()->GetDrawModel() && GetDepends() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/       GetDoc()->IsModified();
 /*N*/       GetDoc()->SetModified();

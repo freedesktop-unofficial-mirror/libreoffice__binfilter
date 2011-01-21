@@ -82,7 +82,7 @@ namespace binfilter {
 /*N*/
 /*N*/   pImp = new SfxFrameDescriptor_Impl;
 /*N*/   if ( pParentFrameSet )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pParentFrameSet->InsertFrame( this );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 /*N*/ SfxFrameDescriptor::~SfxFrameDescriptor()

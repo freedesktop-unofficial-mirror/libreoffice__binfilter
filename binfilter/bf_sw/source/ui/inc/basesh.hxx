@@ -90,39 +90,39 @@ public:
     SFX_DECL_INTERFACE(SW_BASESHELL);
     TYPEINFO();
 
-    void        ExecDelete(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001 void        ExecDelete(SfxRequest &);
+    void        ExecDelete(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    void        ExecClpbrd(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecClpbrd(SfxRequest &);
+    void        ExecClpbrd(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
     void        StateClpbrd(SfxItemSet &);
 
-    void        ExecUndo(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecUndo(SfxRequest &);
+    void        ExecUndo(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
     void        StateUndo(SfxItemSet &);
 
-    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        Execute(SfxRequest &);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
     void        GetState(SfxItemSet &);
     void        StateStyle(SfxItemSet &);
 
-    void        ExecuteGallery(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecuteGallery(SfxRequest&);
-    void        GetGalleryState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void       GetGalleryState(SfxItemSet&);
+    void        ExecuteGallery(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");};
+    void        GetGalleryState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");};
 
-    void        ExecDlg(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecDlg(SfxRequest &);
+    void        ExecDlg(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
 
     void        StateStatusLine(SfxItemSet &rSet);
-    void        ExecTxtCtrl(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        ExecTxtCtrl(SfxRequest& rReq);
+    void        ExecTxtCtrl(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
     void        GetTxtFontCtrlState(SfxItemSet& rSet);
     void        GetTxtCtrlState(SfxItemSet& rSet);
-    void        GetBorderState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void       GetBorderState(SfxItemSet &rSet);
+    void        GetBorderState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
     void        GetBckColState(SfxItemSet &rSet);
 
-     void        ExecBckCol(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecBckCol(SfxRequest& rReq);
+     void        ExecBckCol(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");};
     void        SetWrapMode( USHORT nSlot );
 
-    void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");};//STRIP001 void     StateDisableItems(SfxItemSet &);
+    void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");};
 
-    void        EditRegionDialog(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP"); };//STRIP001 void     EditRegionDialog(SfxRequest& rReq);
-    void        InsertRegionDialog(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP"); };//STRIP001 void       InsertRegionDialog(SfxRequest& rReq);
+    void        EditRegionDialog(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP"); };
+    void        InsertRegionDialog(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP"); };
 
-    void        ExecField(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        ExecField(SfxRequest& rReq);
+    void        ExecField(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");};
 
     static void   _SetFrmMode( USHORT nMode )   { nFrameMode = nMode; }
     static USHORT  GetFrmMode()                 { return nFrameMode;  }

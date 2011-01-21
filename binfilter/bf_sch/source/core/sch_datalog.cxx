@@ -29,7 +29,7 @@
 namespace binfilter {
 
 /*N*/ SchDataLogBook::~SchDataLogBook()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 }

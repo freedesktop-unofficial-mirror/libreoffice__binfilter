@@ -203,13 +203,13 @@ struct _PercentHdl
 /*N*/           ((bSkipOverHiddenSections && pSectNd->GetSection().IsHiddenFlag() ) ||
 /*N*/            (bSkipOverProtectSections && pSectNd->GetSection().IsProtectFlag() )))
 /*N*/       {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       if( 0 == ( SELOVER_CHANGEPOS & eFlags ) )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 
         // oder sollte eine geschuetzte Section innerhalb der Selektion liegen?
 /*N*/       if( HasMark() && bSkipOverProtectSections)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ULONG nSttIdx = GetMark()->nNode.GetIndex(),
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/
 /*N*/   }
@@ -219,13 +219,13 @@ struct _PercentHdl
 /*N*/   const SwNode* pNd = &GetPoint()->nNode.GetNode();
 /*N*/   if( pNd->IsCntntNode() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwCntntFrm* pFrm = ((SwCntntNode*)pNd)->GetFrm();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
     // darf der Cursor in geschuetzen "Nodes" stehen?
 /*N*/   if( 0 == ( SELOVER_CHANGEPOS & eFlags ) && !IsAtValidPos() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   if( !HasMark() )
@@ -235,7 +235,7 @@ struct _PercentHdl
 /*N*/   //              GrundSections:
 /*N*/   if( !::binfilter::CheckNodesRange( GetMark()->nNode, GetPoint()->nNode, TRUE ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DeleteMark();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwTableNode* pPtNd = pNd->FindTableNode();
@@ -243,7 +243,7 @@ struct _PercentHdl
 /*N*/   if( (pNd = &GetMark()->nNode.GetNode())->IsCntntNode() &&
 /*N*/       !((SwCntntNode*)pNd)->GetFrm() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwTableNode* pMrkNd = pNd->FindTableNode();
@@ -255,13 +255,13 @@ struct _PercentHdl
     // in unterschiedlichen Tabellen oder nur Mark in der Tabelle
 /*?*/   if( ( pPtNd && pMrkNd ) || pMrkNd )
 /*?*/   {                       // dann lasse das nicht zu, alte Pos zurueck
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   RestoreSavePos();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 
     // ACHTUNG: dieses kann nicht im TableMode geschehen !!
 /*?*/   if( pPtNd )     // nur Point in Tabelle, dann gehe hinter/vor diese
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( SELOVER_CHANGEPOS & eFlags )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   return FALSE;       // was bleibt noch ??
 /*N*/ }
@@ -285,20 +285,20 @@ struct _PercentHdl
 
 /*?*/   if( !bMove )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bChgCrsr )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/
 /*?*/   // wir stehen in einer geschuetzten TabellenZelle
 /*?*/   // von Oben nach Unten Traveln ?
 /*?*/   if( pSavePos->nNode < GetPoint()->nNode.GetIndex() )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // suche die naechste "gueltige" Box
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/   }
 /*?*/
 /*?*/   // suche die vorherige "gueltige" Box
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt vor dem StartNode der Zelle ein weiterer EndNode, dann
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       // gibt es auch eine vorherige Zelle
 /*?*/   }
 /*?*/
@@ -322,49 +322,49 @@ struct _PercentHdl
 /*M*/ ULONG SwCursor::FindAll( SwFindParas& /*rParas*/,
 /*M*/                           SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/,
 /*M*/                             FindRanges /*eFndRngs*/, BOOL& /*bCancel*/ )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*M*/ }
 
 /*N*/ bool SwCursor::IsStartWord() const
 /*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
 /*N*/ bool SwCursor::IsEndWord() const
 /*N*/ {
-     bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+     bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/ return bRet;
 /*N*/ }
 
 /*N*/ bool SwCursor::GoStartWord()
 /*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
 /*N*/ bool SwCursor::GoEndWord()
 /*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
 /*N*/ bool SwCursor::GoNextWord()
 /*N*/ {
-/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
 /*N*/ bool SwCursor::GoPrevWord()
 /*N*/ {
-/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
 //-----------------------------------------------------------------------------
 /*N*/ bool SwCursor::GoSentence( SentenceMoveType /*eMoveType*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ bool SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
@@ -381,7 +381,7 @@ struct _PercentHdl
 /*N*/     const BOOL bDoNotSetBidiLevel = 0 != (SwUnoCrsr*)*this;
 /*N*/
 /*N*/     if ( ! bDoNotSetBidiLevel )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   // kann der Cursor n-mal weiterverschoben werden ?
@@ -393,7 +393,7 @@ struct _PercentHdl
 /*N*/
 /*N*/     // here come some special rules for visual cursor travelling
 /*N*/     if ( pSttFrm )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   return 0 == nCnt && !IsInProtectTable( TRUE ) &&

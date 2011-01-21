@@ -48,7 +48,7 @@
 
 #include <docfile.hxx>
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <bf_xmloff/nmspmap.hxx>
 

@@ -358,7 +358,7 @@ namespace binfilter {
 /*N*/
 /*N*/     }
 /*N*/   else if( rRule.IsAutoRule() && !(*pNew == rRule) )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bSetItem )
@@ -372,7 +372,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::SetNumRuleStart( const SwPosition& /*rPos*/, BOOL /*bFlag*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode().GetTxtNode();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwDoc::SetNodeNumStart( const SwPosition& rPos, USHORT nStt )
@@ -432,7 +432,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
 /*N*/                   pFrm; pFrm = (SwFrm*)aIter.Next() )
 /*N*/               if( ((SwTxtFrm*)pFrm)->HasAnimation() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ((SwTxtFrm*)pFrm)->StopAnimation( pOut );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -441,7 +441,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 
 /*N*/ BOOL SwDoc::DelNumRules( const SwPaM& /*rPam*/ )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ULONG nStt = rPam.GetPoint()->nNode.GetIndex(),
+    DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 

@@ -37,7 +37,7 @@ class SvStream;
 namespace binfilter {
 
 typedef SfxConfigItem* SfxConfigItemPtr;
-SV_DECL_PTRARR( SfxConfigItems_Impl, SfxConfigItemPtr, 2, 2)//STRIP008 ;
+SV_DECL_PTRARR( SfxConfigItems_Impl, SfxConfigItemPtr, 2, 2)
 
 struct SfxConfigItem_Impl
 {
@@ -57,7 +57,7 @@ struct SfxConfigItem_Impl
 };
 
 typedef SfxConfigItem_Impl* SfxConfigItemPtr_Impl;
-SV_DECL_PTRARR( SfxConfigItemArr_Impl, SfxConfigItemPtr_Impl, 2, 2)//STRIP008 ;
+SV_DECL_PTRARR( SfxConfigItemArr_Impl, SfxConfigItemPtr_Impl, 2, 2)
 
 class SfxObjectShell;
 class SfxIFConfig_Impl;

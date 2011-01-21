@@ -652,7 +652,7 @@ namespace binfilter {
 /*N*/             break;
 /*N*/
 /*N*/       case RES_PAGEDESC_FTNINFO:
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //Die derzeit einzig sichere Methode:
+/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/         case RES_FRAMEDIR :
 /*?*/             CheckDirChange();
@@ -1847,7 +1847,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                   ((const SwTabFrm *)pFrm)->GetTable()
 /*N*/                                           ->GetHTMLTableLayout();
 /*N*/               if ( pLayoutInfo )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nWidth = Min( nWidth, pLayoutInfo->GetBrowseWidthMin() );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               switch ( rHori.GetHoriOrient() )
 /*N*/               {

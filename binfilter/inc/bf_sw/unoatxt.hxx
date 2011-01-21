@@ -40,7 +40,7 @@
 #include <cppuhelper/implbase5.hxx> // helper for implementations
 #include <cppuhelper/implbase6.hxx> // helper for implementations
 #include <bf_svtools/unoevent.hxx>
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwGlossaries;
 class SwDoc;
 class SwDocShell;
@@ -55,7 +55,7 @@ SV_DECL_REF( SwDocShell )
 } //namespace binfilter
 #endif
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /******************************************************************************
  *
  ******************************************************************************/

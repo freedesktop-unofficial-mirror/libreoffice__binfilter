@@ -83,9 +83,6 @@ class SwTOXMark;
 class SwRedline;
 struct SwPosition;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 // enum und struktur, um ueber die Doc-Position Informationen zu erfragen

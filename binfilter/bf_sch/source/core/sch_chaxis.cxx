@@ -838,7 +838,7 @@ namespace binfilter {
 /*N*/   while(nLines)       //nLines ist 0 wenn kein CHSTYLE_2D_LINE_STACKEDCOLUMN
 /*N*/   {
 /*?*/       if( IsDataOnAxis( nIndex ))
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 UpdateRowMinMax( nIndex, nColCnt, mbPercent, fMin, fMax );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       nLines--;
 /*?*/       nIndex++;
 /*N*/   }
@@ -1113,7 +1113,7 @@ namespace binfilter {
 /*N*/       mpAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/     //    Determine the size of the texts bounding box.
 /*N*/   if (meTextOrient == CHTXTORIENT_STACKED)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOutliner->SetText (StackString(aString), pOutliner->GetParagraph (0));
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else
 /*N*/       pOutliner->SetText(aString, pOutliner->GetParagraph (0));
 /*N*/   pOutliner->SetUpdateMode (TRUE);
@@ -2588,13 +2588,13 @@ namespace binfilter {
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetNumFormat( mbPercent, nMrgFmt );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   nFmt = GetNumFormat( ! mbPercent );
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetNumFormat( ! mbPercent, nMrgFmt );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   return bRet;
 /*N*/ }

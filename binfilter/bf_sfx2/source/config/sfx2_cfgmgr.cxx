@@ -160,7 +160,7 @@ static const char pStorageName[] = "Configurations";
 /*?*/ }
 
 /*?*/ void SfxConfigManager::SetModified(BOOL /*bMod*/)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*N*/ BOOL SfxConfigManager::HasConfiguration( SotStorage& rStorage )

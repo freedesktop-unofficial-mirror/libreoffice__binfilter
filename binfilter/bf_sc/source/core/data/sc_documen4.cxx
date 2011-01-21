@@ -143,7 +143,7 @@ namespace binfilter {
 /*N*/           if (i == nTab1)
 /*N*/               pTab[i]->PutCell(nCol1, nRow1, pCell);
 /*N*/           else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCol1, nRow1, pCell->Clone(this, ScAddress( nCol1, nRow1, i)));
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -206,7 +206,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCo
 
 /*N*/ void ScDocument::CompileDBFormula()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScDocument::CompileDBFormula( BOOL bCreateFormulaString )
@@ -220,7 +220,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCo
 /*N*/ void ScDocument::CompileNameFormula( BOOL bCreateFormulaString )
 /*N*/ {
 /*N*/   if ( pCondFormList )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();    // nach ScNameDlg noetig
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
 /*N*/   {

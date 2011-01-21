@@ -342,7 +342,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*?*/
 /*?*/       if( pDestPers && pSrcPers && ( pDestPers != pSrcPers ) )
 /*?*/       {
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ImpCopyObject( *pSrcPers, *pDestPers, mpImpl->aPersistName );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -574,13 +574,13 @@ SO2_DECL_REF(SvInPlaceObject)
 // -----------------------------------------------------------------------------
 
 /*N*/ bool SdrOle2Obj::HasGDIMetaFile() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ const GDIMetaFile* SdrOle2Obj::GetGDIMetaFile() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -607,7 +607,7 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/       bPreview = TRUE;
 /*N*/
 /*N*/   if( bPreview )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   BOOL bHasGraphic=pGraphic!=NULL;

@@ -62,7 +62,7 @@
 #include "globstr.hrc"
 #include "scerrors.hxx"
 #include "XMLExportSharedData.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #ifndef SEQTYPE
 namespace binfilter {
  #if defined(__SUNPRO_CC) && (__SUNPRO_CC == 0x500)

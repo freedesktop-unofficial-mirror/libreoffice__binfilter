@@ -227,7 +227,7 @@ namespace binfilter {
 /*N*/     SetInvalidR2L( TRUE );
 /*N*/     BOOL bChg = bOldR2L != IsRightToLeft();
 /*N*/     if( ( IsVertical() != bOldVert ) || bChg || IsReverse() != bOldRev )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -279,7 +279,7 @@ namespace binfilter {
 /*?*/           ViewShell *pVSh = pRootFrm->GetCurrShell();
 /*?*/           if( pVSh && pVSh->Imp() )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( !GetLower(), "Lowers should be dispose already!" );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -378,7 +378,7 @@ namespace binfilter {
 /*?*/             }
 /*?*/             while( nPos < rFtnIdxs.Count() )
 /*?*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTxtFtn = rFtnIdxs[ nPos ];
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*N*/         }
 /*N*/   }

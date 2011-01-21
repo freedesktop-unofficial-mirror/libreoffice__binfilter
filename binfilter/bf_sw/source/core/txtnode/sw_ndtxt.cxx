@@ -127,11 +127,11 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       switch( ( pNd = (*this)[aTmp] )->GetNodeType() )
 /*N*/       {
 /*?*/       case ND_TABLENODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwTableNode*)pNd)->MakeFrms( aIdx );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return pNode;
 /*?*/
 /*?*/       case ND_SECTIONNODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwSectionNode*)pNd)->GetSection().IsHidden() ||
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return pNode;
 /*N*/
 /*N*/       case ND_TEXTNODE:
@@ -354,7 +354,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       Cut( pNode, aIdx, nSplitPos );
 /*?*/
 /*?*/       if( GetWrong() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pNode->SetWrong( GetWrong()->SplitList( nSplitPos ) );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/       SetWrongDirty( TRUE );
 /*?*/
@@ -441,7 +441,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/           }
 /*?*/       }
 /*?*/       if( pSwpHints )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           MoveTxtAttr_To_AttrSet();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       pNode->MakeFrms( *this );       // neue Frames anlegen.
 /*?*/       lcl_ChangeFtnRef( *this );
 /*N*/   }
@@ -459,12 +459,12 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       //              Attribute loeschen
 /*N*/       if( pSwpHints )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwTxtAttr* pHt;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pNode->SetWrong( pList->SplitList( nSplitPos ) );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/
 /*N*/       if ( GetDepends() )
@@ -500,14 +500,14 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( pTxtNode->GetWrong(), nOldLen );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else
 /*N*/         {
 /*N*/             pList = pTxtNode->GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");//STRIP001 /*?*/                 pList->Move( 0, nOldLen );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -546,14 +546,14 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = pTxtNode->GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( GetWrong(), Len() );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else
 /*N*/         {
 /*N*/             pList = GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pList->Move( 0, nLen );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -978,7 +978,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       // Wenn wir es mit einem Fussnoten-Attribut zu tun haben,
 /*N*/       // muessen wir natuerlich auch den Fussnotenbereich kopieren.
 /*N*/       case RES_TXTATR_FTN :
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           ((SwTxtFtn*)pHt)->CopyFtn( (SwTxtFtn*)pNewHt );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*N*/
 /*N*/       // Beim Kopieren von Feldern in andere Dokumente
@@ -989,7 +989,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           {
 /*N*/               const SwFmtFld& rFld = pHt->GetFld();
 /*N*/               if( pOtherDoc )
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   ((SwTxtFld*)pHt)->CopyFld( (SwTxtFld*)pNewHt );
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               // Tabellenformel ??
 /*N*/               if( RES_TABLEFLD == rFld.GetFld()->GetTyp()->Which()
@@ -1038,7 +1038,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/               const SwDoc* pDoc;
 /*?*/               if( 0!=( pDoc = ((SwTxtINetFmt*)pHt)->GetTxtNode().GetDoc() ) )
 /*?*/               {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     const SwCharFmts* pCharFmts = pDoc->GetCharFmts();
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/           //JP 24.04.98: Bug 49753 - ein TextNode muss am Attribut
@@ -2252,7 +2252,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                       ++rTxtStt;
 /*N*/                       break;
 /*N*/                   case RES_TXTATR_HARDBLANK:
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       rTxt.SetChar( nPos, ((SwTxtHardBlank*)pAttr)->GetChar() );
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                       break;
 /*N*/                   case RES_TXTATR_FTN:
 /*N*/                       rTxt.Erase( nPos, 1 );

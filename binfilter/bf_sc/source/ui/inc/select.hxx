@@ -70,13 +70,13 @@ public:
     void            SetSelectionEngine( ScViewSelectionEngine* pSelEngine );
 
 
-    virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001      virtual void    BeginDrag();
-    virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  CreateAnchor();
-    virtual void    DestroyAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void DestroyAnchor();
-    virtual BOOL    SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE ){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE );
-    virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAtPoint( const Point& rPointPixel ){DBG_ASSERT(0, "STRIP")}; //STRIP001 virtual void    DeselectAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAll(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void   DeselectAll();
+    virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void    DestroyAnchor(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual BOOL    SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE ){DBG_BF_ASSERT(0, "STRIP");return FALSE;}
+    virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    virtual void    DeselectAtPoint( const Point& rPointPixel ){DBG_ASSERT(0, "STRIP")};
+    virtual void    DeselectAll(){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 
@@ -98,13 +98,13 @@ public:
                     ScHeaderFunctionSet( ScViewData* pNewViewData );
 
 
-    virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void BeginDrag();
-    virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  CreateAnchor();
-    virtual void    DestroyAnchor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void DestroyAnchor();
-    virtual BOOL    SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE ){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE );
-    virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP");return FALSE;}//STRIP001   virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void DeselectAtPoint( const Point& rPointPixel );
-    virtual void    DeselectAll(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void   DeselectAll();
+    virtual void    BeginDrag(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void    CreateAnchor(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void    DestroyAnchor(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual BOOL    SetCursorAtPoint( const Point& rPointPixel, BOOL bDontSelectAtCursor = FALSE ){DBG_BF_ASSERT(0, "STRIP");return FALSE;}
+    virtual BOOL    IsSelectionAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP");return FALSE;}
+    virtual void    DeselectAtPoint( const Point& rPointPixel ){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void    DeselectAll(){DBG_BF_ASSERT(0, "STRIP");}
 
     void            SetAnchorFlag(BOOL bSet)    { bAnchor = bSet; }
 };

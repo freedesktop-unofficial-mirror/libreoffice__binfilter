@@ -79,7 +79,7 @@
 
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
 const sal_Char sFrmFmtStr[] = "Frameformat";

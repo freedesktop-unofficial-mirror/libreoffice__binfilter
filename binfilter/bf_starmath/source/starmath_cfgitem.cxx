@@ -499,7 +499,7 @@ static const char* aRootName = "Office.Math";
 /*N*/     if (!pFontFormatList)
 /*N*/         pFontFormatList = new SmFontFormatList;
 /*N*/     else
-/*?*/     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFontFormatList->Clear();
+/*?*/     {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ) );
 /*N*/
@@ -611,7 +611,7 @@ static const char* aRootName = "Office.Math";
 /*?*/     OUString aDelim( OUString::valueOf( (sal_Unicode) '/' ) );
 /*?*/     for (USHORT i = 0;  i < nCount;  ++i)
 /*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aFntFmtId( rFntFmtList.GetFontFormatId( i ) );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*?*/     }
 /*?*/     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
 /*?*/     (void)pVal;
@@ -846,7 +846,7 @@ static const char* aRootName = "Office.Math";
 /*?*/
 /*?*/         if (!pFormat->IsDefaultFont( i ))
 /*?*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmFontFormat aFntFmt( pFormat->GetFont( i ) );
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/         }
 /*?*/
 /*?*/         *pValue++ <<= aFntFmtId;

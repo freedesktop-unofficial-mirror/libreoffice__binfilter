@@ -69,7 +69,6 @@ using namespace ::comphelper;
 #endif
 #endif
 
-//STRIP001 ByteString aEmptyByteStr;     // Konstante Strings
 String aEmptyStr;               // Konstante Strings
 String aDotStr('.');            // Konstante Strings
 

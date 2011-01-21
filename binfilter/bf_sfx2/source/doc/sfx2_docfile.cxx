@@ -115,7 +115,7 @@ using namespace ::com::sun::star::io;
 
 #include "xmlversion.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 #define MAX_REDIRECT 5
@@ -336,7 +336,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SfxMedium::DataAvailable_Impl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SfxMedium::Cancel_Impl()
@@ -695,7 +695,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::TryStorage()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -1024,7 +1024,7 @@ namespace binfilter {
 /*N*/
 /*N*/           return;
 /*N*/       }
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;//STRIP001
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;
 /*?*/     }
 /*N*/ }
 
@@ -1450,7 +1450,7 @@ namespace binfilter {
 //----------------------------------------------------------------
 
 /*N*/ void SfxMedium::SetPhysicalName_Impl( const String& /*rNameP*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //----------------------------------------------------------------

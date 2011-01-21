@@ -153,7 +153,7 @@ bool bInSizeNotify = FALSE;
 /*?*/               // to give it a chance to react with proper IAO updates
 /*?*/               if (HasDrawView())
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   GetDrawView()->ForceInvalidateMarkHandles();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               ResetInvalidRect();
@@ -172,14 +172,14 @@ bool bInSizeNotify = FALSE;
 /*?*/           BOOL bShowCrsr = (pRegion || Imp()->GetScrollRects()) &&
 /*?*/                               IsA( TYPE(SwCrsrShell) );
 /*?*/           if( bShowCrsr )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ((SwCrsrShell*)this)->HideCrsrs();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/           Scroll();
 /*?*/           if ( bPaintsFromSystem && Imp()->pScrolledArea )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               Imp()->FlushScrolledArea();
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/           if ( pRegion )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           {
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           if( bShowCrsr )
 /*?*/               ((SwCrsrShell*)this)->ShowCrsrs( TRUE );
 /*?*/       }

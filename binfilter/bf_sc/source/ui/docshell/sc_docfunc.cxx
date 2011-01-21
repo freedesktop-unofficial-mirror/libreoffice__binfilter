@@ -384,7 +384,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (bObjects)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (bRecord)
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/
@@ -395,13 +395,13 @@ using namespace ::com::sun::star;
 /*N*/                         aMultiMark, nFlags );
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->DeleteSelection( nFlags, aMultiMark );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if (!AdjustRowHeight( aExtendedRange ))
 /*N*/       rDocShell.PostPaint( aExtendedRange, PAINT_GRID, nExtFlags );
 /*N*/   else if (nExtFlags & SC_PF_LINES)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 lcl_PaintAbove( rDocShell, aExtendedRange );  // fuer Linien ueber dem Bereich
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/ //    rDocShell.UpdateOle(GetViewData());     //! an der View?
 /*N*/   aModificator.SetDocumentModified();
@@ -796,7 +796,7 @@ using namespace ::com::sun::star;
 /*N*/   if (!AdjustRowHeight( aMultiRange ))
 /*N*/       rDocShell.PostPaint( aMultiRange, PAINT_GRID, nExtFlags );
 /*N*/   else if (nExtFlags & SC_PF_LINES)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 lcl_PaintAbove( rDocShell, aMultiRange ); // fuer Linien ueber dem Bereich
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   aModificator.SetDocumentModified();
 /*N*/
@@ -1072,7 +1072,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*?*/   nFlags &= ~CR_MANUALBREAK;
 /*?*/   if (bColumn)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pDoc->SetColFlags( nPos, nTab, nFlags );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/   else
 /*?*/       pDoc->SetRowFlags( nPos, nTab, nFlags );
 /*?*/   pDoc->UpdatePageBreaks( nTab );
@@ -1413,7 +1413,7 @@ using namespace ::com::sun::star;
 /*N*/             !pDoc->IsBlockEmpty( nTab, nStartCol+1,nStartRow, nEndCol,nEndRow ) );
 /*N*/
 /*N*/   if (bNeedContents && bContents)
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->DoMergeContents( nTab, nStartCol,nStartRow, nEndCol,nEndRow );
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   pDoc->DoMerge( nTab, nStartCol,nStartRow, nEndCol,nEndRow );
 /*N*/
 /*N*/   if ( !AdjustRowHeight( ScRange( 0,nStartRow,nTab, MAXCOL,nEndRow,nTab ) ) )

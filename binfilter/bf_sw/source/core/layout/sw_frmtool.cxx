@@ -244,7 +244,7 @@ namespace binfilter {
 /*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/               pRootFrm->GetCurrShell() )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pFrm, aFrm );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -871,7 +871,7 @@ namespace binfilter {
 /*?*/                           aAnch.SetPageNum( pPage->GetPhyPageNum() );
 /*?*/                           pFmt->SetAttr( aAnch );
 /*?*/                           if ( RES_DRAWFRMFMT != pFmt->Which() )
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFmt->MakeFrms();
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -1446,7 +1446,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/         {
 /*N*/ #ifdef DBG_UTIL
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetLayoutCache()->CompareLayout( *pDoc );
+/*N*/             DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ #endif
 /*N*/             pDoc->GetLayoutCache()->ClearImpl();
@@ -1618,7 +1618,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 // Wenn in einen SectionFrm ein anderer eingefuegt wird,
                 // muss dieser aufgebrochen werden
                 if( pSct && rSttIdx.GetNode().IsSectionNode() )
-                {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+                {DBG_BF_ASSERT(0, "STRIP");
                 }
                 else
                     bSplit = FALSE;

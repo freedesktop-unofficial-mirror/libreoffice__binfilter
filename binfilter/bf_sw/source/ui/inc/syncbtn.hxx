@@ -49,7 +49,7 @@ class SwWrtShell;
 /*------------------------------------------------------------------------
     Beschreibung:
 ------------------------------------------------------------------------*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwSyncChildWin : public SfxChildWindow
 {
 public:

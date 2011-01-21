@@ -526,7 +526,7 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
 /*N*/   if ( nDelFlag & IDF_EDITATTR )
 /*N*/   {
 /*?*/       DBG_ASSERT( nContFlag == 0, "DeleteArea: falsche Flags" );
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         RemoveEditAttribs( nStartRow, nEndRow );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   //  Attribute erst hier
@@ -589,7 +589,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         RemoveEditAttribs( nStartRow
 /*?*/               ScFormulaCell* pForm = (ScFormulaCell*)pSource;
 /*?*/               if (nFlags & IDF_FORMULA)
 /*?*/               {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = pForm->Clone( pDestDoc, rDestPos, TRUE );
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else if ( (nFlags & (IDF_VALUE | IDF_DATETIME | IDF_STRING)) &&
 /*?*/                           !pDestDoc->IsUndo() )
@@ -605,7 +605,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = pForm->Cl
 /*?*/
 /*?*/                       if ( nFlags & IDF_VALUE )
 /*?*/                       {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                             ScFormulaCell* pErrCell = new ScFormulaCell( pDestDoc, rDestPos );
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else if ( pForm->IsValue() )

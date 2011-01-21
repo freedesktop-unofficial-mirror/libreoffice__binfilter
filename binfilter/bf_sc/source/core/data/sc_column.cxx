@@ -833,7 +833,7 @@ namespace binfilter {
 /*N*/               ScBaseCell* pNew = NULL;
 /*N*/               if (bAsLink)
 /*N*/               {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = CreateRefCell( rColumn.pDocument, aAdr, i, nFlags );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -982,7 +982,7 @@ namespace binfilter {
 /*N*/                       ScAddress( nCol2, nRow2, nTab2 ) );
 /*N*/       if ( eUpdateRefMode == URM_COPY && nRow1 == nRow2 )
 /*N*/       {   // z.B. eine einzelne Zelle aus dem Clipboard eingefuegt
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1014,7 +1014,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nRow = pItems[i].nRow;
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                     }
 /*?*/                 }
 /*?*/             }

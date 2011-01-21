@@ -44,7 +44,7 @@ namespace binfilter {
 /*N*/               const SwpHtEnd &rHtEnd )
 /*N*/ {
 #ifdef DBG_UTIL
-        DBG_BF_ASSERT(0, "STRIP");//STRIP001    aDbstream << "DumpHints:" << endl;
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 /*N*/ #else

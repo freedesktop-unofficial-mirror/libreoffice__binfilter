@@ -988,7 +988,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1053,7 +1053,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1136,7 +1136,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                           ppDataArr[nRIndex][nCIndex].Update(nVal);
 /*N*/                       }
 /*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ppDataArr[nRIndex][nCIndex].UpdateNoVal();      // nur nCount
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/               }
 /*N*/           }

@@ -42,7 +42,7 @@ typedef ::std::vector< ScBroadcastArea* > ScBroadcastAreaList;
 #define BCA_INITGROWSIZE 16
 typedef ScBroadcastArea* ScBroadcastAreaPtr;
 SV_DECL_PTRARR_SORT( ScBroadcastAreas, ScBroadcastAreaPtr,
-    BCA_INITGROWSIZE, BCA_INITGROWSIZE )//STRIP008 ;
+    BCA_INITGROWSIZE, BCA_INITGROWSIZE )
 
 // wird in einem nach Objekten sortierten SV_PTRARR_SORT benutzt
 class ScBroadcastArea : public ScRange, public SfxBroadcaster

@@ -611,7 +611,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nStart )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -665,7 +665,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nTxtPos )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -797,7 +797,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/
 /*?*/                 if ( bVert )
 /*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     SwRect aRepaint( Frm().Pos() + Prt().Pos(), Prt().SSize() );
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*?*/                 else
 /*?*/                     rRepaint.Chg( Frm().Pos() + Prt().Pos(), Prt().SSize() );
@@ -1029,7 +1029,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/            nBodyHeight < ( IsVertical() ?
 /*N*/                            pBodyFrm->Frm().Width() :
 /*N*/                            pBodyFrm->Frm().Height() ) )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           rLine.MakeDummyLine();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/
 /*N*/   // In AdjustFrm() stellen wir uns selbst per Grow/Shrink ein,
@@ -1699,7 +1699,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       if( SVX_ADJUST_LEFT != aLine.GetAdjust() &&
 /*N*/           SVX_ADJUST_BLOCK != aLine.GetAdjust() )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aLine.CalcDropAdjust();
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( aLine.IsPaintDrop() )
@@ -1933,7 +1933,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                       {
 /*M*/                           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
 /*M*/                           if( pFly->IsAutoPos() && !::binfilter::IsInProgress( pFly ) )
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                           }
 /*M*/                       }
 /*M*/                   }
@@ -2045,7 +2045,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {   //DBG_LOOP;
 /*N*/       nStart = aLine.FormatLine( nStart );
 /*N*/       if( aInf.IsNewLine() || (!aInf.IsStop() && nStart < nEnd) )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           aLine.Insert( new SwLineLayout() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   } while( aLine.Next() );
 /*N*/
 /*N*/     // Last exit: die Hoehen muessen uebereinstimmen.

@@ -66,7 +66,7 @@
 #include "attrib.hxx"
 #include "dbdocutl.hxx"
 #include "editable.hxx"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -296,7 +296,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/                           ++nInserted;
 /*M*/                           if (!(nInserted & 15))
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                           }
 /*M*/                       }
 /*M*/                       else        // past the end of the spreadsheet
@@ -520,12 +520,12 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/       if( !bAddrInsert )      // update database range
 /*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDBData->SetImportParam( rParam );
+/*M*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       if (bRecord)
 /*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = pImportDoc;
+/*M*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       pDoc->SetDirty();

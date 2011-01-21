@@ -616,7 +616,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   rStream >> nCount;
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aHdr.StartEntry();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*N*/   }
 /*N*/ }

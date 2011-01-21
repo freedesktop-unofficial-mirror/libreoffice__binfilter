@@ -149,9 +149,9 @@ public:
 
 #ifndef DBG_UTIL
 
-inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 #ifndef CFRONT
-inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
+inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;}
  inline xub_StrLen SwIndex::operator--(int)
  {
      xub_StrLen nOldIndex = nIndex;

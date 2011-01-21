@@ -51,7 +51,7 @@ namespace form
 class SvxFmDrawPage: public SvxDrawPage,
                      public ::com::sun::star::form::XFormsSupplier
 {
-    ::binfilter::form::OImplementationIdsRef*   m_pHoldImplIdHelper;//STRIP008  ::form::OImplementationIdsRef*  m_pHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef*   m_pHoldImplIdHelper;
 protected:
 
     // Erzeugen eines SdrObjects anhand einer Description. Kann von

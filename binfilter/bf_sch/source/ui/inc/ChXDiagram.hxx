@@ -195,7 +195,7 @@ namespace cppu {
 }
 
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
     class ChXDiagram : public ::cppu::WeakImplHelper14
  <
     ::com::sun::star::chart::XDiagram,

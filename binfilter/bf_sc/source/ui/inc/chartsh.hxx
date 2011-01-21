@@ -46,7 +46,7 @@ public:
 
     SFX_DECL_INTERFACE(SCID_CHART_SHELL);
 
-    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}//STRIP001    ScChartShell(ScViewData* pData);
+    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

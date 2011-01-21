@@ -39,7 +39,7 @@ namespace binfilter {
 class SfxItemPool;
 class SfxStyleSheetPool;
 
-DBG_NAMEEX( EE_EditTextObject )//STRIP008
+DBG_NAMEEX( EE_EditTextObject )
 
 class SvxFieldItem;
 class EECharAttribArray;

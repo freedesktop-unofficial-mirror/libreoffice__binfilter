@@ -89,7 +89,7 @@ namespace binfilter {
 /*?*/ void ImpSdrObjTextLink::Closed()
 /*?*/ {
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   SvBaseLink::Closed();
 /*?*/ }
@@ -121,7 +121,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/   }
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSdrObj->ReloadLinkedText( bForceReload );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 #endif // SVX_LIGHT
 
@@ -148,7 +148,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjTextLinkUserData::~ImpSdrObjTextLinkUserData()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     delete pLink;
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 
@@ -298,7 +298,7 @@ namespace binfilter {
 /*N*/   SvxLinkManager* pLinkManager=pModel!=NULL ? pModel->GetLinkManager() : NULL;
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pLinkManager->Remove( pData->pLink );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT
 /*N*/ }

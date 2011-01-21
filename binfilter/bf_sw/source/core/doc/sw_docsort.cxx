@@ -109,7 +109,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ BOOL SwDoc::SortText(const SwPaM& /*rPaM*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // pruefen ob Rahmen im Text
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/  return TRUE;
 /*N*/ }
 
@@ -119,7 +119,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& /*rBoxes*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // uebers SwDoc fuer Undo !!
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 

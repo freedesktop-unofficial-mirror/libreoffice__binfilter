@@ -36,10 +36,6 @@ namespace lang{
 }}}}
 namespace binfilter {
 
-//STRIP008 namespace com{namespace sun{namespace star{
-//STRIP008 namespace lang{
-//STRIP008  struct Locale;
-//STRIP008 }}}}
 //-----------------------------------------------------------------------------
 struct SvxAsianConfig_Impl;
 class SvxAsianConfig : public ::utl::ConfigItem

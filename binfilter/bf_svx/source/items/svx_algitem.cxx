@@ -196,7 +196,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxHorJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 return SVX_HOR_JUSTIFY_REPEAT + 1;   // letzter Enum-Wert + 1
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxVerJustifyItem -----------------------------------------------
@@ -274,7 +274,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxVerJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_VER_JUSTIFY_BOTTOM + 1;  // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxOrientationItem ----------------------------------------------
@@ -350,7 +350,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxOrientationItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ORIENTATION_STACKED + 1; // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxMarginItem ---------------------------------------------------

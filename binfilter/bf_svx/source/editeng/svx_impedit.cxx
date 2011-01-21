@@ -83,7 +83,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/     if ( pEditEngine->pImpEditEngine->GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTVIEWSELECTIONCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -151,14 +151,14 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/       sal_uInt16 nStartLine = 0;
 /*?*/       sal_uInt16 nEndLine = pTmpPortion->GetLines().Count() -1;
 /*?*/       if ( nPara == nStartPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nStartLine = pTmpPortion->GetLines().FindLine( aTmpSel.Min().GetIndex(), sal_False );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       if ( nPara == nEndPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nEndLine = pTmpPortion->GetLines().FindLine( aTmpSel.Max().GetIndex(), sal_True );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/       // ueber die Zeilen iterieren....
 /*?*/       for ( sal_uInt16 nLine = nStartLine; nLine <= nEndLine; nLine++ )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pTmpPortion->GetLines().GetObject( nLine );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/   }
 /*?*/

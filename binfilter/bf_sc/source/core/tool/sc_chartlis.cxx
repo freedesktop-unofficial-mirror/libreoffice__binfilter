@@ -114,7 +114,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScChartListener::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 return new ScChartListener( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*N*/ void ScChartListener::SetUno(
@@ -239,14 +239,14 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject*   ScChartListenerCollection::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new ScChartListenerCollection( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 
 /*N*/ void ScChartListenerCollection::ChangeListening( const String& /*rName*/,
 /*N*/       const ScRangeListRef& /*rRangeListRef*/, BOOL /*bDirty*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScChartListenerCollection::FreeUnused()
@@ -333,7 +333,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -343,7 +343,7 @@ using namespace ::com::sun::star;
 /*N*/   ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

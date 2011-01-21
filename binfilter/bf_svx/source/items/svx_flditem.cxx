@@ -103,12 +103,12 @@ namespace binfilter {
 
 /*?*/ MetaAction* SvxFieldData::createBeginComment() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 /*?*/ MetaAction* SvxFieldData::createEndComment() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new MetaCommentAction( "FIELD_SEQ_END" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*?*/ }
 
 // -----------------------------------------------------------------------

@@ -39,17 +39,11 @@ namespace com{namespace sun{namespace star{
 }}}
 namespace binfilter {
 
-//STRIP008 namespace com{namespace sun{namespace star{
-//STRIP008  namespace lang
-//STRIP008      {
-//STRIP008          class XEventListener;
-//STRIP008      }
-//STRIP008 }}}
 /* -----------------22.04.99 11:18-------------------
  *  Verwaltung der EventListener
  * --------------------------------------------------*/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *  XEventListenerPtr;
-SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4)
 class SwEventListenerContainer
 {
     protected:

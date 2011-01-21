@@ -365,7 +365,7 @@ void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
 /*N*/
 /*N*/   if( bRemake )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetFmt()->DelFrms();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdateFtn )
@@ -462,7 +462,7 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/       if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
 /*N*/           0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSection& rSect = pSectNd->GetSection();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       LockModify();
 /*N*/       ResetAttr( RES_CNTNT );
@@ -638,7 +638,7 @@ void SwSectionFmt::MakeFrms()
 /*?*/       {
 /*?*/           // mein Parent wird vernichtet, dann an den Parent vom Parent
 /*?*/           // umhaengen und wieder aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*N*/
@@ -648,7 +648,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/           ((SwFmtChg*)pNew)->pChangedFmt->IsA( TYPE( SwSectionFmt )) )
 /*N*/       {
 /*?*/           // mein Parent wird veraendert, muss mich aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -681,7 +681,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/
 /*N*/       // noch eine Sortierung erwuenscht ?
 /*N*/       if( 1 < rArr.Count() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     switch( eSort )
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return rArr.Count();
 /*N*/ }
@@ -744,7 +744,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       {
 /*?*/           // liegt in dem Bereich: also updaten. Aber nur wenns nicht
 /*?*/           // im gleichen File liegt
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sFName;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1051,7 +1051,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/   ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
 /*N*/   if( pRead && rValue.hasValue() && ( rValue >>= aSeq ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pESh )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/

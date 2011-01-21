@@ -45,9 +45,6 @@ class SwUnoCrsr;
 class SwUnoTableCrsr;
 struct _SwCursor_SavePos;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 // ein Basis-Struktur fuer die Parameter der Find-Methoden
@@ -141,8 +138,8 @@ public:
         END_SENT
     };
      bool GoSentence(SentenceMoveType eMoveType);
-    bool GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(NEXT_SENT);}
-    bool GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(PREV_SENT);}
+    bool GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
     bool LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
                         BOOL bInsertCrsr );
@@ -155,10 +152,10 @@ public:
                                     { return LeftRight( FALSE, nCnt, nMode, bAllowVisual, FALSE ); }
     bool Up( USHORT nCnt = 1 )      { return UpDown( TRUE, nCnt ); }
     bool Down( USHORT nCnt = 1 )    { return UpDown( FALSE, nCnt ); }
-    bool LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( TRUE ); }
-    bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( FALSE ); }
-    bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( TRUE ); }
-    bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
+    bool LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     bool GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
     bool GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
     bool GotoTblBox( const String& rName );

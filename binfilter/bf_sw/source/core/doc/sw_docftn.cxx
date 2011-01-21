@@ -153,7 +153,7 @@ namespace binfilter {
 
 /*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& /*rFmt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rFmt.Add(this);
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwCharFmt* SwEndNoteInfo::GetCharFmt(SwDoc &rDoc) const
@@ -289,7 +289,7 @@ namespace binfilter {
 /*?*/               GetRootFrm()->RemoveFtns();
 /*?*/           else
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/       if( FTNNUM_PAGE != rInfo.eNum )
@@ -327,7 +327,7 @@ namespace binfilter {
 /*N*/       if ( GetRootFrm() )
 /*N*/       {
 /*?*/           if ( bFtnDesc )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetRootFrm()->CheckFtnPageDescs( TRUE );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/           if ( bExtra )
 /*?*/           {
 /*?*/               //Fuer die Benachrichtung bezueglich ErgoSum usw. sparen wir uns
@@ -393,7 +393,7 @@ namespace binfilter {
 /*N*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*N*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -416,7 +416,7 @@ namespace binfilter {
 /*?*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*?*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }
@@ -433,7 +433,7 @@ namespace binfilter {
 /*N*/               rFtnArr.UpdateAllFtn();
 /*N*/       }
 /*N*/       else if( GetRootFrm() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return bChg;
 /*N*/ }

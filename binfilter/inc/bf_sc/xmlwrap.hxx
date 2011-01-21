@@ -44,15 +44,6 @@ class ScDocument;
 class SfxMedium;
 class ScMySharedData;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace uno { template<class X> class Reference; }
-//STRIP008  namespace frame { class XModel; }
-//STRIP008  namespace task { class XStatusIndicator; }
-//STRIP008  namespace lang { class XMultiServiceFactory; }
-//STRIP008  namespace uno { class XInterface; }
-//STRIP008  namespace xml {
-//STRIP008      namespace sax { struct InputSource; } }
-//STRIP008 } } }
 
 class ScXMLImportWrapper
 {

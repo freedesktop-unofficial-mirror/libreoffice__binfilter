@@ -38,7 +38,7 @@ namespace com { namespace sun { namespace star { namespace uno {
 class OutputDevice;
 namespace utl {
     class TransliterationWrapper;
-}//STRIP008 ;
+}
 namespace binfilter {
 
 
@@ -62,9 +62,6 @@ class SwNodeNum;
 #define INS_EMPTYEXPAND     0x0001 // leere Hints beim Einfuegen aufspannen
 #define INS_NOHINTEXPAND    0x0002 // Hints an der InsPos nicht aufspannen
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace uno {
-//STRIP008     template < class > class Sequence;
-//STRIP008 }}}}
 
 // --------------------
 // SwTxtNode

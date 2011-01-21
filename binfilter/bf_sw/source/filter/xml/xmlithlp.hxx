@@ -43,7 +43,6 @@ namespace binfilter {
 struct SvXMLEnumMapEntry;
 class SvXMLUnitConverter;
 class SvxBorderLine;
-//STRIP008 namespace rtl { class OUString; }
 
 
 

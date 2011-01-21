@@ -132,7 +132,7 @@ namespace binfilter {
 /*?*/           SwFrmFmt* pFmt;
 /*?*/           if( nEvent && 0 != ( pFmt = pCntntNode->GetFlyFmt() ))
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCallMouseEvent aCallEvent;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/       return;         // das wars!
@@ -373,7 +373,7 @@ namespace binfilter {
 /*?*/                       pTblNd->GetTable().GetHTMLTableLayout();
 /*?*/                   if( pLayout )
 /*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nBrowseWidth =
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/           }

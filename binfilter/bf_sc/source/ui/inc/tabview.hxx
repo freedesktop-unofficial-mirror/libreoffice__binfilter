@@ -267,7 +267,7 @@ public:
 
     SvxZoomType     GetZoomType() const             { return eZoomType; }
     void            SetZoomType( SvxZoomType eNew ) { eZoomType = eNew; }
-    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_BF_ASSERT(0, "STRIP"); return 0; } //STRIP001 USHORT         CalcZoom( SvxZoomType eType, USHORT nOldZoom );
+    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_BF_ASSERT(0, "STRIP"); return 0; }
 
 //  void            CalcZoom( SvxZoomType eType, USHORT& rZoom, USHORT& rCol, USHORT& rRow );
 

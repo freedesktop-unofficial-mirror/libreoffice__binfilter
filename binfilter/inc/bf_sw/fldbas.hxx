@@ -52,7 +52,7 @@ class SwEditShell;
 /*--------------------------------------------------------------------
     Beschreibung:   die ID's fuer die Feldtypen
  --------------------------------------------------------------------*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 enum RES_FIELDS
 {
 // Fuer die alten Dokumente muessen die Field-Which IDS erhalten bleiben !!!!
@@ -264,7 +264,7 @@ String  FormatNumber(USHORT nNum, sal_uInt32 nFormat);
  --------------------------------------------------------------------*/
 class SwFldNames;
 
-DBG_NAMEEX(SwFieldType)//STRIP008
+DBG_NAMEEX(SwFieldType)
 
 class SwFieldType : public SwModify
 {

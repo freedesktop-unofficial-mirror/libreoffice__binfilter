@@ -292,7 +292,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/           SdrObject* pObj = pPage->GetObj( i );
 /*N*/           ScDrawObjData* pData = GetObjData( pObj );
 /*N*/           if( pData )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pData );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }

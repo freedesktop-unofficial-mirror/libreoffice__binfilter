@@ -60,7 +60,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;
 
 /*N*/ DBG_NAME( EditEngine )
-/*N*/ DBG_NAMEEX( EditView )//STRIP008 ;
+/*N*/ DBG_NAMEEX( EditView )
 
 #if (OSL_DEBUG_LEVEL > 1) || defined ( DBG_UTIL )
 /*N*/ static sal_Bool bDebugPaint = sal_False;
@@ -241,7 +241,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   {
 /*N*/       for ( sal_uInt16 nView = 0; nView < pImpEditEngine->aEditViews.Count(); nView++ )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = pImpEditEngine->aEditViews[nView];
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if ( bAutoPageSize || pImpEditEngine->IsFormatted() )
@@ -1016,7 +1016,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/   // #109151# Check against index, not paragraph
 /*N*/     if ( pNode && ( rPos.nIndex < pNode->Len() ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     return aBounds;
 /*N*/ }
@@ -1268,7 +1268,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           }
 /*N*/           else if( eNumType == SVX_NUM_BITMAP )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxBrushItem aBItem( Graphic( pOldBullet->GetBitmap() ), GPOS_NONE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/

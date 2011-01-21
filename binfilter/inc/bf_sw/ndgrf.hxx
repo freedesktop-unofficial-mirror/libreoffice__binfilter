@@ -83,7 +83,7 @@ class SwGrfNode: public SwNoTxtNode
                SwAttrSet* pAutoAttr = 0 );
 
     void InsertLink( const String& rGrfName, const String& rFltName );
-    BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  BOOL ImportGraphic( SvStream& rStrm );
+    BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
 
@@ -143,7 +143,7 @@ public:
     void SetNewStreamName( const String& r ) { aNewStrmName = r; }
     void SaveCompleted( BOOL bClear );
     // is this node selected by any shell?
-    BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;//STRIP001    BOOL IsSelected() const;
+    BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;
 #endif
 
         // Der Grafik sagen, dass sich der Node im Undobereich befindet

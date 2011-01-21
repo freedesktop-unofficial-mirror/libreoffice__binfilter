@@ -95,7 +95,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   // first case: hyphenated word has alternative spelling
 /*N*/   if ( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxAlternativeSpelling aAltSpell;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   } else {
 /*N*/       // second case: no alternative spelling
 /*N*/       SwHyphPortion aHyphPor;

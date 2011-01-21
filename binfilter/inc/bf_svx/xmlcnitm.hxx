@@ -34,7 +34,6 @@ namespace rtl { class OUString; }
 namespace binfilter {
 class SvXMLNamespaceMap;
 class SvXMLAttrContainerData;
-//STRIP008 namespace rtl { class OUString; }
 
 //============================================================================
 

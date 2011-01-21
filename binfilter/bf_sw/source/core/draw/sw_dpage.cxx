@@ -85,7 +85,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   SdrObjUserCall* pContact;
 /*N*/   if ( 0 != ( pContact = GetUserCall(pOld) ) &&
 /*N*/        RES_DRAWFRMFMT == ((SwContact*)pContact)->GetFmt()->Which())
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       ((SwDrawContact*)pContact)->ChangeMasterObject( pNewObj );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   return FmFormPage::ReplaceObject( pNewObj, nObjNum );
 /*N*/ }
 

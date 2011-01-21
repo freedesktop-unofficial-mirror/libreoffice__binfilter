@@ -176,7 +176,7 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*?*/       SwUserFieldType* pType = (SwUserFieldType*)GetFld()->GetTyp();
 /*?*/       if(!pType->IsValid())
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *pTxtNd->GetDoc() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/   pTxtAttr->Expand();

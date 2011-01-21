@@ -137,7 +137,7 @@ void CheckSelection( struct ESelection& rSel, SvxTextForwarder* pForwarder ) thr
     {
         if( rSel.nStartPara == 0xffff )
         {
-            ::binfilter::GetSelection( rSel, pForwarder );//STRIP008            ::GetSelection( rSel, pForwarder );
+            ::binfilter::GetSelection( rSel, pForwarder );
         }
         else
         {

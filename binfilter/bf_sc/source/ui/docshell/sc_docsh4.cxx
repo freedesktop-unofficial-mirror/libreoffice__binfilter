@@ -80,7 +80,7 @@ namespace binfilter {
 
 /*N*/ void ScDocShell::DoRecalc( BOOL /*bApi*/ )
 /*N*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScInputHandler* pHdl = SC_MOD()->GetInputHdl(pSh);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScDocShell::DoHardRecalc( BOOL /*bApi*/ )
@@ -102,7 +102,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( nId == SFX_STYLESHEET_MODIFIED )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -136,7 +136,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if (bWarn && !bApi)
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScWaitCursorOff aWaitOff( GetDialogParent() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/

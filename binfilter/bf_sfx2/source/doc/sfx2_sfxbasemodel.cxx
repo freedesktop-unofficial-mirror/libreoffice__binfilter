@@ -120,7 +120,7 @@
 #include "docfac.hxx"
 #include "fcontnr.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <cppuhelper/typeprovider.hxx>
 
@@ -679,7 +679,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/       {
 /*?*/           sal_Bool bEmb;
 /*?*/           if ( ( rArgs[0].Value >>= bEmb ) && bEmb )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 m_pData->m_pObjectShell->SetCreateMode_Impl( SFX_CREATE_MODE_EMBEDDED );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*N*/
 /*N*/       return sal_True;
@@ -1059,7 +1059,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/         {
 /*N*/             try
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP");//STRIP001 ((util::XCloseListener*)pCloseIterator.next())->notifyClosing( aSource );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*?*/             catch( uno::RuntimeException& )
 /*?*/             {
@@ -1107,7 +1107,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 //________________________________________________________________________________________________________
 /*?*/ void SAL_CALL SfxBaseModel::print(const SEQUENCE< PROPERTYVALUE >& /*rOptions*/)
 /*?*/         throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 //________________________________________________________________________________________________________
@@ -1326,7 +1326,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*?*/       throw (::com::sun::star::datatransfer::UnsupportedFlavorException,
 /*?*/              ::com::sun::star::io::IOException,
 /*?*/              ::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ANY aAny; return aAny;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ANY aAny; return aAny;
 /*?*/ }
 
 //________________________________________________________________________________________________________
@@ -1336,7 +1336,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*?*/ SEQUENCE< DATAFLAVOR > SAL_CALL SfxBaseModel::getTransferDataFlavors()
 /*?*/       throw (::com::sun::star::uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;
 /*?*/ }
 
 //________________________________________________________________________________________________________

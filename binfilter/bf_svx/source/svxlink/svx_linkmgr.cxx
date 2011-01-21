@@ -59,7 +59,7 @@ namespace binfilter {
 /*N*/       return new SvFileObject;
 /*N*/
 /*N*/   case OBJECT_INTERN:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 return new SvxInternalLink();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*?*/   return SvLinkManager::CreateObj( pLink );
 /*N*/ }

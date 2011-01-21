@@ -72,14 +72,14 @@ const long nReadOnlyScrollOfst = 10;
 /*?*/       aTmpArea.Pos().Y() -= pCrsrStack->lOffset;
 /*?*/       if( aTmpArea.IsInside( pCrsrStack->aDocPos ) )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bSelect )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/           // Falls eine Verschiebung zwischen dem sichtbaren Bereich
 /*?*/           // und der gemerkten Cursorpositionen auftritt, werden
 /*?*/           // alle gemerkten Positionen weggeschmissen
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _ResetCursorStack();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return FALSE;
 /*?*/       }
 /*?*/   }

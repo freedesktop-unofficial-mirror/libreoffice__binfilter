@@ -306,7 +306,7 @@ enum MakePageType
 };
 
 typedef SdrObject* SdrObjectPtr;
-SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1)//STRIP008 ;
+SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1)
 
 class SwFrm: public SwClient
 {
@@ -660,7 +660,7 @@ public:
     void InvalidatePage( const SwPageFrm *pPage = 0 ) const;
 
     virtual BOOL    GetCrsrOfst( SwPosition *, Point&,
-                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const SwCrsrMoveState* = 0 ) const;
+                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     virtual BOOL    GetCharRect( SwRect &, const SwPosition&,
                                  SwCrsrMoveState* = 0 ) const;
 

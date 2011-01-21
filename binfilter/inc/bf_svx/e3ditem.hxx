@@ -38,7 +38,7 @@ namespace binfilter {
 #define _SVXVECT3DITEM_HXX
 
 
-DBG_NAMEEX(SvxVector3DItem)//STRIP008
+DBG_NAMEEX(SvxVector3DItem)
 
 class SvxVector3DItem: public SfxPoolItem
 {

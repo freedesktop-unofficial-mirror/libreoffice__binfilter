@@ -352,7 +352,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 {
 /*M*/                     // we let pItem change rFnt
 /*M*/                     if ( lcl_ChgHyperLinkColor( rAttr, *pItem, pShell ) )
-/*M*/                     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                     {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                         // for hyperlinks we still have to evaluate
 /*M*/                         // the appearence settings
 /*M*/                     }
@@ -489,7 +489,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             {
 /*M*/                 // for hyperlinks we still have to evaluate
 /*M*/                 // the appearence settings
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Color aColor;
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*M*/             }
 /*M*/             else
 /*M*/                 FontChg( *pItemNext, rFnt, sal_False );
@@ -510,7 +510,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     {
 /*M*/         // ruby stack has no more attributes
 /*M*/         // check, if an rotation attribute has to be applied
-/*?*/        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  USHORT nTwoLineStack = StackPos[ RES_CHRATR_TWO_LINES ];
+/*?*/        DBG_BF_ASSERT(0, "STRIP");
 /*M*/     }
 /*M*/ }
 
@@ -656,7 +656,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/
 /*M*/             if ( pTwoLineAttr )
 /*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pTwoLineItem = lcl_GetItem( *pTwoLineAttr, RES_CHRATR_TWO_LINES );
+/*?*/                DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 bTwoLineAct = ((SvxTwoLinesItem*)pTwoLineItem)->GetValue();
 /*M*/             }
 /*M*/             else

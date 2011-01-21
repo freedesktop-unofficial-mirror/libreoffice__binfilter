@@ -73,9 +73,9 @@ class SwRedlineItr
     SwExtend *pExt;
     sal_Bool bOn;
 public:
-SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,//STRIP001 SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,
-xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,//STRIP001         xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
-xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        xub_StrLen nStart = STRING_LEN );
+SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,
+xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
+xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;
     inline sal_Bool IsOn() const { return bOn || ( pExt && pExt->IsOn() ); }
     inline sal_Bool ExtOn() { if( pExt ) return pExt->IsOn(); return sal_False; }
 };

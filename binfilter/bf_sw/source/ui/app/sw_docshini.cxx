@@ -153,7 +153,7 @@ using namespace ::rtl;
 /*N*/         Sequence<Locale> aLocales =  aAsian.GetStartEndCharLocales();
 /*N*/         if(aLocales.getLength())
 /*N*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const Locale* pLocales = aLocales.getConstArray();
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         pDoc->SetKernAsianPunctuation(!aAsian.IsKerningWesternTextOnly());
 /*N*/         pDoc->SetCharCompressType((SwCharCompressType)aAsian.GetCharDistanceCompression());
@@ -408,7 +408,7 @@ using namespace ::rtl;
 /*N*/   if( !pIo )
 /*N*/       pIo = new Sw3Io( *pDoc );
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pIo->SetDoc( *pDoc );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SetPool(&pDoc->GetAttrPool());
 
@@ -510,12 +510,12 @@ using namespace ::rtl;
 /*?*/               }
 /*?*/           }
 /*?*/           else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
 /*N*/           if ( bXML )
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
             // SfxProgress unterdruecken, wenn man Embedded ist
 /*N*/           SW_MOD()->SetEmbeddedLoadSave( sal_True );
@@ -678,7 +678,7 @@ using namespace ::rtl;
 /*?*/               }
 /*?*/           }
 /*?*/           else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nErr = pIo->LoadStyles( pStor );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -693,7 +693,7 @@ using namespace ::rtl;
 /*?*/           SfxMedium aMed( rNm, STREAM_STD_READ, FALSE );
 /*?*/           if( 0 == ( nErr = aMed.GetInStream()->GetError() ) )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwWait aWait( *this, sal_True );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/

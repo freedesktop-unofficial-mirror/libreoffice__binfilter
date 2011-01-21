@@ -69,13 +69,13 @@ class SwTableBox_Impl;
 SV_DECL_REF( SwServerObject )
 #endif
 
-SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20)//STRIP008 ;
-SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50)//STRIP008 ;
+SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20)
+SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50)
 
 // speicher die Inhaltstragenden Box-Pointer zusaetzlich in einem
 // sortierten Array (fuers rechnen in der Tabelle)
 typedef SwTableBox* SwTableBoxPtr;
-SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 )//STRIP008 ;
+SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 )
 
 class SwTable: public SwClient           //Client vom FrmFmt
 {

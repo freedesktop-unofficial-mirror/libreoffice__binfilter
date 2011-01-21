@@ -162,10 +162,10 @@ using namespace ::com::sun::star::i18n;
 /*?*/           ((SwTxtFtn*)pNew)->SetSeqNo( ((SwFmtFtn&)rAttr).GetTxtFtn()->GetSeqRefNo() );
 /*N*/       break;
 /*?*/   case RES_TXTATR_HARDBLANK:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtHardBlank( (SwFmtHardBlank&)rNew, nStt );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*?*/     case RES_CHRATR_TWO_LINES:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxt2Lines( (SvxTwoLinesItem&)rNew, nStt, nEnd );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/       pNew = nStt == nEnd
@@ -177,7 +177,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/   case RES_UNKNOWNATR_CONTAINER:
 /*?*/   case RES_TXTATR_UNKNOWN_CONTAINER:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtXMLAttrContainer( (SvXMLAttrContainerItem&)rNew,
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       pNew = new SwTxtRuby( (SwFmtRuby&)rNew, nStt, nEnd );
@@ -650,7 +650,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/           if( RES_TXTATR_CHARFMT == pItem->Which() &&
 /*N*/               GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt())
 /*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SwIndex aIndex( this, nStt );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -935,7 +935,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/       if( aThisSet.Count() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1410,7 +1410,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   pDoc->InsertFldType( *pFld->GetTyp() );
 /*N*/                       if( pFldType != pFld->GetTyp() )
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtFld* pFmtFld = (SwFmtFld*)&((SwTxtFld*)pHint)
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/                       pFldType->SetSeqRefNo( *(SwSetExpField*)pFld );
 /*N*/                   }
@@ -1426,7 +1426,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   break;
 /*N*/               }
 /*N*/               if( bInsFldType )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->InsDeletedFldType( *pFld->GetTyp() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/       }
 /*N*/       break;
@@ -1448,7 +1448,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   0 != ( pHtEnd = pHt->GetEnd() ) &&
 /*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwComparePosition eCmp = ::ComparePosition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/       }
 /*N*/       break;
@@ -1458,7 +1458,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ((SwTxtRuby*)pHint)->ChgTxtNode( &rNode );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -1565,7 +1565,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       {
 /*?*/                           if( !bOtherFmt )
 /*?*/                           {
-                                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                                 bOtherFmt = !lcl_Included( pOther->Which(),
+                                    DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/                           if( bOtherFmt )
 /*?*/                               nHtEnd = *pOther->GetStart();

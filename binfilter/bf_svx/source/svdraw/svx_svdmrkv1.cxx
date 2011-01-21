@@ -72,7 +72,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bChg=FALSE;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if (bChg) ((SdrMarkView*)this)->bMarkedPointsRectsDirty=TRUE;
 /*N*/   ((SdrMarkView*)this)->bMrkPntDirty=FALSE;

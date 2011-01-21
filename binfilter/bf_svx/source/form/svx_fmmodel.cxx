@@ -260,7 +260,7 @@ struct FmFormModelImplData
 |*
 \************************************************************************/
 /*?*/ void FmFormModel::MovePage( USHORT, USHORT )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*************************************************************************

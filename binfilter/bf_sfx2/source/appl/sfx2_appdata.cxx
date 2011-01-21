@@ -36,7 +36,7 @@
 #include "docfile.hxx"
 #include "imestatuswindow.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 /*N*/ SfxAppData_Impl::SfxAppData_Impl( SfxApplication* pApp ) :

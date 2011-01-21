@@ -42,7 +42,7 @@ namespace svxform
     //= OSQLParserClient
     //====================================================================
     class OSQLParserClient : public ODbtoolsClient
-        ,public ::binfilter::svxform::OParseContextClient//STRIP008                             ,public ::svxform::OParseContextClient
+        ,public ::binfilter::svxform::OParseContextClient
     {
     private:
         //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)

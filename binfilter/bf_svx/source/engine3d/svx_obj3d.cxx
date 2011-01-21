@@ -1436,7 +1436,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Schatten beruecksichtigen
 /*N*/       if(DoDrawShadow())
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 
         // Linienbreite beruecksichtigen

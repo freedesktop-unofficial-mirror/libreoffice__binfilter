@@ -148,7 +148,7 @@ public:
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SdDrawPage : public ::com::sun::star::drawing::XMasterPageTarget,
                    public ::com::sun::star::presentation::XPresentationPage,
                    public SdGenericDrawPage

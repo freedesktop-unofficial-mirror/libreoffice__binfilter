@@ -57,19 +57,19 @@ class ScTabViewShell;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionListener >* XRangeSelectionListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionChangeListener >* XRangeSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::view::XSelectionChangeListener >* XSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertyChangeListener >* XViewPropertyChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 )
 
 
 //  ScViewPaneBase not derived from OWeakObject

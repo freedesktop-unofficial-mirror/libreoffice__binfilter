@@ -48,9 +48,6 @@ class SwXTextDocument;
 class SwSearchProperties_Impl;
 
 
-//STRIP008 namespace com{namespace sun{namespace star{namespace util{
-//STRIP008  struct SearchOptions;
-//STRIP008 }}}}
 
 
 /*-----------------19.12.97 12:58-------------------

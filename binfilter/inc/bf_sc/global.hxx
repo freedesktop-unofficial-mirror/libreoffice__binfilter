@@ -504,12 +504,6 @@ class EditTextObject;
 class SfxObjectShell;
 class ScUnitConverter;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
-//STRIP008  struct Locale;
-//STRIP008 }}}}
-//STRIP008 namespace utl {
-//STRIP008     class TransliterationWrapper;
-//STRIP008 }
 
 #ifndef _SCALC_EXE
 class ScGlobal
@@ -1315,7 +1309,7 @@ namespace utl
     class SearchParam;
     class TextSearch;
 }
-namespace binfilter {//STRIP009
+namespace binfilter {
 struct ScQueryEntry
 {
     BOOL            bDoQuery;

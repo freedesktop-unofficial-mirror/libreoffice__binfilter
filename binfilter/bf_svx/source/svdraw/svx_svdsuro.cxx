@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/               SdrObjList* pL=pList->GetUpList();
 /*N*/               nGrpLevel=0;
 /*N*/               while (pL!=NULL) { pL=pL->GetUpList(); nGrpLevel++; }
-/*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Aha, verschachtelt
+/*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP");
 /*N*/               } // if (nGrpLevel!=0)
 /*N*/           } // if (eList!=SDROBJLIST_SAMELIST)
 /*N*/           if (bSameList) eList=SDROBJLIST_SAMELIST;

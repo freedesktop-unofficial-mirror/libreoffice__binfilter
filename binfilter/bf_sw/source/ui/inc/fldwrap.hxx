@@ -35,7 +35,7 @@ class SwFldDlgWrapper : public SwChildWinWrapper
 {
 public:
     SwFldDlgWrapper( Window* pParent, USHORT nId,
-                        SfxBindings* pBindings, SfxChildWinInfo* pInfo ): SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SfxBindings* pBindings, SfxChildWinInfo* pInfo );
+                        SfxBindings* pBindings, SfxChildWinInfo* pInfo ): SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_CHILDWINDOW(SwFldDlgWrapper);
 

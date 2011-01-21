@@ -106,11 +106,11 @@ class SvxBoxInfoItem;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertyChangeListener >* XPropertyChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XPropertyChangeListenerArr_Impl, XPropertyChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XPropertyChangeListenerArr_Impl, XPropertyChangeListenerPtr, 4, 4 )
 
 class ScNamedEntry;
 typedef ScNamedEntry* ScNamedEntryPtr;
-SV_DECL_PTRARR_DEL( ScNamedEntryArr_Impl, ScNamedEntryPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( ScNamedEntryArr_Impl, ScNamedEntryPtr, 4, 4 )
 
 
 //  ScCellRangesBase - Basisklasse fuer ScCellRangesObj (mit Index-Access)

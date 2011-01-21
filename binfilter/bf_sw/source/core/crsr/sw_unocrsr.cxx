@@ -171,7 +171,7 @@ namespace binfilter {
 
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 while( aTblSel.GetNext() != &aTblSel )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwUnoTableCrsr::operator SwUnoCrsr* ()        { return this; }
@@ -185,7 +185,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*  */
@@ -194,7 +194,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwUnoCrsr* pNew;
 /*N*/   if( bTblCrsr )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pNew = new SwUnoTableCrsr( rPos );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else
 /*N*/       pNew = new SwUnoCrsr( rPos );
 /*N*/

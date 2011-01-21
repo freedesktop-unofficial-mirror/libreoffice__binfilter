@@ -34,7 +34,7 @@
 namespace binfilter {
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )
 
 class OutlinerEditEng : public EditEngine
 {

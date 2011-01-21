@@ -115,7 +115,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           if( !((SwTblBoxFormula*)pItem)->IsValid() )
 /*?*/           {
 /*?*/               // dann berechnen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pTmp = rCalcPara.pTbl;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/               nRet = GetFrmFmt()->GetTblBoxValue().GetValue();
@@ -389,7 +389,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelNmsToBoxNms;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*N*/   case EXTRNL_NAME:
@@ -413,7 +413,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelBoxNmsToPtr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/   case INTRNL_NAME:
@@ -482,7 +482,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/                   if( sTblNm != rTbl.GetFrmFmt()->GetName() )
 /*?*/                   {
 /*?*/                       // dann suchen wir uns mal unsere Tabelle:
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pFnd = FindTable(
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*N*/           }

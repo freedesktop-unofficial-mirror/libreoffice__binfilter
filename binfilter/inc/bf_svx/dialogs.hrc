@@ -218,9 +218,6 @@
 // ResId's für Hyperlink-Dialog-Tabpages
 
 // ResId's for Starone impl. bitmaps
-//STRIP003 #define RID_UNODRAW_OBJECTS                  (RID_SVX_START + 233)
-//STRIP003 #define RID_UNODRAW_OLE2                 (RID_SVX_START + 234)
-//STRIP003 #define RID_UNODRAW_GRAPHICS             (RID_SVX_START + 235)
 
 // ResId fuer Distribute-Dialog
 

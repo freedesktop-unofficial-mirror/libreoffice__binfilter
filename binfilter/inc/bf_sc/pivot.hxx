@@ -50,7 +50,6 @@
 
 #include <global.hxx>
 
-//STRIP008 class SubTotal;
 
 #include "collect.hxx"
 

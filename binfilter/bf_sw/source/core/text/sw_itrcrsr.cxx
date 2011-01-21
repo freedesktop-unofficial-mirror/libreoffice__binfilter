@@ -337,7 +337,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       {
 /*N*/           nX += pPor->Width();
 /*N*/           if ( pPor->InSpaceGrp() && nSpaceAdd )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               nX += pPor->CalcSpacing( nSpaceAdd, aInf );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           if( bNoTxt )
 /*N*/               nFirst = nX;
 /*N*/           // 8670: EndPortions zaehlen hier einmal als TxtPortions.
@@ -420,7 +420,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                 if ( aInf.GetIdx() + pPor->GetLen() < nOfst + nExtra )
 /*N*/               {
 /*N*/                   if ( pPor->InSpaceGrp() && nSpaceAdd )
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/                       nX += pPor->PrtWidth() +
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   else
 /*N*/                   {
 /*N*/                         if( pPor->InFixMargGrp() && ! pPor->IsMarginPortion() )
@@ -468,7 +468,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/               {
 /*N*/                   if( pPor->IsMultiPortion() )
 /*N*/                   {
-                            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/ #ifdef VERTICAL_LAYOUT
+                            DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/                   if ( pPor->PrtWidth() )
 /*N*/                   {
@@ -661,7 +661,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/                 if ( pCMS->pSpecialPos )
 /*N*/                 {
 /*N*/                     // apply attributes to font
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     Seek( nOfst );
+                        DBG_BF_ASSERT(0, "STRIP");
 /*N*/                 }
 /*N*/             }
 /*N*/         }
@@ -871,7 +871,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/
 /*N*/     KSHORT nWidth30;
 /*N*/     if ( pPor->IsPostItsPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
 /*N*/         nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*N*/                      30 :
@@ -916,7 +916,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/       }
 /*?*/
 /*?*/         if ( pPor->IsPostItsPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             nWidth30 = 30 + pPor->GetViewWidth( GetInfo() ) / 2;
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/         else
 /*?*/             nWidth30 = ! nWidth && pPor->GetLen() && pPor->InToxRefOrFldGrp() ?
 /*?*/                          30 :
@@ -1045,7 +1045,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/   {
 /*N*/       if( pPor->IsMultiPortion() )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // In a multi-portion we use GetCrsrOfst()-function recursively
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( pPor->InTxtGrp() )
 /*N*/       {
@@ -1103,7 +1103,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       {
 /*N*/           if( nChgNode && pPos && pPor->IsFlyCntPortion()
 /*N*/               && !( (SwFlyCntPortion*)pPor )->IsDraw() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/           {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/   nOffset = nCurrStart + nLength;

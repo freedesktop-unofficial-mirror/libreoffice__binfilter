@@ -225,7 +225,7 @@ void XMLShapeExport::ImpExportText( const uno::Reference< drawing::XShape >& xSh
 
 #include <com/sun/star/presentation/ClickAction.hpp>
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-namespace binfilter {//STRIP009
+namespace binfilter {
 #define FOUND_CLICKACTION   0x0001
 #define FOUND_BOOKMARK      0x0002
 #define FOUND_EFFECT        0x0004

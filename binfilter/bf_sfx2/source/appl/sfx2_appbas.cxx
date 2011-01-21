@@ -55,7 +55,7 @@
 #define ITEMID_SEARCH SID_SEARCH_ITEM
 
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 
 namespace binfilter {

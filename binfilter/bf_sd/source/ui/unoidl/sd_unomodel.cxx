@@ -87,7 +87,7 @@
 #include <unokywds.hxx>
 #include <frmview.hxx>
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 using namespace ::osl;
@@ -545,7 +545,7 @@ sal_Bool SAL_CALL SdXImpressDocument::hasControllersLocked(  )
     return pDoc && pDoc->isLocked();
 }
 } //namespace binfilter
-namespace binfilter {//STRIP009
+namespace binfilter {
 uno::Reference < container::XIndexAccess > SAL_CALL SdXImpressDocument::getViewData() throw( uno::RuntimeException )
 {
     if( NULL == pDoc )
@@ -1413,7 +1413,7 @@ void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /
 
             if( pOut )
             {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdClientView*         pView = new SdClientView( pDocShell, pOut, NULL );
+                DBG_BF_ASSERT(0, "STRIP");
             }
         }
     }

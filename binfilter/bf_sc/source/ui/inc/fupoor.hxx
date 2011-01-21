@@ -83,7 +83,7 @@ private:
            SdrModel* pDoc, SfxRequest& rReq);
     virtual ~FuPoor();
 
-    USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 USHORT GetSlotID() const { return( aSfxRequest.GetSlot() );}
+    USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;}
     void    StopDragTimer();
 };
 

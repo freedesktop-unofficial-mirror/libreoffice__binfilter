@@ -60,7 +60,7 @@ using namespace ::com::sun::star;
 
 #include <bf_svtools/moduleoptions.hxx>
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 TYPEINIT1( SdModuleDummy, SfxModule );

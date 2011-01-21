@@ -214,7 +214,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
 /*?*/               // Werden die Nodes nicht geloescht mussen sie bei den Seiten
 /*?*/               // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
 /*?*/               // stehen (Undo loescht sie nicht!)
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               DelFrms();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       DELETEZ( pStartNode );
 /*N*/

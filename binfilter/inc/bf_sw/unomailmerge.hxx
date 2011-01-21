@@ -66,27 +66,6 @@ namespace rtl {
 }
 namespace binfilter {
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace sdbc {
-//STRIP008     class XResultSet;
-//STRIP008     class XConnection;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace frame {
-//STRIP008     class XModel;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
-//STRIP008     class XMultiServiceFactory;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace text {
-//STRIP008     class XMailMergeListener;
-//STRIP008     struct MailMergeEvent;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace rtl {
-//STRIP008     class OUString;
-//STRIP008 }
 
 ///////////////////////////////////////////////////////////////////////////
 

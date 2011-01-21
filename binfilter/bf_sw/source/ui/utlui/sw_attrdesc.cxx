@@ -54,7 +54,7 @@ namespace binfilter {
 /*N*/       SfxMapUnit /*ePresMetric*/,
 /*N*/       String & /*rText*/ ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char const sKomma[] = ", ";
+DBG_BF_ASSERT(0, "STRIP");
 }
 
 
@@ -79,7 +79,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char const sKomma[] = ", ";
 /*N*/   String&             /*rText*/,
 /*N*/     const ::IntlWrapper* /*pIntl*/
 /*N*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 

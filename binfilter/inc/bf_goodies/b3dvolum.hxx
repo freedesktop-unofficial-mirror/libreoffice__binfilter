@@ -48,7 +48,7 @@ class Vol3DPointIterator;
 
 class B3dVolume
 {
-// friend class binfilter::Vol3DPointIterator; //STRIP008
+// friend class binfilter::Vol3DPointIterator;
  friend class Vol3DPointIterator;
  protected:
     Vector3D aMinVec;

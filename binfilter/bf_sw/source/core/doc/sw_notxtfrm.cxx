@@ -169,7 +169,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 *************************************************************************/
 
 /*N*/ void SwNoTxtFrm::Paint( const SwRect& /*rRect*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
@@ -302,14 +302,14 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect& /*rRect*/, const SwPosition& /*rPos*/,
 /*N*/                             SwCrsrMoveState* /*pCMS*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 
 /*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* /*pPos*/, Point& /*aPoint*/,
 /*N*/                           const SwCrsrMoveState* ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -342,7 +342,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/   case RES_GRF_REREAD_AND_INCACHE:
 /*?*/       if( ND_GRFNODE == GetNode()->GetNodeType() )
 /*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bCompletePaint = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -388,7 +388,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/               if( pSh->IsPreView() )
 /*N*/               {
 /*?*/                   if( pSh->GetWin() )
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::binfilter::RepaintPagePreview( pSh, aRect );
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
 /*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )

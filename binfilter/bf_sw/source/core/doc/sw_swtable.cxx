@@ -122,7 +122,7 @@ namespace binfilter {
 /*N*/   bHeadlineRepeat = TRUE;
 /*N*/
 /*N*/   // default Wert aus den Optionen setzen
-/*N*/   eTblChgMode = (TblChgMode)0;//STRIP001 GetTblChgDefaultMode();
+/*N*/   eTblChgMode = (TblChgMode)0;
 /*N*/ }
 
 /*N*/ SwTable::SwTable( const SwTable& rTable )
@@ -280,7 +280,7 @@ namespace binfilter {
 /*N*/ void SwTable::GetTabCols( SwTabCols& /*rToFill*/, const SwTableBox* /*pStart*/,
 /*N*/                         bool /*bRefreshHidden*/, BOOL /*bCurRowOnly*/ ) const
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 #if defined(ALPHA) && defined(_MSC_VER)
@@ -828,7 +828,7 @@ namespace binfilter {
 /*N*/       break;
 /*N*/
 /*N*/   case RES_FINDNEARESTNODE:
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( GetFrmFmt() && ((SwFmtPageDesc&)GetFrmFmt()->GetAttr(
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:
@@ -968,7 +968,7 @@ namespace binfilter {
 /*?*/
 /*?*/                   if( !bNewIsTxtFmt && nOldFmt != nNewFmt || pNewFml )
 /*?*/                   {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001       BOOL bChgTxt = TRUE;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else if( bNewIsTxtFmt && nOldFmt != nNewFmt )
 /*?*/                   {
@@ -979,7 +979,7 @@ namespace binfilter {
 /*?*/   //                  UnlockModify();
 /*?*/
 /*?*/
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ChgNumToText( *pBox, nNewFmt );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -1061,7 +1061,7 @@ namespace binfilter {
 /*N*/
 /*N*/           const String& rTxt = pSttNd->GetNodes()[ nNdPos ]->GetTxtNode()->GetTxt();
 /*N*/           if( rTxt != sNewTxt )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ChgTextToNum( *this, sNewTxt, pCol, FALSE );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/ }

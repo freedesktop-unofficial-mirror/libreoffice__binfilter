@@ -40,7 +40,7 @@ namespace binfilter {
 class AsynchronLink;
 //====================================================================
 
-DBG_NAMEEX(SfxObjectShell)//STRIP008 ;
+DBG_NAMEEX(SfxObjectShell)
 
 class SfxViewFrame;
 struct MarkData_Impl

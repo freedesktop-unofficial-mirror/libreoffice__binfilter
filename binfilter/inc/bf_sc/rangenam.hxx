@@ -42,9 +42,6 @@ class ScDocument;
 class ScMultipleReadHeader;
 class ScMultipleWriteHeader;
 
-//STRIP008 namespace rtl {
-//STRIP008  class OUStringBuffer;
-//STRIP008 }
 
 
 //------------------------------------------------------------------------

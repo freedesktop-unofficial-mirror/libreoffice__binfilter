@@ -315,7 +315,7 @@ struct EECharAttrib
     xub_StrLen          nEnd;
 };
 
-SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )
 
 struct MoveParagraphsInfo
 {

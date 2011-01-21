@@ -78,7 +78,7 @@
 #include "chaxis.hxx"
 
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 
@@ -441,7 +441,7 @@ enum ChartStyleV0
 /*N*/               }
 /*N*/               else //i >= nCnt
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pRegressNr [i - nCnt])
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/               // FG: Jetzt wird aTextPos fuer den naechsten Legendeneintrag gesetzt

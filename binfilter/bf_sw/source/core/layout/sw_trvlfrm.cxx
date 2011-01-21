@@ -147,7 +147,7 @@ namespace binfilter {
 //Frame in wiederholter Headline?
 /*N*/ bool lcl_IsInRepeatedHeadline( const SwFrm* /*pFrm*/,
 /*N*/                                   const SwTabFrm** ppTFrm = 0 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 

@@ -58,7 +58,7 @@ namespace binfilter {
 class ScFunctionChildWindow : public SfxChildWindow
 {
  public:
-     ScFunctionChildWindow( Window* pParent, USHORT nId, SfxBindings* pBindings,SfxChildWinInfo* pInfo):SfxChildWindow( pParent, nId ){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScFunctionChildWindow( Window*, USHORT, SfxBindings*,
+     ScFunctionChildWindow( Window* pParent, USHORT nId, SfxBindings* pBindings,SfxChildWinInfo* pInfo):SfxChildWindow( pParent, nId ){DBG_ASSERT(0, "STRIP")};
 
     SFX_DECL_CHILDWINDOW(ScFunctionChildWindow);
 };

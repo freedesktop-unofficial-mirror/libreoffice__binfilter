@@ -51,8 +51,6 @@ class FmFormObj;
 class SdrObject;
 class FmXFormView;
 
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
 
 //==================================================================

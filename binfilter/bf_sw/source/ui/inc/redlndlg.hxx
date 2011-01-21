@@ -52,7 +52,7 @@ class SwChildWinWrapper;
 class SwRedlineAcceptChild : public SwChildWinWrapper
 {
 public:
-    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  SwRedlineAcceptChild(   Window* ,
+    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");};
 
     SFX_DECL_CHILDWINDOW( SwRedlineAcceptChild );
 

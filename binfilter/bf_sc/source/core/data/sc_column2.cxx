@@ -895,7 +895,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   nWidth  = (long)( aSize.Width() * nCosAbs + aSize.Height() * nSinAbs );
 /*?*/               else if ( rOptions.bTotalSize )
 /*?*/               {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
 /*?*/                   nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?

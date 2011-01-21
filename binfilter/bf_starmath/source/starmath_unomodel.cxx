@@ -56,7 +56,7 @@
 #include <symbol.hxx>
 #include <starmath.hrc>
 #include <config.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <rtl/uuid.h>
 

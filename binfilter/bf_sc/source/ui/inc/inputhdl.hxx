@@ -145,7 +145,7 @@ public:
 
 
 
-    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void         ViewShellGone(ScTabViewShell* pViewSh);
+    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");};
     void            SetRefViewShell(ScTabViewShell* pRefVsh) {pRefViewSh=pRefVsh;}
 
 

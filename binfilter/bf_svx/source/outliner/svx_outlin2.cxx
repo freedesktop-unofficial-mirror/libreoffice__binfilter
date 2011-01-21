@@ -41,7 +41,7 @@
 #include <outleeng.hxx>
 namespace binfilter {
 
-DBG_NAMEEX(Outliner)//STRIP008
+DBG_NAMEEX(Outliner)
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;
@@ -117,7 +117,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     pEditEngine->aOutlinerNotifyHdl = rLink;
 /*N*/
 /*N*/     if ( rLink.IsSet() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pEditEngine->SetNotifyHdl( LINK( this, Outliner, EditEngineNotifyHdl ) );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
 /*N*/       pEditEngine->SetNotifyHdl( Link() );
 /*N*/

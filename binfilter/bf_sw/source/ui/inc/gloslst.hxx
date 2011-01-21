@@ -52,7 +52,7 @@ struct AutoTextGroup
 
 
 typedef AutoTextGroup* AutoTextGroupPtr;
-SV_DECL_PTRARR(AutoTextGroups, AutoTextGroupPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(AutoTextGroups, AutoTextGroupPtr, 4, 4)
 
 class SwGlossaryList : public AutoTimer
 {

@@ -46,7 +46,7 @@ static SfxModuleArr_Impl* pModules=0;
 /*N*/ TYPEINIT1(SfxModule, SfxShell);
 
 /*?*/ BOOL SfxModule::QueryUnload()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 /*?*/ SfxModule* SfxModule::Load()

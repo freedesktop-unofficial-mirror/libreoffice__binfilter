@@ -105,7 +105,7 @@
 #include <swunohelper.hxx>
 #include <unofldmid.h>
 namespace binfilter {
-String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;

@@ -129,7 +129,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( (eDescr != CHDESCR_NONE) && bShowDataDescr )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // data description required
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -361,7 +361,7 @@ namespace binfilter {
 /*N*/                                            Get(SCHATTR_DATADESCR_DESCR)).GetValue();
 /*N*/
 /*N*/           if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
                 /**************************************************************
                 * DataDescription erforderlich
                 **************************************************************/
@@ -573,7 +573,7 @@ namespace binfilter {
 /*N*/   BOOL    bRepaint   = FALSE;
 
 /*N*/   if( IsXYChart() && ! ISFLAGSET( nChartStatus, CHS_USER_NOQUERY ) )  // in this case ask for sorting
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SchObjGroup *pGroup;
@@ -648,7 +648,7 @@ namespace binfilter {
 /*N*/
         if( ((const SfxBoolItem &) rDataRowAttr.Get( SCHATTR_STAT_AVERAGE )).GetValue() )
 //          pStatLists[ nRow ]->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
-           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pList->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
+           {DBG_BF_ASSERT(0, "STRIP"); }
 
 /*N*/         aSplinePoints.clear();
 /*N*/
@@ -705,7 +705,7 @@ namespace binfilter {
 /*N*/
 /*N*/                   if ((SvxChartKindError)
 /*?*/                       ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () != CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 AverageErrorY(nRow,fDataY,aPoint,FALSE,aDataPointAttr,pStatLists[nRow],pAxis);
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/                   if(aDescr.Enabled())
 /*N*/                   {
@@ -777,7 +777,7 @@ namespace binfilter {
         // ------------------------------------
 /*N*/       if (((const SfxInt32Item &) rDataRowAttr.Get (SCHATTR_STAT_REGRESSTYPE)).GetValue () != CHREGRESS_NONE)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 double fConst;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 
@@ -1093,7 +1093,7 @@ namespace binfilter {
 /*?*/               if (!pDescription)
 /*?*/               {
 /*?*/                   // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt * nColCnt];
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               pDescription [nIndex].eDescr = eDescr;
@@ -1167,7 +1167,7 @@ namespace binfilter {
 /*N*/
 /*N*/               if (pDescription)
 /*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription [nIndex].fValue = GetData(nCol,nRow,FALSE);//#55586# fData;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/           else
@@ -1303,7 +1303,7 @@ namespace binfilter {
 /*?*/                           (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
 /*?*/                           if (fTotal > 100.0000001)
 /*?*/                           {
-/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: ROW value is being changed total=%lf, Vman=%lf",
+/*?*/                               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/
 /*?*/                   if (pDescription [nIndex].fValue != DBL_MIN)
@@ -1357,7 +1357,7 @@ namespace binfilter {
 /*?*/                       (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
 /*?*/                       if (fTotal > 100.0000001)
 /*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: COL value is being changed total=%lf, Vman=%lf",
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/
 /*?*/               if (pDescription[ nIndex ].fValue != DBL_MIN)

@@ -61,7 +61,7 @@ class SvXMLUnitConverter;
 //////////////////////////////////////////////////////////////////////////////
 
 typedef ::std::vector< ImpSdXMLExpTransObj2DBase* > ImpSdXMLExpTransObj2DBaseList;
-DECLARE_LIST(ImpSdXMLExpTransObj3DBaseList, ImpSdXMLExpTransObj3DBase*)//STRIP007 ;
+DECLARE_LIST(ImpSdXMLExpTransObj3DBaseList, ImpSdXMLExpTransObj3DBase*)
 
 //////////////////////////////////////////////////////////////////////////////
 

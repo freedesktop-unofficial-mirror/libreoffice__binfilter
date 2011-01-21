@@ -741,7 +741,7 @@ namespace binfilter {
 /*N*/   if (bVal)
 /*N*/       return IsValid( nArg );
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return IsValidStr( aArgStr );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 /*N*/ }
 
 /*N*/ String ScConditionEntry::GetExpression( const ScAddress& rCursor, USHORT nIndex,

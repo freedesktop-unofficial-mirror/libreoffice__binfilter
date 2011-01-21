@@ -125,8 +125,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrExchangeView::ToggleShownXor(pOut,pRegion);
     if (pDragBla!=NULL && aDragStat.IsShown() &&
-    1 )//STRIP001 //STRIP001        (!IS_TYPE(SdrDragMovHdl,pDragBla)) { // das ist ein Hack !!!!!!!!!!
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawDragObj(pOut,TRUE);
+    1 )
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 
@@ -136,7 +136,7 @@ namespace binfilter {
 
 /*N*/ void SdrDragView::BrkDragObj()
 /*N*/ {
-/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -147,17 +147,17 @@ namespace binfilter {
 /*N*/   if (IsNoDragXorPolys()!=bOn) {
 /*N*/       BOOL bDragging=pDragBla!=NULL;
 /*N*/       BOOL bShown=bDragging && aDragStat.IsShown();
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 HideDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       bNoDragXorPolys=bOn;
-/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ShowDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SdrDragView::SetDragStripes(BOOL bOn)
 /*N*/ {
-/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   } else {
 /*N*/       bDragStripes=bOn;
 /*N*/   }

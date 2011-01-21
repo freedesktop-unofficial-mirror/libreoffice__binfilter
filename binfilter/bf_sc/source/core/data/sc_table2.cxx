@@ -71,7 +71,7 @@ void lcl_SaveRange( SvStream& rStream, ScRange* pRange );
 /*N*/
 /*N*/   if (pOutlineTable)
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->GetColArray()->GetDepth();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if (pNewOutline)
@@ -367,7 +367,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/                   pDestTab->pColFlags[i] = pColFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( i, 0, nTab, i, MAXROW, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           if (nCol1==0 && nCol2==MAXCOL && pRowHeight && pDestTab->pRowHeight)
@@ -379,7 +379,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/                   pDestTab->pRowFlags[i]  = pRowFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, i, nTab, MAXCOL, i, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           pDestTab->SetOutlineTable( pOutlineTable );     // auch nur wenn bColRowFlags
@@ -433,7 +433,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, pCell );
 /*N*/       else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -445,7 +445,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow 
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, nFormatIndex, pCell );
 /*N*/       else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -455,7 +455,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow 
 /*N*/   if (pCell)
 /*N*/       aCol[rPos.Col()].Insert( rPos.Row(), pCell );
 /*N*/   else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPos.Row() );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -582,7 +582,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 
 /*N*/ void ScTable::SetDirty( const ScRange& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -834,7 +834,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/       bIsEditable = FALSE;
 /*N*/   else if ( bProtected )
     {
-{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/        bIsEditable = !HasAttribSelection( rMark, HASATTR_PROTECTED );
+{DBG_BF_ASSERT(0, "STRIP");}
         bIsEditable = FALSE;
     }
 /*N*/   else
@@ -1312,7 +1312,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pCharts->SetRangeDirty(ScRange( nCol, 0, nTab, nCol, MAXROW, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -1361,7 +1361,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       {
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, nStartRow, nTab, MAXCOL, nEndRow, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/
 /*N*/       nStartRow = nEndRow + 1;

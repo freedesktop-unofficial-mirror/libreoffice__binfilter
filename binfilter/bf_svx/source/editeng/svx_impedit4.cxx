@@ -234,7 +234,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           nCount = pParaPortion->GetLines().Count();
 /*?*/           for ( n = 0; n < nCount; n++ )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pParaPortion->GetLines()[n];
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/ #ifdef DBG_UTIL
 /*?*/           USHORT nTest, nTPLen = 0, nTxtLen = 0;
@@ -398,7 +398,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/               if ( !bConvertItems )
 /*N*/                   SetParaAttribs( aEditDoc.GetPos( aPaM.GetNode() ), pC->GetParaAttribs() );
 /*N*/               else
-/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/             }
 /*N*/           if ( bNewContent && bUsePortionInfo )
@@ -427,7 +427,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               nCount = pXP->aLines.Count();
 /*?*/               for ( sal_uInt16 m = 0; m < nCount; m++ )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pXP->aLines[m];
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/ #ifdef DBG_UTIL
 /*?*/               USHORT nTest, nTPLen = 0, nTxtLen = 0;

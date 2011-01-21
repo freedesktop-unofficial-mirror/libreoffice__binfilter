@@ -63,7 +63,7 @@ BOOL            ScProgress::bIdleWasDisabled = FALSE;
 /*N*/
 /*N*/   if ( pGlobalProgress || SfxProgress::GetActiveProgress( NULL ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( lcl_IsHiddenDocument(pObjSh) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else if ( SFX_APP()->IsDowning() )
 /*N*/   {

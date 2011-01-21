@@ -38,7 +38,7 @@
 #include <tools/debug.hxx>
 
 #include <toxwrap.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
  IndexEntrySupplierWrapper::IndexEntrySupplierWrapper()

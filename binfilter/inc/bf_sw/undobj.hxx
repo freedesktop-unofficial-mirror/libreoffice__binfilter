@@ -100,7 +100,7 @@ class SwSectionNode;
 
 namespace utl {
     class TransliterationWrapper;
-}//STRIP008 ;
+}
 
 #ifdef DBG_UTIL
 class Writer;
@@ -411,10 +411,10 @@ public:
 
 // Basis-Klasse fuer Insert von Dokument, Glossaries und Kopieren
 
-class SwUndoInsDoc //STRIP001 : public SwUndoInserts
+class SwUndoInsDoc
 {
 public:
-    SwUndoInsDoc( const SwPaM& ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwUndoInsDoc( const SwPaM& );
+    SwUndoInsDoc( const SwPaM& ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -457,8 +457,6 @@ public:
     SwUndoTblNdsChg( USHORT UndoId, const SwSelBoxes& rBoxes,
                     const SwTableNode& rTblNd );
     virtual ~SwUndoTblNdsChg();
-//STRIP001     virtual void Undo( SwUndoIter& );
-//STRIP001     virtual void Redo( SwUndoIter& );
 
     void SaveSection( SwStartNode* pSttNd );
 
@@ -600,7 +598,7 @@ public:
 //--------------------------------------------------------------------
 
 class _UnReplaceData;
-SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )
 
 
 

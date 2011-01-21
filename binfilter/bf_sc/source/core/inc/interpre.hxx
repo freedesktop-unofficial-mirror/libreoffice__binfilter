@@ -430,7 +430,7 @@ void ScCalcTeam();
 void ScAnswer();
 void ScTTT();
 void ScSpewFunc();
-void ScGame(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void ScGame();
+void ScGame(){DBG_BF_ASSERT(0, "STRIP");}
 
 //----------------Funktionen in interpr2.cxx---------------
 double GetDate(INT16 nYear, INT16 nMonth, INT16 nDay);

@@ -194,9 +194,9 @@ public:
 
 
         // Handler
-    void            Execute(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void            Execute(SfxRequest&);
-    void            GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void            GetState(SfxItemSet&);
-    void            StateUndo(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void            StateUndo(SfxItemSet&);
+    void            Execute(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");} ;
+    void            GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;
+    void            StateUndo(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;
 
     SwDocShell*     GetDocShell();
 

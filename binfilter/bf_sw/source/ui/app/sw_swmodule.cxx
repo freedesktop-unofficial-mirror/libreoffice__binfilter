@@ -73,7 +73,7 @@
 #include <bf_svtools/moduleoptions.hxx>
 
 #include <app.hrc>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 ResMgr *pSwResMgr = 0;
 sal_Bool    bNoInterrupt    = sal_False;
@@ -108,7 +108,7 @@ using namespace ::rtl;
 /*N*/ SwModule::SwModule( SvFactory* pFact,
 /*N*/                   SvFactory* pWebFact,
 /*N*/                   SvFactory* pGlobalFact )
-/*N*/   : SwModuleDummy( SFX_APP()->CreateResManager( "bf_sw" ), sal_False, pFact,  //STRIP005
+/*N*/   : SwModuleDummy( SFX_APP()->CreateResManager( "bf_sw" ), sal_False, pFact,
 /*N*/                    pWebFact, pGlobalFact ),
 /*N*/   pModuleConfig(0),
 /*N*/   pView(0),

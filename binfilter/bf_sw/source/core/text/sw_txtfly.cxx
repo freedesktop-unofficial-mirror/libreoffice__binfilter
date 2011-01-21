@@ -247,7 +247,7 @@ namespace binfilter {
 /*N*/   KSHORT nAscent = pCurr->GetAscent() + nTmpHeight - pCurr->Height();
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
 /*N*/   if( GetMulti() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/   {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/       aTmpInf.Y( aTmpInf.Y() + nAscent );
 /*N*/
@@ -263,7 +263,7 @@ namespace binfilter {
 /*N*/                              nFlyAsc, nFlyDesc, pPos );
 /*N*/           if( pPos->IsGrfNumPortion() )
 /*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( !nFlyAsc && !nFlyDesc )
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -275,7 +275,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       if( pPos->IsMultiPortion() && ((SwMultiPortion*)pPos)->HasFlyInCntnt() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       pPos->Move( aTmpInf );
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
@@ -298,7 +298,7 @@ namespace binfilter {
 /*N*/   sal_uInt8 nFlags = SETBASE_NOFLAG;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nFlags |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
@@ -348,7 +348,6 @@ namespace binfilter {
 /*N*/         SwRect aLineVert( aLine );
 /*N*/         SwRect aInter( rInf.GetTxtFly()->GetFrm( aLineVert ) );
 /*N*/         if ( pFrm->IsVertical() )
-                //STRIP001 /*?*/             pFrm->SwitchVerticalToHorizontal( aInter );
 /*N*/
 /*N*/       if( !aInter.HasArea() )
 /*N*/           return sal_False;
@@ -366,7 +365,7 @@ namespace binfilter {
 /*N*/             aLineVert = aLine;
 /*N*/             aInter = rInf.GetTxtFly()->GetFrm( aLineVert );
 /*N*/             if ( pFrm->IsVertical() )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchVerticalToHorizontal( aInter );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             // new flys from below?
 /*N*/           if( !pPos->IsFlyPortion() )
@@ -475,15 +474,15 @@ namespace binfilter {
 /*N*/
 /*N*/     SwRect aLineVert( aLine );
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchLTRtoRTL( aLineVert );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SwRect aInter( pTxtFly->GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchRTLtoLTR( aInter );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchVerticalToHorizontal( aInter );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if( aInter.IsOver( aLine ) )
 /*N*/   {
@@ -553,7 +552,7 @@ namespace binfilter {
 /*N*/             SWRECTFN( pFrm )
 /*N*/             long nNextTop = pTxtFly->GetNextTop();
 /*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 nNextTop = pFrm->SwitchVerticalToHorizontal( nNextTop );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/             if( nNextTop > aInter.Bottom() )
 /*N*/           {
 /*N*/                 SwTwips nH = nNextTop - aInter.Top();
@@ -671,7 +670,7 @@ namespace binfilter {
 /*N*/   sal_uInt8 nMode = IsQuick() ? SETBASE_QUICK : 0;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nMode |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/     Point aTmpBase( aBase );
@@ -1303,7 +1302,7 @@ namespace binfilter {
 /*N*/           // Vorsicht #37347: Das GetContour() fuehrt zum Laden der Grafik,
 /*N*/           // diese aendert dadurch ggf. ihre Groesse, ruft deshalb ein
 /*N*/           // ClrObject() auf.
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PolyPolygon aPoly;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {

@@ -1795,7 +1795,7 @@ typedef ::std::vector< Polygon3D* > Polygon3DList;
 /*N*/       if ( !bTruncated )
 /*N*/       {
 /*N*/           if ( nAllPointCount > POLY3D_MAXPOINTS )
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.push_back( pPoly3D );
 /*N*/       }

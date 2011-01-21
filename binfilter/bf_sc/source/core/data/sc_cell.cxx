@@ -230,7 +230,7 @@ static const sal_Char msgDbgInfinity[] =
 /*M*/                     bDo = TRUE;
 /*M*/                 else
 /*M*/                 {
-/*M*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDo = pArr->IsReplacedSharedFormula();
+/*M*/                     DBG_BF_ASSERT(0, "STRIP");
 /*M*/                 }
 /*M*/                 if ( bDo )
 /*M*/               {
@@ -332,7 +332,7 @@ static const sal_Char msgDbgInfinity[] =
 /*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_REL )
 /*?*/                         bDo |= (rRef1.IsRelName() || rRef2.IsRelName());
 /*?*/                     if ( nOnlyNames & SC_LISTENING_NAMES_ABS )
-/*?*/                    {  DBG_BF_ASSERT(0, "STRIP");} //STRIP001    bDo |= t->IsRPNReferenceAbsName();
+/*?*/                    {  DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                     if ( nOnlyNames & SC_LISTENING_EXCEPT )
 /*?*/                         bDo = !bDo;
 /*N*/                 }
@@ -632,7 +632,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   pCode = rScFormulaCell.pCode->Clone();
 /*N*/
 /*N*/     if ( nCopyFlags & 0x0001 )
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pCode->ReadjustRelative3DReferences( rScFormulaCell.aPos, aPos );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   // evtl. Fehler zuruecksetzen und neu kompilieren
 /*N*/   //  nicht im Clipboard - da muss das Fehlerflag erhalten bleiben
@@ -673,7 +673,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   {
 /*N*/         if ( !bCompileLater && bClipMode )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pCode->Reset();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/         if ( !bCompileLater )
 /*N*/         {
@@ -954,7 +954,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   {
 /*N*/       if ( !pCode->GetLen() && aErgString.Len() && rFormula == aErgString )
 /*N*/       {   // #65994# nicht rekursiv CompileTokenArray/Compile/CompileTokenArray
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( rFormula.GetChar(0) == '=' )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       bCompile = TRUE;
 /*N*/       CompileTokenArray( bNoListening );
@@ -1033,7 +1033,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/   {
 /*N*/       if ( !pCode->GetLen() )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( aFormula.GetChar(0) == '=' )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       bSubTotal = aComp.CompileTokenArray();
 /*N*/       if( !pCode->GetError() )
@@ -1375,7 +1375,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/
 /*N*/       if ( pCode->IsRecalcModeForced() )
 /*N*/       {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((const SfxUInt32Item*) pDocument->GetAttr(
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Reschedule verlangsamt das ganze erheblich, nur bei Prozentaenderung ausfuehren
@@ -1417,7 +1417,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ULONG nValidation = ((co
 /*?*/                 bForceTrack = !bTableOpDirty;
 /*?*/                 if ( !bTableOpDirty )
 /*?*/                 {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDocument->AddTableOpFormulaCell( this );
+/*?*/                     DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*N*/             }
 /*N*/           else

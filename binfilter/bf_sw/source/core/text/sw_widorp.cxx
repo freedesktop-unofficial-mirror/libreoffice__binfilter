@@ -135,7 +135,7 @@ namespace binfilter {
 /*N*/
 /*N*/     SwTwips nTmpY;
 /*N*/     if ( pFrm->IsVertical() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( rLine.Y() + rLine.GetLineHeight() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
 /*N*/         nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
@@ -390,7 +390,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/
 /*N*/     if ( bVert )
 /*N*/     {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( nTmpY );
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     else
 /*N*/         nOldHeight = (pFrm->Prt().*fnRect->fnGetHeight)();

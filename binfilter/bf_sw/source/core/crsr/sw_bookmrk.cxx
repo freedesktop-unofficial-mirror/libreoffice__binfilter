@@ -69,7 +69,7 @@ namespace binfilter {
 /*N*/   // Clipboard ausgetragen werden. Wird automatisch ueber DataChanged
 /*N*/   // ausgeloest.
 /*N*/   if( refObj.Is() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete pPos1;

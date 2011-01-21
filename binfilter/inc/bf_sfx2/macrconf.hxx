@@ -49,7 +49,7 @@ struct SfxMacroConfig_Impl;
 
 typedef SfxMacroInfo* SfxMacroInfoPtr;
 #if _SOLAR__PRIVATE
-SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5)//STRIP008 ;
+SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5)
 #else
 class SfxMacroInfoArr_Impl;
 #endif

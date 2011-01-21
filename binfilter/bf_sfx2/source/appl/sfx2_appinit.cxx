@@ -79,7 +79,7 @@
 #include "fcontnr.hxx"
 #include "helper.hxx"   // SfxContentHelper::Kill()
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <osl/mutex.hxx>
 

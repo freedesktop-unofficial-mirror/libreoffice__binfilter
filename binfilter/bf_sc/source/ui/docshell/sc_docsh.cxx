@@ -518,7 +518,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 /*N*/ void ScDocShell::AfterXMLLoading(sal_Bool /*bRet*/)
 /*N*/ {
-           DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+           DBG_BF_ASSERT(0, "STRIP");
             aDocument.SetInsertingFromOtherDoc( FALSE );
             aDocument.SetImportingXML( FALSE );
 
@@ -649,7 +649,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/       //  modifying the document must be asynchronous
 /*?*/       //  (handled by AddInitial)
 /*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScAutoStyleHint& rStlHint = (ScAutoStyleHint&)rHint;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -714,21 +714,21 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/               DBG_ERROR("Calc3/4: kein Storage");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterXML))
-/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 bRet = LoadXML( &rMedium, NULL );
+/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       else if (aFltName.EqualsAscii(pFilterSc10))
 /*N*/       {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       SvStream* pStream = rMedium.GetInStream();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterLotus))
 /*N*/       {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pStream = rMedium.GetInStream();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if ( aFltName.EqualsAscii(pFilterExcel4) || aFltName.EqualsAscii(pFilterExcel5) ||
 /*N*/                  aFltName.EqualsAscii(pFilterExcel95) || aFltName.EqualsAscii(pFilterExcel97) ||
 /*N*/                  aFltName.EqualsAscii(pFilterEx4Temp) || aFltName.EqualsAscii(pFilterEx5Temp) ||
 /*N*/                  aFltName.EqualsAscii(pFilterEx95Temp) || aFltName.EqualsAscii(pFilterEx97Temp) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EXCIMPFORMAT eFormat = EIF_AUTO;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterAscii))
 /*N*/       {
@@ -792,14 +792,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterDBase))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sItStr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterDif))
 /*N*/       {
 /*?*/           SvStream* pStream = rMedium.GetInStream();
 /*?*/           if (pStream)
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           bSetColWidths = TRUE;
 /*?*/           bSetSimpleTextColWidths = TRUE;
@@ -831,11 +831,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterRtf))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterHtml) || aFltName.EqualsAscii(pFilterHtmlWebQ))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FltError eError = SCERR_IMPORT_UNKNOWN;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -883,7 +883,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/           }
 /*N*/       }
 /*N*/       if ( bSetRowHeights )
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 UpdateAllRowHeights();        // with vdev or printer, depending on configuration
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   FinishedLoading( SFX_LOADED_MAINDOCUMENT | SFX_LOADED_IMAGES );
 /*N*/
@@ -924,7 +924,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/   if (pCharts)
 /*N*/       pCharts->UpdateDirtyCharts();                   // Charts, die noch upgedated werden muessen
 /*N*/   if (pAutoStyleList)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();                // Vorlagen-Timeouts jetzt ausfuehren
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
 /*N*/       SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
 /*N*/
@@ -960,7 +960,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/   if (pCharts)
 /*N*/       pCharts->UpdateDirtyCharts();                   // Charts, die noch upgedated werden muessen
 /*N*/   if (pAutoStyleList)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pAutoStyleList->ExecuteAllNow();                // Vorlagen-Timeouts jetzt ausfuehren
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
 /*N*/       SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
 /*N*/
@@ -1093,7 +1093,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/   , SfxListener()
 /*N*/   , __SCDOCSHELL_INIT
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::ScDocShell" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------
@@ -1194,7 +1194,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*N*/ //           SvStream* pS
 /*N*/             aDocument.InvalidateLastTableOpParams();
 /*N*/           aDocument.Broadcast( SC_HINT_DATACHANGED, BCA_BRDCST_ALWAYS, NULL );
 /*N*/           if ( aDocument.IsForcedFormulaPending() && aDocument.GetAutoCalc() )
-/*?*/           {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aDocument.CalcFormulaTree( TRUE );
+/*?*/           {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           PostDataChanged();
 /*N*/
 /*N*/           //  Detective AutoUpdate:

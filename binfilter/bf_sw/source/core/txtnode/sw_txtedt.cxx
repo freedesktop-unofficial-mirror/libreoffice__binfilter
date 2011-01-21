@@ -212,11 +212,11 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/
 /*M*/       if( nStart <= nAttrStart )          // Faelle: 1,3,5
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       else                                // Faelle: 2,4,5
 /*M*/           if( *pAttrEnd > nStart )        // Faelle: 2,4
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       ++i;
 /*M*/   }

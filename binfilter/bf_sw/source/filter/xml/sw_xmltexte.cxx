@@ -206,10 +206,10 @@ SwXMLTextParagraphExport::SwXMLTextParagraphExport(
     XMLTextParagraphExport( rExp, rAutoStylePool ),
     sTextTable( RTL_CONSTASCII_USTRINGPARAM( "TextTable" ) ),
     sEmbeddedObjectProtocol( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.EmbeddedObject:" ) ),
-    aAppletClassId( SO3_APPLET_CLASSID ), //STRIP003
-    aPluginClassId( SO3_PLUGIN_CLASSID ), //STRIP003
+    aAppletClassId( SO3_APPLET_CLASSID ),
+    aPluginClassId( SO3_PLUGIN_CLASSID ),
     aIFrameClassId( BF_SO3_IFRAME_CLASSID ),
-    aOutplaceClassId( SO3_OUT_CLASSID ) //STRIP003
+    aOutplaceClassId( SO3_OUT_CLASSID )
 {
 }
 

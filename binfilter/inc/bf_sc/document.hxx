@@ -125,14 +125,6 @@ class ScImpExpLogMsg;
 struct ScSortParam;
 class ScRefreshTimerControl;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008     namespace lang {
-//STRIP008         class XMultiServiceFactory;
-//STRIP008     }
-//STRIP008     namespace i18n {
-//STRIP008         class XBreakIterator;
-//STRIP008     }
-//STRIP008 } } }
 
 } //namespace binfilter
 
@@ -143,7 +135,7 @@ class SvNumberFormatterIndexTable;
 class Table;
 typedef Table SvNumberFormatterIndexTable;
 #endif*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 #define SC_TAB_APPEND       0xFFFF
 #define SC_DOC_NEW          0xFFFF
 #define REPEAT_NONE         0xFFFF

@@ -331,7 +331,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( p->GetOpCode() == ocName )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nIndex = p->GetIndex();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   if ( bCompile )

@@ -376,7 +376,7 @@ namespace binfilter {
 /*M*/   ScDocument* pDoc = pDocShell->GetDocument();
 /*M*/   if( pDoc )
 /*M*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScExtDocOptions*  pExtDocOpt = pDoc->GetExtDocOptions();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*M*/   pDocShell->DoLoad( pMedium );

@@ -36,8 +36,6 @@
 #include "collect.hxx"
 #include "rangelst.hxx"
 
-//STRIP008 class ScDocument;
-//STRIP008 class ScChartUnoData;
 
 #include <com/sun/star/chart/XChartData.hpp>
 namespace binfilter {

@@ -49,7 +49,7 @@ namespace binfilter {
 /*?*/   const String&   /*rCmd*/        // in unserer BASIC-Syntax formuliert
 /*?*/ )
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -60,7 +60,7 @@ namespace binfilter {
 /*?*/   const String& /*rMimeType*/,                    // in: Format
 /*?*/   ::com::sun::star::uno::Any & /*rValue*/     // out: angeforderte Daten
 /*?*/ )
-{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -81,7 +81,7 @@ namespace binfilter {
     Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
 */
 /*?*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
@@ -91,7 +91,7 @@ namespace binfilter {
 /*?*/   const String&   /*rItem*/      // das zu erzeugende Item
 /*?*/ )
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------

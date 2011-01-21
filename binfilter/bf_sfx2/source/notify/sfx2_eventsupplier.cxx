@@ -53,7 +53,7 @@
 #include "sfxsids.hrc"
 #include "docfile.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------
@@ -165,12 +165,12 @@ namespace binfilter {
 //  --- XElementAccess ( parent of XNameAccess ) ---
 //--------------------------------------------------------------------------------------------------------
 /*?*/ UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasElements() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------

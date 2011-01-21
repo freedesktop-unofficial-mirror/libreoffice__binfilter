@@ -253,7 +253,7 @@ class SdrUndoDelObj : public SdrUndoRemoveObj
 {
 public:
     SdrUndoDelObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
-    :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP");}//STRIP001         :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) { SetOwner(TRUE); }
+    :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP");}
 
 };
 

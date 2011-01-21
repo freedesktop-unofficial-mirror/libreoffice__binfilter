@@ -60,7 +60,6 @@ struct SdrPaintProcRec;
 #ifdef ACCESSIBLE_LAYOUT
 class SwAccessibleMap;
 class SdrObject;
-//STRIP008 class Fraction;
 #endif
 // OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
@@ -70,7 +69,7 @@ class SwPagePreviewLayout;
 #include <prevwpage.hxx>
 // OD 15.01.2003 #103492#
 #include <vector>
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwViewImp
 {
     friend class ViewShell;

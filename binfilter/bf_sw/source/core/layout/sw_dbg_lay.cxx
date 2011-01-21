@@ -136,7 +136,7 @@ namespace binfilter {
 /*N*/ class SwImplProtocol
 /*N*/ {
 /*N*/ public:
-    SwImplProtocol(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwImplProtocol();
+    SwImplProtocol(){DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ };
 
 /* -----------------11.01.99 10:43-------------------
@@ -169,7 +169,7 @@ namespace binfilter {
 /*N*/   SvFileStream aStream( aName, STREAM_READ );
 /*N*/   if( aStream.IsOpen() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImpl = new SwImplProtocol();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/     aStream.Close();
 /*N*/ }

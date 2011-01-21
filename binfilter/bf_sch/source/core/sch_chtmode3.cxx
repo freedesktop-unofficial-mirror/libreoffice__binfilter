@@ -261,7 +261,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutAxisAttr(rAttr,bMerge);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
         return FALSE;
 /*N*/   }
 /*N*/ }
@@ -985,7 +985,7 @@ namespace binfilter {
 /*N*/               pItemSet->GetItemState( SCHATTR_TEXT_ORIENT, FALSE, &pPoolItem ) == SFX_ITEM_SET &&
 /*N*/               SAL_STATIC_CAST( const SvxChartTextOrientItem*, pPoolItem )->GetValue() == CHTXTORIENT_STACKED )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTitle = UnstackString( aTitle );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           if( pStrToChange )
@@ -1028,20 +1028,20 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_SPECIAL_GROUP:
 /*N*/   case CHOBJID_DIAGRAM_ROWGROUP:
 /*N*/   case CHOBJID_LEGEND_SYMBOL_ROW:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_DATA:
 /*?*/   case CHOBJID_LEGEND_SYMBOL_COL:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_STATISTICS_GROUP :
 /*?*/   case CHOBJID_DIAGRAM_AVERAGEVALUE :
 /*?*/   case CHOBJID_DIAGRAM_REGRESSION :
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       break;
 /*?*/
 /*N*/   case CHOBJID_DIAGRAM_WALL:
@@ -1493,7 +1493,7 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/           }
 /*N*/           break;
 /*N*/         case CHOBJID_AREA:
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ChangeDiagramAreaAttr( rAttr );
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/             break;
 /*N*/       default:
 /*N*/           GetAttr(nId,nIndex1).Put(rAttr,TRUE);

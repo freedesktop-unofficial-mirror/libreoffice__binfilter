@@ -36,10 +36,10 @@ class SwGrfShell: public SwBaseShell
 public:
     SFX_DECL_INTERFACE(SW_GRFSHELL);
 
-    void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecAttr(SfxRequest &);
-    void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    GetAttrState(SfxItemSet &);
+    void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    SwGrfShell(SwView &rView);
+    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;
 };
 
 } //namespace binfilter

@@ -34,8 +34,8 @@
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
 #include <com/sun/star/lang/XServiceName.hpp>
 #include <comphelper/processfactory.hxx>
-#include<tools/debug.hxx> //STRIP001
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include<tools/debug.hxx>
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -106,7 +106,7 @@ using namespace ::com::sun::star;
 /*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const ::rtl::OUString& rName )
 /*N*/ {
 /*N*/     if( ! mbInitialized )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 Initialize();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     const sal_Int32 nSize = maServiceNames.getLength();
 /*N*/     for( sal_Int32 i = 0; i < nSize; i++ )

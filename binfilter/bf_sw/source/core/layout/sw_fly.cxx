@@ -167,7 +167,7 @@ namespace binfilter {
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() || rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rChain.GetNext() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( !GetPrevLink() ) //Inhalt gehoert sonst immer dem Master und meiner Zaehlt nicht
@@ -212,7 +212,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwRootFrm *pRootFrm = FindRootFrm();
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ #endif
@@ -221,9 +221,9 @@ namespace binfilter {
 /*N*/   {
 /*N*/       //Aus der Verkettung loessen.
 /*N*/       if ( GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( GetPrevLink(), this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       if ( GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( this, GetNextLink() );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       //Unterstruktur zerstoeren, wenn dies erst im LayFrm DTor passiert ist's
 /*N*/       //zu spaet, denn dort ist die Seite nicht mehr erreichbar (muss sie aber
@@ -553,7 +553,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
 /*M*/           }
 /*M*/
@@ -569,7 +569,7 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_FRM_SIZE:
 /*M*/       case RES_FMT_CHG:
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
 /*M*/       }
 /*M*/       case RES_UL_SPACE:
@@ -609,7 +609,7 @@ namespace binfilter {
 /*M*/             break;
 /*M*/
 /*M*/         case RES_OPAQUE:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -637,7 +637,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_CHAIN:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/
 /*M*/       default:
@@ -879,7 +879,7 @@ namespace binfilter {
 /*N*/       pSect = (SwSectionFrm*)pLay;
 /*N*/       if( pSect->IsEndnAtEnd() && !bNoColl )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bCollect = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pSect->CalcFtnCntnt();
 /*N*/   }
@@ -897,7 +897,7 @@ namespace binfilter {
 /*?*/               if( pSect->IsEndnAtEnd() )
 /*?*/               {
 /*?*/                   if( bCollect )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pLay->GetFmt()->GetDoc()->GetLayouter()->
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   BOOL bLock = pSect->IsFtnLock();
 /*?*/                   pSect->SetFtnLock( TRUE );
 /*?*/                   pSect->CalcFtnCntnt();
@@ -1047,7 +1047,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( bCollect )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLay->GetFmt()->GetDoc()->GetLayouter()->InsertEndnotes(pSect);
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           if( pSect->HasFollow() )
 /*N*/           {
@@ -1722,7 +1722,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   // Notify accessible layout.
 /*N*/     ViewShell* pSh = GetShell();
 /*N*/   if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSh->Imp()->DisposeAccessibleObj( pToRemove->GetMaster() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/   SwPageFrm *pPage = pToRemove->GetPage();
 /*N*/   if ( pPage && pPage->GetSortedObjs() )

@@ -66,7 +66,7 @@ namespace binfilter {
 /*N*/
 /*N*/         // verify valid redline positions
 /*N*/       for( USHORT i = 0; i < rTbl.Count(); ++i )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 lcl_CheckPam( rTbl[ i ] );
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
 /*N*/         {
@@ -117,7 +117,7 @@ namespace binfilter {
 /*N*/               pFnc = &SwRedline::Hide;
 /*N*/               break;
 /*N*/           case REDLINE_SHOW_DELETE:
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFnc = &SwRedline::ShowOriginal;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               break;
 /*N*/
 /*N*/           default:
@@ -168,7 +168,7 @@ Verhalten von Delete-Redline:
 
 /*N*/ BOOL SwDoc::AppendRedline( SwRedline* /*pNewRedl*/, BOOL /*bCallDelete*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( this )
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL /*bSaveInUndo*/,
@@ -494,7 +494,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // fuers Undo
 /*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* /*pIdx*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( pIdx && !pCntntSect )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 USHORT SwRedline::GetStackCount() const

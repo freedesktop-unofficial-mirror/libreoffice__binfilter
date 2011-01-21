@@ -287,7 +287,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ String SdrGrafObj::GetGrafStreamURL() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -690,7 +690,7 @@ namespace binfilter {
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   if( pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE ) || ( pGraphic->GetType() == GRAPHIC_DEFAULT ) )
@@ -733,14 +733,14 @@ namespace binfilter {
 /*?*/                   bEnable = ( eAnimMode != SDR_ANIMATION_DISABLE );
 /*?*/
 /*?*/                   if( bEnable )
-/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/                   }
 /*?*/               }
 /*?*/
 /*?*/               if( bEnable )
 /*?*/               {
 /*?*/                   if( eAnimMode == SDR_ANIMATION_ANIMATE )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
 /*?*/                       pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
@@ -795,7 +795,7 @@ namespace binfilter {
 /*N*/       bool    bFill = FALSE;
 /*N*/
 /*N*/       if( bEmptyPresObj )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 bFill = !ImpPaintEmptyPres( pOutDev );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/       // und nun noch einen grauen Rahmen drum herum, Text rein, ...
 /*N*/       if( !bEmptyPresObj )
@@ -864,7 +864,7 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   if( rGraf.aFileName.Len() )
 /*N*/ #endif
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SetGraphicLink( aFileName, aFilterName );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   ImpSetAttrToGrafInfo();
 /*N*/ }
@@ -957,7 +957,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetPage( pNewPage );
 /*N*/
 /*N*/   if(aFileName.Len() && bInsert)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -983,7 +983,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetModel(pNewModel);
 /*N*/
 /*N*/   if( bChg && aFileName.Len() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

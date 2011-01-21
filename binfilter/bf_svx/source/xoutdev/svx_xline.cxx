@@ -603,7 +603,7 @@ namespace binfilter {
 /*N*/   if( nPntMax >= 1 )
 /*N*/   {
 /*N*/       if( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/       else if( XLINE_NONE != eLineStyle )
 /*N*/       {
@@ -715,7 +715,7 @@ namespace binfilter {
 /*?*/                   nPntMax--;
 /*?*/               aLParam.Init(aPoly[nPntMax], aPoly[i], nLineWidth);
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 CalcFatLineJoin(aPoly[i], aPoly[i+1], aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/           else
 /*?*/               aLParam.Init(aPoly[i], aPoly[i+1], nLineWidth);
@@ -735,26 +735,26 @@ namespace binfilter {
 /*?*/               else                        pNextPoint = NULL;
 /*?*/
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawFatLine(aPoly[i], aPoly[i+1], pNextPoint, aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               i = nPos;
 /*?*/           }
 /*?*/           if ( bClosePoly )
 /*?*/           {
 /*?*/               if ( nLineWidth > 0 )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     DrawFatLine(aPoly[i], aPoly[0], &aPoly[1], aLParam);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/           else
 /*?*/           {
 /*?*/               if ( bLineStart )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawStartEndPoly(aLineStartPos, aLineStartPoly, aStartParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               if ( bLineEnd )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 DrawStartEndPoly(aLineEndPos, aLineEndPoly, aEndParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/
 /*?*/           if( nLineWidth == 0 )

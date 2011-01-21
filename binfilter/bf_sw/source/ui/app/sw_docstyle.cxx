@@ -749,13 +749,13 @@ namespace binfilter {
 /*N*/
 /*N*/           if( RES_CONDTXTFMTCOLL == pColl->Which() && pCondItem )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmt* pFindFmt;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else if( pCondItem && !pColl->GetDepends() )
 /*N*/           {
 /*?*/               // keine bedingte Vorlage, dann erstmal erzeugen und
 /*?*/               // alle wichtigen Werte uebernehmen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwConditionTxtFmtColl* pCColl = rDoc.MakeCondTxtFmtColl(
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           pFmt = pColl;
 
@@ -904,7 +904,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pCharFmt;
 /*N*/       if( bFillOnlyInfo && !bPhysical )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bDeleteInfo = TRUE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       pFmt = pCharFmt;
@@ -929,7 +929,7 @@ namespace binfilter {
 /*N*/           bPhysical = 0 != pColl;
 /*N*/           if( bFillOnlyInfo && !bPhysical )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           pFmt = pColl;
@@ -950,7 +950,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pFrmFmt;
 /*N*/       if( bFillOnlyInfo && bPhysical )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pFmt = pFrmFmt;
 /*N*/       if( !bCreate && !pFmt )
@@ -967,7 +967,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pDesc;
 /*N*/       if( bFillOnlyInfo && !pDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( pDesc )
@@ -993,7 +993,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pNumRule;
 /*N*/       if( bFillOnlyInfo && !pNumRule )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( pNumRule )
@@ -1058,7 +1058,7 @@ namespace binfilter {
 /*N*/       SetMask( nMask );
 /*N*/   }
 /*N*/   if( bDeleteInfo && bFillOnlyInfo )
-/*?*/ { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  ::lcl_DeleteInfoStyles( nFamily, aDelArr, rDoc );
+/*?*/ { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   return bRet;
 /*N*/ }
 
@@ -1085,7 +1085,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwTxtFmtColl *pPar = (*rDoc.GetTxtFmtColls())[0];
 /*N*/               if( nMask & SWSTYLEBIT_CONDCOLL )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pColl = rDoc.MakeCondTxtFmtColl( aName, pPar );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               else
 /*N*/                   pColl = rDoc.MakeTxtFmtColl( aName, pPar );
 /*N*/           }
@@ -1265,7 +1265,7 @@ namespace binfilter {
 
 /*N*/ BOOL  SwDocStyleSheetPool::SetParent( SfxStyleFamily /*eFam*/,
 /*N*/                               const String& /*rStyle*/, const String& /*rParent*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ SfxStyleSheetBase* SwDocStyleSheetPool::Find( const String& rName,
@@ -1557,14 +1557,14 @@ namespace binfilter {
 /*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_CONDCOLL )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bSearchUsed ||
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if ( bAll ||
 /*N*/           (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_HTML ||
 /*N*/           (nSMask & ~SFXSTYLEBIT_USED) ==
 /*N*/                       (SWSTYLEBIT_HTML | SFXSTYLEBIT_USERDEF) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 AppendStyleList(SwStyleNameMapper::GetHTMLUINameArray(),
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1684,7 +1684,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( bTestUsed )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwDoc& rDoc = ((SwDocStyleSheetPool*)pBasePool)->GetDoc();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       for ( USHORT i=0; i < rList.Count(); ++i )
@@ -1697,7 +1697,7 @@ namespace binfilter {
 /*N*/   if( rHint.ISA( SfxStyleSheetHint ) &&
 /*N*/       SFX_STYLESHEET_ERASED == ((SfxStyleSheetHint&) rHint).GetHint() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxStyleSheetBase* pStyle = ((SfxStyleSheetHint&)rHint).GetStyleSheet();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

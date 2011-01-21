@@ -789,7 +789,7 @@ namespace binfilter {
 /*N*/ }
 
 } //namespace binfilter
-namespace binfilter {//STRIP009
+namespace binfilter {
 //-------------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::SetBaseURL( const String& rURL )
@@ -858,12 +858,12 @@ namespace binfilter {//STRIP009
 /*?*/   {
 /*?*/       DateTime aDateTime;
 /*?*/       if( INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime ) )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {
 /*?*/ //            DBG_ERROR( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetMedium()->SetExpired_Impl( Date( 1, 1, 1970 ) );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "content-type" ) == COMPARE_EQUAL )
@@ -876,7 +876,7 @@ namespace binfilter {//STRIP009
 /*?*/       {
 /*?*/           const INetContentTypeParameter * pCharset = aParameters.find("charset");
 /*?*/           if (pCharset != 0)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pDoc->GetMedium()->SetCharset( pCharset->m_sValue );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*?*/   }
 /*?*/ }

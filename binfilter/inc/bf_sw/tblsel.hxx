@@ -75,8 +75,8 @@ void GetTblSel( const SwLayoutFrm* pStart, const SwLayoutFrm* pEnd,
 BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
 
 // teste, ob die Selektion ausgeglichen ist
-SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)//STRIP008 ;
-SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)//STRIP008 ;
+SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)
+SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)
 
 BOOL ChkChartSel( const SwNode& rSttNd, const SwNode& rEndNd,
                     SwChartLines* pGetCLines = 0 );

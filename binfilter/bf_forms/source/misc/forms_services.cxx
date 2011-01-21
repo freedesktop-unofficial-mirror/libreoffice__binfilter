@@ -203,7 +203,7 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 #include <uno/lbnames.h>
 #include <osl/diagnose.h>
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 namespace starregistry  = ::com::sun::star::registry;
 namespace staruno       = ::com::sun::star::uno;
@@ -254,7 +254,7 @@ DECLARE_SERVICE_INFO(OImageControlModel)
 DECLARE_SERVICE_INFO(OGridControlModel)
 
 // some special handling for the FormattedFieldWrapper which can act as FormattedModel or as EditModel
-DECLARE_SERVICE_INFO(OFormattedFieldWrapper)//STRIP008 ;
+DECLARE_SERVICE_INFO(OFormattedFieldWrapper)
     // this is for a service, which is instantiated through the EditModel service name
     // and which acts mostly as Edit (mostly means : if somebody uses XPersistObject::read immediately after
     // the object was instantiated and the stream contains a FormattedModel, it switches permanently to
@@ -491,7 +491,7 @@ sal_Bool SAL_CALL component_writeInfo(void* _pServiceManager, starregistry::XReg
         {
             // the real way - use the OModule
             createRegistryInfo_FORMS();
-            if ( !::binfilter::frm::OFormsModule::writeComponentInfos(//STRIP008            if ( !::frm::OFormsModule::writeComponentInfos(
+            if ( !::binfilter::frm::OFormsModule::writeComponentInfos(
                     static_cast<XMultiServiceFactory*>( _pServiceManager ),
                     static_cast<XRegistryKey*>( _pRegistryKey ) )
                 )
@@ -585,7 +585,7 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
         {
             // let the module look for the component
             Reference< XInterface > xRet;
-            xRet = ::binfilter::frm::OFormsModule::getComponentFactory(//STRIP008           xRet = ::frm::OFormsModule::getComponentFactory(
+            xRet = ::binfilter::frm::OFormsModule::getComponentFactory(
                 ::rtl::OUString::createFromAscii( _pImplName ),
                 static_cast< XMultiServiceFactory* >( _pServiceManager ) );
 

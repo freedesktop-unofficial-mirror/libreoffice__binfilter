@@ -48,7 +48,7 @@ namespace binfilter {
 /*?*/
 /*?*/   SfxStringItem()
 /*?*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 //========================================================================
@@ -401,7 +401,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 //=========================================================================
 
 /*N*/ typedef SfxPSProperty_Impl *SfxPSPropertyPtr_Impl;
-/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)//STRIP008 ;
+/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)
 /*N*/ SV_IMPL_PTRARR(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl);
 
 /*N*/ struct SfxPSSection_Impl

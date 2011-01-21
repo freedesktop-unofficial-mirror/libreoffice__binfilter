@@ -369,7 +369,7 @@ extern AsynchronLink* pPendingCloser;
 /*N*/   if ( bUI && !bClose && IsInformationLost() )
 /*N*/   {
 /*N*/       // minimierte restoren
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   pImp->bPreparedForClose = sal_True;

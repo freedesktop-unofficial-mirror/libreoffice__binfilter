@@ -124,7 +124,7 @@ using namespace ::com::sun::star::uno;
 
  ---------------------------------------------------------------------------*/
 /*?*/ void SfxMiscCfg::Commit()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 }

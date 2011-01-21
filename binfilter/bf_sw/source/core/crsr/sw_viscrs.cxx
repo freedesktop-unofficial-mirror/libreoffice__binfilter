@@ -225,7 +225,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/     }
 /*N*/
 /*N*/     if( aRect.Height() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     if( !pCrsrShell->IsOverwriteCrsr() || bIsDragCrsr ||
 /*N*/         pCrsrShell->IsSelection() )
@@ -263,7 +263,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ void SwSelPaintRects::Hide()
 /*N*/ {
 /*N*/   for( USHORT n = 0; n < Count(); ++n )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     Paint( (*this)[n] );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   SwRects::Remove( 0, Count() );
 /*N*/ }
 
@@ -283,7 +283,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/
 /*N*/   if( Count() || aTmp.Count() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRegionRects aReg( pCShell->VisArea() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -303,7 +303,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/       (GetMark()->nNode == GetPoint()->nNode ||
 /*N*/       (GetMark()->nNode.GetNode().IsCntntNode() &&
 /*N*/        GetMark()->nNode.GetNode().GetCntntNode()->GetFrm() )  ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetDoc()->GetRootFrm()->CalcFrmRects( *this, GetShell()->IsTableMode() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 

@@ -40,7 +40,7 @@ class ScPageBreakData
 {
 
 public:
-                ScPageBreakData(USHORT nMax){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakData(USHORT nMax);
+                ScPageBreakData(USHORT nMax){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

@@ -166,7 +166,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // nur ein owner darf eigenstaendig erzeugen
 /*N*/   if (rModelName.Len())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     CreateUnoControlModel(rModelName);
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ SdrUnoObj::~SdrUnoObj()
@@ -233,7 +233,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   if (pOut)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
         // Nur dieses eine OutDev beruecksichtigen
 /*N*/   }
 /*N*/   else if (pModel)
@@ -428,7 +428,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/
 /*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch lesen
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

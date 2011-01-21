@@ -404,7 +404,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   // Leere Attribute loeschen, aber nur, wenn Absatz nicht leer!
 /*N*/   if ( pPrevNode->GetCharAttribs().HasEmptyAttribs() && pPrevNode->Len() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pPrevNode->GetCharAttribs().DeleteEmptyAttribs( aEditDoc.GetItemPool() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void ImpEditEngine::TextModified()
@@ -413,7 +413,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTMODIFIED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -877,7 +877,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new EditUndoConnectParas( this,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -952,7 +952,7 @@ using namespace ::com::sun::star;
 /*N*/   for ( ULONG z = nStartNode+1; z < nEndNode; z++ )
 /*N*/   {
 /*?*/       // Immer nStartNode+1, wegen Remove()!
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpRemoveParagraph( nStartNode+1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( aStartPaM.GetNode() != aEndPaM.GetNode() )
@@ -1651,7 +1651,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nCurIndex && ( nCurIndex == pLine->GetEnd() ) &&
 /*N*/        ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) ) )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aPaM = CursorLeft( aPaM, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   return aPaM;

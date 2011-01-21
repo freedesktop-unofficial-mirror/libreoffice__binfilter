@@ -610,7 +610,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SdrModel* SdrModel::AllocModel() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   SdrModel* pModel=new SdrModel;
 /*N*/   return pModel;
 /*N*/ }
@@ -1195,7 +1195,7 @@ using namespace ::com::sun::star;
 /*N*/   pPage->SetInserted(TRUE);
 /*N*/   pPage->SetPageNum(nPos);
 /*N*/   pPage->SetModel(this);
-/*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   SetChanged();
 /*N*/   SdrHint aHint(HINT_PAGEORDERCHG);

@@ -43,7 +43,7 @@ class SfxPoolItem;
 struct SfxShell_Impl;
 
 typedef SfxPoolItem* SfxPoolItemPtr;
-SV_DECL_PTRARR_DEL( SfxItemPtrArray, SfxPoolItemPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SfxItemPtrArray, SfxPoolItemPtr, 4, 4 )
 typedef SfxItemPtrArray SfxItemArray_Impl;
 
 //====================================================================

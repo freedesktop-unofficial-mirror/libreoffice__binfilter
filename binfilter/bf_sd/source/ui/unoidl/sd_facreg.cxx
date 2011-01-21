@@ -97,7 +97,7 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
         uno::Reference< lang::XSingleServiceFactory > xFactory;
 
         const sal_Int32 nImplNameLen = strlen( pImplName );
-        if(0)//STRIP001 if( SdHtmlOptionsDialog_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )
+        if(0)
         {
         }
         else if( SdDrawingDocument_getImplementationName().equalsAsciiL( pImplName, nImplNameLen ) )

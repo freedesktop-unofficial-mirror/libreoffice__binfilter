@@ -240,7 +240,7 @@ public:
 typedef ScConditionalFormat* ScConditionalFormatPtr;
 
 SV_DECL_PTRARR_SORT(ScConditionalFormats_Impl, ScConditionalFormatPtr,
-                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
+                        SC_COND_GROW, SC_COND_GROW)
 
 class ScConditionalFormatList : public ScConditionalFormats_Impl
 {

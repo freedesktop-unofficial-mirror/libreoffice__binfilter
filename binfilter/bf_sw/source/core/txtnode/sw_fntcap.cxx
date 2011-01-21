@@ -463,7 +463,7 @@ public:
 /*?*/                       ++nTmp;
 /*?*/                   if( nOldPos < nTmp )
 /*?*/                   {
-                            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         pLastFont = pSpaceFont;
+                            DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   while( nTmp < nPos && CH_BLANK != rOldText.GetChar( nTmp ) )
 /*?*/                       ++nTmp;
@@ -526,7 +526,7 @@ public:
 /*N*/   {
 /*N*/       if( rDo.GetInf().GetDrawSpace() )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pLastFont = pSpaceFont;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if ( bWordWise )
 /*?*/           delete pSpaceFontAccess;

@@ -616,7 +616,7 @@ namespace binfilter {
 /*N*/                   aObjRect.Justify();
 /*N*/
 /*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-                        {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pList->NbcInsertObject(AverageValueY(nRow,FALSE,aRect,
+                        {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/                   if (bShow && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                 (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
@@ -683,7 +683,7 @@ namespace binfilter {
 /*N*/                       if ((SvxChartKindError)
 /*N*/                           ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
 /*N*/                            CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     AverageErrorY(nRow,fData,aObjRect.TopCenter(),FALSE,aDataPointAttr,pStatLists[nRow],pAxis);
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/                       if(aDescr.Enabled())
 /*N*/                       {
@@ -837,7 +837,7 @@ namespace binfilter {
 /*N*/                   aObjRect.Justify();
 /*N*/
 /*N*/                   if (!nCol && ((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pList->NbcInsertObject (AverageValueY (nRow, TRUE, aRect,
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/                   if ((bShow) && ((!bLogarithm && (fData != DBL_MIN)) ||
 /*N*/                                   (bLogarithm && (fData != DBL_MIN) && (fData > 0.0))))
@@ -847,7 +847,7 @@ namespace binfilter {
 /*N*/                       if ((SvxChartKindError)
 /*N*/                           ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () !=
 /*N*/                            CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     AverageErrorY(nRow,fData, aObjRect.RightCenter(),TRUE,aDataPointAttr,pStatLists[nRow],pAxis);
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/                       if(aDescr.Enabled())
 /*N*/                       {
@@ -1171,7 +1171,7 @@ namespace binfilter {
 /*N*/
 /*N*/               if((eDescr!=CHDESCR_NONE)&&bShowDataDescr)
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DataDescription aDescr;
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               // ************************* end description *******************************
 /*N*/           }
@@ -1283,7 +1283,7 @@ namespace binfilter {
 /*N*/       if( ! bStacked )
 /*N*/       {
 /*N*/           if (((const SfxBoolItem &) rDataRowAttr.Get (SCHATTR_STAT_AVERAGE)).GetValue ())
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pList->NbcInsertObject (AverageValueY (nRow, FALSE, aRect,
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
@@ -1337,7 +1337,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   if ((SvxChartKindError)
 /*N*/                       ((const SfxInt32Item &)aDataPointAttr.Get(SCHATTR_STAT_KIND_ERROR)).GetValue () != CHERROR_NONE)
-/*?*/                        {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 AverageErrorY(nRow,fData,aPolygon[nPoints -1],FALSE,aDataPointAttr,pStatLists[nRow],pAxis);
+/*?*/                        {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/               }
 /*N*/
 /*N*/               if(aDescr.Enabled())
@@ -1750,18 +1750,18 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( pChartXAxis->TranslateMergedNumFormat( pTransTable ) &&
 /*N*/         nXLastNumFmt >= 0 )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001       nXLastNumFmt = pChartXAxis->GetNumFormat();
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if( pChartYAxis->TranslateMergedNumFormat( pTransTable ) &&
 /*N*/         nYLastNumFmt >= 0 )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nYLastNumFmt = pChartYAxis->GetNumFormat();
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   pChartZAxis->TranslateMergedNumFormat( pTransTable );
 /*N*/   pChartAAxis->TranslateMergedNumFormat( pTransTable );
 /*N*/
 /*N*/   if( pChartBAxis->TranslateMergedNumFormat( pTransTable ) &&
 /*N*/         nBLastNumFmt >= 0 )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001       nBLastNumFmt = pChartBAxis->GetNumFormat();
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void ChartModel::SetNumLinesColChart(const long nSet, BOOL bForceStyleChange)

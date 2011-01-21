@@ -130,29 +130,29 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_SYLK )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( Sylk2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_DIF )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( Dif2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == FORMAT_RTF )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( RTF2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_LINK )
 /*N*/       return TRUE;            // Link-Import?
 /*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( HTML2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML_SIMPLE )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 MSE40HTMLClipFormatObj aMSE40ClpObj;              // needed to skip the header data
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/
@@ -434,7 +434,7 @@ enum DoubledQuoteMode
 /*N*/ BOOL ScImportExport::ExtText2Doc( SvStream& rStrm )
 /*N*/ {
 /*N*/   if (!pExtOptions)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 return Text2Doc( rStrm );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   ULONG nOldPos = rStrm.Tell();
 /*N*/   rStrm.Seek( STREAM_SEEK_TO_END );
@@ -502,7 +502,7 @@ enum DoubledQuoteMode
 /*N*/       USHORT nCol = nStartCol;
 /*N*/       if ( bFixed )               //  Feste Satzlaenge
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for ( i=0; i<nInfoCount; i++ )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else                        //  Nach Trennzeichen suchen
 /*N*/       {

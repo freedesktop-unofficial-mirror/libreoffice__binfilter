@@ -64,25 +64,25 @@ namespace binfilter {
 
 /*N*/ bool GotoPrevTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ bool GotoNextTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ bool GotoCurrTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
 /*N*/                       bool /*bInReadOnly*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 /*N*/ bool SwCursor::MoveTable( SwWhichTable /*fnWhichTbl*/, SwPosTable /*fnPosTbl*/ )
 /*N*/ {
-/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
@@ -145,7 +145,7 @@ namespace binfilter {
 /*?*/   {
 /*?*/       // jetzt sollten wir mal die Pointer zerstoeren, bevor ein weiterer
 /*?*/       // aufruf kommt.
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearTblBoxCntnt();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/
 /*?*/   return 0 != pChkBox;

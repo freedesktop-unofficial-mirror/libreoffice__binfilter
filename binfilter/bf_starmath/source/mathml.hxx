@@ -45,12 +45,6 @@ namespace binfilter {
 class SvStorage;
 class SfxMedium;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace io {
-//STRIP008      class XInputStream;
-//STRIP008      class XOutputStream; }
-//STRIP008      namespace beans { XPropertySet; }
-//STRIP008 } } }
 
 
 class SmXMLWrapper

@@ -195,7 +195,7 @@ extern BOOL bIsOlk, bOderSo;
 /*?*/
 /*?*/       ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
 /*?*/       if (pDrawLayer)
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage( nTab );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete[] pColWidth;
@@ -221,7 +221,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/ {
 /*N*/   String aMd( "D\344umling", RTL_TEXTENCODING_MS_1252 );  // ANSI
 /*N*/   if( rNewName == aMd )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 bIsOlk = bOderSo = TRUE;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   aName = rNewName;
 /*N*/ }
 

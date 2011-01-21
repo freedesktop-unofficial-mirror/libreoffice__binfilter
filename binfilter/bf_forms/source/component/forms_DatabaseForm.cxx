@@ -126,7 +126,7 @@ using namespace ::com::sun::star::util;
 //--------------------------------------------------------------------------
 extern "C" void SAL_CALL createRegistryInfo_ODatabaseForm()
 {
-    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::ODatabaseForm > aAutoRegistration;//STRIP008     static ::frm::OMultiInstanceAutoRegistration< ::frm::ODatabaseForm > aAutoRegistration;
+    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::ODatabaseForm > aAutoRegistration;
 }
 
 //.........................................................................

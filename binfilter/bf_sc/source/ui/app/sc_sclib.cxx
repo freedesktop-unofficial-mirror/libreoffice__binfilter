@@ -271,7 +271,7 @@ SfxModule* ScModuleDummy::Load()
 
 BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
+    DBG_BF_ASSERT(0, "STRIP");
         return FALSE;
 }
 

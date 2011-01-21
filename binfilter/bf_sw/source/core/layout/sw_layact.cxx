@@ -212,7 +212,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pFly == pSelfFly || !rRect.IsOver( pFly->Frm() ) )
 /*N*/           continue;
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bPaint = FALSE;
@@ -1687,7 +1687,7 @@ namespace binfilter {
 /*N*/                   pRootFrm = pPage->FindRootFrm();
 /*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/                   pRootFrm->GetCurrShell() )
-/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1783,7 +1783,7 @@ namespace binfilter {
 // OD 31.10.2002 #104100#
 // NOTE: no adjustments for vertical layout support necessary
 /*N*/ BOOL CheckPos( SwFrm* /*pFrm*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -2128,7 +2128,7 @@ namespace binfilter {
 /*N*/           if ( bBrowse && !IsIdle() && !IsCalcLayout() && !IsComplete() &&
 /*N*/                pCntnt->Frm().Top() > pImp->GetShell()->VisArea().Bottom())
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const long nBottom = pImp->GetShell()->VisArea().Bottom();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           pCntnt = pCntnt->GetNextCntntFrm();
 /*N*/       }
@@ -2547,7 +2547,7 @@ namespace binfilter {
 /*?*/               bool bUnlock = FALSE;
 /*?*/               if ( pImp->GetRegion() || pImp->GetScrollRects() )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->DelRegions();
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               if ( bCrsrShell )
@@ -2558,7 +2558,7 @@ namespace binfilter {
 /*?*/ //                    pSh->EndAction();
 /*?*/               if( bUnlock )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bCrsrShell )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               pSh = (ViewShell*)pSh->GetNext();

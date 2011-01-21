@@ -141,7 +141,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   //! StopMarking an der (aktiven) View?
 /*N*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Window* pParent = GetDialogParent();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::IsEditable() const
@@ -153,7 +153,7 @@ namespace binfilter {
 
 /*N*/ void ScDocShell::DBAreaDeleted( USHORT /*nTab*/, USHORT /*nX1*/, USHORT /*nY1*/, USHORT /*nX2*/, USHORT /*nY2*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -176,7 +176,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ScDBData* pData = aDocument.GetDBAtArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/   if (!pData)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pData = lcl_GetDBNearCursor( aDocument.GetDBCollection(), nCol, nRow, nTab );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   BOOL bSelected = ( bForceMark || rMarked.aStart != rMarked.aEnd );
 /*N*/
@@ -312,7 +312,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if ( pUndoColl )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aDocument.CompileDBFormula( FALSE );      // CompileFormulaString
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           //  neuen Bereich am Sba anmelden nicht mehr noetig
@@ -444,11 +444,11 @@ namespace binfilter {
 /*N*/
 /*N*/       if (rParam.bReferenceData)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTabCount = aDocument.GetTableCount();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -510,7 +510,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if (nSrcTab <= MAXTAB)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aDocument.TestCopyScenario( nSrcTab, nTab ) )            // Zellschutz testen
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -527,26 +527,26 @@ namespace binfilter {
 /*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/ )
 /*N*/ {
 /*?*/   //  Undo
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aOldName;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ USHORT ScDocShell::MakeScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,
 /*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/,
 /*N*/                                   ScMarkData& /*rMark*/, BOOL /*bRecord*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 rMark.MarkToMulti();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::MoveTable( USHORT /*nSrcTab*/, USHORT /*nDestTab*/, BOOL /*bCopy*/, BOOL /*bRecord*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   return TRUE;
 /*N*/ }
 
 
 /*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 }

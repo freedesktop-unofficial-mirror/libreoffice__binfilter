@@ -35,7 +35,7 @@ namespace binfilter {
 class ScHintWindow : public Window
 {
 public:
-    ScHintWindow( Window* pParent, const String& rTit, const String& rMsg ):Window( pParent ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;//STRIP001            ScHintWindow( Window* pParent, const String& rTit, const String& rMsg );
+    ScHintWindow( Window* pParent, const String& rTit, const String& rMsg ):Window( pParent ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

@@ -87,7 +87,7 @@
 
 
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 /*N*/ GlobalEditData::GlobalEditData()
@@ -221,9 +221,9 @@ namespace binfilter {
 /*N*/   *(EditDLL**)GetAppData(BF_SHL_EDIT) = this;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   ByteString aResMgrName( "bf_svx" ); //STRIP005
+/*N*/   ByteString aResMgrName( "bf_svx" );
 /*N*/ #else
-/*N*/   ByteString aResMgrName( "bf_svl" ); //STRIP005
+/*N*/   ByteString aResMgrName( "bf_svl" );
 /*N*/ #endif
 /*N*/   pResMgr = ResMgr::CreateResMgr(
 /*N*/         aResMgrName.GetBuffer(), Application::GetSettings().GetUILocale() );

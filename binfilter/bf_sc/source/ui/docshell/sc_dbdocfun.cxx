@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/       BOOL bInserted = pDocColl->Insert( pNewData );
 /*N*/       if (!bInserted)                             // Fehler -> alten Zustand wiederherstellen
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pNewData;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pDoc->CompileDBFormula( FALSE );            // CompileFormulaString
 /*N*/
@@ -288,7 +288,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if (bRecord)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nDummy;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
@@ -329,7 +329,7 @@ namespace binfilter {
 /*N*/   ScSortParam aLocalParam( rSortParam );
 /*N*/   if ( bCopy )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, aLocalParam.nCol1,aLocalParam.nRow1,
@@ -376,7 +376,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       //  Referenzen ausserhalb des Bereichs werden nicht veraendert !
 /*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( bCopy )
@@ -520,7 +520,7 @@ namespace binfilter {
 /*N*/   USHORT nDestTab = nTab;
 /*N*/   if ( bCopy )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   //      ausfuehren
@@ -539,7 +539,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bRecord )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScRange* pOld = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   ScDocument* pAttribDoc = NULL;
@@ -794,15 +794,15 @@ namespace binfilter {
 /*N*/
 /*N*/       ScOutlineTable* pOut = pDoc->GetOutlineTable( nTab );
 /*N*/       if (pOut)
-/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOut->GetRowArray()->RemoveAll();        // nur Zeilen-Outlines loeschen
+/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/       if (rParam.bReplace)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->RemoveSubTotals( nTab, aNewParam );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       BOOL bSuccess = TRUE;
 /*N*/       if (bDo)
 /*N*/       {
 /*?*/           // Sortieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rParam.bDoSort || pForceNewSort )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       ScRange aDirtyRange( aNewParam.nCol1, aNewParam.nRow1, nTab,
 /*N*/           aNewParam.nCol2, aNewParam.nRow2, nTab );
@@ -810,7 +810,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if (bRecord)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if (!bSuccess)
@@ -926,7 +926,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewObj->WriteSourceDataTo( *pOldObj );       // copy source data
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/               pDestObj = pOldObj;
@@ -948,7 +948,7 @@ namespace binfilter {
 /*N*/               // #78541# create new database connection for "refresh"
 /*N*/               // (and re-read column entry collections)
 /*N*/               // so all changes take effect
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pNewObj == pOldObj && pDestObj->IsImportData() )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/       // else nothing (no old, no new)
@@ -956,7 +956,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bRecord && bDone )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxUndoAction* pAction = new ScUndoDataPilot( &rDocShell,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete pOldUndoDoc;     // if not used for undo

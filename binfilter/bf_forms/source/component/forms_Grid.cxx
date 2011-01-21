@@ -368,7 +368,7 @@ void OGridControlModel::removeSelectionChangeListener(const Reference< XSelectio
 Reference<XPropertySet> SAL_CALL OGridControlModel::createColumn(const ::rtl::OUString& ColumnType) throw ( :: com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
 {
     const Sequence< ::rtl::OUString >& rColumnTypes = frm::getColumnTypes();
-    return createColumn(::binfilter::internal::findPos(ColumnType, rColumnTypes));//STRIP008    return createColumn(::internal::findPos(ColumnType, rColumnTypes));
+    return createColumn(::binfilter::internal::findPos(ColumnType, rColumnTypes));
 }
 
 //------------------------------------------------------------------------------

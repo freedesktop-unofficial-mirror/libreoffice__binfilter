@@ -117,7 +117,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjGroupLinkUserData::~ImpSdrObjGroupLinkUserData()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pLink;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 
@@ -279,7 +279,7 @@ namespace binfilter {
 /*N*/   for (USHORT nNum=nAnz; nNum>0;) {
 /*N*/       nNum--;
 /*N*/       SdrObjUserData* pData=GetUserData(nNum);
-/*N*/       if (pData->GetInventor()==SdrInventor && pData->GetId()==SDRUSERDATA_OBJGROUPLINK) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (pData->GetInventor()==SdrInventor && pData->GetId()==SDRUSERDATA_OBJGROUPLINK) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -305,7 +305,7 @@ namespace binfilter {
 
 
 /*N*/ void SdrObjGroup::ImpLinkAnmeldung()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -316,7 +316,7 @@ namespace binfilter {
 /*N*/   SvxLinkManager* pLinkManager=pModel!=NULL ? pModel->GetLinkManager() : NULL;
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLinkManager->Remove( pData->pLink );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT
 /*N*/ }
@@ -458,7 +458,7 @@ namespace binfilter {
 /*?*/           pOutDev->DrawRect(aOutRect);
 /*N*/       }
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return bOk;
 /*N*/ }
@@ -545,7 +545,7 @@ namespace binfilter {
 /*N*/   long nDivY=aOld.Bottom()-aOld.Top();
 /*N*/   if (nDivX==0) { nMulX=1; nDivX=1; }
 /*N*/   if (nDivY==0) { nMulY=1; nDivY=1; }
-/*N*/   if (nMulX!=nDivX || nMulY!=nDivY) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nMulX!=nDivX || nMulY!=nDivY) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if (rRect.Left()!=aOld.Left() || rRect.Top()!=aOld.Top()) {
 /*N*/       NbcMove(Size(rRect.Left()-aOld.Left(),rRect.Top()-aOld.Top()));

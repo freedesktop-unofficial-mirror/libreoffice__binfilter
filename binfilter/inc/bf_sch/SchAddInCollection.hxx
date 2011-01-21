@@ -36,9 +36,6 @@ namespace rtl {
 
 namespace binfilter {
 
-//STRIP008 namespace rtl {
-//STRIP008  class OUString;
-//STRIP008 }
 
 class SchAddInCollection // : public
 {

@@ -1309,7 +1309,7 @@ namespace binfilter {
 // Wer weicht wem aus bzw. welcher Bereich ist "linker"/"rechter" als welcher?
 /*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient /*eRelO*/, SwRelationOrient /*eRelO2*/,
 /*N*/   BOOL /*bLeft*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwFlyAtCntFrm::MakeFlyPos()

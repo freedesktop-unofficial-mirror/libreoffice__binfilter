@@ -854,7 +854,7 @@ namespace binfilter {
 /*N*/       ScGlobal::GetRscString( STR_DB_NONAME );
 /*N*/
 /*N*/       for (USHORT i = 0; i < nCount; i++)
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (((ScDBData*)pItems[i])->IsDBAtCursor(nCol, nRow, nTab, bStartOnly))
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -864,7 +864,7 @@ namespace binfilter {
 /*N*/   ScDBData* pNoNameData = NULL;
 /*N*/   if (pItems)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const String& rNoName = ScGlobal::GetRscString( STR_DB_NONAME );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -936,7 +936,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT theCol1;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

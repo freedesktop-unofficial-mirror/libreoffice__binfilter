@@ -698,7 +698,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   xub_StrLen nOpenPos = sRet.Search('<', nOpenStart);
 /*N*/   if(nOpenPos != STRING_NOTFOUND && nOpenPos > 0)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern( sRet, 0, nOpenPos);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       nOpenStart = nClosePos;
@@ -707,7 +707,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   {
 /*N*/       if(nClosePos < nOpenPos - 1)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nOffset = lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, nOpenPos);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -719,7 +719,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   }
 /*N*/   //is there any text at the end?
 /*N*/   if(nClosePos != STRING_NOTFOUND && nClosePos < sRet.Len() - 1)
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_ConvertTextIntoPattern(sRet, nClosePos + 1, sRet.Len());
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if(eType != TOX_INDEX)
 /*N*/   {
 /*N*/       // set most left tab stop to right alignment and FillChar == '.'

@@ -42,7 +42,7 @@
 namespace binfilter {
 
 /*N*/ SdrHdl::~SdrHdl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -123,7 +123,7 @@ struct ImplHdlAndIndex
 /*N*/
 /*N*/       // propagate change to IAOs
 /*N*/       for(UINT32 i=0; i<GetHdlCount(); i++)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -132,7 +132,7 @@ struct ImplHdlAndIndex
 /*N*/ void SdrHdlList::Clear()
 /*N*/ {
 /*N*/   for (ULONG i=0; i<GetHdlCount(); i++)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   aList.Clear();
 /*N*/

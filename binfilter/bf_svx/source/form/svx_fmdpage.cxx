@@ -47,7 +47,7 @@ namespace binfilter {
 /*N*/   SvxDrawPage( pInPage )
 /*N*/ {
 /*N*/   DBG_CTOR(SvxFmDrawPage,NULL);
-    /*N*/   m_pHoldImplIdHelper = new ::binfilter::form::OImplementationIdsRef(); //STRIP008 m_pHoldImplIdHelper = new ::form::OImplementationIdsRef();
+    /*N*/   m_pHoldImplIdHelper = new ::binfilter::form::OImplementationIdsRef();
 /*N*/ }
 
 /*N*/ SvxFmDrawPage::~SvxFmDrawPage() throw ()
@@ -57,7 +57,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a;
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL SvxFmDrawPage::queryAggregation( const ::com::sun::star::uno::Type& aType ) throw(::com::sun::star::uno::RuntimeException)

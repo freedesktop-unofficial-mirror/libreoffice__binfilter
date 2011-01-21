@@ -975,7 +975,7 @@ uno::Sequence< OUString > SAL_CALL SvxShapeCircle::getSupportedServiceNames() th
 ***********************************************************************/
 }//namespace binfilter
 #include "svdopath.hxx"
-namespace binfilter {//STRIP009
+namespace binfilter {
 //----------------------------------------------------------------------
 SvxShapePolyPolygon::SvxShapePolyPolygon( SdrObject* pSdrObj , drawing::PolygonKind eNew )
  throw( ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException)
@@ -1230,7 +1230,7 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygon::getSupportedServiceNames
 }
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
 #include <com/sun/star/drawing/FlagSequence.hpp>
-namespace binfilter {//STRIP009
+namespace binfilter {
 //----------------------------------------------------------------------
 SvxShapePolyPolygonBezier::SvxShapePolyPolygonBezier( SdrObject* pSdrObj , drawing::PolygonKind eNew ) throw()
 :   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_POLYPOLYGONBEZIER) ),
@@ -1517,7 +1517,7 @@ uno::Sequence< OUString > SAL_CALL SvxShapePolyPolygonBezier::getSupportedServic
 #endif
 
 #include "toolkit/unohlp.hxx"
-namespace binfilter {//STRIP009
+namespace binfilter {
 //----------------------------------------------------------------------
 SvxGraphicObject::SvxGraphicObject( SdrObject* pSdrObj ) throw()
 :   SvxShapeText( pSdrObj, aSvxMapProvider.GetMap(SVXMAP_GRAPHICOBJECT) )

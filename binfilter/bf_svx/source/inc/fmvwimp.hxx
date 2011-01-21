@@ -61,10 +61,6 @@ class FmFormModel;
 class FmFormShell;
 class FmFormView;
 
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XWindow)
-//STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
-//STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 
 class FmXFormController;
 class FmXFormView;

@@ -80,7 +80,7 @@ namespace binfilter {
 /*N*/         if( nOffset < pFrmAtPos->GetOfst() &&
 /*N*/             !pFrmAtPos->IsFollow() )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             xub_StrLen nNew = nOffset;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/   while( pFrm != pFrmAtPos )
@@ -223,7 +223,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/         if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pFrm->SwitchLTRtoRTL( rOrig );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/
 /*N*/         bRet = sal_True;
@@ -235,7 +235,7 @@ namespace binfilter {
 /*N*/
 /*N*/         SwFrmSwapper aSwapper( pFrm, sal_True );
 /*N*/         if ( bVert )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             nMaxY = pFrm->SwitchVerticalToHorizontal( nMaxY );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/         sal_Bool bGoOn = sal_True;
 /*N*/       xub_StrLen nOffset = rPos.nContent.GetIndex();
@@ -255,7 +255,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/             if ( pFrm->IsRightToLeft() )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchLTRtoRTL( rOrig );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/             if ( bVert )
                     {DBG_BF_ASSERT(0, "STRIP");}
@@ -265,7 +265,7 @@ namespace binfilter {
 /*N*/                 pFrm->GetOfst() < nOffset &&
 /*N*/                 !pFrm->IsFollow() && !bNoScroll &&
 /*N*/                 pFrm->GetTxtNode()->GetTxt().Len() != nNextOfst )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               bGoOn = lcl_ChangeOffset( pFrm, nNextOfst );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           else
 /*N*/               bGoOn = sal_False;
 /*N*/       } while ( bGoOn );
@@ -275,7 +275,7 @@ namespace binfilter {
 /*N*/ #ifdef BIDI
 /*N*/             if ( pFrm->IsRightToLeft() )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                  if( pCMS->b2Lines && pCMS->p2Lines)
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/ #endif
 /*N*/
@@ -376,7 +376,7 @@ namespace binfilter {
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/   else
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
          return FALSE;
 /*N*/   }
 /*N*/ }
@@ -430,12 +430,12 @@ struct SwFillData
 /*N*/     Point aOldPoint( rPoint );
 /*N*/
 /*N*/     if ( IsVertical() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/     if ( IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SwitchRTLtoLTR( (Point&)rPoint );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/
 /*N*/     SwFillData *pFillData = ( pCMS && pCMS->pFill ) ?
@@ -518,7 +518,7 @@ struct SwFillData
 /*N*/       }
 /*N*/   }
 /*N*/     if( pFillData && FindPageFrm()->Frm().IsInside( aOldPoint ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/     if ( IsVertical() )

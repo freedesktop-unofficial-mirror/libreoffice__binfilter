@@ -3153,7 +3153,7 @@ namespace binfilter {
 /*N*/           //  show translated name of StarOne AddIns
 /*N*/           String aAddIn( t->GetExternal() );
 /*N*/           if ( pSymbolTable != pSymbolTableEnglish )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001   ScGlobal::GetAddInCollection()->LocalizeString( aAddIn );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           rBuffer.append(aAddIn);
 /*N*/       }
 /*N*/           break;

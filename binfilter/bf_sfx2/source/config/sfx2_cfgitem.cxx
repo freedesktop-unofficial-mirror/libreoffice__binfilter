@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/ }
 
 /*?*/ BOOL SfxConfigItem::ReInitialize()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 /*?*/ String SfxConfigItem::GetStreamName( USHORT /*nType*/ )

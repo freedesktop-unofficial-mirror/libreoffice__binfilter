@@ -99,7 +99,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 /*N*/ SdrModel* ChartModel::AllocModel() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************

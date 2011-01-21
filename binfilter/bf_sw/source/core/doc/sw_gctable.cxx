@@ -437,7 +437,7 @@ struct _GCLinePara
 /*N*/           const SfxPoolItem* pItem;
 /*N*/           if( SFX_ITEM_SET == pLn->GetFrmFmt()->GetItemState(
 /*N*/                                   RES_BACKGROUND, TRUE, &pItem ))
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           pBox->GetTabLines().Remove( 0, nLen );  // Lines aus Array loeschen

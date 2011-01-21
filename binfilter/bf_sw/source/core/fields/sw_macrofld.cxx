@@ -38,7 +38,7 @@
 #include <unofldmid.h>
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -54,7 +54,7 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwMacroFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType* pType = new SwMacroFieldType(pDoc);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*--------------------------------------------------------------------

@@ -265,7 +265,7 @@ namespace binfilter {
 /*N*/ }
 } //namespace binfilter
 /*N*/ #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ SvStream &operator<<( SvStream &rOs, const SwpHints &rHints ) //$ ostream
 /*N*/ {
 /*N*/   rOs << " {HINTS:";
@@ -329,7 +329,7 @@ namespace binfilter {//STRIP009
 } //namespace binfilter
 
 /*N*/ #if OSL_DEBUG_LEVEL < 2
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ static void Error()
 /*N*/ {
 /*N*/   // wegen PM und BCC
@@ -409,7 +409,7 @@ namespace binfilter {//STRIP009
 # include <stdlib.h>
 # include "swtypes.hxx"      // ZTCCONST
 # include "swfont.hxx"     // SwDropPortion
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ CONSTCHAR( pClose, "} " );
 
 /*************************************************************************

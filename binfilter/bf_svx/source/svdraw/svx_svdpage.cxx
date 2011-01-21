@@ -687,7 +687,7 @@ using namespace ::com::sun::star;
 /*N*/                       if( bPaintFlag )
 /*N*/                       {
 /*N*/                           if( pObj->IsNeedColorRestore() )
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                           }
 /*N*/                           else
 /*N*/                               bColorsDirty=TRUE; // andere aendern die Farben
@@ -1100,7 +1100,7 @@ using namespace ::com::sun::star;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPageGridFrameList::Clear()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

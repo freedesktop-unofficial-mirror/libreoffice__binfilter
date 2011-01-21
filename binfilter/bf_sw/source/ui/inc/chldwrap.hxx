@@ -41,7 +41,7 @@ class SwChildWinWrapper : public SfxChildWindow
 
     // Implementation in fldtdlg.cxx
 protected:
-    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwChildWinWrapper(Window *pParentWindow, USHORT nId);
+    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

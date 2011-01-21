@@ -89,7 +89,7 @@
 #include <i18npool/mslangid.hxx>
 
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 using ::rtl::OUString;
@@ -98,7 +98,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
 
-/*N*/ SV_DECL_VARARR_SORT( SortedPositions, sal_uInt32, 16, 8 )//STRIP008 ;
+/*N*/ SV_DECL_VARARR_SORT( SortedPositions, sal_uInt32, 16, 8 )
 /*N*/ SV_IMPL_VARARR_SORT( SortedPositions, sal_uInt32 );
 
 #define CH_HYPH     '-'
@@ -285,7 +285,7 @@ struct TabInfo
 /*N*/               ImpEditView* pImpView = pView->pImpEditView;
 /*N*/               if ( pImpView->DoAutoHeight() )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz( pImpView->GetOutputArea().GetWidth(), nCurTextHeight );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -377,7 +377,7 @@ struct TabInfo
 /*N*/
 /*N*/       for ( sal_uInt16 nView = 0; nView < aEditViews.Count(); nView++ )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = aEditViews[nView];
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -611,7 +611,7 @@ struct TabInfo
 /*N*/       long nTextLineHeight = 0;
 /*N*/       if ( GetTextRanger() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetTextRanger()->SetVertical( IsVertical() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Portion suchen, die nicht mehr in Zeile passt....
@@ -776,7 +776,7 @@ struct TabInfo
 /*N*/
 /*N*/                 // And now check for Compression:
 /*N*/                 if ( pPortion->GetLen() && GetAsianCompressionMode() )
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bCompressedChars |= ImplCalcAsianCompression( pNode, pPortion, nTmpPos, (long*)pLine->GetCharPosArray().GetData() + (nTmpPos-pLine->GetStart()), 10000, FALSE );
+/*?*/                 {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               nTmpWidth += pPortion->GetSize().Width();
 /*N*/
@@ -948,7 +948,7 @@ struct TabInfo
 /*N*/             if ( bCompressedChars && ( pPortion->GetLen() > 1 ) && pPortion->GetExtraInfos() && pPortion->GetExtraInfos()->bCompressed )
 /*N*/             {
 /*?*/                 // I need the manipulated DXArray for determining the break postion...
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImplCalcAsianCompression( pNode, pPortion, nPortionStart, (long*)pLine->GetCharPosArray().GetData() + (nPortionStart-pLine->GetStart()), 10000, TRUE );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/           ImpBreakLine( pParaPortion, pLine, pPortion, nPortionStart,
 /*N*/                                           nRemainingWidth, bCanHyphenate && bHyphenatePara );
@@ -1070,7 +1070,7 @@ struct TabInfo
 /*?*/             long nRemainingWidth = nMaxLineWidth - aTextSize.Width();
 /*?*/             if ( nRemainingWidth > 0 )
 /*?*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImplExpandCompressedPortions( pLine, pParaPortion, nRemainingWidth );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*N*/         }
 /*N*/
@@ -1719,7 +1719,7 @@ struct TabInfo
 /*N*/                  ( 0x629 == cCh || 0x62D == cCh || 0x62F == cCh ||
 /*N*/                    0x627 == cCh || 0x644 == cCh || 0x643 == cCh ) )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/
 /*N*/             // 5. Priority:
@@ -1734,7 +1734,7 @@ struct TabInfo
 /*?*/                 if ( 0x631 == cNextCh || 0x64A == cNextCh ||
 /*?*/                      0x649 == cNextCh )
 /*?*/                 {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // check if character is connectable to previous character,
+/*?*/                     DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*N*/             }
 /*N*/
@@ -1743,7 +1743,7 @@ struct TabInfo
 /*N*/             if ( nIdx && nIdx + 1 == aWord.Len() &&
 /*N*/                  0x60C <= cCh && 0x6FE >= cCh )
 /*N*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/
 /*N*/             // Do not consider Fathatan, Dammatan, Kasratan, Fatha,
@@ -1812,7 +1812,7 @@ struct TabInfo
 /*N*/         if ( pTextPortion->GetExtraInfos() && pTextPortion->GetExtraInfos()->bCompressed )
 /*N*/         {
 /*?*/             // We need the original size from the portion
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTxtPortionStart = pPortion->GetTextPortions().GetStartPos( nSplitPortion );
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/   }
 /*N*/   else
@@ -2529,7 +2529,7 @@ struct TabInfo
 /*?*/                                       {
 /*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
 /*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createBeginComment() );
+/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                                       }
 /*?*/                                   }
 /*?*/
@@ -2575,7 +2575,7 @@ struct TabInfo
 /*N*/                                   short nEsc = aTmpFont.GetEscapement();
 /*N*/                                   if ( nOrientation )
 /*N*/                                   {
-/*?*/                                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Bei Hoch/Tief selbst Hand anlegen:
+/*?*/                                       DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                   }
 /*N*/                                   // nur ausgeben, was im sichtbaren Bereich beginnt:
 /*N*/                                   // Wichtig, weil Bug bei einigen Grafikkarten bei transparentem Font, Ausgabe bei neg.
@@ -2609,7 +2609,7 @@ struct TabInfo
 /*?*/                                           }
 /*?*/                                           if ( bSpecialUnderline )
 /*?*/                                           {
-/*?*/                                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aSz = aTmpFont.GetPhysTxtSize( pOutDev, aText, nTextStart, nTextLen );
+/*?*/                                               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                                           }
 /*N*/                                       }
 /*N*/                                         Point aRealOutPos( aOutPos );
@@ -2666,7 +2666,7 @@ struct TabInfo
 /*?*/                                       {
 /*?*/                                           const SvxFieldData* pFieldData = pFieldItem->GetField();
 /*?*/                                           if( pFieldData )
-/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pMtf->AddAction( pFieldData->createEndComment() );
+/*?*/                                               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                                       }
 /*?*/                                   }
 /*?*/

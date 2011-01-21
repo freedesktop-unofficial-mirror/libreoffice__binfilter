@@ -44,7 +44,7 @@ class XMLPropertyHandlerFactory;
 class SvXMLImportPropertyMapper;
 class XMLPropStyleContext;
 
-SV_DECL_REF( SvXMLStylesContext ) //STRIP007;
+SV_DECL_REF( SvXMLStylesContext )
     // unfortunately, we can't put this into our namespace, as the macro expands to (amongst others) a forward
     // declaration of the class name, which then would be in the namespace, too
 

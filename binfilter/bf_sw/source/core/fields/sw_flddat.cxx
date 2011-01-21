@@ -58,7 +58,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SwFieldType* SwDateTimeFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldType *pTmp = new SwDateTimeFieldType(GetDoc());
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*--------------------------------------------------------------------

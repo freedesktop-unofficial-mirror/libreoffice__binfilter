@@ -62,9 +62,6 @@ class DropEvent;
 struct ChartSelectionInfo;
 class SfxStringListItem;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 class SwWrtShell: public SwFEShell
@@ -299,7 +296,7 @@ private:
  inline void SwWrtShell::ResetCursorStack()
  {
      if ( HasCrsrStack() )
-    {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _ResetCursorStack();
+    {DBG_BF_ASSERT(0, "STRIP"); }
  }
 
 inline void SwWrtShell::SelTblCells(const Link &rLink, BOOL bMark )

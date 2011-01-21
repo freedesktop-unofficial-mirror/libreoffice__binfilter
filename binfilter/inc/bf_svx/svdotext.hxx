@@ -255,7 +255,7 @@ public:
     bool IsTextEditActive() const { return pEdtOutl!=NULL; }
 
     /** returns true only if we are in edit mode and the user actually changed anything */
-    bool IsRealyEdited(){DBG_BF_ASSERT(0, "STRIP"); return false;}//STRIP001 bool IsRealyEdited() const;
+    bool IsRealyEdited(){DBG_BF_ASSERT(0, "STRIP"); return false;}
 
     void SetDisableAutoWidthOnDragging(bool bOn) { bDisableAutoWidthOnDragging=bOn; }
     bool IsDisableAutoWidthOnDragging() { return bDisableAutoWidthOnDragging; }

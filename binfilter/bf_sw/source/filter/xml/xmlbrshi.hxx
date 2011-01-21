@@ -34,7 +34,7 @@ namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {
     namespace io { class XOutputStream; }
 } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SvXMLImport;
 class SvXMLUnitConverter;
 class SvxBrushItem;

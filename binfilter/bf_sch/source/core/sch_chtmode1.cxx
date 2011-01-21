@@ -754,7 +754,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(pLogBook)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if(pLogBook->IsValid())
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 /*************************************************************************
@@ -1025,7 +1025,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           if ( nLines > MAXLEGENDLINES )
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   long nHeightOfRows = GetHeightOfnRows (rTextAttr, MAXLEGENDLINES);//war mal 2 statt MAX...#50395#
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/
 /*?*/           ULONG nLclParaCnt = pInOutliner->GetParagraphCount();
@@ -1047,7 +1047,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/           if(nActLines>nLines)
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nActLines=Min((ULONG)MAXLEGENDLINES,nActLines);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/       }

@@ -85,7 +85,7 @@
 #include <com/sun/star/sheet/XCellRangeReferrer.hpp>
 #include <com/sun/star/sheet/NamedRangeFlag.hpp>
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 //! not found in unonames.hxx
 #define SC_STANDARDFORMAT "StandardFormat"

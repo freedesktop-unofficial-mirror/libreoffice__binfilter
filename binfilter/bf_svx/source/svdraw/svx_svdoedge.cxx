@@ -76,7 +76,7 @@ namespace binfilter {
 /*N*/       if (bAutoVertex) {
 /*N*/           rGP=pObj->GetVertexGluePoint(nConId);
 /*N*/           bRet=TRUE;
-/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       } else {
 /*?*/           const SdrGluePointList* pGPL=pObj->GetGluePointList();
 /*N*/           if (pGPL!=NULL) {
@@ -1683,7 +1683,7 @@ je Objekt variiert von 0-3:
 
 
 /*N*/ void SdrEdgeObj::NbcSetPoint(const Point&, USHORT)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   // ToDo: Umconnekten fehlt noch
 /*N*/ }
 

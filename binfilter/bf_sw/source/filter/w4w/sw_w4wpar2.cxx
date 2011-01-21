@@ -103,12 +103,12 @@ namespace binfilter {
 #define DEFAULT_TAB_CELL_DISTANCE 42    // Default: 0.7 mm Abstand
 
 
-SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64)//STRIP008 ;
+SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64)
 SV_IMPL_PTRARR(    W4WTabBorders, UShortPtr        );
 
 typedef SwSelBoxes_SAR* SwSelBoxes_SARPtr;
 
-SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16)//STRIP008 ;
+SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16)
 SV_IMPL_PTRARR(    W4WMergeGroups, SwSelBoxes_SARPtr       );
 
 inline const SwNodeIndex & PtNd( const SwPaM * pPam )

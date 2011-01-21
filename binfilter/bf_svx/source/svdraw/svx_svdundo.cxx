@@ -177,7 +177,7 @@ namespace binfilter {
 /*N*/   if (pObj!=NULL && IsOwner())
 /*N*/   {
 /*N*/       // Attribute muessen wieder in den regulaeren Pool
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetOwner(FALSE);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/       // nun loeschen
 /*N*/   }

@@ -412,7 +412,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/       rOutliner.SetText(*pOutlinerParaObject);
 /*?*/       delete pOutlinerParaObject;
 /*?*/       pOutlinerParaObject=NULL;
-/*?*/       if (bScaleUnitChanged) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       if (bScaleUnitChanged) {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       SetOutlinerParaObject(rOutliner.CreateParaObject()); // #34494#
 /*?*/       pOutlinerParaObject->ClearPortionInfo();

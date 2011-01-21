@@ -204,7 +204,7 @@ public:
 
 
 typedef SwCollCondition* SwCollConditionPtr;
-SV_DECL_PTRARR_DEL( SwFmtCollConditions, SwCollConditionPtr, 0, 5 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwFmtCollConditions, SwCollConditionPtr, 0, 5 )
 
 class SwConditionTxtFmtColl : public SwTxtFmtColl
 {

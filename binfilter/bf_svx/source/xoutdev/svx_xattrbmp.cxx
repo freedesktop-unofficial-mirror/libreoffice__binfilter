@@ -469,7 +469,7 @@ namespace binfilter {
 /*?*/
 /*?*/           if( aBmp.GetSizePixel().Width() == 8 &&
 /*?*/               aBmp.GetSizePixel().Height() == 8 )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/               aXOBitmap.SetBitmapType( XBITMAP_IMPORT );
@@ -730,7 +730,7 @@ namespace binfilter {
 /*?*/           if(aInput.GetSizePixel().Width() == 8
 /*?*/               && aInput.GetSizePixel().Height() == 8
 /*?*/               && aInput.GetColorCount() == 2)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           return true;
 /*?*/       }

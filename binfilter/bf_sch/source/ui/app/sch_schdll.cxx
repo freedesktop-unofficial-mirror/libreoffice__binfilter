@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/       rDoc.PutAttr(rAttr);
 /*N*/
 /*N*/       if( pOut )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aSchChartDocShellRef->UpdateChart(pOut);
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       else
 /*N*/           rDoc.BuildChart(TRUE);
 /*N*/   }

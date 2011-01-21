@@ -116,7 +116,7 @@ const USHORT MAXFILTER =
 #endif
 #ifdef DEBUG_SH
 #endif
-    14;//STRIP001     21;
+    14;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"

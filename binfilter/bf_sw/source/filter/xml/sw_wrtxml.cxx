@@ -60,7 +60,7 @@
 #include <xmlexp.hxx>
 #include <statstr.hrc>
 #include <rtl/logfile.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;

@@ -31,7 +31,7 @@
 #endif
 
 #include "refreshtimer.hxx"
-#include <tools/debug.hxx>//STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 
 /*N*/ ScRefreshTimerProtector::ScRefreshTimerProtector( ScRefreshTimerControl * const * pp )
@@ -57,7 +57,7 @@ namespace binfilter {
 
 /*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG /*nSeconds*/ )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bActive = IsActive();
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 

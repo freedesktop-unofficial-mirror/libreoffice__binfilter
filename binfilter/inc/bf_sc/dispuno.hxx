@@ -49,7 +49,7 @@ class ScTabViewShell;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::frame::XStatusListener >* XStatusListenerPtr;
-SV_DECL_PTRARR_DEL( XStatusListenerArr_Impl, XStatusListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XStatusListenerArr_Impl, XStatusListenerPtr, 4, 4 )
 
 
 class ScDispatchProviderInterceptor : public cppu::WeakImplHelper2<

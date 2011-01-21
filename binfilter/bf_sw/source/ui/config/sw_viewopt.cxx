@@ -294,7 +294,7 @@ static const char aPostItStr[] = "  ";
 /*N*/ {
 /*N*/   USHORT nRet = 0;
 /*N*/   if(!pShell || PTR_CAST(SwWebDocShell, pShell))
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
@@ -366,7 +366,7 @@ static const char aPostItStr[] = "  ";
 
  ---------------------------------------------------------------------------*/
 /*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 nFlag, BOOL bSet, BOOL bSaveInConfig )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 /* -----------------------------24.04.2002 10:42------------------------------
 

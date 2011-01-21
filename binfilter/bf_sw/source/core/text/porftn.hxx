@@ -78,7 +78,7 @@ public:
 class SwQuoVadisPortion : public SwFldPortion
 {
 public:
-    SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001             SwQuoVadisPortion( const XubString &rExp, const XubString& rStr );
+    SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     // Felder-Cloner fuer SplitGlue
 
@@ -93,7 +93,7 @@ public:
 class SwErgoSumPortion : public SwFldPortion
 {
 public:
-SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           SwErgoSumPortion( const XubString &rExp, const XubString& rStr );
+SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
     OUTPUT_OPERATOR
 };
 

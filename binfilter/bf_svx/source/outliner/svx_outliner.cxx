@@ -115,7 +115,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bPasting || pEditEngine->IsInUndo() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Paragraph* pPara = new Paragraph( 0xffff );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -619,7 +619,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");//STRIP001 aStdFont = pEditEngine->GetStandardFont( nPara );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   Font aBulletFont;
@@ -668,7 +668,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( ImplHasBullet( nPara ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -937,7 +937,7 @@ namespace binfilter {
 /*N*/           nBulletWidth = aBulletSize.Width();
 /*N*/
 /*N*/       if ( bAdjust && !bOutlineMode )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/
 /*N*/       // Vertikal:
@@ -983,7 +983,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/     if ( bReturnPaperPos )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aBulletSize( aBulletArea.GetSize() );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/   return aBulletArea;
 /*N*/ }
@@ -1067,27 +1067,27 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return 0;
 /*N*/ }
 
@@ -1213,7 +1213,7 @@ namespace binfilter {
 
 
 /*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, EMPTYARG )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return 0;
 /*N*/ }
 

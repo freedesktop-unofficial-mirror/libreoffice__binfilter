@@ -28,12 +28,6 @@
 #ifndef SCH_CHART_AXIS_HXX
 #define SCH_CHART_AXIS_HXX
 
-//STRIP008 class ChartModel;
-//STRIP008 class SdrObject;
-//STRIP008 class SdrObjList;
-//STRIP008 class XPolygon;
-//STRIP008 class SdrRectObj;
-//STRIP008 class SchAxisObj;
 
 #include <bf_svx/chrtitem.hxx>
 #include <tools/gen.hxx>

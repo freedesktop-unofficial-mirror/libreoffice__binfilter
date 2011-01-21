@@ -195,7 +195,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   Collection::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001  return new Collection(*this);
+        DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -293,7 +293,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   StrCollection::Clone() const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new StrCollection(*this);
+            DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------

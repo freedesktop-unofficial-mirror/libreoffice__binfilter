@@ -177,7 +177,7 @@ using namespace ::com::sun::star;
 /*N*/   String sRet;
 /*N*/   if( bName )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTypeId = GetTypeId();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       sRet = Expand();

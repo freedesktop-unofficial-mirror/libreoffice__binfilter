@@ -201,7 +201,7 @@ void DelHFFormat( SwClient *pToRemove, SwFrmFmt *pFmt )
                         {
                             if( aIter()->ISA( SwCrsrShell ) )
                             {
-                                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwCrsrShell*)aIter())->ParkCrsr( aIdx );
+                                DBG_BF_ASSERT(0, "STRIP");
                             }
                         } while ( aIter++ );
                     }

@@ -93,7 +93,7 @@ namespace binfilter {
 ******************************************************************************/
 
 /*N*/ void ViewShell::Scroll()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /******************************************************************************
@@ -138,7 +138,7 @@ namespace binfilter {
 /*N*/   aRect.Pos().Y() -= nOffs;
 /*N*/   if( aRect.IsOver( pSh->VisArea() ) )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ASSERT( pSh->GetWin(), "Scrolling without outputdevice" );
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       AddPaintRect( rRect );
@@ -196,7 +196,7 @@ namespace binfilter {
 
 /*N*/ IMPL_LINK( SwViewImp, RefreshScrolledHdl, Timer *, EMPTYARG )
 /*N*/ {
-        {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    DBG_PROFSTART( RefreshTimer );
+        {DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*N*/ }
 
 /******************************************************************************

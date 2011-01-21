@@ -44,12 +44,6 @@ namespace lang {
 }}}}
 namespace binfilter {
 
-//STRIP008 namespace com {
-//STRIP008 namespace sun {
-//STRIP008 namespace star {
-//STRIP008 namespace lang {
-//STRIP008  class XMultiServiceFactory;
-//STRIP008 }}}}
 
 struct ForbiddenCharactersInfo
 {

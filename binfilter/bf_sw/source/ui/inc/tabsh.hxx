@@ -40,9 +40,9 @@ public:
     void    GetState(SfxItemSet &);
     void    GetFrmBorderState(SfxItemSet &rSet);
     void    GetLineStyleState(SfxItemSet &rSet);
-    void    ExecTableStyle(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecTableStyle(SfxRequest& rReq);
+    void    ExecTableStyle(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    void    ExecNumberFormat(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecNumberFormat(SfxRequest& rReq);
+    void    ExecNumberFormat(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
 
             SwTableShell(SwView &rView);
 };

@@ -315,7 +315,7 @@ namespace binfilter {
 /*N*/               // Der erste Punkt des Polygons liegt innerhalb der Zeile.
 /*N*/               if( nLast )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bMultiple || !nAct )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -371,9 +371,9 @@ namespace binfilter {
 /*N*/                       if( !nNext )
 /*N*/                           NotePoint( A(rNext) );
 /*N*/                       else if( nNext & 1 )
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), nLower-B(rNext), nLowDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), B(rNext)-nUpper, nUpDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/                   nLast = nNext;
 /*N*/                   if( ++nIdx == nCount && !IsClosed() )

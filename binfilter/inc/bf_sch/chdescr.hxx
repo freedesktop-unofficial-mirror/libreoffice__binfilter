@@ -29,9 +29,6 @@
 #ifndef _SCH_CHTDESCR_HXX_
 #define _SCH_CHTDESCR_HXX_
 
-//STRIP008 class SdrObjList;
-//STRIP008 class SchObjGroup;
-//STRIP008 class ChartAxis;
 
 #include <bf_svx/svdobj.hxx>
 

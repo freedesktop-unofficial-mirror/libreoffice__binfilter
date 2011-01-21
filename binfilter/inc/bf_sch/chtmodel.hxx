@@ -36,10 +36,6 @@
 // Bei Umstellungen alle Files nach SIG_CHARTMODELDEFSCHDOC durchsuchen
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
-//STRIP008 class SdrObjGroup;
-//STRIP008 class SdrRectObj;
-//STRIP008
-//STRIP008 class SchModelData;
 
 #include <bf_svx/polygn3d.hxx>
 #include <bf_svx/extrud3d.hxx>

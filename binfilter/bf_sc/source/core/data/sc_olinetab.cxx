@@ -479,7 +479,7 @@ namespace binfilter {
 /*?*/               BOOL bToggle = ( bShow != bAllHidden );
 /*?*/               if ( bToggle )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEntry->SetHidden( !bShow );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }

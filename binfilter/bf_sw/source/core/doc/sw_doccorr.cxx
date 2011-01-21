@@ -153,7 +153,7 @@ namespace binfilter {
 /*N*/       register SwBookmarks& rBkmks = *pBookmarkTbl;
 /*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   { // dann die Redlines korrigieren
@@ -161,7 +161,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*?*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrAbs1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -342,7 +342,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -409,7 +409,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -453,7 +453,7 @@ namespace binfilter {
 /*N*/               pBkmk->pPos2->nNode.GetNode().FindTableBoxStartNode() !=
 /*N*/               pBkmk->pPos1->nNode.GetNode().FindTableBoxStartNode() )
 /*N*/           {
-/*N*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( 1 == bChgd )
+/*N*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -462,7 +462,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*N*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrRel1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/

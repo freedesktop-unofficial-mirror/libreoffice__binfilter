@@ -470,7 +470,7 @@ namespace binfilter {
 /*N*/       if (bColByName) nArrX = pDestCols[nArrX];
 /*N*/       if (nArrX != SC_CONS_NOTFOUND)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (nRow=nRow1; nRow<=nRow2; nRow++)
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -550,7 +550,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if (nNeeded)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDestDoc->InsertRow( 0,nTab, MAXCOL,nTab, nRow+nArrY, nNeeded );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }

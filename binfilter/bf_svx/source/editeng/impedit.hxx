@@ -54,8 +54,8 @@ class SvtCTLOptions;
 class SvKeyValueIterator;
 class SvUShorts;
 
-DBG_NAMEEX( EditView )//STRIP008
-DBG_NAMEEX( EditEngine )//STRIP008
+DBG_NAMEEX( EditView )
+DBG_NAMEEX( EditEngine )
 
 #define PIMPEE      pImpEditView->pEditEngine->pImpEditEngine
 
@@ -76,7 +76,7 @@ DBG_NAMEEX( EditEngine )//STRIP008
 #define LINE_SEP    0x0A
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;    // IMPL is in outliner.cxx, move to EE later and share declaration, or use BlockNotifications from EE directly
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )
 
 
 class EditView;
@@ -237,7 +237,7 @@ public:
 //  ----------------------------------------------------------------------
 
 typedef EditView* EditViewPtr;
-SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 )//STRIP008 ;
+SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 )
 
 class ImpEditEngine : public SfxListener
 {

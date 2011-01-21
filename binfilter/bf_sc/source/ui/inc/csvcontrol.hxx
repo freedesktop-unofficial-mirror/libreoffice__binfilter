@@ -45,7 +45,7 @@ class ScAccessibleCsvControl;
 namespace com { namespace sun { namespace star { namespace accessibility {
     class XAccessible;
 } } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 // ============================================================================
 

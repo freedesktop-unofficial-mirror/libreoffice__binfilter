@@ -315,7 +315,7 @@ namespace binfilter {
 /*?*/             // we center the portion in its surrounding line
 /*?*/             nOfst = ( pCurr->Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/         else
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     }
 /*N*/     else
 /*N*/     {

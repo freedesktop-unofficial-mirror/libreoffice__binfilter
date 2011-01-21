@@ -57,7 +57,7 @@ namespace com { namespace sun { namespace star {
         class XResultSet;
     }
 } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 // ---------------------------------------------------------------------------
 
 class ScDBDocFunc

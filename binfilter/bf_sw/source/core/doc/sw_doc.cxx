@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -218,7 +218,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( rPos );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -241,7 +241,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pPos->nNode, aTmp.GetCntnt(),
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -489,7 +489,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
     // OS 25.06.96: ab jetzt wird immer die Anzahl der Referenzen returnt
 /*N*/ USHORT SwDoc::GetRefMarks( SvStringsDtor* /*pNames*/ ) const
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    const SfxPoolItem* pItem;
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ void SwDoc::SetModified()
@@ -528,7 +528,7 @@ void SwDoc::SetGlobalMacro( USHORT nEvent, const SvxMacro& rMacro )
 /*N*/                   const String& /*rFltName*/, const Graphic* /*pGraphic*/,
 /*N*/                   const BfGraphicObject* /*pGrafObj*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwGrfNode *pGrfNd;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------

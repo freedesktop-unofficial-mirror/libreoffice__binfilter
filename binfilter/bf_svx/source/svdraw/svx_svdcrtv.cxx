@@ -52,7 +52,7 @@ namespace binfilter {
 
 /*N*/ void ImpSdrConnectMarker::SetTargetObject(const SdrObject* pObj)
 /*N*/ {
-/*N*/   if (pAktObj!=pObj) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktObj!=pObj) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -134,7 +134,7 @@ namespace binfilter {
 /*N*/ void SdrCreateView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrDragView::ToggleShownXor(pOut,pRegion);
-/*N*/   if (pAktCreate!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktCreate!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -149,7 +149,7 @@ namespace binfilter {
 /*?*/       if (nAktInvent==SdrInventor && nAktIdent==OBJ_EDGE) return FALSE;
 /*N*/   }
 /*N*/   if (!IsCreateMode() || nAktInvent!=SdrInventor || nAktIdent!=OBJ_EDGE || pCurrentLibObj!=NULL) {
-/*?*/       if (pConnectMarker->IsVisible()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pConnectMarker->Hide();
+/*?*/       if (pConnectMarker->IsVisible()) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       pConnectMarker->SetTargetObject(NULL);
 /*N*/       return FALSE;
 /*N*/   } else {
@@ -219,7 +219,7 @@ namespace binfilter {
 
 /*N*/ void SdrCreateView::BrkCreateObj()
 /*N*/ {
-/*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pAktCreate!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

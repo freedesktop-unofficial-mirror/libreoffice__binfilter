@@ -102,11 +102,11 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void EditUndoInsertChars::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoInsertChars::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
@@ -155,11 +155,11 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void EditUndoInsertFeature::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoInsertFeature::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoInsertFeature::Repeat()
@@ -195,11 +195,11 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void EditUndoSetStyleSheet::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoSetStyleSheet::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoSetStyleSheet::Repeat()
@@ -223,11 +223,11 @@ DBG_NAME( EditUndo )
 /*N*/ }
 
 /*N*/ void EditUndoSetParaAttribs::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoSetParaAttribs::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditUndoSetParaAttribs::Repeat()

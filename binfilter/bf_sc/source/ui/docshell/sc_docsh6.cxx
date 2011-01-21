@@ -177,7 +177,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if (aDocument.IsEmbedded())
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTripel aOldStart,aOldEnd;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -197,7 +197,7 @@ namespace binfilter {
 
 /*N*/ void lcl_AdjustPool( SfxStyleSheetBasePool* /*pStylePool*/ )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pStylePool->SetSearchMask(SFX_STYLE_FAMILY_PAGE, 0xffff);
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -285,7 +285,7 @@ namespace binfilter {
 /*?*/       ::binfilter::SvBaseLink* pBase = *pLinkManager->GetLinks()[i];
 /*?*/       if (pBase->ISA(ScTableLink))
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScTableLink* pTabLink = (ScTableLink*)pBase;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/

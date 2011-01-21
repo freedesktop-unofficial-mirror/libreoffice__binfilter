@@ -64,7 +64,7 @@ extern SmFormat *pActiveFormat;
 class SmDocShell;
 
 class SmNode;
-DECLARE_DYNARRAY(SmNodeArray, SmNode *)//STRIP008 ;
+DECLARE_DYNARRAY(SmNodeArray, SmNode *)
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -176,7 +176,7 @@ public:
 
 class SmStructureNode;
 
-DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *)//STRIP008 ;
+DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *)
 
 class SmStructureNode : public SmNode
 {

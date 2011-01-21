@@ -91,7 +91,7 @@ namespace binfilter {
 /*M*/               // alle FIX-Date/Time Felder auf akt. setzen
 /*M*/               if( pWrtSh )
 /*M*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pWrtSh->SetFixFields();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*M*/               }
 /*M*/               break;
 /*M*/           }
@@ -101,7 +101,7 @@ namespace binfilter {
 /*M*/   {
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().GetItemState(SID_ATTR_PATHNAME))
 /*M*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::GetGlossaries()->UpdateGlosPath( sal_False );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().
@@ -113,7 +113,7 @@ namespace binfilter {
 /*M*/         ULONG nHintId = ((SfxSimpleHint&)rHint).GetId();
 /*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
-/*M*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else if( SFX_HINT_CTL_SETTINGS_CHANGED == nHintId )
 /*N*/         {

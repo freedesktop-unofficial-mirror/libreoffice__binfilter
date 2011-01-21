@@ -42,7 +42,7 @@ class ScPageBreakShell : public SfxShell
 public:
     SFX_DECL_INTERFACE(SCID_PAGEBREAK_SHELL);
 
-    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakShell( ScTabViewShell* pView );
+    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

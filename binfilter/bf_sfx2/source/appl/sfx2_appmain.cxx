@@ -110,7 +110,7 @@ static SfxItemInfo const aItemInfos[] =
 //===================================================================
 
 typedef Link* LinkPtr;
-SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)
 
 /*N*/ TYPEINIT1(SfxSysChangeHint, SfxHint);
 /*N*/ TYPEINIT2(SfxApplication,SfxShell,SfxBroadcaster);

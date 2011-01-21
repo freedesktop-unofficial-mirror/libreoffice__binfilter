@@ -116,7 +116,7 @@ public:
 /*?*/
 /*?*/   if(FLY_IN_CNTNT == rAnchor.GetAnchorId())
 /*?*/       return;
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*M*/ }
 
 /*************************************************************************
@@ -222,14 +222,14 @@ public:
 /*N*/   sal_Bool bColorWasSaved(sal_False);
 /*N*/
 /*N*/   if(pView)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // call parent
 /*N*/   FmFormView::ModelHasChanged();
 /*N*/
 /*N*/   if(bColorWasSaved)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

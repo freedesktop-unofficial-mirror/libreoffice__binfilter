@@ -95,7 +95,7 @@ namespace binfilter {
 /*N*/               break;
 /*N*/
 /*N*/           case SCH_LIGHTFACTOR_ID:
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pObjFactory->pNewData = new SchLightFactor;
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/               DBG_ERROR("SCH_LIGHTFACTOR_ID no longer available");
 /*?*/               break;
 /*N*/

@@ -52,11 +52,6 @@ namespace binfilter {
 class RedlineInfo;
 class SwRedlineData;
 class SwDoc;
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace text { class XTextCursor; }
-//STRIP008  namespace text { class XTextRange; }
-//STRIP008  namespace frame { class XModel; }
-//STRIP008 } } }
 
 
 typedef ::std::map< ::rtl::OUString, RedlineInfo* > RedlineMapType;

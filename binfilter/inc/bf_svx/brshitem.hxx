@@ -46,14 +46,6 @@ class BfGraphicObject;
 
 class SfxObjectShell;
 class CntWallpaperItem;
-//STRIP008 #ifdef _USE_NAMESPACE
-//STRIP008 namespace rtl
-//STRIP008 {
-//STRIP008 #endif
-//STRIP008  class OUString;
-//STRIP008 #ifdef _USE_NAMESPACE
-//STRIP008 }
-//STRIP008 #endif
 
 #define BRUSH_GRAPHIC_VERSION   ((USHORT)0x0001)
 

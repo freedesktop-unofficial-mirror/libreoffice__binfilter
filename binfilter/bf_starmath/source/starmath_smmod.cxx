@@ -41,7 +41,7 @@
 
 #include "config.hxx"
 #include "starmath.hrc"
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ TYPEINIT1( SmModuleDummy, SfxModule );
 /*N*/ TYPEINIT1( SmModule, SmModuleDummy );
 
@@ -180,7 +180,7 @@ namespace binfilter {//STRIP009
 /*N*/ }
 
 /*N*/ SmModule::SmModule(SvFactory* pObjFact) :
-/*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),   //STRIP005
+/*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),
 /*N*/     pColorConfig( 0 ),
 /*N*/     pConfig( 0 ),
 /*N*/     pLocSymbolData( 0 ),

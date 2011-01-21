@@ -73,7 +73,7 @@ using namespace ::com::sun::star;
 
 
 /*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -370,7 +370,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if (pItemBrowser!=NULL) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   delete pItemBrowser;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
@@ -448,11 +448,11 @@ using namespace ::com::sun::star;
 
 
 /*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* /*pObj*/ )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ }
 
 /*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -480,7 +480,7 @@ using namespace ::com::sun::star;
 /*?*/       pPV->ModelHasChanged();
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/ }
 
@@ -540,7 +540,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* /*pOut*/, const Region* /*pRegion*/) const
 /*N*/ {
-/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
@@ -553,7 +553,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::BrkEncirclement()
 /*N*/ {
-/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -623,7 +623,7 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::ClearAll()
 /*N*/ {
 /*N*/   for( void* p = aAsyncPaintList.First(); p; p = aAsyncPaintList.Next() )
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete (ImpAsyncStruct*) p;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   aAsyncPaintList.Clear();
 /*N*/   ClearPageViews();
@@ -639,7 +639,7 @@ using namespace ::com::sun::star;
 /*N*/       if (!bPageTwice) pTmpPV=GetPageView(pPage); // Evtl. jede Seite nur einmal!
 /*N*/       if (pTmpPV==NULL) {
 /*N*/           USHORT nPos=GetHiddenPV(pPage);   // War die schon mal da?
-/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           } else {
 /*N*/               pPV=new SdrPageView(pPage,rOffs,*((SdrView*)this));
 /*N*/           }
@@ -720,7 +720,7 @@ using namespace ::com::sun::star;
 /*?*/       GetPageViewPvNum(i)->AddWin(pWin1);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/ }
 
@@ -734,18 +734,18 @@ using namespace ::com::sun::star;
 /*N*/       aWinList.Delete(nPos);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/ }
 
 /*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPaintView::InitRedraw(OutputDevice*, const Region&, USHORT)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrPaintView::GlueInvalidate() const
@@ -849,7 +849,7 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*N*/   }
 #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 #endif
 /*N*/ }
 

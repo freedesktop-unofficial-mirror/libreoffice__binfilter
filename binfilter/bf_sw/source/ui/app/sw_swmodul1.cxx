@@ -93,7 +93,7 @@ using namespace ::com::sun::star::lang;
 
 /*M*/ void SwModule::ApplyUsrPref(const SwViewOption& /*rUsrPref*/, SwView* /*pActView*/,
 /*M*/                           sal_uInt16 /*nDest*/ )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/ {DBG_BF_ASSERT(0, "STRIP");
 /*M*/ }
 /*-----------------05.02.97 08.03-------------------
 
@@ -119,7 +119,7 @@ using namespace ::com::sun::star::lang;
 
 /*N*/ sal_uInt16 SwModule::GetRedlineAuthor()
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  if (!bAuthorInitialised)
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*--------------------------------------------------------------------

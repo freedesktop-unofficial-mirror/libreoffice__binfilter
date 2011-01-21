@@ -188,17 +188,17 @@ namespace binfilter {
 /*?*/               if( pMtf && !bPrinter )
 /*?*/               {
 /*?*/                   if( !pOut->GetPDFWriter() && XIMP_bDrawRasterOps )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/               else if( bRect || bPrinter )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               pOut->Pop();

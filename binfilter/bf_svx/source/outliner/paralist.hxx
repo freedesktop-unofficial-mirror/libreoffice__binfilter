@@ -29,7 +29,6 @@
 #ifndef _PARALIST_HXX
 #define _PARALIST_HXX
 
-//STRIP008 class Paragraph;
 
 #include <tools/list.hxx>
 

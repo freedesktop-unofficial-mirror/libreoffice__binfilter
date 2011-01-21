@@ -70,7 +70,7 @@ struct _FindItem
 
 /*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& /*rpBkmk*/, void* /*pArgs*/ )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
@@ -146,7 +146,7 @@ struct _FindItem
 /*N*/                                               lcl_FindBookmark, &aPara );
 /*N*/       if( aPara.pBkmk && aPara.pBkmk->GetOtherPos() )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // gefunden, also Hotlink einrichten
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // sollten wir schon einer sein?
 /*N*/       }
 /*N*/
@@ -170,7 +170,7 @@ struct _FindItem
 /*N*/                                               lcl_FindTable, &aPara );
 /*N*/       if( aPara.pTblNd )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // gefunden, also Hotlink einrichten
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // sollten wir schon einer sein?
 /*?*/       }
 /*?*/       // bis hierhin, also nicht vorhanden
@@ -203,7 +203,7 @@ struct _FindItem
 /*N*/   // sondern auch Rahmen(Text!), Tabellen, Gliederungen:
 /*N*/   if( STRING_NOTFOUND != nPos )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bWeiter = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // alte "Mechanik"

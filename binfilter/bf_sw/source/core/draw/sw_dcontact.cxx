@@ -1140,7 +1140,7 @@ const Point SwDrawVirtObj::GetOffset() const
 
 void SwDrawVirtObj::operator=( const SdrObject& /*rObj*/ )
 {
-DBG_BF_ASSERT(0, "STRIP");//STRIP001
+DBG_BF_ASSERT(0, "STRIP");
 }
 
 SdrObject* SwDrawVirtObj::Clone() const
@@ -1318,11 +1318,11 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
 }
 
 SdrHdl* SwDrawVirtObj::GetHdl(USHORT /*nHdlNum*/) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");return NULL;
 }
 
 SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& /*rHdl*/, USHORT /*nPlNum*/) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");return NULL;
 }
 
 void SwDrawVirtObj::NbcMove(const Size& rSiz)
@@ -1386,7 +1386,7 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
 }
 
 void SwDrawVirtObj::Mirror(const Point& /*rRef1*/, const Point& /*rRef2*/)
-{DBG_BF_ASSERT(0, "STRIP");//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");
 }
 
 void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, bool bVShear)
@@ -1459,7 +1459,7 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
 }
 
 Point SwDrawVirtObj::GetSnapPoint(USHORT /*i*/) const
-{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;
 }
 
 const Point& SwDrawVirtObj::GetPoint(USHORT i) const

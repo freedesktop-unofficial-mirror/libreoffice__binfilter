@@ -95,7 +95,7 @@ sal_Bool bInitFont = sal_True;
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/         if ( IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             SwitchLTRtoRTL( aRet );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/   }
 /*N*/   ResetRepaint();

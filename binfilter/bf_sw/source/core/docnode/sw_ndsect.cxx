@@ -99,7 +99,7 @@ namespace binfilter {
 /*N*/   // koennen wir zur Zeit nicht !!!!
 /*N*/   if( rNew.IsHidden() && rRange.HasMark() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SwSectionFmt* pFmt = MakeSectionFmt( 0 );
@@ -200,14 +200,14 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pNewSectNode->EndOfSectionNode(), *pNewSectNode, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // ist eine Condition gesetzt
 /*N*/   if( rNew.IsHidden() && rNew.GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bUpdateFtn = FALSE;
@@ -477,7 +477,7 @@ namespace binfilter {
 /*N*/       if( rSect.IsHidden() && 0 != (pIdx = pFmt->GetCntnt().GetCntntIdx() )
 /*N*/           && 0 != (pSectNd = pIdx->GetNode().GetSectionNode() ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rSect,
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -516,7 +516,7 @@ namespace binfilter {
 /*N*/   if( pSection->IsHidden() && pSection->GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdate )

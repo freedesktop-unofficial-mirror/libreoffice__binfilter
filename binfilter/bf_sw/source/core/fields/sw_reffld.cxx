@@ -66,9 +66,9 @@
 #include <SwStyleNameMapper.hxx>
 #include <poolfmt.hxx>
 #include <poolfmt.hrc>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::lang;
@@ -592,7 +592,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR1:
 /*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 OUString sTmp;
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*?*/     }
 /*?*/     break;
 /*?*/   case FIELD_PROP_PAR3:
@@ -641,7 +641,7 @@ String SwGetRefField::GetPar2() const
 /*?*/                 break;
 /*N*/             }
 /*N*/             if( nResId != USHRT_MAX )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetPar1(SW_RESSTR( nResId ));
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/         }
 /*N*/     }
 /*N*/ }
@@ -657,7 +657,7 @@ String SwGetRefField::GetPar2() const
 
 /*N*/ SwFieldType* SwGetRefFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGetRefFieldType( pDoc );
+DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 
@@ -806,7 +806,7 @@ DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGet
 /*?*/       // dann gibt es im DestDoc RefFelder, also muessen im SourceDoc
 /*?*/       // alle RefFelder auf einduetige Ids in beiden Docs umgestellt
 /*?*/       // werden.
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _RefIdsMap aFntMap( aEmptyStr );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

@@ -408,7 +408,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // fuer ein bereits "lebendes" Model die Attribute von einem Pool in den anderen schieben
 /*N*/       if(pOldModel)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Jedes Objekt bekommt initial den DefaultStyleSheet

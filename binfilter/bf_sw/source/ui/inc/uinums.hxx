@@ -46,12 +46,12 @@ namespace binfilter {
 /********************************************************************
 
 ********************************************************************/
-class SwChapterNumRules //STRIP001 : public SwBaseNumRules
+class SwChapterNumRules
 {
 
 public:
-    SwChapterNumRules(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwChapterNumRules();
-    virtual ~SwChapterNumRules(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual ~SwChapterNumRules();
+    SwChapterNumRules(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual ~SwChapterNumRules(){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 

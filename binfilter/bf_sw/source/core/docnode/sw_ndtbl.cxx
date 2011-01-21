@@ -397,7 +397,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           SwTableBoxFmt *pBoxF(0);
 /*N*/           if( pTAFmt )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BYTE nId = !n ? 0 : (( n+1 == nRows )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else if( bDfltBorders )
 /*N*/           {
@@ -436,7 +436,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pTblNd->EndOfSectionNode(), *pTblNd, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -534,7 +534,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& /*rBoxes*/, sal_Bool /*bVert*/, USHORT /*nCnt*/,
 /*N*/                       sal_Bool /*bSameHeight*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -613,7 +613,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           if ( !pFrm->IsFollow() )
 /*N*/           {
 /*N*/               while ( pFrm->HasFollow() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrm->JoinAndDelFollows();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               pFrm->Cut();
 /*N*/               delete pFrm;
 /*N*/               bAgain = TRUE;
@@ -626,7 +626,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*N*/ void SwTableNode::SetNewTable( SwTable* /*pNewTable*/, BOOL /*bNewFrames*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
     // setze das TabelleAttribut Undo auf:

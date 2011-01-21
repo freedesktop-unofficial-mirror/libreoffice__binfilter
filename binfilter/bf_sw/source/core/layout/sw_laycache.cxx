@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/         }
 /*N*/       default:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aIo.SkipRec();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/       }
 /*N*/   }

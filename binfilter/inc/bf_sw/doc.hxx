@@ -193,25 +193,10 @@ struct SwTableEntry;
 // OD 26.06.2003 #108784#
 class SdrPageView;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008 namespace i18n {
-//STRIP008  struct ForbiddenCharacters;    // comes from the I18N UNO interface
-//STRIP008 }
-//STRIP008 namespace uno {
-//STRIP008  template < class > class Sequence;
-//STRIP008 }
-//STRIP008 }}};
-//STRIP008
-//STRIP008 namespace utl {
-//STRIP008  class TransliterationWrapper;
-//STRIP008 };
-//STRIP008 namespace so3 {
-//STRIP008  class SvLinkSource;
-//STRIP008 };
 
 //PageDescriptor-Schnittstelle, Array hier wegen inlines.
 typedef SwPageDesc* SwPageDescPtr;
-SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 )
 
 enum SwMoveFlags
 {
@@ -343,7 +328,7 @@ class SwDoc
     SwUnoCallBack   *pUnoCallBack;
 
     // table of forbidden characters of this document
-    ::rtl::Reference<SvxForbiddenCharactersTable>   xForbiddenCharsTable; //STRIP008 rtl::Reference<SvxForbiddenCharactersTable>    xForbiddenCharsTable;
+    ::rtl::Reference<SvxForbiddenCharactersTable>   xForbiddenCharsTable;
 
     // -------------------------------------------------------------------
     // sonstige

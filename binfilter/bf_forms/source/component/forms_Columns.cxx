@@ -121,7 +121,7 @@ sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
             : aModelName.copy(aCompatibleModelPrefix.getLength());
 
         const StringSequence& rColumnTypes = getColumnTypes();
-        nTypeId = ::binfilter::internal::findPos(aColumnType, rColumnTypes);//STRIP008         nTypeId = ::internal::findPos(aColumnType, rColumnTypes);
+        nTypeId = ::binfilter::internal::findPos(aColumnType, rColumnTypes);
     }
     return nTypeId;
 }

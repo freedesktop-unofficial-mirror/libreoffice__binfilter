@@ -33,7 +33,7 @@
 #include <bf_svtools/svarray.hxx>
 namespace binfilter {
 
-DBG_NAMEEX(SfxWhichRanges)//STRIP008
+DBG_NAMEEX(SfxWhichRanges)
 
 // -----------------------------------------------------------------------
 

@@ -117,7 +117,7 @@ class SbxArray;
 #include <bf_svx/langitem.hxx>
 #include <bf_svtools/undo.hxx>
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 using ::rtl::OUString;

@@ -56,7 +56,7 @@ using namespace ::com::sun::star::lang;
 /*N*/ };
 //-----------------------------------------------------------------------------
 /*N*/ typedef SvxForbiddenStruct_Impl* SvxForbiddenStruct_ImplPtr;
-/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2)//STRIP008 ;
+/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2)
 /*N*/ SV_IMPL_PTRARR(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr);
 //-----------------------------------------------------------------------------
 /*N*/ struct SvxAsianConfig_Impl

@@ -48,7 +48,7 @@ class SfxErrorHandler;
 class SvNumberFormatter;
 class SdOptions;
 class BasicIDE;
-class SdAppLinkHdl; //STRIP008 ;
+class SdAppLinkHdl;
 class SvxErrorHandler;
 class EditFieldInfo;
 class SdDrawDocShell;

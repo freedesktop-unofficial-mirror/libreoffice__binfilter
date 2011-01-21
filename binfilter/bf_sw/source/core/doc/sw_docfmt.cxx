@@ -71,7 +71,7 @@
 #include <txtinet.hxx>
 #include <fmtinfmt.hxx>
 #include <SwStyleNameMapper.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::lang;
@@ -260,7 +260,7 @@ struct ParaRstFmt
 /*M*/           nPtPos = *pURLAttr->GetEnd();
 /*M*/       }
 /*M*/       else
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       rSt = nMkPos;
@@ -299,7 +299,7 @@ struct ParaRstFmt
 /*M*/   SwNodeIndex aTmpStt( pStt->nNode );
 /*M*/   SwNodeIndex aTmpEnd( pEnd->nNode );
 /*M*/   if( pStt->nContent.GetIndex() )     // nur ein Teil
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/   if( pEnd->nContent.GetIndex() == pEnd->nNode.GetNode().GetCntntNode()->Len() )
 /*M*/       // dann spaeter aufsetzen und alle CharFmtAttr -> TxtFmtAttr
@@ -397,7 +397,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                   pDoc->GetRedlineTbl().Count() ))
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pStt->nNode, pStt->nContent.GetIndex()-1,
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -424,7 +424,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                    pDoc->GetRedlineTbl().Count() ) )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // wurde Text-Inhalt eingefuegt? (RefMark/TOXMarks ohne Ende)
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -506,7 +506,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/       if( pNode->IsTxtNode() && aCharSet.Count() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTxtNode* pTxtNd = (SwTxtNode*)pNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( aOtherSet.Count() )
 /*N*/       {
@@ -518,7 +518,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/   if( pDoc->IsRedlineOn() && aCharSet.Count() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pUndo )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
     /* jetzt wenn Bereich */
@@ -894,7 +894,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 
 /*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL /*bUsed*/) const
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    USHORT nCount = pTblFrmFmtTbl->Count();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -1109,7 +1109,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 //FEATURE::CONDCOLL
 /*?*/   if( RES_CONDTXTFMTCOLL == rColl.Which() )
 /*?*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pNewColl = new SwConditionTxtFmtColl( GetAttrPool(), rColl.GetName(),
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   else
 /*?*/ //FEATURE::CONDCOLL
@@ -1169,7 +1169,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*?*/       pParent = CopyGrfColl( *(SwGrfFmtColl*)rColl.DerivedFrom() );
 /*?*/
 /*?*/   // falls nicht, so kopiere sie
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewColl = MakeGrfFmtColl( rColl.GetName(), pParent );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/   // noch die Attribute kopieren
 /*?*/   pNewColl->CopyAttrs( rColl );

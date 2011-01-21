@@ -147,7 +147,7 @@ using namespace ::com::sun::star;
 /*?*/               aLocales.getConstArray();
 /*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               aDocument.SetForbiddenCharacters( xForbiddenTable );

@@ -1323,7 +1323,7 @@ namespace binfilter {
 
 #include <cstdio>       // for snprintf
 #include <cstring>      // for strncat
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel, long num )
 /*N*/ {
 /*N*/   SfxItemPool *pItemPool=&( pModel->GetItemPool() );

@@ -273,10 +273,10 @@ namespace binfilter {
 /*N*/ void SdrCaptionObj::ImpCalcTail(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const
 /*N*/ {
 /*N*/   switch (rPara.eType) {
-/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail1(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail2(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;
+/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;
 /*N*/       case SDRCAPT_TYPE3: ImpCalcTail3(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail4(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;
 /*N*/   }
 /*N*/ }
 

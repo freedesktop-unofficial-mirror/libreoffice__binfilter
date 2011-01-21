@@ -1209,7 +1209,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/       BOOL bEndnt = pNew->GetAttr()->GetFtn().IsEndNote();
 /*?*/       if( bEndnt )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt* pEndFmt = pMySect->GetEndSectFmt();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -1574,7 +1574,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           SwFtnContFrm* pFtnCont = pSct->FindFtnBossFrm(!bEnd)->FindFtnCont();
 /*?*/           if( pFtnCont )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnCont->Lower();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -2152,7 +2152,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/   if ( pNewBoss == pOldBoss )
 /*?*/       return FALSE;
 /*?*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bMoved = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************

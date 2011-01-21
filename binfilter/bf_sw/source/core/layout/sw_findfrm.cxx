@@ -277,7 +277,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
     @return true, if <this> is positioned before the layout frame <p>
 */
 /*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* /*_pCheckRefLayFrm*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************

@@ -31,7 +31,7 @@
 #include <unofldmid.h>
 #include <flddropdown.hxx>
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 static String aEmptyString;
 
 SwDropDownFieldType::SwDropDownFieldType()

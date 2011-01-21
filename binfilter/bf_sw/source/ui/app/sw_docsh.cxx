@@ -388,7 +388,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/             pOldFilter->GetUserData().EqualsAscii( "WW6" ) ||
 /*N*/             pOldFilter->GetUserData().EqualsAscii( "WW1" ) ))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // when saving it in our own fileformat, then remove the template
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // name from the docinfo.
 /*N*/       }
 /*N*/   }
@@ -418,7 +418,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
 /*N*/       if( pDoc->ContainsMSVBasic() )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 
 /*N*/       if( !bXML && !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&

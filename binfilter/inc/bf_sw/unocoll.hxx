@@ -49,12 +49,6 @@ namespace binfilter {
  ***************************************************/
 class SwDoc;
 class SwFrmFmt;
-//STRIP008 namespace com{namespace sun {namespace star {namespace text
-//STRIP008 {
-//STRIP008  class XTextTable;
-//STRIP008  class XTextSection;
-//STRIP008  class XFootnote;
-//STRIP008 }}}}
 class SwXFrame;
 class SwFrmFmt;
 class SwFmtFtn;

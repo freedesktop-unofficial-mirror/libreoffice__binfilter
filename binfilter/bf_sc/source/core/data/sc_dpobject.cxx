@@ -52,7 +52,7 @@
 #include <comphelper/processfactory.hxx>
 #include <tools/debug.hxx>
 #include <bf_svtools/zforlist.hxx>      // IsNumberFormat
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -172,7 +172,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScDPObject::Clone() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ void ScDPObject::SetAlive(BOOL bSet)
@@ -259,11 +259,11 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/       if ( pImpDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDatabaseDPData* pData = new ScDatabaseDPData( pDoc->GetServiceManager(), *pImpDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if ( pServDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xSource = CreateSource( *pServDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if ( !xSource.is() )    // sheet data or error in above cases
@@ -319,7 +319,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ void ScDPObject::UpdateReference( UpdateRefMode /*eUpdateRefMode*/,
 /*N*/                                    const ScRange& /*rRange*/, short /*nDx*/, short /*nDy*/, short /*nDz*/ )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 /*N*/ USHORT lcl_FirstSubTotal( const uno::Reference<beans::XPropertySet>& xDimProp )       // PIVOT_FUNC mask
@@ -445,7 +445,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           {
 /*?*/               uno::Reference<container::XNamed> xNameOrig( xIntOrig, uno::UNO_QUERY );
 /*?*/               if ( xNameOrig.is() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nDupSource = lcl_FindName( xNameOrig->getName(), xDimsName );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/
 /*N*/           BOOL bDupUsed = FALSE;
@@ -949,7 +949,7 @@ DBG_BF_ASSERT(0, "STRIP");
 
 /*N*/ DataObject* ScDPCollection::Clone() const
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new ScDPCollection(*this);
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ BOOL ScDPCollection::StoreOld( SvStream& rStream ) const

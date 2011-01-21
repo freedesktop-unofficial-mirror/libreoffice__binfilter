@@ -40,8 +40,8 @@ namespace binfilter {
 class ScFormEditData
 {
 public:
-                        ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                         ScFormEditData();
-                        ~ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                        ~ScFormEditData();
+                        ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");}
+                        ~ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

@@ -105,7 +105,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !bContourMapModeValid )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return pContour;

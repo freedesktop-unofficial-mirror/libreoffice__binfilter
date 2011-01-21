@@ -38,11 +38,11 @@ namespace binfilter {
 class ScNoteMarker
 {
 public:
-    ScNoteMarker( Window* pWin,                         //STRIP001              ScNoteMarker( Window* pWin,
-        Window* pRight, Window* pBottom, Window* pDiagonal,//STRIP001                               Window* pRight, Window* pBottom, Window* pDiagonal,
-        ScDocument* pD, ScAddress aPos,                     //STRIP001                              ScDocument* pD, ScAddress aPos,
-        const String& rUser, const MapMode& rMap,           //STRIP001                              const String& rUser, const MapMode& rMap,
-        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                                BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard );
+    ScNoteMarker( Window* pWin,
+        Window* pRight, Window* pBottom, Window* pDiagonal,
+        ScDocument* pD, ScAddress aPos,
+        const String& rUser, const MapMode& rMap,
+        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

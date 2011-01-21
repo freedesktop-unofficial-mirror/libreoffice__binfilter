@@ -76,7 +76,7 @@
 #include <xmlimp.hxx>
 
 #include <statstr.hrc>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define LOGFILE_AUTHOR "mb93740"
 namespace binfilter {
 

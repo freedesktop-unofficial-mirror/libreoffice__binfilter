@@ -95,7 +95,7 @@ namespace binfilter {
 /*?*/           SdrObjListIter aIter( *pOldPage, IM_FLAT );
 /*?*/           SdrObject* pOldObject = aIter.Next();
 /*?*/           while (pOldObject)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*N*/   }

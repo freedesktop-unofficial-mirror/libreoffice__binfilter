@@ -357,12 +357,12 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/       {
 /*?*/       case SVX_CHARS_UPPER_LETTER:
 /*?*/       case SVX_CHARS_LOWER_LETTER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTmpStr = lcl_GetCharStr( nNo );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_ROMAN_UPPER:
 /*?*/       case SVX_ROMAN_LOWER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTmpStr = lcl_GetRomanStr( nNo );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_NUMBER_NONE:

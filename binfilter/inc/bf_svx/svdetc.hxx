@@ -61,9 +61,6 @@ class SvtSysLocale;
 class SdrOutliner;
 class SdrModel;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
-//STRIP008  struct Locale;
-//STRIP008 }}}}
 
 // Globale Defaulteinstellungen fuer die DrawingEngine.
 // Diese Einstellungen sollte man direkt beim Applikationsstart

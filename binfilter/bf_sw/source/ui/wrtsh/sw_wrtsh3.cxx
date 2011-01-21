@@ -57,18 +57,6 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
 
 /*N*/ void SwWrtShell::DrawSelChanged(SdrView* pView)
 /*N*/ {
-//STRIP001  static sal_uInt16 const aInval[] =
-//STRIP001 /*N*/     {
-//STRIP001 /*N*/         SID_ATTR_FILL_STYLE, SID_ATTR_FILL_COLOR, SID_ATTR_LINE_STYLE,
-//STRIP001 /*N*/         SID_ATTR_LINE_WIDTH, SID_ATTR_LINE_COLOR, 0
-//STRIP001 /*N*/     };
-//STRIP001 /*N*/
-//STRIP001 /*N*/     GetView().GetViewFrame()->GetBindings().Invalidate(aInval);
-//STRIP001 /*N*/
-//STRIP001 /*N*/     sal_Bool bOldVal = bNoInterrupt;
-//STRIP001 /*N*/ /*N*/     bNoInterrupt = sal_True;    // Trick, um AttrChangedNotify ueber Timer auszufuehren
-//STRIP001 /*N*/ /*N*/     GetView().AttrChangedNotify(this);
-//STRIP001 /*N*/ /*N*/     bNoInterrupt = bOldVal;
 /*N*/ }
 
 }

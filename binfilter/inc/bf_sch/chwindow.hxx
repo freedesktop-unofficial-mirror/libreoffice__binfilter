@@ -44,11 +44,6 @@ namespace binfilter {
 class SchViewShell;
 class ChartModel;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace accessibility {
-//STRIP008      class XAccessible;
-//STRIP008  }
-//STRIP008 }}}
 
 namespace accessibility
 {

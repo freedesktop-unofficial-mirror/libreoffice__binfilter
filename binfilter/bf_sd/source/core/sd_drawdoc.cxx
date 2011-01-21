@@ -86,7 +86,7 @@
 #include "bf_sd/docshell.hxx"
 #include "bf_sd/grdocsh.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <tools/tenccvt.hxx>
 
@@ -199,7 +199,7 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
     LanguageType eRealCTLLanguage = Application::GetSettings().GetLanguage();
     if( MsLangId::isRightToLeft( eRealCTLLanguage ) )
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
+        DBG_BF_ASSERT(0, "STRIP");
     }
 
     SetDefaultTabulator( 1250 );

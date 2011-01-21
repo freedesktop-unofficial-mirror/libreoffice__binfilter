@@ -583,9 +583,9 @@ namespace binfilter {
 /*N*/   if(!rGlobalData.pResMgr)
 /*N*/   {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/       ByteString aName("bf_svx");         //STRIP005
+/*N*/       ByteString aName("bf_svx");
 /*N*/ #else
-/*N*/       ByteString aName("bf_svl");         //STRIP005
+/*N*/       ByteString aName("bf_svl");
 /*N*/ #endif
 /*N*/       rGlobalData.pResMgr =
 /*N*/             ResMgr::CreateResMgr( aName.GetBuffer(), Application::GetSettings().GetUILocale() );

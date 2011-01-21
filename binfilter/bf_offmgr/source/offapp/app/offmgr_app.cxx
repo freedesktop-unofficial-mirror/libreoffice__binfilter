@@ -47,7 +47,7 @@
 #include <bf_svx/unoshcol.hxx>
 #include <bf_svx/xtable.hxx>
 #include <bf_svtools/moduleoptions.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 using namespace ::com::sun::star::uno;
 

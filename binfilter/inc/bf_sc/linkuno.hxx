@@ -54,7 +54,7 @@ class ScTableLink;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::util::XRefreshListener >* XRefreshListenerPtr;
-SV_DECL_PTRARR_DEL( XRefreshListenerArr_Impl, XRefreshListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XRefreshListenerArr_Impl, XRefreshListenerPtr, 4, 4 )
 
 
 

@@ -237,7 +237,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *************************************************************************/
 
 /*N*/ void SwFntObj::CreateScrFont( const ViewShell* /*pSh*/, const OutputDevice& /*rOut*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -378,7 +378,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 
 
 /*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* /*pOut*/ )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
 /*N*/ }
 
 // ER 09.07.95 20:34
@@ -471,14 +471,14 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/     // This is the part used e.g., for cursor travelling
 /*N*/     // See condition for DrawText or DrawTextArray (bDirectPrint)
 /*N*/     if ( pPrinter && pPrinter != rInf.GetpOut() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/         if( !pPrtFont->IsSameInstance( rInf.GetpOut()->GetFont() ) )
 /*N*/             rInf.GetpOut()->SetFont( *pPrtFont );
 /*N*/       if( bCompress )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -676,7 +676,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/     }
 /*N*/
 /*N*/     if( aSub[nActual].IsCapital() && nLn )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nTxtBreak = GetCapitalBreak( rInf.GetShell(), rInf.GetpOut(),
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/   {
 /*N*/       nKern = CheckKerning();

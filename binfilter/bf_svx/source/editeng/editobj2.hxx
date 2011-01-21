@@ -77,7 +77,7 @@ inline BOOL XEditAttribute::IsFeature()
 }
 
 typedef XEditAttribute* XEditAttributePtr;
-SV_DECL_PTRARR( XEditAttributeListImpl, XEditAttributePtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( XEditAttributeListImpl, XEditAttributePtr, 0, 4 )
 
 class XEditAttributeList : public XEditAttributeListImpl
 {
@@ -95,7 +95,7 @@ struct XParaPortion
 };
 
 typedef XParaPortion* XParaPortionPtr;
-SV_DECL_PTRARR( XBaseParaPortionList, XParaPortionPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( XBaseParaPortionList, XParaPortionPtr, 0, 4 )
 
 class XParaPortionList : public  XBaseParaPortionList
 {
@@ -169,7 +169,7 @@ public:
 };
 
 typedef ContentInfo* ContentInfoPtr;
-SV_DECL_PTRARR( ContentInfoList, ContentInfoPtr, 1, 4 )//STRIP008 ;
+SV_DECL_PTRARR( ContentInfoList, ContentInfoPtr, 1, 4 )
 
 // MT 05/00: Sollte mal direkt EditTextObjekt werden => keine virtuellen Methoden mehr.
 

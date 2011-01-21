@@ -59,7 +59,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchModule::SchModule(SvFactory* pObjFact) :
-/*N*/   SchModuleDummy(SFX_APP()->CreateResManager("bf_sch"), FALSE, pObjFact), //STRIP005
+/*N*/   SchModuleDummy(SFX_APP()->CreateResManager("bf_sch"), FALSE, pObjFact),
 /*N*/   pXOutDevPool( NULL ),
 /*N*/   pDragData( NULL ),
 /*N*/   pClipboardData( NULL ),

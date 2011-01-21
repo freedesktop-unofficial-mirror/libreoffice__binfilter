@@ -139,8 +139,8 @@ class SdrHdl
 public:
     virtual ~SdrHdl();
 
-    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }//STRIP001    SdrHdlKind GetKind() const { return eKind; }
-    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }//STRIP001     SdrObject* GetObj() const { return pObj;  }
+    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }
+    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

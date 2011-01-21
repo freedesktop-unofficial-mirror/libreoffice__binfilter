@@ -60,7 +60,7 @@
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
 // -----------------------------------------------------------------------
@@ -716,7 +716,7 @@ void global_InitAppOptions();
 /*N*/ ScFunctionList::ScFunctionList() :
 /*N*/       nMaxFuncNameLen ( 0 )
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFuncDesc*       pDesc   = NULL;
+/*N*/       DBG_BF_ASSERT(0, "STRIP");
 }
 
 //------------------------------------------------------------------------
@@ -764,7 +764,7 @@ void global_InitAppOptions();
 
 /*N*/ ScFunctionMgr::~ScFunctionMgr()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i = 0; i < MAX_FUNCCAT; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ String ColToAlpha( const USHORT nCol )

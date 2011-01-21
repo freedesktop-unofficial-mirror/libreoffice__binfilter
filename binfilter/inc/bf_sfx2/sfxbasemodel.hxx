@@ -740,8 +740,8 @@ public:
     //  XPrintJobBroadcaster
     //____________________________________________________________________________________________________
 
-    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& )throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& ) throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& xListener ) throw (::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL addPrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& )throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}
+    virtual void SAL_CALL removePrintJobListener( const ::com::sun::star::uno::Reference< ::com::sun::star::view::XPrintJobListener >& ) throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");}
 
     //____________________________________________________________________________________________________
     //  XPrintable
@@ -760,7 +760,7 @@ public:
         @onerror    -
     */
 
-    virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");SEQUENCE< PROPERTYVALUE > aFlavorSeq( 0 );return aFlavorSeq;}//STRIP001 virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException);
+    virtual SEQUENCE< PROPERTYVALUE > SAL_CALL getPrinter() throw (::com::sun::star::uno::RuntimeException) {DBG_BF_ASSERT(0, "STRIP");SEQUENCE< PROPERTYVALUE > aFlavorSeq( 0 );return aFlavorSeq;}
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -912,7 +912,7 @@ public:
         throw (::com::sun::star::frame::DoubleInitializationException,
                ::com::sun::star::io::IOException,
                ::com::sun::star::uno::RuntimeException,
-               ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
+               ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}
 
     /**___________________________________________________________________________________________________
         @short      -
@@ -931,7 +931,7 @@ public:
         throw (::com::sun::star::frame::DoubleInitializationException,
                ::com::sun::star::io::IOException,
                ::com::sun::star::uno::RuntimeException,
-                ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 ::com::sun::star::uno::Exception);
+                ::com::sun::star::uno::Exception); // #dochnoetig# {DBG_BF_ASSERT(0, "STRIP");}
 
     //____________________________________________________________________________________________________
     //  XTransferable

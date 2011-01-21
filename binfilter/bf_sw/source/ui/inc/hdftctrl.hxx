@@ -44,8 +44,8 @@ class SwHeadFootMenuControl : public SfxMenuControl
 public:
     SFX_DECL_MENU_CONTROL();
 
-    SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,    //STRIP001  SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,
-        SfxBindings& rBindings ){DBG_BF_ASSERT(0, "STRIP");};   //STRIP001                              SfxBindings& rBindings );
+    SwHeadFootMenuControl( USHORT nPos, Menu& rMenu,
+        SfxBindings& rBindings ){DBG_BF_ASSERT(0, "STRIP");};
 };
 
 } //namespace binfilter

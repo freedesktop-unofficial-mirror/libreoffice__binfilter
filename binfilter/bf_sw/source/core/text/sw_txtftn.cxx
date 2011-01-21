@@ -212,7 +212,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/
 /*N*/     SwTwips nRet = aLine.Y() + SwTwips(aLine.GetLineHeight());
 /*N*/     if( IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nRet = SwitchHorizontalToVertical( nRet );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     UNDO_SWAP( this )
 /*N*/
@@ -435,10 +435,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else if( GetFollow() )
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   {
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   else
 /*?*/                   {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bEndDoc || ( bEndn && pEndBoss->IsInSct() &&
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -531,7 +531,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   }
 /*N*/   else if( bEnd && pSect )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm *pFtnFrm = pSrcFrm ? pBoss->FindFtn( pSrcFrm, pFtn ) : NULL;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bDocEnd || bEnd )
@@ -539,7 +539,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/       if( !pSrcFrm )
 /*?*/           pBoss->AppendFtn( this, pFtn );
 /*?*/       else if( pSrcFrm != this )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       bInFtnConnect = sal_False;
 /*?*/       return;
 /*N*/   }
@@ -568,7 +568,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/               //Wenn die Fussnote bei einem Follow angemeldet ist, so ist
 /*N*/               //es jetzt an der Zeit sie umzumelden.
 /*N*/               if ( pSrcFrm != this )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               //Es steht Platz zur Verfuegung, also kann die Fussnote evtl.
 /*N*/               //wachsen.
 /*N*/                 if ( pFtnFrm->GetFollow() && nDiff > 0 )
@@ -600,7 +600,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/           {   // Wenn unser Boss in einem spaltigen Bereich sitzt, es aber auf
 /*N*/               // der Seite schon einen FtnContainer gibt, hilft nur die brutale
 /*N*/               // Methode
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( pSect && pSect->FindFtnBossFrm( !bEnd )->FindFtnCont() )
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -690,7 +690,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     SWRECTFN( pFrm )
 /*N*/
 /*N*/     if( bVert )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nLower = pFrm->SwitchHorizontalToVertical( nLower );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SwTwips nAdd;
 /*N*/
@@ -832,14 +832,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                       SwFtnContFrm* pFtnC = pTmp->FindFtnCont();
 /*?*/                       if( pFtnC )
 /*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnC->Lower();
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/                   // Ist dies die letzte passende Zeile?
 /*N*/                     SwTwips nTmpBot = Y() + nReal * 2;
 /*N*/
 /*N*/                     if( bVert )
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                         nTmpBot = pFrm->SwitchHorizontalToVertical( nTmpBot );
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/                     SWRECTFN( pFtnCont )
 /*N*/
@@ -965,7 +965,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/   pQuoFrm->FindPageFrm();
 /*?*/   if( pPage == pQuoFrm->FindPageFrm() )
 /*?*/       return 0; // Wenn der QuoVadis auf der selben (spaltigen) Seite steht
-            {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001 /*?*/  const XubString aPage = lcl_GetPageNumber( pPage );
+            {DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*N*/ }
 
 /*************************************************************************
@@ -1014,7 +1014,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   FeedInf( rInf );
 /*M*/   SeekStartAndChg( rInf, sal_True );
 /*M*/   if( GetRedln() && pCurr->HasRedline() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 GetRedln()->Seek( *pFnt, nOffset, 0 );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/   // Ein fieser Sonderfall: Flyfrms reichen in die Zeile und stehen
 /*M*/   // natuerlich da, wo wir unseren Quovadis Text reinsetzen wollen.
@@ -1305,7 +1305,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &/*rInf*/ ) const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SwFtnSave aFtnSave( rInf, pFtn );
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
@@ -1314,7 +1314,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &/*rInfo*/ ) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   SwFtnSave aFtnSave( rInfo, pFtn );
+            DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************

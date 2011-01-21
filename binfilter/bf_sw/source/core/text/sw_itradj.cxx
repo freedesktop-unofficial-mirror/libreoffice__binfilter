@@ -162,7 +162,7 @@ namespace binfilter {
 /*N*/       if ( pPos->InTxtGrp() )
 /*N*/           nGluePortion += ((SwTxtPortion*)pPos)->GetSpaceCnt( GetInfo(), nCharCnt );
 /*N*/       else if( pPos->IsMultiPortion() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       if( pPos->InGlueGrp() )
 /*N*/       {
@@ -427,15 +427,15 @@ namespace binfilter {
 /*N*/
 /*N*/     SwRect aLineVert( rCurrRect );
 /*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchLTRtoRTL( aLineVert );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   // aFlyRect ist dokumentglobal !
 /*N*/     SwRect aFlyRect( aTxtFly.GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( GetTxtFrm()->IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetTxtFrm()->SwitchRTLtoLTR( aFlyRect );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     if ( GetTxtFrm()->IsVertical() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 GetTxtFrm()->SwitchVerticalToHorizontal( aFlyRect );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   // Wenn ein Frame ueberlappt, wird eine Portion eroeffnet.
 /*N*/   if( aFlyRect.HasArea() )

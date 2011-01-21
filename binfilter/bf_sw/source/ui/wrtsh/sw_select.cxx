@@ -63,7 +63,7 @@ static BOOL  bStartDrag = FALSE;
 
 /*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, pFlyFmt )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)pFlyFmt : GetFlyFrmFmt();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 

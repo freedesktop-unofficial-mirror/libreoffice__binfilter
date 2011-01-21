@@ -63,7 +63,7 @@ struct ScSortInfo
     DECL_FIXEDMEMPOOL_NEWDEL( ScSortInfo );
 };
 /*N*/ const USHORT nMemPoolSortInfo = (0x8000 - 64) / sizeof(ScSortInfo);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )
 
 // END OF STATIC DATA -----------------------------------------------------
 
@@ -79,7 +79,7 @@ struct ScSortInfo
 /*N*/ {
 /*N*/   if ( pSortCollator )
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal() )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 

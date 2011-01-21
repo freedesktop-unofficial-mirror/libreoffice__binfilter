@@ -81,7 +81,7 @@ public:
 
 typedef ScDetOpData* ScDetOpDataPtr;
 
-SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW)//STRIP008 ;
+SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW)
 
 class ScDetOpList : public ScDetOpArr_Impl
 {

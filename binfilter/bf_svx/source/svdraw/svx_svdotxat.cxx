@@ -275,7 +275,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if(nParaCount)
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ESelection aSelection( 0, 0, EE_PARA_ALL, EE_PARA_ALL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/

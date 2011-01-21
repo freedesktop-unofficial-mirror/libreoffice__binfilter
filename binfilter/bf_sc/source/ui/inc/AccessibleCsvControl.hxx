@@ -50,7 +50,6 @@ namespace binfilter {
 // ============================================================================
 
 class ScCsvControl;
-//STRIP008 namespace utl { class AccessibleStateSetHelper; }
 
 /** Accessible base class used for CSV controls. */
 class ScAccessibleCsvControl : public ScAccessibleContextBase

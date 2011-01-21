@@ -50,15 +50,15 @@ class ScEditShell : public SfxShell
 public:
     SFX_DECL_INTERFACE(SCID_EDIT_SHELL);
 
-    ScEditShell(EditView* pView, ScViewData* pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScEditShell(EditView* pView, ScViewData* pData);
-    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    Execute(SfxRequest& rReq);
-    void    ExecuteTrans(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    ExecuteTrans(SfxRequest& rReq);
-    void    GetState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetState(SfxItemSet &rSet);
-    void    GetClipState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetClipState(SfxItemSet& rSet);
-    void    ExecuteAttr(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    ExecuteAttr(SfxRequest& rReq);
-    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrState(SfxItemSet &rSet);
-    void    ExecuteUndo(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    ExecuteUndo(SfxRequest& rReq);
-    void    GetUndoState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetUndoState(SfxItemSet &rSet);
+    ScEditShell(EditView* pView, ScViewData* pData){DBG_BF_ASSERT(0, "STRIP");}
+    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    ExecuteTrans(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetClipState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");}
+    void    ExecuteAttr(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
+    void    ExecuteUndo(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetUndoState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

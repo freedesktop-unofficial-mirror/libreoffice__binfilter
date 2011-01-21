@@ -917,7 +917,7 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/             // quote table name if it contains spaces or quotes
 /*?*/             if( bNeedsQuoting )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*?*/             else
 /*?*/                 aBuffer.append( aIter->msTableName );

@@ -45,8 +45,8 @@ public:
 
     ScAuditingShell(ScViewData* pData);
 
-    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void   Execute(SfxRequest& rReq);
-    void    GetState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001   void    GetState(SfxItemSet& rSet);
+    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 

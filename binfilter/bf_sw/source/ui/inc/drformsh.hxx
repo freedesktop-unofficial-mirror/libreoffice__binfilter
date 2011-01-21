@@ -40,7 +40,7 @@ class SwDrawFormShell: public SwDrawBaseShell
 public:
     SFX_DECL_INTERFACE(SW_DRAWFORMSHELL);
 
-    SwDrawFormShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001               SwDrawFormShell(SwView &rView);
+    SwDrawFormShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;
 
 };
 

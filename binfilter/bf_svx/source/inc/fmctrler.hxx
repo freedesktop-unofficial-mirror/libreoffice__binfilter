@@ -111,7 +111,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
                             ,public ::cppu::OPropertySetHelper
                             ,public FmDispatchInterceptor
                             ,public ::comphelper::OAggregationArrayUsageHelper< FmXFormController>
-                            ,public ::binfilter::svxform::OSQLParserClient//STRIP008                            ,public ::svxform::OSQLParserClient
+                            ,public ::binfilter::svxform::OSQLParserClient
 {
     friend class FmXPageViewWinRec;
 
@@ -137,7 +137,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
     FmFormControllers           m_aChilds;
     FmFilterControls            m_aFilterControls;
     FmFilterRows                m_aFilters;
-    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;//STRIP008 ::form::OImplementationIdsRef    m_aHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;
 
     Timer                       m_aInsertTimer;
 
@@ -187,7 +187,7 @@ public:
 // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw(::com::sun::star::uno::RuntimeException)
     {
-        return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());//STRIP008        return ::form::OImplementationIds::getImplementationId(getTypes());
+        return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());
     }
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
 
