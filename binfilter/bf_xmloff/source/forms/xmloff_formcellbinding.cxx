@@ -125,7 +125,7 @@ namespace xmloff
     }
 
     //------------------------------------------------------------------------
-    bool FormCellBindingHelper::convertStringAddress( const ::rtl::OUString& _rAddressDescription, CellAddress& /* [out] */ _rAddress, sal_Int16 _nAssumeSheet ) const
+    bool FormCellBindingHelper::convertStringAddress( const ::rtl::OUString& _rAddressDescription, CellAddress& /* [out] */ _rAddress, sal_Int16 /*_nAssumeSheet*/ ) const
     {
         Any aAddress;
         return doConvertAddressRepresentations(

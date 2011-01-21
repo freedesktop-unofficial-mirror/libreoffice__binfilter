@@ -241,12 +241,12 @@ namespace xmloff
                     if(TypeClass_VOID == aValue.getValueType().getTypeClass())
                     {
                         AddAttribute(XML_NAMESPACE_FORM, "property-is-void", ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" )));
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                     }
                     else
                     {
                         sValue = implConvertAny(aValue);
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                             // (no whitespace inside the tag)
                         m_rContext.getGlobalContext().GetDocHandler()->characters(sValue);
                     }
@@ -288,7 +288,7 @@ namespace xmloff
                     ::rtl::OUString sCurrent;
                     while (pSequenceIterator->hasMoreElements())
                     {
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                             // (no whitespace inside the tag)
                         m_rContext.getGlobalContext().GetDocHandler()->characters(implConvertAny(pSequenceIterator->nextElement()));
                     }

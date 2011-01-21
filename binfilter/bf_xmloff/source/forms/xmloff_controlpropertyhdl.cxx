@@ -140,7 +140,7 @@ namespace xmloff
             sal_Bool bBelow = 0 != (nFontEmphasis & FontEmphasisMark::BELOW);
 
             // convert
-            if (bSuccess = _rUnitConverter.convertEnum(aReturn, nType, OEnumMapper::getEnumMap(OEnumMapper::epFontEmphasis), XML_NONE))
+            if ((bSuccess = _rUnitConverter.convertEnum(aReturn, nType, OEnumMapper::getEnumMap(OEnumMapper::epFontEmphasis), XML_NONE)))
             {
                 aReturn.append( (sal_Unicode)' ' );
                 aReturn.append( GetXMLToken(bBelow ? XML_BELOW : XML_ABOVE) );
@@ -263,7 +263,7 @@ namespace xmloff
         sal_Bool bSuccess = sal_False;
 
         sal_Int32 nWidth = 0;
-        if (bSuccess = _rUnitConverter.convertMeasure(nWidth, _rStrImpValue, MAP_POINT))
+        if ((bSuccess = _rUnitConverter.convertMeasure(nWidth, _rStrImpValue, MAP_POINT)))
             _rValue <<= (sal_Int16)nWidth;
 
         return bSuccess;
@@ -295,7 +295,7 @@ namespace xmloff
         sal_Bool bSucces = sal_False;
 
         double fValue;
-        if (bSucces = _rUnitConverter.convertDouble(fValue, _rStrImpValue))
+        if ((bSucces = _rUnitConverter.convertDouble(fValue, _rStrImpValue)))
         {
             fValue *= 10;
             _rValue <<= (float)fValue;
@@ -310,7 +310,7 @@ namespace xmloff
         float fAngle;
         sal_Bool bSuccess = sal_False;
 
-        if (bSuccess = (_rValue >>= fAngle))
+        if ((bSuccess = (_rValue >>= fAngle)))
         {
             ::rtl::OUStringBuffer sValue;
             _rUnitConverter.convertDouble(sValue, ((double)fAngle) / 10);

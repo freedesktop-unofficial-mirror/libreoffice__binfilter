@@ -232,12 +232,12 @@ namespace xmloff
         :OElementExport(_rContext, _rxControl, _rEvents)
         ,m_sControlId(_rControlId)
         ,m_sReferringControls(_rReferringControls)
+        ,m_nClassId(FormComponentType::CONTROL)
         ,m_nIncludeCommon(0)
         ,m_nIncludeDatabase(0)
         ,m_nIncludeSpecial(0)
         ,m_nIncludeEvents(0)
         ,m_nIncludeBindings(0)
-        ,m_nClassId(FormComponentType::CONTROL)
         ,m_pOuterElement(NULL)
     {
         OSL_ENSURE(m_xProps.is(), "OControlExport::OControlExport: invalid arguments!");
@@ -371,14 +371,14 @@ namespace xmloff
                 }
             }
             break;
+            default:
+            break;
         }
     }
 
     //---------------------------------------------------------------------
     void OControlExport::exportCommonControlAttributes()
     {
-        sal_Int32 i=0;
-
         // I decided to handle all the properties here with some static arrays describing the property-attribute
         // relations. This leads to somewhat ugly code :), but the only alternative I can think of right now
         // would require maps and O(log n) searches, which seems somewhat expensive as this code is used
@@ -403,7 +403,7 @@ namespace xmloff
             OSL_ENSURE( SAL_N_ELEMENTS(aStringPropertyNames) == SAL_N_ELEMENTS(nStringPropertyAttributeIds),
                         "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (1)!");
 
-            for (i = 0; i < SAL_N_ELEMENTS(nStringPropertyAttributeIds); ++i)
+            for (size_t i = 0; i < SAL_N_ELEMENTS(nStringPropertyAttributeIds); ++i)
                 if (nStringPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportStringPropertyAttribute(
@@ -440,7 +440,7 @@ namespace xmloff
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nFlagsCount),
                 "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (2)!");
         #endif
-            for (i=0; i<SAL_N_ELEMENTS(nBooleanPropertyAttributeIds); ++i)
+            for (size_t i=0; i<SAL_N_ELEMENTS(nBooleanPropertyAttributeIds); ++i)
                 if (nBooleanPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportBooleanPropertyAttribute(
@@ -483,7 +483,7 @@ namespace xmloff
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nDefaultCount),
                 "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (3)!");
         #endif
-            for (i=0; i<SAL_N_ELEMENTS(nIntegerPropertyAttributeIds); ++i)
+            for (size_t i=0; i<SAL_N_ELEMENTS(nIntegerPropertyAttributeIds); ++i)
                 if (nIntegerPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportInt16PropertyAttribute(

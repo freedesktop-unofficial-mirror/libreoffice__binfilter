@@ -114,14 +114,14 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    void OPropertyImport::Characters(const ::rtl::OUString& _rChars)
+    void OPropertyImport::Characters(const ::rtl::OUString& /*_rChars*/)
     {
         // ignore them (should be whitespaces only)
         OSL_ENSURE(0 == _rChars.trim().getLength(), "OPropertyImport::Characters: non-whitespace characters!");
     }
 
     //---------------------------------------------------------------------
-    void OPropertyImport::handleAttribute(sal_uInt16 _nNamespaceKey, const ::rtl::OUString& _rLocalName, const ::rtl::OUString& _rValue)
+    void OPropertyImport::handleAttribute(sal_uInt16 /*_nNamespaceKey*/, const ::rtl::OUString& _rLocalName, const ::rtl::OUString& _rValue)
     {
         const OAttribute2Property::AttributeAssignment* pProperty = m_rContext.getAttributeMap().getAttributeTranslation(_rLocalName);
         if (pProperty)
@@ -328,7 +328,7 @@ namespace xmloff
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OPropertyElementsContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-        const Reference< sax::XAttributeList >& _rxAttrList)
+        const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
         static const ::rtl::OUString s_sSinglePropertyElementName( RTL_CONSTASCII_USTRINGPARAM( "property" ));
         if (_rLocalName == s_sSinglePropertyElementName)
@@ -375,7 +375,7 @@ namespace xmloff
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OSinglePropertyContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-            const Reference< sax::XAttributeList >& _rxAttrList)
+            const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
         static const ::rtl::OUString s_sPropertyValueElementName( RTL_CONSTASCII_USTRINGPARAM( "property-value" ));
         if (_rLocalName == s_sPropertyValueElementName)

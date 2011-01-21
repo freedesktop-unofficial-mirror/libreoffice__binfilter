@@ -118,10 +118,10 @@ namespace xmloff
     OElementImport::OElementImport(IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer)
         :OPropertyImport(_rImport, _nPrefix, _rName)
-        ,m_xParentContainer(_rxParentContainer)
         ,m_rFormImport(_rImport)
         ,m_rEventManager(_rEventManager)
         ,m_pStyleElement( NULL )
+        ,m_xParentContainer(_rxParentContainer)
     {
         OSL_ENSURE(m_xParentContainer.is(), "OElementImport::OElementImport: invalid parent container!");
     }
@@ -691,7 +691,7 @@ namespace xmloff
     OReferredControlImport::OReferredControlImport(
             IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer,
-            OControlElement::ElementType _eType)
+            OControlElement::ElementType /*_eType*/)
         :OControlImport(_rImport, _rEventManager, _nPrefix, _rName, _rxParentContainer)
     {
     }
@@ -1190,15 +1190,15 @@ namespace xmloff
     OControlWrapperImport::OControlWrapperImport(IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer)
         :SvXMLImportContext(_rImport.getGlobalContext(), _nPrefix, _rName)
-        ,m_rFormImport(_rImport)
         ,m_xParentContainer(_rxParentContainer)
+        ,m_rFormImport(_rImport)
         ,m_rEventManager(_rEventManager)
     {
     }
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OControlWrapperImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-        const Reference< sax::XAttributeList >& _rxAttrList)
+        const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
         OControlImport* pReturn = implCreateChildContext(_nPrefix, _rLocalName, OElementNameMap::getElementType(_rLocalName));
         if (pReturn)

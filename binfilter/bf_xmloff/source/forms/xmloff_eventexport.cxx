@@ -55,7 +55,6 @@ namespace xmloff
         const ScriptEventDescriptor* pEvents = _rEvents.getConstArray();
         ::rtl::OUString sName;
         ::rtl::OUString sLibrary, sLocalMacroName;
-        sal_Int32 nNameSeparatorPos(-1);
         for (sal_Int32 i=0; i<nEvents; ++i, ++pEvents)
         {
             // the name of the event is build from listener interface and listener method name
@@ -98,7 +97,7 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    void SAL_CALL OEventDescriptorMapper::replaceByName( const ::rtl::OUString& _rNamee, const Any& _rElement ) throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
+    void SAL_CALL OEventDescriptorMapper::replaceByName( const ::rtl::OUString& /*_rNamee*/, const Any& /*_rElement*/ ) throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
     {
         throw IllegalArgumentException(
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "replacing is not implemented for this wrapper class." )), static_cast< ::cppu::OWeakObject* >(this), 1);

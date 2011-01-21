@@ -559,9 +559,8 @@ namespace xmloff
                 }
             }
         }
-        catch( const Exception& e )
+        catch( const Exception& )
         {
-            e;  // make compiler happy
             OSL_ENSURE( sal_False, "OFormLayerXMLExport_Impl::collectGridAutoStyles: error examining the grid colums!" );
         }
     }
