@@ -50,6 +50,7 @@ namespace com { namespace sun { namespace star { namespace linguistic2 {
     class XSpellChecker1;
     class XHyphenator;
 }}}}
+
 class SvStream;
 class Window;
 class KeyEvent;
@@ -58,6 +59,7 @@ class Pointer;
 class MapMode;
 class OutputDevice;
 class PolyPolygon;
+
 namespace binfilter {
 
 class SvKeyValueIterator;
@@ -84,16 +86,6 @@ class SvxNumberFormat;
 class SvxLRSpaceItem;
 class EditEngine;
 class SvxForbiddenCharactersTable;
-
-//STRIP008 #include <com/sun/star/uno/Reference.h>
-//STRIP008
-//STRIP008 #include <rtl/ref.hxx>
-//STRIP008 #include <bf_svx/svxfont.hxx>
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace linguistic2 {
-//STRIP008  class XSpellChecker1;
-//STRIP008  class XHyphenator;
-//STRIP008 }}}}
 
 // nur interner Gebrauch!
 #define PARAFLAG_DROPTARGET         0x1000
@@ -209,26 +201,14 @@ private:
     };
     MouseTarget OLD_ePrevMouseTarget;
 
-#ifdef _OUTLINER_CXX
-
-
-
-
-
-#endif
-
 public:
     virtual     ~OutlinerView();
 
     EditView&   GetEditView() const { return *pEditView; }
 
-
-
-
     Outliner*   GetOutliner() const { return pOwner; }
 
     Window*     GetWindow() const;
-
 
     Rectangle   GetOutputArea() const;
 
@@ -242,15 +222,8 @@ public:
 
     ESelection  GetSelection();
 
-
     void        SetSelection( const ESelection& );
 };
-
-#if _SOLAR__PRIVATE
-DECLARE_LIST(ViewList,OutlinerView*)
-#else
-typedef List ViewList;
-#endif
 
 class DrawPortionInfo
 {
@@ -377,7 +350,6 @@ class Outliner
     OutlinerEditEng*    pEditEngine;
 
     ParagraphList*      pParaList;
-    ViewList            aViewList;
 
     Paragraph*          pHdlParagraph;
     Link                aDrawPortionHdl;
@@ -507,8 +479,6 @@ public:
     Paragraph*      GetParagraph( ULONG nAbsPos ) const;
 
     BOOL            HasParent( Paragraph* pParagraph ) const;
-//  Paragraph*      GetParagraph( Paragraph* pParent, ULONG nRelPos ) const;
-//  ULONG           GetRelPos( Paragraph* pParent, Paragraph* pPara ) const;
     ULONG           GetAbsPos( Paragraph* pPara );
 
     USHORT          GetDepth( USHORT nPara ) const;
@@ -567,7 +537,6 @@ public:
 
     Link            GetStatusEventHdl() const;
 
-
     const Size&     GetPaperSize() const;
     void            SetPaperSize( const Size& rSize );
 
@@ -582,12 +551,9 @@ public:
 
     void            SetDefTab( USHORT nTab );
 
-
-
     BOOL            IsForceAutoColor() const;
 
     EBulletInfo     GetBulletInfo( USHORT nPara );
-
 
     void            StripPortions();
 
@@ -598,7 +564,6 @@ public:
 
     Size            CalcTextSize();
 
-
     void                SetStyleSheetPool( SfxStyleSheetPool* pSPool );
     SfxStyleSheetPool*  GetStyleSheetPool();
 
@@ -607,7 +572,6 @@ public:
 
     void            SetParaAttribs( ULONG nPara, const SfxItemSet&, bool bApiCall = false );
     SfxItemSet      GetParaAttribs( ULONG nPara );
-
 
     // gibt ein Array mit den Bulletbreiten der n Einrueckebenen
     // zurueck. Letzter Wert muss -1 sein. Wird vom Outliner geloescht.
@@ -652,9 +616,7 @@ public:
     // Depricated
     void            SetDefaultLanguage( LanguageType eLang );
 
-
     // Depricated
-
 
     void            SetEditTextObjectPool( SfxItemPool* pPool );
     SfxItemPool*    GetEditTextObjectPool() const;
