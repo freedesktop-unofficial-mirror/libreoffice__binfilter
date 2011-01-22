@@ -46,9 +46,6 @@ namespace binfilter {
 |*
 |*  ViewShell::AddScrollRect()
 |*
-|*  Creation            MA 07. Mar. 94
-|*  Last change         AMA 20. July 00
-|*
 |*  Description
 |*  ViewShell::AddScrollRect(..) passes a registration from a scrolling frame or
 |*  rectangle to all ViewShells and SwViewImps respectively.
@@ -83,9 +80,6 @@ namespace binfilter {
 |*
 |*  ViewShell::Scroll()
 |*
-|*  Ersterstellung      MA 07. Mar. 94
-|*  Last change         AMA 21. July 00
-|*
 |*  Description
 |*  ViewShell::Scroll() scrolls all rectangles in the pScrollRects-list and
 |*  transfers the critical lines by calling SwViewImp::MoveScrollArea(..).
@@ -116,9 +110,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::AddScrollRect()
 |*
-|*  Ersterstellung      MA 07. Mar. 94
-|*  Last change         AMA 21. July 00
-|*
 |*  Adds a scrollable rectangle and his critical lines to the list.
 |*
 ******************************************************************************/
@@ -143,49 +134,7 @@ namespace binfilter {
 
 /******************************************************************************
 |*
-|*  SwViewImp::MoveScrollArea()
-|*
-|*  Creation            AMA 10. July 00
-|*  Last change         AMA 21. July 00
-|*
-|*  Transfers the areas after scrolling to the scrolled list, but only those
-|*  parts with critical lines.
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  SwViewImp::FlushScrolledArea()
-|*
-|*  Creation            AMA 10. July 00
-|*  Last change         AMA 21. July 00
-|*
-|*  Flushes the scrolled critical lines, that is transfer them to AddPaintRect()
-|*  and remove them from the list.
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  SwViewImp::_FlushScrolledArea(..)
-|*
-|*  Creation            AMA 10. July 00
-|*  Last change         AMA 21. July 00
-|*
-|*  The critical lines, which overlaps with the given rectangle, will be united
-|*  with the rectangle and removed from the list.
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
 |*  SwViewImp::RefreshScrolledHdl(..)
-|*
-|*  Creation            MA 06. Oct. 94
-|*  Last change         AMA 21. July 00
 |*
 |*  Every timerstop one of the critical lines will be painted.
 |*
@@ -195,52 +144,6 @@ namespace binfilter {
 /*N*/ {
         {DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*N*/ }
-
-/******************************************************************************
-|*
-|*  SwViewImp::_ScrolledRect(..)
-|*
-|*  Creation            AMA 20. July 00
-|*  Last change         AMA 21. July 00
-|*
-|*  handles the problem of scrolled criticals lines, when they are a part of
-|*  a scrolling area again. In this case, their rectangle has to move to the
-|*  right position.
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  SwViewImp::_RefreshScrolledArea()
-|*
-******************************************************************************/
-
-//Berechnen der Hoehe fuer das virtuelle Device, Breite und maximaler
-//Speicherbedarf sind vorgegeben.
-#define MAXKB 180L
-
-
-
-/******************************************************************************
-|*
-|*  SwViewImp::RefreshScrolledArea()
-|*
-******************************************************************************/
-
-
-
-
-
-
-/******************************************************************************
-|*
-|*  SwScrollAreas::Insert(..)
-|*
-******************************************************************************/
-
-
-
 
 }
 

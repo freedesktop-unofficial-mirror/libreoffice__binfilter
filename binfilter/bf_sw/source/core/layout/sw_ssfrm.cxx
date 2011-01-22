@@ -456,9 +456,6 @@ namespace binfilter {
 |*
 |*  SwFrm::PaintArea()
 |*
-|*  Created     AMA 08/22/2000
-|*  Last change AMA 08/23/2000
-|*
 |*  The paintarea is the area, in which the content of a frame is allowed
 |*  to be displayed. This region could be larger than the printarea (Prt())
 |*  of the upper, it includes e.g. often the margin of the page.
@@ -542,9 +539,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::UnionFrm()
-|*
-|*  Created     AMA 08/22/2000
-|*  Last change AMA 08/23/2000
 |*
 |*  The unionframe is the framearea (Frm()) of a frame expanded by the
 |*  printarea, if there's a negative margin at the left or right side.

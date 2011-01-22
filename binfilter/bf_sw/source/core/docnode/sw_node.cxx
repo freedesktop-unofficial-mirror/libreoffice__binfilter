@@ -68,32 +68,6 @@ using namespace ::com::sun::star::i18n;
 
 /*******************************************************************
 |*
-|*  SwNode::GetSectionLevel
-|*
-|*  Beschreibung
-|*      Die Funktion liefert den Sectionlevel an der durch
-|*      aIndex bezeichneten Position.
-|*
-|*      Die Logik ist wie folgt:   ( S -> Start, E -> End, C -> CntntNode)
-|*          Level   0       E
-|*                  1   S  E
-|*                  2    SC
-|*
-|*      alle EndNodes der GrundSection haben den Level 0
-|*      alle StartNodes der GrundSection haben den Level 1
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Aenderung:  JP  11.08.93
-|*      keine Rekursion mehr !!
-|*
-*******************************************************************/
-
-
-
-/*******************************************************************
-|*
 |*  SwNode::SwNode
 |*
 |*  Beschreibung
@@ -111,12 +85,6 @@ using namespace ::com::sun::star::i18n;
 |*      IN
 |*      rWhere bezeichnet die Position innerhalb dieses Arrays,
 |*      an der der Node eingefuegt werden soll
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 
@@ -388,11 +356,6 @@ using namespace ::com::sun::star::i18n;
 |*      IN
 |*      rNodes bezeichnet das variable Array, in dem sich der Node
 |*      befindet
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 
@@ -446,12 +409,6 @@ using namespace ::com::sun::star::i18n;
 |*      an der der Node eingefuegt werden soll
 |*      !!!!!!!!!!!!
 |*      Es wird eine Kopie uebergeben!
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 

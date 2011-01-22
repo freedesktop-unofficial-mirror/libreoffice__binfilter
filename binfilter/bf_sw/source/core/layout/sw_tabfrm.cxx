@@ -1024,8 +1024,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Berechnet die Offsets, die durch FlyFrames
 |*                      entstehen.
-|*  Ersterstellung      MA/MIB 14. Apr. 99
-|*  Letzte Aenderung
 |*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::CalcFlyOffsets( SwTwips& rUpper,
@@ -1936,9 +1934,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTabFrm::Prepare()
-|*
-|*  Created        AMA 01/10/02
-|*  Last Change    AMA 01/10/02
 |*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Prepare( const PrepareHint eHint, const void *, BOOL )

@@ -149,9 +149,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *  USHORT SwFntObj::GetAscent( const OutputDevice *pOut )
  *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
- *
  *  Beschreibung: liefern den Ascent des Fonts auf dem
  *  gewuenschten Outputdevice zurueck, ggf. muss der Bildschirmfont erst
  *  erzeugt werden.
@@ -222,9 +219,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*************************************************************************
  *
  *  SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
- *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
  *
  *  pOut is the output device, not the reference device
  *
@@ -305,9 +299,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *  void SwFntObj::SetDeviceFont( const OutputDevice *pOut ),
  *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
- *
  *  Beschreibung: stellt den Font am gewuenschten OutputDevice ein,
  *  am Bildschirm muss eventuell erst den Abgleich durchgefuehrt werden.
  *
@@ -360,9 +351,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  * void SwFntObj::DrawText( ... )
  *
- *  Ersterstellung      AMA 16. Dez. 94
- *  Letzte Aenderung    AMA 16. Dez. 94
- *
  *  Beschreibung: Textausgabe
  *                  auf dem Bildschirm          => DrawTextArray
  *                  auf dem Drucker, !Kerning   => DrawText
@@ -395,9 +383,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *  Size SwFntObj::GetTextSize( const OutputDevice *pOut, const String &rTxt,
  *           const USHORT nIdx, const USHORT nLen, const short nKern = 0 );
- *
- *  Ersterstellung      AMA 16. Dez. 94
- *  Letzte Aenderung    AMA 16. Dez. 94
  *
  *  Beschreibung: ermittelt die TextSize (des Druckers)
  *

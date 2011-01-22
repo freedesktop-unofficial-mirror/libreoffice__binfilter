@@ -112,12 +112,6 @@ namespace binfilter {
 |*      Arrays nicht erzeugt werden koennen und somit auch nicht
 |*      in mehreren drin sein koennen
 |*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
-|*
 *******************************************************************/
 
 /*N*/ SwNodes::~SwNodes()
@@ -180,12 +174,6 @@ namespace binfilter {
 |*      die Debugging Tools geben rRange beim Eintritt und beim
 |*      Verlassen der Funktion aus
 |*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
-|*
 *******************************************************************/
 /*N*/ void SwNodes::SectionDown(SwNodeRange *pRange, SwStartNodeType eSttNdTyp )
 /*N*/ {
@@ -226,45 +214,6 @@ namespace binfilter {
 /*N*/
 /*N*/   SectionUpDown( aTmpIdx, pRange->aEnd );
 /*N*/ }
-
-/*******************************************************************
-|*
-|*  SwNodes::SectionUp
-|*
-|*  Beschreibung
-|*      Der von rRange umspannte Bereich wird auf die naechst hoehere
-|*      Ebene gehoben. Das geschieht dadurch, dass bei
-|*      rRange.aStart ein Endnode und bei rRange.aEnd ein
-|*      Startnode eingefuegt wird. Die Indices fuer den Bereich
-|*      innerhalb von rRange werden geupdated.
-|*
-|*  Allg.: aRange beschreibt den Bereich  -exklusive- aEnd !!
-|*              ( 1.Node: aStart, letzer Node: aEnd-1 !! )
-|*
-|*  Parameter
-|*      SwRange &rRange
-|*          IO:
-|*          IN
-|*          rRange.aStart: Anfang des hoeher zubewegenden Bereiches
-|*          rRange.aEnd:   der 1.Node hinter dem Bereich
-|*          OUT
-|*          rRange.aStart:  an der ersten Position innerhalb des
-|*                          hochbewegten Bereiches
-|*          rRange.aEnd:    an der letzten Position innerhalb des
-|*                          hochbewegten Bereiches
-|*
-|*  Debug-Funktionen
-|*      die Debugging Tools geben rRange beim Eintritt und beim
-|*      Verlassen der Funktion aus
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
-|*
-*******************************************************************/
-
 
 /*************************************************************************
 |*
@@ -346,12 +295,6 @@ namespace binfilter {
 |*  Debug-Funktionen
 |*      geben beim Eintritt in die Funktion Position und Anzahl
 |*      der zu loeschenden Nodes aus.
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 /*N*/ void SwNodes::Delete(const SwNodeIndex &rIndex, ULONG nNodes)
@@ -548,12 +491,6 @@ namespace binfilter {
 |*      Dieser erfaehrt in der Funktion SwNodes::GetSectionLevel()
 |*      eine Sonderbehandlung; es wird davon ausgegangen, dass der
 |*      erste Node auch ein Startnode ist.
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 
@@ -755,35 +692,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    USHORT HighestLevel( SwNodes & rNodes, const SwNodeRange & rRange )
-|*
-|*    Beschreibung
-|*      Berechne den hoehsten Level innerhalb des Bereiches
-|*
-|*    Parameter         SwNodes &   das Node-Array
-|*                      SwNodeRange &   der zu ueberpruefende Bereich
-|*    Return            USHORT      der hoechste Level
-|*
-*************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|*    SwNodes::Move()
-|*
-|*    Beschreibung
-|*    Parameter         SwPaM&      zu kopierender Bereich
-|*                      SwNodes&    in dieses Nodes-Array
-|*                      SwPosition& auf diese Position im Nodes-Array
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
 |*    SwNodes::_Copy()
 |*
 |*    Beschreibung
@@ -949,17 +857,6 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case ND_SECTIONDUMMY:
-            /*if( (const SwNodes*)this == GetDoc()->GetUndoNds() )
-            {
-                // dann muss an der akt. InsPos auch ein SectionNode
-                // (Start/Ende) stehen; dann diesen ueberspringen.
-                // Andernfalls nicht weiter beachten.
-                SwNode* pTmpNd = pDoc->GetNodes()[ aInsPos ];
-                if( pTmpNd->IsSectionNode() ||
-                    pTmpNd->FindStartNode()->IsSectionNode() )
-                    aInsPos++;  // ueberspringen
-            }
-            else */
                 ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
             break;
 

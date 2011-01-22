@@ -632,9 +632,6 @@ namespace binfilter {
  *
  *  SwSectionFrm::CollectEndnotes(  )
  *
- *  Ersterstellung      AMA 03. Nov 99
- *  Letzte Aenderung    AMA 03. Nov 99
- *
  *  CollectEndnotes looks for endnotes in the sectionfrm and his follows,
  *  the endnotes will cut off the layout and put into the array.
  *  If the first endnote is not a master-SwFtnFrm, the whole sectionfrm
