@@ -114,10 +114,6 @@ namespace binfilter {
 /*N*/       //werden die SV'ler noch eine Methode anbieten.
 /*N*/       const Size aPhysSize( SvxPaperInfo::GetPaperSize( (Printer*)pPrt ));
 /*N*/
-/*N*/       //if ( aPhysSize.Width() <= 0 )
-/*N*/       //  aPhysSize.Width() = lA4Width;
-/*N*/       //if ( aPhysSize.Height() <= 0 )
-/*N*/       //  aPhysSize.Height() = lA4Height;
 /*N*/       aFrmSize.SetSize( aPhysSize );
 /*N*/
 /*N*/       //Raender
@@ -595,9 +591,6 @@ void SwDoc::DelPageDesc( USHORT i )
 
 /******************************************************************************
  *  Methode     :   void SwDoc::SetPrt( SfxPrinter *pP )
- *  Beschreibung:
- *  Erstellt    :   OK 27.10.94 10:20
- *  Aenderung   :   MA 26. Mar. 98
  ******************************************************************************/
 
 /*N*/ void SwDoc::PrtDataChanged()

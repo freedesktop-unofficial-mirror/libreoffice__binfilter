@@ -213,13 +213,6 @@ using namespace ::com::sun::star;
 
 /*************************************************************************
 |*
-|* CTOR used by dragserver
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Destruktor
 |*
 \************************************************************************/
@@ -342,17 +335,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
+/************************************************************************/
 /*N*/ void SchChartDocShell::OnDocumentPrinterChanged(Printer* pNewPrinter) throw()
 /*N*/ {
 /*N*/     // we have no rtti, thus assert that we have an SfxPrinter
@@ -610,23 +593,6 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-        /**********************************************************************
-         * StarOffice XML-Filter Export
-         **********************************************************************/
-
-        /**********************************************************************
-        * StarOffice XML-Filter Import
-        **********************************************************************/
-
-// ------------------------------------------------------------
-
-
 // ------------------------------------------------------------
 
 /*N*/ BOOL SchChartDocShell::Save() throw()
@@ -762,11 +728,7 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
+/************************************************************************/
 
 /*N*/ BOOL SchChartDocShell::SaveAs(SvStorage * pStor) throw()
 /*N*/ {
@@ -904,8 +866,6 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
 /*N*/           {
 /*N*/                 // old storage was XML format
 /*N*/                 // always convert as internal storage is only the chart range
-/*N*/ //                 if( bFormatChanges )
-/*N*/ //                 {
 /*N*/                     // convert data structure from Calc/Writer to SomeData strings
 /*N*/                     SvPersist* pLclParent = GetParent();
 /*N*/                     if( pLclParent )
@@ -923,7 +883,6 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
 /*N*/                         else if( nLclFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
 /*N*/                             pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
 /*N*/                     }
-/*N*/ //                 }
 /*N*/
 /*N*/                 rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
 /*N*/               rDocumentStream->SetKey( pStor->GetKey());  // set password
@@ -952,11 +911,7 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
 /*N*/   return bRet;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
+/************************************************************************/
 
 /*N*/ BOOL SchChartDocShell::SaveCompleted( SvStorage * pStor ) throw()
 /*N*/ {

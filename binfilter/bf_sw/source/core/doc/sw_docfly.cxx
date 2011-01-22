@@ -62,9 +62,7 @@ namespace binfilter {
 
 extern USHORT GetHtmlMode( const SwDocShell* );
 
-/*-----------------17.02.98 08:35-------------------
-
---------------------------------------------------*/
+/**********************************************************************/
 /*N*/ USHORT SwDoc::GetFlyCount(FlyCntType eType ) const
 /*N*/ {
 /*N*/   const SwSpzFrmFmts& rFmts = *GetSpzFrmFmts();
@@ -106,9 +104,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/   return nCount;
 /*N*/ }
 
-/*-----------------17.02.98 08:35-------------------
-
---------------------------------------------------*/
+/**********************************************************************/
 /*N*/ SwFrmFmt* SwDoc::GetFlyNum( USHORT nIdx, FlyCntType eType )
 /*N*/ {
 /*N*/   SwSpzFrmFmts& rFmts = *GetSpzFrmFmts();
@@ -154,8 +150,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 #*  Class       :  SwDoc
 #*  Methode     :  SetFlyFrmAnchor
 #*  Beschreibung:  Das Ankerattribut des FlyFrms aendert sich.
-#*  Datum       :  MA 01. Feb. 94
-#*  Update      :  JP 09.03.98
 #***********************************************************************/
 
 /*N*/ Point lcl_FindAnchorLayPos( SwDoc& rDoc, const SwFmtAnchor& rAnch,
@@ -427,9 +421,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 
 /***************************************************************************
  *  Methode     :   BOOL SwDoc::SetFrmFmtToFly( SwFlyFrm&, SwFrmFmt& )
- *  Beschreibung:
- *  Erstellt    :   OK 14.04.94 15:40
- *  Aenderung   :   JP 23.04.98
  ***************************************************************************/
 
 /*M*/ BOOL SwDoc::SetFrmFmtToFly( SwFrmFmt& rFmt, SwFrmFmt& rNewFmt,

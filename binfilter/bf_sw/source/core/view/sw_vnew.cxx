@@ -56,8 +56,6 @@ namespace binfilter {
 |*
 |*  ViewShell::Init()
 |*
-|*  Letzte Aenderung    MA 14. Jun. 96
-|*
 |*************************************************************************/
 
 /*N*/ void ViewShell::Init( const SwViewOption *pNewOpt )

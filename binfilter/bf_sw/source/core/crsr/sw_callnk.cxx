@@ -211,50 +211,6 @@ namespace binfilter {
 /*?*/   return 0;
 /*N*/ }
 
-/*---------------------------------------------------------------------*/
-
-
-//SwChgLinkFlag::SwChgLinkFlag( SwCrsrShell& rShell )
-//    : rCrsrShell( rShell ), bOldFlag( rShell.bCallChgLnk ), nLeftFrmPos( 0 )
-//{
-//    rCrsrShell.bCallChgLnk = FALSE;
-//    if( bOldFlag && !rCrsrShell.pTblCrsr )
-//    {
-//        SwNode* pNd = rCrsrShell.pCurCrsr->GetNode();
-//        if( ND_TEXTNODE & pNd->GetNodeType() )
-//            nLeftFrmPos = SwCallLink::GetFrm( (SwTxtNode&)*pNd,
-//                    rCrsrShell.pCurCrsr->GetPoint()->nContent.GetIndex(),
-//                    !rCrsrShell.ActionPend() );
-//    }
-//}
-
-
-//SwChgLinkFlag::~SwChgLinkFlag()
-//{
-//    rCrsrShell.bCallChgLnk = bOldFlag;
-//    if( bOldFlag && !rCrsrShell.pTblCrsr )
-//    {
-//        // die Spalten Ueberwachung brauchen wir immer!!!
-//        SwNode* pNd = rCrsrShell.pCurCrsr->GetNode();
-//        if( ND_TEXTNODE & pNd->GetNodeType() &&
-//            nLeftFrmPos != SwCallLink::GetFrm( (SwTxtNode&)*pNd,
-//                    rCrsrShell.pCurCrsr->GetPoint()->nContent.GetIndex(),
-//                    !rCrsrShell.ActionPend() ))
-//        {
-//            /* immer, wenn zwischen Frames gesprungen wird, gelten
-//             * neue Attribute. Es muesste also festgestellt werden, welche
-//             * Attribute jetzt gelten; das kann gleich der Handler machen.
-//             * Diesen direkt rufen !!!
-//             */
-//            rCrsrShell.aChgLnk.Call( &rCrsrShell );
-//            rCrsrShell.bChgCallFlag = FALSE;        // Flag zuruecksetzen
-//        }
-//    }
-//}
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -466,7 +466,6 @@ namespace binfilter {
 |*                      Eingefuegt wird unterhalb des Parent und entweder
 |*                      vor pBehind oder am Ende der Kette wenn pBehind
 |*                      leer ist.
-|*  Letzte Aenderung    MA 06. Aug. 99
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::InsertBefore( SwLayoutFrm* pParent, SwFrm* pBehind )
@@ -507,7 +506,6 @@ namespace binfilter {
 |*                      Eingefuegt wird unterhalb des Parent und entweder
 |*                      hinter pBefore oder am Anfang der Kette wenn pBefore
 |*                      leer ist.
-|*  Letzte Aenderung    MA 06. Aug. 99
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::InsertBehind( SwLayoutFrm *pParent, SwFrm *pBefore )
@@ -534,31 +532,6 @@ namespace binfilter {
 /*N*/       pParent->pLower = this;
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  SwFrm::InsertGroup()
-|*
-|*  Beschreibung        Eine Kette von SwFrms wird in eine bestehende Struktur
-|*                      eingefuegt
-|*  Letzte Aenderung    AMA 9. Dec. 97
-|*
-|*  Bisher wird dies genutzt, um einen SectionFrame, der ggf. schon Geschwister
-|*  mit sich bringt, in eine bestehende Struktur einzufuegen.
-|*
-|*  Wenn man den dritten Parameter als NULL uebergibt, entspricht
-|*  diese Methode dem SwFrm::InsertBefore(..), nur eben mit Geschwistern.
-|*
-|*  Wenn man einen dritten Parameter uebergibt, passiert folgendes:
-|*  this wird pNext von pParent,
-|*  pSct wird pNext vom Letzten der this-Kette,
-|*  pBehind wird vom pParent an den pSct umgehaengt.
-|*  Dies dient dazu: ein SectionFrm (this) wird nicht als
-|*  Kind an einen anderen SectionFrm (pParent) gehaengt, sondern pParent
-|*  wird in zwei Geschwister aufgespalten (pParent+pSct) und this dazwischen
-|*  eingebaut.
-|*
-|*************************************************************************/
 
 /*************************************************************************
 |*
@@ -1890,7 +1863,7 @@ namespace binfilter {
 /*N*/         BFIXHEIGHT = TRUE;
 /*N*/ }
 
-/*-----------------10.06.99 09:42-------------------
+/*--------------------------------------------------
  * SwLayoutFrm::InnerHeight()
  * --------------------------------------------------*/
 

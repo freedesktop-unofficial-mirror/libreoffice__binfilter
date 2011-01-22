@@ -30,27 +30,17 @@
 #pragma hdrstop
 #endif
 
-
 #include <shellio.hxx>
-
 #include <horiornt.hxx>
-
 #include <doc.hxx>
-
 #include <errhdl.hxx>
-
-
 #include <cmdid.h>
-namespace binfilter {
 
+namespace binfilter {
 
 /******************************************************************************
  *  Methode     :   SwDocFac::SwDocFac( SwDoc *pDoc )
- *  Beschreibung:
- *  Erstellt    :   OK 01-24-94 11:32am
- *  Aenderung   :   OK 01-24-94 11:32am
  ******************************************************************************/
-
 
 /*N*/ SwDocFac::SwDocFac( SwDoc *pDc )
 /*N*/   : pDoc( pDc )
@@ -61,11 +51,7 @@ namespace binfilter {
 
 /******************************************************************************
  *  Methode     :   SwDocFac::~SwDocFac()
- *  Beschreibung:
- *  Erstellt    :   OK 01-24-94 11:33am
- *  Aenderung   :   OK 01-24-94 11:33am
  ******************************************************************************/
-
 
 /*N*/ SwDocFac::~SwDocFac()
 /*N*/ {
@@ -76,10 +62,7 @@ namespace binfilter {
 /******************************************************************************
  *  Methode     :   SwDoc *SwDocFac::GetDoc()
  *  Beschreibung:   Diese Methode legt immer einen Drucker an.
- *  Erstellt    :   OK 01-24-94 11:34am
- *  Aenderung   :   OK 01-24-94 11:34am
  ******************************************************************************/
-
 
 /*N*/ SwDoc *SwDocFac::GetDoc()
 /*N*/ {
@@ -90,14 +73,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pDoc;
 /*N*/ }
-
-
-/******************************************************************************
- *  Erstellt    :   JP 01-27-94 11:37am
- *  Aenderung   :   JP 01-27-94 11:37am
- ******************************************************************************/
-
-
 
 }
 

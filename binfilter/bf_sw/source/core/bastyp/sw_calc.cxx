@@ -246,9 +246,6 @@ static int
 |*
 |*  SwCalc::SwCalc( SwDoc* pD ) :
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 03.11.95
-|*
 |******************************************************************************/
 /*N*/
 /*N*/ SwCalc::SwCalc( SwDoc& rD )
@@ -393,9 +390,6 @@ static int
 |*
 |*  SwCalc::~SwCalc()
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
-|*
 |******************************************************************************/
 
 /*N*/ SwCalc::~SwCalc()
@@ -411,9 +405,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue SwCalc::Calculate( const String& rStr )
-|*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
 |*
 |******************************************************************************/
 
@@ -447,8 +438,6 @@ static int
 |*                      nur beim errechnen von Tabellenzellen auf FALSE gesetzt
 |*                      werden, damit keine Rundungsfehler beim zusammenstellen
 |*                      der Formel entstehen.
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 19.02.98
 |*
 |******************************************************************************/
 
@@ -483,9 +472,6 @@ static int
 |*
 |*  SwCalcExp* SwCalc::VarLook( const String& )
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 15.11.99
-|*
 |******************************************************************************/
 
 /*N*/ SwCalcExp* SwCalc::VarInsert( const String &rStr )
@@ -498,9 +484,6 @@ static int
 /******************************************************************************
 |*
 |*  SwCalcExp* SwCalc::VarLook( const String& , USHORT ins )
-|*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 15.11.99
 |*
 |******************************************************************************/
 /*N*/ SwCalcExp* SwCalc::VarLook( const String& rStr, USHORT ins )
@@ -612,9 +595,6 @@ static int
 |*
 |*  BOOL SwCalc::VarChange( const String& rStr, const SwSbxValue nValue )
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
-|*
 |******************************************************************************/
 
 /*?*/ void SwCalc::VarChange( const String& rStr, double nValue )
@@ -645,9 +625,6 @@ static int
 |*
 |*  BOOL SwCalc::Push( const void* pPtr )
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    OK 12-02-93 11:05am
-|*
 |******************************************************************************/
 
 /*N*/ BOOL SwCalc::Push( const VoidPtr pPtr )
@@ -663,9 +640,6 @@ static int
 |*
 |*  void SwCalc::Pop( const void* pPtr )
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    OK 12-02-93 11:05am
-|*
 |******************************************************************************/
 
 /*N*/ void SwCalc::Pop( const VoidPtr )
@@ -677,9 +651,6 @@ static int
 /******************************************************************************
 |*
 |*  SwCalcOper SwCalc::GetToken()
-|*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 03.11.95
 |*
 |******************************************************************************/
 
@@ -1059,9 +1030,6 @@ static int
 |*
 |*  SwSbxValue SwCalc::Term()
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 16.01.96
-|*
 |******************************************************************************/
 
 /*N*/ SwSbxValue SwCalc::Term()
@@ -1182,37 +1150,6 @@ static int
 /*?*/                           }
 /*?*/                           break;
 /*N*/
-/*
-// removed here because of #77448# (=2*3^2 != 18)
-            case CALC_POW:  {
-                                 GetToken();
- #if defined(MAC) && !defined(__powerc)
-                                 long double fraction, integer;
- #else
-                                 double fraction, integer;
- #endif
-                                 double right = Prim().GetDouble(),
-                                         dleft = left.GetDouble();
-
-                                 fraction = modf( right, &integer );
-                                 if( ( dleft < 0.0 && 0.0 != fraction ) ||
-                                     ( 0.0 == dleft && right < 0.0 ) )
-                                 {
-                                     eError = CALC_OVERFLOW;
-                                     left.Clear();
-                                     return left;
-                                 }
-                                 dleft = pow(dleft, right );
-                                 if( dleft == HUGE_VAL )
-                                 {
-                                     eError = CALC_POWERR;
-                                     left.Clear();
-                                     return left;
-                                 }
-                                 left.PutDouble( dleft );
-                             }
-                             break;
- */
 /*N*/           default:        return left;
 /*N*/       }
 /*N*/
@@ -1241,9 +1178,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue SwCalc::Prim()
-|*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 03.11.95
 |*
 |******************************************************************************/
 
@@ -1397,7 +1331,6 @@ static int
 /*?*/           else
 /*?*/           {
 /*?*/               nErg.PutDouble( dleft );
-/*?*/ //                GetToken();
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -1408,9 +1341,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue  SwCalc::Expr()
-|*
-|*  Erstellung          OK 12-02-93 11:06am
-|*  Letzte Aenderung    JP 03.11.95
 |*
 |******************************************************************************/
 
@@ -1482,9 +1412,6 @@ static int
 
 /******************************************************************************
  *  Methode     :   bool SwCalc::Str2Double( double& )
- *  Beschreibung:
- *  Erstellt    :   OK 07.06.94 12:56
- *  Aenderung   :   JP 27.10.98
  ******************************************************************************/
 /*N*/ bool SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
 /*N*/                           double& rVal, const LocaleDataWrapper* pLclData )
