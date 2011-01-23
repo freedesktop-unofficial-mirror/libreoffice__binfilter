@@ -1022,7 +1022,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                         // Header und Footer definieren
                         SwFrmFmt* pHdFmt = 0;
                         SwFrmFmt* pFtFmt = 0;
-                        W4WRectInfo& rRectInfo = *pRDTInfos->Get( rPDTInfo.nHdRectId );
                         if( pHdInfo )
                         {
                             rFrmFmt.SetAttr( SwFmtHeader( TRUE ));
@@ -1327,7 +1326,6 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 
                         SwFrmFmt* pHdFmt = 0;
                         SwFrmFmt* pFtFmt = 0;
-                        W4WRectInfo& rRectInfo = *pRDTInfos->Get( pPDTInfo->nHdRectId );
                         if( pHdInfo )
                         {
                             pHdFmt = (SwFrmFmt*)pPageDesc->GetMaster().GetHeader().GetHeaderFmt();
