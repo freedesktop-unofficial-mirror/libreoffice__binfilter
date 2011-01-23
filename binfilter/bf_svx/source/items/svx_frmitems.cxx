@@ -1265,26 +1265,21 @@ using namespace ::com::sun::star;
 /*N*/   sal_uInt16 nDist;
 /*N*/   sal_Bool bDistMember = sal_False;
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
-/*N*/     sal_Bool bSerialize = sal_False;
 /*N*/   switch(nMemberId)
 /*N*/   {
 /*N*/         case MID_LEFT_BORDER:
-/*N*/             bSerialize = sal_True;      // intentionally no break!
 /*N*/       case LEFT_BORDER:
 /*N*/           aRetLine = lcl_SvxLineToLine(GetLeft(), bConvert);
 /*N*/           break;
 /*N*/         case MID_RIGHT_BORDER:
-/*N*/             bSerialize = sal_True;      // intentionally no break!
 /*N*/       case RIGHT_BORDER:
 /*N*/           aRetLine = lcl_SvxLineToLine(GetRight(), bConvert);
 /*N*/           break;
 /*N*/         case MID_BOTTOM_BORDER:
-/*N*/             bSerialize = sal_True;      // intentionally no break!
 /*N*/       case BOTTOM_BORDER:
 /*N*/           aRetLine = lcl_SvxLineToLine(GetBottom(), bConvert);
 /*N*/           break;
-/*N*/         case MID_TOP_BORDER:
-/*N*/             bSerialize = sal_True;      // intentionally no break!
+/*N*/         case MID_TOP_BORDER: // intentionally no break!
 /*N*/       case TOP_BORDER:
 /*N*/           aRetLine = lcl_SvxLineToLine(GetTop(), bConvert);
 /*N*/           break;
@@ -1313,21 +1308,7 @@ using namespace ::com::sun::star;
 /*N*/   if( bDistMember )
 /*N*/       rVal <<= (sal_Int32)(bConvert ? UTWIP_TO_MM100(nDist) : nDist);
 /*N*/   else
-/*N*/     {
-/*
-        if ( bSerialize )
-        {
-            ::com::sun::star::uno::Sequence < ::com::sun::star::uno::Any > aSeq(4);
-            aSeq[0] <<= aRetLine.Color;
-            aSeq[1] <<= aRetLine.InnerLineWidth;
-            aSeq[2] <<= aRetLine.OuterLineWidth;
-            aSeq[3] <<= aRetLine.LineDistance;
-            rVal <<= aSeq;
-        }
-        else
-*/
-/*N*/             rVal <<= aRetLine;
-/*N*/     }
+/*N*/           rVal <<= aRetLine;
 /*N*/
 /*N*/   return sal_True;
 /*N*/ }
