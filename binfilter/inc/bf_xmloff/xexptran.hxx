@@ -61,7 +61,7 @@ class SvXMLUnitConverter;
 //////////////////////////////////////////////////////////////////////////////
 
 typedef ::std::vector< ImpSdXMLExpTransObj2DBase* > ImpSdXMLExpTransObj2DBaseList;
-DECLARE_LIST(ImpSdXMLExpTransObj3DBaseList, ImpSdXMLExpTransObj3DBase*)
+typedef ::std::vector< ImpSdXMLExpTransObj3DBase* > ImpSdXMLExpTransObj3DBaseList;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -103,7 +103,7 @@ public:
     void AddMatrix(const Matrix4D& rNew);
 
     void AddHomogenMatrix(const ::com::sun::star::drawing::HomogenMatrix& xHomMat);
-    sal_Bool NeedsAction() const { return (sal_Bool)(maList.Count() > 0L); }
+    sal_Bool NeedsAction() const { return (sal_Bool)( !maList.empty() ); }
     void GetFullTransform(Matrix4D& rFullTrans);
     BOOL GetFullHomogenTransform( ::com::sun::star::drawing::HomogenMatrix& xHomMat);
     const ::rtl::OUString& GetExportString(const SvXMLUnitConverter& rConv);

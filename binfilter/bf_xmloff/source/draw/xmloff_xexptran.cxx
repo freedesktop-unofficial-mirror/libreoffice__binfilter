@@ -690,9 +690,9 @@ struct ImpSdXMLExpTransObj3DMatrix : public ImpSdXMLExpTransObj3DBase
 
 void SdXMLImExTransform3D::EmptyList()
 {
-    while(maList.Count())
+    for ( size_t i = maList.size(); i > 0; )
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.Remove(maList.Count() - 1);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ --i ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   : delete (ImpSdXMLExpTransObj3DRotateX*)pObj; break;
@@ -704,6 +704,7 @@ void SdXMLImExTransform3D::EmptyList()
             default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
         }
     }
+    maList.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -715,7 +716,7 @@ void SdXMLImExTransform3D::AddMatrix(const Matrix4D& rNew)
         || rNew[0][1] != 0.0 || rNew[0][2] != 0.0 || rNew[0][3] != 0.0
         || rNew[1][0] != 0.0 || rNew[1][2] != 0.0 || rNew[1][3] != 0.0
         || rNew[2][0] != 0.0 || rNew[2][1] != 0.0 || rNew[2][3] != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DMatrix(rNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj3DMatrix(rNew) );
 }
 
 void SdXMLImExTransform3D::AddHomogenMatrix(const drawing::HomogenMatrix& xHomMat)
@@ -746,9 +747,9 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
     OUString aClosingBrace(sal_Unicode(')'));
     OUString aEmptySpace(sal_Unicode(' '));
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++)
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   :
@@ -852,7 +853,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
         }
 
         // if not the last entry, add one space to next tag
-        if(a+1 != maList.Count())
+        if(a+1 != maList.size())
             aNewString += aEmptySpace;
     }
 
@@ -906,7 +907,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateX(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateX(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -918,7 +919,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateY(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateY(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -930,7 +931,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateZ(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateZ(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -947,7 +948,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Z() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Z());
 
                     if(aValue.X() != 1.0 || aValue.Y() != 1.0 || aValue.Z() != 1.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DScale(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DScale(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -964,7 +965,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Z() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Z(), TRUE);
 
                     if(aValue.X() != 0.0 || aValue.Y() != 0.0 || aValue.Z() != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DTranslate(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DTranslate(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -1023,7 +1024,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue[2][3] = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue[2][3], TRUE);
                     Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
-                    maList.Insert(new ImpSdXMLExpTransObj3DMatrix(aValue), LIST_APPEND);
+                    maList.push_back( new ImpSdXMLExpTransObj3DMatrix(aValue) );
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
                 else
@@ -1073,9 +1074,9 @@ void SdXMLImExTransform3D::GetFullTransform(Matrix4D& rFullTrans)
 {
     rFullTrans.Identity();
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for(size_t a = 0; a < maList.size(); a++)
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   :
