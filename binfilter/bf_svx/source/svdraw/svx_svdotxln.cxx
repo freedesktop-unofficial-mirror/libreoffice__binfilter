@@ -98,7 +98,6 @@ namespace binfilter {
 /*?*/ void ImpSdrObjTextLink::DataChanged( const String& /*rMimeType*/,
 /*?*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*?*/ {
-/*?*/   bool bForceReload=FALSE;
 /*?*/   SdrModel* pModel = pSdrObj ? pSdrObj->GetModel() : 0;
 /*?*/   SvxLinkManager* pLinkManager= pModel ? pModel->GetLinkManager() : 0;
 /*?*/   if( pLinkManager )
@@ -116,7 +115,6 @@ namespace binfilter {
 /*?*/               pData->aFileName = aFile;
 /*?*/               pData->aFilterName = aFilter;
 /*?*/               pSdrObj->SetChanged();
-/*?*/               bForceReload = TRUE;
 /*?*/           }
 /*?*/       }
 /*?*/   }
