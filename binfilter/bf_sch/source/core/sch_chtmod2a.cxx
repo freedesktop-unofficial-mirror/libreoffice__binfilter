@@ -209,19 +209,12 @@ namespace binfilter {
 /*?*/               Point aCircPos = aCircRect.TopLeft();
 /*?*/
 /*?*/               long nAngleDiff;
-/*?*/               long nAngleHook;
 /*?*/
 /*?*/               // determine the bisector angle
 /*?*/               if (nStartAng > nEndAng)
-/*?*/               {
 /*?*/                   nAngleDiff = (nEndAng + 36000 - nStartAng) / 2;
-/*?*/                   nAngleHook = (nStartAng + nAngleDiff) % 36000;
-/*?*/               }
 /*?*/               else
-/*?*/               {
 /*?*/                   nAngleDiff = (nEndAng - nStartAng) / 2;
-/*?*/                   nAngleHook = nStartAng + nAngleDiff;
-/*?*/               }
 /*?*/
 /*?*/               // set the text position according to the position of the pie
 /*?*/               if (nStartAng < 9000)
@@ -1142,29 +1135,6 @@ namespace binfilter {
 /*N*/
 /*N*/               fOldData [nCol] = fData;
 /*N*/
-/*N*/               ChartAdjust eAdjust;
-/*N*/
-/*N*/               if (fAngle > 0 && fAngle < F_PI / 4)
-/*N*/               {
-/*?*/                   eAdjust = CHADJUST_CENTER_LEFT;
-/*N*/               }
-/*N*/               else if (fAngle >= F_PI / 4 && fAngle <= 3 * F_PI / 4)
-/*N*/                    {
-/*N*/                        eAdjust = CHADJUST_BOTTOM_CENTER;
-/*N*/                    }
-/*N*/                    else if (fAngle > 3 * F_PI / 4 && fAngle <= 5 * F_PI / 4)
-/*N*/                         {
-/*N*/                             eAdjust = CHADJUST_CENTER_RIGHT;
-/*N*/                         }
-/*N*/                         else if (fAngle > 5 * F_PI / 4 && fAngle <= 7 * F_PI / 4)
-/*N*/                              {
-/*N*/                                  eAdjust = CHADJUST_TOP_CENTER;
-/*N*/                              }
-/*N*/                              else
-/*N*/                              {
-/*N*/                                  eAdjust = CHADJUST_CENTER_LEFT;
-/*N*/                              }
-/*N*/
 /*N*/               if (pDescription)
 /*N*/               {
 /*?*/               DBG_BF_ASSERT(0, "STRIP");
@@ -1265,11 +1235,9 @@ namespace binfilter {
 /*?*/       {
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
-/*?*/           long   nDirty = 0;
                 long   nRows  = 0;
 /*?*/
-/*?*/             //    Calculate the total of all segements with percentage value and
-/*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
+/*?*/             //    Calculate the total of all segements with percentage value
 /*?*/           for (nRows = nStart;nRows < nRowCnt;nRows ++)
 /*?*/               if (pDescrLists [nRows])
 /*?*/               {
@@ -1283,10 +1251,7 @@ namespace binfilter {
 /*?*/                       {
 /*?*/                           fTotal += fTemp;
 /*?*/                           if (fMax < fTemp)
-/*?*/                           {
 /*?*/                               fMax   = fTemp;
-/*?*/                               nDirty = nIndex;
-/*?*/                           }
 /*?*/                       }
 /*?*/                   }
 /*?*/               }
@@ -1321,11 +1286,9 @@ namespace binfilter {
 /*?*/
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
-/*?*/           long   nDirty = 0;
                 long   nCols = 0;
 /*?*/
-/*?*/             //    Calculate the total of all segements with a percentage value and
-/*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
+/*?*/             //    Calculate the total of all segements with a percentage value
 /*?*/           for (nCols = 0;nCols < nColCnt;nCols ++)
 /*?*/           {
 /*?*/               long   nIndex = nCols + nRows * nColCnt;
@@ -1338,10 +1301,7 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       fTotal += fTemp;
 /*?*/                       if (fMax < fTemp)
-/*?*/                       {
 /*?*/                           fMax   = fTemp;
-/*?*/                           nDirty = nIndex;
-/*?*/                       }
 /*?*/                   }
 /*?*/               }
 /*?*/           }

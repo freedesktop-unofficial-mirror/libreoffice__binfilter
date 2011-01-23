@@ -1019,8 +1019,8 @@ namespace binfilter {
 /*N*/   pGroupObject = GetObjWithId(CHOBJID_DIAGRAM_TITLE_Y_AXIS, *pPage);
 /*N*/   if (pGroupObject != NULL)
 /*N*/   {
-/*N*/       Rectangle Test1 = pGroupObject->GetBoundRect();
-/*N*/       Rectangle Test2 = pGroupObject->GetSnapRect();
+/*N*/       pGroupObject->GetBoundRect();
+/*N*/       pGroupObject->GetSnapRect();
 /*N*/       aTitleYAxisPosition = SetPointOfRectangle(pGroupObject->GetBoundRect(), eAdjustYAxesTitle);
 /*N*/       DeleteObject(pGroupObject);
 /*N*/   }

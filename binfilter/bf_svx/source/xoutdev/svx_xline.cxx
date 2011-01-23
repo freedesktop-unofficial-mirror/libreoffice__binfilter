@@ -567,7 +567,6 @@ namespace binfilter {
 /*N*/ void XOutputDevice::ImpDrawLinePolygon(const Polygon& rPoly, BOOL bClosePoly)
 /*N*/ {
 /*N*/   Polygon         aPoly( rPoly );
-/*N*/   const Point*    pNextPoint;
 /*N*/   Point           aLineStartPos, aLineEndPos;
 /*N*/   XLineParam      aLParam, aStartParam, aEndParam;
 /*N*/   USHORT          nPntMax = aPoly.GetSize() - 1;
@@ -702,9 +701,6 @@ namespace binfilter {
 /*?*/                       break;
 /*?*/                   nPos++;
 /*?*/               }
-/*?*/               if ( nPos+1 <= nPntMax )    pNextPoint = &aPoly[nPos+1];
-/*?*/               else if ( bClosePoly )      pNextPoint = &aPoly[0];
-/*?*/               else                        pNextPoint = NULL;
 /*?*/
 /*?*/               if ( nLineWidth > 0 )
 /*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }

@@ -748,11 +748,9 @@ void SdPage::SetAutoLayout(AutoLayout eLayout, BOOL bInit, BOOL bAPICall )
 
     Rectangle aTitleRect;
     Rectangle aLayoutRect;
-    BOOL bFound = FALSE;
 
     for (nMasterIndex = 0; nMasterIndex < nMasterCount; nMasterIndex++)
     {
-        bFound = FALSE;
         pMasterObj = (SdrObject*) pList->GetObject(nMasterIndex);
 
         if (pMasterObj && pMasterObj->GetObjInventor() == SdrInventor)

@@ -574,7 +574,6 @@ namespace binfilter {
 /*N*/   const sal_Unicode* pSrc = pStart + nSrcPos;
 /*N*/   BOOL bi18n = FALSE;
 /*N*/   sal_Unicode c = *pSrc;
-/*N*/   sal_Unicode cLast = 0;
 /*N*/   BOOL bQuote = FALSE;
 /*N*/   ScanState eState = ssGetChar;
 /*N*/   xub_StrLen nSpaces = 0;
@@ -689,7 +688,6 @@ namespace binfilter {
 /*N*/           default:
 /*N*/               break;
 /*N*/       }
-/*N*/       cLast = c;
 /*N*/       c = *pSrc;
 /*N*/   }
 /*N*/   if ( bi18n )

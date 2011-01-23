@@ -1485,28 +1485,28 @@ const sal_Int32 coNumContFlags =
 /*N*/ {
 /*N*/   NextToken();
 /*N*/
-/*N*/   sal_Unicode cChar;
 /*N*/   switch (CurToken.eType)
-/*N*/   {   case TLPARENT :     cChar = MS_LPARENT;     break;
-/*N*/       case TRPARENT :     cChar = MS_RPARENT;     break;
-/*N*/       case TLBRACKET :    cChar = MS_LBRACKET;    break;
-/*N*/       case TRBRACKET :    cChar = MS_RBRACKET;    break;
-/*N*/         case TLDBRACKET :   cChar = MS_LDBRACKET;   break;
-/*N*/         case TRDBRACKET :   cChar = MS_RDBRACKET;   break;
+/*N*/   {   case TLPARENT :
+/*N*/       case TRPARENT :
+/*N*/       case TLBRACKET :
+/*N*/       case TRBRACKET :
+/*N*/         case TLDBRACKET :
+/*N*/         case TRDBRACKET :
 /*N*/       case TLBRACE :
-/*N*/       case TLGROUP :      cChar = MS_LBRACE;      break;
+/*N*/       case TLGROUP :
 /*N*/       case TRBRACE :
-/*N*/       case TRGROUP :      cChar = MS_RBRACE;      break;
-/*N*/       case TLANGLE :      cChar = MS_LANGLE;      break;
-/*N*/       case TRANGLE :      cChar = MS_RANGLE;      break;
-/*N*/       case TLCEIL :       cChar = MS_LCEIL;       break;
-/*N*/       case TRCEIL :       cChar = MS_RCEIL;       break;
-/*N*/       case TLFLOOR :      cChar = MS_LFLOOR;      break;
-/*N*/       case TRFLOOR :      cChar = MS_RFLOOR;      break;
+/*N*/       case TRGROUP :
+/*N*/       case TLANGLE :
+/*N*/       case TRANGLE :
+/*N*/       case TLCEIL :
+/*N*/       case TRCEIL :
+/*N*/       case TLFLOOR :
+/*N*/       case TRFLOOR :
 /*N*/       case TLLINE :
-/*N*/       case TRLINE :       cChar = MS_LINE;        break;
+/*N*/       case TRLINE :
 /*N*/       case TLDLINE :
-/*N*/       case TRDLINE :      cChar = MS_DLINE;       break;
+/*N*/       case TRDLINE :
+/*N*/           break;
 /*N*/       default:
 /*N*/           Error(PE_UNEXPECTED_TOKEN);
 /*N*/   }

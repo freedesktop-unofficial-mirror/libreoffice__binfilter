@@ -208,11 +208,11 @@ namespace binfilter {
 /*N*/   SvxChartTextOrient eDescrOrient = ((const SvxChartTextOrientItem&)pXAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/   SvxChartTextOrient eValueOrient = ((const SvxChartTextOrientItem&)pYAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/
-/*N*/   Size aMaxValueSizeY = pChartYAxis->CalcMaxTextSize(eValueOrient);
-/*N*/   Size aMaxValueSizeX = pChartXAxis->CalcMaxTextSize(eDescrOrient);
+/*N*/   pChartYAxis->CalcMaxTextSize(eValueOrient);
+/*N*/   pChartXAxis->CalcMaxTextSize(eDescrOrient);
 /*N*/
-/*N*/   Size aMaxDescrSizeY = CalcMaxDescrSize( TRUE,  eValueOrient, bPercent, CHAXIS_AXIS_Y );
-/*N*/   Size aMaxDescrSizeX = CalcMaxDescrSize( FALSE, eDescrOrient, bPercent, CHAXIS_AXIS_X );
+/*N*/   CalcMaxDescrSize( TRUE,  eValueOrient, bPercent, CHAXIS_AXIS_Y );
+/*N*/   CalcMaxDescrSize( FALSE, eDescrOrient, bPercent, CHAXIS_AXIS_X );
 /*N*/
 /*N*/   short   nV, i;
 /*N*/

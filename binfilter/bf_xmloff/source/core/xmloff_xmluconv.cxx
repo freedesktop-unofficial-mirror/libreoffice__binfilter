@@ -1701,7 +1701,6 @@ void SvXMLUnitConverter::convertNumFormat( OUStringBuffer& rBuffer,
                            sal_Int16 nType ) const
 {
     enum XMLTokenEnum eFormat = XML_TOKEN_INVALID;
-    sal_Bool bExt = sal_False;
     switch( nType )
     {
     case NumberingType::CHARS_UPPER_LETTER:     eFormat = XML_A_UPCASE; break;
@@ -1719,7 +1718,6 @@ void SvXMLUnitConverter::convertNumFormat( OUStringBuffer& rBuffer,
         DBG_ASSERT( eFormat != XML_TOKEN_INVALID, "invalid number format" );
         break;
     default:
-        bExt = sal_True;
         break;
     }
 

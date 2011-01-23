@@ -124,8 +124,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry(aPropertyName);
 
-    sal_Bool bValuesChanged = sal_False;
-
     switch( pMap ? pMap->nWID : -1 )
     {
     case ATTR_PRESENT_ALL:
@@ -138,7 +136,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
         if( pDoc->GetPresAll() != bVal )
         {
             pDoc->SetPresAll( bVal );
-            bValuesChanged = sal_True;
             if( bVal )
                 pDoc->SetCustomShow( false );
         }
@@ -153,7 +150,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if ( bVal == pDoc->GetPresLockedPages() )
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresLockedPages( !bVal );
         }
         break;
@@ -168,7 +164,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->IsAnimationAllowed() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetAnimationAllowed(bVal);
         }
         break;
@@ -192,7 +187,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
             }
 
             pDoc->SetCustomShow( true );
-            bValuesChanged = sal_True;
         }
         break;
     }
@@ -205,7 +199,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresEndless() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresEndless(bVal);
         }
         break;
@@ -219,7 +212,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresFullScreen() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresFullScreen(bVal);
         }
         break;
@@ -233,7 +225,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
         pDoc->SetCustomShow(false);
         pDoc->SetPresAll(false);
 
-        bValuesChanged = sal_True;
         break;
     }
     case ATTR_PRESENT_MANUEL:
@@ -245,7 +236,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresManual() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresManual(bVal);
         }
         break;
@@ -259,7 +249,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresMouseVisible() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresMouseVisible(bVal);
         }
         break;
@@ -273,7 +262,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresAlwaysOnTop() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresAlwaysOnTop(bVal);
         }
         break;
@@ -287,7 +275,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetStartPresWithNavigator() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetStartPresWithNavigator(bVal);
         }
         break;
@@ -301,7 +288,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
         if(pDoc->GetPresMouseAsPen() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresMouseAsPen(bVal);
         }
         break;

@@ -335,11 +335,9 @@ enum ChartStyleV0
 /*N*/
 /*N*/               if (i < nCnt)
 /*N*/               {
-/*N*/                   BOOL bIsSymbol = FALSE;
 /*N*/                   BOOL bIsLine   = FALSE;
 /*N*/                   if(HasSymbols(nIndex))
 /*N*/                   {
-/*N*/                       bIsSymbol = TRUE;
 /*N*/                       pObj = CreateSymbol (Point (aTextPos.X () + nLegendHeight / 2,
 /*N*/                                                           aTextPos.Y () + nLegendHeight / 2 + nLittleSpace / 3),
 /*N*/                                            nIndex, 0, (SfxItemSet &) GetDataRowAttr(nIndex), nLegendHeight, FALSE);
@@ -1423,9 +1421,8 @@ enum ChartStyleV0
 /*N*/   for (i = 0; i < ROW_COLOR_COUNT; i++)
 /*N*/       rIn >> aDummyColor;
 /*N*/
-/*N*/   long nOverlap;
 /*N*/   rIn >> nInt32; //nGapWidth = (long)nInt32;
-/*N*/   rIn >> nInt32; nOverlap = (long)nInt32;
+/*N*/   rIn >> nInt32; //nOverlap = (long)nInt32;
 /*N*/   rIn >> nInt32;
 /*N*/   DBG_ASSERT( nInt32 == 100, "LoadAttributes: nMarkLen's value differs from 100 in this stream" );
 /*N*/

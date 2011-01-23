@@ -584,6 +584,7 @@ static const char* aRootName = "Office.Math";
 /*N*/       ++pValue;
 /*N*/
 /*N*/         DBG_ASSERT( bOK, "read FontFormat failed" );
+/*N*/         (void)bOK;
 /*N*/   }
 /*N*/
 /*N*/     return aRes;
