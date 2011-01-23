@@ -735,7 +735,6 @@ void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeA
     sal_Bool bWasHeader (sal_False);
     sal_Bool bIsHeader (sal_False);
     sal_Bool bIsClosed (sal_True);
-    sal_Bool bIsFirst (sal_False);
     sal_Int32 nPrevIndex (-1);
     sal_Int32 nColumn;
 
@@ -750,7 +749,6 @@ void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeA
         {
             if (bIsHeader)
             {
-                bIsFirst = sal_False;
                 if (nColumn > 0)
                 {
                     WriteColumn(nPrevColumn, nColsRepeated, nPrevIndex, bPrevIsVisible);
@@ -761,7 +759,6 @@ void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeA
                 nPrevIndex = nIndex;
                 nPrevColumn = nColumn;
                 nColsRepeated = 1;
-                bIsFirst = sal_True;
                 if(pGroupColumns->IsGroupStart(nColumn))
                     pGroupColumns->OpenGroups(nColumn);
                 OpenHeaderColumn();
@@ -790,14 +787,12 @@ void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeA
                 pGroupColumns->OpenGroups(nColumn);
             bPrevIsVisible = bIsVisible;
             nPrevIndex = nIndex;
-            bIsFirst = sal_True;
         }
         else if ((bIsVisible == bPrevIsVisible) && (nIndex == nPrevIndex) &&
             !pGroupColumns->IsGroupStart(nColumn) && !pGroupColumns->IsGroupEnd(nColumn - 1))
             nColsRepeated++;
         else
         {
-            bIsFirst = sal_False;
             WriteColumn(nPrevColumn, nColsRepeated, nPrevIndex, bPrevIsVisible);
             if (pGroupColumns->IsGroupEnd(nColumn - 1))
             {
@@ -821,8 +816,7 @@ void ScXMLExport::ExportColumns(const sal_uInt16 nTable, const table::CellRangeA
             nColsRepeated = 1;
         }
     }
-    //if (nColsRepeated > 1 || bIsFirst)
-        WriteColumn(nPrevColumn, nColsRepeated, nPrevIndex, bPrevIsVisible);
+    WriteColumn(nPrevColumn, nColsRepeated, nPrevIndex, bPrevIsVisible);
     if (!bIsClosed)
         CloseHeaderColumn();
     if (pGroupColumns->IsGroupEnd(nColumn - 1))

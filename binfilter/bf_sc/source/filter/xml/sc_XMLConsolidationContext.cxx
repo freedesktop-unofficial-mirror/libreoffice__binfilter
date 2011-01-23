@@ -119,7 +119,6 @@ void ScXMLConsolidationContext::EndElement()
         aConsParam.nTab = aTargetAddr.Tab();
         aConsParam.eFunction = eFunction;
 
-        sal_Bool bError = sal_False;
         USHORT nCount = (USHORT) Min( ScXMLConverter::GetTokenCount( sSourceList ), (sal_Int32)0xFFFF );
         ScArea** ppAreas = nCount ? new ScArea*[ nCount ] : NULL;
         if( ppAreas )
@@ -132,7 +131,7 @@ void ScXMLConsolidationContext::EndElement()
                 if ( !ScXMLConverter::GetAreaFromString(
                     *ppAreas[ nIndex ], sSourceList, GetScImport().GetDocument(), nOffset ) )
                 {
-                    bError = sal_True;      //! handle error
+                    //! handle error
                 }
             }
 
