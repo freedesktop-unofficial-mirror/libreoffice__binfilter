@@ -64,7 +64,7 @@ typedef SwTableLine* SwTableLinePtr;
 
 
 
-#if defined(DBG_UTIL) || defined( JP_DEBUG )
+#if defined(DBG_UTIL)
 
 void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
 {
@@ -85,9 +85,6 @@ void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
     if( Abs( nAktSize - nSize ) > ( COLFUZZY * rBoxes.Count() ) )
     {
         DBG_ERROR( "Boxen der Line zu klein/gross" );
-#if defined( WNT ) && defined( JP_DEBUG )
-        __asm int 3;
-#endif
     }
 }
 
@@ -655,8 +652,6 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
         USHORT nLeft = pFndLn->GetTabBoxes().C40_GETPOS( SwTableBox, pLBx );
         USHORT nRight = pFndLn->GetTabBoxes().C40_GETPOS( SwTableBox, pRBx );
 
-//      if( ( nLeft && nRight+1 < pFndLn->GetTabBoxes().Count() ) ||
-//          ( !nLeft && nRight+1 >= pFndLn->GetTabBoxes().Count() ) )
         if( !nLeft || nRight == pFndLn->GetTabBoxes().Count() )
         {
             if( pULPara->bUL )  // Upper ?
@@ -1020,8 +1015,6 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
  }
 
 // suche ab dieser Line nach der naechsten Box mit Inhalt
-
-// suche ab dieser Line nach der naechsten Box mit Inhalt
 BOOL lcl_BoxSetHeadCondColl( const SwTableBox*& rpBox, void* /*pPara*/ )
 {
     // in der HeadLine sind die Absaetze mit BedingtenVorlage anzupassen
@@ -1038,50 +1031,6 @@ BOOL lcl_LineSetHeadCondColl( const SwTableLine*& rpLine, void* /*pPara*/ )
     ((SwTableLine*)rpLine)->GetTabBoxes().ForEach( &lcl_BoxSetHeadCondColl, 0 );
     return TRUE;
 }
-
-/*  */
-
-#ifdef _MSC_VER
-#pragma optimize( "", off )
-#endif
-
-
-//#pragma optimize( "", on )
-
-
-/**/
-
-//#pragma optimize( "", off )
-
-//#pragma optimize( "", on )
-
-
-// das Ergebnis des Positions Vergleiches
-//  POS_BEFORE,             // Box liegt davor
-//  POS_BEHIND,             // Box liegt dahinter
-//  POS_INSIDE,             // Box liegt vollstaendig in Start/End
-//  POS_OUTSIDE,            // Box ueberlappt Start/End vollstaendig
-//  POS_EQUAL,              // Box und Start/End sind gleich
-//  POS_OVERLAP_BEFORE,     // Box ueberlappt den Start
-//  POS_OVERLAP_BEHIND      // Box ueberlappt das Ende
-
-
-// Dummy Funktion fuer die Methode SetColWidth
-
-/**/
-
-
-#if defined(DBG_UTIL) || defined( JP_DEBUG )
-
-
-#endif
-
-#ifdef _MSC_VER
-#pragma optimize( "", on )
-#endif
-
-/*  */
-
 
  SwFrmFmt* SwShareBoxFmt::GetFormat( long nWidth ) const
  {

@@ -42,50 +42,6 @@
 #include "number.hxx"
 
 
-
-#ifdef JP_DEBUG
-
-#include <svwindow.hxx>
-namespace binfilter {
-
-class GrfWindow : public WorkWindow, public Timer
-{
-    Graphic aGrf;
-    Size aSz;
-    virtual void Timeout();
-    virtual void Paint( const Rectangle& );
-public:
-    GrfWindow( const Graphic& rGrf );
-    virtual ~GrfWindow();
-};
-
-GrfWindow::GrfWindow( const Graphic& rGrf )
-    : WorkWindow( GetpApp()->GetAppWindow() ), aGrf( rGrf )
-{
-    SetTimeout( 10000 );
-
-    aSz = ::GetGraphicSizeTwip( &rGrf );
-    SetMapMode( MapMode( MAP_TWIP ));
-    SetPosSizePixel( Point( 100, 0 ), LogicToPixel( aSz ));
-    Show();
-    Invalidate();
-    Update();
-    Start();
-}
-SEXPORT GrfWindow::~GrfWindow()
-{
-}
-void SEXPORT GrfWindow::Timeout()
-{
-    delete this;
-}
-void SEXPORT GrfWindow::Paint( const Rectangle& )
-{
-    aGrf.Draw( this, Point(0,0), PixelToLogic( GetSizePixel() ) );
-}
-
-#endif
-
 // waehrend des Nummerierens ist das Undo am Doc abgeschaltet !!!
 
 

@@ -1610,30 +1610,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/   }
 /*M*/   nFldLstGetMode = eGetMode;
 /*M*/   nNodes = rDoc.GetNodes().Count();
-/*M*/
-/*M*/ #ifdef JP_DEBUG
-/*M*/   {
-/*M*/   SvFileStream sOut( "f:\\x.x", STREAM_STD_WRITE );
-/*M*/   sOut.Seek( STREAM_SEEK_TO_END );
-/*M*/   sOut << "------------------" << endl;
-/*M*/   const _SetGetExpFldPtr* pSortLst = pFldSortLst->GetData();
-/*M*/   for( USHORT n = pFldSortLst->Count(); n; --n, ++pSortLst )
-/*M*/   {
-/*M*/       String sStr( (*pSortLst)->GetNode() );
-/*M*/       sStr += "\t, ";
-/*M*/       sStr += (*pSortLst)->GetCntnt();
-/*M*/       sStr += "\tNode: ";
-/*M*/       sStr += (*pSortLst)->GetFld()->GetTxtNode().StartOfSectionIndex();
-/*M*/       sStr += "\tPos: ";
-/*M*/       sStr += *(*pSortLst)->GetFld()->GetStart();
-/*M*/       sStr += "\tType: ";
-/*M*/       sStr += (*pSortLst)->GetFld()->GetFld().GetFld()->GetTyp()->Which();
-/*M*/
-/*M*/       sOut << sStr.GetStr() << endl;
-/*M*/   }
-/*M*/   }
-/*M*/ #endif
-/*M*/   // JP_DEBUG
 /*M*/ }
 
 /*--------------------------------------------------------------------

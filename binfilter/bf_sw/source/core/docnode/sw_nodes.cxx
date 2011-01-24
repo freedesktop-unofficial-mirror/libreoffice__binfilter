@@ -55,9 +55,6 @@ namespace binfilter {
 SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)
 } //namespace binfilter
 
-//#define JP_DEBUG
-#ifdef JP_DEBUG
-#endif
 namespace binfilter {
 
 
