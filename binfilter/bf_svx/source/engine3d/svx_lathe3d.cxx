@@ -194,9 +194,8 @@ namespace binfilter {
 /*N*/
 /*N*/       // Texturen erzeugen?
 /*N*/       double fTextureDepth=1.0;
-/*N*/       double fTextureStart=0.0;
 /*N*/       if(!GetCreateTexture())
-/*N*/           fTextureStart = fTextureDepth = 0.0;
+/*N*/           fTextureDepth = 0.0;
 /*N*/
 /*N*/       // aPrev bis aBack ausfuellen als Startvorbereitung
 /*N*/       aRotMat.RotateY(-(fAng / (double)GetHorizontalSegments()));

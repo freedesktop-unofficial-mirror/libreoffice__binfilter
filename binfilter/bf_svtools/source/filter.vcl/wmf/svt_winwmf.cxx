@@ -1210,7 +1210,7 @@ sal_Bool WMFReader::GetPlaceableBound( Rectangle& rPlaceableBound, SvStream* pSt
 
                 case W_META_SETPIXEL:
                 {
-                    const Color aColor = ReadColor();
+                    ReadColor();
                     GetWinExtMax( ReadYX(), rPlaceableBound, nMapMode );
                 }
                 break;
@@ -1231,12 +1231,11 @@ sal_Bool WMFReader::GetPlaceableBound( Rectangle& rPlaceableBound, SvStream* pSt
                 case W_META_EXTTEXTOUT:
                 {
                     sal_uInt16  nLen, nOptions;
-                    sal_Int32   nRecordPos, nRecordSize;
+                    sal_Int32   nRecordSize;
                     Point       aPosition;
                     Rectangle   aRect;
 
                     pStm->SeekRel(-6);
-                    nRecordPos = pStm->Tell();
                     *pStm >> nRecordSize;
                     pStm->SeekRel(2);
                     aPosition = ReadYX();

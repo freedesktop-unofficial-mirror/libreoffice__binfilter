@@ -1074,9 +1074,7 @@ namespace binfilter {
 /*N*/ void E3dObject::WriteData(SvStream& rOut) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   long position = rOut.Tell();
 /*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/   position = rOut.Tell();
 /*N*/
 /*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
@@ -1084,9 +1082,7 @@ namespace binfilter {
 /*N*/   aCompat.SetID("E3dObject");
 /*N*/ #endif
 /*N*/
-/*N*/   position = rOut.Tell();
 /*N*/   pSub->Save(rOut);
-/*N*/   position = rOut.Tell();
 /*N*/
 /*N*/   if (rOut.GetVersion() < 3560)
 /*N*/   {
@@ -1105,7 +1101,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       WriteOnlyOwnMembers(rOut);
 /*N*/   }
-/*N*/   position = rOut.Tell();
 /*N*/ #endif
 /*N*/ }
 
@@ -1117,12 +1112,9 @@ namespace binfilter {
 
 /*N*/ void E3dObject::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
-/*N*/   long position = rIn.Tell();
 /*N*/   if (ImpCheckSubRecords (rHead, rIn))
 /*N*/   {
-/*N*/       position = rIn.Tell();
 /*N*/       SdrAttrObj::ReadData(rHead, rIn);
-/*N*/       position = rIn.Tell();
 /*N*/       // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/       SdrDownCompat aCompat(rIn, STREAM_READ);
 /*N*/ #ifdef DBG_UTIL
@@ -1130,7 +1122,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/       pSub->Load(rIn, *pPage);
 /*N*/
-/*N*/       position = rIn.Tell();
 /*N*/       if ((rIn.GetVersion() < 3560) || (rHead.GetVersion() <= 12))
 /*N*/       {
 /*N*/           UINT16  nTmp16;
@@ -1150,7 +1141,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           ReadOnlyOwnMembers(rHead, rIn);
 /*N*/       }
-/*N*/       position = rIn.Tell();
 /*N*/
 /*N*/       // Wie ein veraendertes Objekt behandeln
 /*N*/       SetTransformChanged();
