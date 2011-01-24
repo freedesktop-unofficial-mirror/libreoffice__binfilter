@@ -43,24 +43,14 @@
 #include "frmtool.hxx"    // ::DrawGraphic
 #include <pormulti.hxx>     // SwMultiPortion
 
-#ifdef VERT_DISTANCE
-#include <math.h>
-#endif
-
-
 #include <bf_svx/obj3d.hxx>
-
 #include <bf_svx/txtrange.hxx>
-
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <txtflcnt.hxx>
 #include <fmtsrnd.hxx>
 #include <fmtanchr.hxx>
 #include <fmtflcnt.hxx>
-
-
-
 
 #include <pagefrm.hxx>
 #include <pagedesc.hxx> // SwPageDesc
