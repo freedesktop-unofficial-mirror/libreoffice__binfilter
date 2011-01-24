@@ -31,15 +31,8 @@
 #pragma hdrstop
 #endif
 
-
-//#define TEST_DELAYED_RESIZE
-
-#ifdef TEST_DELAYED_RESIZE
-#endif
-
 #include <horiornt.hxx>
 #include <errhdl.hxx>
-
 
 #include "htmltbl.hxx"
 namespace binfilter {
@@ -61,31 +54,10 @@ namespace binfilter {
 // eine Umrandung hat.
 
 
-
-
-
-
-
-
-
-
-
-
-
 // nAbsAvail ist der verfuegbare Platz in TWIPS.
 // nRelAvail ist der auf USHRT_MAX bezogene verfuegbare Platz oder 0
 // nAbsSpace ist der Anteil von nAbsAvail, der durch der umgebende Zelle
 //           fur die Umrandung und den Abstand zum Inhalt reserviert ist.
-
-
-
-
-
-
-
-
-
-
 
 }
 
