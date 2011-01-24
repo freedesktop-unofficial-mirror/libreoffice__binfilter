@@ -440,9 +440,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   pAttrSet( 0 ),
 /*N*/   pCondColl( 0 ),
 /*N*/   SwModify( pColl )    // CrsrsShell, FrameFmt
-/*N*/ #ifdef OLD_INDEX
-/*N*/   ,SwIndexReg(2)
-/*N*/ #endif
 /*N*/ {
 /*N*/ }
 
