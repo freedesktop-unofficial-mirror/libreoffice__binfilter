@@ -64,11 +64,6 @@ typedef ::std::vector< ScBroadcastArea* > ScBroadcastAreaList;
 
 // STATIC DATA -----------------------------------------------------------
 
-#ifdef erDEBUG
-ULONG erCountBCAInserts = 0;
-ULONG erCountBCAFinds = 0;
-#endif
-
 /*N*/ SV_IMPL_OP_PTRARR_SORT( ScBroadcastAreas, ScBroadcastAreaPtr );
 /*N*/ TYPEINIT1( ScHint, SfxSimpleHint );
 TYPEINIT1( ScAreaChangedHint, SfxHint );
