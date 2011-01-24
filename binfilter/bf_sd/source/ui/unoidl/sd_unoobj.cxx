@@ -1063,10 +1063,6 @@ void SdXShape::SetStyleSheet( const uno::Any& rAny ) throw( lang::IllegalArgumen
         throw lang::IllegalArgumentException();
 
     pObj->SetStyleSheet( (SfxStyleSheet*)pStyleSheet->getStyleSheet(), sal_False );
-
-    SdDrawDocument* pDoc = NULL;
-    if (mpModel)
-        pDoc = mpModel->GetDoc();
 }
 
 uno::Any SdXShape::GetStyleSheet() const throw( beans::UnknownPropertyException  )
