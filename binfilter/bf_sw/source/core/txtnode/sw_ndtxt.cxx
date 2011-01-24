@@ -1652,22 +1652,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       if( bUpdate )
 /*?*/           // Update aller Indizies
 /*?*/           Update( rDestStart, nLen );
-/*?*/ #ifdef CUTNOEXPAND
-/*?*/       else
-/*?*/           // wird am Ende eingefuegt, nur die Attribut-Indizies verschieben
-/*?*/           if( 0 < nLen && 0 < nInitSize && pSwpHints )
-/*?*/           {
-/*?*/               // siehe nach, ob an der Einfuegeposition das Ende eines
-/*?*/               // Attributes stand. Ist es kein Feld, muss es expandiert werden !!!
-/*?*/               for( n = 0; n < pSwpHints->Count(); n++ )
-/*?*/               {
-/*?*/                   pHt = pSwpHints->GetHt(n);
-/*?*/                   if( 0 != ( pEndIdx = pHt->GetEnd() ) &&
-/*?*/                       *pEndIdx == nInitSize )
-/*?*/                       *pEndIdx += nLen;
-/*?*/               }
-/*?*/           }
-/*?*/ #endif
 /*?*/       CHECK_SWPHINTS(this);
 /*?*/
 /*?*/       Update( rStart, nLen, TRUE );
@@ -1703,22 +1687,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       if( bUpdate )
 /*N*/           // Update aller Indizies
 /*N*/           pDest->Update( rDestStart, nLen);
-/*N*/ #ifdef CUTNOEXPAND
-/*N*/       else
-/*N*/           // wird am Ende eingefuegt, nur die Attribut-Indizies verschieben
-/*N*/           if( 0 < nLen && 0 < nInitSize && pDest->pSwpHints )
-/*N*/           {
-/*N*/               // siehe nach, ob an der Einfuegeposition das Ende eines
-/*N*/               // Attributes stand. Ist es kein Feld, muss es expandiert werden !!!
-/*N*/               for( USHORT n = 0; n < pDest->pSwpHints->Count(); n++ )
-/*N*/               {
-/*N*/                   pHt = pDest->pSwpHints->GetHt(n);
-/*N*/                   if( 0 != ( pEndIdx = pHt->GetEnd() ) &&
-/*N*/                       *pEndIdx == nInitSize )
-/*N*/                       *pEndIdx += nLen;
-/*N*/               }
-/*N*/           }
-/*N*/ #endif
 /*N*/       CHECK_SWPHINTS(pDest);
 /*N*/
 /*N*/       USHORT nEnd = rStart.GetIndex() + nLen;
