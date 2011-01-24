@@ -71,7 +71,9 @@
 #if defined( WNT )
 
 // Typen fuer die Funktion der W4W-DLL
-#include <tools/svwin.h>
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
+
 #endif
 
 #ifdef UNX
