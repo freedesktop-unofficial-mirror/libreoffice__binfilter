@@ -275,7 +275,7 @@ using namespace ::binfilter::svxform;
 /*N*/
 /*N*/     // Zuordnung der Formobjekte zu den FormComponents
 /*N*/     sal_Int32 nLength = xInStrm->readLong();
-/*N*/     DBG_ASSERT(nLength == (sal_Int32) aList.Count(), "Fehler beim Lesen der UnoModels");
+/*N*/     DBG_ASSERT(nLength == (sal_Int32) aList.size(), "Fehler beim Lesen der UnoModels");
 /*N*/     for (sal_Int32 i = 0; i < nLength; i++)
 /*N*/     {
 /*N*/         Reference< ::com::sun::star::awt::XControlModel >  xRef(xInStrm->readObject(), UNO_QUERY);
