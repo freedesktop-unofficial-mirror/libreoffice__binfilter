@@ -403,20 +403,6 @@ namespace binfilter {
 /*N*/   CHECK;
 /*N*/ }
 
-/*
-
-
-void SwCache::Delete( const void *pOwner, const USHORT nIndex )
-{
-    INCREMENT( nDelete );
-    SwCacheObj *pObj;
-    if ( 0 != (pObj = Get( pOwner, nIndex, FALSE )) )
-        DeleteObj( pObj );
-}
-*/
-
-
-
 /*N*/ void SwCache::Delete( const void *pOwner )
 /*N*/ {
 /*N*/   INCREMENT( nDelete );

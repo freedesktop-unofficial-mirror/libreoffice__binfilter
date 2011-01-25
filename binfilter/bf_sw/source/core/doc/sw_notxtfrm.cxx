@@ -26,19 +26,13 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <hintids.hxx>
-
-
-
 #include <horiornt.hxx>
-
 #include <vcl/window.hxx>
-
 #include <fmtsrnd.hxx>
 #include <frmfmt.hxx>
 #include <errhdl.hxx>
@@ -71,16 +65,6 @@ namespace binfilter {
 
 
 extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
-
-
-
-
-
-
-
-
-
-
 
 /*************************************************************************
 |*
@@ -133,17 +117,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*************************************************************************
 |*
-|*    void SwNoTxtFrm::Modify( SwHint * pOld, SwHint * pNew )
-|*
-*************************************************************************/
-
-
-
-
-
-
-/*************************************************************************
-|*
 |*    void SwNoTxtFrm::Paint()
 |*
 *************************************************************************/
@@ -151,32 +124,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/ void SwNoTxtFrm::Paint( const SwRect& /*rRect*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    void lcl_CalcRect( Point & aPt, Size & aDim,
-|*                   USHORT nMirror )
-|*
-|*    Beschreibung      Errechne die Position und die Groesse der Grafik im
-|*                      Frame, entsprechen der aktuellen Grafik-Attribute
-|*
-|*    Parameter         Point&  die Position im Frame  ( auch Return-Wert )
-|*                      Size&   die Groesse der Grafik ( auch Return-Wert )
-|*                      MirrorGrf   akt. Spiegelungs-Attribut
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*    void SwNoTxtFrm::GetGrfArea()
-|*
-|*    Beschreibung      Errechne die Position und die Groesse der Bitmap
-|*                      innerhalb des uebergebenem Rechtecks.
-|*
-*************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -392,8 +339,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/   const SwGrfNode* pGrfNd = GetNode()->GetGrfNode();
 /*N*/   return pGrfNd && pGrfNd->IsAnimated();
 /*N*/ }
-
-
 
 }
 

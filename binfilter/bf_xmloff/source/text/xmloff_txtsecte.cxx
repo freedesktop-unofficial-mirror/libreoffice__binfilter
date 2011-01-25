@@ -26,39 +26,17 @@
  *
  ************************************************************************/
 
-
-
-
-
 #include <vector>
 
-
-
-
-
-
 #include <com/sun/star/beans/PropertyValues.hpp>
-
-
-
 #include <com/sun/star/text/XTextSection.hpp>
 
-
-
-
-
-
-
-
 #include "xmlexp.hxx"
-
-
 #include "XMLTextNumRuleInfo.hxx"
-
 #include "XMLSectionExport.hxx"
-
 #include "XMLRedlineExport.hxx"
 #include "MultiPropertySetHelper.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;

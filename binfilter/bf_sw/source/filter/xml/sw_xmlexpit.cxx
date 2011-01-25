@@ -29,19 +29,9 @@
 #include "xmlexpit.hxx"
 
 #include <bf_xmloff/xmluconv.hxx>
-
-
-
-
-
-
-
 #include <bf_xmloff/nmspmap.hxx>
-
 #include <bf_xmloff/xmlnmspe.hxx>
-
 #include <bf_svx/xmlcnitm.hxx>
-
 #include <bf_xmloff/xmlexp.hxx>
 
 #ifndef _SVSTDARR_USHORTS
@@ -49,40 +39,23 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-
-
 #include "hintids.hxx"
-
 #include "unomid.h"
 
-
 #include <bf_svx/lrspitem.hxx>
-
 #include <bf_svx/ulspitem.hxx>
-
 #include <bf_svx/shaditem.hxx>
-
 #include <bf_svx/boxitem.hxx>
-
 #include <bf_svx/brkitem.hxx>
-
 #include <bf_svx/keepitem.hxx>
 
-
 #include "fmtpdsc.hxx"
-
 #include <horiornt.hxx>
-
 #include "fmtornt.hxx"
-
 #include "fmtfsize.hxx"
-
 #include "fmtlsplt.hxx"
-
-
-
-
 #include "xmlithlp.hxx"
+
 namespace binfilter {
 
 

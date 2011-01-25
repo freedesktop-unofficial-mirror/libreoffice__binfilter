@@ -410,8 +410,6 @@ namespace binfilter {
 /*?*/         delete pTempDir;
 /*N*/ }
 
-//================================================================
-
 //------------------------------------------------------------------
 /*N*/ void SfxMedium::ResetError()
 /*N*/ {
@@ -796,12 +794,6 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   if( SotStorage::IsStorageFile( pInStream ) )
 /*N*/                   {
-/*N*/               /*      if ( IsReadOnly() && ::utl::LocalFileHelper::IsLocalFile( aLogicName ) )
-                         {
-                             CreateTempFile();
-                             aStorage = new SvStorage( bUCBStorage, aName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
-                         }
-                         else */
 /*N*/                       {
 /*N*/                           if ( bUCBStorage && !UCBStorage::IsStorageFile( pInStream ) )
 /*N*/                               return NULL;
@@ -833,11 +825,6 @@ namespace binfilter {
 /*N*/
 /*N*/     if ( aStorage->GetError() == SVSTREAM_OK )
 /*N*/         GetVersionList();
-/*N*/
-/*N*/     // ???? wird das noch gebraucht?
-/*N*/ //  GetMedium_Impl();
-/*N*/ //  if ( !aStorage.Is() )
-/*N*/ //      CreateFileStream();
 /*N*/
 /*N*/     SFX_ITEMSET_ARG( pSet, pVersion, SfxInt16Item, SID_VERSION, sal_False);
 /*N*/
@@ -1003,11 +990,6 @@ namespace binfilter {
 /*N*/                               rOutStream->writeBytes ( aSequence );
 /*N*/                       }
 /*N*/                       while ( nRead == nBufferSize );
-/*N*/
-/*N*/                       // remove temporary file
-/*N*/                       // pImp->pTempFile->EnableKillingFile( sal_True );
-/*N*/                       // delete pImp->pTempFile;
-/*N*/                       // pImp->pTempFile = NULL;
 /*N*/                   }
 /*N*/                   catch( Exception& )
 /*N*/                   {}
@@ -1208,22 +1190,20 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetUpdatePickList(sal_Bool bVal)
 /*N*/ {
 /*N*/     if(!pImp)
 /*?*/         pImp = new SfxMedium_Impl( this );
 /*N*/     pImp->bUpdatePickList = bVal;
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ void SfxMedium::SetDoneLink( const Link& rLink )
 /*N*/ {
 /*N*/     pImp->aDoneLink = rLink;
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetDataAvailableLink( const Link& rLink )
 /*N*/ {
 /*N*/     pImp->aAvailableLink = rLink;
@@ -1313,15 +1293,14 @@ namespace binfilter {
 /*N*/ {
 /*N*/     Init_Impl();
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ void SfxMedium::UseInteractionHandler( BOOL bUse )
 /*N*/ {
 /*N*/     pImp->bAllowDefaultIntHdl = bUse;
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >
 /*N*/ SfxMedium::GetInteractionHandler()
 /*N*/ {
@@ -1358,20 +1337,19 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetFilter( const SfxObjectFactory& rFact, const String & rFilter )
 /*N*/ {
 /*N*/     SetFilter(  rFact.GetFilterContainer()->GetFilter(rFilter) );
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ void SfxMedium::SetFilter( const SfxFilter* pFilterP, sal_Bool /*bResetOrig*/ )
 /*N*/ {
 /*N*/     pFilter = pFilterP;
 /*N*/     pImp->nFileVersion = 0;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ void SfxMedium::Close()
 /*N*/ {
 /*N*/     if ( aStorage.Is() )
@@ -1411,8 +1389,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
-
 /*N*/ void SfxMedium::SetIsRemote_Impl()
 /*N*/ {
 /*N*/     INetURLObject aObj( GetName() );
@@ -1424,7 +1400,6 @@ namespace binfilter {
 /*N*/         case INET_PROT_POP3:
 /*N*/         case INET_PROT_NEWS:
 /*N*/         case INET_PROT_IMAP:
-/*N*/ //        case INET_PROT_OUT:
 /*N*/         case INET_PROT_VIM:
 /*N*/             bRemote = TRUE; break;
 /*N*/         default:
@@ -1438,9 +1413,6 @@ namespace binfilter {
 /*N*/         nStorOpenMode |= STREAM_READ;
 /*N*/ }
 
-
-
-
 //----------------------------------------------------------------
 /*N*/ const String& SfxMedium::GetOrigURL() const
 /*N*/ {
@@ -1448,14 +1420,9 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetPhysicalName_Impl( const String& /*rNameP*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-//----------------------------------------------------------------
-
-//------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsTemporary() const
@@ -1464,7 +1431,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::ReOpen()
 /*N*/ {
 /*N*/     BOOL bUseInteractionHandler = pImp->bUseInteractionHandler;
@@ -1504,8 +1470,8 @@ namespace binfilter {
 /*N*/     bDirect = bDirectP;
 /*N*/     Init_Impl();
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ SfxMedium::SfxMedium( SvStorage *pStorage, sal_Bool bRootP )
 /*?*/ : eError( SVSTREAM_OK )
 /*?*/ , bDirect( sal_False )
@@ -1548,7 +1514,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ SfxMedium::~SfxMedium()
 /*N*/ {
 /*N*/     /* Attention
@@ -1582,8 +1547,8 @@ namespace binfilter {
 /*N*/     delete pURLObj;
 /*N*/     delete pImp;
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ const INetURLObject& SfxMedium::GetURLObject() const
 /*N*/ {
 /*N*/     if( !pURLObj )
@@ -1598,50 +1563,36 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
 /*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String & /*rName*/ )
 /*N*/ {
 /*N*/     return 0;
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetUsesCache( sal_Bool bUse )
 /*N*/ {
 /*N*/     pImp->bUsesCache = bUse;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::UsesCache() const
 /*N*/ {
 /*N*/     return pImp->bUsesCache;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetReferer( const String& rRefer )
 /*N*/ {
 /*N*/     pImp->aReferer = rRefer;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetTransferPriority( sal_uInt16 nPrio )
 /*N*/ {
 /*N*/     pImp->nPrio = nPrio;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
 /*N*/ void SfxMedium::ForceSynchronStream_Impl( sal_Bool bForce )
 /*N*/ {
 /*N*/     if( pInStream )
@@ -1681,7 +1632,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ SfxItemSet* SfxMedium::GetItemSet() const
 /*N*/ {
 /*N*/     if( !pSet ) ((SfxMedium*)this)->pSet =
@@ -1715,8 +1665,8 @@ namespace binfilter {
 /*N*/
 /*N*/     return pImp->xAttributes;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ SvCompatWeakHdl* SfxMedium::GetHdl()
 /*N*/ {
 /*N*/     return pImp->GetHdl();
@@ -1728,7 +1678,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetDontCreateCancellable( )
 /*N*/ {
 /*N*/     pImp->bDontCreateCancellable = sal_True;
@@ -1773,20 +1722,10 @@ namespace binfilter {
 /*N*/     return pImp->pVersions;
 /*N*/ }
 
-
-
-
-
-
-
 //----------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsReadOnly()
 /*N*/ {
 /*N*/     sal_Bool bReadOnly = !( GetOpenMode() & STREAM_WRITE );
-/*(dv)  if ( bReadOnly && pURLObj && CntAnchor::IsViewURL( pURLObj->GetMainURL( INetURLObject::NO_DECODE ) ) )
-        // Chaos-Storages sind niemals als readonly anzusehen!
-        return sal_False;
-*/
 /*N*/     if ( !bReadOnly )
 /*N*/     {
 /*N*/         // logisch readonly ge"offnet
@@ -1797,8 +1736,6 @@ namespace binfilter {
 /*N*/
 /*N*/     return bReadOnly;
 /*N*/ }
-
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
 /*N*/ void SfxMedium::CreateTempFile()
@@ -1898,9 +1835,6 @@ void SfxVersionTableDtor::DelDtor()
     maList.clear();
 }
 
-
-//----------------------------------------------------------------
-//----------------------------------------------------------------
 //----------------------------------------------------------------
 SfxVersionInfo::SfxVersionInfo()
 {

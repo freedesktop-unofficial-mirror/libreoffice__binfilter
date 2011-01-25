@@ -53,15 +53,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
 /*N*/ BOOL SwServerObject::IsLinkInServer( const SwBaseLink* pChkLnk ) const
 /*N*/ {
 /*N*/   ULONG nSttNd = 0, nEndNd = 0;
@@ -139,15 +130,11 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/ if( !pChkLnk )
-/*N*/   //  *((int*)&eType) = eSave;
 /*?*/   ((SwServerObject*)this)->eType = eSave;
 /*N*/   }
 /*N*/
 /*N*/   return FALSE;
 /*N*/ }
-
-/*  */
-
 
 /*N*/ SwDataChanged::SwDataChanged( const SwPaM& rPam, USHORT nTyp )
 /*N*/   : pPam( &rPam ), nType( nTyp ), pDoc( rPam.GetDoc() ), pPos( 0 )
@@ -155,7 +142,6 @@ namespace binfilter {
 /*N*/   nNode = rPam.GetPoint()->nNode.GetIndex();
 /*N*/   nCntnt = rPam.GetPoint()->nContent.GetIndex();
 /*N*/ }
-
 
 /*N*/ SwDataChanged::SwDataChanged( SwDoc* pDoc, const SwPosition& rPos, USHORT nTyp )
 /*N*/   : pPam( 0 ), nType( nTyp ), pDoc( pDoc ), pPos( &rPos )
@@ -193,9 +179,6 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/ }
-
-
-
 
 }
 

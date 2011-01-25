@@ -30,35 +30,20 @@
 
 
 #include <com/sun/star/uno/Reference.h>
-
-
-
 #include <com/sun/star/container/XIndexContainer.hpp>
-
-
-
 #include <com/sun/star/document/XEventsSupplier.hpp>
 
-
-
 #include "xmlimp.hxx"
-
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xexptran.hxx"
-
 #include "xmlerror.hxx"
-
 #include "XMLEventsImportContext.hxx"
-
 #include "XMLStringBufferImportContext.hxx"
 
 #include <tools/debug.hxx>
+
 namespace binfilter {
 
 
