@@ -6903,7 +6903,7 @@ sal_Bool SAL_CALL ScTableSheetObj::hidePrecedents( const table::CellAddress& aPo
     return FALSE;
 }
 
-sal_Bool SAL_CALL ScTableSheetObj::showDependents( const table::CellAddress& /*aPosition*/ )
+sal_Bool SAL_CALL ScTableSheetObj::showDependents( const table::CellAddress& aPosition )
                                             throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -6912,6 +6912,7 @@ sal_Bool SAL_CALL ScTableSheetObj::showDependents( const table::CellAddress& /*a
     {
         USHORT nTab = GetTab_Impl();
         DBG_ASSERT( aPosition.Sheet == nTab, "falsche Tabelle in CellAddress" );
+        (void)aPosition;
         (void)nTab;
         return false;
     }

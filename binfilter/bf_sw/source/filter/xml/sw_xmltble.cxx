@@ -959,7 +959,7 @@ void SwXMLExport::ExportTableLines( const SwTableLines& rLines,
                                     SwXMLTableInfo_Impl& rTblInfo,
                                     sal_Bool bHeadline )
 {
-    ASSERT( pTableLines && pTableLines->Count(),
+    ASSERT( pTableLines && !pTableLines->empty(),
             "SwXMLExport::ExportTableLines: table columns infos missing" );
     if( !pTableLines || pTableLines->empty() )
         return;

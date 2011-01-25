@@ -109,8 +109,6 @@ SvInPlaceObject::SvInPlaceObject()
 
 SvInPlaceObject::~SvInPlaceObject()
 {
-    DBG_ASSERT( LIST_ENTRY_NOTFOUND == GetIPActiveObjectList().GetPos( this ),
-                "ip-object in ip-object-list" );
 }
 
 

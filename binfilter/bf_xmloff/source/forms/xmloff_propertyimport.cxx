@@ -114,10 +114,11 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    void OPropertyImport::Characters(const ::rtl::OUString& /*_rChars*/)
+    void OPropertyImport::Characters(const ::rtl::OUString& _rChars)
     {
         // ignore them (should be whitespaces only)
         OSL_ENSURE(0 == _rChars.trim().getLength(), "OPropertyImport::Characters: non-whitespace characters!");
+        (void)_rChars;
     }
 
     //---------------------------------------------------------------------
