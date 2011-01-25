@@ -624,7 +624,6 @@ namespace SfxContainer_Impl
 /*N*/
 /*N*/       INetURLObject aUserBasic60InetObj = aUserBasic60InetObj_1;
 /*N*/         String aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
-/*N*/       bool bSecondTime = false;
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
 /*N*/       {
 /*?*/           // #110101 Check if Standard folder exists and is complete
@@ -670,7 +669,6 @@ namespace SfxContainer_Impl
 /*?*/       }
 /*N*/       else
 /*?*/       {
-/*?*/           bSecondTime = true;
 /*?*/           aUserBasic60InetObj = aUserBasic60InetObj_2;
 /*?*/           aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
