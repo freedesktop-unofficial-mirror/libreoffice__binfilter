@@ -4625,7 +4625,6 @@ void SAL_CALL ScCellRangeObj::setTableOperation( const table::CellRangeAddress& 
     ScDocShell* pDocSh = GetDocShell();
     if (pDocSh)
     {
-        BOOL bError = FALSE;
         ScTabOpParam aParam;
         aParam.aRefFormulaCell = ScRefTripel( (USHORT)aFormulaRange.StartColumn,
                                               (USHORT)aFormulaRange.StartRow, aFormulaRange.Sheet,
@@ -4651,7 +4650,7 @@ void SAL_CALL ScCellRangeObj::setTableOperation( const table::CellRangeAddress& 
                 aParam.nMode = 2;
                 break;
             default:
-                bError = TRUE;
+                break;
         }
     }
 }
@@ -4687,66 +4686,48 @@ void SAL_CALL ScCellRangeObj::fillSeries( sheet::FillDirection nFillDirection,
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        BOOL bError = FALSE;
-
-        FillDir eDir;
         switch (nFillDirection)
         {
             case sheet::FillDirection_TO_BOTTOM:
-                eDir = FILL_TO_BOTTOM;
                 break;
             case sheet::FillDirection_TO_RIGHT:
-                eDir = FILL_TO_RIGHT;
                 break;
             case sheet::FillDirection_TO_TOP:
-                eDir = FILL_TO_TOP;
                 break;
             case sheet::FillDirection_TO_LEFT:
-                eDir = FILL_TO_LEFT;
                 break;
             default:
-                bError = TRUE;
+                break;
         }
 
-        FillCmd eCmd;
         switch ( nFillMode )
         {
             case sheet::FillMode_SIMPLE:
-                eCmd = FILL_SIMPLE;
                 break;
             case sheet::FillMode_LINEAR:
-                eCmd = FILL_LINEAR;
                 break;
             case sheet::FillMode_GROWTH:
-                eCmd = FILL_GROWTH;
                 break;
             case sheet::FillMode_DATE:
-                eCmd = FILL_DATE;
                 break;
             case sheet::FillMode_AUTO:
-                eCmd = FILL_AUTO;
                 break;
             default:
-                bError = TRUE;
+                break;
         }
 
-        FillDateCmd eDateCmd;
         switch ( nFillDateMode )
         {
             case sheet::FillDateMode_FILL_DATE_DAY:
-                eDateCmd = FILL_DAY;
                 break;
             case sheet::FillDateMode_FILL_DATE_WEEKDAY:
-                eDateCmd = FILL_WEEKDAY;
                 break;
             case sheet::FillDateMode_FILL_DATE_MONTH:
-                eDateCmd = FILL_MONTH;
                 break;
             case sheet::FillDateMode_FILL_DATE_YEAR:
-                eDateCmd = FILL_YEAR;
                 break;
             default:
-                bError = TRUE;
+                break;
         }
     }
 }
@@ -4759,36 +4740,23 @@ void SAL_CALL ScCellRangeObj::fillAuto( sheet::FillDirection nFillDirection,
     if ( pDocSh && nSourceCount )
     {
         ScRange aSourceRange = aRange;
-        USHORT nCount = 0;                      // "Dest-Count"
-        FillDir eDir;
-        BOOL bError = FALSE;
         switch (nFillDirection)
         {
             case sheet::FillDirection_TO_BOTTOM:
                 aSourceRange.aEnd.SetRow( aSourceRange.aStart.Row() + nSourceCount - 1 );
-                nCount = aRange.aEnd.Row() - aSourceRange.aEnd.Row();
-                eDir = FILL_TO_BOTTOM;
                 break;
             case sheet::FillDirection_TO_RIGHT:
                 aSourceRange.aEnd.SetCol( aSourceRange.aStart.Col() + nSourceCount - 1 );
-                nCount = aRange.aEnd.Col() - aSourceRange.aEnd.Col();
-                eDir = FILL_TO_RIGHT;
                 break;
             case sheet::FillDirection_TO_TOP:
                 aSourceRange.aStart.SetRow( aSourceRange.aEnd.Row() - nSourceCount + 1 );
-                nCount = aSourceRange.aStart.Row() - aRange.aStart.Row();
-                eDir = FILL_TO_TOP;
                 break;
             case sheet::FillDirection_TO_LEFT:
                 aSourceRange.aStart.SetCol( aSourceRange.aEnd.Col() - nSourceCount + 1 );
-                nCount = aSourceRange.aStart.Col() - aRange.aStart.Col();
-                eDir = FILL_TO_LEFT;
                 break;
             default:
-                bError = TRUE;
+                break;
         }
-        if (nCount > MAXROW)        // Ueberlauf
-            bError = TRUE;
     }
 }
 
@@ -6412,14 +6380,13 @@ void SAL_CALL ScTableSheetObj::insertCells( const table::CellRangeAddress& rRang
     if ( pDocSh )
     {
         BOOL bDo = TRUE;
-        InsCellCmd eCmd;
         switch (nMode)
         {
             case sheet::CellInsertMode_NONE:    bDo = FALSE;            break;
-            case sheet::CellInsertMode_DOWN:    eCmd = INS_CELLSDOWN;   break;
-            case sheet::CellInsertMode_RIGHT:   eCmd = INS_CELLSRIGHT;  break;
-            case sheet::CellInsertMode_ROWS:    eCmd = INS_INSROWS;     break;
-            case sheet::CellInsertMode_COLUMNS: eCmd = INS_INSCOLS;     break;
+            case sheet::CellInsertMode_DOWN:    break;
+            case sheet::CellInsertMode_RIGHT:   break;
+            case sheet::CellInsertMode_ROWS:    break;
+            case sheet::CellInsertMode_COLUMNS: break;
             default:
                 DBG_ERROR("insertCells: falscher Mode");
                 bDo = FALSE;
@@ -6442,14 +6409,13 @@ void SAL_CALL ScTableSheetObj::removeRange( const table::CellRangeAddress& rRang
     if ( pDocSh )
     {
         BOOL bDo = TRUE;
-        DelCellCmd eCmd;
         switch (nMode)
         {
             case sheet::CellDeleteMode_NONE:     bDo = FALSE;           break;
-            case sheet::CellDeleteMode_UP:       eCmd = DEL_CELLSUP;    break;
-            case sheet::CellDeleteMode_LEFT:     eCmd = DEL_CELLSLEFT;  break;
-            case sheet::CellDeleteMode_ROWS:     eCmd = DEL_DELROWS;    break;
-            case sheet::CellDeleteMode_COLUMNS:  eCmd = DEL_DELCOLS;    break;
+            case sheet::CellDeleteMode_UP:       break;
+            case sheet::CellDeleteMode_LEFT:     break;
+            case sheet::CellDeleteMode_ROWS:     break;
+            case sheet::CellDeleteMode_COLUMNS:  break;
             default:
                 DBG_ERROR("deleteCells: falscher Mode");
                 bDo = FALSE;
