@@ -59,11 +59,11 @@ public:
     virtual void EndElement();
 };
 
-SvXMLMetaDocumentContext::SvXMLMetaDocumentContext(SvXMLImport& rImport,
+SvXMLMetaDocumentContext::SvXMLMetaDocumentContext(SvXMLImport& rInImport,
                         USHORT nPrfx, const ::rtl::OUString& rLName,
-                        const uno::Reference<xml::sax::XAttributeList>& xAttrList,
+                        const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/,
                         const uno::Reference<document::XDocumentInfo>& rDocInfo) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xDocInfo(rDocInfo)
 {
     // here are no attributes
@@ -73,19 +73,19 @@ SvXMLMetaDocumentContext::~SvXMLMetaDocumentContext()
 {
 }
 
-SvXMLImportContext *SvXMLMetaDocumentContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SvXMLMetaDocumentContext::CreateChildContext( USHORT nInPrefix,
                                      const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    if (  (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if (  (XML_NAMESPACE_OFFICE == nInPrefix) &&
          IsXMLToken(rLocalName, XML_META) )
     {
-        return new SfxXMLMetaContext(GetImport(), nPrefix, rLocalName, xDocInfo);
+        return new SfxXMLMetaContext(GetImport(), nInPrefix, rLocalName, xDocInfo);
     }
     else
     {
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 }
 

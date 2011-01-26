@@ -79,7 +79,7 @@ private:
     ::rtl::OUString       sFieldName;     // for <meta:user-defined>
 
 public:
-    SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    SfxXMLMetaElementContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const ::rtl::OUString& rLName,
                                 const uno::Reference<
                                     xml::sax::XAttributeList>& xAttrList,
@@ -376,11 +376,11 @@ sal_Bool SfxXMLMetaElementContext::ParseISODurationString(
 
 //-------------------------------------------------------------------------
 
-SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<xml::sax::XAttributeList>& xAttrList,
                                     SfxXMLMetaContext& rParentContext, sal_uInt16 nType ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rParent( rParentContext ),
     nElementType( nType )
 {
@@ -398,13 +398,13 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
                 ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
                 SvXMLTokenMap aTokenMap( aMetaTemplateTokenMap );
-                switch( aTokenMap.Get( nPrefix, aLocalName ) )
+                switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
                 {
                 case XML_TOK_META_TEMPLATE_HREF:
                     aPropAny <<= GetImport().GetAbsoluteReference(sValue);
@@ -452,14 +452,14 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
                 ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
                 SvXMLTokenMap aTokenMap( aMetaReloadTokenMap );
                 uno::Any aAny;
-                switch( aTokenMap.Get( nPrefix, aLocalName ) )
+                switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
                 {
                     case XML_TOK_META_RELOAD_HREF:
                         aPropAny <<= GetImport().GetAbsoluteReference(sValue);
@@ -495,11 +495,11 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
-                if ( nPrefix == XML_NAMESPACE_OFFICE &&
-                     IsXMLToken(aLocalName, XML_TARGET_FRAME_NAME) )
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
+                if ( nLclPrefix == XML_NAMESPACE_OFFICE &&
+                     IsXMLToken(aLclLocalName, XML_TARGET_FRAME_NAME) )
                 {
                     ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
                     aPropAny <<= sValue;
@@ -518,11 +518,11 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
         for( INT16 i=0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                sAttrName, &aLocalName );
-            if ( nPrefix == XML_NAMESPACE_META &&
-                 IsXMLToken(aLocalName, XML_NAME) )
+            ::rtl::OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                sAttrName, &aLclLocalName );
+            if ( nLclPrefix == XML_NAMESPACE_META &&
+                 IsXMLToken(aLclLocalName, XML_NAME) )
             {
                 sFieldName = xAttrList->getValueByIndex( i );
             }
@@ -537,25 +537,25 @@ SfxXMLMetaElementContext::~SfxXMLMetaElementContext()
     rParent.ReleaseRef();
 }
 
-SvXMLImportContext* SfxXMLMetaElementContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* SfxXMLMetaElementContext::CreateChildContext( sal_uInt16 nInPrefix,
                                      const ::rtl::OUString& rLName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
     if ( nElementType == XML_TOK_META_KEYWORDS &&
-         nPrefix == XML_NAMESPACE_META &&
+         nInPrefix == XML_NAMESPACE_META &&
          IsXMLToken(rLName, XML_KEYWORD) )
     {
         //  <office:keyword> inside of <office:keywords>
-        pContext = new SfxXMLMetaElementContext( GetImport(), nPrefix, rLName,
+        pContext = new SfxXMLMetaElementContext( GetImport(), nInPrefix, rLName,
                                     xAttrList, rParent, XML_TOK_META_KEYWORD );
     }
 
     if ( !pContext )
     {
         //  default context to ignore unknown elements
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     }
     return pContext;
 }
@@ -699,10 +699,10 @@ void SfxXMLMetaElementContext::Characters( const ::rtl::OUString& rChars )
 //  context for <office:meta> element
 //
 
-SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<frame::XModel>& rDocModel ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xDocProp( rDocModel, uno::UNO_QUERY ),
     pTokenMap( NULL ),
     nUserKeys( 0 )
@@ -719,10 +719,10 @@ SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
 #endif
 }
 
-SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<document::XDocumentInfo>&  rDocInfo ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xDocInfo( rDocInfo ),
     xInfoProp( rDocInfo, uno::UNO_QUERY ),
     pTokenMap ( NULL ),
@@ -739,7 +739,7 @@ SfxXMLMetaContext::~SfxXMLMetaContext()
     delete pTokenMap;
 }
 
-SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nInPrefix,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
@@ -748,15 +748,15 @@ SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nPrefix,
     if (!pTokenMap)
         pTokenMap = new SvXMLTokenMap( aMetaElemTokenMap );
 
-    sal_uInt16 nToken = pTokenMap->Get( nPrefix, rLName );
+    sal_uInt16 nToken = pTokenMap->Get( nInPrefix, rLName );
     if ( nToken != XML_TOK_UNKNOWN )
         pContext = new SfxXMLMetaElementContext( GetImport(),
-                                nPrefix, rLName, xAttrList, *this, nToken );
+                                nInPrefix, rLName, xAttrList, *this, nToken );
 
     if ( !pContext )
     {
         //  default context to ignore unknown elements
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     }
     return pContext;
 }

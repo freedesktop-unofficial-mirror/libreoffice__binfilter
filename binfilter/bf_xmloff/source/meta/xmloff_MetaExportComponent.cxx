@@ -51,7 +51,7 @@ XMLMetaExportComponent::~XMLMetaExportComponent()
 {
 }
 
-sal_uInt32 XMLMetaExportComponent::exportDoc( enum XMLTokenEnum eClass )
+sal_uInt32 XMLMetaExportComponent::exportDoc( enum XMLTokenEnum )
 {
     GetDocHandler()->startDocument();
     {
