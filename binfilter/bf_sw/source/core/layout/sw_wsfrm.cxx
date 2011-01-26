@@ -784,9 +784,15 @@ namespace binfilter {
 /*N*/   Remove();
 /*N*/   if ( pUp )
 /*N*/   {
-/*N*/       SwSectionFrm *pSct;
-/*N*/       if ( !pUp->Lower() && ( ( pUp->IsFtnFrm() && !pUp->IsColLocked() )
-/*N*/           || ( pUp->IsInSct() && !(pSct = pUp->FindSctFrm())->ContainsCntnt() ) ) )
+/*N*/       if (  !pUp->Lower()
+               && (  (  pUp->IsFtnFrm()
+                     && !pUp->IsColLocked()
+                     )
+/*N*/             || (  pUp->IsInSct()
+                     && !pUp->FindSctFrm()->ContainsCntnt()
+                     )
+                  )
+               )
 /*N*/       {
 /*N*/           if ( pUp->GetUpper() )
 /*N*/           {
@@ -803,6 +809,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               else
 /*N*/               {
+                        SwSectionFrm* pSct = pUp->FindSctFrm();
 /*N*/                   if( pSct->IsColLocked() || !pSct->IsInFtn() )
 /*N*/                   {
 /*N*/                       pSct->DelEmpty( FALSE );

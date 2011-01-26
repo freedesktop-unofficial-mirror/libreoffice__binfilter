@@ -39,7 +39,6 @@
 /*************************************************************************
 *************************************************************************/
 class SotFactory;
-class SotFactoryList;
 class SvAdviseSinkIndex;
 class WorkWindow;
 class MDIWindow;

@@ -90,7 +90,6 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& )
 {
     SvtModuleOptions aMOpt;
 
-    //  if ( aMOpt.IsModuleInstalled( SvtModuleOptions::E_SWRITER ) )
     {
         pSwDLL  = new SwDLL;
         SwDLL::LibInit();
@@ -145,7 +144,6 @@ bf_OfficeWrapper::~bf_OfficeWrapper()
             DELETEZ( pSmDLL );
         }
 
-        //  if ( aMOpt.IsModuleInstalled( SvtModuleOptions::E_SWRITER ) )
         {
             SwDLL::LibExit();
             DELETEZ( pSwDLL );
@@ -170,14 +168,6 @@ bf_OfficeWrapper::~bf_OfficeWrapper()
 
     (*(SdrGlobalData**)GetAppData(BF_SHL_SVD))=0;
     (*(SvxGlobalItemData**)GetAppData(BF_SHL_ITEM))=0;
-
-    SotData_Impl * pSotData = SOTDATA();
-    SotFactory * pFact = pSotData->pFactoryList->First();
-
-    while( pFact )
-    {
-        pFact = pSotData->pFactoryList->Next();
-    }
 }
 
 void SAL_CALL bf_OfficeWrapper::dispose() throw ( RuntimeException )
@@ -210,7 +200,6 @@ void SAL_CALL component_getImplementationEnvironment(
 sal_Bool SAL_CALL component_writeInfo( void* pServiceManager , void* pRegistryKey )
 {
     Reference< XMultiServiceFactory >  xMan( reinterpret_cast< XMultiServiceFactory* >( pServiceManager ) ) ;
-    //  ::utl::setProcessServiceFactory( xMan );
     Reference< XRegistryKey > xKey( reinterpret_cast< XRegistryKey* >( pRegistryKey ) ) ;
 
     // Eigentliche Implementierung und ihre Services registrieren
