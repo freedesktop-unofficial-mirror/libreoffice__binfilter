@@ -57,20 +57,20 @@ TYPEINIT1(XMLEventsImportContext,  SvXMLImportContext);
 
 
 XMLEventsImportContext::XMLEventsImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName)
+        SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
 }
 
 
 XMLEventsImportContext::XMLEventsImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const Reference<XEventsSupplier> & xEventsSupplier) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         xEvents(xEventsSupplier->getEvents())
 {
 }
@@ -93,7 +93,7 @@ XMLEventsImportContext::~XMLEventsImportContext()
 
 
 void XMLEventsImportContext::StartElement(
-    const Reference<XAttributeList> & xAttrList)
+    const Reference<XAttributeList> & /*xAttrList*/)
 {
     // nothing to be done
 }
@@ -104,7 +104,7 @@ void XMLEventsImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
@@ -121,10 +121,10 @@ SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
     for (sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr), &sLocalName );
 
-        if (XML_NAMESPACE_SCRIPT == nPrefix)
+        if (XML_NAMESPACE_SCRIPT == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_EVENT_NAME))
             {
@@ -141,7 +141,7 @@ SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
 
     // b) delegate to factory
     return GetImport().GetEventImport().CreateContext(
-        GetImport(), nPrefix, rLocalName, xAttrList,
+        GetImport(), nInPrefix, rLocalName, xAttrList,
         this, sEventName, sLanguage);
 }
 

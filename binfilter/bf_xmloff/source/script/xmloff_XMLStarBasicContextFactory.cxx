@@ -69,7 +69,7 @@ SvXMLImportContext* XMLStarBasicContextFactory::CreateContext(
     const Reference<XAttributeList> & xAttrList,
     XMLEventsImportContext* rEvents,
     const OUString& rApiEventName,
-    const OUString& rLanguage)
+    const OUString& /*rLanguage*/)
 {
     OUString sLibraryVal;
     OUString sMacroNameVal;
@@ -78,10 +78,10 @@ SvXMLImportContext* XMLStarBasicContextFactory::CreateContext(
     for(sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = rImport.GetNamespaceMap().
+        sal_uInt16 nLclPrefix = rImport.GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr), &sLocalName );
 
-        if (XML_NAMESPACE_SCRIPT == nPrefix)
+        if (XML_NAMESPACE_SCRIPT == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_LIBRARY))
             {

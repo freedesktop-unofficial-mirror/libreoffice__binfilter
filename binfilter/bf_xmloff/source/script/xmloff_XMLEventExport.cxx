@@ -56,8 +56,8 @@ using ::binfilter::xmloff::token::XML_EVENTS;
 
 XMLEventExport::XMLEventExport(SvXMLExport& rExp,
                          const XMLEventNameTranslation* pTranslationTable) :
-    rExport(rExp),
-    sEventType(RTL_CONSTASCII_USTRINGPARAM("EventType"))
+    sEventType(RTL_CONSTASCII_USTRINGPARAM("EventType")),
+    rExport(rExp)
 {
     AddTranslationTable(pTranslationTable);
 }

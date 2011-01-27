@@ -51,8 +51,8 @@ using ::com::sun::star::uno::Any;
 
 XMLScriptContextFactory::XMLScriptContextFactory() :
     sEventType(RTL_CONSTASCII_USTRINGPARAM("EventType")),
-    sURL(RTL_CONSTASCII_USTRINGPARAM("Script")),
-    sScript(RTL_CONSTASCII_USTRINGPARAM("Script"))
+    sScript(RTL_CONSTASCII_USTRINGPARAM("Script")),
+    sURL(RTL_CONSTASCII_USTRINGPARAM("Script"))
 {
 }
 
@@ -67,7 +67,7 @@ SvXMLImportContext * XMLScriptContextFactory::CreateContext
  const Reference<XAttributeList> & xAttrList,
  XMLEventsImportContext * rEvents,
  const OUString & rApiEventName,
- const OUString & rLanguage)
+ const OUString & /*rLanguage*/)
 {
     OUString sURLVal;
 
@@ -75,10 +75,10 @@ SvXMLImportContext * XMLScriptContextFactory::CreateContext
     for (sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = rImport.GetNamespaceMap().
+        sal_uInt16 nLclPrefix = rImport.GetNamespaceMap().
             GetKeyByAttrName(xAttrList->getNameByIndex(nAttr), &sLocalName);
 
-        if (XML_NAMESPACE_XLINK == nPrefix)
+        if (XML_NAMESPACE_XLINK == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_HREF))
                 sURLVal = xAttrList->getValueByIndex(nAttr);
