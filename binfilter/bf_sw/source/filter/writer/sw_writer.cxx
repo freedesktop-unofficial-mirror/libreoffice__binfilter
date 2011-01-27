@@ -60,47 +60,6 @@ static sal_Char aNToABuf[] = "0000000000000000000000000";
 
 /*N*/ DECLARE_TABLE( SwBookmarkNodeTable, SvPtrarr* )
 
-/*N*/ struct Writer_Impl
-/*N*/ {
-/*N*/   SvStringsSortDtor *pSrcArr, *pDestArr;
-/*N*/   SvPtrarr* pFontRemoveLst, *pBkmkArr;
-/*N*/   SwBookmarkNodeTable* pBkmkNodePos;
-/*N*/
-/*N*/   Writer_Impl( const SwDoc& rDoc );
-/*N*/   ~Writer_Impl();
-/*N*/
-/*N*/   void RemoveFontList( SwDoc& rDoc );
-/*N*/ };
-
-/*N*/ Writer_Impl::Writer_Impl( const SwDoc& /*rDoc*/ )
-/*N*/   : pSrcArr( 0 ), pDestArr( 0 ), pFontRemoveLst( 0 ), pBkmkNodePos( 0 )
-/*N*/ {
-/*N*/ }
-
-/*N*/ Writer_Impl::~Writer_Impl()
-/*N*/ {
-/*N*/   delete pSrcArr;
-/*N*/   delete pDestArr;
-/*N*/   delete pFontRemoveLst;
-/*N*/
-/*N*/   if( pBkmkNodePos )
-/*N*/   {
-/*?*/       for( SvPtrarr* p = pBkmkNodePos->First(); p; p = pBkmkNodePos->Next() )
-/*?*/           delete p;
-/*?*/       delete pBkmkNodePos;
-/*N*/   }
-/*N*/ }
-
-/*N*/ void Writer_Impl::RemoveFontList( SwDoc& rDoc )
-/*N*/ {
-/*N*/   ASSERT( pFontRemoveLst, "wo ist die FontListe?" );
-/*N*/   for( USHORT i = pFontRemoveLst->Count(); i; )
-/*N*/   {
-/*N*/       SvxFontItem* pItem = (SvxFontItem*)(*pFontRemoveLst)[ --i ];
-/*N*/       rDoc.GetAttrPool().Remove( *pItem );
-/*N*/   }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -57,7 +57,6 @@ class SwCrsrShell;
 class SwDoc;
 class SwPaM;
 struct SwPosition;
-struct Writer_Impl;
 
 // ab so vielen chars wird ein mit einem ASCII/W4W-Reader eingelesener
 // Absatz zwangsweise umgebrochen. Muss immer groesser als 200 sein !!!
