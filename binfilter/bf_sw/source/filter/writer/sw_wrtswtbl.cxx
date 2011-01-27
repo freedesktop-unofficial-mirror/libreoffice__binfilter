@@ -43,61 +43,19 @@
 
 namespace binfilter {
 
+SwWriteTableCol::SwWriteTableCol( USHORT nPosition )
+    : nPos(nPosition), bLeftBorder(TRUE), bRightBorder(TRUE),
+      nWidthOpt( 0 ), bRelWidthOpt( FALSE ), bOutWidth( TRUE )
+{
+}
 
-
-//-----------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------
-
-
-
-
-//-----------------------------------------------------------------------
-
-/*N*/ SwWriteTableCol::SwWriteTableCol( USHORT nPosition )
-/*N*/   : nPos(nPosition),
-/*N*/   bLeftBorder(TRUE), bRightBorder(TRUE),
-/*N*/   nWidthOpt( 0 ), bRelWidthOpt( FALSE ),
-/*N*/   bOutWidth( TRUE )
-/*N*/ {
-/*N*/ }
-
-//-----------------------------------------------------------------------
-
-/*N*/ long SwWriteTable::GetBoxWidth( const SwTableBox *pBox )
-/*N*/ {
-/*N*/   const SwFrmFmt *pFmt = pBox->GetFrmFmt();
-/*N*/   const SwFmtFrmSize& aFrmSize=
-/*N*/       (const SwFmtFrmSize&)pFmt->GetAttr( RES_FRM_SIZE );
-/*N*/
-/*N*/   return aFrmSize.GetSize().Width();
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+long SwWriteTable::GetBoxWidth( const SwTableBox *pBox )
+{
+    const SwFrmFmt *pFmt = pBox->GetFrmFmt();
+    const SwFmtFrmSize& aFrmSize=
+         (const SwFmtFrmSize&)pFmt->GetAttr( RES_FRM_SIZE );
+    return aFrmSize.GetSize().Width();
+}
 
 }
 
