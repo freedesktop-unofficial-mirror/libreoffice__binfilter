@@ -446,6 +446,7 @@ void SvNumberFormatter::ReplaceSystemCL( LanguageType eOldLanguage )
                 bCheck = TRUE;
         }
         DBG_ASSERT( bCheck, "SvNumberFormatter::ReplaceSystemCL: couldn't convert" );
+        (void)bCheck;
 
         delete pOldEntry;
     }
@@ -1229,7 +1230,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultFormat( short nType )
                     nDefaultFormat = CLOffset + ZF_STANDARD;
             }
         }
-        aDefaultFormatKeys.Insert( nSearch, (void*) nDefaultFormat );
+        aDefaultFormatKeys.Insert( nSearch, (void*)(sal_uIntPtr) nDefaultFormat );
     }
     return nDefaultFormat;
 }
@@ -2896,7 +2897,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultCurrencyFormat()
             }
         }
         aDefaultFormatKeys.Insert( CLOffset + ZF_STANDARD_CURRENCY,
-            (void*) nDefaultCurrencyFormat );
+            (void*)(sal_uIntPtr) nDefaultCurrencyFormat );
     }
     return nDefaultCurrencyFormat;
 }

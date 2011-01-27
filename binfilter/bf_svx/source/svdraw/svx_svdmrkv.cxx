@@ -311,31 +311,8 @@ namespace binfilter {
 //    } while (pOut==NULL && nWinNum<nWinAnz);
 //}
 
-/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL /*bNoRefHdl*/)
 /*N*/ {
-//    if (IsSolidMarkHdl())
-/*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
-/*N*/   if (!bHdlShown) {
-//        if (aHdl.IsSolidHdl()) {
-//            USHORT nAnz=pOut==NULL ? aWinList.GetCount() : 1;
-//            for (USHORT i=0; i<nAnz; i++) {
-//                USHORT nWinNum=pOut==NULL ? i : aWinList.Find(pOut);
-//                if (nWinNum!=SDRVIEWWIN_NOTFOUND) {
-//                    if (aWinList[nWinNum].pVDev==NULL) {
-//                        aWinList[nWinNum].pVDev=new VirtualDevice;
-//                    }
-//                    aHdl.SaveBackground(*aWinList[nWinNum].pWin,*aWinList[nWinNum].pVDev,pRegion);
-//                    bSolidHdlBackgroundInvalid=FALSE;
-//                }
-//            }
-//        }
-//        DrawMarkHdl(pOut,bRefHdlShownOnly);
-/*N*/       bRefHdlShownOnly=FALSE;
-/*N*/       bHdlShown=TRUE;
-
-        // refresh IAOs
-//      RefreshAllIAOManagers();
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)

@@ -282,7 +282,6 @@ inline ULONG Get10ThSec()
 /*N*/   if( pImp->pActiveProgress ) return TRUE;
 /*N*/
 /*N*/   // neuen Wert "ubernehmen
-/*N*/   BOOL bOver=FALSE;
 /*N*/   nVal = nNewVal;
 /*N*/
 /*N*/   // neuer Range?
@@ -291,7 +290,6 @@ inline ULONG Get10ThSec()
 /*?*/       DBG( DbgOutf( "SfxProgress: range changed from %lu to %lu",
 /*?*/                     pImp->nMax, nNewRange ) );
 /*?*/       pImp->nMax = nNewRange;
-/*?*/       bOver = TRUE;
 /*N*/   }
 /*N*/
 /*N*/     if ( !pImp->xStatusInd.is() )

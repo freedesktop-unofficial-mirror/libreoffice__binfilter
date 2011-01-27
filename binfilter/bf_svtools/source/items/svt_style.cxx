@@ -738,6 +738,7 @@ void SfxStyleSheetBasePool::Insert( SfxStyleSheetBase* p )
         pOld = aIter.Find( p->GetParent() );
         DBG_ASSERT( pOld, "Parent nicht mehr vorhanden" );
     }
+    (void)pOld;
     aStyles.push_back( p );
     Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_CREATED, *p ) );
 }
@@ -746,7 +747,6 @@ void SfxStyleSheetBasePool::Clear()
 {
     while( aStyles.size() )
     {
-        SfxStyles::iterator it = aStyles.begin();
         SfxStyleSheetBase* p = aStyles[ 0 ];
         aStyles.erase( aStyles.begin() );
         Broadcast( SfxStyleSheetHint( SFX_STYLESHEET_ERASED, *p ) );

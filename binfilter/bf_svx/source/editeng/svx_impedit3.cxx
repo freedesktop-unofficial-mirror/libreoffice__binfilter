@@ -644,6 +644,7 @@ struct TabInfo
 /*N*/           }
 /*N*/           DBG_ASSERT( pPortion->GetKind() != PORTIONKIND_HYPHENATOR, "CreateLines: Hyphenator-Portion!" );
 /*N*/           DBG_ASSERT( pPortion->GetLen() || bProcessingEmptyLine, "Leere Portion in CreateLines ?!" );
+/*N*/           (void)bProcessingEmptyLine;
 /*N*/           if ( pNextFeature && ( pNextFeature->GetStart() == nTmpPos ) )
 /*N*/           {
 /*N*/               sal_uInt16 nWhich = pNextFeature->GetItem()->Which();
@@ -1727,6 +1728,7 @@ struct TabInfo
 /*N*/             if ( nIdx && nIdx + 1 < aWord.Len() && 0x628 == cCh )
 /*N*/             {
 /*?*/                 DBG_ASSERT( 0 != cPrevCh, "No previous character" );
+/*?*/                 (void)cPrevCh;
 /*?*/
 /*?*/                 // check if next character is Reh, Yeh or Alef Maksura
 /*?*/                 xub_Unicode cNextCh = aWord.GetChar( nIdx + 1 );
