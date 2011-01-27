@@ -26,39 +26,7 @@
  *
  ************************************************************************/
 
-#ifdef _MSC_VER
-#pragma hdrstop
-#endif
-
-#include <hintids.hxx>
-
-#define _SVSTDARR_STRINGSSORTDTOR
-
- #ifndef _STREAM_HXX //autogen
- #include <tools/stream.hxx>
- #endif
-#include <bf_svx/fontitem.hxx>
-#include <bf_svx/eeitem.hxx>
-
-#include <shellio.hxx>
-
-#include <horiornt.hxx>
-#include <errhdl.hxx>
-
-#include <pam.hxx>
-#include <doc.hxx>
-#include <docary.hxx>
-#include <bookmrk.hxx>          // fuer SwBookmark ...
-#include <numrule.hxx>
-
-#include <swerror.h>
 namespace binfilter {
-
-// Stringbuffer fuer die umgewandelten Zahlen
-static sal_Char aNToABuf[] = "0000000000000000000000000";
-#define NTOABUFLEN (sizeof(aNToABuf))
-
-/*N*/ DECLARE_TABLE( SwBookmarkNodeTable, SvPtrarr* )
 
 }
 
