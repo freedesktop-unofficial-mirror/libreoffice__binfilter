@@ -495,9 +495,6 @@ BinTextObject::~BinTextObject()
     DeleteContents();
     if ( bOwnerOfPool )
     {
-        // Nicht mehr, wegen 1xDefItems.
-        // siehe auch ~EditDoc().
-//        pPool->ReleaseDefaults( TRUE /* bDelete */ );
         delete pPool;
     }
 }
