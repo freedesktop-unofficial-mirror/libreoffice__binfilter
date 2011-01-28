@@ -341,7 +341,6 @@ void OGridColumn::clearAggregateProperties(Sequence<Property>& seqProps, sal_Boo
 void OGridColumn::setOwnProperties(Sequence<Property>& aDescriptor)
 {
     aDescriptor.realloc(5);
-    Property* pProps = aDescriptor.getArray();
     sal_Int32 nPos = 0;
     DECL_PROP1(LABEL,               ::rtl::OUString,    BOUND);
     DECL_PROP3(WIDTH,               sal_Int32,          BOUND, MAYBEVOID, MAYBEDEFAULT);
