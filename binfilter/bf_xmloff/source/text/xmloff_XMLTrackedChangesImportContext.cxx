@@ -27,31 +27,21 @@
  ************************************************************************/
 
 #include "XMLTrackedChangesImportContext.hxx"
-
 #include "XMLChangedRegionImportContext.hxx"
-
 #include <com/sun/star/uno/Reference.h>
-
 #include <com/sun/star/uno/Sequence.h>
-
 #include "xmlimp.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
 #include "xmluconv.hxx"
 
 namespace binfilter {
-
 
 using ::rtl::OUString;
 using ::com::sun::star::uno::Reference;
 using ::com::sun::star::uno::Sequence;
 using ::com::sun::star::xml::sax::XAttributeList;
 using namespace ::binfilter::xmloff::token;
-
-
 
 TYPEINIT1( XMLTrackedChangesImportContext, SvXMLImportContext );
 

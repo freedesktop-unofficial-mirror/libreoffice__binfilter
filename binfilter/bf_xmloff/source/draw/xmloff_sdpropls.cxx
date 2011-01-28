@@ -31,81 +31,44 @@
 #endif
 
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-
 #include <com/sun/star/container/XIndexReplace.hpp>
-
 #include <com/sun/star/drawing/LineStyle.hpp>
-
 #include <com/sun/star/drawing/LineJoint.hpp>
-
 #include <com/sun/star/drawing/FillStyle.hpp>
-
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-
 #include <com/sun/star/presentation/FadeEffect.hpp>
-
 #include <com/sun/star/drawing/ConnectorType.hpp>
-
 #include <com/sun/star/drawing/RectanglePoint.hpp>
-
 #include <com/sun/star/drawing/CircleKind.hpp>
-
 #include <com/sun/star/drawing/BitmapMode.hpp>
-
 #include <com/sun/star/text/WritingMode.hpp>
-
 #include <EnumPropertyHdl.hxx>
-
 #include <NamedBoolPropertyHdl.hxx>
-
 #include "numithdl.hxx"
-
 #include "XMLBitmapRepeatOffsetPropertyHandler.hxx"
-
 #include "XMLFillBitmapSizePropertyHandler.hxx"
-
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
-
 #include <com/sun/star/drawing/TextAnimationKind.hpp>
-
 #include <com/sun/star/drawing/TextAnimationDirection.hpp>
-
 #include <com/sun/star/drawing/TextHorizontalAdjust.hpp>
-
 #include <com/sun/star/drawing/TextVerticalAdjust.hpp>
-
 #include <com/sun/star/drawing/TextFitToSizeType.hpp>
-
 #include <com/sun/star/drawing/MeasureTextHorzPos.hpp>
-
 #include <com/sun/star/drawing/MeasureTextVertPos.hpp>
-
 #include "ControlBorderHandler.hxx"
-
-
 #include "sdpropls.hxx"
-
 #include "propimp0.hxx"
-
 #include "xmlexp.hxx"
-
 #include <xmlnmspe.hxx>
-
 #include <com/sun/star/drawing/NormalsKind.hpp>
-
 #include <com/sun/star/drawing/TextureProjectionMode.hpp>
-
 #include <com/sun/star/drawing/TextureKind.hpp>
-
 #include <com/sun/star/drawing/TextureMode.hpp>
-
 #include "txtprmap.hxx"
-
 #include "XMLClipPropertyHandler.hxx"
-
 #include "XMLIsPercentagePropertyHandler.hxx"
-
 #include "XMLPercentOrMeasurePropertyHandler.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;

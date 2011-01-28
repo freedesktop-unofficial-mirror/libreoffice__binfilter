@@ -31,37 +31,18 @@
 #endif
 
 #include "xmlscripti.hxx"
-
-
-
 #include "ximpbody.hxx"
-
 #include "xmlmetai.hxx"
-
 #include "ximpstyl.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmluconv.hxx"
-
 #include "DocumentSettingsContext.hxx"
-
 #include <com/sun/star/form/XFormsSupplier.hpp>
-
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-
-
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-
 #include <com/sun/star/drawing/XMasterPagesSupplier.hpp>
-
 #include <com/sun/star/drawing/XDrawPagesSupplier.hpp>
-
-
-
 #include "xmlerror.hxx"
-
 
 namespace binfilter {
 
@@ -956,7 +937,6 @@ OUString SAL_CALL SdXMLImport::getImplementationName() throw( uno::RuntimeExcept
     if( IsDraw())
     {
         // Draw
-
         switch( getImportFlags())
         {
             case IMPORT_ALL:
@@ -976,7 +956,6 @@ OUString SAL_CALL SdXMLImport::getImplementationName() throw( uno::RuntimeExcept
     else
     {
         // Impress
-
         switch( getImportFlags())
         {
             case IMPORT_ALL:

@@ -30,26 +30,17 @@
 #define _XIMPSHAPE_HXX
 
 #include <com/sun/star/io/XOutputStream.hpp>
-
 #include <com/sun/star/document/XActionLockable.hpp>
-
 #include <com/sun/star/container/XIdentifierContainer.hpp>
-
 #include "xmlictxt.hxx"
-
 #include "sdxmlimp_impl.hxx"
-
 #include "nmspmap.hxx"
-
 #include <com/sun/star/drawing/XShapes.hpp>
-
 #include <com/sun/star/text/XTextCursor.hpp>
-
 #include <com/sun/star/awt/Point.hpp>
-
 #include <tools/rtti.hxx>
-
 #include "xexptran.hxx"
+
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
