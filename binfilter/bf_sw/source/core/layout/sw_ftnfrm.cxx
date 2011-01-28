@@ -67,29 +67,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   const SwFtnIdxs &rFtnIdxs = pDoc->GetFtnIdxs();
 /*N*/
-/*N*/ #ifdef MA_DEBUG
-/*N*/   //Wenn das Array nicht stimmt haben wir ein Problem, denn viele
-/*N*/   //Ftn-Functions bauen auf dem Array auf.
-/*N*/   for ( USHORT k = 0; k+1 < rFtnIdxs.Count(); ++k )
-/*N*/   {
-/*N*/       SwIndex aIdx1(&pDoc->GetNodes());
-/*N*/       SwIndex aIdx2(&pDoc->GetNodes());
-/*N*/       rFtnIdxs[k]->pFtn->  GetTxtNode().GetIndex(aIdx1);
-/*N*/       rFtnIdxs[k+1]->pFtn->GetTxtNode().GetIndex(aIdx2);
-/*N*/       if ( aIdx1.GetIndex() > aIdx2.GetIndex() )
-/*N*/       {
-/*N*/           ASSERT( !rFtnIdxs.Count(), "FtnIdxs not up to date" );
-/*N*/       }
-/*N*/       else if ( aIdx1.GetIndex() == aIdx2.GetIndex() )
-/*N*/       {
-/*N*/           SwTxtFtn *p1 = rFtnIdxs[k];
-/*N*/           SwTxtFtn *p2 = rFtnIdxs[k+1];
-/*N*/           ASSERT( *p1->GetStart() < *p2->GetStart(),
-/*N*/                   "FtnIdxs not up to date" );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   USHORT nRet;
 /*N*/   SwTxtFtnPtr pBla = (SwTxtFtn*)pAttr;
 /*N*/   if ( rFtnIdxs.Seek_Entry( pBla, &nRet ) )

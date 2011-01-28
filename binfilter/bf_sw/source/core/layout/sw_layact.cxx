@@ -630,23 +630,6 @@ namespace binfilter {
 /*?*/           continue;
 /*N*/       }
 /*N*/
-/*N*/ #ifdef MA_DEBUG
-/*?*/       static USHORT nStop = USHRT_MAX;
-/*?*/       if ( pPage->GetPhyPageNum() == nStop )
-/*?*/       {
-/*?*/           int bla = 5;
-/*?*/       }
-/*?*/       Window *pWin = pImp->GetShell()->GetWin();
-/*?*/       if ( pWin )
-/*?*/       {
-/*?*/           pWin->Push( PUSH_FILLCOLOR );
-/*?*/           pWin->SetFillColor( COL_WHITE );
-/*?*/           Point aOfst( pImp->GetShell()->VisArea().Pos() );
-/*?*/           pWin->DrawRect( Rectangle( aOfst, Size( 2000, 1000 )));
-/*?*/           pWin->DrawText( Point( 500, 500 ) + aOfst, pPage->GetPhyPageNum() );
-/*?*/           pWin->Pop();
-/*?*/       }
-/*N*/ #endif
 /*N*/       if ( nEndPage != USHRT_MAX && pPage->GetPhyPageNum() > nPercentPageNum )
 /*N*/       {
 /*?*/           nPercentPageNum = pPage->GetPhyPageNum();
