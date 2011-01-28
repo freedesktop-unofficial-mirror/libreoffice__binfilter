@@ -699,12 +699,6 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ void SwTxtFrm::_SetOfst( const xub_StrLen nNewOfst )
 /*N*/ {
-/*N*/ #ifdef DBGTXT
-/*N*/   // Es gibt tatsaechlich einen Sonderfall, in dem ein SetOfst(0)
-/*N*/   // zulaessig ist: bug 3496
-/*N*/   ASSERT( nNewOfst, "!SwTxtFrm::SetOfst: missing JoinFrm()." );
-/*N*/ #endif
-/*N*/
 /*N*/   // Die Invalidierung unseres Follows ist nicht noetig.
 /*N*/   // Wir sind ein Follow, werden gleich formatiert und
 /*N*/   // rufen von dort aus das SetOfst() !
@@ -1598,9 +1592,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   sal_uInt8 nGo    = 0;
 /*N*/   while( bGoOn )
 /*N*/   {
-/*N*/ #ifdef DBGTXT
-/*N*/       aDbstream << "OnceMore!" << endl;
-/*N*/ #endif
 /*N*/       ++nGo;
 /*N*/       rInf.Init();
 /*N*/       rLine.Top();

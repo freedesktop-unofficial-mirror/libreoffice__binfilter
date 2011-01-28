@@ -60,15 +60,6 @@ namespace binfilter {
 
 /*N*/ void SwTxtIter::CtorInit( SwTxtFrm *pNewFrm, SwTxtInfo *pNewInf )
 /*N*/ {
-/*N*/ #ifdef DBGTXT
-/*N*/   // nStopAt laesst sich vom CV bearbeiten.
-/*N*/   static MSHORT nStopAt = 0;
-/*N*/   if( nStopAt == pNewFrm->GetFrmId() )
-/*N*/   {
-/*N*/       int i = pNewFrm->GetFrmId();
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   SwTxtNode *pNode = pNewFrm->GetTxtNode();
 /*N*/
 /*N*/   ASSERT( pNewFrm->GetPara(), "No paragraph" );
