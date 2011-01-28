@@ -28,37 +28,20 @@
 
 #include "XMLImageMapExport.hxx"
 
-
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Reference.h>
-
 #include <com/sun/star/uno/Sequence.h>
-
-
-
 #include <com/sun/star/container/XIndexContainer.hpp>
-
 #include <com/sun/star/document/XEventsSupplier.hpp>
 
-
-
-
-
 #include "xmlexp.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "XMLEventExport.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xexptran.hxx"
+
+
 namespace binfilter {
-
-
 
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
@@ -98,7 +81,6 @@ XMLImageMapExport::XMLImageMapExport(SvXMLExport& rExp) :
 
 XMLImageMapExport::~XMLImageMapExport()
 {
-
 }
 
 void XMLImageMapExport::Export(
@@ -145,7 +127,7 @@ void XMLImageMapExport::Export(
         }
         // else: container is empty -> nothing to do
     }
-    // else: no container -> nothign to do
+    // else: no container -> nothing to do
 }
 
 
