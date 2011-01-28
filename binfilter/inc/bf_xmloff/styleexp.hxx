@@ -34,10 +34,6 @@
 #include <com/sun/star/uno/Reference.h>
 #endif
 
-#ifndef _VCL_MAPUNIT_HXX
-//#include <vcl/mapunit.hxx>
-#endif
-
 #ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
 #endif

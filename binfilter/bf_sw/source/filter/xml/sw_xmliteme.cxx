@@ -69,9 +69,7 @@
 #include <bf_svx/unomid.hxx>
 #endif
 
-#ifndef _VCL_FLDUNIT_HXX
-#include <vcl/fldunit.hxx>
-#endif
+#include <tools/fldunit.hxx>
 
 #ifndef _SWMODULE_HXX //autogen wg. SW_MOD
 #include <swmodule.hxx>
