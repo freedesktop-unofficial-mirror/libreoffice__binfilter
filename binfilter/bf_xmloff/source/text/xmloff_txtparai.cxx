@@ -1972,8 +1972,6 @@ SvXMLImportContext *XMLParaContext::CreateChildContext(
         sal_uInt16 nPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
-    SvXMLImportContext *pContext = 0;
-
     const SvXMLTokenMap& rTokenMap =
         GetImport().GetTextImport()->GetTextPElemTokenMap();
     sal_uInt16 nToken = rTokenMap.Get( nPrefix, rLocalName );
