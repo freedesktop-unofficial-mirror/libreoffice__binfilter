@@ -219,47 +219,46 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*-----------------05.03.98 16:19-------------------
 
 --------------------------------------------------*/
-/*N*/ BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
-/*N*/ {
-/*N*/   BOOL bRet = TRUE;
-/*N*/     nMId &= ~CONVERT_TWIPS;
-/*N*/   switch( nMId )
-/*N*/   {
-/*N*/   case FIELD_PROP_BYTE1:
-/*?*/       sal_Int8 nTmp;
-/*?*/       rAny >>= nTmp;
-/*?*/       if(nTmp >= 0 && nTmp < MAXLEVEL)
-/*?*/           nLevel = nTmp;
-/*?*/       else
-/*?*/           bRet = FALSE;
-/*?*/       break;
-/*N*/
-/*N*/   case FIELD_PROP_USHORT1:
-/*N*/       {
-/*N*/           sal_Int16 nVal;
-/*N*/           rAny >>= nVal;
-/*N*/           switch( nVal )
-/*N*/           {
-/*N*/               case text::ChapterFormat::NAME: SetFormat(CF_TITLE); break;
-/*N*/               case text::ChapterFormat::NUMBER:  SetFormat(CF_NUMBER); break;
-/*N*/               case text::ChapterFormat::NO_PREFIX_SUFFIX:
-/*?*/                           SetFormat(CF_NUM_NOPREPST_TITLE);
-/*?*/               break;
-/*N*/               case text::ChapterFormat::DIGIT:
-/*N*/                       SetFormat(CF_NUMBER_NOPREPST);
-/*N*/               break;
-/*N*/               //case text::ChapterFormat::NAME_NUMBER:
-/*N*/               default:        SetFormat(CF_NUM_TITLE);
-/*N*/           }
-/*N*/       }
-/*N*/       break;
-/*N*/
-/*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
-/*?*/       bRet = FALSE;
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
+BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
+{
+    BOOL bRet = TRUE;
+    nMId &= ~CONVERT_TWIPS;
+
+    switch( nMId )
+    {
+    case FIELD_PROP_BYTE1:
+        {
+            sal_Int8 nTmp(0);
+            rAny >>= nTmp;
+            if(nTmp >= 0 && nTmp < MAXLEVEL)
+                nLevel = nTmp;
+            else
+                bRet = FALSE;
+        }
+        break;
+
+    case FIELD_PROP_USHORT1:
+        {
+            sal_Int16 nVal(0);
+            rAny >>= nVal;
+            switch( nVal )
+            {
+            case text::ChapterFormat::NAME:             SetFormat(CF_TITLE); break;
+            case text::ChapterFormat::NUMBER:           SetFormat(CF_NUMBER); break;
+            case text::ChapterFormat::NO_PREFIX_SUFFIX: SetFormat(CF_NUM_NOPREPST_TITLE); break;
+            case text::ChapterFormat::DIGIT:            SetFormat(CF_NUMBER_NOPREPST); break;
+            default:                                    SetFormat(CF_NUM_TITLE);
+            }
+        }
+        break;
+
+    default:
+        DBG_ERROR("illegal property");
+        bRet = FALSE;
+    }
+    return bRet;
+}
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

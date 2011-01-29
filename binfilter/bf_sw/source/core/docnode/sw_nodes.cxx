@@ -48,11 +48,11 @@
 #include <ddefld.hxx>
 #include <swddetbl.hxx>
 #include <frame.hxx>
-namespace binfilter {
-/*N*/ extern bool CheckNodesRange( const SwNodeIndex& rStt,
-/*N*/                           const SwNodeIndex& rEnd, bool bChkSection );
 
-SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)
+namespace binfilter {
+    extern bool CheckNodesRange( const SwNodeIndex& rStt, const SwNodeIndex& rEnd, bool bChkSection );
+
+    SV_DECL_PTRARR(SwSttNdPtrs,SwStartNode*,2,2)
 } //namespace binfilter
 
 namespace binfilter {
@@ -508,8 +508,8 @@ namespace binfilter {
 /*?*/       return 0;
 /*N*/
 /*N*/   SwNodeIndex aTmp(*pIdx, +1);
-/*N*/   SwNode* pNd;
-/*N*/   while( aTmp < Count()-1 && 0 == ( pNd = &aTmp.GetNode())->IsCntntNode() )
+/*N*/   SwNode* pNd(NULL);
+/*N*/   while( aTmp < Count()-1 && 0 == ( pNd = &aTmp.GetNode() )->IsCntntNode() )
 /*N*/       aTmp++;
 /*N*/
 /*N*/   if( aTmp == Count()-1 )
@@ -525,7 +525,7 @@ namespace binfilter {
 /*?*/       return 0;
 /*N*/
 /*N*/   SwNodeIndex aTmp( *pIdx, -1 );
-/*N*/   SwNode* pNd;
+/*N*/   SwNode* pNd(NULL);
 /*N*/   while( aTmp.GetIndex() && 0 == ( pNd = &aTmp.GetNode())->IsCntntNode() )
 /*N*/       aTmp--;
 /*N*/
@@ -542,7 +542,7 @@ namespace binfilter {
 /*?*/       return 0;
 /*N*/
 /*N*/   SwNodeIndex aTmp(*pIdx, +1);
-/*N*/   SwNode* pNd;
+/*N*/   SwNode* pNd(NULL);
 /*N*/   while( aTmp < Count()-1 )
 /*N*/   {
 /*N*/       pNd = &aTmp.GetNode();

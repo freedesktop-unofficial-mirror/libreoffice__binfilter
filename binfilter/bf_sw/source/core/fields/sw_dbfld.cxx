@@ -405,7 +405,7 @@ const String& SwDBField::GetPar1() const
 /*N*/     case FIELD_PROP_BOOL2:
 /*N*/     {
 /*N*/         USHORT nSubType = GetSubType();
-/*N*/         sal_Bool bVisible;
+/*N*/         sal_Bool bVisible(false);
 /*N*/         if(!(rAny >>= bVisible))
 /*N*/             return FALSE;
 /*N*/         if(bVisible)
@@ -434,7 +434,7 @@ const String& SwDBField::GetPar1() const
 /*N*/     break;
 /*N*/   case FIELD_PROP_FORMAT:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;
+/*N*/           sal_Int32 nTemp(0);
 /*N*/           rAny >>= nTemp;
 /*N*/           SetFormat(nTemp);
 /*N*/       }
@@ -521,7 +521,7 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     case FIELD_PROP_BOOL2:
     {
         USHORT nSubType = GetSubType();
-        sal_Bool bVisible;
+        sal_Bool bVisible(sal_False);
         if(!(rAny >>= bVisible))
             return FALSE;
         if(bVisible)
@@ -656,21 +656,6 @@ BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
 }
 
 /*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-/*
-String SwDBNextSetField::GetPar2() const
-{
-    return GetDBName();
-}
-
-void SwDBNextSetField::SetPar2(const String& rStr)
-{
-    GetDBName() = rStr;
-}
-*/
-
-/*--------------------------------------------------------------------
     Beschreibung: Datensatz mit bestimmter ID
  --------------------------------------------------------------------*/
 
@@ -792,7 +777,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
         break;
     case FIELD_PROP_FORMAT:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rAny >>= nVal;
             aPar2 = String::CreateFromInt32(nVal);
         }
@@ -913,7 +898,6 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*?*/       return aEmptyStr;
 /*N*/   else
 /*N*/       return FormatNumber((USHORT)nNumber, GetFormat());
-/*N*/   //return(nNumber == 0 ? aEmptyStr : FormatNumber(nNumber, GetFormat()));
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -972,7 +956,7 @@ BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
     {
     case FIELD_PROP_USHORT1:
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             rAny >>= nSet;
             if(nSet < (INT16) SVX_NUMBER_NONE )
                 SetFormat(nSet);

@@ -639,10 +639,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/       // HACK: hier muss die entsprechend der neuen Vorlage die Bedingungen
 /*N*/       //      neu ueberprueft werden!
-/*N*/       if( TRUE /*pNewColl */ )
-/*N*/       {
-/*N*/           SetCondFmtColl( 0 );
-/*N*/       }
+/*N*/       SetCondFmtColl( 0 );
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
 /*N*/       if( !IsModifyLocked() )
@@ -1209,6 +1206,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   break;
 /*?*/               case SwHeaderStartNode:     nCond = PARA_IN_HEADER; break;
 /*?*/               case SwFooterStartNode:     nCond = PARA_IN_FOOTER; break;
+                    case SwNormalStartNode:     break;
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -1296,9 +1294,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/    return ND_TEXTNODE == nNodeType ? (const SwTxtNode*)this : 0;
 /*N*/ }
 /*N*/ #endif
-
-
-
 
 }
 

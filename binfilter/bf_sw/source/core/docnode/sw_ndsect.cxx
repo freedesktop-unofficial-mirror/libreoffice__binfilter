@@ -307,7 +307,6 @@ namespace binfilter {
 /*?*/                       aIdx++;
 /*?*/                   } while( aIdx.GetNode().IsEndNode() &&
 /*?*/                               0 != aIdx.GetNode().FindSectionNode() );
-/*?*/ //                    if( !aIdx.GetNode().IsEndNode() )
 /*?*/                   {
 /*?*/                       nRet = 2;
 /*?*/                       if( ppSttNd )
@@ -435,10 +434,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwSectionFmt* pFmt = (*pSectionFmtTbl)[ nPos ];
 /*N*/   SwSection* pSection = pFmt->GetSection();
-/*N*/     /// OD 04.10.2002 #102894#
-/*N*/     /// remember hidden condition flag of SwSection before changes
-/*N*/     pSection->IsCondHidden() ? true : false;
-/*N*/
 /*N*/   if( *pSection == rSect )
 /*N*/   {
 /*N*/       // die Attribute ueberpruefen
@@ -891,7 +886,7 @@ namespace binfilter {
 /*N*/   String aName( aId );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum(0), nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/

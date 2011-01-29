@@ -366,9 +366,6 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
 USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
 {
     //find the field in a sorted array of handles,
-#ifdef DBG_UTIL
-    sal_Bool bCurrentFieldWithoutTextNode = sal_False;
-#endif
     if(m_pSequArr->Count() && m_pSequArr->Count() != m_pDataArr->Count())
         DelSequenceArray();
     if(!m_pSequArr->Count())
@@ -381,16 +378,10 @@ USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
         for( SwFmtFld* pFmtFld = (SwFmtFld*)aIter.First( TYPE(SwFmtFld) );
                                 pFmtFld; pFmtFld = (SwFmtFld*)aIter.Next() )
         {
-            SwAuthorityField* pAFld = (SwAuthorityField*)pFmtFld->GetFld();
             const SwTxtFld* pTxtFld = pFmtFld->GetTxtFld();
-         if(!pTxtFld || !pTxtFld->GetpTxtNode())
-            {
-#ifdef DBG_UTIL
-                if(nHandle == pAFld->GetHandle())
-                    bCurrentFieldWithoutTextNode = sal_True;
-#endif
+            if(!pTxtFld || !pTxtFld->GetpTxtNode())
                 continue;
-            }
+
             const SwTxtNode& rFldTxtNode = pTxtFld->GetTxtNode();
             SwPosition aFldPos(rFldTxtNode);
             SwDoc& rDoc = *(SwDoc*)rFldTxtNode.GetDoc();
@@ -457,7 +448,6 @@ USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
             break;
         }
     }
-    ASSERT(bCurrentFieldWithoutTextNode || nRet, "Handle not found")
     return nRet;
 }
 /* -----------------------------15.11.00 17:33--------------------------------
@@ -813,7 +803,7 @@ BOOL    SwAuthorityField::PutValue( const Any& rAny, BYTE nMId )
             OUString sContent;
             if(AUTH_FIELD_AUTHORITY_TYPE == nFound)
             {
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 pParam[i].Value >>= nVal;
                 sContent = OUString::valueOf((sal_Int32)nVal);
             }

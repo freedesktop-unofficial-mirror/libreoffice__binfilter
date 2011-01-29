@@ -72,7 +72,6 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
-//static const char sSectionFmtNm[] = "Section";
 #define sSectionFmtNm aEmptyStr
 
 /*N*/ class SwIntrnlSectRefLink : public SwBaseLink
@@ -424,6 +423,10 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/               }
 /*N*/           }
 /*N*/           break;
+            case CONTENT_SECTION:
+            case TOX_HEADER_SECTION:
+            case TOX_CONTENT_SECTION:
+                break;
 /*N*/       }
 /*N*/       ((SwSection*)this)->sLinkFileName = sTmp;
 /*N*/   }
@@ -1127,9 +1130,10 @@ void SwSectionFmt::MakeFrms()
 /*N*/   case CREATE_UPDATE:         // Link connecten und updaten
 /*N*/       pLnk->Update();
 /*N*/       break;
+        case CREATE_NONE:
+            break;
 /*N*/   }
 /*N*/ }
-
 
 
 /*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen /*nStt*/, xub_StrLen /*nEnd */) const
@@ -1139,7 +1143,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/           nSttNd < pSttNd->GetIndex() &&
 /*N*/           pSttNd->EndOfSectionIndex() < nEndNd;
 /*N*/ }
-
 
 
 }
