@@ -32,38 +32,12 @@
 
 #define _BIGINT_HXX
 #define _SFXMULTISEL_HXX
-//#define _STACK_HXX
-//#define _QUEUE_HXX
 #define _DYNARR_HXX
 #define _TREELIST_HXX
 #define _CACHESTR_HXX
 #define _NEW_HXX
-//#define _SHL_HXX ***
-//#define _LINK_HXX ***
-//#define _ERRCODE_HXX ***
-//#define _GEN_HXX ***
-//#define _FRACT_HXX ***
-//#define _STRING_HXX ***
-//#define _MTF_HXX ***
-//#define _CONTNR_HXX ***
-//#define _LIST_HXX ***
-//#define _TABLE_HXX ***
 #define _DYNARY_HXX
-//#define _UNQIDX_HXX ***
-//#define _SVMEMPOOL_HXX ***
-//#define _UNQID_HXX ***
-//#define _DEBUG_HXX ***
-//#define _DATE_HXX ***
-//#define _TIME_HXX ***
-//#define _DATETIME_HXX ***
-//#define _INTN_HXX ***
-//#define _WLDCRD_HXX ***
-//#define _FSYS_HXX ***
-//#define _STREAM_HXX ***
 #define _CACHESTR_HXX
-//#define _SV_MULTISEL_HXX
-
-
 
 #define _SV_NOXSOUND
 
@@ -82,7 +56,6 @@
 #define _MOREBUTTON_HXX
 #define _OUTLINER_HXX
 #define _PASSWD_HXX
-//#define _QUEUE_HXX
 #define _RULER_HXX
 #define _SCRWIN_HXX
 #define _SETBRW_HXX
@@ -98,19 +71,14 @@
 #define _STDMENU_HXX
 
 
-//#define _PRNDLG_HXX ***
-//#define _POLY_HXX **
 // TOOLS
 #define _BIGINT_HXX
 #define _SFXMULTISEL_HXX
-//#define _STACK_HXX
-//#define _QUEUE_HXX
 #define _DYNARR_HXX
 #define _TREELIST_HXX
 #define _CACHESTR_HXX
 
 //SV
-//#define _CLIP_HXX
 #define _CONFIG_HXX
 #define _CURSOR_HXX
 #define _FONTDLG_HXX
@@ -119,11 +87,6 @@
 #ifndef OS2
 #define _MENUBTN_HXX
 #endif
-
-//#define _SOBASE_HXX
-//#define _SOSTOR_HXX
-//#define _SOCORE_HXX
-//#define _SOINPL_HXX
 
 #define _SFX_DOCFILE_HXX
 #define _SFX_DOCFILT_HXX
@@ -149,7 +112,6 @@
 #define _SFXMNUITEM_HXX
 #define _SFXMNUMGR_HXX
 #define _SFXMULTISEL_HXX
-//#define _SFXMSG_HXX
 #define _SFXMSGDESCR_HXX
 #define _SFXMSGPOOL_HXX
 #define _SFX_MINFITEM_HXX
@@ -161,19 +123,16 @@
 #define _SFXTBXCTRL_HXX
 #define _SFXTBXMGR_HXX
 
-//#define _SI_HXX
-//#define SI_NODRW
 #define _SI_DLL_HXX
 #define _SIDLL_HXX
 #define _SI_NOITEMS
 #define _SI_NOOTHERFORMS
 #define _SI_NOSBXCONTROLS
 #define _SINOSBXCONTROLS
-#define _SI_NODRW         //
+#define _SI_NODRW
 #define _SI_NOCONTROL
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
 #define _VCATTR_HXX
@@ -182,12 +141,10 @@
 #define _SVBOXITM_HXX
 #define _SVCONTNR_HXX
 #define _SVDIALDLL_HXX
-//#define _SVDATTR_HXX
 #define _SVDRAG_HXX
 #define _SVDXOUT_HXX
 #define _SVDEC_HXX
 #define _SVDIO_HXX
-//#define _SVDLAYER_HXX
 #define _SVINCVW_HXX
 #define _SVRTV_HXX
 #define _SVTABBX_HXX
@@ -241,7 +198,7 @@
 #include "chartlis.hxx"
 #include "validat.hxx"
 #include "detdata.hxx"
-#include "bf_sc.hrc"                // FID_DATACHANGED
+#include "bf_sc.hrc"                            // FID_DATACHANGED
 #include "chgtrack.hxx"
 #include "chgviset.hxx"
 #include "editutil.hxx"
