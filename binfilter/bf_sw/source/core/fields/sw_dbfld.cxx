@@ -72,21 +72,22 @@ using namespace ::rtl;
     Beschreibung: DatenbankFeldTyp
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData& rDBData ) :
-/*N*/   SwValueFieldType( pDocPtr, RES_DBFLD ),
-/*N*/   aDBData(rDBData),
-/*N*/   nRefCnt(0),
-/*N*/   sColumn(rNam)
-/*N*/ {
-/*N*/     if(aDBData.sDataSource.getLength() || aDBData.sCommand.getLength())
-/*N*/     {
-/*N*/         sName =  aDBData.sDataSource;
-/*N*/         sName += DB_DELIM;
-/*N*/         sName += (String)aDBData.sCommand;
-/*N*/         sName += DB_DELIM;
-/*N*/     }
-/*N*/   sName += GetColumnName();
-/*N*/ }
+SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData& rDBData )
+    : SwValueFieldType( pDocPtr, RES_DBFLD )
+    , aDBData(rDBData)
+    , nRefCnt(0)
+    , sColumn(rNam)
+{
+    if(aDBData.sDataSource.getLength() || aDBData.sCommand.getLength())
+    {
+        sName =  aDBData.sDataSource;
+        sName += DB_DELIM;
+        sName += (String)aDBData.sCommand;
+        sName += DB_DELIM;
+    }
+    sName += GetColumnName();
+}
+
 //------------------------------------------------------------------------------
 
 /*N*/ SwFieldType* SwDBFieldType::Copy() const
@@ -124,7 +125,7 @@ using namespace ::rtl;
  * --------------------------------------------------*/
 /*N*/ BOOL SwDBFieldType::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
-/*N*/     nMId &= ~CONVERT_TWIPS;
+/*N*/   nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_PAR2:
@@ -322,14 +323,6 @@ SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
 }
 
 /*--------------------------------------------------------------------
-    Beschreibung: Aktuellen Field-Value holen und chachen
- --------------------------------------------------------------------*/
-
-/*N*/ void SwDBField::Evaluate()
- /*N*/ {    DBG_ERROR("STRIP");
-/*N*/ }
-
-/*--------------------------------------------------------------------
     Beschreibung: Namen erfragen
  --------------------------------------------------------------------*/
 
@@ -452,12 +445,12 @@ const String& SwDBField::GetPar1() const
     Beschreibung: Basisklasse fuer alle weiteren Datenbankfelder
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, ULONG nFmt) :
-/*N*/   SwField(pTyp, nFmt),
-/*N*/     aDBData(rDBData),
-/*N*/     nSubType(0)
-/*N*/ {
-/*N*/ }
+SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, ULONG nFmt)
+    : SwField(pTyp, nFmt)
+    , aDBData(rDBData)
+    , nSubType(0)
+{
+}
 
 //------------------------------------------------------------------------------
 
@@ -555,10 +548,10 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     Beschreibung: NaechsterDatensatz
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNextSetFieldType::SwDBNextSetFieldType()
-/*N*/   : SwFieldType( RES_DBNEXTSETFLD )
-/*N*/ {
-/*N*/ }
+SwDBNextSetFieldType::SwDBNextSetFieldType()
+    : SwFieldType( RES_DBNEXTSETFLD )
+{
+}
 
 //------------------------------------------------------------------------------
 
@@ -571,12 +564,15 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     Beschreibung: SwDBSetField
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNextSetField::SwDBNextSetField(SwDBNextSetFieldType* pTyp,
-/*N*/                                  const String& rCond,
-/*N*/                                  const String& /*rDummy*/ ,
-/*N*/                                  const SwDBData& rDBData) :
-/*N*/   SwDBNameInfField(pTyp, rDBData), aCond(rCond), bCondValid(TRUE)
-/*N*/ {}
+SwDBNextSetField::SwDBNextSetField(
+    SwDBNextSetFieldType* pTyp,
+    const String& rCond,
+    const String& /*rDummy*/ ,
+    const SwDBData& rDBData
+)   : SwDBNameInfField( pTyp, rDBData )
+    , aCond( rCond )
+    , bCondValid( TRUE )
+{}
 
 //------------------------------------------------------------------------------
 
@@ -659,10 +655,10 @@ BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     Beschreibung: Datensatz mit bestimmter ID
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNumSetFieldType::SwDBNumSetFieldType() :
-/*N*/   SwFieldType( RES_DBNUMSETFLD )
-/*N*/ {
-/*N*/ }
+SwDBNumSetFieldType::SwDBNumSetFieldType()
+    : SwFieldType( RES_DBNUMSETFLD )
+{
+}
 
 //------------------------------------------------------------------------------
 

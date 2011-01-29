@@ -845,13 +845,10 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       break;
 /*N*/       case RES_DBFLD:
 /*N*/       {
-/*N*/           // Feld Evaluieren
-/*N*/           ((SwDBField*)pFld)->Evaluate();
+/*N*/           SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
 /*N*/
-/*N*/               SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
-/*N*/
-/*N*/             if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }
+/*N*/           if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
+/*?*/               { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
 /*N*/

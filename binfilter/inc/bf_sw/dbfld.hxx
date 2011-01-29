@@ -98,9 +98,6 @@ public:
     // fuer Berechnungen in Ausdruecken
     void                ChgValue( double d, BOOL bVal );
 
-    // Evaluierung ueber den DBMgr String rauspulen
-    void                Evaluate();
-
     // Evaluierung fuer Kopf und Fusszeilen
     void                ChangeExpansion( const SwFrm*, const SwTxtFld* );
     void                InitContent();
