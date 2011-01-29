@@ -36,20 +36,15 @@
 #include <stdio.h>          // sscanf
 
 #include <hintids.hxx>
-
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/tstpitem.hxx>
 #include <frmatr.hxx>
-
 #include <horiornt.hxx>
-
 #include <doc.hxx>
 #include <docary.hxx>
-
 #include <errhdl.hxx>
-
 #include <pam.hxx>
 #include <errhdl.hxx>
 #include <wdocsh.hxx>
@@ -64,9 +59,7 @@
 #include <numrule.hxx>
 #include <ndtxt.hxx>
 #include <swfltopt.hxx>
-
 #include <swerror.h>
-
 #include <bf_svtools/moduleoptions.hxx>
 
 namespace binfilter {
@@ -78,64 +71,45 @@ using namespace ::com::sun::star::uno;
 SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
         ReadHTML = 0, ReadXML = 0;
 
-/*N*/ inline BOOL IsDocShellRegistered() { return SvtModuleOptions().IsWriter(); }
+inline BOOL IsDocShellRegistered() { return SvtModuleOptions().IsWriter(); }
 
 
-/*N*/ IO_DETECT_IMPL1
-/*N*/ IO_DETECT_IMPL2
-/*N*/ IO_DETECT_IMPL3
-/*N*/ IO_DETECT_IMPL4
+IO_DETECT_IMPL1
+IO_DETECT_IMPL2
+IO_DETECT_IMPL3
+IO_DETECT_IMPL4
 
 
-/*N*/ inline void _SetFltPtr( USHORT& rPos, SwRead pReader
-/*N*/                       , const sal_Char* pNm
+inline void _SetFltPtr( USHORT& rPos, SwRead pReader, const sal_Char* pNm )
 /* pNm optimiert der Compiler weg, wird nur in der nicht PRODUCT benoetigt! */
-/*N*/                       )
-/*N*/ {
-/*N*/   ASSERT( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
-/*N*/   (void)pNm;
-/*N*/   aReaderWriter[ rPos++ ].pReader = pReader;
-/*N*/ }
+{
+    ASSERT( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
+    aReaderWriter[ rPos++ ].pReader = pReader;
+}
 
-/*N*/ void _InitFilter()
-/*N*/ {
-/*N*/    SwRead pRd;
-/*N*/
-/*N*/   USHORT nCnt = 0;
-/*N*/   _SetFltPtr( nCnt, (ReadSw3 = new Sw3Reader), FILTER_SW5 );
-/*N*/   _SetFltPtr( nCnt, ReadSw3, FILTER_SW4 );
-/*N*/   _SetFltPtr( nCnt, ReadSw3, FILTER_SW3 );
-/*N*/   _SetFltPtr( nCnt, (ReadSwg = new SwgReader), FILTER_SWG );
-/*N*/   _SetFltPtr( nCnt, ReadSwg, FILTER_SWGV );
-/*?*/   _SetFltPtr( nCnt, new Sw6Reader, sSwDos );
-/*N*/   _SetFltPtr( nCnt, (ReadAscii = new AsciiReader), FILTER_BAS );
-/*N*/  _SetFltPtr( nCnt, new W4WReader, FILTER_W4W );
-/*N*/   _SetFltPtr( nCnt, ( pRd = new ExcelReader ), sCExcel );
-/*N*/   _SetFltPtr( nCnt, pRd, sExcel );
-/*N*/   _SetFltPtr( nCnt, new LotusReader, sLotusD );
-/*N*/   _SetFltPtr( nCnt, ReadSwg, sSwg1 );
-/*?*/   _SetFltPtr( nCnt, (ReadXML = new XMLReader), FILTER_XML );
-/*N*/
-/*N*/
-/*N*/     _SetFltPtr( nCnt, ReadAscii, FILTER_TEXT );
-/*N*/
-/*N*/   ASSERT( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
-/*N*/ }
+void _InitFilter()
+{
+    USHORT nCnt = 0;
+    _SetFltPtr( nCnt, (ReadSw3 = new Sw3Reader), FILTER_SW5 );
+    _SetFltPtr( nCnt, ReadSw3, FILTER_SW4 );
+    _SetFltPtr( nCnt, ReadSw3, FILTER_SW3 );
 
-/*N*/ void _FinitFilter()
-/*N*/ {
-/*N*/   // die Reader vernichten
-/*N*/   for( USHORT n = 0; n < MAXFILTER; ++n )
-/*N*/   {
-/*N*/       SwIoDetect& rIo = aReaderWriter[n];
-/*N*/       if( rIo.bDelReader && rIo.pReader )
-/*N*/           delete rIo.pReader;
-/*N*/   }
-/*N*/ }
+    ASSERT( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
+}
 
+void _FinitFilter()
+{
+    // die Reader vernichten
+    for( USHORT n = 0; n < MAXFILTER; ++n )
+    {
+        SwIoDetect& rIo = aReaderWriter[n];
+        if( rIo.bDelReader && rIo.pReader )
+            delete rIo.pReader;
+    }
+}
 
- SwRead SwIoSystem::GetReader( const String& rFltName )
- {
+SwRead SwIoSystem::GetReader( const String& rFltName )
+{
     SwRead pRead = 0;
     for( USHORT n = 0; n < MAXFILTER; ++n )
         if( aReaderWriter[n].IsFilter( rFltName ) )
@@ -146,39 +120,37 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
             break;
         }
     return pRead;
- }
+}
 
-        // suche ueber den Filtertext den Filtereintrag
-/*N*/ const SfxFilter* SwIoSystem::GetFilterOfFilterTxt( const String& rFilterNm,
-/*N*/                               const SfxFactoryFilterContainer* pCnt )
-/*N*/ {
-/*N*/   const SfxFactoryFilterContainer* pFltCnt = pCnt ? pCnt :
-/*N*/       ( IsDocShellRegistered()
-/*N*/           ? SwDocShell::Factory().GetFilterContainer()
-/*N*/           : SwWebDocShell::Factory().GetFilterContainer() );
-/*N*/
-/*N*/   do {
-/*N*/       if( pFltCnt )
-/*N*/       {
-/*N*/           const SfxFilter* pFilter;
-/*N*/           USHORT nCount = pFltCnt->GetFilterCount();
-/*N*/           for( USHORT i = 0; i < nCount; ++i )
-/*N*/               if( ( pFilter = pFltCnt->GetFilter( i ))->GetFilterName() == rFilterNm )
-/*N*/                   return pFilter;
-/*N*/       }
-/*?*/       if( pCnt || pFltCnt == SwWebDocShell::Factory().GetFilterContainer())
-/*?*/           break;
-/*?*/       pFltCnt = SwWebDocShell::Factory().GetFilterContainer();
-/*?*/   } while( TRUE );
-/*?*/
-/*?*/   return 0;
-/*N*/ }
+// search the filter entry using the filter text
+const SfxFilter* SwIoSystem::GetFilterOfFilterTxt( const String& rFilterNm,
+                                                   const SfxFactoryFilterContainer* pCnt )
+{
+    const SfxFactoryFilterContainer* pFltCnt = pCnt ? pCnt :
+        ( IsDocShellRegistered() ? SwDocShell::Factory().GetFilterContainer()
+            : SwWebDocShell::Factory().GetFilterContainer() );
+    do
+    {
+        if( pFltCnt )
+        {
+            const SfxFilter* pFilter;
+            USHORT nCount = pFltCnt->GetFilterCount();
+            for( USHORT i = 0; i < nCount; ++i )
+                if( ( pFilter = pFltCnt->GetFilter( i ))->GetFilterName() == rFilterNm )
+                    return pFilter;
+        }
+        if( pCnt || pFltCnt == SwWebDocShell::Factory().GetFilterContainer())
+            break;
+        pFltCnt = SwWebDocShell::Factory().GetFilterContainer();
+    } while( TRUE );
 
+    return 0;
+}
 
 /////////////// die Storage Reader/Writer ////////////////////////////////
 
- ULONG StgReader::OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize )
- {
+ULONG StgReader::OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize )
+{
     ULONG nRet = ERR_SWG_READ_ERROR;
     ASSERT( pStg, "wo ist mein Storage?" );
     const SfxFilter* pFltr = SwIoSystem::GetFilterOfFormat( aFltName );
@@ -201,34 +173,34 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
         }
     }
     return nRet;
- }
+}
 
 
-/*N*/ ULONG Sw3Reader::Read( SwDoc & /*rDoc*/, SwPaM &rPam, const String & )
-/*N*/ {
-/*N*/   ULONG nRet;
-/*N*/   if( pStg && pIO )
-/*N*/   {
-/*N*/       // TRUE: Vorlagen ueberschreiben
-/*N*/       pIO->SetReadOptions( aOpt,TRUE );
-/*N*/       if( !bInsertMode )
-/*N*/       {
-/*N*/           // Im Laden-Modus darf der PaM-Content-Teil nicht
-/*N*/           // in den Textbereich zeigen (Nodes koennen geloescht werden)
-/*N*/           rPam.GetBound( TRUE ).nContent.Assign( 0, 0 );
-/*N*/           rPam.GetBound( FALSE ).nContent.Assign( 0, 0 );
-/*N*/       }
-/*N*/       nRet = pIO->Load( pStg, bInsertMode ? &rPam : 0 );
-/*N*/       aOpt.ResetAllFmtsOnly();
-/*N*/       pIO->SetReadOptions( aOpt, TRUE );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       ASSERT( !this, "Sw3-Read ohne Storage und/oder IO-System" );
-/*?*/       nRet = ERR_SWG_READ_ERROR;
-/*N*/   }
-/*N*/   return nRet;
-/*N*/ }
+ULONG Sw3Reader::Read( SwDoc & /*rDoc*/, SwPaM &rPam, const String & )
+{
+    ULONG nRet;
+    if( pStg && pIO )
+    {
+        // TRUE: Vorlagen ueberschreiben
+        pIO->SetReadOptions( aOpt,TRUE );
+        if( !bInsertMode )
+        {
+            // Im Laden-Modus darf der PaM-Content-Teil nicht
+            // in den Textbereich zeigen (Nodes koennen geloescht werden)
+            rPam.GetBound( TRUE ).nContent.Assign( 0, 0 );
+            rPam.GetBound( FALSE ).nContent.Assign( 0, 0 );
+        }
+        nRet = pIO->Load( pStg, bInsertMode ? &rPam : 0 );
+        aOpt.ResetAllFmtsOnly();
+        pIO->SetReadOptions( aOpt, TRUE );
+    }
+    else
+    {
+        ASSERT( !this, "Sw3-Read ohne Storage und/oder IO-System" );
+        nRet = ERR_SWG_READ_ERROR;
+    }
+    return nRet;
+}
 
     // read the sections of the document, which is equal to the medium.
     // returns the count of it
@@ -263,8 +235,8 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
 }
 
 
- BOOL SwReader::NeedsPasswd( const Reader& rOptions )
- {
+BOOL SwReader::NeedsPasswd( const Reader& rOptions )
+{
     BOOL bRes = FALSE;
     if( &rOptions == ReadSwg )
     {
@@ -280,11 +252,11 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
         }
     }
     return bRes;
- }
+}
 
 
- BOOL SwReader::CheckPasswd( const String& rPasswd, const Reader& rOptions )
- {
+BOOL SwReader::CheckPasswd( const String& rPasswd, const Reader& rOptions )
+{
     BOOL bRes = TRUE;
     if( &rOptions == ReadSwg )
     {
@@ -300,7 +272,7 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
         }
     }
     return bRes;
- }
+}
 
 //-----------------------------------------------------------------------
 // Filter Flags lesen, wird von WW8 / W4W / EXCEL / LOTUS benutzt.
@@ -341,47 +313,45 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
 </FilterFlags>
 */
 
-/*N*/ #define FILTER_OPTION_ROOT        String::CreateFromAscii( \
-/*N*/               RTL_CONSTASCII_STRINGPARAM( "Office.Writer/FilterFlags" ) )
+#define FILTER_OPTION_ROOT  String::CreateFromAscii( \
+                    RTL_CONSTASCII_STRINGPARAM( "Office.Writer/FilterFlags" ) )
 
- SwFilterOptions::SwFilterOptions()
+SwFilterOptions::SwFilterOptions()
     : ConfigItem( FILTER_OPTION_ROOT )
- {
- }
+{
+}
 
-/*N*/ SwFilterOptions::SwFilterOptions( sal_uInt16 nCnt, const sal_Char** ppNames,
-/*N*/                               sal_uInt32* pValues )
-/*N*/   : ConfigItem( FILTER_OPTION_ROOT )
-/*N*/ {
-/*N*/   GetValues( nCnt, ppNames, pValues );
-/*N*/ }
+SwFilterOptions::SwFilterOptions( sal_uInt16 nCnt, const sal_Char** ppNames,
+                                  sal_uInt32* pValues ) : ConfigItem( FILTER_OPTION_ROOT )
+{
+    GetValues( nCnt, ppNames, pValues );
+}
 
-/*N*/ void SwFilterOptions::GetValues( sal_uInt16 nCnt, const sal_Char** ppNames,
-/*N*/                                   sal_uInt32* pValues )
-/*N*/ {
-/*N*/   Sequence<OUString> aNames( nCnt );
-/*N*/   OUString* pNames = aNames.getArray();
-        USHORT n=0;
-/*N*/   for( n = 0; n < nCnt; ++n )
-/*N*/       pNames[ n ] = OUString::createFromAscii( ppNames[ n ] );
-/*N*/   Sequence<Any> aValues = GetProperties( aNames );
-/*N*/
-/*N*/   if( nCnt == aValues.getLength() )
-/*N*/   {
-/*N*/       const Any* pAnyValues = aValues.getConstArray();
-/*N*/       for( n = 0; n < nCnt; ++n )
-/*N*/           pValues[ n ] = pAnyValues[ n ].hasValue()
-/*N*/                           ? *(sal_uInt32*)pAnyValues[ n ].getValue()
-/*N*/                           : 0;
-/*N*/   }
-/*N*/   else
-/*?*/       for( n = 0; n < nCnt; ++n )
-/*?*/           pValues[ n ] = 0;
-/*N*/ }
+void SwFilterOptions::GetValues( sal_uInt16 nCnt, const sal_Char** ppNames,
+                                 sal_uInt32* pValues )
+{
+    Sequence<OUString> aNames( nCnt );
+    OUString* pNames = aNames.getArray();
+    USHORT n=0;
+    for( n = 0; n < nCnt; ++n )
+        pNames[ n ] = OUString::createFromAscii( ppNames[ n ] );
+    Sequence<Any> aValues = GetProperties( aNames );
 
- sal_Bool SwFilterOptions::CheckNodeContentExist( const sal_Char* pNode,
+    if( nCnt == aValues.getLength() )
+    {
+        const Any* pAnyValues = aValues.getConstArray();
+        for( n = 0; n < nCnt; ++n )
+            pValues[ n ] = pAnyValues[ n ].hasValue() ?
+                           *(sal_uInt32*)pAnyValues[ n ].getValue() : 0;
+    }
+    else
+    for( n = 0; n < nCnt; ++n )
+        pValues[ n ] = 0;
+}
+
+sal_Bool SwFilterOptions::CheckNodeContentExist( const sal_Char* pNode,
                                                  const sal_Char* pCntnt )
- {
+{
     Sequence<OUString> aNames( GetNodeNames(
                                         OUString::createFromAscii( pNode )));
     sal_Bool bExist = sal_False;
@@ -393,7 +363,7 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
             break;
         }
     return bExist;
- }
+}
 
 SwRelNumRuleSpaces::SwRelNumRuleSpaces( SwDoc& rDoc, BOOL bNDoc )
     : bNewDoc( bNDoc )
@@ -559,17 +529,17 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
     }
 }
 
- struct CharSetNameMap
- {
+struct CharSetNameMap
+{
      rtl_TextEncoding eCode;
      const sal_Char* pName;
- };
+};
 
- const CharSetNameMap *GetCharSetNameMap()
- {
+const CharSetNameMap *GetCharSetNameMap()
+{
      static const CharSetNameMap aMapArr[] =
      {
- #   define IMPLENTRY(X) { RTL_TEXTENCODING_##X, "" #X "" }
+#define IMPLENTRY(X) { RTL_TEXTENCODING_##X, "" #X "" }
          IMPLENTRY(DONTKNOW),
          IMPLENTRY(MS_1252),
          IMPLENTRY(APPLE_ROMAN),
@@ -664,13 +634,13 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
          {0,0}       //Last
      };
      return &aMapArr[0];
- }
+}
 
 /*
  Get a rtl_TextEncoding from its name
  */
- rtl_TextEncoding CharSetFromName(const String& rChrSetStr)
- {
+rtl_TextEncoding CharSetFromName(const String& rChrSetStr)
+{
      const CharSetNameMap *pStart = GetCharSetNameMap();
      rtl_TextEncoding nRet = pStart->eCode;
 
@@ -686,21 +656,20 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
      ASSERT(nRet != pStart->eCode, "TXT: That was an unknown language!");
 
     return nRet;
- }
-
+}
 
 /*
  Get the String name of an rtl_TextEncoding
  */
 
- struct LangNameMap
- {
+struct LangNameMap
+{
      LanguageType nId;
      const sal_Char* pLanguageNm;
- };
+};
 
- const LangNameMap *GetLangNameMap()
- {
+const LangNameMap *GetLangNameMap()
+{
      static const LangNameMap aMapArr[] =
      {
          {LANGUAGE_DONTKNOW,                    "DONTKNOW"              },
@@ -894,8 +863,8 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
      return &aMapArr[0];
  }
 
- static LanguageType LanguageFromName(const String& rLngStr)
- {
+static LanguageType LanguageFromName(const String& rLngStr)
+{
      const LangNameMap *pStart = GetLangNameMap();
      LanguageType nRet = pStart->nId;
 
@@ -907,11 +876,9 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
              break;
          }
      }
-
      ASSERT(nRet != pStart->nId, "TXT: That was an unknown language!");
-
     return nRet;
- }
+}
 
 
 // for the automatic conversion (mail/news/...)
@@ -922,10 +889,9 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
 //  3. Fontname
 //  4. Language
 // the delimetercharacter is ","
-//
 
- void SwAsciiOptions::ReadUserData( const String& rStr )
- {
+void SwAsciiOptions::ReadUserData( const String& rStr )
+{
     xub_StrLen nToken = 0;
     USHORT nCnt = 0;
     String sToken;
@@ -955,7 +921,7 @@ void SwRelNumRuleSpaces::SetNumLSpace( SwTxtNode& rNd, const SwNumRule& rRule )
         }
         ++nCnt;
     } while( STRING_NOTFOUND != nToken );
- }
+}
 
 Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
 {
@@ -1005,8 +971,8 @@ Color ConvertBrushStyle(const Color& rCol, const Color& rFillCol, BYTE nStyle)
     return aColor;
 }
 
-    void SwFilterOptions::Commit() {}
-    void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
+void SwFilterOptions::Commit() {}
+void SwFilterOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 
 }
 
