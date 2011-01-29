@@ -1675,7 +1675,7 @@ void SdXMLExport::exportPresentationSettings()
 
         sal_Bool bHasAttr = sal_False;
 
-        sal_Bool bTemp;
+        sal_Bool bTemp(sal_False);
 
         // export range
         xPresProps->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsShowAll" ) ) ) >>= bTemp;

@@ -53,7 +53,7 @@ using namespace ::com::sun::star;
 //////////////////////////////////////////////////////////////////////////////
 // Predeclarations
 
-void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos, const sal_Int32 nLen);
+void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos);
 void Imp_CalcVectorValues(Vector2D& aVec1, Vector2D& aVec2, sal_Bool& bSameLength, sal_Bool& bSameDirection);
 
 //////////////////////////////////////////////////////////////////////////////
@@ -137,7 +137,7 @@ void Imp_SkipNumberAndSpacesAndCommas(const OUString& rStr, sal_Int32& rPos,
 void Imp_SkipDoubleAndSpacesAndCommas(const OUString& rStr, sal_Int32& rPos,
     const sal_Int32 nLen)
 {
-    Imp_SkipDouble(rStr, rPos, nLen);
+    Imp_SkipDouble(rStr, rPos);
     Imp_SkipSpacesAndCommas(rStr, rPos, nLen);
 }
 
@@ -161,7 +161,7 @@ void Imp_PutNumberCharWithSpace(OUString& rStr, const SvXMLUnitConverter& rConv,
 //////////////////////////////////////////////////////////////////////////////
 // parsing help functions for double numbers
 
-void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos, const sal_Int32 nLen)
+void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos)
 {
     sal_Unicode aChar(rStr[rPos]);
 
@@ -1109,11 +1109,11 @@ SdXMLImExViewBox::SdXMLImExViewBox(sal_Int32 nX, sal_Int32 nY, sal_Int32 nW, sal
 
 // #100617# Asked vincent hardy: svg:viewBox values may be double precision.
 SdXMLImExViewBox::SdXMLImExViewBox(const OUString& rNew, const SvXMLUnitConverter& rConv)
-:   mnX( 0L ),
-    mnY( 0L ),
-    mnW( 1000L ),
-    mnH( 1000L ),
-    msString(rNew)
+    : msString(rNew)
+    , mnX( 0L )
+    , mnY( 0L )
+    , mnW( 1000L )
+    , mnH( 1000L )
 {
     if(msString.getLength())
     {
@@ -1260,13 +1260,13 @@ SdXMLImExPointsElement::SdXMLImExPointsElement(const OUString& rNew,
     while(nPos < nLen)
     {
         // skip number, #100617# be prepared for doubles
-        Imp_SkipDouble(aStr, nPos, nLen);
+        Imp_SkipDouble(aStr, nPos);
 
         // skip spaces and commas
         Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
         // skip number, #100617# be prepared for doubles
-        Imp_SkipDouble(aStr, nPos, nLen);
+        Imp_SkipDouble(aStr, nPos);
 
         // skip spaces and commas
         Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
@@ -1415,7 +1415,7 @@ void SdXMLImExSvgDElement::AddPolygon(
     {
         // append polygon to string
         OUString aNewString;
-        sal_Unicode aLastCommand;
+        sal_Unicode aLastCommand(0);
         awt::Point* pPointArray = pPoints->getArray();
 
         // are the flags used at all? If not forget about them
@@ -2182,6 +2182,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
     }
 
     DBG_ASSERT(!bEllipticalArc, "XMLIMP: non-interpreted tags in svg:d element!");
+    (void)bEllipticalArc;
 
     if(nNumPolys)
     {
@@ -2867,36 +2868,36 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
             for(sal_Int32 a(0); a < nOuterCnt; a++)
             {
                 // get Polygon pointers
-                awt::Point* pInnerSequence = pOuterSequence->getArray();
-                drawing::PolygonFlags* pInnerFlags = pOuterFlags->getArray();
+                awt::Point* pLclInnerSequence = pOuterSequence->getArray();
+                drawing::PolygonFlags* pLclInnerFlags = pOuterFlags->getArray();
                 sal_Int32 nInnerCnt(pOuterSequence->getLength());
 
                 while( nInnerCnt >= 2
-                    && ((pInnerSequence + (nInnerCnt - 2))->X == (pInnerSequence + (nInnerCnt - 1))->X)
-                    && ((pInnerSequence + (nInnerCnt - 2))->Y == (pInnerSequence + (nInnerCnt - 1))->Y)
-                    && drawing::PolygonFlags_CONTROL != *(pInnerFlags + (nInnerCnt - 2)))
+                    && ((pLclInnerSequence + (nInnerCnt - 2))->X == (pLclInnerSequence + (nInnerCnt - 1))->X)
+                    && ((pLclInnerSequence + (nInnerCnt - 2))->Y == (pLclInnerSequence + (nInnerCnt - 1))->Y)
+                    && drawing::PolygonFlags_CONTROL != *(pLclInnerFlags + (nInnerCnt - 2)))
                 {
                     // remove last point from array
                     pOuterSequence->realloc(nInnerCnt - 1);
                     pOuterFlags->realloc(nInnerCnt - 1);
 
                     // get new pointers
-                    pInnerSequence = pOuterSequence->getArray();
-                    pInnerFlags = pOuterFlags->getArray();
+                    pLclInnerSequence = pOuterSequence->getArray();
+                    pLclInnerFlags = pOuterFlags->getArray();
                     nInnerCnt = pOuterSequence->getLength();
                 }
 
                 // now evtl. correct the last curve flags
                 if(nInnerCnt >= 4)
                 {
-                    if( pInnerSequence->X == (pInnerSequence + (nInnerCnt - 1))->X
-                        && pInnerSequence->Y == (pInnerSequence + (nInnerCnt - 1))->Y
-                        && drawing::PolygonFlags_CONTROL == *(pInnerFlags + 1)
-                        && drawing::PolygonFlags_CONTROL == *(pInnerFlags + (nInnerCnt - 2)))
+                    if( pLclInnerSequence->X == (pLclInnerSequence + (nInnerCnt - 1))->X
+                        && pLclInnerSequence->Y == (pLclInnerSequence + (nInnerCnt - 1))->Y
+                        && drawing::PolygonFlags_CONTROL == *(pLclInnerFlags + 1)
+                        && drawing::PolygonFlags_CONTROL == *(pLclInnerFlags + (nInnerCnt - 2)))
                     {
-                        awt::Point aPrev = *(pInnerSequence + (nInnerCnt - 2));
-                        awt::Point aCurr = *pInnerSequence;
-                        awt::Point aNext = *(pInnerSequence + 1);
+                        awt::Point aPrev = *(pLclInnerSequence + (nInnerCnt - 2));
+                        awt::Point aCurr = *pLclInnerSequence;
+                        awt::Point aNext = *(pLclInnerSequence + 1);
                         Vector2D aVec1(aPrev.X - aCurr.X, aPrev.Y - aCurr.Y);
                         Vector2D aVec2(aNext.X - aCurr.X, aNext.Y - aCurr.Y);
                         sal_Bool bSameLength(FALSE);
@@ -2911,21 +2912,21 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                             if(bSameLength)
                             {
                                 // set to PolygonFlags_SYMMETRIC
-                                *pInnerFlags = drawing::PolygonFlags_SYMMETRIC;
-                                *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SYMMETRIC;
+                                *pLclInnerFlags = drawing::PolygonFlags_SYMMETRIC;
+                                *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SYMMETRIC;
                             }
                             else
                             {
                                 // set to PolygonFlags_SMOOTH
-                                *pInnerFlags = drawing::PolygonFlags_SMOOTH;
-                                *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SMOOTH;
+                                *pLclInnerFlags = drawing::PolygonFlags_SMOOTH;
+                                *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SMOOTH;
                             }
                         }
                         else
                         {
                             // set to PolygonFlags_NORMAL
-                            *pInnerFlags = drawing::PolygonFlags_NORMAL;
-                            *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_NORMAL;
+                            *pLclInnerFlags = drawing::PolygonFlags_NORMAL;
+                            *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_NORMAL;
                         }
                     }
                 }

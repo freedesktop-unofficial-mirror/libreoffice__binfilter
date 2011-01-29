@@ -75,9 +75,9 @@ XMLShapeExport::XMLShapeExport(SvXMLExport& rExp,
                                 SvXMLExportPropertyMapper *pExtMapper )
 :   rExport( rExp ),
     // #88546# init to FALSE
-    mbHandleProgressBar( sal_False ),
     mnNextUniqueShapeId(1),
     mbExportLayer( sal_False ),
+    mbHandleProgressBar( sal_False ),
     msZIndex( RTL_CONSTASCII_USTRINGPARAM("ZOrder") ),
     msEmptyPres( RTL_CONSTASCII_USTRINGPARAM("IsEmptyPresentationObject") ),
     msModel( RTL_CONSTASCII_USTRINGPARAM("Model") ),
@@ -151,7 +151,7 @@ void XMLShapeExport::collectShapeAutoStyles(const uno::Reference< drawing::XShap
 
     ImplXMLShapeExportInfoVector& aShapeInfoVector = (*maCurrentShapesIter).second;
 
-    if( aShapeInfoVector.size() <= nZIndex )
+    if( (sal_Int32)aShapeInfoVector.size() <= nZIndex )
     {
         DBG_ERROR( "XMLShapeExport::collectShapeAutoStyles(): no shape info allocated for a given shape" );
         return;
@@ -325,8 +325,8 @@ void XMLShapeExport::collectShapeAutoStyles(const uno::Reference< drawing::XShap
                 //   is present which means "void"
                 // 102407 - 2002-11-01 - fs@openoffice.org
                 static const ::rtl::OUString s_sParaAdjustPropertyName( RTL_CONSTASCII_USTRINGPARAM( "ParaAdjust" ) );
-                uno::Reference< beans::XPropertySetInfo > xPropSetInfo( xPropSet->getPropertySetInfo() );
-                if ( xPropSetInfo.is() && xPropSetInfo->hasPropertyByName( s_sParaAdjustPropertyName ) )
+                uno::Reference< beans::XPropertySetInfo > xLclPropSetInfo( xPropSet->getPropertySetInfo() );
+                if ( xLclPropSetInfo.is() && xLclPropSetInfo->hasPropertyByName( s_sParaAdjustPropertyName ) )
                 {
                     uno::Reference< beans::XPropertyState > xPropState( xPropSet, uno::UNO_QUERY );
                     if ( xPropState.is() && beans::PropertyState_DEFAULT_VALUE == xPropState->getPropertyState( s_sParaAdjustPropertyName ) )
@@ -428,7 +428,7 @@ void XMLShapeExport::exportShape(const uno::Reference< drawing::XShape >& xShape
 
     ImplXMLShapeExportInfoVector& aShapeInfoVector = (*maCurrentShapesIter).second;
 
-    if( aShapeInfoVector.size() <= nZIndex )
+    if( (sal_Int32)aShapeInfoVector.size() <= nZIndex )
     {
         DBG_ERROR( "XMLShapeExport::exportShape(): no shape info collected for a given shape" );
         return;
@@ -1020,11 +1020,11 @@ void XMLShapeExport::ExportGraphicDefaults()
     XMLStyleExport aStEx(rExport, OUString(), rExport.GetAutoStylePool().get());
 
     // construct PropertySetMapper
-    UniReference< SvXMLExportPropertyMapper > xPropertySetMapper( CreateShapePropMapper( rExport ) );
-    ((XMLShapeExportPropertyMapper*)xPropertySetMapper.get())->SetAutoStyles( sal_False );
+    UniReference< SvXMLExportPropertyMapper > xLclPropertySetMapper( CreateShapePropMapper( rExport ) );
+    ((XMLShapeExportPropertyMapper*)xLclPropertySetMapper.get())->SetAutoStyles( sal_False );
 
     // chain text attributes
-    xPropertySetMapper->ChainExportMapper(XMLTextParagraphExport::CreateParaExtPropMapper(rExport));
+    xLclPropertySetMapper->ChainExportMapper(XMLTextParagraphExport::CreateParaExtPropMapper(rExport));
 
     // write graphic family default style
     uno::Reference< lang::XMultiServiceFactory > xFact( rExport.GetModel(), uno::UNO_QUERY );
@@ -1035,10 +1035,10 @@ void XMLShapeExport::ExportGraphicDefaults()
             uno::Reference< beans::XPropertySet > xDefaults( xFact->createInstance( OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.Defaults") ) ), uno::UNO_QUERY );
             if( xDefaults.is() )
             {
-                aStEx.exportDefaultStyle( xDefaults, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), xPropertySetMapper );
+                aStEx.exportDefaultStyle( xDefaults, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), xLclPropertySetMapper );
 
                 // write graphic family styles
-                aStEx.exportStyleFamily(XML_STYLE_FAMILY_SD_GRAPHICS_NAME, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), xPropertySetMapper, FALSE, XML_STYLE_FAMILY_SD_GRAPHICS_ID);
+                aStEx.exportStyleFamily(XML_STYLE_FAMILY_SD_GRAPHICS_NAME, OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_SD_GRAPHICS_NAME)), xLclPropertySetMapper, FALSE, XML_STYLE_FAMILY_SD_GRAPHICS_ID);
             }
         }
         catch( lang::ServiceNotRegisteredException& )
@@ -1047,7 +1047,7 @@ void XMLShapeExport::ExportGraphicDefaults()
     }
 }
 
-void XMLShapeExport::onExport( const ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShape >& xShape )
+void XMLShapeExport::onExport( const ::com::sun::star::uno::Reference < ::com::sun::star::drawing::XShape >& /*xShape*/ )
 {
 }
 

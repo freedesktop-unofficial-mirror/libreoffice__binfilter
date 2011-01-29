@@ -113,6 +113,7 @@ using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
 #define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
+#define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0,0 }
 
 //////////////////////////////////////////////////////////////////////////////
 // entry list for graphic properties
@@ -307,7 +308,7 @@ const XMLPropertyMapEntry aXMLSDProperties[] =
     // misc object properties
     MAP( "MoveProtect",                 XML_NAMESPACE_DRAW, XML_MOVE_PROTECT,               XML_TYPE_BOOL, CTF_SD_MOVE_PROTECT ),
     MAP( "SizeProtect",                 XML_NAMESPACE_DRAW, XML_SIZE_PROTECT,               XML_TYPE_BOOL, CTF_SD_SIZE_PROTECT ),
-    { 0L }
+    MAP_ENTRY_END
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -346,7 +347,7 @@ const XMLPropertyMapEntry aXMLSDPresPageProps[] =
     MAP( "FillBitmapOffsetX",           XML_NAMESPACE_DRAW, XML_TILE_REPEAT_OFFSET,     XML_SD_TYPE_BITMAPREPOFFSETX|MID_FLAG_MULTI_PROPERTY, CTF_REPEAT_OFFSET_X ),
     MAP( "FillBitmapOffsetY",           XML_NAMESPACE_DRAW, XML_TILE_REPEAT_OFFSET, XML_SD_TYPE_BITMAPREPOFFSETY|MID_FLAG_MULTI_PROPERTY, CTF_REPEAT_OFFSET_Y ),
 
-    { 0L }
+    MAP_ENTRY_END
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -969,10 +970,10 @@ XMLShapeExportPropertyMapper::XMLShapeExportPropertyMapper( const UniReference< 
         mpListAutoPool( pListAutoPool ),
         mrExport( rExport ),
         maNumRuleExp( rExport ),
+        mbIsInAutoStyles( sal_True ),
         msCDATA( GetXMLToken(XML_CDATA)),
         msTrue( GetXMLToken(XML_TRUE)),
-        msFalse( GetXMLToken(XML_FALSE)),
-        mbIsInAutoStyles( sal_True )
+        msFalse( GetXMLToken(XML_FALSE))
 {
 }
 
@@ -1115,7 +1116,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
                 break;
             case CTF_SD_MOVE_PROTECT:
                 {
-                    sal_Bool bProtected;
+                    sal_Bool bProtected(sal_False);
                     property->maValue >>= bProtected;
                     if( !bProtected )
                         property->mnIndex = -1;
@@ -1123,7 +1124,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
                 break;
             case CTF_SD_SIZE_PROTECT:
                 {
-                    sal_Bool bProtected;
+                    sal_Bool bProtected(sal_False);
                     property->maValue >>= bProtected;
                     if( !bProtected )
                         property->mnIndex = -1;
@@ -1212,7 +1213,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
 
     if( pCaptionIsEscRel )
     {
-        sal_Bool bIsRel;
+        sal_Bool bIsRel(sal_False);
         pCaptionIsEscRel->maValue >>= bIsRel;
 
         if( bIsRel )
@@ -1338,7 +1339,7 @@ void XMLPageExportPropertyMapper::ContextFilter(
                 break;
             case CTF_PAGE_VISIBLE:
                 {
-                    sal_Bool bVisible;
+                    sal_Bool bVisible(sal_False);
                     (*property).maValue >>= bVisible;
                     if( bVisible )
                         (*property).mnIndex = -1;

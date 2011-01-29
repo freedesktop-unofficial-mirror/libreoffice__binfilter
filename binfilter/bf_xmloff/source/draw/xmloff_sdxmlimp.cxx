@@ -183,11 +183,11 @@ public:
 //////////////////////////////////////////////////////////////////////////////
 
 SdXMLDocContext_Impl::SdXMLDocContext_Impl(
-    SdXMLImport& rImport,
+    SdXMLImport& rInImport,
     USHORT nPrfx,
     const OUString& rLName,
-    const uno::Reference<xml::sax::XAttributeList>& xAttrList)
-:   SvXMLImportContext(rImport, nPrfx, rLName)
+    const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/)
+:   SvXMLImportContext(rInImport, nPrfx, rLName)
 {
 }
 
@@ -200,20 +200,20 @@ SdXMLDocContext_Impl::~SdXMLDocContext_Impl()
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext *SdXMLDocContext_Impl::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference<xml::sax::XAttributeList>& xAttrList)
 {
     SvXMLImportContext* pContext = 0L;
 
     const SvXMLTokenMap& rTokenMap = GetSdImport().GetDocElemTokenMap();
-    switch(rTokenMap.Get(nPrefix, rLocalName))
+    switch(rTokenMap.Get(nInPrefix, rLocalName))
     {
         case XML_TOK_DOC_SETTINGS:
         {
             if( GetImport().getImportFlags() & IMPORT_SETTINGS )
             {
-                pContext = new XMLDocumentSettingsContext(GetImport(), nPrefix, rLocalName, xAttrList );
+                pContext = new XMLDocumentSettingsContext(GetImport(), nInPrefix, rLocalName, xAttrList );
             }
             break;
         }
@@ -275,7 +275,7 @@ SvXMLImportContext *SdXMLDocContext_Impl::CreateChildContext(
 
     // call parent when no own context was created
     if(!pContext)
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
@@ -501,8 +501,8 @@ SdXMLImport::SdXMLImport(
     mnStyleFamilyMask(0),
     mnNewPageCount(0L),
     mnNewMasterPageCount(0L),
-    mbLoadDoc(sal_True),
     mbIsDraw(bIsDraw),
+    mbLoadDoc(sal_True),
     mbPreview(sal_False),
     msPageLayouts( RTL_CONSTASCII_USTRINGPARAM( "PageLayouts" ) ),
     msPreview( RTL_CONSTASCII_USTRINGPARAM( "Preview" ) )
@@ -708,24 +708,24 @@ const SvXMLTokenMap& SdXMLImport::GetPresentationPlaceholderAttrTokenMap()
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext *SdXMLImport::CreateContext(USHORT nPrefix,
+SvXMLImportContext *SdXMLImport::CreateContext(USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference<xml::sax::XAttributeList>& xAttrList)
 {
     SvXMLImportContext* pContext = 0;
 
-    if(XML_NAMESPACE_OFFICE == nPrefix &&
+    if(XML_NAMESPACE_OFFICE == nInPrefix &&
         ( IsXMLToken( rLocalName, XML_DOCUMENT ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_META ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_STYLES ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_CONTENT ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_SETTINGS )   ))
     {
-         pContext = new SdXMLDocContext_Impl(*this, nPrefix, rLocalName, xAttrList);
+         pContext = new SdXMLDocContext_Impl(*this, nInPrefix, rLocalName, xAttrList);
     }
     else
     {
-        pContext = SvXMLImport::CreateContext(nPrefix, rLocalName, xAttrList);
+        pContext = SvXMLImport::CreateContext(nInPrefix, rLocalName, xAttrList);
     }
 
     return pContext;
@@ -734,7 +734,7 @@ SvXMLImportContext *SdXMLImport::CreateContext(USHORT nPrefix,
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext *SdXMLImport::CreateMetaContext(const OUString& rLocalName,
-    const uno::Reference<xml::sax::XAttributeList>& xAttrList)
+    const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/)
 {
     SvXMLImportContext* pContext = 0L;
 
@@ -760,7 +760,7 @@ SvXMLImportContext *SdXMLImport::CreateMetaContext(const OUString& rLocalName,
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext *SdXMLImport::CreateBodyContext(const OUString& rLocalName,
-    const uno::Reference<xml::sax::XAttributeList>& xAttrList)
+    const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/)
 {
     SvXMLImportContext *pContext = 0;
     pContext = new SdXMLBodyContext(*this, XML_NAMESPACE_OFFICE, rLocalName);
@@ -798,7 +798,7 @@ SvXMLStylesContext *SdXMLImport::CreateAutoStylesContext(const OUString& rLocalN
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext* SdXMLImport::CreateMasterStylesContext(const OUString& rLocalName,
-    const uno::Reference<xml::sax::XAttributeList>& xAttrList)
+    const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/)
 {
     if(mpMasterStylesContext)
         return mpMasterStylesContext;

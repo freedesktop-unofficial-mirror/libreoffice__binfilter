@@ -64,7 +64,7 @@ XMLDurationPropertyHdl::~XMLDurationPropertyHdl()
 sal_Bool XMLDurationPropertyHdl::importXML(
     const OUString& rStrImpValue,
     ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     util::DateTime aTime;
     SvXMLUnitConverter::convertTime( aTime,  rStrImpValue );
@@ -78,7 +78,7 @@ sal_Bool XMLDurationPropertyHdl::importXML(
 sal_Bool XMLDurationPropertyHdl::exportXML(
     OUString& rStrExpValue,
     const ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Int32 nVal;
 
