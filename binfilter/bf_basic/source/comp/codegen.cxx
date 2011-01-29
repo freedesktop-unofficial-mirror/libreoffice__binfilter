@@ -32,6 +32,7 @@
 #include "opcodes.hxx"
 #include "codegen.hxx"
 #include <limits>
+#include <algorithm>
 
 namespace binfilter {
 
@@ -127,10 +128,7 @@ public:
         T result = 0 ;
         static const S max = std::numeric_limits< S >::max();
         result = m_nNumOp0 + ( ( sizeof(S) + 1 ) * m_nNumSingleParams ) + ( (( sizeof(S) * 2 )+ 1 )  * m_nNumDoubleParams );
-        if ( result > max )
-            return max;
-
-        return static_cast<S>(result);
+        return std::min(static_cast<T>(max), result);
     }
    virtual bool processParams(){ return false; }
 };

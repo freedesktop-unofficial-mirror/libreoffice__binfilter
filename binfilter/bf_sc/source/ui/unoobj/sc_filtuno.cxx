@@ -145,11 +145,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         INetURLObject aURL( aFileName );
         String aExt = aURL.getExtension();
         String aPrivDatName = aURL.getName();
-        sal_Unicode cAsciiDel;
-        if (aExt.EqualsIgnoreCaseAscii("CSV"))
-            cAsciiDel = ',';
-        else
-            cAsciiDel = '\t';
 
         SvStream* pInStream = NULL;
         if ( xInputStream.is() )
@@ -160,10 +155,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
     }
     else
     {
-        sal_Bool bMultiByte = sal_True;
-        sal_Bool bDBEnc     = sal_False;
-        sal_Bool bAscii     = sal_False;
-
         sal_Unicode cStrDel = '"';
         sal_Unicode cAsciiDel = ';';
         rtl_TextEncoding eEncoding = RTL_TEXTENCODING_DONTKNOW;
@@ -182,7 +173,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
                 cAsciiDel = '\t';
 
             aTitle = ScGlobal::GetRscString( STR_EXPORT_ASCII );
-            bAscii = sal_True;
         }
         else if ( aFilterString == ScDocShell::GetLotusFilterName() )
         {
@@ -206,8 +196,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
             }
             // common for dBase import/export
             eEncoding = RTL_TEXTENCODING_IBM_850;
-            bMultiByte = sal_False;
-            bDBEnc = sal_True;
         }
         else if ( aFilterString == ScDocShell::GetDifFilterName() )
         {

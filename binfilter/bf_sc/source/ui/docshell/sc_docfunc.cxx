@@ -324,7 +324,7 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::DeleteContents( const ScMarkData& rMark, USHORT nFlags,
-/*N*/                                   BOOL bRecord, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -335,8 +335,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, rMark );
 /*N*/   if (!aTester.IsEditable())
@@ -352,7 +350,6 @@ using namespace ::com::sun::star;
 /*N*/   ScMarkData aMultiMark = rMark;
 /*N*/   aMultiMark.SetMarking(FALSE);       // fuer MarkToMulti
 /*N*/
-/*N*/   BOOL bMulti = !bSimple && aMultiMark.IsMultiMarked();
 /*N*/   if (!bSimple)
 /*N*/   {
 /*N*/       aMultiMark.MarkToMulti();
@@ -360,10 +357,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   ScRange aExtendedRange(aMarkRange);
 /*N*/   if (!bSimple)
-/*N*/   {
-/*N*/       if ( pDoc->ExtendMerge( aExtendedRange, TRUE ) )
-/*N*/           bMulti = FALSE;
-/*N*/   }
+/*N*/       pDoc->ExtendMerge( aExtendedRange, TRUE );
 /*N*/
 /*N*/   // keine Objekte auf geschuetzten Tabellen
 /*N*/   BOOL bObjects = FALSE;
@@ -715,10 +709,9 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 /*N*/ BOOL ScDocFunc::ApplyAttributes( const ScMarkData& rMark, const ScPatternAttr& rPattern,
-/*N*/                                   BOOL bRecord, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   // nur wegen Matrix nicht editierbar? Attribute trotzdem ok
 /*N*/   BOOL bOnlyNotBecauseOfMatrix;
@@ -761,10 +754,9 @@ using namespace ::com::sun::star;
 
 
 /*N*/ BOOL ScDocFunc::ApplyStyle( const ScMarkData& rMark, const String& rStyleName,
-/*N*/                                   BOOL bRecord, BOOL bApi )
+/*N*/                                   BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   // nur wegen Matrix nicht editierbar? Attribute trotzdem ok
 /*N*/   BOOL bOnlyNotBecauseOfMatrix;
@@ -805,7 +797,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScDocFunc::InsertTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScDocFunc::InsertTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   BOOL bSuccess = FALSE;
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );
@@ -813,7 +805,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   USHORT nTabCount = pDoc->GetTableCount();
 /*N*/   BOOL bAppend = ( nTab >= nTabCount );
@@ -882,10 +873,9 @@ using namespace ::com::sun::star;
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::RenameTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScDocFunc::RenameTable( USHORT nTab, const String& rName, BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/   if ( !pDoc->IsDocEditable() )
 /*N*/   {
 /*?*/       if (!bApi)
@@ -935,13 +925,12 @@ using namespace ::com::sun::star;
 
 /*N*/ BOOL ScDocFunc::SetWidthOrHeight( BOOL bWidth, USHORT nRangeCnt, USHORT* pRanges, USHORT nTab,
 /*N*/                                       ScSizeMode eMode, USHORT nSizeTwips,
-/*N*/                                       BOOL bRecord, BOOL bApi )
+/*N*/                                       BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   if (!nRangeCnt)
 /*N*/       return TRUE;
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   if ( !rDocShell.IsEditable() )
 /*N*/   {
@@ -1057,12 +1046,11 @@ using namespace ::com::sun::star;
 
 
 /*N*/ BOOL ScDocFunc::RemovePageBreak( BOOL bColumn, const ScAddress& rPos,
-/*N*/                               BOOL bRecord, BOOL bSetModified )
+/*N*/                               BOOL /*bRecord*/, BOOL bSetModified )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
-/*N*/       bRecord = FALSE;
 /*N*/   USHORT nTab = rPos.Tab();
 /*N*/
 /*N*/   USHORT nPos = bColumn ? rPos.Col() : rPos.Row();
@@ -1229,7 +1217,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ BOOL ScDocFunc::AutoFormat( const ScRange& rRange, const ScMarkData* pTabMark,
-/*N*/                           USHORT nFormatNo, BOOL bRecord, BOOL bApi )
+/*N*/                           USHORT nFormatNo, BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1242,7 +1230,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nEndRow = rRange.aEnd.Row();
 /*N*/   USHORT nEndTab = rRange.aEnd.Tab();
 /*N*/
-/*N*/       bRecord = FALSE;
 /*N*/   ScMarkData aMark;
 /*N*/   if (pTabMark)
 /*N*/       aMark = *pTabMark;
@@ -1372,7 +1359,7 @@ using namespace ::com::sun::star;
 /*N*/       return DIR_LEFT;
 /*N*/ }
 
-/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScDocFunc::MergeCells( const ScRange& rRange, BOOL bContents, BOOL /*bRecord*/, BOOL bApi )
 /*N*/ {
 /*N*/   ScDocShellModificator aModificator( rDocShell );
 /*N*/
@@ -1382,8 +1369,6 @@ using namespace ::com::sun::star;
 /*N*/   USHORT nEndCol = rRange.aEnd.Col();
 /*N*/   USHORT nEndRow = rRange.aEnd.Row();
 /*N*/   USHORT nTab = rRange.aStart.Tab();
-/*N*/
-/*N*/       bRecord = FALSE;
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/   if (!aTester.IsEditable())

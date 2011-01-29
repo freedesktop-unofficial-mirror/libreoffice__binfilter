@@ -111,7 +111,7 @@ using namespace ::com::sun::star::beans;
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxApplication::NotifyEvent( const SfxEventHint& rEventHint, bool bSynchron )
+/*N*/ void SfxApplication::NotifyEvent( const SfxEventHint& rEventHint, bool /*bSynchron*/ )
 /*N*/ {
 /*N*/     DBG_ASSERT(pAppData_Impl->pEventConfig,"Keine Events angemeldet!");
 /*N*/
@@ -120,9 +120,6 @@ using namespace ::com::sun::star::beans;
 /*N*/   {
 /*N*/       if ( pDoc->IsPreview() )
 /*N*/           return;
-/*N*/         SFX_ITEMSET_ARG( pDoc->GetMedium()->GetItemSet(), pItem, SfxBoolItem, SID_HIDDEN, sal_False );
-/*N*/       if ( pItem && pItem->GetValue() )
-/*N*/           bSynchron = TRUE;
 /*N*/   }
 /*N*/
 /*N*/     {

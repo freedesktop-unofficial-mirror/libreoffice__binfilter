@@ -338,18 +338,13 @@ start:
         case SbxBYREF | SbxSALUINT64:
             *p->puInt64 = ImpDoubleToSalUInt64( (double) n ); break;
         case SbxBYREF | SbxCURRENCY:
-            double d;
             if( n > SbxMAXCURR )
             {
-                SbxBase::SetError( SbxERR_OVERFLOW ); d = SbxMAXCURR;
+                SbxBase::SetError( SbxERR_OVERFLOW );
             }
             else if( n < SbxMINCURR )
             {
-                SbxBase::SetError( SbxERR_OVERFLOW ); d = SbxMINCURR;
-            }
-            else
-            {
-                d = n;
+                SbxBase::SetError( SbxERR_OVERFLOW );
             }
             *p->pLong64 = ImpDoubleToCurrency( n ); break;
 

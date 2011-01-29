@@ -201,7 +201,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bQuery || bSort || bSubTotal )
 /*N*/       {
-/*N*/           BOOL bQuerySize = FALSE;
 /*N*/           ScRange aOldQuery;
 /*N*/           ScRange aNewQuery;
 /*N*/           if (bQuery && !aQueryParam.bInplace)
@@ -209,10 +208,7 @@ namespace binfilter {
 /*N*/               ScDBData* pDest = pDoc->GetDBAtCursor( aQueryParam.nDestCol, aQueryParam.nDestRow,
 /*N*/                                                       aQueryParam.nDestTab, TRUE );
 /*N*/               if (pDest && pDest->IsDoSize())
-/*N*/               {
 /*N*/                   pDest->GetArea( aOldQuery );
-/*N*/                   bQuerySize = TRUE;
-/*N*/               }
 /*N*/           }
 /*N*/
 /*N*/           USHORT nTab;
@@ -223,8 +219,6 @@ namespace binfilter {
 /*N*/           pDBData->GetArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/
 /*N*/           ScDocument* pUndoDoc = NULL;
-/*N*/           ScRangeName* pUndoRange = NULL;
-/*N*/           ScDBCollection* pUndoDB = NULL;
 /*N*/
 /*N*/           if (bRecord)
 /*N*/           {
@@ -243,14 +237,6 @@ namespace binfilter {
 /*N*/
 /*N*/               //  alle Formeln wegen Referenzen
 /*N*/               pDoc->CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1, IDF_FORMULA, FALSE, pUndoDoc );
-/*N*/
-/*N*/               //  DB- und andere Bereiche
-/*N*/               ScRangeName* pDocRange = pDoc->GetRangeName();
-/*N*/               if (pDocRange->GetCount())
-/*N*/                   pUndoRange = new ScRangeName( *pDocRange );
-/*N*/               ScDBCollection* pDocDB = pDoc->GetDBCollection();
-/*N*/               if (pDocDB->GetCount())
-/*N*/                   pUndoDB = new ScDBCollection( *pDocDB );
 /*N*/           }
 /*N*/
 /*N*/           if (bSort && bSubTotal)
@@ -757,8 +743,6 @@ namespace binfilter {
 /*N*/
 /*N*/       ScSubTotalParam aNewParam( rParam );        // Bereichsende wird veraendert
 /*N*/       ScDocument*     pUndoDoc = NULL;
-/*N*/       ScRangeName*    pUndoRange = NULL;
-/*N*/       ScDBCollection* pUndoDB = NULL;
 /*N*/       USHORT          nTabCount = 0;              // fuer Referenz-Undo
 /*N*/
 /*N*/       if (bRecord)                                        // alte Daten sichern
@@ -782,14 +766,6 @@ namespace binfilter {
 /*N*/           //  alle Formeln wegen Referenzen
 /*N*/           pDoc->CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1,
 /*N*/                                       IDF_FORMULA, FALSE, pUndoDoc );
-/*N*/
-/*N*/           //  DB- und andere Bereiche
-/*N*/           ScRangeName* pDocRange = pDoc->GetRangeName();
-/*N*/           if (pDocRange->GetCount())
-/*N*/               pUndoRange = new ScRangeName( *pDocRange );
-/*N*/           ScDBCollection* pDocDB = pDoc->GetDBCollection();
-/*N*/           if (pDocDB->GetCount())
-/*N*/               pUndoDB = new ScDBCollection( *pDocDB );
 /*N*/       }
 /*N*/
 /*N*/       ScOutlineTable* pOut = pDoc->GetOutlineTable( nTab );

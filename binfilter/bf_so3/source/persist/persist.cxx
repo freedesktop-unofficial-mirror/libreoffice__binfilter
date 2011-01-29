@@ -560,13 +560,11 @@ BOOL SvPersist::Insert( SvInfoObject * pInfoObj )
 
     DBG_ASSERT( pInfoObj->GetObjName().Len(),
                 "Try to Insert Object without name" );
-    BOOL bRet = TRUE;
+
     if( !GetInfoList() )
         return FALSE; // es konnte keine Liste erstellt werden
 
     SvPersist * pChild = pInfoObj->GetPersist();
-    if( pChild && this == pChild->pParent )
-        bRet = FALSE;
 
     if( pChild )
     {
