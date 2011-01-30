@@ -131,7 +131,7 @@ namespace xmloff
     {
         ::rtl::OUStringBuffer aReturn;
         sal_Bool bSuccess = sal_False;
-        sal_Int16 nFontEmphasis;
+        sal_Int16 nFontEmphasis = 0;
         if (_rValue >>= nFontEmphasis)
         {
             // the type
@@ -307,7 +307,7 @@ namespace xmloff
     //---------------------------------------------------------------------
     sal_Bool ORotationAngleHandler::exportXML( ::rtl::OUString& _rStrExpValue, const Any& _rValue, const SvXMLUnitConverter& _rUnitConverter ) const
     {
-        float fAngle;
+        float fAngle = 0.0;
         sal_Bool bSuccess = sal_False;
 
         if ((bSuccess = (_rValue >>= fAngle)))

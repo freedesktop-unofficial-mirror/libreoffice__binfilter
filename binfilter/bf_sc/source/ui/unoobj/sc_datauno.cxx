@@ -449,7 +449,7 @@ void ScSortDescriptor::FillSortParam( ScSortParam& rParam, const uno::Sequence<b
             rParam.bUserDef = ScUnoHelpFunctions::GetBoolFromAny( rProp.Value );
         else if (aPropName.EqualsAscii( SC_UNONAME_UINDEX ))
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal = 0;
             if ( rProp.Value >>= nVal )
                 rParam.nUserIndex = (USHORT)nVal;
         }
@@ -727,13 +727,13 @@ void SAL_CALL ScSubTotalDescriptorBase::setPropertyValue(
         aParam.bUserDef = ScUnoHelpFunctions::GetBoolFromAny( aValue );
     else if (aString.EqualsAscii( SC_UNONAME_UINDEX ) || aString.EqualsAscii( SC_UNONAME_USINDEX ))
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal = 0;
         if ( aValue >>= nVal )
             aParam.nUserIndex = (USHORT)nVal;
     }
     else if (aString.EqualsAscii( SC_UNONAME_MAXFLD ))
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal = 0;
         if ( (aValue >>= nVal) && nVal > MAXSUBTOTAL )
         {
             throw lang::IllegalArgumentException();
@@ -1215,7 +1215,7 @@ void SAL_CALL ScFilterDescriptorBase::setPropertyValue(
         aParam.bCaseSens = ScUnoHelpFunctions::GetBoolFromAny( aValue );
     else if (aString.EqualsAscii( SC_UNONAME_MAXFLD ))
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal = 0;
         if ( (aValue >>= nVal) && nVal > MAXQUERY )
         {
             throw lang::IllegalArgumentException();

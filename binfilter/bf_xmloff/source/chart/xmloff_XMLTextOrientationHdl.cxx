@@ -63,7 +63,7 @@ sal_Bool XMLTextOrientationHdl::exportXML(
     const ::com::sun::star::uno::Any& rValue,
     const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Bool bVal;
+    sal_Bool bVal = sal_False;
     sal_Bool bRetval( sal_False );
 
     if( rValue >>= bVal )

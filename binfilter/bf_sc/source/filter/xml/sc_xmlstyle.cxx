@@ -188,7 +188,7 @@ void ScXMLCellExportPropertyMapper::ContextFilter(
 
     if (pPadding && pPadding_Bottom && pPadding_Left && pPadding_Right && pPadding_Top)
     {
-        sal_Int32 nBottom, nTop, nLeft, nRight;
+        sal_Int32 nBottom = 0, nTop = 0, nLeft = 0, nRight = 0;
         if ((pPadding_Bottom->maValue >>= nBottom) &&
             (pPadding_Left->maValue >>= nLeft) &&
             (pPadding_Right->maValue >>= nRight) &&
@@ -386,7 +386,7 @@ void ScXMLAutoStylePoolP::exportStyleAttributes(
             {
                 case CTF_SC_NUMBERFORMAT :
                 {
-                    sal_Int32 nNumberFormat;
+                    sal_Int32 nNumberFormat = 0;
                     if (i->maValue >>= nNumberFormat)
                     {
                         ::rtl::OUString sAttrValue = rScXMLExport.getDataStyleName(nNumberFormat);
@@ -574,7 +574,7 @@ void ScXMLStyleExport::exportStyleAttributes(
                 xPropState->getPropertyState( sNumberFormat )) )
         {
             uno::Any aAny = xPropSet->getPropertyValue( sNumberFormat );
-            sal_Int32 nNumberFormat;
+            sal_Int32 nNumberFormat = 0;
             if (aAny >>= nNumberFormat)
             {
                 ::rtl::OUString sDataStyleName = GetExport().getDataStyleName(nNumberFormat);
@@ -1134,7 +1134,7 @@ sal_Bool XmlScPropHdl_RotateAngle::equals(
     const ::com::sun::star::uno::Any& r1,
     const ::com::sun::star::uno::Any& r2 ) const
 {
-    sal_Int32 aAngle1, aAngle2;
+    sal_Int32 aAngle1 = 0, aAngle2 = 0;
 
     if((r1 >>= aAngle1) && (r2 >>= aAngle2))
         return (aAngle1 == aAngle2);
@@ -1164,7 +1164,7 @@ sal_Bool XmlScPropHdl_RotateAngle::exportXML(
     const ::com::sun::star::uno::Any& rValue,
     const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int32 nVal;
+    sal_Int32 nVal = 0;
     sal_Bool bRetval(sal_False);
 
     if(rValue >>= nVal)
@@ -1376,7 +1376,7 @@ sal_Bool XmlScPropHdl_BreakBefore::equals(
     const ::com::sun::star::uno::Any& r1,
     const ::com::sun::star::uno::Any& r2 ) const
 {
-    sal_Bool aBreak1, aBreak2;
+    sal_Bool aBreak1 = sal_False, aBreak2 = sal_False;
 
     if((r1 >>= aBreak1) && (r2 >>= aBreak2))
         return (aBreak1 == aBreak2);
@@ -1412,7 +1412,7 @@ sal_Bool XmlScPropHdl_BreakBefore::exportXML(
     const ::com::sun::star::uno::Any& rValue,
     const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Bool bVal;
+    sal_Bool bVal = sal_False;
     sal_Bool bRetval(sal_False);
 
     if(rValue >>= bVal)

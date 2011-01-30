@@ -336,7 +336,7 @@ void SfxXMLMetaExport::Export()
     //  editing cycles
     aPropVal = xInfoProp->getPropertyValue(
                     ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGCYCLES)) );
-    sal_Int32 nCycles;
+    sal_Int32 nCycles = 0;
     if ( aPropVal >>= nCycles )
     {
         sValue = ::rtl::OUString::valueOf( nCycles );
@@ -351,7 +351,7 @@ void SfxXMLMetaExport::Export()
     //  property is a int32 with the Time::GetTime value
     aPropVal = xInfoProp->getPropertyValue(
                     ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGDURATION)) );
-    sal_Int32 nDurVal;
+    sal_Int32 nDurVal = 0;
     if ( aPropVal >>= nDurVal )
     {
         Time aDurTime( nDurVal );
@@ -404,7 +404,7 @@ void SfxXMLMetaExport::Export()
 
         aPropVal = xInfoProp->getPropertyValue(
                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADSECS)) );
-        sal_Int32 nSecs;
+        sal_Int32 nSecs = 0;
         if ( aPropVal >>= nSecs )
         {
             Time aTime;

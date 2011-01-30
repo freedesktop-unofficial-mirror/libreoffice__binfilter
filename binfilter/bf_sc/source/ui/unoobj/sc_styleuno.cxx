@@ -1622,7 +1622,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                             break;
                         case ATTR_ROTATE_VALUE:
                             {
-                                sal_Int32 nRotVal;
+                                sal_Int32 nRotVal = 0;
                                 if ( *pValue >>= nRotVal )
                                 {
                                     //  stored value is always between 0 and 360 deg.

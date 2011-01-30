@@ -455,7 +455,7 @@ void SAL_CALL SvxAppletShape::setPropertyValue( const OUString& aPropertyName, c
                     break;
                 case OWN_ATTR_APPLET_ISSCRIPT:
                     {
-                        sal_Bool bScript;
+                        sal_Bool bScript = sal_False;
                         if( aValue >>= bScript )
                         {
                             xApplet->SetMayScript( bScript );
@@ -752,7 +752,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_ISAUTOSCROLL:
                     {
-                        sal_Bool bScroll;
+                        sal_Bool bScroll = sal_False;;
                         if( !aValue.hasValue() )
                         {
                             pDescriptor->SetScrollingMode( ScrollingAuto );
@@ -769,7 +769,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_ISBORDER:
                     {
-                        sal_Bool bBorder;
+                        sal_Bool bBorder = sal_False;
                         if( aValue >>= bBorder )
                         {
                             pDescriptor->SetFrameBorder( bBorder );
@@ -781,7 +781,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
 
                 case OWN_ATTR_FRAME_MARGIN_WIDTH:
                     {
-                        sal_Int32 nMargin;
+                        sal_Int32 nMargin = 0;
                         if( aValue >>= nMargin )
                         {
                             const Size aNewMargin( nMargin, pDescriptor->GetMargin().Height() );
@@ -793,7 +793,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_MARGIN_HEIGHT:
                     {
-                        sal_Int32 nMargin;
+                        sal_Int32 nMargin = 0;
                         if( aValue >>= nMargin )
                         {
                             const Size aNewMargin( pDescriptor->GetMargin().Width(), nMargin );

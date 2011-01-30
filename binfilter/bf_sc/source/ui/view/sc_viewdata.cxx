@@ -773,7 +773,7 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
             pOptions->SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
         else if ( sName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
         {
-            sal_Int64 nColor;
+            sal_Int64 nColor = 0;
             if (rSettings[i].Value >>= nColor)
             {
                 String aColorName;

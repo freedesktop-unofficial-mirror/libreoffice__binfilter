@@ -273,7 +273,7 @@ using namespace ::com::sun::star;
 /*N*/   rIn >> aBlueScreen;
 /*N*/   rIn >> aDimColor;
 /*N*/
-/*N*/   rtl_TextEncoding eTextEnc;
+/*N*/   rtl_TextEncoding eTextEnc = RTL_TEXTENCODING_DONTKNOW;
 /*N*/
 /*N*/   // ab hier werden Daten der Versionen > 0 eingelesen
 /*N*/   if (aIO.GetVersion() > 0)

@@ -2574,7 +2574,7 @@ namespace binfilter {
 /*N*/       // Mit Scraegen, Vorderseite
 /*N*/       PolyPolygon3D aLocalFront = rFront;
 /*N*/       PolyPolygon3D aLocalBack = rBack;
-/*N*/       double fExtrudeDepth, fDiagLen;
+/*N*/       double fExtrudeDepth, fDiagLen = 0.0;
 /*N*/       double fTexMidStart = fTextureStart;
 /*N*/       double fTexMidDepth = fTextureDepth;
 /*N*/

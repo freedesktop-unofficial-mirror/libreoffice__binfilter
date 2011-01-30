@@ -1432,7 +1432,7 @@ namespace binfilter {
 /*N*/               double fPreBottom=fOriginY;
 /*N*/               double fPreTop   =fOriginY;
 /*N*/               double fPreTopPos,fPreBottomPos,fPreOriPos;
-/*N*/               double fTop,fBottom,fMin,fMax,fMin2,fMax2;
+/*N*/               double fTop=0.0,fBottom=0.0,fMin=0.0,fMax=0.0,fMin2,fMax2;
 /*N*/               fMin2=fMax2=fOriginY;
 /*N*/
 /*N*/               for (nRow = 0; nRow < nRowCnt; nRow++)

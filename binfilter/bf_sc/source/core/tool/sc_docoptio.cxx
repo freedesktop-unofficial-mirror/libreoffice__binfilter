@@ -295,8 +295,8 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   aCalcItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_CALC )) ),
 /*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DOCLAYOUT )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
-/*N*/   double fDoubleVal;
+/*N*/   sal_Int32 nIntVal = 0;
+/*N*/   double fDoubleVal = 0.0;
 /*N*/
 /*N*/   Sequence<OUString> aNames;
 /*N*/   Sequence<Any> aValues;

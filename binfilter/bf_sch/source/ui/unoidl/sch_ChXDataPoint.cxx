@@ -181,7 +181,7 @@ void SAL_CALL ChXDataPoint::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     drawing::BitmapMode eMode;
                     if(!(aValue >>= eMode) )
                     {
-                        sal_Int32 nMode;
+                        sal_Int32 nMode = 0;
                         if(!(aValue >>= nMode))
                             break;
 

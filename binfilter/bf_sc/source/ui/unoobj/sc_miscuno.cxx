@@ -147,7 +147,7 @@ sal_Bool ScUnoHelpFunctions::GetBoolFromAny( const uno::Any& aAny )
 //  static
 sal_Int16 ScUnoHelpFunctions::GetInt16FromAny( const uno::Any& aAny )
 {
-    sal_Int16 nRet;
+    sal_Int16 nRet = 0;
     if ( aAny >>= nRet )
         return nRet;
     return 0;
@@ -156,7 +156,7 @@ sal_Int16 ScUnoHelpFunctions::GetInt16FromAny( const uno::Any& aAny )
 //  static
 sal_Int32 ScUnoHelpFunctions::GetInt32FromAny( const uno::Any& aAny )
 {
-    sal_Int32 nRet;
+    sal_Int32 nRet = 0;
     if ( aAny >>= nRet )
         return nRet;
     return 0;

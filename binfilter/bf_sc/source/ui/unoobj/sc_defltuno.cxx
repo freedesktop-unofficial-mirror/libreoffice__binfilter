@@ -152,7 +152,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
             if (pDoc)
             {
                 ScDocOptions aDocOpt(pDoc->GetDocOptions());
-                sal_Int16 nValue;
+                sal_Int16 nValue = 0;
                 if (aValue >>= nValue)
                 {
                     aDocOpt.SetStdPrecision(static_cast<sal_uInt8> (nValue));
@@ -168,7 +168,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
             if (pDoc)
             {
                 ScDocOptions aDocOpt(pDoc->GetDocOptions());
-                sal_Int32 nValue;
+                sal_Int32 nValue = 0;
                 if (aValue >>= nValue)
                 {
                     aDocOpt.SetTabDistance(static_cast<sal_uInt16>(HMMToTwips(nValue)));

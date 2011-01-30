@@ -500,7 +500,7 @@ void lcl_manipulateSetting(
     if( rName.equalsAsciiL(
             RTL_CONSTASCII_STRINGPARAM( "PrinterIndependentLayout" ) ) )
     {
-        sal_Int16 nTmp;
+        sal_Int16 nTmp = 0;
         if( rAny >>= nTmp )
         {
             if( nTmp == document::PrinterIndependentLayout::LOW_RESOLUTION )

@@ -253,7 +253,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
             break;
         case HANDLE_LINK_UPDATE_MODE:
         {
-            sal_Int16 nMode;
+            sal_Int16 nMode = 0;
             rValue >>= nMode;
             switch (nMode)
             {
@@ -287,14 +287,14 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_ADD_PARA_TABLE_SPACING:
         {
-            sal_Bool bParaSpace;
+            sal_Bool bParaSpace = sal_False;
             rValue >>= bParaSpace;
             mpDoc->SetParaSpaceMax( bParaSpace, mpDoc->IsParaSpaceMaxAtPages());
         }
         break;
         case HANDLE_ADD_PARA_TABLE_SPACING_AT_START:
         {
-            sal_Bool bParaSpacePage;
+            sal_Bool bParaSpacePage = sal_False;
             rValue >>= bParaSpacePage;
             mpDoc->SetParaSpaceMax( mpDoc->IsParaSpaceMax(), bParaSpacePage);
         }
@@ -375,7 +375,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_CHARACTER_COMPRESSION_TYPE:
         {
-            sal_Int16 nMode;
+            sal_Int16 nMode = 0;
             rValue >>= nMode;
             switch (nMode)
             {
@@ -438,14 +438,14 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_PRINTER_INDEPENDENT_LAYOUT:
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp = 0;
             rValue >>= nTmp;
             mpDoc->SetUseVirtualDevice( nTmp != document::PrinterIndependentLayout::DISABLED  );
         }
         break;
         case HANDLE_IS_LABEL_DOC :
         {
-            sal_Bool bSet;
+            sal_Bool bSet = sal_False;
             if(!(rValue >>= bSet))
                 throw IllegalArgumentException();
             mpDoc->SetLabelDoc(bSet);

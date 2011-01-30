@@ -790,7 +790,7 @@ void ODatabaseForm::AppendComponent(HtmlSuccessfulObjList& rList, const Referenc
             {
                 ::rtl::OUString aText;
                 Any aVal  = xComponentSet->getPropertyValue( PROPERTY_DATE );
-                sal_Int32 nInt32Val;
+                sal_Int32 nInt32Val = 0;
                 if (aVal >>= nInt32Val)
                 {
                     ::Date aDate(nInt32Val);
@@ -813,7 +813,7 @@ void ODatabaseForm::AppendComponent(HtmlSuccessfulObjList& rList, const Referenc
             {
                 ::rtl::OUString aText;
                 Any aVal  = xComponentSet->getPropertyValue( PROPERTY_TIME );
-                sal_Int32 nInt32Val;
+                sal_Int32 nInt32Val = 0;
                 if (aVal >>= nInt32Val)
                 {
                     ::Time aTime(nInt32Val);

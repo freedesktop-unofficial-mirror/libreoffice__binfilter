@@ -336,7 +336,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
 
                 case SCHATTR_TEXT_ORIENT:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal = sal_False;
                         if( aValue >>= bVal )
                         {
                             pSet->Put( SvxChartTextOrientItem(
@@ -353,7 +353,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
                         drawing::BitmapMode eMode;
                         if(!(aValue >>= eMode) )
                         {
-                            sal_Int32 nMode;
+                            sal_Int32 nMode = 0;
                             if(!(aValue >>= nMode))
                                 break;
 
@@ -743,7 +743,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
 
             case SCHATTR_TEXT_ORIENT:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal = sal_False;
                     if( *pValue >>= bVal )
                     {
                         aModifications.Put( SvxChartTextOrientItem(
@@ -759,7 +759,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
                 drawing::BitmapMode eMode;
                 if ( ! (*pValue >>= eMode))
                 {
-                    sal_Int32 nMode;
+                    sal_Int32 nMode = 0;
                     if ( ! (*pValue >>= nMode))
                         break;
                     eMode = (drawing::BitmapMode)nMode;

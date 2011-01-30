@@ -763,7 +763,7 @@ bool SdrTextFitToSizeTypeItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*
     drawing::TextFitToSizeType eFS;
     if(!(rVal >>= eFS))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -796,7 +796,7 @@ bool SdrTextVertAdjustItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
     drawing::TextVerticalAdjust eAdj;
     if(!(rVal >>= eAdj))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -832,7 +832,7 @@ bool SdrTextHorzAdjustItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
     drawing::TextHorizontalAdjust eAdj;
     if(!(rVal >>= eAdj))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -865,7 +865,7 @@ bool SdrTextAniKindItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
     drawing::TextAnimationKind eKind;
     if(!(rVal >>= eKind))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
         eKind = (drawing::TextAnimationKind)nEnum;
@@ -897,7 +897,7 @@ bool SdrTextAniDirectionItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/
     drawing::TextAnimationDirection eDir;
     if(!(rVal >>= eDir))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -1069,7 +1069,7 @@ bool SdrEdgeKindItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
     drawing::ConnectorType eCT;
     if(!(rVal >>= eCT))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -1198,7 +1198,7 @@ bool SdrCircKindItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
     drawing::CircleKind eKind;
     if(!(rVal >>= eKind))
     {
-        sal_Int32 nEnum;
+        sal_Int32 nEnum = 0;
         if(!(rVal >>= nEnum))
             return false;
 
@@ -1366,7 +1366,7 @@ bool SdrGrafGamma100Item::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 
 bool SdrGrafGamma100Item::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 {
-    double nGamma;
+    double nGamma = 0.0;
     if(!(rVal >>= nGamma))
         return false;
 

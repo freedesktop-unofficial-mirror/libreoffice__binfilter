@@ -202,7 +202,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ ScInputCfg::ScInputCfg() :
 /*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_INPUT )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);

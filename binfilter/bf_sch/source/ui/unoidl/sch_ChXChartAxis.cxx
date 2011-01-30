@@ -385,7 +385,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                         if( ! ( aValue >>= eArrOrder ))
                         {
                             // basic might give us an int instead of the enum type
-                            sal_Int32 nIntVal;
+                            sal_Int32 nIntVal = 0;
                             if( aValue >>= nIntVal )
                             {
                                 eArrOrder = SAL_STATIC_CAST( chart::ChartAxisArrangeOrderType, nIntVal );
@@ -408,7 +408,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     break;
                 case SCHATTR_TEXT_ORIENT:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal = sal_False;
                         if( aValue >>= bVal )
                         {
                             pSet->Put( SvxChartTextOrientItem(
@@ -623,7 +623,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
                     if ( ! ( *pValue >>= eArrOrder ))
                     {
                         // basic might give us an int instead of the enum type
-                        sal_Int32 nIntVal;
+                        sal_Int32 nIntVal = 0;
                         if( *pValue >>= nIntVal )
                             eArrOrder = SAL_STATIC_CAST (chart::ChartAxisArrangeOrderType, nIntVal);
                     }
@@ -649,7 +649,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
 
             case SCHATTR_TEXT_ORIENT:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal = sal_False;
                     if( *pValue >>= bVal )
                     {
                         aAttributes.Put( SvxChartTextOrientItem(

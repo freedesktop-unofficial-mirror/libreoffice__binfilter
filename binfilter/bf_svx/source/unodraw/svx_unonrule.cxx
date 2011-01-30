@@ -329,7 +329,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLETID)))
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet = 0;
             if( aVal >>= nSet )
             {
                 if(nSet < 0x100)
@@ -357,7 +357,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_ADJUST)))
         {
-            sal_Int16 nAdjust;
+            sal_Int16 nAdjust = 0;
             if( aVal >>= nAdjust )
             {
                 aFmt.SetNumAdjust(ConvertUnoAdjust( (unsigned short)nAdjust ));
@@ -408,7 +408,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_START_WITH)))
         {
-            sal_Int16 nStart;
+            sal_Int16 nStart = 0;
             if( aVal >>= nStart )
             {
                 aFmt.SetStart( nStart );
@@ -417,7 +417,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_LEFT_MARGIN)))
         {
-            sal_Int32 nMargin;
+            sal_Int32 nMargin = 0;
             if( aVal >>= nMargin )
             {
                 aFmt.SetAbsLSpace((sal_uInt16)nMargin);
@@ -426,7 +426,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_FIRST_LINE_OFFSET)))
         {
-            sal_Int32 nMargin;
+            sal_Int32 nMargin = 0;
             if( aVal >>= nMargin )
             {
                 aFmt.SetFirstLineOffset((sal_uInt16)nMargin);
@@ -435,7 +435,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM("SymbolTextDistance")))
         {
-            sal_Int32 nTextDistance;
+            sal_Int32 nTextDistance = 0;
             if( aVal >>= nTextDistance )
             {
                 aFmt.SetCharTextDistance((sal_uInt16)nTextDistance);
@@ -444,7 +444,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLET_COLOR)))
         {
-            sal_Int32 nColor;
+            sal_Int32 nColor = 0;
             if( aVal >>= nColor )
             {
                 aFmt.SetBulletColor( (Color) nColor );
@@ -453,7 +453,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLET_RELSIZE)))
         {
-            sal_Int16 nSize;
+            sal_Int16 nSize = 0;
             if( aVal >>= nSize )
             {
                 aFmt.SetBulletRelSize( (short)nSize );

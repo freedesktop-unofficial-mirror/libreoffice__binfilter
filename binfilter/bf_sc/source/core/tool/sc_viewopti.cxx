@@ -490,7 +490,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   aDisplayItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DISPLAY )) ),
 /*N*/   aGridItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_GRID )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames = GetLayoutPropertyNames();
 /*N*/   Sequence<Any> aValues = aLayoutItem.GetProperties(aNames);

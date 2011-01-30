@@ -244,7 +244,7 @@ using namespace ::com::sun::star;
 /*N*/ bool ScProtectionAttr::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   bool bRet = false;
-/*N*/   sal_Bool bVal;
+/*N*/   sal_Bool bVal = sal_False;
 /*N*/   nMemberId &= ~CONVERT_TWIPS;
 /*N*/     switch ( nMemberId )
 /*N*/     {

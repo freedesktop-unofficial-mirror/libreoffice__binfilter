@@ -1372,7 +1372,7 @@ void SAL_CALL ScHeaderFieldObj::setPropertyValue(
     String aNameString = aPropertyName;
     if ( nType == SC_SERVICE_FILEFIELD && aNameString.EqualsAscii( SC_UNONAME_FILEFORM ) )
     {
-        sal_Int16 nIntVal;
+        sal_Int16 nIntVal = 0;
         if ( aValue >>= nIntVal )
         {
             SvxFileFormat eFormat = lcl_UnoToSvxFileFormat( nIntVal );

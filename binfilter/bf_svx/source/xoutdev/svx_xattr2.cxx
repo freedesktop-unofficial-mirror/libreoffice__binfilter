@@ -198,7 +198,7 @@ namespace binfilter {
 /*N*/   if(!(rVal >>= eUnoJoint))
 /*N*/     {
 /*?*/         // also try an int (for Basic)
-/*?*/         sal_Int32 nLJ;
+/*?*/         sal_Int32 nLJ = 0;
 /*?*/         if(!(rVal >>= nLJ))
 /*?*/             return sal_False;
 /*?*/         eUnoJoint = (::com::sun::star::drawing::LineJoint)nLJ;

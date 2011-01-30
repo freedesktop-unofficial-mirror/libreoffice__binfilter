@@ -462,7 +462,7 @@ using namespace ::com::sun::star::uno;
 /*N*/   aSortListItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_SORTLIST )) ),
 /*N*/   aMiscItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_MISC )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames;
 /*N*/   Sequence<Any> aValues;

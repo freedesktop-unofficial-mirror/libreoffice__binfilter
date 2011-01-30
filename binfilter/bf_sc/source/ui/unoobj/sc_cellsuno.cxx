@@ -1886,7 +1886,7 @@ void lcl_SetCellProperty( const SfxItemPropertyMap& rMap, const uno::Any& rValue
                 LanguageType eOldLang = ((const SvxLanguageItem&)rSet.Get( ATTR_LANGUAGE_FORMAT )).GetLanguage();
                 nOldFormat = pFormatter->GetFormatForLanguageIfBuiltIn( nOldFormat, eOldLang );
 
-                sal_Int32 nIntVal;
+                sal_Int32 nIntVal = 0;
                 if ( rValue >>= nIntVal )
                 {
                     ULONG nNewFormat = (ULONG)nIntVal;
@@ -1915,14 +1915,14 @@ void lcl_SetCellProperty( const SfxItemPropertyMap& rMap, const uno::Any& rValue
             break;
         case ATTR_INDENT:
             {
-                sal_Int16 nIntVal;
+                sal_Int16 nIntVal = 0;
                 if ( rValue >>= nIntVal )
                     rSet.Put( SfxUInt16Item( rMap.nWID, (USHORT)HMMToTwips(nIntVal) ) );
             }
             break;
         case ATTR_ROTATE_VALUE:
             {
-                sal_Int32 nRotVal;
+                sal_Int32 nRotVal = 0;
                 if ( rValue >>= nRotVal )
                 {
                     //  stored value is always between 0 and 360 deg.
@@ -7486,7 +7486,7 @@ void ScTableColumnObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, cons
 
         if ( pMap->nWID == SC_WID_UNO_CELLWID )
         {
-            sal_Int32 nNewWidth;
+            sal_Int32 nNewWidth = 0;
             if ( aValue >>= nNewWidth )
             {
                 //  property is 1/100mm, column width is twips
@@ -7627,7 +7627,7 @@ void ScTableRowObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const u
 
         if ( pMap->nWID == SC_WID_UNO_CELLHGT )
         {
-            sal_Int32 nNewHeight;
+            sal_Int32 nNewHeight = 0;
             if ( aValue >>= nNewHeight )
             {
                 //  property is 1/100mm, row height is twips

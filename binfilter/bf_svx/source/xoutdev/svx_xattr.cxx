@@ -484,7 +484,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   if(!(rVal >>= eLS ))
 /*N*/     {
 /*?*/         // also try an int (for Basic)
-/*?*/         sal_Int32 nLS;
+/*?*/         sal_Int32 nLS = 0;
 /*?*/         if(!(rVal >>= nLS))
 /*?*/             return sal_False;
 /*?*/         eLS = (::com::sun::star::drawing::LineStyle)nLS;
@@ -2206,7 +2206,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/   if(!(rVal >>= eFS))
 /*N*/     {
 /*?*/         // also try an int (for Basic)
-/*?*/         sal_Int32 nFS;
+/*?*/         sal_Int32 nFS = 0;
 /*?*/         if(!(rVal >>= nFS))
 /*?*/             return false;
 /*?*/         eFS = (::com::sun::star::drawing::FillStyle)nFS;

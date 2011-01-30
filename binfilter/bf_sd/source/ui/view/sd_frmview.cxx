@@ -537,9 +537,9 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
 /*?*/       const sal_Int32 nLength = rSequence.getLength();
      if (nLength)
      {
-         sal_Bool bBool;
-         sal_Int32 nInt32;
-         sal_Int16 nInt16;
+         sal_Bool bBool = sal_False;
+         sal_Int32 nInt32 = 0;
+         sal_Int16 nInt16 = 0;
          ::rtl::OUString aString;
 
          sal_Int32 aSnapGridWidthXNum = GetSnapGridWidthX().GetNumerator();
@@ -674,7 +674,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaTop ) ) )
              {
-                 sal_Int32 nTop;
+                 sal_Int32 nTop = 0;
                  if( pValue->Value >>= nTop )
                  {
                      Rectangle aLclVisArea( GetVisArea() );
@@ -685,7 +685,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaLeft ) ) )
              {
-                 sal_Int32 nLeft;
+                 sal_Int32 nLeft = 0;
                  if( pValue->Value >>= nLeft )
                  {
                      Rectangle aLclVisArea( GetVisArea() );
@@ -696,7 +696,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaWidth ) ) )
              {
-                 sal_Int32 nWidth;
+                 sal_Int32 nWidth = 0;
                  if( pValue->Value >>= nWidth )
                  {
                      Rectangle aLclVisArea( GetVisArea() );
@@ -706,7 +706,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
              }
              else if (pValue->Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( sUNO_View_VisibleAreaHeight ) ) )
              {
-                 sal_Int32 nHeight;
+                 sal_Int32 nHeight = 0;
                  if( pValue->Value >>= nHeight )
                  {
                      Rectangle aLclVisArea( GetVisArea() );

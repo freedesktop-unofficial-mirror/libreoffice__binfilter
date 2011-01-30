@@ -332,7 +332,7 @@ Any SvxUnoXColorTable::getAny( const XPropertyEntry* pEntry ) const throw()
 
 XPropertyEntry* SvxUnoXColorTable::getEntry( const OUString& rName, const Any& rAny ) const throw()
 {
-    sal_Int32 nColor;
+    sal_Int32 nColor = 0;
     if( !(rAny >>= nColor) )
         return NULL;
 

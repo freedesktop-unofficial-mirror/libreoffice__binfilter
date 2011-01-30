@@ -480,7 +480,7 @@ sal_Bool SvxUnoTextRangeBase::SetPropertyValueHelper( const SfxItemSet& /*rOldSe
             SvxTextForwarder* pForwarder = pEditSource? pEditSource->GetTextForwarder() : NULL;
             if(pForwarder && pSelection)
             {
-                sal_Int16 nLevel;
+                sal_Int16 nLevel = 0;
                 if( aValue >>= nLevel )
                 {
                     // #101004# Call interface method instead of unsafe cast
@@ -494,7 +494,7 @@ sal_Bool SvxUnoTextRangeBase::SetPropertyValueHelper( const SfxItemSet& /*rOldSe
         break;
     case EE_PARA_BULLETSTATE:
         {
-            sal_Bool bBullet;
+            sal_Bool bBullet = sal_False;
             if( aValue >>= bBullet )
             {
                 SfxUInt16Item aItem( EE_PARA_BULLETSTATE, bBullet );

@@ -90,25 +90,25 @@ sal_Bool ScDocOptionsHelper::setPropertyValue( ScDocOptions& rOptions,
         rOptions.SetAutoSpell( ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
     else if ( aString.EqualsAscii( SC_UNO_DEFTABSTOP ) )
     {
-        sal_Int16 nIntVal;
+        sal_Int16 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetTabDistance( nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_ITERCOUNT ) )
     {
-        sal_Int32 nIntVal;
+        sal_Int32 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetIterCount( (USHORT)nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_STANDARDDEC ) )
     {
-        sal_Int16 nIntVal;
+        sal_Int16 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetStdPrecision( nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_ITEREPSILON ) )
     {
-        double fDoubleVal;
+        double fDoubleVal = 0.0;
         if ( aValue >>= fDoubleVal )
             rOptions.SetIterEps( fDoubleVal );
     }

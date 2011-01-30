@@ -235,7 +235,7 @@ void SAL_CALL ScSheetLinkObj::setPropertyValue(
     }
     else if ( aNameString.EqualsAscii( SC_UNONAME_REFDELAY ) )
     {
-        sal_Int32 nRefresh;
+        sal_Int32 nRefresh = 0;
         if ( aValue >>= nRefresh )
             setRefreshDelay( nRefresh );
     }
@@ -772,7 +772,7 @@ void SAL_CALL ScAreaLinkObj::setPropertyValue(
     }
     else if ( aNameString.EqualsAscii( SC_UNONAME_REFDELAY ) )
     {
-        sal_Int32 nRefresh;
+        sal_Int32 nRefresh = 0;
         if ( aValue >>= nRefresh )
             setRefreshDelay( nRefresh );
     }

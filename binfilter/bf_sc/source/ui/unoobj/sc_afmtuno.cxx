@@ -619,7 +619,7 @@ void SAL_CALL ScAutoFormatObj::setPropertyValue(
         DBG_ASSERT(pData,"AutoFormat Daten nicht da");
 
         String aPropString = aPropertyName;
-        sal_Bool bBool;
+        sal_Bool bBool = sal_False;
         if (aPropString.EqualsAscii( SC_UNONAME_INCBACK ) && (aValue >>= bBool))
             pData->SetIncludeBackground( bBool );
         else if (aPropString.EqualsAscii( SC_UNONAME_INCBORD ) && (aValue >>= bBool))
