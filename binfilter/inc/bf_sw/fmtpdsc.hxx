@@ -50,10 +50,10 @@ class SwFmtPageDesc : public SfxPoolItem, public SwClient
     // Auto-Flag setzen zu koennen !!
     friend BOOL InsAttr( SwDoc*, const SwPaM &, const SfxItemSet&, USHORT,
                         SwHistory* );
-    USHORT nNumOffset;          // Seitennummer Offset
-    USHORT nDescNameIdx;        // SW3-Reader: Stringpool-Index des Vorlagennamens
     SwModify* pDefinedIn;       // Verweis auf das Objekt, in dem das
                                 // Attribut gesetzt wurde (CntntNode/Format)
+    USHORT nNumOffset;          // Seitennummer Offset
+    USHORT nDescNameIdx;        // SW3-Reader: Stringpool-Index des Vorlagennamens
 
 public:
     SwFmtPageDesc( const SwPageDesc *pDesc = 0 );
@@ -90,14 +90,11 @@ public:
 };
 
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtPageDesc &SwAttrSet::GetPageDesc(BOOL bInP) const
     { return (const SwFmtPageDesc&)Get( RES_PAGEDESC,bInP); }
 
 inline const SwFmtPageDesc &SwFmt::GetPageDesc(BOOL bInP) const
     { return aSet.GetPageDesc(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

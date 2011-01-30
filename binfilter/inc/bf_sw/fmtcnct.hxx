@@ -28,7 +28,6 @@
 #ifndef _FMTCNCT_HXX
 #define _FMTCNCT_HXX
 
-
 #include <format.hxx>
 
 class IntlWrapper;
@@ -43,7 +42,6 @@ class SwFmtChain: public SfxPoolItem
 {
     SwClient aPrev, //Vorgaenger (SwFlyFrmFmt), wenn es diesen gibt.
              aNext; //Nachfolger (SwFlyFrmFmt), wenn es diesen gibt.
-
 
 public:
     SwFmtChain() : SfxPoolItem( RES_CHAIN ) {}
@@ -63,7 +61,6 @@ public:
     SwFlyFrmFmt* GetPrev() const { return (SwFlyFrmFmt*)aPrev.GetRegisteredIn(); }
     SwFlyFrmFmt* GetNext() const { return (SwFlyFrmFmt*)aNext.GetRegisteredIn(); }
 
-
     void SetPrev( SwFlyFrmFmt *pFmt );
     void SetNext( SwFlyFrmFmt *pFmt );
 };
@@ -76,14 +73,11 @@ SwFmtChain &SwFmtChain::operator=( const SwFmtChain &rCpy )
 }
 
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtChain &SwAttrSet::GetChain(BOOL bInP) const
     { return (const SwFmtChain&)Get( RES_CHAIN,bInP); }
 
 inline const SwFmtChain &SwFmt::GetChain(BOOL bInP) const
     { return aSet.GetChain(bInP); }
-#endif
 
 } //namespace binfilter
 #endif

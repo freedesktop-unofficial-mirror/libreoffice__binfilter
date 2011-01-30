@@ -1179,15 +1179,20 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ SwHiddenTxtField::SwHiddenTxtField( SwHiddenTxtFieldType* pFldType,
-/*N*/                                   sal_Bool    bConditional,
-/*N*/                                   const   String& rCond,
-/*N*/                                   const   String& rStr,
-/*N*/                                   sal_Bool    bHidden,
-/*N*/                                   sal_uInt16  nSub) :
-/*N*/   SwField( pFldType ), aCond(rCond), bValid(sal_False),
-/*N*/   bCanToggle(bConditional), bIsHidden(bHidden), nSubType(nSub)
-/*N*/ {
+SwHiddenTxtField::SwHiddenTxtField(
+    SwHiddenTxtFieldType* pFldType,
+    sal_Bool    bConditional,
+    const   String& rCond,
+    const   String& rStr,
+    sal_Bool    bHidden,
+    sal_uInt16  nSub
+)   : SwField( pFldType )
+    , aCond(rCond)
+    , nSubType(nSub)
+    , bCanToggle(bConditional)
+    , bIsHidden(bHidden)
+    , bValid(sal_False)
+{
 /*N*/   if(nSubType == TYP_CONDTXTFLD)
 /*N*/   {
 /*N*/       sal_uInt16 nPos = 0;
@@ -1205,20 +1210,28 @@ BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   }
 /*N*/   else
 /*N*/       aTRUETxt = rStr;
-/*N*/ }
+}
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-/*N*/ SwHiddenTxtField::SwHiddenTxtField( SwHiddenTxtFieldType* pFldType,
-/*N*/                                   const String& rCond,
-/*N*/                                   const String& rTrue,
-/*N*/                                   const String& rFalse,
-/*N*/                                   sal_uInt16 nSub)
-/*N*/   : SwField( pFldType ), aCond(rCond), bIsHidden(sal_True), nSubType(nSub),
-/*N*/     aTRUETxt(rTrue), aFALSETxt(rFalse), bValid(sal_False)
-/*N*/ {
-/*N*/   bCanToggle  = aCond.Len() > 0;
-/*N*/ }
+SwHiddenTxtField::SwHiddenTxtField(
+    SwHiddenTxtFieldType* pFldType,
+    const String& rCond,
+    const String& rTrue,
+    const String& rFalse,
+    sal_uInt16 nSub
+)
+    : SwField( pFldType )
+    , aTRUETxt(rTrue)
+    , aFALSETxt(rFalse)
+    , aCond(rCond)
+    , nSubType(nSub)
+    , bCanToggle( aCond.Len() > 0 )
+    , bIsHidden(sal_True)
+    , bValid(sal_False)
+{
+}
+
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
@@ -1919,10 +1932,13 @@ BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
     Beschreibung: relatives Seitennummern - Abfrage Feld
  --------------------------------------------------------------------*/
 
-/*N*/ SwRefPageGetFieldType::SwRefPageGetFieldType( SwDoc* pDc )
-/*N*/   : SwFieldType( RES_REFPAGEGETFLD ), nNumberingType( SVX_NUM_ARABIC ), pDoc( pDc )
-/*N*/ {
-/*N*/ }
+SwRefPageGetFieldType::SwRefPageGetFieldType( SwDoc* pDc )
+    : SwFieldType( RES_REFPAGEGETFLD )
+    , pDoc( pDc )
+    , nNumberingType( SVX_NUM_ARABIC )
+{
+}
+
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/

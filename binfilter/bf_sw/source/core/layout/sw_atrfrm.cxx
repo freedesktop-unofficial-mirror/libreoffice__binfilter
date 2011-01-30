@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -92,6 +91,7 @@
 
 #include <cmdid.h>
 #include <unomid.h>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -129,13 +129,15 @@ sal_Int16 lcl_RelToINT(SwRelationOrient eRelation)
     case  REL_FRM_RIGHT:    nRet = text::RelOrientation::FRAME_RIGHT; break;
     case  REL_PG_FRAME:     nRet = text::RelOrientation::PAGE_FRAME; break;
     case  REL_PG_PRTAREA:   nRet = text::RelOrientation::PAGE_PRINT_AREA; break;
+    case  FRAME:            break;
+    case  LAST_ENUM_DUMMY:  break;
     }
     return nRet;
 }
 SwRelationOrient   lcl_IntToRelation(const uno::Any& rVal)
 {
     SwRelationOrient eRet = FRAME;
-    sal_Int16 nVal;
+    sal_Int16 nVal(0);
     rVal >>= nVal;
     switch(nVal)
     {
@@ -226,9 +228,9 @@ void DelHFFormat( SwClient *pToRemove, SwFrmFmt *pFmt )
 //  Implementierung teilweise inline im hxx
 
 SwFmtFrmSize::SwFmtFrmSize( SwFrmSize eSize, SwTwips nWidth, SwTwips nHeight )
-    : SfxPoolItem( RES_FRM_SIZE ),
-      aSize( nWidth, nHeight ),
-      eFrmSize( eSize )
+    : SfxPoolItem( RES_FRM_SIZE )
+    , aSize( nWidth, nHeight )
+    , eFrmSize( eSize )
 {
     nWidthPercent = nHeightPercent = 0;
 }
@@ -347,7 +349,7 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_FRMSIZE_REL_HEIGHT:
     {
-        sal_Int16 nSet;
+        sal_Int16 nSet(0);
         rVal >>= nSet;
         if(nSet >= 0 && nSet <= 0xfe)
             SetHeightPercent((BYTE)nSet);
@@ -357,7 +359,7 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_FRMSIZE_REL_WIDTH:
     {
-        sal_Int16 nSet;
+        sal_Int16 nSet(0);
         rVal >>= nSet;
         if(nSet >= 0 && nSet <= 0xfe)
             SetWidthPercent((BYTE)nSet);
@@ -385,7 +387,7 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_FRMSIZE_WIDTH :
     {
-        sal_Int32 nWd;
+        sal_Int32 nWd(0);
         if(rVal >>= nWd)
         {
             if(bConvert)
@@ -401,7 +403,7 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_FRMSIZE_HEIGHT:
     {
-        sal_Int32 nHg;
+        sal_Int32 nHg(0);
         if(rVal >>= nHg)
         {
             if(bConvert)
@@ -417,7 +419,7 @@ bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_FRMSIZE_SIZE_TYPE:
     {
-        sal_Int16 nType;
+        sal_Int16 nType(0);
         if((rVal >>= nType) && nType >= 0 && nType <= ATT_MIN_SIZE )
         {
             SetSizeType((SwFrmSize)nType);
@@ -733,7 +735,7 @@ bool SwFmtPageDesc::PutValue( const uno::Any& rVal, BYTE nMemberId )
     {
     case MID_PAGEDESC_PAGENUMOFFSET:
     {
-        sal_Int16 nOffset;
+        sal_Int16 nOffset(0);
         if(rVal >>= nOffset)
             SetNumOffset( nOffset );
         else
@@ -757,12 +759,12 @@ bool SwFmtPageDesc::PutValue( const uno::Any& rVal, BYTE nMemberId )
 //  class SwFmtCol
 //  Implementierung teilweise inline im hxx
 
-SwColumn::SwColumn() :
-    nUpper( 0 ),
-    nLower( 0 ),
-    nLeft ( 0 ),
-    nRight( 0 ),
-    nWish ( 0 )
+SwColumn::SwColumn()
+    : nWish ( 0 )
+    , nUpper( 0 )
+    , nLower( 0 )
+    , nLeft ( 0 )
+    , nRight( 0 )
 {
 }
 
@@ -776,14 +778,14 @@ sal_Bool SwColumn::operator==( const SwColumn &rCmp )
 }
 
 SwFmtCol::SwFmtCol( const SwFmtCol& rCpy )
-    : SfxPoolItem( RES_COL ),
-      nLineWidth( rCpy.nLineWidth),
-      aLineColor( rCpy.aLineColor),
-      nLineHeight( rCpy.GetLineHeight() ),
-      eAdj( rCpy.GetLineAdj() ),
-      nWidth( rCpy.GetWishWidth() ),
-      bOrtho( rCpy.IsOrtho() ),
-      aColumns( (sal_Int8)rCpy.GetNumCols(), 1 )
+    : SfxPoolItem( RES_COL )
+    , nLineWidth( rCpy.nLineWidth)
+    , aLineColor( rCpy.aLineColor)
+    , nLineHeight( rCpy.GetLineHeight() )
+    , eAdj( rCpy.GetLineAdj() )
+    , aColumns( (sal_Int8)rCpy.GetNumCols(), 1 )
+    , nWidth( rCpy.GetWishWidth() )
+    , bOrtho( rCpy.IsOrtho() )
 {
     for ( sal_uInt16 i = 0; i < rCpy.GetNumCols(); ++i )
     {
@@ -814,12 +816,12 @@ SwFmtCol& SwFmtCol::operator=( const SwFmtCol& rCpy )
 }
 
 SwFmtCol::SwFmtCol()
-    : SfxPoolItem( RES_COL ),
-      nLineHeight( 100 ),
-      eAdj( COLADJ_NONE ),
-      nWidth( USHRT_MAX ),
-      bOrtho( sal_True ),
-      nLineWidth(0)
+    : SfxPoolItem( RES_COL )
+    , nLineWidth(0)
+    , nLineHeight( 100 )
+    , eAdj( COLADJ_NONE )
+    , nWidth( USHRT_MAX )
+    , bOrtho( sal_True )
 {
 }
 
@@ -1219,6 +1221,7 @@ bool SwFmtVertOrient::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
         case VERT_LINE_TOP   :  nRet = text::VertOrientation::LINE_TOP   ;break;
         case VERT_LINE_CENTER:  nRet = text::VertOrientation::LINE_CENTER;break;
         case VERT_LINE_BOTTOM:  nRet = text::VertOrientation::LINE_BOTTOM;break;
+        case VERT_NONE:         break;
         }
         rVal <<= nRet;
     }
@@ -1245,7 +1248,7 @@ bool SwFmtVertOrient::PutValue( const uno::Any& rVal, BYTE nMemberId )
     {
     case MID_VERTORIENT_ORIENT:
     {
-        sal_uInt16 nVal;
+        sal_uInt16 nVal(0);
         rVal >>= nVal;
         switch( nVal )
         {
@@ -1269,7 +1272,7 @@ bool SwFmtVertOrient::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_VERTORIENT_POSITION:
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal(0);
         rVal >>= nVal;
         if(bConvert)
             nVal = MM100_TO_TWIP(nVal);
@@ -1359,6 +1362,7 @@ bool SwFmtHoriOrient::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
         case HORI_LEFT_AND_WIDTH :
             nRet = text::HoriOrientation::LEFT_AND_WIDTH;
             break;
+        case HORI_NONE:     break;
         }
         rVal <<= nRet;
     }
@@ -1391,7 +1395,7 @@ bool SwFmtHoriOrient::PutValue( const uno::Any& rVal, BYTE nMemberId )
     {
     case MID_HORIORIENT_ORIENT:
     {
-        sal_Int16 nVal;
+        sal_Int16 nVal(0);
         rVal >>= nVal;
         switch( nVal )
         {
@@ -1415,7 +1419,7 @@ bool SwFmtHoriOrient::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_HORIORIENT_POSITION:
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal(0);
         if(!(rVal >>= nVal))
             bRet = false;
         if(bConvert)
@@ -1589,7 +1593,7 @@ bool SwFmtAnchor::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_ANCHOR_PAGENUM:
     {
-        sal_Int16 nVal;
+        sal_Int16 nVal(0);
         if((rVal >>= nVal) && nVal > 0)
         {
             SetPageNum( nVal );
@@ -1620,19 +1624,19 @@ bool SwFmtAnchor::PutValue( const uno::Any& rVal, BYTE nMemberId )
 //  class SwFmtURL
 //  Implementierung teilweise inline im hxx
 
-SwFmtURL::SwFmtURL() :
-    SfxPoolItem( RES_URL ),
-    pMap( 0 ),
-    bIsServerMap( sal_False )
+SwFmtURL::SwFmtURL()
+    : SfxPoolItem( RES_URL )
+    , pMap( 0 )
+    , bIsServerMap( sal_False )
 {
 }
 
-SwFmtURL::SwFmtURL( const SwFmtURL &rURL) :
-    SfxPoolItem( RES_URL ),
-    sURL( rURL.GetURL() ),
-    sTargetFrameName( rURL.GetTargetFrameName() ),
-    sName( rURL.GetName() ),
-    bIsServerMap( rURL.IsServerMap() )
+SwFmtURL::SwFmtURL( const SwFmtURL &rURL)
+    : SfxPoolItem( RES_URL )
+    , sTargetFrameName( rURL.GetTargetFrameName() )
+    , sURL( rURL.GetURL() )
+    , sName( rURL.GetName() )
+    , bIsServerMap( rURL.IsServerMap() )
 {
     pMap = rURL.GetMap() ? new ImageMap( *rURL.GetMap() ) : 0;
 }
@@ -1888,7 +1892,7 @@ bool SwFmtFtnEndAtTxtEnd::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_NUM_START_AT:
     {
-        sal_Int16 nVal;
+        sal_Int16 nVal(0);
         rVal >>= nVal;
         if(nVal >= 0)
             nOffset = nVal;
@@ -1907,7 +1911,7 @@ bool SwFmtFtnEndAtTxtEnd::PutValue( const uno::Any& rVal, BYTE nMemberId )
     break;
     case MID_NUM_TYPE    :
     {
-        sal_Int16 nVal;
+        sal_Int16 nVal(0);
         rVal >>= nVal;
         if(nVal >= 0 &&
            (nVal <= SVX_NUM_ARABIC ||
@@ -2084,7 +2088,7 @@ bool SwFmtLineNumber::PutValue( const uno::Any& rVal, BYTE nMemberId )
         break;
     case MID_LINENUMBER_STARTVALUE:
     {
-        sal_Int32 nVal;
+        sal_Int32 nVal(0);
         if(rVal >>= nVal)
             SetStartValue( nVal );
         else
@@ -2212,7 +2216,7 @@ bool SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
     {
     case MID_GRID_COLOR:
     {
-        sal_Int32 nTmp;
+        sal_Int32 nTmp(0);
         bRet = (rVal >>= nTmp);
         if( bRet )
             SetColor( Color(nTmp) );
@@ -2220,7 +2224,7 @@ bool SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
     break;
     case MID_GRID_LINES:
     {
-        sal_Int16 nTmp;
+        sal_Int16 nTmp(0);
         bRet = (rVal >>= nTmp);
         if( bRet && (nTmp >= 0) )
             SetLines( (sal_uInt16)nTmp );
@@ -2242,7 +2246,7 @@ bool SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
     {
         DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
                     "This value needs TWIPS-MM100 conversion" );
-        sal_Int32 nTmp;
+        sal_Int32 nTmp(0);
         bRet = (rVal >>= nTmp);
         nTmp = MM100_TO_TWIP( nTmp );
         if( bRet && (nTmp >= 0) && ( nTmp <= USHRT_MAX) )
@@ -2255,24 +2259,26 @@ bool SwTextGridItem::PutValue( const ::com::sun::star::uno::Any& rVal,
     }
     break;
     case MID_GRID_TYPE:
-        sal_Int16 nTmp;
-        bRet = (rVal >>= nTmp);
-        if( bRet )
         {
-            switch( nTmp )
+            sal_Int16 nTmp(0);
+            bRet = (rVal >>= nTmp);
+            if( bRet )
             {
-            case TextGridMode::NONE:
-                SetGridType( GRID_NONE );
-                break;
-            case TextGridMode::LINES:
-                SetGridType( GRID_LINES_ONLY );
-                break;
-            case TextGridMode::LINES_AND_CHARS:
-                SetGridType( GRID_LINES_CHARS );
-                break;
-            default:
-                bRet = false;
-                break;
+                switch( nTmp )
+                {
+                case TextGridMode::NONE:
+                    SetGridType( GRID_NONE );
+                    break;
+                case TextGridMode::LINES:
+                    SetGridType( GRID_LINES_ONLY );
+                    break;
+                case TextGridMode::LINES_AND_CHARS:
+                    SetGridType( GRID_LINES_CHARS );
+                    break;
+                default:
+                    bRet = false;
+                    break;
+                }
             }
         }
         break;
@@ -2353,8 +2359,6 @@ void SwFrmFmt::MakeFrms()
     ASSERT( !this, "Sorry not implemented." );
 }
 
-
-
 SwRect SwFrmFmt::FindLayoutRect( const sal_Bool bPrtArea, const Point* pPoint,
                                  const sal_Bool bCalcFrm ) const
 {
@@ -2429,7 +2433,6 @@ SdrObject* SwFrmFmt::FindRealSdrObject()
     }
     return FindSdrObject();
 }
-
 
 
 //  class SwFlyFrmFmt
@@ -2507,7 +2510,7 @@ void SwFlyFrmFmt::MakeFrms()
         break;
 
     case FLY_PAGE:
-    {
+        {
         sal_uInt16 nPgNum = aAnchorAttr.GetPageNum();
         SwPageFrm *pPage = (SwPageFrm*)GetDoc()->GetRootFrm()->Lower();
         if( !nPgNum && aAnchorAttr.GetCntntAnchor() )
@@ -2541,8 +2544,16 @@ void SwFlyFrmFmt::MakeFrms()
             }
             pPage = (SwPageFrm*)pPage->GetNext();
         }
-    }
-    break;
+        }
+        break;
+    case RND_STD_HEADER:
+    case RND_STD_FOOTER:
+    case RND_STD_HEADERL:
+    case RND_STD_HEADERR:
+    case RND_STD_FOOTERL:
+    case RND_STD_FOOTERR:
+    case RND_DRAW_OBJECT:
+        break;
     }
 
     if( pModify )
@@ -2590,10 +2601,20 @@ void SwFlyFrmFmt::MakeFrms()
                 case FLY_IN_CNTNT:
                     pFly = new SwFlyInCntFrm( this, pFrm );
                     break;
-#ifdef DBG_UTIL
                 default:
+                    // handle cases:
+                    // - FLY_PAGE
+                    // - RND_STD_HEADER
+                    // - RND_STD_FOOTER
+                    // - RND_STD_HEADERL
+                    // - RND_STD_HEADERR
+                    // - RND_STD_FOOTERL
+                    // - RND_STD_FOOTERR
+                    // - RND_DRAW_OBJECT
+#ifdef DBG_UTIL
                     ASSERT( !this, "Neuer Ankertyp" );
 #endif
+                    break;
                 }
                 pFrm->AppendFly( pFly );
                 SwPageFrm *pPage = pFly->FindPageFrm();

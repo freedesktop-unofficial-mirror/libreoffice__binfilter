@@ -163,8 +163,8 @@ public:
 class SwPageNumberField : public SwField
 {
     String  sUserStr;
-    USHORT  nSubType;
     short   nOffset;
+    USHORT  nSubType;
 
 public:
     SwPageNumberField(SwPageNumberFieldType*, USHORT nSub = PG_RANDOM,

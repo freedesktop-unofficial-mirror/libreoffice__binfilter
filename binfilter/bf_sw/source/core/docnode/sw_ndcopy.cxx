@@ -26,15 +26,12 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _ZFORLIST_DECLARE_TABLE
 #include <hintids.hxx>
-
-
 
 #include <fmtanchr.hxx>
 #include <fmtcntnt.hxx>
@@ -54,6 +51,7 @@
 #include <docary.hxx>
 #include <fmtcnct.hxx>
 #include <redline.hxx>
+
 namespace binfilter {
 
 // Struktur fuer das Mappen von alten und neuen Frame-Formaten an den
@@ -138,22 +136,31 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ struct _CopyTable
-/*N*/ {
-/*N*/   SwDoc* pDoc;
-/*N*/   ULONG nOldTblSttIdx;
-/*N*/   _MapTblFrmFmts& rMapArr;
-/*N*/   SwTableLine* pInsLine;
-/*N*/   SwTableBox* pInsBox;
-/*N*/   SwTableNode *pTblNd;
-/*N*/   const SwTable *pOldTable;
-/*N*/
-/*N*/   _CopyTable( SwDoc* pDc, _MapTblFrmFmts& rArr, ULONG nOldStt,
-/*N*/               SwTableNode& rTblNd, const SwTable* pOldTbl )
-/*N*/       : pDoc(pDc), pTblNd(&rTblNd), nOldTblSttIdx(nOldStt),
-/*N*/       rMapArr(rArr), pOldTable( pOldTbl ), pInsLine(0), pInsBox(0)
-/*N*/   {}
-/*N*/ };
+struct _CopyTable
+{
+    SwDoc* pDoc;
+    ULONG nOldTblSttIdx;
+    _MapTblFrmFmts& rMapArr;
+    SwTableLine* pInsLine;
+    SwTableBox* pInsBox;
+    SwTableNode *pTblNd;
+    const SwTable *pOldTable;
+
+    _CopyTable(
+        SwDoc* pDc,
+        _MapTblFrmFmts& rArr,
+        ULONG nOldStt,
+        SwTableNode& rTblNd,
+        const SwTable* pOldTbl
+    )   : pDoc(pDc)
+        , nOldTblSttIdx(nOldStt)
+        , rMapArr(rArr)
+        , pInsLine(0)
+        , pInsBox(0)
+        , pTblNd(&rTblNd)
+        , pOldTable( pOldTbl )
+    {}
+};
 
 /*N*/ BOOL lcl_CopyTblBox( const SwTableBox*& rpBox, void* pPara );
 
@@ -264,16 +271,6 @@ namespace binfilter {
 /*N*/
 /*N*/   {
 /*N*/       // nicht in Fussnoten kopieren !!
-/*
-!! Mal ohne Frames
-        SwCntntNode* pCNd = pDoc->GetNodes()[ rIdx ]->GetCntntNode();
-        SwFrm* pFrm;
-        if( (pCNd && 0 != ( pFrm = pCNd->GetFrm()))
-                ? pFrm->FindFtnFrm()
-                : rIdx < pDoc->GetNodes().EndOfInserts &&
-                    pDoc->GetNodes()[pDoc->GetNodes().EndOfInserts]->StartOfSection()
-                    < rIdx )
-*/
 /*N*/       if( rIdx < pDoc->GetNodes().GetEndOfInserts().GetIndex() &&
 /*N*/           rIdx >= pDoc->GetNodes().GetEndOfInserts().StartOfSectionIndex() )
 /*?*/           return 0;
@@ -343,11 +340,7 @@ namespace binfilter {
 
 //  ----- Copy-Methode vom SwDoc ------
 
-    // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-
-
-
-
+// verhinder das Kopieren in Fly's, die im Bereich verankert sind.
 
 // Kopieren eines Bereiches im oder in ein anderes Dokument !
 
@@ -361,10 +354,6 @@ namespace binfilter {
 /*N*/   SwDoc* pDoc = rPos.nNode.GetNode().GetDoc();
 /*N*/
 /*N*/   // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-/*N*/   if( pDoc == this )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   SwPaM* pRedlineRange = 0;
 /*N*/   if( pDoc->IsRedlineOn() ||
@@ -375,25 +364,14 @@ namespace binfilter {
 /*N*/
 /*N*/   BOOL bRet = FALSE;
 /*N*/
-/*N*/   if( pDoc && pDoc != this )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   // Copy in sich selbst (ueber mehrere Nodes wird hier gesondert
 /*N*/   // behandelt; in einem TextNode wird normal behandelt)
-/*N*/   else if( ! ( *pStt <= rPos && rPos < *pEnd &&
+/*N*/   if( ! ( *pStt <= rPos && rPos < *pEnd &&
 /*N*/           ( pStt->nNode != pEnd->nNode ||
 /*N*/             !pStt->nNode.GetNode().IsTxtNode() )) )
 /*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
-/*N*/   else
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
-/*N*/
 /*N*/   pDoc->SetRedlineMode_intern( eOld );
-/*N*/   if( pRedlineRange )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP");
-/*N*/   }
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
@@ -547,15 +525,9 @@ namespace binfilter {
 /*N*/           const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/           int nCnt = 0 != rChain.GetPrev();
 /*N*/           nCnt += rChain.GetNext() ? 1: 0;
-/*N*/           for ( USHORT k = 0; nCnt && k < aArr.Count(); ++k )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP");
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-
 
 
 }
