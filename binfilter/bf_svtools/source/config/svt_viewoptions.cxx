@@ -33,27 +33,16 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/viewoptions.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <hash_map>
-
 #include <com/sun/star/beans/PropertyValue.hpp>
-
 #include <com/sun/star/container/XNameContainer.hpp>
-
 #include <com/sun/star/container/XNameAccess.hpp>
-
 #include <com/sun/star/beans/XPropertySet.hpp>
-
 #include <rtl/ustrbuf.hxx>
-
 #include <unotools/configpathes.hxx>
-
 #include <comphelper/configurationhelper.hxx>
-
 #include <unotools/processfactory.hxx>
-
 #include <itemholder1.hxx>
 
 namespace binfilter

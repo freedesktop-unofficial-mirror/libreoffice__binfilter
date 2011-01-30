@@ -27,27 +27,16 @@
  ************************************************************************/
 
 #include <bf_migratefilter.hxx>
-
 #include <com/sun/star/util/XCloseable.hpp>
-
 #include <com/sun/star/xml/sax/XParser.hpp>
-
 #include <com/sun/star/frame/XStorable.hpp>
-
 #include <com/sun/star/frame/XLoadable.hpp>
-
 #include <com/sun/star/io/XSeekable.hpp>
-
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-
 #include <com/sun/star/task/XInteractionHandler.hpp>
-
 #include <bf_sfx2/app.hxx>
-
 #include <bf_sfx2/fcontnr.hxx>
-
 #include <bf_sfx2/docfac.hxx>
-
 #include <bf_so3/staticbaseurl.hxx>
 
 namespace binfilter {
@@ -891,7 +880,7 @@ Sequence< OUString > SAL_CALL bf_MigrateFilter::getSupportedServiceNames()
     return bf_MigrateFilter_getSupportedServiceNames();
 }
 
-// eof
+
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

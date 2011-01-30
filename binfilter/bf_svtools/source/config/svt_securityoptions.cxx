@@ -33,25 +33,15 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/securityoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <com/sun/star/beans/PropertyValue.hpp>
-
 #include <tools/urlobj.hxx>
-
 #include <tools/wldcrd.hxx>
-
 #include <bf_svtools/pathoptions.hxx>
-
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
@@ -76,7 +66,7 @@ namespace binfilter
 #define DEFAULT_SECLEVEL                3
 #define DEFAULT_TRUSTEDAUTHORS          Sequence< SvtSecurityOptions::Certificate >()
 
-// xmlsec05 depricated
+// xmlsec05 deprecated
 #define DEFAULT_STAROFFICEBASIC         eALWAYS_EXECUTE
 
 #define CSTR_SECUREURL                  "SecureURL"
@@ -109,22 +99,22 @@ namespace binfilter
 #define PROPERTYNAME_TRUSTEDAUTHOR_SERIALNUMBER OUString(RTL_CONSTASCII_USTRINGPARAM(CSTR_TRUSTEDAUTHOR_SERIALNUMBER))
 #define PROPERTYNAME_TRUSTEDAUTHOR_RAWDATA      OUString(RTL_CONSTASCII_USTRINGPARAM(CSTR_TRUSTEDAUTHOR_RAWDATA))
 
-// xmlsec05 depricated
+// xmlsec05 deprecated
 #define PROPERTYNAME_STAROFFICEBASIC    OUString(RTL_CONSTASCII_USTRINGPARAM("OfficeBasic"  ))
 #define PROPERTYNAME_EXECUTEPLUGINS     OUString(RTL_CONSTASCII_USTRINGPARAM("ExecutePlugins"  ))
 #define PROPERTYNAME_WARNINGENABLED     OUString(RTL_CONSTASCII_USTRINGPARAM("Warning"  ))
 #define PROPERTYNAME_CONFIRMATIONENABLED OUString(RTL_CONSTASCII_USTRINGPARAM("Confirmation"  ))
-// xmlsec05 depricated
+// xmlsec05 deprecated
 
 
 #define PROPERTYHANDLE_SECUREURL                    0
 
-// xmlsec05 depricated
+// xmlsec05 deprecated
 #define PROPERTYHANDLE_STAROFFICEBASIC  1
 #define PROPERTYHANDLE_EXECUTEPLUGINS   2
 #define PROPERTYHANDLE_WARNINGENABLED   3
 #define PROPERTYHANDLE_CONFIRMATIONENABLED 4
-// xmlsec05 depricated
+// xmlsec05 deprecated
 
 #define PROPERTYHANDLE_DOCWARN_SAVEORSEND           5
 #define PROPERTYHANDLE_DOCWARN_SIGNING              6
@@ -250,7 +240,7 @@ private:
         sal_Bool                                    m_bRODisableMacros;
 
 
-        // xmlsec05 depricated
+        // xmlsec05 deprecated
         EBasicSecurityMode      m_eBasicMode;
         sal_Bool                m_bExecutePlugins;
         sal_Bool                m_bWarning;
@@ -290,7 +280,7 @@ SvtSecurityOptions_Impl::SvtSecurityOptions_Impl()
     ,m_bROTrustedAuthors    ( CFG_READONLY_DEFAULT      )
     ,m_bRODisableMacros     ( sal_True                  ) // currently is not intended to be changed
 
-    // xmlsec05 depricated
+    // xmlsec05 deprecated
     ,   m_eBasicMode        ( DEFAULT_STAROFFICEBASIC )
     ,   m_bExecutePlugins   ( sal_True                )
     ,   m_bWarning          ( sal_True                )
@@ -299,7 +289,7 @@ SvtSecurityOptions_Impl::SvtSecurityOptions_Impl()
     ,   m_bROWarning        ( CFG_READONLY_DEFAULT    )
     ,   m_bROExecutePlugins ( CFG_READONLY_DEFAULT    )
     ,   m_bROBasicMode      ( CFG_READONLY_DEFAULT    )
-    // xmlsec05 depricated
+    // xmlsec05 deprecated
 
 {
     Sequence< OUString >    seqNames    = GetPropertyNames  (           );
@@ -522,7 +512,7 @@ sal_Int32 SvtSecurityOptions_Impl::GetHandle( const OUString& rName )
     else if( rName.compareToAscii( CSTR_MACRO_DISABLE ) == 0 )
         nHandle = PROPERTYHANDLE_MACRO_DISABLE;
 
-    // xmlsec05 depricated
+    // xmlsec05 deprecated
     else if( rName == PROPERTYNAME_STAROFFICEBASIC )
         nHandle = PROPERTYHANDLE_STAROFFICEBASIC;
     else if( rName == PROPERTYNAME_EXECUTEPLUGINS )
@@ -531,7 +521,7 @@ sal_Int32 SvtSecurityOptions_Impl::GetHandle( const OUString& rName )
         nHandle = PROPERTYHANDLE_WARNINGENABLED;
     else if( rName == PROPERTYNAME_CONFIRMATIONENABLED )
         nHandle = PROPERTYHANDLE_CONFIRMATIONENABLED;
-    // xmlsec05 depricated
+    // xmlsec05 deprecated
 
     else
         nHandle = PROPERTYHANDLE_INVALID;
@@ -699,7 +689,7 @@ void SvtSecurityOptions_Impl::Commit()
             break;
 
 
-            // xmlsec05 depricated
+            // xmlsec05 deprecated
             case PROPERTYHANDLE_STAROFFICEBASIC:
             {
                 bDone = !m_bROBasicMode;
@@ -728,7 +718,7 @@ void SvtSecurityOptions_Impl::Commit()
                     lValues[ nRealCount ] <<= m_bConfirmation;
             }
             break;
-            // xmlsec05 depricated
+            // xmlsec05 deprecated
 
 
             default:

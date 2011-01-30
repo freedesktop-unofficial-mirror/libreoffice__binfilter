@@ -34,27 +34,16 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/extendedsecurityoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <tools/urlobj.hxx>
-
 #include <tools/wldcrd.hxx>
-
 #include <rtl/ustrbuf.hxx>
-
 #include <bf_svtools/pathoptions.hxx>
-
 #include <hash_map>
-
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
@@ -75,14 +64,10 @@ namespace binfilter
 //_________________________________________________________________________________________________________________
 
 #define ROOTNODE_SECURITY               OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Security"))
-
 #define SECURE_EXTENSIONS_SET           OUString(RTL_CONSTASCII_USTRINGPARAM("SecureExtensions"))
 #define EXTENSION_PROPNAME              OUString(RTL_CONSTASCII_USTRINGPARAM("/Extension"))
-
 #define PROPERTYNAME_HYPERLINKS_OPEN    OUString(RTL_CONSTASCII_USTRINGPARAM("Hyperlinks/Open"))
-
 #define PROPERTYHANDLE_HYPERLINKS_OPEN  0
-
 #define PROPERTYCOUNT                   1
 
 //_________________________________________________________________________________________________________________
@@ -201,7 +186,6 @@ class SvtExtendedSecurityOptions_Impl : public ConfigItem
     private:
         OUString                                        m_aSecureExtensionsSetName;
         OUString                                        m_aExtensionPropName;
-
         SvtExtendedSecurityOptions::OpenHyperlinkMode   m_eOpenHyperlinkMode;
         sal_Bool                                        m_bROOpenHyperlinkMode;
         ExtensionHashMap                                m_aExtensionHashMap;

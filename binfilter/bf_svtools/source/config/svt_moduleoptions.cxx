@@ -28,42 +28,26 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-//_________________________________________________________________________________________________________________
+//_______________________________________________________________________
 //  includes
-//_________________________________________________________________________________________________________________
+//_______________________________________________________________________
 
 #include <bf_svtools/moduleoptions.hxx>
-
 #include <comphelper/sequenceashashmap.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <unotools/processfactory.hxx>
-
 #include <osl/diagnose.h>
-
 #include <rtl/ustrbuf.hxx>
-
 #include <rtl/logfile.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <com/sun/star/beans/PropertyValue.hpp>
-
 #include <com/sun/star/container/XNameAccess.hpp>
-
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-
 #include <com/sun/star/lang/XServiceInfo.hpp>
-
 #include <com/sun/star/document/XTypeDetection.hpp>
-
 #include <com/sun/star/util/XStringSubstitution.hpp>
-
 #include "itemholder1.hxx"
 
 //_________________________________________________________________________________________________________________
@@ -76,7 +60,6 @@ namespace css = ::com::sun::star;
 
 namespace binfilter
 {
-
 //_________________________________________________________________________________________________________________
 //  const
 //_________________________________________________________________________________________________________________
