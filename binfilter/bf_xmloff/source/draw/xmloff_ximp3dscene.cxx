@@ -49,11 +49,11 @@ using namespace ::binfilter::xmloff::token;
 // dr3d:3dlight context
 
 SdXML3DLightContext::SdXML3DLightContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const ::rtl::OUString& rLName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList)
-:   SvXMLImportContext( rImport, nPrfx, rLName),
+:   SvXMLImportContext( rInImport, nPrfx, rLName),
     maDiffuseColor(0x00000000),
     maDirection(0.0, 0.0, 1.0),
     mbEnabled(FALSE),
@@ -64,12 +64,12 @@ SdXML3DLightContext::SdXML3DLightContext(
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetImport().GetShapeImport()->Get3DLightAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_3DLIGHT_DIFFUSE_COLOR:
             {
@@ -104,12 +104,12 @@ SdXML3DLightContext::~SdXML3DLightContext()
 TYPEINIT1( SdXML3DSceneShapeContext, SdXMLShapeContext );
 
 SdXML3DSceneShapeContext::SdXML3DSceneShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     USHORT nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ), SdXML3DSceneAttributesHelper( rImport )
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ), SdXML3DSceneAttributesHelper( rInImport )
 {
 }
 
@@ -145,10 +145,10 @@ void SdXML3DSceneShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
-        processSceneAttribute( nPrefix, aLocalName, sValue );
+        processSceneAttribute( nLclPrefix, aLclLocalName, sValue );
     }
 
     // #91047# call parent function is missing here, added it
@@ -181,35 +181,35 @@ void SdXML3DSceneShapeContext::EndElement()
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext* SdXML3DSceneShapeContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext* SdXML3DSceneShapeContext::CreateChildContext( USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = 0L;
 
-    if( nPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_EVENTS ) )
+    if( nInPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_EVENTS ) )
     {
-        pContext = new SdXMLEventsContext( GetImport(), nPrefix, rLocalName, xAttrList, mxShape );
+        pContext = new SdXMLEventsContext( GetImport(), nInPrefix, rLocalName, xAttrList, mxShape );
     }
     // look for local light context first
-    else if(nPrefix == XML_NAMESPACE_DR3D && IsXMLToken( rLocalName, XML_LIGHT ) )
+    else if(nInPrefix == XML_NAMESPACE_DR3D && IsXMLToken( rLocalName, XML_LIGHT ) )
     {
         // dr3d:light inside dr3d:scene context
-        pContext = create3DLightContext( nPrefix, rLocalName, xAttrList );
+        pContext = create3DLightContext( nInPrefix, rLocalName, xAttrList );
     }
 
     // call GroupChildContext function at common ShapeImport
     if(!pContext)
     {
         pContext = GetImport().GetShapeImport()->Create3DSceneChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList, mxChilds);
+            GetImport(), nInPrefix, rLocalName, xAttrList, mxChilds);
         }
 
     // call parent when no own context was created
     if(!pContext)
     {
         pContext = SvXMLImportContext::CreateChildContext(
-        nPrefix, rLocalName, xAttrList);
+        nInPrefix, rLocalName, xAttrList);
     }
 
     return pContext;
@@ -260,9 +260,9 @@ SvXMLImportContext * SdXML3DSceneAttributesHelper::create3DLightContext( sal_uIn
 }
 
 /** this should be called for each scene attribute */
-void SdXML3DSceneAttributesHelper::processSceneAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXML3DSceneAttributesHelper::processSceneAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DR3D == nPrefix )
+    if( XML_NAMESPACE_DR3D == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_TRANSFORM ) )
         {
