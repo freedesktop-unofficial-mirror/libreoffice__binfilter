@@ -266,7 +266,6 @@ SvXMLImportContext* XMLImageMapObjectContext::CreateChildContext(
     else
         return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                       xAttrList);
-
 }
 
 void XMLImageMapObjectContext::ProcessAttribute(
@@ -632,13 +631,6 @@ void XMLImageMapCircleContext::Prepare(
     // common properties handled by super class
     XMLImageMapObjectContext::Prepare(rPropertySet);
 }
-
-
-
-
-
-
-
 
 
 

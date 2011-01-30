@@ -31,51 +31,28 @@
 #endif
 
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xmlmetae.hxx"
-
 #include <com/sun/star/presentation/XPresentationSupplier.hpp>
-
 #include <com/sun/star/presentation/XCustomPresentationSupplier.hpp>
-
 #include "sdxmlexp.hxx"
-
 #include "sdxmlexp_impl.hxx"
-
 #include <com/sun/star/drawing/XDrawPagesSupplier.hpp>
-
 #include <com/sun/star/drawing/XMasterPagesSupplier.hpp>
-
 #include <com/sun/star/presentation/XHandoutMasterSupplier.hpp>
-
 #include <com/sun/star/view/PaperOrientation.hpp>
-
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-
 #include <com/sun/star/form/XFormsSupplier.hpp>
-
 #include <com/sun/star/presentation/XPresentationPage.hpp>
-
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
-
 #include <tools/debug.hxx>
-
 #include "sdpropls.hxx"
-
 #include <com/sun/star/beans/XPropertyState.hpp>
-
 #include "xexptran.hxx"
-
 #include <cppuhelper/implbase1.hxx>
-
 #include "PropertySetMerger.hxx"
-
 #include "layerexp.hxx"
-
 #include "XMLNumberStylesExport.hxx"
 
 namespace binfilter {
