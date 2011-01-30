@@ -34,7 +34,6 @@
 // SFX
 #define _SFXAPPWIN_HXX
 #define _SFX_SAVEOPT_HXX
-//#define _SFX_CHILDWIN_HXX ***
 #define _SFXCTRLITEM_HXX
 #define _SFXPRNMON_HXX
 #define _INTRO_HXX
@@ -52,7 +51,6 @@
 #define _SFXEVENT_HXX
 
 //sfxdlg.hxx
-//#define _SFXTABDLG_HXX
 #define _BASEDLGS_HXX
 #define _SFX_DINFDLG_HXX
 #define _SFXDINFEDT_HXX
@@ -65,18 +63,13 @@
 #define _SFX_TEMPLDLG_HXX
 #define _SFXNEW_HXX
 #define _SFXDOCMAN_HXX
-//#define _SFXDOCKWIN_HXX ***
 
 //sfxdoc.hxx
-//#define _SFX_OBJSH_HXX
-//#define _SFX_CLIENTSH_HXX ***
-//#define _SFXDOCINF_HXX
 #define _SFX_OBJFAC_HXX
 #define _SFX_DOCFILT_HXX
 #define _SFXDOCFILE_HXX
 #define _VIEWFAC_HXX
 #define _SFXVIEWFRM_HXX
-//#define _SFXVIEWSH_HXX ***
 #define _MDIFRM_HXX
 #define _SFX_IPFRM_HXX
 #define _SFX_INTERNO_HXX
@@ -127,13 +120,10 @@ using namespace ::com::sun::star;
 /*N*/   pRangeName = pNewRangeName;
 /*N*/ }
 
-
-
 /*N*/ ScDBCollection* ScDocument::GetDBCollection() const
 /*N*/ {
 /*N*/   return pDBCollection;
 /*N*/ }
-
 
 /*N*/ ScDBData* ScDocument::GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const
 /*N*/ {
@@ -157,13 +147,6 @@ using namespace ::com::sun::star;
 /*N*/       pDPCollection = new ScDPCollection(this);
 /*N*/   return pDPCollection;
 /*N*/ }
-
-
-
-
-
-
-
 
 /*N*/ void ScDocument::SetScenario( USHORT nTab, BOOL bFlag )
 /*N*/ {
@@ -272,7 +255,6 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-
 /*N*/ BOOL ScDocument::LinkExternalTab( USHORT& rTab, const String& aDocTab,
 /*N*/       const String& aFileName, const String& aTabName )
 /*N*/ {
@@ -341,18 +323,8 @@ using namespace ::com::sun::star;
 /*N*/   return pVal;
 /*N*/ }
 
-
-
-
-
-
-
 //  kopiert aus diesem Dokument die Zellen von Positionen, an denen in pPosDoc
 //  auch Zellen stehen, nach pDestDoc
-
-
-
-
 
 /*N*/ const ScRangeList* ScDocument::GetScenarioRanges( USHORT nTab ) const
 /*N*/ {
@@ -375,7 +347,6 @@ using namespace ::com::sun::star;
 /*N*/   if (nTab<=MAXTAB && pTab[nTab])
 /*N*/       pTab[nTab]->SetActiveScenario( bActive );
 /*N*/ }
-
 
 /*N*/ void ScDocument::AddUnoObject( SfxListener& rObject )
 /*N*/ {
@@ -506,13 +477,10 @@ using namespace ::com::sun::star;
          }
 /*N*/ }
 
-
-
 /*N*/ void ScDocument::Fill(USHORT, USHORT, USHORT, USHORT, const ScMarkData&, USHORT, FillDir, FillCmd, FillDateCmd, double, double)
 /*N*/ {
 /*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
 
 /*N*/ void ScDocument::AutoFormat( USHORT, USHORT, USHORT, USHORT, USHORT, const ScMarkData& )
 /*N*/ {
@@ -571,15 +539,10 @@ using namespace ::com::sun::star;
 #define SC_STRTYPE_HEADERS      4
 
 
-
 /*N*/ BOOL ScDocument::IsEmbedded() const
 /*N*/ {
 /*N*/   return bIsEmbedded;
 /*N*/ }
-
-
-
-
 
 /*N*/ ScRange ScDocument::GetRange( USHORT nTab, const Rectangle& rMMRect )
 /*N*/ {
@@ -664,7 +627,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return ScRange( nX1,nY1,nTab, nX2,nY2,nTab );
 /*N*/ }
-
 
 //  VisArea auf Zellgrenzen anpassen
 
@@ -880,7 +842,6 @@ using namespace ::com::sun::star;
 /*N*/       ApplyFlagsTab( nStartCol+1, nStartRow+1, nEndCol, nEndRow, nTab, SC_MF_HOR | SC_MF_VER );
 /*N*/ }
 
-
 /*N*/ void ScDocument::ExtendPrintArea( OutputDevice* pDev, USHORT nTab,
 /*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT& rEndCol, USHORT nEndRow )
 /*N*/ {
@@ -899,9 +860,6 @@ using namespace ::com::sun::star;
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->DecRecalcLevel();
 /*N*/ }
-
-
-
 
 } //namespace binfilter
 

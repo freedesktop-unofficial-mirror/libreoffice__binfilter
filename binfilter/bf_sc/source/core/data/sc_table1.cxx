@@ -37,7 +37,6 @@
 // SFX
 #define _SFXAPPWIN_HXX
 #define _SFX_SAVEOPT_HXX
-//#define _SFX_CHILDWIN_HXX ***
 #define _SFXCTRLITEM_HXX
 #define _SFXPRNMON_HXX
 #define _INTRO_HXX
@@ -54,23 +53,19 @@
 #define _SFX_MINFITEM_HXX
 #define _SFXEVENT_HXX
 
-//#define _SI_HXX
-//#define SI_NODRW
 #define _SI_DLL_HXX
 #define _SIDLL_HXX
 #define _SI_NOITEMS
 #define _SI_NOOTHERFORMS
 #define _SI_NOSBXCONTROLS
 #define _SINOSBXCONTROLS
-#define _SI_NODRW         //
+#define _SI_NODRW
 #define _SI_NOCONTROL
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
 #define _VCATTR_HXX
-
 
 #define _SVX_DAILDLL_HXX
 #define _SVX_HYPHEN_HXX
@@ -390,26 +385,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*      vorher:
-
-    BOOL bFound = FALSE;
-    USHORT nMaxX = 0;
-    USHORT nMaxY = 0;
-    for (USHORT i=0; i<=MAXCOL; i++)
-        if (!aCol[i].IsEmpty())
-        {
-            bFound = TRUE;
-            nMaxX = i;
-            USHORT nColY = aCol[i].GetLastEntryPos();
-            if (nColY > nMaxY)
-                nMaxY = nColY;
-        }
-
-    rEndCol = nMaxX;
-    rEndRow = nMaxY;
-    return bFound;
-*/
-
 /*N*/ BOOL ScTable::GetPrintArea( USHORT& rEndCol, USHORT& rEndRow, BOOL bNotes ) const
 /*N*/ {
 /*N*/   BOOL bFound = FALSE;
@@ -451,8 +426,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   rEndRow = nMaxY;
 /*N*/   return bFound;
 /*N*/ }
-
-
 
 /*N*/ BOOL ScTable::GetDataStart( USHORT& rStartCol, USHORT& rStartRow ) const
 /*N*/ {
@@ -506,11 +479,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
-
-
 
 /*N*/ void ScTable::GetNextPos( USHORT&, USHORT&, short, short,
 /*N*/                               BOOL, BOOL, const ScMarkData& )
@@ -670,14 +638,11 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-
-
 /*N*/ void ScTable::UpdateInsertTab(USHORT nTable)
 /*N*/ {
 /*N*/   if (nTab >= nTable) nTab++;
 /*N*/   for (USHORT i=0; i <= MAXCOL; i++) aCol[i].UpdateInsertTab(nTable);
 /*N*/ }
-
 
 /*N*/  void ScTable::UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo )
 /*N*/  {
@@ -863,11 +828,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   rSaveTab.SetAreas( nPrintRangeCount, pPrintRanges );
 /*N*/   rSaveTab.SetRepeat( pRepeatColRange, pRepeatRowRange );
 /*N*/ }
-
-
-
-
-
 
 }
 
