@@ -26,12 +26,9 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-
 
 #include <com/sun/star/text/PlaceholderType.hpp>
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
@@ -46,7 +43,6 @@
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/doctempl.hxx>
 #include <bf_svx/adritem.hxx>
-
 
 #include <charfmt.hxx>
 #include <docstat.hxx>
@@ -69,7 +65,9 @@
 #include <swunohelper.hxx>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define URL_DECODE  INetURLObject::DECODE_UNAMBIGUOUS
+
 namespace binfilter {
+
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -251,8 +249,8 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/ BOOL SwPageNumberField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     BOOL bRet = TRUE;
-/*N*/   sal_Int16 nSet;
-/*N*/     nMId &= ~CONVERT_TWIPS;
+/*N*/   sal_Int16 nSet(0);
+/*N*/   nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_FORMAT:
@@ -550,7 +548,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/           //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
 /*N*/           //              called with a int32 value! But normally we need
 /*N*/           //              here only a int16
-/*N*/           sal_Int32 nType;
+/*N*/           sal_Int32 nType(0);
 /*N*/           rAny >>= nType;
 /*N*/           BOOL bFixed = IsFixed();
 /*N*/           switch( nType )
@@ -705,7 +703,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/           //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
 /*N*/           //              called with a int32 value! But normally we need
 /*N*/           //              here only a int16
-/*N*/           sal_Int32 nType;
+/*N*/           sal_Int32 nType(0);
 /*N*/           rAny >>= nType;
 /*N*/           switch( nType )
 /*N*/           {
@@ -847,7 +845,7 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
     {
     case FIELD_PROP_USHORT2:
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             rAny >>= nSet;
             if(nSet <= SVX_NUM_CHARS_LOWER_LETTER_N &&
                 nSet != SVX_NUM_CHAR_SPECIAL &&
@@ -1119,7 +1117,7 @@ void SwDocInfoField::SetSubType(sal_uInt16 nSub)
  ---------------------------------------------------------------------------*/
 BOOL SwDocInfoField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     nMId &= ~CONVERT_TWIPS;
     switch( nMId )
     {
@@ -1803,7 +1801,7 @@ BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
 
     case FIELD_PROP_USHORT1:
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp(0);
             rAny >>= nTmp;
             nType = nTmp;
         }
@@ -2014,7 +2012,7 @@ BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
     {
         case FIELD_PROP_USHORT1:
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             rAny >>= nSet;
             if(nSet <= SVX_NUM_PAGEDESC )
                 SetFormat(nSet);
@@ -2170,7 +2168,7 @@ BOOL SwJumpEditField::PutValue( const uno::Any& rAny, BYTE nMId )
             //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
             //              called with a int32 value! But normally we need
             //              here only a int16
-            sal_Int32 nSet;
+            sal_Int32 nSet(0);
             rAny >>= nSet;
             switch( nSet )
             {
