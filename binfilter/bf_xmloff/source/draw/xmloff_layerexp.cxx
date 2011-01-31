@@ -86,7 +86,7 @@ void SdXMLayerExporter::exportLayer( SvXMLExport& rExport )
                 rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_NAME, aName );
             }
 
-            SvXMLElementExport aElem( rExport, XML_NAMESPACE_DRAW, XML_LAYER, sal_True, sal_True );
+            SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_DRAW, XML_LAYER, sal_True, sal_True );
         }
     }
 }

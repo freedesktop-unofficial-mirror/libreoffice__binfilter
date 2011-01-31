@@ -265,8 +265,8 @@ public:
         msSoundOn( RTL_CONSTASCII_USTRINGPARAM( "SoundOn" ) ),
         msSpeed( RTL_CONSTASCII_USTRINGPARAM( "Speed" ) ),
         msTextEffect( RTL_CONSTASCII_USTRINGPARAM( "TextEffect" ) ),
-        msAnimPath( RTL_CONSTASCII_USTRINGPARAM( "AnimationPath" ) ),
-        msIsAnimation( RTL_CONSTASCII_USTRINGPARAM( "IsAnimation" ) )
+        msIsAnimation( RTL_CONSTASCII_USTRINGPARAM( "IsAnimation" ) ),
+        msAnimPath( RTL_CONSTASCII_USTRINGPARAM( "AnimationPath" ) )
     {}
 };
 
@@ -343,7 +343,7 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
             xProps->getPropertyValue( mpImpl->msSpeed ) >>= aEffect.meSpeed;
 
 
-            sal_Bool bIsAnimation;
+            sal_Bool bIsAnimation(sal_False);
             xProps->getPropertyValue( mpImpl->msIsAnimation ) >>= bIsAnimation;
             if( bIsAnimation )
             {
@@ -403,8 +403,8 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
                     aEffect.maSoundURL = aEmptyStr;
                 }
 
-                sal_Bool bDimPrev;
-                sal_Bool bDimHide;
+                sal_Bool bDimPrev(sal_False);
+                sal_Bool bDimHide(sal_False);
                 xProps->getPropertyValue( mpImpl->msDimPrev ) >>= bDimPrev;
                 xProps->getPropertyValue( mpImpl->msDimHide ) >>= bDimHide;
                 if( bDimPrev || bDimHide )
@@ -415,7 +415,7 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
                     aEffect.meSpeed = AnimationSpeed_MEDIUM;
                     if( bDimPrev )
                     {
-                        sal_Int32 nColor;
+                        sal_Int32 nColor(0);
                         xProps->getPropertyValue( mpImpl->msDimColor ) >>= nColor;
                         aEffect.maDimColor.SetColor( nColor );
                     }
@@ -466,7 +466,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                 SvXMLUnitConverter::convertColor( sTmp, rEffect.maDimColor );
                 rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_COLOR, sTmp.makeStringAndClear() );
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_DIM, sal_True, sal_True );
+                SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_DIM, sal_True, sal_True );
             }
             else if( rEffect.meKind == XMLE_PLAY )
             {
@@ -476,7 +476,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                     rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_SPEED, sTmp.makeStringAndClear() );
                 }
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_PLAY, sal_True, sal_True );
+                SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_PLAY, sal_True, sal_True );
             }
             else
             {
@@ -526,7 +526,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                         eLocalName = XML_HIDE_SHAPE;
                 }
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, eLocalName, sal_True, sal_True );
+                SvXMLElementExport aInnerElem( rExport, XML_NAMESPACE_PRESENTATION, eLocalName, sal_True, sal_True );
                 if( rEffect.maSoundURL.getLength() != 0 )
                 {
                     rExport.AddAttribute(XML_NAMESPACE_XLINK, XML_HREF, rExport.GetRelativeReference(rEffect.maSoundURL) );
@@ -536,7 +536,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                     if( rEffect.mbPlayFull )
                         rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_PLAY_FULL, XML_TRUE );
 
-                    SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_SOUND, sal_True, sal_True );
+                    SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_SOUND, sal_True, sal_True );
                 }
             }
 

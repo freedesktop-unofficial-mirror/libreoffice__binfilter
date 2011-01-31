@@ -61,11 +61,11 @@ using rtl::OUString;
 
 TYPEINIT1( SdXMLLayerSetContext, SvXMLImportContext );
 
-SdXMLLayerSetContext::SdXMLLayerSetContext( SvXMLImport& rImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList)
-: SvXMLImportContext(rImport, nPrfx, rLocalName)
+SdXMLLayerSetContext::SdXMLLayerSetContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,   const ::rtl::OUString& rLocalName,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/)
+: SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
-    Reference< XLayerSupplier > xLayerSupplier( rImport.GetModel(), UNO_QUERY );
+    Reference< XLayerSupplier > xLayerSupplier( rInImport.GetModel(), UNO_QUERY );
     DBG_ASSERT( xLayerSupplier.is(), "XModel is not supporting XLayerSupplier!" );
     if( xLayerSupplier.is() )
         mxLayerManager = xLayerSupplier->getLayerManager();
@@ -75,7 +75,7 @@ SdXMLLayerSetContext::~SdXMLLayerSetContext()
 {
 }
 
-SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName,
+SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     if( mxLayerManager.is() )
@@ -87,12 +87,12 @@ SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, c
         const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for(sal_Int16 i=0; i < nAttrCount; i++)
         {
-            OUString aLocalName;
-            if( GetImport().GetNamespaceMap().GetKeyByAttrName( xAttrList->getNameByIndex( i ), &aLocalName ) == XML_NAMESPACE_DRAW )
+            OUString aLclLocalName;
+            if( GetImport().GetNamespaceMap().GetKeyByAttrName( xAttrList->getNameByIndex( i ), &aLclLocalName ) == XML_NAMESPACE_DRAW )
             {
                 const OUString sValue( xAttrList->getValueByIndex( i ) );
 
-                if( IsXMLToken( aLocalName, XML_NAME ) )
+                if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 {
                     aName = sValue;
                 }
@@ -126,7 +126,7 @@ SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, c
         }
     }
 
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 }//end of namespace binfilter
 

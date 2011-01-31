@@ -74,7 +74,7 @@ struct SdXMLDataStyleNumber
     { XML_AM_PM,        sal_False,      sal_False,      sal_False,      NULL },
     { XML_SECONDS,      sal_False,      sal_False,      sal_False,      NULL },
     { XML_SECONDS,      sal_False,      sal_False,      sal_True,       NULL },
-    { XML_TOKEN_INVALID, NULL }
+    { XML_TOKEN_INVALID,sal_False,      sal_False,      sal_False,      NULL }
 };
 
 // date
@@ -446,7 +446,7 @@ private:
 public:
     TYPEINFO();
 
-    SdXMLNumberFormatMemberImportContext( SvXMLImport& rImport,
+    SdXMLNumberFormatMemberImportContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
@@ -454,7 +454,7 @@ public:
         SvXMLImportContext* pSlaveContext );
     virtual ~SdXMLNumberFormatMemberImportContext();
 
-    virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( USHORT nInPrefix,
                                    const ::rtl::OUString& rLocalName,
                                    const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList );
 
@@ -467,8 +467,8 @@ public:
 
 TYPEINIT1( SdXMLNumberFormatMemberImportContext, SvXMLImportContext );
 
-SdXMLNumberFormatMemberImportContext::SdXMLNumberFormatMemberImportContext( SvXMLImport& rImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList, SdXMLNumberFormatImportContext* pParent, SvXMLImportContext* pSlaveContext )
-:   SvXMLImportContext(rImport, nPrfx, rLocalName),
+SdXMLNumberFormatMemberImportContext::SdXMLNumberFormatMemberImportContext( SvXMLImport& rInImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList, SdXMLNumberFormatImportContext* pParent, SvXMLImportContext* pSlaveContext )
+:   SvXMLImportContext(rInImport, nPrfx, rLocalName),
     mpParent( pParent ),
     maNumberStyle( rLocalName ),
     mpSlaveContext( pSlaveContext )
@@ -481,21 +481,21 @@ SdXMLNumberFormatMemberImportContext::SdXMLNumberFormatMemberImportContext( SvXM
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
 
-        if( nPrefix == XML_NAMESPACE_NUMBER )
+        if( nLclPrefix == XML_NAMESPACE_NUMBER )
         {
-            if( IsXMLToken( aLocalName, XML_DECIMAL_PLACES ) )
+            if( IsXMLToken( aLclLocalName, XML_DECIMAL_PLACES ) )
             {
                 mbDecimal02 =  IsXMLToken( sValue, XML_2 );
             }
-            else if( IsXMLToken( aLocalName, XML_STYLE ) )
+            else if( IsXMLToken( aLclLocalName, XML_STYLE ) )
             {
                 mbLong = IsXMLToken( sValue, XML_LONG );
             }
-            else if( IsXMLToken( aLocalName, XML_TEXTUAL ) )
+            else if( IsXMLToken( aLclLocalName, XML_TEXTUAL ) )
             {
                 mbTextual = IsXMLToken( sValue, XML_TRUE );
             }
@@ -508,11 +508,11 @@ SdXMLNumberFormatMemberImportContext::~SdXMLNumberFormatMemberImportContext()
 {
 }
 
-SvXMLImportContext *SdXMLNumberFormatMemberImportContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SdXMLNumberFormatMemberImportContext::CreateChildContext( USHORT nInPrefix,
                            const ::rtl::OUString& rLocalName,
                            const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
 {
-    return mpSlaveContext->CreateChildContext( nPrefix, rLocalName, xAttrList );
+    return mpSlaveContext->CreateChildContext( nInPrefix, rLocalName, xAttrList );
 }
 
 void SdXMLNumberFormatMemberImportContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
@@ -537,9 +537,9 @@ void SdXMLNumberFormatMemberImportContext::Characters( const ::rtl::OUString& rC
 TYPEINIT1( SdXMLNumberFormatImportContext, SvXMLImportContext );
 
 
-SdXMLNumberFormatImportContext::SdXMLNumberFormatImportContext( SdXMLImport& rImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName, SvXMLNumImpData* pNewData, sal_uInt16 nNewType, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList, SvXMLStylesContext& rStyles)
-:   SvXMLNumFormatContext(rImport, nPrfx, rLocalName, pNewData, nNewType, xAttrList, rStyles),
-    mbAutomatic( sal_False ), mnIndex(0), mrImport( rImport ), mnKey( -1 )
+SdXMLNumberFormatImportContext::SdXMLNumberFormatImportContext( SdXMLImport& rInImport, sal_uInt16 nPrfx,   const ::rtl::OUString& rLocalName, SvXMLNumImpData* pNewData, sal_uInt16 nNewType, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList, SvXMLStylesContext& rStyles)
+:   SvXMLNumFormatContext(rInImport, nPrfx, rLocalName, pNewData, nNewType, xAttrList, rStyles),
+    mrImport( rInImport ), mbAutomatic( sal_False ), mnIndex(0), mnKey( -1 )
 {
     mbTimeStyle = IsXMLToken( rLocalName, XML_TIME_STYLE );
 
@@ -547,13 +547,13 @@ SdXMLNumberFormatImportContext::SdXMLNumberFormatImportContext( SdXMLImport& rIm
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
 
-        if( nPrefix == XML_NAMESPACE_NUMBER )
+        if( nLclPrefix == XML_NAMESPACE_NUMBER )
         {
-            if( IsXMLToken( aLocalName, XML_AUTOMATIC_ORDER ) )
+            if( IsXMLToken( aLclLocalName, XML_AUTOMATIC_ORDER ) )
             {
                 mbAutomatic = IsXMLToken( sValue, XML_TRUE );
             }
@@ -638,9 +638,9 @@ void SdXMLNumberFormatImportContext::EndElement()
     }
 }
 
-SvXMLImportContext * SdXMLNumberFormatImportContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+SvXMLImportContext * SdXMLNumberFormatImportContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
-    return new SdXMLNumberFormatMemberImportContext( GetImport(), nPrefix, rLocalName, xAttrList, this, SvXMLNumFormatContext::CreateChildContext( nPrefix, rLocalName, xAttrList ) );
+    return new SdXMLNumberFormatMemberImportContext( GetImport(), nInPrefix, rLocalName, xAttrList, this, SvXMLNumFormatContext::CreateChildContext( nInPrefix, rLocalName, xAttrList ) );
 }
 }//end of namespace binfilter
 

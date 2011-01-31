@@ -45,14 +45,14 @@ SdXMLViewSettingsContext::~SdXMLViewSettingsContext()
 {
 }
 
-SvXMLImportContext *SdXMLViewSettingsContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SdXMLViewSettingsContext::CreateChildContext( USHORT nInPrefix,
                                      const OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if (nPrefix == XML_NAMESPACE_OFFICE)
+    if (nInPrefix == XML_NAMESPACE_OFFICE)
     {
         if ( IsXMLToken( rLocalName, XML_EMBEDDED_VISIBLE_AREA ) )
         {
@@ -62,12 +62,12 @@ SvXMLImportContext *SdXMLViewSettingsContext::CreateChildContext( USHORT nPrefix
             if( xProps.is() )
                 xProps->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "MapUnit" ) ) ) >>= nMeasureUnit;
 
-            pContext = new XMLVisAreaContext(GetImport(), nPrefix, rLocalName, xAttrList, maVisArea, nMeasureUnit);
+            pContext = new XMLVisAreaContext(GetImport(), nInPrefix, rLocalName, xAttrList, maVisArea, nMeasureUnit);
         }
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

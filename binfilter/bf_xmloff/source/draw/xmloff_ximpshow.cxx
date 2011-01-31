@@ -73,8 +73,8 @@ public:
     OUString maCustomShowName;
     SdXMLImport& mrImport;
 
-    ShowsImpImpl( SdXMLImport& rImport )
-    :   mrImport( rImport )
+    ShowsImpImpl( SdXMLImport& rInImport )
+    :   mrImport( rInImport )
     {}
 };
 
@@ -82,23 +82,23 @@ public:
 
 TYPEINIT1( SdXMLShowsContext, SvXMLImportContext );
 
-SdXMLShowsContext::SdXMLShowsContext( SdXMLImport& rImport,  sal_uInt16 nPrfx, const OUString& rLocalName,  const Reference< XAttributeList >& xAttrList )
-:   SvXMLImportContext(rImport, nPrfx, rLocalName)
+SdXMLShowsContext::SdXMLShowsContext( SdXMLImport& rInImport,  sal_uInt16 nPrfx, const OUString& rLocalName,  const Reference< XAttributeList >& xAttrList )
+:   SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
-    mpImpl = new ShowsImpImpl( rImport );
+    mpImpl = new ShowsImpImpl( rInImport );
 
-    Reference< XCustomPresentationSupplier > xShowsSupplier( rImport.GetModel(), UNO_QUERY );
+    Reference< XCustomPresentationSupplier > xShowsSupplier( rInImport.GetModel(), UNO_QUERY );
     if( xShowsSupplier.is() )
     {
         mpImpl->mxShows = xShowsSupplier->getCustomPresentations();
         mpImpl->mxShowFactory = Reference< XSingleServiceFactory >::query( mpImpl->mxShows );
     }
 
-    Reference< XDrawPagesSupplier > xDrawPagesSupplier( rImport.GetModel(), UNO_QUERY );
+    Reference< XDrawPagesSupplier > xDrawPagesSupplier( rInImport.GetModel(), UNO_QUERY );
     if( xDrawPagesSupplier.is() )
         mpImpl->mxPages = Reference< XNameAccess >::query( xDrawPagesSupplier->getDrawPages() );
 
-    Reference< XPresentationSupplier > xPresentationSupplier( rImport.GetModel(), UNO_QUERY );
+    Reference< XPresentationSupplier > xPresentationSupplier( rInImport.GetModel(), UNO_QUERY );
     if( xPresentationSupplier.is() )
         mpImpl->mxPresProps = Reference< XPropertySet >::query( xPresentationSupplier->getPresentation() );
 
@@ -113,25 +113,25 @@ SdXMLShowsContext::SdXMLShowsContext( SdXMLImport& rImport,  sal_uInt16 nPrfx, c
         for(sal_Int16 i=0; i < nAttrCount; i++)
         {
             OUString sAttrName = xAttrList->getNameByIndex( i );
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
             OUString sValue = xAttrList->getValueByIndex( i );
 
-            switch( nPrefix )
+            switch( nLclPrefix )
             {
             case XML_NAMESPACE_PRESENTATION:
-                if( IsXMLToken( aLocalName, XML_START_PAGE ) )
+                if( IsXMLToken( aLclLocalName, XML_START_PAGE ) )
                 {
                     aAny <<= sValue;
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "FirstPage" ) ), aAny );
                     bAll = sal_False;
                 }
-                else if( IsXMLToken( aLocalName, XML_SHOW ) )
+                else if( IsXMLToken( aLclLocalName, XML_SHOW ) )
                 {
                     mpImpl->maCustomShowName = sValue;
                     bAll = sal_False;
                 }
-                else if( IsXMLToken( aLocalName, XML_PAUSE ) )
+                else if( IsXMLToken( aLclLocalName, XML_PAUSE ) )
                 {
                     DateTime aTime;
                     if( !SvXMLUnitConverter::convertTime( aTime,  sValue ) )
@@ -141,52 +141,52 @@ SdXMLShowsContext::SdXMLShowsContext( SdXMLImport& rImport,  sal_uInt16 nPrfx, c
                     aAny <<= nMS;
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "Pause" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_ANIMATIONS ) )
+                else if( IsXMLToken( aLclLocalName, XML_ANIMATIONS ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_ENABLED ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "AllowAnimations" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_STAY_ON_TOP ) )
+                else if( IsXMLToken( aLclLocalName, XML_STAY_ON_TOP ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsAlwaysOnTop" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_FORCE_MANUAL ) )
+                else if( IsXMLToken( aLclLocalName, XML_FORCE_MANUAL ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsAutomatic" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_ENDLESS ) )
+                else if( IsXMLToken( aLclLocalName, XML_ENDLESS ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsEndless" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_FULL_SCREEN ) )
+                else if( IsXMLToken( aLclLocalName, XML_FULL_SCREEN ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsFullScreen" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_MOUSE_VISIBLE ) )
+                else if( IsXMLToken( aLclLocalName, XML_MOUSE_VISIBLE ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsMouseVisible" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_START_WITH_NAVIGATOR ) )
+                else if( IsXMLToken( aLclLocalName, XML_START_WITH_NAVIGATOR ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "StartWithNavigator" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_MOUSE_AS_PEN ) )
+                else if( IsXMLToken( aLclLocalName, XML_MOUSE_AS_PEN ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "UsePen" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_TRANSITION_ON_CLICK ) )
+                else if( IsXMLToken( aLclLocalName, XML_TRANSITION_ON_CLICK ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_ENABLED ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsTransitionOnClick" ) ), aAny );
                 }
-                else if( IsXMLToken( aLocalName, XML_SHOW_LOGO ) )
+                else if( IsXMLToken( aLclLocalName, XML_SHOW_LOGO ) )
                 {
                     aAny = bool2any( IsXMLToken( sValue, XML_TRUE ) );
                     mpImpl->mxPresProps->setPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "IsShowLogo" ) ), aAny );
@@ -210,9 +210,9 @@ SdXMLShowsContext::~SdXMLShowsContext()
     delete mpImpl;
 }
 
-SvXMLImportContext * SdXMLShowsContext::CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList>& xAttrList )
+SvXMLImportContext * SdXMLShowsContext::CreateChildContext( USHORT nInPrefix, const OUString& rLocalName, const Reference< XAttributeList>& xAttrList )
 {
-    if( mpImpl && nPrefix == XML_NAMESPACE_PRESENTATION && IsXMLToken( rLocalName, XML_SHOW ) )
+    if( mpImpl && nInPrefix == XML_NAMESPACE_PRESENTATION && IsXMLToken( rLocalName, XML_SHOW ) )
     {
         OUString aName;
         OUString aPages;
@@ -222,18 +222,18 @@ SvXMLImportContext * SdXMLShowsContext::CreateChildContext( USHORT nPrefix, cons
         for(sal_Int16 i=0; i < nAttrCount; i++)
         {
             OUString sAttrName = xAttrList->getNameByIndex( i );
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
             OUString sValue = xAttrList->getValueByIndex( i );
 
-            switch( nPrefix )
+            switch( nLclPrefix )
             {
             case XML_NAMESPACE_PRESENTATION:
-                if( IsXMLToken( aLocalName, XML_NAME ) )
+                if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 {
                     aName = sValue;
                 }
-                else if( IsXMLToken( aLocalName, XML_PAGES ) )
+                else if( IsXMLToken( aLclLocalName, XML_PAGES ) )
                 {
                     aPages = sValue;
                 }
@@ -277,7 +277,7 @@ SvXMLImportContext * SdXMLShowsContext::CreateChildContext( USHORT nPrefix, cons
         }
     }
 
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 }//end of namespace binfilter

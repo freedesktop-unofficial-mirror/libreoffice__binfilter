@@ -55,8 +55,8 @@ using ::binfilter::xmloff::token::XML_PROPERTIES;
 
 TYPEINIT1( XMLGraphicsDefaultStyle, XMLPropStyleContext );
 
-XMLGraphicsDefaultStyle::XMLGraphicsDefaultStyle( SvXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, SvXMLStylesContext& rStyles )
-: XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_SD_GRAPHICS_ID, sal_True )
+XMLGraphicsDefaultStyle::XMLGraphicsDefaultStyle( SvXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, SvXMLStylesContext& rStyles )
+: XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_SD_GRAPHICS_ID, sal_True )
 {
 }
 

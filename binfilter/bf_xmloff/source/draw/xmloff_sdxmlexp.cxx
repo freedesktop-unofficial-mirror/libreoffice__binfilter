@@ -369,6 +369,10 @@ SdXMLExport::SdXMLExport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
     sal_Bool bIsDraw, sal_uInt16 nExportFlags )
 :   SvXMLExport( xServiceFactory, MAP_CM, bIsDraw ? XML_DRAWING : XML_PRESENTATION, nExportFlags ),
+    mnDocMasterPageCount(0L),
+    mnDocDrawPageCount(0L),
+    mnShapeStyleInfoIndex(0L),
+    mnObjectCount(0L),
     mpPageMasterInfoList(new ImpXMLEXPPageMasterList()),
     mpPageMasterUsageList(new ImpXMLEXPPageMasterList()),
     mpNotesPageMasterUsageList(new ImpXMLEXPPageMasterList()),
@@ -377,10 +381,8 @@ SdXMLExport::SdXMLExport(
     mpSdPropHdlFactory(0L),
     mpPropertySetMapper(0L),
     mpPresPagePropsMapper(0L),
-    mnDocMasterPageCount(0L),
-    mnDocDrawPageCount(0L),
-    mnShapeStyleInfoIndex(0L),
-    mnObjectCount(0L),
+    mnUsedDateStyles( 0 ),
+    mnUsedTimeStyles( 0 ),
     mbIsDraw(bIsDraw),
     mbFamilyGraphicUsed(FALSE),
     mbFamilyPresentationUsed(FALSE),
@@ -389,9 +391,7 @@ SdXMLExport::SdXMLExport(
     msModel( RTL_CONSTASCII_USTRINGPARAM("Model") ),
     msStartShape( RTL_CONSTASCII_USTRINGPARAM("StartShape") ),
     msEndShape( RTL_CONSTASCII_USTRINGPARAM("EndShape") ),
-    msPageLayoutNames( RTL_CONSTASCII_USTRINGPARAM("PageLayoutNames") ),
-    mnUsedDateStyles( 0 ),
-    mnUsedTimeStyles( 0 )
+    msPageLayoutNames( RTL_CONSTASCII_USTRINGPARAM("PageLayoutNames") )
 {
 
 
@@ -1339,8 +1339,8 @@ void SdXMLExport::ImpPrepDrawPageInfos()
                     uno::Reference< beans::XPropertySetInfo > xInfo( xPropSet1->getPropertySetInfo() );
                     if( xInfo.is() && xInfo->hasPropertyByName( aBackground ) )
                     {
-                        uno::Any aAny( xPropSet1->getPropertyValue( aBackground ) );
-                        aAny >>= xPropSet2;
+                        uno::Any aLclAny( xPropSet1->getPropertyValue( aBackground ) );
+                        aLclAny >>= xPropSet2;
                     }
 
                     uno::Reference< beans::XPropertySet > xPropSet;
@@ -1405,8 +1405,8 @@ void SdXMLExport::ImpPrepMasterPageInfos()
                     uno::Reference< beans::XPropertySetInfo > xInfo( xPropSet1->getPropertySetInfo() );
                     if( xInfo.is() && xInfo->hasPropertyByName( aBackground ) )
                     {
-                        uno::Any aAny( xPropSet1->getPropertyValue( aBackground ) );
-                        aAny >>= xPropSet2;
+                        uno::Any aLclAny( xPropSet1->getPropertyValue( aBackground ) );
+                        aLclAny >>= xPropSet2;
                     }
 
                     uno::Reference< beans::XPropertySet > xPropSet;
@@ -1614,8 +1614,8 @@ void SdXMLExport::_ExportContent()
                     uno::Reference< drawing::XDrawPage > xNotesPage(xPresPage->getNotesPage());
                     if(xNotesPage.is())
                     {
-                        uno::Reference< drawing::XShapes > xShapes(xNotesPage, uno::UNO_QUERY);
-                        if(xShapes.is() && xShapes->getCount())
+                        uno::Reference< drawing::XShapes > xLclShapes(xNotesPage, uno::UNO_QUERY);
+                        if(xLclShapes.is() && xLclShapes->getCount())
                         {
                             // write presentation notes
                             SvXMLElementExport aPSY(*this, XML_NAMESPACE_PRESENTATION, XML_NOTES, sal_True, sal_True);
@@ -1624,7 +1624,7 @@ void SdXMLExport::_ExportContent()
                             exportFormsElement( xNotesPage );
 
                             // write shapes per se
-                            GetShapeExport()->exportShapes( xShapes );
+                            GetShapeExport()->exportShapes( xLclShapes );
                         }
                     }
                 }
@@ -1683,7 +1683,7 @@ void SdXMLExport::exportPresentationSettings()
             AddAttribute(XML_NAMESPACE_PRESENTATION, XML_ENDLESS, XML_TRUE );
             bHasAttr = sal_True;
 
-            sal_Int32 nPause;
+            sal_Int32 nPause(0);
             xPresProps->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "Pause" ) ) ) >>= nPause;
 
             util::DateTime aTime( 0, (sal_uInt16)nPause, 0, 0, 0, 0, 0 );
@@ -1958,9 +1958,9 @@ void SdXMLExport::_ExportAutoStyles()
                             // collect layer information
                             GetFormExport()->examineForms( xNotesPage );
 
-                            uno::Reference< drawing::XShapes > xShapes(xNotesPage, uno::UNO_QUERY);
-                            if(xShapes.is() && xShapes->getCount())
-                                GetShapeExport()->collectShapesAutoStyles( xShapes );
+                            uno::Reference< drawing::XShapes > xLclShapes(xNotesPage, uno::UNO_QUERY);
+                            if(xLclShapes.is() && xLclShapes->getCount())
+                                GetShapeExport()->collectShapesAutoStyles( xLclShapes );
                         }
                     }
                 }
@@ -2027,9 +2027,9 @@ void SdXMLExport::_ExportAutoStyles()
                             // collect layer information
                             GetFormExport()->examineForms( xNotesPage );
 
-                            uno::Reference< drawing::XShapes > xShapes(xNotesPage, uno::UNO_QUERY);
-                            if(xShapes.is() && xShapes->getCount())
-                                GetShapeExport()->collectShapesAutoStyles( xShapes );
+                            uno::Reference< drawing::XShapes > xLclShapes(xNotesPage, uno::UNO_QUERY);
+                            if(xLclShapes.is() && xLclShapes->getCount())
+                                GetShapeExport()->collectShapesAutoStyles( xLclShapes );
                         }
                     }
                 }
@@ -2111,7 +2111,7 @@ void SdXMLExport::_ExportMasterStyles()
                 AddAttribute(XML_NAMESPACE_STYLE, XML_NAME, sMasterPageName);
             }
 
-            ImpXMLEXPPageMasterInfo* pInfo = (nMPageId < mpPageMasterUsageList->size()) ? (*mpPageMasterUsageList)[ nMPageId ] : NULL;
+            ImpXMLEXPPageMasterInfo* pInfo = (nMPageId < static_cast<sal_Int32>(mpPageMasterUsageList->size())) ? (*mpPageMasterUsageList)[ nMPageId ] : NULL;
             if(pInfo)
             {
                 OUString sString = pInfo->GetName();
@@ -2142,13 +2142,13 @@ void SdXMLExport::_ExportMasterStyles()
                     uno::Reference< drawing::XDrawPage > xNotesPage(xPresPage->getNotesPage());
                     if(xNotesPage.is())
                     {
-                        uno::Reference< drawing::XShapes > xShapes(xNotesPage, uno::UNO_QUERY);
-                        if(xShapes.is() && xShapes->getCount())
+                        uno::Reference< drawing::XShapes > xLclShapes(xNotesPage, uno::UNO_QUERY);
+                        if(xLclShapes.is() && xLclShapes->getCount())
                         {
-                            ImpXMLEXPPageMasterInfo* pInfo = (nMPageId < mpNotesPageMasterUsageList->size() ) ? (*mpNotesPageMasterUsageList)[ nMPageId ] : NULL;
-                            if(pInfo)
+                            ImpXMLEXPPageMasterInfo* pLclInfo = (nMPageId < static_cast<sal_Int32>(mpNotesPageMasterUsageList->size()) ) ? (*mpNotesPageMasterUsageList)[ nMPageId ] : NULL;
+                            if(pLclInfo)
                             {
-                                OUString sString = pInfo->GetName();
+                                OUString sString = pLclInfo->GetName();
                                 AddAttribute(XML_NAMESPACE_STYLE, XML_PAGE_MASTER_NAME, sString);
                             }
 
@@ -2159,7 +2159,7 @@ void SdXMLExport::_ExportMasterStyles()
                             exportFormsElement( xNotesPage );
 
                             // write shapes per se
-                            GetShapeExport()->exportShapes( xShapes );
+                            GetShapeExport()->exportShapes( xLclShapes );
                         }
                     }
                 }
@@ -2186,6 +2186,7 @@ void SdXMLExport::exportFormsElement( uno::Reference< drawing::XDrawPage > xDraw
 
         sal_Bool bRet = GetFormExport()->seekPage( xDrawPage );
         DBG_ASSERT( bRet, "OFormLayerXMLExport::seekPage failed!" );
+        (void)bRet;
     }
 }
 
