@@ -30,29 +30,17 @@
 #define _SVDOBJ_HXX
 
 #include <memory>
-
 #include <cppuhelper/weakref.hxx>
-
 #include <vcl/mapmod.hxx>
-
 #include <bf_svtools/lstner.hxx>
-
 #include <vcl/timer.hxx>
-
 #include <bf_svx/svdsob.hxx>
-
 #include <bf_svx/svdtypes.hxx> // fuer SdrLayerID
-
 #include <bf_svx/svdglue.hxx> // Klebepunkte
-
 #include <bf_svx/xdash.hxx>
-
 #include <bf_svx/xpoly.hxx>
-
 #include <bf_svx/poly3d.hxx>
-
 #include <bf_svx/xenum.hxx>
-
 #include <tools/color.hxx>
 
 class Pointer;
@@ -71,7 +59,6 @@ class SfxPoolItem;
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
-
 class ExtOutputDevice;
 class OutlinerParaObject;
 class SdrOutliner;
@@ -99,7 +86,6 @@ class SdrLineGeometry;
 //************************************************************
 //   Defines
 //************************************************************
-
 enum SdrObjKind {OBJ_NONE       = 0,  // Abstraktes Objekt (SdrObject)
                  OBJ_GRUP       = 1,  // Objektgruppe
                  OBJ_LINE       = 2,  // Strecke
@@ -167,7 +153,6 @@ enum SdrUserCallType {SDRUSERCALL_MOVEONLY,         // Nur verschoben, Groesse u
 //************************************************************
 //   Hilfsklasse SdrObjUserCall
 //************************************************************
-
 class SdrObjUserCall
 {
 public:
@@ -179,7 +164,6 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjMacroHitRec
 //************************************************************
-
 class SdrObjMacroHitRec
 {
 public:
@@ -303,7 +287,6 @@ public:
 // Bitsack fuer DrawObjekte
 //
 //************************************************************
-
 class SdrObjPlusData
 {
     friend class                SdrObject;
@@ -312,7 +295,6 @@ public:
     SfxBroadcaster*             pBroadcast;    // Broadcaster, falls dieses Obj referenziert wird (bVirtObj=TRUE). Auch fuer Konnektoren etc.
     SdrObjUserDataList*         pUserDataList; // applikationsspeziefische Daten
     SdrGluePointList*           pGluePoints;   // Klebepunkte zum Ankleben von Objektverbindern
-//  ImpSdrMtfAnimator*          pAnimator;     // Fuer Laufschrift und blinkenden Text
     AutoTimer*                  pAutoTimer;
     XubString                   aObjName;      // Jedes Objekt soll nun einen Namen haben
 
@@ -332,7 +314,6 @@ public:
 // gibt Auskunft ueber verschiedene Eigenschaften eines ZObjects
 //
 //************************************************************
-
 class SdrObjTransformInfoRec
 {
 public:
@@ -385,7 +366,6 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjTransformInfoRec
 //************************************************************
-
 class SdrPaintInfoRec
 {
 public:
@@ -436,18 +416,9 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//   @@@@  @@@@@  @@@@@@ @@@@@  @@@@  @@@@@@
-//  @@  @@ @@  @@     @@ @@    @@  @@   @@
-//  @@  @@ @@  @@     @@ @@    @@       @@
-//  @@  @@ @@@@@      @@ @@@@  @@       @@
-//  @@  @@ @@  @@     @@ @@    @@       @@
-//  @@  @@ @@  @@ @@  @@ @@    @@  @@   @@
-//   @@@@  @@@@@   @@@@  @@@@@  @@@@    @@
-//
 // Abstraktes DrawObject
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class SdrObject: public SfxListener
 {
     friend class                SdrObjListIter;
@@ -515,10 +486,7 @@ protected:
     SdrObjUserData* ImpGetMacroUserData() const;
 
     // Fuer GetDragComment
-
     void ImpForcePlusData() { if (pPlusData==NULL) pPlusData=NewPlusData(); }
-//  ImpSdrMtfAnimator* ImpGetMtfAnimator() const { return pPlusData!=NULL ? pPlusData->pAnimator : NULL; }
-
 
     // bNotMyself=TRUE bedeutet: Nur die ObjList auf Dirty setzen, nicht mich.
     // Wird z.B. benoetigt fuer NbcMove, denn da movt man SnapRect und aOutRect

@@ -169,7 +169,6 @@ protected:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoModel();
 
 public:
-
     class InsertBookmarkAsPage_PageFunctorBase;
 
                         TYPEINFO();
@@ -290,7 +289,6 @@ public:
 
     BOOL                GetHideSpell() const { return bHideSpell; }
 
-
     List*               GetFrameViewList() const { return pFrameViewList; }
     List*               GetCustomShowList(BOOL bCreate = FALSE);
 
@@ -311,21 +309,15 @@ public:
 
     SdIMapInfo*         GetIMapInfo( SdrObject* pObject ) const;
 
-
-
     CharClass*          GetCharClass() const { return mpCharClass; }
 
     void                RestoreLayerNames();
-
     void                UpdateAllLinks();
-
     void                CheckMasterPages();
-
 
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
 
 public:
-
     static SdDrawDocument* pDocLockedInsertingLinks;  // static to prevent recursions while resolving links
 
     friend SvStream&    operator<<(SvStream& rOut, SdDrawDocument& rDoc);

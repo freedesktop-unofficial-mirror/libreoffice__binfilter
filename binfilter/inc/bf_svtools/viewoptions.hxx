@@ -31,25 +31,13 @@
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
-#ifndef INCLUDED_SVLDLLAPI_H
-
-#endif
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <com/sun/star/beans/NamedValue.hpp>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <sal/types.h>
-
 #include <osl/mutex.hxx>
-
 #include <rtl/ustring.hxx>
-
 #include <bf_svtools/options.hxx>
 
 namespace binfilter
@@ -129,34 +117,11 @@ enum EViewType
 
     @implements     -
     @base           -
-
     @devstatus      ready to use
 *//*-*************************************************************************************************************/
 
 class  SvtViewOptions: public Options
 {
-    /*
-    #ifdef TF_OLDVIEW
-    public:
-        void                                                                        GetPosition     (       sal_Int32&                                                                  nX              ,
-                                                                                                            sal_Int32&                                                                  nY              ) const;
-        void                                                                        SetPosition     (       sal_Int32                                                                   nX              ,
-                                                                                                            sal_Int32                                                                   nY              );
-        void                                                                        GetSize         (       sal_Int32&                                                                  nWidth          ,
-                                                                                                            sal_Int32&                                                                  nHeight         ) const;
-        void                                                                        SetSize         (       sal_Int32                                                                   nWidth          ,
-                                                                                                            sal_Int32                                                                   nHeight         );
-        ::rtl::OUString                                                             GetUserData     (                                                                                                   ) const;
-        void                                                                        SetUserData     ( const ::rtl::OUString&                                                            sData           );
-        static ::com::sun::star::uno::Sequence< ::rtl::OUString >                   SeperateUserData( const ::rtl::OUString&                                                            sData           ,
-                                                                                                            sal_Unicode                                                                 cSeperator=';'  );
-        static ::rtl::OUString                                                      GenerateUserData( const ::com::sun::star::uno::Sequence< ::rtl::OUString >&                         seqData         ,
-                                                                                                            sal_Unicode                                                                 cSeperator=';'  );
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >   GetAnyData      (                                                                                                   ) const;
-        void                                                                        SetAnyData      ( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >&  lData           );
-    #endif
-    */
-
     //-------------------------------------------------------------------------------------------------------------
     //  public methods
     //-------------------------------------------------------------------------------------------------------------
@@ -172,9 +137,7 @@ class  SvtViewOptions: public Options
             @descr      This will de-/initialize an instance with default values.
                         You must give us the basic type of your view and a name which specify right entry
                         in dynamical configuration list. If entry not exist, we create a new one!
-
             @seealso    enum EViewType
-
             @param      "eType" specify type of your view and is used to use right data container!
             @param      "sViewName" specify the name of your view and is the key name in data list too.
             @return     -
@@ -197,12 +160,9 @@ class  SvtViewOptions: public Options
             @descr      These class is threadsafe.
                         We create a static mutex only for one time and use it to protect our refcount and container
                         member!
-
             @seealso    -
-
             @param      -
             @return     A reference to a static mutex member.
-
             @onerror    -
         *//*-*****************************************************************************************************/
 

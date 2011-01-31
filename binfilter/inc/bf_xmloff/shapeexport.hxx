@@ -29,26 +29,17 @@
 #define _XMLOFF_SHAPEEXPORT_HXX_
 
 #include <rtl/ustring.hxx>
-
 #include <rtl/ustrbuf.hxx>
-
 #include <bf_xmloff/uniref.hxx>
-
 #include <com/sun/star/drawing/XShape.hpp>
-
 #include <com/sun/star/drawing/XShapes.hpp>
-
 #include <com/sun/star/awt/Point.hpp>
-
 #include <map>
-
 #include <bf_xmloff/xmlprmap.hxx>
-
 #include <bf_xmloff/xmlexppr.hxx>
-
 #include <bf_xmloff/animexp.hxx>
-
 #include <bf_xmloff/families.hxx>
+
 class Vector2D;
 namespace binfilter {
 class Matrix3D;

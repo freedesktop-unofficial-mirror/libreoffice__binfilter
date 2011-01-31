@@ -31,51 +31,30 @@
 //____________________________________________________________________________________________________________________________________
 //  generated header
 //____________________________________________________________________________________________________________________________________
-
 #include <com/sun/star/frame/XFrame.hpp>
-
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-
 #include <com/sun/star/lang/XServiceInfo.hpp>
-
 #include <com/sun/star/lang/XInitialization.hpp>
-
 #include <com/sun/star/lang/XTypeProvider.hpp>
-
 #include <com/sun/star/registry/XSimpleRegistry.hpp>
-
 #include <com/sun/star/beans/PropertyValue.hpp>
-
 #include <com/sun/star/util/URL.hpp>
-
 #include <com/sun/star/uno/Exception.hpp>
-
 #include <com/sun/star/frame/XDispatchProvider.hpp>
-
 #include <com/sun/star/frame/XDispatch.hpp>
-
 #include <com/sun/star/frame/XSynchronousDispatch.hpp>
-
 #include <com/sun/star/frame/XNotifyingDispatch.hpp>
-
 #include <com/sun/star/frame/XDispatchResultListener.hpp>
-
 #include <com/sun/star/frame/DispatchDescriptor.hpp>
-
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 
 //____________________________________________________________________________________________________________________________________
 //  fix uno header
 //____________________________________________________________________________________________________________________________________
-
 #include <com/sun/star/uno/Any.h>
-
 #include <com/sun/star/uno/Reference.h>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <cppuhelper/weak.hxx>
-
 #include <cppuhelper/implbase3.hxx>
 
 //____________________________________________________________________________________________________________________________________
@@ -87,7 +66,6 @@
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 #include <bf_sfx2/sfxuno.hxx>
-
 #include <bf_svtools/poolitem.hxx>
 
 namespace binfilter {

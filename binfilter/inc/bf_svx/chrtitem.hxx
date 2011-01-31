@@ -205,13 +205,6 @@ public:
 
 //------------------------------------------------------------------
 
-#ifdef ITEMID_CHARTREGRESS
-
-
-#endif
-
-//------------------------------------------------------------------
-
 #ifdef ITEMID_CHARTDATADESCR
 
 class SvxChartDataDescrItem : public SfxEnumItem
@@ -302,22 +295,6 @@ public:
 
 #endif
 
-//------------------------------------------------------------------
-
-#ifdef ITEMID_CHARTKINDERROR
-
-
-#endif
-
-//------------------------------------------------------------------
-
-#ifdef ITEMID_CHARTINDICATE
-
-
-#endif
-
-//------------------------------------------------------------------
-
 #ifdef ITEMID_DOUBLE
 
 class SvxDoubleItem : public SfxPoolItem
@@ -337,8 +314,6 @@ public:
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVersion) const;
     virtual SvStream& Store(SvStream& rOut, USHORT nItemVersion ) const;
-
-
 
     double GetValue() const { return fVal; }
     void SetValue(double fNewVal) { fVal = fNewVal; }

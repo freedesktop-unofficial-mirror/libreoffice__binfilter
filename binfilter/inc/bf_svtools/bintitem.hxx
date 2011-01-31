@@ -30,13 +30,9 @@
 #define _BINTITEM_HXX
 
 #include <tools/solar.h>
-
 #include <tools/rtti.hxx>
-
 #include <tools/bigint.hxx>
-
 #include <tools/debug.hxx>
-
 #include <bf_svtools/poolitem.hxx>
 
 class SvStream;

@@ -49,23 +49,14 @@
 #include <cppuhelper/weakagg.hxx>
 
 #include <bf_svtools/itemprop.hxx>
-
 #include <bf_svx/editdata.hxx>
-
 #include <bf_svx/unoedsrc.hxx>
-
 #include <bf_svtools/itemset.hxx>
-
 #include <bf_svtools/itempool.hxx>
-
 #include <bf_svx/svxenum.hxx>
-
 #include <bf_svx/outliner.hxx>
-
 #include <bf_svx/unoforou.hxx>
-
 #include <bf_svx/unoprnms.hxx>
-
 #include <bf_svx/eeitem.hxx>
 
 #include <com/sun/star/text/XTextField.hpp>
@@ -92,6 +83,7 @@
 
 #include <bf_svx/unoprov.hxx>
 #include <bf_svx/unomid.hxx>
+
 namespace binfilter {
 
 #define WID_FONTDESC        3900
@@ -477,7 +469,9 @@ public:
 
 // ====================================================================
 }//end of namespace binfilter
+
 #include <com/sun/star/text/XTextContent.hpp>
+
 namespace binfilter {
 class SvUShorts;
 class SvxUnoTextContent : public SvxUnoTextRangeBase,

@@ -30,25 +30,17 @@
 #define _XMLOFF_SHAPEIMPORT_HXX_
 
 #include <com/sun/star/beans/XPropertySet.hpp>
-
 #include <com/sun/star/frame/XModel.hpp>
-
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-
 #include <com/sun/star/drawing/XShapes.hpp>
-
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-
 #include <com/sun/star/drawing/ProjectionMode.hpp>
-
 #include <com/sun/star/drawing/ShadeMode.hpp>
 
 #include <tools/color.hxx>
 
 #include <bf_goodies/vector3d.hxx>
-
 #include <bf_xmloff/uniref.hxx>
-
 #include <bf_xmloff/xmlictxt.hxx>
 
 #include <vector>

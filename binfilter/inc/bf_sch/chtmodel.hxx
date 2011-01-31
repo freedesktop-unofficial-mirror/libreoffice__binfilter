@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifndef _CHTMODEL_HXX
 #define _CHTMODEL_HXX
 
@@ -36,15 +35,11 @@
 // Bei Umstellungen alle Files nach SIG_CHARTMODELDEFSCHDOC durchsuchen
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
-
 #include <bf_svx/polygn3d.hxx>
 #include <bf_svx/extrud3d.hxx>
 #include "bf_svx/obj3d.hxx"
-
 #include "bf_svx/poly3d.hxx"
-
 #include <bf_svx/viewpt3d.hxx>
-
 #include <vcl/field.hxx>
 #include <bf_svx/svdtrans.hxx>
 #include <tools/gen.hxx>
@@ -158,7 +153,6 @@ public:
     // -------
     // methods
     // -------
-
                         ChartModel( const String& rPalettePath, SfxObjectShell* pDocSh );
     virtual            ~ChartModel();
 
@@ -351,7 +345,6 @@ public:
     /// returns TRUE, if change requires BuildChart - currently always TRUE !
     BOOL                IsAttrChangeNeedsBuildChart( const SfxItemSet& rAttr );
 
-
     BOOL                SetBaseType( long nBaseType );
 
     // chart features (see chtmode7.cxx)
@@ -377,8 +370,6 @@ public:
     BOOL                IsNegativeChart( SvxChartStyle* pStyle = NULL ) const;
     BOOL                IsSignedChart( SvxChartStyle* pStyle = NULL )   const;
     BOOL                IsXYChart( SvxChartStyle* pStyle = NULL )       const;
-
-
 
 
     SfxItemPool&        GetPool()                 { return *pItemPool; }
@@ -460,8 +451,6 @@ public:
 
     ChartScene *        GetScene();
 
-
-
     BOOL                ChangeStatistics( const SfxItemSet &  rNewAttr );
 
     void                SetShowLegend( BOOL bNewShow );
@@ -476,69 +465,43 @@ public:
     inline BOOL &       IsCopied ();
     inline BOOL         IsCopied() const;
 
-
-
-
-
-
-
-
     int &               Granularity();
 
     SvxChartStyle &     ChartStyle();
     SvxChartStyle       ChartStyle() const;
 
-
     long                PieSegOfs( long nCol ) const;
 
     BOOL &              ShowMainTitle();
-
     String &            MainTitle ();
 
     BOOL &              ShowSubTitle();
-
     String &            SubTitle();
 
     BOOL &              ShowXAxisTitle();
-
     String &            XAxisTitle();
 
     BOOL &              ShowYAxisTitle();
-
     String &            YAxisTitle();
 
     BOOL &              ShowZAxisTitle();
-
     String &            ZAxisTitle();
 
     BOOL &              ShowXGridMain();
-
     BOOL &              ShowXGridHelp();
-
     BOOL &              ShowYGridMain();
-
     BOOL &              ShowYGridHelp();
-
     BOOL &              ShowZGridMain();
-
     BOOL &              ShowZGridHelp();
-
-
 
     BOOL &              ReadError ();
 
-
     Size &              InitialSize();
-
-
-
 
     int &               SplineDepth()                   { return nSplineDepth; }
 
     String &            ColText( long nCol );
-
     String &            RowText( long nRow );
-
 
     long                GetAxisUID( long nRow );
 
@@ -719,7 +682,6 @@ private:
     // -------
     // members
     // -------
-
     ChartBarDescriptor  aBarY1;
     ChartBarDescriptor  aBarY2;
 
@@ -879,7 +841,6 @@ private:
     ItemSetList         aTmpDataPointAttrList;
     ItemSetList         aTmpSwitchDataPointAttrList;
 
-
     SvxChartDataDescr   eDataDescr;
     BOOL                bShowSym;
     BOOL                bSwitchData;
@@ -975,14 +936,12 @@ private:
     // -------
     // methods
     // -------
-
     bool                UsesSourceFormat( long nAxisUID, SfxItemSet** pItemSetPointer = NULL );
 
     USHORT              GetRegressStrId( long nRow );
     void                ResizeText( SfxItemSet *pTextAttr, Size aPageSize, BOOL bResizePage=TRUE );
 
     void                DeleteObject( SdrObject* pObj );
-
 
     void                               SetTextAttr( SdrTextObj       &rTextObj,
                                                     const SfxItemSet &rAttr,
@@ -1091,9 +1050,6 @@ private:
     void                SetAxisAttributes( const SfxItemSet *  pAttr,
                                            const SdrObjGroup * pAxisObj );
 
-
-
-
     void                Dirty2D( long               nRowCnt,
                                  long               nCol,
                                  SdrObjList **      pDescrLists,
@@ -1101,20 +1057,9 @@ private:
                                  DataDescription *  pDescription );
 
 
-    /// this method shouldn't be used because it is not axis-oriented (why does it exist then?)
-
     /// this one is axis-oriented (whatever that means)
-
     void                CreateDefaultColors();
     void                DestroyDefaultColors();
-
-
-
-
-    // ChangeDataRowAttr sub methods
-
-    // ChangeDataPointAttr sub methods
-
 
     // BuildChart sub methods
     void                CreateRectsAndTitles( long whatTitle );
@@ -1130,7 +1075,6 @@ private:
                                       const long        nXOfs,
                                       const long        nYOfs,
                                       USHORT &          rIndex );
-
 
     void                LogBookAttrData();
     void                SetDefAttrRow( SfxItemSet* pDataRowAttr, const long i );

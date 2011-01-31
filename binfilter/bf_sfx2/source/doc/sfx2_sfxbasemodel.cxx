@@ -29,88 +29,51 @@
 //________________________________________________________________________________________________________
 //  my own includes
 //________________________________________________________________________________________________________
-
 #include <sfxbasemodel.hxx>
 #include <bf_sfx2/app.hxx>
 
 //________________________________________________________________________________________________________
 //  include of other projects
 //________________________________________________________________________________________________________
-
 #include <com/sun/star/view/XPrintJob.hpp>
-
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-
 #include <com/sun/star/awt/Size.hpp>
-
 #include <com/sun/star/lang/DisposedException.hpp>
-
 #include <com/sun/star/lang/IllegalArgumentException.hpp>
-
 #include <com/sun/star/frame/IllegalArgumentIOException.hpp>
-
 #include <com/sun/star/view/PaperFormat.hpp>
-
 #include <com/sun/star/view/PaperOrientation.hpp>
-
 #include <cppuhelper/interfacecontainer.hxx>
-
 #include <comphelper/processfactory.hxx>
-
 #include <com/sun/star/container/XIndexContainer.hpp>
-
 #include <com/sun/star/ucb/NameClash.hpp>
-
 #include <uno/mapping.hxx>
-
 #include <bf_svtools/itemset.hxx>
-
 #include <bf_svtools/stritem.hxx>
-
 #include <bf_svtools/intitem.hxx>
-
 #include <bf_svtools/eitem.hxx>
-
 #include "bf_basic/sbx.hxx"
-
 #include <osl/file.hxx>
-
 #include <osl/thread.hxx>
-
 #include <tools/urlobj.hxx>
-
 #include <unotools/tempfile.hxx>
-
 #include <unotools/localfilehelper.hxx>
-
 #include <ucbhelper/content.hxx>
-
 #include <osl/mutex.hxx>
 #include <vcl/salctype.hxx>
 
 //________________________________________________________________________________________________________
 //  includes of my own project
 //________________________________________________________________________________________________________
-
 #include "appuno.hxx"
-
 #include <objshimp.hxx>
-
-
 #include <docfile.hxx>
-
 #include <request.hxx>
-
 #include <objuno.hxx>
-
 #include <printer.hxx>
-
 #include <event.hxx>
-
 #include <eventsupplier.hxx>
-
 #include <evntconf.hxx>
-
 #include <interno.hxx>
 
 #include "sfx.hrc"
@@ -121,7 +84,6 @@
 #include "fcontnr.hxx"
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-
 #include <cppuhelper/typeprovider.hxx>
 
 #include "bf_basic/basmgr.hxx"
@@ -131,7 +93,6 @@ namespace binfilter {
 //________________________________________________________________________________________________________
 //  defines
 //________________________________________________________________________________________________________
-
 #define SfxIOException_Impl( nErr )             ::com::sun::star::io::IOException()
 
 #define XFRAME                                  ::com::sun::star::frame::XFrame
@@ -161,7 +122,6 @@ namespace binfilter {
 //  namespaces
 //________________________________________________________________________________________________________
 
-
 // Don't use using ... here, because there are at least two classes with the same name in use
 
 using namespace ::com::sun::star;
@@ -174,7 +134,6 @@ using namespace ::com::sun::star::uno;
 struct IMPL_SfxBaseModel_DataContainer
 {
     SfxObjectShellRef                               m_pObjectShell          ;
-    //SfxObjectShellLock                                m_pObjectShellLock      ;
     OUSTRING                                        m_sURL                  ;
     sal_uInt16                                      m_nControllerLockCount  ;
     OMULTITYPEINTERFACECONTAINERHELPER              m_aInterfaceContainer   ;
@@ -196,7 +155,6 @@ struct IMPL_SfxBaseModel_DataContainer
     IMPL_SfxBaseModel_DataContainer(    MUTEX&          aMutex          ,
                                                                         SfxObjectShell* pObjectShell    )
             :   m_pObjectShell          ( pObjectShell  )
-//          ,   m_pObjectShellLock      ( pObjectShell  )
             ,   m_sURL                  ( String()      )
             ,   m_nControllerLockCount  ( 0             )
             ,   m_aInterfaceContainer   ( aMutex        )
@@ -485,21 +443,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 
 /*N*/ REFERENCE< XINTERFACE > SAL_CALL SfxBaseModel::getParent() throw( RUNTIMEEXCEPTION )
 /*N*/ {
-/*  #77222#
-     AS->MBA: There is one view only at the moment. We don't must search for other parents in other frames ...!?
-
-    if ( !m_pData->m_xParent.is() && m_pData->m_xCurrent.is() )
-    {
-        // If no parent is set get the parent by view hierarchy
-        REFERENCE< XFRAME >  xParentFrame( m_pData->m_xCurrent->getFrame()->getCreator(), UNO_QUERY );
-        if ( xParentFrame.is() )
-        {
-            REFERENCE< XCONTROLLER >  xCtrl( xParentFrame->getController() );
-            if ( xCtrl.is() )
-                return xCtrl->getModel();
-        }
-    }
-*/
 /*N*/     SolarMutexGuard aGuard;
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
@@ -569,17 +512,12 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/             }
 /*N*/
 /*N*/             pShell = m_pData->m_pObjectShell;
-/*N*/             //pShellLock = m_pData->m_pObjectShellLock;
 /*N*/             EndListening( *pShell );
 /*N*/             m_pData->m_pObjectShell = SfxObjectShellRef();
-/*N*/           //m_pData->m_pObjectShellLock = SfxObjectShellLock();
 /*N*/         }
 /*N*/
 /*N*/       // Bei dispose keine Speichern-R"uckfrage
-/*N*/       //if ( pShell->IsEnableSetModified() && !pShell->Get_Impl()->bClosing )
-/*N*/       //    pShell->SetModified( sal_False );
 /*N*/       pShell->Get_Impl()->bDisposing = TRUE;
-/*N*/         //pShellLock = SfxObjectShellLock();
 /*N*/       SfxObjectShellClose_Impl( 0, (void*) pShell );
 /*N*/   }
 /*N*/
@@ -950,10 +888,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/       if ( xDocView.is() )
 /*N*/       {
 /*N*/           ANY xSel = xDocView->getSelection();
-/*N*/   // automatisch auskommentiert - Wird von UNO III nicht weiter unterstützt!
-/*N*/   //      return xSel.getReflection() == XINTERFACE_getReflection()
-/*N*/   //      return xSel.getValueType() == ::getCppuType((const XINTERFACE*)0)
-/*N*/   //              ? *(REFERENCE< XINTERFACE > *) xSel.get() : REFERENCE< XINTERFACE > ();
 /*N*/           xSel >>= xReturn ;
 /*N*/       }
 /*N*/   }
@@ -1333,18 +1267,10 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 // XTransferable
 //________________________________________________________________________________________________________
 
-
 /*?*/ SEQUENCE< DATAFLAVOR > SAL_CALL SfxBaseModel::getTransferDataFlavors()
 /*?*/       throw (::com::sun::star::uno::RuntimeException)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); SEQUENCE< DATAFLAVOR > aDATAFLAVOR(0); return aDATAFLAVOR;
 /*?*/ }
-
-//________________________________________________________________________________________________________
-// XTransferable
-//________________________________________________________________________________________________________
-
-
-
 
 //--------------------------------------------------------------------------------------------------------
 //  XEventsSupplier
@@ -1454,14 +1380,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/               ::rtl::OUString aTitle = m_pData->m_pObjectShell->GetTitle();
 /*N*/               addTitle_Impl( m_pData->m_seqArguments, aTitle );
 /*N*/           }
-/*
-            else if ( pSimpleHint->GetId() == SFX_HINT_DYING
-                || pSimpleHint->GetId() == SFX_HINT_DEINITIALIZING )
-            {
-                SfxObjectShellLock pShellLock = m_pData->m_pObjectShellLock;
-                m_pData->m_pObjectShellLock = SfxObjectShellLock();
-            }
-*/
 /*N*/       }
 /*N*/
 /*N*/   }
@@ -1528,8 +1446,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ {
 /*N*/   if( !sURL.getLength() )
 /*N*/       throw ILLEGALARGUMENTIOEXCEPTION();
-/*N*/
-/*N*/   //sal_Bool aSaveAsTemplate = sal_False;
 /*N*/
 /*N*/     SfxAllItemSet *aParams = new SfxAllItemSet( SFX_APP()->GetPool() );
 /*N*/   aParams->Put( SfxStringItem( SID_FILE_NAME, String(sURL) ) );
@@ -1634,7 +1550,6 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/ {
 /*N*/   return !impl_isDisposed() && (NULL != m_pData->m_aInterfaceContainer.getContainer( ::getCppuType((const REFERENCE< XDOCEVENTLISTENER >*)0) ) );
 /*N*/ }
-
 
 
 }

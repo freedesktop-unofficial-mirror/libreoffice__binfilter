@@ -30,23 +30,14 @@
 #define _TRANSBND_HXX "$Revision: 1.5 $"
 
 #include <tools/solar.h>
-
 #include <tools/datetime.hxx>
-
 #include <tools/errcode.hxx>
-
 #include <tools/link.hxx>
-
 #include <tools/ref.hxx>
-
 #include <tools/stream.hxx>
-
 #include <tools/string.hxx>
-
 #include <tools/urlobj.hxx>
-
 #include <bf_so3/binding.hxx>
-
 #include <bf_so3/transprt.hxx>
 
 #include "bf_so3/so3dllapi.h"
