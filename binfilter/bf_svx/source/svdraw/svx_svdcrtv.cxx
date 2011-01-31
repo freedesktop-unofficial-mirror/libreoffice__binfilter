@@ -140,11 +140,7 @@ namespace binfilter {
 
 /*N*/ BOOL SdrCreateView::CheckEdgeMode()
 /*N*/ {
-/*N*/   UINT32 nInv=nAktInvent;
-/*N*/   UINT16 nIdn=nAktIdent;
 /*N*/   if (pAktCreate!=NULL) {
-/*?*/       nInv=pAktCreate->GetObjInventor();
-/*?*/       nIdn=pAktCreate->GetObjIdentifier();
 /*?*/       // wird vom EdgeObj gemanaged
 /*?*/       if (nAktInvent==SdrInventor && nAktIdent==OBJ_EDGE) return FALSE;
 /*N*/   }

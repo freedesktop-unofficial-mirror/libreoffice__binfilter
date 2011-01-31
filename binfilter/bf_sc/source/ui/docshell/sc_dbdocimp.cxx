@@ -117,8 +117,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   ScDocShellModificator aModificator( rDocShell );
 /*M*/
 /*M*/   BOOL bSuccess = FALSE;
-/*M*/   BOOL bTruncated = FALSE;                // for warning
-/*M*/   USHORT nErrStringId = 0;
 /*M*/   String aErrorMessage;
 /*M*/
 /*M*/   USHORT nCol = rParam.nCol1;
@@ -128,7 +126,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   long i;
 /*M*/
 /*M*/   BOOL bDoSelection = FALSE;
-/*M*/   BOOL bRealSelection = FALSE;            // TRUE if not everything is selected
 /*M*/   ULONG nListPos = 0;
 /*M*/   ULONG nRowsRead = 0;
 /*M*/   ULONG nListCount = 0;
@@ -264,7 +261,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                           ULONG nNextRow = (ULONG) pSelection->GetObject(nListPos);
 /*M*/                           while (nRowsRead+1 < nNextRow && !bEnd)
 /*M*/                           {
-/*M*/                               bRealSelection = TRUE;
 /*M*/                               if ( !xRowSet->next() )
 /*M*/                                   bEnd = TRUE;
 /*M*/                               ++nRowsRead;
@@ -273,7 +269,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                       }
 /*M*/                       else
 /*M*/                       {
-/*M*/                           bRealSelection = TRUE;  // more data available but not used
 /*M*/                           bEnd = TRUE;
 /*M*/                       }
 /*M*/                   }
@@ -302,7 +297,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                       else        // past the end of the spreadsheet
 /*M*/                       {
 /*M*/                           bEnd = TRUE;            // don't continue
-/*M*/                           bTruncated = TRUE;      // warning flag
 /*M*/                       }
 /*M*/                   }
 /*M*/
@@ -355,12 +349,10 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*N*/       aTester.TestBlock( pDoc, nTab, rParam.nCol1,rParam.nRow1,nEndCol,nEndRow );
 /*N*/       if ( !aTester.IsEditable() )
 /*N*/       {
-/*N*/           nErrStringId = aTester.GetMessageId();
 /*N*/           bSuccess = FALSE;
 /*N*/       }
 /*N*/       else if ( pDoc->GetChangeTrack() != NULL )
 /*M*/       {
-/*M*/           nErrStringId = STR_PROTECTIONERR;
 /*M*/           bSuccess = FALSE;
 /*M*/       }
 /*M*/   }
@@ -373,7 +365,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                       nEndCol+nFormulaCols, nEndRow, nTab );
 /*M*/       if (!pDoc->CanFitBlock( aOld, aNew ))
 /*M*/       {
-/*M*/           nErrStringId = STR_MSSG_DOSUBTOTALS_2;      // can't insert cells
 /*M*/           bSuccess = FALSE;
 /*M*/       }
 /*M*/   }
@@ -426,14 +417,10 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/       USHORT nUndoEndRow = Max( nEndRow, rParam.nRow2 );
 /*M*/
 /*M*/       ScDocument* pUndoDoc = NULL;
-/*M*/       ScDBData* pUndoDBData = NULL;
 /*M*/       if ( bRecord )
 /*M*/       {
 /*M*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 /*M*/           pUndoDoc->InitUndo( pDoc, nTab, nTab );
-/*M*/
-/*M*/           if ( !bAddrInsert )
-/*M*/               pUndoDBData = new ScDBData( *pDBData );
 /*M*/       }
 /*M*/
 /*M*/       ScMarkData aNewMark;
