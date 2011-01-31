@@ -376,7 +376,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
 
                     SdXMLImplSetEffect( eEffect, eKind, eDirection, nStartScale, bIn );
 
-                    if( eEffect != EK_none )
+                    if( eKind != EK_none )
                     {
                         SvXMLUnitConverter::convertEnum( msBuffer, eKind, aXML_AnimationEffect_EnumMap );
                         rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_EFFECT, msBuffer.makeStringAndClear() );
