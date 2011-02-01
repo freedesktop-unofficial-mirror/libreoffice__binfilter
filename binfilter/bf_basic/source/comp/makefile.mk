@@ -41,7 +41,6 @@ INC+= -I$(PRJ)$/inc$/bf_basic
 # --- Allgemein -----------------------------------------------------------
 
 EXCEPTIONSFILES=
-#EXCEPTIONSFILES=$(SLO)$/parser.obj
 
 SLOFILES= \
     $(EXCEPTIONSFILES) \
@@ -50,14 +49,6 @@ SLOFILES= \
     $(SLO)$/scanner.obj     \
     $(SLO)$/buffer.obj  \
    $(SLO)$/sbcomp.obj      \
-
-#    $(SLO)$/dim.obj			\
-    $(SLO)$/exprtree.obj		\
-    $(SLO)$/exprnode.obj		\
-    $(SLO)$/exprgen.obj		\
-    $(SLO)$/io.obj			\
-    $(SLO)$/loops.obj		\
-    $(SLO)$/symtbl.obj		\
 
 # --- Targets --------------------------------------------------------------
 

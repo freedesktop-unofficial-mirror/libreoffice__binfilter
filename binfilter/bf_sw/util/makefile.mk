@@ -129,12 +129,6 @@ SHL2DEPN=   \
         $(SLB)$/sw_ui.lib
 
 
-#SHL2OBJS= \
-#	$(OUT)$/slo$/sw_swmodule.obj \
-#	$(OUT)$/slo$/sw_swdll.obj
-#	$(SLO)$/sw_.obj		  ^ \ nicht vergessen!
-
-
 SHL2DEF=    $(MISC)$/$(SHL2TARGET).def
 SHL2BASE=	0x1e000000
 

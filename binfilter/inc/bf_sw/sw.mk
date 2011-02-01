@@ -25,11 +25,6 @@
 #
 #*************************************************************************
 
-# CDEFS=$(CDEFS) -DXXX
-
-# Bereiche aktivieren
-
-#CDEFS+=-DXML_CORE_API
 CDEFS+=-DNUM_RELSPACE
 CDEFS+=-DVERTICAL_LAYOUT
 CDEFS+=-DACCESSIBLE_LAYOUT

@@ -36,7 +36,6 @@ NO_HIDS=TRUE
 # --- Settings ------------------------------------------------------------
 
 .INCLUDE :	settings.mk
-#INC+= -I$(PRJ)$/inc$/bf_offmgr
 
 .IF "$(prjpch)" != ""
 CDEFS+=-DPRECOMPILED

@@ -36,7 +36,6 @@ TARGET=sw_swg
 NO_HIDS=TRUE
 
 AUTOSEG=true
-#ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
