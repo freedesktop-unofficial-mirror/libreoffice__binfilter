@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#define _BINDDATA_CXX "$Revision: 1.4 $"
+#define _BINDDATA_CXX
 
 #include <tools/solar.h>
 #include <tools/shl.hxx>

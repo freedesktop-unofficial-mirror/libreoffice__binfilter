@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #ifndef _INETBND_HXX
-#define _INETBND_HXX "$Revision: 1.3 $"
+#define _INETBND_HXX
 
 #include <bf_so3/transbnd.hxx>
 

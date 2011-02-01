@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #ifndef _TRANSUNO_HXX
-#define _TRANSUNO_HXX "$Revision: 1.4 $"
+#define _TRANSUNO_HXX
 
 #ifndef _RTL_USTRING_
 #include <rtl/ustring.h>

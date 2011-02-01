@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #ifndef _TRANSPRT_HXX
-#define _TRANSPRT_HXX "$Revision: 1.5 $"
+#define _TRANSPRT_HXX
 
 #include <tools/solar.h>
 

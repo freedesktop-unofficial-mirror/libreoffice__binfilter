@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#define _TRANSBND_CXX "$Revision: 1.5 $"
+#define _TRANSBND_CXX
 
 #include <com/sun/star/beans/PropertyValue.hpp>
 

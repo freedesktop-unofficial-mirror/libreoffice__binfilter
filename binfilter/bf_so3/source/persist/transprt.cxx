@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#define _TRANSPRT_CXX "$Revision: 1.6 $"
+#define _TRANSPRT_CXX
 
 #include <com/sun/star/beans/PropertyValue.hpp>
 #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
