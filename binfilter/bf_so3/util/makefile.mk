@@ -38,7 +38,6 @@ USE_LDUMP2=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
 RSCFLAGS+=-p
 

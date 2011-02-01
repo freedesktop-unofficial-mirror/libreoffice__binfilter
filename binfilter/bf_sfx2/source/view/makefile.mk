@@ -35,8 +35,6 @@ NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=	TRUE
 
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk

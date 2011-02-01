@@ -38,7 +38,6 @@ ENABLE_EXCEPTIONS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
 .IF "$(NO_DLL)" == "NO_DLL"
 SLO=$(OBJ)

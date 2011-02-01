@@ -35,8 +35,6 @@ TARGET=bf_sfx
 
 NO_HIDS=TRUE
 
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk

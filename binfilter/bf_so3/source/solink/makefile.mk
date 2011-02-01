@@ -42,7 +42,6 @@ OPTLINKS=YES
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
 # --- Files --------------------------------------------------------
 

@@ -34,7 +34,6 @@ TARGET=sfx2_config
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 
 # --- Settings -----------------------------------------------------
 

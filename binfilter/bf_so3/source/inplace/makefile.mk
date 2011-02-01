@@ -35,7 +35,6 @@ TARGET=so3_inplace
 
 # --- Settings -----------------------------------------------------
 .INCLUDE :  settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
 # --- Files --------------------------------------------------------
 

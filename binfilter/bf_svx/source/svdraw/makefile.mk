@@ -36,7 +36,6 @@ NO_HIDS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Files --------------------------------------------------------

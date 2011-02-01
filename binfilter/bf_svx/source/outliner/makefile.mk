@@ -41,7 +41,6 @@ PROJECTPCHSOURCE=svx_outl_pch
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Allgemein ----------------------------------------------------------

@@ -33,8 +33,6 @@ TARGET=sfx2_notify
 
 NO_HIDS=TRUE
 
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
-
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk

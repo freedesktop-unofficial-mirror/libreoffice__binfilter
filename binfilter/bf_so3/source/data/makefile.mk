@@ -34,8 +34,6 @@ TARGET=so3_data
 
 # --- Settings -----------------------------------------------------
 .INCLUDE :  settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
-
 
 # --- Files --------------------------------------------------------
 
