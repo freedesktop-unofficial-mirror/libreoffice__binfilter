@@ -52,16 +52,7 @@
 namespace binfilter {
 
 
-#undef DBG_INVALIDATE
-/*N*/ #define DBGOUTPUT(s) \
-/*N*/   DBG_ERROR( String("Invalidate ") + String(s) + String(": ") \
-/*N*/              + String(nCol) + String('/') + String(aAdrStart.Row()) + String('/') + String(nTab) \
-/*N*/              + String(" bis ") \
-/*N*/              + String(nCol) + String('/') + String(aAdrEnd.Row())   + String('/') + String(nTab) \
-/*N*/             );
-
 // STATIC DATA -----------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
@@ -151,9 +142,6 @@ namespace binfilter {
 /*N*/               aAdrStart.SetRow( i ? pData[i-1].nRow+1 : 0 );
 /*N*/               aAdrEnd  .SetRow( pData[i].nRow );
 /*N*/               pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/               DBGOUTPUT("Reset");
-/*N*/ #endif
 /*N*/           }
 /*N*/           // bedingtes Format gesetzt oder geloescht?
 /*N*/           if ( &pPattern->GetItem(ATTR_CONDITIONAL) != &pOldPattern->GetItem(ATTR_CONDITIONAL) )
@@ -339,9 +327,6 @@ namespace binfilter {
 /*N*/                     aAdrStart.SetRow( Max(nStartRow,ns) );
 /*N*/                     aAdrEnd  .SetRow( Min(nEndRow,pData[nx].nRow) );
 /*N*/                     pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                     DBGOUTPUT("SetPatternArea");
-/*N*/ #endif
 /*N*/                 }
 /*N*/                 if ( &rNewSet.Get(ATTR_CONDITIONAL) != &rOldSet.Get(ATTR_CONDITIONAL) )
 /*N*/                 {
@@ -516,9 +501,6 @@ namespace binfilter {
 /*N*/                   aAdrStart.SetRow( nPos ? pData[nPos-1].nRow+1 : 0 );
 /*N*/                   aAdrEnd  .SetRow( pData[nPos].nRow );
 /*N*/                   pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                   DBGOUTPUT("ApplyStyleArea");
-/*N*/ #endif
 /*N*/               }
 /*N*/
 /*N*/               pDocument->GetPool()->Remove(*pData[nPos].pPattern);
@@ -598,9 +580,6 @@ namespace binfilter {
 /*N*/                       aAdrStart.SetRow( nPos ? pData[nPos-1].nRow+1 : 0 );
 /*N*/                       aAdrEnd  .SetRow( pData[nPos].nRow );
 /*N*/                       pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                       DBGOUTPUT("ApplyCacheArea");
-/*N*/ #endif
 /*N*/                   }
 /*N*/
 /*N*/                   // bedingte Formate neu gesetzt oder geloescht ?
