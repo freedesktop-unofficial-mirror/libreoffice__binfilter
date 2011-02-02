@@ -1102,7 +1102,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
     // do not export visual area for internal ole objects
     if( pOLEIsInternal )
     {
-        sal_Bool bInternal;
+        sal_Bool bInternal sal_False;
         if( (pOLEIsInternal->maValue >>= bInternal) && bInternal )
         {
             if( pOLEVisAreaLeft ) pOLEVisAreaLeft->mnIndex = -1;
@@ -1129,7 +1129,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
 
     if( pRepeatOffsetX && pRepeatOffsetY )
     {
-        sal_Int32 nOffset;
+        sal_Int32 nOffset = 0;
         if( ( pRepeatOffsetX->maValue >>= nOffset ) && ( nOffset == 0 ) )
             pRepeatOffsetX->mnIndex = -1;
         else
@@ -1139,7 +1139,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
     if(pFontWorkStyle)
     {
         // #FontWork#
-        sal_Int32 nStyle;
+        sal_Int32 nStyle = 0;
 
         if(pFontWorkStyle->maValue >>= nStyle)
         {
@@ -1316,7 +1316,7 @@ void XMLPageExportPropertyMapper::ContextFilter(
 
     if( pRepeatOffsetX && pRepeatOffsetY )
     {
-        sal_Int32 nOffset;
+        sal_Int32 nOffset = 0;
         if( ( pRepeatOffsetX->maValue >>= nOffset ) && ( nOffset == 0 ) )
             pRepeatOffsetX->mnIndex = -1;
         else

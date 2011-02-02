@@ -80,7 +80,7 @@ sal_Bool XMLDurationPropertyHdl::exportXML(
     const ::com::sun::star::uno::Any& rValue,
     const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int32 nVal;
+    sal_Int32 nVal = 0;
 
     if(rValue >>= nVal)
     {
@@ -136,7 +136,7 @@ sal_Bool XMLOpacityPropertyHdl::exportXML(
     const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_uInt16 nVal;
+    sal_uInt16 nVal = 0;
 
     if( rValue >>= nVal )
     {
@@ -193,7 +193,7 @@ sal_Bool XMLTextAnimationStepPropertyHdl::exportXML(
     const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
 
     if( rValue >>= nVal )
     {

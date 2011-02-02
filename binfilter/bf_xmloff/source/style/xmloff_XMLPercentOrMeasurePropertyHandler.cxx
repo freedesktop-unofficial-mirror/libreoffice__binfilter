@@ -80,7 +80,7 @@ sal_Bool XMLPercentOrMeasurePropertyHandler::exportXML(
 {
       OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue = 0;
     if( !(rValue >>= nValue ) )
         return sal_False;
 

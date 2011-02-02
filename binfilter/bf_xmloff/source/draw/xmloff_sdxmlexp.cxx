@@ -709,7 +709,7 @@ BOOL SdXMLExport::ImpPrepAutoLayoutInfo(const uno::Reference<drawing::XDrawPage>
     uno::Reference <beans::XPropertySet> xPropSet(xPage, uno::UNO_QUERY);
     if(xPropSet.is())
     {
-        sal_uInt16 nType;
+        sal_uInt16 nType = 0;
         uno::Any aAny;
 
         aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("Layout")));

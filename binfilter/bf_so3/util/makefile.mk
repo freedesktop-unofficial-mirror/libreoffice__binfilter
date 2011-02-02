@@ -128,8 +128,6 @@ DEF1DES 	=StarObjects
 # --- Targets ------------------------------------------------------
 
 .INCLUDE :  target.mk
-.INCLUDE :  target.pmk
-
 
 # --- SO2-Filter-Datei ---
 

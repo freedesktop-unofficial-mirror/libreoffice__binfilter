@@ -1167,7 +1167,7 @@ void XMLShapeExport::ImpExportConnectorShape(
         rExport.AddAttribute(XML_NAMESPACE_DRAW, XML_START_SHAPE, OUString::valueOf( nShapeId ));
 
         aAny = xProps->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("StartGluePointIndex")) );
-        sal_Int32 nGluePointId;
+        sal_Int32 nGluePointId = 0;
         if( aAny >>= nGluePointId )
         {
             if( nGluePointId != -1 )
@@ -1186,7 +1186,7 @@ void XMLShapeExport::ImpExportConnectorShape(
         rExport.AddAttribute(XML_NAMESPACE_DRAW, XML_END_SHAPE, OUString::valueOf( nShapeId ));
 
         aAny = xProps->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("EndGluePointIndex")) );
-        sal_Int32 nGluePointId;
+        sal_Int32 nGluePointId = 0;
         if( aAny >>= nGluePointId )
         {
             if( nGluePointId != -1 )

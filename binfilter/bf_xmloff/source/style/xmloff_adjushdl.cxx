@@ -89,7 +89,7 @@ sal_Bool XMLParaAdjustPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
     if(!rValue.hasValue())
         return sal_False;     //added by BerryJia for fixing Bug102407 2002-11-5
     OUStringBuffer aOut;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
 
     rValue >>= nVal;
 
@@ -124,7 +124,7 @@ sal_Bool XMLLastLineAdjustPropHdl::importXML( const OUString& rStrImpValue, uno:
 sal_Bool XMLLastLineAdjustPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     OUStringBuffer aOut;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
     sal_Bool bRet = sal_False;
 
     rValue >>= nVal;
