@@ -31,18 +31,14 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sc_ui
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_sc
-#IMGLST_SRS=$(SRS)$/sc_ui.srs
-#BMP_IN=$(BFPRJ)$/res/imglst/apptbx
-# --- Update-Version -----------------------------------------------
 
+# --- Update-Version -----------------------------------------------
 RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
 
 # --- Files --------------------------------------------------------

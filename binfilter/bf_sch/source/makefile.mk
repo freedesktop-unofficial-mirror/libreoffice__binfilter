@@ -34,13 +34,12 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util\sch_sch
 PRJNAME=binfilter
 TARGET=sch
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 LIBTARGET=NO
 
 # --- Settings -----------------------------------------------------
+
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
 .IF "$(GUI)$(COM)" == "WINMSC"

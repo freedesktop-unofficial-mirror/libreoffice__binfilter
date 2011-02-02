@@ -31,8 +31,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=bf_go
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 LIBTARGET=NO
@@ -60,7 +58,6 @@ DEF1DEPN	=$(MISC)$/$(SHL1TARGET).flt \
 
 DEF1DES		=Bf_Goodies
 DEFLIB1NAME	=bf_go
-#DEF1EXPORTFILE	=bf_goodies.dxp
 
 SHL1STDLIBS= \
             $(SVTOOLLIB)		\

@@ -31,8 +31,6 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sd_xml
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
@@ -42,6 +40,7 @@ ENABLE_EXCEPTIONS=TRUE
 .INCLUDE : settings.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
+
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\

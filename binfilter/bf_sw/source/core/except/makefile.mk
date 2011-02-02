@@ -33,13 +33,10 @@ BFPRJ=..$/..$/..
 PRJNAME=binfilter
 TARGET=sw_except
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 
 # hier kein PCH!
@@ -47,9 +44,9 @@ prjpch=
 PRJPCH=
 
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
+
 # --- Files --------------------------------------------------------
 
 CXXFILES =
@@ -61,6 +58,7 @@ CXXFILES += \
 SLOFILES +=  \
         $(SLO)$/sw_errhdl.obj
 .ENDIF
+
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk

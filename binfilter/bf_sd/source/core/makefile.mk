@@ -34,8 +34,6 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
 PRJNAME=binfilter
 TARGET=sd_core
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------

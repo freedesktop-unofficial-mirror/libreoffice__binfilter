@@ -31,8 +31,6 @@ BFPRJ=..$/..
 PRJNAME=binfilter
 TARGET=goodies_base2d
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 AUTOSEG=true

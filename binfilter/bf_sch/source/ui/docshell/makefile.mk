@@ -34,15 +34,15 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sch_sch
 PRJNAME=binfilter
 TARGET=sch_docshell
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS = TRUE
 
 # --- Settings -----------------------------------------------------
+
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
+
 # --- Files --------------------------------------------------------
 
 CXXFILES = $(BFPRJ)$/util$/sch_sch.cxx \

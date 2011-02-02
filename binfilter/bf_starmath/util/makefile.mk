@@ -31,8 +31,6 @@ BFPRJ=..
 PRJNAME=binfilter
 TARGET=smath3
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 LIBTARGET=NO
@@ -41,6 +39,7 @@ LIBTARGET=NO
 
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_starmath
+
 # --- Files --------------------------------------------------------
 
 RESLIB1NAME=bf_sm
