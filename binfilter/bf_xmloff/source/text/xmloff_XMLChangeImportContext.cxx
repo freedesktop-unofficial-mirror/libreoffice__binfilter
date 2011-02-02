@@ -49,13 +49,13 @@ using ::binfilter::xmloff::token::XML_CHANGE_ID;
 TYPEINIT1( XMLChangeImportContext, SvXMLImportContext );
 
 XMLChangeImportContext::XMLChangeImportContext(
-    SvXMLImport& rImport,
-    sal_Int16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_Int16 nInPrefix,
     const OUString& rLocalName,
     sal_Bool bStart,
     sal_Bool bEnd,
     sal_Bool bOutsideOfParagraph) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         bIsStart(bStart),
         bIsEnd(bEnd),
         bIsOutsideOfParagraph(bOutsideOfParagraph)
@@ -74,10 +74,10 @@ void XMLChangeImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken( sLocalName, XML_CHANGE_ID ) )
         {
             // Id found! Now call RedlineImportHelper

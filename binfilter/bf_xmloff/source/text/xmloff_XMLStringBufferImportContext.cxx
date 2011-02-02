@@ -45,11 +45,11 @@ using ::binfilter::xmloff::token::XML_P;
 TYPEINIT1(XMLStringBufferImportContext, SvXMLImportContext);
 
 XMLStringBufferImportContext::XMLStringBufferImportContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& sLocalName,
     OUStringBuffer& rBuffer) :
-    SvXMLImportContext(rImport, nPrefix, sLocalName),
+    SvXMLImportContext(rInImport, nInPrefix, sLocalName),
     rTextBuffer(rBuffer)
 {
 }
@@ -59,11 +59,11 @@ XMLStringBufferImportContext::~XMLStringBufferImportContext()
 }
 
 SvXMLImportContext *XMLStringBufferImportContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
-    const Reference<XAttributeList> & xAttrList)
+    const Reference<XAttributeList> & /*xAttrList*/)
 {
-    return new XMLStringBufferImportContext(GetImport(), nPrefix,
+    return new XMLStringBufferImportContext(GetImport(), nInPrefix,
                                             rLocalName, rTextBuffer);
 }
 

@@ -42,26 +42,26 @@ using namespace ::binfilter::xmloff::token;
 
 using rtl::OUString;
 
-XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rImport,
-                                    sal_uInt16 nPrefix,
+XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rInImport,
+                                    sal_uInt16 nInPrefix,
                                     const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
                                          ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
-    : SvXMLImportContext ( rImport, nPrefix, rLocalName )
+    : SvXMLImportContext ( rInImport, nInPrefix, rLocalName )
     , nYear( 1930 )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if ( IsXMLToken( aLocalName, XML_NULL_YEAR ) )
+            if ( IsXMLToken( aLclLocalName, XML_NULL_YEAR ) )
             {
                 sal_Int32 nTemp;
                 GetImport().GetMM100UnitConverter().convertNumber(nTemp, sValue);

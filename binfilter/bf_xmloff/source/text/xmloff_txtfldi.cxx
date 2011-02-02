@@ -313,8 +313,8 @@ TYPEINIT1( XMLTextFieldImportContext, SvXMLImportContext);
 XMLTextFieldImportContext::XMLTextFieldImportContext(
     SvXMLImport& rImport, XMLTextImportHelper& rHlp,
     const sal_Char* pService,
-    sal_uInt16 nPrefix, const OUString& rElementName)
-    : SvXMLImportContext( rImport, nPrefix, rElementName ),
+    sal_uInt16 nInPrefix,   const OUString& rElementName)
+    : SvXMLImportContext( rImport, nInPrefix, rElementName ),
       sContentBuffer(),
       rTextImportHelper(rHlp),
       bValid(sal_False),
@@ -334,11 +334,11 @@ void XMLTextFieldImportContext::StartElement(
     for(sal_Int16 i=0; i<nLength; i++) {
 
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
         ProcessAttribute(rTextImportHelper.GetTextFieldAttrTokenMap().
-                             Get(nPrefix, sLocalName),
+                             Get(nLclPrefix, sLocalName),
                          xAttrList->getValueByIndex(i) );
     }
 }
@@ -425,7 +425,7 @@ XMLTextFieldImportContext*
 XMLTextFieldImportContext::CreateTextFieldImportContext(
     SvXMLImport& rImport,
     XMLTextImportHelper& rHlp,
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rName,
     sal_uInt16 nToken)
 {
@@ -450,109 +450,109 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_SENDER_STATE_OR_PROVINCE:
             pContext =
                 new XMLSenderFieldImportContext( rImport, rHlp,
-                                                 nPrefix, rName, nToken );
+                                                 nInPrefix, rName, nToken );
             break;
 
         case XML_TOK_TEXT_AUTHOR_NAME:
         case XML_TOK_TEXT_AUTHOR_INITIALS:
             pContext =
                 new XMLAuthorFieldImportContext( rImport, rHlp,
-                                                 nPrefix, rName, nToken );
+                                                 nInPrefix, rName, nToken );
             break;
 
         case XML_TOK_TEXT_PLACEHOLDER:
             pContext =
                 new XMLPlaceholderFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName);
+                                                      nInPrefix, rName);
             break;
         case XML_TOK_TEXT_SEQUENCE:
             pContext =
                 new XMLSequenceFieldImportContext( rImport, rHlp,
-                                                   nPrefix, rName );
+                                                   nInPrefix, rName );
             break;
         case XML_TOK_TEXT_TEXT_INPUT:
             pContext =
                 new XMLTextInputFieldImportContext( rImport, rHlp,
-                                                    nPrefix, rName );
+                                                    nInPrefix, rName );
             break;
         case XML_TOK_TEXT_EXPRESSION:
             pContext =
                 new XMLExpressionFieldImportContext( rImport, rHlp,
-                                                     nPrefix, rName );
+                                                     nInPrefix, rName );
             break;
         case XML_TOK_TEXT_VARIABLE_SET:
             pContext =
                 new XMLVariableSetFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
         case XML_TOK_TEXT_VARIABLE_INPUT:
             pContext =
                 new XMLVariableInputFieldImportContext( rImport, rHlp,
-                                                        nPrefix, rName );
+                                                        nInPrefix, rName );
             break;
         case XML_TOK_TEXT_VARIABLE_GET:
             pContext =
                 new XMLVariableGetFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
         case XML_TOK_TEXT_USER_FIELD_GET:
             pContext = new XMLUserFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
         case XML_TOK_TEXT_USER_FIELD_INPUT:
             pContext = new XMLUserFieldInputImportContext( rImport, rHlp,
-                                                           nPrefix, rName );
+                                                           nInPrefix, rName );
             break;
         case XML_TOK_TEXT_TIME:
             pContext = new XMLTimeFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
         case XML_TOK_TEXT_PAGE_CONTINUATION_STRING:
             pContext = new XMLPageContinuationImportContext( rImport, rHlp,
-                                                             nPrefix, rName );
+                                                             nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_PAGE_NUMBER:
             pContext = new XMLPageNumberImportContext( rImport, rHlp,
-                                                       nPrefix, rName );
+                                                       nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_DATE:
             pContext = new XMLDateFieldImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_DATABASE_NAME:
             pContext = new XMLDatabaseNameImportContext( rImport, rHlp,
-                                                         nPrefix, rName );
+                                                         nInPrefix, rName );
             break;
         case XML_TOK_TEXT_DATABASE_NEXT:
             pContext = new XMLDatabaseNextImportContext( rImport, rHlp,
-                                                         nPrefix, rName );
+                                                         nInPrefix, rName );
             break;
         case XML_TOK_TEXT_DATABASE_SELECT:
             pContext = new XMLDatabaseSelectImportContext( rImport, rHlp,
-                                                           nPrefix, rName );
+                                                           nInPrefix, rName );
             break;
         case XML_TOK_TEXT_DATABASE_ROW_NUMBER:
             pContext = new XMLDatabaseNumberImportContext( rImport, rHlp,
-                                                           nPrefix, rName );
+                                                           nInPrefix, rName );
             break;
         case XML_TOK_TEXT_DATABASE_DISPLAY:
             pContext = new XMLDatabaseDisplayImportContext( rImport, rHlp,
-                                                            nPrefix, rName );
+                                                            nInPrefix, rName );
             break;
         case XML_TOK_TEXT_CONDITIONAL_TEXT:
             pContext = new XMLConditionalTextImportContext( rImport, rHlp,
-                                                            nPrefix, rName );
+                                                            nInPrefix, rName );
             break;
         case XML_TOK_TEXT_HIDDEN_TEXT:
             pContext = new XMLHiddenTextImportContext( rImport, rHlp,
-                                                       nPrefix, rName );
+                                                       nInPrefix, rName );
             break;
         case XML_TOK_TEXT_HIDDEN_PARAGRAPH:
             pContext = new XMLHiddenParagraphImportContext( rImport, rHlp,
-                                                            nPrefix, rName );
+                                                            nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_DOCUMENT_INFORMATION_0:   // info fields only for
@@ -564,7 +564,7 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_DOCUMENT_SUBJECT:
         case XML_TOK_TEXT_DOCUMENT_KEYWORDS:
             pContext = new XMLSimpleDocInfoImportContext( rImport, rHlp,
-                                                          nPrefix, rName,
+                                                          nInPrefix, rName,
                                                           nToken, sal_True,
                                                           sal_False );
             break;
@@ -572,7 +572,7 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_DOCUMENT_PRINT_AUTHOR:
         case XML_TOK_TEXT_DOCUMENT_SAVE_AUTHOR:
             pContext = new XMLSimpleDocInfoImportContext( rImport, rHlp,
-                                                          nPrefix, rName,
+                                                          nInPrefix, rName,
                                                           nToken, sal_False,
                                                           sal_True );
             break;
@@ -585,35 +585,35 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_DOCUMENT_SAVE_TIME:
         case XML_TOK_TEXT_DOCUMENT_EDIT_DURATION:
             pContext = new XMLDateTimeDocInfoImportContext( rImport, rHlp,
-                                                            nPrefix, rName,
+                                                            nInPrefix, rName,
                                                             nToken );
             break;
 
         case XML_TOK_TEXT_DOCUMENT_REVISION:
             pContext = new XMLRevisionDocInfoImportContext( rImport, rHlp,
-                                                            nPrefix, rName,
+                                                            nInPrefix, rName,
                                                             nToken );
             break;
 
         case XML_TOK_TEXT_DOCUMENT_USER_DEFINED:
             pContext = new XMLUserDocInfoImportContext( rImport, rHlp,
-                                                        nPrefix, rName,
+                                                        nInPrefix, rName,
                                                         nToken );
             break;
 
         case XML_TOK_TEXT_FILENAME:
             pContext = new XMLFileNameImportContext( rImport, rHlp,
-                                                     nPrefix, rName );
+                                                     nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_CHAPTER:
             pContext = new XMLChapterImportContext( rImport, rHlp,
-                                                    nPrefix, rName );
+                                                    nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_TEMPLATENAME:
             pContext = new XMLTemplateNameImportContext( rImport, rHlp,
-                                                         nPrefix, rName );
+                                                         nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_WORD_COUNT:
@@ -624,27 +624,27 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_OBJECT_COUNT:
         case XML_TOK_TEXT_PAGE_COUNT:
             pContext = new XMLCountFieldImportContext( rImport, rHlp,
-                                                       nPrefix, rName, nToken);
+                                                       nInPrefix, rName, nToken);
             break;
 
         case XML_TOK_TEXT_GET_PAGE_VAR:
             pContext = new XMLPageVarGetFieldImportContext( rImport, rHlp,
-                                                            nPrefix, rName );
+                                                            nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_SET_PAGE_VAR:
             pContext = new XMLPageVarSetFieldImportContext( rImport, rHlp,
-                                                            nPrefix, rName );
+                                                            nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_MACRO:
             pContext = new XMLMacroFieldImportContext( rImport, rHlp,
-                                                       nPrefix, rName );
+                                                       nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_DDE:
             pContext = new XMLDdeFieldImportContext( rImport, rHlp,
-                                                     nPrefix, rName );
+                                                     nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_REFERENCE_REF:
@@ -654,41 +654,41 @@ XMLTextFieldImportContext::CreateTextFieldImportContext(
         case XML_TOK_TEXT_SEQUENCE_REF:
             pContext = new XMLReferenceFieldImportContext( rImport, rHlp,
                                                            nToken,
-                                                           nPrefix, rName );
+                                                           nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_SHEET_NAME:
             pContext = new XMLSheetNameImportContext( rImport, rHlp,
-                                                      nPrefix, rName );
+                                                      nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_BIBLIOGRAPHY_MARK:
             pContext = new XMLBibliographyFieldImportContext( rImport, rHlp,
-                                                              nPrefix, rName );
+                                                              nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_ANNOTATION:
             pContext = new XMLAnnotationImportContext( rImport, rHlp,
-                                                       nPrefix, rName);
+                                                       nInPrefix, rName);
             break;
 
         case XML_TOK_TEXT_SCRIPT:
             pContext = new XMLScriptImportContext( rImport, rHlp,
-                                                   nPrefix, rName);
+                                                   nInPrefix, rName);
             break;
 
         case XML_TOK_TEXT_MEASURE:
             pContext = new XMLMeasureFieldImportContext( rImport, rHlp,
-                                                         nPrefix, rName );
+                                                         nInPrefix, rName );
             break;
 
         case XML_TOK_TEXT_TABLE_FORMULA:
             pContext = new XMLTableFormulaImportContext( rImport, rHlp,
-                                                         nPrefix, rName );
+                                                         nInPrefix, rName );
             break;
         case XML_TOK_TEXT_DROPDOWN:
             pContext = new XMLDropDownFieldImportContext( rImport, rHlp,
-                                                          nPrefix, rName );
+                                                          nInPrefix, rName );
             break;
 
         default:
@@ -2771,24 +2771,24 @@ XMLMacroFieldImportContext::XMLMacroFieldImportContext(
 }
 
 SvXMLImportContext* XMLMacroFieldImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( (nPrefix == XML_NAMESPACE_OFFICE) &&
+    if ( (nInPrefix == XML_NAMESPACE_OFFICE) &&
          IsXMLToken( rLocalName, XML_EVENTS ) )
     {
         // create events context and remember it!
         pContext = new XMLEventsImportContext(
-            GetImport(), nPrefix, rLocalName );
+            GetImport(), nInPrefix, rLocalName );
         xEventContext = pContext;
         bValid = sal_True;
     }
     else
         pContext = SvXMLImportContext::CreateChildContext(
-            nPrefix, rLocalName, xAttrList);
+            nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }

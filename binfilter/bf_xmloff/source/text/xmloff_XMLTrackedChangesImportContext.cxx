@@ -46,10 +46,10 @@ using namespace ::binfilter::xmloff::token;
 TYPEINIT1( XMLTrackedChangesImportContext, SvXMLImportContext );
 
 XMLTrackedChangesImportContext::XMLTrackedChangesImportContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName)
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName)
 {
 }
 
@@ -68,10 +68,10 @@ void XMLTrackedChangesImportContext::StartElement(
     for( sal_Int16 i = 0; i < nLength; i++ )
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
-        if ( XML_NAMESPACE_TEXT == nPrefix )
+        if ( XML_NAMESPACE_TEXT == nLclPrefix )
         {
             if ( IsXMLToken( sLocalName, XML_TRACK_CHANGES ) )
             {
@@ -101,22 +101,22 @@ void XMLTrackedChangesImportContext::StartElement(
 
 
 SvXMLImportContext* XMLTrackedChangesImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList)
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken( rLocalName, XML_CHANGED_REGION ) )
     {
         pContext = new XMLChangedRegionImportContext(GetImport(),
-                                                     nPrefix, rLocalName);
+                                                     nInPrefix, rLocalName);
     }
 
     if (NULL == pContext)
     {
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
     }
 
