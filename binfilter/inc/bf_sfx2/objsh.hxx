@@ -348,7 +348,6 @@ public:
     virtual void                GetContent( String &,
                                         Bitmap &rClosedBitmap,
                                         Bitmap &rOpenedBitmap,
-                                        BmpColorMode eColorMode,
                                         sal_Bool   &bCanDelete,
                                         sal_uInt16 nPos,
                                         sal_uInt16 nIdx1,

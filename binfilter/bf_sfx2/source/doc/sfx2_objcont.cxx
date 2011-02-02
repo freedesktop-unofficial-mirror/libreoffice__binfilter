@@ -407,7 +407,6 @@ using namespace ::com::sun::star::uno;
 /*N*/ void   SfxObjectShell::GetContent(String & /*rText*/,
 /*N*/                                 Bitmap & /*rClosedBitmap*/,
 /*N*/                                 Bitmap & /*rOpenedBitmap*/,
-/*N*/                                 BmpColorMode /*eColorMode*/,
 /*N*/                                 BOOL & /*bCanDel*/,
 /*N*/                                 USHORT /*i*/,
 /*N*/                                 USHORT /*nIdx1*/,
