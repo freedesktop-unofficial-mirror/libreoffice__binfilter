@@ -720,7 +720,8 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
 
 
 //=========================================================================
-struct SvObjectServerListHolder {
+struct SO3_DLLPRIVATE SvObjectServerListHolder
+{
     ::binfilter::SvObjectServerList mObjList;
     SvObjectServerListHolder() { mObjList.FillInsertObjects(); }
 };
