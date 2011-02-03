@@ -404,18 +404,6 @@ using namespace ::com::sun::star::uno;
 
 //--------------------------------------------------------------------
 
-/*N*/ void   SfxObjectShell::GetContent(String & /*rText*/,
-/*N*/                                 Bitmap & /*rClosedBitmap*/,
-/*N*/                                 Bitmap & /*rOpenedBitmap*/,
-/*N*/                                 BOOL & /*bCanDel*/,
-/*N*/                                 USHORT /*i*/,
-/*N*/                                 USHORT /*nIdx1*/,
-/*N*/                                 USHORT /*nIdx2*/ )
-/*N*/ {
-/*N*/ }
-
-//--------------------------------------------------------------------
-
 /*N*/ void SfxObjectShell::LoadStyles
 /*N*/ (
     SfxObjectShell &/*rSource*/         /*  die Dokument-Vorlage, aus der
