@@ -99,69 +99,69 @@ AsynchronLink* pPendingCloser = 0;
 
 /*N*/ sal_Bool SfxObjectShell::APISaveAs_Impl
 /*N*/ (
-/*N*/   const String& aFileName,
-/*N*/   SfxItemSet*   aParams
+/*N*/  const String& aFileName,
+/*N*/  SfxItemSet*   aParams
 /*N*/ )
 /*N*/ {
 /*N*/     BOOL bOk = sal_False;
 /*N*/
-/*N*/   {DBG_CHKTHIS(SfxObjectShell, 0);}
+/*N*/  {DBG_CHKTHIS(SfxObjectShell, 0);}
 /*N*/
-/*N*/   pImp->bSetStandardName=FALSE;
-/*N*/   if ( GetMedium() )
-/*N*/   {
-/*N*/       SFX_ITEMSET_ARG( aParams, pSaveToItem, SfxBoolItem, SID_SAVETO, sal_False );
-/*N*/       sal_Bool bSaveTo = pSaveToItem && pSaveToItem->GetValue();
+/*N*/  pImp->bSetStandardName=FALSE;
+/*N*/  if ( GetMedium() )
+/*N*/  {
+/*N*/      SFX_ITEMSET_ARG( aParams, pSaveToItem, SfxBoolItem, SID_SAVETO, sal_False );
+/*N*/      sal_Bool bSaveTo = pSaveToItem && pSaveToItem->GetValue();
 /*N*/
-/*N*/       String aFilterName;
-/*N*/       SFX_ITEMSET_ARG( aParams, pFilterNameItem, SfxStringItem, SID_FILTER_NAME, sal_False );
-/*N*/       if( pFilterNameItem )
-/*N*/           aFilterName = pFilterNameItem->GetValue();
+/*N*/      String aFilterName;
+/*N*/      SFX_ITEMSET_ARG( aParams, pFilterNameItem, SfxStringItem, SID_FILTER_NAME, sal_False );
+/*N*/      if( pFilterNameItem )
+/*N*/          aFilterName = pFilterNameItem->GetValue();
 /*N*/
-/*N*/       // in case no filter defined use default one
-/*N*/       if( !aFilterName.Len() )
-/*N*/       {
-/*N*/           sal_uInt16 nActFilt = 0;
-/*N*/           const SfxFilter* pFilt = GetFactory().GetFilter( 0 ); for( ;
-/*N*/                pFilt && ( !pFilt->CanExport()
-/*N*/                 || !bSaveTo && !pFilt->CanImport() // SaveAs case
-/*N*/                 || pFilt->IsInternal() );
-/*N*/                pFilt = GetFactory().GetFilter( ++nActFilt ) );
+/*N*/      // in case no filter defined use default one
+/*N*/      if( !aFilterName.Len() )
+/*N*/      {
+/*N*/          sal_uInt16 nActFilt = 0;
+/*N*/          const SfxFilter* pFilt = GetFactory().GetFilter( 0 ); for( ;
+/*N*/               pFilt && ( !pFilt->CanExport()
+/*N*/                || !bSaveTo && !pFilt->CanImport() // SaveAs case
+/*N*/                || pFilt->IsInternal() );
+/*N*/               pFilt = GetFactory().GetFilter( ++nActFilt ) );
 /*N*/
-/*N*/           DBG_ASSERT( pFilt, "No default filter!\n" );
+/*N*/          DBG_ASSERT( pFilt, "No default filter!\n" );
 /*N*/
-/*N*/           if( pFilt )
-/*N*/               aFilterName = pFilt->GetFilterName();
+/*N*/          if( pFilt )
+/*N*/              aFilterName = pFilt->GetFilterName();
 /*N*/
-/*N*/           aParams->Put(SfxStringItem( SID_FILTER_NAME, aFilterName));
-/*N*/       }
+/*N*/          aParams->Put(SfxStringItem( SID_FILTER_NAME, aFilterName));
+/*N*/      }
 /*N*/
 /*N*/
-/*N*/       {
-/*N*/           SfxObjectShellRef xLock( this ); // ???
+/*N*/      {
+/*N*/          SfxObjectShellRef xLock( this ); // ???
 /*N*/
-/*N*/           // since saving a document modified its DocumentInfo, the current DocumentInfo must be saved on "SaveTo", because
-/*N*/           // it must be restored after saving
-/*N*/           SfxDocumentInfo aSavedInfo;
-/*N*/           sal_Bool bCopyTo =  bSaveTo || GetCreateMode() == SFX_CREATE_MODE_EMBEDDED;
-/*N*/           if ( bCopyTo )
-/*N*/               aSavedInfo = GetDocInfo();
+/*N*/          // since saving a document modified its DocumentInfo, the current DocumentInfo must be saved on "SaveTo", because
+/*N*/          // it must be restored after saving
+/*N*/          SfxDocumentInfo aSavedInfo;
+/*N*/          sal_Bool bCopyTo =  bSaveTo || GetCreateMode() == SFX_CREATE_MODE_EMBEDDED;
+/*N*/          if ( bCopyTo )
+/*N*/              aSavedInfo = GetDocInfo();
 /*N*/
-/*N*/           bOk = CommonSaveAs_Impl( INetURLObject(aFileName), aFilterName,
-/*N*/               aParams );
+/*N*/          bOk = CommonSaveAs_Impl( INetURLObject(aFileName), aFilterName,
+/*N*/              aParams );
 /*N*/
-/*N*/           if ( bCopyTo )
-/*N*/           {
-/*N*/               // restore DocumentInfo if only a copy was created
-/*N*/               SfxDocumentInfo &rDocInfo = GetDocInfo();
-/*N*/               rDocInfo = aSavedInfo;
-/*N*/           }
-/*N*/       }
+/*N*/          if ( bCopyTo )
+/*N*/          {
+/*N*/              // restore DocumentInfo if only a copy was created
+/*N*/              SfxDocumentInfo &rDocInfo = GetDocInfo();
+/*N*/              rDocInfo = aSavedInfo;
+/*N*/          }
+/*N*/      }
 /*N*/
-/*N*/       // Picklisten-Eintrag verhindern
-/*N*/       GetMedium()->SetUpdatePickList( FALSE );
-/*N*/   }
+/*N*/      // Picklisten-Eintrag verhindern
+/*N*/      GetMedium()->SetUpdatePickList( FALSE );
+/*N*/  }
 /*N*/
-/*N*/   return bOk;
+/*N*/  return bOk;
 /*N*/ }
 }

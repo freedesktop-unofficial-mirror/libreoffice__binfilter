@@ -297,7 +297,7 @@ void SAL_CALL OFileControlModel::reset() throw ( ::com::sun::star::uno::RuntimeE
         {
             // Wenn Models threadSave
             ::osl::MutexGuard aGuard(m_aMutex);
-            _reset();
+            //_reset();
         }
         m_aResetListeners.notifyEach(&XResetListener::resetted, aEvt);
     }
@@ -313,18 +313,6 @@ void OFileControlModel::addResetListener(const Reference<XResetListener>& _rxLis
 void OFileControlModel::removeResetListener(const Reference<XResetListener>& _rxListener) throw ( ::com::sun::star::uno::RuntimeException)
 {
     m_aResetListeners.removeInterface(_rxListener);
-}
-
-//------------------------------------------------------------------------------
-void OFileControlModel::_reset()
-{
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        // FS - 72451 - 31.01.00
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateSet->setPropertyValue(PROPERTY_TEXT, makeAny(m_sDefaultValue));
-    }
 }
 
 //.........................................................................

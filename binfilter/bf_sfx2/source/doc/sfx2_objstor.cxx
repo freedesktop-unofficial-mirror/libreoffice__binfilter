@@ -1624,7 +1624,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   const SfxFilter *pFilt = GetMedium()->GetFilter();
 /*N*/     if ( pFilt == GetFactory().GetFilterContainer()->GetFilter(0) )
 /*N*/         return sal_False;
-/*N*/     return pFilt && pFilt->IsAlienFormat() && pImp->bDidDangerousSave && !(pFilt->GetFilterFlags() & SFX_FILTER_SILENTEXPORT);
+/*N*/     return pFilt && pFilt->IsAlienFormat() && pImp->bDidDangerousSave;
 /*N*/ }
 
 /*N*/ sal_Bool SfxObjectShell::LoadOwnFormat( SfxMedium& rMedium )
