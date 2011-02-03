@@ -93,8 +93,6 @@ namespace binfilter {
 //________________________________________________________________________________________________________
 //  defines
 //________________________________________________________________________________________________________
-#define SfxIOException_Impl( nErr )             ::com::sun::star::io::IOException()
-
 #define XFRAME                                  ::com::sun::star::frame::XFrame
 #define XINTERFACE                              ::com::sun::star::uno::XInterface
 #define OMULTITYPEINTERFACECONTAINERHELPER      ::cppu::OMultiTypeInterfaceContainerHelper
@@ -1174,14 +1172,11 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/           throw DOUBLEINITIALIZATIONEXCEPTION();
 /*N*/
 /*N*/       sal_Bool bRes = m_pData->m_pObjectShell->DoInitNew( NULL );
-/*N*/       sal_uInt32 nErrCode = ERRCODE_IO_CANTCREATE;
-/*N*/       if (m_pData->m_pObjectShell->GetError())
-/*N*/           nErrCode = m_pData->m_pObjectShell->GetError();
 /*N*/       m_pData->m_pObjectShell->ResetError();
 /*N*/
 /*N*/       if ( !bRes )
 /*N*/       {
-/*N*/           throw SfxIOException_Impl( nErrCode );
+/*N*/           throw ::com::sun::star::io::IOException();
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1247,7 +1242,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
                 delete pMedium;
             }
 
-            throw SfxIOException_Impl( nError ? nError : ERRCODE_IO_CANTREAD );
+            throw ::com::sun::star::io::IOException();
         }
     }
 }
@@ -1456,14 +1451,11 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   sal_Bool aRet = pObjectShell->APISaveAs_Impl( sURL, aParams );
 /*N*/   DELETEZ( aParams );
 /*N*/
-/*N*/   sal_uInt32 nErrCode = ERRCODE_IO_CANTWRITE;
-/*N*/   if (pObjectShell->GetError())
-/*N*/       nErrCode = pObjectShell->GetError();
 /*N*/   pObjectShell->ResetError();
 /*N*/
 /*N*/   if ( !aRet )
 /*N*/   {
-/*N*/       throw SfxIOException_Impl( nErrCode );
+/*N*/       throw ::com::sun::star::io::IOException();
 /*N*/   }
 /*N*/ }
 /*N*/
