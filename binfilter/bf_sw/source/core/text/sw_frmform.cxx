@@ -1732,25 +1732,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/ #endif
 /*M*/ #endif
 /*M*/
-/*M*/ #ifdef DEBUG_FTN
-/*M*/   //Fussnote darf nicht auf einer Seite vor ihrer Referenz stehen.
-/*M*/   if( IsInFtn() )
-/*M*/   {
-/*M*/       const SwFtnFrm *pFtn = (SwFtnFrm*)GetUpper();
-/*M*/       const SwPageFrm *pFtnPage = pFtn->GetRef()->FindPageFrm();
-/*M*/       const MSHORT nFtnPageNr = pFtnPage->GetPhyPageNum();
-/*M*/       if( !IsLocked() )
-/*M*/       {
-/*M*/           if( nFtnPageNr > nDbgPageNr )
-/*M*/           {
-/*M*/               SwTxtFrmLocker aLock(this);
-/*M*/               ASSERT( nFtnPageNr <= nDbgPageNr, "!Ftn steht vor der Referenz." );
-/*M*/               MSHORT i = 0;
-/*M*/           }
-/*M*/       }
-/*M*/   }
-/*M*/ #endif
-/*M*/
 /*M*/   MSHORT nRepeat = 0;
 /*M*/
 /*M*/     SWRECTFN( this )
