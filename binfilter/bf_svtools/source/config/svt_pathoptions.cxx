@@ -62,6 +62,7 @@
 
 #include <vector>
 #include <boost/unordered_map.hpp>
+#include <hash_map>
 
 using namespace osl;
 using namespace utl;
