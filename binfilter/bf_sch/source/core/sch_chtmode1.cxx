@@ -27,7 +27,6 @@
  ************************************************************************/
 
 #include <bf_svx/svxids.hrc>
-
 #include <bf_svx/xlntrit.hxx>
 #include <bf_svx/svdviter.hxx>
 #include <bf_svx/svdview.hxx>
@@ -125,30 +124,31 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ const USHORT nExchangeTitleWhichPairs[] =
-/*N*/ {                                                    //ca.:
+/*N*/ {                                                    //approx.:
 /*N*/   SCHATTR_TEXT_ORIENT, SCHATTR_TEXT_ORIENT,       // 1
 /*N*/   SCHATTR_TEXT_DEGREES,SCHATTR_TEXT_DEGREES,      //
 /*N*/   XATTR_LINE_FIRST, XATTR_LINE_LAST,              // 1000
 /*N*/   XATTR_FILL_FIRST, XATTR_FILL_LAST,              // 1020
-/*N*/   SDRATTR_START, SDRATTR_END, //hier geändert auf alle SdrAttr
+/*N*/   SDRATTR_START, SDRATTR_END, //here changed to all SdrAttr
 /*N*/   EE_ITEMS_START, EE_ITEMS_END,                   // 4000
 /*N*/   0
 /*N*/ };
 
 /*************************************************************************
 |*
-|* Textobjekt fuer Diagramme erzeugen
-|* FG: Der Parameter MaximumWidth wird beachtet, falls er groesser als 0 ist.
-|*     Dann wird zur Not der Text umgebrochen. Diese Groesse muss auch
-|*     CalcMaxDescrSize uebergeben werden, sonst stimmt die Formatierung nicht.
-|*     Es werden maximal 2 Zeilen dieser Breite erzeugt der Rest wird abgeschnitten.
+|* Create text object for diagrams
+|* FG: The parameter MaximumWidth is only used if >0. In that case lines are
+|*     are wrapped if necessary. MaximumWidth has to passed to CalcMaxDescrSize
+|*     too, otherwise the formatting is wrong.
 |*
-|*      Das sollte umgeschrieben werden, denn:
-|*      1)  Es wird der Text in ein Outline-Objekt gepackt, damit man mit Stacked-Text
-|*          zurecht kommt.
-|*      2)  daraus wird die Groesse und die Breite berechnet.
-|*      3)  dann wird diese Groesse genommen um ein SdrTextObj mit den gleichen
-|*          Attributen zu erzeugen, wie das Outline Objekt.
+|*     At a maximum 2 lines of that width are created. The rest is cut off.
+|*
+|*      That should be reimplemented because:
+|*      1)  The text is put into an outline object gepackt, in order to be
+|*          able to process stacked text.
+|*      2)  based on that object the size and the width are calculated
+|*      3)  then this size is taken to create a SdrTextObj with the same
+|*          attributes as the outline object.
 |*
 \************************************************************************/
 
@@ -186,17 +186,19 @@ namespace binfilter {
 /*N*/   else
 /*N*/       pOutliner->SetText(rText, pOutliner->GetParagraph( 0 ));
 /*N*/
-/*N*/       // FG: Diese Routine berechnet nun wirklich ob der Text umgebrochen werden soll oder nicht.
+/*N*/       // FG: This routine actually calculates if the text has to be
+            // wrapped
 /*N*/   Size aSize = CalcTextSizeOfOneText (eOrient, aTextAttr, pOutliner, nMaximumWidth,FALSE);
 /*N*/
-/*N*/       // FG: Was macht das?
+/*N*/       // FG: What is the purpose of this statement?
 /*N*/   OutlinerParaObject* pPara = pOutliner->CreateParaObject();
 /*N*/
-/*N*/       // FG: Hier wird der Text der oben muehsam erzeugt und formatiert wurde, wieder weggeworfen.
+/*N*/       // FG: Now the text created and formatted by the statements above
+            // is destroyed.
 /*N*/   pOutliner->Clear();
 /*N*/
-/*N*/   //rPos=Position im ChartRect, wird als arg uebergeben,
-/*N*/   //size ergibt sich aus CalcTextOf... (s.o.)
+/*N*/   //rPos=position in ChartRect, is passed as arg
+/*N*/   //size results from CalcTextOf... (see above)
 /*N*/   Rectangle aRect(rPos, aSize);
 /*N*/   SdrRectObj* pObj;
 /*N*/
@@ -204,7 +206,7 @@ namespace binfilter {
 /*N*/
 /*N*/   switch(nId)
 /*N*/   {
-/*N*/       //Alle Titel sorgen selbst für ihre Attributierung:
+/*N*/       //All titles are responsible for their attributes
 /*N*/       case CHOBJID_DIAGRAM_TITLE_X_AXIS:
 /*N*/       case CHOBJID_DIAGRAM_TITLE_Y_AXIS:
 /*N*/       case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
@@ -218,7 +220,7 @@ namespace binfilter {
 /*N*/
 /*N*/   }
 /*N*/
-/*N*/   //Seit 4/1998 koennen Texte frei gedreht werden: SCHATTR_TEXT_DEGREES
+/*N*/   // Since 4/1998 text can be rotated by an arbitrary angle: SCHATTR_TEXT_DEGREES
 /*N*/   long nDegrees=GetTextRotation((SfxItemSet&)rAttr,eOrient);
 /*N*/   if(nDegrees)
 /*N*/   {
@@ -228,7 +230,7 @@ namespace binfilter {
 /*N*/      pObj->NbcMove( AdjustRotatedRect(aOldBoundRect, eAdjust,pObj->GetBoundRect()));
 /*N*/   }
 /*N*/
-/*N*/   //ToDo: anhängen der ,*(pItemPool->GetFrozenIdRanges()) ???, erstmal mit diesen Whichpairs
+/*N*/   //ToDo: appending of ,*(pItemPool->GetFrozenIdRanges()) ???, preliminaryly with these Whichpairs
 /*N*/   SfxItemSet aAreaAttr(*pItemPool,nExchangeTitleWhichPairs);
 /*N*/
 /*N*/   //Neu: #52009#
@@ -247,14 +249,14 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Text von Diagramm-Textobjekten setzen
+|* Set text of diagram-text objects
 |*
 \************************************************************************/
 
 
 /*************************************************************************
 |*
-|* Attribute von Diagramm-Textobjekten setzen
+|* Set attributes of diagram-text objects
 |*
 \************************************************************************/
 
@@ -276,7 +278,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if(IsAttrChangeNeedsBuildChart(rAttr))
 /*N*/       {
-/*N*/           //in diesem Fall koennte ein Textresize/reorg noetig sein
+/*N*/           // in this case a text resize/reorg might be necessary
 /*N*/
 /*N*/           Size aSize = pOutliner->CalcTextSize();
 /*N*/           aSize.Height() += TEXTHEIGHT_OFS;
