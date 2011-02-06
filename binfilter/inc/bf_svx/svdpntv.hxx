@@ -29,7 +29,7 @@
 #ifndef _SVDPNTV_HXX
 #define _SVDPNTV_HXX
 
-#include <slist>
+#include <list>
 #include <vcl/timer.hxx>
 #include <vcl/virdev.hxx>
 #include <bf_svtools/brdcst.hxx>
@@ -328,7 +328,7 @@ protected:
     Color                       maGridColor;
 
 private:
-    typedef ::std::slist< SdrGrafObj* > GraphicsStack;
+    typedef ::std::list< SdrGrafObj* > GraphicsStack;
     GraphicsStack               maSwappedInGraphicsStack;
 
     void ImpForceSwapOut();
