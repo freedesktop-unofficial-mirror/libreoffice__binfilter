@@ -39,7 +39,7 @@
 #include <unotools/charclass.hxx>
 
 #include <rtl/ustrbuf.hxx>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 namespace binfilter {
 
@@ -408,7 +408,7 @@ struct ScStringHashCode
         return rtl_ustr_hashCode_WithLength( rStr.GetBuffer(), rStr.Len() );
     }
 };
-typedef ::std::hash_map< String, OpCode, ScStringHashCode, ::std::equal_to< String > > ScOpCodeHashMap;
+typedef ::boost::unordered_map< String, OpCode, ScStringHashCode, ::std::equal_to< String > > ScOpCodeHashMap;
 
 class ScCompiler
 {

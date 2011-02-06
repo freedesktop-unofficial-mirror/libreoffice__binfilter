@@ -45,7 +45,7 @@
 #include <com/sun/star/lang/EventObject.hpp>
 namespace binfilter {
 
-typedef ::std::hash_multimap< ::rtl::OUString, ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > , ::comphelper::UStringHash, ::comphelper::UStringEqual> OInterfaceMap;
+typedef ::boost::unordered_multimap< ::rtl::OUString, ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > , ::comphelper::UStringHash, ::comphelper::UStringEqual> OInterfaceMap;
 
 DECLARE_STL_VECTOR(::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > > ,InterfaceArray);
 

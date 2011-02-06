@@ -34,7 +34,7 @@
 
 #include <bf_svtools/viewoptions.hxx>
 #include <com/sun/star/uno/Any.hxx>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 #include <com/sun/star/beans/PropertyValue.hpp>
 #include <com/sun/star/container/XNameContainer.hpp>
 #include <com/sun/star/container/XNameAccess.hpp>
@@ -274,7 +274,7 @@ struct IMPL_TStringHashCode
     }
 };
 
-typedef ::std::hash_map< ::rtl::OUString                    ,
+typedef ::boost::unordered_map< ::rtl::OUString                    ,
                          IMPL_TViewData                     ,
                          IMPL_TStringHashCode               ,
                          ::std::equal_to< ::rtl::OUString > > IMPL_TViewHash;

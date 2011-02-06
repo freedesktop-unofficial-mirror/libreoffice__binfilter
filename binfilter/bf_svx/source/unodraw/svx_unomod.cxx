@@ -59,7 +59,7 @@
 #include "unomodel.hxx"
 #include "svdobj.hxx"
 #include "unoshape.hxx"
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 namespace binfilter {
 
 //-////////////////////////////////////////////////////////////////////

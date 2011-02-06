@@ -31,12 +31,12 @@
 
 #include <com/sun/star/beans/XPropertySet.hpp>
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 #include <bf_xmloff/PropertySetInfoHash.hxx>
 namespace binfilter {
 
-typedef ::std::hash_map
+typedef ::boost::unordered_map
 <
     PropertySetInfoKey,
     sal_Bool,

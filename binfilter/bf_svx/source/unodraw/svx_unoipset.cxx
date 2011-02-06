@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 #include <vector>
 
 #include "svxids.hrc"
@@ -70,8 +70,8 @@ public:
 class SvxInfoSetCache
 {
 private:
-    typedef std::hash_map< const SfxItemPropertyMap*, uno::Reference< beans::XPropertySetInfo >,  SfxItemPropertyMapHash > InfoMap;
-    typedef std::hash_map< const SfxItemPropertyMap*, const SfxItemPropertyMap*,  SfxItemPropertyMapHash > PropertyMap;
+    typedef boost::unordered_map< const SfxItemPropertyMap*, uno::Reference< beans::XPropertySetInfo >,  SfxItemPropertyMapHash > InfoMap;
+    typedef boost::unordered_map< const SfxItemPropertyMap*, const SfxItemPropertyMap*,  SfxItemPropertyMapHash > PropertyMap;
 
     InfoMap maInfoMap;
     PropertyMap maPropertyMap;

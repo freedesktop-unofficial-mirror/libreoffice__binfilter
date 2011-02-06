@@ -31,7 +31,7 @@
 #include <sal/types.h>
 #include <SwGetPoolIdFromName.hxx>
 #include <tools/string.hxx>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 class String;
 
@@ -135,7 +135,7 @@ struct StringHash
 };
 
 
-typedef ::std::hash_map < const String*, sal_uInt16, StringHash, StringEq > NameToIdHash;
+typedef ::boost::unordered_map < const String*, sal_uInt16, StringHash, StringEq > NameToIdHash;
 
 class SwStyleNameMapper
 {

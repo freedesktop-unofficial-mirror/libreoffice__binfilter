@@ -31,7 +31,7 @@
 
 #include <limits.h>
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 #ifndef __SGI_STL_MAP
 #include <map>
 #endif
@@ -90,8 +90,8 @@ struct QNamePairEq
     }
 };
 
-typedef ::std::hash_map < QNamePair, ::rtl::OUString, QNamePairHash, QNamePairEq > QNameCache;
-typedef ::std::hash_map < ::rtl::OUString, ::rtl::Reference <NameSpaceEntry >, ::rtl::OUStringHash, OUStringEqFunc > NameSpaceHash;
+typedef ::boost::unordered_map < QNamePair, ::rtl::OUString, QNamePairHash, QNamePairEq > QNameCache;
+typedef ::boost::unordered_map < ::rtl::OUString, ::rtl::Reference <NameSpaceEntry >, ::rtl::OUStringHash, OUStringEqFunc > NameSpaceHash;
 typedef ::std::map < sal_uInt16, ::rtl::Reference < NameSpaceEntry >, uInt32lt > NameSpaceMap;
 
 class SvXMLNamespaceMap

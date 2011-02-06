@@ -43,7 +43,7 @@
 
 #include <rtl/ustring.h>
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 class String;
 namespace binfilter {
@@ -62,7 +62,7 @@ struct ScAddInStringHashCode
         return rtl_ustr_hashCode_WithLength( rStr.GetBuffer(), rStr.Len() );
     }
 };
-typedef ::std::hash_map< String, const ScUnoAddInFuncData*, ScAddInStringHashCode, ::std::equal_to< String > > ScAddInHashMap;
+typedef ::boost::unordered_map< String, const ScUnoAddInFuncData*, ScAddInStringHashCode, ::std::equal_to< String > > ScAddInHashMap;
 
 
 enum ScAddInArgumentType

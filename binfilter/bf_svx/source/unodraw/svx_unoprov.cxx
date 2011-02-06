@@ -39,7 +39,7 @@
 #include <vcl/svapp.hxx>
 #include <sal/macros.h>
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 #include <comphelper/propertysetinfo.hxx>
 
@@ -666,7 +666,7 @@ comphelper::PropertyMapEntry* ImplGetSvxDrawingDefaultsPropertyMap()
 * class UHashMap                                                       *
 ***********************************************************************/
 
-typedef ::std::hash_map< rtl::OUString, sal_uInt32, rtl::OUStringHash > UHashMapImpl;
+typedef ::boost::unordered_map< rtl::OUString, sal_uInt32, rtl::OUStringHash > UHashMapImpl;
 
 namespace {
   static const UHashMapImpl &GetUHashImpl()

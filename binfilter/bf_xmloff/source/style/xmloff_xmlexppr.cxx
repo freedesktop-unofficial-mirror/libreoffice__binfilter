@@ -35,7 +35,7 @@
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
 
 #include <list>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 
 
@@ -209,7 +209,7 @@ public:
 
 // ----------------------------------------------------------------------------
 
-typedef ::std::hash_map
+typedef ::boost::unordered_map
 <
     PropertySetInfoKey,
     FilterPropertiesInfo_Impl *,
