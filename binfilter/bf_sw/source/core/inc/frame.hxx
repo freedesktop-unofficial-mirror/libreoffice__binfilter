@@ -331,8 +331,6 @@ class SwFrm: public SwClient
         // Implementiert in text/txtftn.cxx, verhindert Ftn-Oszillation
     friend void ValidateTxt( SwFrm *pFrm );
 
-//  friend void CalcAnchorAndKeep( SwFlyFrm * );
-
     friend void MakeNxt( SwFrm *pFrm, SwFrm *pNxt );
 
     //Cache fuer (Umrandungs-)Attribute.

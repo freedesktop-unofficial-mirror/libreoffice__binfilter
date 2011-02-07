@@ -27,9 +27,7 @@
  ************************************************************************/
 
 #include <com/sun/star/awt/PosSize.hpp>
-
 #include <toolkit/helper/vclunohelper.hxx>
-
 
 #include "svdpagv.hxx"
 #include "svdouno.hxx"
@@ -227,12 +225,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-//------------------------------------------------------------------------
-
-//------------------------------------------------------------------------
-
-//------------------------------------------------------------------------
 /*N*/ USHORT SdrUnoControlList::Find(uno::Reference< awt::XControlModel > rUnoControlModel) const
 /*N*/ {
 /*N*/   SdrUnoControlAccess aAccess(rUnoControlModel);
@@ -263,7 +255,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 /*N*/ SdrPageViewWinRec::SdrPageViewWinRec(SdrPageView& rNewPageView, OutputDevice* pOut)
@@ -298,28 +289,6 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           Window* pWindow = (Window*) pOutDev;
 /*N*/           xControlContainer = VCLUnoHelper::CreateControlContainer( pWindow );
-
-            // #100394# xC->setVisible triggers window->Show() and this has
-            // problems when the view is not completely constructed which may
-            // happen when loading. This leads to accessibility broadcasts which
-            // throw asserts due to the not finished view. All this chan be avoided
-            // since xC->setVisible is here called only for the side effect in
-            // UnoControlContainer::setVisible(...) which calls createPeer(...).
-            // This will now be called directly from here.
-
-            // UnoContainerModel erzeugen
-            // uno::Reference< awt::XWindow > xC(xControlContainer, uno::UNO_QUERY);
-            // CreateControlContainer() is only used from
-            // , thus it seems not necessary to make
-            // it visible her at all.
-            // #58917# Das Show darf nicht am VCL-Fenster landen, weil dann Assertion vom SFX
-            // BOOL bVis = pWindow->IsVisible();
-            // xC->setVisible(TRUE);
-            // if ( !bVis )
-            //  pWindow->Hide();
-            //  if( !mxContext.is() && bVisible )
-            //      // Es ist ein TopWindow, also automatisch anzeigen
-            //      createPeer( ::com::sun::star::uno::Reference< ::com::sun::star::awt::XToolkit > (), ::com::sun::star::uno::Reference< ::com::sun::star::awt::XWindowPeer > () );
 
 /*N*/           uno::Reference< awt::XControl > xControl(xControlContainer, uno::UNO_QUERY);
 /*N*/           if(xControl.is())
@@ -395,11 +364,7 @@ using namespace ::com::sun::star;
 /*N*/       aPgOrg.X()=pPage->GetLftBorder();
 /*N*/       aPgOrg.Y()=pPage->GetUppBorder();
 /*N*/   }
-/*N*/ //      aOut.SetOutDev(rView.pWin);
-/*N*/ //      aOut.SetOffset(rOffs);
-/*N*/ //      eDrwStat=RS_READY;
 /*N*/   bHasMarked=FALSE;
-/*N*/   //aDragPoly.Clear();
 /*N*/   aLayerVisi.SetAll();
 /*N*/   aLayerPrn.SetAll();
 /*N*/   bVisible=FALSE;
@@ -851,10 +816,6 @@ using namespace ::com::sun::star;
 /*N*/       SdrNamedSubRecord aSubRecord(rOut,STREAM_WRITE,SdrInventor,SDRIORECNAME_PAGVHELPLINES);
 /*N*/       rOut<<rPageView.aHelpLines;
 /*N*/   }
-/*N*/   //if (GetAktGroup()!=NULL) {
-/*N*/   //    // ...
-/*N*/   //    //rOut<<aAktGroup;
-/*N*/   //}
 /*N*/   return rOut;
 /*N*/ }
 
@@ -891,7 +852,6 @@ using namespace ::com::sun::star;
 /*N*/                   rIn>>rPageView.aHelpLines;
 /*N*/               } break;
 /*N*/               case SDRIORECNAME_PAGVAKTGROUP: {
-/*N*/                   //rIn>>aAktGroup; fehlende Implementation!
 /*N*/               } break;
 /*N*/           }
 /*N*/       }

@@ -33,62 +33,19 @@
 #include <bf_svx/xdef.hxx>
 
 #include "xoutx.hxx"
-
-// #101498#
 #include "outliner.hxx"
 
-
 #include <com/sun/star/i18n/ScriptType.hdl>
-
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-
-
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
 
 #include "unolingu.hxx"
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
-
-/*************************************************************************
-|*
-|*    XOutGetCharOutline()
-|*
-|*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
-|*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
-|*    zurueckgegeben
-|*
-*************************************************************************/
-
-// #102382# Remove XOutGetCharOutline
-// #100318# deprecated, use XOutGetTextOutline
-//XPolyPolygon XOutGetCharOutline( USHORT nChar, OutputDevice& rOut, BOOL bOptimizeSize )
-//{
-//  PolyPolygon aPolyPoly;
-//
-//  //if( !rOut.GetGlyphOutline( (xub_Unicode) nChar, aPolyPoly, bOptimizeSize ) && rOut.GetOutDevType() == OUTDEV_PRINTER )
-//  // #97492#
-//  String aGlyphString((xub_Unicode) nChar);
-//
-//  if( !rOut.GetTextOutline(aPolyPoly, aGlyphString) && OUTDEV_PRINTER == rOut.GetOutDevType())
-//  {
-//      VirtualDevice aVDev;
-//      aVDev.SetMapMode( rOut.GetMapMode() );
-//      aVDev.SetFont( rOut.GetFont() );
-//      aVDev.SetTextAlign( rOut.GetTextAlign() );
-//      // #97492#
-//      //aVDev.GetGlyphOutline( (xub_Unicode) nChar, aPolyPoly, FALSE );
-//      aVDev.GetTextOutline(aPolyPoly, aGlyphString);
-//  }
-//
-//  // #97492# since GetTextOutline(...) is base line oriented, the
-//  // polygon needs to be moved one line height
-//  aPolyPoly.Move(0, rOut.GetFontMetric().GetAscent());
-//
-//  return XPolyPolygon( aPolyPoly );
-//}
 
 // #100318# new for XOutGetCharOutline
 // #102382# new interface for XOutGetTextOutline to support PolyPolyVector

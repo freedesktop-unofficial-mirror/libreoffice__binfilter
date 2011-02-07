@@ -27,12 +27,10 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
 #include "svdio.hxx"
-
 #include "globl3d.hxx"
-
 #include "label3d.hxx"
+
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLabelObj, E3dPointObj);
@@ -62,38 +60,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* virtuelle Methode, die ein 2D-Objekt zurueckgibt, falls moeglich
-|*
-\************************************************************************/
-
-//E3dDisplayObj* E3dLabelObj::MakeViewTransform(Viewport3D& rViewpt,
-//                                            E3dLightList&,
-//                                            E3dDisplayObj* pDispObj)
-//{
-//  aViewPos = rViewpt.GetViewTransform() * GetTransPosition();
-//
-//  // 2D-Position des Labels bestimmen
-//  Point a2DPos = rViewpt.ProjectAndMap(aViewPos);
-//  aViewPos -= rViewpt.GetPRP();
-//
-//  if ( p2DLabelObj )
-//      p2DLabelObj->SetAnchorPos(a2DPos);
-//
-//  if ( pDispObj )
-//  {
-//      pDispObj->Set2DObj(p2DLabelObj);
-//      pDispObj->Set3DObj(this);
-//  }
-//  else
-//      pDispObj = new E3dDisplayObj(this, p2DLabelObj);
-//
-//  SetDisplayObj(pDispObj);
-//
-//  return pDispObj;
-//}
-
-/*************************************************************************
-|*
 |* SdrPage auch an p2DLabelObj setzen
 |*
 \************************************************************************/
@@ -117,20 +83,6 @@ namespace binfilter {
 /*N*/   if ( p2DLabelObj )
 /*N*/       p2DLabelObj->SetModel(pNewModel);
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Anzahl der Handles zurueckgeben
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Handle-Liste fuellen
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -192,28 +144,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
 
 }
 

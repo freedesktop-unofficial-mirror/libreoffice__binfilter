@@ -30,15 +30,12 @@
 #define _SVDUNDO_HXX
 
 #include <bf_svtools/solar.hrc>
-
 #include <bf_svtools/undo.hxx>
-
 #include <tools/contnr.hxx>
-
 #include <tools/gen.hxx>
-
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
 #include <tools/debug.hxx>
+
 namespace binfilter {
 class SfxItemSet;
 class SfxStyleSheet;
@@ -130,16 +127,6 @@ protected:
 protected:
     SdrUndoObj(SdrObject& rNewObj);
 };
-
-//************************************************************
-//   SdrUndoAttrObj
-//
-// Aenderung der Objektattribute.
-// Action direkt vor dem Setzen der neuen Attribute konstruieren.
-// Auch fuer StyleSheets
-//
-//************************************************************
-
 
 //************************************************************
 //   SdrUndoMoveObj
@@ -257,37 +244,6 @@ public:
 
 };
 
-//************************************************************
-//   SdrUndoNewObj
-//
-// Einfuegen eines neuen Objektes.
-// Action nach dem einfuegen in die ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoReplaceObj
-//
-// Austausch eines Objektes.
-// Action vor dem Replace an der ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoCopyObj
-//
-// Kopieren eines Objekts
-// Action nach dem einfuegen in die ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoObjOrdNum
-//************************************************************
-
 
 //////////////////////////////////////////////////////////////////////////////
 // #i11702#
@@ -304,67 +260,6 @@ public:
     virtual void Undo();
     virtual void Redo();
 };
-
-//************************************************************
-//   SdrUndoObjSetText
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@     @@@@  @@  @@ @@@@@ @@@@@
-//  @@    @@  @@ @@  @@ @@    @@  @@
-//  @@    @@  @@ @@  @@ @@    @@  @@
-//  @@    @@@@@@  @@@@  @@@@  @@@@@
-//  @@    @@  @@   @@   @@    @@  @@
-//  @@    @@  @@   @@   @@    @@  @@
-//  @@@@@ @@  @@   @@   @@@@@ @@  @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//************************************************************
-//   SdrUndoLayer
-//
-// Abstrakte Basisklasse fuer alle UndoActions die mit SdrLayer zu tun haben.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoNewLayer
-//
-// Einfuegen eines neuen Layer. Action nach dem Einfuegen konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoDelLayer
-//
-// Loeschen eines Layer. Action vor dem Remove konstruieren
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoMoveLayer
-//
-// Verschieben eines Layer. Action vor dem Verschieben konstruieren.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@   @@@@   @@@@  @@@@@  @@@@
-//  @@  @@ @@  @@ @@  @@ @@    @@  @@
-//  @@  @@ @@  @@ @@     @@    @@
-//  @@@@@  @@@@@@ @@ @@@ @@@@   @@@@
-//  @@     @@  @@ @@  @@ @@        @@
-//  @@     @@  @@ @@  @@ @@    @@  @@
-//  @@     @@  @@  @@@@@ @@@@@  @@@@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //************************************************************
 //   SdrUndoPage
@@ -406,15 +301,6 @@ protected:
 };
 
 //************************************************************
-//   SdrUndoDelPage
-//
-// Loeschen einer Page.
-// Action vor dem entfernen aus der List konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
 //   SdrUndoNewPage
 //
 // Einfuegen einer neuen Page.
@@ -428,83 +314,6 @@ public:
     SdrUndoNewPage(SdrPage& rNewPg): SdrUndoPageList(rNewPg) {}
 };
 
-//************************************************************
-//   SdrUndoCopyPage
-//
-// Kopieren einer Page
-// Action nach dem einfuegen in die Liste konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoSetPageNum
-//
-// Verschieben der Page innerhalb der Liste
-// Action vor dem Verschieben der Page konstruieren.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@   @@  @@@@   @@@@  @@@@@@ @@@@@ @@@@@   @@@@@   @@@@   @@@@  @@@@@  @@@@
-//  @@@ @@@ @@  @@ @@  @@   @@   @@    @@  @@  @@  @@ @@  @@ @@  @@ @@    @@  @@
-//  @@@@@@@ @@  @@ @@       @@   @@    @@  @@  @@  @@ @@  @@ @@     @@    @@
-//  @@@@@@@ @@@@@@  @@@@    @@   @@@@  @@@@@   @@@@@  @@@@@@ @@ @@@ @@@@   @@@@
-//  @@ @ @@ @@  @@     @@   @@   @@    @@  @@  @@     @@  @@ @@  @@ @@        @@
-//  @@   @@ @@  @@ @@  @@   @@   @@    @@  @@  @@     @@  @@ @@  @@ @@    @@  @@
-//  @@   @@ @@  @@  @@@@    @@   @@@@@ @@  @@  @@     @@  @@  @@@@@ @@@@@  @@@@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//************************************************************
-//   SdrUndoPageMasterPage
-//
-// Abstrakte Basisklasse fuer alle UndoActions die mit
-// MasterPage-Beziehungen zu tun haben.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageInsertMasterPage
-//
-// Setzen einer MasterPage an einer Zeichenseite.
-// Action nach dem Einfuegen des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageRemoveMasterPage
-//
-// Entfernen einer MasterPage von einer Zeichenseite.
-// Action vor dem Entfernen des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageMoveMasterPage
-//
-// Verschieben einer MasterPage an einer Zeichenseite (Aendern
-// der Reihenfolge der MasterPageDescriptorList).
-// Action vor dem Umsortieren des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageChangeMasterPage
-//
-// Aenderung des MasterPageDescriptors (z.B. Aendern der VisibleLayer).
-// Action vor der Aenderung am MasterPageDescriptor erzeugen.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace binfilter
 #endif //_SVDUNDO_HXX

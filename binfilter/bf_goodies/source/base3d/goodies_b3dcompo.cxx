@@ -380,18 +380,6 @@ void B3dComplexPolygon::ComputeLastPolygon(BOOL bIsLast)
     // Sind noch genug Punkte da?
     if(aEntityBuffer.Count() < nNewPolyStart + 3)
     {
-        // Geometrie ausgeben, obwohl zuwenig Punkte fuer ein Polygon
-//      if(pBase3D)
-//      {
-//          pBase3D->StartPrimitive(Base3DPolygon);
-//          for(UINT32 a=0; a < aEntityBuffer.Count(); a++)
-//          {
-//              pBase3D->SetEdgeFlag(aEntityBuffer[a].IsEdgeVisible());
-//              pBase3D->AddVertex(aEntityBuffer[a]);
-//          }
-//          pBase3D->EndPrimitive();
-//      }
-//      else
             if(pGeometry)
         {
             pGeometry->StartComplexPrimitive();
@@ -404,39 +392,6 @@ void B3dComplexPolygon::ComputeLastPolygon(BOOL bIsLast)
     {
         if(!nNewPolyStart && bIsLast && IsConvexPolygon())
         {
-            // Falls das PolyPolygon nur aus einem Polygon besteht
-            // und es Konvex ist, ist man fertig.
-            // Um die Qualitaet zu verbessern, wird fuer
-            // Polygone ab einer gewissen Punktzahl ein
-            // abschliessender Mittelpunkt generiert.
-//          if(pBase3D)
-//          {
-//              pBase3D->StartPrimitive(Base3DPolygon);
-//              if(aEntityBuffer.Count() > 4)
-//              {
-//                  B3dEntity aNew;
-//                  aNew.CalcMiddle(aEntityBuffer[0], aEntityBuffer[aEntityBuffer.Count() / 2]);
-//                  pBase3D->SetEdgeFlag(FALSE);
-//                  pBase3D->AddVertex(aNew);
-//                  for(UINT32 a=0; a < aEntityBuffer.Count(); a++)
-//                  {
-//                      pBase3D->SetEdgeFlag(aEntityBuffer[a].IsEdgeVisible());
-//                      pBase3D->AddVertex(aEntityBuffer[a]);
-//                  }
-//                  pBase3D->SetEdgeFlag(FALSE);
-//                  pBase3D->AddVertex(aEntityBuffer[0]);
-//              }
-//              else
-//              {
-//                  for(UINT32 a=0; a < aEntityBuffer.Count(); a++)
-//                  {
-//                      pBase3D->SetEdgeFlag(aEntityBuffer[a].IsEdgeVisible());
-//                      pBase3D->AddVertex(aEntityBuffer[a]);
-//                  }
-//              }
-//              pBase3D->EndPrimitive();
-//          }
-//          else
                 if(pGeometry)
             {
                 pGeometry->StartComplexPrimitive();
@@ -526,31 +481,6 @@ void B3dComplexPolygon::ChooseNormal()
 |* Komplexes Polygon ausgeben
 |*
 \************************************************************************/
-
-//void B3dComplexPolygon::EndPrimitive(Base3D* pB3D)
-//{
-//  // Funktionszeiger setzen
-//  pBase3D = pB3D;
-//
-//  // Letztes angefangenes Poly verarbeiten
-//  ComputeLastPolygon(TRUE);
-//
-//  // Wenn es Kanten gibt
-//  if(pEdgeList)
-//  {
-//      // Dreiecke generieren und ausgeben
-//      pBase3D->StartPrimitive(Base3DTriangles);
-//      while(pEdgeList)
-//          ExtractTriangle();
-//      pBase3D->EndPrimitive();
-//  }
-//
-//  // Buffer leeren
-//  EmptyBuffers();
-//
-//  // Zeiger wieder loeschen
-//  pBase3D = NULL;
-//}
 
 void B3dComplexPolygon::EndPrimitive(B3dGeometry *pGeom)
 {
@@ -1078,7 +1008,6 @@ void B3dComplexPolygon::ExtractTriangle()
 
     if(!pRight)
     {
-//      DBG_ASSERT(0, "AW: Einzelne Kante als Startpunkt!");
         RemoveFirstEdge(pEdgeList);
         return;
     }
@@ -1140,31 +1069,6 @@ void B3dComplexPolygon::ExtractTriangle()
                     bOrientationValid = TRUE;
                 }
 
-                // Dreieck ausgeben
-//              if(pBase3D)
-//              {
-//                  if(bOrientation)
-//                  {
-//                      // Rechtsrum
-//                      pBase3D->SetEdgeFlag(bRightVisible);
-//                      pBase3D->AddVertex(*pEntTop);
-//                      pBase3D->SetEdgeFlag(bDidEdgeExist);
-//                      pBase3D->AddVertex(*pEntRight);
-//                      pBase3D->SetEdgeFlag(bLeftVisible);
-//                      pBase3D->AddVertex(*pEntLeft);
-//                  }
-//                  else
-//                  {
-//                      // Linksrum
-//                      pBase3D->SetEdgeFlag(bLeftVisible);
-//                      pBase3D->AddVertex(*pEntTop);
-//                      pBase3D->SetEdgeFlag(bDidEdgeExist);
-//                      pBase3D->AddVertex(*pEntLeft);
-//                      pBase3D->SetEdgeFlag(bRightVisible);
-//                      pBase3D->AddVertex(*pEntRight);
-//                  }
-//              }
-//              else
                     if(pGeometry)
                 {
                     pGeometry->StartComplexPrimitive();

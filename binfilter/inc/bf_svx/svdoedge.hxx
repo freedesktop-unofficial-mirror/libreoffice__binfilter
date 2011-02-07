@@ -30,8 +30,8 @@
 #define _SVDOEDGE_HXX
 
 #include <bf_svx/svdotext.hxx>
-
 #include <bf_svx/svdglue.hxx>
+
 namespace binfilter {
 
 //************************************************************

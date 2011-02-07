@@ -830,11 +830,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 
 /*N*/ void ScPivot::GetDataFields(PivotField* pFieldArr, short& rCount) const
 /*N*/ {
-/*  for (short i=0; i<nDataCount; i++)
-        pFieldArr[i] = aDataArr[i];
-    rCount = nDataCount;
-*/
-/*N*/
 /*N*/   rCount = 0;
 /*N*/   for (short i=0; i<nDataCount; i++)
 /*N*/   {
@@ -860,10 +855,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 
 /*N*/ BOOL ScPivot::CreateData(BOOL bKeepDest)
 /*N*/ {
-/*N*/   //
-/*N*/   //
-/*N*/   //
-/*N*/
 /*N*/   USHORT nOldCol2 = nDestCol2;
 /*N*/   USHORT nOldRow2 = nDestRow2;
 /*N*/
@@ -938,11 +929,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   delete[] pColRef;
 /*N*/   pColRef = NULL;
 /*N*/ }
-
-
-
-
-
 
 //--------------------------------------------------------------------------------------------------
 // Private Methoden
@@ -1206,11 +1192,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           else
 /*?*/               nColLines += (pRowList[i]->GetCount() * aRowArr[i].nFuncCount);
 /*N*/       }
-/*N*/       /*
-        // Ergebnisspalten des letzten Elements
-        if (aRowArr[nRowCount-1].nCol != PIVOT_DATA_FIELD)
-            nColLines += (pRowList[nRowCount-1]->GetCount() * aRowArr[nRowCount-1].nFuncCount);
-        */
 /*N*/       if (nColLines > MAXCOL)
 /*?*/           nDestCol2 = MAXCOL+2;   // ungueltig, 1 wird unten abgezogen
 /*N*/       else if (bDataAtCol)
@@ -1252,11 +1233,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           else
 /*?*/               nRowLines += (pColList[i]->GetCount() * aColArr[i].nFuncCount);
 /*N*/       }
-        /*
-        // Ergebniszeilen des letzten Elements
-        if (aColArr[nColCount-1].nCol != PIVOT_DATA_FIELD)
-             nRowLines += (pColList[nColCount-1]->GetCount() * aColArr[nColCount-1].nFuncCount);
-         */
 /*N*/       if (nRowLines > MAXROW)
 /*?*/           nDestRow2 = MAXROW+2;   // ungueltig, 1 wird unten abgezogen
 /*N*/       else if (!bDataAtCol)
@@ -1286,10 +1262,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-
-
-
-
 /*N*/ USHORT ScPivot::GetCategoryRow( USHORT nCol, USHORT nRow )
 /*N*/ {
 /*N*/   USHORT nMinRow = nSrcRow1;
@@ -1305,7 +1277,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   while (!bFound);
 /*N*/   return nRow;
 /*N*/ }
-
 
 
 }

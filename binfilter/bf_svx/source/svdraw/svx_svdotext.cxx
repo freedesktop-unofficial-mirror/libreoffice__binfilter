@@ -36,31 +36,21 @@
 #include "svdtxhdl.hxx"  // DrawTextToPath
 #include "writingmodeitem.hxx"
 
-
-
 #include <editstat.hxx>
-
 #include <outlobj.hxx>
-
 #include <editobj.hxx>
-
 
 #include "fhgtitem.hxx"
 
 #include <bf_svtools/itempool.hxx>
 
 #include "adjitem.hxx"
-
-
 #include "itemdata.hxx"
-
 #include "flditem.hxx"
-
 
 #include <vcl/salbtype.hxx>     // FRound
 
 #include "xflgrit.hxx"
-
 #include "xoutx.hxx"
 
 #include <bf_goodies/matrix3d.hxx>
@@ -73,13 +63,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  @@@@@@ @@@@@ @@   @@ @@@@@@  @@@@  @@@@@  @@@@@@
-//    @@   @@    @@@ @@@   @@   @@  @@ @@  @@     @@
-//    @@   @@     @@@@@    @@   @@  @@ @@  @@     @@
-//    @@   @@@@    @@@     @@   @@  @@ @@@@@      @@
-//    @@   @@     @@@@@    @@   @@  @@ @@  @@     @@
-//    @@   @@    @@@ @@@   @@   @@  @@ @@  @@ @@  @@
-//    @@   @@@@@ @@   @@   @@    @@@@  @@@@@   @@@@
+// TEXTOBJ
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -582,32 +566,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/       {
 /*N*/           rOutliner.SetMinAutoPaperSize(Size(0, nAnkHgt));
 /*N*/       }
-/*N*/
-/*N*/       // #103335# back to old solution, thus #100801# will be back and needs to be solved in
-/*N*/       // another way.
-//      if (eHAdj==SDRTEXTHORZADJUST_BLOCK)
-//      {
-//          if(IsVerticalWriting())
-//              rOutliner.SetMinAutoPaperSize(Size(nAnkWdt, nAnkHgt));
-//          else
-//              rOutliner.SetMinAutoPaperSize(Size(nAnkWdt, 0));
-//      }
-
-//      // #100801# MinAutoPaperSize needs always to be set completely
-//      // when Verical
-//      if(IsVerticalWriting())
-//      {
-//          rOutliner.SetMinAutoPaperSize(Size(nAnkWdt, nAnkHgt));
-//      }
-//
-//      if(SDRTEXTHORZADJUST_BLOCK == eHAdj)
-//      {
-//          // #89459#
-//          if(!IsVerticalWriting())
-//          {
-//              rOutliner.SetMinAutoPaperSize(Size(nAnkWdt, 0));
-//          }
-//      }
 /*N*/   }
 /*N*/
 /*N*/   rOutliner.SetPaperSize(aNullSize);
@@ -638,7 +596,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/ //        rOutliner.Clear();
 /*?*/       rOutliner.SetTextObj( NULL );
 /*N*/   }
 /*N*/
@@ -736,13 +693,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   return pPara;
 /*N*/ }
 
-
-
 // Geht z.Zt. nur wenn das Obj schon wenigstens einmal gepaintet wurde
 // Denn dann ist der MtfAnimator initiallisiert
-
-
-
 
 /*N*/ void SdrTextObj::ImpAddTextToBoundRect()
 /*N*/ {

@@ -68,10 +68,8 @@
 #include <bodyfrm.hxx>
 #include <dbg_lay.hxx>
 #include <bf_svx/frmdiritem.hxx>
+
 namespace binfilter {
-
-
-
 
 /*************************************************************************
 |*

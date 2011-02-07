@@ -44,12 +44,10 @@
 #include <com/sun/star/awt/XWindow.hpp>
 #include <com/sun/star/io/XActiveDataSink.hpp>
 
-
 #include <unotools/streamhelper.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 
 #include <com/sun/star/form/FormComponentType.hpp>
-
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 #include <comphelper/property.hxx>
@@ -67,7 +65,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -567,31 +564,6 @@ StringSequence  OImageControlControl::getSupportedServiceNames() throw()
 void SAL_CALL OImageControlControl::createPeer(const Reference<XToolkit>& _rxToolkit, const Reference<XWindowPeer>& Parent) throw( RuntimeException )
 {
     OBoundControl::createPeer(_rxToolkit, Parent);
-    // the following is not necessary anymore. The aggregated control (from the toolkit project)
-    // itself will register as image consumer at the image producer, so there's no need to do this ourself.
-    // This holds since our model is an XImageProducer itself, and thus hiding the XImageProducer of the aggregated
-    // model. Before, we had two ImageProducers working in parallel.
-    // 2003-05-15 - 109591 - fs@openoffice.org
-
-/**
-    if (!m_xControl.is())
-        return;
-
-    // ImageConsumer vom Control holen
-    Reference<XWindowPeer>  xPeer = m_xControl->getPeer();
-    Reference<XImageConsumer>  xImageConsumer(xPeer, UNO_QUERY);
-    if (!xImageConsumer.is())
-        return;
-
-    // ImageConsumer am Imageproducer setzen
-    Reference<XImageProducerSupplier>  xImageSource(m_xControl->getModel(), UNO_QUERY);
-    if (!xImageSource.is())
-        return;
-    Reference<XImageProducer>  xImageProducer = xImageSource->getImageProducer();
-
-    xImageProducer->addConsumer(xImageConsumer);
-    xImageProducer->startProduction();
-*/
 }
 
 //------------------------------------------------------------------------------
@@ -605,38 +577,6 @@ void OImageControlControl::implClearGraphics()
 //------------------------------------------------------------------------------
 void OImageControlControl::implInsertGraphics()
 {
-//  Reference< XPropertySet > xSet( getModel(), UNO_QUERY );
-//  if ( !xSet.is() )
-//      return;
-
-//  ::rtl::OUString sTitle = FRM_RES_STRING(RID_STR_IMPORT_GRAPHIC);
-//  // build some arguments for the upcoming dialog
-//  try
-//  {
-//      ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
-//      aDialog.SetTitle( sTitle );
-
-//      Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);
-//      DBG_ASSERT( xController.is(), "OImageControlControl::implInsertGraphics: invalid file picker!" );
-//      if ( xController.is() )
-//      {
-//          xController->setValue(ExtendedFilePickerElementIds::CHECKBOX_PREVIEW, 0, ::cppu::bool2any(sal_True));
-//          xController->enableControl(ExtendedFilePickerElementIds::CHECKBOX_LINK, sal_False);
-//      }
-
-//      if ( ERRCODE_NONE == aDialog.Execute() )
-//      {
-//          // reset the url property in case it already has the value we're about to set - in this case
-//          // our propertyChanged would not get called without this.
-//          implClearGraphics();
-
-//          xSet->setPropertyValue( PROPERTY_IMAGE_URL, makeAny( ::rtl::OUString( aDialog.GetPath() ) ) );
-//      }
-//  }
-//  catch(Exception&)
-//  {
-//      DBG_ERROR("OImageControlControl::implInsertGraphics: caught an exception while attempting to execute the FilePicker!");
-//  }
 }
 
 // MouseListener

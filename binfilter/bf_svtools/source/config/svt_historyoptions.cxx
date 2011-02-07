@@ -33,15 +33,10 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/historyoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
 
 #ifndef __SGI_STL_DEQUE
@@ -349,17 +344,6 @@ SvtHistoryOptions_Impl::SvtHistoryOptions_Impl()
         ++nPosition;
         m_aHelpBookmarks.push_back( aItem );
     }
-
-/*TODO: Not used in the moment! see Notify() ...
-    // Enable notification mechanism of ouer baseclass.
-    // We need it to get information about changes outside these class on ouer used configuration keys!
-    Sequence< OUString > seqNotifications( seqNames );
-    sal_Int32 nNotifyCount = seqNames.getLength();
-    seqNotifications.realloc( nNotifyCount+PROPERTYCOUNT_LISTNODES );
-    seqNotification[nNotifyCount  ] = PROPERTYNAME_PICKLIST;
-    seqNotification[nNotifyCount+1] = PROPERTYNAME_HISTORY ;
-    EnableNotification( seqNotification );
-*/
 }
 
 //*****************************************************************************************************************

@@ -190,19 +190,6 @@ public:
     UINT16     nCompressMode;
     UINT16     nNumberFormat;
 
-    /* old SV-stuff, there is no possibility to determine
-       this informations in another way
-    GUIType    eCreationGUI;
-    CPUType    eCreationCPU;
-    SystemType eCreationSys;
-    GUIType    eLastWriteGUI;
-    CPUType    eLastWriteCPU;
-    SystemType eLastWriteSys;
-    GUIType    eLastReadGUI;
-    CPUType    eLastReadCPU;
-    SystemType eLastReadSys;
-    */
-
 public:
     // bei bInit=TRUE werden die Member mit den aktuellen
     // Informationen gesetzt, sonst gibts nur Defaults.
@@ -285,7 +272,6 @@ protected:
     BOOL            bStarDrawPreviewMode;
     UINT16          nStarDrawPreviewMasterPageNum;
     // Reserven fuer kompatible Erweiterungen
-//-/    SfxItemPool*    pUndoItemPool;
     SotStorage*     pModelStorage;
     SvxForbiddenCharactersTable* mpForbiddenCharactersTable;
     ULONG           nSwapGraphicsMode;
@@ -402,9 +388,6 @@ public:
 
     const SfxItemPool&   GetItemPool() const                    { return *pItemPool; }
     SfxItemPool&         GetItemPool()                          { return *pItemPool; }
-
-//-/    const SfxItemPool&   GetUndoItemPool() const                    { return *pUndoItemPool; }
-//-/    SfxItemPool&         GetUndoItemPool()                          { return *pUndoItemPool; }
 
     SdrOutliner&         GetDrawOutliner(const SdrTextObj* pObj=NULL) const;
     SdrOutliner&         GetHitTestOutliner() const { return *pHitTestOutliner; }
@@ -646,9 +629,6 @@ public:
     // bereitstellt, denn dies geschieht durch streamen in einen MemoryStream.
     void        SetIOProgressHdl(const Link& rLink)          { aIOProgressLink=rLink; }
     const Link& GetIOProgressHdl() const                     { return aIOProgressLink; }
-
-//    void AddViewListener(SfxListener& rListener)    { AddListener(rListener); }
-//    void RemoveViewListener(SfxListener& rListener) { RemoveListener(rListener); }
 
     // Zugriffsmethoden fuer Paletten, Listen und Tabellen
     void            SetColorTable(XColorTable* pTable)       { pColorTable=pTable; }

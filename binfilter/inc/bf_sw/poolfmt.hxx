@@ -434,14 +434,6 @@ inline BOOL IsConditionalByPoolId(USHORT nId)
     {
         return RES_POOLCOLL_TEXT == nId;
     }
-// die Id's fuer die Grafik-Formate
-/*enum RES_POOL_GRFFMT_TYPE
-{
-RES_POOLGRF_BEGIN = RES_POOLPAR_END,
-RES_POOLGRF_1 = RES_POOLGRF_BEGIN,
-RES_POOLGRF_END
-};
-*/
 
 } //namespace binfilter
 #endif

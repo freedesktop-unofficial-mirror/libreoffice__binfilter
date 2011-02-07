@@ -54,8 +54,6 @@
 #include <com/sun/star/awt/XTextComponent.hpp>
 #include <com/sun/star/util/XURLTransformer.hpp>
 
-
-
 #include "GroupManager.hxx"
 
 #include "property.hrc"
@@ -970,10 +968,6 @@ void ODatabaseForm::FillSuccessfulList( HtmlSuccessfulObjList& rList,
 void ODatabaseForm::Encode( ::rtl::OUString& rString ) const
 {
     ::rtl::OUString aResult;
-
-    // Immer ANSI #58641
-//  rString.Convert(CHARSET_SYSTEM, CHARSET_ANSI);
-
 
     // Zeilenendezeichen werden als CR dargestellt
     UniString sConverter = rString;

@@ -28,15 +28,7 @@
 
 #include "svdetc.hxx"
 #include "svdmrkv.hxx"
-
-
-
-
-
-
-
 #include "svdstr.hrc"
-
 
 // #105678#
 namespace binfilter {
@@ -85,8 +77,6 @@ struct ImplHdlAndIndex
 /*N*/ SdrHdlList::SdrHdlList(SdrMarkView* pV)
 /*N*/ : pImpl(new ImplHdlListData(pV))
 /*N*/ , aList(1024,32,32)
-/*N*/   //#97016# II
-/*N*/   //pView(pV)
 /*N*/ {
 /*N*/   nHdlSize = 3;
 /*N*/   bRotateShear = FALSE;
@@ -98,10 +88,8 @@ struct ImplHdlAndIndex
 /*N*/ SdrHdlList::~SdrHdlList()
 /*N*/ {
 /*N*/   Clear();
-/*N*/   //#97016# II
 /*N*/   delete pImpl;
 /*N*/ }
-
 
 
 /*N*/ void SdrHdlList::SetRotateShear(BOOL bOn)
@@ -135,10 +123,6 @@ struct ImplHdlAndIndex
 /*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   aList.Clear();
-/*N*/
-/*N*/   // immediately remove from display
-//STRIP012/*N*/     if(pImpl->pView)
-//STRIP012/*N*/         pImpl->pView->RefreshAllIAOManagers();
 /*N*/
 /*N*/   bRotateShear=FALSE;
 /*N*/   bDistortShear=FALSE;

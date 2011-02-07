@@ -33,17 +33,11 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/dynamicmenuoptions.hxx>
-
 #include <bf_svtools/moduleoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
 
 #ifndef __SGI_STL_VECTOR
@@ -529,87 +523,6 @@ void SvtDynamicMenuOptions_Impl::Notify( const Sequence< OUString >& )
 void SvtDynamicMenuOptions_Impl::Commit()
 {
     DBG_ERROR( "SvtDynamicMenuOptions_Impl::Commit()\nNot implemented yet!\n" );
-    /*
-    // Write all properties!
-    // Delete complete sets first.
-    ClearNodeSet( SETNODE_NEWMENU    );
-    ClearNodeSet( SETNODE_WIZARDMENU );
-    ClearNodeSet( SETNODE_HELPBOOKMARKS );
-
-    MenuEntry                    aItem                           ;
-    OUString                    sNode                           ;
-    Sequence< PropertyValue >   lPropertyValues( PROPERTYCOUNT );
-    sal_uInt32                  nItem          = 0              ;
-
-    // Copy "new" menu entries to save-list!
-    sal_uInt32 nNewCount = m_aNewMenu.size();
-    for( nItem=0; nItem<nNewCount; ++nItem )
-    {
-        aItem = m_aNewMenu[nItem];
-        // Format:  "New/1/URL"
-        //          "New/1/Title"
-        //          ...
-        sNode = SETNODE_NEWMENU + PATHDELIMITER + PATHPREFIX + OUString::valueOf( (sal_Int32)nItem ) + PATHDELIMITER;
-
-        lPropertyValues[OFFSET_URL             ].Name  =   sNode + PROPERTYNAME_URL             ;
-        lPropertyValues[OFFSET_TITLE           ].Name  =   sNode + PROPERTYNAME_TITLE           ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Name  =   sNode + PROPERTYNAME_IMAGEIDENTIFIER ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Name  =   sNode + PROPERTYNAME_TARGETNAME      ;
-
-        lPropertyValues[OFFSET_URL             ].Value <<= aItem.sURL                           ;
-        lPropertyValues[OFFSET_TITLE           ].Value <<= aItem.sTitle                         ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Value <<= aItem.sImageIdentifier               ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Value <<= aItem.sTargetName                    ;
-
-        SetSetProperties( SETNODE_NEWMENU, lPropertyValues );
-    }
-
-    // Copy "wizard" menu entries to save-list!
-    sal_uInt32 nWizardCount = m_aWizardMenu.size();
-    for( nItem=0; nItem<nWizardCount; ++nItem )
-    {
-        aItem = m_aWizardMenu[nItem];
-        // Format:  "Wizard/1/URL"
-        //          "Wizard/1/Title"
-        //          ...
-        sNode = SETNODE_WIZARDMENU + PATHDELIMITER + PATHPREFIX + OUString::valueOf( (sal_Int32)nItem ) + PATHDELIMITER;
-
-        lPropertyValues[OFFSET_URL             ].Name  =   sNode + PROPERTYNAME_URL             ;
-        lPropertyValues[OFFSET_TITLE           ].Name  =   sNode + PROPERTYNAME_TITLE           ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Name  =   sNode + PROPERTYNAME_IMAGEIDENTIFIER ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Name  =   sNode + PROPERTYNAME_TARGETNAME      ;
-
-        lPropertyValues[OFFSET_URL             ].Value <<= aItem.sURL                           ;
-        lPropertyValues[OFFSET_TITLE           ].Value <<= aItem.sTitle                         ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Value <<= aItem.sImageIdentifier               ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Value <<= aItem.sTargetName                    ;
-
-        SetSetProperties( SETNODE_WIZARDMENU, lPropertyValues );
-    }
-
-    // Copy help bookmarks entries to save-list!
-    sal_uInt32 nHelpBookmarksCount = m_aHelpBookmarksMenu.size();
-    for( nItem=0; nItem<nHelpBookmarksCount; ++nItem )
-    {
-        aItem = m_aHelpBookmarksMenu[nItem];
-        // Format:  "HelpBookmarks/1/URL"
-        //          "HelpBookmarks/1/Title"
-        //          ...
-        sNode = SETNODE_HELPBOOKMARKS + PATHDELIMITER + PATHPREFIX + OUString::valueOf( (sal_Int32)nItem ) + PATHDELIMITER;
-
-        lPropertyValues[OFFSET_URL             ].Name  =   sNode + PROPERTYNAME_URL             ;
-        lPropertyValues[OFFSET_TITLE           ].Name  =   sNode + PROPERTYNAME_TITLE           ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Name  =   sNode + PROPERTYNAME_IMAGEIDENTIFIER ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Name  =   sNode + PROPERTYNAME_TARGETNAME      ;
-
-        lPropertyValues[OFFSET_URL             ].Value <<= aItem.sURL                           ;
-        lPropertyValues[OFFSET_TITLE           ].Value <<= aItem.sTitle                         ;
-        lPropertyValues[OFFSET_IMAGEIDENTIFIER ].Value <<= aItem.sImageIdentifier               ;
-        lPropertyValues[OFFSET_TARGETNAME      ].Value <<= aItem.sTargetName                    ;
-
-        SetSetProperties( SETNODE_HELPBOOKMARKS, lPropertyValues );
-    }
-    */
 }
 
 //*****************************************************************************************************************

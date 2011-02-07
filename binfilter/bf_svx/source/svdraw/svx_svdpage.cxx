@@ -445,10 +445,6 @@ using namespace ::com::sun::star;
 /*N*/   DBG_ASSERT(pObj!=NULL,"SdrObjList::SetObjectOrdNum: Object nicht gefunden");
 /*N*/   if (pObj!=NULL) {
 /*N*/       DBG_ASSERT(pObj->IsInserted(),"SdrObjList::SetObjectOrdNum: ZObjekt hat keinen Inserted-Status");
-        /*if (pModel!=NULL) {
-            // Hier muss ein anderer Broadcast her!
-            if (pObj->GetPage()!=NULL) pModel->Broadcast(SdrHint(*pObj));
-        }*/
 /*N*/       aList.Remove(nOldObjNum);
 /*N*/       aList.Insert(pObj,nNewObjNum);
 /*N*/       pObj->SetOrdNum(nNewObjNum);
@@ -701,53 +697,6 @@ using namespace ::com::sun::star;
 /*N*/                           else
 /*N*/                           {
 /*N*/                               bOk=pObj->Paint(rXOut,rInfoRec);
-
-//////////////////////////////////////////////////////////////////////////////
-//
-//  Vector2D aTRScale;
-//  double fTRShear;
-//  double fTRRotate;
-//  Vector2D aTRTranslate;
-//  Matrix3D aOrigMat;
-//  XPolyPolygon aTRPolyPolygon;
-//
-//  BOOL bIsPath = pObj->TRGetBaseGeometry(aOrigMat, aTRPolyPolygon);
-//  aOrigMat.DecomposeAndCorrect(aTRScale, fTRShear, fTRRotate, aTRTranslate);
-//  Vector2D aVectorTranslate;
-//  aVectorTranslate.X() = FRound(aTRTranslate.X());
-//  aVectorTranslate.Y() = FRound(aTRTranslate.Y());
-//
-//  Point aPoint(aVectorTranslate.X(), aVectorTranslate.Y());
-//  Rectangle aTRBaseRect(
-//      aPoint,
-//      Size(FRound(aTRScale.X()), FRound(aTRScale.Y())));
-//
-//  Color aLineColorMerk(rXOut.GetOutDev()->GetLineColor());
-//  Color aFillColorMerk(rXOut.GetOutDev()->GetFillColor());
-//  rXOut.GetOutDev()->SetFillColor();
-//
-//  rXOut.GetOutDev()->SetLineColor(COL_BLACK);
-//  rXOut.GetOutDev()->DrawRect(aTRBaseRect);
-//
-//  if(bIsPath)
-//  {
-//      rXOut.GetOutDev()->SetLineColor(COL_LIGHTRED);
-//      XPolyPolygon aTRPoPo(aTRPolyPolygon);
-//      aTRPoPo.Move(aTRBaseRect.Left(), aTRBaseRect.Top());
-//      sal_uInt16 nCount(aTRPoPo.Count());
-//      for(sal_uInt16 a(0); a < nCount; a++)
-//          rXOut.GetOutDev()->DrawPolygon(XOutCreatePolygon(aTRPoPo[a], rXOut.GetOutDev()));
-//  }
-//
-//  rXOut.GetOutDev()->SetLineColor(aLineColorMerk);
-//  rXOut.GetOutDev()->SetFillColor(aFillColorMerk);
-//
-//  static BOOL bDoTestSetAllGeometry(FALSE);
-//  if(bDoTestSetAllGeometry)
-//      pObj->TRSetBaseGeometry(aOrigMat, aTRPolyPolygon);
-//
-//
-//////////////////////////////////////////////////////////////////////////////
 /*N*/                           }
 /*N*/
 /*N*/                           // nach dem ersten Objekt bei reinem Hintergrundcache
@@ -1142,10 +1091,6 @@ using namespace ::com::sun::star;
 /*N*/   delete pLayerAdmin;
 /*N*/ }
 
-
-
-
-
 /*N*/ void SdrPage::SetSize(const Size& aSiz)
 /*N*/ {
 /*N*/   nWdt=aSiz.Width();
@@ -1231,13 +1176,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return nBordLwr;
 /*N*/ }
-
-// #i3694#
-// This GetOffset() method is not needed anymore, it even leads to errors.
-//Point SdrPage::GetOffset() const
-//{
-//  return Point();
-//}
 
 /*N*/ void SdrPage::SetModel(SdrModel* pNewModel)
 /*N*/ {
@@ -1367,15 +1305,6 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 

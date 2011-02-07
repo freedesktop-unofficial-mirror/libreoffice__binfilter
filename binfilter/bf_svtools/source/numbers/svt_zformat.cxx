@@ -1809,15 +1809,7 @@ BOOL SvNumberformat::GetOutputString(String& sString,
     }
     return FALSE;
 }
-/*
-void SvNumberformat::GetNextFareyNumber(ULONG nPrec, ULONG x0, ULONG x1,
-                                        ULONG y0, ULONG y1,
-                                        ULONG& x2,ULONG& y2)
-{
-    x2 = ((y0+nPrec)/y1)*x1 - x0;
-    y2 = ((y0+nPrec)/y1)*y1 - y0;
-}
-*/
+
 ULONG SvNumberformat::ImpGGT(ULONG x, ULONG y)
 {
     if (y == 0)
@@ -2094,7 +2086,6 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                     {
                         ULONG x2 = ((y0+nBasis)/y1)*x1 - x0; // naechste Farey-Zahl
                         ULONG y2 = ((y0+nBasis)/y1)*y1 - y0;
-//                      GetNextFareyNumber(nBasis, x0, x1, y0, y1, x2, y2);
                         x0 = x1;
                         y0 = y1;
                         x1 = x2;
@@ -2123,11 +2114,6 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                 else                                    // grosse Nenner
                 {                                       // 0,1234->123/1000
                     ULONG nGgt;
-/*
-                    nDiv = nBasis+1;
-                    nFrac = ((ULONG)floor(0.5 + fNumber *
-                                    pow(10.0,rInfo.nCntExp)));
-*/
                     nDiv = 10000000;
                     nFrac = ((ULONG)floor(0.5 + fNumber * 10000000.0));
                     nGgt = ImpGGT(nDiv, nFrac);

@@ -177,12 +177,6 @@ namespace binfilter {
 /*N*/
 /*N*/   fRoundedEdge = ((double)((const Svx3DPercentDiagonalItem&)
 /*N*/       rAttr.Get(SDRATTR_3DOBJ_PERCENT_DIAGONAL)).GetValue()) / 200.0;
-/*N*/ //-/  SfxItemState nState = rAttr.GetItemState( SID_ATTR_3D_PERCENT_DIAGONAL, TRUE, &pPoolItem );
-/*N*/ //-/  if( nState == SFX_ITEM_DEFAULT )
-/*N*/ //-/      fRoundedEdge = aDefltAttr3D.GetDefaultPercentDiag();
-/*N*/ //-/  else if( nState == SFX_ITEM_SET && pPoolItem )
-/*N*/ //-/      fRoundedEdge = SAL_STATIC_CAST( double, ( SAL_STATIC_CAST( const SfxUInt16Item*, pPoolItem )->GetValue() ))
-/*N*/ //-/          / 200.0;
 /*N*/
 /*N*/   // always use extra points, so set percent diagonal to 0.4 which is 0% in the UI
 /*N*/   if( fRoundedEdge == 0.0 )
@@ -231,11 +225,6 @@ namespace binfilter {
 /*N*/               pObj = new SchE3dLatheObj(aDefltAttr3D, aPolyPoly);
 /*N*/                   ((E3dLatheObj*)pObj)->SetItem( Svx3DHorizontalSegmentsItem( nSegs ));
 /*N*/
-/*N*/
-/*N*/               // #67170# just write the necessary attributes
-/*N*/ //-/              SfxItemSet aSegmentAttr(*pItemPool, SID_ATTR_3D_START, SID_ATTR_3D_END,
-/*N*/ //-/                                                  SCHATTR_STYLE_START, SCHATTR_STYLE_END,
-/*N*/ //-/                                                  0);
 /*N*/               SfxItemSet aSegmentAttr(*pItemPool,
 /*N*/                   SDRATTR_3D_FIRST, SDRATTR_3D_LAST,
 /*N*/                   SCHATTR_STYLE_START, SCHATTR_STYLE_END,
@@ -300,10 +289,6 @@ namespace binfilter {
 /*N*/               pObj = new SchE3dLatheObj( aDefltAttr3D, aPolyPoly );
 /*N*/                   ((E3dLatheObj*)pObj)->SetItem( Svx3DHorizontalSegmentsItem( nSegs ));
 /*N*/
-/*N*/               // #67170# just write the necessary attributes
-/*N*/ //-/              SfxItemSet aSegmentAttr(*pItemPool, SID_ATTR_3D_START, SID_ATTR_3D_END,
-/*N*/ //-/                                                  SCHATTR_STYLE_START, SCHATTR_STYLE_END,
-/*N*/ //-/                                                  0);
 /*N*/               SfxItemSet aSegmentAttr(*pItemPool,
 /*N*/                   SDRATTR_3D_FIRST,       SDRATTR_3D_LAST,
 /*N*/                   SCHATTR_STYLE_START,    SCHATTR_STYLE_END,
@@ -381,7 +366,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   aTransMat.Translate(aDestCenter - aOldCenter);//An die gewuenschte Position schieben
-/*N*/   //aTransMat=pObj->GetTransform()*aTransMat;
 /*N*/   pObj->NbcSetTransform(aTransMat);
 /*N*/
 /*N*/   pObj->SetModel (this);
@@ -442,7 +426,6 @@ namespace binfilter {
 /*N*/   pParent->Insert3DObj (pMyObject);
 /*N*/   pMyObject->SetModel (this);
 /*N*/
-/*N*/ //-/  pMyObject->NbcSetAttributes(*pAttr, FALSE);
 /*N*/   pMyObject->SetItemSet(*pAttr);
 /*N*/
 /*N*/ }
@@ -457,7 +440,6 @@ namespace binfilter {
 /*N*/   pParent->Insert3DObj (pMyObject);
 /*N*/   pMyObject->SetModel (this);
 /*N*/
-/*N*/ //-/  pMyObject->NbcSetAttributes(*pAttr, FALSE);
 /*N*/   pMyObject->SetItemSet(*pAttr);
 /*N*/
 /*N*/ }
@@ -557,51 +539,11 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-
-
 /*N*/ void SchE3dObject::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
 /*N*/   E3dObject::SetItemSet(rSet);
 /*N*/   ImpStoreObjcetsAttr(this);
 /*N*/ }
-
-//////////////////////////////////////////////////////////////////////////////
-
-//-/void SchRectObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
-//-/{
-//-/    SdrRectObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dExtrudeObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
-//-/{
-//-/    E3dExtrudeObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dPolygonObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
-//-/{
-//-/    E3dPolygonObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dLatheObj::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
-//-/{
-//-/    E3dLatheObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dObject::NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll)
-//-/{
-//-/    E3dObject::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
 
 }
 

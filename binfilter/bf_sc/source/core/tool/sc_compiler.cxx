@@ -150,11 +150,6 @@ namespace binfilter {
 /*N*/       case ocNominal:
 /*N*/         case ocPercentSign:
 /*N*/           return NUMBERFORMAT_PERCENT;
-/*N*/ //        case ocSum:
-/*N*/ //        case ocSumSQ:
-/*N*/ //        case ocProduct:
-/*N*/ //        case ocAverage:
-/*N*/ //            return -1;
 /*N*/       default:
 /*N*/           return NUMBERFORMAT_NUMBER;
 /*N*/   }
@@ -430,10 +425,6 @@ namespace binfilter {
 /*N*/   if (bCompileXML)
 /*N*/       rBuffer.append(sal_Unicode('['));
 /*N*/   ComplRefData aRef( rRef );
-/*N*/   // falls abs/rel nicht separat: Relativ- in Abs-Referenzen wandeln!
-/*N*/ //    AdjustReference( aRef.Ref1 );
-/*N*/ //    if( !bSingleRef )
-/*N*/ //        AdjustReference( aRef.Ref2 );
 /*N*/   aRef.Ref1.CalcAbsIfRel( aPos );
 /*N*/   if( !bSingleRef )
 /*N*/       aRef.Ref2.CalcAbsIfRel( aPos );
@@ -823,8 +814,6 @@ namespace binfilter {
 /*N*/   double fVal;
 /*N*/   sal_uInt32 nIndex = ( pSymbolTable == pSymbolTableEnglish ?
 /*N*/       pDoc->GetFormatTable()->GetStandardIndex( LANGUAGE_ENGLISH_US ) : 0 );
-/*N*/ //    ULONG nIndex = 0;
-/*N*/ ////  ULONG nIndex = pDoc->GetFormatTable()->GetStandardIndex(ScGlobal::eLnge);
 /*N*/   if (pDoc->GetFormatTable()->IsNumberFormat( rSym, nIndex, fVal ) )
 /*N*/   {
 /*N*/       USHORT nType = pDoc->GetFormatTable()->GetType(nIndex);

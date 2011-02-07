@@ -54,7 +54,6 @@ class XControlContainer;
 }}}}
 class OutputDevice;
 class VirtualDevice;
-//STRIP012class B2dIAOManager;
 namespace binfilter {
 class SfxItemSet;
 class SfxStyleSheet;
@@ -180,8 +179,6 @@ class SdrViewWinRec
 {
 public:
     OutputDevice*               pWin;
-//    VirtualDevice*                pVDev;        // fuer SolidHandles
-//STRIP012  B2dIAOManager*              pIAOManager;
     unsigned                    bXorVisible : 1;
 
     SdrViewWinRec(OutputDevice* pW);
@@ -226,13 +223,7 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  @@@@@   @@@@  @@ @@  @@ @@@@@@  @@ @@ @@ @@@@@ @@   @@
-//  @@  @@ @@  @@ @@ @@@ @@   @@    @@ @@ @@ @@    @@   @@
-//  @@  @@ @@  @@ @@ @@@@@@   @@    @@ @@ @@ @@    @@ @ @@
-//  @@@@@  @@@@@@ @@ @@@@@@   @@    @@@@@ @@ @@@@  @@@@@@@
-//  @@     @@  @@ @@ @@ @@@   @@     @@@  @@ @@    @@@@@@@
-//  @@     @@  @@ @@ @@  @@   @@     @@@  @@ @@    @@@ @@@
-//  @@     @@  @@ @@ @@  @@   @@      @   @@ @@@@@ @@   @@
+// PAINTVIEW
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -603,9 +594,6 @@ public:
     // Default=FALSE. Flag ist nicht persistent.
     BOOL IsSwapAsynchron() const { return bSwapAsynchron; }
     void SetSwapAsynchron(BOOL bJa=TRUE) { bSwapAsynchron=bJa; }
-
-    // get the InteractionObjectManager for a specified window
-//STRIP012  void RefreshAllIAOManagers();
 
     BOOL MouseButtonDown(const MouseEvent& /*rMEvt*/, Window* /*pWin*/) { return FALSE; }
     BOOL MouseButtonUp(const MouseEvent& /*rMEvt*/, Window* /*pWin*/) { return FALSE; }

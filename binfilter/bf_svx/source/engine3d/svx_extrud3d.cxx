@@ -27,22 +27,11 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-
 #include "globl3d.hxx"
-
 #include "polyob3d.hxx"
-
 #include "extrud3d.hxx"
-
 #include "e3dcmpt.hxx"
-
-
-
 #include "svxids.hrc"
-
-
-
 
 namespace binfilter {
 
@@ -594,56 +583,6 @@ namespace binfilter {
 /*N*/ }
 
 
-// #107245#
-// void E3dExtrudeObj::SetExtrudeSmoothed(BOOL bNew)
-// {
-//  if(bExtrudeSmoothed != bNew)
-//  {
-//      bExtrudeSmoothed = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeSmoothFrontBack(BOOL bNew)
-// {
-//  if(bExtrudeSmoothFrontBack != bNew)
-//  {
-//      bExtrudeSmoothFrontBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCharacterMode(BOOL bNew)
-// {
-//  if(bExtrudeCharacterMode != bNew)
-//  {
-//      bExtrudeCharacterMode = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCloseFront(BOOL bNew)
-// {
-//  if(bExtrudeCloseFront != bNew)
-//  {
-//      bExtrudeCloseFront = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCloseBack(BOOL bNew)
-// {
-//  if(bExtrudeCloseBack != bNew)
-//  {
-//      bExtrudeCloseBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
 //////////////////////////////////////////////////////////////////////////////
 // private support routines for ItemSet access
 
@@ -671,28 +610,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aufbrechen
-|*
-\************************************************************************/
-
-
 
 // EOF
 }

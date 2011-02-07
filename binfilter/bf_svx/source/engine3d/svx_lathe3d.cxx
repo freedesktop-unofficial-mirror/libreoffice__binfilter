@@ -27,22 +27,11 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-
-
-
 #include "globl3d.hxx"
-
 #include "svdio.hxx"
-
 #include "polyob3d.hxx"
-
 #include "lathe3d.hxx"
-
-
-
 #include "svxids.hrc"
-
 
 
 namespace binfilter {
@@ -367,13 +356,6 @@ namespace binfilter {
 /*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -801,20 +783,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Wandle das Objekt in ein Gruppenobjekt bestehend aus n Polygonen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Neue Segmentierung (Beschreibung siehe Header-File)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Lokale Parameter setzen mit Geometrieneuerzeugung
 |*
 \************************************************************************/
@@ -835,57 +803,6 @@ namespace binfilter {
 /*N*/       bGeometryValid = FALSE;
 /*N*/   }
 /*N*/ }
-
-
-// #107245#
-// void E3dLatheObj::SetLatheSmoothed(BOOL bNew)
-// {
-//  if(bLatheSmoothed != bNew)
-//  {
-//      bLatheSmoothed = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheSmoothFrontBack(BOOL bNew)
-// {
-//  if(bLatheSmoothFrontBack != bNew)
-//  {
-//      bLatheSmoothFrontBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCharacterMode(BOOL bNew)
-// {
-//  if(bLatheCharacterMode != bNew)
-//  {
-//      bLatheCharacterMode = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCloseFront(BOOL bNew)
-// {
-//  if(bLatheCloseFront != bNew)
-//  {
-//      bLatheCloseFront = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCloseBack(BOOL bNew)
-// {
-//  if(bLatheCloseBack != bNew)
-//  {
-//      bLatheCloseBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
 
 //////////////////////////////////////////////////////////////////////////////
 // private support routines for ItemSet access
@@ -924,28 +841,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aufbrechen
-|*
-\************************************************************************/
-
-
 
 // EOF
 }

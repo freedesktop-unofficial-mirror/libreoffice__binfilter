@@ -36,35 +36,21 @@
 #include <bf_svtools/smplhint.hxx>
 
 #include "xlnstwit.hxx"
-
 #include "xlnedwit.hxx"
 
 #include <eeitemid.hxx>
-
 #include "eeitem.hxx"
 
 #include <xlnstcit.hxx>
-
 #include <xlnwtit.hxx>
-
-
 #include <bf_svtools/style.hxx>
-
 #include <bf_svtools/whiter.hxx>
-
-
 #include <xflclit.hxx>
-
-
 #include <xfltrit.hxx>
-
 #include <xlnedcit.hxx>
-
 #include <adjitem.hxx>
 
 #include "xflbckit.hxx"
-
-
 #include "xbtmpit.hxx"
 #include "xlndsit.hxx"
 #include "xlnedit.hxx"
@@ -72,6 +58,7 @@
 #include "xflhtit.hxx"
 #include "xlnstit.hxx"
 #include "xoutx.hxx"
+
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -415,49 +402,6 @@ namespace binfilter {
 /*N*/       // des Model, falls noch kein StyleSheet gesetzt.
 /*N*/       if(mpObjectItemSet && !GetStyleSheet() && pModel && !pModel->IsLoading())
 /*N*/           NbcSetStyleSheet(pModel->GetDefaultStyleSheet(), TRUE);
-
-/* this code was removed because NbcSetStyleSheet called with TRUE does not
-   alter the hard attributes. So they don't need to be restored, a useless
-   process that cost us up to 20% for xml import. Also there is a memory
-   leek with aSet.Put( *pItem->Clone() );
-        {
-            SfxStyleSheet* pDefSS = pModel->GetDefaultStyleSheet();
-
-            if(pDefSS)
-            {
-                SfxItemPool* pPool = GetItemPool();
-                if ( pPool )
-                {
-                    // Take hard attributes
-                    SfxItemSet aSet(*pPool,
-                        SDRATTR_START,SDRATTR_NOTPERSIST_FIRST-1,
-                        SDRATTR_NOTPERSIST_LAST+1, SDRATTR_END,
-                        EE_ITEMS_START,EE_ITEMS_END,
-                        0,0);
-
-                    const SfxItemSet& rItemSet = GetItemSet();
-
-                    SfxWhichIter aIter( rItemSet );
-                    sal_uInt16 nWhich( aIter.FirstWhich() );
-                    const SfxPoolItem* pItem = NULL;
-
-                    while( nWhich )
-                    {
-                        if( SFX_ITEM_SET == rItemSet.GetItemState( nWhich, FALSE, &pItem ) )
-                            aSet.Put( *pItem->Clone() );
-                        nWhich = aIter.NextWhich();
-                    }
-                    // Set the StyleSheet
-                    NbcSetStyleSheet(pDefSS, TRUE);
-
-                    // Set the hard attributes
-                    SetItemSet( aSet );
-                  }
-                else
-                    NbcSetStyleSheet(pDefSS, TRUE);
-            }
-        }
-*/
 /*N*/   }
 /*N*/ }
 
@@ -869,20 +813,6 @@ namespace binfilter {
 /*N*/
 /*N*/   if(bShadOn)
 /*?*/   {
-// LineAttr for shadow no longer necessary, lines and line shadows are drawn in Paint()
-// routines individually (grep for CreateLinePoly())
-//
-//          if (pLineAttr!=NULL) {
-//              XLineAttrSetItem aL(*pLineAttr);
-//              aL.GetItemSet().Put(XLineColorItem(String(),aShadCol));
-//              aL.GetItemSet().Put(XLineTransparenceItem(nTransp));
-//              rXOut.SetLineAttr(aL);
-//          }
-
-// #103692# Caller must now handle noFill case
-//      if(!bNoFill)
-//      {
-
 /*?*/         const SdrShadowColorItem& rShadColItem = ((const SdrShadowColorItem&)(rSet.Get(SDRATTR_SHADOWCOLOR)));
 /*?*/         Color aShadCol(rShadColItem.GetValue());
 /*?*/         sal_uInt16 nTransp = ((const SdrShadowTransparenceItem&)(rSet.Get(SDRATTR_SHADOWTRANSPARENCE))).GetValue();
@@ -967,81 +897,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return ((XLineStyleItem&)(GetItem(XATTR_LINESTYLE))).GetValue()!=XLINE_NONE;
 /*N*/ }
-
-// #94547# Have to re-activate more performant, but corrected version.
-// This is necessary since SetItemSet() of the old implementation calls
-// ItemSetChanged() which replaces in textobjects all text items which
-// is wrong behaviour for BurnInStyleSheet.
-
-// #91695# back to corrected old version. Have to check new version again for later builds.
-//void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//{
-//  SfxItemPool* pPool = GetItemPool();
-//  if ( pPool && mpStyleSheet )
-//  {
-//      // Get StyleSheet attributes
-//      SfxItemSet aSet(*pPool,
-//          SDRATTR_START, SDRATTR_NOTPERSIST_FIRST-1,
-//          SDRATTR_NOTPERSIST_LAST+1, SDRATTR_END,
-//          EE_ITEMS_START,EE_ITEMS_END,
-//          0,0);
-//
-//      SfxWhichIter aIter( mpStyleSheet->GetItemSet() );
-//      sal_uInt16 nWhich( aIter.FirstWhich() );
-//      const SfxPoolItem* pItem = NULL;
-//
-//      while( nWhich )
-//      {
-//          if( SFX_ITEM_SET == mpStyleSheet->GetItemSet().GetItemState(nWhich, TRUE, &pItem) )
-//              aSet.Put( *pItem );
-//
-//          nWhich = aIter.NextWhich();
-//      }
-//
-//      SfxWhichIter aHardAttrIter( GetItemSet() );
-//      nWhich = aHardAttrIter.FirstWhich();
-//
-//      while( nWhich )
-//      {
-//          if( SFX_ITEM_SET == GetItemSet().GetItemState(nWhich, FALSE, &pItem) )
-//              aSet.Put( *pItem );
-//
-//          nWhich = aHardAttrIter.NextWhich();
-//      }
-//
-//      // Set StyleSheet attributes as hard attributes
-//      SetItemSet( aSet );
-//      }
-//}
-
-/*
-void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-{
-    // #89025# Added more performant implementation
-    if(mpStyleSheet)
-    {
-        const SfxItemSet& rSet = mpStyleSheet->GetItemSet();
-        SfxWhichIter aIter(rSet);
-        sal_uInt16 nWhich(aIter.FirstWhich());
-        const SfxPoolItem *pItem = NULL;
-
-        ImpForceItemSet();
-        const SfxItemSet* pParentSet = mpObjectItemSet->GetParent();
-        if(pParentSet != 0L)
-            mpObjectItemSet->SetParent(0L);
-
-        while(nWhich)
-        {
-            if(SFX_ITEM_SET == rSet.GetItemState(nWhich, TRUE, &pItem))
-                mpObjectItemSet->Put(*pItem);
-            nWhich = aIter.NextWhich();
-        }
-
-        if(pParentSet != 0L)
-            mpObjectItemSet->SetParent(pParentSet);
-    }
-}
-*/
 
 
 }

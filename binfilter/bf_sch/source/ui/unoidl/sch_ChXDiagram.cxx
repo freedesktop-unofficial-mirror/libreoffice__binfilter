@@ -881,28 +881,6 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                                 aSceneTAR.maMat = pScene->GetTransform();
                                 aSceneTAR.maRect = pScene->GetSnapRect();
 
-//                                  // rescue object transformations
-//                                  SdrObjListIter aIter(*pScene->GetSubList(), IM_DEEPWITHGROUPS);
-//                                  List aObjTrans;
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      Matrix4D* pNew = new Matrix4D;
-//                                      *pNew = p3DObj->GetTransform();
-//                                      aObjTrans.Insert(pNew, LIST_APPEND);
-//                                  }
-
-                                // reset object transformations
-//                                  aIter.Reset();
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      p3DObj->NbcResetTransform();
-//                                  }
-
-                                // reset scene transformation and make a complete recalc
-//                                  pScene->NbcResetTransform();
-
                                 // fill old camera from new parameters
                                 Camera3D aCam(pScene->GetCamera());
                                 const Volume3D& rVolume = pScene->GetBoundVolume();
@@ -924,17 +902,6 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                                 // set at scene
                                 pScene->SetCamera(aCam);
-
-                                // set object transformations again at objects
-//                                  aIter.Reset();
-//                                  sal_uInt32 nIndex(0L);
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      Matrix4D* pMat = (Matrix4D*)aObjTrans.GetObject(nIndex++);
-//                                      p3DObj->NbcSetTransform(*pMat);
-//                                      delete pMat;
-//                                  }
 
                                 // set scene transformation again at scene
                                 pScene->NbcSetTransform(aSceneTAR.maMat);
@@ -1711,8 +1678,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
 
     //  Get the models attributes.
     ChartType aType (mpModel);
-//  SfxItemSet aAttributes (mpModel->GetItemPool(),
-//      mpModel->GetAttr (mnWhichId, mnIndex).GetRanges());
+
     //  This needs still a bit of work.  What is the best set of which id ranges?
     SfxItemSet aAttributes (mpModel->GetItemPool(),
         CHART_ROW_WHICHPAIRS,
@@ -1886,10 +1852,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
                 break;
             case CHTYPE_AREA:
                 SvxServiceInfoHelper::addToSequence(
@@ -1903,10 +1865,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
             break;
             case CHTYPE_DONUT :
                 SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.DonutDiagram" );
@@ -1924,10 +1882,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence(aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
                 break;
             case CHTYPE_CIRCLE :
                 SvxServiceInfoHelper::addToSequence(
