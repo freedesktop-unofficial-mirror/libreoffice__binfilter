@@ -51,7 +51,6 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 
 using rtl::OUString;
-//using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
 using ::com::sun::star::document::XEventsSupplier;

@@ -46,7 +46,6 @@
 #include "unonames.hxx"
 namespace binfilter {
 
-//#define SC_NUMBERFORMAT "NumberFormat"
 #define SC_CONDITIONALFORMAT "ConditionalFormat"
 
 #define XML_LINE_LEFT 0
@@ -64,7 +63,6 @@ using namespace ::com::sun::star::container;
 using namespace xmloff::token;
 
 using rtl::OUString;
-//using namespace ::com::sun::star::text;
 
 ScXMLCellImportPropertyMapper::ScXMLCellImportPropertyMapper(
         const UniReference< XMLPropertySetMapper >& rMapper,
@@ -553,7 +551,6 @@ void XMLTableStyleContext::FillPropertySet(
                     uno::Any aNumberFormat;
                     nNumberFormat = pStyle->GetKey();
                     aNumberFormat <<= nNumberFormat;
-                    //rPropSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_NUMBERFORMAT)), aNumberFormat);
                     AddProperty(CTF_SC_NUMBERFORMAT, aNumberFormat);
                 }
             }
@@ -563,7 +560,6 @@ void XMLTableStyleContext::FillPropertySet(
                 std::vector<ScXMLMapContent>::iterator aItr = aMaps.begin();
                 while(aItr != aMaps.end())
                 {
-                    //rPropSet->setPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CONDITIONALFORMAT)),
                     GetConditionalFormat(aConditionalFormat, aItr->sCondition, aItr->sApplyStyle, aItr->sBaseCell);
 
                     ++aItr;

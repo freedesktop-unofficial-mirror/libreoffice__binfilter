@@ -26,24 +26,14 @@
  *
  ************************************************************************/
 
-
 #include "XMLIndexSimpleEntryContext.hxx"
-
 #include "XMLIndexTemplateContext.hxx"
 
-
 #include "xmlimp.hxx"
-
-
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
 
-
 namespace binfilter {
-
-
-//using namespace ::com::sun::star::text;
 
 using ::rtl::OUString;
 using ::com::sun::star::beans::PropertyValue;

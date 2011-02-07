@@ -26,39 +26,23 @@
  *
  ************************************************************************/
 
-
 #include "XMLIndexTemplateContext.hxx"
-
-
 #include "XMLIndexSpanEntryContext.hxx"
-
 #include "XMLIndexTabStopEntryContext.hxx"
-
 #include "XMLIndexBibliographyEntryContext.hxx"
-
 #include "XMLIndexChapterInfoEntryContext.hxx"
 
-
 #include "xmlimp.hxx"
-
-
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmluconv.hxx"
-
 #include <tools/debug.hxx>
 
-
-
 #include <com/sun/star/container/XIndexReplace.hpp>
+
 namespace binfilter {
 
-
 using namespace ::std;
-//using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
 using ::rtl::OUString;

@@ -45,7 +45,6 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 
 using rtl::OUString;
-//using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
 Reference < XStyle > XMLTextMasterPageContext::Create()

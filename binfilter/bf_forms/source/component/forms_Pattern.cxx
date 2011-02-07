@@ -27,14 +27,9 @@
  ************************************************************************/
 
 #include <comphelper/proparrhlp.hxx>
-
 #include "Pattern.hxx"
-
-
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-
 #include "services.hxx"
-
 #include <com/sun/star/form/FormComponentType.hpp>
 
 namespace binfilter {
@@ -46,7 +41,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -163,8 +157,6 @@ void OPatternModel::fillProperties(
         Sequence< Property >& _rAggregateProps ) const
 {
     FRM_BEGIN_PROP_HELPER(11)
-        // Text auf transient setzen
-//      ModifyPropertyAttributes(_rAggregateProps, PROPERTY_TEXT, PropertyAttribute::TRANSIENT, 0);
         DECL_PROP1(NAME,            ::rtl::OUString,    BOUND);
         DECL_PROP2(CLASSID,         sal_Int16,          READONLY, TRANSIENT);
         DECL_PROP2(DEFAULT_TEXT,    ::rtl::OUString,    BOUND, MAYBEDEFAULT);

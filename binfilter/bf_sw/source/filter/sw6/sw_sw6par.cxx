@@ -3009,13 +3009,6 @@ static const struct Sw6FontMatch
 };
 
 
-
-//using namespace ::com::sun::star;
-//using namespace ::com::sun::star::ucb;
-//using namespace ::com::sun::star::uno;
-//using namespace ::ucb;
-//using namespace ::rtl;
-
 // --- Sw6Layout ---
 
 short Sw6Layout::ZchnZahl(sal_Char Ch1,sal_Char Ch2) const
@@ -4499,20 +4492,8 @@ JP 29.09.94: zur Zeit keine Zeichen-Vorlage an der Format-Vorlage
         if (pAly->LinRTyp>1)
         {
             ColorData eColor=COL_BLACK;
-//          BrushStyle eBrush=BRUSH_SOLID;
-            switch (pAly->LinRTyp)
-            {
-                case 2:eColor=COL_WHITE; break;
-//              case 3:eBrush=BRUSH_UPDIAG; break;
-//              case 4:eBrush=BRUSH_DOWNDIAG; break;
-//              case 5:eBrush=BRUSH_CROSS; break;
-//              case 6:eBrush=BRUSH_DIAGCROSS; break;
-//              case 7:eBrush=BRUSH_25; break;
-//              case 8:eBrush=BRUSH_50; break;
-//              case 9:eBrush=BRUSH_75; break;
-            } // switch
-//          Brush aBrush=Brush(Color(eColor),eBrush);
-//          aBrush.SetTransparent(FALSE);
+            if (pAly->LinRTyp == 2)
+                eColor=COL_WHITE;
             Color aTmpColor(eColor);
             SvxBrushItem aBack( aTmpColor, RES_BACKGROUND);
             aSet.Put( aBack );
@@ -4631,8 +4612,6 @@ JP 29.09.94: zur Zeit keine Zeichen-Vorlage an der Format-Vorlage
         {   // Fussnoteninfo setzen
             SwPageFtnInfo aInfo(rPg.GetFtnInfo());
 
-//          Pen aPen(aInfo.GetPen());
-//          aPen.SetStyle(pLay->FNotenLin?PEN_SOLID:PEN_NULL);
             if(!pLay->FNotenLin)
                 aInfo.SetLineColor(Color(COL_TRANSPARENT));
 

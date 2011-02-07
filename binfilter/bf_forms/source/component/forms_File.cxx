@@ -26,20 +26,13 @@
  *
  ************************************************************************/
 
-
 #include <comphelper/proparrhlp.hxx>
-
 #include "File.hxx"
-
 #include <com/sun/star/form/FormComponentType.hpp>
-
 #include "property.hrc"
 #include "services.hxx"
-
 #include <comphelper/container.hxx>
-
 #include <comphelper/property.hxx>
-
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
 namespace binfilter {
@@ -51,7 +44,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;

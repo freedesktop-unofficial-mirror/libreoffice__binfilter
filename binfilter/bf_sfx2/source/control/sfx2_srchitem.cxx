@@ -26,8 +26,6 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
 #include "bf_basic/sbxvar.hxx"
 #include <bf_svtools/searchopt.hxx>
 #include <sal/macros.h>
@@ -46,7 +44,6 @@
 
 namespace binfilter {
 
-//using namespace uno;
 using namespace rtl;
 using namespace utl;
 using namespace ::com::sun::star::util;
@@ -220,7 +217,6 @@ using namespace ::com::sun::star::uno;
 /*N*/          rItem1.searchFlag            == rItem2.searchFlag    &&
 /*N*/          rItem1.searchString          == rItem2.searchString  &&
 /*N*/          rItem1.replaceString         == rItem2.replaceString &&
-/*N*/          //rItem1.Locale              == rItem2.Locale        &&
 /*N*/          rItem1.changedChars          == rItem2.changedChars  &&
 /*N*/          rItem1.deletedChars          == rItem2.deletedChars  &&
 /*N*/          rItem1.insertedChars         == rItem2.insertedChars &&

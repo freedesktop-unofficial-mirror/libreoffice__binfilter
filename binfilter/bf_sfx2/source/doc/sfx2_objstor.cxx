@@ -33,44 +33,33 @@
 #include <com/sun/star/frame/XStorable.hpp>
 #include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/frame/XFrame.hpp>
-
 #include <com/sun/star/document/XFilter.hpp>
 #include <com/sun/star/document/XImporter.hpp>
 #include <com/sun/star/document/XExporter.hpp>
 #include <com/sun/star/document/FilterOptionsRequest.hpp>
 #include <com/sun/star/document/XInteractionFilterOptions.hpp>
 #include <com/sun/star/task/XInteractionHandler.hpp>
-
 #include <com/sun/star/lang/XInitialization.hpp>
-
 #include <com/sun/star/document/MacroExecMode.hpp>
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
-
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-
 #include <com/sun/star/beans/XPropertyAccess.hpp>
-
 #include <com/sun/star/beans/PropertyValue.hpp>
-
 #include <com/sun/star/container/XNameAccess.hpp>
-
 #include <comphelper/processfactory.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
+
 #include <bf_svtools/itemset.hxx>
-
 #include <bf_svtools/sfxecode.hxx>
-
 #include <cppuhelper/weak.hxx>
 #include <comphelper/processfactory.hxx>
-
 #include <comphelper/classids.hxx>
 #include <tools/cachestr.hxx>
 #include <bf_svtools/addxmltostorageoptions.hxx>
 #include <unotools/streamwrap.hxx>
-
 #include <bf_svtools/saveopt.hxx>
 #include <bf_svtools/useroptions.hxx>
 #include <bf_svtools/pathoptions.hxx>
@@ -118,7 +107,6 @@ extern sal_uInt32 CheckPasswd_Impl( SfxObjectShell*, SfxItemPool&, SfxMedium* );
 
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
-//using namespace ::com::sun::star::ui::dialogs;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::ucb;
@@ -270,7 +258,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/ {
 /*N*/   DoHandsOffNoMediumClose();
 /*N*/   pMedium->Close();
-/*N*/ //  DELETEZ( pMedium );
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -1024,7 +1011,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/   {
 /*N*/       delete pMedium;
 /*N*/       pMedium = pNewMed;
-/*N*/       //MI? DELETEZ(pImp->pDocInfo);
 /*N*/   }
 /*N*/
 /*N*/   const SfxFilter *pFilter = pMedium ? pMedium->GetFilter() : 0;

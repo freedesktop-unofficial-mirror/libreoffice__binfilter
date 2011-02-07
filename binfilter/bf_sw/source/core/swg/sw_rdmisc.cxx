@@ -26,11 +26,9 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
 
 #include <tools/color.hxx>
 #include <vcl/jobset.hxx>
@@ -53,8 +51,6 @@
 #include <flypos.hxx>
 #include <ndtxt.hxx>        // Zeichen-Konversion
 namespace binfilter {
-
-//using namespace ::com::sun::star;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -171,8 +167,6 @@ namespace binfilter {
         r.Strm() >> bDfltPrn >> aJobSetup;
 
         pDoc->SetJobsetup( aJobSetup );
- //JP 25.04.95: das Flag gibts nicht mehr:
- //     pDoc->UseDfltPrt( (BOOL)bDfltPrn );
         r.skipnext();
     }
  }
@@ -219,7 +213,6 @@ namespace binfilter {
             case SWGINF_END:
                 return;
             case SWGINF_LAYOUTPR: {
- //JP 25.04.95: SetLayoutPrtName gibts nicht mehr
                 ParseText();
                 } break;
             default:
@@ -256,9 +249,6 @@ namespace binfilter {
     BYTE cStyle, cTransparent;
     r >> cStyle >> cTransparent;
 
- // Brush aBr( (BrushStyle) cStyle );
- // aBr.SetTransparent( BOOL( cTransparent ) );
- // aBr.SetColor( InColor() );
     Color aCol(InColor());
     Color aTmpFillColor(InColor());
 
@@ -482,7 +472,6 @@ namespace binfilter {
       >> aFile.nDocInfo;
     r.get( aFile.cPasswd, 16 );
     r.long3();
- // rInfo.SetPasswd( BOOL( ( aFile.nFlags & SWGF_HAS_PASSWD ) != 0 ) );
     rInfo.SetPortableGraphics( BOOL( ( aFile.nFlags & SWGF_PORT_GRAF ) != 0 ) );
 
     // Passwort in Stream eintragen

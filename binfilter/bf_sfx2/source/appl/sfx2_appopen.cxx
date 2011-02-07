@@ -102,13 +102,11 @@ using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::system;
 using namespace ::com::sun::star::task;
 using namespace ::cppu;
-//using namespace sfx2;
 
 //--------------------------------------------------------------------
 
 /*N*/ sal_uInt32 CheckPasswd_Impl
 /*N*/ (
-/*N*/     //Window *pWin,       // Parent des Dialogs
 /*N*/     SfxObjectShell* /*pDoc*/,
 /*N*/   SfxItemPool & /*rPool*/,    // Pool, falls ein Set erzeugt werden mus
 /*N*/   SfxMedium *pFile    // das Medium, dessen Passwort gfs. erfragt werden soll

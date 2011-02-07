@@ -26,13 +26,11 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <string.h>         // fuer strchr()
-
 #include <hintids.hxx>
 
 #include <com/sun/star/i18n/WordType.hdl>
@@ -59,22 +57,10 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::linguistic2;
 using namespace ::rtl;
 using namespace ::com::sun::star::i18n;
-//using namespace ::utl;
 
 #define S2U(rString) OUString::createFromAscii(rString)
 
-
-
 SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
-
-
-
-// -----------------------------------------------------------------
-
-
-
-
-// -----------------------------------------------------------------
 
 // loesche und verschiebe alle "Fly's am Absatz", die in der SSelection
 // liegen. Steht am SPoint ein Fly, wird dieser auf den Mark verschoben.
@@ -125,7 +111,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               }
 /*N*/
 /*N*/               pDoc->DelLayoutFmt( pFmt );
-/*N*/ //                i++;    // keinen auslassen
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -201,8 +186,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/   GetNodes().DelNodes( aSttIdx, aEndIdx.GetIndex() - aSttIdx.GetIndex() + 1 );
 /*N*/ }
 
-
-
 /*************************************************************************
 |*                SwDoc::Insert(char)
 |*    Beschreibung      Zeichen einfuegen
@@ -239,12 +222,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 |*                SwDoc::Overwrite(char)
 |*    Beschreibung      Zeichen ueberschreiben
 *************************************************************************/
-
-
-
-
-
-
 
 /* #107318# Convert list of ranges of whichIds to a corresponding list
     of whichIds*/
@@ -513,17 +490,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   return sal_True;
 /*N*/ }
 
-
-
-
-
-
-
 // liefert sal_True zurueck, wenn es weitergehen soll.
-
-
-
-
 /*N*/ sal_Bool SwDoc::Replace( SwPaM& /*rPam*/, const String& /*rStr*/, sal_Bool /*bRegExpRplc*/ )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP");
@@ -557,11 +524,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if( pTblNd && pNd->IsCntntNode() )
 /*N*/   {
 /*?*/       SwFrmFmt* pTableFmt = pTblNd->GetTable().GetFrmFmt();
-/*?*/ //JP 24.08.98: will man wirklich den PageDesc/Break vom
-/*?*/ //                nachfolgen Absatz ueberbuegeln?
-/*?*/ //        const SwAttrSet& rAttrSet = pTableFmt->GetAttrSet();
-/*?*/ //        if( SFX_ITEM_SET != rAttrSet.GetItemState( RES_PAGEDESC ) &&
-/*?*/ //            SFX_ITEM_SET != rAttrSet.GetItemState( RES_BREAK ))
 /*?*/       {
 /*?*/           const SfxPoolItem *pItem;
 /*?*/           const SfxItemSet* pSet = ((SwCntntNode*)pNd)->GetpSwAttrSet();
@@ -629,10 +591,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return sal_True;
 /*N*/ }
 
-
 #define MAX_REDLINE_COUNT   250
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
 
 }
 

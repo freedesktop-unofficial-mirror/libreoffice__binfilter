@@ -27,20 +27,15 @@
  ************************************************************************/
 
 #include <comphelper/proparrhlp.hxx>
-
 #include "Button.hxx"
-
 #include <tools/urlobj.hxx>
 #include <vcl/svapp.hxx>
 #include <comphelper/streamsection.hxx>
-
 #include "services.hxx"
-
 #include <com/sun/star/form/FormComponentType.hpp>
-
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-
 #include "bf_so3/staticbaseurl.hxx"
+
 namespace binfilter {
 
 //.........................................................................
@@ -50,7 +45,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;

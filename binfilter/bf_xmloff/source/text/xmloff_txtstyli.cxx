@@ -26,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
 #include <com/sun/star/document/XEventsSupplier.hpp>
 #include "xmlnmspe.hxx"
@@ -59,7 +58,6 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 
 using rtl::OUString;
-//using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
 static SvXMLEnumMapEntry aCategoryMap[] =
