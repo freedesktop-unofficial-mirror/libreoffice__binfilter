@@ -45,18 +45,11 @@
 #define WIN32ANSI
 #endif
 
-//#ifdef INC_OLEUI
 #ifdef WIN32
-/*
- * Comment the next line and remove the comment from the
- * line after it to compile for Windows NT 3.5.
- */
 #include <oledlg.h>
-//#include <ole2ui.h>
 #else
 #include <ole2ui.h>
 #endif
-//#endif
 
 #ifdef INC_CONTROLS
 #define INC_AUTOMATION
@@ -424,7 +417,6 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
            , DWORD, LPFORMATETC, LPOLECLIENTSITE, LPSTORAGE, LPVOID *);
 
 #ifdef skbdkbasdfbasbjdas
-//#ifndef NOMACROREDIRECT
 #undef StringFromCLSID
 #define StringFromCLSID(c, pp) StarObject_StringFromCLSID(c, pp)
 
@@ -451,9 +443,6 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
 
 #undef CreateFileMoniker
 #define CreateFileMoniker(p, i) StarObject_CreateFileMoniker(p, i)
-
-//#undef CreateItemMoniker
-//#define CreateItemMoniker(p1, p2, i) StarObject_CreateItemMoniker(p1, p2, i)
 
 #undef MkParseDisplayName
 #define MkParseDisplayName(b, p, u, i) StarObject_MkParseDisplayName(b, p, u, i)
