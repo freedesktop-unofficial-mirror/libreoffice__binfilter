@@ -94,7 +94,6 @@ class SwPrtOptions;
 class SfxProgress;
 
 class SwMailMergeDlg;
-class SwDbtoolsClient;
 class SwXMailMerge;
 
 // -----------------------------------------------------------------------
@@ -165,8 +164,6 @@ class SwConnectionDisposedListener_Impl;
 class SwNewDBMgr
 {
 friend class SwConnectionDisposedListener_Impl;
-
-    static SwDbtoolsClient* pDbtoolsClient;
 
     String              sEMailAddrFld;  // Mailing: Spaltenname der E-Mail Adresse
     String              sSubject;       // Mailing: Subject

@@ -339,7 +339,7 @@ public:
 
 extern void _InitFilter();
 extern void _FinitFilter();
-extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML, ReadXML;
+extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML;
 
 extern BOOL SetHTMLTemplate( SwDoc &rDoc ); //Fuer Vorlagen aus HTML.vor laden shellio.cxx
 

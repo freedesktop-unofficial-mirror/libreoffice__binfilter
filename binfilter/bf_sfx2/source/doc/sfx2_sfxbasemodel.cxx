@@ -1262,14 +1262,14 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/   if ( impl_isDisposed() )
 /*N*/       throw DISPOSEDEXCEPTION();
 /*N*/
-/*N*/   if ( m_pData->m_pObjectShell.Is() )
-/*N*/   {
-/*N*/       impl_store( m_pData->m_pObjectShell, rURL, rArgs, sal_False );
+/*N*/    if ( m_pData->m_pObjectShell.Is() )
+/*N*/  {
+/*N*/      impl_store( m_pData->m_pObjectShell, rURL, rArgs, sal_False );
 /*N*/
-/*N*/       SEQUENCE< PROPERTYVALUE > aSequence ;
-/*N*/       TransformItems( SID_OPENDOC, *m_pData->m_pObjectShell->GetMedium()->GetItemSet(), aSequence );
-/*N*/       attachResource( rURL, aSequence );
-/*N*/   }
+/*N*/      SEQUENCE< PROPERTYVALUE > aSequence ;
+/*N*/      TransformItems( SID_OPENDOC, *m_pData->m_pObjectShell->GetMedium()->GetItemSet(), aSequence );
+/*N*/      attachResource( rURL, aSequence );
+/*N*/  }
 /*N*/ }
 
 //________________________________________________________________________________________________________

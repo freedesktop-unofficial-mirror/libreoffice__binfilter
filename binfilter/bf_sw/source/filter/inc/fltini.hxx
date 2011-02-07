@@ -96,20 +96,6 @@ public:
 
 
 
-class XMLReader : public Reader
-{
-    virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-public:
-    virtual int GetReaderType();
-
-    XMLReader();
-
-    // read the sections of the document, which is equal to the medium.
-    // returns the count of it
-    virtual USHORT GetSectionList( SfxMedium& rMedium,
-                                SvStrings& rStrings ) const;
-};
-
 // die speziellen Writer
 
 #if 0
