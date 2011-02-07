@@ -67,15 +67,10 @@
 #include <sal/types.h>
 
 #include <bf_svx/xlnedit.hxx>
-
 #include <bf_svx/xlnstit.hxx>
-
 #include <bf_svx/xlndsit.hxx>
-
 #include <bf_svx/xlnclit.hxx>
-
 #include <bf_svx/xlnwtit.hxx>
-
 
 #include "glob.hrc"
 
@@ -205,9 +200,6 @@ namespace binfilter {
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_B_AXIS ), *pAxisAttr );
 /*N*/         }
 /*N*/   }
-/*N*/
-/*N*/ //     if( bOnlyInserted )
-/*N*/ //         pAxisAttr->ClearItem( SCHATTR_AXIS_SHOWDESCR );
 /*N*/
 /*N*/   return *pAxisAttr;
 /*N*/ }
@@ -1003,14 +995,6 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   bAttrAutoStorage=FALSE; //Rekursionen verhindern
 /*N*/
-/*N*/   //Eventuell 3D-Materialfarbe in 2D-Füllfarbe konvertieren:
-/*  const SfxPoolItem *pPoolItem;
-    if( SFX_ITEM_SET == rAttr.GetItemState( SID_ATTR_3D_MAT_COLOR, TRUE, &pPoolItem ) )
-    {
-        Color aNew = ( ( const SvxColorItem* ) pPoolItem )->GetValue();
-        ((SfxItemSet&)rAttr).Put(XFillColorItem(String(),aNew));
-    }
-*/
 /*N*/   DBG_ITEMS(((SfxItemSet&)rAttr),this);
 /*N*/
 /*N*/   SchObjectId* pObjId = GetObjectId(*pObj);
@@ -1056,7 +1040,6 @@ namespace binfilter {
 /*N*/                   SdrObject   *pO   = aIterator.Next();
 /*N*/                   SchObjectId *pI   = GetObjectId(*pO);
 /*N*/                   if(pI && pI->GetObjId()==CHOBJID_DIAGRAM_WALL && pO!=pObj)
-/*N*/ //-/                      pO->SetAttributes(rAttr,FALSE);
 /*N*/                       pO->SetItemSetAndBroadcast(rAttr);
 /*N*/               }
 /*N*/           }
@@ -1201,49 +1184,6 @@ namespace binfilter {
 /*N*/   return pObj;
 /*N*/ }
 
-// GetAttr-Methoden:
-//GetAttr(id) Diese Methode sucht anhand der Id den passenden Model-eigenen AttrSet
-//Achtung! Wenn zu einer ID kein Set existiert, wird *pDummyAttr returned!
-//(ungefährlich, geringer Overhead, wirft daher nur DBG__TRACE)
-//Nicht-Singuläre Objekte können nicht an der ID alleine identifiziert werden,
-//in diesem Fall muss GetAttr(SdrObject*) statt GetAttr(long id) gerufen werden
-// GetAttr(long id, SfxItemSet&) besorgt alle für ein Objekt verfügbaren und
-// gültigen Attribute
-
-/*
-Fehlen evtl. noch in GetAttr(ID):
-
-#define        CHOBJID_DIAGRAM                   13
-#define        CHOBJID_DIAGRAM_X_GRID_MAIN       22
-#define        CHOBJID_DIAGRAM_Y_GRID_MAIN       23
-#define        CHOBJID_DIAGRAM_Z_GRID_MAIN       24
-#define        CHOBJID_DIAGRAM_X_GRID_HELP       25
-#define        CHOBJID_DIAGRAM_Y_GRID_HELP       26
-#define        CHOBJID_DIAGRAM_Z_GRID_HELP       27
-#define        CHOBJID_DIAGRAM_ROWS              29
-#define        CHOBJID_DIAGRAM_ROWSLINE          30
-#define        CHOBJID_DIAGRAM_DESCRGROUP        32
-#define        CHOBJID_DIAGRAM_DESCR_ROW         33
-#define        CHOBJID_DIAGRAM_DESCR_COL         38
-#define        CHOBJID_DIAGRAM_DESCR_SYMBOL      39
-#define        CHOBJID_DIAGRAM_NET               41
-#define        CHOBJID_DIAGRAM_STACKEDGROUP      46
-#define        CHOBJID_DIAGRAM_STATISTICS_GROUP  48
-
-
-  nur GetAttr(pObj):
-#define        CHOBJID_DIAGRAM_AVERAGEVALUE      42
-#define        CHOBJID_DIAGRAM_REGRESSION        45
-#define        CHOBJID_DIAGRAM_ERROR             43
-
-#define        CHOBJID_LEGEND_SYMBOL_ROW         36
-#define        CHOBJID_LEGEND_SYMBOL_COL         37
-#define        CHOBJID_DIAGRAM_DATA              31
-#define        CHOBJID_DIAGRAM_SPECIAL_GROUP     55
-#define        CHOBJID_DIAGRAM_ROWGROUP          28
-
-  */
-
 /*N*/ void ChartModel::SetAttributes(const long nId,const SfxItemSet& rAttr,BOOL bMerge)
 /*N*/ {
 /*N*/   CHART_TRACE( "ChartModel::SetAttributes" );
@@ -1251,30 +1191,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/   if(!bMerge)
 /*N*/       rItemSet.ClearItem();
-
-
-    //sobald die member bShow*Descr endlich entfallen, kann das hier alles weg
-/*  if(nId==CHOBJID_DIAGRAM_X_AXIS || nId==CHOBJID_DIAGRAM_Y_AXIS || nId==CHOBJID_DIAGRAM_Z_AXIS)
-    {
-        const SfxPoolItem *pPoolItem=NULL;
-        if( rAttr.GetItemState( SCHATTR_AXIS_SHOWDESCR, FALSE, &pPoolItem ) == SFX_ITEM_SET )
-        {
-            BOOL bShow = ( (const SfxBoolItem*) pPoolItem)->GetValue();
-            switch(nId)
-            {
-                case CHOBJID_DIAGRAM_X_AXIS:
-                    bShowXDescr=bShow;
-                    break;
-                case CHOBJID_DIAGRAM_Y_AXIS:
-                    bShowYDescr=bShow;
-                    break;
-                case CHOBJID_DIAGRAM_Z_AXIS:
-                    bShowZDescr=bShow;
-                    break;
-            }
-        }
-    }*/
-
 
 /*N*/   rItemSet.Put(rAttr);
 /*N*/ }
@@ -1348,11 +1264,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/       case CHOBJID_LEGEND:
 /*N*/           return *pLegendAttr;
 /*N*/
-            /*return *pTitleAttr;
-            return *pAxisAttr;
-            return *pGridAttr;
-             return *pChartAttr;*/
-/*N*/
 /*N*/       case CHOBJID_DIAGRAM_REGRESSION:
 /*?*/           return *aRegressAttrList[ nIndex1 ];
 /*N*/       case CHOBJID_DIAGRAM_ERROR:
@@ -1424,7 +1335,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/ {
 /*N*/   BOOL bNeedChanges=TRUE; //noch ungenutzt, zur evtl. Optimierung
 /*N*/
-/*N*/
 /*N*/   //ToDo: optimieren! klappt wegen XChartView so nicht:
 /*N*/   //BOOL bForceBuild=FALSE;
 /*N*/   BOOL bForceBuild=TRUE;
@@ -1436,7 +1346,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/   {
 /*N*/       pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
 /*N*/      if(pObj)
-/*N*/ //-/          pObj->SetAttributes(rAttr,FALSE);
 /*N*/           pObj->SetItemSetAndBroadcast(rAttr);
 /*N*/   }
 /*N*/
@@ -1510,67 +1419,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/   return bResult;
 /*N*/ }
-/* Anmerkungen zu GetObjectAttr,SetObjectAttr:
-
--  das koennte bei get(????) fehlen:
-        CompareSets (*pYGridMainAttr, *pGridAttr);
-        CompareSets (*pZGridMainAttr, *pGridAttr);
-        CompareSets (*pXGridHelpAttr, *pGridAttr);
-        CompareSets (*pYGridHelpAttr, *pGridAttr);
-        CompareSets (*pZGridHelpAttr, *pGridAttr);
-
--  evtl. sollten default-itemwerte erkannt und wieder entfert werden (SET)
-
-- erweitern auf DataRowPoint!
-
-- Das koennte man mal alles oben hineintun....
-
-#define        CHOBJID_TEXT                       1
-#define        CHOBJID_AREA                       2
-#define        CHOBJID_LINE                       3
-
-
-
-#define        CHOBJID_TITLE_MAIN                11
-#define        CHOBJID_TITLE_SUB                 12
-#define        CHOBJID_DIAGRAM                   13
-
-#define        CHOBJID_DIAGRAM_TITLE_X_AXIS      16
-#define        CHOBJID_DIAGRAM_TITLE_Y_AXIS      17
-#define        CHOBJID_DIAGRAM_TITLE_Z_AXIS      18
-
-
-#define        CHOBJID_DIAGRAM_ROWGROUP          28
-#define        CHOBJID_DIAGRAM_ROWS              29
-#define        CHOBJID_DIAGRAM_ROWSLINE          30
-#define        CHOBJID_DIAGRAM_DATA              31
-#define        CHOBJID_DIAGRAM_DESCRGROUP        32
-#define        CHOBJID_DIAGRAM_DESCR_ROW         33
-#define        CHOBJID_DIAGRAM_DESCR_COL         38
-#define        CHOBJID_DIAGRAM_DESCR_SYMBOL      39
-#define        CHOBJID_LEGEND                    34
-#define        CHOBJID_LEGEND_BACK               35
-#define        CHOBJID_LEGEND_SYMBOL_ROW         36
-#define        CHOBJID_LEGEND_SYMBOL_COL         37
-#define        CHOBJID_DIAGRAM_NET               41
-#define        CHOBJID_DIAGRAM_AVERAGEVALUE      42
-#define        CHOBJID_DIAGRAM_ERROR             43
-#define        CHOBJID_DIAGRAM_REGRESSION        45
-#define        CHOBJID_DIAGRAM_STACKEDGROUP      46
-#define        CHOBJID_DIAGRAM_STATISTICS_GROUP  48
-#define        CHOBJID_DIAGRAM_X_GRID_MAIN_GROUP 49
-#define        CHOBJID_DIAGRAM_Y_GRID_MAIN_GROUP 50
-#define        CHOBJID_DIAGRAM_Z_GRID_MAIN_GROUP 51
-#define        CHOBJID_DIAGRAM_X_GRID_HELP_GROUP 52
-#define        CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP 53
-#define        CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP 54
-#define        CHOBJID_DIAGRAM_SPECIAL_GROUP     55
-
-pYGridMainAttr->Put(rAttr);
-*/
-
-
-
 
 /*N*/ UINT32 ChartModel::GetNumFmt(long nObjId,BOOL bPercent)
 /*N*/ {

@@ -96,30 +96,6 @@ public:
     SwTxtFmtColl& GetNextTxtFmtColl() const { return *pNextTxtFmtColl; }
 
     BOOL IsAtDocNodeSet() const;
-
-/*----------------- JP 09.08.94 17:36 -------------------
- wird die Funktionalitaet von Zeichenvorlagen an Absatzvorlagen
- ueberhaupt benoetigt ??
-
- Wenn, ja dann muessen im TextNode und hier in der TxtCollection ein 2.
- Attset fuer die Char-Attribute angelegt werden; damit die Vererbung
- und der Zugriff auf die gesetzen Attribute richtig funktioniert!!
-
-    virtual BOOL SetDerivedFrom( SwFmtColl* pDerFrom = 0 );
-
-    inline SwCharFmt* GetCharFmt() const;
-    inline BOOL IsCharFmtSet() const;
-    void SetCharFmt(SwCharFmt *);
-    void ResetCharFmt();
-inline BOOL SwTxtFmtColl::IsCharFmtSet() const
-{
-    return aCharDepend.GetRegisteredIn() ? TRUE : FALSE;
-}
-inline SwCharFmt* SwTxtFmtColl::GetCharFmt() const
-{
-    return (SwCharFmt*)aCharDepend.GetRegisteredIn();
-}
---------------------------------------------------*/
 };
 
 typedef SwTxtFmtColl* SwTxtFmtCollPtr;
@@ -225,9 +201,6 @@ public:
     TYPEINFO();     //Bereits in Basisklasse Client drin.
 
     virtual ~SwConditionTxtFmtColl();
-
-    // zum "abfischen" von Aenderungen
-//  virtual void Modify( SfxPoolItem*, SfxPoolItem* );
 
     const SwCollCondition* HasCondition( const SwCollCondition& rCond ) const;
     const SwFmtCollConditions& GetCondColls() const     { return aCondColls; }

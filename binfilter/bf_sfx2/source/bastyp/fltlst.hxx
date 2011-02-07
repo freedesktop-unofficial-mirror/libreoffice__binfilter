@@ -33,24 +33,16 @@
 //  includes
 //*****************************************************************************************************************
 #include <fcontnr.hxx>
-
 #include <cppuhelper/implbase1.hxx>
-
 #include <rtl/ustring.hxx>
-
 #include <osl/mutex.hxx>
-
 #include <com/sun/star/uno/Reference.hxx>
-
 #include <com/sun/star/util/XFlushable.hpp>
-
 #include <com/sun/star/util/XFlushListener.hpp>
-
 #include <com/sun/star/document/XEventListener.hpp>
-
 #include <com/sun/star/lang/EventObject.hpp>
-
 #include <com/sun/star/uno/RuntimeException.hpp>
+
 namespace binfilter {
 
 //*****************************************************************************************************************

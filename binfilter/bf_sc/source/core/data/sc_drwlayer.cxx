@@ -31,8 +31,6 @@
 #endif
 
 // INCLUDE ---------------------------------------------------------------
-
-
 #include "scitems.hxx"
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
@@ -175,7 +173,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*?*/       SetColorTable( OFF_APP()->GetStdColorTable() );
 /*N*/
 /*N*/   SetSwapGraphics(TRUE);
-/*N*/ //    SetSwapAsynchron(TRUE);     // an der View
 /*N*/
 /*N*/   SetScaleUnit(MAP_100TH_MM);
 /*N*/   SfxItemPool& rPool = GetItemPool();
@@ -246,8 +243,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   //! remove this method?
 /*N*/ }
 
-
-
 /*N*/ void ScDrawLayer::ScAddPage( USHORT nTab )
 /*N*/ {
 /*N*/   if (bDrawIsInUndo)
@@ -266,10 +261,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   if (pPage)
 /*N*/       pPage->SetName(rNewName);
 /*N*/ }
-
-
-
-
 
 /*N*/ void ScDrawLayer::SetPageSize( USHORT nPageNo, const Size& rSize )
 /*N*/ {
@@ -345,7 +336,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   ScWriteHeader aHdr( rStream );
 /*N*/
-/*N*/ //-/  const_cast<ScDrawLayer*>(this)->PrepareStore();     // non-const
 /*N*/   const_cast<ScDrawLayer*>(this)->PreSave();      // non-const
 /*N*/
 /*N*/   {
@@ -748,12 +738,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   return bFound;
 /*N*/ }
-
-
-
-
-
-
 
 
 // static

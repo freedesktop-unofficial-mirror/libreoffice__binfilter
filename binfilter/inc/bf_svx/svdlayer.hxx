@@ -30,12 +30,10 @@
 #define _SVDLAYER_HXX
 
 #include <tools/string.hxx>
-
 #include <tools/stream.hxx>
-
 #include <bf_svx/svdsob.hxx>
-
 #include <bf_svx/svdtypes.hxx> // fuer typedef SdrLayerID
+
 namespace binfilter {
 
 class SdrModel;
@@ -79,7 +77,6 @@ class SdrLayerSet {
 friend class SdrLayerAdmin;
 friend class SdrView;
 protected:
-    //SdrLayerAdmin& rAd; // Admin, um Layernamen herauszufinden, ...
     String    aName;
     SetOfByte aMember;
     SetOfByte aExclude;
@@ -90,8 +87,6 @@ public:
     SdrLayerSet(): pModel(NULL) {}
     SdrLayerSet(const String& rNewName): aName(rNewName), pModel(NULL) {}
     void            SetModel(SdrModel* pNewModel)          { pModel=pNewModel; }
-//    void            AddAll()                               { aMember.SetAll(); }
-//    void            ExcludeAll()                           { aExclude.SetAll(); }
     friend SvStream& operator>>(SvStream& rIn, SdrLayerSet& rSet);
     friend SvStream& operator<<(SvStream& rOut, const SdrLayerSet& rSet);
 };
@@ -103,7 +98,6 @@ class SdrLayerAdmin {
 friend class SdrView;
 friend class SdrModel;
 friend class SdrPage;
-//friend class MyScr; // debug
 protected:
     Container      aLayer;
     Container      aLSets;

@@ -272,35 +272,6 @@ namespace binfilter {
 /*N*/       rSizeChanged = TRUE;
 /*N*/   }
 /*N*/
-/*          nicht zusammenfassen!
-
-    //  zusammenfassen
-
-    USHORT nCount = aCollections[nLevel].GetCount();
-    USHORT nIndex;
-    bFound = FALSE;
-    for ( nIndex=0; nIndex<nCount && !bFound; nIndex++ )
-    {
-        if ( ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetEnd() + 1 == nStartCol )
-        {
-            nStartCol = ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetStart();
-            aCollections[nLevel].AtFree(nIndex);
-            nCount = aCollections[nLevel].GetCount();       // Daten geaendert
-            bFound = TRUE;
-        }
-    }
-
-    bFound = FALSE;
-    for ( nIndex=0; nIndex<nCount && !bFound; nIndex++ )
-    {
-        if ( ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetStart() == nEndCol + 1 )
-        {
-            nEndCol = ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetEnd();
-            aCollections[nLevel].AtFree(nIndex);
-            bFound = TRUE;
-        }
-    }
-*/
 /*N*/   ScOutlineEntry* pNewEntry = new ScOutlineEntry( nStartCol, nEndCol+1-nStartCol, bHidden );
 /*N*/   pNewEntry->SetVisible( bVisible );
 /*N*/   aCollections[nLevel].Insert( pNewEntry );

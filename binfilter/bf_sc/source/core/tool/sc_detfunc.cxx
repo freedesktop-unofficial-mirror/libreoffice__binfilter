@@ -85,16 +85,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 
 //------------------------------------------------------------------------
 
-//-/class ScPublicAttrObj : public SdrAttrObj
-//-/{
-//-/private:
-//-/    ScPublicAttrObj() {}                        // wird nicht angelegt
-//-/public:
-//-/    const XLineAttrSetItem* GetLineAttr()       { return pLineAttr; }
-//-/};
-
-//------------------------------------------------------------------------
-
 /*N*/ class ScDetectiveData
 /*N*/ {
 /*N*/ private:
@@ -381,19 +371,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/           BOOL bObjEndAlien =
 /*N*/               lcl_IsOtherTab( ((const XLineEndItem&)pObject->GetItem(XATTR_LINEEND)).GetValue() );
 /*N*/
-/*N*/ //-/          BOOL bObjStartAlien = FALSE;
-/*N*/ //-/          BOOL bObjEndAlien = FALSE;
-/*N*/ //-/          const XLineAttrSetItem* pLineAttrs =
-/*N*/ //-/              ((ScPublicAttrObj*)(SdrAttrObj*)pObject)->GetLineAttr();
-/*N*/ //-/          if (pLineAttrs)
-/*N*/ //-/          {
-/*N*/ //-/              const SfxItemSet& rSet = pLineAttrs->GetItemSet();
-/*N*/ //-/              bObjStartAlien = (((const XLineStartItem&)rSet.Get(XATTR_LINESTART)).
-/*N*/ //-/                                      GetValue().GetPointCount() == 4 );
-/*N*/ //-/              bObjEndAlien   = (((const XLineEndItem&)rSet.Get(XATTR_LINEEND)).
-/*N*/ //-/                                      GetValue().GetPointCount() == 4 );
-/*N*/ //-/          }
-/*N*/
 /*N*/           BOOL bStartHit = bStartAlien ? bObjStartAlien :
 /*N*/                               ( !bObjStartAlien && aStartRect.IsInside(pObject->GetPoint(0)) );
 /*N*/           BOOL bEndHit = bEndAlien ? bObjEndAlien :
@@ -454,7 +431,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   pArrow->NbcSetLogicRect(Rectangle(aStartPos,aEndPos));  //! noetig ???
 /*N*/
-/*N*/ //-/  pArrow->SetAttributes( rAttrSet, FALSE );
 /*N*/   pArrow->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pArrow, SCA_CELL );
@@ -496,7 +472,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/       SdrRectObj* pBox = new SdrRectObj(Rectangle(aStartCorner,aEndCorner));
 /*N*/
-/*N*/ //-/      pBox->SetAttributes( rData.GetBoxSet(), FALSE );
 /*N*/       pBox->SetItemSetAndBroadcast(rData.GetBoxSet());
 /*N*/
 /*N*/       ScDrawLayer::SetAnchor( pBox, SCA_CELL );
@@ -534,7 +509,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   pArrow->NbcSetLogicRect(Rectangle(aStartPos,aEndPos));  //! noetig ???
 /*N*/
-/*N*/ //-/  pArrow->SetAttributes( rAttrSet, FALSE );
 /*N*/   pArrow->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pArrow, SCA_CELL );
@@ -611,7 +585,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   SdrCircObj* pCircle = new SdrCircObj( OBJ_CIRC, aRect );
 /*N*/   SfxItemSet& rAttrSet = rData.GetCircleSet();
 /*N*/
-/*N*/ //-/  pCircle->SetAttributes( rAttrSet, FALSE );
 /*N*/   pCircle->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pCircle, SCA_CELL );
@@ -692,17 +665,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 
 /*N*/ void ScDetectiveFunc::DeleteBox( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 )
 /*N*/ {
-/*  String aStr;
-    aStr += nCol1;
-    aStr += '/';
-    aStr += nRow1;
-    aStr += '/';
-    aStr += nCol2;
-    aStr += '/';
-    aStr += nRow2;
-    InfoBox(0,aStr).Execute();
-*/
-/*N*/
 /*N*/   Point aStartCorner = GetDrawPos( nCol1, nRow1, FALSE );
 /*N*/   Point aEndCorner = GetDrawPos( nCol2+1, nRow2+1, FALSE );
 /*N*/   Rectangle aObjRect;

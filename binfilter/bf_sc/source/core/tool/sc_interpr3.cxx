@@ -48,8 +48,6 @@ namespace binfilter {
 #define SCdEpsilon                1.0E-7
 #define SC_MAX_ITERATION_COUNT    20
 #define MAX_ANZ_DOUBLE_FOR_SORT 100000
-// PI jetzt als F_PI aus solar.h
-//#define   PI            3.1415926535897932
 
 //-----------------------------------------------------------------------------
 
@@ -61,7 +59,6 @@ public:
 
 //  iteration for inverse distributions
 
-//template< class T > double lcl_IterateInverse( const T& rFunction, double x0, double x1, BOOL& rConvError )
 double lcl_IterateInverse( const ScDistFunc& rFunction, double x0, double x1, BOOL& rConvError )
 {
     rConvError = FALSE;
@@ -263,10 +260,6 @@ double ScInterpreter::Fakultaet(double x)
     }
     else
         SetError(errNoValue);
-/*                                           // Stirlingsche Naeherung zu ungenau
-    else
-        x = pow(x/exp(1), x) * sqrt(x) * SQRT_2_PI * (1.0 + 1.0 / (12.0 * x));
-*/
     return x;
 }
 
@@ -289,20 +282,6 @@ double ScInterpreter::BinomKoeff(double n, double k)
             k--;
             n--;
         }
-/*
-        double f1 = n;                      // Zaehler
-        double f2 = k;                      // Nenner
-        n--;
-        k--;
-        while (k > 0.0)
-        {
-            f2 *= k;
-            f1 *= n;
-            k--;
-            n--;
-        }
-        nVal = f1 / f2;
-*/
     }
     return nVal;
 }
@@ -438,74 +417,16 @@ double ScInterpreter::GetFDist(double x, double fF1, double fF2)
     double alpha = fF2/2.0;
     double beta = fF1/2.0;
     return (GetBetaDist(arg, alpha, beta));
-/*
-    double Z = (pow(fF,1.0/3.0)*(1.0-2.0/(9.0*fF2)) - (1.0-2.0/(9.0*fF1))) /
-               sqrt(2.0/(9.0*fF1) + pow(fF,2.0/3.0)*2.0/(9.0*fF2));
-    return (0.5-gauss(Z));
-*/
 }
 
 double ScInterpreter::GetTDist(double T, double fDF)
 {
     return 0.5 * GetBetaDist(fDF/(fDF+T*T), fDF/2.0, 0.5);
-/*
-    USHORT DF = (USHORT) fDF;
-    double A = T / sqrt(DF);
-    double B = 1.0 + A*A;
-    double R;
-    if (DF == 1)
-        R = 0.5 + atan(A)/F_PI;
-    else if (DF % 2 == 0)
-    {
-        double S0 = A/(2.0 * sqrt(B));
-        double C0 = S0;
-        for (USHORT i = 2; i <= DF-2; i+=2)
-        {
-            C0 *= (1.0 - 1.0/(double)i)/B;
-            S0 += C0;
-        }
-        R = 0.5 + S0;
-    }
-    else
-    {
-        double S1 = A / (B * F_PI);
-        double C1 = S1;
-        for (USHORT i = 3; i <= DF-2; i+=2)
-        {
-            C1 *= (1.0 - 1.0/(double)i)/B;
-            S1 += C1;
-        }
-        R = 0.5 + atan(A)/F_PI + S1;
-    }
-    return 1.0 - R;
-*/
 }
 
 double ScInterpreter::GetChiDist(double fChi, double fDF)
 {
     return 1.0 - GetGammaDist(fChi/2.0, fDF/2.0, 1.0);
-/*
-    double x = 1.0;
-    for (double i = fDF; i >= 2.0; i -= 2.0)
-        x *= fChi/i;
-    x *= exp(-fChi/2.0);
-    if (fmod(fDF, 2.0) != 0.0)
-        x *= sqrt(2.0*fChi/F_PI);
-    double S = 1.0;
-    double T = 1.0;
-    double G = fDF;
-    BOOL bStop = FALSE;
-    while (!bStop)
-    {
-        G += 2.0;
-        T *= fChi/G;
-        if (T < 1.0E-7)
-            bStop = TRUE;
-        else
-            S += T;
-    }
-    return 1.0 - x*S;
-*/
 }
 
 void ScInterpreter::ScLogGamma()
@@ -680,16 +601,7 @@ void ScInterpreter::ScB()
         double xs = GetDouble();
         double p = GetDouble();
         double n = GetDouble();
-//                                          alter Stand 300-SC
-//      if ((xs < n) && (xe < n) && (p < 1.0))
-//      {
-//          double Varianz = sqrt(n * p * (1.0 - p));
-//          xs = fabs(xs - (n * p /* / 2.0 STE */ ));
-//          xe = fabs(xe - (n * p /* / 2.0 STE */ ));
-//// STE        double nVal = gauss((xs + 0.5) / Varianz) + gauss((xe + 0.5) / Varianz);
-//          double nVal = fabs(gauss(xs / Varianz) - gauss(xe / Varianz));
-//          PushDouble(nVal);
-//      }
+
         if (xe <= n && xs <= xe &&
             p < 1.0 && p > 0.0 && n >= 0.0 && xs >= 0.0 )
         {
@@ -1084,27 +996,6 @@ void ScInterpreter::ScHypGeomDist()
         double fFactor =
             BinomKoeff( n, x ) / BinomKoeff( N, M ) * BinomKoeff( N - n, M - x );
 
-/*
-        double fFactor;
-        if (x == n - N + M)
-            fFactor = BinomKoeff(M,x)/BinomKoeff(N,n);
-        else
-        {
-            double fIndex = N - M - n;
-            if (fIndex >= 0.0)
-            {
-                fFactor = BinomKoeff(N-M,n)/BinomKoeff(N,n);
-                for (double i = 0; i < x; i++)
-                    fFactor *= (M-i)*(n-i)/((i+1.0)*(N-M-n+i+1.0));
-            }
-            else
-            {
-                fFactor = BinomKoeff(M,-fIndex)/BinomKoeff(N,n);
-                for (double i = -fIndex + 1.0; i < x; i++)
-                    fFactor *= (M-i)*(n-i)/((i+1)*(N-M-n+i+1.0));
-            }
-        }
-*/
         PushDouble(fFactor);
     }
 }
@@ -1633,8 +1524,6 @@ void ScInterpreter::ScTTest()
         }
         fT = fabs(fSum1/fCount1 - fSum2/fCount2)/sqrt(fS1+fS2);
         double c = fS1/(fS1+fS2);
-// s.u. fF = ::rtl::math::approxFloor(1.0/(c*c/(fCount1-1.0)+(1.0-c)*(1.0-c)/(fCount2-1.0)));
-//      fF = ::rtl::math::approxFloor((fS1+fS2)*(fS1+fS2)/(fS1*fS1/(fCount1-1.0) + fS2*fS2/(fCount2-1.0)));
 
         //  GetTDist wird mit GetBetaDist berechnet und kommt auch mit nicht ganzzahligen
         //  Freiheitsgraden klar. Dann stimmt das Ergebnis auch mit Excel ueberein (#52406#):
@@ -1722,11 +1611,6 @@ void ScInterpreter::ScFTest()
         fF2 = fCount1-1.0;
     }
     PushDouble(2.0*GetFDist(fF, fF1, fF2));
-/*
-    double Z = (pow(fF,1.0/3.0)*(1.0-2.0/(9.0*fF2)) - (1.0-2.0/(9.0*fF1))) /
-               sqrt(2.0/(9.0*fF1) + pow(fF,2.0/3.0)*2.0/(9.0*fF2));
-    PushDouble(1.0-2.0*gauss(Z));
-*/
 }
 
 void ScInterpreter::ScChiTest()
@@ -1780,25 +1664,6 @@ void ScInterpreter::ScChiTest()
     else
         fDF = (double)(nC1-1)*(double)(nR1-1);
     PushDouble(GetChiDist(fChi, fDF));
-/*
-    double fX, fS, fT, fG;
-    fX = 1.0;
-    for (double fi = fDF; fi >= 2.0; fi -= 2.0)
-        fX *= fChi/fi;
-    fX *= exp(-fChi/2.0);
-    if (fmod(fDF, 2.0) != 0.0)
-        fX *= sqrt(2.0*fChi/F_PI);
-    fS = 1.0;
-    fT = 1.0;
-    fG = fDF;
-    while (fT >= 1.0E-7)
-    {
-        fG += 2.0;
-        fT *= fChi/fG;
-        fS += fT;
-    }
-    PushDouble(1.0 - fX*fS);
-*/
 }
 
 void ScInterpreter::ScKurt()
@@ -2601,22 +2466,6 @@ void ScInterpreter::ScLarge()
 #else
         double* pSArray = pSortArray;
 #endif
-/*
-        ULONG nCount = 1;
-        double nOldVal = pSArray[nSize-1];
-        for (long i = nSize-2; i >= 0 && nCount < k; i--)
-        {
-            if (pSArray[i] != nOldVal)
-            {
-                nCount++;
-                nOldVal = pSArray[i];
-            }
-        }
-        if (nCount < k)
-            SetNoValue();
-        else
-            PushDouble(nOldVal);
-*/
         PushDouble( pSArray[ nSize-k ] );
     }
     if (pSortArray)
@@ -2651,22 +2500,6 @@ void ScInterpreter::ScSmall()
 #else
         double* pSArray = pSortArray;
 #endif
-/*
-        ULONG nCount = 1;
-        double nOldVal = pSArray[0];
-        for (ULONG i = 1; i < nSize && nCount < k; i++)
-        {
-            if (pSArray[i] != nOldVal)
-            {
-                nCount++;
-                nOldVal = pSArray[i];
-            }
-        }
-        if (nCount < k)
-            SetNoValue();
-        else
-            PushDouble(nOldVal);
-*/
         PushDouble( pSArray[ k-1 ] );
     }
     if (pSortArray)
@@ -2684,20 +2517,6 @@ void ScInterpreter::ScPercentrank()
     BYTE nParamCount = GetByte();
     if ( !MustHaveParamCount( nParamCount, 2 ) )
         return;
-/*                          wird nicht unterstuetzt
-    double fPrec;
-    if (nParamCount == 3)
-    {
-        fPrec = ::rtl::math::approxFloor(GetDouble());
-        if (fPrec < 1.0)
-        {
-            SetIllegalArgument();
-            return;
-        }
-    }
-    else
-        fPrec = 3.0;
-*/
     double fNum = GetDouble();
     double* pSortArray = NULL;
     ULONG nSize = 0;

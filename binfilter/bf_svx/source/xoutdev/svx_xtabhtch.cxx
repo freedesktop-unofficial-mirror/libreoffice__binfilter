@@ -29,13 +29,11 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
 #include "XPropertyTable.hxx"
 #include <unotools/ucbstreamhelper.hxx>
 #include <vcl/svapp.hxx>
 
 #include "xmlxtimp.hxx"
-
 #endif
 
 #include <tools/urlobj.hxx>
@@ -51,10 +49,9 @@
 #include "dlgutil.hxx"
 
 #include <xflhtit.hxx>
-
 #include <xflclit.hxx>
-
 #include <xfillit0.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -253,24 +250,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /*N*/ BOOL XHatchList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckHatch0, 4 );
-    pStream->WriteByteString(String( pszChckHatch0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
 /*N*/ }
 
 /************************************************************************/
@@ -342,7 +321,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   pXFSet->GetItemSet().Put( XFillStyleItem( XFILL_SOLID ) );
 /*N*/   pXFSet->GetItemSet().Put( XFillColorItem( String(), RGB_Color( COL_WHITE ) ) );
 /*N*/
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   // #73550#
@@ -359,7 +337,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   pXFSet->GetItemSet().Put( XFillStyleItem( XFILL_HATCH ) );
 /*N*/   pXFSet->GetItemSet().Put( XFillHatchItem( String(), Get( nIndex )->GetHatch() ) );
 
-//-/    pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawRect( Rectangle( aZero, aVDSize ) );

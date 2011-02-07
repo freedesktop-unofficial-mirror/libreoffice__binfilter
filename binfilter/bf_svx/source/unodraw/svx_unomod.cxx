@@ -29,29 +29,17 @@
 #define _SVX_USE_UNOGLOBALS_
 
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-
-
 #include <vcl/svapp.hxx>
-
-
-
 #include <bf_svtools/unoevent.hxx>
-
-
-
 #include <unofill.hxx>
-
 #include <unonrule.hxx>
-
 #include <bf_svtools/unoimap.hxx>
 
 #include <fmdpage.hxx>
 #include <fmmodel.hxx>
-
 #include <fmpage.hxx>
 
 #include <bf_sfx2/sfx.hrc>
-
 #include <unoapi.hxx>
 
 #include "globl3d.hxx"
@@ -60,6 +48,7 @@
 #include "svdobj.hxx"
 #include "unoshape.hxx"
 #include <boost/unordered_map.hpp>
+
 namespace binfilter {
 
 //-////////////////////////////////////////////////////////////////////
@@ -138,11 +127,6 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
 
     switch( pSdrHint->GetKind() )
     {
-//              case HINT_LAYERCHG:             // Layerdefinition geaendert
-//              case HINT_LAYERORDERCHG:        // Layerreihenfolge geaendert (Insert/Remove/ChangePos)
-//              case HINT_LAYERSETCHG:          // Layerset geaendert
-//              case HINT_LAYERSETORDERCHG:     // Layersetreihenfolge geaendert (Insert/Remove/ChangePos)
-
         case HINT_PAGECHG:              // Page geaendert
             aEvent.EventName = OUString( RTL_CONSTASCII_USTRINGPARAM( "PageModified" ) );
             pPage = pSdrHint->GetPage();
@@ -163,12 +147,6 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
             aEvent.EventName = OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeRemoved" ) );
             pObj = pSdrHint->GetObject();
             break;
-//                HINT_DEFAULTTABCHG,   // Default Tabulatorweite geaendert
-//                HINT_DEFFONTHGTCHG,   // Default FontHeight geaendert
-//                HINT_CONTROLINSERTED, // UnoControl wurde eingefuegt
-//                HINT_CONTROLREMOVED,  // UnoControl wurde entfernt
-//                HINT_SWITCHTOPAGE,    // #94278# UNDO/REDO at an object evtl. on another page
-//                HINT_OBJLISTCLEAR     // Is called before an SdrObjList will be cleared
         default:
             return sal_False;
     }

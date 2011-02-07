@@ -25,12 +25,12 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma optimize("e",off)
-
-
 #pragma hdrstop
 #endif
+
 #define ITEMID_FONTLIST         0
 #define ITEMID_POSTURE          0
 #define ITEMID_WEIGHT           0
@@ -56,7 +56,6 @@
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 
 #include <bf_svtools/whiter.hxx>
-
 #include <bf_svx/eeitem.hxx>
 
 #include "schattr.hxx"
@@ -67,25 +66,14 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
 #include <bf_svtools/eitem.hxx>
-
 #endif
 
-
 #include <bf_svx/fhgtitem.hxx>
-
-
-
 #include <bf_svx/svxids.hrc>
-
-
 #include <globfunc.hxx>
-
-
-
 
 #include "math.h"
 #include "float.h"
-
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/wghtitem.hxx>
@@ -116,7 +104,6 @@ namespace binfilter {
 /*N*/   pObj->SetMoveProtect (bProtect);
 /*N*/   pObj->SetResizeProtect (bResize);
 /*N*/   if (pAttr)
-/*N*/ //-/      pObj->NbcSetAttributes (*pAttr, FALSE);//#63904# Nbc neu
 /*N*/       pObj->SetItemSet(*pAttr);
 /*N*/
 /*N*/   return pObj;
@@ -450,13 +437,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Faktor fuer Koordinaten-Multiplikation berechnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Konvertiert in echte RGB-Farben.
 |*
 \************************************************************************/
@@ -492,21 +472,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return aStackStr;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* "Entstapelt" den angegebenen String.
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aendert die Helligkeit der Fuellfarbe des Ziel-ItemSets;
-|* Liefert die alte Fuellfarbe zurueck.
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1281,12 +1246,6 @@ namespace binfilter {
 /*N*/       rFont.SetPitch(    pFontItem->GetPitch());
 /*N*/   }
 /*N*/
-/*N*/ //    rFont.SetColor( ((const SvxColorItem&)rSet.Get( EE_CHAR_COLOR )).GetValue() );
-/*N*/ //    rFont.SetName( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetFamilyName() );
-/*N*/ //    rFont.SetFamily( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetFamily() );
-/*N*/ //    rFont.SetPitch( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetPitch() );
-/*N*/ //    rFont.SetCharSet( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetCharSet() );
-/*N*/
 /*N*/   //  Scale the font's horizontal size like the vertical size.  Assume that the original size is
 /*N*/   //  7pt.  The scaling is done here because the item EE_CHAR_FONTWIDTH holds a horizontal scaling
 /*N*/   //  factor.  The horizontal size can therefore not be stored there.  But as the font is scaled
@@ -1294,9 +1253,6 @@ namespace binfilter {
 /*N*/   long nFontHeight = static_cast<const SvxFontHeightItem&>(rSet.Get(EE_CHAR_FONTHEIGHT)).GetHeight();
 /*N*/   long nFontWidth = 0;    // #89001# use default font width
 /*N*/   rFont.SetSize (Size (nFontWidth, nFontHeight));
-/*N*/   //  Old line.
-/*N*/   //  rFont.SetSize( Size( ((const SvxFontWidthItem&)rSet.Get( EE_CHAR_FONTWIDTH )).GetWidth(),
-/*N*/   //   ((const SvxFontHeightItem&)rSet.Get( EE_CHAR_FONTHEIGHT )).GetHeight() ) );
 /*N*/
 /*N*/   rFont.SetWeight( ((const SvxWeightItem&)rSet.Get( EE_CHAR_WEIGHT )).GetWeight() );
 /*N*/   rFont.SetUnderline( ((const SvxUnderlineItem&)rSet.Get( EE_CHAR_UNDERLINE )).GetUnderline() );
@@ -1304,12 +1260,8 @@ namespace binfilter {
 /*N*/   rFont.SetItalic( ((const SvxPostureItem&)rSet.Get( EE_CHAR_ITALIC )).GetPosture() );
 /*N*/   rFont.SetOutline( ((const SvxContourItem&)rSet.Get( EE_CHAR_OUTLINE )).GetValue() );
 /*N*/   rFont.SetShadow( ((const SvxShadowedItem&)rSet.Get( EE_CHAR_SHADOW )).GetValue() );
-/*N*/   //rFont.SetEscapement( ((const SvxEscapementItem&)rSet.Get( EE_CHAR_ESCAPEMENT)).GetEsc() );
-/*N*/   //rFont.SetPropr( ((const SvxEscapementItem&)rSet.Get( EE_CHAR_ESCAPEMENT)).GetProp() );
 /*N*/   rFont.SetKerning( ((const SvxAutoKernItem&)rSet.Get( EE_CHAR_PAIRKERNING )).GetValue() );
-/*N*/   //rFont.SetFixKerning( ((const SvxKerningItem&)rSet.Get( EE_CHAR_KERNING )).GetValue() );
 /*N*/   rFont.SetWordLineMode( ((const SvxWordLineModeItem&)rSet.Get( EE_CHAR_WLM )).GetValue() );
-/*N*/ //    rFont.SetOrientation( (short)(rDesc.Orientation*10) );
 /*N*/ }
 
 
@@ -1385,7 +1337,6 @@ namespace binfilter {
 /*N*/       Color aColor( ( ( const XFillColorItem* ) pPoolItem )->GetValue() );
 /*N*/       nColor=aColor.GetRGBColor();
 /*N*/   }
-/*N*/ //-/  if( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_3D_MAT_COLOR, TRUE, &pPoolItem ) )
 /*N*/   if( SFX_ITEM_SET == rSet.GetItemState( SDRATTR_3DOBJ_MAT_COLOR, TRUE, &pPoolItem ) )
 /*N*/   {
 /*N*/       Color aNew(  ((const SvxColorItem*) pPoolItem )->GetValue()   );

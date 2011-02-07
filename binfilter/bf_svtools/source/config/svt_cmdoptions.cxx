@@ -28,31 +28,19 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
 #include <bf_svtools/cmdoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <cppuhelper/weakref.hxx>
-
 #include <tools/urlobj.hxx>
-
 #include <rtl/ustrbuf.hxx>
-
 #include <itemholder1.hxx>
-
 #include <algorithm>
 #include <boost/unordered_map.hpp>
 

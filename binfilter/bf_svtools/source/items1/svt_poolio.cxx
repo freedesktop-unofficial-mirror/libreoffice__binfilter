@@ -28,7 +28,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 #include <string.h>
 #include <stdio.h>
 
@@ -635,7 +634,6 @@ SvStream &SfxItemPool::Load(SvStream &rStream)
         {
             // SlotId, Which-Id und Item-Version besorgen
             USHORT nCount, nVersion, nWhich;
-            //!USHORT nSlotId = aWhichIdsRec.GetContentTag();
             rStream >> nWhich;
             if ( pImp->nLoadingVersion != pImp->nVersion )
                 // Which-Id aus File-Version in Pool-Version verschieben
@@ -647,10 +645,6 @@ SvStream &SfxItemPool::Load(SvStream &rStream)
 
             rStream >> nVersion;
             rStream >> nCount;
-            //!SFX_ASSERTWARNING( !nSlotId || !HasMap() ||
-            //!         ( nSlotId == GetSlotId( nWhich, FALSE ) ) ||
-            //!         !GetSlotId( nWhich, FALSE ),
-            //!         nWhich, "Slot/Which mismatch" );
 
             USHORT nIndex = GetIndex_Impl(nWhich);
             SfxPoolItemArray_Impl **ppArr = pImp->ppPoolItems + nIndex;
@@ -688,7 +682,6 @@ SvStream &SfxItemPool::Load(SvStream &rStream)
         {
             // SlotId, Which-Id und Item-Version besorgen
             USHORT nVersion, nWhich;
-            //!USHORT nSlotId = aDefsRec.GetContentTag();
             rStream >> nWhich;
             if ( pImp->nLoadingVersion != pImp->nVersion )
                 // Which-Id aus File-Version in Pool-Version verschieben
@@ -699,8 +692,6 @@ SvStream &SfxItemPool::Load(SvStream &rStream)
                 continue;
 
             rStream >> nVersion;
-            //!SFX_ASSERTWARNING( !HasMap() || ( nSlotId == GetSlotId( nWhich, FALSE ) ),
-            //!         nWhich, "Slot/Which mismatch" );
 
             // Pool-Default-Item selbst laden
             SfxPoolItem *pItem =
@@ -844,11 +835,6 @@ SvStream &SfxItemPool::Load1_Impl(SvStream &rStream)
             if ( !bOwnPool )
                 nWhich = nMappedWhich;
 
-            //!SFX_ASSERTWARNING( !nSlot || !HasMap() ||
-            //!         ( nSlot == GetSlotId( nWhich, FALSE ) ) ||
-            //!         !GetSlotId( nWhich, FALSE ),
-            //!         nWhich, "Slot/Which mismatch" );
-
             USHORT nIndex = GetIndex_Impl(nWhich);
             ppArr = pImp->ppPoolItems + nIndex;
             pNewArr = new SfxPoolItemArray_Impl( nCount );
@@ -955,7 +941,6 @@ SvStream &SfxItemPool::Load1_Impl(SvStream &rStream)
                                 SFX_TRACE( "reusing item", pOldItem );
                             }
                         }
-                        //! DBG_ASSERT( bFound, "old-item not found in file" );
                         if ( !bFound )
                         {
                             SFX_TRACE( "item not found: ", pOldItem );

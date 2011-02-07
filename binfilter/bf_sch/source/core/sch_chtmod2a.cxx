@@ -40,9 +40,8 @@
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-
-
 #endif
+
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #include <bf_svx/fwdtitem.hxx>
@@ -56,10 +55,8 @@
 #include <math.h>
 #include <float.h>
 
-
 #include "pairs.hxx"
 #include "globfunc.hxx"
-
 
 #include <bf_svx/xlineit.hxx>
 // header for Line
@@ -67,16 +64,12 @@
 #include "chaxis.hxx"
 #include "chdescr.hxx"
 #include "calculat.hxx"
+
 namespace binfilter {
 
 #define SCH_SIN(a)      (sin((double)a * F_PI / 18000.0))
 #define SCH_COS(a)      (cos((double)a * F_PI / 18000.0))
 
-/*************************************************************************
-|*
-|* DataDescription Array initialisieren (loeschen)
-|*
-\************************************************************************/
 /*************************************************************************
 |*
 |* Kreisdiagramm erzeugen
@@ -640,7 +633,6 @@ namespace binfilter {
 /*N*/         pLineObject  = NULL;
 /*N*/
         if( ((const SfxBoolItem &) rDataRowAttr.Get( SCHATTR_STAT_AVERAGE )).GetValue() )
-//          pStatLists[ nRow ]->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
            {DBG_BF_ASSERT(0, "STRIP"); }
 
 /*N*/         aSplinePoints.clear();
@@ -760,7 +752,6 @@ namespace binfilter {
 /*N*/               pLineObject->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
 /*N*/               pLineObject->InsertUserData( new SchDataRow( (short)nRow ));
 /*N*/
-//-/                pObj->NbcSetAttributes( aLineAttr, FALSE );
 /*N*/               pLineObject->SetItemSet( aLineAttr);
 /*N*/
 /*N*/           }
@@ -1058,7 +1049,6 @@ namespace binfilter {
 /*N*/           MergeDataPointAttr(aDataPointAttr,nCol,nRow);
 /*N*/
 /*N*/           long nIndex = nCol + nRow * nColCnt;
-/*N*/ //            double fData = fabs(GetData(nCol, nRow, bPercent));
 /*N*/           double fData = GetData(nCol, nRow, bPercent);
 /*N*/
 /*N*/           if (pYAxisList)
@@ -1122,7 +1112,7 @@ namespace binfilter {
 /*N*/
 /*N*/               nPoints ++;
 /*N*/
-/*N*/               if(HasSymbols(nRow)) // if ((eChartStyle == CHSTYLE_2D_NET_SYMBOLS) ||(eChartStyle == CHSTYLE_2D_NET_SYMBOLS_STACK) ||(eChartStyle == CHSTYLE_2D_NET_SYMBOLS_PERCENT))
+/*N*/               if(HasSymbols(nRow))
 /*N*/               {
 /*N*/                   SdrObject *pNewObj = CreateSymbol (aDataLine[nPoints - 1], nRow, nCol,
 /*N*/                                                      (SfxItemSet &) rDataRowAttr, nLegendHeight);
@@ -1154,7 +1144,6 @@ namespace binfilter {
 /*?*/                   pObj->InsertUserData(new SchDataRow((short)nRow));
 /*?*/                   pRowLists[nRow]->NbcInsertObject(pObj,0); //#54870# Linie nach hinten
 /*?*/
-/*?*/ //-/                  pObj->NbcSetAttributes(aLineAttr, FALSE);
 /*?*/                   pObj->SetItemSet(aLineAttr);
 /*?*/
 /*?*/                   nPoints = 0;
@@ -1193,7 +1182,6 @@ namespace binfilter {
 /*N*/           pObj->InsertUserData(new SchDataRow((short)nRow));
 /*N*/           pRowLists[nRow]->NbcInsertObject(pObj,0);//#54870# hinter die Symbole mit der Linie
 /*N*/
-/*N*/ //-/          pObj->NbcSetAttributes(aLineAttr, FALSE);
 /*N*/           pObj->SetItemSet(aLineAttr);
 /*N*/
 /*N*/       }
@@ -1327,12 +1315,6 @@ namespace binfilter {
 /*?*/       }
 /*?*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Trage ggf. Mittelwert und Fehlerbalken ein
-|*
-\************************************************************************/
 
 /*************************************************************************
 |*

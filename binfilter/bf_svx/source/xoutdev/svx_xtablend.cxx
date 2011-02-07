@@ -29,22 +29,18 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
 #include "XPropertyTable.hxx"
 #include <unotools/ucbstreamhelper.hxx>
 
 #include "xmlxtimp.hxx"
-
 #endif
 
 #include <tools/urlobj.hxx>
 
 #include <vcl/virdev.hxx>
-
 #include <vcl/svapp.hxx>
 
 #include <bf_svtools/itemset.hxx>
-
 #include <bf_sfx2/docfile.hxx>
 
 #include "dialogs.hrc"
@@ -56,20 +52,14 @@
 #include "xoutx.hxx"
 
 #include <xfillit0.hxx>
-
 #include <xflclit.hxx>
-
 #include <xlnstwit.hxx>
-
 #include <xlnedwit.hxx>
-
 #include <xlnclit.hxx>
-
 #include <xlineit0.hxx>
-
 #include <xlnstit.hxx>
-
 #include <xlnedit.hxx>
+
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -267,24 +257,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 /*N*/ BOOL XLineEndList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckLineEnd0, 4 );
-    pStream->WriteByteString(String( pszChckLineEnd0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
 /*N*/ }
 
 /************************************************************************/
@@ -370,10 +342,8 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       aVDSize = pVD->GetOutputSize();
 /*N*/
 /*N*/   pXLSet->GetItemSet().Put( XLineStyleItem( XLINE_NONE ) );
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/   pXOut->DrawRect( Rectangle( aZero, aVDSize ) );
@@ -382,7 +352,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/   pXLSet->GetItemSet().Put( XLineStartItem( String(), Get( nIndex )->GetLineEnd() ) );
 /*N*/   pXLSet->GetItemSet().Put( XLineEndItem( String(), Get( nIndex )->GetLineEnd() ) );
 /*N*/
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawLine( Point( 0, aVDSize.Height() / 2 ),

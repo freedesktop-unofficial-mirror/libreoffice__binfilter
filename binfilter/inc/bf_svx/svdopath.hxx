@@ -113,14 +113,6 @@ public:
     virtual const Point& GetPoint(USHORT nHdlNum) const;
     virtual void NbcSetPoint(const Point& rPnt, USHORT nHdlNum);
 
-    // Punkt einfuegen
-
-    // Punkt loeschen
-
-    // An diesem Punkt auftrennen
-
-    // Objekt schliessen
-
 protected:
     virtual SdrObjGeoData* NewGeoData() const;
     virtual void SaveGeoData(SdrObjGeoData& rGeo) const;
@@ -150,21 +142,6 @@ public:
     bool IsFreeHand() const { return eKind==OBJ_FREELINE || eKind==OBJ_FREEFILL; }
     bool IsBezier() const { return eKind==OBJ_PATHLINE || eKind==OBJ_PATHFILL; }
     bool IsSpline() const { return eKind==OBJ_SPLNLINE || eKind==OBJ_SPLNFILL; }
-
-    // Pfad schliessen bzw. oeffnen; im letzteren Fall den Endpunkt um
-    // "nOpenDistance" verschieben
-
-    // Pfadabschnitt in Kurve bzw. Linie umwandeln. Toggle!
-
-    // Flag fuer Uebergang zwischen zwei Pfadsegmenten setzen
-
-    // Welche Umwandlung eines Pfadabschnitts ist moeglich?
-
-    // Feststellen von welcher Art das Segment ist
-
-    // eType=SDRPATH_NONE bedeutet Toggle
-
-    // Alle Segmente konvertieren, eType=SDRPATH_NONE bedeutet Toggle
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //

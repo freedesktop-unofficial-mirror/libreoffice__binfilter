@@ -28,7 +28,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 #define INCL_DOS
 #include <stdlib.h>
 
@@ -534,11 +533,6 @@ HSZ ImpDdeMgr::DdeCreateStringHandle( PSZ pszString, int iCodePage)
         return (HSZ)0;
     // Atom-Table beachtet Gross/Kleinschreibung, DDEML aber nicht
 
-    // OV 12.4.96: Services,Topics,Items case-sensitiv!!!
-    // (Grosskundenanforderung (Reuter-DDE))
-    //strlwr( pszString );
-    //*pszString = (char)toupper(*pszString);
-
     HATOMTBL hAtomTable = WinQuerySystemAtomTable();
     ATOM aAtom = WinAddAtom( hAtomTable, pszString );
     return (HSZ)aAtom;
@@ -680,7 +674,6 @@ BOOL ImpDdeMgr::DisconnectAll()
                 break;
         }
     }
-    //WRITESTATUS("After DisconnectAll()")
     return bRet;
 }
 
@@ -720,7 +713,6 @@ void ImpDdeMgr::FreeTransactions( ImpDdeMgrData* pData, HCONV hConvOwner )
         return;
 
     Transaction* pTrans = GetTransTable( pData );
-//  ImpHCONV* pConvTable = GetConvTable( pData );
     pTrans++;
     for( USHORT nPos=1; nPos < pData->nMaxTransCount; nPos++, pTrans++ )
     {
@@ -771,10 +763,6 @@ BOOL ImpDdeMgr::OwnsConversationHandles()
     return FALSE;
 }
 
-
-
-// *********************************************************************
-// *********************************************************************
 // *********************************************************************
 
 USHORT DdeInitialize(ULONG* pidInst, PFNCALLBACK pfnCallback,

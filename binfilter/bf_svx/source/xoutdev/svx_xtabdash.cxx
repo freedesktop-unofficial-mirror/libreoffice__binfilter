@@ -29,15 +29,13 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
 #include "XPropertyTable.hxx"
 #include <unotools/ucbstreamhelper.hxx>
 
 #include "xmlxtimp.hxx"
-
 #endif
-#include <vcl/svapp.hxx>
 
+#include <vcl/svapp.hxx>
 #include <tools/urlobj.hxx>
 #include <vcl/virdev.hxx>
 #include <bf_svtools/itemset.hxx>
@@ -50,12 +48,10 @@
 #include "xoutx.hxx"
 
 #include <xlineit0.hxx>
-
 #include <xlnclit.hxx>
-
 #include <xlnwtit.hxx>
-
 #include <xlndsit.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -256,28 +252,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ BOOL XDashList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-
-
-/*
-
-
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckDash0, 4 );
-    pStream->WriteByteString(String( pszChckDash0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
 /*N*/ }
 
 /************************************************************************/
@@ -353,7 +327,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   pVD->DrawRect( Rectangle( aZero, aVDSize ) );
 /*N*/   pXLSet->GetItemSet().Put( XLineDashItem( String(), Get( nIndex )->GetDash() ) );
 /*N*/
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawLine( Point( 0, aVDSize.Height() / 2 ),

@@ -453,13 +453,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XPolygon::GetSize()
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    XPolygon::SetPointCount()
 |*
 *************************************************************************/
@@ -510,20 +503,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XPolygon::Insert()
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XPolygon::Insert()
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    XPolygon::Remove()
 |*
 *************************************************************************/
@@ -569,37 +548,7 @@ namespace binfilter {
 /*N*/
 /*N*/   Rectangle aRect(XOutCalcXPolyExtent(*this, pOut));
 
-//  USHORT  nCount = pImpXPolygon->nPoints;
-//  if( !nCount )
-//      return Rectangle();
-
-//  Polygon aPoly = XOutCreatePolygon(*this, pOut);
-//  Rectangle aRect = aPoly.GetBoundRect();
-/*
-    if ( pOut == NULL )
-    {
-        BOOL bHasBezier = FALSE;
-
-        for (USHORT i = 0; i < nCount; i++)
-        {
-            if ( pImpXPolygon->pFlagAry[i] == (BYTE) XPOLY_CONTROL )
-            {
-                bHasBezier = TRUE;
-                i = nCount;
-            }
-        }
-        if ( bHasBezier )
-        {   // Breite und Hoehe um 1 Prozent erweitern, um Differenzen zur
-            // ungenauen Bezierberechnung (wg. fehlendem OutputDevice) auszugleichen
-            long nWDiff = aRect.GetWidth()  / 200;
-            long nHDiff = aRect.GetHeight() / 200;
-            aRect.Left()   -= nWDiff;
-            aRect.Right()  += nWDiff;
-            aRect.Top()    -= nHDiff;
-            aRect.Bottom() += nHDiff;
-        }
-    }
-*/  return aRect;
+        return aRect;
 /*N*/ }
 
 /*************************************************************************
@@ -735,24 +684,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XPolygon::IsSmooth()
-|*
-|*    Kurzform zur Abfrage von SMOOTH- und SYMMTR-Flag
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XPolygon::CalcDistance()
-|*
-|*    Abstand zwischen zwei Punkten berechnen
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    XPolygon::SubdivideBezier()
 |*
 |*    Bezierkurve unterteilen
@@ -872,43 +803,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XPolygon::CalcSmoothJoin()
-|*
-|*    glatten Uebergang zu einer Bezierkurve berechnen, indem der
-|*    entsprechende Punkt auf die Verbindungslinie von zwei anderen
-|*    Punkten projiziert wird
-|*     Center = End- bzw. Anfangspunkt der Bezierkurve
-|*     Drag   = der bewegte Punkt, der die Verschiebung von Pnt vorgibt
-|*     Pnt    = der zu modifizierende Punkt
-|*    Wenn Center am Anfang bzw. Ende des Polygons liegt, wird Pnt
-|*    auf die entgegengesetzte Seite verlegt
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XPolygon::CalcTangent()
-|*
-|*    Tangente fuer den Uebergang zwischen zwei Bezierkurven berechnen
-|*     Center = End- bzw. Anfangspunkt der Bezierkurven
-|*     Prev   = vorheriger Zugpunkt
-|*     Next   = naechster Zugpunkt
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XPolygon::PointsToBezier()
-|*
-|*    wandelt vier Polygonpunkte in eine Bezierkurve durch diese Punkte um
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |*    XPolygon::Translate()
 |*
 |*    Polygon auf den uebergebenen Punkt verschieben
@@ -958,20 +852,6 @@ namespace binfilter {
 /*N*/       nNewY = -(long)floor(fSin * nX - fCos * nY + 0.5);
 /*N*/       pPt->X() = nNewX + nCenterX;
 /*N*/       pPt->Y() = nNewY + nCenterY;
-/*N*/
-    /* und so stand das in einem anderen File auf T:
-       dass ich am 29-11-1995 gegettet habe. Joe M.
-    USHORT nPntCnt = pImpXPolygon->nPoints;
-
-    for (USHORT i = 0; i < nPntCnt; i++)
-    {
-        Point P = pImpXPolygon->pPointAry[i] - rCenter;
-        long X = P.X();
-        long Y = P.Y();
-        P.X() =  (long)floor(fCos * X + fSin * Y + 0.5);
-        P.Y() = -(long)floor(fSin * X - fCos * Y + 0.5);
-        pImpXPolygon->pPointAry[i] = P + rCenter;
-    */
 /*N*/   }
 /*N*/ }
 
@@ -1044,39 +924,6 @@ namespace binfilter {
 /*N*/       rPnt.Y() = nYRef + (long)(fCos * nDy);
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    XPolygon::SlantY()
-|*
-|*    XPolygon in Y-Richtung um einen beliebigen Winkel kippen,
-|*    bezogen auf eine Referenz-X-Koordinate
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|*    XPolygon::Distort()
-|*
-|*    XPolygon verzerren, indem die Koordinaten relativ zu einem
-|*    Referenzrechteck in ein beliebiges Viereck skaliert werden
-|*    Zuordnung der Viereck-Punkte im Polygon zum Referenzrechteck:
-|*    0: links oben      0----1
-|*    1: rechts oben     |    |
-|*    2: rechts unten    3----2
-|*    3: links unten
-|*
-*************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Bestimme den linken, unteren Punkt des Polygons und richte das
-|* Polygon so aus, dass dieser Punkt auf dem Index 0 liegt
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1568,22 +1415,6 @@ void XPolyPolygon::Move( long nHorzMove, long nVertMove )
 /*N*/   pImpXPolyPolygon = rXPolyPoly.pImpXPolyPolygon;
 /*N*/   return *this;
 /*N*/ }
-
-
-/*************************************************************************
-|*
-|*    XPolyPolygon::operator==()
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*    XPolyPolygon::operator!=()
-|*
-*************************************************************************/
-
 
 /*************************************************************************
 |*

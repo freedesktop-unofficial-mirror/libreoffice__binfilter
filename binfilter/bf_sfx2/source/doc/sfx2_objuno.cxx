@@ -115,28 +115,6 @@ using namespace ::com::sun::star::frame;
 //-----------------------------------------------------------------------------
 /*N*/ SFX_IMPL_XINTERFACE_5( SfxDocumentInfoObject, OWeakObject, ::com::sun::star::document::XDocumentInfo, ::com::sun::star::lang::XComponent, ::com::sun::star::beans::XPropertySet, ::com::sun::star::beans::XFastPropertySet, ::com::sun::star::beans::XPropertyAccess )
 /*N*/ SFX_IMPL_XTYPEPROVIDER_5( SfxDocumentInfoObject, ::com::sun::star::document::XDocumentInfo, ::com::sun::star::lang::XComponent, ::com::sun::star::beans::XPropertySet, ::com::sun::star::beans::XFastPropertySet, ::com::sun::star::beans::XPropertyAccess )
-/*
-::com::sun::star::uno::Reference< ::com::sun::star::reflection::XIdlClass >  SfxDocumentInfoObject::getStaticIdlClass()
-{
-    // Global Method, must be guarded (multithreading)
-    MutexGuard aGuard( Mutex::getGlobalMutex() );
-    {
-        // use the standard class implementation of the usr library
-        static ::com::sun::star::uno::Reference< ::com::sun::star::reflection::XIdlClass >  xClass =
-        createStandardClass(
-            "com.sun.star.comp.sfx2.DocumentInfo",
-            OWeakObject::getStaticIdlClass(),
-            4,
-            ::getCppuType((const ::com::sun::star::lang::XComponent*)0),
-            ::getCppuType((const ::com::sun::star::document::XDocumentInfo*)0),
-            ::getCppuType((const ::com::sun::star::beans::XPropertyAccess*)0),
-            ::getCppuType((const ::com::sun::star::beans::XPropertySet*)0),
-            ::getCppuType((const ::com::sun::star::beans::XFastPropertySet*)0) );
-
-        return xClass;
-    }
-}
-*/
 //-----------------------------------------------------------------------------
 /*N*/ struct SfxDocumentInfoObject_Impl
 /*N*/ {
@@ -196,12 +174,6 @@ using namespace ::com::sun::star::frame;
 /*N*/ {
 /*N*/   ::com::sun::star::lang::EventObject aEvent( (::cppu::OWeakObject *)this );
 /*N*/   _pImp->_aDisposeContainer.disposeAndClear( aEvent );
-
-/*
-    _xCurrent = ::com::sun::star::uno::Reference< ::com::sun::star::frame::XController > ();
-    for ( sal_uInt32 n = _aControllers.ge.getLength(); n; --n )
-        SequenceRemoveElementAt( _aControllers, n-1 );
-*/
 /*N*/ }
 
 //-----------------------------------------------------------------------------
@@ -927,32 +899,6 @@ Reference< XInterface > SAL_CALL bf_BinaryDocInfo_createInstance(const Reference
 
     return (cppu::OWeakObject*)new SfxStandaloneDocumentInfoObject(rSMgr);
 }
-
-
-//=============================================================================
-/* ASMUSS
-#ifdef TEST_CODE
-    // Testcode fuer DocumentInfoObject
-    // Einmal zum Holen
-    ::com::sun::star::uno::Reference< XServiceManager >  xMan = getGlobalServiceManager();
-    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Uik > aIfaces( 2 );
-    aIfaces.getArray()[0] = ::getCppuType((const Reference< ::com::sun::star::document::XDocumentInfo >*)0);
-    aIfaces.getArray()[1] = ::getCppuType((const Reference< ::com::sun::star::beans::XFastPropertySet >*)0);
-    ::com::sun::star::uno::Reference< XServiceProvider >  xSSI = xMan->getServiceProvider(
-            "com.sun.star.document.DocumentInfo", aIfaces, ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Uik >() );
-// automatisch auskommentiert - [getIdlClass(es) or queryInterface] - Bitte XTypeProvider benutzen!
-//  ::com::sun::star::uno::Reference< ::com::sun::star::document::XDocumentInfo >  xInfo = (::com::sun::star::document::XDocumentInfo*) xSSI->newInstance()->queryInterface( ::getCppuType((const Reference< ::com::sun::star::document::XDocumentInfo >*)0) );
-
-// automatisch auskommentiert - [getIdlClass(es) or queryInterface] - Bitte XTypeProvider benutzen!
-//  ::com::sun::star::uno::Reference< ::com::sun::star::beans::XFastPropertySet >  xProps = (::com::sun::star::beans::XFastPropertySet*) xInfo->queryInterface( ::getCppuType((const Reference< ::com::sun::star::beans::XFastPropertySet >*)0) );
-
-
-    // Laden und Werte auslesen
-    xInfo->load( StringToOUString( aURL, CHARSET_SYSTEM ) );
-    ::com::sun::star::uno::Any aValue = xProps->getFastPropertyValue( WID_FROM );
-    String aAuthor = OUStringToString( aValue.getString(), CHARSET_SYSTEM );
-#endif
-*/
 
 
 }

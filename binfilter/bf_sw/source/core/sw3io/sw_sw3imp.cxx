@@ -138,15 +138,10 @@ public:
 
 //////////////////////////////////////////////////////////////////////////////
 
-/*  */
-
 /*N*/ Sw3ExportInfo::~Sw3ExportInfo()
 /*N*/ {
 /*N*/   delete pTblLineBoxFmtNames40;
 /*N*/ }
-
-/*  */
-
 
 /*N*/ Sw3IoImp::Sw3IoImp( Sw3Io& r )
 /*N*/       : rIo( r ), pDoc( NULL ),
@@ -663,12 +658,6 @@ public:
 /*N*/       delete pExportInfo;
 /*N*/       if( bRdWr && nFFVersion <= SOFFICE_FILEFORMAT_40 )
 /*N*/           pExportInfo = new Sw3ExportInfo;
-/*N*/       // Falls noch keine Marks gesammelt wurden, ist jetzt die Zeit!
-/*N*/       // MIB 11.12.96: Es werden jetzt text::Bookmarks gesammelt, wenn sie
-/*N*/       // benoetigt werden und auch nur noch die, die benoetigt werden.
-/*N*/       // Das ist sauberer!
-/*N*/ //        if( !pMarks && bRdWr )
-/*N*/ //            CollectMarks( NULL, sal_False );
 /*N*/       bOut = bRdWr;
 /*N*/       return sal_True;
 /*N*/   }
@@ -1181,7 +1170,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*?*/   }
 /*?*/   else
 /*?*/   {
-/*?*/ //        Error( ERR_SWG_READ_ERROR );
 /*?*/       n32 = 0xABADCAFE;
 /*N*/   }
 /*N*/
@@ -1260,7 +1248,6 @@ ULONG Sw3IoImp::OutRecSizes()
 
 /*N*/ void Sw3IoImp::SetPercentBar( sal_uInt32 n )
 /*N*/ {
-/*N*/   //ASSERT( pStrm!=pContents || (n-nCurPercent)<1024, "SetPercentBar zu lange nicht mehr aufgerufen!" );
 /*N*/   if( !bBlock && (pStrm == &pContents ) &&    // nicht fuer SwPageStyles
 /*N*/       ( n > nCurPercent ) && ( n <= nEndPercent ) )
 /*N*/       ::binfilter::SetProgressState( nCurPercent = n, pDoc->GetDocShell() );
@@ -1282,8 +1269,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/ #endif
 /*N*/           )
 /*N*/   {
-/*N*/       // gar kein Drawing-Stream da!
-/*N*/ //        nGblFlags |= SW3F_NODRAWING;
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -1392,13 +1377,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   {
 /*N*/       sal_uInt32 n;
 /*N*/       *pDrawing >> n;
-// Nowadays all objects remain in the page, but might be in different layers
-//      if( !pDrawing->IsEof() && pModel )
-//      {
-//          sal_uInt32 nCount = pModel->GetPage( 0 )->GetObjCount();
-//          if( n <= nCount )
-//              nHiddenDrawObjs = nCount - n;
-//      }
 /*N*/   }
 /*N*/
 /*N*/   CheckIoError( pDrawing );
@@ -1415,9 +1393,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*?*/       FlushRecSizes();
 /*N*/
 /*N*/   pDrawing->SetSize( 0L );
-/*N*/   // Stream weg, wenn wir kein OLE-Objekt sind
-/*N*/   //if( pRoot->IsRoot() )
-/*N*/   //  pRoot->Commit();
 /*N*/   pDrawing->SetBufferSize( SW3_BSW_DRAWING );
 /*N*/
 /*N*/   // Den Pool nicht vergessen...
@@ -1426,7 +1401,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   //Auf die Korrektheit der OrdNums sind wir schon angewiesen.
 /*N*/   pModel->GetPage( 0 )->RecalcObjOrdNums();
 /*N*/
-/*N*/ //-/  pModel->PrepareStore();
 /*N*/   pModel->PreSave();
 /*N*/
 /*N*/   SfxItemPool *pDrawIPool = pModel->GetItemPool().GetSecondaryPool();
@@ -1530,9 +1504,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   SvStream* pOld = pStrm;
 /*N*/   pStrm = pPageStyles;
 /*N*/   pPageStyles->SetSize( 0L );
-/*N*/   // Stream weg, wenn wir kein OLE-Objekt sind
-/*N*/   //if( pRoot->IsRoot() )
-/*N*/   //  pRoot->Commit();
 /*N*/   pPageStyles->SetBufferSize( SW3_BSW_PAGESTYLES );
 /*N*/   OutPageDescs( bUsed );
 /*N*/
@@ -1622,9 +1593,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/ {
 /*N*/   pStrm = pContents;
 /*N*/   pContents->SetSize( 0L );
-/*N*/   // Stream weg, wenn wir kein OLE-Objekt sind
-/*N*/   //if( pRoot->IsRoot() )
-/*N*/   //  pRoot->Commit();
 /*N*/   pContents->SetBufferSize( SW3_BSW_CONTENTS );
 /*N*/   SaveDocContents( rPaM, pBlkName );
 /*N*/   pStrm = NULL;
@@ -2131,7 +2099,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   // Das ist wichtig, da Formate (theoretisch) in verschiedenen
 /*N*/   // Streams landen koennen.
 /*N*/   ASSERT( !rFmt.IsWritten(), "Written-Flag am Format ist gesetzt" );
-/*N*/ //    ((SwFmt&)rFmt).ResetWritten();
 /*N*/
 /*N*/   String aName( rFmt.GetName() );
 /*N*/   if( nId )
@@ -2518,8 +2485,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   // Seitenkoepfen auftraten
 /*N*/   if ( pDoc->GetDrawModel() )
 /*N*/   {
-/*N*/ //        if( nHiddenDrawObjs != ULONG_MAX )
-/*N*/ //            RemoveHiddenDrawObjs();
 /*N*/       SdrPage* pPage = pDoc->GetDrawModel()->GetPage( 0 );
 /*N*/       sal_uInt32 i = 0;
 /*N*/       while( i < pPage->GetObjCount() )
@@ -2535,7 +2500,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   //if( nVersion < SWG_DBTABLE )
 /*N*/   if( !IsVersion( SWG_DBTABLE, SWG_EXPORT31, SWG_DESKTOP40 ) )
 /*N*/       pDoc->SetInitDBFields(sal_True);
 /*N*/

@@ -31,19 +31,12 @@
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
 #include <bf_svtools/menuoptions.hxx>
-
 #include <unotools/configmgr.hxx>
-
 #include <unotools/configitem.hxx>
-
 #include <tools/debug.hxx>
-
 #include <com/sun/star/uno/Any.hxx>
-
 #include <com/sun/star/uno/Sequence.hxx>
-
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 

@@ -233,8 +233,6 @@ class SwForm
     String  aPattern[ AUTH_TYPE_END + 1 ];
     String  aTemplate[ AUTH_TYPE_END + 1 ];
     USHORT  nType, nFormMaxLevel;
-    //USHORT    nFirstTabPos; -> Value in tab token
-//  BOOL    bHasFirstTabPos : 1;
     BOOL    bGenerateTabPos : 1;
     BOOL    bIsRelTabPos : 1;
     BOOL    bCommaSeparated : 1;
@@ -343,8 +341,6 @@ enum SwTOOElements
     TOO_CHART       = 0x02,
     TOO_CALC        = 0x08,
     TOO_DRAW_IMPRESS= 0x10,
-//  TOO_IMPRESS     = 0x20,
-
     TOO_OTHER       = 0x80
 };
 
@@ -660,9 +656,6 @@ inline USHORT SwTOXBase::GetLevel() const
 
 inline void SwTOXBase::SetTemplateName(const String& rName)
 {
-//  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
-//  ASSERT(aData.pTemplateName, "pTemplateName == 0");
-//  (*aData.pTemplateName) = rName;
     DBG_WARNING("SwTOXBase::SetTemplateName obsolete");
     aStyleNames[0] = rName;
 
@@ -670,8 +663,6 @@ inline void SwTOXBase::SetTemplateName(const String& rName)
 
 inline String SwTOXBase::GetTemplateName() const
 {
-//  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
-//  return *aData.pTemplateName;
     DBG_WARNING("SwTOXBase::GetTemplateName obsolete");
     return aStyleNames[0].GetToken(0, TOX_STYLE_DELIMITER);
 }

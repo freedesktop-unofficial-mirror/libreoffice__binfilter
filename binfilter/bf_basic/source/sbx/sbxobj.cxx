@@ -46,8 +46,6 @@ static USHORT nNameHash = 0, nParentHash = 0;
 
 /////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////
-
 SbxObject::SbxObject( const XubString& rClass )
          : SbxVariable( SbxOBJECT ), aClassName( rClass )
 {
@@ -426,20 +424,6 @@ SbxObject* SbxObject::MakeObject( const XubString& rName, const XubString& rClas
         SbxVariable* pRes = pObjs->Find( rName, SbxCLASS_OBJECT );
         if( pRes )
         {
-/* Wegen haeufiger Probleme (z.B. #67000) erstmal ganz raus
-#ifdef DBG_UTIL
-            if( pRes->GetHashCode() != nNameHash
-             && pRes->GetHashCode() != nParentHash )
-            {
-                XubString aMsg( "SBX-Objekt \"" );
-                aMsg += pRes->GetName();
-                aMsg += "\"\n in Objekt \"";
-                aMsg += GetName();
-                aMsg += "\" bereits vorhanden";
-                DbgError( (const char*)aMsg.GetStr() );
-            }
-#endif
-*/
             return PTR_CAST(SbxObject,pRes);
         }
     }
@@ -477,20 +461,6 @@ void SbxObject::Insert( SbxVariable* pVar )
                 if( pOld == pVar )
                     return;
 
-/* Wegen haeufiger Probleme (z.B. #67000) erstmal ganz raus
-#ifdef DBG_UTIL
-                if( pOld->GetHashCode() != nNameHash
-                 && pOld->GetHashCode() != nParentHash )
-                {
-                    XubString aMsg( "SBX-Element \"" );
-                    aMsg += pVar->GetName();
-                    aMsg += "\"\n in Objekt \"";
-                    aMsg += GetName();
-                    aMsg += "\" bereits vorhanden";
-                    DbgError( (const char*)aMsg.GetStr() );
-                }
-#endif
-*/
                 EndListening( pOld->GetBroadcaster(), TRUE );
                 if( pVar->GetClass() == SbxCLASS_PROPERTY )
                 {

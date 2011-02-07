@@ -429,7 +429,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 
     //XMultiPropertyStates
-    //virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyState > SAL_CALL getPropertyStates( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyName ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setAllPropertiesToDefault(  ) throw (::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setPropertiesToDefault( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > SAL_CALL getPropertyDefaults( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
@@ -776,7 +775,6 @@ public:
     virtual void SAL_CALL removeEventListener(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > & aListener) throw( ::com::sun::star::uno::RuntimeException );
 
     //XMultiPropertySet
-//    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo(  ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setPropertyValues( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aValues ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > SAL_CALL getPropertyValues( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL addPropertiesChangeListener( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertiesChangeListener >& xListener ) throw(::com::sun::star::uno::RuntimeException);
@@ -1137,40 +1135,6 @@ public:
     virtual void        Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
 
-/* -----------------29.09.98 09:01-------------------
- *
- * --------------------------------------------------*/
-/* os: 04.12.98 11:40 hier gibt es noch keine sinnvolle Definition
-#define MAX_SORT_FIELDS 3 // das ist eher willkuerlich (wie im Dialog)
-class SwXTextSortDescriptor : public XTextSortDescriptor,
-                                public UsrObject
-{
-    SwSortOptions   aSortOptions;
-    BOOL            bUseHeader;
-public:
-    SwXTextSortDescriptor(BOOL bUsedInTable);
-    virtual ~SwXTextSortDescriptor();
-
-    //XTextSortDescriptor
-    virtual sal_Unicode getTextColumnSeparator(void) const;
-    virtual void setTextColumnSeparator(sal_Unicode TextColumnSeparator_);
-
-    //XSortDescriptor
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::util::SortField > getSortFields(void) const;
-    virtual void setSortFields(const ::com::sun::star::uno::Sequence< ::com::sun::star::util::SortField >& SortFields_);
-    virtual sal_uInt16 getMaxFieldCount(void) const;
-    virtual ColumnsOrRows getOrientation(void) const;
-    virtual void setOrientation(ColumnsOrRows Orientation_);
-    virtual BOOL getUseHeader(void) const;
-    virtual void setUseHeader(BOOL UseHeader_);
-
-    const SwSortOptions&    GetSortOptions() const {return aSortOptions;}
-    void                    SetSortOptions(const SwSortOptions& rSortOpt);
-};
-*/
-/* -----------------25.08.98 11:02-------------------
- *
- * --------------------------------------------------*/
 typedef
 cppu::WeakImplHelper2
 <

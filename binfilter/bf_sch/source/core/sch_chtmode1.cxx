@@ -46,8 +46,6 @@
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
-
-
 #endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
@@ -61,33 +59,22 @@
 #include <bf_svx/dialogs.hrc>
 #include "math.h"
 
-
 #include <bf_svx/xlnedcit.hxx>
-
 #include <bf_svx/xlnstcit.hxx>
-
 #include <bf_svx/xlnedwit.hxx>
-
 #include <bf_svx/xlnstwit.hxx>
-
 #include <bf_svx/xlnedit.hxx>
-
 #include <bf_svx/xlnstit.hxx>
-
 #include <bf_svx/xlndsit.hxx>
-
-
 #include <bf_svx/xlnclit.hxx>
-
 #include <bf_svx/xlnwtit.hxx>
 
 #include "pairs.hxx"
 #include "datalog.hxx"
-
 #include "chaxis.hxx"
-
 #include "chmod3d.hxx"
 #include "schmod.hxx"
+
 namespace binfilter {
 
 /************************************************************************/
@@ -249,8 +236,6 @@ namespace binfilter {
 /*N*/   aAreaAttr.Put(SdrTextAutoGrowWidthItem( bIsTitle ));
 /*N*/   aAreaAttr.Put(rAttr);
 /*N*/
-/*N*/
-/*N*/ //-/  pObj->NbcSetAttributes(aAreaAttr, FALSE);//#63904# 10%
 /*N*/   pObj->SetItemSet(aAreaAttr);//#63904# 10%
 /*N*/
 /*N*/   pObj->InsertUserData(new SchObjectId(nId));
@@ -277,12 +262,6 @@ namespace binfilter {
 /*N*/                            const SfxItemSet& rAttr,
 /*N*/                            const long /*nMaximumWidth*/)
 /*N*/ {
-/*N*/     // #97992# calling SetItemSet results in changing the p...Attr in the ChartModel
-/*N*/     // because of the implementation of SchRectObj.  Maybe this is wrong, but it seemed
-/*N*/     // to risky, therefore I set here all the correct items to prevent loss
-/*N*/ //    SfxItemSet aObjAttr( *pItemPool, nAreaWhichPairs );
-/*N*/ //    aObjAttr.Put(rAttr);
-/*N*/ //    rTextObj.SetItemSetAndBroadcast(aAreaAttr);
 /*N*/     rTextObj.SetItemSetAndBroadcast( rAttr );
 /*N*/
 /*N*/   if ( rTextObj.GetOutlinerParaObject())
@@ -372,7 +351,6 @@ namespace binfilter {
 /*N*/           //  the outliner.
 /*N*/           SfxItemSet aTextAttr(*pItemPool, nTextOrientWhichPairs);
 /*N*/           aTextAttr.Put(GetAttr(CHOBJID_DIAGRAM_X_AXIS));
-/*N*/ //            SetTextAttributes (aTextAttr);
 /*N*/
 /*N*/           double fAct = fMinX;
 /*N*/
@@ -428,7 +406,6 @@ namespace binfilter {
 /*N*/       //  the outliner.
 /*N*/       SfxItemSet aTextAttr(*pItemPool, nTextOrientWhichPairs);
 /*N*/       aTextAttr.Put(*pLclAxisAttr);
-/*N*/ //        SetTextAttributes (aTextAttr);
 /*N*/
 /*N*/       for (short i = 0; i < nCnt; i++)
 /*N*/       {
@@ -472,13 +449,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return aMaxSize;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Text-H”he ermitteln
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -883,13 +853,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Defaultfarben kopieren
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Defaultfarben loeschen
 |*
 \************************************************************************/
@@ -923,12 +886,6 @@ namespace binfilter {
 
 /*N*/ void  ChartModel::SetTextAttributes   (SfxItemSet & rTextAttributes)
 /*N*/ {
-/*  static  SfxItemSet *    pLastItemSet = NULL;
-    if (&rTextAttributes == pLastItemSet)
-        return;
-    else
-        pLastItemSet = &rTextAttributes;
-*/
 /*N*/   ULONG nParagraphCount = pOutliner->GetParagraphCount();
 /*N*/   for (ULONG i=0; i<nParagraphCount; i++)
 /*N*/       pOutliner->SetParaAttribs(i, rTextAttributes);
@@ -1058,15 +1015,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return (bGetRotated && nDegrees) ? aRot : aSize;
 /*N*/ }
-
-/*************************************************************************
-|*
-|*  Liefert die Hoehe von n Textzeilen, mit den uebergebenen Attributen
-|* FG: 13.2.97 Hier wird einfach n mal die Texthoehe einer Zeile zurueckgegeben
-|*
-\************************************************************************/
-
-
 
 }
 

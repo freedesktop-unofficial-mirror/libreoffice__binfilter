@@ -91,13 +91,6 @@ class E3dLight : public E3dPointObj
     virtual void WriteData(SvStream& rOut) const;
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-
-//-/    virtual void           SetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
-//-/    virtual void           NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
-//-/    virtual void           TakeAttributes(SfxItemSet& rAttr, bool bMerge, bool bOnlyHardAttr) const;
-//-/    virtual void Collect3DAttributes(SfxItemSet& rAttr) const;
-//-/    virtual void Distribute3DAttributes(const SfxItemSet& rAttr);
-
     virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 };

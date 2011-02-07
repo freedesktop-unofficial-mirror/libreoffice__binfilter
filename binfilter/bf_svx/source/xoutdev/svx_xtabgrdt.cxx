@@ -251,25 +251,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ BOOL XGradientList::Save()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckGradient0, 4 );
-    pStream->WriteByteString(String( pszChckGradient0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
 /*N*/ }
 
 /************************************************************************/
@@ -336,7 +317,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   pXFSet->GetItemSet().Put(
 /*N*/       XFillGradientItem( pXPool, Get( nIndex )->GetGradient() ) );
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   // #73550#

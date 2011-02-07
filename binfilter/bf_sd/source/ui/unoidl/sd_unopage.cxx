@@ -1733,7 +1733,6 @@ void SdDrawPage::setBackground( const uno::Any& rValue )
         pBackground->fillItemSet( (SdDrawDocument*)GetPage()->GetModel(), aSet );
     }
 
-//-/    pObj->NbcSetAttributes( aSet, sal_False );
     if( aSet.Count() == 0 )
     {
         GetPage()->SetBackgroundObj( NULL );

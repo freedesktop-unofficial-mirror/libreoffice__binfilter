@@ -44,24 +44,8 @@ class SdrMiscSetItem;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class SdrItemPool: public XOutdevItemPool {
-//-/#ifdef SDRDEFITEMCACHE
-//-/friend class SdrAttrObj;
-//-/    const XLineAttrSetItem*   pDefLineAttr;
-//-/    const XFillAttrSetItem*   pDefFillAttr;
-//-/    const XTextAttrSetItem*   pDefTextAttr;
-//-/    const SdrShadowSetItem*   pDefShadAttr;
-//-/    const SdrOutlinerSetItem* pDefOutlAttr;
-//-/    const SdrMiscSetItem*     pDefMiscAttr;
-//-/    const XLineAttrSetItem*   pDefTextFrameLineAttr;
-//-/    const XFillAttrSetItem*   pDefTextFrameFillAttr;
-//-/    const XTextAttrSetItem*   pDefTextFrameTextAttr;
-//-/    const SdrShadowSetItem*   pDefTextFrameShadAttr;
-//-/    const SdrOutlinerSetItem* pDefTextFrameOutlAttr;
-//-/    const SdrMiscSetItem*     pDefTextFrameMiscAttr;
-//-/#endif
 private:
     void Ctor(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd);
-//-/    void ImpMakeDefItems();
 public:
     // Kontstruktion des Pools als MasterPool
     SdrItemPool(USHORT nAttrStart=SDRATTR_START, USHORT nAttrEnd=SDRATTR_END,

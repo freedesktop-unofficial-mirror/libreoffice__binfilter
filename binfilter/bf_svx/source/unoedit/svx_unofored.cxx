@@ -235,45 +235,6 @@ USHORT GetSvxEditEngineItemState( EditEngine& rEditEngine, const ESelection& rSe
 
         if( !bEmpty && !bGaps && nLastEnd < ( nEndPos - 1 ) )
             bGaps = TRUE;
-/*
-        // since we have no portion with our item or if there were gaps
-        if( bEmpty || bGaps )
-        {
-            // we need to check the paragraph item
-            const SfxItemSet& rParaSet = rEditEngine.GetParaAttribs( nPara );
-            if( rParaSet.GetItemState( nWhich ) == SFX_ITEM_SET )
-            {
-                eState = SFX_ITEM_SET;
-                // get item from the paragraph
-                const SfxPoolItem* pTempItem = rParaSet.GetItem( nWhich );
-                if( pParaItem )
-                {
-                    if( *pParaItem != *pTempItem )
-                        return SFX_ITEM_DONTCARE;
-                }
-                else
-                {
-                    pParaItem = pTempItem;
-                }
-
-                // set if theres no last item or if its the same
-                eParaState = SFX_ITEM_SET;
-            }
-            else if( bEmpty )
-            {
-                eParaState = SFX_ITEM_DEFAULT;
-            }
-            else if( bGaps )
-            {
-                // gaps and item not set in paragraph, thats a dont care
-                return SFX_ITEM_DONTCARE;
-            }
-        }
-        else
-        {
-            eParaState = SFX_ITEM_SET;
-        }
-*/
         if( bEmpty )
             eParaState = SFX_ITEM_DEFAULT;
         else if( bGaps )

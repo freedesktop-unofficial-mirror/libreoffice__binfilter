@@ -29,41 +29,25 @@
 #include <com/sun/star/lang/DisposedException.hpp>
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
 
-
-
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
 #include <bf_svx/unofield.hxx>
-
-
-
-
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
-
 #include <bf_svx/forbiddencharacterstable.hxx>
-
 #include <bf_svx/UnoNamespaceMap.hxx>
-
 #include <bf_svx/unoapi.hxx>
-
 #include <bf_svx/unofill.hxx>
-
 #include <bf_svx/svdorect.hxx>
 
 #include <toolkit/awt/vclxdevice.hxx>
 
 #include <bf_svtools/unoimap.hxx>
-
 #include <bf_svx/unolingu.hxx>
 #include <bf_svx/svdpagv.hxx>
-
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/unonrule.hxx>
-
-// #99870# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
 #include <bf_svx/xmleohlp.hxx>
-
 #include <bf_svx/xmlgrhlp.hxx>
 
 #include "bf_sd/docshell.hxx"
@@ -88,6 +72,7 @@
 #include <frmview.hxx>
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 
 using namespace ::osl;
@@ -199,47 +184,12 @@ SdXImpressDocument::SdXImpressDocument( SdDrawDocShell* pShell ) throw()
     mbImpressDoc = pDoc && pDoc->GetDocumentType() == DOCUMENT_TYPE_IMPRESS;
 }
 
-/***********************************************************************
-*                                                                      *
-***********************************************************************/
 SdXImpressDocument::~SdXImpressDocument() throw()
 {
 }
 
 // uno helper
 
-
-/******************************************************************************
-* Erzeugt anhand der uebergebennen SdPage eine SdDrawPage. Wurde fuer diese   *
-* SdPage bereits eine SdDrawPage erzeugt, wird keine neue SdDrawPage erzeug.  *
-******************************************************************************/
-/*
-uno::Reference< drawing::XDrawPage >  SdXImpressDocument::CreateXDrawPage( SdPage* pPage ) throw()
-{
-    DBG_ASSERT(pPage,"SdXImpressDocument::CreateXDrawPage( NULL? )");
-
-    uno::Reference< drawing::XDrawPage >  xDrawPage;
-
-    if(pPage)
-    {
-        xDrawPage = SvxDrawPage::GetPageForSdrPage(pPage);
-
-        if(!xDrawPage.is())
-        {
-            if(pPage->IsMasterPage())
-            {
-                xDrawPage = (presentation::XPresentationPage*)new SdMasterPage( this, pPage );
-            }
-            else
-            {
-                xDrawPage = (SvxDrawPage*)new SdDrawPage( this, pPage );
-            }
-        }
-    }
-
-    return xDrawPage;
-}
-*/
 
 UNO3_GETIMPLEMENTATION_IMPL( SdXImpressDocument );
 
@@ -332,9 +282,6 @@ uno::Sequence< sal_Int8 > SAL_CALL SdXImpressDocument::getImplementationId(  ) t
     return aId;
 }
 
-/***********************************************************************
-*                                                                      *
-***********************************************************************/
 void SdXImpressDocument::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 {
     if( pDoc )
@@ -398,9 +345,6 @@ void SdXImpressDocument::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
     SfxBaseModel::Notify( rBC, rHint );
 }
 
-/******************************************************************************
-*                                                                             *
-******************************************************************************/
 SdPage* SdXImpressDocument::InsertSdPage( sal_uInt16 nPage, sal_Bool bDuplicate ) throw()
 {
     sal_uInt16 nPageCount = pDoc->GetSdPageCount( PK_STANDARD );
@@ -1842,7 +1786,6 @@ uno::Reference< drawing::XDrawPage > SAL_CALL SdMasterPagesAccess::insertNewByIn
                                 pRefNotesPage->GetRgtBorder(),
                                 pRefNotesPage->GetLwrBorder() );
         pDoc->InsertMasterPage(pMNotesPage,  nInsertPos + 1);
-//      pMNotesPage->InsertMasterPage( pMPage->GetPageNum() );
         pMNotesPage->SetLayoutName( aLayoutName );
         pMNotesPage->SetAutoLayout(AUTOLAYOUT_NOTES, sal_True, sal_True);
         rModel.SetModified();

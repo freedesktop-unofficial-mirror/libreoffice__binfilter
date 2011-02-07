@@ -57,7 +57,6 @@ public:
     SchE3dLatheObj()
         :E3dLatheObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -74,7 +73,6 @@ public:
     SchE3dExtrudeObj()
         :E3dExtrudeObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -96,7 +94,6 @@ public:
 
     SchE3dPolygonObj() : E3dPolygonObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -109,7 +106,6 @@ class SchE3dObject : public E3dObject
      SchE3dObject()
          :E3dObject(){};
 
-//-/     virtual void NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 class SchRectObj : public SdrRectObj
@@ -120,7 +116,6 @@ public:
     SchRectObj(const Rectangle& rRect): SdrRectObj(rRect){};
 
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, bool bReplaceAll);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 

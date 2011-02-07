@@ -29,10 +29,8 @@
 #ifndef _E3D_DEFLT3D_HXX
 #define _E3D_DEFLT3D_HXX
 
-
-
-
 #include <bf_goodies/base3d.hxx>
+
 namespace binfilter {
 
 class SfxItemSet;
@@ -47,24 +45,11 @@ class E3dDefaultAttributes
 {
 private:
     // Compound-Objekt
-//-/    B3dMaterial         aDefaultFrontMaterial;
     Color               aDefaultAmbientColor;
 
 //  B3dMaterial         aDefaultBackMaterial;
-//-/    Base3DTextureKind   eDefaultTextureKind;
-//-/    Base3DTextureMode   eDefaultTextureMode;
-//-/    BOOL                bDefaultDoubleSided                     ;
     BOOL                bDefaultCreateNormals                   ;
     BOOL                bDefaultCreateTexture                   ;
-//-/    BOOL                bDefaultUseStdNormals                   ;
-//-/    BOOL                bDefaultUseStdNormalsUseSphere          ;
-//-/    BOOL                bDefaultInvertNormals                   ;
-//-/    BOOL                bDefaultUseStdTextureX                  ;
-//-/    BOOL                bDefaultUseStdTextureXUseSphere         ;
-//-/    BOOL                bDefaultUseStdTextureY                  ;
-//-/    BOOL                bDefaultUseStdTextureYUseSphere         ;
-//-/    BOOL                bDefaultShadow3D                        ;
-//-/    BOOL                bDefaultFilterTexture                   ;
     BOOL                bDefaultUseDifferentBackMaterial        ;
 
     // Cube-Objekt
@@ -74,16 +59,12 @@ private:
     BOOL                bDefaultCubePosIsCenter                 ;
 
     // Sphere-Objekt
-//-/    long                nDefaultHSegments;
-//-/    long                nDefaultVSegments;
     Vector3D            aDefaultSphereCenter;
     Vector3D            aDefaultSphereSize;
 
     // Lathe-Objekt
     long                nDefaultLatheEndAngle;
     double              fDefaultLatheScale;
-//-/    double              fDefaultBackScale;
-//-/    double              fDefaultPercentDiag;
     BOOL                bDefaultLatheSmoothed                   ;
     BOOL                bDefaultLatheSmoothFrontBack            ;
     BOOL                bDefaultLatheCharacterMode              ;
@@ -92,7 +73,6 @@ private:
 
     // Extrude-Objekt
     double              fDefaultExtrudeScale;
-//-/    double              fDefaultExtrudeDepth;
     BOOL                bDefaultExtrudeSmoothed                 ;
     BOOL                bDefaultExtrudeSmoothFrontBack          ;
     BOOL                bDefaultExtrudeCharacterMode            ;
@@ -100,11 +80,7 @@ private:
     BOOL                bDefaultExtrudeCloseBack;
 
     // Scene-Objekt
-//-/    B3dLightGroup       aDefaultLightGroup;
-//-/    Vector3D            aDefaultShadowPlaneDirection;
-//-/    Base3DShadeModel    eDefaultShadeModel;
     BOOL                bDefaultDither                          ;
-//-/    BOOL                bDefaultForceDraftShadeModel            ;
 
 public:
     // Konstruktor
@@ -115,41 +91,13 @@ public:
 
     // Getter/Setter fuer Default-Werte aller 3D-Objekte
     // Compound-Objekt
-//-/    const B3dMaterial& GetDefaultFrontMaterial() { return aDefaultFrontMaterial; }
-//-/    void SetDefaultFrontMaterial(const B3dMaterial& rNew) { aDefaultFrontMaterial = rNew; }
     const Color& GetDefaultAmbientColor() const { return aDefaultAmbientColor; }
     void SetDefaultAmbientColor(const Color& rNew) { aDefaultAmbientColor = rNew; }
 
-//  const B3dMaterial& GetDefaultBackMaterial() { return aDefaultBackMaterial; }
-//  void SetDefaultBackMaterial(const B3dMaterial& rNew) { aDefaultBackMaterial = rNew; }
-//-/    const Base3DTextureKind GetDefaultTextureKind() { return eDefaultTextureKind; }
-//-/    void SetDefaultTextureKind(const Base3DTextureKind eNew) { eDefaultTextureKind = eNew; }
-//-/    const Base3DTextureMode GetDefaultTextureMode() { return eDefaultTextureMode; }
-//-/    void SetDefaultTextureMode(const Base3DTextureMode eNew) { eDefaultTextureMode = eNew; }
-//-/    const BOOL GetDefaultDoubleSided() { return bDefaultDoubleSided; }
-//-/    void SetDefaultDoubleSided(const BOOL bNew) { bDefaultDoubleSided = bNew; }
     BOOL GetDefaultCreateNormals() const { return bDefaultCreateNormals; }
     void SetDefaultCreateNormals(const BOOL bNew) { bDefaultCreateNormals = bNew; }
     BOOL GetDefaultCreateTexture() const { return bDefaultCreateTexture; }
     void SetDefaultCreateTexture(const BOOL bNew) { bDefaultCreateTexture = bNew; }
-//-/    const BOOL GetDefaultUseStdNormals() { return bDefaultUseStdNormals; }
-//-/    void SetDefaultUseStdNormals(const BOOL bNew) { bDefaultUseStdNormals = bNew; }
-//-/    const BOOL GetDefaultUseStdNormalsUseSphere() { return bDefaultUseStdNormalsUseSphere; }
-//-/    void SetDefaultUseStdNormalsUseSphere(const BOOL bNew) { bDefaultUseStdNormalsUseSphere = bNew; }
-//-/    const BOOL GetDefaultInvertNormals() { return bDefaultInvertNormals; }
-//-/    void SetDefaultInvertNormals(const BOOL bNew) { bDefaultInvertNormals = bNew; }
-//-/    const BOOL GetDefaultUseStdTextureX() { return bDefaultUseStdTextureX; }
-//-/    void SetDefaultUseStdTextureX(const BOOL bNew) { bDefaultUseStdTextureX = bNew; }
-//-/    const BOOL GetDefaultUseStdTextureXUseSphere() { return bDefaultUseStdTextureXUseSphere; }
-//-/    void SetDefaultUseStdTextureXUseSphere(const BOOL bNew) { bDefaultUseStdTextureXUseSphere = bNew; }
-//-/    const BOOL GetDefaultUseStdTextureY() { return bDefaultUseStdTextureY; }
-//-/    void SetDefaultUseStdTextureY(const BOOL bNew) { bDefaultUseStdTextureY = bNew; }
-//-/    const BOOL GetDefaultUseStdTextureYUseSphere() { return bDefaultUseStdTextureYUseSphere; }
-//-/    void SetDefaultUseStdTextureYUseSphere(const BOOL bNew) { bDefaultUseStdTextureYUseSphere = bNew; }
-//-/    const BOOL GetDefaultShadow3D() { return bDefaultShadow3D; }
-//-/    void SetDefaultShadow3D(const BOOL bNew) { bDefaultShadow3D = bNew; }
-//-/    const BOOL GetDefaultFilterTexture() { return bDefaultFilterTexture; }
-//-/    void SetDefaultFilterTexture(const BOOL bNew) { bDefaultFilterTexture = bNew; }
     BOOL GetDefaultUseDifferentBackMaterial() const { return bDefaultUseDifferentBackMaterial; }
     void SetDefaultUseDifferentBackMaterial(const BOOL bNew) { bDefaultUseDifferentBackMaterial = bNew; }
 
@@ -164,10 +112,6 @@ public:
     void SetDefaultCubePosIsCenter(const BOOL bNew) { bDefaultCubePosIsCenter = bNew; }
 
     // Sphere-Objekt
-//-/    const long GetDefaultHSegments() { return nDefaultHSegments; }
-//-/    void SetDefaultHSegments(const long nNew) { nDefaultHSegments = nNew; }
-//-/    const long GetDefaultVSegments() { return nDefaultVSegments; }
-//-/    void SetDefaultVSegments(const long nNew) { nDefaultVSegments = nNew; }
     const Vector3D& GetDefaultSphereCenter() const { return aDefaultSphereCenter; }
     void SetDefaultSphereCenter(const Vector3D& rNew) { aDefaultSphereCenter = rNew; }
     const Vector3D& GetDefaultSphereSize() const { return aDefaultSphereSize; }
@@ -178,10 +122,6 @@ public:
     void SetDefaultLatheEndAngle(const long nNew) { nDefaultLatheEndAngle = nNew; }
     double GetDefaultLatheScale() const { return fDefaultLatheScale; }
     void SetDefaultLatheScale(const double fNew) { fDefaultLatheScale = fNew; }
-//-/    const double GetDefaultBackScale() { return fDefaultBackScale; }
-//-/    void SetDefaultBackScale(const double fNew) { fDefaultBackScale = fNew; }
-//-/    const double GetDefaultPercentDiag() { return fDefaultPercentDiag; }
-//-/    void SetDefaultPercentDiag(const double fNew) { fDefaultPercentDiag = fNew; }
     BOOL GetDefaultLatheSmoothed() const { return bDefaultLatheSmoothed; }
     void SetDefaultLatheSmoothed(const BOOL bNew) { bDefaultLatheSmoothed = bNew; }
     BOOL GetDefaultLatheSmoothFrontBack() const { return bDefaultLatheSmoothFrontBack; }
@@ -196,8 +136,6 @@ public:
     // Extrude-Objekt
     double GetDefaultExtrudeScale() const { return fDefaultExtrudeScale; }
     void SetDefaultExtrudeScale(const double fNew) { fDefaultExtrudeScale = fNew; }
-//-/    const double GetDefaultExtrudeDepth() { return fDefaultExtrudeDepth; }
-//-/    void SetDefaultExtrudeDepth(const double fNew) { fDefaultExtrudeDepth = fNew; }
     BOOL GetDefaultExtrudeSmoothed() const { return bDefaultExtrudeSmoothed; }
     void SetDefaultExtrudeSmoothed(const BOOL bNew) { bDefaultExtrudeSmoothed = bNew; }
     BOOL GetDefaultExtrudeSmoothFrontBack() const { return bDefaultExtrudeSmoothFrontBack; }
@@ -210,22 +148,8 @@ public:
     void SetDefaultExtrudeCloseBack(const BOOL bNew) { bDefaultExtrudeCloseBack = bNew; }
 
     // Scene-Objekt
-//-/    const B3dLightGroup& GetDefaultLightGroup() { return aDefaultLightGroup; }
-//-/    void SetDefaultLightGroup(const B3dLightGroup& rNew) { aDefaultLightGroup = rNew; }
-//-/    const Vector3D& GetDefaultShadowPlaneDirection() { return aDefaultShadowPlaneDirection; }
-//-/    void SetDefaultShadowPlaneDirection(const Vector3D& rNew) { aDefaultShadowPlaneDirection = rNew; }
-//-/    const Base3DShadeModel GetDefaultShadeModel() { return eDefaultShadeModel; }
-//-/    void SetDefaultShadeModel(const Base3DShadeModel eNew) { eDefaultShadeModel = eNew; }
     BOOL GetDefaultDither() const { return bDefaultDither; }
     void SetDefaultDither(const BOOL bNew) { bDefaultDither = bNew; }
-//-/    const BOOL GetDefaultForceDraftShadeModel() { return bDefaultForceDraftShadeModel; }
-//-/    void SetDefaultForceDraftShadeModel(const BOOL bNew) { bDefaultForceDraftShadeModel = bNew; }
-
-    // Default-Attribute setzen/lesen
-//-/    void SetDefaultValues(const SfxItemSet& rAttr);
-//-/    void TakeDefaultValues(SfxItemSet& rAttr);
-//-/
-//-/protected:
 };
 
 }//end of namespace binfilter
