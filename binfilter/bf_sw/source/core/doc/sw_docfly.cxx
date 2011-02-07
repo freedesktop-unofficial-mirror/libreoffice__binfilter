@@ -536,8 +536,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/       {
 /*?*/             SwDrawContact* pContact = (SwDrawContact*)GetUserCall(pObj);
 /*?*/
-/*?*/             // OD 27.06.2003 #108784# - consider, that drawing object has
-/*?*/             // no user call. E.g.: a 'virtual' drawing object is disconnected by
+/*?*/             // consider, that drawing object has no user call.
+/*?*/             // E.g.: a 'virtual' drawing object is disconnected by
 /*?*/             // the anchor type change of the 'master' drawing object.
 /*?*/             // Continue with next selected object and assert, if this isn't excepted.
 /*?*/             if ( !pContact )
@@ -551,7 +551,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                 continue;
 /*?*/             }
 /*?*/
-/*?*/             // OD 17.06.2003 #108784# - determine correct 'old' anchor frame,
+/*?*/             // determine correct 'old' anchor frame,
 /*?*/             // considering 'virtual' drawing objects.
 /*?*/             const SwFrm* pOldAnch = 0L;
 /*?*/             if ( pObj->ISA(SwDrawVirtObj) )
@@ -602,7 +602,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                                              pObj->GetBoundRect().TopRight() :
 /*?*/                                              aPt;
 /*?*/
-/*?*/                     // OD 18.06.2003 #108784# - allow drawing objects in header/footer
+/*?*/                     // allow drawing objects in header/footer
 /*?*/                     pNewAnch = ::binfilter::FindAnchor( pOldAnch, aNewPoint, false );
 /*?*/                     if( pNewAnch->IsTxtFrm() && ((SwTxtFrm*)pNewAnch)->IsFollow() )
 /*?*/                         pNewAnch = ((SwTxtFrm*)pNewAnch)->FindMaster();
@@ -628,8 +628,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                       Point aPoint( aPt );
 /*?*/                       aPoint.X() -= 1;
 /*?*/                       GetRootFrm()->GetCrsrOfst( &aPos, aPoint, &aState );
-/*?*/                         // OD 20.06.2003 #108784# - consider that drawing objects
-/*?*/                         // can be in header/footer. Thus, <GetFrm()> by left-top-corner
+/*?*/                         // consider that drawing objects can be in header/footer.
+/*?*/                         // Thus, <GetFrm()> by left-top-corner
 /*?*/                         pTxtFrm = aPos.nNode.GetNode().
 /*?*/                                         GetCntntNode()->GetFrm( &aPt, 0, FALSE );
 /*?*/                   }
@@ -691,7 +691,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/               }
 /*?*/               else            // Ankerwechsel
 /*?*/               {
-/*?*/                     // OD 18.06.2003 #108784# - allow drawing objects in header/footer
+/*?*/                     // allow drawing objects in header/footer
 /*?*/                     pNewAnch = ::binfilter::FindAnchor( pOldAnch, aPt, false );
 /*?*/                   if( pNewAnch->IsProtected() )
 /*?*/                   {
@@ -735,8 +735,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/
 /*?*/           if( bChanges && pNewAnch )
 /*?*/           {
-/*?*/                 // OD 20.06.2003 #108784# - consider that a 'virtual' drawing
-/*?*/                 // object is disconnected from layout, e.g. caused by an anchor
+/*?*/                 // consider that a 'virtual' drawing object
+/*?*/                 // is disconnected from layout, e.g. caused by an anchor
 /*?*/                 // type change.
 /*?*/                 if ( pObj->ISA(SwDrawVirtObj) )
 /*?*/                 {
@@ -752,8 +752,8 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                 // SetAttr() removes the ParaPortion of pNewAnch, which is required by
 /*?*/                 // GetFrmAnchorPos. Therefore aTmpPoint has to be calculated before
 /*?*/                 // the call of SetAttr().
-/*?*/                 // OD 20.06.2003 #108784# - refine for assertion:
-/*?*/                 // consider anchor change from page to something in header/footer
+/*?*/                 // refine for assertion: consider anchor
+/*?*/                 // change from page to something in header/footer
 /*?*/                 Point aProposedAnchorPos;
 /*?*/                 if ( nOld == FLY_PAGE &&
 /*?*/                      pContact->GetAnchor()->FindFooterOrHeader() )

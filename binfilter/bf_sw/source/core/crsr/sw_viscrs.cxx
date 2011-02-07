@@ -51,9 +51,6 @@
 #include <comcore.hrc>          // ResId fuer Abfrage wenn zu Search & Replaces
 namespace binfilter {
 
-
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
 extern void SwCalcPixStatics( OutputDevice *pOut );
 
 

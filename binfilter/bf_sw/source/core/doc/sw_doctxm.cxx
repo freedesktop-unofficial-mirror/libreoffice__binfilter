@@ -475,8 +475,8 @@ DBG_BF_ASSERT(0, "STRIP");
  --------------------------------------------------------------------*/
 
 
-// OD 18.03.2003 #106329# - add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
-// in order to control, which page description is used, no appropriate one is found.
+// add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc> in order to control,
+// which page description is used, no appropriate one is found.
 
 /*--------------------------------------------------------------------
      Beschreibung: Seitennummer errechnen und nach dem Formatieren

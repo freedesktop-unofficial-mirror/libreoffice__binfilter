@@ -399,8 +399,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/       if( pDest->GetAnchor() == rNewAnchor )
 /*N*/         {
-/*N*/             // OD 03.07.2003 #108784# - do *not* connect to layout, if
-/*N*/             // a <MakeFrms> will not be called.
+/*N*/             // do *not* connect to layout, if a <MakeFrms> will not be called.
 /*N*/             if ( bMakeFrms )
 /*N*/             {
 /*N*/                 pContact->ConnectToLayout( &rNewAnchor );
@@ -453,8 +452,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   else if( bInsInPage )
 /*N*/       pPg->InsertObject( pObj );
 /*N*/
-/*N*/     // OD 02.07.2003 #108784# - for drawing objects: set layer of cloned object
-/*N*/     // to invisible layer
+/*N*/     // for drawing objects: set layer of cloned object to invisible layer
 /*N*/     SdrLayerID nLayerIdForClone = rObj.GetLayer();
 /*N*/     if ( !pObj->ISA(SwFlyDrawObj) &&
 /*N*/          !pObj->ISA(SwVirtFlyDrawObj) &&
@@ -678,7 +676,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/                   : &rRg.GetPoint()->nNode;
 /*N*/     }
 /*N*/
-/*N*/     // OD 24.06.2003 #108784# - allow drawing objects in header/footer, but
+/*N*/     // allow drawing objects in header/footer, but
 /*N*/     // control objects aren't allowed in header/footer.
 /*N*/     if( pChkIdx &&
 /*N*/         ::binfilter::CheckControlLayer( &rDrawObj ) &&

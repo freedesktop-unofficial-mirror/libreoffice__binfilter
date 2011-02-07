@@ -54,13 +54,6 @@ namespace binfilter {
 
 #define DEFTEXTSIZE  12
 
-// OD 25.09.2002 #99739# - insert declaration of global methods <SwAlignRect>
-//     and <SwAlignGrtRect>.
-//     Methods are implemented in /core/layout/paintfrm.cxx
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
-//extern void SwAlignGrfRect( SwRect *pGrfRect, const OutputDevice &rOut );
-
 //Zum asynchronen (erstmaligem) anfordern von Grafiken
 
 
@@ -304,7 +297,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
 /*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )
 /*?*/               {
-/*?*/                     // OD 27.11.2002 #105519# - invalidate instead of painting
+/*?*/                     // invalidate instead of painting
 /*?*/                     pSh->GetWin()->Invalidate( aRect.SVRect() );
 /*?*/               }
 /*N*/

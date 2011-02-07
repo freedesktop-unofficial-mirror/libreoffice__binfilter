@@ -1422,7 +1422,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/       delete pFldSortLst;
 /*M*/   pFldSortLst = new _SetGetExpFlds( 64, 16 );
 /*M*/
-/*M*/     /// OD 09.08.2002 [#101207#,#101216#,#101778#] - consider and unhide sections
+/*M*/     /// consider and unhide sections
 /*M*/     ///     with hide condition, only in mode GETFLD_ALL (<eGetMode == GETFLD_ALL>)
 /*M*/     ///     notes by OD:
 /*M*/     ///         eGetMode == GETFLD_CALC in call from methods SwDoc::FldsToCalc
@@ -1521,7 +1521,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/               break;
 /*M*/
 /*M*/           case RES_SETEXPFLD:
-/*M*/                           /// OD 04.10.2002 #102894#
 /*N*/                 /// fields of subtype <string> have also been add
 /*N*/                 /// for calculation (eGetMode == GETFLD_CALC).
 /*N*/                 /// Thus, add fields of subtype <string> in all modes

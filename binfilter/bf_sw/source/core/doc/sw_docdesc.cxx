@@ -787,7 +787,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/       delete pPrt;
 /*N*/       pPrt = pP;
 /*N*/   }
-/*N*/     // OD 05.03.2003 #107870# - first adjust page description, before trigger formatting.
+/*N*/     // first adjust page description, before trigger formatting.
 /*N*/     if( bInitPageDesc )
 /*N*/     {
 /*N*/         // JP 17.04.97: Bug 38924 - falls noch kein Drucker gesetzt war

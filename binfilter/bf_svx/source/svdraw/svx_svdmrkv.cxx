@@ -35,7 +35,6 @@
 #include "svdopath.hxx"
 #include "scene3d.hxx"
 
-// OD 30.06.2003 #108784#
 #include <svdovirt.hxx>
 
 namespace binfilter {
@@ -446,8 +445,7 @@ namespace binfilter {
 /*N*/           SdrObjList* pOL=pObj->GetSubList();
 /*N*/           if (pOL!=NULL && pOL->GetObjCount()!=0) {
 /*N*/               SdrObject* pTmpObj;
-/*N*/                 // OD 30.06.2003 #108784# - adjustment hit point for virtual
-/*N*/                 // objects.
+/*N*/                 // adjustment hit point for virtual objects.
 /*N*/                 Point aPnt( rPnt );
 /*N*/                 if ( pObj->ISA(SdrVirtObj) )
 /*N*/                 {

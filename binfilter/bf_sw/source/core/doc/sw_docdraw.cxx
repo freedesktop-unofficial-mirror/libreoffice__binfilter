@@ -68,7 +68,6 @@
 
 #include <bf_svx/fhgtitem.hxx>
 
-// OD 26.06.2003 #108784#
 #include <bf_svx/svdpagv.hxx>
 namespace binfilter {
 
@@ -86,7 +85,7 @@ using namespace ::com::sun::star::linguistic2;
 
 /*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
-    // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
+    // replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
 DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
@@ -188,7 +187,7 @@ namespace binfilter {
 /*N*/   else
 /*?*/       pSdrPool->FreezeIdRanges();
 /*N*/
-/*N*/     // SJ: #95129# set FontHeight pool defaults without changing static SdrEngineDefaults
+/*N*/     // set FontHeight pool defaults without changing static SdrEngineDefaults
 /*N*/   aAttrPool.SetPoolDefaultItem(SvxFontHeightItem( 240, 100, EE_CHAR_FONTHEIGHT ));
 /*N*/
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "before create DrawDocument" );
@@ -206,8 +205,7 @@ namespace binfilter {
 /*N*/   sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("Controls" ));
 /*N*/   nControls = pDrawModel->GetLayerAdmin().NewLayer( sLayerNm )->GetID();
 /*N*/
-/*N*/     // OD 25.06.2003 #108784# - add invisible layers corresponding to the
-/*N*/     // visible ones.
+/*N*/     // add invisible layers corresponding to the visible ones.
 /*N*/     {
 /*N*/         sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("InvisibleHell" ));
 /*N*/         nInvisibleHell   = pDrawModel->GetLayerAdmin().NewLayer( sLayerNm )->GetID();
@@ -244,8 +242,6 @@ namespace binfilter {
 /*N*/ }
 
 /** method to determine, if a layer ID belongs to the visible ones.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is unknown, method asserts and returns <false>.
 
     @author OD
@@ -276,8 +272,6 @@ bool SwDoc::IsVisibleLayerId( const SdrLayerID& _nLayerId )
 }
 
 /** method to determine, if the corresponding visible layer ID for a invisible one.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is a visible one, method returns given layer ID.
     Note: If given layer ID is unknown, method returns given layer ID.
 
@@ -316,8 +310,6 @@ SdrLayerID SwDoc::GetVisibleLayerIdByInvisibleOne( const SdrLayerID& _nInvisible
 }
 
 /** method to determine, if the corresponding invisible layer ID for a visible one.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is a invisible one, method returns given layer ID.
     Note: If given layer ID is unknown, method returns given layer ID.
 

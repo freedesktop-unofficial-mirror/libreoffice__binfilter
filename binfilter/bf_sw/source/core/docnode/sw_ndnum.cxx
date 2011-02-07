@@ -50,8 +50,7 @@ namespace binfilter {
 /*N*/   SwNodeNum aNum;
 /*N*/   const SwNodes& rNds;
 /*N*/   BYTE nMin, nNewLevel;
-/*N*/     // OD 21.11.2002 #100043# - array to remember, which level numbering
-/*N*/     // has to be started.
+/*N*/     // array to remember, which level numbering has to be started.
 /*N*/     bool aStartLevel[ MAXLEVEL ];
 /*N*/
 /*N*/   _OutlinePara( const SwNodes& rNodes, USHORT nSttPos, BYTE nOld, BYTE nNew );
@@ -66,7 +65,7 @@ namespace binfilter {
 /*N*/   register USHORT nO = Count(), nM, nU = 0;
 /*N*/   if( nO > 0 )
 /*N*/   {
-/*N*/ //JP 17.03.98: aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
+/*N*/ // aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
 /*N*/ //                Nodes aus dem falschen NodesArray im OutlineArray standen,
 /*N*/ //                jetzt mal einen Check eingebaut.
 /*N*/ #ifdef DBG_UTIL
@@ -115,7 +114,7 @@ namespace binfilter {
 /*N*/   nMin( Min( nOld, nNew )),
 /*N*/     nNewLevel( nNew )
 /*N*/ {
-/*N*/     // OD 25.11.2002 #100043# - init <aStartLevel[]> with defaults, only valid
+/*N*/     // init <aStartLevel[]> with defaults, only valid
 /*N*/     // if update of outline numbering started at first outline numbering node.
 /*N*/     for ( int i = 0; i < MAXLEVEL; ++i)
 /*N*/         aStartLevel[i] = true;
@@ -172,8 +171,7 @@ namespace binfilter {
 /*N*/           memset( aNum.GetLevelVal() + (aNum.GetLevel()+1), 0,
 /*N*/                   (MAXLEVEL - (aNum.GetLevel()+1)) * sizeof(aNum.GetLevelVal()[0]) );
 /*N*/         }
-/*N*/         // OD 22.11.2002 #100043# - init array <aStartLevel[]>, not starting at
-/*N*/         // first outline numbering node.
+/*N*/         // init array <aStartLevel[]>, not starting at first outline numbering node.
 /*N*/         aStartLevel[ pNum->GetLevel() ] = false;
 /*N*/         USHORT nHighestLevelFound = pNum->GetLevel();
 /*N*/         while ( pNum->GetLevel() > 0 && nSttPos-- )
@@ -226,14 +224,14 @@ namespace binfilter {
 /*N*/       }
 /*N*/ #endif
 /*N*/
-/*N*/         // OD 21.11.2002 #100043# - determine, if level numbering has to be started.
-/*N*/         // OD 09.12.2002 #106070# - correct outline numbering, even for the
-/*N*/         // first heading. Thus, state of <aStartLevel[]> always has to be
+/*N*/         // determine, if level numbering has to be started.
+/*N*/         // correct outline numbering, even for the first heading.
+/*N*/         // Thus, state of <aStartLevel[]> always has to be
 /*N*/         // consulted, not only on level change.
 /*N*/         if( aStartLevel[ nLevel ] )
 /*N*/       {
 /*N*/           nSetValue= pOutlRule->Get( nLevel ).GetStart();
-/*N*/             // OD 21.11.2002 #100043# - reset <aStartLevel[nLevel]>
+/*N*/             // reset <aStartLevel[nLevel]>
 /*N*/             aStartLevel[ nLevel ] = false;
 /*N*/       }
 /*N*/       else
@@ -245,7 +243,7 @@ namespace binfilter {
 /*N*/         {
 /*N*/           memset( aNum.GetLevelVal() + (nLevel+1), 0,
 /*N*/                   (MAXLEVEL - ( nLevel+1 )) * sizeof(aNum.GetLevelVal()[0]) );
-/*N*/             // OD 22.11.2002 #100043# - all next level numberings have to be started.
+/*N*/             // all next level numberings have to be started.
 /*N*/             for ( int i = nLevel+1; i < MAXLEVEL; ++i)
 /*N*/                 aStartLevel[i] = true;
 /*N*/         }

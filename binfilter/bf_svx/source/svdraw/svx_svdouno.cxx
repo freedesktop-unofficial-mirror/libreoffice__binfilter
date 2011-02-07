@@ -198,7 +198,6 @@ namespace binfilter {
 
 /** helper class to restore graphics at <awt::XView> object after <SdrUnoObj::Paint>
 
-    OD 08.05.2003 #109432#
     Restoration of graphics necessary to assure that paint on a window
 
     @author OD
