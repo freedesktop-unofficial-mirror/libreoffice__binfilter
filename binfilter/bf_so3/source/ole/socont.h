@@ -30,9 +30,9 @@
 #ifndef _TENANT_H_
 #define _TENANT_H_
 
-#include <tools/prewin.h>
+#include <prewin.h>
 #include "soole.h"
-#include <tools/postwin.h>
+#include <postwin.h>
 #include "bf_so3/outplace.hxx"
 
 #define HIMETRIC_PER_INCH           2540
