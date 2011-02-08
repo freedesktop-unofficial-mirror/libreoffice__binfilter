@@ -30,7 +30,6 @@
 
 #ifdef WNT
 #include <prewin.h>
-#include <windows.h>
 #include <postwin.h>
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
