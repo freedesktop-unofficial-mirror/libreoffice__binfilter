@@ -1276,7 +1276,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/
 /*N*/                 pFrm->Frm().Pos() = pLay->Frm().Pos();
 /*N*/               pFrm->Frm().Pos().Y() += 1; //wg. Benachrichtigungen.
-/*N*/                 no page, no invalidate.
+/*N*/                 //no page, no invalidate.
 /*N*/                 if ( pPage )
 /*N*/                 {
 /*N*/                     // invalidate page in order to force format and paint of
