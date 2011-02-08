@@ -293,7 +293,7 @@ void ColorConfig_Impl::Commit()
 
     CommitCurrentSchemeName();
 }
- *
+
 void ColorConfig_Impl::CommitCurrentSchemeName()
 {
     //save current scheme name
