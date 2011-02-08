@@ -36,31 +36,14 @@
 #include "svdoutl.hxx"
 
 #include <vcl/bmpacc.hxx>
-
 #include <eeitem.hxx>
-
-
-
 #include <bf_svtools/cacheoptions.hxx>
 
-
-
-
-
-
-
-
 #include "xflclit.hxx"
-
 #include "xflhtit.hxx"
-
 #include "xbtmpit.hxx"
-
 #include "xflgrit.hxx"
-
 #include "svdoole2.hxx"
-
-
 
 #include <bf_svtools/syslocale.hxx>
 

@@ -30,24 +30,18 @@
 #define _XIMP3DOBJECT_HXX
 
 #include "xmlictxt.hxx"
-
 #include "sdxmlimp_impl.hxx"
-
 #include "nmspmap.hxx"
 
 #include <com/sun/star/drawing/XShapes.hpp>
-
 #include <tools/rtti.hxx>
-
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-
 #include <bf_goodies/vector3d.hxx>
-
 #include <com/sun/star/drawing/Direction3D.hpp>
-
 #include <com/sun/star/drawing/Position3D.hpp>
 
 #include "ximpshap.hxx"
+
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////

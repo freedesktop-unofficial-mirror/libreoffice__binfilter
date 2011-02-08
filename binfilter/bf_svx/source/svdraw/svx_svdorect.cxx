@@ -37,15 +37,11 @@
 #include "svdstr.hrc"   // Objektname
 
 #include <xflclit.hxx>
-
 #include <xlnclit.hxx>
-
 #include <xlnwtit.hxx>
 
 #include "rectenum.hxx"
-
 #include "svdoimp.hxx"
-
 #include "xoutx.hxx"
 
 namespace binfilter {

@@ -25,36 +25,26 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
 #include "fmobj.hxx"
-
 #include "fmprop.hrc"
-
 
 #include <com/sun/star/script/XEventAttacherManager.hpp>
 
-
-
 #include "fmmodel.hxx"
-
 #include "fmtools.hxx"
-
-
-
 #include "fmresids.hrc"
 
 #include <fmview.hxx>
 
 #include "fmglob.hxx"
-
 #include "fmpgeimp.hxx"
-
 #include "fmpage.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;

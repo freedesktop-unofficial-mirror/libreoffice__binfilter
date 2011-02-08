@@ -26,27 +26,16 @@
  *
  ************************************************************************/
 
-
 #include "globl3d.hxx"
-
 #include "polysc3d.hxx"
-
 #include "dlight3d.hxx"
-
 #include "plight3d.hxx"
-
 #include "polyob3d.hxx"
-
 #include "cube3d.hxx"
-
 #include "sphere3d.hxx"
-
 #include "extrud3d.hxx"
-
 #include "lathe3d.hxx"
-
 #include "polygn3d.hxx"
-
 #include "objfac3d.hxx"
 
 namespace binfilter {

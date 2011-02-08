@@ -26,22 +26,13 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-
 #include <com/sun/star/drawing/Hatch.hpp>
-
 #include <com/sun/star/drawing/LineStyle.hpp>
-
 #include <com/sun/star/drawing/LineDash.hpp>
-
 #include <com/sun/star/drawing/FillStyle.hpp>
-
 #include <com/sun/star/awt/Gradient.hpp>
-
 #include <bf_svtools/itempool.hxx>
-
 #include <bf_svx/xdef.hxx>
 
 #include "unoapi.hxx"
@@ -56,7 +47,6 @@
 #include "xattr.hxx"
 #include "xtable.hxx"
 #include "itemtype.hxx"
-
 #include "xftadit.hxx"
 #include "xftdiit.hxx"
 #include "xftmrit.hxx"
@@ -67,8 +57,8 @@
 #include "xftshxy.hxx"
 #include "xftstit.hxx"
 #include "xtxasit.hxx"
-
 #include "svdmodel.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;

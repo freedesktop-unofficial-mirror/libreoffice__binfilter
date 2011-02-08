@@ -32,32 +32,16 @@
  */
 
 #include "txtvfldi.hxx"
-
-
-
 #include "xmlnumi.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
 #include "i18nmap.hxx"
-
 #include "xmlimp.hxx"
-
 #include "xmluconv.hxx"
 
-
 #include <com/sun/star/text/SetVariableType.hpp>
-
-
 #include <com/sun/star/text/XDependentTextField.hpp>
-
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-
-
-
-
 
 #include "rtl/ustring.hxx"
 

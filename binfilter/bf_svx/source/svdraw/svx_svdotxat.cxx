@@ -32,18 +32,10 @@
 #include "svdocapt.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
 #include "writingmodeitem.hxx"
 #include "eeitem.hxx"
-
-
 #include "itemdata.hxx"
 
-
-
-
 #include <bf_svtools/smplhint.hxx>
-
-
 #include <outlobj.hxx>
-
 
 #include "eeitem.hxx"
 
@@ -52,15 +44,10 @@
 #include "fhgtitem.hxx"
 
 #include <charscaleitem.hxx>
-
 #include <bf_svtools/style.hxx>
-
 #include <bf_svtools/itemiter.hxx>
 
 #define ITEMID_LRSPACE          EE_PARA_LRSPACE
-
-
-
 
 namespace binfilter {
 

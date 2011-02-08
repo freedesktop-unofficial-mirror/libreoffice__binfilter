@@ -29,30 +29,18 @@
 #include "XMLFootnoteConfigurationImportContext.hxx"
 
 #include "rtl/ustring.hxx"
-
 #include <rtl/ustrbuf.hxx>
 
-
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
-
-
-
 #include "xmluconv.hxx"
-
 #include "xmlimp.hxx"
 
-
-
-
-
 #include <com/sun/star/text/XFootnotesSupplier.hpp>
-
 #include <com/sun/star/text/XEndnotesSupplier.hpp>
-
 #include <com/sun/star/text/FootnoteNumbering.hpp>
 #include <com/sun/star/style/NumberingType.hpp>
+
 namespace binfilter {
 
 

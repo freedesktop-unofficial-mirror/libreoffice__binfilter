@@ -29,46 +29,19 @@
 #include "XMLSectionExport.hxx"
 
 #include <tools/debug.hxx>
-
-
-
 #include <vector>
 
-
-
-
-
-
-
 #include <com/sun/star/beans/PropertyValues.hpp>
-
-
-
 #include <com/sun/star/text/XTextSection.hpp>
-
 #include <com/sun/star/text/SectionFileLink.hpp>
-
-
-
 #include <com/sun/star/text/XDocumentIndex.hpp>
-
-
 #include <com/sun/star/text/BibliographyDataField.hpp>
-
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
 
 #include "xmlkywd.hxx"
-
-
-
-
 #include "xmluconv.hxx"
-
-
 #include "xmlexp.hxx"
-
-
 #include "txtflde.hxx"
 
 namespace binfilter {

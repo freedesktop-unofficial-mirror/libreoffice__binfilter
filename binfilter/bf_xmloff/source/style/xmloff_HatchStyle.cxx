@@ -31,16 +31,10 @@
 #include <com/sun/star/drawing/Hatch.hpp>
 
 #include "nmspmap.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmlexp.hxx"
-
 #include "xmlimp.hxx"
-
 
 #include "rtl/ustring.hxx"
 

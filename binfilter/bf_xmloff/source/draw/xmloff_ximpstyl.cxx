@@ -31,46 +31,29 @@
 #endif
 
 #include "ximpstyl.hxx"
-
 #include "XMLShapeStyleContext.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmluconv.hxx"
-
 #include "ximpnote.hxx"
 
 #include <tools/debug.hxx>
-
-
 #include <com/sun/star/presentation/XPresentationPage.hpp>
-
 #include <com/sun/star/drawing/XDrawPages.hpp>
-
-
-
 #include <com/sun/star/beans/XPropertyState.hpp>
-
 #include <comphelper/namecontainer.hxx>
-
 #include <com/sun/star/presentation/XHandoutMasterSupplier.hpp>
 
 #include "xmlprcon.hxx"
 
-
-
 #include <bf_svtools/zforlist.hxx>
 
 #include "PropertySetMerger.hxx"
-
 #include "sdpropls.hxx"
-
 #include "layerimp.hxx"
 
 #include "XMLGraphicsDefaultStyle.hxx"
-
 #include "XMLNumberStylesImport.hxx"
+
 namespace binfilter {
 
 using namespace ::com::sun::star;

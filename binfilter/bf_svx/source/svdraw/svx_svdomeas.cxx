@@ -38,31 +38,18 @@
 
 #include <bf_svtools/style.hxx>
 
-
-
 #include "xlnstit.hxx"
-
 #include "xlnstwit.hxx"
-
 #include "xlnedit.hxx"
-
 #include "xlnwtit.hxx"
-
 #include "xlnedwit.hxx"
-
 #include "xlnstcit.hxx"
-
 #include "xlnedcit.hxx"
-
-
 
 #include <editobj.hxx>
 
-
 #include "itemdata.hxx"
-
 #include "svdfield.hxx"
-
 
 #include <bf_svtools/syslocale.hxx>
 

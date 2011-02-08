@@ -26,27 +26,14 @@
  *
  ************************************************************************/
 
-
 #include "XMLIndexSourceBaseContext.hxx"
-
-
-
-
 #include "XMLIndexTitleTemplateContext.hxx"
-
 #include "XMLIndexTOCStylesContext.hxx"
 
-
 #include "xmlimp.hxx"
-
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
-
 #include "xmluconv.hxx"
-
 
 namespace binfilter {
 

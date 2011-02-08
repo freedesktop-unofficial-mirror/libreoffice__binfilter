@@ -26,24 +26,14 @@
  *
  ************************************************************************/
 
-
 #include <com/sun/star/drawing/LineDash.hpp>
 
 #include "DashStyle.hxx"
-
-
 #include "nmspmap.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmlexp.hxx"
-
 #include "xmlimp.hxx"
-
-
 #include "rtl/ustring.hxx"
 
 #include <tools/debug.hxx>

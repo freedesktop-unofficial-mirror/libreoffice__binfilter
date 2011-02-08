@@ -32,66 +32,31 @@
  *  (variable related text fields and database display fields)
  */
 
-
 #include "txtvfldi.hxx"
-
 #include "xmlimp.hxx"
-
 #include "xmlnumi.hxx"
-
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
-
 #include "xmluconv.hxx"
 
-
 #include "XMLStringBufferImportContext.hxx"
-
 #include "XMLEventsImportContext.hxx"
 
-
 #include <com/sun/star/text/UserDataPart.hpp>
-
-
 #include <com/sun/star/text/PlaceholderType.hpp>
-
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
-
-
-
-
-
-
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-
 #include <com/sun/star/text/XDependentTextField.hpp>
-
-
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
-
 #include <com/sun/star/text/ChapterFormat.hpp>
-
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
-
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-
-
-
 #include <com/sun/star/text/BibliographyDataType.hpp>
-
-
 #include <com/sun/star/util/XUpdatable.hpp>
-
 #include <com/sun/star/sdb/CommandType.hpp>
 
 #include "rtl/ustring.hxx"
-
-
 #include <rtl/math.hxx>
 
 namespace binfilter {

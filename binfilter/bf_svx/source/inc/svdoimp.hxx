@@ -33,24 +33,17 @@
 #include <vector>
 
 #include <cppuhelper/weakref.hxx>
-
 #include <vcl/mapmod.hxx>
-
 #include <bf_svtools/lstner.hxx>
-
 #include <vcl/timer.hxx>
 
 #include "svdsob.hxx"
-
 #include "svdtypes.hxx" // fuer SdrLayerID
-
 #include "svdglue.hxx" // Klebepunkte
-
 #include "xdash.hxx"
-
 #include "poly3d.hxx"
-
 #include "xenum.hxx"
+
 class PolyPolygon;
 namespace binfilter {
 

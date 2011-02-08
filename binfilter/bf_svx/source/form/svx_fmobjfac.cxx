@@ -25,40 +25,23 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
-
-
 #include "fmobjfac.hxx"
-
 #include "fmglob.hxx"
-
 #include "fmobj.hxx"
 
 #include <com/sun/star/sdbc/XRowSetListener.hpp>
-
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-
 #include <com/sun/star/frame/XFrame.hpp>
 
 #include "fmshimp.hxx"
-
-
 #include "svxids.hrc"
-
-
 #include "fmresids.hrc"
-
-
-
 #include "fmservs.hxx"
-
-
-
 #include "fmprop.hrc"
 
 namespace binfilter {

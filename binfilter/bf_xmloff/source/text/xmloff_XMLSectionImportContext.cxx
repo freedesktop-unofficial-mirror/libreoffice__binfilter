@@ -27,32 +27,19 @@
  ************************************************************************/
 
 #include "XMLSectionImportContext.hxx"
-
 #include "XMLSectionSourceImportContext.hxx"
-
 #include "XMLSectionSourceDDEImportContext.hxx"
 
-
 #include "xmlimp.hxx"
-
-
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
-
-
 #include "xmluconv.hxx"
-
 #include "prstylei.hxx"
 
-
 #include <com/sun/star/uno/Reference.h>
-
 #include <com/sun/star/text/XTextContent.hpp>
-
-
-
 #include <com/sun/star/text/ControlCharacter.hpp>
+
 namespace binfilter {
 
 

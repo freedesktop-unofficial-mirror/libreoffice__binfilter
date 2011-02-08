@@ -32,74 +32,36 @@
  */
 
 #include "txtflde.hxx"
-
 #include "xmlexp.hxx"
-
-
-
-
 #include "xmluconv.hxx"
-
-
 #include "numehelp.hxx"
 
-
-
 #include "XMLEventExport.hxx"
-
 #include "XMLTextCharStyleNamesElementExport.hxx"
 
 #include <com/sun/star/util/DateTime.hpp>
-
-
-
 #include <com/sun/star/text/UserDataPart.hpp>
-
 #include <com/sun/star/text/PageNumberType.hpp>
-
 #include <com/sun/star/style/NumberingType.hpp>
-
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
-
-
 #include <com/sun/star/beans/XPropertyState.hpp>
-
-
 #include <com/sun/star/text/XDependentTextField.hpp>
-
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-
 #include <com/sun/star/text/SetVariableType.hpp>
-
 #include <com/sun/star/text/PlaceholderType.hpp>
-
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-
-
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
-
 #include <com/sun/star/text/ChapterFormat.hpp>
-
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
-
-
 #include <com/sun/star/container/XNameReplace.hpp>
-
 #include <com/sun/star/uno/Sequence.h>
-
-
 #include <com/sun/star/text/BibliographyDataType.hpp>
-
 #include <com/sun/star/sdb/CommandType.hpp>
-
-
 #include <tools/debug.hxx>
-
 #include <rtl/math.hxx>
-
 #include <vector>
+
 namespace binfilter {
 
 using namespace ::std;

@@ -61,28 +61,22 @@
 #include "xlinjoit.hxx"
 #include "unopage.hxx"
 #include "eeitem.hxx"
-
 #include "svdpool.hxx"
-
 #include "editeng.hxx"
 
 #include <vcl/salbtype.hxx>     // FRound
-
 #include <bf_svtools/whiter.hxx>
 
 // #97849#
 #include "fmmodel.hxx"
 
 #include <bf_sfx2/objsh.hxx>
-
 #include <bf_sfx2/docfac.hxx>
 
 #include "rectenum.hxx"
-
 #include "svdoimp.hxx"
 
 #include <vcl/graphictools.hxx>
-
 
 #include "xoutx.hxx"
 

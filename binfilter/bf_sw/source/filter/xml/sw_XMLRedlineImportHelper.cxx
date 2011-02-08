@@ -26,20 +26,16 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
 #include <errhdl.hxx>
 
 #include "XMLRedlineImportHelper.hxx"
-
 #include "unoobj.hxx"
 
 #include <unocrsr.hxx>
-
 #include <horiornt.hxx>
 
 #include "doc.hxx"
@@ -47,19 +43,13 @@
 #include <tools/datetime.hxx>
 
 #include "poolfmt.hxx"
-
 #include "unoredline.hxx"
 
 #include <bf_xmloff/xmltoken.hxx>
-
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-
 #include <com/sun/star/text/XWordCursor.hpp>
-
 #include <com/sun/star/frame/XModel.hpp>
-
 #include <com/sun/star/beans/XPropertySet.hpp>
-
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
 
 // for locking SolarMutex: svapp + mutex

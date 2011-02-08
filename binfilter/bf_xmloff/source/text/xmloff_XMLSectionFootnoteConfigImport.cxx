@@ -32,25 +32,16 @@
 
 #include <com/sun/star/uno/Reference.h>
 
-
 #include "xmlimp.hxx"
-
-
 #include "xmluconv.hxx"
-
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
-
 #include "xmlnumi.hxx"
-
 #include "txtprmap.hxx"
 
 #include <tools/debug.hxx>
-
 #include <vector>
+
 namespace binfilter {
 
 

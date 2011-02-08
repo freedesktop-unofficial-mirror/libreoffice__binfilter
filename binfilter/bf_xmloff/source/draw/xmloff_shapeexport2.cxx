@@ -27,41 +27,24 @@
  ************************************************************************/
 
 #include <com/sun/star/text/XText.hpp>
-
-
-
 #include <com/sun/star/drawing/CircleKind.hpp>
-
 #include <com/sun/star/drawing/ConnectorType.hpp>
-
 #include <com/sun/star/drawing/XControlShape.hpp>
-
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-
 #include <com/sun/star/document/XEventsSupplier.hpp>
-
 #include <com/sun/star/drawing/HomogenMatrix3.hpp>
 
 #include "anim.hxx"
-
-
 #include "sdpropls.hxx"
-
-
-
 #include "xmlexp.hxx"
-
 #include "xmluconv.hxx"
-
 #include "XMLImageMapExport.hxx"
-
 #include "xexptran.hxx"
 
 #include <vcl/salbtype.hxx>     // FRound
 
-
-
 #include "xmlnmspe.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;

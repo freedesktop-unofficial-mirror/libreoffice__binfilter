@@ -30,7 +30,6 @@
 
 #include "svdmodel.hxx"
 
-
 #include <bf_svtools/whiter.hxx>
 
 #include "xit.hxx"
@@ -43,12 +42,8 @@
 #include "xflftrit.hxx"
 #include "xflhtit.hxx"
 #include "xlnstit.hxx"
-
-
 #include "editeng.hxx"   // Fuer EditEngine::CreatePool()
-
 #include "xtable.hxx"
-
 #include "svditer.hxx"
 #include "svdio.hxx"
 #include "svdpage.hxx"
@@ -67,34 +62,19 @@
 #endif
 
 #include "eeitem.hxx"
-
 #include "fontitem.hxx"
-
 #include "colritem.hxx"
-
 #include "fhgtitem.hxx"
 
 #include <bf_svtools/style.hxx>
-
 #include <tools/bigint.hxx>
-
-
-
 
 #include "forbiddencharacterstable.hxx"
 
 #include <bf_so3/persist.hxx>
-
 #include <bf_svtools/zforlist.hxx>
-
-
-// #90477#
 #include <tools/tenccvt.hxx>
-
-
-// #95114#
 #include <vcl/svapp.hxx>
-
 #include <osl/endian.h>
 
 namespace binfilter {

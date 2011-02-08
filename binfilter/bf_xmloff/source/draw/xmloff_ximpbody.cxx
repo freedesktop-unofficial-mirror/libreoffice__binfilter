@@ -31,29 +31,21 @@
 #endif
 
 #include "ximpbody.hxx"
-
 #include "prstylei.hxx"
-
 #include "ximpnote.hxx"
 
-
 #include <com/sun/star/drawing/XDrawPages.hpp>
-
-
 #include <com/sun/star/presentation/XPresentationPage.hpp>
 
 #include "ximpstyl.hxx"
 
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
 
-
 #include "xmluconv.hxx"
-
-
-
 #include "ximpshow.hxx"
 
 #include "PropertySetMerger.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;

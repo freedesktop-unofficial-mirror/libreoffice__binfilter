@@ -29,13 +29,9 @@
 #define _SVX_USE_UNOGLOBALS_
 
 #include <cppuhelper/typeprovider.hxx>
-
 #include <bf_goodies/matrix3d.hxx>
-
 #include <bf_svtools/fltcall.hxx>
-
 #include <toolkit/unohlp.hxx>
-
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 #include <bf_so3/outplace.hxx>
@@ -58,25 +54,15 @@
 #include "svdograf.hxx"
 #include "unoapi.hxx"
 #include "svdomeas.hxx"
-
-#include "dialogs.hrc"      //
-
+#include "dialogs.hrc"
 #include "svdocapt.hxx"
-
 #include "xflftrit.hxx"
-
 #include "xtable.hxx"
-
 #include "xbtmpit.hxx"
-
 #include "xflhtit.hxx"
-
 #include "xlnedit.hxx"
-
 #include "xlnstit.hxx"
-
 #include "xlndsit.hxx"
-
 #include "svdstr.hrc"
 #include "unomaster.hxx"
 

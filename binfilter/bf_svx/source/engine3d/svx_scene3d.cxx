@@ -29,9 +29,7 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-
 #include "svditer.hxx"
-
 #include "svdio.hxx"
 
 #if defined( UNX ) || defined( ICC )
@@ -41,11 +39,8 @@
 #include <bf_svtools/style.hxx>
 
 #include "plight3d.hxx"
-
 #include "dlight3d.hxx"
-
 #include "svdtrans.hxx"
-
 #include "svxids.hrc"
 
 #include <bf_svtools/whiter.hxx>

@@ -28,48 +28,28 @@
 
 #include "xmlimpit.hxx"
 #include <bf_xmloff/xmluconv.hxx>
-
-
-
-
-
 #include <bf_xmloff/nmspmap.hxx>
-
-
 #include <bf_svx/xmlcnitm.hxx>
 
-
 #include "hintids.hxx"
-
 #include "unomid.h"
 
-
 #include <bf_svx/lrspitem.hxx>
-
 #include <bf_svx/ulspitem.hxx>
-
 #include <bf_svx/shaditem.hxx>
-
 #include <bf_svx/boxitem.hxx>
-
 #include <bf_svx/brkitem.hxx>
-
 #include <bf_svx/keepitem.hxx>
-
 
 #include "fmtpdsc.hxx"
 
 #include <horiornt.hxx>
 
 #include "fmtornt.hxx"
-
 #include "fmtfsize.hxx"
-
 #include "fmtlsplt.hxx"
 
-
 #include <bf_xmloff/prhdlfac.hxx>
-
 #include <bf_xmloff/xmltypes.hxx>
 
 #include "xmlithlp.hxx"

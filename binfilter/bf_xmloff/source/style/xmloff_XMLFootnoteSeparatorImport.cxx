@@ -31,28 +31,19 @@
 #include "rtl/ustring.hxx"
 
 #include <com/sun/star/uno/Reference.h>
-
-
 #include <com/sun/star/text/HorizontalAdjust.hpp>
 
 #include "xmlimp.hxx"
-
-
 #include "xmluconv.hxx"
-
 #include "xmlprmap.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "nmspmap.hxx"
-
 
 #include "PageMasterStyleMap.hxx"
 
 #include <tools/debug.hxx>
-
-
 #include <vector>
+
 namespace binfilter {
 
 

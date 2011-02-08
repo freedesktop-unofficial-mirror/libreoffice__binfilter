@@ -29,15 +29,10 @@
 #include "svx3ditems.hxx"
 
 #include <com/sun/star/drawing/NormalsKind.hpp>
-
 #include <com/sun/star/drawing/TextureProjectionMode.hpp>
-
 #include <com/sun/star/drawing/TextureKind.hpp>
-
 #include <com/sun/star/drawing/TextureMode.hpp>
-
 #include <com/sun/star/drawing/ProjectionMode.hpp>
-
 #include <com/sun/star/drawing/ShadeMode.hpp>
 
 #include "xdef.hxx"

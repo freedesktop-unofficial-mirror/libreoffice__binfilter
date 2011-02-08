@@ -26,52 +26,28 @@
  *
  ************************************************************************/
 
-
 #include "XMLIndexTOCContext.hxx"
-
-
-
-
-
 
 #include <com/sun/star/text/XRelativeTextContentInsert.hpp>
 
-
 #include "XMLIndexTOCSourceContext.hxx"
-
 #include "XMLIndexObjectSourceContext.hxx"
-
 #include "XMLIndexAlphabeticalSourceContext.hxx"
-
 #include "XMLIndexUserSourceContext.hxx"
-
 #include "XMLIndexBibliographySourceContext.hxx"
-
-
 #include "XMLIndexIllustrationSourceContext.hxx"
-
 #include "XMLIndexBodyContext.hxx"
 
-
 #include "xmlimp.hxx"
-
-
 #include "nmspmap.hxx"
-
 #include "xmlnmspe.hxx"
-
 #include "xmlkywd.hxx"
-
-
 #include "prstylei.hxx"
-
 #include "xmlerror.hxx"
-
 #include "xmluconv.hxx"
 
-
-
 #include <tools/debug.hxx>
+
 namespace binfilter {
 
 

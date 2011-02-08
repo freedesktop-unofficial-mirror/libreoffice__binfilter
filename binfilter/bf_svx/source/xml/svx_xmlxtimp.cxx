@@ -28,7 +28,6 @@
 
 #include <tools/debug.hxx>
 
-
 #include <com/sun/star/io/XActiveDataControl.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #include <com/sun/star/xml/sax/XParser.hpp>
@@ -39,35 +38,23 @@
 #include <com/sun/star/io/XSeekable.hdl>
 
 #include <unotools/streamwrap.hxx>
-
-
-
 #include <bf_sfx2/docfile.hxx>
-
 #include <bf_xmloff/xmluconv.hxx>
 
 #include "bf_xmloff/xmlnmspe.hxx"
-
 #include "bf_xmloff/nmspmap.hxx"
-
 #include "bf_xmloff/xmlkywd.hxx"
-
-
 #include "bf_xmloff/DashStyle.hxx"
-
 #include "bf_xmloff/GradientStyle.hxx"
-
 #include "bf_xmloff/HatchStyle.hxx"
-
 #include "bf_xmloff/ImageStyle.hxx"
-
 #include "bf_xmloff/MarkerStyle.hxx"
-
 
 #include "xmlgrhlp.hxx"
 
 #include "xmlxtimp.hxx"
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::container;
