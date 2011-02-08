@@ -1920,9 +1920,9 @@ class ImpSkeleton;
 /*N*/   bMovProt=rObj.bMovProt;
 /*N*/   bNoPrint=rObj.bNoPrint;
 /*N*/   bMarkProt=rObj.bMarkProt;
-/*N*/   //EmptyPresObj wird nicht kopiert: nun doch! (25-07-1995, Joe)
+/*N*/   //EmptyPresObj wird nicht kopiert: nun doch!
 /*N*/   bEmptyPresObj =rObj.bEmptyPresObj;
-/*N*/   //NotVisibleAsMaster wird nicht kopiert: nun doch! (25-07-1995, Joe)
+/*N*/   //NotVisibleAsMaster wird nicht kopiert: nun doch!
 /*N*/   bNotVisibleAsMaster=rObj.bNotVisibleAsMaster;
 /*N*/
 /*N*/   bBoundRectDirty=rObj.bBoundRectDirty;

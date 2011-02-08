@@ -137,8 +137,7 @@ public:
     /** method to check relative position of layout frame to
         a given layout frame.
 
-        OD 08.11.2002 - refactoring of pseudo-local method <lcl_Apres(..)> in
-        <txtftn.cxx> for #104840#.
+        refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
 
         @param _aCheckRefLayFrm
         constant reference of an instance of class <SwLayoutFrm> which

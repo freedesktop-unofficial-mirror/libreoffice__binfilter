@@ -535,9 +535,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 09:01-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwFileNameField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -545,7 +543,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_FORMAT:
 /*N*/       {
-/*N*/           //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
+/*N*/           // int32 because in UnoField.cxx a putvalue is
 /*N*/           //              called with a int32 value! But normally we need
 /*N*/           //              here only a int16
 /*N*/           sal_Int32 nType(0);
@@ -690,9 +688,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 09:01-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwTemplNameField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -700,7 +696,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_FORMAT:
 /*N*/       {
-/*N*/           //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
+/*N*/           // int32 because in UnoField.cxx a putvalue is
 /*N*/           //              called with a int32 value! But normally we need
 /*N*/           //              here only a int16
 /*N*/           sal_Int32 nType(0);
@@ -2171,9 +2167,7 @@ void SwJumpEditField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 15:00-------------------
 
---------------------------------------------------*/
 BOOL SwJumpEditField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -2181,7 +2175,7 @@ BOOL SwJumpEditField::PutValue( const uno::Any& rAny, BYTE nMId )
     {
     case FIELD_PROP_USHORT1:
         {
-            //JP 24.10.2001: int32 because in UnoField.cxx a putvalue is
+            // int32 because in UnoField.cxx a putvalue is
             //              called with a int32 value! But normally we need
             //              here only a int16
             sal_Int32 nSet(0);

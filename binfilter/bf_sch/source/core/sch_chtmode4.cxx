@@ -1076,20 +1076,18 @@ namespace binfilter {
 /*N*/   if (GetUseRelativePositions() && GetDiagramHasBeenMovedOrResized())
 /*N*/   {
 /*N*/       if ((rPageSize.Width() == aInitialSize.Width()) && (rPageSize.Height() == aInitialSize.Height()))
-/*N*/       {  // FG: Es war also ein Resize nur des Diagramms (also nur der Grafik und nicht der Seite)
+/*N*/       {  // Es war also ein Resize nur des Diagramms (also nur der Grafik und nicht der Seite)
 /*N*/           aChartRect= aDiagramRectangle;
 /*N*/       }
-/*N*/       else  // FG: 11.3.97 Dann war es ein Resize des gesamten Charts
+/*N*/       else  // Dann war es ein Resize des gesamten Charts
 /*N*/       {
             //  The whole chart has been resized.
             //  The old size aDiagramRectangle of the diagram has to fullfill the constraint
             //  the it has to have a positive extent both in the horizontal and the vertical
             //  direction.
             //
-            //  Previously (before 24.07.2001) the constraints to fullfill have been tighter:
+            //  Previously the constraints to fullfill have been tighter:
             //  All four border lines had to lie inside the chart rectangle.
-            //  If the new solution, that solves error #88404# proves to work, then remove this
-            //  paragraph and the commented code below.
 /*N*/           if (    (aDiagramRectangle.nLeft < aDiagramRectangle.nRight)
 /*N*/               &&  (aDiagramRectangle.nTop < aDiagramRectangle.nBottom) )
 /*N*/           {

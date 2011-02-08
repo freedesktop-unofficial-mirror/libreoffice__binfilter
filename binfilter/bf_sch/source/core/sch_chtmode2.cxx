@@ -740,8 +740,6 @@ enum ChartStyleV0
 /*N*/   SchIOCompat aIO(rOut, STREAM_WRITE, 17);
 /*N*/   long nFileFormat = rOut.GetVersion ();
 /*N*/
-/*N*/   //#50116# 8->9
-/*N*/   //#54870# ->10
 /*N*/   //12: ChartAchsen
 /*N*/   //13 Nachtrag: X-AchsenAttr-default bei XY-Charts (store unveraendert)
 /*N*/   //14 Overlap , Gapwith der 2 Y-Achsen
@@ -749,12 +747,11 @@ enum ChartStyleV0
 /*N*/   //16 Items fuer Achse SCHATTR_AXIS_SHOWDESCR,SCHATTR_AXIS_SHOWAXIS aktiviert,
 /*N*/   //    bisher nur von pChartBAxis genutzt!
 /*N*/
-/*N*/   //FG: 12 - seit 20.02.1997 - Umbruch ja/ein pro Achse hinzu
-/*N*/   //FG: 13 - seit 09.03.1997 Alle Variablen mit Tag 13:
-/*N*/   //DL: 14 - seit 11.03.1997 aSpotColor & aAmbientColor
-/*N*/   //                         FG  + TextausPositionen
-/*N*/   //FG: 15 - set  14.03.1997 Textausrichtung
-/*N*/   //SOH:16 - seit 04.05.1997 NumberFormatter
+/*N*/   // 12 - Umbruch ja/ein pro Achse hinzu
+/*N*/   // 13 - Alle Variablen mit Tag 13:
+/*N*/   // 14 - aSpotColor & aAmbientColor FG  + TextausPositionen
+/*N*/   // 15 - Textausrichtung
+/*N*/   // 16  NumberFormatter
 /*N*/
 /*N*/   //TODO: konvertieren der Attribute pChartAttr in eChartStyle (Fileversion >=10)
 /*N*/
@@ -1755,20 +1752,11 @@ enum ChartStyleV0
 /*N*/       // insbesondere fuer den Fall, dass weitere Daten geschrieben werden
 /*N*/       // muessen. Die Pools duerfen ab dem 19.01.1996 auf gar keinen Fall
 /*N*/       // mehr modifiziert oder aufgebohrt werden !!!!
-/*N*/       // nMoreData = 1     (Version vom 19.01.1996)
-/*N*/       // nMoreData = 2     (Version vom 13.03.1996)
-/*N*/       // nMoreData = 3     (Version vom 1.04.1996)
-/*N*/       // nMoreData = 4     (Version vom 13.05.1996)
-/*N*/       // nMoreData = 5     (Version vom 20.05.1996)
-/*N*/       // nMoreData = 6     (Version vom 20.06.1996)
-/*N*/       // nMoreData = 7     (Version vom 02.07.1996)
-/*N*/       // nMoreData = 8     (Version vom 09.07.1996)
-/*N*/       // nMoreData = 9     (Version vom 11.07.1996)
 /*N*/       // ...
-/*N*/       // nMoreData = 12    (Version vom 20.02.1997) FG (Vobis-Version 4.0)
-/*N*/       // nMoreData = 13    (Version vom 9.3.1997) FG Cebit-Version
+/*N*/       // nMoreData = 12 (Vobis-Version 4.0)
+/*N*/       // nMoreData = 13 Cebit-Version
 /*N*/       // .... siehe Text unten
-/*N*/       // nMoreData = 15    (Version vom 14.3.1997)  FG V4.0 nach Cebit >= 358
+/*N*/       // nMoreData = 15 V4.0 nach Cebit >= 358
 /*N*/       if (nMoreData > 1)
 /*N*/       {
 /*N*/           ByteString aReadString;

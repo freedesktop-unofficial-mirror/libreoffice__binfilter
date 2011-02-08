@@ -412,7 +412,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*N*/                 // OD 24.10.2002 #97265# - grow/shrink not for neighbour frames
+/*N*/                 // grow/shrink not for neighbour frames
 /*N*/                 // NOTE: neighbour frames are cell and column frames.
 /*N*/                 if ( !bNeighb )
 /*N*/                 {
@@ -632,7 +632,7 @@ namespace binfilter {
 /*N*/                GetPrev()->Prt().Height() + GetPrev()->Prt().Top() )
 /*N*/               //Umrandung zu beruecksichtigen?
 /*N*/               GetPrev()->_InvalidatePrt();
-/*N*/             // OD 18.02.2003 #104989# - force complete paint of previous frame,
+/*N*/             // force complete paint of previous frame,
 /*N*/             // if frame is inserted at the end of a section frame, in order to
 /*N*/             // get subsidiary lines repainted for the section.
 /*N*/             if ( pParent->IsSctFrm() && !GetNext() )
@@ -851,8 +851,7 @@ namespace binfilter {
 /*N*/   //In den Baum einhaengen.
 /*N*/   InsertBefore( (SwLayoutFrm*)pParent, pSibling );
 /*N*/
-    // OD 24.10.2002 #103517# - correct setting of variable <fnRect>
-    // <fnRect> is used for the following:
+    // correct setting of variable <fnRect> <fnRect> is used for the following:
     // (1) To invalidate the frame's size, if its size, which has to be the
     //      same as its upper/parent, differs from its upper's/parent's.
     // (2) To adjust/grow the frame's upper/parent, if it has a dimension in its
@@ -2294,7 +2293,7 @@ namespace binfilter {
 /*N*/             // frame and continue.
 /*N*/             if ( pLowerFrm->IsInTab() )
 /*N*/             {
-/*N*/                 // OD 28.10.2002 #97265# - safeguard for setting <pLowerFrm> to
+/*N*/                 // safeguard for setting <pLowerFrm> to
 /*N*/                 // its table frame - check, if the table frame is also a lower
 /*N*/                 // of the body frame, in order to assure that <pLowerFrm> is not
 /*N*/                 // set to a frame, which is an *upper* of the body frame.
@@ -2305,7 +2304,7 @@ namespace binfilter {
 /*N*/                 }
 /*N*/             }
 /*N*/             // Check, if variable size of body frame has grown
-/*N*/             // OD 28.10.2002 #97265# - correct check, if variable size has grown.
+/*N*/             // correct check, if variable size has grown.
 /*N*/             //SwTwips nOldHeight = bVert ? rOldSize.Height() : rOldSize.Width();
 /*N*/             SwTwips nOldHeight = bVert ? rOldSize.Width() : rOldSize.Height();
 /*N*/             if( nOldHeight < (Prt().*fnRect->fnGetHeight)() )
@@ -2448,7 +2447,7 @@ namespace binfilter {
 /*N*/                         // In vertical layout these are foot note container,
 /*N*/                         // body and no-text frames.
 /*N*/                         // In horizontal layout these are column and no-text frames.
-/*N*/                         // OD 24.10.2002 #97265# - <double> calculation
+/*N*/                         // <double> calculation
 /*N*/                         // Perform <double> calculation of new width, if
 /*N*/                         // one of the coefficients is greater than 50000
 /*N*/                         SwTwips nNewWidth;
@@ -2480,7 +2479,6 @@ namespace binfilter {
 /*N*/                         // to its upper height.
 /*N*/                         pLowerFrm->Frm().Height( Prt().Height() );
 /*N*/                     }
-/*N*/                     // OD 01.10.2002 #102211#
 /*N*/                     // add conditions <!pLowerFrm->IsHeaderFrm()> and
 /*N*/                     // <!pLowerFrm->IsFooterFrm()> in order to avoid that
 /*N*/                     // the <Grow> of header or footer are overwritten.
@@ -2500,7 +2498,7 @@ namespace binfilter {
 /*N*/                         // In horizontal layout these are column, foot note
 /*N*/                         // container, body and no-text frames.
 /*N*/
-/*N*/                         // OD 29.10.2002 #97265# - special case for page lowers
+/*N*/                         // special case for page lowers
 /*N*/                         // The page lowers that have to be adjusted on page height
 /*N*/                         // change are the body frame and the foot note container
 /*N*/                         // frame.
@@ -2510,7 +2508,7 @@ namespace binfilter {
 /*N*/                         // directly adjsuted to the page height change and the
 /*N*/                         // foot note frame height isn't touched, because its
 /*N*/                         // determined by its content.
-/*N*/                         // OD 31.03.2003 #108446# - apply special case for page
+/*N*/                         // apply special case for page
 /*N*/                         // lowers - see description above - also for section columns.
 /*N*/                         if ( IsPageFrm() ||
 /*N*/                              ( IsColumnFrm() && IsInSct() )
@@ -2527,7 +2525,7 @@ namespace binfilter {
 /*N*/                                             ( Prt().Height() - rOldSize.Height() );
 /*N*/                                     if ( nNewHeight < 0)
 /*N*/                                     {
-/*N*/                                         // OD 01.04.2003 #108446# - adjust assertion condition and text
+/*N*/                                         // adjust assertion condition and text
 /*N*/                                         ASSERT( !( IsPageFrm() &&
 /*N*/                                                    (pLowerFrm->Frm().Height()>0) &&
 /*N*/                                                    (pLowerFrm->IsValid()) ),
@@ -2541,7 +2539,7 @@ namespace binfilter {
 /*N*/                         else
 /*N*/                         {
 /*N*/                             SwTwips nNewHeight;
-/*N*/                             // OD 24.10.2002 #97265# - <double> calculation
+/*N*/                             // <double> calculation
 /*N*/                             // Perform <double> calculation of new height, if
 /*N*/                             // one of the coefficients is greater than 50000
 /*N*/                             if ( (pLowerFrm->Frm().Height() > 50000) ||
@@ -3022,10 +3020,10 @@ namespace binfilter {
 /*N*/                 nAvail -= nWidth;
 /*N*/           }
 /*N*/
-/*N*/             // OD 14.03.2003 #i11760# - adjust method call <CalcCntnt(..)>:
+/*N*/             // #i11760# - adjust method call <CalcCntnt(..)>:
 /*N*/             // Set 3rd parameter to true in order to forbid format of follow
 /*N*/             // during format of text frames. (2nd parameter = default value.)
-/*N*/             // OD 11.04.2003 #108824# - undo change of fix for #i11760# - allow
+/*N*/             // undo change of fix for #i11760# - allow
 /*N*/             // follow formatting for text frames.
 /*N*/             ::binfilter::CalcCntnt( this );
 /*N*/
@@ -3033,14 +3031,14 @@ namespace binfilter {
 /*N*/           ASSERT( pCol && pCol->GetNext(), ":-( Spalten auf Urlaub?");
 /*N*/           // bMinDiff wird gesetzt, wenn es keine leere Spalte gibt
 /*N*/           BOOL bMinDiff = TRUE;
-/*N*/             // OD 28.03.2003 #108446# - check for all column content and all columns
+/*N*/             // check for all column content and all columns
 /*N*/             while ( bMinDiff && pCol )
 /*N*/             {
 /*N*/                 bMinDiff = 0 != pCol->ContainsCntnt();
 /*N*/                 pCol = (SwLayoutFrm*)pCol->GetNext();
 /*N*/             }
 /*N*/           pCol = (SwLayoutFrm*)Lower();
-/*N*/             // OD 28.03.2003 #108446# - initialize local variable
+/*N*/             // initialize local variable
 /*N*/             SwFrm *pLow = NULL;
 /*N*/           SwTwips nDiff = 0;
 /*N*/           SwTwips nMaxFree = 0;
@@ -3199,12 +3197,12 @@ namespace binfilter {
 /*N*/
 /*N*/       } while ( !bEnd || !bValidSize );
 /*N*/   }
-/*N*/     // OD 01.04.2003 #108446# - Don't collect endnotes for sections. Thus, set
+/*N*/     // Don't collect endnotes for sections. Thus, set
 /*N*/     // 2nd parameter to <true>.
 /*N*/     ::binfilter::CalcCntnt( this, true );
 /*N*/   if( IsSctFrm() )
 /*N*/   {
-/*N*/         // OD 14.03.2003 #i11760# - adjust 2nd parameter - TRUE --> true
+/*N*/         // #i11760# - adjust 2nd parameter - TRUE --> true
 /*N*/         ::binfilter::CalcCntnt( this, true );
 /*N*/       if( bBackLock )
 /*N*/           ((SwSectionFrm*)this)->SetFtnLock( FALSE );

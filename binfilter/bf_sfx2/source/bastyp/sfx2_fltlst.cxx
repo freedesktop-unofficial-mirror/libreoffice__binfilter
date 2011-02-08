@@ -68,8 +68,6 @@ using namespace ::com::sun::star;
     @onerror        We show some assertions in non product version.
                     Otherwise we do nothing!
     @threadsafe     yes
-
-    @last_change    17.10.2001 10:27
 *//*-*************************************************************************************************************/
 /*N*/ SfxFilterListener::SfxFilterListener( const ::rtl::OUString&    sFactory   ,
 /*N*/                                             SfxFilterContainer* pContainer )

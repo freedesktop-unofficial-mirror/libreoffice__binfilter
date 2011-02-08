@@ -429,7 +429,7 @@ namespace binfilter {
 /*N*/   pDel->Lower() && pDel->Lower()->IsColumnFrm();
 /*N*/   SwFrm* pPrv = pDel->GetPrev();
 /*N*/   SwLayoutFrm* pUp = pDel->GetUpper();
-/*N*/     // OD 27.03.2003 #i12711# - initialize local pointer variables.
+/*N*/     // #i12711# - initialize local pointer variables.
 /*N*/     SwSectionFrm* pPrvSct = NULL;
 /*N*/     SwSectionFrm* pNxtSct = NULL;
 /*N*/     SwSectionFmt* pParent = static_cast<SwSectionFmt*>(pDel->GetFmt())->GetParent();
@@ -446,7 +446,7 @@ namespace binfilter {
 /*N*/   // einen anderen SectionFrm aufgebrochen, dies muss geprueft werden,
 /*N*/   // dazu besorgen wir uns zunaechst den vorhergehende und den nach-
 /*N*/   // folgenden CntntFrm, mal sehen, ob diese in SectionFrms liegen.
-/*N*/     // OD 27.03.2003 #i12711# - check, if previous and next section belonging
+/*N*/     // #i12711# - check, if previous and next section belonging
 /*N*/     // together and can be joined, *not* only if deleted section contains content.
 /*N*/     if ( pParent )
 /*N*/     {
@@ -681,7 +681,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/// OD 18.09.2002 #100522#
 /// perform calculation of content, only if height has changed.
 /*N*/ void SwSectionFrm::_CheckClipping( BOOL bGrow, BOOL bMaximize )
 /*N*/ {
@@ -727,7 +726,6 @@ namespace binfilter {
 /*N*/             nTop = nDiff;
 /*N*/         (this->*fnRect->fnSetYMargins)( nTop, 0 );
 
-        /// OD 18.09.2002 #100522#
         /// Determine, if height has changed.
         /// Note: In vertical layout the height equals the width value.
 /*N*/         bool bHeightChanged = bVert ?
@@ -736,7 +734,6 @@ namespace binfilter {
 /*N*/       // Wir haben zu guter Letzt noch einmal die Hoehe geaendert,
 /*N*/       // dann wird das innere Layout (Columns) kalkuliert und
 /*N*/       // der Inhalt ebenfalls.
-        /// OD 18.09.2002 #100522#
         /// calculate content, only if height has changed.
 /*N*/         if( bHeightChanged && Lower() )
 /*N*/       {
@@ -768,8 +765,8 @@ namespace binfilter {
 /*N*/       bValidPos = TRUE;
 /*N*/   }
 /*N*/     SwTwips nDeadLine = (GetUpper()->*fnRect->fnGetPrtBottom)();
-    // OD 22.10.2002 #97265# - call always method <lcl_ColumnRefresh(..)>, in
-    // order to get calculated lowers, not only if there space left in its upper.
+    // call always method <lcl_ColumnRefresh(..)>, in order to get
+    // calculated lowers, not only if there space left in its upper.
 /*N*/     if( (Frm().*fnRect->fnBottomDist)( nDeadLine ) > 0 )
 /*N*/   {
 /*N*/       const Size aOldSz( Prt().SSize() );
@@ -849,12 +846,12 @@ namespace binfilter {
 /*N*/             long nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/             (aFrm.*fnRect->fnSetWidth)( nWidth );
 /*N*/
-/*N*/             // #109700# LRSpace for sections
+/*N*/             // LRSpace for sections
 /*N*/             const SvxLRSpaceItem& rLRSpace = GetFmt()->GetLRSpace();
 /*N*/             (aPrt.*fnRect->fnSetWidth)( nWidth - rLRSpace.GetLeft() -
 /*N*/                                         rLRSpace.GetRight() );
 /*N*/
-/*N*/             /// OD 15.10.2002 #103517# - allow grow in online layout
+/*N*/             /// allow grow in online layout
 /*N*/             /// Thus, set <..IsBrowseMode()> as parameter <bGrow> on calling
 /*N*/             /// method <_CheckClipping(..)>.
 /*N*/             _CheckClipping( GetFmt()->GetDoc()->IsBrowseMode(), bMaximize );
@@ -1303,7 +1300,7 @@ namespace binfilter {
             // If there is a pLayLeaf has a lower pLayLeaf is the frame we are looking for.
             // Exception: pLayLeaf->Lower() is a zombie section frame
 /*N*/             const SwFrm* pTmp = pLayLeaf->Lower();
-/*N*/             // OD 11.04.2003 #108824# - consider, that the zombie section frame
+/*N*/             // consider, that the zombie section frame
 /*N*/             // can have frame below it in the found layout leaf.
 /*N*/             // Thus, skipping zombie section frame, if possible.
 /*N*/             while ( pTmp && pTmp->IsSctFrm() &&
@@ -2003,7 +2000,7 @@ namespace binfilter {
 /*N*/   return nRet;
 /*N*/ }
 
-/// OD 01.04.2003 #108446# - determine next frame for footnote/endnote formatting
+/// determine next frame for footnote/endnote formatting
 /// before format of current one, because current one can move backward.
 /// After moving backward to a previous page method <FindNext()> will return
 /// the text frame presenting the first page footnote, if it exists. Thus, the
@@ -2021,7 +2018,7 @@ namespace binfilter {
 /*?*/           SwFtnFrm* pFtn = pFrm->FindFtnFrm();
 /*?*/           if( pFtn )
 /*?*/               pFtn->Calc();
-/*?*/             // OD 01.04.2003 #108446# - determine next frame before format current frame.
+/*?*/             // determine next frame before format current frame.
 /*?*/             SwFrm* pNextFrm = 0;
 /*?*/             {
 /*?*/                 if( pFrm->IsSctFrm() )
@@ -2039,8 +2036,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/* -----------------09.02.99 14:26-------------------
- * Wenn ein SectionFrm leerlaeuft, z.B. weil sein Inhalt die Seite/Spalte wechselt,
+/* Wenn ein SectionFrm leerlaeuft, z.B. weil sein Inhalt die Seite/Spalte wechselt,
  * so wird er nicht sofort zerstoert (es koennte noch jemand auf dem Stack einen Pointer
  * auf ihn halten), sondern er traegt sich in eine Liste am RootFrm ein, die spaeter
  * abgearbeitet wird (in LayAction::Action u.a.). Seine Groesse wird auf Null gesetzt und
@@ -2050,7 +2046,7 @@ namespace binfilter {
  * Mit InsertEmptySct nimmt der RootFrm einen SectionFrm in die Liste auf,
  * mit RemoveFromList kann ein SectionFrm wieder aus der Liste entfernt werden (Dtor),
  * mit DeleteEmptySct wird die Liste abgearbeitet und die SectionFrms zerstoert
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwRootFrm::InsertEmptySct( SwSectionFrm* pDel )
 /*N*/ {

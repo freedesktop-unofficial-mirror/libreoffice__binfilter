@@ -463,9 +463,8 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/               * pMkNd = &GetMark()->nNode.GetNode();
 /*N*/   if( pPtNd->FindStartNode() == pMkNd->FindStartNode() &&
 /*N*/       !pPtNd->FindStartNode()->IsTableNode() &&
-/*N*/       // JP 18.5.2001: Bug 87222 - invalid if points on the end of content
-/*N*/         // DVO 25.03.2002: #96530# end-of-content only invalid if no content
-/*N*/         //                 index exists
+/*N*/         // invalid if points on the end of content
+/*N*/         // end-of-content only invalid if no content index exists
 /*N*/       ( pPtNd != pMkNd || GetContentIdx() != NULL ||
 /*N*/           pPtNd != &pPtNd->GetNodes().GetEndOfContent() )
 /*N*/       )

@@ -1497,7 +1497,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/           }
 /*N*/       }
-/*N*/         // OD 30.10.2002 #97265# - no <CheckPageDesc(..)> in online layout
+/*N*/         // no <CheckPageDesc(..)> in online layout
 /*N*/         if ( !pNewPage->GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/         {
 /*N*/             //Bei Sections kann es passieren, das wir gleich  in den Follow geflutscht
@@ -1549,7 +1549,7 @@ namespace binfilter {
 /*N*/           pOldBoss = pOldBoss->FindFtnBossFrm( TRUE );
 /*N*/       SwFtnBossFrm *pRefBoss = pRef->FindFtnBossFrm( !bEndnote );
 /*N*/               if ( pOldBoss != pRefBoss &&
-/*N*/              // OD 08.11.2002 #104840# - use <SwLayoutFrm::IsBefore(..)>
+/*N*/              // use <SwLayoutFrm::IsBefore(..)>
 /*N*/              ( !bEndnote ||
 /*N*/                pRefBoss->IsBefore( pOldBoss ) )
 /*N*/            )
@@ -1793,7 +1793,7 @@ namespace binfilter {
 /*N*/               pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher eledigt!
 /*N*/           pNewPage->InvalidateSpelling();
 /*N*/           pNewPage->InvalidateAutoCompleteWords();
-/*N*/             // OD 30.10.2002 #97265# - no <CheckPageDesc(..)> in online layout
+/*N*/             // no <CheckPageDesc(..)> in online layout
 /*N*/             if ( !pNewPage->GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/             {
 /*N*/                 if ( bCheckPageDescs && pNewPage->GetNext() )

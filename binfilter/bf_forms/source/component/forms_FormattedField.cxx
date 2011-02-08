@@ -489,7 +489,6 @@ void OFormattedModel::fillProperties(
         // same for FormatKey
         // (though the paragraph above for the TreatAsNumeric does not hold anymore - we do not have an UI for this.
         // But we have for the format key ...)
-        // 25.06.2001 - 87862 - frank.schoenheit@sun.com
         ModifyPropertyAttributes(_rAggregateProps, PROPERTY_FORMATKEY, 0, PropertyAttribute::TRANSIENT);
 
         RemoveProperty(_rAggregateProps, PROPERTY_STRICTFORMAT);

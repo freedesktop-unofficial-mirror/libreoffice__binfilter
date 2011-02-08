@@ -69,7 +69,6 @@ class SvxBrushItem;
 class SwTxtFtn;
 struct SwPosition;
 struct SwCrsrMoveState;
-// OD 20.05.2003 #108784#
 class SwDrawVirtObj;
 
 //Jeder FrmTyp findet sich hier in einem Bit wieder.
@@ -471,7 +470,7 @@ public:
 
     void AppendDrawObj( SwDrawContact *pObj );
     void RemoveDrawObj( SwDrawContact *pToRemove );
-        // OD 20.05.2003 #108784# - <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
+        // <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
     void AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                             SwDrawVirtObj* _pDrawVirtObj );
     void RemoveVirtDrawObj( SwDrawContact* _pDrawContact,

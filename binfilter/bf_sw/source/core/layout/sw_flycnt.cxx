@@ -1201,7 +1201,7 @@ namespace binfilter {
 /*N*/           if ( Frm().Top() < pNewPage->Frm().Top() && pNewPage->GetPrev() )
 /*N*/           {
 /*N*/               pNewPage = (SwPageFrm*)pNewPage->GetPrev();
-/*N*/                 // OD 19.02.2003 #105643# - skip empty page and consider empty
+/*N*/                 // skip empty page and consider empty
 /*N*/                 // page at the beginning of the document.
 /*N*/                 // Assumption about document layout:
 /*N*/                 //      No two empty pages following each other.
@@ -1297,39 +1297,33 @@ namespace binfilter {
 
 /*N*/ void SwFlyAtCntFrm::MakeFlyPos()
 /*N*/ {
-/*N*/     /// OD 02.10.2002 #102646#
 /*N*/     /// if fly frame position is valid, nothing is to do, Thus, return
 /*N*/     if ( bValidPos )
 /*N*/   {
 /*N*/         return;
 /*N*/     }
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and set <pFooter> to footer frame, if fly frame is anchored
 /*N*/     /// at a frame belonging to the footer.
 /*N*/     const SwFrm* pFooter = GetAnchor()->FindFooterOrHeader();
 /*N*/     if( pFooter && !pFooter->IsFooterFrm() )
 /*N*/         pFooter = NULL;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and set <bBrowse> to TRUE, if document is in browser mode and
 /*N*/     /// fly frame is anchored at the body, but not at frame belonging to a table.
 /*N*/     const bool bBrowse = GetAnchor()->IsInDocBody() && !GetAnchor()->IsInTab() ?
 /*N*/                                  GetFmt()->GetDoc()->IsBrowseMode() : FALSE;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and init <bInvalidatePage> to FALSE, in order to invalidate
 /*N*/     /// page size, if <bInvalidatePage> is set during the calculation of the
 /*N*/     /// fly frame position.
 /*N*/     bool bInvalidatePage = FALSE;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine fly frame format and its left/right and its upper/lower spacing.
 /*N*/     SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
 /*N*/     const SvxLRSpaceItem &rLR = pFmt->GetLRSpace();
 /*N*/     const SvxULSpaceItem &rUL = pFmt->GetULSpace();
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine, if fly frame has no surrounding.
 /*N*/     const SwFmtSurround& rSurround = pFmt->GetSurround();
 /*N*/     const bool bNoSurround =
@@ -1461,7 +1455,6 @@ namespace binfilter {
 /*N*/       SwTwips nRelDiff = 0;
 /*N*/       if ( aVert.GetVertOrient() == VERT_NONE )
 /*N*/       {
-/*N*/             /// OD 02.10.2002 #102646# - NOTE
 /*N*/             /// local variable <nRel> for calculation of relative vertical
 /*N*/             /// distance to anchor.
 /*N*/           SwTwips nRel;
@@ -1487,7 +1480,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else
 /*N*/             {
-/*N*/                 /// OD 02.10.2002 #102646#
 /*N*/                 /// consider that vertical position can be relativ to "margin"
 /*N*/                 /// or to "text area".
 /*N*/                 /// Thus, increase <nRel> by margin height, if position is
@@ -2162,7 +2154,7 @@ namespace binfilter {
 /*N*/       pFmt->UnlockModify();
 /*N*/
 /*N*/       break;
-/*N*/     } /// OD 02.10.2002 #102646# - End of loop
+/*N*/     }
 /*N*/
 /*N*/     if ( bInvalidatePage )
 /*N*/         FindPageFrm()->InvalidateSize();

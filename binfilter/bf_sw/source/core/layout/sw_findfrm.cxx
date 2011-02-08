@@ -250,8 +250,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /** method to check relative position of layout frame to
     a given layout frame.
 
-    OD 08.11.2002 - refactoring of pseudo-local method <lcl_Apres(..)> in
-    <txtftn.cxx> for #104840#.
+    refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
 
     @param _aCheckRefLayFrm
     constant reference of an instance of class <SwLayoutFrm> which
@@ -631,8 +630,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/           {
 /*N*/               while ( pNxtCnt )
 /*N*/               {
-/*N*/                     // OD 02.04.2003 #108446# - check for endnote, only if found
-/*N*/                     // next content isn't contained in a section, that collect its
+/*N*/                     // check for endnote, only if found next content isn't
+/*N*/                     // contained in a section, that collect its
 /*N*/                     // endnotes at its end.
 /*N*/                     bool bEndn = IsInSct() && !IsSctFrm() &&
 /*N*/                                  ( !pNxtCnt->IsInSct() ||

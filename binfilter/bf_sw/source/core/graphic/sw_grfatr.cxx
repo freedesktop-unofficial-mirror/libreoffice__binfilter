@@ -317,8 +317,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/     if(nVal < 0)
 /*N*/     {
 /*N*/         // for compatibility with old documents
-/*N*/         // OD 05.11.2002 #104308# - introduce rounding as for SO 6.0 PP2
-/*N*/         // introduced by fix of #104293#.
+/*N*/         // introduce rounding as for SO 6.0 PP2
 /*N*/         nVal = ( ( nVal * 128 ) - (99/2) ) / 100;
 /*N*/         nVal += 128;
 /*N*/     }

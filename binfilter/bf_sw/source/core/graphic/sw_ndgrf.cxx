@@ -218,7 +218,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pGraphic && !rGrfName.Len() )
 /*N*/   {
-/*N*/       // MIB 27.02.2001: Old stream must be deleted before the new one is set.
+/*N*/       // Old stream must be deleted before the new one is set.
 /*N*/       if( HasStreamName() )
                 {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
@@ -227,7 +227,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pGrfObj && !rGrfName.Len() )
 /*N*/   {
-/*N*/       // MIB 27.02.2001: Old stream must be deleted before the new one is set.
+/*N*/       // Old stream must be deleted before the new one is set.
 /*?*/       if( HasStreamName() )
                 {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
@@ -469,7 +469,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 // Streamnamen abgelegt (SaveAs). nach einem SaveAs wird
 // vom SW3-I/O-System noch SaveCompleted() aufgerufen,
 // da nun der Doc-Storage dem neuen Storage entspricht.
-// MIB 02/28/2001: This method is called only to store graphics
+// This method is called only to store graphics
 // in the 3.1 to 5.0 formats. For the 6.0 format, graphics
 // are exported using the SvXMLGraphicObjectHelper class.
 

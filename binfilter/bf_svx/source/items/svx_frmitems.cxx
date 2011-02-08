@@ -2743,9 +2743,7 @@ GraphicFilter* GetGrfFilter();
 #ifdef _MSC_VER
 #pragma optimize ( "", on )
 #endif
-/* -----------------------------16.08.2002 09:18------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void  SvxBrushItem::ApplyGraphicTransparency_Impl()
 /*N*/ {
 /*N*/     DBG_ASSERT(pImpl->pGraphicObject, "no GraphicObject available" );

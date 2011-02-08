@@ -100,13 +100,13 @@ public:
     SwTwips GetVarSpace() const;
 
         //Layoutseitig benoetigte Methoden
-    /// OD 03.04.2003 #108446# - add parameters <_bCollectOnlyPreviousFtns> and
-    /// <_pRefFtnBossFrm> in order to control, if only footnotes, which are positioned
+    /// add parameters <_bCollectOnlyPreviousFtns> and <_pRefFtnBossFrm>
+    /// in order to control, if only footnotes, which are positioned
     /// before the given reference footnote boss frame have to be collected.
     /// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
     /// <_pRefFtnBossFrm> have to be referenced to an object.
-    /// OD 03.04.2003 #108446# - add parameter <_bCollectOnlyPreviousFtns> in
-    /// order to control, if only footnotes, which are positioned before the
+    /// add parameter <_bCollectOnlyPreviousFtns> in order to control,
+    /// if only footnotes, which are positioned before the
     /// footnote boss frame <this> have to be collected.
     // Sollte AdjustNeighbourhood gerufen werden (oder Grow/Shrink)?
     BYTE NeighbourhoodAdjustment( const SwFrm* pFrm ) const

@@ -688,7 +688,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               const SwNodeNum* pPrevNdNum = pPrev->GetNum();
 /*N*/               if( pPrevNdNum->GetLevel() & NO_NUMLEVEL )
 /*N*/               {
-/*N*/                     // OD 10.12.2002 #106111# - use correct search level
+/*N*/                     // use correct search level
 /*N*/                     BYTE nSrchLvl = GetRealLevel( pStt->GetNum()->GetLevel() );
 /*N*/                   pPrevNdNum = 0;
 /*N*/                   ULONG nArrPos = nUpdPos-1;
@@ -724,7 +724,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/           nInitLevels = 0;
-/*N*/             // OD 10.12.2002 #106111# - sublevels have to be restarted.
+/*N*/             // sublevels have to be restarted.
 /*N*/             for ( int nSubLvl = GetRealLevel( aNum.GetLevel() ) + 1; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*N*/                 nInitLevels |= ( 1 << nSubLvl );
 /*N*/           nNumVal = aNum.GetLevelVal()[ GetRealLevel( aNum.GetLevel() ) ];
@@ -753,7 +753,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               if( pStt->GetNum()->IsStart() )
 /*N*/               {
 /*?*/                   aNum.SetStart( TRUE );
-/*?*/                     // OD 10.12.2002 #106111# - correct reset of level numbers
+/*?*/                     // correct reset of level numbers
 /*?*/                     for ( int nSubLvl = nLevel; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*?*/                         aNum.GetLevelVal()[ nSubLvl ] = 0;
 /*?*/                   if( pRule->IsContinusNum() )
@@ -767,8 +767,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                           else if( USHRT_MAX != pStt->GetNum()->GetSetValue() )
 /*N*/               {
 /*N*/                   aNum.SetSetValue( nNumVal = pStt->GetNum()->GetSetValue() );
-/*N*/                     // OD 10.12.2002 #106111# - init <nInitLevels> for continues
-/*N*/                     // numbering.
+/*N*/                     // init <nInitLevels> for continues numbering.
 /*N*/                     if( pRule->IsContinusNum() )
 /*N*/                         nInitLevels |= 1;
 /*N*/               }
@@ -805,7 +804,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                      SVX_NUM_NUMBER_NONE == pNumFmt->GetNumberingType() )))
 /*?*/                       ++nNumVal;
 /*?*/                   aNum.GetLevelVal()[ nLevel ] = nNumVal;
-/*?*/                     // OD 10.12.2002 #106111# - reset <nInitLevels>
+/*?*/                     // reset <nInitLevels>
 /*?*/                     nInitLevels &= ~1;
 /*N*/               }
 /*N*/               else
@@ -841,8 +840,8 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               nInitLevels &= ~( 1 << nLevel );
 /*N*/               aNum.SetLevel( nLevel );
 /*N*/
-/*N*/                 // OD 10.12.2002 #106111# - reset numbers of all sublevels and
-/*N*/                 // note in <nInitLevels> that numbering of all sublevels have
+/*N*/                 // reset numbers of all sublevels and note in
+/*N*/                 // <nInitLevels> that numbering of all sublevels have
 /*N*/                 // to be restarted.
 /*N*/                 for ( int nSubLvl = nLevel+1; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*N*/                 {

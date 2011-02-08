@@ -70,7 +70,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( !(*GetAppData(BF_SHL_SVX)), "Ctor, but pointer not null" );
 /*N*/
 /*N*/   (*(DialogsResMgr**)GetAppData(BF_SHL_SVX)) = new DialogsResMgr;
-/*N*/   SvxBrushItem::InitSfxLink();  //  OV,30.06.1998
+/*N*/   SvxBrushItem::InitSfxLink();
 /*N*/ }
 
 // -----------------------------------------------------------------------

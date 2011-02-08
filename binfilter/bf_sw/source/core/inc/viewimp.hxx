@@ -31,7 +31,6 @@
 
 #include <vcl/timer.hxx>
 #include <tools/color.hxx>
-// OD 25.06.2003 #108784#
 #include <bf_svx/svdtypes.hxx>
 
 #include "swtypes.hxx"
@@ -61,13 +60,10 @@ struct SdrPaintProcRec;
 class SwAccessibleMap;
 class SdrObject;
 #endif
-// OD 12.12.2002 #103492#
 class SwPagePreviewLayout;
-// OD 15.01.2003 #103492#
 } //namespace binfilter
 
 #include <prevwpage.hxx>
-// OD 15.01.2003 #103492#
 #include <vector>
 namespace binfilter {
 class SwViewImp
@@ -77,7 +73,7 @@ class SwViewImp
     friend class SwLayAction;   //Lay- und IdleAction tragen sich ein und aus.
     friend class SwLayIdle;
 
-    // OD 12.12.2002 #103492# - for paint of page preview
+    // for paint of page preview
     friend class SwPagePreviewLayout;
 
     ViewShell *pSh;             //Falls jemand einen Imp durchreicht und doch
@@ -120,7 +116,6 @@ class SwViewImp
     USHORT nRestoreActions  ; //Die Anzahl der zu restaurierenden Actions (UNO)
     SwRect aSmoothRect;
 
-    // OD 12.12.2002 #103492#
 
     /**
         Signal whether to stop printing.
@@ -204,15 +199,14 @@ public:
     const SdrPageView*GetPageView() const { return pSdrPageView; }
     void MakeDrawView();
 
-    // OD 29.08.2002 #102450#
     // add 3rd parameter <const Color* pPageBackgrdColor> for setting this
     // color as the background color at the outliner of the draw view
     // for painting layers <hell> and <heaven>
-    // OD 09.12.2002 #103045# - add 4th parameter for the horizontal text
+    // add 4th parameter for the horizontal text
     // direction of the page in order to set the default horizontal text
     // direction at the outliner of the draw view for painting layers <hell>
     // and <heaven>.
-    // OD 25.06.2003 #108784# - correct type of 1st parameter
+    // correct type of 1st parameter
 
     //wird als Link an die DrawEngine uebergeben, entscheidet was wie
     //gepaintet wird oder nicht.
@@ -238,10 +232,6 @@ public:
 
     void    SetRestoreActions(USHORT nSet){nRestoreActions = nSet;}
     USHORT  GetRestoreActions() const{return nRestoreActions;}
-
-    // OD 12.12.2002 #103492#
-
-    // OD 12.12.2002 #103492#
 
 #ifdef ACCESSIBLE_LAYOUT
     // Is this view accessible?
@@ -274,8 +264,7 @@ public:
     // Invalidate frame's relation set (for chained frames)
 
     // update data for accessible preview
-    // OD 15.01.2003 #103492# - change method signature due to new page preview
-    // functionality
+    // change method signature due to new page preview functionality
 
 
     // Fire all accessible events that have been collected so far
@@ -285,7 +274,7 @@ public:
 //Kann auf dem Stack angelegt werden, wenn etwas ausgegeben oder
 //gescrolled wird. Handles und sontiges vom Drawing werden im CTor
 //gehidet und im DTor wieder sichtbar gemacht.
-//AW 06-Sep99: Hiding of handles is no longer necessary, removed
+// Hiding of handles is no longer necessary, removed
 
 
 inline SwPageFrm *SwViewImp::GetFirstVisPage()

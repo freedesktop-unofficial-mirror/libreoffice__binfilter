@@ -83,7 +83,6 @@
 #include <unocoll.hxx>
 #include <unoframe.hxx>
 #include <SwStyleNameMapper.hxx>
-/// OD 22.08.2002 #99657#
 ///     include definition of class SvxBrushItem and GraphicObject
 ///     in order to determine, if background is transparent.
 #include <bf_svx/brshitem.hxx>
@@ -2459,7 +2458,7 @@ SwFlyFrmFmt::~SwFlyFrmFmt()
 }
 
 //Erzeugen der Frms wenn das Format einen Absatzgebundenen Rahmen beschreibt.
-//MA: 14. Feb. 94, Erzeugen der Frms auch fuer Seitengebundene Rahmen.
+// Erzeugen der Frms auch fuer Seitengebundene Rahmen.
 
 void SwFlyFrmFmt::MakeFrms()
 {
@@ -2468,7 +2467,7 @@ void SwFlyFrmFmt::MakeFrms()
         return;
 
     SwModify *pModify = 0;
-    // OD 24.07.2003 #111032# - create local copy of anchor attribute for possible changes.
+    // create local copy of anchor attribute for possible changes.
     SwFmtAnchor aAnchorAttr( GetAnchor() );
     switch( aAnchorAttr.GetAnchorId() )
     {
@@ -2526,7 +2525,7 @@ void SwFlyFrmFmt::MakeFrms()
                     if( pPage )
                     {
                         nPgNum = pPage->GetPhyPageNum();
-                        // OD 24.07.2003 #111032# - update anchor attribute
+                        // update anchor attribute
                         aAnchorAttr.SetPageNum( nPgNum );
                         aAnchorAttr.SetAnchor( 0 );
                         SetAttr( aAnchorAttr );
@@ -2648,9 +2647,9 @@ sal_Bool SwFlyFrmFmt::GetInfo( SfxPoolItem& rInfo ) const
     return sal_True;
 }
 
-/** SwFlyFrmFmt::IsBackgroundTransparent - for #99657#
+/** SwFlyFrmFmt::IsBackgroundTransparent
 
-    OD 22.08.2002 - overloading virtual method and its default implementation,
+    overloading virtual method and its default implementation,
     because format of fly frame provides transparent backgrounds.
     Method determines, if background of fly frame is transparent.
 
@@ -2687,9 +2686,9 @@ sal_Bool SwFlyFrmFmt::IsBackgroundTransparent() const
     return bReturn;
 }
 
-/** SwFlyFrmFmt::IsBackgroundBrushInherited - for #103898#
+/** SwFlyFrmFmt::IsBackgroundBrushInherited
 
-    OD 08.10.2002 - method to determine, if the brush for drawing the
+    method to determine, if the brush for drawing the
     background is "inherited" from its parent/grandparent.
     This is the case, if no background graphic is set and the background
     color is "no fill"/"auto fill"

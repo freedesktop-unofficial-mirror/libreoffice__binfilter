@@ -1521,7 +1521,7 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
             if( aVal.Len() )
                 aData.pString = new XubString( aVal );
             else
-                aData.pString = NULL; // JSM 22.09.1995
+                aData.pString = NULL;
             break;
         }
         case SbxERROR:

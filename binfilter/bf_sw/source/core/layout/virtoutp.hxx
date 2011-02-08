@@ -58,7 +58,7 @@ public:
     SwLayVout() : pVirDev(NULL), pOut(0), aSize(0, VIRTUALHEIGHT), nCount(0) {}
     ~SwLayVout() { delete pVirDev; }
 
-    /// OD 27.09.2002 #103636# - change 2nd parameter <rRect> - no longer <const>
+    /// change 2nd parameter <rRect> - no longer <const>
 
     void SetOrgRect( SwRect &rRect ) { aOrgRect = rRect; }
     const SwRect& GetOrgRect() const { return aOrgRect; }

@@ -604,8 +604,6 @@ namespace binfilter {
 
 
 /** SwFmt::IsBackgroundTransparent - for feature #99657#
-
-    OD 22.08.2002
     Virtual method to determine, if background of format is transparent.
     Default implementation returns false. Thus, subclasses have to overload
     method, if the specific subclass can have a transparent background.

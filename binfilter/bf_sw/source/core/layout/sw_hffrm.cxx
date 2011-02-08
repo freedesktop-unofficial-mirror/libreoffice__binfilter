@@ -200,7 +200,7 @@ namespace binfilter {
 /*M*/             nUL = pAttrs->CalcBottom() + nSpace;
 /*M*/
 /*M*/         /* set print area */
-/*N*/         // OD 23.01.2003 #106895# - add first parameter to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add first parameter to <SwBorderAttrs::CalcRight(..)>
 /*N*/         SwTwips nLR = pAttrs->CalcLeft( this ) + pAttrs->CalcRight( this );
 /*M*/
 /*M*/         aPrt.Left(pAttrs->CalcLeft(this));
@@ -230,7 +230,7 @@ namespace binfilter {
 /*M*/
 /*M*/       //Sizes einstellen; die Groesse gibt der umgebende Frm vor, die
 /*M*/       //die Raender werden einfach abgezogen.
-/*N*/         // OD 23.01.2003 #106895# - add first parameter to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add first parameter to <SwBorderAttrs::CalcRight(..)>
 /*N*/         SwTwips nLR = pAttrs->CalcLeft( this ) + pAttrs->CalcRight( this );
 /*M*/       aPrt.Width ( aFrm.Width() - nLR );
 /*M*/       aPrt.Height( aFrm.Height()- nUL );
@@ -470,7 +470,7 @@ namespace binfilter {
 /*M*/         else if (nEat > nMaxEat)
 /*M*/             nEat = nMaxEat;
 /*M*/
-/*N*/         // OD 10.04.2003 #108719# - Notify fly frame, if header frame
+/*N*/         // Notify fly frame, if header frame
 /*N*/         // grows. Consider, that 'normal' grow of layout frame already notifys
 /*N*/         // the fly frames.
 /*N*/         sal_Bool bNotifyFlys = sal_False;
@@ -488,7 +488,7 @@ namespace binfilter {
 /*M*/             }
 /*M*/
 /*M*/             nResult += nEat;
-/*N*/             // OD 14.04.2003 #108719# - trigger fly frame notify.
+/*N*/             // trigger fly frame notify.
 /*N*/             if ( IsHeaderFrm() )
 /*N*/             {
 /*N*/                 bNotifyFlys = sal_True;
@@ -507,7 +507,7 @@ namespace binfilter {
 /*N*/             }
 /*N*/         }
 /*N*/
-/*N*/         // OD 10.04.2003 #108719# - notify fly frames, if necessary and triggered.
+/*N*/         // notify fly frames, if necessary and triggered.
 /*N*/         if ( ( nResult > 0 ) && bNotifyFlys )
 /*N*/         {
 /*N*/             NotifyFlys();
@@ -560,7 +560,7 @@ namespace binfilter {
                spacing. */
 /*M*/             nRest = nDist;
 /*M*/
-        // OD 10.04.2003 #108719# - Notify fly frame, if header/footer frame
+        // Notify fly frame, if header/footer frame
         // shrinks. Consider, that 'normal' shrink of layout frame already notifys
         // the fly frames.
 /*N*/         sal_Bool bNotifyFlys = sal_False;
@@ -607,7 +607,7 @@ namespace binfilter {
 /*M*/                 InvalidateAll();
 /*M*/             }
 /*M*/             nResult += nShrink;
-/*N*/             // OD 14.04.2003 #108719# - trigger fly frame notify.
+/*N*/             // trigger fly frame notify.
 /*N*/             if ( IsHeaderFrm() )
 /*N*/             {
 /*N*/                 bNotifyFlys = sal_True;
@@ -626,7 +626,7 @@ namespace binfilter {
 /*N*/             }
 /*N*/         }
 /*N*/
-/*N*/         // OD 10.04.2003 #108719# - notify fly frames, if necessary.
+/*N*/         // notify fly frames, if necessary.
 /*N*/         if ( ( nResult > 0 ) && bNotifyFlys )
 /*N*/         {
 /*N*/             NotifyFlys();

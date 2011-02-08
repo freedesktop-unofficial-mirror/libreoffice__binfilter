@@ -420,7 +420,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else if ( GetUpper() )
 /*N*/       {
-/*N*/             /// OD 15.10.2002 #103517# - add safeguard for <SwFooterFrm::Calc()>
+/*N*/             /// add safeguard for <SwFooterFrm::Calc()>
 /*N*/             /// If parent frame is a footer frame and its <ColLocked()>, then
 /*N*/             /// do *not* calculate it.
 /*N*/             /// NOTE: Footer frame is <ColLocked()> during its
@@ -600,7 +600,7 @@ namespace binfilter {
 /*N*/                                   nTmp += ((SwSectionFrm*)pCnt)->Undersize();
 /*N*/                               pCnt = pCnt->FindNext();
 /*N*/                           }
-/*N*/                             // OD 29.10.2002 #97265# - consider invalid body frame properties
+/*N*/                             // consider invalid body frame properties
 /*N*/                             if ( pFrm->IsBodyFrm() &&
 /*N*/                                  ( !pFrm->GetValidSizeFlag() ||
 /*N*/                                    !pFrm->GetValidPrtAreaFlag() ) &&
@@ -611,7 +611,7 @@ namespace binfilter {
 /*N*/                             }
 /*N*/                             else
 /*N*/                             {
-/*N*/                                 // OD 30.10.2002 #97265# - assert invalid lower property
+/*N*/                                 // assert invalid lower property
 /*N*/                                 ASSERT( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
 /*N*/                                         "SwPageFrm::MakeAll(): Lower with frame height < printing height" );
 /*N*/                                 nTmp += pFrm->Frm().Height() - pFrm->Prt().Height();
@@ -991,7 +991,7 @@ namespace binfilter {
 /*N*/       MoveFwd( bMakePage, FALSE );
 /*N*/   }
 /*N*/
-/*N*/     // OD 08.11.2002 #104840# - check footnote content for forward move.
+/*N*/     // check footnote content for forward move.
 /*N*/     // If a content of a footnote is on a prior page/column as its invalid
 /*N*/     // reference, it can be moved forward.
 /*N*/     if ( bFtn && !bValidPos )
@@ -1085,9 +1085,9 @@ namespace binfilter {
 /*N*/           Format();
 /*N*/       }
 /*N*/
-        // FME 16.07.2003 #i16930# - removed this code because it did not work
+        // #i16930# - removed this code because it did not work
 
-        // OD 04.04.2003 #108446# - react on the situation detected in the text
+        // react on the situation detected in the text
         // formatting - see <SwTxtFrm::FormatAdjust(..)>:
         // text frame has to move forward, because its text formatting stopped,
         // created a follow and detected, that it contains no content.
@@ -1566,7 +1566,7 @@ namespace binfilter {
 /*?*/                 {
 /*?*/                   pFrm = ((SwTxtFrm*)pFrm)->GetFollow();
 /*?*/                 }
-/*?*/                 // OD 11.04.2003 #108824# - If last follow frame of <this> text
+/*?*/                 // If last follow frame of <this> text
 /*?*/                 // frame isn't valid, a formatting of the next content frame
 /*?*/                 // doesn't makes sense. Thus, return TRUE.
 /*?*/                 if ( IsAnFollow( pFrm ) && !pFrm->IsValid() )

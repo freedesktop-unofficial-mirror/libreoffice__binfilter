@@ -498,10 +498,9 @@ namespace binfilter {
 /*N*/
 /*N*/   //Wenn mein direkter Nachbar gleichzeitig mein Follow ist
 /*N*/   //verleibe ich mir das Teil ein.
-/*N*/     // OD 09.04.2003 #108698# - join all follows, which are placed on the
-/*N*/     // same page/column.
-/*N*/     // OD 29.04.2003 #109213# - join follow, only if join for the follow
-/*N*/     // is not locked. Otherwise, join will not be performed and this loop
+/*N*/     // join all follows, which are placed on the same page/column.
+/*N*/     // join follow, only if join for the follow is not locked.
+/*N*/     // Otherwise, join will not be performed and this loop
 /*N*/     // will be endless.
 /*N*/     while ( GetNext() && GetNext() == GetFollow() &&
 /*N*/             !GetFollow()->IsJoinLocked()
@@ -757,7 +756,7 @@ namespace binfilter {
 /*N*/
 /*N*/         // check, if calculation of table frame is ready.
 /*N*/
-/*N*/         /// OD 23.10.2002 #103517# - Local variable <nDistanceToUpperPrtBottom>
+/*N*/         /// Local variable <nDistanceToUpperPrtBottom>
 /*N*/         ///     Introduce local variable and init it with the distance from the
 /*N*/         ///     table frame bottom to the bottom of the upper printing area.
 /*N*/         /// Note: negative values denotes the situation that table frame doesn't
@@ -765,7 +764,7 @@ namespace binfilter {
 /*N*/         SwTwips nDistanceToUpperPrtBottom =
 /*N*/                 (Frm().*fnRect->fnBottomDist)( (GetUpper()->*fnRect->fnGetPrtBottom)());
 /*N*/
-/*N*/         /// OD 23.10.2002 #103517# - In online layout try to grow upper of table
+/*N*/         /// In online layout try to grow upper of table
 /*N*/         /// frame, if table frame doesn't fit in its upper.
 /*N*/         if ( nDistanceToUpperPrtBottom < 0 &&
 /*N*/              GetFmt()->GetDoc()->IsBrowseMode() )
@@ -780,7 +779,6 @@ namespace binfilter {
 /*N*/
 /*N*/         if( nDistanceToUpperPrtBottom >= 0)
 /*N*/       {
-/*N*/             // OD 23.10.2002 - translate german commentary
 /*N*/             // If there is space left in the upper printing area, join as for trial
 /*N*/             // at least one further row of an existing follow.
 /*N*/           if ( !bSplit && GetFollow() )
@@ -1051,7 +1049,7 @@ namespace binfilter {
 /*N*/               const SwRect aFlyRect = pFly->AddSpacesToFrm();
 /*N*/                 if ( WEIT_WECH != (pFly->Frm().*fnRect->fnGetTop)() &&
 /*N*/                    pFly->IsFlyAtCntFrm() && aFlyRect.IsOver( aRect ) &&
-                     // OD 25.02.2003 #i9040# - use '<=' instead of '<'
+                     // #i9040# - use '<=' instead of '<'
 /*N*/                    (*fnRect->fnYDiff)(
 /*N*/                             (pFly->GetAnchor()->Frm().*fnRect->fnGetBottom)(),
 /*N*/                             (Frm().*fnRect->fnGetTop)() ) <= 0 &&
@@ -1155,7 +1153,7 @@ namespace binfilter {
 /*N*/         const SwTwips nOldHeight = (Prt().*fnRect->fnGetHeight)();
 /*N*/         const SwTwips nMax = (aFrm.*fnRect->fnGetWidth)();
 /*N*/
-/*N*/         // OD 14.03.2003 #i9040# - adjust variable names.
+/*N*/         // #i9040# - adjust variable names.
 /*N*/         const SwTwips nLeftLine  = pAttrs->CalcLeftLine();
 /*N*/         const SwTwips nRightLine = pAttrs->CalcRightLine();
 /*N*/
@@ -1163,12 +1161,12 @@ namespace binfilter {
 /*M*/       //'drinsteckt bezieht sie sich auf die Umgebung. Ist es der Body, so
 /*M*/       //bezieht sie sich in der BrowseView auf die Bildschirmbreite.
 /*M*/       const SwFmtFrmSize &rSz = GetFmt()->GetFrmSize();
-/*N*/         // OD 14.03.2003 #i9040# - adjust variable name.
+/*N*/         // #i9040# - adjust variable name.
 /*N*/         const SwTwips nWishedTableWidth = CalcRel( rSz, TRUE );
 /*M*/
 /*M*/       BOOL bCheckBrowseWidth = FALSE;
 /*M*/
-/*N*/         // OD 14.03.2003 #i9040# - insert new variables for left/right spacing.
+/*N*/         // #i9040# - insert new variables for left/right spacing.
 /*N*/         SwTwips nLeftSpacing  = 0;
 /*N*/         SwTwips nRightSpacing = 0;
 /*N*/         switch ( GetFmt()->GetHoriOrient().GetHoriOrient() )
@@ -1177,7 +1175,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                     // left indent:
 /*N*/                     nLeftSpacing = nLeftLine + nLeftOffset;
-/*N*/                     // OD 06.03.2003 #i9040# - correct calculation of right indent:
+/*N*/                     // #i9040# - correct calculation of right indent:
 /*N*/                     // - Consider right indent given by right line attributes.
 /*N*/                     // - Consider negative right indent.
 /*N*/                     // wished right indent determined by wished table width and
@@ -1208,7 +1206,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                     // right indent:
 /*N*/                     nRightSpacing = nRightLine + nRightOffset;
-/*N*/                     // OD 06.03.2003 #i9040# - correct calculation of left indent:
+/*N*/                     // #i9040# - correct calculation of left indent:
 /*N*/                     // - Consider left indent given by left line attributes.
 /*N*/                     // - Consider negative left indent.
 /*N*/                     // wished left indent determined by wished table width and
@@ -1237,8 +1235,7 @@ namespace binfilter {
 /*N*/               break;
 /*N*/           case HORI_CENTER:
 /*N*/               {
-/*N*/                     // OD 07.03.2003 #i9040# - consider left/right line attribute.
-/*N*/                     // OD 10.03.2003 #i9040# -
+/*N*/                     // #i9040# - consider left/right line attribute.
 /*N*/                     const SwTwips nCenterSpacing = ( nMax - nWishedTableWidth ) / 2;
 /*N*/                     nLeftSpacing = nLeftLine +
 /*N*/                                    ( (nLeftOffset > 0) ?
@@ -1265,23 +1262,23 @@ namespace binfilter {
 /*N*/                     nLeftSpacing = pAttrs->CalcLeft( this );
 /*N*/                   if( nLeftOffset )
 /*N*/                   {
-/*N*/                         // OD 07.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of left spacing and left offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider left line attribute.
+/*N*/                         // #i9040# - consider left line attribute.
 /*N*/                         nLeftSpacing = Max( nLeftSpacing, ( nLeftOffset + nLeftLine ) );
 /*N*/                   }
-/*N*/                     // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*N*/                     // add 1st param to <SwBorderAttrs::CalcRight(..)>
 /*N*/                     nRightSpacing = pAttrs->CalcRight( this );
 /*N*/                   if( nRightOffset )
 /*N*/                   {
-/*N*/                         // OD 07.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of right spacing and right offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider right line attribute.
+/*N*/                         // #i9040# - consider right line attribute.
 /*N*/                         nRightSpacing = Max( nRightSpacing, ( nRightOffset + nRightLine ) );
 /*N*/                   }
-/*N*/                     // OD 10.03.2003 #i9040# - do not hold wished table width.
+/*N*/                     // #i9040# - do not hold wished table width.
                     /*
                     if ( !pAttrs->GetLRSpace().GetRight() )
                         nRight = Max( nRight, nMax - (nWish + nLeft + nRight));
@@ -1291,18 +1288,18 @@ namespace binfilter {
 /*N*/           case HORI_LEFT_AND_WIDTH:
 /*N*/                 {
 /*N*/                   //Linker Rand und die Breite zaehlen (Word-Spezialitaet)
-/*N*/                     // OD 10.03.2003 #i9040# - no width alignment in online mode.
+/*N*/                     // #i9040# - no width alignment in online mode.
 /*N*/                     //bCheckBrowseWidth = TRUE;
 /*N*/                     nLeftSpacing = pAttrs->CalcLeft( this );
 /*N*/                   if( nLeftOffset )
 /*N*/                   {
-/*N*/                         // OD 10.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of right spacing and right offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider left line attribute.
+/*N*/                         // #i9040# - consider left line attribute.
 /*N*/                         nLeftSpacing = Max( nLeftSpacing, ( pAttrs->CalcLeftLine() + nLeftOffset ) );
 /*N*/                   }
-/*N*/                     // OD 10.03.2003 #i9040# - consider right and left line attribute.
+/*N*/                     // #i9040# - consider right and left line attribute.
 /*N*/                     const SwTwips nWishRight =
 /*N*/                             nMax - (nLeftSpacing-pAttrs->CalcLeftLine()) - nWishedTableWidth;
 /*N*/                     nRightSpacing = nRightLine +
@@ -1837,7 +1834,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/         else if( (Frm().*fnRect->fnGetHeight)() )
 /*N*/         {
-/*N*/             // OD 24.02.2003 #104992# - unlock section the table frame was in.
+/*N*/             // unlock section the table frame was in.
 /*N*/             // Otherwise, the section will not shrink.
 /*N*/             // The section will be locked in this situation, if table is
 /*N*/             // converted to text and the table was the only content in the
@@ -1850,7 +1847,7 @@ namespace binfilter {
 /*N*/                 pSct->ColUnlock();
 /*N*/             }
 /*N*/             pUp->Shrink( Frm().Height() PHEIGHT );
-/*N*/             // OD 24.02.2003 #104992# - restore section lock state.
+/*N*/             // restore section lock state.
 /*N*/             if ( pSct )
 /*N*/             {
 /*N*/                 if ( bOldLock )
@@ -2483,8 +2480,7 @@ namespace binfilter {
 /*N*/                   }
 /*N*/                   else
 /*N*/                     {
-/*N*/                         // OD 30.06.2003 #108784# - consider 'virtual' drawing
-/*N*/                         // objects.
+/*N*/                         // consider 'virtual' drawing objects.
 /*N*/                         if ( pO->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pO);
@@ -2494,7 +2490,7 @@ namespace binfilter {
 /*N*/                         else
 /*N*/                         {
 /*N*/                             pO->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
-/*N*/                             // OD 30.06.2003 #108784# - correct relative position
+/*N*/                             // correct relative position
 /*N*/                             // of 'virtual' drawing objects.
 /*N*/                             SwDrawContact* pDrawContact =
 /*N*/                                 static_cast<SwDrawContact*>(pO->GetUserCall());
@@ -2526,7 +2522,7 @@ namespace binfilter {
 /*N*/
 /*N*/         //Position einstellen.
 /*N*/         long nLeftSpace = pAttrs->CalcLeft( this );
-/*N*/         // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add 1st param to <SwBorderAttrs::CalcRight(..)>
 /*N*/         long nRightSpace = pAttrs->CalcRight( this );
 /*N*/         (this->*fnRect->fnSetXMargins)( nLeftSpace, nRightSpace );
 /*N*/         long nTopSpace = pAttrs->CalcTop();

@@ -250,7 +250,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else if ( pObj->GetUserCall() )
 /*N*/             {
-/*N*/                 // OD 24.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                 {
 /*N*/                     SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);
@@ -406,7 +406,7 @@ namespace binfilter {
 /*N*/           SwPageFrm *pPg = pPage->IsEmptyPage() ? (SwPageFrm*)pPage->GetNext() : pPage;
 /*N*/           if ( bSdrObj )
 /*N*/           {
-/*N*/                 // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 if ( pSdrObj->ISA(SwDrawVirtObj) )
 /*N*/                 {
 /*N*/                     SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pSdrObj);
@@ -589,7 +589,7 @@ namespace binfilter {
 /*N*/           if ( GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/           {
 /*N*/                 bValidSize = FALSE;
-/*N*/                 // OD 28.10.2002 #97265# - Don't call <SwPageFrm::MakeAll()>
+/*N*/                 // Don't call <SwPageFrm::MakeAll()>
 /*N*/                 // Calculation of the page is not necessary, because its size is
 /*N*/                 // is invalidated here and further invalidation is done in the
 /*N*/                 // calling method <SwPageFrm::Modify(..)> and probably by calling
@@ -1465,7 +1465,7 @@ void SwRootFrm::RemoveSuperfluous()
             //Nur weil die Seite Flys hat sind wir noch lange nicht fertig,
             //denn wenn alle Flys an generischem Inhalt haengen, so ist sie
             //trotzdem ueberfluessig (Ueberpruefung auf DocBody sollte reichen).
-            // OD 19.06.2003 #108784# - consider that drawing objects in
+            // consider that drawing objects in
             // header/footer are supported now.
             bool bOnlySuperfluosObjs = true;
             SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
@@ -1475,7 +1475,6 @@ void SwRootFrm::RemoveSuperfluous()
                 if ( pO->IsWriterFlyFrame() )
                 {
                     SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-                    // OD 19.06.2003 #108784# - correction
                     if ( !pFly->GetAnchor()->FindFooterOrHeader() )
                     {
                         bOnlySuperfluosObjs = false;
@@ -1483,7 +1482,7 @@ void SwRootFrm::RemoveSuperfluous()
                 }
                 else
                 {
-                    // OD 19.06.2003 #108784# - determine, if drawing object
+                    // determine, if drawing object
                     // isn't anchored in header/footer frame. If so, drawing
                     // object isn't superfluos.
                     SwFrm* pAnchorFrm = 0L;
@@ -1509,8 +1508,7 @@ void SwRootFrm::RemoveSuperfluous()
             bExistEssentialObjs = !bOnlySuperfluosObjs;
         }
 
-        // OD 19.06.2003 #108784# - optimization: check first, if essential objects
-        // exists.
+        // optimization: check first, if essential objects exists.
         if ( bExistEssentialObjs || pPage->FindFirstBodyCntnt() || pPage->FindFtnCont() )
         {
             if ( pPage->IsFtnPage() )
@@ -1785,7 +1783,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/               switch ( rHori.GetHoriOrient() )
 /*N*/               {
 /*?*/                   case HORI_NONE:
-/*?*/                                               // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*?*/                         // add 1st param to <SwBorderAttrs::CalcRight(..)>
 /*?*/                         nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
 /*?*/                       break;
 /*?*/                   case HORI_LEFT_AND_WIDTH:

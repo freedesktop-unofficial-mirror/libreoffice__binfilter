@@ -47,7 +47,6 @@
 
 // #i7672#
 
-// OD 18.06.2003 #108784#
 #include <vector>
 namespace binfilter {
 

@@ -325,8 +325,6 @@ class SvtViewOptionsBase_Impl
 
     @param          -
     @return         -
-
-    @last change    19.10.2001 07:54
 *//*-*************************************************************************************************************/
 SvtViewOptionsBase_Impl::SvtViewOptionsBase_Impl( const ::rtl::OUString& sList )
         :   m_sListName  ( sList )    // we must know, which view type we must support
@@ -371,8 +369,6 @@ SvtViewOptionsBase_Impl::SvtViewOptionsBase_Impl( const ::rtl::OUString& sList )
 
     @param          -
     @return         -
-
-    @last change    19.10.2001 08:02
 *//*-*************************************************************************************************************/
 SvtViewOptionsBase_Impl::~SvtViewOptionsBase_Impl()
 {

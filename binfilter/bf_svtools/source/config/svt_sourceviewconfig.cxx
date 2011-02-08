@@ -100,9 +100,7 @@ public:
 SourceViewConfig_Impl* SourceViewConfig::m_pImplConfig = 0;
 sal_Int32              SourceViewConfig::m_nRefCount = 0;
 namespace { struct lclMutex : public rtl::Static< ::osl::Mutex, lclMutex > {}; }
-/* -----------------------------28.08.2002 16:45------------------------------
 
- ---------------------------------------------------------------------------*/
 SourceViewConfig_Impl::SourceViewConfig_Impl() :
     ConfigItem(OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Font/SourceViewFont" ))),
     m_nFontHeight(12),
@@ -110,15 +108,11 @@ SourceViewConfig_Impl::SourceViewConfig_Impl() :
 {
     Load();
 }
-/* -----------------------------28.08.2002 16:45------------------------------
 
- ---------------------------------------------------------------------------*/
 SourceViewConfig_Impl::~SourceViewConfig_Impl()
 {
 }
-/* -----------------------------28.08.2002 16:25------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SourceViewConfig_Impl::GetPropertyNames()
 {
     //this list needs exactly to mach the enum PropertyNameIndex
@@ -137,9 +131,7 @@ Sequence< OUString > SourceViewConfig_Impl::GetPropertyNames()
     return aNames;
 }
 
-/*-- 28.08.2002 16:37:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Load()
 {
     Sequence< OUString > aNames = GetPropertyNames();
@@ -163,16 +155,12 @@ void SourceViewConfig_Impl::Load()
         }
     }
 }
-/*-- 28.08.2002 16:38:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Notify( const Sequence< OUString >& )
 {
     Load();
 }
-/*-- 28.08.2002 16:38:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Commit()
 {
     ClearModified();
@@ -198,9 +186,7 @@ void SourceViewConfig_Impl::Commit()
         Broadcast(aHint);
     }
 }
-/*-- 28.08.2002 16:32:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SourceViewConfig::SourceViewConfig()
 {
     {
@@ -215,9 +201,7 @@ SourceViewConfig::SourceViewConfig()
     }
     StartListening( *m_pImplConfig, TRUE );
 }
-/*-- 28.08.2002 16:32:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SourceViewConfig::~SourceViewConfig()
 {
     EndListening( *m_pImplConfig, TRUE );
@@ -229,9 +213,7 @@ SourceViewConfig::~SourceViewConfig()
         DELETEZ( m_pImplConfig );
     }
 }
-/* -----------------------------30.08.2002 10:40------------------------------
 
- ---------------------------------------------------------------------------*/
 void SourceViewConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
     Broadcast( rHint );

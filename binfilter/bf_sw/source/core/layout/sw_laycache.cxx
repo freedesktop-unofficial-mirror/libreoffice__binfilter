@@ -585,7 +585,7 @@ namespace binfilter {
 /*N*/         nParagraphCnt += nRows;
 /*N*/         if( !pImpl && nParagraphCnt > nMaxParaPerPage + 10 )
 /*N*/         {
-/*N*/             // OD 09.04.2003 #108698# - improve heuristics:
+/*N*/             // improve heuristics:
 /*N*/             // Assume that a table, which has more than three times the quantity
 /*N*/             // of maximal paragraphs per page rows, consists of rows, which have
 /*N*/             // the height of a normal paragraph. Thus, allow as much rows per page
@@ -623,7 +623,7 @@ namespace binfilter {
 /*N*/     ULONG nBreakIndex = ( pImpl && nIndex < pImpl->Count() ) ?
 /*N*/                         pImpl->GetBreakIndex(nIndex) : 0xffff;
 /*N*/ #endif
-/*N*/     // OD 09.04.2003 #108698# - always split a big tables.
+/*N*/     // always split a big tables.
 /*N*/     if ( !bFirst ||
 /*N*/          ( rpFrm->IsTabFrm() && bLongTab )
 /*N*/        )

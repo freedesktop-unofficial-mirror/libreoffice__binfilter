@@ -1620,7 +1620,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*************************************************************************/
 
 
-/// OD 03.04.2003 #108446# - add parameter <_bCollectOnlyPreviousFtns> in
+/// add parameter <_bCollectOnlyPreviousFtns> in
 /// order to control, if only footnotes, which are positioned before the
 /// footnote boss frame <this> have to be collected.
 
@@ -1631,7 +1631,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*************************************************************************/
 
-/// OD 03.04.2003 #108446# - add parameters <_bCollectOnlyPreviousFtns> and
+/// add parameters <_bCollectOnlyPreviousFtns> and
 /// <_pRefFtnBossFrm> in order to control, if only footnotes, which are positioned
 /// before the given reference footnote boss frame have to be collected.
 /// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
@@ -1702,9 +1702,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/               pCnt->_InvalidateSize();
 /*N*/               pCnt->Prepare( PREP_ADJUST_FRM );
 /*N*/                 SwFtnFrm* pFtnFrm = pCnt->FindFtnFrm();
-/*N*/                 // OD 30.10.2002 #97265# - invalidate position of footnote
-/*N*/                 // frame, if it's below its footnote container, in order to
-/*N*/                 // assure its correct position, probably calculating its previous
+/*N*/                 // invalidate position of footnote frame, if it's below
+/*N*/                 // its footnote container, in order to assure its correct
+/*N*/                 // position, probably calculating its previous
 /*N*/                 // footnote frames.
 /*N*/                 {
 /*N*/                     SWRECTFN( this );
@@ -2058,7 +2058,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 
 
 /*N*/ #ifdef DBG_UTIL
-//JP 15.10.2001: in a non pro version test if the attribute has the same
+// in a non pro version test if the attribute has the same
 //              meaning which his reference is
 
 // Normally, the pRef member and the GetRefFromAttr() result has to be

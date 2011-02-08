@@ -492,13 +492,12 @@ namespace binfilter {
 /*N*/   else
 /*N*/       sSectName.Erase();
 /*N*/
-/*N*/     /// OD 04.10.2002 #102894# - NOTE
 /*N*/     /// In SwSection::operator=(..) class member bCondHiddenFlag is always set to TRUE.
 /*N*/     /// IMHO this have to be changed, but I can't estimate the consequences:
 /*N*/     /// Either it is set to TRUE using corresponding method <SwSection.SetCondHidden(..)>,
 /*N*/     /// or it is set to the value of SwSection which is assigned to it.
 /*N*/     /// Discussion with AMA results that the adjustment to the assignment operator
-/*N*/     /// could be very risky -> see notes in bug #102894#.
+/*N*/     /// could be very risky.
 /*N*/   *pSection = rSect;
 /*N*/
 /*N*/   if( pAttr )

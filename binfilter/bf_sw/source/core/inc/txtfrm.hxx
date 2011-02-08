@@ -128,7 +128,7 @@ class SwTxtFrm: public SwCntntFrm
     sal_Bool bHasAnimation  : 1;        // enthaelt animierte SwGrfNumPortion
     sal_Bool bIsSwapped     : 1;        // during text formatting we swap the
                                         // width and height for vertical formatting
-    // OD 14.03.2003 #i11760# - flag to control, if follow is formatted in
+    // #i11760# - flag to control, if follow is formatted in
     // method <CalcFollow(..)>.
     // E.g., avoid formatting of follow, if method <SwLayoutFrm::FormatWidthCols(..)>
     // is running.
@@ -455,7 +455,7 @@ public:
 
 #endif
 
-    // OD 14.03.2003 #i11760# - access to new member <mbNoFollowFormat>
+    // #i11760# - access to new member <mbNoFollowFormat>
     inline bool FollowFormatAllowed() const
     {
         return mbFollowFormatAllowed;

@@ -599,9 +599,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/ {
 /*N*/   return pImp->xModel;
 /*N*/ }
-/* -----------------------------10.09.2001 15:56------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SfxObjectShell::SetAutoStyleFilterIndex(sal_uInt16 nSet)
 /*N*/ {
 /*N*/     pImp->nStyleFilter = nSet;

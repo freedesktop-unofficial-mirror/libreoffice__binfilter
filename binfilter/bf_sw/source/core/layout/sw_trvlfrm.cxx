@@ -596,7 +596,7 @@ namespace binfilter {
 |*************************************************************************/
 
 //!!!!! Es wird nur der vertikal naechstliegende gesucht.
-//JP 11.10.2001: only in tables we try to find the right column - Bug 72294
+// only in tables we try to find the right column
 
 /*************************************************************************
 |*
@@ -612,8 +612,6 @@ namespace binfilter {
 |*************************************************************************/
 
 /** get page frame by phyiscal page number
-
-    OD 14.01.2003 #103492#
 
     @return pointer to the page frame with the given physical page number
 */

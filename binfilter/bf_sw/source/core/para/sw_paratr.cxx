@@ -279,9 +279,7 @@ using namespace ::com::sun::star;
 /*N*/   rVal <<= sRet;
 /*N*/   return true;
 /*N*/ }
-/* -----------------------------27.06.00 11:05--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ bool SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   ::rtl::OUString uName;
@@ -289,9 +287,7 @@ using namespace ::com::sun::star;
 /*N*/   SetValue(SwStyleNameMapper::GetUIName(uName, GET_POOLID_NUMRULE));
 /*N*/   return true;
 /*N*/ }
-/* -----------------19.05.2003 10:44-----------------
 
- --------------------------------------------------*/
  SfxPoolItem* SwParaConnectBorderItem::Clone( SfxItemPool * ) const
 {
     return new SwParaConnectBorderItem( *this );

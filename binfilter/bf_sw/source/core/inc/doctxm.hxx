@@ -65,7 +65,7 @@ class SwTOXBaseSection : public SwTOXBase, public SwSection
     // Alpha-Trennzeichen bei der Generierung einfuegen
 
     // Textrumpf generieren
-    // OD 18.03.2003 #106329# - add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
+    // add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
 
     // Seitennummerplatzhalter gegen aktuelle Nummern austauschen
 
@@ -77,7 +77,7 @@ public:
     SwTOXBaseSection( const SwTOXBase& rBase );
     virtual ~SwTOXBaseSection();
 
-    // OD 19.03.2003 #106329# - add parameter <_bNewTOX> in order to distinguish
+    // add parameter <_bNewTOX> in order to distinguish
     // between the creation of a new table-of-content or an update of
     // a table-of-content. Default value: false
     void Update( const SfxItemSet* pAttr = 0,

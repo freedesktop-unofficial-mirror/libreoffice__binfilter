@@ -657,7 +657,7 @@ static int
 /*M*/ SwCalcOper SwCalc::GetToken()
 /*M*/ {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/ //JP 25.01.2001: static for switch back to the "old" implementation of the
+/*M*/ // static for switch back to the "old" implementation of the
 /*M*/ //                calculator, which don't use the I18N routines.
 /*M*/ static int nUseOld = 0;
 /*M*/ if( !nUseOld )

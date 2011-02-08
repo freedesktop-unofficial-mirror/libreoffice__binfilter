@@ -124,7 +124,7 @@ namespace binfilter {
 /*N*/       //Raender haben eine defaultmaessige Mindestgroesse.
 /*N*/       //wenn der Drucker einen groesseren Rand vorgibt, so
 /*N*/       //ist mir dass auch recht.
-/*N*/       // MIB 06/25/2002, #99397#: The HTML page desc had A4 as page size
+/*N*/       // The HTML page desc had A4 as page size
 /*N*/       // always. This has been changed to take the page size from the printer.
 /*N*/       // Unfortunately, the margins of the HTML page desc are smaller than
 /*N*/       // the margins used here in general, so one extra case is required.

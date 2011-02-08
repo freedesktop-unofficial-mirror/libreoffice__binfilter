@@ -281,7 +281,6 @@ public:
 
     /** get page frame by phyiscal page number
 
-        OD 14.01.2003 #103492#
         looping through the lowers, which are page frame, in order to find the
         page frame with the given physical page number.
         if no page frame is found, 0 is returned.

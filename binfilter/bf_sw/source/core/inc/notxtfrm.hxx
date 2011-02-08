@@ -52,7 +52,7 @@ class SwNoTxtFrm: public SwCntntFrm
 
     void Format ( const SwBorderAttrs *pAttrs = 0 );
     void PaintCntnt  ( OutputDevice*, const SwRect&, const SwRect& ) const;
-    /// OD 25.09.2002 #99739# - delete unused 3rd parameter
+    /// delete unused 3rd parameter
     void PaintPicture( OutputDevice*, const SwRect& ) const;
 protected:
     virtual void MakeAll();

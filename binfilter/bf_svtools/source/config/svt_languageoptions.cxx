@@ -75,9 +75,7 @@ sal_uInt16 SvtLanguageOptions::GetScriptTypeOfLanguage( sal_uInt16 nLang )
 // -----------------------------------------------------------------------------
 
 
-/*-- 27.10.2005 08:18:01---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SvtSystemLanguageOptions::SvtSystemLanguageOptions() :
     utl::ConfigItem( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM("System/L10N") ))
 {
@@ -91,22 +89,16 @@ SvtSystemLanguageOptions::SvtSystemLanguageOptions() :
         aValues[0]>>= m_sWin16SystemLocale;
     }
 }
-/*-- 27.10.2005 08:18:01---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SvtSystemLanguageOptions::~SvtSystemLanguageOptions()
 {
 }
-/*-- 27.10.2005 08:18:02---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SvtSystemLanguageOptions::Commit()
 {
     //does nothing
 }
-/*-- 27.10.2005 08:36:14---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 LanguageType SvtSystemLanguageOptions::GetWin16SystemLanguage()
 {
     if( m_sWin16SystemLocale.getLength() == 0 )

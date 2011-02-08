@@ -1002,7 +1002,6 @@ OGridColumn* OGridControlModel::getColumnImplementation(const InterfaceRef& _rxI
 void OGridControlModel::gotColumn(const Reference< XInterface >& _rxColumn)
 {
     // if our form is already loaded, tell the column
-    // 18.05.2001 - 86558 - frank.schoenheit@germany.sun.com
     if (m_xParentFormLoadable.is() && m_xParentFormLoadable->isLoaded())
     {
         Reference< XLoadListener > xColumnLoadListener(_rxColumn, UNO_QUERY);

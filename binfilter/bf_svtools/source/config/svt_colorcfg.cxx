@@ -183,9 +183,7 @@ uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString&
     aNames.realloc(nIndex);
     return aNames;
 }
-/* -----------------------------22.03.2002 14:37------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool ColorConfig_Impl::m_bLockBroadcast = sal_False;
 sal_Bool ColorConfig_Impl::m_bBroadcastWhenUnlocked = sal_False;
 ColorConfig_Impl::ColorConfig_Impl(sal_Bool bEditMode) :
@@ -208,17 +206,13 @@ ColorConfig_Impl::ColorConfig_Impl(sal_Bool bEditMode) :
     ::Application::AddEventListener( LINK(this, ColorConfig_Impl, DataChangedEventListener) );
 
 }
-/* -----------------------------25.03.2002 12:28------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfig_Impl::~ColorConfig_Impl()
 {
     // #100822#
     ::Application::RemoveEventListener( LINK(this, ColorConfig_Impl, DataChangedEventListener) );
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::Load(const rtl::OUString& rScheme)
 {
     rtl::OUString sScheme(rScheme);
@@ -251,9 +245,7 @@ void ColorConfig_Impl::Load(const rtl::OUString& rScheme)
              m_aConfigValues[i / 2].bIsVisible = Any2Bool(pColors[nIndex++]);
     }
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void    ColorConfig_Impl::Notify( const uno::Sequence<OUString>& )
 {
     //loading via notification always uses the default setting
@@ -269,9 +261,7 @@ void    ColorConfig_Impl::Notify( const uno::Sequence<OUString>& )
     else
         Broadcast(SfxSimpleHint(SFX_HINT_COLORS_CHANGED));
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::Commit()
 {
     uno::Sequence < ::rtl::OUString > aColorNames = GetPropertyNames(m_sLoadedScheme);
@@ -303,9 +293,7 @@ void ColorConfig_Impl::Commit()
 
     CommitCurrentSchemeName();
 }
-/* -----------------11.12.2002 10:42-----------------
  *
- * --------------------------------------------------*/
 void ColorConfig_Impl::CommitCurrentSchemeName()
 {
     //save current scheme name
@@ -315,9 +303,7 @@ void ColorConfig_Impl::CommitCurrentSchemeName()
     aCurrentVal.getArray()[0] <<= m_sLoadedScheme;
     PutProperties(aCurrent, aCurrentVal);
 }
-/* -----------------------------2002/06/20 13:03------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::SettingsChanged()
 {
     SolarMutexGuard aVclGuard;
@@ -326,9 +312,7 @@ void ColorConfig_Impl::SettingsChanged()
 
     Broadcast( SfxSimpleHint( SFX_HINT_COLORS_CHANGED ) );
 }
-/* -----------------------------2002/08/16 12:07 -----------------------------
-   #100822#
- --------------------------------------------------------------------------- */
+
 IMPL_LINK( ColorConfig_Impl, DataChangedEventListener, VclWindowEvent*, pEvent )
 {
     if ( pEvent->GetId() == VCLEVENT_APPLICATION_DATACHANGED )
@@ -385,9 +369,7 @@ ColorConfig::ColorConfig()
     ++nColorRefCount_Impl;
     StartListening( *m_pImpl);
 }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfig::~ColorConfig()
 {
     ::osl::MutexGuard aGuard( ColorMutex_Impl::get() );
@@ -398,9 +380,7 @@ ColorConfig::~ColorConfig()
         m_pImpl = 0;
     }
 }
-/* -----------------------------11.04.2002 11:49------------------------------
 
- ---------------------------------------------------------------------------*/
 Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
 {
     static const sal_Int32 aAutoColors[] =
@@ -479,9 +459,7 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
     }
     return aRet;
 }
-/* -----------------------------11.04.2002 11:49------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfigValue ColorConfig::GetColorValue(ColorConfigEntry eEntry, sal_Bool bSmart)const
 {
     ColorConfigValue aRet = m_pImpl->GetColorConfigValue(eEntry);
@@ -502,9 +480,7 @@ ColorConfigValue ColorConfig::GetColorValue(ColorConfigEntry eEntry, sal_Bool bS
 
     return aRet;
 }
-/* -----------------------------12.04.2002 09:25------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
     SolarMutexGuard aVclGuard;

@@ -726,11 +726,11 @@ bool SfxMultiRecordReader::GetContent()
         UINT32 nNewPos = _nStartPos + nOffset;
         DBG_ASSERT( nNewPos >= _pStream->Tell(), "SfxMultiRecordReader::GetContent() - New position before current, to much data red!" );
 
-        // #99366#: correct stream pos in every case;
+        // correct stream pos in every case;
         // the if clause was added by MT  a long time ago,
         // maybe to 'repair' other corrupt documents; but this
         // gives errors when writing with 5.1 and reading with current
-        // versions, so we decided to remove the if clause (KA-05/17/2002)
+        // versions, so we decided to remove the if clause
         // if ( nNewPos > _pStream->Tell() )
         _pStream->Seek( nNewPos );
 

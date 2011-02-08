@@ -51,7 +51,7 @@
 #include <fmtornt.hxx>
 #include <fmtcnct.hxx>
 #include <layhelp.hxx>
-// OD 16.04.2003 #i13147# - for <SwFlyFrm::GetContour(..)>
+// #i13147# - for <SwFlyFrm::GetContour(..)>
 
 #include "doc.hxx"
 #include "viewsh.hxx"
@@ -233,7 +233,7 @@ namespace binfilter {
 /*N*/               if ( pObj->IsWriterFlyFrame() )
 /*N*/                   delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/                 else
-/*N*/                 // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 {
 /*N*/                     if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                     {
@@ -821,11 +821,11 @@ namespace binfilter {
 /*N*/   ColUnlock();
 /*N*/ }
 
-// OD 14.03.2003 #i11760# - change parameter <bNoColl>: type <bool>;
+// #i11760# - change parameter <bNoColl>: type <bool>;
 //                          default value = false.
-// OD 14.03.2003 #i11760# - add new parameter <bNoCalcFollow> with
+// #i11760# - add new parameter <bNoCalcFollow> with
 //                          default value = false.
-// OD 11.04.2003 #108824# - new parameter <bNoCalcFollow> was used by method
+//          - new parameter <bNoCalcFollow> was used by method
 //                          <FormatWidthCols(..)> to avoid follow formatting
 //                          for text frames. But, unformatted follows causes
 //                          problems in method <SwCntntFrm::_WouldFit(..)>,
@@ -900,11 +900,11 @@ namespace binfilter {
 /*?*/                   ((SwTabFrm*)pFrm)->bLockBackMove = TRUE;
 /*N*/           }
 /*N*/
-/*N*/             // OD 14.03.2003 #i11760# - forbid format of follow, if requested.
+/*N*/             // #i11760# - forbid format of follow, if requested.
 /*N*/             if ( bNoCalcFollow && pFrm->IsTxtFrm() )
 /*N*/                 static_cast<SwTxtFrm*>(pFrm)->ForbidFollowFormat();
 /*N*/             pFrm->Calc();
-/*N*/             // OD 14.03.2003 #i11760# - reset control flag for follow format.
+/*N*/             // #i11760# - reset control flag for follow format.
 /*N*/             if ( pFrm->IsTxtFrm() )
 /*N*/             {
 /*N*/                 static_cast<SwTxtFrm*>(pFrm)->AllowFollowFormat();
@@ -1568,7 +1568,7 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
         pNew->GetMaster()->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pNew->GetMaster() ) ) );
     }
 
-    // OD 27.06.2003 #108784# - move 'master' drawing object to visible layer
+    // move 'master' drawing object to visible layer
     {
         SwDoc* pDoc = pNew->GetFmt()->GetDoc();
         if ( pDoc )
@@ -1594,7 +1594,7 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
 #endif
 }
 
-// OD 20.05.2003 #108784# - add 'virtual' drawing object to frame.
+// add 'virtual' drawing object to frame.
 void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                                SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -1676,7 +1676,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   pToRemove->ChgAnchor( 0 );
 /*N*/ }
 
-// OD 20.05.2003 #108784# - remove 'virtual' drawing object from frame.
+// remove 'virtual' drawing object from frame.
 void SwFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
                                SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -1776,7 +1776,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
                 {
                     // change anchor position
                     pO->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
-                    // OD 19.06.2003 #108784# - correct relative position of
+                    // correct relative position of
                     // <SwDrawVirtObj>-objects to reference object.
                     if ( pO->ISA(SwDrawVirtObj) )
                     {
@@ -1797,7 +1797,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 
                         ((SwDrawContact*)GetUserCall(pO))->ChkPage();
 
-                        // OD 27.06.2003 #108784# - correct movement of 'virtual'
+                        // correct movement of 'virtual'
                         // drawing objects caused by the <SetAnchorPos(..)>
                         // of the 'master' drawing object.
                         SwDrawContact* pDrawContact =
@@ -1973,7 +1973,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*  SwFlyFrm::GetContour()
 |*
 |*************************************************************************/
-/// OD 16.04.2003 #i13147# - If called for paint and the <SwNoTxtFrm> contains
+/// #i13147# - If called for paint and the <SwNoTxtFrm> contains
 /// a graphic, load of intrinsic graphic has to be avoided.
 
 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,

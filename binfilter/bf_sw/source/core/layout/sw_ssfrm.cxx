@@ -290,7 +290,7 @@ namespace binfilter {
 /*N*/           if ( pObj->IsWriterFlyFrame() )
 /*N*/               delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/             else
-/*N*/             // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/             // consider 'virtual' drawing objects
 /*N*/             {
 /*N*/                 if ( pObj->GetUserCall() )
 /*N*/                 {
@@ -303,7 +303,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   // JP 15.10.2001: for detection of access to deleted frames
+/*N*/   // for detection of access to deleted frames
 /*N*/   pDrawObjs = (SwDrawObjs*)0x33333333;
 /*N*/ #endif
 /*N*/ }
@@ -407,7 +407,7 @@ namespace binfilter {
 /*N*/                   delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/               else if ( pObj->GetUserCall() )
 /*N*/                 {
-/*N*/                     // OD 19.06.2003 #108784# - adjustments for drawing objects
+/*N*/                     // adjustments for drawing objects
 /*N*/                     // in header/footer.
 /*N*/                     ((SwDrawContact*)pObj->GetUserCall())->DisconnectObjFromLayout( pObj );
 /*N*/                 }
@@ -432,7 +432,7 @@ namespace binfilter {
 /*N*/               delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/           else if ( pObj->GetUserCall() )
 /*N*/             {
-/*N*/                 // OD 19.06.2003 #108784# - adjustments for drawing objects
+/*N*/                 // adjustments for drawing objects
 /*N*/                 // in header/footer.
 /*N*/                 ((SwDrawContact*)pObj->GetUserCall())->DisconnectObjFromLayout( pObj );
 /*N*/             }

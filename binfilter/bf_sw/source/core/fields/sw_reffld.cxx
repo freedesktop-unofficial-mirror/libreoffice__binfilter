@@ -611,9 +611,7 @@ String SwGetRefField::GetPar2() const
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------------------11.01.2002 12:50------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwGetRefField::ConvertProgrammaticToUIName()
 /*N*/ {
 /*N*/     if(GetTyp() && REF_SEQUENCEFLD == nSubType)

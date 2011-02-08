@@ -80,7 +80,6 @@
 #include <wrong.hxx>
 #include <tox.hxx>
 #include <fmthbsh.hxx>
-// OD 27.06.2003 #108784#
 
 // Export
 #include <fldbas.hxx>
@@ -159,7 +158,7 @@ public:
 /*N*/       if( !pFly->IsDefault() )
 /*N*/       {
 /*N*/           BYTE cType = SWG_FLYFMT;
-/*N*/             // OD 27.06.2003 #108784# - do *not* export drawing objects in header/footer
+/*N*/             // do *not* export drawing objects in header/footer
 /*N*/             bool bExport = true;
 /*N*/             if( RES_DRAWFRMFMT == pFly->Which() )
 /*N*/             {

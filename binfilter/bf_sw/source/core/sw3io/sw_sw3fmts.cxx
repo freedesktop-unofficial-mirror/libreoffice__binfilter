@@ -48,7 +48,6 @@
 #include <frmatr.hxx>
 #include <swtblfmt.hxx>
 
-// OD 27.06.2003 #108784#
 #include <fmtflcnt.hxx>
 
 #include <errhdl.hxx>
@@ -256,7 +255,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   if( nWhich != RES_TXTATR_FTN || nFlyLevel == 0 )
 /*N*/   {
 /*N*/       nWhich = lcl_sw3io__ExpandWhich( nWhich );
-/*N*/         // OD 27.06.2003 #108784# - disable export of drawing frame format in header/footer.
+/*N*/         // disable export of drawing frame format in header/footer.
 /*N*/         bool bExport = true;
 /*N*/         {
 /*N*/             if ( RES_TXTATR_FLYCNT == rAttr.Which() )

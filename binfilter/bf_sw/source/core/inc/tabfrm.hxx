@@ -39,7 +39,7 @@ class SwAttrSetChg;
 
 class SwTabFrm: public SwLayoutFrm, public SwFlowFrm
 {
-    // OD 14.03.2003 #i11760# - adjustment, because of method signature change
+    // #i11760# - adjustment, because of method signature change
     //darf mit den Flags spielen.
     friend void CalcCntnt( SwLayoutFrm *pLay, bool bNoColl, bool bNoCalcFollow );
 

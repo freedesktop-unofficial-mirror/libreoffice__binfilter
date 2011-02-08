@@ -50,7 +50,6 @@ class SwNodeIndex;
 
 class SwPageDesc;
 class SwCrsrShell;
-// OD 21.05.2003 #108789#
 class SwTxtFrm;
 
 #if defined(MSC)
@@ -67,13 +66,13 @@ class SwTxtFrm;
 #define GRFNUM_REPLACE 2
 
 //Painten des Hintergrunds. Mit Brush oder Graphic.
-// OD 05.08.2002 #99657# - add 6th parameter to indicate that method should
+// add 6th parameter to indicate that method should
 //     consider background transparency, saved in the color of the brush item
 void MA_FASTCALL DrawGraphic( const SvxBrushItem *, OutputDevice *,
       const SwRect &rOrg, const SwRect &rOut, const BYTE nGrfNum = GRFNUM_NO,
       const sal_Bool bConsiderBackgroundTransparency = sal_False );
 
-// OD 24.01.2003 #106593# - method to align graphic rectangle
+// method to align graphic rectangle
 // Created declaration here to avoid <extern> declarations
 void SwAlignGrfRect( SwRect *pGrfRect, const OutputDevice &rOut );
 
@@ -133,8 +132,7 @@ void MA_ParkCrsr( SwPageDesc *pDesc, SwCrsrShell &rSh );
 
 const SwFrm * MA_FASTCALL FindPage( const SwRect &rRect, const SwFrm *pPage );
 
-// JP 07.05.98: wird von SwCntntNode::GetFrm und von SwFlyFrm::GetFrm
-//              gerufen
+// wird von SwCntntNode::GetFrm und von SwFlyFrm::GetFrm gerufen
 SwFrm* GetFrmOfModify( SwModify&, USHORT nFrmType, const Point* = 0,
                         const SwPosition *pPos = 0,
                         const BOOL bCalcFrm = FALSE );
@@ -142,7 +140,7 @@ SwFrm* GetFrmOfModify( SwModify&, USHORT nFrmType, const Point* = 0,
 //Sollen ExtraDaten (Reline-Strich, Zeilennummern) gepaintet werden?
 bool IsExtraData( const SwDoc *pDoc );
 
-// OD 14.03.2003 #i11760# - method declaration <CalcCntnt(..)>
+// #i11760# - method declaration <CalcCntnt(..)>
 void CalcCntnt( SwLayoutFrm *pLay,
                 bool bNoColl = false,
                 bool bNoCalcFollow = false );
@@ -225,7 +223,7 @@ public:
 //!!!Achtung: Wenn weitere Attribute gecached werden muss unbedingt die
 //Methode Modify::Modify mitgepflegt werden!!!
 
-// OD 23.01.2003 #106895# - delete old method <SwBorderAttrs::CalcRight()> and
+// delete old method <SwBorderAttrs::CalcRight()> and
 // the stuff that belongs to it.
 class SwBorderAttrs : public SwCacheObj
 {
@@ -254,13 +252,12 @@ class SwBorderAttrs : public SwCacheObj
     BOOL bCacheGetLine        :1; //GetTopLine(), GetBottomLine() cachen?
     BOOL bCachedGetTopLine    :1; //GetTopLine() gecached?
     BOOL bCachedGetBottomLine :1; //GetBottomLine() gecached?
-    // OD 21.05.2003 #108789# - booleans indicating, if values <bJoinedWithPrev>
+    // booleans indicating, if values <bJoinedWithPrev>
     //          and <bJoinedWithNext> are cached and valid.
     //          Caching depends on value of <bCacheGetLine>.
     mutable BOOL bCachedJoinedWithPrev :1;
     mutable BOOL bCachedJoinedWithNext :1;
-    // OD 21.05.2003 #108789# - booleans indicating, if borders are joined
-    //          with previous/next frame.
+    // booleans indicating, if borders are joined with previous/next frame.
     BOOL bJoinedWithPrev :1;
     BOOL bJoinedWithNext :1;
 
@@ -288,18 +285,18 @@ class SwBorderAttrs : public SwCacheObj
     void _GetTopLine   ( const SwFrm *pFrm );
     void _GetBottomLine( const SwFrm *pFrm );
 
-    // OD 21.05.2003 #108789# - private methods to calculate cached values
+    // private methods to calculate cached values
     // <bJoinedWithPrev> and <bJoinedWithNext>.
     void _CalcJoinedWithPrev( const SwFrm& _rFrm );
     void _CalcJoinedWithNext( const SwFrm& _rFrm );
 
-    // OD 21.05.2003 #108789# - internal helper method for methods
+    // internal helper method for methods
     // <_CalcJoinedWithPrev> and <_CalcJoinedWithNext>.
     BOOL _JoinWithCmp( const SwFrm& _rCallerFrm,
                        const SwFrm& _rCmpFrm ) const;
 
      //Rechte und linke Linie sowie LRSpace gleich?
-    // OD 21.05.2003 #108789# - change name of 1st parameter - "rAttrs" -> "rCmpAttrs".
+    // change name of 1st parameter - "rAttrs" -> "rCmpAttrs".
     BOOL CmpLeftRight( const SwBorderAttrs &rCmpAttrs,
                        const SwFrm *pCaller,
                        const SwFrm *pCmp ) const;
@@ -334,8 +331,7 @@ public:
     inline USHORT GetTopLine   ( const SwFrm *pFrm ) const;
     inline USHORT GetBottomLine( const SwFrm *pFrm ) const;
     inline void   SetGetCacheLine( BOOL bNew ) const;
-        // OD 21.05.2003 #108789# - accessors for cached values <bJoinedWithPrev>
-    // and <bJoinedWithPrev>
+        // accessors for cached values <bJoinedWithPrev> and <bJoinedWithPrev>
     BOOL JoinedWithPrev( const SwFrm& _rFrm ) const;
     BOOL JoinedWithNext( const SwFrm& _rFrm ) const;
 };
@@ -412,8 +408,7 @@ inline void SwBorderAttrs::SetGetCacheLine( BOOL bNew ) const
     ((SwBorderAttrs*)this)->bCacheGetLine = bNew;
     ((SwBorderAttrs*)this)->bCachedGetBottomLine =
     ((SwBorderAttrs*)this)->bCachedGetTopLine = FALSE;
-        // OD 21.05.2003 #108789# - invalidate cache for values <bJoinedWithPrev>
-    // and <bJoinedWithNext>.
+        // invalidate cache for values <bJoinedWithPrev> and <bJoinedWithNext>.
     bCachedJoinedWithPrev = FALSE;
     bCachedJoinedWithNext = FALSE;
 }

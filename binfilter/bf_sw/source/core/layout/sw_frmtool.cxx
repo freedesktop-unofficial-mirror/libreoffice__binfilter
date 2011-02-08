@@ -87,7 +87,6 @@
 
 #include "mdiexp.hxx"
 #include "statstr.hrc"
-// OD 21.05.2003 #108789#
 #include <paratr.hxx>
 namespace binfilter {
 
@@ -190,7 +189,7 @@ namespace binfilter {
 /*N*/           pNxt->InvalidatePos();
 /*N*/       else
 /*N*/       {
-/*N*/             // OD 04.11.2002 #104100# - correct condition for setting retouche
+/*N*/             // correct condition for setting retouche
 /*N*/             // flag for vertical layout.
 /*N*/             if( pFrm->IsRetoucheFrm() &&
 /*N*/                 (aFrm.*fnRect->fnTopDist)( (pFrm->Frm().*fnRect->fnGetTop)() ) > 0 )
@@ -219,7 +218,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/     else
 /*N*/     {
-/*N*/         // OD 13.11.2002 #97597# - consider case that *only* margins between
+/*N*/         // consider case that *only* margins between
 /*N*/         // frame and printing area has changed. Then, frame has to be repainted,
 /*N*/         // in order to force paint of the margin areas.
 /*N*/         if ( !bAbsP && (bChgWidth || bChgHeight) )
@@ -329,7 +328,7 @@ namespace binfilter {
 /*N*/                   if( !pFrmFmt ||
 /*N*/                       FLY_IN_CNTNT != pFrmFmt->GetAnchor().GetAnchorId() )
 /*N*/                   {
-/*N*/                         // OD 30.06.2003 #108784# - consider 'virtual' drawing objects.
+/*N*/                         // consider 'virtual' drawing objects.
 /*N*/                         if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);
@@ -340,7 +339,7 @@ namespace binfilter {
 /*N*/                         {
 /*N*/                             pObj->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pObj ) ) );
 /*N*/                             ((SwDrawContact*)GetUserCall(pObj))->ChkPage();
-/*N*/                             // OD 30.06.2003 #108784# - correct relative position
+/*N*/                             // correct relative position
 /*N*/                             // of 'virtual' drawing objects.
 /*N*/                             SwDrawContact* pDrawContact =
 /*N*/                                 static_cast<SwDrawContact*>(pObj->GetUserCall());
@@ -424,7 +423,7 @@ namespace binfilter {
 /*M*/       }
 /*M*/       else
 /*N*/       {
-/*N*/             // OD 30.06.2003 #108784# - consider 'virtual' drawing objects.
+/*N*/             // consider 'virtual' drawing objects.
 /*N*/             if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/             {
 /*N*/                 SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);
@@ -435,7 +434,7 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 pObj->SetAnchorPos( pObj->GetAnchorPos() + rDiff );
 /*N*/                 ((SwDrawContact*)GetUserCall(pObj))->ChkPage();
-/*N*/                 // OD 30.06.2003 #108784# - correct relative position
+/*N*/                 // correct relative position
 /*N*/                 // of 'virtual' drawing objects.
 /*N*/                 SwDrawContact* pDrawContact =
 /*N*/                         static_cast<SwDrawContact*>(pObj->GetUserCall());
@@ -945,8 +944,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
             const bool bFlyAtFly = rAnch.GetAnchorId() == FLY_AT_FLY; // LAYER_IMPL
             //Wird ein Rahmen oder ein SdrObject beschrieben?
             const bool bSdrObj = RES_DRAWFRMFMT == pFmt->Which();
-            // OD 23.06.2003 #108784# - append also drawing objects anchored
-            // as character.
+            // append also drawing objects anchored as character.
             const bool bDrawObjInCntnt = bSdrObj &&
                                          rAnch.GetAnchorId() == FLY_IN_CNTNT;
 
@@ -970,8 +968,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
                         pFmt->GetDoc()->GetDrawModel()->GetPage(0)->
                                 InsertObject(pSdrObj, pSdrObj->GetOrdNumDirect());
                     }
-                    // OD 25.06.2003 #108784# - move object to visible layer,
-                    // if necessary.
+                    // move object to visible layer, if necessary.
                     if ( !pFmt->GetDoc()->IsVisibleLayerId( pSdrObj->GetLayer() ) )
                     {
                         SdrLayerID nVisibleLayerId =
@@ -984,8 +981,8 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
                     {
                         pFrm->AppendDrawObj( pNew );
                     }
-                    // OD 19.06.2003 #108784# - add 'virtual' drawing object,
-                    // if necessary. But control objects have to be excluded.
+                    // add 'virtual' drawing object, if necessary.
+                    // But control objects have to be excluded.
                     else if ( !CheckControlLayer( pSdrObj ) &&
                               pNew->GetAnchor() != pFrm &&
                               !pNew->GetDrawObjectByAnchorFrm( *pFrm ) )
@@ -1030,8 +1027,6 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
 
 /** helper method to determine, if a <SwFrmFmt>, which has an object connected,
     is located in header or footer.
-
-    OD 23.06.2003 #108784#
 
     @author OD
 */
@@ -1080,8 +1075,8 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/             else if ( FALSE == (bRemove = ::binfilter::lcl_ObjConnected( pFmt )) ||
 /*N*/                       ::binfilter::lcl_InHeaderOrFooter( *pFmt ) )
 /*N*/           {
-/*N*/             // OD 23.06.2003 #108784# - correction: for objects in header
-/*N*/             // or footer create frames, in spite of the fact that an connected
+/*N*/             // correction: for objects in header or footer
+/*N*/             // create frames, in spite of the fact that an connected
 /*N*/             // objects already exists.
 /*N*/               //Fuer Flys und DrawObjs nur dann ein MakeFrms rufen wenn noch
 /*N*/               //keine abhaengigen Existieren, andernfalls, oder wenn das
@@ -1259,14 +1254,14 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/                   //des Uppers erzeugt.
 /*M*/                   SwSectionFrm *pTmp = pActualSection->GetUpper()->GetSectionFrm();
 /*M*/                   pFrm->InsertBehind( pTmp->GetUpper(), pTmp );
-/*N*/                     // OD 25.03.2003 #108339# - direct initialization of section
+/*N*/                     // direct initialization of section
 /*N*/                     // after insertion in the layout
 /*N*/                     static_cast<SwSectionFrm*>(pFrm)->Init();
 /*N*/               }
 /*N*/               else
 /*N*/               {
 /*N*/                   pFrm->InsertBehind( pLay, pPrv );
-/*N*/                     // OD 25.03.2003 #108339# - direct initialization of section
+/*N*/                     // direct initialization of section
 /*N*/                     // after insertion in the layout
 /*N*/                     static_cast<SwSectionFrm*>(pFrm)->Init();
 /*N*/                   if( pPrv && pPrv->IsInFtn() )
@@ -1281,14 +1276,13 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/
 /*N*/                 pFrm->Frm().Pos() = pLay->Frm().Pos();
 /*N*/               pFrm->Frm().Pos().Y() += 1; //wg. Benachrichtigungen.
-/*N*/                 // OD 20.11.2002 #105405# - no page, no invalidate.
+/*N*/                 no page, no invalidate.
 /*N*/                 if ( pPage )
 /*N*/                 {
-/*N*/                     // OD 18.09.2002 #100522#
 /*N*/                     // invalidate page in order to force format and paint of
 /*N*/                     // inserted section frame
 /*N*/                     pFrm->InvalidatePage( pPage );
-/*N*/                     // OD 14.11.2002 #104684# - invalidate page content in order to
+/*N*/                     // invalidate page content in order to
 /*N*/                     // force format and paint of section content.
 /*N*/                     pPage->InvalidateCntnt();
 /*N*/                 }
@@ -1598,7 +1592,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                     bSplit = FALSE;
                 ::binfilter::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(), FALSE,
                               nEndIdx, pPrv );
-                // OD 23.06.2003 #108784# - correction: append objects doesn't
+                // correction: append objects doesn't
                 // depend on value of <bAllowMove>
                 if( !bDontCreateObjects )
                 {
@@ -1667,7 +1661,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 /*N*/     bTop     = bBottom     = bLine   = TRUE;
 /*N*/
 /*N*/   bCacheGetLine = bCachedGetTopLine = bCachedGetBottomLine = FALSE;
-/*N*/     // OD 21.05.2003 #108789# - init cache status for values <bJoinedWithPrev>
+/*N*/     // init cache status for values <bJoinedWithPrev>
 /*N*/     // and <bJoinedWithNext>, which aren't initialized by default.
 /*N*/     bCachedJoinedWithPrev = FALSE;
 /*N*/     bCachedJoinedWithNext = FALSE;
@@ -1708,7 +1702,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 /*N*/ {
 /*N*/     long nRight;
 /*N*/
-/*N*/     // OD 23.01.2003 #106895# - for cell frame in R2L text direction the left
+/*N*/     // for cell frame in R2L text direction the left
 /*N*/     // and right border are painted on the right respectively left.
 /*N*/     if ( pCaller->IsCellFrm() && pCaller->IsRightToLeft() )
 /*N*/         nRight = CalcLeftLine();
@@ -1728,7 +1722,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 /*N*/ {
 /*N*/     long nLeft;
 /*N*/
-/*N*/     // OD 23.01.2003 #106895# - for cell frame in R2L text direction the left
+/*N*/     // for cell frame in R2L text direction the left
 /*N*/     // and right border are painted on the right respectively left.
 /*N*/     if ( pCaller->IsCellFrm() && pCaller->IsRightToLeft() )
 /*N*/         nLeft = CalcRightLine();
@@ -1826,8 +1820,8 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
 /*N*/   return ( ((pL1 && pL2) && (*pL1 == *pL2)) || (!pL1 && !pL2) );
 /*N*/ }
 
-// OD 21.05.2003 #108789# - change name of 1st parameter - "rAttrs" -> "rCmpAttrs"
-// OD 21.05.2003 #108789# - compare <CalcRight()> and <rCmpAttrs.CalcRight()>
+// change name of 1st parameter - "rAttrs" -> "rCmpAttrs"
+// compare <CalcRight()> and <rCmpAttrs.CalcRight()>
 //          instead of only the right LR-spacing, because R2L-layout has to be
 //          considered.
 BOOL SwBorderAttrs::CmpLeftRight( const SwBorderAttrs &rCmpAttrs,
@@ -1837,7 +1831,7 @@ BOOL SwBorderAttrs::CmpLeftRight( const SwBorderAttrs &rCmpAttrs,
     return ( CmpLines( rCmpAttrs.GetBox().GetLeft(), GetBox().GetLeft()  ) &&
              CmpLines( rCmpAttrs.GetBox().GetRight(),GetBox().GetRight() ) &&
              CalcLeft( pCaller ) == rCmpAttrs.CalcLeft( pCmp ) &&
-             // OD 21.05.2003 #108789# - compare <CalcRight> with <rCmpAttrs.CalcRight>.
+             // compare <CalcRight> with <rCmpAttrs.CalcRight>.
              CalcRight( pCaller ) == rCmpAttrs.CalcRight( pCmp ) );
 }
 
@@ -1860,7 +1854,7 @@ BOOL SwBorderAttrs::_JoinWithCmp( const SwFrm& _rCallerFrm,
     return bReturnVal;
 }
 
-// OD 21.05.2003 #108789# - method to determine, if borders are joined with
+// method to determine, if borders are joined with
 // previous frame. Calculated value saved in cached value <bJoinedWithPrev>
 void SwBorderAttrs::_CalcJoinedWithPrev( const SwFrm& _rFrm )
 {
@@ -1881,7 +1875,7 @@ void SwBorderAttrs::_CalcJoinedWithPrev( const SwFrm& _rFrm )
     bCachedJoinedWithPrev = bCacheGetLine;
 }
 
-// OD 21.05.2003 #108789# - method to determine, if borders are joined with
+// method to determine, if borders are joined with
 // next frame. Calculated value saved in cached value <bJoinedWithNext>
 void SwBorderAttrs::_CalcJoinedWithNext( const SwFrm& _rFrm )
 {
@@ -1902,7 +1896,7 @@ void SwBorderAttrs::_CalcJoinedWithNext( const SwFrm& _rFrm )
     bCachedJoinedWithNext = bCacheGetLine;
 }
 
-// OD 21.05.2003 #108789# - accessor for cached values <bJoinedWithPrev>
+// accessor for cached values <bJoinedWithPrev>
 BOOL SwBorderAttrs::JoinedWithPrev( const SwFrm& _rFrm ) const
 {
     if ( !bCachedJoinedWithPrev )
@@ -1927,7 +1921,7 @@ void SwBorderAttrs::_GetTopLine( const SwFrm *pFrm )
 {
     USHORT nRet = CalcTopLine();
 
-    // OD 21.05.2003 #108789# - use new method <JoinWithPrev()>
+    // use new method <JoinWithPrev()>
     if ( JoinedWithPrev( *(pFrm) ) )
     {
         nRet = 0;
@@ -1959,7 +1953,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 {
     USHORT nRet = CalcBottomLine();
 
-    // OD 21.05.2003 #108789# - use new method <JoinWithPrev()>
+    // use new method <JoinWithPrev()>
     if ( JoinedWithNext( *(pFrm) ) )
     {
         nRet = 0;
@@ -2474,7 +2468,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/       else
 /*N*/       {
 /*N*/             SwDrawContact* pContact = static_cast<SwDrawContact*>(GetUserCall(pObj));
-/*N*/             // OD 20.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/             // consider 'virtual' drawing objects
 /*N*/             if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/             {
 /*N*/                 SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);

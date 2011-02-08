@@ -1788,7 +1788,7 @@ je Objekt variiert von 0-3:
 /*N*/
 /*N*/   if(aCompat.GetBytesLeft() > 0)
 /*N*/   {
-/*N*/       // ab 10-08-1996 (noch Vers 12) Items fuer Verbinder
+/*N*/       // Items fuer Verbinder
 /*N*/       SfxItemPool* pPool = GetItemPool();
 /*N*/       if(pPool)
 /*N*/       {
@@ -1806,7 +1806,7 @@ je Objekt variiert von 0-3:
 /*N*/
 /*N*/   if(aCompat.GetBytesLeft() > 0)
 /*N*/   {
-/*N*/       // ab 14-01-1997 (noch Vers 12) EdgeInfoRec
+/*N*/       // EdgeInfoRec
 /*N*/       rIn >> aEdgeInfo;
 /*N*/   }
 /*N*/ }
@@ -1819,7 +1819,7 @@ je Objekt variiert von 0-3:
 /*N*/   if (aCon1.pObj!=NULL) aCon1.pObj->AddListener(*this);
 /*N*/   if (aCon2.pObj!=NULL) aCon2.pObj->AddListener(*this);
 /*N*/
-/*N*/   // #84026# always recalculate edgetrack after load
+/*N*/   // always recalculate edgetrack after load
 /*N*/   bEdgeTrackDirty=TRUE;
 /*N*/ }
 /*N*/

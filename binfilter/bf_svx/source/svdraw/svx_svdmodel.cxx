@@ -1429,12 +1429,10 @@ using namespace ::com::sun::star;
 /*N*/           rOut.WriteByteString(aEmptyStr);
 /*N*/       }
 /*N*/
-/*N*/       // ab 09-02-1996
 /*N*/       rOut << INT32(aUIScale.GetNumerator());
 /*N*/       rOut << INT32(aUIScale.GetDenominator());
 /*N*/       rOut << UINT16(eUIUnit);
 /*N*/
-/*N*/       // ab 09-04-1997 fuer #37710#
 /*N*/       rOut << INT32(nDefTextHgt);
 /*N*/       rOut << INT32(nDefaultTabulator);
 /*N*/
@@ -1678,7 +1676,7 @@ using namespace ::com::sun::star;
 /*N*/           eUIUnit = FieldUnit(nTmp);
 /*N*/       }
 /*N*/
-/*N*/       // ab 09-04-1997 fuer #37710#: Text in Dafaultgroesse vom Writer ins Draw und umgekehrt
+/*N*/       // Text in Dafaultgroesse vom Writer ins Draw und umgekehrt
 /*N*/       if(rHead.GetVersion() >= 13 && pModelMiscCompat->GetBytesLeft() > 0)
 /*N*/       {
 /*N*/           rIn >> nNum;

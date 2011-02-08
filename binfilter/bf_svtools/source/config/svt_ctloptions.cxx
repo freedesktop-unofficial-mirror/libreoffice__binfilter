@@ -351,9 +351,7 @@ SvtCTLOptions::TextNumerals SvtCTLOptions::GetCTLTextNumerals() const
     DBG_ASSERT( pCTLOptions->IsLoaded(), "CTL options not loaded" );
     return pCTLOptions->GetCTLTextNumerals();
 }
-/* -----------------30.04.2003 10:40-----------------
 
- --------------------------------------------------*/
 void SvtCTLOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
     SolarMutexGuard aVclGuard;

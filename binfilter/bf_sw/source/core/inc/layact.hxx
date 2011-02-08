@@ -104,7 +104,7 @@ class SwLayAction
     BOOL bPaintExtraData;   //Anzeige von Zeilennumerierung o. ae. eingeschaltet?
     BOOL bActionInProgress; // wird in Action() anfangs gesetzt und zum Schluss geloescht
 
-    // OD 14.04.2003 #106346# - new flag for content formatting on interrupt.
+    // new flag for content formatting on interrupt.
     sal_Bool    mbFormatCntntOnInterrupt;
 #ifdef _LAYACT_CXX
 

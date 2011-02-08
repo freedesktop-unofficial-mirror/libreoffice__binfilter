@@ -705,7 +705,7 @@ namespace binfilter {
 /*N*/   pNew->ChgPage( this );
 /*N*/ }
 
-// OD 20.05.2003 #108784# - adding 'virtual' drawing object to page frame
+// adding 'virtual' drawing object to page frame
 void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                                    SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -774,7 +774,7 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   pToRemove->ChgPage( 0 );
 /*N*/ }
 
-// OD 20.05.2003 #108784# - remove 'virtual' drawing object from page frame.
+// remove 'virtual' drawing object from page frame.
 void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
                                    SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -1046,7 +1046,7 @@ BOOL CalcClipRect( const SdrObject *pSdrObj, SwRect &rRect, BOOL bMove )
         }
         else
         {
-            // OD 23.06.2003 #108784# - restrict clip rectangle for drawing
+            // restrict clip rectangle for drawing
             // objects in header/footer to the page frame.
             const SwFrm* pAnchorFrm = 0L;
             if ( pSdrObj->ISA(SwDrawVirtObj) )

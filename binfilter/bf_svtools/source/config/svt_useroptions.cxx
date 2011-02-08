@@ -583,9 +583,7 @@ const String& SvtUserOptions::GetFullName() const
     return pImp->GetFullName();
 }
 
-/* -----------------07.07.2003 09:30-----------------
 
- --------------------------------------------------*/
 void SvtUserOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
     SolarMutexGuard aVclGuard;

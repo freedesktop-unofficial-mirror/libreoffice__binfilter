@@ -355,9 +355,7 @@ void SvtSysLocaleOptions_Impl::Notify( const Sequence< rtl::OUString >& seqPrope
     if ( nHint )
         Broadcast( nHint );
 }
-/* -----------------10.02.2004 15:25-----------------
 
- --------------------------------------------------*/
 void SvtSysLocaleOptions_Impl::UpdateMiscSettings_Impl()
 {
     AllSettings aAllSettings( Application::GetSettings() );
@@ -432,9 +430,7 @@ const OUString& SvtSysLocaleOptions::GetCurrencyConfigString() const
     return pOptions->GetCurrencyString();
 }
 
-/*-- 11.02.2004 13:31:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 // static
 void SvtSysLocaleOptions::GetCurrencyAbbrevAndLanguage( String& rAbbrev,
