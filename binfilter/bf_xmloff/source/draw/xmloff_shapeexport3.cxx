@@ -28,32 +28,19 @@
 
 #include <bf_goodies/hmatrix.hxx>
 
-
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-
 #include <com/sun/star/drawing/ProjectionMode.hpp>
-
 #include <com/sun/star/drawing/ShadeMode.hpp>
 
-
-
 #include <com/sun/star/drawing/CameraGeometry.hpp>
-
 #include <com/sun/star/drawing/DoubleSequence.hpp>
 
-
-
 #include <tools/debug.hxx>
-
-
 #include "xmlexp.hxx"
-
 #include "xmluconv.hxx"
-
 #include "xexptran.hxx"
-
-
 #include "xmlnmspe.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;

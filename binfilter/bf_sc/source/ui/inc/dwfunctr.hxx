@@ -29,19 +29,12 @@
 #define _SC_DWFUNCTR_HXX
 
 #include <bf_sfx2/childwin.hxx>
-
 #include <bf_sfx2/dockwin.hxx>
-
 #include <bf_svtools/lstner.hxx>
-
 #include <bf_svtools/stdctrl.hxx>
-
 #include <vcl/lstbox.hxx>
-
 #include <vcl/imagebtn.hxx>
-
 #include <vcl/combobox.hxx>
-
 #include "global.hxx"       // ScAddress
 
 namespace binfilter {
@@ -51,7 +44,7 @@ namespace binfilter {
 #endif
 /*************************************************************************
 |*
-|* Ableitung vom SfxChildWindow als "Behaelter" fuer Controller
+|* Derivation from SfxChildWindow as "Container" for Controller
 |*
 \************************************************************************/
 
