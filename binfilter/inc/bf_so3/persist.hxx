@@ -28,6 +28,8 @@
 #ifndef _PERSIST_HXX
 #define _PERSIST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
 #endif

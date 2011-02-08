@@ -28,6 +28,8 @@
 #ifndef _SVDPAGV_HXX
 #define _SVDPAGV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif

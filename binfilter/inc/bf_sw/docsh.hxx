@@ -27,6 +27,8 @@
 #ifndef _SWDOCSH_HXX
 #define _SWDOCSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
 #endif

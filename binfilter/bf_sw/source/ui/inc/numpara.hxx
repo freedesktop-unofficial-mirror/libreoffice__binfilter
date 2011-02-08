@@ -27,6 +27,8 @@
 #ifndef _NUMPARA_HXX
 #define _NUMPARA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>

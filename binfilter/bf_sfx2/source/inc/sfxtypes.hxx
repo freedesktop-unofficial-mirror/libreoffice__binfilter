@@ -27,6 +27,8 @@
 #ifndef _SFX_SFXTYPES_HXX
 #define _SFX_SFXTYPES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RCID_H //autogen
 #include <tools/rcid.h>
 #endif

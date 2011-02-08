@@ -27,6 +27,8 @@
 #ifndef _FRMATR_HXX
 #define _FRMATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FORMAT_HXX
 #include <format.hxx>       //fuer Implementierung der inlines
 #endif

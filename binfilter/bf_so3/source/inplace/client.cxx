@@ -28,9 +28,9 @@
 #include <stdio.h>
 
 #ifdef WNT
-#include <tools/prewin.h>
+#include <bf_svtools/bf_prewin.h>
 #include <windows.h>
-#include <tools/postwin.h>
+#include <bf_svtools/bf_postwin.h>
 #include <vcl/svapp.hxx>
 #include <vcl/wrkwin.hxx>
 #include <vcl/sysdata.hxx>

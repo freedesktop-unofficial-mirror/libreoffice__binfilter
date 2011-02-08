@@ -28,6 +28,8 @@
 #ifndef _XMLTBLI_HXX
 #define _XMLTBLI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _XMLOFF_XMLTEXTTABLECONTEXT_HXX
 #include <bf_xmloff/XMLTextTableContext.hxx>
 #endif

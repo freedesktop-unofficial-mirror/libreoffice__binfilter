@@ -28,6 +28,8 @@
 #ifndef _VOLUME3D_HXX
 #define _VOLUME3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _B3D_VOLUM_HXX
 #include <bf_goodies/b3dvolum.hxx>
 #endif

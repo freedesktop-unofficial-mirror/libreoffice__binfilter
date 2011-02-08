@@ -28,6 +28,8 @@
 #ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #define INCLUDED_SVTOOLS_NFKEYTAB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif

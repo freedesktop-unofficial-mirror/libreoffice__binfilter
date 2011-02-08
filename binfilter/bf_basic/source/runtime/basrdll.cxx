@@ -28,9 +28,7 @@
 /*?*/ // #ifndef _SV_SVAPP_HXX //autogen
 /*?*/ // #include <vcl/svapp.hxx>
 /*?*/ // #endif
-/*?*/ // #ifndef _SOLAR_HRC
-/*?*/ // #include <bf_svtools/solar.hrc>
-/*?*/ // #endif
+#include <bf_svtools/bf_solar.h>
 /*?*/ // #ifndef _TOOLS_DEBUG_HXX //autogen
 /*?*/ // #include <tools/debug.hxx>
 /*?*/ // #endif

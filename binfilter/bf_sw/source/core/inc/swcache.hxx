@@ -27,6 +27,8 @@
 #ifndef _SWCACHE_HXX
 #define _SWCACHE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 

@@ -27,6 +27,8 @@
 #ifndef _SVX_ITEMTYPE_HXX
 #define _SVX_ITEMTYPE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SVXITEMS_HRC

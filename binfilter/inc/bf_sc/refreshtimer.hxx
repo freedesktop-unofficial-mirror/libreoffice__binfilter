@@ -28,6 +28,8 @@
 #ifndef SC_REFRESHTIMER_HXX
 #define SC_REFRESHTIMER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
 #endif

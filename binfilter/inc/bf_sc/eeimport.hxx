@@ -27,6 +27,8 @@
 #ifndef SC_EEIMPORT_HXX
 #define SC_EEIMPORT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 class SvStream;
 class Table;

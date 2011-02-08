@@ -49,7 +49,7 @@
 #include "whassert.hxx"
 
 #include <tools/stream.hxx>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 namespace binfilter
 {

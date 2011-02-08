@@ -27,6 +27,8 @@
 #ifndef _SFX_MAP_HXX
 #define _SFX_MAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools.hxx>
 #include <sfxitems.hxx>
 namespace binfilter {

@@ -27,6 +27,8 @@
 #ifndef _PSEUDO_HXX
 #define _PSEUDO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UNQID_HXX //autogen
 #include <tools/unqid.hxx>
 #endif

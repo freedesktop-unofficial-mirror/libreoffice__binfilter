@@ -28,6 +28,9 @@
 #ifndef _B3D_B3DENTITY_HXX
 #define _B3D_B3DENTITY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #ifndef _B3D_B3DCOLOR_HXX
 #include "b3dcolor.hxx"
 #endif

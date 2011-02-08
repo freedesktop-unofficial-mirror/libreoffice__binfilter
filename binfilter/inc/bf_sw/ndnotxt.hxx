@@ -27,6 +27,8 @@
 #ifndef _NDNOTXT_HXX
 #define _NDNOTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "node.hxx"
 class PolyPolygon;
 namespace binfilter {

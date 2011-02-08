@@ -28,6 +28,8 @@
 #ifndef _XPMREAD_HXX
 #define _XPMREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _BITMAP_HXX
 #include <vcl/bitmap.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef SC_FUNCUNO_HXX
 #define SC_FUNCUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif

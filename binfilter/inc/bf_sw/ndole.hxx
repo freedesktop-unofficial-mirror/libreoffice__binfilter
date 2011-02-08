@@ -27,6 +27,8 @@
 #ifndef _NDOLE_HXX
 #define _NDOLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
 #endif

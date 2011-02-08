@@ -27,6 +27,8 @@
 #ifndef _NDHINTS_HXX
 #define _NDHINTS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>

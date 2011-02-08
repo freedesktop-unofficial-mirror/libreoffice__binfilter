@@ -27,6 +27,8 @@
 #ifndef _AUTHFLD_HXX
 #define _AUTHFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
 #endif

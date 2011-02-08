@@ -28,6 +28,8 @@
 #ifndef _SV_SECTION_HXX
 #define _SV_SECTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_SV_H
 #include <vcl/sv.h>
 #endif

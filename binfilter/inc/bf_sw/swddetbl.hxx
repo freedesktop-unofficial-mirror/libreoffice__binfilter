@@ -27,6 +27,8 @@
 #ifndef _SWDDETBL_HXX
 #define _SWDDETBL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swtable.hxx"
 namespace binfilter {
 

@@ -28,6 +28,8 @@
 #ifndef _XMLGRHLP_HXX
 #define _XMLGRHLP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
 #endif

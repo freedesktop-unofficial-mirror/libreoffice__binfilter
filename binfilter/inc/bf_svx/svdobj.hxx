@@ -28,6 +28,8 @@
 #ifndef _SVDOBJ_HXX
 #define _SVDOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <memory>
 
 #ifndef _CPPUHELPER_WEAKREF_HXX_

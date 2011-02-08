@@ -27,6 +27,8 @@
 #ifndef _SWBLOCKS_HXX
 #define _SWBLOCKS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
 #endif

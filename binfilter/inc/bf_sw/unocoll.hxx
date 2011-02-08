@@ -27,9 +27,8 @@
 #ifndef _UNOCOLL_HXX
 #define _UNOCOLL_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FLYENUM_HXX //autogen
 #include <flyenum.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _INFTXT_HXX
 #define _INFTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 #ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>

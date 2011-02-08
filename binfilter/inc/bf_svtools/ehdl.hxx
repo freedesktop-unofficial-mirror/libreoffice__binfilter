@@ -28,6 +28,8 @@
 #ifndef _EHDL_HXX
 #define _EHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef __RSC
 
 #ifndef INCLUDED_SVTDLLAPI_H

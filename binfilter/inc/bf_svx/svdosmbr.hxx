@@ -28,6 +28,8 @@
 #ifndef _SVDOSMBR_HXX
 #define _SVDOSMBR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_BRWBOX_HXX //autogen
 #include <bf_svtools/brwbox.hxx>
 #endif

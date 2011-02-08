@@ -27,9 +27,8 @@
 #ifndef _MDIEXP_HXX
 #define _MDIEXP_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
+
 class UniString;
 class Size;
 class Dialog;

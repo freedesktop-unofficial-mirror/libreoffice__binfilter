@@ -27,6 +27,8 @@
 #ifndef _SFX_FCONTNR_HXX
 #define _SFX_FCONTNR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
 #endif

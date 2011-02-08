@@ -28,6 +28,8 @@
 #ifndef SC_ATRARR_HXX
 #define SC_ATRARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_SCATTR_HXX
 #include "attrib.hxx"

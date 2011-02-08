@@ -28,6 +28,8 @@
 #ifndef SC_CHGTRACK_HXX
 #define SC_CHGTRACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>

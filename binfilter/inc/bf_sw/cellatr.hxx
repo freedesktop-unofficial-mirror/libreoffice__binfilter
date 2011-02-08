@@ -28,6 +28,8 @@
 #ifndef _CELLATR_HXX
 #define _CELLATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
 #endif

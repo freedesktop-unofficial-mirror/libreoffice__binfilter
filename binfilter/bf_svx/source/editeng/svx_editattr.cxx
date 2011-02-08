@@ -30,6 +30,8 @@
 #pragma hdrstop
 #endif
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _EEITEM_HXX
 #include "eeitem.hxx"
 #endif

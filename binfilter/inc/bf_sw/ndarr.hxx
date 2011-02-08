@@ -28,6 +28,8 @@
 #ifndef _NDARR_HXX
 #define _NDARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
 #endif

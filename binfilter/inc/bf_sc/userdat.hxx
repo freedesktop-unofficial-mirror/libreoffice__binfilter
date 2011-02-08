@@ -28,6 +28,8 @@
 #ifndef SC_USERDAT_HXX
 #define SC_USERDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
 #endif

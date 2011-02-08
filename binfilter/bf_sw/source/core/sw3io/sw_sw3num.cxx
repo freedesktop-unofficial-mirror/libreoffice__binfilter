@@ -30,6 +30,8 @@
 #pragma hdrstop
 #endif
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swerror.h"
 
 #ifndef _HORIORNT_HXX

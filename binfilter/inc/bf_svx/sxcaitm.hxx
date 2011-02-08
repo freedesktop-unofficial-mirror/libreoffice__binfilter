@@ -27,6 +27,8 @@
 #ifndef _SXCAITM_HXX
 #define _SXCAITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
 #endif

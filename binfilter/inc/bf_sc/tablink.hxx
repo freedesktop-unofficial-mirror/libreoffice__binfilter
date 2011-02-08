@@ -28,6 +28,8 @@
 #ifndef SC_TABLINK_HXX
 #define SC_TABLINK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
 #endif
