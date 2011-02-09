@@ -295,8 +295,6 @@ public:
     SfxProgress*                GetProgress() const;
     void                        SetWaitCursor( BOOL bSet ) const;
 
-//(mba)    virtual SotObjectRef        CreateAggObj( const SotFactory* pFact );
-
     // Naming Interface
     void                        SetTitle( const String& rTitle );
     String                      GetTitle( sal_uInt16 nMaxLen = 0 ) const;

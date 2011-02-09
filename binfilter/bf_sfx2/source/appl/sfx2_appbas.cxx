@@ -33,10 +33,7 @@
 #include <bf_svtools/rectitem.hxx>
 #include <bf_svtools/intitem.hxx>
 #include <bf_svtools/eitem.hxx>
-
 #include <bf_svtools/stritem.hxx>
-
-
 #include <bf_svtools/pathoptions.hxx>
 
 #ifdef _MSC_VER
@@ -126,21 +123,16 @@ BasicManager* SfxApplication::GetBasicManager()
             ( DEFINE_CONST_UNICODE( "StarBasic" ), pBasMgr );
         pBasicCont->acquire();  // Hold via UNO
         Reference< XLibraryContainer > xBasicCont = static_cast< XLibraryContainer* >( pBasicCont );
-//        pAppData_Impl->pBasicLibContainer = pBasicCont;
         pBasicCont->setBasicManager( pBasMgr );
 
         // Dialog container
         SfxDialogLibraryContainer* pDialogCont = new SfxDialogLibraryContainer( NULL );
         pDialogCont->acquire(); // Hold via UNO
         Reference< XLibraryContainer > xDialogCont = static_cast< XLibraryContainer* >( pDialogCont );
-//        pAppData_Impl->pDialogLibContainer = pDialogCont;
 
         LibraryContainerInfo* pInfo = new LibraryContainerInfo
             ( xBasicCont, xDialogCont, static_cast< OldBasicPassword* >( pBasicCont ) );
         pBasMgr->SetLibraryContainerInfo( pInfo );
-
-        // Konstanten
-//ASDBG     RegisterBasicConstants( "so", aConstants, sizeof(aConstants)/sizeof(SfxConstant) );
 
         // Durch MakeVariable wird das Basic modifiziert.
         if ( !bBasicWasModified )
@@ -159,23 +151,14 @@ BasicManager* SfxApplication::GetBasicManager()
 
 //--------------------------------------------------------------------
 
-
-//--------------------------------------------------------------------
-
 /*N*/ void SfxApplication::EnterBasicCall()
 /*N*/ {
 /*N*/   if ( 1 == ++pAppData_Impl->nBasicCallLevel )
 /*N*/   {
 /*N*/       DBG_TRACE( "SfxShellObject: BASIC-on-demand" );
 /*N*/
-/*N*/       // das kann l"anger dauern, da Progress nicht geht, wenigstens Sanduhr
-/*N*/ //(mba)/task        SfxWaitCursor aWait;
-/*N*/
 /*N*/       // zuerst das BASIC laden
 /*N*/       GetBasic();
-
-        // Factories anmelden
-//        SbxBase::AddFactory( new SfxSbxObjectFactory_Impl );
 /*N*/   }
 /*N*/ }
 

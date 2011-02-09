@@ -28,7 +28,6 @@
 #ifndef _SFXMINSTACK_HXX
 #define _SFXMINSTACK_HXX
 
-//ASDBG #ifndef _SFXMINARRAY_HXX
 namespace binfilter {
 
 #define DECL_OBJSTACK( ARR, T, nI, nG ) \

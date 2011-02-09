@@ -116,9 +116,6 @@ public:
     // XInterface, XTypeProvider
     SFX_DECL_XINTERFACE_XTYPEPROVIDER
 
-//ASDBG virtual void* getImplementation(Reflection *p)
-//ASDBG { return OWeakObject::getImplementation(p); }
-
     // XComponent
     virtual void SAL_CALL dispose() throw( ::com::sun::star::uno::RuntimeException );
     virtual void SAL_CALL addEventListener( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener >& aListener) throw( ::com::sun::star::uno::RuntimeException );
@@ -167,10 +164,6 @@ public:
 
     // XInterface, XTypeProvider, XServiceInfo
     SFX_DECL_XINTERFACE_XTYPEPROVIDER_XSERVICEINFO
-
-// ÎMPLNAME L"com.sun.star.comp.sfx2.StandaloneDocumentInfo"
-//ASDBG virtual void* getImplementation(Reflection *p)
-//ASDBG { return Sf::com::sun::star::document::XDocumentInfoObject::getImplementation(p); }
 
     // ::com::sun::star::document::XDocumentInfo
     virtual sal_Int16 SAL_CALL getUserFieldCount() throw( ::com::sun::star::uno::RuntimeException );
