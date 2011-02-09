@@ -81,12 +81,7 @@ SvXMLNamespaceMap::~SvXMLNamespaceMap()
 
 int SvXMLNamespaceMap::operator ==( const SvXMLNamespaceMap& rCmp ) const
 {
-#if STLPORT_VERSION >= 500
-//FIXME: STLport5 alternative map compare?
-    return static_cast < int > (aNameHash.size() == rCmp.aNameHash.size());
-#else
     return static_cast < int > (aNameHash == rCmp.aNameHash);
-#endif
 }
 
 sal_uInt16 SvXMLNamespaceMap::_Add( const OUString& rPrefix, const OUString &rName, sal_uInt16 nKey )

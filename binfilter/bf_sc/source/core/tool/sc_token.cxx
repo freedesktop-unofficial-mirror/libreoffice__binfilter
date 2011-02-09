@@ -32,11 +32,7 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#if STLPORT_VERSION<321
-#include <stddef.h>
-#else
 #include <cstddef>
-#endif
 #include <string.h>
 
 #include <tools/debug.hxx>

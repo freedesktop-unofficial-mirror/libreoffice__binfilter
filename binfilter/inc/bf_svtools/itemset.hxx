@@ -28,11 +28,7 @@
 #ifndef _SFXITEMSET_HXX
 #define _SFXITEMSET_HXX
 
-#if STLPORT_VERSION<321
-#include <stdarg.h>
-#else
 #include <cstdarg>  // std::va_list and friends
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 #include <tools/rtti.hxx>
