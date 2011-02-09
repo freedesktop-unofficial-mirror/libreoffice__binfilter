@@ -491,55 +491,6 @@ short SwW4WGraf::ReadW4WGrafBMap( long, long, long )    // Mastersoft internal F
 // W4W Vectorimport von Joe  (BEGIN) ///////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef JOEDEBUG
-
-
-void ShowW4WGrafRec(USHORT nRecID)
-{
-    static USHORT nLnCnt=0;
-    switch (nRecID) {
-        case W4WRG_Ignore: ShowMsg("Dummy     "); break;
-        case W4WRG_RecdID: ShowMsg("OrgFileTp "); break;
-        case W4WRG_DefPal: ShowMsg("Def_Pal  Û"); break;
-        case W4WRG_DefPen: ShowMsg("Def_Pen   "); break;
-        case W4WRG_DefBrs: ShowMsg("Def_Brs   "); break;
-        case W4WRG_DefMrk: ShowMsg("Def_Mark Û"); break;
-        case W4WRG_MoveTo: ShowMsg("Move_To   "); break;
-        case W4WRG_LineTo: ShowMsg("Line_To   "); break;
-        case W4WRG_FloodF: ShowMsg("FloodfillÛ"); break;
-        case W4WRG_SetFil: ShowMsg("Set_Fill Û"); break;
-        case W4WRG_DrMark: ShowMsg("Drw_Mark Û"); break;
-        case W4WRG_DrMrkP: ShowMsg("Drw_MarkAÛ"); break;
-        case W4WRG_DrRect: ShowMsg("Drw_Rect  "); break;
-        case W4WRG_DrPLin: ShowMsg("Drw_PLine "); break;
-        case W4WRG_DrPoly: ShowMsg("Drw_Poly  "); break;
-        case W4WRG_DrwArc: ShowMsg("Drw_Arc  Û"); break;
-        case W4WRG_DrwPie: ShowMsg("Drw_Pie  Û"); break;
-        case W4WRG_DrCirc: ShowMsg("Drw_Circ Û"); break;
-        case W4WRG_DrBMap: ShowMsg("Drw_BMap Û"); break;
-        case W4WRG_Scalng: ShowMsg("Set_ScaleÛ"); break;
-        case W4WRG_Rotate: ShowMsg("Set_Rota Û"); break;
-        case W4WRG_DefFnt: ShowMsg("Def_Font Û"); break;
-        case W4WRG_DrText: ShowMsg("Drw_Text Û"); break;
-        case W4WRG_BckCol: ShowMsg("Set_BCol Û"); break;
-        case W4WRG_StGrup: ShowMsg("Start_Grp "); break;
-        case W4WRG_EoGrup: ShowMsg("End_Grp   "); break;
-        case W4WRG_DrChrd: ShowMsg("Drw_ChordÛ"); break;
-        case W4WRG_DefP16: ShowMsg("Def_Pal16Û"); break;
-        case W4WRG_DefGCv: ShowMsg("Def_PalGrÛ"); break;
-        case W4WRG_DefFHd: ShowMsg("Def_FHeadÛ"); break;
-        case W4WRG_EoFile: ShowMsg("EOFÞÜÝÞßÝ \n"); break;
-    }
-    nLnCnt++;
-    if (nLnCnt>=23*8) {
-        nLnCnt=0;
-        WaitKey();
-    }
-}
-
-#endif
-
-
 BOOL SwW4WGraf::CheckW4WVector() // enth„lt die W4W-Grafik Vektordaten ? (Joe)
 {
     long   nFPosMerk = rInp.Tell();
@@ -620,13 +571,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
     nRecID   = GetHexUShort();
     nVarSize = GetVarSize();
 
-#ifdef JOEDEBUG
-//    ShowW4WGrafRec(nRecID);
-#endif
-
     switch (nRecID) {
-//        case W4WRG_DefPal: nRet=ReadPalette(nVarSize); break;
-//        case W4WRG_DrBMap: nRet=ReadBitmap(nVarSize);  break;
         case W4WRG_RecdID: {
             /* INT16   nId= */ GetHexUShort();
             /* INT16   nRes= */GetHexUShort();
