@@ -477,21 +477,6 @@ SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
 }
 
 /*--------------------------------------------------------------------
-    Beschreibung: Format aendern
- --------------------------------------------------------------------*/
-/*
- Was sollte das denn?
-void SwValueField::ChangeFormat(ULONG n)
-{
-    nFormat = n;
-}
-
-/*--------------------------------------------------------------------
-    Beschreibung: Format in Office-Sprache ermitteln
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
     Beschreibung: Sprache im Format anpassen
  --------------------------------------------------------------------*/
 

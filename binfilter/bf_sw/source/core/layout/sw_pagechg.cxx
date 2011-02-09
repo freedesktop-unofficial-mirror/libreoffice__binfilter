@@ -1826,6 +1826,9 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                               case HORI_LEFT:
 /*?*/                                   if ( PRTAREA == rHori.GetRelationOrient() )
 /*?*/                                       nWidth += pFrm->Prt().Left();
+/*N*/                                   break;
+/*N*/                               default:
+/*N*/                                   break;
 /*N*/                           }
 /*N*/                       }
 /*N*/                       else
@@ -1842,7 +1845,8 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/ //                        nWidth += rLR.GetLeft() + rLR.GetRight();
 /*N*/                       }
 /*N*/                       break;
-/*N*/                   default:    /* do nothing */;
+/*N*/                   default:
+/*N*/                       break;
 /*N*/               }
 /*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
 /*N*/           }

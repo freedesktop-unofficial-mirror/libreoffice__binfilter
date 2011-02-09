@@ -94,6 +94,7 @@ void SwXMLExport::ExportFmt( const SwFmt& rFmt, enum XMLTokenEnum eFamily )
     const SwFmt* pParent = rFmt.DerivedFrom();
     // Parent-Namen nur uebernehmen, wenn kein Default
     ASSERT( !pParent || pParent->IsDefault(), "unexpected parent" );
+    (void)pParent;
 
     ASSERT( USHRT_MAX == rFmt.GetPoolFmtId(), "pool ids arent'supported" );
     ASSERT( USHRT_MAX == rFmt.GetPoolHelpId(), "help ids arent'supported" );

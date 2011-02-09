@@ -948,16 +948,15 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                 }
             }
             break;
-#ifdef DBG_UTIL
-        default:    ASSERT( FALSE, "Unknown Anchor." );
-#endif
+        default:
+            break;
     }
     if ( GetAnchor() )
     {
         if( bSetAnchorPos )
         {
             GetMaster()->SetAnchorPos( GetAnchor()->GetFrmAnchorPos( ::binfilter::HasWrap( GetMaster() ) ) );
-    }
+        }
         if ( !pDrawFrmFmt->GetDoc()->IsVisibleLayerId( GetMaster()->GetLayer() ) )
         {
             SdrLayerID nVisibleLayerId =
