@@ -1286,7 +1286,7 @@ SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
     Reference < XNameAccess > xFamilies = xFamilySupplier->getStyleFamilies();
 
     Any aAny;
-    sal_uInt16 nMapId;
+    sal_uInt16 nMapId(0);
     switch( eFamily )
     {
         case SFX_STYLE_FAMILY_CHAR:
@@ -1910,7 +1910,7 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
             short nSet;
             rValue >>= nSet;
 
-            sal_uInt16 nId;
+            sal_uInt16 nId(0);
             switch( nSet )
             {
                 case ParagraphStyleCategory::TEXT:
@@ -2123,7 +2123,7 @@ Any lcl_GetStyleProperty(const SfxItemPropertyMap* pMap,
             {
                 SfxItemSet& rSet = rBase.GetItemSet();
                 aRet = rPropSet.getPropertyValue(*pMap, rSet);
-                sal_Int8 nBin;
+                sal_Int8 nBin(-1);
                 aRet >>= nBin;
                 if ( nBin == -1 )
                     aRet <<= OUString ( RTL_CONSTASCII_USTRINGPARAM ( "[From printer settings]" ) );
