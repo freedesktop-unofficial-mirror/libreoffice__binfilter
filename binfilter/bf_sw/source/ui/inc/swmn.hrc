@@ -4505,10 +4505,6 @@ MenuItem _MN_VIEW
                         };
                         MenuItem
                         {
-                            ITEM_INSERT_HYPERLINK_INSERT
-                        };
-                        MenuItem
-                        {
                             Identifier = FN_EDIT_FORMULA ;
                             HelpID = FN_EDIT_FORMULA ;
                             Text [ de ] = "~Rechenleiste" ;

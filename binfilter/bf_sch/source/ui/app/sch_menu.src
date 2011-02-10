@@ -486,10 +486,6 @@ Menu RID_MENU
                                 };
                                 MenuItem
                                 {
-                                    ITEM_INSERT_HYPERLINK_INSERT
-                                };
-                                MenuItem
-                                {
                                     Separator = TRUE ;
                                 };
                                 MenuItem

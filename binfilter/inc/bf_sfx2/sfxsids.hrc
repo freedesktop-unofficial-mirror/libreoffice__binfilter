@@ -1103,7 +1103,6 @@
 // SlotIds f"ur Hyperlink-Dialog --------------------------------------------
 #define SID_SVX_START                       (SID_LIB_START +   0)
 
-#define SID_HYPERLINK_INSERT                (SID_SVX_START + 360)
 #define SID_HYPERLINK_GETLINK               (SID_SVX_START + 361)
 #define SID_HYPERLINK_SETLINK               (SID_SVX_START + 362)
 
