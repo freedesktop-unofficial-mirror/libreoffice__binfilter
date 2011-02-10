@@ -1338,7 +1338,7 @@ void SwW4WParser::Read_UpperCharSet()           // (UCS)
         bWasXCS = FALSE;        // nach einem XCS ueberlesen
         return;
     }
-    BYTE c, cRet;
+    BYTE c, cRet(0);
     while( !nError && W4WR_RED != ( cRet = GetHexByte( c )) )
         if( cRet == W4WR_TXTERM )
         {

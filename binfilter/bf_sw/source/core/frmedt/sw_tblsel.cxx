@@ -409,7 +409,7 @@ namespace binfilter {
 /*N*/           // alle Zellen der (Teil-)Tabelle zusammen. Dann teste mal ob
 /*N*/           // all huebsch nebeneinander liegen.
 /*N*/           USHORT n, nEnd, nCellCnt = 0;
-/*N*/           long nYPos = LONG_MAX, nXPos, nHeight;
+/*N*/           long nYPos = LONG_MAX, nXPos(0), nHeight(0);
 /*N*/
 /*N*/           for( n = 0, nEnd = aCellFrms.Count(); n < nEnd; ++n )
 /*N*/           {

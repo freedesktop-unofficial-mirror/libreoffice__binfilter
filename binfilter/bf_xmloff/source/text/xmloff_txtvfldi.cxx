@@ -961,7 +961,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
             // sPropertySubType
             OUString::createFromAscii(sAPI_sub_type)
             );
-        sal_Int16 nType;
+        sal_Int16 nType(0);
         aAny >>= nType;
 
         enum VarType eFMVarType =

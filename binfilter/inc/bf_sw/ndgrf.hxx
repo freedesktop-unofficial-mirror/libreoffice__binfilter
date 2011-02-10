@@ -51,7 +51,6 @@ class SwGrfNode: public SwNoTxtNode
     BfGraphicObject aGrfObj;
     ::binfilter::SvBaseLinkRef refLink;     // falls Grafik nur als Link, dann Pointer gesetzt
     Size nGrfSize;
-//  String aStrmName;           // SW3: Name des Storage-Streams fuer Embedded
     String aNewStrmName;        // SW3/XML: new stream name (either SW3 stream
                                 // name or package url)
     String aLowResGrf;          // HTML: LowRes Grafik (Ersatzdarstellung bis
@@ -83,7 +82,7 @@ class SwGrfNode: public SwNoTxtNode
                SwAttrSet* pAutoAttr = 0 );
 
     void InsertLink( const String& rGrfName, const String& rFltName );
-    BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    BOOL ImportGraphic( SvStream& ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
 

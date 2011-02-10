@@ -552,7 +552,7 @@ String SwGetRefField::GetPar2() const
 /*N*/   {
 /*N*/   case FIELD_PROP_USHORT1:
 /*N*/       {
-/*N*/           sal_Int16 nPart;
+/*N*/           sal_Int16 nPart(0);
 /*N*/           rAny >>= nPart;
 /*N*/           switch(nPart)
 /*N*/           {
@@ -571,7 +571,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       break;
 /*N*/   case FIELD_PROP_USHORT2:
 /*N*/       {
-/*N*/           sal_Int16 nSource;
+/*N*/           sal_Int16 nSource(0);
 /*N*/           rAny >>= nSource;
 /*N*/           switch(nSource)
 /*N*/           {
@@ -600,7 +600,7 @@ String SwGetRefField::GetPar2() const
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       {
-/*N*/           sal_Int16 nSetSeq;
+/*N*/           sal_Int16 nSetSeq(0);
 /*N*/           rAny >>= nSetSeq;
 /*N*/           if(nSetSeq >= 0)
 /*N*/               nSeqNo = nSetSeq;

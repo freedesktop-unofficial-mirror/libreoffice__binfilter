@@ -272,7 +272,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ BOOL SwDateTimeField::PutValue( const uno::Any& rVal, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
-/*N*/   sal_Int32 nTmp;
+/*N*/   sal_Int32 nTmp(0);
 /*N*/   switch( nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_BOOL1:

@@ -414,7 +414,7 @@ void SwW4WParser::Read_ParaNumberDef()              // (PND)
     BYTE nW4WAttachPrev;    // g
 
     USHORT nStartNo;    // Start-Nr. fuer den Writer
-    BYTE nUpperLevel;   // aktuelle Anzeigetiefe fuer den Writer
+    BYTE nUpperLevel(0); // aktuelle Anzeigetiefe fuer den Writer
     SvxExtNumType eType;        // Writer-Num-Typ
 
     BOOL bError = TRUE;

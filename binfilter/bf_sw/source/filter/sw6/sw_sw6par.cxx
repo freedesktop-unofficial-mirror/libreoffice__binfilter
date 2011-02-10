@@ -5545,7 +5545,6 @@ SwSw6Parser::~SwSw6Parser(void)
 ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
 {
     ULONG nRet = ERR_SWG_READ_ERROR;
-#ifndef COMPACT
 
     if( pStrm )
     {
@@ -5560,9 +5559,7 @@ ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
         pSw6Parser->CallParser();
         delete pSw6Parser;
     }
-    else
-        ASSERT( !this, "SW6-Read ohne Stream" );
-#endif
+
     return nRet;
 }
 

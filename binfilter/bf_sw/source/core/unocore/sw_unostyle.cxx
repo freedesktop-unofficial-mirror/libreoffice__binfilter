@@ -1907,7 +1907,7 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
         {
             if(!rBase.pNewBase->IsUserDefined())
                 throw lang::IllegalArgumentException();
-            short nSet;
+            short nSet(0);
             rValue >>= nSet;
 
             sal_uInt16 nId(0);
@@ -2638,7 +2638,7 @@ void SAL_CALL SwXStyle::setAllPropertiesToDefault(  )
                     }
                 }
                 break;
-            case SFX_STYLE_FAMILY_PSEUDO:
+            default:
                 break;
             }
             if( pTargetFmt )
@@ -2728,6 +2728,7 @@ Sequence< Any > SAL_CALL SwXStyle::getPropertyDefaults( const Sequence< OUString
                     case SFX_STYLE_FAMILY_FRAME: nPropSetId = PROPERTY_SET_FRAME_STYLE ;break;
                     case SFX_STYLE_FAMILY_PAGE: nPropSetId = PROPERTY_SET_PAGE_STYLE  ;break;
                     case SFX_STYLE_FAMILY_PSEUDO: nPropSetId = PROPERTY_SET_NUM_STYLE   ;break;
+                    default: break;
                 }
 
                 const SfxItemSet &rSet = aStyle.GetItemSet(), *pParentSet = rSet.GetParent();
