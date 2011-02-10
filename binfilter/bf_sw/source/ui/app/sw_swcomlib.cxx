@@ -128,20 +128,9 @@ ULONG   SwDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
                 nRet = ERRCODE_NONE;
                 break;
             }
-
-            // beim Browsen soll keine Filterbox kommen, wenn das Dokument nicht
-            // in den ersten paar Bytes HTML-Tags hat (MA/ST/...). Solche Dok.
-            // erzeugen z.B. SearchEngines
-//JP 20.07.00: from now on we are not a browser
-//          else if( aPrefFlt == C2S(sHTML) )
-//          {
-//              nRet = ERRCODE_NONE;
-//              break;
-//          }
         }
 
-        const SfxFilter* pTmp = SwIoSystem::GetFileFilter( rMedium.GetPhysicalName(),
-                                                            aPrefFlt, &rMedium );
+        const SfxFilter* pTmp = SwIoSystem::GetFileFilter(rMedium.GetPhysicalName(), &rMedium);
         if( !pTmp )
             nRet = ERRCODE_ABORT;
 

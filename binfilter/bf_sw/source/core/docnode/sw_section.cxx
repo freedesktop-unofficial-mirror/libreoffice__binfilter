@@ -831,7 +831,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       }
 /*N*/
 /*N*/       if( !pSfxFlt )
-/*N*/           pSfxFlt = SwIoSystem::GetFileFilter( pMed->GetPhysicalName(), aEmptyStr );
+/*N*/           pSfxFlt = SwIoSystem::GetFileFilter(pMed->GetPhysicalName());
 /*N*/
 /*N*/       if( pSfxFlt )
 /*N*/       {

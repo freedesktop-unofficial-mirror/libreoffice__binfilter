@@ -456,7 +456,6 @@ public:
     // Datei. Der Filtername wird zurueckgeliefert. Konnte kein Filter
     // zurueckgeliefert werden, wird der Name des ASCII-Filters geliefert!
     static const SfxFilter* GetFileFilter( const String& rFileName,
-                                            const String& rPrefFltName,
                                             SfxMedium* pMedium = 0 );
 
         // Feststellen ob das File in dem vorgegebenen Format vorliegt.

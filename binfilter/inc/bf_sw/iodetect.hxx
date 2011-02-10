@@ -61,7 +61,7 @@ struct SwIoDetect
         { if( fnGetWriter ) (*fnGetWriter)(rNm,xWrt); else xWrt = WriterRef(0); }
 #endif
 
-    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nLen,
+    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nInLen,
         const String &rFileName) const;
 };
 
@@ -207,7 +207,7 @@ struct W1_FIB
 #endif
 
 #define IO_DETECT_IMPL2 \
-const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
+const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen, \
     const String &rFileName) const              \
 {                                                                           \
     int bRet = FALSE;                                                       \
@@ -252,7 +252,7 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
                   0 == strncmp( sSw6_FormatEnd, pHeader + 12 + 1, 4 );          \
     }                                                                       \
     else if (FILTER_TEXT == pName) \
-        bRet = SwIoSystem::IsDetectableText(pHeader, nLen); \
+        bRet = SwIoSystem::IsDetectableText(pHeader, nInLen); \
     else if (FILTER_W4W == pName) \
     bRet = SwIoSystem::IsDetectableW4W(rFileName); \
     return bRet ? pName : 0;                                       \
@@ -420,10 +420,7 @@ bool SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,      
 /* Es wird versucht, eine dem Filter entsprechende Byte-Folge zu finden.  */ \
 /* Wird kein entsprechender gefunden, wird zur Zeit der ASCII-Reader      */ \
 /* returnt !! Der Returnwert ist der interne Filtername!                  */ \
-/* rPrefFltName ist der interne Name des Filters, den der Benutzer im     */ \
-/* Open-Dialog eingestellt hat.                                           */ \
 const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
-                                             const String& rPrefFltName,      \
                                              SfxMedium* pMedium )             \
 {                                                                            \
     SfxFactoryFilterContainer* pFCntnr = IsDocShellRegistered()              \
@@ -505,13 +502,13 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     /* nie erkannt und es wird auch der ASCII-Filter returnt.             */ \
     /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/ \
     {                                                                        \
-        const SfxFilter* pFilter;                                            \
+        const SfxFilter* pLclFilter;                                         \
         const sal_Char* pNm;                                                 \
         for( USHORT n = 0; n < MAXFILTER; ++n )                              \
             if( 0 != ( pNm = aReaderWriter[n].IsReader(aBuffer, nBytesRead, rFileName)) &&        \
-                0 != ( pFilter =  SwIoSystem::GetFilterOfFormat(             \
+                0 != ( pLclFilter =  SwIoSystem::GetFilterOfFormat(          \
                                 String::CreateFromAscii(pNm), pFCntnr )))    \
-                return pFilter;                                              \
+                return pLclFilter;                                           \
     }                                                                        \
                                                                              \
     /* Ok, bis jetzt kein Filter gefunden, also befrage mal die */           \
@@ -575,7 +572,7 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
         rLen-=nHead;\
     }\
 \
-    bool bCR = false, bLF = false, bNoNormalChar = false, \
+    bool bCR = false, bLF = false, \
         bIsBareUnicode = false;\
 \
     if (eCharSet != RTL_TEXTENCODING_DONTKNOW)\
@@ -661,8 +658,6 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
                 case 0x9:\
                     break;\
                 default:\
-                    if (0x20 > (BYTE)*pBuf)\
-                        bNoNormalChar = true;\
                     break;\
             }\
         }\
@@ -686,9 +681,9 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
 }\
 \
 \
-const SfxFilter* SwIoSystem::GetTextFilter( const sal_Char* pBuf, ULONG nLen)\
+const SfxFilter* SwIoSystem::GetTextFilter( const sal_Char* pBuf, ULONG nInLen)\
 {                                                                            \
-    bool bAuto = IsDetectableText(pBuf, nLen); \
+    bool bAuto = IsDetectableText(pBuf, nInLen); \
     const sal_Char* pNm = bAuto ? FILTER_TEXT : FILTER_TEXT_DLG; \
     return SwIoSystem::GetFilterOfFormat( String::CreateFromAscii(pNm), 0 ); \
 } \

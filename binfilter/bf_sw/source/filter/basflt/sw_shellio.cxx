@@ -228,24 +228,24 @@ using namespace ::com::sun::star;
 // Initiales Einlesben
 
 
-/*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pDoc )
-/*N*/   : SwDocFac( pDoc ),
+/*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pInDoc )
+/*N*/   : SwDocFac( pInDoc ),
 /*N*/   pStrm( 0 ),
 /*N*/   pStg( &rStg ),
 /*N*/   pMedium( 0 ),
-/*N*/   aFileName( rFileName ),
-/*N*/   pCrsr( 0 )
+/*N*/   pCrsr( 0 ),
+/*N*/   aFileName( rFileName )
 /*N*/ {
 /*N*/ }
 
 
- SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pDoc )
-    : SwDocFac( pDoc ),
+ SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pInDoc )
+    : SwDocFac( pInDoc ),
     pStrm( 0 ),
     pStg( 0 ),
     pMedium( &rMedium ),
-    aFileName( rFileName ),
-    pCrsr( 0 )
+    pCrsr( 0 ),
+    aFileName( rFileName )
  {
  }
 
@@ -253,17 +253,21 @@ using namespace ::com::sun::star;
 
  SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwPaM& rPam )
     : SwDocFac( rPam.GetDoc() ),
-    aFileName( rFileName ),
-    pStg( 0 ),
     pStrm( 0 ),
+    pStg( 0 ),
     pMedium( &rMedium ),
-    pCrsr( &rPam )
+    pCrsr( &rPam ),
+    aFileName( rFileName )
  {
  }
 /*N*/ Reader::Reader()
-/*N*/   : pStrm(0), pStg(0), pMedium(0), pTemplate(0),
-/*N*/   bTmplBrowseMode( FALSE ), bInsertMode( FALSE ),
-/*N*/   bReadUTF8( FALSE ), bBlockMode( FALSE ), bOrganizerMode( FALSE ),
+/*N*/   : pTemplate(0)
+/*N*/   , pStrm(0)
+/*N*/   , pStg(0)
+/*N*/   , pMedium(0)
+/*N*/   , bInsertMode( FALSE )
+/*N*/   , bTmplBrowseMode( FALSE )
+/*N*/   , bReadUTF8( FALSE ), bBlockMode( FALSE ), bOrganizerMode( FALSE ),
 /*N*/     bHasAskTemplateName( FALSE ), bIgnoreHTMLComments( FALSE )
 /*N*/ {
 /*N*/ }

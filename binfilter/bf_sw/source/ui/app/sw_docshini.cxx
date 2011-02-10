@@ -686,7 +686,7 @@ using namespace ::rtl;
 /*?*/           if( SvStorage::IsStorageFile( rNm ) )
 /*?*/               break;
 /*?*/
-/*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter( rNm, aEmptyStr );
+/*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter(rNm);
 /*?*/           if( !pFltr || !pFltr->GetUserData().EqualsAscii( FILTER_SWG ))
 /*?*/               break;
 /*?*/

@@ -93,6 +93,7 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/                       )
 /*N*/ {
 /*N*/   ASSERT( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
+/*N*/   (void)pNm;
 /*N*/   aReaderWriter[ rPos++ ].pReader = pReader;
 /*N*/ }
 
