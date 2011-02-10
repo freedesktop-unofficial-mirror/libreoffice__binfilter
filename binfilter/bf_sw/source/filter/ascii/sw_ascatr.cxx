@@ -203,8 +203,8 @@ public:
 /*N*/   } while( nStrPos < nEnde );
 /*N*/
 /*N*/   if( !bLastNd ||
-/*N*/       ( !rWrt.bWriteClipboardDoc && !rWrt.bASCII_NoLastLineEnd )
-/*N*/           && !nStrPos && nEnde == nNodeEnde )
+/*N*/       (( !rWrt.bWriteClipboardDoc && !rWrt.bASCII_NoLastLineEnd )
+/*N*/           && !nStrPos && nEnde == nNodeEnde ))
 /*?*/       rWrt.Strm().WriteUnicodeOrByteText( ((SwASCWriter&)rWrt).GetLineEnd());
 /*N*/
 /*N*/   return rWrt;
