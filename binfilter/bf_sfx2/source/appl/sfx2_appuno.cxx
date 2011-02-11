@@ -65,7 +65,6 @@ using namespace ::com::sun::star::document;
 #include "sfxsids.hrc"
 #include "objuno.hxx"
 #include "fltoptint.hxx"
-#include "brokenpackageint.hxx"
 #include "eventsupplier.hxx"
 #include "namecont.hxx"
 #include "dlgcont.hxx"
@@ -1008,7 +1007,7 @@ extern "C" {
 /*N*/
 /*N*/       m_aRequest <<= aOptionsRequest;
 /*N*/
-/*N*/       m_pAbort  = new ContinuationAbort;
+/*N*/       m_pAbort  = new comphelper::OInteractionAbort;
 /*N*/       m_pOptions = new FilterOptionsContinuation;
 /*N*/
 /*N*/       m_lContinuations.realloc( 2 );

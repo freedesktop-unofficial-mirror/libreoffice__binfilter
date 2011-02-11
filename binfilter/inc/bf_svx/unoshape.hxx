@@ -27,6 +27,8 @@
 #ifndef _SVX_UNOSHAPE_HXX
 #define _SVX_UNOSHAPE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
 #endif

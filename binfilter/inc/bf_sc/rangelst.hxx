@@ -28,6 +28,8 @@
 #ifndef SC_RANGELST_HXX
 #define SC_RANGELST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif

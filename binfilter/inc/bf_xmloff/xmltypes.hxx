@@ -28,7 +28,11 @@
 
 #ifndef _XMLOFF_XMLTYPES_HXX
 #define _XMLOFF_XMLTYPES_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
+
 ///////////////////////////////////////////////////////////////////////////////
 // Flags to specify how to im/export the property
 //

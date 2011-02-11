@@ -28,6 +28,8 @@
 #ifndef SC_COLUMN_HXX
 #define SC_COLUMN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_MARKARR_HXX
 #include "markarr.hxx"
 #endif

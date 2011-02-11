@@ -27,6 +27,8 @@
 #ifndef _GOODIES_IMAPCIRC_HXX
 #define _GOODIES_IMAPCIRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif

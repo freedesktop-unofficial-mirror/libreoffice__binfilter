@@ -27,6 +27,8 @@
 #ifndef _UNOEVTLSTNR_HXX
 #define _UNOEVTLSTNR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
 #endif

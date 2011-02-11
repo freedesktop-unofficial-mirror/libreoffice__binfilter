@@ -28,6 +28,8 @@
 #ifndef _OUTPLACE_HXX
 #define _OUTPLACE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
 #endif

@@ -27,6 +27,9 @@
 
 #ifndef _SGFFILT_HXX
 #define _SGFFILT_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
 #endif

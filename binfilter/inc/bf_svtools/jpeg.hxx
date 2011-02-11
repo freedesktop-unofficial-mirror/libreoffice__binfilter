@@ -28,6 +28,8 @@
 #ifndef _JPEG_HXX
 #define _JPEG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif

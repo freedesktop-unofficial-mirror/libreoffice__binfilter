@@ -27,6 +27,8 @@
 #ifndef _UNODRAW_HXX
 #define _UNODRAW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_FMDPAGE_HXX //autogen
 #include <bf_svx/fmdpage.hxx>
 #endif

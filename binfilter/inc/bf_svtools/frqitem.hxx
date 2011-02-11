@@ -28,6 +28,8 @@
 #ifndef _FRQITEM_HXX
 #define _FRQITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
 #endif

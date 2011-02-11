@@ -28,6 +28,8 @@
 #ifndef _SVDIO_HXX
 #define _SVDIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif

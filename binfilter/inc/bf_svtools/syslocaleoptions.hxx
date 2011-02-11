@@ -39,9 +39,7 @@
 #include <rtl/ustring.hxx>
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif

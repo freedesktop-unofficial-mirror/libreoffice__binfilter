@@ -28,9 +28,8 @@
 #ifndef _SVDTOUCH_HXX
 #define _SVDTOUCH_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
+
 class Point;
 class Polygon;
 class PolyPolygon;

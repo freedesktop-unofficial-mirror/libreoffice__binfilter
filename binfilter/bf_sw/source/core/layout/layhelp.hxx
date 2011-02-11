@@ -27,6 +27,8 @@
 #ifndef _LAYHELP_HXX
 #define _LAYHELP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_ULONGS

@@ -28,6 +28,8 @@
 #ifndef _PAMTYP_HXX
 #define _PAMTYP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TXTCMP_HXX //autogen
 #include <bf_svtools/txtcmp.hxx>
 #endif

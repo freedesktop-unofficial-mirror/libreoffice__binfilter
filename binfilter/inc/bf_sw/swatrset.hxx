@@ -27,9 +27,7 @@
 #ifndef _SWATRSET_HXX
 #define _SWATRSET_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>

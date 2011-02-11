@@ -32,9 +32,7 @@
 
 #include <stdlib.h>             // fuer qsort
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #include "errhdl.hxx"           // fuers ASSERT
 #include "index.hxx"

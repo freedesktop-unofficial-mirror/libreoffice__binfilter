@@ -28,6 +28,8 @@
 #ifndef _XEXPTRANSFORM_HXX
 #define _XEXPTRANSFORM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
 #endif

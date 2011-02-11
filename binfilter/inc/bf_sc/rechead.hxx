@@ -28,6 +28,8 @@
 #ifndef SC_RECHEAD_HXX
 #define SC_RECHEAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif

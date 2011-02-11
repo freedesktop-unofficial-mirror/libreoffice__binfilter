@@ -27,6 +27,8 @@
 #ifndef _NDTXT_HXX
 #define _NDTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _NODE_HXX
 #include <node.hxx>
 #endif

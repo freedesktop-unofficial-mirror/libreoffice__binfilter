@@ -27,6 +27,8 @@
 #ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #define _SW_HF_EAT_SPACINGITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>

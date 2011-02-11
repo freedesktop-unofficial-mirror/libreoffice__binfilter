@@ -27,6 +27,8 @@
 #ifndef _WORKCTRL_HXX
 #define _WORKCTRL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
 #endif
@@ -38,7 +40,7 @@
 #include <bf_svtools/stdctrl.hxx>
 #endif
 #ifndef _IMAGEBTN_HXX //autogen
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #endif
 class PopupMenu;
 namespace binfilter {

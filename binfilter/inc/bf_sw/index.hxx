@@ -27,11 +27,9 @@
 #ifndef _INDEX_HXX
 #define _INDEX_HXX
 
-#include <limits.h>
+#include <bf_svtools/bf_solar.h>
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <limits.h>
 
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>               // for RTTI of SwIndexReg

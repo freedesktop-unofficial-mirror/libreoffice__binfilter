@@ -27,6 +27,8 @@
 #ifndef _SFXGENLINK_HXX
 #define _SFXGENLINK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif

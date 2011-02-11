@@ -33,6 +33,8 @@
 #pragma hdrstop
 #endif
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
 #endif
@@ -66,7 +68,8 @@
 #include "docfile.hxx"
 
 #ifdef WNT
-#include <tools/svwin.h>
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
 #endif
 namespace binfilter {
 

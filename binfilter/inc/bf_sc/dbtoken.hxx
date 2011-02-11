@@ -28,6 +28,8 @@
 #ifndef _DBTOKEN_HXX
 #define _DBTOKEN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
 #endif

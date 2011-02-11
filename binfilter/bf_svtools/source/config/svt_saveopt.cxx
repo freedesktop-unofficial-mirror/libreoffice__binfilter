@@ -31,6 +31,7 @@
 #ifndef GCC
 #endif
 
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/saveopt.hxx>
 
 #ifndef INCLUDED_RTL_INSTANCE_HXX

@@ -27,6 +27,8 @@
 #ifndef _USRPREF_HXX
 #define _USRPREF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #ifndef _UTL_CONFIGITEM_HXX_
@@ -37,9 +39,7 @@
 #endif
 #include "viewopt.hxx"
 
-#ifndef _VCL_FLDUNIT_HXX
-#include <vcl/fldunit.hxx>
-#endif
+#include <tools/fldunit.hxx>
 namespace binfilter {
 
 /* -----------------------------28.09.00 09:45--------------------------------

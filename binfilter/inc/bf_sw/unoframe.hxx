@@ -27,6 +27,8 @@
 #ifndef _UNOFRAME_HXX
 #define _UNOFRAME_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif

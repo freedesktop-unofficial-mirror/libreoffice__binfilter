@@ -28,6 +28,8 @@
 #ifndef _SVX_UNOTEXT_HXX
 #define _SVX_UNOTEXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LINK_HXX
 #include <tools/link.hxx>
 #endif

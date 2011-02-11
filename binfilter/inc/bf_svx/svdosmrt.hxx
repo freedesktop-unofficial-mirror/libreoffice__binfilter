@@ -28,6 +28,8 @@
 #ifndef _SVDSMRT_HXX
 #define _SVDSMRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
 #endif

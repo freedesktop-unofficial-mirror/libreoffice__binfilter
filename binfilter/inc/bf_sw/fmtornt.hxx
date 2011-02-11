@@ -27,6 +27,8 @@
 #ifndef _FMTORNT_HXX
 #define _FMTORNT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
 #endif

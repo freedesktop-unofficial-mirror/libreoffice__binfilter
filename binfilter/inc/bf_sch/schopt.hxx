@@ -28,6 +28,8 @@
 #ifndef _SCH_SCHOPT_HXX
 #define _SCH_SCHOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // header for TYPEINFO
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>

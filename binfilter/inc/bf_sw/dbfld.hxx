@@ -27,6 +27,8 @@
 #ifndef _DBFLD_HXX
 #define _DBFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "fldbas.hxx"
 #ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>

@@ -28,6 +28,8 @@
 #ifndef _SVDOTEXT_HXX
 #define _SVDOTEXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
 #endif

@@ -28,6 +28,9 @@
 #ifndef _B3D_POINT4D_HXX
 #define _B3D_POINT4D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #ifndef _SVX_VECTOR3D_HXX //autogen
 #include "vector3d.hxx"
 #endif

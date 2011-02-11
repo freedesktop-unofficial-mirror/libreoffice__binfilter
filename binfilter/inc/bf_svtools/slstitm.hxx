@@ -27,6 +27,8 @@
 #ifndef _SFXSLSTITM_HXX
 #define _SFXSLSTITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif

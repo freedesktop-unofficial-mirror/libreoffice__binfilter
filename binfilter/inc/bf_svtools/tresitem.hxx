@@ -28,6 +28,8 @@
 #ifndef SVTOOLS_TRESITEM_HXX
 #define SVTOOLS_TRESITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_UCB_TRANSFERRESULT_HPP_
 #include <com/sun/star/ucb/TransferResult.hpp>
 #endif

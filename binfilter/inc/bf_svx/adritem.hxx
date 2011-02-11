@@ -27,6 +27,8 @@
 #ifndef _SVX_ADRITEM_HXX
 #define _SVX_ADRITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXSTRITEM_HXX //autogen

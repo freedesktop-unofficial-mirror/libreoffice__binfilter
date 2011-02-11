@@ -28,6 +28,8 @@
 #ifndef _EDITOBJ_HXX
 #define _EDITOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STREAM_HXX
 #include <tools/stream.hxx>
 #endif

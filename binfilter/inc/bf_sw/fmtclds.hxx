@@ -27,6 +27,8 @@
 #ifndef _FMTCLDS_HXX
 #define _FMTCLDS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COLOR_HXX
 #include <tools/color.hxx>
 #endif
