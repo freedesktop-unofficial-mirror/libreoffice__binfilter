@@ -28,6 +28,8 @@
 #ifndef _IODETECT_HXX
 #define _IODETECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 

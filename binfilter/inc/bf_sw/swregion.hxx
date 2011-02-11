@@ -27,6 +27,8 @@
 #ifndef _SWREGION_HXX
 #define _SWREGION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
 #endif

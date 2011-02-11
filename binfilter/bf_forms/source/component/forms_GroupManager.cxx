@@ -37,9 +37,7 @@
 #include <comphelper/property.hxx>
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #include "property.hrc"
 

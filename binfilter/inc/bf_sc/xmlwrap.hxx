@@ -36,7 +36,11 @@ namespace com { namespace sun { namespace star {
 
 #ifndef SC_XMLWRAP_HXX
 #define SC_XMLWRAP_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
+
 
 class SvStorage;
 class ScDocument;

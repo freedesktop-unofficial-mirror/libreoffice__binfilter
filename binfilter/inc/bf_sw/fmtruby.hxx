@@ -27,6 +27,8 @@
 #ifndef _FMTRUBY_HXX
 #define _FMTRUBY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>

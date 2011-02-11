@@ -27,6 +27,8 @@
 #ifndef _SVT_LISTENER_HXX
 #define _SVT_LISTENER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
 #endif

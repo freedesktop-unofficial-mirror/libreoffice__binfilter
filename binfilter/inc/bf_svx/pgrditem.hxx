@@ -27,6 +27,8 @@
 #ifndef _SVX_PGRDITEM_HXX
 #define _SVX_PGRDITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXENUMITEM_HXX //autogen

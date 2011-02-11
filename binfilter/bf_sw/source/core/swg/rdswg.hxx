@@ -27,6 +27,8 @@
 #ifndef _RDSWG_HXX
 #define _RDSWG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_PRNTYPES_HXX //autogen
 #include <vcl/prntypes.hxx>
 #endif

@@ -583,18 +583,7 @@ using namespace ::rtl;
 //          break;
 
 /*N*/       case SFX_CREATE_MODE_ORGANIZER:
-/*?*/           if( bXML )
-/*?*/           {
-/*?*/               if( ReadXML )
-/*?*/               {
-/*?*/                   ReadXML->SetOrganizerMode( TRUE );
-/*?*/                   SwReader aRdr( *pStor, aEmptyStr, pDoc );
-/*?*/                   nErr = aRdr.Read( *ReadXML );
-/*?*/                   ReadXML->SetOrganizerMode( FALSE );
-/*?*/               }
-/*?*/           }
-/*?*/           else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
+              {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/           break;
 
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
@@ -609,7 +598,9 @@ using namespace ::rtl;
 /*N*/       case SFX_CREATE_MODE_STANDARD:
 /*N*/       case SFX_CREATE_MODE_PREVIEW:
 /*N*/           {
-/*N*/               Reader *pReader = bXML ? ReadXML : ReadSw3;
+/*N*/               Reader *pReader = bXML ? 0 /*ReadXML*/ : ReadSw3;
+                    OSL_ENSURE( !bXML, "ReadXML removed");
+
 /*N*/               if( pReader )
 /*N*/               {
 /*N*/                   // die DocInfo vom Doc am DocShell-Medium setzen
@@ -752,16 +743,8 @@ using namespace ::rtl;
 /*?*/           // Das Laden
 /*?*/           if( bXML )
 /*?*/           {
-/*?*/               ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
-/*?*/               pBasePool = new SwDocStyleSheetPool( *pDoc,
-/*?*/                               SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
-/*?*/               if( ReadXML )
-/*?*/               {
-/*?*/                   ReadXML->SetOrganizerMode( TRUE );
-/*?*/                   SwReader aRdr( *pStor, aEmptyStr, pDoc );
-/*?*/                   nErr = aRdr.Read( *ReadXML );
-/*?*/                   ReadXML->SetOrganizerMode( FALSE );
-/*?*/               }
+                    OSL_ASSERT("ReadXML removed");
+
 /*?*/           }
 /*?*/           else
 /*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nErr = pIo->LoadStyles( pStor );

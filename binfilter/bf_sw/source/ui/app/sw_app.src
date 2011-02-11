@@ -26,8 +26,6 @@
  ************************************************************************/
 #define NO_LOCALIZE_EXPORT
 
-
-
 #include <bf_svtools/style.hrc>
 #include <bf_sfx2/sfx.hrc>
 #include <bf_svx/dialogs.hrc>

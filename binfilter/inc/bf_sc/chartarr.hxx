@@ -28,6 +28,8 @@
 #ifndef SC_CHARTARR_HXX
 #define SC_CHARTARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // -----------------------------------------------------------------------
 
 #ifndef SC_COLLECT_HXX

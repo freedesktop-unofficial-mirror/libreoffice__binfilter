@@ -28,10 +28,10 @@
 #ifndef _IPENV_HXX
 #define _IPENV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/client.hxx>
-#ifndef _TOOLS_VCLRSC_HXX
-#include <vcl/mapunit.hxx>
-#endif
+//#include <tools/mapunit.hxx>
 
 #ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"

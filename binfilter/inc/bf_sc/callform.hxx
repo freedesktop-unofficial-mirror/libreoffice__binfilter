@@ -28,6 +28,8 @@
 #ifndef SC_CALLFORM_HXX
 #define SC_CALLFORM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_COLLECT_HXX
 #include "collect.hxx"
 #endif

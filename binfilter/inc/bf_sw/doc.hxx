@@ -27,6 +27,8 @@
 #ifndef _DOC_HXX
 #define _DOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 

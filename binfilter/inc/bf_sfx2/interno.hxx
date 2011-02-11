@@ -27,6 +27,8 @@
 #ifndef _SFX_INTERNO_HXX
 #define _SFX_INTERNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _SVIMPLBOX_HXX
 #define _SVIMPLBOX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SELENG_HXX
 #include <vcl/seleng.hxx>
 #endif

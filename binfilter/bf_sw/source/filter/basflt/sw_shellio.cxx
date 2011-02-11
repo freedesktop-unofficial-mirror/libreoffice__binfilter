@@ -396,27 +396,29 @@ using namespace ::com::sun::star;
 /*?*/               // we cannot create a SwDocShell. We could create a
 /*?*/               // SwWebDocShell however, because this exists always
 /*?*/               // for the help.
-/*?*/               SvtModuleOptions aModuleOptions;
-/*?*/               if( aModuleOptions.IsWriter() )
-/*?*/               {
-/*?*/                   SwDocShell *pDocSh =
-/*?*/                       new SwDocShell ( SFX_CREATE_MODE_INTERNAL );
-/*?*/                   SvEmbeddedObjectRef xDocSh = pDocSh;
-/*?*/                   if( pDocSh->DoInitNew( 0 ) )
-/*?*/                   {
-/*?*/                       pTemplate = pDocSh->GetDoc();
-/*?*/                       pTemplate->SetOle2Link( Link() );
-/*?*/                       pTemplate->SetBrowseMode( bTmplBrowseMode );
-/*?*/                       pTemplate->RemoveAllFmtLanguageDependencies();
-/*?*/
-/*?*/                       ReadXML->SetOrganizerMode( TRUE );
-/*?*/                       SwReader aRdr( *xStor, aEmptyStr, pTemplate );
-/*?*/                       aRdr.Read( *ReadXML );
-/*?*/                       ReadXML->SetOrganizerMode( FALSE );
-/*?*/
-/*?*/                       pTemplate->AddLink();
-/*?*/                   }
-/*?*/               }
+                    OSL_ASSERT("ReadXML removed");
+
+//               SvtModuleOptions aModuleOptions;
+//              if( aModuleOptions.IsWriter() )
+//              {
+//                  SwDocShell *pDocSh =
+//                      new SwDocShell ( SFX_CREATE_MODE_INTERNAL );
+//                  SvEmbeddedObjectRef xDocSh = pDocSh;
+//                  if( pDocSh->DoInitNew( 0 ) )
+//                  {
+//                      pTemplate = pDocSh->GetDoc();
+//                      pTemplate->SetOle2Link( Link() );
+//                      pTemplate->SetBrowseMode( bTmplBrowseMode );
+//                      pTemplate->RemoveAllFmtLanguageDependencies();
+//
+//                      ReadXML->SetOrganizerMode( TRUE );
+//                      SwReader aRdr( *xStor, aEmptyStr, pTemplate );
+//                      aRdr.Read( *ReadXML );
+//                      ReadXML->SetOrganizerMode( FALSE );
+//
+//                      pTemplate->AddLink();
+//                  }
+//                }
 /*?*/           }
 /*?*/           else
 /*?*/           {

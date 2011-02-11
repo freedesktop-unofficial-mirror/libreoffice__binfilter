@@ -28,6 +28,8 @@
 #ifndef _SVX_FMPAGE_HXX
 #define _SVX_FMPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
 #endif

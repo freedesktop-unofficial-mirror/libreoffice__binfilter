@@ -28,6 +28,8 @@
 #ifndef _SBXCORE_HXX
 #define _SBXCORE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif

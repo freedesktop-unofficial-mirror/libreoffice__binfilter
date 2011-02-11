@@ -28,6 +28,8 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #define _XMLOFF_XMLTOKEN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif

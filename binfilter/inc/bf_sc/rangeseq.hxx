@@ -28,9 +28,7 @@
 #ifndef SC_RANGESEQ_HXX
 #define SC_RANGESEQ_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>

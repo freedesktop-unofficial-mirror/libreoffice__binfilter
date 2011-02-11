@@ -27,6 +27,8 @@
 #ifndef _SVX_RULER_HXX
 #define _SVX_RULER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _RULER_HXX //autogen
 #include <bf_svtools/ruler.hxx>

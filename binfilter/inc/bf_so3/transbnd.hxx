@@ -28,9 +28,7 @@
 #ifndef _TRANSBND_HXX
 #define _TRANSBND_HXX "$Revision: 1.5 $"
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>

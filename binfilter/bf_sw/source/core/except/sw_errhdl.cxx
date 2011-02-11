@@ -31,6 +31,7 @@
 #pragma hdrstop
 #endif
 
+#include <bf_svtools/bf_solar.h>
 #include "stdlib.h"
 #ifdef WIN
 #include <svwin.h>              // fuer die Goodies der Windows User

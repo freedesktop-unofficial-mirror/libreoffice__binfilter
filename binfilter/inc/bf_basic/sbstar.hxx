@@ -28,6 +28,8 @@
 #ifndef _SB_SBSTAR_HXX
 #define _SB_SBSTAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SBXCLASS_HXX //autogen
 #include "sbx.hxx"
 #endif

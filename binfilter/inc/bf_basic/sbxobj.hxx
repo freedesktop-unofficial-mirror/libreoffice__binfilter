@@ -28,6 +28,9 @@
 #ifndef _SBX_SBXOBJECT_HXX
 #define _SBX_SBXOBJECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
 #endif

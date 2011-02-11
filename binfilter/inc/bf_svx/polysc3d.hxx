@@ -28,6 +28,8 @@
 #ifndef _E3D_POLYSC3D_HXX
 #define _E3D_POLYSC3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
 #endif

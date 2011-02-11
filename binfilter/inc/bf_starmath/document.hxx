@@ -27,6 +27,8 @@
 #ifndef DOCUMENT_HXX
 #define DOCUMENT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #define SMDLL   1
 
 #ifndef _SVSTOR_HXX //autogen

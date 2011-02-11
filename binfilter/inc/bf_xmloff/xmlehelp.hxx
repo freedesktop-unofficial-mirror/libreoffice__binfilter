@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_XMLEHELP_HXX
 #define _XMLOFF_XMLEHELP_HXX
 
-#ifndef _VCL_MAPUNIT_HXX
-#include <vcl/mapunit.hxx>
-#endif
+#include <tools/mapunit.hxx>
 namespace rtl { class OUStringBuffer; }
 namespace binfilter {
 

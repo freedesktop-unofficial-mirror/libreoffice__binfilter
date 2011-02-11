@@ -27,6 +27,8 @@
 #ifndef _UNOFIELD_HXX
 #define _UNOFIELD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _FLYFRMS_HXX
 #define _FLYFRMS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "flyfrm.hxx"
 namespace binfilter {
 

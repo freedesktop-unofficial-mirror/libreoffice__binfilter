@@ -28,6 +28,8 @@
 #ifndef _XOUTBMP_HXX
 #define _XOUTBMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif

@@ -37,9 +37,7 @@
 #endif
 //---------------------------------------------------
 
-#ifndef _SOLAR_HRC
-#include <bf_svtools/solar.hrc>
-#endif
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 //.........................................................................

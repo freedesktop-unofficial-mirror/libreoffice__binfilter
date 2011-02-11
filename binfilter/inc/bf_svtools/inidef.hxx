@@ -28,6 +28,8 @@
 #ifndef _SFXINIDEF_HXX
 #define _SFXINIDEF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _INIMGR_HXX
 #include <iniman.hxx>
 #endif

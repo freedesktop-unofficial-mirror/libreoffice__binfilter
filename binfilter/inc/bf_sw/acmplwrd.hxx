@@ -27,6 +27,8 @@
 #ifndef _ACMPLWRD_HXX
 #define _ACMPLWRD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #define _SVSTDARR_STRINGSISORTDTOR
 #include <bf_svtools/svstdarr.hxx>

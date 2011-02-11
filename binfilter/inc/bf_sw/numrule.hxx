@@ -27,6 +27,8 @@
 #ifndef _NUMRULE_HXX
 #define _NUMRULE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>

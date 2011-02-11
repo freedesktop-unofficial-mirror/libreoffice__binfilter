@@ -28,6 +28,8 @@
 #ifndef _PNGREAD_HXX
 #define _PNGREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GEN_HXX
 #include <tools/gen.hxx>
 #endif

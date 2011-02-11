@@ -121,7 +121,7 @@ using namespace rtl;
 using namespace ::com::sun::star::uno;
 
 SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
-        ReadHTML = 0, ReadXML = 0;
+        ReadHTML = 0;
 
 /*N*/ inline BOOL IsDocShellRegistered() { return SvtModuleOptions().IsWriter(); }
 
@@ -158,7 +158,7 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 /*N*/   _SetFltPtr( nCnt, pRd, sExcel );
 /*N*/   _SetFltPtr( nCnt, new LotusReader, sLotusD );
 /*N*/   _SetFltPtr( nCnt, ReadSwg, sSwg1 );
-/*?*/   _SetFltPtr( nCnt, (ReadXML = new XMLReader), FILTER_XML );
+//    _SetFltPtr( nCnt, (ReadXML = new XMLReader), FILTER_XML );
 /*N*/
 /*N*/
 /*N*/     _SetFltPtr( nCnt, ReadAscii, FILTER_TEXT );
@@ -307,22 +307,7 @@ SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
 
 /*N*/ ULONG Sw3Writer::WriteStorage()
 /*N*/ {
-/*N*/   ULONG nRet;
-/*N*/   if( pIO )
-/*N*/   {
-/*N*/       // der gleiche Storage -> Save, sonst SaveAs aufrufen
-/*N*/       if( !bSaveAs )
-/*?*/           nRet = pIO->Save( pOrigPam, bWriteAll );
-/*N*/       else
-/*N*/           nRet = pIO->SaveAs( pStg, pOrigPam, bWriteAll );
-/*N*/
-/*N*/       pIO = 0;        // nach dem Schreiben ist der Pointer ungueltig !!
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       ASSERT( !this, "Sw3-Writer ohne IO-System" )
-/*?*/       nRet = ERR_SWG_WRITE_ERROR;
-/*N*/   }
+/*N*/   ULONG nRet = 0;
 /*N*/   return nRet;
 /*N*/ }
 

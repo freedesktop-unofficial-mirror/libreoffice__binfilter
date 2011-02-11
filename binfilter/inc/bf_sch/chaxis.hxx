@@ -27,6 +27,8 @@
 #ifndef SCH_CHART_AXIS_HXX
 #define SCH_CHART_AXIS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 //STRIP008 class ChartModel;
 //STRIP008 class SdrObject;
 //STRIP008 class SdrObjList;

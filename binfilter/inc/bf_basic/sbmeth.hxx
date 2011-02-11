@@ -28,6 +28,8 @@
 #ifndef _SB_SBMETH_HXX
 #define _SB_SBMETH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
 #endif

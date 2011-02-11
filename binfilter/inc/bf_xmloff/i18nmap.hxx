@@ -28,9 +28,7 @@
 #ifndef _XMLOFF_I18NMAP_HXX
 #define _XMLOFF_I18NMAP_HXX
 
-#ifndef _SOLAR_H //autogen wg. USHORT
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 namespace rtl
 {

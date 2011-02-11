@@ -28,7 +28,7 @@
 #ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #define _XMLOFF_PROPMAPPINGTYPES_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>

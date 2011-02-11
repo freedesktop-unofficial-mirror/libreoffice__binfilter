@@ -28,6 +28,8 @@
 #ifndef _EMBOBJ_HXX
 #define _EMBOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/persist.hxx>
 #include <bf_so3/pseudo.hxx>
 #include <bf_so3/protocol.hxx>

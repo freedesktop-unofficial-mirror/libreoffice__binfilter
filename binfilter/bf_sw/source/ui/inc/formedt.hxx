@@ -27,6 +27,8 @@
 #ifndef _FORMEDT_HXX
 #define _FORMEDT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_STDDLG_HXX //autogen
 #include <bf_svx/stddlg.hxx>
 #endif

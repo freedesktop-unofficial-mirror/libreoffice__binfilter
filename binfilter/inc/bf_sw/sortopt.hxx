@@ -27,6 +27,8 @@
 #ifndef _SORTOPT_HXX
 #define _SORTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>

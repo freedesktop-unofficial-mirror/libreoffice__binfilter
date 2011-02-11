@@ -28,6 +28,8 @@
 #ifndef _SDMOD_HXX
 #define _SDMOD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SDDLL_HXX
 #define _SD_DLL             // fuer SD_MOD()

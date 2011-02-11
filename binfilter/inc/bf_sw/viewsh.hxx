@@ -27,6 +27,8 @@
 #ifndef _VIEWSH_HXX
 #define _VIEWSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif

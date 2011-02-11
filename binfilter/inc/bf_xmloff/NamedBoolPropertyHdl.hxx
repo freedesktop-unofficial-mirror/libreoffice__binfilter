@@ -28,6 +28,8 @@
 #ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #define _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <bf_xmloff/xmlprhdl.hxx>
 #endif

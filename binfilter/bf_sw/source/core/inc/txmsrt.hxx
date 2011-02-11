@@ -27,6 +27,8 @@
 #ifndef _TXMSRT_HXX
 #define _TXMSRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _SCEXTOPT_HXX
 #define _SCEXTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"

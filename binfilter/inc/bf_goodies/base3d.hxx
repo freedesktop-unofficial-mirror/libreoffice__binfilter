@@ -28,6 +28,9 @@
 #ifndef _B3D_BASE3D_HXX
 #define _B3D_BASE3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 //#ifndef _B3D_B3DLIGHT_HXX
 //#include "b3dlight.hxx"
 //#endif

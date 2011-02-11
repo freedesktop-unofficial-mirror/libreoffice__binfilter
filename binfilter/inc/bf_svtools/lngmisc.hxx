@@ -28,9 +28,7 @@
 #ifndef _SVTOOLS_LNGMISC_HXX_
 #define _SVTOOLS_LNGMISC_HXX_
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _SAL_TYPES_H_
 #include <sal/types.h>
 #endif

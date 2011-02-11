@@ -150,124 +150,6 @@ namespace binfilter {
 /*N*/   return pImp->nRes;
 /*N*/ }
 
-
-/*N*/ ULONG Sw3Io::Save( SwPaM* pPaM, BOOL bSaveAll )
-/*N*/ {
-/*N*/   if( !pImp->pRoot.Is() )
-/*?*/       pImp->pRoot = pImp->pDoc->GetPersist()->GetStorage();
-/*N*/
-/*N*/   if( pImp->bNormal && pImp->IsSw31Or40Export() &&
-/*N*/       pImp->pDoc->GetNodes().GetEndOfContent().GetIndex() > 65200 )
-/*N*/   {
-/*N*/       // Das Dokument ist zu gross, um vom SW3.1/4.0 gelesen zu werden.
-/*?*/       return ERR_SWG_LARGE_DOC_ERROR;
-/*N*/   }
-/*N*/
-/*N*/   ULONG nHiddenDraws = ULONG_MAX;
-/*N*/   if( pImp->bNormal )
-/*N*/   {
-/*N*/       pImp->InsertHiddenDrawObjs();
-/*N*/       nHiddenDraws = pImp->nHiddenDrawObjs;
-/*N*/   }
-/*N*/   BOOL bGood = pImp->OpenStreams( TRUE );
-/*N*/   ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
-/*N*/   pImp->nHiddenDrawObjs = nHiddenDraws; // OpenStreams loescht den Member!
-/*N*/   if( !bGood )
-/*N*/   {
-/*?*/           pImp->RemoveHiddenDrawObjs();
-/*?*/       return ERR_SWG_WRITE_ERROR;
-/*N*/   }
-/*N*/
-/*N*/   // Bookmarks sammeln: Wenn kein Inhalt geschrieben wird, nur die
-/*N*/   // in Seitenvorlagen
-/*N*/   if( pImp->bNormal || pImp->bPageDescs )
-/*N*/   {
-/*N*/       pImp->CollectMarks( pPaM, !pImp->bNormal );
-/*N*/       if( !pImp->IsSw31Or40Export() )
-/*N*/           pImp->CollectRedlines( pPaM, !pImp->bNormal );
-/*N*/       else
-/*N*/           pImp->CollectTblLineBoxFmts40();
-/*N*/   }
-/*N*/
-/*N*/
-/*N*/   pImp->bSaveAll = bSaveAll;
-/*N*/   BOOL bNewPaM = BOOL( pPaM == NULL );
-/*N*/   if( bNewPaM )
-/*N*/   {
-/*?*/       pImp->bSaveAll = TRUE;
-/*?*/       pPaM = new SwPaM( pImp->pDoc->GetNodes().GetEndOfContent() );
-/*?*/       pPaM->Move( fnMoveForward, fnGoDoc );
-/*?*/       pPaM->SetMark();
-/*?*/       pPaM->Move( fnMoveBackward, fnGoDoc );
-/*N*/   }
-/*N*/   // Den Doc-Hauptbereich als Mass der Dinge beim Speichern nehmen
-/*N*/   ULONG n1 = pImp->pDoc->GetNodes().GetEndOfExtras().GetIndex();
-/*N*/   ULONG n2 = pImp->pDoc->GetNodes().GetEndOfContent().GetIndex();
-/*N*/   USHORT nPages = pImp->pDoc->GetRootFrm() ?
-/*N*/                   pImp->pDoc->GetRootFrm()->GetPageNum() : 0;
-/*N*/   // Wir nehmen einfach 10 Nodes/Page an
-/*N*/   n2 += nPages * 10;
-/*N*/   pImp->OpenPercentBar( n1, n2 );
-/*N*/   if( pImp->bNormal || pImp->bTxtColls )
-/*N*/   {
-/*N*/       // Stringpool fuellen, Namen im Doc erweitern
-/*N*/       pImp->aStringPool.Setup( *pImp->pDoc, pImp->pRoot->GetVersion(),
-/*N*/                                pImp->pExportInfo );
-/*N*/       pImp->SaveStyleSheets( FALSE );
-/*N*/       // Temporaere Namenserweiterungen entfernen
-/*N*/       pImp->aStringPool.RemoveExtensions( *pImp->pDoc );
-/*N*/   }
-/*N*/   if( ( pImp->bNormal || pImp->bNumRules ) && !pImp->nRes )
-/*N*/       pImp->SaveNumRules();
-/*N*/   if( ( pImp->bNormal || pImp->bPageDescs ) && !pImp->nRes )
-/*N*/       pImp->SavePageStyles();
-/*N*/   if( pImp->bNormal && !pImp->nRes )
-/*N*/       pImp->SaveDrawingLayer();
-/*N*/   if( pImp->bNormal && !pImp->nRes )
-/*N*/       pImp->SaveContents( *pPaM );
-/*N*/   if( bNewPaM )
-/*N*/       delete pPaM;
-/*N*/
-/*N*/       pImp->RemoveHiddenDrawObjs();
-/*N*/
-/*N*/   if( pImp->nRes )
-/*N*/       pImp->nRes |= ERRCODE_CLASS_WRITE;
-/*N*/   else if( pImp->nWarn )
-/*N*/       pImp->nRes = pImp->nWarn | ERRCODE_CLASS_WRITE;
-/*N*/
-/*N*/   //pImp->pRoot->Commit();
-/*N*/
-/*N*/   ULONG nErr = pImp->pRoot->GetError();
-/*N*/   if( nErr == SVSTREAM_DISK_FULL )
-/*N*/       pImp->nRes = ERR_W4W_WRITE_FULL;
-/*N*/   else if( nErr != SVSTREAM_OK )
-/*N*/   {
-/*N*/       if ( nErr == ERRCODE_IO_NOTSTORABLEINBINARYFORMAT )
-/*N*/           pImp->nRes = nErr;
-/*N*/       else
-/*N*/           pImp->nRes = ERR_SWG_WRITE_ERROR;
-/*N*/   }
-/*N*/
-/*N*/   pImp->ClosePercentBar();
-/*N*/   pImp->CloseStreams();
-/*N*/
-/*N*/   return pImp->nRes;
-/*N*/ }
-
-
-// Speichern in einen frischen Storage.
-
-/*N*/ ULONG Sw3Io::SaveAs( SvStorage* pStor, SwPaM* pPaM, BOOL bSaveAll )
-/*N*/ {
-/*N*/   pImp->pOldRoot = pImp->pRoot;
-/*N*/   pImp->pRoot = pStor;
-/*N*/   ULONG nRet = Save( pPaM, bSaveAll );
-/*N*/   pImp->pRoot = pImp->pOldRoot;
-/*N*/   pImp->pOldRoot.Clear();
-/*N*/   return nRet;
-/*N*/ }
-
-
 /*N*/ void Sw3Io::HandsOff()
 /*N*/ {
 /*N*/   pImp->pRoot.Clear();
@@ -278,29 +160,11 @@ namespace binfilter {
 // neu geoeffnet werden.
 
 
-/*N*/ BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
-/*N*/ {
-/*N*/   BOOL bClearNm = !pNew || pNew == pImp->pRoot;
-/*N*/
-/*N*/   if( pNew )
-/*N*/       pImp->pRoot = pNew;
-/*N*/   else
-/*?*/       pImp->pRoot = pImp->pDoc->GetDocStorage();
-/*N*/
-/*N*/   // Hier muss noch ueber die Grafiknodes iteriert werden, um
-/*N*/   // ihnen zu sagen, wie ihr neuer Streamname lautet!
-/*N*/   // Da Grafiken Flys sind, liegen die Nodes im Autotext-Bereich
-/*N*/   SwNodes& rNds = pImp->pDoc->GetNodes();
-/*N*/   ULONG nEnd = rNds.GetEndOfAutotext().GetIndex();
-/*N*/   for( ULONG nIdx = rNds.GetEndOfInserts().GetIndex() + 1; nIdx < nEnd; ++nIdx)
-/*N*/   {
-/*N*/       SwGrfNode* pNd = rNds[ nIdx ]->GetGrfNode();
-/*N*/       if( pNd )
-/*N*/           pNd->SaveCompleted( bClearNm );
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
+ BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
+ {
+    OSL_ASSERT("method removed");
+  return TRUE;
+ }
 
 
 /*N*/  SvStorage* Sw3Io::GetStorage()
@@ -317,40 +181,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  ULONG Sw3Io::SaveStyles()
-/*N*/  {
-/*N*/   BOOL bGood = pImp->OpenStreams( TRUE, FALSE );
-/*N*/   ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
-/*N*/   if( !bGood )
-/*N*/       return pImp->nRes = ERR_SWG_WRITE_ERROR;
-/*N*/
-/*N*/   pImp->bOrganizer = TRUE;
-/*N*/
-/*N*/   // Nur Bookmarks aus Seiten-Vorlagen sammeln
-/*N*/   pImp->CollectMarks( NULL, TRUE );
-/*N*/   if( !pImp->IsSw31Or40Export() )
-/*N*/       pImp->CollectRedlines( NULL, TRUE );
-/*N*/   else
-/*N*/       pImp->CollectTblLineBoxFmts40();
-/*N*/
-/*N*/   // Stringpool fuellen, Namen im Doc erweitern
-/*N*/   pImp->aStringPool.Setup( *pImp->pDoc, pImp->pRoot->GetVersion(),
-/*N*/                            pImp->pExportInfo );
-/*N*/   pImp->SaveStyleSheets( FALSE );
-/*N*/   // Temporaere Namenserweiterungen entfernen
-/*N*/   pImp->aStringPool.RemoveExtensions( *pImp->pDoc );
-/*N*/   pImp->SaveNumRules( FALSE );
-/*N*/   pImp->SavePageStyles();
-/*N*/   pImp->CloseStreams();
-/*N*/
-/*N*/   pImp->bOrganizer = FALSE;
-/*N*/
-/*N*/   if( pImp->nRes )
-/*N*/       pImp->nRes |= ERRCODE_CLASS_WRITE;
-/*N*/   else if( pImp->nWarn )
-/*N*/       pImp->nRes = pImp->nWarn | ERRCODE_CLASS_WRITE;
-/*N*/   return pImp->nRes;
-/*N*/  }
+  ULONG Sw3Io::SaveStyles()
+  {
+    OSL_ASSERT("method removed");
+    return 0;
+  }
 
 // Erzeugen eines eindeutigen Stream-Namens in einem Storage
 

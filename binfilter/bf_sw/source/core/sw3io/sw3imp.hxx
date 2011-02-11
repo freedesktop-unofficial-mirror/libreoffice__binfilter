@@ -27,6 +27,8 @@
 #ifndef _SW3IMP_HXX
 #define _SW3IMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif

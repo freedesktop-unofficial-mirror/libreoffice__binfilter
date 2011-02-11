@@ -29,6 +29,8 @@
 #ifndef __GLOBFUNC_HXX
 #define __GLOBFUNC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _E3D_LABEL3D_HXX //autogen
 #include <bf_svx/label3d.hxx>
 #endif
