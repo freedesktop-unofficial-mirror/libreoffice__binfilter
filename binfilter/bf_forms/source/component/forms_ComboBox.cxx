@@ -785,7 +785,6 @@ void OComboBoxModel::_onValueChanged()
     // our own mutex locked
     // and in this special case do it before calling DBTypeConversion::getValue, as this uses the number formatter
     // which's implementation locks the SM, too :(
-    // FS - 72451 - 31.01.00
     MutexRelease aRelease(m_aMutex);
     DBG_ASSERT(m_xColumn.is(), "OComboBoxModel::_onValueChanged : have no column !");
     m_aSaveValue = DBTypeConversion::getValue(m_xColumn,
@@ -803,7 +802,6 @@ void OComboBoxModel::_reset()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
                 m_xAggregateFastSet->setFastPropertyValue(OComboBoxModel::nTextHandle, makeAny(m_aDefaultText));
     }

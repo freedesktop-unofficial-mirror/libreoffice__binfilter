@@ -150,15 +150,13 @@ using namespace ::com::sun::star::uno;
 /*N*/           rStream >> rOpt.pLRUList[i];
 /*N*/   }
 /*N*/
-/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen einlesen :-/
-/*N*/   //              (kleiner Hack :-/)
+/*N*/   // globale benutzerdefinierte Listen einlesen :-/ (kleiner Hack :-/)
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
 /*N*/       ScUserList* pUserList = ScGlobal::GetUserList();
 /*N*/       pUserList->Load( rStream );
 /*N*/   }
 /*N*/
-/*N*/   // ab 11.12.95 (304)
 /*N*/   // Zoom-Faktor
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
@@ -212,27 +210,25 @@ using namespace ::com::sun::star::uno;
 /*N*/           rStream << rOpt.pLRUList[i];
 /*N*/   }
 /*N*/
-/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen speichern
-/*N*/   //              (kleiner Hack :-/)
+/*N*/   // globale benutzerdefinierte Listen speichern (kleiner Hack :-/)
 /*N*/   ScUserList* pUserList = ScGlobal::GetUserList();
 /*N*/   pUserList->Store( rStream );
 /*N*/
-/*N*/   // ab 11.12.95 (304)
 /*N*/   // Zoom-Faktor
 /*N*/   rStream << (USHORT)rOpt.eZoomType;
 /*N*/   rStream << rOpt.nZoom;
 /*N*/
-/*N*/   // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
+/*N*/   // Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
 /*N*/   rStream << rOpt.nStatusFunc;
 /*N*/   rStream << rOpt.bAutoComplete;
 /*N*/
-/*N*/   // ab 15.3.98: Farben fuer Change-Tracking
+/*N*/   // Farben fuer Change-Tracking
 /*N*/   rStream << rOpt.nTrackContentColor;
 /*N*/   rStream << rOpt.nTrackInsertColor;
 /*N*/   rStream << rOpt.nTrackDeleteColor;
 /*N*/   rStream << rOpt.nTrackMoveColor;
 /*N*/
-/*N*/   // ab 22.6.98: Automatisches Detektiv-Update
+/*N*/   // Automatisches Detektiv-Update
 /*N*/   rStream << rOpt.bDetectiveAuto;
 /*N*/   rStream << (BYTE) rOpt.eLinkMode;
 /*N*/

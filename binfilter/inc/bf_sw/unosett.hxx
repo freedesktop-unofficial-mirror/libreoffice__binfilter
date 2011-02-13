@@ -53,9 +53,8 @@ class SwNumRule;
 /******************************************************************************
  *
  ******************************************************************************/
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXFootnoteProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -87,9 +86,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXEndnoteProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -121,9 +119,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXLineNumberingProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -155,9 +152,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------25.05.98 08:21-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXNumberingRules : public cppu::WeakAggImplHelper5
 <
     ::com::sun::star::container::XIndexReplace,
@@ -235,9 +231,8 @@ public:
     void    Invalidate()    {pDocShell = 0;}
     const String&           GetCreatedNumRuleName() const{return sCreatedNumRuleName; }
 };
-/*-----------------12.02.98 08:27-------------------
 
---------------------------------------------------*/
+
 class SwXChapterNumbering : public SwXNumberingRules
 {
 protected:
@@ -255,9 +250,8 @@ public:
 
 };
 
-/* -----------------27.05.98 15:44-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextColumns : public cppu::WeakAggImplHelper4
 <
 

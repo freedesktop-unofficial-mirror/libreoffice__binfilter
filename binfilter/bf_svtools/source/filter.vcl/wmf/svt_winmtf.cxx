@@ -545,7 +545,7 @@ void WinMtfOutput::ImplMap( Font& rFont )
 {
     // !!! HACK: Wir setzen die Breite jetzt immer auf Null,
     // da OS die Breite unterschiedlich interpretieren;
-    // muss spaeter in SV portabel gemacht werden ( KA 08.02.96 )
+    // muss spaeter in SV portabel gemacht werden
     Size  aFontSize = ImplMap ( rFont.GetSize() );
 
     if( aFontSize.Height() < 0 )

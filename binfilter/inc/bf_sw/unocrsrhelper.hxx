@@ -44,9 +44,8 @@ namespace com{ namespace sun{ namespace star{
         class Any;
     }
 }}}
-/* -----------------------------14.12.00 15:06--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 namespace SwUnoCursorHelper
 {
     sal_Bool                    getCrsrPropertyValue(const SfxItemPropertyMap* pMap

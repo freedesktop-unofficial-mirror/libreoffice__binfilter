@@ -49,9 +49,8 @@ namespace binfilter
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 #define CFG_READONLY_DEFAULT sal_False
-/* -----------------------------10.04.01 12:39--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SvtCJKOptions_Impl : public utl::ConfigItem
 {
     sal_Bool        bIsLoaded;
@@ -100,9 +99,8 @@ public:
                 bRuby||bChangeCaseMap||bDoubleLines||bEmphasisMarks||bVerticalCallOut;   }
     void    SetAll(sal_Bool bSet);
 };
-/*-- 10.04.01 12:41:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 namespace
 {
     struct PropertyNames
@@ -132,15 +130,13 @@ SvtCJKOptions_Impl::SvtCJKOptions_Impl() :
     bROVerticalCallOut(CFG_READONLY_DEFAULT)
 {
 }
-/*-- 10.04.01 12:41:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 SvtCJKOptions_Impl::~SvtCJKOptions_Impl()
 {
 }
-/* -----------------------------20.04.01 14:34--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void    SvtCJKOptions_Impl::SetAll(sal_Bool bSet)
 {
     if (
@@ -169,9 +165,8 @@ void    SvtCJKOptions_Impl::SetAll(sal_Bool bSet)
         Commit();
     }
 }
-/*-- 10.04.01 12:41:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void SvtCJKOptions_Impl::Load()
 {
     Sequence<OUString> &rPropertyNames = PropertyNames::get();
@@ -233,16 +228,14 @@ void SvtCJKOptions_Impl::Load()
     }
     bIsLoaded = sal_True;
 }
-/*-- 10.04.01 12:41:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void    SvtCJKOptions_Impl::Notify( const Sequence< OUString >& )
 {
     Load();
 }
-/*-- 10.04.01 12:41:57---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void    SvtCJKOptions_Impl::Commit()
 {
     Sequence<OUString> &rPropertyNames = PropertyNames::get();

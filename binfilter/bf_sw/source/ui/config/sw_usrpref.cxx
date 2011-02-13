@@ -76,16 +76,14 @@ using namespace ::com::sun::star::uno;
 /*N*/   if(pWebColorConfig)
 /*N*/       pWebColorConfig->Load();
 /*N*/ }
-/* -----------------------------13.02.01 09:48--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwMasterUsrPref::~SwMasterUsrPref()
 /*N*/ {
 /*N*/   delete pWebColorConfig;
 /*N*/ }
-/*-- 28.09.00 09:55:32---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
     void SwContentViewConfig::Commit() {}
     void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
@@ -123,9 +121,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwContentViewConfig::SwContentViewConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Content") :  C2U("Office.Writer/Content"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -133,18 +130,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwContentViewConfig::~SwContentViewConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwContentViewConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -188,9 +182,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwLayoutViewConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -225,9 +218,8 @@ using namespace ::com::sun::star::uno;
     void SwLayoutViewConfig::Commit() {}
     void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwLayoutViewConfig::SwLayoutViewConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Layout") :  C2U("Office.Writer/Layout"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -235,18 +227,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:35---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwLayoutViewConfig::~SwLayoutViewConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:36---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:36---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*M*/ void SwLayoutViewConfig::Load()
 /*M*/ {
 /*M*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -315,9 +304,8 @@ using namespace ::com::sun::star::uno;
 /*M*/       }
 /*M*/   }
 /*M*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
     void SwGridConfig::Commit() {}
     void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
@@ -343,9 +331,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwGridConfig::SwGridConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Grid") :  C2U("Office.Writer/Grid"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -353,18 +340,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwGridConfig::~SwGridConfig()
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ void SwGridConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -398,9 +382,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/ }
 
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwCursorConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -420,27 +403,23 @@ using namespace ::com::sun::star::uno;
     void SwCursorConfig::Commit() {}
     void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwCursorConfig::SwCursorConfig(SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(C2U("Office.Writer/Cursor"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
 /*N*/   rParent(rPar)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwCursorConfig::~SwCursorConfig()
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ void SwCursorConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -471,9 +450,8 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   }
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwWebColorConfig::SwWebColorConfig(SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(C2U("Office.WriterWeb/Background"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -486,18 +464,15 @@ using namespace ::com::sun::star::uno;
     void SwWebColorConfig::Commit() {}
     void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwWebColorConfig::~SwWebColorConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwWebColorConfig::Load()
 /*N*/ {
 /*N*/   Sequence<Any> aValues = GetProperties(aPropNames);

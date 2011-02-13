@@ -74,9 +74,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------06.09.00 16:44--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwPrintOptions::SwPrintOptions(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Print") :  C2U("Office.Writer/Print"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -121,15 +120,13 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------06.09.00 16:50--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwPrintOptions::~SwPrintOptions()
 /*N*/ {
 /*N*/ }
-/* -----------------------------06.09.00 16:43--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
     void SwPrintOptions::Commit() {}
     void SwPrintOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}

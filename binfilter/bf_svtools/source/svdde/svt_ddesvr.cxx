@@ -559,7 +559,7 @@ void DdeService::RemoveTopic( const DdeTopic& rTopic )
         if ( !DdeCmpStringHandles (*t->pName, *rTopic.pName ) )
         {
             aTopics.Remove( t );
-            // JP 27.07.95: und alle Conversions loeschen !!!
+            // und alle Conversions loeschen !!!
             //              (sonst wird auf geloeschten Topics gearbeitet!!)
             for( ULONG n = pConv->Count(); n; )
             {

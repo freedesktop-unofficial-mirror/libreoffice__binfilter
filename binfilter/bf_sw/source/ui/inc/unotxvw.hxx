@@ -134,9 +134,8 @@ public:
     SfxObjectShellRef       BuildTmpSelectionDoc( SvEmbeddedObjectRef &rRef );
 };
 
-/* -----------------17.09.98 12:52-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwUnoCrsr;
 typedef cppu::WeakImplHelper8<
                             ::com::sun::star::text::XTextViewCursor,

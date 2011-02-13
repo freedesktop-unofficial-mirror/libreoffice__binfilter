@@ -95,9 +95,8 @@ using namespace ::com::sun::star::lang;
 /*M*/                           sal_uInt16 /*nDest*/ )
 /*M*/ {DBG_BF_ASSERT(0, "STRIP");
 /*M*/ }
-/*-----------------05.02.97 08.03-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ SwPrintOptions*   SwModule::GetPrtOptions(sal_Bool bWeb)
 /*N*/ {
@@ -163,9 +162,8 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
-/*-----------------03.03.98 16:47-------------------
 
---------------------------------------------------*/
+
 /*N*/ const SwViewOption*   SwModule::GetViewOption(sal_Bool bWeb)
 /*N*/ {
 /*N*/   return GetUsrPref( bWeb );
@@ -176,9 +174,8 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ {
 /*N*/   return pModuleConfig->GetWordDelimiter();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 // Durchreichen der Metric von der ModuleConfig (fuer HTML-Export)
 /*N*/ sal_uInt16 SwModule::GetMetric( sal_Bool bWeb ) const
 /*N*/ {
@@ -197,9 +194,8 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/   }
 /*N*/   return pPref->GetMetric();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 // Update-Stati durchreichen
 /*N*/ sal_uInt16 SwModule::GetLinkUpdMode( sal_Bool ) const
 /*N*/ {
@@ -207,9 +203,8 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/       GetUsrPref(sal_False);
 /*N*/     return (sal_uInt16)pUsrPref->GetUpdateLinkMode();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_uInt16 SwModule::GetFldUpdateFlags( sal_Bool ) const
 /*N*/ {
 /*N*/   if(!pUsrPref)

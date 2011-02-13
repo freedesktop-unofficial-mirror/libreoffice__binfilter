@@ -162,7 +162,8 @@ OUString SAL_CALL SvxShapeGroup::getShapeType()
     return SvxShape::getShapeType();
 }
 
-//------------------------------------------------------------------1----
+
+
 awt::Point SAL_CALL SvxShapeGroup::getPosition() throw(uno::RuntimeException)
 {
     return SvxShape::getPosition();
@@ -423,7 +424,8 @@ OUString SAL_CALL SvxShapeConnector::getShapeType()
     return SvxShapeText::getShapeType();
 }
 
-//------------------------------------------------------------------1----
+
+
 awt::Point SAL_CALL SvxShapeConnector::getPosition() throw(uno::RuntimeException)
 {
     return SvxShapeText::getPosition();
@@ -590,7 +592,8 @@ OUString SAL_CALL SvxShapeControl::getShapeType()
     return SvxShapeText::getShapeType();
 }
 
-//------------------------------------------------------------------1----
+
+
 awt::Point SAL_CALL SvxShapeControl::getPosition() throw(uno::RuntimeException)
 {
     return SvxShapeText::getPosition();
@@ -700,7 +703,6 @@ void SvxShapeControl::convertPropertyName( const OUString& rApiName, OUString& r
     }
 }
 
-//added by BerryJia for fixing Bug102407 2002-11-04
 static struct
 {
     sal_Int16 nAPIValue;

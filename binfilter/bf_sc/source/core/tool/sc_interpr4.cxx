@@ -2528,7 +2528,7 @@ void ScInterpreter::ScSpewFunc()
 /*N*/
 /*N*/  //#define SC_INVADER_GPF     // GPF wollen wir nicht :-(
 /*N*/  // zum testen Environment-Variable SC_INVADER_GPF=xxx setzen
-/*N*/  // 08.10.98: wenn PB optpath.cxx gefixt hat geht's wieder
+/*N*/  // wenn PB optpath.cxx gefixt hat geht's wieder
 /*N*/
 /*N*/  extern void StartInvader( Window* pParent ); // StarWars, Wrapper in SVX options/optpath.cxx
 /*N*/  extern void Game();                      // Froggie

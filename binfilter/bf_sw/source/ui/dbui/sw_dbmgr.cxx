@@ -142,9 +142,8 @@ const sal_Char cDataSourceName[] = "DataSourceName";
 const sal_Char cSelection[] = "Selection";
 const sal_Char cActiveConnection[] = "ActiveConnection";
 
-/* -----------------09.12.2002 12:35-----------------
- *
- * --------------------------------------------------*/
+
+
 
 /*N*/ class SwConnectionDisposedListener_Impl : public cppu::WeakImplHelper1
 /*N*/ < ::com::sun::star::lang::XEventListener >
@@ -185,9 +184,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/           bInitDBFields(FALSE)
 /*N*/ {
 /*N*/ }
-/* -----------------------------18.07.00 08:56--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*M*/ SwNewDBMgr::~SwNewDBMgr()
 /*M*/ {
 /*M*/     for(USHORT nPos = 0; nPos < aDataSourceParams.Count(); nPos++)
@@ -209,9 +207,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/     }
 /*M*/     delete pImpl;
 /*M*/ }
-/* -----------------------------03.07.00 17:12--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*?*/ Reference< sdbc::XConnection> SwNewDBMgr::GetConnection(const String& rDataSource,
 /*?*/                                                   Reference<XDataSource>& rxSource)
 /*?*/ {
@@ -267,9 +264,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     }
 /*N*/     return sal_False;
 /*N*/ }
-/* -----------------------------10.07.01 14:28--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::ToNextRecord(
 /*N*/     const String& rDataSource, const String& rCommand, sal_Int32 nCommandType)
 /*N*/ {
@@ -289,9 +285,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     }
 /*N*/     return ToNextRecord(pFound);
 /*N*/ }
-/* -----------------------------10.07.01 14:38--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::ToNextRecord(SwDSParam* pParam)
 /*N*/ {
 /*N*/     BOOL bRet = TRUE;
@@ -328,9 +323,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     return bRet;
 /*N*/ }
 
-/* -----------------------------13.07.00 10:41--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_uInt32    SwNewDBMgr::GetSelectedRecordId()
 /*N*/ {
 /*N*/   sal_uInt32  nRet = 0;
@@ -346,15 +340,13 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-/* -----------------------------13.07.00 10:58--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32 nSet)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
-/* -----------------------------17.07.00 14:17--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::OpenDataSource(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType)
 /*N*/ {
 /*?*/     SwDBData aData;
@@ -414,9 +406,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/   return pFound->xResultSet.is();
 /*N*/ }
-/* -----------------------------14.08.2001 10:26------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*?*/ Reference< XConnection> SwNewDBMgr::RegisterConnection(::rtl::OUString& rDataSource)
 /*?*/ {
 /*?*/     SwDSParam* pFound = SwNewDBMgr::FindDSConnection(rDataSource, TRUE);
@@ -436,9 +427,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/     return pFound->xConnection;
 /*?*/ }
-/* -----------------------------17.07.00 15:55--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_uInt32      SwNewDBMgr::GetSelectedRecordId(
 /*N*/     const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType)
 /*N*/ {
@@ -501,9 +491,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/         }
 /*N*/     }
 /*N*/ }
-/* -----------------------------17.07.00 14:54--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDSParam* SwNewDBMgr::FindDSData(const SwDBData& rData, BOOL bCreate)
 /*N*/ {
 /*N*/   SwDSParam* pFound = 0;
@@ -543,9 +532,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   }
 /*N*/   return pFound;
 /*N*/ }
-/* -----------------------------14.08.2001 10:27------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDSParam*  SwNewDBMgr::FindDSConnection(const ::rtl::OUString& rDataSource, BOOL bCreate)
 /*N*/ {
 /*N*/   SwDSParam* pFound = 0;
@@ -600,9 +588,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/     else
 /*M*/         pFound->aSelection.realloc(0);
 /*M*/ }
-/* -----------------------------17.07.00 14:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*M*/ void    SwNewDBMgr::GetDSSelection(const SwDBData& rData, long& rSelStart, long& rSelEnd)
 /*M*/ {
 /*M*/     SwDSParam* pFound = FindDSData(rData, FALSE);
@@ -614,32 +601,27 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/         pFound->aSelection.getConstArray()[pFound->aSelection.getLength() - 1] >>= rSelEnd;
 /*M*/     }
 /*M*/ }
-/* -----------------------------17.07.00 14:34--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const SwDBData&   SwNewDBMgr::GetAddressDBName()
 /*N*/ {
 /*N*/   return SW_MOD()->GetDBConfig()->GetAddressSource();
 /*N*/ }
-/* -----------------------------30.08.2001 12:00------------------------------
 
- ---------------------------------------------------------------------------*/
+
 SwDbtoolsClient* SwNewDBMgr::pDbtoolsClient = NULL;
 
-/* -----------------09.12.2002 12:38-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SwConnectionDisposedListener_Impl::SwConnectionDisposedListener_Impl(SwNewDBMgr& rMgr) :
 /*N*/     rDBMgr(rMgr)
 /*N*/ {};
-/* -----------------09.12.2002 12:39-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SwConnectionDisposedListener_Impl::~SwConnectionDisposedListener_Impl()
 /*N*/ {};
-/* -----------------09.12.2002 12:39-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void SwConnectionDisposedListener_Impl::disposing( const EventObject& rSource )
 /*N*/         throw (RuntimeException)
 /*N*/ {

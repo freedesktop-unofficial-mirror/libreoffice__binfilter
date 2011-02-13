@@ -224,9 +224,8 @@ SmModel::SmModel( SfxObjectShell *pObjSh )
 SmModel::~SmModel() throw ()
 {
 }
-/*-- 28.03.00 14:18:17---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Any SAL_CALL SmModel::queryInterface( const uno::Type& rType ) throw(uno::RuntimeException)
 {
     uno::Any aRet =  ::cppu::queryInterface ( rType,
@@ -245,25 +244,22 @@ uno::Any SAL_CALL SmModel::queryInterface( const uno::Type& rType ) throw(uno::R
         aRet = SfxBaseModel::queryInterface ( rType );
     return aRet;
 }
-/*-- 28.03.00 14:18:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void SAL_CALL SmModel::acquire() throw()
 {
     SolarMutexGuard aGuard;
     OWeakObject::acquire();
 }
-/*-- 28.03.00 14:18:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void SAL_CALL SmModel::release() throw()
 {
     SolarMutexGuard aGuard;
     OWeakObject::release();
 }
-/*-- 28.03.00 14:18:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Sequence< uno::Type > SAL_CALL SmModel::getTypes(  ) throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -283,9 +279,8 @@ uno::Sequence< uno::Type > SAL_CALL SmModel::getTypes(  ) throw(uno::RuntimeExce
 
     return aTypes;
 }
-/* -----------------------------28.03.00 14:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 const uno::Sequence< sal_Int8 > & SmModel::getUnoTunnelId()
 {
     static osl::Mutex aCreateMutex;
@@ -298,9 +293,8 @@ const uno::Sequence< sal_Int8 > & SmModel::getUnoTunnelId()
         rtl_createUuid( (sal_uInt8*)aSeq.getArray(), 0, sal_True );
     }
     return aSeq;
-} /* -----------------------------28.03.00 14:23--------------------------------
+}
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SmModel::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -312,12 +306,10 @@ sal_Int64 SAL_CALL SmModel::getSomething( const uno::Sequence< sal_Int8 >& rId )
     }
     return 0;
 }
-/*-- 07.01.00 16:32:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 07.01.00 16:33:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 sal_Int16 lcl_AnyToINT16(const uno::Any& rAny)
 {
     uno::TypeClass eType = rAny.getValueType().getTypeClass();
@@ -337,9 +329,8 @@ OUString SmModel::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SmModel");
 }
-/*-- 07.02.00 13:24:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 sal_Bool SmModel::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
     return (
@@ -348,9 +339,8 @@ sal_Bool SmModel::supportsService(const OUString& rServiceName) throw( uno::Runt
            );
 
 }
-/*-- 07.02.00 13:24:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Sequence< OUString > SmModel::getSupportedServiceNames(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;

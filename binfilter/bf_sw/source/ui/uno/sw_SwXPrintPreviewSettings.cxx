@@ -83,9 +83,8 @@ SwXPrintPreviewSettings::SwXPrintPreviewSettings( SwDoc *pDoc)
 , mpDoc( pDoc)
 {
 }
-/*-- 17.12.98 12:54:05---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 SwXPrintPreviewSettings::~SwXPrintPreviewSettings()
     throw()
 {
@@ -349,23 +348,20 @@ void SwXPrintPreviewSettings::_postGetValues ()
 {
     mpConstPreViewData = NULL;
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 OUString SwXPrintPreviewSettings::getImplementationName(void) throw( RuntimeException )
 {
     return OUString( RTL_CONSTASCII_USTRINGPARAM ( "SwXPrintPreviewSettings" ) );
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 sal_Bool SwXPrintPreviewSettings::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return rServiceName.equalsAsciiL ( RTL_CONSTASCII_STRINGPARAM ( "com.sun.star.text.PrintPreviewSettings") );
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Sequence< OUString > SwXPrintPreviewSettings::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);

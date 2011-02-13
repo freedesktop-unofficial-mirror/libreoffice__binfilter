@@ -1728,12 +1728,10 @@ using namespace ::com::sun::star;
 /*N*/           {
 /*N*/               // pItem = pAttr->GetItem();
 /*N*/               // s.o.
-                /*-----------------31.05.95 16:01-------------------
-                 Ist falsch, wenn das gleiche Attribut sofort wieder
+                /* Ist falsch, wenn das gleiche Attribut sofort wieder
                  eingestellt wird!
                  => Sollte am besten nicht vorkommen, also gleich beim
-                    Setzen von Attributen richtig machen!
-                --------------------------------------------------*/
+                    Setzen von Attributen richtig machen! */
 /*?*/               rCurSet.InvalidateItem( pAttr->GetItem()->Which() );
 /*N*/           }
 /*N*/
@@ -1791,7 +1789,6 @@ using namespace ::com::sun::star;
 /*N*/ // optimieren: binaere Suche ? !
 /*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /*N*/
-/*N*/   // MT: 26.11.98
 /*N*/   // Vielleicht aber auch einfach nur rueckwaerts iterieren:
 /*N*/   // Der haeufigste und kritischste Fall: Attribute kommen bereits
 /*N*/   // sortiert an (InsertBinTextObject!)

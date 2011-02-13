@@ -165,9 +165,8 @@ public:
 
 
 };
-/* -----------------26.11.2002 09:25-----------------
- *
- * --------------------------------------------------*/
+
+
 class SwPreviewZoomControl : public SfxToolBoxControl
 {
 public:

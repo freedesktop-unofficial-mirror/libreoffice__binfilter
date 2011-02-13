@@ -452,9 +452,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 
 
-/*-----------------13.03.98 14:28-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxPostureItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -470,9 +469,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------13.03.98 14:28-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxPostureItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/
@@ -578,9 +576,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 // -----------------------------------------------------------------------
 
 
-/*-----------------13.03.98 14:18-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxWeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -598,9 +595,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------13.03.98 14:18-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxWeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/
@@ -654,7 +650,7 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/       rStrm << GetProp() << (USHORT)GetPropUnit();
 /*N*/   else
 /*N*/   {
-/*N*/       // JP 30.06.98: beim Export in alte Versionen geht die relative
+/*N*/       // beim Export in alte Versionen geht die relative
 /*N*/       // Angabe verloren, wenn es keine Prozentuale ist
 /*N*/       USHORT _nProp = GetProp();
 /*N*/       if( SFX_MAPUNIT_RELATIVE != GetPropUnit() )
@@ -700,9 +696,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/           GetPropUnit() == ((SvxFontHeightItem&)rItem).GetPropUnit();
 /*N*/ }
 
-/*-----------------13.03.98 14:53-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxFontHeightItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   //  In StarOne sind im uno::Any immer 1/100mm. Ueber die MemberId wird
@@ -761,9 +756,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/* -----------------01.07.98 13:43-------------------
- *  Relative Abweichung aus der Hoehe herausrechnen
- * --------------------------------------------------*/
+
+//  Relative Abweichung aus der Hoehe herausrechnen
 /*N*/ sal_uInt32 lcl_GetRealHeight_Impl(sal_uInt32 nHeight, sal_uInt16 nProp, SfxMapUnit eProp, sal_Bool bCoreInTwip)
 /*N*/ {
 /*N*/   sal_uInt32 nRet = nHeight;
@@ -799,9 +793,8 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/   return nRet;
 /*N*/ }
 
-/*-----------------13.03.98 14:53-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxFontHeightItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -964,9 +957,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 // -----------------------------------------------------------------------
 
 
-/*-----------------13.03.98 16:25-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxUnderlineItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -989,9 +981,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   return sal_True;
 /*N*/
 /*N*/ }
-/*-----------------13.03.98 16:28-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxUnderlineItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/
@@ -1093,9 +1084,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 // -----------------------------------------------------------------------
 
 
-/*-----------------13.03.98 16:28-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxCrossedOutItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -1111,9 +1101,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------13.03.98 16:29-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxCrossedOutItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/
@@ -1506,9 +1495,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 //------------------------------------------------------------------------
 
-/* -----------------------------19.02.01 12:21--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ bool SvxKerningItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Int16 nVal = GetValue();
@@ -1573,9 +1561,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 // -----------------------------------------------------------------------
 
 
-/*-----------------13.03.98 16:29-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxCaseMapItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   sal_Int16 nRet = style::CaseMap::NONE;
@@ -1590,9 +1577,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   rVal <<= (sal_Int16)(nRet);
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------13.03.98 16:29-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxCaseMapItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   sal_uInt16 nVal(0);
@@ -1706,9 +1692,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*-----------------13.03.98 17:05-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxEscapementItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -1727,9 +1712,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------13.03.98 17:05-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxEscapementItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/
@@ -1816,9 +1800,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 //------------------------------------------------------------------------
 
 
-/*-----------------14.03.98 14:13-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxLanguageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -1835,9 +1818,8 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------14.03.98 14:13-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxLanguageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/

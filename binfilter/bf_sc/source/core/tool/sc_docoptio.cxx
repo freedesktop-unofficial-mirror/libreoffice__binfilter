@@ -169,8 +169,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/       bLookUpColRowNames = TRUE;
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
-/*N*/       rStream >> nYear2000;       // SO5 ab 24.06.98
-/*N*/       // SO51 ab src513e
+/*N*/       rStream >> nYear2000;
 /*N*/       if ( aHdr.BytesLeft() )
 /*N*/           rStream >> nYear2000;   // der echte Wert
 /*N*/       else

@@ -46,9 +46,8 @@ class SwFrmFmt;
 class SwUnoCrsr;
 class SwRedline;
 class SwTxtRuby;
-/* -----------------29.05.98 14:42-------------------
- *
- * --------------------------------------------------*/
+
+
 enum SwTextPortionType
 {
     PORTION_TEXT,
@@ -194,9 +193,8 @@ public:
 
     SwUnoCrsr*          GetCrsr() const { return (SwUnoCrsr*)GetRegisteredIn(); }
 };
-/* -----------------------------19.02.01 10:46--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXRubyPortion : public SwXTextPortion
 {
 public:

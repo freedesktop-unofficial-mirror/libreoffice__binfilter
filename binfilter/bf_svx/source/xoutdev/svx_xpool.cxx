@@ -117,7 +117,7 @@ static USHORT nVersion4Map[141];
 /*N*/
 /*N*/   USHORT i;
 /*N*/
-/*N*/   // Am 27-06-1995 hat Elmar 13 neue Whiches fuer XATTR_FORMTXT bei Which 1021
+/*N*/   // hat Elmar 13 neue Whiches fuer XATTR_FORMTXT bei Which 1021
 /*N*/   // eingebaut.
 /*N*/   // Alles was zu diesem Zeitpunkt >1021 war verschiebt sich also um
 /*N*/   // 13 Positionen nach hinten.
@@ -132,7 +132,7 @@ static USHORT nVersion4Map[141];
 /*N*/   }
 /*N*/   SetVersionMap(1,1000,1039,nVersion1Map);
 /*N*/
-/*N*/   // Am 09-11-1995 haben dann wiederum Kai Ahrens 14 und Joe 44 (also beide
+/*N*/   // haben dann wiederum Kai Ahrens 14 und Joe 44 (also beide
 /*N*/   // insgesamt 58) neue Whiches an verschiedenen Stellen spendiert (siehe
 /*N*/   // auch die Beschreibung in svx\inc\SvdAttr.HXX).
 /*N*/
@@ -160,8 +160,7 @@ static USHORT nVersion4Map[141];
 /*N*/   SetVersionMap(2,1000,1065,nVersion2Map);
 /*N*/
 /*N*/
-/*N*/   // Am 29-02-1996 hat KA 17 neue Whiches
-/*N*/   // fuer das XOut spendiert
+/*N*/   // hat KA 17 neue Whiches fuer das XOut spendiert
 /*N*/
 /*N*/   for (i=1000; i<=1029; i++) {
 /*N*/       nVersion3Map[i-1000]=i;
@@ -172,7 +171,7 @@ static USHORT nVersion4Map[141];
 /*N*/   SetVersionMap(3,1000,1123,nVersion3Map);
 /*N*/
 /*N*/
-/*N*/   // Am 10-08-1996 hat Joe 45 neue Items in SvDraw eingebaut
+/*N*/   // hat Joe 45 neue Items in SvDraw eingebaut
 /*N*/   // fuer Bemassung, Verbinder und Laufschrift
 /*N*/
 /*N*/   for (i=1000; i<=1126; i++) {

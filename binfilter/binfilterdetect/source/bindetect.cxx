@@ -334,9 +334,8 @@ static const USHORT aW4WIdentifier[nW4WFilterCount] =
      17 //"writer_XyWrite_Signature_W4W"
 };
 
-/*-- 06.03.2006 14:48:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 #ifndef WNT
 //Same as osl::Module, except will search for its modules in the filter subdir
 class filterModule : public osl::Module

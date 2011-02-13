@@ -278,9 +278,8 @@ namespace binfilter {
 #define WID_TXTCOL_IS_AUTOMATIC         5
 #define WID_TXTCOL_AUTO_DISTANCE        6
 
-/* -----------------04.07.98 11:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwItemPropertySet : public SfxItemPropertySet
 {
 protected:
@@ -289,9 +288,8 @@ public:
     SwItemPropertySet( const SfxItemPropertyMap *pMap ) :
         SfxItemPropertySet( pMap ){}
 };
-/* -----------------04.07.98 11:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwUnoPropertyMapProvider
 {
     SfxItemPropertyMap* aMapArr[PROPERTY_MAP_END];

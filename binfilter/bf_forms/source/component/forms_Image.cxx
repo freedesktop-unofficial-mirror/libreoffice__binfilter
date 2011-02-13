@@ -200,7 +200,6 @@ void SAL_CALL OImageControl::createPeer(const Reference<XToolkit>& _rxToolkit, c
     // itself will register as image consumer at the image producer, so there's no need to do this ourself.
     // This holds since our model is an XImageProducer itself, and thus hiding the XImageProducer of the aggregated
     // model. Before, we had two ImageProducers working in parallel.
-    // 2003-05-15 - 109591 - fs@openoffice.org
 
 /*
     // dem ImageProducer einen neuen Consumer bekannt geben
@@ -481,7 +480,6 @@ void OImageModel::implInitializeImageURL( )
     osl_incrementInterlockedCount( &m_refCount );
     {
         // simulate a propertyChanged event for the ImageURL
-        // 2003-05-15 - #109591# - fs@openoffice.org
         Any aImageURL;
         getFastPropertyValue( aImageURL, PROPERTY_ID_IMAGE_URL );
         _propertyChanged( PropertyChangeEvent( *this, PROPERTY_IMAGE_URL, sal_False, PROPERTY_ID_IMAGE_URL, Any( ), aImageURL ) );

@@ -45,9 +45,8 @@
 namespace binfilter {
 
 class SwDoc;
-/*-----------------12.02.98 11:21-------------------
 
---------------------------------------------------*/
+
 class BaseFrameProperties_Impl;
 class SwXFrame : public cppu::WeakImplHelper6
 <
@@ -149,9 +148,8 @@ public:
     void            ResetDescriptor();
     static SdrObject *GetOrCreateSdrObject( SwFlyFrmFmt *pFmt );
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::text::XTextFrame,
@@ -224,9 +222,8 @@ public:
     void * SAL_CALL operator new( size_t ) throw();
     void SAL_CALL operator delete( void * ) throw();
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper2
 <
     ::com::sun::star::text::XTextContent,
@@ -270,9 +267,8 @@ public:
     void * SAL_CALL operator new( size_t ) throw();
     void SAL_CALL operator delete( void * ) throw();
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::text::XTextContent,

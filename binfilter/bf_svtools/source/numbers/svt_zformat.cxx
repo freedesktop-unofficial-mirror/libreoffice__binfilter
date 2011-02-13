@@ -1352,7 +1352,7 @@ NfHackConversion SvNumberformat::Load( SvStream& rStream,
         NumFor[i].Load( rStream, rScan, aLoadedColorName );
         if ( pHackConverter && eHackConversion == NF_CONVERT_NONE )
         {
-            //! HACK! ER 29.07.97 13:52
+            //! HACK!
             // leider wurde nicht gespeichert, was SYSTEM on Save wirklich war :-/
             // aber immerhin wird manchmal fuer einen Entry FARBE oder COLOR gespeichert..
             // System-German FARBE nach System-xxx COLOR umsetzen und vice versa,

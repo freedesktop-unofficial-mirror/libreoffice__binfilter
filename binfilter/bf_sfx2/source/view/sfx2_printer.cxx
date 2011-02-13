@@ -139,7 +139,7 @@ namespace binfilter {
 /*N*/       SetJobSetup( rTheOrigJobSetup );
         }
 
-        // --> FME 2006-09-19 #b6449032# Use old XPrinter emulation. rTheOrigJobSetup
+        // --> Use old XPrinter emulation. rTheOrigJobSetup
         // already has this setting (see SfxPrinter::Create()).
         JobSetup aJobSetup( GetJobSetup() );
         aJobSetup.SetValue( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StrictSO52Compatibility" ) ),

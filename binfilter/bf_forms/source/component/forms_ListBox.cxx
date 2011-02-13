@@ -290,7 +290,6 @@ void OListBoxModel::setFastPropertyValue_NoBroadcast(sal_Int32 _nHandle, const A
             {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
                 // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
                 // our own mutex locked
-                // FS - 72451 - 31.01.00
                 MutexRelease aRelease(m_aMutex);
                 m_xAggregateFastSet->setFastPropertyValue(OListBoxModel::nSelectHandle, _rValue);
             }
@@ -1037,7 +1036,6 @@ void OListBoxModel::_onValueChanged()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OListBoxModel::nSelectHandle, aSelectAny );
     }
@@ -1068,7 +1066,6 @@ void OListBoxModel::_reset( void )
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OListBoxModel::nSelectHandle, aValue);
     }

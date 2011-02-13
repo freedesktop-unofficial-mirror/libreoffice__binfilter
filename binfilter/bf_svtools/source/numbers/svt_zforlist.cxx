@@ -604,7 +604,7 @@ BOOL SvNumberFormatter::Load( SvStream& rStream )
 
         sal_uInt32 nOffset = nPos % SV_COUNTRY_LANGUAGE_OFFSET;     // relativIndex
         BOOL bUserDefined = (nOffset > SV_MAX_ANZ_STANDARD_FORMATE);
-        //! HACK! ER 29.07.97 15:15
+        //! HACK!
         // SaveLang wurde bei SYSTEM nicht gespeichert sondern war auch SYSTEM,
         // erst ab 364i Unterscheidung moeglich
         BOOL bConversionHack;

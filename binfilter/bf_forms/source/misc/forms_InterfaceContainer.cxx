@@ -373,7 +373,6 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
 
     // after ::read the object is expected to be in the state it was when ::write was called, so we have
     // to empty ourself here
-    // FS - 71598 - 12.01.00
     while (getCount())
         removeByIndex(0);
 
@@ -401,7 +400,6 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
                 if ( !xObj.is() )
                     // couldn't handle it
                     throw;
-                // 72133 - 09.02.00 - FS
             }
             catch(Exception&)
             {

@@ -36,9 +36,8 @@
 namespace binfilter {
 
 class SwRedline;
-/* -----------------------------19.12.00 11:35--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
 /**
  * SwXRedlineText provides an XText which may be used to write
@@ -74,9 +73,8 @@ public:
     virtual ::com::sun::star::uno::Type SAL_CALL getElementType(  ) throw(::com::sun::star::uno::RuntimeException);
     virtual sal_Bool SAL_CALL hasElements(  ) throw(::com::sun::star::uno::RuntimeException);
 };
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXRedlinePortion : public SwXTextPortion
 {
     const SwRedline*    pRedline;
@@ -99,9 +97,8 @@ public:
     static ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > CreateRedlineProperties( const SwRedline& rRedline, sal_Bool bIsStart ) throw();
 
 };
-/* -----------------------------11.01.01 16:52--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 typedef
 cppu::WeakImplHelper1
 <

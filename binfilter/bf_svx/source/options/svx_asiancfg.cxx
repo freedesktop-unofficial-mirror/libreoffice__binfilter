@@ -70,9 +70,8 @@ using namespace ::com::sun::star::lang;
 /*N*/       bKerningWesternTextOnly(sal_True),
 /*N*/       nCharDistanceCompression(0) {}
 /*N*/ };
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> lcl_GetPropertyNames()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames(2);
@@ -90,16 +89,14 @@ using namespace ::com::sun::star::lang;
 /*N*/       EnableNotification(lcl_GetPropertyNames());
 /*N*/   Load();
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxAsianConfig::~SvxAsianConfig()
 /*N*/ {
 /*N*/   delete pImpl;
 /*N*/ }
-/* -----------------------------17.01.01 09:57--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void SvxAsianConfig::Load()
 /*N*/ {
 /*N*/   Sequence<Any> aValues = GetProperties(lcl_GetPropertyNames());
@@ -141,23 +138,20 @@ using namespace ::com::sun::star::lang;
 /*?*/       pImpl->aForbiddenArr.Insert(pInsert, pImpl->aForbiddenArr.Count());
 /*N*/   }
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_Bool  SvxAsianConfig::IsKerningWesternTextOnly() const
 /*N*/ {
 /*N*/   return pImpl->bKerningWesternTextOnly;
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_Int16 SvxAsianConfig::GetCharDistanceCompression() const
 /*N*/ {
 /*N*/   return pImpl->nCharDistanceCompression;
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ uno::Sequence<lang::Locale> SvxAsianConfig::GetStartEndCharLocales()
 /*N*/ {
 /*N*/   Sequence<Locale> aRet(pImpl->aForbiddenArr.Count());

@@ -47,18 +47,16 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
-/* -----------------07.10.2002 12:15-----------------
- *
- * --------------------------------------------------*/
+
+
 /*M*/ inline LanguageType lcl_LanguageOfType(sal_Int16 nType, sal_Int16 eWestern, sal_Int16 eCJK, sal_Int16 eCTL)
 /*M*/ {
 /*M*/     return LanguageType(
 /*M*/                 nType < FONT_STANDARD_CJK ? eWestern :
 /*N*/                     nType >= FONT_STANDARD_CTL ? eCTL : eCJK);
 /*M*/ }
-/* -----------------------------08.09.00 15:52--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwStdFontConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -88,9 +86,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-----------------03.09.96 15.00-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ SwStdFontConfig::SwStdFontConfig() :
 /*N*/     ::utl::ConfigItem(C2U("Office.Writer"))
@@ -124,17 +121,14 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------08.09.00 15:58--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------08.09.00 15:56--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ SwStdFontConfig::~SwStdFontConfig()
 /*N*/ {}
-/*-----------------18.01.97 10.05-------------------
 
---------------------------------------------------*/
+
 /*M*/ BOOL SwStdFontConfig::IsFontDefault(USHORT nFontType) const
 /*M*/ {
 /*M*/   BOOL bSame;

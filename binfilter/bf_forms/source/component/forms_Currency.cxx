@@ -265,7 +265,6 @@ void OCurrencyModel::_onValueChanged()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OCurrencyModel::nValueHandle, m_aSaveValue);
     }
@@ -282,7 +281,6 @@ void OCurrencyModel::_reset( void )
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OCurrencyModel::nValueHandle, aValue);
     }

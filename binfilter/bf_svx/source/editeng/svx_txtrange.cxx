@@ -113,11 +113,10 @@ namespace binfilter {
 /*N*/   delete pLine;
 /*N*/ }
 
-/*-----------------17.11.00 09:49-------------------
- * TextRanger::SetVertical(..)
+/* TextRanger::SetVertical(..)
  * If there's is a change in the writing direction,
  * the cache has to be cleared.
- * --------------------------------------------------*/
+ */
 
 
 /*************************************************************************

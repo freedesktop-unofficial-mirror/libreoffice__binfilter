@@ -199,18 +199,16 @@ using namespace ::rtl;
 /*N*/   return (this);
 /*N*/ }
 
-/* -----------------20.04.99 10:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void  SwModule::InitAttrPool()
 /*N*/ {
 /*N*/   DBG_ASSERT(!pAttrPool, "Pool ist schon da!");
 /*N*/   pAttrPool = new SwAttrPool(0);
 /*N*/   SetPool(pAttrPool);
 /*N*/ }
-/* -----------------20.04.99 10:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void  SwModule::RemoveAttrPool()
 /*N*/ {
 /*N*/   SetPool(0);

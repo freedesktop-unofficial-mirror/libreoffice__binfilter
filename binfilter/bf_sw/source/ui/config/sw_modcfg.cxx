@@ -54,9 +54,8 @@ using namespace ::com::sun::star::uno;
 #define GLOB_NAME_CHART     4
 
 /*N*/ SV_IMPL_PTRARR_SORT(InsCapOptArr, InsCaptionOptPtr)
-/* -----------------03.11.98 13:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ InsCaptionOpt* InsCaptionOptArr::Find(const SwCapObjType eType, const SvGlobalName *pOleId) const
 /*N*/ {
 /*N*/   for (USHORT i = 0; i < Count(); i++ )
@@ -73,18 +72,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   return 0;
 /*N*/ }
 
-/* -----------------03.11.98 15:05-------------------
- *
- * --------------------------------------------------*/
 
 
-/* -----------------03.11.98 15:05-------------------
- *
- * --------------------------------------------------*/
 
-/*-----------------13.01.97 12.44-------------------
 
---------------------------------------------------*/
+
+
+
+
+
 /*N*/ SwModuleOptions::SwModuleOptions() :
 /*N*/   aInsertConfig(FALSE),
 /*N*/   aWebInsertConfig(TRUE),
@@ -93,9 +89,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   bHideFieldTips(FALSE)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 12:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ String SwModuleOptions::ConvertWordDelimiter(const String& rDelim, BOOL bFromUI)
 /*N*/ {
 /*N*/   String sReturn;
@@ -182,9 +177,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return sReturn;
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwRevisionConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -209,9 +203,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwRevisionConfig::SwRevisionConfig() :
 /*N*/     ConfigItem(C2U("Office.Writer/Revision"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE)
@@ -228,24 +221,20 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/     Load();
 /*N*/ }
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwRevisionConfig::~SwRevisionConfig()
 /*N*/ {
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
 
-  -----------------------------------------------------------------------*/
 
     void SwRevisionConfig::Commit() {}
     void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
 //-----------------------------------------------------------------------------
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ void lcl_ConvertCfgToAttr(sal_Int32 nVal, AuthorCharAttr& rAttr, sal_Bool bDelete = sal_False)
 /*N*/ {
 /*N*/   rAttr.nItemId = rAttr.nAttr = 0;
@@ -301,9 +290,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwInsertConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -394,9 +382,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return bIsWeb ? aWebNames : aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwInsertConfig::SwInsertConfig(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Insert") : C2U("Office.Writer/Insert"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -418,21 +405,18 @@ using namespace ::com::sun::star::uno;
     void SwInsertConfig::Commit() {}
     void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwInsertConfig::~SwInsertConfig()
 /*N*/ {
 /*N*/   delete pCapOptions;
 /*N*/   delete pOLEMiscOpt;
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 //-----------------------------------------------------------------------------
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ void lcl_ReadOpt(InsCaptionOpt& rOpt, const Any* pValues, sal_Int32 nProp, sal_Int32 nOffset)
 /*N*/ {
 /*N*/   switch(nOffset)
@@ -621,9 +605,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwTableConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   const int nCount = 8;
@@ -644,27 +627,23 @@ using namespace ::com::sun::star::uno;
 /*N*/       pNames[i] = OUString::createFromAscii(aPropNames[i]);
 /*N*/   return aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwTableConfig::SwTableConfig(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Table") : C2U("Office.Writer/Table"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE)
 /*N*/ {
 /*N*/     Load();
 /*N*/ }
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwTableConfig::~SwTableConfig()
 /*N*/ {
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwTableConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
@@ -697,9 +676,8 @@ using namespace ::com::sun::star::uno;
     void SwTableConfig::Commit() {}
     void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwMiscConfig::SwMiscConfig() :
 /*N*/     ConfigItem(C2U("Office.Writer"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -713,9 +691,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ {
 /*N*/     Load();
 /*N*/ }
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwMiscConfig::~SwMiscConfig()
 /*N*/ {
 /*N*/ }
@@ -723,9 +700,8 @@ using namespace ::com::sun::star::uno;
     void SwMiscConfig::Commit() {}
     void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
 
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwMiscConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -753,12 +729,10 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 18.01.01 17:02:48---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwMiscConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();

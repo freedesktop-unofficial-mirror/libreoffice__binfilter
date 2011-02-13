@@ -549,9 +549,8 @@ public:
     void SAL_CALL operator delete( void * ) throw();
 
 };
-/* -----------------25.10.99 11:02-------------------
 
- --------------------------------------------------*/
+
 class SwXLinkTargetSupplier : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XNameAccess,
@@ -588,9 +587,8 @@ public:
     //
     void    Invalidate() {pxDoc = 0;}
 };
-/* -----------------26.10.99 09:05-------------------
 
- --------------------------------------------------*/
+
 class SwXLinkNameAccessWrapper : public cppu::WeakImplHelper4
 <
     ::com::sun::star::beans::XPropertySet,
@@ -641,9 +639,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 
 };
-/* -----------------26.10.99 15:46-------------------
 
- --------------------------------------------------*/
+
 class SwXOutlineTarget : public cppu::WeakImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,

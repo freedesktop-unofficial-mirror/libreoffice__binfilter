@@ -38,9 +38,8 @@ namespace binfilter {
 class SwTOXBaseSection;
 class SwTOXMark;
 class SwTOXType;
-/* -----------------07.12.98 10:08-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwDocIdxProperties_Impl;
 class SwXIndexStyleAccess_Impl;
 class SwXIndexTokenAccess_Impl;
@@ -136,9 +135,8 @@ public:
 
     void attachToRange(const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > & xTextRange)throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
 };
-/* -----------------07.12.98 10:08-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXDocumentIndexMark : public cppu::WeakImplHelper4
 <
     ::com::sun::star::text::XDocumentIndexMark,
@@ -221,9 +219,8 @@ public:
                                                 SwDoc* pDoc);
     void                Invalidate();
 };
-/* -----------------05.05.99 12:27-------------------
- *
- * --------------------------------------------------*/
+
+
 
 class SwXDocumentIndexes : public SwCollectionBaseClass,
     public SwUnoCollection
@@ -264,9 +261,8 @@ public:
 
     static SwXDocumentIndex* GetObject(const SwTOXBaseSection* pTOX);
 };
-/* -----------------13.09.99 16:39-------------------
 
- --------------------------------------------------*/
+
 class SwXIndexStyleAccess_Impl : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XIndexReplace,
@@ -299,9 +295,8 @@ public:
 
 };
 
-/* -----------------13.09.99 16:39-------------------
 
- --------------------------------------------------*/
+
 class SwXIndexTokenAccess_Impl : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XIndexReplace,

@@ -480,8 +480,6 @@ void OFormattedModel::fillProperties(
             // then we will overwrite this upon loading, anyway. If it is changed while the form
             // is loaded, then this does no harm, too: The format is preserved (the aggregate cares for this),
             // and upon unloading, we restore the old formatter.
-            //
-            // 84794 - 2002-10-09 - fs@openoffice.org
 
         // TreatAsNumeric nicht transient : wir wollen es an der UI anbinden (ist noetig, um dem EffectiveDefault
         // - der kann Text oder Zahl sein - einen Sinn zu geben)
@@ -495,7 +493,6 @@ void OFormattedModel::fillProperties(
             // no strict format property for formatted fields: it does not make sense, 'cause
             // there is no general way to decide which characters/sub strings are allowed during the input of an
             // arbitraryly formatted control
-            // 81441 - 12/07/00 - FS
     FRM_END_PROP_HELPER();
 }
 
@@ -682,7 +679,6 @@ void OFormattedModel::loaded(const EventObject& rEvent) throw ( ::com::sun::star
     // property requests and one for our own code. This would need a lot of code rewriting
     // alternative b): The NumberFormatter has to be really threadsafe (with an own mutex), which is
     // the only "clean" solution for me.
-    // FS - 69603 - 02.11.99
 
     SolarMutexGuard aGuard;
     OEditBaseModel::loaded(rEvent);
@@ -1086,7 +1082,6 @@ void OFormattedModel::_onValueChanged()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OFormattedModel::nValueHandle, m_aSaveValue);
     }
@@ -1105,7 +1100,6 @@ void OFormattedModel::_reset( void )
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OFormattedModel::nValueHandle, aValue);
     }

@@ -44,9 +44,8 @@ class SwFmtFld;
 class SwField;
 class SwSetExpField;
 
-/* -----------------04.12.98 12:49-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXFieldMaster : public cppu::WeakImplHelper4
 <
     ::com::sun::star::beans::XPropertySet,
@@ -117,9 +116,8 @@ public:
     sal_uInt16      GetResId() const {return nResTypeId;}
 };
 
-/* -----------------04.12.98 12:49-------------------
- *
- * --------------------------------------------------*/
+
+
 struct SwFieldProperties_Impl;
 class SwXTextField : public cppu::WeakImplHelper5
 <
@@ -200,9 +198,8 @@ public:
     const SwFmtFld*     GetFldFmt(){return GetField() ? pFmtFld : 0; };
     void Invalidate();
 };
-/* -----------------21.12.98 10:26-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef
 cppu::WeakImplHelper2
 <
@@ -237,9 +234,8 @@ public:
     static sal_Bool getInstanceName(const SwFieldType& rFldType, String& rName);
 };
 
-/* -----------------21.12.98 10:26-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef
 cppu::WeakImplHelper3
 <
@@ -279,9 +275,8 @@ public:
     virtual void    Invalidate();
 };
 
-/* -----------------21.12.98 14:49-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXFieldEnumeration : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XEnumeration,

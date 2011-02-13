@@ -248,8 +248,7 @@ struct FmFormModelImplData
 /*N*/       // I the decision is to do this "small hack" here (which I don't consider really
 /*N*/       // bad).
 /*N*/       //
-/*N*/       // 2002-01-10 - #i3235# - fs@openoffice.org
-/*N*/       //
+/*N*/       // #i3235#
 /*N*/   }
 /*N*/ #endif
 /*N*/ }

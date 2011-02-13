@@ -390,7 +390,6 @@ namespace binfilter {
 /*N*/               // wir dieses bei der Laengenberechn. beruecks.,
 /*N*/               // um gleiche Ergebnisse zu bekommen; die hoehere
 /*N*/               // Genauigkeit im Mtf bezieht sich nur auf die Breite
-/*N*/               // (KA 29.09.96)
 /*N*/               const long nFactor = nMinLength * ( bPureMtf ? MTF_DIVISOR : 1 );
 /*N*/
 /*N*/               nDotLen = nDotLen * nFactor / 100;

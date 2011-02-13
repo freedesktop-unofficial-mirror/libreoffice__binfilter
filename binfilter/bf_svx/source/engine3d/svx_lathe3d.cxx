@@ -409,9 +409,8 @@ namespace binfilter {
 /*N*/   rOut << ((E3dLatheObj*)this)->GetDoubleSided();
 /*N*/   rOut << fLatheScale;
 /*N*/
-/*N*/   // Ab Version 364f (19.06.97)
 /*N*/
-/*N*/   // #83965# internally the real number of segments (edges) is
+/*N*/   // internally the real number of segments (edges) is
 /*N*/   // used, no longer the number of points
 /*N*/   sal_Int32 nVSegs = GetVerticalSegments();
 /*N*/   if(!aPolyPoly3D[0].IsClosed())
@@ -419,18 +418,17 @@ namespace binfilter {
 /*N*/
 /*N*/   rOut << nVSegs;
 /*N*/
-/*N*/   // Ab Version 374 (15.12.97)
 /*N*/   rOut << aPolyPoly3D;
 /*N*/
 /*N*/   rOut << ((double)GetBackScale() / 100.0);
 /*N*/
 /*N*/   rOut << ((double)GetPercentDiagonal() / 200.0);
 /*N*/
-/*N*/   rOut << GetSmoothNormals(); // #107245# (BOOL)bLatheSmoothed;
-/*N*/   rOut << GetSmoothLids(); // #107245# (BOOL)bLatheSmoothFrontBack;
-/*N*/   rOut << GetCharacterMode(); // #107245# (BOOL)bLatheCharacterMode;
+/*N*/   rOut << GetSmoothNormals();
+/*N*/   rOut << GetSmoothLids();
+/*N*/   rOut << GetCharacterMode();
 /*N*/
-/*N*/   // Ab Version 395 (8.6.98): Parameter aus dem Objekt
+/*N*/   // Parameter aus dem Objekt
 /*N*/   // E3dCompoundObject. Da irgendwann mal jemand die Ableitungs-
 /*N*/   // hierarchie beim FileFormat unterbrochen hat, wurden diese Attribute
 /*N*/   // bisher NOCH NIE gespeichert (Grrr). Diese Stelle muss nun natuerlich
@@ -588,11 +586,10 @@ namespace binfilter {
 /*N*/
 /*N*/       if (aCompat.GetBytesLeft())
 /*N*/       {
-/*N*/           // Ab Version 364f (19.06.97)
 /*N*/           sal_Int32 nTmp;
 /*N*/           rIn >> nTmp;
 /*N*/
-/*N*/           // #83965# internally the real number of segments (edges) is
+/*N*/           // internally the real number of segments (edges) is
 /*N*/           // used, no longer the number of points
 /*N*/           if(!aPolyPoly3D[0].IsClosed())
 /*N*/               nTmp -= 1;
@@ -602,7 +599,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if (aCompat.GetBytesLeft())
 /*N*/       {
-/*N*/           // Ab Version 374 (15.12.97)
 /*N*/           // Gesamtes PolyPolygon laden
 /*N*/           BOOL bTmp;
 /*N*/           double fTmp;

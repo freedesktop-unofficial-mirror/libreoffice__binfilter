@@ -238,9 +238,8 @@ ULONG SwDLL::GlobDetectFilter( SfxMedium& rMedium, const SfxFilter **ppFilter,
     return nRet;
 }
 
-/*-----------------18.03.98 08.09-------------------
 
---------------------------------------------------*/
+
 SwModuleDummy::~SwModuleDummy()
 {
 }

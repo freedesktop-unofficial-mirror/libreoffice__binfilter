@@ -54,9 +54,8 @@ class SwStartNode;
 /******************************************************************************
  *
  ******************************************************************************/
-/*-----------------12.02.98 08:27-------------------
 
---------------------------------------------------*/
+
 class SwXStyleFamilies :  public cppu::WeakImplHelper4
 <
     ::com::sun::star::container::XIndexAccess,
@@ -103,9 +102,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 };
 
-/* -----------------26.05.98 10:56-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXStyleFamily : public cppu::WeakImplHelper3
 <
     ::com::sun::star::container::XNameContainer,
@@ -150,9 +148,8 @@ public:
     virtual BOOL SAL_CALL supportsService(const ::rtl::OUString& ServiceName) throw( ::com::sun::star::uno::RuntimeException );
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 };
-/* -----------------20.05.98 09:51-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXStyle : public cppu::WeakImplHelper7
 <
     ::com::sun::star::style::XStyle,
@@ -266,9 +263,8 @@ public:
     SwDoc*                GetDoc() const { return m_pDoc; }
     virtual void    Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------------------15.12.00 14:25--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXFrameStyle : public SwXStyle,
                         public ::com::sun::star::document::XEventsSupplier
 {
@@ -290,9 +286,8 @@ public:
 
     friend class SwFrameStyleEventDescriptor;
 };
-/* -----------------24.08.98 16:04-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXPageStyle : public SwXStyle
 {
     SwDocShell*     pDocShell;

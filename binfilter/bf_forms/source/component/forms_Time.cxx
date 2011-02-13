@@ -319,7 +319,6 @@ void OTimeModel::_onValueChanged()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OTimeModel::nTimeHandle, m_aSaveValue);
     }
@@ -340,7 +339,6 @@ void OTimeModel::_reset()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OTimeModel::nTimeHandle, aValue);
     }

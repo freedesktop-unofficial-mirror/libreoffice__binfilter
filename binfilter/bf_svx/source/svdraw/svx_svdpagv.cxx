@@ -72,7 +72,6 @@ using namespace ::com::sun::star;
 /*N*/     switchControlListening( true );
 /*N*/
 /*N*/     // adjust the initial visibility according to the visibility of the layer
-/*N*/     // 2003-06-03 - #110592# - fs@openoffice.org
 /*N*/     adjustControlVisibility( true );
 /*N*/
 /*N*/ }

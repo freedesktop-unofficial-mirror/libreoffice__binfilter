@@ -258,7 +258,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/ }
 
 /************************************************************************/
-// Umgestellt am 27.07.95 auf XBitmap
+// Umgestellt auf XBitmap
 
 /*N*/ BOOL XBitmapList::Create()
 /*N*/ {

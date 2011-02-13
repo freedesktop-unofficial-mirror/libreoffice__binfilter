@@ -378,7 +378,6 @@ void OCheckBoxModel::_onValueChanged()
         {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
             // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
             // our own mutex locked
-            // FS - 72451 - 31.01.00
             MutexRelease aRelease(m_aMutex);
             m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
         }
@@ -400,7 +399,6 @@ void OCheckBoxModel::_reset( void )
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
     }
@@ -414,7 +412,6 @@ sal_Bool OCheckBoxModel::_commit()
         return sal_True;
 
     // we're in reset, so this commit means "put the value into the field you're bound to"
-    // 72769 - 08.02.00 - FS
     DBG_ASSERT(getField().is(), "OCheckBoxModel::_commit : committing while resetting, but not bound ?");
     if (getField().is())
     {

@@ -46,9 +46,8 @@ using namespace ::rtl;
 namespace binfilter
 {
 
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 const SfxItemPropertyMap*   SfxItemPropertyMap::GetByName(
     const SfxItemPropertyMap *pMap, const OUString &rName )
 {
@@ -60,16 +59,14 @@ const SfxItemPropertyMap*   SfxItemPropertyMap::GetByName(
     }
     return 0;
 }
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 BOOL SfxItemPropertySet::FillItem(SfxItemSet&, USHORT, BOOL) const
 {
     return FALSE;
 }
-/* -----------------------------06.06.01 12:32--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxItemPropertySet::getPropertyValue( const SfxItemPropertyMap& rMap,
             const SfxItemSet& rSet, Any& rAny ) const
                         throw(RuntimeException)
@@ -107,9 +104,8 @@ void SfxItemPropertySet::getPropertyValue( const SfxItemPropertyMap& rMap,
 }
 
 
-/* -----------------------------15.11.00 12:32--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Any SfxItemPropertySet::getPropertyValue( const SfxItemPropertyMap& rMap,
             const SfxItemSet& rSet ) const
                         throw(RuntimeException)
@@ -119,9 +115,8 @@ Any SfxItemPropertySet::getPropertyValue( const SfxItemPropertyMap& rMap,
     return aAny;
 }
 
-/* -----------------------------06.06.01 12:32--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxItemPropertySet::getPropertyValue( const OUString &rName,
             const SfxItemSet& rSet, Any& rAny ) const
                         throw(RuntimeException, UnknownPropertyException)
@@ -132,9 +127,8 @@ void SfxItemPropertySet::getPropertyValue( const OUString &rName,
         throw UnknownPropertyException();
     getPropertyValue( *pMap,rSet, rAny );
 }
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Any SfxItemPropertySet::getPropertyValue( const OUString &rName,
             const SfxItemSet& rSet ) const
                         throw(RuntimeException, UnknownPropertyException)
@@ -143,9 +137,8 @@ Any SfxItemPropertySet::getPropertyValue( const OUString &rName,
     getPropertyValue( rName,rSet, aVal );
     return aVal;
 }
-/* -----------------------------15.11.00 14:46--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxItemPropertySet::setPropertyValue( const SfxItemPropertyMap& rMap,
                                             const Any& aVal,
                                             SfxItemSet& rSet ) const
@@ -184,9 +177,8 @@ void SfxItemPropertySet::setPropertyValue( const SfxItemPropertyMap& rMap,
         delete pNewItem;
     }
 }
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxItemPropertySet::setPropertyValue( const OUString &rName,
                                             const Any& aVal,
                                             SfxItemSet& rSet ) const
@@ -201,9 +193,8 @@ void SfxItemPropertySet::setPropertyValue( const OUString &rName,
     }
     setPropertyValue(*pMap, aVal, rSet);
 }
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 PropertyState SfxItemPropertySet::getPropertyState(const SfxItemPropertyMap& rMap, const SfxItemSet& rSet)
                                     throw()
 {
@@ -246,9 +237,8 @@ PropertyState   SfxItemPropertySet::getPropertyState(
         eRet = PropertyState_AMBIGUOUS_VALUE;
     return eRet;
 }
-/* -----------------------------21.02.00 11:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Reference<XPropertySetInfo>
     SfxItemPropertySet::getPropertySetInfo() const
 {
@@ -256,9 +246,8 @@ Reference<XPropertySetInfo>
     return aRef;
 }
 
-/* -----------------------------21.02.00 11:09--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Sequence< Property > SAL_CALL
         SfxItemPropertySetInfo::getProperties(  )
             throw(RuntimeException)
@@ -284,9 +273,8 @@ Sequence< Property > SAL_CALL
 
     return aPropSeq;
 }
-/* -----------------------------21.02.00 11:27--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Property SAL_CALL
         SfxItemPropertySetInfo::getPropertyByName( const ::rtl::OUString& rName )
             throw(UnknownPropertyException, RuntimeException)
@@ -308,9 +296,8 @@ Property SAL_CALL
         throw UnknownPropertyException();
     return aProp;
 }
-/* -----------------------------21.02.00 11:28--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 sal_Bool SAL_CALL
         SfxItemPropertySetInfo::hasPropertyByName( const ::rtl::OUString& rName )
             throw(RuntimeException)
@@ -322,9 +309,8 @@ sal_Bool SAL_CALL
     }
     return FALSE;
 }
-/* -----------------------------21.02.00 12:03--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 SfxExtItemPropertySetInfo::SfxExtItemPropertySetInfo(
                                 const SfxItemPropertyMap *pMap,
                                 const Sequence<Property>& rPropSeq ) :
@@ -389,17 +375,15 @@ SfxExtItemPropertySetInfo::SfxExtItemPropertySetInfo(
     if(nDouble)
         aPropertySeq.realloc(nExtLen + nLen - nDouble);
 }
-/* -----------------------------21.02.00 12:03--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Sequence< Property > SAL_CALL
         SfxExtItemPropertySetInfo::getProperties(  ) throw(RuntimeException)
 {
     return aPropertySeq;
 }
-/* -----------------------------21.02.00 12:03--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Property SAL_CALL
         SfxExtItemPropertySetInfo::getPropertyByName( const OUString& aPropertyName )
             throw(UnknownPropertyException, RuntimeException)
@@ -413,9 +397,8 @@ Property SAL_CALL
     }
     return Property();
 }
-/* -----------------------------21.02.00 12:03--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 sal_Bool SAL_CALL
         SfxExtItemPropertySetInfo::hasPropertyByName( const OUString& aPropertyName )
             throw(RuntimeException)

@@ -1373,7 +1373,7 @@ BOOL SbxValue::Compare( SbxOperator eOp, const SbxValue& rOp ) const
                     SetError( SbxERR_NOTIMP );
             }
         }
-        // AB 19.12.95: Wenn SbxSINGLE beteiligt, auf SINGLE konvertieren,
+        // Wenn SbxSINGLE beteiligt, auf SINGLE konvertieren,
         //              sonst gibt es numerische Fehler
         else if( GetType() == SbxSINGLE || rOp.GetType() == SbxSINGLE )
         {

@@ -1106,15 +1106,15 @@ enum ChartStyleV0
 /*N*/   if (nMoreData >= 9) rOut << fAmbientIntensity;
 /*N*/   if (nMoreData >= 10) rOut << bTextScalable;
 /*N*/   if (nMoreData >= 11) rOut << aInitialSize;
-/*N*/   if (nMoreData >= 12) // FG: Zusaetze wegen des Umruchs von Achsentext und Legendentext 20.02.97
+/*N*/   if (nMoreData >= 12) // Zusaetze wegen des Umruchs von Achsentext und Legendentext
 /*N*/   {
-/*N*/       // FG: Vielleicht etwas viel Speicher fuer BOOL, aber es macht nur 8 Byte pro Chart
+/*N*/       // Vielleicht etwas viel Speicher fuer BOOL, aber es macht nur 8 Byte pro Chart
 /*N*/       rOut << (INT16) bFormatXAxisTextInMultipleLinesIfNecessary;
 /*N*/       rOut << (INT16) bFormatYAxisTextInMultipleLinesIfNecessary;
 /*N*/       rOut << (INT16) bFormatZAxisTextInMultipleLinesIfNecessary;
 /*N*/       rOut << (INT16) bFormatLegendTextInMultipleLinesIfNecessary;
 /*N*/   }
-/*N*/   if (nMoreData >= 13) // FG: 9.3.1997 Zusaetze wegen einer freien Positionierung und einem freien
+/*N*/   if (nMoreData >= 13) // Zusaetze wegen einer freien Positionierung und einem freien
 /*N*/   {                    //     Resize von Gruppenobjekten im Chart.
 /*N*/       rOut << (INT16) nXAxisTextMaximumNumberOfLines;
 /*N*/       rOut << (INT16) nYAxisTextMaximumNumberOfLines;

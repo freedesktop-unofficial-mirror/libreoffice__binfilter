@@ -201,7 +201,7 @@ BOOL SvBaseLink::Update()
             if( xObj->GetData( aData, sMimeType ) )
             {
                 DataChanged( sMimeType, aData );
-                //JP 13.07.00: Bug 76817 - for manual Updates there is no
+                // for manual Updates there is no
                 //              need to hold the ServerObject
                 if( OBJECT_CLIENT_DDE == nObjType &&
                     LINKUPDATE_ONCALL == GetUpdateMode() && xObj.Is() )

@@ -85,9 +85,8 @@ enum ColorConfigEntry
     BASICERROR   ,
     ColorConfigEntryCount
 };
-/* -----------------------------22.03.2002 15:36------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class ColorConfig_Impl;
 struct ColorConfigValue
 {
@@ -98,9 +97,8 @@ struct ColorConfigValue
     sal_Bool operator !=(const ColorConfigValue& rCmp) const
         { return nColor != rCmp.nColor || bIsVisible != rCmp.bIsVisible;}
 };
-/* -----------------------------22.03.2002 15:36------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class  ColorConfig:
     public Options, public SfxBroadcaster, public SfxListener
 {

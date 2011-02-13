@@ -37,9 +37,8 @@
 #include <vcl/fldunit.hxx>
 namespace binfilter {
 
-/* -----------------------------28.09.00 09:45--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwMasterUsrPref;
 class SwContentViewConfig : public ::utl::ConfigItem
 {
@@ -56,9 +55,8 @@ class SwContentViewConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------28.09.00 09:45--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwLayoutViewConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
@@ -74,9 +72,8 @@ class SwLayoutViewConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------19.01.01 13:06--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwGridConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
@@ -92,9 +89,8 @@ class SwGridConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------19.01.01 13:06--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwCursorConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&    rParent;
@@ -109,9 +105,8 @@ class SwCursorConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------28.09.00 09:45--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwWebColorConfig : public ::utl::ConfigItem
 {
     SwMasterUsrPref&        rParent;
@@ -126,9 +121,8 @@ class SwWebColorConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------28.09.00 09:45--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwMasterUsrPref : public SwViewOption
 {
     friend class SwContentViewConfig;

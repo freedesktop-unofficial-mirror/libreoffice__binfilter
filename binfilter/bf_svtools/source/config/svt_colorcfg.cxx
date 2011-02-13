@@ -65,8 +65,8 @@ namespace
 
 ColorConfig_Impl*    ColorConfig::m_pImpl = NULL;
 
-/* -----------------------------16.01.01 15:36--------------------------------
- ---------------------------------------------------------------------------*/
+
+
 class ColorConfig_Impl : public utl::ConfigItem, public SfxBroadcaster
 {
     ColorConfigValue    m_aConfigValues[ColorConfigEntryCount];
@@ -104,9 +104,8 @@ public:
     void ImplUpdateApplicationSettings();
 };
 
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString& rScheme)
 {
     uno::Sequence<OUString> aNames(2 * ColorConfigEntryCount);

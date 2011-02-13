@@ -111,7 +111,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*
 ===========================================================================
-JP 28.02.96: noch eine Baustelle:
+noch eine Baustelle:
                 Idee: hier das Medium und die DocShell anlegen, Doc laden
                       und ueber OLE-SS (GetObj(...)) den Bereich als
                       PseudoObject erfragen. Dieses mit den Daten oder
@@ -152,7 +152,6 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/           {
 /*?*/               Graphic aGrf;
 /*?*/
-/*?*/               //JP 15.07.98: Bug 52959
 /*?*/               //      falls das Nativformat doch erwuenscht ist, muss am
 /*?*/               //      Ende das Flag zurueckgesetzt werden.
 /*?*/ // wird einzig und allein im sw/ndgrf.cxx benutzt, wenn der Link vom

@@ -76,9 +76,8 @@ public:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >  _CreateShape( SdrObject *pObj ) const throw ();
 };
 
-/* -----------------09.12.98 08:57-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakAggImplHelper3
 <
     ::com::sun::star::drawing::XDrawPage,
@@ -122,9 +121,8 @@ public:
     SwFmDrawPage*   GetSvxPage();
     void    Invalidate() {pDoc = 0;}
 };
-/* -----------------22.01.99 10:20-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwShapeDescriptor_Impl;
 class SwXGroupShape;
 typedef
@@ -208,9 +206,8 @@ public:
     SwShapeDescriptor_Impl*     GetDescImpl() {return pImpl;}
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XAggregation >                 GetAggregationInterface() {return xShapeAgg;}
 };
-/* -----------------------------31.05.01 09:54--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXGroupShape :
     public SwXShape,
     public ::com::sun::star::drawing::XShapes

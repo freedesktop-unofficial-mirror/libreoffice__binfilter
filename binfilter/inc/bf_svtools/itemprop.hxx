@@ -56,9 +56,8 @@ struct SfxItemPropertyMap
         const SfxItemPropertyMap *pMap,
         const ::rtl::OUString &rName );
 };
-/* -----------------------------21.02.00 11:19--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class  SfxItemPropertySet
 {
     const SfxItemPropertyMap*   _pMap;
@@ -141,9 +140,8 @@ public:
     virtual void SAL_CALL acquire(  ) throw ();
     virtual void SAL_CALL release(  ) throw ();
 };
-/* -----------------------------21.02.00 12:01--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class  SfxExtItemPropertySetInfo: public cppu::WeakImplHelper1< ::com::sun::star::beans::XPropertySetInfo >
 {
     const SfxItemPropertyMap*                                           _pExtMap;

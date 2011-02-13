@@ -56,9 +56,8 @@ class SwTOXMark;
  --------------------------------------------------------------------*/
 class SwIndexMarkFloatDlg;
 class SwIndexMarkModalDlg;
-/* -----------------07.09.99 08:02-------------------
 
- --------------------------------------------------*/
+
 class SwInsertIdxMarkWrapper : public SfxChildWindow
 {
 protected:
@@ -73,13 +72,11 @@ public:
 
 };
 
-/* -----------------15.09.99 08:39-------------------
 
- --------------------------------------------------*/
+
 class SwAuthMarkModalDlg;
-/* -----------------07.09.99 08:02-------------------
 
- --------------------------------------------------*/
+
 class SwInsertAuthMarkWrapper : public SfxChildWindow
 {
 protected:

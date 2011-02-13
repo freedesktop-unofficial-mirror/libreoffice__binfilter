@@ -1531,7 +1531,7 @@ MRESULT ImpDdeMgr::DdeTerminate( ImpWndProcParams* pParams )
         // dass die Advise loops gestoppt wurden und die
         // Transaktionen loeschen
 
-        // OV 26.07.96: Die das TERMINATE empfangende App muss
+        // Die das TERMINATE empfangende App muss
         // die Transaction-Tabelle abraeumen, egal ob Server oder Client!!
         // Es muessen alle Trans geloescht werden, die als Owner den
         // Client oder den Server haben!

@@ -66,9 +66,8 @@ using namespace ::com::sun::star::style;
 
 sal_Int32 SvxNumberType::nRefCount = 0;
 ::com::sun::star::uno::Reference< ::com::sun::star::text::XNumberingFormatter> SvxNumberType::xFormatter = 0;
-/* -----------------------------22.02.01 14:24--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxNumberType::SvxNumberType(sal_Int16 nType) :
 /*N*/   nNumType(nType),
 /*N*/   bShowSymbol(sal_True)
@@ -90,35 +89,31 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   }
 /*N*/   nRefCount++;
 /*N*/ }
-/* -----------------------------22.02.01 14:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxNumberType::SvxNumberType(const SvxNumberType& rType) :
 /*N*/   nNumType(rType.nNumType),
 /*N*/   bShowSymbol(rType.bShowSymbol)
 /*N*/ {
 /*N*/   nRefCount++;
 /*N*/ }
-/* -----------------------------22.02.01 14:24--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxNumberType::~SvxNumberType()
 /*N*/ {
 /*N*/   if(!--nRefCount)
 /*N*/       xFormatter = 0;
 /*N*/ }
-/* -----------------------------22.02.01 11:09--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ String SvxNumberType::GetNumStr( ULONG nNo ) const
 /*N*/ {
 /*N*/     LanguageType eLang = Application::GetSettings().GetLanguage();
 /*N*/   Locale aLocale = SvxCreateLocale(eLang);
 /*N*/   return GetNumStr( nNo, aLocale );
 /*N*/ }
-/* -----------------28.10.98 15:56-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ String    SvxNumberType::GetNumStr( ULONG nNo, const Locale& rLocale ) const
 /*N*/ {
 /*N*/   String aTmpStr;
@@ -159,9 +154,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   }
 /*N*/   return aTmpStr;
 /*N*/ }
-/* -----------------27.10.98 10:33-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumberFormat::SvxNumberFormat(sal_Int16 eType) :
 /*N*/   SvxNumberType(eType),
 /*N*/   eNumAdjust(SVX_ADJUST_LEFT),
@@ -179,9 +173,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   pBulletFont(0)
 /*N*/ {
 /*N*/ }
-/* -----------------27.10.98 10:56-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumberFormat::SvxNumberFormat(const SvxNumberFormat& rFormat) :
 /*N*/     SvxNumberType(rFormat),
 /*N*/     pGraphicBrush(0),
@@ -189,17 +182,15 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/ {
 /*N*/     *this = rFormat;
 /*N*/ }
-/* -----------------27.10.98 10:56-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumberFormat::~SvxNumberFormat()
 /*N*/ {
 /*N*/   delete pGraphicBrush;
 /*N*/   delete pBulletFont;
 /*N*/ }
-/* -----------------08.12.98 11:14-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumberFormat::SvxNumberFormat(SvStream &rStream)
 /*N*/ {
 /*N*/     USHORT nVersion;
@@ -284,9 +275,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/         }
 /*N*/     }
 /*N*/ }
-/* -----------------08.12.98 11:14-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvStream&   SvxNumberFormat::Store(SvStream &rStream, FontToSubsFontConverter pConverter)
 /*N*/ {
 /*N*/     if(pConverter && pBulletFont)
@@ -349,9 +339,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   rStream << (USHORT)IsShowSymbol();
 /*N*/   return rStream;
 /*N*/ }
-/* -----------------------------23.02.01 11:10--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxNumberFormat& SvxNumberFormat::operator=( const SvxNumberFormat& rFormat )
 /*N*/ {
 /*N*/   SetNumberingType(rFormat.GetNumberingType());
@@ -381,9 +370,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/           pBulletFont = new Font(*rFormat.pBulletFont);
 /*N*/   return *this;
 /*N*/ }
-/* -----------------27.10.98 10:56-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ BOOL  SvxNumberFormat::operator==( const SvxNumberFormat& rFormat) const
 /*N*/ {
 /*N*/   if( GetNumberingType()  != rFormat.GetNumberingType() ||
@@ -415,9 +403,8 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/       return FALSE;
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------28.10.98 09:53-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void SvxNumberFormat::SetGraphicBrush( const SvxBrushItem* pBrushItem,
 /*N*/                   const Size* pSize, const SvxFrameVertOrient* pOrient)
 /*N*/ {
@@ -440,41 +427,33 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/   else
 /*?*/       aGraphicSize.Width() = aGraphicSize.Height() = 0;
 /*N*/ }
-/* -----------------28.10.98 09:59-------------------
- *
- * --------------------------------------------------*/
-/* -----------------------------22.02.01 15:55--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------22.02.01 15:55--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
+
+
 /*N*/ SvxFrameVertOrient    SvxNumberFormat::GetVertOrient() const
 /*N*/ {
 /*N*/   return eVertOrient;
 /*N*/ }
-/* -----------------28.10.98 09:59-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void SvxNumberFormat::SetBulletFont(const Font* pFont)
 /*N*/ {
 /*N*/   delete pBulletFont;
 /*N*/   pBulletFont = pFont ? new Font(*pFont): 0;
 /*N*/ }
 
-/* -----------------28.10.98 10:03-------------------
- *
- * --------------------------------------------------*/
-/* -----------------------------02.07.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
 
-/* -----------------28.10.98 10:38-------------------
- *
- * --------------------------------------------------*/
-/* -----------------28.10.98 15:57-------------------
- *
- * --------------------------------------------------*/
+
+
+
+
+
+
+
 /*N*/ String SvxNumberFormat::CreateRomanString( ULONG nNo, BOOL bUpper )
 /*N*/ {
 /*N*/   nNo %= 4000;            // mehr kann nicht dargestellt werden
@@ -554,16 +533,14 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*?*/   rStr.Fill( (USHORT)(nNo / coDiff) + 1, sal_Unicode(cChar) );
 /*?*/ }
 #endif //OLD_NUMBER_FORMATTING
-/* -----------------------------22.02.01 13:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const String& SvxNumberFormat::GetCharFmtName()const
 /*N*/ {
 /*N*/   return sCharStyleName;
 /*N*/ }
-/* -----------------27.10.98 10:38-------------------
- *
- * --------------------------------------------------*/
+
+
 sal_Int32 SvxNumRule::nRefCount = 0;
 static SvxNumberFormat* pStdNumFmt = 0;
 static SvxNumberFormat* pStdOutlineNumFmt = 0;
@@ -599,9 +576,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/       aFmtsSet[i] = FALSE;
 /*N*/   }
 /*N*/ }
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumRule::SvxNumRule(const SvxNumRule& rCopy)
 /*N*/ {
 /*N*/   ++nRefCount;
@@ -620,9 +596,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/       aFmtsSet[i] = rCopy.aFmtsSet[i];
 /*N*/   }
 /*N*/ }
-/* -----------------08.12.98 11:07-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumRule::SvxNumRule(SvStream &rStream)
 /*N*/ {
 /*N*/   ++nRefCount;
@@ -658,9 +633,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   }
 /*N*/ }
 
-/* -----------------08.12.98 11:07-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvStream& SvxNumRule::Store(SvStream &rStream)
 /*N*/ {
 /*N*/   rStream<<(USHORT)NUMITEM_VERSION_03;
@@ -697,9 +671,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   return rStream;
 /*N*/ }
 
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumRule::~SvxNumRule()
 /*N*/ {
 /*N*/   for(USHORT i = 0; i < SVX_MAX_NUM; i++)
@@ -710,12 +683,10 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/       DELETEZ(pStdOutlineNumFmt);
 /*N*/   }
 /*N*/ }
-/* -----------------29.10.98 16:07-------------------
- *
- * --------------------------------------------------*/
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
+
+
 /*N*/ int   SvxNumRule::operator==( const SvxNumRule& rCopy) const
 /*N*/ {
 /*N*/   if(nLevelCount != rCopy.nLevelCount ||
@@ -733,17 +704,15 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ const SvxNumberFormat*    SvxNumRule::Get(USHORT nLevel)const
 /*N*/ {
 /*N*/   DBG_ASSERT(nLevel < SVX_MAX_NUM, "falsches Level" );
 /*N*/   return aFmtsSet[nLevel] ? aFmts[nLevel] : 0;
 /*N*/ }
-/* -----------------02.11.98 09:10-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ const SvxNumberFormat&    SvxNumRule::GetLevel(USHORT nLevel)const
 /*N*/ {
 /*N*/   if(!pStdNumFmt)
@@ -758,9 +727,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/                                                   *pStdNumFmt : *pStdOutlineNumFmt;
 /*N*/ }
 
-/* -----------------29.10.98 09:08-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void SvxNumRule::SetLevel( USHORT i, const SvxNumberFormat& rNumFmt, BOOL bIsValid )
 /*N*/ {
 /*N*/   if( !aFmtsSet[i] || !(rNumFmt == *Get( i )) )
@@ -771,15 +739,11 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/ //        bInvalidRuleFlag = TRUE;
 /*N*/   }
 /*N*/ }
-/* -----------------30.10.98 12:44-------------------
- *
- * --------------------------------------------------*/
-/* -----------------28.10.98 15:38-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.08.99 10:18-------------------
-    Description: changes linked to embedded bitmaps
- --------------------------------------------------*/
+
+
+
+
+// Description: changes linked to embedded bitmaps
 /*N*/ BOOL SvxNumRule::UnLinkGraphics()
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
@@ -806,81 +770,70 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   return bRet;
 /*N*/ }
 
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumBulletItem::SvxNumBulletItem(SvxNumRule& rRule) :
 /*N*/   SfxPoolItem(SID_ATTR_NUMBERING_RULE),
 /*N*/   pNumRule(new SvxNumRule(rRule))
 /*N*/ {
 /*N*/ }
 
-/*-----------------23.11.98 10:36-------------------
- MT: Das sind ja sehr sinnige Kommentare...
---------------------------------------------------*/
+// Das sind ja sehr sinnige Kommentare...
 /*N*/ SvxNumBulletItem::SvxNumBulletItem(SvxNumRule& rRule, USHORT nWhich ) :
 /*N*/   SfxPoolItem(nWhich),
 /*N*/   pNumRule(new SvxNumRule(rRule))
 /*N*/ {
 /*N*/ }
 
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumBulletItem::SvxNumBulletItem(const SvxNumBulletItem& rCopy) :
 /*N*/   SfxPoolItem(rCopy.Which())
 /*N*/ {
 /*N*/   pNumRule = new SvxNumRule(*rCopy.pNumRule);
 /*N*/ }
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumBulletItem::~SvxNumBulletItem()
 /*N*/ {
 /*N*/   delete pNumRule;
 /*N*/ }
 
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ int  SvxNumBulletItem::operator==( const SfxPoolItem& rCopy) const
 /*N*/ {
 /*N*/   return *pNumRule == *((SvxNumBulletItem&)rCopy).pNumRule;
 /*N*/ }
-/* -----------------27.10.98 10:41-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SfxPoolItem*  SvxNumBulletItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxNumBulletItem(*this);
 /*N*/ }
-/* -----------------08.12.98 10:43-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SfxPoolItem*   SvxNumBulletItem::Create(SvStream &rStream, USHORT) const
 /*N*/ {
 /*N*/   SvxNumRule aRule(rStream);
 /*N*/   return new SvxNumBulletItem(aRule, Which() );
 /*N*/ }
-/* -----------------08.12.98 10:43-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvStream& SvxNumBulletItem::Store(SvStream &rStream, USHORT /*nItemVersion*/ )const
 /*N*/ {
 /*N*/   pNumRule->Store(rStream);
 /*N*/   return rStream;
 /*N*/ }
-/* -----------------08.12.98 10:43-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ USHORT    SvxNumBulletItem::GetVersion( USHORT /*nFileVersion*/ ) const
 /*N*/ {
 /*N*/   return NUMITEM_VERSION_03;
 /*N*/ }
 
-/* -----------------08.12.98 10:43-------------------
- *
- * --------------------------------------------------*/
+
+
 
 
 /*N*/ bool SvxNumBulletItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
@@ -909,9 +862,8 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/   return sal_False;
 /*N*/ }
 
-/* -----------------08.12.98 10:43-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SvxNumRule* SvxConvertNumRule( const SvxNumRule* pRule, USHORT nLevels, SvxNumRuleType eType )
 /*N*/ {
 /*N*/   const USHORT nSrcLevels = pRule->GetLevelCount();

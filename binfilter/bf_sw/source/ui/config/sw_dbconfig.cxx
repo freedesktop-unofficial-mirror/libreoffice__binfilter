@@ -68,9 +68,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------06.09.00 16:44--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDBConfig::SwDBConfig() :
 /*N*/     ConfigItem(C2U("Office.DataAccess"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -78,17 +77,15 @@ using namespace ::com::sun::star::uno;
 /*N*/     pBibImpl(0)
 /*N*/ {
 /*N*/ };
-/* -----------------------------06.09.00 16:50--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDBConfig::~SwDBConfig()
 /*N*/ {
 /*N*/     delete pAdrImpl;
 /*N*/     delete pBibImpl;
 /*N*/ }
-/* -----------------------------20.02.01 12:32--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void SwDBConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& rNames = GetPropertyNames();
@@ -119,9 +116,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------20.02.01 12:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const SwDBData& SwDBConfig::GetAddressSource()
 /*N*/ {
 /*N*/     if(!pAdrImpl)

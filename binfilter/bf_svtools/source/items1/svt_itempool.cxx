@@ -317,8 +317,7 @@ void SfxItemPool::ReleaseDefaults
     DBG_ASSERT( ppStaticDefaults, "keine Arme keine Kekse" );
     ReleaseDefaults( ppStaticDefaults, nEnd - nStart + 1, bDelete );
 
-    // KSO (22.10.98): ppStaticDefaults zeigt auf geloeschten Speicher,
-    // wenn bDelete == TRUE.
+    // ppStaticDefaults zeigt auf geloeschten Speicher, wenn bDelete == TRUE.
     if ( bDelete )
         ppStaticDefaults = 0;
 }
@@ -529,7 +528,7 @@ void SfxItemPool::Delete()
                 nArrCnt;
                 --nArrCnt, ++ppItemArr, ++ppDefaultItem, ++ppStaticDefaultItem )
         {
-            // KSO (22.10.98): *ppStaticDefaultItem kann im dtor einer
+            // *ppStaticDefaultItem kann im dtor einer
             // von SfxItemPool abgeleiteten Klasse bereits geloescht worden
             // sein! -> CHAOS Itempool
             if ( *ppStaticDefaultItem && (*ppStaticDefaultItem)->ISA(SfxSetItem) )

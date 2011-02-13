@@ -162,14 +162,11 @@ using namespace ::com::sun::star;
 /*N*/               1 : 0;
 /*N*/ }
 
-/*-----------------18.03.98 16:32-------------------
-    os: wer weiss noch, wieso das LineSpacingItem so
+/* os: wer weiss noch, wieso das LineSpacingItem so
     kompliziert ist? Fuer UNO koennen wir das nicht
     gebrauchen. Da gibt es nur zwei Werte:
         - ein sal_uInt16 fuer den Modus
-        - ein sal_uInt32 fuer alle Werte (Abstand, Hoehe, rel. Angaben)
-
---------------------------------------------------*/
+        - ein sal_uInt32 fuer alle Werte (Abstand, Hoehe, rel. Angaben) */
 /*N*/ bool SvxLineSpacingItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -214,9 +211,8 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------18.03.98 16:32-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxLineSpacingItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -370,9 +366,8 @@ using namespace ::com::sun::star;
 /*N*/       ? 1 : 0 );
 /*N*/ }
 
-/*-----------------18.03.98 16:15-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool SvxAdjustItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/
@@ -390,9 +385,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------18.03.98 16:15-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ bool SvxAdjustItem::PutValue( const uno::Any& rVal, BYTE nMemberId  )
 /*N*/ {
@@ -778,9 +772,8 @@ struct   ::com::sun::star::style::TabStop
 typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
  */
-/*-----------------19.03.98 08:50-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ bool SvxTabStopItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
@@ -822,9 +815,8 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------19.03.98 08:50-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ bool SvxTabStopItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
@@ -1141,25 +1133,22 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/   : SfxBoolItem( nId, bOn )
 /*N*/ {
 /*N*/ }
-/* -----------------------------29.11.00 11:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SfxPoolItem* SvxForbiddenRuleItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxForbiddenRuleItem( GetValue(), Which() );
 /*N*/ }
-/* -----------------------------29.11.00 11:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SfxPoolItem* SvxForbiddenRuleItem::Create(SvStream & rStrm, USHORT) const
 /*N*/ {
 /*N*/   sal_Bool nValue;
 /*N*/   rStrm >> nValue;
 /*N*/   return new SvxForbiddenRuleItem( nValue, Which() );
 /*N*/ }
-/* -----------------------------29.11.00 11:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ USHORT SvxForbiddenRuleItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -1169,9 +1158,8 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 /*N*/
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
 /*N*/ }
-/* -----------------------------29.11.00 11:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
 /*************************************************************************
 |*    class SvxParaVertAlignItem

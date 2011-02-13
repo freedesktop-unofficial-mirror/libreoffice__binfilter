@@ -338,7 +338,6 @@ namespace binfilter {
 /*N*/     // (relative to a layer. Remember that the visibility of a layer is a view attribute
 /*N*/     // - the same layer can be visible in one view, and invisible in another view, at the
 /*N*/     // same time)
-/*N*/     // 2003-06-03 - #110592# - fs@openoffice.org
 /*N*/
 /*N*/     // collect all views in which our old layer is visible
 /*N*/     ::std::set< SdrView* > aPreviouslyVisible;

@@ -124,7 +124,6 @@ OImageControlModel::OImageControlModel( const OImageControlModel* _pOriginal, co
     osl_incrementInterlockedCount( &m_refCount );
     {
         // simulate a propertyChanged event for the ImageURL
-        // 2003-05-15 - #109591# - fs@openoffice.org
         Any aImageURL;
         getFastPropertyValue( aImageURL, PROPERTY_ID_IMAGE_URL );
         _propertyChanged( PropertyChangeEvent( *this, PROPERTY_IMAGE_URL, sal_False, PROPERTY_ID_IMAGE_URL, Any( ), aImageURL ) );
@@ -450,7 +449,6 @@ void OImageControlModel::_reset()
         {   // release our mutex once (it's acquired in the calling method !), as starting the image production may
             // result in the locking of the solar mutex (unfortunally the default implementation of our aggregate,
             // VCLXImageControl, does this locking)
-            // FS - 74438 - 30.03.00
             MutexRelease aRelease(m_aMutex);
             xProducer->startProduction();
         }
@@ -651,7 +649,6 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
 
             // wenn Control nicht gebunden ist, kein Dialog (da die zu schickende URL hinterher sowieso
             // versanden wuerde)
-            // FS - #64946# - 19.04.99
             Reference<XPropertySet> xBoundField;
             if (hasProperty(PROPERTY_BOUNDFIELD, xSet))
                 ::cppu::extractInterface(xBoundField, xSet->getPropertyValue(PROPERTY_BOUNDFIELD));

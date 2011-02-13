@@ -50,9 +50,8 @@ class SwSearchProperties_Impl;
 
 
 
-/*-----------------19.12.97 12:58-------------------
 
---------------------------------------------------*/
+
 class SwXTextSearch : public cppu::WeakImplHelper3
 <
     ::com::sun::star::util::XPropertyReplace,

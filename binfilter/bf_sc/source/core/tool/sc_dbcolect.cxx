@@ -327,27 +327,27 @@ namespace binfilter {
 /*N*/           rStream << (BYTE)pFunctions[i][j];
 /*N*/       }
 /*N*/   }
-/*N*/   rStream << nIndex;                  // seit 24.10.95
+/*N*/   rStream << nIndex;
 /*N*/
 /*N*/   rStream << bDBSelection;
 /*N*/
-/*N*/   rStream << bDBSql;                  // seit 4.2.97
+/*N*/   rStream << bDBSql;
 /*N*/
-/*N*/   rStream << nSubUserIndex;           // seit 5.2.97
+/*N*/   rStream << nSubUserIndex;
 /*N*/   rStream << bSortUserDef;
 /*N*/   rStream << nSortUserIndex;
 /*N*/
-/*N*/   rStream << bDoSize;                 // seit 13.2.97
+/*N*/   rStream << bDoSize;
 /*N*/   rStream << bKeepFmt;
 /*N*/
-/*N*/   rStream << bStripData;              // seit 23.2.97
+/*N*/   rStream << bStripData;
 /*N*/
 /*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )
 /*N*/   {
 /*N*/       //  folgendes gab's in der 4.0 noch nicht
 /*N*/
 /*N*/       //  alte Versionen suchen immer nach Tables und Queries
-/*N*/       rStream << nDBType;                 // seit 20.11.97
+/*N*/       rStream << nDBType;
 /*N*/
 /*N*/       //  starting from 591, store advanced filter source range
 /*N*/       //  only if set, to avoid unneccessary warnings
@@ -924,7 +924,7 @@ namespace binfilter {
 /*N*/           bSuccess = pDBData->Store( rStream, aHdr );
 /*N*/   }
 /*N*/
-/*N*/   rStream << nEntryIndex;             // seit 24.10.95
+/*N*/   rStream << nEntryIndex;
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }

@@ -43,9 +43,8 @@ namespace binfilter {
 
 
 
-/* -----------------------------2002/06/21 12:07------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXFilterOptions : public ::cppu::WeakImplHelper5<
                             ::com::sun::star::beans::XPropertyAccess,
                             ::com::sun::star::ui::dialogs::XExecutableDialog,

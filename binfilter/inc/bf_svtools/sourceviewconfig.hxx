@@ -35,9 +35,8 @@
 #include <rtl/ustring.hxx>
 #include <bf_svtools/options.hxx>
 
-/* -----------------------------12.10.00 11:40--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 namespace binfilter
 {
     class SourceViewConfig_Impl;

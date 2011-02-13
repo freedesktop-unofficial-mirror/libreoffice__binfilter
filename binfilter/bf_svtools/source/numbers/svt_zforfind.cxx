@@ -1230,7 +1230,7 @@ input for the following reasons:
                 }   // switch (nMonthPos)
                 break;
 
-            default:                // more than two numbers (31.12.94 8:23) (31.12. 8:23)
+            default:                // more than two numbers
                 switch (nMonthPos)  // where is the month
                 {
                     case 0:             // not found

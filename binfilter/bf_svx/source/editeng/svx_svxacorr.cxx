@@ -98,35 +98,17 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/ DECLARE_TABLE( SvxAutoCorrLanguageTable_Impl,  SvxAutoCorrectLanguageListsPtr)
 
 /*N*/ DECLARE_TABLE( SvxAutoCorrLastFileAskTable_Impl, long )
-
-
-
-
-
-
-
-
-
     // wird nach dem austauschen der Zeichen von den Funktionen
     //  - FnCptlSttWrd
     //  - FnCptlSttSntnc
     // gerufen. Dann koennen die Worte ggfs. in die Ausnahmelisten
     // aufgenommen werden.
 
-
-
 /*N*/ static USHORT GetAppLang()
 /*N*/ {
 /*N*/   return Application::GetSettings().GetLanguage();
 /*N*/ }
 
-
-
-
-
-/* -----------------18.11.98 15:28-------------------
- *
- * --------------------------------------------------*/
 /*N*/ void lcl_ClearTable(SvxAutoCorrLanguageTable_Impl& rLangTable)
 /*N*/ {
 /*N*/   SvxAutoCorrectLanguageListsPtr pLists = rLangTable.Last();
@@ -138,9 +120,6 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/   rLangTable.Clear();
 /*N*/ }
 
-/* -----------------19.11.98 10:15-------------------
- *
- * --------------------------------------------------*/
 /*N*/ long SvxAutoCorrect::GetDefaultFlags()
 /*N*/ {
 /*N*/   long nRet = Autocorrect
@@ -172,7 +151,6 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-
 
 /*N*/ SvxAutoCorrect::SvxAutoCorrect( const String& rShareAutocorrFile,
 /*N*/                               const String& rUserAutocorrFile )
@@ -209,7 +187,6 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/ {
 /*N*/ }
 
-
 /*N*/ SvxAutoCorrect::~SvxAutoCorrect()
 /*N*/ {
 /*N*/   lcl_ClearTable(*pLangTable);
@@ -217,7 +194,6 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/   delete pLastFileTable;
 /*N*/   delete pCharClass;
 /*N*/ }
-
 
 /*N*/ void SvxAutoCorrect::SetAutoCorrFlag( long nFlag, BOOL bOn )
 /*N*/ {
@@ -236,83 +212,22 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/   }
 /*N*/ }
 
-
     // Zwei Grossbuchstaben am Wort-Anfang ??
 
-
-
-
-
-
-
-
-
-
-
-
-//The method below is renamed from _GetQuote to GetQuote by BerryJia for Bug95846 Time:2002-8-13 15:50
-
-
-
-
-
-
-
     // fuegt ein einzelnes Wort hinzu. Die Liste wird sofort
     // in die Datei geschrieben!
-
-
-    // fuegt ein einzelnes Wort hinzu. Die Liste wird sofort
-    // in die Datei geschrieben!
-
-
-
-
-
-
-
-
-
-
 
     //  - loesche einen Eintrag
-
 
     //  - return den Ersetzungstext (nur fuer SWG-Format, alle anderen
     //      koennen aus der Wortliste herausgeholt werden!)
 
     //  - Text mit Attributierung (kann nur der SWG - SWG-Format!)
 
-
-
-
 /* This code is copied from SwXMLTextBlocks::GeneratePackageName */
 
-
-
-/* -----------------18.11.98 16:00-------------------
- *
- * --------------------------------------------------*/
-
-
 // suche das oder die Worte in der ErsetzungsTabelle
-/* -----------------18.11.98 13:46-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 14:28-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 14:49-------------------
- *
- * --------------------------------------------------*/
 
-/* -----------------20.11.98 11:53-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:16-------------------
- *
- * --------------------------------------------------*/
 /*N*/ SvxAutoCorrectLanguageLists::SvxAutoCorrectLanguageLists(
 /*N*/               SvxAutoCorrect& rParent,
 /*N*/               const String& rShareAutoCorrectFile,
@@ -321,87 +236,11 @@ void DecryptBlockName_Imp( String& rName );
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/* -----------------18.11.98 11:16-------------------
- *
- * --------------------------------------------------*/
 /*N*/ SvxAutoCorrectLanguageLists::~SvxAutoCorrectLanguageLists()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 15:20-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
     //  - Text mit Attributierung (kann nur der SWG - SWG-Format!)
-
-/* -----------------18.11.98 11:26-------------------
- *
- * --------------------------------------------------*/
     //  - loesche einen Eintrag
 }
 

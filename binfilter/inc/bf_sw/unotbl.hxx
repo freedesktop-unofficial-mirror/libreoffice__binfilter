@@ -48,9 +48,8 @@ class SwTableCursor;
 class SwTableBoxFmt;
 class SwTableLine;
 class SwTableCursor;
-/* -----------------------------22.09.00 11:10--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwChartEventListenerContainer : public SwEventListenerContainer
 {
     public:
@@ -58,9 +57,8 @@ class SwChartEventListenerContainer : public SwEventListenerContainer
             SwEventListenerContainer(pxParentIn){}
         void ChartDataChanged();
 };
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 typedef
 cppu::WeakImplHelper4
 <
@@ -154,9 +152,8 @@ public:
 
     SwFrmFmt* GetFrmFmt() const { return (SwFrmFmt*)GetRegisteredIn(); }
 };
-/* -----------------27.06.98 15:40-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextTableRow : public cppu::WeakImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -196,9 +193,8 @@ public:
     const SwTableLine*  GetTblRow() const {return pLine;}
     static SwTableLine* FindLine(SwTable* pTable, SwTableLine* pLine);
 };
-/* -----------------20.07.98 13:03-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakImplHelper3<
                                 ::com::sun::star::text::XTextTableCursor,
                                 ::com::sun::star::lang::XServiceInfo,
@@ -260,9 +256,8 @@ public:
     SwUnoCrsr*                  GetCrsr();
 };
 
-/*-----------------11.12.97 09:38-------------------
 
---------------------------------------------------*/
+
 struct SwRangeDescriptor
 {
     sal_uInt16 nTop;
@@ -397,9 +392,8 @@ public:
     static SwXTextTable* GetImplementation(::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xRef );
 };
 
-/* -----------------27.04.98 16:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXCellRange : public cppu::WeakImplHelper7
 <
     ::com::sun::star::table::XCellRange,
@@ -484,9 +478,8 @@ public:
     sal_uInt16      getRowCount(void);
     sal_uInt16      getColumnCount(void);
 };
-/* -----------------03.02.99 07:31-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTableRows : public cppu::WeakImplHelper2
 <
     ::com::sun::star::table::XTableRows,
@@ -533,9 +526,8 @@ public:
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
 
-/* -----------------03.02.99 07:31-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTableColumns : public cppu::WeakImplHelper2
 <
     ::com::sun::star::table::XTableColumns,

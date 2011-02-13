@@ -244,7 +244,6 @@ namespace frm
         }
 
         // filter controls are _never_ readonly
-        // #107013# - 2002-02-03 - fs@openoffice.org
         Reference< XPropertySet > xModel( getModel(), UNO_QUERY );
         OSL_ENSURE( xModel.is(), "OFilterControl::createPeer: no model!" );
         Reference< XPropertySetInfo > xModelPSI;

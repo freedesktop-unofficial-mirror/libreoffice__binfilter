@@ -858,8 +858,8 @@ using namespace ::com::sun::star;
 /*N*/            bPos   == ( (SvxProtectItem&)rAttr ).bPos );
 /*N*/ }
 
-/*-----------------16.03.98 12:42-------------------
---------------------------------------------------*/
+
+
 /*N*/ bool SvxProtectItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 
@@ -878,9 +878,8 @@ using namespace ::com::sun::star;
 /*N*/   rVal = Bool2Any( bValue );
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------16.03.98 12:42-------------------
 
---------------------------------------------------*/
+
 /*N*/ bool  SvxProtectItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 

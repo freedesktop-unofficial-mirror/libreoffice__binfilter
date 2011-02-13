@@ -455,7 +455,6 @@ void OEditModel::write(const Reference<XObjectOutputStream>& _rxOutStream) throw
     {   // -> fuer die Dauer des Speicherns meinem aggregierten Model die alte TextLen einreden
 
         // before doing this we have to save the current text value of the aggregate, as this may be affected by resetting the text len
-        // FS - 08.12.99 - 70606
         aCurrentText = m_xAggregateSet->getPropertyValue(PROPERTY_TEXT);
 
         m_xAggregateSet->getPropertyValue(PROPERTY_MAXTEXTLEN) >>= nOldTextLen;
@@ -641,7 +640,6 @@ void OEditModel::_onValueChanged()
     // our own mutex locked
     // and in this special case do it before calling DBTypeConversion::getValue, as this uses the number formatter
     // which's implementation locks the SM, too :(
-    // FS - 72451 - 31.01.00
     MutexRelease aRelease(m_aMutex);
     m_aSaveValue = DBTypeConversion::getValue(m_xColumn,
                                               m_xFormatter,
@@ -667,7 +665,6 @@ void OEditModel::_reset()
     {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
         // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
         // our own mutex locked
-        // FS - 72451 - 31.01.00
         MutexRelease aRelease(m_aMutex);
         m_xAggregateFastSet->setFastPropertyValue(OEditModel::nTextHandle, makeAny(m_aDefaultText));
     }

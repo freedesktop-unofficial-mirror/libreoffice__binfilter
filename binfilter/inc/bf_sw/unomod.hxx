@@ -44,9 +44,8 @@ class SwDoc;
 /******************************************************************************
  *
  ******************************************************************************/
-/*-----------------15.03.98 13:21-------------------
 
---------------------------------------------------*/
+
 
 ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >  SAL_CALL SwXModule_CreateInstance(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > & );
 
@@ -128,9 +127,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void)
         throw( ::com::sun::star::uno::RuntimeException );
 };
-/*-----------------15.03.98 13:21-------------------
 
---------------------------------------------------*/
+
 class SwXViewSettings : public comphelper::ChainableHelperNoState
 {
 
@@ -168,9 +166,8 @@ public:
     sal_Bool    IsValid() const {return bObjectValid;}
     void    Invalidate() {bObjectValid = sal_False;}
 };
-/* -----------------24.09.98 10:47-------------------
- *
- * --------------------------------------------------*/
+
+
 /*class SwXTerminateListener : public ::com::sun::star::frame::XTerminateListener,
                                 public UsrObject
 {

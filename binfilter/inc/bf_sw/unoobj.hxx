@@ -89,9 +89,8 @@ class SwFmtFld;
 class SwFmtRefMark;
 class SwEvtLstnrArray;
 class GetCurTxtFmtColl;
-/* -----------------------------01.12.00 18:09--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwParaSelection
 {
     SwUnoCrsr* pUnoCrsr;
@@ -100,9 +99,8 @@ public:
     ~SwParaSelection();
 };
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 enum CursorType
 {
     CURSOR_INVALID,
@@ -118,9 +116,8 @@ enum CursorType
     CURSOR_SELECTION_IN_TABLE
 };
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 #define PUNOPAM (_pStartCrsr)
 
 #define FOREACHUNOPAM_START(pCrsr) \
@@ -133,9 +130,8 @@ enum CursorType
     }
 
 
-/* -----------------26.06.98 16:18-------------------
- *
- * --------------------------------------------------*/
+
+
 
 SV_DECL_PTRARR(SwDependArr, SwDepend*, 2, 2)
 
@@ -145,9 +141,8 @@ SwPageDesc* GetPageDescByName_Impl(SwDoc& rDoc, const String& rName);
 void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
                             SwDependArr& rFrameArr, BOOL bSort );
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwUnoInternalPaM : public SwPaM
 {
     SwUnoInternalPaM( const SwUnoInternalPaM& );
@@ -189,9 +184,8 @@ SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)
 
 void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew);
 
-/* -----------------03.12.98 12:22-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextRange;
 class SwXTextCursor;
 class SwXText : public ::com::sun::star::text::XText,
@@ -275,9 +269,8 @@ public:
     CursorType      GetTextType() {return eCrsrType;}
 };
 
-/* -----------------03.12.98 12:16-------------------
- *
- * --------------------------------------------------*/
+
+
 enum SwGetPropertyStatesCaller
 {
     SW_PROPERTY_STATE_CALLER_DEFAULT,
@@ -524,9 +517,8 @@ public:
     SwDoc*          GetDoc(){return pDoc;}
 };
 
-/*-----------------23.02.98 10:45-------------------
 
---------------------------------------------------*/
+
 
 typedef cppu::WeakAggImplHelper2
 <
@@ -571,9 +563,8 @@ public:
 
     ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextCursor >  CreateTextCursor(BOOL bIgnoreTables = sal_False);
 };
-/*-----------------23.02.98 12:05-------------------
 
---------------------------------------------------*/
+
 class SwXTextRange : public cppu::WeakImplHelper7
 <
     ::com::sun::star::text::XTextRange,
@@ -677,9 +668,8 @@ public:
                         const SwPosition& rPos, const SwPosition* pMark);
 };
 
-/* -----------------15.05.98 08:29-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::container::XIndexAccess,
@@ -725,9 +715,8 @@ public:
     const SwUnoCrsr*    GetCursor() const { return (const SwUnoCrsr*)GetRegisteredIn(); }
 };
 
-/*-----------------09.03.98 13:57-------------------
 
---------------------------------------------------*/
+
 struct SwTextSectionProperties_Impl;
 class SwXTextSection : public cppu::WeakImplHelper7
 <
@@ -813,9 +802,8 @@ public:
     SwSectionFmt*   GetFmt()const {return (SwSectionFmt*)GetRegisteredIn();}
     static SwXTextSection* GetImplementation(::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xRef );
 };
-/*-----------------12.02.98 08:01-------------------
 
---------------------------------------------------*/
+
 typedef
 cppu::WeakImplHelper5
 <
@@ -909,9 +897,8 @@ public:
     void            Invalidate();
 };
 
-/*-----------------07.04.98 08:10-------------------
 
---------------------------------------------------*/
+
 class SwXParagraphEnumeration : public SwSimpleEnumerationBaseClass,
     public SwClient
 {
@@ -943,9 +930,8 @@ public:
     //SwClient
     virtual void            Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/*-----------------07.04.98 08:15-------------------
 
---------------------------------------------------*/
+
 class SwXParagraph : public cppu::WeakImplHelper9
 <
     ::com::sun::star::beans::XMultiPropertySet,
@@ -1049,9 +1035,8 @@ public:
     //void attachToRange(const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > & xTextRange)throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
     void attachToText(SwXText* pParent, SwUnoCrsr* pCrsr);
 };
-/* -----------------23.03.99 12:57-------------------
- *
- * --------------------------------------------------*/
+
+
 #define PARAFRAME_PORTION_PARAGRAPH     0
 #define PARAFRAME_PORTION_CHAR          1
 #define PARAFRAME_PORTION_TEXTRANGE     2
@@ -1085,9 +1070,8 @@ public:
     //SwClient
     virtual void    Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------29.05.98 14:42-------------------
- *
- * --------------------------------------------------*/
+
+
 
 class SwXTextPortionEnumeration : public cppu::WeakImplHelper3
 <
@@ -1184,9 +1168,8 @@ public:
     //SwClient
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------27.08.98 15:11-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXReferenceMark : public SwRefBookmarkBaseClass,
     public SwClient
 {
