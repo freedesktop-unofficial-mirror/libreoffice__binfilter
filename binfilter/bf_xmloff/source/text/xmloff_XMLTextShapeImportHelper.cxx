@@ -155,6 +155,8 @@ void XMLTextShapeImportHelper::addShape(
         aAny <<= nY;
         xPropSet->setPropertyValue( sVertOrientPosition, aAny );
         break;
+    default:
+        break;
     }
 }
 }//end of namespace binfilter

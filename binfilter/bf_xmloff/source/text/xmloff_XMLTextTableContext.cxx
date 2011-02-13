@@ -37,9 +37,9 @@ using namespace ::com::sun::star::text;
 TYPEINIT1( XMLTextTableContext, SvXMLImportContext );
 
 XMLTextTableContext::XMLTextTableContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
 }
 

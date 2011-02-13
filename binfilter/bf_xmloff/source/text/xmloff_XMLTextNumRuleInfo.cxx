@@ -126,7 +126,7 @@ void XMLTextNumRuleInfo::Set(
 
             if( rProp.Name == sNumberingType )
             {
-                sal_Int16 nType;
+                sal_Int16 nType(0);
                 rProp.Value >>= nType;
                 if( NumberingType::CHAR_SPECIAL != nType &&
                     NumberingType::BITMAP != nType )

@@ -49,7 +49,7 @@ using namespace ::binfilter::xmloff::token;
 class XMLTextShapePropertySetContext_Impl : public XMLShapePropertySetContext
 {
 public:
-    XMLTextShapePropertySetContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextShapePropertySetContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< XAttributeList >& xAttrList,
         ::std::vector< XMLPropertyState > &rProps,
@@ -57,7 +57,7 @@ public:
 
     virtual ~XMLTextShapePropertySetContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( USHORT nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList >& xAttrList,
         ::std::vector< XMLPropertyState > &rProperties,
@@ -65,12 +65,12 @@ public:
 };
 
 XMLTextShapePropertySetContext_Impl::XMLTextShapePropertySetContext_Impl(
-                 SvXMLImport& rImport, sal_uInt16 nPrfx,
+                 SvXMLImport& rInImport, sal_uInt16 nPrfx,
                  const OUString& rLName,
                  const Reference< XAttributeList > & xAttrList,
                  ::std::vector< XMLPropertyState > &rProps,
                  const UniReference < SvXMLImportPropertyMapper > &rMap ) :
-    XMLShapePropertySetContext( rImport, nPrfx, rLName, xAttrList, rProps,
+    XMLShapePropertySetContext( rInImport, nPrfx, rLName, xAttrList, rProps,
                                 rMap )
 {
 }
@@ -80,10 +80,10 @@ XMLTextShapePropertySetContext_Impl::~XMLTextShapePropertySetContext_Impl()
 }
 
 SvXMLImportContext *XMLTextShapePropertySetContext_Impl::CreateChildContext(
-                   sal_uInt16 nPrefix,
+                   sal_uInt16 nInPrefix,
                    const OUString& rLocalName,
                    const Reference< XAttributeList > & xAttrList,
-                   ::std::vector< XMLPropertyState > &rProperties,
+                   ::std::vector< XMLPropertyState > &rInProperties,
                    const XMLPropertyState& rProp )
 {
     SvXMLImportContext *pContext = 0;
@@ -92,9 +92,9 @@ SvXMLImportContext *XMLTextShapePropertySetContext_Impl::CreateChildContext(
                     ->GetEntryContextId( rProp.mnIndex ) )
     {
     case CTF_TEXTCOLUMNS:
-        pContext = new XMLTextColumnsContext( GetImport(), nPrefix,
+        pContext = new XMLTextColumnsContext( GetImport(), nInPrefix,
                                                    rLocalName, xAttrList, rProp,
-                                                   rProperties );
+                                                   rInProperties );
         break;
 
     case CTF_BACKGROUND_URL:
@@ -108,7 +108,7 @@ SvXMLImportContext *XMLTextShapePropertySetContext_Impl::CreateChildContext(
                         ->GetEntryContextId( rProp.mnIndex-1 ),
                     "invalid property map!");
         pContext =
-            new XMLBackgroundImageContext( GetImport(), nPrefix,
+            new XMLBackgroundImageContext( GetImport(), nInPrefix,
                                            rLocalName, xAttrList,
                                            rProp,
                                            rProp.mnIndex-2,
@@ -120,7 +120,7 @@ SvXMLImportContext *XMLTextShapePropertySetContext_Impl::CreateChildContext(
 
     if( !pContext )
         pContext = XMLShapePropertySetContext::CreateChildContext(
-                        nPrefix, rLocalName, xAttrList, rProperties, rProp );
+                        nInPrefix, rLocalName, xAttrList, rProperties, rProp );
 
     return pContext;
 }
@@ -145,15 +145,15 @@ void XMLTextShapeStyleContext::SetAttribute( sal_uInt16 nPrefixKey,
 
 TYPEINIT1( XMLTextShapeStyleContext, XMLShapeStyleContext );
 
-XMLTextShapeStyleContext::XMLTextShapeStyleContext( SvXMLImport& rImport,
+XMLTextShapeStyleContext::XMLTextShapeStyleContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
-        SvXMLStylesContext& rStyles, sal_uInt16 nFamily,
-        sal_Bool bDefaultStyle ) :
-    XMLShapeStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles,
-                          nFamily ),
-    bAutoUpdate( sal_False ),
-    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) )
+        SvXMLStylesContext& rStyles, sal_uInt16 nInFamily,
+        sal_Bool /*bDefaultStyle*/ ) :
+    XMLShapeStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles,
+                          nInFamily ),
+    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
+    bAutoUpdate( sal_False )
 {
 }
 
@@ -162,13 +162,13 @@ XMLTextShapeStyleContext::~XMLTextShapeStyleContext()
 }
 
 SvXMLImportContext *XMLTextShapeStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
@@ -176,22 +176,22 @@ SvXMLImportContext *XMLTextShapeStyleContext::CreateChildContext(
         if( xImpPrMap.is() )
         {
             pContext = new XMLTextShapePropertySetContext_Impl(
-                    GetImport(), nPrefix, rLocalName, xAttrList,
+                    GetImport(), nInPrefix, rLocalName, xAttrList,
                     GetProperties(), xImpPrMap );
         }
     }
-    else if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
               IsXMLToken( rLocalName, XML_EVENTS ) )
     {
         // create and remember events import context
         // (for delayed processing of events)
-        pContext = new XMLEventsImportContext( GetImport(), nPrefix,
+        pContext = new XMLEventsImportContext( GetImport(), nInPrefix,
                                                    rLocalName);
         xEventContext = pContext;
     }
 
     if( !pContext )
-        pContext = XMLShapeStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLShapeStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -200,11 +200,11 @@ SvXMLImportContext *XMLTextShapeStyleContext::CreateChildContext(
 void XMLTextShapeStyleContext::CreateAndInsert( sal_Bool bOverwrite )
 {
     XMLShapeStyleContext::CreateAndInsert( bOverwrite );
-    Reference < XStyle > xStyle = GetStyle();
-    if( !xStyle.is() || !(bOverwrite || IsNew()) )
+    Reference < XStyle > xLclStyle = GetStyle();
+    if( !xLclStyle.is() || !(bOverwrite || IsNew()) )
         return;
 
-    Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
+    Reference < XPropertySet > xPropSet( xLclStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
     if( xPropSetInfo->hasPropertyByName( sIsAutoUpdate ) )
@@ -219,7 +219,7 @@ void XMLTextShapeStyleContext::CreateAndInsert( sal_Bool bOverwrite )
     if( xEventContext.Is() )
     {
         // set event suppplier and release reference to context
-        Reference<XEventsSupplier> xEventsSupplier(xStyle, UNO_QUERY);
+        Reference<XEventsSupplier> xEventsSupplier(xLclStyle, UNO_QUERY);
         ((XMLEventsImportContext *)&xEventContext)->SetEvents(xEventsSupplier);
         xEventContext = 0;
     }

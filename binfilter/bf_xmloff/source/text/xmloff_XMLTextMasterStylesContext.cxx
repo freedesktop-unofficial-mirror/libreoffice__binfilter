@@ -53,10 +53,10 @@ sal_Bool XMLTextMasterStylesContext::InsertStyleFamily( sal_uInt16 ) const
 }
 
 XMLTextMasterStylesContext::XMLTextMasterStylesContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList ) :
-    SvXMLStylesContext( rImport, nPrfx, rLName, xAttrList )
+    SvXMLStylesContext( rInImport, nPrfx, rLName, xAttrList )
 {
 }
 
@@ -65,17 +65,17 @@ XMLTextMasterStylesContext::~XMLTextMasterStylesContext()
 }
 
 SvXMLStyleContext *XMLTextMasterStylesContext::CreateStyleChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_MASTER_PAGE ) &&
          InsertStyleFamily( XML_STYLE_FAMILY_MASTER_PAGE ) )
         pContext = new XMLTextMasterPageContext(
-                        GetImport(), nPrefix, rLocalName,
+                        GetImport(), nInPrefix, rLocalName,
                           xAttrList,
                         !GetImport().GetTextImport()->IsInsertMode() );
 
@@ -85,10 +85,10 @@ SvXMLStyleContext *XMLTextMasterStylesContext::CreateStyleChildContext(
 }
 
 SvXMLStyleContext *XMLTextMasterStylesContext::CreateStyleStyleChildContext(
-        sal_uInt16 nFamily,
-        sal_uInt16 nPrefix,
-        const OUString& rLocalName,
-        const Reference< XAttributeList > & xAttrList )
+        sal_uInt16 /*nFamily*/,
+        sal_uInt16 /*nInPrefix*/,
+        const OUString& /*rLocalName*/,
+        const Reference< XAttributeList > & /*xAttrList*/ )
 {
     return 0;
 }
