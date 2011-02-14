@@ -4480,7 +4480,6 @@ void SwChartEventListenerContainer::ChartDataChanged()
 
         for(sal_uInt16 i = 0; i < pListenerArr->Count(); i++)
         {
-            XEventListenerPtr pElem = pListenerArr->GetObject(i);
             try
             {
                 XEventListenerPtr pElem = pListenerArr->GetObject(i);
@@ -4488,7 +4487,7 @@ void SwChartEventListenerContainer::ChartDataChanged()
                 Reference<XChartDataChangeEventListener> XChartEventListener = (XChartDataChangeEventListener*)(*pElem).get();
                 XChartEventListener->chartDataChanged( aEvent );
             }
-            catch(Exception&)
+            catch(Exception const&)
             {
             }
         }
