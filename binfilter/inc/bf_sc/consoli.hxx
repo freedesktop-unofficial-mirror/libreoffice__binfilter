@@ -28,6 +28,8 @@
 #ifndef SC_CONSOLI_HXX
 #define SC_CONSOLI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif

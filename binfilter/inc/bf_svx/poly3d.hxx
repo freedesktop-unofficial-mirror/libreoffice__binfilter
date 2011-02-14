@@ -28,9 +28,7 @@
 #ifndef _POLY3D_HXX
 #define _POLY3D_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _VOLUME3D_HXX
 #include <bf_svx/volume3d.hxx>

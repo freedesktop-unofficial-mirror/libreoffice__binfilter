@@ -29,7 +29,7 @@
 #define _SVX_UNOEDHLP_HXX
 
 #include <memory>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/gen.hxx>
 
 namespace binfilter {

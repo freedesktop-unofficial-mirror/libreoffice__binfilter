@@ -28,6 +28,8 @@
 #ifndef _SVX_XLNDSIT_HXX
 #define _SVX_XLNDSIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_XIT_HXX //autogen
 #include <bf_svx/xit.hxx>
 #endif

@@ -28,6 +28,9 @@
 #ifndef _B3D_B3DTEX_HXX
 #define _B3D_B3DTEX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 //#ifndef _SV_OPENGL_HXX
 //#include <vcl/opengl.hxx>
 //#endif

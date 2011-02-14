@@ -47,6 +47,8 @@
 #ifndef SC_PIVOT_HXX
 #define SC_PIVOT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <global.hxx>
 
 //STRIP008 class SubTotal;

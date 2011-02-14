@@ -28,6 +28,8 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef TOOLS_INETMIME_HXX
 #include <tools/inetmime.hxx>
 #endif

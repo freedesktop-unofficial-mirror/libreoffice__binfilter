@@ -27,6 +27,8 @@
 #ifndef SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 #define SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif

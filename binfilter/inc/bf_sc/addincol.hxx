@@ -28,6 +28,9 @@
 #ifndef SC_ADDINCOL_HXX
 #define SC_ADDINCOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 
 #ifndef _COM_SUN_STAR_SHEET_XVOLATILERESULT_HPP_
 #include <com/sun/star/sheet/XVolatileResult.hpp>

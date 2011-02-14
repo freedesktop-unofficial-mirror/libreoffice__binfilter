@@ -28,6 +28,8 @@
 #ifndef SC_SCPATATR_HXX
 #define SC_SCPATATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>

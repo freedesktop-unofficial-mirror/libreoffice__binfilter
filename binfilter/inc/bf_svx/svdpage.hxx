@@ -28,6 +28,8 @@
 #ifndef _SVDPAGE_HXX
 #define _SVDPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
 #endif

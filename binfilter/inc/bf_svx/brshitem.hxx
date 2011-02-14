@@ -27,6 +27,8 @@
 #ifndef _SVX_BRSHITEM_HXX
 #define _SVX_BRSHITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXPOOLITEM_HXX //autogen

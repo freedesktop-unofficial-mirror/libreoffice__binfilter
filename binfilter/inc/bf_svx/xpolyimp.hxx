@@ -28,6 +28,8 @@
 #ifndef _XPOLYIMP_HXX
 #define _XPOLYIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GEN_HXX
 #include <tools/gen.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _FILTER_HXX
 #define _FILTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
 #endif

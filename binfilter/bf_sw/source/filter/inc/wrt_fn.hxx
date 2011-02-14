@@ -27,6 +27,8 @@
 #ifndef _WRT_FN_HXX
 #define _WRT_FN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "hintids.hxx"      // fuer die Konstanten
 
 namespace binfilter {

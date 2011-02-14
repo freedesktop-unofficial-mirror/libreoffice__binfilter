@@ -28,6 +28,8 @@
 #ifndef RECT_HXX
 #define RECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <new>
 
 

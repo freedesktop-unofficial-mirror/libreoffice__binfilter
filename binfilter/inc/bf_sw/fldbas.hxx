@@ -27,6 +27,8 @@
 #ifndef _FLDBAS_HXX
 #define _FLDBAS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef FIELDIDS_ONLY       // SWG-Testreader!!
 
 #ifndef INCLUDED_I18NPOOL_LANG_H

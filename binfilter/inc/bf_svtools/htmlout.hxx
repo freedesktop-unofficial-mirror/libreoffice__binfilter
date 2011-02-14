@@ -32,9 +32,7 @@
 #include "bf_svtools/svtdllapi.h"
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>

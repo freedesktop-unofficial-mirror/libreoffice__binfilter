@@ -27,6 +27,8 @@
 #ifndef SYMBOL_HXX
 #define SYMBOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _VOS_REFERNCE_HXX_
 #include <vos/refernce.hxx>
 #endif

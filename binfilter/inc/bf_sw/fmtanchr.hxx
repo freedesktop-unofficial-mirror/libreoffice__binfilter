@@ -27,6 +27,8 @@
 #ifndef _FMTANCHR_HXX
 #define _FMTANCHR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
 #endif

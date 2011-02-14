@@ -27,6 +27,8 @@
 #ifndef _HINTS_HXX
 #define _HINTS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
 #endif

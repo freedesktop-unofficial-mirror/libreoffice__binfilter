@@ -28,6 +28,8 @@
 #ifndef SC_VIEWOPTI_HXX
 #define SC_VIEWOPTI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_OPTGRID_HXX //autogen
 #include <bf_svx/optgrid.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _EDIMP_HXX
 #define _EDIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "crsrsh.hxx"
 namespace binfilter {
 

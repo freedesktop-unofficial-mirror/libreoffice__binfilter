@@ -28,6 +28,8 @@
 #ifndef SC_CHARTUNO_HXX
 #define SC_CHARTUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
 #endif

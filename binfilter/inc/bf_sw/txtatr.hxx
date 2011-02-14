@@ -27,6 +27,8 @@
 #ifndef _TXTATR_HXX
 #define _TXTATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TXATBASE_HXX
 #include <txatbase.hxx>     // SwTxtAttr/SwTxtAttrEnd
 #endif

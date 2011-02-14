@@ -27,6 +27,8 @@
 #ifndef _SVX_POSTITEM_HXX
 #define _SVX_POSTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _VCL_VCLENUM_HXX

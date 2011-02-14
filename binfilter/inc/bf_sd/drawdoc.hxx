@@ -28,6 +28,8 @@
 #ifndef _DRAWDOC_HXX
 #define _DRAWDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_FRAME_XMODEL_HDL_
 #include <com/sun/star/frame/XModel.hdl>
 #endif

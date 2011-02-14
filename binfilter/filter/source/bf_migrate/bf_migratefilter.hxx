@@ -32,10 +32,6 @@
 #include <com/sun/star/document/XFilter.hpp>
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEXPORTER_HPP_
-#include <com/sun/star/document/XExporter.hpp>
-#endif
-
 #ifndef _COM_SUN_STAR_DOCUMENT_XIMPORTER_HPP_
 #include <com/sun/star/document/XImporter.hpp>
 #endif
@@ -48,25 +44,17 @@
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #endif
 
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
-#include <cppuhelper/implbase5.hxx>
-#endif
+#include <cppuhelper/implbase4.hxx>
 namespace binfilter {
 
-enum FilterType
-{
-    FILTER_IMPORT,
-    FILTER_EXPORT
-};
 
 /* This component will be instantiated for both import or export. Whether it calls
  * setSourceDocument or setTargetDocument determines which Impl function the filter
  * member calls */
 
-class bf_MigrateFilter : public cppu::WeakImplHelper5
+class bf_MigrateFilter : public cppu::WeakImplHelper4
 <
     com::sun::star::document::XFilter,
-    com::sun::star::document::XExporter,
     com::sun::star::document::XImporter,
     com::sun::star::lang::XInitialization,
     com::sun::star::lang::XServiceInfo
@@ -77,10 +65,6 @@ protected:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent > mxDoc;
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxLegServFact;
     ::rtl::OUString msFilterName;
-    FilterType meType;
-
-    sal_Bool exportImpl(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& aDescriptor)
-        throw (::com::sun::star::uno::RuntimeException);
 
     sal_Bool importImpl(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& aDescriptor)
         throw (::com::sun::star::uno::RuntimeException);
@@ -104,10 +88,6 @@ public:
 
     virtual void SAL_CALL cancel()
         throw (::com::sun::star::uno::RuntimeException);
-
-    // XExporter
-    virtual void SAL_CALL setSourceDocument(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >& xDoc)
-        throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
 
     // XImporter
     virtual void SAL_CALL setTargetDocument(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XComponent >& xDoc)

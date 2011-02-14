@@ -27,6 +27,8 @@
 #ifndef _SVX_ZOOMITEM_HXX
 #define _SVX_ZOOMITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
 #endif

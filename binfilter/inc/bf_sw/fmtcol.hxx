@@ -27,6 +27,8 @@
 #ifndef _FMTCOL_HXX
 #define _FMTCOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _FORMAT_HXX
 #include <format.hxx>

@@ -27,11 +27,9 @@
 #ifndef _NDINDEX_HXX
 #define _NDINDEX_HXX
 
-#include <limits.h>
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
+#include <limits.h>
 #include "node.hxx"
 #include "ndarr.hxx"
 namespace binfilter {

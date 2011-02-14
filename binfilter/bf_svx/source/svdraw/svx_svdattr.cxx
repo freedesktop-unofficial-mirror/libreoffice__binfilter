@@ -79,9 +79,7 @@
 #include "svdattrx.hxx"
 #include "svdpool.hxx"
 
-#ifndef _SOLAR_HRC
-#include <bf_svtools/solar.hrc>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _SVX_XMLCNITM_HXX
 #include "xmlcnitm.hxx"

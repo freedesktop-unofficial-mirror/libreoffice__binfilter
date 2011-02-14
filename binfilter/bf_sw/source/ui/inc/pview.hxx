@@ -27,6 +27,8 @@
 #ifndef _SWPVIEW_HXX
 #define _SWPVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXVIEWFRM_HXX //autogen
 #include <bf_sfx2/viewfrm.hxx>
 #endif

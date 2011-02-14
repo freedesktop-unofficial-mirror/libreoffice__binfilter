@@ -28,9 +28,7 @@
 #ifndef _SWGIDS_HXX
 #define _SWGIDS_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 struct FileHeader {

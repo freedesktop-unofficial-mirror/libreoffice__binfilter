@@ -27,6 +27,8 @@
 #ifndef _CNTFRM_HXX
 #define _CNTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "frame.hxx"
 #include "flowfrm.hxx"
 #include "cshtyp.hxx"

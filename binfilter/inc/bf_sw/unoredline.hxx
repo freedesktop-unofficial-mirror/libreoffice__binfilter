@@ -27,6 +27,8 @@
 #ifndef _UNOREDLINE_HXX
 #define _UNOREDLINE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UNOPORT_HXX
 #include <unoport.hxx>
 #endif

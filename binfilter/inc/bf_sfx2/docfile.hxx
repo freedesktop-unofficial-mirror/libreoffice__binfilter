@@ -27,6 +27,8 @@
 #ifndef _SFXDOCFILE_HXX
 #define _SFXDOCFILE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
 #endif

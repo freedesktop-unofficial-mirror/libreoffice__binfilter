@@ -27,6 +27,8 @@
 #ifndef _SFX_DOCFILT_HACK_HXX
 #define _SFX_DOCFILT_HACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
 #include <com/sun/star/plugin/PluginDescription.hpp>
 #endif
@@ -60,7 +62,6 @@ namespace binfilter {
 
 #define SFX_FILTER_STARONEFILTER     0x00080000L
 #define SFX_FILTER_PACKED            0x00100000L
-#define SFX_FILTER_SILENTEXPORT      0x00200000L
 
 #define SFX_FILTER_BROWSERPREFERED   0x00400000L
 #define SFX_FILTER_PREFERED          0x10000000L
