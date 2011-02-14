@@ -296,7 +296,7 @@ static const char aPostItStr[] = "  ";
 /*N*/ }
 
 /*************************************************************************/
-/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 nFlag, BOOL bSet, BOOL bSaveInConfig )
+/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 /*nFlag*/, BOOL bSet, BOOL /*bSaveInConfig*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 

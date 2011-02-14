@@ -1783,11 +1783,14 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/               switch ( rHori.GetHoriOrient() )
 /*N*/               {
 /*?*/                   case HORI_NONE:
-/*?*/                         // add 1st param to <SwBorderAttrs::CalcRight(..)>
-/*?*/                         nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
+/*?*/                       // add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*?*/                       nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
 /*?*/                       break;
 /*?*/                   case HORI_LEFT_AND_WIDTH:
 /*?*/                       nWidth += rAttrs.CalcLeft( pFrm );
+/*?*/                       break;
+/*?*/                   default:
+/*?*/                       break;
 /*N*/               }
 /*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
 /*N*/           }

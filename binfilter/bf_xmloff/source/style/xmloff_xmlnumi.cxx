@@ -741,7 +741,7 @@ SvxXMLListLevelStyleAttrContext_Impl::SvxXMLListLevelStyleAttrContext_Impl(
             if( pFontDecls->FillProperties( sFontName, aProps, 0, 1, 2, 3, 4 ) )
             {
                 OUString sTmp;
-                sal_Int16 nTmp;
+                sal_Int16 nTmp(0);
                 ::std::vector< XMLPropertyState >::iterator i;
                 for( i = aProps.begin(); i != aProps.end(); i++ )
                 {

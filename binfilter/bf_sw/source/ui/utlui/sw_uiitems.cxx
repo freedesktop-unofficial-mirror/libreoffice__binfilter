@@ -114,7 +114,7 @@ static const USHORT nFtnLines[] = {
 
 /*N*/ bool SwPageFtnInfoItem::PutValue(const Any& rVal, BYTE nMemberId)
 /*N*/ {
-/*N*/     sal_Int32 nSet32;
+/*N*/     sal_Int32 nSet32(0);
 /*N*/     bool bRet = true;
 /*N*/     switch(nMemberId  & ~CONVERT_TWIPS)
 /*N*/     {
