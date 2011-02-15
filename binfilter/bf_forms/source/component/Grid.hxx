@@ -128,9 +128,6 @@ class OGridControlModel :public OControlModel
     sal_Bool                    m_bDisplaySynchron  : 1;        // transient
 // [properties]
 
-protected:
-    void _reset();
-
 public:
     DECLARE_DEFAULT_LEAF_XTOR( OGridControlModel );
 

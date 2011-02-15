@@ -73,9 +73,7 @@
 #ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
 #endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>     // for check states
-#endif
+#include <tools/wintypes.hxx>       // for check states
 
 // #110680#
 //#ifndef _COMPHELPER_PROCESSFACTORY_HXX_

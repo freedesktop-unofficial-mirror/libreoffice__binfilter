@@ -27,6 +27,8 @@
 #ifndef SW_INPUTWIN_HXX
 #define SW_INPUTWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _MENU_HXX //autogen
 #include <vcl/menu.hxx>

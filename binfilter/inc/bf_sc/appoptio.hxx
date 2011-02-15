@@ -28,6 +28,9 @@
 #ifndef SC_APPOPTIO_HXX
 #define SC_APPOPTIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 
 #ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>

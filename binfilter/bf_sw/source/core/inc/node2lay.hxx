@@ -26,7 +26,11 @@
  ************************************************************************/
 #ifndef _NODE2LAY_HXX
 #define _NODE2LAY_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
+
 
 /* -----------------23.02.99 11:33-------------------
  * Die Klasse SwNode2Layout stellt die Verbindung von Nodes zum Layout her.

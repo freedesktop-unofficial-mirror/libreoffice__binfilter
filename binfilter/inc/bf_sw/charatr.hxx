@@ -27,6 +27,8 @@
 #ifndef _CHARATR_HXX
 #define _CHARATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FORMAT_HXX
 #include <format.hxx>
 #endif

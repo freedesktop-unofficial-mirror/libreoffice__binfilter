@@ -28,6 +28,8 @@
 #ifndef _SO2DLL_HXX
 #define _SO2DLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _PSTM_HXX //autogen
 #include <tools/pstm.hxx>
 #endif

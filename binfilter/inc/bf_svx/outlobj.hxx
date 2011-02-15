@@ -28,9 +28,7 @@
 #ifndef _OUTLOBJ_HXX
 #define _OUTLOBJ_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _STRING_HXX
 #include <tools/string.hxx>

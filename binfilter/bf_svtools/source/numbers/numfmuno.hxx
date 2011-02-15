@@ -28,6 +28,8 @@
 #ifndef _NUMFMUNO_HXX
 #define _NUMFMUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
 #endif

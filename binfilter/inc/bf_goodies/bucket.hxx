@@ -28,6 +28,9 @@
 #ifndef _B3D_BUCKET_HXX
 #define _B3D_BUCKET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
 #endif

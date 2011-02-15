@@ -27,6 +27,8 @@
 #ifndef _TBLSEL_HXX
 #define _TBLSEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SWTABLE_HXX
 #include <swtable.hxx>

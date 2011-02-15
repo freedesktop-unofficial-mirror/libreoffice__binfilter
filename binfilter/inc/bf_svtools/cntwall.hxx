@@ -27,6 +27,8 @@
 #ifndef _CNTWALL_HXX
 #define _CNTWALL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SHL_HXX
 #include <tools/shl.hxx>
 #endif

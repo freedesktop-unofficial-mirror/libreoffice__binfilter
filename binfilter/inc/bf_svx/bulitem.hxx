@@ -26,6 +26,9 @@
  ************************************************************************/
 #ifndef _SVX_BULITEM_HXX
 #define _SVX_BULITEM_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
 // include ---------------------------------------------------------------

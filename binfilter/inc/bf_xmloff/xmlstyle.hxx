@@ -28,6 +28,8 @@
 #ifndef _XMLOFF_XMLSTYLE_HXX
 #define _XMLOFF_XMLSTYLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RSCSFX_HXX //autogen wg. SfxStyleFamily
 #include <rsc/rscsfx.hxx>
 #endif

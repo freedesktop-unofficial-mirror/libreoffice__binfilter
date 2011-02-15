@@ -27,9 +27,7 @@
 
 #define _BINDDATA_CXX "$Revision: 1.4 $"
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _SHL_HXX
 #include <tools/shl.hxx>
 #endif

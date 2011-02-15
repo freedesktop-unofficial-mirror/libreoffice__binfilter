@@ -28,6 +28,8 @@
 #ifndef _SVICNVW_HXX
 #define _SVICNVW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _IMAGE_HXX
 #include <vcl/image.hxx>
 #endif

@@ -30,9 +30,7 @@
 #define _SBXDEF_HXX
 
 #ifndef __RSC
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _ERRCODE_HXX
 #include "tools/errcode.hxx"
 #endif

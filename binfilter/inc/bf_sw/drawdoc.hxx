@@ -27,6 +27,8 @@
 #ifndef _DRAWDOC_HXX
 #define _DRAWDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
 #endif

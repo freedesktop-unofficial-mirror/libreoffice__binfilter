@@ -27,9 +27,7 @@
 #ifndef INCLUDED_SVTOOLS_DEFAULTOPTIONS_HXX
 #define INCLUDED_SVTOOLS_DEFAULTOPTIONS_HXX
 
-#ifndef _SOLAR_H
-#include "tools/solar.h"
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
 #endif

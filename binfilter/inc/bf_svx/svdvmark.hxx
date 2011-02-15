@@ -28,6 +28,8 @@
 #ifndef _SVDVMARK_HXX
 #define _SVDVMARK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _SVDOPATH_HXX
 #define _SVDOPATH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
 #endif

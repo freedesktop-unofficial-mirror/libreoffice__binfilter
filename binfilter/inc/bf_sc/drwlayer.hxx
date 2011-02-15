@@ -28,6 +28,8 @@
 #ifndef SC_DRWLAYER_HXX
 #define SC_DRWLAYER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
 #endif

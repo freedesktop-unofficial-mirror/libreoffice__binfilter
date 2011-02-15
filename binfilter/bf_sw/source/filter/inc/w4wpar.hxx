@@ -27,6 +27,8 @@
 #ifndef _W4WPAR_HXX
 #define _W4WPAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif

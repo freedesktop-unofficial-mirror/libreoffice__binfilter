@@ -28,6 +28,8 @@
 #ifndef _SVX_FMVIEW_HXX
 #define _SVX_FMVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
 #ifndef _SVDHDL_HXX

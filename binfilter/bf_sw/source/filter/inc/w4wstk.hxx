@@ -27,6 +27,8 @@
 #ifndef _W4WSTK_HXX
 #define _W4WSTK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _TABCOL_HXX
 #define _TABCOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_LONGS
 #define _SVSTDARR_BOOLS

@@ -27,6 +27,8 @@
 #ifndef _TXTINET_HXX
 #define _TXTINET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
 #endif

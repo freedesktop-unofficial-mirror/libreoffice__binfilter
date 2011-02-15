@@ -28,6 +28,8 @@
 #ifndef _GIFREAD_HXX
 #define _GIFREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif

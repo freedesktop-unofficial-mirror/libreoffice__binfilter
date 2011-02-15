@@ -27,9 +27,7 @@
 #ifndef _REQITEM_HXX
 #define _REQITEM_HXX
 
-#ifndef _SOLAR_H
-#include <solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _RTTI_HXX
 #include <rtti.hxx>

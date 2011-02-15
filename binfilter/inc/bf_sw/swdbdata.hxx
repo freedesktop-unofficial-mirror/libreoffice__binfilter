@@ -27,6 +27,8 @@
 #ifndef _SWDBDATA_HXX
 #define _SWDBDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
 #endif

@@ -27,13 +27,13 @@
 #ifndef _MODOPT_HXX
 #define _MODOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif
-#ifndef _SV_WINTYPES_HXX
-#include <vcl/wintypes.hxx>
-#endif
+#include <tools/wintypes.hxx>
 #ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
 #endif

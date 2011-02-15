@@ -28,6 +28,8 @@
 #ifndef SC_BIGRANGE_HXX
 #define SC_BIGRANGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_DOCUMENT_HXX
 #include "document.hxx"

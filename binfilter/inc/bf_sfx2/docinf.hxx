@@ -27,6 +27,8 @@
 #ifndef _SFXDOCINF_HXX
 #define _SFXDOCINF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
 #endif
