@@ -66,14 +66,14 @@ Reference < XStyle > XMLTextMasterPageContext::Create()
 }
 TYPEINIT1( XMLTextMasterPageContext, SvXMLStyleContext );
 
-XMLTextMasterPageContext::XMLTextMasterPageContext( SvXMLImport& rImport,
+XMLTextMasterPageContext::XMLTextMasterPageContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         sal_Bool bOverwrite ) :
-    SvXMLStyleContext( rImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_MASTER_PAGE ),
+    SvXMLStyleContext( rInImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_MASTER_PAGE ),
     sIsPhysical( RTL_CONSTASCII_USTRINGPARAM( "IsPhysical" ) ),
-    sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) ),
     sPageStyleLayout( RTL_CONSTASCII_USTRINGPARAM( "PageStyleLayout" ) ),
+    sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) ),
     sPageMasterName(),
     bInsertHeader( sal_False ),
     bInsertFooter( sal_False ),
@@ -89,19 +89,19 @@ XMLTextMasterPageContext::XMLTextMasterPageContext( SvXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
-        if( XML_NAMESPACE_STYLE == nPrefix )
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,  &aLclLocalName );
+        if( XML_NAMESPACE_STYLE == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_NAME ) )
             {
                 sName = xAttrList->getValueByIndex( i );
             }
-            else if( IsXMLToken( aLocalName, XML_NEXT_STYLE_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_NEXT_STYLE_NAME ) )
             {
                 sFollow = xAttrList->getValueByIndex( i );
             }
-            else if( IsXMLToken( aLocalName, XML_PAGE_MASTER_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_PAGE_MASTER_NAME ) )
             {
                 sPageMasterName = xAttrList->getValueByIndex( i );
             }
@@ -117,7 +117,7 @@ XMLTextMasterPageContext::XMLTextMasterPageContext( SvXMLImport& rImport,
         return;
 
     Any aAny;
-    sal_Bool bNew = sal_False;
+    sal_Bool bLclNew = sal_False;
     if( xPageStyles->hasByName( sName ) )
     {
         aAny = xPageStyles->getByName( sName );
@@ -131,20 +131,20 @@ XMLTextMasterPageContext::XMLTextMasterPageContext( SvXMLImport& rImport,
 
         aAny <<= xStyle;
         xPageStyles->insertByName( sName, aAny );
-        bNew = sal_True;
+        bLclNew = sal_True;
     }
 
     Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
-    if( !bNew && xPropSetInfo->hasPropertyByName( sIsPhysical ) )
+    if( !bLclNew && xPropSetInfo->hasPropertyByName( sIsPhysical ) )
     {
         aAny = xPropSet->getPropertyValue( sIsPhysical );
-        bNew = !*(sal_Bool *)aAny.getValue();
+        bLclNew = !*(sal_Bool *)aAny.getValue();
     }
-    SetNew( bNew );
+    SetNew( bLclNew );
 
-    if( bOverwrite || bNew )
+    if( bOverwrite || bLclNew )
     {
         Reference < XMultiPropertyStates > xMultiStates( xPropSet,
                                                          UNO_QUERY );
@@ -163,7 +163,7 @@ XMLTextMasterPageContext::~XMLTextMasterPageContext()
 }
 
 SvXMLImportContext *XMLTextMasterPageContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
@@ -173,7 +173,7 @@ SvXMLImportContext *XMLTextMasterPageContext::CreateChildContext(
         GetImport().GetTextImport()->GetTextMasterPageElemTokenMap();
 
     sal_Bool bInsert = sal_False, bFooter = sal_False, bLeft = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_TEXT_MP_HEADER:
         if( bInsertHeader && !bHeaderInserted )
@@ -201,13 +201,13 @@ SvXMLImportContext *XMLTextMasterPageContext::CreateChildContext(
 
     if( bInsert && xStyle.is() )
     {
-        pContext = CreateHeaderFooterContext( nPrefix, rLocalName,
+        pContext = CreateHeaderFooterContext( nInPrefix, rLocalName,
                                                     xAttrList,
                                                     bFooter, bLeft );
     }
     else
     {
-        pContext = SvXMLStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
     }
 
@@ -215,7 +215,7 @@ SvXMLImportContext *XMLTextMasterPageContext::CreateChildContext(
 }
 
 SvXMLImportContext *XMLTextMasterPageContext::CreateHeaderFooterContext(
-            sal_uInt16 nPrefix,
+            sal_uInt16 nInPrefix,
             const ::rtl::OUString& rLocalName,
             const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
             const sal_Bool bFooter,
@@ -223,7 +223,7 @@ SvXMLImportContext *XMLTextMasterPageContext::CreateHeaderFooterContext(
 {
     Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
     return new XMLTextHeaderFooterContext( GetImport(),
-                                                nPrefix, rLocalName,
+                                                nInPrefix, rLocalName,
                                                 xAttrList,
                                                 xPropSet,
                                                 bFooter, bLeft );
