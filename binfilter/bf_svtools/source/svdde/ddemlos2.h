@@ -31,7 +31,7 @@
 #define INCL_WIN
 
 #include <tools/svpm.h>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/debug.hxx>
 #include <tools/stream.hxx>
 

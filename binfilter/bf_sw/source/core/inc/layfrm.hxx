@@ -27,6 +27,8 @@
 #ifndef _LAYFRM_HXX
 #define _LAYFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "frame.hxx"
 namespace binfilter {
 

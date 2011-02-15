@@ -28,6 +28,8 @@
 #ifndef SC_RANGENAM_HXX
 #define SC_RANGENAM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx" // -> enum UpdateRefMode
 #endif

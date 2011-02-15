@@ -28,6 +28,8 @@
 #ifndef _HDFTCTRL_HXX
 #define _HDFTCTRL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXMNUITEM_HXX //autogen
 #include <bf_sfx2/mnuitem.hxx>
 #endif

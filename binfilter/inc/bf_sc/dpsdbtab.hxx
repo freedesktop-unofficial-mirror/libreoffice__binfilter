@@ -28,6 +28,8 @@
 #ifndef SC_DPSDBTAB_HXX
 #define SC_DPSDBTAB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 namespace com { namespace sun { namespace star {
     namespace lang {

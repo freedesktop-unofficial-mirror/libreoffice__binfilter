@@ -28,6 +28,8 @@
 #ifndef _PLUGOBJ_HXX
 #define _PLUGOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
 #endif

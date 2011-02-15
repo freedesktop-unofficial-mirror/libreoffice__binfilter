@@ -28,6 +28,8 @@
 #ifndef _SCHDLL0_HXX
 #define _SCHDLL0_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/pseudo.hxx>
 
 #ifndef _SFXMODULE_HXX //autogen

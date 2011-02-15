@@ -27,6 +27,8 @@
 #ifndef _FONTCFG_HXX
 #define _FONTCFG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif

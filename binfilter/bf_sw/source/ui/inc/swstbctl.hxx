@@ -27,6 +27,8 @@
 #ifndef _SWSTBCTL_HXX
 #define _SWSTBCTL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXSTBITEM_HXX //autogen

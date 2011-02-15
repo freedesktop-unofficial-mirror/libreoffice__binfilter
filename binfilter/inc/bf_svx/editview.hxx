@@ -29,6 +29,8 @@
 #ifndef _MyEDITVIEW_HXX
 #define _MyEDITVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
 #endif

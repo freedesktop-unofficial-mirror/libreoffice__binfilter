@@ -28,9 +28,8 @@
 #ifndef _BPARR_HXX
 #define _BPARR_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif

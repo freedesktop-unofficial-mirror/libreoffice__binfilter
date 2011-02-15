@@ -43,9 +43,7 @@
 #include <whassert.hxx>
 #endif
 
-#ifndef _CPPUHELPER_EXTRACT_HXX_
-#include <cppuhelper/extract.hxx>
-#endif
+#include <comphelper/extract.hxx>
 
 namespace binfilter
 {

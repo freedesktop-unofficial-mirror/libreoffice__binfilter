@@ -27,6 +27,8 @@
 #ifndef _SVX_PRNTITEM_HXX
 #define _SVX_PRNTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXENUMITEM_HXX //autogen

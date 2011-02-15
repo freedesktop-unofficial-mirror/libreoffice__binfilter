@@ -28,6 +28,8 @@
 #ifndef SC_DOCOPTIO_HXX
 #define SC_DOCOPTIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #ifndef _SFXPOOLITEM_HXX //autogen

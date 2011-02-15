@@ -28,9 +28,7 @@
 #ifndef _SVDUNDO_HXX
 #define _SVDUNDO_HXX
 
-#ifndef _SOLAR_HRC
-#include <bf_svtools/solar.hrc>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _UNDO_HXX //autogen
 #include <bf_svtools/undo.hxx>

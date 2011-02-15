@@ -27,6 +27,8 @@
 #ifndef _VIRTOUTP_HXX
 #define _VIRTOUTP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
 #endif

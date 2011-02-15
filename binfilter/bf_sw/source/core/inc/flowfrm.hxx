@@ -27,6 +27,8 @@
 #ifndef _FLOWFRM_HXX
 #define _FLOWFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
 #endif

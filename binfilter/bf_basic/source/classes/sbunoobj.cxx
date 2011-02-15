@@ -40,8 +40,8 @@
 
 #include <cppuhelper/implbase1.hxx>
 #include <cppuhelper/typeprovider.hxx>
-#include <cppuhelper/extract.hxx>
 
+#include <comphelper/extract.hxx>
 #ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _SCH_DLL_HXX
 #define _SCH_DLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/sfxdefs.hxx>
 
 // header for class SfxModule

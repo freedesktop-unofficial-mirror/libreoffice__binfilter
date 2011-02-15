@@ -35,9 +35,7 @@
 #endif
 
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _INC_LIMITS
 #include <limits.h>

@@ -28,6 +28,8 @@
 #ifndef _SVX_XFLFTRIT_HXX
 #define _SVX_XFLFTRIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVX_XFLGRIT_HXX //autogen
 #include <bf_svx/xflgrit.hxx>
 #endif

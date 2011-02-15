@@ -28,6 +28,8 @@
 #ifndef _EDITSTAT_HXX
 #define _EDITSTAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif

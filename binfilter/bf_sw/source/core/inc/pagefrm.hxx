@@ -27,6 +27,8 @@
 #ifndef _PAGEFRM_HXX
 #define _PAGEFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #ifndef _SVARRAY_HXX //autogen

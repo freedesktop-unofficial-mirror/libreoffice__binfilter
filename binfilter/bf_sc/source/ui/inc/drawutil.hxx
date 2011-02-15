@@ -28,9 +28,7 @@
 #ifndef SC_DRAWUTIL_HXX
 #define SC_DRAWUTIL_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 class Fraction;
 class OutputDevice;

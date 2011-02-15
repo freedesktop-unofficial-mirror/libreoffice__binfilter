@@ -27,6 +27,8 @@
 #ifndef SC_CHGVISET_HXX
 #define SC_CHGVISET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif

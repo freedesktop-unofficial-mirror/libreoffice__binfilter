@@ -27,6 +27,8 @@
 #ifndef _NOTXTFRM_HXX
 #define _NOTXTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
 #endif

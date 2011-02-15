@@ -27,6 +27,8 @@
 #ifndef _UNOTBL_HXX
 #define _UNOTBL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
 #endif

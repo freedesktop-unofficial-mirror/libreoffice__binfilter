@@ -27,6 +27,8 @@
 #ifndef _SWAP_HXX
 #define _SWAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <solar.h>
 namespace binfilter {
 

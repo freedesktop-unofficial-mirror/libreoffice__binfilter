@@ -28,6 +28,8 @@
 #ifndef SC_PRINTOPT_HXX
 #define SC_PRINTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef SC_DPSHTTAB_HXX
 #define SC_DPSHTTAB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_DPTABDAT_HXX
 #include "dptabdat.hxx"
 #endif

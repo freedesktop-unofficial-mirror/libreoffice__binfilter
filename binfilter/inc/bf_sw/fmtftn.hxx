@@ -27,6 +27,8 @@
 #ifndef _FMTFTN_HXX
 #define _FMTFTN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>

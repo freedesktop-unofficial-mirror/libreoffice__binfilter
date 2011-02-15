@@ -28,6 +28,8 @@
 #ifndef _DOCFLD_HXX
 #define _DOCFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CALC_HXX
 #include <calc.hxx>         // fuer SwHash
 #endif

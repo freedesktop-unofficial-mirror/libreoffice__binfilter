@@ -28,6 +28,8 @@
 #ifndef _FRM_DATABASEFORM_HXX_
 #define _FRM_DATABASEFORM_HXX_
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
 #endif

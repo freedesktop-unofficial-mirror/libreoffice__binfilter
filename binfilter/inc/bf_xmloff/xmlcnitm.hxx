@@ -28,6 +28,8 @@
 #ifndef _XMLOFF_XMLCNITM_HXX
 #define _XMLOFF_XMLCNITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
 #endif

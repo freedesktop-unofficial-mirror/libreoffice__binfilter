@@ -27,6 +27,8 @@
 #ifndef _LINKSRC_HXX
 #define _LINKSRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
 #endif

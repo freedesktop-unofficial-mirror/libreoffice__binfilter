@@ -28,6 +28,8 @@
 #ifndef _SVDTXHDL_HXX
 #define _SVDTXHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
 #endif

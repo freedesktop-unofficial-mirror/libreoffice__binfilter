@@ -28,6 +28,8 @@
 #ifndef _SVX_XFLBSTIT_HXX
 #define _SVX_XFLBSTIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
 #endif
