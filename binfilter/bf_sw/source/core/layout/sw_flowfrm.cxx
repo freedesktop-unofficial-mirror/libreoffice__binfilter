@@ -195,6 +195,9 @@ namespace binfilter {
 /*?*/           case SVX_BREAK_PAGE_AFTER:
 /*?*/           case SVX_BREAK_PAGE_BOTH:
 /*?*/               bKeep = FALSE;
+/*?*/               break;
+/*?*/           default:
+/*?*/               break;
 /*N*/       }
 /*N*/       if ( bKeep )
 /*N*/       {
@@ -225,6 +228,9 @@ namespace binfilter {
 /*N*/                   case SVX_BREAK_PAGE_BEFORE:
 /*N*/                   case SVX_BREAK_PAGE_BOTH:
 /*N*/                       bKeep = FALSE;
+/*N*/                       break;
+/*N*/                   default:
+/*N*/                       break;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1015,6 +1021,8 @@ namespace binfilter {
 /*?*/                                   case REL_CHAR:
 /*?*/                                       if( pFly->IsFlyAtCntFrm() )
 /*?*/                                           nAdd = ((SwFlyAtCntFrm*)pFly)->GetLastCharX();
+/*?*/                                       break;
+/*?*/                                   default:
 /*?*/                                       break;
 /*N*/                               }
 /*N*/                               nAdd += aHori.GetPos();

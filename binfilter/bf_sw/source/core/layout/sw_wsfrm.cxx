@@ -79,9 +79,9 @@ namespace binfilter {
 
 /*N*/ SwFrm::SwFrm( SwModify *pMod ) :
 /*N*/   SwClient( pMod ),
-/*N*/   pPrev( 0 ),
-/*N*/   pNext( 0 ),
 /*N*/   pUpper( 0 ),
+/*N*/   pNext( 0 ),
+/*N*/   pPrev( 0 ),
 /*N*/   pDrawObjs( 0 )
 /*N*/ #ifdef DBG_UTIL
 /*N*/   , nFrmId( SwFrm::nLastFrmId++ )
@@ -1481,8 +1481,8 @@ namespace binfilter {
 /*N*/         nDist = LONG_MAX - nFrmHeight;
 /*N*/
 /*N*/   const bool bBrowse = GetUpper()->GetFmt()->GetDoc()->IsBrowseMode();
-/*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
-/*N*/     if( !(GetUpper()->GetType() & nType) && GetUpper()->HasFixSize() )
+/*N*/   const USHORT nLclType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
+/*N*/     if( !(GetUpper()->GetType() & nLclType) && GetUpper()->HasFixSize() )
 /*N*/   {
 /*N*/       if ( !bTst )
 /*N*/       {
@@ -1917,8 +1917,8 @@ namespace binfilter {
 /*N*/ SwTwips SwLayoutFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
 /*N*/   const bool bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
-/*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
-/*N*/     if( !(GetType() & nType) && HasFixSize() )
+/*N*/   const USHORT nLclType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
+/*N*/     if( !(GetType() & nLclType) && HasFixSize() )
 /*N*/       return 0;
 /*N*/
 /*N*/     SWRECTFN( this )
@@ -2058,8 +2058,8 @@ namespace binfilter {
 /*N*/ SwTwips SwLayoutFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
 /*N*/   const bool bBrowse = GetFmt()->GetDoc()->IsBrowseMode();
-/*N*/   const USHORT nType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
-/*N*/     if( !(GetType() & nType) && HasFixSize() )
+/*N*/   const USHORT nLclType = bBrowse ? 0x2084: 0x2004; //Row+Cell, Browse mit Body
+/*N*/     if( !(GetType() & nLclType) && HasFixSize() )
 /*N*/       return 0;
 /*N*/
 /*N*/   ASSERT( nDist >= 0, "nDist < 0" );
@@ -2423,12 +2423,12 @@ namespace binfilter {
 /*N*/         {
 /*N*/             // If lower isn't a table, row, cell or section frame, adjust its
 /*N*/             // frame size.
-/*N*/             USHORT nType = pLowerFrm->GetType();
-/*N*/             if ( !(nType & (FRM_TAB|FRM_ROW|FRM_CELL|FRM_SECTION)) )
+/*N*/             USHORT nLclType = pLowerFrm->GetType();
+/*N*/             if ( !(nLclType & (FRM_TAB|FRM_ROW|FRM_CELL|FRM_SECTION)) )
 /*N*/             {
 /*N*/                 if ( bWidthChgd )
 /*N*/                 {
-/*N*/                     if( nType & nFixWidth )
+/*N*/                     if( nLclType & nFixWidth )
 /*N*/                     {
 /*N*/                         // Considering previous conditions:
 /*N*/                         // In vertical layout set width of column, header and
@@ -2441,7 +2441,7 @@ namespace binfilter {
 /*N*/                     else if( rOldSize.Width() && !pLowerFrm->IsFtnFrm() )
 /*N*/                     {
 /*N*/                         // Adjust frame width proportional, if lower isn't a
-/*N*/                         // foot note frame and condition <nType & nFixWidth>
+/*N*/                         // foot note frame and condition <nLclType & nFixWidth>
 /*N*/                         // isn't true.
 /*N*/                         // Considering previous conditions:
 /*N*/                         // In vertical layout these are foot note container,
@@ -2470,7 +2470,7 @@ namespace binfilter {
 /*N*/                 }
 /*N*/                 if ( bHeightChgd )
 /*N*/                 {
-/*N*/                     if( nType & nFixHeight )
+/*N*/                     if( nLclType & nFixHeight )
 /*N*/                     {
 /*N*/                         // Considering previous conditions:
 /*N*/                         // In vertical layout set height of foot note and
@@ -2491,7 +2491,7 @@ namespace binfilter {
 /*N*/                     {
 /*N*/                         // Adjust frame height proportional, if lower isn't a
 /*N*/                         // foot note, a header or a footer frame and
-/*N*/                         // condition <nType & nFixHeight> isn't true.
+/*N*/                         // condition <nLclType & nFixHeight> isn't true.
 /*N*/                         // Considering previous conditions:
 /*N*/                         // In vertical layout these are column, foot note container,
 /*N*/                         // body and no-text frames.
@@ -2599,7 +2599,7 @@ namespace binfilter {
 /*N*/     // Finally adjust the columns if width is set to auto
 /*N*/     // Possible optimisation: execute this code earlier in this function and
 /*N*/     // return???
-/*N*/     if ( ( bVert && bHeightChgd || ! bVert && bWidthChgd ) &&
+/*N*/     if ( ( (bVert && bHeightChgd) || (!bVert && bWidthChgd) ) &&
 /*N*/            Lower()->IsColumnFrm() )
 /*N*/     {
 /*N*/         // get column attribute
@@ -2790,6 +2790,7 @@ namespace binfilter {
 /*N*/ long SwLayoutFrm::CalcRel( const SwFmtFrmSize &rSz, BOOL bWidth ) const
 /*N*/ {
 /*N*/   ASSERT( bWidth, "NonFlys, CalcRel: width only" );
+/*N*/   (void)bWidth;
 /*N*/
 /*N*/   long nRet     = rSz.GetWidth(),
 /*N*/        nPercent = rSz.GetWidthPercent();
