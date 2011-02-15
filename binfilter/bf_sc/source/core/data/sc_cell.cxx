@@ -40,7 +40,8 @@
 #include <mac_end.h>
 #endif
 
-#if defined (SOLARIS) || defined (FREEBSD) || defined (NETBSD) || defined (OPENBSD)
+#if defined(SOLARIS) || defined(FREEBSD) || defined(NETBSD) || \
+    defined(OPENBSD) || defined(DRAGONFLY)
 #include <ieeefp.h>
 #elif ( defined ( LINUX ) && ( GLIBC < 2 ) )
 #include <i386/ieeefp.h>
