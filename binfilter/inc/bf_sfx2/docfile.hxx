@@ -211,11 +211,7 @@ public:
     void                Close();
     void                ReOpen();
     const String&       GetName() const {return aLogicName;}
-#if defined SINIX && defined GCC && defined C272
-    const INetURLObject& GetURLObject();
-#else
     const INetURLObject& GetURLObject() const;
-#endif
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XContent > GetContent() const;
     const String&       GetPhysicalName() const;
     sal_Bool            IsTemporary() const;

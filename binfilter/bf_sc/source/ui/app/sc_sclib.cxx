@@ -460,19 +460,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 /*N*/           'I', 'D', ';', 'P',
 /*N*/           M_ENDE };
 /*N*/
-/*N*/ #ifdef SINIX
-/*N*/       const UINT16 nAnzMuster = 9;    // sollte fuer indiz. Zugriff stimmen...
-/*N*/       UINT16 *ppMuster[ nAnzMuster ];         // Arrays mit Suchmustern
-/*N*/       ppMuster[ 0 ] = pLotus;
-/*N*/       ppMuster[ 1 ] = pExcel1;
-/*N*/       ppMuster[ 2 ] = pExcel2;
-/*N*/       ppMuster[ 3 ] = pExcel3;
-/*N*/       ppMuster[ 4 ] = pSc10;
-/*N*/       ppMuster[ 5 ] = pDIF1;
-/*N*/       ppMuster[ 6 ] = pDIF2;
-/*N*/       ppMuster[ 7 ] = pSylk;
-/*N*/       ppMuster[ 8 ] = pLotus2;                // Lotus immer ganz hinten wegen Ini-Eintrag
-/*N*/ #else
 /*N*/       const UINT16 *ppMuster[] =      // Arrays mit Suchmustern
 /*N*/           {
 /*N*/           pLotus,
@@ -486,7 +473,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 /*N*/           pLotus2
 /*N*/           };
 /*N*/       const UINT16 nAnzMuster = SAL_N_ELEMENTS(ppMuster);
-/*N*/ #endif
 /*N*/
 /*N*/       const sal_Char* pFilterName[ nAnzMuster ] =     // zugehoerige Filter
 /*N*/           {

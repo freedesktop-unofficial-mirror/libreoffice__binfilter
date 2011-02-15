@@ -239,13 +239,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // Man nehme die Adresse von cBuf auf dem Stack als Anfangswert
 /*N*/   // aber nur ein einziges mal (bug fix 20976)
-/*N*/ #ifdef SINIX
-/*N*/   static ULONG nId = 0;
-/*N*/   if ( ! nId )
-/*N*/       nId = (ULONG) cBuf;
-/*N*/ #else
 /*N*/   static ULONG nId = (ULONG) cBuf;
-/*N*/ #endif
 /*N*/
 /*N*/   nId++;
 /*N*/   for( ;; )

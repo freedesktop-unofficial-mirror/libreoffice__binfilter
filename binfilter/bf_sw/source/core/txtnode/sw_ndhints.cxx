@@ -95,11 +95,7 @@ namespace binfilter {
  *************************************************************************/
 
 // Zuerst nach Ende danach nach Ptr
-/*N*/ #ifdef HP9000
-/*N*/ BOOL lcl_IsLessEnd( const SwTxtAttr &rHt1, const SwTxtAttr &rHt2 )
-/*N*/ #else
 /*N*/ inline BOOL lcl_IsLessEnd( const SwTxtAttr &rHt1, const SwTxtAttr &rHt2 )
-/*N*/ #endif
 /*N*/ {
 /*N*/   xub_StrLen nHt1 = *rHt1.GetAnyEnd();
 /*N*/   xub_StrLen nHt2 = *rHt2.GetAnyEnd();
