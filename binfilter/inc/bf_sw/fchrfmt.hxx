@@ -27,6 +27,8 @@
 #ifndef _FCHRFMT_HXX
 #define _FCHRFMT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>

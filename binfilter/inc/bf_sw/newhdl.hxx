@@ -27,6 +27,8 @@
 #ifndef _NEWHDL_HXX
 #define _NEWHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
 #endif

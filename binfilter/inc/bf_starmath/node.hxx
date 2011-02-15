@@ -29,6 +29,8 @@
 #ifndef NODE_HXX
 #define NODE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _DYNARY_HXX //autogen
 #include <tools/dynary.hxx>

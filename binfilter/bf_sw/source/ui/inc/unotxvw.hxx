@@ -27,6 +27,8 @@
 #ifndef _UNOTXVW_HXX
 #define _UNOTXVW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFX_SFXBASECONTROLLER_HXX_
 #include <bf_sfx2/sfxbasecontroller.hxx>
 #endif

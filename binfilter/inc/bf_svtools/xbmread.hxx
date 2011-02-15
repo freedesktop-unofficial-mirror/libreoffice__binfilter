@@ -28,6 +28,8 @@
 #ifndef _XBMREAD_HXX
 #define _XBMREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GRAPH_HXX
 #include <vcl/graph.hxx>
 #endif

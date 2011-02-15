@@ -28,6 +28,8 @@
 #ifndef _SBXCLASS_HXX
 #define _SBXCLASS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _REF_HXX
 #include "tools/ref.hxx"
 #endif

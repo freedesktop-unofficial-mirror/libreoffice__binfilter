@@ -27,6 +27,8 @@
 #ifndef _SHELLRES_HXX
 #define _SHELLRES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #ifndef _BITMAP_HXX //autogen

@@ -27,6 +27,8 @@
 #ifndef _SHELLIO_HXX
 #define _SHELLIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
 #endif

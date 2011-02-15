@@ -27,6 +27,8 @@
 #ifndef _CONTENT_HXX
 #define _CONTENT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <limits.h>     // USHRT_MAX
 #ifndef _SWCONT_HXX
 #include "swcont.hxx"

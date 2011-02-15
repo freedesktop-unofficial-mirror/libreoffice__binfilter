@@ -28,11 +28,9 @@
 #ifndef _SWEVENT_HXX
 #define _SWEVENT_HXX
 
-// #include *****************************************************************
+#include <bf_svtools/bf_solar.h>
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+// #include *****************************************************************
 
 #ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>

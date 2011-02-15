@@ -29,6 +29,7 @@
 
 #include <limits.h>
 
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"

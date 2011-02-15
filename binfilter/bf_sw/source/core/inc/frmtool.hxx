@@ -27,6 +27,8 @@
 #ifndef _FRMTOOL_HXX
 #define _FRMTOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swtypes.hxx"
 #include "layfrm.hxx"
 #include "frmatr.hxx"

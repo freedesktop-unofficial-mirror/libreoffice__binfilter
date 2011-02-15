@@ -28,6 +28,8 @@
 #ifndef SVTOOLS_HTTPCOOK_HXX
 #define SVTOOLS_HTTPCOOK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
 #endif

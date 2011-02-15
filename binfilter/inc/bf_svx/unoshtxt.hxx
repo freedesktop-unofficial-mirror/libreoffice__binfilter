@@ -28,6 +28,8 @@
 #ifndef SVX_UNOSHTXT_HXX
 #define SVX_UNOSHTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <memory>
 
 #ifndef _SVX_UNOEDSRC_HXX

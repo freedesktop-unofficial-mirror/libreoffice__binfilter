@@ -28,9 +28,7 @@
 #ifndef _TRANSPRT_HXX
 #define _TRANSPRT_HXX "$Revision: 1.5 $"
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>

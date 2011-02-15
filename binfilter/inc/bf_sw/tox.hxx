@@ -27,6 +27,8 @@
 #ifndef _TOX_HXX
 #define _TOX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #ifndef _SFXPOOLITEM_HXX //autogen

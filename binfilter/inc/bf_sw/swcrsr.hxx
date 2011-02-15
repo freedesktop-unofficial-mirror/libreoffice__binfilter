@@ -27,6 +27,8 @@
 #ifndef _SWCRSR_HXX
 #define _SWCRSR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _PAM_HXX //autogen
 #include <pam.hxx>
 #endif

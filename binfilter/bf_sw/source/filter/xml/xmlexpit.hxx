@@ -28,9 +28,7 @@
 #ifndef _XMLITMPR_HXX
 #define _XMLITMPR_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _REF_HXX
 #include <tools/ref.hxx>
 #endif

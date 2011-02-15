@@ -27,11 +27,9 @@
 #ifndef _POOLFMT_HXX
 #define _POOLFMT_HXX
 
-#include <limits.h>
+#include <bf_svtools/bf_solar.h>
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <limits.h>
 
 #ifndef _SVX_FRMDIR_HXX
 #include <bf_svx/frmdir.hxx>

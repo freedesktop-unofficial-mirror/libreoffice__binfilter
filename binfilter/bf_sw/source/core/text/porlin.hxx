@@ -27,6 +27,8 @@
 #ifndef _PORLIN_HXX
 #define _PORLIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "possiz.hxx"       // SwPosSize
 class XubString;
 namespace binfilter {

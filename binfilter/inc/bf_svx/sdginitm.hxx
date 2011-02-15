@@ -28,6 +28,8 @@
 #ifndef _SDGINITM_HXX
 #define _SDGINITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SDOOITM_HXX
 #include <bf_svx/sdooitm.hxx>
 #endif

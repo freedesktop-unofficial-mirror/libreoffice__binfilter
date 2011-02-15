@@ -28,6 +28,8 @@
 #ifndef _SD_GRDOCSH_HXX
 #define _SD_GRDOCSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
 #endif

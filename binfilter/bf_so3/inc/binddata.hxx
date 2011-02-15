@@ -28,9 +28,7 @@
 #ifndef _BINDDATA_HXX
 #define _BINDDATA_HXX "$Revision: 1.4 $"
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _LIST_HXX
 #include <tools/list.hxx>
 #endif

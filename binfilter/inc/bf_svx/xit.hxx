@@ -28,6 +28,8 @@
 #ifndef _SVX_XIT_HXX
 #define _SVX_XIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
 #endif

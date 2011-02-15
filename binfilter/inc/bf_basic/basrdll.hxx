@@ -28,6 +28,8 @@
 #ifndef _BASRDLL_HXX
 #define _BASRDLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 class ResMgr;
 
 #ifndef _SV_ACCEL_HXX //autogen

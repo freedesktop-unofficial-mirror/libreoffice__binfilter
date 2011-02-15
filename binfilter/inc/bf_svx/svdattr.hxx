@@ -28,13 +28,7 @@
 #ifndef _SVDATTR_HXX
 #define _SVDATTR_HXX
 
-#ifndef _SOLAR_HRC
-#include <bf_svtools/solar.hrc>
-#endif
-
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _SDANGITM_HXX
 #include <bf_svx/sdangitm.hxx>

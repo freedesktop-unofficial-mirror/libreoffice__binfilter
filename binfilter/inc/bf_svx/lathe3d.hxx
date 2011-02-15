@@ -28,6 +28,8 @@
 #ifndef _E3D_LATHE3D_HXX
 #define _E3D_LATHE3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
 #endif

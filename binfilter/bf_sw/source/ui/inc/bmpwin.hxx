@@ -28,6 +28,8 @@
 #ifndef _BMPWIN_HXX
 #define _BMPWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
 #endif

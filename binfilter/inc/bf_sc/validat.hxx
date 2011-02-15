@@ -28,6 +28,8 @@
 #ifndef SC_VALIDAT_HXX
 #define SC_VALIDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
 #endif

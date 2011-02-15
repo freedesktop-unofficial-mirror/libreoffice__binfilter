@@ -29,6 +29,7 @@
 
 #include <ctype.h>
 #include <stdio.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/string.hxx>
 #include <com/sun/star/beans/PropertyValues.hpp>
 #include <bf_svtools/ownlist.hxx>

@@ -28,6 +28,8 @@
 #ifndef _IPENV_HXX
 #define _IPENV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/client.hxx>
 //#include <tools/mapunit.hxx>
 

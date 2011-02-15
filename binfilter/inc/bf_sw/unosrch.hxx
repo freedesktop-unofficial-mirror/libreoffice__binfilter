@@ -27,6 +27,8 @@
 #ifndef _UNOSRCH_HXX
 #define _UNOSRCH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
 #include <com/sun/star/util/XPropertyReplace.hpp>
 #endif

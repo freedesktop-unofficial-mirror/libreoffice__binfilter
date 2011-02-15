@@ -28,6 +28,8 @@
 #ifndef _SCH_MEMCHRT_HXX
 #define _SCH_MEMCHRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXDEFS_HXX
 #include <bf_sfx2/sfxdefs.hxx>
 #endif

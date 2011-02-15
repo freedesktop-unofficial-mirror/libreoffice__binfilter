@@ -1,5 +1,6 @@
 /*************************************************************************
  *
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * Copyright 2000, 2010 Oracle and/or its affiliates.
@@ -37,7 +38,7 @@
 #endif
 
 #include "adjust.hxx"
-#include "tools/solar.h"
+#include <bf_svtools/bf_solar.h>
 #ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif

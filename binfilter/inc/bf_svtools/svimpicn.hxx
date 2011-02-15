@@ -27,6 +27,8 @@
 #ifndef _SVIMPICN_HXX
 #define _SVIMPICN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _VIRDEV_HXX
 #include <vcl/virdev.hxx>
 #endif

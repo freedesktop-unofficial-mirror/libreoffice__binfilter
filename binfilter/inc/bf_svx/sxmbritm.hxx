@@ -27,6 +27,8 @@
 #ifndef _SXMBRITM_HXX
 #define _SXMBRITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
 #endif

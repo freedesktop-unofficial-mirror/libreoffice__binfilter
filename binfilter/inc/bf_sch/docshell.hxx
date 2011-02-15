@@ -28,6 +28,8 @@
 #ifndef _SCH_DOCSHELL_HXX
 #define _SCH_DOCSHELL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SCHDLL0_HXX //autogen
 #include "schdll0.hxx"
 #endif
