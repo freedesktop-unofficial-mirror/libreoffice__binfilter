@@ -31,10 +31,6 @@
 #pragma hdrstop
 #endif
 
-#ifdef WTC
-#define private public
-#endif
-
 #include <ctype.h>
 #include <float.h>
 

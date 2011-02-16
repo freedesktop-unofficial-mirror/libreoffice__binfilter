@@ -69,7 +69,7 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(WTC) && !defined(__MINGW32__) && !defined(OS2)
+#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MINGW32__) && !defined(OS2)
 
 #define FIELDFNTAB_SIZE 37
 #if FIELDFNTAB_SIZE != RES_FIELDS_END - RES_FIELDS_BEGIN

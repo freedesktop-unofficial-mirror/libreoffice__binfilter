@@ -32,9 +32,6 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifdef WTC
-#define private public
-#endif
 
 #include <hintids.hxx>
 
