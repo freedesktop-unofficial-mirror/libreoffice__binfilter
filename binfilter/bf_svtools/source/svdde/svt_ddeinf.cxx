@@ -44,7 +44,7 @@ namespace binfilter
 HDDEDATA CALLBACK DdeInternal::InfCallback(
                 WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD )
 #else
-#if defined ( MTW ) || ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
+#if ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
 HDDEDATA CALLBACK DdeInternal::InfCallback(
                 WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD )
 #else
