@@ -36,8 +36,7 @@ namespace binfilter {
 
 class ValueFormBuffer;
 
-#if defined(BLC) || defined(MAC)
-// BLC will es auf jeden Fall hier
+#if defined(MAC)
 typedef void                ( ValueFormBuffer::*Fkt_rString )( String & );
 typedef sal_uInt32          ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 #endif
@@ -45,7 +44,7 @@ typedef sal_uInt32          ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 class ValueFormBuffer
     {
     private:
-#if !defined(BLC) && !defined(MAC)
+#if !defined(MAC)
 // MSC will es auf jeden Fall hier
         typedef void        ( ValueFormBuffer::*Fkt_rString )( String & );
         typedef sal_uInt32  ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
