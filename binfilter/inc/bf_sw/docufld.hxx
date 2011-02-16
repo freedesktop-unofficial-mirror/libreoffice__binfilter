@@ -27,6 +27,8 @@
 #ifndef _DOCUFLD_HXX
 #define _DOCUFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
 #endif

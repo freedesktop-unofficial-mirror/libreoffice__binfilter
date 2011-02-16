@@ -28,6 +28,8 @@
 #ifndef _SVDOSMEV_HXX
 #define _SVDOSMEV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
 #endif

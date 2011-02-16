@@ -27,6 +27,8 @@
 #ifndef _SFXMINSTACK_HXX
 #define _SFXMINSTACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 //ASDBG #ifndef _SFXMINARRAY_HXX
 namespace binfilter {
 

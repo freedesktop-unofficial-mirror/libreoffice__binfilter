@@ -27,6 +27,8 @@
 #ifndef _SFX_SAVEOPT_HXX
 #define _SFX_SAVEOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/wintypes.hxx>
 #ifndef _SV_FIELD_HXX //autogen

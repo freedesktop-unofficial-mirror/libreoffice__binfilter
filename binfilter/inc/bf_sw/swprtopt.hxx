@@ -28,6 +28,8 @@
 #ifndef _SWPRTOPT_HXX
 #define _SWPRTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_MULTISEL_HXX //autogen
 #include <tools/multisel.hxx>
 #endif

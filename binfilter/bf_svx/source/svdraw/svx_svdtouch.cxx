@@ -25,6 +25,7 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>

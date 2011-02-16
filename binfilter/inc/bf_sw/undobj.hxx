@@ -27,6 +27,8 @@
 #ifndef _UNDOBJ_HXX
 #define _UNDOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
 #endif

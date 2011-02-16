@@ -28,6 +28,8 @@
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #define _XMLOFF_XMLNUMFI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 #endif

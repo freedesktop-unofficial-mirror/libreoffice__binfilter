@@ -123,9 +123,7 @@
 #include <vos/ref.hxx>
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif

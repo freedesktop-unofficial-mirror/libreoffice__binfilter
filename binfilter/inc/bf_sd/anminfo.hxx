@@ -28,6 +28,8 @@
 #ifndef _SD_ANMINFO_HXX
 #define _SD_ANMINFO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
 #include <com/sun/star/presentation/AnimationEffect.hpp>
 #endif

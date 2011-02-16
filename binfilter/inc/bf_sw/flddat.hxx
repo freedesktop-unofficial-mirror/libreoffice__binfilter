@@ -28,6 +28,8 @@
 #ifndef _FLDDAT_HXX
 #define _FLDDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "fldbas.hxx"
 class DateTime;

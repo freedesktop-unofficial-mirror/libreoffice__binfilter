@@ -28,6 +28,8 @@
 #ifndef _SVDMODEL_HXX
 #define _SVDMODEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
 #endif

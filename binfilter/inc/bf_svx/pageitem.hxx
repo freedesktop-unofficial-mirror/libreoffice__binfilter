@@ -27,6 +27,8 @@
 #ifndef _SVX_PAGEITEM_HXX
 #define _SVX_PAGEITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 namespace binfilter {

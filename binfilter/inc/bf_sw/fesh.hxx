@@ -27,6 +27,8 @@
 #ifndef _FESH_HXX
 #define _FESH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _EDITSH_HXX
 #include <editsh.hxx>
 #endif

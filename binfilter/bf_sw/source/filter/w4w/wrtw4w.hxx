@@ -27,6 +27,8 @@
 #ifndef _WRTW4W_HXX
 #define _WRTW4W_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
 #endif

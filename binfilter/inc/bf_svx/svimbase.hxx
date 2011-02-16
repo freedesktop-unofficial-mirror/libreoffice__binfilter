@@ -28,6 +28,8 @@
 #ifndef _SVIMBASE_HXX
 #define _SVIMBASE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SWRECT_HXX
 #define _SWRECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "errhdl.hxx"
 
 #ifndef _GEN_HXX //autogen

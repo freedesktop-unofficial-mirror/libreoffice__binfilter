@@ -28,6 +28,8 @@
 #ifndef SC_BCLIST_HXX
 #define SC_BCLIST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
 #endif

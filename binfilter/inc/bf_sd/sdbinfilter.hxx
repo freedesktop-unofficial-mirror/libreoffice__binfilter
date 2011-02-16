@@ -46,7 +46,7 @@ public:
                             SdBINFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress );
 
     virtual sal_Bool        Import();
-    virtual sal_Bool        Export();
+//  virtual sal_Bool        Export();
 };
 
 } //namespace binfilter

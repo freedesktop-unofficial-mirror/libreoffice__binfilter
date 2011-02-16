@@ -28,6 +28,8 @@
 #ifndef _XPOOL_HXX
 #define _XPOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
 #endif

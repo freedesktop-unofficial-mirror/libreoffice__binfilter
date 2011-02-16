@@ -27,7 +27,7 @@
 #ifndef _SFX_ITEMPROP_HXX
 #define _SFX_ITEMPROP_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/string.hxx>
 #include <bf_svtools/itemset.hxx>
 #include <cppuhelper/implbase1.hxx>

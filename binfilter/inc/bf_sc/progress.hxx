@@ -28,6 +28,8 @@
 #ifndef SC_PROGRESS_HXX
 #define SC_PROGRESS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
 #endif

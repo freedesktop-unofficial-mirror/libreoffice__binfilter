@@ -28,6 +28,8 @@
 #ifndef _SFXFILEREC_HXX
 #define _SFXFILEREC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
 #endif

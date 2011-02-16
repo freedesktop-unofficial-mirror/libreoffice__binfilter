@@ -27,6 +27,8 @@
 #ifndef _FRAME_HXX
 #define _FRAME_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
 #endif

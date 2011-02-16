@@ -28,6 +28,8 @@
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #define _FORBIDDENCHARACTERSTABLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
 #endif

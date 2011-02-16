@@ -32,9 +32,7 @@
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #endif
 
-#ifndef _SOLAR_H //autogen wg. USHORT
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #include <limits.h>
 
 #ifndef _XMLOFF_XMLICTXT_HXX

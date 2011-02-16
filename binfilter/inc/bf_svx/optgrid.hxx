@@ -27,6 +27,8 @@
 #ifndef _SVX_OPTGRID_HXX
 #define _SVX_OPTGRID_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SV_FIELD_HXX //autogen

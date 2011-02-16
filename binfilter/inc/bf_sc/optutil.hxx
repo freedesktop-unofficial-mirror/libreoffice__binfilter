@@ -28,6 +28,8 @@
 #ifndef SC_OPTUTIL_HXX
 #define SC_OPTUTIL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SVXSWAFOPT_HXX
 #define _SVXSWAFOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _VCL_FONT_HXX //autogen
 #include <vcl/font.hxx>
 #endif

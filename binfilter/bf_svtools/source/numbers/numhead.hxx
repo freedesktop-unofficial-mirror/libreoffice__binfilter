@@ -28,6 +28,8 @@
 #ifndef NF_NUMHEAD_HXX
 #define NF_NUMHEAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SVTOOLS_CTYPEITM_HXX
 #define _SVTOOLS_CTYPEITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
 #endif

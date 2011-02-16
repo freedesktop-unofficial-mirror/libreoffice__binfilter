@@ -25,9 +25,7 @@
  *
  ************************************************************************/
 
-#ifndef _SOLAR_H
-#include <Solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #if defined (MAC)
 #include <mac_start.h>

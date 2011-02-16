@@ -81,7 +81,6 @@ class OImageControlModel
 protected:
     // UNO Anbindung
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
-    virtual void _onValueChanged();
 
     virtual sal_Bool        _approve(sal_Int32 _nColumnType);
 
@@ -102,7 +101,6 @@ public:
 
 // ::com::sun::star::form::XBoundComponent
     virtual ::com::sun::star::uno::Any _getControlValue() const;
-    virtual void _reset();
 
 // ::com::sun::star::lang::XServiceInfo
     IMPLEMENTATION_NAME(OImageControlModel);

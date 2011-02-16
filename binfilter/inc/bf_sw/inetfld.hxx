@@ -27,6 +27,8 @@
 #ifndef _INETFLD_HXX
 #define _INETFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "fldbas.hxx"
 

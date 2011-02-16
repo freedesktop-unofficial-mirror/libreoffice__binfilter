@@ -27,6 +27,8 @@
 
 #ifndef _FLTCALL_HXX
 #define _FLTCALL_HXX
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GEN_HXX
 #include <tools/gen.hxx>
 #endif

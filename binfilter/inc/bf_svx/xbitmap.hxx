@@ -28,6 +28,8 @@
 #ifndef _SVX_XBITMAP_HXX
 #define _SVX_XBITMAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
 #endif

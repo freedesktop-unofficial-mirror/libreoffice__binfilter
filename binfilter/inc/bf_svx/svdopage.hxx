@@ -28,6 +28,8 @@
 #ifndef _SVDOPAGE_HXX
 #define _SVDOPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
 #endif

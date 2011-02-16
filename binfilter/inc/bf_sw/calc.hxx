@@ -27,6 +27,8 @@
 #ifndef _CALC_HXX
 #define _CALC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>

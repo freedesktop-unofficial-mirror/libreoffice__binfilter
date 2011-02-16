@@ -27,12 +27,10 @@
 #ifndef _SFXAPP_HXX
 #define _SFXAPP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef TD_NEWDESKTOP
 #define TF_NEWDESKTOP 1
-#endif
-
-#ifndef _SOLAR_H
-#include <tools/solar.h>
 #endif
 
 #if _SOLAR__PRIVATE

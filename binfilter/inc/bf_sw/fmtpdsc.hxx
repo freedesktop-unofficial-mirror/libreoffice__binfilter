@@ -27,6 +27,8 @@
 #ifndef _FMTPDSC_HXX
 #define _FMTPDSC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _FORMAT_HXX //autogen
 #include <format.hxx>

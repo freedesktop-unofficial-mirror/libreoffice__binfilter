@@ -27,6 +27,8 @@
 #ifndef _UIITEMS_HXX
 #define _UIITEMS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "pagedesc.hxx"
 #include "cmdid.h"
 #ifndef _SFXINTITEM_HXX

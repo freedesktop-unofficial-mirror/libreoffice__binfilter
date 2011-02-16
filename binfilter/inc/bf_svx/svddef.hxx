@@ -28,6 +28,8 @@
 #ifndef _SVDDEF_HXX
 #define _SVDDEF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
 /*************************************************************************/

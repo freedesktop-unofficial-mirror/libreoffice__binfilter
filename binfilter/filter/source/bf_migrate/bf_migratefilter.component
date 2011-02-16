@@ -29,7 +29,6 @@
 <component loader="com.sun.star.loader.SharedLibrary"
     xmlns="http://openoffice.org/2010/uno-components">
   <implementation name="com.sun.star.comp.office.BF_MigrateFilter">
-    <service name="com.sun.star.document.ExportFilter"/>
     <service name="com.sun.star.document.ImportFilter"/>
   </implementation>
   <implementation name="com.sun.star.comp.sfx2.BinaryStandaloneDocumentInfo">

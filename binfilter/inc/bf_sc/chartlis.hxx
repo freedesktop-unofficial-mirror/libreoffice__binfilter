@@ -28,6 +28,8 @@
 #ifndef SC_CHARTLIS_HXX
 #define SC_CHARTLIS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>

@@ -443,19 +443,12 @@ void OImageControlModel::read(const Reference<XObjectInputStream>& _rxInStream) 
             defaultCommonProperties();
             break;
     }
-    // Nach dem Lesen die Defaultwerte anzeigen
-    if (m_aControlSource.getLength())
-    {   // (not if we don't have a control source - the "State" property acts like it is persistent, then
-        ::osl::MutexGuard aGuard(m_aMutex); // _reset expects this mutex guarding
-        _reset();
-    }
-}
-
-// XPropertyChangeListener
-//------------------------------------------------------------------------------
-void OImageControlModel::_onValueChanged()
-{
-    UpdateFromField();
+//  // Nach dem Lesen die Defaultwerte anzeigen
+//  if (m_aControlSource.getLength())
+//  {   // (not if we don't have a control source - the "State" property acts like it is persistent, then
+//      ::osl::MutexGuard aGuard(m_aMutex); // _reset expects this mutex guarding
+//      _reset();
+//  }
 }
 
 //------------------------------------------------------------------------------
@@ -477,24 +470,6 @@ void OImageControlModel::disposing()
     Reference<XInputStream>  xInStream;
     GetImageProducer()->setImage( xInStream );
     m_xImageProducer->startProduction();
-}
-
-//------------------------------------------------------------------------------
-void OImageControlModel::_reset()
-{
-    if(getField().is()) // only reset when we are connected to a column
-    {
-        Reference<XInputStream>  xDummy;
-        GetImageProducer()->setImage(xDummy);
-        Reference<XImageProducer> xProducer = m_xImageProducer;
-        {   // release our mutex once (it's acquired in the calling method !), as starting the image production may
-            // result in the locking of the solar mutex (unfortunally the default implementation of our aggregate,
-            // VCLXImageControl, does this locking)
-            // FS - 74438 - 30.03.00
-            MutexRelease aRelease(m_aMutex);
-            xProducer->startProduction();
-        }
-    }
 }
 
 // Helper functions

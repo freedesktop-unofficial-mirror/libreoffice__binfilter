@@ -28,6 +28,8 @@
 #ifndef SC_CONDITIO_HXX
 #define SC_CONDITIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_SCGLOB_HXX
 #include "global.hxx"
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SVX_KERNITEM_HXX
 #define _SVX_KERNITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _SFXINTITEM_HXX //autogen

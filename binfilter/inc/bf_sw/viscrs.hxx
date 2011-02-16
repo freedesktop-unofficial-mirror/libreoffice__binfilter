@@ -27,6 +27,8 @@
 #ifndef _VISCRS_HXX
 #define _VISCRS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CURSOR_HXX //autogen
 #include <vcl/cursor.hxx>
 #endif

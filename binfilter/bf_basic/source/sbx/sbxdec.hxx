@@ -31,7 +31,7 @@
 
 #ifdef WIN32
 
-#include <tools/prewin.h>
+#include <bf_svtools/bf_prewin.h>
 }   // close extern "C" {
 
 #ifndef __MINGW32__
@@ -40,7 +40,7 @@
 #include <oleauto.h>
 
 extern "C" {    // reopen extern "C" {
-#include <tools/postwin.h>
+#include <bf_svtools/bf_postwin.h>
 
 #endif
 #endif
