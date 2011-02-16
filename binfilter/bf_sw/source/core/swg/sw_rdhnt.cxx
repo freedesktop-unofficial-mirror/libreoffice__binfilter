@@ -1240,7 +1240,7 @@ static SwHintFn const aGrfInAttrs[] =
 /* OLDRES_GRFATR_CROPGRF    */          InSWG_SwCropGrf
 };
 
-#if defined GCC || defined HPUX
+#if defined GCC
 struct HintFns
 #else
 static struct HintFns
@@ -1249,7 +1249,7 @@ static struct HintFns
     const SwHintFn* pHintTab;
     short     nHintId1;
 }
-#if defined GCC || defined HPUX
+#if defined GCC
 ;
 static const HintFns aHintFns[] =
 #else
