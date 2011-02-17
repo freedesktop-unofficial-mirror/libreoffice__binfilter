@@ -569,7 +569,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     BOOL bRet = FALSE;
 /*N*/     BOOL bLongTab = FALSE;
-/*N*/     ULONG nMaxRowPerPage;
+/*N*/     ULONG nMaxRowPerPage(0);
 /*N*/     nNodeIndex -= nStartOfContent;
 /*N*/     USHORT nRows;
 /*N*/     if( rpFrm->IsTabFrm() )

@@ -49,9 +49,7 @@
 #include <wrtsh.hrc>
 namespace binfilter {
 
-/*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef xObj,
-/*N*/                            const SwRect *pFlyPrtRect,
-/*N*/                            const SwRect *pFlyFrmRect )
+/*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef, const SwRect *, const SwRect * )
 /*N*/ {
             DBG_ERROR("Split!");
 /*N*/ }
