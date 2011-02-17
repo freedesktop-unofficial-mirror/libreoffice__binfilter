@@ -52,11 +52,6 @@ public:
 
     const String& GetJobName() const    { return sJobName; }
 
-#if defined(TCPP)
-    // seit neuestem (SV 223) kann der keinen mehr generieren
-    inline  SwPrtOptions(const SwPrtOptions& rNew) {*this = rNew;}
-#endif
-
     MultiSelection  aMulti;
     Point  aOffset;
     ULONG  nMergeCnt;           // Anzahl der Serienbriefe

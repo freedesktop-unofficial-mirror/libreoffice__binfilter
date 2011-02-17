@@ -85,12 +85,8 @@ public:
     inline USHORT GetStartOf( const SwTxtAttr *pHt ) const;
     inline USHORT GetEndOf( const SwTxtAttr *pHt ) const;
     inline USHORT GetPos( const SwTxtAttr *pHt ) const
-//  OS: in svmem.hxx wird fuer TCPP GetPos ohne const gerufen
-#ifdef TCPP
-        { return SwpHtStart::GetPos( (SwTxtAttr *)pHt ); }
-#else
-        { return SwpHtStart::GetPos( pHt ); }
-#endif
+
+    return SwpHtStart::GetPos( pHt );
 
 #ifdef USED
     // Der Zugriffsoperator soll bald nur noch const sein!
