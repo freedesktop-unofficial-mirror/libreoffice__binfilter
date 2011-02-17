@@ -27,6 +27,8 @@
 #ifndef FORMAT_HXX
 #define FORMAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>

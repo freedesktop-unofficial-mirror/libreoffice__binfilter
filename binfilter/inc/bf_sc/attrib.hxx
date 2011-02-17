@@ -28,6 +28,8 @@
 #ifndef SC_SCATTR_HXX
 #define SC_SCATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>

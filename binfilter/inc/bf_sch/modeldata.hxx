@@ -27,6 +27,8 @@
 #ifndef _SCH_MODELDATA_HXX
 #define _SCH_MODELDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "chtmodel.hxx"
 namespace binfilter {
 

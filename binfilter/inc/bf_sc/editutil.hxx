@@ -28,6 +28,8 @@
 #ifndef SC_EDITUTIL_HXX
 #define SC_EDITUTIL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>

@@ -28,6 +28,8 @@
 #ifndef XCHAR_HXX
 #define XCHAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>

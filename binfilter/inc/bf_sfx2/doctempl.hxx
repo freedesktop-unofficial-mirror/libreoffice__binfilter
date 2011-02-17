@@ -27,6 +27,8 @@
 #ifndef _SFXDOCTEMPL_HXX
 #define _SFXDOCTEMPL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
 #endif

@@ -28,6 +28,8 @@
 #ifndef _SECTION_HXX
 #define _SECTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>

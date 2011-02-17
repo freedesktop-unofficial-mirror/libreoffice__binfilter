@@ -28,6 +28,8 @@
 #ifndef _SVX_XLNEDCIT_HXX
 #define _SVX_XLNEDCIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
 #endif

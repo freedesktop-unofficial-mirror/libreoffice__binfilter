@@ -27,6 +27,8 @@
 #ifndef _WRTSH_HXX
 #define _WRTSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FESH_HXX
 #include <fesh.hxx>
 #endif

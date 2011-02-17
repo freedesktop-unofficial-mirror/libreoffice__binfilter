@@ -27,6 +27,8 @@
 #ifndef _FLTGLBS_HXX
 #define _FLTGLBS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif

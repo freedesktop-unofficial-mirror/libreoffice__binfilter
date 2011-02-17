@@ -27,6 +27,8 @@
 #ifndef _SFXPTITEM_HXX
 #define _SFXPTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif

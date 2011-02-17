@@ -27,6 +27,8 @@
 #ifndef _VIEWIMP_HXX
 #define _VIEWIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>

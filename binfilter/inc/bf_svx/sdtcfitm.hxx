@@ -27,6 +27,8 @@
 #ifndef _SDTCFITM_HXX
 #define _SDTCFITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SDOOITM_HXX
 #include <bf_svx/sdooitm.hxx>
 #endif

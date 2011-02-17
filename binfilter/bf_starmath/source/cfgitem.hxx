@@ -39,7 +39,7 @@
 #include <com/sun/star/uno/Any.h>
 #endif
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>

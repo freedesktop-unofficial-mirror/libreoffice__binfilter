@@ -30,7 +30,7 @@
 #include <com/sun/star/beans/PropertyValue.hpp>
 #include <rtl/ustrbuf.hxx>
 #include <tools/rtti.hxx>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include "unoevent.hxx"
 #include <bf_svtools/macitem.hxx>
 

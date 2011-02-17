@@ -30,6 +30,7 @@
 
 #include <math.h>
 
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>

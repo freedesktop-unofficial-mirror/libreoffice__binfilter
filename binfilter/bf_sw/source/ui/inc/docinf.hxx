@@ -27,6 +27,8 @@
 #ifndef _DOCINF_HXX
 #define _DOCINF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
 #endif

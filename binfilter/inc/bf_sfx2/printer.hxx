@@ -27,6 +27,8 @@
 #ifndef _SFX_PRINTER_HXX
 #define _SFX_PRINTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
 #endif

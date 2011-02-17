@@ -28,6 +28,8 @@
 #ifndef SC_CELL_HXX
 #define SC_CELL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <stddef.h>
 
 #ifndef _SFXLSTNER_HXX //autogen

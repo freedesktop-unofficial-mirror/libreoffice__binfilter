@@ -27,6 +27,8 @@
 #ifndef _REFFLD_HXX
 #define _REFFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
 #endif

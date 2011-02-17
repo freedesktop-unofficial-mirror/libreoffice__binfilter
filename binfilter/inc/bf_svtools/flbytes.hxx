@@ -28,6 +28,8 @@
 #ifndef _FLBYTES_HXX
 #define _FLBYTES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
 #endif

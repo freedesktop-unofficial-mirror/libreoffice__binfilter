@@ -27,6 +27,8 @@
 #ifndef _SDOOITM_HXX
 #define _SDOOITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
 #endif

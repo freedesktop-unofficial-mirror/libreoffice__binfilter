@@ -28,6 +28,8 @@
 #ifndef SC_CELLSUNO_HXX
 #define SC_CELLSUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"         // ScRangeList

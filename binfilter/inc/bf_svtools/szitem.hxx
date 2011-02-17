@@ -27,6 +27,8 @@
 #ifndef _SFXSZITEM_HXX
 #define _SFXSZITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SVT_BROADCAST_HXX
 #define _SVT_BROADCAST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
 #endif

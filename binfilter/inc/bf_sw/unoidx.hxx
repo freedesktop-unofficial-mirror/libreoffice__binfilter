@@ -27,6 +27,8 @@
 #ifndef _UNOIDX_HXX
 #define _UNOIDX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEXMARK_HPP_
 #include <com/sun/star/text/XDocumentIndexMark.hpp>
 #endif

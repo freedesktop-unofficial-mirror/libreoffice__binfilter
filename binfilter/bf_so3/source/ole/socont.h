@@ -29,9 +29,9 @@
 #ifndef _TENANT_H_
 #define _TENANT_H_
 
-#include <tools/prewin.h>
+#include <bf_svtools/bf_prewin.h>
 #include "soole.h"
-#include <tools/postwin.h>
+#include <bf_svtools/bf_postwin.h>
 #include "bf_so3/outplace.hxx"
 
 #define HIMETRIC_PER_INCH           2540

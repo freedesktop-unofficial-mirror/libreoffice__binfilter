@@ -27,6 +27,8 @@
 #ifndef _LNKBASE_HXX
 #define _LNKBASE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SOT_EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
 #endif

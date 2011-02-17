@@ -27,9 +27,7 @@
 #ifndef _INETHIST_HXX
 #define _INETHIST_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _STRING_HXX
 #include <tools/string.hxx>

@@ -29,6 +29,8 @@
 #ifndef __SBX_SBX_FACTORY_HXX
 #define __SBX_SBX_FACTORY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
 #endif

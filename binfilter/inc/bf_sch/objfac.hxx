@@ -28,9 +28,7 @@
 #ifndef _SCH_OBJFAC_HXX
 #define _SCH_OBJFAC_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _LINK_HXX
 #include <tools/link.hxx>

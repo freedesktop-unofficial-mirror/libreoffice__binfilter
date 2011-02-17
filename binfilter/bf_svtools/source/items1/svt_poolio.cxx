@@ -34,7 +34,7 @@
 #ifndef GCC
 #endif
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/itempool.hxx>
 #include "whassert.hxx"
 #include <bf_svtools/brdcst.hxx>

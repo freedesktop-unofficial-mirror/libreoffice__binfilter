@@ -28,6 +28,8 @@
 #ifndef _SVDDRAG_HXX
 #define _SVDDRAG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
 #endif

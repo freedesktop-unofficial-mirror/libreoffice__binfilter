@@ -27,6 +27,8 @@
 #ifndef _FLTINI_HXX
 #define _FLTINI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SHELLIO_HXX
 #include <shellio.hxx>

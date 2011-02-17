@@ -37,6 +37,7 @@
 #include <cppuhelper/implbase2.hxx>
 #endif
 
+#include <bf_svtools/bf_solar.h>
 
 #include <bf_svtools/pathoptions.hxx>
 

@@ -28,6 +28,8 @@
 #ifndef _VIEWPT3D_HXX
 #define _VIEWPT3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
 #endif

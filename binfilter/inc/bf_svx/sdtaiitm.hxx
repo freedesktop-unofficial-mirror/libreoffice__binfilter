@@ -27,6 +27,8 @@
 #ifndef _SDTAIITM_HXX
 #define _SDTAIITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
 #endif

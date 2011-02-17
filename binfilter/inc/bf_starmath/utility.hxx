@@ -27,6 +27,8 @@
 #ifndef UTILITY_HXX
 #define UTILITY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXVARARR_HXX //autogen
 #include <bf_sfx2/minarray.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SFX_EVENTCONF_HXX
 #define _SFX_EVENTCONF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #if _SOLAR__PRIVATE
 
 #ifndef _FIXED_HXX //autogen

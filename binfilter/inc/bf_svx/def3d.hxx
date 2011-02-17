@@ -28,15 +28,14 @@
 #ifndef _SVX_DEF3D_HXX
 #define _SVX_DEF3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 class Vector3D;
 
 #ifndef _INC_MATH
 #include <math.h>
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
 namespace binfilter {
 
 const double fPiDiv180 = 0.01745329251994;

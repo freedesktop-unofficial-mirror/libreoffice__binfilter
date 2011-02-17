@@ -27,9 +27,7 @@
 #ifndef _SFXBITSET_HXX
 #define _SFXBITSET_HXX
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 class Range;
 namespace binfilter {
 
