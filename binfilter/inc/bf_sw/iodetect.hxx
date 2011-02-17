@@ -103,12 +103,7 @@ struct SwIoDetect
 #endif
 
 
-const USHORT MAXFILTER =
-#if !( !defined(DBG_UTIL) || defined(PM2))
-#endif
-#ifdef DEBUG_SH
-#endif
-    14;
+const USHORT MAXFILTER = 14;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"
@@ -129,29 +124,29 @@ sal_Char FILTER_SW4V[]  = "CSW4V";                           \
 sal_Char FILTER_SW5V[]  = "CSW5V";                           \
 sal_Char FILTER_SWW4V[] = "CSW4VWEB";                        \
 sal_Char FILTER_SWW5V[] = "CSW5VWEB";                        \
-sal_Char sSwg1[]         = "SWG1";                            \
+sal_Char sSwg1[]         = "SWG1";                           \
 sal_Char sRtfWH[]       = "WH_RTF";                          \
 sal_Char sCExcel[]      = "CEXCEL";                          \
 sal_Char sExcel[]       = "EXCEL";                           \
 sal_Char sLotusD[]      = "LOTUSD";                          \
 sal_Char sLotusW[]      = "LOTUSW";                          \
 sal_Char sHTML[]        = "HTML";                            \
-sal_Char sWW1[]             = "WW1";                             \
+sal_Char sWW1[]             = "WW1";                         \
 sal_Char sWW5[]         = "WW6";                             \
 sal_Char sWW6[]         = "CWW6";                            \
 sal_Char FILTER_WW8[]   = "CWW8";                            \
-sal_Char FILTER_TEXT_DLG[] = "TEXT_DLG";                      \
+sal_Char FILTER_TEXT_DLG[] = "TEXT_DLG";                     \
 sal_Char FILTER_TEXT[]  = "TEXT";                            \
-sal_Char sW4W_Int[]         = "W4_INT";                          \
+sal_Char sW4W_Int[]         = "W4_INT";                      \
 sal_Char sDebug[]       = "DEBUG";                           \
 sal_Char sUndo[]        = "UNDO";                            \
 sal_Char FILTER_XML[]   = "CXML";                            \
 sal_Char FILTER_XMLV[]  = "CXMLV";                           \
-sal_Char FILTER_XMLVW[]     = "CXMLVWEB";                        \
-sal_Char sSwDos[]       = "SW6";                                \
-                                                                            \
-                                                                            \
-SwIoDetect aReaderWriter[ MAXFILTER ] {                        \
+sal_Char FILTER_XMLVW[]     = "CXMLVWEB";                    \
+sal_Char sSwDos[]       = "SW6";                               \
+                                                               \
+                                                               \
+SwIoDetect aReaderWriter[ MAXFILTER ] = {                      \
     {/* 0*/ SwIoEntry(FILTER_SW5,     4,            TRUE)},    \
     {/* 1*/ SwIoEntry(FILTER_SW4,     4,            FALSE)},   \
     {/* 2*/ SwIoEntry(FILTER_SW3,     4,            FALSE)},   \
@@ -166,7 +161,7 @@ SwIoDetect aReaderWriter[ MAXFILTER ] {                        \
     {/*11*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
     {/*12*/ SwIoEntry(FILTER_XML,     4,            TRUE)},    \
     {/*13*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
-};                                                                          \
+};
 
 // Filter erkennung
 struct W1_FIB
