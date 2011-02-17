@@ -84,9 +84,7 @@ public:
     inline USHORT GetStartCount() const { return Count(); }
     inline USHORT GetStartOf( const SwTxtAttr *pHt ) const;
     inline USHORT GetEndOf( const SwTxtAttr *pHt ) const;
-    inline USHORT GetPos( const SwTxtAttr *pHt ) const
-
-    return SwpHtStart::GetPos( pHt );
+    inline USHORT GetPos( const SwTxtAttr *pHt ) const { return SwpHtStart::GetPos( pHt ); }
 
 #ifdef USED
     // Der Zugriffsoperator soll bald nur noch const sein!

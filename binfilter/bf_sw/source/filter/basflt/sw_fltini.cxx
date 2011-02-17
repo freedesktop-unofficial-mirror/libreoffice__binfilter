@@ -84,6 +84,7 @@ inline void _SetFltPtr( USHORT& rPos, SwRead pReader, const sal_Char* pNm )
 /* pNm optimiert der Compiler weg, wird nur in der nicht PRODUCT benoetigt! */
 {
     ASSERT( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
+    (void)pNm;
     aReaderWriter[ rPos++ ].pReader = pReader;
 }
 

@@ -123,7 +123,7 @@ public:
     //              anzufangen.
     SwSbxValue( long n = 0 )        { PutLong( n ); }
     SwSbxValue( const double& rD )  { PutDouble( rD ); }
-    SwSbxValue( const SwSbxValue& rVal ) : SbxValue( rVal ) {}
+    SwSbxValue( const SwSbxValue& rVal ) : SvRefBase(), SbxValue( rVal )    {}
     virtual ~SwSbxValue();
 
 
