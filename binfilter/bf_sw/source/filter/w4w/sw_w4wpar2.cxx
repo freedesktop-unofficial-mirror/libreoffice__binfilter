@@ -968,8 +968,8 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
         static const RndStdIds nAnchorTab[]={ FLY_AT_CNTNT,     // Absatz
                                               FLY_PAGE,         // Seite
                                               FLY_IN_CNTNT };   // Buchstabe
-        if ( nAnchor >= sizeof(nAnchorTab)/sizeof(RndStdIds)) nAnchor = 0;
-
+        if (nAnchor >= static_cast<long>(SAL_N_ELEMENTS(nAnchorTab)))
+            nAnchor = 0;
         RndStdIds eAnchor = nAnchorTab[ nAnchor ];
 
         if ( ( nIniFlags & W4WFL_NO_FLY_IN_CNTNT )
@@ -992,12 +992,13 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
         static const SwVertOrient nVAlignTab[]={ VERT_NONE, VERT_TOP,
                                                 VERT_CENTER, VERT_BOTTOM,
                                                 VERT_NONE };
-        if ( nVAlign >= sizeof(nVAlignTab)/sizeof(SwVertOrient)) nVAlign = 0;
+        if (nVAlign >= static_cast<long>(SAL_N_ELEMENTS(nVAlignTab)))
+            nVAlign = 0;
         SwVertOrient eVAlign = nVAlignTab[ nVAlign ];
 
         static const SwHoriOrient nHAlignTab[]={ HORI_LEFT, HORI_RIGHT,
                                                   HORI_CENTER, HORI_NONE};
-        if ( nHAlign >= sizeof(nHAlignTab)/sizeof(SwHoriOrient))
+        if (nHAlign >= static_cast<long>(SAL_N_ELEMENTS(nHAlignTab)))
             nHAlign = 3;
         SwHoriOrient eHAlign = nHAlignTab[ nHAlign ];
 
@@ -1647,7 +1648,7 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
     long nLastDist  = 0;
     long nLastWidth = 0;
 
-    for( int i=0; bEqual, i<(int)nCols; i++ )
+    for( int i=0; i<(int)nCols; i++ )
     {
         // Spalten-Breite
         long nActWidth = pActTabDefs[ i ].nRightTw - pActTabDefs[ i ].nLeftTw;
@@ -1672,7 +1673,7 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
     {
         aCol.Init( (USHORT)nCols, (USHORT)nAveDist, USHRT_MAX );
         // Spalten unterschiedlich breit: fein, das kann der Writer inzwischen!
-        USHORT nWishWidth = 0, nLeftDist = 0, nRightDist = 0;
+        USHORT nWishWidth = 0, nLeftDist = 0;
         USHORT i;
         for( i = 0; i < nCols; i++ )
         {
@@ -1682,19 +1683,17 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
             long nWidth = pActTabDefs[ i ].nRightTw - pActTabDefs[ i ].nLeftTw;
             if( i < nCols-1 )
             {
-                long nRightDist = pActTabDefs[ i ].nRightTw - pActTabDefs[ i+1 ].nLeftTw;
-                nRightDist = nWidth / 2;
-                pCol->SetRight( (USHORT)nRightDist );
+                long nLclRightDist = pActTabDefs[ i ].nRightTw - pActTabDefs[ i+1 ].nLeftTw;
+                nLclRightDist = nWidth / 2;
+                pCol->SetRight( (USHORT)nLclRightDist );
             }
-            else
-                nRightDist = 0; // letzte Spalte hat keinen Zwischenraum mehr
 
             pCol->SetWishWidth( nWidth + nLeftDist + pCol->GetRight() );
 
             // aufsummierte Spaltenbreiten ergeben Gesamtbreite
             nWishWidth += pCol->GetWishWidth();
             // Halber Abstand ist an naechster Spalte noch zu setzen
-            nLeftDist = nRightDist;
+            nLeftDist = 0;
         }
         aCol.SetWishWidth( nWishWidth );
     }
@@ -1940,12 +1939,14 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
     if( pCurPaM->GetPoint()->nContent.GetIndex() != 0 )
         pDoc->SplitNode( *pCurPaM->GetPoint() );
 
+    BOOL bOldIsTxtInPgDesc;
+
     if( bBCMStep2 && pDoc->IsIdxInTbl( pCurPaM->GetPoint()->nNode ) )
     {
         // Tabellen-Daten IN einer anderen Tabelle als Rohtext lesen
         Flush();
         BOOL bOldIsColMode = bIsColMode;
-        BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+        bOldIsTxtInPgDesc = bIsTxtInPgDesc;
         bIsColMode         = TRUE;
         nTablInTablDepth++;
         while(     !nError
@@ -1975,7 +1976,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
     */
     ULONG nOldPos       = rInp.Tell();      // merke FilePos
     BOOL bOldTxtInDoc   = bTxtInDoc;
-    BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+    bOldIsTxtInPgDesc = bIsTxtInPgDesc;
     BOOL bOldNoExec     = bNoExec;
     BYTE nOldErr        = nError;
     if( !pTabBorders )
@@ -2035,7 +2036,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
             USHORT* aAboveRow;
             if( iR > 0 )
                 aAboveRow = (*pTabBorders)[ iR-1 ];
-            USHORT* aBelowRow;
+            USHORT* aBelowRow(NULL);
             if( iR < nTabRows-1 )
                 aBelowRow = (*pTabBorders)[ iR+1 ];
 
@@ -2233,7 +2234,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
             und lies dabei den Tabellen-Inhalt in rTable ein
         */
         bWasCellAfterCBreak = FALSE;
-        BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+        bOldIsTxtInPgDesc = bIsTxtInPgDesc;
         bBCMStep2 = TRUE;
         while (    !nError
                 && bIsColMode

@@ -82,7 +82,9 @@ SV_DECL_PTRARR_SORT( W4WStyleIdTab, W4WStyleIdTabEntryPtr, 0, 1 )
 
 W4WStyleIdTabEntry::W4WStyleIdTabEntry( SwW4WParser& rParser, USHORT nId,
                                         const sal_Unicode* pName )
-    :  nStyleId( nId ), pColl( 0 ), bSetAttributes( TRUE )
+    : pColl( 0 )
+    , nStyleId( nId )
+    , bSetAttributes( TRUE )
 {
     String aName( pName );
 
@@ -1008,8 +1010,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                         SwRect& rBodyRect = rBodyInfo.aRect;
                         Point& rUpPos = pHdInfo ? pHdInfo->aRect.Pos()
                                                 : rBodyRect.Pos();
-                        Point& rLoPos = pFtInfo ? pFtInfo->aRect.Pos()
-                                                : rBodyRect.Pos();
 
                         nTop  = (USHORT)rUpPos.Y();
                         nLeft = (USHORT)rUpPos.X();
@@ -1312,8 +1312,6 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 
                         SwRect& rBodyRect = rBodyInfo.aRect;
                         Point& rUpPos = pHdInfo ? pHdInfo->aRect.Pos()
-                                                : rBodyRect.Pos();
-                        Point& rLoPos = pFtInfo ? pFtInfo->aRect.Pos()
                                                 : rBodyRect.Pos();
 
                         nTop  = (USHORT)rUpPos.Y();

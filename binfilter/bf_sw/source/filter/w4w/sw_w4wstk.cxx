@@ -187,7 +187,9 @@ BOOL W4WStkEntry::MakeRegion( SwPaM& rRegion ) const
 
 
 W4WCtrlStack::W4WCtrlStack( SwW4WParser& rPars )
-    : W4WCtrlStkEntries( 10, 5 ), pParentStack( 0 ), pParser( &rPars )
+    : W4WCtrlStkEntries( 10, 5 )
+    , pParser( &rPars )
+    , pParentStack( 0 )
 {
 }
 

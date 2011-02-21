@@ -372,16 +372,17 @@ if( 24 > n4ColBits )
         pB = pBuf;
         while ( nLeft > 0 ){
             nRun = (BYTE)GetHexByte();
-            if ( ( nRun & 0x80 ) != 0 ){    // komprimiert
+            if ( ( nRun & 0x80 ) != 0 ) //komprimiert
+            {
                 nRun &= 0x7f;
                 c = (BYTE)GetHexByte();
-                for ( x=0; x<nRun; x++){
+                for ( x=0; x<nRun && pB < pBuf+nWdtOut; x++)
                     *pB++ = c;
-                }
-            }else{                          // unkomprimiert
-                for ( x=0; x<nRun; x++){
+            }
+            else // unkomprimiert
+            {
+                for ( x=0; x<nRun && pB < pBuf+nWdtOut; x++)
                     *pB++ = (BYTE)GetHexByte();
-                }
             }
             nLeft -= nRun;
         }
@@ -717,23 +718,19 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
         */
         case W4WRG_TextBox: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_StClPath: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_EoClPath: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Bezier: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         /*
         case W4WRG_Dr24bitBMap: {
@@ -742,38 +739,31 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
         */
         case W4WRG_Comment: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Spline: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Transform: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_LineHead: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_LineTail: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_CanvasCol: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_BmpPos: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
 
 // Bitmap und Vektoren gemischt geht nicht, denn im W4W-BitmapRec steht
@@ -953,8 +943,8 @@ short SwW4WGraf::ReadGrafFile( long nTyp, long nWidth, long nHeight )   // Grafi
                 // Info ueber ihn. Ich nehme mal an, dass er immer
                 // gleich ist wie in den Beispiel-Dateien von WpWin52
 
-                for ( int i = 0; i < sizeof( WpgFileHd ); i++ )  // Schreibe Header
-                    aOut << WpgFileHd[ i ];
+                for (size_t i = 0; i < sizeof(WpgFileHd); ++i)  // Schreibe Header
+                    aOut << WpgFileHd[i];
             }
             break;
 
@@ -964,8 +954,8 @@ short SwW4WGraf::ReadGrafFile( long nTyp, long nWidth, long nHeight )   // Grafi
                 // haben einen verstuemmelten Header
                 // sowie eine andere Dateilaenge als
                 // die Original-Dateien
-                short s = ReadChar();   // ueberlies " 0 | "
-                s = ReadChar();
+                ReadChar(); // ueberlies " 0 | "
+                ReadChar();
             }
             break;
 

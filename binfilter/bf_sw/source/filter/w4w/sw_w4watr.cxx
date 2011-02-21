@@ -132,25 +132,10 @@ inline int LO_BYTE( USHORT n )  { return (int)( n & 0xff ); }
 // PageDescs
 //
 
-void OutW4W_SwFmtPageDesc1(  const SwPageDesc* pPg )
+void OutW4W_SwFmtPageDesc1(  const SwPageDesc* )
 {
     return;
 }
-
-
-
-
-
-
-static void CalcFontSize(  const SwFmt& rFmt,
-                            USHORT& rFontId, USHORT& rFontHeight )
-{
-/*    UINT32 nFontHeight = rFmt.GetSize().GetHeight();
-    rFontHeight = ( nFontHeight > USHRT_MAX ) ? USHRT_MAX : (USHORT)nFontHeight;
-    rFontId = rW4WWrt.GetId( rFmt.GetFont() );
-*/
-}
-
 
 /* Ausgabe der Nodes */
 
@@ -175,12 +160,15 @@ struct W4WSttEndPos
 };
 
 W4WSttEndPos::W4WSttEndPos( const SwTxtAttr* pTxtAt, USHORT nFSize, USHORT nFId )
-    : pTxtAttr(pTxtAt), nFontSize(nFSize), nFontId( nFId )
+    : nFontSize(nFSize)
+    , nFontId( nFId )
+    , pTxtAttr(pTxtAt)
 {}
 
 W4WSttEndPos::W4WSttEndPos( const W4WSttEndPos & rSEPos )
-    : pTxtAttr( rSEPos.pTxtAttr), nFontSize( rSEPos.nFontSize ),
-    nFontId( rSEPos.nFontId )
+    : nFontSize( rSEPos.nFontSize )
+    , nFontId( rSEPos.nFontId )
+    , pTxtAttr( rSEPos.pTxtAttr)
 {}
 
 BOOL W4WSttEndPos::operator<( const W4WSttEndPos & rSEPos )

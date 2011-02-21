@@ -537,8 +537,7 @@ void SwW4WParser::Read_SetTray()        // (SFB)
 
     if( bStyleDef ) return;
 
-    if( GetDecimal( nOldTray ) && !nError
-        && W4WR_TXTERM != GetDecimal( nTray ) || nError )
+    if ( (GetDecimal(nOldTray) && !nError && W4WR_TXTERM != GetDecimal(nTray)) || nError )
         return;
 
     pPageDesc->GetMaster().SetAttr( SvxPaperBinItem( RES_PAPER_BIN, (BYTE)nTray));
@@ -563,8 +562,10 @@ SV_DECL_PTRARR_SORT( W4WStyleIdTab, W4WStyleIdTabEntryPtr, 0, 4 )
 
 SwW4WParser::SwW4WParser( const SwPaM & rPaM, SvStream& rIstream,
                         BOOL bNewDoc, USHORT nFilterNo, const String& rVers )
-    : pCurPaM( (SwPaM*)&rPaM ), bNew( bNewDoc ), rVersion( rVers ),
-    rInp( rIstream )
+    : rVersion( rVers )
+    , pCurPaM( (SwPaM*)&rPaM )
+    , rInp( rIstream )
+    , bNew( bNewDoc )
 {
     pDoc = rPaM.GetDoc();
     rInp.Seek( STREAM_SEEK_TO_END );
@@ -1086,9 +1087,9 @@ BOOL SwW4WParser::GetString( String& rString, const int nEndCode1, const int nEn
 
 BYTE SwW4WParser::GetDeciByte( BYTE& rByteVal )
 {
-    register BYTE n;
-    register BOOL Ok = FALSE;
-    BYTE nCode;
+    BYTE n = 0;
+    BOOL Ok = FALSE;
+    BYTE nCode = 0;
 
     while( this )
     {
@@ -1118,9 +1119,9 @@ BYTE SwW4WParser::GetDeciByte( BYTE& rByteVal )
 
 BYTE SwW4WParser::GetHexByte( BYTE& rHexVal )
 {
-    register unsigned int c1 = 0;   // shorts sind schneller als char (WIN)
-    register unsigned int c2 = 0;
-    register unsigned int nRet;
+    unsigned int c1 = 0;    // shorts sind schneller als char (WIN)
+    unsigned int c2 = 0;
+    unsigned int nRet = 0;
 
     rHexVal = 0;
 
@@ -1280,7 +1281,7 @@ void SwW4WParser::Flush()
         {
             UpdatePageMarginSettings( CALLED_BY_FLUSH_OR_HNL );
         }
-        if ( nParaLen >= MAX_ASCII_PARA - CHARBUF_SIZE - 100 )
+        if ( nParaLen >= static_cast<long>(MAX_ASCII_PARA - CHARBUF_SIZE - 100) )
         {
             sal_Unicode* pBuf = aCharBuffer;
             for( ; 0 != *pBuf; ++pBuf )
@@ -1578,8 +1579,7 @@ void SwW4WParser::Read_HardNewLine()            // (HNL)
 
     BYTE c = ReadChar();
 
-    if(    (0   == c)
-        || (EOF == c) )
+    if ( (0 == c) || (EOF == c) )
     {
         nError = ERR_CHAR;  // falsches Zeichen oder EOF
         return;
@@ -1636,9 +1636,9 @@ void SwW4WParser::Read_HardNewLine()            // (HNL)
             // wenn kein Style hart gesetzt ist
             // Override Style "Tabellenkopf", "Tabelleninhalt"
             // mit vorher gueltigem Style
-            const SwPosition& rPos = *pCurPaM->GetPoint();
-            pCtrlStck->NewAttr( rPos,  SwW4WStyle( nTabStyleId ) );
-            pCtrlStck->SetAttr( rPos, RES_FLTR_STYLESHEET );
+            const SwPosition& rLclPos = *pCurPaM->GetPoint();
+            pCtrlStck->NewAttr( rLclPos,  SwW4WStyle( nTabStyleId ) );
+            pCtrlStck->SetAttr( rLclPos, RES_FLTR_STYLESHEET );
         }
         ActivateTxtFlags();
 
@@ -1808,10 +1808,10 @@ void SwW4WParser::Read_DateTime()           // (DTF)
             pFormatter->PutandConvertEntry( *pLast, nCheckPos, nType, nKey,
                                             LANGUAGE_GERMAN,
                                             /*nLang*/LANGUAGE_SYSTEM );
-            SwDateTimeField aFld( (SwDateTimeFieldType*)
+            SwDateTimeField aLclFld( (SwDateTimeFieldType*)
                         pDoc->GetSysFldType( RES_DATETIMEFLD ),
                         &sTime == pLast ? TIMEFLD : DATEFLD, nKey );
-            pDoc->Insert( *pCurPaM, SwFmtFld( aFld ) );
+            pDoc->Insert( *pCurPaM, SwFmtFld( aLclFld ) );
         }
     }
 }
@@ -2551,8 +2551,6 @@ void SwW4WParser::Read_SetPitchAndOrFont()      // (SPF)
             SvxFontItem aFont( ((SvxFontItem&)pDoc->GetAttrPool().GetDefaultItem(
                                 RES_CHRATR_FONT ) ));
 
-            FontFamily eFamily = FAMILY_DONTKNOW;
-
             if( sFntNm.Len() )
             {
 #if defined( WIN ) || defined ( WNT )
@@ -2584,9 +2582,6 @@ void SwW4WParser::Read_SetPitchAndOrFont()      // (SPF)
                 else if ( sFntNm.EqualsAscii( "Courier New" ))
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Courier" ));
 #endif // MAC
-
-                if ( sFntNm.EqualsAscii( "Script" ))
-                    eFamily = FAMILY_SCRIPT;
             }
 
             switch( nOptProp )
@@ -3680,8 +3675,8 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 
         // den Stream kommt mit dem internen Format oeffnen
         SfxMedium aMedium( aTmpFile, STREAM_READ, TRUE );
-        SvStream* pStrm = aMedium.GetInStream();
-        if( pStrm && SVSTREAM_OK == pStrm->GetError() )
+        SvStream* pLclStrm = aMedium.GetInStream();
+        if( pLclStrm && SVSTREAM_OK == pLclStrm->GetError() )
         {
             if( !bInsertMode )
             {
@@ -3689,7 +3684,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
                 Reader::ResetFrmFmts( rDoc );
             }
 
-            SwW4WParser *pParser = new SwW4WParser( rPam, *pStrm,
+            SwW4WParser *pParser = new SwW4WParser( rPam, *pLclStrm,
                             !bInsertMode, GetFilter(), GetVersion() );
             if( !pParser->CallParser() )
 // !! hier muss der interne Fehler noch auf den SWG-Fehler gemappt werden !!
