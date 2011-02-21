@@ -38,8 +38,6 @@ extern "C" {
 
 #if defined (WNT) || defined (WIN)
 #define CDECL __cdecl
-#elif defined CSET
-#define CDECL _System
 #else
 #define CDECL
 #endif
