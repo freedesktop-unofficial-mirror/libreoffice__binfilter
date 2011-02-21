@@ -362,8 +362,8 @@ BOOL Sw6File::ReadLn(String &rStr)
     rStr.Erase();                       // String ist leer
     while (FileOk())                    // Solange kein Fehler auftrat
     {
-        register BYTE *p = (BYTE *)&aBuf.pBuf[aBuf.nIdx], *pStt = p;
-        while (*p>'#' || *p>=' ' && *p<'#')
+        BYTE *p = (BYTE *)&aBuf.pBuf[aBuf.nIdx], *pStt = p;
+        while (*p>'#' || (*p>=' ' && *p<'#'))
             p++;
 
         xub_StrLen nAsc = p - pStt;

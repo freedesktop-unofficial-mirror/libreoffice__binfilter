@@ -3183,6 +3183,8 @@ void Sw6Layout::MerkeNoten(Bereich eNot)
             case ANot:
                 pLay->ANotenLink=Tell();
                 break;
+            default:
+                break;
         }
     }
 }
@@ -3566,8 +3568,8 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                     else if (ScanKreuz("_N",pCtrl,nRet)){}
                     else if (ScanKreuz("_FN",pCtrl,nRet)){}
                     else if (ScanKreuz("_EN",pCtrl,nRet)){}
-                    else if (*pCtrl>='A' && *pCtrl<='Z' ||
-                             *pCtrl>='a' && *pCtrl<='z')
+                    else if ( (*pCtrl>='A' && *pCtrl<='Z') ||
+                             (*pCtrl>='a' && *pCtrl<='z') )
                     {
                         ByteString aFld(pCtrl,p-pCtrl);
                         aFld.Convert( RTL_TEXTENCODING_IBM_850,
@@ -3849,7 +3851,7 @@ BOOL Sw6Layout::LeseLayInfo(BOOL Konv)
         ReadLn(aStg);
         LocA->GliedLay=aStg.ToInt32();                     // Gliederungsebene
         if (LocA->GliedLay!=0 && LocA->
-            GliedLay<=sizeof(Glieder) &&
+            GliedLay<=static_cast<short>(sizeof(Glieder)) &&
             !Glieder[LocA->GliedLay-1])          // Gliederebene schon
         {                                        // mal genutzt worden?
           Glieder[LocA->GliedLay-1]=TRUE;
@@ -3974,7 +3976,7 @@ BOOL Sw6Layout::LeseLayInfo(BOOL Konv)
     return TRUE;
 }
 
-BOOL Sw6Layout::LeseKoFu(BOOL Kopf)
+BOOL Sw6Layout::LeseKoFu(BOOL bKopf)
 // Liesst harte Kopf- oder Fusstexte ein
 {
     short  Idx;
@@ -3982,13 +3984,13 @@ BOOL Sw6Layout::LeseKoFu(BOOL Kopf)
     String Stg;
     KOFU  *LocF;
 
-    pLay->DelLayout(FALSE,Kopf,!Kopf);           // Kopf oder Fusslayout loeschen
+    pLay->DelLayout(FALSE,bKopf,!bKopf);           // Kopf oder Fusslayout loeschen
     ReadLn(Stg);
     Anz=Stg.ToInt32();
     if (!FileOk()) return FALSE;
     for (Idx=0; Idx<Anz; Idx++)
     {
-        if (Kopf)
+        if (bKopf)
         {
             if ((LocF=pLay->HartKopf[Idx]=
                 new(KOFU))==NULL) return FALSE;
@@ -4036,6 +4038,8 @@ SvxAdjust Sw6Layout::TransAdj(SATZTYP eForm)
             eAdj=SVX_ADJUST_CENTER;
             break;
         case UnformSatz:               // Behandle wie linksbuendig
+            break;
+        default:
             break;
     } // switch
     return eAdj;
@@ -4193,6 +4197,8 @@ void Sw6Layout::InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips n
             break;
         case Tab_D:eAdjust=SVX_TAB_ADJUST_DECIMAL;
             break;
+        default:
+            break;
     } // switch
 
     SvxTabStop aTab(rTab.TabPos-nKor,eAdjust,cDfltDecimalChar,eFill);
@@ -4204,7 +4210,7 @@ void Sw6Layout::InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips n
 }
 
 void Sw6Layout::InsertExtra(SwDoc &rDoc,SwPaM &rPaM,
-     const SwNodeIndex &rWohin,long lFPos,sal_Char *pcAKey)
+     const SwNodeIndex &rWohin,long lFPos,const sal_Char *pcAKey)
 // Fuege einen Sondertext an die Stelle rDoc/rPaM ein.
 // Dazu suche mittels Seek den Text, lese die Absaetze
 // ein und seeke wieder zurueck an die Ausgangsposition
@@ -4380,10 +4386,12 @@ void Sw6Layout::InsertLayouts(SwDoc &rDoc, SwPaM *pPaM)
 {
     short  Idx;         // Index fuer Layouts
 
-    SwFtnInfo aInfo;
-    aInfo=rDoc.GetFtnInfo();                     // Wow: was 'ne Aktion...!
-    aInfo.ePos=FTNPOS_PAGE;                      // GetFntInfo ist const &
-    rDoc.SetFtnInfo(aInfo);
+    {
+        SwFtnInfo aInfo;
+        aInfo=rDoc.GetFtnInfo();                     // Wow: was 'ne Aktion...!
+        aInfo.ePos=FTNPOS_PAGE;                      // GetFntInfo ist const &
+        rDoc.SetFtnInfo(aInfo);
+    }
 
     for (Idx=pLay->NumBlay-1; Idx>=0; Idx--)
     {
@@ -5299,14 +5307,13 @@ BOOL SwSw6Parser::ReadDocInfo(void)
 // Einlesen des DocInfo-Blocks
 // Wird auch gleich ins Doc gegeben
 {
-    BOOL bRet = FALSE, bIsTrans = IsTrans();
+    BOOL bIsTrans = IsTrans();
     SetTrans( TRUE );
 
     short Idx;
     if (ReadLn(pDat->DocInfo.Autor) &&
         ReadLn(pDat->DocInfo.Kateg))
     {
-        bRet = TRUE;
         pDat->DocInfo.Autor=pDat->DocInfo.Autor;
         pDat->DocInfo.Kateg=pDat->DocInfo.Kateg;
 
@@ -5319,10 +5326,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
                 rTmp.EraseTrailingChars();
             }
             else
-            {
-                bRet = FALSE;
                 break;
-            }
         }
         for (Idx=0;Idx<4;Idx++)
         {
@@ -5333,10 +5337,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
                 rTmp.EraseTrailingChars();
             }
             else
-            {
-                bRet = FALSE;
                 break;
-            }
         }
     }
     SetTrans( bIsTrans );
@@ -5513,9 +5514,10 @@ BOOL SwSw6Parser::CallParser()
 
 SwSw6Parser::SwSw6Parser(SwDoc *pSwDoc,const SwPaM &rSwPaM,
                          SvStream *pIstream,BOOL bNewDoc,
-                         ULONG *pErrno,const String *pFileName):
-        pDoc(pSwDoc),bNew(bNewDoc),
-        Sw6Layout(*pIstream,pErrno,pFileName)
+                         ULONG *pErrno,const String *pFileName)
+    : Sw6Layout(*pIstream,pErrno,pFileName)
+    , pDoc(pSwDoc)
+    , bNew(bNewDoc)
 
 // Konstruktor wie ihn der SWG benoetigt
 {
