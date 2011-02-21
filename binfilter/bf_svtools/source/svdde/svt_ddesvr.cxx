@@ -41,11 +41,6 @@
 namespace binfilter
 {
 
-//static long         hCurConv  = 0;
-//static DWORD        hDdeInst  = NULL;
-//static short        nInstance = 0;
-//static DdeServices* pServices;
-
 enum DdeItemType
 {
     DDEITEM,
