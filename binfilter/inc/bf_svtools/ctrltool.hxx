@@ -33,7 +33,6 @@
 #include <tools/list.hxx>
 #include <vcl/metric.hxx>
 
-
 class OutputDevice;
 
 namespace binfilter {

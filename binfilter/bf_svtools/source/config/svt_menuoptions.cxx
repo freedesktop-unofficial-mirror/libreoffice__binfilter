@@ -41,7 +41,6 @@
 #include "itemholder1.hxx"
 
 #include <tools/link.hxx>
-#include <tools/list.hxx>
 
 //_________________________________________________________________________________________________________________
 //  namespaces

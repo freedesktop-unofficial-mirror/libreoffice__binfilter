@@ -36,7 +36,6 @@
 #include <com/sun/star/frame/XModel.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
 
-#include <tools/list.hxx>
 #include <vector>
 
 #include <comphelper/uno3.hxx>

@@ -38,8 +38,6 @@
 #include <vector>
 #endif
 
-#include <tools/list.hxx>
-
 #include <bf_xmloff/xmlictxt.hxx>
 #include <bf_xmloff/xmlimppr.hxx>
 #include <bf_xmloff/xmltkmap.hxx>

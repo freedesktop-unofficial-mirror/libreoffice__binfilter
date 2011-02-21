@@ -30,7 +30,6 @@
 #include <stdio.h>
 
 #include "bf_so3/applet.hxx"
-#include <tools/list.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
 #include "insdlg.hxx"

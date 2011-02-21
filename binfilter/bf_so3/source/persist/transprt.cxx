@@ -72,7 +72,6 @@
 #include <tools/errcode.hxx>
 #include <tools/errinf.hxx>
 #include <tools/inetmsg.hxx>
-#include <tools/list.hxx>
 #include <tools/stream.hxx>
 #include <tools/string.hxx>
 #include <tools/urlobj.hxx>

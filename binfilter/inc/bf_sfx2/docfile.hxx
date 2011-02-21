@@ -38,7 +38,6 @@
 #include <bf_so3/svstor.hxx>
 #include <tools/stream.hxx>
 #include <tools/string.hxx>
-#include <tools/list.hxx>
 #include <bf_svtools/lstner.hxx>
 
 #include <bf_svtools/cancel.hxx>

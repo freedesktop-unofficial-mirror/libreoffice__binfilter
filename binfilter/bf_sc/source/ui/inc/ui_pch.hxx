@@ -50,7 +50,6 @@
 #include <tools/contnr.hxx>
 #include <vcl/sv.h>
 #include <tools/ref.hxx>
-#include <tools/list.hxx>
 #include <tools/link.hxx>
 #include <tools/lang.hxx>
 #include <bf_sfx2/sfx.hrc>

@@ -36,7 +36,6 @@
 #include <i18npool/lang.h>
 #include <tools/color.hxx>
 #include <vcl/graph.hxx>
-#include <tools/list.hxx>
 #include <tools/link.hxx>
 #include <rsc/rscsfx.hxx>
 

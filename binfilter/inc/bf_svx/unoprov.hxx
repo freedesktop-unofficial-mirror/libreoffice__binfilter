@@ -33,7 +33,6 @@
 
 #include <bf_svx/svdpool.hxx>
 #include <bf_svtools/itemprop.hxx>
-#include <tools/list.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 
 namespace binfilter {

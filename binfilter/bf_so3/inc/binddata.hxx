@@ -30,7 +30,6 @@
 #define _BINDDATA_HXX
 
 #include <tools/solar.h>
-#include <tools/list.hxx>
 #include <vector>
 
 namespace binfilter

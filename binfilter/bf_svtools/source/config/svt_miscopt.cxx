@@ -35,7 +35,6 @@
 #include <com/sun/star/uno/Sequence.hxx>
 
 #include <tools/link.hxx>
-#include <tools/list.hxx>
 #include <tools/wldcrd.hxx>
 #include <tools/urlobj.hxx>
 

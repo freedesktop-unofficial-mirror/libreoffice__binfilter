@@ -29,7 +29,6 @@
 #ifndef SC_OUTPUT_HXX
 #define SC_OUTPUT_HXX
 
-#include <tools/list.hxx>
 #include <tools/color.hxx>
 #include <tools/fract.hxx>
 class Rectangle;

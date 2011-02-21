@@ -37,7 +37,6 @@
 #include <tools/errinf.hxx>
 #endif
 #include <sbx.hxx>
-#include <tools/list.hxx>
 #include <tools/rc.hxx>
 #include <vcl/svapp.hxx>
 #include "sbunoobj.hxx"

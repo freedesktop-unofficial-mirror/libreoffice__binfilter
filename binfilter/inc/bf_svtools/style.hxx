@@ -34,7 +34,6 @@
 #include <rsc/rscsfx.hxx>
 
 #include <tools/string.hxx>
-#include <tools/list.hxx>
 #include <bf_svtools/hint.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <bf_svtools/brdcst.hxx>

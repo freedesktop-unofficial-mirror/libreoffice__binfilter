@@ -33,7 +33,6 @@
 //------------------------------------------------------------------
 
 #include <bf_svtools/lstner.hxx>
-#include <tools/list.hxx>
 #include <vector>
 
 #include "bclist.hxx"

@@ -30,7 +30,6 @@
 
 #include <salhelper/simplereferenceobject.hxx>
 #include <vcl/font.hxx>
-#include <tools/list.hxx>
 #include <tools/debug.hxx>
 #include <tools/dynary.hxx>
 #include <bf_svtools/lstner.hxx>

@@ -31,8 +31,6 @@
 
 #include <i18npool/lang.h>
 
-#include "tools/list.hxx"
-
 #include "bf_svtools/svarray.hxx"
 
 #include "sbxdef.hxx"

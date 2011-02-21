@@ -30,7 +30,6 @@
 #define _XMLOFF_XMLASTPL_IMPL_HXX
 
 #include <sal/types.h>
-#include <tools/list.hxx>
 #include <bf_svtools/cntnrsrt.hxx>
 #include <rtl/ustring.hxx>
 #include <vector>

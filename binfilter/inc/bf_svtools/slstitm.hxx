@@ -29,7 +29,6 @@
 #define _SFXSLSTITM_HXX
 
 #include <tools/rtti.hxx>
-#include <tools/list.hxx>
 
 #include <bf_svtools/poolitem.hxx>
 

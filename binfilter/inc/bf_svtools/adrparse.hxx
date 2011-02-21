@@ -29,7 +29,6 @@
 #ifndef _ADRPARSE_HXX
 #define _ADRPARSE_HXX
 
-#include <tools/list.hxx>
 #include <tools/string.hxx>
 #include <vector>
 
