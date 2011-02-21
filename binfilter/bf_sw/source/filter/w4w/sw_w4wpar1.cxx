@@ -145,9 +145,7 @@ static USHORT GetBitCnt( register ULONG n )
 #**************************************************************************/
 
 extern "C" {
-#if defined(PM2) && defined(ZTC)
-    #define COMPRECORD_MODIFIER __CLIB
-#elif defined( WNT ) && defined( _CRTAPI1 )
+#if defined( WNT ) && defined( _CRTAPI1 )
 // nur beim MSC von den NT Disks ist _CRTAPI1 definiert, nicht bei VC++
     #define COMPRECORD_MODIFIER _CRTAPI1
 #elif defined( WNT )

@@ -46,9 +46,6 @@
 namespace binfilter {
 
 // break into CodeView
-#if defined(ZTC) && defined(WIN)
-#define CVBREAK     asm( 0xCC );
-#endif
 #if defined(MSC) && defined(WIN)
 #define CVBREAK     __asm int 3;
 #endif
