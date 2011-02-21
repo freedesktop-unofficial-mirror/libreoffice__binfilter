@@ -230,19 +230,19 @@ struct W4WPDTInfo
     BOOL    bPageWidthUnknown   :1;// Page Margin rechts noch nicht eingestellt
     BOOL    bPageHeightUnknown  :1;//             unten
     W4WPDTInfo()
-       :nPageType(    1 ),
-        nPageSubType( 0 ),
-        nRects(       0 ),
-        pIds(         0 ),
-        nBodyRectId(  USHRT_MAX ),
-        nHdRectId(    USHRT_MAX ),
-        nFtRectId(    USHRT_MAX ),
-        nSwPdId(      USHRT_MAX )
-        {
-            bSwPdUsed           = FALSE;
-            bPageWidthUnknown   = TRUE;
-            bPageHeightUnknown  = TRUE;
-        }
+       : pIds(0)
+       , nPageType(1)
+       , nPageSubType(0)
+       , nRects(0)
+       , nSwPdId(USHRT_MAX)
+       , nBodyRectId(USHRT_MAX)
+       , nHdRectId(USHRT_MAX)
+       , nFtRectId(USHRT_MAX)
+    {
+        bSwPdUsed           = FALSE;
+        bPageWidthUnknown   = TRUE;
+        bPageHeightUnknown  = TRUE;
+    }
     ~W4WPDTInfo(){ delete pIds; }
     BOOL PageSizeKnown(){ return 0 == (   bPageWidthUnknown
                                         | bPageHeightUnknown ); }
@@ -258,10 +258,10 @@ struct W4WFLOInfo
     long    nRects;
     BOOL    bFlowUsed:1;
     W4WFLOInfo()
-       :nFlowId( 0 ),
-        nRects(  0 ),
-        pIds(    0 )
-        { bFlowUsed = FALSE; }
+       : pIds(0)
+       , nFlowId(0)
+       , nRects(0)
+    { bFlowUsed = FALSE; }
     ~W4WFLOInfo(){ delete pIds; }
 };
 typedef W4WFLOInfo* W4WFLOInfo_Ptr;
@@ -845,8 +845,11 @@ struct W4WStyleIdTabEntry
     W4WStyleIdTabEntry( SwW4WParser& rParser, USHORT nId,
                         const sal_Unicode* pName );
         // ctor fuers suchen !!
-    W4WStyleIdTabEntry( USHORT nSeekId ) :  nStyleId( nSeekId ), pColl(0),
-                                            bSetAttributes( TRUE ) {}
+    W4WStyleIdTabEntry( USHORT nSeekId )
+        : pColl(0)
+        , nStyleId( nSeekId )
+        , bSetAttributes( TRUE )
+    {}
 
     inline BOOL operator==( const W4WStyleIdTabEntry&) const;
     inline BOOL operator<( const W4WStyleIdTabEntry&) const;
