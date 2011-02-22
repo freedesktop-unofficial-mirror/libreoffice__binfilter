@@ -144,7 +144,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         }
         return 0;
     }
-    String aFileName( rMedium.GetName() );
+    String aLclFileName( rMedium.GetName() );
     SwRead pRead = SwIoSystem::GetReader( pFlt->GetUserData() );
     if( !pRead )
         return 0;
@@ -153,10 +153,10 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         ? SW_STORAGE_READER & pRead->GetReaderType()
         : SW_STREAM_READER & pRead->GetReaderType() )
     {
-        *ppRdr = pPaM ? new SwReader( rMedium, aFileName, *pPaM ) :
+        *ppRdr = pPaM ? new SwReader( rMedium, aLclFileName, *pPaM ) :
             pCrsrShell ?
-                new SwReader( rMedium, aFileName, *pCrsrShell->GetCrsr() )
-                    : new SwReader( rMedium, aFileName, pDoc );
+                new SwReader( rMedium, aLclFileName, *pCrsrShell->GetCrsr() )
+                    : new SwReader( rMedium, aLclFileName, pDoc );
     }
     else
         return 0;
@@ -186,9 +186,9 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         if(pSet && SFX_ITEM_SET == pSet->GetItemState(SID_PASSWORD, TRUE, &pItem))
         {
             DBG_ASSERT(pItem->IsA( TYPE(SfxStringItem) ), "Fehler Parametertype");
-            ByteString aPasswd( ((const SfxStringItem *)pItem)->GetValue(),
+            ByteString aLclPasswd( ((const SfxStringItem *)pItem)->GetValue(),
                                 gsl_getSystemTextEncoding() );
-            aStor->SetKey( aPasswd );
+            aStor->SetKey( aLclPasswd );
         }
         // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der
         // eigene Filter ist.
@@ -294,7 +294,7 @@ BOOL SwDocShell::Save()
     return false;
 }
 
-BOOL SwDocShell::SaveAs(SvStorage * pStor)
+BOOL SwDocShell::SaveAs(SvStorage*)
 {
     //only here for virtual reason, will be deleted
     //this is a virtual fonction from SfxObjectShell (in sfx)

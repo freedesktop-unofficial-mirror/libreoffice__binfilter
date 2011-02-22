@@ -141,10 +141,10 @@ using namespace ::rtl;
 */
 /*N*/       if ( GetCreateMode() ==  SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-                SvEmbeddedObject* pObj = this;
+                SvEmbeddedObject* pLclObj = this;
                 const Size aSz( lA4Width - 2 * lMinBorder, 6 * MM50 );
                 SwRect aVis( Point( DOCUMENTBORDER, DOCUMENTBORDER ), aSz );
-                pObj->SetVisArea( aVis.SVRect() );
+                pLclObj->SetVisArea( aVis.SVRect() );
                 pDoc->SetBrowseMode( TRUE );
 /*N*/       }
         // set forbidden characters if necessary
@@ -310,15 +310,15 @@ using namespace ::rtl;
  --------------------------------------------------------------------*/
 
 
-/*N*/ SwDocShell::SwDocShell(SfxObjectCreateMode eMode) :
-/*N*/   pDoc(0),
-/*N*/   pIo(0),
-/*N*/   pBasePool(0),
-/*N*/   pFontList(0),
-/*N*/   SfxObjectShell ( eMode ),
-/*N*/   pView( 0 ),
-/*N*/     pWrtShell( 0 ),
-/*N*/     nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
+/*N*/ SwDocShell::SwDocShell(SfxObjectCreateMode eMode)
+/*N*/ : SfxObjectShell ( eMode )
+/*N*/ , pDoc(0)
+/*N*/ , pIo(0)
+/*N*/ , pBasePool(0)
+/*N*/ , pFontList(0)
+/*N*/ , pView( 0 )
+/*N*/ , pWrtShell( 0 )
+/*N*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );
 /*N*/     Init_Impl();
@@ -329,15 +329,15 @@ using namespace ::rtl;
  --------------------------------------------------------------------*/
 
 
-/*?*/ SwDocShell::SwDocShell( SwDoc *pD, SfxObjectCreateMode eMode ):
-/*?*/   pDoc(pD),
-/*?*/   pIo(0),
-/*?*/   pBasePool(0),
-/*?*/   pFontList(0),
-/*?*/   SfxObjectShell ( eMode ),
-/*?*/   pView( 0 ),
-/*?*/     pWrtShell( 0 ),
-/*?*/     nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
+/*?*/ SwDocShell::SwDocShell( SwDoc *pD, SfxObjectCreateMode eMode )
+/*?*/ : SfxObjectShell ( eMode )
+/*?*/ , pDoc(pD)
+/*?*/ , pIo(0)
+/*?*/ , pBasePool(0)
+/*?*/ , pFontList(0)
+/*?*/ , pView( 0 )
+/*?*/ , pWrtShell( 0 )
+/*?*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*?*/ {
 /*?*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );
 /*?*/     Init_Impl();
@@ -486,8 +486,8 @@ using namespace ::rtl;
 /*?*/                           SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/             if(GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
 /*?*/             {
-/*?*/                 SfxMedium* pMedium = GetMedium();
-/*?*/                 SFX_ITEMSET_ARG( pMedium->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
+/*?*/                 SfxMedium* pLclMedium = GetMedium();
+/*?*/                 SFX_ITEMSET_ARG( pLclMedium->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
 /*?*/                 nUpdateDocMode = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 /*?*/             }
 /*?*/

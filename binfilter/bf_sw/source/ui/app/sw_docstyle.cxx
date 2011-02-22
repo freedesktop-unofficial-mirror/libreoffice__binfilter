@@ -355,18 +355,17 @@ namespace binfilter {
 
 /*N*/ SwDocStyleSheet::SwDocStyleSheet( SwDoc&          rDocument,
 /*N*/                                   const String&           rName,
-/*N*/                                   SwDocStyleSheetPool&    rPool,
+/*N*/                                   SwDocStyleSheetPool&    rInPool,
 /*N*/                                   SfxStyleFamily          eFam,
-/*N*/                                   USHORT                  nMask) :
+/*N*/                                   USHORT                  nInMask) :
 /*N*/
-/*N*/   SfxStyleSheetBase( rName, rPool, eFam, nMask ),
-/*N*/   rDoc(rDocument),
+/*N*/   SfxStyleSheetBase( rName, rInPool, eFam, nInMask ),
 /*N*/   pCharFmt(0),
-/*N*/   pFrmFmt(0),
 /*N*/   pColl(0),
+/*N*/   pFrmFmt(0),
 /*N*/   pDesc(0),
 /*N*/   pNumRule(0),
-/*N*/   bPhysical(FALSE),
+/*N*/   rDoc(rDocument),
 /*N*/   aCoreSet(GetPool().GetPool(),
 /*N*/           RES_CHRATR_BEGIN,       RES_CHRATR_END - 1,
 /*N*/           RES_PARATR_BEGIN,       RES_PARATR_END - 1,
@@ -384,22 +383,23 @@ namespace binfilter {
 /*N*/           SID_ATTR_NUMBERING_RULE,    SID_ATTR_NUMBERING_RULE,
 /*N*/           SID_PARA_BACKGRND_DESTINATION,  SID_ATTR_BRUSH_CHAR,
 /*N*/           SID_ATTR_NUMBERING_RULE,    SID_ATTR_NUMBERING_RULE,
-/*N*/           0)
+/*N*/           0),
+/*N*/   bPhysical(FALSE)
 /*N*/ {
 /*N*/   nHelpId = UCHAR_MAX;
 /*N*/ }
 
 
-/*N*/ SwDocStyleSheet::SwDocStyleSheet( const SwDocStyleSheet& rOrg) :
-/*N*/   SfxStyleSheetBase(rOrg),
-/*N*/   pCharFmt(rOrg.pCharFmt),
-/*N*/   pFrmFmt(rOrg.pFrmFmt),
-/*N*/   pColl(rOrg.pColl),
-/*N*/   pDesc(rOrg.pDesc),
-/*N*/   pNumRule(rOrg.pNumRule),
-/*N*/   rDoc(rOrg.rDoc),
-/*N*/   bPhysical(rOrg.bPhysical),
-/*N*/   aCoreSet(rOrg.aCoreSet)
+/*N*/ SwDocStyleSheet::SwDocStyleSheet( const SwDocStyleSheet& rOrg)
+/*N*/   : SfxStyleSheetBase(rOrg)
+/*N*/   , pCharFmt(rOrg.pCharFmt)
+/*N*/   , pColl(rOrg.pColl)
+/*N*/   , pFrmFmt(rOrg.pFrmFmt)
+/*N*/   , pDesc(rOrg.pDesc)
+/*N*/   , pNumRule(rOrg.pNumRule)
+/*N*/   , rDoc(rOrg.rDoc)
+/*N*/   , aCoreSet(rOrg.aCoreSet)
+/*N*/   , bPhysical(rOrg.bPhysical)
 /*N*/ {
 /*N*/ }
 
@@ -1025,20 +1025,20 @@ namespace binfilter {
 /*N*/       if( pFmt )
 /*N*/           nPoolId = pFmt->GetPoolFmtId();
 /*N*/
-/*N*/       USHORT nMask = 0;
+/*N*/       USHORT nLclMask = 0;
 /*N*/       if( pFmt == rDoc.GetDfltCharFmt() )
-/*N*/           nMask |= SFXSTYLEBIT_READONLY;
+/*N*/           nLclMask |= SFXSTYLEBIT_READONLY;
 /*N*/       else if( USER_FMT & nPoolId )
-/*N*/           nMask |= SFXSTYLEBIT_USERDEF;
+/*N*/           nLclMask |= SFXSTYLEBIT_USERDEF;
 /*N*/
 /*N*/       switch ( COLL_GET_RANGE_BITS & nPoolId )
 /*N*/       {
-/*N*/       case COLL_TEXT_BITS:     nMask |= SWSTYLEBIT_TEXT;    break;
-/*N*/       case COLL_DOC_BITS :     nMask |= SWSTYLEBIT_CHAPTER; break;
-/*N*/       case COLL_LISTS_BITS:    nMask |= SWSTYLEBIT_LIST;    break;
-/*N*/       case COLL_REGISTER_BITS: nMask |= SWSTYLEBIT_IDX;     break;
-/*N*/       case COLL_EXTRA_BITS:    nMask |= SWSTYLEBIT_EXTRA;   break;
-/*N*/       case COLL_HTML_BITS:     nMask |= SWSTYLEBIT_HTML;    break;
+/*N*/       case COLL_TEXT_BITS:     nLclMask |= SWSTYLEBIT_TEXT;     break;
+/*N*/       case COLL_DOC_BITS :     nLclMask |= SWSTYLEBIT_CHAPTER; break;
+/*N*/       case COLL_LISTS_BITS:    nLclMask |= SWSTYLEBIT_LIST;     break;
+/*N*/       case COLL_REGISTER_BITS: nLclMask |= SWSTYLEBIT_IDX;      break;
+/*N*/       case COLL_EXTRA_BITS:    nLclMask |= SWSTYLEBIT_EXTRA;    break;
+/*N*/       case COLL_HTML_BITS:     nLclMask |= SWSTYLEBIT_HTML;     break;
 /*N*/       }
 /*N*/
 /*N*/       if( pFmt )
@@ -1052,10 +1052,10 @@ namespace binfilter {
 /*N*/               aHelpFile.Erase();
 /*N*/
 /*N*/           if( RES_CONDTXTFMTCOLL == pFmt->Which() )
-/*N*/               nMask |= SWSTYLEBIT_CONDCOLL;
+/*N*/               nLclMask |= SWSTYLEBIT_CONDCOLL;
 /*N*/       }
 /*N*/
-/*N*/       SetMask( nMask );
+/*N*/       SetMask( nLclMask );
 /*N*/   }
 /*N*/   if( bDeleteInfo && bFillOnlyInfo )
 /*?*/ { DBG_BF_ASSERT(0, "STRIP"); }
@@ -1228,20 +1228,20 @@ namespace binfilter {
 /*N*/   bOrganizer = bOrg;
 /*N*/ }
 
-/*N*/  SwDocStyleSheetPool::~SwDocStyleSheetPool()
+/*N*/ SwDocStyleSheetPool::~SwDocStyleSheetPool()
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxStyleSheetBase&     SwDocStyleSheetPool::Make(
+/*N*/ SfxStyleSheetBase& SwDocStyleSheetPool::Make(
 /*N*/       const String&   rName,
 /*N*/       SfxStyleFamily  eFam,
-/*N*/       USHORT          nMask,
-/*N*/       USHORT  /*nPos*/ )
+/*N*/       USHORT nInMask,
+/*N*/       USHORT /*nPos*/ )
 /*N*/ {
 /*N*/   aStyleSheet.PresetName(rName);
 /*N*/   aStyleSheet.PresetParent(aEmptyStr);
 /*N*/   aStyleSheet.PresetFollow(aEmptyStr);
-/*N*/   aStyleSheet.SetMask(nMask) ;
+/*N*/   aStyleSheet.SetMask(nInMask) ;
 /*N*/   aStyleSheet.SetFamily(eFam);
 /*N*/   aStyleSheet.SetPhysical(TRUE);
 /*N*/   aStyleSheet.Create();
@@ -1255,9 +1255,9 @@ namespace binfilter {
 
 
 /*N*/ SfxStyleSheetIterator*  SwDocStyleSheetPool::CreateIterator(
-/*N*/                       SfxStyleFamily eFam, USHORT nMask )
+/*N*/                       SfxStyleFamily eFam, USHORT nInMask )
 /*N*/ {
-/*N*/   return new SwStyleSheetIterator( this, eFam, nMask );
+/*N*/   return new SwStyleSheetIterator( this, eFam, nInMask );
 /*N*/ }
 
 
@@ -1379,7 +1379,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwDoc& rDoc = ((SwDocStyleSheetPool*)pBasePool)->GetDoc();
 /*N*/   const USHORT nSrchMask = nMask;
-/*N*/   const BOOL bSearchUsed = SearchUsed();
+/*N*/   const BOOL bLclSearchUsed = SearchUsed();
 /*N*/
 /*N*/   const BOOL bOrganizer = ((SwDocStyleSheetPool*)pBasePool)->IsOrganizerMode();
 /*N*/
@@ -1393,17 +1393,17 @@ namespace binfilter {
 /*?*/           if( pFmt->IsDefault() && pFmt != rDoc.GetDfltCharFmt() )
 /*?*/               continue;
 /*?*/
-/*?*/           const BOOL  bUsed = bSearchUsed && (bOrganizer || rDoc.IsUsed(*pFmt));
+/*?*/           const BOOL  bUsed = bLclSearchUsed && (bOrganizer || rDoc.IsUsed(*pFmt));
 /*?*/           if( !bUsed )
 /*?*/           {
 /*?*/               // Standard ist keine Benutzervorlage #46181#
 /*?*/               const USHORT nId = rDoc.GetDfltCharFmt() == pFmt ?
-/*?*/                       RES_POOLCHR_INET_NORMAL :
+/*?*/                       static_cast<USHORT>(RES_POOLCHR_INET_NORMAL) :
 /*?*/                               pFmt->GetPoolFmtId();
 /*?*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                   ? !(nId & USER_FMT)
 /*?*/                       // benutzte gesucht und keine gefunden
-/*?*/                   : bSearchUsed )
+/*?*/                   : bLclSearchUsed )
 /*?*/               continue;
 /*?*/
 /*?*/               if( rDoc.IsHTMLMode() && !(nId & USER_FMT) &&
@@ -1428,7 +1428,7 @@ namespace binfilter {
 /*?*/       {
 /*?*/           if( !rDoc.IsHTMLMode() )
 /*?*/               AppendStyleList(SwStyleNameMapper::GetChrFmtUINameArray(),
-/*?*/                               bSearchUsed, GET_POOLID_CHRFMT, cCHAR);
+/*?*/                               bLclSearchUsed, GET_POOLID_CHRFMT, cCHAR);
 /*?*/           else
 /*?*/           {
 /*?*/               aLst.Append( cCHAR, *SwStyleNameMapper::GetChrFmtUINameArray()[
@@ -1441,7 +1441,7 @@ namespace binfilter {
 /*?*/                       RES_POOLCHR_FOOTNOTE - RES_POOLCHR_BEGIN ] );
 /*?*/           }
 /*?*/           AppendStyleList(SwStyleNameMapper::GetHTMLChrFmtUINameArray(),
-/*?*/                               bSearchUsed, GET_POOLID_CHRFMT, cCHAR);
+/*?*/                               bLclSearchUsed, GET_POOLID_CHRFMT, cCHAR);
 /*N*/       }
 /*N*/   }
 
@@ -1471,7 +1471,7 @@ namespace binfilter {
 /*N*/               continue;
 /*N*/
 /*N*/           const BOOL bUsed = bOrganizer || rDoc.IsUsed(*pColl);
-/*N*/           if( !(bSearchUsed && bUsed ))
+/*N*/           if( !(bLclSearchUsed && bUsed ))
 /*N*/           {
 /*N*/               const USHORT nId = pColl->GetPoolFmtId();
 /*N*/               switch ( (nSMask & ~SFXSTYLEBIT_USED) )
@@ -1532,7 +1532,7 @@ namespace binfilter {
 /*?*/                   break;
 /*N*/               default:
 /*N*/                   // benutzte gesucht und keine gefunden
-/*N*/                   if( bSearchUsed )
+/*N*/                   if( bLclSearchUsed )
 /*N*/                       continue;
 /*N*/               }
 /*N*/           }
@@ -1542,19 +1542,19 @@ namespace binfilter {
 /*N*/       const BOOL bAll = nSMask == SFXSTYLEBIT_ALL;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_TEXT )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetTextUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA );
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA );
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_CHAPTER )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetDocUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_LIST )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetListsUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_IDX )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetRegisterUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_EXTRA )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetExtraUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_CONDCOLL )
 /*N*/       {
 /*?*/           DBG_BF_ASSERT(0, "STRIP");
@@ -1579,13 +1579,13 @@ namespace binfilter {
 /*?*/               continue;
 /*?*/
 /*?*/           const USHORT nId = pFmt->GetPoolFmtId();
-/*?*/           BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(*pFmt));
+/*?*/           BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(*pFmt));
 /*?*/           if( !bUsed )
 /*?*/           {
 /*?*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                   ? !(nId & USER_FMT)
 /*?*/                   // benutzte gesucht und keine gefunden
-/*?*/                   : bSearchUsed )
+/*?*/                   : bLclSearchUsed )
 /*?*/                   continue;
 /*?*/           }
 /*?*/
@@ -1596,7 +1596,7 @@ namespace binfilter {
 /*?*/       //
 /*?*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*?*/           AppendStyleList(SwStyleNameMapper::GetFrmFmtUINameArray(),
-/*?*/                                   bSearchUsed, GET_POOLID_FRMFMT, cFRAME);
+/*?*/                                   bLclSearchUsed, GET_POOLID_FRMFMT, cFRAME);
 /*N*/   }
 /*N*/
 /*N*/   if( nSearchFamily == SFX_STYLE_FAMILY_PAGE ||
@@ -1607,13 +1607,13 @@ namespace binfilter {
 /*N*/       {
 /*N*/           const SwPageDesc& rDesc = rDoc.GetPageDesc(i);
 /*N*/           const USHORT nId = rDesc.GetPoolFmtId();
-/*N*/           BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(rDesc));
+/*N*/           BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(rDesc));
 /*N*/           if( !bUsed )
 /*N*/           {
 /*N*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*N*/                   ? !(nId & USER_FMT)
 /*N*/                   // benutzte gesucht und keine gefunden
-/*N*/                   : bSearchUsed )
+/*N*/                   : bLclSearchUsed )
 /*?*/                   continue;
 /*N*/           }
 /*N*/
@@ -1621,7 +1621,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetPageDescUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_PAGEDESC, cPAGE);
+/*N*/                           bLclSearchUsed, GET_POOLID_PAGEDESC, cPAGE);
 /*N*/   }
 /*N*/
 /*N*/   if( nSearchFamily == SFX_STYLE_FAMILY_PSEUDO ||
@@ -1633,13 +1633,13 @@ namespace binfilter {
 /*?*/           const SwNumRule& rRule = *rNumTbl[ i ];
 /*?*/           if( !rRule.IsAutoRule() )
 /*?*/           {
-/*?*/               BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(rRule) );
+/*?*/               BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(rRule) );
 /*?*/               if( !bUsed )
 /*?*/               {
 /*?*/                   if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                       ? !(rRule.GetPoolFmtId() & USER_FMT)
 /*?*/                       // benutzte gesucht und keine gefunden
-/*?*/                       : bSearchUsed )
+/*?*/                       : bLclSearchUsed )
 /*?*/                       continue;
 /*?*/               }
 /*?*/
@@ -1648,7 +1648,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*?*/           AppendStyleList(SwStyleNameMapper::GetNumRuleUINameArray(),
-/*?*/                           bSearchUsed, GET_POOLID_NUMRULE, cNUMRULE);
+/*?*/                           bLclSearchUsed, GET_POOLID_NUMRULE, cNUMRULE);
 /*N*/   }
 /*N*/
 /*N*/   if(aLst.Count() > 0)

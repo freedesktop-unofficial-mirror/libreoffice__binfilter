@@ -71,7 +71,7 @@ namespace binfilter {
 /*N*/       PutItem( SvxDashListItem( pDrDoc->GetDashList() ) );
 /*N*/       PutItem( SvxLineEndListItem( pDrDoc->GetLineEndList() ) );
 /*N*/
-/*N*/       Outliner& rOutliner = pDrDoc->GetDrawOutliner();
+/*N*/       pDrDoc->GetDrawOutliner();
 /*N*/   }
 /*N*/   else
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ));
