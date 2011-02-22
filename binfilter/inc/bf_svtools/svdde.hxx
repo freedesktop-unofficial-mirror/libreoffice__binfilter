@@ -56,11 +56,6 @@ DECLARE_LIST( DdeConnections, DdeConnection* )
 DECLARE_LIST( DdeTransactions, DdeTransaction* )
 DECLARE_LIST( DdeFormats, long )
 
-#ifndef STRING_LIST
-#define STRING_LIST
-DECLARE_LIST( StringList, String * )
-#endif
-
 #ifdef WNT
 class DdeService;
 class DdeItem;
