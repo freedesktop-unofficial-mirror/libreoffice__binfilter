@@ -209,11 +209,12 @@ private:
         BOOL        bAdd,
                     bExt,
                     bIns;
-        ModeStack(ModeStack *pNextMode, BOOL _bIns, BOOL _bExt, BOOL _bAdd):
-            pNext(pNextMode),
-            bAdd(_bAdd),
-            bIns(_bIns),
-            bExt(_bExt) {}
+        ModeStack(ModeStack *pNextMode, BOOL _bIns, BOOL _bExt, BOOL _bAdd)
+            : pNext(pNextMode)
+            , bAdd(_bAdd)
+            , bExt(_bExt)
+            , bIns(_bIns)
+        {}
     } *pModeStack;
 
     // Cursor bei PageUp / -Down mitnehmen

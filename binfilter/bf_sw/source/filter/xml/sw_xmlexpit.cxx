@@ -116,7 +116,7 @@ void SvXMLExportItemMapper::exportXML( SvXMLAttributeList& rAttrList,
                                  const SvXMLItemMapEntry& rEntry,
                                  const SvXMLUnitConverter& rUnitConverter,
                                  const SvXMLNamespaceMap& rNamespaceMap,
-                                 sal_uInt16 nFlags,
+                                 sal_uInt16 /*nFlags*/,
                                  const SfxItemSet *pSet ) const
 {
     if( 0 != (rEntry.nMemberId & MID_FLAG_SPECIAL_ITEM_EXPORT) )

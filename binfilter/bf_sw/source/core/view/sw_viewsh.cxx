@@ -469,7 +469,7 @@ bool bInSizeNotify = FALSE;
 |*
 ******************************************************************************/
 
-/*N*/ void ViewShell::SizeChgNotify(const Size &rSize)
+/*N*/ void ViewShell::SizeChgNotify(const Size &)
 /*N*/ {
 /*N*/   if ( !pWin )
 /*N*/       bDocSizeChgd = TRUE;
