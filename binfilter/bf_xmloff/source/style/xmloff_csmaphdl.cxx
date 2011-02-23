@@ -98,7 +98,7 @@ XMLCaseMapVariantHdl::~XMLCaseMapVariantHdl()
     // nothing to do
 }
 
-sal_Bool XMLCaseMapVariantHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCaseMapVariantHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -116,7 +116,7 @@ sal_Bool XMLCaseMapVariantHdl::importXML( const OUString& rStrImpValue, uno::Any
     return bRet;
 }
 
-sal_Bool XMLCaseMapVariantHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCaseMapVariantHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_uInt16 nValue;
     OUStringBuffer aOut;

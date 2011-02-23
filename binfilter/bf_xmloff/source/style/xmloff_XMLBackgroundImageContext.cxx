@@ -129,6 +129,9 @@ void lcl_xmlbic_MergeHoriPos( GraphicLocation& ePos,
                         ? GraphicLocation_MIDDLE_BOTTOM
                         : GraphicLocation_RIGHT_BOTTOM);
         break;
+
+    default:
+        break;
     }
 }
 
@@ -168,6 +171,8 @@ void lcl_xmlbic_MergeVertPos( GraphicLocation& ePos,
                         ? GraphicLocation_RIGHT_MIDDLE
                         : GraphicLocation_RIGHT_BOTTOM);
         break;
+    default:
+        break;
     }
 }
 
@@ -186,13 +191,13 @@ void XMLBackgroundImageContext::ProcessAttrs(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_BGIMG_HREF:
             sURL = rValue;
@@ -326,7 +331,7 @@ void XMLBackgroundImageContext::ProcessAttrs(
 }
 
 XMLBackgroundImageContext::XMLBackgroundImageContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         const XMLPropertyState& rProp,
@@ -334,7 +339,7 @@ XMLBackgroundImageContext::XMLBackgroundImageContext(
         sal_Int32 nFilterIdx,
         sal_Int32 nTransparencyIdx,
         ::std::vector< XMLPropertyState > &rProps ) :
-    XMLElementPropertyContext( rImport, nPrfx, rLName, rProp, rProps ),
+    XMLElementPropertyContext( rInImport, nPrfx, rLName, rProp, rProps ),
     aPosProp( nPosIdx ),
     aFilterProp( nFilterIdx ),
     aTransparencyProp( nTransparencyIdx ),
@@ -348,11 +353,11 @@ XMLBackgroundImageContext::~XMLBackgroundImageContext()
 }
 
 SvXMLImportContext *XMLBackgroundImageContext::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = NULL;
-    if( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if( (XML_NAMESPACE_OFFICE == nInPrefix) &&
         xmloff::token::IsXMLToken( rLocalName,
                                         xmloff::token::XML_BINARY_DATA ) )
     {
@@ -360,14 +365,14 @@ SvXMLImportContext *XMLBackgroundImageContext::CreateChildContext(
         {
             xBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( xBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;

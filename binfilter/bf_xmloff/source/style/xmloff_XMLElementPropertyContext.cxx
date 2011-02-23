@@ -36,14 +36,14 @@ using namespace ::rtl;
 TYPEINIT1( XMLElementPropertyContext , SvXMLImportContext );
 
 XMLElementPropertyContext::XMLElementPropertyContext (
-                                SvXMLImport& rImport, sal_uInt16 nPrfx,
+                                SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const OUString& rLName,
                                 const XMLPropertyState& rProp,
                                  ::std::vector< XMLPropertyState > &rProps ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    aProp( rProp ),
-      rProperties( rProps ),
-    bInsert( sal_False )
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    bInsert( sal_False ),
+    rProperties( rProps ),
+    aProp( rProp )
 {
 }
 

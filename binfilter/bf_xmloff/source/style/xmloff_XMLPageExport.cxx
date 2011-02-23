@@ -89,8 +89,8 @@ void XMLPageExport::collectPageMasterAutoStyle(
 }
 
 void XMLPageExport::exportMasterPageContent(
-                const Reference < XPropertySet > & rPropSet,
-                sal_Bool bAutoStyles )
+                const Reference < XPropertySet > & /*rPropSet*/,
+                sal_Bool /*bAutoStyles*/ )
 {
 
 }

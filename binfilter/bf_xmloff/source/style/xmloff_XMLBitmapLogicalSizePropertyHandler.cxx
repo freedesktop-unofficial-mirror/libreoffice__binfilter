@@ -49,16 +49,16 @@ XMLBitmapLogicalSizePropertyHandler::~XMLBitmapLogicalSizePropertyHandler()
 sal_Bool XMLBitmapLogicalSizePropertyHandler::importXML(
     const OUString& rStrImpValue,
     Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     rValue = ::cppu::bool2any( rStrImpValue.indexOf( sal_Unicode('%') ) == -1 );
     return sal_True;
 }
 
 sal_Bool XMLBitmapLogicalSizePropertyHandler::exportXML(
-    OUString& rStrExpValue,
-    const Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    OUString& /*rStrExpValue*/,
+    const Any& /*rValue*/,
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }

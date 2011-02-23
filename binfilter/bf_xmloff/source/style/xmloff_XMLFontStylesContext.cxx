@@ -97,7 +97,7 @@ public:
 
     TYPEINFO();
 
-    XMLFontStyleContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLFontStyleContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
             const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
@@ -118,11 +118,11 @@ public:
 
 TYPEINIT1( XMLFontStyleContext_Impl, SvXMLStyleContext );
 
-XMLFontStyleContext_Impl::XMLFontStyleContext_Impl( SvXMLImport& rImport,
+XMLFontStyleContext_Impl::XMLFontStyleContext_Impl( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         XMLFontStylesContext& rStyles ) :
-    SvXMLStyleContext( rImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_FONT ),
+    SvXMLStyleContext( rInImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_FONT ),
     xStyles( &rStyles )
 {
     OUString sEmpty;
@@ -212,21 +212,21 @@ void XMLFontStyleContext_Impl::FillProperties(
 }
 
 SvXMLStyleContext *XMLFontStylesContext::CreateStyleChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference<
             ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pStyle;
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_FONT_DECL ) )
     {
-        pStyle = new XMLFontStyleContext_Impl( GetImport(), nPrefix,
+        pStyle = new XMLFontStyleContext_Impl( GetImport(), nInPrefix,
                                                rLocalName, xAttrList, *this );
     }
     else
     {
-        pStyle = SvXMLStylesContext::CreateStyleChildContext( nPrefix,
+        pStyle = SvXMLStylesContext::CreateStyleChildContext( nInPrefix,
                                                rLocalName, xAttrList );
     }
 
@@ -235,17 +235,17 @@ SvXMLStyleContext *XMLFontStylesContext::CreateStyleChildContext(
 
 TYPEINIT1( XMLFontStylesContext, SvXMLStylesContext );
 
-XMLFontStylesContext::XMLFontStylesContext( SvXMLImport& rImport,
+XMLFontStylesContext::XMLFontStylesContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         rtl_TextEncoding eDfltEnc ) :
-    SvXMLStylesContext( rImport, nPrfx, rLName, xAttrList ),
-    eDfltEncoding( eDfltEnc ),
+    SvXMLStylesContext( rInImport, nPrfx, rLName, xAttrList ),
     pFamilyNameHdl( new XMLFontFamilyNamePropHdl ),
     pFamilyHdl( new XMLFontFamilyPropHdl ),
     pPitchHdl( new XMLFontPitchPropHdl ),
     pEncHdl( new XMLFontEncodingPropHdl ),
-    pFontStyleAttrTokenMap( new SvXMLTokenMap(aFontStyleAttrTokenMap) )
+    pFontStyleAttrTokenMap( new SvXMLTokenMap(aFontStyleAttrTokenMap) ),
+    eDfltEncoding( eDfltEnc )
 {
 }
 

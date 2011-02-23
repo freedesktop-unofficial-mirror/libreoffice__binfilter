@@ -58,7 +58,7 @@ XMLBitmapRepeatOffsetPropertyHandler::~XMLBitmapRepeatOffsetPropertyHandler()
 sal_Bool XMLBitmapRepeatOffsetPropertyHandler::importXML(
     const OUString& rStrImpValue,
     Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     SvXMLTokenEnumerator aTokenEnum( rStrImpValue );
     OUString aToken;
@@ -85,7 +85,7 @@ sal_Bool XMLBitmapRepeatOffsetPropertyHandler::importXML(
 sal_Bool XMLBitmapRepeatOffsetPropertyHandler::exportXML(
     OUString& rStrExpValue,
     const Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 

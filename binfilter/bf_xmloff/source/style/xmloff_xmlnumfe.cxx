@@ -227,12 +227,12 @@ void SvXMLNumUsedList_Impl::SetWasUsed(const uno::Sequence<sal_Int32>& rWasUsed)
 
 SvXMLNumFmtExport::SvXMLNumFmtExport(
             SvXMLExport& rExp,
-            const uno::Reference< util::XNumberFormatsSupplier >& rSupp ) :
-    rExport( rExp ),
-    pFormatter( NULL ),
-    pCharClass( NULL ),
-    pLocaleData( NULL ),
-    sPrefix( OUString( RTL_CONSTASCII_USTRINGPARAM( "N" )) )
+            const uno::Reference< util::XNumberFormatsSupplier >& rSupp )
+    : rExport( rExp )
+    , sPrefix( OUString( RTL_CONSTASCII_USTRINGPARAM( "N" )) )
+    , pFormatter( NULL )
+    , pCharClass( NULL )
+    , pLocaleData( NULL )
 {
     //  supplier must be SvNumberFormatsSupplierObj
     SvNumberFormatsSupplierObj* pObj =
@@ -265,12 +265,12 @@ SvXMLNumFmtExport::SvXMLNumFmtExport(
                        SvXMLExport& rExp,
                        const ::com::sun::star::uno::Reference<
                         ::com::sun::star::util::XNumberFormatsSupplier >& rSupp,
-                       const ::rtl::OUString& rPrefix ) :
-    rExport( rExp ),
-    pFormatter( NULL ),
-    pCharClass( NULL ),
-    pLocaleData( NULL ),
-    sPrefix( rPrefix )
+                       const ::rtl::OUString& rPrefix )
+    : rExport( rExp )
+    , sPrefix( rPrefix )
+    , pFormatter( NULL )
+    , pCharClass( NULL )
+    , pLocaleData( NULL )
 {
     //  supplier must be SvNumberFormatsSupplierObj
     SvNumberFormatsSupplierObj* pObj =
@@ -1602,6 +1602,7 @@ void SvXMLNumFmtExport::ExportPart_Impl( const SvNumberformat& rFormat, sal_uInt
                 case NUMBERFORMAT_OP_LE: eOp3 = NUMBERFORMAT_OP_GT; break;
                 case NUMBERFORMAT_OP_GT: eOp3 = NUMBERFORMAT_OP_LE; break;
                 case NUMBERFORMAT_OP_GE: eOp3 = NUMBERFORMAT_OP_LT; break;
+                default: break;
             }
 
             if ( fLimit1 == fLimit2 &&
@@ -1665,11 +1666,10 @@ void SvXMLNumFmtExport::Export( sal_Bool bIsAutoStyle )
         return;                         // no formatter -> no entries
 
     sal_uInt32 nKey;
-    const SvNumberformat* pFormat = NULL;
     sal_Bool bNext(pUsedList->GetFirstUsed(nKey));
     while(bNext)
     {
-        pFormat = pFormatter->GetEntry(nKey);
+        const SvNumberformat* pFormat = pFormatter->GetEntry(nKey);
         if(pFormat)
             ExportFormat_Impl( *pFormat, nKey );
         bNext = pUsedList->GetNextUsed(nKey);
@@ -1689,14 +1689,14 @@ void SvXMLNumFmtExport::Export( sal_Bool bIsAutoStyle )
             SvNumberformat* pFormat = rTable.First();
             while (pFormat)
             {
-                sal_uInt32 nKey(rTable.GetCurKey());
-                if (!pUsedList->IsUsed(nKey))
+                sal_uInt32 nLclKey(rTable.GetCurKey());
+                if (!pUsedList->IsUsed(nLclKey))
                 {
                     DBG_ASSERT((pFormat->GetType() & NUMBERFORMAT_DEFINED) != 0, "a not user defined numberformat found");
                     //  user-defined and used formats are exported
-                    ExportFormat_Impl( *pFormat, nKey );
+                    ExportFormat_Impl( *pFormat, nLclKey );
                     // if it is a user-defined Format it will be added else nothing will hapen
-                    pUsedList->SetUsed(nKey);
+                    pUsedList->SetUsed(nLclKey);
                 }
 
                 pFormat = rTable.Next();

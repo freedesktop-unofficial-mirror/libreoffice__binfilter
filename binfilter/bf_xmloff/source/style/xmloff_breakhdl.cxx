@@ -109,7 +109,7 @@ sal_Bool XMLFmtBreakBeforePropHdl::exportXML( OUString& rStrExpValue, const uno:
     }
 
     OUStringBuffer aOut;
-    sal_Bool bOk = rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
+    rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
     rStrExpValue = aOut.makeStringAndClear();
 
     return sal_True;
@@ -172,7 +172,7 @@ sal_Bool XMLFmtBreakAfterPropHdl::exportXML( OUString& rStrExpValue, const uno::
     }
 
     OUStringBuffer aOut;
-    sal_Bool bOk = rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
+    rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
     rStrExpValue = aOut.makeStringAndClear();
 
     return sal_True;

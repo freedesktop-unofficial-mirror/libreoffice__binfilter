@@ -34,6 +34,7 @@ namespace binfilter {
 using namespace ::binfilter::xmloff::token;
 
 #define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
+#define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0,0 }
 //______________________________________________________________________________
 
 const XMLPropertyMapEntry aXMLPageMasterStyleMap[] =
@@ -170,7 +171,7 @@ const XMLPropertyMapEntry aXMLPageMasterStyleMap[] =
     MAP( "FooterBackGraphicURL",        XML_NAMESPACE_STYLE,    XML_BACKGROUND_IMAGE,           XML_TYPE_STRING | MID_FLAG_ELEMENT_ITEM,                CTF_PM_FOOTERGRAPHICURL ),
     MAP( "FooterDynamicSpacing",        XML_NAMESPACE_STYLE,    XML_DYNAMIC_SPACING,           XML_TYPE_BOOL,          CTF_PM_FOOTERFLAG ),
 
-    { 0L }
+    MAP_ENTRY_END
 };
 
 }//end of namespace binfilter

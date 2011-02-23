@@ -66,12 +66,12 @@ namespace
 }
 
 void SvXMLAutoStylePoolP::exportStyleAttributes(
-        SvXMLAttributeList& rAttrList,
+        SvXMLAttributeList& /*rAttrList*/,
         sal_Int32 nFamily,
         const vector< XMLPropertyState >& rProperties,
         const SvXMLExportPropertyMapper& rPropExp,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/
         ) const
 {
     if ( XML_STYLE_FAMILY_CONTROL_ID == nFamily )
@@ -182,12 +182,12 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
 }
 
 void SvXMLAutoStylePoolP::exportStyleContent(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & /*rHandler*/,
         sal_Int32 nFamily,
         const vector< XMLPropertyState >& rProperties,
         const SvXMLExportPropertyMapper& rPropExp,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/
         ) const
 {
     if( nFamily == XML_STYLE_FAMILY_PAGE_MASTER )
@@ -344,9 +344,9 @@ OUString SvXMLAutoStylePoolP::Find( sal_Int32 nFamily,
 }
 
 void SvXMLAutoStylePoolP::exportXML( sal_Int32 nFamily,
-    const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-    const SvXMLUnitConverter& rUnitConverter,
-    const SvXMLNamespaceMap& rNamespaceMap
+    const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & /*rHandler*/,
+    const SvXMLUnitConverter& /*rUnitConverter*/,
+    const SvXMLNamespaceMap& /*rNamespaceMap*/
     ) const
 {
     pImpl->exportXML( nFamily,

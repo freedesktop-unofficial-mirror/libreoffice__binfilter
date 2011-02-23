@@ -124,8 +124,7 @@ void PageMasterImportPropertyMapper::finished(::std::vector< XMLPropertyState >&
     XMLPropertyState* pFooterHeight = NULL;
     XMLPropertyState* pFooterMinHeight = NULL;
     XMLPropertyState* pFooterDynamic = NULL;
-    ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-    for (property; property != rProperties.end(); property++)
+    for (::std::vector< XMLPropertyState >::iterator property = rProperties.begin(); property != rProperties.end(); property++)
     {
         sal_Int16 nContextID = getPropertySetMapper()->GetEntryContextId(property->mnIndex);
         if (property->mnIndex >= nStartIndex && property->mnIndex < nEndIndex)

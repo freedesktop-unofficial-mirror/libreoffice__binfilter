@@ -109,6 +109,7 @@ void XMLFootnoteSeparatorExport::exportXML(
         case CTF_PM_FTN_LINE_WEIGTH:
             DBG_ASSERT( i == nIdx,
                         "received wrong property state index" );
+            (void)nIdx;
             rState.maValue >>= nLineWeight;
             break;
         }

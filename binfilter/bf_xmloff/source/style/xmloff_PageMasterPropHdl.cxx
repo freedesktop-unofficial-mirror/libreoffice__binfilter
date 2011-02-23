@@ -68,7 +68,7 @@ sal_Bool XMLPMPropHdl_PageStyleLayout::equals( const Any& rAny1, const Any& rAny
 sal_Bool XMLPMPropHdl_PageStyleLayout::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
 
@@ -89,7 +89,7 @@ sal_Bool XMLPMPropHdl_PageStyleLayout::importXML(
 sal_Bool XMLPMPropHdl_PageStyleLayout::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool        bRet = sal_False;
     PageStyleLayout eLayout;
@@ -245,7 +245,7 @@ XMLPMPropHdl_PaperTrayNumber::~XMLPMPropHdl_PaperTrayNumber()
 sal_Bool XMLPMPropHdl_PaperTrayNumber::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -270,7 +270,7 @@ sal_Bool XMLPMPropHdl_PaperTrayNumber::importXML(
 sal_Bool XMLPMPropHdl_PaperTrayNumber::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
     sal_Int32   nPaperTray;
@@ -306,7 +306,7 @@ XMLPMPropHdl_Print::~XMLPMPropHdl_Print()
 sal_Bool XMLPMPropHdl_Print::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Unicode cToken  = ' ';
     sal_Int32   nTokenIndex = 0;
@@ -325,7 +325,7 @@ sal_Bool XMLPMPropHdl_Print::importXML(
 sal_Bool XMLPMPropHdl_Print::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( getBOOL( rValue ) )
     {
@@ -347,7 +347,7 @@ XMLPMPropHdl_CenterHorizontal::~XMLPMPropHdl_CenterHorizontal()
 sal_Bool XMLPMPropHdl_CenterHorizontal::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -366,7 +366,7 @@ sal_Bool XMLPMPropHdl_CenterHorizontal::importXML(
 sal_Bool XMLPMPropHdl_CenterHorizontal::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
 
@@ -389,7 +389,7 @@ XMLPMPropHdl_CenterVertical::~XMLPMPropHdl_CenterVertical()
 sal_Bool XMLPMPropHdl_CenterVertical::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -407,7 +407,7 @@ sal_Bool XMLPMPropHdl_CenterVertical::importXML(
 sal_Bool XMLPMPropHdl_CenterVertical::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
 

@@ -46,7 +46,7 @@ using namespace ::com::sun::star::util;
 sal_Bool XMLDurationMS16PropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DateTime aTime;
     if( !SvXMLUnitConverter::convertTime( aTime,  rStrImpValue ) )
@@ -61,7 +61,7 @@ sal_Bool XMLDurationMS16PropHdl_Impl::importXML(
 sal_Bool XMLDurationMS16PropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Int16 nMS;
 

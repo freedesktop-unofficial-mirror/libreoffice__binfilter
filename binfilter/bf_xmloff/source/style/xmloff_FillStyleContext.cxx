@@ -53,10 +53,10 @@ using namespace ::rtl;
 
 TYPEINIT1( XMLGradientStyleContext, SvXMLStyleContext );
 
-XMLGradientStyleContext::XMLGradientStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLGradientStyleContext::XMLGradientStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // set Family
 //  SetFamily( XML_STYLE_FAMILY_FILLSTYLE_GRADIENT_ID );
@@ -102,10 +102,10 @@ BOOL XMLGradientStyleContext::IsTransient() const
 
 TYPEINIT1( XMLHatchStyleContext, SvXMLStyleContext );
 
-XMLHatchStyleContext::XMLHatchStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLHatchStyleContext::XMLHatchStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLHatchStyleImport aHatchStyle( GetImport() );
@@ -148,14 +148,14 @@ BOOL XMLHatchStyleContext::IsTransient() const
 
 TYPEINIT1( XMLBitmapStyleContext, SvXMLStyleContext );
 
-XMLBitmapStyleContext::XMLBitmapStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLBitmapStyleContext::XMLBitmapStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLImageStyle aBitmapStyle;
-    aBitmapStyle.importXML( xAttrList, maAny, maStrName, rImport );
+    aBitmapStyle.importXML( xAttrList, maAny, maStrName, rInImport );
 }
 
 XMLBitmapStyleContext::~XMLBitmapStyleContext()
@@ -229,10 +229,10 @@ BOOL XMLBitmapStyleContext::IsTransient() const
 
 TYPEINIT1( XMLTransGradientStyleContext, SvXMLStyleContext );
 
-XMLTransGradientStyleContext::XMLTransGradientStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLTransGradientStyleContext::XMLTransGradientStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLTransGradientStyleImport aTransGradientStyle( GetImport() );
@@ -275,10 +275,10 @@ BOOL XMLTransGradientStyleContext::IsTransient() const
 
 TYPEINIT1( XMLMarkerStyleContext, SvXMLStyleContext );
 
-XMLMarkerStyleContext::XMLMarkerStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLMarkerStyleContext::XMLMarkerStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLMarkerStyleImport aMarkerStyle( GetImport() );
@@ -321,10 +321,10 @@ BOOL XMLMarkerStyleContext::IsTransient() const
 
 TYPEINIT1( XMLDashStyleContext, SvXMLStyleContext );
 
-XMLDashStyleContext::XMLDashStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLDashStyleContext::XMLDashStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                           const OUString& rLName,
                                           const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLDashStyleImport aDashStyle( GetImport() );

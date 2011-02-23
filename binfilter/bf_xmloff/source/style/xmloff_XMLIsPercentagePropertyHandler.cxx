@@ -45,16 +45,16 @@ XMLIsPercentagePropertyHandler::~XMLIsPercentagePropertyHandler()
 sal_Bool XMLIsPercentagePropertyHandler::importXML(
     const OUString& rStrImpValue,
     Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     rValue <<= (sal_Bool)(rStrImpValue.indexOf( sal_Unicode('%') ) != -1);
     return sal_True;
 }
 
 sal_Bool XMLIsPercentagePropertyHandler::exportXML(
-    OUString& rStrExpValue,
-    const Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    OUString& /*rStrExpValue*/,
+    const Any& /*rValue*/,
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ERROR( "XMLIsPercentagePropertyHandler is not for export!" );
     return sal_False;

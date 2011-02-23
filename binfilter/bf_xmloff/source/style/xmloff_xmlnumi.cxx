@@ -789,7 +789,7 @@ SvxXMLListLevelStyleAttrContext_Impl::SvxXMLListLevelStyleAttrContext_Impl(
         if( sFontFamilyGeneric.getLength() &&
             aFamilyHdl.importXML( sFontFamilyGeneric, aAny, rUnitConv  ) )
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp(0);
             aAny >>= nTmp;
             rListLevel.SetBulletFontFamily( nTmp );
         }
@@ -801,7 +801,7 @@ SvxXMLListLevelStyleAttrContext_Impl::SvxXMLListLevelStyleAttrContext_Impl(
         if( sFontPitch.getLength() &&
             aPitchHdl.importXML( sFontPitch, aAny, rUnitConv  ) )
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp(0);
             aAny >>= nTmp;
             rListLevel.SetBulletFontPitch( nTmp );
         }
@@ -810,7 +810,7 @@ SvxXMLListLevelStyleAttrContext_Impl::SvxXMLListLevelStyleAttrContext_Impl(
         if( sFontCharset.getLength() &&
             aEncHdl.importXML( sFontCharset, aAny, rUnitConv  ) )
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp(0);
             aAny >>= nTmp;
             rListLevel.SetBulletFontEncoding( nTmp );
         }

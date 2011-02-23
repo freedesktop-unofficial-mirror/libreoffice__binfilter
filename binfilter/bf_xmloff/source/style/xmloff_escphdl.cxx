@@ -58,7 +58,6 @@ XMLEscapementPropHdl::~XMLEscapementPropHdl()
 
 sal_Bool XMLEscapementPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Bool bRet = sal_False;
     sal_Int16 nVal;
 
     SvXMLTokenEnumerator aTokens( rStrImpValue );
@@ -90,7 +89,6 @@ sal_Bool XMLEscapementPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 
 sal_Bool XMLEscapementPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Bool bRet = sal_False;
     sal_Int32 nValue;
     OUStringBuffer aOut;
 

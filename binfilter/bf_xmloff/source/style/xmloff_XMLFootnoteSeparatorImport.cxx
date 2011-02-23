@@ -61,13 +61,13 @@ TYPEINIT1(XMLFootnoteSeparatorImport, SvXMLImportContext);
 
 
 XMLFootnoteSeparatorImport::XMLFootnoteSeparatorImport(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     vector<XMLPropertyState> & rProps,
     const UniReference<XMLPropertySetMapper> & rMapperRef,
     sal_Int32 nIndex) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         rProperties(rProps),
         rMapper(rMapperRef),
         nPropIndex(nIndex)
@@ -103,14 +103,14 @@ void XMLFootnoteSeparatorImport::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttrValue = xAttrList->getValueByIndex(nAttr);
 
         sal_Int32 nTmp;
 
-        if (XML_NAMESPACE_STYLE == nPrefix)
+        if (XML_NAMESPACE_STYLE == nLclPrefix)
         {
             if (IsXMLToken( sLocalName, XML_WIDTH ))
             {

@@ -126,7 +126,7 @@ XMLPropertyStateBuffer::XMLPropertyStateBuffer() :
 {
 }
 
-void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& rPropState )
+void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& /*rPropState*/ )
 {
     if( pPMBorderAll )
     {
@@ -184,7 +184,7 @@ void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& r
     {
         if( pPMPaddingTop && pPMPaddingBottom && pPMPaddingLeft && pPMPaddingRight )
         {
-            sal_Int32 nTop, nBottom, nLeft, nRight;
+            sal_Int32 nTop(0), nBottom(0), nLeft(0), nRight(0);
 
             pPMPaddingTop->maValue >>= nTop;
             pPMPaddingBottom->maValue >>= nBottom;
@@ -223,9 +223,9 @@ XMLPageMasterExportPropMapper::~XMLPageMasterExportPropMapper()
 }
 
 void XMLPageMasterExportPropMapper::handleElementItem(
-        SvXMLExport& rExport,
+        SvXMLExport& /*rExport*/,
         const XMLPropertyState& rProperty,
-        sal_uInt16 nFlags,
+        sal_uInt16 /*nFlags*/,
         const ::std::vector< XMLPropertyState >* pProperties,
         sal_uInt32 nIdx ) const
 {
@@ -239,8 +239,8 @@ void XMLPageMasterExportPropMapper::handleElementItem(
         case CTF_PM_FOOTERGRAPHICURL:
             {
                 DBG_ASSERT( pProperties && (nIdx >= 2), "property vector missing" );
-                sal_Int32 nPos;
-                sal_Int32 nFilter;
+                sal_Int32 nPos(0);
+                sal_Int32 nFilter(0);
                 switch( nContextId  )
                 {
                 case CTF_PM_GRAPHICURL:
@@ -289,12 +289,12 @@ void XMLPageMasterExportPropMapper::handleElementItem(
 }
 
 void XMLPageMasterExportPropMapper::handleSpecialItem(
-        SvXMLAttributeList& rAttrList,
-        const XMLPropertyState& rProperty,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
-        const ::std::vector< XMLPropertyState >* pProperties,
-        sal_uInt32 nIdx) const
+        SvXMLAttributeList& /*rAttrList*/,
+        const XMLPropertyState& /*rProperty*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/,
+        const ::std::vector< XMLPropertyState >* /*pProperties*/,
+        sal_uInt32 /*nIdx*/) const
 {
 }
 

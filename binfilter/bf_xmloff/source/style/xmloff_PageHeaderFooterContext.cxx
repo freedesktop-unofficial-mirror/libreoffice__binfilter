@@ -43,20 +43,20 @@ using ::binfilter::xmloff::token::XML_PROPERTIES;
 
 //------------------------------------------------------------------
 
-PageHeaderFooterContext::PageHeaderFooterContext( SvXMLImport& rImport,
+PageHeaderFooterContext::PageHeaderFooterContext( SvXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
+                                      ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/,
                                       ::std::vector< XMLPropertyState > & rTempProperties,
                                       const UniReference < SvXMLImportPropertyMapper > &rTempMap,
                                       sal_Int32 nStart, sal_Int32 nEnd,
                                       const sal_Bool bTempHeader ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rProperties(rTempProperties),
-    rMap(rTempMap),
     nStartIndex(nStart),
-    nEndIndex(nEnd)
+    nEndIndex(nEnd),
+    rMap(rTempMap)
 {
     bHeader = bTempHeader;
 }
@@ -65,19 +65,19 @@ PageHeaderFooterContext::~PageHeaderFooterContext()
 {
 }
 
-SvXMLImportContext *PageHeaderFooterContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *PageHeaderFooterContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix && IsXMLToken( rLName, XML_PROPERTIES ) )
+    if( XML_NAMESPACE_STYLE == nInPrefix && IsXMLToken( rLName, XML_PROPERTIES ) )
     {
         PageContextType aType = Header;
         if (!bHeader)
             aType = Footer;
-        pContext = new PagePropertySetContext( GetImport(), nPrefix,
+        pContext = new PagePropertySetContext( GetImport(), nInPrefix,
                                                 rLName, xAttrList,
                                                 rProperties,
                                                 rMap,  nStartIndex, nEndIndex, aType);
@@ -85,7 +85,7 @@ SvXMLImportContext *PageHeaderFooterContext::CreateChildContext( USHORT nPrefix,
 
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }

@@ -94,6 +94,8 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
         case GraphicLocation_RIGHT_BOTTOM:
             aOut.append( GetXMLToken(XML_BOTTOM) );
             break;
+        default:
+            break;
         }
 
         if( aOut.getLength() )
@@ -116,6 +118,8 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
             case GraphicLocation_RIGHT_TOP:
             case GraphicLocation_RIGHT_BOTTOM:
                 aOut.append( GetXMLToken(XML_RIGHT) );
+                break;
+            default:
                 break;
             }
         }
@@ -149,10 +153,10 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
             sal_Int8 nTransparency;
             if( (*pTransparency) >>= nTransparency )
             {
-                OUStringBuffer aOut;
-                SvXMLUnitConverter::convertPercent( aOut, nTransparency );
+                OUStringBuffer aLclOut;
+                SvXMLUnitConverter::convertPercent( aLclOut, nTransparency );
                 GetExport().AddAttribute( XML_NAMESPACE_DRAW, XML_TRANSPARENCY,
-                                          aOut.makeStringAndClear() );
+                                          aLclOut.makeStringAndClear() );
             }
         }
     }

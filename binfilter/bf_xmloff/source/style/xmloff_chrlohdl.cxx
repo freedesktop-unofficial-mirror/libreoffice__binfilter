@@ -68,7 +68,7 @@ sal_Bool XMLCharLanguageHdl::equals( const ::com::sun::star::uno::Any& r1, const
     return bRet;
 }
 
-sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
 
@@ -81,7 +81,7 @@ sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& 
     return sal_True;
 }
 
-sal_Bool XMLCharLanguageHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharLanguageHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
     if(!(rValue >>= aLocale))
@@ -116,7 +116,7 @@ sal_Bool XMLCharCountryHdl::equals( const ::com::sun::star::uno::Any& r1, const 
     return bRet;
 }
 
-sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
 
@@ -129,7 +129,7 @@ sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& r
     return sal_True;
 }
 
-sal_Bool XMLCharCountryHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharCountryHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
     if(!(rValue >>= aLocale))

@@ -78,7 +78,7 @@ sal_Bool DrawAspectHdl::importXML( const OUString& rStrImpValue, uno::Any& rValu
     return nAspect != 0;
 }
 
-sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;

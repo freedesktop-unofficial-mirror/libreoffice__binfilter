@@ -151,7 +151,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::importXML( const OUString& rStrImpValue,
     return bRet;
 }
 
-sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     OUStringBuffer aOut;
@@ -190,6 +190,8 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
             aOut.append( GetXMLToken(XML_BOTTOM) );
             bRet = sal_True;
             break;
+        default:
+            break;
         }
 
         if( bRet )
@@ -212,6 +214,8 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
             case style::GraphicLocation_RIGHT_TOP:
             case style::GraphicLocation_RIGHT_BOTTOM:
                 aOut.append( GetXMLToken(XML_RIGHT) );
+                break;
+            default:
                 break;
             }
         }
@@ -252,6 +256,9 @@ void XMLBackGraphicPositionPropHdl::MergeXMLVertPos( style::GraphicLocation& ePo
                style::GraphicLocation_RIGHT_MIDDLE :
                style::GraphicLocation_RIGHT_BOTTOM);
         break;
+
+    default:
+        break;
     }
 }
 
@@ -286,6 +293,8 @@ void XMLBackGraphicPositionPropHdl::MergeXMLHoriPos( style::GraphicLocation& ePo
               (style::GraphicLocation_MIDDLE_MIDDLE==eHori ?
                style::GraphicLocation_MIDDLE_BOTTOM :
                style::GraphicLocation_RIGHT_BOTTOM);
+        break;
+    default:
         break;
     }
 }

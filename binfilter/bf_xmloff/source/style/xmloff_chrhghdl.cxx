@@ -56,7 +56,7 @@ XMLCharHeightHdl::~XMLCharHeightHdl()
     // nothing to do
 }
 
-sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     double fSize;
 
@@ -73,7 +73,7 @@ sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rV
     return sal_False;
 }
 
-sal_Bool XMLCharHeightHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 
@@ -139,7 +139,7 @@ XMLCharHeightDiffHdl::~XMLCharHeightDiffHdl()
     // nothing to do
 }
 
-sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Int32 nRel = 0;
 
@@ -152,7 +152,7 @@ sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any
     return sal_False;
 }
 
-sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 
