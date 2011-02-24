@@ -53,7 +53,6 @@
 #include <paratr.hxx>
 #include <fmtcol.hxx>
 
-#include <error.h>
 #include <cmdid.h>
 #include <globals.hrc>
 #include <utlui.hrc>

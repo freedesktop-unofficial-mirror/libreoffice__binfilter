@@ -67,7 +67,6 @@
 #include <fmtruby.hxx>
 #include <tgrditem.hxx>
 
-#include <error.h>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

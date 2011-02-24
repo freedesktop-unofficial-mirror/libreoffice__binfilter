@@ -36,7 +36,6 @@
 #include <ndtxt.hxx>
 #include <osl/diagnose.h>
 #include <hints.hxx>
-#include <error.h>
 namespace binfilter {
 
 
