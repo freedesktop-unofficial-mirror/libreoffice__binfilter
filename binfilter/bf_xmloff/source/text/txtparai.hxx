@@ -40,11 +40,9 @@ namespace binfilter {
 
 class XMLHints_Impl;
 
-#ifdef CONV_STAR_FONTS
 #define CONV_FROM_STAR_BATS 1
 #define CONV_FROM_STAR_MATH 2
 #define CONV_STAR_FONT_FLAGS_VALID 4
-#endif
 
 class XMLParaContext : public SvXMLImportContext
 {
@@ -55,9 +53,7 @@ class XMLParaContext : public SvXMLImportContext
     XMLHints_Impl           *pHints;
     sal_Bool                bIgnoreLeadingSpace;
     sal_Bool                bHeading;
-#ifdef CONV_STAR_FONTS
     sal_uInt8               nStarFontsConvFlags;
-#endif
 
 public:
 

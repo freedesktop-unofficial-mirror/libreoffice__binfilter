@@ -733,7 +733,6 @@ void XMLTextImportHelper::DeleteParagraph()
     }
 }
 
-#ifdef CONV_STAR_FONTS
 OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
                                                 const OUString& rStyleName,
                                                 sal_uInt8& rFlags,
@@ -812,7 +811,6 @@ OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
 
     return bConverted ? sChars.makeStringAndClear() : rChars;
 }
-#endif
 
 OUString XMLTextImportHelper::SetStyleAndAttrs(
         const Reference < XTextCursor >& rCursor,

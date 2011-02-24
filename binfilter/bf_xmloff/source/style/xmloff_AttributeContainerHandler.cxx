@@ -91,12 +91,12 @@ sal_Bool XMLAttributeContainerHandler::equals(
     return sal_False;
 }
 
-sal_Bool XMLAttributeContainerHandler::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLAttributeContainerHandler::importXML( const OUString& /*rStrImpValue*/, Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_True;
 }
 
-sal_Bool XMLAttributeContainerHandler::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLAttributeContainerHandler::exportXML( OUString& /*rStrExpValue*/, const Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_True;
 }

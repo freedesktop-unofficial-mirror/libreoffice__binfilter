@@ -48,8 +48,13 @@ XMLFamilyData_Impl::XMLFamilyData_Impl(
         const UniReference < SvXMLExportPropertyMapper > &rMapper,
         const OUString& rStrPrefix,
         sal_Bool bAsFam )
-    : mnFamily( nFamily ), maStrFamilyName( rStrName), mxMapper( rMapper ), maStrPrefix( rStrPrefix ),
-      mnCount( 0 ), mnName( 0 ), bAsFamily( bAsFam )
+    : mnFamily( nFamily )
+    , maStrFamilyName( rStrName)
+    , mxMapper( rMapper )
+    , mnCount( 0 )
+    , mnName( 0 )
+    , maStrPrefix( rStrPrefix )
+    , bAsFamily( bAsFam )
 {
     mpParentList = new SvXMLAutoStylePoolParentsP_Impl( 5, 5 );
     mpNameList   = new SvXMLAutoStylePoolNamesP_Impl( 5, 5 );

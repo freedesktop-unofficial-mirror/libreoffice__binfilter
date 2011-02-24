@@ -314,11 +314,9 @@ void XMLTextStyleContext::FillPropertySet(
         struct _ContextID_Index_Pair aContextIDs[] =
         {
             { CTF_COMBINED_CHARACTERS_FIELD, -1 },
-#ifdef CONV_STAR_FONTS
             { CTF_FONTFAMILYNAME, -1 },
             { CTF_FONTFAMILYNAME_CJK, -1 },
             { CTF_FONTFAMILYNAME_CTL, -1 },
-#endif
             { -1, -1 }
         };
 
@@ -352,7 +350,6 @@ void XMLTextStyleContext::FillPropertySet(
             bHasCombinedCharactersLetter = bVal;
         }
 
-#ifdef CONV_STAR_FONTS
         // check for StarBats and StarMath fonts
 
         // iterate over aContextIDs entries 1..3
@@ -396,7 +393,6 @@ void XMLTextStyleContext::FillPropertySet(
                 // else: no style name found -> illegal value -> ignore
             }
         }
-#endif
     }
 }
 }//end of namespace binfilter

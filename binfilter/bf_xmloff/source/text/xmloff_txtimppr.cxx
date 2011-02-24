@@ -113,7 +113,6 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
         }
         break;
 
-#ifdef CONV_STAR_FONTS
     // If we want to do StarMath/StarSymbol font conversion, then we'll
     // want these special items to be treated just like regular ones...
     // For the Writer, we'll catch and convert them in _FillPropertySet;
@@ -125,7 +124,6 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
         bRet = getPropertySetMapper()->importXML( rValue, rProperty,
                                                   rUnitConverter );
         break;
-#endif
 
     default:
         bRet = SvXMLImportPropertyMapper::handleSpecialItem( rProperty,

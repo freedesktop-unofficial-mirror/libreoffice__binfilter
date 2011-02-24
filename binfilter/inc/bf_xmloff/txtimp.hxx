@@ -557,13 +557,12 @@ public:
     void SetListItem( XMLTextListItemContext *pListItem );
     void _SetListItem( SvXMLImportContext *pListItem );
 
-#ifdef CONV_STAR_FONTS
     ::rtl::OUString ConvertStarFonts( const ::rtl::OUString& rChars,
                                       const ::rtl::OUString& rStyleName,
                                       sal_uInt8& rFlags,
                                       sal_Bool bPara,
                                          SvXMLImport& rImport ) const;
-#endif
+
     // insert a string without special whitespace processing enabled
     void InsertString( const ::rtl::OUString& rChars );
     // insert a string with special whitespace processing enabled

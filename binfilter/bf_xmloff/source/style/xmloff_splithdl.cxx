@@ -50,14 +50,14 @@ XMLFmtSplitPropHdl::~XMLFmtSplitPropHdl()
     // nothing to do
 }
 
-sal_Bool XMLFmtSplitPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFmtSplitPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bValue = IsXMLToken( rStrImpValue, XML_COLUMNSPLIT_AUTO );
     rValue <<= sal_Bool(bValue);
     return  sal_True;
 }
 
-sal_Bool XMLFmtSplitPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFmtSplitPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     sal_Bool bValue;

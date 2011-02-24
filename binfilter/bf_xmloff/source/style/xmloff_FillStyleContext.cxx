@@ -162,10 +162,10 @@ XMLBitmapStyleContext::~XMLBitmapStyleContext()
 {
 }
 
-SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
+SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = NULL;
-    if( (XML_NAMESPACE_OFFICE == nPrefix) && xmloff::token::IsXMLToken( rLocalName, xmloff::token::XML_BINARY_DATA ) )
+    if( (XML_NAMESPACE_OFFICE == nInPrefix) && xmloff::token::IsXMLToken( rLocalName, xmloff::token::XML_BINARY_DATA ) )
     {
         OUString sURL;
         maAny >>= sURL;
@@ -173,14 +173,14 @@ SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nPrefi
         {
             mxBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( mxBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     mxBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;

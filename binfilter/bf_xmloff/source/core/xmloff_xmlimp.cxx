@@ -60,9 +60,7 @@
 #include <rtl/logfile.hxx>
 #include <cppuhelper/implbase1.hxx>
 #include <comphelper/extract.hxx>
-#ifdef CONV_STAR_FONTS
 #include <unotools/fontcvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -104,8 +102,6 @@ sal_Char const sXML_np__table_old[] = "__table";
 sal_Char const sXML_np__meta_old[] = "__meta";
 
 #define LOGFILE_AUTHOR "mb93740"
-
-#ifdef CONV_STAR_FONTS
 
 class SvXMLImportEventListener : public ::cppu::WeakImplHelper1<
                             ::com::sun::star::lang::XEventListener >
@@ -158,7 +154,6 @@ public:
             DestroyFontToSubsFontConverter( hMathFontConv );
     }
 };
-#endif
 
 typedef SvXMLImportContext *SvXMLImportContextPtr;
 SV_DECL_PTRARR( SvXMLImportContexts_Impl, SvXMLImportContextPtr, 20, 5 )
@@ -1223,7 +1218,6 @@ void SvXMLImport::_CreateDataStylesImport()
 }
 
 
-#ifdef CONV_STAR_FONTS
 sal_Unicode SvXMLImport::ConvStarBatsCharToStarSymbol( sal_Unicode c )
 {
     sal_Unicode cNew = c;
@@ -1259,9 +1253,6 @@ sal_Unicode SvXMLImport::ConvStarMathCharToStarSymbol( sal_Unicode c )
 
     return cNew;
 }
-#endif
-
-
 
 void SvXMLImport::SetError(
     sal_Int32 nId,

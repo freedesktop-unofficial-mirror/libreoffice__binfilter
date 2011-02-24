@@ -97,9 +97,7 @@ public:
     inline sal_Bool HasCombinedCharactersLetter()
         { return bHasCombinedCharactersLetter; }
 
-#ifdef CONV_STAR_FONTS
     const ::std::vector< XMLPropertyState > & _GetProperties() { return GetProperties(); }
-#endif
 };
 
 }//end of namespace binfilter

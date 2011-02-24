@@ -481,9 +481,7 @@ class XMLImpSpanContext_Impl : public SvXMLImportContext
 
     sal_Bool&       rIgnoreLeadingSpace;
 
-#ifdef CONV_STAR_FONTS
     sal_uInt8               nStarFontsConvFlags;
-#endif
 
 public:
 
@@ -495,10 +493,8 @@ public:
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             XMLHints_Impl& rHnts,
-            sal_Bool& rIgnLeadSpace
-#ifdef CONV_STAR_FONTS
-    ,sal_uInt8              nSFConvFlags
-#endif
+            sal_Bool& rIgnLeadSpace,
+            sal_uInt8 nSFConvFlags
                           );
 
     virtual ~XMLImpSpanContext_Impl();
@@ -508,10 +504,8 @@ public:
             sal_uInt16 nInPrefix, const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             sal_uInt16 nToken, XMLHints_Impl& rHnts,
-            sal_Bool& rIgnLeadSpace
-#ifdef CONV_STAR_FONTS
-    ,sal_uInt8              nStarFontsConvFlags = 0
-#endif
+            sal_Bool& rIgnLeadSpace,
+            sal_uInt8 nStarFontsConvFlags = 0
              );
     virtual SvXMLImportContext *CreateChildContext(
             sal_uInt16 nInPrefix, const OUString& rLocalName,
@@ -1433,19 +1427,15 @@ XMLImpSpanContext_Impl::XMLImpSpanContext_Impl(
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         XMLHints_Impl& rHnts,
-        sal_Bool& rIgnLeadSpace
-#ifdef CONV_STAR_FONTS
-    ,sal_uInt8              nSFConvFlags
-#endif
+        sal_Bool& rIgnLeadSpace,
+        sal_uInt8 nSFConvFlags
                                               ) :
     SvXMLImportContext( rImport, nPrfx, rLName ),
     rHints( rHnts ),
     rIgnoreLeadingSpace( rIgnLeadSpace ),
     pHint( 0  ),
-    sTextFrame(RTL_CONSTASCII_USTRINGPARAM("TextFrame"))
-#ifdef CONV_STAR_FONTS
-    ,nStarFontsConvFlags( nSFConvFlags & (CONV_FROM_STAR_BATS|CONV_FROM_STAR_MATH) )
-#endif
+    sTextFrame(RTL_CONSTASCII_USTRINGPARAM("TextFrame")),
+    nStarFontsConvFlags( nSFConvFlags & (CONV_FROM_STAR_BATS|CONV_FROM_STAR_MATH) )
 {
     OUString aStyleName;
 
@@ -1484,10 +1474,8 @@ SvXMLImportContext *XMLImpSpanContext_Impl::CreateChildContext(
         const Reference< xml::sax::XAttributeList > & xAttrList,
         sal_uInt16 nToken,
         XMLHints_Impl& rHints,
-        sal_Bool& rIgnoreLeadingSpace
-#ifdef CONV_STAR_FONTS
-    ,sal_uInt8              nStarFontsConvFlags
-#endif
+        sal_Bool& rIgnoreLeadingSpace,
+        sal_uInt8 nStarFontsConvFlags
      )
 {
     SvXMLImportContext *pContext = 0;
@@ -1501,10 +1489,8 @@ SvXMLImportContext *XMLImpSpanContext_Impl::CreateChildContext(
         pContext = new XMLImpSpanContext_Impl( rImport, nInPrefix,
                                                rLocalName, xAttrList,
                                                rHints,
-                                               rIgnoreLeadingSpace
-#ifdef CONV_STAR_FONTS
-                                               ,nStarFontsConvFlags
-#endif
+                                               rIgnoreLeadingSpace,
+                                               nStarFontsConvFlags
                                              );
         break;
 
@@ -1765,16 +1751,13 @@ SvXMLImportContext *XMLImpSpanContext_Impl::CreateChildContext(
     sal_uInt16 nToken = rTokenMap.Get( nPrefix, rLocalName );
 
     return CreateChildContext( GetImport(), nPrefix, rLocalName, xAttrList,
-                               nToken, rHints, rIgnoreLeadingSpace
-#ifdef CONV_STAR_FONTS
-                               ,nStarFontsConvFlags
-#endif
+                               nToken, rHints, rIgnoreLeadingSpace,
+                               nStarFontsConvFlags
                              );
 }
 
 void XMLImpSpanContext_Impl::Characters( const OUString& rChars )
 {
-#ifdef CONV_STAR_FONTS
     OUString sStyleName;
     if( pHint )
         sStyleName = pHint->GetStyleName();
@@ -1783,9 +1766,6 @@ void XMLImpSpanContext_Impl::Characters( const OUString& rChars )
                                                        nStarFontsConvFlags,
                                                        sal_False, GetImport() );
     GetImport().GetTextImport()->InsertString( sChars, rIgnoreLeadingSpace );
-#else
-    GetImport().GetTextImport()->InsertString( rChars, rIgnoreLeadingSpace );
-#endif
 }
 
 // ---------------------------------------------------------------------
@@ -1803,10 +1783,8 @@ XMLParaContext::XMLParaContext(
     nOutlineLevel( 1 ),
     pHints( 0 ),
     bIgnoreLeadingSpace( sal_True ),
-    bHeading( bHead )
-#ifdef CONV_STAR_FONTS
-    ,nStarFontsConvFlags( 0 )
-#endif
+    bHeading( bHead ),
+    nStarFontsConvFlags( 0 )
 {
     const SvXMLTokenMap& rTokenMap =
         GetImport().GetTextImport()->GetTextPAttrTokenMap();
@@ -1979,24 +1957,18 @@ SvXMLImportContext *XMLParaContext::CreateChildContext(
         pHints = new XMLHints_Impl;
     return XMLImpSpanContext_Impl::CreateChildContext(
                                 GetImport(), nInPrefix, rLocalName, xAttrList,
-                                   nToken, *pHints, bIgnoreLeadingSpace
-#ifdef CONV_STAR_FONTS
-                                , nStarFontsConvFlags
-#endif
+                                   nToken, *pHints, bIgnoreLeadingSpace,
+                                   nStarFontsConvFlags
                                                      );
 }
 
 void XMLParaContext::Characters( const OUString& rChars )
 {
-#ifdef CONV_STAR_FONTS
     OUString sChars =
         GetImport().GetTextImport()->ConvertStarFonts( rChars, sStyleName,
                                                        nStarFontsConvFlags,
                                                        sal_True, GetImport() );
     GetImport().GetTextImport()->InsertString( sChars, bIgnoreLeadingSpace );
-#else
-    GetImport().GetTextImport()->InsertString( rChars, bIgnoreLeadingSpace );
-#endif
 }
 
 }//end of namespace binfilter

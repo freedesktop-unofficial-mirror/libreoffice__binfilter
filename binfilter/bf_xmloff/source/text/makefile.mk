@@ -37,7 +37,6 @@ ENABLE_EXCEPTIONS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
-CDEFS += -DCONV_STAR_FONTS
 
 INC+= -I$(PRJ)$/inc$/bf_xmloff
 

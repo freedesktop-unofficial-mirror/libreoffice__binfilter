@@ -42,12 +42,12 @@ SvXMLPropertySetContext::SvXMLPropertySetContext(
     const uno::Reference< xml::sax::XAttributeList >& xAttrList,
     vector< XMLPropertyState > &rProps,
     const UniReference < SvXMLImportPropertyMapper >  &rMap,
-    sal_Int32 nSIdx, sal_Int32 nEIdx ):
-    SvXMLImportContext( rImp, nPrfx, rLName ),
-    rProperties( rProps ),
-    xMapper    ( rMap ),
-    nStartIdx( nSIdx ),
-    nEndIdx( nEIdx )
+    sal_Int32 nSIdx, sal_Int32 nEIdx )
+    : SvXMLImportContext( rImp, nPrfx, rLName )
+    , nStartIdx( nSIdx )
+    , nEndIdx( nEIdx )
+    , rProperties( rProps )
+    , xMapper( rMap )
 {
     xMapper->importXML( rProperties, xAttrList,
                         GetImport().GetMM100UnitConverter(),
@@ -59,13 +59,13 @@ SvXMLPropertySetContext::~SvXMLPropertySetContext()
 }
 
 SvXMLImportContext *SvXMLPropertySetContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     UniReference< XMLPropertySetMapper > aSetMapper(
             xMapper->getPropertySetMapper() );
-    sal_Int32 nEntryIndex = aSetMapper->GetEntryIndex( nPrefix, rLocalName,
+    sal_Int32 nEntryIndex = aSetMapper->GetEntryIndex( nInPrefix, rLocalName,
                                                        nStartIdx );
 
     if( ( nEntryIndex != -1 ) && (-1 == nEndIdx || nEntryIndex < nEndIdx ) &&
@@ -73,12 +73,12 @@ SvXMLImportContext *SvXMLPropertySetContext::CreateChildContext(
                          & MID_FLAG_ELEMENT_ITEM_IMPORT ) ) )
     {
         XMLPropertyState aProp( nEntryIndex );
-        return CreateChildContext( nPrefix, rLocalName, xAttrList,
+        return CreateChildContext( nInPrefix, rLocalName, xAttrList,
                                    rProperties, aProp );
     }
     else
     {
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 }
 
@@ -87,13 +87,13 @@ SvXMLImportContext *SvXMLPropertySetContext::CreateChildContext(
     SvXMLImportItemMapper with the mid flag MID_FLAG_ELEMENT
 */
 SvXMLImportContext *SvXMLPropertySetContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList,
-    ::std::vector< XMLPropertyState > &rProperties,
-    const XMLPropertyState& rProp )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/,
+    ::std::vector< XMLPropertyState > & /*rProperties*/,
+    const XMLPropertyState& /*rProp*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 

@@ -312,10 +312,8 @@ public:
 #endif
     ::rtl::OUString GetAbsoluteReference(const ::rtl::OUString& rValue);
 
-#ifdef CONV_STAR_FONTS
     sal_Unicode ConvStarBatsCharToStarSymbol( sal_Unicode c );
     sal_Unicode ConvStarMathCharToStarSymbol( sal_Unicode c );
-#endif
 
     /**
      * Record an error condition that occurred during import. The

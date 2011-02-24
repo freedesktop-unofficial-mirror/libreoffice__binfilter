@@ -64,7 +64,7 @@ XMLEnumPropertyHdl::~XMLEnumPropertyHdl()
     // Nothing to do
 }
 
-sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     USHORT nValue = 0;
 
@@ -94,7 +94,7 @@ sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValu
     return sal_False;
 }
 
-sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Int32 nValue;
     if(!(rValue >>= nValue ))

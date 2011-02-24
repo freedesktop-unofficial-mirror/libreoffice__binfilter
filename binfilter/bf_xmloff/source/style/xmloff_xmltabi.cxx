@@ -76,13 +76,13 @@ private:
 public:
     TYPEINFO();
 
-    SvxXMLTabStopContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    SvxXMLTabStopContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference< xml::sax::XAttributeList > & xAttrList );
 
     virtual ~SvxXMLTabStopContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                                    const OUString& rLocalName,
                                    const uno::Reference< xml::sax::XAttributeList > & xAttrList );
 
@@ -92,10 +92,10 @@ public:
 TYPEINIT1( SvxXMLTabStopContext_Impl, SvXMLImportContext );
 
 SvxXMLTabStopContext_Impl::SvxXMLTabStopContext_Impl(
-                               SvXMLImport& rImport, sal_uInt16 nPrfx,
+                               SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference< xml::sax::XAttributeList > & xAttrList )
-: SvXMLImportContext( rImport, nPrfx, rLName )
+: SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     aTabStop.Position = 0;
     aTabStop.Alignment = style::TabAlign_LEFT;
@@ -108,14 +108,14 @@ SvxXMLTabStopContext_Impl::SvxXMLTabStopContext_Impl(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         sal_Int32 nVal;
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TABSTOP_POSITION:
             if( GetImport().GetMM100UnitConverter().convertMeasure( nVal,
@@ -161,11 +161,11 @@ SvxXMLTabStopContext_Impl::~SvxXMLTabStopContext_Impl()
 }
 
 SvXMLImportContext *SvxXMLTabStopContext_Impl::CreateChildContext(
-                                   sal_uInt16 nPrefix,
+                                   sal_uInt16 nInPrefix,
                                    const OUString& rLocalName,
-                                   const uno::Reference< xml::sax::XAttributeList > & xAttrList )
+                                   const uno::Reference< xml::sax::XAttributeList > & /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 
@@ -180,11 +180,11 @@ SV_DECL_PTRARR( SvxXMLTabStopArray_Impl, SvxXMLTabStopContext_Impl_ImplPtr, 20, 
 TYPEINIT1( SvxXMLTabStopImportContext, XMLElementPropertyContext );
 
 SvxXMLTabStopImportContext::SvxXMLTabStopImportContext(
-                                SvXMLImport& rImport, sal_uInt16 nPrfx,
+                                SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const OUString& rLName,
                                 const XMLPropertyState& rProp,
                                  ::std::vector< XMLPropertyState > &rProps )
-: XMLElementPropertyContext( rImport, nPrfx, rLName, rProp, rProps ),
+: XMLElementPropertyContext( rInImport, nPrfx, rLName, rProp, rProps ),
   mpTabStops( NULL )
 {
 }
@@ -207,17 +207,17 @@ SvxXMLTabStopImportContext::~SvxXMLTabStopImportContext()
 }
 
 SvXMLImportContext *SvxXMLTabStopImportContext::CreateChildContext(
-                                   sal_uInt16 nPrefix,
+                                   sal_uInt16 nInPrefix,
                                    const OUString& rLocalName,
                                    const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix && IsXMLToken( rLocalName, XML_TAB_STOP ) )
+    if( XML_NAMESPACE_STYLE == nInPrefix && IsXMLToken( rLocalName, XML_TAB_STOP ) )
     {
         // create new tabstop import context
         SvxXMLTabStopContext_Impl *pTabStopContext =
-            new SvxXMLTabStopContext_Impl( GetImport(), nPrefix, rLocalName,
+            new SvxXMLTabStopContext_Impl( GetImport(), nInPrefix, rLocalName,
                                            xAttrList );
 
         // add new tabstop to array of tabstops
@@ -231,7 +231,7 @@ SvXMLImportContext *SvxXMLTabStopImportContext::CreateChildContext(
     }
     else
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;

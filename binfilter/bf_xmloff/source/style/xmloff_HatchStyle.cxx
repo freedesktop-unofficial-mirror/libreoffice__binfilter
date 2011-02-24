@@ -129,14 +129,14 @@ sal_Bool XMLHatchStyleImport::importXML(
             case XML_TOK_HATCH_STYLE:
                 {
                     sal_uInt16 eValue;
-                    if( bHasStyle = rUnitConverter.convertEnum( eValue, rStrValue, pXML_HatchStyle_Enum ) )
+                    if( (bHasStyle = rUnitConverter.convertEnum( eValue, rStrValue, pXML_HatchStyle_Enum )) )
                         aHatch.Style = (drawing::HatchStyle) eValue;
                 }
                 break;
             case XML_TOK_HATCH_COLOR:
                 {
                     Color aColor;
-                    if( bHasColor = rUnitConverter.convertColor( aColor, rStrValue ) )
+                    if( (bHasColor = rUnitConverter.convertColor( aColor, rStrValue )) )
                         aHatch.Color = (sal_Int32)( aColor.GetColor() );
                 }
                 break;

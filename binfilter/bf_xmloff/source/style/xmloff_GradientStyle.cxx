@@ -171,14 +171,14 @@ sal_Bool XMLGradientStyleImport::importXML(
         case XML_TOK_GRADIENT_STARTCOLOR:
             {
                 Color aColor;
-                if( bHasStartColor = rUnitConverter.convertColor( aColor, rStrValue ) )
+                if( (bHasStartColor = rUnitConverter.convertColor( aColor, rStrValue )) )
                     aGradient.StartColor = (sal_Int32)( aColor.GetColor() );
             }
             break;
         case XML_TOK_GRADIENT_ENDCOLOR:
             {
                 Color aColor;
-                if( bHasStartColor = rUnitConverter.convertColor( aColor, rStrValue ) )
+                if( (bHasStartColor = rUnitConverter.convertColor( aColor, rStrValue )) )
                     aGradient.EndColor = (sal_Int32)( aColor.GetColor() );
             }
             break;
