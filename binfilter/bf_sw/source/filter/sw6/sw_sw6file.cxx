@@ -31,7 +31,7 @@
 #endif
 
 #include <string.h>
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 
 #include "sw6file.hxx"
 namespace binfilter {

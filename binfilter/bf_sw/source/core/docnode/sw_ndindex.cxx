@@ -31,7 +31,7 @@
 #pragma hdrstop
 #endif
 
-#include "errhdl.hxx"           // fuers ASSERT
+#include <osl/diagnose.h>
 #include "error.h"              // fuers ASSERT
 #include "ndindex.hxx"
 namespace binfilter {

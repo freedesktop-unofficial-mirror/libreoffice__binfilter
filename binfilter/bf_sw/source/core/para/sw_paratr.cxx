@@ -37,7 +37,7 @@
 #include <cppuhelper/implbase4.hxx>
 
 #include <SwStyleNameMapper.hxx>
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 #include "paratr.hxx"
 #include "charfmt.hxx"
 #include "cmdid.h"

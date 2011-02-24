@@ -35,7 +35,7 @@
 
 #include <tools/solar.h>
 
-#include "errhdl.hxx"           // fuers ASSERT
+#include <osl/diagnose.h>
 #include "index.hxx"
 #include "error.h"              // fuers ASSERT
 

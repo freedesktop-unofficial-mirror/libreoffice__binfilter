@@ -37,7 +37,7 @@
 #endif
 #include <tools/gen.hxx>
 #include <tools/string.hxx>
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 #include <tools/fract.hxx>
 
 #include <i18npool/lang.h>

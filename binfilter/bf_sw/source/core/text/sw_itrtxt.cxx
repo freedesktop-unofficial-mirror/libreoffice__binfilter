@@ -37,7 +37,7 @@
 #include <horiornt.hxx>
 
 #include "paratr.hxx"
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 
 
 #ifdef VERTICAL_LAYOUT
