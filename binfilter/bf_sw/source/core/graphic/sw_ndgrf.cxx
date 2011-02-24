@@ -58,7 +58,7 @@
 #include <grfatr.hxx>
 #include <swtypes.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndgrf.hxx>
 #include <fmtcol.hxx>

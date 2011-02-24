@@ -38,7 +38,7 @@
 #include <vcl/font.hxx>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtornt.hxx>
 #include <doc.hxx>

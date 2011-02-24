@@ -42,7 +42,7 @@
 #include <bf_svx/linkmgr.hxx>
 #include <bf_svx/paperinf.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <docary.hxx>
 #include <fmtanchr.hxx>

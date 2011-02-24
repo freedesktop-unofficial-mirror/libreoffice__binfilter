@@ -39,7 +39,7 @@
 
 #include <docsh.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtinfmt.hxx>
 

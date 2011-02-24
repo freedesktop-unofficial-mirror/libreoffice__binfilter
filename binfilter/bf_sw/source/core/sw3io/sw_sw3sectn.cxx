@@ -44,7 +44,7 @@
 
 #include <doc.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pam.hxx>
 #include <sw3imp.hxx>

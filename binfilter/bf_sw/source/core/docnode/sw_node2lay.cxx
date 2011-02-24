@@ -32,7 +32,7 @@
 #endif
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndindex.hxx>
 #include <swtable.hxx>

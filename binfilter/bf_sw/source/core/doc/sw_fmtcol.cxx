@@ -41,7 +41,7 @@
 #include <horiornt.hxx>
 
 #include <doc.hxx>          // fuer GetAttrPool
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <hints.hxx>
 #include <node.hxx>
 namespace binfilter {

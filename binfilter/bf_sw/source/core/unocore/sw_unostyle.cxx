@@ -78,7 +78,7 @@
 #include <shellio.hxx>
 #include <docstyle.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <fmthdft.hxx>

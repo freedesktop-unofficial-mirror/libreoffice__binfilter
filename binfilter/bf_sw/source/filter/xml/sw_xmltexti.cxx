@@ -36,7 +36,7 @@
 #include <bf_xmloff/txtprmap.hxx>
 #include <bf_xmloff/i18nmap.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "unocrsr.hxx"
 #include "unoobj.hxx"

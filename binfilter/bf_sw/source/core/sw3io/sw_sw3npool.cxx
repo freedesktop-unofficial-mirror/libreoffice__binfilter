@@ -37,10 +37,10 @@
 #include <horiornt.hxx>
 
 #include <doc.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <swtable.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pam.hxx>
 #include <cntfrm.hxx>

@@ -35,7 +35,7 @@
 #include <com/sun/star/i18n/ScriptType.hdl>
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <itratr.hxx>       // SwAttrIter
 #include <ndtxt.hxx>        // SwTxtNode

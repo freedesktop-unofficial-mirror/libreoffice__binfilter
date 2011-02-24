@@ -40,7 +40,7 @@
 #include <fmtanchr.hxx>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <doc.hxx>
 #include <pam.hxx>

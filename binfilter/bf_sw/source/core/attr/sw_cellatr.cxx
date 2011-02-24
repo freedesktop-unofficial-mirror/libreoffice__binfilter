@@ -40,7 +40,7 @@
 #include <doc.hxx>
 #include <swtable.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <node.hxx>
 #include <hints.hxx>

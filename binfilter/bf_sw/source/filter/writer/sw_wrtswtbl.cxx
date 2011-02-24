@@ -34,12 +34,12 @@
 
 
 #include <wrtswtbl.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <swtable.hxx>
 #include <frmfmt.hxx>
 #include <fmtfsize.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 namespace binfilter {
 

@@ -30,7 +30,7 @@
 #pragma hdrstop
 #endif
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "XMLRedlineImportHelper.hxx"
 #include "unoobj.hxx"

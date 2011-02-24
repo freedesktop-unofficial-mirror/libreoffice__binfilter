@@ -45,7 +45,7 @@
 #include <tox.hxx>
 #include <unoclbck.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unoredline.hxx>

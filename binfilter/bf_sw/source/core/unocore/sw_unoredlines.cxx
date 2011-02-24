@@ -38,7 +38,7 @@
 
 #include <unoredlines.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoredline.hxx>
 #include <tools/debug.hxx>

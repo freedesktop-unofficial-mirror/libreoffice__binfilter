@@ -31,7 +31,7 @@
 #include <tools/solar.h>
 #include <bf_svtools/poolitem.hxx>
 #include <hintids.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SfxItemPool;

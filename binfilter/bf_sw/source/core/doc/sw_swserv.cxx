@@ -35,7 +35,7 @@
 #include <com/sun/star/uno/Sequence.h>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <doc.hxx>
 #include <swserv.hxx>

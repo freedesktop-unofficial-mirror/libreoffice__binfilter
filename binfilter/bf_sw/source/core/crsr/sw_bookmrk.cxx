@@ -35,13 +35,12 @@
 #include <horiornt.hxx>
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pam.hxx>
 #include <bookmrk.hxx>
 #include <swserv.hxx>
 
-#include <errhdl.hxx>
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )

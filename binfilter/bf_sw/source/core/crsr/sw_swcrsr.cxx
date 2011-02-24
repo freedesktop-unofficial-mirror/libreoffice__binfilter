@@ -35,7 +35,7 @@
 #include <com/sun/star/i18n/WordType.hdl>
 #include <com/sun/star/i18n/CharType.hdl>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unocrsr.hxx>
 

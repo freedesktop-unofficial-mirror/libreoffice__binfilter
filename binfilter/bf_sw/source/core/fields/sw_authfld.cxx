@@ -43,7 +43,7 @@
 #include <authfld.hxx>
 #include <expfld.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pam.hxx>
 #include <cntfrm.hxx>

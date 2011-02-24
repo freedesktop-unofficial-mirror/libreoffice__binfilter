@@ -35,7 +35,7 @@
 #include <tools/debug.hxx>
 #include <unomod.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <bf_svx/zoomitem.hxx>
 

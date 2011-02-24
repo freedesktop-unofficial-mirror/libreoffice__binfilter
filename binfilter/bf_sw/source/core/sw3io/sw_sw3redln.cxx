@@ -38,7 +38,7 @@
 #include <doc.hxx>
 #endif
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <redline.hxx>
 

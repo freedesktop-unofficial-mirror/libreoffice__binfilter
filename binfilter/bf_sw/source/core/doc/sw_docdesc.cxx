@@ -50,7 +50,7 @@
 #include <ftninfo.hxx>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <viscrs.hxx>
 #include <fesh.hxx>
 #include <ndole.hxx>

@@ -36,7 +36,7 @@
 #include <unosrch.hxx>
 #include <unomap.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <osl/mutex.hxx>

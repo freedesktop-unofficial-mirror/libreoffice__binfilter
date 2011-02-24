@@ -60,7 +60,7 @@
 #include <rtl/logfile.hxx>
 
 #include <swerror.h>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "swtypes.hxx"
 

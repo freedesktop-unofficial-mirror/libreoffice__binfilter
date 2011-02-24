@@ -35,7 +35,7 @@
 #include <horiornt.hxx>
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndtxt.hxx>
 #include <swddetbl.hxx>

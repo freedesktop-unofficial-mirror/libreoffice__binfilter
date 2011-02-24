@@ -62,14 +62,14 @@
 
 #include "fmtornt.hxx"
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "fmtfordr.hxx"
 #include "doc.hxx"
 #include "swtable.hxx"
 #include "swtblfmt.hxx"
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 #include "unotbl.hxx"

@@ -31,7 +31,7 @@
 
 #include <format.hxx>
 #include <swtypes.hxx>      // fuer MAXLEVEL
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SwDoc;        // fuer friend

@@ -38,7 +38,7 @@
 #include <section.hxx>
 #include <unoprnms.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unocoll.hxx>

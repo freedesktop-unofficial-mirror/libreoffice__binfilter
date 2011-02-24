@@ -30,7 +30,7 @@
 #pragma hdrstop
 #endif
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoidx.hxx>
 #include <unoclbck.hxx>

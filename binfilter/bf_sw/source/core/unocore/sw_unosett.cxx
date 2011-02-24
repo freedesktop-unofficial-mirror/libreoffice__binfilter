@@ -36,7 +36,7 @@
 #include "poolfmt.hrc"
 #include "poolfmt.hxx"
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtcol.hxx>
 

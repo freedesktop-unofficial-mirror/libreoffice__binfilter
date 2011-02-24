@@ -34,7 +34,7 @@
 #include <cmdid.h>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unocrsrhelper.hxx>
 #include <viscrs.hxx>

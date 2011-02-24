@@ -35,7 +35,7 @@
 
 #include <bf_svx/boxitem.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <tblrwcl.hxx>
 #include <swtblfmt.hxx>
 namespace binfilter {

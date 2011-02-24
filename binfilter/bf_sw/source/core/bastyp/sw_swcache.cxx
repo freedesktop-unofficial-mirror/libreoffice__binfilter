@@ -32,7 +32,7 @@
 #endif
 
 #include <tools/debug.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <swcache.hxx>
 namespace binfilter {
 

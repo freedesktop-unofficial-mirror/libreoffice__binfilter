@@ -52,7 +52,7 @@
 
 #include <cmdid.h>
 #include <unomid.h>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 namespace binfilter {
 
 using namespace ::com::sun::star;

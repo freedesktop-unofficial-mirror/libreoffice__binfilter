@@ -33,7 +33,7 @@
 #include <shellio.hxx>
 #include <horiornt.hxx>
 #include <doc.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <cmdid.h>
 
 namespace binfilter {

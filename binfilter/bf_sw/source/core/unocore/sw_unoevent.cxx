@@ -34,7 +34,7 @@
 // HINTIDs must be on top; it is required for the macitem.hxx header
 #include "hintids.hxx"
 #include "unoevent.hxx"
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include "unoframe.hxx"
 #include "unostyle.hxx"
 #include "swevent.hxx"

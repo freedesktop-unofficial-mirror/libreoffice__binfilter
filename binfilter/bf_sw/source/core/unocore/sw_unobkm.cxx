@@ -33,7 +33,7 @@
 #include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unomap.hxx>

@@ -53,7 +53,7 @@
 
 #include <doc.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <viscrs.hxx>
 #include <unoobj.hxx>

@@ -38,7 +38,7 @@
 #include <fmtfsize.hxx>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <dcontact.hxx>
 

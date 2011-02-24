@@ -38,7 +38,7 @@
 #include <swtypes.hxx>
 #include <cmdid.h>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unotbl.hxx>
 #include <unostyle.hxx>

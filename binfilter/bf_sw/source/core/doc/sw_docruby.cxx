@@ -38,7 +38,7 @@
 #include <com/sun/star/i18n/WordType.hdl>
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <doc.hxx>
 #include <rubylist.hxx>

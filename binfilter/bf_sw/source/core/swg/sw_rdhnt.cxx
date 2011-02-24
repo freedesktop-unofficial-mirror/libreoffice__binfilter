@@ -77,7 +77,7 @@
 #include <doc.hxx>
 #include <swtypes.hxx>      //fuer MIN_BORDER_DIST
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndtxt.hxx>
 #include <paratr.hxx>

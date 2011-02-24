@@ -50,7 +50,7 @@
 #include <fmtpdsc.hxx>
 #include <fmtfsize.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <swwait.hxx>
 

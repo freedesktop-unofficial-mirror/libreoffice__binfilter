@@ -39,7 +39,7 @@
 #include <vcl/svapp.hxx>
 #include <rtl/uuid.h>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unoport.hxx>

@@ -32,7 +32,7 @@
 #endif
 
 #include <hintids.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <fmthbsh.hxx>
 namespace binfilter {
 

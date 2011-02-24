@@ -56,7 +56,7 @@
 
 #include <swunohelper.hxx>
 #include <swunodef.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 namespace SWUnoHelper {

@@ -33,7 +33,7 @@
 
 #include "dcontact.hxx" // SwDrawContact
 #include "dflyobj.hxx"  // SwVirtFlyDrawObj
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "pam.hxx"      // SwPosition
 

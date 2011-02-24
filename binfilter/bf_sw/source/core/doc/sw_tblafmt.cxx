@@ -46,7 +46,7 @@
 #include <doc.hxx>
 #include <tblafmt.hxx>
 #include <cellatr.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 

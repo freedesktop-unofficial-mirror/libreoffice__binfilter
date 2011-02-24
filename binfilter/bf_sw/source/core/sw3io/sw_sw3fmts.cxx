@@ -50,7 +50,7 @@
 
 #include <fmtflcnt.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndtxt.hxx>
 #include "swerror.h"

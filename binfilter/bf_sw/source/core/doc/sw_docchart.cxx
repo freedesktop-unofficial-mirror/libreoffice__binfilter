@@ -43,7 +43,7 @@
 #include <doc.hxx>
 #include <docary.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndindex.hxx>
 #include <ndtxt.hxx>

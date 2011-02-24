@@ -34,14 +34,9 @@
 
 #include <fmtanchr.hxx>
 #include <frmfmt.hxx>
-
-#include <errhdl.hxx>
-
-
 #include <horiornt.hxx>
-
 #include <doc.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <cntfrm.hxx>
 #include <dcontact.hxx>
 #include <bookmrk.hxx>

@@ -38,7 +38,7 @@
 #include <fmtpdsc.hxx>
 #include <rdswg.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndtxt.hxx>        // Zeichen-Konversion
 #include <pagedesc.hxx>

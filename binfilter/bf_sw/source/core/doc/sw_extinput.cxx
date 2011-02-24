@@ -33,7 +33,7 @@
 
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <horiornt.hxx>
 
 #include <extinput.hxx>

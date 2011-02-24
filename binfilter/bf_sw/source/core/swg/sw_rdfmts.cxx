@@ -48,7 +48,7 @@
 #include <fmtornt.hxx>
 #include <frmatr.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <node.hxx>
 #include <frmfmt.hxx>

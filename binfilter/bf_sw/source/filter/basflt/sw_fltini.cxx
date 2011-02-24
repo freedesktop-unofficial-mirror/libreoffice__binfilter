@@ -44,9 +44,8 @@
 #include <horiornt.hxx>
 #include <doc.hxx>
 #include <docary.hxx>
-#include <errhdl.hxx>
 #include <pam.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <wdocsh.hxx>
 #include <fltini.hxx>
 #include <swgpar.hxx>           // fuer den SW/G Parser

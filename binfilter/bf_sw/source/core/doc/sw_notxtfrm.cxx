@@ -35,7 +35,7 @@
 #include <vcl/window.hxx>
 #include <fmtsrnd.hxx>
 #include <frmfmt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <viscrs.hxx>
 #include <fesh.hxx>
 #include <doc.hxx>

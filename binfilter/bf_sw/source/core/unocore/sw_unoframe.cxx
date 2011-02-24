@@ -40,7 +40,7 @@
 #include <doc.hxx>
 #include <docsh.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndindex.hxx>
 #include <pam.hxx>

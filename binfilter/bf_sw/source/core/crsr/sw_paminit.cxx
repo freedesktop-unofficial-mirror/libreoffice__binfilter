@@ -31,7 +31,7 @@
 #pragma hdrstop
 #endif
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pamtyp.hxx>
 namespace binfilter {

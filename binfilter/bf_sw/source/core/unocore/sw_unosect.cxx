@@ -44,7 +44,7 @@
 #include <vcl/svapp.hxx>
 #include <fmtclds.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unoredline.hxx>

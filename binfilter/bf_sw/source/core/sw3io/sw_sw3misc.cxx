@@ -52,7 +52,7 @@
 #include <docsh.hxx>
 #include <charfmt.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <lineinfo.hxx>
 #include <pvprtdat.hxx>

@@ -32,7 +32,7 @@
 #endif
 
 #include <horiornt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include "htmltbl.hxx"
 namespace binfilter {

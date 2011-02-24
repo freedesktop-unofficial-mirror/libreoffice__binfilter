@@ -40,7 +40,7 @@
 #include <bf_svtools/eitem.hxx>
 #include <bf_svx/boxitem.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtcol.hxx>
 #include <uitool.hxx>
@@ -49,7 +49,7 @@
 
 #include <wrtsh.hxx>
 #include <docsh.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <charfmt.hxx>
 #include <poolfmt.hxx>
 #include <docstyle.hxx>

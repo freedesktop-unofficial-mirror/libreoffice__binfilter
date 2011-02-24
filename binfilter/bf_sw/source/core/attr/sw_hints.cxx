@@ -33,12 +33,8 @@
 
 #include <com/sun/star/i18n/ScriptType.hdl>
 #include <bf_svx/scripttypeitem.hxx>
-
-
-#include <errhdl.hxx>
-
 #include <ndtxt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <hints.hxx>
 #include <error.h>
 namespace binfilter {

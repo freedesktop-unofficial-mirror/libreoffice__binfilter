@@ -40,7 +40,7 @@
 #include <horiornt.hxx>
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <ndgrf.hxx>
 #include <ndole.hxx>

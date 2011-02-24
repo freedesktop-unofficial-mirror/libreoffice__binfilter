@@ -37,7 +37,7 @@
 #include <unodraw.hxx>
 #include <unocoll.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoframe.hxx>
 #include <unoprnms.hxx>

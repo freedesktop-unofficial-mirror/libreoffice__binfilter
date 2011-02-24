@@ -35,7 +35,7 @@
 #include <swtypes.hxx>
 #include <toxe.hxx>
 #include <calbck.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SwTOXType;

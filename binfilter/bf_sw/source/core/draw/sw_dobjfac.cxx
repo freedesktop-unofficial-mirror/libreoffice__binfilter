@@ -27,7 +27,7 @@
  ************************************************************************/
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <dobjfac.hxx>
 #include <dflyobj.hxx>
 namespace binfilter {

@@ -31,7 +31,7 @@
 #include <node.hxx>
 #include <hintids.hxx>
 #include <ndhints.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}

@@ -41,7 +41,7 @@
 #include <com/sun/star/text/SetVariableType.hpp>
 
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unofield.hxx>
 #include <fmtfld.hxx>

@@ -34,7 +34,7 @@
 #include <cmdid.h>
 #include <unomid.h>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 #include <unomap.hxx>

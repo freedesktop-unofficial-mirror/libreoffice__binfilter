@@ -58,7 +58,7 @@
 #include <bf_xmloff/ProgressBarHelper.hxx>
 #include <bf_xmloff/xmluconv.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <pam.hxx>
 

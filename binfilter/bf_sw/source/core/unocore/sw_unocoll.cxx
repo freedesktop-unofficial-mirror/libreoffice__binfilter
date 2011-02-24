@@ -40,7 +40,7 @@
 #include <doc.hxx>
 #include <docary.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtcol.hxx>
 #include <poolfmt.hxx>

@@ -36,7 +36,7 @@
 
 #include <swtypes.hxx>
 #include <calbck.hxx>
-#include <errhdl.hxx>       // Fuer die inline-ASSERTs
+#include <osl/diagnose.h>       // Fuer die inline-ASSERTs
 #include <error.h>          // Fuer die inline-ASSERTs
 #include <bf_svx/numitem.hxx>
 class Font;

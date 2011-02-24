@@ -39,7 +39,7 @@
 
 #include <fmtfsize.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #define _SVSTDARR_STRINGSDTOR
 #include "sw3imp.hxx"

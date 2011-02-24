@@ -39,7 +39,7 @@
 
 #include <tools/tenccvt.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <fmtcol.hxx>
 

@@ -71,7 +71,7 @@
 
 #include <prtopt.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <wdocsh.hxx>
 #include <swmodule.hxx>

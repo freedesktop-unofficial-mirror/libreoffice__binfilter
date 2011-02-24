@@ -36,7 +36,7 @@
 #include <horiornt.hxx>
 
 #include <doc.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 #include <ddefld.hxx>
 #include <swbaslnk.hxx>
 #include <unofldmid.h>

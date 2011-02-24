@@ -41,7 +41,7 @@
 #include <bf_xmloff/XMLFontAutoStylePool.hxx>
 #include <bf_svx/fontitem.hxx>
 
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <unoobj.hxx>
 

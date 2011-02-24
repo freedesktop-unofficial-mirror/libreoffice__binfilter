@@ -45,7 +45,7 @@
 
 #include <docary.hxx>
 #include <fmtcntnt.hxx>
-#include <errhdl.hxx>
+#include <osl/diagnose.h>
 
 #include <horiornt.hxx>
 
