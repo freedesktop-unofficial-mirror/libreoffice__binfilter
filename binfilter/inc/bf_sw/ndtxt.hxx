@@ -291,12 +291,12 @@ public:
 
 inline SwpHints &SwTxtNode::GetSwpHints()
 {
-    ASSERT_ID( pSwpHints, ERR_NOHINTS);
+    OSL_ASSERT( pSwpHints );
     return *pSwpHints;
 }
 inline const SwpHints &SwTxtNode::GetSwpHints() const
 {
-    ASSERT_ID( pSwpHints, ERR_NOHINTS);
+    OSL_ASSERT( pSwpHints );
     return *pSwpHints;
 }
 

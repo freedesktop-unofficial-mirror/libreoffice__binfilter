@@ -393,7 +393,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ xub_StrLen SwIndex::operator--(int)
 /*N*/ {
-/*N*/   ASSERT_ID( nIndex, ERR_OUTOFSCOPE );
+/*N*/   OSL_ASSERT( nIndex );
 /*N*/
 /*N*/   xub_StrLen nOldIndex = nIndex;
 /*N*/   ChgValue( *this, nIndex-1 );
@@ -413,7 +413,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
 /*N*/ {
-/*N*/   ASSERT_ID( nIndex < INVALID_INDEX - nWert, ERR_OUTOFSCOPE);
+/*N*/   OSL_ASSERT( nIndex < INVALID_INDEX - nWert );
 /*N*/   return ChgValue( *this, nIndex + nWert ).nIndex;
 /*N*/ }
 
@@ -434,7 +434,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ xub_StrLen SwIndex::operator+=( const SwIndex & rIndex )
 /*N*/ {
-/*N*/   ASSERT_ID( nIndex < INVALID_INDEX - rIndex.nIndex, ERR_OUTOFSCOPE );
+/*N*/   OSL_ASSERT( nIndex < INVALID_INDEX - rIndex.nIndex );
 /*N*/   return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
 /*N*/ }
 

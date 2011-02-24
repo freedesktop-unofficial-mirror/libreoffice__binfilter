@@ -36,8 +36,7 @@
 
 #include <swtypes.hxx>
 #include <calbck.hxx>
-#include <osl/diagnose.h>       // Fuer die inline-ASSERTs
-#include <error.h>          // Fuer die inline-ASSERTs
+#include <osl/diagnose.h>
 #include <bf_svx/numitem.hxx>
 class Font;
 namespace binfilter {
@@ -230,14 +229,14 @@ public:
 
 inline const SwNumFmt& SwNumRule::Get( USHORT i ) const
 {
-    ASSERT_ID( i < MAXLEVEL && eRuleType < RULE_END, ERR_NUMLEVEL);
+    OSL_ASSERT( i < MAXLEVEL && eRuleType < RULE_END );
     return aFmts[ i ] ? *aFmts[ i ]
                       : *aBaseFmts[ eRuleType ][ i ];
 }
 
 inline const SwNumFmt* SwNumRule::GetNumFmt( USHORT i ) const
 {
-    ASSERT_ID( i < MAXLEVEL && eRuleType < RULE_END, ERR_NUMLEVEL);
+    OSL_ASSERT( i < MAXLEVEL && eRuleType < RULE_END );
     return aFmts[ i ];
 }
 inline const Font& SwNumRule::GetDefBulletFont()

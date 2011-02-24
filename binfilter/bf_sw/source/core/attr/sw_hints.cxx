@@ -182,8 +182,7 @@ namespace binfilter {
 
 /*N*/ const SfxPoolItem* GetDfltAttr( USHORT nWhich )
 /*N*/ {
-/*N*/   ASSERT_ID( nWhich < POOLATTR_END && nWhich >= POOLATTR_BEGIN,
-/*N*/              ERR_OUTOFSCOPE );
+/*N*/   OSL_ASSERT( nWhich < POOLATTR_END && nWhich >= POOLATTR_BEGIN );
 /*N*/
 /*N*/   SfxPoolItem *pHt = aAttrTab[ nWhich - POOLATTR_BEGIN ];
 /*N*/   OSL_ENSURE( pHt, "GetDfltFmtAttr(): Dflt == 0" );
