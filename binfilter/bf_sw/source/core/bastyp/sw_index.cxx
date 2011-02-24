@@ -37,7 +37,6 @@
 
 #include <osl/diagnose.h>
 #include "index.hxx"
-#include "error.h"              // fuers ASSERT
 
 #include <tools/string.hxx>
 

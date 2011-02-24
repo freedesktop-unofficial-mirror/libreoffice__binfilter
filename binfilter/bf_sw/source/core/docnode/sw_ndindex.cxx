@@ -32,7 +32,6 @@
 #endif
 
 #include <osl/diagnose.h>
-#include "error.h"              // fuers ASSERT
 #include "ndindex.hxx"
 namespace binfilter {
 

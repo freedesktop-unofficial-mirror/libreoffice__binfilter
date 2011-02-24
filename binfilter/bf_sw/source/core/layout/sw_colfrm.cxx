@@ -34,6 +34,7 @@
 #include "cntfrm.hxx"
 
 #include <horiornt.hxx>
+#include <osl/diagnose.h>
 
 #include "doc.hxx"
 
@@ -302,7 +303,7 @@ namespace binfilter {
 /*N*/   //unnuetzte Aktionen beim Einstellen zur Folge haben.
 /*N*/   if ( pSave )
 /*N*/   {
-/*N*/       ASSERT( Lower() && Lower()->IsLayoutFrm() &&
+/*N*/       OSL_ENSURE( Lower() && Lower()->IsLayoutFrm() &&
 /*N*/               ((SwLayoutFrm*)Lower())->Lower() &&
 /*N*/               ((SwLayoutFrm*)Lower())->Lower()->IsLayoutFrm(),
 /*N*/               "Gesucht: Spaltenbody (Tod oder Lebend)." );   // ColumnFrms jetzt mit BodyFrm

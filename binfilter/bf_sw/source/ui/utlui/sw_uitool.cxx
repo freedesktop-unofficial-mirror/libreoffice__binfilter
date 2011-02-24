@@ -34,7 +34,7 @@
 #include <hintids.hxx>
 #include <uiparam.hxx>
 
-
+#include <osl/diagnose.h>
 
 #include <bf_svx/tstpitem.hxx>
 #include <bf_svx/boxitem.hxx>
@@ -315,7 +315,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFmtHeader &rHeaderFmt = rMaster.GetHeader();
 /*N*/       const SwFrmFmt *pHeaderFmt = rHeaderFmt.GetHeaderFmt();
-/*N*/       ASSERT(pHeaderFmt != 0, kein HeaderFormat.);
+/*N*/       OSL_ENSURE(pHeaderFmt != 0, "kein HeaderFormat.");
 /*N*/
 /*N*/       // HeaderInfo, Raender, Hintergrund, Umrandung
 /*N*/       //
@@ -361,7 +361,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFmtFooter &rFooterFmt = rMaster.GetFooter();
 /*N*/       const SwFrmFmt *pFooterFmt = rFooterFmt.GetFooterFmt();
-/*N*/       ASSERT(pFooterFmt != 0, kein FooterFormat.);
+/*N*/       OSL_ENSURE(pFooterFmt != 0, "kein FooterFormat.");
 /*N*/
 /*N*/       // FooterInfo, Raender, Hintergrund, Umrandung
 /*N*/       //

@@ -42,7 +42,7 @@
 #include "dflyobj.hxx"      // SdrObject
 #include "frmtool.hxx"    // ::DrawGraphic
 #include <pormulti.hxx>     // SwMultiPortion
-
+#include <osl/diagnose.h>
 #include <bf_svx/obj3d.hxx>
 #include <bf_svx/txtrange.hxx>
 #include <bf_svx/lrspitem.hxx>
@@ -805,7 +805,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFly::IsAnyObj( const SwRect &rRect ) const
 /*N*/ {
-/*N*/   ASSERT ( bOn, "SwTxtFly::IsAnyObj: Who's knocking?" );
+/*N*/   OSL_ENSURE( bOn, "SwTxtFly::IsAnyObj: Who's knocking?" );
 /*N*/
 /*N*/   SwRect aRect( rRect );
 /*N*/   if ( aRect.IsEmpty() )

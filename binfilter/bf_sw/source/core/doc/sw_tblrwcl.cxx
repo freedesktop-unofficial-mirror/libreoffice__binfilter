@@ -36,6 +36,7 @@
 #define _ZFORLIST_DECLARE_TABLE
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
+#include <osl/diagnose.h>
 #include <bf_svx/boxitem.hxx>
 
 #include <fmtfsize.hxx>
@@ -427,7 +428,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
  BOOL SwTable::DeleteSel( SwDoc* pDoc, const SwSelBoxes& rBoxes,
                          const BOOL bDelMakeFrms, const BOOL bCorrBorder )
  {
-    ASSERT( pDoc && rBoxes.Count(), "keine gueltigen Werte" );
+    OSL_ENSURE( pDoc && rBoxes.Count(), "keine gueltigen Werte" );
     SwTableNode* pTblNd = (SwTableNode*)rBoxes[0]->GetSttNd()->FindTableNode();
     if( !pTblNd )
         return FALSE;

@@ -39,9 +39,8 @@
 #include <fmtanchr.hxx>
 #include <txtftn.hxx>
 #include <ftnfrm.hxx>
-
+#include <osl/diagnose.h>
 #include <horiornt.hxx>
-
 #include <doc.hxx>
 #include <docary.hxx>
 #include <swtable.hxx>
@@ -744,7 +743,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ void SwCntntNode::MakeFrms( SwCntntNode& rNode )
 /*N*/ {
-/*N*/   ASSERT( &rNode != this,
+/*N*/   OSL_ENSURE( &rNode != this,
 /*N*/           "Kein Contentnode oder Copy-Node und neuer Node identisch." );
 /*N*/
 /*N*/   if( !GetDepends() || &rNode == this )   // gibt es ueberhaupt Frames ??
