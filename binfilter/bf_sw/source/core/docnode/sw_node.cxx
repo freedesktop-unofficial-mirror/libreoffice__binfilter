@@ -625,7 +625,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ SwFmtColl *SwCntntNode::ChgFmtColl( SwFmtColl *pNewColl )
 /*N*/ {
-/*N*/   ASSERT( pNewColl, Collectionpointer ist 0. );
+/*N*/   OSL_ENSURE( pNewColl, Collectionpointer ist 0. );
 /*N*/   SwFmtColl *pOldColl = GetFmtColl();
 /*N*/   if( pNewColl != pOldColl )
 /*N*/   {
@@ -753,7 +753,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   SwFrm *pFrm, *pNew;
 /*N*/   SwLayoutFrm *pUpper;
 /*N*/   // Frames anlegen fuer Nodes, die vor oder hinter der Tabelle stehen ??
-/*N*/   ASSERT( FindTableNode() == rNode.FindTableNode(), "Table confusion" )
+/*N*/   OSL_ENSURE( FindTableNode() == rNode.FindTableNode(), "Table confusion" );
 /*N*/
 /*N*/   SwNode2Layout aNode2Layout( *this, rNode.GetIndex() );
 /*N*/
@@ -801,12 +801,12 @@ using namespace ::com::sun::star::i18n;
 /*N*/           !pFrm->GetIndPrev() )
 /*N*/       {
 /*?*/           SwFtnFrm *pFtn = pFrm->FindFtnFrm();
-/*?*/           ASSERT( pFtn, "You promised a FtnFrm?" );
+/*?*/           OSL_ENSURE( pFtn, "You promised a FtnFrm?" );
 /*?*/           SwCntntFrm* pCFrm;
 /*?*/           if( !pFtn->GetFollow() && !pFtn->GetMaster() &&
 /*?*/               0 != ( pCFrm = pFtn->GetRefFromAttr()) && pCFrm->IsFollow() )
 /*?*/           {
-/*?*/               ASSERT( pCFrm->IsTxtFrm(), "NoTxtFrm has Footnote?" );
+/*?*/               OSL_ENSURE( pCFrm->IsTxtFrm(), "NoTxtFrm has Footnote?" );
 /*?*/               ((SwTxtFrm*)pCFrm->FindMaster())->Prepare( PREP_FTN_GONE );
 /*?*/           }
 /*N*/       }
@@ -885,7 +885,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   if( !pAttrSet )         // lasse von den entsprechenden Nodes die
 /*N*/       NewAttrSet( GetDoc()->GetAttrPool() );      // AttrSets anlegen
 /*N*/
-/*N*/   ASSERT( pAttrSet, "warum wurde kein AttrSet angelegt?" );
+/*N*/   OSL_ENSURE( pAttrSet, "warum wurde kein AttrSet angelegt?" );
 /*N*/
 /*N*/   if ( IsInCache() )
 /*N*/   {

@@ -119,7 +119,7 @@ using namespace ::rtl;
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::InitNew" );
 /*N*/
 /*N*/   sal_Bool bRet = SfxInPlaceObject::InitNew( pStor );
-/*N*/   ASSERT( GetMapUnit() == MAP_TWIP, "map unit is not twip!" );
+/*N*/   OSL_ENSURE( GetMapUnit() == MAP_TWIP, "map unit is not twip!" );
 /*N*/   sal_Bool bHTMLTemplSet = sal_False;
 /*N*/   if( bRet )
 /*N*/   {
@@ -421,7 +421,7 @@ using namespace ::rtl;
 
 /*N*/ void SwDocShell::UpdateFontList()
 /*N*/ {
-/*N*/   ASSERT(pDoc, "Kein Doc keine FontList");
+/*N*/   OSL_ENSURE(pDoc, "Kein Doc keine FontList");
 /*N*/   if( pDoc )
 /*N*/   {
 /*N*/       SfxPrinter* pPrt = pDoc->GetPrt();
@@ -481,7 +481,7 @@ using namespace ::rtl;
 /*N*/       // fuer MD
 /*N*/       if( bXML )
 /*N*/       {
-/*?*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*?*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*?*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*?*/                           SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/             if(GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
@@ -553,21 +553,21 @@ using namespace ::rtl;
 /*N*/               }
 /*N*/ #ifdef DBG_UTIL
 /*N*/               else
-/*?*/                   ASSERT( !this, "ohne Sw3Reader geht nichts" );
+/*?*/                   OSL_ENSURE( !this, "ohne Sw3Reader geht nichts" );
 /*N*/ #endif
 /*N*/           }
 /*N*/           break;
 
 /*N*/       default:
 /*N*/ #ifdef DBG_UTIL
-/*?*/           ASSERT( !this, "Load: new CreateMode?" );
+/*?*/           OSL_ENSURE( !this, "Load: new CreateMode?" );
 /*N*/ #endif
 /*N*/           break;
 /*N*/       }
 /*N*/
 /*N*/       if( !bXML )
 /*N*/       {
-/*N*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*N*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*N*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*N*/                           SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*N*/       }
@@ -664,7 +664,7 @@ using namespace ::rtl;
 /*?*/           // Das Laden
 /*?*/           if( bXML )
 /*?*/           {
-/*?*/               ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*?*/               OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*?*/               pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*?*/                               SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/               if( ReadXML )
@@ -697,7 +697,7 @@ using namespace ::rtl;
 /*?*/
 /*?*/       if( !bXML )
 /*?*/       {
-/*?*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*?*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*?*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*?*/                               SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/       }
@@ -715,7 +715,7 @@ using namespace ::rtl;
 
 /*M*/ void SwDocShell::SubInitNew()
 /*M*/ {
-/*M*/   ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*M*/   OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*M*/   pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*M*/                   SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*M*/   UpdateFontList();

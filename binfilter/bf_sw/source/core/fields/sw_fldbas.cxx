@@ -135,7 +135,7 @@ using namespace ::com::sun::star;
 /*N*/     nLang(nLng),
 /*N*/     bIsAutomaticLanguage(TRUE)
 /*N*/ {
-/*N*/   ASSERT( pTyp, "SwField: ungueltiger SwFieldType" );
+/*N*/   OSL_ENSURE( pTyp, "SwField: ungueltiger SwFieldType" );
 /*N*/   pType = pTyp;
 /*N*/ }
 
@@ -150,7 +150,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifdef DBG_UTIL
 /*N*/ USHORT SwField::Which() const
 /*N*/ {
-/*N*/   ASSERT(pType, "Kein Typ vorhanden");
+/*N*/   OSL_ENSURE(pType, "Kein Typ vorhanden");
 /*N*/   return pType->Which();
 /*N*/ }
 /*N*/ #endif
@@ -211,13 +211,13 @@ void SwField::SetPar2(const String& /*rStr*/)
 
 /*N*/ USHORT SwField::GetSubType() const
 /*N*/ {
-/*N*/ //    ASSERT(0, "Sorry Not implemented");
+/*N*/ //    OSL_ENSURE(0, "Sorry Not implemented");
 /*N*/   return 0;
 /*N*/ }
 
 void SwField::SetSubType(USHORT /*nType*/)
 {
-//  ASSERT(0, "Sorry Not implemented");
+//  OSL_ENSURE(0, "Sorry Not implemented");
 }
 
 /*N*/ BOOL  SwField::QueryValue( uno::Any& rVal, BYTE nMId ) const
@@ -263,7 +263,7 @@ void SwField::SetSubType(USHORT /*nType*/)
 
 SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 {
-    ASSERT( pNewType && pNewType->Which() == pType->Which(),
+    OSL_ENSURE( pNewType && pNewType->Which() == pType->Which(),
             "kein Typ oder ungleiche Typen" );
 
     SwFieldType* pOld = pType;
@@ -342,7 +342,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*?*/         return  String::CreateFromInt32( nNum );
 /*N*/     SvxNumberType aNumber;
 /*N*/
-/*N*/   ASSERT(nFormat != SVX_NUM_NUMBER_NONE, "Falsches Nummern-Format" );
+/*N*/   OSL_ENSURE(nFormat != SVX_NUM_NUMBER_NONE, "Falsches Nummern-Format" );
 /*N*/
 /*N*/   aNumber.SetNumberingType((sal_Int16)nFormat);
 /*N*/   return aNumber.GetNumStr(nNum);
@@ -400,7 +400,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*?*/           else
 /*?*/               nFmt = nNewFormat;
 /*?*/       }
-/*?*/       ASSERT(pEntry, "Unbekanntes Zahlenformat!");
+/*?*/       OSL_ENSURE(pEntry, "Unbekanntes Zahlenformat!");
 /*N*/   }
 /*N*/
 /*N*/   if( pFormatter->IsTextFormat( nFmt ) )
@@ -515,7 +515,7 @@ SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
 /*N*/               }
 /*N*/               SetFormat( nNewFormat );
 /*N*/           }
-/*N*/           ASSERT(pEntry, "Unbekanntes Zahlenformat!");
+/*N*/           OSL_ENSURE(pEntry, "Unbekanntes Zahlenformat!");
 /*N*/       }
 /*N*/   }
 /*N*/

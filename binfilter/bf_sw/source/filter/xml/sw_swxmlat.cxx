@@ -70,7 +70,7 @@ using namespace ::binfilter::xmloff::token;
 
 sal_Bool SwFmtDrop::equalsXML( const SfxPoolItem& rItem ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -79,7 +79,7 @@ sal_Bool SwFmtDrop::equalsXML( const SfxPoolItem& rItem ) const
 sal_Bool SwRegisterItem::importXML( const OUString& rValue, sal_uInt16,
                                     const SvXMLUnitConverter& rUnitConverter )
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_False;
 }
 
@@ -87,7 +87,7 @@ sal_Bool SwRegisterItem::exportXML(
         OUString& rValue, sal_uInt16,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -95,7 +95,7 @@ sal_Bool SwRegisterItem::exportXML(
 
 sal_Bool SwNumRuleItem::equalsXML( const SfxPoolItem& rItem ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -147,7 +147,7 @@ sal_Bool SwFmtPageDesc::equalsXML( const SfxPoolItem& rItem ) const
 sal_Bool SwFmtCharFmt::exportXML( OUString& rValue, sal_uInt16,
                               const SvXMLUnitConverter& ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 

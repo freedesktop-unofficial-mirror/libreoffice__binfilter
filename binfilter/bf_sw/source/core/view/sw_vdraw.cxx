@@ -170,7 +170,7 @@ namespace binfilter {
 /*N*/   if ( !bCheckDrawObjs )
 /*N*/       return;
 /*N*/
-/*N*/   ASSERT( pSh->GetDoc()->GetDrawModel(), "NotifySizeChg without DrawModel" );
+/*N*/   OSL_ENSURE( pSh->GetDoc()->GetDrawModel(), "NotifySizeChg without DrawModel" );
 /*N*/   SdrPage* pPage = pSh->GetDoc()->GetDrawModel()->GetPage( 0 );
 /*N*/   const ULONG nObjs = pPage->GetObjCount();
 /*N*/   for( ULONG nObj = 0; nObj < nObjs; ++nObj )

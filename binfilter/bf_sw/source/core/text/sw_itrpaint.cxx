@@ -73,7 +73,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if( ALIGN_BASELINE != pFnt->GetAlign() )
 /*N*/   {
-/*?*/       ASSERT( ALIGN_BASELINE == pFnt->GetAlign(),
+/*?*/       OSL_ENSURE( ALIGN_BASELINE == pFnt->GetAlign(),
 /*?*/               "+SwTxtPainter::CTOR: font alignment revolution" );
 /*?*/       pFnt->SetAlign( ALIGN_BASELINE );
 /*N*/   }

@@ -208,7 +208,7 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::Init()
 /*N*/ {
-/*N*/   ASSERT( !IsLocked(), "+SwTxtFrm::Init: this ist locked." );
+/*N*/   OSL_ENSURE( !IsLocked(), "+SwTxtFrm::Init: this ist locked." );
 /*N*/   if( !IsLocked() )
 /*N*/   {
 /*N*/       ClearPara();
@@ -276,7 +276,7 @@ namespace binfilter {
 /*N*/   if( !Frm().Width() && IsValid() && GetUpper()->IsValid() )
 /*N*/                                      //bei Stackueberlauf (StackHack) invalid!
 /*N*/   {
-/*N*/         ASSERT( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
+/*N*/         OSL_ENSURE( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/
@@ -414,8 +414,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::CalcLineSpace()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::CalcLineSpace with swapped frame!" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::CalcLineSpace with swapped frame!" );
 /*N*/
 /*N*/   if( IsLocked() || !HasPara() )
 /*N*/       return;
@@ -479,7 +479,7 @@ namespace binfilter {
 /*N*/               Grow(nDelta,pHeight);
 /*N*/           else
 /*N*/               Shrink(-nDelta,pHeight);
-/*N*/           ASSERT( GetPara(), "+SwTxtFrm::CalcLineSpace: missing format information" );
+/*N*/           OSL_ENSURE( GetPara(), "+SwTxtFrm::CalcLineSpace: missing format information" );
 /*N*/           if( pPara )
 /*N*/               pPara->GetRepaint()->SSize( Prt().SSize() );
 /*N*/ #endif
@@ -1019,7 +1019,7 @@ namespace binfilter {
 
 /*M*/ void SwTxtFrm::PrepWidows( const MSHORT nNeed, sal_Bool bNotify )
 /*M*/ {
-/*M*/   ASSERT(GetFollow() && nNeed, "+SwTxtFrm::Prepare: lost all friends");
+/*M*/   OSL_ENSURE(GetFollow() && nNeed, "+SwTxtFrm::Prepare: lost all friends");
 /*M*/
 /*M*/   SwParaPortion *pPara = GetPara();
 /*M*/   if ( !pPara )
@@ -1167,7 +1167,7 @@ namespace binfilter {
 /*N*/   if( !HasPara() && PREP_MUST_FIT != ePrep )
 /*N*/   {
 /*N*/         SetInvalidVert( TRUE );  // Test
-/*N*/       ASSERT( !IsLocked(), "SwTxtFrm::Prepare: three of a perfect pair" );
+/*N*/       OSL_ENSURE( !IsLocked(), "SwTxtFrm::Prepare: three of a perfect pair" );
 /*N*/       if ( bNotify )
 /*N*/           InvalidateSize();
 /*N*/       else
@@ -1411,7 +1411,7 @@ namespace binfilter {
 /*?*/               // letzte Zeile formatiert werden, damit ggf. die erste Zeile des Follows
 /*?*/               // hochrutschen kann, die extra auf die naechste Seite gerutscht war, um mit
 /*?*/               // der Fussnote zusammen zu sein, insbesondere bei spaltigen Bereichen.
-/*?*/               ASSERT( GetFollow(), "PREP_FTN_GONE darf nur vom Follow gerufen werden" );
+/*?*/               OSL_ENSURE( GetFollow(), "PREP_FTN_GONE darf nur vom Follow gerufen werden" );
 /*?*/               xub_StrLen nPos = GetFollow()->GetOfst();
 /*?*/               if( IsFollow() && GetOfst() == nPos )       // falls wir gar keine Textmasse besitzen,
 /*?*/                   FindMaster()->Prepare( PREP_FTN_GONE ); // rufen wir das Prepare unseres Masters
@@ -1433,7 +1433,7 @@ namespace binfilter {
 /*N*/           if( pVoid )
 /*N*/           {
 /*N*/               xub_StrLen nWhere = CalcFlyPos( (SwFrmFmt*)pVoid );
-/*N*/               ASSERT( STRING_LEN != nWhere, "Prepare: Why me?" );
+/*N*/               OSL_ENSURE( STRING_LEN != nWhere, "Prepare: Why me?" );
 /*N*/               InvalidateRange( SwCharRange( nWhere, 1 ) );
 /*N*/               return;
 /*N*/           }
@@ -1527,7 +1527,7 @@ public:
 /*N*/   pOldPara = pFrm->HasPara() ? pFrm->GetPara() : NULL;
 /*N*/   pFrm->SetPara( new SwParaPortion(), sal_False );
 /*N*/
-/*N*/     ASSERT( ! pFrm->IsSwapped(), "A frame is swapped before _Format" );
+/*N*/     OSL_ENSURE( ! pFrm->IsSwapped(), "A frame is swapped before _Format" );
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
 /*?*/         pFrm->SwapWidthAndHeight();
@@ -1540,7 +1540,7 @@ public:
 /*N*/     if ( pFrm->IsVertical() )
 /*?*/         pFrm->SwapWidthAndHeight();
 /*N*/
-/*N*/     ASSERT( ! pFrm->IsSwapped(), "A frame is swapped after _Format" );
+/*N*/     OSL_ENSURE( ! pFrm->IsSwapped(), "A frame is swapped after _Format" );
 /*N*/ }
 
 /*N*/ SwTestFormat::~SwTestFormat()
@@ -1580,7 +1580,7 @@ public:
 
 /*N*/ sal_Bool SwTxtFrm::WouldFit( SwTwips &rMaxHeight, sal_Bool &bSplit )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::WouldFit with swapped frame" );
 /*N*/     SWRECTFN( this );
 /*N*/
@@ -1608,7 +1608,7 @@ public:
 /*N*/   // In sehr unguenstigen Faellen kann GetPara immer noch 0 sein.
 /*N*/   // Dann returnen wir sal_True, um auf der neuen Seite noch einmal
 /*N*/   // anformatiert zu werden.
-/*N*/   ASSERT( HasPara() || IsHiddenNow(), "WouldFit: GetFormatted() and then !HasPara()" );
+/*N*/   OSL_ENSURE( HasPara() || IsHiddenNow(), "WouldFit: GetFormatted() and then !HasPara()" );
 /*N*/     if( !HasPara() || ( !(Frm().*fnRect->fnGetHeight)() && IsHiddenNow() ) )
 /*N*/       return sal_True;
 /*N*/
@@ -1682,8 +1682,8 @@ public:
 
 /*N*/ KSHORT SwTxtFrm::GetParHeight() const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::GetParHeight with swapped frame" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::GetParHeight with swapped frame" );
 /*N*/
 /*N*/   if( !HasPara() )
 /*N*/   {   // Fuer nichtleere Absaetze ist dies ein Sonderfall, da koennen wir
@@ -2017,9 +2017,8 @@ SwTwips lcl_CalcFlyBasePos( const SwTxtFrm& rFrm, SwRect aFlyRect,
 
 void SwTxtFrm::CalcBaseOfstForFly()
 {
-    ASSERT( !IsVertical() || !IsSwapped(),
-            "SwTxtFrm::CalcBasePosForFly with swapped frame!" )
-
+    OSL_ENSURE( !IsVertical() || !IsSwapped(),
+            "SwTxtFrm::CalcBasePosForFly with swapped frame!" );
     const SwNode* pNode = GetTxtNode();
     const SwDoc* pDoc = pNode->GetDoc();
     if ( !pDoc->IsAddFlyOffsets() )

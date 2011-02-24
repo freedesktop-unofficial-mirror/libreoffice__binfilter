@@ -152,7 +152,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
     SetDefaultFontHeight( 240 );
     SetSwapGraphics( TRUE );
 
-    ASSERT( pDocSh, "DocShell not found" );
+    OSL_ENSURE( pDocSh, "DocShell not found" );
     SvxColorTableItem* pColItem = ( SvxColorTableItem* )
                                 ( pDocSh->GetItem( ITEMID_COLOR_TABLE ) );
     XColorTable *pXCol = pColItem ? pColItem->GetColorTable() :
@@ -255,7 +255,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/         else if( xRoot->IsStream( sDrawStrmNm ) )
 /*N*/       {
 /*N*/           long nFFVersion = xRoot->GetVersion();
-/*N*/           ASSERT( nFFVersion == SOFFICE_FILEFORMAT_31 ||
+/*N*/           OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_31 ||
 /*N*/                   nFFVersion == SOFFICE_FILEFORMAT_40 ||
 /*N*/                   nFFVersion == SOFFICE_FILEFORMAT_50,
 /*N*/                   "Am Root-Storage ist keine FF-Version gesetzt!" );
@@ -265,7 +265,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/           if( SOT_FORMATSTR_ID_STARWRITER_30 == xRoot->GetFormat() &&
 /*N*/               nFFVersion != SOFFICE_FILEFORMAT_31 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_31,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_31,
 /*?*/                       "Fileformat-Version auf 3.1 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_31 );
 /*N*/           }
@@ -274,7 +274,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/                      SOT_FORMATSTR_ID_STARWRITERGLOB_40 == xRoot->GetFormat() ) &&
 /*N*/                    nFFVersion != SOFFICE_FILEFORMAT_40 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_40,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_40,
 /*?*/                       "Fileformat-Version auf 4.0 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_40 );
 /*N*/           }
@@ -283,7 +283,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/                      SOT_FORMATSTR_ID_STARWRITERGLOB_50 == xRoot->GetFormat() ) &&
 /*N*/                    nFFVersion != SOFFICE_FILEFORMAT_50 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_50,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_50,
 /*?*/                       "Fileformat-Version auf 4.0 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_50 );
 /*N*/           }

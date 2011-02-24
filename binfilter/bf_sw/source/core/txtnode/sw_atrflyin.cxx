@@ -108,7 +108,7 @@ int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*N*/ void SwTxtFlyCnt::CopyFlyFmt( SwDoc* pDoc )
 /*N*/ {
 /*N*/   SwFrmFmt* pFmt = GetFlyCnt().GetFrmFmt();
-/*N*/   ASSERT( pFmt, "von welchem Format soll ich eine Kopie erzeugen?" )
+/*N*/   OSL_ENSURE( pFmt, "von welchem Format soll ich eine Kopie erzeugen?" );
 /*N*/   // Das FlyFrmFmt muss dupliziert werden.
 /*N*/   // In CopyLayoutFmt (siehe doclay.cxx) wird das FlyFrmFmt erzeugt
 /*N*/   // und der Inhalt dupliziert.
@@ -133,7 +133,7 @@ int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*?*/       else
 /*?*/       {
 /*?*/           pPos->nContent.Assign( 0, 0 );
-/*?*/           ASSERT( !this, "CopyFlyFmt: Was fuer ein Anker?" );
+/*?*/           OSL_ENSURE( !this, "CopyFlyFmt: Was fuer ein Anker?" );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -216,12 +216,12 @@ int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*N*/   SwFrmFmt* pFrmFmt = GetFlyCnt().GetFrmFmt();
 /*N*/   if( RES_DRAWFRMFMT == pFrmFmt->Which() )
 /*N*/   {
-/*?*/       ASSERT(  !this, "SwTxtFlyCnt::_GetFlyFrm: DrawInCnt-Baustelle!" );
+/*?*/       OSL_ENSURE(  !this, "SwTxtFlyCnt::_GetFlyFrm: DrawInCnt-Baustelle!" );
 /*?*/       return NULL;
 /*N*/   }
 /*N*/
 /*N*/   SwClientIter aIter( *GetFlyCnt().pFmt );
-/*N*/   ASSERT( pCurrFrm->IsTxtFrm(), "SwTxtFlyCnt::_GetFlyFrm for TxtFrms only." );
+/*N*/   OSL_ENSURE( pCurrFrm->IsTxtFrm(), "SwTxtFlyCnt::_GetFlyFrm for TxtFrms only." );
 /*N*/
 /*N*/   if( aIter.GoStart() )
 /*N*/   {

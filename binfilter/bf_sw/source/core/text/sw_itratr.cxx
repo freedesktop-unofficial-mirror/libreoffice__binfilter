@@ -53,7 +53,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Chg( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     ASSERT( pHt && pFnt, "No attribute of font available for change");
+/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for change");
 /*N*/     if( pRedln && pRedln->IsOn() )
             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
@@ -67,7 +67,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Rst( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     ASSERT( pHt && pFnt, "No attribute of font available for reset");
+/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for reset");
 /*N*/     // get top from stack after removing pHt
 /*N*/     if( pRedln && pRedln->IsOn() )
             {DBG_BF_ASSERT(0, "STRIP");}

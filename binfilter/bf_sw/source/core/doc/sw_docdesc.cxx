@@ -225,7 +225,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::ChgPageDesc( USHORT i, const SwPageDesc &rChged )
 /*N*/ {
-/*N*/   ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
+/*N*/   OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
 /*N*/
 /*N*/   SwPageDesc *pDesc = aPageDescs[i];
 /*N*/
@@ -452,8 +452,8 @@ void lcl_RemoveFrms( SwFrmFmt& rFmt, bool& rbFtnsRemoved )
 
 void SwDoc::DelPageDesc( USHORT i )
 {
-    ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
-    ASSERT( i != 0, "Default Pagedesc loeschen is nicht." );
+    OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
+    OSL_ENSURE( i != 0, "Default Pagedesc loeschen is nicht." );
     if ( i == 0 )
         return;
 
@@ -475,7 +475,7 @@ void SwDoc::DelPageDesc( USHORT i )
                     ((SwFmt*)pMod)->SetAttr( aDfltDesc );
                 else
                 {
-                    ASSERT( !this, "was ist das fuer ein Mofify-Obj?" );
+                    OSL_ENSURE( !this, "was ist das fuer ein Mofify-Obj?" );
                     aPageDescs[0]->Add( pLast );
                 }
             }
@@ -778,7 +778,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 
 /*N*/ void SwDoc::SetPrt( SfxPrinter *pP, sal_Bool bCallPrtDataChanged )
 /*N*/ {
-/*N*/   ASSERT( pP, "Kein Drucker!" );
+/*N*/   OSL_ENSURE( pP, "Kein Drucker!" );
 /*N*/
 /*N*/   const BOOL bInitPageDesc = pPrt == 0;
 /*N*/

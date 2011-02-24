@@ -207,7 +207,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       SectionType eT = pSectNd->GetSection().GetType();
 /*N*/       if( TOX_CONTENT_SECTION == eT )
 /*N*/       {
-/*N*/           ASSERT( pSectNd->GetSection().ISA( SwTOXBaseSection ),
+/*N*/           OSL_ENSURE( pSectNd->GetSection().ISA( SwTOXBaseSection ),
 /*N*/                   "keine TOXBaseSection!" );
 /*N*/           SwTOXBaseSection& rTOXSect = (SwTOXBaseSection&)
 /*N*/                                               pSectNd->GetSection();
@@ -222,10 +222,10 @@ DBG_BF_ASSERT(0, "STRIP");
  --------------------------------------------------*/
 /*N*/ const SwAttrSet& SwDoc::GetTOXBaseAttrSet(const SwTOXBase& rTOXBase) const
 /*N*/ {
-/*N*/   ASSERT( rTOXBase.ISA( SwTOXBaseSection ), "no TOXBaseSection!" );
+/*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ), "no TOXBaseSection!" );
 /*N*/   const SwTOXBaseSection& rTOXSect = (const SwTOXBaseSection&)rTOXBase;
 /*N*/   SwSectionFmt* pFmt = rTOXSect.GetFmt();
-/*N*/   ASSERT( pFmt, "invalid TOXBaseSection!" );
+/*N*/   OSL_ENSURE( pFmt, "invalid TOXBaseSection!" );
 /*N*/   return pFmt->GetAttrSet();
 /*N*/ }
 /* -----------------02.09.99 07:48-------------------
@@ -345,7 +345,7 @@ DBG_BF_ASSERT(0, "STRIP");
  --------------------------------------------------------------------*/
 /*N*/ BOOL SwDoc::SetTOXBaseName(const SwTOXBase& rTOXBase, const String& rName)
 /*N*/ {
-/*N*/   ASSERT( rTOXBase.ISA( SwTOXBaseSection ),
+/*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ),
 /*N*/                   "keine TOXBaseSection!" );
 /*N*/   SwTOXBaseSection* pTOX = (SwTOXBaseSection*)&rTOXBase;
 /*N*/
@@ -448,7 +448,7 @@ DBG_BF_ASSERT(0, "STRIP");
                     SwPosition aPos( *pNd );
                     SwDoc* pDoc = (SwDoc*)pNd->GetDoc();
 #ifdef DBG_UTIL
-                    ASSERT( GetBodyTxtNode( pDoc, aPos, pFrm ),
+                    OSL_ENSURE( GetBodyTxtNode( pDoc, aPos, pFrm ),
                             "wo steht der Absatz" );
 #else
                     GetBodyTxtNode( pDoc, aPos, pFrm );

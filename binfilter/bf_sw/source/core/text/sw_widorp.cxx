@@ -60,7 +60,7 @@ namespace binfilter {
 // Ein Follow, der auf der selben Seite steht, wie sein Master ist nasty.
 /*N*/ inline sal_Bool IsNastyFollow( const SwTxtFrm *pFrm )
 /*N*/ {
-/*N*/   ASSERT( !pFrm->IsFollow() || !pFrm->GetPrev() ||
+/*N*/   OSL_ENSURE( !pFrm->IsFollow() || !pFrm->GetPrev() ||
 /*N*/           ((const SwTxtFrm*)pFrm->GetPrev())->GetFollow() == pFrm,
 /*N*/           "IsNastyFollow: Was ist denn hier los?" );
 /*N*/   return  pFrm->IsFollow() && pFrm->GetPrev();
@@ -362,8 +362,8 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 
 /*N*/ sal_Bool WidowsAndOrphans::FindWidows( SwTxtFrm *pFrm, SwTxtMargin &rLine )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
-/*N*/             "WidowsAndOrphans::FindWidows with swapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
+/*N*/             "WidowsAndOrphans::FindWidows with swapped frame" );
 /*N*/
 /*N*/   if( !nWidLines || !pFrm->IsFollow() )
 /*N*/       return sal_False;
@@ -372,7 +372,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/
 /*N*/   // Wir koennen noch was abzwacken
 /*N*/   SwTxtFrm *pMaster = pFrm->FindMaster();
-/*N*/   ASSERT(pMaster, "+WidowsAndOrphans::FindWidows: Widows in a master?");
+/*N*/   OSL_ENSURE(pMaster, "+WidowsAndOrphans::FindWidows: Widows in a master?");
 /*N*/   if( !pMaster )
 /*N*/       return sal_False;
 /*N*/
@@ -484,7 +484,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/     // IsInside() takes care for itself
 /*N*/
 /*N*/   // Wir erwarten, dass rLine auf der letzten Zeile steht!!
-/*N*/   ASSERT( !rLine.GetNext(), "WouldFit: aLine::Bottom missed!" );
+/*N*/   OSL_ENSURE( !rLine.GetNext(), "WouldFit: aLine::Bottom missed!" );
 /*N*/   MSHORT nLineCnt = rLine.GetLineNr();
 /*N*/
 /*N*/   // Erstmal die Orphansregel und den Initialenwunsch erfuellen ...

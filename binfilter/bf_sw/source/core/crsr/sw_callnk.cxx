@@ -187,7 +187,7 @@ namespace binfilter {
 /*M*/       0 != ( pFlyFrm = pFrm->FindFlyFrm() ) && !rShell.IsTableMode() )
 /*M*/   {
 /*M*/       const SwNodeIndex* pIndex = pFlyFrm->GetFmt()->GetCntnt().GetCntntIdx();
-/*M*/       ASSERT( pIndex, "Fly ohne Cntnt" );
+/*M*/       OSL_ENSURE( pIndex, "Fly ohne Cntnt" );
 /*M*/       const SwNode& rStNd = pIndex->GetNode();
 /*M*/
 /*M*/       if( rStNd.EndOfSectionNode()->StartOfSectionIndex() > nNode ||

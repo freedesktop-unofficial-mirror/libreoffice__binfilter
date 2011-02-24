@@ -65,7 +65,7 @@ namespace binfilter {
  *************************************************************************/
 /*N*/ sal_Bool SwFlyPortion::Format( SwTxtFormatInfo &rInf )
 /*N*/ {
-/*N*/   ASSERT( Fix() >= rInf.X(), "SwFlyPortion::Format: rush hour" );
+/*N*/   OSL_ENSURE( Fix() >= rInf.X(), "SwFlyPortion::Format: rush hour" );
 /*N*/   // 8537: Tabs muessen expandiert werden.
 /*N*/   if( rInf.GetLastTab() )
 /*?*/       ((SwLinePortion*)rInf.GetLastTab())->FormatEOL( rInf );
@@ -100,7 +100,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   if( !Width() )
 /*N*/   {
-/*N*/       ASSERT( Width(), "+SwFlyPortion::Format: a fly is a fly is a fly" );
+/*N*/       OSL_ENSURE( Width(), "+SwFlyPortion::Format: a fly is a fly is a fly" );
 /*N*/       Width(1);
 /*N*/   }
 /*N*/
@@ -234,7 +234,7 @@ namespace binfilter {
 /*N*/ xub_StrLen SwTxtFrm::CalcFlyPos( SwFrmFmt* pSearch )
 /*N*/ {
 /*N*/   SwpHints* pHints = GetTxtNode()->GetpSwpHints();
-/*N*/   ASSERT( pHints, "CalcFlyPos: Why me?" );
+/*N*/   OSL_ENSURE( pHints, "CalcFlyPos: Why me?" );
 /*N*/   if( !pHints )
 /*N*/       return STRING_LEN;
 /*N*/   SwTxtAttr* pFound = NULL;
@@ -248,7 +248,7 @@ namespace binfilter {
 /*N*/               pFound = pHt;
 /*N*/       }
 /*N*/   }
-/*N*/   ASSERT( pHints, "CalcFlyPos: Not Found!" );
+/*N*/   OSL_ENSURE( pHints, "CalcFlyPos: Not Found!" );
 /*N*/   if( !pFound )
 /*N*/       return STRING_LEN;
 /*N*/   return *pFound->GetStart();
@@ -273,7 +273,7 @@ namespace binfilter {
 /*N*/   bMax( sal_False ),
 /*N*/   nAlign( 0 )
 /*N*/ {
-/*N*/   ASSERT( pFly, "SwFlyCntPortion::SwFlyCntPortion: no SwFlyInCntFrm!" );
+/*N*/   OSL_ENSURE( pFly, "SwFlyCntPortion::SwFlyCntPortion: no SwFlyInCntFrm!" );
 /*N*/   nLineLength = 1;
 /*N*/   nFlags |= SETBASE_ULSPACE | SETBASE_INIT;
 /*N*/     SetBase( rFrm, rBase, nLnAscent, nLnDescent, nFlyAsc, nFlyDesc, nFlags );
@@ -289,7 +289,7 @@ namespace binfilter {
 /*N*/   bMax( sal_False ),
 /*N*/   nAlign( 0 )
 /*N*/ {
-/*N*/   ASSERT( pDrawContact, "SwFlyCntPortion::SwFlyCntPortion: no SwDrawContact!" );
+/*N*/   OSL_ENSURE( pDrawContact, "SwFlyCntPortion::SwFlyCntPortion: no SwDrawContact!" );
 /*N*/   if( !pDrawContact->GetAnchor() )
 /*N*/   {
 /*N*/       if( nFlags & SETBASE_QUICK )
@@ -353,7 +353,7 @@ namespace binfilter {
 /*N*/         pSdrObj = GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm );
 /*N*/         if ( !pSdrObj )
 /*N*/         {
-/*N*/             ASSERT( false, "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
+/*N*/             OSL_ENSURE( false, "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
 /*N*/             pSdrObj = GetDrawContact()->GetMaster();
 /*N*/         }
 /*N*/       aBoundRect = pSdrObj->GetBoundRect();
@@ -587,7 +587,7 @@ namespace binfilter {
 /*N*/               aBoundRect.Height( aBoundRect.Height() + rULSpace.GetLower() );
 /*N*/           }
 /*N*/       }
-/*N*/         ASSERT( (GetFlyFrm()->Frm().*fnRect->fnGetHeight)(),
+/*N*/         OSL_ENSURE( (GetFlyFrm()->Frm().*fnRect->fnGetHeight)(),
 /*N*/           "SwFlyCntPortion::SetBase: flyfrm has an invalid height" );
 /*N*/   }
 /*N*/   aRef = aBase;

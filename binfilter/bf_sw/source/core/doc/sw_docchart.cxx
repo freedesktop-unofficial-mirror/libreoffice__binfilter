@@ -120,7 +120,7 @@ namespace binfilter {
 /*?*/           SchDLL::MemChartRemoveRows( *pData, 0, pData->GetRowCount() - (nLines - nRowStt) );
 /*N*/
 /*N*/
-/*N*/       ASSERT( pData->GetRowCount() >= (nLines - nRowStt ) &&
+/*N*/       OSL_ENSURE( pData->GetRowCount() >= (nLines - nRowStt ) &&
 /*N*/               pData->GetColCount() >= (nBoxes - nColStt ),
 /*N*/                   "Die Struktur fuers Chart ist zu klein,\n"
 /*N*/                   "es wird irgendwo in den Speicher geschrieben!" );
@@ -131,7 +131,7 @@ namespace binfilter {
 /*?*/           for( n = nColStt; n < nBoxes; ++n )
 /*?*/           {
 /*?*/               const SwTableBox *pBox = (*aLines[ 0 ])[ n ];
-/*?*/               ASSERT( pBox->GetSttNd(), "Box without SttIdx" );
+/*?*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*?*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*?*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
 /*?*/               if( !pTNd )
@@ -155,7 +155,7 @@ namespace binfilter {
 /*N*/           for( n = nRowStt; n < nLines; ++n )
 /*N*/           {
 /*N*/               const SwTableBox *pBox = (*aLines[ n ])[ 0 ];
-/*N*/               ASSERT( pBox->GetSttNd(), "Box without SttIdx" );
+/*N*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*N*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*N*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
 /*N*/               if( !pTNd )
@@ -185,7 +185,7 @@ namespace binfilter {
 /*N*/           for( USHORT i = nColStt; i < nBoxes; ++i )
 /*N*/           {
 /*N*/               const SwTableBox* pBox = (*aLines[ n ])[ i ];
-/*N*/               ASSERT( pBox->GetSttNd(), "Box without SttIdx" );
+/*N*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*N*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*N*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
 /*N*/               if( !pTNd )
@@ -247,7 +247,7 @@ namespace binfilter {
 /*?*/       if( '>' == sBox.GetChar( sBox.Len()-1  ) ) sBox.Erase( sBox.Len()-1 );
 /*?*/
 /*?*/       xub_StrLen nTrenner = sBox.Search( ':' );
-/*?*/       ASSERT( STRING_NOTFOUND != nTrenner, "keine gueltige Selektion" );
+/*?*/       OSL_ENSURE( STRING_NOTFOUND != nTrenner, "keine gueltige Selektion" );
 /*?*/
 /*?*/       pSttBox = GetTblBox( sBox.Copy( 0, nTrenner ));
 /*?*/       pEndBox = GetTblBox( sBox.Copy( nTrenner+1 ));
@@ -320,7 +320,7 @@ namespace binfilter {
 /*N*/           SchMemChart *pData = SchDLL::GetChartData( rOObj.GetOleRef() );
 /*N*/           bool bDelData = 0 == pData;
 /*N*/
-/*N*/           ASSERT( pData, "UpdateChart ohne irgendwelche Daten?" );
+/*N*/           OSL_ENSURE( pData, "UpdateChart ohne irgendwelche Daten?" );
 /*N*/           pData = rTbl.UpdateData( pData );
 /*N*/
 /*N*/           if( pData->GetColCount() && pData->GetRowCount() )

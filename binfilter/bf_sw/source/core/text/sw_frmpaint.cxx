@@ -73,7 +73,7 @@ sal_Bool bInitFont = sal_True;
 /*N*/ #endif
 /*N*/
 /*N*/   // finger layout
-/*N*/   ASSERT( GetValidPosFlag(), "+SwTxtFrm::Paint: no Calc()" );
+/*N*/   OSL_ENSURE( GetValidPosFlag(), "+SwTxtFrm::Paint: no Calc()" );
 /*N*/
 /*N*/   SwRect aRet( Prt() );
 /*N*/   if ( IsEmpty() || !HasPara() )

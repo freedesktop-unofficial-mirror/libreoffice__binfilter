@@ -1961,7 +1961,7 @@ void SwXFrame::attachToRange(const uno::Reference< XTextRange > & xTextRange)
                 SwFlyFrmFmt* pFmt = 0;
 
                 pFmt = pDoc->Insert(aPam, &xIPObj, &aFrmSet );
-                ASSERT( pFmt, "Doc->Insert(notxt) failed." );
+                OSL_ENSURE( pFmt, "Doc->Insert(notxt) failed." );
 
                 pFmt->Add(this);
                 if(sName.Len())
@@ -2809,7 +2809,7 @@ sal_uInt16 SwXOLEListener::FindEntry( const EventObject& rEvent,SwOLENode** ppNd
         SwFrmFmt* pFmt = (SwFrmFmt*)pDepend->GetRegisteredIn();
         if( !pFmt )
         {
-            ASSERT( pFmt, "wo ist das Format geblieben?" );
+            OSL_ENSURE( pFmt, "wo ist das Format geblieben?" );
             aFmts.Remove( n, 1 );
             delete pDepend;
             --n;

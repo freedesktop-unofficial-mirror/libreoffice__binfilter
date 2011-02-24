@@ -162,7 +162,7 @@ namespace binfilter {
 /*N*/           //
 /*N*/           SwFmtHeader aHeaderFmt(rMaster.GetHeader());
 /*N*/           SwFrmFmt *pHeaderFmt = aHeaderFmt.GetHeaderFmt();
-/*N*/           ASSERT(pHeaderFmt != 0, "kein HeaderFormat");
+/*N*/           OSL_ENSURE(pHeaderFmt != 0, "kein HeaderFormat");
 /*N*/
 /*N*/           ::binfilter::FillHdFt(pHeaderFmt, rHeaderSet);
 /*N*/
@@ -198,7 +198,7 @@ namespace binfilter {
 /*N*/           //
 /*N*/           SwFmtFooter aFooterFmt(rMaster.GetFooter());
 /*N*/           SwFrmFmt *pFooterFmt = aFooterFmt.GetFooterFmt();
-/*N*/           ASSERT(pFooterFmt != 0, "kein FooterFormat");
+/*N*/           OSL_ENSURE(pFooterFmt != 0, "kein FooterFormat");
 /*N*/
 /*N*/           ::binfilter::FillHdFt(pFooterFmt, rFooterSet);
 /*N*/

@@ -328,7 +328,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ ( USHORT nId, String* pDesc, SfxItemPresentation ePres,
 /*N*/   SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, BOOL bRegardLanguage)
 /*N*/ {
-/*N*/   ASSERT(
+/*N*/   OSL_ENSURE(
 /*N*/       (RES_POOLCOLL_TEXT_BEGIN <= nId && nId < RES_POOLCOLL_TEXT_END) ||
 /*N*/       (RES_POOLCOLL_LISTS_BEGIN <= nId && nId < RES_POOLCOLL_LISTS_END) ||
 /*N*/       (RES_POOLCOLL_EXTRA_BEGIN <= nId && nId < RES_POOLCOLL_EXTRA_END) ||
@@ -367,7 +367,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   else if (RES_POOLCOLL_HTML_BEGIN <= nId && nId < RES_POOLCOLL_HTML_END)
 /*N*/       nResId = RC_POOLCOLL_HTML_BEGIN - RES_POOLCOLL_HTML_BEGIN;
 /*N*/
-/*N*/   ASSERT( nResId, "Ungueltige Pool-ID" );
+/*N*/   OSL_ENSURE( nResId, "Ungueltige Pool-ID" );
 /*N*/   if( !nResId )
 /*N*/       return GetTxtCollFromPool( RES_POOLCOLL_STANDARD, pDesc, ePres,
 /*N*/                                   eCoreMetric, ePresMetric );
@@ -1125,7 +1125,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           //          -> returne das erste
 /*M*/           if( RES_POOLCHR_BEGIN > nId || nId >= RES_POOLCHR_END )
 /*M*/           {
-/*M*/               ASSERT( !this, "ungueltige Id" );
+/*M*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*M*/               nId = RES_POOLCHR_BEGIN;
 /*M*/           }
 /*M*/       }
@@ -1144,7 +1144,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           //          -> returne das erste
 /*M*/           if( RES_POOLFRM_BEGIN > nId || nId >= RES_POOLFRM_END )
 /*M*/           {
-/*M*/               ASSERT( !this, "ungueltige Id" );
+/*M*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*M*/               nId = RES_POOLFRM_BEGIN;
 /*M*/           }
 /*M*/       }
@@ -1152,10 +1152,10 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/
 /*M*/   default:
 /*M*/       // Fehlerfall, unbekanntes Format
-/*M*/       ASSERT( nId, "ungueltige Id" );
+/*M*/       OSL_ENSURE( nId, "ungueltige Id" );
 /*M*/       return 0;
 /*M*/   }
-/*M*/   ASSERT( nRCId, "ungueltige Id" );
+/*M*/   OSL_ENSURE( nRCId, "ungueltige Id" );
 /*M*/
 /*M*/   while( nArrCnt-- )
 /*M*/       for( USHORT n = 0; n < (*pArray[nArrCnt]).Count(); ++n )
@@ -1410,7 +1410,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
 /*N*/     BOOL bRegardLanguage)
 /*N*/ {
-/*N*/   ASSERT( RES_POOLPAGE_BEGIN <= nId && nId < RES_POOLPAGE_END,
+/*N*/   OSL_ENSURE( RES_POOLPAGE_BEGIN <= nId && nId < RES_POOLPAGE_END,
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwPageDesc *pNewPgDsc;
@@ -1427,7 +1427,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   // Fehlerfall: unbekannte Poolvorlage
 /*N*/   if( RES_POOLPAGE_BEGIN > nId ||  nId >= RES_POOLPAGE_END )
 /*N*/   {
-/*?*/       ASSERT( !this, "ungueltige Id" );
+/*?*/       OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/       nId = RES_POOLPAGE_BEGIN;
 /*N*/   }
 /*N*/
@@ -1579,7 +1579,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ SwNumRule* SwDoc::GetNumRuleFromPool( USHORT nId, String* pDesc,
 /*N*/   SfxItemPresentation /*ePres*/, SfxMapUnit /*eCoreMetric*/, SfxMapUnit /*ePresMetric*/ )
 /*N*/ {
-/*N*/   ASSERT( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
+/*N*/   OSL_ENSURE( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwNumRule* pNewRule;
@@ -1595,7 +1595,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // Fehlerfall: unbekannte Poolvorlage
 /*N*/   if( RES_POOLNUMRULE_BEGIN > nId ||  nId >= RES_POOLNUMRULE_END )
 /*N*/   {
-/*?*/       ASSERT( !this, "ungueltige Id" );
+/*?*/       OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/       nId = RES_POOLNUMRULE_BEGIN;
 /*N*/   }
 
@@ -2061,7 +2061,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // dann fuege neu ein
 USHORT SwDoc::SetDocPattern( const String& rPatternName )
 {
-    ASSERT( rPatternName.Len(), "kein Dokument-Vorlagenname" );
+    OSL_ENSURE( rPatternName.Len(), "kein Dokument-Vorlagenname" );
 
     USHORT nNewPos = aPatternNms.Count();
     for( USHORT n = 0; n < aPatternNms.Count(); ++n )

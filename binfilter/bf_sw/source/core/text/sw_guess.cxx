@@ -80,10 +80,10 @@ using rtl::OUString;
 /*M*/   if( !rInf.GetLen() || !rInf.GetTxt().Len() )
 /*M*/       return sal_False;
 /*M*/
-/*M*/     ASSERT( rInf.GetIdx() < rInf.GetTxt().Len(),
+/*M*/     OSL_ENSURE( rInf.GetIdx() < rInf.GetTxt().Len(),
 /*M*/           "+SwTxtGuess::Guess: invalid SwTxtFormatInfo" );
 /*M*/
-/*M*/     ASSERT( nPorHeight, "+SwTxtGuess::Guess: no height" );
+/*M*/     OSL_ENSURE( nPorHeight, "+SwTxtGuess::Guess: no height" );
 /*M*/
 /*M*/     USHORT nMinSize;
 /*M*/     USHORT nMaxSizeDiff;
@@ -179,7 +179,7 @@ using rtl::OUString;
 /*M*/         {
 /*M*/             rInf.GetTxtSize( &rSI, rInf.GetIdx(), nCutPos - rInf.GetIdx(),
 /*M*/                              nMaxComp, nMinSize, nMaxSizeDiff );
-/*M*/             ASSERT( nMinSize <= nLineWidth, "What a Guess!!!" );
+/*M*/             OSL_ENSURE( nMinSize <= nLineWidth, "What a Guess!!!" );
 /*M*/         }
 /*M*/ #endif
 /*M*/     }
@@ -350,7 +350,7 @@ using rtl::OUString;
 /*N*/             {
 /*N*/                 USHORT nScript = pBreakIt->GetRealScriptOfText( rInf.GetTxt(),
 /*N*/                                                                 nLangIndex );
-/*N*/                 ASSERT( nScript, "Script is not between 1 and 4" );
+/*N*/                 OSL_ENSURE( nScript, "Script is not between 1 and 4" );
 /*N*/
 /*N*/                 // compare current script with script from last "real" character
 /*N*/                 if ( nScript - 1 != rInf.GetFont()->GetActual() )
@@ -436,7 +436,7 @@ using rtl::OUString;
 /*M*/       }
 /*M*/         else if ( !bHyph && nBreakPos >= rInf.GetLineStart() )
 /*M*/       {
-/*M*/             ASSERT( nBreakPos != STRING_LEN, "we should have found a break pos" );
+/*M*/             OSL_ENSURE( nBreakPos != STRING_LEN, "we should have found a break pos" );
 /*M*/
 /*M*/           // found break position within line
 /*M*/           xHyphWord = NULL;
@@ -472,7 +472,7 @@ using rtl::OUString;
 /*M*/           // no line break found, setting nBreakPos to STRING_LEN
 /*M*/           // causes a break cut
 /*M*/           nBreakPos = STRING_LEN;
-/*M*/           ASSERT( nCutPos >= rInf.GetIdx(), "Deep cut" );
+/*M*/           OSL_ENSURE( nCutPos >= rInf.GetIdx(), "Deep cut" );
 /*M*/           nPorLen = nCutPos - rInf.GetIdx();
 /*M*/       }
 /*M*/
@@ -481,7 +481,7 @@ using rtl::OUString;
 /*M*/             const xub_StrLen nHangingLen = nBreakPos - nCutPos;
 /*M*/             SwPosSize aTmpSize = rInf.GetTxtSize( &rSI, nCutPos,
 /*M*/                                                   nHangingLen, 0 );
-/*M*/           ASSERT( !pHanging, "A hanging portion is hanging around" );
+/*M*/           OSL_ENSURE( !pHanging, "A hanging portion is hanging around" );
 /*M*/           pHanging = new SwHangingPortion( aTmpSize );
 /*M*/             pHanging->SetLen( nHangingLen );
 /*M*/             nPorLen = nCutPos - rInf.GetIdx();
@@ -498,11 +498,11 @@ using rtl::OUString;
 /*M*/                 nBreakPos = nOldIdx - 1;
 /*M*/             else if ( STRING_LEN != nBreakPos )
 /*M*/             {
-/*M*/                 ASSERT( nBreakPos >= nFieldDiff, "I've got field trouble!" );
+/*M*/                 OSL_ENSURE( nBreakPos >= nFieldDiff, "I've got field trouble!" );
 /*M*/                 nBreakPos -= nFieldDiff;
 /*M*/             }
 /*M*/
-/*M*/             ASSERT( nCutPos >= rInf.GetIdx() && nCutPos >= nFieldDiff,
+/*M*/             OSL_ENSURE( nCutPos >= rInf.GetIdx() && nCutPos >= nFieldDiff,
 /*M*/                     "I've got field trouble, part2!" );
 /*M*/             nCutPos -= nFieldDiff;
 /*M*/
@@ -512,7 +512,7 @@ using rtl::OUString;
 /*M*/             rInf.SetIdx( nOldIdx );
 /*M*/
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/             ASSERT( aDebugString == rInf.GetTxt(),
+/*M*/             OSL_ENSURE( aDebugString == rInf.GetTxt(),
 /*M*/                     "Somebody, somebody, somebody put something in my string" );
 /*M*/ #endif
 /*M*/         }
@@ -565,7 +565,7 @@ using rtl::OUString;
 /*N*/
 /*N*/   // check, if word has alternative spelling
 /*N*/   Reference< XHyphenator >  xHyph( ::binfilter::GetHyphenator() );
-/*N*/   ASSERT( xHyph.is(), "Hyphenator is missing");
+/*N*/   OSL_ENSURE( xHyph.is(), "Hyphenator is missing");
 /*N*/   //! subtract 1 since the UNO-interface is 0 based
 /*N*/   xHyphWord = xHyph->queryAlternativeSpelling( OUString(aTxt),
 /*N*/                       pBreakIt->GetLocale( rInf.GetFont()->GetLanguage() ),

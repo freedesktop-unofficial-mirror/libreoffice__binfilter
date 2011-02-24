@@ -158,7 +158,7 @@ BOOL SwSwgReader::CheckPasswd( const String& rPass )
 
  void SwSwgReader::Error( ULONG nCode )
  {
-    ASSERT( !this, "Formatfehler in Datei entdeckt" );
+    OSL_ENSURE( !this, "Formatfehler in Datei entdeckt" );
     nErrno = nCode ? (nCode | ERROR_SW_READ_BASE ) : ERR_SWG_FILE_FORMAT_ERROR;
     r.setbad();
  }
@@ -520,7 +520,7 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
                                         {
                                             // dann am Node setzen!!
                                             pCNd->SetAttr( SwFmtPageDesc( pDesc ) );
-                                            ASSERT( !this, "LayoutPageDesc am Doc setzen" );
+                                            OSL_ENSURE( !this, "LayoutPageDesc am Doc setzen" );
                                         }
                                     }
                                 }

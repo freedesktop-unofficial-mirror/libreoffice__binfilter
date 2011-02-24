@@ -130,7 +130,7 @@ namespace binfilter {
 /*M*/
 /*M*/   const SwFmtCntnt &rCnt = pFmt->GetCntnt();
 /*M*/
-/*M*/   ASSERT( rCnt.GetCntntIdx(), "Kein Inhalt fuer Header." );
+/*M*/   OSL_ENSURE( rCnt.GetCntntIdx(), "Kein Inhalt fuer Header." );
 /*M*/
 /*M*/   //Fuer Header Footer die Objekte gleich erzeugen lassen.
 /*M*/   bool bOld = bObjsDirect;
@@ -395,7 +395,7 @@ namespace binfilter {
 
 /*M*/ void SwHeadFootFrm::Format(const SwBorderAttrs * pAttrs)
 /*M*/ {
-/*M*/   ASSERT( pAttrs, "SwFooterFrm::Format, pAttrs ist 0." );
+/*M*/   OSL_ENSURE( pAttrs, "SwFooterFrm::Format, pAttrs ist 0." );
 /*M*/
 /*M*/   if ( bValidPrtArea && bValidSize )
 /*M*/       return;
@@ -436,7 +436,7 @@ namespace binfilter {
 /*M*/
 /*M*/         SwBorderAttrAccess * pAccess =
 /*M*/             new SwBorderAttrAccess( SwFrm::GetCache(), this );
-/*M*/         ASSERT(pAccess, "no border attributes");
+/*M*/         OSL_ENSURE(pAccess, "no border attributes");
 /*M*/
 /*M*/         SwBorderAttrs * pAttrs = pAccess->Get();
 /*M*/
@@ -569,7 +569,7 @@ namespace binfilter {
 /*M*/
 /*M*/             SwBorderAttrAccess * pAccess =
 /*M*/                 new SwBorderAttrAccess( SwFrm::GetCache(), this );
-/*M*/             ASSERT(pAccess, "no border attributes");
+/*M*/             OSL_ENSURE(pAccess, "no border attributes");
 /*M*/
 /*M*/             SwBorderAttrs * pAttrs = pAccess->Get();
 /*M*/
@@ -639,7 +639,7 @@ namespace binfilter {
 /*M*/ BOOL SwHeadFootFrm::GetEatSpacing() const
 /*M*/ {
 /*M*/     const SwFrmFmt * pFmt = GetFmt();
-/*M*/     ASSERT(pFmt, "SwHeadFootFrm: no format?");
+/*M*/     OSL_ENSURE(pFmt, "SwHeadFootFrm: no format?");
 /*M*/
 /*M*/     if (pFmt->GetHeaderAndFooterEatSpacing().GetValue())
 /*M*/         return TRUE;
@@ -691,7 +691,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bOn && rH.IsActive() )
 /*N*/   {   //Header einsetzen, vorher entfernen falls vorhanden.
-/*N*/       ASSERT( rH.GetHeaderFmt(), "FrmFmt fuer Header nicht gefunden." );
+/*N*/       OSL_ENSURE( rH.GetHeaderFmt(), "FrmFmt fuer Header nicht gefunden." );
 /*N*/
 /*N*/       if ( pLay->GetFmt() == (SwFrmFmt*)rH.GetHeaderFmt() )
 /*N*/           return; //Der Footer ist bereits der richtige
@@ -703,7 +703,7 @@ namespace binfilter {
 /*N*/           pDel->Cut();
 /*N*/           delete pDel;
 /*N*/       }
-/*N*/       ASSERT( pLay, "Wohin mit dem Header?" );
+/*N*/       OSL_ENSURE( pLay, "Wohin mit dem Header?" );
 /*N*/       SwHeaderFrm *pH = new SwHeaderFrm( (SwFrmFmt*)rH.GetHeaderFmt() );
 /*N*/       pH->Paste( this, pLay );
 /*N*/       if ( GetUpper() )
@@ -740,7 +740,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bOn && rF.IsActive() )
 /*N*/   {   //Footer einsetzen, vorher entfernen falls vorhanden.
-/*N*/       ASSERT( rF.GetFooterFmt(), "FrmFmt fuer Footer nicht gefunden." );
+/*N*/       OSL_ENSURE( rF.GetFooterFmt(), "FrmFmt fuer Footer nicht gefunden." );
 /*N*/
 /*N*/       if ( pLay->GetFmt() == (SwFrmFmt*)rF.GetFooterFmt() )
 /*?*/           return; //Der Footer ist bereits der richtige.

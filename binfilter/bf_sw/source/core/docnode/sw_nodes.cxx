@@ -75,7 +75,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   bInNodesDel = bInDelUpdOutl = bInDelUpdNum = FALSE;
 /*N*/
-/*N*/   ASSERT( pMyDoc, "in welchem Doc stehe ich denn?" );
+/*N*/   OSL_ENSURE( pMyDoc, "in welchem Doc stehe ich denn?" );
 /*N*/
 /*N*/   ULONG nPos = 0;
 /*N*/   SwStartNode* pSttNd = new SwStartNode( *this, nPos++ );
@@ -854,11 +854,11 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       case ND_SECTIONDUMMY:
-                ASSERT( FALSE, "wie kommt diser Node ins Nodes-Array??" );
+                OSL_ENSURE( FALSE, "wie kommt diser Node ins Nodes-Array??" );
             break;
 
 /*?*/       default:
-/*?*/           ASSERT( FALSE, "weder Start-/End-/Content-Node, unbekannter Typ" );
+/*?*/           OSL_ENSURE( FALSE, "weder Start-/End-/Content-Node, unbekannter Typ" );
 /*N*/       }
 /*N*/       aRg.aStart++;
 /*N*/   }

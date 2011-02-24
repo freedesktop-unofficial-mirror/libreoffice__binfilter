@@ -326,7 +326,7 @@ SwXMLTableRow_Impl::SwXMLTableRow_Impl( const OUString& rStyleName,
 {
     if( pDfltCellStyleName  )
         aDfltCellStyleName = *pDfltCellStyleName;
-    ASSERT( nCells <= USHRT_MAX,
+    OSL_ENSURE( nCells <= USHRT_MAX,
             "SwXMLTableRow_Impl::SwXMLTableRow_Impl: too many cells" );
     if( nCells > USHRT_MAX )
         nCells = USHRT_MAX;
@@ -339,14 +339,14 @@ SwXMLTableRow_Impl::SwXMLTableRow_Impl( const OUString& rStyleName,
 
 inline SwXMLTableCell_Impl *SwXMLTableRow_Impl::GetCell( sal_uInt32 nCol ) const
 {
-    ASSERT( nCol < USHRT_MAX,
+    OSL_ENSURE( nCol < USHRT_MAX,
             "SwXMLTableRow_Impl::GetCell: column number is to big" );
     return aCells[(sal_uInt16)nCol];
 }
 
 void SwXMLTableRow_Impl::Expand( sal_uInt32 nCells, sal_Bool bOneCell )
 {
-    ASSERT( nCells <= USHRT_MAX,
+    OSL_ENSURE( nCells <= USHRT_MAX,
             "SwXMLTableRow_Impl::Expand: too many cells" );
     if( nCells > USHRT_MAX )
         nCells = USHRT_MAX;
@@ -360,7 +360,7 @@ void SwXMLTableRow_Impl::Expand( sal_uInt32 nCells, sal_Bool bOneCell )
         nColSpan--;
     }
 
-    ASSERT( nCells<=aCells.Count(),
+    OSL_ENSURE( nCells<=aCells.Count(),
             "SwXMLTableRow_Impl::Expand: wrong number of cells" );
 }
 
@@ -539,7 +539,7 @@ inline void SwXMLTableCellContext_Impl::_InsertContent()
 
 inline void SwXMLTableCellContext_Impl::InsertContent()
 {
-    ASSERT( !HasContent(), "content already there" );
+    OSL_ENSURE( !HasContent(), "content already there" );
     _InsertContent();
     bHasTextContent = sal_True;
 }
@@ -609,11 +609,11 @@ void SwXMLTableCellContext_Impl::EndElement()
 
                 // Until we have an API for copying we have to use the core.
                 Reference<XUnoTunnel> xSrcCrsrTunnel( xSrcTxtCursor, UNO_QUERY);
-                ASSERT( xSrcCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+                OSL_ENSURE( xSrcCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
                 OTextCursorHelper *pSrcTxtCrsr =
                         (OTextCursorHelper*)xSrcCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-                ASSERT( pSrcTxtCrsr, "SwXTextCursor missing" );
+                OSL_ENSURE( pSrcTxtCrsr, "SwXTextCursor missing" );
                 SwDoc *pDoc = pSrcTxtCrsr->GetDoc();
                 const SwPaM *pSrcPaM = pSrcTxtCrsr->GetPaM();
 
@@ -623,12 +623,12 @@ void SwXMLTableCellContext_Impl::EndElement()
 
                     Reference<XUnoTunnel> xDstCrsrTunnel(
                         GetImport().GetTextImport()->GetCursor(), UNO_QUERY);
-                    ASSERT( xDstCrsrTunnel.is(),
+                    OSL_ENSURE( xDstCrsrTunnel.is(),
                             "missing XUnoTunnel for Cursor" );
                     OTextCursorHelper *pDstTxtCrsr =
                             (OTextCursorHelper*)xDstCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-                    ASSERT( pDstTxtCrsr, "SwXTextCursor missing" );
+                    OSL_ENSURE( pDstTxtCrsr, "SwXTextCursor missing" );
                     SwPaM aSrcPaM( *pSrcPaM->GetPoint(),
                                    *pSrcPaM->GetMark() );
                     SwPosition aDstPos( *pDstTxtCrsr->GetPaM()->GetPoint() );
@@ -1246,11 +1246,11 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     SwXMLImport& rSwImport = GetSwImport();
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     String sTblName;
@@ -1271,13 +1271,13 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     const SwXTextTable *pXTable = 0;
     Reference<XMultiServiceFactory> xFactory( GetImport().GetModel(),
                                               UNO_QUERY );
-    ASSERT( xFactory.is(), "factory missing" );
+    OSL_ENSURE( xFactory.is(), "factory missing" );
     if( xFactory.is() )
     {
         OUString sService(
                 RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextTable" ) );
         Reference<XInterface> xIfc = xFactory->createInstance( sService );
-        ASSERT( xIfc.is(), "Couldn't create a table" );
+        OSL_ENSURE( xIfc.is(), "Couldn't create a table" );
 
         if( xIfc.is() )
             xTable = Reference< XTextTable > ( xIfc, UNO_QUERY );
@@ -1305,7 +1305,7 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
         {
             pXTable = (SwXTextTable*)xTableTunnel->getSomething(
                                             SwXTextTable::getUnoTunnelId() );
-            ASSERT( pXTable, "SwXTextTable missing" );
+            OSL_ENSURE( pXTable, "SwXTextTable missing" );
         }
 
         Reference < XCellRange > xCellRange( xTable, UNO_QUERY );
@@ -1320,11 +1320,11 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     if( pXTable )
     {
         SwFrmFmt *pTblFrmFmt = pXTable->GetFrmFmt();
-        ASSERT( pTblFrmFmt, "table format missing" );
+        OSL_ENSURE( pTblFrmFmt, "table format missing" );
         SwTable *pTbl = SwTable::FindTable( pTblFrmFmt );
-        ASSERT( pTbl, "table missing" );
+        OSL_ENSURE( pTbl, "table missing" );
         pTableNode = pTbl->GetTableNode();
-        ASSERT( pTableNode, "table node missing" );
+        OSL_ENSURE( pTableNode, "table node missing" );
 
         pTblFrmFmt->SetName( sTblName );
 
@@ -1431,7 +1431,7 @@ SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nPrefix,
 void SwXMLTableContext::InsertColumn( sal_Int32 nWidth, sal_Bool bRelWidth,
                                          const OUString *pDfltCellStyleName )
 {
-    ASSERT( nCurCol < USHRT_MAX,
+    OSL_ENSURE( nCurCol < USHRT_MAX,
             "SwXMLTableContext::InsertColumn: no space left" );
     if( nCurCol >= USHRT_MAX )
         return;
@@ -1492,17 +1492,17 @@ void SwXMLTableContext::InsertCell( const OUString& rStyleName,
                                     sal_Bool bHasValue,
                                     double fValue)
 {
-    ASSERT( nCurCol < GetColumnCount(),
+    OSL_ENSURE( nCurCol < GetColumnCount(),
             "SwXMLTableContext::InsertCell: row is full" );
-    ASSERT( nCurRow < USHRT_MAX,
+    OSL_ENSURE( nCurRow < USHRT_MAX,
             "SwXMLTableContext::InsertCell: table is full" );
     if( nCurCol >= USHRT_MAX || nCurRow > USHRT_MAX )
         return;
 
-    ASSERT( nRowSpan >=1UL, "SwXMLTableContext::InsertCell: row span is 0" );
+    OSL_ENSURE( nRowSpan >=1UL, "SwXMLTableContext::InsertCell: row span is 0" );
     if( 0UL == nRowSpan )
         nRowSpan = 1UL;
-    ASSERT( nColSpan >=1UL, "SwXMLTableContext::InsertCell: col span is 0" );
+    OSL_ENSURE( nColSpan >=1UL, "SwXMLTableContext::InsertCell: col span is 0" );
     if( 0UL == nColSpan )
         nColSpan = 1UL;
 
@@ -1594,7 +1594,7 @@ void SwXMLTableContext::InsertRow( const OUString& rStyleName,
                                    const OUString& rDfltCellStyleName,
                                    sal_Bool bInHead )
 {
-    ASSERT( nCurRow < USHRT_MAX,
+    OSL_ENSURE( nCurRow < USHRT_MAX,
             "SwXMLTableContext::InsertRow: no space left" );
     if( nCurRow >= USHRT_MAX )
         return;
@@ -2110,7 +2110,7 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
         sal_Bool bSplitted = sal_False;
         while( !bSplitted )
         {
-            ASSERT( nCol < nRightCol, "Zu weit gelaufen" );
+            OSL_ENSURE( nCol < nRightCol, "Zu weit gelaufen" );
 
             // Kann hinter der aktuellen HTML-Tabellen-Spalte gesplittet
             // werden? Wenn ja, koennte der enstehende Bereich auch noch
@@ -2147,15 +2147,15 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
 #ifdef DBG_UTIL
             if( nCol == nRightCol-1UL )
             {
-                ASSERT( bSplit, "Split-Flag falsch" );
-                ASSERT( !bHoriSplitMayContinue,
+                OSL_ENSURE( bSplit, "Split-Flag falsch" );
+                OSL_ENSURE( !bHoriSplitMayContinue,
                         "HoriSplitMayContinue-Flag falsch" );
                 SwXMLTableCell_Impl *pCell = GetCell( nTopRow, nStartCol );
-                ASSERT( pCell->GetRowSpan() != (nBottomRow-nTopRow) ||
+                OSL_ENSURE( pCell->GetRowSpan() != (nBottomRow-nTopRow) ||
                         !bHoriSplitPossible, "HoriSplitPossible-Flag falsch" );
             }
 #endif
-            ASSERT( !bHoriSplitMayContinue || bHoriSplitPossible,
+            OSL_ENSURE( !bHoriSplitMayContinue || bHoriSplitPossible,
                     "bHoriSplitMayContinue, aber nicht bHoriSplitPossible" );
 
             if( bSplit )
@@ -2195,9 +2195,9 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
                     // the split at the last split position we remembered.
                     if( bHoriSplitPossible || nSplitCol > nCol+1 )
                     {
-                        ASSERT( !bHoriSplitMayContinue,
+                        OSL_ENSURE( !bHoriSplitMayContinue,
                                 "bHoriSplitMayContinue==sal_True" );
-                        ASSERT( bHoriSplitPossible || nSplitCol == nRightCol,
+                        OSL_ENSURE( bHoriSplitPossible || nSplitCol == nRightCol,
                                 "bHoriSplitPossible-Flag sollte gesetzt sein" );
 
                         nSplitCol = nCol + 1UL;
@@ -2665,11 +2665,11 @@ const SwStartNode *SwXMLTableContext::InsertTableSection(
     const SwStartNode *pStNd;
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
             (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
 
     if( bFirstSection )
     {

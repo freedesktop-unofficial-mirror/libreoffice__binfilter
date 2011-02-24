@@ -81,7 +81,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ sal_Bool SwTxtPortion::CreateHyphen( SwTxtFormatInfo &rInf, SwTxtGuess &rGuess )
 /*N*/ {
-/*N*/   ASSERT( !pPortion, "SwTxtPortion::Hyphenate: another portion, another planet..." );
+/*N*/   OSL_ENSURE( !pPortion, "SwTxtPortion::Hyphenate: another portion, another planet..." );
 /*N*/   if( rInf.IsHyphForbud() ||
 /*N*/       pPortion || // robust
 /*N*/       // Mehrzeilige Felder duerfen nicht interaktiv getrennt werden.

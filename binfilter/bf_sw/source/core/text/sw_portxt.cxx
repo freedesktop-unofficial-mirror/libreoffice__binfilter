@@ -301,7 +301,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*M*/           // this should usually be true but
 /*M*/           aGuess.AlternativeSpelling( rInf, rInf.GetSoftHyphPos() - 1 );
 /*M*/           bFull = CreateHyphen( rInf, aGuess );
-/*M*/             ASSERT( bFull, "Problem with hyphenation!!!" );
+/*M*/             OSL_ENSURE( bFull, "Problem with hyphenation!!!" );
 /*M*/       }
 /*M*/       rInf.ChgHyph( bHyph );
 /*M*/       rInf.SetSoftHyphPos( 0 );
@@ -392,7 +392,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*M*/
 /*M*/             SetLen( aGuess.BreakPos() - rInf.GetIdx() );
 /*M*/
-/*M*/             ASSERT( aGuess.BreakStart() >= aGuess.FieldDiff(),
+/*M*/             OSL_ENSURE( aGuess.BreakStart() >= aGuess.FieldDiff(),
 /*M*/                     "Trouble with expanded field portions during line break" );
 /*M*/             const xub_StrLen nRealStart = aGuess.BreakStart() - aGuess.FieldDiff();
 /*N*/             if( aGuess.BreakPos() < nRealStart && !InExpGrp() )
@@ -448,9 +448,9 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( rInf.RealWidth() || (rInf.X() == rInf.Width()),
+/*N*/   OSL_ENSURE( rInf.RealWidth() || (rInf.X() == rInf.Width()),
 /*N*/       "SwTxtPortion::Format: missing real width" );
-/*N*/   ASSERT( Height(), "SwTxtPortion::Format: missing height" );
+/*N*/   OSL_ENSURE( Height(), "SwTxtPortion::Format: missing height" );
 /*N*/
 /*N*/   return _Format( rInf );
 /*N*/ }

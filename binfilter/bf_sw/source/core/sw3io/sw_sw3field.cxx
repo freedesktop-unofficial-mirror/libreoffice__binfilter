@@ -740,7 +740,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         pFldType->SetSortByDocument( (cFlags & 0x20) != 0);
     }
 
-    ASSERT( !rIo.pAuthorityMap, "authority map is already existing" );
+    OSL_ENSURE( !rIo.pAuthorityMap, "authority map is already existing" );
     if( nCount > 0 )
         rIo.pAuthorityMap = new SvUShorts;
 
@@ -762,7 +762,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         }
 
         USHORT nNewPos = pFldType->AppendField( aEntry );
-        ASSERT( !rIo.bNormal || rIo.bInsert || nNewPos == i,
+        OSL_ENSURE( !rIo.bNormal || rIo.bInsert || nNewPos == i,
                 "unexpected authority entry position" );
         rIo.pAuthorityMap->Insert( nNewPos, rIo.pAuthorityMap->Count() );
 
@@ -1831,7 +1831,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/
 /*N*/   if( cFlags & 0x20 )
 /*N*/   {
-/*N*/       ASSERT( GSE_SEQ & ((SwSetExpFieldType *)pType)->GetType(),
+/*N*/       OSL_ENSURE( GSE_SEQ & ((SwSetExpFieldType *)pType)->GetType(),
 /*N*/               "Kein Sequence-Number-Feld" );
 /*N*/
 /*N*/       pFld->SetValue( nSeqVal );
@@ -2199,7 +2199,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
 /*N*/ SwField *lcl_sw3io_InINetField31( Sw3IoImp& rIo, SwFieldType *, USHORT, UINT32& )
 /*N*/ {
-/*N*/   ASSERT( !(rIo.pFmtINetFmt || rIo.aINetFldText.Len()),
+/*N*/   OSL_ENSURE( !(rIo.pFmtINetFmt || rIo.aINetFldText.Len()),
 /*N*/           "Da sind noch Rest-Infos vom INet-Feld!" );
 /*N*/
 /*N*/   String aURL, aText;
@@ -2300,7 +2300,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
 /*N*/ void lcl_sw3io_OutScriptField40( Sw3IoImp& rIo, SwField* pFld )
 /*N*/ {
-        ASSERT( !rIo.IsSw31Export(),
+        OSL_ENSURE( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
 
         ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
@@ -2320,7 +2320,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
 /*N*/ void lcl_sw3io_OutScriptField( Sw3IoImp& rIo, SwField* pFld )
 /*N*/ {
-        ASSERT( !rIo.IsSw31Export(),
+        OSL_ENSURE( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
 
         BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
@@ -2353,7 +2353,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
         SwField *pFld = 0;
         SwFieldType* pType = rIo.pDoc->GetFldType( RES_AUTHORITY, aEmptyStr );
-        ASSERT( pType, "missing authority field type" );
+        OSL_ENSURE( pType, "missing authority field type" );
         if( pType )
         {
             long nHandle = ((SwAuthorityFieldType *)pType)->GetHandle( nPos );
@@ -2469,10 +2469,10 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 
 /*N*/ SwField* Sw3IoImp::InField()
 /*N*/ {
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aInFieldFnTbl) / sizeof(Sw3InFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aInFieldFnTbl40) / sizeof(Sw3InFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
 /*N*/
@@ -2521,7 +2521,7 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/   Sw3InFieldFn pFn =
 /*N*/       (nWhich < RES_FIELDS_END) ? pFnTbl[nWhich-RES_FIELDS_BEGIN] : 0;
 /*N*/
-/*N*/   ASSERT( pFn, "unbekannte Feld-Which-Id" );
+/*N*/   OSL_ENSURE( pFn, "unbekannte Feld-Which-Id" );
 /*N*/   if( pFn )
 /*N*/       pFld = (*pFn)( *this, pType, nSubType, nFldFmt );
 /*N*/   else
@@ -2699,15 +2699,15 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 
 /*N*/ void Sw3IoImp::OutField( const SwFmtFld& rAttr )
 /*N*/ {
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aOutFieldFnTbl) / sizeof(Sw3OutFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aOutFieldFnTbl40) / sizeof(Sw3OutFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
 /*N*/
 /*N*/   const SwField* pFld = rAttr.GetFld();
-/*N*/   ASSERT( pFld, "SWG-Writer: SwAttrFld-Hint ohne Inhalt!" );
+/*N*/   OSL_ENSURE( pFld, "SWG-Writer: SwAttrFld-Hint ohne Inhalt!" );
 /*N*/   if( !pFld )
 /*N*/       return;
 /*N*/
@@ -2943,7 +2943,7 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 /*N*/                                           (SwAuthorityFieldType *)&rType );
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "Unbekannter Feldtyp" );
+/*N*/           OSL_ENSURE( !this, "Unbekannter Feldtyp" );
 /*N*/           CloseRec( SWG_FIELDTYPE );
 /*N*/           Error();
 /*N*/           return FALSE;

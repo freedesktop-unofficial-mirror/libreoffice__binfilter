@@ -110,7 +110,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/
 /*N*/   if( nStart > GetInfo().GetTxt().Len() )
 /*N*/   {
-/*?*/       ASSERT( !this, "+SwTxtFormatter::CTOR: bad offset" );
+/*?*/       OSL_ENSURE( !this, "+SwTxtFormatter::CTOR: bad offset" );
 /*?*/       nStart = GetInfo().GetTxt().Len();
 /*N*/   }
 /*N*/
@@ -204,7 +204,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/                   pPrev->Move( rInf );
 /*N*/                   rInf.SetLast( pPrev );
 /*N*/                   pPrev = pPrev->GetPortion();
-/*N*/                   ASSERT( pPrev, "UnderFlow: Loosing control!" );
+/*N*/                   OSL_ENSURE( pPrev, "UnderFlow: Loosing control!" );
 /*N*/               };
 /*N*/           }
 /*N*/           pPor = pPor->GetPortion();
@@ -222,7 +222,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   }
 /*N*/
 /*N*/   // Was? Die Unterlaufsituation ist nicht in der Portion-Kette ?
-/*N*/   ASSERT( pPor, "SwTxtFormatter::UnderFlow: overflow but underflow" );
+/*N*/   OSL_ENSURE( pPor, "SwTxtFormatter::UnderFlow: overflow but underflow" );
 /*N*/
 /*N*/   if( rInf.IsFtnInside() && pPor && !rInf.IsQuick() )
 /*N*/   {
@@ -350,7 +350,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 
 /*N*/ void SwTxtFormatter::BuildPortions( SwTxtFormatInfo &rInf )
 /*N*/ {
-/*N*/   ASSERT( rInf.GetTxt().Len() < STRING_LEN,
+/*N*/   OSL_ENSURE( rInf.GetTxt().Len() < STRING_LEN,
 /*N*/           "SwTxtFormatter::BuildPortions: bad text length in info" );
 /*N*/
 /*N*/   rInf.ChkNoHyph( CntEndHyph(), CntMidHyph() );
@@ -361,7 +361,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/     rInf.SetLast( pCurr );
 /*N*/   rInf.ForcedLeftMargin( 0 );
 /*N*/
-/*N*/     ASSERT( pCurr->FindLastPortion() == pCurr, "pLast supposed to equal pCurr" );
+/*N*/     OSL_ENSURE( pCurr->FindLastPortion() == pCurr, "pLast supposed to equal pCurr" );
 /*N*/
 /*N*/     if( !pCurr->GetAscent() && !pCurr->Height() )
 /*N*/         CalcAscent( rInf, pCurr );
@@ -369,7 +369,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/     SeekAndChg( rInf );
 /*N*/
 /*N*/     // In CalcFlyWidth wird Width() verkuerzt, wenn eine FlyPortion vorliegt.
-/*N*/     ASSERT( !rInf.X() || pMulti, "SwTxtFormatter::BuildPortion X=0?" );
+/*N*/     OSL_ENSURE( !rInf.X() || pMulti, "SwTxtFormatter::BuildPortion X=0?" );
 /*N*/     CalcFlyWidth( rInf );
 /*N*/     SwFlyPortion *pFly = rInf.GetFly();
 /*N*/     if( pFly )
@@ -401,7 +401,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/
 /*N*/   while( pPor && !rInf.IsStop() )
 /*N*/   {
-/*N*/       ASSERT( rInf.GetLen() < STRING_LEN &&
+/*N*/       OSL_ENSURE( rInf.GetLen() < STRING_LEN &&
 /*N*/               rInf.GetIdx() <= rInf.GetTxt().Len(),
 /*N*/               "SwTxtFormatter::BuildPortions: bad length in info" );
 ///*N*/         DBG_LOOP;
@@ -633,7 +633,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/             if ( nRestWidth > 0 && SW_CJK != nCurrScript &&
 /*?*/                 ! rInf.IsUnderFlow() && ( bFull || SW_CJK == nNextScript ) )
 /*?*/             {
-/*?*/                 ASSERT( pGridKernPortion, "No GridKernPortion available" )
+/*?*/                 OSL_ENSURE( pGridKernPortion, "No GridKernPortion available" );
 /*?*/
 /*?*/                 // calculate size
 /*?*/                 SwLinePortion* pTmpPor = pGridKernPortion->GetPortion();
@@ -652,8 +652,8 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                                                 nRestWidth );
 /*?*/                 const USHORT nKernWidth_1 = (USHORT)(nKernWidth / 2);
 /*?*/
-/*?*/                 ASSERT( nKernWidth <= nRestWidth,
-/*?*/                         "Not enough space left for adjusting non-asian text in grid mode" )
+/*?*/                 OSL_ENSURE( nKernWidth <= nRestWidth,
+/*?*/                         "Not enough space left for adjusting non-asian text in grid mode" );
 /*?*/
 /*?*/                 pGridKernPortion->Width( pGridKernPortion->Width() + nKernWidth_1 );
 /*?*/                 rInf.X( rInf.X() + nKernWidth_1 );
@@ -969,8 +969,8 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/       // 1) Die Fussnotenzahlen
 /*M*/         if( !rInf.IsFtnDone() )
 /*M*/       {
-/*M*/             ASSERT( ( ! rInf.IsMulti() && ! pMulti ) || pMulti->HasRotation(),
-/*M*/                      "Rotated number portion trouble" )
+/*M*/             OSL_ENSURE( ( ! rInf.IsMulti() && ! pMulti ) || pMulti->HasRotation(),
+/*M*/                      "Rotated number portion trouble" );
 /*M*/
 /*M*/             sal_Bool bFtnNum = pFrm->IsFtnNumFrm();
 /*M*/           rInf.GetParaPortion()->SetFtnNum( bFtnNum );
@@ -991,8 +991,8 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/       // 3) Die Numerierungen
 /*M*/       if( !rInf.IsNumDone() && !pPor )
 /*M*/       {
-/*M*/             ASSERT( ( ! rInf.IsMulti() && ! pMulti ) || pMulti->HasRotation(),
-/*M*/                      "Rotated number portion trouble" )
+/*M*/             OSL_ENSURE( ( ! rInf.IsMulti() && ! pMulti ) || pMulti->HasRotation(),
+/*M*/                      "Rotated number portion trouble" );
 /*M*/
 /*M*/           // Wenn wir im Follow stehen, dann natuerlich nicht.
 /*M*/           if( GetTxtFrm()->GetTxtNode()->GetNum() ||
@@ -1053,7 +1053,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/   rInf.SetStopUnderFlow( sal_False );
 /*M*/   if( rInf.GetUnderFlow() )
 /*M*/   {
-/*M*/       ASSERT( rInf.IsFull(), "SwTxtFormatter::NewPortion: underflow but not full" );
+/*M*/       OSL_ENSURE( rInf.IsFull(), "SwTxtFormatter::NewPortion: underflow but not full" );
 /*M*/       return UnderFlow( rInf );
 /*M*/   }
 /*M*/
@@ -1270,12 +1270,12 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/   // Werte bereithalten muss:
 /*M*/   if( !pCurr->Height() )
 /*M*/   {
-/*M*/       ASSERT( pCurr->Height(), "SwTxtFormatter::NewPortion: limbo dance" );
+/*M*/       OSL_ENSURE( pCurr->Height(), "SwTxtFormatter::NewPortion: limbo dance" );
 /*M*/       pCurr->Height( pPor->Height() );
 /*M*/       pCurr->SetAscent( pPor->GetAscent() );
 /*M*/   }
 /*M*/
-/*M*/   ASSERT( !pPor || pPor->Height(),
+/*M*/   OSL_ENSURE( !pPor || pPor->Height(),
 /*M*/           "SwTxtFormatter::NewPortion: something went wrong");
 /*M*/   if( pPor->IsPostItsPortion() && rInf.X() >= rInf.Width() && rInf.GetFly() )
 /*M*/   {
@@ -1291,7 +1291,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 
 /*M*/ xub_StrLen SwTxtFormatter::FormatLine( const xub_StrLen nStart )
 /*M*/ {
-/*M*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*M*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
 /*M*/             "SwTxtFormatter::FormatLine( nStart ) with unswapped frame" );
 /*N*/
 /*N*/     // For the formatting routines, we set pOut to the reference device.
@@ -1565,7 +1565,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                     pInf->GetParaPortion()->SetFixLineHeight();
 /*?*/                 }
 /*?*/                 break;
-/*?*/                 default: ASSERT( sal_False, ": unknown LineSpaceRule" );
+/*?*/                 default: OSL_ENSURE( sal_False, ": unknown LineSpaceRule" );
 /*N*/             }
 /*N*/             if( !IsParaLine() )
 /*N*/                 switch( pSpace->GetInterLineSpaceRule() )
@@ -1592,7 +1592,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                         nLineHeight += pSpace->GetInterLineSpace();
 /*?*/                         break;
 /*N*/                     }
-/*N*/                     default: ASSERT( sal_False, ": unknown InterLineSpaceRule" );
+/*N*/                     default: OSL_ENSURE( sal_False, ": unknown InterLineSpaceRule" );
 /*N*/                 }
 /*N*/         }
 /*N*/ #if OSL_DEBUG_LEVEL > 1
@@ -1815,7 +1815,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/                 CH_BLANK == GetInfo().GetChar( nReformat ) )
 /*N*/             --nReformat;
 /*N*/
-/*N*/         ASSERT( nReformat < GetInfo().GetIdx(), "Reformat too small for me!" );
+/*N*/         OSL_ENSURE( nReformat < GetInfo().GetIdx(), "Reformat too small for me!" );
 /*N*/         SwRect aRect;
 /*N*/
 /*N*/         // Note: GetChareRect is not const. It definitely changes the

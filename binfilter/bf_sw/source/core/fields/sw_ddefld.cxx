@@ -127,7 +127,7 @@ using namespace rtl;
 /*N*/
 /*N*/   if( pDoc && refLink.Is() )
 /*N*/   {
-/*?*/       ASSERT( !nRefCnt, "wie kommen die Referenzen rueber?" );
+/*?*/       OSL_ENSURE( !nRefCnt, "wie kommen die Referenzen rueber?" );
 /*?*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/   }
 /*N*/

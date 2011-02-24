@@ -118,7 +118,7 @@ static SwCntntNode* GetCntntNode( SwNodeIndex& rIdx, BOOL bNext )
     {
     pCNd = bNext ? rIdx.GetNodes().GoPrevious( &rIdx )
              : rIdx.GetNodes().GoNext( &rIdx );
-        ASSERT( pCNd, "kein ContentNode gefunden" );
+        OSL_ENSURE( pCNd, "kein ContentNode gefunden" );
     }
     return pCNd;
 }
@@ -226,7 +226,7 @@ W4WCtrlStack::W4WCtrlStack( W4WCtrlStack& rCpy, const SwPosition& rPos )
 
 W4WCtrlStack::~W4WCtrlStack()
 {
-    ASSERT( !Count(), "noch Attribute auf dem Stack" );
+    OSL_ENSURE( !Count(), "noch Attribute auf dem Stack" );
 }
 
 
@@ -290,7 +290,7 @@ void W4WCtrlStack::StealAttr( const SwPosition& rPos, USHORT nAttrId )
 // Anschliessend rekurs. Aufruf auf dem Parent-Stack.
 void W4WCtrlStack::SetLockedAttrClosed( USHORT nAttrId )
 {
-    ASSERT(    ( POOLATTR_BEGIN     <= nAttrId && POOLATTR_END > nAttrId )
+    OSL_ENSURE(    ( POOLATTR_BEGIN     <= nAttrId && POOLATTR_END > nAttrId )
             || ( RES_FLTRATTR_BEGIN <= nAttrId && RES_FLTRATTR_END > nAttrId ),
         "Attribut-Id ist ungueltig" );
 
@@ -352,11 +352,10 @@ void W4WCtrlStack::StealWWTabAttr( const SwPosition& rPos )
 BOOL W4WCtrlStack::SetAttr( const SwPosition& rPos, USHORT nAttrId,
                             BOOL bTstEnde, BOOL bDoNotSetInDoc )
 {
-    ASSERT( !nAttrId ||
+    OSL_ENSURE( !nAttrId ||
         ( POOLATTR_BEGIN <= nAttrId && POOLATTR_END > nAttrId ) ||
         ( RES_FLTRATTR_BEGIN <= nAttrId && RES_FLTRATTR_END > nAttrId ),
-        "Falsche Id fuers Attribut" )
-
+        "Falsche Id fuers Attribut" );
     BOOL bFound = FALSE;
     USHORT nCnt = Count();
 

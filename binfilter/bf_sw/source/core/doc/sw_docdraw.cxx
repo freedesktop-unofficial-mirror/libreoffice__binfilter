@@ -141,7 +141,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/   }
 /*N*/   else
         {
-/*N*/           ASSERT( !this, "was ist das fuer ein Format?" );
+/*N*/           OSL_ENSURE( !this, "was ist das fuer ein Format?" );
         }
 /*N*/ }
 } //namespace binfilter
@@ -264,7 +264,7 @@ bool SwDoc::IsVisibleLayerId( const SdrLayerID& _nLayerId )
     }
     else
     {
-        ASSERT( false, "<SwDoc::IsVisibleLayerId(..)> - unknown layer ID." );
+        OSL_ENSURE( false, "<SwDoc::IsVisibleLayerId(..)> - unknown layer ID." );
         bRetVal = false;
     }
 
@@ -297,12 +297,12 @@ SdrLayerID SwDoc::GetVisibleLayerIdByInvisibleOne( const SdrLayerID& _nInvisible
               _nInvisibleLayerId == GetHellId() ||
               _nInvisibleLayerId == GetControlsId() )
     {
-        ASSERT( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID already an invisible one." );
+        OSL_ENSURE( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID already an invisible one." );
         nVisibleLayerId = _nInvisibleLayerId;
     }
     else
     {
-        ASSERT( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID is unknown." );
+        OSL_ENSURE( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID is unknown." );
         nVisibleLayerId = _nInvisibleLayerId;
     }
 
@@ -335,12 +335,12 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
               _nVisibleLayerId == GetInvisibleHellId() ||
               _nVisibleLayerId == GetInvisibleControlsId() )
     {
-        ASSERT( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID already an invisible one." );
+        OSL_ENSURE( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID already an invisible one." );
         nInvisibleLayerId = _nVisibleLayerId;
     }
     else
     {
-        ASSERT( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID is unknown." );
+        OSL_ENSURE( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID is unknown." );
         nInvisibleLayerId = _nVisibleLayerId;
     }
 
@@ -359,9 +359,9 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/       delete pDrawModel; pDrawModel = 0;
 /*N*/       SfxItemPool *pSdrPool = aAttrPool.GetSecondaryPool();
 /*N*/
-/*N*/       ASSERT( pSdrPool, "missing Pool" );
+/*N*/       OSL_ENSURE( pSdrPool, "missing Pool" );
 /*N*/       SfxItemPool *pEEgPool = pSdrPool->GetSecondaryPool();
-/*N*/       ASSERT( !pEEgPool->GetSecondaryPool(), "i don't accept additional pools");
+/*N*/       OSL_ENSURE( !pEEgPool->GetSecondaryPool(), "i don't accept additional pools");
 /*N*/       pSdrPool->Delete();                 //Erst die Items vernichten lassen,
 /*N*/                                           //dann erst die Verkettung loesen
 /*N*/       aAttrPool.SetSecondaryPool( 0 );    //Der ist ein muss!
@@ -376,7 +376,7 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 
 /*N*/ SdrModel* SwDoc::_MakeDrawModel()
 /*N*/ {
-/*N*/   ASSERT( !pDrawModel, "_MakeDrawModel: Why?" );
+/*N*/   OSL_ENSURE( !pDrawModel, "_MakeDrawModel: Why?" );
 /*N*/   InitDrawModel();
 /*N*/   if ( pLayout && pLayout->GetCurrShell() )
 /*N*/   {

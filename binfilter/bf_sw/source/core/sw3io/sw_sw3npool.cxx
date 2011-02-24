@@ -97,7 +97,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       UINT32 nIndex32 = Sw3IoImp::InULong( rStrm );
-/*N*/       ASSERT( nIndex32 <= USHRT_MAX,
+/*N*/       OSL_ENSURE( nIndex32 <= USHRT_MAX,
 /*N*/               "SwFmtAnchor: Index/Seitenzahl > USHRT_MAX" );
 /*N*/       nIndex = (USHORT)nIndex32;
 /*N*/   }
@@ -115,7 +115,7 @@ namespace binfilter {
 /*N*/   if( nIVer < IVER_FMTANCHOR_LONGIDX )
 /*N*/   {
 /*N*/       // Nur 3.1/4.0-Export
-/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
 /*N*/               "SwFmtAnchor:: FF-Version und Item-Version passen nicht" );
 /*N*/
 /*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -173,7 +173,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
 /*N*/               "SwFmtAnchor:: FF-Version und Item-Version passen nicht" );
 /*N*/       ULONG nIndex = pPos ? pPos->nContent.GetIndex() : GetPageNum();
 /*N*/       if( nIndex > STRING_MAXLEN52 )
@@ -187,7 +187,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtAnchor::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtAnchor: Gibt es ein neues Fileformat?" );
@@ -230,7 +230,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   rStrm << (BYTE) IsActive();
 /*N*/   const SwFrmFmt* pFmt = GetHeaderFmt();
-/*N*/   ASSERT( !IsActive() || pFmt, "Aktiver Header ohne Format" );
+/*N*/   OSL_ENSURE( !IsActive() || pFmt, "Aktiver Header ohne Format" );
 /*N*/   if( pFmt )
 /*N*/   {
 /*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -289,7 +289,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   rStrm << (BYTE) IsActive();
 /*N*/   const SwFrmFmt* pFmt = GetFooterFmt();
-/*N*/   ASSERT( !IsActive() || pFmt, "Aktiver Footer ohne Format" );
+/*N*/   OSL_ENSURE( !IsActive() || pFmt, "Aktiver Footer ohne Format" );
 /*N*/   if( pFmt )
 /*N*/   {
 /*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -315,8 +315,8 @@ namespace binfilter {
 /*N*/   SwStartNode* pSttNd = &pIo->InContents();
 /*N*/   if( pIo->bInsert )
 /*N*/   {
-/*?*/       ASSERT( pIo->pSectionDepths, "There is the section depth stack?" );
-/*?*/       ASSERT( pIo->pSectionDepths->Count() > 0U,
+/*?*/       OSL_ENSURE( pIo->pSectionDepths, "There is the section depth stack?" );
+/*?*/       OSL_ENSURE( pIo->pSectionDepths->Count() > 0U,
 /*?*/               "section depth stack is empty" );
 /*?*/       pIo->pSectionDepths->Remove( pIo->pSectionDepths->Count() - 1U );
 /*N*/   }
@@ -350,7 +350,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       ULONG nOff32 = Sw3IoImp::InULong( rStrm );
-/*N*/       ASSERT( nOff32 <= USHRT_MAX, "SwFmtPageDesc: Seitenzahl > USHRT_MAX" );
+/*N*/       OSL_ENSURE( nOff32 <= USHRT_MAX, "SwFmtPageDesc: Seitenzahl > USHRT_MAX" );
 /*N*/       nOff = (USHORT)nOff32;
 /*N*/       rStrm >> nIdx;
 /*N*/   }
@@ -362,7 +362,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtPageDesc::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtPageDesc: Gibt es ein neues Fileformat?" );
@@ -372,7 +372,7 @@ namespace binfilter {
 
 /*N*/ SvStream& SwFmtPageDesc::Store( SvStream& rStrm, USHORT nVersion) const
 /*N*/ {
-/*N*/   ASSERT( IVER_FMTPAGEDESC_NOAUTO != nVersion,
+/*N*/   OSL_ENSURE( IVER_FMTPAGEDESC_NOAUTO != nVersion,
 /*N*/           "SwFmtPageDesc: Export der Item-Version wird nicht unterstuetzt" );
 /*N*/
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -575,7 +575,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ SvStream& SwFmtINetFmt::Store( SvStream& rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   ASSERT( nIVer != USHRT_MAX,
+/*N*/   OSL_ENSURE( nIVer != USHRT_MAX,
 /*N*/           "SwFmtINetFmt: Wer faengt da Version USHRT_MAX nicht ab?" );
 /*N*/
 /*N*/   UINT16 nId1 = IDX_NO_VALUE;
@@ -646,7 +646,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ USHORT SwFmtINetFmt::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtINetFmr: Gibt es ein neues Fileformat?" );
@@ -677,8 +677,8 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   pIo->InContents( aStart, 0, FALSE );
 /*N*/   if( pIo->bInsert )
 /*N*/   {
-/*?*/       ASSERT( pIo->pSectionDepths, "There is the section depth stack?" );
-/*?*/       ASSERT( pIo->pSectionDepths->Count() > 0U,
+/*?*/       OSL_ENSURE( pIo->pSectionDepths, "There is the section depth stack?" );
+/*?*/       OSL_ENSURE( pIo->pSectionDepths->Count() > 0U,
 /*?*/               "section depth stack is empty" );
 /*?*/       pIo->pSectionDepths->Remove( pIo->pSectionDepths->Count() - 1U );
 /*N*/   }
@@ -743,7 +743,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   SwNodeIndex* pStart = GetTxtFtn()->GetStartNode();
 /*N*/   if( pStart )
 /*N*/   {
-/*N*/       ASSERT( pIo, "SwFmtFtn: kein Sw3Io" );
+/*N*/       OSL_ENSURE( pIo, "SwFmtFtn: kein Sw3Io" );
 /*N*/       SvStream* p = pIo->pStrm;
 /*N*/       pIo->pStrm = (SvStorageStream*) &rStrm;
 /*N*/       pIo->OutContents( *pStart );
@@ -759,7 +759,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ USHORT SwFmtFtn::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtINetFmr: Gibt es ein neues Fileformat?" );
@@ -846,7 +846,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/       pIo->pDoc->InsertTOXType( SwTOXType( eType, aTypeName ) );
 /*N*/       pType = pIo->pDoc->GetTOXType( eType, n );
 /*N*/   }
-/*N*/   ASSERT( pType, "unknown tox type" );
+/*N*/   OSL_ENSURE( pType, "unknown tox type" );
 /*N*/   if( !pType )
 /*N*/   {
 /*?*/       pIo->Error();
@@ -901,14 +901,14 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 /*N*/   if( nIVer < IVER_TOXMARK_STRPOOL )
 /*N*/   {
 /*N*/       // Nur 3.1/4.0-Export
-/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_40 >= rStrm.GetVersion(),
 /*N*/               "SwToxMark: FF-Version und Item-Version passen nicht" );
 /*N*/       rStrm.WriteByteString( rTypeName, rStrm.GetStreamCharSet() );
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       // Nur 5.0 und folgende
-/*N*/       ASSERT( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_40 < rStrm.GetVersion(),
 /*N*/               "SwToxMark: FF-Version und Item-Version passen nicht" );
 /*N*/       UINT16 nStrIdx =
 /*N*/           ( eType >= TOX_ILLUSTRATIONS ||
@@ -938,7 +938,7 @@ bool SwFmtFlyCnt::Sw3ioExportAllowed() const
 
 /*N*/ USHORT SwTOXMark::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwTOXMark: Gibt es ein neues Fileformat?" );
@@ -962,14 +962,13 @@ SvStream& SwFmtRuby::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
     BOOL bVal = 0;
     rStrm << bVal;
 
-    ASSERT( FALSE, "Ruby atribute stored in old format" )
-
+    OSL_ENSURE( FALSE, "Ruby atribute stored in old format" );
     return rStrm;
 }
 
 /*N*/ USHORT SwFmtRuby::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtRuby: Gibt es ein neues Fileformat?" );
@@ -1002,7 +1001,7 @@ SvStream& SwTblBoxFormula::Store( SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwTblBoxFormula::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwTblBoxFormula: Gibt es ein neues Fileformat?" );
@@ -1020,7 +1019,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
                 >> nNextIdx;
 
         Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-        ASSERT( pIo || nPrevIdx != IDX_NO_VALUE || nNextIdx != IDX_NO_VALUE,
+        OSL_ENSURE( pIo || nPrevIdx != IDX_NO_VALUE || nNextIdx != IDX_NO_VALUE,
                 "SwFmtChain: kein sw3io: Verkettung nicht moeglich" );
         if( pIo )
         {
@@ -1033,7 +1032,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
             {
                 SwFlyFrmFmt *pPrevFlyFmt =
                     (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nPrevIdx );
-                ASSERT( pIo->bInsert ||
+                OSL_ENSURE( pIo->bInsert ||
                         (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
                         pIo->aStringPool.Find( nPrevIdx ) ) == pPrevFlyFmt,
                         "falsches Prev-Format gechached?" );
@@ -1043,7 +1042,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
             {
                 SwFlyFrmFmt *pNextFlyFmt =
                     (SwFlyFrmFmt *)pIo->aStringPool.FindCachedFmt( nNextIdx );
-                ASSERT( pIo->bInsert ||
+                OSL_ENSURE( pIo->bInsert ||
                         (SwFlyFrmFmt *)pIo->pDoc->FindSpzFrmFmtByName(
                         pIo->aStringPool.Find( nNextIdx ) ) == pNextFlyFmt,
                         "falsches Prev-Format gechached?" );
@@ -1057,7 +1056,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
 
 /*N*/ SvStream& SwFmtChain::Store(SvStream &rStrm, USHORT nIVer) const
 /*N*/ {
-        ASSERT( nIVer != USHRT_MAX,
+        OSL_ENSURE( nIVer != USHRT_MAX,
                 "SwFmtChain: Wer faengt da Version USHRT_MAX nicht ab?" );
 
         Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -1084,7 +1083,7 @@ SfxPoolItem* SwFmtChain::Create(SvStream& rStrm, USHORT nIVer) const
 
 /*N*/ USHORT SwFmtChain::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtChain: Gibt es ein neues Fileformat?" );
@@ -1110,7 +1109,7 @@ SvStream& SwTextGridItem::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
 
 /*N*/ USHORT SwTextGridItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/             "SwTextGridItem: Gibt es ein neues Fileformat?" );

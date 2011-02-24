@@ -432,7 +432,7 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
     const SwDoc *pDoc = pStyle->GetDoc();
 
     SwTxtFmtColl *pColl = pDoc->FindTxtFmtCollByName( pStyle->GetStyleName() );
-    ASSERT( pColl, "Text collection not found" );
+    OSL_ENSURE( pColl, "Text collection not found" );
     if( !pColl || RES_CONDTXTFMTCOLL != pColl->Which() )
         return;
 
@@ -448,7 +448,7 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
                                       sal_True);
         sName = aString;
         SwTxtFmtColl* pCondColl = pDoc->FindTxtFmtCollByName( sName );
-        ASSERT( pCondColl,
+        OSL_ENSURE( pCondColl,
             "SwXMLItemSetStyleContext_Impl::ConnectConditions: cond coll missing" );
         if( pCondColl )
         {
@@ -551,17 +551,17 @@ SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateItemSetContext(
         sal_uInt16 nPrefix, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
-    ASSERT( !pItemSet,
+    OSL_ENSURE( !pItemSet,
             "SwXMLItemSetStyleContext_Impl::CreateItemSetContext: item set exists" );
 
     SvXMLImportContext *pContext = 0;
 
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SfxItemPool& rItemPool = pTxtCrsr->GetDoc()->GetAttrPool();
     switch( GetFamily() )
     {
@@ -578,7 +578,7 @@ SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateItemSetContext(
         pItemSet = new SfxItemSet( rItemPool, aTableBoxSetRange );
         break;
     default:
-        ASSERT( !this,
+        OSL_ENSURE( !this,
         "SwXMLItemSetStyleContext_Impl::CreateItemSetContext: unknown family" );
         break;
     }
@@ -645,10 +645,10 @@ void SwXMLItemSetStyleContext_Impl::ConnectPageDesc()
 
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     String sName;
@@ -710,10 +710,10 @@ sal_Bool SwXMLItemSetStyleContext_Impl::ResolveDataStyleName()
             {
                 Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                                    UNO_QUERY);
-                ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+                OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
                 OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                                     OTextCursorHelper::getUnoTunnelId() );
-                ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+                OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
                 SwDoc *pDoc = pTxtCrsr->GetDoc();
 
                 SfxItemPool& rItemPool = pDoc->GetAttrPool();
@@ -1048,14 +1048,14 @@ void SwXMLImport::UpdateTxtCollConditions( SwDoc *pDoc )
     {
         Reference<XUnoTunnel> xCrsrTunnel( GetTextImport()->GetCursor(),
                                               UNO_QUERY);
-        ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
         OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-        ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+        OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
         pDoc = pTxtCrsr->GetDoc();
 
-        ASSERT( pDoc, "document missing" );
+        OSL_ENSURE( pDoc, "document missing" );
     }
 
     const SwTxtFmtColls& rColls = *pDoc->GetTxtFmtColls();

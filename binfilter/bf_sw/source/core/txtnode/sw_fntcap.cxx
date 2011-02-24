@@ -86,8 +86,7 @@ xub_StrLen lcl_CalcCaseMap( const SwFont& rFnt,
 {
     int j = 0;
     const xub_StrLen nEnd = nOfst + nLen;
-    ASSERT( nEnd <= rOrigString.Len(), "lcl_CalcCaseMap: Wrong parameters" )
-
+    OSL_ENSURE( nEnd <= rOrigString.Len(), "lcl_CalcCaseMap: Wrong parameters" );
     // special case for title case:
     const bool bTitle = SVX_CASEMAP_TITEL == rFnt.GetCaseMap() &&
                         pBreakIt->xBreak.is();
@@ -305,7 +304,7 @@ public:
 
 /*N*/ void SwSubFont::DoOnCapitals( SwDoCapitals &rDo )
 /*N*/ {
-/*N*/   ASSERT( pLastFont, "SwFont::DoOnCapitals: No LastFont?!" );
+/*N*/   OSL_ENSURE( pLastFont, "SwFont::DoOnCapitals: No LastFont?!" );
 /*N*/
 /*N*/   Size aPartSize;
 /*N*/   long nKana = 0;
@@ -442,7 +441,7 @@ public:
 /*N*/              pBreakIt->GetLocale( eLng ), CharType::LOWERCASE_LETTER);
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
-/*N*/       ASSERT( nPos, "nextCharBlock not implemented?" );
+/*N*/       OSL_ENSURE( nPos, "nextCharBlock not implemented?" );
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;
@@ -511,7 +510,7 @@ public:
 /*N*/              pBreakIt->GetLocale( eLng ), CharType::LOWERCASE_LETTER);
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
-/*N*/       ASSERT( nPos, "endOfCharBlock not implemented?" );
+/*N*/       OSL_ENSURE( nPos, "endOfCharBlock not implemented?" );
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;

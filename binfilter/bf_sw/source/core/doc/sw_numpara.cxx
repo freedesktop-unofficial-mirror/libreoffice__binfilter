@@ -106,7 +106,7 @@ void _NumPara::_Init()
                 rNumSection.aStart.GetIndex() <= aIdx.GetIndex() )
             pTxtNd = rNds[ aIdx ]->GetTxtNode();
 
-        ASSERT( pTxtNd, "NumSection ohne Start-TextNode? " );
+        OSL_ENSURE( pTxtNd, "NumSection ohne Start-TextNode? " );
         aNum = pTxtNd->GetpSwpHints()->GetNum();
         aNum.pRules = rNumSection.pRules;
         if( NO_NUM == aNum.nMyLevel || NO_NUMLEVEL & aNum.nMyLevel )

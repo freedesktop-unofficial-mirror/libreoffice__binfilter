@@ -219,7 +219,7 @@ inline void SwTxtFmtColl::SetNextTxtFmtColl( SwTxtFmtColl& rNext )
 
 inline void SwTxtFmtColl::SetOutlineLevel( BYTE nLevel )
 {
-    ASSERT( nLevel < MAXLEVEL || nLevel == NO_NUMBERING ,
+    OSL_ENSURE( nLevel < MAXLEVEL || nLevel == NO_NUMBERING ,
                             "SwTxtFmtColl: Level too low" );
     nOutlineLevel = nLevel;
 }

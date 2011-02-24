@@ -106,7 +106,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 
 /*N*/ void SwDBFieldType::ReleaseRef()
 /*N*/ {
-/*N*/   ASSERT(nRefCnt > 0, "RefCount kleiner 0!");
+/*N*/   OSL_ENSURE(nRefCnt > 0, "RefCount kleiner 0!");
 /*N*/
 /*N*/   if (--nRefCnt <= 0)
 /*N*/   {
@@ -797,7 +797,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 
 /*N*/ String SwDBNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
-/*N*/   ASSERT( nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+/*N*/   OSL_ENSURE( nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/   const SwDBData aData = pDoc->GetDBData();
 /*N*/   String sRet(aData.sDataSource);
 /*N*/   sRet += '.';

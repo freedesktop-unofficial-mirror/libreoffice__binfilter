@@ -411,7 +411,7 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   pFtnColl = pEndNoteInfo->GetFtnTxtColl();
 /*N*/   if ( pFtnColl ) pFtnColl->Remove(pEndNoteInfo);
 /*N*/
-/*N*/   ASSERT( pDfltTxtFmtColl == (*pTxtFmtCollTbl)[0],
+/*N*/   OSL_ENSURE( pDfltTxtFmtColl == (*pTxtFmtCollTbl)[0],
 /*N*/           "Default-Text-Collection muss immer am Anfang stehen" );
 /*N*/
 /*N*/   // JP 27.01.98: opt.: ausgehend davon, das Standard als 2. im Array
@@ -422,7 +422,7 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   pTxtFmtCollTbl->DeleteAndDestroy( 1, pTxtFmtCollTbl->Count()-1 );
 /*N*/   delete pTxtFmtCollTbl;
 /*N*/
-/*N*/   ASSERT( pDfltGrfFmtColl == (*pGrfFmtCollTbl)[0],
+/*N*/   OSL_ENSURE( pDfltGrfFmtColl == (*pGrfFmtCollTbl)[0],
 /*N*/           "Default-Grf-Collection muss immer am Anfang stehen" );
 /*N*/
 /*N*/   pGrfFmtCollTbl->DeleteAndDestroy( 1, pGrfFmtCollTbl->Count()-1 );
@@ -572,7 +572,7 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 
 /*N*/ SfxPrinter& SwDoc::_GetPrt() const
 /*N*/ {
-/*N*/     ASSERT( ! pPrt, "Do not call _GetPrt(), call GetPrt() instead" )
+/*N*/     OSL_ENSURE( ! pPrt, "Do not call _GetPrt(), call GetPrt() instead" );
 /*N*/
 /*N*/     // wir erzeugen einen default SfxPrinter.
 /*N*/   // Das ItemSet wird vom Sfx geloescht!
@@ -613,7 +613,7 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/       {
 /*N*/           ((SwDrawDocument*)pDrawModel)->SetObjectShell( pDocShell );
 /*N*/           pDrawModel->SetPersist( pDocShell );
-/*N*/           ASSERT( pDrawModel->GetPersist() == GetPersist(),
+/*N*/           OSL_ENSURE( pDrawModel->GetPersist() == GetPersist(),
 /*N*/                   "draw model's persist is out of sync" );
 /*N*/       }
 /*N*/   }

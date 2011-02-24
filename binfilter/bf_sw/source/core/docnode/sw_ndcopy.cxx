@@ -210,7 +210,7 @@ struct _CopyTable
 /*N*/   {
 /*N*/       SwNodeIndex aNewIdx( *pCT->pTblNd,
 /*N*/                           rpBox->GetSttIdx() - pCT->nOldTblSttIdx );
-/*N*/       ASSERT( aNewIdx.GetNode().IsStartNode(), "Index nicht auf einem StartNode" );
+/*N*/       OSL_ENSURE( aNewIdx.GetNode().IsStartNode(), "Index nicht auf einem StartNode" );
 /*N*/       pNewBox = new SwTableBox( pBoxFmt, aNewIdx, pCT->pInsLine );
 /*N*/   }
 /*N*/
@@ -412,9 +412,9 @@ struct _CopyTable
 /*N*/           !rRg.aStart.GetNode().IsSectionNode() &&
 /*N*/           !aTmpI.GetNode().IsEndNode() )
 /*N*/       {
-/*N*/           ASSERT( rInsPos.GetIndex() - aSavePos.GetIndex() ==
+/*N*/           OSL_ENSURE( rInsPos.GetIndex() - aSavePos.GetIndex() ==
 /*N*/                   rRg.aEnd.GetIndex() - rRg.aStart.GetIndex(),
-/*N*/                   "Es wurden zu wenig Nodes kopiert!" )
+/*N*/                   "Es wurden zu wenig Nodes kopiert!" );
 /*N*/       }
 /*N*/   }
 /*N*/ #endif
@@ -516,7 +516,7 @@ struct _CopyTable
 /*N*/
 /*N*/   //Alle chains, die im Original vorhanden sind, soweit wie moeglich wieder
 /*N*/   //aufbauen.
-/*N*/   ASSERT( aArr.Count() == aNewArr.Count(), "Missing new Flys" );
+/*N*/   OSL_ENSURE( aArr.Count() == aNewArr.Count(), "Missing new Flys" );
 /*N*/   if ( aArr.Count() == aNewArr.Count() )
 /*N*/   {
 /*N*/       for ( n = 0; n < aArr.Count(); ++n )

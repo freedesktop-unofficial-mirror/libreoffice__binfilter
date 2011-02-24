@@ -78,7 +78,7 @@ namespace binfilter {
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)
 /*N*/           && (nWhich!=RES_FMT_CHG) )
-/*N*/       ASSERT(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
+/*N*/       OSL_ENSURE(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
 /*N*/ #endif
 /*N*/
 /*N*/   if( pMyTxtNd )
@@ -176,7 +176,7 @@ namespace binfilter {
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)
 /*N*/           && (nWhich!=RES_FMT_CHG) )
-/*N*/       ASSERT(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
+/*N*/       OSL_ENSURE(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
 /*N*/ #endif
 /*N*/
 /*N*/   if( pMyTxtNd )

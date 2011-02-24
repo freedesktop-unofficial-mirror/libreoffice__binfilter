@@ -242,7 +242,7 @@ namespace binfilter {
 /*N*/                                     pSub = pSub->GetNext();
 /*N*/                                 }
 /*N*/                                 pTab = pTab->GetFollow();
-/*N*/                                 ASSERT( pTab, "Table follow without master" );
+/*N*/                                 OSL_ENSURE( pTab, "Table follow without master" );
 /*N*/                             }
 /*N*/                         }
 /*N*/                         do
@@ -280,7 +280,7 @@ namespace binfilter {
 /*N*/                                     SwPageFrm *pTabPage = pTab->FindPageFrm();
 /*N*/                                     if( pTabPage != pPage )
 /*N*/                                     {
-/*N*/                                         ASSERT( pPage->GetPhyPageNum() <
+/*N*/                                         OSL_ENSURE( pPage->GetPhyPageNum() <
 /*N*/                                                 pTabPage->GetPhyPageNum(),
 /*N*/                                                 "Looping Tableframes" );
 /*N*/                                         pPage = pTabPage;
@@ -347,7 +347,7 @@ namespace binfilter {
 
 /*N*/ SwLayoutCache::~SwLayoutCache()
 /*N*/ {
-/*N*/     ASSERT( !nLockCount, "Deleting a locked SwLayoutCache!?" );
+/*N*/     OSL_ENSURE( !nLockCount, "Deleting a locked SwLayoutCache!?" );
 /*N*/     delete pImpl;
 /*N*/ }
 
@@ -416,7 +416,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     if( pImpl )
 /*N*/     {
-/*?*/         ASSERT( pDoc && pDoc->GetLayoutCache(), "Missing layoutcache" );
+/*?*/         OSL_ENSURE( pDoc && pDoc->GetLayoutCache(), "Missing layoutcache" );
 /*?*/         pDoc->GetLayoutCache()->UnlockImpl();
 /*N*/     }
 /*N*/ }
@@ -532,18 +532,18 @@ namespace binfilter {
 /*N*/                        bOdd, bInsertEmpty, FALSE, rpPage->GetNext() );
 /*N*/       if ( bEnd )
 /*N*/       {
-/*N*/           ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*N*/           OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*N*/           do
 /*N*/           {   rpPage = (SwPageFrm*)rpPage->GetNext();
 /*N*/           } while ( rpPage->GetNext() );
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*?*/           OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*?*/           rpPage = (SwPageFrm*)rpPage->GetNext();
 /*?*/           if ( rpPage->IsEmptyPage() )
 /*?*/           {
-/*?*/               ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*?*/               OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*?*/               rpPage = (SwPageFrm*)rpPage->GetNext();
 /*?*/           }
 /*N*/       }
@@ -1016,7 +1016,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bRes = TRUE;
 /*N*/   UINT16 nLvl = aRecTypes.Count();
-/*N*/   ASSERT( nLvl == aRecSizes.Count(), "OpenRec: Level" );
+/*N*/   OSL_ENSURE( nLvl == aRecSizes.Count(), "OpenRec: Level" );
 /*N*/   UINT32 nPos = pStream->Tell();
 /*N*/   if( bWriteMode )
 /*N*/   {
@@ -1035,8 +1035,8 @@ namespace binfilter {
 /*N*/       if( !nVal || cRecTyp != cType ||
 /*N*/           pStream->GetErrorCode() != SVSTREAM_OK || pStream->IsEof() )
 /*N*/       {
-/*?*/           ASSERT( nVal, "OpenRec: Record-Header is 0" );
-/*?*/           ASSERT( cRecTyp == cType,
+/*?*/           OSL_ENSURE( nVal, "OpenRec: Record-Header is 0" );
+/*?*/           OSL_ENSURE( cRecTyp == cType,
 /*?*/                   "OpenRec: Wrong Record Type" );
 /*?*/           aRecTypes[nLvl] = 0;
 /*?*/           aRecSizes[nLvl] = pStream->Tell();
@@ -1053,12 +1053,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bRes = TRUE;
 /*N*/   UINT16 nLvl = aRecTypes.Count();
-/*N*/   ASSERT( nLvl == aRecSizes.Count(), "CloseRec: wrong Level" );
-/*N*/   ASSERT( nLvl, "CloseRec: no levels" );
+/*N*/   OSL_ENSURE( nLvl == aRecSizes.Count(), "CloseRec: wrong Level" );
+/*N*/   OSL_ENSURE( nLvl, "CloseRec: no levels" );
 /*N*/   if( nLvl )
 /*N*/   {
 /*N*/       nLvl--;
-/*N*/       ASSERT( cType == aRecTypes[nLvl],
+/*N*/       OSL_ENSURE( cType == aRecTypes[nLvl],
 /*N*/               "CloseRec: Wrong Block-Header" );
 /*N*/       UINT32 nPos = pStream->Tell();
 /*N*/       if( bWriteMode )
@@ -1075,7 +1075,7 @@ namespace binfilter {
 /*N*/       else
 /*N*/       {
 /*N*/           UINT32 n = aRecSizes[nLvl];
-/*N*/           ASSERT( n >= nPos, "CloseRec: to much data read" );
+/*N*/           OSL_ENSURE( n >= nPos, "CloseRec: to much data read" );
 /*N*/           if( n != nPos )
 /*N*/           {
 /*?*/               pStream->Seek( n );
@@ -1131,7 +1131,7 @@ namespace binfilter {
 
 /*N*/ BYTE SwLayCacheIoImpl::OpenFlagRec()
 /*N*/ {
-/*N*/   ASSERT( !bWriteMode, "OpenFlagRec illegal in write  mode" );
+/*N*/   OSL_ENSURE( !bWriteMode, "OpenFlagRec illegal in write  mode" );
 /*N*/   BYTE cFlags;
 /*N*/   *pStream >> cFlags;
 /*N*/   nFlagRecEnd = pStream->Tell() + ( cFlags & 0x0F );
@@ -1140,9 +1140,9 @@ namespace binfilter {
 
 /*N*/ void SwLayCacheIoImpl::OpenFlagRec( BYTE nFlags, BYTE nLen )
 /*N*/ {
-/*N*/   ASSERT( bWriteMode, "OpenFlagRec illegal in read  mode" );
-/*N*/   ASSERT( (nFlags & 0xF0) == 0, "illegal flags set" );
-/*N*/   ASSERT( nLen < 16, "wrong flag record length" );
+/*N*/   OSL_ENSURE( bWriteMode, "OpenFlagRec illegal in read  mode" );
+/*N*/   OSL_ENSURE( (nFlags & 0xF0) == 0, "illegal flags set" );
+/*N*/   OSL_ENSURE( nLen < 16, "wrong flag record length" );
 /*N*/   BYTE cFlags = (nFlags << 4) + nLen;
 /*N*/   *pStream << cFlags;
 /*N*/   nFlagRecEnd = pStream->Tell() + nLen;
@@ -1152,11 +1152,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( bWriteMode )
 /*N*/   {
-/*N*/       ASSERT( pStream->Tell() == nFlagRecEnd, "Wrong amount of data written" );
+/*N*/       OSL_ENSURE( pStream->Tell() == nFlagRecEnd, "Wrong amount of data written" );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pStream->Tell() <= nFlagRecEnd, "To many data read" );
+/*N*/       OSL_ENSURE( pStream->Tell() <= nFlagRecEnd, "To many data read" );
 /*N*/       if( pStream->Tell() != nFlagRecEnd )
 /*?*/           pStream->Seek( nFlagRecEnd );
 /*N*/   }

@@ -834,7 +834,7 @@ void SwDoc::DelCharFmt(USHORT nFmt)
 void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 {
     USHORT nFmt = pCharFmtTbl->GetPos( pFmt );
-    ASSERT( USHRT_MAX != nFmt, "Fmt not found," );
+    OSL_ENSURE( USHRT_MAX != nFmt, "Fmt not found," );
     DelCharFmt( nFmt );
 }
 
@@ -842,7 +842,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ {
 /*N*/   if( pFmt->ISA( SwTableBoxFmt ) || pFmt->ISA( SwTableLineFmt ))
 /*N*/   {
-/*?*/       ASSERT( !this, "Format steht nicht mehr im DocArray, "
+/*?*/       OSL_ENSURE( !this, "Format steht nicht mehr im DocArray, "
 /*?*/                      "kann per delete geloescht werden" );
 /*?*/       delete pFmt;
 /*N*/   }
@@ -856,7 +856,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/       else
 /*N*/       {
 /*N*/           nPos = GetSpzFrmFmts()->GetPos( pFmt );
-/*N*/           ASSERT( nPos != USHRT_MAX, "FrmFmt not found." );
+/*N*/           OSL_ENSURE( nPos != USHRT_MAX, "FrmFmt not found." );
 /*N*/           if( USHRT_MAX != nPos )
 /*N*/               GetSpzFrmFmts()->DeleteAndDestroy( nPos );
 /*N*/       }
@@ -866,7 +866,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ void SwDoc::DelTblFrmFmt( SwTableFmt *pFmt )
 /*N*/ {
 /*N*/   USHORT nPos = pTblFrmFmtTbl->GetPos( pFmt );
-/*N*/   ASSERT( USHRT_MAX != nPos, "Fmt not found," );
+/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Fmt not found," );
 /*N*/   pTblFrmFmtTbl->DeleteAndDestroy( nPos );
 /*N*/ }
 
@@ -1222,7 +1222,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::_CreateNumberFormatter" );
 /*N*/
-/*N*/   ASSERT( !pNumberFormatter, "ist doch schon vorhanden" );
+/*N*/   OSL_ENSURE( !pNumberFormatter, "ist doch schon vorhanden" );
 /*N*/
 /*N*/
 /*N*/   LanguageType eLang = LANGUAGE_SYSTEM; //System::GetLanguage();

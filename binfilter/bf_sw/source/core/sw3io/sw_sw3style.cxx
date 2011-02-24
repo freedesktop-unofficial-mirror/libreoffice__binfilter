@@ -259,7 +259,7 @@ public:
 /*?*/
 /*?*/               if( USRFLD_EXPRESSION & pNew->nCondition )
 /*?*/               {
-/*?*/                   ASSERT( !this, "noch nicht implementiert" );
+/*?*/                   OSL_ENSURE( !this, "noch nicht implementiert" );
 /*?*/                   String s;
 /*?*/                   r.ReadByteString( s, r.GetStreamCharSet() );
 /*?*/               }
@@ -318,7 +318,7 @@ public:
 
 /*N*/ void SwStyleSheet::Store( SvStream& r )
 /*N*/ {
-/*N*/   ASSERT( nVersion == r.GetVersion(),
+/*N*/   OSL_ENSURE( nVersion == r.GetVersion(),
 /*N*/           "SwStyleSheet::Store: FF-Version != Stream-FF-Version" );
 /*N*/
 /*N*/   r << nId;
@@ -388,7 +388,7 @@ public:
 //FEATURE::CONDCOLL
 /*N*/ USHORT SwStyleSheet::GetVersion() const
 /*N*/ {
-/*N*/   ASSERT( nVersion,
+/*N*/   OSL_ENSURE( nVersion,
 /*N*/           "SwStyleSheet::GetVersion: Fileformat-Version nicht gesetzt" );
 /*N*/   switch( nVersion )
 /*N*/   {
@@ -433,7 +433,7 @@ public:
 /*N*/       pFmt->SetDerivedFrom( pParent );
 /*N*/   else
         {
-/*N*/       ASSERT( !this, "Parent nicht gefunden" );
+/*N*/       OSL_ENSURE( !this, "Parent nicht gefunden" );
         }
 /*N*/ }
 
@@ -452,7 +452,7 @@ public:
 /*N*/           GetColl()->SetNextTxtFmtColl( *pFollow );
 /*N*/       else
             {
-/*N*/           ASSERT( !this, "Follow nicht gefunden" );
+/*N*/           OSL_ENSURE( !this, "Follow nicht gefunden" );
             }
 /*N*/   }
 /*N*/ }
@@ -505,7 +505,7 @@ const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 
 /*N*/ BOOL SwStyleSheetPool::Store( SvStream& s, BOOL bUsed )
 /*N*/ {
-/*N*/   ASSERT( nExpFFVersion == s.GetVersion(),
+/*N*/   OSL_ENSURE( nExpFFVersion == s.GetVersion(),
 /*N*/           "SwStyleSheetPool::Store: FF-Version != Stream-FF-Version" );
 /*N*/
 /*N*/   CopyFromDoc( bUsed );
@@ -593,7 +593,7 @@ const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 /*N*/   r.bMySet = FALSE;
 /*N*/
 /*N*/   // Members setzen
-/*N*/   ASSERT( nExpFFVersion, "SwStylePool::Add: FF-Version ist nicht gesetzt" );
+/*N*/   OSL_ENSURE( nExpFFVersion, "SwStylePool::Add: FF-Version ist nicht gesetzt" );
 /*N*/   if( nExpFFVersion <= SOFFICE_FILEFORMAT_40 )
 /*N*/       r.nId = Sw3StringPool::ConvertToOldPoolId( rFmt.GetPoolFmtId(),
 /*N*/                                                  nExpFFVersion );
@@ -1005,7 +1005,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*?*/               }
 /*?*/               else
                     {
-/*?*/                   ASSERT( !this, "Collection nicht gefunden" );
+/*?*/                   OSL_ENSURE( !this, "Collection nicht gefunden" );
                     }
 /*N*/           }
 /*N*/   }
@@ -1080,7 +1080,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 /*N*/ void Sw3IoImp::LoadStyleSheets( BOOL bNew )
 /*N*/ {
-/*N*/   ASSERT( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
+/*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gelesen. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
@@ -1091,7 +1091,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/   SfxItemPool* pPool = pDoc->GetAttrPool().Clone();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( pTmp );
 /*N*/
-/*N*/   ASSERT( !pConvToSymbolFmts, "ConvToSymbol array exists" );
+/*N*/   OSL_ENSURE( !pConvToSymbolFmts, "ConvToSymbol array exists" );
 /*N*/   pConvToSymbolFmts = new Sw3Fmts;
 /*N*/   SwStyleSheetPool* p = new SwStyleSheetPool( *pDoc, *pPool, 0, pConvToSymbolFmts );
 /*N*/   pStyles->SetBufferSize( SW3_BSR_STYLES );
@@ -1236,7 +1236,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 /*N*/ void Sw3IoImp::SaveStyleSheets( BOOL bUsed )
 /*N*/ {
-/*N*/   ASSERT( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
+/*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gespeichert. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )

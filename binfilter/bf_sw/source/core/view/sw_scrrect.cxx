@@ -55,7 +55,7 @@ namespace binfilter {
 /*N*/ void ViewShell::AddScrollRect( const SwFrm *pFrm, const SwRect &rRect,
 /*N*/   long nOfs )
 /*N*/ {
-/*N*/   ASSERT( pFrm, "Where is my friend, the frame?" );
+/*N*/   OSL_ENSURE( pFrm, "Where is my friend, the frame?" );
 /*N*/   BOOL bScrollOn = TRUE;
 /*N*/
 /*N*/ #ifdef NOSCROLL
@@ -117,7 +117,7 @@ namespace binfilter {
 /*N*/ void SwViewImp::AddScrollRect( const SwFrm *pFrm, const SwRect &rRect,
 /*N*/   long nOffs )
 /*N*/ {
-/*N*/   ASSERT( nOffs != 0, "Scrollen ohne Ofst." );
+/*N*/   OSL_ENSURE( nOffs != 0, "Scrollen ohne Ofst." );
 /*N*/   SwRect aRect( rRect );
 /*N*/     BOOL bVert = pFrm->IsVertical();
 /*N*/     if( bVert )

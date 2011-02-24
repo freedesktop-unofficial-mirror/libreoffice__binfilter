@@ -91,8 +91,8 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/ {
 /*N*/   xub_StrLen nOrigLen = aText.Len();
 /*N*/
-/*N*/   ASSERT( rIdx <= nOrigLen, "Array ueberindiziert." );
-/*N*/   ASSERT( nOrigLen < STRING_LEN, "USHRT_MAX ueberschritten." );
+/*N*/   OSL_ENSURE( rIdx <= nOrigLen, "Array ueberindiziert." );
+/*N*/   OSL_ENSURE( nOrigLen < STRING_LEN, "USHRT_MAX ueberschritten." );
 /*N*/
 /*N*/   if( nOrigLen == aText.Insert( c, rIdx.GetIndex() ).Len() )
 /*N*/       return *this;
@@ -268,7 +268,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/     : pWrong( pWrng ), rNode( rNd ), nLen( 0 ), nWordType( nType ),
 /*M*/       bReverse( bRev ), bStart( TRUE ), bIsOnlineSpell( bOS )
 /*M*/ {
-/*M*/     ASSERT( rNd.GetTxt().Len(), "SwScanner: EmptyString" );
+/*M*/     OSL_ENSURE( rNd.GetTxt().Len(), "SwScanner: EmptyString" );
 /*M*/   if( bReverse )
 /*M*/   {
 /*M*/       nBegin = nEnde;
@@ -286,8 +286,8 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 
 /*N*/ BOOL SwScanner::NextWord()
 /*N*/ {
-/*N*/     ASSERT( ! bReverse,
-/*N*/             "SwScanner::NextWord() currently not implemented for reverse mode" )
+/*N*/     OSL_ENSURE( ! bReverse,
+/*N*/             "SwScanner::NextWord() currently not implemented for reverse mode" );
 /*N*/
 /*N*/     nBegin += nLen;
 /*N*/
@@ -333,7 +333,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/     // we have to differenciate between these cases:
 /*N*/     if ( aBound.startPos <= nBegin )
 /*N*/     {
-/*N*/         ASSERT( aBound.endPos >= nBegin, "Unexpected aBound result" )
+/*N*/         OSL_ENSURE( aBound.endPos >= nBegin, "Unexpected aBound result" );
 /*N*/
 /*N*/         // restrict boundaries to script boundaries and nEndPos
 /*N*/         const USHORT nCurrScript =

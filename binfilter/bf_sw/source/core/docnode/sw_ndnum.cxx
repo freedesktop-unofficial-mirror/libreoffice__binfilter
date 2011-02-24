@@ -74,7 +74,7 @@ namespace binfilter {
 /*N*/               if( &(*this)[ n-1 ]->GetNodes() !=
 /*N*/                   &(*this)[ n ]->GetNodes() )
 /*N*/               {
-/*?*/                   ASSERT( !this, "Node im falschen Outline-Array" );
+/*?*/                   OSL_ENSURE( !this, "Node im falschen Outline-Array" );
 /*N*/               }
 /*N*/       }
 /*N*/ #endif
@@ -266,7 +266,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   _OutlinePara* pOutlPara = (_OutlinePara*)pPara;
 /*N*/   SwTxtNode* pTxtNd = rpNd->GetTxtNode();
-/*N*/   ASSERT( pTxtNd, "kein TextNode als OutlineNode !" );
+/*N*/   OSL_ENSURE( pTxtNd, "kein TextNode als OutlineNode !" );
 /*N*/
 /*N*/   return pOutlPara->UpdateOutline( *pTxtNd );
 /*N*/ }
@@ -284,7 +284,7 @@ namespace binfilter {
 /*N*/   if( NO_NUMBERING == nOldLevel )         // neuen Level einfuegen
 /*N*/   {
 /*N*/       // nicht vorhanden, also einfuegen
-/*N*/       ASSERT( !bSeekIdx, "Der Node ist schon als OutlineNode vorhanden" );
+/*N*/       OSL_ENSURE( !bSeekIdx, "Der Node ist schon als OutlineNode vorhanden" );
 /*N*/
 /*N*/       //JP 12.03.99: 63293 - Nodes vom RedlineBereich NIE aufnehmen
 /*N*/       ULONG nNd = rNd.GetIndex();

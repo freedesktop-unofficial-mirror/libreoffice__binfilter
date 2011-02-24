@@ -101,7 +101,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pCntntNode )
 /*N*/   {
-/*?*/       ASSERT(!this, "DataChanged ohne ContentNode" );
+/*?*/       OSL_ENSURE(!this, "DataChanged ohne ContentNode" );
 /*?*/       return ;
 /*N*/   }
 /*N*/
@@ -423,7 +423,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( bWaitForData && !GetObj() )
 /*N*/       {
-/*?*/           ASSERT( !this, "das SvxFileObject wurde in einem GetData geloescht!" );
+/*?*/           OSL_ENSURE( !this, "das SvxFileObject wurde in einem GetData geloescht!" );
 /*?*/           bRes = FALSE;
 /*N*/       }
 /*N*/       else if( 0 != ( bRes = aValue.hasValue() ) )

@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*?*/           do {
 /*?*/               _PaMCorrAbs1( _pStkCrsr )
@@ -216,7 +216,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*N*/               _PaMCorrAbs2( _pStkCrsr, aNewPos, nSttNode, nEndNode );
@@ -315,7 +315,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*?*/               _PaMCorrAbs3( _pStkCrsr )
@@ -382,7 +382,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*?*/               _PaMCorrRel1( _pStkCrsr )

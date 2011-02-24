@@ -242,7 +242,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
 /*N*/       rFtn.aNumber = aEmptyStr;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
+/*N*/   OSL_ENSURE( pMyTxtNd, "wo ist mein TextNode?" );
 /*N*/   SwNodes &rNodes = pMyTxtNd->GetDoc()->GetNodes();
 /*N*/   pMyTxtNd->Modify( 0, &rFtn );
 /*N*/   if( pStartNode )
@@ -298,7 +298,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
  void SwTxtFtn::DelFrms()
  {
     // loesche die Ftn-Frames aus den Seiten
-    ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "wo ist mein TextNode?" );
     if( !pMyTxtNd )
         return ;
 
@@ -337,7 +337,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
                 SwFtnFrm *pFtn = (SwFtnFrm*)pFrm;
                 while ( pFtn && pFtn->GetMaster() )
                     pFtn = pFtn->GetMaster();
-                ASSERT( pFtn->GetAttr() == this, "Ftn mismatch error." );
+                OSL_ENSURE( pFtn->GetAttr() == this, "Ftn mismatch error." );
 
                 while ( pFtn )
                 {

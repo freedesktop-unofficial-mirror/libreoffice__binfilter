@@ -122,7 +122,7 @@ ULONG LotusReader::Read( SwDoc &rDoc, SwPaM &rPam,
     ULONG nRet;
     if( !pStrm )
     {
-        ASSERT( FALSE, "Lotus-Read ohne Stream" );
+        OSL_ENSURE( FALSE, "Lotus-Read ohne Stream" );
         nRet = ERR_SWG_READ_ERROR;
     }
     else

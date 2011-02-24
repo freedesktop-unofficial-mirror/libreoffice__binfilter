@@ -212,7 +212,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       if( !Next() )
 /*N*/       {
-/*N*/           ASSERT( !this, "SwTxtFormatter::_CalcDropHeight: left Toulouse" );
+/*N*/           OSL_ENSURE( !this, "SwTxtFormatter::_CalcDropHeight: left Toulouse" );
 /*N*/           break;
 /*N*/       }
 /*N*/   }
@@ -230,7 +230,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SwTxtFormatter::GuessDropHeight( const MSHORT nLines )
 /*N*/ {
-/*N*/   ASSERT( nLines, "GuessDropHeight: Give me more Lines!" );
+/*N*/   OSL_ENSURE( nLines, "GuessDropHeight: Give me more Lines!" );
 /*N*/   KSHORT nAscent = 0;
 /*N*/   KSHORT nHeight = 0;
 /*N*/   SetDropLines( nLines );
@@ -291,7 +291,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/
 /*N*/     // build DropPortionParts:
-/*N*/     ASSERT( ! rInf.GetIdx(), "Drop Portion not at 0 position!" );
+/*N*/     OSL_ENSURE( ! rInf.GetIdx(), "Drop Portion not at 0 position!" );
 /*N*/     xub_StrLen nIdx = rInf.GetIdx();
 /*N*/     xub_StrLen nNextChg = 0;
 /*N*/     const SwCharFmt* pFmt = pDropFmt->GetCharFmt();

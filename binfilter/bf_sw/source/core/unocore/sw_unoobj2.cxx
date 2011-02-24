@@ -720,8 +720,8 @@ Sequence< OUString > SAL_CALL SwXTextCursor::getAvailableServiceNames(void) thro
 IMPL_STATIC_LINK( SwXTextCursor, RemoveCursor_Impl,
                   Reference<XInterface>*, pArg )
 {
-    ASSERT( pThis != NULL, "no reference?" );
-    ASSERT( pArg != NULL, "no reference?" );
+    OSL_ENSURE( pThis != NULL, "no reference?" );
+    OSL_ENSURE( pArg != NULL, "no reference?" );
 
     SwUnoCrsr* pCursor = pThis->GetCrsr();
     if( pCursor != NULL )
@@ -1283,7 +1283,7 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
         {
             if( !pDoc->Insert(aNewCrsr, rText) )
             {
-                ASSERT( sal_False, "Doc->Insert(Str) failed." )
+                OSL_ENSURE( sal_False, "Doc->Insert(Str) failed." );
             }
             SwXTextCursor::SelectPam(aNewCrsr, sal_True);
             aNewCrsr.Left(rText.Len(), CRSR_SKIP_CHARS);
@@ -2093,7 +2093,7 @@ void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
         //OPT: GetSystemCharSet
         if( !pDoc->Insert(rCrsr, aText) )
         {
-            ASSERT( sal_False, "Doc->Insert(Str) failed." )
+            OSL_ENSURE( sal_False, "Doc->Insert(Str) failed." );
         }
         SwXTextCursor::SelectPam(rCrsr, sal_True);
         rCrsr.Left(nTxtLen, CRSR_SKIP_CHARS);

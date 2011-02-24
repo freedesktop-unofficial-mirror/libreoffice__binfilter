@@ -163,7 +163,7 @@ namespace binfilter {
 /*N*/   for( n = 0; n < rArr.Count(); ++n )
 /*N*/   {
 /*N*/       SwTxtNode* pNd = rArr[ n ]->GetTxtNode();
-/*N*/       ASSERT( pNd, "was ist das fuer ein Node?" );
+/*N*/       OSL_ENSURE( pNd, "was ist das fuer ein Node?" );
 /*N*/       if( ( 1 << (pNd->GetTxtColl()->GetOutlineLevel() & ~NO_NUMLEVEL )
 /*N*/           & nChgFmtLevel ))
 /*?*/           pNd->NumRuleChgd();
@@ -248,7 +248,7 @@ namespace binfilter {
 /*N*/                       SwNumRuleInfo* pRuleInfo = 0 )
 /*N*/ {
 /*N*/   SwNumRule* pOld = rDoc.FindNumRulePtr( rRule.GetName() );
-/*N*/   ASSERT( pOld, "ohne die alte NumRule geht gar nichts" );
+/*N*/   OSL_ENSURE( pOld, "ohne die alte NumRule geht gar nichts" );
 /*N*/
 /*N*/   USHORT nChkLevel = 0, nChgFmtLevel = 0, nMask = 1;
 /*N*/
@@ -892,7 +892,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/           GetNodes().UpdtOutlineIdx( *pOutlNd );
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( pRule, "die NumRule sollte schon vorhanden sein!" );
+/*N*/   OSL_ENSURE( pRule, "die NumRule sollte schon vorhanden sein!" );
 /*N*/   if( pRule )
 /*N*/       pRule->SetInvalidRule( FALSE );
 /*N*/ }

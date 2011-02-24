@@ -91,7 +91,7 @@ namespace binfilter {
 /*N*/   if( rRange.HasMark() &&
 /*N*/       0 == ( nRegionRet = IsInsRegionAvailable( rRange, &pPrvNd ) ))
 /*N*/   {
-/*?*/       ASSERT( !this, "Selection ueber verschiedene Sections" );
+/*?*/       OSL_ENSURE( !this, "Selection ueber verschiedene Sections" );
 /*?*/       return 0;
 /*N*/   }
 /*N*/
@@ -117,7 +117,7 @@ namespace binfilter {
 /*N*/                   *pEndPos = (SwPosition*)rRange.End();
 /*N*/       if( pPrvNd && 3 == nRegionRet )
 /*N*/       {
-/*?*/           ASSERT( pPrvNd, "der SectionNode fehlt" );
+/*?*/           OSL_ENSURE( pPrvNd, "der SectionNode fehlt" );
 /*?*/           SwNodeIndex aStt( pSttPos->nNode ), aEnd( pEndPos->nNode, +1 );
 /*?*/           while( pPrvNd != aStt.GetNode().FindStartNode() )
 /*?*/               aStt--;
@@ -790,7 +790,7 @@ namespace binfilter {
 // neuen VerzeichnisSections. Der geht ueber in den Besitz des Nodes!
 /*N*/ void SwSectionNode::SetNewSection( SwSection* pNewSection )
 /*N*/ {
-/*N*/   ASSERT( pNewSection, "ohne Pointer geht hier nichts" );
+/*N*/   OSL_ENSURE( pNewSection, "ohne Pointer geht hier nichts" );
 /*N*/   if( pNewSection )
 /*N*/   {
 /*N*/       SwNode2Layout aN2L( *this );
@@ -824,7 +824,7 @@ namespace binfilter {
 
 /*N*/ void SwSectionNode::MakeFrms( SwNodeIndex* pIdxBehind, SwNodeIndex* pEndIdx )
 /*N*/ {
-/*N*/   ASSERT( pIdxBehind, "kein Index" );
+/*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   SwNodes& rNds = GetNodes();
 /*N*/   SwDoc* pDoc = rNds.GetDoc();
 /*N*/

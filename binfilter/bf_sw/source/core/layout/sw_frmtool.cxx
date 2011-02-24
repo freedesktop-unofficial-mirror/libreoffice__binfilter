@@ -276,7 +276,7 @@ namespace binfilter {
 /*N*/ //                                     (pFrm->IsFlyFrm() || pOldPage != pPage ||
 /*N*/ //                                      WEIT_WECH == pFly->Frm().Top()) )
 /*N*/                               {
-/*?*/                                   ASSERT( pFlyPage, "~SwFrmNotify: Fly from Nowhere" );
+/*?*/                                   OSL_ENSURE( pFlyPage, "~SwFrmNotify: Fly from Nowhere" );
 /*?*/                                   if( pFlyPage )
 /*?*/                                       pFlyPage->MoveFly( pFly, pPage );
 /*?*/                                   else
@@ -730,7 +730,7 @@ namespace binfilter {
 /*N*/       SwLayoutFrm* pCell = pCnt->GetUpper();
 /*N*/       while( !pCell->IsCellFrm() && pCell->GetUpper() )
 /*?*/           pCell = pCell->GetUpper();
-/*N*/       ASSERT( pCell->IsCellFrm(), "Where's my cell?" );
+/*N*/       OSL_ENSURE( pCell->IsCellFrm(), "Where's my cell?" );
 /*N*/       if ( VERT_NONE != pCell->GetFmt()->GetVertOrient().GetVertOrient() )
 /*N*/           pCell->InvalidatePrt(); //fuer vertikale Ausrichtung.
 /*N*/   }
@@ -749,7 +749,7 @@ namespace binfilter {
 /*N*/                (pNd->GetOLEObj().IsOleRef() ||
 /*N*/                 pNd->IsOLESizeInvalid()) )
 /*N*/           {
-/*N*/               ASSERT( pCnt->IsInFly(), "OLE not in FlyFrm" );
+/*N*/               OSL_ENSURE( pCnt->IsInFly(), "OLE not in FlyFrm" );
 /*N*/               SwFlyFrm *pFly = pCnt->FindFlyFrm();
 /*N*/               SvEmbeddedObjectRef xObj( (SvInPlaceObject*) pNd->GetOLEObj().GetOleRef() );
 /*N*/               SwFEShell *pFESh = 0;
@@ -872,7 +872,7 @@ namespace binfilter {
 /*?*/                       case FRAME:             aPos.Y() = pCnt->Frm().Top(); break;
 /*?*/                       default:
 /*?*/                           bSetPos = FALSE;
-/*?*/                           ASSERT( !this,"neuer Trick vom WW Reader?" );
+/*?*/                           OSL_ENSURE( !this,"neuer Trick vom WW Reader?" );
 /*?*/                   }
 /*?*/                   aPos.Y() += pVert->GetPos();
 /*?*/                   pFmt->ResetAttr( RES_VERT_ORIENT );
@@ -905,7 +905,7 @@ namespace binfilter {
 /*?*/                           break;
 /*?*/                       default:
 /*?*/                           bSetPos = FALSE;
-/*?*/                           ASSERT( !this,"neuer Trick vom WW Reader?" );
+/*?*/                           OSL_ENSURE( !this,"neuer Trick vom WW Reader?" );
 /*?*/                   }
 /*?*/                   aPos.X() += pHori->GetPos();
 /*?*/                   pFmt->ResetAttr( RES_HORI_ORIENT );
@@ -956,7 +956,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
                 SdrObject* pSdrObj = 0;
                 if ( bSdrObj && 0 == (pSdrObj = pFmt->FindSdrObject()) )
                 {
-                    ASSERT( !bSdrObj, "DrawObject not found." );
+                    OSL_ENSURE( !bSdrObj, "DrawObject not found." );
                     pFmt->GetDoc()->DelFrmFmt( pFmt );
                     --i;
                     continue;
@@ -1032,7 +1032,7 @@ void AppendObjs( const SwSpzFrmFmts *pTbl, ULONG nIndex,
 */
 bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 {
-    ASSERT( lcl_ObjConnected( &_rFmt ),
+    OSL_ENSURE( lcl_ObjConnected( &_rFmt ),
             "::lcl_InHeaderOrFooter(..) - <SwFrmFmt> has no connected object" );
 
     bool bRetVal = false;
@@ -1171,7 +1171,7 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*M*/           ( !pLay->IsInTab() || pSct->IsInTab() ) )
 /*M*/       {
 /*M*/           pActualSection = new SwActualSection( 0, pSct, 0 );
-/*M*/           ASSERT( !pLay->Lower() || !pLay->Lower()->IsColumnFrm(),
+/*M*/           OSL_ENSURE( !pLay->Lower() || !pLay->Lower()->IsColumnFrm(),
 /*M*/               "_InsertCnt: Wrong Call" );
 /*M*/       }
 /*M*/   }
@@ -1295,8 +1295,8 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/       }
 /*N*/       else if ( pNd->IsEndNode() && pNd->FindStartNode()->IsSectionNode() )
 /*N*/       {
-/*N*/           ASSERT( pActualSection, "Sectionende ohne Anfang?" );
-/*N*/           ASSERT( pActualSection->GetSectionNode() == pNd->FindStartNode(),
+/*N*/           OSL_ENSURE( pActualSection, "Sectionende ohne Anfang?" );
+/*N*/           OSL_ENSURE( pActualSection->GetSectionNode() == pNd->FindStartNode(),
 /*N*/                           "Sectionende mit falschen Start Node?" );
 /*N*/
 /*N*/           //Section schliessen, ggf. die umgebende Section wieder
@@ -1480,14 +1480,14 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 SwFrm *pMove = pFrm;
                 SwFrm *pPrev = pFrm->GetPrev();
                 SwFlowFrm *pTmp = SwFlowFrm::CastFlowFrm( pMove );
-                ASSERT( pTmp, "Missing FlowFrm" );
+                OSL_ENSURE( pTmp, "Missing FlowFrm" );
 
                 if ( bApres )
                 {
                     // Wir wollen, dass der Rest der Seite leer ist, d.h.
                     // der naechste muss auf die naechste Seite wandern.
                     // Dieser kann auch in der naechsten Spalte stehen!
-                    ASSERT( !pTmp->HasFollow(), "Follows forbidden" );
+                    OSL_ENSURE( !pTmp->HasFollow(), "Follows forbidden" );
                     pPrev = pFrm;
                     // Wenn unser umgebender SectionFrm einen Next besitzt,
                     // so soll dieser ebenfalls gemoved werden!
@@ -1542,7 +1542,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                 }
                 else
                 {
-                    ASSERT( !pTmp->IsFollow(), "Follows really forbidden" );
+                    OSL_ENSURE( !pTmp->IsFollow(), "Follows really forbidden" );
                     // Bei Bereichen muss natuerlich der Inhalt auf die Reise
                     // geschickt werden.
                     if( pMove->IsSctFrm() )
@@ -2129,7 +2129,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 
 /*N*/ void MA_FASTCALL lcl_RemoveFlysFromPage( SwCntntFrm *pCntnt )
 /*N*/ {
-/*N*/   ASSERT( pCntnt->GetDrawObjs(), "Keine DrawObjs fuer lcl_RemoveFlysFromPage." );
+/*N*/   OSL_ENSURE( pCntnt->GetDrawObjs(), "Keine DrawObjs fuer lcl_RemoveFlysFromPage." );
 /*N*/   SwDrawObjs &rObjs = *pCntnt->GetDrawObjs();
 /*N*/   for ( USHORT i = 0; i < rObjs.Count(); ++i )
 /*N*/   {
@@ -2217,7 +2217,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/                   }
 /*N*/               }
 /*N*/               else
-/*?*/                   ASSERT( !pFloat, "Neuer Float-Frame?" );
+/*?*/                   OSL_ENSURE( !pFloat, "Neuer Float-Frame?" );
 /*N*/           }
 /*N*/           if ( pFloat->GetNext()  )
 /*N*/           {
@@ -2262,7 +2262,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 
 /*N*/ void MA_FASTCALL lcl_AddFlysToPage( SwCntntFrm *pCntnt, SwPageFrm *pPage )
 /*N*/ {
-/*N*/   ASSERT( pCntnt->GetDrawObjs(), "Keine DrawObjs fuer lcl_AddFlysToPage." );
+/*N*/   OSL_ENSURE( pCntnt->GetDrawObjs(), "Keine DrawObjs fuer lcl_AddFlysToPage." );
 /*N*/   SwDrawObjs &rObjs = *pCntnt->GetDrawObjs();
 /*N*/   for ( USHORT i = 0; i < rObjs.Count(); ++i )
 /*N*/   {
@@ -2289,7 +2289,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 
 /*N*/ void RestoreCntnt( SwFrm *pSav, SwLayoutFrm *pParent, SwFrm *pSibling )
 /*N*/ {
-/*N*/   ASSERT( pSav && pParent, "Kein Save oder Parent fuer Restore." );
+/*N*/   OSL_ENSURE( pSav && pParent, "Kein Save oder Parent fuer Restore." );
 /*N*/
 /*N*/   //Wenn es bereits FlowFrms unterhalb des neuen Parent gibt, so wird die
 /*N*/   //Kette, beginnend mit pSav,  hinter dem letzten angehaengt.
@@ -2415,7 +2415,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/   if ( !pFmt )
 /*N*/   {
 /*N*/       pFmt = bOdd ? rDesc.GetLeftFmt() : rDesc.GetRightFmt();
-/*N*/       ASSERT( pFmt, "Descriptor without any format?!" );
+/*N*/       OSL_ENSURE( pFmt, "Descriptor without any format?!" );
 /*N*/       bInsertEmpty = !bInsertEmpty;
 /*N*/   }
 /*N*/   if( bInsertEmpty )
@@ -2874,7 +2874,7 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 /*N*/       pFrm = ( (SwDrawContact*)GetUserCall(pObj) )->GetAnchor();
 /*N*/       aPos = pObj->GetBoundRect().TopLeft();
 /*N*/   }
-/*N*/   ASSERT( pFrm, "8-( Fly is lost in Space." );
+/*N*/   OSL_ENSURE( pFrm, "8-( Fly is lost in Space." );
 /*N*/   pFrm = GetVirtualUpper( pFrm, aPos );
 /*N*/   do
 /*N*/   {   if ( pFrm == pCurrFrm )

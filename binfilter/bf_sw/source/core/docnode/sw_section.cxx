@@ -482,7 +482,7 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/       return (SwSectionPtr)aIter.First( TYPE(SwSection) );
 /*N*/   }
 /*N*/
-/*?*/   ASSERT( FALSE, "keine Section als Client." )
+/*?*/   OSL_ENSURE( FALSE, "keine Section als Client." );
 /*?*/   return 0;
 /*N*/ }
 
@@ -1118,7 +1118,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       ASSERT( !this, "Was ist das fuer ein Link?" )
+/*?*/       OSL_ENSURE( !this, "Was ist das fuer ein Link?" );
 /*N*/   }
 /*N*/
 /*N*/   switch( eCreateType )

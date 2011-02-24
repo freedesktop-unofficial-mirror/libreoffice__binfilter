@@ -131,7 +131,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwDoc::FindBookmark( const String& rName )
 /*N*/ {
-/*N*/   ASSERT( rName.Len(), "wo ist der Name?" );
+/*N*/   OSL_ENSURE( rName.Len(), "wo ist der Name?" );
 /*N*/   for( USHORT n = pBookmarkTbl->Count(); n ; )
 /*N*/       if( rName.Equals( (*pBookmarkTbl)[ --n ]->GetName() ) )
 /*N*/           return n;
@@ -556,7 +556,7 @@ namespace binfilter {
 /*N*/                           aSave.SetType( 0x2000 );
 /*N*/                           aSave.SetContent( pAPos->nContent.GetIndex() );
 /*N*/
-/*N*/                           ASSERT( nNode == pAPos->nNode.GetIndex(),
+/*N*/                           OSL_ENSURE( nNode == pAPos->nNode.GetIndex(),
 /*N*/                                   "_SaveCntntIdx: Wrong Node-Index" );
 /*N*/                           if( FLY_AUTO_CNTNT == rAnchor.GetAnchorId() )
 /*N*/                           {
@@ -573,7 +573,7 @@ namespace binfilter {
 /*N*/                                  pFmt != (*pDoc->GetSpzFrmFmts())[
 /*N*/                                            aSave.DecCount() ] )
 /*N*/                               ; // nothing
-/*N*/                           ASSERT( pFmt == (*pDoc->GetSpzFrmFmts())[
+/*N*/                           OSL_ENSURE( pFmt == (*pDoc->GetSpzFrmFmts())[
 /*N*/                                                   aSave.GetCount() ],
 /*N*/                                   "_SaveCntntIdx: Lost FrameFormat" );
 /*N*/                           aSave.Add( rSaveArr );

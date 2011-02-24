@@ -192,7 +192,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         }
         // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der
         // eigene Filter ist.
-        ASSERT( pRead != ReadSw3 || pRead != ReadXML || pFlt->GetVersion(),
+        OSL_ENSURE( pRead != ReadSw3 || pRead != ReadXML || pFlt->GetVersion(),
                 "Am Filter ist keine FF-Version gesetzt" );
         if( (pRead == ReadSw3 || pRead == ReadXML) && pFlt->GetVersion() )
             aStor->SetVersion( (long)pFlt->GetVersion() );
@@ -261,7 +261,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
     AddLink();
 
-    ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+    OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
     pBasePool = new SwDocStyleSheetPool( *pDoc,
                         SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
     UpdateFontList();

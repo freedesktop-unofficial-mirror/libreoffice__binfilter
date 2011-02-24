@@ -205,13 +205,13 @@ namespace binfilter {
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/ #ifdef DBG_UTIL
 /*N*/     SWRECTFN( this )
-/*N*/     ASSERT( bHeightClipped || ( (Frm().*fnRect->fnGetHeight)() > 0 &&
+/*N*/     OSL_ENSURE( bHeightClipped || ( (Frm().*fnRect->fnGetHeight)() > 0 &&
 /*N*/             (Prt().*fnRect->fnGetHeight)() > 0),
 /*N*/           "SwFlyFreeFrm::Format(), flipping Fly." );
 /*N*/
 /*N*/ #endif
 /*N*/ #else
-/*?*/   ASSERT( bHeightClipped || (Frm().Height() > 0 && Prt().Height() > 0),
+/*?*/   OSL_ENSURE( bHeightClipped || (Frm().Height() > 0 && Prt().Height() > 0),
 /*?*/           "SwFlyFreeFrm::Format(), flipping Fly." );
 /*N*/ #endif
 /*N*/ }
@@ -414,7 +414,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( pAnch )
 /*N*/   {
-/*?*/       ASSERT( pAnch->GetAnchorId() ==
+/*?*/       OSL_ENSURE( pAnch->GetAnchorId() ==
 /*?*/               GetFmt()->GetAnchor().GetAnchorId(),
 /*?*/               "8-) Unzulaessiger Wechsel des Ankertyps." );
 /*?*/
@@ -486,7 +486,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   const SdrObjectPtr pObj = pNew->GetVirtDrawObj();
-/*N*/   ASSERT( pNew->GetAnchor(), "Fly without Anchor" );
+/*N*/   OSL_ENSURE( pNew->GetAnchor(), "Fly without Anchor" );
 /*N*/   SwFlyFrm *pFly = pNew->GetAnchor()->FindFlyFrm();
 /*N*/   if ( pFly && pObj->GetOrdNum() < pFly->GetVirtDrawObj()->GetOrdNum() )
 /*N*/   {
@@ -507,7 +507,7 @@ namespace binfilter {
 /*N*/         if ( !pSortedObjs )
 /*N*/             pSortedObjs = new SwSortDrawObjs();
 /*N*/         if ( !pSortedObjs->Insert( pObj ) )
-/*?*/             ASSERT( FALSE, "Fly nicht in Sorted eingetragen." );
+/*?*/             OSL_ENSURE( FALSE, "Fly nicht in Sorted eingetragen." );
 /*N*/
 /*N*/         ((SwFlyFreeFrm*)pNew)->SetPage( this );
 /*N*/         pNew->InvalidatePage( this );
@@ -646,7 +646,7 @@ namespace binfilter {
 /*N*/   if ( !pDest->GetSortedObjs() )
 /*N*/       pDest->pSortedObjs = new SwSortDrawObjs();
 /*N*/   if ( !pDest->GetSortedObjs()->Insert( pObj ) )
-/*?*/       ASSERT( FALSE, "Fly nicht in Sorted eingetragen." );
+/*?*/       OSL_ENSURE( FALSE, "Fly nicht in Sorted eingetragen." );
 /*N*/
 /*N*/   ((SwFlyFreeFrm*)pToMove)->SetPage( pDest );
 /*N*/   pToMove->InvalidatePage( pDest );
@@ -678,7 +678,7 @@ namespace binfilter {
 /*N*/       ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
 /*N*/
 /*N*/   const SdrObjectPtr pObj = pNew->GetMaster();
-/*N*/   ASSERT( pNew->GetAnchor(), "Contact without Anchor" );
+/*N*/   OSL_ENSURE( pNew->GetAnchor(), "Contact without Anchor" );
 /*N*/   SwFlyFrm *pFly = pNew->GetAnchor()->FindFlyFrm();
 /*N*/   if ( pFly && pObj->GetOrdNum() < pFly->GetVirtDrawObj()->GetOrdNum() )
 /*N*/   {
@@ -698,7 +698,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       USHORT nIdx;
-/*N*/       ASSERT( pSortedObjs->Seek_Entry( pObj, &nIdx ),
+/*N*/       OSL_ENSURE( pSortedObjs->Seek_Entry( pObj, &nIdx ),
 /*N*/               "Fly nicht in Sorted eingetragen." );
 /*N*/ #endif
 /*N*/   }
@@ -714,7 +714,7 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
         ((SwRootFrm*)GetUpper())->InvalidateBrowseWidth();
     }
 
-    ASSERT( _pDrawVirtObj->GetAnchorFrm(), "virtual draw contact without anchor" );
+    OSL_ENSURE( _pDrawVirtObj->GetAnchorFrm(), "virtual draw contact without anchor" );
     SwFlyFrm *pFly = _pDrawVirtObj->GetAnchorFrm()->FindFlyFrm();
     if ( pFly && _pDrawVirtObj->GetOrdNum() < pFly->GetVirtDrawObj()->GetOrdNum() )
     {
@@ -738,7 +738,7 @@ void SwPageFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     {
 #ifdef DBG_UTIL
         USHORT nIdx;
-        ASSERT( pSortedObjs->Seek_Entry( _pDrawVirtObj, &nIdx ),
+        OSL_ENSURE( pSortedObjs->Seek_Entry( _pDrawVirtObj, &nIdx ),
                 "Fly nicht in Sorted eingetragen." );
 #endif
     }
@@ -808,14 +808,14 @@ void SwPageFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/                           const SwFmtAnchor *pAnch )
 /*N*/ {
 /*N*/   //Der Fly will immer an der Seite direkt haengen.
-/*N*/   ASSERT( pAnch->GetAnchorId() == FLY_PAGE, "Unerwartete AnchorId." );
+/*N*/   OSL_ENSURE( pAnch->GetAnchorId() == FLY_PAGE, "Unerwartete AnchorId." );
 /*N*/
 /*N*/   //Wenn ein Fly uebergeben wurde, so benutzen wir diesen, ansonsten wird
 /*N*/   //mit dem Format einer erzeugt.
 /*N*/   if ( pFly )
 /*?*/       SwFrm::AppendFly( pFly );
 /*N*/   else
-/*N*/   {   ASSERT( pFmt, ":-( kein Format fuer Fly uebergeben." );
+/*N*/   {   OSL_ENSURE( pFmt, ":-( kein Format fuer Fly uebergeben." );
 /*N*/       pFly = new SwFlyLayFrm( (SwFlyFrmFmt*)pFmt, this );
 /*N*/       SwFrm::AppendFly( pFly );
 /*N*/       ::binfilter::RegistFlys( this, pFly );

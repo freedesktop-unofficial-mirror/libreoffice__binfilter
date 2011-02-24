@@ -197,7 +197,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*?*/         }
 /*?*/     }
 /*N*/
-/*N*/     ASSERT( nPos <= nCount, "wrong position for insert operation");
+/*N*/     OSL_ENSURE( nPos <= nCount, "wrong position for insert operation");
 /*N*/
 /*N*/     if ( nPos < nCount )
 /*N*/         memmove( pArray + nPos + 1, pArray + nPos,
@@ -378,7 +378,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 
 /*M*/ sal_Bool SwAttrHandler::Push( const SwTxtAttr& rAttr, const SfxPoolItem& rItem, SwFont& /*rFnt*/ )
 /*M*/ {
-/*M*/     ASSERT( rItem.Which() < RES_TXTATR_WITHEND_END ||
+/*M*/     OSL_ENSURE( rItem.Which() < RES_TXTATR_WITHEND_END ||
 /*M*/             RES_UNKNOWNATR_CONTAINER == rItem.Which() ,
 /*M*/             "I do not want this attribute, nWhich >= RES_TXTATR_WITHEND_END" );
 /*M*/
@@ -401,7 +401,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     }
 /*M*/
 /*M*/     USHORT nPos = aAttrStack[ nStack ].Count();
-/*M*/     ASSERT( nPos, "empty stack?" );
+/*M*/     OSL_ENSURE( nPos, "empty stack?" );
 /*M*/     aAttrStack[ nStack ].Insert( rAttr, nPos - 1 );
 /*M*/     return sal_False;
 /*M*/ }
@@ -465,7 +465,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *************************************************************************/
 /*M*/ void SwAttrHandler::ActivateTop( SwFont& rFnt, const USHORT nAttr )
 /*M*/ {
-/*M*/     ASSERT( nAttr < RES_TXTATR_WITHEND_END,
+/*M*/     OSL_ENSURE( nAttr < RES_TXTATR_WITHEND_END,
 /*M*/             "I cannot activate this attribute, nWhich >= RES_TXTATR_WITHEND_END" );
 /*M*/
 /*M*/     const USHORT nStackPos = StackPos[ nAttr ];

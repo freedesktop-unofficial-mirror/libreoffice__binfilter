@@ -98,7 +98,7 @@ namespace binfilter {
 /*?*/           pFrmAtPos->GetFormatted();
 /*?*/           pFrmAtPos = pFrmAtPos->FindMaster();
 /*N*/       }
-/*N*/       ASSERT( pFrmAtPos, "+GetCharRect: no frame with my rightmargin" );
+/*N*/       OSL_ENSURE( pFrmAtPos, "+GetCharRect: no frame with my rightmargin" );
 /*N*/   }
 /*N*/   return pFrmAtPos ? pFrmAtPos : pFrm;
 /*N*/ }
@@ -150,7 +150,7 @@ namespace binfilter {
 /*N*/ sal_Bool SwTxtFrm::GetCharRect( SwRect& rOrig, const SwPosition &rPos,
 /*N*/                           SwCrsrMoveState *pCMS ) const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::GetCharRect with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::GetCharRect with swapped frame" );
 /*N*/
 /*N*/     if( IsLocked() || IsHiddenNow() )
 /*N*/       return sal_False;
@@ -303,7 +303,7 @@ namespace binfilter {
 /*N*/     if( bRet )
 /*N*/     {
 /*N*/         SwPageFrm *pPage = pFrm->FindPageFrm();
-/*N*/         ASSERT( pPage, "Text esaped from page?" );
+/*N*/         OSL_ENSURE( pPage, "Text esaped from page?" );
 /*N*/         const SwTwips nOrigTop = (rOrig.*fnRect->fnGetTop)();
 /*N*/         const SwTwips nPageTop = (pPage->Frm().*fnRect->fnGetTop)();
 /*N*/         const SwTwips nPageBott = (pPage->Frm().*fnRect->fnGetBottom)();

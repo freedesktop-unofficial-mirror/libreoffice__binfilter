@@ -596,7 +596,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 
 /*N*/ String SwTemplNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
-/*N*/   ASSERT(nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+/*N*/   OSL_ENSURE(nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/
 /*N*/   String aRet;
 /*N*/   const SfxDocumentInfo* pDInfo = pDoc->GetpInfo();
@@ -757,7 +757,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*?*/               nFmt = (sal_uInt32)nNumberingType;
 /*N*/           break;
 /*N*/       default:
-/*?*/           ASSERT( sal_False, "SwDocStatFieldType::Expand: unbekannter SubType" );
+/*?*/           OSL_ENSURE( sal_False, "SwDocStatFieldType::Expand: unbekannter SubType" );
 /*N*/   }
 /*N*/
 /*N*/   String sRet;
@@ -1257,7 +1257,7 @@ SwHiddenTxtField::SwHiddenTxtField(
 
 /*N*/ void SwHiddenTxtField::Evaluate(SwDoc* pDoc)
 /*N*/ {
-/*N*/   ASSERT(pDoc, Wo ist das Dokument Seniore);
+/*N*/   OSL_ENSURE(pDoc, Wo ist das Dokument Seniore);
 /*N*/
 /*N*/   if( TYP_CONDTXTFLD == nSubType )
 /*N*/   {
@@ -1718,7 +1718,7 @@ BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   case EU_STATE:          nRet = POS_STATE;           break;
 /*?*/   case EU_FATHERSNAME:    nRet = POS_FATHERSNAME;     break;
 /*?*/   case EU_APARTMENT:      nRet = POS_APARTMENT;       break;
-/*?*/   default:                ASSERT( !this, "Field unknown");
+/*?*/   default:                OSL_ENSURE( !this, "Field unknown");
 /*N*/   }
 /*N*/   if( USHRT_MAX != nRet )
 /*N*/       aRet = aAdr.GetToken( nRet );

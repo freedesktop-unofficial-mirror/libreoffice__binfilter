@@ -119,7 +119,7 @@ namespace binfilter {
 /*N*/ USHORT SwAttrSet::ClearItem_BC( USHORT nWhich1, USHORT nWhich2,
 /*N*/                       SwAttrSet* pOld, SwAttrSet* pNew )
 /*N*/ {
-/*N*/   ASSERT( nWhich1 <= nWhich2, "kein gueltiger Bereich" );
+/*N*/   OSL_ENSURE( nWhich1 <= nWhich2, "kein gueltiger Bereich" );
 /*N*/   pNewSet = pNew;
 /*N*/   pOldSet = pOld;
 /*N*/   USHORT nRet = 0;
@@ -268,7 +268,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #ifdef DBG_UTIL
 /*N*/   else
-/*N*/       ASSERT( !this, "weder Format noch ContentNode - keine Attribute kopiert");
+/*N*/       OSL_ENSURE( !this, "weder Format noch ContentNode - keine Attribute kopiert");
 /*N*/ #endif
 /*N*/ }
 

@@ -574,7 +574,7 @@ static int
 /*N*/   VarTable[ ii ] = pNewExp;
 /*N*/
 /*N*/   String sColumnName( GetColumnName( sTmpName ));
-/*N*/   ASSERT( sColumnName.Len(), "DB-Spaltenname fehlt!" );
+/*N*/   OSL_ENSURE( sColumnName.Len(), "DB-Spaltenname fehlt!" );
 /*N*/   if( sColumnName.EqualsIgnoreCaseAscii(
 /*N*/                           SwFieldType::GetTypeStr( TYP_DBSETNUMBERFLD ) ))
 /*N*/   {

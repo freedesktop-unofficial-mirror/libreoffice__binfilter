@@ -111,7 +111,7 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/                  GetValue() == RES_MIRROR_GRF_BOTH;
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "unknown MemberId" );
+/*N*/           OSL_ENSURE( !this, "unknown MemberId" );
 /*N*/           bRet = sal_False;
 /*N*/   }
 /*N*/   rVal.setValue( &bVal, ::getBooleanCppuType() );
@@ -160,7 +160,7 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/           }
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "unknown MemberId" );
+/*N*/           OSL_ENSURE( !this, "unknown MemberId" );
 /*N*/           bRet = false;
 /*N*/   }
 /*N*/   return bRet;

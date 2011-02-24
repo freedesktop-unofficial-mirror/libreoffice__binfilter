@@ -118,7 +118,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ SwCntntNode *SwOLENode::SplitNode( const SwPosition & )
 /*N*/ {
 /*N*/   // OLE-Objecte vervielfaeltigen ??
-/*N*/   ASSERT( FALSE, "OleNode: can't split." );
+/*N*/   OSL_ENSURE( FALSE, "OleNode: can't split." );
 /*N*/   return this;
 /*N*/ }
 
@@ -134,7 +134,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/                                   SwGrfFmtColl* pGrfColl,
 /*N*/                                   SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
 /*N*/
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, pObj, pGrfColl, pAutoAttr );
@@ -148,7 +148,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/                                   SwGrfFmtColl* pGrfColl,
 /*N*/                                   SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
 /*N*/
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, rName, pGrfColl, pAutoAttr );
@@ -173,8 +173,8 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   SvPersist* p = pDoc->GetPersist();
 /*N*/   if( !p )
 /*N*/   {
-/*?*/       ASSERT( pDoc->GetRefForDocShell(),
-/*?*/                       "wo ist die Ref-Klasse fuer die DocShell?")
+/*?*/       OSL_ENSURE( pDoc->GetRefForDocShell(),
+/*?*/                       "wo ist die Ref-Klasse fuer die DocShell?");
 /*?*/       p = new SwDocShell( pDoc, SFX_CREATE_MODE_INTERNAL );
 /*?*/       *pDoc->GetRefForDocShell() = p;
 /*?*/       p->DoInitNew( NULL );
@@ -306,7 +306,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/       SvPersist* p = pDoc->GetPersist();
 /*N*/       if( !p )
 /*N*/       {
-/*?*/           ASSERT( !this, "warum wird hier eine DocShell angelegt?" );
+/*?*/           OSL_ENSURE( !this, "warum wird hier eine DocShell angelegt?" );
 /*?*/           p = new SwDocShell( pDoc, SFX_CREATE_MODE_INTERNAL );
 /*?*/           p->DoInitNew( NULL );
 /*N*/       }
@@ -325,7 +325,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/           //              found.
 /*?*/           p->Insert( refObj );
 /*N*/       }
-/*N*/       ASSERT( refObj.Is(), "InsertObject failed" );
+/*N*/       OSL_ENSURE( refObj.Is(), "InsertObject failed" );
 /*N*/   }
 /*N*/ }
 
@@ -339,7 +339,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   if( !pOLERef || !pOLERef->Is() )
 /*N*/   {
 /*N*/       SvPersist* p = pOLENd->GetDoc()->GetPersist();
-/*N*/       ASSERT( p, "kein SvPersist vorhanden" );
+/*N*/       OSL_ENSURE( p, "kein SvPersist vorhanden" );
 /*N*/
 /*N*/       // MIB 18.5.97: DIe Base-URL wird jetzt gesetzt, damit Plugins
 /*N*/       // nach dem Laden und vor dem Aktivieren des Frames korrekt
@@ -352,8 +352,8 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/
 /*N*/       SvPersistRef xObj = p->GetObject( aName );
-/*N*/       ASSERT( !pOLERef || !pOLERef->Is(),
-/*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" )
+/*N*/       OSL_ENSURE( !pOLERef || !pOLERef->Is(),
+/*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" );
 /*N*/
 /*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/
@@ -475,7 +475,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   {
 /*?*/       SwOLEObj* pObj = &rObj;
 /*?*/       USHORT nPos = SvPtrarr::GetPos( pObj );
-/*?*/       ASSERT( USHRT_MAX != nPos, "Insert a new OLE object into a looked cache" );
+/*?*/       OSL_ENSURE( USHRT_MAX != nPos, "Insert a new OLE object into a looked cache" );
 /*?*/   }
 /*N*/ #endif
 /*N*/ }

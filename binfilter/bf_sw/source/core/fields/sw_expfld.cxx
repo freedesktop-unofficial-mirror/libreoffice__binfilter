@@ -82,7 +82,7 @@ using namespace ::rtl;
 /*N*/           nM = nU + ( nO - nU ) / 2;
 /*N*/           if( *(rArr.GetData() + nM) == nIdx )
 /*N*/           {
-/*N*/               ASSERT( FALSE, "Index ist schon vorhanden, darf nie sein!" );
+/*N*/               OSL_ENSURE( FALSE, "Index ist schon vorhanden, darf nie sein!" );
 /*N*/               return;
 /*N*/           }
 /*N*/           if( *(rArr.GetData() + nM) < nIdx )
@@ -165,7 +165,7 @@ using namespace ::rtl;
 /*?*/       while( 0 != (pCNd = rDoc.GetNodes().GoNext( &rPos.nNode ) ) &&
 /*?*/               0 == ( pTxtNode = pCNd->GetTxtNode() ) )
 /*?*/                       ;
-/*?*/       ASSERT( pTxtNode, "wo ist der 1.TextNode" );
+/*?*/       OSL_ENSURE( pTxtNode, "wo ist der 1.TextNode" );
 /*?*/       rPos.nContent.Assign( pTxtNode, 0 );
 /*N*/   }
 /*N*/   else if ( !pCFrm->IsValid() )
@@ -194,7 +194,7 @@ using namespace ::rtl;
 /*N*/       {
 /*N*/           // hole das FlyFormat
 /*N*/           SwFrmFmt* pFlyFmt = ((SwFlyFrm*)pLayout)->GetFmt();
-/*N*/           ASSERT( pFlyFmt, "kein FlyFormat gefunden, wo steht das Feld" );
+/*N*/           OSL_ENSURE( pFlyFmt, "kein FlyFormat gefunden, wo steht das Feld" );
 /*N*/
 /*N*/           const SwFmtAnchor &rAnchor = pFlyFmt->GetAnchor();
 /*N*/
@@ -209,7 +209,7 @@ using namespace ::rtl;
 /*N*/                    FLY_AUTO_CNTNT == rAnchor.GetAnchorId() ||
 /*N*/                    FLY_IN_CNTNT == rAnchor.GetAnchorId() )
 /*N*/           {
-/*N*/               ASSERT( rAnchor.GetCntntAnchor(), "keine gueltige Position" );
+/*N*/               OSL_ENSURE( rAnchor.GetCntntAnchor(), "keine gueltige Position" );
 /*N*/               rPos = *rAnchor.GetCntntAnchor();
 /*N*/               pTxtNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/               if( FLY_AT_CNTNT == rAnchor.GetAnchorId() )

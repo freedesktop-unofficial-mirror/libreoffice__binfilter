@@ -199,7 +199,7 @@ ULONG ExcelReader::Read( SwDoc &rDoc, SwPaM &rPam,
     }
     else if( !pStrm )
     {
-        ASSERT( FALSE, "ExcelReader-Read ohne Stream/Storage" );
+        OSL_ENSURE( FALSE, "ExcelReader-Read ohne Stream/Storage" );
         nRet = ERR_SWG_READ_ERROR;
     }
 

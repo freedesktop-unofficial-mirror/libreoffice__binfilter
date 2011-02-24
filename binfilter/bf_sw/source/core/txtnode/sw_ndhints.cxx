@@ -195,8 +195,8 @@ namespace binfilter {
 /*N*/   Resort();
 /*N*/ #ifdef DBG_UTIL
 /*N*/   USHORT nPos;
-/*N*/   ASSERT(!SwpHtStart::Seek_Entry( pHt, &nPos ), "Insert: hint already in HtStart");
-/*N*/   ASSERT(!aHtEnd.Seek_Entry( pHt, &nPos ), "Insert: hint already in HtEnd");
+/*N*/   OSL_ENSURE(!SwpHtStart::Seek_Entry( pHt, &nPos ), "Insert: hint already in HtStart");
+/*N*/   OSL_ENSURE(!aHtEnd.Seek_Entry( pHt, &nPos ), "Insert: hint already in HtEnd");
 /*N*/ #endif
 /*N*/   SwpHtStart::Insert( pHt );
 /*N*/   aHtEnd.Insert( pHt );
@@ -237,7 +237,7 @@ namespace binfilter {
 /*N*/ #define CHECK_ERR(cond, text) \
 /*N*/         if(!(cond)) \
 /*N*/         { \
-/*N*/             ASSERT(!this, text); \
+/*N*/             OSL_ENSURE(!this, text); \
 /*N*/             DumpHints(*(SwpHtStart*)this,aHtEnd); \
 /*N*/             const BOOL bErr = 0 == (cond); /* fuer den CV */ \
 /*N*/             return !((SwpHintsArr*)this)->Resort(); \
@@ -326,7 +326,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/ #ifdef NIE
 /*N*/ #ifdef DBG_UTIL
-/*N*/ //            ASSERT( bResort, "!Resort/Start: correcting hints-array" );
+/*N*/ //            OSL_ENSURE( bResort, "!Resort/Start: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Starts" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
 /*N*/ #endif
@@ -361,7 +361,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/ #ifdef NIE
 /*N*/ #ifdef DBG_UTIL
-/*N*/ //            ASSERT( bResort, "!Resort/Ends: correcting hints-array" );
+/*N*/ //            OSL_ENSURE( bResort, "!Resort/Ends: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Ends" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
 /*N*/ #endif

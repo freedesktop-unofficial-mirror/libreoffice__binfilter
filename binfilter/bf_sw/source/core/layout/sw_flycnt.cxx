@@ -104,7 +104,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( pAnch )
 /*N*/   {
-/*N*/       ASSERT( pAnch->GetAnchorId() == GetFmt()->GetAnchor().GetAnchorId(),
+/*N*/       OSL_ENSURE( pAnch->GetAnchorId() == GetFmt()->GetAnchor().GetAnchorId(),
 /*N*/               "Unzulaessiger Wechsel des Ankertyps." );
 /*N*/
 /*N*/       //Abmelden, neuen Anker besorgen und 'dranhaengen.
@@ -147,7 +147,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           SwCntntNode *pNode = aNewIdx.GetNode().GetCntntNode();
 /*?*/           pCntnt = pNode->GetFrm( &pOldAnchor->Frm().Pos(), 0, FALSE );
-/*?*/           ASSERT( pCntnt, "Neuen Anker nicht gefunden" );
+/*?*/           OSL_ENSURE( pCntnt, "Neuen Anker nicht gefunden" );
 /*N*/       }
 /*N*/       //Flys haengen niemals an einem Follow sondern immer am
 /*N*/       //Master, den suchen wir uns jetzt.
@@ -1072,7 +1072,7 @@ namespace binfilter {
 /*M*/   do
 /*M*/   {   if ( ++nCnt == 10 )
 /*M*/       {
-/*M*/           ASSERT( !nCnt, "DeepCalc: Loop detected1?" );
+/*M*/           OSL_ENSURE( !nCnt, "DeepCalc: Loop detected1?" );
 /*M*/           break;
 /*M*/       }
 /*M*/
@@ -1266,7 +1266,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pMyPage != pNewPage )
 /*N*/   {
-/*N*/       ASSERT( IsLocked(), "AssertPage: Unlocked Frame??" );
+/*N*/       OSL_ENSURE( IsLocked(), "AssertPage: Unlocked Frame??" );
 /*N*/       pMyPage->MoveFly( this, pNewPage );
 /*N*/       if ( bSuperfluous && pMyPage->GetPhyPageNum() > pNewPage->GetPhyPageNum() )
 /*?*/           ((SwRootFrm*)pNewPage->GetUpper())->SetSuperfluous();
@@ -1749,7 +1749,7 @@ namespace binfilter {
 /*N*/       const SwFrm *pPage = pOrient;
 /*N*/       while( !pPage->IsPageFrm() && !pPage->IsFlyFrm() && !pPage->IsCellFrm() )
 /*N*/       {
-/*N*/           ASSERT( pPage->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
+/*N*/           OSL_ENSURE( pPage->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
 /*N*/           pPage = pPage->GetUpper();
 /*N*/       }
 /*N*/
@@ -2160,7 +2160,7 @@ namespace binfilter {
 /*N*/         FindPageFrm()->InvalidateSize();
 /*N*/     if ( !bValidPos && !GetAnchor()->IsValid() )
 /*N*/     {
-/*N*/ //      ASSERT( StackHack::IsLocked(), "invalid Anchor" );
+/*N*/ //      OSL_ENSURE( StackHack::IsLocked(), "invalid Anchor" );
 /*N*/         bValidPos = TRUE;
 /*N*/     }
 /*N*/ }

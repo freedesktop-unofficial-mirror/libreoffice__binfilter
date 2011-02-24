@@ -689,7 +689,7 @@ DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/                                       USHORT nSubType, USHORT nSeqNo,
 /*N*/                                       USHORT* pStt, USHORT* pEnd )
 /*N*/ {
-/*N*/   ASSERT( pStt, "warum wird keine StartPos abgefragt?" );
+/*N*/   OSL_ENSURE( pStt, "warum wird keine StartPos abgefragt?" );
 /*N*/
 /*N*/   SwTxtNode* pTxtNd = 0;
 /*N*/   switch( nSubType )

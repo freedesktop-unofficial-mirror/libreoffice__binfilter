@@ -84,7 +84,7 @@ namespace binfilter {
 /*M*/ void SwFlyInCntFrm::SetRefPoint( const Point& rPoint, const Point& rRelAttr,
 /*M*/   const Point& rRelPos )
 /*M*/ {
-/*M*/   ASSERT( rPoint != aRef || rRelAttr != aRelPos, "SetRefPoint: no change" );
+/*M*/   OSL_ENSURE( rPoint != aRef || rRelAttr != aRelPos, "SetRefPoint: no change" );
 /*M*/     SwFlyNotify *pNotify = NULL;
 /*M*/     // No notify at a locked fly frame, if a fly frame is locked, there's
 /*M*/     // already a SwFlyNotify object on the stack (MakeAll).
@@ -265,7 +265,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // vgl. SwRowFrm::RegistFlys()
 /*N*/   SwPageFrm *pPage = FindPageFrm();
-/*N*/   ASSERT( pPage, "Flys ohne Seite anmelden?" );
+/*N*/   OSL_ENSURE( pPage, "Flys ohne Seite anmelden?" );
 /*N*/   ::binfilter::RegistFlys( pPage, this );
 /*N*/ }
 

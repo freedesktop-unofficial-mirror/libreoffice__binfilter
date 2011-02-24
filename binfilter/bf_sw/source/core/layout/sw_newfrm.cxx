@@ -337,7 +337,7 @@ namespace binfilter {
 /*N*/       if( (*SwFrm::GetCachePtr())[ --n ] )
 /*N*/       {
 /*N*/           SwCacheObj* pObj = (*SwFrm::GetCachePtr())[ n ];
-/*N*/           ASSERT( !pObj, "Wer hat sich nicht ausgetragen?")
+/*N*/           OSL_ENSURE( !pObj, "Wer hat sich nicht ausgetragen?");
 /*N*/       }
 /*N*/ #endif
 /*N*/   delete SwRootFrm::pVout;
@@ -356,7 +356,7 @@ namespace binfilter {
 
 /*N*/ CurrShell::CurrShell( ViewShell *pNew )
 /*N*/ {
-/*N*/   ASSERT( pNew, "0-Shell einsetzen?" );
+/*N*/   OSL_ENSURE( pNew, "0-Shell einsetzen?" );
 /*N*/   pRoot = pNew->GetLayout();
 /*N*/   if ( pRoot )
 /*N*/   {
@@ -538,7 +538,7 @@ namespace binfilter {
 /*N*/   delete pCurrShells;
 /*N*/
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   ASSERT( 0==nAccessibleShells, "Some accessible shells are left" );
+/*N*/   OSL_ENSURE( 0==nAccessibleShells, "Some accessible shells are left" );
 /*N*/ #endif
 /*N*/ }
 

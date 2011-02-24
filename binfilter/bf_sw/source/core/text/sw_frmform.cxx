@@ -126,7 +126,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   ValidateTxt( this );
 /*N*/
 /*N*/   //MA: mindestens das MustFit-Flag muessen wir retten!
-/*N*/   ASSERT( HasPara(), "ResetPreps(), missing ParaPortion." );
+/*N*/   OSL_ENSURE( HasPara(), "ResetPreps(), missing ParaPortion." );
 /*N*/   SwParaPortion *pPara = GetPara();
 /*N*/   const sal_Bool bMustFit = pPara->IsPrepMustFit();
 /*N*/   ResetPreps();
@@ -203,7 +203,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( this )
 /*N*/
-/*N*/     ASSERT( HasFollow(), "CalcFollow: missing Follow." );
+/*N*/     OSL_ENSURE( HasFollow(), "CalcFollow: missing Follow." );
 /*N*/
 /*N*/   SwTxtFrm *pFollow = GetFollow();
 /*N*/
@@ -304,12 +304,12 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               pFollow->Calc();
 /*N*/               // Der Follow merkt anhand seiner Frm().Height(), dass was schief
 /*N*/               // gelaufen ist.
-/*N*/               ASSERT( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
+/*N*/               OSL_ENSURE( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
 /*N*/               if( pFollow->GetPrev() )
 /*N*/               {
 /*?*/                   pFollow->Prepare( PREP_CLEAR );
 /*?*/                   pFollow->Calc();
-/*?*/                   ASSERT( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
+/*?*/                   OSL_ENSURE( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
 /*N*/                     }
 /*N*/
 /*N*/                     // OD 14.03.2003 #i11760# - reset control flag for follow format.
@@ -349,7 +349,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/       ASSERT( pOldUp == GetUpper(), "SwTxtFrm::CalcFollow: heavy follow" );
+/*N*/       OSL_ENSURE( pOldUp == GetUpper(), "SwTxtFrm::CalcFollow: heavy follow" );
 /*N*/ #endif
 /*N*/
 /*N*/         const long nRemaining =
@@ -451,7 +451,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/         SwTwips nRstHeight;
 /*N*/         if ( IsVertical() )
 /*N*/         {
-/*?*/             ASSERT( ! IsSwapped(),"Swapped frame while calculating nRstHeight" );
+/*?*/             OSL_ENSURE( ! IsSwapped(),"Swapped frame while calculating nRstHeight" );
 /*?*/             nRstHeight = Frm().Left() + Frm().Width() -
 /*?*/                          ( GetUpper()->Frm().Left() + GetUpper()->Prt().Left() );
 /*N*/         }
@@ -467,7 +467,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/             long nAdd = (*fnRect->fnYDiff)( (GetUpper()->Lower()->Frm().*fnRect->fnGetTop)(),
 /*N*/                                             (GetUpper()->*fnRect->fnGetPrtTop)() );
-/*N*/             ASSERT( nAdd >= 0, "Ey" );
+/*N*/             OSL_ENSURE( nAdd >= 0, "Ey" );
 /*N*/           nRstHeight += nAdd;
 /*N*/       }
 /*N*/
@@ -543,7 +543,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/           if( ((SwTxtFrm*)GetFollow())->IsLocked() )
 /*N*/           {
-/*?*/               ASSERT( sal_False, "+SwTxtFrm::JoinFrm: Follow ist locked." );
+/*?*/               OSL_ENSURE( sal_False, "+SwTxtFrm::JoinFrm: Follow ist locked." );
 /*?*/                 UNDO_SWAP( this )
 /*?*/                 return;
 /*N*/           }
@@ -593,7 +593,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ SwCntntFrm *SwTxtFrm::JoinFrm()
 /*N*/ {
-/*N*/   ASSERT( GetFollow(), "+SwTxtFrm::JoinFrm: no follow" );
+/*N*/   OSL_ENSURE( GetFollow(), "+SwTxtFrm::JoinFrm: no follow" );
 /*N*/   SwTxtFrm  *pFoll = GetFollow();
 /*N*/
 /*N*/   SwTxtFrm *pNxt = pFoll->GetFollow();
@@ -622,7 +622,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               pFoll->GetValidSizeFlag() )
 /*N*/     {
 /*N*/       pFoll->CalcFtnFlag();
-/*N*/       ASSERT( !pFoll->HasFtn(), "Missing FtnFlag." );
+/*N*/       OSL_ENSURE( !pFoll->HasFtn(), "Missing FtnFlag." );
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -675,7 +675,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   else
 /*N*/   {
 /*N*/       CalcFtnFlag( nTxtPos-1 );
-/*N*/       ASSERT( !HasFtn(), "Missing FtnFlag." );
+/*N*/       OSL_ENSURE( !HasFtn(), "Missing FtnFlag." );
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -720,7 +720,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::CalcPreps()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(), "SwTxtFrm::CalcPreps with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(), "SwTxtFrm::CalcPreps with swapped frame" );
 /*N*/     SWRECTFN( this );
 /*N*/
 /*N*/     SwParaPortion *pPara = GetPara();
@@ -743,7 +743,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/           if( !GetFollow() )
 /*N*/           {
-/*?*/               ASSERT( GetFollow(), "+SwTxtFrm::CalcPreps: no credits" );
+/*?*/               OSL_ENSURE( GetFollow(), "+SwTxtFrm::CalcPreps: no credits" );
 /*?*/               return sal_False;
 /*N*/           }
 /*N*/
@@ -779,7 +779,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*?*/                 ASSERT( nChgHeight < (Prt().*fnRect->fnGetHeight)(),
+/*?*/                 OSL_ENSURE( nChgHeight < (Prt().*fnRect->fnGetHeight)(),
 /*?*/                       "+SwTxtFrm::CalcPrep: wanna shrink" );
 /*?*/
 /*?*/                 nChgHeight = (Prt().*fnRect->fnGetHeight)() - nChgHeight;
@@ -1109,7 +1109,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::FormatLine( SwTxtFormatter &rLine, const sal_Bool bPrev )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),
 /*N*/             "SwTxtFrm::FormatLine( rLine, bPrev) with unswapped frame" );
 /*N*/   SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
 /*N*/   // Nach rLine.FormatLine() haelt nStart den neuen Wert,
@@ -1129,9 +1129,9 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/   const xub_StrLen nNewStart = rLine.FormatLine( rLine.GetStart() );
 /*N*/
-/*N*/     ASSERT( Frm().Pos().Y() + Prt().Pos().Y() == rLine.GetFirstPos(),
+/*N*/     OSL_ENSURE( Frm().Pos().Y() + Prt().Pos().Y() == rLine.GetFirstPos(),
 /*N*/           "SwTxtFrm::FormatLine: frame leaves orbit." );
-/*N*/   ASSERT( rLine.GetCurr()->Height(),
+/*N*/   OSL_ENSURE( rLine.GetCurr()->Height(),
 /*N*/           "SwTxtFrm::FormatLine: line height is zero" );
 /*N*/
 /*N*/   // Das aktuelle Zeilenumbruchobjekt.
@@ -1268,7 +1268,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ void SwTxtFrm::_Format( SwTxtFormatter &rLine, SwTxtFormatInfo &rInf,
 /*N*/                       const sal_Bool bAdjust )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),"SwTxtFrm::_Format with unswapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),"SwTxtFrm::_Format with unswapped frame" );
 /*N*/
 /*N*/     SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
 /*N*/   rLine.SetUnclipped( sal_False );
@@ -1411,7 +1411,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       const SwLineLayout* pLine;
 /*N*/       {
 /*?*/           SwTxtFrm *pMaster = FindMaster();
-/*?*/           ASSERT( pMaster, "SwTxtFrm::Format: homeless follow" );
+/*?*/           OSL_ENSURE( pMaster, "SwTxtFrm::Format: homeless follow" );
 /*?*/           if( !pMaster->HasPara() )
 /*?*/               pMaster->GetFormatted();
 /*?*/           SwTxtSizeInfo aInf( pMaster );
@@ -1577,7 +1577,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ void SwTxtFrm::FormatOnceMore( SwTxtFormatter &rLine, SwTxtFormatInfo &rInf )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),
 /*N*/             "A frame is not swapped in SwTxtFrm::FormatOnceMore" );
 /*N*/
 /*N*/   SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
@@ -1667,7 +1667,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       pPara->SetPrepMustFit( bMustFit );
 /*N*/   }
 /*N*/
-/*N*/     ASSERT( ! IsSwapped(), "A frame is swapped before _Format" );
+/*N*/     OSL_ENSURE( ! IsSwapped(), "A frame is swapped before _Format" );
 /*N*/
 /*N*/     if ( IsVertical() )
 /*?*/         SwapWidthAndHeight();
@@ -1683,7 +1683,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/     if ( IsVertical() )
 /*?*/         SwapWidthAndHeight();
 /*N*/
-/*N*/     ASSERT( ! IsSwapped(), "A frame is swapped after _Format" );
+/*N*/     OSL_ENSURE( ! IsSwapped(), "A frame is swapped after _Format" );
 /*N*/
 /*N*/     if( 1 < aLine.GetDropLines() )
 /*N*/   {
@@ -1832,7 +1832,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                      IsFollow() )
 /*M*/           {
 /*M*/               SwTxtFrm *pMaster = FindMaster();
-/*M*/               ASSERT( pMaster, "SwTxtFrm::Format: homeless follow" );
+/*M*/               OSL_ENSURE( pMaster, "SwTxtFrm::Format: homeless follow" );
 /*M*/                 if( pMaster )
 /*M*/                   pMaster->Prepare( PREP_FOLLOW_FOLLOWS );
 /*M*/                 SwTwips nMaxY = (GetUpper()->*fnRect->fnGetPrtBottom)();
@@ -1966,7 +1966,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::FormatQuick()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::FormatQuick with swapped frame" );
 /*N*/
 ///*N*/     DBG_LOOP;
@@ -2029,7 +2029,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/ //    Achtung: Durch FormatLevel==12 kann diese Situation auftreten, don't panic!
-/*?*/ //        ASSERT( nNewHeight == nOldHeight, "!FormatQuick: rosebud" );
+/*?*/ //        OSL_ENSURE( nNewHeight == nOldHeight, "!FormatQuick: rosebud" );
 /*?*/ #endif
 /*?*/       xub_StrLen nStrt = GetOfst();
 /*?*/       _InvalidateRange( SwCharRange( nStrt, nEnd - nStrt) );

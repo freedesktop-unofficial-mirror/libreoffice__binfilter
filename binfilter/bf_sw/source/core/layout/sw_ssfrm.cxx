@@ -476,7 +476,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/         long nTmpRight = (pTmp->Frm().*fnRect->fnGetRight)();
 /*N*/         long nTmpLeft = (pTmp->Frm().*fnRect->fnGetLeft)();
-/*N*/       ASSERT( pTmp, "PaintArea lost in time and space" );
+/*N*/       OSL_ENSURE( pTmp, "PaintArea lost in time and space" );
 /*N*/       if( pTmp->IsPageFrm() || pTmp->IsFlyFrm() ||
 /*N*/           pTmp->IsCellFrm() || pTmp->IsRowFrm() || //nobody leaves a table!
 /*N*/           pTmp->IsRootFrm() )

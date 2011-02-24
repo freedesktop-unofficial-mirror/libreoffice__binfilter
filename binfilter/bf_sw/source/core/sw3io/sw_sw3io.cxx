@@ -197,7 +197,7 @@ namespace binfilter {
 /*N*/  ULONG Sw3Io::SaveStyles()
 /*N*/  {
 /*N*/   BOOL bGood = pImp->OpenStreams( TRUE, FALSE );
-/*N*/   ASSERT( bGood, "Es fehlen leider ein paar Streams!" );
+/*N*/   OSL_ENSURE( bGood, "Es fehlen leider ein paar Streams!" );
 /*N*/   if( !bGood )
 /*N*/       return pImp->nRes = ERR_SWG_WRITE_ERROR;
 /*N*/

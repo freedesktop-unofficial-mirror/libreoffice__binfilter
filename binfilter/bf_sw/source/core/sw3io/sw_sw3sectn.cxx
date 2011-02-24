@@ -113,7 +113,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwTxtNode* pNd = bNode1 ? pStart->GetTxtNode() : NULL;
 /*N*/   SwTxtNode* pNd1 = pNd;
-/*N*/   ASSERT( !nInsFirstPara || pNd, "Einfuegen in Nicht-Content-Node?" );
+/*N*/   OSL_ENSURE( !nInsFirstPara || pNd, "Einfuegen in Nicht-Content-Node?" );
 /*N*/   SwPosition *pEndPos = 0;
 /*N*/   if( nInsFirstPara && pNd )
 /*N*/   {
@@ -242,7 +242,7 @@ namespace binfilter {
 /*?*/
 /*?*/                   if( SwFlyStartNode != pSttNd->GetStartNodeType() )
 /*?*/                   {
-/*?*/                       ASSERT( !this,
+/*?*/                       OSL_ENSURE( !this,
 /*?*/                               "Verankerung an Frames ist nur fuer Fly-Frames implementiert" );
 /*?*/                       break;
 /*?*/                   }
@@ -313,7 +313,7 @@ namespace binfilter {
 /*N*/   // auf einem End-Node steht, lassen wir den Code erstmal drinne, aber
 /*N*/   // es ist doc recht fraglich, wozu er da ist.
 /*N*/   SwEndNode *pEndNd = pDoc->GetNodes()[ rPos ]->GetEndNode();
-/*N*/   ASSERT( !pEndNd || !pSectSttNd || pEndNd->FindStartNode()==pSectSttNd,
+/*N*/   OSL_ENSURE( !pEndNd || !pSectSttNd || pEndNd->FindStartNode()==pSectSttNd,
 /*N*/           "PaM steht auf EndNode, der nicht zur Section gehoert." );
 /*N*/   if( pEndNd && !pSectSttNd &&
 /*N*/       pEndNd != &pDoc->GetNodes().GetEndOfContent())
@@ -409,7 +409,7 @@ namespace binfilter {
 /*N*/   // Der Index zeigt auf den Start-Node, also muessen wir einen
 /*N*/   // bauen, der auf den naechsten Node zeigt
 /*N*/   SwStartNode* pStt = pDoc->GetNodes()[ rStart ]->GetStartNode();
-/*N*/   ASSERT( pStt, "StartNode nicht gefunden" );
+/*N*/   OSL_ENSURE( pStt, "StartNode nicht gefunden" );
 /*N*/   if( pStt )
 /*N*/   {
 /*N*/       // Hole vom Node und vom letzten Node die Position in der Section
@@ -625,7 +625,7 @@ namespace binfilter {
 /*?*/               // kann einfach ignoriert werden
 /*?*/               nNodes--; nCurNode++; break;
 /*?*/           default:
-/*?*/               ASSERT( !this, "Node kann nicht gespeichert werden" );
+/*?*/               OSL_ENSURE( !this, "Node kann nicht gespeichert werden" );
 /*?*/               Error( ERR_SWG_WRITE_ERROR );
 /*?*/               nCurNode = nEndNode;
 /*N*/       }
@@ -763,7 +763,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   const SwSection& rSect = rNd.GetSection();
 /*N*/
-/*N*/   ASSERT( TOX_HEADER_SECTION == rSect.GetType() ||
+/*N*/   OSL_ENSURE( TOX_HEADER_SECTION == rSect.GetType() ||
 /*N*/           TOX_CONTENT_SECTION == rSect.GetType(),
 /*N*/           "Not a TOX section" );
 /*N*/
@@ -819,7 +819,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // The sections start node is counted by OutNodes, but it hasn't been
 /*N*/   // written. That for, the number of nodes must be reduced by one.
-/*N*/   ASSERT( nNodes > 0, "empty TOX section?" );
+/*N*/   OSL_ENSURE( nNodes > 0, "empty TOX section?" );
 /*N*/   return nNodes - 1;
 /*N*/ }
 

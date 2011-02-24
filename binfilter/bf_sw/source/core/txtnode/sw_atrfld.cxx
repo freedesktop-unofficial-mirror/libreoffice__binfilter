@@ -131,7 +131,7 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*N*/       return;
 /*N*/
 /*N*/   SwTxtNode* pTxtNd = (SwTxtNode*)&pTxtAttr->GetTxtNode();
-/*N*/   ASSERT( pTxtNd, "wo ist denn mein Node?" );
+/*N*/   OSL_ENSURE( pTxtNd, "wo ist denn mein Node?" );
 /*N*/   if( pNew )
 /*N*/   {
 /*N*/       switch( pNew->Which() )
@@ -234,7 +234,7 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*N*/ void SwTxtFld::Expand()
 /*N*/ {
 /*N*/   // Wenn das expandierte Feld sich nicht veraendert hat, wird returnt
-/*N*/   ASSERT( pMyTxtNd, "wo ist denn mein Node?" );
+/*N*/   OSL_ENSURE( pMyTxtNd, "wo ist denn mein Node?" );
 /*N*/
 /*N*/   const SwField* pFld = GetFld().GetFld();
 /*N*/   XubString aNewExpand( pFld->Expand() );

@@ -170,7 +170,7 @@ namespace binfilter {
 /*N*/   if ( !GetPrevLink() ) //Inhalt gehoert sonst immer dem Master und meiner Zaehlt nicht
 /*N*/   {
 /*N*/       const SwFmtCntnt &rCntnt = pFmt->GetCntnt();
-/*N*/       ASSERT( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
+/*N*/       OSL_ENSURE( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
 /*N*/       ULONG nIndex = rCntnt.GetCntntIdx()->GetIndex();
 /*N*/       // Lower() bedeutet SwColumnFrm, eingefuegt werden muss der Inhalt dann in den (Column)BodyFrm
 /*N*/       ::binfilter::_InsertCnt( Lower() ? (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower() : (SwLayoutFrm*)this,
@@ -288,7 +288,7 @@ namespace binfilter {
 /*N*/   if ( !pContact )
 /*N*/       pContact = new SwFlyDrawContact( (SwFlyFrmFmt*)GetFmt(),
 /*N*/                           GetFmt()->GetDoc()->MakeDrawModel() );
-/*N*/   ASSERT( pContact, "InitDrawObj failed" );
+/*N*/   OSL_ENSURE( pContact, "InitDrawObj failed" );
 /*N*/   pDrawObj = pContact->CreateNewRef( this );
 /*N*/
 /*N*/   //Den richtigen Layer setzen.
@@ -688,7 +688,7 @@ namespace binfilter {
 
 /*N*/ void SwFlyFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
-/*N*/   ASSERT( pAttrs, "FlyFrm::Format, pAttrs ist 0." );
+/*N*/   OSL_ENSURE( pAttrs, "FlyFrm::Format, pAttrs ist 0." );
 /*N*/
 /*N*/   ColLock();
 /*N*/
@@ -709,8 +709,8 @@ namespace binfilter {
 /*N*/       const Size    &rSz = pAttrs->GetSize();
 /*N*/       const SwFmtFrmSize &rFrmSz = GetFmt()->GetFrmSize();
 /*N*/
-/*N*/       ASSERT( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
-/*N*/       ASSERT( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
+/*N*/       OSL_ENSURE( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
+/*N*/       OSL_ENSURE( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
 /*N*/
 /*N*/         SWRECTFN( this )
 /*N*/         if( !HasFixSize() )
@@ -774,7 +774,7 @@ namespace binfilter {
 /*N*/           if ( IsMinHeight() )
 /*N*/           {
 /*N*/                 const Size aSizeII = CalcRel( rFrmSz );
-/*N*/                 ASSERT( nMinHeight==(bVert? aSizeII.Width() : aSizeII.Height()),
+/*N*/                 OSL_ENSURE( nMinHeight==(bVert? aSizeII.Width() : aSizeII.Height()),
 /*N*/                         "FlyFrm::Format: Changed MinHeight" );
 /*N*/           }
 /*N*/ #endif
@@ -1441,7 +1441,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper ) const
 /*N*/ {
-/*N*/   ASSERT( GetAnchor(), "8-( Fly is lost in Space." );
+/*N*/   OSL_ENSURE( GetAnchor(), "8-( Fly is lost in Space." );
 /*N*/   const SwFrm *pFrm = GetAnchor();
 /*N*/   do
 /*N*/   {   if ( pFrm == pUpper )
@@ -1612,7 +1612,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     {
         case FLY_AUTO_CNTNT:
             {
-                ASSERT( false,
+                OSL_ENSURE( false,
                         "<SwFrm::AppendVirtDrawObj(..)> - at character anchored drawing objects aren't supported." );
             }
             break;
@@ -1635,7 +1635,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
             /*nothing to do*/;
         }
         break;
-        default:    ASSERT( false, "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
+        default:    OSL_ENSURE( false, "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
     }
 
     //Bei der Seite anmelden; kann sein, dass noch keine da ist - die
@@ -1979,7 +1979,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
                                 SwTwips &rPos ) const
 {
-    ASSERT( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
+    OSL_ENSURE( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
     if( !GetAnchor() )
         return FALSE;
     rHori = HORI_NONE;

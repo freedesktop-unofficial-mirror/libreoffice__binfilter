@@ -183,7 +183,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       pNew = new SwTxtRuby( (SwFmtRuby&)rNew, nStt, nEnd );
 /*N*/       break;
 /*N*/   }
-/*N*/   ASSERT( pNew, "was fuer ein TextAttribut soll hier angelegt werden?" );
+/*N*/   OSL_ENSURE( pNew, "was fuer ein TextAttribut soll hier angelegt werden?" );
 /*N*/   return pNew;
 /*N*/ }
 
@@ -220,9 +220,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/               const SwField* pFld = pAttr->GetFld().GetFld();
 /*N*/
 /*N*/               //JP 06-08-95: DDE-Felder bilden eine Ausnahme
-/*N*/               ASSERT( RES_DDEFLD == pFld->GetTyp()->Which() ||
+/*N*/               OSL_ENSURE( RES_DDEFLD == pFld->GetTyp()->Which() ||
 /*N*/                       this == ((SwTxtFld*)pAttr)->GetpTxtNode(),
-/*N*/                       "Wo steht denn dieses Feld?" )
+/*N*/                       "Wo steht denn dieses Feld?" );
 /*N*/
 /*N*/               // bestimmte Felder mussen am Doc das Calculations-Flag updaten
 /*N*/               switch( pFld->GetTyp()->Which() )
@@ -288,7 +288,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ {
 /*N*/   BOOL bHiddenPara = FALSE;
 /*N*/
-/*N*/   ASSERT( *pAttr->GetStart() <= Len(), "StartIdx hinter Len!" );
+/*N*/   OSL_ENSURE( *pAttr->GetStart() <= Len(), "StartIdx hinter Len!" );
 /*N*/
 /*N*/   if( !pAttr->GetEnd() )
 /*N*/   {
@@ -346,7 +346,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       if( SETATTR_NOTXTATRCHR & nInsMode )
 /*?*/                       {
 /*?*/                       // loesche das Zeichen aus dem String !
-/*?*/                       ASSERT( ( CH_TXTATR_BREAKWORD ==
+/*?*/                       OSL_ENSURE( ( CH_TXTATR_BREAKWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart() ) ||
 /*?*/                                 CH_TXTATR_INWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart())),
@@ -379,7 +379,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   if( SETATTR_NOTXTATRCHR & nInsMode )
 /*?*/                   {
 /*?*/                       // loesche das Zeichen aus dem String !
-/*?*/                       ASSERT( ( CH_TXTATR_BREAKWORD ==
+/*?*/                       OSL_ENSURE( ( CH_TXTATR_BREAKWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart() ) ||
 /*?*/                                 CH_TXTATR_INWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart())),
@@ -451,7 +451,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ #endif
 /*N*/                       pDoc->GetFtnIdxs().Insert( pTxtFtn );
 /*N*/ #ifdef DBG_UTIL
-/*N*/                   ASSERT( bSuccess, "FtnIdx nicht eingetragen." );
+/*N*/                   OSL_ENSURE( bSuccess, "FtnIdx nicht eingetragen." );
 /*N*/ #endif
 /*N*/               }
 /*N*/               SwNodeIndex aTmpIndex( *this );
@@ -483,7 +483,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( *pAttr->GetEnd() <= Len(), "EndIdx hinter Len!" );
+/*N*/       OSL_ENSURE( *pAttr->GetEnd() <= Len(), "EndIdx hinter Len!" );
 /*N*/   }
 /*N*/
 /*N*/   if ( !pSwpHints )
@@ -660,7 +660,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   // Attribut ohne Ende, aber Bereich markiert ?
 /*N*/                   if( nEnd != nStt && !pNew->GetEnd() )
 /*N*/                   {
-/*?*/                       ASSERT( !this, "Attribut ohne Ende aber Bereich vorgegeben" );
+/*?*/                       OSL_ENSURE( !this, "Attribut ohne Ende aber Bereich vorgegeben" );
 /*?*/                       DestroyAttr( pNew );        // nicht einfuegen
 /*N*/                   }
 /*N*/                   else if( Insert( pNew, nMode ))
@@ -1115,7 +1115,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/             SwTxtAttr *pPrev;
 /*N*/             SwTxtAttr *pNext;
 /*N*/             USHORT nEndIdx = aHtEnd.C40_GETPOS( SwTxtAttr, pAttr );
-/*N*/             ASSERT( USHRT_MAX != nEndIdx, "Missing end index" );
+/*N*/             OSL_ENSURE( USHRT_MAX != nEndIdx, "Missing end index" );
 /*N*/             if( nEndIdx )
 /*N*/             {
 /*N*/                 // If there's a attribute with same start and which-id,
@@ -1497,7 +1497,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   if( *pHtEnd < nHtStart )
 /*N*/   {
-/*?*/       ASSERT( *pHtEnd >= nHtStart,
+/*?*/       OSL_ENSURE( *pHtEnd >= nHtStart,
 /*?*/                   "+SwpHints::Insert: invalid hint, end < start" );
 /*?*/
 /*?*/       // Wir drehen den Quatsch einfach um:
@@ -1845,7 +1845,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ {
 /*N*/   // Attr 2.0: SwpHintsArr::Delete( pTxtHt );
 /*N*/   const USHORT nPos = GetStartOf( pTxtHt );
-/*N*/   ASSERT( USHRT_MAX != nPos, "Attribut nicht im Attribut-Array!" );
+/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Attribut nicht im Attribut-Array!" );
 /*N*/   if( USHRT_MAX != nPos )
 /*N*/       DeleteAtPos( nPos );
 /*N*/ }

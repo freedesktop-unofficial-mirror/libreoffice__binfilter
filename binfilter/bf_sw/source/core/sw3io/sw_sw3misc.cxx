@@ -143,7 +143,7 @@ public:
 /*N*/   SwNodeIndex *pNdIdx = new SwNodeIndex( rNodeIdx );
 /*N*/   if( pStartNodeIdx )
 /*N*/   {
-/*N*/       ASSERT( !pEndNodeIdx, "more than two TOX indexes" );
+/*N*/       OSL_ENSURE( !pEndNodeIdx, "more than two TOX indexes" );
 /*N*/       if( !pEndNodeIdx )
 /*N*/       {
 /*N*/           if( rNodeIdx.GetIndex() < pStartNodeIdx->GetIndex() )
@@ -218,7 +218,7 @@ public:
 /*N*/               if( pFmt )
 /*N*/               {
 /*N*/ #ifdef TEST_FMTCHACHE
-/*N*/                   ASSERT( FindNamedFmt( nIdx, cKind ) == pFmt,
+/*N*/                   OSL_ENSURE( FindNamedFmt( nIdx, cKind ) == pFmt,
 /*N*/                           "Format-Cache liefert falsches Ergebnis" );
 /*N*/ #endif
 /*N*/                   return pFmt;
@@ -228,7 +228,7 @@ public:
 /*N*/
 /*N*/           pFmt = FindNamedFmt( nIdx, cKind );
 /*N*/   }
-/*N*/   ASSERT( pFmt, "Format-ID unbekannt" );
+/*N*/   OSL_ENSURE( pFmt, "Format-ID unbekannt" );
 /*N*/   return pFmt;
 /*N*/ }
 
@@ -300,7 +300,7 @@ public:
 /*?*/               return pFmt;
 /*?*/       }
 /*?*/   }
-/*?*/   ASSERT( !this, "Benanntes Format nicht gefunden" );
+/*?*/   OSL_ENSURE( !this, "Benanntes Format nicht gefunden" );
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
 /*?*/ // Error();
@@ -342,7 +342,7 @@ public:
 /*?*/       // und der hat vielleicht eine unbekannte Absatzvorlage
 /*?*/       if( bPageDescs && !bTxtColls )
 /*?*/           return pDoc->GetTxtCollFromPool( RES_POOLCOLL_STANDARD );
-/*?*/       ASSERT( !this, "TextColl nicht gefunden" );
+/*?*/       OSL_ENSURE( !this, "TextColl nicht gefunden" );
 /*?*/
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
@@ -374,7 +374,7 @@ public:
 /*?*/           if( p )
 /*?*/               return p;
 /*?*/       }
-/*?*/       ASSERT( !this, "PageDesc nicht gefunden" );
+/*?*/       OSL_ENSURE( !this, "PageDesc nicht gefunden" );
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
 /*?*/ //     Error();
@@ -415,7 +415,7 @@ void Sw3IoImp::InMacroTbl()
 /*N*/   if( !pMac )
 /*N*/       return;
 /*N*/
-/*?*/   ASSERT( SOFFICE_FILEFORMAT_31 == pStrm->GetVersion() ||
+/*?*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31 == pStrm->GetVersion() ||
 /*?*/           SOFFICE_FILEFORMAT_40 == pStrm->GetVersion() ||
 /*?*/           SOFFICE_FILEFORMAT_50 == pStrm->GetVersion(),
 /*?*/           "Macro-Table: Gibt es ein neues Fileformat?" );
@@ -656,7 +656,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/               for( sal_uInt16 n = 0; n < nArrLen; ++n )
 /*N*/               {
 /*N*/                   const SwBookmark* pMark = pBookmarks->GetObject( n );
-/*N*/                   ASSERT( pMark->IsBookMark(),
+/*N*/                   OSL_ENSURE( pMark->IsBookMark(),
 /*N*/                           "Wo kommt da die Nicht text::Bookmark her?" );
 /*N*/
 /*N*/                   if( !IsSw31Export() && n >= nCntntBkmkStart )
@@ -665,7 +665,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/                       aMark.SetId( n );
 /*N*/                   const SwPosition* pPos1 = &pMark->GetPos();
 /*N*/                   const SwPosition* pPos2 = pMark->GetOtherPos();
-/*N*/                   ASSERT( pPos1->nNode.GetNode().IsTxtNode(),
+/*N*/                   OSL_ENSURE( pPos1->nNode.GetNode().IsTxtNode(),
 /*N*/                            "Bookmark position outside text node" );
 /*N*/                   aMark.SetNodePos( pPos1->nNode.GetIndex() );
 /*N*/                   if( aMark.GetNodePos() < nEndOfIcons ||
@@ -677,7 +677,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/                   }
 /*N*/                   if( pPos2 )
 /*N*/                   {
-/*?*/                       ASSERT( pPos2->nNode.GetNode().IsTxtNode(),
+/*?*/                       OSL_ENSURE( pPos2->nNode.GetNode().IsTxtNode(),
 /*?*/                               "Other bookmark position outside text node" );
 /*?*/                       aMark.SetNodePos( pPos2->nNode.GetIndex() );
 /*?*/                       if( aMark.GetNodePos() < nEndOfIcons ||
@@ -695,7 +695,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/               for( sal_uInt16 n = 0; n < nArrLen; ++n )
 /*?*/               {
 /*?*/                   const SwBookmark* pMark = pBookmarks->GetObject( n );
-/*?*/                   ASSERT( pMark->IsBookMark(),
+/*?*/                   OSL_ENSURE( pMark->IsBookMark(),
 /*?*/                           "Wo kommt da die Nicht Bookmark her?" );
 /*?*/
 /*?*/                   if( !IsSw31Export() && n >= nCntntBkmkStart )
@@ -704,7 +704,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                       aMark.SetId( n );
 /*?*/
 /*?*/                   const SwPosition* pPos = &pMark->GetPos();
-/*?*/                   ASSERT( pPos->nNode.GetNode().IsTxtNode(),
+/*?*/                   OSL_ENSURE( pPos->nNode.GetNode().IsTxtNode(),
 /*?*/                            "Bookmark position outside text node" );
 /*?*/
 /*?*/                   aMark.SetNodePos( pPos->nNode.GetIndex() );
@@ -715,7 +715,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                   pPos = pMark->GetOtherPos();
 /*?*/                   if( pPos )
 /*?*/                   {
-/*?*/                       ASSERT( pPos->nNode.GetNode().IsTxtNode(),
+/*?*/                       OSL_ENSURE( pPos->nNode.GetNode().IsTxtNode(),
 /*?*/                               "Other bookmark position outside text node" );
 /*?*/                       aMark.SetNodePos( pPos->nNode.GetIndex() );
 /*?*/                       aMark.SetNodeOff( pPos->nContent.GetIndex() );
@@ -804,7 +804,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   // Ist was da?
 /*N*/   if( !pBookmarks->Count() )
 /*N*/       delete pBookmarks, pBookmarks = NULL;
-/*N*/   ASSERT( !pMarks || pMarks->Count(),
+/*N*/   OSL_ENSURE( !pMarks || pMarks->Count(),
 /*N*/           "Marks-Array haette nicht angelegt werden muessen" );
 /*N*/   if( pMarks && !pMarks->Count() )
 /*?*/       delete pMarks, pMarks = NULL;
@@ -823,7 +823,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   SwIndex aOff( rPos.GetNode().GetCntntNode(), nCntntOff + nOff );
 /*N*/   if( cType < SW3_BOOK_POINT )
 /*N*/   {
-/*N*/       ASSERT( pTOXs && nId < pTOXs->Count(), "invalid TOX id" );
+/*N*/       OSL_ENSURE( pTOXs && nId < pTOXs->Count(), "invalid TOX id" );
 /*N*/       if( pTOXs && nId < pTOXs->Count() )
 /*N*/           pTOXs->GetObject( nId )->SetNodeIdx( rPos );
 /*N*/   }
@@ -832,7 +832,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       SwBookmark* pBook = 0;
 /*N*/       if( pBookmarks && nId < pBookmarks->Count() )
 /*N*/           pBook = pBookmarks->GetObject( nId );
-/*N*/       ASSERT( pBook, "Ungueltige text::Bookmark-ID" );
+/*N*/       OSL_ENSURE( pBook, "Ungueltige text::Bookmark-ID" );
 /*N*/
 /*N*/       if( pBook )
 /*N*/       {
@@ -912,8 +912,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 
 /*N*/ void Sw3IoImp::InBookmarks()
 /*N*/ {
-/*N*/   ASSERT( !pBookmarks || IsVersion(SWG_SVXMACROS),
-/*N*/           "Frueher standen text::Bookmarks doch nur in einem Stream???" )
+/*N*/   OSL_ENSURE( !pBookmarks || IsVersion(SWG_SVXMACROS),
+/*N*/           "Frueher standen text::Bookmarks doch nur in einem Stream???" );
 /*N*/   if( pBookmarks )
 /*N*/   {
 /*?*/       delete pBookmarks;
@@ -981,18 +981,18 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 
 /*N*/ void Sw3IoImp::OutBookmarks( sal_Bool bPageStyles )
 /*N*/ {
-/*N*/   ASSERT( bPageStyles || !IsSw31Export(),
+/*N*/   OSL_ENSURE( bPageStyles || !IsSw31Export(),
 /*N*/           "Beim 3.1-Export kommen keine text::Bookmarks in den Contents-Stream" );
 /*N*/
 /*N*/   short nArrLen = pBookmarks ? pBookmarks->Count() : 0;
 /*N*/   if( nArrLen && bPageStyles && !IsSw31Export() )
 /*N*/   {
-/*N*/       ASSERT( nCntntBkmkStart <= nArrLen,
+/*N*/       OSL_ENSURE( nCntntBkmkStart <= nArrLen,
 /*N*/               "Mehr text::Bookmarks in Page-Styles als ueberhaupt vorhanden?" );
 /*N*/       nArrLen = nCntntBkmkStart;
 /*N*/       nCntntBkmkStart = 0;
 /*N*/   }
-/*N*/   ASSERT( IsSw31Export() || nCntntBkmkStart==0,
+/*N*/   OSL_ENSURE( IsSw31Export() || nCntntBkmkStart==0,
 /*N*/           "Wieso sind da noch text::Bookmarks aus Seitenvorlagen?" );
 /*N*/
 /*N*/   if( nArrLen )
@@ -1001,8 +1001,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       for( int i = 0; i < nArrLen; i++ )
 /*N*/       {
 /*N*/           SwBookmark& rMark = (SwBookmark&) *(*pBookmarks)[i];
-/*N*/           ASSERT( rMark.IsBookMark(),
-/*N*/                   "Wo kommt da die Nicht text::Bookmark her?" )
+/*N*/           OSL_ENSURE( rMark.IsBookMark(),
+/*N*/                   "Wo kommt da die Nicht text::Bookmark her?" );
 /*N*/
 /*N*/           const SvxMacro& rStt = rMark.GetStartMacro();
 /*N*/           const SvxMacro& rEnd = rMark.GetEndMacro();
@@ -1612,7 +1612,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/           if( i < aForm.GetFormMax() )
 /*N*/           {
 /*N*/               String sNm( aStringPool.Find( nStrIdx2 ) );
-/*N*/               ASSERT( sNm.Len(), "Template name not found" );
+/*N*/               OSL_ENSURE( sNm.Len(), "Template name not found" );
 /*N*/               if( !sNm.Len() )
 /*N*/               {
 /*N*/                   // #37672#: if the style has not been found, use the default
@@ -1827,12 +1827,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       {
 /*?*/           SwFieldType *pFldType =
 /*?*/               pDoc->GetFldType( RES_SETEXPFLD, rSequenceName );
-/*?*/           ASSERT( pFldType, "sequence field type not found" );
+/*?*/           OSL_ENSURE( pFldType, "sequence field type not found" );
 /*?*/           if( pFldType )
 /*?*/           {
 /*?*/               sal_uInt16 nPoolId = lcl_sw3io_GetSetExpFieldPoolId(rSequenceName);
 /*?*/               nSeqStrIdx = aStringPool.Find( rSequenceName, nPoolId );
-/*?*/               ASSERT( IDX_NO_VALUE != nSeqStrIdx,
+/*?*/               OSL_ENSURE( IDX_NO_VALUE != nSeqStrIdx,
 /*?*/                       "no string pool entry found for sequence field" );
 /*?*/           }
 /*N*/       }
@@ -1990,7 +1990,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/               {
 /*?*/                   String aName =
 /*?*/                       rStyleNames.GetToken( 0, TOX_STYLE_DELIMITER, nStrPos );
-/*?*/                   ASSERT( aName.Len(), "empty style name" );
+/*?*/                   OSL_ENSURE( aName.Len(), "empty style name" );
 /*?*/                   sal_uInt16 nStrIdx2 = IDX_NO_VALUE;
 /*?*/                   if( aName.Len() )
 /*?*/                   {
@@ -2051,12 +2051,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           // #67763# If, for some reason, a TOX's point or mark have not been
 /*N*/           // read, the TOX has to be skipped.
 /*N*/           Sw3TOXBase *pTOX = (*pTOXs)[i];
-/*N*/           ASSERT( pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx(),
+/*N*/           OSL_ENSURE( pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx(),
 /*N*/                   "missing TOX index" );
 /*N*/           if( !(pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx()) )
 /*N*/               continue;
 /*N*/
-/*N*/           ASSERT( pTOX->GetStartNodeIdx()->GetIndex() <=
+/*N*/           OSL_ENSURE( pTOX->GetStartNodeIdx()->GetIndex() <=
 /*N*/                   pTOX->GetEndNodeIdx()->GetIndex(),
 /*N*/                   "wrong TOX index order" );
 /*N*/           if( pTOX->GetStartNodeIdx()->GetIndex() >
@@ -2069,7 +2069,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           if( pTOX->GetStartNodeIdx()->GetNode().FindStartNode() !=
 /*N*/               pTOX->GetEndNodeIdx()->GetNode().FindStartNode() )
 /*N*/           {
-/*N*/               ASSERT( !this, "TOX indices are not within the same section" );
+/*N*/               OSL_ENSURE( !this, "TOX indices are not within the same section" );
 /*N*/               continue;
 /*N*/           }
 /*N*/
@@ -2090,13 +2090,13 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           sal_uInt32 nEndNdIdx = pTOX->GetEndNodeIdx()->GetIndex();
 /*N*/           const SwTOXBaseSection *pSect =
 /*N*/               pDoc->InsertTableOf( nStartNdIdx, nEndNdIdx, *pTOX );
-/*N*/           ASSERT( pSect, "insertion of TOX failed" );
+/*N*/           OSL_ENSURE( pSect, "insertion of TOX failed" );
 /*N*/           if( !pSect )
 /*N*/               continue;
 /*N*/
-/*N*/           ASSERT( pSect->GetName() == pTOX->GetTOXName(),
+/*N*/           OSL_ENSURE( pSect->GetName() == pTOX->GetTOXName(),
 /*N*/                   "tox has wrong name" );
-/*N*/           ASSERT( pSect->GetFmt()->GetSectionNode()->GetIndex() ==
+/*N*/           OSL_ENSURE( pSect->GetFmt()->GetSectionNode()->GetIndex() ==
 /*N*/                   nStartNdIdx,
 /*N*/                   "unexpected tox section start position" );
 /*N*/
@@ -2114,12 +2114,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               // If the format has been cached already, the cache entry has
 /*N*/               // to be replaced, too.
 /*N*/               sal_uInt16 nStrIdx = pTOX->GetSectFmtStrIdx();
-/*N*/               ASSERT( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
+/*N*/               OSL_ENSURE( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
 /*N*/               if( IDX_NO_VALUE != nStrIdx )
 /*N*/               {
 /*N*/ #ifdef DBG_UTIL
 /*N*/                   SwFmt *pTmp = aStringPool.FindCachedFmt( nStrIdx );
-/*N*/                   ASSERT( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
+/*N*/                   OSL_ENSURE( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
 /*N*/                           "wrong format cached?" );
 /*N*/
 /*N*/ #endif
@@ -2132,17 +2132,17 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           }
 /*N*/
 /*N*/           sal_uInt32 nTitleLen = pTOX->GetTitleLen();
-/*N*/           ASSERT( !nTitleLen || pTOX->GetTitleSectFmt(),
+/*N*/           OSL_ENSURE( !nTitleLen || pTOX->GetTitleSectFmt(),
 /*N*/                   "missing tox title section format" );
 /*N*/           if( nTitleLen > 0 && pTOX->GetTitleSectFmt() )
 /*N*/           {
 /*N*/               SwNodeIndex aEndNdIdx( *pTOX->GetStartNodeIdx(), nTitleLen-1 );
 /*N*/
-/*N*/               ASSERT( pTOX->GetStartNodeIdx()->GetNode().IsCntntNode(),
+/*N*/               OSL_ENSURE( pTOX->GetStartNodeIdx()->GetNode().IsCntntNode(),
 /*N*/                       "tox title section start is not a content node" );
-/*N*/               ASSERT( aEndNdIdx.GetNode().IsCntntNode(),
+/*N*/               OSL_ENSURE( aEndNdIdx.GetNode().IsCntntNode(),
 /*N*/                       "tox title section end is not a content node" );
-/*N*/               ASSERT( pTOX->GetStartNodeIdx()->GetIndex() <=
+/*N*/               OSL_ENSURE( pTOX->GetStartNodeIdx()->GetIndex() <=
 /*N*/                       aEndNdIdx.GetIndex(),
 /*N*/                       "invalid TOX title section end" );
 /*N*/
@@ -2472,7 +2472,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       }
 /*N*/       if( bFound )
 /*N*/       {
-/*N*/           ASSERT( pChecked, "Sw3IoImp::InDictonary: pChecked == 0" );
+/*N*/           OSL_ENSURE( pChecked, "Sw3IoImp::InDictonary: pChecked == 0" );
 /*N*/           sal_uInt16 nCnt = pDic[--i]->getCount();
 /*N*/           pChecked[ i ] = sal_True;
 /*N*/           if( nCnt != nCount )
@@ -2703,7 +2703,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   // Achtung: Das drittunterste Bit 0x04 wird jetzt benutzt
 /*N*/   // als Flag, ob Absatzabstaende addiert oder maximiert werden
 /*N*/   // 0x20 - makes the same at start of doc an at page starts behind page breaks
-/*N*/   ASSERT( (n3 & 0x03) == 0, "Sw3IoImp::OutDocDummies: byte1 falsch" );
+/*N*/   OSL_ENSURE( (n3 & 0x03) == 0, "Sw3IoImp::OutDocDummies: byte1 falsch" );
 /*N*/   n3 &= 0xfc;
 /*N*/
 /*N*/   // Der Link-Update-Mode muss noch etwas konvertiert werden, damit
@@ -2715,7 +2715,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   case AUTOMATIC:     n3 |= 0x02; break;
 /*N*/   case GLOBALSETTING: n3 |= 0x03; break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "Sw3IoImp::OutDocDummies: Wert von LinkUpdMode unbek." );
+/*N*/       OSL_ENSURE( !this, "Sw3IoImp::OutDocDummies: Wert von LinkUpdMode unbek." );
 /*N*/       break;
 /*N*/   }
 /*N*/
@@ -2728,7 +2728,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   case AUTOUPD_FIELD_AND_CHARTS:  n3 |= ( 0x02 << 3); break;
 /*N*/   case AUTOUPD_GLOBALSETTING:     n3 |= ( 0x03 << 3); break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "Sw3IoImp::OutDocDummies: Wert von FieldUpdMode unbek." );
+/*N*/       OSL_ENSURE( !this, "Sw3IoImp::OutDocDummies: Wert von FieldUpdMode unbek." );
 /*N*/       break;
 /*N*/   }
 /*N*/

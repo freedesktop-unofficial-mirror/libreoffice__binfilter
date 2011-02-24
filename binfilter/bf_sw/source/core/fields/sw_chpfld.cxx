@@ -110,7 +110,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/                                     const SwTxtNode* pTxtNd,
 /*N*/                                     sal_Bool bSrchNum )
 /*N*/ {
-/*N*/   ASSERT( pFrm, "in welchem Frame stehe ich denn?" )
+/*N*/   OSL_ENSURE( pFrm, "in welchem Frame stehe ich denn?" );
 /*N*/   SwDoc* pDoc = (SwDoc*)pTxtNd->GetDoc();
 /*N*/   SwPosition aPos( pDoc->GetNodes().GetEndOfContent() );
 /*N*/
@@ -120,7 +120,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/       // kein TxtNode (Formatierung Kopf/Fusszeile)
 /*?*/       return;
 /*N*/
-/*N*/   ASSERT( pTxtNd, "Wo steht das Feld" );
+/*N*/   OSL_ENSURE( pTxtNd, "Wo steht das Feld" );
 /*N*/   pTxtNd = pTxtNd->FindOutlineNodeOfLevel( nLevel );
 /*N*/   if( pTxtNd )
 /*N*/   {

@@ -315,7 +315,7 @@ int SwIndex::nSerial = 0;
 
 /*N*/ SwIndexReg::~SwIndexReg()
 /*N*/ {
-/*N*/   ASSERT( !pFirst || !pLast, "Es sind noch Indizies angemeldet" );
+/*N*/   OSL_ENSURE( !pFirst || !pLast, "Es sind noch Indizies angemeldet" );
 /*N*/ }
 
 #endif
@@ -457,7 +457,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ BOOL SwIndex::operator<( const SwIndex & rIndex ) const
 /*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
+/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
 /*N*/   return nIndex < rIndex.nIndex;
 /*N*/ }
 
@@ -470,7 +470,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ BOOL SwIndex::operator<=( const SwIndex & rIndex ) const
 /*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
+/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
 /*N*/   return nIndex <= rIndex.nIndex;
 /*N*/ }
 
@@ -483,7 +483,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ BOOL SwIndex::operator>( const SwIndex & rIndex ) const
 /*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
+/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
 /*N*/   return nIndex > rIndex.nIndex;
 /*N*/ }
 
@@ -496,7 +496,7 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 /*N*/ BOOL SwIndex::operator>=( const SwIndex & rIndex ) const
 /*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
+/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
 /*N*/   return nIndex >= rIndex.nIndex;
 /*N*/ }
 

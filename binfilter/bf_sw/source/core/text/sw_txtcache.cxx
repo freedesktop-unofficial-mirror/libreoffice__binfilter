@@ -159,7 +159,7 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::ClearPara()
 /*N*/ {
-/*N*/   ASSERT( !IsLocked(), "+SwTxtFrm::ClearPara: this is locked." );
+/*N*/   OSL_ENSURE( !IsLocked(), "+SwTxtFrm::ClearPara: this is locked." );
 /*N*/   if ( !IsLocked() && GetCacheIdx() != MSHRT_MAX )
 /*N*/   {
 /*N*/       SwTxtLine *pTxtLine = (SwTxtLine*)SwTxtFrm::GetTxtCache()->
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( !pNew, "+SetPara: Losing SwParaPortion" );
+/*?*/           OSL_ENSURE( !pNew, "+SetPara: Losing SwParaPortion" );
 /*?*/           nCacheIdx = MSHRT_MAX;
 /*N*/       }
 /*N*/   }
@@ -206,7 +206,7 @@ namespace binfilter {
 /*N*/           nCacheIdx = pTxtLine->GetCachePos();
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( sal_False, "+SetPara: InsertCache failed." );
+/*?*/           OSL_ENSURE( sal_False, "+SetPara: InsertCache failed." );
 /*N*/       }
 /*N*/   }
 /*N*/ }

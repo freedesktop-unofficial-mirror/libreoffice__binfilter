@@ -171,7 +171,7 @@ BOOL Sw6File::FlushPhys(short nAnz, BUFFR &rBuf)
 {
     if (rBuf.nIdx+nAnz>=rBuf.nMax)
     {
-        ASSERT(rBuf.nIdx<=rBuf.nMax,"Sw6-Datei ist wohl defekt");
+        OSL_ENSURE(rBuf.nIdx<=rBuf.nMax,"Sw6-Datei ist wohl defekt");
 
         if (rBuf.nMax<rBuf.nIdx)
         {

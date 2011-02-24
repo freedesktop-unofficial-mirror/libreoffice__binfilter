@@ -171,7 +171,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
  {
     if( !nCnt )
         return FALSE;
-    ASSERT( pLine, "keine gueltige Zeile" );
+    OSL_ENSURE( pLine, "keine gueltige Zeile" );
 
     // Index hinter die letzte Box der Line
     ULONG nIdxPos;
@@ -263,8 +263,8 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/                                    const SvUShorts* pColArr,
 /*N*/                                    BOOL bCalledFromShell )
 /*N*/ {
-/*N*/   ASSERT( nRows, "Tabelle ohne Zeile?" );
-/*N*/   ASSERT( nCols, "Tabelle ohne Spalten?" );
+/*N*/   OSL_ENSURE( nRows, "Tabelle ohne Zeile?" );
+/*N*/   OSL_ENSURE( nCols, "Tabelle ohne Spalten?" );
 /*N*/
 /*N*/   {
 /*N*/       // nicht in Fussnoten kopieren !!
@@ -571,7 +571,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*N*/ void SwTableNode::MakeFrms( SwNodeIndex* pIdxBehind )
 /*N*/ {
-/*N*/   ASSERT( pIdxBehind, "kein Index" );
+/*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   *pIdxBehind = *this;
 /*N*/   SwNode *pNd = GetNodes().FindPrvNxtFrmNode( *pIdxBehind, EndOfSectionNode() );
 /*N*/   if( !pNd )

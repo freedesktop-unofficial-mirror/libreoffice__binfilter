@@ -181,7 +181,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       nNextPos += nTabLeft;
 /*N*/       nNextPos -= nLinePos;
-/*N*/       ASSERT( nNextPos >= 0, "GetTabStop: Don't go back!" );
+/*N*/       OSL_ENSURE( nNextPos >= 0, "GetTabStop: Don't go back!" );
 /*N*/       nNewTabPos = KSHORT(nNextPos);
 /*N*/   }
 /*N*/
@@ -204,7 +204,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       default:
 /*N*/       {
-/*N*/           ASSERT( SVX_TAB_ADJUST_LEFT == eAdj || SVX_TAB_ADJUST_DEFAULT == eAdj,
+/*N*/           OSL_ENSURE( SVX_TAB_ADJUST_LEFT == eAdj || SVX_TAB_ADJUST_DEFAULT == eAdj,
 /*N*/                   "+SwTxtFormatter::NewTabPortion: unknown adjustment" );
 /*N*/           pTabPor = new SwTabLeftPortion( nNewTabPos, cFill );
 /*N*/           break;
@@ -233,7 +233,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if( IsFilled() )
 /*N*/   {
-/*N*/       ASSERT( ' ' != cFill, "SwTabPortion::CTOR: blanks ?!" );
+/*N*/       OSL_ENSURE( ' ' != cFill, "SwTabPortion::CTOR: blanks ?!" );
 /*N*/   }
 /*N*/ #endif
 /*N*/   SetWhichPor( POR_TAB );
@@ -275,7 +275,7 @@ namespace binfilter {
 
 /*M*/ sal_Bool SwTabPortion::PreFormat( SwTxtFormatInfo &rInf )
 /*M*/ {
-/*M*/   ASSERT( rInf.X() <= GetTabPos(), "SwTabPortion::PreFormat: rush hour" );
+/*M*/   OSL_ENSURE( rInf.X() <= GetTabPos(), "SwTabPortion::PreFormat: rush hour" );
 /*M*/
 /*M*/   // Hier lassen wir uns nieder...
 /*M*/   Fix( rInf.X() );
@@ -314,7 +314,7 @@ namespace binfilter {
 /*M*/               bFull = rInf.Width() <= rInf.X() + PrtWidth();
 /*M*/               break;
 /*M*/           }
-/*M*/           default: ASSERT( !this, "SwTabPortion::PreFormat: unknown adjustment" );
+/*M*/           default: OSL_ENSURE( !this, "SwTabPortion::PreFormat: unknown adjustment" );
 /*M*/       }
 /*M*/   }
 /*M*/
@@ -365,7 +365,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   const MSHORT nWhich = GetWhichPor();
-/*N*/   ASSERT( POR_TABLEFT != nWhich, "SwTabPortion::PostFormat: already formatted" );
+/*N*/   OSL_ENSURE( POR_TABLEFT != nWhich, "SwTabPortion::PostFormat: already formatted" );
 /*N*/   const KSHORT nDiffWidth = nRight - Fix();
 /*N*/
 /*N*/   if( POR_TABCENTER == nWhich )

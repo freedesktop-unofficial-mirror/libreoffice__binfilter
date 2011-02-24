@@ -231,14 +231,14 @@ using namespace ::com::sun::star::util;
 /*?*/
 /*?*/ void SwCrsrShell::SttCrsrMove()
 /*?*/ {
-/*?*/   ASSERT( nCrsrMove < USHRT_MAX, "To many nested CrsrMoves." );
+/*?*/   OSL_ENSURE( nCrsrMove < USHRT_MAX, "To many nested CrsrMoves." );
 /*?*/   ++nCrsrMove;
 /*?*/   StartAction();
 /*?*/ }
 /*?*/
 /*?*/ void SwCrsrShell::EndCrsrMove( const BOOL bIdleEnd )
 /*?*/ {
-/*?*/   ASSERT( nCrsrMove, "EndCrsrMove() ohne SttCrsrMove()." );
+/*?*/   OSL_ENSURE( nCrsrMove, "EndCrsrMove() ohne SttCrsrMove()." );
 /*?*/   EndAction( bIdleEnd );
 /*?*/   if( !--nCrsrMove )
 /*?*/       bInCMvVisportChgd = FALSE;
@@ -437,7 +437,7 @@ using namespace ::com::sun::star::util;
 /*N*/               pFrm->GetCrsrOfst( pCurCrsr->GetPoint(), rPt, &aTmpState );
 /*N*/ #ifndef VERTICAL_LAYOUT
 /*N*/                 if ( !pFrm->GetCharRect(aCharRect, *pCurCrsr->GetPoint(), &aTmpState) )
-/*N*/                   ASSERT( !this, "GetCharRect failed." );
+/*N*/                   OSL_ENSURE( !this, "GetCharRect failed." );
 /*N*/ #endif
 /*M*/           }
 /*M*/ //            ALIGNRECT( aCharRect );
@@ -465,7 +465,7 @@ using namespace ::com::sun::star::util;
 /*M*/       // siehe Bug: 29658
 /*M*/       if( !--nLoopCnt )
 /*M*/       {
-/*M*/           ASSERT( !this, "Endlosschleife? CharRect != OldCharRect ");
+/*M*/           OSL_ENSURE( !this, "Endlosschleife? CharRect != OldCharRect ");
 /*M*/           break;
 /*M*/       }
 /*M*/       aOld = aCharRect;
@@ -704,7 +704,7 @@ using namespace ::com::sun::star::util;
 // zeige das akt. selektierte "Object" an
 /*N*/ void SwCrsrShell::MakeSelVisible()
 /*N*/ {
-/*N*/   ASSERT( bHasFocus, "kein Focus aber Cursor sichtbar machen?" );
+/*N*/   OSL_ENSURE( bHasFocus, "kein Focus aber Cursor sichtbar machen?" );
 /*N*/   if( aCrsrHeight.Y() < aCharRect.Height() && aCharRect.Height() > VisArea().Height() )
 /*N*/   {
 /*N*/       SwRect aTmp( aCharRect );
@@ -910,7 +910,7 @@ using namespace ::com::sun::star::util;
 /*?*/         SwNode * pNode = aNodes.GoNext(&aIdx);
 /*?*/         bool bFound = (pNode != NULL);
 /*?*/
-/*?*/         ASSERT(bFound, "no content node found");
+/*?*/         OSL_ENSURE(bFound, "no content node found");
 /*?*/
 /*?*/         if (bFound)
 /*?*/         {

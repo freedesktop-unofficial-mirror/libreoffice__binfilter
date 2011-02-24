@@ -170,7 +170,7 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
                     SwPosition aPos( *pNd );
                     const SwDoc& rDoc = *pNd->GetDoc();
 #ifdef DBG_UTIL
-                    ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ),
+                    OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ),
                             "wo steht der Absatz" );
 #else
                     GetBodyTxtNode( rDoc, aPos, *pFrm );

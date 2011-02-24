@@ -49,7 +49,7 @@ namespace binfilter {
 /*N*/   : SfxPoolItem( RES_TXTATR_HARDBLANK ),
 /*N*/   cChar( cCh )
 /*N*/ {
-/*N*/   ASSERT( !bCheck || (' ' != cCh && '-' != cCh),
+/*N*/   OSL_ENSURE( !bCheck || (' ' != cCh && '-' != cCh),
 /*N*/           "Invalid character for the HardBlank attribute - "
 /*N*/           "must be a normal unicode character" );
 /*N*/ }

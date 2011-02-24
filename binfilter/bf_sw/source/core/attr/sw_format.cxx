@@ -180,7 +180,7 @@ namespace binfilter {
 
 /*N*/ void SwFmt::SetName( const String& rNewName, sal_Bool bBroadcast )
 /*N*/ {
-/*N*/   ASSERT(!IsDefault(), "SetName: Defaultformat" );
+/*N*/   OSL_ENSURE(!IsDefault(), "SetName: Defaultformat" );
 /*N*/   if( bBroadcast )
 /*N*/   {
 /*N*/       SwStringMsgPoolItem aOld( RES_NAME_CHANGED, aFmtName );
@@ -267,7 +267,7 @@ namespace binfilter {
 /*N*/   /* alle Abhaengigen auf DerivedFrom umhaengen */
 /*N*/   if( GetDepends() )
 /*N*/   {
-/*N*/       ASSERT(DerivedFrom(), "SwFmt::~SwFmt: Def Abhaengige!" );
+/*N*/       OSL_ENSURE(DerivedFrom(), "SwFmt::~SwFmt: Def Abhaengige!" );
 /*N*/
 /*N*/       bFmtInDTOR = TRUE;
 /*N*/
@@ -380,7 +380,7 @@ namespace binfilter {
 // aber wer ruft das hier ????
 //ASSERT( FALSE, "Modify ohne Absender verschickt" );
 //JP 11.06.96: DropCaps koennen hierher kommen
-/*N*/ ASSERT( RES_PARATR_DROP == nWhich, "Modify ohne Absender verschickt" );
+/*N*/ OSL_ENSURE( RES_PARATR_DROP == nWhich, "Modify ohne Absender verschickt" );
 /*N*/               bWeiter = FALSE;
 /*N*/           }
 /*N*/
@@ -420,7 +420,7 @@ namespace binfilter {
 /*N*/   if ( (pDerFrom == DerivedFrom()) || (pDerFrom == this) )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   ASSERT( Which()==pDerFrom->Which()
+/*N*/   OSL_ENSURE( Which()==pDerFrom->Which()
 /*N*/           || ( Which()==RES_CONDTXTFMTCOLL && pDerFrom->Which()==RES_TXTFMTCOLL)
 /*N*/           || ( Which()==RES_TXTFMTCOLL && pDerFrom->Which()==RES_CONDTXTFMTCOLL)
 /*N*/           || ( Which()==RES_FLYFRMFMT && pDerFrom->Which()==RES_FRMFMT ),

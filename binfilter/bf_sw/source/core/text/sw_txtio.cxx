@@ -334,7 +334,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // wegen PM und BCC
 /*N*/   sal_Bool bFalse = sal_False;
-/*N*/   ASSERT( bFalse, "txtio: No debug version" );
+/*N*/   OSL_ENSURE( bFalse, "txtio: No debug version" );
 /*N*/ }
 
 #define IMPL_OUTOP(class) \
@@ -472,7 +472,7 @@ namespace binfilter {
 /*N*/     pPOR_HIDDEN, pPOR_QUOVADIS, pPOR_ERGOSUM,
 /*N*/     pPOR_NUMBER, pPOR_BULLET, pPOR_UNKW, pPOR_PAR
 /*N*/   };
-/*N*/   ASSERT( eType < PORTYPE_END, "GetPortionName: bad type" );
+/*N*/   OSL_ENSURE( eType < PORTYPE_END, "GetPortionName: bad type" );
 /*N*/   return( ppNameArr[eType] );
 /*N*/ #else
 /*N*/   return 0;
@@ -510,7 +510,7 @@ namespace binfilter {
 /*N*/       pPREP_UL_SPACE, pPREP_MUST_FIT, pPREP_WIDOWS, pPREP_QUOVADIS,
 /*N*/       pPREP_PAGE
 /*N*/   };
-/*N*/   ASSERT( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
+/*N*/   OSL_ENSURE( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
 /*N*/   return( ppNameArr[ePrep] );
 /*N*/ }
 

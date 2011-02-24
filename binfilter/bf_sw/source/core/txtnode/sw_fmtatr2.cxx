@@ -89,7 +89,7 @@ using namespace ::rtl;
 
 /*N*/ int SwFmtCharFmt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return GetCharFmt() == ((SwFmtCharFmt&)rAttr).GetCharFmt();
 /*N*/ }
 
@@ -174,7 +174,7 @@ using namespace ::rtl;
 
 /*N*/ int SwFmtINetFmt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   BOOL bRet = SfxPoolItem::operator==( (SfxPoolItem&) rAttr )
 /*N*/               && aURL == ((SwFmtINetFmt&)rAttr).aURL
 /*N*/               && aName == ((SwFmtINetFmt&)rAttr).aName
@@ -410,7 +410,7 @@ using namespace ::rtl;
 
 int SwFmtRuby::operator==( const SfxPoolItem& rAttr ) const
 {
-    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
     return sRubyTxt == ((SwFmtRuby&)rAttr).sRubyTxt &&
            sCharFmtName == ((SwFmtRuby&)rAttr).sCharFmtName &&
            nCharFmtId == ((SwFmtRuby&)rAttr).nCharFmtId &&

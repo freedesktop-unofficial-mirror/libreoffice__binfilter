@@ -324,7 +324,7 @@ using namespace ::com::sun::star;
 /*?*/       if( bLoad )
 /*?*/       {
 /*?*/           ClearTemplate();
-/*?*/           ASSERT( !pTemplate, "Who holds the template doc?" );
+/*?*/           OSL_ENSURE( !pTemplate, "Who holds the template doc?" );
 /*?*/
 /*?*/           SvStorageRef xStor( new SvStorage( aTDir.GetFull(), STREAM_READ ));
 /*?*/           ULONG nFormat = xStor->GetFormat();
@@ -379,7 +379,7 @@ using namespace ::com::sun::star;
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/       ASSERT( !pTemplate || ::binfilter::IsDocument(
+/*?*/       OSL_ENSURE( !pTemplate || ::binfilter::IsDocument(
 /*?*/               aTDir.GetMainURL( INetURLObject::NO_DECODE ) ) ||
 /*?*/               aTemplateNm.EqualsAscii( "$$Dummy$$" ),
 /*?*/               "TemplatePtr but no template exist!" );
@@ -426,7 +426,7 @@ using namespace ::com::sun::star;
 // muessen die Methode ueberladen
 int Reader::SetStrmStgPtr()
 {
-   ASSERT( pMedium, "Wo ist das Medium??" );
+   OSL_ENSURE( pMedium, "Wo ist das Medium??" );
 
    if( pMedium->IsStorage() )
    {

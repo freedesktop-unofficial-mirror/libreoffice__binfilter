@@ -168,13 +168,13 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/   case FLY_AT_FLY:
 /*?*/   case FLY_AT_CNTNT:
 /*?*/   case FLY_IN_CNTNT:
-/*?*/       ASSERT( !this,
+/*?*/       OSL_ENSURE( !this,
 /*?*/               "neue Schnittstelle benutzen: SwDoc::MakeFlySection!" );
 /*?*/       break;
 /*?*/ #endif
 /*?*/
 /*?*/   default:
-/*?*/       ASSERT( !this,
+/*?*/       OSL_ENSURE( !this,
 /*?*/               "Layoutformat mit ungueltigem Request angefordert." );
 /*?*/
 /*N*/   }
@@ -288,7 +288,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ {
 /*N*/     const bool bFly = RES_FLYFRMFMT == rSource.Which();
 /*N*/     const bool bDraw = RES_DRAWFRMFMT == rSource.Which();
-/*N*/     ASSERT( bFly || bDraw, "this method only works for fly or draw" );
+/*N*/     OSL_ENSURE( bFly || bDraw, "this method only works for fly or draw" );
 /*N*/
 /*N*/   SwDoc* pSrcDoc = (SwDoc*)rSource.GetDoc();
 /*N*/
@@ -390,7 +390,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( RES_DRAWFRMFMT == rSource.Which(), "Weder Fly noch Draw." );
+/*N*/       OSL_ENSURE( RES_DRAWFRMFMT == rSource.Which(), "Weder Fly noch Draw." );
 /*N*/       SwDrawContact *pContact = (SwDrawContact *)rSource.FindContactObj();
 /*N*/
 /*N*/       pContact = new SwDrawContact( (SwDrawFrmFmt*)pDest,
@@ -1098,7 +1098,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( n >= GetSpzFrmFmts()->Count() )
 /*N*/       {
-/*N*/           ASSERT( bInReading, "Fly-Section aber kein Format gefunden" );
+/*N*/           OSL_ENSURE( bInReading, "Fly-Section aber kein Format gefunden" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/   }

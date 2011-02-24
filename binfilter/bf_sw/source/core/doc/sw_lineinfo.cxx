@@ -118,7 +118,7 @@ namespace binfilter {
 
 /*N*/ void SwLineNumberInfo::SetCharFmt( SwCharFmt *pChFmt )
 /*N*/ {
-/*N*/   ASSERT( pChFmt, "SetCharFmt, 0 is not a valid pointer" );
+/*N*/   OSL_ENSURE( pChFmt, "SetCharFmt, 0 is not a valid pointer" );
 /*N*/   pChFmt->Add( this );
 /*N*/ }
 

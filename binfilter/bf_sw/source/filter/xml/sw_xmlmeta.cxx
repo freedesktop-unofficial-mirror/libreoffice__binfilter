@@ -129,10 +129,10 @@ void SwXMLImport::SetStatisticAttributes(
 
     Reference<XUnoTunnel> xCrsrTunnel( GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
     SwDocStat aDocStat( pDoc->GetDocStat() );
 
@@ -214,13 +214,13 @@ void SwXMLExport::_ExportMeta()
         Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
         Reference < XText > xText = xTextDoc->getText();
         Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-        ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
         if( !xTextTunnel.is() )
             return;
 
         SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                             SwXText::getUnoTunnelId() );
-        ASSERT( pText, "SwXText missing" );
+        OSL_ENSURE( pText, "SwXText missing" );
         if( !pText )
             return;
 

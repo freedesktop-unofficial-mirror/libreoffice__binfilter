@@ -59,7 +59,7 @@ namespace binfilter {
 
 /*N*/ SwLooping::SwLooping( SwPageFrm* pPage )
 /*N*/ {
-/*N*/   ASSERT( pPage, "Where's my page?" );
+/*N*/   OSL_ENSURE( pPage, "Where's my page?" );
 /*N*/   nMinPage = pPage->GetPhyPageNum();
 /*N*/   nMaxPage = nMinPage;
 /*N*/   nCount = 0;
@@ -106,7 +106,7 @@ namespace binfilter {
 /*N*/           return;
 /*N*/ #endif
 /*N*/ #endif
-/*N*/       ASSERT( FALSE, "Looping Louie" );
+/*N*/       OSL_ENSURE( FALSE, "Looping Louie" );
 /*N*/       nCount = 0;
 /*N*/       Drastic( pPage->Lower() );
 /*N*/       if( nNew > nMinPage && pPage->GetPrev() )
@@ -137,7 +137,7 @@ namespace binfilter {
 
 /*N*/ void SwLayouter::LoopControl( SwPageFrm* pPage, BYTE /*nLoop*/ )
 /*N*/ {
-/*N*/   ASSERT( pLooping, "Looping: Lost control" );
+/*N*/   OSL_ENSURE( pLooping, "Looping: Lost control" );
 /*N*/   pLooping->Control( pPage );
 /*N*/ }
 
@@ -159,7 +159,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwLayouter::StartLoopControl( SwDoc* pDoc, SwPageFrm *pPage )
 /*N*/ {
-/*N*/   ASSERT( pDoc, "No doc, no fun" );
+/*N*/   OSL_ENSURE( pDoc, "No doc, no fun" );
 /*N*/   if( !pDoc->GetLayouter() )
 /*N*/       pDoc->SetLayouter( new SwLayouter() );
 /*N*/   return !pDoc->GetLayouter()->pLooping &&

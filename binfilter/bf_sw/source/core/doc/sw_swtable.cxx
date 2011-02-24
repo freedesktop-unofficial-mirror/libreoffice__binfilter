@@ -231,7 +231,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( !IsModifyLocked() )
 /*N*/       {
-/*N*/           ASSERT( pOldSize && pOldSize->Which() == RES_FRM_SIZE &&
+/*N*/           OSL_ENSURE( pOldSize && pOldSize->Which() == RES_FRM_SIZE &&
 /*N*/                   pNewSize && pNewSize->Which() == RES_FRM_SIZE,
 /*N*/                   "Kein Old oder New fuer FmtFrmSize-Modify der SwTable." );
 /*N*/
@@ -372,7 +372,7 @@ namespace binfilter {
     // Box ist ??
 /*N*/   if( pBox && !pBox->GetSttNd() )
 /*N*/   {
-/*?*/       ASSERT( FALSE, "Box ohne Inhalt, suche die naechste !!" );
+/*?*/       OSL_ENSURE( FALSE, "Box ohne Inhalt, suche die naechste !!" );
 /*?*/       // "herunterfallen lassen" bis zur ersten Box
 /*?*/       while( pBox->GetTabLines().Count() )
 /*?*/           pBox = pBox->GetTabLines()[0]->GetTabBoxes()[0];
@@ -546,7 +546,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // an der Table eintragen
 /*N*/   const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*N*/   ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*N*/   OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*N*/   SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*N*/                               GetTabSortBoxes();
 /*N*/   SwTableBox* p = this;   // error: &this
@@ -565,7 +565,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // an der Table eintragen
 /*N*/   const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*N*/   ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*N*/   OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*N*/   SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*N*/                               GetTabSortBoxes();
 /*N*/   SwTableBox* p = this;   // error: &this
@@ -579,7 +579,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // an der Table austragen
 /*?*/       const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*?*/       ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*?*/       OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*?*/       SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*?*/                                   GetTabSortBoxes();
 /*?*/       SwTableBox *p = this;   // error: &this
@@ -881,7 +881,7 @@ namespace binfilter {
 /*N*/               SwTableBox* pBox = (SwTableBox*)aIter.First( TYPE( SwTableBox ) );
 /*N*/               if( pBox )
 /*N*/               {
-/*?*/                   ASSERT( !aIter.Next(), "keine Box oder mehrere am Format" );
+/*?*/                   OSL_ENSURE( !aIter.Next(), "keine Box oder mehrere am Format" );
 /*?*/
 /*?*/                   ULONG nNewFmt;
 /*?*/                   if( pNewFmt )

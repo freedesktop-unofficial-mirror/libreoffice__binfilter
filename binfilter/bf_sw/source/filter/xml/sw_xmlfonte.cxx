@@ -74,13 +74,13 @@ SwXMLFontAutoStylePool_Impl::SwXMLFontAutoStylePool_Impl(
     Reference < XTextDocument > xTextDoc( rExport.GetModel(), UNO_QUERY );
     Reference < XText > xText = xTextDoc->getText();
     Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-    ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
     if( !xTextTunnel.is() )
         return;
 
     SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                         SwXText::getUnoTunnelId() );
-    ASSERT( pText, "SwXText missing" );
+    OSL_ENSURE( pText, "SwXText missing" );
     if( !pText )
         return;
 

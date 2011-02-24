@@ -158,7 +158,7 @@ namespace binfilter {
 /*N*/                       for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
 /*N*/                           pFrm; pFrm = (SwFrm*)aIter.Next() )
 /*N*/                       {
-/*N*/                           ASSERT( pFrm->IsNoTxtFrm(), "GraphicNode with Text?" );
+/*N*/                           OSL_ENSURE( pFrm->IsNoTxtFrm(), "GraphicNode with Text?" );
 /*N*/                           ((SwNoTxtFrm*)pFrm)->StopAnimation( pOut );
 /*N*/                       }
 /*N*/                   }
@@ -189,7 +189,7 @@ namespace binfilter {
 /*N*/       //Ggf. aus der PaintQueue entfernen lassen
 /*N*/       SwPaintQueue::Remove( this );
 /*N*/
-/*N*/       ASSERT( !nStartAction, "EndAction() pending." );
+/*N*/       OSL_ENSURE( !nStartAction, "EndAction() pending." );
 /*N*/   }
 /*N*/
 /*N*/   if ( pDoc )

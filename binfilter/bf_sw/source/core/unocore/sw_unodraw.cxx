@@ -1408,7 +1408,7 @@ void SwXShape::dispose(void) throw( RuntimeException )
         SdrObject* pObj = pFmt->FindSdrObject();
         // safety assertion: <pObj> must be the same as <pFmt->FindSdrObject()>,
         // if <pObj> isn't a 'virtual' drawing object.
-        ASSERT( !pObj->ISA(SwDrawVirtObj) || pObj == pFmt->FindSdrObject(),
+        OSL_ENSURE( !pObj->ISA(SwDrawVirtObj) || pObj == pFmt->FindSdrObject(),
                 "<SwXShape::dispose(..) - different 'master' drawing objects!!" );
         // perform delete of draw frame format *not* for 'virtual' drawing objects.
         if(pObj && pObj->IsInserted())

@@ -426,7 +426,7 @@ void Sw3IoImp::SetDBName()
 /*N*/           // Fehlerfall: unbekannte Poolvorlage -> neu anlegen
 /*N*/           if( RES_POOLPAGE_BEGIN > nPoolId ||  nPoolId >= RES_POOLPAGE_END )
 /*N*/           {
-/*?*/               ASSERT( !this, "ungueltige Id" );
+/*?*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/               nPoolId = IDX_NO_VALUE;
 /*N*/           }
 /*N*/       }
@@ -564,7 +564,7 @@ void Sw3IoImp::SetDBName()
 /*N*/       {
 /*N*/           SwPageDesc* pDesc = FindPageDesc( pAttr->GetDescNameIdx() );
 /*N*/           pAttr->SetDescNameIdx( IDX_NO_VALUE );
-/*N*/           ASSERT( pDesc, "Unbekannte Seitenvorlage fuer PageDesc-Attribut" );
+/*N*/           OSL_ENSURE( pDesc, "Unbekannte Seitenvorlage fuer PageDesc-Attribut" );
 /*N*/           if( pDesc )
 /*N*/           {
 /*N*/               pDesc->Add( pAttr );

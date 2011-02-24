@@ -252,7 +252,7 @@ sal_Int32 ReadThroughComponent(
         }
         else
         {
-            ASSERT( bMustBeSuccessfull, "Warnings are not supported" );
+            OSL_ENSURE( bMustBeSuccessfull, "Warnings are not supported" );
             return *new StringErrorInfo( ERR_FORMAT_ROWCOL, sErr,
                              ERRCODE_BUTTON_OK | ERRCODE_MSG_ERROR );
         }
@@ -368,7 +368,7 @@ ULONG XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
     // Get service factory
     Reference< lang::XMultiServiceFactory > xServiceFactory =
             ::legacy_binfilters::getLegacyProcessServiceFactory();
-    ASSERT( xServiceFactory.is(),
+    OSL_ENSURE( xServiceFactory.is(),
             "XMLReader::Read: got no service manager" );
     if( !xServiceFactory.is() )
         return ERR_SWG_READ_ERROR;
@@ -389,7 +389,7 @@ ULONG XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
     else
         pStorage = pStg;
 
-    ASSERT( pStorage, "XML Reader can only read from storage" );
+    OSL_ENSURE( pStorage, "XML Reader can only read from storage" );
     if( !pStorage )
         return ERR_SWG_READ_ERROR;
 
@@ -409,11 +409,11 @@ ULONG XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
 
     // Get the docshell, the model, and finally the model's component
     SwDocShell *pDocSh = rDoc.GetDocShell();
-    ASSERT( pDocSh, "XMLReader::Read: got no doc shell" );
+    OSL_ENSURE( pDocSh, "XMLReader::Read: got no doc shell" );
     if( !pDocSh )
         return ERR_SWG_READ_ERROR;
     Reference< lang::XComponent > xModelComp( pDocSh->GetModel(), UNO_QUERY );
-    ASSERT( xModelComp.is(),
+    OSL_ENSURE( xModelComp.is(),
             "XMLReader::Read: got no model" );
     if( !xModelComp.is() )
         return ERR_SWG_READ_ERROR;
@@ -658,7 +658,7 @@ USHORT XMLReader::GetSectionList( SfxMedium& rMedium,
     SvStorage* pStg;
     Reference< lang::XMultiServiceFactory > xServiceFactory =
             ::legacy_binfilters::getLegacyProcessServiceFactory();
-    ASSERT( xServiceFactory.is(),
+    OSL_ENSURE( xServiceFactory.is(),
             "XMLReader::Read: got no service manager" );
     if( xServiceFactory.is() && 0 != ( pStg = rMedium.GetStorage() ) )
     {
@@ -672,7 +672,7 @@ USHORT XMLReader::GetSectionList( SfxMedium& rMedium,
         // get parser
         Reference< XInterface > xXMLParser = xServiceFactory->createInstance(
             OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Parser" )) );
-        ASSERT( xXMLParser.is(),
+        OSL_ENSURE( xXMLParser.is(),
             "XMLReader::Read: com.sun.star.xml.sax.Parser service missing" );
         if( xXMLParser.is() )
         {

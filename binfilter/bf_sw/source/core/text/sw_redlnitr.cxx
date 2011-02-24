@@ -104,7 +104,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   aMagicNo[SW_LATIN] = aMagicNo[SW_CJK] = aMagicNo[SW_CTL] = NULL;
 /*N*/
 /*N*/   // determine script changes if not already done for current paragraph
-/*N*/   ASSERT( pScriptInfo, "No script info available");
+/*N*/   OSL_ENSURE( pScriptInfo, "No script info available");
 /*N*/     if ( pScriptInfo->GetInvalidity() != STRING_LEN )
 /*N*/          pScriptInfo->InitScriptInfo( rTxtNode, bRTL );
 /*N*/

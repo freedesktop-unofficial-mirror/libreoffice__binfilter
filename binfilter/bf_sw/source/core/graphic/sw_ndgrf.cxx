@@ -144,13 +144,13 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bReadGrf = FALSE, bSetTwipSize = TRUE;
 /*N*/
-/*N*/   ASSERT( pGraphic || pGrfObj || rGrfName.Len(),
+/*N*/   OSL_ENSURE( pGraphic || pGrfObj || rGrfName.Len(),
 /*N*/           "GraphicNode without a name, Graphic or GraphicObject" );
 /*N*/
 /*N*/   // ReadRead mit Namen
 /*N*/   if( refLink.Is() )
 /*N*/   {
-/*?*/       ASSERT( !bInSwapIn, "ReRead: stehe noch im SwapIn" );
+/*?*/       OSL_ENSURE( !bInSwapIn, "ReRead: stehe noch im SwapIn" );
 /*?*/       if( rGrfName.Len() )
 /*?*/       {
 /*?*/           // Besonderheit: steht im FltNamen DDE, handelt es sich um eine
@@ -299,7 +299,7 @@ namespace binfilter {
 /*N*/   SwDoc* pDoc = GetDoc();
 /*N*/   if( refLink.Is() )
 /*N*/   {
-/*N*/       ASSERT( !bInSwapIn, "DTOR: stehe noch im SwapIn" );
+/*N*/       OSL_ENSURE( !bInSwapIn, "DTOR: stehe noch im SwapIn" );
 /*N*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/       refLink->Disconnect();
 /*N*/   }
@@ -329,7 +329,7 @@ namespace binfilter {
 /*N*/                               SwAttrSet* pAutoAttr,
 /*N*/                               BOOL bDelayed )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl, "MakeGrfNode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl, "MakeGrfNode: Formatpointer ist 0." );
 /*N*/   SwGrfNode *pNode;
 /*N*/   // Delayed erzeugen nur aus dem SW/G-Reader
 /*N*/   if( bDelayed )
@@ -346,7 +346,7 @@ namespace binfilter {
 /*N*/                               SwGrfFmtColl* pGrfColl,
 /*N*/                               SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl, "MakeGrfNode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl, "MakeGrfNode: Formatpointer ist 0." );
 /*N*/   return new SwGrfNode( rWhere, rGrfObj, pGrfColl, pAutoAttr );
 /*N*/ }
 
@@ -402,7 +402,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
         else
         {
             SvStorageRef refRoot = GetDoc()->GetDocStorage();
-            ASSERT( refRoot.Is(), "Kein Storage am Doc" );
+            OSL_ENSURE( refRoot.Is(), "Kein Storage am Doc" );
             if( refRoot.Is() )
             {
                 String aStrmName, aPicStgName;
@@ -487,7 +487,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       SvStorage* pDocStg = GetDoc()->GetDocStorage();
 /*N*/       if( !pRoot )
 /*N*/           pRoot = pDocStg;
-/*N*/       ASSERT( SOFFICE_FILEFORMAT_60 > pRoot->GetVersion(),
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_60 > pRoot->GetVersion(),
 /*N*/               "SwGrfNode::StoreGraphic called for 6.0+ file format" );
 /*N*/
 /*N*/       String aDstPicStgName(
@@ -497,7 +497,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       {
 /*N*/           // If the stream does not contain a streamed graphic object,
 /*N*/           // the graphic has to be stored again.
-/*N*/           ASSERT( pRoot != pDocStg || aSrcStrmName.Len(),
+/*N*/           OSL_ENSURE( pRoot != pDocStg || aSrcStrmName.Len(),
 /*N*/                   "raw image data stream but no stream name" );
 /*N*/           // Neuer Storage. Wenn die Grafik im DocStg drin ist,
 /*N*/           // kann sie bequem per CopyTo() kopiert werden.
@@ -587,7 +587,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/
 /*N*/       if( !aDstStrmName.Len() )
 /*N*/       {
-/*N*/           ASSERT( pRoot, "Kein Storage gegeben" );
+/*N*/           OSL_ENSURE( pRoot, "Kein Storage gegeben" );
 /*N*/           if( pRoot )
 /*N*/           {
 /*N*/               SvStorageRef refPics =
@@ -787,7 +787,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       rStrmName = aUserData;
 /*N*/       bGraphic = TRUE;
 /*N*/   }
-/*N*/   ASSERT( STRING_NOTFOUND == rStrmName.Search( '/' ),
+/*N*/   OSL_ENSURE( STRING_NOTFOUND == rStrmName.Search( '/' ),
 /*N*/           "invalid graphic stream name" );
 /*N*/
 /*N*/   return bGraphic;
@@ -805,7 +805,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/   if( !pLink && HasStreamName() )
 /*N*/   {
 /*?*/       SvStorageRef refRoot = pThis->GetDoc()->GetDocStorage();
-/*?*/       ASSERT( refRoot.Is(), "Kein Storage am Doc" );
+/*?*/       OSL_ENSURE( refRoot.Is(), "Kein Storage am Doc" );
 /*?*/       if( refRoot.Is() )
 /*?*/       {
 /*?*/           String aStrmName, aPicStgName;
@@ -876,7 +876,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*M*/       if( HasStreamName() )
 /*M*/       {
 /*M*/           SvStorageRef refRoot = GetDoc()->GetDocStorage();
-/*M*/           ASSERT( refRoot.Is(), "Kein Storage am Doc" );
+/*M*/           OSL_ENSURE( refRoot.Is(), "Kein Storage am Doc" );
 /*M*/           if( refRoot.Is() )
 /*M*/           {
 /*M*/               String aStrmName, aPicStgName;

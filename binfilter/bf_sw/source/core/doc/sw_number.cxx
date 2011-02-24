@@ -364,7 +364,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/       }
 /*N*/   }
 /*N*/   memset( aFmts, 0, sizeof( aFmts ));
-/*N*/   ASSERT( sName.Len(), "NumRule ohne Namen!" );
+/*N*/   OSL_ENSURE( sName.Len(), "NumRule ohne Namen!" );
 /*N*/ }
 
 /*N*/ SwNumRule::SwNumRule( const SwNumRule& rNumRule )

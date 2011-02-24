@@ -84,7 +84,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               ? rMkNdIdx < pAPos->nNode && pAPos->nNode <= rPtNdIdx
 /*N*/               : rPtNdIdx <= pAPos->nNode && pAPos->nNode < rMkNdIdx ))
 /*N*/       {
-/*N*/           ASSERT( rAnch.GetAnchorId() != FLY_AUTO_CNTNT, "FLY-AUTO-Baustelle!" );
+/*N*/           OSL_ENSURE( rAnch.GetAnchorId() != FLY_AUTO_CNTNT, "FLY-AUTO-Baustelle!" );
 /*N*/           // nur den Anker verchieben ??
 /*N*/           if( rPtNdIdx == pAPos->nNode )
 /*N*/           {
@@ -167,7 +167,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 // Der uebergebene Node steht irgendwo in der gewuenschten Section
 /*N*/ void SwDoc::DeleteSection( SwNode *pNode )
 /*N*/ {
-/*N*/   ASSERT( pNode, "Kein Node uebergeben." );
+/*N*/   OSL_ENSURE( pNode, "Kein Node uebergeben." );
 /*N*/   SwStartNode* pSttNd = pNode->IsStartNode() ? (SwStartNode*)pNode
 /*N*/                                              : pNode->StartOfSectionNode();
 /*N*/   SwNodeIndex aSttIdx( *pSttNd ), aEndIdx( *pNode->EndOfSectionNode() );
@@ -555,7 +555,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           rPam.Exchange();
 /*N*/           if( !rPam.Move( fnMoveBackward, fnGoNode ))
 /*N*/           {
-/*N*/               ASSERT( sal_False, "kein Node mehr vorhanden" );
+/*N*/               OSL_ENSURE( sal_False, "kein Node mehr vorhanden" );
 /*N*/               return sal_False;
 /*N*/           }
 /*N*/       }

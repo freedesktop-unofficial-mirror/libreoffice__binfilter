@@ -4016,7 +4016,7 @@ BOOL Sw6Layout::LeseKoFu(BOOL bKopf)
 SwTxtFmtColl *Sw6Layout::GetAlay(void)
 // Holt die gerade gueltige FmtColl
 {
-    ASSERT(aSta.nAlay>=0 && aSta.nAlay<pLay->NumAlay,"Ungueltiges Alay");
+    OSL_ENSURE(aSta.nAlay>=0 && aSta.nAlay<pLay->NumAlay,"Ungueltiges Alay");
     return pLay->FileAlay[aSta.nAlay]->pFmtColl;
 }
 

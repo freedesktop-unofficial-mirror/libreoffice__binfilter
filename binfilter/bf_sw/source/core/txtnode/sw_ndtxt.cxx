@@ -100,7 +100,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                                SwTxtFmtColl *pColl,
 /*N*/                                SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pColl, "Collectionpointer ist 0." );
+/*N*/   OSL_ENSURE( pColl, "Collectionpointer ist 0." );
 /*N*/
 /*N*/   SwTxtNode *pNode = new SwTxtNode( rWhere, pColl, pAutoAttr );
 /*N*/
@@ -266,13 +266,13 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                   pFrm = (SwCntntFrm*)aNew.First( TYPE(SwCntntFrm) );
 /*N*/ //JP 11.07.00: the assert's shows incorrect an error when nodes are converted
 /*N*/ //                to a table. Then no layout exist!
-/*N*/ //                    ASSERT( pFrm, "lcl_ChangeFtnRef: No TxtFrm" );
-/*N*/ //                    ASSERT( pFrm && !aNew.Next(),"lcl_ChangeFtnRef: Doublefault");
+/*N*/ //                    OSL_ENSURE( pFrm, "lcl_ChangeFtnRef: No TxtFrm" );
+/*N*/ //                    OSL_ENSURE( pFrm && !aNew.Next(),"lcl_ChangeFtnRef: Doublefault");
 /*N*/                   if( !pFrm )
 /*N*/                       return;
 /*N*/               }
 /*N*/               SwTxtFtn *pAttr = (SwTxtFtn*)pHt;
-/*N*/               ASSERT( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
+/*N*/               OSL_ENSURE( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
 /*N*/               SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
 /*N*/               SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
 /*N*/               if ( !pNd )
@@ -284,7 +284,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/               SwCntntFrm* pCntnt = (SwCntntFrm*)aIter.First(TYPE(SwCntntFrm));
 /*N*/               if( pCntnt )
 /*N*/               {
-/*N*/                   ASSERT( pCntnt->FindRootFrm() == pFrm->FindRootFrm(),
+/*N*/                   OSL_ENSURE( pCntnt->FindRootFrm() == pFrm->FindRootFrm(),
 /*N*/                           "lcl_ChangeFtnRef: Layout double?" );
 /*N*/                   SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
 /*N*/                   if( pFtn && pFtn->GetAttr() == pAttr )
@@ -304,7 +304,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                   while( 0 != (pCntnt = (SwCntntFrm*)aIter.Next()) )
 /*N*/                   {
 /*N*/                       SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
-/*N*/                       ASSERT( !pFtn || pFtn->GetRef() == pFrm,
+/*N*/                       OSL_ENSURE( !pFtn || pFtn->GetRef() == pFrm,
 /*N*/                               "lcl_ChangeFtnRef: Who's that guy?" );
 /*N*/                   }
 /*N*/ #endif
@@ -527,7 +527,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       InvalidateNumRule();
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( FALSE, "kein TxtNode." );
+/*N*/       OSL_ENSURE( FALSE, "kein TxtNode." );
 /*N*/
 /*N*/   return this;
 /*N*/ }
@@ -573,7 +573,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       InvalidateNumRule();
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( FALSE, "kein TxtNode." );
+/*N*/       OSL_ENSURE( FALSE, "kein TxtNode." );
 /*N*/
 /*N*/   return this;
 /*N*/ }
@@ -581,7 +581,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 // erzeugt einen AttrSet mit Bereichen fuer Frame-/Para/Char-Attributen
 /*N*/ void SwTxtNode::NewAttrSet( SwAttrPool& rPool )
 /*N*/ {
-/*N*/   ASSERT( !pAttrSet, "AttrSet ist doch gesetzt" );
+/*N*/   OSL_ENSURE( !pAttrSet, "AttrSet ist doch gesetzt" );
 /*N*/   pAttrSet = new SwAttrSet( rPool, aTxtNodeSetRange );
 /*N*/ //FEATURE::CONDCOLL
 /*N*/ //    pAttrSet->SetParent( &GetFmtColl()->GetAttrSet() );
@@ -846,8 +846,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 
 /*N*/ SwFmtColl* SwTxtNode::ChgFmtColl( SwFmtColl *pNewColl )
 /*N*/ {
-/*N*/   ASSERT( pNewColl,"ChgFmtColl: Collectionpointer ist 0." );
-/*N*/   ASSERT( HAS_BASE( SwTxtFmtColl, pNewColl ),
+/*N*/   OSL_ENSURE( pNewColl,"ChgFmtColl: Collectionpointer ist 0." );
+/*N*/   OSL_ENSURE( HAS_BASE( SwTxtFmtColl, pNewColl ),
 /*N*/               "ChgFmtColl: ist kein Text-Collectionpointer." );
 /*N*/
 /*N*/   SwTxtFmtColl *pOldColl = GetTxtColl();
@@ -863,7 +863,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                                       const SwTxtFmtColl *pNewColl)
 /*N*/ {
 /*N*/   SwDoc* pDoc = GetDoc();
-/*N*/   ASSERT( pDoc, "Kein Doc?" );
+/*N*/   OSL_ENSURE( pDoc, "Kein Doc?" );
 /*N*/   // erfrage die OutlineLevel und update gegebenenfalls das Nodes-Array,
 /*N*/   // falls sich die Level geaendert haben !
 /*N*/   const BYTE nOldLevel = pOldColl ? pOldColl->GetOutlineLevel():NO_NUMBERING;
@@ -972,7 +972,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ void lcl_CopyHint( const USHORT nWhich, const SwTxtAttr *pHt,
 /*N*/                   SwTxtAttr *pNewHt, SwDoc* pOtherDoc, SwTxtNode *pDest )
 /*N*/ {
-/*N*/   ASSERT( nWhich == pHt->Which(), "Falsche Hint-Id" );
+/*N*/   OSL_ENSURE( nWhich == pHt->Which(), "Falsche Hint-Id" );
 /*N*/   switch( nWhich )
 /*N*/   {
 /*N*/       // Wenn wir es mit einem Fussnoten-Attribut zu tun haben,
@@ -1368,8 +1368,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*M*/ SwTxtNode& SwTxtNode::Insert( const XubString &rStr,
 /*M*/                             const SwIndex &rIdx, const USHORT nMode )
 /*M*/ {
-/*M*/   ASSERT( rIdx <= aText.Len(), "Array ueberindiziert." );
-/*M*/   ASSERT( (ULONG)aText.Len() + (ULONG)rStr.Len() <= STRING_LEN,
+/*M*/   OSL_ENSURE( rIdx <= aText.Len(), "Array ueberindiziert." );
+/*M*/   OSL_ENSURE( (ULONG)aText.Len() + (ULONG)rStr.Len() <= STRING_LEN,
 /*M*/           "STRING_LEN ueberschritten." );
 /*M*/
 /*M*/   xub_StrLen aPos = rIdx.GetIndex();
@@ -1828,7 +1828,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ SwTxtNode& SwTxtNode::Erase(const SwIndex &rIdx, xub_StrLen nCount,
 /*N*/                           const USHORT nMode )
 /*N*/ {
-/*N*/   ASSERT( rIdx <= aText.Len(), "Array ueberindiziert." );
+/*N*/   OSL_ENSURE( rIdx <= aText.Len(), "Array ueberindiziert." );
 /*N*/
 /*N*/   const xub_StrLen nCnt = STRING_LEN == nCount
 /*N*/                     ? aText.Len() - rIdx.GetIndex() : nCount;
@@ -2278,7 +2278,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ void SwTxtNode::Replace( const SwIndex& rStart, xub_Unicode cCh )
 /*N*/ {
 /*N*/
-/*N*/   ASSERT( rStart.GetIndex() < aText.Len(), "ausserhalb des Strings" );
+/*N*/   OSL_ENSURE( rStart.GetIndex() < aText.Len(), "ausserhalb des Strings" );
 /*N*/   SwTxtAttr* pHt;
 /*N*/   if( ( CH_TXTATR_BREAKWORD == aText.GetChar( rStart.GetIndex() ) ||
 /*N*/         CH_TXTATR_INWORD == aText.GetChar( rStart.GetIndex() )) &&

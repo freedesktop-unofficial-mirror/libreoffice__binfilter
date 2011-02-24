@@ -136,7 +136,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwTabFrm::RegistFlys()
 /*N*/ {
-/*N*/   ASSERT( Lower() && Lower()->IsRowFrm(), "Keine Zeilen." );
+/*N*/   OSL_ENSURE( Lower() && Lower()->IsRowFrm(), "Keine Zeilen." );
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   if ( pPage )
@@ -157,7 +157,7 @@ namespace binfilter {
 /*N*/ SwTwips SwTabFrm::Split( const SwTwips nCutPos )
 /*N*/ {
 /*N*/     SWRECTFN( this )
-/*N*/     ASSERT( bVert ? nCutPos >= Frm().Left()
+/*N*/     OSL_ENSURE( bVert ? nCutPos >= Frm().Left()
 /*N*/             && nCutPos <= Frm().Left() + Frm().Width() :
 /*N*/             nCutPos >= Frm().Top() && nCutPos <= Frm().Bottom(),
 /*N*/             "SplitLine out of table." );
@@ -193,7 +193,7 @@ namespace binfilter {
 /*N*/   if ( !pRow )
 /*N*/   {
 /*?*/ #if OSL_DEBUG_LEVEL > 1
-/*?*/       ASSERT( FALSE, "Tablesplit out of rows?" );
+/*?*/       OSL_ENSURE( FALSE, "Tablesplit out of rows?" );
 /*?*/ #endif
 /*?*/       pRow = Lower();
 /*?*/       while ( pRow && pRow->GetNext() )
@@ -217,7 +217,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( bRepeat )
 /*N*/       {   //Ueberschrift wiederholen.
-/*N*/           ASSERT( GetTable()->GetTabLines()[0], "Table ohne Zeilen?" );
+/*N*/           OSL_ENSURE( GetTable()->GetTabLines()[0], "Table ohne Zeilen?" );
 /*N*/           bDontCreateObjects = TRUE;              //frmtool
 /*N*/           SwRowFrm *pHeadline = new SwRowFrm(
 /*N*/                                   *GetTable()->GetTabLines()[0] );
@@ -276,7 +276,7 @@ namespace binfilter {
 /*N*/           pRow = pNxt;
 /*N*/       }
 /*N*/   }
-/*N*/     ASSERT( !bNewFollow || !(pFoll->Frm().*fnRect->fnGetHeight)(),
+/*N*/     OSL_ENSURE( !bNewFollow || !(pFoll->Frm().*fnRect->fnGetHeight)(),
 /*N*/             "Dont care about Performance");
 /*N*/     Shrink( nRet );
 /*N*/   return nRet;
@@ -1109,7 +1109,7 @@ namespace binfilter {
 |*************************************************************************/
 /*M*/ void SwTabFrm::Format( const SwBorderAttrs *pAttrs )
 /*M*/ {
-/*M*/   ASSERT( pAttrs, "TabFrm::Format, pAttrs ist 0." );
+/*M*/   OSL_ENSURE( pAttrs, "TabFrm::Format, pAttrs ist 0." );
 /*M*/
 /*M*/     SWRECTFN( this )
 /*M*/   if ( !bValidSize )
@@ -1309,7 +1309,7 @@ namespace binfilter {
 /*N*/                 }
 /*N*/               break;
 /*N*/           default:
-/*N*/               ASSERT( FALSE, "Ungueltige orientation fuer Table." );
+/*N*/               OSL_ENSURE( FALSE, "Ungueltige orientation fuer Table." );
 /*N*/       }
 /*N*/         (this->*fnRect->fnSetYMargins)( nUpper, nLower );
 /*N*/         if( (nMax - MINLAY) < (nLeftSpacing + nRightSpacing) )
@@ -1634,8 +1634,8 @@ namespace binfilter {
 /*?*/           {
 /*?*/ #ifdef DBG_UTIL
 /*?*/               SwSectionFrm* pSect = pRet->FindSctFrm();
-/*?*/               ASSERT( pSect, "Wo kommt denn die Spalte her?")
-/*?*/               ASSERT( IsAnLower( pSect ), "Gespaltene Zelle?" );
+/*?*/               OSL_ENSURE( pSect, "Wo kommt denn die Spalte her?");
+/*?*/               OSL_ENSURE( IsAnLower( pSect ), "Gespaltene Zelle?" );
 /*?*/ #endif
 /*?*/               return pRet->FindSctFrm()->FindLastCntnt();
 /*?*/           }
@@ -1643,13 +1643,13 @@ namespace binfilter {
 /*?*/                       //der Tabelle (z.B. Undo TextToTable).
 /*N*/       }
 /*N*/   }
-/*N*/ //    ASSERT( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
+/*N*/ //    OSL_ENSURE( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
 /*N*/   if ( pRet ) //#50235#
 /*N*/       while ( pRet->GetNext() )
 /*N*/           pRet = pRet->GetNext();
 /*N*/   if( pRet->IsSctFrm() )
 /*?*/       pRet = ((SwSectionFrm*)pRet)->FindLastCntnt();
-/*N*/   ASSERT( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
+/*N*/   OSL_ENSURE( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
 /*N*/   return (SwCntntFrm*)pRet;
 /*N*/ }
 
@@ -1763,7 +1763,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwTabFrm::Cut()
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "Cut ohne Upper()." );
+/*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   InvalidatePage( pPage );
@@ -1821,7 +1821,7 @@ namespace binfilter {
 /*N*/   Remove();
 /*N*/   if ( pUp )
 /*N*/   {
-/*N*/       ASSERT( !pUp->IsFtnFrm(), "Tabelle in Fussnote." );
+/*N*/       OSL_ENSURE( !pUp->IsFtnFrm(), "Tabelle in Fussnote." );
 /*N*/       SwSectionFrm *pSct = 0;
 /*N*/       if( !pUp->Lower() && pUp->IsInSct() &&
 /*N*/           !(pSct = pUp->FindSctFrm())->ContainsCntnt() )
@@ -1869,11 +1869,11 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwTabFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -2144,7 +2144,7 @@ namespace binfilter {
 /*N*/ void SwRowFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
 /*N*/     SWRECTFN( this )
-/*N*/   ASSERT( pAttrs, "SwRowFrm::Format ohne Attrs." );
+/*N*/   OSL_ENSURE( pAttrs, "SwRowFrm::Format ohne Attrs." );
 /*N*/
 /*N*/     const BOOL bFix = BFIXHEIGHT;
 /*N*/
@@ -2167,7 +2167,7 @@ namespace binfilter {
 /*N*/         if ( HasFixSize() )
 /*N*/       {
 /*N*/           const SwFmtFrmSize &rFrmSize = GetFmt()->GetFrmSize();
-/*N*/           ASSERT( rFrmSize.GetSize().Height() > 0, "Hat ihn" );
+/*N*/           OSL_ENSURE( rFrmSize.GetSize().Height() > 0, "Hat ihn" );
 /*N*/       }
 /*N*/ #endif
 /*N*/         const SwTwips nDiff = (Frm().*fnRect->fnGetHeight)() - (HasFixSize() ?
@@ -2514,7 +2514,7 @@ namespace binfilter {
 
 /*N*/ void SwCellFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
-/*N*/   ASSERT( pAttrs, "CellFrm::Format, pAttrs ist 0." );
+/*N*/   OSL_ENSURE( pAttrs, "CellFrm::Format, pAttrs ist 0." );
 /*N*/     SWRECTFN( this )
 /*N*/   if ( !bValidPrtArea )
 /*N*/   {
@@ -2551,9 +2551,9 @@ namespace binfilter {
 /*N*/           SwTwips nWish = pTab->GetFmt()->GetFrmSize().GetWidth();
 /*N*/           nWidth = pAttrs->GetSize().Width();
 /*N*/
-/*N*/           ASSERT( nWish, "Tabelle ohne Breite?" );
-/*N*/           ASSERT( nWidth <= nWish, "Zelle breiter als Tabelle." );
-/*N*/           ASSERT( nWidth > 0, "Box without width" );
+/*N*/           OSL_ENSURE( nWish, "Tabelle ohne Breite?" );
+/*N*/           OSL_ENSURE( nWidth <= nWish, "Zelle breiter als Tabelle." );
+/*N*/           OSL_ENSURE( nWidth > 0, "Box without width" );
 /*N*/
 /*N*/             long nPrtWidth = (pTab->Prt().*fnRect->fnGetWidth)();
 /*N*/             if ( nWish != nPrtWidth )
@@ -2564,7 +2564,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           ASSERT( pAttrs->GetSize().Width() > 0, "Box without width" );
+/*N*/           OSL_ENSURE( pAttrs->GetSize().Width() > 0, "Box without width" );
 /*N*/             nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/           SwFrm *pPre = GetUpper()->Lower();
 /*N*/           while ( pPre != this )
@@ -2607,7 +2607,7 @@ namespace binfilter {
 /*N*/       if ( !Lower()->IsCntntFrm() && !Lower()->IsSctFrm() )
 /*N*/       {
 /*N*/           //ASSERT fuer HTML-Import!
-/*N*/           ASSERT( !this, "VAlign an Zelle ohne Inhalt" );
+/*N*/           OSL_ENSURE( !this, "VAlign an Zelle ohne Inhalt" );
 /*N*/           return;
 /*N*/       }
 /*N*/       BOOL bVertDir = TRUE;

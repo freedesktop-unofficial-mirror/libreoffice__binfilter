@@ -42,7 +42,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwCntntFrm::WouldFit( SwTwips &, BOOL& )
 /*N*/ {
-/*N*/   ASSERT( FALSE, "WouldFit des CntntFrm gerufen." );
+/*N*/   OSL_ENSURE( FALSE, "WouldFit des CntntFrm gerufen." );
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -55,7 +55,7 @@ namespace binfilter {
 /*N*/ BOOL SwFrm::GetCharRect( SwRect&, const SwPosition&,
 /*N*/                        SwCrsrMoveState* ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "GetCharRect() der Basis gerufen." );
+/*N*/   OSL_ENSURE( FALSE, "GetCharRect() der Basis gerufen." );
 /*N*/   return FALSE;
 /*N*/ }
 

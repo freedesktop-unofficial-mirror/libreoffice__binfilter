@@ -153,7 +153,7 @@ using namespace ::com::sun::star;
 
 /*N*/ int SwFmtDrop::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return ( nLines == ((SwFmtDrop&)rAttr).GetLines() &&
 /*N*/            nChars == ((SwFmtDrop&)rAttr).GetChars() &&
 /*N*/            nDistance ==  ((SwFmtDrop&)rAttr).GetDistance() &&

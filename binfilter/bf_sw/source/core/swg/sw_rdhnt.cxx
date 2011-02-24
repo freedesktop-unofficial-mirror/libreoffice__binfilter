@@ -472,7 +472,7 @@ static USHORT InSWG_SwTOXMark
             if( aMark.IsAlternativeText() &&
                 pNd->GetTxtAttr( nBgn, aMark.Which() ) )
             {
-                ASSERT( !aMark.IsAlternativeText(),
+                OSL_ENSURE( !aMark.IsAlternativeText(),
                         "several TOXMark without end at same position" );
                 return 0;
             }
@@ -768,7 +768,7 @@ static USHORT InSWG_SwFmtCol
     USHORT nMax = ( nWishWidth == LONG_MAX )
                 ? USHRT_MAX
                 : (USHORT) nWishWidth;
-    ASSERT( nWishWidth == LONG_MAX || nWishWidth <= 65535L, "WishWidth zu gross" );
+    OSL_ENSURE( nWishWidth == LONG_MAX || nWishWidth <= 65535L, "WishWidth zu gross" );
     long nFactor = nWishWidth / nMax;
     SwFmtCol aAttr;
     USHORT nLineWidth;
@@ -1062,7 +1062,7 @@ static USHORT InSWG_SwFmtAnchor
         case  1: cType = FLY_PAGE;      break;
         case 14: cType = FLY_AT_CNTNT;  break;
         case 15: cType = FLY_IN_CNTNT;  break;
-        default: ASSERT( FALSE, "ungueltige AnchorId." );
+        default: OSL_ENSURE( FALSE, "ungueltige AnchorId." );
     }
 
     SwFmtAnchor aAttr( (RndStdIds) cType, nPage + rPar.nPage1 );

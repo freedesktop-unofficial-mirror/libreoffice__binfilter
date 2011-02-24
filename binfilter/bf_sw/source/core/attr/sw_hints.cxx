@@ -107,7 +107,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DATA.pDelTbl = 0;
 /*N*/   bModified = bBehindSplitLine = FALSE;
-/*N*/   ASSERT( pTbl, "es muss ein Table-Pointer gesetzt werden!" );
+/*N*/   OSL_ENSURE( pTbl, "es muss ein Table-Pointer gesetzt werden!" );
 /*N*/ }
 
 
@@ -145,7 +145,7 @@ namespace binfilter {
 
 /*N*/ void SwAttrSetChg::ClearItem( USHORT nWhich )
 /*N*/ {
-/*N*/   ASSERT( bDelSet, "der Set darf nicht veraendert werden!" );
+/*N*/   OSL_ENSURE( bDelSet, "der Set darf nicht veraendert werden!" );
 /*N*/   pChgSet->ClearItem( nWhich );
 /*N*/ }
 
@@ -160,14 +160,14 @@ namespace binfilter {
 // "Overhead" vom SfxPoolItem
 /*N*/ int SwMsgPoolItem::operator==( const SfxPoolItem& ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "SwMsgPoolItem kennt kein ==" );
+/*N*/   OSL_ENSURE( FALSE, "SwMsgPoolItem kennt kein ==" );
 /*N*/   return 0;
 /*N*/ }
 
 
 /*N*/ SfxPoolItem* SwMsgPoolItem::Clone( SfxItemPool* ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "SwMsgPoolItem kennt kein Clone" );
+/*N*/   OSL_ENSURE( FALSE, "SwMsgPoolItem kennt kein Clone" );
 /*N*/   return 0;
 /*N*/ }
 
@@ -186,7 +186,7 @@ namespace binfilter {
 /*N*/              ERR_OUTOFSCOPE );
 /*N*/
 /*N*/   SfxPoolItem *pHt = aAttrTab[ nWhich - POOLATTR_BEGIN ];
-/*N*/   ASSERT( pHt, "GetDfltFmtAttr(): Dflt == 0" );
+/*N*/   OSL_ENSURE( pHt, "GetDfltFmtAttr(): Dflt == 0" );
 /*N*/   return pHt;
 /*N*/ }
 

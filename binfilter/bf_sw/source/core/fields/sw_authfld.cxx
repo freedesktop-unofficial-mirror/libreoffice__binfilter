@@ -283,7 +283,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByHandle(long nHandle) const
             break;
         }
     }
-    ASSERT( pRet, "invalid Handle" );
+    OSL_ENSURE( pRet, "invalid Handle" );
     return pRet;
 }
 /*-- 11.10.99 08:49:22---------------------------------------------------
@@ -339,7 +339,7 @@ USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
     if( j == m_pDataArr->Count() )
         j = USHRT_MAX;
 
-    ASSERT( USHRT_MAX != j, "handle not found" );
+    OSL_ENSURE( USHRT_MAX != j, "handle not found" );
     return j;
 }
 

@@ -194,7 +194,7 @@ void SwW4WParser::Read_BeginMarkedText()    // (BMT)
             if( (USHRT_MAX != nAktStyleId) && (TOX_CONTENT == eTox) )
             {
                 SwTxtFmtColl* pAktColl = GetAktColl();
-                ASSERT( pAktColl, "StyleId ungueltig" );
+                OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
                 const SwTxtFmtColls* pDocTxtFmtColls = pDoc->GetTxtFmtColls();
 
@@ -307,7 +307,7 @@ void SwW4WParser::Read_ParagraphNumber()            // (PGN)
                         nActNumLevel = nLevel  -1;
 
                     SwTxtNode* pTxtNode = pCurPaM->GetNode()->GetTxtNode();
-                    ASSERT( pTxtNode, "Kein Text-Node an PaM-Position" );
+                    OSL_ENSURE( pTxtNode, "Kein Text-Node an PaM-Position" );
 
                     pTxtNode->SwCntntNode::SetAttr(
                         SwNumRuleItem( pActNumRule->GetName() ) );
@@ -456,7 +456,7 @@ void SwW4WParser::Read_ParaNumberDef()              // (PND)
         case 5: eType = SVX_NUM_ROMAN_UPPER;        break;
         default:
             // pruefen auf Werte groesser 5
-            ASSERT( !nW4WType, "Value of nW4WType is not supported" );
+            OSL_ENSURE( !nW4WType, "Value of nW4WType is not supported" );
             // sonst default-Wert
             eType = SVX_NUM_ARABIC;
             break;
@@ -1223,7 +1223,7 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
             SwPosition aTmpPos( *pCurPaM->GetPoint() );
 
             const SwFmtCntnt& rCntnt = pFlyFmt->GetCntnt();
-            ASSERT( rCntnt.GetCntntIdx(), "Kein Inhalt vorbereitet." );
+            OSL_ENSURE( rCntnt.GetCntntIdx(), "Kein Inhalt vorbereitet." );
             PtNd( pCurPaM ) = rCntnt.GetCntntIdx()->GetIndex() + 1;
             SwCntntNode *pNode = pCurPaM->GetCntntNode();
             PtCnt( pCurPaM ).Assign( pNode, 0 );
@@ -1898,7 +1898,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                     // PaM in Node der Section setzen
                     const SwSectionNode* pSectionNode =
                         pNewSection->GetFmt()->GetSectionNode();
-                    ASSERT( pSectionNode, "Kein Inhalt vorbereitet." );
+                    OSL_ENSURE( pSectionNode, "Kein Inhalt vorbereitet." );
                     pCurPaM->GetPoint()->nNode =
                         pSectionNode->GetIndex()+1;
                     pCurPaM->GetPoint()->nContent.Assign(
@@ -2192,7 +2192,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                     ->GetTabSortBoxes()[ 0 ]
                     ->GetSttNd()
                     ->FindTableNode() );
-        ASSERT( pTblNd, "wo ist mein TabellenNode" );
+        OSL_ENSURE( pTblNd, "wo ist mein TabellenNode" );
 
         // lokale Variable zum bequemeren Zugriff
         SwTable& rTable = pTblNd->GetTable();
@@ -2295,9 +2295,9 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                             const SwTableBox* pBox  = (*pActMGroup)[ 1 ];
                             SwTableLine* pLine = (SwTableLine*)pBox->GetUpper();
                             USHORT nPos = pLine->GetTabBoxes().GetPos( pBox );
-                            ASSERT( USHRT_MAX != nPos, "GetPos fehlgeschlagen");
+                            OSL_ENSURE( USHRT_MAX != nPos, "GetPos fehlgeschlagen");
                             SwStartNode* pSttNd = (SwStartNode*)pBox->GetSttNd();
-                            ASSERT( pSttNd, "Box ohne Start-Node ?!");
+                            OSL_ENSURE( pSttNd, "Box ohne Start-Node ?!");
 
                             pTargetBox->ChgFrmFmt(
                                 (SwTableBoxFmt*)pBox->GetFrmFmt() );
@@ -2313,7 +2313,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                         }
                         break;
                     default:            // was wollen wir denn hier ???
-                        ASSERT( !this, "CheckMergeSel() with undefined return value" );
+                        OSL_ENSURE( !this, "CheckMergeSel() with undefined return value" );
                         break;
                     }
                 }
@@ -2400,7 +2400,7 @@ void SwW4WParser::SetPamInCell( USHORT nRow, USHORT nCol, BOOL bSetPaM )
     // Start-Node der akt. Box holen
     const SwNode* pSttNd = pTabBox->GetSttNd();
 
-    ASSERT(pSttNd, "Probleme beim Aufbau der Tabelle");
+    OSL_ENSURE(pSttNd, "Probleme beim Aufbau der Tabelle");
 
     // JETZT den PaM-Point auf den Start-Node der Box setzen
     if (bSetPaM)
@@ -2528,7 +2528,7 @@ SwTableBox* SwW4WParser::UpdateTableMergeGroup( SwSelBoxes_SAR* pActGroup,
         else
         {
             USHORT nMGrIdx = pTabDefs[ nCol ].nMergeGroupIdx;
-            ASSERT( nMGrIdx < pMergeGroups->Count(),
+            OSL_ENSURE( nMGrIdx < pMergeGroups->Count(),
                     "Merge Group Idx zu gross" );
             pTheMergeGroup = (*pMergeGroups)[ nMGrIdx ];
         }
@@ -2728,7 +2728,7 @@ void SwW4WParser::Read_BeginTabCell()           // (BCO)    Header eines Feldes
                 const SwNode* pEndNd =
                         pTargetBox->GetSttNd()->EndOfSectionNode();
 
-                ASSERT(pEndNd, "Gruppen-TargetBox ohne Start-Node ?");
+                OSL_ENSURE(pEndNd, "Gruppen-TargetBox ohne Start-Node ?");
 
                 PtNd( pCurPaM ) = pEndNd->GetIndex();
 
@@ -3039,10 +3039,10 @@ void SwW4WParser::Read_FootNoteStart(char nType, BYTE   nNoLow,
 
     SwTxtNode* pTxt = pCurPaM->GetNode()->GetTxtNode();
     SwTxtAttr* pFN = pTxt->GetTxtAttr( pCurPaM->GetPoint()->nContent, RES_TXTATR_FTN );
-    ASSERT(pFN, "Probleme beim Anlegen des Fussnoten-Textes");
+    OSL_ENSURE(pFN, "Probleme beim Anlegen des Fussnoten-Textes");
 
     const SwNodeIndex* pSttIdx = ((SwTxtFtn*)pFN)->GetStartNode();
-    ASSERT(pSttIdx, "Probleme beim Anlegen des Fussnoten-Textes");
+    OSL_ENSURE(pSttIdx, "Probleme beim Anlegen des Fussnoten-Textes");
 
     PtNd( pCurPaM ) = pSttIdx->GetIndex() + 1;
     PtCnt( pCurPaM ).Assign( pCurPaM->GetCntntNode(), 0 );
@@ -3266,7 +3266,7 @@ SwFrmFmt* lcl_GetMasterLeft( SwPageDesc& rPgDsc, USHORT nType )
     case W4W_ODD:     pFmt = &rPgDsc.GetMaster();
                       break;
     }
-    ASSERT( 0 != pFmt, "header/footer ohne entsprechendes Format im PgDesc" );
+    OSL_ENSURE( 0 != pFmt, "header/footer ohne entsprechendes Format im PgDesc" );
 
     return pFmt;
 }
@@ -3297,7 +3297,7 @@ BOOL SwW4WParser::ContinueHdFtDefinition( BOOL bFollow,
     UseOnPage   eOldHdFtShare = PD_NONE;
 
     BOOL    bDoTheHeader  = ( W4W_HEADER == (nHdFtType & W4W_MASK3) );
-    ASSERT( bDoTheHeader != ( W4W_FOOTER == (nHdFtType & W4W_MASK3) ),
+    OSL_ENSURE( bDoTheHeader != ( W4W_FOOTER == (nHdFtType & W4W_MASK3) ),
             "Hier muss Header ODER Footer definiert werden" );
 
     // something special:

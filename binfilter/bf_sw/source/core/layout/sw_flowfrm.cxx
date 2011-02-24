@@ -217,7 +217,7 @@ namespace binfilter {
 /*N*/                 if ( ! pSet )
 /*N*/                     pSet = pNxt->GetAttrSet();
 /*N*/
-/*N*/                 ASSERT( pSet, "No AttrSet to check keep attribute" )
+/*N*/                 OSL_ENSURE( pSet, "No AttrSet to check keep attribute" );
 /*N*/
 /*N*/                 if ( pSet->GetPageDesc().GetPageDesc() )
 /*N*/                   bKeep = FALSE;
@@ -334,7 +334,7 @@ namespace binfilter {
 /*?*/                                       GetFmt())->GetSectionNode();
 /*N*/                           else
 /*N*/                           {
-/*?*/                               ASSERT( rThis.IsTabFrm(), "new FowFrm?" );
+/*?*/                               OSL_ENSURE( rThis.IsTabFrm(), "new FowFrm?" );
 /*?*/                               pNode = ((SwTabFrm&)rThis).GetTable()->
 /*?*/                                   GetTabSortBoxes()[0]->GetSttNd()->FindTableNode();
 /*N*/                           }
@@ -409,7 +409,7 @@ namespace binfilter {
 /*?*/               //Kann sein, dass der CntFrm gelockt ist, wir wollen hier nicht
 /*?*/               //in eine endlose Seitenwanderung hineinlaufen und rufen das
 /*?*/               //Calc garnicht erst!
-/*?*/               ASSERT( pCnt->IsTxtFrm(), "Die Graphic ist gelandet." );
+/*?*/               OSL_ENSURE( pCnt->IsTxtFrm(), "Die Graphic ist gelandet." );
 /*?*/               if ( ((SwTxtFrm*)pCnt)->IsLocked() ||
 /*?*/                    ((SwTxtFrm*)pCnt)->GetFollow() == pStart )
 /*?*/                   break;
@@ -510,8 +510,8 @@ namespace binfilter {
 
 /*N*/ void SwFlowFrm::MoveSubTree( SwLayoutFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent uebergeben." );
-/*N*/   ASSERT( rThis.GetUpper(), "Wo kommen wir denn her?" );
+/*N*/   OSL_ENSURE( pParent, "Kein Parent uebergeben." );
+/*N*/   OSL_ENSURE( rThis.GetUpper(), "Wo kommen wir denn her?" );
 /*N*/
 /*N*/   //Sparsamer benachrichtigen wenn eine Action laeuft.
 /*N*/   ViewShell *pSh = rThis.GetShell();
@@ -604,7 +604,7 @@ namespace binfilter {
 
 /*M*/ SwFlowFrm *SwFlowFrm::FindMaster()
 /*M*/ {
-/*M*/   ASSERT( IsFollow(), "FindMaster und kein Follow." );
+/*M*/   OSL_ENSURE( IsFollow(), "FindMaster und kein Follow." );
 /*M*/
 /*M*/     SwCntntFrm *pCnt;
 /*M*/   BOOL bCntnt;
@@ -621,15 +621,15 @@ namespace binfilter {
 /*M*/
 /*M*/ #ifdef DBG_UTIL
 /*M*/         SwCntntFrm* pTmpCnt = ((SwLayoutFrm&)rThis).ContainsCntnt();
-/*M*/         ASSERT( ! pTmpCnt || pTmpCnt->GetPrevCntntFrm() == pCnt,
-/*M*/                 "Two different results for the master of a table?" )
+/*M*/         OSL_ENSURE( ! pTmpCnt || pTmpCnt->GetPrevCntntFrm() == pCnt,
+/*M*/                 "Two different results for the master of a table?" );
 /*M*/ #endif
 /*M*/
 /*M*/       bCntnt = FALSE;
 /*M*/   }
 /*M*/   else
 /*M*/   {
-/*M*/       ASSERT( rThis.IsSctFrm(), "FindMaster: Funny FrameTyp" );
+/*M*/       OSL_ENSURE( rThis.IsSctFrm(), "FindMaster: Funny FrameTyp" );
 /*M*/       return ((SwSectionFrm&)rThis).FindSectionMaster();
 /*M*/   }
 /*M*/
@@ -647,7 +647,7 @@ namespace binfilter {
 /*M*/       }
 /*M*/       pCnt = pCnt->GetPrevCntntFrm();
 /*M*/   }
-/*M*/   ASSERT( FALSE, "Follow ist lost in Space." );
+/*M*/   OSL_ENSURE( FALSE, "Follow ist lost in Space." );
 /*M*/   return 0;
 /*M*/ }
 
@@ -789,8 +789,8 @@ namespace binfilter {
 
 /*N*/ SwLayoutFrm *SwFrm::GetNextLeaf( MakePageType eMakePage )
 /*N*/ {
-/*N*/   ASSERT( !IsInFtn(), "GetNextLeaf(), don't call me for Ftn." );
-/*N*/   ASSERT( !IsInSct(), "GetNextLeaf(), don't call me for Sections." );
+/*N*/   OSL_ENSURE( !IsInFtn(), "GetNextLeaf(), don't call me for Ftn." );
+/*N*/   OSL_ENSURE( !IsInSct(), "GetNextLeaf(), don't call me for Sections." );
 /*N*/
 /*N*/   const BOOL bBody = IsInDocBody();       //Wenn ich aus dem DocBody komme
 /*N*/                                           //Will ich auch im Body landen.
@@ -920,7 +920,7 @@ namespace binfilter {
 
 /*N*/ SwLayoutFrm *SwFrm::GetPrevLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
-/*N*/   ASSERT( !IsInFtn(), "GetPrevLeaf(), don't call me for Ftn." );
+/*N*/   OSL_ENSURE( !IsInFtn(), "GetPrevLeaf(), don't call me for Ftn." );
 /*N*/
 /*N*/   const BOOL bBody = IsInDocBody();       //Wenn ich aus dem DocBody komme
 /*N*/                                           //will ich auch im Body landen.
@@ -971,7 +971,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pPre && pPre->GetDrawObjs() )
 /*N*/   {
-/*N*/       ASSERT( SwFlowFrm::CastFlowFrm( pPre ), "new flowfrm?" );
+/*N*/       OSL_ENSURE( SwFlowFrm::CastFlowFrm( pPre ), "new flowfrm?" );
 /*N*/       if( SwFlowFrm::CastFlowFrm( pPre )->IsAnFollow( this ) )
 /*?*/           return FALSE;
 /*N*/       SwFrm* pPreUp = pPre->GetUpper();
@@ -1077,7 +1077,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pPrev )
 /*N*/       {
-/*N*/           ASSERT( pPrev->IsInDocBody(), "IsPageBreak: Not in DocBody?" );
+/*N*/           OSL_ENSURE( pPrev->IsInDocBody(), "IsPageBreak: Not in DocBody?" );
 /*N*/           if ( bAct )
 /*N*/           {   if ( rThis.FindPageFrm() == pPrev->FindPageFrm() )
 /*N*/                   return FALSE;
@@ -1472,7 +1472,7 @@ namespace binfilter {
 /*N*/                 (pOldBoss->Frm().*fnRect->fnGetBottom)() );
 /*N*/           SwCntntFrm* pStart = rThis.IsCntntFrm() ?
 /*N*/               (SwCntntFrm*)&rThis : ((SwLayoutFrm&)rThis).ContainsCntnt();
-/*N*/           ASSERT( pStart, "MoveFwd: Missing Content" );
+/*N*/           OSL_ENSURE( pStart, "MoveFwd: Missing Content" );
 /*N*/           SwLayoutFrm* pBody = pStart ? ( pStart->IsTxtFrm() ?
 /*N*/               (SwLayoutFrm*)((SwTxtFrm*)pStart)->FindBodyFrm() : 0 ) : 0;
 /*N*/           if( pBody )
@@ -1552,7 +1552,7 @@ namespace binfilter {
 /*N*/       BOOL bEndnote = pFtn->GetAttr()->GetFtn().IsEndNote();
 /*N*/       SwFrm* pRef = bEndnote && pFtn->IsInSct() ?
 /*N*/           pFtn->FindSctFrm()->FindLastCntnt( FINDMODE_LASTCNT ) : pFtn->GetRef();
-/*N*/       ASSERT( pRef, "MoveBwd: Endnote for an empty section?" );
+/*N*/       OSL_ENSURE( pRef, "MoveBwd: Endnote for an empty section?" );
 /*N*/       if( !bEndnote )
 /*N*/           pOldBoss = pOldBoss->FindFtnBossFrm( TRUE );
 /*N*/       SwFtnBossFrm *pRefBoss = pRef->FindFtnBossFrm( !bEndnote );

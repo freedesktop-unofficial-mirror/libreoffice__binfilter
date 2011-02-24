@@ -93,12 +93,12 @@ void SwXMLExport::ExportFmt( const SwFmt& rFmt, enum XMLTokenEnum eFamily )
     // style:parent-style-name="..." (if its not the default only)
     const SwFmt* pParent = rFmt.DerivedFrom();
     // Parent-Namen nur uebernehmen, wenn kein Default
-    ASSERT( !pParent || pParent->IsDefault(), "unexpected parent" );
+    OSL_ENSURE( !pParent || pParent->IsDefault(), "unexpected parent" );
     (void)pParent;
 
-    ASSERT( USHRT_MAX == rFmt.GetPoolFmtId(), "pool ids arent'supported" );
-    ASSERT( USHRT_MAX == rFmt.GetPoolHelpId(), "help ids arent'supported" );
-    ASSERT( USHRT_MAX == rFmt.GetPoolHelpId() ||
+    OSL_ENSURE( USHRT_MAX == rFmt.GetPoolFmtId(), "pool ids arent'supported" );
+    OSL_ENSURE( USHRT_MAX == rFmt.GetPoolHelpId(), "help ids arent'supported" );
+    OSL_ENSURE( USHRT_MAX == rFmt.GetPoolHelpId() ||
             UCHAR_MAX == rFmt.GetPoolHlpFileId(), "help file ids aren't supported" );
 
     // style:master-page-name

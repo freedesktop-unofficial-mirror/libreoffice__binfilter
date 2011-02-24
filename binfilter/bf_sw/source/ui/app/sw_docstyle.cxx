@@ -528,19 +528,19 @@ namespace binfilter {
 /*N*/   switch(nFamily)
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR :
-/*N*/           ASSERT( pCharFmt, "SwCharFormat fehlt!" )
+/*N*/           OSL_ENSURE( pCharFmt, "SwCharFormat fehlt!" );
 /*N*/           if( 0 != ( pFmt = pCharFmt ) && rStr.Len() )
 /*N*/               pParent = lcl_FindCharFmt(rDoc, rStr);
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PARA :
-/*N*/           ASSERT( pColl, "Collektion fehlt!")
+/*N*/           OSL_ENSURE( pColl, "Collektion fehlt!");
 /*N*/           if( 0 != ( pFmt = pColl ) && rStr.Len() )
 /*N*/               pParent = lcl_FindParaFmt( rDoc, rStr );
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_FRAME:
-/*?*/           ASSERT(pFrmFmt, "FrameFormat fehlt!");
+/*?*/           OSL_ENSURE(pFrmFmt, "FrameFormat fehlt!");
 /*?*/           if( 0 != ( pFmt = pFrmFmt ) && rStr.Len() )
 /*?*/               pParent = lcl_FindFrmFmt( rDoc, rStr );
 /*?*/           break;
@@ -549,7 +549,7 @@ namespace binfilter {
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bRet = FALSE;
@@ -587,7 +587,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/   case SFX_STYLE_FAMILY_PARA :
 /*N*/   {
-/*N*/       ASSERT(pColl, "Collection fehlt!");
+/*N*/       OSL_ENSURE(pColl, "Collection fehlt!");
 /*N*/       if( pColl )
 /*N*/       {
 /*N*/           SwTxtFmtColl* pFollow = pColl;
@@ -600,7 +600,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   case SFX_STYLE_FAMILY_PAGE :
 /*N*/   {
-/*N*/       ASSERT(pDesc, "PageDesc fehlt!");
+/*N*/       OSL_ENSURE(pDesc, "PageDesc fehlt!");
 /*N*/       if( pDesc )
 /*N*/       {
 /*N*/           const SwPageDesc* pFollowDesc = rStr.Len()
@@ -622,7 +622,7 @@ namespace binfilter {
 /*N*/   case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/       break;
 /*N*/   default:
-/*?*/       ASSERT(!this, "unbekannte Style-Familie");
+/*?*/       OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/   }
 /*N*/
 /*N*/   return TRUE;
@@ -641,7 +641,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR:
 /*N*/           {
-/*N*/               ASSERT(pCharFmt, "Wo ist das SwCharFmt");
+/*N*/               OSL_ENSURE(pCharFmt, "Wo ist das SwCharFmt");
 /*N*/               aCoreSet.Put(pCharFmt->GetAttrSet());
 /*N*/               if(pCharFmt->DerivedFrom())
 /*N*/                   aCoreSet.SetParent(&pCharFmt->DerivedFrom()->GetAttrSet());
@@ -659,7 +659,7 @@ namespace binfilter {
 /*N*/               aBoxInfo.SetValid( VALID_DISABLE, TRUE );
 /*N*/               if ( nFamily == SFX_STYLE_FAMILY_PARA )
 /*N*/               {
-/*N*/                   ASSERT(pColl, "Wo ist die Collektion");
+/*N*/                   OSL_ENSURE(pColl, "Wo ist die Collektion");
 /*N*/                   aCoreSet.Put(pColl->GetAttrSet());
 /*N*/                   aCoreSet.Put( aBoxInfo );
 /*N*/                   aCoreSet.Put(SfxBoolItem(SID_ATTR_AUTO_STYLE_UPDATE, pColl->IsAutoUpdateFmt()));
@@ -668,7 +668,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/                   ASSERT(pFrmFmt, "Wo ist das FrmFmt");
+/*N*/                   OSL_ENSURE(pFrmFmt, "Wo ist das FrmFmt");
 /*N*/                   aCoreSet.Put(pFrmFmt->GetAttrSet());
 /*N*/                   aCoreSet.Put( aBoxInfo );
 /*N*/                   aCoreSet.Put(SfxBoolItem(SID_ATTR_AUTO_STYLE_UPDATE, pFrmFmt->IsAutoUpdateFmt()));
@@ -680,14 +680,14 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PAGE :
 /*N*/           {
-/*N*/               ASSERT(pDesc, "Kein PageDescriptor");
+/*N*/               OSL_ENSURE(pDesc, "Kein PageDescriptor");
 /*N*/               ::binfilter::PageDescToItemSet(*((SwPageDesc*)pDesc), aCoreSet);
 /*N*/           }
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           {
-/*N*/               ASSERT(pNumRule, "Keine NumRule");
+/*N*/               OSL_ENSURE(pNumRule, "Keine NumRule");
 /*N*/               SvxNumRule aRule = pNumRule->MakeSvxNumRule();
 /*N*/               aCoreSet.Put(SvxNumBulletItem(aRule));
 /*N*/           }
@@ -695,7 +695,7 @@ namespace binfilter {
 /*N*/
 /*N*/       default:
 /*N*/ #ifdef DBG_UTIL
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/ #endif
                 break;
 /*N*/   }
@@ -718,7 +718,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwImplShellAction aTmpSh( rDoc );
 /*N*/
-/*N*/   ASSERT( &rSet != &aCoreSet, "SetItemSet mit eigenem Set ist nicht erlaubt" );
+/*N*/   OSL_ENSURE( &rSet != &aCoreSet, "SetItemSet mit eigenem Set ist nicht erlaubt" );
 /*N*/
 /*N*/   SwFmt* pFmt = 0;
 /*N*/   SwPageDesc* pNewDsc = 0;
@@ -728,14 +728,14 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR :
 /*N*/           {
-/*N*/               ASSERT(pCharFmt, "Wo ist das CharFormat");
+/*N*/               OSL_ENSURE(pCharFmt, "Wo ist das CharFormat");
 /*N*/               pFmt = pCharFmt;
 /*N*/           }
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PARA :
 /*N*/       {
-/*N*/           ASSERT(pColl, "Wo ist die Collection");
+/*N*/           OSL_ENSURE(pColl, "Wo ist die Collection");
 /*N*/           const SfxPoolItem* pAutoUpdate;
 /*N*/           if(SFX_ITEM_SET == rSet.GetItemState(SID_ATTR_AUTO_STYLE_UPDATE,FALSE, &pAutoUpdate ))
 /*N*/           {
@@ -787,7 +787,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       case SFX_STYLE_FAMILY_FRAME:
 /*N*/       {
-/*N*/           ASSERT(pFrmFmt, "Wo ist das FrmFmt");
+/*N*/           OSL_ENSURE(pFrmFmt, "Wo ist das FrmFmt");
 /*N*/           const SfxPoolItem* pAutoUpdate;
 /*N*/           if(SFX_ITEM_SET == rSet.GetItemState(SID_ATTR_AUTO_STYLE_UPDATE,FALSE, &pAutoUpdate ))
 /*N*/           {
@@ -799,7 +799,7 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PAGE :
 /*N*/           {
-/*N*/               ASSERT(pDesc, "Wo ist der PageDescriptor");
+/*N*/               OSL_ENSURE(pDesc, "Wo ist der PageDescriptor");
 /*N*/
 /*N*/               if( rDoc.FindPageDescByName( pDesc->GetName(), &nPgDscPos ))
 /*N*/               {
@@ -811,7 +811,7 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           {
-/*N*/               ASSERT(pNumRule, "Wo ist die NumRule");
+/*N*/               OSL_ENSURE(pNumRule, "Wo ist die NumRule");
 /*N*/               const SfxPoolItem* pItem;
 /*N*/               switch( rSet.GetItemState( SID_ATTR_NUMBERING_RULE, FALSE, &pItem ))
 /*N*/               {
@@ -839,7 +839,7 @@ namespace binfilter {
 /*N*/
 /*N*/       default:
 /*N*/ #ifdef DBG_UTIL
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/ #endif
                 break;
 /*N*/   }
@@ -1043,7 +1043,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( pFmt )
 /*N*/       {
-/*N*/           ASSERT( bPhysical, "Format nicht gefunden" );
+/*N*/           OSL_ENSURE( bPhysical, "Format nicht gefunden" );
 /*N*/
 /*N*/           nHelpId = pFmt->GetPoolHelpId();
 /*N*/           if( pFmt->GetPoolHlpFileId() != UCHAR_MAX )
@@ -1327,7 +1327,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/       }
 /*N*/   }
 /*N*/

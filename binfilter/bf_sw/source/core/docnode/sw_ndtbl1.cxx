@@ -65,7 +65,7 @@ extern void ClearFEShellTabCols();
 /*N*/ void lcl_GetStartEndCell( const SwCursor& rCrsr,
 /*N*/                       SwLayoutFrm *&prStart, SwLayoutFrm *&prEnd )
 /*N*/ {
-/*N*/   ASSERT( rCrsr.GetCntntNode() && rCrsr.GetCntntNode( FALSE ),
+/*N*/   OSL_ENSURE( rCrsr.GetCntntNode() && rCrsr.GetCntntNode( FALSE ),
 /*N*/           "Tabselection nicht auf Cnt." );
 /*N*/
 /*N*/   Point aPtPos, aMkPos;
@@ -175,7 +175,7 @@ extern void ClearFEShellTabCols();
 /*N*/       // uns erst wieder zur Zelle hochhangeln
 /*N*/       while ( !pCell->IsCellFrm() )
 /*?*/           pCell = pCell->GetUpper();
-/*N*/       ASSERT( pCell, "Frame ist keine Zelle." );
+/*N*/       OSL_ENSURE( pCell, "Frame ist keine Zelle." );
 /*N*/       if ( rUnion.IsOver( pCell->Frm() ) )
 /*N*/           ::binfilter::InsertCell( rArr, (SwCellFrm*)pCell );
 /*N*/       //Dafuer sorgen, dass die Zelle auch verlassen wird (Bereiche)

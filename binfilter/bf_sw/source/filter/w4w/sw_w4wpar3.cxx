@@ -188,7 +188,7 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
             pColl = (*pStyleTab)[ nPos ]->pColl;
     }
     SwTxtFmtColl* pAktColl = GetAktColl();
-    ASSERT( pAktColl, "StyleId ungueltig" );
+    OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
     // nicht gefunden -> in Liste aufnehmen
     if( pColl == 0 )
@@ -366,7 +366,7 @@ void SwW4WParser::Read_StyleOn()        // (STY)
 
         if( !pStyleTab )
         {
-            ASSERT( !this, "+keine StyleTabelle definiert" );
+            OSL_ENSURE( !this, "+keine StyleTabelle definiert" );
         }
         else
         {

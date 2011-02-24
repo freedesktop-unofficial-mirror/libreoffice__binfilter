@@ -263,7 +263,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/                   SkipRec();
 /*N*/               break;
 /*N*/           case SWG_TOXDESCS:
-/*N*/               ASSERT( IsVersion(SWG_NEWTOX),
+/*N*/               OSL_ENSURE( IsVersion(SWG_NEWTOX),
 /*N*/                       "new tox descs within a old doc" );
 /*N*/               InTOXs();
 /*N*/               break;
@@ -635,7 +635,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/   // 4.0-Storages mit 5.0-Streams.
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if( !bBlock )
-/*N*/       ASSERT( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
+/*N*/       OSL_ENSURE( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
 /*N*/                 nVersion >= SWG_MAJORVERSION_30 &&
 /*N*/                 nVersion < SWG_MAJORVERSION_40 ) ||
 /*N*/               ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_40 &&
@@ -693,12 +693,12 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/       break;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( !nRecSzPos || !IsSw31Or40Export(),
+/*N*/   OSL_ENSURE( !nRecSzPos || !IsSw31Or40Export(),
 /*N*/           "Lange Records gibt's erst ab der 5.0" );
-/*N*/   ASSERT( GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
+/*N*/   OSL_ENSURE( GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
 /*N*/                                   pStrm->GetVersion() ) == eSrcSet,
 /*N*/           "wrong encoding while writing" );
-/*N*/   ASSERT( pStrm->GetStreamCharSet() == eSrcSet,
+/*N*/   OSL_ENSURE( pStrm->GetStreamCharSet() == eSrcSet,
 /*N*/           "wrong encoding at stream while writing" );
 /*N*/
 /*N*/   OutputMode( TRUE );

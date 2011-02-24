@@ -45,7 +45,7 @@ SwObjectFactory aSwObjectFactory;
 /*N*/   if ( pObjFactory->nInventor == SWGInventor )
 /*N*/   {
 /*N*/       //Kein switch, derzeit gibt es nur einen.
-/*?*/       ASSERT( pObjFactory->nIdentifier == SwFlyDrawObjIdentifier,
+/*?*/       OSL_ENSURE( pObjFactory->nIdentifier == SwFlyDrawObjIdentifier,
 /*?*/                                       "Falscher Inventor oder identifier." );
 /*?*/       pObjFactory->pNewObj = new SwFlyDrawObj();
 /*N*/   }

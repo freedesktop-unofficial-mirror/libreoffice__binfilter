@@ -58,8 +58,8 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   //Konsistenspruefung.
-/*N*/   ASSERT( !pLast->GetNext(), "Last but not last." );
-/*N*/   ASSERT( !pRealFirst->GetPrev(), "First but not first." );
+/*N*/   OSL_ENSURE( !pLast->GetNext(), "Last but not last." );
+/*N*/   OSL_ENSURE( !pRealFirst->GetPrev(), "First but not first." );
 /*N*/   USHORT nCnt = 0;
 /*N*/   BOOL bFirstFound = FALSE;
 /*N*/   SwCacheObj *pObj = pRealFirst;
@@ -70,20 +70,20 @@ namespace binfilter {
 /*N*/       SwCacheObj *pTmp = pLast;
 /*N*/       while ( pTmp && pTmp != pObj )
 /*N*/           pTmp = pTmp->GetPrev();
-/*N*/       ASSERT( pTmp, "Objekt not found." );
+/*N*/       OSL_ENSURE( pTmp, "Objekt not found." );
 /*N*/
 /*N*/       ++nCnt;
 /*N*/       if ( pObj == pFirst )
 /*N*/           bFirstFound = TRUE;
 /*N*/       if ( !pObj->GetNext() )
-/*N*/           ASSERT( pObj == pLast, "Last not Found." );
+/*N*/           OSL_ENSURE( pObj == pLast, "Last not Found." );
 /*N*/       pObj = pObj->GetNext();
-/*N*/       ASSERT( pObj != pRekursive, "Recursion in SwCache." );
+/*N*/       OSL_ENSURE( pObj != pRekursive, "Recursion in SwCache." );
 /*N*/   }
-/*N*/   ASSERT( bFirstFound, "First not Found." );
-/*N*/   ASSERT( (nCnt + aFreePositions.Count()) == Count(), "Lost Chain." );
+/*N*/   OSL_ENSURE( bFirstFound, "First not Found." );
+/*N*/   OSL_ENSURE( (nCnt + aFreePositions.Count()) == Count(), "Lost Chain." );
 /*N*/   if ( Count() == nCurMax )
-/*N*/       ASSERT( (nCurMax - nCnt) == aFreePositions.Count(), "Lost FreePositions." );
+/*N*/       OSL_ENSURE( (nCurMax - nCnt) == aFreePositions.Count(), "Lost FreePositions." );
 /*N*/ }
 #endif
 
@@ -184,7 +184,7 @@ namespace binfilter {
 
 /*N*/ void SwCache::Flush( const BYTE nPercent )
 /*N*/ {
-/*N*/   ASSERT( nPercent == 100, "SwCache::Flush() arbeitet nur 100%'ig" );
+/*N*/   OSL_ENSURE( nPercent == 100, "SwCache::Flush() arbeitet nur 100%'ig" );
 /*N*/
 /*N*/   INCREMENT( nFlushCnt );
 /*N*/   SwCacheObj *pObj = pRealFirst;
@@ -195,7 +195,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if ( pObj->IsLocked() )
 /*N*/       {
-/*?*/           ASSERT( TRUE, "Flushing locked objects." );
+/*?*/           OSL_ENSURE( TRUE, "Flushing locked objects." );
 /*?*/           if ( !pRealFirst )
 /*?*/           {
 /*?*/               pRealFirst = pFirst = pLast = pObj;
@@ -244,7 +244,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !pRealFirst )
 /*N*/   {   //Der erste wird eingetragen.
-/*?*/       ASSERT( !pFirst && !pLast, "First not first." );
+/*?*/       OSL_ENSURE( !pFirst && !pLast, "First not first." );
 /*?*/       pRealFirst = pFirst = pLast = pObj;
 /*?*/       CHECK;
 /*?*/       return;
@@ -253,7 +253,7 @@ namespace binfilter {
 /*N*/   //Ausschneiden.
 /*N*/   if ( pObj == pLast )
 /*N*/   {
-/*N*/       ASSERT( pObj->GetPrev(), "Last but no Prev." );
+/*N*/       OSL_ENSURE( pObj->GetPrev(), "Last but no Prev." );
 /*N*/       pLast = pObj->GetPrev();
 /*N*/       pLast->SetNext( 0 );
 /*N*/   }
@@ -276,7 +276,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pFirst, "ToTop, First ist not RealFirst an Empty." );
+/*N*/       OSL_ENSURE( pFirst, "ToTop, First ist not RealFirst an Empty." );
 /*N*/
 /*N*/       if ( pFirst->GetPrev() )
 /*N*/       {
@@ -355,7 +355,7 @@ namespace binfilter {
 /*N*/ void SwCache::DeleteObj( SwCacheObj *pObj )
 /*N*/ {
 /*N*/   CHECK;
-/*N*/   ASSERT( !pObj->IsLocked(), "SwCache::Delete: Object ist Locked." );
+/*N*/   OSL_ENSURE( !pObj->IsLocked(), "SwCache::Delete: Object ist Locked." );
 /*N*/   if ( pObj->IsLocked() )
 /*N*/       return;
 /*N*/
@@ -422,7 +422,7 @@ namespace binfilter {
 /*N*/ BOOL SwCache::Insert( SwCacheObj *pNew )
 /*N*/ {
 /*N*/   CHECK;
-/*N*/   ASSERT( !pNew->GetPrev() && !pNew->GetNext(), "New but not new." );
+/*N*/   OSL_ENSURE( !pNew->GetPrev() && !pNew->GetNext(), "New but not new." );
 /*N*/
 /*N*/   USHORT nPos;//Wird hinter den if's zum setzen am Obj benutzt.
 /*N*/   if ( Count() < nCurMax )
@@ -451,13 +451,13 @@ namespace binfilter {
 /*N*/           pObj = pObj->GetPrev();
 /*N*/       if ( !pObj )
 /*N*/       {
-/*N*/           ASSERT( FALSE, "Cache overflow." );
+/*N*/           OSL_ENSURE( FALSE, "Cache overflow." );
 /*N*/           return FALSE;
 /*N*/       }
 /*N*/
 /*N*/       nPos = pObj->GetCachePos();
 /*N*/       if ( pObj == pLast )
-/*N*/       {   ASSERT( pObj->GetPrev(), "Last but no Prev" );
+/*N*/       {   OSL_ENSURE( pObj->GetPrev(), "Last but no Prev" );
 /*N*/           pLast = pObj->GetPrev();
 /*N*/           pLast->SetNext( 0 );
 /*N*/       }
@@ -485,7 +485,7 @@ namespace binfilter {
 /*N*/       pNew->SetNext( pFirst );
 /*N*/   }
 /*N*/   else
-/*N*/   {   ASSERT( !pLast, "Last but no First." );
+/*N*/   {   OSL_ENSURE( !pLast, "Last but no First." );
 /*N*/       pLast = pNew;
 /*N*/   }
 /*N*/   if ( pFirst == pRealFirst )
@@ -554,7 +554,7 @@ namespace binfilter {
 
 /*N*/ void SwCacheObj::Lock()
 /*N*/ {
-/*N*/   ASSERT( nLock < UCHAR_MAX, "To many Locks for CacheObject." );
+/*N*/   OSL_ENSURE( nLock < UCHAR_MAX, "To many Locks for CacheObject." );
 /*N*/   ++nLock;
 /*N*/ }
 
@@ -562,7 +562,7 @@ namespace binfilter {
 
 /*N*/ void SwCacheObj::Unlock()
 /*N*/ {
-/*N*/   ASSERT( nLock, "No more Locks available." );
+/*N*/   OSL_ENSURE( nLock, "No more Locks available." );
 /*N*/   --nLock;
 /*N*/ }
 #endif
@@ -576,7 +576,7 @@ namespace binfilter {
 
 /*N*/ void SwCacheAccess::_Get()
 /*N*/ {
-/*N*/   ASSERT( !pObj, "SwCacheAcces Obj already available." );
+/*N*/   OSL_ENSURE( !pObj, "SwCacheAcces Obj already available." );
 /*N*/
 /*N*/   pObj = NewObj();
 /*N*/   if ( !rCache.Insert( pObj ) )

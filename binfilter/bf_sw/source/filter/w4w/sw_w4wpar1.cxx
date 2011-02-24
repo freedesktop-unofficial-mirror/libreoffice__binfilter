@@ -573,7 +573,7 @@ SwW4WParser::SwW4WParser( const SwPaM & rPaM, SvStream& rIstream,
     nW4WFileSize = rInp.Tell();   // W4W-Datei ist
     if( !nW4WFileSize )
     {
-        ASSERT( !this, "SvStream::seek doesn't work correct" );
+        OSL_ENSURE( !this, "SvStream::seek doesn't work correct" );
         nW4WFileSize = 1;
     }
     rInp.Seek( STREAM_SEEK_TO_BEGIN );
@@ -882,7 +882,7 @@ BOOL SwW4WParser::CallParser()
 void SwW4WParser::DeleteZStk( W4WCtrlStack*& rpStk )
 {
     Flush();
-    ASSERT(rpStk, "W4W-ControlStack bereits geloescht");
+    OSL_ENSURE(rpStk, "W4W-ControlStack bereits geloescht");
     const SwPosition& rPos = *pCurPaM->GetPoint();
     pCtrlStck->SetAttr( rPos, 0, FALSE );
     pCtrlStck->SetAttr( rPos, 0, FALSE );
@@ -1861,7 +1861,7 @@ const SfxPoolItem* SwW4WParser::GetFmtAttr( USHORT nWhich )
     if( bStyleDef )
     {
         SwTxtFmtColl* pAktColl = GetAktColl();
-        ASSERT( pAktColl, "StyleId ungueltig" );
+        OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
         return &pAktColl->GetAttr( nWhich );
     }
@@ -1875,7 +1875,7 @@ void SwW4WParser::SetAttr( const SfxPoolItem& rAttr )
     {
         BOOL bSetAttr;
         SwTxtFmtColl* pAktColl = GetAktColl( &bSetAttr );
-        ASSERT( pAktColl, "StyleId ungueltig" );
+        OSL_ENSURE( pAktColl, "StyleId ungueltig" );
         if( bSetAttr )
             pAktColl->SetAttr( rAttr );
     }
@@ -3395,7 +3395,7 @@ void SwW4WParser::SetPageDescVSpaces( SwPageDesc& rPageDesc,
                                 aUL.SetUpper( USHORT( nPgUpper ) );
                             break;
         default:            // was wollen wir denn hier ???
-                            ASSERT( !this, "eCalledByWhom has undefined value" );
+                            OSL_ENSURE( !this, "eCalledByWhom has undefined value" );
                             break;
         }
         rPageFmt.SetAttr( aUL );
@@ -3646,7 +3646,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 {
     if( pStrm || pStg )
     {
-        ASSERT( !this,
+        OSL_ENSURE( !this,
         "W4W-Reader darf nur mit einem Medium aufgerufen werden" );
         return ERR_SWG_READ_ERROR;
     }
@@ -3660,7 +3660,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 
     String aTmpFile;
     String sFileName( pMedium->GetPhysicalName() );
-    ASSERT( sFileName.Len(),
+    OSL_ENSURE( sFileName.Len(),
         "W4W-Reader hat keinen Dateinamen uebergeben bekommen" );
     if( !GetFilter() || !sFileName.Len() )
         return ERR_SWG_READ_ERROR;

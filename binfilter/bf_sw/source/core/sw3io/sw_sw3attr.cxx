@@ -67,7 +67,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtSurround::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtSurround: Gibt es ein neues Fileformat?" );
@@ -127,7 +127,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtVertOrient::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtHoriOrient: Gibt es ein neues Fileformat?" );
@@ -178,7 +178,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtHoriOrient::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtHoriOrient: Gibt es ein neues Fileformat?" );
@@ -262,7 +262,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtFrmSize::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtFrmSize: Gibt es ein neues Fileformat?" );
@@ -355,7 +355,7 @@ namespace binfilter {
 /*N*/ //    Pen aPen( aPenColor, nPenWidth, (PenStyle) nPenStyle );
 /*N*/   INT16 nCol;
 /*N*/   rStrm >> nCol;
-/*N*/   ASSERT( nWishWidth, "Damaged Doc: No WishWidth" );
+/*N*/   OSL_ENSURE( nWishWidth, "Damaged Doc: No WishWidth" );
 /*N*/   if( !nWishWidth )
 /*N*/   {
 /*?*/       nWishWidth = USHRT_MAX;
@@ -422,7 +422,7 @@ namespace binfilter {
 /*N*/ SfxPoolItem * SwFmtURL::Create(SvStream &rStrm, USHORT nIVer) const
 /*N*/ {
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/   ASSERT( pIo, "Reader/Writer not found" );
+/*N*/   OSL_ENSURE( pIo, "Reader/Writer not found" );
 /*N*/
 /*N*/   String sURL1, sTargetFrameName1, sName1;
 /*N*/   BOOL bServerMap = FALSE;
@@ -446,11 +446,11 @@ namespace binfilter {
 
 /*N*/ SvStream & SwFmtURL::Store( SvStream &rStrm, USHORT nIVer ) const
 /*N*/ {
-/*N*/   ASSERT( nIVer != USHRT_MAX,
+/*N*/   OSL_ENSURE( nIVer != USHRT_MAX,
 /*N*/           "SwFmtURL: Wer faengt da Version USHRT_MAX nicht ab?" );
 /*N*/
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/   ASSERT( pIo, "Reader/Writer not found" );
+/*N*/   OSL_ENSURE( pIo, "Reader/Writer not found" );
 /*N*/
 /*N*/   if( pIo )
 /*N*/       pIo->OutImageMap( sURL, sTargetFrameName, pMap, bIsServerMap );
@@ -463,7 +463,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwFmtURL::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtURL: Gibt es ein neues Fileformat?" );
@@ -488,7 +488,7 @@ SvStream& SwFmtEditInReadonly::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtEditInReadonly::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtEditInReadonly: Gibt es ein neues Fileformat?" );
@@ -513,7 +513,7 @@ SvStream& SwFmtLayoutSplit::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtLayoutSplit::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtLayoutSplit: Gibt es ein neues Fileformat?" );
@@ -567,7 +567,7 @@ SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
 
 /*N*/ USHORT SwFmtFtnEndAtTxtEnd::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtFtnEndAtTxtEnd: Gibt es ein neues Fileformat?" );
@@ -592,7 +592,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtNoBalancedColumns::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtNoBalancedColumns: Gibt es ein neues Fileformat?" );
@@ -603,7 +603,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*M*/ SfxPoolItem* SwHeaderAndFooterEatSpacingItem::Create(SvStream &rStrm, USHORT) const
 /*M*/ {
-/*M*/     ASSERT( sal_False, "SwHeaderAndFooterEatSpacingItem::Create called for old fileformat" )
+/*M*/     OSL_ENSURE( sal_False, "SwHeaderAndFooterEatSpacingItem::Create called for old fileformat" );
 /*M*/   BYTE n;
 /*M*/   rStrm >> n;
 /*M*/     return new SwHeaderAndFooterEatSpacingItem( RES_HEADER_FOOTER_EAT_SPACING, BOOL(n) );
@@ -612,7 +612,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*M*/ SvStream& SwHeaderAndFooterEatSpacingItem::Store(SvStream &rStrm, USHORT ) const
 /*M*/ {
-/*M*/     ASSERT( sal_False, "SwHeaderAndFooterEatSpacingItem::Store called for old fileformat" )
+/*M*/     OSL_ENSURE( sal_False, "SwHeaderAndFooterEatSpacingItem::Store called for old fileformat" );
 /*M*/   rStrm << BYTE(GetValue());
 /*M*/   return rStrm;
 /*M*/ }
@@ -620,7 +620,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*M*/ USHORT SwHeaderAndFooterEatSpacingItem::GetVersion( USHORT nFFVer ) const
 /*M*/ {
-/*M*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*M*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*M*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*M*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*M*/             "SwHeaderAndFooterEatSpacingItem: Gibt es ein neues Fileformat?" );
@@ -660,7 +660,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT SwMirrorGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtSurround: Gibt es ein neues Fileformat?" );
@@ -671,7 +671,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT    SwCropGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwCropGrf: Gibt es ein neues Fileformat?" );
@@ -681,7 +681,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*N*/ USHORT    SwRotationGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwRotationGrf: Gibt es ein neues Fileformat?" );
@@ -707,7 +707,7 @@ SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
 
 /*N*/ USHORT SwLuminanceGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwLuminanceGrf: Gibt es ein neues Fileformat?" );
@@ -717,7 +717,7 @@ SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
 
 /*N*/ USHORT SwContrastGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwContrastGrf: Gibt es ein neues Fileformat?" );
@@ -726,7 +726,7 @@ SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
 /*N*/ }
 /*N*/ USHORT SwChannelGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwChannelGrf: Gibt es ein neues Fileformat?" );
@@ -736,7 +736,7 @@ SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
 
 /*N*/ USHORT SwGammaGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwChannelGrf: Gibt es ein neues Fileformat?" );
@@ -761,7 +761,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwInvertGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwInvertGrf: Gibt es ein neues Fileformat?" );
@@ -771,7 +771,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT    SwTransparencyGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwInvertGrf: Gibt es ein neues Fileformat?" );
@@ -781,7 +781,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT    SwDrawModeGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwDrawModeGrf: Gibt es ein neues Fileformat?" );
@@ -821,7 +821,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtHardBlank::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtHardBlank: Gibt es ein neues Fileformat?" );
@@ -845,7 +845,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtDrop::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtDrop: Gibt es ein neues Fileformat?" );
@@ -931,7 +931,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwRegisterItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwRegisterItem: Gibt es ein neues Fileformat?" );
@@ -963,7 +963,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwFmtLineNumber::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwFmtLineNumber: Gibt es ein neues Fileformat?" );
@@ -1020,7 +1020,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwNumRuleItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwNumRuleItem: Gibt es ein neues Fileformat?" );
@@ -1059,7 +1059,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwTblBoxNumFormat::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwTblBoxNumFormat: Gibt es ein neues Fileformat?" );
@@ -1102,7 +1102,7 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 
 /*N*/ USHORT SwTblBoxValue::GetVersion( USHORT nFFVer ) const
 /*N*/ {
-/*N*/   ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
+/*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_40==nFFVer ||
 /*N*/           SOFFICE_FILEFORMAT_50==nFFVer,
 /*N*/           "SwTblBoxValue: Gibt es ein neues Fileformat?" );

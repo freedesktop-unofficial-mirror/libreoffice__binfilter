@@ -320,7 +320,7 @@ inline SwRect &SwRect::operator-=( const Size &rSz )
 //--------------------------- Sonstiges
 inline Rectangle SwRect::SVRect() const
 {
-    ASSERT( nWidth && nHeight, "SVRect() ohne Widht oder Height" );
+    OSL_ENSURE( nWidth && nHeight, "SVRect() ohne Widht oder Height" );
     return Rectangle( nX, nY,
                       nX + nWidth - 1,      //Right()
                       nY + nHeight - 1 );   //Bottom()

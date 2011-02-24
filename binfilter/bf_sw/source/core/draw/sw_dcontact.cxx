@@ -379,7 +379,7 @@ namespace binfilter {
 /*N*/ void SwDrawContact::SetMaster( SdrObject* pNew )
 /*N*/ {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/     ASSERT( !pNew, "debug notification - master replaced!" );
+/*N*/     OSL_ENSURE( !pNew, "debug notification - master replaced!" );
 /*N*/ #endif
 /*N*/     SwContact::SetMaster( pNew );
 /*N*/ }
@@ -420,7 +420,7 @@ namespace binfilter {
 /*N*/   if( pAnch )
 /*N*/   {
 /*N*/       SwPageFrm *pPage = pAnch->FindPageFrm();
-/*N*/       ASSERT( GetUserCall(pThis->GetMaster()) == pThis, "Wrong Master" );
+/*N*/       OSL_ENSURE( GetUserCall(pThis->GetMaster()) == pThis, "Wrong Master" );
 /*N*/       if( pOldBoundRect && pPage )
 /*N*/       {
 /*N*/           SwRect aOldRect( *pOldBoundRect );
@@ -917,7 +917,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                             if ( !GetMaster()->IsInserted() )
                             {
                                 // debug assert
-                                ASSERT( false, "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
+                                OSL_ENSURE( false, "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
 
                                 pDrawFrmFmt->GetDoc()->GetDrawModel()->GetPage(0)->
                                     InsertObject( GetMaster(), GetMaster()->GetOrdNumDirect() );

@@ -78,7 +78,7 @@ using namespace ::com::sun::star::frame;
 /*N*/ SdrObject*  SwDPage::ReplaceObject( SdrObject* pNewObj, ULONG nObjNum )
 /*N*/ {
 /*N*/   SdrObject *pOld = GetObj( nObjNum );
-/*N*/   ASSERT( pOld, "Oups, Object not replaced" );
+/*N*/   OSL_ENSURE( pOld, "Oups, Object not replaced" );
 /*N*/   SdrObjUserCall* pContact;
 /*N*/   if ( 0 != ( pContact = GetUserCall(pOld) ) &&
 /*N*/        RES_DRAWFRMFMT == ((SwContact*)pContact)->GetFmt()->Which())

@@ -72,7 +72,7 @@ public:
 };
 inline const SwTxtNode& SwTxtINetFmt::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtINetFmt:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtINetFmt:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 

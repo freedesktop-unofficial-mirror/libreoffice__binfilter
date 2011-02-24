@@ -623,7 +623,7 @@ namespace binfilter {
 /*N*/   CloseFlagRec();
 /*N*/
 /*N*/   const SwNumRule *pOutline = pDoc->GetOutlineNumRule();
-/*N*/   ASSERT( pOutline, "Wo ist die Outline-NumRule?" );
+/*N*/   OSL_ENSURE( pOutline, "Wo ist die Outline-NumRule?" );
 /*N*/
 /*N*/   // Hier stehen jetzt die Original-linken-Abstaende der Outline-NumRule.
 /*N*/   for( BYTE i=0; i<nFmts; i++ )
@@ -635,7 +635,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( pOutline && nLevel < MAXLEVEL )
 /*N*/       {
-/*N*/           ASSERT( pOutline->GetNumFmt(nLevel), "Format nicht gesetzt?" );
+/*N*/           OSL_ENSURE( pOutline->GetNumFmt(nLevel), "Format nicht gesetzt?" );
 /*N*/           short nFirstLineOffset = pOutline->Get(nLevel).GetFirstLineOffset();
 /*N*/           pDoc->SetOutlineLSpace( nLevel, nFirstLineOffset, nAbsLSpace );
 /*N*/       }
@@ -750,9 +750,9 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/               // Im 5.0-Format wird der linke Abstand der Vorlage auf
 /*N*/               // den Wert der NumRule addiert und der Original-Wert
 /*N*/               // getrennt gespeichert.
-/*N*/               ASSERT( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
-/*N*/               ASSERT( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
-/*N*/               ASSERT( bOutline, "Doch keine Kapitel-Numerierung?" );
+/*N*/               OSL_ENSURE( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
+/*N*/               OSL_ENSURE( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
+/*N*/               OSL_ENSURE( bOutline, "Doch keine Kapitel-Numerierung?" );
 /*N*/               const SvxLRSpaceItem& rLRSpace = ppTxtColls[i]->GetLRSpace();
 /*N*/               if( rLRSpace.GetTxtLeft() > 0 )
 /*N*/               {
@@ -804,8 +804,8 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/ #ifdef NUM_RELSPACE
 /*N*/   if( ppTxtColls && nAbsLSpaceChanged > 0 )
 /*N*/   {
-/*N*/       ASSERT( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
-/*N*/       ASSERT( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
+/*N*/       OSL_ENSURE( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
+/*N*/       OSL_ENSURE( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
 /*N*/
 /*N*/       OpenRec( SWG_OUTLINEEXT );
 /*N*/       *pStrm  << (BYTE)0x01
@@ -832,11 +832,11 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
     rDst.SetPoolHlpFileId( rSrc.GetPoolHlpFileId() );
     rDst.SetContinusNum( rSrc.IsContinusNum() );
 
-    ASSERT( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
+    OSL_ENSURE( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
             "NumRule-PoolIds sind unterschiedlich" );
-    ASSERT( rDst.IsAutoRule() == rSrc.IsAutoRule(),
+    OSL_ENSURE( rDst.IsAutoRule() == rSrc.IsAutoRule(),
             "NumRule-Auto-Flags sind unterschiedlich" );
-    ASSERT( rDst.GetName() == rSrc.GetName(),
+    OSL_ENSURE( rDst.GetName() == rSrc.GetName(),
             "NumRule-Namen sind unterschiedlich" );
 
     rDst.SetInvalidRule( TRUE );
@@ -937,7 +937,7 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/
 /*N*/                   if( bInsertRule )
 /*N*/                   {
-/*N*/                       ASSERT( !pDoc->FindNumRulePtr( pRule->GetName() ),
+/*N*/                       OSL_ENSURE( !pDoc->FindNumRulePtr( pRule->GetName() ),
 /*N*/                               "NumRule existiert bereits" );
 /*N*/                       pDoc->MakeNumRule( pRule->GetName(), pRule );
 /*N*/                   }

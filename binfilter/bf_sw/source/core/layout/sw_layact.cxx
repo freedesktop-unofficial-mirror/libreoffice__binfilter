@@ -435,7 +435,7 @@ namespace binfilter {
 
 /*N*/ SwLayAction::~SwLayAction()
 /*N*/ {
-/*N*/   ASSERT( !pWait, "Wait object not destroyed" );
+/*N*/   OSL_ENSURE( !pWait, "Wait object not destroyed" );
 /*N*/   pImp->pLayAct = 0;      //Abmelden
 /*N*/ }
 
@@ -576,7 +576,7 @@ namespace binfilter {
 
 /*N*/ void SwLayAction::InternalAction()
 /*N*/ {
-/*N*/   ASSERT( pRoot->Lower()->IsPageFrm(), ":-( Keine Seite unterhalb der Root.");
+/*N*/   OSL_ENSURE( pRoot->Lower()->IsPageFrm(), ":-( Keine Seite unterhalb der Root.");
 /*N*/
 /*N*/   pRoot->Calc();
 /*N*/
@@ -997,7 +997,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ const SwFrm *lcl_FindFirstInvaLay( const SwFrm *pFrm, long nBottom )
 /*N*/ {
-/*N*/   ASSERT( pFrm->IsLayoutFrm(), "FindFirstInvaLay, no LayFrm" );
+/*N*/   OSL_ENSURE( pFrm->IsLayoutFrm(), "FindFirstInvaLay, no LayFrm" );
 /*N*/
 /*N*/   if ( !pFrm->IsValid() || pFrm->IsCompletePaint() &&
 /*N*/        pFrm->Frm().Top() < nBottom )
@@ -1067,7 +1067,7 @@ namespace binfilter {
 
 /*N*/ const SwFrm *lcl_FindFirstInvaFly( const SwPageFrm *pPage, long nBottom )
 /*N*/ {
-/*N*/   ASSERT( pPage->GetSortedObjs(), "FindFirstInvaFly, no Flys" )
+/*N*/   OSL_ENSURE( pPage->GetSortedObjs(), "FindFirstInvaFly, no Flys" );
 /*N*/
 /*N*/   for ( USHORT i = 0; i < pPage->GetSortedObjs()->Count(); ++i )
 /*N*/   {
@@ -1346,7 +1346,7 @@ namespace binfilter {
 // introduce support for vertical layout
 /*N*/ BOOL SwLayAction::FormatLayout( SwLayoutFrm *pLay, BOOL bAddRect )
 /*N*/ {
-/*N*/   ASSERT( !IsAgain(), "Ungueltige Seite beachten." );
+/*N*/   OSL_ENSURE( !IsAgain(), "Ungueltige Seite beachten." );
 /*N*/   if ( IsAgain() )
 /*?*/       return FALSE;
 /*N*/
@@ -1524,7 +1524,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwLayAction::FormatLayoutFly( SwFlyFrm *pFly, BOOL bAddRect )
 /*N*/ {
-/*N*/   ASSERT( !IsAgain(), "Ungueltige Seite beachten." );
+/*N*/   OSL_ENSURE( !IsAgain(), "Ungueltige Seite beachten." );
 /*N*/   if ( IsAgain() )
 /*?*/       return FALSE;
 /*N*/
@@ -1730,7 +1730,7 @@ namespace binfilter {
 // Implement vertical layout support
 /*N*/ BOOL SwLayAction::FormatLayoutTab( SwTabFrm *pTab, BOOL bAddRect )
 /*N*/ {
-/*N*/   ASSERT( !IsAgain(), "8-) Ungueltige Seite beachten." );
+/*N*/   OSL_ENSURE( !IsAgain(), "8-) Ungueltige Seite beachten." );
 /*N*/   if ( IsAgain() )
 /*?*/       return FALSE;
 /*N*/

@@ -146,7 +146,7 @@ namespace binfilter {
 
 /*N*/ SwTwips SwTxtFrm::EmptyHeight() const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::EmptyHeight with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::EmptyHeight with swapped frame" );
 /*N*/
 /*N*/     SwFont *pFnt;
 /*N*/   const SwTxtNode& rTxtNode = *GetTxtNode();
@@ -204,7 +204,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFrm::FormatEmpty()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::FormatEmpty with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::FormatEmpty with swapped frame" );
 /*N*/
 /*N*/   if ( HasFollow() || GetTxtNode()->GetpSwpHints() ||
 /*N*/       0 != GetTxtNode()->GetNumRule() ||
@@ -331,7 +331,7 @@ namespace binfilter {
 /*N*/                                       rRegDiff = rSpace.GetLineHeight();
 /*N*/                                   break;
 /*N*/                               }
-/*N*/                               default: ASSERT(
+/*N*/                               default: OSL_ENSURE(
 /*N*/                               sal_False, ": unknown LineSpaceRule" );
 /*N*/                           }
 /*N*/                           switch( rSpace.GetInterLineSpaceRule() )
@@ -357,7 +357,7 @@ namespace binfilter {
 /*?*/                                   nNettoHeight = rRegDiff;
 /*?*/                                   break;
 /*?*/                               }
-/*?*/                               default: ASSERT( sal_False, ": unknown InterLineSpaceRule" );
+/*?*/                               default: OSL_ENSURE( sal_False, ": unknown InterLineSpaceRule" );
 /*N*/                           }
 /*N*/                           pDesc->SetRegHeight( rRegDiff );
 /*N*/                           pDesc->SetRegAscent( rRegDiff - nNettoHeight +

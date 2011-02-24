@@ -98,7 +98,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ #endif
 /*N*/
-/*N*/   ASSERT( pMod, "Kein Frameformat uebergeben." );
+/*N*/   OSL_ENSURE( pMod, "Kein Frameformat uebergeben." );
 /*N*/     bInvalidR2L = bInvalidVert = 1;
 /*N*/     bDerivedR2L = bDerivedVert = bRightToLeft = bVertical = bReverse = 0;
 /*N*/     bValidPos = bValidPrtArea = bValidSize = bValidLineNum = bRetouche =
@@ -269,7 +269,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*?*/       case RES_COL:
-/*?*/           ASSERT( FALSE, "Spalten fuer neuen FrmTyp?" );
+/*?*/           OSL_ENSURE( FALSE, "Spalten fuer neuen FrmTyp?" );
 /*?*/           break;
 /*N*/
 /*N*/       default:
@@ -468,8 +468,8 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::InsertBefore( SwLayoutFrm* pParent, SwFrm* pBehind )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Insert." );
-/*N*/   ASSERT( (!pBehind || (pBehind && pParent == pBehind->GetUpper())),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Insert." );
+/*N*/   OSL_ENSURE( (!pBehind || (pBehind && pParent == pBehind->GetUpper())),
 /*N*/           "Framebaum inkonsistent." );
 /*N*/
 /*N*/   pUpper = pParent;
@@ -508,8 +508,8 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::InsertBehind( SwLayoutFrm *pParent, SwFrm *pBefore )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Insert." );
-/*N*/   ASSERT( (!pBefore || (pBefore && pParent == pBefore->GetUpper())),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Insert." );
+/*N*/   OSL_ENSURE( (!pBefore || (pBefore && pParent == pBefore->GetUpper())),
 /*N*/           "Framebaum inkonsistent." );
 /*N*/
 /*N*/   pUpper = pParent;
@@ -538,14 +538,14 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::Remove()
 /*N*/ {
-/*N*/   ASSERT( pUpper, "Removen ohne Upper?" );
+/*N*/   OSL_ENSURE( pUpper, "Removen ohne Upper?" );
 /*N*/
 /*N*/   if( pPrev )
 /*N*/       // einer aus der Mitte wird removed
 /*N*/       pPrev->pNext = pNext;
 /*N*/   else
 /*N*/   {   // der erste in einer Folge wird removed
-/*N*/       ASSERT( pUpper->pLower == this, "Layout inkonsistent." );
+/*N*/       OSL_ENSURE( pUpper->pLower == this, "Layout inkonsistent." );
 /*N*/       pUpper->pLower = pNext;
 /*N*/   }
 /*N*/   if( pNext )
@@ -583,11 +583,11 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwCntntFrm::Paste( SwFrm* pParent, SwFrm* pSibling)
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -684,7 +684,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwCntntFrm::Cut()
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "Cut ohne Upper()." );
+/*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   InvalidatePage( pPage );
@@ -841,11 +841,11 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::Paste( SwFrm* pParent, SwFrm* pSibling)
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -1004,7 +1004,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::Grow( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/   ASSERT( nDist >= 0, "Negatives Wachstum?" );
+/*N*/   OSL_ENSURE( nDist >= 0, "Negatives Wachstum?" );
 /*N*/
 /*N*/   PROTOCOL_ENTER( this, bTst ? PROT_GROW_TST : PROT_GROW, 0, &nDist )
 /*N*/
@@ -1042,7 +1042,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwFrm::Shrink( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
-/*N*/   ASSERT( nDist >= 0, "Negative Verkleinerung?" );
+/*N*/   OSL_ENSURE( nDist >= 0, "Negative Verkleinerung?" );
 /*N*/
 /*N*/   PROTOCOL_ENTER( this, bTst ? PROT_SHRINK_TST : PROT_SHRINK, 0, &nDist )
 /*N*/
@@ -1357,14 +1357,14 @@ namespace binfilter {
 /*N*/       if( ( IsHeaderFrm() || IsFooterFrm() ) && pBoss->GetDrawObjs() )
 /*N*/       {
 /*N*/           const SwDrawObjs &rObjs = *pBoss->GetDrawObjs();
-/*N*/           ASSERT( pBoss->IsPageFrm(), "Header/Footer out of page?" );
+/*N*/           OSL_ENSURE( pBoss->IsPageFrm(), "Header/Footer out of page?" );
 /*N*/           for ( USHORT i = 0; i < rObjs.Count(); ++i )
 /*N*/           {
 /*N*/               SdrObject *pObj = rObjs[i];
 /*N*/               if ( pObj->IsWriterFlyFrame() )
 /*N*/               {
 /*N*/                   SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
-/*N*/                   ASSERT( !pFly->IsFlyInCntFrm(), "FlyInCnt at Page?" );
+/*N*/                   OSL_ENSURE( !pFly->IsFlyInCntFrm(), "FlyInCnt at Page?" );
 /*N*/                   const SwFmtVertOrient &rVert =
 /*N*/                                       pFly->GetFmt()->GetVertOrient();
 /*N*/                  // Wann muss invalidiert werden?
@@ -1424,7 +1424,7 @@ namespace binfilter {
 /*N*/ void SwFrm::ImplInvalidateLineNum()
 /*N*/ {
 /*N*/   bValidLineNum = FALSE;
-/*N*/   ASSERT( IsTxtFrm(), "line numbers are implemented for text only" );
+/*N*/   OSL_ENSURE( IsTxtFrm(), "line numbers are implemented for text only" );
 /*N*/   InvalidatePage();
 /*N*/ }
 
@@ -1556,8 +1556,8 @@ namespace binfilter {
 /*N*/ SwTwips SwCntntFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
 /*N*/     SWRECTFN( this )
-/*N*/   ASSERT( nDist >= 0, "nDist < 0" );
-/*N*/     ASSERT( nDist <= (Frm().*fnRect->fnGetHeight)(),
+/*N*/   OSL_ENSURE( nDist >= 0, "nDist < 0" );
+/*N*/     OSL_ENSURE( nDist <= (Frm().*fnRect->fnGetHeight)(),
 /*N*/           "nDist > als aktuelle Grosse." );
 /*N*/
 /*N*/   if ( !bTst )
@@ -2062,7 +2062,7 @@ namespace binfilter {
 /*N*/     if( !(GetType() & nLclType) && HasFixSize() )
 /*N*/       return 0;
 /*N*/
-/*N*/   ASSERT( nDist >= 0, "nDist < 0" );
+/*N*/   OSL_ENSURE( nDist >= 0, "nDist < 0" );
 /*N*/     SWRECTFN( this )
 /*N*/     SwTwips nFrmHeight = (Frm().*fnRect->fnGetHeight)();
 /*N*/     if ( nDist > nFrmHeight )
@@ -2118,7 +2118,7 @@ namespace binfilter {
 /*?*/                                             + nRealDist - nReal );
 /*?*/                 if( bChgPos )
 /*?*/                     Frm().Pos().X() += nRealDist - nReal;
-/*?*/               ASSERT( !IsAccessibleFrm(), "bMoveAccFrm has to be set!" );
+/*?*/               OSL_ENSURE( !IsAccessibleFrm(), "bMoveAccFrm has to be set!" );
 /*N*/             }
 /*N*/       }
 /*N*/   }
@@ -2131,7 +2131,7 @@ namespace binfilter {
 /*N*/                                           + nReal - nTmp );
 /*N*/             if( bChgPos )
 /*?*/                 Frm().Pos().X() += nTmp - nReal;
-/*N*/           ASSERT( !IsAccessibleFrm(), "bMoveAccFrm has to be set!" );
+/*N*/           OSL_ENSURE( !IsAccessibleFrm(), "bMoveAccFrm has to be set!" );
 /*N*/           nReal = nTmp;
 /*N*/       }
 /*N*/   }
@@ -2514,7 +2514,7 @@ namespace binfilter {
 /*N*/                              ( IsColumnFrm() && IsInSct() )
 /*N*/                            )
 /*N*/                         {
-/*N*/                             ASSERT( pLowerFrm->IsBodyFrm() || pLowerFrm->IsFtnContFrm(),
+/*N*/                             OSL_ENSURE( pLowerFrm->IsBodyFrm() || pLowerFrm->IsFtnContFrm(),
 /*N*/                                     "ChgLowersProp - only for body or foot note container" );
 /*N*/                             if ( pLowerFrm->IsBodyFrm() || pLowerFrm->IsFtnContFrm() )
 /*N*/                             {
@@ -2526,7 +2526,7 @@ namespace binfilter {
 /*N*/                                     if ( nNewHeight < 0)
 /*N*/                                     {
 /*N*/                                         // adjust assertion condition and text
-/*N*/                                         ASSERT( !( IsPageFrm() &&
+/*N*/                                         OSL_ENSURE( !( IsPageFrm() &&
 /*N*/                                                    (pLowerFrm->Frm().Height()>0) &&
 /*N*/                                                    (pLowerFrm->IsValid()) ),
 /*N*/                                                     "ChgLowersProg - negative height for lower.");
@@ -2606,12 +2606,12 @@ namespace binfilter {
 /*N*/       const SwFmtCol* pColAttr = NULL;
 /*N*/         if ( IsPageBodyFrm() )
 /*N*/         {
-/*N*/             ASSERT( GetUpper()->IsPageFrm(), "Upper is not page frame" )
+/*N*/             OSL_ENSURE( GetUpper()->IsPageFrm(), "Upper is not page frame" );
 /*N*/             pColAttr = &GetUpper()->GetFmt()->GetCol();
 /*N*/         }
 /*N*/         else
 /*N*/         {
-/*N*/             ASSERT( IsFlyFrm() || IsSctFrm(), "Columns not in fly or section" )
+/*N*/             OSL_ENSURE( IsFlyFrm() || IsSctFrm(), "Columns not in fly or section" );
 /*N*/             pColAttr = &GetFmt()->GetCol();
 /*N*/       }
 /*N*/
@@ -2630,7 +2630,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwLayoutFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
-/*N*/   ASSERT( pAttrs, "LayoutFrm::Format, pAttrs ist 0." );
+/*N*/   OSL_ENSURE( pAttrs, "LayoutFrm::Format, pAttrs ist 0." );
 /*N*/
 /*N*/   if ( bValidPrtArea && bValidSize )
 /*?*/       return;
@@ -2719,7 +2719,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ static void InvaPercentFlys( SwFrm *pFrm, SwTwips nDiff )
 /*N*/ {
-/*N*/   ASSERT( pFrm->GetDrawObjs(), "Can't find any Objects" );
+/*N*/   OSL_ENSURE( pFrm->GetDrawObjs(), "Can't find any Objects" );
 /*N*/   for ( USHORT i = 0; i < pFrm->GetDrawObjs()->Count(); ++i )
 /*N*/   {
 /*N*/       SdrObject *pO = (*pFrm->GetDrawObjs())[i];
@@ -2765,7 +2765,7 @@ namespace binfilter {
 /*N*/           if ( pFrm->IsInTab() && !IsTabFrm() )
 /*N*/           {
 /*N*/               SwFrm *pTmp = pFrm->FindTabFrm();
-/*N*/               ASSERT( pTmp, "Where's my TabFrm?" );
+/*N*/               OSL_ENSURE( pTmp, "Where's my TabFrm?" );
 /*N*/               if( IsAnLower( pTmp ) )
 /*N*/                   pFrm = pTmp;
 /*N*/           }
@@ -2789,7 +2789,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ long SwLayoutFrm::CalcRel( const SwFmtFrmSize &rSz, BOOL bWidth ) const
 /*N*/ {
-/*N*/   ASSERT( bWidth, "NonFlys, CalcRel: width only" );
+/*N*/   OSL_ENSURE( bWidth, "NonFlys, CalcRel: width only" );
 /*N*/   (void)bWidth;
 /*N*/
 /*N*/   long nRet     = rSz.GetWidth(),
@@ -2820,7 +2820,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   long nDiff = 0, nFirstDiff = 0;
 /*N*/   SwLayoutFrm *pCol = (SwLayoutFrm*)pLayFrm->Lower();
-/*N*/   ASSERT( pCol, "Where's the columnframe?" );
+/*N*/   OSL_ENSURE( pCol, "Where's the columnframe?" );
 /*N*/   SwFrm *pFrm = pCol->Lower();
 /*N*/   do
 /*N*/     {
@@ -3029,7 +3029,7 @@ namespace binfilter {
 /*N*/             ::binfilter::CalcCntnt( this );
 /*N*/
 /*N*/           pCol = (SwLayoutFrm*)Lower();
-/*N*/           ASSERT( pCol && pCol->GetNext(), ":-( Spalten auf Urlaub?");
+/*N*/           OSL_ENSURE( pCol && pCol->GetNext(), ":-( Spalten auf Urlaub?");
 /*N*/           // bMinDiff wird gesetzt, wenn es keine leere Spalte gibt
 /*N*/           BOOL bMinDiff = TRUE;
 /*N*/             // check for all column content and all columns
@@ -3063,7 +3063,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   bFoundLower = TRUE;
 /*N*/                   pLay = (SwLayoutFrm*)pLay->GetNext();
-/*N*/                   ASSERT( pLay->IsFtnContFrm(),"FtnContainer exspected" );
+/*N*/                   OSL_ENSURE( pLay->IsFtnContFrm(),"FtnContainer exspected" );
 /*N*/                   nInnerHeight += pLay->InnerHeight();
 /*N*/                     nInnerHeight += (pLay->Frm().*fnRect->fnGetHeight)() -
 /*N*/                                     (pLay->Prt().*fnRect->fnGetHeight)();
@@ -3239,7 +3239,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/ #ifdef DBG_UTIL
 /*?*/           else
-/*?*/               ASSERT( !pLastSctCnt, "Where's the last SctCntnt?" );
+/*?*/               OSL_ENSURE( !pLastSctCnt, "Where's the last SctCntnt?" );
 /*?*/ #endif
 /*N*/       }
 /*N*/       if( nInv & INV_TABLE )
@@ -3266,7 +3266,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/ #ifdef DBG_UTIL
 /*?*/           else
-/*?*/               ASSERT( !pLastTabCnt, "Where's the last TabCntnt?" );
+/*?*/               OSL_ENSURE( !pLastTabCnt, "Where's the last TabCntnt?" );
 /*?*/ #endif
 /*N*/       }
 /*N*/

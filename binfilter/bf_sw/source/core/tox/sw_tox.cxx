@@ -226,7 +226,7 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 
 /*N*/ int SwTOXMark::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return GetRegisteredIn() == ((SwTOXMark&)rAttr).GetRegisteredIn();
 /*N*/ }
 
@@ -287,7 +287,7 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*?*/   case TOX_TABLES       : nPoolId = STR_POOLCOLL_TOX_TABLESH; break;
 /*?*/   case TOX_AUTHORITIES  : nPoolId = STR_POOLCOLL_TOX_AUTHORITIESH;    break;
 /*?*/   default:
-/*?*/       ASSERT( !this, "ungueltiger TOXTyp");
+/*?*/       OSL_ENSURE( !this, "ungueltiger TOXTyp");
 /*?*/       return ;
 /*N*/   }
 /*N*/
@@ -992,7 +992,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/           break;
 /*N*/       }
 /*N*/
-/*N*/   ASSERT( pNm, "wrong token" );
+/*N*/   OSL_ENSURE( pNm, "wrong token" );
 /*N*/   if( pTokenLen )
 /*N*/       *pTokenLen = nTokenLen;
 /*N*/   return eTokenType;

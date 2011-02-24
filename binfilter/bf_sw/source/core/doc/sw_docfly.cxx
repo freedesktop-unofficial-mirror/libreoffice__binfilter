@@ -244,13 +244,13 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/       //Verbindung zwischen Attribut und Format.
 /*M*/       const SwPosition *pPos = rOldAnch.GetCntntAnchor();
 /*M*/       SwTxtNode *pTxtNode = pPos->nNode.GetNode().GetTxtNode();
-/*M*/       ASSERT( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
+/*M*/       OSL_ENSURE( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
 /*M*/       const xub_StrLen nIdx = pPos->nContent.GetIndex();
 /*M*/       SwTxtAttr * pHnt = pTxtNode->GetTxtAttr( nIdx, RES_TXTATR_FLYCNT );
 /*M*/ #ifdef DBG_UTIL
-/*M*/       ASSERT( pHnt && pHnt->Which() == RES_TXTATR_FLYCNT,
+/*M*/       OSL_ENSURE( pHnt && pHnt->Which() == RES_TXTATR_FLYCNT,
 /*M*/                   "Missing FlyInCnt-Hint." );
-/*M*/       ASSERT( pHnt && pHnt->GetFlyCnt().GetFrmFmt() == &rFmt,
+/*M*/       OSL_ENSURE( pHnt && pHnt->GetFlyCnt().GetFrmFmt() == &rFmt,
 /*M*/                   "Wrong TxtFlyCnt-Hint." );
 /*M*/ #endif
 /*M*/       ((SwFmtFlyCnt&)pHnt->GetFlyCnt()).SetFlyFmt();
@@ -275,7 +275,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/       {
 /*M*/           const SwPosition *pPos = aNewAnch.GetCntntAnchor();
 /*M*/           SwTxtNode *pNd = pPos->nNode.GetNode().GetTxtNode();
-/*M*/           ASSERT( pNd, "Crsr steht nicht auf TxtNode." );
+/*M*/           OSL_ENSURE( pNd, "Crsr steht nicht auf TxtNode." );
 /*M*/
 /*M*/           pNd->Insert( SwFmtFlyCnt( (SwFlyFrmFmt*)&rFmt ),
 /*M*/                                      pPos->nContent.GetIndex(), 0 );
@@ -384,7 +384,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/       case RES_PAGEDESC:
 /*N*/       case RES_CNTNT:
 /*N*/       case RES_FOOTER:
-/*N*/           ASSERT( !this, ":-) Unbekanntes Attribut fuer Fly." );
+/*N*/           OSL_ENSURE( !this, ":-) Unbekanntes Attribut fuer Fly." );
 /*N*/           // kein break;
 /*N*/       case RES_CHAIN:
 /*?*/           rSet.ClearItem( nWhich );
@@ -522,7 +522,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/ BOOL SwDoc::ChgAnchor( const SdrMarkList& rMrkList, int eAnchorId,
 /*?*/                       BOOL bSameOnly, BOOL bPosCorr )
 /*?*/ {
-/*?*/   ASSERT( GetRootFrm(), "Ohne Layout geht gar nichts" );
+/*?*/   OSL_ENSURE( GetRootFrm(), "Ohne Layout geht gar nichts" );
 /*?*/
 /*?*/   if( !rMrkList.GetMarkCount() ||
 /*?*/       rMrkList.GetMark( 0 )->GetObj()->GetUpGroup() )
@@ -546,7 +546,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                 bool bNoUserCallExcepted =
 /*?*/                         pObj->ISA(SwDrawVirtObj) &&
 /*?*/                         !static_cast<SwDrawVirtObj*>(pObj)->IsConnected();
-/*?*/                 ASSERT( bNoUserCallExcepted, "SwDoc::ChgAnchor(..) - no contact at selected drawing object" );
+/*?*/                 OSL_ENSURE( bNoUserCallExcepted, "SwDoc::ChgAnchor(..) - no contact at selected drawing object" );
 /*?*/ #endif
 /*?*/                 continue;
 /*?*/             }
@@ -573,7 +573,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/               const SwPosition *pPos =
 /*?*/                   pContact->GetFmt()->GetAnchor().GetCntntAnchor();
 /*?*/               pTxtNode = pPos->nNode.GetNode().GetTxtNode();
-/*?*/               ASSERT( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
+/*?*/               OSL_ENSURE( pTxtNode->HasHints(), "Missing FlyInCnt-Hint." );
 /*?*/               nIndx = pPos->nContent.GetIndex();
 /*?*/               if( !pOldAnch )
 /*?*/               {
@@ -723,14 +723,14 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/                   aNewAnch.SetAnchor( &aPos );
 /*?*/                   SetAttr( aNewAnch, *pContact->GetFmt() );
 /*?*/                   SwTxtNode *pNd = aPos.nNode.GetNode().GetTxtNode();
-/*?*/                   ASSERT( pNd, "Crsr steht nicht auf TxtNode." );
+/*?*/                   OSL_ENSURE( pNd, "Crsr steht nicht auf TxtNode." );
 /*?*/
 /*?*/                   pNd->Insert( SwFmtFlyCnt( pContact->GetFmt() ),
 /*?*/                                   aPos.nContent.GetIndex(), 0 );
 /*?*/               }
 /*?*/               break;
 /*?*/           default:
-/*?*/               ASSERT( !this, "unexpected AnchorId." );
+/*?*/               OSL_ENSURE( !this, "unexpected AnchorId." );
 /*?*/           }
 /*?*/
 /*?*/           if( bChanges && pNewAnch )
@@ -781,7 +781,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/ #ifdef DBG_UTIL
 /*?*/       {
 /*?*/                   const Point aIstA( pObj->GetAnchorPos() );
-/*?*/                   ASSERT( pOldAnch == pNewAnch || aIstA == aProposedAnchorPos,
+/*?*/                   OSL_ENSURE( pOldAnch == pNewAnch || aIstA == aProposedAnchorPos,
 /*?*/               "SwDoc::ChgAnchor(..): Wrong Anchor-Pos." );
 /*?*/       }
 /*?*/ #endif

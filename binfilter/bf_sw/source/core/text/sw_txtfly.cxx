@@ -136,7 +136,7 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 // assert, if no anchor frame found at 'virtual' drawing object
 /*N*/                 // and return anchor frame of 'master' drawing object.
-/*N*/                 ASSERT( false, "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
+/*N*/                 OSL_ENSURE( false, "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
 /*N*/                 pRet = pDrawContact->GetAnchor();
 /*N*/             }
 /*N*/         }
@@ -146,7 +146,7 @@ namespace binfilter {
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/     ASSERT( pRet, "<lcl_TheAnchor(..)> - no anchor frame found!" );
+/*N*/     OSL_ENSURE( pRet, "<lcl_TheAnchor(..)> - no anchor frame found!" );
 /*N*/
 /*N*/     return *pRet;
 /*N*/ }
@@ -195,8 +195,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFormatter::CalcUnclipped( SwTwips& rTop, SwTwips& rBottom )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::CalcUnclipped with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::CalcUnclipped with unswapped frame" );
 /*N*/
 /*N*/   long nFlyAsc, nFlyDesc;
 /*N*/   lcl_MaxAscDescent( pCurr, rTop, rBottom, nFlyAsc, nFlyDesc );
@@ -214,8 +214,8 @@ namespace binfilter {
 /*N*/ void SwTxtFormatter::UpdatePos( SwLineLayout *pCurr, Point aStart,
 /*N*/   xub_StrLen nStartIdx, sal_Bool bAllWays ) const
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::UpdatePos with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::UpdatePos with unswapped frame" );
 /*N*/
 /*N*/     if( GetInfo().IsTest() )
 /*N*/       return;
@@ -278,8 +278,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFormatter::AlignFlyInCntBase( long nBaseLine ) const
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::AlignFlyInCntBase with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::AlignFlyInCntBase with unswapped frame" );
 /*N*/
 /*N*/   if( GetInfo().IsTest() )
 /*N*/       return;
@@ -327,7 +327,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFormatter::ChkFlyUnderflow( SwTxtFormatInfo &rInf ) const
 /*N*/ {
-/*N*/     ASSERT( rInf.GetTxtFly()->IsOn(), "SwTxtFormatter::ChkFlyUnderflow: why?" );
+/*N*/     OSL_ENSURE( rInf.GetTxtFly()->IsOn(), "SwTxtFormatter::ChkFlyUnderflow: why?" );
 /*N*/   if( GetCurr() )
 /*N*/   {
 /*N*/       // Erst pruefen wir, ob ueberhaupt ein Fly mit der Zeile ueberlappt.
@@ -784,7 +784,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
-/*N*/   ASSERT( bOn, "IsAnyFrm: Why?" );
+/*N*/   OSL_ENSURE( bOn, "IsAnyFrm: Why?" );
 /*N*/   SwRect aRect( pCurrFrm->Frm().Pos() + pCurrFrm->Prt().Pos(),
 /*N*/       pCurrFrm->Prt().SSize() );
 /*N*/
@@ -970,7 +970,7 @@ namespace binfilter {
 /*M*/       {
 /*M*/           const SwFmtAnchor& rNewA =
 /*M*/               ((SwContact*)GetUserCall(pNew))->GetFmt()->GetAnchor();
-/*M*/           ASSERT( FLY_IN_CNTNT != rNewA.GetAnchorId(), "Don't call GetTop with a FlyInCntFrm" );
+/*M*/           OSL_ENSURE( FLY_IN_CNTNT != rNewA.GetAnchorId(), "Don't call GetTop with a FlyInCntFrm" );
 /*M*/           if( FLY_PAGE == rNewA.GetAnchorId() )
 /*M*/               return sal_True;  // Seitengebundenen wird immer ausgewichen.
 /*M*/
@@ -1023,8 +1023,8 @@ namespace binfilter {
 
 /*N*/ SwFlyList *SwTxtFly::InitFlyList()
 /*N*/ {
-/*N*/   ASSERT( pCurrFrm, "InitFlyList: No Frame, no FlyList" );
-/*N*/     ASSERT( !pFlyList, "InitFlyList: FlyList already initialized" );
+/*N*/   OSL_ENSURE( pCurrFrm, "InitFlyList: No Frame, no FlyList" );
+/*N*/     OSL_ENSURE( !pFlyList, "InitFlyList: FlyList already initialized" );
 /*N*/
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
@@ -1194,7 +1194,7 @@ namespace binfilter {
 
 /*?*/ void SwContourCache::ClrObject( MSHORT nPos )
 /*?*/ {
-/*?*/   ASSERT( pTextRanger[ nPos ], "ClrObject: Allready cleared. Good Bye!" );
+/*?*/   OSL_ENSURE( pTextRanger[ nPos ], "ClrObject: Allready cleared. Good Bye!" );
 /*?*/   nPntCnt -= pTextRanger[ nPos ]->GetPointCount();
 /*?*/   delete pTextRanger[ nPos ];
 /*?*/   --nObjCnt;
@@ -1504,8 +1504,8 @@ namespace binfilter {
 /*N*/                                 const SwRect &rLine ) const
 /*N*/ {
 /*N*/   // Normalerweise ist der rechte Rand der rechte Rand der Printarea.
-/*N*/     ASSERT( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
-/*N*/             "SwTxtFly::CalcRightMargin with swapped frame" )
+/*N*/     OSL_ENSURE( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
+/*N*/             "SwTxtFly::CalcRightMargin with swapped frame" );
 /*N*/     SWRECTFN( pCurrFrm )
 /*N*/     SwTwips nRight = (pCurrFrm->Frm().*fnRect->fnGetLeft)() +
 /*N*/                      (pCurrFrm->Prt().*fnRect->fnGetRight)() + 1;
@@ -1601,8 +1601,8 @@ namespace binfilter {
 /*N*/ void SwTxtFly::CalcLeftMargin( SwRect &rFly, MSHORT nFlyPos,
 /*N*/                                 const SwRect &rLine ) const
 /*N*/ {
-/*N*/     ASSERT( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
-/*N*/             "SwTxtFly::CalcLeftMargin with swapped frame" )
+/*N*/     OSL_ENSURE( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
+/*N*/             "SwTxtFly::CalcLeftMargin with swapped frame" );
 /*N*/     SWRECTFN( pCurrFrm )
 /*N*/     SwTwips nLeft = (pCurrFrm->Frm().*fnRect->fnGetLeft)() +
 /*N*/                     (pCurrFrm->Prt().*fnRect->fnGetLeft)();
@@ -1858,7 +1858,7 @@ namespace binfilter {
 /*N*/
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
-/*N*/   ASSERT( bOn, "IsAnyFrm: Why?" );
+/*N*/   OSL_ENSURE( bOn, "IsAnyFrm: Why?" );
 /*N*/
 /*N*/     const sal_Bool bRet = ForEach( rLine, NULL, sal_False );
 /*N*/     UNDO_SWAP( pCurrFrm )

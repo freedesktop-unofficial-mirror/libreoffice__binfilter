@@ -136,9 +136,9 @@ namespace binfilter {
 /*N*/ void SwTxtAdjuster::CalcNewBlock( SwLineLayout *pCurr,
 /*N*/                                 const SwLinePortion *pStopAt, SwTwips nReal )
 /*N*/ {
-/*N*/   ASSERT( GetInfo().IsMulti() || SVX_ADJUST_BLOCK == GetAdjust(),
+/*N*/   OSL_ENSURE( GetInfo().IsMulti() || SVX_ADJUST_BLOCK == GetAdjust(),
 /*N*/           "CalcNewBlock: Why?" );
-/*N*/   ASSERT( pCurr->Height(), "SwTxtAdjuster::CalcBlockAdjust: missing CalcLine()" );
+/*N*/   OSL_ENSURE( pCurr->Height(), "SwTxtAdjuster::CalcBlockAdjust: missing CalcLine()" );
 /*N*/
 /*N*/   pCurr->InitSpaceAdd();
 /*N*/   MSHORT nNull = 0;
@@ -356,7 +356,7 @@ namespace binfilter {
 
 /*N*/ void SwTxtAdjuster::CalcAdjLine( SwLineLayout *pCurr )
 /*N*/ {
-/*N*/   ASSERT( pCurr->IsFormatAdj(), "CalcAdjLine: Why?" );
+/*N*/   OSL_ENSURE( pCurr->IsFormatAdj(), "CalcAdjLine: Why?" );
 /*N*/
 /*N*/   pCurr->SetFormatAdj(sal_False);
 /*N*/

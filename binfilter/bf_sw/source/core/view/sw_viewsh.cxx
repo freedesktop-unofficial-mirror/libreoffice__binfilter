@@ -310,7 +310,7 @@ bool bInSizeNotify = FALSE;
 /*N*/           else
 /*N*/           {
 /*N*/               //MA: 04. Nov. 94, braucht doch keiner oder??
-/*N*/               ASSERT( !this, "MakeVisible fuer Drucker wird doch gebraucht?" );
+/*N*/               OSL_ENSURE( !this, "MakeVisible fuer Drucker wird doch gebraucht?" );
 /*N*/           }
 /*N*/
 /*N*/ #endif

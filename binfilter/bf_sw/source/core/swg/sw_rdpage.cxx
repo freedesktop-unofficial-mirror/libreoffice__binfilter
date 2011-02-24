@@ -228,7 +228,7 @@ void SwSwgReader::InPageDesc( short nIdx )
                     nIdx = n; break;
                 }
             }
-            ASSERT( n < nArrLen, "Pool-PageDesc nicht gefunden" );
+            OSL_ENSURE( n < nArrLen, "Pool-PageDesc nicht gefunden" );
         }
     } else {
         // Keine Poolvorlage:

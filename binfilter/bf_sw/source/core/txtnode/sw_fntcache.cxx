@@ -272,7 +272,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*?*/                   aWinMet.GetAscent() - rMet.GetAscent() - nTmpLeading );
 /*?*/               if( nDiff > 0 )
 /*?*/               {
-/*?*/                   ASSERT( nPrtAscent < USHRT_MAX, "GuessLeading: PrtAscent-Fault" );
+/*?*/                   OSL_ENSURE( nPrtAscent < USHRT_MAX, "GuessLeading: PrtAscent-Fault" );
 /*?*/                   nPrtAscent += (USHORT)(( 2 * nDiff ) / 5);
 /*?*/               }
 /*N*/           }
@@ -444,7 +444,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
 /*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
 /*N*/
-/*N*/   ASSERT( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
+/*N*/   OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
 /*N*/           CountCompChg()), "Compression without info" );
 /*N*/
 /*N*/     // This is the part used e.g., for cursor travelling
@@ -561,14 +561,14 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           // SwFont sein, spaeter wird als Owner die "MagicNumber" gehalten.
 /*N*/           SwCacheAccess::pOwner = pOwner;
 /*N*/           pFntObj = Get(); // hier wird via NewObj() angelegt und gelockt.
-/*N*/           ASSERT(pFntObj, "No Font, no Fun.");
+/*N*/           OSL_ENSURE(pFntObj, "No Font, no Fun.");
 /*N*/       }
 /*N*/         else  // Font has been found, so we lock it.
 /*N*/       {
 /*N*/           pFntObj->Lock();
 /*N*/           if( pFntObj->pPrinter != pOut ) // Falls bis dato kein Drucker bekannt
 /*N*/           {
-/*N*/               ASSERT( !pFntObj->pPrinter, "SwFntAccess: Printer Changed" );
+/*N*/               OSL_ENSURE( !pFntObj->pPrinter, "SwFntAccess: Printer Changed" );
 /*N*/                 pFntObj->CreatePrtFont( *pOut );
 /*N*/               pFntObj->pPrinter = pOut;
 /*N*/               pFntObj->pScrFont = NULL;
@@ -610,7 +610,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
 /*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
 /*N*/
-/*N*/     ASSERT( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
+/*N*/     OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
 /*N*/             CountCompChg()), "Compression without info" );
 /*N*/
 /*N*/   USHORT nTxtBreak = 0;

@@ -116,7 +116,7 @@ namespace binfilter {
 /*?*/               SwSectionFrm *pSect = pNewUpper->FindSctFrm();
 /*?*/               while( pSect && pSect->IsInFtn() )
 /*?*/                   pSect = pSect->GetUpper()->FindSctFrm();
-/*?*/               ASSERT( pSect, "Escaping footnote" );
+/*?*/               OSL_ENSURE( pSect, "Escaping footnote" );
 /*?*/               if( pSect != pMySect )
 /*?*/                   return FALSE;
 /*?*/           }
@@ -222,7 +222,7 @@ namespace binfilter {
 /*N*/   {
 /*M*/       if( !GetUpper()->IsSctFrm() && !GetUpper()->IsFooterFrm() )
 /*N*/           GetUpper()->Calc();
-/*N*/       ASSERT( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
+/*N*/       OSL_ENSURE( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/
@@ -260,7 +260,7 @@ namespace binfilter {
 /*N*/       SwFrm *pFrm = GetUpper()->Lower();
 /*N*/       while ( pFrm != this )
 /*N*/       {
-/*N*/           ASSERT( pFrm, ":-( Layoutgeruest wackelig (this not found)." );
+/*N*/           OSL_ENSURE( pFrm, ":-( Layoutgeruest wackelig (this not found)." );
 /*N*/           if ( !pFrm )
 /*?*/               return; //Oioioioi ...
 /*N*/
@@ -300,14 +300,14 @@ namespace binfilter {
 /*N*/                   pFrm = pCnt;
 /*N*/           }
 /*N*/       }
-/*N*/       ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech II)." );
+/*N*/       OSL_ENSURE( GetUpper(), "Layoutgeruest wackelig (Upper wech II)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/
 /*M*/       if( !GetUpper()->IsSctFrm() && !GetUpper()->IsFooterFrm() )
 /*N*/           GetUpper()->Calc();
 /*N*/
-/*N*/       ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
+/*N*/       OSL_ENSURE( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
 /*N*/
 /*N*/       if ( bTab && !bOldTabLock )
 /*N*/           ::binfilter::PrepareUnlock( (SwTabFrm*)this );
@@ -320,7 +320,7 @@ namespace binfilter {
 /*M*/   if ( GetUpper() && !GetUpper()->IsFooterFrm() )
 /*N*/   {
 /*N*/       GetUpper()->Calc();
-/*N*/       ASSERT( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
+/*N*/       OSL_ENSURE( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/   }
@@ -612,7 +612,7 @@ namespace binfilter {
 /*N*/                             else
 /*N*/                             {
 /*N*/                                 // assert invalid lower property
-/*N*/                                 ASSERT( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
+/*N*/                                 OSL_ENSURE( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
 /*N*/                                         "SwPageFrm::MakeAll(): Lower with frame height < printing height" );
 /*N*/                                 nTmp += pFrm->Frm().Height() - pFrm->Prt().Height();
 /*N*/                             }
@@ -660,7 +660,7 @@ namespace binfilter {
 /*N*/   //sein, dass er die breiteste Seite aufnehmen kann.
 /*N*/   if ( GetUpper() )
 /*N*/     {
-/*N*/         ASSERT( GetUpper()->Prt().Width() >= aFrm.Width(), "Rootsize" );
+/*N*/         OSL_ENSURE( GetUpper()->Prt().Width() >= aFrm.Width(), "Rootsize" );
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
@@ -892,8 +892,8 @@ namespace binfilter {
 
 /*N*/ void SwCntntFrm::MakeAll()
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "keinen Upper?" );
-/*N*/   ASSERT( IsTxtFrm(), "MakeAll(), NoTxt" );
+/*N*/   OSL_ENSURE( GetUpper(), "keinen Upper?" );
+/*N*/   OSL_ENSURE( IsTxtFrm(), "MakeAll(), NoTxt" );
 /*N*/
 /*N*/   if ( !IsFollow() && StackHack::IsLocked() )
 /*N*/       return;
@@ -901,13 +901,13 @@ namespace binfilter {
 /*N*/   if ( IsJoinLocked() )
 /*N*/       return;
 /*N*/
-/*N*/     ASSERT( !((SwTxtFrm*)this)->IsSwapped(), "Calculation of a swapped frame" );
+/*N*/     OSL_ENSURE( !((SwTxtFrm*)this)->IsSwapped(), "Calculation of a swapped frame" );
 /*N*/
 /*N*/     StackHack aHack;
 /*N*/
 /*N*/   if ( ((SwTxtFrm*)this)->IsLocked() )
 /*N*/   {
-/*N*/       ASSERT( FALSE, "Format fuer gelockten TxtFrm." );
+/*N*/       OSL_ENSURE( FALSE, "Format fuer gelockten TxtFrm." );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -922,7 +922,7 @@ namespace binfilter {
 /*N*/       static sal_Bool bWarn = sal_False;
 /*N*/       if( pDoc->InXMLExport() )
 /*N*/       {
-/*N*/           ASSERT( bWarn, "Formatting during XML-export!" );
+/*N*/           OSL_ENSURE( bWarn, "Formatting during XML-export!" );
 /*N*/           bWarn = sal_True;
 /*N*/       }
 /*N*/       else
@@ -1021,7 +1021,7 @@ namespace binfilter {
 /*N*/                   //nach dem hin und her fliessen sparen.
 /*N*/                   GetUpper()->ResetCompletePaint();
 /*N*/                   //Der Vorgaenger wurde Invalidiert, das ist jetzt auch obsolete.
-/*N*/                   ASSERT( pPre, "missing old Prev" );
+/*N*/                   OSL_ENSURE( pPre, "missing old Prev" );
 /*N*/                   if( !pPre->IsSctFrm() )
 /*N*/                       ::binfilter::ValidateSz( pPre );
 /*N*/               }
@@ -1316,7 +1316,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
-/*N*/               ASSERT( FALSE, "+TxtFrm hat WouldFit-Versprechen nicht eingehalten." );
+/*N*/               OSL_ENSURE( FALSE, "+TxtFrm hat WouldFit-Versprechen nicht eingehalten." );
 /*N*/           }
 /*N*/ #endif
 /*N*/       }
@@ -1571,7 +1571,7 @@ namespace binfilter {
 /*?*/                 // doesn't makes sense. Thus, return TRUE.
 /*?*/                 if ( IsAnFollow( pFrm ) && !pFrm->IsValid() )
 /*?*/                 {
-/*?*/                     ASSERT( false, "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
+/*?*/                     OSL_ENSURE( false, "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
 /*?*/                     return TRUE;
 /*?*/                 }
 /*N*/             }

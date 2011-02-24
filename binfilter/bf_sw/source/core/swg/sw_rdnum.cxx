@@ -278,7 +278,7 @@ void SwSwgReader::InTxtNumRule()
                 {
                     // Hot fix bei Loechern im Bereich:
                     pNd->UpdateNum( SwNodeNum( nPrevLevel | NO_NUMLEVEL ) );
-                    ASSERT( FALSE, "SW/G-Reader: Luecke im NumRule-Bereich!" );
+                    OSL_ENSURE( FALSE, "SW/G-Reader: Luecke im NumRule-Bereich!" );
                 }
             }
             else

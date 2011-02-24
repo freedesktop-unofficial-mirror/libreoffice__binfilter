@@ -249,12 +249,12 @@ inline const Font& SwNumRule::GetDefBulletFont()
 
 inline USHORT SwNumRule::GetNumIndent( BYTE nLvl )
 {
-    ASSERT( MAXLEVEL > nLvl, "NumLevel is out of range" );
+    OSL_ENSURE( MAXLEVEL > nLvl, "NumLevel is out of range" );
     return aDefNumIndents[ nLvl ];
 }
 inline USHORT SwNumRule::GetBullIndent( BYTE nLvl )
 {
-    ASSERT( MAXLEVEL > nLvl, "NumLevel is out of range" );
+    OSL_ENSURE( MAXLEVEL > nLvl, "NumLevel is out of range" );
     return aDefNumIndents[ nLvl ];
 }
 

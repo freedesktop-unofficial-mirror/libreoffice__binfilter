@@ -175,11 +175,11 @@ sal_Bool SwXMLTextImportHelper::IsInHeaderFooter() const
 {
     Reference<XUnoTunnel> xCrsrTunnel(
             ((SwXMLTextImportHelper *)this)->GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     return pDoc->IsInHeaderFooter( pTxtCrsr->GetPaM()->GetPoint()->nNode );
@@ -194,7 +194,7 @@ SwOLENode *lcl_GetOLENode( const SwFrmFmt *pFrmFmt )
         const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
         pOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
     }
-    ASSERT( pOLENd, "Where is the OLE node" );
+    OSL_ENSURE( pOLENd, "Where is the OLE node" );
     return pOLENd;
 }
 
@@ -220,11 +220,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
         return xPropSet;
 
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -306,7 +306,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
         const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
         const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
         SwOLENode *pOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
-        ASSERT( pOLENd, "Where is the OLE node" );
+        OSL_ENSURE( pOLENd, "Where is the OLE node" );
 
         OUStringBuffer aBuffer( rTblName.getLength() );
         sal_Bool bQuoted = sal_False;
@@ -387,7 +387,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
             UniReference < SvXMLImportPropertyMapper > xImpPrMap =
                 pStyle->GetStyles()
                       ->GetImportPropertyMapper(pStyle->GetFamily());
-            ASSERT( xImpPrMap.is(), "Where is the import prop mapper?" );
+            OSL_ENSURE( xImpPrMap.is(), "Where is the import prop mapper?" );
             if( xImpPrMap.is() )
             {
                 UniReference<XMLPropertySetMapper> rPropMapper =
@@ -465,11 +465,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertApplet(
 
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -497,11 +497,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertPlugin(
 {
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -551,11 +551,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
 
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -580,7 +580,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
             UniReference < SvXMLImportPropertyMapper > xImpPrMap =
                 pStyle->GetStyles()
                       ->GetImportPropertyMapper(pStyle->GetFamily());
-            ASSERT( xImpPrMap.is(), "Where is the import prop mapper?" );
+            OSL_ENSURE( xImpPrMap.is(), "Where is the import prop mapper?" );
             if( xImpPrMap.is() )
             {
                 UniReference<XMLPropertySetMapper> rPropMapper =
@@ -662,11 +662,11 @@ void SwXMLTextImportHelper::endAppletOrPlugin(
     SolarMutexGuard aGuard;
 
     Reference<XUnoTunnel> xCrsrTunnel( rPropSet, UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for embedded" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for embedded" );
     SwXFrame *pFrame =
                 (SwXFrame *)xCrsrTunnel->getSomething(
                                     SwXFrame::getUnoTunnelId() );
-    ASSERT( pFrame, "SwXFrame missing" );
+    OSL_ENSURE( pFrame, "SwXFrame missing" );
     SwFrmFmt *pFrmFmt = pFrame->GetFrmFmt();
     const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
     const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();

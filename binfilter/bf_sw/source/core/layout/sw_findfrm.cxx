@@ -361,8 +361,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   // Casting the GetDep() result instead of the frame itself (that has
 /*N*/   // been done before) makes it save to use that method in constructors
 /*N*/   // and destructors.
-/*N*/   ASSERT( GetDep(), "frame is not registered any longer" );
-/*N*/   ASSERT( IsLayoutFrm() || IsCntntFrm(), "invalid frame type" );
+/*N*/   OSL_ENSURE( GetDep(), "frame is not registered any longer" );
+/*N*/   OSL_ENSURE( IsLayoutFrm() || IsCntntFrm(), "invalid frame type" );
 /*N*/   SwDoc *pDoc = IsLayoutFrm()
 /*N*/                       ? static_cast < SwFrmFmt * >( GetDep() )->GetDoc()
 /*N*/                       : static_cast < SwCntntNode * >( GetDep() )->GetDoc();
@@ -415,7 +415,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       !pRet->GetNext() && !pRet->GetPrev() )
 /*N*/   {
 /*?*/       SwSectionFrm* pSct = pRet->FindSctFrm();
-/*?*/       ASSERT( pSct, "FindFtnBossFrm: Single column outside section?" );
+/*?*/       OSL_ENSURE( pSct, "FindFtnBossFrm: Single column outside section?" );
 /*?*/       if( !pSct->IsFtnAtEnd() )
 /*?*/           return pSct->FindFtnBossFrm( TRUE );
 /*N*/   }
@@ -615,7 +615,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       SwLayoutFrm *pUp = pThis->GetUpper();
 /*N*/       while ( !pUp->IsCellFrm() )
 /*?*/           pUp = pUp->GetUpper();
-/*N*/       ASSERT( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
+/*N*/       OSL_ENSURE( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
 /*N*/       SwFrm *pNxt = lcl_NextFrm( pThis );
 /*N*/       if ( pUp->IsAnLower( pNxt ) )
 /*?*/           pRet = pNxt;
@@ -779,7 +779,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*?*/           SwLayoutFrm *pUp = pThis->GetUpper();
 /*?*/           while ( !pUp->IsCellFrm() )
 /*?*/               pUp = pUp->GetUpper();
-/*?*/           ASSERT( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
+/*?*/           OSL_ENSURE( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
 /*?*/           if ( pUp->IsAnLower( pPrvCnt ) )
 /*?*/               return pPrvCnt;
 /*N*/       }
@@ -1025,7 +1025,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/ #ifdef DBG_UTIL
 /*N*/           if( pFrm->IsTabFrm() )
 /*N*/           {
-/*N*/               ASSERT( !bIsInTab, "Table in table: Not implemented." );
+/*N*/               OSL_ENSURE( !bIsInTab, "Table in table: Not implemented." );
 /*N*/               bIsInTab = TRUE;
 /*N*/           }
 /*N*/ #endif

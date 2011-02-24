@@ -146,7 +146,7 @@ SwFmt* lcl_sw3io__GetUserPoolFmt( USHORT nId, const SvPtrarr* pFmtArr )
 
 sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 {
-    ASSERT( pTxtNd, "There is the text node?" );
+    OSL_ENSURE( pTxtNd, "There is the text node?" );
     if( !pTxtNd )
         return FALSE;
 
@@ -220,7 +220,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           ASSERT( nFlyLevel == 0, "Fussnoten im Fly sind nicht erlaubt" );
+/*N*/           OSL_ENSURE( nFlyLevel == 0, "Fussnoten im Fly sind nicht erlaubt" );
 /*N*/       }
 /*N*/   }
 /*N*/   CloseRec( SWG_ATTRIBUTE );
@@ -237,7 +237,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   // Items, die als Version USHRT_MAX zurueckgeben, wollen nicht
 /*N*/   // geschrieben werden
 /*N*/   long nFFVersion = pStrm->GetVersion();
-/*N*/   ASSERT( IsSw31Export() ? nFFVersion==SOFFICE_FILEFORMAT_31
+/*N*/   OSL_ENSURE( IsSw31Export() ? nFFVersion==SOFFICE_FILEFORMAT_31
 /*N*/                          : (nFFVersion==SOFFICE_FILEFORMAT_40 ||
 /*N*/                             nFFVersion==SOFFICE_FILEFORMAT_50),
 /*N*/           "FF-Version am Stream stimmt nicht" );
@@ -285,7 +285,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   }
 /*N*/ #ifdef DBG_UTIL
 /*N*/   else
-/*N*/       ASSERT( !this, "Fussnoten im Fly sind nicht erlaubt" );
+/*N*/       OSL_ENSURE( !this, "Fussnoten im Fly sind nicht erlaubt" );
 /*N*/ #endif
 /*N*/ }
 
@@ -448,7 +448,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/           case SWG_SDRFMT:
 /*N*/               if( nObjRef >= pPg->GetObjCount() )
 /*N*/               {
-/*?*/                   ASSERT( !this, "Ungueltige SdrObject-Nummer" );
+/*?*/                   OSL_ENSURE( !this, "Ungueltige SdrObject-Nummer" );
 /*?*/                   nObjRef = 0;
 /*?*/                   Error();
 /*N*/               }
@@ -516,7 +516,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                                               pDoc->GetFrmFmts() )) )
 /*?*/                           pFmt = lcl_sw3io__GetUserPoolFmt( nPoolId,
 /*?*/                                               pDoc->GetSpzFrmFmts() );
-/*?*/                       ASSERT( pFmt, "Format not found." );
+/*?*/                       OSL_ENSURE( pFmt, "Format not found." );
 /*?*/                   }
 /*?*/                   else
 /*?*/                       pFmt = pDoc->GetFrmFmtFromPool( nPoolId );
@@ -532,7 +532,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/               if( pSdrObj && pSdrObj->GetUserCall() )
 /*N*/               {
 /*N*/                   //s.u., und auch bugdoc 28336.sdw beim schliessen nach laden.
-/*?*/                   ASSERT( !this, "More than one Format" );
+/*?*/                   OSL_ENSURE( !this, "More than one Format" );
 /*?*/                   CloseRec( cKind );
 /*?*/                   nFlyLevel--;
 /*?*/                   return NULL;
@@ -660,7 +660,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                       if( pFlyFmt )
 /*?*/                       {
 /*?*/                            SwFmtChain aChain( pFlyFmt->GetChain() );
-/*?*/                           ASSERT( !aChain.GetNext(),
+/*?*/                           OSL_ENSURE( !aChain.GetNext(),
 /*?*/                                   "Next ist bereits verkettet" );
 /*?*/                           aChain.SetNext( (SwFlyFrmFmt *)pFmt );
 /*?*/                           pFlyFmt->SetAttr( aChain );
@@ -671,7 +671,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                       if( pFlyFmt )
 /*?*/                       {
 /*?*/                            SwFmtChain aChain( pFlyFmt->GetChain() );
-/*?*/                           ASSERT( !aChain.GetPrev(),
+/*?*/                           OSL_ENSURE( !aChain.GetPrev(),
 /*?*/                                   "Prev ist bereits verkettet" );
 /*?*/                           aChain.SetPrev( (SwFlyFrmFmt *)pFmt );
 /*?*/                           pFlyFmt->SetAttr( aChain );
@@ -775,7 +775,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/       // because the section is inserted into the newly created TOX content
 /*N*/       // section and that for will be replaced always.
 /*N*/       const SwSectionFmt* pSectFmt = PTR_CAST( SwSectionFmt, &rFmt );
-/*N*/       ASSERT( pSectFmt, "no section format?" );
+/*N*/       OSL_ENSURE( pSectFmt, "no section format?" );
 /*N*/       if( pSectFmt )
 /*N*/       {
 /*N*/           const SwSection* pSect = pSectFmt->GetSection();
@@ -912,7 +912,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/   {
 /*N*/       size_t nPos = nSdrRef / 8;
 /*N*/       BYTE nByte = 1 << (nSdrRef % 8);
-/*N*/       ASSERT( (pRefSdrObjects[nPos] & nByte) == 0,
+/*N*/       OSL_ENSURE( (pRefSdrObjects[nPos] & nByte) == 0,
 /*N*/               "Zeichen-Object doppelt referenziert" );
 /*N*/
 /*N*/       pRefSdrObjects[nPos] |= nByte;
@@ -988,7 +988,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*N*/       if( cType == SWG_FLYFMT || cType == SWG_SDRFMT )
 /*N*/       {
 /*N*/           SwFmt* pFmt = InFormat( cType, NULL );
-/*N*/           ASSERT( !pFmt || FLY_PAGE >= pFmt->GetAnchor().GetAnchorId(),
+/*N*/           OSL_ENSURE( !pFmt || FLY_PAGE >= pFmt->GetAnchor().GetAnchorId(),
 /*N*/                       "Rahmen ist ungueltig gebunden" );
 /*N*/           if( pFmt && nPageNumOff )
 /*N*/           {
@@ -1037,7 +1037,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                       if( SOFFICE_FILEFORMAT_40 < pStrm->GetVersion() )
 /*?*/                           break;
 /*N*/                   default:
-/*N*/                       ASSERT( FLY_PAGE==rAnchor.GetAnchorId() ||
+/*N*/                       OSL_ENSURE( FLY_PAGE==rAnchor.GetAnchorId() ||
 /*N*/                               FLY_AT_FLY==rAnchor.GetAnchorId(),
 /*N*/                               "Rahmen ist nicht Seitengebunden" );
 /*N*/                       if( !pFmt->IsDefault() )
@@ -1081,7 +1081,7 @@ sal_Bool lcl_sw3io_insFtn( const SwTxtNode *pTxtNd )
 /*?*/                       if( SOFFICE_FILEFORMAT_40 < pStrm->GetVersion() )
 /*?*/                           break;
 /*?*/                   default:
-/*?*/                       ASSERT( FLY_PAGE==rAnchor.GetAnchorId() ||
+/*?*/                       OSL_ENSURE( FLY_PAGE==rAnchor.GetAnchorId() ||
 /*?*/                               FLY_AT_FLY==rAnchor.GetAnchorId(),
 /*?*/                               "Rahmen ist nicht Seitengebunden" );
 /*?*/                       if( !rFmt.IsDefault() )

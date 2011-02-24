@@ -110,7 +110,7 @@ void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
                      if ( pFrm &&                                    \
                           ((SwRowFrm*)pFrm)->GetTabLine() == GetTabLines()[i] ) \
                      {                                               \
-                         ASSERT( pFrm->GetUpper()->IsTabFrm(),       \
+                         OSL_ENSURE( pFrm->GetUpper()->IsTabFrm(),       \
                                  "Table layout does not match table structure" )       \
                      }                                               \
                  } while ( 0 != ( pLast = aIter++ ) );               \
@@ -524,10 +524,10 @@ void lcl_CpyLines( USHORT nStt, USHORT nEnd,
  {
     // Annahme: jede Line in der Box ist gleich gross
     SwFrmFmt* pFmt = pBox->ClaimFrmFmt();
-    ASSERT( pBox->GetTabLines().Count(), "Box hat keine Lines" );
+    OSL_ENSURE( pBox->GetTabLines().Count(), "Box hat keine Lines" );
 
     SwTableLine* pLine = pBox->GetTabLines()[0];
-    ASSERT( pLine, "Box steht in keiner Line" );
+    OSL_ENSURE( pLine, "Box steht in keiner Line" );
 
     long nWidth = 0;
     for( USHORT n = 0; n < pLine->GetTabBoxes().Count(); ++n )
@@ -781,7 +781,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
             lcl_CalcWidth( pRMBox );        // bereche die Breite der Box
         }
         else
-            ASSERT( FALSE , "Was denn nun" );
+            OSL_ENSURE( FALSE , "Was denn nun" );
     }
     // Left/Right
     else
@@ -814,7 +814,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
  BOOL SwTable::Merge( SwDoc* pDoc, const SwSelBoxes& rBoxes,
                     SwTableBox* pMergeBox )
  {
-    ASSERT( pDoc && rBoxes.Count() && pMergeBox, "keine gueltigen Werte" );
+    OSL_ENSURE( pDoc && rBoxes.Count() && pMergeBox, "keine gueltigen Werte" );
     SwTableNode* pTblNd = (SwTableNode*)rBoxes[0]->GetSttNd()->FindTableNode();
     if( !pTblNd )
         return FALSE;
@@ -932,7 +932,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
     if( GetUpper() )
     {
         nFndPos = GetUpper()->GetTabLines().GetPos( pLine );
-        ASSERT( USHRT_MAX != nFndPos, "Line nicht in der Tabelle" );
+        OSL_ENSURE( USHRT_MAX != nFndPos, "Line nicht in der Tabelle" );
         // gibts eine weitere Line
         if( nFndPos+1 >= GetUpper()->GetTabLines().Count() )
             return GetUpper()->GetUpper()->FindNextBox( rTbl, GetUpper(), bOvrTblLns );
@@ -983,7 +983,7 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
     if( GetUpper() )
     {
         nFndPos = GetUpper()->GetTabLines().GetPos( pLine );
-        ASSERT( USHRT_MAX != nFndPos, "Line nicht in der Tabelle" );
+        OSL_ENSURE( USHRT_MAX != nFndPos, "Line nicht in der Tabelle" );
         // gibts eine weitere Line
         if( !nFndPos )
             return GetUpper()->GetUpper()->FindPreviousBox( rTbl, GetUpper(), bOvrTblLns );

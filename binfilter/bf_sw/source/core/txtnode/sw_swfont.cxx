@@ -121,7 +121,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/             break;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/         default :
-/*N*/             ASSERT( sal_False, "Unsupported direction" );
+/*N*/             OSL_ENSURE( sal_False, "Unsupported direction" );
 /*N*/             break;
 /*N*/ #endif
 /*N*/         }
@@ -148,7 +148,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*?*/             break;
 /*?*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/         default :
-/*?*/             ASSERT( sal_False, "Unsupported direction" );
+/*?*/             OSL_ENSURE( sal_False, "Unsupported direction" );
 /*?*/             break;
 /*?*/ #endif
 /*?*/         }
@@ -415,7 +415,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   }
 /*N*/   bPaintBlank = FALSE;
 /*N*/   bPaintWrong = FALSE;
-/*N*/   ASSERT( aSub[SW_LATIN].IsTransparent(), "SwFont: Transparent revolution" );
+/*N*/   OSL_ENSURE( aSub[SW_LATIN].IsTransparent(), "SwFont: Transparent revolution" );
 /*N*/ }
 
 /*************************************************************************
@@ -620,7 +620,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 /*N*/ void SwFont::ChgPhysFnt( ViewShell *pSh, OutputDevice *pOut )
 /*N*/ {
-/*N*/   ASSERT( pOut, "SwFont:;ChgPhysFnt, not OutDev." );
+/*N*/   OSL_ENSURE( pOut, "SwFont:;ChgPhysFnt, not OutDev." );
 /*N*/
 /*N*/   if( bOrgChg && aSub[nActual].IsEsc() )
 /*N*/   {

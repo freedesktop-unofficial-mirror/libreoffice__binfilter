@@ -120,7 +120,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/   nTxtStart = pFrm->GetOfst();
 /*N*/   if( !pPara )
 /*N*/   {
-/*?*/       ASSERT( pPara, "+SwTxtInfo::CTOR: missing paragraph information" );
+/*?*/       OSL_ENSURE( pPara, "+SwTxtInfo::CTOR: missing paragraph information" );
 /*?*/       pFrm->Format();
 /*?*/       pPara = pFrm->GetPara();
 /*N*/   }
@@ -145,7 +145,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const OutputDevice *pOut = rInf.GetOut();
 /*N*/     const OutputDevice *pWin = rInf.GetVsh()->GetWin();
 /*N*/     const OutputDevice *pRef = rInf.GetRefDev();
-/*N*/     ASSERT( pOut && pRef, "ChkOutDev: invalid output devices" )
+/*N*/     OSL_ENSURE( pOut && pRef, "ChkOutDev: invalid output devices" );
 /*N*/ }
 /*N*/ #endif    // PRODUCT
 
@@ -415,7 +415,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const SwScriptInfo& rScriptInfo =
 /*N*/                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
 /*N*/
-/*N*/     ASSERT( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" )
+/*N*/     OSL_ENSURE( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" );
 /*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, &rScriptInfo,
 /*N*/                              *pTxt, GetIdx(), nMaxLen );
 /*N*/     aDrawInf.SetFrm( pFrm );
@@ -439,7 +439,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const SwScriptInfo& rScriptInfo =
 /*N*/                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
 /*N*/
-/*N*/     ASSERT( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" )
+/*N*/     OSL_ENSURE( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" );
 /*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, &rScriptInfo,
 /*N*/                              *pTxt, GetIdx(), nMaxLen );
 /*N*/     aDrawInf.SetFrm( pFrm );
@@ -819,7 +819,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/         default:
 /*N*/           if( cTabDec == cPos )
 /*N*/           {
-/*N*/               ASSERT( cPos, "Unexspected end of string" );
+/*N*/               OSL_ENSURE( cPos, "Unexspected end of string" );
 /*N*/               if( cPos ) // robust
 /*N*/               {
 /*N*/                   cHookChar = cPos;

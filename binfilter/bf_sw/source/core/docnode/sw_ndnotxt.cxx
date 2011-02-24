@@ -74,7 +74,7 @@ namespace binfilter {
 // fuer Frame- und Grafik-Attributen
 /*N*/ void SwNoTxtNode::NewAttrSet( SwAttrPool& rPool )
 /*N*/ {
-/*N*/   ASSERT( !pAttrSet, "AttrSet ist doch gesetzt" );
+/*N*/   OSL_ENSURE( !pAttrSet, "AttrSet ist doch gesetzt" );
 /*N*/   pAttrSet = new SwAttrSet( rPool, aNoTxtNodeSetRange );
 /*N*/   pAttrSet->SetParent( &GetFmtColl()->GetAttrSet() );
 /*N*/ }
@@ -123,7 +123,7 @@ namespace binfilter {
 /*?*/   {
 /*?*/       const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
  /*?*/      const MapMode aContourMap( MAP_100TH_MM );
- /*?*/      ASSERT( aGrfMap.GetMapUnit() != MAP_PIXEL ||
+ /*?*/      OSL_ENSURE( aGrfMap.GetMapUnit() != MAP_PIXEL ||
  /*?*/              aGrfMap == MapMode( MAP_PIXEL ),
  /*?*/                  "scale factor for pixel unsupported" );
  /*?*/      if( aGrfMap.GetMapUnit() != MAP_PIXEL &&
@@ -174,7 +174,7 @@ Graphic SwNoTxtNode::GetGraphic() const
     }
     else
     {
-        ASSERT( GetOLENode(), "new type of Node?" );
+        OSL_ENSURE( GetOLENode(), "new type of Node?" );
         SvInPlaceObjectRef xObj( ((SwOLENode*)this)->GetOLEObj().GetOleRef() );
         GDIMetaFile aMtf;
         aRet = xObj->GetGDIMetaFile( aMtf );

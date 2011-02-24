@@ -71,7 +71,7 @@ namespace binfilter {
 /*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
 /*N*/         {
 /*N*/             // check for empty redlines
-/*N*/             ASSERT( ( *(rTbl[j]->GetPoint()) != *(rTbl[j]->GetMark()) ) ||
+/*N*/             OSL_ENSURE( ( *(rTbl[j]->GetPoint()) != *(rTbl[j]->GetMark()) ) ||
 /*N*/                     ( rTbl[j]->GetContentIdx() != NULL ),
 /*N*/                     "redline table corrupted: empty redline" );
 /*N*/       }
@@ -83,11 +83,11 @@ namespace binfilter {
 /*?*/             const SwRedline* pCurrent = rTbl[ n ];
 /*?*/
 /*?*/             // check redline sorting
-/*?*/             ASSERT( *pPrev->Start() <= *pCurrent->Start(),
+/*?*/             OSL_ENSURE( *pPrev->Start() <= *pCurrent->Start(),
 /*?*/                     "redline table corrupted: not sorted correctly" );
 /*?*/
 /*?*/             // check for overlapping redlines
-/*?*/             ASSERT( *pPrev->End() <= *pCurrent->Start(),
+/*?*/             OSL_ENSURE( *pPrev->End() <= *pCurrent->Start(),
 /*?*/                     "redline table corrupted: overlapping redlines" );
 /*N*/       }
 /*N*/   }
@@ -271,7 +271,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/       bRet = InsertWithValidRanges( p );
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( !this, "Redline: falscher Bereich" );
+/*N*/       OSL_ENSURE( !this, "Redline: falscher Bereich" );
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -510,7 +510,7 @@ USHORT SwRedline::GetStackCount() const
         SwRedlineData* pCur;
 /*?*/   for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
 /*?*/       pCur = pCur->pNext;
-/*?*/   ASSERT( !nPos, "Pos angabe ist zu gross" );
+/*?*/   OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
 /*?*/   return SW_MOD()->GetRedlineAuthor(pCur->nAuthor);
 /*?*/}
 
@@ -518,7 +518,7 @@ const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->aStamp;
 }
 
@@ -526,7 +526,7 @@ SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->eType;
 }
 
@@ -534,7 +534,7 @@ const String& SwRedline::GetComment( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->sComment;
 }
 

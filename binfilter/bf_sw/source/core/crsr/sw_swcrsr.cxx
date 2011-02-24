@@ -302,7 +302,7 @@ struct _PercentHdl
 /*?*/       // gibt es auch eine vorherige Zelle
 /*?*/   }
 /*?*/
-/*?*/   ASSERT( FALSE, "sollte nie erreicht werden oder??" );
+/*?*/   OSL_ENSURE( FALSE, "sollte nie erreicht werden oder??" );
 /*?*/   return  FALSE;
 /*N*/ }
 

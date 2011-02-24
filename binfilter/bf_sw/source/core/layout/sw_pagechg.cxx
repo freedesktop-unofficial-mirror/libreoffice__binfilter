@@ -391,7 +391,7 @@ namespace binfilter {
 /*N*/           pSdrObj = 0;
 /*N*/           if ( bSdrObj  && 0 == (pSdrObj = pFmt->FindSdrObject()) )
 /*N*/           {
-/*N*/               ASSERT( FALSE, "DrawObject not found." );
+/*N*/               OSL_ENSURE( FALSE, "DrawObject not found." );
 /*N*/               pFmt->GetDoc()->DelFrmFmt( pFmt );
 /*N*/               --i;
 /*N*/               continue;
@@ -555,17 +555,17 @@ namespace binfilter {
 /*N*/           //Abgesehen von den Grossenverhaeltnissen sind noch andere
 /*N*/           //Dinge betroffen.
 /*N*/           //1. Spaltigkeit.
-/*N*/           ASSERT( pOld && pNew, "FMT_CHG Missing Format." );
+/*N*/           OSL_ENSURE( pOld && pNew, "FMT_CHG Missing Format." );
 /*N*/           const SwFmt* pOldFmt = ((SwFmtChg*)pOld)->pChangedFmt;
 /*N*/           const SwFmt* pNewFmt = ((SwFmtChg*)pNew)->pChangedFmt;
-/*N*/           ASSERT( pOldFmt && pNewFmt, "FMT_CHG Missing Format." );
+/*N*/           OSL_ENSURE( pOldFmt && pNewFmt, "FMT_CHG Missing Format." );
 /*N*/
 /*N*/           const SwFmtCol &rOldCol = pOldFmt->GetCol();
 /*N*/           const SwFmtCol &rNewCol = pNewFmt->GetCol();
 /*N*/           if( rOldCol != rNewCol )
 /*N*/           {
 /*N*/               SwLayoutFrm *pB = FindBodyCont();
-/*N*/               ASSERT( pB, "Seite ohne Body." );
+/*N*/               OSL_ENSURE( pB, "Seite ohne Body." );
 /*N*/               pB->ChgColumns( rOldCol, rNewCol );
 /*N*/                 rInvFlags |= 0x20;
 /*N*/           }
@@ -620,7 +620,7 @@ namespace binfilter {
 /*N*/       case RES_COL:
 /*N*/       {
 /*N*/           SwLayoutFrm *pB = FindBodyCont();
-/*N*/           ASSERT( pB, "Seite ohne Body." );
+/*N*/           OSL_ENSURE( pB, "Seite ohne Body." );
 /*N*/           pB->ChgColumns( *(const SwFmtCol*)pOld, *(const SwFmtCol*)pNew );
 /*N*/             rInvFlags |= 0x22;
 /*N*/       }
@@ -759,7 +759,7 @@ namespace binfilter {
 /*N*/       pRet = (SwPageDesc*)&GetFmt()->GetDoc()->GetPageDesc( 0 );
 /*N*/
 /*N*/
-/*N*/   ASSERT( pRet, "Kein Descriptor gefunden." );
+/*N*/   OSL_ENSURE( pRet, "Kein Descriptor gefunden." );
 /*N*/   return pRet;
 /*N*/ }
 /*************************************************************************
@@ -854,7 +854,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       case CHG_CHGPAGE:
 /*N*/           {
-/*N*/               ASSERT( pOld, "ChgPage ohne OldValue nicht moeglich." );
+/*N*/               OSL_ENSURE( pOld, "ChgPage ohne OldValue nicht moeglich." );
 /*N*/                 if ( pOld->Width() < nFix )
 /*N*/               {
 /*N*/                     if ( nFix > GetUpper()->Prt().Width() )
@@ -868,7 +868,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*?*/           ASSERT( FALSE, "Neuer Typ fuer PageChg." );
+/*?*/           OSL_ENSURE( FALSE, "Neuer Typ fuer PageChg." );
 /*N*/   }
 /*N*/
 /*N*/   if ( nDiff > 0 )
@@ -975,11 +975,11 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwPageFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent->IsRootFrm(), "Parent ist keine Root." );
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent->IsRootFrm(), "Parent ist keine Root." );
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -1086,7 +1086,7 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ void SwFrm::CheckPageDescs( SwPageFrm *pStart, BOOL bNotifyFields )
 /*N*/ {
-/*N*/   ASSERT( pStart, "Keine Startpage." );
+/*N*/   OSL_ENSURE( pStart, "Keine Startpage." );
 /*N*/
 /*N*/   ViewShell *pSh   = pStart->GetShell();
 /*N*/   SwViewImp *pImp  = pSh ? pSh->Imp() : 0;
@@ -1216,7 +1216,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
-/*?*/               ASSERT( FALSE, "CheckPageDescs, missing solution" );
+/*?*/               OSL_ENSURE( FALSE, "CheckPageDescs, missing solution" );
 /*N*/           }
 /*N*/ #endif
 /*N*/       }
@@ -1269,7 +1269,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if ( bEmpty )
 /*N*/           {
-/*?*/               ASSERT( FALSE, "Doppelte Leerseiten." );
+/*?*/               OSL_ENSURE( FALSE, "Doppelte Leerseiten." );
 /*?*/               break;  //Einmal reicht.
 /*N*/           }
 /*N*/           bEmpty = TRUE;
@@ -1281,7 +1281,7 @@ namespace binfilter {
 /*N*/ //moeglich: Ein paar Seiten, auf der ersten 'erste Seite' anwenden,
 /*N*/ //rechte als folge der ersten, linke als folge der rechten, rechte als
 /*N*/ //folge der linken.
-/*N*/ //        ASSERT( pPg->GetPageDesc() == pPg->FindPageDesc(),
+/*N*/ //        OSL_ENSURE( pPg->GetPageDesc() == pPg->FindPageDesc(),
 /*N*/ //                "Seite mit falschem Descriptor." );
 /*N*/
 /*N*/       pPg = (SwPageFrm*)pPg->GetNext();
@@ -1322,7 +1322,7 @@ namespace binfilter {
 /*N*/   if ( !pDesc )
 /*N*/       pDesc = pPrevPage->GetPageDesc()->GetFollow();
 /*N*/
-/*N*/   ASSERT( pDesc, "Missing PageDesc" );
+/*N*/   OSL_ENSURE( pDesc, "Missing PageDesc" );
 /*N*/   if( !(bWishedOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt()) )
 /*N*/       bWishedOdd = !bWishedOdd;
 /*N*/
@@ -1353,7 +1353,7 @@ namespace binfilter {
 /*N*/           bCheckPages = TRUE;
 /*N*/   }
 /*N*/   pFmt = bWishedOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt();
-/*N*/   ASSERT( pFmt, "Descriptor without format." );
+/*N*/   OSL_ENSURE( pFmt, "Descriptor without format." );
 /*N*/   SwPageFrm *pPage = new SwPageFrm( pFmt, pDesc );
 /*N*/   pPage->Paste( pRoot, pSibling );
 /*N*/   pPage->PreparePage( bFtn );
@@ -1422,8 +1422,8 @@ namespace binfilter {
 |*************************************************************************/
 /*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
-/*N*/   ASSERT( nDist >= 0, "nDist < 0." );
-/*N*/     ASSERT( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );
+/*N*/   OSL_ENSURE( nDist >= 0, "nDist < 0." );
+/*N*/     OSL_ENSURE( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );
 /*N*/
 /*N*/   if ( !bTst )
 /*N*/         Frm().SSize().Height() -= nDist;
@@ -1516,7 +1516,7 @@ void SwRootFrm::RemoveSuperfluous()
                 while ( pPage->IsFtnPage() )
                 {
                     pPage = (SwPageFrm*)pPage->GetPrev();
-                    ASSERT( pPage, "Nur noch Endnotenseiten uebrig." );
+                    OSL_ENSURE( pPage, "Nur noch Endnotenseiten uebrig." );
                 }
                 continue;
             }
@@ -1666,7 +1666,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*?*/ #else
 /*?*/                       const USHORT nCnt = pPage->GetSortedObjs()->Count();
 /*?*/                       pFmt->SwModify::Modify( 0, (SwFmtAnchor*)&rAnch );
-/*?*/                       ASSERT( !pPage->GetSortedObjs() ||
+/*?*/                       OSL_ENSURE( !pPage->GetSortedObjs() ||
 /*?*/                               nCnt != pPage->GetSortedObjs()->Count(),
 /*?*/                               "Kann das Obj nicht umhaengen." );
 /*?*/ #endif
@@ -1735,7 +1735,7 @@ void SwRootFrm::RemoveSuperfluous()
 |*************************************************************************/
 /*N*/ void SwRootFrm::ImplCalcBrowseWidth()
 /*N*/ {
-/*N*/   ASSERT( GetFmt()->GetDoc()->IsBrowseMode(),
+/*N*/   OSL_ENSURE( GetFmt()->GetDoc()->IsBrowseMode(),
 /*N*/           "CalcBrowseWidth and not in BrowseView" );
 /*N*/
 /*N*/   //Die (minimale) Breite wird von Rahmen, Tabellen und Zeichenobjekten

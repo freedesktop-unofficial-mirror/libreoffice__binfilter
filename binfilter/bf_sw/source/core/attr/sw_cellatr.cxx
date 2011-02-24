@@ -63,7 +63,7 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxNumFormat::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return GetValue() == ((SwTblBoxNumFormat&)rAttr).GetValue() &&
 /*N*/           bAuto == ((SwTblBoxNumFormat&)rAttr).bAuto;
 /*N*/ }
@@ -91,7 +91,7 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxFormula::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*?*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*?*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
  /*?*/  return GetFormula() == ((SwTblBoxFormula&)rAttr).GetFormula() &&
  /*?*/          pDefinedIn == ((SwTblBoxFormula&)rAttr).pDefinedIn;
 /*N*/ }
@@ -152,7 +152,7 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
 
 /*N*/ int SwTblBoxValue::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return nValue == ((SwTblBoxValue&)rAttr).nValue;
 /*N*/ }
 

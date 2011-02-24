@@ -184,7 +184,7 @@ public:
 void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
                                      xub_StrLen nEnd, USHORT nCount )
 {
-   ASSERT( pExportInfo, "Wo sind die Export-Informationen???" );
+   OSL_ENSURE( pExportInfo, "Wo sind die Export-Informationen???" );
    if( !pExportInfo || !nCount )
        return;
 
@@ -220,7 +220,7 @@ void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
 /*N*/   {
 /*N*/       hBatsFontConv = CreateFontToSubsFontConverter( sStarSymbol,
 /*N*/                FONTTOSUBSFONT_EXPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-/*N*/       ASSERT( hBatsFontConv, "Got no symbol font converter" );
+/*N*/       OSL_ENSURE( hBatsFontConv, "Got no symbol font converter" );
 /*N*/   }
 /*N*/   if( hBatsFontConv )
 /*N*/   {
@@ -237,7 +237,7 @@ void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
 /*N*/   {
 /*N*/       hBatsFontConv = CreateFontToSubsFontConverter( sStarBats,
 /*N*/                FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-/*N*/       ASSERT( hBatsFontConv, "Got no symbol font converter" );
+/*N*/       OSL_ENSURE( hBatsFontConv, "Got no symbol font converter" );
 /*N*/   }
 /*N*/   if( hBatsFontConv )
 /*N*/   {
@@ -254,7 +254,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
     {
         hMathFontConv = CreateFontToSubsFontConverter( sStarMath,
                  FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-        ASSERT( hMathFontConv, "Got no symbol font converter" );
+        OSL_ENSURE( hMathFontConv, "Got no symbol font converter" );
     }
     if( hMathFontConv )
     {
@@ -799,7 +799,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/                   InAttrSet( aTmpSet );
 /*?*/                   if( aTmpSet.Count() )
 /*?*/                   {
-/*?*/                       ASSERT( nOffsetL>=0,
+/*?*/                       OSL_ENSURE( nOffsetL>=0,
 /*?*/                               "Offset darf hier nicht negativ sein" );
 /*?*/                       if( 2 == nInsFirstPara )
 /*?*/                           pNd->SetAttr( aTmpSet, 0, aText.Len() );
@@ -878,7 +878,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/               break;
 /*N*/           }
 /*N*/           case SWG_ATTRIBUTE:
-/*N*/               ASSERT( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
+/*N*/               OSL_ENSURE( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
 /*N*/               InTxtAttr( *pNd, aText8, (xub_StrLen)nOffsetL, &pINetFldTexts,
 /*N*/                          &pINetFldPoss, &pErasePoss,
 /*N*/                          &pCharSetColorEncs, &pCharSetColorPoss );
@@ -898,7 +898,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/               }
 /*N*/               break;
 /*N*/           case SWG_MARK:
-/*N*/               ASSERT( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
+/*N*/               OSL_ENSURE( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
 /*N*/               InNodeMark( rPos, (xub_StrLen)nOffsetL );
 /*N*/               break;
 /*N*/
@@ -1103,7 +1103,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/
 /*N*/   if( pINetFldTexts )
 /*N*/   {
-/*N*/       ASSERT( pINetFldPoss, "INet-Feld-Texte ohne Positionen???" );
+/*N*/       OSL_ENSURE( pINetFldPoss, "INet-Feld-Texte ohne Positionen???" );
 /*N*/
 /*N*/       // Es mussen noch Texte von Internet-Feldern eingefuegt werden
 /*N*/
@@ -1150,7 +1150,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/       {
 /*?*/           xub_StrLen nPos = (*pErasePoss)[--i];
 /*?*/
-/*?*/           ASSERT( CH_TXTATR_BREAKWORD == pNd->GetTxt().GetChar( nPos ) ||
+/*?*/           OSL_ENSURE( CH_TXTATR_BREAKWORD == pNd->GetTxt().GetChar( nPos ) ||
 /*?*/                   CH_TXTATR_INWORD == pNd->GetTxt().GetChar( nPos ),
 /*?*/                   "Es sollten nur 0xff geloescht werden" );
 /*?*/
@@ -1390,7 +1390,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/                   {
 /*N*/                       // die SwFmtINetFmt-Attribute sind geschachtelt,
 /*N*/                       // das auessere muss gesplittet werden
-/*N*/                       ASSERT( nHtEnd <= nINetFmtEnd,
+/*N*/                       OSL_ENSURE( nHtEnd <= nINetFmtEnd,
 /*N*/                               "Seit wann koennen sich gleiche Attribute ueberlappen?" );
 /*N*/                       bSplit = TRUE;
 /*N*/                   }
@@ -1401,7 +1401,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/               // laut AMA werden alle anderen Attribute an den Grenzen
 /*N*/               // von SwFmtINetFmt-Attributen aufgespannt. Wenn das mal
 /*N*/               // doch nicht der Fall ist, gibt's einen
-/*N*/               ASSERT( nHtStart >= nINetFmtEnd || nHtEnd <= nINetFmtEnd,
+/*N*/               OSL_ENSURE( nHtStart >= nINetFmtEnd || nHtEnd <= nINetFmtEnd,
 /*N*/                       "Ein Attribut ueberlappt sich mit einen SwFmtINetFmt" );
 /*N*/
 /*N*/               // Attribute im inneren eines SwFmtINetFmt werden ignoriert,
@@ -1448,7 +1448,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/                   nAPos--;
 /*?*/
 /*?*/               // es muss ein Attribut geben, das zuvor geoffent wurde
-/*?*/               ASSERT( nAPos, "kein Attribut gefunden" );
+/*?*/               OSL_ENSURE( nAPos, "kein Attribut gefunden" );
 /*?*/               if( !nAPos )
 /*?*/                   continue;
 /*?*/               nAPos--;
@@ -1459,9 +1459,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/               if( RES_TXTATR_NOEND_BEGIN <= pLastItem->Which() &&
 /*?*/                   RES_TXTATR_NOEND_END > pLastItem->Which())
 /*?*/               {
-/*?*/                   ASSERT( bHtEnd, "zwei Hints ohne Ende an gleicher Pos.?" );
+/*?*/                   OSL_ENSURE( bHtEnd, "zwei Hints ohne Ende an gleicher Pos.?" );
 /*?*/                   // es muss dann aber an der aktuellen Position beginnen
-/*?*/                   ASSERT( pInfo->aItemStarts[nAPos]==nHtStart,
+/*?*/                   OSL_ENSURE( pInfo->aItemStarts[nAPos]==nHtStart,
 /*?*/                           "Text-Attribut ohne Ende an falscher Position" );
 /*?*/                   if( pInfo->aItemStarts[nAPos]==nHtStart )
 /*?*/                       continue;
@@ -1472,14 +1472,14 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*?*/                       continue;
 /*?*/
 /*?*/                   nAPos++;
-/*?*/                   ASSERT( nAPos<pInfo->aItems.Count(),
+/*?*/                   OSL_ENSURE( nAPos<pInfo->aItems.Count(),
 /*?*/                           "Wo ist das SwFmtINetFmt geblieben?" );
 /*?*/                   pLastItem = pInfo->aItems[nAPos];
 /*?*/               }
 /*?*/
 /*?*/               // muss ein SwFmtINetFmt-Attribut sein!
 /*?*/               xub_StrLen nLastEnd = pInfo->aItemEnds[nAPos];
-/*?*/               ASSERT( RES_TXTATR_INETFMT==pLastItem->Which(),
+/*?*/               OSL_ENSURE( RES_TXTATR_INETFMT==pLastItem->Which(),
 /*?*/                       "das umgebende Item muesste ein SwFmtINetFmt sein!!" );
 /*?*/               if( !RES_TXTATR_INETFMT==pLastItem->Which() )
 /*?*/                   continue;
@@ -1641,7 +1641,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/ {
 /*N*/   SwTxtNode *pNd  = &((SwTxtNode&) rNode );
 /*N*/   const SwFmtColl* pColl = &pNd->GetAnyFmtColl();
-/*N*/   ASSERT( pColl != pDoc->GetDfltTxtFmtColl(),
+/*N*/   OSL_ENSURE( pColl != pDoc->GetDfltTxtFmtColl(),
 /*N*/           "the default text format collection isn't allowed on a node" );
 /*N*/   BOOL bNewNumRule = FALSE;
 /*N*/   // 0x0L: Laenge der Daten
@@ -1657,9 +1657,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       const SwNumRule* pNumRule = pNd->GetNumRule();
-/*N*/       ASSERT( pNumRule ? pNdNum!=0 : TRUE,
+/*N*/       OSL_ENSURE( pNumRule ? pNdNum!=0 : TRUE,
 /*N*/               "Node hat NumRule aber kein NodeNum" );
-/*N*/       ASSERT( pNdNum ? pNumRule!=0 : TRUE,
+/*N*/       OSL_ENSURE( pNdNum ? pNumRule!=0 : TRUE,
 /*N*/               "Node hat NodeNum aber keine NumRule" );
 /*N*/   }
 /*N*/ #endif
@@ -1976,9 +1976,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   {
 /*N*/       if( bDrawFmtSkipped )
 /*N*/       {
-/*N*/           ASSERT( bInsIntoHdrFtr,
+/*N*/           OSL_ENSURE( bInsIntoHdrFtr,
 /*?*/                   "Draw-Formate durften nur in Kopf-/Fusszeilen geloecht werden" );
-/*?*/           ASSERT( CH_TXTATR_BREAKWORD == rNd.GetTxt().GetChar(nStart) ||
+/*?*/           OSL_ENSURE( CH_TXTATR_BREAKWORD == rNd.GetTxt().GetChar(nStart) ||
 /*?*/                   CH_TXTATR_INWORD == rNd.GetTxt().GetChar(nStart),
 /*?*/                   "Wo ist das 0xff des Draw-Formats?" );
 /*?*/
@@ -2065,7 +2065,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/           if( '\xff' != rText8.GetChar(nStart-nOffset) )
 /*N*/           {
 /*N*/               nWhich = 0;
-/*N*/               ASSERT( !this, "TextAttribut ohne Ende ohne 0xFF" );
+/*N*/               OSL_ENSURE( !this, "TextAttribut ohne Ende ohne 0xFF" );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -2079,7 +2079,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/                       if( pAttr )
 /*N*/                       {
 /*N*/                           nWhich = 0;
-/*N*/                           ASSERT( !this, "TOXMark ohne Ende doppelt" );
+/*N*/                           OSL_ENSURE( !this, "TOXMark ohne Ende doppelt" );
 /*N*/                       }
 /*N*/                   }
 /*N*/                   break;
@@ -2277,7 +2277,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/                   pPicStrm = pPicStg->OpenStream
 /*N*/                       ( aGrfName, STREAM_READ | STREAM_SHARE_DENYWRITE );
 /*N*/               aGrfName.Erase();   // Ist ja gar kein Grafikname!
-/*N*/               ASSERT( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK, "Grafik nicht gefunden" );
+/*N*/               OSL_ENSURE( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK, "Grafik nicht gefunden" );
 /*N*/               if( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK )
 /*N*/               {
 /*N*/                   // Wenn kein DocFileName gesetzt ist, wird eine TmpFile
@@ -2433,7 +2433,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/   {
 /*N*/       // Suche die richtige Info
 /*N*/       xObjInfo = xSrcDoc->Find( aObjName );
-/*N*/       ASSERT( xObjInfo.Is(), "Keine Objektinfo zum Einfuegen gefunden" );
+/*N*/       OSL_ENSURE( xObjInfo.Is(), "Keine Objektinfo zum Einfuegen gefunden" );
 /*N*/   }
 /*N*/
 /*N*/   if( xObjInfo.Is() )

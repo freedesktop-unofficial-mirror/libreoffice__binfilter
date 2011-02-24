@@ -82,7 +82,7 @@ IO_DETECT_IMPL4
 inline void _SetFltPtr( USHORT& rPos, SwRead pReader, const sal_Char* pNm )
 /* pNm optimiert der Compiler weg, wird nur in der nicht PRODUCT benoetigt! */
 {
-    ASSERT( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
+    OSL_ENSURE( !strcmp( aReaderWriter[ rPos ].pName, pNm ), "falscher Filter" );
     (void)pNm;
     aReaderWriter[ rPos++ ].pReader = pReader;
 }
@@ -94,7 +94,7 @@ void _InitFilter()
     _SetFltPtr( nCnt, ReadSw3, FILTER_SW4 );
     _SetFltPtr( nCnt, ReadSw3, FILTER_SW3 );
 
-    ASSERT( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
+    OSL_ENSURE( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
 }
 
 void _FinitFilter()
@@ -152,7 +152,7 @@ const SfxFilter* SwIoSystem::GetFilterOfFilterTxt( const String& rFilterNm,
 ULONG StgReader::OpenMainStream( SvStorageStreamRef& rRef, USHORT& rBuffSize )
 {
     ULONG nRet = ERR_SWG_READ_ERROR;
-    ASSERT( pStg, "wo ist mein Storage?" );
+    OSL_ENSURE( pStg, "wo ist mein Storage?" );
     const SfxFilter* pFltr = SwIoSystem::GetFilterOfFormat( aFltName );
     if( pFltr )
     {
@@ -196,7 +196,7 @@ ULONG Sw3Reader::Read( SwDoc & /*rDoc*/, SwPaM &rPam, const String & )
     }
     else
     {
-        ASSERT( !this, "Sw3-Read ohne Storage und/oder IO-System" );
+        OSL_ENSURE( !this, "Sw3-Read ohne Storage und/oder IO-System" );
         nRet = ERR_SWG_READ_ERROR;
     }
     return nRet;
@@ -209,7 +209,7 @@ ULONG SwgReader::Read( SwDoc &rDoc, SwPaM &rPam, const String& rFileName )
 {
     if( !pStrm )
     {
-        ASSERT( !this, "SWG-Read ohne Stream" );
+        OSL_ENSURE( !this, "SWG-Read ohne Stream" );
         return ERR_SWG_READ_ERROR;
     }
     SwSwgParser *pSwgParser = new SwSwgParser( &rDoc, &rPam, pStrm,
@@ -243,7 +243,7 @@ BOOL SwReader::NeedsPasswd( const Reader& rOptions )
         if( !pStrm && pMedium && !pMedium->IsStorage() )
             pStrm = pMedium->GetInStream();
 
-        ASSERT( pStrm, "Passwort-Test ohne Stream" );
+        OSL_ENSURE( pStrm, "Passwort-Test ohne Stream" );
         if( pStrm )
         {
             SwSwgParser *pSwgParser = new SwSwgParser( pStrm );
@@ -263,7 +263,7 @@ BOOL SwReader::CheckPasswd( const String& rPasswd, const Reader& rOptions )
         if( !pStrm && pMedium && !pMedium->IsStorage() )
             pStrm = pMedium->GetInStream();
 
-        ASSERT( pStrm, "Passwort-Check ohne Stream" );
+        OSL_ENSURE( pStrm, "Passwort-Check ohne Stream" );
         if( pStrm )
         {
             SwSwgParser *pSwgParser = new SwSwgParser( pStrm );
@@ -653,7 +653,7 @@ rtl_TextEncoding CharSetFromName(const String& rChrSetStr)
          }
      }
 
-     ASSERT(nRet != pStart->eCode, "TXT: That was an unknown language!");
+     OSL_ENSURE(nRet != pStart->eCode, "TXT: That was an unknown language!");
 
     return nRet;
 }
@@ -876,7 +876,7 @@ static LanguageType LanguageFromName(const String& rLngStr)
              break;
          }
      }
-     ASSERT(nRet != pStart->nId, "TXT: That was an unknown language!");
+     OSL_ENSURE(nRet != pStart->nId, "TXT: That was an unknown language!");
     return nRet;
 }
 

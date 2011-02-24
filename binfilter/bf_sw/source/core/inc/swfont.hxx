@@ -790,7 +790,7 @@ public:
 
     SwFont& GetFont()
     {
-        ASSERT( pFnt, "No underline font" )
+        OSL_ENSURE( pFnt, "No underline font" );
         return *pFnt;
     }
     const Point& GetPos() const { return aPos; }

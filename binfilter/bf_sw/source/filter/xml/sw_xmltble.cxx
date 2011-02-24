@@ -188,7 +188,7 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
 
                 if( nBox==nBoxes-1U )
                 {
-                    ASSERT( nLine==0U && nWidth==0UL,
+                    OSL_ENSURE( nLine==0U && nWidth==0UL,
                             "parent width will be lost" );
                     nWidth = nCPos;
                 }
@@ -205,7 +205,7 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
                 else
                 {
                     /*
-                    ASSERT( SwXMLTableColumn_impl(nCheckPos) ==
+                    OSL_ENSURE( SwXMLTableColumn_impl(nCheckPos) ==
                                         SwXMLTableColumn_Impl(nEndCPos),
                     "rows have different total widths" );
                     */
@@ -214,8 +214,8 @@ SwXMLTableLines_Impl::SwXMLTableLines_Impl( const SwTableLines& rLines ) :
                 nCPos = (sal_uInt16)nWidth;
 #ifdef DBG_UTIL
                 SwXMLTableColumn_Impl aCol( (sal_uInt16)nWidth );
-                ASSERT( aCols.Seek_Entry(&aCol), "couldn't find last column" );
-                ASSERT( SwXMLTableColumn_Impl(nCheckPos) ==
+                OSL_ENSURE( aCols.Seek_Entry(&aCol), "couldn't find last column" );
+                OSL_ENSURE( SwXMLTableColumn_Impl(nCheckPos) ==
                                             SwXMLTableColumn_Impl(nCPos),
                         "rows have different total widths" );
 #endif
@@ -681,7 +681,7 @@ void SwXMLExport::ExportTableLinesAutoStyles(
             // Und ihren Index
             sal_uInt16 nOldCol = nCol;
             SwXMLTableColumn_Impl aCol( nCPos );
-            ASSERT( pLines->GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
+            OSL_ENSURE( pLines->GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
 
             const SwStartNode *pBoxSttNd = pBox->GetSttNd();
             if( pBoxSttNd )
@@ -939,7 +939,7 @@ void SwXMLExport::ExportTableLine( const SwTableLine& rLine,
             // Und ihren Index
             sal_uInt16 nOldCol = nCol;
             SwXMLTableColumn_Impl aCol( nCPos );
-            ASSERT( rLines.GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
+            OSL_ENSURE( rLines.GetColumns().Seek_Entry( &aCol, &nCol ), "couldn't find column" );
 
             sal_uInt16 nColSpan = nCol - nOldCol + 1U;
             ExportTableBox( *pBox, nColSpan, rTblInfo );
@@ -959,7 +959,7 @@ void SwXMLExport::ExportTableLines( const SwTableLines& rLines,
                                     SwXMLTableInfo_Impl& rTblInfo,
                                     sal_Bool bHeadline )
 {
-    ASSERT( pTableLines && !pTableLines->empty(),
+    OSL_ENSURE( pTableLines && !pTableLines->empty(),
             "SwXMLExport::ExportTableLines: table columns infos missing" );
     if( !pTableLines || pTableLines->empty() )
         return;
@@ -974,9 +974,9 @@ void SwXMLExport::ExportTableLines( const SwTableLines& rLines,
             break;
         }
     }
-    ASSERT( pLines,
+    OSL_ENSURE( pLines,
             "SwXMLExport::ExportTableLines: table columns info missing" );
-    ASSERT( 0==nInfoPos,
+    OSL_ENSURE( 0==nInfoPos,
             "SwXMLExport::ExportTableLines: table columns infos are unsorted" );
     if( !pLines )
         return;
@@ -1149,16 +1149,16 @@ void SwXMLTextParagraphExport::exportTable(
         {
             pXTable = (SwXTextTable*)xTableTunnel->getSomething(
                                             SwXTextTable::getUnoTunnelId() );
-            ASSERT( pXTable, "SwXTextTable missing" );
+            OSL_ENSURE( pXTable, "SwXTextTable missing" );
         }
         if( pXTable )
         {
             SwFrmFmt *pFmt = pXTable->GetFrmFmt();
-            ASSERT( pFmt, "table format missing" );
+            OSL_ENSURE( pFmt, "table format missing" );
             const SwTable *pTbl = SwTable::FindTable( pFmt );
-            ASSERT( pTbl, "table missing" );
+            OSL_ENSURE( pTbl, "table missing" );
             const SwTableNode *pTblNd = pTbl->GetTableNode();
-            ASSERT( pTblNd, "table node missing" );
+            OSL_ENSURE( pTblNd, "table node missing" );
             if( bAutoStyles )
             {
                 ((SwXMLExport&)GetExport()).ExportTableAutoStyles( *pTblNd );

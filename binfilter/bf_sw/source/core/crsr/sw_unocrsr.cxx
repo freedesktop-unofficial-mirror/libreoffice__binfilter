@@ -65,7 +65,7 @@ namespace binfilter {
 /*N*/       if( USHRT_MAX != nDelPos )
 /*N*/           rTbl.Remove( nDelPos );
 /*N*/       else
-/*N*/           ASSERT( !this, "UNO Cursor nicht mehr im Array" );
+/*N*/           OSL_ENSURE( !this, "UNO Cursor nicht mehr im Array" );
 /*N*/   }
 /*N*/
 /*N*/   // den gesamten Ring loeschen!

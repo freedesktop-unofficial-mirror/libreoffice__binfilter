@@ -62,7 +62,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwTxtNode *pNode = pNewFrm->GetTxtNode();
 /*N*/
-/*N*/   ASSERT( pNewFrm->GetPara(), "No paragraph" );
+/*N*/   OSL_ENSURE( pNewFrm->GetPara(), "No paragraph" );
 /*N*/
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/     SwAttrIter::CtorInit( *pNode, pNewFrm->GetPara()->GetScriptInfo(), pNewFrm );
@@ -315,7 +315,7 @@ namespace binfilter {
 /*?*/                 nOfst += nPorAscent;
 /*?*/                 break;
 /*?*/             case SvxParaVertAlignItem::CENTER :
-/*?*/                 ASSERT( rLine.Height() >= nPorHeight, "Portion height > Line height");
+/*?*/                 OSL_ENSURE( rLine.Height() >= nPorHeight, "Portion height > Line height");
 /*?*/                 nOfst += ( rLine.Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/                 break;
 /*?*/             case SvxParaVertAlignItem::BOTTOM :
@@ -349,7 +349,7 @@ namespace binfilter {
 /*N*/             nOfst += nPorAscent;
 /*N*/             break;
 /*N*/         case SvxParaVertAlignItem::CENTER :
-/*N*/             ASSERT( rLine.Height() >= nPorHeight, "Portion height > Line height");
+/*N*/             OSL_ENSURE( rLine.Height() >= nPorHeight, "Portion height > Line height");
 /*N*/             nOfst += ( rLine.Height() - nPorHeight ) / 2 + nPorAscent;
 /*N*/             break;
 /*N*/         case SvxParaVertAlignItem::BOTTOM :
@@ -482,7 +482,7 @@ namespace binfilter {
 /*N*/      pOut( rInfo.GetOut() ),
 /*N*/      bOnWin( rInfo.OnWin() )
 /*N*/ {
-/*N*/     ASSERT( rInfo.GetRefDev(), "No reference device for text formatting" )
+/*N*/     OSL_ENSURE( rInfo.GetRefDev(), "No reference device for text formatting" );
 /*N*/
 /*N*/     // set new values
 /*N*/     rInfo.SetOut( rInfo.GetRefDev() );

@@ -457,7 +457,7 @@ public:
 /*M*/   if( rInf.IsNumDone() )
 /*M*/   {
 /*M*/ //        SetAscent( rInf.GetAscent() );
-/*M*/         ASSERT( Height() && nAscent, "NumberPortions without Height | Ascent" )
+/*M*/         OSL_ENSURE( Height() && nAscent, "NumberPortions without Height | Ascent" );
 /*M*/
 /*M*/       long nDiff = rInf.Left() - rInf.First() + rInf.ForcedLeftMargin();
 /*M*/       // Ein Vorschlag von Juergen und Volkmar:

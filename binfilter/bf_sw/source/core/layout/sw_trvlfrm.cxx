@@ -425,9 +425,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ASSERT( pActual, "Keinen Cntnt gefunden." );
+/*N*/   OSL_ENSURE( pActual, "Keinen Cntnt gefunden." );
 /*N*/   if ( bBodyOnly )
-/*N*/       ASSERT( pActual->IsInDocBody(), "Cnt nicht im Body." );
+/*N*/       OSL_ENSURE( pActual->IsInDocBody(), "Cnt nicht im Body." );
 /*N*/ #endif
 /*N*/
 /*N*/   //Spezialfall fuer das selektieren von Tabellen, nicht in wiederholte
@@ -575,7 +575,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // CntntFrm nicht formatiert -> immer auf Node-Anfang
 /*?*/       SwCntntNode* pCNd = (SwCntntNode*)pAct->GetNode();
-/*?*/       ASSERT( pCNd, "Wo ist mein CntntNode?" );
+/*?*/       OSL_ENSURE( pCNd, "Wo ist mein CntntNode?" );
 /*?*/       rPos.nNode = *pCNd;
 /*?*/       rPos.nContent.Assign( pCNd, 0 );
 /*N*/   }
@@ -739,7 +739,7 @@ namespace binfilter {
 /*N*/           pDesc = (SwPageDesc*)&pDoc->GetPageDesc( 0 );
 /*N*/       }
 /*N*/   }
-/*N*/   ASSERT( pDesc, "No pagedescriptor" );
+/*N*/   OSL_ENSURE( pDesc, "No pagedescriptor" );
 /*N*/   BOOL bOdd;
 /*N*/   if( nPgNum )
 /*N*/       bOdd = nPgNum % 2 ? TRUE : FALSE;

@@ -115,7 +115,7 @@ using namespace ::rtl;
 /*N*/   if( !pDoc )
 /*N*/   {
 /*N*/ //MA: Kommt bei der OLE-Registration vor!
-/*N*/ //        ASSERT( !this, "DocShell ist nicht richtig initialisiert!" );
+/*N*/ //        OSL_ENSURE( !this, "DocShell ist nicht richtig initialisiert!" );
 /*N*/       return ;
 /*N*/   }
 /*N*/

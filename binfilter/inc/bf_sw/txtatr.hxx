@@ -84,7 +84,7 @@ public:
 
 inline const SwTxtNode& SwTxtCharFmt::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtCharFmt:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtCharFmt:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 

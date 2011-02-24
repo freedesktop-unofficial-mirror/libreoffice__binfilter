@@ -92,14 +92,14 @@ namespace binfilter {
 
 /*N*/ void MA_FASTCALL lcl_RemoveColumns( SwLayoutFrm *pCont, USHORT nCnt )
 /*N*/ {
-/*N*/   ASSERT( pCont && pCont->Lower() && pCont->Lower()->IsColumnFrm(),
+/*N*/   OSL_ENSURE( pCont && pCont->Lower() && pCont->Lower()->IsColumnFrm(),
 /*N*/           "Keine Spalten zu entfernen." );
 /*N*/
 /*N*/   SwColumnFrm *pColumn = (SwColumnFrm*)pCont->Lower();
 /*N*/   ::binfilter::lcl_RemoveFtns( pColumn, TRUE, TRUE );
 /*N*/   while ( pColumn->GetNext() )
 /*N*/   {
-/*N*/       ASSERT( pColumn->GetNext()->IsColumnFrm(),
+/*N*/       OSL_ENSURE( pColumn->GetNext()->IsColumnFrm(),
 /*N*/               "Nachbar von ColFrm kein ColFrm." );
 /*N*/       pColumn = (SwColumnFrm*)pColumn->GetNext();
 /*N*/   }
@@ -236,7 +236,7 @@ namespace binfilter {
 /*N*/   if( nOldNum != nNewNum || bChgFtn )
 /*N*/   {
 /*N*/       SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/       ASSERT( pDoc, "FrmFmt gibt kein Dokument her." );
+/*N*/       OSL_ENSURE( pDoc, "FrmFmt gibt kein Dokument her." );
 /*N*/       // SaveCntnt wuerde auch den Inhalt der Fussnotencontainer aufsaugen
 /*N*/       // und im normalen Textfluss unterbringen.
 /*N*/       if( IsPageBodyFrm() )

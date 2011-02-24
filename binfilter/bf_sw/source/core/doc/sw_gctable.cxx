@@ -425,7 +425,7 @@ struct _GCLinePara
 /*N*/           SwTableLines& rLns = *pGCPara->pLns;
 /*N*/           const SwTableLine* pTmp = pLn;
 /*N*/           USHORT nInsPos = rLns.GetPos( pTmp );
-/*N*/           ASSERT( USHRT_MAX != nInsPos, "Line nicht gefunden!" );
+/*N*/           OSL_ENSURE( USHRT_MAX != nInsPos, "Line nicht gefunden!" );
 /*N*/
 /*N*/           SwTableBox* pUpper = pLn->GetUpper();
 /*N*/

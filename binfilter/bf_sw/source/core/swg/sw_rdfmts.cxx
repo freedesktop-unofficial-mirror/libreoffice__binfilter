@@ -275,7 +275,7 @@ SwFmt* SwSwgReader::InFormat( SwFmt* pFmt, USHORT* pParentId )
                                                 pDoc->GetFrmFmts() )) )
                             pFmt = _GetUserPoolFmt( nPoolId,
                                                 pDoc->GetSpzFrmFmts() );
-                        ASSERT( pFmt, "Format not found." );
+                        OSL_ENSURE( pFmt, "Format not found." );
                     }
                     else
                         pFmt = pDoc->GetFrmFmtFromPool( nPoolId );
@@ -537,7 +537,7 @@ void SwSwgReader::InTxtFmtColl( short nIdx )
     if( !pColl && nPoolId != IDX_NO_VALUE && !IsPoolUserFmt( nPoolId ))
     {
         pColl = pDoc->GetTxtCollFromPool( nPoolId );
-        ASSERT( pColl, "Keine TxtColl fuer PoolId gefunden" );
+        OSL_ENSURE( pColl, "Keine TxtColl fuer PoolId gefunden" );
         if( !pColl )
             nPoolId = IDX_NO_VALUE;
     }
@@ -902,7 +902,7 @@ void SwSwgReader::RegisterFmt( SwFmt& rFmt, const SwTable *pTable )
         memset( pFmts, 0, MAXFMTS * sizeof( FmtInfo ) );
     }
     // Bereits registriert?
-    ASSERT( pFmts[ nIdx ].pFmt == 0, "Format bereits registriert!" );
+    OSL_ENSURE( pFmts[ nIdx ].pFmt == 0, "Format bereits registriert!" );
 
     pFmts[ nIdx ].pFmt = &rFmt;
     pFmts[ nIdx ].cFmt = FINFO_FORMAT;
@@ -927,7 +927,7 @@ void SwSwgReader::RegisterAttrSet( SfxItemSet* pSet, USHORT nIdx )
         memset( pFmts, 0, MAXFMTS * sizeof( FmtInfo ) );
     }
     // Bereits registriert?
-    ASSERT( pFmts[ nIdx ].pSet == 0, "AttrSet bereits registriert!" );
+    OSL_ENSURE( pFmts[ nIdx ].pSet == 0, "AttrSet bereits registriert!" );
     pFmts[ nIdx ].pSet = pSet;
     pFmts[ nIdx ].cFmt = 0;
     if( nStatus & SWGSTAT_LOCALFMTS )
@@ -996,7 +996,7 @@ SwFmt* SwSwgReader::FindFmt( USHORT nIdx, BYTE cKind )
             if( pFmts && pFmts[ nIdx ].cFmt & FINFO_FORMAT )
                 pFmt = pFmts[ nIdx ].pFmt;
     }
-    ASSERT( pFmt, "Format-ID unbekannt" );
+    OSL_ENSURE( pFmt, "Format-ID unbekannt" );
     return pFmt;
 }
 
@@ -1015,7 +1015,7 @@ SfxItemSet* SwSwgReader::FindAttrSet( USHORT nIdx )
     SfxItemSet* pSet = NULL;
     if( pFmts && !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) )
         pSet = pFmts[ nIdx ].pSet;
-    ASSERT( pSet, "Format-ID (AttrSet) unbekannt" );
+    OSL_ENSURE( pSet, "Format-ID (AttrSet) unbekannt" );
     return pSet;
 }
 
@@ -1040,9 +1040,9 @@ void SwSwgReader::ReRegisterFmt( const SwFmt& rFmtOld, const SwFmt& rFmtNew,
     if( !nIdx )
         nIdx = rFmtNew.nFmtId;
     ((SwFmt&)rFmtNew).nFmtId = nIdx;
-    ASSERT( nIdx, "Format nicht registriert" );
+    OSL_ENSURE( nIdx, "Format nicht registriert" );
     nIdx &= ~IDX_TYPEMASK;
-    ASSERT( !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) ||
+    OSL_ENSURE( !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) ||
             !pFmts[ nIdx ].pSet ||
             pFmts[ nIdx ].pFmt == (SwFmt*) &rFmtNew ||
             (pTable && pTable != FindTable(nIdx)),

@@ -116,7 +116,7 @@ namespace binfilter {
 //       frame and its insert in the layout.
 /*N*/ void SwSectionFrm::Init()
 /*N*/ {
-/*N*/     ASSERT( GetUpper(), "SwSectionFrm::Init before insertion?!" );
+/*N*/     OSL_ENSURE( GetUpper(), "SwSectionFrm::Init before insertion?!" );
 /*N*/     SWRECTFN( this )
 /*N*/     long nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/     (Frm().*fnRect->fnSetWidth)( nWidth );
@@ -176,7 +176,7 @@ namespace binfilter {
 
 /*N*/ SwSectionFrm *SwSectionFrm::FindSectionMaster()
 /*N*/ {
-/*N*/   ASSERT( IsFollow(), "FindSectionMaster: !IsFollow" );
+/*N*/   OSL_ENSURE( IsFollow(), "FindSectionMaster: !IsFollow" );
 /*N*/   SwClientIter aIter( *(pSection->GetFmt()) );
 /*N*/   SwClient *pLast = aIter.GoStart();
 /*N*/   while ( pLast )
@@ -202,7 +202,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( IsColLocked() )
 /*N*/   {
-/*N*/       ASSERT( !bRemove, "Don't delete locked SectionFrms" );
+/*N*/       OSL_ENSURE( !bRemove, "Don't delete locked SectionFrms" );
 /*N*/       return;
 /*N*/   }
 /*N*/   SwFrm* pUp = GetUpper();
@@ -252,7 +252,7 @@ namespace binfilter {
 
 /*N*/ void SwSectionFrm::_Cut( BOOL bRemove )
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "Cut ohne Upper()." );
+/*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
 /*N*/
 /*N*/   PROTOCOL( this, PROT_CUT, 0, GetUpper() )
 /*N*/
@@ -522,7 +522,7 @@ namespace binfilter {
 /*N*/   // jetzt koennen eventuell zwei Teile des uebergeordneten Bereich verschmelzen
 /*N*/   if( pPrvSct && !pPrvSct->IsJoinLocked() )
 /*N*/   {
-/*N*/       ASSERT( pNxtSct, "MoveCntnt: No Merge" );
+/*N*/       OSL_ENSURE( pNxtSct, "MoveCntnt: No Merge" );
 /*N*/       pPrvSct->MergeNext( pNxtSct );
 /*N*/   }
 /*N*/ }
@@ -533,7 +533,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*?*/       ASSERT( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ), "SectionFrm without Section" );
+/*?*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ), "SectionFrm without Section" );
 /*?*/       if( !bValidPos )
 /*?*/       {
 /*?*/             if( GetUpper() )
@@ -756,7 +756,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( IsJoinLocked() || IsColLocked() )
 /*N*/       return;
-/*N*/   // ASSERT( pFollow, "SimpleFormat: Follow required" );
+/*N*/   // OSL_ENSURE( pFollow, "SimpleFormat: Follow required" );
 /*N*/   LockJoin();
 /*N*/     SWRECTFN( this )
 /*N*/     if( GetPrev() || GetUpper() )
@@ -793,7 +793,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*N*/       ASSERT( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ),
+/*N*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ),
 /*N*/                "SectionFrm without Section" );
 /*N*/       bValidSize = bValidPos = bValidPrtArea = TRUE;
 /*N*/       return;
@@ -1016,7 +1016,7 @@ namespace binfilter {
 /*N*/ //    SwSectionFrm *pSect = GetUpper()->FindSctFrm();
 /*N*/   SwSectionFrm *pSect = FindSctFrm();
 /*N*/   BOOL bWrongPage = FALSE;
-/*N*/   ASSERT( pSect, "GetNextSctLeaf: Missing SectionFrm" );
+/*N*/   OSL_ENSURE( pSect, "GetNextSctLeaf: Missing SectionFrm" );
 /*N*/
 /*N*/   // Hier eine Abkuerzung fuer Bereiche mit Follows,
 /*N*/   // dieser kann akzeptiert werden, wenn keine Spalten oder Seiten (ausser Dummyseiten)
@@ -1182,7 +1182,7 @@ namespace binfilter {
 /*N*/                       pNxt = (SwSectionFrm*)pTmp;
 /*N*/                   else
 /*N*/                   {
-/*?*/                       ASSERT( pTmp->IsTabFrm(), "GetNextSctLeaf: Wrong Type" );
+/*?*/                       OSL_ENSURE( pTmp->IsTabFrm(), "GetNextSctLeaf: Wrong Type" );
 /*?*/                       pNxt = (SwTabFrm*)pTmp;
 /*N*/                   }
 /*N*/                   while( !pNxtCntnt && 0 != ( pTmp = pTmp->GetNext() ) )
@@ -1270,7 +1270,7 @@ namespace binfilter {
 /*N*/   // nur ein Spaltenwechsel erfolgen, eine der oberen Abkuerzungen haette
 /*N*/   // zuschlagen muessen, ebenso wenn der Bereich einen pPrev hat.
 /*N*/   // Jetzt ziehen wir sogar eine leere Spalte in Betracht...
-/*N*/   ASSERT( FindSctFrm(), "GetNextSctLeaf: Missing SectionFrm" );
+/*N*/   OSL_ENSURE( FindSctFrm(), "GetNextSctLeaf: Missing SectionFrm" );
 /*N*/   if( ( IsInTab() && !IsTabFrm() ) || FindFooterOrHeader() )
 /*?*/       return pCol;
 /*N*/
@@ -1690,7 +1690,7 @@ namespace binfilter {
 /*N*/ SwFrm* SwFrm::_GetIndPrev()
 /*N*/ {
 /*N*/   SwFrm *pRet = NULL;
-/*N*/   ASSERT( !pPrev && IsInSct(), "Why?" );
+/*N*/   OSL_ENSURE( !pPrev && IsInSct(), "Why?" );
 /*N*/   SwFrm* pSct = GetUpper();
 /*N*/   if( !pSct )
 /*?*/       return NULL;
@@ -1702,8 +1702,8 @@ namespace binfilter {
 /*?*/       SwFrm* pCol = GetUpper()->GetUpper()->GetPrev();
 /*?*/       while( pCol )
 /*?*/       {
-/*?*/           ASSERT( pCol->IsColumnFrm(), "GetIndPrev(): ColumnFrm expected" );
-/*?*/           ASSERT( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
+/*?*/           OSL_ENSURE( pCol->IsColumnFrm(), "GetIndPrev(): ColumnFrm expected" );
+/*?*/           OSL_ENSURE( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
 /*?*/                   "GetIndPrev(): Where's the body?");
 /*?*/           if( ((SwLayoutFrm*)((SwLayoutFrm*)pCol)->Lower())->Lower() )
 /*?*/               return NULL;
@@ -1719,7 +1719,7 @@ namespace binfilter {
 
 /*N*/ SwFrm* SwFrm::_GetIndNext()
 /*N*/ {
-/*N*/   ASSERT( !pNext && IsInSct(), "Why?" );
+/*N*/   OSL_ENSURE( !pNext && IsInSct(), "Why?" );
 /*N*/   SwFrm* pSct = GetUpper();
 /*N*/   if( !pSct )
 /*?*/       return NULL;
@@ -1731,8 +1731,8 @@ namespace binfilter {
 /*?*/       SwFrm* pCol = GetUpper()->GetUpper()->GetNext();
 /*?*/       while( pCol )
 /*?*/       {
-/*?*/           ASSERT( pCol->IsColumnFrm(), "GetIndNext(): ColumnFrm expected" );
-/*?*/           ASSERT( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
+/*?*/           OSL_ENSURE( pCol->IsColumnFrm(), "GetIndNext(): ColumnFrm expected" );
+/*?*/           OSL_ENSURE( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
 /*?*/                   "GetIndNext(): Where's the body?");
 /*?*/           if( ((SwLayoutFrm*)((SwLayoutFrm*)pCol)->Lower())->Lower() )
 /*?*/               return NULL;
@@ -1949,7 +1949,7 @@ namespace binfilter {
 /*N*/   if( pCont )
 /*N*/   {
 /*?*/       pLay = pCont->FindFtnBossFrm( NULL );
-/*?*/       ASSERT( IsAnLower( pLay ), "ConatainsFtnCont: Wrong FtnContainer" );
+/*?*/       OSL_ENSURE( IsAnLower( pLay ), "ConatainsFtnCont: Wrong FtnContainer" );
 /*?*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/   }
 /*N*/   else if( Lower() && Lower()->IsColumnFrm() )
@@ -1960,11 +1960,11 @@ namespace binfilter {
 /*N*/   {
 /*?*/       if( pLay->Lower() && pLay->Lower()->GetNext() )
 /*?*/       {
-/*?*/           ASSERT( pLay->Lower()->GetNext()->IsFtnContFrm(),
+/*?*/           OSL_ENSURE( pLay->Lower()->GetNext()->IsFtnContFrm(),
 /*?*/                   "ToMaximize: Unexspected Frame" );
 /*?*/           pRet = (SwFtnContFrm*)pLay->Lower()->GetNext();
 /*?*/       }
-/*?*/       ASSERT( !pLay->GetNext() || pLay->GetNext()->IsLayoutFrm(),
+/*?*/       OSL_ENSURE( !pLay->GetNext() || pLay->GetNext()->IsLayoutFrm(),
 /*?*/               "ToMaximize: ColFrm exspected" );
 /*?*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/   }
@@ -2059,12 +2059,12 @@ namespace binfilter {
 
 /*N*/ void SwRootFrm::_DeleteEmptySct()
 /*N*/ {
-/*N*/   ASSERT( pDestroy, "Keine Liste, keine Kekse" );
+/*N*/   OSL_ENSURE( pDestroy, "Keine Liste, keine Kekse" );
 /*N*/   while( pDestroy->Count() )
 /*N*/   {
 /*N*/       SwSectionFrm* pSect = (*pDestroy)[0];
 /*N*/       pDestroy->Remove( USHORT(0) );
-/*N*/       ASSERT( !pSect->IsColLocked() && !pSect->IsJoinLocked(),
+/*N*/       OSL_ENSURE( !pSect->IsColLocked() && !pSect->IsJoinLocked(),
 /*N*/               "DeleteEmptySct: Locked SectionFrm" );
 /*N*/       if( !pSect->Frm().HasArea() && !pSect->ContainsCntnt() )
 /*N*/       {
@@ -2084,13 +2084,13 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       else
-/*?*/           ASSERT( pSect->GetSection(), "DeleteEmptySct: Halbtoter SectionFrm?!" );
+/*?*/           OSL_ENSURE( pSect->GetSection(), "DeleteEmptySct: Halbtoter SectionFrm?!" );
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SwRootFrm::_RemoveFromList( SwSectionFrm* pSct )
 /*N*/ {
-/*N*/   ASSERT( pDestroy, "Where's my list?" );
+/*N*/   OSL_ENSURE( pDestroy, "Where's my list?" );
 /*N*/   USHORT nPos;
 /*N*/   if( pDestroy->Seek_Entry( pSct, &nPos ) )
 /*?*/       pDestroy->Remove( nPos );

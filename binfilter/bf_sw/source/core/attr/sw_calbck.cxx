@@ -101,7 +101,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/   if( pRegisteredIn && pRegisteredIn->GetDepends() )
 /*N*/       pRegisteredIn->Remove( this );
 /*N*/
-/*N*/   ASSERT( !IsModifyLocked(), "Modify destroyed but locked." );
+/*N*/   OSL_ENSURE( !IsModifyLocked(), "Modify destroyed but locked." );
 /*N*/ }
 
 
@@ -262,7 +262,7 @@ static SwClientIter* pClientIters = 0;
 
 /*N*/ void SwModify::Add(SwClient *pDepend)
 /*N*/ {
-/*N*/   ASSERT( !bInModify, "Client innerhalb des eigenen Modifies einfuegen?" );
+/*N*/   OSL_ENSURE( !bInModify, "Client innerhalb des eigenen Modifies einfuegen?" );
 /*N*/
 /*N*/   // nur wenn das hier noch nicht eingetragen ist einfuegen
 /*N*/   if(pDepend->pRegisteredIn != this )
@@ -271,7 +271,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/       SwClientIter* pTmp = pClientIters;
 /*N*/       while( pTmp )
 /*N*/       {
-/*N*/           ASSERT( &pTmp->rRoot != pRoot,
+/*N*/           OSL_ENSURE( &pTmp->rRoot != pRoot,
 /*N*/               "Client beim angemeldeten ClientIter einfuegen?" );
 /*N*/           pTmp = pTmp->pNxtIter;
 /*N*/       }
@@ -311,7 +311,7 @@ static SwClientIter* pClientIters = 0;
 
 /*N*/ SwClient *SwModify::_Remove(SwClient * pDepend)
 /*N*/ {
-/*N*/   ASSERT( !bInModify, "Client innerhalb des eigenen Modifies loeschen?" );
+/*N*/   OSL_ENSURE( !bInModify, "Client innerhalb des eigenen Modifies loeschen?" );
 /*N*/
 /*N*/   // loesche das Object aus der Liste und setze den
 /*N*/   // Registrierungs-Pointer zurueck
@@ -340,7 +340,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/       pDepend->pRight = 0;
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( FALSE, "SwModify::Remove(): pDepend nicht gefunden");
+/*N*/       OSL_ENSURE( FALSE, "SwModify::Remove(): pDepend nicht gefunden");
 /*N*/   pDepend->pRegisteredIn = 0;
 /*N*/   return pDepend;
 /*N*/ }
@@ -460,7 +460,7 @@ static SwClientIter* pClientIters = 0;
 /*N*/           while( pTmp->pNxtIter != this )
 /*N*/               if( 0 == ( pTmp = pTmp->pNxtIter ) )
 /*N*/               {
-/*N*/                   ASSERT( this, "wo ist mein Pointer" );
+/*N*/                   OSL_ENSURE( this, "wo ist mein Pointer" );
 /*N*/                   return ;
 /*N*/               }
 /*N*/           pTmp->pNxtIter = pNxtIter;

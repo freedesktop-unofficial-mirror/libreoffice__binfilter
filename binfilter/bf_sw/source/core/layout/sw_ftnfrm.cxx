@@ -75,7 +75,7 @@ namespace binfilter {
 /*?*/           return ULONG(nRet) + ENDNOTE;
 /*N*/       return nRet;
 /*N*/   }
-/*?*/   ASSERT( !pDoc, "FtnPos not found." );
+/*?*/   OSL_ENSURE( !pDoc, "FtnPos not found." );
 /*?*/   return 0;
 /*N*/ }
 
@@ -104,7 +104,7 @@ namespace binfilter {
 /*?*/           SwSectionFrm* pSct = rpBoss->FindSctFrm()->GetFollow();
 /*?*/           if( pSct )
 /*?*/           {
-/*?*/               ASSERT( pSct->Lower() && pSct->Lower()->IsColumnFrm(),
+/*?*/               OSL_ENSURE( pSct->Lower() && pSct->Lower()->IsColumnFrm(),
 /*?*/                       "Where's the column?" );
 /*?*/               rpBoss = (SwColumnFrm*)pSct->Lower();
 /*?*/               SwPageFrm* pOld = rpPage;
@@ -309,7 +309,7 @@ namespace binfilter {
 /*N*/   //soviel Platz wie eben moeglich.
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if ( !GetUpper() || !GetUpper()->IsFtnBossFrm() )
-/*?*/   {   ASSERT( !this, "Keine FtnBoss." );
+/*?*/   {   OSL_ENSURE( !this, "Keine FtnBoss." );
 /*?*/       return 0;
 /*N*/   }
 /*N*/ #endif
@@ -323,7 +323,7 @@ namespace binfilter {
 /*N*/   if( IsInSct() )
 /*N*/   {
 /*?*/       SwSectionFrm* pSect = FindSctFrm();
-/*?*/       ASSERT( pSect, "GrowFrm: Missing SectFrm" );
+/*?*/       OSL_ENSURE( pSect, "GrowFrm: Missing SectFrm" );
 /*?*/       // In a section, which has to maximize, a footnotecontainer is allowed
 /*?*/       // to grow, when the section can't grow anymore.
 /*?*/       if( !bTst && !pSect->IsColLocked() &&
@@ -601,11 +601,11 @@ namespace binfilter {
 
 /*N*/ void SwFtnFrm::Paste(  SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -625,7 +625,7 @@ namespace binfilter {
 /*N*/   //Wenn mein Vorgaenger mein Master ist und/oder wenn mein Nachfolger mein
 /*N*/   //Follow ist so kann ich deren Inhalt uebernehmen und sie vernichten.
 /*N*/   if ( GetPrev() && GetPrev() == GetMaster() )
-/*?*/   {   ASSERT( SwFlowFrm::CastFlowFrm( GetPrev()->GetLower() ),
+/*?*/   {   OSL_ENSURE( SwFlowFrm::CastFlowFrm( GetPrev()->GetLower() ),
 /*?*/               "Fussnote ohne Inhalt?" );
 /*?*/       (SwFlowFrm::CastFlowFrm( GetPrev()->GetLower()))->
 /*?*/           MoveSubTree( this, GetLower() );
@@ -634,7 +634,7 @@ namespace binfilter {
 /*?*/       delete pDel;
 /*N*/   }
 /*N*/   if ( GetNext() && GetNext() == GetFollow() )
-/*?*/   {   ASSERT( SwFlowFrm::CastFlowFrm( GetNext()->GetLower() ),
+/*?*/   {   OSL_ENSURE( SwFlowFrm::CastFlowFrm( GetNext()->GetLower() ),
 /*?*/               "Fussnote ohne Inhalt?" );
 /*?*/       (SwFlowFrm::CastFlowFrm( GetNext()->GetLower()))->MoveSubTree( this );
 /*?*/       SwFrm *pDel = GetNext();
@@ -645,12 +645,12 @@ namespace binfilter {
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/   if ( GetPrev() )
 /*N*/   {
-/*N*/       ASSERT( lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetPrev())->GetAttr() ) <=
+/*N*/       OSL_ENSURE( lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetPrev())->GetAttr() ) <=
 /*?*/               lcl_FindFtnPos( pDoc, GetAttr() ), "Prev ist not FtnPrev" );
 /*N*/   }
 /*N*/   if ( GetNext() )
 /*N*/   {
-/*?*/       ASSERT( lcl_FindFtnPos( pDoc, GetAttr() ) <=
+/*?*/       OSL_ENSURE( lcl_FindFtnPos( pDoc, GetAttr() ) <=
 /*?*/               lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetNext())->GetAttr() ),
 /*?*/               "Next is not FtnNext" );
 /*N*/   }
@@ -726,7 +726,7 @@ namespace binfilter {
 /*N*/       if ( pCont )
 /*N*/       {
 /*?*/           SwFtnFrm *pFtn = (SwFtnFrm*)pCont->Lower();
-/*?*/           ASSERT( pFtn, "FtnCont ohne Ftn." );
+/*?*/           OSL_ENSURE( pFtn, "FtnCont ohne Ftn." );
 /*?*/           if ( bPageOnly )
 /*?*/               while ( pFtn->GetMaster() )
 /*?*/                   pFtn = pFtn->GetMaster();
@@ -838,7 +838,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if ( FindFtnCont() )
-/*?*/   {   ASSERT( !this, "Fussnotencontainer bereits vorhanden." );
+/*?*/   {   OSL_ENSURE( !this, "Fussnotencontainer bereits vorhanden." );
 /*?*/       return 0;
 /*N*/   }
 /*N*/ #endif
@@ -866,10 +866,10 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if ( pFrm )
 /*N*/   {
 /*N*/       SwFrm *pFtn = pFrm->GetLower();
-/*N*/       ASSERT( pFtn, "Cont ohne Fussnote." );
+/*N*/       OSL_ENSURE( pFtn, "Cont ohne Fussnote." );
 /*N*/       while ( pFtn )
 /*N*/       {
-/*N*/           ASSERT( pFtn->IsFtnFrm(), "Nachbar von Fussnote keine Fussnote." );
+/*N*/           OSL_ENSURE( pFtn->IsFtnFrm(), "Nachbar von Fussnote keine Fussnote." );
 /*N*/           pFtn = pFtn->GetNext();
 /*N*/       }
 /*N*/   }
@@ -937,7 +937,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if( pRet )
 /*N*/   {
 /*N*/       pBoss = pRet->GetRef()->FindFtnBossFrm();
-/*N*/       ASSERT( pBoss, "FindFirstFtn: No boss found" );
+/*N*/       OSL_ENSURE( pBoss, "FindFirstFtn: No boss found" );
 /*N*/       if( !pBoss )
 /*?*/           return FALSE; // �There must be a bug, but no GPF
 /*N*/       pPage = pBoss->FindPageFrm();
@@ -1049,7 +1049,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ {
 /*N*/   //Vernichten der Inkarnationen von Fussnoten zum Attribut, wenn sie nicht
 /*N*/   //zu pAssumed gehoeren.
-/*N*/   ASSERT( !pCheck->GetMaster(), "Master not an Master." );
+/*N*/   OSL_ENSURE( !pCheck->GetMaster(), "Master not an Master." );
 /*N*/
 /*N*/   SwNodeIndex aIdx( *pCheck->GetAttr()->GetStartNode(), 1 );
 /*N*/   SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
@@ -1193,7 +1193,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           //werden.
 /*?*/           pSibling = (SwFtnFrm*)pParent->Lower();
 /*?*/           if ( !pSibling )
-/*?*/           {   ASSERT( !this, "Keinen Platz fuer Fussnote gefunden.");
+/*?*/           {   OSL_ENSURE( !this, "Keinen Platz fuer Fussnote gefunden.");
 /*?*/               return;
 /*?*/           }
 /*?*/           nCmpPos  = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
@@ -1212,7 +1212,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               if ( pSibling->GetNext() )
 /*?*/               {
 /*?*/                   pSibling = (SwFtnFrm*)pSibling->GetNext();
-/*?*/                   ASSERT( !pSibling->GetMaster() || ( ENDNOTE > nStPos &&
+/*?*/                   OSL_ENSURE( !pSibling->GetMaster() || ( ENDNOTE > nStPos &&
 /*?*/                           pSibling->GetAttr()->GetFtn().IsEndNote() ),
 /*?*/                           "InsertFtn: Master expected I" );
 /*?*/               }
@@ -1234,7 +1234,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               if ( pSibling )
 /*?*/               {
 /*?*/                   nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
-/*?*/                   ASSERT( nCmpPos > nLastPos, "InsertFtn: Order of FtnFrm's buggy" );
+/*?*/                   OSL_ENSURE( nCmpPos > nLastPos, "InsertFtn: Order of FtnFrm's buggy" );
 /*?*/               }
 /*?*/           }
 /*?*/           // pLastSib ist jetzt die letzte Fussnote vor uns,
@@ -1254,7 +1254,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               pSibling = pLastSib;
 /*?*/               while( pSibling->GetFollow() )
 /*?*/                   pSibling = pSibling->GetFollow();
-/*?*/               ASSERT( !pSibling->GetNext(), "InsertFtn: Who's that guy?" );
+/*?*/               OSL_ENSURE( !pSibling->GetNext(), "InsertFtn: Who's that guy?" );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -1333,7 +1333,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           {
 /*?*/               if( ENDNOTE > nCmpPos || nStPos >= ENDNOTE )
 /*?*/               {
-/*?*/                   ASSERT( FALSE, "InsertFtn: Master expected II" );
+/*?*/                   OSL_ENSURE( FALSE, "InsertFtn: Master expected II" );
 /*?*/                   do
 /*?*/                       pSibling = pSibling->GetMaster();
 /*?*/                   while ( pSibling->GetMaster() );
@@ -1342,7 +1342,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           pParent = (SwFtnContFrm*)pSibling->GetUpper();
 /*?*/       }
 /*N*/   }
-/*N*/   ASSERT( pParent, "paste in space?" );
+/*N*/   OSL_ENSURE( pParent, "paste in space?" );
 /*N*/   pNew->Paste( pParent, pSibling );
 /*N*/ }
 
@@ -1411,7 +1411,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/                   SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/                   if ( pCont && pCont->Lower() )
 /*?*/                   {
-/*?*/                       ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
+/*?*/                       OSL_ENSURE( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
 /*?*/                       if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                       {
@@ -1454,7 +1454,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/               if ( pCont && pCont->Lower() )
 /*?*/               {
-/*?*/                   ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
+/*?*/                   OSL_ENSURE( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
 /*?*/                   if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                   {
@@ -1470,7 +1470,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/
 /*N*/   //Erstmal eine Fussnote und die benoetigten CntntFrms anlegen.
 /*N*/   if ( !pAttr->GetStartNode() )
-/*?*/   {   ASSERT( !this, "Kein Fussnoteninhalt." );
+/*?*/   {   OSL_ENSURE( !this, "Kein Fussnoteninhalt." );
 /*?*/       return;
 /*N*/   }
 /*N*/
@@ -1499,7 +1499,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if( bChgPage )
 /*N*/   {
 /*?*/       SwLayoutFrm* pBody = pPage->FindBodyCont();
-/*?*/       ASSERT( pBody, "AppendFtn: NoPageBody?" );
+/*?*/       OSL_ENSURE( pBody, "AppendFtn: NoPageBody?" );
 /*?*/       if( pBody->Lower() && pBody->Lower()->IsColumnFrm() )
 /*?*/           pBoss = (SwFtnBossFrm*)pBody->Lower();
 /*?*/       else
@@ -1540,7 +1540,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ SwFtnFrm *SwFtnBossFrm::FindFtn( const SwCntntFrm *pRef, const SwTxtFtn *pAttr )
 /*N*/ {
 /*N*/   //Der einfachste und sicherste Weg geht ueber das Attribut.
-/*N*/   ASSERT( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
+/*N*/   OSL_ENSURE( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
 /*N*/   SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
 /*N*/   SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
 /*N*/   if ( !pNd )
@@ -1596,7 +1596,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/       } while ( pFtn );
 /*N*/       if( bPrep && pRef->IsFollow() )
 /*N*/       {
-/*?*/           ASSERT( pRef->IsTxtFrm(), "NoTxtFrm has Footnote?" );
+/*?*/           OSL_ENSURE( pRef->IsTxtFrm(), "NoTxtFrm has Footnote?" );
 /*?*/           SwTxtFrm* pMaster = (SwTxtFrm*)pRef->FindMaster();
 /*?*/           if( !pMaster->IsLocked() )
 /*?*/               pMaster->Prepare( PREP_FTN_GONE );
@@ -1890,7 +1890,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   // die ganze Seite/Spalte ein.
 /*N*/
 /*N*/   const SwPageFrm* pPg = FindPageFrm();
-/*N*/   ASSERT( pPg, "Footnote lost page" );
+/*N*/   OSL_ENSURE( pPg, "Footnote lost page" );
 /*N*/
 /*N*/   const SwFrm *pBody = FindBodyCont();
 /*N*/   SwTwips nRet;
@@ -1907,7 +1907,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           // the bottom of the last contentfrm
 /*?*/           if( pSect->IsEndnAtEnd() ) // endnotes allowed?
 /*?*/           {
-/*?*/               ASSERT( !Lower() || !Lower()->GetNext() || Lower()->GetNext()->
+/*?*/               OSL_ENSURE( !Lower() || !Lower()->GetNext() || Lower()->GetNext()->
 /*?*/                       IsFtnContFrm(), "FtnContainer exspected" );
 /*?*/               const SwFtnContFrm* pCont = Lower() ?
 /*?*/                   (SwFtnContFrm*)Lower()->GetNext() : 0;
@@ -1973,18 +1973,18 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/           nRet = NA_GROW_SHRINK;
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( GetUpper()->IsSctFrm(), "NeighbourhoodAdjustment: Unexspected Upper" );
+/*?*/           OSL_ENSURE( GetUpper()->IsSctFrm(), "NeighbourhoodAdjustment: Unexspected Upper" );
 /*?*/           if( !GetNext() && !GetPrev() )
 /*?*/               nRet = NA_GROW_ADJUST; // section with a single column (FtnAtEnd)
 /*?*/           else
 /*?*/           {
 /*?*/               const SwFrm* pTmp = Lower();
-/*?*/               ASSERT( pTmp, "NeighbourhoodAdjustment: Missing Lower()" );
+/*?*/               OSL_ENSURE( pTmp, "NeighbourhoodAdjustment: Missing Lower()" );
 /*?*/               if( !pTmp->GetNext() )
 /*?*/                   nRet = NA_GROW_SHRINK;
 /*?*/               else if( !GetUpper()->IsColLocked() )
 /*?*/                   nRet = NA_ADJUST_GROW;
-/*?*/               ASSERT( !pTmp->GetNext() || pTmp->GetNext()->IsFtnContFrm(),
+/*?*/               OSL_ENSURE( !pTmp->GetNext() || pTmp->GetNext()->IsFtnContFrm(),
 /*?*/                       "NeighbourhoodAdjustment: Who's that guy?" );
 /*?*/           }
 /*N*/       }
@@ -2069,7 +2069,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ const SwCntntFrm* SwFtnFrm::GetRef() const
 /*N*/ {
 /*N*/     const SwCntntFrm* pRefAttr = GetRefFromAttr();
-/*N*/     ASSERT( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
+/*N*/     OSL_ENSURE( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
 /*N*/             || pRefAttr->IsAnFollow( pRef ),
 /*N*/             "access to deleted Frame? pRef != pAttr->GetRef()" );
 /*N*/   return pRef;
@@ -2078,7 +2078,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ SwCntntFrm* SwFtnFrm::GetRef()
 /*N*/ {
 /*N*/     const SwCntntFrm* pRefAttr = GetRefFromAttr();
-/*N*/     ASSERT( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
+/*N*/     OSL_ENSURE( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
 /*N*/             || pRefAttr->IsAnFollow( pRef ),
 /*N*/             "access to deleted Frame? pRef != pAttr->GetRef()" );
 /*N*/   return pRef;
@@ -2094,7 +2094,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 
 /*N*/ SwCntntFrm* SwFtnFrm::GetRefFromAttr()
 /*N*/ {
-/*N*/   ASSERT( pAttr, "invalid Attribute" );
+/*N*/   OSL_ENSURE( pAttr, "invalid Attribute" );
 /*N*/   SwTxtNode& rTNd = (SwTxtNode&)pAttr->GetTxtNode();
 /*N*/   SwPosition aPos( rTNd, SwIndex( &rTNd, *pAttr->GetStart() ));
 /*N*/   SwCntntFrm* pCFrm = rTNd.GetFrm( 0, &aPos, FALSE );

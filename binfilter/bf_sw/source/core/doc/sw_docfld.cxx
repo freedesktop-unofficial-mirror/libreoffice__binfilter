@@ -172,7 +172,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::RemoveFldType(USHORT nFld)
 /*N*/ {
-/*N*/   ASSERT( INIT_FLDTYPES <= nFld,  "keine InitFields loeschen" );
+/*N*/   OSL_ENSURE( INIT_FLDTYPES <= nFld,  "keine InitFields loeschen" );
     /*
       * Abheangige Felder vorhanden -> ErrRaise
      */
@@ -205,7 +205,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/
 /*N*/       if( nWhich )
 /*N*/       {
-/*?*/           ASSERT( !pTmp->GetDepends(), "Abhaengige vorh.!" );
+/*?*/           OSL_ENSURE( !pTmp->GetDepends(), "Abhaengige vorh.!" );
 /*?*/           // Feldtype loschen
 /*?*/           delete pTmp;
 /*N*/       }
@@ -289,7 +289,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::UpdateTblFlds( SfxPoolItem* pHt )
 /*N*/ {
-/*N*/   ASSERT( !pHt || RES_TABLEFML_UPDATE  == pHt->Which(),
+/*N*/   OSL_ENSURE( !pHt || RES_TABLEFML_UPDATE  == pHt->Which(),
 /*N*/           "Was ist das fuer ein MessageItem?" );
 /*N*/
 /*N*/   SwFieldType* pFldType;
@@ -810,7 +810,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       SwTxtFld* pTxtFld = (SwTxtFld*)(*ppSortLst)->GetFld();
 /*N*/       if( !pTxtFld )
 /*N*/       {
-/*N*/           ASSERT( !this, "was ist es denn nun" );
+/*N*/           OSL_ENSURE( !this, "was ist es denn nun" );
 /*N*/           continue;
 /*N*/       }
 /*N*/
@@ -1074,7 +1074,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   pFldTypes->Insert( new SwSetExpFieldType(this,
 /*N*/               SW_RESSTR(STR_POOLCOLL_LABEL_DRAWING), GSE_SEQ),nFldType++);
 /*N*/
-/*N*/   ASSERT( nFldType == INIT_FLDTYPES, "Bad initsize: SwFldTypes" );
+/*N*/   OSL_ENSURE( nFldType == INIT_FLDTYPES, "Bad initsize: SwFldTypes" );
 /*N*/ }
 
 /*N*/ void SwDoc::InsDelFldInFldLst( BOOL bIns, const SwTxtFld& rFld )
@@ -1471,13 +1471,13 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/         for( n = nArrStt; n < aTmpArr.Count(); ++n )
 /*M*/         {
 /*M*/             pSectNd = rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode();
-/*M*/             ASSERT( pSectNd, "Wo ist mein SectionNode" );
+/*M*/             OSL_ENSURE( pSectNd, "Wo ist mein SectionNode" );
 /*M*/             pSectNd->GetSection().SetCondHidden( FALSE );
 /*M*/         }
 /*M*/         for( n = 0; n < nArrStt; ++n )
 /*M*/         {
 /*M*/             pSectNd = rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode();
-/*M*/             ASSERT( pSectNd, "Wo ist mein SectionNode" );
+/*M*/             OSL_ENSURE( pSectNd, "Wo ist mein SectionNode" );
 /*M*/             pSectNd->GetSection().SetCondHidden( FALSE );
 /*M*/         }
 /*M*/
@@ -1642,7 +1642,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       // einen Index fuers bestimmen vom TextNode anlegen
 /*N*/       SwPosition aPos( rDoc.GetNodes().GetEndOfPostIts() );
 /*N*/ #ifdef DBG_UTIL
-/*N*/       ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
+/*N*/       OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 /*N*/ #else
 /*N*/       GetBodyTxtNode( rDoc, aPos, *pFrm );
 /*N*/ #endif
@@ -1690,7 +1690,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
                 break;
 
 #ifdef DBG_UTIL
-            ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
+            OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 #else
             GetBodyTxtNode( rDoc, aPos, *pFrm );
 #endif
@@ -1718,7 +1718,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 /*N*/       sFldName = ((SwSetExpFieldType&)rType).GetName();
 /*N*/       break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "kein gueltiger FeldTyp" );
+/*N*/       OSL_ENSURE( !this, "kein gueltiger FeldTyp" );
 /*N*/   }
 /*N*/
 /*N*/   if( sFldName.Len() )

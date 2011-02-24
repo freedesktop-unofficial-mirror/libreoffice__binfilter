@@ -147,7 +147,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/
 /*N*/   default:
-/*N*/       ASSERT( !&rDoc, "Falsche ID fuer neuen Anker." );
+/*N*/       OSL_ENSURE( !&rDoc, "Falsche ID fuer neuen Anker." );
 /*N*/   }
 /*N*/
 /*N*/   rSet.Put( aNewAnch );
@@ -171,7 +171,7 @@ using namespace ::com::sun::star;
 /*N*/   SwDoc* pDoc = (SwDoc*)rFmt.GetDoc();
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ASSERT( !(nNew == FLY_PAGE &&
+/*N*/   OSL_ENSURE( !(nNew == FLY_PAGE &&
 /*N*/       (FLY_AT_CNTNT==nOld || FLY_AUTO_CNTNT==nOld || FLY_IN_CNTNT==nOld ) &&
 /*N*/       pDoc->IsInHeaderFooter( rOldAnch.GetCntntAnchor()->nNode )),
 /*N*/           "Unerlaubter Ankerwechsel in Head/Foot." );

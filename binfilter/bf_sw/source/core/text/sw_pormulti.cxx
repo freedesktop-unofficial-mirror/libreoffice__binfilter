@@ -785,10 +785,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       else if( pPor->IsMultiPortion() )
 /*N*/       {
 /*?*/ #ifdef BIDI
-/*?*/             ASSERT( !pMulti || pMulti->IsBidi(),
+/*?*/             OSL_ENSURE( !pMulti || pMulti->IsBidi(),
 /*?*/                     "Nested multiportions are forbidden." );
 /*?*/ #else
-/*?*/           ASSERT( !pMulti, "Nested multiportions are forbidden." );
+/*?*/           OSL_ENSURE( !pMulti, "Nested multiportions are forbidden." );
 /*?*/ #endif
 /*?*/
 /*?*/           pFld = NULL;

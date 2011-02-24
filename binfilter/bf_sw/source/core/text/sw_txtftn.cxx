@@ -143,7 +143,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ sal_Bool SwTxtFrm::CalcPrepFtnAdjust()
 /*N*/ {
-/*N*/   ASSERT( HasFtn(), "Wer ruft mich da?" );
+/*N*/   OSL_ENSURE( HasFtn(), "Wer ruft mich da?" );
 /*N*/   SwFtnBossFrm *pBoss = FindFtnBossFrm( sal_True );
 /*N*/   const SwFtnFrm *pFtn = pBoss->FindFirstFtn( this );
 /*N*/   if( pFtn && FTNPOS_CHAPTER != GetNode()->GetDoc()->GetFtnInfo().ePos &&
@@ -184,8 +184,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwTwips SwTxtFrm::GetFtnLine( const SwTxtFtn *pFtn, sal_Bool bLocked ) const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::GetFtnLine with swapped frame" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::GetFtnLine with swapped frame" );
 /*N*/
 /*N*/   SwTxtFrm *pThis = (SwTxtFrm*)this;
 /*N*/
@@ -229,7 +229,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwTwips SwTxtFrm::_GetFtnFrmHeight() const
 /*N*/ {
-/*N*/   ASSERT( !IsFollow() && IsInFtn(), "SwTxtFrm::SetFtnLine: moon walk" );
+/*N*/   OSL_ENSURE( !IsFollow() && IsInFtn(), "SwTxtFrm::SetFtnLine: moon walk" );
 /*N*/
 /*N*/   const SwFtnFrm *pFtnFrm = FindFtnFrm();
 /*N*/   const SwTxtFrm *pRef = (const SwTxtFrm *)pFtnFrm->GetRef();
@@ -266,7 +266,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                   break;
 /*?*/               pTmp = pTmp->GetUpper();
 /*?*/           }
-/*?*/           ASSERT( bInvalidPos, "Hanging below FtnCont" );
+/*?*/           OSL_ENSURE( bInvalidPos, "Hanging below FtnCont" );
 /*N*/       }
 /*N*/ #endif
 /*N*/
@@ -485,7 +485,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwTxtFrm::ConnectFtn( SwTxtFtn *pFtn, const SwTwips nDeadLine )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::ConnectFtn with swapped frame" );
 /*N*/
 /*N*/   bFtn = sal_True;
@@ -656,7 +656,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ SwFtnPortion *SwTxtFormatter::NewFtnPortion( SwTxtFormatInfo &rInf,
 /*N*/                                            SwTxtAttr *pHint )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
 /*N*/             "NewFtnPortion with unswapped frame" );
 /*N*/
 /*N*/   if( !pFrm->IsFtnAllowed() )
@@ -721,11 +721,11 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     // #i10770#: If there are fly frames anchored at previous paragraphs,
 /*N*/     // the deadline should consider their lower borders.
 /*N*/     SwFrm* pStartFrm = pFrm->GetUpper()->GetLower();
-/*N*/     ASSERT( pStartFrm, "Upper has no lower" )
+/*N*/     OSL_ENSURE( pStartFrm, "Upper has no lower" );
 /*N*/     SwTwips nFlyLower = bVert ? LONG_MAX : 0;
 /*N*/     while ( pStartFrm != pFrm )
 /*N*/     {
-/*N*/         ASSERT( pStartFrm, "Frame chain is broken" )
+/*N*/         OSL_ENSURE( pStartFrm, "Frame chain is broken" );
 /*N*/         if ( pStartFrm->GetDrawObjs() )
 /*N*/         {
 /*N*/             const SwDrawObjs &rObjs = *pStartFrm->GetDrawObjs();
@@ -885,7 +885,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwNumberPortion *SwTxtFormatter::NewFtnNumPortion( SwTxtFormatInfo &rInf ) const
 /*N*/ {
-/*N*/   ASSERT( pFrm->IsInFtn() && !pFrm->GetIndPrev() && !rInf.IsFtnDone(),
+/*N*/   OSL_ENSURE( pFrm->IsInFtn() && !pFrm->GetIndPrev() && !rInf.IsFtnDone(),
 /*N*/           "This is the wrong place for a ftnnumber" );
 /*N*/   if( rInf.GetTxtStart() != nStart ||
 /*N*/       rInf.GetTxtStart() != rInf.GetIdx() )
@@ -941,7 +941,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*?*/ XubString lcl_GetPageNumber( const SwPageFrm* pPage )
 /*?*/ {
-/*?*/   ASSERT( pPage, "GetPageNumber: Homeless TxtFrm" );
+/*?*/   OSL_ENSURE( pPage, "GetPageNumber: Homeless TxtFrm" );
 /*?*/   MSHORT nVirtNum = pPage->GetVirtPageNum();
 /*?*/   const SvxNumberType& rNum = pPage->GetPageDesc()->GetNumType();
 /*?*/   return rNum.GetNumStr( nVirtNum );
@@ -974,7 +974,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*M*/ xub_StrLen SwTxtFormatter::FormatQuoVadis( const xub_StrLen nOffset )
 /*M*/ {
-/*M*/     ASSERT( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
+/*M*/     OSL_ENSURE( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
 /*M*/             "SwTxtFormatter::FormatQuoVadis with swapped frame" );
 /*M*/
 /*M*/   if( !pFrm->IsInFtn() || pFrm->ImplFindFtnFrm()->GetAttr()->GetFtn().IsEndNote() )
@@ -1048,8 +1048,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/       rInf.SetRest( 0 );
 /*M*/         pCurrPor->Move( rInf );
 /*M*/
-/*M*/         ASSERT( pFollow->IsQuoVadisPortion(),
-/*M*/                 "Quo Vadis, rest of QuoVadisPortion" )
+/*M*/         OSL_ENSURE( pFollow->IsQuoVadisPortion(),
+/*M*/                 "Quo Vadis, rest of QuoVadisPortion" );
 /*M*/
 /*M*/         // format the rest and append it to the other QuoVadis parts
 /*M*/       pFollow->Format( rInf );
@@ -1073,7 +1073,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   nLastLeft = nOldRealWidth - pCurr->Width();
 /*M*/   FeedInf( rInf );
 /*M*/ #ifdef USED
-/*M*/   ASSERT( nOldRealWidth == rInf.RealWidth() && nLastLeft >= pQuo->Width(),
+/*M*/   OSL_ENSURE( nOldRealWidth == rInf.RealWidth() && nLastLeft >= pQuo->Width(),
 /*M*/           "SwTxtFormatter::FormatQuoVadis: crime doesn't pay" );
 /*M*/ #endif
 /*M*/

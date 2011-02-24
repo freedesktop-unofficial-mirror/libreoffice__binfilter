@@ -56,7 +56,7 @@ public:
 
 inline const SwTxtNode& SwTxtFld::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtFld:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtFld:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 

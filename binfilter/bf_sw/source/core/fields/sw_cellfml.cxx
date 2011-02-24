@@ -523,7 +523,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/
 /*N*/   SwNodeIndex aIdx( *rBox.GetSttNd() );
 /*N*/   SwCntntNode* pCNd = aIdx.GetNodes().GoNext( &aIdx );
-/*N*/   ASSERT( pCNd, "Box hat keinen TextNode" );
+/*N*/   OSL_ENSURE( pCNd, "Box hat keinen TextNode" );
 /*N*/   Point aPt;      // den im Layout 1. Frame returnen - Tab.Kopfzeile !!
 /*N*/   return pCNd->GetFrm( &aPt, NULL, FALSE );
 /*N*/ }
