@@ -45,12 +45,13 @@
 #include <bf_svtools/defaultoptions.hxx>
 #include <bf_svtools/dynamicmenuoptions.hxx>
 #include <bf_svtools/extendedsecurityoptions.hxx>
-#include <fltrcfg.hxx>
+#include <unotools/configitem.hxx>
 #include <bf_svtools/fontoptions.hxx>
 #include <bf_svtools/historyoptions.hxx>
 #include <bf_svtools/inetoptions.hxx>
 #include <bf_svtools/internaloptions.hxx>
-#include <javaoptions.hxx>
+#include <sal/types.h>
+#include <unotools/configitem.hxx>
 #include <bf_svtools/lingucfg.hxx>
 #include <bf_svtools/localisationoptions.hxx>
 #include <bf_svtools/menuoptions.hxx>
@@ -58,7 +59,7 @@
 #include <bf_svtools/options3d.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/printwarningoptions.hxx>
-#include <regoptions.hxx>
+#include <tools/string.hxx>
 #include <bf_svtools/optionsdlg.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <searchopt.hxx>

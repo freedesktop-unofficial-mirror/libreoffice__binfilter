@@ -61,7 +61,7 @@
 
 #include <tools/fsys.hxx>
 #include <tools/inetmsg.hxx>
-#include <bf_svtools/inetstrm.hxx>
+#include <tools/inetstrm.hxx>
 #include <comphelper/seqstream.hxx>
 #include <comphelper/enumhelper.hxx>
 #include <comphelper/container.hxx>

@@ -89,7 +89,6 @@ SLOFILES =  \
         $(SLO)$/sw_txtinit.obj \
         $(SLO)$/sw_txttab.obj \
         $(SLO)$/sw_widorp.obj \
-        $(SLO)$/sw_blink.obj \
         $(SLO)$/sw_noteurl.obj \
         $(SLO)$/sw_wrong.obj
 

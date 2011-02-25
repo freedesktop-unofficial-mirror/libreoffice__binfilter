@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <bf_svtools/inetmsg.hxx>
+#include <tools/inetmsg.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svtools/stritem.hxx>
 #include <bf_svtools/intitem.hxx>

@@ -29,7 +29,7 @@
 #ifndef _PAMTYP_HXX
 #define _PAMTYP_HXX
 
-#include <bf_svtools/txtcmp.hxx>
+#include <unotools/textsearch.hxx>
 #include <pam.hxx>
 #include <node.hxx>
 #include <tools/string.hxx>

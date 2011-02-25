@@ -178,10 +178,10 @@
 #include <target.hxx>
 #include <tabvwsh.hxx>
 #include <bf_svtools/inethist.hxx>
-#include <bf_svtools/inetdef.hxx>
+#include <tools/inetdef.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
 #include <bf_svtools/cancel.hxx>
-#include <bf_svtools/inetmsg.hxx>
+#include <tools/inetmsg.hxx>
 #include <bf_sfx2/app.hxx>
 #include <tools/urlobj.hxx>
 #include <scdll.hxx>

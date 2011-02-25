@@ -67,7 +67,7 @@
 #include <pagedesc.hxx>
 #include <unoprnms.hxx>
 #include <unoobj.hxx>
-#include <bf_svtools/txtcmp.hxx>
+#include <unotools/textsearch.hxx>
 #include <unocrsr.hxx>
 #include <unofield.hxx>
 #include <unoidx.hxx>
