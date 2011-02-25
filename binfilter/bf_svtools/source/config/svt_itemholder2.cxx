@@ -39,7 +39,8 @@
 #include <bf_svtools/cjkoptions.hxx>
 #include <bf_svtools/colorcfg.hxx>
 #include <bf_svtools/ctloptions.hxx>
-#include <fontsubstconfig.hxx>
+#include "bf_svtools/svtdllapi.h"
+#include <unotools/configitem.hxx>
 #include <bf_svtools/helpopt.hxx>
 #include <bf_svtools/languageoptions.hxx>
 #include <misccfg.hxx>

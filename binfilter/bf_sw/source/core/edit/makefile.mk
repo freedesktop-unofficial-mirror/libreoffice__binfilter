@@ -49,9 +49,7 @@ SLOFILES =	\
         $(SLO)$/sw_ednumber.obj \
         $(SLO)$/sw_edredln.obj \
         $(SLO)$/sw_edtab.obj \
-        $(SLO)$/sw_edundo.obj \
-        $(SLO)$/sw_edws.obj \
-        $(SLO)$/sw_edsect.obj
+        $(SLO)$/sw_edws.obj
 
 # --- Targets -------------------------------------------------------
 
