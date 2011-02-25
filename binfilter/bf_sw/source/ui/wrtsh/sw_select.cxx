@@ -41,10 +41,7 @@
 #include <horiornt.hxx>
 
 #include <wrtsh.hxx>
-#include <swdtflvr.hxx>
 
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
 namespace com { namespace sun { namespace star { namespace util {

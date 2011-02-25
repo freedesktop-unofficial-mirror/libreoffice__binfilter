@@ -82,7 +82,6 @@
 #include <docstyle.hxx>
 #include <sw3io.hxx>        // I/O, Hausformat
 #include <shellio.hxx>
-#include <swdtflvr.hxx>
 #include <usrpref.hxx>
 #include <fontcfg.hxx>
 #include <poolfmt.hxx>

@@ -36,9 +36,6 @@
 #include <bf_svtools/poolitem.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <bf_sfx2/childwin.hxx>
-
-#include "content.hxx"
-
 #include <bf_svtools/svmedit.hxx>
 namespace binfilter {
 

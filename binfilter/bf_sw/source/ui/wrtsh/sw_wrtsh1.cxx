@@ -44,7 +44,6 @@
 #include <cmdid.h>
 #include <pagedesc.hxx>
 #include <viscrs.hxx>
-#include <swdtflvr.hxx>
 #include <swerror.h>
 #include <wrtsh.hrc>
 namespace binfilter {

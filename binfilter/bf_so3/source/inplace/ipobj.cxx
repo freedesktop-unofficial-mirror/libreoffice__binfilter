@@ -34,7 +34,6 @@
 #include "bf_so3/ipclient.hxx"
 #include <svuidlg.hrc>
 #include "bf_so3/ipwin.hxx"
-#include <ipmenu.hxx>
 #include <bf_so3/ipenv.hxx>
 #include "bf_so3/soerr.hxx"
 #include "bf_so3/outplace.hxx"

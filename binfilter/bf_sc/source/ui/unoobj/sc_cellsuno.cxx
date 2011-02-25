@@ -79,7 +79,6 @@
 #include "fmtuno.hxx"
 #include "miscuno.hxx"
 #include "convuno.hxx"
-#include "targuno.hxx"
 #include "docsh.hxx"
 #include "patattr.hxx"
 #include "docpool.hxx"

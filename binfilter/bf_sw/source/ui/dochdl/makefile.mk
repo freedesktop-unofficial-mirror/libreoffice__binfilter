@@ -44,19 +44,15 @@ NO_HIDS=TRUE
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
-CXXFILES = \
-        sw_swdtflvr.cxx
-
-#        dataex.cxx \
+CXXFILES = #\
+#        sw_swdtflvr.cxx
 
 SRS1NAME=$(TARGET)
 SRC1FILES =  \
         sw_dochdl.src
 
-SLOFILES =  \
+SLOFILES =  #\
         $(SLO)$/sw_swdtflvr.obj
-
-#        $(SLO)$/sw_dataex.obj \
 
 # --- Tagets -------------------------------------------------------
 

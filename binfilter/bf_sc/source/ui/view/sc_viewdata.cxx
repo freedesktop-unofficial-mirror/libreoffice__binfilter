@@ -49,7 +49,6 @@
 #include "editutil.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
-#include "tabcont.hxx"
 
 #include "ViewSettingsSequenceDefines.hxx"
 

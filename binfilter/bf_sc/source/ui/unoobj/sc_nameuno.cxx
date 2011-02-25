@@ -41,7 +41,6 @@ using namespace ::com::sun::star;
 #include "miscuno.hxx"
 #include "cellsuno.hxx"
 #include "convuno.hxx"
-#include "targuno.hxx"
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "rangenam.hxx"

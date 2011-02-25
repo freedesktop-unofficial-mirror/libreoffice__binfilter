@@ -44,11 +44,9 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-        sw_writer.cxx \
         sw_wrtswtbl.cxx
 
 SLOFILES =  \
-        $(SLO)$/sw_writer.obj \
         $(SLO)$/sw_wrtswtbl.obj
 
 # --- Tagets -------------------------------------------------------

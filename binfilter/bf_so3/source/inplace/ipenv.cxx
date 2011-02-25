@@ -39,7 +39,6 @@
 #include <bf_so3/ipobj.hxx>
 #include "bf_so3/ipclient.hxx"
 #include "bf_so3/ipwin.hxx"
-#include <ipmenu.hxx>
 
 class INetURLObject;
 

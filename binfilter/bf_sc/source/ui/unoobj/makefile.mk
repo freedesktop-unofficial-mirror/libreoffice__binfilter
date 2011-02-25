@@ -67,7 +67,6 @@ SLOFILES =  \
         $(SLO)$/sc_afmtuno.obj \
         $(SLO)$/sc_fmtuno.obj \
         $(SLO)$/sc_linkuno.obj \
-        $(SLO)$/sc_targuno.obj \
         $(SLO)$/sc_convuno.obj \
         $(SLO)$/sc_editsrc.obj \
         $(SLO)$/sc_confuno.obj \

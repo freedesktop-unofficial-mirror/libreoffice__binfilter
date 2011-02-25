@@ -41,7 +41,6 @@
 #include "bf_so3/ipclient.hxx"
 #include <bf_so3/svstor.hxx>
 #include "bf_so3/ipwin.hxx"
-#include <ipmenu.hxx>
 #include <svuidlg.hrc>
 #include <tools/urlobj.hxx>
 #include "bf_so3/soerr.hxx"

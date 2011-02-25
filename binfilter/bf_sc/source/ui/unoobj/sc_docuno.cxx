@@ -54,7 +54,6 @@
 #include "styleuno.hxx"
 #include "linkuno.hxx"
 #include "servuno.hxx"
-#include "targuno.hxx"
 #include "convuno.hxx"
 #include "optuno.hxx"
 #include "forbiuno.hxx"
