@@ -268,18 +268,18 @@ sal_Bool XMLDropCapPropHdl_Impl::equals(
 }
 
 sal_Bool XMLDropCapPropHdl_Impl::importXML(
-        const OUString& rStrImpValue,
-           Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const OUString& /*rStrImpValue*/,
+           Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "drop caps are an element import property" );
     return sal_False;
 }
 
 sal_Bool XMLDropCapPropHdl_Impl::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "drop caps are an element export property" );
     return sal_False;
@@ -305,7 +305,7 @@ public:
 sal_Bool XMLOpaquePropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -323,7 +323,7 @@ sal_Bool XMLOpaquePropHdl_Impl::importXML(
 sal_Bool XMLOpaquePropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_FOREGROUND );
@@ -357,7 +357,7 @@ public:
 sal_Bool XMLContourModePropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -375,7 +375,7 @@ sal_Bool XMLContourModePropHdl_Impl::importXML(
 sal_Bool XMLContourModePropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_OUTSIDE );
@@ -430,7 +430,7 @@ sal_Bool XMLParagraphOnlyPropHdl_Impl::importXML(
 sal_Bool XMLParagraphOnlyPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_1 );
@@ -531,7 +531,7 @@ public:
 sal_Bool XMLFrameProtectPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -560,7 +560,7 @@ sal_Bool XMLFrameProtectPropHdl_Impl::importXML(
 sal_Bool XMLFrameProtectPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
     {
@@ -697,18 +697,18 @@ sal_Bool XMLTextColumnsPropertyHandler::equals(
 }
 
 sal_Bool XMLTextColumnsPropertyHandler::importXML(
-        const OUString& rStrImpValue,
-           Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const OUString& /*rStrImpValue*/,
+           Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "columns are an element import property" );
     return sal_False;
 }
 
 sal_Bool XMLTextColumnsPropertyHandler::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "columns are an element export property" );
     return sal_False;
@@ -750,9 +750,9 @@ sal_Bool XMLHoriMirrorPropHdl_Impl::importXML(
 }
 
 sal_Bool XMLHoriMirrorPropHdl_Impl::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "HorMirror properyt shouldn't be exported" );
 
@@ -789,7 +789,7 @@ public:
 sal_Bool XMLGrfMirrorPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -819,7 +819,7 @@ sal_Bool XMLGrfMirrorPropHdl_Impl::importXML(
 sal_Bool XMLGrfMirrorPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
     {
@@ -990,7 +990,7 @@ public:
 sal_Bool XMLTextCombineCharPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( rStrImpValue.getLength() )
         rValue <<= rStrImpValue.copy( 0, 1 );
@@ -1003,7 +1003,7 @@ sal_Bool XMLTextCombineCharPropHdl_Impl::importXML(
 sal_Bool XMLTextCombineCharPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     rValue >>= rStrExpValue;
 
@@ -1093,7 +1093,7 @@ public:
 sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bValue = (rStrImpValue == sValue );
     rValue.setValue( &bValue, ::getBooleanCppuType() );
@@ -1104,7 +1104,7 @@ sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::importXML(
 sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     if( *(sal_Bool *)rValue.getValue() )

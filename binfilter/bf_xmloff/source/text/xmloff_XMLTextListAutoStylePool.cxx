@@ -82,8 +82,8 @@ public:
 
     XMLTextListAutoStylePoolEntry_Impl(
             const Reference < XIndexReplace > & rNumRules ) :
-        nPos( 0 ),
         xNumRules( rNumRules ),
+        nPos( 0 ),
         bIsNamed( sal_False )
     {
         Reference < XNamed > xNamed( xNumRules, UNO_QUERY );
@@ -96,8 +96,8 @@ public:
 
     XMLTextListAutoStylePoolEntry_Impl(
             const OUString& rInternalName ) :
-        nPos( 0 ),
         sInternalName( rInternalName ),
+        nPos( 0 ),
         bIsNamed( sal_True )
     {
     }
@@ -115,8 +115,8 @@ XMLTextListAutoStylePoolEntry_Impl::XMLTextListAutoStylePoolEntry_Impl(
         XMLTextListAutoStylePoolNames_Impl& rNames,
         const OUString& rPrefix,
         sal_uInt32& rName ) :
-    nPos( nP ),
     xNumRules( rNumRules ),
+    nPos( nP ),
     bIsNamed( sal_False )
 {
     Reference < XNamed > xNamed( xNumRules, UNO_QUERY );
@@ -171,10 +171,10 @@ IMPL_CONTAINER_SORT( XMLTextListAutoStylePool_Impl,
 
 XMLTextListAutoStylePool::XMLTextListAutoStylePool( SvXMLExport& rExp ) :
     rExport( rExp ),
+    sPrefix( RTL_CONSTASCII_USTRINGPARAM("L") ),
     pPool( new XMLTextListAutoStylePool_Impl( 5, 5 ) ),
     pNames( new XMLTextListAutoStylePoolNames_Impl( 5, 5 ) ),
-    nName( 0 ),
-    sPrefix( RTL_CONSTASCII_USTRINGPARAM("L") )
+    nName( 0 )
 {
     Reference<ucb::XAnyCompareFactory> xCompareFac( rExp.GetModel(), uno::UNO_QUERY );
     if( xCompareFac.is() )

@@ -50,20 +50,20 @@ using rtl::OUString;
 TYPEINIT1( XMLTextListBlockContext, SvXMLImportContext );
 
 XMLTextListBlockContext::XMLTextListBlockContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         XMLTextImportHelper& rTxtImp,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         sal_Bool bOrd ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rTxtImport( rTxtImp ),
+    sNumberingRules( RTL_CONSTASCII_USTRINGPARAM( "NumberingRules" ) ),
     xParentListBlock( rTxtImp.GetListBlock() ),
     nLevel( 0 ),
     nLevels( 0 ),
     bOrdered( bOrd ),
     bRestartNumbering( sal_True ),
-    bSetDefaults( sal_False ),
-    sNumberingRules( RTL_CONSTASCII_USTRINGPARAM( "NumberingRules" ) )
+    bSetDefaults( sal_False )
 {
     // Inherit style name from parent list, as well as the flags whether
     // numbering must be restarted and formats have to be created.
@@ -90,11 +90,11 @@ XMLTextListBlockContext::XMLTextListBlockContext(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+                                                            &aLclLocalName );
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TEXT_LIST_BLOCK_CONTINUE_NUMBERING:
             bRestartNumbering = !IsXMLToken(rValue, XML_TRUE);
@@ -206,7 +206,7 @@ void XMLTextListBlockContext::EndElement()
 }
 
 SvXMLImportContext *XMLTextListBlockContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
@@ -215,19 +215,19 @@ SvXMLImportContext *XMLTextListBlockContext::CreateChildContext(
     const SvXMLTokenMap& rTokenMap =
                         rTxtImport.GetTextListBlockElemTokenMap();
     sal_Bool bHeader = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_TEXT_LIST_HEADER:
         bHeader = sal_True;
     case XML_TOK_TEXT_LIST_ITEM:
         pContext = new XMLTextListItemContext( GetImport(), rTxtImport,
-                                                nPrefix, rLocalName,
+                                                nInPrefix, rLocalName,
                                               xAttrList, bHeader );
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

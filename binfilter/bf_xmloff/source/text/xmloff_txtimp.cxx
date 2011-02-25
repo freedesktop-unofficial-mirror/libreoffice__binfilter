@@ -405,9 +405,9 @@ XMLTextImportHelper::XMLTextImportHelper(
     pTextElemTokenMap( 0 ),
     pTextPElemTokenMap( 0 ),
     pTextPAttrTokenMap( 0 ),
+    pTextFieldAttrTokenMap( 0 ),
     pTextListBlockAttrTokenMap( 0 ),
     pTextListBlockElemTokenMap( 0 ),
-    pTextFieldAttrTokenMap( 0 ),
     pTextFrameAttrTokenMap( 0 ),
     pTextContourAttrTokenMap( 0 ),
     pTextHyperlinkAttrTokenMap( 0 ),
@@ -416,32 +416,28 @@ XMLTextImportHelper::XMLTextImportHelper(
     pNextFrmNames( 0 ),
     pRenameMap( 0 ),
     pOutlineStyles( 0 ),
-    bInsertMode( bInsertM ),
-    bBlockMode( bBlockM ),
-    bStylesOnlyMode( bStylesOnlyM ),
-    bProgress( bPrg ),
-    bOrganizerMode( bOrganizerM ),
-    bBodyContentStarted( sal_True ),
-
-    // #107848#
-    // Initialize inside_deleted_section flag correctly
-    bInsideDeleteContext( sal_False ),
-
     pFootnoteBackpatcher( NULL ),
     pSequenceIdBackpatcher( NULL ),
     pSequenceNameBackpatcher( NULL ),
     xServiceFactory( rModel, UNO_QUERY ),
+    bInsertMode( bInsertM ),
+    bStylesOnlyMode( bStylesOnlyM ),
+    bBlockMode( bBlockM ),
+    bProgress( bPrg ),
+    bOrganizerMode( bOrganizerM ),
+    bBodyContentStarted( sal_True ),
+    bInsideDeleteContext( sal_False ), // Initialize inside_deleted_section flag correctly
     sParaStyleName(RTL_CONSTASCII_USTRINGPARAM("ParaStyleName")),
     sCharStyleName(RTL_CONSTASCII_USTRINGPARAM("CharStyleName")),
     sHeadingStyleName(RTL_CONSTASCII_USTRINGPARAM("HeadingStyleName")),
     sNumberingLevel(RTL_CONSTASCII_USTRINGPARAM("NumberingLevel")),
     sNumberingStartValue(RTL_CONSTASCII_USTRINGPARAM("NumberingStartValue")),
-    sParaIsNumberingRestart(RTL_CONSTASCII_USTRINGPARAM("ParaIsNumberingRestart")),
     sNumberingRules(RTL_CONSTASCII_USTRINGPARAM("NumberingRules")),
+    sParaIsNumberingRestart(RTL_CONSTASCII_USTRINGPARAM("ParaIsNumberingRestart")),
+    sNumberingIsNumber(RTL_CONSTASCII_USTRINGPARAM("NumberingIsNumber")),
+    sCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
     sSequenceNumber(RTL_CONSTASCII_USTRINGPARAM("SequenceNumber")),
     sSourceName(RTL_CONSTASCII_USTRINGPARAM("SourceName")),
-    sCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
-    sNumberingIsNumber(RTL_CONSTASCII_USTRINGPARAM("NumberingIsNumber")),
     sChainNextName(RTL_CONSTASCII_USTRINGPARAM("ChainNextName")),
     sChainPrevName(RTL_CONSTASCII_USTRINGPARAM("ChainPrevName")),
     sHyperLinkURL(RTL_CONSTASCII_USTRINGPARAM("HyperLinkURL")),
@@ -770,9 +766,9 @@ OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
                         {
                             UniReference<XMLPropertySetMapper> rPropMapper =
                                 xImpPrMap->getPropertySetMapper();
-                            for( sal_Int32 i=0; i < nCount; i++ )
+                            for( sal_Int32 j=0; j < nCount; j++ )
                             {
-                                const XMLPropertyState& rProp = pStyle->_GetProperties()[i];
+                                const XMLPropertyState& rProp = pStyle->_GetProperties()[j];
                                 sal_Int32 nIdx = rProp.mnIndex;
                                 sal_uInt32 nContextId = rPropMapper->GetEntryContextId(nIdx);
                                 if( CTF_FONTFAMILYNAME == nContextId )
@@ -1584,9 +1580,9 @@ SvXMLImportContext *XMLTextImportHelper::CreateTextChildContext(
 }
 
 SvXMLImportContext *XMLTextImportHelper::CreateTableChildContext(
-        SvXMLImport& rImport,
-        sal_uInt16 nPrefix, const OUString& rLocalName,
-        const Reference< XAttributeList > & xAttrList )
+        SvXMLImport& /*rImport*/,
+        sal_uInt16 /*nPrefix*/, const OUString& /*rLocalName*/,
+        const Reference< XAttributeList > & /*xAttrList*/ )
 {
     return 0;
 }
@@ -1854,11 +1850,11 @@ sal_Bool XMLTextImportHelper::IsInHeaderFooter() const
 }
 
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertOLEObject(
-                                        SvXMLImport& rImport,
-                                        const OUString& rHRef,
-                                        const OUString& rStyleName,
-                                        const OUString& rTblName,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                        SvXMLImport& /*rImport*/,
+                                        const OUString& /*rHRef*/,
+                                        const OUString& /*rStyleName*/,
+                                        const OUString& /*rTblName*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
@@ -1866,53 +1862,53 @@ Reference< XPropertySet> XMLTextImportHelper::createAndInsertOLEObject(
 
 
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertApplet(
-                                        const OUString& rCode,
-                                          const OUString& rName,
-                                          sal_Bool bMayScript,
-                                          const OUString& rHRef,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                        const OUString& /*rCode*/,
+                                          const OUString& /*rName*/,
+                                          sal_Bool /*bMayScript*/,
+                                          const OUString& /*rHRef*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertPlugin(
-                                          const OUString& rMimeType,
-                                          const OUString& rHRef,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                          const OUString& /*rMimeType*/,
+                                          const OUString& /*rHRef*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertFloatingFrame(
-                                          const OUString& rName,
-                                          const OUString& rHRef,
-                                          const OUString& rStyleName,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                          const OUString& /*rName*/,
+                                          const OUString& /*rHRef*/,
+                                          const OUString& /*rStyleName*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 
 void XMLTextImportHelper::endAppletOrPlugin(
-        Reference < XPropertySet> & rPropSet,
-        ::std::map < const ::rtl::OUString, ::rtl::OUString, UStringLess > &rParamMap)
+        Reference < XPropertySet> & /*rPropSet*/,
+        ::std::map < const ::rtl::OUString, ::rtl::OUString, UStringLess > & /*rParamMap*/)
 {
 }
 // redline helper: dummy implementation to be overridden in sw/filter/xml
 void XMLTextImportHelper::RedlineAdd(
-    const OUString& rType,
-    const OUString& rId,
-    const OUString& rAuthor,
-    const OUString& rComment,
-    const DateTime& rDateTime,
-    sal_Bool bMergeLastPara)
+    const OUString& /*rType*/,
+    const OUString& /*rId*/,
+    const OUString& /*rAuthor*/,
+    const OUString& /*rComment*/,
+    const DateTime& /*rDateTime*/,
+    sal_Bool /*bMergeLastPara*/)
 {
     // dummy implementation: do nothing
 }
 
 Reference<XTextCursor> XMLTextImportHelper::RedlineCreateText(
-    Reference<XTextCursor> & rOldCursor,
-    const OUString& rId)
+    Reference<XTextCursor> & /*rOldCursor*/,
+    const OUString& /*rId*/)
 {
     // dummy implementation: do nothing
     Reference<XTextCursor> xRet;
@@ -1920,30 +1916,30 @@ Reference<XTextCursor> XMLTextImportHelper::RedlineCreateText(
 }
 
 void XMLTextImportHelper::RedlineSetCursor(
-    const OUString& rId,
-    sal_Bool bStart,
-    sal_Bool bIsOutsideOfParagraph)
+    const OUString& /*rId*/,
+    sal_Bool /*bStart*/,
+    sal_Bool /*bIsOutsideOfParagraph*/)
 {
     // dummy implementation: do nothing
 }
 
 void XMLTextImportHelper::RedlineAdjustStartNodeCursor(
-    sal_Bool bStart)
+    sal_Bool /*bStart*/)
 {
     // dummy implementation: do nothing
 }
 
-void XMLTextImportHelper::SetShowChanges( sal_Bool bShowChanges )
+void XMLTextImportHelper::SetShowChanges( sal_Bool /*bShowChanges*/ )
 {
     // dummy implementation: do nothing
 }
 
-void XMLTextImportHelper::SetRecordChanges( sal_Bool bRecordChanges )
+void XMLTextImportHelper::SetRecordChanges( sal_Bool /*bRecordChanges*/ )
 {
     // dummy implementation: do nothing
 }
 void XMLTextImportHelper::SetChangesProtectionKey(
-    const Sequence<sal_Int8> & rProtectionKey )
+    const Sequence<sal_Int8> & /*rProtectionKey*/ )
 {
     // dummy implementation: do nothing
 }

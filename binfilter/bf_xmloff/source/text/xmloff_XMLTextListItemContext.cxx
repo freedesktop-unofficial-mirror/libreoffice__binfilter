@@ -47,12 +47,12 @@ using rtl::OUString;
 TYPEINIT1( XMLTextListItemContext, SvXMLImportContext );
 
 XMLTextListItemContext::XMLTextListItemContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         XMLTextImportHelper& rTxtImp, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         sal_Bool bIsHeader ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rTxtImport( rTxtImp ),
     nStartValue( -1 )
 {
@@ -62,12 +62,12 @@ XMLTextListItemContext::XMLTextListItemContext(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        if( !bIsHeader && XML_NAMESPACE_TEXT == nPrefix &&
-            IsXMLToken( aLocalName, XML_START_VALUE ) )
+                                                            &aLclLocalName );
+        if( !bIsHeader && XML_NAMESPACE_TEXT == nLclPrefix &&
+            IsXMLToken( aLclLocalName, XML_START_VALUE ) )
         {
             sal_Int32 nTmp = rValue.toInt32();
             if( nTmp >= 0 && nTmp <= SHRT_MAX )
@@ -95,7 +95,7 @@ void XMLTextListItemContext::EndElement()
 }
 
 SvXMLImportContext *XMLTextListItemContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
@@ -104,13 +104,13 @@ SvXMLImportContext *XMLTextListItemContext::CreateChildContext(
     const SvXMLTokenMap& rTokenMap = rTxtImport.GetTextElemTokenMap();
     sal_Bool bOrdered = sal_False;
     sal_Bool bHeading = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_TEXT_H:
         bHeading = sal_True;
     case XML_TOK_TEXT_P:
         pContext = new XMLParaContext( GetImport(),
-                                       nPrefix, rLocalName,
+                                       nInPrefix, rLocalName,
                                        xAttrList, bHeading );
         if (rTxtImport.IsProgress())
             GetImport().GetProgressBarHelper()->Increment();
@@ -120,13 +120,13 @@ SvXMLImportContext *XMLTextListItemContext::CreateChildContext(
         bOrdered = sal_True;
     case XML_TOK_TEXT_UNORDERED_LIST:
         pContext = new XMLTextListBlockContext( GetImport(), rTxtImport,
-                                            nPrefix, rLocalName,
+                                            nInPrefix, rLocalName,
                                             xAttrList, bOrdered );
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

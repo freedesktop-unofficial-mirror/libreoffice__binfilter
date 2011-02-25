@@ -183,8 +183,8 @@ XMLTextFrameParam_Impl::XMLTextFrameParam_Impl(
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
-        if ( XML_NAMESPACE_DRAW == nPrefix )
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
+        if ( XML_NAMESPACE_DRAW == nLclPrefix )
         {
                if( IsXMLToken(aLocalName, XML_VALUE) )
             {
@@ -244,10 +244,10 @@ XMLTextFrameContourContext_Impl::XMLTextFrameContourContext_Impl(
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         OUString aLocalName;
-        sal_uInt16 nPrefix =
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
                                                             &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rTokenMap.Get( nLclPrefix, aLocalName ) )
         {
         case XML_TOK_TEXT_CONTOUR_VIEWBOX:
             sViewBox = rValue;
@@ -707,10 +707,10 @@ XMLTextFrameContext::XMLTextFrameContext(
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         OUString aLocalName;
-        sal_uInt16 nPrefix =
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
                                                             &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rTokenMap.Get( nLclPrefix, aLocalName ) )
         {
         case XML_TOK_TEXT_FRAME_STYLE_NAME:
             sStyleName = rValue;
@@ -941,26 +941,26 @@ void XMLTextFrameContext::EndElement()
 }
 
 SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_SVG == nPrefix &&
+    if( XML_NAMESPACE_SVG == nInPrefix &&
         IsXMLToken( rLocalName, XML_DESC ) )
     {
         pContext = new XMLTextFrameDescContext_Impl( GetImport(),
-                                              nPrefix, rLocalName,
+                                              nInPrefix, rLocalName,
                                                xAttrList, sDesc );
     }
-    else if( XML_NAMESPACE_DRAW == nPrefix )
+    else if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if ( (nType == XML_TEXT_FRAME_APPLET || nType == XML_TEXT_FRAME_PLUGIN) &&
               IsXMLToken( rLocalName, XML_PARAM ) )
         {
             pContext = new XMLTextFrameParam_Impl( GetImport(),
-                                              nPrefix, rLocalName,
+                                              nInPrefix, rLocalName,
                                                xAttrList, nType, aParamMap );
         }
         else
@@ -969,14 +969,14 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
             {
                 if( CreateIfNotThere() )
                     pContext = new XMLTextFrameContourContext_Impl( GetImport(),
-                                                  nPrefix, rLocalName,
+                                                  nInPrefix, rLocalName,
                                                   xAttrList, xPropSet, sal_False );
             }
             else if( IsXMLToken( rLocalName, XML_CONTOUR_PATH ) )
             {
                 if( CreateIfNotThere() )
                     pContext = new XMLTextFrameContourContext_Impl( GetImport(),
-                                                  nPrefix, rLocalName,
+                                                  nInPrefix, rLocalName,
                                                   xAttrList, xPropSet, sal_True );
             }
             else if ( IsXMLToken( rLocalName, XML_IMAGE_MAP ) &&
@@ -985,12 +985,12 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                         nType == XML_TEXT_FRAME_OBJECT_OLE ) )
             {
                 if( CreateIfNotThere() )
-                    pContext = new XMLImageMapContext( GetImport(), nPrefix,
+                    pContext = new XMLImageMapContext( GetImport(), nInPrefix,
                                                        rLocalName, xPropSet );
             }
         }
     }
-    else if( (XML_NAMESPACE_OFFICE == nPrefix) )
+    else if( (XML_NAMESPACE_OFFICE == nInPrefix) )
     {
         if( IsXMLToken( rLocalName, XML_EVENTS ) )
         {
@@ -1002,7 +1002,7 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                 if (xEventsSupplier.is())
                 {
                     // OK, we have the events, so create the context
-                    pContext = new XMLEventsImportContext(GetImport(), nPrefix,
+                    pContext = new XMLEventsImportContext(GetImport(), nInPrefix,
                                                       rLocalName, xEventsSupplier);
                 }
                 // else: no events, no event import
@@ -1026,7 +1026,7 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                     break;
                 }
                 if( xBase64Stream.is() )
-                    pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                    pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
             }
@@ -1034,15 +1034,15 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
     }
     if( !pContext &&
             ( XML_TEXT_FRAME_OBJECT == nType &&
-              (XML_NAMESPACE_OFFICE == nPrefix &&
+              (XML_NAMESPACE_OFFICE == nInPrefix &&
                IsXMLToken( rLocalName, XML_DOCUMENT )) ||
-              (XML_NAMESPACE_MATH == nPrefix &&
+              (XML_NAMESPACE_MATH == nInPrefix &&
                IsXMLToken(rLocalName, XML_MATH) ) ) )
     {
         if( !xPropSet.is() && !bCreateFailed )
         {
             XMLEmbeddedObjectImportContext *pEContext =
-                new XMLEmbeddedObjectImportContext( GetImport(), nPrefix,
+                new XMLEmbeddedObjectImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList );
             sFilterService = pEContext->GetFilterServiceName();
             if( sFilterService.getLength() != 0 )
@@ -1063,11 +1063,11 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
     }
     if( !pContext && xOldTextCursor.is() )  // text-box
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-                            GetImport(), nPrefix, rLocalName, xAttrList,
+                            GetImport(), nInPrefix, rLocalName, xAttrList,
                             XML_TEXT_TYPE_TEXTBOX );
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

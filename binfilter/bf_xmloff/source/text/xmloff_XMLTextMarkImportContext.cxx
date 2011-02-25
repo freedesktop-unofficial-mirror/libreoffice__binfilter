@@ -64,11 +64,11 @@ using rtl::OUString;
 TYPEINIT1( XMLTextMarkImportContext, SvXMLImportContext);
 
 XMLTextMarkImportContext::XMLTextMarkImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLTextImportHelper& rHlp,
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         rHelper(rHlp)
 {
 }
@@ -183,13 +183,13 @@ void XMLTextMarkImportContext::StartElement(
 
 
 void XMLTextMarkImportContext::CreateAndInsertMark(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const OUString& sServiceName,
     const OUString& sMarkName,
     const Reference<XTextRange> & rRange)
 {
     // create mark
-    Reference<XMultiServiceFactory> xFactory(rImport.GetModel(),UNO_QUERY);
+    Reference<XMultiServiceFactory> xFactory(rInImport.GetModel(),UNO_QUERY);
     if( xFactory.is() )
     {
         Reference<XInterface> xIfc = xFactory->createInstance(sServiceName);
@@ -206,7 +206,7 @@ void XMLTextMarkImportContext::CreateAndInsertMark(
             {
                 // if inserting marks, bAbsorb==sal_False will cause
                 // collapsing of the given XTextRange.
-                rImport.GetTextImport()->GetText()->insertTextContent(rRange,
+                rInImport.GetTextImport()->GetText()->insertTextContent(rRange,
                                                      xTextContent, sal_True);
             }
         }
@@ -214,7 +214,7 @@ void XMLTextMarkImportContext::CreateAndInsertMark(
 }
 
 sal_Bool XMLTextMarkImportContext::FindName(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const Reference<XAttributeList> & xAttrList,
     OUString& sName)
 {
@@ -225,11 +225,11 @@ sal_Bool XMLTextMarkImportContext::FindName(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = rImport.GetNamespaceMap().
+        sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken(sLocalName, XML_NAME)   )
         {
             sName = xAttrList->getValueByIndex(nAttr);
