@@ -63,7 +63,6 @@ LIB1FILES= \
         $(SLB)$/sw_app.lib      \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
-        $(SLB)$/sw_dochdl.lib   \
         $(SLB)$/sw_utlui.lib    \
         $(SLB)$/sw_fldui.lib    \
         $(SLB)$/sw_globdoc.lib  \

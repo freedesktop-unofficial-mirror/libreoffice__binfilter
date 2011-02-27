@@ -55,7 +55,6 @@ MYRESLIBNAME=sw
 sw_res_files= \
     $(SRS)$/sw_app.srs          \
     $(SRS)$/sw_config.srs       \
-    $(SRS)$/sw_dochdl.srs       \
     $(SRS)$/sw_fldui.srs        \
     $(SRS)$/sw_globdoc.srs      \
     $(SRS)$/sw_index.srs        \
