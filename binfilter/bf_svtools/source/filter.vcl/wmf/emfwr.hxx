@@ -28,6 +28,8 @@
 #ifndef _EMFWR_HXX
 #define _EMFWR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 #include <vcl/metaact.hxx>
 #include <vcl/graph.hxx>

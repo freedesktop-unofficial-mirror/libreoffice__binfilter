@@ -28,6 +28,8 @@
 #ifndef SC_STLSHEET_HXX
 #define SC_STLSHEET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
 #endif

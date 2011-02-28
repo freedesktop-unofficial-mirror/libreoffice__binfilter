@@ -27,6 +27,8 @@
 #ifndef _USRFLD_HXX
 #define _USRFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "fldbas.hxx"
 namespace binfilter {
 

@@ -60,7 +60,6 @@ class OEditModel
     static sal_Int32            nTextHandle;
 
 protected:
-    virtual void _onValueChanged();
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
 
     DECLARE_DEFAULT_LEAF_XTOR( OEditModel );
@@ -76,9 +75,6 @@ protected:
 public:
     virtual void SAL_CALL disposing();
 
-// ::com::sun::star::form::XBoundComponent
-    virtual sal_Bool _commit();
-
     // XPropertySet
     virtual void SAL_CALL getFastPropertyValue(::com::sun::star::uno::Any& rValue, sal_Int32 nHandle ) const;
 // ::com::sun::star::io::XPersistObject
@@ -93,13 +89,6 @@ public:
 // ::com::sun::star::lang::XServiceInfo
     IMPLEMENTATION_NAME(OEditModel);
     virtual StringSequence SAL_CALL getSupportedServiceNames() throw();
-
-// ::com::sun::star::form::XLoadListener
-    virtual void _loaded(const ::com::sun::star::lang::EventObject& rEvent);
-    virtual void _unloaded();
-
-// ::com::sun::star::form::XReset
-    virtual void _reset();
 
 // OAggregationArrayUsageHelper
     virtual void fillProperties(

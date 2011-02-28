@@ -27,6 +27,8 @@
 #ifndef _UNOSETT_HXX
 #define _UNOSETT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swtypes.hxx>
 #ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>

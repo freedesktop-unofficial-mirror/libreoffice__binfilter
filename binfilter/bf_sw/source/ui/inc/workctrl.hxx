@@ -27,6 +27,8 @@
 #ifndef _WORKCTRL_HXX
 #define _WORKCTRL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
 #endif

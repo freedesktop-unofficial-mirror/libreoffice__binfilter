@@ -27,6 +27,8 @@
 #ifndef _CAPTION_HXX
 #define _CAPTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
 #endif

@@ -441,16 +441,6 @@ protected:
     );
     virtual ~OBoundControlModel();
 
-    // UNO
-    virtual sal_Bool         _commit() { return sal_True; }
-
-    // Laden der Werte aus dem Datenbankfeld
-    // wird bei Reset und Load aufgerufen, der Wert kann als Parameter uebergeben werden
-    virtual void         _onValueChanged() = 0;
-    virtual void         _loaded(const ::com::sun::star::lang::EventObject& rEvent);
-    virtual void         _unloaded();
-    virtual void         _reset();
-
     /** nFieldType ist der Typ des Feldes, an das das Model gebunden werden soll.
         Das Binden erfolgt genau dann, wenn Rueckgabewert sal_True.
         Die Standard-Implementation erlaubt alles ausser den drei binary-Typen und

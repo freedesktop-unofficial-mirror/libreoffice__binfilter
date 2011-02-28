@@ -27,6 +27,8 @@
 #ifndef _SVX_GRFCROP_HXX
 #define _SVX_GRFCROP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
 #endif

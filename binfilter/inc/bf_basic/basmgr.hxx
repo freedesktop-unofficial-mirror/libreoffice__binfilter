@@ -28,6 +28,8 @@
 #ifndef _BASMGR_HXX
 #define _BASMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
 #endif

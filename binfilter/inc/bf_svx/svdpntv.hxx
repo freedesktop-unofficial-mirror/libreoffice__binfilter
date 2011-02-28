@@ -28,6 +28,8 @@
 #ifndef _SVDPNTV_HXX
 #define _SVDPNTV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <slist>
 #include <vcl/timer.hxx>
 #include <vcl/virdev.hxx>

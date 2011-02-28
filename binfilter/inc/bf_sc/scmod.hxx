@@ -28,6 +28,8 @@
 #ifndef SC_SCMOD_HXX
 #define SC_SCMOD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
 #endif

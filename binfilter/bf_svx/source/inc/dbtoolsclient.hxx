@@ -34,9 +34,7 @@
 #ifndef _OSL_MODULE_H_
 #include <osl/module.h>
 #endif
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 //........................................................................
 namespace svxform

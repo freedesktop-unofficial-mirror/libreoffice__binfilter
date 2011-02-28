@@ -28,6 +28,7 @@
 #ifndef _SDRESID_HXX
 #define _SDRESID_HXX
 
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _RESID_HXX //autogen
 #include <tools/resid.hxx>

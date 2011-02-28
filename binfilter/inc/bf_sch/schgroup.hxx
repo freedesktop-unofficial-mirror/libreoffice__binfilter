@@ -28,6 +28,8 @@
 #ifndef _SCH_SCHGROUP_HXX
 #define _SCH_SCHGROUP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
 #endif

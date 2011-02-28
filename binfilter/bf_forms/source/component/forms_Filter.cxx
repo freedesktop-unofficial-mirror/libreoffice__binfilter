@@ -387,190 +387,21 @@ namespace frm
     //---------------------------------------------------------------------
     void OFilterControl::implInitFilterList()
     {
-        if ( !ensureInitialized( ) )
-            // already asserted in ensureInitialized
-            return;
-
-        // declare here for later disposal
-        Reference< XResultSet > xListCursor;
-        Reference< XStatement > xStatement;
-
-        try
-        {
-            m_bFilterListFilled = sal_True;
-
-            Reference< XPropertySet >  xSet(getModel(), UNO_QUERY);
-            if (xSet.is() && m_xField.is())
-            {
-                ::rtl::OUString sName;
-                m_xField->getPropertyValue(PROPERTY_NAME) >>= sName;
-
-                // here we need a table to which the field belongs to
-                Reference< XChild > xModelAsChild( xSet, UNO_QUERY );
-                Reference< XRowSet > xForm( xModelAsChild->getParent(), UNO_QUERY );
-                Reference< XPropertySet > xFormAsSet( xForm, UNO_QUERY );
-
-                // Connection holen
-                Reference< XConnection > xConnection;
-                if ( xForm.is() )
-                    xConnection = ::dbtools::getConnection( xForm );
-                Reference< XSQLQueryComposerFactory >  xFactory( xConnection, UNO_QUERY );
-                OSL_ENSURE( xFactory.is() && xFormAsSet.is(), "OFilterControl::implInitFilterList: invalid form or invalid connection!" );
-                if ( !xFactory.is() || !xFormAsSet.is() )
-                    return;
-
-                // create a query composer
-                Reference< XSQLQueryComposer > xComposer = xFactory->createQueryComposer();
-                OSL_ENSURE( xComposer.is() , "OFilterControl::implInitFilterList: invalid query composer!" );
-                if ( !xComposer.is() )
-                    return;
-
-                // set the statement on the composer, ...
-                ::rtl::OUString sStatement;
-                xFormAsSet->getPropertyValue( PROPERTY_ACTIVECOMMAND ) >>= sStatement;
-                 xComposer->setQuery( sStatement );
-
-                // ... and ask it for the involved tables and queries
-                Reference< XTablesSupplier > xSuppTables( xComposer, UNO_QUERY );
-                Reference< XColumnsSupplier > xSuppColumns( xComposer, UNO_QUERY );
-
-                Reference< XNameAccess > xFieldNames;
-                if ( xSuppColumns.is() ) xFieldNames = xSuppColumns->getColumns();
-                Reference< XNameAccess > xTablesNames;
-                if ( xSuppTables.is() ) xTablesNames = xSuppTables->getTables();
-
-                if ( !xFieldNames.is() || !xTablesNames.is() )
-                {
-                    OSL_ENSURE( sal_False, "OFilterControl::implInitFilterList: invalid query composer (no fields or no tables supplied)!" );
-                    return;
-                }
-
-                // search the field
-                Reference< XPropertySet >  xComposerFieldAsSet;
-                if ( xFieldNames->hasByName( sName ) )
-                    xFieldNames->getByName( sName ) >>= xComposerFieldAsSet;
-
-                if  (   xComposerFieldAsSet.is()
-                    &&  ::comphelper::hasProperty( PROPERTY_TABLENAME, xComposerFieldAsSet )
-                    &&  ::comphelper::hasProperty( PROPERTY_REALNAME, xComposerFieldAsSet )
-                    )
-                {
-                    ::rtl::OUString sFieldName, sTableName;
-                    xComposerFieldAsSet->getPropertyValue(PROPERTY_REALNAME) >>= sFieldName;
-                    xComposerFieldAsSet->getPropertyValue(PROPERTY_TABLENAME) >>= sTableName;
-
-                    // no possibility to create a select statement
-                    // looking for the complete table name
-                    if (!xTablesNames->hasByName(sTableName))
-                        return;
-
-                    // this is the tablename
-                    Reference< XNamed > xName;
-                    xTablesNames->getByName(sTableName) >>= xName;
-                    OSL_ENSURE(xName.is(),"No XName interface!");
-                    sTableName = xName->getName();
-
-                    // ein Statement aufbauen und abschicken als query
-                    // Access to the connection
-
-                    Reference< XColumn >  xDataField;
-
-                    Reference< XDatabaseMetaData >  xMeta = xConnection->getMetaData();
-                    ::rtl::OUString aQuote = xMeta->getIdentifierQuoteString();
-                    ::rtl::OUStringBuffer aStatement;
-                    aStatement.appendAscii( "SELECT DISTINCT" );
-                    aStatement.append( ::dbtools::quoteName( aQuote, sName ) );
-
-                    if ( sFieldName.getLength() && ( sName != sFieldName ) )
-                    {
-                        aStatement.appendAscii(" AS ");
-                        aStatement.append( ::dbtools::quoteName(aQuote, sFieldName) );
-                    }
-
-                    aStatement.appendAscii( " FROM " );
-                    aStatement.append( ::dbtools::quoteTableName( xMeta, sTableName, ::dbtools::eInDataManipulation ) );
-                    ::rtl::OUString sStatement( aStatement.makeStringAndClear( ) );
-
-                    xStatement = xConnection->createStatement();
-                    xListCursor = xStatement->executeQuery( sStatement );
-
-                    Reference< XColumnsSupplier >  xSupplyCols(xListCursor, UNO_QUERY);
-                    Reference< XIndexAccess >  xFields;
-                    if (xSupplyCols.is())
-                        xFields = Reference< XIndexAccess > (xSupplyCols->getColumns(), UNO_QUERY);
-                    if (xFields.is())
-                        xFields->getByIndex(0) >>= xDataField;
-                    if (!xDataField.is())
-                        return;
-
-
-                    sal_Int16 i = 0;
-                    ::std::vector< ::rtl::OUString> aStringList;
-                    aStringList.reserve(16);
-                    ::rtl::OUString aStr;
-
-                    ::com::sun::star::util::Date aNullDate( ::dbtools::DBTypeConversion::getStandardDate() );
-                    sal_Int32 nFormatKey = 0;
-                    try
-                    {
-                        m_xFormatter->getNumberFormatsSupplier()->getNumberFormatSettings()->getPropertyValue(::rtl::OUString::createFromAscii("NullDate"))
-                            >>= aNullDate;
-                        nFormatKey = ::comphelper::getINT32(m_xField->getPropertyValue(PROPERTY_FORMATKEY));
-                    }
-                    catch(const Exception&)
-                    {
-                    }
-
-
-                    sal_Int16 nKeyType = ::comphelper::getNumberFormatType(m_xFormatter->getNumberFormatsSupplier()->getNumberFormats(), nFormatKey);
-                    while (!xListCursor->isAfterLast() && i++ < SHRT_MAX) // max anzahl eintraege
-                    {
-                        aStr = ::dbtools::DBTypeConversion::getValue(xDataField, m_xFormatter, aNullDate, nFormatKey, nKeyType);
-
-                        aStringList.push_back(aStr);
-                        xListCursor->next();
-                    }
-
-                    Sequence< ::rtl::OUString> aStringSeq(aStringList.size());
-                    ::rtl::OUString* pustrStrings = aStringSeq.getArray();
-                    for (i = 0; i < (sal_Int16)aStringList.size(); ++i)
-                        pustrStrings[i] = aStringList[i];
-
-                    Reference< XComboBox >  xComboBox( getPeer(), UNO_QUERY);
-                    if ( xComboBox.is() )
-                    {
-                        xComboBox->addItems(aStringSeq, 0);
-                        // set the drop down line count
-                        sal_Int16 nLineCount = ::std::min( (sal_Int16)10, (sal_Int16)aStringSeq.getLength() );
-                        xComboBox->setDropDownLineCount( nLineCount );
-                    }
-                }
-            }
-        }
-        catch( const Exception& e )
-        {
-            e; // make compiler happy
-            OSL_ENSURE( sal_False, "OFilterControl::implInitFilterList: caught an exception!" );
-        }
-
-        ::comphelper::disposeComponent( xListCursor );
-        ::comphelper::disposeComponent( xStatement );
+        OSL_ENSURE( false, "OFilterControl::implInitFilterList: dead code!?" );
     }
 
     // XFocusListener
     //---------------------------------------------------------------------
     void SAL_CALL OFilterControl::focusGained(const FocusEvent& e)  throw( RuntimeException  )
     {
-        // should we fill the combobox?
-        if (m_bFilterList && !m_bFilterListFilled)
-            implInitFilterList();
+        OSL_ENSURE( false, "OFilterControl::focusGained: dead code!?" );
     }
 
     //---------------------------------------------------------------------
     sal_Bool SAL_CALL OFilterControl::commit() throw(RuntimeException)
     {
-            OSL_ENSURE( false, "OFilterControl::commit: dead code!" );
-            return sal_False;
+        OSL_ENSURE( false, "OFilterControl::commit: dead code!?" );
+        return sal_True;
     }
 
     // XTextComponent

@@ -437,7 +437,7 @@ void SAL_CALL OGridControlModel::reset() throw ( ::com::sun::star::uno::RuntimeE
 
     if (bContinue)
     {
-        _reset();
+        //_reset();
         m_aResetListeners.notifyEach(&XResetListener::resetted, aEvt);
     }
 }
@@ -452,19 +452,6 @@ void SAL_CALL OGridControlModel::addResetListener(const Reference<XResetListener
 void SAL_CALL OGridControlModel::removeResetListener(const Reference<XResetListener>& _rxListener) throw ( ::com::sun::star::uno::RuntimeException)
 {
     m_aResetListeners.removeInterface(_rxListener);
-}
-
-//-----------------------------------------------------------------------------
-void OGridControlModel::_reset()
-{
-    Reference<XReset> xReset;
-    sal_Int32 nCount = getCount();
-    for (sal_Int32 nIndex=0; nIndex < nCount; nIndex++)
-    {
-        getByIndex( nIndex ) >>= xReset;
-        if (xReset.is())
-            xReset->reset();
-    }
 }
 
 // XPropertySet

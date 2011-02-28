@@ -27,6 +27,8 @@
 #ifndef _DDEFLD_HXX
 #define _DDEFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
 #endif

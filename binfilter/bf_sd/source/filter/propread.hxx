@@ -28,9 +28,7 @@
 #ifndef _PROPREAD_HXX_
 #define _PROPREAD_HXX_
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
+#include <bf_svtools/bf_solar.h>
 #ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
 #endif

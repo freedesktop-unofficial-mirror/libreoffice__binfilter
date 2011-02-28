@@ -27,6 +27,8 @@
 #ifndef _DPAGE_HXX
 #define _DPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FM_FMPAGE_HXX
 #include <bf_svx/fmpage.hxx>
 #endif

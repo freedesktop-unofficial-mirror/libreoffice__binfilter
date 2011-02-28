@@ -28,6 +28,8 @@
 #ifndef SC_TOKEN_HXX
 #define SC_TOKEN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <string.h>     // memcpy(), don't use memory.h
 
 #ifndef SC_OPCODE_HXX

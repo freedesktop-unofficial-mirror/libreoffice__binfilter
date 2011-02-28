@@ -28,6 +28,8 @@
 #ifndef _SVTOOLS_XMLCNIMP_HXX
 #define _SVTOOLS_XMLCNIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
 #endif

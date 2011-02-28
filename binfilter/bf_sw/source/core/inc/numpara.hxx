@@ -27,6 +27,8 @@
 #ifndef _NUMPARA_HXX
 #define _NUMPARA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "numrule.hxx"
 #ifndef _NDARR_HXX //autogen
 #include "ndarr.hxx"

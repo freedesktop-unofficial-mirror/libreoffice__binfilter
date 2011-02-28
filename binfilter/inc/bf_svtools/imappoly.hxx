@@ -28,6 +28,8 @@
 #ifndef _GOODIES_IMAPPOLY_HXX
 #define _GOODIES_IMAPPOLY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif

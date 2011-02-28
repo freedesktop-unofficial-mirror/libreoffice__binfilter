@@ -478,8 +478,7 @@ enum DoubledQuoteMode
 /*N*/   rStrm.Seek( STREAM_SEEK_TO_END );
 /*N*/   ScProgress aProgress( pDocSh, ScGlobal::GetRscString( STR_LOAD_DOC ), rStrm.Tell() - nOldPos );
 /*N*/   rStrm.Seek( nOldPos );
-/*N*/   if ( rStrm.GetStreamCharSet() == RTL_TEXTENCODING_UNICODE )
-/*?*/       rStrm.StartReadingUnicodeText();
+/*?*/   rStrm.StartReadingUnicodeText( rStrm.GetStreamCharSet() );
 /*N*/
 /*N*/   BOOL bOld = ScColumn::bDoubleAlloc;
 /*N*/   ScColumn::bDoubleAlloc = TRUE;

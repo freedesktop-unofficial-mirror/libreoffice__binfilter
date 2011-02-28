@@ -28,6 +28,8 @@
 #ifndef _XOUTX_HXX
 #define _XOUTX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
 #endif

@@ -27,6 +27,8 @@
 #ifndef _SVX_RULRITEM_HXX
 #define _SVX_RULRITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #ifndef _GEN_HXX //autogen

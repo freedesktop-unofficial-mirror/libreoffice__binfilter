@@ -27,6 +27,8 @@
 #ifndef _SCROLL_HXX
 #define _SCROLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SCRBAR_HXX //autogen
 #include <vcl/scrbar.hxx>
 #endif

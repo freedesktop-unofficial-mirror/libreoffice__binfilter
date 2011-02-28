@@ -28,6 +28,8 @@
 #ifndef _SV_EXPANDER_HXX
 #define _SV_EXPANDER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
 #endif

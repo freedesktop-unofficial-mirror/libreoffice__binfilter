@@ -27,13 +27,12 @@
 #ifndef _GLOBALNAMEITEM_HXX
 #define _GLOBALNAMEITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
 #endif
 
-#ifndef _SOLAR_H
-#include <tools/solar.h>
-#endif
 #ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
 #endif

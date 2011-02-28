@@ -31,9 +31,7 @@
 #include "bf_svtools/svtdllapi.h"
 #endif
 
-#ifndef _SOLAR_H
-#include "tools/solar.h"
-#endif
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _UTL_CONFIGITEM_HXX_
 #include "unotools/configitem.hxx"

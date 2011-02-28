@@ -80,8 +80,6 @@ namespace frm
             // falls ich wirklich mal einen selber benutzen muss, wird der zwischen allen Instanzen geteilt
 
     protected:
-        virtual void _onValueChanged();
-
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcDefaultFormatsSupplier() const;
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcFormFormatsSupplier() const;
         ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier>  calcFormatsSupplier() const;
@@ -113,9 +111,6 @@ namespace frm
         IMPLEMENTATION_NAME(OFormattedModel);
         virtual StringSequence SAL_CALL getSupportedServiceNames() throw();
 
-    // XBoundComponent
-        virtual sal_Bool _commit();
-
     // XPersistObject
         virtual void SAL_CALL write(const ::com::sun::star::uno::Reference<stario::XObjectOutputStream>& _rxOutStream) throw ( ::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
         virtual void SAL_CALL read(const ::com::sun::star::uno::Reference<stario::XObjectInputStream>& _rxInStream) throw ( ::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
@@ -133,11 +128,6 @@ namespace frm
 
     // XLoadListener
         virtual void SAL_CALL loaded(const ::com::sun::star::lang::EventObject& rEvent) throw ( ::com::sun::star::uno::RuntimeException);
-        virtual void _loaded(const ::com::sun::star::lang::EventObject& rEvent);
-        virtual void _unloaded();
-
-    // XReset
-        virtual void _reset( void );
 
     // XPropertyState
         void setPropertyToDefaultByHandle(sal_Int32 nHandle);

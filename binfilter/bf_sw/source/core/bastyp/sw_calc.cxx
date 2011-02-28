@@ -45,7 +45,8 @@
 #endif
 
 #ifdef WNT
-#include <tools/svwin.h>
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
 #endif
 
 #ifndef INCLUDED_RTL_MATH_HXX

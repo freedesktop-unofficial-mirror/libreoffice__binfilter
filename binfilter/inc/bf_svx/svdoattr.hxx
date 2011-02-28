@@ -28,6 +28,8 @@
 #ifndef _SVDOATTR_HXX
 #define _SVDOATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
 #endif

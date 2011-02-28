@@ -27,6 +27,8 @@
 #ifndef _SWBASESH_HXX
 #define _SWBASESH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #ifndef _SHELLID_HXX
 #include <shellid.hxx>

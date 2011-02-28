@@ -28,6 +28,8 @@
 #ifndef _SVDHDL_HXX
 #define _SVDHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
 #endif
@@ -38,10 +40,6 @@
 
 #ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
-
-#ifndef _SOLAR_HRC
-#include <bf_svtools/solar.hrc>
 #endif
 
 //#ifndef _B2D_MPNT_HXX

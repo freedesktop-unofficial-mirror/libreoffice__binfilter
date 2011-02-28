@@ -27,6 +27,8 @@
 #ifndef _FRMFMT_HXX
 #define _FRMFMT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _FORMAT_HXX
 #include <format.hxx>
 #endif

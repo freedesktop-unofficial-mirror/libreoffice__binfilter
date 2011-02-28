@@ -27,6 +27,8 @@
 #ifndef _SFX2_TIMESTAMP_HXX
 #define _SFX2_TIMESTAMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _STRING_HXX
 #include <tools/string.hxx>
 #endif
