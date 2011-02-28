@@ -65,6 +65,7 @@ SLOFILES =      \
         $(SLO)$/sd_unogstyl.obj	\
         $(SLO)$/sd_unopsfm.obj		\
         $(SLO)$/sd_unopstyl.obj	\
+        $(SLO)$/sd_unokywds.obj	\
         $(SLO)$/sd_unostyls.obj	\
         $(SLO)$/sd_unopback.obj \
         $(SLO)$/sd_unodoc.obj

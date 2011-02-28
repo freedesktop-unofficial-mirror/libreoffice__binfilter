@@ -60,6 +60,7 @@ SLOFILES =	\
         $(SLO)$/xmloff_formlayerimport.obj \
         $(SLO)$/xmloff_formattributes.obj \
         $(SLO)$/xmloff_formenums.obj \
+        $(SLO)$/xmloff_strings.obj \
         $(SLO)$/xmloff_logging.obj \
         $(SLO)$/xmloff_formcellbinding.obj \
 
