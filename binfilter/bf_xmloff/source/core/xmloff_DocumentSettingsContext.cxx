@@ -504,7 +504,7 @@ void XMLConfigItemContext::Characters( const ::rtl::OUString& rChars )
         if( sTrimmedChars.getLength() )
         {
             ::rtl::OUString sChars;
-            if( sValue )
+            if( sValue.getLength() )
             {
                 sChars = sValue;
                 sChars += sTrimmedChars;

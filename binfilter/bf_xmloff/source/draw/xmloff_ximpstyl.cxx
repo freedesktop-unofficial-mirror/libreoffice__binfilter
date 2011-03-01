@@ -1161,7 +1161,7 @@ void SdXMLStylesContext::EndElement()
 //
 void SdXMLStylesContext::SetMasterPageStyles(SdXMLMasterPageContext& rMaster) const
 {
-    UniString sPrefix(rMaster.GetName(), (sal_uInt16)rMaster.GetName().getLength());
+    UniString sPrefix(rMaster.GetName());
     sPrefix += sal_Unicode('-');
 
     if(GetSdImport().GetLocalDocStyleFamilies().is() && GetSdImport().GetLocalDocStyleFamilies()->hasByName(rMaster.GetName()))
@@ -1229,7 +1229,7 @@ void SdXMLStylesContext::ImpSetGraphicStyles(
 
         if(nFamily == pStyle->GetFamily() && !pStyle->IsDefaultStyle())
         {
-            const UniString aStyleName(pStyle->GetName(), (sal_uInt16)pStyle->GetName().getLength());
+            const UniString aStyleName(pStyle->GetName());
             sal_uInt16 nStylePrefLen = aStyleName.SearchBackward( sal_Unicode('-') ) + 1;
 
             if(!nPrefLen || ((nPrefLen == nStylePrefLen) && aStyleName.Equals(rPrefix, 0, nPrefLen)))
@@ -1323,7 +1323,7 @@ void SdXMLStylesContext::ImpSetGraphicStyles(
 
         if(pStyle && nFamily == pStyle->GetFamily())
         {
-            const UniString aStyleName(pStyle->GetName(), (sal_uInt16)pStyle->GetName().getLength());
+            const UniString aStyleName(pStyle->GetName());
             sal_uInt16 nStylePrefLen = aStyleName.SearchBackward( sal_Unicode('-') ) + 1;
 
             if(pStyle->GetName().getLength() && (!nPrefLen || ((nPrefLen == nStylePrefLen) && aStyleName.Equals(rPrefix, 0, nPrefLen))))
