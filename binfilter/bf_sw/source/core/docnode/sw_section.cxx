@@ -102,8 +102,9 @@ namespace binfilter {
 
 /*N*/ SwSection::SwSection( SectionType eTyp, const String& rName,
 /*N*/                   SwSectionFmt* pFmt )
-/*N*/   : SwClient( pFmt ),
-/*N*/   eType( eTyp ), sSectionNm( rName )
+/*N*/   : SwClient( pFmt )
+/*N*/   , sSectionNm( rName )
+/*N*/   , eType( eTyp )
 /*N*/ {
 /*N*/   bHidden = FALSE;
 /*N*/   bHiddenFlag = FALSE;
@@ -205,12 +206,12 @@ namespace binfilter {
 /*N*/ }
 
 
-void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
+void SwSection::_SetHiddenFlag( int bInHidden, int bCondition )
 {
     SwSectionFmt* pFmt = GetFmt();
     if( pFmt )
     {
-        int bHide = bHidden && bCondition;
+        int bHide = bInHidden && bCondition;
 
         if( bHide )                         // die Nodes also "verstecken"
         {
