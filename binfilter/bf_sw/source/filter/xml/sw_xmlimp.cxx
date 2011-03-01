@@ -1069,7 +1069,7 @@ void main()
         if( !bIsUserSetting )
         {
             // test over the hash value if the entry is in the table.
-            const sal_Unicode* p = pValues->Name;
+            const sal_Unicode* p = pValues->Name.getStr();
             for( ULONG nLen = pValues->Name.getLength(); nLen; --nLen, ++p )
                 nHash = (nHash * nPrime) ^ ( *p - nSub );
             nHash %= SAL_N_ELEMENTS( aNotSetArr );
