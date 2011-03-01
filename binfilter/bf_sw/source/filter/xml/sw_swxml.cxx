@@ -655,17 +655,17 @@ ULONG XMLReader::Read( SwDoc &rDoc, SwPaM &rPaM, const String & rName )
 USHORT XMLReader::GetSectionList( SfxMedium& rMedium,
                                     SvStrings& rStrings ) const
 {
-    SvStorage* pStg;
+    SvStorage* pLclStg;
     Reference< lang::XMultiServiceFactory > xServiceFactory =
             ::legacy_binfilters::getLegacyProcessServiceFactory();
     OSL_ENSURE( xServiceFactory.is(),
             "XMLReader::Read: got no service manager" );
-    if( xServiceFactory.is() && 0 != ( pStg = rMedium.GetStorage() ) )
+    if( xServiceFactory.is() && 0 != ( pLclStg = rMedium.GetStorage() ) )
     {
         xml::sax::InputSource aParserInput;
         OUString sDocName( RTL_CONSTASCII_USTRINGPARAM( "content.xml" ) );
         aParserInput.sSystemId = sDocName;
-        SvStorageStreamRef xDocStream = pStg->OpenStream( sDocName,
+        SvStorageStreamRef xDocStream = pLclStg->OpenStream( sDocName,
             ( STREAM_READ | STREAM_SHARE_DENYWRITE | STREAM_NOCREATE ) );
         aParserInput.aInputStream = xDocStream->GetXInputStream();
 
