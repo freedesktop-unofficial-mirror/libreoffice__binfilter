@@ -154,9 +154,9 @@ SwTOXBase* SwSwgReader::InTOXBase()
     switch( eType )
     {
         case TOX_INDEX: {
-            USHORT nOptions;
-            r >> nOptions;
-            pBase->SetOptions( nOptions );
+            USHORT nLclOptions;
+            r >> nLclOptions;
+            pBase->SetOptions( nLclOptions );
             } break;
         case TOX_CONTENT: {
             USHORT nLevel;
