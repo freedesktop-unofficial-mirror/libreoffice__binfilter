@@ -112,7 +112,7 @@ void _CheckBoxWidth( const SwTableLine& rLine, SwTwips nSize )
                           ((SwRowFrm*)pFrm)->GetTabLine() == GetTabLines()[i] ) \
                      {                                               \
                          OSL_ENSURE( pFrm->GetUpper()->IsTabFrm(),       \
-                                 "Table layout does not match table structure" )       \
+                                 "Table layout does not match table structure" );       \
                      }                                               \
                  } while ( 0 != ( pLast = aIter++ ) );               \
              }                                                       \
