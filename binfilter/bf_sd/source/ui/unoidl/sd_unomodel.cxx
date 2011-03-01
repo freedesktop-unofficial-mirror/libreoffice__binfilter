@@ -178,7 +178,7 @@ SdXImpressDocument::SdXImpressDocument( SdDrawDocShell* pShell ) throw()
     }
     else
     {
-        DBG_ERROR("DocShell is invalid");
+        OSL_FAIL("DocShell is invalid");
     }
 
     mbImpressDoc = pDoc && pDoc->GetDocumentType() == DOCUMENT_TYPE_IMPRESS;

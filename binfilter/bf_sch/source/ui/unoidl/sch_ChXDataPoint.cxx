@@ -487,7 +487,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyValue( const ::rtl::OUString& Propert
                         }
                         else
                         {
-                            DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "getPropertyValue(): wrong Type!" );
                         }
                     }
                 }
@@ -809,7 +809,7 @@ uno::Any SAL_CALL ChXDataPoint::getPropertyDefault( const ::rtl::OUString& aProp
             }
             else
             {
-                DBG_ERROR( "getPropertyDefault(): wrong Type!" );
+                OSL_FAIL( "getPropertyDefault(): wrong Type!" );
             }
         }
     }

@@ -155,7 +155,7 @@ void XMLEventExport::Export( Reference<XNameAccess> & rAccess,
         else
         {
             // don't proceed further
-            DBG_ERROR("Unknown event name.");
+            OSL_FAIL("Unknown event name.");
         }
     }
 
@@ -191,7 +191,7 @@ void XMLEventExport::ExportSingleEvent(
     else
     {
         // unknown name!
-        DBG_ERROR("unknown event name");
+        OSL_FAIL("unknown event name");
     }
 }
 
@@ -233,7 +233,7 @@ void XMLEventExport::ExportEvent(
             {
                 if (! sType.equalsAsciiL("None", sizeof("None")-1))
                 {
-                    DBG_ERROR("unknown event type returned by API");
+                    OSL_FAIL("unknown event type returned by API");
                     // unknown type -> error (ignore)
                 }
                 // else: we ignore None fields

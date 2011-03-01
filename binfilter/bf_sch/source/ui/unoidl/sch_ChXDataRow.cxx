@@ -112,7 +112,7 @@ uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_I
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -541,7 +541,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                         }
                         else
                         {
-                            DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "getPropertyValue(): wrong Type!" );
                         }
                     }
                 }
@@ -744,7 +744,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyDefault( const ::rtl::OUString& aProper
             }
             else
             {
-                DBG_ERROR( "getPropertyDefault(): wrong Type!" );
+                OSL_FAIL( "getPropertyDefault(): wrong Type!" );
             }
         }
     }

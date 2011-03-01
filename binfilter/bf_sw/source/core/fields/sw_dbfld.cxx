@@ -141,7 +141,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/       rAny <<= aDBData.nCommandType;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -187,7 +187,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/       rAny >>= aDBData.nCommandType;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -376,7 +376,7 @@ const String& SwDBField::GetPar1() const
 /*?*/       rAny <<= OUString(aContent);
 /*?*/       break;
 /*?*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/
@@ -436,7 +436,7 @@ const String& SwDBField::GetPar1() const
 /*N*/       ::binfilter::GetString( rAny, aContent );
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -490,7 +490,7 @@ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, U
 /*N*/     }
 /*N*/     break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -525,7 +525,7 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     }
     break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }

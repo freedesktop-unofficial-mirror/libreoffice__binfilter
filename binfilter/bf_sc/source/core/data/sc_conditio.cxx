@@ -686,7 +686,7 @@ namespace binfilter {
 /*N*/           bValid = !::rtl::math::approxEqual( nComp1, 0.0 );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unbekannte Operation bei ScConditionEntry");
+/*N*/           OSL_FAIL("unbekannte Operation bei ScConditionEntry");
 /*N*/           break;
 /*N*/   }
 /*N*/   return bValid;
@@ -792,7 +792,7 @@ namespace binfilter {
 /*N*/           pDoc->GetFormatTable()->GetInputLineString(nVal2, nNumFmt, aRet);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetExpression: falscher Index");
+/*N*/       OSL_FAIL("GetExpression: falscher Index");
 /*N*/
 /*N*/   return aRet;
 /*N*/ }
@@ -1329,7 +1329,7 @@ namespace binfilter {
 /*N*/       if ((*this)[i]->GetKey() == nKey)
 /*N*/           return (*this)[i];
 /*N*/
-/*N*/   DBG_ERROR("ScConditionalFormatList: Eintrag nicht gefunden");
+/*N*/   OSL_FAIL("ScConditionalFormatList: Eintrag nicht gefunden");
 /*N*/   return NULL;
 /*N*/ }
 

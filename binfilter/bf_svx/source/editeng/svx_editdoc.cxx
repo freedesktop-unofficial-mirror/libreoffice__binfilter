@@ -385,7 +385,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       default:
 /*N*/       {
-/*N*/           DBG_ERROR( "Ungueltiges Attribut!" );
+/*N*/           OSL_FAIL( "Ungueltiges Attribut!" );
 /*N*/       }
 /*N*/   }
 /*N*/   return pNew;
@@ -726,7 +726,7 @@ using namespace ::com::sun::star;
 /*N*/       DBG_ASSERT( ( pAttrib->GetEnd() <= Len() ), "Expand: Attrib groesser als Absatz!" );
 /*N*/       if ( pAttrib->IsEmpty() )
 /*N*/       {
-/*?*/           DBG_ERROR( "Leeres Attribut nach ExpandAttribs?" );
+/*?*/           OSL_FAIL( "Leeres Attribut nach ExpandAttribs?" );
 /*?*/           bResort = TRUE;
 /*?*/           aCharAttribList.GetAttribs().Remove( nAttr );
 /*?*/           rItemPool.Remove( *pAttrib->GetItem() );
@@ -1203,7 +1203,7 @@ using namespace ::com::sun::star;
 /*N*/       nLen += nNodes * nSepSize;
 /*N*/   if ( nLen > 0xFFFb / sizeof(xub_Unicode) )
 /*N*/   {
-/*?*/       DBG_ERROR( "Text zu gross fuer String" );
+/*?*/       OSL_FAIL( "Text zu gross fuer String" );
 /*?*/       return XubString();
 /*N*/   }
 /*N*/   xub_Unicode* pStr = new xub_Unicode[nLen+1];
@@ -1264,7 +1264,7 @@ using namespace ::com::sun::star;
 /*N*/               case EE_FEATURE_FIELD:  if ( bResolveFields )
 /*N*/                                           aStr += ((EditCharAttribField*)pNextFeature)->GetFieldValue();
 /*N*/               break;
-/*N*/               default:    DBG_ERROR( "Was fuer ein Feature ?" );
+/*N*/               default:    OSL_FAIL( "Was fuer ein Feature ?" );
 /*N*/           }
 /*N*/           pNextFeature = pNode->GetCharAttribs().FindFeature( ++nEnd );
 /*N*/       }

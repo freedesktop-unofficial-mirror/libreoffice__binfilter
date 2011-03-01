@@ -500,7 +500,7 @@ sal_Bool SdBINFilter::Export()
         }
         else
         {
-            DBG_ERROR( "Error while writing the pool" );
+            OSL_FAIL( "Error while writing the pool" );
             bRet = sal_False;
         }
 
@@ -513,7 +513,7 @@ sal_Bool SdBINFilter::Export()
         // rename stream is neccessary
         if( pStore->IsStream( pStarDrawDoc ) && !pStore->Rename( pStarDrawDoc, pStarDrawDoc3 ) )
         {
-            DBG_ERROR( "Error while renaming the stream");
+            OSL_FAIL( "Error while renaming the stream");
         }
 
         // store model
@@ -532,7 +532,7 @@ sal_Bool SdBINFilter::Export()
         }
         else
         {
-            DBG_ERROR( "Error while writing the model" );
+            OSL_FAIL( "Error while writing the model" );
             bRet = sal_False;
         }
 

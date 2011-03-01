@@ -508,7 +508,7 @@ Reference<XTextRange> lcl_ExportHints(SwpHints* pHints,
                     }
                 break;
                 default:
-                    DBG_ERROR("was fuer ein Attribut?");
+                    OSL_FAIL("was fuer ein Attribut?");
             }
 
         }
@@ -856,7 +856,7 @@ void SwXTextPortionEnumeration::CreatePortions()
                 }
                 else
                 {
-                    DBG_ERROR("kein TextNode - was nun?");
+                    OSL_FAIL("kein TextNode - was nun?");
                 }
             }
             if(*pUnoCrsr->GetPoint() < *pUnoCrsr->GetMark())

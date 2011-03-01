@@ -142,7 +142,7 @@ void SvXMLImportItemMapper::importXML( SfxItemSet& rSet,
                 }
                 else
                 {
-                    DBG_ERROR( "Could not get a needed item for xml import!" );
+                    OSL_FAIL( "Could not get a needed item for xml import!" );
                 }
             }
             else if( 0 != (pEntry->nMemberId & MID_FLAG_NO_ITEM_IMPORT) )
@@ -201,7 +201,7 @@ SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& /*rEntry*/,
                                             const SvXMLUnitConverter& /*rUnitConverter*/,
                                             const SvXMLNamespaceMap& /*rNamespaceMap*/ ) const
 {
-    DBG_ERROR( "unsuported special item in xml import" );
+    OSL_FAIL( "unsuported special item in xml import" );
     return FALSE;
 }
 
@@ -213,7 +213,7 @@ BOOL SvXMLImportItemMapper::handleNoItem( const SvXMLItemMapEntry& /*rEntry*/,
                                            const SvXMLUnitConverter& /*rUnitConverter*/,
                                            const SvXMLNamespaceMap& /*rNamespaceMap*/) const
 {
-    DBG_ERROR( "unsuported no item in xml import" );
+    OSL_FAIL( "unsuported no item in xml import" );
     return FALSE;
 }
 
@@ -291,7 +291,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
                 break;
 
                 default:
-                    DBG_ERROR( "unknown member id!");
+                    OSL_FAIL( "unknown member id!");
             }
         }
         break;
@@ -318,7 +318,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
                     pULSpace->SetLower( (sal_uInt16)nAbs, (sal_uInt16)nProp );
                     break;
                 default:
-                    DBG_ERROR("unknown MemberId");
+                    OSL_FAIL("unknown MemberId");
             }
         }
         break;
@@ -919,7 +919,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
         break;
 
         default:
-            DBG_ERROR("Item not implemented!");
+            OSL_FAIL("Item not implemented!");
         break;
    }
 

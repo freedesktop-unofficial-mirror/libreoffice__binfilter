@@ -227,7 +227,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_SIZE_SIZE:  rVal <<= aTmp; break;
 /*N*/       case MID_SIZE_WIDTH: rVal <<= aTmp.Width; break;
 /*N*/       case MID_SIZE_HEIGHT: rVal <<= aTmp.Height;  break;
-/*N*/         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/         default: OSL_FAIL("Wrong MemberId!"); return sal_False;
 /*N*/   }
 /*N*/
 /*N*/   return sal_True;
@@ -276,7 +276,7 @@ using namespace ::com::sun::star;
 /*N*/           aSize.Height() = bConvert ? MM100_TO_TWIP(nVal) : nVal;
 /*N*/       }
 /*N*/       break;
-/*N*/         default: DBG_ERROR("Wrong MemberId!");
+/*N*/         default: OSL_FAIL("Wrong MemberId!");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -407,7 +407,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       default:
 /*N*/           bRet = sal_False;
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -465,7 +465,7 @@ using namespace ::com::sun::star;
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -724,7 +724,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -871,7 +871,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_PROTECT_SIZE    :  bValue = bSize; break;
 /*N*/       case MID_PROTECT_POSITION:  bValue = bPos; break;
 /*N*/       default:
-/*N*/           DBG_ERROR("falsche MemberId");
+/*N*/           OSL_FAIL("falsche MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/
@@ -891,7 +891,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_PROTECT_SIZE    :  bSize  = bVal;  break;
 /*N*/       case MID_PROTECT_POSITION:  bPos   = bVal;  break;
 /*N*/       default:
-/*N*/           DBG_ERROR("falsche MemberId");
+/*N*/           OSL_FAIL("falsche MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -971,7 +971,7 @@ using namespace ::com::sun::star;
 /*?*/         case MID_TRANSPARENT: rVal <<= aShadow.IsTransparent; break;
 /*?*/         case MID_BG_COLOR: rVal <<= aShadow.Color; break;
 /*N*/         case 0: rVal <<= aShadow; break;
-/*N*/         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/         default: OSL_FAIL("Wrong MemberId!"); return sal_False;
 /*N*/     }
 /*N*/
 /*N*/   return sal_True;
@@ -1004,7 +1004,7 @@ using namespace ::com::sun::star;
 /*?*/         case MID_TRANSPARENT: rVal >>= aShadow.IsTransparent; break;
 /*?*/         case MID_BG_COLOR: rVal >>= aShadow.Color; break;
 /*N*/         case 0: rVal >>= aShadow; break;
-/*N*/         default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/         default: OSL_FAIL("Wrong MemberId!"); return sal_False;
 /*N*/     }
 /*N*/
 /*N*/     if ( bRet )
@@ -1078,7 +1078,7 @@ using namespace ::com::sun::star;
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR( "wrong shadow" );
+/*N*/           OSL_FAIL( "wrong shadow" );
 /*N*/   }
 /*N*/   return nSpace;
 /*N*/ }
@@ -1557,7 +1557,7 @@ using namespace ::com::sun::star;
 /*N*/       default:
 /*N*/           if ( pTmp )
 /*N*/               delete pTmp;
-/*N*/           DBG_ERROR( "wrong line" );
+/*N*/           OSL_FAIL( "wrong line" );
 /*N*/   }
 /*N*/ }
 
@@ -1597,7 +1597,7 @@ using namespace ::com::sun::star;
 /*N*/           nDist = nRightDist;
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR( "wrong line" );
+/*N*/           OSL_FAIL( "wrong line" );
 /*N*/   }
 /*N*/
 /*N*/   return nDist;
@@ -1622,7 +1622,7 @@ using namespace ::com::sun::star;
 /*N*/           nRightDist = nNew;
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR( "wrong line" );
+/*N*/           OSL_FAIL( "wrong line" );
 /*N*/   }
 /*N*/ }
 
@@ -1651,7 +1651,7 @@ using namespace ::com::sun::star;
 /*N*/       nDist = nRightDist;
 /*N*/       break;
 /*N*/   default:
-/*N*/       DBG_ERROR( "wrong line" );
+/*N*/       OSL_FAIL( "wrong line" );
 /*N*/   }
 /*N*/
 /*N*/   if( pTmp )
@@ -1742,7 +1742,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/           if ( pTmp )
 /*N*/           delete pTmp;
-/*N*/       DBG_ERROR( "wrong line" );
+/*N*/       OSL_FAIL( "wrong line" );
 /*N*/   }
 /*N*/ }
 
@@ -2430,7 +2430,7 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 /*N*/               if( 0 == sLink.compareToAscii( UNO_NAME_GRAPHOBJ_URLPKGPREFIX,
 /*N*/                                 sizeof(UNO_NAME_GRAPHOBJ_URLPKGPREFIX)-1 ) )
 /*N*/               {
-/*N*/                   DBG_ERROR( "package urls aren't implemented" );
+/*N*/                   OSL_FAIL( "package urls aren't implemented" );
 /*N*/               }
 /*N*/               else if( 0 == sLink.compareToAscii( UNO_NAME_GRAPHOBJ_URLPREFIX,
 /*N*/                                  sizeof(UNO_NAME_GRAPHOBJ_URLPREFIX)-1 ) )
@@ -2704,7 +2704,7 @@ GraphicFilter* GetGrfFilter();
 /*N*/           eGraphicPos = GPOS_MM; // None waere Brush, also Default: Mitte
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "SetGraphic() on linked graphic! :-/" );
+/*N*/       OSL_FAIL( "SetGraphic() on linked graphic! :-/" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -2856,7 +2856,7 @@ SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) 
 /*?*/             nVal = text::WritingMode2::PAGE;
 /*?*/             break;
 /*?*/         default:
-/*?*/             DBG_ERROR("Unknown SvxFrameDirection value!");
+/*?*/             OSL_FAIL("Unknown SvxFrameDirection value!");
 /*?*/             bRet = sal_False;
 /*?*/             break;
 /*N*/     }

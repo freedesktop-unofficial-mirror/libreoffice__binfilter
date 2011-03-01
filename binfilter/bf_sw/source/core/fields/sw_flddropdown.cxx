@@ -178,7 +178,7 @@ BOOL SwDropDownField::QueryValue(Any &rVal, BYTE nMId)
         break;
 
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return sal_True;
 }
@@ -216,7 +216,7 @@ BOOL SwDropDownField::PutValue(const Any &rVal,
         break;
 
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return sal_True;
 }

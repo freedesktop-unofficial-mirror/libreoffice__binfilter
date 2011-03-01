@@ -45,7 +45,7 @@ namespace binfilter {
 
 BOOL SbModule::Compile()
 {
-    DBG_ERROR( "SbModule::Compile: dead code!" );
+    OSL_FAIL( "SbModule::Compile: dead code!" );
     return FALSE;
 }
 

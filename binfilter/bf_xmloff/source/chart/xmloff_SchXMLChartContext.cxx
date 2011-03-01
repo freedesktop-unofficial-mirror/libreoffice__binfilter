@@ -171,7 +171,7 @@ void SchXMLChartContext::StartElement( const uno::Reference< xml::sax::XAttribut
                                     "com.sun.star.chart.StockDiagram" ));
                                 break;
                             case XML_CHART_CLASS_BUBBLE:
-                                DBG_ERROR( "Bubble chart not supported yet" );
+                                OSL_FAIL( "Bubble chart not supported yet" );
                                 break;
                             case XML_CHART_CLASS_ADDIN:
                                 // service is taken from add-in-name attribute
@@ -254,7 +254,7 @@ void SchXMLChartContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Property String for Title not available" );
+                    OSL_FAIL( "Property String for Title not available" );
                 }
 /*              uno::Reference< drawing::XShape > xShape( xTitleProp, uno::UNO_QUERY );
                 if( xShape.is())
@@ -283,7 +283,7 @@ void SchXMLChartContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Property String for Title not available" );
+                    OSL_FAIL( "Property String for Title not available" );
                 }
 /*              uno::Reference< drawing::XShape > xShape( xTitleProp, uno::UNO_QUERY );
                 if( xShape.is())
@@ -595,7 +595,7 @@ void    SchXMLChartContext::InitChart   (awt::Size aChartSize,
         }
         catch( beans::UnknownPropertyException )
         {
-            DBG_ERROR( "XML-Chart Import: Property not found" );
+            OSL_FAIL( "XML-Chart Import: Property not found" );
         }
     }
 
@@ -617,7 +617,7 @@ void    SchXMLChartContext::InitChart   (awt::Size aChartSize,
             }
             catch( beans::UnknownPropertyException )
             {
-                DBG_ERROR( "Cannot set page size" );
+                OSL_FAIL( "Cannot set page size" );
             }
         }
     }
@@ -852,7 +852,7 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
         }
         catch( beans::UnknownPropertyException )
         {
-            DBG_ERROR( "Property HasLegend not found" );
+            OSL_FAIL( "Property HasLegend not found" );
         }
     }
 
@@ -894,7 +894,7 @@ void SchXMLLegendContext::StartElement( const uno::Reference< xml::sax::XAttribu
                         }
                         catch( beans::UnknownPropertyException )
                         {
-                            DBG_ERROR( "Property Alignment (legend) not found" );
+                            OSL_FAIL( "Property Alignment (legend) not found" );
                         }
                     }
                 }

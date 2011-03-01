@@ -907,7 +907,7 @@ void ScXMLTableRowCellContext::EndElement()
                                         break;
                                     default:
                                         {
-                                            DBG_ERROR("no cell type given");
+                                            OSL_FAIL("no cell type given");
                                         }
                                         break;
                                     }

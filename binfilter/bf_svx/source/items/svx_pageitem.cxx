@@ -144,7 +144,7 @@ using namespace ::com::sun::star;
 /*N*/               case SVX_PAGE_ALL   : eRet = style::PageStyleLayout_ALL;       break;
 /*N*/               case SVX_PAGE_MIRROR: eRet = style::PageStyleLayout_MIRRORED; break;
 /*N*/               default:
-/*N*/                   DBG_ERROR("was fuer ein Layout ist das?");
+/*N*/                   OSL_FAIL("was fuer ein Layout ist das?");
 /*N*/                   return sal_False;
 /*N*/           }
 /*N*/           rVal <<= eRet;

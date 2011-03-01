@@ -359,7 +359,7 @@ namespace binfilter {
 /*N*/   rFound = FALSE;
 /*N*/   if (!rMark.IsMultiMarked())
 /*N*/   {
-/*N*/       DBG_ERROR("ScColumn::GetSelectionStyle ohne Selektion");
+/*N*/       OSL_FAIL("ScColumn::GetSelectionStyle ohne Selektion");
 /*N*/       return NULL;
 /*N*/   }
 /*N*/
@@ -784,7 +784,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("CopyToColumn: bMarked, aber keine Markierung");
+/*N*/           OSL_FAIL("CopyToColumn: bMarked, aber keine Markierung");
 /*N*/       return;
 /*N*/   }
 /*N*/

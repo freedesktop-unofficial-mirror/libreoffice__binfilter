@@ -162,7 +162,7 @@ void FilterConfigItem::ImpInitTree( const String& rSubTree )
             }
             catch ( ::com::sun::star::uno::Exception& )
             {
-                DBG_ERROR( "FilterConfigItem::FilterConfigItem - Could not access configuration Key" );
+                OSL_FAIL( "FilterConfigItem::FilterConfigItem - Could not access configuration Key" );
             }
         }
     }
@@ -194,7 +194,7 @@ FilterConfigItem::~FilterConfigItem()
                 }
                 catch ( ::com::sun::star::uno::Exception& )
                 {
-                    DBG_ERROR( "FilterConfigItem::FilterConfigItem - Could not update configuration data" );
+                    OSL_FAIL( "FilterConfigItem::FilterConfigItem - Could not update configuration data" );
                 }
             }
         }
@@ -351,7 +351,7 @@ void FilterConfigItem::WriteInt32( const OUString& rKey, sal_Int32 nNewValue )
                     }
                     catch ( ::com::sun::star::uno::Exception& )
                     {
-                        DBG_ERROR( "FilterConfigItem::WriteInt32 - could not set PropertyValue" );
+                        OSL_FAIL( "FilterConfigItem::WriteInt32 - could not set PropertyValue" );
                     }
                 }
             }

@@ -845,7 +845,7 @@ namespace binfilter {
 /*N*/       nMaxTableNumber = nTab2 + 1;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("InitUndo");
+/*N*/       OSL_FAIL("InitUndo");
 /*N*/ }
 
 /*N*/ void ScDocument::CopyToDocument(USHORT nCol1, USHORT nRow1, USHORT nTab1,
@@ -1383,7 +1383,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       rpCell = pTab[nTab]->GetCell( nCol, nRow );
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("GetCell ohne Tabelle");
+/*N*/       OSL_FAIL("GetCell ohne Tabelle");
 /*N*/       rpCell = NULL;
 /*N*/   }
 /*N*/ }
@@ -1395,7 +1395,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( pTab[nTab] )
 /*N*/       return pTab[nTab]->GetCell( rPos );
 /*N*/
-/*N*/   DBG_ERROR("GetCell ohne Tabelle");
+/*N*/   OSL_FAIL("GetCell ohne Tabelle");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -1583,7 +1583,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetColWidth( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1592,7 +1592,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOriginalWidth( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1603,7 +1603,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOriginalHeight( nRow );
-/*N*/   DBG_ERROR("Wrong table number");
+/*N*/   OSL_FAIL("Wrong table number");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1612,7 +1612,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetRowHeight( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1621,7 +1621,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetHiddenRowCount( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1639,7 +1639,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOptimalColWidth( nCol, pDev, nPPTX, nPPTY,
 /*N*/           rZoomX, rZoomY, bFormula, pMarkData, bSimpleTextImport );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1656,7 +1656,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->SetOptimalHeight( nStartRow, nEndRow, nExtra,
 /*N*/                                               pDev, nPPTX, nPPTY, rZoomX, rZoomY, bShrink );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1692,7 +1692,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetColFlags( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1700,7 +1700,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetRowFlags( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1825,7 +1825,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (pTemp)
 /*N*/           return pTemp;
 /*N*/       else
-/*N*/           DBG_ERROR( "Attribut Null" );
+/*N*/           OSL_FAIL( "Attribut Null" );
 /*N*/   }
 /*N*/   return &xPoolHelper->GetDocPool()->GetDefaultItem( nWhich );
 /*N*/ }
@@ -1985,7 +1985,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (pTab[nTab])
 /*N*/           return pTab[nTab]->ApplyFlags( nStartCol, nStartRow, nEndCol, nEndRow, nFlags );
 /*N*/
-/*N*/   DBG_ERROR("ApplyFlags: falsche Tabelle");
+/*N*/   OSL_FAIL("ApplyFlags: falsche Tabelle");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -2149,7 +2149,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->LockTable();
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Tabellennummer");
+/*N*/       OSL_FAIL("Falsche Tabellennummer");
 /*N*/ }
 
 
@@ -2158,7 +2158,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->UnlockTable();
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Tabellennummer");
+/*N*/       OSL_FAIL("Falsche Tabellennummer");
 /*N*/ }
 
 
@@ -2179,7 +2179,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           return pTab[nTab]->IsBlockEditable( nStartCol, nStartRow, nEndCol,
 /*N*/               nEndRow, pOnlyNotBecauseOfMatrix );
 /*N*/
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   if ( pOnlyNotBecauseOfMatrix )
 /*N*/       *pOnlyNotBecauseOfMatrix = FALSE;
 /*N*/   return FALSE;
@@ -2333,7 +2333,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("ExtendOverlapped: falscher Bereich");
+/*N*/       OSL_FAIL("ExtendOverlapped: falscher Bereich");
 /*N*/
 /*N*/   return bFound;
 /*N*/ }
@@ -2353,7 +2353,7 @@ DBG_BF_ASSERT(0, "STRIP");
 DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("ExtendMerge: falscher Bereich");
+/*N*/       OSL_FAIL("ExtendMerge: falscher Bereich");
 /*N*/
 /*N*/   return bFound;
 /*N*/ }
@@ -2682,7 +2682,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   xPoolHelper->GetEditPool()->Load( rStream );
 /*N*/                   break;
 /*?*/               default:
-/*?*/                   DBG_ERROR("unbekannter Sub-Record in ScDocument::LoadPool");
+/*?*/                   OSL_FAIL("unbekannter Sub-Record in ScDocument::LoadPool");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -2690,7 +2690,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       bRet = TRUE;
 /*N*/   }
 /*N*/   else
-/*?*/       DBG_ERROR("LoadPool: SCID_POOLS nicht gefunden");
+/*?*/       OSL_FAIL("LoadPool: SCID_POOLS nicht gefunden");
 /*N*/
 /*N*/   if (!bStylesFound)
 /*?*/       xPoolHelper->GetStylePool()->CreateStandardStyles();
@@ -2837,7 +2837,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetPageSize();
 /*N*/
-/*N*/   DBG_ERROR("falsche Tab");
+/*N*/   OSL_FAIL("falsche Tab");
 /*N*/   return Size();
 /*N*/ }
 

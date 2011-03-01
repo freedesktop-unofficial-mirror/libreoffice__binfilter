@@ -60,7 +60,7 @@ namespace binfilter {
 /*N*/               return pItem;
 /*N*/
 /*N*/           // Item da aber falsch => Programmierfehler
-/*N*/           DBG_ERROR(  "invalid argument type" );
+/*N*/           OSL_FAIL(  "invalid argument type" );
 /*N*/       }
 /*N*/   }
 /*N*/

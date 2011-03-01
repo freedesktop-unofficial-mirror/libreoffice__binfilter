@@ -155,7 +155,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "ScRangeUtil::MakeRangeFromName" );
+/*N*/       OSL_FAIL( "ScRangeUtil::MakeRangeFromName" );
 /*N*/   }
 /*N*/
 /*N*/   if( bResult )

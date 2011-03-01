@@ -675,7 +675,7 @@ namespace binfilter {
 /*?*/       String aURL;
 #ifdef DBG_UTIL
 /*?*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL ) )
-/*?*/           DBG_ERROR("Physical name not convertable!");
+/*?*/           OSL_FAIL("Physical name not convertable!");
 #endif
 /*?*/         pImp->bIsStorage = SotStorage::IsStorageFile( aURL );
 /*?*/         if ( !pImp->bIsStorage )
@@ -725,7 +725,7 @@ namespace binfilter {
 /*N*/         // open storage with the URL of the tempfile
 /*N*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aStorageName ) )
 /*N*/       {
-/*?*/           DBG_ERROR("Physical name not convertable!");
+/*?*/           OSL_FAIL("Physical name not convertable!");
 /*N*/       }
 /*N*/         CloseOutStream();
 /*N*/         aStorage = new SvStorage( bUCBStorage, aStorageName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
@@ -736,7 +736,7 @@ namespace binfilter {
 /*N*/         {
 /*N*/             if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aStorageName ) )
 /*N*/           {
-/*?*/                 DBG_ERROR("Physical name not convertable!");
+/*?*/                 OSL_FAIL("Physical name not convertable!");
 /*N*/           }
 /*N*/         }
 /*N*/         else
@@ -997,7 +997,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/           else
 /*N*/           {
-/*N*/               DBG_ERROR( "Illegal Output stream parameter!\n" );
+/*N*/               OSL_FAIL( "Illegal Output stream parameter!\n" );
 /*N*/               SetError( ERRCODE_IO_GENERAL );
 /*N*/           }
 /*N*/
@@ -1018,7 +1018,7 @@ namespace binfilter {
 #ifdef DBG_UTIL
 /*?*/       if ( pImp->m_aBackupURL.getLength() )
 /*?*/           if ( !::utl::UCBContentHelper::Kill( pImp->m_aBackupURL ) )
-/*?*/               DBG_ERROR("Couldn't remove backup file!");
+/*?*/               OSL_FAIL("Couldn't remove backup file!");
 #endif
 /*?*/       pImp->m_bRemoveBackup = sal_False;
 /*N*/   }
@@ -1245,7 +1245,7 @@ namespace binfilter {
 /*N*/         INetProtocol eProt = aUrl.GetProtocol();
 /*N*/         if ( eProt == INET_PROT_NOT_VALID )
 /*N*/         {
-/*?*/             DBG_ERROR ( "Unknown protocol!" );
+/*?*/             OSL_FAIL( "Unknown protocol!" );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -1269,7 +1269,7 @@ namespace binfilter {
 /*N*/           || !aLogicName.CompareToAscii( "private:stream", 14 ) == COMPARE_EQUAL ) )
 /*N*/   {
 /*?*/       pSet->ClearItem( SID_OUTPUTSTREAM );
-/*?*/       DBG_ERROR( "Unexpected Output stream parameter!\n" );
+/*?*/       OSL_FAIL( "Unexpected Output stream parameter!\n" );
 /*N*/   }
 /*N*/
 /*N*/     SetIsRemote_Impl();
@@ -1492,7 +1492,7 @@ namespace binfilter {
 /*N*/     {
 /*N*/ #ifdef DBG_UTIL
 /*N*/         if( aLogicName.Len() )
-/*N*/             DBG_ERROR( "Unbekanntes StorageFormat, versuche eigenes Format" );
+/*N*/             OSL_FAIL( "Unbekanntes StorageFormat, versuche eigenes Format" );
 /*N*/ #endif
 /*N*/         pFilter = SfxObjectFactory::GetDefaultFactory().GetFilterContainer()->
 /*N*/             GetFilter( 0 );
@@ -1507,7 +1507,7 @@ namespace binfilter {
 /*STRIP003*/ pApp->GetFilterMatcher().GetFilter4Content( *this, &pFilter );  // #91292# PowerPoint does not support an OleComp stream,
 /*STRIP003*/ if ( !pFilter )                                                 // so GetFilter4ClipBoardId is not able to detect the format,
 /*STRIP003*/ {                                                               // for such cases we try to get the filter by GetFilter4Content
-/*STRIP003*/    DBG_ERROR( "No Filter for storage found!" );
+/*STRIP003*/    OSL_FAIL( "No Filter for storage found!" );
 /*STRIP003*/    pFilter = SfxObjectFactory::GetDefaultFactory().GetFilterContainer()->GetFilter( 0 );
 /*STRIP003*/ }
 /*N*/     }
@@ -1535,10 +1535,10 @@ namespace binfilter {
 /*N*/     {
 /*N*/         String aTemp;
 /*N*/         if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aTemp ))
-/*N*/           DBG_ERROR("Physical name not convertable!");
+/*N*/           OSL_FAIL("Physical name not convertable!");
 /*N*/
 /*N*/         if ( !::utl::UCBContentHelper::Kill( aTemp ) )
-/*N*/           DBG_ERROR("Couldn't remove temporary file!");
+/*N*/           OSL_FAIL("Couldn't remove temporary file!");
 /*N*/     }
 /*N*/     #endif
 /*N*/

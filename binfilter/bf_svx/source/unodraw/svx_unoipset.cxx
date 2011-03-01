@@ -390,7 +390,7 @@ uno::Any SvxItemPropertySet::getPropertyValue( const SfxItemPropertyMap* pMap, c
     }
     else
     {
-        DBG_ERROR( "No SfxPoolItem found for property!" );
+        OSL_FAIL( "No SfxPoolItem found for property!" );
     }
 
     return aVal;
@@ -413,7 +413,7 @@ void SvxItemPropertySet::setPropertyValue( const SfxItemPropertyMap* pMap, const
     {
         if( pPool == NULL )
         {
-            DBG_ERROR( "No default item and no pool?" );
+            OSL_FAIL( "No default item and no pool?" );
             return;
         }
 
@@ -612,13 +612,13 @@ void SvxUnoConvertToMM( const SfxMapUnit eSourceMapUnit, ::com::sun::star::uno::
                 rMetric <<= (sal_uInt32)(TWIPS_TO_MM(*(sal_uInt32*)rMetric.getValue()));
                 break;
             default:
-                DBG_ERROR("AW: Missing unit translation to 100th mm!");
+                OSL_FAIL("AW: Missing unit translation to 100th mm!");
             }
             break;
         }
         default:
         {
-            DBG_ERROR("AW: Missing unit translation to 100th mm!");
+            OSL_FAIL("AW: Missing unit translation to 100th mm!");
         }
     }
 }
@@ -650,13 +650,13 @@ void SvxUnoConvertFromMM( const SfxMapUnit eDestinationMapUnit, ::com::sun::star
                     rMetric <<= (sal_uInt32)(MM_TO_TWIPS(*(sal_uInt32*)rMetric.getValue()));
                     break;
                 default:
-                    DBG_ERROR("AW: Missing unit translation to 100th mm!");
+                    OSL_FAIL("AW: Missing unit translation to 100th mm!");
             }
             break;
         }
         default:
         {
-            DBG_ERROR("AW: Missing unit translation to PoolMetrics!");
+            OSL_FAIL("AW: Missing unit translation to PoolMetrics!");
         }
     }
 }

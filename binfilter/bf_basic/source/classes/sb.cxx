@@ -373,7 +373,7 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             SbMethod* pImplMethod = pIfaceMethod->getImplMethod();
             if( !pImplMethod )
             {
-                DBG_ERROR( "No ImplMethod" );
+                OSL_FAIL( "No ImplMethod" );
                 continue;
             }
 
@@ -383,7 +383,7 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             SbMethod* pImplMethodCopy = p ? PTR_CAST(SbMethod,p) : NULL;
             if( !pImplMethodCopy )
             {
-                DBG_ERROR( "Found no ImplMethod copy" );
+                OSL_FAIL( "Found no ImplMethod copy" );
                 continue;
             }
             SbIfaceMapperMethod* pNewIfaceMethod =
@@ -741,7 +741,7 @@ SbModule* StarBASIC::FindModule( const String& rName )
 // Init-Code aller Module ausfuehren (auch in inserteten Bibliotheken)
 void StarBASIC::InitAllModules( StarBASIC* pBasicNotToInit )
 {
-    DBG_ERROR( "StarBASIC::InitAllModules: dead code!" );
+    OSL_FAIL( "StarBASIC::InitAllModules: dead code!" );
     // Alle Objekte ueberpruefen, ob es sich um ein Basic handelt
     // Wenn ja, auch dort initialisieren
     for ( USHORT nObj = 0; nObj < pObjs->Count(); nObj++ )

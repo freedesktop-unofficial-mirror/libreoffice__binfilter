@@ -148,7 +148,7 @@ SchXMLPlotAreaContext::SchXMLPlotAreaContext( SchXMLImportHelper& rImpHelper,
         }
         catch( beans::UnknownPropertyException )
         {
-            DBG_ERROR( "Property required by service not supported" );
+            OSL_FAIL( "Property required by service not supported" );
         }
     }
 }
@@ -689,7 +689,7 @@ void SchXMLAxisContext::CreateGrid( ::rtl::OUString sAutoStyleName,
             }
             catch( beans::UnknownPropertyException )
             {
-                DBG_ERROR( "Cannot enable grid due to missing property" );
+                OSL_FAIL( "Cannot enable grid due to missing property" );
             }
         }
     }
@@ -778,7 +778,7 @@ void SchXMLAxisContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Couldn't turn on x axis" );
+                    OSL_FAIL( "Couldn't turn on x axis" );
                 }
                 uno::Reference< chart::XAxisXSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
                 if( xSuppl.is())
@@ -797,7 +797,7 @@ void SchXMLAxisContext::EndElement()
                             }
                             catch( beans::UnknownPropertyException )
                             {
-                                DBG_ERROR( "Property String for Title not available" );
+                                OSL_FAIL( "Property String for Title not available" );
                             }
                             uno::Reference< drawing::XShape > xShape( xTitleProp, uno::UNO_QUERY );
                             if( xShape.is())
@@ -824,7 +824,7 @@ void SchXMLAxisContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Couldn't turn on second x axis" );
+                    OSL_FAIL( "Couldn't turn on second x axis" );
                 }
                 uno::Reference< chart::XTwoAxisXSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
                 if( xSuppl.is())
@@ -842,7 +842,7 @@ void SchXMLAxisContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Couldn't turn on y axis" );
+                    OSL_FAIL( "Couldn't turn on y axis" );
                 }
                 uno::Reference< chart::XAxisYSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
                 if( xSuppl.is())
@@ -861,7 +861,7 @@ void SchXMLAxisContext::EndElement()
                             }
                             catch( beans::UnknownPropertyException )
                             {
-                                DBG_ERROR( "Property String for Title not available" );
+                                OSL_FAIL( "Property String for Title not available" );
                             }
                             uno::Reference< drawing::XShape > xShape( xTitleProp, uno::UNO_QUERY );
                             if( xShape.is())
@@ -888,7 +888,7 @@ void SchXMLAxisContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Couldn't turn on second y axis" );
+                    OSL_FAIL( "Couldn't turn on second y axis" );
                 }
                 uno::Reference< chart::XTwoAxisYSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
                 if( xSuppl.is())
@@ -905,7 +905,7 @@ void SchXMLAxisContext::EndElement()
                 }
                 catch( beans::UnknownPropertyException )
                 {
-                    DBG_ERROR( "Couldn't turn on z axis" );
+                    OSL_FAIL( "Couldn't turn on z axis" );
                 }
                 uno::Reference< chart::XAxisZSupplier > xSuppl( mxDiagram, uno::UNO_QUERY );
                 if( xSuppl.is())
@@ -924,7 +924,7 @@ void SchXMLAxisContext::EndElement()
                             }
                             catch( beans::UnknownPropertyException )
                             {
-                                DBG_ERROR( "Property String for Title not available" );
+                                OSL_FAIL( "Property String for Title not available" );
                             }
                             uno::Reference< drawing::XShape > xShape( xTitleProp, uno::UNO_QUERY );
                             if( xShape.is())

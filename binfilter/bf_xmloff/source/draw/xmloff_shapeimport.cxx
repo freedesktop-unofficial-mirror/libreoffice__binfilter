@@ -882,7 +882,7 @@ void XMLShapeImportHelper::popGroupAndSort()
     }
     catch( uno::Exception& )
     {
-        DBG_ERROR("exception while sorting shapes, sorting failed!");
+        OSL_FAIL("exception while sorting shapes, sorting failed!");
     }
 
     // put parent on top and delete current context, were done
@@ -927,7 +927,7 @@ uno::Reference< drawing::XShape > XMLShapeImportHelper::getShapeFromId( sal_Int3
     }
     else
     {
-        DBG_ERROR( "unknown draw:id found!" );
+        OSL_FAIL( "unknown draw:id found!" );
         uno::Reference< drawing::XShape > xShape;
         return xShape;
     }

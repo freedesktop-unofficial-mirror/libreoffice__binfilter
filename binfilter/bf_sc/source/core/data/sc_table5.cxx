@@ -57,7 +57,7 @@ namespace binfilter {
 /*N*/                                   Find( aPageStyle, SFX_STYLE_FAMILY_PAGE );
 /*N*/   if ( !pStyle )
 /*N*/   {
-/*N*/       DBG_ERROR("UpdatePageBreaks: Style nicht gefunden");
+/*N*/       OSL_FAIL("UpdatePageBreaks: Style nicht gefunden");
 /*N*/       return;
 /*N*/   }
 /*N*/   SfxItemSet* pStyleSet = &pStyle->GetItemSet();

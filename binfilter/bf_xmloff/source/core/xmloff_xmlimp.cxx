@@ -1077,11 +1077,11 @@ void SvXMLImport::AddNumberStyle(sal_Int32 nKey, const OUString& rName)
         }
         catch ( uno::Exception& )
         {
-            DBG_ERROR("Numberformat could not be inserted");
+            OSL_FAIL("Numberformat could not be inserted");
         }
     }
     else
-        DBG_ERROR("not possible to create NameContainer");
+        OSL_FAIL("not possible to create NameContainer");
 }
 
 XMLEventImportHelper& SvXMLImport::GetEventImport()

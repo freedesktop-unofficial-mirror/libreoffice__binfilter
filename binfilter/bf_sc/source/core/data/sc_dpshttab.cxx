@@ -134,7 +134,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if ( nColumn >= pImpl->nColCount )
 /*N*/   {
-/*?*/       DBG_ERROR("getDimensionName: invalid dimension");
+/*?*/       OSL_FAIL("getDimensionName: invalid dimension");
 /*?*/       return String();
 /*N*/   }
 /*N*/   else
@@ -167,7 +167,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if ( nDim >= pImpl->nColCount )
 /*N*/   {
-/*?*/       DBG_ERROR("IsDateDimension: invalid dimension");
+/*?*/       OSL_FAIL("IsDateDimension: invalid dimension");
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/   else

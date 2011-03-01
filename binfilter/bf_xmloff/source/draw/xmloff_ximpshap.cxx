@@ -307,7 +307,7 @@ void SdXMLShapeContext::addGluePoint( const uno::Reference< xml::sax::XAttribute
         }
         catch( uno::Exception& )
         {
-            DBG_ERROR( "exception during setting of glue points!");
+            OSL_FAIL( "exception during setting of glue points!");
         }
     }
 }
@@ -526,7 +526,7 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "could not find style for shape!" );
+                    OSL_FAIL( "could not find style for shape!" );
                 }
             }
 
@@ -541,7 +541,7 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "could not find style for shape!" );
+                    OSL_FAIL( "could not find style for shape!" );
                 }
             }
 
@@ -780,7 +780,7 @@ void SdXMLRectShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }
@@ -1376,7 +1376,7 @@ void SdXMLTextBoxShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }
@@ -1891,7 +1891,7 @@ void SdXMLCaptionShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }

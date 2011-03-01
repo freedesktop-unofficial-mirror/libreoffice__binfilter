@@ -939,7 +939,7 @@ namespace binfilter {
 /*?*/                 mfMin = mfMax;
 /*?*/             else
 /*?*/             {
-/*?*/                 DBG_ERROR( "Minimum is greater than Maximum" );
+/*?*/                 OSL_FAIL( "Minimum is greater than Maximum" );
 /*?*/                 double fTemp = mfMin;
 /*?*/
 /*?*/                 mfMin = mfMax;
@@ -1074,7 +1074,7 @@ namespace binfilter {
 /*N*/           return (maArea.GetWidth() * 4) / 6; //ToDo: Das hier ist doch quark... kein Flipped?:;
 /*N*/           break;
 /*N*/   }
-/*?*/   DBG_ERROR("ChartAxis::GetLenght() implementation error - ZAxis failure");
+/*?*/   OSL_FAIL("ChartAxis::GetLenght() implementation error - ZAxis failure");
 /*?*/   return maArea.GetWidth();
 /*N*/ }
 
@@ -1286,7 +1286,7 @@ namespace binfilter {
 /*N*/             //    zero.
 /*N*/           if ((mfStep<0) || (mfMin+mfStep==mfMin) || (mfMax+mfStep==mfMax))
 /*N*/           {
-/*N*/               DBG_ERROR( "Decrement of <= 0.0 not allowed" );
+/*N*/               OSL_FAIL( "Decrement of <= 0.0 not allowed" );
 /*N*/               mfStep = 1.0;             // to prevent loop
 /*N*/           }
 /*N*/
@@ -1361,7 +1361,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(nLimit < 0.0)
 /*N*/   {
-/*?*/       DBG_ERROR( "negative value for nLimit, check maArea!" );
+/*?*/       OSL_FAIL( "negative value for nLimit, check maArea!" );
 /*?*/       nLimit=1.0;
 /*N*/   }
 /*N*/   nLimit=nLimit/100.0; //Minimum 1 mm Abstand
@@ -1408,7 +1408,7 @@ namespace binfilter {
 /*N*/               return maRefArea.Left() +   (long)(CalcFact(fData) * maRefArea.GetWidth());
 /*N*/
 /*N*/       case CHART_AXIS_Z:
-/*?*/           DBG_ERROR("ChartAxis - no z pos");
+/*?*/           OSL_FAIL("ChartAxis - no z pos");
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
@@ -1462,7 +1462,7 @@ namespace binfilter {
 /*N*/
 /*N*/         if( ::rtl::math::isInf( mfMax ) || ::rtl::math::isInf( mfMin ))
 /*N*/         {
-/*N*/             DBG_ERROR( "maximum or minumum is infinity" );
+/*N*/             OSL_FAIL( "maximum or minumum is infinity" );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -1626,7 +1626,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!mpTextAttr)
 /*N*/   {
-/*?*/       DBG_ERROR("ChartAxis: description uninitialised!!!!");
+/*?*/       OSL_FAIL("ChartAxis: description uninitialised!!!!");
 /*?*/       CreateTextAttr();
 /*N*/   }
 /*N*/
@@ -2388,7 +2388,7 @@ namespace binfilter {
 /*N*/
 /*N*/         if( ::rtl::math::isInf( mfMax ) || ::rtl::math::isInf( mfMin ))
 /*N*/         {
-/*N*/             DBG_ERROR( "maximum or minumum is infinity" );
+/*N*/             OSL_FAIL( "maximum or minumum is infinity" );
 /*N*/         }
 /*N*/         else
 /*N*/         {

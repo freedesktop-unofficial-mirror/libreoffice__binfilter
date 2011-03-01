@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/   if (i == MAXTAB + 1)
 /*N*/   {
 /*N*/       Sound::Beep();
-/*N*/       DBG_ERROR("ScDocument::InsertMatrixFormula Keine Tabelle markiert");
+/*N*/       OSL_FAIL("ScDocument::InsertMatrixFormula Keine Tabelle markiert");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -241,7 +241,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (nTab<=MAXTAB && pTab[nTab])
 /*N*/       pTab[nTab]->DoColResize( nCol1, nCol2, nAdd );
 /*N*/   else
-/*N*/       DBG_ERROR("DoColResize: falsche Tabelle");
+/*N*/       OSL_FAIL("DoColResize: falsche Tabelle");
 /*N*/ }
 
 /*N*/ void ScDocument::InvalidateTableArea()
@@ -407,7 +407,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (pCondFormList)
 /*N*/           return pCondFormList->GetFormat( nIndex );
 /*N*/       else
-/*N*/           DBG_ERROR("pCondFormList ist 0");
+/*N*/           OSL_FAIL("pCondFormList ist 0");
 /*N*/   }
 /*N*/
 /*N*/   return NULL;

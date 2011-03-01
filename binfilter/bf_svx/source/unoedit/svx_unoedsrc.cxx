@@ -65,7 +65,7 @@ SvxEditViewForwarder* SvxEditSource::GetEditViewForwarder( sal_Bool /*bCreate*/ 
 
 SfxBroadcaster& SvxEditSource::GetBroadcaster() const
 {
-    DBG_ERROR("SvxEditSource::GetBroadcaster called for implementation missing this feature!");
+    OSL_FAIL("SvxEditSource::GetBroadcaster called for implementation missing this feature!");
 
     static SfxBroadcaster aBroadcaster;
 

@@ -414,7 +414,7 @@ void SwExcelParser::Parse()
                 break;
             // -----------------------------------------------------------
             default:
-                DBG_ERROR(
+                OSL_FAIL(
                 "*SwExcelParser::Parse(): Zustand undefiniert - Trottel!" );
             }
         pIn->SeekRel( nBytesLeft );     // nicht gelesene Bytes ueberlesen

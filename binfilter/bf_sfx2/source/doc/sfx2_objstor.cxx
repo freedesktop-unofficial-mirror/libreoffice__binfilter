@@ -790,7 +790,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/       if(  ((SvStorage *)aMedRef) == ((SvStorage *)GetStorage() ) )
 /*N*/       {
 /*N*/             // target storage and object storage are identical, should never happen here
-/*?*/             DBG_ERROR( "Saving storage without copy!");
+/*?*/             OSL_FAIL( "Saving storage without copy!");
 /*?*/           aMedRef->SetVersion( pLclFilter->GetVersion() );
 /*?*/           bOk = Save();
 /*N*/       }
@@ -1366,7 +1366,7 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/     if ( pMergedParams->GetItemState( SID_DOC_SALVAGE) >= SFX_ITEM_SET )
-/*N*/         DBG_ERROR("Salvage item present in Itemset, check the parameters!");
+/*N*/         OSL_FAIL("Salvage item present in Itemset, check the parameters!");
 /*N*/ #endif
 /*N*/
 /*N*/     // should be unneccessary - too hot to handle!

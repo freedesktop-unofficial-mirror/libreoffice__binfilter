@@ -802,7 +802,7 @@ SdXMLMasterPageContext::SdXMLMasterPageContext(
                             }
                             catch( uno::Exception )
                             {
-                                DBG_ERROR( "uno::Exception catched!" );
+                                OSL_FAIL( "uno::Exception catched!" );
                             }
                         }
                     }

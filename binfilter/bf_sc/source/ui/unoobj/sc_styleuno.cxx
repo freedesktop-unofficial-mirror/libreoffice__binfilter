@@ -437,7 +437,7 @@ const ScDisplayNameMap* lcl_GetStyleNameMap( UINT16 nType )
         }
         return aPageMap;
     }
-    DBG_ERROR("invalid family");
+    OSL_FAIL("invalid family");
     return NULL;
 }
 
@@ -559,7 +559,7 @@ ScStyleFamilyObj*ScStyleFamiliesObj::GetObjectByType_Impl(UINT16 nType) const
         else if ( nType == SFX_STYLE_FAMILY_PAGE )
             return new ScStyleFamilyObj( pDocShell, SFX_STYLE_FAMILY_PAGE );
     }
-    DBG_ERROR("getStyleFamilyByType: keine DocShell oder falscher Typ");
+    OSL_FAIL("getStyleFamilyByType: keine DocShell oder falscher Typ");
     return NULL;
 }
 
@@ -1260,7 +1260,7 @@ beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const ::rtl::OUStrin
         else if ( eState == SFX_ITEM_DONTCARE )
             eRet = beans::PropertyState_AMBIGUOUS_VALUE;    // kann eigentlich nicht sein...
         else
-            DBG_ERROR("unbekannter ItemState");
+            OSL_FAIL("unbekannter ItemState");
     }
     return eRet;
 }

@@ -2891,7 +2891,7 @@ class ImpSkeleton;
 /*N*/                   // Wenn UserDataFactory nicht gesetzt ist, kann auch keiner
 /*N*/                   // etwas mit diesen Daten anfangen; durch Compat werden sie
 /*N*/                   // eh ueberlesen, daher ist diese Assertion überflüssig (KA)
-/*N*/                   // DBG_ERROR("SdrObject::ReadData(): ObjFactory kann UserData nicht erzeugen");
+/*N*/                   // OSL_FAIL("SdrObject::ReadData(): ObjFactory kann UserData nicht erzeugen");
 /*N*/               }
 /*N*/               if (pUserDataCompat!=NULL) { // Aha, UserData war eingepackt. Record nun schliessen
 /*N*/                   delete pUserDataCompat;
@@ -3048,7 +3048,7 @@ class ImpSkeleton;
 /*N*/       if (pPlusData->pUserDataList==NULL) pPlusData->pUserDataList=new SdrObjUserDataList;
 /*N*/       pPlusData->pUserDataList->InsertUserData(pData,nPos);
 /*N*/   } else {
-/*N*/       DBG_ERROR("SdrObject::InsertUserData(): pData ist NULL-Pointer");
+/*N*/       OSL_FAIL("SdrObject::InsertUserData(): pData ist NULL-Pointer");
 /*N*/   }
 /*N*/ }
 
@@ -3196,7 +3196,7 @@ class ImpSkeleton;
 /*?*/           }
 /*?*/           default:
 /*?*/           {
-/*?*/               DBG_ERROR("TRGetBaseGeometry: Missing unit translation to 100th mm!");
+/*?*/               OSL_FAIL("TRGetBaseGeometry: Missing unit translation to 100th mm!");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -3243,7 +3243,7 @@ class ImpSkeleton;
 /*?*/           }
 /*?*/           default:
 /*?*/           {
-/*?*/               DBG_ERROR("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
+/*?*/               OSL_FAIL("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
 /*?*/           }
 /*?*/       }
 /*N*/   }

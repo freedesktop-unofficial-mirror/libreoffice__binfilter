@@ -254,7 +254,7 @@ BOOL SvDDEObject::Connect( SvBaseLink * pSvLink )
 
 String SvDDEObject::Edit( Window* /*pParent*/, SvBaseLink * /*pLink_*/ )
 {
-    DBG_ERROR( "SvDDEObject::Edit: not implemented!" );
+    OSL_FAIL( "SvDDEObject::Edit: not implemented!" );
     // TODO: dead corpses
     return String();
 }

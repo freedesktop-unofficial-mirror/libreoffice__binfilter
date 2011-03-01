@@ -1647,7 +1647,7 @@ beans::PropertyState ScCellRangesBase::GetOnePropertyState( USHORT nItemWhich, c
             else if ( eState == SFX_ITEM_DONTCARE )
                 eRet = beans::PropertyState_AMBIGUOUS_VALUE;
             else
-                DBG_ERROR("unbekannter ItemState");
+                OSL_FAIL("unbekannter ItemState");
         }
     }
     else if ( pMap )
@@ -2307,7 +2307,7 @@ void SAL_CALL ScCellRangesBase::addPropertyChangeListener( const ::rtl::OUString
     }
     //! Test !!!!!
 
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 void SAL_CALL ScCellRangesBase::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
@@ -2349,7 +2349,7 @@ void SAL_CALL ScCellRangesBase::removePropertyChangeListener( const ::rtl::OUStr
     }
     //! Test !!!!!
 
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 void SAL_CALL ScCellRangesBase::addVetoableChangeListener( const ::rtl::OUString&,
@@ -2357,7 +2357,7 @@ void SAL_CALL ScCellRangesBase::addVetoableChangeListener( const ::rtl::OUString
                             throw(beans::UnknownPropertyException,
                                 lang::WrappedTargetException, uno::RuntimeException)
 {
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 void SAL_CALL ScCellRangesBase::removeVetoableChangeListener( const ::rtl::OUString&,
@@ -2365,7 +2365,7 @@ void SAL_CALL ScCellRangesBase::removeVetoableChangeListener( const ::rtl::OUStr
                             throw(beans::UnknownPropertyException,
                                 lang::WrappedTargetException, uno::RuntimeException)
 {
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 // XMultiPropertySet
@@ -2473,20 +2473,20 @@ void SAL_CALL ScCellRangesBase::addPropertiesChangeListener( const uno::Sequence
                                     const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 void SAL_CALL ScCellRangesBase::removePropertiesChangeListener( const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 void SAL_CALL ScCellRangesBase::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
                                     const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
-    DBG_ERROR("not implemented");
+    OSL_FAIL("not implemented");
 }
 
 //! Test !!!
@@ -4399,7 +4399,7 @@ uno::Reference<table::XTableColumns> SAL_CALL ScCellRangeObj::getColumns() throw
         return new ScTableColumnsObj( pDocSh, aRange.aStart.Tab(),
                                         aRange.aStart.Col(), aRange.aEnd.Col() );
 
-    DBG_ERROR("Dokument ungueltig");
+    OSL_FAIL("Dokument ungueltig");
     return NULL;
 }
 
@@ -4411,7 +4411,7 @@ uno::Reference<table::XTableRows> SAL_CALL ScCellRangeObj::getRows() throw(uno::
         return new ScTableRowsObj( pDocSh, aRange.aStart.Tab(),
                                     aRange.aStart.Row(), aRange.aEnd.Row() );
 
-    DBG_ERROR("Dokument ungueltig");
+    OSL_FAIL("Dokument ungueltig");
     return NULL;
 }
 
@@ -4435,7 +4435,7 @@ uno::Reference<sheet::XSpreadsheet> SAL_CALL ScCellRangeObj::getSpreadsheet()
     if (pDocSh)
         return new ScTableSheetObj( pDocSh, aRange.aStart.Tab() );
 
-    DBG_ERROR("Dokument ungueltig");
+    OSL_FAIL("Dokument ungueltig");
     return NULL;
 }
 
@@ -5011,7 +5011,7 @@ uno::Reference<sheet::XSheetFilterDescriptor> SAL_CALL ScCellRangeObj::createFil
         }
     }
 
-    DBG_ERROR("kein Dokument oder kein Bereich");
+    OSL_FAIL("kein Dokument oder kein Bereich");
     return NULL;
 }
 
@@ -5721,7 +5721,7 @@ table::CellContentType SAL_CALL ScCellObj::getType() throw(uno::RuntimeException
         }
     }
     else
-        DBG_ERROR("keine DocShell");        //! Exception oder so?
+        OSL_FAIL("keine DocShell");     //! Exception oder so?
 
     return eRet;
 }
@@ -5754,7 +5754,7 @@ sal_Int32 SAL_CALL ScCellObj::getError() throw(uno::RuntimeException)
         // sonst bleibt's bei 0
     }
     else
-        DBG_ERROR("keine DocShell");        //! Exception oder so?
+        OSL_FAIL("keine DocShell");     //! Exception oder so?
 
     return nError;
 }
@@ -5781,7 +5781,7 @@ uno::Reference<sheet::XSheetAnnotation> SAL_CALL ScCellObj::getAnnotation()
     if ( pDocSh )
         return new ScAnnotationObj( pDocSh, aCellPos );
 
-    DBG_ERROR("getAnnotation ohne DocShell");
+    OSL_FAIL("getAnnotation ohne DocShell");
     return NULL;
 }
 
@@ -6100,7 +6100,7 @@ uno::Reference<table::XTableCharts> SAL_CALL ScTableSheetObj::getCharts() throw(
     if ( pDocSh )
         return new ScChartsObj( pDocSh, GetTab_Impl() );
 
-    DBG_ERROR("kein Dokument");
+    OSL_FAIL("kein Dokument");
     return NULL;
 }
 
@@ -6112,7 +6112,7 @@ uno::Reference<sheet::XDataPilotTables> SAL_CALL ScTableSheetObj::getDataPilotTa
     if ( pDocSh )
         return new ScDataPilotTablesObj( pDocSh, GetTab_Impl() );
 
-    DBG_ERROR("kein Dokument");
+    OSL_FAIL("kein Dokument");
     return NULL;
 }
 
@@ -6124,7 +6124,7 @@ uno::Reference<sheet::XScenarios> SAL_CALL ScTableSheetObj::getScenarios() throw
     if ( pDocSh )
         return new ScScenariosObj( pDocSh, GetTab_Impl() );
 
-    DBG_ERROR("kein Dokument");
+    OSL_FAIL("kein Dokument");
     return NULL;
 }
 
@@ -6137,7 +6137,7 @@ uno::Reference<sheet::XSheetAnnotations> SAL_CALL ScTableSheetObj::getAnnotation
     if ( pDocSh )
         return new ScAnnotationsObj( pDocSh, GetTab_Impl() );
 
-    DBG_ERROR("kein Dokument");
+    OSL_FAIL("kein Dokument");
     return NULL;
 }
 
@@ -6387,7 +6387,7 @@ void SAL_CALL ScTableSheetObj::insertCells( const table::CellRangeAddress& rRang
             case sheet::CellInsertMode_ROWS:    break;
             case sheet::CellInsertMode_COLUMNS: break;
             default:
-                DBG_ERROR("insertCells: falscher Mode");
+                OSL_FAIL("insertCells: falscher Mode");
                 bDo = FALSE;
         }
 
@@ -6416,7 +6416,7 @@ void SAL_CALL ScTableSheetObj::removeRange( const table::CellRangeAddress& rRang
             case sheet::CellDeleteMode_ROWS:     break;
             case sheet::CellDeleteMode_COLUMNS:  break;
             default:
-                DBG_ERROR("deleteCells: falscher Mode");
+                OSL_FAIL("deleteCells: falscher Mode");
                 bDo = FALSE;
         }
 
@@ -7078,7 +7078,7 @@ sal_Bool SAL_CALL ScTableSheetObj::isProtected() throw(uno::RuntimeException)
     if ( pDocSh )
         return pDocSh->GetDocument()->IsTabProtected( GetTab_Impl() );
 
-    DBG_ERROR("keine DocShell");        //! Exception oder so?
+    OSL_FAIL("keine DocShell");     //! Exception oder so?
     return FALSE;
 }
 

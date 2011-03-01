@@ -271,7 +271,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           DBG_ASSERT( !pImpDesc && !pServDesc, "DPSource could not be created" );
 /*N*/           if (!pSheetDesc)
 /*N*/           {
-/*?*/               DBG_ERROR("no source descriptor");
+/*?*/               OSL_FAIL("no source descriptor");
 /*?*/               pSheetDesc = new ScSheetSourceDesc;     // dummy defaults
 /*N*/           }
 /*N*/           ScSheetDPData* pData = new ScSheetDPData( pDoc, *pSheetDesc );
@@ -294,7 +294,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           catch(uno::Exception&)
 /*?*/           {
-/*?*/               DBG_ERROR("exception in refresh");
+/*?*/               OSL_FAIL("exception in refresh");
 /*?*/           }
 /*?*/       }
 /*?*/
@@ -367,7 +367,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
-/*?*/   DBG_ERROR("FirstSubTotal: NULL");
+/*?*/   OSL_FAIL("FirstSubTotal: NULL");
 /*?*/   return 0;
 /*N*/ }
 
@@ -567,7 +567,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (!pSheetDesc)
 /*N*/       {
-/*N*/           DBG_ERROR("no source descriptor");
+/*N*/           OSL_FAIL("no source descriptor");
 /*N*/           ((ScDPObject*)this)->pSheetDesc = new ScSheetSourceDesc;        // dummy defaults
 /*N*/       }
 /*N*/
@@ -629,7 +629,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown source type");
+/*N*/           OSL_FAIL("unknown source type");
 /*N*/   }
 /*N*/
 /*N*/   rStream >> aOutRange;
@@ -1005,7 +1005,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   if ( nVer != SC_DP_VERSION_CURRENT )
 /*N*/   {
-/*N*/       DBG_ERROR("skipping unknown version of data pilot obejct");
+/*N*/       OSL_FAIL("skipping unknown version of data pilot obejct");
 /*N*/       if ( rStream.GetError() == SVSTREAM_OK )
 /*N*/           rStream.SetError( SCWARN_IMPORT_INFOLOST );
 /*N*/       return FALSE;

@@ -477,7 +477,7 @@ void SwXDocumentIndex::setPropertyValue(const OUString& rPropertyName,
             case WID_CREATE_FROM_OUTLINE               :
                 nCreate = lcl_AnyToBool(aValue) ? nCreate | TOX_OUTLINELEVEL: nCreate & ~TOX_OUTLINELEVEL;
             break;
-//          case WID_PARAGRAPH_STYLE_NAMES             :DBG_ERROR("not implemented")
+//          case WID_PARAGRAPH_STYLE_NAMES             :OSL_FAIL("not implemented")
 //          break;
             case WID_CREATE_FROM_CHAPTER               :
                 pTOXBase->SetFromChapter(lcl_AnyToBool(aValue));
@@ -555,7 +555,7 @@ void SwXDocumentIndex::setPropertyValue(const OUString& rPropertyName,
             case WID_USE_LEVEL_FROM_SOURCE             :
                 pTOXBase->SetLevelFromChapter(lcl_AnyToBool(aValue));
             break;
-//          case WID_RECALC_TAB_STOPS                  :DBG_ERROR("not implemented")
+//          case WID_RECALC_TAB_STOPS                  :OSL_FAIL("not implemented")
 //              lcl_AnyToBool(aValue) ?
 //          break;
             break;

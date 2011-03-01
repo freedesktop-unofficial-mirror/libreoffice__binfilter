@@ -143,7 +143,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/         SfxConfigItem_Impl* pItem = (*pItemArr)[i];
 /*N*/         if ( pItem->pCItem )
 /*N*/         {
-/*?*/             DBG_ERROR("SfxConfigItem not removed!");
+/*?*/             OSL_FAIL("SfxConfigItem not removed!");
 /*?*/             pItem->pCItem->ReleaseConfigManager();
 /*N*/         }
 /*N*/       delete pItem;
@@ -328,7 +328,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/ #ifdef DBG_UTIL
 /*N*/                 for ( USHORT nItem=0; nItem<nCount; nItem++ )
 /*N*/                     if ( rItems[nItem] == &rCItem )
-/*N*/                         DBG_ERROR("Item already inserted!");
+/*N*/                         OSL_FAIL("Item already inserted!");
 /*N*/ #endif
 /*N*/                 rItems.Insert( &rCItem, nCount );
 /*N*/             }
@@ -376,7 +376,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/     DBG_ERROR( "Item not registered!" );
+/*N*/     OSL_FAIL( "Item not registered!" );
 /*N*/ }
 
 /*N*/ BOOL SfxConfigManager::LoadConfigItem( SfxConfigItem& rCItem )
@@ -416,7 +416,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/             }
 /*N*/             else
 /*N*/             {
-/*N*/                 DBG_ERROR("Item without Storage!");
+/*N*/                 OSL_FAIL("Item without Storage!");
 /*N*/                 rCItem.UseDefault();
 /*N*/                 return FALSE;
 /*N*/             }
@@ -425,7 +425,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/     DBG_ERROR("ItemType not registered!");
+/*N*/     OSL_FAIL("ItemType not registered!");
 /*N*/     return FALSE;
 /*N*/ }
 
@@ -534,7 +534,7 @@ static const char pStorageName[] = "Configurations";
 /*N*/             }
 /*N*/             else
 /*N*/             {
-/*N*/                 DBG_ERROR("Couldn't convert old configuration!");
+/*N*/                 OSL_FAIL("Couldn't convert old configuration!");
 /*N*/                 // force error message that saving this document would lose some configuration information
 /*N*/             }
 /*N*/         }

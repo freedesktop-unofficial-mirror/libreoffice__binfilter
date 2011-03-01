@@ -238,7 +238,7 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
 
     if( ! rChartDoc.is())
     {
-        DBG_ERROR( "No XChartDocument was given for export." );
+        OSL_FAIL( "No XChartDocument was given for export." );
         return;
     }
 
@@ -912,7 +912,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             }
             catch( beans::UnknownPropertyException )
             {
-                DBG_ERROR( "Property HasSecondaryYAxis not found in Diagram" );
+                OSL_FAIL( "Property HasSecondaryYAxis not found in Diagram" );
             }
 
             // 3d attributes
@@ -2327,7 +2327,7 @@ void SchXMLExport::_ExportAutoStyles()
         }
         else
         {
-            DBG_ERROR( "Couldn't export chart due to wrong XModel (must be XChartDocument)" );
+            OSL_FAIL( "Couldn't export chart due to wrong XModel (must be XChartDocument)" );
         }
     }
 }
@@ -2385,7 +2385,7 @@ void SchXMLExport::_ExportContent()
                     }
                     catch( beans::UnknownPropertyException )
                     {
-                        DBG_ERROR( "Property ChartRangeAddress not supported by ChartDocument" );
+                        OSL_FAIL( "Property ChartRangeAddress not supported by ChartDocument" );
                     }
                 }
             }
@@ -2394,7 +2394,7 @@ void SchXMLExport::_ExportContent()
     }
     else
     {
-        DBG_ERROR( "Couldn't export chart due to wrong XModel" );
+        OSL_FAIL( "Couldn't export chart due to wrong XModel" );
     }
 }
 

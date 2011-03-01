@@ -50,7 +50,7 @@ namespace binfilter {
 
 /*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef, const SwRect *, const SwRect * )
 /*N*/ {
-            DBG_ERROR("Split!");
+            OSL_FAIL("Split!");
 /*N*/ }
 
     void SwWrtShell::ConnectObj( SvInPlaceObjectRef, const SwRect &, const SwRect & )

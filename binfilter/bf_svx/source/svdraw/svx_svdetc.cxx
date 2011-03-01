@@ -382,10 +382,10 @@ namespace binfilter {
 /*N*/       if (rLink.IsSet()) {
 /*N*/           aList.Insert(new Link(rLink),nPos);
 /*N*/       } else {
-/*N*/           DBG_ERROR("SdrLinkList::InsertLink(): Versuch, einen nicht gesetzten Link einzufuegen");
+/*N*/           OSL_FAIL("SdrLinkList::InsertLink(): Versuch, einen nicht gesetzten Link einzufuegen");
 /*N*/       }
 /*N*/   } else {
-/*N*/       DBG_ERROR("SdrLinkList::InsertLink(): Link schon vorhanden");
+/*N*/       OSL_FAIL("SdrLinkList::InsertLink(): Link schon vorhanden");
 /*N*/   }
 /*N*/ }
 /*N*/
@@ -396,7 +396,7 @@ namespace binfilter {
 /*N*/       Link* pLink=(Link*)aList.Remove(nFnd);
 /*N*/       delete pLink;
 /*N*/   } else {
-/*N*/       DBG_ERROR("SdrLinkList::RemoveLink(): Link nicht gefunden");
+/*N*/       OSL_FAIL("SdrLinkList::RemoveLink(): Link nicht gefunden");
 /*N*/   }
 /*N*/ }
 

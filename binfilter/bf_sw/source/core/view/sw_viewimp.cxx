@@ -59,7 +59,7 @@ namespace binfilter {
 
 /*N*/ void SwViewImp::Init( const SwViewOption* /*pNewOpt*/ )
 /*N*/ {
-        DBG_ERROR("Strip!");
+        OSL_FAIL("Strip!");
 /*N*/ }
 
 /******************************************************************************

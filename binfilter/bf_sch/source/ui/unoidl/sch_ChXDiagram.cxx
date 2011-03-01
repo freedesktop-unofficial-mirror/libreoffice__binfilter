@@ -195,7 +195,7 @@ sal_Bool ChXDiagram::SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepMod
                 pDocShell->SetModelPtr( pModel );
                 if( ! pModel->SetObjectShell( pDocShell ))
                 {
-                    DBG_ERROR( "Couldn't set docshell" );
+                    OSL_FAIL( "Couldn't set docshell" );
                 }
 
                 delete mpModel;
@@ -340,7 +340,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                 else
                 {
                     OSL_TRACE( "GetAnyByItem(): wrong Type!" );
-                    DBG_ERROR( "GetAnyByItem(): wrong Type!" );
+                    OSL_FAIL( "GetAnyByItem(): wrong Type!" );
                 }
             }
     }
@@ -391,14 +391,14 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                 break;
             case CHTYPE_ADDIN :
                 // when we get here we know that maServiceName.getLength() == 0
-                DBG_ERROR( "Addin with empty name !" );
+                OSL_FAIL( "Addin with empty name !" );
                 break;
         }
         return maServiceName;
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return SCH_ASCII_TO_OU( "UnknownChartType" );
 }
@@ -426,7 +426,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties(
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -458,7 +458,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -499,7 +499,7 @@ void SAL_CALL ChXDiagram::setSize( const awt::Size& aSize )
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 }
 
@@ -513,7 +513,7 @@ awt::Point SAL_CALL ChXDiagram::getPosition() throw( uno::RuntimeException )
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return awt::Point( 0, 0 );
 }
@@ -538,7 +538,7 @@ void SAL_CALL ChXDiagram::setPosition( const awt::Point& aPosition ) throw( uno:
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 }
 
@@ -1250,7 +1250,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return aAny;
 }
@@ -1782,7 +1782,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
 void SAL_CALL   ChXDiagram::setAllPropertiesToDefault (void)
     throw (RuntimeException)
 {
-    DBG_ERROR ("ChXChartObject::setAllPropertiesToDefault");
+    OSL_FAIL("ChXChartObject::setAllPropertiesToDefault");
 }
 
 
@@ -1921,7 +1921,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return aSeq;

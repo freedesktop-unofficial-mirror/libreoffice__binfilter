@@ -419,7 +419,7 @@ void SvxShape::ForceMetricToItemPoolMetric(Pair& rPoint) const throw()
                 }
                 default:
                 {
-                    DBG_ERROR("AW: Missing unit translation to PoolMetric!");
+                    OSL_FAIL("AW: Missing unit translation to PoolMetric!");
                 }
             }
         }
@@ -445,7 +445,7 @@ void SvxShape::ForceMetricTo100th_mm(Pair& rPoint) const throw()
                 }
                 default:
                 {
-                    DBG_ERROR("AW: Missing unit translation to 100th mm!");
+                    OSL_FAIL("AW: Missing unit translation to 100th mm!");
                 }
             }
         }
@@ -2451,7 +2451,7 @@ void SAL_CALL SvxShape::setPropertyValues( const ::com::sun::star::uno::Sequence
             }
             catch( uno::Exception& )
             {
-                DBG_ERROR( "SvxShape::getPropertyValues, unknown property asked" );
+                OSL_FAIL( "SvxShape::getPropertyValues, unknown property asked" );
             }
         }
     }
@@ -2468,7 +2468,7 @@ void SAL_CALL SvxShape::setPropertyValues( const ::com::sun::star::uno::Sequence
             }
             catch( uno::Exception& )
             {
-                DBG_ERROR( "SvxShape::getPropertyValues, unknown property asked" );
+                OSL_FAIL( "SvxShape::getPropertyValues, unknown property asked" );
             }
         }
     }
@@ -2558,7 +2558,7 @@ uno::Any SvxShape::GetAnyForItem( SfxItemSet& aSet, const SfxItemPropertyMap* pM
             }
             else
             {
-                DBG_ERROR("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
+                OSL_FAIL("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
             }
         }
 
@@ -3478,7 +3478,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxShape::getParent(  )
         }
 
 
-        DBG_ERROR( "SvxShape::getParent(  ): unexpected SdrObjListKind" );
+        OSL_FAIL( "SvxShape::getParent(  ): unexpected SdrObjListKind" );
     }
 
     uno::Reference< uno::XInterface > xParent;

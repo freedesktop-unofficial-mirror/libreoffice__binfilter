@@ -334,7 +334,7 @@ void B3dLightGroup::SetIntensity(const Color rNew,
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -351,7 +351,7 @@ const Color B3dLightGroup::GetIntensity(Base3DMaterialValue eMat,
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].GetIntensity(eMat);
@@ -372,7 +372,7 @@ void B3dLightGroup::SetPosition(const Vector3D& rNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -391,7 +391,7 @@ void B3dLightGroup::SetDirection(const Vector3D& rNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -407,7 +407,7 @@ const Vector3D& B3dLightGroup::GetDirection(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].GetPosition();
@@ -427,7 +427,7 @@ void B3dLightGroup::Enable(BOOL bNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -443,7 +443,7 @@ BOOL B3dLightGroup::IsEnabled(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].IsEnabled();
@@ -461,7 +461,7 @@ B3dLight& B3dLightGroup::GetLightObject(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum];

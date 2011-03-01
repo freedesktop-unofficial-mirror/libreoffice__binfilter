@@ -909,7 +909,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ #endif
 /*N*/     if ( pStorage->GetVersion() >= SOFFICE_FILEFORMAT_60 )
 /*N*/     {
-/*N*/         DBG_ERROR("This method only supports binary file format, use service StandaloneDocumentInfo!");
+/*N*/         OSL_FAIL("This method only supports binary file format, use service StandaloneDocumentInfo!");
 /*N*/         return FALSE;
 /*N*/     }
 /*N*/

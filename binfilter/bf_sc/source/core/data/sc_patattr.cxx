@@ -866,7 +866,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ {
 /*N*/   if ( !pSrcStyle || !pDestPool || !pSrcPool )
 /*N*/   {
-/*N*/       DBG_ERROR( "CopyStyleToPool: Invalid Arguments :-/" );
+/*N*/       OSL_FAIL( "CopyStyleToPool: Invalid Arguments :-/" );
 /*N*/       return NULL;
 /*N*/   }
 /*N*/
@@ -1075,7 +1075,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "ScPatternAttr::SetStyleSheet( NULL ) :-|" );
+/*N*/       OSL_FAIL( "ScPatternAttr::SetStyleSheet( NULL ) :-|" );
 /*N*/       GetItemSet().SetParent(NULL);
 /*N*/       pStyle = NULL;
 /*N*/   }

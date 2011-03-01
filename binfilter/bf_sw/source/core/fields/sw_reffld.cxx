@@ -504,7 +504,7 @@ String SwGetRefField::GetPar2() const
 /*N*/           case  REF_SETREFATTR : nSource = ReferenceFieldSource::REFERENCE_MARK; break;
 /*N*/           case  REF_SEQUENCEFLD: nSource = ReferenceFieldSource::SEQUENCE_FIELD; break;
 /*?*/           case  REF_BOOKMARK   : nSource = ReferenceFieldSource::BOOKMARK; break;
-/*?*/           case  REF_OUTLINE    : DBG_ERROR("not implemented"); break;
+/*?*/           case  REF_OUTLINE    : OSL_FAIL("not implemented"); break;
 /*?*/           case  REF_FOOTNOTE   : nSource = ReferenceFieldSource::FOOTNOTE; break;
 /*?*/           case  REF_ENDNOTE    : nSource = ReferenceFieldSource::ENDNOTE; break;
 /*N*/           }
@@ -537,7 +537,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       rAny <<= (sal_Int16)nSeqNo;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -607,7 +607,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }

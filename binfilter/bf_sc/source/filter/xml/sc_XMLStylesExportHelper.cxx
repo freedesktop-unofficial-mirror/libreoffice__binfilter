@@ -709,7 +709,7 @@ sal_Int32 ScRowFormatRanges::GetMaxRows()
             ++aItr;
         }
     else
-        DBG_ERROR("no ranges found");
+        OSL_FAIL("no ranges found");
     return nMaxRows;
 }
 

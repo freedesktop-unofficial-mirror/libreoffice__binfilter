@@ -189,7 +189,7 @@ awt::Point SAL_CALL ChXChartObject::getPosition() throw( uno::RuntimeException )
         return awt::Point( aPt.X(), aPt.Y() );
     }
     else
-        DBG_ERROR( "Couldn't get position due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't get position due to invalid SdrObject" );
 
     return awt::Point();
 }
@@ -204,7 +204,7 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
         case CHOBJID_DIAGRAM_Z_AXIS:
         case CHOBJID_DIAGRAM_AREA:
         case CHOBJID_DIAGRAM_WALL:
-            DBG_ERROR( "Cannot set position of this object" );
+            OSL_FAIL( "Cannot set position of this object" );
             return;
     }
 
@@ -235,7 +235,7 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
         }
     }
     else
-        DBG_ERROR( "Couldn't set position due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't set position due to invalid SdrObject" );
 }
 
 awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
@@ -250,7 +250,7 @@ awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
         return awt::Size( aObjSize.getWidth(), aObjSize.getHeight() );
     }
     else
-        DBG_ERROR( "Couldn't get size due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't get size due to invalid SdrObject" );
 
     return awt::Size();
 }
@@ -261,7 +261,7 @@ void SAL_CALL ChXChartObject::setSize( const awt::Size& /*aSize*/ )
     // set size is not supported by any chart object except
     // the diagram which is covered by ChXDiagram
 
-    DBG_ERROR( "Size of chart objects cannot be changed" );
+    OSL_FAIL( "Size of chart objects cannot be changed" );
 }
 
 // XPropertySet
@@ -603,7 +603,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                         }
                         else
                         {
-                            DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "getPropertyValue(): wrong Type!" );
                         }
                     }
                 }
@@ -1119,7 +1119,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyDefault( const ::rtl::OUString& aPr
         }
         else
         {
-            DBG_ERROR( "getPropertyDefault(): wrong Type!" );
+            OSL_FAIL( "getPropertyDefault(): wrong Type!" );
         }
     }
 
@@ -1138,7 +1138,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyDefault( const ::rtl::OUString& aPr
 void SAL_CALL ChXChartObject::setAllPropertiesToDefault (void)
     throw ( uno::RuntimeException)
 {
-    DBG_ERROR ("ChXChartObject::setAllPropertiesToDefault");
+    OSL_FAIL("ChXChartObject::setAllPropertiesToDefault");
 }
 
 
@@ -1381,7 +1381,7 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                         }
                         else
                         {
-                            DBG_ERROR( "GetPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "GetPropertyValue(): wrong Type!" );
                         }
                     }
             }

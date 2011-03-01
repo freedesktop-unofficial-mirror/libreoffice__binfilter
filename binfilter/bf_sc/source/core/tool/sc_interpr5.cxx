@@ -467,7 +467,7 @@ void ScInterpreter:: ScKGV()
 /*N*/ {
 /*N*/   if (nMatCount == MAX_ANZ_MAT)
 /*N*/   {
-/*N*/       DBG_ERROR("ScInterpreter::GetNewMat: Matrixueberlauf");
+/*N*/       OSL_FAIL("ScInterpreter::GetNewMat: Matrixueberlauf");
 /*N*/       SetError(errCodeOverflow);
 /*N*/       nMatInd = MAX_ANZ_MAT;
 /*N*/       return NULL;

@@ -313,7 +313,7 @@ namespace binfilter {
 /*N*/       else if ( pObjFactory->nIdentifier == SC_UD_IMAPDATA )
 /*N*/           pObjFactory->pNewData = new ScIMapInfo;
 /*N*/       else
-/*N*/           DBG_ERROR("MakeUserData: falsche ID");
+/*N*/           OSL_FAIL("MakeUserData: falsche ID");
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }

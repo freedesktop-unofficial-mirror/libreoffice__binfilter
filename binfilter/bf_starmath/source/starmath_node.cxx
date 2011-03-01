@@ -86,7 +86,7 @@ namespace binfilter {
 /*N*/                   PUSH_LINECOLOR | PUSH_FILLCOLOR | PUSH_TEXTCOLOR );
 /*N*/     if (bUseMap100th_mm  &&  MAP_100TH_MM != rOutDev.GetMapMode().GetMapUnit())
 /*N*/     {
-/*?*/         DBG_ERROR( "incorrect MapMode?" );
+/*?*/         OSL_FAIL( "incorrect MapMode?" );
 /*?*/         rOutDev.SetMapMode( MAP_100TH_MM );     //Immer fuer 100% fomatieren
 /*N*/     }
 /*N*/ }

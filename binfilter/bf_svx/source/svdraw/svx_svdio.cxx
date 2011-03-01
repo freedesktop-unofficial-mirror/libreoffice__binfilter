@@ -84,7 +84,7 @@ namespace binfilter {
 /*N*/       Write();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrIOHeader::OpenRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrIOHeader::OpenRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = TRUE;
 /*N*/
@@ -104,7 +104,7 @@ namespace binfilter {
 /*N*/   if(bLookAhead)
 /*N*/   {
 /*?*/       rStream.Seek(nFilePos);
-/*?*/       DBG_ERROR("SdrIOHeader::CloseRecord(): CloseRecord im Modus LookAhead.");
+/*?*/       OSL_FAIL("SdrIOHeader::CloseRecord(): CloseRecord im Modus LookAhead.");
 /*?*/       return;
 /*N*/   }
 /*N*/
@@ -143,7 +143,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrIOHeader::CloseRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrIOHeader::CloseRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = FALSE;
 /*N*/   bClosed = TRUE;
@@ -496,7 +496,7 @@ namespace binfilter {
 /*N*/       Write();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrDownCompat::OpenSubRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrDownCompat::OpenSubRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = TRUE;
 /*N*/ }
@@ -568,7 +568,7 @@ namespace binfilter {
 /*N*/       rStream.Seek(nAktPos);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrDownCompat::CloseSubRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrDownCompat::CloseSubRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = FALSE;
 /*N*/   bClosed = TRUE;

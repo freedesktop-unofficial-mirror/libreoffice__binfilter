@@ -354,14 +354,14 @@ void OGridColumn::setOwnProperties(Sequence<Property>& aDescriptor)
 //------------------------------------------------------------------------------
 Reference<XPropertySetInfo> SAL_CALL OGridColumn::getPropertySetInfo() throw(RuntimeException)
 {
-    DBG_ERROR("OGridColumn::getPropertySetInfo() : Dummy Called");
+    OSL_FAIL("OGridColumn::getPropertySetInfo() : Dummy Called");
     return Reference<XPropertySetInfo> ();
 }
 
 //------------------------------------------------------------------------------
 ::cppu::IPropertyArrayHelper& OGridColumn::getInfoHelper()
 {
-    DBG_ERROR("OGridColumn::getInfoHelper() : Dummy Called");
+    OSL_FAIL("OGridColumn::getInfoHelper() : Dummy Called");
 
     Sequence<Property> aDescriptor, aAggProperties;
     static OPropertyArrayAggregationHelper aDescAry(aDescriptor, aAggProperties);

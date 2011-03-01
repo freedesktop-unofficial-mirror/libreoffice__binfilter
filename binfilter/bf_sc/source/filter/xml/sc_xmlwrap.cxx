@@ -109,7 +109,7 @@ uno::Reference <task::XStatusIndicator> ScXMLImportWrapper::GetStatusIndicator(
                     }
                     catch( lang::DisposedException e )
                     {
-                        DBG_ERROR("Exception while trying to get a Status Indicator");
+                        OSL_FAIL("Exception while trying to get a Status Indicator");
                     }
                 }
             }

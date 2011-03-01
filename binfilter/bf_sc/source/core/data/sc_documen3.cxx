@@ -395,7 +395,7 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*?*/       DBG_ERROR("No Uno broadcaster");
+/*?*/       OSL_FAIL("No Uno broadcaster");
 /*N*/ }
 
 /*N*/ void ScDocument::BroadcastUno( const SfxHint &rHint )
@@ -494,7 +494,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->UpdateOutlineCol( nStartCol, nEndCol, bShow );
 /*N*/
-/*N*/   DBG_ERROR("missing tab");
+/*N*/   OSL_FAIL("missing tab");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -503,7 +503,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->UpdateOutlineRow( nStartRow, nEndRow, bShow );
 /*N*/
-/*N*/   DBG_ERROR("missing tab");
+/*N*/   OSL_FAIL("missing tab");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -523,7 +523,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->CreateQueryParam(nCol1, nRow1, nCol2, nRow2, rQueryParam);
 /*N*/
-/*N*/   DBG_ERROR("missing tab");
+/*N*/   OSL_FAIL("missing tab");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -549,7 +549,7 @@ using namespace ::com::sun::star;
 /*N*/   ScTable* pTable = pTab[nTab];
 /*N*/   if (!pTable)
 /*N*/   {
-/*N*/       DBG_ERROR("GetRange ohne Tabelle");
+/*N*/       OSL_FAIL("GetRange ohne Tabelle");
 /*N*/       return ScRange();
 /*N*/   }
 /*N*/
@@ -675,7 +675,7 @@ using namespace ::com::sun::star;
 /*N*/   ScTable* pTable = pTab[nVisibleTab];
 /*N*/   if (!pTable)
 /*N*/   {
-/*N*/       DBG_ERROR("SetEmbedded ohne Tabelle");
+/*N*/       OSL_FAIL("SetEmbedded ohne Tabelle");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -721,7 +721,7 @@ using namespace ::com::sun::star;
 /*N*/       if (pTab[nTab])
 /*N*/           return pTab[nTab]->IsProtected();
 /*N*/
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -736,7 +736,7 @@ using namespace ::com::sun::star;
 /*N*/       if (pTab[nTab])
 /*N*/           return pTab[nTab]->GetPassword();
 /*N*/
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return aProtectPass;
 /*N*/ }
 
@@ -800,7 +800,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if (nTab > MAXTAB || !pTab[nTab])
 /*N*/   {
-/*N*/       DBG_ERROR("GetMMRect: falsche Tabelle");
+/*N*/       OSL_FAIL("GetMMRect: falsche Tabelle");
 /*N*/       return Rectangle(0,0,0,0);
 /*N*/   }
 /*N*/

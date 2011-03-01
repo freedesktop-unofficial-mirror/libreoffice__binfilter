@@ -157,7 +157,7 @@ bool SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         return true;
     }
 
-    DBG_ERROR( "SfxTargetFrameItem::PutValue - Wrong type!" );
+    OSL_FAIL( "SfxTargetFrameItem::PutValue - Wrong type!" );
     return false;
 }
 

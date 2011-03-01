@@ -1020,7 +1020,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/   }
 /*?*/   else
 /*?*/   {
-/*?*/       DBG_ERROR("TODO: what should happen with unnamed DBFields?");
+/*?*/       OSL_FAIL("TODO: what should happen with unnamed DBFields?");
 /*?*/   }
 /*N*/ }
 

@@ -586,7 +586,7 @@ namespace binfilter {
 /*N*/   if(pRefDev)
 /*N*/       aLegendSize = pRefDev->PixelToLogic (pRefDev->LogicToPixel (aLegendSize));
 /*N*/   else
-/*N*/       DBG_ERROR("ChartModel: no RefDevice");
+/*N*/       OSL_FAIL("ChartModel: no RefDevice");
 /*N*/
 /*N*/   long nLegendHeight = aLegendSize.Height () * 9 / 10;
 /*N*/
@@ -873,7 +873,7 @@ namespace binfilter {
 /*N*/   if(pRefDev)
 /*N*/       aLegendSize = pRefDev->PixelToLogic (pRefDev->LogicToPixel (aLegendSize));
 /*N*/   else
-/*?*/       DBG_ERROR("ChartModel: no RefDevice");
+/*?*/       OSL_FAIL("ChartModel: no RefDevice");
 /*N*/
 /*N*/   long nLegendHeight = aLegendSize.Height () * 9 / 10;
 /*N*/

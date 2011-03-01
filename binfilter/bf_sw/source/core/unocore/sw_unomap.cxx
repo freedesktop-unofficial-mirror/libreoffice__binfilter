@@ -2315,7 +2315,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
             break;
 
             default:
-                DBG_ERROR( "unexpected property map ID" );
+                OSL_FAIL( "unexpected property map ID" );
         }
         Sort(nPropertyId);
     }

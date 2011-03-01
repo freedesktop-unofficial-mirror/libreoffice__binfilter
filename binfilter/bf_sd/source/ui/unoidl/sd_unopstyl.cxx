@@ -422,7 +422,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
             }
             else
             {
-                DBG_ERROR("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
+                OSL_FAIL("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
             }
         }
     }

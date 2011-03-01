@@ -455,7 +455,7 @@ sal_Int32 SAL_CALL ScModelObj::getRendererCount( const uno::Any& /*aSelection*/,
                                     const uno::Sequence<beans::PropertyValue>& /*xOptions*/ )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
-    DBG_ERROR("Strip!");
+    OSL_FAIL("Strip!");
     return 0;
 }
 
@@ -463,7 +463,7 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScModelObj::getRenderer( sal_Int32 
                                     const uno::Any& /*aSelection*/, const uno::Sequence<beans::PropertyValue>& /*xOptions*/ )
                                 throw (lang::IllegalArgumentException, uno::RuntimeException)
 {
-    DBG_ERROR("Strip!");
+    OSL_FAIL("Strip!");
     uno::Sequence<beans::PropertyValue> aSequence;
     return aSequence;
 }
@@ -472,7 +472,7 @@ void SAL_CALL ScModelObj::render( sal_Int32 /*nRenderer*/, const uno::Any& /*aSe
                                     const uno::Sequence<beans::PropertyValue>& /*rOptions*/ )
                                 throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
-    DBG_ERROR("Strip!");
+    OSL_FAIL("Strip!");
 }
 
 // XLinkTargetSupplier
@@ -553,7 +553,7 @@ void SAL_CALL ScModelObj::calculate() throw(uno::RuntimeException)
     if (pDocShell)
         pDocShell->DoRecalc(TRUE);
     else
-        DBG_ERROR("keine DocShell");        //! Exception oder so?
+        OSL_FAIL("keine DocShell");     //! Exception oder so?
 }
 
 void SAL_CALL ScModelObj::calculateAll() throw(uno::RuntimeException)
@@ -562,7 +562,7 @@ void SAL_CALL ScModelObj::calculateAll() throw(uno::RuntimeException)
     if (pDocShell)
         pDocShell->DoHardRecalc(TRUE);
     else
-        DBG_ERROR("keine DocShell");        //! Exception oder so?
+        OSL_FAIL("keine DocShell");     //! Exception oder so?
 }
 
 sal_Bool SAL_CALL ScModelObj::isAutomaticCalculationEnabled() throw(uno::RuntimeException)
@@ -571,7 +571,7 @@ sal_Bool SAL_CALL ScModelObj::isAutomaticCalculationEnabled() throw(uno::Runtime
     if (pDocShell)
         return pDocShell->GetDocument()->GetAutoCalc();
 
-    DBG_ERROR("keine DocShell");        //! Exception oder so?
+    OSL_FAIL("keine DocShell");     //! Exception oder so?
     return FALSE;
 }
 
@@ -589,7 +589,7 @@ void SAL_CALL ScModelObj::enableAutomaticCalculation( sal_Bool bEnabled )
         }
     }
     else
-        DBG_ERROR("keine DocShell");        //! Exception oder so?
+        OSL_FAIL("keine DocShell");     //! Exception oder so?
 }
 
 // XProtectable
@@ -627,7 +627,7 @@ sal_Bool SAL_CALL ScModelObj::isProtected() throw(uno::RuntimeException)
     if (pDocShell)
         return pDocShell->GetDocument()->IsDocProtected();
 
-    DBG_ERROR("keine DocShell");        //! Exception oder so?
+    OSL_FAIL("keine DocShell");     //! Exception oder so?
     return FALSE;
 }
 
@@ -639,7 +639,7 @@ uno::Reference<drawing::XDrawPages> SAL_CALL ScModelObj::getDrawPages() throw(un
     if (pDocShell)
         return new ScDrawPagesObj(pDocShell);
 
-    DBG_ERROR("keine DocShell");        //! Exception oder so?
+    OSL_FAIL("keine DocShell");     //! Exception oder so?
     return NULL;
 }
 

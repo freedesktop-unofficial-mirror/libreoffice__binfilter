@@ -170,7 +170,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               break;
 /*N*/           default:
-/*N*/               DBG_ERROR( "Falscher Zellentyp" );
+/*N*/               OSL_FAIL( "Falscher Zellentyp" );
 /*N*/               rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/               return;
 /*N*/       }
@@ -312,7 +312,7 @@ namespace binfilter {
 /*?*/                       rStream << (BYTE) CELLTYPE_NOTE;
 /*?*/                       ScNoteCell aDummyCell;
 /*?*/                       aDummyCell.Save( rStream );
-/*?*/                       DBG_ERROR( "Falscher Zellentyp" );
+/*?*/                       OSL_FAIL( "Falscher Zellentyp" );
 /*?*/                   }
 /*?*/                   break;
 /*N*/           }
@@ -336,7 +336,7 @@ namespace binfilter {
 /*N*/           pItems[nPos].pCell->LoadNote(rStream);
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("falsche Pos in ScColumn::LoadNotes");
+/*N*/           OSL_FAIL("falsche Pos in ScColumn::LoadNotes");
 /*N*/           rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/       }
 /*N*/   }
@@ -495,7 +495,7 @@ namespace binfilter {
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScColumn::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScColumn::Load");
 /*N*/                   ScReadHeader aDummyHeader( rStream );
 /*N*/               }
 /*N*/       }
@@ -1597,10 +1597,10 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/ //        else
-/*N*/ //            DBG_ERROR("ScColumn::EndListening - kein Broadcaster");
+/*N*/ //            OSL_FAIL("ScColumn::EndListening - kein Broadcaster");
 /*N*/   }
 /*N*/ //    else
-/*N*/ //        DBG_ERROR("ScColumn::EndListening - keine Zelle");
+/*N*/ //        OSL_FAIL("ScColumn::EndListening - keine Zelle");
 /*N*/ }
 
 

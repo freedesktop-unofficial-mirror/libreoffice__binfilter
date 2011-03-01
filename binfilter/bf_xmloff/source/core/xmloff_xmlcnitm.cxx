@@ -193,7 +193,7 @@ void SvXMLAttrContainerData::Remove( USHORT i )
     }
     else
     {
-        DBG_ERROR( "illegal index" );
+        OSL_FAIL( "illegal index" );
     }
 }
 

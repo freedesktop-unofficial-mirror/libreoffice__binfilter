@@ -129,7 +129,7 @@ DBG_NAME( EditUndo )
 
 /*N*/ void EditUndoInsertChars::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoInsertChars::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoInsertChars::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -164,7 +164,7 @@ DBG_NAME( EditUndo )
 
 /*N*/ void EditUndoInsertFeature::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoInsertFeature::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoInsertFeature::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -204,7 +204,7 @@ DBG_NAME( EditUndo )
 
 /*N*/ void EditUndoSetStyleSheet::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -232,7 +232,7 @@ DBG_NAME( EditUndo )
 
 /*N*/ void EditUndoSetParaAttribs::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------

@@ -429,14 +429,14 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/             aRet = ScGlobal::pLocaleData->getDate(aData.aDate);
 /*N*/       else
 /*N*/       {
-/*N*/           //DBG_ERROR("unbekannter Feldbefehl");
+/*N*/           //OSL_FAIL("unbekannter Feldbefehl");
 /*N*/           aRet = '?';
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
             // #i75599# no assertion - can happen with old files
-/*N*/       //DBG_ERROR("FieldData ist 0");
+/*N*/       //OSL_FAIL("FieldData ist 0");
 /*N*/       aRet = '?';
 /*N*/   }
 /*N*/
@@ -494,7 +494,7 @@ const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           //DBG_ERROR("unbekannter Feldbefehl");
+/*N*/           //OSL_FAIL("unbekannter Feldbefehl");
 /*N*/           aRet = '?';
 /*N*/       }
 /*N*/   }

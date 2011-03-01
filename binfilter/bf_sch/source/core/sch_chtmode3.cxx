@@ -112,7 +112,7 @@ namespace binfilter {
 /*?*/       case CHOBJID_DIAGRAM_A_AXIS:
 /*?*/           return pChartAAxis;
 /*N*/   }
-/*?*/   DBG_ERROR("ChartModel::GetAxis() illegal argument (nId=CHOBJID_)");
+/*?*/   OSL_FAIL("ChartModel::GetAxis() illegal argument (nId=CHOBJID_)");
 /*?*/   return pChartYAxis;
 /*N*/ }
 
@@ -244,7 +244,7 @@ namespace binfilter {
 /*N*/                 GetAxisByUID( nAxisUId )->SetAttributes( rAttr );
 /*N*/             }
 /*N*/             else
-/*N*/                 DBG_ERROR( "ChartAxis not found for Object" );
+/*N*/                 OSL_FAIL( "ChartAxis not found for Object" );
 /*N*/
 /*N*/           if(IsAttrChangeNeedsBuildChart(aSet))
 /*N*/              BuildChart(FALSE,nId); //z.B. auch Texte skalieren!
@@ -278,7 +278,7 @@ namespace binfilter {
 /*N*/
 /*N*/     if( aDataRowAttrList.size() <= (unsigned long)nRow )
 /*N*/     {
-/*?*/         DBG_ERROR( "Invalid index to array requested" );
+/*?*/         OSL_FAIL( "Invalid index to array requested" );
 /*?*/         return;
 /*N*/     }
 /*N*/
@@ -312,7 +312,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "Requested data row attribute is unavailable" );
+/*N*/       OSL_FAIL( "Requested data row attribute is unavailable" );
 /*N*/
 /*N*/       // return something
 /*?*/       DBG_ASSERT( pChartAttr, "Invalid Chart-ItemSet" );
@@ -765,7 +765,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR( "Requested data point attribute is unavailable" );
+/*?*/       OSL_FAIL( "Requested data point attribute is unavailable" );
 /*?*/
 /*?*/       // return something
 /*?*/       DBG_ASSERT( pChartAttr, "Invalid Chart-ItemSet" );
@@ -1000,7 +1000,7 @@ namespace binfilter {
 /*N*/   SchObjectId* pObjId = GetObjectId(*pObj);
 /*N*/   if(!pObjId)
 /*N*/   {
-/*?*/       DBG_ERROR("ChartModel::StoreObjectsAttributes failed, no ObjId");
+/*?*/       OSL_FAIL("ChartModel::StoreObjectsAttributes failed, no ObjId");
 /*N*/   }
 /*N*/   long nId=pObjId->GetObjId();
 /*N*/

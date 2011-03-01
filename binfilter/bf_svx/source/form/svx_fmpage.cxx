@@ -125,7 +125,7 @@ namespace binfilter {
 /*N*/       pImpl->WriteData(rOut);
 /*N*/   }
 /*N*/ #else
-/*N*/   DBG_ERROR( "FmFormPage::WriteData: not to be called in SVX_LIGHT version!" );
+/*N*/   OSL_FAIL( "FmFormPage::WriteData: not to be called in SVX_LIGHT version!" );
 /*N*/ #endif
 /*N*/ }
 

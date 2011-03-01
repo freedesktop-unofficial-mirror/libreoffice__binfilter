@@ -281,7 +281,7 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 /*N*/   else if (pDocShell)
 /*?*/       return pDocShell->GetDocument();
 /*N*/
-/*N*/   DBG_ERROR("kein Document an ViewData");
+/*N*/   OSL_FAIL("kein Document an ViewData");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -325,7 +325,7 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 {
     if (nNewTab>MAXTAB)
     {
-        DBG_ERROR("falsche Tabellennummer");
+        OSL_FAIL("falsche Tabellennummer");
         return;
     }
 
@@ -469,7 +469,7 @@ void ScViewData::ReadUserData(const String& rData)
     {
         //  #45208# beim Reload in der Seitenansicht sind evtl. die Preview-UserData
         //  stehengelassen worden. Den Zoom von der Preview will man hier nicht...
-        DBG_ERROR("ReadUserData: das sind nicht meine Daten");
+        OSL_FAIL("ReadUserData: das sind nicht meine Daten");
         return;
     }
 
@@ -569,7 +569,7 @@ void ScViewData::ReadUserData(const String& rData)
             {
                 //  dann wieder auf Default (unten links)
                 pTabData[nPos]->eWhichActive = SC_SPLIT_BOTTOMLEFT;
-                DBG_ERROR("SplitPos musste korrigiert werden");
+                OSL_FAIL("SplitPos musste korrigiert werden");
             }
         }
         ++nPos;

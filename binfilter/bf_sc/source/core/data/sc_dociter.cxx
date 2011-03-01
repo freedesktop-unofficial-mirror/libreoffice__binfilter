@@ -411,7 +411,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/
 /*N*/   if (!pDoc->pTab[nTab])
 /*N*/   {
-/*N*/       DBG_ERROR("Tabelle nicht gefunden");
+/*N*/       OSL_FAIL("Tabelle nicht gefunden");
 /*N*/       nStartCol = nCol = MAXCOL+1;
 /*N*/       nStartRow = nRow = MAXROW+1;
 /*N*/       nStartTab = nTab = MAXTAB+1;    // -> Abbruch bei GetFirst
@@ -453,7 +453,7 @@ BOOL ScValueIterator::GetNext(double& rValue, USHORT& rErr)
 /*N*/
 /*N*/   if (!pDoc->pTab[nTab])
 /*N*/   {
-/*N*/       DBG_ERROR("Tabelle nicht gefunden");
+/*N*/       OSL_FAIL("Tabelle nicht gefunden");
 /*N*/       nStartCol = nCol = MAXCOL+1;
 /*N*/       nStartRow = nRow = MAXROW+1;
 /*N*/       nStartTab = nTab = MAXTAB+1;    // -> Abbruch bei GetFirst

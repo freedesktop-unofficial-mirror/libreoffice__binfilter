@@ -206,7 +206,7 @@ bool SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         return true;
     }
 
-    DBG_ERROR( "SfxDateTimeRangeItem::PutValue - Wrong type!" );
+    OSL_FAIL( "SfxDateTimeRangeItem::PutValue - Wrong type!" );
     return false;
 }
 

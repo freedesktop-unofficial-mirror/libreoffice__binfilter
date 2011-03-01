@@ -1275,7 +1275,7 @@ String Impl_GetSupportedInterfaces( SbUnoObject* pUnoObj )
         else if( xClassProvider.is() )
         {
 
-            DBG_ERROR( "XClassProvider not supported in UNO3" );
+            OSL_FAIL( "XClassProvider not supported in UNO3" );
         }
     }
     return aRet;

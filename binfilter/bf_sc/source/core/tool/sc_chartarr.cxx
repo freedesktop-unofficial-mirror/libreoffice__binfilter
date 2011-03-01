@@ -659,7 +659,7 @@ namespace binfilter {
 /*N*/         SetExtraStrings( *pMemChart );
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SchDLL::NewMemChart gibt 0 zurueck!");
+/*N*/       OSL_FAIL("SchDLL::NewMemChart gibt 0 zurueck!");
 /*N*/
 /*N*/       //  Aufraeumen
 /*N*/
@@ -823,7 +823,7 @@ namespace binfilter {
 /*N*/         SetExtraStrings( *pMemChart );
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SchDLL::NewMemChart gibt 0 zurueck!");
+/*N*/       OSL_FAIL("SchDLL::NewMemChart gibt 0 zurueck!");
 /*N*/
 /*N*/   return pMemChart;
 /*N*/ }

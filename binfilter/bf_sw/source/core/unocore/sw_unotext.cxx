@@ -258,7 +258,7 @@ void SwXText::insertString(const uno::Reference< XTextRange > & xTextRange,
                 const SwPosition* pPos = pCursor ? pCursor->GetPaM()->Start() : &pRange->GetBookmark()->GetPos();
                 SwPaM aInsertPam(*pPos);
                 if(!GetDoc()->Insert(aInsertPam, aString ))
-                    DBG_ERROR("Text wurde nicht eingefuegt");
+                    OSL_FAIL("Text wurde nicht eingefuegt");
             }
         }
         else

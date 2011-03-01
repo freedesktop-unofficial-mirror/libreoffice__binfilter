@@ -1241,7 +1241,7 @@ static const sal_Char* sFilterNamesForTextDocument[SFILTERNAMESFORTEXTDOCUMENT] 
 /*N*/                         sal_Int32 nStartRealName = sFilterName.indexOf( DEFINE_CONST_UNICODE(": "), 0 );
 /*N*/                         if( nStartRealName != -1 )
 /*N*/                         {
-/*?*/                             DBG_ERROR("Old format, not supported!");
+/*?*/                             OSL_FAIL("Old format, not supported!");
 /*?*/                             sFilterName = sFilterName.copy( nStartRealName+2 );
 /*N*/                         }
 /*N*/

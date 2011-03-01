@@ -353,7 +353,7 @@ struct OUStringLess
 /*N*/
 /*N*/   if( -1 != rContainerStorageName.indexOf( '/' ) )
 /*N*/   {
-/*?*/       DBG_ERROR( "SvXMLEmbeddedObjectHelper: invalid path name" );
+/*?*/       OSL_FAIL( "SvXMLEmbeddedObjectHelper: invalid path name" );
 /*?*/       return sal_False;
 /*N*/   }
 /*N*/

@@ -605,7 +605,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("AW: Kugel laden: nicht vorgesehener Fall");
+/*N*/           OSL_FAIL("AW: Kugel laden: nicht vorgesehener Fall");
 /*N*/       }
 /*N*/       pLoadedE3dPolyObjs->Clear();
 /*N*/       delete pLoadedE3dPolyObjs;

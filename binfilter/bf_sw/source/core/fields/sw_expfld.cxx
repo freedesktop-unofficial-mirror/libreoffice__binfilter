@@ -122,7 +122,7 @@ using namespace ::rtl;
 /*?*/           case SetVariableType::FORMULA:  nSet = GSE_FORMULA; break;
 /*N*/           case SetVariableType::STRING:   nSet = GSE_STRING;  break;
 /*N*/           default:
-/*?*/               DBG_ERROR("wrong value");
+/*?*/               OSL_FAIL("wrong value");
 /*?*/               nSet = -1;
 /*N*/       }
 /*N*/       return nSet;
@@ -574,7 +574,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -611,7 +611,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -904,7 +904,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/       rAny <<= OUString( aPText );
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -923,7 +923,7 @@ BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
         binfilter::GetString( rAny, aPText );
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }

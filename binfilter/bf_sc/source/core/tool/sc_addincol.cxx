@@ -778,12 +778,12 @@ public:
 /*N*/             if ( nVarPos < aVarArg.getLength() )
 /*N*/                 aVarArg.getArray()[nVarPos] = rValue;
 /*N*/             else
-/*N*/                 DBG_ERROR("wrong argument number");
+/*N*/                 OSL_FAIL("wrong argument number");
 /*N*/         }
 /*N*/         else if ( nPos < aArgs.getLength() )
 /*N*/             aArgs.getArray()[nPos] = rValue;
 /*N*/         else
-/*N*/             DBG_ERROR("wrong argument number");
+/*N*/             OSL_FAIL("wrong argument number");
 /*N*/     }
 /*N*/ }
 
@@ -812,7 +812,7 @@ public:
 /*N*/         long nCallPos = pFuncData->GetCallerPos();
 /*N*/         if (nCallPos>nUserLen)                          // should not happen
 /*N*/         {
-/*N*/             DBG_ERROR("wrong CallPos");
+/*N*/             OSL_FAIL("wrong CallPos");
 /*N*/             nCallPos = nUserLen;
 /*N*/         }
 /*N*/

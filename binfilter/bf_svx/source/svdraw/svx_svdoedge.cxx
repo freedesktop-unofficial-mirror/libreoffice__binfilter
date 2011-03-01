@@ -730,7 +730,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if (aXP.GetPointCount()>4) {
-/*N*/       DBG_ERROR("SdrEdgeObj::ImpCalcObjToCenter(): Polygon hat mehr als 4 Punkte!");
+/*N*/       OSL_FAIL("SdrEdgeObj::ImpCalcObjToCenter(): Polygon hat mehr als 4 Punkte!");
 /*N*/   }
 /*N*/ #endif
 /*N*/   return aXP;
@@ -1760,7 +1760,7 @@ je Objekt variiert von 0-3:
 /*N*/   if (rIn.GetError()!=0) return;
 /*N*/   SdrTextObj::ReadData(rHead,rIn);
 /*N*/   if (rHead.GetVersion()<2) { // frueher war EdgeObj von PathObj abgeleitet
-/*N*/       DBG_ERROR("SdrEdgeObj::ReadData(): Dateiversion<2 wird nicht mehr unterstuetzt");
+/*N*/       OSL_FAIL("SdrEdgeObj::ReadData(): Dateiversion<2 wird nicht mehr unterstuetzt");
 /*N*/       rIn.SetError(SVSTREAM_WRONGVERSION); // Format-Fehler, File zu alt
 /*N*/       return;
 /*N*/   }

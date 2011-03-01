@@ -324,7 +324,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
@@ -365,7 +365,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/         }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }

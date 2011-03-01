@@ -723,7 +723,7 @@ rtl::OUString UHashMap::getNameFromId(sal_uInt32 nId)
         if (it->second == nId)
             return it->first;
     }
-    DBG_ERROR("[CL] unknown SdrObjekt identifier");
+    OSL_FAIL("[CL] unknown SdrObjekt identifier");
     return rtl::OUString();
 }
 
@@ -818,7 +818,7 @@ SfxItemPropertyMap* SvxUnoPropertyMapProvider::GetMap(UINT16 nPropertyId)
             case SVXMAP_TEXT: aMapArr[SVXMAP_TEXT]=ImplGetSvxTextShapePropertyMap(); break;
 
             default:
-                DBG_ERROR( "Unknown property map for SvxUnoPropertyMapProvider!" );
+                OSL_FAIL( "Unknown property map for SvxUnoPropertyMapProvider!" );
         }
         Sort(nPropertyId);
     }
@@ -1210,7 +1210,7 @@ comphelper::PropertySetInfo* SvxPropertySetInfoPool::getOrCreate( sal_Int32 nSer
 
     if( nServiceId > SVXUNO_SERVICEID_LASTID )
     {
-        DBG_ERROR( "unknown service id!" );
+        OSL_FAIL( "unknown service id!" );
         return NULL;
     }
 
@@ -1230,7 +1230,7 @@ comphelper::PropertySetInfo* SvxPropertySetInfoPool::getOrCreate( sal_Int32 nSer
             break;
 
         default:
-            DBG_ERROR( "unknown service id!" );
+            OSL_FAIL( "unknown service id!" );
         }
     }
 

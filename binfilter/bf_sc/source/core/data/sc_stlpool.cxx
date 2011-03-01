@@ -114,7 +114,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( rName.EqualsAscii(STRING_STANDARD) && Find( rName, eFam ) != NULL )
 /*N*/   {
-/*?*/       DBG_ERROR("renaming additional default style");
+/*?*/       OSL_FAIL("renaming additional default style");
 /*?*/       size_t nCount = aStyles.size();
 /*?*/       for ( size_t nAdd = 1; nAdd <= nCount; nAdd++ )
 /*?*/       {

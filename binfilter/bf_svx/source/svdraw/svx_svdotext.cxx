@@ -1393,7 +1393,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           }
 /*N*/           default:
 /*N*/           {
-/*N*/               DBG_ERROR("TRGetBaseGeometry: Missing unit translation to 100th mm!");
+/*N*/               OSL_FAIL("TRGetBaseGeometry: Missing unit translation to 100th mm!");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -1450,7 +1450,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           }
 /*N*/           default:
 /*N*/           {
-/*N*/               DBG_ERROR("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
+/*N*/               OSL_FAIL("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
 /*N*/           }
 /*N*/       }
 /*N*/   }

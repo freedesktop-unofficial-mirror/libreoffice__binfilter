@@ -690,7 +690,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ {
 /*N*/   if ( !pColFlags || !pRowFlags )
 /*N*/   {
-/*N*/       DBG_ERROR("keine ColInfo oder RowInfo in ExtendPrintArea");
+/*N*/       OSL_FAIL("keine ColInfo oder RowInfo in ExtendPrintArea");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -812,7 +812,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (nPos < nPrintRangeCount && pPrintRanges)
 /*N*/       pPrintRanges[nPos] = rNew;
 /*N*/   else
-/*N*/       DBG_ERROR("SetPrintRange falsch");
+/*N*/       OSL_FAIL("SetPrintRange falsch");
 /*N*/ }
 
 /*N*/ const ScRange* ScTable::GetPrintRange(USHORT nPos) const

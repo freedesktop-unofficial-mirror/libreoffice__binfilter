@@ -466,7 +466,7 @@ using namespace ::com::sun::star;
 /*N*/           rVal <<= (sal_Int32)( bConvert ? TWIP_TO_MM100(nBottomMargin) : nBottomMargin );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -497,7 +497,7 @@ using namespace ::com::sun::star;
 /*N*/           nBottomMargin = (sal_Int16)( bConvert ? MM100_TO_TWIP(nVal) : nVal );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;

@@ -503,7 +503,7 @@ void ScChangeTrackingExportHelper::AddInsertionAttributes(const ScChangeAction* 
         break;
         default :
         {
-            DBG_ERROR("wrong insertion type");
+            OSL_FAIL("wrong insertion type");
         }
         break;
     }
@@ -563,12 +563,12 @@ void ScChangeTrackingExportHelper::AddDeletionAttributes(const ScChangeActionDel
         {
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_TYPE, XML_TABLE);
             nPosition = nStartSheet;
-            //DBG_ERROR("not implemented feature");
+            //OSL_FAIL("not implemented feature");
         }
         break;
         default :
         {
-            DBG_ERROR("wrong deletion type");
+            OSL_FAIL("wrong deletion type");
         }
         break;
     }
@@ -722,7 +722,7 @@ void ScChangeTrackingExportHelper::WorkWithChangeAction(ScChangeAction* pAction)
     else if (pAction->GetType() == SC_CAT_REJECT)
         WriteRejection(pAction);
     else
-        DBG_ERROR("not a writeable type");
+        OSL_FAIL("not a writeable type");
     rExport.CheckAttrList();
 }
 

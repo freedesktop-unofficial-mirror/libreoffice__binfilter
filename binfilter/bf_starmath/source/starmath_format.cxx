@@ -99,7 +99,7 @@ namespace binfilter {
 /*?*/             case SCRIPTTYPE_COMPLEX :   pTable = aCTLDefFnts; break;
 /*?*/             default :
 /*?*/                 pTable = aLatinDefFnts;
-/*?*/                 DBG_ERROR( "unknown script-type" );
+/*?*/                 OSL_FAIL( "unknown script-type" );
 /*N*/         }
 /*N*/
 /*N*/         return Application::GetDefaultDevice()->GetDefaultFont(

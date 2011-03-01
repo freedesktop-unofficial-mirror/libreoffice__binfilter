@@ -56,7 +56,7 @@ sal_Bool XMLIsPercentagePropertyHandler::exportXML(
     const Any& /*rValue*/,
     const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    DBG_ERROR( "XMLIsPercentagePropertyHandler is not for export!" );
+    OSL_FAIL( "XMLIsPercentagePropertyHandler is not for export!" );
     return sal_False;
 }
 

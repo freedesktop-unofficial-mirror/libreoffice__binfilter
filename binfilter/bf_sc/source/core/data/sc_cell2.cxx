@@ -228,7 +228,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("ScFormulaCell::GetEnglishFormula: Keine Matrix");
+/*N*/           OSL_FAIL("ScFormulaCell::GetEnglishFormula: Keine Matrix");
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -285,7 +285,7 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*?*/       }
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_ERROR("ScFormulaCell::GetEnglishFormula: Keine Matrix");
+/*?*/           OSL_FAIL("ScFormulaCell::GetEnglishFormula: Keine Matrix");
 /*?*/       }
 /*N*/   }
 /*N*/   else

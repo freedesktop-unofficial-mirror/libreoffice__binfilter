@@ -148,7 +148,7 @@ void ScXMLNamedExpressionsContext::EndElement()
                         }
                         catch( uno::RuntimeException& r )
                         {
-                            DBG_ERROR("here are some Named Ranges with the same name");
+                            OSL_FAIL("here are some Named Ranges with the same name");
                             uno::Reference < container::XIndexAccess > xIndex(xNamedRanges, uno::UNO_QUERY);
                             if (xIndex.is())
                             {

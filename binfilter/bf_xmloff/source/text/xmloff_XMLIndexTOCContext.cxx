@@ -347,7 +347,7 @@ SvXMLImportContext* XMLIndexTOCContext::CreateChildContext(
                         break;
 
                     default:
-                        DBG_ERROR("index type not implemented");
+                        OSL_FAIL("index type not implemented");
                         break;
                 }
             }

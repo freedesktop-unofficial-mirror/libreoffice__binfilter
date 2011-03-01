@@ -83,7 +83,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pHidden)
 /*N*/   {
-/*N*/       DBG_ERROR("SetPagesX nicht nach SetHidden");
+/*N*/       OSL_FAIL("SetPagesX nicht nach SetHidden");
 /*N*/       delete[] pHidden;
 /*N*/       pHidden = NULL;
 /*N*/   }
@@ -130,7 +130,7 @@ namespace binfilter {
 /*M*/       pParamSet = &pStyleSheet->GetItemSet();
 /*M*/   else
 /*M*/   {
-/*M*/       DBG_ERROR("Seitenvorlage nicht gefunden" );
+/*M*/       OSL_FAIL("Seitenvorlage nicht gefunden" );
 /*M*/       pParamSet = NULL;
 /*M*/   }
 /*M*/
@@ -391,7 +391,7 @@ namespace binfilter {
 /*N*/   aPageSize = ((const SvxSizeItem&) pParamSet->Get(ATTR_PAGE_SIZE)).GetSize();
 /*N*/   if ( !aPageSize.Width() || !aPageSize.Height() )
 /*N*/   {
-/*?*/       DBG_ERROR("PageSize Null ?!?!?");
+/*?*/       OSL_FAIL("PageSize Null ?!?!?");
 /*?*/       aPageSize = SvxPaperInfo::GetPaperSize( SVX_PAPER_A4 );
 /*N*/   }
 /*N*/

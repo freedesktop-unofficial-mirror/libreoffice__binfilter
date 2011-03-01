@@ -255,7 +255,7 @@ void SAL_CALL ScAutoFormatsObj::insertByName( const ::rtl::OUString& aName, cons
                 else
                 {
                     delete pNew;
-                    DBG_ERROR("AutoFormat konnte nicht eingefuegt werden");
+                    OSL_FAIL("AutoFormat konnte nicht eingefuegt werden");
                     throw uno::RuntimeException();
                 }
             }
@@ -584,7 +584,7 @@ void SAL_CALL ScAutoFormatObj::setName( const ::rtl::OUString& aNewName )
         else
         {
             delete pNew;
-            DBG_ERROR("AutoFormat konnte nicht eingefuegt werden");
+            OSL_FAIL("AutoFormat konnte nicht eingefuegt werden");
             nFormatIndex = 0;       //! alter Index ist ungueltig
         }
     }

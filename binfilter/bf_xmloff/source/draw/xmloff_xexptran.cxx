@@ -334,7 +334,7 @@ void SdXMLImExTransform2D::EmptyList()
         case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX     : delete (ImpSdXMLExpTransObj2DSkewX*)pObj;     break;
         case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY     : delete (ImpSdXMLExpTransObj2DSkewY*)pObj;     break;
         case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX    : delete (ImpSdXMLExpTransObj2DMatrix*)pObj;    break;
-        default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
+        default : OSL_FAIL("SdXMLImExTransform2D: impossible entry!"); break;
         }
     }
     maList.clear();
@@ -443,7 +443,7 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
                 aNewString += aClosingBrace;
                 break;
             }
-            default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform2D: impossible entry!"); break;
         }
 
         // if not the last entry, add one space to next tag
@@ -617,7 +617,7 @@ void SdXMLImExTransform2D::GetFullTransform(Matrix3D& rFullTrans)
                 rFullTrans *= ((ImpSdXMLExpTransObj2DMatrix*)pObj)->maMatrix;
                 break;
             default :
-                DBG_ERROR("SdXMLImExTransform2D: impossible entry!");
+                OSL_FAIL("SdXMLImExTransform2D: impossible entry!");
                 break;
         }
     }
@@ -701,7 +701,7 @@ void SdXMLImExTransform3D::EmptyList()
             case IMP_SDXMLEXP_TRANSOBJ3D_SCALE      : delete (ImpSdXMLExpTransObj3DScale*)pObj; break;
             case IMP_SDXMLEXP_TRANSOBJ3D_TRANSLATE  : delete (ImpSdXMLExpTransObj3DTranslate*)pObj; break;
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX     : delete (ImpSdXMLExpTransObj3DMatrix*)pObj; break;
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
     }
     maList.clear();
@@ -849,7 +849,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
                 aNewString += aClosingBrace;
                 break;
             }
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
 
         // if not the last entry, add one space to next tag
@@ -1091,7 +1091,7 @@ void SdXMLImExTransform3D::GetFullTransform(Matrix4D& rFullTrans)
                 rFullTrans.Translate(((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate); break;
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX     :
                 rFullTrans *= ((ImpSdXMLExpTransObj3DMatrix*)pObj)->maMatrix; break;
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
     }
 }
@@ -2355,7 +2355,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 case 'A' :
                 case 'a' :
                 {
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
                     nPos++;
                     Imp_SkipSpaces(aStr, nPos, nLen);
 
@@ -2375,7 +2375,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 default:
                 {
                     nPos++;
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
                     break;
                 }
             }
@@ -2816,7 +2816,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 case 'A' :
                 case 'a' :
                 {
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
                     nPos++;
                     Imp_SkipSpaces(aStr, nPos, nLen);
 
@@ -2836,7 +2836,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 default:
                 {
                     nPos++;
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
                     break;
                 }
             }

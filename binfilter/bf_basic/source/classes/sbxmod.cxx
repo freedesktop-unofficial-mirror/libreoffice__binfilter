@@ -417,7 +417,7 @@ void ClearUnoObjectsInRTL_Impl_Rek( StarBASIC* pBasic )
 // Ausfuehren eines BASIC-Unterprogramms
 USHORT SbModule::Run( SbMethod* /*pMeth*/ )
 {
-    DBG_ERROR( "SbModule::Run: dead code!" );
+    OSL_FAIL( "SbModule::Run: dead code!" );
     return 0;
 }
 
@@ -432,7 +432,7 @@ const BYTE* SbModule::FindNextStmnt( const BYTE* p, USHORT& nLine, USHORT& nCol 
 const BYTE* SbModule::FindNextStmnt( const BYTE* /*p*/, USHORT& /*nLine*/, USHORT& /*nCol*/,
     BOOL /*bFollowJumps*/, const SbiImage* /*pImg*/ ) const
 {
-    DBG_ERROR( "SbModule::FindNextStmnt: dead code!" );
+    OSL_FAIL( "SbModule::FindNextStmnt: dead code!" );
     return NULL;
 }
 
@@ -467,7 +467,7 @@ BOOL SbModule::IsBP( USHORT ) const
 
 BOOL SbModule::SetBP( USHORT /*nLine*/ )
 {
-    DBG_ERROR( "SbModule::SetBP: dead code!" );
+    OSL_FAIL( "SbModule::SetBP: dead code!" );
     return FALSE;
 }
 
@@ -731,7 +731,7 @@ SbxInfo* SbMethod::GetInfo()
 // abgeschossen werden kann. Rueckgabewert wird als String geliefert.
 ErrCode SbMethod::Call( SbxValue* /*pRet*/ )
 {
-    DBG_ERROR( "SbMethod::Call: dead code!" );
+    OSL_FAIL( "SbMethod::Call: dead code!" );
     return SbERR_NO_METHOD;
 }
 

@@ -162,7 +162,7 @@ void SAL_CALL OGroupBoxModel::read(const Reference<stario::XObjectInputStream>& 
 
     if (nVersion > 0x0002)
     {
-        DBG_ERROR("OGroupBoxModel::read : unknown version !");
+        OSL_FAIL("OGroupBoxModel::read : unknown version !");
     }
 };
 

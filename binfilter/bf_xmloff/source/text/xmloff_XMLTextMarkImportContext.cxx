@@ -170,11 +170,11 @@ void XMLTextMarkImportContext::StartElement(
 
                 case TypeReferenceStart:
                 case TypeReferenceEnd:
-                    DBG_ERROR("reference start/end are handled in txtparai !");
+                    OSL_FAIL("reference start/end are handled in txtparai !");
                     break;
 
                 default:
-                    DBG_ERROR("unknown mark type");
+                    OSL_FAIL("unknown mark type");
                     break;
             }
         }

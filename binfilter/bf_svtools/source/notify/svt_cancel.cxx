@@ -110,7 +110,7 @@ void SfxCancelManager::InsertCancellable( SfxCancellable *pJob )
 #ifdef GPF_ON_EMPTY_TITLE
     if ( !pJob->GetTitle() )
     {
-        DBG_ERROR( "SfxCancellable: empty titles not allowed (Vermummungsverbot)" )
+        OSL_FAIL( "SfxCancellable: empty titles not allowed (Vermummungsverbot)" )
         *(int*)0 = 0;
     }
 #endif

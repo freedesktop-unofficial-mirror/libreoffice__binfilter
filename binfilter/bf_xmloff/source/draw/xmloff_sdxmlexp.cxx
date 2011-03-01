@@ -1093,7 +1093,7 @@ void SdXMLExport::ImpWriteAutoLayoutInfos()
                     }
                     default:
                     {
-                        DBG_ERROR("XMLEXP: unknown autolayout export");
+                        OSL_FAIL("XMLEXP: unknown autolayout export");
                         break;
                     }
                 }
@@ -1817,7 +1817,7 @@ void SdXMLExport::exportPresentationSettings()
     }
     catch( uno::Exception )
     {
-        DBG_ERROR( "uno::Exception while exporting <presentation:settings>" );
+        OSL_FAIL( "uno::Exception while exporting <presentation:settings>" );
     }
 }
 

@@ -323,7 +323,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScDrawLayer::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScDrawLayer::Load");
 /*N*/                   ScReadHeader aDummyHdr( rStream );
 /*N*/               }
 /*N*/       }

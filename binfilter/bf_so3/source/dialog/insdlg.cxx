@@ -181,7 +181,7 @@ void SvObjectServerList::FillInsertObjects()
     //SvGlobalName aOleFact = *SvOutPlaceObject::ClassFactory();
     //String aOleObj( SoResid( STR_FURTHER_OBJECT ) );
     //Append( SvObjectServer( aOleFact, aOleObj ) );
-    DBG_ERROR( "non-working code!" );
+    OSL_FAIL( "non-working code!" );
     // TODO: dead corpses
 #endif
 

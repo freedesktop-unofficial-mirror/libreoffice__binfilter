@@ -427,7 +427,7 @@ static const char* aRootName = "Office.Math";
 /*N*/         }
 /*N*/         else
 /*N*/         {
-/*N*/             DBG_ERROR( "symbol read error" );
+/*N*/             OSL_FAIL( "symbol read error" );
 /*N*/         }
 /*N*/   }
 /*N*/

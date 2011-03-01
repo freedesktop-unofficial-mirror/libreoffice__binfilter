@@ -1180,7 +1180,7 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
             rValue >>= m_aControlSource;
             break;
         case PROPERTY_ID_BOUNDFIELD:
-            DBG_ERROR("OBoundControlModel::setFastPropertyValue_NoBroadcast : BoundField should be a read-only property !");
+            OSL_FAIL("OBoundControlModel::setFastPropertyValue_NoBroadcast : BoundField should be a read-only property !");
                 throw com::sun::star::lang::IllegalArgumentException();
             break;
         case PROPERTY_ID_CONTROLLABEL:
@@ -1553,7 +1553,7 @@ void OBoundControlModel::reset() throw (RuntimeException)
         }
         catch(Exception&)
         {
-            DBG_ERROR("OBoundControlModel::reset : XColumn::getString and wasNull are expected to always succeed !");
+            OSL_FAIL("OBoundControlModel::reset : XColumn::getString and wasNull are expected to always succeed !");
         }
 
         if (bIsNull)

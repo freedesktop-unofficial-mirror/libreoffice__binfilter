@@ -155,7 +155,7 @@ bool SfxRectangleItem::QueryValue( ::com::sun::star::uno::Any& rVal,
         case MID_RECT_RIGHT: rVal <<= aVal.getY(); break;
         case MID_WIDTH: rVal <<= aVal.getWidth(); break;
         case MID_HEIGHT: rVal <<= aVal.getHeight(); break;
-        default: DBG_ERROR("Wrong MemberID!"); return false;
+        default: OSL_FAIL("Wrong MemberID!"); return false;
     }
 
     return true;
@@ -188,7 +188,7 @@ bool SfxRectangleItem::PutValue( const com::sun::star::uno::Any& rVal,
             case MID_RECT_RIGHT: aVal.setY( nVal ); break;
             case MID_WIDTH: aVal.setWidth( nVal ); break;
             case MID_HEIGHT: aVal.setHeight( nVal ); break;
-            default: DBG_ERROR("Wrong MemberID!"); return false;
+            default: OSL_FAIL("Wrong MemberID!"); return false;
         }
     }
 

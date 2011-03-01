@@ -737,7 +737,7 @@ XubString aNameOrIndexEmptyString;
 /*?*/           break;
 /*N*/       }
 /*N*/
-/*?*/       default: DBG_ERROR("Wrong MemberId!"); return false;
+/*?*/       default: OSL_FAIL("Wrong MemberId!"); return false;
 /*N*/   }
 /*N*/
 /*N*/   return true;
@@ -2581,7 +2581,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_GRADIENT_ENDINTENSITY: rVal <<= GetValue().GetEndIntens(); break;
 /*N*/       case MID_GRADIENT_STEPCOUNT: rVal <<= GetValue().GetSteps(); break;
 /*N*/
-/*N*/       default: DBG_ERROR("Wrong MemberId!"); return false;
+/*N*/       default: OSL_FAIL("Wrong MemberId!"); return false;
 /*N*/   }
 /*N*/
 /*N*/   return true;
@@ -3076,7 +3076,7 @@ XubString aNameOrIndexEmptyString;
 /*N*/       case MID_HATCH_ANGLE:
 /*N*/           rVal <<= aHatch.GetAngle(); break;
 /*N*/
-/*N*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/       default: OSL_FAIL("Wrong MemberId!"); return sal_False;
 /*N*/   }
 /*N*/
 /*N*/   return true;
@@ -3138,7 +3138,7 @@ XubString aNameOrIndexEmptyString;
 /*?*/           break;
 /*N*/       }
 /*N*/
-/*N*/       default: DBG_ERROR("Wrong MemberId!"); return sal_False;
+/*N*/       default: OSL_FAIL("Wrong MemberId!"); return sal_False;
 /*N*/   }
 /*N*/
 /*N*/   return true;

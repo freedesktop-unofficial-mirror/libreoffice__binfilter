@@ -285,7 +285,7 @@ void XMLSectionExport::ExportSectionEnd(
                         break;
 
                     default:
-                        DBG_ERROR("unknown index type");
+                        OSL_FAIL("unknown index type");
                         // default: skip index!
                         break;
                 }
@@ -311,7 +311,7 @@ void XMLSectionExport::ExportSectionEnd(
         }
         else
         {
-            DBG_ERROR("Need element name!");
+            OSL_FAIL("Need element name!");
         }
     }
     // else: autostyles -> ignore
@@ -355,7 +355,7 @@ void XMLSectionExport::ExportIndexStart(
 
         default:
             // skip index
-            DBG_ERROR("unknown index type");
+            OSL_FAIL("unknown index type");
             break;
     }
 }

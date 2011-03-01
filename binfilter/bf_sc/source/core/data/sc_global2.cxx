@@ -450,7 +450,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 /*N*/
 /*N*/   if ( nEntryCount < MAXQUERY )
 /*N*/   {
-/*N*/       DBG_ERROR("ScQueryParam::Store - zuwenig Eintraege");
+/*N*/       OSL_FAIL("ScQueryParam::Store - zuwenig Eintraege");
 /*N*/       ((ScQueryParam*)this)->Resize( MAXQUERY );
 /*N*/   }
 /*N*/

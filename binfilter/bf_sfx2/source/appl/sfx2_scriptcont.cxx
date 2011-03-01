@@ -270,7 +270,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 
 /*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
 /*?*/ {
-            DBG_ERROR("Strip");
+            OSL_FAIL("Strip");
 /*?*/ }
 
 

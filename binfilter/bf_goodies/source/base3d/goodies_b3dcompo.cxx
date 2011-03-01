@@ -121,7 +121,7 @@ BOOL B3dEdgeListBucket::ImplCareForSpace() {
 }
 B3dEdgeList& B3dEdgeListBucket::operator[] (UINT32 nPos) {
     if(nPos >= nCount) {
-        DBG_ERROR("Access to Bucket out of range!");
+        OSL_FAIL("Access to Bucket out of range!");
         return *((B3dEdgeList*)aMemArray[0]);
     }
     return *((B3dEdgeList*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));
@@ -197,7 +197,7 @@ BOOL B3dEdgeEntryBucket::ImplCareForSpace() {
 }
 B3dEdgeEntry& B3dEdgeEntryBucket::operator[] (UINT32 nPos) {
     if(nPos >= nCount) {
-        DBG_ERROR("Access to Bucket out of range!");
+        OSL_FAIL("Access to Bucket out of range!");
         return *((B3dEdgeEntry*)aMemArray[0]);
     }
     return *((B3dEdgeEntry*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));

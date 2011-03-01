@@ -570,7 +570,7 @@ sal_Bool SwXTextCursor::convertSortProperties(
 
     if (bNewSortdescriptor && bOldSortdescriptor)
     {
-        DBG_ERROR("someone tried to set the old deprecated and the new sortdescriptor");
+        OSL_FAIL("someone tried to set the old deprecated and the new sortdescriptor");
         bRet = sal_False;
     }
 

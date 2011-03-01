@@ -814,7 +814,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                   if (!(pDataList->AtInsert(pDataList->GetCount(), pStrData)))
 /*N*/                   {
 /*?*/                       delete pStrData;
-/*?*/                       DBG_ERROR("Fehler bei pDataList->AtInsert");
+/*?*/                       OSL_FAIL("Fehler bei pDataList->AtInsert");
 /*N*/                   }
 /*N*/
 /*N*/                   ++nDataCount;

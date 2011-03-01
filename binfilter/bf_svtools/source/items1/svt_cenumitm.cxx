@@ -94,7 +94,7 @@ bool SfxEnumItemInterface::PutValue(const ::com::sun::star::uno::Any& rVal,
         SetEnumValue(USHORT(nTheValue));
         return true;
     }
-    DBG_ERROR("SfxEnumItemInterface::PutValue(): Wrong type");
+    OSL_FAIL("SfxEnumItemInterface::PutValue(): Wrong type");
     return false;
 }
 
@@ -254,7 +254,7 @@ bool CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
         m_bValue = bTheValue;
         return true;
     }
-    DBG_ERROR("CntBoolItem::PutValue(): Wrong type");
+    OSL_FAIL("CntBoolItem::PutValue(): Wrong type");
     return false;
 }
 

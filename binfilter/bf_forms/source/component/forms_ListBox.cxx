@@ -430,7 +430,7 @@ void SAL_CALL OListBoxModel::read(const Reference<stario::XObjectInputStream>& _
 
     if (nVersion > 0x0004)
     {
-        DBG_ERROR("OListBoxModel::read : invalid (means unknown) version !");
+        OSL_FAIL("OListBoxModel::read : invalid (means unknown) version !");
         m_aListSourceSeq.realloc(0);
         m_aBoundColumn <<= (sal_Int16)0;
         m_aValueSeq.realloc(0);
@@ -537,7 +537,7 @@ void OListBoxModel::loadData()
         Reference<XServiceInfo> xServiceInfo(xConnection, UNO_QUERY);
     if (!xServiceInfo.is() || !xServiceInfo->supportsService(SRV_SDB_CONNECTION))
     {
-        DBG_ERROR("OListBoxModel::loadData : invalid connection !");
+        OSL_FAIL("OListBoxModel::loadData : invalid connection !");
         return;
     }
 
@@ -546,7 +546,7 @@ void OListBoxModel::loadData()
     Reference<XResultSet> xListCursor(xContentSetProperties, UNO_QUERY);
     if (!xListCursor.is())
     {
-        DBG_ERROR("OListBoxModel::loadData: could not instantiate a RowSet!");
+        OSL_FAIL("OListBoxModel::loadData: could not instantiate a RowSet!");
         return;
     }
 
@@ -750,7 +750,7 @@ void OListBoxModel::loadData()
                 }
                 catch(Exception&)
                 {
-                    DBG_ERROR("OListBoxModel::loadData: could not obtain the field type and/or format key of the bound column!");
+                    OSL_FAIL("OListBoxModel::loadData: could not obtain the field type and/or format key of the bound column!");
                 }
 
                 if (!bHaveFormat)

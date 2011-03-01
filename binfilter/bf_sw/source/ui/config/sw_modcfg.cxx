@@ -130,7 +130,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                               nVal -= 'a' - 10;
 /*N*/                           else
 /*N*/                           {
-/*?*/                               DBG_ERROR( "ungueltiger Hex-Wert" );
+/*?*/                               OSL_FAIL( "ungueltiger Hex-Wert" );
 /*?*/                               bValidData = FALSE;
 /*?*/                               break;
 /*N*/                           }

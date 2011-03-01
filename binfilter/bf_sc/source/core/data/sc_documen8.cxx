@@ -85,7 +85,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pDocOptions->GetStdPrecision() > 20 ) //!!! ist 20 als Maximum konstant ???
 /*N*/   {
-/*?*/       DBG_ERROR( "Document options corrupted. Setting to defaults." );
+/*?*/       OSL_FAIL( "Document options corrupted. Setting to defaults." );
 /*?*/       pDocOptions->ResetDocOptions();
 /*N*/   }
 /*N*/
@@ -605,7 +605,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   if (!pShell)
 /*N*/   {
-/*N*/       DBG_ERROR("AreaLinks koennen nicht ohne Shell geladen werden");
+/*N*/       OSL_FAIL("AreaLinks koennen nicht ohne Shell geladen werden");
 /*N*/       return;
 /*N*/   }
 /*N*/

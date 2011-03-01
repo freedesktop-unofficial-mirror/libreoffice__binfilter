@@ -520,7 +520,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "UseScenario auf Szenario-Blatt" );
+/*N*/       OSL_FAIL( "UseScenario auf Szenario-Blatt" );
 /*N*/ }
 
 /*N*/ void ScDocShell::ModifyScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,

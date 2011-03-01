@@ -232,7 +232,7 @@ void SwField::SetSubType(USHORT /*nType*/)
 /*N*/         }
 /*N*/         break;
 /*N*/         default:
-/*N*/             DBG_ERROR("illegal property");
+/*N*/             OSL_FAIL("illegal property");
 /*N*/     }
 /*N*/     return TRUE;
 /*N*/ }
@@ -249,7 +249,7 @@ void SwField::SetSubType(USHORT /*nType*/)
 /*N*/         }
 /*N*/         break;
 /*N*/         default:
-/*N*/             DBG_ERROR("illegal property");
+/*N*/             OSL_FAIL("illegal property");
 /*N*/     }
 /*N*/     return TRUE;
 /*N*/ }

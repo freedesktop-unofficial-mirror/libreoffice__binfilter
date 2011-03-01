@@ -116,7 +116,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/             }
 /*N*/       }
 /*N*/   }
-/*?*/   DBG_ERROR( "FindPortion: Nicht gefunden!" );
+/*?*/   OSL_FAIL( "FindPortion: Nicht gefunden!" );
 /*?*/   return ( Count() - 1 );
 /*N*/ }
 
@@ -282,7 +282,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/           return nHeight;
 /*?*/       nHeight += pTmpPortion->GetHeight();
 /*?*/   }
-/*?*/   DBG_ERROR( "GetYOffset: Portion nicht gefunden" );
+/*?*/   OSL_FAIL( "GetYOffset: Portion nicht gefunden" );
 /*?*/   return nHeight;
 /*N*/ }
 

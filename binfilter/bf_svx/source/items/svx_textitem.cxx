@@ -2406,7 +2406,7 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/
-/*N*/     DBG_ERROR( "SvxCharScaleWidthItem::PutValue - Wrong type!" );
+/*N*/     OSL_FAIL( "SvxCharScaleWidthItem::PutValue - Wrong type!" );
 /*N*/   return FALSE;
 /*N*/ }
 

@@ -234,7 +234,7 @@ using namespace ::com::sun::star;
 /*N*/         case MID_4 :
 /*N*/             rVal <<= (sal_Bool ) bHidePrint; break;
 /*N*/         default:
-/*N*/             DBG_ERROR("Wrong MemberID!");
+/*N*/             OSL_FAIL("Wrong MemberID!");
 /*N*/             return false;
 /*N*/     }
 /*N*/
@@ -260,7 +260,7 @@ using namespace ::com::sun::star;
 /*N*/                 bRet = true;
 /*N*/             }
 /*N*/             else
-/*N*/                 DBG_ERROR("exception - wrong argument");
+/*N*/                 OSL_FAIL("exception - wrong argument");
 /*N*/             break;
 /*N*/         }
 /*N*/         case MID_1 :
@@ -272,7 +272,7 @@ using namespace ::com::sun::star;
 /*N*/         case MID_4 :
 /*N*/             bRet = (rVal >>= bVal); if (bRet) bHidePrint=bVal; break;
 /*N*/         default:
-/*N*/             DBG_ERROR("Wrong MemberID!");
+/*N*/             OSL_FAIL("Wrong MemberID!");
 /*N*/     }
 /*N*/
 /*N*/   return bRet;
@@ -435,7 +435,7 @@ using namespace ::com::sun::star;
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR( "ScRangeItem::Create: Unknown Version!" );
+/*N*/           OSL_FAIL( "ScRangeItem::Create: Unknown Version!" );
 /*N*/   }
 /*N*/
 /*N*/   return ( new ScRangeItem( Which(), aNewRange, nNewFlags ) );
@@ -678,7 +678,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if (!bRet)
 /*N*/   {
-/*N*/       DBG_ERROR("exception - wrong argument");
+/*N*/       OSL_FAIL("exception - wrong argument");
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -1029,7 +1029,7 @@ using namespace ::com::sun::star;
 /*N*/       case SC_HF_CENTERAREA:  delete pCenterArea; pCenterArea = pNew; break;
 /*N*/       case SC_HF_RIGHTAREA:   delete pRightArea;  pRightArea  = pNew; break;
 /*N*/       default:
-/*N*/           DBG_ERROR( "New Area?" );
+/*N*/           OSL_FAIL( "New Area?" );
 /*N*/   }
 /*N*/ }
 

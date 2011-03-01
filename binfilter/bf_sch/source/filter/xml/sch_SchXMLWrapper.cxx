@@ -159,7 +159,7 @@ using namespace comphelper;
 /*N*/   {
 /*N*/       if( !mxModel.is() )
 /*N*/       {
-/*N*/           DBG_ERROR("Got NO Model in XMLExport");
+/*N*/           OSL_FAIL("Got NO Model in XMLExport");
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -168,7 +168,7 @@ using namespace comphelper;
 /*N*/       if( ! xServiceInfo.is() || !xServiceInfo->supportsService(
 /*N*/           OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ) ) ) )
 /*N*/       {
-/*N*/           DBG_ERROR( "Model is no ChartDocument in XMLExport" );
+/*N*/           OSL_FAIL( "Model is no ChartDocument in XMLExport" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -176,7 +176,7 @@ using namespace comphelper;
 /*N*/
 /*N*/       if( !xServiceFactory.is() )
 /*N*/       {
-/*N*/           DBG_ERROR( "got no service manager" );
+/*N*/           OSL_FAIL( "got no service manager" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -185,7 +185,7 @@ using namespace comphelper;
 /*N*/
 /*N*/       if( !xWriter.is() )
 /*N*/       {
-/*N*/           DBG_ERROR( "com.sun.star.xml.sax.Writer service missing" );
+/*N*/           OSL_FAIL( "com.sun.star.xml.sax.Writer service missing" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/       uno::Reference<xml::sax::XDocumentHandler > xHandler( xWriter, uno::UNO_QUERY );

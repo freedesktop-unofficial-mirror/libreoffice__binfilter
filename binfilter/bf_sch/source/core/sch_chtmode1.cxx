@@ -120,7 +120,7 @@ namespace binfilter {
 /*N*/           delete pObj;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "DeleteObject: Invalid object" );
+/*N*/       OSL_FAIL( "DeleteObject: Invalid object" );
 /*N*/ }
 
 /*N*/ const USHORT nExchangeTitleWhichPairs[] =

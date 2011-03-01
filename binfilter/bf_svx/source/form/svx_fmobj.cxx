@@ -162,7 +162,7 @@ using namespace ::binfilter::svxform;
 /*?*/               }
 /*?*/               catch(...)
 /*?*/               {
-/*?*/                   DBG_ERROR("FmFormObj::SetPage : could not tranfer script events !");
+/*?*/                   OSL_FAIL("FmFormObj::SetPage : could not tranfer script events !");
 /*?*/               }
 /*?*/
 /*?*/           }

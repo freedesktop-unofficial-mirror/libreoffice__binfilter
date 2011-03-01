@@ -358,7 +358,7 @@ public:
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR( "SvXMLGraphicHelper::ImplInsertGraphicURL: invalid scheme" );
+/*N*/           OSL_FAIL( "SvXMLGraphicHelper::ImplInsertGraphicURL: invalid scheme" );
 /*N*/       }
 /*N*/   }
 /*N*/

@@ -251,14 +251,14 @@ private:
 /*N*/           uno::Reference<lang::XMultiServiceFactory> xServiceFactory( ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/           if( !xServiceFactory.is() )
 /*N*/           {
-/*N*/               DBG_ERROR( "SvxXMLXTableImport::load: got no service manager" );
+/*N*/               OSL_FAIL( "SvxXMLXTableImport::load: got no service manager" );
 /*N*/               break;
 /*N*/           }
 /*N*/
 /*N*/           uno::Reference< xml::sax::XParser > xParser( xServiceFactory->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Parser" ) ) ), uno::UNO_QUERY );
 /*N*/           if( !xParser.is() )
 /*N*/           {
-/*N*/               DBG_ERROR( "com.sun.star.xml.sax.Parser service missing" );
+/*N*/               OSL_FAIL( "com.sun.star.xml.sax.Parser service missing" );
 /*N*/               break;
 /*N*/           }
 /*N*/
@@ -277,7 +277,7 @@ private:
 /*N*/               xIStm = pStorage->OpenStream( aContentStmName, STREAM_READ | STREAM_NOCREATE );
 /*N*/               if( !xIStm.Is() )
 /*N*/               {
-/*N*/                   DBG_ERROR( "could not open Content stream" );
+/*N*/                   OSL_FAIL( "could not open Content stream" );
 /*N*/                   break;
 /*N*/               }
 /*N*/

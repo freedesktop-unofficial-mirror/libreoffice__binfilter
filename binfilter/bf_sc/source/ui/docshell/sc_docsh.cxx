@@ -179,7 +179,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("wat fuer ne Version?");
+/*N*/       OSL_FAIL("wat fuer ne Version?");
 /*N*/ }
 
 
@@ -238,7 +238,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/       if ( !bRet )
 /*N*/       {
 /*N*/           pStor->SetError( aPoolStm->GetError() );
-/*N*/           DBG_ERROR( "Fehler im Pool-Stream" );
+/*N*/           OSL_FAIL( "Fehler im Pool-Stream" );
 /*N*/       }
 /*N*/       else if (eShellMode != SFX_CREATE_MODE_ORGANIZER)
 /*N*/       {
@@ -274,7 +274,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/ #endif
 /*?*/                   pStor->SetError( aDocStm->GetError() );
 /*?*/               bRet = FALSE;
-/*?*/               DBG_ERROR( "Fehler im Document-Stream" );
+/*?*/               OSL_FAIL( "Fehler im Document-Stream" );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -346,7 +346,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR( "Stream-Fehler");
+/*?*/       OSL_FAIL( "Stream-Fehler");
 /*?*/       bRet = FALSE;
 /*N*/   }
 /*N*/
@@ -407,7 +407,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR( "Stream Error" );
+/*?*/       OSL_FAIL( "Stream Error" );
 /*?*/       bRet = FALSE;
 /*N*/   }
 /*N*/
@@ -434,7 +434,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           DBG_ERROR( "Stream Error" );
+/*?*/           OSL_FAIL( "Stream Error" );
 /*?*/           bRet = FALSE;
 /*N*/       }
 
@@ -528,7 +528,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                 pModificator = NULL;
             }
             else
-                DBG_ERROR("The Modificator should exist");
+                OSL_FAIL("The Modificator should exist");
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::LoadXML( SfxMedium* pInMedium, SvStorage* pStor )
@@ -711,7 +711,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*?*/                   pStor->SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*?*/           }
 /*?*/           else
-/*?*/               DBG_ERROR("Calc3/4: kein Storage");
+/*?*/               OSL_FAIL("Calc3/4: kein Storage");
 /*N*/       }
 /*N*/       else if (aFltName.EqualsAscii(pFilterXML))
 /*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
@@ -774,7 +774,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   bOverflow = aImpEx.IsOverflow();
 /*N*/               }
 /*N*/               else
-/*N*/                   DBG_ERROR( "No Stream" );
+/*N*/                   OSL_FAIL( "No Stream" );
 /*N*/           }
 /*N*/
 /*N*/           if (eError != eERR_OK)
@@ -821,7 +821,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   aDocument.SetDirty();
 /*?*/               }
 /*?*/               else
-/*?*/                   DBG_ERROR( "No Stream" );
+/*?*/                   OSL_FAIL( "No Stream" );
 /*?*/           }
 /*?*/
 /*?*/           if ( eError != eERR_OK && !GetError() )
@@ -847,7 +847,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           aDocument.SetInsertingFromOtherDoc( FALSE );
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Kein Filter bei ConvertFrom");
+/*N*/       OSL_FAIL("Kein Filter bei ConvertFrom");
 /*N*/
 /*N*/   InitItems();
 /*N*/   CalcOutputFactor();
@@ -1150,7 +1150,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/     if (pModificator)
 /*N*/     {
-/*N*/         DBG_ERROR("The Modificator should not exist");
+/*N*/         OSL_FAIL("The Modificator should not exist");
 /*N*/         delete pModificator;
 /*N*/     }
 /*N*/ }

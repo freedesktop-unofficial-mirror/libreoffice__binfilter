@@ -3312,7 +3312,7 @@ void SmXMLImport::SetConfigurationSettings(const Sequence<PropertyValue>& aConfP
                     }
                     catch( Exception& )
                     {
-                        DBG_ERROR( "SmXMLImport::SetConfigurationSettings: Exception!" );
+                        OSL_FAIL( "SmXMLImport::SetConfigurationSettings: Exception!" );
                     }
                 }
 

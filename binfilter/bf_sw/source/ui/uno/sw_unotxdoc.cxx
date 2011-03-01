@@ -2390,7 +2390,7 @@ sal_Bool SwXLinkNameAccessWrapper::hasElements(void) throw( RuntimeException )
     sal_Bool bRet = sal_False;
     if(pxDoc)
     {
-        DBG_ERROR("not implemented");
+        OSL_FAIL("not implemented");
     }
     else
     {
@@ -2641,7 +2641,7 @@ Reference<XInterface> SwXDocumentPropertyHelper::GetDrawTable(short nWhich)
                 xRet = xDrawDefaults;
             break;
 #ifdef DBG_UTIL
-            default: DBG_ERROR("which table?");
+            default: OSL_FAIL("which table?");
 #endif
         }
     }

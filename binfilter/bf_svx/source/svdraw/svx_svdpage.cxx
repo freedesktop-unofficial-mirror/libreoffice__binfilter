@@ -145,7 +145,7 @@ using namespace ::com::sun::star;
 /*?*/                           if (pDstNode1!=NULL) { // Sonst grober Fehler!
 /*?*/                               pDstEdge->ConnectToNode(TRUE,pDstNode1);
 /*?*/                           } else {
-/*?*/                               DBG_ERROR("SdrObjList::operator=(): pDstNode1==NULL!");
+/*?*/                               OSL_FAIL("SdrObjList::operator=(): pDstNode1==NULL!");
 /*?*/                           }
 /*?*/                       }
 /*?*/                       if (pSrcNode2!=NULL) {
@@ -154,11 +154,11 @@ using namespace ::com::sun::star;
 /*?*/                           if (pDstNode2!=NULL) { // Node war sonst wohl nicht markiert
 /*?*/                               pDstEdge->ConnectToNode(FALSE,pDstNode2);
 /*?*/                           } else {
-/*?*/                               DBG_ERROR("SdrObjList::operator=(): pDstNode2==NULL!");
+/*?*/                               OSL_FAIL("SdrObjList::operator=(): pDstNode2==NULL!");
 /*?*/                           }
 /*?*/                       }
 /*?*/                   } else {
-/*?*/                       DBG_ERROR("SdrObjList::operator=(): pDstEdge==NULL!");
+/*?*/                       OSL_FAIL("SdrObjList::operator=(): pDstEdge==NULL!");
 /*?*/                   }
 /*?*/               }
 /*N*/           }

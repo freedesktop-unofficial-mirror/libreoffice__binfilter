@@ -219,7 +219,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/       return true;
 /*N*/   }
 /*N*/
-/*N*/   DBG_ERROR( "SwRotationGrf::PutValue - Wrong type!" );
+/*N*/   OSL_FAIL( "SwRotationGrf::PutValue - Wrong type!" );
 /*N*/   return true;
 /*N*/ }
 

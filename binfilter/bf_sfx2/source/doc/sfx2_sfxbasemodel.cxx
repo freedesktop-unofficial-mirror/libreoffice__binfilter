@@ -506,7 +506,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/             StarBASIC* pBas = SFX_APP()->GetBasic_Impl();
 /*N*/             if ( pBas && SFX_APP()->Get_Impl()->pThisDocument == m_pData->m_pObjectShell )
 /*N*/             {
-                    DBG_ERROR( "SfxBaseModel::dispose: dead code!" );
+                    OSL_FAIL( "SfxBaseModel::dispose: dead code!" );
 /*N*/             }
 /*N*/
 /*N*/             pShell = m_pData->m_pObjectShell;
@@ -1238,7 +1238,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
             if ( m_pData->m_pObjectShell->GetMedium() != pMedium )
             {
                 // for whatever reason document now has another medium
-                DBG_ERROR("Document has rejected the medium?!");
+                OSL_FAIL("Document has rejected the medium?!");
                 delete pMedium;
             }
 

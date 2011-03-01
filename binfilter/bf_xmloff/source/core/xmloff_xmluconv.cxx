@@ -894,7 +894,7 @@ sal_Bool SvXMLUnitConverter::convertTime( double& fTime,
             {
                 //! how many days is a year or month?
 
-                DBG_ERROR("years or months in duration: not implemented");
+                OSL_FAIL("years or months in duration: not implemented");
                 bSuccess = sal_False;
             }
             else

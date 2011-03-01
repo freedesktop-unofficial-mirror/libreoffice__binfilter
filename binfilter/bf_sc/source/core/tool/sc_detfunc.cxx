@@ -271,12 +271,12 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   //  MAXCOL/ROW+1 ist erlaubt fuer Ende von Rahmen
 /*N*/   if (nCol > MAXCOL+1)
 /*N*/   {
-/*N*/       DBG_ERROR("falsche Col in ScDetectiveFunc::GetDrawPos");
+/*N*/       OSL_FAIL("falsche Col in ScDetectiveFunc::GetDrawPos");
 /*N*/       nCol = MAXCOL+1;
 /*N*/   }
 /*N*/   if (nRow > MAXROW+1)
 /*N*/   {
-/*N*/       DBG_ERROR("falsche Row in ScDetectiveFunc::GetDrawPos");
+/*N*/       OSL_FAIL("falsche Row in ScDetectiveFunc::GetDrawPos");
 /*N*/       nRow = MAXROW+1;
 /*N*/   }
 /*N*/
@@ -331,7 +331,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   if (bStartAlien && bEndAlien)
 /*N*/   {
-/*N*/       DBG_ERROR("bStartAlien && bEndAlien");
+/*N*/       OSL_FAIL("bStartAlien && bEndAlien");
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/
@@ -1257,7 +1257,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/                   else if ( eWhat == SC_DET_ARROWS )      // DetectiveRefresh
 /*N*/                       bDoThis = !bCaption && !bCircle;    // don't include circles
 /*N*/                   else
-/*N*/                       DBG_ERROR("wat?");
+/*N*/                       OSL_FAIL("wat?");
 /*N*/               }
 /*N*/               if ( bDoThis )
 /*N*/                   ppObj[nDelCount++] = pObject;

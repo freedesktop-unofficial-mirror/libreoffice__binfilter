@@ -773,7 +773,7 @@ BOOL SvFactory::IsIntern
                     case 2: *pFileFormat = SOFFICE_FILEFORMAT_50; break;
                     case 3: *pFileFormat = SOFFICE_FILEFORMAT_60; break;
                     default:
-                            DBG_ERROR( "unexepected class id" );
+                            OSL_FAIL( "unexepected class id" );
                             break;
                     }
                 }

@@ -357,7 +357,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
 {
     if(nPos < m_pDataArr->Count())
         return m_pDataArr->GetObject(nPos);
-    DBG_ERROR("wrong index");
+    OSL_FAIL("wrong index");
     return 0;
 }
 /* -----------------19.10.99 13:46-------------------
@@ -504,7 +504,7 @@ BOOL    SwAuthorityFieldType::QueryValue( Any& rVal, BYTE nMId ) const
         }
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
@@ -580,7 +580,7 @@ BOOL    SwAuthorityFieldType::PutValue( const Any& rAny, BYTE nMId )
         }
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return bRet;
 }

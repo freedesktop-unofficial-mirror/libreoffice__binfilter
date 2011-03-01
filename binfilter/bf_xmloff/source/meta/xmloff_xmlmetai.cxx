@@ -357,7 +357,7 @@ sal_Bool SfxXMLMetaElementContext::ParseISODurationString(
             {
                 //! how many days is a year or month?
 
-                DBG_ERROR("years or months in duration: not implemented");
+                OSL_FAIL("years or months in duration: not implemented");
                 bSuccess = sal_False;
             }
             else
@@ -685,7 +685,7 @@ void SfxXMLMetaElementContext::EndElement()
         case XML_TOK_META_DOCUMENT_STATISTIC:
             break;
         default:
-            DBG_ERROR("wrong element");
+            OSL_FAIL("wrong element");
     }
 }
 

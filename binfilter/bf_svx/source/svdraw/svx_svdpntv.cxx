@@ -750,7 +750,7 @@ using namespace ::com::sun::star;
 /*N*/                           aPagV.Insert(pPV,CONTAINER_APPEND);
 /*N*/                       } else aPagHide.Insert(pPV,CONTAINER_APPEND);
 /*N*/                   } else {
-/*N*/                       DBG_ERROR("SdrPaintView::ReadRecord(): Seite der PageView nicht gefunden");
+/*N*/                       OSL_FAIL("SdrPaintView::ReadRecord(): Seite der PageView nicht gefunden");
 /*N*/                       delete pPV;
 /*N*/                   }
 /*N*/               }

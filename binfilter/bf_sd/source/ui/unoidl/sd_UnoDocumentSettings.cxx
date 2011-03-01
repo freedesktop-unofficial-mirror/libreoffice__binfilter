@@ -227,7 +227,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             pPrinter = pDocSh->GetPrinter( sal_True );
             if(pPrinter->GetOptions().GetItemState( ATTR_OPTIONS_PRINT, FALSE, (const SfxPoolItem**) &pPrinterOptions) != SFX_ITEM_SET)
             {
-                DBG_ERROR( "could not get printer options!" );
+                OSL_FAIL( "could not get printer options!" );
                 pPrinter = NULL;
                 pPrinterOptions = NULL;
                 continue;
@@ -757,7 +757,7 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
             pPrinter = pDocSh->GetPrinter( sal_True );
             if(pPrinter->GetOptions().GetItemState( ATTR_OPTIONS_PRINT, FALSE, (const SfxPoolItem**) &pPrinterOptions) != SFX_ITEM_SET)
             {
-                DBG_ERROR( "could not get printer options!" );
+                OSL_FAIL( "could not get printer options!" );
                 pPrinter = NULL;
                 pPrinterOptions = NULL;
                 continue;

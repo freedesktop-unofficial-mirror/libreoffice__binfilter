@@ -106,7 +106,7 @@ void SwLotusParser::Parse( void )
             break;
 
         default:
-            DBG_ERROR( "-SwLotusParser::Read(): Unbekannter Zustand!" );
+            OSL_FAIL( "-SwLotusParser::Read(): Unbekannter Zustand!" );
         }
         ClearBytesLeft();
     }

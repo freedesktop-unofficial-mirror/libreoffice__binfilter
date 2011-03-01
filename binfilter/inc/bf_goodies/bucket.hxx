@@ -175,7 +175,7 @@ namespace binfilter {
     } \
     TheClassName& TheClassName##TheExtension::operator[] (UINT32 nPos) { \
         if(nPos >= nCount) { \
-            DBG_ERROR("Access to Bucket out of range!"); \
+            OSL_FAIL("Access to Bucket out of range!"); \
             return *((TheClassName*)aMemArray[0]); \
         } \
         return *((TheClassName*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift))); \

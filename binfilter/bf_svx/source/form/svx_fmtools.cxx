@@ -60,7 +60,7 @@ using namespace ::com::sun::star;
 /*N*/           }
 /*N*/           catch(uno::Exception&)
 /*N*/           {
-/*N*/               DBG_ERROR( "getElementPos: caught an exception!" );
+/*N*/               OSL_FAIL( "getElementPos: caught an exception!" );
 /*N*/           }
 /*N*/
 /*N*/       }

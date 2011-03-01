@@ -104,7 +104,7 @@ bool CntByteItem::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
         return true;
     }
 
-    DBG_ERROR( "CntByteItem::PutValue - Wrong type!" );
+    OSL_FAIL( "CntByteItem::PutValue - Wrong type!" );
     return false;
 }
 
@@ -240,7 +240,7 @@ bool CntUInt16Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
         return true;
     }
 
-    DBG_ERROR( "CntUInt16Item::PutValue - Wrong type!" );
+    OSL_FAIL( "CntUInt16Item::PutValue - Wrong type!" );
     return false;
 }
 
@@ -371,7 +371,7 @@ bool CntInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
         return true;
     }
 
-    DBG_ERROR( "CntInt32Item::PutValue - Wrong type!" );
+    OSL_FAIL( "CntInt32Item::PutValue - Wrong type!" );
     return false;
 }
 
@@ -506,7 +506,7 @@ bool CntUInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
         return true;
     }
 
-    DBG_ERROR( "CntUInt32Item::PutValue - Wrong type!" );
+    OSL_FAIL( "CntUInt32Item::PutValue - Wrong type!" );
     return false;
 }
 

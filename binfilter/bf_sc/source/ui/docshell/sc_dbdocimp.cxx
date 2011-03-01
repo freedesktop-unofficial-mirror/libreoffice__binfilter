@@ -106,7 +106,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                                           rParam.nCol2, rParam.nRow2 );
 /*M*/       if (!pDBData)
 /*M*/       {
-/*M*/           DBG_ERROR( "DoImport: no DBData" );
+/*M*/           OSL_FAIL( "DoImport: no DBData" );
 /*M*/           return FALSE;
 /*M*/       }
 /*M*/   }
@@ -316,7 +316,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   }
 /*M*/   catch ( uno::Exception& )
 /*M*/   {
-/*M*/       DBG_ERROR("Unexpected exception in database");
+/*M*/       OSL_FAIL("Unexpected exception in database");
 /*M*/   }
 /*M*/
 /*M*/   ScColumn::bDoubleAlloc = FALSE;

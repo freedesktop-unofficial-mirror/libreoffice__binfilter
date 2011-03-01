@@ -1227,7 +1227,7 @@ void ScXMLExport::_ExportContent()
         sal_Int32 nShapesCount(0);
         sal_Int32 nCellCount(pDoc ? pDoc->GetCellCount() : 0);
         CollectSharedData(nTableCount, nShapesCount, nCellCount);
-        DBG_ERROR("no shared data setted");
+        OSL_FAIL("no shared data setted");
     }
     ScXMLExportDatabaseRanges aExportDatabaseRanges(*this);
     if (GetModel().is())
@@ -1406,7 +1406,7 @@ void ScXMLExport::_ExportStyles( sal_Bool bUsed )
         sal_Int32 nShapesCount(0);
         sal_Int32 nCellCount(pDoc ? pDoc->GetCellCount() : 0);
         CollectSharedData(nTableCount, nShapesCount, nCellCount);
-        //DBG_ERROR("no shared data setted");
+        //OSL_FAIL("no shared data setted");
     }
     ScXMLStyleExport aStylesExp(*this, ::rtl::OUString(), GetAutoStylePool().get());
     if (GetModel().is())
@@ -1482,7 +1482,7 @@ void ScXMLExport::_ExportAutoStyles()
                         sal_Int32 nShapesCount(0);
                         sal_Int32 nCellCount(pDoc ? pDoc->GetCellCount() : 0);
                         CollectSharedData(nTableCount, nShapesCount, nCellCount);
-                        //DBG_ERROR("no shared data setted");
+                        //OSL_FAIL("no shared data setted");
                     }
                     ::rtl::OUString SC_SCOLUMNPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_COLUMN_STYLES_PREFIX));
                     ::rtl::OUString SC_SROWPREFIX(RTL_CONSTASCII_USTRINGPARAM(XML_STYLE_FAMILY_TABLE_ROW_STYLES_PREFIX));

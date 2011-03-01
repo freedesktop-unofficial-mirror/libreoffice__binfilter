@@ -680,7 +680,7 @@ void XMLAnimationsEffectContext::EndElement()
     }
     catch( Exception e )
     {
-        DBG_ERROR( "exception catched while importing animation information!" );
+        OSL_FAIL( "exception catched while importing animation information!" );
     }
 }
 

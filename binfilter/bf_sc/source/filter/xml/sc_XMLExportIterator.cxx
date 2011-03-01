@@ -544,7 +544,7 @@ void ScMyNotEmptyCellsIterator::Clear()
         delete pCellItr;
     if (!aAnnotations.empty())
     {
-        DBG_ERROR("not all Annotations saved");
+        OSL_FAIL("not all Annotations saved");
         aAnnotations.clear();
     }
     pCellItr = NULL;

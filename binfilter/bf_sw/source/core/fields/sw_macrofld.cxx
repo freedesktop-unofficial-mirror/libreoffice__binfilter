@@ -167,7 +167,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/       rAny <<= OUString(GetLibName());
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -190,7 +190,7 @@ BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
         CreateMacroString(aMacro, GetMacroName(), ::binfilter::GetString(rAny, sTmp) );
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }

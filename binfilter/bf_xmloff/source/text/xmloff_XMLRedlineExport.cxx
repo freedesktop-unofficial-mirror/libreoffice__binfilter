@@ -469,7 +469,7 @@ const OUString XMLRedlineExport::ConvertTypeName(
     }
     else
     {
-        DBG_ERROR("unknown redline type");
+        OSL_FAIL("unknown redline type");
         return sUnknownChange;
     }
 }
@@ -645,7 +645,7 @@ void XMLRedlineExport::ExportStartOrEndRedline(
     }
     else
     {
-        DBG_ERROR("XPropertySet expected");
+        OSL_FAIL("XPropertySet expected");
     }
 }
 
@@ -660,7 +660,7 @@ void XMLRedlineExport::ExportStartOrEndRedline(
     }
     else
     {
-        DBG_ERROR("XPropertySet expected");
+        OSL_FAIL("XPropertySet expected");
     }
 }
 

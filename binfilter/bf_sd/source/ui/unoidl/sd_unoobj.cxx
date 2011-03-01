@@ -730,7 +730,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     }
                     else
                     {
-                        DBG_ERROR( "Masterpage without a background shape, ZOrder property will be corrupt!" );
+                        OSL_FAIL( "Masterpage without a background shape, ZOrder property will be corrupt!" );
                     }
                 }
             }

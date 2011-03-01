@@ -1637,7 +1637,7 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
                 case META_MASKSCALE_ACTION:
                 case META_MASKSCALEPART_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaMask...Action!" );
+                    OSL_FAIL( "Unsupported action: MetaMask...Action!" );
                 }
                 break;
 
@@ -1646,13 +1646,13 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
 
                 case META_ISECTREGIONCLIPREGION_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaISectRegionClipRegionAction!" );
+                    OSL_FAIL( "Unsupported action: MetaISectRegionClipRegionAction!" );
                 }
                 break;
 
                 case META_MOVECLIPREGION_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaMoveClipRegionAction!" );
+                    OSL_FAIL( "Unsupported action: MetaMoveClipRegionAction!" );
                 }
                 break;
           }

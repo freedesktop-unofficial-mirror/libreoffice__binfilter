@@ -96,7 +96,7 @@ namespace binfilter {
 /*N*/
 /*N*/           case SCH_LIGHTFACTOR_ID:
 /*?*/               {DBG_BF_ASSERT(0, "STRIP");}
-/*?*/               DBG_ERROR("SCH_LIGHTFACTOR_ID no longer available");
+/*?*/               OSL_FAIL("SCH_LIGHTFACTOR_ID no longer available");
 /*?*/               break;
 /*N*/
 /*N*/           case SCH_AXIS_ID :

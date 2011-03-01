@@ -92,7 +92,7 @@ namespace binfilter {
 /*N*/   short nNewPos = ((short) nStart) + nDelta;
 /*N*/   if (nNewPos<0)
 /*N*/   {
-/*N*/       DBG_ERROR("OutlineEntry < 0");
+/*N*/       OSL_FAIL("OutlineEntry < 0");
 /*N*/       nNewPos = 0;
 /*N*/   }
 /*N*/   nStart = (USHORT) nNewPos;
@@ -103,7 +103,7 @@ namespace binfilter {
 /*N*/   if (nNewSize)
 /*N*/       nSize = nNewSize;
 /*N*/   else
-/*N*/       DBG_ERROR("ScOutlineEntry Size == 0");
+/*N*/       OSL_FAIL("ScOutlineEntry Size == 0");
 /*N*/ }
 
 /*N*/ void ScOutlineEntry::SetPosSize( USHORT nNewPos, USHORT nNewSize )
@@ -589,12 +589,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (nSubLevel >= nDepth)
 /*N*/   {
-/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast nach Ende");
+/*N*/       OSL_FAIL("ScSubOutlineIterator::DeleteLast nach Ende");
 /*N*/       return;
 /*N*/   }
 /*N*/   if (nSubEntry == 0)
 /*N*/   {
-/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast vor GetNext");
+/*N*/       OSL_FAIL("ScSubOutlineIterator::DeleteLast vor GetNext");
 /*N*/       return;
 /*N*/   }
 /*N*/

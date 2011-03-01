@@ -366,7 +366,7 @@ namespace binfilter {
 /*N*/               if(nSymbolType!=SVX_SYMBOLTYPE_NONE)
 /*N*/                   return CHSTYLE_2D_XYSYMBOLS;
 /*N*/
-/*N*/               DBG_ERROR( "Unknown chart type" );
+/*N*/               OSL_FAIL( "Unknown chart type" );
 /*N*/
 /*N*/               return CHSTYLE_2D_XY;
 /*N*/           }
@@ -456,7 +456,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR( "ChartModel::GetBaseType: invalid type!" );
+/*N*/           OSL_FAIL( "ChartModel::GetBaseType: invalid type!" );
 /*N*/           break;
 /*N*/   }
 /*N*/
@@ -736,7 +736,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR( "Invalid chart style given!" );
+/*N*/           OSL_FAIL( "Invalid chart style given!" );
 /*N*/           break;
 /*N*/   }
 /*N*/

@@ -1268,7 +1268,7 @@ private:
 /*N*/       {
 /*?*/           if(pChartRefOutDev)
 /*?*/           {
-/*?*/               DBG_ERROR("ChartModel::BuildChart: restoring lost pRefOutDev... something strange happend!");
+/*?*/               OSL_FAIL("ChartModel::BuildChart: restoring lost pRefOutDev... something strange happend!");
 /*?*/               SetRefDevice(pChartRefOutDev);
 /*?*/           }
 /*?*/           else
@@ -1286,7 +1286,7 @@ private:
 /*?*/               {
 /*?*/                   OutputDevice* pOut = Application::GetDefaultDevice();
 /*?*/                   // this is no error: if a ChartModel is copied via clipboard there is no docshell
-/*?*/                   // DBG_ERROR("ChartModel::BuildChart : no Docshell! (OutputDevice)");
+/*?*/                   // OSL_FAIL("ChartModel::BuildChart : no Docshell! (OutputDevice)");
 /*?*/                   pChartRefOutDev = new VirtualDevice( *pOut );
 /*?*/                   MapMode aMapMode = pChartRefOutDev->GetMapMode();
 /*?*/                   aMapMode.SetMapUnit(MAP_100TH_MM);

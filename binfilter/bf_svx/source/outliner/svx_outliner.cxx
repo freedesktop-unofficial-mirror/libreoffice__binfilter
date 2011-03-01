@@ -207,7 +207,7 @@ namespace binfilter {
 /*?*/           nCtrl |= EE_CNTRL_OUTLINER;
 /*N*/       }
 /*N*/       break;
-/*N*/       default: DBG_ERROR( "Outliner::Init - Invalid Mode!" );
+/*N*/       default: OSL_FAIL( "Outliner::Init - Invalid Mode!" );
 /*N*/   }
 /*N*/
 /*N*/   pEditEngine->SetControlWord( nCtrl );

@@ -194,7 +194,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("UnlockPaint ohne LockPaint");
+/*N*/       OSL_FAIL("UnlockPaint ohne LockPaint");
 /*N*/ }
 
 /*N*/ void ScDocShell::LockDocument_Impl(USHORT nNew)
@@ -265,7 +265,7 @@ namespace binfilter {
 /*N*/       UnlockDocument_Impl(nDocumentLock - 1);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("UnlockDocument without LockDocument");
+/*N*/       OSL_FAIL("UnlockDocument without LockDocument");
 /*N*/ }
 
 //------------------------------------------------------------------
@@ -309,7 +309,7 @@ namespace binfilter {
 /*N*/       pPrinter->SetMapMode(aOldMode);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("kein Drucker ?!?!?");
+/*N*/       OSL_FAIL("kein Drucker ?!?!?");
 /*N*/
 /*N*/   VirtualDevice aVirtWindow( *Application::GetDefaultDevice() );
 /*N*/   aVirtWindow.SetMapMode(MAP_PIXEL);
@@ -322,7 +322,7 @@ namespace binfilter {
 /*N*/       nPrtToScreenFactor = nPrinterWidth / (double) nWindowWidth;
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("GetTextSize gibt 0 ??");
+/*N*/       OSL_FAIL("GetTextSize gibt 0 ??");
 /*N*/       nPrtToScreenFactor = 1.0;
 /*N*/   }
 /*N*/ }

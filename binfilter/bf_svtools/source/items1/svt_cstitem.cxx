@@ -142,7 +142,7 @@ bool SfxCrawlStatusItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         return true;
     }
 
-    DBG_ERROR( "SfxCrawlStatusItem::PutValue - Wrong type!" );
+    OSL_FAIL( "SfxCrawlStatusItem::PutValue - Wrong type!" );
     return false;
 }
 

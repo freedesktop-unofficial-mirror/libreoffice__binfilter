@@ -862,7 +862,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       else
 /*?*/       {
-/*?*/ //            DBG_ERROR( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
+/*?*/ //            OSL_FAIL( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
 /*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/   }

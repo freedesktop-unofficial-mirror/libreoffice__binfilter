@@ -38,7 +38,7 @@
 
 // Freigeben, wenn SD-Storages verwendet werden sollen
 #define SDSTORAGES
-#define SD_ERROR    DBG_ERROR( "use ole2, while SDSTORAGES defined" )
+#define SD_ERROR    OSL_FAIL( "use ole2, while SDSTORAGES defined" )
 
 // kein Profiling
 #undef DBG_PROFSTART

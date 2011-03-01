@@ -466,14 +466,14 @@ void global_InitAppOptions();
 /*N*/ {
 /*N*/   if (!pPool)
 /*N*/   {
-/*?*/       DBG_ERROR("kein Pool bei ScGlobal::InitTextHeight");
+/*?*/       OSL_FAIL("kein Pool bei ScGlobal::InitTextHeight");
 /*?*/       return;
 /*N*/   }
 /*N*/
 /*N*/   const ScPatternAttr* pPattern = (const ScPatternAttr*)&pPool->GetDefaultItem(ATTR_PATTERN);
 /*N*/   if (!pPattern)
 /*N*/   {
-/*?*/       DBG_ERROR("kein Default-Pattern bei ScGlobal::InitTextHeight");
+/*?*/       OSL_FAIL("kein Default-Pattern bei ScGlobal::InitTextHeight");
 /*?*/       return;
 /*N*/   }
 /*N*/

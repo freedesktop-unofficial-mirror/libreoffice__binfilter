@@ -778,7 +778,7 @@ SvXMLImportContext* XMLVariableDeclsImportContext::CreateChildContext(
                 eElementName = XML_USER_FIELD_DECL;
                 break;
             default:
-                DBG_ERROR("unknown field type!");
+                OSL_FAIL("unknown field type!");
         }
 
         if( IsXMLToken( rLocalName, eElementName ) )
@@ -913,7 +913,7 @@ XMLVariableDeclImportContext::XMLVariableDeclImportContext(
                 break;
             }
             default:
-                DBG_ERROR("unkown varfield type");
+                OSL_FAIL("unkown varfield type");
             } // switch
         } // else: no field master found/constructed
     } // else: no sequence-decl
@@ -1300,7 +1300,7 @@ void XMLValueImportHelper::ProcessAttribute(
                         break;
 
                     default:
-                        DBG_ERROR("unknown value type");
+                        OSL_FAIL("unknown value type");
                         bTypeOK = sal_False;
                 }
             }

@@ -485,7 +485,7 @@ ErrCode SvAppletObject::Verb
     {
         case SVVERB_PROPS:
         {
-            DBG_ERROR( "non-working code!" );
+            OSL_FAIL( "non-working code!" );
             // TODO: dead corpses
             nRet = 0;
             break;

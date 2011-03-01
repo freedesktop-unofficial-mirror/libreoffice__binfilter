@@ -245,7 +245,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( eType == CELLTYPE_FORMULA )
 /*N*/       return ((ScFormulaCell&)rCell).GetValue();      // called only if result is value
 /*N*/
-/*N*/   DBG_ERROR( "GetValueFromCell: wrong type" );
+/*N*/   OSL_FAIL( "GetValueFromCell: wrong type" );
 /*N*/   return 0;
 /*N*/ }
 

@@ -184,7 +184,7 @@ void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& _rEvent) throw(
                 m_xColumnUpdate->updateBoolean(sal_False);
                 break;
             default:
-                DBG_ERROR("OCheckBoxModel::_commit : invalid value !");
+                OSL_FAIL("OCheckBoxModel::_commit : invalid value !");
         }
     }
 }
@@ -338,7 +338,7 @@ void SAL_CALL OCheckBoxModel::read(const Reference<stario::XObjectInputStream>& 
             readCommonProperties(_rxInStream);
             break;
         default :
-            DBG_ERROR("OCheckBoxModel::read : unknown version !");
+            OSL_FAIL("OCheckBoxModel::read : unknown version !");
             m_sReferenceValue = ::rtl::OUString();
             m_nDefaultChecked = 0;
             defaultCommonProperties();
@@ -431,12 +431,12 @@ sal_Bool OCheckBoxModel::_commit()
                     m_xColumnUpdate->updateBoolean(sal_False);
                     break;
                 default:
-                    DBG_ERROR("OCheckBoxModel::_commit : invalid value !");
+                    OSL_FAIL("OCheckBoxModel::_commit : invalid value !");
             }
         }
         catch(Exception&)
         {
-            DBG_ERROR("OCheckBoxModel::_commit : could not commit !");
+            OSL_FAIL("OCheckBoxModel::_commit : could not commit !");
         }
     }
     return sal_True;

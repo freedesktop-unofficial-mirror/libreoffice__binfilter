@@ -250,7 +250,7 @@ namespace binfilter {
 /*N*/       if ((*this)[i]->GetKey() == nKey)
 /*N*/           return (*this)[i];
 /*N*/
-/*N*/   DBG_ERROR("ScValidationDataList: Eintrag nicht gefunden");
+/*N*/   OSL_FAIL("ScValidationDataList: Eintrag nicht gefunden");
 /*N*/   return NULL;
 /*N*/ }
 

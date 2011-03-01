@@ -217,18 +217,18 @@ BOOL SvtSearchOptions_Impl::Load()
                     }
                     else
                     {
-                        DBG_ERROR( "unexpected index" );
+                        OSL_FAIL( "unexpected index" );
                     }
                 }
                 else
                 {
-                    DBG_ERROR( "unexpected type" );
+                    OSL_FAIL( "unexpected type" );
                     bSucc = FALSE;
                 }
             }
             else
             {
-                DBG_ERROR( "value missing" );
+                OSL_FAIL( "value missing" );
                 bSucc = FALSE;
             }
         }

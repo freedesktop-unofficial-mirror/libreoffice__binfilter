@@ -1822,7 +1822,7 @@ sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const ::rt
             }
             catch ( uno::Exception& )
             {
-                DBG_ERROR("Numberformat not found");
+                OSL_FAIL("Numberformat not found");
             }
         }
     }
@@ -1897,7 +1897,7 @@ void ScXMLImport::SetType(uno::Reference <beans::XPropertySet>& rProperties,
                 }
                 catch ( uno::Exception& )
                 {
-                    DBG_ERROR("Numberformat not found");
+                    OSL_FAIL("Numberformat not found");
                 }
             }
         }

@@ -585,7 +585,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*?*/           return CHTYPE_ADDIN;
 /*N*/
 /*N*/       default:
-/*?*/           DBG_ERROR( "Invalid Chart style given!" );
+/*?*/           OSL_FAIL( "Invalid Chart style given!" );
 /*?*/           return CHTYPE_INVALID;
 /*N*/   }
 /*N*/ }
@@ -628,7 +628,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*?*/           eNewStyle = CHSTYLE_ADDIN;
 /*?*/           break;
 /*?*/       default:
-/*?*/           DBG_ERROR( "ChartModel::SetBaseType: Invalid Type!" );
+/*?*/           OSL_FAIL( "ChartModel::SetBaseType: Invalid Type!" );
 /*?*/           break;
 /*N*/   }
 /*N*/

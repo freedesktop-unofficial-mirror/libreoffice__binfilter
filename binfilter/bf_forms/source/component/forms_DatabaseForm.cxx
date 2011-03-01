@@ -1130,13 +1130,13 @@ void ODatabaseForm::onError(const SQLErrorEvent& _rEvent)
 //------------------------------------------------------------------------------
 void ODatabaseForm::onError(SQLException& /*_rException*/, const ::rtl::OUString& /*_rContextDescription*/)
 {
-    DBG_ERROR( "ODatabaseForm::onError: dead code!" );
+    OSL_FAIL( "ODatabaseForm::onError: dead code!" );
 }
 
 //------------------------------------------------------------------------------
 void ODatabaseForm::createParameterInfo()
 {
-    DBG_ERROR( "ODatabaseForm::createParameterInfo: why is this still used in binfilter?!!" );
+    OSL_FAIL( "ODatabaseForm::createParameterInfo: why is this still used in binfilter?!!" );
 }
 
 //------------------------------------------------------------------------------
@@ -1148,7 +1148,7 @@ bool ODatabaseForm::hasValidParent() const
         Reference<XResultSet>  xResultSet(m_xParent, UNO_QUERY);
         if (!xResultSet.is())
         {
-            DBG_ERROR("ODatabaseForm::hasValidParent() : no parent resultset !");
+            OSL_FAIL("ODatabaseForm::hasValidParent() : no parent resultset !");
             return false;
         }
         try
@@ -1179,7 +1179,7 @@ bool ODatabaseForm::fillParameters(::osl::ResettableMutexGuard& _rClearForNotifi
     Reference<XParameters>  xExecutionParams;
     if (!query_aggregation( m_xAggregate, xExecutionParams))
     {
-        DBG_ERROR("ODatabaseForm::fillParameters : invalid row set (doesn't support parameters) !");
+        OSL_FAIL("ODatabaseForm::fillParameters : invalid row set (doesn't support parameters) !");
         // normally the row set should support parameters ...
         return true;
     }
@@ -1723,7 +1723,7 @@ sal_Bool ODatabaseForm::convertFastPropertyValue( Any& rConvertedValue, Any& rOl
             bModified = tryPropertyValue(rConvertedValue, rOldValue, rValue, m_bAllowDelete);
             break;
         default:
-            DBG_ERROR("ODatabaseForm::convertFastPropertyValue : unknown property !");
+            OSL_FAIL("ODatabaseForm::convertFastPropertyValue : unknown property !");
     }
     return bModified;
 }
@@ -1791,7 +1791,7 @@ void ODatabaseForm::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const A
             m_bAllowDelete = getBOOL(rValue);
             break;
         default:
-            DBG_ERROR("ODatabaseForm::setFastPropertyValue_NoBroadcast : unknown property !");
+            OSL_FAIL("ODatabaseForm::setFastPropertyValue_NoBroadcast : unknown property !");
     }
 }
 
@@ -2303,7 +2303,7 @@ void ODatabaseForm::submit_impl(const Reference<XControl>& Control, const ::com:
         }
     }
     else
-        DBG_ERROR("ODatabaseForm::submit_Impl : wrong encoding !");
+        OSL_FAIL("ODatabaseForm::submit_Impl : wrong encoding !");
 
 }
 
@@ -2808,7 +2808,7 @@ void ODatabaseForm::reload_impl(sal_Bool bMoveToFirst, const Reference< XInterac
     }
     catch(SQLException& /*e*/)
     {
-        DBG_ERROR("ODatabaseForm::reload_impl : shouldn't executeRowSet catch this exception ?");
+        OSL_FAIL("ODatabaseForm::reload_impl : shouldn't executeRowSet catch this exception ?");
     }
 
     if (bSuccess)
@@ -3642,7 +3642,7 @@ void SAL_CALL ODatabaseForm::write(const Reference<XObjectOutputStream>& _rxOutS
                 eTranslated = bEscapeProcessing ? DataSelectionType_SQL : DataSelectionType_SQLPASSTHROUGH;
             }
             break;
-            default : DBG_ERROR("ODatabaseForm::write : wrong CommandType !");
+            default : OSL_FAIL("ODatabaseForm::write : wrong CommandType !");
         }
     }
     _rxOutStream->writeShort((sal_Int16)eTranslated);           // former DataSelectionType
@@ -3748,7 +3748,7 @@ void SAL_CALL ODatabaseForm::read(const Reference<XObjectInputStream>& _rxInStre
             m_xAggregateSet->setPropertyValue(PROPERTY_ESCAPE_PROCESSING, makeAny((sal_Bool)bEscapeProcessing));
         }
         break;
-        default : DBG_ERROR("ODatabaseForm::read : wrong CommandType !");
+        default : OSL_FAIL("ODatabaseForm::read : wrong CommandType !");
     }
     if (m_xAggregateSet.is())
         m_xAggregateSet->setPropertyValue(PROPERTY_COMMANDTYPE, makeAny(nCommandType));

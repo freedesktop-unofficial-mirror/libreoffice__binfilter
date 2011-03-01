@@ -678,7 +678,7 @@ void XMLTextFieldImportContext::ForceUpdate(
     }
     else
     {
-        DBG_ERROR("Expected XUpdatable support!");
+        OSL_FAIL("Expected XUpdatable support!");
     }
 }
 
@@ -1835,7 +1835,7 @@ const sal_Char* XMLSimpleDocInfoImportContext::MapTokenToServiceName(
             break;
 
         default:
-            DBG_ERROR("no docinfo field token");
+            OSL_FAIL("no docinfo field token");
             pServiceName = NULL;
             break;
     }
@@ -1931,7 +1931,7 @@ XMLDateTimeDocInfoImportContext::XMLDateTimeDocInfoImportContext(
             bHasDateTime = sal_False;
             break;
         default:
-            DBG_ERROR(
+            OSL_FAIL(
                 "XMLDateTimeDocInfoImportContext needs date/time doc. fields");
             bValid = sal_False;
             break;
@@ -2586,7 +2586,7 @@ const sal_Char* XMLCountFieldImportContext::MapTokenToServiceName(
             break;
         default:
             pServiceName = NULL;
-            DBG_ERROR("unknown count field!");
+            OSL_FAIL("unknown count field!");
             break;
     }
 
@@ -2911,7 +2911,7 @@ void XMLReferenceFieldImportContext::StartElement(
             break;
         default:
             bTypeOK = sal_False;
-            DBG_ERROR("unknown reference field");
+            OSL_FAIL("unknown reference field");
             break;
     }
 
@@ -3465,7 +3465,7 @@ void XMLBibliographyFieldImportContext::ProcessAttribute(
     const OUString& sAttrValue )
 {
     // attributes are handled in StartElement
-    DBG_ERROR("This should not have happened.");
+    OSL_FAIL("This should not have happened.");
 }
 
 
@@ -3619,7 +3619,7 @@ const sal_Char* XMLBibliographyFieldImportContext::MapBibliographyFieldName(
     }
     else
     {
-        DBG_ERROR("Unknown bibliography info data");
+        OSL_FAIL("Unknown bibliography info data");
         pName = NULL;
     }
 

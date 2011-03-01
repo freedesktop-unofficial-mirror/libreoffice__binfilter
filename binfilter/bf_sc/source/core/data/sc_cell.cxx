@@ -119,7 +119,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/       case CELLTYPE_NOTE:
 /*N*/           return new ScNoteCell(*(const ScNoteCell*)this);
 /*N*/       default:
-/*N*/           DBG_ERROR("Unbekannter Zellentyp");
+/*N*/           OSL_FAIL("Unbekannter Zellentyp");
 /*N*/           return NULL;
 /*N*/   }
 /*N*/ }
@@ -152,7 +152,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/           delete (ScNoteCell*) this;
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("Unbekannter Zellentyp");
+/*N*/           OSL_FAIL("Unbekannter Zellentyp");
 /*N*/           break;
 /*N*/   }
 /*N*/ }
@@ -518,7 +518,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/               return FALSE;       // unterschiedlich lang oder unterschiedliche Tokens
 /*N*/           }
 /*N*/       default:
-/*N*/           DBG_ERROR("huch, was fuer Zellen???");
+/*N*/           OSL_FAIL("huch, was fuer Zellen???");
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
@@ -918,7 +918,7 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("ScFormulaCell::GetFormula: Keine Matrix");
+/*N*/           OSL_FAIL("ScFormulaCell::GetFormula: Keine Matrix");
 /*N*/       }
 /*N*/   }
 /*N*/   else

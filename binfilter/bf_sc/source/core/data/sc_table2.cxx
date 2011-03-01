@@ -530,7 +530,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (ValidColRow( nCol, nRow ))
 /*N*/       return aCol[nCol].GetCell( nRow );
 /*N*/
-/*N*/   DBG_ERROR("GetCell ausserhalb");
+/*N*/   OSL_FAIL("GetCell ausserhalb");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -868,7 +868,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (nLockCount)
 /*N*/       --nLockCount;
 /*N*/   else
-/*N*/       DBG_ERROR("UnlockTable ohne LockTable");
+/*N*/       OSL_FAIL("UnlockTable ohne LockTable");
 /*N*/ }
 
 
@@ -1074,7 +1074,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (!nNewWidth)
 /*N*/       {
-/*N*/ //            DBG_ERROR("Spaltenbreite 0 in SetColWidth");
+/*N*/ //            OSL_FAIL("Spaltenbreite 0 in SetColWidth");
 /*N*/           nNewWidth = STD_COL_WIDTH;
 /*N*/       }
 /*N*/
@@ -1090,7 +1090,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Spaltennummer oder keine Breiten");
+/*N*/       OSL_FAIL("Falsche Spaltennummer oder keine Breiten");
 /*N*/ }
 
 
@@ -1100,7 +1100,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       if (!nNewHeight)
 /*N*/       {
-/*?*/           DBG_ERROR("Zeilenhoehe 0 in SetRowHeight");
+/*?*/           OSL_FAIL("Zeilenhoehe 0 in SetRowHeight");
 /*?*/           nNewHeight = ScGlobal::nStdRowHeight;
 /*N*/       }
 /*N*/
@@ -1116,7 +1116,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Hoehen");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Hoehen");
 /*N*/ }
 
 
@@ -1129,7 +1129,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       nRecalcLvl++;
 /*N*/       if (!nNewHeight)
 /*N*/       {
-/*?*/           DBG_ERROR("Zeilenhoehe 0 in SetRowHeight");
+/*?*/           OSL_FAIL("Zeilenhoehe 0 in SetRowHeight");
 /*?*/           nNewHeight = ScGlobal::nStdRowHeight;
 /*N*/       }
 /*N*/
@@ -1190,7 +1190,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           SetDrawPageSize();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Hoehen");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Hoehen");
 /*N*/
 /*N*/   return bChanged;
 /*N*/ }
@@ -1209,7 +1209,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               pRowFlags[nRow] &= ~CR_MANUALSIZE;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Zeilenflags");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Zeilenflags");
 /*N*/ }
 
 
@@ -1316,7 +1316,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Spaltennummer oder keine Flags");
+/*N*/       OSL_FAIL("Falsche Spaltennummer oder keine Flags");
 /*N*/ }
 
 
@@ -1376,7 +1376,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (VALIDROW(nRow) && pRowFlags)
 /*N*/       return ( pRowFlags[nRow] & CR_FILTERED ) != 0;
 /*N*/
-/*N*/   DBG_ERROR("Falsche Zeilennummer oder keine Flags");
+/*N*/   OSL_FAIL("Falsche Zeilennummer oder keine Flags");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1388,7 +1388,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   if (VALIDROW(nRow) && pRowFlags)
 /*N*/       pRowFlags[nRow] = nNewFlags;
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Flags");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Flags");
 /*N*/ }
 
 
@@ -1688,7 +1688,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScTable::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScTable::Load");
 /*N*/                   ScReadHeader aDummyHeader( rStream );
 /*N*/               }
 /*N*/       }
@@ -1947,7 +1947,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               n += *pHeight;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetRowOffset: Daten fehlen");
+/*N*/       OSL_FAIL("GetRowOffset: Daten fehlen");
 /*N*/   return n;
 /*N*/ }
 
@@ -1965,7 +1965,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/               n += *pWidth;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetColumnOffset: Daten fehlen");
+/*N*/       OSL_FAIL("GetColumnOffset: Daten fehlen");
 /*N*/   return n;
 /*N*/ }
 

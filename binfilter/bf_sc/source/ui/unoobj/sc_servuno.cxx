@@ -156,7 +156,7 @@ sal_uInt16 ScServiceProvider::GetProviderType(const String& rServiceName)
         for (i=0; i<SC_SERVICE_COUNT; i++)
             if (rServiceName.EqualsAscii( aOldNames[i] ))
             {
-                DBG_ERROR("old service name used");
+                OSL_FAIL("old service name used");
                 return i;
             }
     }

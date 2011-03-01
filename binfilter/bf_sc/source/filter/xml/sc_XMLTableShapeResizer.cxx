@@ -272,7 +272,7 @@ void ScMyShapeResizer::ResizeShapes()
                                                 }
                                                 catch ( uno::Exception& )
                                                 {
-                                                    DBG_ERROR("This Captionshape has no CaptionPoint property.");
+                                                    OSL_FAIL("This Captionshape has no CaptionPoint property.");
                                                 }
                                             }
                                             Point aCorePoint(aPoint.X, aPoint.Y);
@@ -298,7 +298,7 @@ void ScMyShapeResizer::ResizeShapes()
                                         {
                                             // #96159# it is possible, that shapes have a negative position
                                             // this is now handled here
-                                            DBG_ERROR("no or negative end address of this shape");
+                                            OSL_FAIL("no or negative end address of this shape");
                                             awt::Point aRefPoint;
                                             aRefPoint.X = aRec.Left();
                                             aRefPoint.Y = aRec.Top();
@@ -316,7 +316,7 @@ void ScMyShapeResizer::ResizeShapes()
                         }
                     }
                     else
-                        DBG_ERROR("something wents wrong");
+                        OSL_FAIL("something wents wrong");
                     if (IsOLE(aItr->xShape))
                     {
                         uno::Reference < beans::XPropertySet > xShapeProps ( aItr->xShape, uno::UNO_QUERY );

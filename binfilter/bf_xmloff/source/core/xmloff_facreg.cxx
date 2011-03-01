@@ -621,7 +621,7 @@ sal_Bool XMLRegisterServices( ::com::sun::star::uno::Reference< ::com::sun::star
     catch( uno::Exception& )
     {
 #ifdef DBG_UTIL
-        DBG_ERROR( "Cannot register XMLOFF services" );
+        OSL_FAIL( "Cannot register XMLOFF services" );
 #endif
         return sal_False;
     }

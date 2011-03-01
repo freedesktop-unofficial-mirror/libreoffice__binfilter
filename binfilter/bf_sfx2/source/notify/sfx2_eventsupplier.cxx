@@ -257,7 +257,7 @@ namespace binfilter {
 /*N*/           else if ( aProperties[ nIndex ].Name.compareToAscii( PROP_MACRO_NAME ) == 0 )
 /*N*/               aProperties[ nIndex ].Value >>= aMacroName;
 /*N*/           else
-/*N*/               DBG_ERROR("Unknown propery value!");
+/*N*/               OSL_FAIL("Unknown propery value!");
 /*N*/           nIndex += 1;
 /*N*/       }
 /*N*/

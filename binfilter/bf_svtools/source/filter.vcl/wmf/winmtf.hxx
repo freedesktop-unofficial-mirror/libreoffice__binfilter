@@ -520,7 +520,7 @@ struct GDIObj
                 break;
 
                 default:
-                    DBG_ERROR( "unsupported style deleted" );
+                    OSL_FAIL( "unsupported style deleted" );
                     break;
             }
             pStyle = NULL;

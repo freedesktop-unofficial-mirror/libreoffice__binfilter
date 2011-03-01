@@ -212,7 +212,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/       break;
 /*N*/
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
@@ -253,7 +253,7 @@ BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId
         break;
 
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
         bRet = FALSE;
     }
     return bRet;

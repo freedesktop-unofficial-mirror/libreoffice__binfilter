@@ -550,7 +550,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 /*N*/               }
 /*N*/               else
 /*N*/               { //                                         Tabellenfehler
-/*N*/                   DBG_ERROR( "-ScApplication::DetectFilter(): Fehler in Mustertabelle");
+/*N*/                   OSL_FAIL( "-ScApplication::DetectFilter(): Fehler in Mustertabelle");
 /*N*/               }
 /*N*/
 /*N*/               pSearch++;

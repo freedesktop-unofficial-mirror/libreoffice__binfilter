@@ -362,7 +362,7 @@ long                SF_Ident = SF_IDENT;
 /*N*/
 /*N*/     if (0 == nCount)
 /*N*/     {
-/*N*/         DBG_ERROR( "no symbol set found" );
+/*N*/         OSL_FAIL( "no symbol set found" );
 /*N*/         pImpl->Modified = FALSE;
 /*N*/     }
 /*N*/ }

@@ -619,7 +619,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -642,7 +642,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -793,7 +793,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -821,7 +821,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -862,7 +862,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                             else
                             {
-                                DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                                OSL_FAIL( "getPropertyValue(): wrong Type!" );
                             }
                         }
                     }
@@ -1038,7 +1038,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         }
         else
         {
-            DBG_ERROR( "No Model - Couldn't attach AddIn" );
+            OSL_FAIL( "No Model - Couldn't attach AddIn" );
         }
     }
     else
@@ -1632,7 +1632,7 @@ uno::Sequence< sal_Int32 > ChXChartDocument::GetTransSequence( SchMemChart* pDat
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" );
+        OSL_FAIL( "Invalid MemChart" );
     }
 
     return aResult;
@@ -1670,7 +1670,7 @@ bool ChXChartDocument::SetTransSequence( SchMemChart* pData, bool bColumns, cons
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" );
+        OSL_FAIL( "Invalid MemChart" );
     }
 
     return bResult;

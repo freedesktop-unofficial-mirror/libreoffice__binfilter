@@ -281,7 +281,7 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*?*/   }
 /*?*/
-/*?*/   DBG_ERROR("GetSourceDim: wrong dim");
+/*?*/   OSL_FAIL("GetSourceDim: wrong dim");
 /*?*/   return nDim;
 /*N*/ }
 
@@ -297,13 +297,13 @@ using namespace ::com::sun::star;
 /*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");   //! exception?
+/*?*/   OSL_FAIL("not implemented");    //! exception?
 /*?*/ }
 
 /*?*/ void SAL_CALL ScDPSource::removeRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");   //! exception?
+/*?*/   OSL_FAIL("not implemented");    //! exception?
 /*?*/ }
 
 
@@ -379,7 +379,7 @@ using namespace ::com::sun::star;
 /*N*/       setRepeatIfEmpty( lcl_GetBoolFromAny( aValue ) );
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -402,7 +402,7 @@ using namespace ::com::sun::star;
 /*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;
@@ -647,7 +647,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -685,7 +685,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;
@@ -859,7 +859,7 @@ using namespace ::com::sun::star;
 
 /*?*/ void SAL_CALL ScDPHierarchy::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");       //! exception?
+/*?*/   OSL_FAIL("not implemented");        //! exception?
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -883,7 +883,7 @@ using namespace ::com::sun::star;
 /*?*/           case SC_DAPI_HIERARCHY_QUARTER: nLevCount = SC_DAPI_QUARTER_LEVELS; break;
 /*?*/           case SC_DAPI_HIERARCHY_WEEK:    nLevCount = SC_DAPI_WEEK_LEVELS;    break;
 /*?*/           default:
-/*?*/               DBG_ERROR("wrong hierarchy");
+/*?*/               OSL_FAIL("wrong hierarchy");
 /*?*/               nLevCount = 0;
 /*?*/       }
 /*N*/   }
@@ -1063,7 +1063,7 @@ using namespace ::com::sun::star;
 
 /*?*/ void SAL_CALL ScDPLevel::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");       //! exception?
+/*?*/   OSL_FAIL("not implemented");        //! exception?
 /*?*/ }
 
 /*N*/ uno::Sequence<sheet::GeneralFunction> ScDPLevel::getSubTotals() const
@@ -1118,7 +1118,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -1138,7 +1138,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;

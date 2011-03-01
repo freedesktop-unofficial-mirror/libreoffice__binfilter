@@ -584,7 +584,7 @@ extern Color aGlobalRetoucheColor;
 /*?*/       pVal[1].Value <<= nMinTrailing;
 /*?*/   }
 /*?*/   else
-/*?*/       DBG_ERROR( "unxpected size of sequence" );
+/*?*/       OSL_FAIL( "unxpected size of sequence" );
 /*N*/ }
 
 /*************************************************************************

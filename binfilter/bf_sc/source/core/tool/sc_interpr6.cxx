@@ -101,7 +101,7 @@ double ScInterpreter::GetGammaDist(double x, double alpha, double beta)
         }
     }
 
-//  DBG_ERROR("GetGammaDist bricht nicht ab");
+//  OSL_FAIL("GetGammaDist bricht nicht ab");
 
     return 1.0;     // should not happen ...
 }

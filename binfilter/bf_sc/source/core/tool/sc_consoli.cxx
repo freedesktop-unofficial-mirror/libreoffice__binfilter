@@ -362,7 +362,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       default:
 /*N*/       {
-/*N*/           DBG_ERROR("unbekannte Funktion bei Consoli::CalcData");
+/*N*/           OSL_FAIL("unbekannte Funktion bei Consoli::CalcData");
 /*N*/           fCount = -MAXDOUBLE;
 /*N*/       }
 /*N*/           break;

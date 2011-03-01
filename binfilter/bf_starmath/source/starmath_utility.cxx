@@ -275,7 +275,7 @@ int GetTextEncodingTabIndex( const String &rTxt, xub_StrLen nPos )
 /*?*/         }
 /*?*/         else
 /*?*/         {
-/*?*/             DBG_ERROR( "import error: 'unknown character' delimiter missing" );
+/*?*/             OSL_FAIL( "import error: 'unknown character' delimiter missing" );
 /*?*/             sRepl.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<?>" ) );
 /*?*/             nReplLen = nPreLen;
 /*?*/         }

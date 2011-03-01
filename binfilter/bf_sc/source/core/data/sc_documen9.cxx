@@ -226,7 +226,7 @@ namespace binfilter {
 /*?*/       //  Manchmal sind beim Kopieren/Verschieben/Undo von Tabellen zuviele
 /*?*/       //  (leere) Pages in der Tabelle stehengeblieben. Weg damit!
 /*?*/
-/*?*/       DBG_ERROR("zuviele Draw-Pages in der Datei");
+/*?*/       OSL_FAIL("zuviele Draw-Pages in der Datei");
 /*?*/
 /*?*/       for (USHORT i=nTableCount; i<nPageCount; i++)
 /*?*/           pDrawLayer->DeletePage(nTableCount);
@@ -247,7 +247,7 @@ namespace binfilter {
 /*N*/           if ( pObject->ISA(SdrUnoObj) && pObject->GetLayer() != SC_LAYER_CONTROLS )
 /*N*/           {
 /*?*/               pObject->NbcSetLayer(SC_LAYER_CONTROLS);
-/*?*/               DBG_ERROR("Control war auf falschem Layer");
+/*?*/               OSL_FAIL("Control war auf falschem Layer");
 /*N*/           }
 /*N*/           pObject = aIter.Next();
 /*N*/       }

@@ -206,7 +206,7 @@ using namespace ::com::sun::star;
 /*?*/         case 0 :                rVal <<= aLSp; break;
 /*?*/         case MID_LINESPACE :    rVal <<= aLSp.Mode; break;
 /*?*/         case MID_HEIGHT :       rVal <<= aLSp.Height; break;
-/*?*/         default: DBG_ERROR("Wrong MemberId!"); break;
+/*?*/         default: OSL_FAIL("Wrong MemberId!"); break;
 /*N*/     }
 /*N*/
 /*N*/   return sal_True;
@@ -229,7 +229,7 @@ using namespace ::com::sun::star;
 /*N*/         case 0 :                bRet = (rVal >>= aLSp); break;
 /*?*/         case MID_LINESPACE :    bRet = (rVal >>= aLSp.Mode); break;
 /*?*/         case MID_HEIGHT :       bRet = (rVal >>= aLSp.Height); break;
-/*N*/         default: DBG_ERROR("Wrong MemberId!"); break;
+/*N*/         default: OSL_FAIL("Wrong MemberId!"); break;
 /*N*/     }
 /*N*/
 /*N*/     if( bRet )

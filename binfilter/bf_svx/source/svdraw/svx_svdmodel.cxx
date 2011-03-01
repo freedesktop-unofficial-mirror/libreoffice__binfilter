@@ -381,7 +381,7 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   // noch nicht implementiert
-/*N*/   DBG_ERROR("SdrModel::CopyCtor() ist noch nicht implementiert");
+/*N*/   OSL_FAIL("SdrModel::CopyCtor() ist noch nicht implementiert");
 /*N*/ }
 
 /*N*/ SdrModel::~SdrModel()
@@ -2011,7 +2011,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference< uno::XInterface > SdrModel::createUnoModel()
 /*?*/ {
-/*?*/   DBG_ERROR( "SdrModel::createUnoModel() - base implementation should not be called!" );
+/*?*/   OSL_FAIL( "SdrModel::createUnoModel() - base implementation should not be called!" );
 /*?*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > xInt;
 /*?*/   return xInt;
 /*?*/ }

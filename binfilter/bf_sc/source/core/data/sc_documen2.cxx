@@ -692,7 +692,7 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/               default:
 /*N*/                   {
-/*N*/                       DBG_ERROR("unbekannter Sub-Record in ScDocument::Load");
+/*N*/                       OSL_FAIL("unbekannter Sub-Record in ScDocument::Load");
 /*N*/                       ScReadHeader aDummyHdr( rStream );
 /*N*/                   }
 /*N*/           }

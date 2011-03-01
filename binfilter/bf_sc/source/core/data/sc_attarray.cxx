@@ -457,7 +457,7 @@ namespace binfilter {
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -540,7 +540,7 @@ namespace binfilter {
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -666,7 +666,7 @@ namespace binfilter {
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -1609,7 +1609,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (!pNewPattern)
 /*N*/       {
 /*?*/           // da is was schiefgelaufen
-/*?*/           DBG_ERROR("ScAttrArray::Load: Surrogat nicht im Pool");
+/*?*/           OSL_FAIL("ScAttrArray::Load: Surrogat nicht im Pool");
 /*?*/           pNewPattern = pDocument->GetDefPattern();
 /*N*/       }
 /*N*/       ScDocumentPool::CheckRef( *pNewPattern );

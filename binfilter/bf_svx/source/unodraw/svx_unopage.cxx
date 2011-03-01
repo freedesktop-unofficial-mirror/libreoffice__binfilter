@@ -559,7 +559,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                     pRet = new Svx3DPolygonObject( pObj );
                     break;
                 default: // unbekanntes 3D-Objekt auf der Page
-                    DBG_ERROR( "svx::SvxDrawPage::CreateShapeByTypeAndInventor(), unkown 3d-object found!" );
+                    OSL_FAIL( "svx::SvxDrawPage::CreateShapeByTypeAndInventor(), unkown 3d-object found!" );
                     pRet = new SvxShape( pObj );
                     break;
             }
@@ -700,7 +700,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                     pRet = new SvxShapeControl( pObj );
                     break;
                 default: // unbekanntes 2D-Objekt auf der Page
-                    DBG_ERROR("Nicht implementierter Starone-Shape erzeugt! [CL]");
+                    OSL_FAIL("Nicht implementierter Starone-Shape erzeugt! [CL]");
                     pRet = new SvxShapeText( pObj );
                     break;
             }
@@ -708,7 +708,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
         }
         default: // Unbekannter Inventor
         {
-            DBG_ERROR("AW: Unknown Inventor in SvxDrawPage::_CreateShape()");
+            OSL_FAIL("AW: Unknown Inventor in SvxDrawPage::_CreateShape()");
             break;
         }
     }

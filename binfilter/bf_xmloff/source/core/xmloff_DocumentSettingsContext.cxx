@@ -589,14 +589,14 @@ void XMLConfigItemContext::EndElement()
             rAny <<= aDecoded;
         }
         else
-            DBG_ERROR("wrong type");
+            OSL_FAIL("wrong type");
 
         ManipulateConfigItem();
 
         pBaseContext->AddPropertyValue();
     }
     else
-        DBG_ERROR("no BaseContext");
+        OSL_FAIL("no BaseContext");
 }
 
 /** There are some instances where there is a mismatch between API and
@@ -659,7 +659,7 @@ void XMLConfigItemMapNamedContext::EndElement()
         pBaseContext->AddPropertyValue();
     }
     else
-        DBG_ERROR("no BaseContext");
+        OSL_FAIL("no BaseContext");
 }
 
 //=============================================================================
@@ -767,7 +767,7 @@ void XMLConfigItemMapIndexedContext::EndElement()
                             }
                             catch( uno::Exception& )
                             {
-//                              DBG_ERROR( "Exception while importing forbidden characters" );
+//                              OSL_FAIL( "Exception while importing forbidden characters" );
                             }
                         }
                     }
@@ -775,7 +775,7 @@ void XMLConfigItemMapIndexedContext::EndElement()
             }
             else
             {
-                DBG_ERROR( "could not get the XForbiddenCharacters from document!" );
+                OSL_FAIL( "could not get the XForbiddenCharacters from document!" );
                 rAny <<= aProps.GetIndexContainer();
             }
         }
@@ -880,7 +880,7 @@ void XMLConfigItemMapIndexedContext::EndElement()
         pBaseContext->AddPropertyValue();
     }
     else
-        DBG_ERROR("no BaseContext");
+        OSL_FAIL("no BaseContext");
 }
 
 }//end of namespace binfilter

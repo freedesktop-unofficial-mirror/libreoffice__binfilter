@@ -778,7 +778,7 @@ using namespace ::com::sun::star;
 
 /** removed since the actually come up and the fprintf even in pro builds
 DBG_BF_ASSERT(0, "STRIP");
-DBG_ERROR( "Conversion routine called" );
+OSL_FAIL( "Conversion routine called" );
 fprintf( stderr,  "BM: Conversion routine called\n" );
 */
                           SvGlobalName aGlobalName;

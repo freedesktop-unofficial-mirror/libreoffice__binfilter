@@ -217,7 +217,7 @@ void OGridControlModel::cloneColumns( const OGridControlModel* )
     }
     catch( const Exception& )
     {
-        DBG_ERROR( "OGridControlModel::cloneColumns: caught an exception while cloning the columns!" );
+        OSL_FAIL( "OGridControlModel::cloneColumns: caught an exception while cloning the columns!" );
     }
 }
 
@@ -382,7 +382,7 @@ Reference<XPropertySet>  OGridControlModel::createColumn(sal_Int32 nTypeId) cons
         case TYPE_TIMEFIELD:        xReturn = new TimeFieldColumn(OControlModel::m_xServiceFactory); break;
         case TYPE_FORMATTEDFIELD:   xReturn = new FormattedFieldColumn(OControlModel::m_xServiceFactory); break;
         default:
-            DBG_ERROR("OGridControlModel::createColumn: Unknown Column");
+            OSL_FAIL("OGridControlModel::createColumn: Unknown Column");
             break;
     }
     return xReturn;

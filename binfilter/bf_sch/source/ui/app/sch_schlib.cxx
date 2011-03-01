@@ -296,7 +296,7 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*?*/
 /*?*/       default:
 /*?*/       {
-/*?*/           DBG_ERROR( "Unknown file format" );
+/*?*/           OSL_FAIL( "Unknown file format" );
 /*?*/       }
 /*?*/       break;
 /*?*/   }

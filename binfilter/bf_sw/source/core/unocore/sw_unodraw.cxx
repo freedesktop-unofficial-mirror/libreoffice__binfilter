@@ -794,7 +794,7 @@ Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
     }
     if( NULL == pImplementationId )
     {
-        DBG_ERROR( "Could not create an implementation id for a SwXShape!" );
+        OSL_FAIL( "Could not create an implementation id for a SwXShape!" );
         return Sequence< sal_Int8 > ();
     }
     else

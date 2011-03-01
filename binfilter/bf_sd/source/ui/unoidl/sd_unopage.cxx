@@ -812,14 +812,14 @@ uno::Reference< container::XNameAccess > SAL_CALL SdGenericDrawPage::getLinks(  
 
 void SdGenericDrawPage::setBackground( const uno::Any& /*rValue*/ ) throw(lang::IllegalArgumentException)
 {
-    DBG_ERROR( "Don't call me, I'm useless!" );
+    OSL_FAIL( "Don't call me, I'm useless!" );
 }
 
 //----------------------------------------------------------------------
 
 void SdGenericDrawPage::getBackground( uno::Any& /*rValue*/ ) throw()
 {
-    DBG_ERROR( "Don't call me, I'm useless!" );
+    OSL_FAIL( "Don't call me, I'm useless!" );
 }
 
 //----------------------------------------------------------------------

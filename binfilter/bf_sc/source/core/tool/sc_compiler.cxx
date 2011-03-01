@@ -3022,7 +3022,7 @@ namespace binfilter {
 /*N*/       rBuffer.append(pSymbolTable[eOp]);
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR("Unbekannter OpCode");
+/*?*/       OSL_FAIL("Unbekannter OpCode");
 /*?*/       rBuffer.append(ScGlobal::GetRscString(STR_NO_NAME_REF));
 /*N*/   }
 /*N*/   if( bNext ) switch( t->GetType() )
@@ -3150,7 +3150,7 @@ namespace binfilter {
 /*N*/       case svMissing:
 /*N*/           break;      // Opcodes
 /*N*/       default:
-/*N*/           DBG_ERROR("ScCompiler:: GetStringFromToken errUnknownVariable");
+/*N*/           OSL_FAIL("ScCompiler:: GetStringFromToken errUnknownVariable");
 /*N*/   }                                           // of switch
 /*N*/   if( bSpaces )
 /*?*/       rBuffer.append(sal_Unicode(' '));

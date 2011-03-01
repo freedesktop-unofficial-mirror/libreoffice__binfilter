@@ -429,7 +429,7 @@ BOOL SvtLinguConfigItem::LoadOptions( const Sequence< OUString > &rProperyNames 
                 case UPH_DATA_FILES_CHANGED_CHECK_VALUE :
                     { rOpt.bRODataFilesChangedCheckValue = pROStates[i]; rVal >>= rOpt.nDataFilesChangedCheckValue;  } break;
                 default:
-                    DBG_ERROR( "unexpected case" );
+                    OSL_FAIL( "unexpected case" );
             }
         }
 

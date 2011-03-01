@@ -302,7 +302,7 @@ namespace binfilter {
 /*N*/                                                   rSortParam.nCol2, rSortParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "Sort: keine DBData" );
+/*N*/       OSL_FAIL( "Sort: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -418,7 +418,7 @@ namespace binfilter {
 /*N*/           pNewData->SetByRow( aLocalParam.bByRow );
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("Zielbereich nicht da");
+/*N*/           OSL_FAIL("Zielbereich nicht da");
 /*N*/   }
 /*N*/
 /*N*/   ScRange aDirtyRange( aLocalParam.nCol1, aLocalParam.nRow1, nTab,
@@ -469,7 +469,7 @@ namespace binfilter {
 /*N*/                                                   rQueryParam.nCol2, rQueryParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "Query: keine DBData" );
+/*N*/       OSL_FAIL( "Query: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -659,7 +659,7 @@ namespace binfilter {
 /*N*/           //  und Verwechslung mit dem Query-Param am Quellbereich (#37187#)
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("Zielbereich nicht da");
+/*N*/           OSL_FAIL("Zielbereich nicht da");
 /*N*/   }
 /*N*/
 /*N*/   if (!bCopy)
@@ -712,7 +712,7 @@ namespace binfilter {
 /*N*/                                               rParam.nCol2, rParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "SubTotals: keine DBData" );
+/*N*/       OSL_FAIL( "SubTotals: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -915,7 +915,7 @@ namespace binfilter {
 /*N*/               pDestObj->SetAlive(TRUE);
 /*N*/               if ( !pDoc->GetDPCollection()->Insert(pDestObj) )
 /*N*/               {
-/*N*/                   DBG_ERROR("cannot insert DPObject");
+/*N*/                   OSL_FAIL("cannot insert DPObject");
 /*N*/                   DELETEZ( pDestObj );
 /*N*/               }
 /*N*/           }

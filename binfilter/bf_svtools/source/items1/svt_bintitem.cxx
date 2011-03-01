@@ -150,7 +150,7 @@ bool SfxBigIntItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
         return true;
     }
 
-    DBG_ERROR( "SfxBigIntItem::PutValue - Wrong type!" );
+    OSL_FAIL( "SfxBigIntItem::PutValue - Wrong type!" );
     return false;
 }
 

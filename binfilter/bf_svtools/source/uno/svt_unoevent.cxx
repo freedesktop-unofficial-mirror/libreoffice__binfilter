@@ -266,7 +266,7 @@ void SvBaseEventDescriptor::getAnyFromMacro(Any& rAny,
                         }
             case JAVASCRIPT:
             default:
-                DBG_ERROR("not implemented");
+                OSL_FAIL("not implemented");
         }
     }
     // else: bRetValueOK not set

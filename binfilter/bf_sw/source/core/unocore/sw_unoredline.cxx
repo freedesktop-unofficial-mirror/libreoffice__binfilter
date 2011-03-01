@@ -444,11 +444,11 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
         throw RuntimeException();
     if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_AUTHOR)))
     {
-        DBG_ERROR("currently not available");
+        OSL_FAIL("currently not available");
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_DATE_TIME)))
     {
-        DBG_ERROR("currently not available");
+        OSL_FAIL("currently not available");
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_COMMENT)))
     {
@@ -457,14 +457,14 @@ void SwXRedline::setPropertyValue( const OUString& rPropertyName, const Any& aVa
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_TYPE)))
     {
-        DBG_ERROR("currently not available");
+        OSL_FAIL("currently not available");
         OUString sTmp; aValue >>= sTmp;
         if(!sTmp.getLength())
             throw IllegalArgumentException();
     }
     else if(rPropertyName.equalsAsciiL(SW_PROP_NAME(UNO_NAME_REDLINE_SUCCESSOR_DATA)))
     {
-        DBG_ERROR("currently not available");
+        OSL_FAIL("currently not available");
     }
     else
     {
@@ -520,7 +520,7 @@ Any SwXRedline::getPropertyValue( const OUString& rPropertyName )
             }
             break;
             default:
-                DBG_ERROR("illegal node type");
+                OSL_FAIL("illegal node type");
         }
         aRet <<= xRet;
     }

@@ -597,11 +597,11 @@ void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
 /*N*/         SfxEventConfigItem_Impl* pCfg = pDoc->GetEventConfig_Impl( TRUE );
 /*N*/       if ( pCfg )
 /*N*/           return ( pCfg->Load( rInStream ) == SfxConfigItem::ERR_OK );
-/*N*/       DBG_ERROR("Couldn't create EventConfiguration!");
+/*N*/       OSL_FAIL("Couldn't create EventConfiguration!");
 /*N*/       return FALSE;
 /*N*/     }
 /*?*/
-/*?*/     DBG_ERROR( "No OutStream!" );
+/*?*/     OSL_FAIL( "No OutStream!" );
 /*?*/     return FALSE;
 /*N*/ }
 

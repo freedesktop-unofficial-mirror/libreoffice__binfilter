@@ -642,7 +642,7 @@ OUString SwXTextPortion::getPresentation(sal_Bool /*bShowCommand*/) throw( uno::
     if(pUnoCrsr && 0 != (pFmt = GetFldFmt()))
     {
         const SwField* pField = pFmt->GetFld();
-        DBG_ERROR("bShowCommand auswerten!");
+        OSL_FAIL("bShowCommand auswerten!");
         sRet = pField->Expand();
     }
     return sRet;

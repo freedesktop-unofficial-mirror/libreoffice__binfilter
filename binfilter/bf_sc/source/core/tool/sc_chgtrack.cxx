@@ -485,7 +485,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/               ((ScFormulaCell*)pCell)->Save( rStrm, rHdr );
 /*N*/           break;
 /*N*/           default:
-/*N*/               DBG_ERROR( "ScChangeAction::StoreCell: unknown CellType" );
+/*N*/               OSL_FAIL( "ScChangeAction::StoreCell: unknown CellType" );
 /*N*/               rStrm << (BYTE) CELLTYPE_NONE;
 /*N*/       }
 /*N*/   }
@@ -530,7 +530,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/           pCell = NULL;
 /*N*/       break;
 /*N*/       default:
-/*N*/           DBG_ERROR( "ScChangeAction::LoadCell: unknown CellType" );
+/*N*/           OSL_FAIL( "ScChangeAction::LoadCell: unknown CellType" );
 /*N*/           rStrm.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/           pCell = NULL;
 /*N*/   }
@@ -670,7 +670,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/           if ( pContent )
 /*N*/               pOfAction->AddContent( pContent );
 /*N*/           else
-/*N*/               DBG_ERROR( "ScChangeActionDel::LoadLinks: missing Content" );
+/*N*/               OSL_FAIL( "ScChangeActionDel::LoadLinks: missing Content" );
 /*N*/       }
 /*N*/   }
 /*N*/   return TRUE;
@@ -702,7 +702,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       aBigRange.aEnd.SetRow( nInt32Max );
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "ScChangeActionIns: Block not supported!" );
+/*N*/       OSL_FAIL( "ScChangeActionIns: Block not supported!" );
 /*N*/ }
 
 
@@ -823,7 +823,7 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/       aBigRange.aEnd.SetRow( nInt32Max );
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "ScChangeActionDel: Block not supported!" );
+/*N*/       OSL_FAIL( "ScChangeActionDel: Block not supported!" );
 /*N*/ }
 
 
@@ -1840,7 +1840,7 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/       pCell->GetFormula( rStr );
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "ScChangeActionContent::GetFormulaString: aPos != pCell->aPos" );
+/*N*/       OSL_FAIL( "ScChangeActionContent::GetFormulaString: aPos != pCell->aPos" );
 /*N*/       ScFormulaCell* pNew = (ScFormulaCell*) pCell->Clone(
 /*N*/           pCell->GetDocument(), aPos, TRUE );     // TRUE: bNoListening
 /*N*/       pNew->GetFormula( rStr );
@@ -2417,7 +2417,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                   pAct = new ScChangeActionContent( rStrm, aHdr, pDoc, nVer, this );
 /*N*/               break;
 /*N*/               default:
-/*N*/                   DBG_ERROR( "ScChangeTrack::Load: unknown GeneratedType" );
+/*N*/                   OSL_FAIL( "ScChangeTrack::Load: unknown GeneratedType" );
 /*N*/                   pAct = NULL;
 /*N*/                   bOk = FALSE;
 /*N*/           }
@@ -2479,7 +2479,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/                   pAct = new ScChangeActionReject( rStrm, aHdr, this );
 /*N*/               break;
 /*N*/               default:
-/*N*/                   DBG_ERROR( "ScChangeTrack::Load: unknown ScChangeActionType" );
+/*N*/                   OSL_FAIL( "ScChangeTrack::Load: unknown ScChangeActionType" );
 /*N*/                   pAct = NULL;
 /*N*/                   bOk = FALSE;
 /*N*/           }
@@ -2811,7 +2811,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/               }
 /*N*/           }
 /*N*/           else
-/*N*/               DBG_ERROR( "ScChangeTrack::AppendDeleteRange: Block not supported!" );
+/*N*/               OSL_FAIL( "ScChangeTrack::AppendDeleteRange: Block not supported!" );
 /*N*/           SetInDeleteTop( FALSE );
 /*N*/       }
 /*N*/   }
@@ -3269,7 +3269,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/           ((ScChangeActionMove*)pAct)->GetDelta( nDx, nDy, nDz );
 /*N*/       break;
 /*N*/       default:
-/*N*/           DBG_ERROR( "ScChangeTrack::UpdateReference: unknown Type" );
+/*N*/           OSL_FAIL( "ScChangeTrack::UpdateReference: unknown Type" );
 /*N*/   }
 /*N*/   if ( bUndo )
 /*N*/   {
@@ -3852,7 +3852,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/           delete pReject;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "ScChangeTrack::Reject: say what?" );
+/*N*/       OSL_FAIL( "ScChangeTrack::Reject: say what?" );
 /*N*/
 /*N*/   return bRejected;
 /*N*/ }

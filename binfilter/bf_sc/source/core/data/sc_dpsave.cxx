@@ -794,7 +794,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   catch(uno::Exception&)
 /*N*/   {
-/*N*/       DBG_ERROR("exception in WriteToSource");
+/*N*/       OSL_FAIL("exception in WriteToSource");
 /*N*/   }
 /*N*/ }
 /*N*/

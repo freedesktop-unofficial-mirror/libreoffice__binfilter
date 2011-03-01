@@ -1151,7 +1151,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*?*/ #else
-/*?*/       DBG_ERROR("SdrGrafObj::ReadDataTilV10(): SVX_LIGHT kann keine Graphic-Links");
+/*?*/       OSL_FAIL("SdrGrafObj::ReadDataTilV10(): SVX_LIGHT kann keine Graphic-Links");
 /*?*/ #endif
 /*N*/   }
 /*N*/   else if( nError != 0 )

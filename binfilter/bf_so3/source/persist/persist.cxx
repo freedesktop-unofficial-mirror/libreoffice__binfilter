@@ -768,7 +768,7 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
     {
         // these object are saved into the document stream
         bRet = FALSE;
-        DBG_ERROR("Can't copy special objects into XML format!");
+        OSL_FAIL("Can't copy special objects into XML format!");
     }
     else
     {

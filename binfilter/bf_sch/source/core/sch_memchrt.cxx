@@ -322,12 +322,12 @@ namespace binfilter {
 /*?*/               //nTranslated=TRANS_ERROR;
 /*?*/               if(nTranslated==TRANS_NONE)
 /*?*/               {
-/*?*/                   DBG_ERROR("SchMemChart::Correcting Translationmode");
+/*?*/                   OSL_FAIL("SchMemChart::Correcting Translationmode");
 /*?*/                   nTranslated=TRANS_COL;
 /*?*/               }
 /*?*/               else
 /*?*/               {
-/*?*/                   DBG_ERROR("fatal error in SchMemChart-translation");
+/*?*/                   OSL_FAIL("fatal error in SchMemChart-translation");
 /*?*/                   return FALSE;
 /*?*/               }
 /*N*/           }
@@ -342,12 +342,12 @@ namespace binfilter {
 /*?*/               //nTranslated=TRANS_ERROR;
 /*?*/               if(nTranslated==TRANS_NONE)
 /*?*/               {
-/*?*/                   DBG_ERROR("SchMemChart::Correcting Translationmode");
+/*?*/                   OSL_FAIL("SchMemChart::Correcting Translationmode");
 /*?*/                   nTranslated=TRANS_ROW;
 /*?*/               }
 /*?*/               else
 /*?*/               {
-/*?*/                   DBG_ERROR("fatal error in SchMemChart-translation");
+/*?*/                   OSL_FAIL("fatal error in SchMemChart-translation");
 /*?*/                   return FALSE;
 /*?*/               }
 /*N*/           }
@@ -1089,7 +1089,7 @@ using namespace ::com::sun::star;
 /*N*/             }
 /*N*/             else
 /*N*/             {
-/*N*/                 DBG_ERROR( "SchMemChart::parseTableNumberList: Too many table numbers for chart range" );
+/*N*/                 OSL_FAIL( "SchMemChart::parseTableNumberList: Too many table numbers for chart range" );
 /*N*/             }
 /*N*/         }
 /*N*/

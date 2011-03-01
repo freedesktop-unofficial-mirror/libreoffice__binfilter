@@ -120,7 +120,7 @@ BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
         rAny.setValue(&bCodeURL, ::getBooleanCppuType());
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
@@ -142,7 +142,7 @@ BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
         bCodeURL = *(sal_Bool*)rAny.getValue();
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }

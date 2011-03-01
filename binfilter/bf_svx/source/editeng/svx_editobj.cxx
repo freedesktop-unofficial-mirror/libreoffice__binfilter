@@ -108,14 +108,14 @@ BOOL lcl_CreateBulletItem( const SvxNumBulletItem& rNumBullet, USHORT nLevel, Sv
                 rBullet.SetStyle( BS_BULLET );
                 break;
             case SVX_NUM_PAGEDESC:
-                DBG_ERROR( "Unknown: SVX_NUM_PAGEDESC" );
+                OSL_FAIL( "Unknown: SVX_NUM_PAGEDESC" );
                 rBullet.SetStyle( BS_BULLET );
                 break;
             case SVX_NUM_BITMAP:
                 rBullet.SetStyle( BS_BMP );
                 break;
             default:
-                DBG_ERROR( "Unknown NumType" );
+                OSL_FAIL( "Unknown NumType" );
         }
 
         switch ( pFmt->GetNumAdjust() )
@@ -130,7 +130,7 @@ BOOL lcl_CreateBulletItem( const SvxNumBulletItem& rNumBullet, USHORT nLevel, Sv
                 rBullet.SetJustification( BJ_VCENTER|BJ_HCENTER );
                 break;
             default:
-                DBG_ERROR( "Unknown or invalid NumAdjust" );
+                OSL_FAIL( "Unknown or invalid NumAdjust" );
         }
     }
     return pFmt ? TRUE : FALSE;
@@ -242,7 +242,7 @@ EditTextObject::~EditTextObject()
 
 USHORT EditTextObject::GetParagraphCount() const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return 0;
 }
 
@@ -252,72 +252,72 @@ XubString EditTextObject::GetText( USHORT ) const
 
 void EditTextObject::Insert( const EditTextObject&, USHORT )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::ClearPortionInfo()
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::MergeParaAttribs( const SfxItemSet&, USHORT, USHORT )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 
 
 BOOL EditTextObject::HasField( TypeId ) const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return FALSE;
 }
 
 SfxItemSet EditTextObject::GetParaAttribs( USHORT ) const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return SfxItemSet( *(SfxItemPool*)NULL );
 }
 
 void EditTextObject::GetStyleSheet( USHORT, XubString&, SfxStyleFamily& ) const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::SetStyleSheet( USHORT, const XubString&, const SfxStyleFamily& )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 BOOL EditTextObject::ChangeStyleSheets( const XubString&, SfxStyleFamily,
                                             const XubString&, SfxStyleFamily )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return FALSE;
 }
 
 void EditTextObject::ChangeStyleSheetName( SfxStyleFamily,
                 const XubString&, const XubString& )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 USHORT EditTextObject::GetUserType() const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return 0;
 }
 
 void EditTextObject::SetUserType( USHORT )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 
 
 BOOL EditTextObject::IsVertical() const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return FALSE;
 }
 
@@ -395,39 +395,39 @@ EditTextObject*    EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlo
 
 void EditTextObject::StoreData( SvStream& /*rOStream*/ ) const
 {
-    DBG_ERROR( "StoreData: Basisklasse!" );
+    OSL_FAIL( "StoreData: Basisklasse!" );
 }
 
 void EditTextObject::CreateData( SvStream& /*rIStream*/ )
 {
-    DBG_ERROR( "CreateData: Basisklasse!" );
+    OSL_FAIL( "CreateData: Basisklasse!" );
 }
 
 USHORT EditTextObject::GetVersion() const
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
     return 0;
 }
 
 
 void EditTextObject::AdjustImportedLRSpaceItems( BOOL /*bTurnOfBullets*/ )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::PrepareStore( SfxStyleSheetPool* /*pStyleSheetPool*/ )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::FinishStore()
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 void EditTextObject::FinishLoad( SfxStyleSheetPool* /*pStyleSheetPool*/ )
 {
-    DBG_ERROR( "V-Methode direkt vom EditTextObject!" );
+    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
 BinTextObject::BinTextObject( SfxItemPool* pP ) :
@@ -925,7 +925,7 @@ void BinTextObject::CreateData( SvStream& rIStream )
     {
         // Es wurde ein globaler Pool verwendet, mir jetzt nicht uebergeben,
         // aber ich brauche ihn!
-        DBG_ERROR( "Man gebe mir den globalen TextObjectPool!" );
+        OSL_FAIL( "Man gebe mir den globalen TextObjectPool!" );
         return;
     }
     else if ( !bOwnerOfCurrent && bOwnerOfPool )

@@ -115,7 +115,7 @@ void SdFilter::CreateProgress()
 
 sal_Bool SdFilter::Import()
 {
-    DBG_ERROR( "Not implemented" );
+    OSL_FAIL( "Not implemented" );
     return sal_False;
 }
 
@@ -123,7 +123,7 @@ sal_Bool SdFilter::Import()
 
 sal_Bool SdFilter::Export()
 {
-    DBG_ERROR( "Not implemented" );
+    OSL_FAIL( "Not implemented" );
     return sal_False;
 }
 }

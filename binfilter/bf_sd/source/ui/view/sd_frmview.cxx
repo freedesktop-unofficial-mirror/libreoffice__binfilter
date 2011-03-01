@@ -374,7 +374,7 @@ static OUString createHelpLinesString( const SdrHelpLineList& rHelpLines )
                 aLines.append( (sal_Int32)rPos.Y() );
                 break;
             default:
-                DBG_ERROR( "Unsupported helpline Kind!" );
+                OSL_FAIL( "Unsupported helpline Kind!" );
         }
     }
 
@@ -491,7 +491,7 @@ void FrameView::WriteUserDataSequence ( ::com::sun::star::uno::Sequence < ::com:
              aNewHelpLine.SetKind( SDRHELPLINE_HORIZONTAL );
              break;
          default:
-             DBG_ERROR( "syntax error in snap lines settings string" );
+             OSL_FAIL( "syntax error in snap lines settings string" );
              return;
          }
 

@@ -330,7 +330,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
         // and delete the incomplete ones. Finally, delete it.
         if( IsReady(pInfo) )
         {
-            DBG_ERROR("forgotten RedlineInfo; now inserted");
+            OSL_FAIL("forgotten RedlineInfo; now inserted");
             InsertIntoDocument( pInfo );
         }
         else
@@ -339,7 +339,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
             pInfo->bNeedsAdjustment = sal_False;
             if( IsReady(pInfo) )
             {
-                DBG_ERROR("RedlineInfo without adjustment; now inserted");
+                OSL_FAIL("RedlineInfo without adjustment; now inserted");
                 InsertIntoDocument( pInfo );
             }
             else

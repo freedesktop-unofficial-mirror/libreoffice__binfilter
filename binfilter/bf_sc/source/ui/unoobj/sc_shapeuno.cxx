@@ -542,7 +542,7 @@ void lcl_CopyOneProperty( beans::XPropertySet& rDest, beans::XPropertySet& rSour
     }
     catch (uno::Exception&)
     {
-        DBG_ERROR("Exception in text field");
+        OSL_FAIL("Exception in text field");
     }
 }
 
@@ -774,7 +774,7 @@ uno::Sequence<sal_Int8> SAL_CALL ScShapeObj::getImplementationId()
     }
     if( NULL == pImplementationId )
     {
-        DBG_ERROR( "Could not create an implementation id for a ScXShape!" );
+        OSL_FAIL( "Could not create an implementation id for a ScXShape!" );
         return uno::Sequence< sal_Int8 > ();
     }
     else

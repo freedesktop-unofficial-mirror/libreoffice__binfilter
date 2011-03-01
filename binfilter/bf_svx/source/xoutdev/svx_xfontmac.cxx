@@ -361,7 +361,7 @@ inline long PostFontError(long error)
 {
 #ifdef DBG_UTIL
     if (error)
-        DBG_ERROR("FontError");
+        OSL_FAIL("FontError");
 #endif
     return error;
 }
@@ -392,7 +392,7 @@ Handle GetNamedSfntHandle(const String& rName, short styleWord)
                 return hSfnt;
         }
     }
-    DBG_ERROR("GetNamedSfntHandle : Font NotFound");
+    OSL_FAIL("GetNamedSfntHandle : Font NotFound");
     return 0;
 }
 

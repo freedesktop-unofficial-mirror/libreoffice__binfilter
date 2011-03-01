@@ -181,7 +181,7 @@ namespace binfilter {
 /*N*/       eJoint = ::com::sun::star::drawing::LineJoint_ROUND;
 /*N*/       break;
 /*N*/   default:
-/*N*/       DBG_ERROR( "Unknown LineJoint enum value!" );
+/*N*/       OSL_FAIL( "Unknown LineJoint enum value!" );
 /*N*/   }
 /*N*/
 /*N*/   rVal <<= eJoint;

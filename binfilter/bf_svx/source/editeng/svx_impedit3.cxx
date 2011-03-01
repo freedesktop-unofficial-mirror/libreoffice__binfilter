@@ -754,7 +754,7 @@ struct TabInfo
 /*N*/                         bCompressedChars = FALSE;
 /*N*/                   }
 /*N*/                   break;
-/*N*/                   default:    DBG_ERROR( "Was fuer ein Feature ?" );
+/*N*/                   default:    OSL_FAIL( "Was fuer ein Feature ?" );
 /*N*/               }
 /*N*/               pNextFeature = pNode->GetCharAttribs().FindFeature( pNextFeature->GetStart() + 1  );
 /*N*/           }
@@ -834,7 +834,7 @@ struct TabInfo
 /*N*/               }
 /*N*/                 else
 /*N*/                 {
-/*N*/                     DBG_ERROR( "CreateLines: Tab not handled!" );
+/*N*/                     OSL_FAIL( "CreateLines: Tab not handled!" );
 /*N*/                 }
 /*N*/               long nMaxW = aCurrentTab.nTabPos - aCurrentTab.nStartPosX - nStartX;
 /*N*/               if ( nW >= nMaxW )
@@ -1481,7 +1481,7 @@ struct TabInfo
 /*N*/         }
 /*N*/         else if ( ( nBreakPos > nMaxBreakPos ) && !aUserOptions.allowPunctuationOutsideMargin )
 /*N*/         {
-/*N*/             DBG_ERROR( "I18N: XBreakIterator::getLineBreak returns position > Max" );
+/*N*/             OSL_FAIL( "I18N: XBreakIterator::getLineBreak returns position > Max" );
 /*N*/             nBreakPos = nMaxBreakPos;
 /*N*/         }
 /*N*/

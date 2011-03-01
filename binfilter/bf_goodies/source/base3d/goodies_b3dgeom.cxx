@@ -106,7 +106,7 @@ BOOL GeometryIndexValueBucket::ImplCareForSpace() {
 }
 GeometryIndexValue& GeometryIndexValueBucket::operator[] (UINT32 nPos) {
     if(nPos >= nCount) {
-        DBG_ERROR("Access to Bucket out of range!");
+        OSL_FAIL("Access to Bucket out of range!");
         return *((GeometryIndexValue*)aMemArray[0]);
     }
     return *((GeometryIndexValue*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));

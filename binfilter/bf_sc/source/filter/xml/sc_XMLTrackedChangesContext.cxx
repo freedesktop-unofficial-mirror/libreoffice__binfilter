@@ -1837,7 +1837,7 @@ SvXMLImportContext *ScXMLDeletionContext::CreateChildContext( USHORT nInPrefix,
         else if (IsXMLToken(rLocalName, XML_CUT_OFFS) || rLocalName.equalsAsciiL("cut_offs", 8))
             pContext = new ScXMLCutOffsContext(GetScImport(), nInPrefix, rLocalName, xAttrList, pChangeTrackingImportHelper);
         else
-            DBG_ERROR("don't know this");
+            OSL_FAIL("don't know this");
     }
 
     if( !pContext )

@@ -310,7 +310,7 @@ using namespace ::com::sun::star;
 /*N*/                       aFunc.ShowError( nCol, nRow );
 /*N*/                       break;
 /*N*/                   default:
-/*N*/                       DBG_ERROR("falsche Op bei DetectiveRefresh");
+/*N*/                       OSL_FAIL("falsche Op bei DetectiveRefresh");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -330,7 +330,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/   if ( !rMark.IsMarked() && !rMark.IsMultiMarked() )
 /*N*/   {
-/*N*/       DBG_ERROR("ScDocFunc::DeleteContents ohne Markierung");
+/*N*/       OSL_FAIL("ScDocFunc::DeleteContents ohne Markierung");
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -1486,7 +1486,7 @@ using namespace ::com::sun::star;
 /*N*/               ScRangeData* pData = new ScRangeData( pDoc, aName, aContent, nPosX, nPosY, nTab );
 /*N*/               if (!rList.Insert(pData))
 /*N*/               {
-/*N*/                   DBG_ERROR("nanu?");
+/*N*/                   OSL_FAIL("nanu?");
 /*N*/                   delete pData;
 /*N*/               }
 /*N*/           }

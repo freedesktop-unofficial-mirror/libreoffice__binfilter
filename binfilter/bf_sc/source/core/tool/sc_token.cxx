@@ -1399,7 +1399,7 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/               sp -= nParams;
 /*N*/               if ( sp < 0 )
 /*N*/               {
-/*N*/                   DBG_ERROR( "ScTokenArray::HasMatrixDoubleRefOps: sp < 0" );
+/*N*/                   OSL_FAIL( "ScTokenArray::HasMatrixDoubleRefOps: sp < 0" );
 /*N*/                   sp = 0;
 /*N*/               }
 /*N*/               pStack[sp++] = pResult;
@@ -1444,7 +1444,7 @@ USHORT lcl_ScRawTokenOffset()
 /*?*/                   rStream >> nOp;
 /*?*/                   if( nOp > MAXSTRLEN-1 )
 /*?*/                   {
-/*?*/                       DBG_ERROR("Dokument huehnerich");
+/*?*/                       OSL_FAIL("Dokument huehnerich");
 /*?*/                       USHORT nDiff = nOp - (MAXSTRLEN-1);
 /*?*/                       nOp = MAXSTRLEN-1;
 /*?*/                       rStream.Read( c, nOp );
@@ -1494,7 +1494,7 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/                   aRef.Ref2.OldBoolsToNewFlags( aBools2 );
 /*N*/                   break;
 /*N*/               }
-/*N*/               default: DBG_ERROR("Unknown Stack Variable");
+/*N*/               default: OSL_FAIL("Unknown Stack Variable");
 /*N*/               break;
 /*N*/           }
 /*N*/           break;
@@ -1510,7 +1510,7 @@ USHORT lcl_ScRawTokenOffset()
 /*?*/           // lieber ein rottes Dokument als stack overwrite
 /*?*/           if( nOp > MAXSTRLEN-2 )
 /*?*/           {
-/*?*/               DBG_ERROR("Dokument huehnerich");
+/*?*/               OSL_FAIL("Dokument huehnerich");
 /*?*/               USHORT nDiff = nOp - (MAXSTRLEN-2);
 /*?*/               nOp = MAXSTRLEN-2;
 /*?*/               rStream.Read( c, nOp );
