@@ -1257,7 +1257,7 @@ SwHiddenTxtField::SwHiddenTxtField(
 
 /*N*/ void SwHiddenTxtField::Evaluate(SwDoc* pDoc)
 /*N*/ {
-/*N*/   OSL_ENSURE(pDoc, Wo ist das Dokument Seniore);
+/*N*/   OSL_ENSURE(pDoc, "Wo ist das Dokument Seniore");
 /*N*/
 /*N*/   if( TYP_CONDTXTFLD == nSubType )
 /*N*/   {
