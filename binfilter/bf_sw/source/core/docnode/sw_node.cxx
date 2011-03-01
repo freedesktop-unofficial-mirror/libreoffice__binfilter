@@ -624,7 +624,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ SwFmtColl *SwCntntNode::ChgFmtColl( SwFmtColl *pNewColl )
 /*N*/ {
-/*N*/   OSL_ENSURE( pNewColl, Collectionpointer ist 0. );
+/*N*/   OSL_ENSURE( pNewColl, "Collectionpointer ist 0." );
 /*N*/   SwFmtColl *pOldColl = GetFmtColl();
 /*N*/   if( pNewColl != pOldColl )
 /*N*/   {
