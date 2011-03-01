@@ -166,8 +166,7 @@ SfxApplication* SfxApplication::pApp = NULL;
 
 /*N*/ ResMgr* SfxApplication::CreateResManager( const char *pPrefix )
 /*N*/ {
-/*N*/     String aMgrName = String::CreateFromAscii( pPrefix );
-/*N*/     return ResMgr::CreateResMgr(U2S(aMgrName));
+/*N*/     return ResMgr::CreateResMgr(pPrefix);
 /*N*/ }
 
 //------------------------------------------------------------------------
