@@ -29,6 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 #include <tools/debug.hxx>
+#include <osl/diagnose.h>
 
 #include <bf_svtools/hint.hxx>
 #include <bf_svtools/smplhint.hxx>
