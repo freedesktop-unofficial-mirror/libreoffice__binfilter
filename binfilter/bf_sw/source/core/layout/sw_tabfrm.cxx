@@ -2662,6 +2662,7 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       case VERT_CENTER:   lTopOfst = nDiff / 2; break;
 /*N*/                       case VERT_BOTTOM:   lTopOfst = nDiff;     break;
+/*N*/                       default: break;
 /*N*/                   };
 /*N*/               }
 /*N*/                 long nTmp = (*fnRect->fnYInc)(
