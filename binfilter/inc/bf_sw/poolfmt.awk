@@ -2,8 +2,6 @@
 #*
 #*    $Workfile:        dbgxtor.awk
 #*
-#*    Ersterstellung    JP  05.10.95
-#*    Letzte Aenderung  $Author: hjs $ $Date: 2003-10-01 12:23:54 $
 #*    $Revision: 1.1.1.1 $
 #*
 #*    $Logfile:   T:/sw/inc/poolfmt.awv  $

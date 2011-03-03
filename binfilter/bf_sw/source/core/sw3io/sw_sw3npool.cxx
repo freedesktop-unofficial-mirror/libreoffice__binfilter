@@ -258,7 +258,6 @@ namespace binfilter {
 /*N*/       SwFrmFmt* pFmt = (SwFrmFmt*) pIo->InFormat( SWG_FREEFMT, NULL );
 /*N*/       if( pFmt )
 /*N*/       {
-/*N*/           // --> FME 2005-01-18 #b6218408#
 /*N*/           // Emulate 5.2 footer size bug:
 /*N*/           if ( pIo->IsVersion( SWG_MAJORVERSION_50 ) )
 /*N*/           {
@@ -269,7 +268,6 @@ namespace binfilter {
 /*N*/                   pFmt->SetAttr( aSize );
 /*N*/               }
 /*N*/           }
-/*N*/           // <--
 /*N*/           pAttr = new SwFmtFooter( pFmt );
 /*N*/           pAttr->SetActive( BOOL( bActive3 ) );
 /*N*/       }
