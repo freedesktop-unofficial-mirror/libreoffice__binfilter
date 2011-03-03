@@ -232,7 +232,7 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
         }
         catch( uno::Exception )
         {
-            DBG_ERROR( "exportChart: Error getting Property \"DataRowSource\"" );
+            OSL_FAIL( "exportChart: Error getting Property \"DataRowSource\"" );
         }
     }
 
