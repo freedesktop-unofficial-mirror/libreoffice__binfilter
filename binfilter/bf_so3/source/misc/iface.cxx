@@ -131,7 +131,7 @@ UINT32 SvObject::ReleaseRef()
         aStr += ByteString::CreateFromInt32( GetRefCount() );
         aStr += ", ExtCount == ";
         aStr += ByteString::CreateFromInt32( nExtCount );
-        DBG_ERROR( aStr.GetBuffer() );
+        OSL_FAIL( aStr.GetBuffer() );
     }
 #endif
     return SotObject::ReleaseRef();

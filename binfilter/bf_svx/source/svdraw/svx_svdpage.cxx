@@ -180,7 +180,7 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/       aStr += " Objektverbindungen werden nicht mitkopiert.";
 /*?*/
-/*?*/       DBG_ERROR(aStr.GetBuffer());
+/*?*/       OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif
 /*N*/   }
 /*N*/ }
@@ -948,7 +948,7 @@ using namespace ::com::sun::star;
 /*?*/               aStr += ", BlockSize: ";
 /*?*/               aStr += ByteString::CreateFromInt32( aHead.GetBlockSize() );
 /*?*/
-/*?*/               DBG_ERROR(aStr.GetBuffer());
+/*?*/               OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif
 /*?*/
 /*?*/ #ifdef SVX_LIGHT

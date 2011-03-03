@@ -199,7 +199,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "SAX parse exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
 
         String sErr( String::CreateFromInt32( r.LineNumber ));
@@ -229,7 +229,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "SAX exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -238,7 +238,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "Zip exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return ERRCODE_IO_BROKENPACKAGE;
     }
@@ -247,7 +247,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "IO exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -256,7 +256,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "uno exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -761,7 +761,7 @@ sal_Bool SdXMLFilter::Export()
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "uno Exception caught while exporting:\n" );
         aError += ByteString( String( e.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         bDocRet = sal_False;
     }

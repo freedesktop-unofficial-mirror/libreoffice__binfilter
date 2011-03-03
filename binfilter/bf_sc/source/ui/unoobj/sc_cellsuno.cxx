@@ -787,7 +787,7 @@ void lcl_TestMap( const SfxItemPropertyMap* pMap )
                 aErr += pMap->pName;
                 aErr += '/';
                 aErr += pNext->pName;
-                DBG_ERROR( aErr.GetBuffer() );
+                OSL_FAIL( aErr.GetBuffer() );
             }
         }
         pMap = pNext;

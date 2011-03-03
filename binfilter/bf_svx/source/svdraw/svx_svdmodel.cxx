@@ -407,7 +407,7 @@ using namespace ::com::sun::star;
 /*?*/       aStr += ByteString(pAktUndoGroup->GetComment(), gsl_getSystemTextEncoding());
 /*?*/       aStr += '\"';
 /*?*/
-/*?*/       DBG_ERROR(aStr.GetBuffer());
+/*?*/       OSL_FAIL(aStr.GetBuffer());
 /*N*/   }
 /*N*/ #endif
 /*N*/   if (pAktUndoGroup!=NULL) delete pAktUndoGroup;
@@ -1634,7 +1634,7 @@ using namespace ::com::sun::star;
 /*?*/           aMsg += ByteString::CreateFromInt32( rHead.GetVersion() );
 /*?*/           aMsg += "). Mit dieser Programmversion kann das nicht mehr gelesen werden";
 /*?*/
-/*?*/           DBG_ERROR(aMsg.GetBuffer());
+/*?*/           OSL_FAIL(aMsg.GetBuffer());
 /*?*/ #endif
 /*?*/
 /*?*/           // Version zu alt

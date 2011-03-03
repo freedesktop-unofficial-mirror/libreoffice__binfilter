@@ -167,7 +167,7 @@ namespace binfilter {
 /*N*/       (( sOut += "Anzahl Cache-Verkleinerungen:       " )
 /*N*/                   += ByteString::CreateFromInt32( nDecreaseMax ))+= '\n';
 /*N*/
-/*N*/       DBG_ERROR( sOut.GetBuffer() );
+/*N*/       OSL_FAIL( sOut.GetBuffer() );
 /*N*/   }
 /*N*/   Check();
 /*N*/ #endif

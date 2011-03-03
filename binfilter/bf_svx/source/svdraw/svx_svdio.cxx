@@ -318,7 +318,7 @@ namespace binfilter {
 /*?*/           aStr.Insert(":\n", 0);
 /*?*/           ImpGetRecordName(aStr2, nHasSubRecCount, nReadSubRecCount);
 /*?*/           aStr.Insert(aStr2, 0);
-/*?*/           DBG_ERROR(aStr.GetBuffer());
+/*?*/           OSL_FAIL(aStr.GetBuffer());
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -343,7 +343,7 @@ namespace binfilter {
 /*?*/
 /*?*/           aStr += " zuviel gelesen. FilePos wird korregiert";
 /*?*/
-/*?*/           DBG_ERROR(aStr.GetBuffer());
+/*?*/           OSL_FAIL(aStr.GetBuffer());
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -545,7 +545,7 @@ namespace binfilter {
 /*?*/
 /*?*/           aErrMsg += " zuviel gelesen, FilePos korregiert.";
 /*?*/
-/*?*/           DBG_ERROR(aErrMsg.GetBuffer());
+/*?*/           OSL_FAIL(aErrMsg.GetBuffer());
 /*N*/       }
 #endif
 

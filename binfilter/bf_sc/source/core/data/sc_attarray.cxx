@@ -115,7 +115,7 @@ namespace binfilter {
 /*?*/       ByteString aMsg = ByteString::CreateFromInt32(nErr);
 /*?*/       aMsg += " errors in attribute array, column ";
 /*?*/       aMsg += ByteString::CreateFromInt32(nCol);
-/*?*/       DBG_ERROR( aMsg.GetBuffer() );
+/*?*/       OSL_FAIL( aMsg.GetBuffer() );
 /*N*/   }
 /*N*/ }
 #endif

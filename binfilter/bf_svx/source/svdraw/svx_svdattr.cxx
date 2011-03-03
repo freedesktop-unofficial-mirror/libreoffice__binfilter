@@ -384,7 +384,7 @@ void SdrItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEn
             aStr += "Which=";
             aStr += ByteString::CreateFromInt32( nNum + 1000 );
 
-            DBG_ERROR(aStr.GetBuffer());
+            OSL_FAIL(aStr.GetBuffer());
         }
         else if(pItem->Which() != nNum + 1000)
         {
@@ -395,7 +395,7 @@ void SdrItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEn
             aStr += " Which=";
             aStr += ByteString::CreateFromInt32( pItem->Which() );
 
-            DBG_ERROR(aStr.GetBuffer());
+            OSL_FAIL(aStr.GetBuffer());
         }
     }
 #endif
