@@ -1282,7 +1282,7 @@ void EMFWriter::ImplWrite( const GDIMetaFile& rMtf )
             break;
 
             default:
-                DBG_ERROR( ( ByteString( "EMFWriter::ImplWriteActions: unsupported MetaAction #" ) += ByteString::CreateFromInt32( nType ) ).GetBuffer() );
+                OSL_FAIL( ( ByteString( "EMFWriter::ImplWriteActions: unsupported MetaAction #" ) += ByteString::CreateFromInt32( nType ) ).GetBuffer() );
             break;
         }
     }
