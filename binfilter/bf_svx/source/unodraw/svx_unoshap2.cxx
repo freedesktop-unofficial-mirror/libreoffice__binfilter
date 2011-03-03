@@ -28,8 +28,8 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#include <com/sun/star/awt/TextAlign.hpp>  //added by BerryJia for fixing Bug102407 2002-11-4
-#include <com/sun/star/style/ParagraphAdjust.hpp>   //added by BerryJia for fixing Bug102407 2002-11-4
+#include <com/sun/star/awt/TextAlign.hpp>
+#include <com/sun/star/style/ParagraphAdjust.hpp>
 #include <com/sun/star/drawing/PointSequenceSequence.hpp>
 #include <com/sun/star/drawing/PointSequence.hpp>
 #include <bf_goodies/matrix3d.hxx>
@@ -779,7 +779,6 @@ void SAL_CALL SvxShapeControl::setPropertyValue( const OUString& aPropertyName, 
                 }
                 else
                 {
-                    //modified by BerryJia for fixing Bug102407 2002-11-4
                     Any rValue;
                     rValue = aValue;
                     if (::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Align" )) == aFormsName)
@@ -819,7 +818,6 @@ uno::Any SAL_CALL SvxShapeControl::getPropertyValue( const OUString& aPropertyNa
                 }
                 else
                 {
-                    //modified by BerryJia for fixing Bug102407 2002-11-4
                     Any rValue;
                     rValue = xControl->getPropertyValue( aFormsName );
                     if (::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Align" )) == aFormsName)

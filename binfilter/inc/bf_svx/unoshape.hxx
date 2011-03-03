@@ -420,8 +420,8 @@ class SvxShapeControl : public ::com::sun::star::drawing::XControlShape, public 
 private:
 
     void convertPropertyName( const ::rtl::OUString& rApiName, ::rtl::OUString& rInternalName, sal_Bool& rNeedsConversion );
-    void valueAlignToParaAdjust(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
-    void valueParaAdjustToAlign(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
+    void valueAlignToParaAdjust(::com::sun::star::uno::Any& rValue);
+    void valueParaAdjustToAlign(::com::sun::star::uno::Any& rValue);
 
 public:
     SvxShapeControl( SdrObject* pObj ) throw();

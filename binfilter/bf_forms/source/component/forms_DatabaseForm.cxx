@@ -1370,7 +1370,7 @@ sal_Bool ODatabaseForm::executeRowSet(::osl::ResettableMutexGuard& _rClearForNot
         if(m_pParameterInfo && m_pParameterInfo->nCount > 0)
         {
             // reset all parameter values
-            // (fs@openoffice.org: what is the difference to the "clearParameter" call which was removed
+            // (what is the difference to the "clearParameter" call which was removed
             // in revision 1.39, and replaced with the lines below??)
             Reference<XParameters>  xExecutionParams;
             query_aggregation( m_xAggregate, xExecutionParams);

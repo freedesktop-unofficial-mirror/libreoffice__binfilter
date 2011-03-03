@@ -52,7 +52,6 @@ namespace svxform
         static oslModule        s_hDbtoolsModule;
         static ::connectivity::simple::createDataAccessToolsFactoryFunction
                                 s_pFactoryCreationFunc;
-        //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
         mutable BOOL            m_bCreateAlready;
 
     private:
@@ -65,7 +64,6 @@ namespace svxform
     protected:
         ODbtoolsClient();
         ~ODbtoolsClient();
-        //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
 
     private:
     };
@@ -77,7 +75,6 @@ namespace svxform
     {
     protected:
         mutable ::rtl::Reference< ::connectivity::simple::IDataAccessTools >    m_xDataAccessTools;
-        //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
         void create() const;
 
         void checkIfLoaded() const;

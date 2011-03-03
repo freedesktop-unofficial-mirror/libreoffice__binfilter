@@ -238,7 +238,6 @@ namespace xmloff
         virtual void doRegisterCellValueBinding( const ::rtl::OUString& _rBoundCellAddress );
 
     protected:
-        //added by BerryJia for fixing bug102407 2002-11-5
         // OElementImport overridables
         virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
                         createElement();

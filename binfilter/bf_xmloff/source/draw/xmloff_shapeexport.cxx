@@ -323,7 +323,6 @@ void XMLShapeExport::collectShapeAutoStyles(const uno::Reference< drawing::XShap
                 // * defaults for style properties are not written, but we need to write the "left",
                 //   because we need to distiguish this "left" from the case where not align attribute
                 //   is present which means "void"
-                // 102407 - 2002-11-01 - fs@openoffice.org
                 static const ::rtl::OUString s_sParaAdjustPropertyName( RTL_CONSTASCII_USTRINGPARAM( "ParaAdjust" ) );
                 uno::Reference< beans::XPropertySetInfo > xLclPropSetInfo( xPropSet->getPropertySetInfo() );
                 if ( xLclPropSetInfo.is() && xLclPropSetInfo->hasPropertyByName( s_sParaAdjustPropertyName ) )
