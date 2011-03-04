@@ -44,12 +44,13 @@
 
 namespace binfilter {
 
-using namespace rtl;
 using namespace utl;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define CFG_ROOT_NODE   "Office.Common/SearchOptions"
 

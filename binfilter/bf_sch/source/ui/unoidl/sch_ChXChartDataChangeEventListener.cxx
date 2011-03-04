@@ -37,10 +37,10 @@ namespace binfilter {
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
 #endif
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 ChXChartDataChangeEventListener::ChXChartDataChangeEventListener()
 {

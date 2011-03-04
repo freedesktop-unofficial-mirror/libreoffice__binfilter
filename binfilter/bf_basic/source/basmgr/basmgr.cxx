@@ -69,9 +69,10 @@ using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
 using namespace com::sun::star::script;
 using namespace cppu;
-using namespace rtl;
 using ::std::vector;
 using ::std::advance;
+
+using ::rtl::OUString;
 
 typedef WeakImplHelper1< XNameContainer > NameContainerHelper;
 typedef WeakImplHelper1< XStarBasicModuleInfo > ModuleInfoHelper;

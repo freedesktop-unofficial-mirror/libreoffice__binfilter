@@ -35,8 +35,8 @@
 #include <uno/lbnames.h>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 extern uno::Reference< uno::XInterface > SAL_CALL SdDrawingDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & _rxFactory );
 extern OUString SdDrawingDocument_getImplementationName() throw( uno::RuntimeException );

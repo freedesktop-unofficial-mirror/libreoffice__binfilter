@@ -57,8 +57,11 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star;
 using namespace cppu;
-using namespace rtl;
 using namespace osl;
+
+using ::rtl::OUString;
+using ::rtl::Uri;
+using ::rtl::OUStringToOString;
 
 
 //============================================================================

@@ -76,7 +76,8 @@ using namespace com::sun::star::script;
 using namespace com::sun::star::container;
 using namespace com::sun::star::bridge;
 using namespace cppu;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 
 #include "sbstar.hxx"

@@ -36,8 +36,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 // --------------------------------------------------------------------
 

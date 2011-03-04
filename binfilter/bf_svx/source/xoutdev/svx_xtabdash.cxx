@@ -55,7 +55,8 @@
 namespace binfilter {
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 #define GLOBALOVERFLOW
 

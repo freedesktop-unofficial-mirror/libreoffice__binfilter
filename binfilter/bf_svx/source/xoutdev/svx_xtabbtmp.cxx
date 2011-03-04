@@ -47,7 +47,8 @@ namespace binfilter {
 #define GLOBALOVERFLOW
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 sal_Unicode const pszExtBitmap[]  = {'s','o','b'};
 

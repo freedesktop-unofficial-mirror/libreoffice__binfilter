@@ -45,9 +45,10 @@
 #include "itemholder1.hxx"
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 namespace css = ::com::sun::star;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {

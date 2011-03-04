@@ -42,9 +42,10 @@
 #include "itemholder2.hxx"
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {

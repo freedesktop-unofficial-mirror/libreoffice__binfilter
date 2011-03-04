@@ -58,12 +58,14 @@
 #include <com/sun/star/plugin/XPlugin.hpp>
 #include <com/sun/star/plugin/XPluginManager.hpp>
 
-using namespace rtl;
 using namespace com::sun::star;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
 using namespace com::sun::star::beans;
 using namespace com::sun::star::plugin;
+
+using ::rtl::OUString;
+using ::rtl::OUStringToOString;
 
 namespace binfilter {
 

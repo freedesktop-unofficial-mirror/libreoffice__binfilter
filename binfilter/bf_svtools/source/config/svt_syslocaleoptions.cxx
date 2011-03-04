@@ -55,10 +55,9 @@ namespace binfilter
 
 using namespace osl;
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
-
+using ::rtl::OUString;
 
 SvtSysLocaleOptions_Impl*   SvtSysLocaleOptions::pOptions = NULL;
 sal_Int32                   SvtSysLocaleOptions::nRefCount = 0;

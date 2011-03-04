@@ -41,8 +41,9 @@ namespace binfilter {
 #define DEF_INCH    2540L
 #define DEF_RELTWIP 1440L
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------

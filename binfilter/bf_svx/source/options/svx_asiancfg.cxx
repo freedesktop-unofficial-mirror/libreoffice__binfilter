@@ -36,11 +36,12 @@ namespace binfilter {
 
 //-----------------------------------------------------------------------------
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ const sal_Char sStartEndCharacters[] = "StartEndCharacters";

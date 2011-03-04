@@ -40,8 +40,9 @@
 #define DEF_INCH    2540L
 #define DEF_RELTWIP 1440L
 
-using namespace rtl;
 using namespace com::sun::star::uno;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {

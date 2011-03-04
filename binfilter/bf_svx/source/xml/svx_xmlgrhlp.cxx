@@ -40,10 +40,11 @@ namespace binfilter {
 // - Defines -
 // -----------
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::io;
+
+using ::rtl::OUString;
 
 #define XML_GRAPHICSTORAGE_NAME     "Pictures"
 #define XML_PACKAGE_URL_BASE        "vnd.sun.star.Package:"
