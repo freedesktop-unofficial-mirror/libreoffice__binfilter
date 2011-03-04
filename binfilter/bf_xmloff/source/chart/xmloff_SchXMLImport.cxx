@@ -39,9 +39,9 @@
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
 
 /* ----------------------------------------
    TokenMaps for distinguishing different

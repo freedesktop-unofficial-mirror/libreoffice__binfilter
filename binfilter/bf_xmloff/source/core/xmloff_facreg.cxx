@@ -37,8 +37,8 @@
 #include <uno/lbnames.h>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 // impress import
 extern uno::Sequence< OUString > SAL_CALL SdImpressXMLImport_getSupportedServiceNames() throw();

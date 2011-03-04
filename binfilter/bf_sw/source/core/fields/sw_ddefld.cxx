@@ -44,8 +44,7 @@ namespace binfilter {
 
 extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
-using namespace rtl;
-
+using ::rtl::OUString;
 #ifdef PM2
 #define DDE_TXT_ENCODING    RTL_TEXTENCODING_IBM_850
 #else
@@ -180,9 +179,7 @@ BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) c
         rVal <<= OUString(GetCmd().GetToken(nPart-1, ::binfilter::cTokenSeperator));
     return TRUE;
 }
-/* -----------------------------28.08.00 16:23--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId )
 {
     BYTE nPart = 0;

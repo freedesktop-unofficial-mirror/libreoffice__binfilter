@@ -41,7 +41,6 @@
 
 namespace binfilter {
 
-using namespace rtl;
 using namespace com::sun::star;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
@@ -53,6 +52,7 @@ using namespace com::sun::star::xml::sax;
 using namespace com::sun::star::frame;
 using namespace com::sun::star::task;
 using namespace com::sun::star::util;
+using ::rtl::OUString;
 
 const OUString sServiceNameTextDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextDocument"));
 const OUString sServiceNameGlobalDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.GlobalDocument"));

@@ -30,9 +30,9 @@
 #include "xmlitmap.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_TOKEN_INVALID;
+using ::rtl::OUString;
 
 // TODO: optimize this!
 

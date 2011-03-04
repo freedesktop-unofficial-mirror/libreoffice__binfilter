@@ -36,8 +36,8 @@
 
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
 
 class SvXMLTokenMapEntry_Impl
 {

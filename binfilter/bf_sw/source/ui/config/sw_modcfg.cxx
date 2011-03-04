@@ -43,8 +43,9 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 #define GLOB_NAME_CALC      0

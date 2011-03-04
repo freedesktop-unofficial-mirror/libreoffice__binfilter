@@ -55,13 +55,14 @@
 #include <bf_goodies/vector3d.hxx>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
+using ::rtl::OUStringBuffer;
 
 const sal_Int8 XML_MAXDIGITSCOUNT_TIME = 11;
 const sal_Int8 XML_MAXDIGITSCOUNT_DATETIME = 6;
@@ -72,12 +73,6 @@ OUString SvXMLUnitConverter::msXML_false;
 
 void SvXMLUnitConverter::createNumTypeInfo() const
 {
-    // #110680#
-    //Reference< lang::XMultiServiceFactory > xServiceFactory =
-    //        comphelper::getProcessServiceFactory();
-    //OSL_ENSURE( xServiceFactory.is(),
-    //        "XMLUnitConverter: got no service factory" );
-
     if( mxServiceFactory.is() )
     {
         ((SvXMLUnitConverter *)this)->xNumTypeInfo =

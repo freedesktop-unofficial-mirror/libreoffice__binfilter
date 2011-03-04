@@ -42,7 +42,6 @@
 #include <fldmgr.hxx>
 #include <fldui.hrc>
 namespace binfilter {
-using namespace rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;

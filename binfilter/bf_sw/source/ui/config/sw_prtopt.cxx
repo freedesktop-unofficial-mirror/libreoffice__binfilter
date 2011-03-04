@@ -38,8 +38,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------

@@ -32,8 +32,8 @@
 #include "xmltoken.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 SchXMLParagraphContext::SchXMLParagraphContext( SvXMLImport& rInImport,
                                                 const OUString& rLocalName,

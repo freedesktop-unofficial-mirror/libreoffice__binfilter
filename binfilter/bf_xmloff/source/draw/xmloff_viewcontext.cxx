@@ -34,10 +34,10 @@
 namespace binfilter {
 
 using namespace ::com::sun::star;
-using namespace rtl;
 using ::binfilter::xmloff::token::IsXMLToken;
 
 using ::binfilter::xmloff::token::XML_EMBEDDED_VISIBLE_AREA;
+using ::rtl::OUString;
 
 //------------------------------------------------------------------
 

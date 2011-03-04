@@ -35,8 +35,7 @@
 #include "i18nmap.hxx"
 namespace binfilter {
 
-using namespace rtl;
-
+using ::rtl::OUString;
 class SvI18NMapEntry_Impl
 {
     USHORT          nKind;

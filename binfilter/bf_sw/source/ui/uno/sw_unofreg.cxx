@@ -37,9 +37,10 @@
 #include <SwXFilterOptions.hxx>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
+
+using ::rtl::OUString;
 
 // writer documents
 extern uno::Sequence< OUString > SAL_CALL SwTextDocument_getSupportedServiceNames() throw();

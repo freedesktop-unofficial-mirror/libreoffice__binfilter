@@ -30,8 +30,7 @@
 #include "impastpl.hxx"
 namespace binfilter {
 
-using namespace rtl;
-
+using ::rtl::OUString;
 //#############################################################################
 //
 // Class XMLFamilyData_Impl

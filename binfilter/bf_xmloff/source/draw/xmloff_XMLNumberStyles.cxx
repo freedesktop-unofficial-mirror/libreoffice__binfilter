@@ -42,8 +42,8 @@
 #include "sdxmlimp_impl.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
 
 struct SdXMLDataStyleNumber
 {

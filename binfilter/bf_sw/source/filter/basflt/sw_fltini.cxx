@@ -64,8 +64,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
         ReadHTML = 0, ReadXML = 0;

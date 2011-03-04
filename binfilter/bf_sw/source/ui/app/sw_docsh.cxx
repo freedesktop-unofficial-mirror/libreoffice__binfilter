@@ -78,8 +78,8 @@
 
 #include <bf_svtools/moduleoptions.hxx>
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 namespace binfilter {
 using namespace ::com::sun::star::uno;
