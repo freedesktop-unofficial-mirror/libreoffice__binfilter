@@ -2229,22 +2229,22 @@ Sequence< OUString > SwXLinkTargetSupplier::getSupportedServiceNames(void)
 
 
 SwXLinkNameAccessWrapper::SwXLinkNameAccessWrapper(
-            Reference< XNameAccess >  xAccess, const String& rLinkDisplayName, String sSuffix ) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_LINK_TARGET)),
-    sLinkDisplayName(rLinkDisplayName),
-    xRealAccess(xAccess),
-    sLinkSuffix(sSuffix),
-    pxDoc(0)
+            Reference< XNameAccess >  xAccess, const String& rLinkDisplayName, String sSuffix )
+    : xRealAccess(xAccess)
+    , aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_LINK_TARGET))
+    , sLinkSuffix(sSuffix)
+    , sLinkDisplayName(rLinkDisplayName)
+    , pxDoc(0)
 {
 }
 
 SwXLinkNameAccessWrapper::SwXLinkNameAccessWrapper(SwXTextDocument& rxDoc,
-            const String& rLinkDisplayName, String sSuffix) :
-    sLinkSuffix(sSuffix),
-    sLinkDisplayName(rLinkDisplayName),
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_LINK_TARGET)),
-    pxDoc(&rxDoc),
-    xDoc(&rxDoc)
+            const String& rLinkDisplayName, String sSuffix)
+    : aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_LINK_TARGET))
+    , sLinkSuffix(sSuffix)
+    , sLinkDisplayName(rLinkDisplayName)
+    , xDoc(&rxDoc)
+    , pxDoc(&rxDoc)
 {
 }
 
@@ -2589,8 +2589,8 @@ Sequence< OUString > SwXOutlineTarget::getSupportedServiceNames(void) throw( Run
 }
 
 SwXDocumentPropertyHelper::SwXDocumentPropertyHelper(SwDoc& rDoc)
-: m_pDoc(&rDoc)
-, SvxUnoForbiddenCharsTable ( rDoc.GetForbiddenCharacterTbl() )
+    : SvxUnoForbiddenCharsTable ( rDoc.GetForbiddenCharacterTbl() )
+    , m_pDoc(&rDoc)
 {
 }
 
